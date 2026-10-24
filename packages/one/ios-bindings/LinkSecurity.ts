@@ -11,31 +11,31 @@ export class LSLinkSecurityManager extends SDKHandle {
    * class var shared: LSLinkSecurityManager { get }
    * @availability iOS 27.0+
    */
-  static get shared(): LSLinkSecurityManager { return callSDK<LSLinkSecurityManager>("LinkSecurity_ff42ce03e691ab23", 2188840588314237, undefined, []); }
+  static get shared(): LSLinkSecurityManager { return callSDK<LSLinkSecurityManager>("LinkSecurity_3864e7f38681b875", 2188840588314237, undefined, []); }
   /**
    * func addFlaggedURL(_ url: URL)
    * @availability iOS 27.0+
    */
-  addFlaggedURL(url: string): void { return callSDK<void>("LinkSecurity_ff42ce03e691ab23", 3028996300277995, this, [url]); }
+  addFlaggedURL(url: string): void { return callSDK<void>("LinkSecurity_3864e7f38681b875", 3028996300277995, this, [url]); }
   /**
    * func addFlaggedURLs(_ urls: [URL])
    * @availability iOS 27.0+
    */
-  addFlaggedURLs(urls: Array<string>): void { return callSDK<void>("LinkSecurity_ff42ce03e691ab23", 195725406213061, this, [urls]); }
+  addFlaggedURLs(urls: Array<string>): void { return callSDK<void>("LinkSecurity_3864e7f38681b875", 195725406213061, this, [urls]); }
   /**
    * func isFlaggedURL(_ url: URL) async -> Bool
    * @availability iOS 27.0+
    */
-  checkIsFlaggedURL(url: string, completion: ((arg0: boolean) => void)): void { return callSDK<void>("LinkSecurity_ff42ce03e691ab23", 4379602631084500, this, [url, completion], [null,{"callback":{"out":[]}}]); }
+  checkIsFlaggedURL(url: string, completion: ((arg0: boolean) => void)): void { return callSDK<void>("LinkSecurity_3864e7f38681b875", 4379602631084500, this, [url, completion], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): LSLinkSecurityManager { return callSDK<LSLinkSecurityManager>("LinkSecurity_ff42ce03e691ab23", 3060830665219899, undefined, []); }
+  static init(): LSLinkSecurityManager { return callSDK<LSLinkSecurityManager>("LinkSecurity_3864e7f38681b875", 3060830665219899, undefined, []); }
   /**
    * var hasFlaggedURLs: Bool { get }
    * @availability iOS 27.0+
    */
-  get hasFlaggedURLs(): boolean { return callSDK<boolean>("LinkSecurity_ff42ce03e691ab23", 3518410802988802, this, []); }
+  get hasFlaggedURLs(): boolean { return callSDK<boolean>("LinkSecurity_3864e7f38681b875", 3518410802988802, this, []); }
   declare readonly $type: { "c:objc(cs)LSLinkSecurityManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hasFlaggedURLs": true };
 }
 
-registerSDKClass("LSLinkSecurityManager", LSLinkSecurityManager, { module: "LinkSecurity_ff42ce03e691ab23", properties: {"hasFlaggedURLs":3518410802988802}, methods: {"addFlaggedURL":{"id":3028996300277995},"addFlaggedURLs":{"id":195725406213061},"checkIsFlaggedURL":{"id":4379602631084500,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("LSLinkSecurityManager", LSLinkSecurityManager, { module: "LinkSecurity_3864e7f38681b875", properties: {"hasFlaggedURLs":3518410802988802}, methods: {"addFlaggedURL":{"id":3028996300277995},"addFlaggedURLs":{"id":195725406213061},"checkIsFlaggedURL":{"id":4379602631084500,"hints":[null,{"callback":{"out":[]}}]}} });

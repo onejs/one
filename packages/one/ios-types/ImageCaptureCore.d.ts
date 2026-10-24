@@ -1036,7 +1036,7 @@ export interface ICDeviceBrowserDelegate {
     "deviceBrowserDidResumeOperations"?: (arg0: ICDeviceBrowser) => void;
 }
 /** struct ICDeviceCapability */
-export type ICDeviceCapability = "cameraDeviceCanTakePicture" | "cameraDeviceCanTakePictureUsingShutterReleaseOnCamera" | "cameraDeviceCanDeleteOneFile" | "cameraDeviceCanDeleteAllFiles" | "cameraDeviceCanSyncClock" | "cameraDeviceCanReceiveFile" | "cameraDeviceCanAcceptPTPCommands" | "cameraDeviceSupportsHEIF" | "canEjectOrDisconnect" | (string & {});
+export type ICDeviceCapability = "canEjectOrDisconnect" | "cameraDeviceCanTakePicture" | "cameraDeviceCanTakePictureUsingShutterReleaseOnCamera" | "cameraDeviceCanDeleteOneFile" | "cameraDeviceCanDeleteAllFiles" | "cameraDeviceCanSyncClock" | "cameraDeviceCanReceiveFile" | "cameraDeviceCanAcceptPTPCommands" | "cameraDeviceSupportsHEIF" | (string & {});
 export declare const ICDeviceCapability: {
     /**
      * static let cameraDeviceCanAcceptPTPCommands: ICDeviceCapability

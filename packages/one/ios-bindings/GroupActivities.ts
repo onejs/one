@@ -27,17 +27,17 @@ export const BroadcastOptions = {
    * static let mirroredVideo: BroadcastOptions
    * @availability iOS 15.0+
    */
-  get mirroredVideo(): BroadcastOptions { return callSDK<BroadcastOptions>("GroupActivities_ff42ce03e691ab23", 703091005850611, undefined, []); },
+  get mirroredVideo(): BroadcastOptions { return callSDK<BroadcastOptions>("GroupActivities_3864e7f38681b875", 703091005850611, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): BroadcastOptions { return callSDK<BroadcastOptions>("GroupActivities_ff42ce03e691ab23", 4199147722794876, undefined, [rawValue]); },
+  init(rawValue: number): BroadcastOptions { return callSDK<BroadcastOptions>("GroupActivities_3864e7f38681b875", 4199147722794876, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 15.0+
    */
-  getRawValue($self: BroadcastOptions): number { return callSDK<number>("GroupActivities_ff42ce03e691ab23", 2965684977228687, $self, []); }
+  getRawValue($self: BroadcastOptions): number { return callSDK<number>("GroupActivities_3864e7f38681b875", 2965684977228687, $self, []); }
 };
 
 /**
@@ -95,79 +95,79 @@ export class GroupActivityMetadata extends SDKHandle {
    * var experience: GroupActivityMetadata.Experience? { get set }
    * @availability iOS 15.0+
    */
-  get experience(): $SDK1 { return callSDK<$SDK1>("GroupActivities_ff42ce03e691ab23", 2138462250949736, this, []); }
-  set experience(value: $SDK1) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 2721267353870804, this, [value]); }
+  get experience(): $SDK1 { return callSDK<$SDK1>("GroupActivities_3864e7f38681b875", 2138462250949736, this, []); }
+  set experience(value: $SDK1) { callSDK<void>("GroupActivities_3864e7f38681b875", 2721267353870804, this, [value]); }
   /**
    * var fallbackURL: URL?
    * @availability iOS 15.0+
    */
-  get fallbackURL(): (string) | null { return callSDK<(string) | null>("GroupActivities_ff42ce03e691ab23", 1057103631105964, this, []); }
-  set fallbackURL(value: (string) | null) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 2898162846106202, this, [value]); }
+  get fallbackURL(): (string) | null { return callSDK<(string) | null>("GroupActivities_3864e7f38681b875", 1057103631105964, this, []); }
+  set fallbackURL(value: (string) | null) { callSDK<void>("GroupActivities_3864e7f38681b875", 2898162846106202, this, [value]); }
   /**
    * var previewImage: CGImage?
    * @availability iOS 15.0+
    */
-  get previewImage(): $SDK2 { return callSDK<$SDK2>("GroupActivities_ff42ce03e691ab23", 1809939100200761, this, []); }
-  set previewImage(value: $SDK2) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 3786636891836989, this, [value]); }
+  get previewImage(): $SDK2 { return callSDK<$SDK2>("GroupActivities_3864e7f38681b875", 1809939100200761, this, []); }
+  set previewImage(value: $SDK2) { callSDK<void>("GroupActivities_3864e7f38681b875", 3786636891836989, this, [value]); }
   /**
    * var lifetimePolicy: GroupActivityMetadata.LifetimePolicy
    * @availability iOS 18.0+
    */
-  get lifetimePolicy(): GroupActivityMetadata_LifetimePolicy { return callSDK<GroupActivityMetadata_LifetimePolicy>("GroupActivities_ff42ce03e691ab23", 2351431115042208, this, []); }
-  set lifetimePolicy(value: GroupActivityMetadata_LifetimePolicy) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 1929267750697673, this, [value]); }
+  get lifetimePolicy(): GroupActivityMetadata_LifetimePolicy { return callSDK<GroupActivityMetadata_LifetimePolicy>("GroupActivities_3864e7f38681b875", 2351431115042208, this, []); }
+  set lifetimePolicy(value: GroupActivityMetadata_LifetimePolicy) { callSDK<void>("GroupActivities_3864e7f38681b875", 1929267750697673, this, [value]); }
   /**
    * var localizedTitle: String? { get set }
    * @availability iOS 15.0+
    */
-  get localizedTitle(): (string) | null { return callSDK<(string) | null>("GroupActivities_ff42ce03e691ab23", 4982279305189, this, []); }
-  set localizedTitle(value: (string) | null) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 3642654284753807, this, [value]); }
+  get localizedTitle(): (string) | null { return callSDK<(string) | null>("GroupActivities_3864e7f38681b875", 4982279305189, this, []); }
+  set localizedTitle(value: (string) | null) { callSDK<void>("GroupActivities_3864e7f38681b875", 3642654284753807, this, [value]); }
   /**
    * var localizedSubtitle: String? { get set }
    * @availability iOS 15.0+
    */
-  get localizedSubtitle(): (string) | null { return callSDK<(string) | null>("GroupActivities_ff42ce03e691ab23", 3281419839923544, this, []); }
-  set localizedSubtitle(value: (string) | null) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 1842286817667598, this, [value]); }
+  get localizedSubtitle(): (string) | null { return callSDK<(string) | null>("GroupActivities_3864e7f38681b875", 3281419839923544, this, []); }
+  set localizedSubtitle(value: (string) | null) { callSDK<void>("GroupActivities_3864e7f38681b875", 1842286817667598, this, [value]); }
   /**
    * var sceneAssociationBehavior: SceneAssociationBehavior
    * @availability iOS 17.0+
    */
-  get sceneAssociationBehavior(): SceneAssociationBehavior { return callSDK<SceneAssociationBehavior>("GroupActivities_ff42ce03e691ab23", 1220955854602081, this, []); }
-  set sceneAssociationBehavior(value: SceneAssociationBehavior) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 3901681294543702, this, [value]); }
+  get sceneAssociationBehavior(): SceneAssociationBehavior { return callSDK<SceneAssociationBehavior>("GroupActivities_3864e7f38681b875", 1220955854602081, this, []); }
+  set sceneAssociationBehavior(value: SceneAssociationBehavior) { callSDK<void>("GroupActivities_3864e7f38681b875", 3901681294543702, this, [value]); }
   /**
    * var supportsContinuationOnTV: Bool
    * @availability iOS 15.0+
    */
-  get supportsContinuationOnTV(): boolean { return callSDK<boolean>("GroupActivities_ff42ce03e691ab23", 3518528507168791, this, []); }
-  set supportsContinuationOnTV(value: boolean) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 4294611506100844, this, [value]); }
+  get supportsContinuationOnTV(): boolean { return callSDK<boolean>("GroupActivities_3864e7f38681b875", 3518528507168791, this, []); }
+  set supportsContinuationOnTV(value: boolean) { callSDK<void>("GroupActivities_3864e7f38681b875", 4294611506100844, this, [value]); }
   /**
    * var preferredBroadcastOptions: BroadcastOptions
    * @availability iOS 15.0+
    */
-  get preferredBroadcastOptions(): BroadcastOptions { return callSDK<BroadcastOptions>("GroupActivities_ff42ce03e691ab23", 59405146983877, this, []); }
-  set preferredBroadcastOptions(value: BroadcastOptions) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 3387642819594620, this, [value]); }
+  get preferredBroadcastOptions(): BroadcastOptions { return callSDK<BroadcastOptions>("GroupActivities_3864e7f38681b875", 59405146983877, this, []); }
+  set preferredBroadcastOptions(value: BroadcastOptions) { callSDK<void>("GroupActivities_3864e7f38681b875", 3387642819594620, this, [value]); }
   /**
    * var type: GroupActivityMetadata.ActivityType
    * @availability iOS 15.0+
    */
-  get type(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_ff42ce03e691ab23", 1622044762490891, this, []); }
-  set type(value: GroupActivityMetadata_ActivityType) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 1619953414241913, this, [value]); }
+  get type(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_3864e7f38681b875", 1622044762490891, this, []); }
+  set type(value: GroupActivityMetadata_ActivityType) { callSDK<void>("GroupActivities_3864e7f38681b875", 1619953414241913, this, [value]); }
   /**
    * var title: String?
    * @availability iOS 15.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("GroupActivities_ff42ce03e691ab23", 3825489217937317, this, []); }
-  set title(value: (string) | null) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 2301563055109302, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("GroupActivities_3864e7f38681b875", 3825489217937317, this, []); }
+  set title(value: (string) | null) { callSDK<void>("GroupActivities_3864e7f38681b875", 2301563055109302, this, [value]); }
   /**
    * var subtitle: String?
    * @availability iOS 15.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("GroupActivities_ff42ce03e691ab23", 3554099816469616, this, []); }
-  set subtitle(value: (string) | null) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 2925331876233968, this, [value]); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("GroupActivities_3864e7f38681b875", 3554099816469616, this, []); }
+  set subtitle(value: (string) | null) { callSDK<void>("GroupActivities_3864e7f38681b875", 2925331876233968, this, [value]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): GroupActivityMetadata { return callSDK<GroupActivityMetadata>("GroupActivities_ff42ce03e691ab23", 4245704686443529, undefined, []); }
+  static init(): GroupActivityMetadata { return callSDK<GroupActivityMetadata>("GroupActivities_3864e7f38681b875", 4245704686443529, undefined, []); }
   declare readonly $type: { "s:15GroupActivities0A16ActivityMetadataV": true };
 }
 
@@ -180,52 +180,52 @@ export class GroupActivityMetadata_ActivityType extends SDKHandle {
    * static let playTogether: GroupActivityMetadata.ActivityType
    * @availability iOS 16.2+
    */
-  static get playTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_ff42ce03e691ab23", 3227655132459523, undefined, []); }
+  static get playTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_3864e7f38681b875", 3227655132459523, undefined, []); }
   /**
    * static let readTogether: GroupActivityMetadata.ActivityType
    * @availability iOS 17.0+
    */
-  static get readTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_ff42ce03e691ab23", 2320895946767683, undefined, []); }
+  static get readTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_3864e7f38681b875", 2320895946767683, undefined, []); }
   /**
    * static let shopTogether: GroupActivityMetadata.ActivityType
    * @availability iOS 17.0+
    */
-  static get shopTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_ff42ce03e691ab23", 4123343321969635, undefined, []); }
+  static get shopTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_3864e7f38681b875", 4123343321969635, undefined, []); }
   /**
    * static let learnTogether: GroupActivityMetadata.ActivityType
    * @availability iOS 17.0+
    */
-  static get learnTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_ff42ce03e691ab23", 1497673843397955, undefined, []); }
+  static get learnTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_3864e7f38681b875", 1497673843397955, undefined, []); }
   /**
    * static let watchTogether: GroupActivityMetadata.ActivityType
    * @availability iOS 15.0+
    */
-  static get watchTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_ff42ce03e691ab23", 933026319358329, undefined, []); }
+  static get watchTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_3864e7f38681b875", 933026319358329, undefined, []); }
   /**
    * static let createTogether: GroupActivityMetadata.ActivityType
    * @availability iOS 17.0+
    */
-  static get createTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_ff42ce03e691ab23", 3430567486185607, undefined, []); }
+  static get createTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_3864e7f38681b875", 3430567486185607, undefined, []); }
   /**
    * static let listenTogether: GroupActivityMetadata.ActivityType
    * @availability iOS 15.0+
    */
-  static get listenTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_ff42ce03e691ab23", 4274646255124988, undefined, []); }
+  static get listenTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_3864e7f38681b875", 4274646255124988, undefined, []); }
   /**
    * static let exploreTogether: GroupActivityMetadata.ActivityType
    * @availability iOS 17.0+
    */
-  static get exploreTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_ff42ce03e691ab23", 1255759005328821, undefined, []); }
+  static get exploreTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_3864e7f38681b875", 1255759005328821, undefined, []); }
   /**
    * static let workoutTogether: GroupActivityMetadata.ActivityType
    * @availability iOS 17.0+
    */
-  static get workoutTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_ff42ce03e691ab23", 3898699727315150, undefined, []); }
+  static get workoutTogether(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_3864e7f38681b875", 3898699727315150, undefined, []); }
   /**
    * static let generic: GroupActivityMetadata.ActivityType
    * @availability iOS 15.0+
    */
-  static get generic(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_ff42ce03e691ab23", 2320006112247606, undefined, []); }
+  static get generic(): GroupActivityMetadata_ActivityType { return callSDK<GroupActivityMetadata_ActivityType>("GroupActivities_3864e7f38681b875", 2320006112247606, undefined, []); }
   declare readonly $type: { "s:15GroupActivities0A16ActivityMetadataV0C4TypeV": true };
 }
 
@@ -240,12 +240,12 @@ export const GroupActivityMetadata_Experience = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (GroupActivityMetadata_Experience) | null { return callSDK<(GroupActivityMetadata_Experience) | null>("GroupActivities_ff42ce03e691ab23", 1355883823734184, undefined, [rawValue]); },
+  init(rawValue: number): (GroupActivityMetadata_Experience) | null { return callSDK<(GroupActivityMetadata_Experience) | null>("GroupActivities_3864e7f38681b875", 1355883823734184, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 15.0+
    */
-  getRawValue($self: GroupActivityMetadata_Experience): number { return callSDK<number>("GroupActivities_ff42ce03e691ab23", 2288953052525407, $self, []); }
+  getRawValue($self: GroupActivityMetadata_Experience): number { return callSDK<number>("GroupActivities_3864e7f38681b875", 2288953052525407, $self, []); }
 };
 
 /**
@@ -263,12 +263,12 @@ export class GroupActivityMetadata_LifetimePolicy extends SDKHandle {
    * static let endsWhenInitiatorLeaves: GroupActivityMetadata.LifetimePolicy
    * @availability iOS 18.0+
    */
-  static get endsWhenInitiatorLeaves(): GroupActivityMetadata_LifetimePolicy { return callSDK<GroupActivityMetadata_LifetimePolicy>("GroupActivities_ff42ce03e691ab23", 2091144443388716, undefined, []); }
+  static get endsWhenInitiatorLeaves(): GroupActivityMetadata_LifetimePolicy { return callSDK<GroupActivityMetadata_LifetimePolicy>("GroupActivities_3864e7f38681b875", 2091144443388716, undefined, []); }
   /**
    * static let automatic: GroupActivityMetadata.LifetimePolicy
    * @availability iOS 18.0+
    */
-  static get automatic(): GroupActivityMetadata_LifetimePolicy { return callSDK<GroupActivityMetadata_LifetimePolicy>("GroupActivities_ff42ce03e691ab23", 4098407802746934, undefined, []); }
+  static get automatic(): GroupActivityMetadata_LifetimePolicy { return callSDK<GroupActivityMetadata_LifetimePolicy>("GroupActivities_3864e7f38681b875", 4098407802746934, undefined, []); }
   declare readonly $type: { "s:15GroupActivities0A16ActivityMetadataV14LifetimePolicyV": true };
 }
 
@@ -295,80 +295,80 @@ export class GroupSession<ActivityType = unknown> extends SDKHandle {
    * final var sceneSessionIdentifier: String? { get }
    * @availability iOS 17.0+
    */
-  get sceneSessionIdentifier(): (string) | null { return callSDK<(string) | null>("GroupActivities_ff42ce03e691ab23", 392638390512509, this, []); }
+  get sceneSessionIdentifier(): (string) | null { return callSDK<(string) | null>("GroupActivities_3864e7f38681b875", 392638390512509, this, []); }
   /**
    * final func showNotice(_ event: GroupSessionEvent)
    * @availability iOS 15.0+
    */
-  showNotice(event: GroupSessionEvent): void { return callSDK<void>("GroupActivities_ff42ce03e691ab23", 1873475723704367, this, [event]); }
+  showNotice(event: GroupSessionEvent): void { return callSDK<void>("GroupActivities_3864e7f38681b875", 1873475723704367, this, [event]); }
   /** final var description: String { get } */
-  get description(): string { return callSDK<string>("GroupActivities_ff42ce03e691ab23", 729986681349329, this, []); }
+  get description(): string { return callSDK<string>("GroupActivities_3864e7f38681b875", 729986681349329, this, []); }
   /**
    * final var localParticipant: Participant { get }
    * @availability iOS 15.0+
    */
-  get localParticipant(): Participant { return callSDK<Participant>("GroupActivities_ff42ce03e691ab23", 1118866739363499, this, []); }
+  get localParticipant(): Participant { return callSDK<Participant>("GroupActivities_3864e7f38681b875", 1118866739363499, this, []); }
   /**
    * @Published<Set<Participant>> final var activeParticipants: Set<Participant> { get }
    * @availability iOS 15.0+
    */
-  get activeParticipants(): Array<Participant> { return callSDK<Array<Participant>>("GroupActivities_ff42ce03e691ab23", 3506410110004929, this, []); }
+  get activeParticipants(): Array<Participant> { return callSDK<Array<Participant>>("GroupActivities_3864e7f38681b875", 3506410110004929, this, []); }
   /**
    * final let isLocallyInitiated: Bool
    * @availability iOS 18.0+
    */
-  get isLocallyInitiated(): boolean { return callSDK<boolean>("GroupActivities_ff42ce03e691ab23", 792677633170310, this, []); }
+  get isLocallyInitiated(): boolean { return callSDK<boolean>("GroupActivities_3864e7f38681b875", 792677633170310, this, []); }
   /**
    * final var $activeParticipants: Published<Set<Participant>>.Publisher { get }
    * @availability iOS 15.0+
    */
-  get $activeParticipants(): _Combine_Published_Publisher<Array<Participant>> { return callSDK<_Combine_Published_Publisher<Array<Participant>>>("GroupActivities_ff42ce03e691ab23", 1486191902042962, this, []); }
+  get $activeParticipants(): _Combine_Published_Publisher<Array<Participant>> { return callSDK<_Combine_Published_Publisher<Array<Participant>>>("GroupActivities_3864e7f38681b875", 1486191902042962, this, []); }
   /**
    * final func requestForegroundPresentation()
    * @availability iOS 15.0+
    */
-  requestForegroundPresentation(): void { return callSDK<void>("GroupActivities_ff42ce03e691ab23", 602695414735069, this, []); }
+  requestForegroundPresentation(): void { return callSDK<void>("GroupActivities_3864e7f38681b875", 602695414735069, this, []); }
   /**
    * final let id: UUID
    * @availability iOS 15.0+
    */
-  get id(): string { return callSDK<string>("GroupActivities_ff42ce03e691ab23", 377154684720298, this, []); }
+  get id(): string { return callSDK<string>("GroupActivities_3864e7f38681b875", 377154684720298, this, []); }
   /**
    * final func end()
    * @availability iOS 15.0+
    */
-  end(): void { return callSDK<void>("GroupActivities_ff42ce03e691ab23", 1033329503399939, this, []); }
+  end(): void { return callSDK<void>("GroupActivities_3864e7f38681b875", 1033329503399939, this, []); }
   /**
    * final func join()
    * @availability iOS 15.0+
    */
-  join(): void { return callSDK<void>("GroupActivities_ff42ce03e691ab23", 1091967736801346, this, []); }
+  join(): void { return callSDK<void>("GroupActivities_3864e7f38681b875", 1091967736801346, this, []); }
   /**
    * final func leave()
    * @availability iOS 15.0+
    */
-  leave(): void { return callSDK<void>("GroupActivities_ff42ce03e691ab23", 1513077470544521, this, []); }
+  leave(): void { return callSDK<void>("GroupActivities_3864e7f38681b875", 1513077470544521, this, []); }
   /**
    * @Published<GroupSession<ActivityType>.State> final var state: GroupSession<ActivityType>.State { get }
    * @availability iOS 15.0+
    */
-  get state(): GroupSession_State<SDKHandle> { return callSDK<GroupSession_State<SDKHandle>>("GroupActivities_ff42ce03e691ab23", 3026291821088545, this, []); }
+  get state(): GroupSession_State<SDKHandle> { return callSDK<GroupSession_State<SDKHandle>>("GroupActivities_3864e7f38681b875", 3026291821088545, this, []); }
   /**
    * final var $state: Published<GroupSession<ActivityType>.State>.Publisher { get }
    * @availability iOS 15.0+
    */
-  get $state(): _Combine_Published_Publisher<GroupSession_State<SDKHandle>> { return callSDK<_Combine_Published_Publisher<GroupSession_State<SDKHandle>>>("GroupActivities_ff42ce03e691ab23", 2108175393039965, this, []); }
+  get $state(): _Combine_Published_Publisher<GroupSession_State<SDKHandle>> { return callSDK<_Combine_Published_Publisher<GroupSession_State<SDKHandle>>>("GroupActivities_3864e7f38681b875", 2108175393039965, this, []); }
   /**
    * final var $activity: Published<ActivityType>.Publisher { get set }
    * @availability iOS 15.0+
    */
-  get $activity(): $SDK6 { return callSDK<$SDK6>("GroupActivities_ff42ce03e691ab23", 3697797962648553, this, []); }
-  set $activity(value: $SDK6) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 1756408012743406, this, [value]); }
+  get $activity(): $SDK6 { return callSDK<$SDK6>("GroupActivities_3864e7f38681b875", 3697797962648553, this, []); }
+  set $activity(value: $SDK6) { callSDK<void>("GroupActivities_3864e7f38681b875", 1756408012743406, this, [value]); }
   /**
    * final func postEvent(_ event: GroupSession<ActivityType>.Event)
    * @availability iOS 15.0+
    */
-  postEvent(event: GroupSession_Event<SDKHandle>): void { return callSDK<void>("GroupActivities_ff42ce03e691ab23", 2237888390306643, this, [event]); }
+  postEvent(event: GroupSession_Event<SDKHandle>): void { return callSDK<void>("GroupActivities_3864e7f38681b875", 2237888390306643, this, [event]); }
   declare readonly $type: { "s:15GroupActivities0A7SessionC": true };
 }
 
@@ -381,13 +381,13 @@ export class GroupSession_Event<ActivityType = unknown> extends SDKHandle {
    * let originator: Participant
    * @availability iOS 15.0+
    */
-  get originator(): Participant { return callSDK<Participant>("GroupActivities_ff42ce03e691ab23", 309618170454032, this, []); }
+  get originator(): Participant { return callSDK<Participant>("GroupActivities_3864e7f38681b875", 309618170454032, this, []); }
   /**
    * var localizedDescription: String { get }
    * @availability iOS 15.0+
    * @deprecated iOS 15.0
    */
-  get localizedDescription(): string { return callSDK<string>("GroupActivities_ff42ce03e691ab23", 671870602067361, this, []); }
+  get localizedDescription(): string { return callSDK<string>("GroupActivities_3864e7f38681b875", 671870602067361, this, []); }
   declare readonly $type: { "s:15GroupActivities0A7SessionC5EventV": true };
 }
 
@@ -406,7 +406,7 @@ export class GroupSession_Sessions<ActivityType = unknown> extends SDKHandle {
    * func makeAsyncIterator() -> GroupSession<ActivityType>.Sessions.Iterator
    * @availability iOS 15.0+
    */
-  makeAsyncIterator(): GroupSession_Sessions_Iterator<SDKHandle> { return callSDK<GroupSession_Sessions_Iterator<SDKHandle>>("GroupActivities_ff42ce03e691ab23", 4231828169365993, this, []); }
+  makeAsyncIterator(): GroupSession_Sessions_Iterator<SDKHandle> { return callSDK<GroupSession_Sessions_Iterator<SDKHandle>>("GroupActivities_3864e7f38681b875", 4231828169365993, this, []); }
   declare readonly $type: { "s:15GroupActivities0A7SessionC8SessionsV": true };
   declare readonly $element: GroupSession_Sessions_Element<unknown>;
 }
@@ -432,7 +432,7 @@ export class GroupSession_Sessions_Iterator<ActivityType = unknown> extends SDKH
    * mutating func next() async -> GroupSession<ActivityType>?
    * @availability iOS 15.0+
    */
-  next(): Promise<(GroupSession<SDKHandle>) | null> { return callSDKAsync<(GroupSession<SDKHandle>) | null>("GroupActivities_ff42ce03e691ab23", 3305753231119438, this, []); }
+  next(): Promise<(GroupSession<SDKHandle>) | null> { return callSDKAsync<(GroupSession<SDKHandle>) | null>("GroupActivities_3864e7f38681b875", 3305753231119438, this, []); }
   declare readonly $type: { "s:15GroupActivities0A7SessionC8SessionsV8IteratorV": true };
 }
 
@@ -459,22 +459,22 @@ export class GroupSessionEvent extends SDKHandle {
    * init(originator: Participant, action: GroupSessionEvent.Action, url: URL?)
    * @availability iOS 15.0+
    */
-  static init(originator: Participant, action: GroupSessionEvent_Action, url?: (string) | null): GroupSessionEvent { return callSDK<GroupSessionEvent>("GroupActivities_ff42ce03e691ab23", 1318196899217380, undefined, [originator, action, url]); }
+  static init(originator: Participant, action: GroupSessionEvent_Action, url?: (string) | null): GroupSessionEvent { return callSDK<GroupSessionEvent>("GroupActivities_3864e7f38681b875", 1318196899217380, undefined, [originator, action, url]); }
   /**
    * let originator: Participant
    * @availability iOS 15.0+
    */
-  get originator(): Participant { return callSDK<Participant>("GroupActivities_ff42ce03e691ab23", 686382920374721, this, []); }
+  get originator(): Participant { return callSDK<Participant>("GroupActivities_3864e7f38681b875", 686382920374721, this, []); }
   /**
    * let url: URL?
    * @availability iOS 15.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("GroupActivities_ff42ce03e691ab23", 3926637488990574, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("GroupActivities_3864e7f38681b875", 3926637488990574, this, []); }
   /**
    * let action: GroupSessionEvent.Action
    * @availability iOS 15.0+
    */
-  get action(): GroupSessionEvent_Action { return callSDK<GroupSessionEvent_Action>("GroupActivities_ff42ce03e691ab23", 1665502884069729, this, []); }
+  get action(): GroupSessionEvent_Action { return callSDK<GroupSessionEvent_Action>("GroupActivities_3864e7f38681b875", 1665502884069729, this, []); }
   declare readonly $type: { "s:15GroupActivities0A12SessionEventV": true };
 }
 
@@ -484,47 +484,47 @@ export class GroupSessionEvent extends SDKHandle {
  */
 export class GroupSessionEvent_Action extends SDKHandle {
   /** static let updatedQueue: GroupSessionEvent.Action */
-  static get updatedQueue(): GroupSessionEvent_Action { return callSDK<GroupSessionEvent_Action>("GroupActivities_ff42ce03e691ab23", 955853595756559, undefined, []); }
+  static get updatedQueue(): GroupSessionEvent_Action { return callSDK<GroupSessionEvent_Action>("GroupActivities_3864e7f38681b875", 955853595756559, undefined, []); }
   /** static func updatedQueue(_ change: GroupSessionEvent.Action.QueueChange) -> GroupSessionEvent.Action */
-  static updatedQueue9711(change: GroupSessionEvent_Action_QueueChange): GroupSessionEvent_Action { return callSDK<GroupSessionEvent_Action>("GroupActivities_ff42ce03e691ab23", 4255297586853399, undefined, [change]); }
+  static updatedQueue9711(change: GroupSessionEvent_Action_QueueChange): GroupSessionEvent_Action { return callSDK<GroupSessionEvent_Action>("GroupActivities_3864e7f38681b875", 4255297586853399, undefined, [change]); }
   /**
    * static let play: GroupSessionEvent.Action
    * @availability iOS 15.0+
    */
-  static get play(): GroupSessionEvent_Action { return callSDK<GroupSessionEvent_Action>("GroupActivities_ff42ce03e691ab23", 2435325052844318, undefined, []); }
+  static get play(): GroupSessionEvent_Action { return callSDK<GroupSessionEvent_Action>("GroupActivities_3864e7f38681b875", 2435325052844318, undefined, []); }
   /**
    * static let seek: GroupSessionEvent.Action
    * @availability iOS 15.0+
    */
-  static get seek(): GroupSessionEvent_Action { return callSDK<GroupSessionEvent_Action>("GroupActivities_ff42ce03e691ab23", 779546707956078, undefined, []); }
+  static get seek(): GroupSessionEvent_Action { return callSDK<GroupSessionEvent_Action>("GroupActivities_3864e7f38681b875", 779546707956078, undefined, []); }
   /**
    * static func skip(item: String) -> GroupSessionEvent.Action
    * @availability iOS 15.0+
    */
-  static skip(item: string): GroupSessionEvent_Action { return callSDK<GroupSessionEvent_Action>("GroupActivities_ff42ce03e691ab23", 2596733248917630, undefined, [item]); }
+  static skip(item: string): GroupSessionEvent_Action { return callSDK<GroupSessionEvent_Action>("GroupActivities_3864e7f38681b875", 2596733248917630, undefined, [item]); }
   /**
    * static let pause: GroupSessionEvent.Action
    * @availability iOS 15.0+
    */
-  static get pause(): GroupSessionEvent_Action { return callSDK<GroupSessionEvent_Action>("GroupActivities_ff42ce03e691ab23", 1027520617498638, undefined, []); }
+  static get pause(): GroupSessionEvent_Action { return callSDK<GroupSessionEvent_Action>("GroupActivities_3864e7f38681b875", 1027520617498638, undefined, []); }
   declare readonly $type: { "s:15GroupActivities0A12SessionEventV6ActionV": true };
 }
 
 /** struct QueueChange */
 export class GroupSessionEvent_Action_QueueChange extends SDKHandle {
   /** static func added(_ item: GroupSessionEvent.Action.QueueChange.Item) -> GroupSessionEvent.Action.QueueChange */
-  static added(item: GroupSessionEvent_Action_QueueChange_Item): GroupSessionEvent_Action_QueueChange { return callSDK<GroupSessionEvent_Action_QueueChange>("GroupActivities_ff42ce03e691ab23", 3539291589933125, undefined, [item]); }
+  static added(item: GroupSessionEvent_Action_QueueChange_Item): GroupSessionEvent_Action_QueueChange { return callSDK<GroupSessionEvent_Action_QueueChange>("GroupActivities_3864e7f38681b875", 3539291589933125, undefined, [item]); }
   /** static func setUpNext(_ item: GroupSessionEvent.Action.QueueChange.Item) -> GroupSessionEvent.Action.QueueChange */
-  static setUpNext(item: GroupSessionEvent_Action_QueueChange_Item): GroupSessionEvent_Action_QueueChange { return callSDK<GroupSessionEvent_Action_QueueChange>("GroupActivities_ff42ce03e691ab23", 4423746296543930, undefined, [item]); }
+  static setUpNext(item: GroupSessionEvent_Action_QueueChange_Item): GroupSessionEvent_Action_QueueChange { return callSDK<GroupSessionEvent_Action_QueueChange>("GroupActivities_3864e7f38681b875", 4423746296543930, undefined, [item]); }
   declare readonly $type: { "s:15GroupActivities0A12SessionEventV6ActionV11QueueChangeV": true };
 }
 
 /** struct Item */
 export class GroupSessionEvent_Action_QueueChange_Item extends SDKHandle {
   /** static func song(_ name: String) -> GroupSessionEvent.Action.QueueChange.Item */
-  static song(name: string): GroupSessionEvent_Action_QueueChange_Item { return callSDK<GroupSessionEvent_Action_QueueChange_Item>("GroupActivities_ff42ce03e691ab23", 1038571255926400, undefined, [name]); }
+  static song(name: string): GroupSessionEvent_Action_QueueChange_Item { return callSDK<GroupSessionEvent_Action_QueueChange_Item>("GroupActivities_3864e7f38681b875", 1038571255926400, undefined, [name]); }
   /** static func container(_ name: String) -> GroupSessionEvent.Action.QueueChange.Item */
-  static container(name: string): GroupSessionEvent_Action_QueueChange_Item { return callSDK<GroupSessionEvent_Action_QueueChange_Item>("GroupActivities_ff42ce03e691ab23", 794965239615919, undefined, [name]); }
+  static container(name: string): GroupSessionEvent_Action_QueueChange_Item { return callSDK<GroupSessionEvent_Action_QueueChange_Item>("GroupActivities_3864e7f38681b875", 794965239615919, undefined, [name]); }
   declare readonly $type: { "s:15GroupActivities0A12SessionEventV6ActionV11QueueChangeV4ItemV": true };
 }
 
@@ -537,23 +537,23 @@ export class GroupSessionJournal extends SDKHandle {
    * final var attachments: GroupSessionJournal.Attachments { get set }
    * @availability iOS 17.0+
    */
-  get attachments(): GroupSessionJournal_Attachments { return callSDK<GroupSessionJournal_Attachments>("GroupActivities_ff42ce03e691ab23", 2200421278579647, this, []); }
-  set attachments(value: GroupSessionJournal_Attachments) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 592715085856980, this, [value]); }
+  get attachments(): GroupSessionJournal_Attachments { return callSDK<GroupSessionJournal_Attachments>("GroupActivities_3864e7f38681b875", 2200421278579647, this, []); }
+  set attachments(value: GroupSessionJournal_Attachments) { callSDK<void>("GroupActivities_3864e7f38681b875", 592715085856980, this, [value]); }
   /**
    * final func add<ItemType, MetadataType>(_ item: ItemType, metadata: MetadataType) async throws -> GroupSessionJournal.Attachment where ItemType : Transferable, MetadataType : Decodable, MetadataType : Encodable
    * @availability iOS 17.0+
    */
-  addMetadata(item: string, metadata: number): Promise<GroupSessionJournal_Attachment> { return callSDKAsync<GroupSessionJournal_Attachment>("GroupActivities_ff42ce03e691ab23", 752318682706909, this, [item, metadata]); }
+  addMetadata(item: string, metadata: number): Promise<GroupSessionJournal_Attachment> { return callSDKAsync<GroupSessionJournal_Attachment>("GroupActivities_3864e7f38681b875", 752318682706909, this, [item, metadata]); }
   /**
    * final func add<ItemType>(_ item: ItemType) async throws -> GroupSessionJournal.Attachment where ItemType : Transferable
    * @availability iOS 17.0+
    */
-  add(item: string): Promise<GroupSessionJournal_Attachment> { return callSDKAsync<GroupSessionJournal_Attachment>("GroupActivities_ff42ce03e691ab23", 1994689369350874, this, [item]); }
+  add(item: string): Promise<GroupSessionJournal_Attachment> { return callSDKAsync<GroupSessionJournal_Attachment>("GroupActivities_3864e7f38681b875", 1994689369350874, this, [item]); }
   /**
    * final func remove(attachment: GroupSessionJournal.Attachment) async throws
    * @availability iOS 17.0+
    */
-  remove(attachment: GroupSessionJournal_Attachment): Promise<void> { return callSDKAsync<void>("GroupActivities_ff42ce03e691ab23", 2941615357018702, this, [attachment]); }
+  remove(attachment: GroupSessionJournal_Attachment): Promise<void> { return callSDKAsync<void>("GroupActivities_3864e7f38681b875", 2941615357018702, this, [attachment]); }
   declare readonly $type: { "s:15GroupActivities0A14SessionJournalC": true };
 }
 
@@ -566,13 +566,13 @@ export class GroupSessionJournal_Attachment extends SDKHandle {
    * func loadMetadata<MetadataType>(of: MetadataType.Type) async throws -> MetadataType where MetadataType : Decodable, MetadataType : Encodable
    * @availability iOS 17.0+
    */
-  loadMetadata(of: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): Promise<unknown> { return callSDKAsync<unknown>("GroupActivities_ff42ce03e691ab23", 4295010494105411, this, [of]); }
+  loadMetadata(of: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): Promise<unknown> { return callSDKAsync<unknown>("GroupActivities_3864e7f38681b875", 4295010494105411, this, [of]); }
   /**
    * var id: UUID
    * @availability iOS 17.0+
    */
-  get id(): string { return callSDK<string>("GroupActivities_ff42ce03e691ab23", 1016309344186680, this, []); }
-  set id(value: string) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 272364167159284, this, [value]); }
+  get id(): string { return callSDK<string>("GroupActivities_3864e7f38681b875", 1016309344186680, this, []); }
+  set id(value: string) { callSDK<void>("GroupActivities_3864e7f38681b875", 272364167159284, this, [value]); }
   declare readonly $type: { "s:15GroupActivities0A14SessionJournalC10AttachmentV": true };
 }
 
@@ -591,7 +591,7 @@ export class GroupSessionJournal_Attachments extends SDKHandle {
    * func makeAsyncIterator() -> GroupSessionJournal.Attachments.Iterator
    * @availability iOS 17.0+
    */
-  makeAsyncIterator(): GroupSessionJournal_Attachments_Iterator { return callSDK<GroupSessionJournal_Attachments_Iterator>("GroupActivities_ff42ce03e691ab23", 3927053220065936, this, []); }
+  makeAsyncIterator(): GroupSessionJournal_Attachments_Iterator { return callSDK<GroupSessionJournal_Attachments_Iterator>("GroupActivities_3864e7f38681b875", 3927053220065936, this, []); }
   declare readonly $type: { "s:15GroupActivities0A14SessionJournalC11AttachmentsV": true };
   declare readonly $element: $SDK12;
 }
@@ -617,7 +617,7 @@ export class GroupSessionJournal_Attachments_Iterator extends SDKHandle {
    * mutating func next() async -> GroupSessionJournal.Attachments.Element?
    * @availability iOS 17.0+
    */
-  next(): Promise<(Array<GroupSessionJournal_Attachment>) | null> { return callSDKAsync<(Array<GroupSessionJournal_Attachment>) | null>("GroupActivities_ff42ce03e691ab23", 2857100472956014, this, []); }
+  next(): Promise<(Array<GroupSessionJournal_Attachment>) | null> { return callSDKAsync<(Array<GroupSessionJournal_Attachment>) | null>("GroupActivities_3864e7f38681b875", 2857100472956014, this, []); }
   declare readonly $type: { "s:15GroupActivities0A14SessionJournalC11AttachmentsV8IteratorV": true };
 }
 
@@ -636,17 +636,17 @@ export class GroupSessionMessenger extends SDKHandle {
    * final let deliveryMode: GroupSessionMessenger.DeliveryMode
    * @availability iOS 16.0+
    */
-  get deliveryMode(): GroupSessionMessenger_DeliveryMode { return callSDK<GroupSessionMessenger_DeliveryMode>("GroupActivities_ff42ce03e691ab23", 1912662789779647, this, []); }
+  get deliveryMode(): GroupSessionMessenger_DeliveryMode { return callSDK<GroupSessionMessenger_DeliveryMode>("GroupActivities_3864e7f38681b875", 1912662789779647, this, []); }
   /** final func send(_ value: Data, to participants: Participants = .all, completion: @escaping ((any Error)?) -> Void) */
-  sendToCompletion(value: ArrayBuffer, participants: Participants, completion: $SDK14): void { return callSDK<void>("GroupActivities_ff42ce03e691ab23", 1407761557114540, this, [value, participants, completion], [null,null,{"callback":{"out":[]}}]); }
+  sendToCompletion(value: ArrayBuffer, participants: Participants, completion: $SDK14): void { return callSDK<void>("GroupActivities_3864e7f38681b875", 1407761557114540, this, [value, participants, completion], [null,null,{"callback":{"out":[]}}]); }
   /** final func send<Message>(_ value: Message, to participants: Participants = .all, completion: @escaping ((any Error)?) -> Void) where Message : Decodable, Message : Encodable */
-  sendToCompletion24296(value: number, participants: Participants, completion: $SDK14): void { return callSDK<void>("GroupActivities_ff42ce03e691ab23", 100228331967230, this, [value, participants, completion], [null,null,{"callback":{"out":[]}}]); }
+  sendToCompletion24296(value: number, participants: Participants, completion: $SDK14): void { return callSDK<void>("GroupActivities_3864e7f38681b875", 100228331967230, this, [value, participants, completion], [null,null,{"callback":{"out":[]}}]); }
   /** final func send(_ value: Data, to participants: Participants = .all) async throws */
-  sendTo(value: ArrayBuffer, participants?: Participants): Promise<void> { return callSDKAsync<void>("GroupActivities_ff42ce03e691ab23", 4016536054882298, this, [value, participants]); }
+  sendTo(value: ArrayBuffer, participants?: Participants): Promise<void> { return callSDKAsync<void>("GroupActivities_3864e7f38681b875", 4016536054882298, this, [value, participants]); }
   /** final func send<Message>(_ value: Message, to participants: Participants = .all) async throws where Message : Decodable, Message : Encodable */
-  sendTo78309(value: number, participants?: Participants): Promise<void> { return callSDKAsync<void>("GroupActivities_ff42ce03e691ab23", 538728499938365, this, [value, participants]); }
+  sendTo78309(value: number, participants?: Participants): Promise<void> { return callSDKAsync<void>("GroupActivities_3864e7f38681b875", 538728499938365, this, [value, participants]); }
   /** final func messages<Message>(of type: Message.Type) -> GroupSessionMessenger.Messages<Message> where Message : Decodable, Message : Encodable */
-  messages(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): GroupSessionMessenger_Messages<unknown> { return callSDK<GroupSessionMessenger_Messages<unknown>>("GroupActivities_ff42ce03e691ab23", 2118561414960021, this, [type]); }
+  messages(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): GroupSessionMessenger_Messages<unknown> { return callSDK<GroupSessionMessenger_Messages<unknown>>("GroupActivities_3864e7f38681b875", 2118561414960021, this, [type]); }
   declare readonly $type: { "s:15GroupActivities0A16SessionMessengerC": true };
 }
 
@@ -665,8 +665,8 @@ export class GroupSessionMessenger_MessageContext extends SDKHandle {
    * var source: Participant
    * @availability iOS 15.0+
    */
-  get source(): Participant { return callSDK<Participant>("GroupActivities_ff42ce03e691ab23", 2555407796332801, this, []); }
-  set source(value: Participant) { callSDK<void>("GroupActivities_ff42ce03e691ab23", 2455839718272060, this, [value]); }
+  get source(): Participant { return callSDK<Participant>("GroupActivities_3864e7f38681b875", 2555407796332801, this, []); }
+  set source(value: Participant) { callSDK<void>("GroupActivities_3864e7f38681b875", 2455839718272060, this, [value]); }
   declare readonly $type: { "s:15GroupActivities0A16SessionMessengerC14MessageContextV": true };
 }
 
@@ -679,7 +679,7 @@ export class GroupSessionMessenger_Messages<Message = unknown> extends SDKHandle
    * func makeAsyncIterator() -> GroupSessionMessenger.Messages<Message>.Iterator
    * @availability iOS 15.0+
    */
-  makeAsyncIterator(): GroupSessionMessenger_Messages_Iterator<number> { return callSDK<GroupSessionMessenger_Messages_Iterator<number>>("GroupActivities_ff42ce03e691ab23", 2508789562451468, this, []); }
+  makeAsyncIterator(): GroupSessionMessenger_Messages_Iterator<number> { return callSDK<GroupSessionMessenger_Messages_Iterator<number>>("GroupActivities_3864e7f38681b875", 2508789562451468, this, []); }
   declare readonly $type: { "s:15GroupActivities0A16SessionMessengerC8MessagesV": true };
   declare readonly $element: GroupSessionMessenger_Messages_Element<unknown>;
 }
@@ -705,7 +705,7 @@ export class GroupSessionMessenger_Messages_Iterator<Message = unknown> extends 
    * mutating func next() async -> GroupSessionMessenger.Messages<Message>.Element?
    * @availability iOS 15.0+
    */
-  next(): Promise<([number, GroupSessionMessenger_MessageContext]) | null> { return callSDKAsync<([number, GroupSessionMessenger_MessageContext]) | null>("GroupActivities_ff42ce03e691ab23", 1895785511949394, this, []); }
+  next(): Promise<([number, GroupSessionMessenger_MessageContext]) | null> { return callSDKAsync<([number, GroupSessionMessenger_MessageContext]) | null>("GroupActivities_3864e7f38681b875", 1895785511949394, this, []); }
   declare readonly $type: { "s:15GroupActivities0A16SessionMessengerC8MessagesV8IteratorV": true };
 }
 
@@ -724,17 +724,17 @@ export class GroupStateObserver extends SDKHandle {
    * @Published<Bool> final var isEligibleForGroupSession: Bool { get }
    * @availability iOS 15.0+
    */
-  get isEligibleForGroupSession(): boolean { return callSDK<boolean>("GroupActivities_ff42ce03e691ab23", 3556090682072934, this, []); }
+  get isEligibleForGroupSession(): boolean { return callSDK<boolean>("GroupActivities_3864e7f38681b875", 3556090682072934, this, []); }
   /**
    * final var $isEligibleForGroupSession: Published<Bool>.Publisher { get }
    * @availability iOS 15.0+
    */
-  get $isEligibleForGroupSession(): _Combine_Published_Publisher<boolean> { return callSDK<_Combine_Published_Publisher<boolean>>("GroupActivities_ff42ce03e691ab23", 1295511399457440, this, []); }
+  get $isEligibleForGroupSession(): _Combine_Published_Publisher<boolean> { return callSDK<_Combine_Published_Publisher<boolean>>("GroupActivities_3864e7f38681b875", 1295511399457440, this, []); }
   /**
    * convenience init()
    * @availability iOS 15.0+
    */
-  static init(): GroupStateObserver { return callSDK<GroupStateObserver>("GroupActivities_ff42ce03e691ab23", 1265455344378186, undefined, []); }
+  static init(): GroupStateObserver { return callSDK<GroupStateObserver>("GroupActivities_3864e7f38681b875", 1265455344378186, undefined, []); }
   declare readonly $type: { "s:15GroupActivities0A13StateObserverC": true };
 }
 
@@ -753,14 +753,14 @@ export class Participant extends SDKHandle {
    * var isNearbyWithLocalParticipant: Bool { get }
    * @availability iOS 26.0+
    */
-  get isNearbyWithLocalParticipant(): boolean { return callSDK<boolean>("GroupActivities_ff42ce03e691ab23", 2955078987575334, this, []); }
+  get isNearbyWithLocalParticipant(): boolean { return callSDK<boolean>("GroupActivities_3864e7f38681b875", 2955078987575334, this, []); }
   /** var description: String { get } */
-  get description(): string { return callSDK<string>("GroupActivities_ff42ce03e691ab23", 788436853647966, this, []); }
+  get description(): string { return callSDK<string>("GroupActivities_3864e7f38681b875", 788436853647966, this, []); }
   /**
    * let id: UUID
    * @availability iOS 15.0+
    */
-  get id(): string { return callSDK<string>("GroupActivities_ff42ce03e691ab23", 367151758231487, this, []); }
+  get id(): string { return callSDK<string>("GroupActivities_3864e7f38681b875", 367151758231487, this, []); }
   declare readonly $type: { "s:15GroupActivities11ParticipantV": true };
 }
 
@@ -776,7 +776,7 @@ export type Participant_ID = string;
  */
 export class Participants extends SDKHandle {
   /** static func only(_ participant: Participant) -> Participants */
-  static only(participant: Participant): Participants { return callSDK<Participants>("GroupActivities_ff42ce03e691ab23", 3453084561555155, undefined, [participant]); }
+  static only(participant: Participant): Participants { return callSDK<Participants>("GroupActivities_3864e7f38681b875", 3453084561555155, undefined, [participant]); }
   declare readonly $type: { "s:15GroupActivities12ParticipantsO": true };
 }
 
@@ -789,44 +789,44 @@ export class SceneAssociationBehavior extends SDKHandle {
    * static let none: SceneAssociationBehavior
    * @availability iOS 17.0+
    */
-  static get none(): SceneAssociationBehavior { return callSDK<SceneAssociationBehavior>("GroupActivities_ff42ce03e691ab23", 285330170639921, undefined, []); }
+  static get none(): SceneAssociationBehavior { return callSDK<SceneAssociationBehavior>("GroupActivities_3864e7f38681b875", 285330170639921, undefined, []); }
   /**
    * static func content(_ contentIdentifier: String) -> SceneAssociationBehavior
    * @availability iOS 17.0+
    */
-  static content(contentIdentifier: string): SceneAssociationBehavior { return callSDK<SceneAssociationBehavior>("GroupActivities_ff42ce03e691ab23", 3512869464419398, undefined, [contentIdentifier]); }
+  static content(contentIdentifier: string): SceneAssociationBehavior { return callSDK<SceneAssociationBehavior>("GroupActivities_3864e7f38681b875", 3512869464419398, undefined, [contentIdentifier]); }
   /**
    * static let `default`: SceneAssociationBehavior
    * @availability iOS 17.0+
    */
-  static get default(): SceneAssociationBehavior { return callSDK<SceneAssociationBehavior>("GroupActivities_ff42ce03e691ab23", 3899523926185103, undefined, []); }
+  static get default(): SceneAssociationBehavior { return callSDK<SceneAssociationBehavior>("GroupActivities_3864e7f38681b875", 3899523926185103, undefined, []); }
   declare readonly $type: { "s:15GroupActivities24SceneAssociationBehaviorV": true };
 }
 
 registerSDKProtocol("s:15GroupActivities25CustomMessageIdentifiableP", {});
 registerSDKProtocol("s:15GroupActivities0A8ActivityP", {});
-registerSDKClass("GroupActivities.GroupActivityMetadata", GroupActivityMetadata, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
-registerSDKClass("GroupActivities.GroupActivityMetadata.ActivityType", GroupActivityMetadata_ActivityType, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
-registerSDKClass("GroupActivities.GroupActivityMetadata.LifetimePolicy", GroupActivityMetadata_LifetimePolicy, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
-registerSDKClass("GroupActivities.GroupActivityTransferRepresentation", GroupActivityTransferRepresentation, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
-registerSDKClass("GroupActivities.GroupSession", GroupSession, { module: "GroupActivities_ff42ce03e691ab23", properties: {}, methods: {"showNotice":{"id":1873475723704367},"requestForegroundPresentation":{"id":602695414735069},"end":{"id":1033329503399939},"join":{"id":1091967736801346},"leave":{"id":1513077470544521},"postEvent":{"id":2237888390306643}} });
-registerSDKClass("GroupActivities.GroupSession.Event", GroupSession_Event, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
-registerSDKClass("GroupActivities.GroupSession.Sessions", GroupSession_Sessions, { module: "GroupActivities_ff42ce03e691ab23", properties: {}, methods: {"makeAsyncIterator":{"id":4231828169365993}} });
-registerSDKClass("GroupActivities.GroupSession.Sessions.Iterator", GroupSession_Sessions_Iterator, { module: "GroupActivities_ff42ce03e691ab23", properties: {}, methods: {"next":{"id":3305753231119438}} });
-registerSDKClass("GroupActivities.GroupSession.State", GroupSession_State, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
-registerSDKClass("GroupActivities.GroupSessionEvent", GroupSessionEvent, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
-registerSDKClass("GroupActivities.GroupSessionEvent.Action", GroupSessionEvent_Action, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
-registerSDKClass("GroupActivities.GroupSessionEvent.Action.QueueChange", GroupSessionEvent_Action_QueueChange, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
-registerSDKClass("GroupActivities.GroupSessionEvent.Action.QueueChange.Item", GroupSessionEvent_Action_QueueChange_Item, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
-registerSDKClass("GroupActivities.GroupSessionJournal", GroupSessionJournal, { module: "GroupActivities_ff42ce03e691ab23", properties: {}, methods: {"addMetadata":{"id":752318682706909},"add":{"id":1994689369350874},"remove":{"id":2941615357018702}} });
-registerSDKClass("GroupActivities.GroupSessionJournal.Attachment", GroupSessionJournal_Attachment, { module: "GroupActivities_ff42ce03e691ab23", properties: {}, methods: {"loadMetadata":{"id":4295010494105411}} });
-registerSDKClass("GroupActivities.GroupSessionJournal.Attachments", GroupSessionJournal_Attachments, { module: "GroupActivities_ff42ce03e691ab23", properties: {}, methods: {"makeAsyncIterator":{"id":3927053220065936}} });
-registerSDKClass("GroupActivities.GroupSessionJournal.Attachments.Iterator", GroupSessionJournal_Attachments_Iterator, { module: "GroupActivities_ff42ce03e691ab23", properties: {}, methods: {"next":{"id":2857100472956014}} });
-registerSDKClass("GroupActivities.GroupSessionMessenger", GroupSessionMessenger, { module: "GroupActivities_ff42ce03e691ab23", properties: {}, methods: {"sendToCompletion":{"id":1407761557114540,"hints":[null,null,{"callback":{"out":[]}}]},"sendToCompletion24296":{"id":100228331967230,"hints":[null,null,{"callback":{"out":[]}}]},"sendTo":{"id":4016536054882298},"sendTo78309":{"id":538728499938365},"messages":{"id":2118561414960021}} });
-registerSDKClass("GroupActivities.GroupSessionMessenger.MessageContext", GroupSessionMessenger_MessageContext, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
-registerSDKClass("GroupActivities.GroupSessionMessenger.Messages", GroupSessionMessenger_Messages, { module: "GroupActivities_ff42ce03e691ab23", properties: {}, methods: {"makeAsyncIterator":{"id":2508789562451468}} });
-registerSDKClass("GroupActivities.GroupSessionMessenger.Messages.Iterator", GroupSessionMessenger_Messages_Iterator, { module: "GroupActivities_ff42ce03e691ab23", properties: {}, methods: {"next":{"id":1895785511949394}} });
-registerSDKClass("GroupActivities.GroupStateObserver", GroupStateObserver, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
-registerSDKClass("GroupActivities.Participant", Participant, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
-registerSDKClass("GroupActivities.Participants", Participants, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
-registerSDKClass("GroupActivities.SceneAssociationBehavior", SceneAssociationBehavior, { module: "GroupActivities_ff42ce03e691ab23", properties: {} });
+registerSDKClass("GroupActivities.GroupActivityMetadata", GroupActivityMetadata, { module: "GroupActivities_3864e7f38681b875", properties: {} });
+registerSDKClass("GroupActivities.GroupActivityMetadata.ActivityType", GroupActivityMetadata_ActivityType, { module: "GroupActivities_3864e7f38681b875", properties: {} });
+registerSDKClass("GroupActivities.GroupActivityMetadata.LifetimePolicy", GroupActivityMetadata_LifetimePolicy, { module: "GroupActivities_3864e7f38681b875", properties: {} });
+registerSDKClass("GroupActivities.GroupActivityTransferRepresentation", GroupActivityTransferRepresentation, { module: "GroupActivities_3864e7f38681b875", properties: {} });
+registerSDKClass("GroupActivities.GroupSession", GroupSession, { module: "GroupActivities_3864e7f38681b875", properties: {}, methods: {"showNotice":{"id":1873475723704367},"requestForegroundPresentation":{"id":602695414735069},"end":{"id":1033329503399939},"join":{"id":1091967736801346},"leave":{"id":1513077470544521},"postEvent":{"id":2237888390306643}} });
+registerSDKClass("GroupActivities.GroupSession.Event", GroupSession_Event, { module: "GroupActivities_3864e7f38681b875", properties: {} });
+registerSDKClass("GroupActivities.GroupSession.Sessions", GroupSession_Sessions, { module: "GroupActivities_3864e7f38681b875", properties: {}, methods: {"makeAsyncIterator":{"id":4231828169365993}} });
+registerSDKClass("GroupActivities.GroupSession.Sessions.Iterator", GroupSession_Sessions_Iterator, { module: "GroupActivities_3864e7f38681b875", properties: {}, methods: {"next":{"id":3305753231119438}} });
+registerSDKClass("GroupActivities.GroupSession.State", GroupSession_State, { module: "GroupActivities_3864e7f38681b875", properties: {} });
+registerSDKClass("GroupActivities.GroupSessionEvent", GroupSessionEvent, { module: "GroupActivities_3864e7f38681b875", properties: {} });
+registerSDKClass("GroupActivities.GroupSessionEvent.Action", GroupSessionEvent_Action, { module: "GroupActivities_3864e7f38681b875", properties: {} });
+registerSDKClass("GroupActivities.GroupSessionEvent.Action.QueueChange", GroupSessionEvent_Action_QueueChange, { module: "GroupActivities_3864e7f38681b875", properties: {} });
+registerSDKClass("GroupActivities.GroupSessionEvent.Action.QueueChange.Item", GroupSessionEvent_Action_QueueChange_Item, { module: "GroupActivities_3864e7f38681b875", properties: {} });
+registerSDKClass("GroupActivities.GroupSessionJournal", GroupSessionJournal, { module: "GroupActivities_3864e7f38681b875", properties: {}, methods: {"addMetadata":{"id":752318682706909},"add":{"id":1994689369350874},"remove":{"id":2941615357018702}} });
+registerSDKClass("GroupActivities.GroupSessionJournal.Attachment", GroupSessionJournal_Attachment, { module: "GroupActivities_3864e7f38681b875", properties: {}, methods: {"loadMetadata":{"id":4295010494105411}} });
+registerSDKClass("GroupActivities.GroupSessionJournal.Attachments", GroupSessionJournal_Attachments, { module: "GroupActivities_3864e7f38681b875", properties: {}, methods: {"makeAsyncIterator":{"id":3927053220065936}} });
+registerSDKClass("GroupActivities.GroupSessionJournal.Attachments.Iterator", GroupSessionJournal_Attachments_Iterator, { module: "GroupActivities_3864e7f38681b875", properties: {}, methods: {"next":{"id":2857100472956014}} });
+registerSDKClass("GroupActivities.GroupSessionMessenger", GroupSessionMessenger, { module: "GroupActivities_3864e7f38681b875", properties: {}, methods: {"sendToCompletion":{"id":1407761557114540,"hints":[null,null,{"callback":{"out":[]}}]},"sendToCompletion24296":{"id":100228331967230,"hints":[null,null,{"callback":{"out":[]}}]},"sendTo":{"id":4016536054882298},"sendTo78309":{"id":538728499938365},"messages":{"id":2118561414960021}} });
+registerSDKClass("GroupActivities.GroupSessionMessenger.MessageContext", GroupSessionMessenger_MessageContext, { module: "GroupActivities_3864e7f38681b875", properties: {} });
+registerSDKClass("GroupActivities.GroupSessionMessenger.Messages", GroupSessionMessenger_Messages, { module: "GroupActivities_3864e7f38681b875", properties: {}, methods: {"makeAsyncIterator":{"id":2508789562451468}} });
+registerSDKClass("GroupActivities.GroupSessionMessenger.Messages.Iterator", GroupSessionMessenger_Messages_Iterator, { module: "GroupActivities_3864e7f38681b875", properties: {}, methods: {"next":{"id":1895785511949394}} });
+registerSDKClass("GroupActivities.GroupStateObserver", GroupStateObserver, { module: "GroupActivities_3864e7f38681b875", properties: {} });
+registerSDKClass("GroupActivities.Participant", Participant, { module: "GroupActivities_3864e7f38681b875", properties: {} });
+registerSDKClass("GroupActivities.Participants", Participants, { module: "GroupActivities_3864e7f38681b875", properties: {} });
+registerSDKClass("GroupActivities.SceneAssociationBehavior", SceneAssociationBehavior, { module: "GroupActivities_3864e7f38681b875", properties: {} });

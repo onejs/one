@@ -32,37 +32,37 @@ export class CSCustomAttributeKey extends SDKHandle {
    * convenience init?(keyName: String)
    * @availability iOS 9.0+
    */
-  static initKeyName(keyName: string): (CSCustomAttributeKey) | null { return callSDK<(CSCustomAttributeKey) | null>("CoreSpotlight_ff42ce03e691ab23", 984847943892436, undefined, [keyName]); }
+  static initKeyName(keyName: string): (CSCustomAttributeKey) | null { return callSDK<(CSCustomAttributeKey) | null>("CoreSpotlight_3864e7f38681b875", 984847943892436, undefined, [keyName]); }
   /**
    * init?(keyName: String, searchable: Bool, searchableByDefault: Bool, unique: Bool, multiValued: Bool)
    * @availability iOS 9.0+
    */
-  static initKeyNameSearchableSearchableByDefaultUniqueMultiValued(keyName: string, searchable: boolean, searchableByDefault: boolean, unique: boolean, multiValued: boolean): (CSCustomAttributeKey) | null { return callSDK<(CSCustomAttributeKey) | null>("CoreSpotlight_ff42ce03e691ab23", 70619576244735, undefined, [keyName, searchable, searchableByDefault, unique, multiValued]); }
+  static initKeyNameSearchableSearchableByDefaultUniqueMultiValued(keyName: string, searchable: boolean, searchableByDefault: boolean, unique: boolean, multiValued: boolean): (CSCustomAttributeKey) | null { return callSDK<(CSCustomAttributeKey) | null>("CoreSpotlight_3864e7f38681b875", 70619576244735, undefined, [keyName, searchable, searchableByDefault, unique, multiValued]); }
   /**
    * var keyName: String { get }
    * @availability iOS 9.0+
    */
-  get keyName(): string { return callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 3105158911088993, this, []); }
+  get keyName(): string { return callSDK<string>("CoreSpotlight_3864e7f38681b875", 3105158911088993, this, []); }
   /**
    * var isMultiValued: Bool { get }
    * @availability iOS 9.0+
    */
-  get isMultiValued(): boolean { return callSDK<boolean>("CoreSpotlight_ff42ce03e691ab23", 1298973773058375, this, []); }
+  get isMultiValued(): boolean { return callSDK<boolean>("CoreSpotlight_3864e7f38681b875", 1298973773058375, this, []); }
   /**
    * var isSearchable: Bool { get }
    * @availability iOS 9.0+
    */
-  get isSearchable(): boolean { return callSDK<boolean>("CoreSpotlight_ff42ce03e691ab23", 1450506123879051, this, []); }
+  get isSearchable(): boolean { return callSDK<boolean>("CoreSpotlight_3864e7f38681b875", 1450506123879051, this, []); }
   /**
    * var isSearchableByDefault: Bool { get }
    * @availability iOS 9.0+
    */
-  get isSearchableByDefault(): boolean { return callSDK<boolean>("CoreSpotlight_ff42ce03e691ab23", 1674797812049766, this, []); }
+  get isSearchableByDefault(): boolean { return callSDK<boolean>("CoreSpotlight_3864e7f38681b875", 1674797812049766, this, []); }
   /**
    * var isUnique: Bool { get }
    * @availability iOS 9.0+
    */
-  get isUnique(): boolean { return callSDK<boolean>("CoreSpotlight_ff42ce03e691ab23", 3293660227732301, this, []); }
+  get isUnique(): boolean { return callSDK<boolean>("CoreSpotlight_3864e7f38681b875", 3293660227732301, this, []); }
   declare readonly $type: { "c:objc(cs)CSCustomAttributeKey": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "keyName": true; "isMultiValued": true; "isSearchable": true; "isSearchableByDefault": true; "isUnique": true };
 }
@@ -73,12 +73,12 @@ export class CSCustomAttributeKey extends SDKHandle {
  */
 export class CSImportExtension extends SDKHandle {
   /** init() */
-  static init(): CSImportExtension { return callSDK<CSImportExtension>("CoreSpotlight_ff42ce03e691ab23", 340954227011032, undefined, []); }
+  static init(): CSImportExtension { return callSDK<CSImportExtension>("CoreSpotlight_3864e7f38681b875", 340954227011032, undefined, []); }
   /**
    * func update(_ attributes: CSSearchableItemAttributeSet, forFileAt contentURL: URL) throws
    * @availability iOS 15.0+
    */
-  update(attributes: CSSearchableItemAttributeSet, contentURL: string): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4328560543805403, this, [attributes, contentURL]); }
+  update(attributes: CSSearchableItemAttributeSet, contentURL: string): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 4328560543805403, this, [attributes, contentURL]); }
   declare readonly $type: { "c:objc(cs)CSImportExtension": true; "c:objc(cs)NSObject": true };
 }
 
@@ -91,47 +91,47 @@ export class CSIndexError extends SDKHandle {
    * static var invalidItemError: CSIndexError.Code { get }
    * @availability iOS 9.0+
    */
-  static get invalidItemError(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_ff42ce03e691ab23", 2829204068252203, undefined, []); }
+  static get invalidItemError(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_3864e7f38681b875", 2829204068252203, undefined, []); }
   /**
    * static var indexUnavailableError: CSIndexError.Code { get }
    * @availability iOS 9.0+
    */
-  static get indexUnavailableError(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_ff42ce03e691ab23", 3903316884006880, undefined, []); }
+  static get indexUnavailableError(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_3864e7f38681b875", 3903316884006880, undefined, []); }
   /**
    * static var remoteConnectionError: CSIndexError.Code { get }
    * @availability iOS 9.0+
    */
-  static get remoteConnectionError(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_ff42ce03e691ab23", 2947455048185547, undefined, []); }
+  static get remoteConnectionError(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_3864e7f38681b875", 2947455048185547, undefined, []); }
   /**
    * static var invalidClientStateError: CSIndexError.Code { get }
    * @availability iOS 9.0+
    */
-  static get invalidClientStateError(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_ff42ce03e691ab23", 4139656234558469, undefined, []); }
+  static get invalidClientStateError(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_3864e7f38681b875", 4139656234558469, undefined, []); }
   /**
    * static var unknownError: CSIndexError.Code { get }
    * @availability iOS 9.0+
    */
-  static get unknownError(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_ff42ce03e691ab23", 290619047170764, undefined, []); }
+  static get unknownError(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_3864e7f38681b875", 290619047170764, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 9.0+
    */
-  static get errorDomain(): string { return callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 4100783062034583, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CoreSpotlight_3864e7f38681b875", 4100783062034583, undefined, []); }
   /**
    * static var quotaExceeded: CSIndexError.Code { get }
    * @availability iOS 9.0+
    */
-  static get quotaExceeded(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_ff42ce03e691ab23", 4005553888039545, undefined, []); }
+  static get quotaExceeded(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_3864e7f38681b875", 4005553888039545, undefined, []); }
   /**
    * static var indexingUnsupported: CSIndexError.Code { get }
    * @availability iOS 9.0+
    */
-  static get indexingUnsupported(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_ff42ce03e691ab23", 1993931677636716, undefined, []); }
+  static get indexingUnsupported(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_3864e7f38681b875", 1993931677636716, undefined, []); }
   /**
    * static var mismatchedClientState: CSIndexError.Code { get }
    * @availability iOS 18.0+
    */
-  static get mismatchedClientState(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_ff42ce03e691ab23", 3470412254731588, undefined, []); }
+  static get mismatchedClientState(): CSIndexError_Code { return callSDK<CSIndexError_Code>("CoreSpotlight_3864e7f38681b875", 3470412254731588, undefined, []); }
   declare readonly $type: { "s:SC16CSIndexErrorCodeLeV": true };
 }
 
@@ -146,7 +146,7 @@ export const CSIndexError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (CSIndexError_Code) | null { return callSDK<(CSIndexError_Code) | null>("CoreSpotlight_ff42ce03e691ab23", 2191870353267819, undefined, [rawValue]); }
+  init(rawValue: number): (CSIndexError_Code) | null { return callSDK<(CSIndexError_Code) | null>("CoreSpotlight_3864e7f38681b875", 2191870353267819, undefined, [rawValue]); }
 };
 
 /**
@@ -155,7 +155,7 @@ export const CSIndexError_Code = {
  */
 export class CSIndexExtensionRequestHandler extends SDKHandle {
   /** init() */
-  static init(): CSIndexExtensionRequestHandler { return callSDK<CSIndexExtensionRequestHandler>("CoreSpotlight_ff42ce03e691ab23", 299231879716538, undefined, []); }
+  static init(): CSIndexExtensionRequestHandler { return callSDK<CSIndexExtensionRequestHandler>("CoreSpotlight_3864e7f38681b875", 299231879716538, undefined, []); }
   declare readonly $type: { "c:objc(cs)CSIndexExtensionRequestHandler": true; "c:objc(cs)NSObject": true };
 }
 
@@ -168,12 +168,12 @@ export class CSLocalizedString extends SDKHandle {
    * init(localizedStrings: [AnyHashable : Any])
    * @availability iOS 9.0+
    */
-  static init(localizedStrings: NativeMap<unknown, unknown>): CSLocalizedString { return callSDK<CSLocalizedString>("CoreSpotlight_ff42ce03e691ab23", 1911842639816428, undefined, [localizedStrings]); }
+  static init(localizedStrings: NativeMap<unknown, unknown>): CSLocalizedString { return callSDK<CSLocalizedString>("CoreSpotlight_3864e7f38681b875", 1911842639816428, undefined, [localizedStrings]); }
   /**
    * func localizedString() -> String
    * @availability iOS 9.0+
    */
-  localizedString(): string { return callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 48559253703285, this, []); }
+  localizedString(): string { return callSDK<string>("CoreSpotlight_3864e7f38681b875", 48559253703285, this, []); }
   declare readonly $type: { "c:objc(cs)CSLocalizedString": true; "c:objc(cs)NSString": true; "c:objc(cs)NSObject": true };
 }
 
@@ -186,28 +186,28 @@ export class CSPerson extends SDKHandle {
    * init(displayName: String?, handles: [String], handleIdentifier: String)
    * @availability iOS 9.0+
    */
-  static init(displayName: (string) | null, handles: Array<string>, handleIdentifier: string): CSPerson { return callSDK<CSPerson>("CoreSpotlight_ff42ce03e691ab23", 3828463515660637, undefined, [displayName, handles, handleIdentifier]); }
+  static init(displayName: (string) | null, handles: Array<string>, handleIdentifier: string): CSPerson { return callSDK<CSPerson>("CoreSpotlight_3864e7f38681b875", 3828463515660637, undefined, [displayName, handles, handleIdentifier]); }
   /**
    * var contactIdentifier: String? { get set }
    * @availability iOS 9.0+
    */
-  get contactIdentifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2392013426970065, this, []); }
-  set contactIdentifier(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4076647873035829, this, [value]); }
+  get contactIdentifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2392013426970065, this, []); }
+  set contactIdentifier(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4076647873035829, this, [value]); }
   /**
    * var displayName: String? { get }
    * @availability iOS 9.0+
    */
-  get displayName(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 4193932868823640, this, []); }
+  get displayName(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 4193932868823640, this, []); }
   /**
    * var handleIdentifier: String { get }
    * @availability iOS 9.0+
    */
-  get handleIdentifier(): string { return callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 2718027993743247, this, []); }
+  get handleIdentifier(): string { return callSDK<string>("CoreSpotlight_3864e7f38681b875", 2718027993743247, this, []); }
   /**
    * var handles: [String] { get }
    * @availability iOS 9.0+
    */
-  get handles(): Array<string> { return callSDK<Array<string>>("CoreSpotlight_ff42ce03e691ab23", 4045469335763076, this, []); }
+  get handles(): Array<string> { return callSDK<Array<string>>("CoreSpotlight_3864e7f38681b875", 4045469335763076, this, []); }
   declare readonly $type: { "c:objc(cs)CSPerson": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contactIdentifier": true; "displayName": true; "handleIdentifier": true; "handles": true };
 }
@@ -221,73 +221,73 @@ export class CSSearchableIndex extends SDKHandle {
    * class func `default`() -> Self
    * @availability iOS 9.0+
    */
-  static default(): CSSearchableIndex { return callSDK<CSSearchableIndex>("CoreSpotlight_ff42ce03e691ab23", 4114950027110172, undefined, []); }
+  static default(): CSSearchableIndex { return callSDK<CSSearchableIndex>("CoreSpotlight_3864e7f38681b875", 4114950027110172, undefined, []); }
   /**
    * class func isIndexingAvailable() -> Bool
    * @availability iOS 9.0+
    */
-  static isIndexingAvailable(): boolean { return callSDK<boolean>("CoreSpotlight_ff42ce03e691ab23", 2624461655650757, undefined, []); }
+  static isIndexingAvailable(): boolean { return callSDK<boolean>("CoreSpotlight_3864e7f38681b875", 2624461655650757, undefined, []); }
   /**
    * func beginBatch()
    * @availability iOS 9.0+
    */
-  beginBatch(): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3066331568240655, this, []); }
+  beginBatch(): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 3066331568240655, this, []); }
   /**
    * func deleteAllSearchableItems() async throws
    * @availability iOS 9.0+
    */
-  deleteAllSearchableItems(completionHandler?: $SDK1): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2769484680939018, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  deleteAllSearchableItems(completionHandler?: $SDK1): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 2769484680939018, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func deleteSearchableItems(withDomainIdentifiers domainIdentifiers: [String]) async throws
    * @availability iOS 9.0+
    */
-  deleteSearchableItemsWithDomainIdentifiersCompletionHandler(domainIdentifiers: Array<string>, completionHandler?: $SDK1): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3259665069724491, this, [domainIdentifiers, completionHandler], [null,{"callback":{"out":[]}}]); }
+  deleteSearchableItemsWithDomainIdentifiersCompletionHandler(domainIdentifiers: Array<string>, completionHandler?: $SDK1): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 3259665069724491, this, [domainIdentifiers, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func deleteSearchableItems(withIdentifiers identifiers: [String]) async throws
    * @availability iOS 9.0+
    */
-  deleteSearchableItemsWithIdentifiersCompletionHandler(identifiers: Array<string>, completionHandler?: $SDK1): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 471684836938922, this, [identifiers, completionHandler], [null,{"callback":{"out":[]}}]); }
+  deleteSearchableItemsWithIdentifiersCompletionHandler(identifiers: Array<string>, completionHandler?: $SDK1): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 471684836938922, this, [identifiers, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func endBatch(withClientState clientState: Data) async throws
    * @availability iOS 9.0+
    */
-  endBatch(clientState: ArrayBuffer, completionHandler?: $SDK1): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2964339160994545, this, [clientState, completionHandler], [null,{"callback":{"out":[]}}]); }
+  endBatch(clientState: ArrayBuffer, completionHandler?: $SDK1): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 2964339160994545, this, [clientState, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func endIndexBatch(expectedClientState: Data?, newClientState: Data) async throws
    * @availability iOS 18.0+
    */
-  endIndexBatch(expectedClientState: (ArrayBuffer) | null, newClientState: ArrayBuffer, completionHandler?: $SDK1): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4248057006467586, this, [expectedClientState, newClientState, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  endIndexBatch(expectedClientState: (ArrayBuffer) | null, newClientState: ArrayBuffer, completionHandler?: $SDK1): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 4248057006467586, this, [expectedClientState, newClientState, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func fetchLastClientState() async throws -> Data
    * @availability iOS 9.0+
    */
-  fetchLastClientState(completionHandler: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3698526804034655, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  fetchLastClientState(completionHandler: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 3698526804034655, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func indexSearchableItems(_ items: [CSSearchableItem]) async throws
    * @availability iOS 9.0+
    */
-  indexSearchableItems(items: Array<CSSearchableItem>, completionHandler?: $SDK1): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3688142005652708, this, [items, completionHandler], [null,{"callback":{"out":[]}}]); }
+  indexSearchableItems(items: Array<CSSearchableItem>, completionHandler?: $SDK1): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 3688142005652708, this, [items, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(name: String)
    * @availability iOS 9.0+
    */
-  static initName(name: string): CSSearchableIndex { return callSDK<CSSearchableIndex>("CoreSpotlight_ff42ce03e691ab23", 2928375938302475, undefined, [name]); }
+  static initName(name: string): CSSearchableIndex { return callSDK<CSSearchableIndex>("CoreSpotlight_3864e7f38681b875", 2928375938302475, undefined, [name]); }
   /**
    * init(name: String, protectionClass: FileProtectionType?)
    * @availability iOS 9.0+
    */
-  static initNameProtectionClass(name: string, protectionClass?: $SDK3): CSSearchableIndex { return callSDK<CSSearchableIndex>("CoreSpotlight_ff42ce03e691ab23", 2652072253235044, undefined, [name, protectionClass]); }
+  static initNameProtectionClass(name: string, protectionClass?: $SDK3): CSSearchableIndex { return callSDK<CSSearchableIndex>("CoreSpotlight_3864e7f38681b875", 2652072253235044, undefined, [name, protectionClass]); }
   /**
    * weak var indexDelegate: (any CSSearchableIndexDelegate)? { get set }
    * @availability iOS 9.0+
    */
-  get indexDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreSpotlight_ff42ce03e691ab23", 2918262667651490, this, []); }
-  set indexDelegate(value: (SDKHandle) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2116512548058703, this, [value]); }
+  get indexDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreSpotlight_3864e7f38681b875", 2918262667651490, this, []); }
+  set indexDelegate(value: (SDKHandle) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2116512548058703, this, [value]); }
   /**
    * var protectionClass: FileProtectionType { get }
    * @availability iOS 27.0+
    */
-  get protectionClass(): _Foundation_FileProtectionType { return callSDK<_Foundation_FileProtectionType>("CoreSpotlight_ff42ce03e691ab23", 27422156403905, this, []); }
+  get protectionClass(): _Foundation_FileProtectionType { return callSDK<_Foundation_FileProtectionType>("CoreSpotlight_3864e7f38681b875", 27422156403905, this, []); }
   declare readonly $type: { "c:objc(cs)CSSearchableIndex": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "indexDelegate": true; "protectionClass": true };
 }
@@ -330,12 +330,12 @@ export interface CSSearchableIndexDelegate {
  */
 export class CSSearchableIndexDescription extends SDKHandle {
   /** init() */
-  static init(): CSSearchableIndexDescription { return callSDK<CSSearchableIndexDescription>("CoreSpotlight_ff42ce03e691ab23", 2050415321156774, undefined, []); }
+  static init(): CSSearchableIndexDescription { return callSDK<CSSearchableIndexDescription>("CoreSpotlight_3864e7f38681b875", 2050415321156774, undefined, []); }
   /**
    * var protectionClass: FileProtectionType? { get }
    * @availability iOS 27.0+
    */
-  get protectionClass(): $SDK3 { return callSDK<$SDK3>("CoreSpotlight_ff42ce03e691ab23", 1729713218633764, this, []); }
+  get protectionClass(): $SDK3 { return callSDK<$SDK3>("CoreSpotlight_3864e7f38681b875", 1729713218633764, this, []); }
   declare readonly $type: { "c:objc(cs)CSSearchableIndexDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "protectionClass": true };
 }
@@ -349,48 +349,48 @@ export class CSSearchableItem extends SDKHandle {
    * func compare(byRank other: CSSearchableItem) -> ComparisonResult
    * @availability iOS 16.0+
    */
-  compare(other: CSSearchableItem): _Foundation_ComparisonResult { return callSDK<_Foundation_ComparisonResult>("CoreSpotlight_ff42ce03e691ab23", 164593890971800, this, [other]); }
+  compare(other: CSSearchableItem): _Foundation_ComparisonResult { return callSDK<_Foundation_ComparisonResult>("CoreSpotlight_3864e7f38681b875", 164593890971800, this, [other]); }
   /**
    * init(uniqueIdentifier: String?, domainIdentifier: String?, attributeSet: CSSearchableItemAttributeSet)
    * @availability iOS 9.0+
    */
-  static init(uniqueIdentifier: (string) | null, domainIdentifier: (string) | null, attributeSet: CSSearchableItemAttributeSet): CSSearchableItem { return callSDK<CSSearchableItem>("CoreSpotlight_ff42ce03e691ab23", 3086445687437574, undefined, [uniqueIdentifier, domainIdentifier, attributeSet]); }
+  static init(uniqueIdentifier: (string) | null, domainIdentifier: (string) | null, attributeSet: CSSearchableItemAttributeSet): CSSearchableItem { return callSDK<CSSearchableItem>("CoreSpotlight_3864e7f38681b875", 3086445687437574, undefined, [uniqueIdentifier, domainIdentifier, attributeSet]); }
   /**
    * var attributeSet: CSSearchableItemAttributeSet { get set }
    * @availability iOS 9.0+
    */
-  get attributeSet(): CSSearchableItemAttributeSet { return callSDK<CSSearchableItemAttributeSet>("CoreSpotlight_ff42ce03e691ab23", 2693310540843737, this, []); }
-  set attributeSet(value: CSSearchableItemAttributeSet) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1653055888455823, this, [value]); }
+  get attributeSet(): CSSearchableItemAttributeSet { return callSDK<CSSearchableItemAttributeSet>("CoreSpotlight_3864e7f38681b875", 2693310540843737, this, []); }
+  set attributeSet(value: CSSearchableItemAttributeSet) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1653055888455823, this, [value]); }
   /**
    * var domainIdentifier: String? { get set }
    * @availability iOS 9.0+
    */
-  get domainIdentifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2661284047156444, this, []); }
-  set domainIdentifier(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1326682617740955, this, [value]); }
+  get domainIdentifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2661284047156444, this, []); }
+  set domainIdentifier(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1326682617740955, this, [value]); }
   /**
    * var expirationDate: Date! { get set }
    * @availability iOS 9.0+
    */
-  get expirationDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_ff42ce03e691ab23", 576519325906209, this, []); }
-  set expirationDate(value: $SDK4) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 875373061523512, this, [value]); }
+  get expirationDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_3864e7f38681b875", 576519325906209, this, []); }
+  set expirationDate(value: $SDK4) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 875373061523512, this, [value]); }
   /**
    * var isUpdate: Bool { get set }
    * @availability iOS 9.0+
    */
-  get isUpdate(): boolean { return callSDK<boolean>("CoreSpotlight_ff42ce03e691ab23", 1345738652042695, this, []); }
-  set isUpdate(value: boolean) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 373440538889740, this, [value]); }
+  get isUpdate(): boolean { return callSDK<boolean>("CoreSpotlight_3864e7f38681b875", 1345738652042695, this, []); }
+  set isUpdate(value: boolean) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 373440538889740, this, [value]); }
   /**
    * var uniqueIdentifier: String { get set }
    * @availability iOS 9.0+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 4058882290927616, this, []); }
-  set uniqueIdentifier(value: string) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 523416074582700, this, [value]); }
+  get uniqueIdentifier(): string { return callSDK<string>("CoreSpotlight_3864e7f38681b875", 4058882290927616, this, []); }
+  set uniqueIdentifier(value: string) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 523416074582700, this, [value]); }
   /**
    * var updateListenerOptions: CSSearchableItem.UpdateListenerOptions { get set }
    * @availability iOS 18.4+
    */
-  get updateListenerOptions(): CSSearchableItem_UpdateListenerOptions { return callSDK<CSSearchableItem_UpdateListenerOptions>("CoreSpotlight_ff42ce03e691ab23", 779190852576494, this, []); }
-  set updateListenerOptions(value: CSSearchableItem_UpdateListenerOptions) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3467735032411878, this, [value]); }
+  get updateListenerOptions(): CSSearchableItem_UpdateListenerOptions { return callSDK<CSSearchableItem_UpdateListenerOptions>("CoreSpotlight_3864e7f38681b875", 779190852576494, this, []); }
+  set updateListenerOptions(value: CSSearchableItem_UpdateListenerOptions) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3467735032411878, this, [value]); }
   declare readonly $type: { "c:objc(cs)CSSearchableItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributeSet": true; "domainIdentifier": true; "expirationDate": true; "isUpdate": true; "uniqueIdentifier": true; "updateListenerOptions": true };
 }
@@ -406,17 +406,17 @@ export const CSSearchableItem_UpdateListenerOptions = {
    * static var priority: CSSearchableItem.UpdateListenerOptions { get }
    * @availability iOS 18.4+
    */
-  get priority(): CSSearchableItem_UpdateListenerOptions { return callSDK<CSSearchableItem_UpdateListenerOptions>("CoreSpotlight_ff42ce03e691ab23", 463887955555649, undefined, []); },
+  get priority(): CSSearchableItem_UpdateListenerOptions { return callSDK<CSSearchableItem_UpdateListenerOptions>("CoreSpotlight_3864e7f38681b875", 463887955555649, undefined, []); },
   /**
    * static var summarization: CSSearchableItem.UpdateListenerOptions { get }
    * @availability iOS 18.4+
    */
-  get summarization(): CSSearchableItem_UpdateListenerOptions { return callSDK<CSSearchableItem_UpdateListenerOptions>("CoreSpotlight_ff42ce03e691ab23", 18211042141086, undefined, []); },
+  get summarization(): CSSearchableItem_UpdateListenerOptions { return callSDK<CSSearchableItem_UpdateListenerOptions>("CoreSpotlight_3864e7f38681b875", 18211042141086, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 18.4+
    */
-  init(rawValue: number): CSSearchableItem_UpdateListenerOptions { return callSDK<CSSearchableItem_UpdateListenerOptions>("CoreSpotlight_ff42ce03e691ab23", 570807752941046, undefined, [rawValue]); }
+  init(rawValue: number): CSSearchableItem_UpdateListenerOptions { return callSDK<CSSearchableItem_UpdateListenerOptions>("CoreSpotlight_3864e7f38681b875", 570807752941046, undefined, [rawValue]); }
 };
 
 /**
@@ -428,1161 +428,1161 @@ export class CSSearchableItemAttributeSet extends SDKHandle {
    * init(contentType: UTType)
    * @availability iOS 14.0+
    */
-  static initContentType(contentType: _UniformTypeIdentifiers_UTType): CSSearchableItemAttributeSet { return callSDK<CSSearchableItemAttributeSet>("CoreSpotlight_ff42ce03e691ab23", 190077928112426, undefined, [contentType]); }
+  static initContentType(contentType: _UniformTypeIdentifiers_UTType): CSSearchableItemAttributeSet { return callSDK<CSSearchableItemAttributeSet>("CoreSpotlight_3864e7f38681b875", 190077928112426, undefined, [contentType]); }
   /**
    * init(itemContentType: String)
    * @availability iOS 9.0+
    * @deprecated iOS 100000.0
    */
-  static initItemContentType(itemContentType: string): CSSearchableItemAttributeSet { return callSDK<CSSearchableItemAttributeSet>("CoreSpotlight_ff42ce03e691ab23", 86305848590529, undefined, [itemContentType]); }
+  static initItemContentType(itemContentType: string): CSSearchableItemAttributeSet { return callSDK<CSSearchableItemAttributeSet>("CoreSpotlight_3864e7f38681b875", 86305848590529, undefined, [itemContentType]); }
   /**
    * func setValue(_ value: (any NSSecureCoding)?, forCustomKey key: CSCustomAttributeKey)
    * @availability iOS 9.0+
    */
-  setValue(value: (SDKHandle) | null, key: CSCustomAttributeKey): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1430040722081801, this, [value, key]); }
+  setValue(value: (SDKHandle) | null, key: CSCustomAttributeKey): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 1430040722081801, this, [value, key]); }
   /**
    * func value(forCustomKey key: CSCustomAttributeKey) -> (any NSSecureCoding)?
    * @availability iOS 9.0+
    */
-  value(key: CSCustomAttributeKey): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreSpotlight_ff42ce03e691ab23", 2150756942545704, this, [key]); }
+  value(key: CSCustomAttributeKey): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreSpotlight_3864e7f38681b875", 2150756942545704, this, [key]); }
   /**
    * var exifgpsVersion: String? { get set }
    * @availability iOS 9.0+
    */
-  get exifgpsVersion(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3340960877213337, this, []); }
-  set exifgpsVersion(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2411064466799343, this, [value]); }
+  get exifgpsVersion(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3340960877213337, this, []); }
+  set exifgpsVersion(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2411064466799343, this, [value]); }
   /**
    * var exifVersion: String? { get set }
    * @availability iOS 9.0+
    */
-  get exifVersion(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1165560135330620, this, []); }
-  set exifVersion(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4403259720747897, this, [value]); }
+  get exifVersion(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1165560135330620, this, []); }
+  set exifVersion(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4403259720747897, this, [value]); }
   /**
    * var gpsAreaInformation: String? { get set }
    * @availability iOS 9.0+
    */
-  get gpsAreaInformation(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2577224489111829, this, []); }
-  set gpsAreaInformation(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3706158759129528, this, [value]); }
+  get gpsAreaInformation(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2577224489111829, this, []); }
+  set gpsAreaInformation(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3706158759129528, this, [value]); }
   /**
    * var gpsdop: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get gpsdop(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1239185699437029, this, []); }
-  set gpsdop(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1394949828898200, this, [value]); }
+  get gpsdop(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1239185699437029, this, []); }
+  set gpsdop(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1394949828898200, this, [value]); }
   /**
    * var gpsDateStamp: Date? { get set }
    * @availability iOS 9.0+
    */
-  get gpsDateStamp(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_ff42ce03e691ab23", 1016764634996060, this, []); }
-  set gpsDateStamp(value: $SDK4) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 324409874966338, this, [value]); }
+  get gpsDateStamp(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_3864e7f38681b875", 1016764634996060, this, []); }
+  set gpsDateStamp(value: $SDK4) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 324409874966338, this, [value]); }
   /**
    * var gpsDestBearing: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get gpsDestBearing(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 316723859866970, this, []); }
-  set gpsDestBearing(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2943112382838319, this, [value]); }
+  get gpsDestBearing(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 316723859866970, this, []); }
+  set gpsDestBearing(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2943112382838319, this, [value]); }
   /**
    * var gpsDestDistance: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get gpsDestDistance(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 4087546981407589, this, []); }
-  set gpsDestDistance(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 766006434955410, this, [value]); }
+  get gpsDestDistance(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 4087546981407589, this, []); }
+  set gpsDestDistance(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 766006434955410, this, [value]); }
   /**
    * var gpsDestLatitude: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get gpsDestLatitude(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 945591254509701, this, []); }
-  set gpsDestLatitude(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4402452178467871, this, [value]); }
+  get gpsDestLatitude(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 945591254509701, this, []); }
+  set gpsDestLatitude(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4402452178467871, this, [value]); }
   /**
    * var gpsDestLongitude: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get gpsDestLongitude(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 831238811542892, this, []); }
-  set gpsDestLongitude(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3254544776283810, this, [value]); }
+  get gpsDestLongitude(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 831238811542892, this, []); }
+  set gpsDestLongitude(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3254544776283810, this, [value]); }
   /**
    * var gpsDifferental: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get gpsDifferental(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 4444624547419882, this, []); }
-  set gpsDifferental(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1950311243321978, this, [value]); }
+  get gpsDifferental(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 4444624547419882, this, []); }
+  set gpsDifferental(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1950311243321978, this, [value]); }
   /**
    * var gpsMapDatum: String? { get set }
    * @availability iOS 9.0+
    */
-  get gpsMapDatum(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1404952182532694, this, []); }
-  set gpsMapDatum(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 455730644087864, this, [value]); }
+  get gpsMapDatum(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1404952182532694, this, []); }
+  set gpsMapDatum(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 455730644087864, this, [value]); }
   /**
    * var gpsMeasureMode: String? { get set }
    * @availability iOS 9.0+
    */
-  get gpsMeasureMode(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 631904892801813, this, []); }
-  set gpsMeasureMode(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 51628097876275, this, [value]); }
+  get gpsMeasureMode(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 631904892801813, this, []); }
+  set gpsMeasureMode(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 51628097876275, this, [value]); }
   /**
    * var gpsProcessingMethod: String? { get set }
    * @availability iOS 9.0+
    */
-  get gpsProcessingMethod(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1629859321671124, this, []); }
-  set gpsProcessingMethod(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2999229131683010, this, [value]); }
+  get gpsProcessingMethod(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1629859321671124, this, []); }
+  set gpsProcessingMethod(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2999229131683010, this, [value]); }
   /**
    * var gpsStatus: String? { get set }
    * @availability iOS 9.0+
    */
-  get gpsStatus(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 17915464781797, this, []); }
-  set gpsStatus(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2579242987560929, this, [value]); }
+  get gpsStatus(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 17915464781797, this, []); }
+  set gpsStatus(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2579242987560929, this, [value]); }
   /**
    * var gpsTrack: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get gpsTrack(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 497508275991496, this, []); }
-  set gpsTrack(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 715917048272455, this, [value]); }
+  get gpsTrack(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 497508275991496, this, []); }
+  set gpsTrack(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 715917048272455, this, [value]); }
   /**
    * var htmlContentData: Data? { get set }
    * @availability iOS 9.0+
    */
-  get htmlContentData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreSpotlight_ff42ce03e691ab23", 2672095101874552, this, []); }
-  set htmlContentData(value: (ArrayBuffer) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 354882296297947, this, [value]); }
+  get htmlContentData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreSpotlight_3864e7f38681b875", 2672095101874552, this, []); }
+  set htmlContentData(value: (ArrayBuffer) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 354882296297947, this, [value]); }
   /**
    * var isoSpeed: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get isoSpeed(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1579883955466462, this, []); }
-  set isoSpeed(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1632621215406616, this, [value]); }
+  get isoSpeed(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1579883955466462, this, []); }
+  set isoSpeed(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1632621215406616, this, [value]); }
   /**
    * var url: URL? { get set }
    * @availability iOS 9.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2307104156712504, this, []); }
-  set url(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1848865695001841, this, [value]); }
+  get url(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2307104156712504, this, []); }
+  set url(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1848865695001841, this, [value]); }
   /**
    * var accountHandles: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get accountHandles(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 581276465546937, this, []); }
-  set accountHandles(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2043278435391525, this, [value]); }
+  get accountHandles(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 581276465546937, this, []); }
+  set accountHandles(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2043278435391525, this, [value]); }
   /**
    * var accountIdentifier: String? { get set }
    * @availability iOS 9.0+
    */
-  get accountIdentifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3397104917868159, this, []); }
-  set accountIdentifier(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 392093248635391, this, [value]); }
+  get accountIdentifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3397104917868159, this, []); }
+  set accountIdentifier(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 392093248635391, this, [value]); }
   /**
    * var acquisitionMake: String? { get set }
    * @availability iOS 9.0+
    */
-  get acquisitionMake(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 467142366630770, this, []); }
-  set acquisitionMake(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1498542006211432, this, [value]); }
+  get acquisitionMake(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 467142366630770, this, []); }
+  set acquisitionMake(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1498542006211432, this, [value]); }
   /**
    * var acquisitionModel: String? { get set }
    * @availability iOS 9.0+
    */
-  get acquisitionModel(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 118292482600671, this, []); }
-  set acquisitionModel(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3970163466058882, this, [value]); }
+  get acquisitionModel(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 118292482600671, this, []); }
+  set acquisitionModel(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3970163466058882, this, [value]); }
   /**
    * var actionIdentifiers: [String] { get set }
    * @availability iOS 15.0+
    */
-  get actionIdentifiers(): Array<string> { return callSDK<Array<string>>("CoreSpotlight_ff42ce03e691ab23", 3549303751760243, this, []); }
-  set actionIdentifiers(value: Array<string>) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 249044442894750, this, [value]); }
+  get actionIdentifiers(): Array<string> { return callSDK<Array<string>>("CoreSpotlight_3864e7f38681b875", 3549303751760243, this, []); }
+  set actionIdentifiers(value: Array<string>) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 249044442894750, this, [value]); }
   /**
    * var addedDate: Date? { get set }
    * @availability iOS 9.0+
    */
-  get addedDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_ff42ce03e691ab23", 2827878189180712, this, []); }
-  set addedDate(value: $SDK4) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2241557870142004, this, [value]); }
+  get addedDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_3864e7f38681b875", 2827878189180712, this, []); }
+  set addedDate(value: $SDK4) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2241557870142004, this, [value]); }
   /**
    * var additionalRecipients: [CSPerson]? { get set }
    * @availability iOS 9.0+
    */
-  get additionalRecipients(): $SDK6 { return callSDK<$SDK6>("CoreSpotlight_ff42ce03e691ab23", 3122653672365514, this, []); }
-  set additionalRecipients(value: $SDK6) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4099136870789910, this, [value]); }
+  get additionalRecipients(): $SDK6 { return callSDK<$SDK6>("CoreSpotlight_3864e7f38681b875", 3122653672365514, this, []); }
+  set additionalRecipients(value: $SDK6) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4099136870789910, this, [value]); }
   /**
    * var album: String? { get set }
    * @availability iOS 9.0+
    */
-  get album(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3831823618971935, this, []); }
-  set album(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 969235687026800, this, [value]); }
+  get album(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3831823618971935, this, []); }
+  set album(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 969235687026800, this, [value]); }
   /**
    * var allDay: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get allDay(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 459016932388953, this, []); }
-  set allDay(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4149448508539747, this, [value]); }
+  get allDay(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 459016932388953, this, []); }
+  set allDay(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4149448508539747, this, [value]); }
   /**
    * var alternateNames: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get alternateNames(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 3687194349400551, this, []); }
-  set alternateNames(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2638789452891348, this, [value]); }
+  get alternateNames(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 3687194349400551, this, []); }
+  set alternateNames(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2638789452891348, this, [value]); }
   /**
    * var altitude: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get altitude(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1320682810096589, this, []); }
-  set altitude(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3957617449971443, this, [value]); }
+  get altitude(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1320682810096589, this, []); }
+  set altitude(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3957617449971443, this, [value]); }
   /**
    * var aperture: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get aperture(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 2292186270174775, this, []); }
-  set aperture(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 29847803943854, this, [value]); }
+  get aperture(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 2292186270174775, this, []); }
+  set aperture(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 29847803943854, this, [value]); }
   /**
    * var artist: String? { get set }
    * @availability iOS 9.0+
    */
-  get artist(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1854075365612748, this, []); }
-  set artist(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1935150431693860, this, [value]); }
+  get artist(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1854075365612748, this, []); }
+  set artist(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1935150431693860, this, [value]); }
   /**
    * var audiences: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get audiences(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 1642903774790194, this, []); }
-  set audiences(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 924926872746867, this, [value]); }
+  get audiences(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 1642903774790194, this, []); }
+  set audiences(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 924926872746867, this, [value]); }
   /**
    * var audioBitRate: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get audioBitRate(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 2134190059170612, this, []); }
-  set audioBitRate(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 528031562143615, this, [value]); }
+  get audioBitRate(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 2134190059170612, this, []); }
+  set audioBitRate(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 528031562143615, this, [value]); }
   /**
    * var audioChannelCount: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get audioChannelCount(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1801710307357041, this, []); }
-  set audioChannelCount(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4452930947279249, this, [value]); }
+  get audioChannelCount(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1801710307357041, this, []); }
+  set audioChannelCount(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4452930947279249, this, [value]); }
   /**
    * var audioEncodingApplication: String? { get set }
    * @availability iOS 9.0+
    */
-  get audioEncodingApplication(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1637639346734537, this, []); }
-  set audioEncodingApplication(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1754813858389514, this, [value]); }
+  get audioEncodingApplication(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1637639346734537, this, []); }
+  set audioEncodingApplication(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1754813858389514, this, [value]); }
   /**
    * var audioSampleRate: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get audioSampleRate(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1253141810847330, this, []); }
-  set audioSampleRate(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 18846868906924, this, [value]); }
+  get audioSampleRate(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1253141810847330, this, []); }
+  set audioSampleRate(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 18846868906924, this, [value]); }
   /**
    * var audioTrackNumber: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get audioTrackNumber(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1274406105704485, this, []); }
-  set audioTrackNumber(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3649107142070352, this, [value]); }
+  get audioTrackNumber(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1274406105704485, this, []); }
+  set audioTrackNumber(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3649107142070352, this, [value]); }
   /**
    * var authorAddresses: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get authorAddresses(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 2599359042995479, this, []); }
-  set authorAddresses(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4111359735363073, this, [value]); }
+  get authorAddresses(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 2599359042995479, this, []); }
+  set authorAddresses(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4111359735363073, this, [value]); }
   /**
    * var authorEmailAddresses: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get authorEmailAddresses(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 2525997787697980, this, []); }
-  set authorEmailAddresses(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 30939373293018, this, [value]); }
+  get authorEmailAddresses(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 2525997787697980, this, []); }
+  set authorEmailAddresses(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 30939373293018, this, [value]); }
   /**
    * var authorNames: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get authorNames(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 2850662842229269, this, []); }
-  set authorNames(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1541434629955133, this, [value]); }
+  get authorNames(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 2850662842229269, this, []); }
+  set authorNames(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1541434629955133, this, [value]); }
   /**
    * var authors: [CSPerson]? { get set }
    * @availability iOS 9.0+
    */
-  get authors(): $SDK6 { return callSDK<$SDK6>("CoreSpotlight_ff42ce03e691ab23", 3372606945358722, this, []); }
-  set authors(value: $SDK6) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1517554319462936, this, [value]); }
+  get authors(): $SDK6 { return callSDK<$SDK6>("CoreSpotlight_3864e7f38681b875", 3372606945358722, this, []); }
+  set authors(value: $SDK6) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1517554319462936, this, [value]); }
   /**
    * var bitsPerSample: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get bitsPerSample(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1977021880573228, this, []); }
-  set bitsPerSample(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3997733359642504, this, [value]); }
+  get bitsPerSample(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1977021880573228, this, []); }
+  set bitsPerSample(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3997733359642504, this, [value]); }
   /**
    * var cameraOwner: String? { get set }
    * @availability iOS 9.0+
    */
-  get cameraOwner(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2499714424286566, this, []); }
-  set cameraOwner(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 899568833221024, this, [value]); }
+  get cameraOwner(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2499714424286566, this, []); }
+  set cameraOwner(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 899568833221024, this, [value]); }
   /**
    * var city: String? { get set }
    * @availability iOS 9.0+
    */
-  get city(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3648528342728892, this, []); }
-  set city(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3708517031163055, this, [value]); }
+  get city(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3648528342728892, this, []); }
+  set city(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3708517031163055, this, [value]); }
   /**
    * var codecs: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get codecs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 3651919079991003, this, []); }
-  set codecs(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2712531327558145, this, [value]); }
+  get codecs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 3651919079991003, this, []); }
+  set codecs(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2712531327558145, this, [value]); }
   /**
    * var colorSpace: String? { get set }
    * @availability iOS 9.0+
    */
-  get colorSpace(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3730439479143115, this, []); }
-  set colorSpace(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2852452789588974, this, [value]); }
+  get colorSpace(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3730439479143115, this, []); }
+  set colorSpace(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2852452789588974, this, [value]); }
   /**
    * var comment: String? { get set }
    * @availability iOS 9.0+
    */
-  get comment(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1889977352096341, this, []); }
-  set comment(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2720468875424658, this, [value]); }
+  get comment(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1889977352096341, this, []); }
+  set comment(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2720468875424658, this, [value]); }
   /**
    * var completionDate: Date? { get set }
    * @availability iOS 9.0+
    */
-  get completionDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_ff42ce03e691ab23", 1030138959954142, this, []); }
-  set completionDate(value: $SDK4) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 186136451247489, this, [value]); }
+  get completionDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_3864e7f38681b875", 1030138959954142, this, []); }
+  set completionDate(value: $SDK4) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 186136451247489, this, [value]); }
   /**
    * var composer: String? { get set }
    * @availability iOS 9.0+
    */
-  get composer(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1181975775662656, this, []); }
-  set composer(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1757002850189820, this, [value]); }
+  get composer(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1181975775662656, this, []); }
+  set composer(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1757002850189820, this, [value]); }
   /**
    * var contactKeywords: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get contactKeywords(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 2400797821881043, this, []); }
-  set contactKeywords(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4455239512625042, this, [value]); }
+  get contactKeywords(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 2400797821881043, this, []); }
+  set contactKeywords(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4455239512625042, this, [value]); }
   /**
    * var containerDisplayName: String? { get set }
    * @availability iOS 9.0+
    */
-  get containerDisplayName(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2180512725441914, this, []); }
-  set containerDisplayName(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2424776299171825, this, [value]); }
+  get containerDisplayName(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2180512725441914, this, []); }
+  set containerDisplayName(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2424776299171825, this, [value]); }
   /**
    * var containerIdentifier: String? { get set }
    * @availability iOS 9.0+
    */
-  get containerIdentifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1985607451632310, this, []); }
-  set containerIdentifier(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 88531946747414, this, [value]); }
+  get containerIdentifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1985607451632310, this, []); }
+  set containerIdentifier(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 88531946747414, this, [value]); }
   /**
    * var containerOrder: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get containerOrder(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 3700305986472946, this, []); }
-  set containerOrder(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 947187232948816, this, [value]); }
+  get containerOrder(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 3700305986472946, this, []); }
+  set containerOrder(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 947187232948816, this, [value]); }
   /**
    * var containerTitle: String? { get set }
    * @availability iOS 9.0+
    */
-  get containerTitle(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2493744793947150, this, []); }
-  set containerTitle(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 49877113545779, this, [value]); }
+  get containerTitle(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2493744793947150, this, []); }
+  set containerTitle(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 49877113545779, this, [value]); }
   /**
    * var contentCreationDate: Date? { get set }
    * @availability iOS 9.0+
    */
-  get contentCreationDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_ff42ce03e691ab23", 2685473163510328, this, []); }
-  set contentCreationDate(value: $SDK4) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3609851395196205, this, [value]); }
+  get contentCreationDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_3864e7f38681b875", 2685473163510328, this, []); }
+  set contentCreationDate(value: $SDK4) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3609851395196205, this, [value]); }
   /**
    * var contentDescription: String? { get set }
    * @availability iOS 9.0+
    */
-  get contentDescription(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 381704447345003, this, []); }
-  set contentDescription(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1305501713311227, this, [value]); }
+  get contentDescription(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 381704447345003, this, []); }
+  set contentDescription(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1305501713311227, this, [value]); }
   /**
    * var contentModificationDate: Date? { get set }
    * @availability iOS 9.0+
    */
-  get contentModificationDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_ff42ce03e691ab23", 2193515140192690, this, []); }
-  set contentModificationDate(value: $SDK4) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 469288668809043, this, [value]); }
+  get contentModificationDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_3864e7f38681b875", 2193515140192690, this, []); }
+  set contentModificationDate(value: $SDK4) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 469288668809043, this, [value]); }
   /**
    * var contentRating: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get contentRating(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 210253796685251, this, []); }
-  set contentRating(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3482220996295198, this, [value]); }
+  get contentRating(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 210253796685251, this, []); }
+  set contentRating(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3482220996295198, this, [value]); }
   /**
    * var contentSources: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get contentSources(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 4021237560398460, this, []); }
-  set contentSources(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3665907476759997, this, [value]); }
+  get contentSources(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 4021237560398460, this, []); }
+  set contentSources(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3665907476759997, this, [value]); }
   /**
    * var contentType: String? { get set }
    * @availability iOS 9.0+
    */
-  get contentType(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 977824999116423, this, []); }
-  set contentType(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1024795666126481, this, [value]); }
+  get contentType(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 977824999116423, this, []); }
+  set contentType(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1024795666126481, this, [value]); }
   /**
    * var contentTypeTree: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get contentTypeTree(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 4472804171277904, this, []); }
-  set contentTypeTree(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1699567442261332, this, [value]); }
+  get contentTypeTree(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 4472804171277904, this, []); }
+  set contentTypeTree(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1699567442261332, this, [value]); }
   /**
    * var contentURL: URL? { get set }
    * @availability iOS 9.0+
    */
-  get contentURL(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3404262916206900, this, []); }
-  set contentURL(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4067804921607985, this, [value]); }
+  get contentURL(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3404262916206900, this, []); }
+  set contentURL(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4067804921607985, this, [value]); }
   /**
    * var contributors: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get contributors(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 1917102986301663, this, []); }
-  set contributors(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 241635171861401, this, [value]); }
+  get contributors(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 1917102986301663, this, []); }
+  set contributors(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 241635171861401, this, [value]); }
   /**
    * var copyright: String? { get set }
    * @availability iOS 9.0+
    */
-  get copyright(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1687179278248125, this, []); }
-  set copyright(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3855219715264443, this, [value]); }
+  get copyright(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1687179278248125, this, []); }
+  set copyright(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3855219715264443, this, [value]); }
   /**
    * var country: String? { get set }
    * @availability iOS 9.0+
    */
-  get country(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 482408990447025, this, []); }
-  set country(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3556293244537858, this, [value]); }
+  get country(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 482408990447025, this, []); }
+  set country(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3556293244537858, this, [value]); }
   /**
    * var coverage: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get coverage(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 4431305302873279, this, []); }
-  set coverage(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3663764112331071, this, [value]); }
+  get coverage(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 4431305302873279, this, []); }
+  set coverage(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3663764112331071, this, [value]); }
   /**
    * var creator: String? { get set }
    * @availability iOS 9.0+
    */
-  get creator(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1407596903444289, this, []); }
-  set creator(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1412813130902822, this, [value]); }
+  get creator(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1407596903444289, this, []); }
+  set creator(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1412813130902822, this, [value]); }
   /**
    * var darkThumbnailURL: URL? { get set }
    * @availability iOS 15.0+
    */
-  get darkThumbnailURL(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 696618715990136, this, []); }
-  set darkThumbnailURL(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1913524356599642, this, [value]); }
+  get darkThumbnailURL(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 696618715990136, this, []); }
+  set darkThumbnailURL(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1913524356599642, this, [value]); }
   /**
    * var deliveryType: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get deliveryType(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 2828303315113175, this, []); }
-  set deliveryType(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1887216202613887, this, [value]); }
+  get deliveryType(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 2828303315113175, this, []); }
+  set deliveryType(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1887216202613887, this, [value]); }
   /**
    * var director: String? { get set }
    * @availability iOS 9.0+
    */
-  get director(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2207110594262837, this, []); }
-  set director(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1858039830235985, this, [value]); }
+  get director(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2207110594262837, this, []); }
+  set director(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1858039830235985, this, [value]); }
   /**
    * var displayName: String? { get set }
    * @availability iOS 9.0+
    */
-  get displayName(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1790358813407082, this, []); }
-  set displayName(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3711955872207737, this, [value]); }
+  get displayName(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1790358813407082, this, []); }
+  set displayName(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3711955872207737, this, [value]); }
   /**
    * var domainIdentifier: String? { get set }
    * @availability iOS 10.0+
    */
-  get domainIdentifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 274168716331487, this, []); }
-  set domainIdentifier(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1445818412585709, this, [value]); }
+  get domainIdentifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 274168716331487, this, []); }
+  set domainIdentifier(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1445818412585709, this, [value]); }
   /**
    * var downloadedDate: Date? { get set }
    * @availability iOS 9.0+
    */
-  get downloadedDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_ff42ce03e691ab23", 2059043203454188, this, []); }
-  set downloadedDate(value: $SDK4) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 856608544394842, this, [value]); }
+  get downloadedDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_3864e7f38681b875", 2059043203454188, this, []); }
+  set downloadedDate(value: $SDK4) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 856608544394842, this, [value]); }
   /**
    * var dueDate: Date? { get set }
    * @availability iOS 9.0+
    */
-  get dueDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_ff42ce03e691ab23", 2253439842211426, this, []); }
-  set dueDate(value: $SDK4) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3305906323007251, this, [value]); }
+  get dueDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_3864e7f38681b875", 2253439842211426, this, []); }
+  set dueDate(value: $SDK4) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3305906323007251, this, [value]); }
   /**
    * var duration: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get duration(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 439211096247984, this, []); }
-  set duration(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3048663072583409, this, [value]); }
+  get duration(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 439211096247984, this, []); }
+  set duration(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3048663072583409, this, [value]); }
   /**
    * var editors: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get editors(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 3980309639452301, this, []); }
-  set editors(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2420275898770274, this, [value]); }
+  get editors(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 3980309639452301, this, []); }
+  set editors(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2420275898770274, this, [value]); }
   /**
    * var emailAddresses: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get emailAddresses(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 1045450017107202, this, []); }
-  set emailAddresses(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4040709419942027, this, [value]); }
+  get emailAddresses(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 1045450017107202, this, []); }
+  set emailAddresses(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4040709419942027, this, [value]); }
   /**
    * var emailHeaders: [String : [Any]]? { get set }
    * @availability iOS 9.0+
    */
-  get emailHeaders(): $SDK7 { return callSDK<$SDK7>("CoreSpotlight_ff42ce03e691ab23", 3002607462190078, this, []); }
-  set emailHeaders(value: $SDK7) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1000635669148109, this, [value]); }
+  get emailHeaders(): $SDK7 { return callSDK<$SDK7>("CoreSpotlight_3864e7f38681b875", 3002607462190078, this, []); }
+  set emailHeaders(value: $SDK7) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1000635669148109, this, [value]); }
   /**
    * var encodingApplications: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get encodingApplications(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 2532248753611053, this, []); }
-  set encodingApplications(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2993144354441304, this, [value]); }
+  get encodingApplications(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 2532248753611053, this, []); }
+  set encodingApplications(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2993144354441304, this, [value]); }
   /**
    * var endDate: Date? { get set }
    * @availability iOS 9.0+
    */
-  get endDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_ff42ce03e691ab23", 1851507825849051, this, []); }
-  set endDate(value: $SDK4) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1376716258944849, this, [value]); }
+  get endDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_3864e7f38681b875", 1851507825849051, this, []); }
+  set endDate(value: $SDK4) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1376716258944849, this, [value]); }
   /**
    * var exposureMode: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get exposureMode(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 891028496602650, this, []); }
-  set exposureMode(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1462476109461735, this, [value]); }
+  get exposureMode(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 891028496602650, this, []); }
+  set exposureMode(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1462476109461735, this, [value]); }
   /**
    * var exposureProgram: String? { get set }
    * @availability iOS 9.0+
    */
-  get exposureProgram(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3931958510314941, this, []); }
-  set exposureProgram(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 310015360592079, this, [value]); }
+  get exposureProgram(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3931958510314941, this, []); }
+  set exposureProgram(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 310015360592079, this, [value]); }
   /**
    * var exposureTime: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get exposureTime(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 436704746569613, this, []); }
-  set exposureTime(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4195492236220245, this, [value]); }
+  get exposureTime(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 436704746569613, this, []); }
+  set exposureTime(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4195492236220245, this, [value]); }
   /**
    * var exposureTimeString: String? { get set }
    * @availability iOS 9.0+
    */
-  get exposureTimeString(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 4421083264934250, this, []); }
-  set exposureTimeString(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 724743674676924, this, [value]); }
+  get exposureTimeString(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 4421083264934250, this, []); }
+  set exposureTimeString(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 724743674676924, this, [value]); }
   /**
    * var fNumber: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get fNumber(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 2900380581990977, this, []); }
-  set fNumber(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2305386082390155, this, [value]); }
+  get fNumber(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 2900380581990977, this, []); }
+  set fNumber(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2305386082390155, this, [value]); }
   /**
    * var fileSize: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get fileSize(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 2985142714778112, this, []); }
-  set fileSize(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4020115611833806, this, [value]); }
+  get fileSize(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 2985142714778112, this, []); }
+  set fileSize(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4020115611833806, this, [value]); }
   /**
    * var flashOn: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get flashOn(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 2773955510429885, this, []); }
-  set flashOn(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 311720037764060, this, [value]); }
+  get flashOn(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 2773955510429885, this, []); }
+  set flashOn(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 311720037764060, this, [value]); }
   /**
    * var focalLength35mm: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get focalLength35mm(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1165113527546321, this, []); }
-  set focalLength35mm(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1404679293834169, this, [value]); }
+  get focalLength35mm(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1165113527546321, this, []); }
+  set focalLength35mm(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1404679293834169, this, [value]); }
   /**
    * var focalLength: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get focalLength(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1293833285464929, this, []); }
-  set focalLength(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4028094120270960, this, [value]); }
+  get focalLength(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1293833285464929, this, []); }
+  set focalLength(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4028094120270960, this, [value]); }
   /**
    * var fontNames: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get fontNames(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 3011788132877947, this, []); }
-  set fontNames(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 506356456872848, this, [value]); }
+  get fontNames(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 3011788132877947, this, []); }
+  set fontNames(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 506356456872848, this, [value]); }
   /**
    * var fullyFormattedAddress: String? { get set }
    * @availability iOS 10.0+
    */
-  get fullyFormattedAddress(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2777626864715670, this, []); }
-  set fullyFormattedAddress(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3599012596493786, this, [value]); }
+  get fullyFormattedAddress(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2777626864715670, this, []); }
+  set fullyFormattedAddress(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3599012596493786, this, [value]); }
   /**
    * var generalMIDISequence: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get generalMIDISequence(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 346167156399173, this, []); }
-  set generalMIDISequence(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 103665011111736, this, [value]); }
+  get generalMIDISequence(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 346167156399173, this, []); }
+  set generalMIDISequence(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 103665011111736, this, [value]); }
   /**
    * var genre: String? { get set }
    * @availability iOS 9.0+
    */
-  get genre(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3850295816995618, this, []); }
-  set genre(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4244128797382732, this, [value]); }
+  get genre(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3850295816995618, this, []); }
+  set genre(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4244128797382732, this, [value]); }
   /**
    * var hasAlphaChannel: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get hasAlphaChannel(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1501215545477998, this, []); }
-  set hasAlphaChannel(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3777365696570216, this, [value]); }
+  get hasAlphaChannel(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1501215545477998, this, []); }
+  set hasAlphaChannel(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3777365696570216, this, [value]); }
   /**
    * var headline: String? { get set }
    * @availability iOS 9.0+
    */
-  get headline(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3542862330353687, this, []); }
-  set headline(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 943805953120888, this, [value]); }
+  get headline(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3542862330353687, this, []); }
+  set headline(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 943805953120888, this, [value]); }
   /**
    * var hiddenAdditionalRecipients: [CSPerson]? { get set }
    * @availability iOS 9.0+
    */
-  get hiddenAdditionalRecipients(): $SDK6 { return callSDK<$SDK6>("CoreSpotlight_ff42ce03e691ab23", 1859728905081075, this, []); }
-  set hiddenAdditionalRecipients(value: $SDK6) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 210992772259832, this, [value]); }
+  get hiddenAdditionalRecipients(): $SDK6 { return callSDK<$SDK6>("CoreSpotlight_3864e7f38681b875", 1859728905081075, this, []); }
+  set hiddenAdditionalRecipients(value: $SDK6) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 210992772259832, this, [value]); }
   /**
    * var identifier: String? { get set }
    * @availability iOS 9.0+
    */
-  get identifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 4237808156869290, this, []); }
-  set identifier(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2768837259523753, this, [value]); }
+  get identifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 4237808156869290, this, []); }
+  set identifier(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2768837259523753, this, [value]); }
   /**
    * var imageDirection: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get imageDirection(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 2567170510968440, this, []); }
-  set imageDirection(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1217929581553372, this, [value]); }
+  get imageDirection(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 2567170510968440, this, []); }
+  set imageDirection(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1217929581553372, this, [value]); }
   /**
    * var importantDates: [Date]? { get set }
    * @availability iOS 9.0+
    */
-  get importantDates(): $SDK8 { return callSDK<$SDK8>("CoreSpotlight_ff42ce03e691ab23", 3914410748472400, this, []); }
-  set importantDates(value: $SDK8) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 161456446037611, this, [value]); }
+  get importantDates(): $SDK8 { return callSDK<$SDK8>("CoreSpotlight_3864e7f38681b875", 3914410748472400, this, []); }
+  set importantDates(value: $SDK8) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 161456446037611, this, [value]); }
   /**
    * var information: String? { get set }
    * @availability iOS 9.0+
    */
-  get information(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1482234426816417, this, []); }
-  set information(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2293314267751099, this, [value]); }
+  get information(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1482234426816417, this, []); }
+  set information(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2293314267751099, this, [value]); }
   /**
    * var instantMessageAddresses: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get instantMessageAddresses(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 4441339736423418, this, []); }
-  set instantMessageAddresses(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3164963018270101, this, [value]); }
+  get instantMessageAddresses(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 4441339736423418, this, []); }
+  set instantMessageAddresses(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3164963018270101, this, [value]); }
   /**
    * var instructions: String? { get set }
    * @availability iOS 9.0+
    */
-  get instructions(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1935283847193332, this, []); }
-  set instructions(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3210026596473933, this, [value]); }
+  get instructions(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1935283847193332, this, []); }
+  set instructions(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3210026596473933, this, [value]); }
   /**
    * var isPriority: NSNumber? { get }
    * @availability iOS 18.4+
    */
-  get isPriority(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 3684731669435098, this, []); }
+  get isPriority(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 3684731669435098, this, []); }
   /**
    * var keySignature: String? { get set }
    * @availability iOS 9.0+
    */
-  get keySignature(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1531637367304232, this, []); }
-  set keySignature(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1672621966919811, this, [value]); }
+  get keySignature(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1531637367304232, this, []); }
+  set keySignature(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1672621966919811, this, [value]); }
   /**
    * var keywords: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get keywords(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 4020902524829756, this, []); }
-  set keywords(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 844219403722611, this, [value]); }
+  get keywords(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 4020902524829756, this, []); }
+  set keywords(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 844219403722611, this, [value]); }
   /**
    * var kind: String? { get set }
    * @availability iOS 9.0+
    */
-  get kind(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 203572263082339, this, []); }
-  set kind(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2015795724367692, this, [value]); }
+  get kind(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 203572263082339, this, []); }
+  set kind(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2015795724367692, this, [value]); }
   /**
    * var languages: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get languages(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 2698565833856050, this, []); }
-  set languages(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2678710511008668, this, [value]); }
+  get languages(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 2698565833856050, this, []); }
+  set languages(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2678710511008668, this, [value]); }
   /**
    * var lastUsedDate: Date? { get set }
    * @availability iOS 9.0+
    */
-  get lastUsedDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_ff42ce03e691ab23", 1234868402609107, this, []); }
-  set lastUsedDate(value: $SDK4) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1997246489166961, this, [value]); }
+  get lastUsedDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_3864e7f38681b875", 1234868402609107, this, []); }
+  set lastUsedDate(value: $SDK4) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1997246489166961, this, [value]); }
   /**
    * var latitude: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get latitude(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 43450624694674, this, []); }
-  set latitude(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 682362593965122, this, [value]); }
+  get latitude(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 43450624694674, this, []); }
+  set latitude(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 682362593965122, this, [value]); }
   /**
    * var layerNames: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get layerNames(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 3137126612993663, this, []); }
-  set layerNames(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 659463173036575, this, [value]); }
+  get layerNames(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 3137126612993663, this, []); }
+  set layerNames(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 659463173036575, this, [value]); }
   /**
    * var lensModel: String? { get set }
    * @availability iOS 9.0+
    */
-  get lensModel(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2802464757755843, this, []); }
-  set lensModel(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1121078866835063, this, [value]); }
+  get lensModel(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2802464757755843, this, []); }
+  set lensModel(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1121078866835063, this, [value]); }
   /**
    * var likelyJunk: NSNumber { get set }
    * @availability iOS 9.0+
    */
-  get likelyJunk(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreSpotlight_ff42ce03e691ab23", 2948753991470256, this, []); }
-  set likelyJunk(value: _Foundation_NSNumber) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2300188167579893, this, [value]); }
+  get likelyJunk(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreSpotlight_3864e7f38681b875", 2948753991470256, this, []); }
+  set likelyJunk(value: _Foundation_NSNumber) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2300188167579893, this, [value]); }
   /**
    * var local: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get local(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1121484418846844, this, []); }
-  set local(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2911949987637406, this, [value]); }
+  get local(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1121484418846844, this, []); }
+  set local(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2911949987637406, this, [value]); }
   /**
    * var longitude: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get longitude(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 2094877855534590, this, []); }
-  set longitude(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1970572571448802, this, [value]); }
+  get longitude(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 2094877855534590, this, []); }
+  set longitude(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1970572571448802, this, [value]); }
   /**
    * var lyricist: String? { get set }
    * @availability iOS 9.0+
    */
-  get lyricist(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2790693519630111, this, []); }
-  set lyricist(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 84258722013892, this, [value]); }
+  get lyricist(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2790693519630111, this, []); }
+  set lyricist(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 84258722013892, this, [value]); }
   /**
    * var mailboxIdentifiers: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get mailboxIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 4384006335551572, this, []); }
-  set mailboxIdentifiers(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3593824707062793, this, [value]); }
+  get mailboxIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 4384006335551572, this, []); }
+  set mailboxIdentifiers(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3593824707062793, this, [value]); }
   /**
    * var maxAperture: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get maxAperture(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 3169587286533777, this, []); }
-  set maxAperture(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4061296556279853, this, [value]); }
+  get maxAperture(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 3169587286533777, this, []); }
+  set maxAperture(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4061296556279853, this, [value]); }
   /**
    * var mediaTypes: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get mediaTypes(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 4236877204598822, this, []); }
-  set mediaTypes(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 74048455546925, this, [value]); }
+  get mediaTypes(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 4236877204598822, this, []); }
+  set mediaTypes(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 74048455546925, this, [value]); }
   /**
    * var metadataModificationDate: Date? { get set }
    * @availability iOS 9.0+
    */
-  get metadataModificationDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_ff42ce03e691ab23", 2519716630701554, this, []); }
-  set metadataModificationDate(value: $SDK4) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4208242585644519, this, [value]); }
+  get metadataModificationDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_3864e7f38681b875", 2519716630701554, this, []); }
+  set metadataModificationDate(value: $SDK4) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4208242585644519, this, [value]); }
   /**
    * var meteringMode: String? { get set }
    * @availability iOS 9.0+
    */
-  get meteringMode(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 4249045326183604, this, []); }
-  set meteringMode(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2973786826897202, this, [value]); }
+  get meteringMode(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 4249045326183604, this, []); }
+  set meteringMode(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2973786826897202, this, [value]); }
   /**
    * var musicalGenre: String? { get set }
    * @availability iOS 9.0+
    */
-  get musicalGenre(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3689011225898126, this, []); }
-  set musicalGenre(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1934774024686641, this, [value]); }
+  get musicalGenre(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3689011225898126, this, []); }
+  set musicalGenre(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1934774024686641, this, [value]); }
   /**
    * var musicalInstrumentCategory: String? { get set }
    * @availability iOS 9.0+
    */
-  get musicalInstrumentCategory(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3916145428551740, this, []); }
-  set musicalInstrumentCategory(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 461773724068075, this, [value]); }
+  get musicalInstrumentCategory(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3916145428551740, this, []); }
+  set musicalInstrumentCategory(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 461773724068075, this, [value]); }
   /**
    * var musicalInstrumentName: String? { get set }
    * @availability iOS 9.0+
    */
-  get musicalInstrumentName(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2321469884717734, this, []); }
-  set musicalInstrumentName(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2721736211111757, this, [value]); }
+  get musicalInstrumentName(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2321469884717734, this, []); }
+  set musicalInstrumentName(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2721736211111757, this, [value]); }
   /**
    * var namedLocation: String? { get set }
    * @availability iOS 9.0+
    */
-  get namedLocation(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3685258120852024, this, []); }
-  set namedLocation(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2233716622929627, this, [value]); }
+  get namedLocation(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3685258120852024, this, []); }
+  set namedLocation(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2233716622929627, this, [value]); }
   /**
    * var organizations: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get organizations(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 2686541428625261, this, []); }
-  set organizations(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4477329008619318, this, [value]); }
+  get organizations(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 2686541428625261, this, []); }
+  set organizations(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4477329008619318, this, [value]); }
   /**
    * var orientation: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get orientation(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 4089144407137201, this, []); }
-  set orientation(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1447399847928178, this, [value]); }
+  get orientation(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 4089144407137201, this, []); }
+  set orientation(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1447399847928178, this, [value]); }
   /**
    * var originalFormat: String? { get set }
    * @availability iOS 9.0+
    */
-  get originalFormat(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1082796271086051, this, []); }
-  set originalFormat(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 935627183952452, this, [value]); }
+  get originalFormat(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1082796271086051, this, []); }
+  set originalFormat(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 935627183952452, this, [value]); }
   /**
    * var originalSource: String? { get set }
    * @availability iOS 9.0+
    */
-  get originalSource(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 4073637651514047, this, []); }
-  set originalSource(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4302728745616751, this, [value]); }
+  get originalSource(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 4073637651514047, this, []); }
+  set originalSource(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4302728745616751, this, [value]); }
   /**
    * var pageCount: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get pageCount(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 4042307208383927, this, []); }
-  set pageCount(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3121466691922733, this, [value]); }
+  get pageCount(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 4042307208383927, this, []); }
+  set pageCount(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3121466691922733, this, [value]); }
   /**
    * var pageHeight: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get pageHeight(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 2432140243846795, this, []); }
-  set pageHeight(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2980902304171701, this, [value]); }
+  get pageHeight(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 2432140243846795, this, []); }
+  set pageHeight(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2980902304171701, this, [value]); }
   /**
    * var pageWidth: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get pageWidth(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 607071195078290, this, []); }
-  set pageWidth(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2399624040564760, this, [value]); }
+  get pageWidth(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 607071195078290, this, []); }
+  set pageWidth(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2399624040564760, this, [value]); }
   /**
    * var participants: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get participants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 1898154799694426, this, []); }
-  set participants(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3599381843324759, this, [value]); }
+  get participants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 1898154799694426, this, []); }
+  set participants(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3599381843324759, this, [value]); }
   /**
    * var path: String? { get set }
    * @availability iOS 9.0+
    */
-  get path(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3571534749891075, this, []); }
-  set path(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 402834147091869, this, [value]); }
+  get path(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3571534749891075, this, []); }
+  set path(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 402834147091869, this, [value]); }
   /**
    * var performers: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get performers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 976798052612734, this, []); }
-  set performers(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3579011489070762, this, [value]); }
+  get performers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 976798052612734, this, []); }
+  set performers(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3579011489070762, this, [value]); }
   /**
    * var phoneNumbers: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get phoneNumbers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 3734283477470558, this, []); }
-  set phoneNumbers(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 468879889440212, this, [value]); }
+  get phoneNumbers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 3734283477470558, this, []); }
+  set phoneNumbers(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 468879889440212, this, [value]); }
   /**
    * var pixelCount: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get pixelCount(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 3406106504307142, this, []); }
-  set pixelCount(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3583389301400826, this, [value]); }
+  get pixelCount(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 3406106504307142, this, []); }
+  set pixelCount(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3583389301400826, this, [value]); }
   /**
    * var pixelHeight: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get pixelHeight(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 740504356837753, this, []); }
-  set pixelHeight(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 252386051044858, this, [value]); }
+  get pixelHeight(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 740504356837753, this, []); }
+  set pixelHeight(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 252386051044858, this, [value]); }
   /**
    * var pixelWidth: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get pixelWidth(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 4446664083393615, this, []); }
-  set pixelWidth(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3536480074421032, this, [value]); }
+  get pixelWidth(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 4446664083393615, this, []); }
+  set pixelWidth(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3536480074421032, this, [value]); }
   /**
    * var playCount: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get playCount(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 3926474767103483, this, []); }
-  set playCount(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3557451300259171, this, [value]); }
+  get playCount(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 3926474767103483, this, []); }
+  set playCount(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3557451300259171, this, [value]); }
   /**
    * var postalCode: String? { get set }
    * @availability iOS 10.0+
    */
-  get postalCode(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2211340859330254, this, []); }
-  set postalCode(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4344339503124060, this, [value]); }
+  get postalCode(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2211340859330254, this, []); }
+  set postalCode(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4344339503124060, this, [value]); }
   /**
    * var primaryRecipients: [CSPerson]? { get set }
    * @availability iOS 9.0+
    */
-  get primaryRecipients(): $SDK6 { return callSDK<$SDK6>("CoreSpotlight_ff42ce03e691ab23", 2040740628793360, this, []); }
-  set primaryRecipients(value: $SDK6) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 538380344135771, this, [value]); }
+  get primaryRecipients(): $SDK6 { return callSDK<$SDK6>("CoreSpotlight_3864e7f38681b875", 2040740628793360, this, []); }
+  set primaryRecipients(value: $SDK6) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 538380344135771, this, [value]); }
   /**
    * var producer: String? { get set }
    * @availability iOS 9.0+
    */
-  get producer(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3379256881279621, this, []); }
-  set producer(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1493925193994478, this, [value]); }
+  get producer(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3379256881279621, this, []); }
+  set producer(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1493925193994478, this, [value]); }
   /**
    * var profileName: String? { get set }
    * @availability iOS 9.0+
    */
-  get profileName(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 4458585333638372, this, []); }
-  set profileName(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 206095626789191, this, [value]); }
+  get profileName(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 4458585333638372, this, []); }
+  set profileName(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 206095626789191, this, [value]); }
   /**
    * var projects: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get projects(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 1932168399594769, this, []); }
-  set projects(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 887154793356941, this, [value]); }
+  get projects(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 1932168399594769, this, []); }
+  set projects(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 887154793356941, this, [value]); }
   /**
    * var providerDataTypeIdentifiers: [String]? { get set }
    * @availability iOS 11.0+
    */
-  get providerDataTypeIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 4337068772178465, this, []); }
-  set providerDataTypeIdentifiers(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3757504887262377, this, [value]); }
+  get providerDataTypeIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 4337068772178465, this, []); }
+  set providerDataTypeIdentifiers(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3757504887262377, this, [value]); }
   /**
    * var providerFileTypeIdentifiers: [String]? { get set }
    * @availability iOS 11.0+
    */
-  get providerFileTypeIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 3289974076237975, this, []); }
-  set providerFileTypeIdentifiers(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1405541193041103, this, [value]); }
+  get providerFileTypeIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 3289974076237975, this, []); }
+  set providerFileTypeIdentifiers(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1405541193041103, this, [value]); }
   /**
    * var providerInPlaceFileTypeIdentifiers: [String]? { get set }
    * @availability iOS 11.0+
    */
-  get providerInPlaceFileTypeIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 803330033171994, this, []); }
-  set providerInPlaceFileTypeIdentifiers(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1197175584957268, this, [value]); }
+  get providerInPlaceFileTypeIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 803330033171994, this, []); }
+  set providerInPlaceFileTypeIdentifiers(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1197175584957268, this, [value]); }
   /**
    * var publishers: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get publishers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 735835474701060, this, []); }
-  set publishers(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4111802655677487, this, [value]); }
+  get publishers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 735835474701060, this, []); }
+  set publishers(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4111802655677487, this, [value]); }
   /**
    * var rankingHint: NSNumber? { get set }
    * @availability iOS 11.0+
    */
-  get rankingHint(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 3747703015050668, this, []); }
-  set rankingHint(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3706182967091219, this, [value]); }
+  get rankingHint(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 3747703015050668, this, []); }
+  set rankingHint(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3706182967091219, this, [value]); }
   /**
    * var rating: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get rating(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1003470885193938, this, []); }
-  set rating(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2208754441686410, this, [value]); }
+  get rating(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1003470885193938, this, []); }
+  set rating(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2208754441686410, this, [value]); }
   /**
    * var ratingDescription: String? { get set }
    * @availability iOS 9.0+
    */
-  get ratingDescription(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2432005952860943, this, []); }
-  set ratingDescription(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1258667552952304, this, [value]); }
+  get ratingDescription(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2432005952860943, this, []); }
+  set ratingDescription(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1258667552952304, this, [value]); }
   /**
    * var recipientAddresses: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get recipientAddresses(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 4158632681661583, this, []); }
-  set recipientAddresses(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2440494983216672, this, [value]); }
+  get recipientAddresses(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 4158632681661583, this, []); }
+  set recipientAddresses(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2440494983216672, this, [value]); }
   /**
    * var recipientEmailAddresses: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get recipientEmailAddresses(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 2474352728943423, this, []); }
-  set recipientEmailAddresses(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 594673632637148, this, [value]); }
+  get recipientEmailAddresses(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 2474352728943423, this, []); }
+  set recipientEmailAddresses(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 594673632637148, this, [value]); }
   /**
    * var recipientNames: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get recipientNames(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_ff42ce03e691ab23", 1230017508185782, this, []); }
-  set recipientNames(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4464714185564171, this, [value]); }
+  get recipientNames(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreSpotlight_3864e7f38681b875", 1230017508185782, this, []); }
+  set recipientNames(value: (Array<string>) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4464714185564171, this, [value]); }
   /**
    * var recordingDate: Date? { get set }
    * @availability iOS 9.0+
    */
-  get recordingDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_ff42ce03e691ab23", 2837507298953074, this, []); }
-  set recordingDate(value: $SDK4) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4412049612704504, this, [value]); }
+  get recordingDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_3864e7f38681b875", 2837507298953074, this, []); }
+  set recordingDate(value: $SDK4) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4412049612704504, this, [value]); }
   /**
    * var redEyeOn: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get redEyeOn(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 194551103661412, this, []); }
-  set redEyeOn(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 499325674633126, this, [value]); }
+  get redEyeOn(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 194551103661412, this, []); }
+  set redEyeOn(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 499325674633126, this, [value]); }
   /**
    * var relatedUniqueIdentifier: String? { get set }
    * @availability iOS 9.0+
    */
-  get relatedUniqueIdentifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2355254783988783, this, []); }
-  set relatedUniqueIdentifier(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3379462296583324, this, [value]); }
+  get relatedUniqueIdentifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2355254783988783, this, []); }
+  set relatedUniqueIdentifier(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3379462296583324, this, [value]); }
   /**
    * var resolutionHeightDPI: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get resolutionHeightDPI(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 176419852697570, this, []); }
-  set resolutionHeightDPI(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3738946960048754, this, [value]); }
+  get resolutionHeightDPI(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 176419852697570, this, []); }
+  set resolutionHeightDPI(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3738946960048754, this, [value]); }
   /**
    * var resolutionWidthDPI: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get resolutionWidthDPI(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 2300969172446312, this, []); }
-  set resolutionWidthDPI(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4059861640800741, this, [value]); }
+  get resolutionWidthDPI(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 2300969172446312, this, []); }
+  set resolutionWidthDPI(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4059861640800741, this, [value]); }
   /**
    * var rights: String? { get set }
    * @availability iOS 9.0+
    */
-  get rights(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3057518641737110, this, []); }
-  set rights(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1801660343260499, this, [value]); }
+  get rights(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3057518641737110, this, []); }
+  set rights(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1801660343260499, this, [value]); }
   /**
    * var role: String? { get set }
    * @availability iOS 9.0+
    */
-  get role(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1511777782665924, this, []); }
-  set role(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1904506202022066, this, [value]); }
+  get role(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1511777782665924, this, []); }
+  set role(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1904506202022066, this, [value]); }
   /**
    * var securityMethod: String? { get set }
    * @availability iOS 9.0+
    */
-  get securityMethod(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3272050041002547, this, []); }
-  set securityMethod(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1763824198764396, this, [value]); }
+  get securityMethod(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3272050041002547, this, []); }
+  set securityMethod(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1763824198764396, this, [value]); }
   /**
    * var sharedItemContentType: UTType? { get set }
    * @availability iOS 15.0+
    */
-  get sharedItemContentType(): $SDK9 { return callSDK<$SDK9>("CoreSpotlight_ff42ce03e691ab23", 2403001422361103, this, []); }
-  set sharedItemContentType(value: $SDK9) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1725761155018579, this, [value]); }
+  get sharedItemContentType(): $SDK9 { return callSDK<$SDK9>("CoreSpotlight_3864e7f38681b875", 2403001422361103, this, []); }
+  set sharedItemContentType(value: $SDK9) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1725761155018579, this, [value]); }
   /**
    * var speed: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get speed(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 3459128354486801, this, []); }
-  set speed(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3318818111939050, this, [value]); }
+  get speed(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 3459128354486801, this, []); }
+  set speed(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3318818111939050, this, [value]); }
   /**
    * var startDate: Date? { get set }
    * @availability iOS 9.0+
    */
-  get startDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_ff42ce03e691ab23", 4158985854954000, this, []); }
-  set startDate(value: $SDK4) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3549419604564761, this, [value]); }
+  get startDate(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_3864e7f38681b875", 4158985854954000, this, []); }
+  set startDate(value: $SDK4) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3549419604564761, this, [value]); }
   /**
    * var stateOrProvince: String? { get set }
    * @availability iOS 9.0+
    */
-  get stateOrProvince(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 687063772213449, this, []); }
-  set stateOrProvince(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2091048957033741, this, [value]); }
+  get stateOrProvince(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 687063772213449, this, []); }
+  set stateOrProvince(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2091048957033741, this, [value]); }
   /**
    * var streamable: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get streamable(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 607965909471124, this, []); }
-  set streamable(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3028817263931690, this, [value]); }
+  get streamable(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 607965909471124, this, []); }
+  set streamable(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3028817263931690, this, [value]); }
   /**
    * var subThoroughfare: String? { get set }
    * @availability iOS 10.0+
    */
-  get subThoroughfare(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 19379153077001, this, []); }
-  set subThoroughfare(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1992848158991971, this, [value]); }
+  get subThoroughfare(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 19379153077001, this, []); }
+  set subThoroughfare(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1992848158991971, this, [value]); }
   /**
    * var subject: String? { get set }
    * @availability iOS 9.0+
    */
-  get subject(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1162791441736894, this, []); }
-  set subject(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 573731409980829, this, [value]); }
+  get subject(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1162791441736894, this, []); }
+  set subject(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 573731409980829, this, [value]); }
   /**
    * var supportsNavigation: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get supportsNavigation(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 143129396604292, this, []); }
-  set supportsNavigation(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 243585876035025, this, [value]); }
+  get supportsNavigation(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 143129396604292, this, []); }
+  set supportsNavigation(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 243585876035025, this, [value]); }
   /**
    * var supportsPhoneCall: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get supportsPhoneCall(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 2662548340686200, this, []); }
-  set supportsPhoneCall(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4015620419029314, this, [value]); }
+  get supportsPhoneCall(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 2662548340686200, this, []); }
+  set supportsPhoneCall(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4015620419029314, this, [value]); }
   /**
    * var tempo: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get tempo(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1306416652979981, this, []); }
-  set tempo(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1574514199298557, this, [value]); }
+  get tempo(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1306416652979981, this, []); }
+  set tempo(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1574514199298557, this, [value]); }
   /**
    * var textContent: String? { get set }
    * @availability iOS 9.0+
    */
-  get textContent(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 141420479962360, this, []); }
-  set textContent(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3415147410611806, this, [value]); }
+  get textContent(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 141420479962360, this, []); }
+  set textContent(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3415147410611806, this, [value]); }
   /**
    * var textContentSummary: String? { get }
    * @availability iOS 18.4+
    */
-  get textContentSummary(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3358879429886490, this, []); }
+  get textContentSummary(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3358879429886490, this, []); }
   /**
    * var theme: String? { get set }
    * @availability iOS 9.0+
    */
-  get theme(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 280883592349270, this, []); }
-  set theme(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1824272406887376, this, [value]); }
+  get theme(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 280883592349270, this, []); }
+  set theme(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1824272406887376, this, [value]); }
   /**
    * var thoroughfare: String? { get set }
    * @availability iOS 10.0+
    */
-  get thoroughfare(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2614662647511001, this, []); }
-  set thoroughfare(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1492968285847119, this, [value]); }
+  get thoroughfare(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2614662647511001, this, []); }
+  set thoroughfare(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1492968285847119, this, [value]); }
   /**
    * var thumbnailData: Data? { get set }
    * @availability iOS 9.0+
    */
-  get thumbnailData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreSpotlight_ff42ce03e691ab23", 3689455396159273, this, []); }
-  set thumbnailData(value: (ArrayBuffer) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2139386708771768, this, [value]); }
+  get thumbnailData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreSpotlight_3864e7f38681b875", 3689455396159273, this, []); }
+  set thumbnailData(value: (ArrayBuffer) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2139386708771768, this, [value]); }
   /**
    * var thumbnailURL: URL? { get set }
    * @availability iOS 9.0+
    */
-  get thumbnailURL(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 535619728096203, this, []); }
-  set thumbnailURL(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2672109431138534, this, [value]); }
+  get thumbnailURL(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 535619728096203, this, []); }
+  set thumbnailURL(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2672109431138534, this, [value]); }
   /**
    * var timeSignature: String? { get set }
    * @availability iOS 9.0+
    */
-  get timeSignature(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 3714562053686202, this, []); }
-  set timeSignature(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3353839055963705, this, [value]); }
+  get timeSignature(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 3714562053686202, this, []); }
+  set timeSignature(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3353839055963705, this, [value]); }
   /**
    * var timestamp: Date? { get set }
    * @availability iOS 9.0+
    */
-  get timestamp(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_ff42ce03e691ab23", 615404030069831, this, []); }
-  set timestamp(value: $SDK4) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2701368494729980, this, [value]); }
+  get timestamp(): $SDK4 { return callSDK<$SDK4>("CoreSpotlight_3864e7f38681b875", 615404030069831, this, []); }
+  set timestamp(value: $SDK4) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2701368494729980, this, [value]); }
   /**
    * var title: String? { get set }
    * @availability iOS 9.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 2454674469788498, this, []); }
-  set title(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3279589110559472, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 2454674469788498, this, []); }
+  set title(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3279589110559472, this, [value]); }
   /**
    * var totalBitRate: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get totalBitRate(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1064880788570762, this, []); }
-  set totalBitRate(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1166860052927637, this, [value]); }
+  get totalBitRate(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1064880788570762, this, []); }
+  set totalBitRate(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1166860052927637, this, [value]); }
   /**
    * var transcribedTextContent: String? { get set }
    * @availability iOS 18.4+
    */
-  get transcribedTextContent(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 1521092608907628, this, []); }
-  set transcribedTextContent(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1346330702709988, this, [value]); }
+  get transcribedTextContent(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 1521092608907628, this, []); }
+  set transcribedTextContent(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1346330702709988, this, [value]); }
   /**
    * var userCreated: NSNumber? { get set }
    * @availability iOS 11.0+
    */
-  get userCreated(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 2000501405764774, this, []); }
-  set userCreated(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2492329903750543, this, [value]); }
+  get userCreated(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 2000501405764774, this, []); }
+  set userCreated(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2492329903750543, this, [value]); }
   /**
    * var userCurated: NSNumber? { get set }
    * @availability iOS 11.0+
    */
-  get userCurated(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 3983920712549761, this, []); }
-  set userCurated(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 627936667144434, this, [value]); }
+  get userCurated(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 3983920712549761, this, []); }
+  set userCurated(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 627936667144434, this, [value]); }
   /**
    * var userOwned: NSNumber? { get set }
    * @availability iOS 11.0+
    */
-  get userOwned(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 2321479500413651, this, []); }
-  set userOwned(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3200753292772097, this, [value]); }
+  get userOwned(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 2321479500413651, this, []); }
+  set userOwned(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3200753292772097, this, [value]); }
   /**
    * var version: String? { get set }
    * @availability iOS 9.0+
    */
-  get version(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 4263164277814679, this, []); }
-  set version(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2143540224567045, this, [value]); }
+  get version(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 4263164277814679, this, []); }
+  set version(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2143540224567045, this, [value]); }
   /**
    * var videoBitRate: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get videoBitRate(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 1522489671255326, this, []); }
-  set videoBitRate(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2304404049800731, this, [value]); }
+  get videoBitRate(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 1522489671255326, this, []); }
+  set videoBitRate(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2304404049800731, this, [value]); }
   /**
    * var weakRelatedUniqueIdentifier: String? { get set }
    * @availability iOS 10.0+
    */
-  get weakRelatedUniqueIdentifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 7597481662723, this, []); }
-  set weakRelatedUniqueIdentifier(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1838957444369887, this, [value]); }
+  get weakRelatedUniqueIdentifier(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 7597481662723, this, []); }
+  set weakRelatedUniqueIdentifier(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1838957444369887, this, [value]); }
   /**
    * var whiteBalance: NSNumber? { get set }
    * @availability iOS 9.0+
    */
-  get whiteBalance(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_ff42ce03e691ab23", 4237044469212474, this, []); }
-  set whiteBalance(value: $SDK5) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4207880152519853, this, [value]); }
+  get whiteBalance(): $SDK5 { return callSDK<$SDK5>("CoreSpotlight_3864e7f38681b875", 4237044469212474, this, []); }
+  set whiteBalance(value: $SDK5) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4207880152519853, this, [value]); }
   declare readonly $type: { "c:objc(cs)CSSearchableItemAttributeSet": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "exifgpsVersion": true; "exifVersion": true; "gpsAreaInformation": true; "gpsdop": true; "gpsDateStamp": true; "gpsDestBearing": true; "gpsDestDistance": true; "gpsDestLatitude": true; "gpsDestLongitude": true; "gpsDifferental": true; "gpsMapDatum": true; "gpsMeasureMode": true; "gpsProcessingMethod": true; "gpsStatus": true; "gpsTrack": true; "htmlContentData": true; "isoSpeed": true; "url": true; "accountHandles": true; "accountIdentifier": true; "acquisitionMake": true; "acquisitionModel": true; "actionIdentifiers": true; "addedDate": true; "additionalRecipients": true; "album": true; "allDay": true; "alternateNames": true; "altitude": true; "aperture": true; "artist": true; "audiences": true; "audioBitRate": true; "audioChannelCount": true; "audioEncodingApplication": true; "audioSampleRate": true; "audioTrackNumber": true; "authorAddresses": true; "authorEmailAddresses": true; "authorNames": true; "authors": true; "bitsPerSample": true; "cameraOwner": true; "city": true; "codecs": true; "colorSpace": true; "comment": true; "completionDate": true; "composer": true; "contactKeywords": true; "containerDisplayName": true; "containerIdentifier": true; "containerOrder": true; "containerTitle": true; "contentCreationDate": true; "contentDescription": true; "contentModificationDate": true; "contentRating": true; "contentSources": true; "contentType": true; "contentTypeTree": true; "contentURL": true; "contributors": true; "copyright": true; "country": true; "coverage": true; "creator": true; "darkThumbnailURL": true; "deliveryType": true; "director": true; "displayName": true; "domainIdentifier": true; "downloadedDate": true; "dueDate": true; "duration": true; "editors": true; "emailAddresses": true; "emailHeaders": true; "encodingApplications": true; "endDate": true; "exposureMode": true; "exposureProgram": true; "exposureTime": true; "exposureTimeString": true; "fNumber": true; "fileSize": true; "flashOn": true; "focalLength35mm": true; "focalLength": true; "fontNames": true; "fullyFormattedAddress": true; "generalMIDISequence": true; "genre": true; "hasAlphaChannel": true; "headline": true; "hiddenAdditionalRecipients": true; "identifier": true; "imageDirection": true; "importantDates": true; "information": true; "instantMessageAddresses": true; "instructions": true; "isPriority": true; "keySignature": true; "keywords": true; "kind": true; "languages": true; "lastUsedDate": true; "latitude": true; "layerNames": true; "lensModel": true; "likelyJunk": true; "local": true; "longitude": true; "lyricist": true; "mailboxIdentifiers": true; "maxAperture": true; "mediaTypes": true; "metadataModificationDate": true; "meteringMode": true; "musicalGenre": true; "musicalInstrumentCategory": true; "musicalInstrumentName": true; "namedLocation": true; "organizations": true; "orientation": true; "originalFormat": true; "originalSource": true; "pageCount": true; "pageHeight": true; "pageWidth": true; "participants": true; "path": true; "performers": true; "phoneNumbers": true; "pixelCount": true; "pixelHeight": true; "pixelWidth": true; "playCount": true; "postalCode": true; "primaryRecipients": true; "producer": true; "profileName": true; "projects": true; "providerDataTypeIdentifiers": true; "providerFileTypeIdentifiers": true; "providerInPlaceFileTypeIdentifiers": true; "publishers": true; "rankingHint": true; "rating": true; "ratingDescription": true; "recipientAddresses": true; "recipientEmailAddresses": true; "recipientNames": true; "recordingDate": true; "redEyeOn": true; "relatedUniqueIdentifier": true; "resolutionHeightDPI": true; "resolutionWidthDPI": true; "rights": true; "role": true; "securityMethod": true; "sharedItemContentType": true; "speed": true; "startDate": true; "stateOrProvince": true; "streamable": true; "subThoroughfare": true; "subject": true; "supportsNavigation": true; "supportsPhoneCall": true; "tempo": true; "textContent": true; "textContentSummary": true; "theme": true; "thoroughfare": true; "thumbnailData": true; "thumbnailURL": true; "timeSignature": true; "timestamp": true; "title": true; "totalBitRate": true; "transcribedTextContent": true; "userCreated": true; "userCurated": true; "userOwned": true; "version": true; "videoBitRate": true; "weakRelatedUniqueIdentifier": true; "whiteBalance": true };
 }
@@ -1596,56 +1596,56 @@ export class CSSearchQuery extends SDKHandle {
    * func cancel()
    * @availability iOS 10.0+
    */
-  cancel(): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1544970005729244, this, []); }
+  cancel(): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 1544970005729244, this, []); }
   /**
    * convenience init(queryString: String, attributes: [String]?)
    * @availability iOS 10.0+
    * @deprecated iOS 16.0
    */
-  static initQueryStringAttributes(queryString: string, attributes?: (Array<string>) | null): CSSearchQuery { return callSDK<CSSearchQuery>("CoreSpotlight_ff42ce03e691ab23", 1666981808380957, undefined, [queryString, attributes]); }
+  static initQueryStringAttributes(queryString: string, attributes?: (Array<string>) | null): CSSearchQuery { return callSDK<CSSearchQuery>("CoreSpotlight_3864e7f38681b875", 1666981808380957, undefined, [queryString, attributes]); }
   /**
    * init(queryString: String, queryContext: CSSearchQueryContext?)
    * @availability iOS 16.0+
    */
-  static initQueryStringQueryContext(queryString: string, queryContext?: (CSSearchQueryContext) | null): CSSearchQuery { return callSDK<CSSearchQuery>("CoreSpotlight_ff42ce03e691ab23", 1156972300343514, undefined, [queryString, queryContext]); }
+  static initQueryStringQueryContext(queryString: string, queryContext?: (CSSearchQueryContext) | null): CSSearchQuery { return callSDK<CSSearchQuery>("CoreSpotlight_3864e7f38681b875", 1156972300343514, undefined, [queryString, queryContext]); }
   /**
    * func start()
    * @availability iOS 10.0+
    */
-  start(): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1101486821957726, this, []); }
+  start(): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 1101486821957726, this, []); }
   /**
    * var isCancelled: Bool { get }
    * @availability iOS 10.0+
    */
-  get isCancelled(): boolean { return callSDK<boolean>("CoreSpotlight_ff42ce03e691ab23", 1977458629728019, this, []); }
+  get isCancelled(): boolean { return callSDK<boolean>("CoreSpotlight_3864e7f38681b875", 1977458629728019, this, []); }
   /**
    * var completionHandler: (((any Error)?) -> Void)? { get set }
    * @availability iOS 10.0+
    */
-  get completionHandler(): (((arg0: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (NativeError) | null) => Promise<void>)) | null>("CoreSpotlight_ff42ce03e691ab23", 1313415856325873, this, []); }
-  set completionHandler(value: $SDK1) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3301014239911514, this, [value], [{"callback":{"out":[]}}]); }
+  get completionHandler(): (((arg0: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (NativeError) | null) => Promise<void>)) | null>("CoreSpotlight_3864e7f38681b875", 1313415856325873, this, []); }
+  set completionHandler(value: $SDK1) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3301014239911514, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var foundItemCount: Int { get }
    * @availability iOS 10.0+
    */
-  get foundItemCount(): number { return callSDK<number>("CoreSpotlight_ff42ce03e691ab23", 2587320750593466, this, []); }
+  get foundItemCount(): number { return callSDK<number>("CoreSpotlight_3864e7f38681b875", 2587320750593466, this, []); }
   /**
    * var foundItemsHandler: (([CSSearchableItem]) -> Void)? { get set }
    * @availability iOS 10.0+
    */
-  get foundItemsHandler(): (((arg0: Array<CSSearchableItem>) => Promise<void>)) | null { return callSDK<(((arg0: Array<CSSearchableItem>) => Promise<void>)) | null>("CoreSpotlight_ff42ce03e691ab23", 1860275062252333, this, []); }
-  set foundItemsHandler(value: (((arg0: Array<CSSearchableItem>) => void)) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2792079082904066, this, [value], [{"callback":{"out":[]}}]); }
+  get foundItemsHandler(): (((arg0: Array<CSSearchableItem>) => Promise<void>)) | null { return callSDK<(((arg0: Array<CSSearchableItem>) => Promise<void>)) | null>("CoreSpotlight_3864e7f38681b875", 1860275062252333, this, []); }
+  set foundItemsHandler(value: (((arg0: Array<CSSearchableItem>) => void)) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2792079082904066, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var protectionClasses: [FileProtectionType] { get set }
    * @availability iOS 10.0+
    */
-  get protectionClasses(): $SDK14 { return callSDK<$SDK14>("CoreSpotlight_ff42ce03e691ab23", 3716923369888684, this, []); }
-  set protectionClasses(value: $SDK14) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 81225503670834, this, [value]); }
+  get protectionClasses(): $SDK14 { return callSDK<$SDK14>("CoreSpotlight_3864e7f38681b875", 3716923369888684, this, []); }
+  set protectionClasses(value: $SDK14) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 81225503670834, this, [value]); }
   /**
    * var results: CSSearchQuery.Results { get }
    * @availability iOS 16.0+
    */
-  get results(): CSSearchQuery_Results { return callSDK<CSSearchQuery_Results>("CoreSpotlight_ff42ce03e691ab23", 599589813395366, this, []); }
+  get results(): CSSearchQuery_Results { return callSDK<CSSearchQuery_Results>("CoreSpotlight_3864e7f38681b875", 599589813395366, this, []); }
   declare readonly $type: { "c:objc(cs)CSSearchQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isCancelled": true; "foundItemCount": true; "protectionClasses": true };
 }
@@ -1659,7 +1659,7 @@ export class CSSearchQuery_Results extends SDKHandle {
    * func makeAsyncIterator() -> CSSearchQuery.Results.Iterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): CSSearchQuery_Results_Iterator { return callSDK<CSSearchQuery_Results_Iterator>("CoreSpotlight_ff42ce03e691ab23", 2627262513520812, this, []); }
+  makeAsyncIterator(): CSSearchQuery_Results_Iterator { return callSDK<CSSearchQuery_Results_Iterator>("CoreSpotlight_3864e7f38681b875", 2627262513520812, this, []); }
   declare readonly $type: { "s:So13CSSearchQueryC13CoreSpotlightE7ResultsV": true };
   declare readonly $element: CSSearchQuery_Results_Item;
 }
@@ -1685,13 +1685,13 @@ export class CSSearchQuery_Results_Item extends SDKHandle {
    * var id: String { get }
    * @availability iOS 16.0+
    */
-  get id(): string { return callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 2568168446336853, this, []); }
+  get id(): string { return callSDK<string>("CoreSpotlight_3864e7f38681b875", 2568168446336853, this, []); }
   /**
    * var item: CSSearchableItem
    * @availability iOS 16.0+
    */
-  get item(): CSSearchableItem { return callSDK<CSSearchableItem>("CoreSpotlight_ff42ce03e691ab23", 3700858966869589, this, []); }
-  set item(value: CSSearchableItem) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3571107118951365, this, [value]); }
+  get item(): CSSearchableItem { return callSDK<CSSearchableItem>("CoreSpotlight_3864e7f38681b875", 3700858966869589, this, []); }
+  set item(value: CSSearchableItem) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3571107118951365, this, [value]); }
   declare readonly $type: { "s:So13CSSearchQueryC13CoreSpotlightE7ResultsV4ItemV": true };
 }
 
@@ -1710,7 +1710,7 @@ export class CSSearchQuery_Results_Iterator extends SDKHandle {
    * mutating func next() async throws -> CSSearchQuery.Results.Item?
    * @availability iOS 16.0+
    */
-  next(): Promise<(CSSearchQuery_Results_Item) | null> { return callSDKAsync<(CSSearchQuery_Results_Item) | null>("CoreSpotlight_ff42ce03e691ab23", 512496617487281, this, []); }
+  next(): Promise<(CSSearchQuery_Results_Item) | null> { return callSDKAsync<(CSSearchQuery_Results_Item) | null>("CoreSpotlight_3864e7f38681b875", 512496617487281, this, []); }
   declare readonly $type: { "s:So13CSSearchQueryC13CoreSpotlightE7ResultsV8IteratorV": true };
 }
 
@@ -1726,25 +1726,25 @@ export type CSSearchQuery_Results_Iterator_Element = CSSearchQuery_Results_Item;
  */
 export class CSSearchQueryContext extends SDKHandle {
   /** init() */
-  static init(): CSSearchQueryContext { return callSDK<CSSearchQueryContext>("CoreSpotlight_ff42ce03e691ab23", 1936101991821099, undefined, []); }
+  static init(): CSSearchQueryContext { return callSDK<CSSearchQueryContext>("CoreSpotlight_3864e7f38681b875", 1936101991821099, undefined, []); }
   /**
    * var fetchAttributes: [String] { get set }
    * @availability iOS 16.0+
    */
-  get fetchAttributes(): Array<string> { return callSDK<Array<string>>("CoreSpotlight_ff42ce03e691ab23", 1883720804841088, this, []); }
-  set fetchAttributes(value: Array<string>) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3721297300607701, this, [value]); }
+  get fetchAttributes(): Array<string> { return callSDK<Array<string>>("CoreSpotlight_3864e7f38681b875", 1883720804841088, this, []); }
+  set fetchAttributes(value: Array<string>) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3721297300607701, this, [value]); }
   /**
    * var filterQueries: [String] { get set }
    * @availability iOS 16.0+
    */
-  get filterQueries(): Array<string> { return callSDK<Array<string>>("CoreSpotlight_ff42ce03e691ab23", 2127455903165064, this, []); }
-  set filterQueries(value: Array<string>) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2198623263215746, this, [value]); }
+  get filterQueries(): Array<string> { return callSDK<Array<string>>("CoreSpotlight_3864e7f38681b875", 2127455903165064, this, []); }
+  set filterQueries(value: Array<string>) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2198623263215746, this, [value]); }
   /**
    * var keyboardLanguage: String? { get set }
    * @availability iOS 16.0+
    */
-  get keyboardLanguage(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_ff42ce03e691ab23", 4003913979759584, this, []); }
-  set keyboardLanguage(value: (string) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1668125837177762, this, [value]); }
+  get keyboardLanguage(): (string) | null { return callSDK<(string) | null>("CoreSpotlight_3864e7f38681b875", 4003913979759584, this, []); }
+  set keyboardLanguage(value: (string) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1668125837177762, this, [value]); }
   declare readonly $type: { "c:objc(cs)CSSearchQueryContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fetchAttributes": true; "filterQueries": true; "keyboardLanguage": true };
 }
@@ -1758,27 +1758,27 @@ export class CSSearchQueryError extends SDKHandle {
    * static var invalidQuery: CSSearchQueryError.Code { get }
    * @availability iOS 10.0+
    */
-  static get invalidQuery(): CSSearchQueryError_Code { return callSDK<CSSearchQueryError_Code>("CoreSpotlight_ff42ce03e691ab23", 661625879345856, undefined, []); }
+  static get invalidQuery(): CSSearchQueryError_Code { return callSDK<CSSearchQueryError_Code>("CoreSpotlight_3864e7f38681b875", 661625879345856, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 10.0+
    */
-  static get errorDomain(): string { return callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 1311309211996286, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CoreSpotlight_3864e7f38681b875", 1311309211996286, undefined, []); }
   /**
    * static var indexUnreachable: CSSearchQueryError.Code { get }
    * @availability iOS 10.0+
    */
-  static get indexUnreachable(): CSSearchQueryError_Code { return callSDK<CSSearchQueryError_Code>("CoreSpotlight_ff42ce03e691ab23", 3669284542005072, undefined, []); }
+  static get indexUnreachable(): CSSearchQueryError_Code { return callSDK<CSSearchQueryError_Code>("CoreSpotlight_3864e7f38681b875", 3669284542005072, undefined, []); }
   /**
    * static var unknown: CSSearchQueryError.Code { get }
    * @availability iOS 10.0+
    */
-  static get unknown(): CSSearchQueryError_Code { return callSDK<CSSearchQueryError_Code>("CoreSpotlight_ff42ce03e691ab23", 680065722570777, undefined, []); }
+  static get unknown(): CSSearchQueryError_Code { return callSDK<CSSearchQueryError_Code>("CoreSpotlight_3864e7f38681b875", 680065722570777, undefined, []); }
   /**
    * static var cancelled: CSSearchQueryError.Code { get }
    * @availability iOS 10.0+
    */
-  static get cancelled(): CSSearchQueryError_Code { return callSDK<CSSearchQueryError_Code>("CoreSpotlight_ff42ce03e691ab23", 2881681783467421, undefined, []); }
+  static get cancelled(): CSSearchQueryError_Code { return callSDK<CSSearchQueryError_Code>("CoreSpotlight_3864e7f38681b875", 2881681783467421, undefined, []); }
   declare readonly $type: { "s:SC22CSSearchQueryErrorCodeLeV": true };
 }
 
@@ -1793,7 +1793,7 @@ export const CSSearchQueryError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (CSSearchQueryError_Code) | null { return callSDK<(CSSearchQueryError_Code) | null>("CoreSpotlight_ff42ce03e691ab23", 1679031043193787, undefined, [rawValue]); }
+  init(rawValue: number): (CSSearchQueryError_Code) | null { return callSDK<(CSSearchQueryError_Code) | null>("CoreSpotlight_3864e7f38681b875", 1679031043193787, undefined, [rawValue]); }
 };
 
 /**
@@ -1805,24 +1805,24 @@ export class CSSuggestion extends SDKHandle {
    * func compare(_ other: CSSuggestion) -> ComparisonResult
    * @availability iOS 16.0+
    */
-  compare(other: CSSuggestion): _Foundation_ComparisonResult { return callSDK<_Foundation_ComparisonResult>("CoreSpotlight_ff42ce03e691ab23", 3084232850247984, this, [other]); }
+  compare(other: CSSuggestion): _Foundation_ComparisonResult { return callSDK<_Foundation_ComparisonResult>("CoreSpotlight_3864e7f38681b875", 3084232850247984, this, [other]); }
   /**
    * func compare(byRank other: CSSuggestion) -> ComparisonResult
    * @availability iOS 16.0+
    */
-  compareByRank(other: CSSuggestion): _Foundation_ComparisonResult { return callSDK<_Foundation_ComparisonResult>("CoreSpotlight_ff42ce03e691ab23", 2577250922303009, this, [other]); }
+  compareByRank(other: CSSuggestion): _Foundation_ComparisonResult { return callSDK<_Foundation_ComparisonResult>("CoreSpotlight_3864e7f38681b875", 2577250922303009, this, [other]); }
   /** init() */
-  static init(): CSSuggestion { return callSDK<CSSuggestion>("CoreSpotlight_ff42ce03e691ab23", 900893056508069, undefined, []); }
+  static init(): CSSuggestion { return callSDK<CSSuggestion>("CoreSpotlight_3864e7f38681b875", 900893056508069, undefined, []); }
   /**
    * var suggestionKind: CSSuggestion.SuggestionKind { get }
    * @availability iOS 16.0+
    */
-  get suggestionKind(): CSSuggestion_SuggestionKind { return callSDK<CSSuggestion_SuggestionKind>("CoreSpotlight_ff42ce03e691ab23", 2619651068191000, this, []); }
+  get suggestionKind(): CSSuggestion_SuggestionKind { return callSDK<CSSuggestion_SuggestionKind>("CoreSpotlight_3864e7f38681b875", 2619651068191000, this, []); }
   /**
    * var localizedAttributedSuggestion: AttributedString { get }
    * @availability iOS 16.0+
    */
-  get localizedAttributedSuggestion(): _Foundation_AttributedString { return callSDK<_Foundation_AttributedString>("CoreSpotlight_ff42ce03e691ab23", 3573193794666116, this, []); }
+  get localizedAttributedSuggestion(): _Foundation_AttributedString { return callSDK<_Foundation_AttributedString>("CoreSpotlight_3864e7f38681b875", 3573193794666116, this, []); }
   declare readonly $type: { "c:objc(cs)CSSuggestion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "suggestionKind": true };
 }
@@ -1838,7 +1838,7 @@ export const CSSuggestion_SuggestionKind = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (CSSuggestion_SuggestionKind) | null { return callSDK<(CSSuggestion_SuggestionKind) | null>("CoreSpotlight_ff42ce03e691ab23", 3149548339426066, undefined, [rawValue]); }
+  init(rawValue: number): (CSSuggestion_SuggestionKind) | null { return callSDK<(CSSuggestion_SuggestionKind) | null>("CoreSpotlight_3864e7f38681b875", 3149548339426066, undefined, [rawValue]); }
 };
 
 /**
@@ -1850,58 +1850,58 @@ export class CSUserQuery extends (CSSearchQuery as unknown as Omit<typeof CSSear
    * class func prepare()
    * @availability iOS 18.0+
    */
-  static prepare(): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 424492009697604, undefined, []); }
+  static prepare(): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 424492009697604, undefined, []); }
   /**
    * class func prepareProtectionClasses(_ protectionClasses: [FileProtectionType])
    * @availability iOS 18.0+
    */
-  static prepareProtectionClasses(protectionClasses: $SDK14): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4208274963004691, undefined, [protectionClasses]); }
+  static prepareProtectionClasses(protectionClasses: $SDK14): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 4208274963004691, undefined, [protectionClasses]); }
   /**
    * func cancel()
    * @availability iOS 16.0+
    */
-  cancel(): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3037468223686259, this, []); }
+  cancel(): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 3037468223686259, this, []); }
   /**
    * init(userQueryString: String?, userQueryContext: CSUserQueryContext?)
    * @availability iOS 16.0+
    */
-  static init(userQueryString?: (string) | null, userQueryContext?: (CSUserQueryContext) | null): CSUserQuery { return callSDK<CSUserQuery>("CoreSpotlight_ff42ce03e691ab23", 661408529797751, undefined, [userQueryString, userQueryContext]); }
+  static init(userQueryString?: (string) | null, userQueryContext?: (CSUserQueryContext) | null): CSUserQuery { return callSDK<CSUserQuery>("CoreSpotlight_3864e7f38681b875", 661408529797751, undefined, [userQueryString, userQueryContext]); }
   /**
    * func start()
    * @availability iOS 16.0+
    */
-  start(): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1835250988073357, this, []); }
+  start(): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 1835250988073357, this, []); }
   /**
    * var foundSuggestionCount: Int { get }
    * @availability iOS 16.0+
    */
-  get foundSuggestionCount(): number { return callSDK<number>("CoreSpotlight_ff42ce03e691ab23", 4254250325027526, this, []); }
+  get foundSuggestionCount(): number { return callSDK<number>("CoreSpotlight_3864e7f38681b875", 4254250325027526, this, []); }
   /**
    * var foundSuggestionsHandler: (([CSSuggestion]) -> Void)? { get set }
    * @availability iOS 16.0+
    */
-  get foundSuggestionsHandler(): (((arg0: Array<CSSuggestion>) => Promise<void>)) | null { return callSDK<(((arg0: Array<CSSuggestion>) => Promise<void>)) | null>("CoreSpotlight_ff42ce03e691ab23", 2465679017102034, this, []); }
-  set foundSuggestionsHandler(value: (((arg0: Array<CSSuggestion>) => void)) | null) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 2589820857233920, this, [value], [{"callback":{"out":[]}}]); }
+  get foundSuggestionsHandler(): (((arg0: Array<CSSuggestion>) => Promise<void>)) | null { return callSDK<(((arg0: Array<CSSuggestion>) => Promise<void>)) | null>("CoreSpotlight_3864e7f38681b875", 2465679017102034, this, []); }
+  set foundSuggestionsHandler(value: (((arg0: Array<CSSuggestion>) => void)) | null) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 2589820857233920, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var suggestions: CSUserQuery.Suggestions { get }
    * @availability iOS 16.0+
    */
-  get suggestions(): CSUserQuery_Suggestions { return callSDK<CSUserQuery_Suggestions>("CoreSpotlight_ff42ce03e691ab23", 3050622921219643, this, []); }
+  get suggestions(): CSUserQuery_Suggestions { return callSDK<CSUserQuery_Suggestions>("CoreSpotlight_3864e7f38681b875", 3050622921219643, this, []); }
   /**
    * func userEngaged(_ item: CSUserQuery.Item, visibleItems: [CSUserQuery.Item], interaction: CSUserQuery.UserInteractionKind)
    * @availability iOS 18.0+
    */
-  userEngagedVisibleItemsInteraction(item: CSUserQuery_Item, visibleItems: Array<CSUserQuery_Item>, interaction: CSUserQuery_UserInteractionKind): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3354762694753569, this, [item, visibleItems, interaction]); }
+  userEngagedVisibleItemsInteraction(item: CSUserQuery_Item, visibleItems: Array<CSUserQuery_Item>, interaction: CSUserQuery_UserInteractionKind): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 3354762694753569, this, [item, visibleItems, interaction]); }
   /**
    * func userEngaged(_ suggestion: CSUserQuery.Suggestion, visibleSuggestions: [CSUserQuery.Suggestion], interaction: CSUserQuery.UserInteractionKind)
    * @availability iOS 18.0+
    */
-  userEngagedVisibleSuggestionsInteraction(suggestion: CSUserQuery_Suggestion, visibleSuggestions: Array<CSUserQuery_Suggestion>, interaction: CSUserQuery_UserInteractionKind): void { return callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3537251148616856, this, [suggestion, visibleSuggestions, interaction]); }
+  userEngagedVisibleSuggestionsInteraction(suggestion: CSUserQuery_Suggestion, visibleSuggestions: Array<CSUserQuery_Suggestion>, interaction: CSUserQuery_UserInteractionKind): void { return callSDK<void>("CoreSpotlight_3864e7f38681b875", 3537251148616856, this, [suggestion, visibleSuggestions, interaction]); }
   /**
    * var responses: CSUserQuery.Responses { get }
    * @availability iOS 16.0+
    */
-  get responses(): CSUserQuery_Responses { return callSDK<CSUserQuery_Responses>("CoreSpotlight_ff42ce03e691ab23", 3247778158325301, this, []); }
+  get responses(): CSUserQuery_Responses { return callSDK<CSUserQuery_Responses>("CoreSpotlight_3864e7f38681b875", 3247778158325301, this, []); }
   declare readonly $type: { "c:objc(cs)CSUserQuery": true; "c:objc(cs)CSSearchQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isCancelled": true; "foundItemCount": true; "protectionClasses": true; "foundSuggestionCount": true };
 }
@@ -1915,13 +1915,13 @@ export class CSUserQuery_Item extends SDKHandle {
    * var id: String { get }
    * @availability iOS 16.0+
    */
-  get id(): string { return callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 3402522415279576, this, []); }
+  get id(): string { return callSDK<string>("CoreSpotlight_3864e7f38681b875", 3402522415279576, this, []); }
   /**
    * var item: CSSearchableItem
    * @availability iOS 16.0+
    */
-  get item(): CSSearchableItem { return callSDK<CSSearchableItem>("CoreSpotlight_ff42ce03e691ab23", 979059221448755, this, []); }
-  set item(value: CSSearchableItem) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3798368407315876, this, [value]); }
+  get item(): CSSearchableItem { return callSDK<CSSearchableItem>("CoreSpotlight_3864e7f38681b875", 979059221448755, this, []); }
+  set item(value: CSSearchableItem) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3798368407315876, this, [value]); }
   declare readonly $type: { "s:So11CSUserQueryC13CoreSpotlightE4ItemV": true };
 }
 
@@ -1940,7 +1940,7 @@ export class CSUserQuery_Responses extends SDKHandle {
    * func makeAsyncIterator() -> CSUserQuery.Responses.Iterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): CSUserQuery_Responses_Iterator { return callSDK<CSUserQuery_Responses_Iterator>("CoreSpotlight_ff42ce03e691ab23", 4215140553142605, this, []); }
+  makeAsyncIterator(): CSUserQuery_Responses_Iterator { return callSDK<CSUserQuery_Responses_Iterator>("CoreSpotlight_3864e7f38681b875", 4215140553142605, this, []); }
   declare readonly $type: { "s:So11CSUserQueryC13CoreSpotlightE9ResponsesV": true };
   declare readonly $element: CSUserQuery_Responses_Response;
 }
@@ -1966,7 +1966,7 @@ export class CSUserQuery_Responses_Iterator extends SDKHandle {
    * mutating func next() async throws -> CSUserQuery.Responses.Element?
    * @availability iOS 16.0+
    */
-  next(): Promise<(CSUserQuery_Responses_Response) | null> { return callSDKAsync<(CSUserQuery_Responses_Response) | null>("CoreSpotlight_ff42ce03e691ab23", 858483106224440, this, []); }
+  next(): Promise<(CSUserQuery_Responses_Response) | null> { return callSDKAsync<(CSUserQuery_Responses_Response) | null>("CoreSpotlight_3864e7f38681b875", 858483106224440, this, []); }
   declare readonly $type: { "s:So11CSUserQueryC13CoreSpotlightE9ResponsesV8IteratorV": true };
 }
 
@@ -1985,7 +1985,7 @@ export class CSUserQuery_Responses_Response extends SDKHandle {
    * var id: String { get }
    * @availability iOS 16.0+
    */
-  get id(): string { return callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 2986435712749623, this, []); }
+  get id(): string { return callSDK<string>("CoreSpotlight_3864e7f38681b875", 2986435712749623, this, []); }
   declare readonly $type: { "s:So11CSUserQueryC13CoreSpotlightE9ResponsesV8ResponseO": true };
 }
 
@@ -2004,13 +2004,13 @@ export class CSUserQuery_Suggestion extends SDKHandle {
    * var suggestion: CSSuggestion
    * @availability iOS 16.0+
    */
-  get suggestion(): CSSuggestion { return callSDK<CSSuggestion>("CoreSpotlight_ff42ce03e691ab23", 1554853724918934, this, []); }
-  set suggestion(value: CSSuggestion) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 10486151987235, this, [value]); }
+  get suggestion(): CSSuggestion { return callSDK<CSSuggestion>("CoreSpotlight_3864e7f38681b875", 1554853724918934, this, []); }
+  set suggestion(value: CSSuggestion) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 10486151987235, this, [value]); }
   /**
    * var id: String { get }
    * @availability iOS 16.0+
    */
-  get id(): string { return callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 2457192232581428, this, []); }
+  get id(): string { return callSDK<string>("CoreSpotlight_3864e7f38681b875", 2457192232581428, this, []); }
   declare readonly $type: { "s:So11CSUserQueryC13CoreSpotlightE10SuggestionV": true };
 }
 
@@ -2029,7 +2029,7 @@ export class CSUserQuery_Suggestions extends SDKHandle {
    * func makeAsyncIterator() -> CSUserQuery.Suggestions.Iterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): CSUserQuery_Suggestions_Iterator { return callSDK<CSUserQuery_Suggestions_Iterator>("CoreSpotlight_ff42ce03e691ab23", 2119918400273047, this, []); }
+  makeAsyncIterator(): CSUserQuery_Suggestions_Iterator { return callSDK<CSUserQuery_Suggestions_Iterator>("CoreSpotlight_3864e7f38681b875", 2119918400273047, this, []); }
   declare readonly $type: { "s:So11CSUserQueryC13CoreSpotlightE11SuggestionsV": true };
   declare readonly $element: CSUserQuery_Suggestion;
 }
@@ -2055,7 +2055,7 @@ export class CSUserQuery_Suggestions_Iterator extends SDKHandle {
    * mutating func next() async throws -> CSUserQuery.Suggestions.Element?
    * @availability iOS 16.0+
    */
-  next(): Promise<(CSUserQuery_Suggestion) | null> { return callSDKAsync<(CSUserQuery_Suggestion) | null>("CoreSpotlight_ff42ce03e691ab23", 2541033919427379, this, []); }
+  next(): Promise<(CSUserQuery_Suggestion) | null> { return callSDKAsync<(CSUserQuery_Suggestion) | null>("CoreSpotlight_3864e7f38681b875", 2541033919427379, this, []); }
   declare readonly $type: { "s:So11CSUserQueryC13CoreSpotlightE11SuggestionsV8IteratorV": true };
 }
 
@@ -2076,12 +2076,12 @@ export const CSUserQuery_UserInteractionKind = {
    * static var `default`: CSUserQuery.UserInteractionKind { get }
    * @availability iOS 18.0+
    */
-  get default(): CSUserQuery_UserInteractionKind { return callSDK<CSUserQuery_UserInteractionKind>("CoreSpotlight_ff42ce03e691ab23", 641995363768193, undefined, []); },
+  get default(): CSUserQuery_UserInteractionKind { return callSDK<CSUserQuery_UserInteractionKind>("CoreSpotlight_3864e7f38681b875", 641995363768193, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (CSUserQuery_UserInteractionKind) | null { return callSDK<(CSUserQuery_UserInteractionKind) | null>("CoreSpotlight_ff42ce03e691ab23", 1199049700833297, undefined, [rawValue]); }
+  init(rawValue: number): (CSUserQuery_UserInteractionKind) | null { return callSDK<(CSUserQuery_UserInteractionKind) | null>("CoreSpotlight_3864e7f38681b875", 1199049700833297, undefined, [rawValue]); }
 };
 
 /**
@@ -2093,49 +2093,49 @@ export class CSUserQueryContext extends (CSSearchQueryContext as unknown as Omit
    * init(currentSuggestion: CSSuggestion?)
    * @availability iOS 16.0+
    */
-  static init(currentSuggestion?: (CSSuggestion) | null): CSUserQueryContext { return callSDK<CSUserQueryContext>("CoreSpotlight_ff42ce03e691ab23", 4375238343357970, undefined, [currentSuggestion]); }
+  static init(currentSuggestion?: (CSSuggestion) | null): CSUserQueryContext { return callSDK<CSUserQueryContext>("CoreSpotlight_3864e7f38681b875", 4375238343357970, undefined, [currentSuggestion]); }
   /**
    * var disableSemanticSearch: Bool { get set }
    * @availability iOS 18.0+
    */
-  get disableSemanticSearch(): boolean { return callSDK<boolean>("CoreSpotlight_ff42ce03e691ab23", 3135685633521743, this, []); }
-  set disableSemanticSearch(value: boolean) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3765795895339271, this, [value]); }
+  get disableSemanticSearch(): boolean { return callSDK<boolean>("CoreSpotlight_3864e7f38681b875", 3135685633521743, this, []); }
+  set disableSemanticSearch(value: boolean) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3765795895339271, this, [value]); }
   /**
    * var enableRankedResults: Bool { get set }
    * @availability iOS 16.0+
    */
-  get enableRankedResults(): boolean { return callSDK<boolean>("CoreSpotlight_ff42ce03e691ab23", 958958925271880, this, []); }
-  set enableRankedResults(value: boolean) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3534695701231268, this, [value]); }
+  get enableRankedResults(): boolean { return callSDK<boolean>("CoreSpotlight_3864e7f38681b875", 958958925271880, this, []); }
+  set enableRankedResults(value: boolean) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3534695701231268, this, [value]); }
   /**
    * var maxRankedResultCount: Int { get set }
    * @availability iOS 18.0+
    */
-  get maxRankedResultCount(): number { return callSDK<number>("CoreSpotlight_ff42ce03e691ab23", 322345269914733, this, []); }
-  set maxRankedResultCount(value: number) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 14157172238856, this, [value]); }
+  get maxRankedResultCount(): number { return callSDK<number>("CoreSpotlight_3864e7f38681b875", 322345269914733, this, []); }
+  set maxRankedResultCount(value: number) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 14157172238856, this, [value]); }
   /**
    * var maxResultCount: Int { get set }
    * @availability iOS 16.0+
    */
-  get maxResultCount(): number { return callSDK<number>("CoreSpotlight_ff42ce03e691ab23", 2445382067444208, this, []); }
-  set maxResultCount(value: number) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 1941227941552989, this, [value]); }
+  get maxResultCount(): number { return callSDK<number>("CoreSpotlight_3864e7f38681b875", 2445382067444208, this, []); }
+  set maxResultCount(value: number) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 1941227941552989, this, [value]); }
   /**
    * var maxSuggestionCount: Int { get set }
    * @availability iOS 16.0+
    */
-  get maxSuggestionCount(): number { return callSDK<number>("CoreSpotlight_ff42ce03e691ab23", 3304274390624602, this, []); }
-  set maxSuggestionCount(value: number) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 4085700174246084, this, [value]); }
+  get maxSuggestionCount(): number { return callSDK<number>("CoreSpotlight_3864e7f38681b875", 3304274390624602, this, []); }
+  set maxSuggestionCount(value: number) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 4085700174246084, this, [value]); }
   declare readonly $type: { "c:objc(cs)CSUserQueryContext": true; "c:objc(cs)CSSearchQueryContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fetchAttributes": true; "filterQueries": true; "keyboardLanguage": true; "disableSemanticSearch": true; "enableRankedResults": true; "maxRankedResultCount": true; "maxResultCount": true; "maxSuggestionCount": true };
 }
 
-export type NSAttributedString_Key = "AXSpeechAttributeSSML" | "suggestionHighlight" | "inlinePresentationIntent" | "alternateDescription" | "imageURL" | "languageIdentifier" | "markdownSourcePosition" | "replacementIndex" | "morphology" | "inflectionRule" | "agreeWithArgument" | "agreeWithConcept" | "referentConcept" | "inflectionAlternative" | "localizedNumberFormat" | "listItemDelimiter" | "presentationIntentAttributeName" | "font" | "paragraphStyle" | "foregroundColor" | "backgroundColor" | "ligature" | "kern" | "tracking" | "strikethroughStyle" | "underlineStyle" | "strokeColor" | "strokeWidth" | "shadow" | "textEffect" | "attachment" | "link" | "baselineOffset" | "underlineColor" | "strikethroughColor" | "writingDirection" | "textHighlightStyle" | "textHighlightColorScheme" | "adaptiveImageGlyph" | "writingToolsExclusionAttributeName" | "obliqueness" | "expansion" | "verticalGlyphForm" | "accessibilitySpeechPunctuation" | "accessibilitySpeechLanguage" | "accessibilitySpeechPitch" | "accessibilitySpeechQueueAnnouncement" | "accessibilitySpeechAnnouncementPriority" | "accessibilitySpeechIPANotation" | "accessibilitySpeechSpellOut" | "accessibilityTextHeadingLevel" | "accessibilityTextCustom" | "UIAccessibilityTextAttributeContext" | "textItemTag" | (string & {});
+export type NSAttributedString_Key = "AXSpeechAttributeSSML" | "suggestionHighlight" | "inlinePresentationIntent" | "alternateDescription" | "imageURL" | "languageIdentifier" | "markdownSourcePosition" | "replacementIndex" | "morphology" | "inflectionRule" | "agreeWithArgument" | "agreeWithConcept" | "referentConcept" | "inflectionAlternative" | "localizedNumberFormat" | "listItemDelimiter" | "presentationIntentAttributeName" | "accessibilitySpeechPunctuation" | "accessibilitySpeechLanguage" | "accessibilitySpeechPitch" | "accessibilitySpeechQueueAnnouncement" | "accessibilitySpeechAnnouncementPriority" | "accessibilitySpeechIPANotation" | "accessibilitySpeechSpellOut" | "accessibilityTextHeadingLevel" | "accessibilityTextCustom" | "UIAccessibilityTextAttributeContext" | "font" | "paragraphStyle" | "foregroundColor" | "backgroundColor" | "ligature" | "kern" | "tracking" | "strikethroughStyle" | "underlineStyle" | "strokeColor" | "strokeWidth" | "shadow" | "textEffect" | "attachment" | "link" | "baselineOffset" | "underlineColor" | "strikethroughColor" | "writingDirection" | "textHighlightStyle" | "textHighlightColorScheme" | "adaptiveImageGlyph" | "writingToolsExclusionAttributeName" | "obliqueness" | "expansion" | "verticalGlyphForm" | "textItemTag" | (string & {});
 
 export const NSAttributedString_Key = {
   /**
    * static let suggestionHighlight: NSAttributedString.Key
    * @availability iOS 16.0+
    */
-  get suggestionHighlight(): _Foundation_NSAttributedString_Key { return callSDK<_Foundation_NSAttributedString_Key>("CoreSpotlight_ff42ce03e691ab23", 2118122031731992, undefined, []); }
+  get suggestionHighlight(): _Foundation_NSAttributedString_Key { return callSDK<_Foundation_NSAttributedString_Key>("CoreSpotlight_3864e7f38681b875", 2118122031731992, undefined, []); }
 };
 
 export class NSUserActivity extends SDKHandle {
@@ -2143,8 +2143,8 @@ export class NSUserActivity extends SDKHandle {
    * @NSCopying var contentAttributeSet: CSSearchableItemAttributeSet? { get set }
    * @availability iOS 9.0+
    */
-  get contentAttributeSet(): $SDK22 { return callSDK<$SDK22>("CoreSpotlight_ff42ce03e691ab23", 3702707292289812, this, []); }
-  set contentAttributeSet(value: $SDK22) { callSDK<void>("CoreSpotlight_ff42ce03e691ab23", 3576895859850000, this, [value]); }
+  get contentAttributeSet(): $SDK22 { return callSDK<$SDK22>("CoreSpotlight_3864e7f38681b875", 3702707292289812, this, []); }
+  set contentAttributeSet(value: $SDK22) { callSDK<void>("CoreSpotlight_3864e7f38681b875", 3576895859850000, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSUserActivity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contentAttributeSet": true };
 }
@@ -2158,7 +2158,7 @@ export class SearchableItem extends SDKHandle {
    * let item: CSSearchableItem
    * @availability iOS 27.0+
    */
-  get item(): CSSearchableItem { return callSDK<CSSearchableItem>("CoreSpotlight_ff42ce03e691ab23", 947553008677638, this, []); }
+  get item(): CSSearchableItem { return callSDK<CSSearchableItem>("CoreSpotlight_3864e7f38681b875", 947553008677638, this, []); }
   declare readonly $type: { "s:13CoreSpotlight14SearchableItemV": true };
 }
 
@@ -2173,892 +2173,892 @@ export const SearchableItemAttribute = {
    * static let colorSpace: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get colorSpace(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 389902475469486, undefined, []); },
+  get colorSpace(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 389902475469486, undefined, []); },
   /**
    * static let contentURL: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get contentURL(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1024012014838925, undefined, []); },
+  get contentURL(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1024012014838925, undefined, []); },
   /**
    * static let identifier: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get identifier(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4116925920460330, undefined, []); },
+  get identifier(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4116925920460330, undefined, []); },
   /**
    * static let layerNames: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get layerNames(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2079497156074255, undefined, []); },
+  get layerNames(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2079497156074255, undefined, []); },
   /**
    * static let likelyJunk: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get likelyJunk(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4491268306254461, undefined, []); },
+  get likelyJunk(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4491268306254461, undefined, []); },
   /**
    * static let mediaTypes: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get mediaTypes(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 715836264236713, undefined, []); },
+  get mediaTypes(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 715836264236713, undefined, []); },
   /**
    * static let pageHeight: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get pageHeight(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2840470996004212, undefined, []); },
+  get pageHeight(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2840470996004212, undefined, []); },
   /**
    * static let performers: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get performers(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2582763315057129, undefined, []); },
+  get performers(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2582763315057129, undefined, []); },
   /**
    * static let pixelCount: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get pixelCount(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1603199249223565, undefined, []); },
+  get pixelCount(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1603199249223565, undefined, []); },
   /**
    * static let pixelWidth: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get pixelWidth(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1754542998851051, undefined, []); },
+  get pixelWidth(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1754542998851051, undefined, []); },
   /**
    * static let postalCode: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get postalCode(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3249869170688532, undefined, []); },
+  get postalCode(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3249869170688532, undefined, []); },
   /**
    * static let publishers: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get publishers(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1142517015442464, undefined, []); },
+  get publishers(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1142517015442464, undefined, []); },
   /**
    * static let streamable: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get streamable(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1266831372204955, undefined, []); },
+  get streamable(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1266831372204955, undefined, []); },
   /**
    * static let authorNames: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get authorNames(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3768938107013603, undefined, []); },
+  get authorNames(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3768938107013603, undefined, []); },
   /**
    * static let cameraOwner: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get cameraOwner(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3563475910634702, undefined, []); },
+  get cameraOwner(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3563475910634702, undefined, []); },
   /**
    * static let contentType: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get contentType(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2865319628071161, undefined, []); },
+  get contentType(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2865319628071161, undefined, []); },
   /**
    * static let displayName: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get displayName(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2597005420409942, undefined, []); },
+  get displayName(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2597005420409942, undefined, []); },
   /**
    * static let exifVersion: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get exifVersion(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2605827346691044, undefined, []); },
+  get exifVersion(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2605827346691044, undefined, []); },
   /**
    * static let focalLength: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get focalLength(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2651082463963529, undefined, []); },
+  get focalLength(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2651082463963529, undefined, []); },
   /**
    * static let gpsMapDatum: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get gpsMapDatum(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 550064822777665, undefined, []); },
+  get gpsMapDatum(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 550064822777665, undefined, []); },
   /**
    * static let information: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get information(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 250860914632452, undefined, []); },
+  get information(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 250860914632452, undefined, []); },
   /**
    * static let orientation: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get orientation(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3664367942216158, undefined, []); },
+  get orientation(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3664367942216158, undefined, []); },
   /**
    * static let pixelHeight: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get pixelHeight(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3109448312075869, undefined, []); },
+  get pixelHeight(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3109448312075869, undefined, []); },
   /**
    * static let profileName: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get profileName(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2343957864997055, undefined, []); },
+  get profileName(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2343957864997055, undefined, []); },
   /**
    * static let rankingHint: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get rankingHint(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2808830685872119, undefined, []); },
+  get rankingHint(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2808830685872119, undefined, []); },
   /**
    * static let textContent: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get textContent(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 300363759739491, undefined, []); },
+  get textContent(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 300363759739491, undefined, []); },
   /**
    * static let userCreated: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get userCreated(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 902558976336034, undefined, []); },
+  get userCreated(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 902558976336034, undefined, []); },
   /**
    * static let userCurated: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get userCurated(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3899993314094575, undefined, []); },
+  get userCurated(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3899993314094575, undefined, []); },
   /**
    * static let audioBitRate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get audioBitRate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1860809557769345, undefined, []); },
+  get audioBitRate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1860809557769345, undefined, []); },
   /**
    * static let contributors: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get contributors(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 321329633634367, undefined, []); },
+  get contributors(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 321329633634367, undefined, []); },
   /**
    * static let deliveryType: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get deliveryType(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1475444885817994, undefined, []); },
+  get deliveryType(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1475444885817994, undefined, []); },
   /**
    * static let exposureMode: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get exposureMode(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 13262709479611, undefined, []); },
+  get exposureMode(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 13262709479611, undefined, []); },
   /**
    * static let exposureTime: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get exposureTime(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 534047548773238, undefined, []); },
+  get exposureTime(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 534047548773238, undefined, []); },
   /**
    * static let gpsDateStamp: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get gpsDateStamp(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1282118505444192, undefined, []); },
+  get gpsDateStamp(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1282118505444192, undefined, []); },
   /**
    * static let instructions: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get instructions(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2515218519777816, undefined, []); },
+  get instructions(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2515218519777816, undefined, []); },
   /**
    * static let keySignature: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get keySignature(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1722755904921395, undefined, []); },
+  get keySignature(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1722755904921395, undefined, []); },
   /**
    * static let lastUsedDate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get lastUsedDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3392265119105939, undefined, []); },
+  get lastUsedDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3392265119105939, undefined, []); },
   /**
    * static let meteringMode: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get meteringMode(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1141060708401273, undefined, []); },
+  get meteringMode(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1141060708401273, undefined, []); },
   /**
    * static let musicalGenre: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get musicalGenre(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1344862189330325, undefined, []); },
+  get musicalGenre(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1344862189330325, undefined, []); },
   /**
    * static let participants: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get participants(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2224800426036283, undefined, []); },
+  get participants(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2224800426036283, undefined, []); },
   /**
    * static let phoneNumbers: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get phoneNumbers(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3840189051738783, undefined, []); },
+  get phoneNumbers(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3840189051738783, undefined, []); },
   /**
    * static let thoroughfare: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get thoroughfare(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2266469659163077, undefined, []); },
+  get thoroughfare(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2266469659163077, undefined, []); },
   /**
    * static let thumbnailURL: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get thumbnailURL(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3198981440553911, undefined, []); },
+  get thumbnailURL(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3198981440553911, undefined, []); },
   /**
    * static let totalBitRate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get totalBitRate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3340058949821573, undefined, []); },
+  get totalBitRate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3340058949821573, undefined, []); },
   /**
    * static let videoBitRate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get videoBitRate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2523714127441914, undefined, []); },
+  get videoBitRate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2523714127441914, undefined, []); },
   /**
    * static let whiteBalance: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get whiteBalance(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1428296672307163, undefined, []); },
+  get whiteBalance(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1428296672307163, undefined, []); },
   /**
    * static let bitsPerSample: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get bitsPerSample(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3792647707615121, undefined, []); },
+  get bitsPerSample(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3792647707615121, undefined, []); },
   /**
    * static let contentRating: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get contentRating(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1898311059781866, undefined, []); },
+  get contentRating(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1898311059781866, undefined, []); },
   /**
    * static let namedLocation: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get namedLocation(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3309412232252646, undefined, []); },
+  get namedLocation(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3309412232252646, undefined, []); },
   /**
    * static let organizations: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get organizations(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1526083469163323, undefined, []); },
+  get organizations(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1526083469163323, undefined, []); },
   /**
    * static let recordingDate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get recordingDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 450462035105141, undefined, []); },
+  get recordingDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 450462035105141, undefined, []); },
   /**
    * static let thumbnailData: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get thumbnailData(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3759037864784019, undefined, []); },
+  get thumbnailData(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3759037864784019, undefined, []); },
   /**
    * static let timeSignature: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get timeSignature(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2531879646547088, undefined, []); },
+  get timeSignature(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2531879646547088, undefined, []); },
   /**
    * static let accountHandles: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get accountHandles(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3664049266366162, undefined, []); },
+  get accountHandles(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3664049266366162, undefined, []); },
   /**
    * static let alternateNames: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get alternateNames(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2475057605707988, undefined, []); },
+  get alternateNames(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2475057605707988, undefined, []); },
   /**
    * static let completionDate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get completionDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3681299275130511, undefined, []); },
+  get completionDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3681299275130511, undefined, []); },
   /**
    * static let containerOrder: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get containerOrder(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3542673130462025, undefined, []); },
+  get containerOrder(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3542673130462025, undefined, []); },
   /**
    * static let containerTitle: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get containerTitle(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 429250447600713, undefined, []); },
+  get containerTitle(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 429250447600713, undefined, []); },
   /**
    * static let contentSources: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get contentSources(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1936916511494259, undefined, []); },
+  get contentSources(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1936916511494259, undefined, []); },
   /**
    * static let downloadedDate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get downloadedDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2200873355973911, undefined, []); },
+  get downloadedDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2200873355973911, undefined, []); },
   /**
    * static let emailAddresses: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get emailAddresses(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2400235162852774, undefined, []); },
+  get emailAddresses(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2400235162852774, undefined, []); },
   /**
    * static let exifGPSVersion: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get exifGPSVersion(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4204109440344592, undefined, []); },
+  get exifGPSVersion(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4204109440344592, undefined, []); },
   /**
    * static let gpsMeasureMode: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get gpsMeasureMode(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3462368780813694, undefined, []); },
+  get gpsMeasureMode(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3462368780813694, undefined, []); },
   /**
    * static let imageDirection: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get imageDirection(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2785624142535477, undefined, []); },
+  get imageDirection(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2785624142535477, undefined, []); },
   /**
    * static let importantDates: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get importantDates(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1681896243871224, undefined, []); },
+  get importantDates(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1681896243871224, undefined, []); },
   /**
    * static let originalFormat: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get originalFormat(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 407963491232190, undefined, []); },
+  get originalFormat(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 407963491232190, undefined, []); },
   /**
    * static let originalSource: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get originalSource(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 127127171354218, undefined, []); },
+  get originalSource(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 127127171354218, undefined, []); },
   /**
    * static let recipientNames: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get recipientNames(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1879607071239882, undefined, []); },
+  get recipientNames(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1879607071239882, undefined, []); },
   /**
    * static let securityMethod: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get securityMethod(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 973279625773013, undefined, []); },
+  get securityMethod(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 973279625773013, undefined, []); },
   /**
    * static let acquisitionMake: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get acquisitionMake(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3809617075263166, undefined, []); },
+  get acquisitionMake(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3809617075263166, undefined, []); },
   /**
    * static let audioSampleRate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get audioSampleRate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4099933688040586, undefined, []); },
+  get audioSampleRate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4099933688040586, undefined, []); },
   /**
    * static let authorAddresses: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get authorAddresses(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1499753259334339, undefined, []); },
+  get authorAddresses(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1499753259334339, undefined, []); },
   /**
    * static let contactKeywords: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get contactKeywords(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4103688270415518, undefined, []); },
+  get contactKeywords(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4103688270415518, undefined, []); },
   /**
    * static let contentTypeTree: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get contentTypeTree(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2845346887798104, undefined, []); },
+  get contentTypeTree(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2845346887798104, undefined, []); },
   /**
    * static let exposureProgram: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get exposureProgram(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 456659353631407, undefined, []); },
+  get exposureProgram(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 456659353631407, undefined, []); },
   /**
    * static let gpsDifferential: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get gpsDifferential(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1900458405902636, undefined, []); },
+  get gpsDifferential(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1900458405902636, undefined, []); },
   /**
    * static let hasAlphaChannel: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get hasAlphaChannel(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1165670543211613, undefined, []); },
+  get hasAlphaChannel(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1165670543211613, undefined, []); },
   /**
    * static let maximumAperture: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get maximumAperture(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1688062531983478, undefined, []); },
+  get maximumAperture(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1688062531983478, undefined, []); },
   /**
    * static let stateOrProvince: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get stateOrProvince(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1920507372310935, undefined, []); },
+  get stateOrProvince(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1920507372310935, undefined, []); },
   /**
    * static let subThoroughfare: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get subThoroughfare(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 65788197178138, undefined, []); },
+  get subThoroughfare(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 65788197178138, undefined, []); },
   /**
    * static let acquisitionModel: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get acquisitionModel(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2499018157655602, undefined, []); },
+  get acquisitionModel(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2499018157655602, undefined, []); },
   /**
    * static let audioTrackNumber: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get audioTrackNumber(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 623165435618627, undefined, []); },
+  get audioTrackNumber(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 623165435618627, undefined, []); },
   /**
    * static let darkThumbnailURL: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get darkThumbnailURL(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2786705643514379, undefined, []); },
+  get darkThumbnailURL(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2786705643514379, undefined, []); },
   /**
    * static let domainIdentifier: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get domainIdentifier(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1102988159792381, undefined, []); },
+  get domainIdentifier(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1102988159792381, undefined, []); },
   /**
    * static let accountIdentifier: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get accountIdentifier(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1097912015854138, undefined, []); },
+  get accountIdentifier(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1097912015854138, undefined, []); },
   /**
    * static let audioChannelCount: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get audioChannelCount(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1364310353488555, undefined, []); },
+  get audioChannelCount(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1364310353488555, undefined, []); },
   /**
    * static let ratingDescription: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get ratingDescription(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 457821248612811, undefined, []); },
+  get ratingDescription(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 457821248612811, undefined, []); },
   /**
    * static let supportsPhoneCall: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get supportsPhoneCall(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2952320694540152, undefined, []); },
+  get supportsPhoneCall(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2952320694540152, undefined, []); },
   /**
    * static let contentDescription: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get contentDescription(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2251003205825117, undefined, []); },
+  get contentDescription(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2251003205825117, undefined, []); },
   /**
    * static let exposureTimeString: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get exposureTimeString(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 924823696528143, undefined, []); },
+  get exposureTimeString(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 924823696528143, undefined, []); },
   /**
    * static let gpsAreaInformation: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get gpsAreaInformation(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4282159160458615, undefined, []); },
+  get gpsAreaInformation(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4282159160458615, undefined, []); },
   /**
    * static let mailboxIdentifiers: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get mailboxIdentifiers(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1738021557904745, undefined, []); },
+  get mailboxIdentifiers(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1738021557904745, undefined, []); },
   /**
    * static let recipientAddresses: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get recipientAddresses(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1626662837692534, undefined, []); },
+  get recipientAddresses(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1626662837692534, undefined, []); },
   /**
    * static let resolutionWidthDPI: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get resolutionWidthDPI(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4379988119269302, undefined, []); },
+  get resolutionWidthDPI(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4379988119269302, undefined, []); },
   /**
    * static let supportsNavigation: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get supportsNavigation(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2190474015772688, undefined, []); },
+  get supportsNavigation(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2190474015772688, undefined, []); },
   /**
    * static let containerIdentifier: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get containerIdentifier(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2618989848019193, undefined, []); },
+  get containerIdentifier(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2618989848019193, undefined, []); },
   /**
    * static let contentCreationDate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get contentCreationDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2209575014513010, undefined, []); },
+  get contentCreationDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2209575014513010, undefined, []); },
   /**
    * static let generalMIDISequence: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get generalMIDISequence(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2522195229321527, undefined, []); },
+  get generalMIDISequence(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2522195229321527, undefined, []); },
   /**
    * static let gpsProcessingMethod: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get gpsProcessingMethod(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2778716268206684, undefined, []); },
+  get gpsProcessingMethod(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2778716268206684, undefined, []); },
   /**
    * static let resolutionHeightDPI: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get resolutionHeightDPI(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1272288571198019, undefined, []); },
+  get resolutionHeightDPI(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1272288571198019, undefined, []); },
   /**
    * static let authorEmailAddresses: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get authorEmailAddresses(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1657394053725210, undefined, []); },
+  get authorEmailAddresses(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1657394053725210, undefined, []); },
   /**
    * static let containerDisplayName: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get containerDisplayName(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2618280812995785, undefined, []); },
+  get containerDisplayName(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2618280812995785, undefined, []); },
   /**
    * static let encodingApplications: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get encodingApplications(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3532406224728099, undefined, []); },
+  get encodingApplications(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3532406224728099, undefined, []); },
   /**
    * static let fullyFormattedAddress: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get fullyFormattedAddress(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2168161481742009, undefined, []); },
+  get fullyFormattedAddress(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2168161481742009, undefined, []); },
   /**
    * static let gpsDestinationBearing: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get gpsDestinationBearing(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2278109462422688, undefined, []); },
+  get gpsDestinationBearing(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2278109462422688, undefined, []); },
   /**
    * static let musicalInstrumentName: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get musicalInstrumentName(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1689443959162151, undefined, []); },
+  get musicalInstrumentName(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1689443959162151, undefined, []); },
   /**
    * static let gpsDestinationDistance: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get gpsDestinationDistance(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 394099035928097, undefined, []); },
+  get gpsDestinationDistance(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 394099035928097, undefined, []); },
   /**
    * static let gpsDestinationLatitude: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get gpsDestinationLatitude(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 981641743625367, undefined, []); },
+  get gpsDestinationLatitude(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 981641743625367, undefined, []); },
   /**
    * static let gpsDilutionOfPrecision: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get gpsDilutionOfPrecision(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4442720365197053, undefined, []); },
+  get gpsDilutionOfPrecision(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4442720365197053, undefined, []); },
   /**
    * static let contentModificationDate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get contentModificationDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 274472944673720, undefined, []); },
+  get contentModificationDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 274472944673720, undefined, []); },
   /**
    * static let gpsDestinationLongitude: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get gpsDestinationLongitude(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2066837273212682, undefined, []); },
+  get gpsDestinationLongitude(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2066837273212682, undefined, []); },
   /**
    * static let instantMessageAddresses: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get instantMessageAddresses(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3846590562563667, undefined, []); },
+  get instantMessageAddresses(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3846590562563667, undefined, []); },
   /**
    * static let recipientEmailAddresses: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get recipientEmailAddresses(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3064975523633013, undefined, []); },
+  get recipientEmailAddresses(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3064975523633013, undefined, []); },
   /**
    * static let relatedUniqueIdentifier: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get relatedUniqueIdentifier(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4261791439188360, undefined, []); },
+  get relatedUniqueIdentifier(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4261791439188360, undefined, []); },
   /**
    * static let audioEncodingApplication: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get audioEncodingApplication(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1805711108215734, undefined, []); },
+  get audioEncodingApplication(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1805711108215734, undefined, []); },
   /**
    * static let metadataModificationDate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get metadataModificationDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3216566971215127, undefined, []); },
+  get metadataModificationDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3216566971215127, undefined, []); },
   /**
    * static let focalLength35mmEquivalent: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get focalLength35mmEquivalent(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1383630070181943, undefined, []); },
+  get focalLength35mmEquivalent(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1383630070181943, undefined, []); },
   /**
    * static let musicalInstrumentCategory: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get musicalInstrumentCategory(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4279125536335326, undefined, []); },
+  get musicalInstrumentCategory(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4279125536335326, undefined, []); },
   /**
    * static let weakRelatedUniqueIdentifier: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get weakRelatedUniqueIdentifier(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 860878984829301, undefined, []); },
+  get weakRelatedUniqueIdentifier(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 860878984829301, undefined, []); },
   /**
    * static let url: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get url(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4112666665274304, undefined, []); },
+  get url(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4112666665274304, undefined, []); },
   /**
    * static let city: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get city(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1367145312868543, undefined, []); },
+  get city(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1367145312868543, undefined, []); },
   /**
    * static let kind: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get kind(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4022571422673789, undefined, []); },
+  get kind(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4022571422673789, undefined, []); },
   /**
    * static let path: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get path(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3906753092682164, undefined, []); },
+  get path(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3906753092682164, undefined, []); },
   /**
    * static let role: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get role(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2653490530922588, undefined, []); },
+  get role(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2653490530922588, undefined, []); },
   /**
    * static let album: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get album(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4043917096517571, undefined, []); },
+  get album(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4043917096517571, undefined, []); },
   /**
    * static let genre: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get genre(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2136928450096647, undefined, []); },
+  get genre(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2136928450096647, undefined, []); },
   /**
    * static let local: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get local(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3005448041113868, undefined, []); },
+  get local(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3005448041113868, undefined, []); },
   /**
    * static let speed: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get speed(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1207824264698848, undefined, []); },
+  get speed(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1207824264698848, undefined, []); },
   /**
    * static let tempo: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get tempo(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3565534234045204, undefined, []); },
+  get tempo(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3565534234045204, undefined, []); },
   /**
    * static let theme: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get theme(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4030543263972350, undefined, []); },
+  get theme(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4030543263972350, undefined, []); },
   /**
    * static let title: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get title(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1040995022476632, undefined, []); },
+  get title(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1040995022476632, undefined, []); },
   /**
    * static let allDay: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get allDay(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 193588123668576, undefined, []); },
+  get allDay(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 193588123668576, undefined, []); },
   /**
    * static let artist: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get artist(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3639854222825732, undefined, []); },
+  get artist(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3639854222825732, undefined, []); },
   /**
    * static let codecs: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get codecs(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2130913783956981, undefined, []); },
+  get codecs(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2130913783956981, undefined, []); },
   /**
    * static let rating: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get rating(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3575312547409409, undefined, []); },
+  get rating(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3575312547409409, undefined, []); },
   /**
    * static let rights: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get rights(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 102653629581074, undefined, []); },
+  get rights(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 102653629581074, undefined, []); },
   /**
    * static let comment: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get comment(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4241662506600946, undefined, []); },
+  get comment(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4241662506600946, undefined, []); },
   /**
    * static let country: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get country(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3909484451094067, undefined, []); },
+  get country(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3909484451094067, undefined, []); },
   /**
    * static let creator: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get creator(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3892610192663137, undefined, []); },
+  get creator(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3892610192663137, undefined, []); },
   /**
    * static let dueDate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get dueDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2512027076745742, undefined, []); },
+  get dueDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2512027076745742, undefined, []); },
   /**
    * static let editors: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get editors(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4290168284365553, undefined, []); },
+  get editors(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4290168284365553, undefined, []); },
   /**
    * static let endDate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get endDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2451222321836739, undefined, []); },
+  get endDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2451222321836739, undefined, []); },
   /**
    * static let fNumber: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get fNumber(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 841847299137283, undefined, []); },
+  get fNumber(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 841847299137283, undefined, []); },
   /**
    * static let flashOn: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get flashOn(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2206474653234301, undefined, []); },
+  get flashOn(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2206474653234301, undefined, []); },
   /**
    * static let subject: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get subject(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2440684696473046, undefined, []); },
+  get subject(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2440684696473046, undefined, []); },
   /**
    * static let version: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get version(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1550752028574168, undefined, []); },
+  get version(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1550752028574168, undefined, []); },
   /**
    * static let altitude: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get altitude(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1506691808011570, undefined, []); },
+  get altitude(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1506691808011570, undefined, []); },
   /**
    * static let aperture: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get aperture(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1443738871230797, undefined, []); },
+  get aperture(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1443738871230797, undefined, []); },
   /**
    * static let composer: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get composer(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2174972036786966, undefined, []); },
+  get composer(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2174972036786966, undefined, []); },
   /**
    * static let coverage: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get coverage(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3745434249856580, undefined, []); },
+  get coverage(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3745434249856580, undefined, []); },
   /**
    * static let director: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get director(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3450229493394257, undefined, []); },
+  get director(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3450229493394257, undefined, []); },
   /**
    * static let duration: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get duration(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4012784064952155, undefined, []); },
+  get duration(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4012784064952155, undefined, []); },
   /**
    * static let fileSize: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get fileSize(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 26773405335814, undefined, []); },
+  get fileSize(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 26773405335814, undefined, []); },
   /**
    * static let gpsTrack: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get gpsTrack(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 778867158008154, undefined, []); },
+  get gpsTrack(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 778867158008154, undefined, []); },
   /**
    * static let headline: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get headline(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1224015247063633, undefined, []); },
+  get headline(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1224015247063633, undefined, []); },
   /**
    * static let isoSpeed: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get isoSpeed(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 951336179532053, undefined, []); },
+  get isoSpeed(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 951336179532053, undefined, []); },
   /**
    * static let keywords: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get keywords(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1888765160212688, undefined, []); },
+  get keywords(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1888765160212688, undefined, []); },
   /**
    * static let latitude: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get latitude(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 993033796267584, undefined, []); },
+  get latitude(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 993033796267584, undefined, []); },
   /**
    * static let lyricist: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get lyricist(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 4243558955761797, undefined, []); },
+  get lyricist(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 4243558955761797, undefined, []); },
   /**
    * static let producer: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get producer(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1261614465042514, undefined, []); },
+  get producer(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1261614465042514, undefined, []); },
   /**
    * static let projects: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get projects(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1636160325159243, undefined, []); },
+  get projects(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1636160325159243, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1912739713803484, undefined, [rawValue]); },
+  init(rawValue: string): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1912739713803484, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: SearchableItemAttribute): string { return callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 4370341347115793, $self, []); },
+  getRawValue($self: SearchableItemAttribute): string { return callSDK<string>("CoreSpotlight_3864e7f38681b875", 4370341347115793, $self, []); },
   /**
    * static let redEyeOn: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get redEyeOn(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1172910422504027, undefined, []); },
+  get redEyeOn(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1172910422504027, undefined, []); },
   /**
    * static let addedDate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get addedDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 131086709581105, undefined, []); },
+  get addedDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 131086709581105, undefined, []); },
   /**
    * static let audiences: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get audiences(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1800909510396440, undefined, []); },
+  get audiences(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1800909510396440, undefined, []); },
   /**
    * static let copyright: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get copyright(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 1594082263402599, undefined, []); },
+  get copyright(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 1594082263402599, undefined, []); },
   /**
    * static let fontNames: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get fontNames(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 101130950413608, undefined, []); },
+  get fontNames(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 101130950413608, undefined, []); },
   /**
    * static let gpsStatus: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get gpsStatus(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2623646884181313, undefined, []); },
+  get gpsStatus(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2623646884181313, undefined, []); },
   /**
    * static let languages: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get languages(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 37958108370328, undefined, []); },
+  get languages(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 37958108370328, undefined, []); },
   /**
    * static let lensModel: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get lensModel(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3134336102610505, undefined, []); },
+  get lensModel(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3134336102610505, undefined, []); },
   /**
    * static let longitude: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get longitude(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3201628990495471, undefined, []); },
+  get longitude(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3201628990495471, undefined, []); },
   /**
    * static let pageCount: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get pageCount(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 805470381904533, undefined, []); },
+  get pageCount(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 805470381904533, undefined, []); },
   /**
    * static let pageWidth: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get pageWidth(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 2460240024136167, undefined, []); },
+  get pageWidth(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 2460240024136167, undefined, []); },
   /**
    * static let playCount: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get playCount(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 17299660005256, undefined, []); },
+  get playCount(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 17299660005256, undefined, []); },
   /**
    * static let startDate: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get startDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 3239841571767984, undefined, []); },
+  get startDate(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 3239841571767984, undefined, []); },
   /**
    * static let timestamp: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get timestamp(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 162440445401706, undefined, []); },
+  get timestamp(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 162440445401706, undefined, []); },
   /**
    * static let userOwned: SearchableItemAttribute
    * @availability iOS 27.0+
    */
-  get userOwned(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_ff42ce03e691ab23", 772470366300954, undefined, []); }
+  get userOwned(): SearchableItemAttribute { return callSDK<SearchableItemAttribute>("CoreSpotlight_3864e7f38681b875", 772470366300954, undefined, []); }
 };
 
 /**
@@ -3071,109 +3071,109 @@ export type SearchableItemAttribute_RawValue = string;
  * let CSActionIdentifier: String
  * @availability iOS 15.0+
  */
-export const CSActionIdentifier: string = callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 2996240571152015, undefined, []);
+export const CSActionIdentifier: string = callSDK<string>("CoreSpotlight_3864e7f38681b875", 2996240571152015, undefined, []);
 
 /**
  * let CSIndexErrorDomain: String
  * @availability iOS 9.0+
  */
-export const CSIndexErrorDomain: string = callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 3302250861762518, undefined, []);
+export const CSIndexErrorDomain: string = callSDK<string>("CoreSpotlight_3864e7f38681b875", 3302250861762518, undefined, []);
 
 /**
  * let CSMailboxArchive: String
  * @availability iOS 9.0+
  */
-export const CSMailboxArchive: string = callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 3908048108797616, undefined, []);
+export const CSMailboxArchive: string = callSDK<string>("CoreSpotlight_3864e7f38681b875", 3908048108797616, undefined, []);
 
 /**
  * let CSMailboxDrafts: String
  * @availability iOS 9.0+
  */
-export const CSMailboxDrafts: string = callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 1670086487097901, undefined, []);
+export const CSMailboxDrafts: string = callSDK<string>("CoreSpotlight_3864e7f38681b875", 1670086487097901, undefined, []);
 
 /**
  * let CSMailboxInbox: String
  * @availability iOS 9.0+
  */
-export const CSMailboxInbox: string = callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 1421397070490419, undefined, []);
+export const CSMailboxInbox: string = callSDK<string>("CoreSpotlight_3864e7f38681b875", 1421397070490419, undefined, []);
 
 /**
  * let CSMailboxJunk: String
  * @availability iOS 9.0+
  */
-export const CSMailboxJunk: string = callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 3362633729109804, undefined, []);
+export const CSMailboxJunk: string = callSDK<string>("CoreSpotlight_3864e7f38681b875", 3362633729109804, undefined, []);
 
 /**
  * let CSMailboxSent: String
  * @availability iOS 9.0+
  */
-export const CSMailboxSent: string = callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 1224580840582061, undefined, []);
+export const CSMailboxSent: string = callSDK<string>("CoreSpotlight_3864e7f38681b875", 1224580840582061, undefined, []);
 
 /**
  * let CSMailboxTrash: String
  * @availability iOS 9.0+
  */
-export const CSMailboxTrash: string = callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 3974335661473259, undefined, []);
+export const CSMailboxTrash: string = callSDK<string>("CoreSpotlight_3864e7f38681b875", 3974335661473259, undefined, []);
 
 /**
  * let CSQueryContinuationActionType: String
  * @availability iOS 10.0+
  */
-export const CSQueryContinuationActionType: string = callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 845577544559369, undefined, []);
+export const CSQueryContinuationActionType: string = callSDK<string>("CoreSpotlight_3864e7f38681b875", 845577544559369, undefined, []);
 
 /**
  * let CSSearchQueryErrorDomain: String
  * @availability iOS 10.0+
  */
-export const CSSearchQueryErrorDomain: string = callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 1433783304753178, undefined, []);
+export const CSSearchQueryErrorDomain: string = callSDK<string>("CoreSpotlight_3864e7f38681b875", 1433783304753178, undefined, []);
 
 /**
  * let CSSearchQueryString: String
  * @availability iOS 10.0+
  */
-export const CSSearchQueryString: string = callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 760442404978159, undefined, []);
+export const CSSearchQueryString: string = callSDK<string>("CoreSpotlight_3864e7f38681b875", 760442404978159, undefined, []);
 
 /**
  * let CSSearchableItemActionType: String
  * @availability iOS 9.0+
  */
-export const CSSearchableItemActionType: string = callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 2151594709268363, undefined, []);
+export const CSSearchableItemActionType: string = callSDK<string>("CoreSpotlight_3864e7f38681b875", 2151594709268363, undefined, []);
 
 /**
  * let CSSearchableItemActivityIdentifier: String
  * @availability iOS 9.0+
  */
-export const CSSearchableItemActivityIdentifier: string = callSDK<string>("CoreSpotlight_ff42ce03e691ab23", 2303388282013439, undefined, []);
+export const CSSearchableItemActivityIdentifier: string = callSDK<string>("CoreSpotlight_3864e7f38681b875", 2303388282013439, undefined, []);
 
 /** var CoreSpotlightAPIVersion: Int32 { get } */
-export const CoreSpotlightAPIVersion: number = callSDK<number>("CoreSpotlight_ff42ce03e691ab23", 2561459836513651, undefined, []);
+export const CoreSpotlightAPIVersion: number = callSDK<number>("CoreSpotlight_3864e7f38681b875", 2561459836513651, undefined, []);
 
-registerSDKClass("CSCustomAttributeKey", CSCustomAttributeKey, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {"keyName":3105158911088993,"isMultiValued":1298973773058375,"isSearchable":1450506123879051,"isSearchableByDefault":1674797812049766,"isUnique":3293660227732301} });
-registerSDKClass("CSImportExtension", CSImportExtension, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {}, methods: {"update":{"id":4328560543805403}} });
-registerSDKClass("CoreSpotlight.CSIndexError", CSIndexError, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {} });
-registerSDKClass("CSIndexExtensionRequestHandler", CSIndexExtensionRequestHandler, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {} });
-registerSDKClass("CSLocalizedString", CSLocalizedString, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {}, methods: {"localizedString":{"id":48559253703285}} });
-registerSDKClass("CSPerson", CSPerson, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {"contactIdentifier":2392013426970065,"displayName":4193932868823640,"handleIdentifier":2718027993743247,"handles":4045469335763076} });
-registerSDKClass("CSSearchableIndex", CSSearchableIndex, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {"indexDelegate":2918262667651490,"protectionClass":27422156403905}, methods: {"beginBatch":{"id":3066331568240655},"deleteAllSearchableItems":{"id":2769484680939018,"hints":[{"callback":{"out":[]}}]},"deleteSearchableItemsWithDomainIdentifiersCompletionHandler":{"id":3259665069724491,"hints":[null,{"callback":{"out":[]}}]},"deleteSearchableItemsWithIdentifiersCompletionHandler":{"id":471684836938922,"hints":[null,{"callback":{"out":[]}}]},"endBatch":{"id":2964339160994545,"hints":[null,{"callback":{"out":[]}}]},"endIndexBatch":{"id":4248057006467586,"hints":[null,null,{"callback":{"out":[]}}]},"fetchLastClientState":{"id":3698526804034655,"hints":[{"callback":{"out":[]}}]},"indexSearchableItems":{"id":3688142005652708,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CSCustomAttributeKey", CSCustomAttributeKey, { module: "CoreSpotlight_3864e7f38681b875", properties: {"keyName":3105158911088993,"isMultiValued":1298973773058375,"isSearchable":1450506123879051,"isSearchableByDefault":1674797812049766,"isUnique":3293660227732301} });
+registerSDKClass("CSImportExtension", CSImportExtension, { module: "CoreSpotlight_3864e7f38681b875", properties: {}, methods: {"update":{"id":4328560543805403}} });
+registerSDKClass("CoreSpotlight.CSIndexError", CSIndexError, { module: "CoreSpotlight_3864e7f38681b875", properties: {} });
+registerSDKClass("CSIndexExtensionRequestHandler", CSIndexExtensionRequestHandler, { module: "CoreSpotlight_3864e7f38681b875", properties: {} });
+registerSDKClass("CSLocalizedString", CSLocalizedString, { module: "CoreSpotlight_3864e7f38681b875", properties: {}, methods: {"localizedString":{"id":48559253703285}} });
+registerSDKClass("CSPerson", CSPerson, { module: "CoreSpotlight_3864e7f38681b875", properties: {"contactIdentifier":2392013426970065,"displayName":4193932868823640,"handleIdentifier":2718027993743247,"handles":4045469335763076} });
+registerSDKClass("CSSearchableIndex", CSSearchableIndex, { module: "CoreSpotlight_3864e7f38681b875", properties: {"indexDelegate":2918262667651490,"protectionClass":27422156403905}, methods: {"beginBatch":{"id":3066331568240655},"deleteAllSearchableItems":{"id":2769484680939018,"hints":[{"callback":{"out":[]}}]},"deleteSearchableItemsWithDomainIdentifiersCompletionHandler":{"id":3259665069724491,"hints":[null,{"callback":{"out":[]}}]},"deleteSearchableItemsWithIdentifiersCompletionHandler":{"id":471684836938922,"hints":[null,{"callback":{"out":[]}}]},"endBatch":{"id":2964339160994545,"hints":[null,{"callback":{"out":[]}}]},"endIndexBatch":{"id":4248057006467586,"hints":[null,null,{"callback":{"out":[]}}]},"fetchLastClientState":{"id":3698526804034655,"hints":[{"callback":{"out":[]}}]},"indexSearchableItems":{"id":3688142005652708,"hints":[null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)CSSearchableIndexDelegate", {"searchableIndexReindexAllSearchableItemsWithAcknowledgementHandler":"searchableIndex(_:reindexAllSearchableItemsWithAcknowledgementHandler:)","searchableIndexReindexSearchableItemsWithIdentifiersAcknowledgementHandler":"searchableIndex(_:reindexSearchableItemsWithIdentifiers:acknowledgementHandler:)","searchableIndexDidThrottle":"searchableIndexDidThrottle(_:)","searchableIndexDidFinishThrottle":"searchableIndexDidFinishThrottle(_:)","searchableItemsDidUpdate":"searchableItemsDidUpdate(_:)"});
-registerSDKClass("CSSearchableIndexDescription", CSSearchableIndexDescription, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {"protectionClass":1729713218633764} });
-registerSDKClass("CSSearchableItem", CSSearchableItem, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {"attributeSet":2693310540843737,"domainIdentifier":2661284047156444,"expirationDate":576519325906209,"isUpdate":1345738652042695,"uniqueIdentifier":4058882290927616,"updateListenerOptions":779190852576494}, methods: {"compare":{"id":164593890971800}} });
-registerSDKClass("CSSearchableItemAttributeSet", CSSearchableItemAttributeSet, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {"exifgpsVersion":3340960877213337,"exifVersion":1165560135330620,"gpsAreaInformation":2577224489111829,"gpsdop":1239185699437029,"gpsDateStamp":1016764634996060,"gpsDestBearing":316723859866970,"gpsDestDistance":4087546981407589,"gpsDestLatitude":945591254509701,"gpsDestLongitude":831238811542892,"gpsDifferental":4444624547419882,"gpsMapDatum":1404952182532694,"gpsMeasureMode":631904892801813,"gpsProcessingMethod":1629859321671124,"gpsStatus":17915464781797,"gpsTrack":497508275991496,"htmlContentData":2672095101874552,"isoSpeed":1579883955466462,"url":2307104156712504,"accountHandles":581276465546937,"accountIdentifier":3397104917868159,"acquisitionMake":467142366630770,"acquisitionModel":118292482600671,"actionIdentifiers":3549303751760243,"addedDate":2827878189180712,"additionalRecipients":3122653672365514,"album":3831823618971935,"allDay":459016932388953,"alternateNames":3687194349400551,"altitude":1320682810096589,"aperture":2292186270174775,"artist":1854075365612748,"audiences":1642903774790194,"audioBitRate":2134190059170612,"audioChannelCount":1801710307357041,"audioEncodingApplication":1637639346734537,"audioSampleRate":1253141810847330,"audioTrackNumber":1274406105704485,"authorAddresses":2599359042995479,"authorEmailAddresses":2525997787697980,"authorNames":2850662842229269,"authors":3372606945358722,"bitsPerSample":1977021880573228,"cameraOwner":2499714424286566,"city":3648528342728892,"codecs":3651919079991003,"colorSpace":3730439479143115,"comment":1889977352096341,"completionDate":1030138959954142,"composer":1181975775662656,"contactKeywords":2400797821881043,"containerDisplayName":2180512725441914,"containerIdentifier":1985607451632310,"containerOrder":3700305986472946,"containerTitle":2493744793947150,"contentCreationDate":2685473163510328,"contentDescription":381704447345003,"contentModificationDate":2193515140192690,"contentRating":210253796685251,"contentSources":4021237560398460,"contentType":977824999116423,"contentTypeTree":4472804171277904,"contentURL":3404262916206900,"contributors":1917102986301663,"copyright":1687179278248125,"country":482408990447025,"coverage":4431305302873279,"creator":1407596903444289,"darkThumbnailURL":696618715990136,"deliveryType":2828303315113175,"director":2207110594262837,"displayName":1790358813407082,"domainIdentifier":274168716331487,"downloadedDate":2059043203454188,"dueDate":2253439842211426,"duration":439211096247984,"editors":3980309639452301,"emailAddresses":1045450017107202,"emailHeaders":3002607462190078,"encodingApplications":2532248753611053,"endDate":1851507825849051,"exposureMode":891028496602650,"exposureProgram":3931958510314941,"exposureTime":436704746569613,"exposureTimeString":4421083264934250,"fNumber":2900380581990977,"fileSize":2985142714778112,"flashOn":2773955510429885,"focalLength35mm":1165113527546321,"focalLength":1293833285464929,"fontNames":3011788132877947,"fullyFormattedAddress":2777626864715670,"generalMIDISequence":346167156399173,"genre":3850295816995618,"hasAlphaChannel":1501215545477998,"headline":3542862330353687,"hiddenAdditionalRecipients":1859728905081075,"identifier":4237808156869290,"imageDirection":2567170510968440,"importantDates":3914410748472400,"information":1482234426816417,"instantMessageAddresses":4441339736423418,"instructions":1935283847193332,"isPriority":3684731669435098,"keySignature":1531637367304232,"keywords":4020902524829756,"kind":203572263082339,"languages":2698565833856050,"lastUsedDate":1234868402609107,"latitude":43450624694674,"layerNames":3137126612993663,"lensModel":2802464757755843,"likelyJunk":2948753991470256,"local":1121484418846844,"longitude":2094877855534590,"lyricist":2790693519630111,"mailboxIdentifiers":4384006335551572,"maxAperture":3169587286533777,"mediaTypes":4236877204598822,"metadataModificationDate":2519716630701554,"meteringMode":4249045326183604,"musicalGenre":3689011225898126,"musicalInstrumentCategory":3916145428551740,"musicalInstrumentName":2321469884717734,"namedLocation":3685258120852024,"organizations":2686541428625261,"orientation":4089144407137201,"originalFormat":1082796271086051,"originalSource":4073637651514047,"pageCount":4042307208383927,"pageHeight":2432140243846795,"pageWidth":607071195078290,"participants":1898154799694426,"path":3571534749891075,"performers":976798052612734,"phoneNumbers":3734283477470558,"pixelCount":3406106504307142,"pixelHeight":740504356837753,"pixelWidth":4446664083393615,"playCount":3926474767103483,"postalCode":2211340859330254,"primaryRecipients":2040740628793360,"producer":3379256881279621,"profileName":4458585333638372,"projects":1932168399594769,"providerDataTypeIdentifiers":4337068772178465,"providerFileTypeIdentifiers":3289974076237975,"providerInPlaceFileTypeIdentifiers":803330033171994,"publishers":735835474701060,"rankingHint":3747703015050668,"rating":1003470885193938,"ratingDescription":2432005952860943,"recipientAddresses":4158632681661583,"recipientEmailAddresses":2474352728943423,"recipientNames":1230017508185782,"recordingDate":2837507298953074,"redEyeOn":194551103661412,"relatedUniqueIdentifier":2355254783988783,"resolutionHeightDPI":176419852697570,"resolutionWidthDPI":2300969172446312,"rights":3057518641737110,"role":1511777782665924,"securityMethod":3272050041002547,"sharedItemContentType":2403001422361103,"speed":3459128354486801,"startDate":4158985854954000,"stateOrProvince":687063772213449,"streamable":607965909471124,"subThoroughfare":19379153077001,"subject":1162791441736894,"supportsNavigation":143129396604292,"supportsPhoneCall":2662548340686200,"tempo":1306416652979981,"textContent":141420479962360,"textContentSummary":3358879429886490,"theme":280883592349270,"thoroughfare":2614662647511001,"thumbnailData":3689455396159273,"thumbnailURL":535619728096203,"timeSignature":3714562053686202,"timestamp":615404030069831,"title":2454674469788498,"totalBitRate":1064880788570762,"transcribedTextContent":1521092608907628,"userCreated":2000501405764774,"userCurated":3983920712549761,"userOwned":2321479500413651,"version":4263164277814679,"videoBitRate":1522489671255326,"weakRelatedUniqueIdentifier":7597481662723,"whiteBalance":4237044469212474}, methods: {"setValue":{"id":1430040722081801},"value":{"id":2150756942545704}} });
-registerSDKClass("CSSearchQuery", CSSearchQuery, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {"isCancelled":1977458629728019,"foundItemCount":2587320750593466,"protectionClasses":3716923369888684}, methods: {"cancel":{"id":1544970005729244},"start":{"id":1101486821957726}} });
-registerSDKClass("CoreSpotlight.CSSearchQuery.Results", CSSearchQuery_Results, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {}, methods: {"makeAsyncIterator":{"id":2627262513520812}} });
-registerSDKClass("CoreSpotlight.CSSearchQuery.Results.Item", CSSearchQuery_Results_Item, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {} });
-registerSDKClass("CoreSpotlight.CSSearchQuery.Results.Iterator", CSSearchQuery_Results_Iterator, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {}, methods: {"next":{"id":512496617487281}} });
-registerSDKClass("CSSearchQueryContext", CSSearchQueryContext, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {"fetchAttributes":1883720804841088,"filterQueries":2127455903165064,"keyboardLanguage":4003913979759584} });
-registerSDKClass("CoreSpotlight.CSSearchQueryError", CSSearchQueryError, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {} });
-registerSDKClass("CSSuggestion", CSSuggestion, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {"suggestionKind":2619651068191000}, methods: {"compare":{"id":3084232850247984},"compareByRank":{"id":2577250922303009}} });
-registerSDKClass("CSUserQuery", CSUserQuery, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {"foundSuggestionCount":4254250325027526}, methods: {"cancel":{"id":3037468223686259},"start":{"id":1835250988073357},"userEngagedVisibleItemsInteraction":{"id":3354762694753569},"userEngagedVisibleSuggestionsInteraction":{"id":3537251148616856}} });
-registerSDKClass("CoreSpotlight.CSUserQuery.Item", CSUserQuery_Item, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {} });
-registerSDKClass("CoreSpotlight.CSUserQuery.Responses", CSUserQuery_Responses, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {}, methods: {"makeAsyncIterator":{"id":4215140553142605}} });
-registerSDKClass("CoreSpotlight.CSUserQuery.Responses.Iterator", CSUserQuery_Responses_Iterator, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {}, methods: {"next":{"id":858483106224440}} });
-registerSDKClass("CoreSpotlight.CSUserQuery.Responses.Response", CSUserQuery_Responses_Response, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {} });
-registerSDKClass("CoreSpotlight.CSUserQuery.Suggestion", CSUserQuery_Suggestion, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {} });
-registerSDKClass("CoreSpotlight.CSUserQuery.Suggestions", CSUserQuery_Suggestions, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {}, methods: {"makeAsyncIterator":{"id":2119918400273047}} });
-registerSDKClass("CoreSpotlight.CSUserQuery.Suggestions.Iterator", CSUserQuery_Suggestions_Iterator, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {}, methods: {"next":{"id":2541033919427379}} });
-registerSDKClass("CSUserQueryContext", CSUserQueryContext, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {"disableSemanticSearch":3135685633521743,"enableRankedResults":958958925271880,"maxRankedResultCount":322345269914733,"maxResultCount":2445382067444208,"maxSuggestionCount":3304274390624602} });
-registerSDKClass("NSUserActivity", NSUserActivity, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {"contentAttributeSet":3702707292289812} }, true);
-registerSDKClass("CoreSpotlight.SearchableItem", SearchableItem, { module: "CoreSpotlight_ff42ce03e691ab23", properties: {} });
+registerSDKClass("CSSearchableIndexDescription", CSSearchableIndexDescription, { module: "CoreSpotlight_3864e7f38681b875", properties: {"protectionClass":1729713218633764} });
+registerSDKClass("CSSearchableItem", CSSearchableItem, { module: "CoreSpotlight_3864e7f38681b875", properties: {"attributeSet":2693310540843737,"domainIdentifier":2661284047156444,"expirationDate":576519325906209,"isUpdate":1345738652042695,"uniqueIdentifier":4058882290927616,"updateListenerOptions":779190852576494}, methods: {"compare":{"id":164593890971800}} });
+registerSDKClass("CSSearchableItemAttributeSet", CSSearchableItemAttributeSet, { module: "CoreSpotlight_3864e7f38681b875", properties: {"exifgpsVersion":3340960877213337,"exifVersion":1165560135330620,"gpsAreaInformation":2577224489111829,"gpsdop":1239185699437029,"gpsDateStamp":1016764634996060,"gpsDestBearing":316723859866970,"gpsDestDistance":4087546981407589,"gpsDestLatitude":945591254509701,"gpsDestLongitude":831238811542892,"gpsDifferental":4444624547419882,"gpsMapDatum":1404952182532694,"gpsMeasureMode":631904892801813,"gpsProcessingMethod":1629859321671124,"gpsStatus":17915464781797,"gpsTrack":497508275991496,"htmlContentData":2672095101874552,"isoSpeed":1579883955466462,"url":2307104156712504,"accountHandles":581276465546937,"accountIdentifier":3397104917868159,"acquisitionMake":467142366630770,"acquisitionModel":118292482600671,"actionIdentifiers":3549303751760243,"addedDate":2827878189180712,"additionalRecipients":3122653672365514,"album":3831823618971935,"allDay":459016932388953,"alternateNames":3687194349400551,"altitude":1320682810096589,"aperture":2292186270174775,"artist":1854075365612748,"audiences":1642903774790194,"audioBitRate":2134190059170612,"audioChannelCount":1801710307357041,"audioEncodingApplication":1637639346734537,"audioSampleRate":1253141810847330,"audioTrackNumber":1274406105704485,"authorAddresses":2599359042995479,"authorEmailAddresses":2525997787697980,"authorNames":2850662842229269,"authors":3372606945358722,"bitsPerSample":1977021880573228,"cameraOwner":2499714424286566,"city":3648528342728892,"codecs":3651919079991003,"colorSpace":3730439479143115,"comment":1889977352096341,"completionDate":1030138959954142,"composer":1181975775662656,"contactKeywords":2400797821881043,"containerDisplayName":2180512725441914,"containerIdentifier":1985607451632310,"containerOrder":3700305986472946,"containerTitle":2493744793947150,"contentCreationDate":2685473163510328,"contentDescription":381704447345003,"contentModificationDate":2193515140192690,"contentRating":210253796685251,"contentSources":4021237560398460,"contentType":977824999116423,"contentTypeTree":4472804171277904,"contentURL":3404262916206900,"contributors":1917102986301663,"copyright":1687179278248125,"country":482408990447025,"coverage":4431305302873279,"creator":1407596903444289,"darkThumbnailURL":696618715990136,"deliveryType":2828303315113175,"director":2207110594262837,"displayName":1790358813407082,"domainIdentifier":274168716331487,"downloadedDate":2059043203454188,"dueDate":2253439842211426,"duration":439211096247984,"editors":3980309639452301,"emailAddresses":1045450017107202,"emailHeaders":3002607462190078,"encodingApplications":2532248753611053,"endDate":1851507825849051,"exposureMode":891028496602650,"exposureProgram":3931958510314941,"exposureTime":436704746569613,"exposureTimeString":4421083264934250,"fNumber":2900380581990977,"fileSize":2985142714778112,"flashOn":2773955510429885,"focalLength35mm":1165113527546321,"focalLength":1293833285464929,"fontNames":3011788132877947,"fullyFormattedAddress":2777626864715670,"generalMIDISequence":346167156399173,"genre":3850295816995618,"hasAlphaChannel":1501215545477998,"headline":3542862330353687,"hiddenAdditionalRecipients":1859728905081075,"identifier":4237808156869290,"imageDirection":2567170510968440,"importantDates":3914410748472400,"information":1482234426816417,"instantMessageAddresses":4441339736423418,"instructions":1935283847193332,"isPriority":3684731669435098,"keySignature":1531637367304232,"keywords":4020902524829756,"kind":203572263082339,"languages":2698565833856050,"lastUsedDate":1234868402609107,"latitude":43450624694674,"layerNames":3137126612993663,"lensModel":2802464757755843,"likelyJunk":2948753991470256,"local":1121484418846844,"longitude":2094877855534590,"lyricist":2790693519630111,"mailboxIdentifiers":4384006335551572,"maxAperture":3169587286533777,"mediaTypes":4236877204598822,"metadataModificationDate":2519716630701554,"meteringMode":4249045326183604,"musicalGenre":3689011225898126,"musicalInstrumentCategory":3916145428551740,"musicalInstrumentName":2321469884717734,"namedLocation":3685258120852024,"organizations":2686541428625261,"orientation":4089144407137201,"originalFormat":1082796271086051,"originalSource":4073637651514047,"pageCount":4042307208383927,"pageHeight":2432140243846795,"pageWidth":607071195078290,"participants":1898154799694426,"path":3571534749891075,"performers":976798052612734,"phoneNumbers":3734283477470558,"pixelCount":3406106504307142,"pixelHeight":740504356837753,"pixelWidth":4446664083393615,"playCount":3926474767103483,"postalCode":2211340859330254,"primaryRecipients":2040740628793360,"producer":3379256881279621,"profileName":4458585333638372,"projects":1932168399594769,"providerDataTypeIdentifiers":4337068772178465,"providerFileTypeIdentifiers":3289974076237975,"providerInPlaceFileTypeIdentifiers":803330033171994,"publishers":735835474701060,"rankingHint":3747703015050668,"rating":1003470885193938,"ratingDescription":2432005952860943,"recipientAddresses":4158632681661583,"recipientEmailAddresses":2474352728943423,"recipientNames":1230017508185782,"recordingDate":2837507298953074,"redEyeOn":194551103661412,"relatedUniqueIdentifier":2355254783988783,"resolutionHeightDPI":176419852697570,"resolutionWidthDPI":2300969172446312,"rights":3057518641737110,"role":1511777782665924,"securityMethod":3272050041002547,"sharedItemContentType":2403001422361103,"speed":3459128354486801,"startDate":4158985854954000,"stateOrProvince":687063772213449,"streamable":607965909471124,"subThoroughfare":19379153077001,"subject":1162791441736894,"supportsNavigation":143129396604292,"supportsPhoneCall":2662548340686200,"tempo":1306416652979981,"textContent":141420479962360,"textContentSummary":3358879429886490,"theme":280883592349270,"thoroughfare":2614662647511001,"thumbnailData":3689455396159273,"thumbnailURL":535619728096203,"timeSignature":3714562053686202,"timestamp":615404030069831,"title":2454674469788498,"totalBitRate":1064880788570762,"transcribedTextContent":1521092608907628,"userCreated":2000501405764774,"userCurated":3983920712549761,"userOwned":2321479500413651,"version":4263164277814679,"videoBitRate":1522489671255326,"weakRelatedUniqueIdentifier":7597481662723,"whiteBalance":4237044469212474}, methods: {"setValue":{"id":1430040722081801},"value":{"id":2150756942545704}} });
+registerSDKClass("CSSearchQuery", CSSearchQuery, { module: "CoreSpotlight_3864e7f38681b875", properties: {"isCancelled":1977458629728019,"foundItemCount":2587320750593466,"protectionClasses":3716923369888684}, methods: {"cancel":{"id":1544970005729244},"start":{"id":1101486821957726}} });
+registerSDKClass("CoreSpotlight.CSSearchQuery.Results", CSSearchQuery_Results, { module: "CoreSpotlight_3864e7f38681b875", properties: {}, methods: {"makeAsyncIterator":{"id":2627262513520812}} });
+registerSDKClass("CoreSpotlight.CSSearchQuery.Results.Item", CSSearchQuery_Results_Item, { module: "CoreSpotlight_3864e7f38681b875", properties: {} });
+registerSDKClass("CoreSpotlight.CSSearchQuery.Results.Iterator", CSSearchQuery_Results_Iterator, { module: "CoreSpotlight_3864e7f38681b875", properties: {}, methods: {"next":{"id":512496617487281}} });
+registerSDKClass("CSSearchQueryContext", CSSearchQueryContext, { module: "CoreSpotlight_3864e7f38681b875", properties: {"fetchAttributes":1883720804841088,"filterQueries":2127455903165064,"keyboardLanguage":4003913979759584} });
+registerSDKClass("CoreSpotlight.CSSearchQueryError", CSSearchQueryError, { module: "CoreSpotlight_3864e7f38681b875", properties: {} });
+registerSDKClass("CSSuggestion", CSSuggestion, { module: "CoreSpotlight_3864e7f38681b875", properties: {"suggestionKind":2619651068191000}, methods: {"compare":{"id":3084232850247984},"compareByRank":{"id":2577250922303009}} });
+registerSDKClass("CSUserQuery", CSUserQuery, { module: "CoreSpotlight_3864e7f38681b875", properties: {"foundSuggestionCount":4254250325027526}, methods: {"cancel":{"id":3037468223686259},"start":{"id":1835250988073357},"userEngagedVisibleItemsInteraction":{"id":3354762694753569},"userEngagedVisibleSuggestionsInteraction":{"id":3537251148616856}} });
+registerSDKClass("CoreSpotlight.CSUserQuery.Item", CSUserQuery_Item, { module: "CoreSpotlight_3864e7f38681b875", properties: {} });
+registerSDKClass("CoreSpotlight.CSUserQuery.Responses", CSUserQuery_Responses, { module: "CoreSpotlight_3864e7f38681b875", properties: {}, methods: {"makeAsyncIterator":{"id":4215140553142605}} });
+registerSDKClass("CoreSpotlight.CSUserQuery.Responses.Iterator", CSUserQuery_Responses_Iterator, { module: "CoreSpotlight_3864e7f38681b875", properties: {}, methods: {"next":{"id":858483106224440}} });
+registerSDKClass("CoreSpotlight.CSUserQuery.Responses.Response", CSUserQuery_Responses_Response, { module: "CoreSpotlight_3864e7f38681b875", properties: {} });
+registerSDKClass("CoreSpotlight.CSUserQuery.Suggestion", CSUserQuery_Suggestion, { module: "CoreSpotlight_3864e7f38681b875", properties: {} });
+registerSDKClass("CoreSpotlight.CSUserQuery.Suggestions", CSUserQuery_Suggestions, { module: "CoreSpotlight_3864e7f38681b875", properties: {}, methods: {"makeAsyncIterator":{"id":2119918400273047}} });
+registerSDKClass("CoreSpotlight.CSUserQuery.Suggestions.Iterator", CSUserQuery_Suggestions_Iterator, { module: "CoreSpotlight_3864e7f38681b875", properties: {}, methods: {"next":{"id":2541033919427379}} });
+registerSDKClass("CSUserQueryContext", CSUserQueryContext, { module: "CoreSpotlight_3864e7f38681b875", properties: {"disableSemanticSearch":3135685633521743,"enableRankedResults":958958925271880,"maxRankedResultCount":322345269914733,"maxResultCount":2445382067444208,"maxSuggestionCount":3304274390624602} });
+registerSDKClass("NSUserActivity", NSUserActivity, { module: "CoreSpotlight_3864e7f38681b875", properties: {"contentAttributeSet":3702707292289812} }, true);
+registerSDKClass("CoreSpotlight.SearchableItem", SearchableItem, { module: "CoreSpotlight_3864e7f38681b875", properties: {} });

@@ -16,7 +16,7 @@ export class Entity extends SDKHandle {
    * @MainActor @preconcurrency static func animate(_ animation: Animation, body: () -> Void, completion: (() -> Void)? = nil)
    * @availability iOS 26.0+
    */
-  static animate(animation: _SwiftUICore_Animation, body: (() => void), completion?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2885287594940003, undefined, [animation, body, completion], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static animate(animation: _SwiftUICore_Animation, body: (() => void), completion?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 2885287594940003, undefined, [animation, body, completion], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:17RealityFoundation6EntityC": true };
 }
 
@@ -29,19 +29,19 @@ export class EntityTargetValue<Value = unknown> extends SDKHandle {
    * var gestureValue: Value
    * @availability iOS 18.0+
    */
-  get gestureValue(): unknown { return callSDK<unknown>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1740839871118352, this, []); }
-  set gestureValue(value: unknown) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 939957554186022, this, [value]); }
+  get gestureValue(): unknown { return callSDK<unknown>("_RealityKit_SwiftUI_3864e7f38681b875", 1740839871118352, this, []); }
+  set gestureValue(value: unknown) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 939957554186022, this, [value]); }
   /**
    * subscript<T>(dynamicMember keyPath: KeyPath<Value, T>) -> T { get }
    * @availability iOS 18.0+
    */
-  subscript(keyPath: SDKHandle): unknown { return callSDK<unknown>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1468120504576803, this, [keyPath]); }
+  subscript(keyPath: SDKHandle): unknown { return callSDK<unknown>("_RealityKit_SwiftUI_3864e7f38681b875", 1468120504576803, this, [keyPath]); }
   /**
    * var entity: Entity
    * @availability iOS 18.0+
    */
-  get entity(): _RealityFoundation_Entity { return callSDK<_RealityFoundation_Entity>("_RealityKit_SwiftUI_ff42ce03e691ab23", 619289868689125, this, []); }
-  set entity(value: _RealityFoundation_Entity) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1979051689333817, this, [value]); }
+  get entity(): _RealityFoundation_Entity { return callSDK<_RealityFoundation_Entity>("_RealityKit_SwiftUI_3864e7f38681b875", 619289868689125, this, []); }
+  set entity(value: _RealityFoundation_Entity) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 1979051689333817, this, [value]); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI17EntityTargetValueV": true };
 }
 
@@ -50,8 +50,8 @@ export class EnvironmentValues extends SDKHandle {
    * var realityViewCameraControls: CameraControls { get set }
    * @availability iOS 18.0+
    */
-  get realityViewCameraControls(): _RealityFoundation_CameraControls { return callSDK<_RealityFoundation_CameraControls>("_RealityKit_SwiftUI_ff42ce03e691ab23", 507787846038025, this, []); }
-  set realityViewCameraControls(value: _RealityFoundation_CameraControls) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3765545561501766, this, [value]); }
+  get realityViewCameraControls(): _RealityFoundation_CameraControls { return callSDK<_RealityFoundation_CameraControls>("_RealityKit_SwiftUI_3864e7f38681b875", 507787846038025, this, []); }
+  set realityViewCameraControls(value: _RealityFoundation_CameraControls) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 3765545561501766, this, [value]); }
   declare readonly $type: { "s:7SwiftUI17EnvironmentValuesV": true };
 }
 
@@ -60,12 +60,12 @@ export class MeshResource extends SDKHandle {
    * @MainActor @preconcurrency convenience init(extruding path: Path, extrusionOptions: MeshResource.ShapeExtrusionOptions = ShapeExtrusionOptions()) throws
    * @availability iOS 18.0+
    */
-  static initExtrudingExtrusionOptions(path: _SwiftUICore_Path, extrusionOptions?: _RealityFoundation_MeshResource_ShapeExtrusionOptions): Promise<_RealityFoundation_MeshResource> { return callSDKAsync<_RealityFoundation_MeshResource>("_RealityKit_SwiftUI_ff42ce03e691ab23", 4048504499410993, undefined, [path, extrusionOptions]); }
+  static initExtrudingExtrusionOptions(path: _SwiftUICore_Path, extrusionOptions?: _RealityFoundation_MeshResource_ShapeExtrusionOptions): Promise<_RealityFoundation_MeshResource> { return callSDKAsync<_RealityFoundation_MeshResource>("_RealityKit_SwiftUI_3864e7f38681b875", 4048504499410993, undefined, [path, extrusionOptions]); }
   /**
    * nonisolated convenience init(extruding path: Path, extrusionOptions: MeshResource.ShapeExtrusionOptions = ShapeExtrusionOptions()) async throws
    * @availability iOS 18.0+
    */
-  static initExtrudingExtrusionOptions95500(path: _SwiftUICore_Path, extrusionOptions?: _RealityFoundation_MeshResource_ShapeExtrusionOptions): Promise<_RealityFoundation_MeshResource> { return callSDKAsync<_RealityFoundation_MeshResource>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2732702165133112, undefined, [path, extrusionOptions]); }
+  static initExtrudingExtrusionOptions95500(path: _SwiftUICore_Path, extrusionOptions?: _RealityFoundation_MeshResource_ShapeExtrusionOptions): Promise<_RealityFoundation_MeshResource> { return callSDKAsync<_RealityFoundation_MeshResource>("_RealityKit_SwiftUI_3864e7f38681b875", 2732702165133112, undefined, [path, extrusionOptions]); }
   declare readonly $type: { "s:17RealityFoundation12MeshResourceC": true };
 }
 
@@ -74,8 +74,8 @@ export class MeshResource_ShapeExtrusionOptions extends SDKHandle {
    * var chamferProfile: Path? { get set }
    * @availability iOS 18.0+
    */
-  get chamferProfile(): (_SwiftUICore_Path) | null { return callSDK<(_SwiftUICore_Path) | null>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2249417422325218, this, []); }
-  set chamferProfile(value: (_SwiftUICore_Path) | null) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1846851020047234, this, [value]); }
+  get chamferProfile(): (_SwiftUICore_Path) | null { return callSDK<(_SwiftUICore_Path) | null>("_RealityKit_SwiftUI_3864e7f38681b875", 2249417422325218, this, []); }
+  set chamferProfile(value: (_SwiftUICore_Path) | null) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 1846851020047234, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation12MeshResourceC21ShapeExtrusionOptionsV": true };
 }
 
@@ -88,12 +88,12 @@ export class ObjectCapturePointCloudView extends SDKHandle {
    * @MainActor func showShotLocations(_ value: Bool = true) -> ObjectCapturePointCloudView
    * @availability iOS 18.0+
    */
-  showShotLocations(value?: boolean): Promise<ObjectCapturePointCloudView> { return callSDKAsync<ObjectCapturePointCloudView>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3847006473263290, this, [value]); }
+  showShotLocations(value?: boolean): Promise<ObjectCapturePointCloudView> { return callSDKAsync<ObjectCapturePointCloudView>("_RealityKit_SwiftUI_3864e7f38681b875", 3847006473263290, this, [value]); }
   /**
    * @MainActor init(session: ObjectCaptureSession)
    * @availability iOS 17.0+
    */
-  static init(session: ObjectCaptureSession): Promise<ObjectCapturePointCloudView> { return callSDKAsync<ObjectCapturePointCloudView>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2436675242342845, undefined, [session]); }
+  static init(session: ObjectCaptureSession): Promise<ObjectCapturePointCloudView> { return callSDKAsync<ObjectCapturePointCloudView>("_RealityKit_SwiftUI_3864e7f38681b875", 2436675242342845, undefined, [session]); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI27ObjectCapturePointCloudViewV": true };
 }
 
@@ -112,159 +112,159 @@ export class ObjectCaptureSession extends SDKHandle {
    * @MainActor func requestImageCapture()
    * @availability iOS 17.0+
    */
-  requestImageCapture(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2000731111745834, this, []); }
+  requestImageCapture(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 2000731111745834, this, []); }
   /**
    * @MainActor var canRequestImageCapture: Bool { get }
    * @availability iOS 17.0+
    */
-  get canRequestImageCapture(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3780040011346141, this, []); }
+  get canRequestImageCapture(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_3864e7f38681b875", 3780040011346141, this, []); }
   /**
    * @MainActor var canRequestImageCaptureUpdates: ObjectCaptureSession.Updates<Bool> { get }
    * @availability iOS 17.0+
    */
-  get canRequestImageCaptureUpdates(): Promise<$SDK1> { return callSDKAsync<$SDK1>("_RealityKit_SwiftUI_ff42ce03e691ab23", 620575318707304, this, []); }
+  get canRequestImageCaptureUpdates(): Promise<$SDK1> { return callSDKAsync<$SDK1>("_RealityKit_SwiftUI_3864e7f38681b875", 620575318707304, this, []); }
   /**
    * @MainActor var isAutoCaptureEnabled: Bool { get set }
    * @availability iOS 18.0+
    */
-  get isAutoCaptureEnabled(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3224302544608017, this, []); }
-  setIsAutoCaptureEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3238172733056153, this, [value]); }
+  get isAutoCaptureEnabled(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_3864e7f38681b875", 3224302544608017, this, []); }
+  setIsAutoCaptureEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 3238172733056153, this, [value]); }
   /**
    * @MainActor static var isSupported: Bool { get }
    * @availability iOS 17.0+
    */
-  static get isSupported(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3101528673732171, undefined, []); }
+  static get isSupported(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_3864e7f38681b875", 3101528673732171, undefined, []); }
   /**
    * @MainActor var stateUpdates: ObjectCaptureSession.Updates<ObjectCaptureSession.CaptureState> { get }
    * @availability iOS 17.0+
    */
-  get stateUpdates(): Promise<ObjectCaptureSession_Updates<ObjectCaptureSession_CaptureState>> { return callSDKAsync<ObjectCaptureSession_Updates<ObjectCaptureSession_CaptureState>>("_RealityKit_SwiftUI_ff42ce03e691ab23", 99451875489343, this, []); }
+  get stateUpdates(): Promise<ObjectCaptureSession_Updates<ObjectCaptureSession_CaptureState>> { return callSDKAsync<ObjectCaptureSession_Updates<ObjectCaptureSession_CaptureState>>("_RealityKit_SwiftUI_3864e7f38681b875", 99451875489343, this, []); }
   /**
    * @MainActor var configuration: ObjectCaptureSession.Configuration { get }
    * @availability iOS 17.0+
    */
-  get configuration(): Promise<ObjectCaptureSession_Configuration> { return callSDKAsync<ObjectCaptureSession_Configuration>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1091368419371053, this, []); }
+  get configuration(): Promise<ObjectCaptureSession_Configuration> { return callSDKAsync<ObjectCaptureSession_Configuration>("_RealityKit_SwiftUI_3864e7f38681b875", 1091368419371053, this, []); }
   /**
    * @MainActor var cameraTracking: ObjectCaptureSession.Tracking { get }
    * @availability iOS 17.0+
    */
-  get cameraTracking(): Promise<ObjectCaptureSession_Tracking> { return callSDKAsync<ObjectCaptureSession_Tracking>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3672160865473063, this, []); }
+  get cameraTracking(): Promise<ObjectCaptureSession_Tracking> { return callSDKAsync<ObjectCaptureSession_Tracking>("_RealityKit_SwiftUI_3864e7f38681b875", 3672160865473063, this, []); }
   /**
    * @discardableResult @MainActor func resetDetection() -> Bool
    * @availability iOS 17.0+
    */
-  resetDetection(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_ff42ce03e691ab23", 190751590382775, this, []); }
+  resetDetection(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_3864e7f38681b875", 190751590382775, this, []); }
   /**
    * @MainActor func startCapturing()
    * @availability iOS 17.0+
    */
-  startCapturing(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 744183790929265, this, []); }
+  startCapturing(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 744183790929265, this, []); }
   /**
    * @MainActor func startDetecting() -> Bool
    * @availability iOS 17.0+
    */
-  startDetecting(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_ff42ce03e691ab23", 540659599109832, this, []); }
+  startDetecting(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_3864e7f38681b875", 540659599109832, this, []); }
   /**
    * @MainActor var feedbackUpdates: ObjectCaptureSession.Updates<Set<ObjectCaptureSession.Feedback>> { get }
    * @availability iOS 17.0+
    */
-  get feedbackUpdates(): Promise<ObjectCaptureSession_Updates<Array<ObjectCaptureSession_Feedback>>> { return callSDKAsync<ObjectCaptureSession_Updates<Array<ObjectCaptureSession_Feedback>>>("_RealityKit_SwiftUI_ff42ce03e691ab23", 4074565442085961, this, []); }
+  get feedbackUpdates(): Promise<ObjectCaptureSession_Updates<Array<ObjectCaptureSession_Feedback>>> { return callSDKAsync<ObjectCaptureSession_Updates<Array<ObjectCaptureSession_Feedback>>>("_RealityKit_SwiftUI_3864e7f38681b875", 4074565442085961, this, []); }
   /**
    * @MainActor var isPausedUpdates: ObjectCaptureSession.Updates<Bool> { get }
    * @availability iOS 17.0+
    */
-  get isPausedUpdates(): Promise<$SDK1> { return callSDKAsync<$SDK1>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3749457073113014, this, []); }
+  get isPausedUpdates(): Promise<$SDK1> { return callSDKAsync<$SDK1>("_RealityKit_SwiftUI_3864e7f38681b875", 3749457073113014, this, []); }
   /**
    * @MainActor func beginNewScanPass()
    * @availability iOS 17.0+
    */
-  beginNewScanPass(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 46368981323307, this, []); }
+  beginNewScanPass(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 46368981323307, this, []); }
   /**
    * @MainActor var shouldPlayHaptics: Bool { get set }
    * @availability iOS 18.0+
    */
-  get shouldPlayHaptics(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_ff42ce03e691ab23", 4347022705226155, this, []); }
-  setShouldPlayHaptics(value: boolean): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1358890135432420, this, [value]); }
+  get shouldPlayHaptics(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_3864e7f38681b875", 4347022705226155, this, []); }
+  setShouldPlayHaptics(value: boolean): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 1358890135432420, this, [value]); }
   /**
    * @MainActor var numberOfShotsTaken: Int { get }
    * @availability iOS 17.0+
    */
-  get numberOfShotsTaken(): Promise<number> { return callSDKAsync<number>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2487491572684068, this, []); }
+  get numberOfShotsTaken(): Promise<number> { return callSDKAsync<number>("_RealityKit_SwiftUI_3864e7f38681b875", 2487491572684068, this, []); }
   /**
    * @MainActor var cameraTrackingUpdates: ObjectCaptureSession.Updates<ObjectCaptureSession.Tracking> { get }
    * @availability iOS 17.0+
    */
-  get cameraTrackingUpdates(): Promise<ObjectCaptureSession_Updates<ObjectCaptureSession_Tracking>> { return callSDKAsync<ObjectCaptureSession_Updates<ObjectCaptureSession_Tracking>>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1156113207833167, this, []); }
+  get cameraTrackingUpdates(): Promise<ObjectCaptureSession_Updates<ObjectCaptureSession_Tracking>> { return callSDKAsync<ObjectCaptureSession_Updates<ObjectCaptureSession_Tracking>>("_RealityKit_SwiftUI_3864e7f38681b875", 1156113207833167, this, []); }
   /**
    * @MainActor var userCompletedScanPass: Bool { get }
    * @availability iOS 17.0+
    */
-  get userCompletedScanPass(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1915161740039272, this, []); }
+  get userCompletedScanPass(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_3864e7f38681b875", 1915161740039272, this, []); }
   /**
    * @MainActor func beginNewScanPassAfterFlip()
    * @availability iOS 17.0+
    */
-  beginNewScanPassAfterFlip(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 160086966459995, this, []); }
+  beginNewScanPassAfterFlip(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 160086966459995, this, []); }
   /**
    * @MainActor var numberOfShotsTakenUpdates: ObjectCaptureSession.Updates<Int> { get }
    * @availability iOS 17.0+
    */
-  get numberOfShotsTakenUpdates(): Promise<ObjectCaptureSession_Updates<number>> { return callSDKAsync<ObjectCaptureSession_Updates<number>>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1463448113288841, this, []); }
+  get numberOfShotsTakenUpdates(): Promise<ObjectCaptureSession_Updates<number>> { return callSDKAsync<ObjectCaptureSession_Updates<number>>("_RealityKit_SwiftUI_3864e7f38681b875", 1463448113288841, this, []); }
   /**
    * @MainActor var maximumNumberOfInputImages: Int { get }
    * @availability iOS 17.0+
    */
-  get maximumNumberOfInputImages(): Promise<number> { return callSDKAsync<number>("_RealityKit_SwiftUI_ff42ce03e691ab23", 4055939467824343, this, []); }
+  get maximumNumberOfInputImages(): Promise<number> { return callSDKAsync<number>("_RealityKit_SwiftUI_3864e7f38681b875", 4055939467824343, this, []); }
   /**
    * @MainActor var userCompletedScanPassUpdates: ObjectCaptureSession.Updates<Bool> { get }
    * @availability iOS 17.0+
    */
-  get userCompletedScanPassUpdates(): Promise<$SDK1> { return callSDKAsync<$SDK1>("_RealityKit_SwiftUI_ff42ce03e691ab23", 681523898705924, this, []); }
+  get userCompletedScanPassUpdates(): Promise<$SDK1> { return callSDKAsync<$SDK1>("_RealityKit_SwiftUI_3864e7f38681b875", 681523898705924, this, []); }
   /**
    * @MainActor func pause()
    * @availability iOS 17.0+
    */
-  pause(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 230065679284611, this, []); }
+  pause(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 230065679284611, this, []); }
   /**
    * @MainActor func start(imagesDirectory: URL, configuration: ObjectCaptureSession.Configuration = Configuration())
    * @availability iOS 17.0+
    */
-  start(imagesDirectory: string, configuration?: ObjectCaptureSession_Configuration): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 220304840567437, this, [imagesDirectory, configuration]); }
+  start(imagesDirectory: string, configuration?: ObjectCaptureSession_Configuration): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 220304840567437, this, [imagesDirectory, configuration]); }
   /**
    * @MainActor var state: ObjectCaptureSession.CaptureState { get }
    * @availability iOS 17.0+
    */
-  get state(): Promise<ObjectCaptureSession_CaptureState> { return callSDKAsync<ObjectCaptureSession_CaptureState>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1719969873045198, this, []); }
+  get state(): Promise<ObjectCaptureSession_CaptureState> { return callSDKAsync<ObjectCaptureSession_CaptureState>("_RealityKit_SwiftUI_3864e7f38681b875", 1719969873045198, this, []); }
   /**
    * @MainActor func cancel()
    * @availability iOS 17.0+
    */
-  cancel(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2369930426030561, this, []); }
+  cancel(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 2369930426030561, this, []); }
   /**
    * @MainActor func finish()
    * @availability iOS 17.0+
    */
-  finish(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 664423237679351, this, []); }
+  finish(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 664423237679351, this, []); }
   /**
    * @MainActor func resume()
    * @availability iOS 17.0+
    */
-  resume(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 465591864418526, this, []); }
+  resume(): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 465591864418526, this, []); }
   /**
    * @MainActor var feedback: Set<ObjectCaptureSession.Feedback> { get }
    * @availability iOS 17.0+
    */
-  get feedback(): Promise<Array<ObjectCaptureSession_Feedback>> { return callSDKAsync<Array<ObjectCaptureSession_Feedback>>("_RealityKit_SwiftUI_ff42ce03e691ab23", 771458572722569, this, []); }
+  get feedback(): Promise<Array<ObjectCaptureSession_Feedback>> { return callSDKAsync<Array<ObjectCaptureSession_Feedback>>("_RealityKit_SwiftUI_3864e7f38681b875", 771458572722569, this, []); }
   /**
    * @MainActor var isPaused: Bool { get }
    * @availability iOS 17.0+
    */
-  get isPaused(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3561893481952709, this, []); }
+  get isPaused(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_3864e7f38681b875", 3561893481952709, this, []); }
   /**
    * @MainActor init()
    * @availability iOS 17.0+
    */
-  static init(): Promise<ObjectCaptureSession> { return callSDKAsync<ObjectCaptureSession>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1939311482132977, undefined, []); }
+  static init(): Promise<ObjectCaptureSession> { return callSDKAsync<ObjectCaptureSession>("_RealityKit_SwiftUI_3864e7f38681b875", 1939311482132977, undefined, []); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI20ObjectCaptureSessionC": true };
   declare readonly $observable: { "canRequestImageCapture": true; "canRequestImageCaptureUpdates": true; "isAutoCaptureEnabled": true; "stateUpdates": true; "configuration": true; "cameraTracking": true; "feedbackUpdates": true; "isPausedUpdates": true; "shouldPlayHaptics": true; "numberOfShotsTaken": true; "cameraTrackingUpdates": true; "userCompletedScanPass": true; "numberOfShotsTakenUpdates": true; "maximumNumberOfInputImages": true; "userCompletedScanPassUpdates": true; "state": true; "feedback": true; "isPaused": true };
 }
@@ -286,19 +286,19 @@ export class ObjectCaptureSession_Configuration extends SDKHandle {
    * var isOverCaptureEnabled: Bool
    * @availability iOS 17.0+
    */
-  get isOverCaptureEnabled(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_ff42ce03e691ab23", 334522235926620, this, []); }
-  setIsOverCaptureEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3539196605235401, this, [value]); }
+  get isOverCaptureEnabled(): Promise<boolean> { return callSDKAsync<boolean>("_RealityKit_SwiftUI_3864e7f38681b875", 334522235926620, this, []); }
+  setIsOverCaptureEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 3539196605235401, this, [value]); }
   /**
    * var checkpointDirectory: URL?
    * @availability iOS 17.0+
    */
-  get checkpointDirectory(): Promise<(string) | null> { return callSDKAsync<(string) | null>("_RealityKit_SwiftUI_ff42ce03e691ab23", 570701800087521, this, []); }
-  setCheckpointDirectory(value?: (string) | null): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2711706655291016, this, [value]); }
+  get checkpointDirectory(): Promise<(string) | null> { return callSDKAsync<(string) | null>("_RealityKit_SwiftUI_3864e7f38681b875", 570701800087521, this, []); }
+  setCheckpointDirectory(value?: (string) | null): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 2711706655291016, this, [value]); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): Promise<ObjectCaptureSession_Configuration> { return callSDKAsync<ObjectCaptureSession_Configuration>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3243271244321005, undefined, []); }
+  static init(): Promise<ObjectCaptureSession_Configuration> { return callSDKAsync<ObjectCaptureSession_Configuration>("_RealityKit_SwiftUI_3864e7f38681b875", 3243271244321005, undefined, []); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI20ObjectCaptureSessionC13ConfigurationV": true };
 }
 
@@ -311,7 +311,7 @@ export class ObjectCaptureSession_Error extends SDKHandle {
    * var localizedDescription: String { get }
    * @availability iOS 17.0+
    */
-  get localizedDescription(): Promise<string> { return callSDKAsync<string>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1258890131627173, this, []); }
+  get localizedDescription(): Promise<string> { return callSDKAsync<string>("_RealityKit_SwiftUI_3864e7f38681b875", 1258890131627173, this, []); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI20ObjectCaptureSessionC5ErrorO": true };
 }
 
@@ -350,7 +350,7 @@ export class ObjectCaptureSession_Updates<Element = unknown> extends SDKHandle {
    * func makeAsyncIterator() -> ObjectCaptureSession.Updates<Element>.Iterator
    * @availability iOS 17.0+
    */
-  makeAsyncIterator(): Promise<ObjectCaptureSession_Updates_Iterator<number>> { return callSDKAsync<ObjectCaptureSession_Updates_Iterator<number>>("_RealityKit_SwiftUI_ff42ce03e691ab23", 657593578806878, this, []); }
+  makeAsyncIterator(): Promise<ObjectCaptureSession_Updates_Iterator<number>> { return callSDKAsync<ObjectCaptureSession_Updates_Iterator<number>>("_RealityKit_SwiftUI_3864e7f38681b875", 657593578806878, this, []); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI20ObjectCaptureSessionC7UpdatesV": true };
   declare readonly $element: Element;
 }
@@ -370,7 +370,7 @@ export class ObjectCaptureSession_Updates_Iterator<Element = unknown> extends SD
    * mutating func next() async -> Element?
    * @availability iOS 17.0+
    */
-  next(): Promise<(number) | null> { return callSDKAsync<(number) | null>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3303426884857664, this, []); }
+  next(): Promise<(number) | null> { return callSDKAsync<(number) | null>("_RealityKit_SwiftUI_3864e7f38681b875", 3303426884857664, this, []); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI20ObjectCaptureSessionC7UpdatesV8IteratorV": true };
 }
 
@@ -383,12 +383,12 @@ export class ObjectCaptureView<Overlay = unknown> extends SDKHandle {
    * @MainActor @preconcurrency func hideObjectReticle(_ value: Bool = true) -> ObjectCaptureView<Overlay>
    * @availability iOS 18.0+
    */
-  hideObjectReticle(value?: boolean): Promise<ObjectCaptureView<SDKHandle>> { return callSDKAsync<ObjectCaptureView<SDKHandle>>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2444857985583109, this, [value]); }
+  hideObjectReticle(value?: boolean): Promise<ObjectCaptureView<SDKHandle>> { return callSDKAsync<ObjectCaptureView<SDKHandle>>("_RealityKit_SwiftUI_3864e7f38681b875", 2444857985583109, this, [value]); }
   /**
    * nonisolated init(session: ObjectCaptureSession) where Overlay == EmptyView
    * @availability iOS 17.0+
    */
-  static init(session: ObjectCaptureSession): Promise<ObjectCaptureView<_SwiftUICore_EmptyView>> { return callSDKAsync<ObjectCaptureView<_SwiftUICore_EmptyView>>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1540435887093229, undefined, [session]); }
+  static init(session: ObjectCaptureSession): Promise<ObjectCaptureView<_SwiftUICore_EmptyView>> { return callSDKAsync<ObjectCaptureView<_SwiftUICore_EmptyView>>("_RealityKit_SwiftUI_3864e7f38681b875", 1540435887093229, undefined, [session]); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI17ObjectCaptureViewV": true };
 }
 
@@ -464,12 +464,12 @@ export class RealityViewCamera extends SDKHandle {
    * static var spatialTracking: RealityViewCamera { get }
    * @availability iOS 18.0+
    */
-  static get spatialTracking(): RealityViewCamera { return callSDK<RealityViewCamera>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3305674865101966, undefined, []); }
+  static get spatialTracking(): RealityViewCamera { return callSDK<RealityViewCamera>("_RealityKit_SwiftUI_3864e7f38681b875", 3305674865101966, undefined, []); }
   /**
    * static var virtual: RealityViewCamera { get }
    * @availability iOS 18.0+
    */
-  static get virtual(): RealityViewCamera { return callSDK<RealityViewCamera>("_RealityKit_SwiftUI_ff42ce03e691ab23", 507788074995484, undefined, []); }
+  static get virtual(): RealityViewCamera { return callSDK<RealityViewCamera>("_RealityKit_SwiftUI_3864e7f38681b875", 507788074995484, undefined, []); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI0A10ViewCameraV": true };
 }
 
@@ -482,43 +482,43 @@ export class RealityViewCameraContent extends SDKHandle {
    * var environment: RealityViewEnvironment { get set }
    * @availability iOS 18.0+
    */
-  get environment(): RealityViewEnvironment { return callSDK<RealityViewEnvironment>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2256848515318081, this, []); }
-  set environment(value: RealityViewEnvironment) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1501945933139434, this, [value]); }
+  get environment(): RealityViewEnvironment { return callSDK<RealityViewEnvironment>("_RealityKit_SwiftUI_3864e7f38681b875", 2256848515318081, this, []); }
+  set environment(value: RealityViewEnvironment) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 1501945933139434, this, [value]); }
   /**
    * var cameraTarget: Entity? { get set }
    * @availability iOS 18.0+
    */
-  get cameraTarget(): $SDK14 { return callSDK<$SDK14>("_RealityKit_SwiftUI_ff42ce03e691ab23", 4057740879558498, this, []); }
-  set cameraTarget(value: $SDK14) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2735634120265321, this, [value]); }
+  get cameraTarget(): $SDK14 { return callSDK<$SDK14>("_RealityKit_SwiftUI_3864e7f38681b875", 4057740879558498, this, []); }
+  set cameraTarget(value: $SDK14) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 2735634120265321, this, [value]); }
   /**
    * var audioListener: Entity? { get set }
    * @availability iOS 18.0+
    */
-  get audioListener(): $SDK14 { return callSDK<$SDK14>("_RealityKit_SwiftUI_ff42ce03e691ab23", 4097537683301561, this, []); }
-  set audioListener(value: $SDK14) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1773304550640201, this, [value]); }
+  get audioListener(): $SDK14 { return callSDK<$SDK14>("_RealityKit_SwiftUI_3864e7f38681b875", 4097537683301561, this, []); }
+  set audioListener(value: $SDK14) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 1773304550640201, this, [value]); }
   /**
    * var renderingEffects: RealityViewRenderingEffects { get set }
    * @availability iOS 18.0+
    */
-  get renderingEffects(): RealityViewRenderingEffects { return callSDK<RealityViewRenderingEffects>("_RealityKit_SwiftUI_ff42ce03e691ab23", 4094803140609693, this, []); }
-  set renderingEffects(value: RealityViewRenderingEffects) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 188348018273023, this, [value]); }
+  get renderingEffects(): RealityViewRenderingEffects { return callSDK<RealityViewRenderingEffects>("_RealityKit_SwiftUI_3864e7f38681b875", 4094803140609693, this, []); }
+  set renderingEffects(value: RealityViewRenderingEffects) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 188348018273023, this, [value]); }
   /**
    * var camera: RealityViewCamera { get set }
    * @availability iOS 18.0+
    */
-  get camera(): RealityViewCamera { return callSDK<RealityViewCamera>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3695558539173783, this, []); }
-  set camera(value: RealityViewCamera) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 831284152179683, this, [value]); }
+  get camera(): RealityViewCamera { return callSDK<RealityViewCamera>("_RealityKit_SwiftUI_3864e7f38681b875", 3695558539173783, this, []); }
+  set camera(value: RealityViewCamera) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 831284152179683, this, [value]); }
   /**
    * @MainActor func animate(body: () -> Void, completion: (() -> Void)? = nil)
    * @availability iOS 26.0+
    */
-  animate(body: (() => void), completion?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3464726887608829, this, [body, completion], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  animate(body: (() => void), completion?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("_RealityKit_SwiftUI_3864e7f38681b875", 3464726887608829, this, [body, completion], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * var entities: RealityViewEntityCollection { get nonmutating set }
    * @availability iOS 18.0+
    */
-  get entities(): RealityViewEntityCollection { return callSDK<RealityViewEntityCollection>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3764606285129400, this, []); }
-  set entities(value: RealityViewEntityCollection) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2523564453663744, this, [value]); }
+  get entities(): RealityViewEntityCollection { return callSDK<RealityViewEntityCollection>("_RealityKit_SwiftUI_3864e7f38681b875", 3764606285129400, this, []); }
+  set entities(value: RealityViewEntityCollection) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 2523564453663744, this, [value]); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI0A17ViewCameraContentV": true };
 }
 
@@ -577,12 +577,12 @@ export class RealityViewDynamicRange extends SDKHandle {
    * static var `default`: RealityViewDynamicRange { get }
    * @availability iOS 18.0+
    */
-  static get default(): RealityViewDynamicRange { return callSDK<RealityViewDynamicRange>("_RealityKit_SwiftUI_ff42ce03e691ab23", 374888561382956, undefined, []); }
+  static get default(): RealityViewDynamicRange { return callSDK<RealityViewDynamicRange>("_RealityKit_SwiftUI_3864e7f38681b875", 374888561382956, undefined, []); }
   /**
    * static var standard: RealityViewDynamicRange { get }
    * @availability iOS 18.0+
    */
-  static get standard(): RealityViewDynamicRange { return callSDK<RealityViewDynamicRange>("_RealityKit_SwiftUI_ff42ce03e691ab23", 4418277104936324, undefined, []); }
+  static get standard(): RealityViewDynamicRange { return callSDK<RealityViewDynamicRange>("_RealityKit_SwiftUI_3864e7f38681b875", 4418277104936324, undefined, []); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI0A16ViewDynamicRangeV": true };
 }
 
@@ -595,57 +595,57 @@ export class RealityViewEntityCollection extends SDKHandle {
    * mutating func replaceAll<S>(_ children: S) where S : Sequence, S.Element : Entity
    * @availability iOS 18.0+
    */
-  replaceAll(children: $SDK15): void { return callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3301579243256795, this, [children]); }
+  replaceAll(children: $SDK15): void { return callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 3301579243256795, this, [children]); }
   /**
    * var startIndex: Int { get }
    * @availability iOS 18.0+
    */
-  get startIndex(): number { return callSDK<number>("_RealityKit_SwiftUI_ff42ce03e691ab23", 258234615008821, this, []); }
+  get startIndex(): number { return callSDK<number>("_RealityKit_SwiftUI_3864e7f38681b875", 258234615008821, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 18.0+
    */
-  get count(): number { return callSDK<number>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1001604175357818, this, []); }
+  get count(): number { return callSDK<number>("_RealityKit_SwiftUI_3864e7f38681b875", 1001604175357818, this, []); }
   /**
    * func index(after i: Int) -> Int
    * @availability iOS 18.0+
    */
-  index(i: number): number { return callSDK<number>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1428631294414669, this, [i]); }
+  index(i: number): number { return callSDK<number>("_RealityKit_SwiftUI_3864e7f38681b875", 1428631294414669, this, [i]); }
   /**
    * mutating func append<S>(contentsOf sequence: S) where S : Sequence, S.Element : Entity
    * @availability iOS 18.0+
    */
-  append(sequence: $SDK15): void { return callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 4194912427229717, this, [sequence]); }
+  append(sequence: $SDK15): void { return callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 4194912427229717, this, [sequence]); }
   /**
    * mutating func insert<S>(contentsOf sequence: S, beforeIndex index: Int) where S : Sequence, S.Element : Entity
    * @availability iOS 18.0+
    */
-  insert(sequence: $SDK15, index: number): void { return callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2334642158377649, this, [sequence, index]); }
+  insert(sequence: $SDK15, index: number): void { return callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 2334642158377649, this, [sequence, index]); }
   /**
    * mutating func remove(at index: Int)
    * @availability iOS 18.0+
    */
-  removeAt(index: number): void { return callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1639105097934331, this, [index]); }
+  removeAt(index: number): void { return callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 1639105097934331, this, [index]); }
   /**
    * mutating func remove(_ child: Entity)
    * @availability iOS 18.0+
    */
-  remove(child: _RealityFoundation_Entity): void { return callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3973090818338393, this, [child]); }
+  remove(child: _RealityFoundation_Entity): void { return callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 3973090818338393, this, [child]); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 18.0+
    */
-  get endIndex(): number { return callSDK<number>("_RealityKit_SwiftUI_ff42ce03e691ab23", 4497925204860551, this, []); }
+  get endIndex(): number { return callSDK<number>("_RealityKit_SwiftUI_3864e7f38681b875", 4497925204860551, this, []); }
   /**
    * mutating func removeAll()
    * @availability iOS 18.0+
    */
-  removeAll(): void { return callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3541968290397271, this, []); }
+  removeAll(): void { return callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 3541968290397271, this, []); }
   /**
    * subscript(index: Int) -> Entity { get }
    * @availability iOS 18.0+
    */
-  subscript(index: number): _RealityFoundation_Entity { return callSDK<_RealityFoundation_Entity>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2440976153039928, this, [index]); }
+  subscript(index: number): _RealityFoundation_Entity { return callSDK<_RealityFoundation_Entity>("_RealityKit_SwiftUI_3864e7f38681b875", 2440976153039928, this, [index]); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI0A20ViewEntityCollectionV": true };
 }
 
@@ -688,12 +688,12 @@ export class RealityViewEnvironment extends SDKHandle {
    * static func skybox(_ skybox: EnvironmentResource) -> RealityViewEnvironment
    * @availability iOS 18.0+
    */
-  static skybox(skybox: _RealityFoundation_EnvironmentResource): RealityViewEnvironment { return callSDK<RealityViewEnvironment>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2848285034185955, undefined, [skybox]); }
+  static skybox(skybox: _RealityFoundation_EnvironmentResource): RealityViewEnvironment { return callSDK<RealityViewEnvironment>("_RealityKit_SwiftUI_3864e7f38681b875", 2848285034185955, undefined, [skybox]); }
   /**
    * static var `default`: RealityViewEnvironment { get }
    * @availability iOS 18.0+
    */
-  static get default(): RealityViewEnvironment { return callSDK<RealityViewEnvironment>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2212182144940244, undefined, []); }
+  static get default(): RealityViewEnvironment { return callSDK<RealityViewEnvironment>("_RealityKit_SwiftUI_3864e7f38681b875", 2212182144940244, undefined, []); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI0A15ViewEnvironmentV": true };
 }
 
@@ -706,17 +706,17 @@ export class RealityViewLayoutOption extends SDKHandle {
    * static let centered: RealityViewLayoutOption
    * @availability iOS 26.0+
    */
-  static get centered(): RealityViewLayoutOption { return callSDK<RealityViewLayoutOption>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3267258779577461, undefined, []); }
+  static get centered(): RealityViewLayoutOption { return callSDK<RealityViewLayoutOption>("_RealityKit_SwiftUI_3864e7f38681b875", 3267258779577461, undefined, []); }
   /**
    * static let flexible: RealityViewLayoutOption
    * @availability iOS 26.0+
    */
-  static get flexible(): RealityViewLayoutOption { return callSDK<RealityViewLayoutOption>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2996641313167360, undefined, []); }
+  static get flexible(): RealityViewLayoutOption { return callSDK<RealityViewLayoutOption>("_RealityKit_SwiftUI_3864e7f38681b875", 2996641313167360, undefined, []); }
   /**
    * static let fixedSize: RealityViewLayoutOption
    * @availability iOS 26.0+
    */
-  static get fixedSize(): RealityViewLayoutOption { return callSDK<RealityViewLayoutOption>("_RealityKit_SwiftUI_ff42ce03e691ab23", 110985038392942, undefined, []); }
+  static get fixedSize(): RealityViewLayoutOption { return callSDK<RealityViewLayoutOption>("_RealityKit_SwiftUI_3864e7f38681b875", 110985038392942, undefined, []); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI0A16ViewLayoutOptionV": true };
 }
 
@@ -729,7 +729,7 @@ export class RealityViewPostProcessEffect extends SDKHandle {
    * static var none: RealityViewPostProcessEffect { get }
    * @availability iOS 26.0+
    */
-  static get none(): RealityViewPostProcessEffect { return callSDK<RealityViewPostProcessEffect>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1214308515037924, undefined, []); }
+  static get none(): RealityViewPostProcessEffect { return callSDK<RealityViewPostProcessEffect>("_RealityKit_SwiftUI_3864e7f38681b875", 1214308515037924, undefined, []); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI0A21ViewPostProcessEffectV": true };
 }
 
@@ -742,17 +742,17 @@ export class RealityViewRenderingEffectMode extends SDKHandle {
    * static var `default`: RealityViewRenderingEffectMode { get }
    * @availability iOS 18.0+
    */
-  static get default(): RealityViewRenderingEffectMode { return callSDK<RealityViewRenderingEffectMode>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1948082294354339, undefined, []); }
+  static get default(): RealityViewRenderingEffectMode { return callSDK<RealityViewRenderingEffectMode>("_RealityKit_SwiftUI_3864e7f38681b875", 1948082294354339, undefined, []); }
   /**
    * static var enabled: RealityViewRenderingEffectMode { get }
    * @availability iOS 18.0+
    */
-  static get enabled(): RealityViewRenderingEffectMode { return callSDK<RealityViewRenderingEffectMode>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3427055827717914, undefined, []); }
+  static get enabled(): RealityViewRenderingEffectMode { return callSDK<RealityViewRenderingEffectMode>("_RealityKit_SwiftUI_3864e7f38681b875", 3427055827717914, undefined, []); }
   /**
    * static var disabled: RealityViewRenderingEffectMode { get }
    * @availability iOS 18.0+
    */
-  static get disabled(): RealityViewRenderingEffectMode { return callSDK<RealityViewRenderingEffectMode>("_RealityKit_SwiftUI_ff42ce03e691ab23", 4173362693189406, undefined, []); }
+  static get disabled(): RealityViewRenderingEffectMode { return callSDK<RealityViewRenderingEffectMode>("_RealityKit_SwiftUI_3864e7f38681b875", 4173362693189406, undefined, []); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI0A23ViewRenderingEffectModeV": true };
 }
 
@@ -765,66 +765,66 @@ export class RealityViewRenderingEffects extends SDKHandle {
    * var motionBlur: RealityViewRenderingEffectMode
    * @availability iOS 18.0+
    */
-  get motionBlur(): RealityViewRenderingEffectMode { return callSDK<RealityViewRenderingEffectMode>("_RealityKit_SwiftUI_ff42ce03e691ab23", 4125712162971819, this, []); }
-  set motionBlur(value: RealityViewRenderingEffectMode) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3749920736555760, this, [value]); }
+  get motionBlur(): RealityViewRenderingEffectMode { return callSDK<RealityViewRenderingEffectMode>("_RealityKit_SwiftUI_3864e7f38681b875", 4125712162971819, this, []); }
+  set motionBlur(value: RealityViewRenderingEffectMode) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 3749920736555760, this, [value]); }
   /**
    * var cameraGrain: RealityViewRenderingEffectMode
    * @availability iOS 18.0+
    */
-  get cameraGrain(): RealityViewRenderingEffectMode { return callSDK<RealityViewRenderingEffectMode>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2576390426953406, this, []); }
-  set cameraGrain(value: RealityViewRenderingEffectMode) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 988077672872973, this, [value]); }
+  get cameraGrain(): RealityViewRenderingEffectMode { return callSDK<RealityViewRenderingEffectMode>("_RealityKit_SwiftUI_3864e7f38681b875", 2576390426953406, this, []); }
+  set cameraGrain(value: RealityViewRenderingEffectMode) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 988077672872973, this, [value]); }
   /**
    * var antialiasing: AntialiasingMode
    * @availability iOS 18.0+
    */
-  get antialiasing(): _RealityFoundation_AntialiasingMode { return callSDK<_RealityFoundation_AntialiasingMode>("_RealityKit_SwiftUI_ff42ce03e691ab23", 342563560410607, this, []); }
-  set antialiasing(value: _RealityFoundation_AntialiasingMode) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 39483041716550, this, [value]); }
+  get antialiasing(): _RealityFoundation_AntialiasingMode { return callSDK<_RealityFoundation_AntialiasingMode>("_RealityKit_SwiftUI_3864e7f38681b875", 342563560410607, this, []); }
+  set antialiasing(value: _RealityFoundation_AntialiasingMode) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 39483041716550, this, [value]); }
   /**
    * var depthOfField: RealityViewRenderingEffectMode
    * @availability iOS 18.0+
    */
-  get depthOfField(): RealityViewRenderingEffectMode { return callSDK<RealityViewRenderingEffectMode>("_RealityKit_SwiftUI_ff42ce03e691ab23", 2337830538552592, this, []); }
-  set depthOfField(value: RealityViewRenderingEffectMode) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 754774941733638, this, [value]); }
+  get depthOfField(): RealityViewRenderingEffectMode { return callSDK<RealityViewRenderingEffectMode>("_RealityKit_SwiftUI_3864e7f38681b875", 2337830538552592, this, []); }
+  set depthOfField(value: RealityViewRenderingEffectMode) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 754774941733638, this, [value]); }
   /**
    * var dynamicRange: RealityViewDynamicRange
    * @availability iOS 18.0+
    */
-  get dynamicRange(): RealityViewDynamicRange { return callSDK<RealityViewDynamicRange>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3927715842520811, this, []); }
-  set dynamicRange(value: RealityViewDynamicRange) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1499309687250367, this, [value]); }
+  get dynamicRange(): RealityViewDynamicRange { return callSDK<RealityViewDynamicRange>("_RealityKit_SwiftUI_3864e7f38681b875", 3927715842520811, this, []); }
+  set dynamicRange(value: RealityViewDynamicRange) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 1499309687250367, this, [value]); }
   /**
    * var customPostProcessing: RealityViewPostProcessEffect
    * @availability iOS 26.0+
    */
-  get customPostProcessing(): RealityViewPostProcessEffect { return callSDK<RealityViewPostProcessEffect>("_RealityKit_SwiftUI_ff42ce03e691ab23", 3214304252938832, this, []); }
-  set customPostProcessing(value: RealityViewPostProcessEffect) { callSDK<void>("_RealityKit_SwiftUI_ff42ce03e691ab23", 1820846212324555, this, [value]); }
+  get customPostProcessing(): RealityViewPostProcessEffect { return callSDK<RealityViewPostProcessEffect>("_RealityKit_SwiftUI_3864e7f38681b875", 3214304252938832, this, []); }
+  set customPostProcessing(value: RealityViewPostProcessEffect) { callSDK<void>("_RealityKit_SwiftUI_3864e7f38681b875", 1820846212324555, this, [value]); }
   declare readonly $type: { "s:19_RealityKit_SwiftUI0A20ViewRenderingEffectsV": true };
 }
 
-registerSDKClass("RealityFoundation.Entity", Entity, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} }, true);
-registerSDKClass("_RealityKit_SwiftUI.EntityTargetValue", EntityTargetValue, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {}, methods: {"subscript":{"id":1468120504576803}} });
-registerSDKClass("SwiftUICore.EnvironmentValues", EnvironmentValues, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} }, true);
-registerSDKClass("RealityFoundation.MeshResource", MeshResource, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} }, true);
-registerSDKClass("RealityFoundation.MeshResource.ShapeExtrusionOptions", MeshResource_ShapeExtrusionOptions, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} }, true);
-registerSDKClass("_RealityKit_SwiftUI.ObjectCapturePointCloudView", ObjectCapturePointCloudView, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {}, methods: {"showShotLocations":{"id":3847006473263290}} });
-registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureSession", ObjectCaptureSession, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {"canRequestImageCapture":3780040011346141,"canRequestImageCaptureUpdates":620575318707304,"isAutoCaptureEnabled":3224302544608017,"stateUpdates":99451875489343,"configuration":1091368419371053,"cameraTracking":3672160865473063,"feedbackUpdates":4074565442085961,"isPausedUpdates":3749457073113014,"shouldPlayHaptics":4347022705226155,"numberOfShotsTaken":2487491572684068,"cameraTrackingUpdates":1156113207833167,"userCompletedScanPass":1915161740039272,"numberOfShotsTakenUpdates":1463448113288841,"maximumNumberOfInputImages":4055939467824343,"userCompletedScanPassUpdates":681523898705924,"state":1719969873045198,"feedback":771458572722569,"isPaused":3561893481952709}, methods: {"requestImageCapture":{"id":2000731111745834},"resetDetection":{"id":190751590382775},"startCapturing":{"id":744183790929265},"startDetecting":{"id":540659599109832},"beginNewScanPass":{"id":46368981323307},"beginNewScanPassAfterFlip":{"id":160086966459995},"pause":{"id":230065679284611},"start":{"id":220304840567437},"cancel":{"id":2369930426030561},"finish":{"id":664423237679351},"resume":{"id":465591864418526}} });
-registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureSession.CaptureState", ObjectCaptureSession_CaptureState, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} });
-registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureSession.Configuration", ObjectCaptureSession_Configuration, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} });
-registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureSession.Error", ObjectCaptureSession_Error, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} });
-registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureSession.Tracking", ObjectCaptureSession_Tracking, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} });
-registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureSession.Updates", ObjectCaptureSession_Updates, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {}, methods: {"makeAsyncIterator":{"id":657593578806878}} });
-registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureSession.Updates.Iterator", ObjectCaptureSession_Updates_Iterator, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {}, methods: {"next":{"id":3303426884857664}} });
-registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureView", ObjectCaptureView, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {}, methods: {"hideObjectReticle":{"id":2444857985583109}} });
+registerSDKClass("RealityFoundation.Entity", Entity, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} }, true);
+registerSDKClass("_RealityKit_SwiftUI.EntityTargetValue", EntityTargetValue, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":1468120504576803}} });
+registerSDKClass("SwiftUICore.EnvironmentValues", EnvironmentValues, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} }, true);
+registerSDKClass("RealityFoundation.MeshResource", MeshResource, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} }, true);
+registerSDKClass("RealityFoundation.MeshResource.ShapeExtrusionOptions", MeshResource_ShapeExtrusionOptions, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} }, true);
+registerSDKClass("_RealityKit_SwiftUI.ObjectCapturePointCloudView", ObjectCapturePointCloudView, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {}, methods: {"showShotLocations":{"id":3847006473263290}} });
+registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureSession", ObjectCaptureSession, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {"canRequestImageCapture":3780040011346141,"canRequestImageCaptureUpdates":620575318707304,"isAutoCaptureEnabled":3224302544608017,"stateUpdates":99451875489343,"configuration":1091368419371053,"cameraTracking":3672160865473063,"feedbackUpdates":4074565442085961,"isPausedUpdates":3749457073113014,"shouldPlayHaptics":4347022705226155,"numberOfShotsTaken":2487491572684068,"cameraTrackingUpdates":1156113207833167,"userCompletedScanPass":1915161740039272,"numberOfShotsTakenUpdates":1463448113288841,"maximumNumberOfInputImages":4055939467824343,"userCompletedScanPassUpdates":681523898705924,"state":1719969873045198,"feedback":771458572722569,"isPaused":3561893481952709}, methods: {"requestImageCapture":{"id":2000731111745834},"resetDetection":{"id":190751590382775},"startCapturing":{"id":744183790929265},"startDetecting":{"id":540659599109832},"beginNewScanPass":{"id":46368981323307},"beginNewScanPassAfterFlip":{"id":160086966459995},"pause":{"id":230065679284611},"start":{"id":220304840567437},"cancel":{"id":2369930426030561},"finish":{"id":664423237679351},"resume":{"id":465591864418526}} });
+registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureSession.CaptureState", ObjectCaptureSession_CaptureState, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureSession.Configuration", ObjectCaptureSession_Configuration, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureSession.Error", ObjectCaptureSession_Error, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureSession.Tracking", ObjectCaptureSession_Tracking, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureSession.Updates", ObjectCaptureSession_Updates, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {}, methods: {"makeAsyncIterator":{"id":657593578806878}} });
+registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureSession.Updates.Iterator", ObjectCaptureSession_Updates_Iterator, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {}, methods: {"next":{"id":3303426884857664}} });
+registerSDKClass("_RealityKit_SwiftUI.ObjectCaptureView", ObjectCaptureView, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {}, methods: {"hideObjectReticle":{"id":2444857985583109}} });
 registerSDKProtocol("s:19_RealityKit_SwiftUI0A25CoordinateSpaceProjectingP", {"projectPointTo":"project(point:to:)","unprojectFromToOntoPlane":"unproject(_:from:to:ontoPlane:)","rayThroughInTo":"ray(through:in:to:)","entityAtIn":"entity(at:in:)","entitiesAtIn":"entities(at:in:)","hitTestPointInQueryMask":"hitTest(point:in:query:mask:)"});
-registerSDKClass("_RealityKit_SwiftUI.RealityView", RealityView, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} });
-registerSDKClass("_RealityKit_SwiftUI.RealityViewCamera", RealityViewCamera, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} });
-registerSDKClass("_RealityKit_SwiftUI.RealityViewCameraContent", RealityViewCameraContent, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {}, methods: {"animate":{"id":3464726887608829,"hints":[{"callback":{"out":[]}},{"callback":{"out":[]}}]}} });
-registerSDKClass("_RealityKit_SwiftUI.RealityViewCameraContent.Body", RealityViewCameraContent_Body, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} });
+registerSDKClass("_RealityKit_SwiftUI.RealityView", RealityView, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_RealityKit_SwiftUI.RealityViewCamera", RealityViewCamera, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_RealityKit_SwiftUI.RealityViewCameraContent", RealityViewCameraContent, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {}, methods: {"animate":{"id":3464726887608829,"hints":[{"callback":{"out":[]}},{"callback":{"out":[]}}]}} });
+registerSDKClass("_RealityKit_SwiftUI.RealityViewCameraContent.Body", RealityViewCameraContent_Body, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} });
 registerSDKProtocol("s:19_RealityKit_SwiftUI0A19ViewContentProtocolP", {"subscribeToOnComponentType":"subscribe(to:on:componentType:_:)"});
-registerSDKClass("_RealityKit_SwiftUI.RealityViewDefaultPlaceholder", RealityViewDefaultPlaceholder, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} });
-registerSDKClass("_RealityKit_SwiftUI.RealityViewDynamicRange", RealityViewDynamicRange, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} });
-registerSDKClass("_RealityKit_SwiftUI.RealityViewEntityCollection", RealityViewEntityCollection, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {}, methods: {"replaceAll":{"id":3301579243256795},"index":{"id":1428631294414669},"append":{"id":4194912427229717},"insert":{"id":2334642158377649},"removeAt":{"id":1639105097934331},"remove":{"id":3973090818338393},"removeAll":{"id":3541968290397271},"subscript":{"id":2440976153039928}} });
-registerSDKClass("_RealityKit_SwiftUI.RealityViewEnvironment", RealityViewEnvironment, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} });
-registerSDKClass("_RealityKit_SwiftUI.RealityViewLayoutOption", RealityViewLayoutOption, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} });
-registerSDKClass("_RealityKit_SwiftUI.RealityViewPostProcessEffect", RealityViewPostProcessEffect, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} });
-registerSDKClass("_RealityKit_SwiftUI.RealityViewRenderingEffectMode", RealityViewRenderingEffectMode, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} });
-registerSDKClass("_RealityKit_SwiftUI.RealityViewRenderingEffects", RealityViewRenderingEffects, { module: "_RealityKit_SwiftUI_ff42ce03e691ab23", properties: {} });
+registerSDKClass("_RealityKit_SwiftUI.RealityViewDefaultPlaceholder", RealityViewDefaultPlaceholder, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_RealityKit_SwiftUI.RealityViewDynamicRange", RealityViewDynamicRange, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_RealityKit_SwiftUI.RealityViewEntityCollection", RealityViewEntityCollection, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {}, methods: {"replaceAll":{"id":3301579243256795},"index":{"id":1428631294414669},"append":{"id":4194912427229717},"insert":{"id":2334642158377649},"removeAt":{"id":1639105097934331},"remove":{"id":3973090818338393},"removeAll":{"id":3541968290397271},"subscript":{"id":2440976153039928}} });
+registerSDKClass("_RealityKit_SwiftUI.RealityViewEnvironment", RealityViewEnvironment, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_RealityKit_SwiftUI.RealityViewLayoutOption", RealityViewLayoutOption, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_RealityKit_SwiftUI.RealityViewPostProcessEffect", RealityViewPostProcessEffect, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_RealityKit_SwiftUI.RealityViewRenderingEffectMode", RealityViewRenderingEffectMode, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_RealityKit_SwiftUI.RealityViewRenderingEffects", RealityViewRenderingEffects, { module: "_RealityKit_SwiftUI_3864e7f38681b875", properties: {} });

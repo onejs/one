@@ -28,22 +28,22 @@ export class TKTLVRecord extends SDKHandle {
    * class func sequenceOfRecords(from data: Data) -> [TKTLVRecord]?
    * @availability iOS 10.0+
    */
-  static sequenceOfRecords(data: ArrayBuffer): (Array<TKTLVRecord>) | null { return callSDK<(Array<TKTLVRecord>) | null>("CryptoTokenKit_ff42ce03e691ab23", 1766399902715458, undefined, [data]); }
+  static sequenceOfRecords(data: ArrayBuffer): (Array<TKTLVRecord>) | null { return callSDK<(Array<TKTLVRecord>) | null>("CryptoTokenKit_3864e7f38681b875", 1766399902715458, undefined, [data]); }
   /**
    * var data: Data { get }
    * @availability iOS 10.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoTokenKit_ff42ce03e691ab23", 3884142048115300, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoTokenKit_3864e7f38681b875", 3884142048115300, this, []); }
   /**
    * var tag: TKTLVTag { get }
    * @availability iOS 10.0+
    */
-  get tag(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 3039719529530762, this, []); }
+  get tag(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 3039719529530762, this, []); }
   /**
    * var value: Data { get }
    * @availability iOS 10.0+
    */
-  get value(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoTokenKit_ff42ce03e691ab23", 1908904937051932, this, []); }
+  get value(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoTokenKit_3864e7f38681b875", 1908904937051932, this, []); }
   declare readonly $type: { "c:objc(cs)TKTLVRecord": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "data": true; "tag": true; "value": true };
 }
@@ -57,17 +57,17 @@ export class TKBERTLVRecord extends TKTLVRecord {
    * class func data(forTag tag: TKTLVTag) -> Data
    * @availability iOS 10.0+
    */
-  static data(tag: number): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoTokenKit_ff42ce03e691ab23", 4260384393768481, undefined, [tag]); }
+  static data(tag: number): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoTokenKit_3864e7f38681b875", 4260384393768481, undefined, [tag]); }
   /**
    * init(tag: TKTLVTag, records: [TKTLVRecord])
    * @availability iOS 10.0+
    */
-  static initTagRecords(tag: number, records: Array<TKTLVRecord>): TKBERTLVRecord { return callSDK<TKBERTLVRecord>("CryptoTokenKit_ff42ce03e691ab23", 4285463446316857, undefined, [tag, records]); }
+  static initTagRecords(tag: number, records: Array<TKTLVRecord>): TKBERTLVRecord { return callSDK<TKBERTLVRecord>("CryptoTokenKit_3864e7f38681b875", 4285463446316857, undefined, [tag, records]); }
   /**
    * init(tag: TKTLVTag, value: Data)
    * @availability iOS 10.0+
    */
-  static initTagValue(tag: number, value: ArrayBuffer): TKBERTLVRecord { return callSDK<TKBERTLVRecord>("CryptoTokenKit_ff42ce03e691ab23", 504067102408229, undefined, [tag, value]); }
+  static initTagValue(tag: number, value: ArrayBuffer): TKBERTLVRecord { return callSDK<TKBERTLVRecord>("CryptoTokenKit_3864e7f38681b875", 504067102408229, undefined, [tag, value]); }
   declare readonly $type: { "c:objc(cs)TKBERTLVRecord": true; "c:objc(cs)TKTLVRecord": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "data": true; "tag": true; "value": true };
 }
@@ -81,7 +81,7 @@ export class TKCompactTLVRecord extends TKTLVRecord {
    * init(tag: UInt8, value: Data)
    * @availability iOS 10.0+
    */
-  static init(tag: number, value: ArrayBuffer): TKCompactTLVRecord { return callSDK<TKCompactTLVRecord>("CryptoTokenKit_ff42ce03e691ab23", 1121657427103725, undefined, [tag, value]); }
+  static init(tag: number, value: ArrayBuffer): TKCompactTLVRecord { return callSDK<TKCompactTLVRecord>("CryptoTokenKit_3864e7f38681b875", 1121657427103725, undefined, [tag, value]); }
   declare readonly $type: { "c:objc(cs)TKCompactTLVRecord": true; "c:objc(cs)TKTLVRecord": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "data": true; "tag": true; "value": true };
 }
@@ -96,74 +96,74 @@ export class TKError extends SDKHandle {
    * @availability iOS 9.0+
    * @deprecated iOS 9.0
    */
-  static get TKErrorTokenNotFound(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 2651788090625044, undefined, []); }
+  static get TKErrorTokenNotFound(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 2651788090625044, undefined, []); }
   /**
    * static var TKErrorObjectNotFound: TKError.Code { get }
    * @availability iOS 9.0+
    * @deprecated iOS 9.0
    */
-  static get TKErrorObjectNotFound(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 4054600387374428, undefined, []); }
+  static get TKErrorObjectNotFound(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 4054600387374428, undefined, []); }
   /**
    * static var TKErrorAuthenticationFailed: TKError.Code { get }
    * @availability iOS 9.0+
    * @deprecated iOS 9.0
    */
-  static get TKErrorAuthenticationFailed(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 3218863363929275, undefined, []); }
+  static get TKErrorAuthenticationFailed(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 3218863363929275, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 9.0+
    */
-  static get errorDomain(): string { return callSDK<string>("CryptoTokenKit_ff42ce03e691ab23", 3901767004627200, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CryptoTokenKit_3864e7f38681b875", 3901767004627200, undefined, []); }
   /**
    * static var badParameter: TKError.Code { get }
    * @availability iOS 9.0+
    */
-  static get badParameter(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 3196548768563026, undefined, []); }
+  static get badParameter(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 3196548768563026, undefined, []); }
   /**
    * static var corruptedData: TKError.Code { get }
    * @availability iOS 9.0+
    */
-  static get corruptedData(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 3462288532896970, undefined, []); }
+  static get corruptedData(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 3462288532896970, undefined, []); }
   /**
    * static var tokenNotFound: TKError.Code { get }
    * @availability iOS 9.0+
    */
-  static get tokenNotFound(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 4247915547569505, undefined, []); }
+  static get tokenNotFound(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 4247915547569505, undefined, []); }
   /**
    * static var canceledByUser: TKError.Code { get }
    * @availability iOS 9.0+
    */
-  static get canceledByUser(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 1274616277065251, undefined, []); }
+  static get canceledByUser(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 1274616277065251, undefined, []); }
   /**
    * static var notImplemented: TKError.Code { get }
    * @availability iOS 9.0+
    */
-  static get notImplemented(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 2476846960908334, undefined, []); }
+  static get notImplemented(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 2476846960908334, undefined, []); }
   /**
    * static var objectNotFound: TKError.Code { get }
    * @availability iOS 9.0+
    */
-  static get objectNotFound(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 1416428542820553, undefined, []); }
+  static get objectNotFound(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 1416428542820553, undefined, []); }
   /**
    * static var communicationError: TKError.Code { get }
    * @availability iOS 9.0+
    */
-  static get communicationError(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 3600786048220792, undefined, []); }
+  static get communicationError(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 3600786048220792, undefined, []); }
   /**
    * static var authenticationFailed: TKError.Code { get }
    * @availability iOS 9.0+
    */
-  static get authenticationFailed(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 3860729165243068, undefined, []); }
+  static get authenticationFailed(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 3860729165243068, undefined, []); }
   /**
    * static var authenticationNeeded: TKError.Code { get }
    * @availability iOS 9.0+
    */
-  static get authenticationNeeded(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 1837058354956123, undefined, []); }
+  static get authenticationNeeded(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 1837058354956123, undefined, []); }
   /**
    * static var invalidatedDeviceKey: TKError.Code { get }
    * @availability iOS 27.0+
    */
-  static get invalidatedDeviceKey(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 1398730542229413, undefined, []); }
+  static get invalidatedDeviceKey(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 1398730542229413, undefined, []); }
   declare readonly $type: { "s:SC11TKErrorCodeLeV": true };
 }
 
@@ -179,24 +179,24 @@ export const TKError_Code = {
    * @availability iOS 9.0+
    * @deprecated iOS 9.0
    */
-  get TKErrorTokenNotFound(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 688436413244483, undefined, []); },
+  get TKErrorTokenNotFound(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 688436413244483, undefined, []); },
   /**
    * static var TKErrorObjectNotFound: TKError.Code { get }
    * @availability iOS 9.0+
    * @deprecated iOS 9.0
    */
-  get TKErrorObjectNotFound(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 3472545479620938, undefined, []); },
+  get TKErrorObjectNotFound(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 3472545479620938, undefined, []); },
   /**
    * static var TKErrorAuthenticationFailed: TKError.Code { get }
    * @availability iOS 9.0+
    * @deprecated iOS 9.0
    */
-  get TKErrorAuthenticationFailed(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_ff42ce03e691ab23", 3518155541611515, undefined, []); },
+  get TKErrorAuthenticationFailed(): TKError_Code { return callSDK<TKError_Code>("CryptoTokenKit_3864e7f38681b875", 3518155541611515, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (TKError_Code) | null { return callSDK<(TKError_Code) | null>("CryptoTokenKit_ff42ce03e691ab23", 3353624563767598, undefined, [rawValue]); }
+  init(rawValue: number): (TKError_Code) | null { return callSDK<(TKError_Code) | null>("CryptoTokenKit_3864e7f38681b875", 3353624563767598, undefined, [rawValue]); }
 };
 
 /**
@@ -208,7 +208,7 @@ export class TKSimpleTLVRecord extends TKTLVRecord {
    * init(tag: UInt8, value: Data)
    * @availability iOS 10.0+
    */
-  static init(tag: number, value: ArrayBuffer): TKSimpleTLVRecord { return callSDK<TKSimpleTLVRecord>("CryptoTokenKit_ff42ce03e691ab23", 4062024011692313, undefined, [tag, value]); }
+  static init(tag: number, value: ArrayBuffer): TKSimpleTLVRecord { return callSDK<TKSimpleTLVRecord>("CryptoTokenKit_3864e7f38681b875", 4062024011692313, undefined, [tag, value]); }
   declare readonly $type: { "c:objc(cs)TKSimpleTLVRecord": true; "c:objc(cs)TKTLVRecord": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "data": true; "tag": true; "value": true };
 }
@@ -222,96 +222,96 @@ export class TKSmartCard extends SDKHandle {
    * func beginSession() async throws -> Bool
    * @availability iOS 9.0+
    */
-  beginSession(reply: $SDK1): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3955420941912373, this, [reply], [{"callback":{"out":[]}}]); }
+  beginSession(reply: $SDK1): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3955420941912373, this, [reply], [{"callback":{"out":[]}}]); }
   /**
    * func endSession()
    * @availability iOS 9.0+
    */
-  endSession(): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 1745688995062993, this, []); }
+  endSession(): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 1745688995062993, this, []); }
   /** init() */
-  static init(): TKSmartCard { return callSDK<TKSmartCard>("CryptoTokenKit_ff42ce03e691ab23", 2614831509486660, undefined, []); }
+  static init(): TKSmartCard { return callSDK<TKSmartCard>("CryptoTokenKit_3864e7f38681b875", 2614831509486660, undefined, []); }
   /**
    * func transmit(_ request: Data) async throws -> Data
    * @availability iOS 9.0+
    */
-  transmit(request: ArrayBuffer, reply: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3017535669633209, this, [request, reply], [null,{"callback":{"out":[]}}]); }
+  transmit(request: ArrayBuffer, reply: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3017535669633209, this, [request, reply], [null,{"callback":{"out":[]}}]); }
   /**
    * func userInteractionForSecurePINChange(_ PINFormat: TKSmartCardPINFormat, apdu APDU: Data, currentPINByteOffset: Int, newPINByteOffset: Int) -> TKSmartCardUserInteractionForSecurePINChange?
    * @availability iOS 9.0+
    */
-  userInteractionForSecurePINChange(PINFormat: TKSmartCardPINFormat, APDU: ArrayBuffer, currentPINByteOffset: number, newPINByteOffset: number): (TKSmartCardUserInteractionForSecurePINChange) | null { return callSDK<(TKSmartCardUserInteractionForSecurePINChange) | null>("CryptoTokenKit_ff42ce03e691ab23", 580599089187356, this, [PINFormat, APDU, currentPINByteOffset, newPINByteOffset]); }
+  userInteractionForSecurePINChange(PINFormat: TKSmartCardPINFormat, APDU: ArrayBuffer, currentPINByteOffset: number, newPINByteOffset: number): (TKSmartCardUserInteractionForSecurePINChange) | null { return callSDK<(TKSmartCardUserInteractionForSecurePINChange) | null>("CryptoTokenKit_3864e7f38681b875", 580599089187356, this, [PINFormat, APDU, currentPINByteOffset, newPINByteOffset]); }
   /**
    * func userInteractionForSecurePINVerification(_ PINFormat: TKSmartCardPINFormat, apdu APDU: Data, pinByteOffset PINByteOffset: Int) -> TKSmartCardUserInteractionForSecurePINVerification?
    * @availability iOS 9.0+
    */
-  userInteractionForSecurePINVerification(PINFormat: TKSmartCardPINFormat, APDU: ArrayBuffer, PINByteOffset: number): (TKSmartCardUserInteractionForSecurePINVerification) | null { return callSDK<(TKSmartCardUserInteractionForSecurePINVerification) | null>("CryptoTokenKit_ff42ce03e691ab23", 3319854213347753, this, [PINFormat, APDU, PINByteOffset]); }
+  userInteractionForSecurePINVerification(PINFormat: TKSmartCardPINFormat, APDU: ArrayBuffer, PINByteOffset: number): (TKSmartCardUserInteractionForSecurePINVerification) | null { return callSDK<(TKSmartCardUserInteractionForSecurePINVerification) | null>("CryptoTokenKit_3864e7f38681b875", 3319854213347753, this, [PINFormat, APDU, PINByteOffset]); }
   /**
    * var allowedProtocols: TKSmartCardProtocol { get set }
    * @availability iOS 9.0+
    */
-  get allowedProtocols(): TKSmartCardProtocol { return callSDK<TKSmartCardProtocol>("CryptoTokenKit_ff42ce03e691ab23", 3602873174768317, this, []); }
-  set allowedProtocols(value: TKSmartCardProtocol) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 938095629905559, this, [value]); }
+  get allowedProtocols(): TKSmartCardProtocol { return callSDK<TKSmartCardProtocol>("CryptoTokenKit_3864e7f38681b875", 3602873174768317, this, []); }
+  set allowedProtocols(value: TKSmartCardProtocol) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 938095629905559, this, [value]); }
   /**
    * var cla: UInt8 { get set }
    * @availability iOS 9.0+
    */
-  get cla(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 1737930280327601, this, []); }
-  set cla(value: number) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 1331746852911789, this, [value]); }
+  get cla(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 1737930280327601, this, []); }
+  set cla(value: number) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 1331746852911789, this, [value]); }
   /**
    * var context: Any? { get set }
    * @availability iOS 9.0+
    */
-  get context(): (unknown) | null { return callSDK<(unknown) | null>("CryptoTokenKit_ff42ce03e691ab23", 3271004489109811, this, []); }
-  set context(value: (unknown) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 1332406553164919, this, [value]); }
+  get context(): (unknown) | null { return callSDK<(unknown) | null>("CryptoTokenKit_3864e7f38681b875", 3271004489109811, this, []); }
+  set context(value: (unknown) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 1332406553164919, this, [value]); }
   /**
    * var currentProtocol: TKSmartCardProtocol { get }
    * @availability iOS 9.0+
    */
-  get currentProtocol(): TKSmartCardProtocol { return callSDK<TKSmartCardProtocol>("CryptoTokenKit_ff42ce03e691ab23", 2116119008445865, this, []); }
+  get currentProtocol(): TKSmartCardProtocol { return callSDK<TKSmartCardProtocol>("CryptoTokenKit_3864e7f38681b875", 2116119008445865, this, []); }
   /**
    * var isSensitive: Bool { get set }
    * @availability iOS 9.0+
    */
-  get isSensitive(): boolean { return callSDK<boolean>("CryptoTokenKit_ff42ce03e691ab23", 3051183171481110, this, []); }
-  set isSensitive(value: boolean) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 701521348796539, this, [value]); }
+  get isSensitive(): boolean { return callSDK<boolean>("CryptoTokenKit_3864e7f38681b875", 3051183171481110, this, []); }
+  set isSensitive(value: boolean) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 701521348796539, this, [value]); }
   /**
    * var slot: TKSmartCardSlot { get }
    * @availability iOS 9.0+
    */
-  get slot(): TKSmartCardSlot { return callSDK<TKSmartCardSlot>("CryptoTokenKit_ff42ce03e691ab23", 4376541171200409, this, []); }
+  get slot(): TKSmartCardSlot { return callSDK<TKSmartCardSlot>("CryptoTokenKit_3864e7f38681b875", 4376541171200409, this, []); }
   /**
    * var useCommandChaining: Bool { get set }
    * @availability iOS 10.0+
    */
-  get useCommandChaining(): boolean { return callSDK<boolean>("CryptoTokenKit_ff42ce03e691ab23", 4211061179523620, this, []); }
-  set useCommandChaining(value: boolean) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 4339585177716332, this, [value]); }
+  get useCommandChaining(): boolean { return callSDK<boolean>("CryptoTokenKit_3864e7f38681b875", 4211061179523620, this, []); }
+  set useCommandChaining(value: boolean) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 4339585177716332, this, [value]); }
   /**
    * var useExtendedLength: Bool { get set }
    * @availability iOS 9.0+
    */
-  get useExtendedLength(): boolean { return callSDK<boolean>("CryptoTokenKit_ff42ce03e691ab23", 2539875069760228, this, []); }
-  set useExtendedLength(value: boolean) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 4356022098203865, this, [value]); }
+  get useExtendedLength(): boolean { return callSDK<boolean>("CryptoTokenKit_3864e7f38681b875", 2539875069760228, this, []); }
+  set useExtendedLength(value: boolean) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 4356022098203865, this, [value]); }
   /**
    * var isValid: Bool { get }
    * @availability iOS 9.0+
    */
-  get isValid(): boolean { return callSDK<boolean>("CryptoTokenKit_ff42ce03e691ab23", 2480278120150161, this, []); }
+  get isValid(): boolean { return callSDK<boolean>("CryptoTokenKit_3864e7f38681b875", 2480278120150161, this, []); }
   /**
    * func send(ins: UInt8, p1: UInt8, p2: UInt8, data: Data? = nil, le: Int? = nil, reply: @escaping (Data?, UInt16, (any Error)?) -> Void)
    * @availability iOS 9.0+
    */
-  sendInsP1P2DataLeReply(ins: number, p1: number, p2: number, data: (ArrayBuffer) | null, le: (number) | null, reply: ((arg0: (ArrayBuffer) | null, arg1: number, arg2: (NativeError) | null) => void)): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 1641633607385061, this, [ins, p1, p2, data, le, reply], [null,null,null,null,null,{"callback":{"out":[]}}]); }
+  sendInsP1P2DataLeReply(ins: number, p1: number, p2: number, data: (ArrayBuffer) | null, le: (number) | null, reply: ((arg0: (ArrayBuffer) | null, arg1: number, arg2: (NativeError) | null) => void)): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 1641633607385061, this, [ins, p1, p2, data, le, reply], [null,null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func send(ins: UInt8, p1: UInt8, p2: UInt8, data: Data? = nil, le: Int? = nil) throws -> (sw: UInt16, response: Data)
    * @availability iOS 10.0+
    */
-  sendInsP1P2DataLe(ins: number, p1: number, p2: number, data?: (ArrayBuffer) | null, le?: (number) | null): $SDK6 { return callSDK<$SDK6>("CryptoTokenKit_ff42ce03e691ab23", 3039714608238690, this, [ins, p1, p2, data, le]); }
+  sendInsP1P2DataLe(ins: number, p1: number, p2: number, data?: (ArrayBuffer) | null, le?: (number) | null): $SDK6 { return callSDK<$SDK6>("CryptoTokenKit_3864e7f38681b875", 3039714608238690, this, [ins, p1, p2, data, le]); }
   /**
    * @backDeployed(before: macOS 27.0, iOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   final func send(ins: UInt8, p1: UInt8, p2: UInt8, data: Data? = nil, le: Int? = nil) async throws -> (sw: UInt16, response: Data)
    * @availability iOS 13.0+
    */
-  sendInsP1P2DataLe45476(ins: number, p1: number, p2: number, data?: (ArrayBuffer) | null, le?: (number) | null): Promise<$SDK6> { return callSDKAsync<$SDK6>("CryptoTokenKit_ff42ce03e691ab23", 4411576216523401, this, [ins, p1, p2, data, le]); }
+  sendInsP1P2DataLe45476(ins: number, p1: number, p2: number, data?: (ArrayBuffer) | null, le?: (number) | null): Promise<$SDK6> { return callSDKAsync<$SDK6>("CryptoTokenKit_3864e7f38681b875", 4411576216523401, this, [ins, p1, p2, data, le]); }
   declare readonly $type: { "c:objc(cs)TKSmartCard": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowedProtocols": true; "cla": true; "context": true; "currentProtocol": true; "isSensitive": true; "slot": true; "useCommandChaining": true; "useExtendedLength": true; "isValid": true };
 }
@@ -325,37 +325,37 @@ export class TKSmartCardATR extends SDKHandle {
    * init?(bytes: Data)
    * @availability iOS 9.0+
    */
-  static init(bytes: ArrayBuffer): (TKSmartCardATR) | null { return callSDK<(TKSmartCardATR) | null>("CryptoTokenKit_ff42ce03e691ab23", 2800148102242504, undefined, [bytes]); }
+  static init(bytes: ArrayBuffer): (TKSmartCardATR) | null { return callSDK<(TKSmartCardATR) | null>("CryptoTokenKit_3864e7f38681b875", 2800148102242504, undefined, [bytes]); }
   /**
    * func interfaceGroup(at index: Int) -> TKSmartCardATR.InterfaceGroup?
    * @availability iOS 9.0+
    */
-  interfaceGroupAt(index: number): $SDK7 { return callSDK<$SDK7>("CryptoTokenKit_ff42ce03e691ab23", 2655922406323526, this, [index]); }
+  interfaceGroupAt(index: number): $SDK7 { return callSDK<$SDK7>("CryptoTokenKit_3864e7f38681b875", 2655922406323526, this, [index]); }
   /**
    * func interfaceGroup(for protocol: TKSmartCardProtocol) -> TKSmartCardATR.InterfaceGroup?
    * @availability iOS 9.0+
    */
-  interfaceGroupFor(protocol: TKSmartCardProtocol): $SDK7 { return callSDK<$SDK7>("CryptoTokenKit_ff42ce03e691ab23", 4144434149465758, this, [protocol]); }
+  interfaceGroupFor(protocol: TKSmartCardProtocol): $SDK7 { return callSDK<$SDK7>("CryptoTokenKit_3864e7f38681b875", 4144434149465758, this, [protocol]); }
   /**
    * var bytes: Data { get }
    * @availability iOS 9.0+
    */
-  get bytes(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoTokenKit_ff42ce03e691ab23", 2285174335044254, this, []); }
+  get bytes(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoTokenKit_3864e7f38681b875", 2285174335044254, this, []); }
   /**
    * var historicalBytes: Data { get }
    * @availability iOS 9.0+
    */
-  get historicalBytes(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoTokenKit_ff42ce03e691ab23", 1523486888901283, this, []); }
+  get historicalBytes(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoTokenKit_3864e7f38681b875", 1523486888901283, this, []); }
   /**
    * var historicalRecords: [TKCompactTLVRecord]? { get }
    * @availability iOS 10.0+
    */
-  get historicalRecords(): (Array<TKCompactTLVRecord>) | null { return callSDK<(Array<TKCompactTLVRecord>) | null>("CryptoTokenKit_ff42ce03e691ab23", 1977193220671763, this, []); }
+  get historicalRecords(): (Array<TKCompactTLVRecord>) | null { return callSDK<(Array<TKCompactTLVRecord>) | null>("CryptoTokenKit_3864e7f38681b875", 1977193220671763, this, []); }
   /**
    * var protocols: [NSNumber] { get }
    * @availability iOS 9.0+
    */
-  get protocols(): Array<_Foundation_NSNumber> { return callSDK<Array<_Foundation_NSNumber>>("CryptoTokenKit_ff42ce03e691ab23", 209973321370407, this, []); }
+  get protocols(): Array<_Foundation_NSNumber> { return callSDK<Array<_Foundation_NSNumber>>("CryptoTokenKit_3864e7f38681b875", 209973321370407, this, []); }
   declare readonly $type: { "c:objc(cs)TKSmartCardATR": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bytes": true; "historicalBytes": true; "historicalRecords": true; "protocols": true };
 }
@@ -366,27 +366,27 @@ export class TKSmartCardATR extends SDKHandle {
  */
 export class TKSmartCardATR_InterfaceGroup extends SDKHandle {
   /** init() */
-  static init(): TKSmartCardATR_InterfaceGroup { return callSDK<TKSmartCardATR_InterfaceGroup>("CryptoTokenKit_ff42ce03e691ab23", 2078439587775835, undefined, []); }
+  static init(): TKSmartCardATR_InterfaceGroup { return callSDK<TKSmartCardATR_InterfaceGroup>("CryptoTokenKit_3864e7f38681b875", 2078439587775835, undefined, []); }
   /**
    * var ta: NSNumber? { get }
    * @availability iOS 9.0+
    */
-  get ta(): $SDK10 { return callSDK<$SDK10>("CryptoTokenKit_ff42ce03e691ab23", 822323521137759, this, []); }
+  get ta(): $SDK10 { return callSDK<$SDK10>("CryptoTokenKit_3864e7f38681b875", 822323521137759, this, []); }
   /**
    * var tb: NSNumber? { get }
    * @availability iOS 9.0+
    */
-  get tb(): $SDK10 { return callSDK<$SDK10>("CryptoTokenKit_ff42ce03e691ab23", 3158832070187179, this, []); }
+  get tb(): $SDK10 { return callSDK<$SDK10>("CryptoTokenKit_3864e7f38681b875", 3158832070187179, this, []); }
   /**
    * var tc: NSNumber? { get }
    * @availability iOS 9.0+
    */
-  get tc(): $SDK10 { return callSDK<$SDK10>("CryptoTokenKit_ff42ce03e691ab23", 3828829437692555, this, []); }
+  get tc(): $SDK10 { return callSDK<$SDK10>("CryptoTokenKit_3864e7f38681b875", 3828829437692555, this, []); }
   /**
    * var `protocol`: NSNumber? { get }
    * @availability iOS 9.0+
    */
-  get protocol(): $SDK10 { return callSDK<$SDK10>("CryptoTokenKit_ff42ce03e691ab23", 2660300506416563, this, []); }
+  get protocol(): $SDK10 { return callSDK<$SDK10>("CryptoTokenKit_3864e7f38681b875", 2660300506416563, this, []); }
   declare readonly $type: { "c:objc(cs)TKSmartCardATRInterfaceGroup": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ta": true; "tb": true; "tc": true; "protocol": true };
 }
@@ -397,61 +397,61 @@ export class TKSmartCardATR_InterfaceGroup extends SDKHandle {
  */
 export class TKSmartCardPINFormat extends SDKHandle {
   /** init() */
-  static init(): TKSmartCardPINFormat { return callSDK<TKSmartCardPINFormat>("CryptoTokenKit_ff42ce03e691ab23", 2709158841913699, undefined, []); }
+  static init(): TKSmartCardPINFormat { return callSDK<TKSmartCardPINFormat>("CryptoTokenKit_3864e7f38681b875", 2709158841913699, undefined, []); }
   /**
    * var pinBitOffset: Int { get set }
    * @availability iOS 9.0+
    */
-  get pinBitOffset(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 3238757719905441, this, []); }
-  set pinBitOffset(value: number) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3268197382479886, this, [value]); }
+  get pinBitOffset(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 3238757719905441, this, []); }
+  set pinBitOffset(value: number) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3268197382479886, this, [value]); }
   /**
    * var pinBlockByteLength: Int { get set }
    * @availability iOS 9.0+
    */
-  get pinBlockByteLength(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 2925841909953632, this, []); }
-  set pinBlockByteLength(value: number) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2138449061101502, this, [value]); }
+  get pinBlockByteLength(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 2925841909953632, this, []); }
+  set pinBlockByteLength(value: number) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2138449061101502, this, [value]); }
   /**
    * var pinJustification: TKSmartCardPINFormat.Justification { get set }
    * @availability iOS 9.0+
    */
-  get pinJustification(): TKSmartCardPINFormat_Justification { return callSDK<TKSmartCardPINFormat_Justification>("CryptoTokenKit_ff42ce03e691ab23", 2114384035989347, this, []); }
-  set pinJustification(value: TKSmartCardPINFormat_Justification) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 820364190116890, this, [value]); }
+  get pinJustification(): TKSmartCardPINFormat_Justification { return callSDK<TKSmartCardPINFormat_Justification>("CryptoTokenKit_3864e7f38681b875", 2114384035989347, this, []); }
+  set pinJustification(value: TKSmartCardPINFormat_Justification) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 820364190116890, this, [value]); }
   /**
    * var pinLengthBitOffset: Int { get set }
    * @availability iOS 9.0+
    */
-  get pinLengthBitOffset(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 1191023175675206, this, []); }
-  set pinLengthBitOffset(value: number) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 1825904679986422, this, [value]); }
+  get pinLengthBitOffset(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 1191023175675206, this, []); }
+  set pinLengthBitOffset(value: number) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 1825904679986422, this, [value]); }
   /**
    * var pinLengthBitSize: Int { get set }
    * @availability iOS 9.0+
    */
-  get pinLengthBitSize(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 3454262842215904, this, []); }
-  set pinLengthBitSize(value: number) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2466454412839589, this, [value]); }
+  get pinLengthBitSize(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 3454262842215904, this, []); }
+  set pinLengthBitSize(value: number) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2466454412839589, this, [value]); }
   /**
    * var charset: TKSmartCardPINFormat.Charset { get set }
    * @availability iOS 9.0+
    */
-  get charset(): TKSmartCardPINFormat_Charset { return callSDK<TKSmartCardPINFormat_Charset>("CryptoTokenKit_ff42ce03e691ab23", 241562596974489, this, []); }
-  set charset(value: TKSmartCardPINFormat_Charset) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 216110501919887, this, [value]); }
+  get charset(): TKSmartCardPINFormat_Charset { return callSDK<TKSmartCardPINFormat_Charset>("CryptoTokenKit_3864e7f38681b875", 241562596974489, this, []); }
+  set charset(value: TKSmartCardPINFormat_Charset) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 216110501919887, this, [value]); }
   /**
    * var encoding: TKSmartCardPINFormat.Encoding { get set }
    * @availability iOS 9.0+
    */
-  get encoding(): TKSmartCardPINFormat_Encoding { return callSDK<TKSmartCardPINFormat_Encoding>("CryptoTokenKit_ff42ce03e691ab23", 3163749855530093, this, []); }
-  set encoding(value: TKSmartCardPINFormat_Encoding) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 4283968797319360, this, [value]); }
+  get encoding(): TKSmartCardPINFormat_Encoding { return callSDK<TKSmartCardPINFormat_Encoding>("CryptoTokenKit_3864e7f38681b875", 3163749855530093, this, []); }
+  set encoding(value: TKSmartCardPINFormat_Encoding) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 4283968797319360, this, [value]); }
   /**
    * var maxPINLength: Int { get set }
    * @availability iOS 9.0+
    */
-  get maxPINLength(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 2028986628006567, this, []); }
-  set maxPINLength(value: number) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3886170741430254, this, [value]); }
+  get maxPINLength(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 2028986628006567, this, []); }
+  set maxPINLength(value: number) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3886170741430254, this, [value]); }
   /**
    * var minPINLength: Int { get set }
    * @availability iOS 9.0+
    */
-  get minPINLength(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 2796794569084057, this, []); }
-  set minPINLength(value: number) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 4374118042173538, this, [value]); }
+  get minPINLength(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 2796794569084057, this, []); }
+  set minPINLength(value: number) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 4374118042173538, this, [value]); }
   declare readonly $type: { "c:objc(cs)TKSmartCardPINFormat": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "pinBitOffset": true; "pinBlockByteLength": true; "pinJustification": true; "pinLengthBitOffset": true; "pinLengthBitSize": true; "charset": true; "encoding": true; "maxPINLength": true; "minPINLength": true };
 }
@@ -467,7 +467,7 @@ export const TKSmartCardPINFormat_Charset = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (TKSmartCardPINFormat_Charset) | null { return callSDK<(TKSmartCardPINFormat_Charset) | null>("CryptoTokenKit_ff42ce03e691ab23", 3038816963021856, undefined, [rawValue]); }
+  init(rawValue: number): (TKSmartCardPINFormat_Charset) | null { return callSDK<(TKSmartCardPINFormat_Charset) | null>("CryptoTokenKit_3864e7f38681b875", 3038816963021856, undefined, [rawValue]); }
 };
 
 /**
@@ -481,7 +481,7 @@ export const TKSmartCardPINFormat_Encoding = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (TKSmartCardPINFormat_Encoding) | null { return callSDK<(TKSmartCardPINFormat_Encoding) | null>("CryptoTokenKit_ff42ce03e691ab23", 4459947105324753, undefined, [rawValue]); }
+  init(rawValue: number): (TKSmartCardPINFormat_Encoding) | null { return callSDK<(TKSmartCardPINFormat_Encoding) | null>("CryptoTokenKit_3864e7f38681b875", 4459947105324753, undefined, [rawValue]); }
 };
 
 /**
@@ -495,7 +495,7 @@ export const TKSmartCardPINFormat_Justification = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (TKSmartCardPINFormat_Justification) | null { return callSDK<(TKSmartCardPINFormat_Justification) | null>("CryptoTokenKit_ff42ce03e691ab23", 201042528438016, undefined, [rawValue]); }
+  init(rawValue: number): (TKSmartCardPINFormat_Justification) | null { return callSDK<(TKSmartCardPINFormat_Justification) | null>("CryptoTokenKit_3864e7f38681b875", 201042528438016, undefined, [rawValue]); }
 };
 
 /**
@@ -509,27 +509,27 @@ export const TKSmartCardProtocol = {
    * static var any: TKSmartCardProtocol { get }
    * @availability iOS 9.0+
    */
-  get any(): TKSmartCardProtocol { return callSDK<TKSmartCardProtocol>("CryptoTokenKit_ff42ce03e691ab23", 1137983767301387, undefined, []); },
+  get any(): TKSmartCardProtocol { return callSDK<TKSmartCardProtocol>("CryptoTokenKit_3864e7f38681b875", 1137983767301387, undefined, []); },
   /**
    * static var t0: TKSmartCardProtocol { get }
    * @availability iOS 9.0+
    */
-  get t0(): TKSmartCardProtocol { return callSDK<TKSmartCardProtocol>("CryptoTokenKit_ff42ce03e691ab23", 526188210296534, undefined, []); },
+  get t0(): TKSmartCardProtocol { return callSDK<TKSmartCardProtocol>("CryptoTokenKit_3864e7f38681b875", 526188210296534, undefined, []); },
   /**
    * static var t15: TKSmartCardProtocol { get }
    * @availability iOS 9.0+
    */
-  get t15(): TKSmartCardProtocol { return callSDK<TKSmartCardProtocol>("CryptoTokenKit_ff42ce03e691ab23", 3907329787802054, undefined, []); },
+  get t15(): TKSmartCardProtocol { return callSDK<TKSmartCardProtocol>("CryptoTokenKit_3864e7f38681b875", 3907329787802054, undefined, []); },
   /**
    * static var t1: TKSmartCardProtocol { get }
    * @availability iOS 9.0+
    */
-  get t1(): TKSmartCardProtocol { return callSDK<TKSmartCardProtocol>("CryptoTokenKit_ff42ce03e691ab23", 524777059933384, undefined, []); },
+  get t1(): TKSmartCardProtocol { return callSDK<TKSmartCardProtocol>("CryptoTokenKit_3864e7f38681b875", 524777059933384, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): TKSmartCardProtocol { return callSDK<TKSmartCardProtocol>("CryptoTokenKit_ff42ce03e691ab23", 3222117393540344, undefined, [rawValue]); }
+  init(rawValue: number): TKSmartCardProtocol { return callSDK<TKSmartCardProtocol>("CryptoTokenKit_3864e7f38681b875", 3222117393540344, undefined, [rawValue]); }
 };
 
 /**
@@ -538,37 +538,37 @@ export const TKSmartCardProtocol = {
  */
 export class TKSmartCardSlot extends SDKHandle {
   /** init() */
-  static init(): TKSmartCardSlot { return callSDK<TKSmartCardSlot>("CryptoTokenKit_ff42ce03e691ab23", 815988042528102, undefined, []); }
+  static init(): TKSmartCardSlot { return callSDK<TKSmartCardSlot>("CryptoTokenKit_3864e7f38681b875", 815988042528102, undefined, []); }
   /**
    * func makeSmartCard() -> TKSmartCard?
    * @availability iOS 9.0+
    */
-  makeSmartCard(): (TKSmartCard) | null { return callSDK<(TKSmartCard) | null>("CryptoTokenKit_ff42ce03e691ab23", 1830526905806084, this, []); }
+  makeSmartCard(): (TKSmartCard) | null { return callSDK<(TKSmartCard) | null>("CryptoTokenKit_3864e7f38681b875", 1830526905806084, this, []); }
   /**
    * var atr: TKSmartCardATR? { get }
    * @availability iOS 9.0+
    */
-  get atr(): (TKSmartCardATR) | null { return callSDK<(TKSmartCardATR) | null>("CryptoTokenKit_ff42ce03e691ab23", 4156652983884399, this, []); }
+  get atr(): (TKSmartCardATR) | null { return callSDK<(TKSmartCardATR) | null>("CryptoTokenKit_3864e7f38681b875", 4156652983884399, this, []); }
   /**
    * var maxInputLength: Int { get }
    * @availability iOS 9.0+
    */
-  get maxInputLength(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 2218099196737036, this, []); }
+  get maxInputLength(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 2218099196737036, this, []); }
   /**
    * var maxOutputLength: Int { get }
    * @availability iOS 9.0+
    */
-  get maxOutputLength(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 225384679242373, this, []); }
+  get maxOutputLength(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 225384679242373, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("CryptoTokenKit_ff42ce03e691ab23", 1501060080770582, this, []); }
+  get name(): string { return callSDK<string>("CryptoTokenKit_3864e7f38681b875", 1501060080770582, this, []); }
   /**
    * var state: TKSmartCardSlot.State { get }
    * @availability iOS 9.0+
    */
-  get state(): TKSmartCardSlot_State { return callSDK<TKSmartCardSlot_State>("CryptoTokenKit_ff42ce03e691ab23", 669157380015399, this, []); }
+  get state(): TKSmartCardSlot_State { return callSDK<TKSmartCardSlot_State>("CryptoTokenKit_3864e7f38681b875", 669157380015399, this, []); }
   declare readonly $type: { "c:objc(cs)TKSmartCardSlot": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "atr": true; "maxInputLength": true; "maxOutputLength": true; "name": true; "state": true };
 }
@@ -584,7 +584,7 @@ export const TKSmartCardSlot_State = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (TKSmartCardSlot_State) | null { return callSDK<(TKSmartCardSlot_State) | null>("CryptoTokenKit_ff42ce03e691ab23", 2255006725569811, undefined, [rawValue]); }
+  init(rawValue: number): (TKSmartCardSlot_State) | null { return callSDK<(TKSmartCardSlot_State) | null>("CryptoTokenKit_3864e7f38681b875", 2255006725569811, undefined, [rawValue]); }
 };
 
 /**
@@ -596,34 +596,34 @@ export class TKSmartCardSlotManager extends SDKHandle {
    * class var `default`: TKSmartCardSlotManager? { get }
    * @availability iOS 9.0+
    */
-  static get default(): (TKSmartCardSlotManager) | null { return callSDK<(TKSmartCardSlotManager) | null>("CryptoTokenKit_ff42ce03e691ab23", 416724508037144, undefined, []); }
+  static get default(): (TKSmartCardSlotManager) | null { return callSDK<(TKSmartCardSlotManager) | null>("CryptoTokenKit_3864e7f38681b875", 416724508037144, undefined, []); }
   /**
    * func createNFCSlot(message: String?) async throws -> TKSmartCardSlotNFCSession
    * @availability iOS 26.0+
    */
-  createNFCSlot(message: (string) | null, completion: ((arg0: (TKSmartCardSlotNFCSession) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2963009963878678, this, [message, completion], [null,{"callback":{"out":[]}}]); }
+  createNFCSlot(message: (string) | null, completion: ((arg0: (TKSmartCardSlotNFCSession) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2963009963878678, this, [message, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func getSlot(withName name: String) async -> TKSmartCardSlot?
    * @availability iOS 9.0+
    */
-  getSlot(name: string, reply: ((arg0: (TKSmartCardSlot) | null) => void)): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 4033324920857728, this, [name, reply], [null,{"callback":{"out":[]}}]); }
+  getSlot(name: string, reply: ((arg0: (TKSmartCardSlot) | null) => void)): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 4033324920857728, this, [name, reply], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): TKSmartCardSlotManager { return callSDK<TKSmartCardSlotManager>("CryptoTokenKit_ff42ce03e691ab23", 3830965166982128, undefined, []); }
+  static init(): TKSmartCardSlotManager { return callSDK<TKSmartCardSlotManager>("CryptoTokenKit_3864e7f38681b875", 3830965166982128, undefined, []); }
   /**
    * func isNFCSupported() -> Bool
    * @availability iOS 26.0+
    */
-  isNFCSupported(): boolean { return callSDK<boolean>("CryptoTokenKit_ff42ce03e691ab23", 4111388490910605, this, []); }
+  isNFCSupported(): boolean { return callSDK<boolean>("CryptoTokenKit_3864e7f38681b875", 4111388490910605, this, []); }
   /**
    * func slotNamed(_ name: String) -> TKSmartCardSlot?
    * @availability iOS 9.0+
    */
-  slotNamed(name: string): (TKSmartCardSlot) | null { return callSDK<(TKSmartCardSlot) | null>("CryptoTokenKit_ff42ce03e691ab23", 1711268156935392, this, [name]); }
+  slotNamed(name: string): (TKSmartCardSlot) | null { return callSDK<(TKSmartCardSlot) | null>("CryptoTokenKit_3864e7f38681b875", 1711268156935392, this, [name]); }
   /**
    * var slotNames: [String] { get }
    * @availability iOS 9.0+
    */
-  get slotNames(): Array<string> { return callSDK<Array<string>>("CryptoTokenKit_ff42ce03e691ab23", 4026299318878604, this, []); }
+  get slotNames(): Array<string> { return callSDK<Array<string>>("CryptoTokenKit_3864e7f38681b875", 4026299318878604, this, []); }
   declare readonly $type: { "c:objc(cs)TKSmartCardSlotManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "slotNames": true };
 }
@@ -637,17 +637,17 @@ export class TKSmartCardSlotNFCSession extends SDKHandle {
    * func end()
    * @availability iOS 26.0+
    */
-  end(): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2911168663464211, this, []); }
+  end(): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2911168663464211, this, []); }
   /**
    * func update(message: String) throws
    * @availability iOS 26.0+
    */
-  update(message: string): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 4046287457910012, this, [message]); }
+  update(message: string): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 4046287457910012, this, [message]); }
   /**
    * var slotName: String? { get }
    * @availability iOS 26.0+
    */
-  get slotName(): (string) | null { return callSDK<(string) | null>("CryptoTokenKit_ff42ce03e691ab23", 2914888954088825, this, []); }
+  get slotName(): (string) | null { return callSDK<(string) | null>("CryptoTokenKit_3864e7f38681b875", 2914888954088825, this, []); }
   declare readonly $type: { "c:objc(cs)TKSmartCardSlotNFCSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "slotName": true };
 }
@@ -661,28 +661,28 @@ export class TKToken extends SDKHandle {
    * init(tokenDriver: TKTokenDriver, instanceID: TKToken.InstanceID)
    * @availability iOS 10.0+
    */
-  static init(tokenDriver: TKTokenDriver, instanceID: string): TKToken { return callSDK<TKToken>("CryptoTokenKit_ff42ce03e691ab23", 2077253675717267, undefined, [tokenDriver, instanceID]); }
+  static init(tokenDriver: TKTokenDriver, instanceID: string): TKToken { return callSDK<TKToken>("CryptoTokenKit_3864e7f38681b875", 2077253675717267, undefined, [tokenDriver, instanceID]); }
   /**
    * var configuration: TKToken.Configuration { get }
    * @availability iOS 14.0+
    */
-  get configuration(): TKToken_Configuration { return callSDK<TKToken_Configuration>("CryptoTokenKit_ff42ce03e691ab23", 2639571568542193, this, []); }
+  get configuration(): TKToken_Configuration { return callSDK<TKToken_Configuration>("CryptoTokenKit_3864e7f38681b875", 2639571568542193, this, []); }
   /**
    * weak var delegate: (any TKTokenDelegate)? { get set }
    * @availability iOS 10.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CryptoTokenKit_ff42ce03e691ab23", 2719150119552299, this, []); }
-  set delegate(value: (SDKHandle) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2011842261747437, this, [value]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CryptoTokenKit_3864e7f38681b875", 2719150119552299, this, []); }
+  set delegate(value: (SDKHandle) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2011842261747437, this, [value]); }
   /**
    * var keychainContents: TKTokenKeychainContents? { get }
    * @availability iOS 10.0+
    */
-  get keychainContents(): (TKTokenKeychainContents) | null { return callSDK<(TKTokenKeychainContents) | null>("CryptoTokenKit_ff42ce03e691ab23", 3843715929940671, this, []); }
+  get keychainContents(): (TKTokenKeychainContents) | null { return callSDK<(TKTokenKeychainContents) | null>("CryptoTokenKit_3864e7f38681b875", 3843715929940671, this, []); }
   /**
    * var tokenDriver: TKTokenDriver { get }
    * @availability iOS 10.0+
    */
-  get tokenDriver(): TKTokenDriver { return callSDK<TKTokenDriver>("CryptoTokenKit_ff42ce03e691ab23", 3286988447005070, this, []); }
+  get tokenDriver(): TKTokenDriver { return callSDK<TKTokenDriver>("CryptoTokenKit_3864e7f38681b875", 3286988447005070, this, []); }
   declare readonly $type: { "c:objc(cs)TKToken": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "configuration": true; "delegate": true; "keychainContents": true; "tokenDriver": true };
 }
@@ -696,12 +696,12 @@ export class TKSmartCardToken extends (TKToken as unknown as Omit<typeof TKToken
    * init(smartCard: TKSmartCard, aid AID: Data?, instanceID: String, tokenDriver: TKSmartCardTokenDriver)
    * @availability iOS 10.0+
    */
-  static init(smartCard: TKSmartCard, AID: (ArrayBuffer) | null, instanceID: string, tokenDriver: TKSmartCardTokenDriver): TKSmartCardToken { return callSDK<TKSmartCardToken>("CryptoTokenKit_ff42ce03e691ab23", 1766091382333798, undefined, [smartCard, AID, instanceID, tokenDriver]); }
+  static init(smartCard: TKSmartCard, AID: (ArrayBuffer) | null, instanceID: string, tokenDriver: TKSmartCardTokenDriver): TKSmartCardToken { return callSDK<TKSmartCardToken>("CryptoTokenKit_3864e7f38681b875", 1766091382333798, undefined, [smartCard, AID, instanceID, tokenDriver]); }
   /**
    * var aid: Data? { get }
    * @availability iOS 10.0+
    */
-  get aid(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_ff42ce03e691ab23", 4270148898047953, this, []); }
+  get aid(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_3864e7f38681b875", 4270148898047953, this, []); }
   declare readonly $type: { "c:objc(cs)TKSmartCardToken": true; "c:objc(cs)TKToken": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "configuration": true; "delegate": true; "keychainContents": true; "tokenDriver": true; "aid": true };
 }
@@ -712,13 +712,13 @@ export class TKSmartCardToken extends (TKToken as unknown as Omit<typeof TKToken
  */
 export class TKTokenDriver extends SDKHandle {
   /** init() */
-  static init(): TKTokenDriver { return callSDK<TKTokenDriver>("CryptoTokenKit_ff42ce03e691ab23", 3519970479826910, undefined, []); }
+  static init(): TKTokenDriver { return callSDK<TKTokenDriver>("CryptoTokenKit_3864e7f38681b875", 3519970479826910, undefined, []); }
   /**
    * weak var delegate: (any TKTokenDriverDelegate)? { get set }
    * @availability iOS 10.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CryptoTokenKit_ff42ce03e691ab23", 1707132704730724, this, []); }
-  set delegate(value: (Implements<TKTokenDriverDelegate> | SDKHandle) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3277804855443112, this, [value], [{"protocol":"c:objc(pl)TKTokenDriverDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CryptoTokenKit_3864e7f38681b875", 1707132704730724, this, []); }
+  set delegate(value: (Implements<TKTokenDriverDelegate> | SDKHandle) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3277804855443112, this, [value], [{"protocol":"c:objc(pl)TKTokenDriverDelegate"}]); }
   declare readonly $type: { "c:objc(cs)TKTokenDriver": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -729,7 +729,7 @@ export class TKTokenDriver extends SDKHandle {
  */
 export class TKSmartCardTokenDriver extends (TKTokenDriver as unknown as Omit<typeof TKTokenDriver, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => TKTokenDriver)) {
   /** init() */
-  static init(): TKSmartCardTokenDriver { return callSDK<TKSmartCardTokenDriver>("CryptoTokenKit_ff42ce03e691ab23", 1254869170976019, undefined, []); }
+  static init(): TKSmartCardTokenDriver { return callSDK<TKSmartCardTokenDriver>("CryptoTokenKit_3864e7f38681b875", 1254869170976019, undefined, []); }
   declare readonly $type: { "c:objc(cs)TKSmartCardTokenDriver": true; "c:objc(cs)TKTokenDriver": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -757,22 +757,22 @@ export class TKSmartCardTokenRegistrationManager extends SDKHandle {
    * class var `default`: TKSmartCardTokenRegistrationManager { get }
    * @availability iOS 26.0+
    */
-  static get default(): TKSmartCardTokenRegistrationManager { return callSDK<TKSmartCardTokenRegistrationManager>("CryptoTokenKit_ff42ce03e691ab23", 705178181064722, undefined, []); }
+  static get default(): TKSmartCardTokenRegistrationManager { return callSDK<TKSmartCardTokenRegistrationManager>("CryptoTokenKit_3864e7f38681b875", 705178181064722, undefined, []); }
   /**
    * func registerSmartCard(tokenID: String, promptMessage: String) throws
    * @availability iOS 26.0+
    */
-  registerSmartCard(tokenID: string, promptMessage: string): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2114942021179380, this, [tokenID, promptMessage]); }
+  registerSmartCard(tokenID: string, promptMessage: string): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2114942021179380, this, [tokenID, promptMessage]); }
   /**
    * func unregisterSmartCard(tokenID: String) throws
    * @availability iOS 26.0+
    */
-  unregisterSmartCard(tokenID: string): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2709333831987034, this, [tokenID]); }
+  unregisterSmartCard(tokenID: string): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2709333831987034, this, [tokenID]); }
   /**
    * var registeredSmartCardTokens: [String] { get }
    * @availability iOS 26.0+
    */
-  get registeredSmartCardTokens(): Array<string> { return callSDK<Array<string>>("CryptoTokenKit_ff42ce03e691ab23", 3285562422737092, this, []); }
+  get registeredSmartCardTokens(): Array<string> { return callSDK<Array<string>>("CryptoTokenKit_3864e7f38681b875", 3285562422737092, this, []); }
   declare readonly $type: { "c:objc(cs)TKSmartCardTokenRegistrationManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "registeredSmartCardTokens": true };
 }
@@ -786,18 +786,18 @@ export class TKTokenSession extends SDKHandle {
    * init(token: TKToken)
    * @availability iOS 10.0+
    */
-  static init(token: TKToken): TKTokenSession { return callSDK<TKTokenSession>("CryptoTokenKit_ff42ce03e691ab23", 2668224646422162, undefined, [token]); }
+  static init(token: TKToken): TKTokenSession { return callSDK<TKTokenSession>("CryptoTokenKit_3864e7f38681b875", 2668224646422162, undefined, [token]); }
   /**
    * weak var delegate: (any TKTokenSessionDelegate)? { get set }
    * @availability iOS 10.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CryptoTokenKit_ff42ce03e691ab23", 2305654115949533, this, []); }
-  set delegate(value: (Implements<TKTokenSessionDelegate> | SDKHandle) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2810838942416250, this, [value], [{"protocol":"c:objc(pl)TKTokenSessionDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CryptoTokenKit_3864e7f38681b875", 2305654115949533, this, []); }
+  set delegate(value: (Implements<TKTokenSessionDelegate> | SDKHandle) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2810838942416250, this, [value], [{"protocol":"c:objc(pl)TKTokenSessionDelegate"}]); }
   /**
    * var token: TKToken { get }
    * @availability iOS 10.0+
    */
-  get token(): TKToken { return callSDK<TKToken>("CryptoTokenKit_ff42ce03e691ab23", 3373259863414161, this, []); }
+  get token(): TKToken { return callSDK<TKToken>("CryptoTokenKit_3864e7f38681b875", 3373259863414161, this, []); }
   declare readonly $type: { "c:objc(cs)TKTokenSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "token": true };
 }
@@ -811,13 +811,13 @@ export class TKSmartCardTokenSession extends TKTokenSession {
    * func getSmartCard() throws -> TKSmartCard
    * @availability iOS 26.0+
    */
-  getSmartCard(): TKSmartCard { return callSDK<TKSmartCard>("CryptoTokenKit_ff42ce03e691ab23", 2423668501423366, this, []); }
+  getSmartCard(): TKSmartCard { return callSDK<TKSmartCard>("CryptoTokenKit_3864e7f38681b875", 2423668501423366, this, []); }
   /**
    * var smartCard: TKSmartCard { get }
    * @availability iOS 10.0+
    * @deprecated iOS 26.0
    */
-  get smartCard(): TKSmartCard { return callSDK<TKSmartCard>("CryptoTokenKit_ff42ce03e691ab23", 4034558895670568, this, []); }
+  get smartCard(): TKSmartCard { return callSDK<TKSmartCard>("CryptoTokenKit_3864e7f38681b875", 4034558895670568, this, []); }
   declare readonly $type: { "c:objc(cs)TKSmartCardTokenSession": true; "c:objc(cs)TKTokenSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "token": true; "smartCard": true };
 }
@@ -831,32 +831,32 @@ export class TKSmartCardUserInteraction extends SDKHandle {
    * func cancel() -> Bool
    * @availability iOS 9.0+
    */
-  cancel(): boolean { return callSDK<boolean>("CryptoTokenKit_ff42ce03e691ab23", 288678438107827, this, []); }
+  cancel(): boolean { return callSDK<boolean>("CryptoTokenKit_3864e7f38681b875", 288678438107827, this, []); }
   /** init() */
-  static init(): TKSmartCardUserInteraction { return callSDK<TKSmartCardUserInteraction>("CryptoTokenKit_ff42ce03e691ab23", 2852804168120725, undefined, []); }
+  static init(): TKSmartCardUserInteraction { return callSDK<TKSmartCardUserInteraction>("CryptoTokenKit_3864e7f38681b875", 2852804168120725, undefined, []); }
   /**
    * func run() async throws -> Bool
    * @availability iOS 9.0+
    */
-  run(reply: $SDK1): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3383367752925903, this, [reply], [{"callback":{"out":[]}}]); }
+  run(reply: $SDK1): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3383367752925903, this, [reply], [{"callback":{"out":[]}}]); }
   /**
    * weak var delegate: (any TKSmartCardUserInteractionDelegate)? { get set }
    * @availability iOS 9.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CryptoTokenKit_ff42ce03e691ab23", 860896862429721, this, []); }
-  set delegate(value: (Implements<TKSmartCardUserInteractionDelegate> | SDKHandle) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 15379543387616, this, [value], [{"protocol":"c:objc(pl)TKSmartCardUserInteractionDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CryptoTokenKit_3864e7f38681b875", 860896862429721, this, []); }
+  set delegate(value: (Implements<TKSmartCardUserInteractionDelegate> | SDKHandle) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 15379543387616, this, [value], [{"protocol":"c:objc(pl)TKSmartCardUserInteractionDelegate"}]); }
   /**
    * var initialTimeout: TimeInterval { get set }
    * @availability iOS 9.0+
    */
-  get initialTimeout(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 1306512770518111, this, []); }
-  set initialTimeout(value: number) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 1036593625908604, this, [value]); }
+  get initialTimeout(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 1306512770518111, this, []); }
+  set initialTimeout(value: number) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 1036593625908604, this, [value]); }
   /**
    * var interactionTimeout: TimeInterval { get set }
    * @availability iOS 9.0+
    */
-  get interactionTimeout(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 265359676760350, this, []); }
-  set interactionTimeout(value: number) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 783660174610956, this, [value]); }
+  get interactionTimeout(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 265359676760350, this, []); }
+  set interactionTimeout(value: number) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 783660174610956, this, [value]); }
   declare readonly $type: { "c:objc(cs)TKSmartCardUserInteraction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "initialTimeout": true; "interactionTimeout": true };
 }
@@ -909,37 +909,37 @@ export interface TKSmartCardUserInteractionDelegate {
  */
 export class TKSmartCardUserInteractionForPINOperation extends (TKSmartCardUserInteraction as unknown as Omit<typeof TKSmartCardUserInteraction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => TKSmartCardUserInteraction)) {
   /** init() */
-  static init(): TKSmartCardUserInteractionForPINOperation { return callSDK<TKSmartCardUserInteractionForPINOperation>("CryptoTokenKit_ff42ce03e691ab23", 4384730028784412, undefined, []); }
+  static init(): TKSmartCardUserInteractionForPINOperation { return callSDK<TKSmartCardUserInteractionForPINOperation>("CryptoTokenKit_3864e7f38681b875", 4384730028784412, undefined, []); }
   /**
    * var pinCompletion: TKSmartCardUserInteractionForPINOperation.Completion { get set }
    * @availability iOS 9.0+
    */
-  get pinCompletion(): TKSmartCardUserInteractionForPINOperation_Completion { return callSDK<TKSmartCardUserInteractionForPINOperation_Completion>("CryptoTokenKit_ff42ce03e691ab23", 2624667426056118, this, []); }
-  set pinCompletion(value: TKSmartCardUserInteractionForPINOperation_Completion) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 1142875153176125, this, [value]); }
+  get pinCompletion(): TKSmartCardUserInteractionForPINOperation_Completion { return callSDK<TKSmartCardUserInteractionForPINOperation_Completion>("CryptoTokenKit_3864e7f38681b875", 2624667426056118, this, []); }
+  set pinCompletion(value: TKSmartCardUserInteractionForPINOperation_Completion) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 1142875153176125, this, [value]); }
   /**
    * var pinMessageIndices: [NSNumber]? { get set }
    * @availability iOS 9.0+
    */
-  get pinMessageIndices(): $SDK19 { return callSDK<$SDK19>("CryptoTokenKit_ff42ce03e691ab23", 876946657318511, this, []); }
-  set pinMessageIndices(value: $SDK19) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 4004198653515322, this, [value]); }
+  get pinMessageIndices(): $SDK19 { return callSDK<$SDK19>("CryptoTokenKit_3864e7f38681b875", 876946657318511, this, []); }
+  set pinMessageIndices(value: $SDK19) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 4004198653515322, this, [value]); }
   /**
    * var locale: Locale! { get set }
    * @availability iOS 9.0+
    */
-  get locale(): (_Foundation_Locale) | null { return callSDK<(_Foundation_Locale) | null>("CryptoTokenKit_ff42ce03e691ab23", 4356981385565153, this, []); }
-  set locale(value: (_Foundation_Locale) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3351719343641740, this, [value]); }
+  get locale(): (_Foundation_Locale) | null { return callSDK<(_Foundation_Locale) | null>("CryptoTokenKit_3864e7f38681b875", 4356981385565153, this, []); }
+  set locale(value: (_Foundation_Locale) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3351719343641740, this, [value]); }
   /**
    * var resultData: Data? { get set }
    * @availability iOS 9.0+
    */
-  get resultData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_ff42ce03e691ab23", 2002990149277736, this, []); }
-  set resultData(value: (ArrayBuffer) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 1880537359722056, this, [value]); }
+  get resultData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_3864e7f38681b875", 2002990149277736, this, []); }
+  set resultData(value: (ArrayBuffer) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 1880537359722056, this, [value]); }
   /**
    * var resultSW: UInt16 { get set }
    * @availability iOS 9.0+
    */
-  get resultSW(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 2129722794916958, this, []); }
-  set resultSW(value: number) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2325850047668706, this, [value]); }
+  get resultSW(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 2129722794916958, this, []); }
+  set resultSW(value: number) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2325850047668706, this, [value]); }
   declare readonly $type: { "c:objc(cs)TKSmartCardUserInteractionForPINOperation": true; "c:objc(cs)TKSmartCardUserInteraction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "initialTimeout": true; "interactionTimeout": true; "pinCompletion": true; "pinMessageIndices": true; "locale": true; "resultData": true; "resultSW": true };
 }
@@ -955,22 +955,22 @@ export const TKSmartCardUserInteractionForPINOperation_Completion = {
    * static var key: TKSmartCardUserInteractionForPINOperation.Completion { get }
    * @availability iOS 9.0+
    */
-  get key(): TKSmartCardUserInteractionForPINOperation_Completion { return callSDK<TKSmartCardUserInteractionForPINOperation_Completion>("CryptoTokenKit_ff42ce03e691ab23", 1483467928834606, undefined, []); },
+  get key(): TKSmartCardUserInteractionForPINOperation_Completion { return callSDK<TKSmartCardUserInteractionForPINOperation_Completion>("CryptoTokenKit_3864e7f38681b875", 1483467928834606, undefined, []); },
   /**
    * static var maxLength: TKSmartCardUserInteractionForPINOperation.Completion { get }
    * @availability iOS 9.0+
    */
-  get maxLength(): TKSmartCardUserInteractionForPINOperation_Completion { return callSDK<TKSmartCardUserInteractionForPINOperation_Completion>("CryptoTokenKit_ff42ce03e691ab23", 4241506034452859, undefined, []); },
+  get maxLength(): TKSmartCardUserInteractionForPINOperation_Completion { return callSDK<TKSmartCardUserInteractionForPINOperation_Completion>("CryptoTokenKit_3864e7f38681b875", 4241506034452859, undefined, []); },
   /**
    * static var timeout: TKSmartCardUserInteractionForPINOperation.Completion { get }
    * @availability iOS 9.0+
    */
-  get timeout(): TKSmartCardUserInteractionForPINOperation_Completion { return callSDK<TKSmartCardUserInteractionForPINOperation_Completion>("CryptoTokenKit_ff42ce03e691ab23", 716077052824708, undefined, []); },
+  get timeout(): TKSmartCardUserInteractionForPINOperation_Completion { return callSDK<TKSmartCardUserInteractionForPINOperation_Completion>("CryptoTokenKit_3864e7f38681b875", 716077052824708, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): TKSmartCardUserInteractionForPINOperation_Completion { return callSDK<TKSmartCardUserInteractionForPINOperation_Completion>("CryptoTokenKit_ff42ce03e691ab23", 2463078870084198, undefined, [rawValue]); }
+  init(rawValue: number): TKSmartCardUserInteractionForPINOperation_Completion { return callSDK<TKSmartCardUserInteractionForPINOperation_Completion>("CryptoTokenKit_3864e7f38681b875", 2463078870084198, undefined, [rawValue]); }
 };
 
 /**
@@ -979,13 +979,13 @@ export const TKSmartCardUserInteractionForPINOperation_Completion = {
  */
 export class TKSmartCardUserInteractionForSecurePINChange extends (TKSmartCardUserInteractionForPINOperation as unknown as Omit<typeof TKSmartCardUserInteractionForPINOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => TKSmartCardUserInteractionForPINOperation)) {
   /** init() */
-  static init(): TKSmartCardUserInteractionForSecurePINChange { return callSDK<TKSmartCardUserInteractionForSecurePINChange>("CryptoTokenKit_ff42ce03e691ab23", 4000160609047098, undefined, []); }
+  static init(): TKSmartCardUserInteractionForSecurePINChange { return callSDK<TKSmartCardUserInteractionForSecurePINChange>("CryptoTokenKit_3864e7f38681b875", 4000160609047098, undefined, []); }
   /**
    * var pinConfirmation: TKSmartCardUserInteractionForSecurePINChange.Confirmation { get set }
    * @availability iOS 9.0+
    */
-  get pinConfirmation(): TKSmartCardUserInteractionForSecurePINChange_Confirmation { return callSDK<TKSmartCardUserInteractionForSecurePINChange_Confirmation>("CryptoTokenKit_ff42ce03e691ab23", 1330965655913306, this, []); }
-  set pinConfirmation(value: TKSmartCardUserInteractionForSecurePINChange_Confirmation) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3769689533606379, this, [value]); }
+  get pinConfirmation(): TKSmartCardUserInteractionForSecurePINChange_Confirmation { return callSDK<TKSmartCardUserInteractionForSecurePINChange_Confirmation>("CryptoTokenKit_3864e7f38681b875", 1330965655913306, this, []); }
+  set pinConfirmation(value: TKSmartCardUserInteractionForSecurePINChange_Confirmation) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3769689533606379, this, [value]); }
   declare readonly $type: { "c:objc(cs)TKSmartCardUserInteractionForSecurePINChange": true; "c:objc(cs)TKSmartCardUserInteractionForPINOperation": true; "c:objc(cs)TKSmartCardUserInteraction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "initialTimeout": true; "interactionTimeout": true; "pinCompletion": true; "pinMessageIndices": true; "locale": true; "resultData": true; "resultSW": true; "pinConfirmation": true };
 }
@@ -1001,17 +1001,17 @@ export const TKSmartCardUserInteractionForSecurePINChange_Confirmation = {
    * static var current: TKSmartCardUserInteractionForSecurePINChange.Confirmation { get }
    * @availability iOS 9.0+
    */
-  get current(): TKSmartCardUserInteractionForSecurePINChange_Confirmation { return callSDK<TKSmartCardUserInteractionForSecurePINChange_Confirmation>("CryptoTokenKit_ff42ce03e691ab23", 244805828567344, undefined, []); },
+  get current(): TKSmartCardUserInteractionForSecurePINChange_Confirmation { return callSDK<TKSmartCardUserInteractionForSecurePINChange_Confirmation>("CryptoTokenKit_3864e7f38681b875", 244805828567344, undefined, []); },
   /**
    * static var new: TKSmartCardUserInteractionForSecurePINChange.Confirmation { get }
    * @availability iOS 9.0+
    */
-  get new(): TKSmartCardUserInteractionForSecurePINChange_Confirmation { return callSDK<TKSmartCardUserInteractionForSecurePINChange_Confirmation>("CryptoTokenKit_ff42ce03e691ab23", 2130711705033717, undefined, []); },
+  get new(): TKSmartCardUserInteractionForSecurePINChange_Confirmation { return callSDK<TKSmartCardUserInteractionForSecurePINChange_Confirmation>("CryptoTokenKit_3864e7f38681b875", 2130711705033717, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): TKSmartCardUserInteractionForSecurePINChange_Confirmation { return callSDK<TKSmartCardUserInteractionForSecurePINChange_Confirmation>("CryptoTokenKit_ff42ce03e691ab23", 998508498533742, undefined, [rawValue]); }
+  init(rawValue: number): TKSmartCardUserInteractionForSecurePINChange_Confirmation { return callSDK<TKSmartCardUserInteractionForSecurePINChange_Confirmation>("CryptoTokenKit_3864e7f38681b875", 998508498533742, undefined, [rawValue]); }
 };
 
 /**
@@ -1020,7 +1020,7 @@ export const TKSmartCardUserInteractionForSecurePINChange_Confirmation = {
  */
 export class TKSmartCardUserInteractionForSecurePINVerification extends (TKSmartCardUserInteractionForPINOperation as unknown as Omit<typeof TKSmartCardUserInteractionForPINOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => TKSmartCardUserInteractionForPINOperation)) {
   /** init() */
-  static init(): TKSmartCardUserInteractionForSecurePINVerification { return callSDK<TKSmartCardUserInteractionForSecurePINVerification>("CryptoTokenKit_ff42ce03e691ab23", 2629960893897019, undefined, []); }
+  static init(): TKSmartCardUserInteractionForSecurePINVerification { return callSDK<TKSmartCardUserInteractionForSecurePINVerification>("CryptoTokenKit_3864e7f38681b875", 2629960893897019, undefined, []); }
   declare readonly $type: { "c:objc(cs)TKSmartCardUserInteractionForSecurePINVerification": true; "c:objc(cs)TKSmartCardUserInteractionForPINOperation": true; "c:objc(cs)TKSmartCardUserInteraction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "initialTimeout": true; "interactionTimeout": true; "pinCompletion": true; "pinMessageIndices": true; "locale": true; "resultData": true; "resultSW": true };
 }
@@ -1040,29 +1040,29 @@ export class TKToken_Configuration extends SDKHandle {
    * func certificate(for objectID: TKToken.ObjectID) throws -> TKTokenKeychainCertificate
    * @availability iOS 14.0+
    */
-  certificate(objectID: unknown): TKTokenKeychainCertificate { return callSDK<TKTokenKeychainCertificate>("CryptoTokenKit_ff42ce03e691ab23", 370157482038552, this, [objectID]); }
+  certificate(objectID: unknown): TKTokenKeychainCertificate { return callSDK<TKTokenKeychainCertificate>("CryptoTokenKit_3864e7f38681b875", 370157482038552, this, [objectID]); }
   /**
    * func key(for objectID: TKToken.ObjectID) throws -> TKTokenKeychainKey
    * @availability iOS 14.0+
    */
-  key(objectID: unknown): TKTokenKeychainKey { return callSDK<TKTokenKeychainKey>("CryptoTokenKit_ff42ce03e691ab23", 401086606241852, this, [objectID]); }
+  key(objectID: unknown): TKTokenKeychainKey { return callSDK<TKTokenKeychainKey>("CryptoTokenKit_3864e7f38681b875", 401086606241852, this, [objectID]); }
   /**
    * var configurationData: Data? { get set }
    * @availability iOS 14.0+
    */
-  get configurationData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_ff42ce03e691ab23", 3995441467709585, this, []); }
-  set configurationData(value: (ArrayBuffer) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 169175881099005, this, [value]); }
+  get configurationData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_3864e7f38681b875", 3995441467709585, this, []); }
+  set configurationData(value: (ArrayBuffer) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 169175881099005, this, [value]); }
   /**
    * var instanceID: TKToken.InstanceID { get }
    * @availability iOS 14.0+
    */
-  get instanceID(): string { return callSDK<string>("CryptoTokenKit_ff42ce03e691ab23", 1224659811572446, this, []); }
+  get instanceID(): string { return callSDK<string>("CryptoTokenKit_3864e7f38681b875", 1224659811572446, this, []); }
   /**
    * var keychainItems: [TKTokenKeychainItem] { get set }
    * @availability iOS 14.0+
    */
-  get keychainItems(): $SDK21 { return callSDK<$SDK21>("CryptoTokenKit_ff42ce03e691ab23", 2597113868475963, this, []); }
-  set keychainItems(value: $SDK21) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3747184986932042, this, [value]); }
+  get keychainItems(): $SDK21 { return callSDK<$SDK21>("CryptoTokenKit_3864e7f38681b875", 2597113868475963, this, []); }
+  set keychainItems(value: $SDK21) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3747184986932042, this, [value]); }
   declare readonly $type: { "c:objc(cs)TKTokenConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "configurationData": true; "instanceID": true; "keychainItems": true };
 }
@@ -1088,9 +1088,9 @@ export class TKTokenAuthOperation extends SDKHandle {
    * func finish() throws
    * @availability iOS 10.0+
    */
-  finish(): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 882730756393701, this, []); }
+  finish(): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 882730756393701, this, []); }
   /** init() */
-  static init(): TKTokenAuthOperation { return callSDK<TKTokenAuthOperation>("CryptoTokenKit_ff42ce03e691ab23", 250869601398602, undefined, []); }
+  static init(): TKTokenAuthOperation { return callSDK<TKTokenAuthOperation>("CryptoTokenKit_3864e7f38681b875", 250869601398602, undefined, []); }
   declare readonly $type: { "c:objc(cs)TKTokenAuthOperation": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1126,27 +1126,27 @@ export class TKTokenDriver_Configuration extends SDKHandle {
    * class var driverConfigurations: [TKTokenDriver.ClassID : TKTokenDriver.Configuration] { get }
    * @availability iOS 14.0+
    */
-  static get driverConfigurations(): Record<string, TKTokenDriver_Configuration> { return callSDK<Record<string, TKTokenDriver_Configuration>>("CryptoTokenKit_ff42ce03e691ab23", 3882558557865400, undefined, []); }
+  static get driverConfigurations(): Record<string, TKTokenDriver_Configuration> { return callSDK<Record<string, TKTokenDriver_Configuration>>("CryptoTokenKit_3864e7f38681b875", 3882558557865400, undefined, []); }
   /**
    * func addTokenConfiguration(for instanceID: TKToken.InstanceID) -> TKToken.Configuration
    * @availability iOS 14.0+
    */
-  addTokenConfiguration(instanceID: string): TKToken_Configuration { return callSDK<TKToken_Configuration>("CryptoTokenKit_ff42ce03e691ab23", 3420759167810463, this, [instanceID]); }
+  addTokenConfiguration(instanceID: string): TKToken_Configuration { return callSDK<TKToken_Configuration>("CryptoTokenKit_3864e7f38681b875", 3420759167810463, this, [instanceID]); }
   /**
    * func removeTokenConfiguration(for instanceID: TKToken.InstanceID)
    * @availability iOS 14.0+
    */
-  removeTokenConfiguration(instanceID: string): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3159295196631902, this, [instanceID]); }
+  removeTokenConfiguration(instanceID: string): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3159295196631902, this, [instanceID]); }
   /**
    * var classID: TKTokenDriver.ClassID { get }
    * @availability iOS 14.0+
    */
-  get classID(): string { return callSDK<string>("CryptoTokenKit_ff42ce03e691ab23", 4479567692994690, this, []); }
+  get classID(): string { return callSDK<string>("CryptoTokenKit_3864e7f38681b875", 4479567692994690, this, []); }
   /**
    * var tokenConfigurations: [TKToken.InstanceID : TKToken.Configuration] { get }
    * @availability iOS 14.0+
    */
-  get tokenConfigurations(): Record<string, TKToken_Configuration> { return callSDK<Record<string, TKToken_Configuration>>("CryptoTokenKit_ff42ce03e691ab23", 42146763840819, this, []); }
+  get tokenConfigurations(): Record<string, TKToken_Configuration> { return callSDK<Record<string, TKToken_Configuration>>("CryptoTokenKit_3864e7f38681b875", 42146763840819, this, []); }
   declare readonly $type: { "c:objc(cs)TKTokenDriverConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "classID": true; "tokenConfigurations": true };
 }
@@ -1172,12 +1172,12 @@ export class TKTokenKeyAlgorithm extends SDKHandle {
    * func isAlgorithm(_ algorithm: SecKeyAlgorithm) -> Bool
    * @availability iOS 10.0+
    */
-  isAlgorithm(algorithm: _Security_SecKeyAlgorithm): boolean { return callSDK<boolean>("CryptoTokenKit_ff42ce03e691ab23", 2034617703005788, this, [algorithm]); }
+  isAlgorithm(algorithm: _Security_SecKeyAlgorithm): boolean { return callSDK<boolean>("CryptoTokenKit_3864e7f38681b875", 2034617703005788, this, [algorithm]); }
   /**
    * func supportsAlgorithm(_ algorithm: SecKeyAlgorithm) -> Bool
    * @availability iOS 10.0+
    */
-  supportsAlgorithm(algorithm: _Security_SecKeyAlgorithm): boolean { return callSDK<boolean>("CryptoTokenKit_ff42ce03e691ab23", 3862970485322078, this, [algorithm]); }
+  supportsAlgorithm(algorithm: _Security_SecKeyAlgorithm): boolean { return callSDK<boolean>("CryptoTokenKit_3864e7f38681b875", 3862970485322078, this, [algorithm]); }
   declare readonly $type: { "c:objc(cs)TKTokenKeyAlgorithm": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1190,24 +1190,24 @@ export class TKTokenKeychainItem extends SDKHandle {
    * init(objectID: TKToken.ObjectID)
    * @availability iOS 10.0+
    */
-  static init(objectID: unknown): TKTokenKeychainItem { return callSDK<TKTokenKeychainItem>("CryptoTokenKit_ff42ce03e691ab23", 2577813107714681, undefined, [objectID]); }
+  static init(objectID: unknown): TKTokenKeychainItem { return callSDK<TKTokenKeychainItem>("CryptoTokenKit_3864e7f38681b875", 2577813107714681, undefined, [objectID]); }
   /**
    * var constraints: [NSNumber : Any]? { get set }
    * @availability iOS 10.0+
    */
-  get constraints(): $SDK24 { return callSDK<$SDK24>("CryptoTokenKit_ff42ce03e691ab23", 3276397043670845, this, []); }
-  set constraints(value: $SDK24) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3645842831656144, this, [value]); }
+  get constraints(): $SDK24 { return callSDK<$SDK24>("CryptoTokenKit_3864e7f38681b875", 3276397043670845, this, []); }
+  set constraints(value: $SDK24) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3645842831656144, this, [value]); }
   /**
    * var label: String? { get set }
    * @availability iOS 10.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("CryptoTokenKit_ff42ce03e691ab23", 2089043011020776, this, []); }
-  set label(value: (string) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 1013712765227949, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("CryptoTokenKit_3864e7f38681b875", 2089043011020776, this, []); }
+  set label(value: (string) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 1013712765227949, this, [value]); }
   /**
    * var objectID: TKToken.ObjectID { get }
    * @availability iOS 10.0+
    */
-  get objectID(): unknown { return callSDK<unknown>("CryptoTokenKit_ff42ce03e691ab23", 690669460955307, this, []); }
+  get objectID(): unknown { return callSDK<unknown>("CryptoTokenKit_3864e7f38681b875", 690669460955307, this, []); }
   declare readonly $type: { "c:objc(cs)TKTokenKeychainItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "constraints": true; "label": true; "objectID": true };
 }
@@ -1221,12 +1221,12 @@ export class TKTokenKeychainCertificate extends (TKTokenKeychainItem as unknown 
    * init?(certificate certificateRef: SecCertificate, objectID: TKToken.ObjectID)
    * @availability iOS 10.0+
    */
-  static init(certificateRef: _Security_SecCertificate, objectID: unknown): (TKTokenKeychainCertificate) | null { return callSDK<(TKTokenKeychainCertificate) | null>("CryptoTokenKit_ff42ce03e691ab23", 3147179475742346, undefined, [certificateRef, objectID]); }
+  static init(certificateRef: _Security_SecCertificate, objectID: unknown): (TKTokenKeychainCertificate) | null { return callSDK<(TKTokenKeychainCertificate) | null>("CryptoTokenKit_3864e7f38681b875", 3147179475742346, undefined, [certificateRef, objectID]); }
   /**
    * var data: Data { get }
    * @availability iOS 10.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoTokenKit_ff42ce03e691ab23", 3414485680154528, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoTokenKit_3864e7f38681b875", 3414485680154528, this, []); }
   declare readonly $type: { "c:objc(cs)TKTokenKeychainCertificate": true; "c:objc(cs)TKTokenKeychainItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "constraints": true; "label": true; "objectID": true; "data": true };
 }
@@ -1240,22 +1240,22 @@ export class TKTokenKeychainContents extends SDKHandle {
    * func certificate(forObjectID objectID: TKToken.ObjectID) throws -> TKTokenKeychainCertificate
    * @availability iOS 10.0+
    */
-  certificate(objectID: unknown): TKTokenKeychainCertificate { return callSDK<TKTokenKeychainCertificate>("CryptoTokenKit_ff42ce03e691ab23", 286124083542251, this, [objectID]); }
+  certificate(objectID: unknown): TKTokenKeychainCertificate { return callSDK<TKTokenKeychainCertificate>("CryptoTokenKit_3864e7f38681b875", 286124083542251, this, [objectID]); }
   /**
    * func fill(with items: [TKTokenKeychainItem])
    * @availability iOS 10.0+
    */
-  fill(items: $SDK21): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 215192441578092, this, [items]); }
+  fill(items: $SDK21): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 215192441578092, this, [items]); }
   /**
    * func key(forObjectID objectID: TKToken.ObjectID) throws -> TKTokenKeychainKey
    * @availability iOS 10.0+
    */
-  key(objectID: unknown): TKTokenKeychainKey { return callSDK<TKTokenKeychainKey>("CryptoTokenKit_ff42ce03e691ab23", 765090915671114, this, [objectID]); }
+  key(objectID: unknown): TKTokenKeychainKey { return callSDK<TKTokenKeychainKey>("CryptoTokenKit_3864e7f38681b875", 765090915671114, this, [objectID]); }
   /**
    * var items: [TKTokenKeychainItem] { get }
    * @availability iOS 10.0+
    */
-  get items(): $SDK21 { return callSDK<$SDK21>("CryptoTokenKit_ff42ce03e691ab23", 864374740957213, this, []); }
+  get items(): $SDK21 { return callSDK<$SDK21>("CryptoTokenKit_3864e7f38681b875", 864374740957213, this, []); }
   declare readonly $type: { "c:objc(cs)TKTokenKeychainContents": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "items": true };
 }
@@ -1269,61 +1269,61 @@ export class TKTokenKeychainKey extends (TKTokenKeychainItem as unknown as Omit<
    * init?(certificate certificateRef: SecCertificate?, objectID: TKToken.ObjectID)
    * @availability iOS 10.0+
    */
-  static init(certificateRef: (_Security_SecCertificate) | null, objectID: unknown): (TKTokenKeychainKey) | null { return callSDK<(TKTokenKeychainKey) | null>("CryptoTokenKit_ff42ce03e691ab23", 376726177764989, undefined, [certificateRef, objectID]); }
+  static init(certificateRef: (_Security_SecCertificate) | null, objectID: unknown): (TKTokenKeychainKey) | null { return callSDK<(TKTokenKeychainKey) | null>("CryptoTokenKit_3864e7f38681b875", 376726177764989, undefined, [certificateRef, objectID]); }
   /**
    * var applicationTag: Data? { get set }
    * @availability iOS 10.0+
    */
-  get applicationTag(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_ff42ce03e691ab23", 1091666699466635, this, []); }
-  set applicationTag(value: (ArrayBuffer) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 972217233314581, this, [value]); }
+  get applicationTag(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_3864e7f38681b875", 1091666699466635, this, []); }
+  set applicationTag(value: (ArrayBuffer) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 972217233314581, this, [value]); }
   /**
    * var canDecrypt: Bool { get set }
    * @availability iOS 10.0+
    */
-  get canDecrypt(): boolean { return callSDK<boolean>("CryptoTokenKit_ff42ce03e691ab23", 2772660232851345, this, []); }
-  set canDecrypt(value: boolean) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2690509991788037, this, [value]); }
+  get canDecrypt(): boolean { return callSDK<boolean>("CryptoTokenKit_3864e7f38681b875", 2772660232851345, this, []); }
+  set canDecrypt(value: boolean) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2690509991788037, this, [value]); }
   /**
    * var canPerformKeyExchange: Bool { get set }
    * @availability iOS 10.0+
    */
-  get canPerformKeyExchange(): boolean { return callSDK<boolean>("CryptoTokenKit_ff42ce03e691ab23", 428531246220597, this, []); }
-  set canPerformKeyExchange(value: boolean) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2407818760601154, this, [value]); }
+  get canPerformKeyExchange(): boolean { return callSDK<boolean>("CryptoTokenKit_3864e7f38681b875", 428531246220597, this, []); }
+  set canPerformKeyExchange(value: boolean) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2407818760601154, this, [value]); }
   /**
    * var canSign: Bool { get set }
    * @availability iOS 10.0+
    */
-  get canSign(): boolean { return callSDK<boolean>("CryptoTokenKit_ff42ce03e691ab23", 3116403316841880, this, []); }
-  set canSign(value: boolean) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2643710965903826, this, [value]); }
+  get canSign(): boolean { return callSDK<boolean>("CryptoTokenKit_3864e7f38681b875", 3116403316841880, this, []); }
+  set canSign(value: boolean) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2643710965903826, this, [value]); }
   /**
    * var keySizeInBits: Int { get set }
    * @availability iOS 10.0+
    */
-  get keySizeInBits(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 392732704677971, this, []); }
-  set keySizeInBits(value: number) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 357492824817204, this, [value]); }
+  get keySizeInBits(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 392732704677971, this, []); }
+  set keySizeInBits(value: number) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 357492824817204, this, [value]); }
   /**
    * var keyType: String { get set }
    * @availability iOS 10.0+
    */
-  get keyType(): string { return callSDK<string>("CryptoTokenKit_ff42ce03e691ab23", 4025275591340787, this, []); }
-  set keyType(value: string) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 212876867101939, this, [value]); }
+  get keyType(): string { return callSDK<string>("CryptoTokenKit_3864e7f38681b875", 4025275591340787, this, []); }
+  set keyType(value: string) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 212876867101939, this, [value]); }
   /**
    * var publicKeyData: Data? { get set }
    * @availability iOS 10.0+
    */
-  get publicKeyData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_ff42ce03e691ab23", 3894537577549954, this, []); }
-  set publicKeyData(value: (ArrayBuffer) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 1555372400589288, this, [value]); }
+  get publicKeyData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_3864e7f38681b875", 3894537577549954, this, []); }
+  set publicKeyData(value: (ArrayBuffer) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 1555372400589288, this, [value]); }
   /**
    * var publicKeyHash: Data? { get set }
    * @availability iOS 10.0+
    */
-  get publicKeyHash(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_ff42ce03e691ab23", 3108355739030589, this, []); }
-  set publicKeyHash(value: (ArrayBuffer) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3025473144588000, this, [value]); }
+  get publicKeyHash(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_3864e7f38681b875", 3108355739030589, this, []); }
+  set publicKeyHash(value: (ArrayBuffer) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3025473144588000, this, [value]); }
   /**
    * var isSuitableForLogin: Bool { get set }
    * @availability iOS 10.0+
    */
-  get isSuitableForLogin(): boolean { return callSDK<boolean>("CryptoTokenKit_ff42ce03e691ab23", 2228760964375604, this, []); }
-  set isSuitableForLogin(value: boolean) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2820534250407594, this, [value]); }
+  get isSuitableForLogin(): boolean { return callSDK<boolean>("CryptoTokenKit_3864e7f38681b875", 2228760964375604, this, []); }
+  set isSuitableForLogin(value: boolean) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2820534250407594, this, [value]); }
   declare readonly $type: { "c:objc(cs)TKTokenKeychainKey": true; "c:objc(cs)TKTokenKeychainItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "constraints": true; "label": true; "objectID": true; "applicationTag": true; "canDecrypt": true; "canPerformKeyExchange": true; "canSign": true; "keySizeInBits": true; "keyType": true; "publicKeyData": true; "publicKeyHash": true; "isSuitableForLogin": true };
 }
@@ -1334,17 +1334,17 @@ export class TKTokenKeychainKey extends (TKTokenKeychainItem as unknown as Omit<
  */
 export class TKTokenKeyExchangeParameters extends SDKHandle {
   /** init() */
-  static init(): TKTokenKeyExchangeParameters { return callSDK<TKTokenKeyExchangeParameters>("CryptoTokenKit_ff42ce03e691ab23", 678817958666006, undefined, []); }
+  static init(): TKTokenKeyExchangeParameters { return callSDK<TKTokenKeyExchangeParameters>("CryptoTokenKit_3864e7f38681b875", 678817958666006, undefined, []); }
   /**
    * var requestedSize: Int { get }
    * @availability iOS 10.0+
    */
-  get requestedSize(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 2714047189064083, this, []); }
+  get requestedSize(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 2714047189064083, this, []); }
   /**
    * var sharedInfo: Data? { get }
    * @availability iOS 10.0+
    */
-  get sharedInfo(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_ff42ce03e691ab23", 1908055895541616, this, []); }
+  get sharedInfo(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_3864e7f38681b875", 1908055895541616, this, []); }
   declare readonly $type: { "c:objc(cs)TKTokenKeyExchangeParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "requestedSize": true; "sharedInfo": true };
 }
@@ -1360,7 +1360,7 @@ export const TKTokenOperation = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (TKTokenOperation) | null { return callSDK<(TKTokenOperation) | null>("CryptoTokenKit_ff42ce03e691ab23", 826808505295868, undefined, [rawValue]); }
+  init(rawValue: number): (TKTokenOperation) | null { return callSDK<(TKTokenOperation) | null>("CryptoTokenKit_3864e7f38681b875", 826808505295868, undefined, [rawValue]); }
 };
 
 /**
@@ -1375,13 +1375,13 @@ export type TKTokenOperationConstraint = unknown;
  */
 export class TKTokenPasswordAuthOperation extends (TKTokenAuthOperation as unknown as Omit<typeof TKTokenAuthOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => TKTokenAuthOperation)) {
   /** init() */
-  static init(): TKTokenPasswordAuthOperation { return callSDK<TKTokenPasswordAuthOperation>("CryptoTokenKit_ff42ce03e691ab23", 2429507833786736, undefined, []); }
+  static init(): TKTokenPasswordAuthOperation { return callSDK<TKTokenPasswordAuthOperation>("CryptoTokenKit_3864e7f38681b875", 2429507833786736, undefined, []); }
   /**
    * var password: String? { get set }
    * @availability iOS 10.0+
    */
-  get password(): (string) | null { return callSDK<(string) | null>("CryptoTokenKit_ff42ce03e691ab23", 4230593240381796, this, []); }
-  set password(value: (string) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3838609644249168, this, [value]); }
+  get password(): (string) | null { return callSDK<(string) | null>("CryptoTokenKit_3864e7f38681b875", 4230593240381796, this, []); }
+  set password(value: (string) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3838609644249168, this, [value]); }
   declare readonly $type: { "c:objc(cs)TKTokenPasswordAuthOperation": true; "c:objc(cs)TKTokenAuthOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "password": true };
 }
@@ -1400,37 +1400,37 @@ export interface TKTokenSessionDelegate {
  */
 export class TKTokenSmartCardPINAuthOperation extends (TKTokenAuthOperation as unknown as Omit<typeof TKTokenAuthOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => TKTokenAuthOperation)) {
   /** init() */
-  static init(): TKTokenSmartCardPINAuthOperation { return callSDK<TKTokenSmartCardPINAuthOperation>("CryptoTokenKit_ff42ce03e691ab23", 3179044656514477, undefined, []); }
+  static init(): TKTokenSmartCardPINAuthOperation { return callSDK<TKTokenSmartCardPINAuthOperation>("CryptoTokenKit_3864e7f38681b875", 3179044656514477, undefined, []); }
   /**
    * var apduTemplate: Data? { get set }
    * @availability iOS 10.0+
    */
-  get apduTemplate(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_ff42ce03e691ab23", 3738946026193083, this, []); }
-  set apduTemplate(value: (ArrayBuffer) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3984907800197805, this, [value]); }
+  get apduTemplate(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoTokenKit_3864e7f38681b875", 3738946026193083, this, []); }
+  set apduTemplate(value: (ArrayBuffer) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3984907800197805, this, [value]); }
   /**
    * var pin: String? { get set }
    * @availability iOS 10.0+
    */
-  get pin(): (string) | null { return callSDK<(string) | null>("CryptoTokenKit_ff42ce03e691ab23", 124001460947601, this, []); }
-  set pin(value: (string) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 68630347110563, this, [value]); }
+  get pin(): (string) | null { return callSDK<(string) | null>("CryptoTokenKit_3864e7f38681b875", 124001460947601, this, []); }
+  set pin(value: (string) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 68630347110563, this, [value]); }
   /**
    * var pinByteOffset: Int { get set }
    * @availability iOS 10.0+
    */
-  get pinByteOffset(): number { return callSDK<number>("CryptoTokenKit_ff42ce03e691ab23", 1845375153855214, this, []); }
-  set pinByteOffset(value: number) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2125585341543421, this, [value]); }
+  get pinByteOffset(): number { return callSDK<number>("CryptoTokenKit_3864e7f38681b875", 1845375153855214, this, []); }
+  set pinByteOffset(value: number) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2125585341543421, this, [value]); }
   /**
    * var pinFormat: TKSmartCardPINFormat { get set }
    * @availability iOS 10.0+
    */
-  get pinFormat(): TKSmartCardPINFormat { return callSDK<TKSmartCardPINFormat>("CryptoTokenKit_ff42ce03e691ab23", 2279384823143011, this, []); }
-  set pinFormat(value: TKSmartCardPINFormat) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 3181767815870294, this, [value]); }
+  get pinFormat(): TKSmartCardPINFormat { return callSDK<TKSmartCardPINFormat>("CryptoTokenKit_3864e7f38681b875", 2279384823143011, this, []); }
+  set pinFormat(value: TKSmartCardPINFormat) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 3181767815870294, this, [value]); }
   /**
    * var smartCard: TKSmartCard? { get set }
    * @availability iOS 10.0+
    */
-  get smartCard(): (TKSmartCard) | null { return callSDK<(TKSmartCard) | null>("CryptoTokenKit_ff42ce03e691ab23", 306928221674036, this, []); }
-  set smartCard(value: (TKSmartCard) | null) { callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 698726045059419, this, [value]); }
+  get smartCard(): (TKSmartCard) | null { return callSDK<(TKSmartCard) | null>("CryptoTokenKit_3864e7f38681b875", 306928221674036, this, []); }
+  set smartCard(value: (TKSmartCard) | null) { callSDK<void>("CryptoTokenKit_3864e7f38681b875", 698726045059419, this, [value]); }
   declare readonly $type: { "c:objc(cs)TKTokenSmartCardPINAuthOperation": true; "c:objc(cs)TKTokenAuthOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "apduTemplate": true; "pin": true; "pinByteOffset": true; "pinFormat": true; "smartCard": true };
 }
@@ -1444,33 +1444,33 @@ export class TKTokenWatcher extends SDKHandle {
    * func addRemovalHandler(_ removalHandler: @escaping (String) -> Void, forTokenID tokenID: String)
    * @availability iOS 10.0+
    */
-  addRemovalHandler(removalHandler: $SDK26, tokenID: string): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 2349890465581932, this, [removalHandler, tokenID], [{"callback":{"out":[]}},null]); }
+  addRemovalHandler(removalHandler: $SDK26, tokenID: string): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 2349890465581932, this, [removalHandler, tokenID], [{"callback":{"out":[]}},null]); }
   /**
    * init()
    * @availability iOS 10.0+
    */
-  static init(): TKTokenWatcher { return callSDK<TKTokenWatcher>("CryptoTokenKit_ff42ce03e691ab23", 1873954729120270, undefined, []); }
+  static init(): TKTokenWatcher { return callSDK<TKTokenWatcher>("CryptoTokenKit_3864e7f38681b875", 1873954729120270, undefined, []); }
   /**
    * init(insertionHandler: @escaping (String) -> Void)
    * @availability iOS 10.0+
    * @deprecated iOS 11.0
    */
-  static initInsertionHandler(insertionHandler: $SDK26): TKTokenWatcher { return callSDK<TKTokenWatcher>("CryptoTokenKit_ff42ce03e691ab23", 2734273738618951, undefined, [insertionHandler], [{"callback":{"out":[]}}]); }
+  static initInsertionHandler(insertionHandler: $SDK26): TKTokenWatcher { return callSDK<TKTokenWatcher>("CryptoTokenKit_3864e7f38681b875", 2734273738618951, undefined, [insertionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func setInsertionHandler(_ insertionHandler: @escaping (String) -> Void)
    * @availability iOS 11.0+
    */
-  setInsertionHandler(insertionHandler: $SDK26): void { return callSDK<void>("CryptoTokenKit_ff42ce03e691ab23", 4034577311778490, this, [insertionHandler], [{"callback":{"out":[]}}]); }
+  setInsertionHandler(insertionHandler: $SDK26): void { return callSDK<void>("CryptoTokenKit_3864e7f38681b875", 4034577311778490, this, [insertionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func tokenInfo(forTokenID tokenID: String) -> TKTokenWatcher.TokenInfo?
    * @availability iOS 15.0+
    */
-  tokenInfo(tokenID: string): (TKTokenWatcher_TokenInfo) | null { return callSDK<(TKTokenWatcher_TokenInfo) | null>("CryptoTokenKit_ff42ce03e691ab23", 1943839018029561, this, [tokenID]); }
+  tokenInfo(tokenID: string): (TKTokenWatcher_TokenInfo) | null { return callSDK<(TKTokenWatcher_TokenInfo) | null>("CryptoTokenKit_3864e7f38681b875", 1943839018029561, this, [tokenID]); }
   /**
    * var tokenIDs: [String] { get }
    * @availability iOS 10.0+
    */
-  get tokenIDs(): Array<string> { return callSDK<Array<string>>("CryptoTokenKit_ff42ce03e691ab23", 1641807344115539, this, []); }
+  get tokenIDs(): Array<string> { return callSDK<Array<string>>("CryptoTokenKit_3864e7f38681b875", 1641807344115539, this, []); }
   declare readonly $type: { "c:objc(cs)TKTokenWatcher": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "tokenIDs": true };
 }
@@ -1484,17 +1484,17 @@ export class TKTokenWatcher_TokenInfo extends SDKHandle {
    * var driverName: String? { get }
    * @availability iOS 15.0+
    */
-  get driverName(): (string) | null { return callSDK<(string) | null>("CryptoTokenKit_ff42ce03e691ab23", 3837940158597719, this, []); }
+  get driverName(): (string) | null { return callSDK<(string) | null>("CryptoTokenKit_3864e7f38681b875", 3837940158597719, this, []); }
   /**
    * var slotName: String? { get }
    * @availability iOS 15.0+
    */
-  get slotName(): (string) | null { return callSDK<(string) | null>("CryptoTokenKit_ff42ce03e691ab23", 2623684407814195, this, []); }
+  get slotName(): (string) | null { return callSDK<(string) | null>("CryptoTokenKit_3864e7f38681b875", 2623684407814195, this, []); }
   /**
    * var tokenID: String { get }
    * @availability iOS 15.0+
    */
-  get tokenID(): string { return callSDK<string>("CryptoTokenKit_ff42ce03e691ab23", 3275376817025159, this, []); }
+  get tokenID(): string { return callSDK<string>("CryptoTokenKit_3864e7f38681b875", 3275376817025159, this, []); }
   declare readonly $type: { "c:objc(cs)TKTokenWatcherTokenInfo": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "driverName": true; "slotName": true; "tokenID": true };
 }
@@ -1503,46 +1503,46 @@ export class TKTokenWatcher_TokenInfo extends SDKHandle {
  * let TKErrorDomain: String
  * @availability iOS 9.0+
  */
-export const TKErrorDomain: string = callSDK<string>("CryptoTokenKit_ff42ce03e691ab23", 2416797862070807, undefined, []);
+export const TKErrorDomain: string = callSDK<string>("CryptoTokenKit_3864e7f38681b875", 2416797862070807, undefined, []);
 
-registerSDKClass("TKTLVRecord", TKTLVRecord, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"data":3884142048115300,"tag":3039719529530762,"value":1908904937051932} });
-registerSDKClass("TKBERTLVRecord", TKBERTLVRecord, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {} });
-registerSDKClass("TKCompactTLVRecord", TKCompactTLVRecord, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {} });
-registerSDKClass("CryptoTokenKit.TKError", TKError, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {} });
-registerSDKClass("TKSimpleTLVRecord", TKSimpleTLVRecord, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {} });
-registerSDKClass("TKSmartCard", TKSmartCard, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"allowedProtocols":3602873174768317,"cla":1737930280327601,"context":3271004489109811,"currentProtocol":2116119008445865,"isSensitive":3051183171481110,"slot":4376541171200409,"useCommandChaining":4211061179523620,"useExtendedLength":2539875069760228,"isValid":2480278120150161}, methods: {"beginSession":{"id":3955420941912373,"hints":[{"callback":{"out":[]}}]},"endSession":{"id":1745688995062993},"transmit":{"id":3017535669633209,"hints":[null,{"callback":{"out":[]}}]},"userInteractionForSecurePINChange":{"id":580599089187356},"userInteractionForSecurePINVerification":{"id":3319854213347753},"sendInsP1P2DataLeReply":{"id":1641633607385061,"hints":[null,null,null,null,null,{"callback":{"out":[]}}]},"sendInsP1P2DataLe":{"id":3039714608238690},"sendInsP1P2DataLe45476":{"id":4411576216523401}} });
-registerSDKClass("TKSmartCardATR", TKSmartCardATR, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"bytes":2285174335044254,"historicalBytes":1523486888901283,"historicalRecords":1977193220671763,"protocols":209973321370407}, methods: {"interfaceGroupAt":{"id":2655922406323526},"interfaceGroupFor":{"id":4144434149465758}} });
-registerSDKClass("TKSmartCardATRInterfaceGroup", TKSmartCardATR_InterfaceGroup, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"ta":822323521137759,"tb":3158832070187179,"tc":3828829437692555,"protocol":2660300506416563} });
-registerSDKClass("TKSmartCardPINFormat", TKSmartCardPINFormat, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"pinBitOffset":3238757719905441,"pinBlockByteLength":2925841909953632,"pinJustification":2114384035989347,"pinLengthBitOffset":1191023175675206,"pinLengthBitSize":3454262842215904,"charset":241562596974489,"encoding":3163749855530093,"maxPINLength":2028986628006567,"minPINLength":2796794569084057} });
-registerSDKClass("TKSmartCardSlot", TKSmartCardSlot, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"atr":4156652983884399,"maxInputLength":2218099196737036,"maxOutputLength":225384679242373,"name":1501060080770582,"state":669157380015399}, methods: {"makeSmartCard":{"id":1830526905806084}} });
-registerSDKClass("TKSmartCardSlotManager", TKSmartCardSlotManager, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"slotNames":4026299318878604}, methods: {"createNFCSlot":{"id":2963009963878678,"hints":[null,{"callback":{"out":[]}}]},"getSlot":{"id":4033324920857728,"hints":[null,{"callback":{"out":[]}}]},"isNFCSupported":{"id":4111388490910605},"slotNamed":{"id":1711268156935392}} });
-registerSDKClass("TKSmartCardSlotNFCSession", TKSmartCardSlotNFCSession, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"slotName":2914888954088825}, methods: {"end":{"id":2911168663464211},"update":{"id":4046287457910012}} });
-registerSDKClass("TKToken", TKToken, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"configuration":2639571568542193,"delegate":2719150119552299,"keychainContents":3843715929940671,"tokenDriver":3286988447005070} });
-registerSDKClass("TKSmartCardToken", TKSmartCardToken, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"aid":4270148898047953} });
-registerSDKClass("TKTokenDriver", TKTokenDriver, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"delegate":1707132704730724} });
-registerSDKClass("TKSmartCardTokenDriver", TKSmartCardTokenDriver, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("TKTLVRecord", TKTLVRecord, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"data":3884142048115300,"tag":3039719529530762,"value":1908904937051932} });
+registerSDKClass("TKBERTLVRecord", TKBERTLVRecord, { module: "CryptoTokenKit_3864e7f38681b875", properties: {} });
+registerSDKClass("TKCompactTLVRecord", TKCompactTLVRecord, { module: "CryptoTokenKit_3864e7f38681b875", properties: {} });
+registerSDKClass("CryptoTokenKit.TKError", TKError, { module: "CryptoTokenKit_3864e7f38681b875", properties: {} });
+registerSDKClass("TKSimpleTLVRecord", TKSimpleTLVRecord, { module: "CryptoTokenKit_3864e7f38681b875", properties: {} });
+registerSDKClass("TKSmartCard", TKSmartCard, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"allowedProtocols":3602873174768317,"cla":1737930280327601,"context":3271004489109811,"currentProtocol":2116119008445865,"isSensitive":3051183171481110,"slot":4376541171200409,"useCommandChaining":4211061179523620,"useExtendedLength":2539875069760228,"isValid":2480278120150161}, methods: {"beginSession":{"id":3955420941912373,"hints":[{"callback":{"out":[]}}]},"endSession":{"id":1745688995062993},"transmit":{"id":3017535669633209,"hints":[null,{"callback":{"out":[]}}]},"userInteractionForSecurePINChange":{"id":580599089187356},"userInteractionForSecurePINVerification":{"id":3319854213347753},"sendInsP1P2DataLeReply":{"id":1641633607385061,"hints":[null,null,null,null,null,{"callback":{"out":[]}}]},"sendInsP1P2DataLe":{"id":3039714608238690},"sendInsP1P2DataLe45476":{"id":4411576216523401}} });
+registerSDKClass("TKSmartCardATR", TKSmartCardATR, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"bytes":2285174335044254,"historicalBytes":1523486888901283,"historicalRecords":1977193220671763,"protocols":209973321370407}, methods: {"interfaceGroupAt":{"id":2655922406323526},"interfaceGroupFor":{"id":4144434149465758}} });
+registerSDKClass("TKSmartCardATRInterfaceGroup", TKSmartCardATR_InterfaceGroup, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"ta":822323521137759,"tb":3158832070187179,"tc":3828829437692555,"protocol":2660300506416563} });
+registerSDKClass("TKSmartCardPINFormat", TKSmartCardPINFormat, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"pinBitOffset":3238757719905441,"pinBlockByteLength":2925841909953632,"pinJustification":2114384035989347,"pinLengthBitOffset":1191023175675206,"pinLengthBitSize":3454262842215904,"charset":241562596974489,"encoding":3163749855530093,"maxPINLength":2028986628006567,"minPINLength":2796794569084057} });
+registerSDKClass("TKSmartCardSlot", TKSmartCardSlot, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"atr":4156652983884399,"maxInputLength":2218099196737036,"maxOutputLength":225384679242373,"name":1501060080770582,"state":669157380015399}, methods: {"makeSmartCard":{"id":1830526905806084}} });
+registerSDKClass("TKSmartCardSlotManager", TKSmartCardSlotManager, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"slotNames":4026299318878604}, methods: {"createNFCSlot":{"id":2963009963878678,"hints":[null,{"callback":{"out":[]}}]},"getSlot":{"id":4033324920857728,"hints":[null,{"callback":{"out":[]}}]},"isNFCSupported":{"id":4111388490910605},"slotNamed":{"id":1711268156935392}} });
+registerSDKClass("TKSmartCardSlotNFCSession", TKSmartCardSlotNFCSession, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"slotName":2914888954088825}, methods: {"end":{"id":2911168663464211},"update":{"id":4046287457910012}} });
+registerSDKClass("TKToken", TKToken, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"configuration":2639571568542193,"delegate":2719150119552299,"keychainContents":3843715929940671,"tokenDriver":3286988447005070} });
+registerSDKClass("TKSmartCardToken", TKSmartCardToken, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"aid":4270148898047953} });
+registerSDKClass("TKTokenDriver", TKTokenDriver, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"delegate":1707132704730724} });
+registerSDKClass("TKSmartCardTokenDriver", TKSmartCardTokenDriver, { module: "CryptoTokenKit_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)TKSmartCardTokenDriverDelegate", {"tokenDriverTerminateToken":"tokenDriver(_:terminateToken:)","tokenDriverCreateTokenForAid":"tokenDriver(_:createTokenFor:aid:)"});
-registerSDKClass("TKSmartCardTokenRegistrationManager", TKSmartCardTokenRegistrationManager, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"registeredSmartCardTokens":3285562422737092}, methods: {"registerSmartCard":{"id":2114942021179380},"unregisterSmartCard":{"id":2709333831987034}} });
-registerSDKClass("TKTokenSession", TKTokenSession, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"delegate":2305654115949533,"token":3373259863414161} });
-registerSDKClass("TKSmartCardTokenSession", TKSmartCardTokenSession, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"smartCard":4034558895670568}, methods: {"getSmartCard":{"id":2423668501423366}} });
-registerSDKClass("TKSmartCardUserInteraction", TKSmartCardUserInteraction, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"delegate":860896862429721,"initialTimeout":1306512770518111,"interactionTimeout":265359676760350}, methods: {"cancel":{"id":288678438107827},"run":{"id":3383367752925903,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("TKSmartCardTokenRegistrationManager", TKSmartCardTokenRegistrationManager, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"registeredSmartCardTokens":3285562422737092}, methods: {"registerSmartCard":{"id":2114942021179380},"unregisterSmartCard":{"id":2709333831987034}} });
+registerSDKClass("TKTokenSession", TKTokenSession, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"delegate":2305654115949533,"token":3373259863414161} });
+registerSDKClass("TKSmartCardTokenSession", TKSmartCardTokenSession, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"smartCard":4034558895670568}, methods: {"getSmartCard":{"id":2423668501423366}} });
+registerSDKClass("TKSmartCardUserInteraction", TKSmartCardUserInteraction, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"delegate":860896862429721,"initialTimeout":1306512770518111,"interactionTimeout":265359676760350}, methods: {"cancel":{"id":288678438107827},"run":{"id":3383367752925903,"hints":[{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)TKSmartCardUserInteractionDelegate", {"characterEnteredIn":"characterEntered(in:)","correctionKeyPressedIn":"correctionKeyPressed(in:)","validationKeyPressedIn":"validationKeyPressed(in:)","invalidCharacterEnteredIn":"invalidCharacterEntered(in:)","oldPINRequestedIn":"oldPINRequested(in:)","newPINRequestedIn":"newPINRequested(in:)","newPINConfirmationRequestedIn":"newPINConfirmationRequested(in:)"});
-registerSDKClass("TKSmartCardUserInteractionForPINOperation", TKSmartCardUserInteractionForPINOperation, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"pinCompletion":2624667426056118,"pinMessageIndices":876946657318511,"locale":4356981385565153,"resultData":2002990149277736,"resultSW":2129722794916958} });
-registerSDKClass("TKSmartCardUserInteractionForSecurePINChange", TKSmartCardUserInteractionForSecurePINChange, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"pinConfirmation":1330965655913306} });
-registerSDKClass("TKSmartCardUserInteractionForSecurePINVerification", TKSmartCardUserInteractionForSecurePINVerification, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {} });
-registerSDKClass("TKTokenConfiguration", TKToken_Configuration, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"configurationData":3995441467709585,"instanceID":1224659811572446,"keychainItems":2597113868475963}, methods: {"certificate":{"id":370157482038552},"key":{"id":401086606241852}} });
-registerSDKClass("TKTokenAuthOperation", TKTokenAuthOperation, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {}, methods: {"finish":{"id":882730756393701}} });
+registerSDKClass("TKSmartCardUserInteractionForPINOperation", TKSmartCardUserInteractionForPINOperation, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"pinCompletion":2624667426056118,"pinMessageIndices":876946657318511,"locale":4356981385565153,"resultData":2002990149277736,"resultSW":2129722794916958} });
+registerSDKClass("TKSmartCardUserInteractionForSecurePINChange", TKSmartCardUserInteractionForSecurePINChange, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"pinConfirmation":1330965655913306} });
+registerSDKClass("TKSmartCardUserInteractionForSecurePINVerification", TKSmartCardUserInteractionForSecurePINVerification, { module: "CryptoTokenKit_3864e7f38681b875", properties: {} });
+registerSDKClass("TKTokenConfiguration", TKToken_Configuration, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"configurationData":3995441467709585,"instanceID":1224659811572446,"keychainItems":2597113868475963}, methods: {"certificate":{"id":370157482038552},"key":{"id":401086606241852}} });
+registerSDKClass("TKTokenAuthOperation", TKTokenAuthOperation, { module: "CryptoTokenKit_3864e7f38681b875", properties: {}, methods: {"finish":{"id":882730756393701}} });
 registerSDKProtocol("c:objc(pl)TKTokenDelegate", {"createSession":"createSession(_:)","tokenTerminateSession":"token(_:terminateSession:)"});
-registerSDKClass("TKTokenDriverConfiguration", TKTokenDriver_Configuration, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"classID":4479567692994690,"tokenConfigurations":42146763840819}, methods: {"addTokenConfiguration":{"id":3420759167810463},"removeTokenConfiguration":{"id":3159295196631902}} });
+registerSDKClass("TKTokenDriverConfiguration", TKTokenDriver_Configuration, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"classID":4479567692994690,"tokenConfigurations":42146763840819}, methods: {"addTokenConfiguration":{"id":3420759167810463},"removeTokenConfiguration":{"id":3159295196631902}} });
 registerSDKProtocol("c:objc(pl)TKTokenDriverDelegate", {"tokenDriverTerminateToken":"tokenDriver(_:terminateToken:)"});
-registerSDKClass("TKTokenKeyAlgorithm", TKTokenKeyAlgorithm, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {}, methods: {"isAlgorithm":{"id":2034617703005788},"supportsAlgorithm":{"id":3862970485322078}} });
-registerSDKClass("TKTokenKeychainItem", TKTokenKeychainItem, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"constraints":3276397043670845,"label":2089043011020776,"objectID":690669460955307} });
-registerSDKClass("TKTokenKeychainCertificate", TKTokenKeychainCertificate, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"data":3414485680154528} });
-registerSDKClass("TKTokenKeychainContents", TKTokenKeychainContents, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"items":864374740957213}, methods: {"certificate":{"id":286124083542251},"fill":{"id":215192441578092},"key":{"id":765090915671114}} });
-registerSDKClass("TKTokenKeychainKey", TKTokenKeychainKey, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"applicationTag":1091666699466635,"canDecrypt":2772660232851345,"canPerformKeyExchange":428531246220597,"canSign":3116403316841880,"keySizeInBits":392732704677971,"keyType":4025275591340787,"publicKeyData":3894537577549954,"publicKeyHash":3108355739030589,"isSuitableForLogin":2228760964375604} });
-registerSDKClass("TKTokenKeyExchangeParameters", TKTokenKeyExchangeParameters, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"requestedSize":2714047189064083,"sharedInfo":1908055895541616} });
-registerSDKClass("TKTokenPasswordAuthOperation", TKTokenPasswordAuthOperation, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"password":4230593240381796} });
+registerSDKClass("TKTokenKeyAlgorithm", TKTokenKeyAlgorithm, { module: "CryptoTokenKit_3864e7f38681b875", properties: {}, methods: {"isAlgorithm":{"id":2034617703005788},"supportsAlgorithm":{"id":3862970485322078}} });
+registerSDKClass("TKTokenKeychainItem", TKTokenKeychainItem, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"constraints":3276397043670845,"label":2089043011020776,"objectID":690669460955307} });
+registerSDKClass("TKTokenKeychainCertificate", TKTokenKeychainCertificate, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"data":3414485680154528} });
+registerSDKClass("TKTokenKeychainContents", TKTokenKeychainContents, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"items":864374740957213}, methods: {"certificate":{"id":286124083542251},"fill":{"id":215192441578092},"key":{"id":765090915671114}} });
+registerSDKClass("TKTokenKeychainKey", TKTokenKeychainKey, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"applicationTag":1091666699466635,"canDecrypt":2772660232851345,"canPerformKeyExchange":428531246220597,"canSign":3116403316841880,"keySizeInBits":392732704677971,"keyType":4025275591340787,"publicKeyData":3894537577549954,"publicKeyHash":3108355739030589,"isSuitableForLogin":2228760964375604} });
+registerSDKClass("TKTokenKeyExchangeParameters", TKTokenKeyExchangeParameters, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"requestedSize":2714047189064083,"sharedInfo":1908055895541616} });
+registerSDKClass("TKTokenPasswordAuthOperation", TKTokenPasswordAuthOperation, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"password":4230593240381796} });
 registerSDKProtocol("c:objc(pl)TKTokenSessionDelegate", {});
-registerSDKClass("TKTokenSmartCardPINAuthOperation", TKTokenSmartCardPINAuthOperation, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"apduTemplate":3738946026193083,"pin":124001460947601,"pinByteOffset":1845375153855214,"pinFormat":2279384823143011,"smartCard":306928221674036} });
-registerSDKClass("TKTokenWatcher", TKTokenWatcher, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"tokenIDs":1641807344115539}, methods: {"addRemovalHandler":{"id":2349890465581932,"hints":[{"callback":{"out":[]}},null]},"setInsertionHandler":{"id":4034577311778490,"hints":[{"callback":{"out":[]}}]},"tokenInfo":{"id":1943839018029561}} });
-registerSDKClass("TKTokenWatcherTokenInfo", TKTokenWatcher_TokenInfo, { module: "CryptoTokenKit_ff42ce03e691ab23", properties: {"driverName":3837940158597719,"slotName":2623684407814195,"tokenID":3275376817025159} });
+registerSDKClass("TKTokenSmartCardPINAuthOperation", TKTokenSmartCardPINAuthOperation, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"apduTemplate":3738946026193083,"pin":124001460947601,"pinByteOffset":1845375153855214,"pinFormat":2279384823143011,"smartCard":306928221674036} });
+registerSDKClass("TKTokenWatcher", TKTokenWatcher, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"tokenIDs":1641807344115539}, methods: {"addRemovalHandler":{"id":2349890465581932,"hints":[{"callback":{"out":[]}},null]},"setInsertionHandler":{"id":4034577311778490,"hints":[{"callback":{"out":[]}}]},"tokenInfo":{"id":1943839018029561}} });
+registerSDKClass("TKTokenWatcherTokenInfo", TKTokenWatcher_TokenInfo, { module: "CryptoTokenKit_3864e7f38681b875", properties: {"driverName":3837940158597719,"slotName":2623684407814195,"tokenID":3275376817025159} });

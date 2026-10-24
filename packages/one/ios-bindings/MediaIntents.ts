@@ -11,18 +11,18 @@ export class AudioSearch extends SDKHandle {
    * init(criteria: AudioSearch.Criteria, spotlightSearchResults: [Never])
    * @availability iOS 27.0+
    */
-  static initCriteriaSpotlightSearchResults(criteria: AudioSearch_Criteria, spotlightSearchResults: Array<never>): AudioSearch { return callSDK<AudioSearch>("MediaIntents_ff42ce03e691ab23", 944420653152099, undefined, [criteria, spotlightSearchResults]); }
+  static initCriteriaSpotlightSearchResults(criteria: AudioSearch_Criteria, spotlightSearchResults: Array<never>): AudioSearch { return callSDK<AudioSearch>("MediaIntents_3864e7f38681b875", 944420653152099, undefined, [criteria, spotlightSearchResults]); }
   /**
    * init(criteria: AudioSearch.Criteria)
    * @availability iOS 27.0+
    */
-  static initCriteria(criteria: AudioSearch_Criteria): AudioSearch { return callSDK<AudioSearch>("MediaIntents_ff42ce03e691ab23", 4489114330461744, undefined, [criteria]); }
+  static initCriteria(criteria: AudioSearch_Criteria): AudioSearch { return callSDK<AudioSearch>("MediaIntents_3864e7f38681b875", 4489114330461744, undefined, [criteria]); }
   /**
    * var criteria: AudioSearch.Criteria
    * @availability iOS 27.0+
    */
-  get criteria(): AudioSearch_Criteria { return callSDK<AudioSearch_Criteria>("MediaIntents_ff42ce03e691ab23", 265220800988112, this, []); }
-  set criteria(value: AudioSearch_Criteria) { callSDK<void>("MediaIntents_ff42ce03e691ab23", 931239004290879, this, [value]); }
+  get criteria(): AudioSearch_Criteria { return callSDK<AudioSearch_Criteria>("MediaIntents_3864e7f38681b875", 265220800988112, this, []); }
+  set criteria(value: AudioSearch_Criteria) { callSDK<void>("MediaIntents_3864e7f38681b875", 931239004290879, this, [value]); }
   declare readonly $type: { "s:12MediaIntents11AudioSearchV": true };
 }
 
@@ -34,5 +34,5 @@ export class AudioSearch_Criteria extends SDKHandle {
   declare readonly $type: { "s:12MediaIntents11AudioSearchV8CriteriaO": true };
 }
 
-registerSDKClass("MediaIntents.AudioSearch", AudioSearch, { module: "MediaIntents_ff42ce03e691ab23", properties: {} });
-registerSDKClass("MediaIntents.AudioSearch.Criteria", AudioSearch_Criteria, { module: "MediaIntents_ff42ce03e691ab23", properties: {} });
+registerSDKClass("MediaIntents.AudioSearch", AudioSearch, { module: "MediaIntents_3864e7f38681b875", properties: {} });
+registerSDKClass("MediaIntents.AudioSearch.Criteria", AudioSearch_Criteria, { module: "MediaIntents_3864e7f38681b875", properties: {} });

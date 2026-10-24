@@ -25,39 +25,28 @@ After followup review, matching artifact checks and bounded native validation, p
 ## SDK bundle size candidate
 
 The approved scope is options a and c in Contrast's
-`plans/contrast/one-native-sdk-bundle-size.md`: compact generated SDK runtime
-facades and direct root hook exports. Keep typed declarations, framework-wide
-wrapper registration, native selector IDs, first-call errors and both bundlers
-compatible. Publish branch canaries for downstream validation, not a stable
-release.
+`plans/contrast/one-native-sdk-bundle-size.md`. Root hooks and the stack toolbar
+import capability modules directly. Native SDK output strips comments and types
+and shares framework call prefixes while retaining native class/member syntax,
+eager wrapper registration, descriptors and error timing. Runtime and native
+SDK tables remain on their original coherent generation 3864e7f38681b875.
 
-The compact candidate now uses cached framework initializers behind enumerable
-CommonJS getters. A manifest resolves native class names, extension names and
-protocol USRs before registry reads. Initializers preserve constructors and
-prototypes, run bases before extensions, and cache failures. Generated native
-constant errors move from import to the first framework use.
+The Contrast lead selected this class route after comparing both implementations.
+In five production-shaped intercepted-artifact pairs, it saved 2,423,686 SDK bytes
+with 2748 modules unchanged and framework evaluation at 19.73 ms versus 20.65 ms
+paired baseline. Both are above the historical 14.57 ms figure; relative no-rise
+is established for this run. The compact table route saved 3.549 MB but evaluated
+at 62.07 ms versus 19.64 ms paired baseline. The lead replaced the plan's 3.5 MB
+estimate with the measured class result, keeping no startup rise as the priority.
+Neither route is claimed to meet the original two requirements together.
 
-The all-framework differential passed for 290 frameworks before the latest
-ES2020 output adjustment. Focused runtime checks cover extension ordering,
-cycles, sticky failures, protocol lookup and native-handle-first access. Both
-actual Metro and browser transforms pass named, star and namespace imports,
-descriptors and identity with React Refresh disabled. The real Contrast package
-compiler emits 1,467,795 bytes for the ten reached SDK framework bodies, versus
-5,059,583 original factory bytes. Wrapper overhead and the complete consumer
-artifact still need measurement.
+All 290 framework differentials and the Metro/Hermes and browser transform
+probes pass names, descriptors, registry metadata, call records and identity for
+the class route. Final source build, focused checks, published canary content,
+isolated welcome consumer and production homepage chunk proof are still pending.
+Intercepted artifact measurements are exploratory, not rebuilt consumer proof.
+A large model other than the author must review the final PR before merge.
+No stable release is authorized.
 
-The candidate is not ready to merge: Metro React Refresh reads every SDK export
-getter and defeats lazy initialization in the welcome project. The captured
-initializer work is about 49 ms against the 14.57 ms paired baseline. Timing
-only the outer module factories would incorrectly omit this work. The lead's
-reviewer is considering a narrow Refresh opt-out before implementation.
-SDK regeneration is running because wire changes alter the native generation.
-The production homepage chunk comparison, exact canary artifact verification,
-local welcome rebuild and six capability calls on Peach and iOS remain open.
-Contrast's isolated worktree is held by the lead until lane capacity frees.
-
-Option b is not included. An exploratory graph-pruning probe removes 347 modules
-and every SDK binding, estimating 7,504,327 code bytes. It still needs actual
-native and homepage measurements and a documented root-to-subpath migration
-before inclusion. The lead owns any acceptance tradeoff; a different large model
-must approve the final PR before merge.
+Option b is excluded. The exploratory root-edge pruning estimate is 7,504,327
+bytes with 347 modules removed. The class route retains One's root public API.

@@ -24,13 +24,10 @@ The JavaScript and native parts must be rebuilt together after a bridge change.
 Regenerate Nitro bindings and the app SDK pod when rebuilding. Facades carry the
 same generation as their native tables, so stale combinations fail at the call.
 
-Native JavaScript facades use compact member tables and cached framework
-initializers. Reading an export or resolving a returned native handle initializes
-the framework, its base classes and reached extensions before exposing wrappers.
-Class and prototype identity remain stable. An initializer failure is cached and
-later access rethrows the same error. A native error from a generated constant
-initializer occurs at first framework use rather than at import. Typed source
-facades and declarations retain their generated signatures and documentation.
+Native JavaScript facades retain ordinary class and member syntax. The package
+build removes comments and types and shares repeated framework call prefixes;
+class identity, descriptors, eager registration and native error timing stay as
+in the typed source. Editor signatures and documentation stay in `ios-types`.
 
 ## React content in UIKit
 

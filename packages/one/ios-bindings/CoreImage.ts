@@ -44,7 +44,7 @@ type $SDK16 = (NativeMap<CIImageOption, unknown>) | null;
  */
 export class CIBarcodeDescriptor extends SDKHandle {
   /** init() */
-  static init(): CIBarcodeDescriptor { return callSDK<CIBarcodeDescriptor>("CoreImage_ff42ce03e691ab23", 392407118001261, undefined, []); }
+  static init(): CIBarcodeDescriptor { return callSDK<CIBarcodeDescriptor>("CoreImage_3864e7f38681b875", 392407118001261, undefined, []); }
   declare readonly $type: { "c:objc(cs)CIBarcodeDescriptor": true; "c:objc(cs)NSObject": true };
 }
 
@@ -57,27 +57,27 @@ export class CIAztecCodeDescriptor extends (CIBarcodeDescriptor as unknown as Om
    * init?(payload errorCorrectedPayload: Data, isCompact: Bool, layerCount: Int, dataCodewordCount: Int)
    * @availability iOS 11.0+
    */
-  static init(errorCorrectedPayload: ArrayBuffer, isCompact: boolean, layerCount: number, dataCodewordCount: number): (CIAztecCodeDescriptor) | null { return callSDK<(CIAztecCodeDescriptor) | null>("CoreImage_ff42ce03e691ab23", 195556168480424, undefined, [errorCorrectedPayload, isCompact, layerCount, dataCodewordCount]); }
+  static init(errorCorrectedPayload: ArrayBuffer, isCompact: boolean, layerCount: number, dataCodewordCount: number): (CIAztecCodeDescriptor) | null { return callSDK<(CIAztecCodeDescriptor) | null>("CoreImage_3864e7f38681b875", 195556168480424, undefined, [errorCorrectedPayload, isCompact, layerCount, dataCodewordCount]); }
   /**
    * var dataCodewordCount: Int { get }
    * @availability iOS 11.0+
    */
-  get dataCodewordCount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 1807689904874114, this, []); }
+  get dataCodewordCount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 1807689904874114, this, []); }
   /**
    * var errorCorrectedPayload: Data { get }
    * @availability iOS 11.0+
    */
-  get errorCorrectedPayload(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreImage_ff42ce03e691ab23", 1964684476692715, this, []); }
+  get errorCorrectedPayload(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreImage_3864e7f38681b875", 1964684476692715, this, []); }
   /**
    * var isCompact: Bool { get }
    * @availability iOS 11.0+
    */
-  get isCompact(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 6937796905479, this, []); }
+  get isCompact(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 6937796905479, this, []); }
   /**
    * var layerCount: Int { get }
    * @availability iOS 11.0+
    */
-  get layerCount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 647384171752410, this, []); }
+  get layerCount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 647384171752410, this, []); }
   declare readonly $type: { "c:objc(cs)CIAztecCodeDescriptor": true; "c:objc(cs)CIBarcodeDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataCodewordCount": true; "errorCorrectedPayload": true; "isCompact": true; "layerCount": true };
 }
@@ -91,39 +91,39 @@ export class CIKernel extends SDKHandle {
    * class func kernelNames(fromMetalLibraryData data: Data) -> [String]
    * @availability iOS 14.0+
    */
-  static kernelNames(data: ArrayBuffer): Array<string> { return callSDK<Array<string>>("CoreImage_ff42ce03e691ab23", 2729208653412464, undefined, [data]); }
+  static kernelNames(data: ArrayBuffer): Array<string> { return callSDK<Array<string>>("CoreImage_3864e7f38681b875", 2729208653412464, undefined, [data]); }
   /**
    * convenience init(functionName name: String, fromMetalLibraryData data: Data) throws
    * @availability iOS 11.0+
    */
-  static initFunctionNameFromMetalLibraryData(name: string, data: ArrayBuffer): CIKernel { return callSDK<CIKernel>("CoreImage_ff42ce03e691ab23", 3336730739091114, undefined, [name, data]); }
+  static initFunctionNameFromMetalLibraryData(name: string, data: ArrayBuffer): CIKernel { return callSDK<CIKernel>("CoreImage_3864e7f38681b875", 3336730739091114, undefined, [name, data]); }
   /**
    * convenience init(functionName name: String, fromMetalLibraryData data: Data, outputPixelFormat format: CIFormat) throws
    * @availability iOS 11.0+
    */
-  static initFunctionNameFromMetalLibraryDataOutputPixelFormat(name: string, data: ArrayBuffer, format: CIFormat): CIKernel { return callSDK<CIKernel>("CoreImage_ff42ce03e691ab23", 1549605558132788, undefined, [name, data, format]); }
+  static initFunctionNameFromMetalLibraryDataOutputPixelFormat(name: string, data: ArrayBuffer, format: CIFormat): CIKernel { return callSDK<CIKernel>("CoreImage_3864e7f38681b875", 1549605558132788, undefined, [name, data, format]); }
   /**
    * convenience init?(source string: String)
    * @availability iOS 8.0+
    * @deprecated iOS 12.0
    */
-  static initSource(string: string): (CIKernel) | null { return callSDK<(CIKernel) | null>("CoreImage_ff42ce03e691ab23", 4307773409951692, undefined, [string]); }
+  static initSource(string: string): (CIKernel) | null { return callSDK<(CIKernel) | null>("CoreImage_3864e7f38681b875", 4307773409951692, undefined, [string]); }
   /**
    * class func kernels(withMetalString source: String) throws -> [CIKernel]
    * @availability iOS 15.0+
    */
-  static kernels(source: string): Array<CIKernel> { return callSDK<Array<CIKernel>>("CoreImage_ff42ce03e691ab23", 3896445323959679, undefined, [source]); }
+  static kernels(source: string): Array<CIKernel> { return callSDK<Array<CIKernel>>("CoreImage_3864e7f38681b875", 3896445323959679, undefined, [source]); }
   /**
    * class func makeKernels(source string: String) -> [CIKernel]?
    * @availability iOS 8.0+
    * @deprecated iOS 12.0
    */
-  static makeKernels(string: string): (Array<CIKernel>) | null { return callSDK<(Array<CIKernel>) | null>("CoreImage_ff42ce03e691ab23", 919316472662393, undefined, [string]); }
+  static makeKernels(string: string): (Array<CIKernel>) | null { return callSDK<(Array<CIKernel>) | null>("CoreImage_3864e7f38681b875", 919316472662393, undefined, [string]); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("CoreImage_ff42ce03e691ab23", 3810008604922214, this, []); }
+  get name(): string { return callSDK<string>("CoreImage_3864e7f38681b875", 3810008604922214, this, []); }
   declare readonly $type: { "c:objc(cs)CIKernel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true };
 }
@@ -138,12 +138,12 @@ export class CIColorKernel extends CIKernel {
    * @availability iOS 8.0+
    * @deprecated iOS 12.0
    */
-  static init(string: string): (CIColorKernel) | null { return callSDK<(CIColorKernel) | null>("CoreImage_ff42ce03e691ab23", 2744775452927560, undefined, [string]); }
+  static init(string: string): (CIColorKernel) | null { return callSDK<(CIColorKernel) | null>("CoreImage_3864e7f38681b875", 2744775452927560, undefined, [string]); }
   /**
    * func apply(extent: CGRect, arguments args: [Any]) -> CIImage?
    * @availability iOS 8.0+
    */
-  apply(extent: $SDK1, args: Array<unknown>): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 2591408789704640, this, [extent, args]); }
+  apply(extent: $SDK1, args: Array<unknown>): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 2591408789704640, this, [extent, args]); }
   declare readonly $type: { "c:objc(cs)CIColorKernel": true; "c:objc(cs)CIKernel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true };
 }
@@ -158,99 +158,99 @@ export class CIBlendKernel extends (CIColorKernel as unknown as Omit<typeof CICo
    * @availability iOS 8.0+
    * @deprecated iOS 12.0
    */
-  static init(string: string): (CIBlendKernel) | null { return callSDK<(CIBlendKernel) | null>("CoreImage_ff42ce03e691ab23", 4327055053955943, undefined, [string]); }
+  static init(string: string): (CIBlendKernel) | null { return callSDK<(CIBlendKernel) | null>("CoreImage_3864e7f38681b875", 4327055053955943, undefined, [string]); }
   /** class var clear: CIBlendKernel { get } */
-  static get clear(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 2660717078459816, undefined, []); }
+  static get clear(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 2660717078459816, undefined, []); }
   /** class var color: CIBlendKernel { get } */
-  static get color(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 1349526942342678, undefined, []); }
+  static get color(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 1349526942342678, undefined, []); }
   /** class var colorBurn: CIBlendKernel { get } */
-  static get colorBurn(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 1145223988918470, undefined, []); }
+  static get colorBurn(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 1145223988918470, undefined, []); }
   /** class var colorDodge: CIBlendKernel { get } */
-  static get colorDodge(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 73412861567835, undefined, []); }
+  static get colorDodge(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 73412861567835, undefined, []); }
   /** class var componentAdd: CIBlendKernel { get } */
-  static get componentAdd(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 240561291380027, undefined, []); }
+  static get componentAdd(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 240561291380027, undefined, []); }
   /** class var componentMax: CIBlendKernel { get } */
-  static get componentMax(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 3037081676748392, undefined, []); }
+  static get componentMax(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 3037081676748392, undefined, []); }
   /** class var componentMin: CIBlendKernel { get } */
-  static get componentMin(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 769688561676668, undefined, []); }
+  static get componentMin(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 769688561676668, undefined, []); }
   /** class var componentMultiply: CIBlendKernel { get } */
-  static get componentMultiply(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 588307722531984, undefined, []); }
+  static get componentMultiply(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 588307722531984, undefined, []); }
   /** class var darken: CIBlendKernel { get } */
-  static get darken(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 2177374724829121, undefined, []); }
+  static get darken(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 2177374724829121, undefined, []); }
   /** class var darkerColor: CIBlendKernel { get } */
-  static get darkerColor(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 498847492499588, undefined, []); }
+  static get darkerColor(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 498847492499588, undefined, []); }
   /** class var destination: CIBlendKernel { get } */
-  static get destination(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 4320619934486436, undefined, []); }
+  static get destination(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 4320619934486436, undefined, []); }
   /** class var destinationAtop: CIBlendKernel { get } */
-  static get destinationAtop(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 2526355495170157, undefined, []); }
+  static get destinationAtop(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 2526355495170157, undefined, []); }
   /** class var destinationIn: CIBlendKernel { get } */
-  static get destinationIn(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 4096390409134334, undefined, []); }
+  static get destinationIn(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 4096390409134334, undefined, []); }
   /** class var destinationOut: CIBlendKernel { get } */
-  static get destinationOut(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 1976030077179768, undefined, []); }
+  static get destinationOut(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 1976030077179768, undefined, []); }
   /** class var destinationOver: CIBlendKernel { get } */
-  static get destinationOver(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 2866992393893788, undefined, []); }
+  static get destinationOver(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 2866992393893788, undefined, []); }
   /** class var difference: CIBlendKernel { get } */
-  static get difference(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 2760372915481699, undefined, []); }
+  static get difference(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 2760372915481699, undefined, []); }
   /** class var divide: CIBlendKernel { get } */
-  static get divide(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 1227890776109885, undefined, []); }
+  static get divide(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 1227890776109885, undefined, []); }
   /** class var exclusion: CIBlendKernel { get } */
-  static get exclusion(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 4312455603488389, undefined, []); }
+  static get exclusion(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 4312455603488389, undefined, []); }
   /** class var exclusiveOr: CIBlendKernel { get } */
-  static get exclusiveOr(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 4327818976420634, undefined, []); }
+  static get exclusiveOr(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 4327818976420634, undefined, []); }
   /** class var hardLight: CIBlendKernel { get } */
-  static get hardLight(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 1755515464746154, undefined, []); }
+  static get hardLight(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 1755515464746154, undefined, []); }
   /** class var hardMix: CIBlendKernel { get } */
-  static get hardMix(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 326760828626597, undefined, []); }
+  static get hardMix(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 326760828626597, undefined, []); }
   /** class var hue: CIBlendKernel { get } */
-  static get hue(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 2846746665609050, undefined, []); }
+  static get hue(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 2846746665609050, undefined, []); }
   /** class var lighten: CIBlendKernel { get } */
-  static get lighten(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 458905410247270, undefined, []); }
+  static get lighten(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 458905410247270, undefined, []); }
   /** class var lighterColor: CIBlendKernel { get } */
-  static get lighterColor(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 206460779724338, undefined, []); }
+  static get lighterColor(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 206460779724338, undefined, []); }
   /** class var linearBurn: CIBlendKernel { get } */
-  static get linearBurn(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 963879609501568, undefined, []); }
+  static get linearBurn(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 963879609501568, undefined, []); }
   /** class var linearDodge: CIBlendKernel { get } */
-  static get linearDodge(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 439354145097498, undefined, []); }
+  static get linearDodge(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 439354145097498, undefined, []); }
   /** class var linearLight: CIBlendKernel { get } */
-  static get linearLight(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 4493039529764954, undefined, []); }
+  static get linearLight(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 4493039529764954, undefined, []); }
   /** class var luminosity: CIBlendKernel { get } */
-  static get luminosity(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 4381161196002184, undefined, []); }
+  static get luminosity(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 4381161196002184, undefined, []); }
   /** class var multiply: CIBlendKernel { get } */
-  static get multiply(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 1494736585850479, undefined, []); }
+  static get multiply(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 1494736585850479, undefined, []); }
   /** class var overlay: CIBlendKernel { get } */
-  static get overlay(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 3354657629270036, undefined, []); }
+  static get overlay(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 3354657629270036, undefined, []); }
   /** class var pinLight: CIBlendKernel { get } */
-  static get pinLight(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 3769203606014993, undefined, []); }
+  static get pinLight(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 3769203606014993, undefined, []); }
   /** class var saturation: CIBlendKernel { get } */
-  static get saturation(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 45125588813495, undefined, []); }
+  static get saturation(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 45125588813495, undefined, []); }
   /** class var screen: CIBlendKernel { get } */
-  static get screen(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 3854473469896740, undefined, []); }
+  static get screen(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 3854473469896740, undefined, []); }
   /** class var softLight: CIBlendKernel { get } */
-  static get softLight(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 568316810968598, undefined, []); }
+  static get softLight(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 568316810968598, undefined, []); }
   /** class var source: CIBlendKernel { get } */
-  static get source(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 319447071457864, undefined, []); }
+  static get source(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 319447071457864, undefined, []); }
   /** class var sourceAtop: CIBlendKernel { get } */
-  static get sourceAtop(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 3145282918190388, undefined, []); }
+  static get sourceAtop(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 3145282918190388, undefined, []); }
   /** class var sourceIn: CIBlendKernel { get } */
-  static get sourceIn(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 1320959839063419, undefined, []); }
+  static get sourceIn(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 1320959839063419, undefined, []); }
   /** class var sourceOut: CIBlendKernel { get } */
-  static get sourceOut(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 1273753696654084, undefined, []); }
+  static get sourceOut(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 1273753696654084, undefined, []); }
   /** class var sourceOver: CIBlendKernel { get } */
-  static get sourceOver(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 1221823900127080, undefined, []); }
+  static get sourceOver(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 1221823900127080, undefined, []); }
   /** class var subtract: CIBlendKernel { get } */
-  static get subtract(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 998784262671824, undefined, []); }
+  static get subtract(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 998784262671824, undefined, []); }
   /** class var vividLight: CIBlendKernel { get } */
-  static get vividLight(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_ff42ce03e691ab23", 2500563114446052, undefined, []); }
+  static get vividLight(): CIBlendKernel { return callSDK<CIBlendKernel>("CoreImage_3864e7f38681b875", 2500563114446052, undefined, []); }
   /**
    * func apply(foreground: CIImage, background: CIImage) -> CIImage?
    * @availability iOS 11.0+
    */
-  applyForegroundBackground(foreground: CIImage, background: CIImage): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 429083586321870, this, [foreground, background]); }
+  applyForegroundBackground(foreground: CIImage, background: CIImage): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 429083586321870, this, [foreground, background]); }
   /**
    * func apply(foreground: CIImage, background: CIImage, colorSpace: CGColorSpace) -> CIImage?
    * @availability iOS 13.0+
    */
-  applyForegroundBackgroundColorSpace(foreground: CIImage, background: CIImage, colorSpace: _CoreGraphics_CGColorSpace): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 3273660505596510, this, [foreground, background, colorSpace]); }
+  applyForegroundBackgroundColorSpace(foreground: CIImage, background: CIImage, colorSpace: _CoreGraphics_CGColorSpace): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 3273660505596510, this, [foreground, background, colorSpace]); }
   declare readonly $type: { "c:objc(cs)CIBlendKernel": true; "c:objc(cs)CIColorKernel": true; "c:objc(cs)CIKernel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true };
 }
@@ -264,122 +264,122 @@ export class CIColor extends SDKHandle {
    * convenience init(red: CGFloat, green: CGFloat, blue: CGFloat)
    * @availability iOS 5.0+
    */
-  static initRedGreenBlue(red: number, green: number, blue: number): CIColor { return callSDK<CIColor>("CoreImage_ff42ce03e691ab23", 641405094572760, undefined, [red, green, blue]); }
+  static initRedGreenBlue(red: number, green: number, blue: number): CIColor { return callSDK<CIColor>("CoreImage_3864e7f38681b875", 641405094572760, undefined, [red, green, blue]); }
   /**
    * convenience init(string representation: String)
    * @availability iOS 5.0+
    */
-  static initString(representation: string): CIColor { return callSDK<CIColor>("CoreImage_ff42ce03e691ab23", 314854662065341, undefined, [representation]); }
+  static initString(representation: string): CIColor { return callSDK<CIColor>("CoreImage_3864e7f38681b875", 314854662065341, undefined, [representation]); }
   /**
    * class var black: CIColor { get }
    * @availability iOS 10.0+
    */
-  static get black(): CIColor { return callSDK<CIColor>("CoreImage_ff42ce03e691ab23", 2419271270771765, undefined, []); }
+  static get black(): CIColor { return callSDK<CIColor>("CoreImage_3864e7f38681b875", 2419271270771765, undefined, []); }
   /**
    * class var blue: CIColor { get }
    * @availability iOS 10.0+
    */
-  static get blue(): CIColor { return callSDK<CIColor>("CoreImage_ff42ce03e691ab23", 3476822218676800, undefined, []); }
+  static get blue(): CIColor { return callSDK<CIColor>("CoreImage_3864e7f38681b875", 3476822218676800, undefined, []); }
   /**
    * class var clear: CIColor { get }
    * @availability iOS 10.0+
    */
-  static get clear(): CIColor { return callSDK<CIColor>("CoreImage_ff42ce03e691ab23", 961621820452090, undefined, []); }
+  static get clear(): CIColor { return callSDK<CIColor>("CoreImage_3864e7f38681b875", 961621820452090, undefined, []); }
   /**
    * class var cyan: CIColor { get }
    * @availability iOS 10.0+
    */
-  static get cyan(): CIColor { return callSDK<CIColor>("CoreImage_ff42ce03e691ab23", 3678643130404869, undefined, []); }
+  static get cyan(): CIColor { return callSDK<CIColor>("CoreImage_3864e7f38681b875", 3678643130404869, undefined, []); }
   /**
    * class var gray: CIColor { get }
    * @availability iOS 10.0+
    */
-  static get gray(): CIColor { return callSDK<CIColor>("CoreImage_ff42ce03e691ab23", 3491708931891974, undefined, []); }
+  static get gray(): CIColor { return callSDK<CIColor>("CoreImage_3864e7f38681b875", 3491708931891974, undefined, []); }
   /**
    * class var green: CIColor { get }
    * @availability iOS 10.0+
    */
-  static get green(): CIColor { return callSDK<CIColor>("CoreImage_ff42ce03e691ab23", 58647081114181, undefined, []); }
+  static get green(): CIColor { return callSDK<CIColor>("CoreImage_3864e7f38681b875", 58647081114181, undefined, []); }
   /**
    * class var magenta: CIColor { get }
    * @availability iOS 10.0+
    */
-  static get magenta(): CIColor { return callSDK<CIColor>("CoreImage_ff42ce03e691ab23", 4027266530042408, undefined, []); }
+  static get magenta(): CIColor { return callSDK<CIColor>("CoreImage_3864e7f38681b875", 4027266530042408, undefined, []); }
   /**
    * class var red: CIColor { get }
    * @availability iOS 10.0+
    */
-  static get red(): CIColor { return callSDK<CIColor>("CoreImage_ff42ce03e691ab23", 3917751579148005, undefined, []); }
+  static get red(): CIColor { return callSDK<CIColor>("CoreImage_3864e7f38681b875", 3917751579148005, undefined, []); }
   /**
    * class var white: CIColor { get }
    * @availability iOS 10.0+
    */
-  static get white(): CIColor { return callSDK<CIColor>("CoreImage_ff42ce03e691ab23", 361328781660592, undefined, []); }
+  static get white(): CIColor { return callSDK<CIColor>("CoreImage_3864e7f38681b875", 361328781660592, undefined, []); }
   /**
    * class var yellow: CIColor { get }
    * @availability iOS 10.0+
    */
-  static get yellow(): CIColor { return callSDK<CIColor>("CoreImage_ff42ce03e691ab23", 4414313651226611, undefined, []); }
+  static get yellow(): CIColor { return callSDK<CIColor>("CoreImage_3864e7f38681b875", 4414313651226611, undefined, []); }
   /**
    * init(cgColor color: CGColor)
    * @availability iOS 5.0+
    */
-  static initCgColor(color: _CoreGraphics_CGColor): CIColor { return callSDK<CIColor>("CoreImage_ff42ce03e691ab23", 114639814612797, undefined, [color]); }
+  static initCgColor(color: _CoreGraphics_CGColor): CIColor { return callSDK<CIColor>("CoreImage_3864e7f38681b875", 114639814612797, undefined, [color]); }
   /**
    * convenience init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
    * @availability iOS 5.0+
    */
-  static initRedGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): CIColor { return callSDK<CIColor>("CoreImage_ff42ce03e691ab23", 4183992642719895, undefined, [red, green, blue, alpha]); }
+  static initRedGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): CIColor { return callSDK<CIColor>("CoreImage_3864e7f38681b875", 4183992642719895, undefined, [red, green, blue, alpha]); }
   /**
    * convenience init?(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat, colorSpace: CGColorSpace)
    * @availability iOS 10.0+
    */
-  static initRedGreenBlueAlphaColorSpace(red: number, green: number, blue: number, alpha: number, colorSpace: _CoreGraphics_CGColorSpace): (CIColor) | null { return callSDK<(CIColor) | null>("CoreImage_ff42ce03e691ab23", 475191213993069, undefined, [red, green, blue, alpha, colorSpace]); }
+  static initRedGreenBlueAlphaColorSpace(red: number, green: number, blue: number, alpha: number, colorSpace: _CoreGraphics_CGColorSpace): (CIColor) | null { return callSDK<(CIColor) | null>("CoreImage_3864e7f38681b875", 475191213993069, undefined, [red, green, blue, alpha, colorSpace]); }
   /**
    * convenience init?(red: CGFloat, green: CGFloat, blue: CGFloat, colorSpace: CGColorSpace)
    * @availability iOS 10.0+
    */
-  static initRedGreenBlueColorSpace(red: number, green: number, blue: number, colorSpace: _CoreGraphics_CGColorSpace): (CIColor) | null { return callSDK<(CIColor) | null>("CoreImage_ff42ce03e691ab23", 2371283963672473, undefined, [red, green, blue, colorSpace]); }
+  static initRedGreenBlueColorSpace(red: number, green: number, blue: number, colorSpace: _CoreGraphics_CGColorSpace): (CIColor) | null { return callSDK<(CIColor) | null>("CoreImage_3864e7f38681b875", 2371283963672473, undefined, [red, green, blue, colorSpace]); }
   /**
    * var alpha: CGFloat { get }
    * @availability iOS 5.0+
    */
-  get alpha(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 1036225163192565, this, []); }
+  get alpha(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 1036225163192565, this, []); }
   /**
    * var blue: CGFloat { get }
    * @availability iOS 5.0+
    */
-  get blue80112(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 223095363396709, this, []); }
+  get blue80112(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 223095363396709, this, []); }
   /**
    * var colorSpace: CGColorSpace { get }
    * @availability iOS 5.0+
    */
-  get colorSpace(): _CoreGraphics_CGColorSpace { return callSDK<_CoreGraphics_CGColorSpace>("CoreImage_ff42ce03e691ab23", 4382081763230253, this, []); }
+  get colorSpace(): _CoreGraphics_CGColorSpace { return callSDK<_CoreGraphics_CGColorSpace>("CoreImage_3864e7f38681b875", 4382081763230253, this, []); }
   /**
    * var components: UnsafePointer<CGFloat> { get }
    * @availability iOS 5.0+
    */
-  get components(): $SDK2 { return callSDK<$SDK2>("CoreImage_ff42ce03e691ab23", 4252827730009362, this, []); }
+  get components(): $SDK2 { return callSDK<$SDK2>("CoreImage_3864e7f38681b875", 4252827730009362, this, []); }
   /**
    * var green: CGFloat { get }
    * @availability iOS 5.0+
    */
-  get green44967(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 1455218267581377, this, []); }
+  get green44967(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 1455218267581377, this, []); }
   /**
    * var numberOfComponents: Int { get }
    * @availability iOS 5.0+
    */
-  get numberOfComponents(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 2662101141389416, this, []); }
+  get numberOfComponents(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 2662101141389416, this, []); }
   /**
    * var red: CGFloat { get }
    * @availability iOS 5.0+
    */
-  get red50843(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 1746273923920670, this, []); }
+  get red50843(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 1746273923920670, this, []); }
   /**
    * var stringRepresentation: String { get }
    * @availability iOS 5.0+
    */
-  get stringRepresentation(): string { return callSDK<string>("CoreImage_ff42ce03e691ab23", 3512713464169494, this, []); }
+  get stringRepresentation(): string { return callSDK<string>("CoreImage_3864e7f38681b875", 3512713464169494, this, []); }
   declare readonly $type: { "c:objc(cs)CIColor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alpha": true; "blue80112": true; "colorSpace": true; "components": true; "green44967": true; "numberOfComponents": true; "red50843": true; "stringRepresentation": true };
 }
@@ -393,248 +393,248 @@ export class CIContext extends SDKHandle {
    * init(cgContext cgctx: CGContext, options: [CIContextOption : Any]? = nil)
    * @availability iOS 9.0+
    */
-  static initCgContextOptions(cgctx: _CoreGraphics_CGContext, options?: $SDK3): CIContext { return callSDK<CIContext>("CoreImage_ff42ce03e691ab23", 3436262270697517, undefined, [cgctx, options]); }
+  static initCgContextOptions(cgctx: _CoreGraphics_CGContext, options?: $SDK3): CIContext { return callSDK<CIContext>("CoreImage_3864e7f38681b875", 3436262270697517, undefined, [cgctx, options]); }
   /**
    * init(eaglContext: EAGLContext)
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  static initEaglContext(eaglContext: _OpenGLES_EAGLContext): CIContext { return callSDK<CIContext>("CoreImage_ff42ce03e691ab23", 3132460543105133, undefined, [eaglContext]); }
+  static initEaglContext(eaglContext: _OpenGLES_EAGLContext): CIContext { return callSDK<CIContext>("CoreImage_3864e7f38681b875", 3132460543105133, undefined, [eaglContext]); }
   /**
    * init(eaglContext: EAGLContext, options: [CIContextOption : Any]? = nil)
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  static initEaglContextOptions(eaglContext: _OpenGLES_EAGLContext, options?: $SDK3): CIContext { return callSDK<CIContext>("CoreImage_ff42ce03e691ab23", 4228075023427544, undefined, [eaglContext, options]); }
+  static initEaglContextOptions(eaglContext: _OpenGLES_EAGLContext, options?: $SDK3): CIContext { return callSDK<CIContext>("CoreImage_3864e7f38681b875", 4228075023427544, undefined, [eaglContext, options]); }
   /**
    * init(mtlCommandQueue commandQueue: any MTLCommandQueue)
    * @availability iOS 13.0+
    */
-  static initMtlCommandQueue(commandQueue: SDKHandle): CIContext { return callSDK<CIContext>("CoreImage_ff42ce03e691ab23", 4486112627429595, undefined, [commandQueue]); }
+  static initMtlCommandQueue(commandQueue: SDKHandle): CIContext { return callSDK<CIContext>("CoreImage_3864e7f38681b875", 4486112627429595, undefined, [commandQueue]); }
   /**
    * init(mtlCommandQueue commandQueue: any MTLCommandQueue, options: [CIContextOption : Any]? = nil)
    * @availability iOS 13.0+
    */
-  static initMtlCommandQueueOptions(commandQueue: SDKHandle, options?: $SDK3): CIContext { return callSDK<CIContext>("CoreImage_ff42ce03e691ab23", 2636945854626413, undefined, [commandQueue, options]); }
+  static initMtlCommandQueueOptions(commandQueue: SDKHandle, options?: $SDK3): CIContext { return callSDK<CIContext>("CoreImage_3864e7f38681b875", 2636945854626413, undefined, [commandQueue, options]); }
   /**
    * init(mtlDevice device: any MTLDevice)
    * @availability iOS 9.0+
    */
-  static initMtlDevice(device: SDKHandle): CIContext { return callSDK<CIContext>("CoreImage_ff42ce03e691ab23", 3586653844747744, undefined, [device]); }
+  static initMtlDevice(device: SDKHandle): CIContext { return callSDK<CIContext>("CoreImage_3864e7f38681b875", 3586653844747744, undefined, [device]); }
   /**
    * init(mtlDevice device: any MTLDevice, options: [CIContextOption : Any]? = nil)
    * @availability iOS 9.0+
    */
-  static initMtlDeviceOptions(device: SDKHandle, options?: $SDK3): CIContext { return callSDK<CIContext>("CoreImage_ff42ce03e691ab23", 3762260006049463, undefined, [device, options]); }
+  static initMtlDeviceOptions(device: SDKHandle, options?: $SDK3): CIContext { return callSDK<CIContext>("CoreImage_3864e7f38681b875", 3762260006049463, undefined, [device, options]); }
   /**
    * func heif10Representation(of image: CIImage, colorSpace: CGColorSpace, options: [CIImageRepresentationOption : Any] = [:]) throws -> Data
    * @availability iOS 15.0+
    */
-  heif10Representation(image: CIImage, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): ArrayBuffer { return callSDK<ArrayBuffer>("CoreImage_ff42ce03e691ab23", 721908031092835, this, [image, colorSpace, options]); }
+  heif10Representation(image: CIImage, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): ArrayBuffer { return callSDK<ArrayBuffer>("CoreImage_3864e7f38681b875", 721908031092835, this, [image, colorSpace, options]); }
   /**
    * func heifRepresentation(of image: CIImage, format: CIFormat, colorSpace: CGColorSpace, options: [CIImageRepresentationOption : Any] = [:]) -> Data?
    * @availability iOS 11.0+
    */
-  heifRepresentation(image: CIImage, format: CIFormat, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreImage_ff42ce03e691ab23", 4490346051728052, this, [image, format, colorSpace, options]); }
+  heifRepresentation(image: CIImage, format: CIFormat, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreImage_3864e7f38681b875", 4490346051728052, this, [image, format, colorSpace, options]); }
   /**
    * func jpegRepresentation(of image: CIImage, colorSpace: CGColorSpace, options: [CIImageRepresentationOption : Any] = [:]) -> Data?
    * @availability iOS 10.0+
    */
-  jpegRepresentation(image: CIImage, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreImage_ff42ce03e691ab23", 2361179897919016, this, [image, colorSpace, options]); }
+  jpegRepresentation(image: CIImage, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreImage_3864e7f38681b875", 2361179897919016, this, [image, colorSpace, options]); }
   /**
    * func openEXRRepresentation(of image: CIImage, options: [CIImageRepresentationOption : Any] = [:]) throws -> Data
    * @availability iOS 17.0+
    */
-  openEXRRepresentation(image: CIImage, options?: $SDK4): ArrayBuffer { return callSDK<ArrayBuffer>("CoreImage_ff42ce03e691ab23", 4321294321191806, this, [image, options]); }
+  openEXRRepresentation(image: CIImage, options?: $SDK4): ArrayBuffer { return callSDK<ArrayBuffer>("CoreImage_3864e7f38681b875", 4321294321191806, this, [image, options]); }
   /**
    * func pngRepresentation(of image: CIImage, format: CIFormat, colorSpace: CGColorSpace, options: [CIImageRepresentationOption : Any] = [:]) -> Data?
    * @availability iOS 11.0+
    */
-  pngRepresentation(image: CIImage, format: CIFormat, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreImage_ff42ce03e691ab23", 3745508329020783, this, [image, format, colorSpace, options]); }
+  pngRepresentation(image: CIImage, format: CIFormat, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreImage_3864e7f38681b875", 3745508329020783, this, [image, format, colorSpace, options]); }
   /**
    * func tiffRepresentation(of image: CIImage, format: CIFormat, colorSpace: CGColorSpace, options: [CIImageRepresentationOption : Any] = [:]) -> Data?
    * @availability iOS 10.0+
    */
-  tiffRepresentation(image: CIImage, format: CIFormat, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreImage_ff42ce03e691ab23", 148756449274693, this, [image, format, colorSpace, options]); }
+  tiffRepresentation(image: CIImage, format: CIFormat, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreImage_3864e7f38681b875", 148756449274693, this, [image, format, colorSpace, options]); }
   /**
    * func calculateHDRStats(for cgimage: CGImage) -> CGImage
    * @availability iOS 26.0+
    */
-  calculateHDRStatsFor(cgimage: _CoreGraphics_CGImage): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("CoreImage_ff42ce03e691ab23", 2828431643946655, this, [cgimage]); }
+  calculateHDRStatsFor(cgimage: _CoreGraphics_CGImage): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("CoreImage_3864e7f38681b875", 2828431643946655, this, [cgimage]); }
   /**
    * func calculateHDRStats(for buffer: CVPixelBuffer)
    * @availability iOS 26.0+
    */
-  calculateHDRStatsFor85938(buffer: _CoreVideo_CVBuffer): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 3762248339359964, this, [buffer]); }
+  calculateHDRStatsFor85938(buffer: _CoreVideo_CVBuffer): void { return callSDK<void>("CoreImage_3864e7f38681b875", 3762248339359964, this, [buffer]); }
   /**
    * func calculateHDRStats(for surface: IOSurfaceRef)
    * @availability iOS 26.0+
    */
-  calculateHDRStatsFor62120(surface: _IOSurface_IOSurfaceRef): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 817674201232447, this, [surface]); }
+  calculateHDRStatsFor62120(surface: _IOSurface_IOSurfaceRef): void { return callSDK<void>("CoreImage_3864e7f38681b875", 817674201232447, this, [surface]); }
   /**
    * func calculateHDRStats(for image: CIImage) -> CIImage?
    * @availability iOS 26.0+
    */
-  calculateHDRStatsFor78106(image: CIImage): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 1461981969491657, this, [image]); }
+  calculateHDRStatsFor78106(image: CIImage): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 1461981969491657, this, [image]); }
   /**
    * func clearCaches()
    * @availability iOS 10.0+
    */
-  clearCaches(): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 2639124786955740, this, []); }
+  clearCaches(): void { return callSDK<void>("CoreImage_3864e7f38681b875", 2639124786955740, this, []); }
   /** func createCGImage(_ image: CIImage, from fromRect: CGRect) -> CGImage? */
-  createCGImageFrom(image: CIImage, fromRect: $SDK1): $SDK5 { return callSDK<$SDK5>("CoreImage_ff42ce03e691ab23", 938758886336401, this, [image, fromRect]); }
+  createCGImageFrom(image: CIImage, fromRect: $SDK1): $SDK5 { return callSDK<$SDK5>("CoreImage_3864e7f38681b875", 938758886336401, this, [image, fromRect]); }
   /** func createCGImage(_ image: CIImage, from fromRect: CGRect, format: CIFormat, colorSpace: CGColorSpace?) -> CGImage? */
-  createCGImageFromFormatColorSpace(image: CIImage, fromRect: $SDK1, format: CIFormat, colorSpace?: $SDK6): $SDK5 { return callSDK<$SDK5>("CoreImage_ff42ce03e691ab23", 1938596105323907, this, [image, fromRect, format, colorSpace]); }
+  createCGImageFromFormatColorSpace(image: CIImage, fromRect: $SDK1, format: CIFormat, colorSpace?: $SDK6): $SDK5 { return callSDK<$SDK5>("CoreImage_3864e7f38681b875", 1938596105323907, this, [image, fromRect, format, colorSpace]); }
   /**
    * func createCGImage(_ image: CIImage, from fromRect: CGRect, format: CIFormat, colorSpace: CGColorSpace?, deferred: Bool) -> CGImage?
    * @availability iOS 10.0+
    */
-  createCGImageFromFormatColorSpaceDeferred(image: CIImage, fromRect: $SDK1, format: CIFormat, colorSpace: $SDK6, deferred: boolean): $SDK5 { return callSDK<$SDK5>("CoreImage_ff42ce03e691ab23", 4329315939086314, this, [image, fromRect, format, colorSpace, deferred]); }
+  createCGImageFromFormatColorSpaceDeferred(image: CIImage, fromRect: $SDK1, format: CIFormat, colorSpace: $SDK6, deferred: boolean): $SDK5 { return callSDK<$SDK5>("CoreImage_3864e7f38681b875", 4329315939086314, this, [image, fromRect, format, colorSpace, deferred]); }
   /**
    * func createCGImage(_ image: CIImage, from fromRect: CGRect, format: CIFormat, colorSpace: CGColorSpace?, deferred: Bool, calculateHDRStats: Bool) -> CGImage?
    * @availability iOS 26.0+
    */
-  createCGImageFromFormatColorSpaceDeferredCalculateHDRStats(image: CIImage, fromRect: $SDK1, format: CIFormat, colorSpace: $SDK6, deferred: boolean, calculateHDRStats: boolean): $SDK5 { return callSDK<$SDK5>("CoreImage_ff42ce03e691ab23", 768847568020708, this, [image, fromRect, format, colorSpace, deferred, calculateHDRStats]); }
+  createCGImageFromFormatColorSpaceDeferredCalculateHDRStats(image: CIImage, fromRect: $SDK1, format: CIFormat, colorSpace: $SDK6, deferred: boolean, calculateHDRStats: boolean): $SDK5 { return callSDK<$SDK5>("CoreImage_3864e7f38681b875", 768847568020708, this, [image, fromRect, format, colorSpace, deferred, calculateHDRStats]); }
   /**
    * func depthBlurEffectFilter(for image: CIImage, disparityImage: CIImage, portraitEffectsMatte: CIImage?, hairSemanticSegmentation: CIImage?, glassesMatte: CIImage?, gainMap: CIImage?, orientation: CGImagePropertyOrientation, options: [AnyHashable : Any]? = nil) -> CIFilter?
    * @availability iOS 14.1+
    */
-  depthBlurEffectFilterForDisparityImagePortraitEffectsMatteHairSemanticSegmentationGlassesMatteGainMapOrientationOptions(image: CIImage, disparityImage: CIImage, portraitEffectsMatte: (CIImage) | null, hairSemanticSegmentation: (CIImage) | null, glassesMatte: (CIImage) | null, gainMap: (CIImage) | null, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK7): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_ff42ce03e691ab23", 1313032866025325, this, [image, disparityImage, portraitEffectsMatte, hairSemanticSegmentation, glassesMatte, gainMap, orientation, options]); }
+  depthBlurEffectFilterForDisparityImagePortraitEffectsMatteHairSemanticSegmentationGlassesMatteGainMapOrientationOptions(image: CIImage, disparityImage: CIImage, portraitEffectsMatte: (CIImage) | null, hairSemanticSegmentation: (CIImage) | null, glassesMatte: (CIImage) | null, gainMap: (CIImage) | null, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK7): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_3864e7f38681b875", 1313032866025325, this, [image, disparityImage, portraitEffectsMatte, hairSemanticSegmentation, glassesMatte, gainMap, orientation, options]); }
   /**
    * func depthBlurEffectFilter(for image: CIImage, disparityImage: CIImage, portraitEffectsMatte: CIImage?, hairSemanticSegmentation: CIImage?, orientation: CGImagePropertyOrientation, options: [AnyHashable : Any]? = nil) -> CIFilter?
    * @availability iOS 13.0+
    */
-  depthBlurEffectFilterForDisparityImagePortraitEffectsMatteHairSemanticSegmentationOrientationOptions(image: CIImage, disparityImage: CIImage, portraitEffectsMatte: (CIImage) | null, hairSemanticSegmentation: (CIImage) | null, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK7): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_ff42ce03e691ab23", 2515712904142808, this, [image, disparityImage, portraitEffectsMatte, hairSemanticSegmentation, orientation, options]); }
+  depthBlurEffectFilterForDisparityImagePortraitEffectsMatteHairSemanticSegmentationOrientationOptions(image: CIImage, disparityImage: CIImage, portraitEffectsMatte: (CIImage) | null, hairSemanticSegmentation: (CIImage) | null, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK7): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_3864e7f38681b875", 2515712904142808, this, [image, disparityImage, portraitEffectsMatte, hairSemanticSegmentation, orientation, options]); }
   /**
    * func depthBlurEffectFilter(for image: CIImage, disparityImage: CIImage, portraitEffectsMatte: CIImage?, orientation: CGImagePropertyOrientation, options: [AnyHashable : Any]? = nil) -> CIFilter?
    * @availability iOS 12.0+
    */
-  depthBlurEffectFilterForDisparityImagePortraitEffectsMatteOrientationOptions(image: CIImage, disparityImage: CIImage, portraitEffectsMatte: (CIImage) | null, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK7): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_ff42ce03e691ab23", 3174554053346089, this, [image, disparityImage, portraitEffectsMatte, orientation, options]); }
+  depthBlurEffectFilterForDisparityImagePortraitEffectsMatteOrientationOptions(image: CIImage, disparityImage: CIImage, portraitEffectsMatte: (CIImage) | null, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK7): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_3864e7f38681b875", 3174554053346089, this, [image, disparityImage, portraitEffectsMatte, orientation, options]); }
   /**
    * func depthBlurEffectFilter(forImageData data: Data, options: [AnyHashable : Any]? = nil) -> CIFilter?
    * @availability iOS 12.0+
    */
-  depthBlurEffectFilterForImageDataOptions(data: ArrayBuffer, options?: $SDK7): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_ff42ce03e691ab23", 924131445192601, this, [data, options]); }
+  depthBlurEffectFilterForImageDataOptions(data: ArrayBuffer, options?: $SDK7): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_3864e7f38681b875", 924131445192601, this, [data, options]); }
   /**
    * func depthBlurEffectFilter(forImageURL url: URL, options: [AnyHashable : Any]? = nil) -> CIFilter?
    * @availability iOS 12.0+
    */
-  depthBlurEffectFilterForImageURLOptions(url: string, options?: $SDK7): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_ff42ce03e691ab23", 2261642649887121, this, [url, options]); }
+  depthBlurEffectFilterForImageURLOptions(url: string, options?: $SDK7): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_3864e7f38681b875", 2261642649887121, this, [url, options]); }
   /**
    * func draw(_ image: CIImage, in inRect: CGRect, from fromRect: CGRect)
    * @availability iOS 5.0+
    */
-  draw(image: CIImage, inRect: $SDK1, fromRect: $SDK1): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 1014788893032110, this, [image, inRect, fromRect]); }
+  draw(image: CIImage, inRect: $SDK1, fromRect: $SDK1): void { return callSDK<void>("CoreImage_3864e7f38681b875", 1014788893032110, this, [image, inRect, fromRect]); }
   /**
    * func estimateRender(_ image: CIImage, from fromRect: CGRect, to destination: CIRenderDestination, at atPoint: CGPoint) throws -> CIRenderTask
    * @availability iOS 27.0+
    */
-  estimateRender(image: CIImage, fromRect: $SDK1, destination: CIRenderDestination, atPoint: $SDK8): CIRenderTask { return callSDK<CIRenderTask>("CoreImage_ff42ce03e691ab23", 4110767782992417, this, [image, fromRect, destination, atPoint]); }
+  estimateRender(image: CIImage, fromRect: $SDK1, destination: CIRenderDestination, atPoint: $SDK8): CIRenderTask { return callSDK<CIRenderTask>("CoreImage_3864e7f38681b875", 4110767782992417, this, [image, fromRect, destination, atPoint]); }
   /**
    * init()
    * @availability iOS 5.0+
    */
-  static init(): CIContext { return callSDK<CIContext>("CoreImage_ff42ce03e691ab23", 1410951990501370, undefined, []); }
+  static init(): CIContext { return callSDK<CIContext>("CoreImage_3864e7f38681b875", 1410951990501370, undefined, []); }
   /**
    * init(options: [CIContextOption : Any]? = nil)
    * @availability iOS 5.0+
    */
-  static initOptions(options?: $SDK3): CIContext { return callSDK<CIContext>("CoreImage_ff42ce03e691ab23", 3088987666606949, undefined, [options]); }
+  static initOptions(options?: $SDK3): CIContext { return callSDK<CIContext>("CoreImage_3864e7f38681b875", 3088987666606949, undefined, [options]); }
   /**
    * func inputImageMaximumSize() -> CGSize
    * @availability iOS 5.0+
    */
-  inputImageMaximumSize(): $SDK9 { return callSDK<$SDK9>("CoreImage_ff42ce03e691ab23", 1897685473627259, this, []); }
+  inputImageMaximumSize(): $SDK9 { return callSDK<$SDK9>("CoreImage_3864e7f38681b875", 1897685473627259, this, []); }
   /**
    * func outputImageMaximumSize() -> CGSize
    * @availability iOS 5.0+
    */
-  outputImageMaximumSize(): $SDK9 { return callSDK<$SDK9>("CoreImage_ff42ce03e691ab23", 1324231197712576, this, []); }
+  outputImageMaximumSize(): $SDK9 { return callSDK<$SDK9>("CoreImage_3864e7f38681b875", 1324231197712576, this, []); }
   /**
    * func prepareRender(_ image: CIImage, from fromRect: CGRect, to destination: CIRenderDestination, at atPoint: CGPoint) throws
    * @availability iOS 11.0+
    */
-  prepareRender(image: CIImage, fromRect: $SDK1, destination: CIRenderDestination, atPoint: $SDK8): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 932252644390918, this, [image, fromRect, destination, atPoint]); }
+  prepareRender(image: CIImage, fromRect: $SDK1, destination: CIRenderDestination, atPoint: $SDK8): void { return callSDK<void>("CoreImage_3864e7f38681b875", 932252644390918, this, [image, fromRect, destination, atPoint]); }
   /**
    * func render(_ image: CIImage, toBitmap data: UnsafeMutableRawPointer, rowBytes: Int, bounds: CGRect, format: CIFormat, colorSpace: CGColorSpace?)
    * @availability iOS 5.0+
    */
-  renderToBitmapRowBytesBoundsFormatColorSpace(image: CIImage, data: SDKHandle, rowBytes: number, bounds: $SDK1, format: CIFormat, colorSpace?: $SDK6): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 3707910918853677, this, [image, data, rowBytes, bounds, format, colorSpace]); }
+  renderToBitmapRowBytesBoundsFormatColorSpace(image: CIImage, data: SDKHandle, rowBytes: number, bounds: $SDK1, format: CIFormat, colorSpace?: $SDK6): void { return callSDK<void>("CoreImage_3864e7f38681b875", 3707910918853677, this, [image, data, rowBytes, bounds, format, colorSpace]); }
   /**
    * func render(_ image: CIImage, to buffer: CVPixelBuffer)
    * @availability iOS 5.0+
    */
-  renderTo(image: CIImage, buffer: _CoreVideo_CVBuffer): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 3210699879489045, this, [image, buffer]); }
+  renderTo(image: CIImage, buffer: _CoreVideo_CVBuffer): void { return callSDK<void>("CoreImage_3864e7f38681b875", 3210699879489045, this, [image, buffer]); }
   /**
    * func render(_ image: CIImage, to buffer: CVPixelBuffer, bounds: CGRect, colorSpace: CGColorSpace?)
    * @availability iOS 5.0+
    */
-  renderToBoundsColorSpace(image: CIImage, buffer: _CoreVideo_CVBuffer, bounds: $SDK1, colorSpace?: $SDK6): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 2182589519612118, this, [image, buffer, bounds, colorSpace]); }
+  renderToBoundsColorSpace(image: CIImage, buffer: _CoreVideo_CVBuffer, bounds: $SDK1, colorSpace?: $SDK6): void { return callSDK<void>("CoreImage_3864e7f38681b875", 2182589519612118, this, [image, buffer, bounds, colorSpace]); }
   /**
    * func render(_ image: CIImage, to surface: IOSurfaceRef, bounds: CGRect, colorSpace: CGColorSpace?)
    * @availability iOS 5.0+
    */
-  renderToBoundsColorSpace89905(image: CIImage, surface: _IOSurface_IOSurfaceRef, bounds: $SDK1, colorSpace?: $SDK6): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 2396362455966293, this, [image, surface, bounds, colorSpace]); }
+  renderToBoundsColorSpace89905(image: CIImage, surface: _IOSurface_IOSurfaceRef, bounds: $SDK1, colorSpace?: $SDK6): void { return callSDK<void>("CoreImage_3864e7f38681b875", 2396362455966293, this, [image, surface, bounds, colorSpace]); }
   /**
    * func render(_ image: CIImage, to texture: any MTLTexture, commandBuffer: (any MTLCommandBuffer)?, bounds: CGRect, colorSpace: CGColorSpace)
    * @availability iOS 9.0+
    */
-  renderToCommandBufferBoundsColorSpace(image: CIImage, texture: SDKHandle, commandBuffer: (SDKHandle) | null, bounds: $SDK1, colorSpace: _CoreGraphics_CGColorSpace): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 928784887084534, this, [image, texture, commandBuffer, bounds, colorSpace]); }
+  renderToCommandBufferBoundsColorSpace(image: CIImage, texture: SDKHandle, commandBuffer: (SDKHandle) | null, bounds: $SDK1, colorSpace: _CoreGraphics_CGColorSpace): void { return callSDK<void>("CoreImage_3864e7f38681b875", 928784887084534, this, [image, texture, commandBuffer, bounds, colorSpace]); }
   /**
    * func startTask(toClear destination: CIRenderDestination) throws -> CIRenderTask
    * @availability iOS 11.0+
    */
-  startTaskToClear(destination: CIRenderDestination): CIRenderTask { return callSDK<CIRenderTask>("CoreImage_ff42ce03e691ab23", 1281662242788910, this, [destination]); }
+  startTaskToClear(destination: CIRenderDestination): CIRenderTask { return callSDK<CIRenderTask>("CoreImage_3864e7f38681b875", 1281662242788910, this, [destination]); }
   /**
    * func startTask(toRender image: CIImage, from fromRect: CGRect, to destination: CIRenderDestination, at atPoint: CGPoint) throws -> CIRenderTask
    * @availability iOS 11.0+
    */
-  startTaskToRenderFromToAt(image: CIImage, fromRect: $SDK1, destination: CIRenderDestination, atPoint: $SDK8): CIRenderTask { return callSDK<CIRenderTask>("CoreImage_ff42ce03e691ab23", 2861005532193955, this, [image, fromRect, destination, atPoint]); }
+  startTaskToRenderFromToAt(image: CIImage, fromRect: $SDK1, destination: CIRenderDestination, atPoint: $SDK8): CIRenderTask { return callSDK<CIRenderTask>("CoreImage_3864e7f38681b875", 2861005532193955, this, [image, fromRect, destination, atPoint]); }
   /**
    * func startTask(toRender image: CIImage, to destination: CIRenderDestination) throws -> CIRenderTask
    * @availability iOS 11.0+
    */
-  startTaskToRenderTo(image: CIImage, destination: CIRenderDestination): CIRenderTask { return callSDK<CIRenderTask>("CoreImage_ff42ce03e691ab23", 2912441547196549, this, [image, destination]); }
+  startTaskToRenderTo(image: CIImage, destination: CIRenderDestination): CIRenderTask { return callSDK<CIRenderTask>("CoreImage_3864e7f38681b875", 2912441547196549, this, [image, destination]); }
   /**
    * func writeHEIF10Representation(of image: CIImage, to url: URL, colorSpace: CGColorSpace, options: [CIImageRepresentationOption : Any] = [:]) throws
    * @availability iOS 15.0+
    */
-  writeHEIF10Representation(image: CIImage, url: string, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 3708892136379497, this, [image, url, colorSpace, options]); }
+  writeHEIF10Representation(image: CIImage, url: string, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): void { return callSDK<void>("CoreImage_3864e7f38681b875", 3708892136379497, this, [image, url, colorSpace, options]); }
   /**
    * func writeHEIFRepresentation(of image: CIImage, to url: URL, format: CIFormat, colorSpace: CGColorSpace, options: [CIImageRepresentationOption : Any] = [:]) throws
    * @availability iOS 11.0+
    */
-  writeHEIFRepresentation(image: CIImage, url: string, format: CIFormat, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 2656469965209715, this, [image, url, format, colorSpace, options]); }
+  writeHEIFRepresentation(image: CIImage, url: string, format: CIFormat, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): void { return callSDK<void>("CoreImage_3864e7f38681b875", 2656469965209715, this, [image, url, format, colorSpace, options]); }
   /**
    * func writeJPEGRepresentation(of image: CIImage, to url: URL, colorSpace: CGColorSpace, options: [CIImageRepresentationOption : Any] = [:]) throws
    * @availability iOS 10.0+
    */
-  writeJPEGRepresentation(image: CIImage, url: string, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 1742412888290730, this, [image, url, colorSpace, options]); }
+  writeJPEGRepresentation(image: CIImage, url: string, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): void { return callSDK<void>("CoreImage_3864e7f38681b875", 1742412888290730, this, [image, url, colorSpace, options]); }
   /**
    * func writeOpenEXRRepresentation(of image: CIImage, to url: URL, options: [CIImageRepresentationOption : Any] = [:]) throws
    * @availability iOS 17.0+
    */
-  writeOpenEXRRepresentation(image: CIImage, url: string, options?: $SDK4): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 1007147711523403, this, [image, url, options]); }
+  writeOpenEXRRepresentation(image: CIImage, url: string, options?: $SDK4): void { return callSDK<void>("CoreImage_3864e7f38681b875", 1007147711523403, this, [image, url, options]); }
   /**
    * func writePNGRepresentation(of image: CIImage, to url: URL, format: CIFormat, colorSpace: CGColorSpace, options: [CIImageRepresentationOption : Any] = [:]) throws
    * @availability iOS 11.0+
    */
-  writePNGRepresentation(image: CIImage, url: string, format: CIFormat, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 2671036326026379, this, [image, url, format, colorSpace, options]); }
+  writePNGRepresentation(image: CIImage, url: string, format: CIFormat, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): void { return callSDK<void>("CoreImage_3864e7f38681b875", 2671036326026379, this, [image, url, format, colorSpace, options]); }
   /**
    * func writeTIFFRepresentation(of image: CIImage, to url: URL, format: CIFormat, colorSpace: CGColorSpace, options: [CIImageRepresentationOption : Any] = [:]) throws
    * @availability iOS 10.0+
    */
-  writeTIFFRepresentation(image: CIImage, url: string, format: CIFormat, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 3120825543615071, this, [image, url, format, colorSpace, options]); }
+  writeTIFFRepresentation(image: CIImage, url: string, format: CIFormat, colorSpace: _CoreGraphics_CGColorSpace, options?: $SDK4): void { return callSDK<void>("CoreImage_3864e7f38681b875", 3120825543615071, this, [image, url, format, colorSpace, options]); }
   /**
    * var workingColorSpace: CGColorSpace? { get }
    * @availability iOS 9.0+
    */
-  get workingColorSpace(): $SDK6 { return callSDK<$SDK6>("CoreImage_ff42ce03e691ab23", 415630791047197, this, []); }
+  get workingColorSpace(): $SDK6 { return callSDK<$SDK6>("CoreImage_3864e7f38681b875", 415630791047197, this, []); }
   /**
    * var workingFormat: CIFormat { get }
    * @availability iOS 9.0+
    */
-  get workingFormat(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 45124358896584, this, []); }
+  get workingFormat(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 45124358896584, this, []); }
   declare readonly $type: { "c:objc(cs)CIContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "workingColorSpace": true; "workingFormat": true };
 }
@@ -647,55 +647,55 @@ export const CIContextOption = {
    * static let allowLowPower: CIContextOption
    * @availability iOS 13.0+
    */
-  get allowLowPower(): CIContextOption { return callSDK<CIContextOption>("CoreImage_ff42ce03e691ab23", 3859575769059953, undefined, []); },
+  get allowLowPower(): CIContextOption { return callSDK<CIContextOption>("CoreImage_3864e7f38681b875", 3859575769059953, undefined, []); },
   /**
    * static let cvMetalTextureCache: CIContextOption
    * @availability iOS 26.0+
    */
-  get cvMetalTextureCache(): CIContextOption { return callSDK<CIContextOption>("CoreImage_ff42ce03e691ab23", 130658846573819, undefined, []); },
+  get cvMetalTextureCache(): CIContextOption { return callSDK<CIContextOption>("CoreImage_3864e7f38681b875", 130658846573819, undefined, []); },
   /**
    * static let cacheIntermediates: CIContextOption
    * @availability iOS 10.0+
    */
-  get cacheIntermediates(): CIContextOption { return callSDK<CIContextOption>("CoreImage_ff42ce03e691ab23", 103823796839614, undefined, []); },
+  get cacheIntermediates(): CIContextOption { return callSDK<CIContextOption>("CoreImage_3864e7f38681b875", 103823796839614, undefined, []); },
   /**
    * static let highQualityDownsample: CIContextOption
    * @availability iOS 9.0+
    */
-  get highQualityDownsample(): CIContextOption { return callSDK<CIContextOption>("CoreImage_ff42ce03e691ab23", 3613163073075739, undefined, []); },
+  get highQualityDownsample(): CIContextOption { return callSDK<CIContextOption>("CoreImage_3864e7f38681b875", 3613163073075739, undefined, []); },
   /**
    * static let memoryTarget: CIContextOption
    * @availability iOS 17.0+
    */
-  get memoryTarget(): CIContextOption { return callSDK<CIContextOption>("CoreImage_ff42ce03e691ab23", 3417656292478999, undefined, []); },
+  get memoryTarget(): CIContextOption { return callSDK<CIContextOption>("CoreImage_3864e7f38681b875", 3417656292478999, undefined, []); },
   /**
    * static let name: CIContextOption
    * @availability iOS 12.0+
    */
-  get nameValue(): CIContextOption { return callSDK<CIContextOption>("CoreImage_ff42ce03e691ab23", 3047551684147924, undefined, []); },
+  get nameValue(): CIContextOption { return callSDK<CIContextOption>("CoreImage_3864e7f38681b875", 3047551684147924, undefined, []); },
   /** static let outputColorSpace: CIContextOption */
-  get outputColorSpace(): CIContextOption { return callSDK<CIContextOption>("CoreImage_ff42ce03e691ab23", 494120329539721, undefined, []); },
+  get outputColorSpace(): CIContextOption { return callSDK<CIContextOption>("CoreImage_3864e7f38681b875", 494120329539721, undefined, []); },
   /**
    * static let outputPremultiplied: CIContextOption
    * @availability iOS 7.0+
    */
-  get outputPremultiplied(): CIContextOption { return callSDK<CIContextOption>("CoreImage_ff42ce03e691ab23", 1602975414773745, undefined, []); },
+  get outputPremultiplied(): CIContextOption { return callSDK<CIContextOption>("CoreImage_3864e7f38681b875", 1602975414773745, undefined, []); },
   /**
    * static let priorityRequestLow: CIContextOption
    * @availability iOS 8.0+
    */
-  get priorityRequestLow(): CIContextOption { return callSDK<CIContextOption>("CoreImage_ff42ce03e691ab23", 2675628372604434, undefined, []); },
+  get priorityRequestLow(): CIContextOption { return callSDK<CIContextOption>("CoreImage_3864e7f38681b875", 2675628372604434, undefined, []); },
   /** static let useSoftwareRenderer: CIContextOption */
-  get useSoftwareRenderer(): CIContextOption { return callSDK<CIContextOption>("CoreImage_ff42ce03e691ab23", 3542507114553824, undefined, []); },
+  get useSoftwareRenderer(): CIContextOption { return callSDK<CIContextOption>("CoreImage_3864e7f38681b875", 3542507114553824, undefined, []); },
   /** static let workingColorSpace: CIContextOption */
-  get workingColorSpace(): CIContextOption { return callSDK<CIContextOption>("CoreImage_ff42ce03e691ab23", 276620975551285, undefined, []); },
+  get workingColorSpace(): CIContextOption { return callSDK<CIContextOption>("CoreImage_3864e7f38681b875", 276620975551285, undefined, []); },
   /**
    * static let workingFormat: CIContextOption
    * @availability iOS 8.0+
    */
-  get workingFormat(): CIContextOption { return callSDK<CIContextOption>("CoreImage_ff42ce03e691ab23", 3767310526987372, undefined, []); },
+  get workingFormat(): CIContextOption { return callSDK<CIContextOption>("CoreImage_3864e7f38681b875", 3767310526987372, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): CIContextOption { return callSDK<CIContextOption>("CoreImage_ff42ce03e691ab23", 1412673494056149, undefined, [rawValue]); }
+  init(rawValue: string): CIContextOption { return callSDK<CIContextOption>("CoreImage_3864e7f38681b875", 1412673494056149, undefined, [rawValue]); }
 };
 
 /**
@@ -707,27 +707,27 @@ export class CIDataMatrixCodeDescriptor extends (CIBarcodeDescriptor as unknown 
    * init?(payload errorCorrectedPayload: Data, rowCount: Int, columnCount: Int, eccVersion: CIDataMatrixCodeDescriptor.ECCVersion)
    * @availability iOS 11.0+
    */
-  static init(errorCorrectedPayload: ArrayBuffer, rowCount: number, columnCount: number, eccVersion: CIDataMatrixCodeDescriptor_ECCVersion): (CIDataMatrixCodeDescriptor) | null { return callSDK<(CIDataMatrixCodeDescriptor) | null>("CoreImage_ff42ce03e691ab23", 3283946564169456, undefined, [errorCorrectedPayload, rowCount, columnCount, eccVersion]); }
+  static init(errorCorrectedPayload: ArrayBuffer, rowCount: number, columnCount: number, eccVersion: CIDataMatrixCodeDescriptor_ECCVersion): (CIDataMatrixCodeDescriptor) | null { return callSDK<(CIDataMatrixCodeDescriptor) | null>("CoreImage_3864e7f38681b875", 3283946564169456, undefined, [errorCorrectedPayload, rowCount, columnCount, eccVersion]); }
   /**
    * var columnCount: Int { get }
    * @availability iOS 11.0+
    */
-  get columnCount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 2884414321270826, this, []); }
+  get columnCount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 2884414321270826, this, []); }
   /**
    * var eccVersion: CIDataMatrixCodeDescriptor.ECCVersion { get }
    * @availability iOS 11.0+
    */
-  get eccVersion(): CIDataMatrixCodeDescriptor_ECCVersion { return callSDK<CIDataMatrixCodeDescriptor_ECCVersion>("CoreImage_ff42ce03e691ab23", 1319308204503447, this, []); }
+  get eccVersion(): CIDataMatrixCodeDescriptor_ECCVersion { return callSDK<CIDataMatrixCodeDescriptor_ECCVersion>("CoreImage_3864e7f38681b875", 1319308204503447, this, []); }
   /**
    * var errorCorrectedPayload: Data { get }
    * @availability iOS 11.0+
    */
-  get errorCorrectedPayload(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreImage_ff42ce03e691ab23", 3947081047196173, this, []); }
+  get errorCorrectedPayload(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreImage_3864e7f38681b875", 3947081047196173, this, []); }
   /**
    * var rowCount: Int { get }
    * @availability iOS 11.0+
    */
-  get rowCount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 1464427059481565, this, []); }
+  get rowCount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 1464427059481565, this, []); }
   declare readonly $type: { "c:objc(cs)CIDataMatrixCodeDescriptor": true; "c:objc(cs)CIBarcodeDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "columnCount": true; "eccVersion": true; "errorCorrectedPayload": true; "rowCount": true };
 }
@@ -737,7 +737,7 @@ export type CIDataMatrixCodeDescriptor_ECCVersion = "v000" | "v050" | "v080" | "
 
 export const CIDataMatrixCodeDescriptor_ECCVersion = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CIDataMatrixCodeDescriptor_ECCVersion) | null { return callSDK<(CIDataMatrixCodeDescriptor_ECCVersion) | null>("CoreImage_ff42ce03e691ab23", 2906787342229341, undefined, [rawValue]); }
+  init(rawValue: number): (CIDataMatrixCodeDescriptor_ECCVersion) | null { return callSDK<(CIDataMatrixCodeDescriptor_ECCVersion) | null>("CoreImage_3864e7f38681b875", 2906787342229341, undefined, [rawValue]); }
 };
 
 /**
@@ -749,17 +749,17 @@ export class CIDetector extends SDKHandle {
    * init?(ofType type: String, context: CIContext?, options: [String : Any]? = nil)
    * @availability iOS 5.0+
    */
-  static init(type: string, context?: (CIContext) | null, options?: $SDK10): (CIDetector) | null { return callSDK<(CIDetector) | null>("CoreImage_ff42ce03e691ab23", 3633303358138925, undefined, [type, context, options]); }
+  static init(type: string, context?: (CIContext) | null, options?: $SDK10): (CIDetector) | null { return callSDK<(CIDetector) | null>("CoreImage_3864e7f38681b875", 3633303358138925, undefined, [type, context, options]); }
   /**
    * func features(in image: CIImage) -> [CIFeature]
    * @availability iOS 5.0+
    */
-  featuresIn(image: CIImage): Array<CIFeature> { return callSDK<Array<CIFeature>>("CoreImage_ff42ce03e691ab23", 413063664683355, this, [image]); }
+  featuresIn(image: CIImage): Array<CIFeature> { return callSDK<Array<CIFeature>>("CoreImage_3864e7f38681b875", 413063664683355, this, [image]); }
   /**
    * func features(in image: CIImage, options: [String : Any]? = nil) -> [CIFeature]
    * @availability iOS 5.0+
    */
-  featuresInOptions(image: CIImage, options?: $SDK10): Array<CIFeature> { return callSDK<Array<CIFeature>>("CoreImage_ff42ce03e691ab23", 2249788729074438, this, [image, options]); }
+  featuresInOptions(image: CIImage, options?: $SDK10): Array<CIFeature> { return callSDK<Array<CIFeature>>("CoreImage_3864e7f38681b875", 2249788729074438, this, [image, options]); }
   declare readonly $type: { "c:objc(cs)CIDetector": true; "c:objc(cs)NSObject": true };
 }
 
@@ -771,19 +771,19 @@ export const CIDynamicRangeOption = {
    * static let constrainedHigh: CIDynamicRangeOption
    * @availability iOS 26.0+
    */
-  get constrainedHigh(): CIDynamicRangeOption { return callSDK<CIDynamicRangeOption>("CoreImage_ff42ce03e691ab23", 585235554458955, undefined, []); },
+  get constrainedHigh(): CIDynamicRangeOption { return callSDK<CIDynamicRangeOption>("CoreImage_3864e7f38681b875", 585235554458955, undefined, []); },
   /**
    * static let high: CIDynamicRangeOption
    * @availability iOS 26.0+
    */
-  get high(): CIDynamicRangeOption { return callSDK<CIDynamicRangeOption>("CoreImage_ff42ce03e691ab23", 2484486054801964, undefined, []); },
+  get high(): CIDynamicRangeOption { return callSDK<CIDynamicRangeOption>("CoreImage_3864e7f38681b875", 2484486054801964, undefined, []); },
   /**
    * static let standard: CIDynamicRangeOption
    * @availability iOS 26.0+
    */
-  get standard(): CIDynamicRangeOption { return callSDK<CIDynamicRangeOption>("CoreImage_ff42ce03e691ab23", 1143155921051278, undefined, []); },
+  get standard(): CIDynamicRangeOption { return callSDK<CIDynamicRangeOption>("CoreImage_3864e7f38681b875", 1143155921051278, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): CIDynamicRangeOption { return callSDK<CIDynamicRangeOption>("CoreImage_ff42ce03e691ab23", 472940944801745, undefined, [rawValue]); }
+  init(rawValue: string): CIDynamicRangeOption { return callSDK<CIDynamicRangeOption>("CoreImage_3864e7f38681b875", 472940944801745, undefined, [rawValue]); }
 };
 
 /**
@@ -792,17 +792,17 @@ export const CIDynamicRangeOption = {
  */
 export class CIFeature extends SDKHandle {
   /** init() */
-  static init(): CIFeature { return callSDK<CIFeature>("CoreImage_ff42ce03e691ab23", 790971350208918, undefined, []); }
+  static init(): CIFeature { return callSDK<CIFeature>("CoreImage_3864e7f38681b875", 790971350208918, undefined, []); }
   /**
    * var bounds: CGRect { get }
    * @availability iOS 5.0+
    */
-  get bounds(): $SDK1 { return callSDK<$SDK1>("CoreImage_ff42ce03e691ab23", 3852613149932481, this, []); }
+  get bounds(): $SDK1 { return callSDK<$SDK1>("CoreImage_3864e7f38681b875", 3852613149932481, this, []); }
   /**
    * var type: String { get }
    * @availability iOS 5.0+
    */
-  get type(): string { return callSDK<string>("CoreImage_ff42ce03e691ab23", 2696851950501402, this, []); }
+  get type(): string { return callSDK<string>("CoreImage_3864e7f38681b875", 2696851950501402, this, []); }
   declare readonly $type: { "c:objc(cs)CIFeature": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bounds": true; "type": true };
 }
@@ -813,87 +813,87 @@ export class CIFeature extends SDKHandle {
  */
 export class CIFaceFeature extends (CIFeature as unknown as Omit<typeof CIFeature, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CIFeature, "bounds">)) {
   /** init() */
-  static init(): CIFaceFeature { return callSDK<CIFaceFeature>("CoreImage_ff42ce03e691ab23", 1890511593748998, undefined, []); }
+  static init(): CIFaceFeature { return callSDK<CIFaceFeature>("CoreImage_3864e7f38681b875", 1890511593748998, undefined, []); }
   /**
    * var bounds: CGRect { get }
    * @availability iOS 5.0+
    */
-  get bounds(): $SDK1 { return callSDK<$SDK1>("CoreImage_ff42ce03e691ab23", 203427202711552, this, []); }
+  get bounds(): $SDK1 { return callSDK<$SDK1>("CoreImage_3864e7f38681b875", 203427202711552, this, []); }
   /**
    * var faceAngle: Float { get }
    * @availability iOS 5.0+
    */
-  get faceAngle(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 1359734003695766, this, []); }
+  get faceAngle(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 1359734003695766, this, []); }
   /**
    * var hasFaceAngle: Bool { get }
    * @availability iOS 5.0+
    */
-  get hasFaceAngle(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 684802820824088, this, []); }
+  get hasFaceAngle(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 684802820824088, this, []); }
   /**
    * var hasLeftEyePosition: Bool { get }
    * @availability iOS 5.0+
    */
-  get hasLeftEyePosition(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 2518452018633328, this, []); }
+  get hasLeftEyePosition(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 2518452018633328, this, []); }
   /**
    * var hasMouthPosition: Bool { get }
    * @availability iOS 5.0+
    */
-  get hasMouthPosition(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 1589480970041337, this, []); }
+  get hasMouthPosition(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 1589480970041337, this, []); }
   /**
    * var hasRightEyePosition: Bool { get }
    * @availability iOS 5.0+
    */
-  get hasRightEyePosition(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 2569521518083759, this, []); }
+  get hasRightEyePosition(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 2569521518083759, this, []); }
   /**
    * var hasSmile: Bool { get }
    * @availability iOS 5.0+
    */
-  get hasSmile(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 2510561327603978, this, []); }
+  get hasSmile(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 2510561327603978, this, []); }
   /**
    * var hasTrackingFrameCount: Bool { get }
    * @availability iOS 5.0+
    */
-  get hasTrackingFrameCount(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 1903250076203601, this, []); }
+  get hasTrackingFrameCount(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 1903250076203601, this, []); }
   /**
    * var hasTrackingID: Bool { get }
    * @availability iOS 5.0+
    */
-  get hasTrackingID(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 4242543418506305, this, []); }
+  get hasTrackingID(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 4242543418506305, this, []); }
   /**
    * var leftEyeClosed: Bool { get }
    * @availability iOS 5.0+
    */
-  get leftEyeClosed(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 3828255736926710, this, []); }
+  get leftEyeClosed(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 3828255736926710, this, []); }
   /**
    * var leftEyePosition: CGPoint { get }
    * @availability iOS 5.0+
    */
-  get leftEyePosition(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 1819319845638953, this, []); }
+  get leftEyePosition(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 1819319845638953, this, []); }
   /**
    * var mouthPosition: CGPoint { get }
    * @availability iOS 5.0+
    */
-  get mouthPosition(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 4378445018218403, this, []); }
+  get mouthPosition(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 4378445018218403, this, []); }
   /**
    * var rightEyeClosed: Bool { get }
    * @availability iOS 5.0+
    */
-  get rightEyeClosed(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 2755227913423403, this, []); }
+  get rightEyeClosed(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 2755227913423403, this, []); }
   /**
    * var rightEyePosition: CGPoint { get }
    * @availability iOS 5.0+
    */
-  get rightEyePosition(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 128172345899391, this, []); }
+  get rightEyePosition(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 128172345899391, this, []); }
   /**
    * var trackingFrameCount: Int32 { get }
    * @availability iOS 5.0+
    */
-  get trackingFrameCount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 3105150474278363, this, []); }
+  get trackingFrameCount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 3105150474278363, this, []); }
   /**
    * var trackingID: Int32 { get }
    * @availability iOS 5.0+
    */
-  get trackingID(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 4207624322803465, this, []); }
+  get trackingID(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 4207624322803465, this, []); }
   declare readonly $type: { "c:objc(cs)CIFaceFeature": true; "c:objc(cs)CIFeature": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bounds": true; "type": true; "faceAngle": true; "hasFaceAngle": true; "hasLeftEyePosition": true; "hasMouthPosition": true; "hasRightEyePosition": true; "hasSmile": true; "hasTrackingFrameCount": true; "hasTrackingID": true; "leftEyeClosed": true; "leftEyePosition": true; "mouthPosition": true; "rightEyeClosed": true; "rightEyePosition": true; "trackingFrameCount": true; "trackingID": true };
 }
@@ -908,104 +908,104 @@ export class CIFilter extends SDKHandle {
    * @availability iOS 6.0+
    * @deprecated iOS 17.0
    */
-  static filterArray(xmpData: ArrayBuffer, extent: $SDK1): { $ret: Array<CIFilter>; $out: { "outError": (_Foundation_NSError) | null } } { return callSDK<{ $ret: Array<CIFilter>; $out: { "outError": (_Foundation_NSError) | null } }>("CoreImage_ff42ce03e691ab23", 4474978722363423, undefined, [xmpData, extent, null]); }
+  static filterArray(xmpData: ArrayBuffer, extent: $SDK1): { $ret: Array<CIFilter>; $out: { "outError": (_Foundation_NSError) | null } } { return callSDK<{ $ret: Array<CIFilter>; $out: { "outError": (_Foundation_NSError) | null } }>("CoreImage_3864e7f38681b875", 4474978722363423, undefined, [xmpData, extent, null]); }
   /** class func filterNames(inCategories categories: [String]?) -> [String] */
-  static filterNamesInCategories(categories?: (Array<string>) | null): Array<string> { return callSDK<Array<string>>("CoreImage_ff42ce03e691ab23", 3723988217422921, undefined, [categories]); }
+  static filterNamesInCategories(categories?: (Array<string>) | null): Array<string> { return callSDK<Array<string>>("CoreImage_3864e7f38681b875", 3723988217422921, undefined, [categories]); }
   /** class func filterNames(inCategory category: String?) -> [String] */
-  static filterNamesInCategory(category?: (string) | null): Array<string> { return callSDK<Array<string>>("CoreImage_ff42ce03e691ab23", 1634931233921263, undefined, [category]); }
+  static filterNamesInCategory(category?: (string) | null): Array<string> { return callSDK<Array<string>>("CoreImage_3864e7f38681b875", 1634931233921263, undefined, [category]); }
   /**
    * init!(cvPixelBuffer pixelBuffer: CVPixelBuffer!, properties: [AnyHashable : Any]!, options: [CIRAWFilterOption : Any]! = [:])
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  static initCvPixelBufferPropertiesOptions(pixelBuffer?: $SDK12, properties?: $SDK7, options?: $SDK13): CIFilter { return callSDK<CIFilter>("CoreImage_ff42ce03e691ab23", 3212619976953525, undefined, [pixelBuffer, properties, options]); }
+  static initCvPixelBufferPropertiesOptions(pixelBuffer?: $SDK12, properties?: $SDK7, options?: $SDK13): CIFilter { return callSDK<CIFilter>("CoreImage_3864e7f38681b875", 3212619976953525, undefined, [pixelBuffer, properties, options]); }
   /**
    * init!(imageData data: Data!, options: [CIRAWFilterOption : Any]! = [:])
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  static initImageDataOptions(data?: (ArrayBuffer) | null, options?: $SDK13): CIFilter { return callSDK<CIFilter>("CoreImage_ff42ce03e691ab23", 1724067806821986, undefined, [data, options]); }
+  static initImageDataOptions(data?: (ArrayBuffer) | null, options?: $SDK13): CIFilter { return callSDK<CIFilter>("CoreImage_3864e7f38681b875", 1724067806821986, undefined, [data, options]); }
   /**
    * init!(imageURL url: URL!, options: [CIRAWFilterOption : Any]! = [:])
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  static initImageURLOptions(url?: (string) | null, options?: $SDK13): CIFilter { return callSDK<CIFilter>("CoreImage_ff42ce03e691ab23", 4459506176615314, undefined, [url, options]); }
+  static initImageURLOptions(url?: (string) | null, options?: $SDK13): CIFilter { return callSDK<CIFilter>("CoreImage_3864e7f38681b875", 4459506176615314, undefined, [url, options]); }
   /** init?(name: String) */
-  static initName(name: string): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_ff42ce03e691ab23", 210442392466929, undefined, [name]); }
+  static initName(name: string): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_3864e7f38681b875", 210442392466929, undefined, [name]); }
   /**
    * init?(name: String, parameters params: [String : Any]?)
    * @availability iOS 8.0+
    */
-  static initNameParameters(name: string, params?: $SDK10): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_ff42ce03e691ab23", 3977323970879615, undefined, [name, params]); }
+  static initNameParameters(name: string, params?: $SDK10): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_3864e7f38681b875", 3977323970879615, undefined, [name, params]); }
   /**
    * class func localizedDescription(forFilterName filterName: String) -> String?
    * @availability iOS 9.0+
    */
-  static localizedDescription(filterName: string): (string) | null { return callSDK<(string) | null>("CoreImage_ff42ce03e691ab23", 2507989111892346, undefined, [filterName]); }
+  static localizedDescription(filterName: string): (string) | null { return callSDK<(string) | null>("CoreImage_3864e7f38681b875", 2507989111892346, undefined, [filterName]); }
   /**
    * class func localizedName(forCategory category: String) -> String
    * @availability iOS 9.0+
    */
-  static localizedNameForCategory(category: string): string { return callSDK<string>("CoreImage_ff42ce03e691ab23", 1423356895699227, undefined, [category]); }
+  static localizedNameForCategory(category: string): string { return callSDK<string>("CoreImage_3864e7f38681b875", 1423356895699227, undefined, [category]); }
   /**
    * class func localizedName(forFilterName filterName: String) -> String?
    * @availability iOS 9.0+
    */
-  static localizedNameForFilterName(filterName: string): (string) | null { return callSDK<(string) | null>("CoreImage_ff42ce03e691ab23", 335899220885359, undefined, [filterName]); }
+  static localizedNameForFilterName(filterName: string): (string) | null { return callSDK<(string) | null>("CoreImage_3864e7f38681b875", 335899220885359, undefined, [filterName]); }
   /**
    * class func localizedReferenceDocumentation(forFilterName filterName: String) -> URL?
    * @availability iOS 9.0+
    */
-  static localizedReferenceDocumentation(filterName: string): (string) | null { return callSDK<(string) | null>("CoreImage_ff42ce03e691ab23", 3653765228296954, undefined, [filterName]); }
+  static localizedReferenceDocumentation(filterName: string): (string) | null { return callSDK<(string) | null>("CoreImage_3864e7f38681b875", 3653765228296954, undefined, [filterName]); }
   /**
    * class func registerName(_ name: String, constructor anObject: any CIFilterConstructor, classAttributes attributes: [String : Any] = [:])
    * @availability iOS 9.0+
    */
-  static registerName(name: string, anObject: SDKHandle, attributes?: Record<string, unknown>): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 3794748219019110, undefined, [name, anObject, attributes]); }
+  static registerName(name: string, anObject: SDKHandle, attributes?: Record<string, unknown>): void { return callSDK<void>("CoreImage_3864e7f38681b875", 3794748219019110, undefined, [name, anObject, attributes]); }
   /**
    * class func serializedXMP(from filters: [CIFilter], inputImageExtent extent: CGRect) -> Data?
    * @availability iOS 6.0+
    * @deprecated iOS 17.0
    */
-  static serializedXMP(filters: Array<CIFilter>, extent: $SDK1): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreImage_ff42ce03e691ab23", 3704443726899900, undefined, [filters, extent]); }
+  static serializedXMP(filters: Array<CIFilter>, extent: $SDK1): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreImage_3864e7f38681b875", 3704443726899900, undefined, [filters, extent]); }
   /**
    * class func supportedRawCameraModels() -> [String]!
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static supportedRawCameraModels(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreImage_ff42ce03e691ab23", 4133718563502204, undefined, []); }
+  static supportedRawCameraModels(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreImage_3864e7f38681b875", 4133718563502204, undefined, []); }
   /**
    * func setDefaults()
    * @availability iOS 5.0+
    */
-  setDefaults(): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 4025799078527178, this, []); }
+  setDefaults(): void { return callSDK<void>("CoreImage_3864e7f38681b875", 4025799078527178, this, []); }
   /**
    * var attributes: [String : Any] { get }
    * @availability iOS 5.0+
    */
-  get attributes(): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreImage_ff42ce03e691ab23", 920515300754379, this, []); }
+  get attributes(): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreImage_3864e7f38681b875", 920515300754379, this, []); }
   /**
    * var inputKeys: [String] { get }
    * @availability iOS 5.0+
    */
-  get inputKeys(): Array<string> { return callSDK<Array<string>>("CoreImage_ff42ce03e691ab23", 2094942884785754, this, []); }
+  get inputKeys(): Array<string> { return callSDK<Array<string>>("CoreImage_3864e7f38681b875", 2094942884785754, this, []); }
   /**
    * var name: String { get set }
    * @availability iOS 5.0+
    */
-  get name(): string { return callSDK<string>("CoreImage_ff42ce03e691ab23", 1054327743274773, this, []); }
-  set name(value: string) { callSDK<void>("CoreImage_ff42ce03e691ab23", 4028767922327276, this, [value]); }
+  get name(): string { return callSDK<string>("CoreImage_3864e7f38681b875", 1054327743274773, this, []); }
+  set name(value: string) { callSDK<void>("CoreImage_3864e7f38681b875", 4028767922327276, this, [value]); }
   /**
    * var outputImage: CIImage? { get }
    * @availability iOS 5.0+
    */
-  get outputImage(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 3693911128251630, this, []); }
+  get outputImage(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 3693911128251630, this, []); }
   /**
    * var outputKeys: [String] { get }
    * @availability iOS 5.0+
    */
-  get outputKeys(): Array<string> { return callSDK<Array<string>>("CoreImage_ff42ce03e691ab23", 3723420971018858, this, []); }
+  get outputKeys(): Array<string> { return callSDK<Array<string>>("CoreImage_3864e7f38681b875", 3723420971018858, this, []); }
   declare readonly $type: { "c:objc(cs)CIFilter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributes": true; "inputKeys": true; "name": true; "outputImage": true; "outputKeys": true };
 }
@@ -1033,42 +1033,42 @@ export class CIFilterShape extends SDKHandle {
    * init(rect r: CGRect)
    * @availability iOS 9.0+
    */
-  static init(r: $SDK1): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_ff42ce03e691ab23", 4297619059993518, undefined, [r]); }
+  static init(r: $SDK1): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_3864e7f38681b875", 4297619059993518, undefined, [r]); }
   /**
    * func insetBy(x dx: Int32, y dy: Int32) -> CIFilterShape
    * @availability iOS 9.0+
    */
-  insetBy(dx: number, dy: number): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_ff42ce03e691ab23", 2446298143754796, this, [dx, dy]); }
+  insetBy(dx: number, dy: number): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_3864e7f38681b875", 2446298143754796, this, [dx, dy]); }
   /**
    * func intersect(with s2: CIFilterShape) -> CIFilterShape
    * @availability iOS 9.0+
    */
-  intersectWith(s2: CIFilterShape): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_ff42ce03e691ab23", 4187069511050241, this, [s2]); }
+  intersectWith(s2: CIFilterShape): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_3864e7f38681b875", 4187069511050241, this, [s2]); }
   /**
    * func intersect(with r: CGRect) -> CIFilterShape
    * @availability iOS 9.0+
    */
-  intersectWith98276(r: $SDK1): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_ff42ce03e691ab23", 1619602508307508, this, [r]); }
+  intersectWith98276(r: $SDK1): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_3864e7f38681b875", 1619602508307508, this, [r]); }
   /**
    * func transform(by m: CGAffineTransform, interior flag: Bool) -> CIFilterShape
    * @availability iOS 9.0+
    */
-  transform(m: _CoreFoundation_CGAffineTransform, flag: boolean): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_ff42ce03e691ab23", 2955333208599767, this, [m, flag]); }
+  transform(m: _CoreFoundation_CGAffineTransform, flag: boolean): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_3864e7f38681b875", 2955333208599767, this, [m, flag]); }
   /**
    * func union(with s2: CIFilterShape) -> CIFilterShape
    * @availability iOS 9.0+
    */
-  unionWith(s2: CIFilterShape): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_ff42ce03e691ab23", 391792762065394, this, [s2]); }
+  unionWith(s2: CIFilterShape): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_3864e7f38681b875", 391792762065394, this, [s2]); }
   /**
    * func union(with r: CGRect) -> CIFilterShape
    * @availability iOS 9.0+
    */
-  unionWith85338(r: $SDK1): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_ff42ce03e691ab23", 100109135866127, this, [r]); }
+  unionWith85338(r: $SDK1): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_3864e7f38681b875", 100109135866127, this, [r]); }
   /**
    * var extent: CGRect { get }
    * @availability iOS 9.0+
    */
-  get extent(): $SDK1 { return callSDK<$SDK1>("CoreImage_ff42ce03e691ab23", 1427219778582121, this, []); }
+  get extent(): $SDK1 { return callSDK<$SDK1>("CoreImage_3864e7f38681b875", 1427219778582121, this, []); }
   declare readonly $type: { "c:objc(cs)CIFilterShape": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "extent": true };
 }
@@ -1081,155 +1081,155 @@ export const CIFormat = {
    * static let A16: CIFormat
    * @availability iOS 9.0+
    */
-  get A16(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 2816487629936879, undefined, []); },
+  get A16(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 2816487629936879, undefined, []); },
   /**
    * static let A8: CIFormat
    * @availability iOS 9.0+
    */
-  get A8(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 135520541799736, undefined, []); },
+  get A8(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 135520541799736, undefined, []); },
   /**
    * static let ABGR8: CIFormat
    * @availability iOS 9.0+
    */
-  get ABGR8(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 625333809610982, undefined, []); },
+  get ABGR8(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 625333809610982, undefined, []); },
   /**
    * static let ARGB8: CIFormat
    * @availability iOS 6.0+
    */
-  get ARGB8(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 2373469865209262, undefined, []); },
+  get ARGB8(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 2373469865209262, undefined, []); },
   /**
    * static let Af: CIFormat
    * @availability iOS 9.0+
    */
-  get Af(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 1005137490130855, undefined, []); },
+  get Af(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 1005137490130855, undefined, []); },
   /**
    * static let Ah: CIFormat
    * @availability iOS 9.0+
    */
-  get Ah(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 2417653500030118, undefined, []); },
+  get Ah(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 2417653500030118, undefined, []); },
   /** static let BGRA8: CIFormat */
-  get BGRA8(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 3357293721847663, undefined, []); },
+  get BGRA8(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 3357293721847663, undefined, []); },
   /**
    * static let L16: CIFormat
    * @availability iOS 10.0+
    */
-  get L16(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 2331130350674315, undefined, []); },
+  get L16(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 2331130350674315, undefined, []); },
   /**
    * static let L8: CIFormat
    * @availability iOS 10.0+
    */
-  get L8(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 3418791389843378, undefined, []); },
+  get L8(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 3418791389843378, undefined, []); },
   /**
    * static let LA16: CIFormat
    * @availability iOS 10.0+
    */
-  get LA16(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 576146781861457, undefined, []); },
+  get LA16(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 576146781861457, undefined, []); },
   /**
    * static let LA8: CIFormat
    * @availability iOS 10.0+
    */
-  get LA8(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 4353463580515092, undefined, []); },
+  get LA8(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 4353463580515092, undefined, []); },
   /**
    * static let LAf: CIFormat
    * @availability iOS 10.0+
    */
-  get LAf(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 3730563224904313, undefined, []); },
+  get LAf(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 3730563224904313, undefined, []); },
   /**
    * static let LAh: CIFormat
    * @availability iOS 10.0+
    */
-  get LAh(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 3809089747055360, undefined, []); },
+  get LAh(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 3809089747055360, undefined, []); },
   /**
    * static let Lf: CIFormat
    * @availability iOS 10.0+
    */
-  get Lf(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 674175973344287, undefined, []); },
+  get Lf(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 674175973344287, undefined, []); },
   /**
    * static let Lh: CIFormat
    * @availability iOS 10.0+
    */
-  get Lh(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 1090202449333008, undefined, []); },
+  get Lh(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 1090202449333008, undefined, []); },
   /**
    * static let R16: CIFormat
    * @availability iOS 9.0+
    */
-  get R16(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 225603412742780, undefined, []); },
+  get R16(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 225603412742780, undefined, []); },
   /**
    * static let R8: CIFormat
    * @availability iOS 9.0+
    */
-  get R8(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 275480812921280, undefined, []); },
+  get R8(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 275480812921280, undefined, []); },
   /**
    * static let RG16: CIFormat
    * @availability iOS 9.0+
    */
-  get RG16(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 3002138094662046, undefined, []); },
+  get RG16(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 3002138094662046, undefined, []); },
   /**
    * static let RG8: CIFormat
    * @availability iOS 9.0+
    */
-  get RG8(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 1255390760245030, undefined, []); },
+  get RG8(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 1255390760245030, undefined, []); },
   /**
    * static let RGB10: CIFormat
    * @availability iOS 17.0+
    */
-  get RGB10(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 603067318782163, undefined, []); },
+  get RGB10(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 603067318782163, undefined, []); },
   /**
    * static let RGBA16: CIFormat
    * @availability iOS 10.0+
    */
-  get RGBA16(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 3381649779377428, undefined, []); },
+  get RGBA16(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 3381649779377428, undefined, []); },
   /** static let RGBA8: CIFormat */
-  get RGBA8(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 3274578143445249, undefined, []); },
+  get RGBA8(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 3274578143445249, undefined, []); },
   /**
    * static let RGBAf: CIFormat
    * @availability iOS 7.0+
    */
-  get RGBAf(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 2898631985811486, undefined, []); },
+  get RGBAf(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 2898631985811486, undefined, []); },
   /**
    * static let RGBAh: CIFormat
    * @availability iOS 6.0+
    */
-  get RGBAh(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 3797956705887753, undefined, []); },
+  get RGBAh(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 3797956705887753, undefined, []); },
   /**
    * static let RGBX16: CIFormat
    * @availability iOS 14.2+
    */
-  get RGBX16(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 1450421778630379, undefined, []); },
+  get RGBX16(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 1450421778630379, undefined, []); },
   /** static let RGBX8: CIFormat */
-  get RGBX8(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 3481572730438850, undefined, []); },
+  get RGBX8(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 3481572730438850, undefined, []); },
   /**
    * static let rgbXf: CIFormat
    * @availability iOS 17.0+
    */
-  get rgbXf(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 1086952548824213, undefined, []); },
+  get rgbXf(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 1086952548824213, undefined, []); },
   /**
    * static let rgbXh: CIFormat
    * @availability iOS 17.0+
    */
-  get rgbXh(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 566435715844278, undefined, []); },
+  get rgbXh(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 566435715844278, undefined, []); },
   /**
    * static let RGf: CIFormat
    * @availability iOS 9.0+
    */
-  get RGf(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 802867055971178, undefined, []); },
+  get RGf(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 802867055971178, undefined, []); },
   /**
    * static let RGh: CIFormat
    * @availability iOS 9.0+
    */
-  get RGh(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 1664040564410019, undefined, []); },
+  get RGh(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 1664040564410019, undefined, []); },
   /**
    * static let Rf: CIFormat
    * @availability iOS 9.0+
    */
-  get Rf(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 2899448801133377, undefined, []); },
+  get Rf(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 2899448801133377, undefined, []); },
   /**
    * static let Rh: CIFormat
    * @availability iOS 9.0+
    */
-  get Rh(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 3060769318497070, undefined, []); },
+  get Rh(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 3060769318497070, undefined, []); },
   /** init(rawValue: Int32) */
-  init(rawValue: number): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 2573150662025409, undefined, [rawValue]); }
+  init(rawValue: number): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 2573150662025409, undefined, [rawValue]); }
 };
 
 /**
@@ -1241,408 +1241,408 @@ export class CIImage extends SDKHandle {
    * class func empty() -> CIImage
    * @availability iOS 5.0+
    */
-  static empty(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 1785231454291368, undefined, []); }
+  static empty(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 1785231454291368, undefined, []); }
   /**
    * class var black: CIImage { get }
    * @availability iOS 13.0+
    */
-  static get black(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 3350968368889695, undefined, []); }
+  static get black(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 3350968368889695, undefined, []); }
   /**
    * class var blue: CIImage { get }
    * @availability iOS 13.0+
    */
-  static get blue(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 2900159237422175, undefined, []); }
+  static get blue(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 2900159237422175, undefined, []); }
   /**
    * class var clear: CIImage { get }
    * @availability iOS 13.0+
    */
-  static get clear(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 4214105678386216, undefined, []); }
+  static get clear(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 4214105678386216, undefined, []); }
   /**
    * class var cyan: CIImage { get }
    * @availability iOS 13.0+
    */
-  static get cyan(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 3924852225866866, undefined, []); }
+  static get cyan(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 3924852225866866, undefined, []); }
   /**
    * class var gray: CIImage { get }
    * @availability iOS 13.0+
    */
-  static get gray(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 1802912818682771, undefined, []); }
+  static get gray(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 1802912818682771, undefined, []); }
   /**
    * class var green: CIImage { get }
    * @availability iOS 13.0+
    */
-  static get green(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 2343020805215785, undefined, []); }
+  static get green(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 2343020805215785, undefined, []); }
   /**
    * class var magenta: CIImage { get }
    * @availability iOS 13.0+
    */
-  static get magenta(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 1967444706710029, undefined, []); }
+  static get magenta(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 1967444706710029, undefined, []); }
   /**
    * class var red: CIImage { get }
    * @availability iOS 13.0+
    */
-  static get red(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 566917807717844, undefined, []); }
+  static get red(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 566917807717844, undefined, []); }
   /**
    * class var white: CIImage { get }
    * @availability iOS 13.0+
    */
-  static get white(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 2101004202037195, undefined, []); }
+  static get white(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 2101004202037195, undefined, []); }
   /**
    * class var yellow: CIImage { get }
    * @availability iOS 13.0+
    */
-  static get yellow(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 1181173496000890, undefined, []); }
+  static get yellow(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 1181173496000890, undefined, []); }
   /**
    * func autoAdjustmentFilters() -> [CIFilter]
    * @availability iOS 5.0+
    */
-  autoAdjustmentFilters(): Array<CIFilter> { return callSDK<Array<CIFilter>>("CoreImage_ff42ce03e691ab23", 1084654104413908, this, []); }
+  autoAdjustmentFilters(): Array<CIFilter> { return callSDK<Array<CIFilter>>("CoreImage_3864e7f38681b875", 1084654104413908, this, []); }
   /**
    * func autoAdjustmentFilters(options: [CIImageAutoAdjustmentOption : Any]? = nil) -> [CIFilter]
    * @availability iOS 5.0+
    */
-  autoAdjustmentFiltersOptions(options?: (NativeMap<CIImageAutoAdjustmentOption, unknown>) | null): Array<CIFilter> { return callSDK<Array<CIFilter>>("CoreImage_ff42ce03e691ab23", 1992682682595485, this, [options]); }
+  autoAdjustmentFiltersOptions(options?: (NativeMap<CIImageAutoAdjustmentOption, unknown>) | null): Array<CIFilter> { return callSDK<Array<CIFilter>>("CoreImage_3864e7f38681b875", 1992682682595485, this, [options]); }
   /**
    * func oriented(_ orientation: CGImagePropertyOrientation) -> CIImage
    * @availability iOS 11.0+
    */
-  oriented(orientation: _ImageIO_CGImagePropertyOrientation): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 2242681367442161, this, [orientation]); }
+  oriented(orientation: _ImageIO_CGImagePropertyOrientation): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 2242681367442161, this, [orientation]); }
   /**
    * func applyingFilter(_ filterName: String) -> CIImage
    * @availability iOS 11.0+
    */
-  applyingFilter(filterName: string): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 1036369100693417, this, [filterName]); }
+  applyingFilter(filterName: string): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 1036369100693417, this, [filterName]); }
   /**
    * func applyingFilter(_ filterName: String, parameters params: [String : Any]) -> CIImage
    * @availability iOS 8.0+
    */
-  applyingFilterParameters(filterName: string, params: Record<string, unknown>): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 359757847503253, this, [filterName, params]); }
+  applyingFilterParameters(filterName: string, params: Record<string, unknown>): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 359757847503253, this, [filterName, params]); }
   /**
    * func applyingGainMap(_ gainmap: CIImage) -> CIImage
    * @availability iOS 18.0+
    */
-  applyingGainMap(gainmap: CIImage): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 1910184023966956, this, [gainmap]); }
+  applyingGainMap(gainmap: CIImage): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 1910184023966956, this, [gainmap]); }
   /**
    * func applyingGainMap(_ gainmap: CIImage, headroom: Float) -> CIImage
    * @availability iOS 18.0+
    */
-  applyingGainMapHeadroom(gainmap: CIImage, headroom: number): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 3236857735233389, this, [gainmap, headroom]); }
+  applyingGainMapHeadroom(gainmap: CIImage, headroom: number): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 3236857735233389, this, [gainmap, headroom]); }
   /**
    * func applyingGaussianBlur(sigma: Double) -> CIImage
    * @availability iOS 10.0+
    */
-  applyingGaussianBlur(sigma: number): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 4463959782240896, this, [sigma]); }
+  applyingGaussianBlur(sigma: number): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 4463959782240896, this, [sigma]); }
   /**
    * func oriented(forExifOrientation orientation: Int32) -> CIImage
    * @availability iOS 8.0+
    */
-  orientedForExifOrientation(orientation: number): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 3850762603734188, this, [orientation]); }
+  orientedForExifOrientation(orientation: number): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 3850762603734188, this, [orientation]); }
   /**
    * func transformed(by matrix: CGAffineTransform) -> CIImage
    * @availability iOS 5.0+
    */
-  transformedBy(matrix: _CoreFoundation_CGAffineTransform): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 187367439656566, this, [matrix]); }
+  transformedBy(matrix: _CoreFoundation_CGAffineTransform): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 187367439656566, this, [matrix]); }
   /**
    * func transformed(by matrix: CGAffineTransform, highQualityDownsample: Bool) -> CIImage
    * @availability iOS 10.0+
    */
-  transformedByHighQualityDownsample(matrix: _CoreFoundation_CGAffineTransform, highQualityDownsample: boolean): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 1928005822472680, this, [matrix, highQualityDownsample]); }
+  transformedByHighQualityDownsample(matrix: _CoreFoundation_CGAffineTransform, highQualityDownsample: boolean): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 1928005822472680, this, [matrix, highQualityDownsample]); }
   /**
    * func clampedToExtent() -> CIImage
    * @availability iOS 8.0+
    */
-  clampedToExtent(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 277212839415033, this, []); }
+  clampedToExtent(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 277212839415033, this, []); }
   /**
    * func clamped(to rect: CGRect) -> CIImage
    * @availability iOS 10.0+
    */
-  clamped(rect: $SDK1): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 3252167429851979, this, [rect]); }
+  clamped(rect: $SDK1): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 3252167429851979, this, [rect]); }
   /**
    * func matchedToWorkingSpace(from colorSpace: CGColorSpace) -> CIImage?
    * @availability iOS 10.0+
    */
-  matchedToWorkingSpace(colorSpace: _CoreGraphics_CGColorSpace): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 2262362991534195, this, [colorSpace]); }
+  matchedToWorkingSpace(colorSpace: _CoreGraphics_CGColorSpace): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 2262362991534195, this, [colorSpace]); }
   /**
    * func matchedFromWorkingSpace(to colorSpace: CGColorSpace) -> CIImage?
    * @availability iOS 10.0+
    */
-  matchedFromWorkingSpace(colorSpace: _CoreGraphics_CGColorSpace): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 3078940989021631, this, [colorSpace]); }
+  matchedFromWorkingSpace(colorSpace: _CoreGraphics_CGColorSpace): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 3078940989021631, this, [colorSpace]); }
   /**
    * func composited(over dest: CIImage) -> CIImage
    * @availability iOS 8.0+
    */
-  composited(dest: CIImage): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 1536719927521041, this, [dest]); }
+  composited(dest: CIImage): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 1536719927521041, this, [dest]); }
   /**
    * func convertingLabToWorkingSpace() -> CIImage
    * @availability iOS 16.0+
    */
-  convertingLabToWorkingSpace(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 1798414948296866, this, []); }
+  convertingLabToWorkingSpace(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 1798414948296866, this, []); }
   /**
    * func convertingWorkingSpaceToLab() -> CIImage
    * @availability iOS 16.0+
    */
-  convertingWorkingSpaceToLab(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 3448282455273859, this, []); }
+  convertingWorkingSpaceToLab(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 3448282455273859, this, []); }
   /**
    * func cropped(to rect: CGRect) -> CIImage
    * @availability iOS 5.0+
    */
-  cropped(rect: $SDK1): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 3849704321431140, this, [rect]); }
+  cropped(rect: $SDK1): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 3849704321431140, this, [rect]); }
   /**
    * func insertingIntermediate() -> CIImage
    * @availability iOS 12.0+
    */
-  insertingIntermediate(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 1129285544836579, this, []); }
+  insertingIntermediate(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 1129285544836579, this, []); }
   /**
    * func insertingIntermediate(cache: Bool) -> CIImage
    * @availability iOS 12.0+
    */
-  insertingIntermediateCache(cache: boolean): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 3705509013749054, this, [cache]); }
+  insertingIntermediateCache(cache: boolean): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 3705509013749054, this, [cache]); }
   /**
    * func insertingTiledIntermediate() -> CIImage
    * @availability iOS 26.0+
    */
-  insertingTiledIntermediate(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 3822993837326661, this, []); }
+  insertingTiledIntermediate(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 3822993837326661, this, []); }
   /**
    * func premultiplyingAlpha() -> CIImage
    * @availability iOS 10.0+
    */
-  premultiplyingAlpha(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 4256566338207470, this, []); }
+  premultiplyingAlpha(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 4256566338207470, this, []); }
   /**
    * func samplingLinear() -> CIImage
    * @availability iOS 11.0+
    */
-  samplingLinear(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 2786938491529658, this, []); }
+  samplingLinear(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 2786938491529658, this, []); }
   /**
    * func samplingNearest() -> CIImage
    * @availability iOS 11.0+
    */
-  samplingNearest(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 413850185919656, this, []); }
+  samplingNearest(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 413850185919656, this, []); }
   /**
    * func settingAlphaOne(in extent: CGRect) -> CIImage
    * @availability iOS 10.0+
    */
-  settingAlphaOne(extent: $SDK1): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 4113580242078616, this, [extent]); }
+  settingAlphaOne(extent: $SDK1): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 4113580242078616, this, [extent]); }
   /**
    * func settingContentAverageLightLevel(_ average: Float) -> CIImage
    * @availability iOS 26.0+
    */
-  settingContentAverageLightLevel(average: number): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 4107775814852200, this, [average]); }
+  settingContentAverageLightLevel(average: number): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 4107775814852200, this, [average]); }
   /**
    * func settingContentHeadroom(_ headroom: Float) -> CIImage
    * @availability iOS 26.0+
    */
-  settingContentHeadroom(headroom: number): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 4141379151197231, this, [headroom]); }
+  settingContentHeadroom(headroom: number): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 4141379151197231, this, [headroom]); }
   /**
    * func settingProperties(_ properties: [AnyHashable : Any]) -> CIImage
    * @availability iOS 10.0+
    */
-  settingProperties(properties: $SDK15): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 4081270804988483, this, [properties]); }
+  settingProperties(properties: $SDK15): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 4081270804988483, this, [properties]); }
   /**
    * func unpremultiplyingAlpha() -> CIImage
    * @availability iOS 10.0+
    */
-  unpremultiplyingAlpha(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 3393573538084103, this, []); }
+  unpremultiplyingAlpha(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 3393573538084103, this, []); }
   /**
    * func orientationTransform(for orientation: CGImagePropertyOrientation) -> CGAffineTransform
    * @availability iOS 11.0+
    */
-  orientationTransformFor(orientation: _ImageIO_CGImagePropertyOrientation): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreImage_ff42ce03e691ab23", 2074465129980129, this, [orientation]); }
+  orientationTransformFor(orientation: _ImageIO_CGImagePropertyOrientation): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreImage_3864e7f38681b875", 2074465129980129, this, [orientation]); }
   /**
    * func orientationTransform(forExifOrientation orientation: Int32) -> CGAffineTransform
    * @availability iOS 8.0+
    */
-  orientationTransformForExifOrientation(orientation: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreImage_ff42ce03e691ab23", 4112938933674718, this, [orientation]); }
+  orientationTransformForExifOrientation(orientation: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreImage_3864e7f38681b875", 4112938933674718, this, [orientation]); }
   /**
    * init(bitmapData data: Data, bytesPerRow: Int, size: CGSize, format: CIFormat, colorSpace: CGColorSpace?)
    * @availability iOS 5.0+
    */
-  static initBitmapDataBytesPerRowSizeFormatColorSpace(data: ArrayBuffer, bytesPerRow: number, size: $SDK9, format: CIFormat, colorSpace?: $SDK6): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 3965552505500920, undefined, [data, bytesPerRow, size, format, colorSpace]); }
+  static initBitmapDataBytesPerRowSizeFormatColorSpace(data: ArrayBuffer, bytesPerRow: number, size: $SDK9, format: CIFormat, colorSpace?: $SDK6): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 3965552505500920, undefined, [data, bytesPerRow, size, format, colorSpace]); }
   /**
    * init(cgImage image: CGImage)
    * @availability iOS 5.0+
    */
-  static initCgImage(image: _CoreGraphics_CGImage): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 400830269831733, undefined, [image]); }
+  static initCgImage(image: _CoreGraphics_CGImage): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 400830269831733, undefined, [image]); }
   /**
    * init(cgImage image: CGImage, options: [CIImageOption : Any]? = nil)
    * @availability iOS 5.0+
    */
-  static initCgImageOptions(image: _CoreGraphics_CGImage, options?: $SDK16): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 85860317568560, undefined, [image, options]); }
+  static initCgImageOptions(image: _CoreGraphics_CGImage, options?: $SDK16): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 85860317568560, undefined, [image, options]); }
   /**
    * init(cgImageSource source: CGImageSource, index: Int, options dict: [CIImageOption : Any]? = nil)
    * @availability iOS 13.0+
    */
-  static initCgImageSourceIndexOptions(source: _ImageIO_CGImageSource, index: number, dict?: $SDK16): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 2839507231970425, undefined, [source, index, dict]); }
+  static initCgImageSourceIndexOptions(source: _ImageIO_CGImageSource, index: number, dict?: $SDK16): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 2839507231970425, undefined, [source, index, dict]); }
   /**
    * init(cvImageBuffer imageBuffer: CVImageBuffer)
    * @availability iOS 9.0+
    */
-  static initCvImageBuffer(imageBuffer: _CoreVideo_CVBuffer): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 4088629831840238, undefined, [imageBuffer]); }
+  static initCvImageBuffer(imageBuffer: _CoreVideo_CVBuffer): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 4088629831840238, undefined, [imageBuffer]); }
   /**
    * init(cvImageBuffer imageBuffer: CVImageBuffer, options: [CIImageOption : Any]? = nil)
    * @availability iOS 9.0+
    */
-  static initCvImageBufferOptions(imageBuffer: _CoreVideo_CVBuffer, options?: $SDK16): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 2498919167504477, undefined, [imageBuffer, options]); }
+  static initCvImageBufferOptions(imageBuffer: _CoreVideo_CVBuffer, options?: $SDK16): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 2498919167504477, undefined, [imageBuffer, options]); }
   /**
    * init(cvPixelBuffer pixelBuffer: CVPixelBuffer)
    * @availability iOS 5.0+
    */
-  static initCvPixelBuffer(pixelBuffer: _CoreVideo_CVBuffer): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 259273120910447, undefined, [pixelBuffer]); }
+  static initCvPixelBuffer(pixelBuffer: _CoreVideo_CVBuffer): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 259273120910447, undefined, [pixelBuffer]); }
   /**
    * init(cvPixelBuffer pixelBuffer: CVPixelBuffer, options: [CIImageOption : Any]? = nil)
    * @availability iOS 5.0+
    */
-  static initCvPixelBufferOptions(pixelBuffer: _CoreVideo_CVBuffer, options?: $SDK16): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 4017080484651516, undefined, [pixelBuffer, options]); }
+  static initCvPixelBufferOptions(pixelBuffer: _CoreVideo_CVBuffer, options?: $SDK16): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 4017080484651516, undefined, [pixelBuffer, options]); }
   /**
    * init(color: CIColor)
    * @availability iOS 5.0+
    */
-  static initColor(color: CIColor): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 3748481244712845, undefined, [color]); }
+  static initColor(color: CIColor): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 3748481244712845, undefined, [color]); }
   /**
    * init?(contentsOf url: URL)
    * @availability iOS 5.0+
    */
-  static initContentsOf(url: string): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 1391546685214515, undefined, [url]); }
+  static initContentsOf(url: string): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 1391546685214515, undefined, [url]); }
   /**
    * init?(contentsOf url: URL, options: [CIImageOption : Any]? = nil)
    * @availability iOS 5.0+
    */
-  static initContentsOfOptions(url: string, options?: $SDK16): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 1495366800273727, undefined, [url, options]); }
+  static initContentsOfOptions(url: string, options?: $SDK16): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 1495366800273727, undefined, [url, options]); }
   /**
    * init?(data: Data)
    * @availability iOS 5.0+
    */
-  static initData(data: ArrayBuffer): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 127561143454951, undefined, [data]); }
+  static initData(data: ArrayBuffer): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 127561143454951, undefined, [data]); }
   /**
    * init?(data: Data, options: [CIImageOption : Any]? = nil)
    * @availability iOS 5.0+
    */
-  static initDataOptions(data: ArrayBuffer, options?: $SDK16): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 4064441518186472, undefined, [data, options]); }
+  static initDataOptions(data: ArrayBuffer, options?: $SDK16): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 4064441518186472, undefined, [data, options]); }
   /**
    * init?(depthData data: AVDepthData)
    * @availability iOS 11.0+
    */
-  static initDepthData(data: _AVFoundation_AVDepthData): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 3287174827156165, undefined, [data]); }
+  static initDepthData(data: _AVFoundation_AVDepthData): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 3287174827156165, undefined, [data]); }
   /**
    * init?(depthData data: AVDepthData, options: [String : Any]? = nil)
    * @availability iOS 11.0+
    */
-  static initDepthDataOptions(data: _AVFoundation_AVDepthData, options?: $SDK10): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 2456585492599775, undefined, [data, options]); }
+  static initDepthDataOptions(data: _AVFoundation_AVDepthData, options?: $SDK10): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 2456585492599775, undefined, [data, options]); }
   /**
    * init(ioSurface surface: IOSurfaceRef)
    * @availability iOS 5.0+
    */
-  static initIoSurface(surface: _IOSurface_IOSurfaceRef): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 1343880014486422, undefined, [surface]); }
+  static initIoSurface(surface: _IOSurface_IOSurfaceRef): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 1343880014486422, undefined, [surface]); }
   /**
    * init(ioSurface surface: IOSurfaceRef, options: [CIImageOption : Any]? = nil)
    * @availability iOS 5.0+
    */
-  static initIoSurfaceOptions(surface: _IOSurface_IOSurfaceRef, options?: $SDK16): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 2474192302994761, undefined, [surface, options]); }
+  static initIoSurfaceOptions(surface: _IOSurface_IOSurfaceRef, options?: $SDK16): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 2474192302994761, undefined, [surface, options]); }
   /**
    * init(imageProvider provider: Any, size width: Int, _ height: Int, format: CIFormat, colorSpace: CGColorSpace?, options: [CIImageOption : Any]? = nil)
    * @availability iOS 9.0+
    */
-  static initImageProviderSizeFormatColorSpaceOptions(provider: unknown, width: number, height: number, format: CIFormat, colorSpace?: $SDK6, options?: $SDK16): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 1434755874738643, undefined, [provider, width, height, format, colorSpace, options]); }
+  static initImageProviderSizeFormatColorSpaceOptions(provider: unknown, width: number, height: number, format: CIFormat, colorSpace?: $SDK6, options?: $SDK16): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 1434755874738643, undefined, [provider, width, height, format, colorSpace, options]); }
   /**
    * init?(mtlTexture texture: any MTLTexture, options: [CIImageOption : Any]? = nil)
    * @availability iOS 9.0+
    */
-  static initMtlTextureOptions(texture: SDKHandle, options?: $SDK16): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 1688284523096247, undefined, [texture, options]); }
+  static initMtlTextureOptions(texture: SDKHandle, options?: $SDK16): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 1688284523096247, undefined, [texture, options]); }
   /**
    * init?(portaitEffectsMatte matte: AVPortraitEffectsMatte)
    * @availability iOS 11.0+
    */
-  static initPortaitEffectsMatte(matte: _AVFoundation_AVPortraitEffectsMatte): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 3903753163888064, undefined, [matte]); }
+  static initPortaitEffectsMatte(matte: _AVFoundation_AVPortraitEffectsMatte): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 3903753163888064, undefined, [matte]); }
   /**
    * init?(portaitEffectsMatte matte: AVPortraitEffectsMatte, options: [CIImageOption : Any]? = nil)
    * @availability iOS 12.0+
    */
-  static initPortaitEffectsMatteOptions(matte: _AVFoundation_AVPortraitEffectsMatte, options?: $SDK16): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 3531262617783006, undefined, [matte, options]); }
+  static initPortaitEffectsMatteOptions(matte: _AVFoundation_AVPortraitEffectsMatte, options?: $SDK16): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 3531262617783006, undefined, [matte, options]); }
   /**
    * init?(semanticSegmentationMatte matte: AVSemanticSegmentationMatte)
    * @availability iOS 13.0+
    */
-  static initSemanticSegmentationMatte(matte: _AVFoundation_AVSemanticSegmentationMatte): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 3464928542474690, undefined, [matte]); }
+  static initSemanticSegmentationMatte(matte: _AVFoundation_AVSemanticSegmentationMatte): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 3464928542474690, undefined, [matte]); }
   /**
    * init?(semanticSegmentationMatte matte: AVSemanticSegmentationMatte, options: [CIImageOption : Any]? = nil)
    * @availability iOS 13.0+
    */
-  static initSemanticSegmentationMatteOptions(matte: _AVFoundation_AVSemanticSegmentationMatte, options?: $SDK16): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 1629087469312038, undefined, [matte, options]); }
+  static initSemanticSegmentationMatteOptions(matte: _AVFoundation_AVSemanticSegmentationMatte, options?: $SDK16): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 1629087469312038, undefined, [matte, options]); }
   /**
    * init(texture name: UInt32, size: CGSize, flipped: Bool, colorSpace: CGColorSpace?)
    * @availability iOS 6.0+
    * @deprecated iOS 12.0
    */
-  static initTextureSizeFlippedColorSpace(name: number, size: $SDK9, flipped: boolean, colorSpace?: $SDK6): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 3269374636563284, undefined, [name, size, flipped, colorSpace]); }
+  static initTextureSizeFlippedColorSpace(name: number, size: $SDK9, flipped: boolean, colorSpace?: $SDK6): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 3269374636563284, undefined, [name, size, flipped, colorSpace]); }
   /**
    * func regionOfInterest(for image: CIImage, in rect: CGRect) -> CGRect
    * @availability iOS 6.0+
    */
-  regionOfInterest(image: CIImage, rect: $SDK1): $SDK1 { return callSDK<$SDK1>("CoreImage_ff42ce03e691ab23", 1794713720992576, this, [image, rect]); }
+  regionOfInterest(image: CIImage, rect: $SDK1): $SDK1 { return callSDK<$SDK1>("CoreImage_3864e7f38681b875", 1794713720992576, this, [image, rect]); }
   /**
    * var cgImage: CGImage? { get }
    * @availability iOS 10.0+
    */
-  get cgImage(): $SDK5 { return callSDK<$SDK5>("CoreImage_ff42ce03e691ab23", 151570558091225, this, []); }
+  get cgImage(): $SDK5 { return callSDK<$SDK5>("CoreImage_3864e7f38681b875", 151570558091225, this, []); }
   /**
    * var colorSpace: CGColorSpace? { get }
    * @availability iOS 9.0+
    */
-  get colorSpace(): $SDK6 { return callSDK<$SDK6>("CoreImage_ff42ce03e691ab23", 838859200289314, this, []); }
+  get colorSpace(): $SDK6 { return callSDK<$SDK6>("CoreImage_3864e7f38681b875", 838859200289314, this, []); }
   /**
    * var contentAverageLightLevel: Float { get }
    * @availability iOS 26.0+
    */
-  get contentAverageLightLevel(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 3256528848054221, this, []); }
+  get contentAverageLightLevel(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 3256528848054221, this, []); }
   /**
    * var contentHeadroom: Float { get }
    * @availability iOS 18.0+
    */
-  get contentHeadroom(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 2917433983722357, this, []); }
+  get contentHeadroom(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 2917433983722357, this, []); }
   /**
    * var depthData: AVDepthData? { get }
    * @availability iOS 11.0+
    */
-  get depthData(): (_AVFoundation_AVDepthData) | null { return callSDK<(_AVFoundation_AVDepthData) | null>("CoreImage_ff42ce03e691ab23", 527740697036895, this, []); }
+  get depthData(): (_AVFoundation_AVDepthData) | null { return callSDK<(_AVFoundation_AVDepthData) | null>("CoreImage_3864e7f38681b875", 527740697036895, this, []); }
   /**
    * var extent: CGRect { get }
    * @availability iOS 5.0+
    */
-  get extent(): $SDK1 { return callSDK<$SDK1>("CoreImage_ff42ce03e691ab23", 1102446300434521, this, []); }
+  get extent(): $SDK1 { return callSDK<$SDK1>("CoreImage_3864e7f38681b875", 1102446300434521, this, []); }
   /**
    * var metalTexture: (any MTLTexture)? { get }
    * @availability iOS 18.0+
    */
-  get metalTexture(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreImage_ff42ce03e691ab23", 1254255066465596, this, []); }
+  get metalTexture(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreImage_3864e7f38681b875", 1254255066465596, this, []); }
   /**
    * var isOpaque: Bool { get }
    * @availability iOS 5.0+
    */
-  get isOpaque(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 1721999705507567, this, []); }
+  get isOpaque(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 1721999705507567, this, []); }
   /**
    * var pixelBuffer: CVPixelBuffer? { get }
    * @availability iOS 10.0+
    */
-  get pixelBuffer(): $SDK12 { return callSDK<$SDK12>("CoreImage_ff42ce03e691ab23", 1402923063819102, this, []); }
+  get pixelBuffer(): $SDK12 { return callSDK<$SDK12>("CoreImage_3864e7f38681b875", 1402923063819102, this, []); }
   /**
    * var portraitEffectsMatte: AVPortraitEffectsMatte? { get }
    * @availability iOS 12.0+
    */
-  get portraitEffectsMatte(): (_AVFoundation_AVPortraitEffectsMatte) | null { return callSDK<(_AVFoundation_AVPortraitEffectsMatte) | null>("CoreImage_ff42ce03e691ab23", 168513863841536, this, []); }
+  get portraitEffectsMatte(): (_AVFoundation_AVPortraitEffectsMatte) | null { return callSDK<(_AVFoundation_AVPortraitEffectsMatte) | null>("CoreImage_3864e7f38681b875", 168513863841536, this, []); }
   /**
    * var properties: [String : Any] { get }
    * @availability iOS 5.0+
    */
-  get properties(): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreImage_ff42ce03e691ab23", 1711827582677399, this, []); }
+  get properties(): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreImage_3864e7f38681b875", 1711827582677399, this, []); }
   /**
    * var semanticSegmentationMatte: AVSemanticSegmentationMatte? { get }
    * @availability iOS 13.0+
    */
-  get semanticSegmentationMatte(): (_AVFoundation_AVSemanticSegmentationMatte) | null { return callSDK<(_AVFoundation_AVSemanticSegmentationMatte) | null>("CoreImage_ff42ce03e691ab23", 2972532087551234, this, []); }
+  get semanticSegmentationMatte(): (_AVFoundation_AVSemanticSegmentationMatte) | null { return callSDK<(_AVFoundation_AVSemanticSegmentationMatte) | null>("CoreImage_3864e7f38681b875", 2972532087551234, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 9.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("CoreImage_ff42ce03e691ab23", 4291188509881164, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("CoreImage_3864e7f38681b875", 4291188509881164, this, []); }
   declare readonly $type: { "c:objc(cs)CIImage": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cgImage": true; "colorSpace": true; "contentAverageLightLevel": true; "contentHeadroom": true; "depthData": true; "extent": true; "metalTexture": true; "isOpaque": true; "pixelBuffer": true; "portraitEffectsMatte": true; "properties": true; "semanticSegmentationMatte": true; "url": true };
 }
@@ -1656,42 +1656,42 @@ export class CIImageAccumulator extends SDKHandle {
    * func clear()
    * @availability iOS 9.0+
    */
-  clear(): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 4090887699922637, this, []); }
+  clear(): void { return callSDK<void>("CoreImage_3864e7f38681b875", 4090887699922637, this, []); }
   /**
    * func image() -> CIImage
    * @availability iOS 9.0+
    */
-  image(): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 551778722022793, this, []); }
+  image(): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 551778722022793, this, []); }
   /**
    * init?(extent: CGRect, format: CIFormat)
    * @availability iOS 9.0+
    */
-  static initExtentFormat(extent: $SDK1, format: CIFormat): (CIImageAccumulator) | null { return callSDK<(CIImageAccumulator) | null>("CoreImage_ff42ce03e691ab23", 2780986657774709, undefined, [extent, format]); }
+  static initExtentFormat(extent: $SDK1, format: CIFormat): (CIImageAccumulator) | null { return callSDK<(CIImageAccumulator) | null>("CoreImage_3864e7f38681b875", 2780986657774709, undefined, [extent, format]); }
   /**
    * init?(extent: CGRect, format: CIFormat, colorSpace: CGColorSpace)
    * @availability iOS 9.0+
    */
-  static initExtentFormatColorSpace(extent: $SDK1, format: CIFormat, colorSpace: _CoreGraphics_CGColorSpace): (CIImageAccumulator) | null { return callSDK<(CIImageAccumulator) | null>("CoreImage_ff42ce03e691ab23", 4478803524375581, undefined, [extent, format, colorSpace]); }
+  static initExtentFormatColorSpace(extent: $SDK1, format: CIFormat, colorSpace: _CoreGraphics_CGColorSpace): (CIImageAccumulator) | null { return callSDK<(CIImageAccumulator) | null>("CoreImage_3864e7f38681b875", 4478803524375581, undefined, [extent, format, colorSpace]); }
   /**
    * func setImage(_ image: CIImage)
    * @availability iOS 9.0+
    */
-  setImage(image: CIImage): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 3609282687990300, this, [image]); }
+  setImage(image: CIImage): void { return callSDK<void>("CoreImage_3864e7f38681b875", 3609282687990300, this, [image]); }
   /**
    * func setImage(_ image: CIImage, dirtyRect: CGRect)
    * @availability iOS 9.0+
    */
-  setImageDirtyRect(image: CIImage, dirtyRect: $SDK1): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 3514753482699061, this, [image, dirtyRect]); }
+  setImageDirtyRect(image: CIImage, dirtyRect: $SDK1): void { return callSDK<void>("CoreImage_3864e7f38681b875", 3514753482699061, this, [image, dirtyRect]); }
   /**
    * var extent: CGRect { get }
    * @availability iOS 9.0+
    */
-  get extent(): $SDK1 { return callSDK<$SDK1>("CoreImage_ff42ce03e691ab23", 455134284660930, this, []); }
+  get extent(): $SDK1 { return callSDK<$SDK1>("CoreImage_3864e7f38681b875", 455134284660930, this, []); }
   /**
    * var format: CIFormat { get }
    * @availability iOS 9.0+
    */
-  get format(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 999266576140123, this, []); }
+  get format(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 999266576140123, this, []); }
   declare readonly $type: { "c:objc(cs)CIImageAccumulator": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "extent": true; "format": true };
 }
@@ -1704,29 +1704,29 @@ export const CIImageAutoAdjustmentOption = {
    * static let crop: CIImageAutoAdjustmentOption
    * @availability iOS 8.0+
    */
-  get crop(): CIImageAutoAdjustmentOption { return callSDK<CIImageAutoAdjustmentOption>("CoreImage_ff42ce03e691ab23", 2818345060026013, undefined, []); },
+  get crop(): CIImageAutoAdjustmentOption { return callSDK<CIImageAutoAdjustmentOption>("CoreImage_3864e7f38681b875", 2818345060026013, undefined, []); },
   /**
    * static let enhance: CIImageAutoAdjustmentOption
    * @availability iOS 5.0+
    */
-  get enhance(): CIImageAutoAdjustmentOption { return callSDK<CIImageAutoAdjustmentOption>("CoreImage_ff42ce03e691ab23", 2660786192851513, undefined, []); },
+  get enhance(): CIImageAutoAdjustmentOption { return callSDK<CIImageAutoAdjustmentOption>("CoreImage_3864e7f38681b875", 2660786192851513, undefined, []); },
   /**
    * static let features: CIImageAutoAdjustmentOption
    * @availability iOS 5.0+
    */
-  get features(): CIImageAutoAdjustmentOption { return callSDK<CIImageAutoAdjustmentOption>("CoreImage_ff42ce03e691ab23", 337105920425583, undefined, []); },
+  get features(): CIImageAutoAdjustmentOption { return callSDK<CIImageAutoAdjustmentOption>("CoreImage_3864e7f38681b875", 337105920425583, undefined, []); },
   /**
    * static let level: CIImageAutoAdjustmentOption
    * @availability iOS 8.0+
    */
-  get level(): CIImageAutoAdjustmentOption { return callSDK<CIImageAutoAdjustmentOption>("CoreImage_ff42ce03e691ab23", 3413401626478597, undefined, []); },
+  get level(): CIImageAutoAdjustmentOption { return callSDK<CIImageAutoAdjustmentOption>("CoreImage_3864e7f38681b875", 3413401626478597, undefined, []); },
   /**
    * static let redEye: CIImageAutoAdjustmentOption
    * @availability iOS 5.0+
    */
-  get redEye(): CIImageAutoAdjustmentOption { return callSDK<CIImageAutoAdjustmentOption>("CoreImage_ff42ce03e691ab23", 4255600513288155, undefined, []); },
+  get redEye(): CIImageAutoAdjustmentOption { return callSDK<CIImageAutoAdjustmentOption>("CoreImage_3864e7f38681b875", 4255600513288155, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): CIImageAutoAdjustmentOption { return callSDK<CIImageAutoAdjustmentOption>("CoreImage_ff42ce03e691ab23", 1156851578336975, undefined, [rawValue]); }
+  init(rawValue: string): CIImageAutoAdjustmentOption { return callSDK<CIImageAutoAdjustmentOption>("CoreImage_3864e7f38681b875", 1156851578336975, undefined, [rawValue]); }
 };
 
 /** struct CIImageOption */
@@ -1737,118 +1737,118 @@ export const CIImageOption = {
    * static let applyCleanAperture: CIImageOption
    * @availability iOS 26.0+
    */
-  get applyCleanAperture(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 1322032179339236, undefined, []); },
+  get applyCleanAperture(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 1322032179339236, undefined, []); },
   /**
    * static let applyOrientationProperty: CIImageOption
    * @availability iOS 11.0+
    */
-  get applyOrientationProperty(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 2704353641854748, undefined, []); },
+  get applyOrientationProperty(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 2704353641854748, undefined, []); },
   /**
    * static let auxiliaryDepth: CIImageOption
    * @availability iOS 11.0+
    */
-  get auxiliaryDepth(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 2967334952254012, undefined, []); },
+  get auxiliaryDepth(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 2967334952254012, undefined, []); },
   /**
    * static let auxiliaryDisparity: CIImageOption
    * @availability iOS 11.0+
    */
-  get auxiliaryDisparity(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 438165289243842, undefined, []); },
+  get auxiliaryDisparity(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 438165289243842, undefined, []); },
   /**
    * static let auxiliaryHDRGainMap: CIImageOption
    * @availability iOS 14.1+
    */
-  get auxiliaryHDRGainMap(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 29545272262003, undefined, []); },
+  get auxiliaryHDRGainMap(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 29545272262003, undefined, []); },
   /**
    * static let auxiliaryPortraitEffectsMatte: CIImageOption
    * @availability iOS 12.0+
    */
-  get auxiliaryPortraitEffectsMatte(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 978462106965243, undefined, []); },
+  get auxiliaryPortraitEffectsMatte(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 978462106965243, undefined, []); },
   /**
    * static let auxiliarySemanticSegmentationGlassesMatte: CIImageOption
    * @availability iOS 14.1+
    */
-  get auxiliarySemanticSegmentationGlassesMatte(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 4316428576276569, undefined, []); },
+  get auxiliarySemanticSegmentationGlassesMatte(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 4316428576276569, undefined, []); },
   /**
    * static let auxiliarySemanticSegmentationHairMatte: CIImageOption
    * @availability iOS 13.0+
    */
-  get auxiliarySemanticSegmentationHairMatte(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 3589669969434247, undefined, []); },
+  get auxiliarySemanticSegmentationHairMatte(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 3589669969434247, undefined, []); },
   /**
    * static let auxiliarySemanticSegmentationSkinMatte: CIImageOption
    * @availability iOS 13.0+
    */
-  get auxiliarySemanticSegmentationSkinMatte(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 831846132396612, undefined, []); },
+  get auxiliarySemanticSegmentationSkinMatte(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 831846132396612, undefined, []); },
   /**
    * static let auxiliarySemanticSegmentationSkyMatte: CIImageOption
    * @availability iOS 14.3+
    */
-  get auxiliarySemanticSegmentationSkyMatte(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 1748226718799697, undefined, []); },
+  get auxiliarySemanticSegmentationSkyMatte(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 1748226718799697, undefined, []); },
   /**
    * static let auxiliarySemanticSegmentationTeethMatte: CIImageOption
    * @availability iOS 13.0+
    */
-  get auxiliarySemanticSegmentationTeethMatte(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 2914433563957645, undefined, []); },
+  get auxiliarySemanticSegmentationTeethMatte(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 2914433563957645, undefined, []); },
   /** static let cacheImmediately: CIImageOption */
-  get cacheImmediately(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 3092516750366074, undefined, []); },
+  get cacheImmediately(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 3092516750366074, undefined, []); },
   /** static let colorSpace: CIImageOption */
-  get colorSpace(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 2967013162118121, undefined, []); },
+  get colorSpace(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 2967013162118121, undefined, []); },
   /**
    * static let contentAverageLightLevel: CIImageOption
    * @availability iOS 26.0+
    */
-  get contentAverageLightLevel(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 784713974354430, undefined, []); },
+  get contentAverageLightLevel(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 784713974354430, undefined, []); },
   /**
    * static let contentHeadroom: CIImageOption
    * @availability iOS 18.0+
    */
-  get contentHeadroom(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 1888691240403419, undefined, []); },
+  get contentHeadroom(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 1888691240403419, undefined, []); },
   /**
    * static let expandToHDR: CIImageOption
    * @availability iOS 17.0+
    */
-  get expandToHDR(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 532002605178538, undefined, []); },
+  get expandToHDR(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 532002605178538, undefined, []); },
   /**
    * static let nearestSampling: CIImageOption
    * @availability iOS 11.0+
    */
-  get nearestSampling(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 4243376529633640, undefined, []); },
+  get nearestSampling(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 4243376529633640, undefined, []); },
   /**
    * static let properties: CIImageOption
    * @availability iOS 5.0+
    */
-  get properties(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 1182202113609425, undefined, []); },
+  get properties(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 1182202113609425, undefined, []); },
   /**
    * static let providerTileSize: CIImageOption
    * @availability iOS 9.0+
    */
-  get providerTileSize(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 400403286400089, undefined, []); },
+  get providerTileSize(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 400403286400089, undefined, []); },
   /**
    * static let providerUserInfo: CIImageOption
    * @availability iOS 9.0+
    */
-  get providerUserInfo(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 300786315368193, undefined, []); },
+  get providerUserInfo(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 300786315368193, undefined, []); },
   /**
    * static let subsampleFactor: CIImageOption
    * @availability iOS 27.0+
    */
-  get subsampleFactor(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 2107764617436033, undefined, []); },
+  get subsampleFactor(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 2107764617436033, undefined, []); },
   /**
    * static let toneMapHDRtoSDR: CIImageOption
    * @availability iOS 14.1+
    */
-  get toneMapHDRtoSDR(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 734260602830377, undefined, []); },
+  get toneMapHDRtoSDR(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 734260602830377, undefined, []); },
   /**
    * static let typeIdentifierHint: CIImageOption
    * @availability iOS 27.0+
    */
-  get typeIdentifierHint(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 1128204408759444, undefined, []); },
+  get typeIdentifierHint(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 1128204408759444, undefined, []); },
   /**
    * static let useHardwareAcceleration: CIImageOption
    * @availability iOS 27.0+
    */
-  get useHardwareAcceleration(): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 1436430094854618, undefined, []); },
+  get useHardwareAcceleration(): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 1436430094854618, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): CIImageOption { return callSDK<CIImageOption>("CoreImage_ff42ce03e691ab23", 1203835801268198, undefined, [rawValue]); }
+  init(rawValue: string): CIImageOption { return callSDK<CIImageOption>("CoreImage_3864e7f38681b875", 1203835801268198, undefined, [rawValue]); }
 };
 
 /**
@@ -1868,64 +1868,64 @@ export class CIImageProcessorKernel extends SDKHandle {
    * class func apply(withExtent extent: CGRect, inputs: [CIImage]?, arguments: [String : Any]?) throws -> CIImage
    * @availability iOS 10.0+
    */
-  static applyWithExtentInputsArguments(extent: $SDK1, inputs?: (Array<CIImage>) | null, arguments_?: $SDK10): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 35360221966439, undefined, [extent, inputs, arguments_]); }
+  static applyWithExtentInputsArguments(extent: $SDK1, inputs?: (Array<CIImage>) | null, arguments_?: $SDK10): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 35360221966439, undefined, [extent, inputs, arguments_]); }
   /**
    * class func apply(withExtents extents: [CIVector], inputs: [CIImage]?, arguments: [String : Any]?) throws -> [CIImage]
    * @availability iOS 26.0+
    */
-  static applyWithExtentsInputsArguments(extents: Array<CIVector>, inputs?: (Array<CIImage>) | null, arguments_?: $SDK10): Array<CIImage> { return callSDK<Array<CIImage>>("CoreImage_ff42ce03e691ab23", 2338195668206172, undefined, [extents, inputs, arguments_]); }
+  static applyWithExtentsInputsArguments(extents: Array<CIVector>, inputs?: (Array<CIImage>) | null, arguments_?: $SDK10): Array<CIImage> { return callSDK<Array<CIImage>>("CoreImage_3864e7f38681b875", 2338195668206172, undefined, [extents, inputs, arguments_]); }
   /**
    * class func apply(tiledExtent tileExtents: [CIVector], inputs: [CIImage]?, arguments args: [String : Any]?) throws -> CIImage
    * @availability iOS 27.0+
    */
-  static applyTiledExtentInputsArguments(tileExtents: Array<CIVector>, inputs?: (Array<CIImage>) | null, args?: $SDK10): CIImage { return callSDK<CIImage>("CoreImage_ff42ce03e691ab23", 1152778018486895, undefined, [tileExtents, inputs, args]); }
+  static applyTiledExtentInputsArguments(tileExtents: Array<CIVector>, inputs?: (Array<CIImage>) | null, args?: $SDK10): CIImage { return callSDK<CIImage>("CoreImage_3864e7f38681b875", 1152778018486895, undefined, [tileExtents, inputs, args]); }
   /**
    * class func formatForInput(at inputIndex: Int32) -> CIFormat
    * @availability iOS 10.0+
    */
-  static formatForInput(inputIndex: number): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 2639221275746604, undefined, [inputIndex]); }
+  static formatForInput(inputIndex: number): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 2639221275746604, undefined, [inputIndex]); }
   /**
    * class func outputFormat(at outputIndex: Int32, arguments: [String : Any]?) -> CIFormat
    * @availability iOS 26.0+
    */
-  static outputFormatAtArguments(outputIndex: number, arguments_?: $SDK10): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 223580203640445, undefined, [outputIndex, arguments_]); }
+  static outputFormatAtArguments(outputIndex: number, arguments_?: $SDK10): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 223580203640445, undefined, [outputIndex, arguments_]); }
   /**
    * class func process(with inputs: [any CIImageProcessorInput]?, arguments: [String : Any]?, output: any CIImageProcessorOutput) throws
    * @availability iOS 10.0+
    */
-  static processWithArgumentsOutput(inputs: (Array<SDKHandle>) | null, arguments_: $SDK10, output: SDKHandle): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 1725229154183222, undefined, [inputs, arguments_, output]); }
+  static processWithArgumentsOutput(inputs: (Array<SDKHandle>) | null, arguments_: $SDK10, output: SDKHandle): void { return callSDK<void>("CoreImage_3864e7f38681b875", 1725229154183222, undefined, [inputs, arguments_, output]); }
   /**
    * class func process(with inputs: [any CIImageProcessorInput]?, arguments: [String : Any]?, outputs: [any CIImageProcessorOutput]) throws
    * @availability iOS 26.0+
    */
-  static processWithArgumentsOutputs(inputs: (Array<SDKHandle>) | null, arguments_: $SDK10, outputs: Array<SDKHandle>): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 3327485534593849, undefined, [inputs, arguments_, outputs]); }
+  static processWithArgumentsOutputs(inputs: (Array<SDKHandle>) | null, arguments_: $SDK10, outputs: Array<SDKHandle>): void { return callSDK<void>("CoreImage_3864e7f38681b875", 3327485534593849, undefined, [inputs, arguments_, outputs]); }
   /**
    * class func roi(forInput inputIndex: Int32, arguments: [String : Any]?, outputRect: CGRect) -> CGRect
    * @availability iOS 10.0+
    */
-  static roi(inputIndex: number, arguments_: $SDK10, outputRect: $SDK1): $SDK1 { return callSDK<$SDK1>("CoreImage_ff42ce03e691ab23", 1277841007501819, undefined, [inputIndex, arguments_, outputRect]); }
+  static roi(inputIndex: number, arguments_: $SDK10, outputRect: $SDK1): $SDK1 { return callSDK<$SDK1>("CoreImage_3864e7f38681b875", 1277841007501819, undefined, [inputIndex, arguments_, outputRect]); }
   /**
    * class func roiTileArray(forInput inputIndex: Int32, arguments: [String : Any]?, outputRect: CGRect) -> [CIVector]
    * @availability iOS 17.0+
    */
-  static roiTileArray(inputIndex: number, arguments_: $SDK10, outputRect: $SDK1): Array<CIVector> { return callSDK<Array<CIVector>>("CoreImage_ff42ce03e691ab23", 1698473090247991, undefined, [inputIndex, arguments_, outputRect]); }
+  static roiTileArray(inputIndex: number, arguments_: $SDK10, outputRect: $SDK1): Array<CIVector> { return callSDK<Array<CIVector>>("CoreImage_3864e7f38681b875", 1698473090247991, undefined, [inputIndex, arguments_, outputRect]); }
   /**
    * class var outputFormat: CIFormat { get }
    * @availability iOS 10.0+
    */
-  static get outputFormat(): CIFormat { return callSDK<CIFormat>("CoreImage_ff42ce03e691ab23", 250099752115017, undefined, []); }
+  static get outputFormat(): CIFormat { return callSDK<CIFormat>("CoreImage_3864e7f38681b875", 250099752115017, undefined, []); }
   /**
    * class var outputIsOpaque: Bool { get }
    * @availability iOS 11.0+
    */
-  static get outputIsOpaque(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 3493962545787286, undefined, []); }
+  static get outputIsOpaque(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 3493962545787286, undefined, []); }
   /**
    * class var synchronizeInputs: Bool { get }
    * @availability iOS 10.0+
    */
-  static get synchronizeInputs(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 2074702719110987, undefined, []); }
+  static get synchronizeInputs(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 2074702719110987, undefined, []); }
   /** init() */
-  static init(): CIImageProcessorKernel { return callSDK<CIImageProcessorKernel>("CoreImage_ff42ce03e691ab23", 1141919854341154, undefined, []); }
+  static init(): CIImageProcessorKernel { return callSDK<CIImageProcessorKernel>("CoreImage_3864e7f38681b875", 1141919854341154, undefined, []); }
   declare readonly $type: { "c:objc(cs)CIImageProcessorKernel": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1954,74 +1954,74 @@ export const CIImageRepresentationOption = {
    * static let avDepthData: CIImageRepresentationOption
    * @availability iOS 11.0+
    */
-  get avDepthData(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 3507263645012358, undefined, []); },
+  get avDepthData(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 3507263645012358, undefined, []); },
   /**
    * static let avPortraitEffectsMatte: CIImageRepresentationOption
    * @availability iOS 12.0+
    */
-  get avPortraitEffectsMatte(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 1775110846650711, undefined, []); },
+  get avPortraitEffectsMatte(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 1775110846650711, undefined, []); },
   /**
    * static let avSemanticSegmentationMattes: CIImageRepresentationOption
    * @availability iOS 13.0+
    */
-  get avSemanticSegmentationMattes(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 20409587012498, undefined, []); },
+  get avSemanticSegmentationMattes(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 20409587012498, undefined, []); },
   /**
    * static let depthImage: CIImageRepresentationOption
    * @availability iOS 11.0+
    */
-  get depthImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 1121555485478665, undefined, []); },
+  get depthImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 1121555485478665, undefined, []); },
   /**
    * static let disparityImage: CIImageRepresentationOption
    * @availability iOS 11.0+
    */
-  get disparityImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 4068553844125923, undefined, []); },
+  get disparityImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 4068553844125923, undefined, []); },
   /**
    * static let hdrGainMapAsRGB: CIImageRepresentationOption
    * @availability iOS 18.0+
    */
-  get hdrGainMapAsRGB(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 3876911353513558, undefined, []); },
+  get hdrGainMapAsRGB(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 3876911353513558, undefined, []); },
   /**
    * static let hdrGainMapImage: CIImageRepresentationOption
    * @availability iOS 14.1+
    */
-  get hdrGainMapImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 2700571389682574, undefined, []); },
+  get hdrGainMapImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 2700571389682574, undefined, []); },
   /**
    * static let hdrImage: CIImageRepresentationOption
    * @availability iOS 18.0+
    */
-  get hdrImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 170207762617934, undefined, []); },
+  get hdrImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 170207762617934, undefined, []); },
   /**
    * static let portraitEffectsMatteImage: CIImageRepresentationOption
    * @availability iOS 12.0+
    */
-  get portraitEffectsMatteImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 3044641961713298, undefined, []); },
+  get portraitEffectsMatteImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 3044641961713298, undefined, []); },
   /**
    * static let semanticSegmentationGlassesMatteImage: CIImageRepresentationOption
    * @availability iOS 14.1+
    */
-  get semanticSegmentationGlassesMatteImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 1171198762146705, undefined, []); },
+  get semanticSegmentationGlassesMatteImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 1171198762146705, undefined, []); },
   /**
    * static let semanticSegmentationHairMatteImage: CIImageRepresentationOption
    * @availability iOS 13.0+
    */
-  get semanticSegmentationHairMatteImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 2826707886367074, undefined, []); },
+  get semanticSegmentationHairMatteImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 2826707886367074, undefined, []); },
   /**
    * static let semanticSegmentationSkinMatteImage: CIImageRepresentationOption
    * @availability iOS 13.0+
    */
-  get semanticSegmentationSkinMatteImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 3653073897645213, undefined, []); },
+  get semanticSegmentationSkinMatteImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 3653073897645213, undefined, []); },
   /**
    * static let semanticSegmentationSkyMatteImage: CIImageRepresentationOption
    * @availability iOS 14.3+
    */
-  get semanticSegmentationSkyMatteImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 3446128781015896, undefined, []); },
+  get semanticSegmentationSkyMatteImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 3446128781015896, undefined, []); },
   /**
    * static let semanticSegmentationTeethMatteImage: CIImageRepresentationOption
    * @availability iOS 13.0+
    */
-  get semanticSegmentationTeethMatteImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 1443772022911566, undefined, []); },
+  get semanticSegmentationTeethMatteImage(): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 1443772022911566, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_ff42ce03e691ab23", 2521463829025455, undefined, [rawValue]); }
+  init(rawValue: string): CIImageRepresentationOption { return callSDK<CIImageRepresentationOption>("CoreImage_3864e7f38681b875", 2521463829025455, undefined, [rawValue]); }
 };
 
 /** typealias CIKernelROICallback = (Int32, CGRect) -> CGRect */
@@ -2036,27 +2036,27 @@ export class CIPDF417CodeDescriptor extends (CIBarcodeDescriptor as unknown as O
    * init?(payload errorCorrectedPayload: Data, isCompact: Bool, rowCount: Int, columnCount: Int)
    * @availability iOS 11.0+
    */
-  static init(errorCorrectedPayload: ArrayBuffer, isCompact: boolean, rowCount: number, columnCount: number): (CIPDF417CodeDescriptor) | null { return callSDK<(CIPDF417CodeDescriptor) | null>("CoreImage_ff42ce03e691ab23", 304366252399491, undefined, [errorCorrectedPayload, isCompact, rowCount, columnCount]); }
+  static init(errorCorrectedPayload: ArrayBuffer, isCompact: boolean, rowCount: number, columnCount: number): (CIPDF417CodeDescriptor) | null { return callSDK<(CIPDF417CodeDescriptor) | null>("CoreImage_3864e7f38681b875", 304366252399491, undefined, [errorCorrectedPayload, isCompact, rowCount, columnCount]); }
   /**
    * var columnCount: Int { get }
    * @availability iOS 11.0+
    */
-  get columnCount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 1599760746885324, this, []); }
+  get columnCount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 1599760746885324, this, []); }
   /**
    * var errorCorrectedPayload: Data { get }
    * @availability iOS 11.0+
    */
-  get errorCorrectedPayload(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreImage_ff42ce03e691ab23", 894644257533863, this, []); }
+  get errorCorrectedPayload(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreImage_3864e7f38681b875", 894644257533863, this, []); }
   /**
    * var isCompact: Bool { get }
    * @availability iOS 11.0+
    */
-  get isCompact(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 1455879893023791, this, []); }
+  get isCompact(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 1455879893023791, this, []); }
   /**
    * var rowCount: Int { get }
    * @availability iOS 11.0+
    */
-  get rowCount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 1218080443692442, this, []); }
+  get rowCount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 1218080443692442, this, []); }
   declare readonly $type: { "c:objc(cs)CIPDF417CodeDescriptor": true; "c:objc(cs)CIBarcodeDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "columnCount": true; "errorCorrectedPayload": true; "isCompact": true; "rowCount": true };
 }
@@ -2070,27 +2070,27 @@ export class CIQRCodeDescriptor extends (CIBarcodeDescriptor as unknown as Omit<
    * init?(payload errorCorrectedPayload: Data, symbolVersion: Int, maskPattern: UInt8, errorCorrectionLevel: CIQRCodeDescriptor.ErrorCorrectionLevel)
    * @availability iOS 11.0+
    */
-  static init(errorCorrectedPayload: ArrayBuffer, symbolVersion: number, maskPattern: number, errorCorrectionLevel: CIQRCodeDescriptor_ErrorCorrectionLevel): (CIQRCodeDescriptor) | null { return callSDK<(CIQRCodeDescriptor) | null>("CoreImage_ff42ce03e691ab23", 2151661455278031, undefined, [errorCorrectedPayload, symbolVersion, maskPattern, errorCorrectionLevel]); }
+  static init(errorCorrectedPayload: ArrayBuffer, symbolVersion: number, maskPattern: number, errorCorrectionLevel: CIQRCodeDescriptor_ErrorCorrectionLevel): (CIQRCodeDescriptor) | null { return callSDK<(CIQRCodeDescriptor) | null>("CoreImage_3864e7f38681b875", 2151661455278031, undefined, [errorCorrectedPayload, symbolVersion, maskPattern, errorCorrectionLevel]); }
   /**
    * var errorCorrectedPayload: Data { get }
    * @availability iOS 11.0+
    */
-  get errorCorrectedPayload(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreImage_ff42ce03e691ab23", 1628706772835090, this, []); }
+  get errorCorrectedPayload(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreImage_3864e7f38681b875", 1628706772835090, this, []); }
   /**
    * var errorCorrectionLevel: CIQRCodeDescriptor.ErrorCorrectionLevel { get }
    * @availability iOS 11.0+
    */
-  get errorCorrectionLevel(): CIQRCodeDescriptor_ErrorCorrectionLevel { return callSDK<CIQRCodeDescriptor_ErrorCorrectionLevel>("CoreImage_ff42ce03e691ab23", 2256256366890283, this, []); }
+  get errorCorrectionLevel(): CIQRCodeDescriptor_ErrorCorrectionLevel { return callSDK<CIQRCodeDescriptor_ErrorCorrectionLevel>("CoreImage_3864e7f38681b875", 2256256366890283, this, []); }
   /**
    * var maskPattern: UInt8 { get }
    * @availability iOS 11.0+
    */
-  get maskPattern(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 2498475378576129, this, []); }
+  get maskPattern(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 2498475378576129, this, []); }
   /**
    * var symbolVersion: Int { get }
    * @availability iOS 11.0+
    */
-  get symbolVersion(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 2699866499564963, this, []); }
+  get symbolVersion(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 2699866499564963, this, []); }
   declare readonly $type: { "c:objc(cs)CIQRCodeDescriptor": true; "c:objc(cs)CIBarcodeDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "errorCorrectedPayload": true; "errorCorrectionLevel": true; "maskPattern": true; "symbolVersion": true };
 }
@@ -2100,7 +2100,7 @@ export type CIQRCodeDescriptor_ErrorCorrectionLevel = "levelL" | "levelM" | "lev
 
 export const CIQRCodeDescriptor_ErrorCorrectionLevel = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CIQRCodeDescriptor_ErrorCorrectionLevel) | null { return callSDK<(CIQRCodeDescriptor_ErrorCorrectionLevel) | null>("CoreImage_ff42ce03e691ab23", 3814015174392306, undefined, [rawValue]); }
+  init(rawValue: number): (CIQRCodeDescriptor_ErrorCorrectionLevel) | null { return callSDK<(CIQRCodeDescriptor_ErrorCorrectionLevel) | null>("CoreImage_3864e7f38681b875", 3814015174392306, undefined, [rawValue]); }
 };
 
 /**
@@ -2109,42 +2109,42 @@ export const CIQRCodeDescriptor_ErrorCorrectionLevel = {
  */
 export class CIQRCodeFeature extends (CIFeature as unknown as Omit<typeof CIFeature, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CIFeature, "bounds">)) {
   /** init() */
-  static init(): CIQRCodeFeature { return callSDK<CIQRCodeFeature>("CoreImage_ff42ce03e691ab23", 4048052438181752, undefined, []); }
+  static init(): CIQRCodeFeature { return callSDK<CIQRCodeFeature>("CoreImage_3864e7f38681b875", 4048052438181752, undefined, []); }
   /**
    * var bottomLeft: CGPoint { get }
    * @availability iOS 8.0+
    */
-  get bottomLeft(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 2565494008002102, this, []); }
+  get bottomLeft(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 2565494008002102, this, []); }
   /**
    * var bottomRight: CGPoint { get }
    * @availability iOS 8.0+
    */
-  get bottomRight(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 3703353087965134, this, []); }
+  get bottomRight(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 3703353087965134, this, []); }
   /**
    * var bounds: CGRect { get }
    * @availability iOS 8.0+
    */
-  get bounds(): $SDK1 { return callSDK<$SDK1>("CoreImage_ff42ce03e691ab23", 3012886153598280, this, []); }
+  get bounds(): $SDK1 { return callSDK<$SDK1>("CoreImage_3864e7f38681b875", 3012886153598280, this, []); }
   /**
    * var messageString: String? { get }
    * @availability iOS 8.0+
    */
-  get messageString(): (string) | null { return callSDK<(string) | null>("CoreImage_ff42ce03e691ab23", 3655212118151299, this, []); }
+  get messageString(): (string) | null { return callSDK<(string) | null>("CoreImage_3864e7f38681b875", 3655212118151299, this, []); }
   /**
    * var symbolDescriptor: CIQRCodeDescriptor? { get }
    * @availability iOS 11.0+
    */
-  get symbolDescriptor(): (CIQRCodeDescriptor) | null { return callSDK<(CIQRCodeDescriptor) | null>("CoreImage_ff42ce03e691ab23", 3467137017840059, this, []); }
+  get symbolDescriptor(): (CIQRCodeDescriptor) | null { return callSDK<(CIQRCodeDescriptor) | null>("CoreImage_3864e7f38681b875", 3467137017840059, this, []); }
   /**
    * var topLeft: CGPoint { get }
    * @availability iOS 8.0+
    */
-  get topLeft(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 1274939886240923, this, []); }
+  get topLeft(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 1274939886240923, this, []); }
   /**
    * var topRight: CGPoint { get }
    * @availability iOS 8.0+
    */
-  get topRight(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 4307828114062371, this, []); }
+  get topRight(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 4307828114062371, this, []); }
   declare readonly $type: { "c:objc(cs)CIQRCodeFeature": true; "c:objc(cs)CIFeature": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bounds": true; "type": true; "bottomLeft": true; "bottomRight": true; "messageString": true; "symbolDescriptor": true; "topLeft": true; "topRight": true };
 }
@@ -2154,25 +2154,25 @@ export type CIRAWDecoderVersion = "none" | "version9" | "version9DNG" | "version
 
 export const CIRAWDecoderVersion = {
   /** static let version6: CIRAWDecoderVersion */
-  get version6(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_ff42ce03e691ab23", 1016387506943338, undefined, []); },
+  get version6(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_3864e7f38681b875", 1016387506943338, undefined, []); },
   /** static let version6DNG: CIRAWDecoderVersion */
-  get version6DNG(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_ff42ce03e691ab23", 2834370864901128, undefined, []); },
+  get version6DNG(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_3864e7f38681b875", 2834370864901128, undefined, []); },
   /** static let version7: CIRAWDecoderVersion */
-  get version7(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_ff42ce03e691ab23", 1766962001776911, undefined, []); },
+  get version7(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_3864e7f38681b875", 1766962001776911, undefined, []); },
   /** static let version7DNG: CIRAWDecoderVersion */
-  get version7DNG(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_ff42ce03e691ab23", 3068736991609689, undefined, []); },
+  get version7DNG(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_3864e7f38681b875", 3068736991609689, undefined, []); },
   /** static let version8: CIRAWDecoderVersion */
-  get version8(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_ff42ce03e691ab23", 1696174557732352, undefined, []); },
+  get version8(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_3864e7f38681b875", 1696174557732352, undefined, []); },
   /** static let version8DNG: CIRAWDecoderVersion */
-  get version8DNG(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_ff42ce03e691ab23", 1255118615352536, undefined, []); },
+  get version8DNG(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_3864e7f38681b875", 1255118615352536, undefined, []); },
   /** static let version9: CIRAWDecoderVersion */
-  get version9(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_ff42ce03e691ab23", 2411142585324382, undefined, []); },
+  get version9(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_3864e7f38681b875", 2411142585324382, undefined, []); },
   /** static let version9DNG: CIRAWDecoderVersion */
-  get version9DNG(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_ff42ce03e691ab23", 3700372489819778, undefined, []); },
+  get version9DNG(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_3864e7f38681b875", 3700372489819778, undefined, []); },
   /** static let none: CIRAWDecoderVersion */
-  get none(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_ff42ce03e691ab23", 1972961946975880, undefined, []); },
+  get none(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_3864e7f38681b875", 1972961946975880, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_ff42ce03e691ab23", 808159035075752, undefined, [rawValue]); }
+  init(rawValue: string): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_3864e7f38681b875", 808159035075752, undefined, [rawValue]); }
 };
 
 /**
@@ -2184,288 +2184,288 @@ export class CIRAWFilter extends CIFilter {
    * convenience init?(cvPixelBuffer buffer: CVPixelBuffer, properties: [AnyHashable : Any])
    * @availability iOS 15.0+
    */
-  static initCvPixelBufferProperties(buffer: _CoreVideo_CVBuffer, properties: $SDK15): (CIRAWFilter) | null { return callSDK<(CIRAWFilter) | null>("CoreImage_ff42ce03e691ab23", 4085592565766397, undefined, [buffer, properties]); }
+  static initCvPixelBufferProperties(buffer: _CoreVideo_CVBuffer, properties: $SDK15): (CIRAWFilter) | null { return callSDK<(CIRAWFilter) | null>("CoreImage_3864e7f38681b875", 4085592565766397, undefined, [buffer, properties]); }
   /**
    * convenience init?(imageData data: Data, identifierHint: String?)
    * @availability iOS 15.0+
    */
-  static initImageDataIdentifierHint(data: ArrayBuffer, identifierHint?: (string) | null): (CIRAWFilter) | null { return callSDK<(CIRAWFilter) | null>("CoreImage_ff42ce03e691ab23", 4242220380838345, undefined, [data, identifierHint]); }
+  static initImageDataIdentifierHint(data: ArrayBuffer, identifierHint?: (string) | null): (CIRAWFilter) | null { return callSDK<(CIRAWFilter) | null>("CoreImage_3864e7f38681b875", 4242220380838345, undefined, [data, identifierHint]); }
   /**
    * convenience init?(imageURL url: URL)
    * @availability iOS 15.0+
    */
-  static initImageURL(url: string): (CIRAWFilter) | null { return callSDK<(CIRAWFilter) | null>("CoreImage_ff42ce03e691ab23", 3723684196447318, undefined, [url]); }
+  static initImageURL(url: string): (CIRAWFilter) | null { return callSDK<(CIRAWFilter) | null>("CoreImage_3864e7f38681b875", 3723684196447318, undefined, [url]); }
   /**
    * class func supportedCameraModels(with version: CIRAWDecoderVersion) -> [String]
    * @availability iOS 27.0+
    */
-  static supportedCameraModelsWith(version: CIRAWDecoderVersion): Array<string> { return callSDK<Array<string>>("CoreImage_ff42ce03e691ab23", 2694828643015548, undefined, [version]); }
+  static supportedCameraModelsWith(version: CIRAWDecoderVersion): Array<string> { return callSDK<Array<string>>("CoreImage_3864e7f38681b875", 2694828643015548, undefined, [version]); }
   /**
    * class var supportedCameraModels: [String] { get }
    * @availability iOS 15.0+
    */
-  static get supportedCameraModels(): Array<string> { return callSDK<Array<string>>("CoreImage_ff42ce03e691ab23", 4212289309773080, undefined, []); }
+  static get supportedCameraModels(): Array<string> { return callSDK<Array<string>>("CoreImage_3864e7f38681b875", 4212289309773080, undefined, []); }
   /**
    * func downloadResources(timeout: TimeInterval, completionHandler: @escaping ((any Error)?) -> Void) -> Progress
    * @availability iOS 27.0+
    */
-  downloadResources(timeout: number, completionHandler: ((arg0: (NativeError) | null) => void)): _Foundation_Progress { return callSDK<_Foundation_Progress>("CoreImage_ff42ce03e691ab23", 1199199079597691, this, [timeout, completionHandler], [null,{"callback":{"out":[]}}]); }
+  downloadResources(timeout: number, completionHandler: ((arg0: (NativeError) | null) => void)): _Foundation_Progress { return callSDK<_Foundation_Progress>("CoreImage_3864e7f38681b875", 1199199079597691, this, [timeout, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var baselineExposure: Float { get set }
    * @availability iOS 15.0+
    */
-  get baselineExposure(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 2093281534789616, this, []); }
-  set baselineExposure(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 3483656634312948, this, [value]); }
+  get baselineExposure(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 2093281534789616, this, []); }
+  set baselineExposure(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 3483656634312948, this, [value]); }
   /**
    * var boostAmount: Float { get set }
    * @availability iOS 15.0+
    */
-  get boostAmount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 4130971929393736, this, []); }
-  set boostAmount(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 3927900220915460, this, [value]); }
+  get boostAmount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 4130971929393736, this, []); }
+  set boostAmount(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 3927900220915460, this, [value]); }
   /**
    * var boostShadowAmount: Float { get set }
    * @availability iOS 15.0+
    */
-  get boostShadowAmount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 2033685267795120, this, []); }
-  set boostShadowAmount(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 1474196113058080, this, [value]); }
+  get boostShadowAmount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 2033685267795120, this, []); }
+  set boostShadowAmount(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 1474196113058080, this, [value]); }
   /**
    * var colorNoiseReductionAmount: Float { get set }
    * @availability iOS 15.0+
    */
-  get colorNoiseReductionAmount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 3743933729004494, this, []); }
-  set colorNoiseReductionAmount(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 1767570681607400, this, [value]); }
+  get colorNoiseReductionAmount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 3743933729004494, this, []); }
+  set colorNoiseReductionAmount(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 1767570681607400, this, [value]); }
   /**
    * var isColorNoiseReductionSupported: Bool { get }
    * @availability iOS 15.0+
    */
-  get isColorNoiseReductionSupported(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 4223845105627872, this, []); }
+  get isColorNoiseReductionSupported(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 4223845105627872, this, []); }
   /**
    * var contrastAmount: Float { get set }
    * @availability iOS 15.0+
    */
-  get contrastAmount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 2901701511211074, this, []); }
-  set contrastAmount(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 4216340846693521, this, [value]); }
+  get contrastAmount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 2901701511211074, this, []); }
+  set contrastAmount(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 4216340846693521, this, [value]); }
   /**
    * var isContrastSupported: Bool { get }
    * @availability iOS 15.0+
    */
-  get isContrastSupported(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 4170968888811096, this, []); }
+  get isContrastSupported(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 4170968888811096, this, []); }
   /**
    * var decoderVersion: CIRAWDecoderVersion { get set }
    * @availability iOS 15.0+
    */
-  get decoderVersion(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_ff42ce03e691ab23", 1881666873844452, this, []); }
-  set decoderVersion(value: CIRAWDecoderVersion) { callSDK<void>("CoreImage_ff42ce03e691ab23", 1405352466866171, this, [value]); }
+  get decoderVersion(): CIRAWDecoderVersion { return callSDK<CIRAWDecoderVersion>("CoreImage_3864e7f38681b875", 1881666873844452, this, []); }
+  set decoderVersion(value: CIRAWDecoderVersion) { callSDK<void>("CoreImage_3864e7f38681b875", 1405352466866171, this, [value]); }
   /**
    * var despeckleAmount: Float { get set }
    * @availability iOS 15.0+
    */
-  get despeckleAmount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 1140906442608393, this, []); }
-  set despeckleAmount(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 3087476182994579, this, [value]); }
+  get despeckleAmount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 1140906442608393, this, []); }
+  set despeckleAmount(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 3087476182994579, this, [value]); }
   /**
    * var isDespeckleSupported: Bool { get }
    * @availability iOS 15.0+
    */
-  get isDespeckleSupported(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 3685574303433629, this, []); }
+  get isDespeckleSupported(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 3685574303433629, this, []); }
   /**
    * var detailAmount: Float { get set }
    * @availability iOS 15.0+
    */
-  get detailAmount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 2197166344243460, this, []); }
-  set detailAmount(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 1308395368119919, this, [value]); }
+  get detailAmount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 2197166344243460, this, []); }
+  set detailAmount(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 1308395368119919, this, [value]); }
   /**
    * var isDetailSupported: Bool { get }
    * @availability iOS 15.0+
    */
-  get isDetailSupported(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 2423361809455753, this, []); }
+  get isDetailSupported(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 2423361809455753, this, []); }
   /**
    * var isDraftModeEnabled: Bool { get set }
    * @availability iOS 15.0+
    */
-  get isDraftModeEnabled(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 1815685343633624, this, []); }
-  set isDraftModeEnabled(value: boolean) { callSDK<void>("CoreImage_ff42ce03e691ab23", 1845010361118372, this, [value]); }
+  get isDraftModeEnabled(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 1815685343633624, this, []); }
+  set isDraftModeEnabled(value: boolean) { callSDK<void>("CoreImage_3864e7f38681b875", 1845010361118372, this, [value]); }
   /**
    * var exposure: Float { get set }
    * @availability iOS 15.0+
    */
-  get exposure(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 3695393140401562, this, []); }
-  set exposure(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 3155073777260436, this, [value]); }
+  get exposure(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 3695393140401562, this, []); }
+  set exposure(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 3155073777260436, this, [value]); }
   /**
    * var extendedDynamicRangeAmount: Float { get set }
    * @availability iOS 15.0+
    */
-  get extendedDynamicRangeAmount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 4275655932302840, this, []); }
-  set extendedDynamicRangeAmount(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 223471398031458, this, [value]); }
+  get extendedDynamicRangeAmount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 4275655932302840, this, []); }
+  set extendedDynamicRangeAmount(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 223471398031458, this, [value]); }
   /**
    * var isGamutMappingEnabled: Bool { get set }
    * @availability iOS 15.0+
    */
-  get isGamutMappingEnabled(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 4241331326481339, this, []); }
-  set isGamutMappingEnabled(value: boolean) { callSDK<void>("CoreImage_ff42ce03e691ab23", 113072295563298, this, [value]); }
+  get isGamutMappingEnabled(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 4241331326481339, this, []); }
+  set isGamutMappingEnabled(value: boolean) { callSDK<void>("CoreImage_3864e7f38681b875", 113072295563298, this, [value]); }
   /**
    * var isHighlightRecoveryEnabled: Bool { get set }
    * @availability iOS 26.0+
    */
-  get isHighlightRecoveryEnabled(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 744627540647067, this, []); }
-  set isHighlightRecoveryEnabled(value: boolean) { callSDK<void>("CoreImage_ff42ce03e691ab23", 1670152683259263, this, [value]); }
+  get isHighlightRecoveryEnabled(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 744627540647067, this, []); }
+  set isHighlightRecoveryEnabled(value: boolean) { callSDK<void>("CoreImage_3864e7f38681b875", 1670152683259263, this, [value]); }
   /**
    * var isHighlightRecoverySupported: Bool { get }
    * @availability iOS 26.0+
    */
-  get isHighlightRecoverySupported(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 4259886940918706, this, []); }
+  get isHighlightRecoverySupported(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 4259886940918706, this, []); }
   /**
    * var isLensCorrectionEnabled: Bool { get set }
    * @availability iOS 15.0+
    */
-  get isLensCorrectionEnabled(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 3903817612131130, this, []); }
-  set isLensCorrectionEnabled(value: boolean) { callSDK<void>("CoreImage_ff42ce03e691ab23", 4172506651843207, this, [value]); }
+  get isLensCorrectionEnabled(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 3903817612131130, this, []); }
+  set isLensCorrectionEnabled(value: boolean) { callSDK<void>("CoreImage_3864e7f38681b875", 4172506651843207, this, [value]); }
   /**
    * var isLensCorrectionSupported: Bool { get }
    * @availability iOS 15.0+
    */
-  get isLensCorrectionSupported(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 2575971992271911, this, []); }
+  get isLensCorrectionSupported(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 2575971992271911, this, []); }
   /**
    * var linearSpaceFilter: CIFilter? { get set }
    * @availability iOS 15.0+
    */
-  get linearSpaceFilter(): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_ff42ce03e691ab23", 3214325574583253, this, []); }
-  set linearSpaceFilter(value: (CIFilter) | null) { callSDK<void>("CoreImage_ff42ce03e691ab23", 2277334366237809, this, [value]); }
+  get linearSpaceFilter(): (CIFilter) | null { return callSDK<(CIFilter) | null>("CoreImage_3864e7f38681b875", 3214325574583253, this, []); }
+  set linearSpaceFilter(value: (CIFilter) | null) { callSDK<void>("CoreImage_3864e7f38681b875", 2277334366237809, this, [value]); }
   /**
    * var localToneMapAmount: Float { get set }
    * @availability iOS 15.0+
    */
-  get localToneMapAmount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 2277097035600635, this, []); }
-  set localToneMapAmount(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 4052942104324125, this, [value]); }
+  get localToneMapAmount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 2277097035600635, this, []); }
+  set localToneMapAmount(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 4052942104324125, this, [value]); }
   /**
    * var isLocalToneMapSupported: Bool { get }
    * @availability iOS 15.0+
    */
-  get isLocalToneMapSupported(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 1949698828227872, this, []); }
+  get isLocalToneMapSupported(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 1949698828227872, this, []); }
   /**
    * var luminanceNoiseReductionAmount: Float { get set }
    * @availability iOS 15.0+
    */
-  get luminanceNoiseReductionAmount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 3688420681644877, this, []); }
-  set luminanceNoiseReductionAmount(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 2825804072764682, this, [value]); }
+  get luminanceNoiseReductionAmount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 3688420681644877, this, []); }
+  set luminanceNoiseReductionAmount(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 2825804072764682, this, [value]); }
   /**
    * var isLuminanceNoiseReductionSupported: Bool { get }
    * @availability iOS 15.0+
    */
-  get isLuminanceNoiseReductionSupported(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 494750505682524, this, []); }
+  get isLuminanceNoiseReductionSupported(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 494750505682524, this, []); }
   /**
    * var moireReductionAmount: Float { get set }
    * @availability iOS 15.0+
    */
-  get moireReductionAmount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 250453772017793, this, []); }
-  set moireReductionAmount(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 538666936508074, this, [value]); }
+  get moireReductionAmount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 250453772017793, this, []); }
+  set moireReductionAmount(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 538666936508074, this, [value]); }
   /**
    * var isMoireReductionSupported: Bool { get }
    * @availability iOS 15.0+
    */
-  get isMoireReductionSupported(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 552139037485690, this, []); }
+  get isMoireReductionSupported(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 552139037485690, this, []); }
   /**
    * var nativeSize: CGSize { get }
    * @availability iOS 15.0+
    */
-  get nativeSize(): $SDK9 { return callSDK<$SDK9>("CoreImage_ff42ce03e691ab23", 2888519485434957, this, []); }
+  get nativeSize(): $SDK9 { return callSDK<$SDK9>("CoreImage_3864e7f38681b875", 2888519485434957, this, []); }
   /**
    * var neutralChromaticity: CGPoint { get set }
    * @availability iOS 15.0+
    */
-  get neutralChromaticity(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 3848029774034962, this, []); }
-  set neutralChromaticity(value: $SDK8) { callSDK<void>("CoreImage_ff42ce03e691ab23", 4212103392745542, this, [value]); }
+  get neutralChromaticity(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 3848029774034962, this, []); }
+  set neutralChromaticity(value: $SDK8) { callSDK<void>("CoreImage_3864e7f38681b875", 4212103392745542, this, [value]); }
   /**
    * var neutralLocation: CGPoint { get set }
    * @availability iOS 15.0+
    */
-  get neutralLocation(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 925075626878440, this, []); }
-  set neutralLocation(value: $SDK8) { callSDK<void>("CoreImage_ff42ce03e691ab23", 1262986973359538, this, [value]); }
+  get neutralLocation(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 925075626878440, this, []); }
+  set neutralLocation(value: $SDK8) { callSDK<void>("CoreImage_3864e7f38681b875", 1262986973359538, this, [value]); }
   /**
    * var neutralTemperature: Float { get set }
    * @availability iOS 15.0+
    */
-  get neutralTemperature(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 3816283384590891, this, []); }
-  set neutralTemperature(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 2949462158163580, this, [value]); }
+  get neutralTemperature(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 3816283384590891, this, []); }
+  set neutralTemperature(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 2949462158163580, this, [value]); }
   /**
    * var neutralTint: Float { get set }
    * @availability iOS 15.0+
    */
-  get neutralTint(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 4171038625607899, this, []); }
-  set neutralTint(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 4312192877256276, this, [value]); }
+  get neutralTint(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 4171038625607899, this, []); }
+  set neutralTint(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 4312192877256276, this, [value]); }
   /**
    * var orientation: CGImagePropertyOrientation { get set }
    * @availability iOS 15.0+
    */
-  get orientation(): _ImageIO_CGImagePropertyOrientation { return callSDK<_ImageIO_CGImagePropertyOrientation>("CoreImage_ff42ce03e691ab23", 4227172898145761, this, []); }
-  set orientation(value: _ImageIO_CGImagePropertyOrientation) { callSDK<void>("CoreImage_ff42ce03e691ab23", 3681289057015829, this, [value]); }
+  get orientation(): _ImageIO_CGImagePropertyOrientation { return callSDK<_ImageIO_CGImagePropertyOrientation>("CoreImage_3864e7f38681b875", 4227172898145761, this, []); }
+  set orientation(value: _ImageIO_CGImagePropertyOrientation) { callSDK<void>("CoreImage_3864e7f38681b875", 3681289057015829, this, [value]); }
   /**
    * var portraitEffectsMatte: CIImage? { get }
    * @availability iOS 15.0+
    */
-  get portraitEffectsMatte(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 3435571426311521, this, []); }
+  get portraitEffectsMatte(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 3435571426311521, this, []); }
   /**
    * var previewImage: CIImage? { get }
    * @availability iOS 15.0+
    */
-  get previewImage(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 1949103708834660, this, []); }
+  get previewImage(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 1949103708834660, this, []); }
   /**
    * var properties: [AnyHashable : Any] { get }
    * @availability iOS 15.0+
    */
-  get properties(): $SDK15 { return callSDK<$SDK15>("CoreImage_ff42ce03e691ab23", 2904273765673803, this, []); }
+  get properties(): $SDK15 { return callSDK<$SDK15>("CoreImage_3864e7f38681b875", 2904273765673803, this, []); }
   /**
    * var scaleFactor: Float { get set }
    * @availability iOS 15.0+
    */
-  get scaleFactor(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 1654351454707602, this, []); }
-  set scaleFactor(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 1651966083003450, this, [value]); }
+  get scaleFactor(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 1654351454707602, this, []); }
+  set scaleFactor(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 1651966083003450, this, [value]); }
   /**
    * var semanticSegmentationGlassesMatte: CIImage? { get }
    * @availability iOS 15.0+
    */
-  get semanticSegmentationGlassesMatte(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 3123506688527309, this, []); }
+  get semanticSegmentationGlassesMatte(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 3123506688527309, this, []); }
   /**
    * var semanticSegmentationHairMatte: CIImage? { get }
    * @availability iOS 15.0+
    */
-  get semanticSegmentationHairMatte(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 161031429332635, this, []); }
+  get semanticSegmentationHairMatte(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 161031429332635, this, []); }
   /**
    * var semanticSegmentationSkinMatte: CIImage? { get }
    * @availability iOS 15.0+
    */
-  get semanticSegmentationSkinMatte(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 2491405308465626, this, []); }
+  get semanticSegmentationSkinMatte(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 2491405308465626, this, []); }
   /**
    * var semanticSegmentationSkyMatte: CIImage? { get }
    * @availability iOS 15.0+
    */
-  get semanticSegmentationSkyMatte(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 2025671305346324, this, []); }
+  get semanticSegmentationSkyMatte(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 2025671305346324, this, []); }
   /**
    * var semanticSegmentationTeethMatte: CIImage? { get }
    * @availability iOS 15.0+
    */
-  get semanticSegmentationTeethMatte(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_ff42ce03e691ab23", 2052952999347291, this, []); }
+  get semanticSegmentationTeethMatte(): (CIImage) | null { return callSDK<(CIImage) | null>("CoreImage_3864e7f38681b875", 2052952999347291, this, []); }
   /**
    * var shadowBias: Float { get set }
    * @availability iOS 15.0+
    */
-  get shadowBias(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 3163324131969322, this, []); }
-  set shadowBias(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 3811457385659964, this, [value]); }
+  get shadowBias(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 3163324131969322, this, []); }
+  set shadowBias(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 3811457385659964, this, [value]); }
   /**
    * var sharpnessAmount: Float { get set }
    * @availability iOS 15.0+
    */
-  get sharpnessAmount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 3607071111038849, this, []); }
-  set sharpnessAmount(value: number) { callSDK<void>("CoreImage_ff42ce03e691ab23", 2208479921880245, this, [value]); }
+  get sharpnessAmount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 3607071111038849, this, []); }
+  set sharpnessAmount(value: number) { callSDK<void>("CoreImage_3864e7f38681b875", 2208479921880245, this, [value]); }
   /**
    * var isSharpnessSupported: Bool { get }
    * @availability iOS 15.0+
    */
-  get isSharpnessSupported(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 3287401232674206, this, []); }
+  get isSharpnessSupported(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 3287401232674206, this, []); }
   /**
    * var supportedDecoderVersions: [CIRAWDecoderVersion] { get }
    * @availability iOS 15.0+
    */
-  get supportedDecoderVersions(): Array<CIRAWDecoderVersion> { return callSDK<Array<CIRAWDecoderVersion>>("CoreImage_ff42ce03e691ab23", 3722355124979930, this, []); }
+  get supportedDecoderVersions(): Array<CIRAWDecoderVersion> { return callSDK<Array<CIRAWDecoderVersion>>("CoreImage_3864e7f38681b875", 3722355124979930, this, []); }
   declare readonly $type: { "c:objc(cs)CIRAWFilter": true; "c:objc(cs)CIFilter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributes": true; "inputKeys": true; "name": true; "outputImage": true; "outputKeys": true; "baselineExposure": true; "boostAmount": true; "boostShadowAmount": true; "colorNoiseReductionAmount": true; "isColorNoiseReductionSupported": true; "contrastAmount": true; "isContrastSupported": true; "decoderVersion": true; "despeckleAmount": true; "isDespeckleSupported": true; "detailAmount": true; "isDetailSupported": true; "isDraftModeEnabled": true; "exposure": true; "extendedDynamicRangeAmount": true; "isGamutMappingEnabled": true; "isHighlightRecoveryEnabled": true; "isHighlightRecoverySupported": true; "isLensCorrectionEnabled": true; "isLensCorrectionSupported": true; "linearSpaceFilter": true; "localToneMapAmount": true; "isLocalToneMapSupported": true; "luminanceNoiseReductionAmount": true; "isLuminanceNoiseReductionSupported": true; "moireReductionAmount": true; "isMoireReductionSupported": true; "nativeSize": true; "neutralChromaticity": true; "neutralLocation": true; "neutralTemperature": true; "neutralTint": true; "orientation": true; "portraitEffectsMatte": true; "previewImage": true; "properties": true; "scaleFactor": true; "semanticSegmentationGlassesMatte": true; "semanticSegmentationHairMatte": true; "semanticSegmentationSkinMatte": true; "semanticSegmentationSkyMatte": true; "semanticSegmentationTeethMatte": true; "shadowBias": true; "sharpnessAmount": true; "isSharpnessSupported": true; "supportedDecoderVersions": true };
 }
@@ -2483,193 +2483,193 @@ export const CIRAWFilterOption = {
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get activeKeys(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 204041530326819, undefined, []); },
+  get activeKeys(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 204041530326819, undefined, []); },
   /**
    * static let allowDraftMode: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get allowDraftMode(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 599326149985591, undefined, []); },
+  get allowDraftMode(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 599326149985591, undefined, []); },
   /**
    * static let baselineExposure: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get baselineExposure(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 4362724894872455, undefined, []); },
+  get baselineExposure(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 4362724894872455, undefined, []); },
   /**
    * static let boostAmount: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get boostAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 1731625390122969, undefined, []); },
+  get boostAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 1731625390122969, undefined, []); },
   /**
    * static let boostShadowAmount: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get boostShadowAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 2327407966666697, undefined, []); },
+  get boostShadowAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 2327407966666697, undefined, []); },
   /**
    * static let colorNoiseReductionAmount: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get colorNoiseReductionAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 1525468125487537, undefined, []); },
+  get colorNoiseReductionAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 1525468125487537, undefined, []); },
   /**
    * static let decoderVersion: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get decoderVersion(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 3812995759564341, undefined, []); },
+  get decoderVersion(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 3812995759564341, undefined, []); },
   /**
    * static let disableGamutMap: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get disableGamutMap(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 4074657755886222, undefined, []); },
+  get disableGamutMap(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 4074657755886222, undefined, []); },
   /**
    * static let enableChromaticNoiseTracking: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get enableChromaticNoiseTracking(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 1469237483143656, undefined, []); },
+  get enableChromaticNoiseTracking(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 1469237483143656, undefined, []); },
   /**
    * static let ciInputEnableEDRModeKey: CIRAWFilterOption
    * @availability iOS 12.0+
    * @deprecated iOS 100000.0
    */
-  get ciInputEnableEDRModeKey(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 1441939601009763, undefined, []); },
+  get ciInputEnableEDRModeKey(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 1441939601009763, undefined, []); },
   /**
    * static let enableSharpening: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get enableSharpening(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 1141359761721258, undefined, []); },
+  get enableSharpening(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 1141359761721258, undefined, []); },
   /**
    * static let enableVendorLensCorrection: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get enableVendorLensCorrection(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 643386933790956, undefined, []); },
+  get enableVendorLensCorrection(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 643386933790956, undefined, []); },
   /**
    * static let ignoreImageOrientation: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get ignoreImageOrientation(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 1049090113233018, undefined, []); },
+  get ignoreImageOrientation(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 1049090113233018, undefined, []); },
   /**
    * static let imageOrientation: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get imageOrientation(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 2137178223223156, undefined, []); },
+  get imageOrientation(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 2137178223223156, undefined, []); },
   /**
    * static let linearSpaceFilter: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get linearSpaceFilter(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 4281216052945087, undefined, []); },
+  get linearSpaceFilter(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 4281216052945087, undefined, []); },
   /**
    * static let ciInputLocalToneMapAmountKey: CIRAWFilterOption
    * @availability iOS 14.3+
    * @deprecated iOS 100000.0
    */
-  get ciInputLocalToneMapAmountKey(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 2309479081913951, undefined, []); },
+  get ciInputLocalToneMapAmountKey(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 2309479081913951, undefined, []); },
   /**
    * static let luminanceNoiseReductionAmount: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get luminanceNoiseReductionAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 2778451291382775, undefined, []); },
+  get luminanceNoiseReductionAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 2778451291382775, undefined, []); },
   /**
    * static let moireAmount: CIRAWFilterOption
    * @availability iOS 11.0+
    * @deprecated iOS 100000.0
    */
-  get moireAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 669489715790761, undefined, []); },
+  get moireAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 669489715790761, undefined, []); },
   /**
    * static let neutralChromaticityX: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get neutralChromaticityX(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 3873639928592723, undefined, []); },
+  get neutralChromaticityX(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 3873639928592723, undefined, []); },
   /**
    * static let neutralChromaticityY: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get neutralChromaticityY(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 763965168185835, undefined, []); },
+  get neutralChromaticityY(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 763965168185835, undefined, []); },
   /**
    * static let neutralLocation: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get neutralLocation(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 1667678059184307, undefined, []); },
+  get neutralLocation(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 1667678059184307, undefined, []); },
   /**
    * static let neutralTemperature: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get neutralTemperature(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 3653626584540125, undefined, []); },
+  get neutralTemperature(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 3653626584540125, undefined, []); },
   /**
    * static let neutralTint: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get neutralTint(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 238491772421468, undefined, []); },
+  get neutralTint(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 238491772421468, undefined, []); },
   /**
    * static let noiseReductionAmount: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get noiseReductionAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 3745871712631933, undefined, []); },
+  get noiseReductionAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 3745871712631933, undefined, []); },
   /**
    * static let noiseReductionContrastAmount: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get noiseReductionContrastAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 4367731193438335, undefined, []); },
+  get noiseReductionContrastAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 4367731193438335, undefined, []); },
   /**
    * static let noiseReductionDetailAmount: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get noiseReductionDetailAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 106658394623906, undefined, []); },
+  get noiseReductionDetailAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 106658394623906, undefined, []); },
   /**
    * static let noiseReductionSharpnessAmount: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get noiseReductionSharpnessAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 2247504534857267, undefined, []); },
+  get noiseReductionSharpnessAmount(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 2247504534857267, undefined, []); },
   /**
    * static let scaleFactor: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get scaleFactor(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 2734019641379344, undefined, []); },
+  get scaleFactor(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 2734019641379344, undefined, []); },
   /**
    * static let outputNativeSize: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get outputNativeSize(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 2170501237449699, undefined, []); },
+  get outputNativeSize(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 2170501237449699, undefined, []); },
   /**
    * static let propertiesKey: CIRAWFilterOption
    * @availability iOS 15.0+
    * @deprecated iOS 100000.0
    */
-  get propertiesKey(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 3392413435642659, undefined, []); },
+  get propertiesKey(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 3392413435642659, undefined, []); },
   /**
    * static let supportedDecoderVersions: CIRAWFilterOption
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get supportedDecoderVersions(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 2007351169396663, undefined, []); },
+  get supportedDecoderVersions(): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 2007351169396663, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  init(rawValue: string): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_ff42ce03e691ab23", 2908410739361462, undefined, [rawValue]); }
+  init(rawValue: string): CIRAWFilterOption { return callSDK<CIRAWFilterOption>("CoreImage_3864e7f38681b875", 2908410739361462, undefined, [rawValue]); }
 };
 
 /**
@@ -2678,32 +2678,32 @@ export const CIRAWFilterOption = {
  */
 export class CIRectangleFeature extends (CIFeature as unknown as Omit<typeof CIFeature, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CIFeature, "bounds">)) {
   /** init() */
-  static init(): CIRectangleFeature { return callSDK<CIRectangleFeature>("CoreImage_ff42ce03e691ab23", 1215768952012043, undefined, []); }
+  static init(): CIRectangleFeature { return callSDK<CIRectangleFeature>("CoreImage_3864e7f38681b875", 1215768952012043, undefined, []); }
   /**
    * var bottomLeft: CGPoint { get }
    * @availability iOS 8.0+
    */
-  get bottomLeft(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 2866683092890487, this, []); }
+  get bottomLeft(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 2866683092890487, this, []); }
   /**
    * var bottomRight: CGPoint { get }
    * @availability iOS 8.0+
    */
-  get bottomRight(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 1498789322994376, this, []); }
+  get bottomRight(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 1498789322994376, this, []); }
   /**
    * var bounds: CGRect { get }
    * @availability iOS 8.0+
    */
-  get bounds(): $SDK1 { return callSDK<$SDK1>("CoreImage_ff42ce03e691ab23", 3922569197456437, this, []); }
+  get bounds(): $SDK1 { return callSDK<$SDK1>("CoreImage_3864e7f38681b875", 3922569197456437, this, []); }
   /**
    * var topLeft: CGPoint { get }
    * @availability iOS 8.0+
    */
-  get topLeft(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 465579060617128, this, []); }
+  get topLeft(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 465579060617128, this, []); }
   /**
    * var topRight: CGPoint { get }
    * @availability iOS 8.0+
    */
-  get topRight(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 2662413030512414, this, []); }
+  get topRight(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 2662413030512414, this, []); }
   declare readonly $type: { "c:objc(cs)CIRectangleFeature": true; "c:objc(cs)CIFeature": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bounds": true; "type": true; "bottomLeft": true; "bottomRight": true; "topLeft": true; "topRight": true };
 }
@@ -2717,90 +2717,90 @@ export class CIRenderDestination extends SDKHandle {
    * init(bitmapData data: UnsafeMutableRawPointer, width: Int, height: Int, bytesPerRow: Int, format: CIFormat)
    * @availability iOS 11.0+
    */
-  static initBitmapDataWidthHeightBytesPerRowFormat(data: SDKHandle, width: number, height: number, bytesPerRow: number, format: CIFormat): CIRenderDestination { return callSDK<CIRenderDestination>("CoreImage_ff42ce03e691ab23", 1978580181446048, undefined, [data, width, height, bytesPerRow, format]); }
+  static initBitmapDataWidthHeightBytesPerRowFormat(data: SDKHandle, width: number, height: number, bytesPerRow: number, format: CIFormat): CIRenderDestination { return callSDK<CIRenderDestination>("CoreImage_3864e7f38681b875", 1978580181446048, undefined, [data, width, height, bytesPerRow, format]); }
   /**
    * init(glTexture texture: UInt32, target: UInt32, width: Int, height: Int)
    * @availability iOS 11.0+
    */
-  static initGlTextureTargetWidthHeight(texture: number, target: number, width: number, height: number): CIRenderDestination { return callSDK<CIRenderDestination>("CoreImage_ff42ce03e691ab23", 1430436941610763, undefined, [texture, target, width, height]); }
+  static initGlTextureTargetWidthHeight(texture: number, target: number, width: number, height: number): CIRenderDestination { return callSDK<CIRenderDestination>("CoreImage_3864e7f38681b875", 1430436941610763, undefined, [texture, target, width, height]); }
   /**
    * init(ioSurface surface: IOSurface)
    * @availability iOS 11.0+
    */
-  static initIoSurface(surface: _IOSurface_IOSurface): CIRenderDestination { return callSDK<CIRenderDestination>("CoreImage_ff42ce03e691ab23", 4072887262454882, undefined, [surface]); }
+  static initIoSurface(surface: _IOSurface_IOSurface): CIRenderDestination { return callSDK<CIRenderDestination>("CoreImage_3864e7f38681b875", 4072887262454882, undefined, [surface]); }
   /**
    * init(mtlTexture texture: any MTLTexture, commandBuffer: (any MTLCommandBuffer)?)
    * @availability iOS 11.0+
    */
-  static initMtlTextureCommandBuffer(texture: SDKHandle, commandBuffer?: (SDKHandle) | null): CIRenderDestination { return callSDK<CIRenderDestination>("CoreImage_ff42ce03e691ab23", 2273684304243631, undefined, [texture, commandBuffer]); }
+  static initMtlTextureCommandBuffer(texture: SDKHandle, commandBuffer?: (SDKHandle) | null): CIRenderDestination { return callSDK<CIRenderDestination>("CoreImage_3864e7f38681b875", 2273684304243631, undefined, [texture, commandBuffer]); }
   /**
    * init(pixelBuffer: CVPixelBuffer)
    * @availability iOS 11.0+
    */
-  static initPixelBuffer(pixelBuffer: _CoreVideo_CVBuffer): CIRenderDestination { return callSDK<CIRenderDestination>("CoreImage_ff42ce03e691ab23", 2117661566274766, undefined, [pixelBuffer]); }
+  static initPixelBuffer(pixelBuffer: _CoreVideo_CVBuffer): CIRenderDestination { return callSDK<CIRenderDestination>("CoreImage_3864e7f38681b875", 2117661566274766, undefined, [pixelBuffer]); }
   /**
    * init(width: Int, height: Int, pixelFormat: MTLPixelFormat, commandBuffer: (any MTLCommandBuffer)?, mtlTextureProvider block: (() -> any MTLTexture)? = nil)
    * @availability iOS 11.0+
    */
-  static initWidthHeightPixelFormatCommandBuffer(width: number, height: number, pixelFormat: _Metal_MTLPixelFormat, commandBuffer?: (SDKHandle) | null): CIRenderDestination { return callSDK<CIRenderDestination>("CoreImage_ff42ce03e691ab23", 2632611514437992, undefined, [width, height, pixelFormat, commandBuffer]); }
+  static initWidthHeightPixelFormatCommandBuffer(width: number, height: number, pixelFormat: _Metal_MTLPixelFormat, commandBuffer?: (SDKHandle) | null): CIRenderDestination { return callSDK<CIRenderDestination>("CoreImage_3864e7f38681b875", 2632611514437992, undefined, [width, height, pixelFormat, commandBuffer]); }
   /**
    * var alphaMode: CIRenderDestinationAlphaMode { get set }
    * @availability iOS 11.0+
    */
-  get alphaMode(): CIRenderDestinationAlphaMode { return callSDK<CIRenderDestinationAlphaMode>("CoreImage_ff42ce03e691ab23", 3028114638610708, this, []); }
-  set alphaMode(value: CIRenderDestinationAlphaMode) { callSDK<void>("CoreImage_ff42ce03e691ab23", 3024244919316609, this, [value]); }
+  get alphaMode(): CIRenderDestinationAlphaMode { return callSDK<CIRenderDestinationAlphaMode>("CoreImage_3864e7f38681b875", 3028114638610708, this, []); }
+  set alphaMode(value: CIRenderDestinationAlphaMode) { callSDK<void>("CoreImage_3864e7f38681b875", 3024244919316609, this, [value]); }
   /**
    * var blendKernel: CIBlendKernel? { get set }
    * @availability iOS 11.0+
    */
-  get blendKernel(): (CIBlendKernel) | null { return callSDK<(CIBlendKernel) | null>("CoreImage_ff42ce03e691ab23", 367424040280508, this, []); }
-  set blendKernel(value: (CIBlendKernel) | null) { callSDK<void>("CoreImage_ff42ce03e691ab23", 1780573482716442, this, [value]); }
+  get blendKernel(): (CIBlendKernel) | null { return callSDK<(CIBlendKernel) | null>("CoreImage_3864e7f38681b875", 367424040280508, this, []); }
+  set blendKernel(value: (CIBlendKernel) | null) { callSDK<void>("CoreImage_3864e7f38681b875", 1780573482716442, this, [value]); }
   /**
    * var blendsInDestinationColorSpace: Bool { get set }
    * @availability iOS 11.0+
    */
-  get blendsInDestinationColorSpace(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 3805010513899224, this, []); }
-  set blendsInDestinationColorSpace(value: boolean) { callSDK<void>("CoreImage_ff42ce03e691ab23", 3504316498323246, this, [value]); }
+  get blendsInDestinationColorSpace(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 3805010513899224, this, []); }
+  set blendsInDestinationColorSpace(value: boolean) { callSDK<void>("CoreImage_3864e7f38681b875", 3504316498323246, this, [value]); }
   /**
    * var captureTraceURL: URL? { get set }
    * @availability iOS 26.0+
    */
-  get captureTraceURL(): (string) | null { return callSDK<(string) | null>("CoreImage_ff42ce03e691ab23", 4487422513677748, this, []); }
-  set captureTraceURL(value: (string) | null) { callSDK<void>("CoreImage_ff42ce03e691ab23", 3333258656184647, this, [value]); }
+  get captureTraceURL(): (string) | null { return callSDK<(string) | null>("CoreImage_3864e7f38681b875", 4487422513677748, this, []); }
+  set captureTraceURL(value: (string) | null) { callSDK<void>("CoreImage_3864e7f38681b875", 3333258656184647, this, [value]); }
   /**
    * var isClamped: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isClamped(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 3100276522621371, this, []); }
-  set isClamped(value: boolean) { callSDK<void>("CoreImage_ff42ce03e691ab23", 77614679257834, this, [value]); }
+  get isClamped(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 3100276522621371, this, []); }
+  set isClamped(value: boolean) { callSDK<void>("CoreImage_3864e7f38681b875", 77614679257834, this, [value]); }
   /**
    * var colorSpace: CGColorSpace? { get set }
    * @availability iOS 11.0+
    */
-  get colorSpace(): $SDK6 { return callSDK<$SDK6>("CoreImage_ff42ce03e691ab23", 2434695198775370, this, []); }
-  set colorSpace(value: $SDK6) { callSDK<void>("CoreImage_ff42ce03e691ab23", 2820569891895254, this, [value]); }
+  get colorSpace(): $SDK6 { return callSDK<$SDK6>("CoreImage_3864e7f38681b875", 2434695198775370, this, []); }
+  set colorSpace(value: $SDK6) { callSDK<void>("CoreImage_3864e7f38681b875", 2820569891895254, this, [value]); }
   /**
    * var isDithered: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isDithered(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 2344233687093935, this, []); }
-  set isDithered(value: boolean) { callSDK<void>("CoreImage_ff42ce03e691ab23", 58860050200577, this, [value]); }
+  get isDithered(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 2344233687093935, this, []); }
+  set isDithered(value: boolean) { callSDK<void>("CoreImage_3864e7f38681b875", 58860050200577, this, [value]); }
   /**
    * var isFlipped: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isFlipped(): boolean { return callSDK<boolean>("CoreImage_ff42ce03e691ab23", 2529022641823979, this, []); }
-  set isFlipped(value: boolean) { callSDK<void>("CoreImage_ff42ce03e691ab23", 2029092559301554, this, [value]); }
+  get isFlipped(): boolean { return callSDK<boolean>("CoreImage_3864e7f38681b875", 2529022641823979, this, []); }
+  set isFlipped(value: boolean) { callSDK<void>("CoreImage_3864e7f38681b875", 2029092559301554, this, [value]); }
   /**
    * var height: Int { get }
    * @availability iOS 11.0+
    */
-  get height(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 2495020616072392, this, []); }
+  get height(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 2495020616072392, this, []); }
   /**
    * var width: Int { get }
    * @availability iOS 11.0+
    */
-  get width(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 2785018596398647, this, []); }
+  get width(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 2785018596398647, this, []); }
   declare readonly $type: { "c:objc(cs)CIRenderDestination": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alphaMode": true; "blendKernel": true; "blendsInDestinationColorSpace": true; "captureTraceURL": true; "isClamped": true; "colorSpace": true; "isDithered": true; "isFlipped": true; "height": true; "width": true };
 }
@@ -2810,7 +2810,7 @@ export type CIRenderDestinationAlphaMode = "none" | "premultiplied" | "unpremult
 
 export const CIRenderDestinationAlphaMode = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (CIRenderDestinationAlphaMode) | null { return callSDK<(CIRenderDestinationAlphaMode) | null>("CoreImage_ff42ce03e691ab23", 2047894609971136, undefined, [rawValue]); }
+  init(rawValue: number): (CIRenderDestinationAlphaMode) | null { return callSDK<(CIRenderDestinationAlphaMode) | null>("CoreImage_3864e7f38681b875", 2047894609971136, undefined, [rawValue]); }
 };
 
 /**
@@ -2819,27 +2819,27 @@ export const CIRenderDestinationAlphaMode = {
  */
 export class CIRenderInfo extends SDKHandle {
   /** init() */
-  static init(): CIRenderInfo { return callSDK<CIRenderInfo>("CoreImage_ff42ce03e691ab23", 3669273408996445, undefined, []); }
+  static init(): CIRenderInfo { return callSDK<CIRenderInfo>("CoreImage_3864e7f38681b875", 3669273408996445, undefined, []); }
   /**
    * var kernelCompileTime: TimeInterval { get }
    * @availability iOS 17.0+
    */
-  get kernelCompileTime(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 1698613588093941, this, []); }
+  get kernelCompileTime(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 1698613588093941, this, []); }
   /**
    * var kernelExecutionTime: TimeInterval { get }
    * @availability iOS 11.0+
    */
-  get kernelExecutionTime(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 1039126592615023, this, []); }
+  get kernelExecutionTime(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 1039126592615023, this, []); }
   /**
    * var passCount: Int { get }
    * @availability iOS 11.0+
    */
-  get passCount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 4162004353332427, this, []); }
+  get passCount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 4162004353332427, this, []); }
   /**
    * var pixelsProcessed: Int { get }
    * @availability iOS 11.0+
    */
-  get pixelsProcessed(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 967975754793925, this, []); }
+  get pixelsProcessed(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 967975754793925, this, []); }
   declare readonly $type: { "c:objc(cs)CIRenderInfo": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "kernelCompileTime": true; "kernelExecutionTime": true; "passCount": true; "pixelsProcessed": true };
 }
@@ -2850,32 +2850,32 @@ export class CIRenderInfo extends SDKHandle {
  */
 export class CIRenderTask extends SDKHandle {
   /** init() */
-  static init(): CIRenderTask { return callSDK<CIRenderTask>("CoreImage_ff42ce03e691ab23", 1483849941861829, undefined, []); }
+  static init(): CIRenderTask { return callSDK<CIRenderTask>("CoreImage_3864e7f38681b875", 1483849941861829, undefined, []); }
   /**
    * func waitUntilCompleted() throws -> CIRenderInfo
    * @availability iOS 11.0+
    */
-  waitUntilCompleted(): CIRenderInfo { return callSDK<CIRenderInfo>("CoreImage_ff42ce03e691ab23", 2453468065861998, this, []); }
+  waitUntilCompleted(): CIRenderInfo { return callSDK<CIRenderInfo>("CoreImage_3864e7f38681b875", 2453468065861998, this, []); }
   /**
    * var plannedPassCount: Int { get }
    * @availability iOS 27.0+
    */
-  get plannedPassCount(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 2112174959006710, this, []); }
+  get plannedPassCount(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 2112174959006710, this, []); }
   /**
    * var plannedPeakMemory: Int { get }
    * @availability iOS 27.0+
    */
-  get plannedPeakMemory(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 1057861177925740, this, []); }
+  get plannedPeakMemory(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 1057861177925740, this, []); }
   /**
    * var plannedPixelsOverdrawn: Int { get }
    * @availability iOS 27.0+
    */
-  get plannedPixelsOverdrawn(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 224356842595707, this, []); }
+  get plannedPixelsOverdrawn(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 224356842595707, this, []); }
   /**
    * var plannedPixelsProcessed: Int { get }
    * @availability iOS 27.0+
    */
-  get plannedPixelsProcessed(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 3233883204378516, this, []); }
+  get plannedPixelsProcessed(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 3233883204378516, this, []); }
   declare readonly $type: { "c:objc(cs)CIRenderTask": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "plannedPassCount": true; "plannedPeakMemory": true; "plannedPixelsOverdrawn": true; "plannedPixelsProcessed": true };
 }
@@ -2889,22 +2889,22 @@ export class CISampler extends SDKHandle {
    * convenience init(image im: CIImage)
    * @availability iOS 9.0+
    */
-  static initImage(im: CIImage): CISampler { return callSDK<CISampler>("CoreImage_ff42ce03e691ab23", 3363099083803378, undefined, [im]); }
+  static initImage(im: CIImage): CISampler { return callSDK<CISampler>("CoreImage_3864e7f38681b875", 3363099083803378, undefined, [im]); }
   /**
    * init(image im: CIImage, options dict: [AnyHashable : Any]? = nil)
    * @availability iOS 9.0+
    */
-  static initImageOptions(im: CIImage, dict?: $SDK7): CISampler { return callSDK<CISampler>("CoreImage_ff42ce03e691ab23", 4269093275810195, undefined, [im, dict]); }
+  static initImageOptions(im: CIImage, dict?: $SDK7): CISampler { return callSDK<CISampler>("CoreImage_3864e7f38681b875", 4269093275810195, undefined, [im, dict]); }
   /**
    * var definition: CIFilterShape { get }
    * @availability iOS 9.0+
    */
-  get definition(): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_ff42ce03e691ab23", 1857538738748680, this, []); }
+  get definition(): CIFilterShape { return callSDK<CIFilterShape>("CoreImage_3864e7f38681b875", 1857538738748680, this, []); }
   /**
    * var extent: CGRect { get }
    * @availability iOS 9.0+
    */
-  get extent(): $SDK1 { return callSDK<$SDK1>("CoreImage_ff42ce03e691ab23", 3326707850741990, this, []); }
+  get extent(): $SDK1 { return callSDK<$SDK1>("CoreImage_3864e7f38681b875", 3326707850741990, this, []); }
   declare readonly $type: { "c:objc(cs)CISampler": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "definition": true; "extent": true };
 }
@@ -2915,37 +2915,37 @@ export class CISampler extends SDKHandle {
  */
 export class CITextFeature extends (CIFeature as unknown as Omit<typeof CIFeature, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CIFeature, "bounds">)) {
   /** init() */
-  static init(): CITextFeature { return callSDK<CITextFeature>("CoreImage_ff42ce03e691ab23", 2300422862586340, undefined, []); }
+  static init(): CITextFeature { return callSDK<CITextFeature>("CoreImage_3864e7f38681b875", 2300422862586340, undefined, []); }
   /**
    * var bottomLeft: CGPoint { get }
    * @availability iOS 9.0+
    */
-  get bottomLeft(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 59212017244535, this, []); }
+  get bottomLeft(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 59212017244535, this, []); }
   /**
    * var bottomRight: CGPoint { get }
    * @availability iOS 9.0+
    */
-  get bottomRight(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 4352038639729135, this, []); }
+  get bottomRight(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 4352038639729135, this, []); }
   /**
    * var bounds: CGRect { get }
    * @availability iOS 9.0+
    */
-  get bounds(): $SDK1 { return callSDK<$SDK1>("CoreImage_ff42ce03e691ab23", 2180960288118645, this, []); }
+  get bounds(): $SDK1 { return callSDK<$SDK1>("CoreImage_3864e7f38681b875", 2180960288118645, this, []); }
   /**
    * var subFeatures: [Any]? { get }
    * @availability iOS 9.0+
    */
-  get subFeatures(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("CoreImage_ff42ce03e691ab23", 144790750244016, this, []); }
+  get subFeatures(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("CoreImage_3864e7f38681b875", 144790750244016, this, []); }
   /**
    * var topLeft: CGPoint { get }
    * @availability iOS 9.0+
    */
-  get topLeft(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 1014988353592355, this, []); }
+  get topLeft(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 1014988353592355, this, []); }
   /**
    * var topRight: CGPoint { get }
    * @availability iOS 9.0+
    */
-  get topRight(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 3563873189130780, this, []); }
+  get topRight(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 3563873189130780, this, []); }
   declare readonly $type: { "c:objc(cs)CITextFeature": true; "c:objc(cs)CIFeature": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bounds": true; "type": true; "bottomLeft": true; "bottomRight": true; "subFeatures": true; "topLeft": true; "topRight": true };
 }
@@ -2959,97 +2959,97 @@ export class CIVector extends SDKHandle {
    * convenience init(cgAffineTransform t: CGAffineTransform)
    * @availability iOS 5.0+
    */
-  static initCgAffineTransform(t: _CoreFoundation_CGAffineTransform): CIVector { return callSDK<CIVector>("CoreImage_ff42ce03e691ab23", 1074997040994760, undefined, [t]); }
+  static initCgAffineTransform(t: _CoreFoundation_CGAffineTransform): CIVector { return callSDK<CIVector>("CoreImage_3864e7f38681b875", 1074997040994760, undefined, [t]); }
   /**
    * convenience init(cgPoint p: CGPoint)
    * @availability iOS 5.0+
    */
-  static initCgPoint(p: $SDK8): CIVector { return callSDK<CIVector>("CoreImage_ff42ce03e691ab23", 2803222582120990, undefined, [p]); }
+  static initCgPoint(p: $SDK8): CIVector { return callSDK<CIVector>("CoreImage_3864e7f38681b875", 2803222582120990, undefined, [p]); }
   /**
    * convenience init(cgRect r: CGRect)
    * @availability iOS 5.0+
    */
-  static initCgRect(r: $SDK1): CIVector { return callSDK<CIVector>("CoreImage_ff42ce03e691ab23", 2215307511592316, undefined, [r]); }
+  static initCgRect(r: $SDK1): CIVector { return callSDK<CIVector>("CoreImage_3864e7f38681b875", 2215307511592316, undefined, [r]); }
   /**
    * convenience init(string representation: String)
    * @availability iOS 5.0+
    */
-  static initString(representation: string): CIVector { return callSDK<CIVector>("CoreImage_ff42ce03e691ab23", 628038504371188, undefined, [representation]); }
+  static initString(representation: string): CIVector { return callSDK<CIVector>("CoreImage_3864e7f38681b875", 628038504371188, undefined, [representation]); }
   /**
    * init(values: UnsafePointer<CGFloat>, count: Int)
    * @availability iOS 5.0+
    */
-  static initValuesCount(values: $SDK2, count: number): CIVector { return callSDK<CIVector>("CoreImage_ff42ce03e691ab23", 1700153258729105, undefined, [values, count]); }
+  static initValuesCount(values: $SDK2, count: number): CIVector { return callSDK<CIVector>("CoreImage_3864e7f38681b875", 1700153258729105, undefined, [values, count]); }
   /**
    * convenience init(x: CGFloat)
    * @availability iOS 5.0+
    */
-  static initX(x: number): CIVector { return callSDK<CIVector>("CoreImage_ff42ce03e691ab23", 1455998675433688, undefined, [x]); }
+  static initX(x: number): CIVector { return callSDK<CIVector>("CoreImage_3864e7f38681b875", 1455998675433688, undefined, [x]); }
   /**
    * convenience init(x: CGFloat, y: CGFloat)
    * @availability iOS 5.0+
    */
-  static initXY(x: number, y: number): CIVector { return callSDK<CIVector>("CoreImage_ff42ce03e691ab23", 2107767586640323, undefined, [x, y]); }
+  static initXY(x: number, y: number): CIVector { return callSDK<CIVector>("CoreImage_3864e7f38681b875", 2107767586640323, undefined, [x, y]); }
   /**
    * convenience init(x: CGFloat, y: CGFloat, z: CGFloat)
    * @availability iOS 5.0+
    */
-  static initXYZ(x: number, y: number, z: number): CIVector { return callSDK<CIVector>("CoreImage_ff42ce03e691ab23", 3321907026235130, undefined, [x, y, z]); }
+  static initXYZ(x: number, y: number, z: number): CIVector { return callSDK<CIVector>("CoreImage_3864e7f38681b875", 3321907026235130, undefined, [x, y, z]); }
   /**
    * convenience init(x: CGFloat, y: CGFloat, z: CGFloat, w: CGFloat)
    * @availability iOS 5.0+
    */
-  static initXYZW(x: number, y: number, z: number, w: number): CIVector { return callSDK<CIVector>("CoreImage_ff42ce03e691ab23", 1487116541637622, undefined, [x, y, z, w]); }
+  static initXYZW(x: number, y: number, z: number, w: number): CIVector { return callSDK<CIVector>("CoreImage_3864e7f38681b875", 1487116541637622, undefined, [x, y, z, w]); }
   /**
    * func value(at index: Int) -> CGFloat
    * @availability iOS 5.0+
    */
-  value(index: number): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 2320984616199507, this, [index]); }
+  value(index: number): number { return callSDK<number>("CoreImage_3864e7f38681b875", 2320984616199507, this, [index]); }
   /**
    * var cgAffineTransformValue: CGAffineTransform { get }
    * @availability iOS 5.0+
    */
-  get cgAffineTransformValue(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreImage_ff42ce03e691ab23", 2518518873425748, this, []); }
+  get cgAffineTransformValue(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreImage_3864e7f38681b875", 2518518873425748, this, []); }
   /**
    * var cgPointValue: CGPoint { get }
    * @availability iOS 5.0+
    */
-  get cgPointValue(): $SDK8 { return callSDK<$SDK8>("CoreImage_ff42ce03e691ab23", 3159494920792446, this, []); }
+  get cgPointValue(): $SDK8 { return callSDK<$SDK8>("CoreImage_3864e7f38681b875", 3159494920792446, this, []); }
   /**
    * var cgRectValue: CGRect { get }
    * @availability iOS 5.0+
    */
-  get cgRectValue(): $SDK1 { return callSDK<$SDK1>("CoreImage_ff42ce03e691ab23", 2138331714825647, this, []); }
+  get cgRectValue(): $SDK1 { return callSDK<$SDK1>("CoreImage_3864e7f38681b875", 2138331714825647, this, []); }
   /**
    * var w: CGFloat { get }
    * @availability iOS 5.0+
    */
-  get w(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 3061212557194741, this, []); }
+  get w(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 3061212557194741, this, []); }
   /**
    * var x: CGFloat { get }
    * @availability iOS 5.0+
    */
-  get x(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 1194750191239297, this, []); }
+  get x(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 1194750191239297, this, []); }
   /**
    * var y: CGFloat { get }
    * @availability iOS 5.0+
    */
-  get y(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 959226748157202, this, []); }
+  get y(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 959226748157202, this, []); }
   /**
    * var z: CGFloat { get }
    * @availability iOS 5.0+
    */
-  get z(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 3779070283911232, this, []); }
+  get z(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 3779070283911232, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 5.0+
    */
-  get count(): number { return callSDK<number>("CoreImage_ff42ce03e691ab23", 3866420211997342, this, []); }
+  get count(): number { return callSDK<number>("CoreImage_3864e7f38681b875", 3866420211997342, this, []); }
   /**
    * var stringRepresentation: String { get }
    * @availability iOS 5.0+
    */
-  get stringRepresentation(): string { return callSDK<string>("CoreImage_ff42ce03e691ab23", 847047277194034, this, []); }
+  get stringRepresentation(): string { return callSDK<string>("CoreImage_3864e7f38681b875", 847047277194034, this, []); }
   declare readonly $type: { "c:objc(cs)CIVector": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cgAffineTransformValue": true; "cgPointValue": true; "cgRectValue": true; "w": true; "x": true; "y": true; "z": true; "count": true; "stringRepresentation": true };
 }
@@ -3064,19 +3064,19 @@ export class CIWarpKernel extends CIKernel {
    * @availability iOS 8.0+
    * @deprecated iOS 12.0
    */
-  static init(string: string): (CIWarpKernel) | null { return callSDK<(CIWarpKernel) | null>("CoreImage_ff42ce03e691ab23", 1200646988541966, undefined, [string]); }
+  static init(string: string): (CIWarpKernel) | null { return callSDK<(CIWarpKernel) | null>("CoreImage_3864e7f38681b875", 1200646988541966, undefined, [string]); }
   declare readonly $type: { "c:objc(cs)CIWarpKernel": true; "c:objc(cs)CIKernel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true };
 }
 
 export class NSObject extends SDKHandle {
   /** func provideImageData(_ data: UnsafeMutableRawPointer, bytesPerRow rowbytes: Int, origin originx: Int, _ originy: Int, size width: Int, _ height: Int, userInfo info: Any?) */
-  provideImageData(data: SDKHandle, rowbytes: number, originx: number, originy: number, width: number, height: number, info?: (unknown) | null): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 976982836989428, this, [data, rowbytes, originx, originy, width, height, info]); }
+  provideImageData(data: SDKHandle, rowbytes: number, originx: number, originy: number, width: number, height: number, info?: (unknown) | null): void { return callSDK<void>("CoreImage_3864e7f38681b875", 976982836989428, this, [data, rowbytes, originx, originy, width, height, info]); }
   /**
    * func provideImage(to texture: any MTLTexture, commandBuffer: any MTLCommandBuffer, originx: Int, originy: Int, width: Int, height: Int, userInfo info: Any?)
    * @availability iOS 26.0+
    */
-  provideImage(texture: SDKHandle, commandBuffer: SDKHandle, originx: number, originy: number, width: number, height: number, info?: (unknown) | null): void { return callSDK<void>("CoreImage_ff42ce03e691ab23", 2156759719173911, this, [texture, commandBuffer, originx, originy, width, height, info]); }
+  provideImage(texture: SDKHandle, commandBuffer: SDKHandle, originx: number, originy: number, width: number, height: number, info?: (unknown) | null): void { return callSDK<void>("CoreImage_3864e7f38681b875", 2156759719173911, this, [texture, commandBuffer, originx, originy, width, height, info]); }
   declare readonly $type: { "c:objc(cs)NSObject": true };
 }
 
@@ -3085,7 +3085,7 @@ export class NSUserActivity extends SDKHandle {
    * @NSCopying var detectedBarcodeDescriptor: CIBarcodeDescriptor? { get }
    * @availability iOS 11.3+
    */
-  get detectedBarcodeDescriptor(): (CIBarcodeDescriptor) | null { return callSDK<(CIBarcodeDescriptor) | null>("CoreImage_ff42ce03e691ab23", 1762098043060866, this, []); }
+  get detectedBarcodeDescriptor(): (CIBarcodeDescriptor) | null { return callSDK<(CIBarcodeDescriptor) | null>("CoreImage_3864e7f38681b875", 1762098043060866, this, []); }
   declare readonly $type: { "c:objc(cs)NSUserActivity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "detectedBarcodeDescriptor": true };
 }
@@ -3094,705 +3094,705 @@ export class NSUserActivity extends SDKHandle {
  * let CIDetectorAccuracy: String
  * @availability iOS 5.0+
  */
-export const CIDetectorAccuracy: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 231284900238129, undefined, []);
+export const CIDetectorAccuracy: string = callSDK<string>("CoreImage_3864e7f38681b875", 231284900238129, undefined, []);
 
 /**
  * let CIDetectorAccuracyHigh: String
  * @availability iOS 5.0+
  */
-export const CIDetectorAccuracyHigh: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3437318800102235, undefined, []);
+export const CIDetectorAccuracyHigh: string = callSDK<string>("CoreImage_3864e7f38681b875", 3437318800102235, undefined, []);
 
 /**
  * let CIDetectorAccuracyLow: String
  * @availability iOS 5.0+
  */
-export const CIDetectorAccuracyLow: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3776772444681505, undefined, []);
+export const CIDetectorAccuracyLow: string = callSDK<string>("CoreImage_3864e7f38681b875", 3776772444681505, undefined, []);
 
 /**
  * let CIDetectorAspectRatio: String
  * @availability iOS 8.0+
  */
-export const CIDetectorAspectRatio: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1127155724107286, undefined, []);
+export const CIDetectorAspectRatio: string = callSDK<string>("CoreImage_3864e7f38681b875", 1127155724107286, undefined, []);
 
 /**
  * let CIDetectorEyeBlink: String
  * @availability iOS 7.0+
  */
-export const CIDetectorEyeBlink: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 953267727924108, undefined, []);
+export const CIDetectorEyeBlink: string = callSDK<string>("CoreImage_3864e7f38681b875", 953267727924108, undefined, []);
 
 /**
  * let CIDetectorFocalLength: String
  * @availability iOS 8.0+
  */
-export const CIDetectorFocalLength: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3040555845645050, undefined, []);
+export const CIDetectorFocalLength: string = callSDK<string>("CoreImage_3864e7f38681b875", 3040555845645050, undefined, []);
 
 /**
  * let CIDetectorImageOrientation: String
  * @availability iOS 5.0+
  */
-export const CIDetectorImageOrientation: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3525542347038471, undefined, []);
+export const CIDetectorImageOrientation: string = callSDK<string>("CoreImage_3864e7f38681b875", 3525542347038471, undefined, []);
 
 /**
  * let CIDetectorMaxFeatureCount: String
  * @availability iOS 10.0+
  */
-export const CIDetectorMaxFeatureCount: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2083814309877070, undefined, []);
+export const CIDetectorMaxFeatureCount: string = callSDK<string>("CoreImage_3864e7f38681b875", 2083814309877070, undefined, []);
 
 /**
  * let CIDetectorMinFeatureSize: String
  * @availability iOS 6.0+
  */
-export const CIDetectorMinFeatureSize: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1136832086482085, undefined, []);
+export const CIDetectorMinFeatureSize: string = callSDK<string>("CoreImage_3864e7f38681b875", 1136832086482085, undefined, []);
 
 /**
  * let CIDetectorNumberOfAngles: String
  * @availability iOS 9.0+
  */
-export const CIDetectorNumberOfAngles: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3049901257522147, undefined, []);
+export const CIDetectorNumberOfAngles: string = callSDK<string>("CoreImage_3864e7f38681b875", 3049901257522147, undefined, []);
 
 /**
  * let CIDetectorReturnSubFeatures: String
  * @availability iOS 9.0+
  */
-export const CIDetectorReturnSubFeatures: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 52695358167140, undefined, []);
+export const CIDetectorReturnSubFeatures: string = callSDK<string>("CoreImage_3864e7f38681b875", 52695358167140, undefined, []);
 
 /**
  * let CIDetectorSmile: String
  * @availability iOS 7.0+
  */
-export const CIDetectorSmile: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2832777620236829, undefined, []);
+export const CIDetectorSmile: string = callSDK<string>("CoreImage_3864e7f38681b875", 2832777620236829, undefined, []);
 
 /**
  * let CIDetectorTracking: String
  * @availability iOS 6.0+
  */
-export const CIDetectorTracking: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2588680288083585, undefined, []);
+export const CIDetectorTracking: string = callSDK<string>("CoreImage_3864e7f38681b875", 2588680288083585, undefined, []);
 
 /**
  * let CIDetectorTypeFace: String
  * @availability iOS 5.0+
  */
-export const CIDetectorTypeFace: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3252279462372268, undefined, []);
+export const CIDetectorTypeFace: string = callSDK<string>("CoreImage_3864e7f38681b875", 3252279462372268, undefined, []);
 
 /**
  * let CIDetectorTypeQRCode: String
  * @availability iOS 8.0+
  */
-export const CIDetectorTypeQRCode: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4472519447567366, undefined, []);
+export const CIDetectorTypeQRCode: string = callSDK<string>("CoreImage_3864e7f38681b875", 4472519447567366, undefined, []);
 
 /**
  * let CIDetectorTypeRectangle: String
  * @availability iOS 8.0+
  */
-export const CIDetectorTypeRectangle: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2814532685144093, undefined, []);
+export const CIDetectorTypeRectangle: string = callSDK<string>("CoreImage_3864e7f38681b875", 2814532685144093, undefined, []);
 
 /**
  * let CIDetectorTypeText: String
  * @availability iOS 9.0+
  */
-export const CIDetectorTypeText: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 59782493207107, undefined, []);
+export const CIDetectorTypeText: string = callSDK<string>("CoreImage_3864e7f38681b875", 59782493207107, undefined, []);
 
 /** let CIFeatureTypeFace: String */
-export const CIFeatureTypeFace: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 901740056568425, undefined, []);
+export const CIFeatureTypeFace: string = callSDK<string>("CoreImage_3864e7f38681b875", 901740056568425, undefined, []);
 
 /** let CIFeatureTypeQRCode: String */
-export const CIFeatureTypeQRCode: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1542082684772355, undefined, []);
+export const CIFeatureTypeQRCode: string = callSDK<string>("CoreImage_3864e7f38681b875", 1542082684772355, undefined, []);
 
 /** let CIFeatureTypeRectangle: String */
-export const CIFeatureTypeRectangle: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 963226107723874, undefined, []);
+export const CIFeatureTypeRectangle: string = callSDK<string>("CoreImage_3864e7f38681b875", 963226107723874, undefined, []);
 
 /** let CIFeatureTypeText: String */
-export const CIFeatureTypeText: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2844793637677059, undefined, []);
+export const CIFeatureTypeText: string = callSDK<string>("CoreImage_3864e7f38681b875", 2844793637677059, undefined, []);
 
 /** let kCIAttributeClass: String */
-export const kCIAttributeClass: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3231135061691531, undefined, []);
+export const kCIAttributeClass: string = callSDK<string>("CoreImage_3864e7f38681b875", 3231135061691531, undefined, []);
 
 /** let kCIAttributeDefault: String */
-export const kCIAttributeDefault: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2434621651119875, undefined, []);
+export const kCIAttributeDefault: string = callSDK<string>("CoreImage_3864e7f38681b875", 2434621651119875, undefined, []);
 
 /**
  * let kCIAttributeDescription: String
  * @availability iOS 9.0+
  */
-export const kCIAttributeDescription: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1679912628707892, undefined, []);
+export const kCIAttributeDescription: string = callSDK<string>("CoreImage_3864e7f38681b875", 1679912628707892, undefined, []);
 
 /** let kCIAttributeDisplayName: String */
-export const kCIAttributeDisplayName: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3407818151500886, undefined, []);
+export const kCIAttributeDisplayName: string = callSDK<string>("CoreImage_3864e7f38681b875", 3407818151500886, undefined, []);
 
 /**
  * let kCIAttributeFilterAvailable_Mac: String
  * @availability iOS 9.0+
  */
-export const kCIAttributeFilterAvailable_Mac: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 306230564379259, undefined, []);
+export const kCIAttributeFilterAvailable_Mac: string = callSDK<string>("CoreImage_3864e7f38681b875", 306230564379259, undefined, []);
 
 /**
  * let kCIAttributeFilterAvailable_iOS: String
  * @availability iOS 9.0+
  */
-export const kCIAttributeFilterAvailable_iOS: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1833081399678623, undefined, []);
+export const kCIAttributeFilterAvailable_iOS: string = callSDK<string>("CoreImage_3864e7f38681b875", 1833081399678623, undefined, []);
 
 /** let kCIAttributeFilterCategories: String */
-export const kCIAttributeFilterCategories: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 104068153893067, undefined, []);
+export const kCIAttributeFilterCategories: string = callSDK<string>("CoreImage_3864e7f38681b875", 104068153893067, undefined, []);
 
 /** let kCIAttributeFilterDisplayName: String */
-export const kCIAttributeFilterDisplayName: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2985242080756654, undefined, []);
+export const kCIAttributeFilterDisplayName: string = callSDK<string>("CoreImage_3864e7f38681b875", 2985242080756654, undefined, []);
 
 /** let kCIAttributeFilterName: String */
-export const kCIAttributeFilterName: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1101142022831080, undefined, []);
+export const kCIAttributeFilterName: string = callSDK<string>("CoreImage_3864e7f38681b875", 1101142022831080, undefined, []);
 
 /** let kCIAttributeIdentity: String */
-export const kCIAttributeIdentity: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1458491422767859, undefined, []);
+export const kCIAttributeIdentity: string = callSDK<string>("CoreImage_3864e7f38681b875", 1458491422767859, undefined, []);
 
 /** let kCIAttributeMax: String */
-export const kCIAttributeMax: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 405287501353971, undefined, []);
+export const kCIAttributeMax: string = callSDK<string>("CoreImage_3864e7f38681b875", 405287501353971, undefined, []);
 
 /** let kCIAttributeMin: String */
-export const kCIAttributeMin: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3417870342384326, undefined, []);
+export const kCIAttributeMin: string = callSDK<string>("CoreImage_3864e7f38681b875", 3417870342384326, undefined, []);
 
 /** let kCIAttributeName: String */
-export const kCIAttributeName: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 957536564944231, undefined, []);
+export const kCIAttributeName: string = callSDK<string>("CoreImage_3864e7f38681b875", 957536564944231, undefined, []);
 
 /**
  * let kCIAttributeReferenceDocumentation: String
  * @availability iOS 9.0+
  */
-export const kCIAttributeReferenceDocumentation: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3441289145846662, undefined, []);
+export const kCIAttributeReferenceDocumentation: string = callSDK<string>("CoreImage_3864e7f38681b875", 3441289145846662, undefined, []);
 
 /** let kCIAttributeSliderMax: String */
-export const kCIAttributeSliderMax: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2400788886920662, undefined, []);
+export const kCIAttributeSliderMax: string = callSDK<string>("CoreImage_3864e7f38681b875", 2400788886920662, undefined, []);
 
 /** let kCIAttributeSliderMin: String */
-export const kCIAttributeSliderMin: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3350479404174596, undefined, []);
+export const kCIAttributeSliderMin: string = callSDK<string>("CoreImage_3864e7f38681b875", 3350479404174596, undefined, []);
 
 /** let kCIAttributeType: String */
-export const kCIAttributeType: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4466155486184069, undefined, []);
+export const kCIAttributeType: string = callSDK<string>("CoreImage_3864e7f38681b875", 4466155486184069, undefined, []);
 
 /** let kCIAttributeTypeAngle: String */
-export const kCIAttributeTypeAngle: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3779254652458770, undefined, []);
+export const kCIAttributeTypeAngle: string = callSDK<string>("CoreImage_3864e7f38681b875", 3779254652458770, undefined, []);
 
 /** let kCIAttributeTypeBoolean: String */
-export const kCIAttributeTypeBoolean: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3528406169684031, undefined, []);
+export const kCIAttributeTypeBoolean: string = callSDK<string>("CoreImage_3864e7f38681b875", 3528406169684031, undefined, []);
 
 /**
  * let kCIAttributeTypeColor: String
  * @availability iOS 5.0+
  */
-export const kCIAttributeTypeColor: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 909508816464128, undefined, []);
+export const kCIAttributeTypeColor: string = callSDK<string>("CoreImage_3864e7f38681b875", 909508816464128, undefined, []);
 
 /**
  * let kCIAttributeTypeCount: String
  * @availability iOS 5.0+
  */
-export const kCIAttributeTypeCount: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3317817582258997, undefined, []);
+export const kCIAttributeTypeCount: string = callSDK<string>("CoreImage_3864e7f38681b875", 3317817582258997, undefined, []);
 
 /** let kCIAttributeTypeDistance: String */
-export const kCIAttributeTypeDistance: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1848337252337160, undefined, []);
+export const kCIAttributeTypeDistance: string = callSDK<string>("CoreImage_3864e7f38681b875", 1848337252337160, undefined, []);
 
 /**
  * let kCIAttributeTypeGradient: String
  * @availability iOS 9.0+
  */
-export const kCIAttributeTypeGradient: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1548270201292126, undefined, []);
+export const kCIAttributeTypeGradient: string = callSDK<string>("CoreImage_3864e7f38681b875", 1548270201292126, undefined, []);
 
 /**
  * let kCIAttributeTypeImage: String
  * @availability iOS 5.0+
  */
-export const kCIAttributeTypeImage: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3366797685134719, undefined, []);
+export const kCIAttributeTypeImage: string = callSDK<string>("CoreImage_3864e7f38681b875", 3366797685134719, undefined, []);
 
 /**
  * let kCIAttributeTypeInteger: String
  * @availability iOS 5.0+
  */
-export const kCIAttributeTypeInteger: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2876274845810478, undefined, []);
+export const kCIAttributeTypeInteger: string = callSDK<string>("CoreImage_3864e7f38681b875", 2876274845810478, undefined, []);
 
 /** let kCIAttributeTypeOffset: String */
-export const kCIAttributeTypeOffset: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1042841222247076, undefined, []);
+export const kCIAttributeTypeOffset: string = callSDK<string>("CoreImage_3864e7f38681b875", 1042841222247076, undefined, []);
 
 /**
  * let kCIAttributeTypeOpaqueColor: String
  * @availability iOS 9.0+
  */
-export const kCIAttributeTypeOpaqueColor: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1718984067443429, undefined, []);
+export const kCIAttributeTypeOpaqueColor: string = callSDK<string>("CoreImage_3864e7f38681b875", 1718984067443429, undefined, []);
 
 /** let kCIAttributeTypePosition3: String */
-export const kCIAttributeTypePosition3: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3122476551659551, undefined, []);
+export const kCIAttributeTypePosition3: string = callSDK<string>("CoreImage_3864e7f38681b875", 3122476551659551, undefined, []);
 
 /** let kCIAttributeTypePosition: String */
-export const kCIAttributeTypePosition: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 200391935290556, undefined, []);
+export const kCIAttributeTypePosition: string = callSDK<string>("CoreImage_3864e7f38681b875", 200391935290556, undefined, []);
 
 /** let kCIAttributeTypeRectangle: String */
-export const kCIAttributeTypeRectangle: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2768772934961390, undefined, []);
+export const kCIAttributeTypeRectangle: string = callSDK<string>("CoreImage_3864e7f38681b875", 2768772934961390, undefined, []);
 
 /** let kCIAttributeTypeScalar: String */
-export const kCIAttributeTypeScalar: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2931286876980480, undefined, []);
+export const kCIAttributeTypeScalar: string = callSDK<string>("CoreImage_3864e7f38681b875", 2931286876980480, undefined, []);
 
 /** let kCIAttributeTypeTime: String */
-export const kCIAttributeTypeTime: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1288664237133135, undefined, []);
+export const kCIAttributeTypeTime: string = callSDK<string>("CoreImage_3864e7f38681b875", 1288664237133135, undefined, []);
 
 /**
  * let kCIAttributeTypeTransform: String
  * @availability iOS 5.0+
  */
-export const kCIAttributeTypeTransform: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 513597918946511, undefined, []);
+export const kCIAttributeTypeTransform: string = callSDK<string>("CoreImage_3864e7f38681b875", 513597918946511, undefined, []);
 
 /** let kCICategoryBlur: String */
-export const kCICategoryBlur: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1702427521288413, undefined, []);
+export const kCICategoryBlur: string = callSDK<string>("CoreImage_3864e7f38681b875", 1702427521288413, undefined, []);
 
 /** let kCICategoryBuiltIn: String */
-export const kCICategoryBuiltIn: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1305695759303997, undefined, []);
+export const kCICategoryBuiltIn: string = callSDK<string>("CoreImage_3864e7f38681b875", 1305695759303997, undefined, []);
 
 /** let kCICategoryColorAdjustment: String */
-export const kCICategoryColorAdjustment: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4445120767480332, undefined, []);
+export const kCICategoryColorAdjustment: string = callSDK<string>("CoreImage_3864e7f38681b875", 4445120767480332, undefined, []);
 
 /** let kCICategoryColorEffect: String */
-export const kCICategoryColorEffect: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 81447161135225, undefined, []);
+export const kCICategoryColorEffect: string = callSDK<string>("CoreImage_3864e7f38681b875", 81447161135225, undefined, []);
 
 /** let kCICategoryCompositeOperation: String */
-export const kCICategoryCompositeOperation: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 465433175973254, undefined, []);
+export const kCICategoryCompositeOperation: string = callSDK<string>("CoreImage_3864e7f38681b875", 465433175973254, undefined, []);
 
 /** let kCICategoryDistortionEffect: String */
-export const kCICategoryDistortionEffect: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2648210575922681, undefined, []);
+export const kCICategoryDistortionEffect: string = callSDK<string>("CoreImage_3864e7f38681b875", 2648210575922681, undefined, []);
 
 /**
  * let kCICategoryFilterGenerator: String
  * @availability iOS 9.0+
  */
-export const kCICategoryFilterGenerator: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2291961542657980, undefined, []);
+export const kCICategoryFilterGenerator: string = callSDK<string>("CoreImage_3864e7f38681b875", 2291961542657980, undefined, []);
 
 /** let kCICategoryGenerator: String */
-export const kCICategoryGenerator: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 626403883709822, undefined, []);
+export const kCICategoryGenerator: string = callSDK<string>("CoreImage_3864e7f38681b875", 626403883709822, undefined, []);
 
 /** let kCICategoryGeometryAdjustment: String */
-export const kCICategoryGeometryAdjustment: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 610760037539354, undefined, []);
+export const kCICategoryGeometryAdjustment: string = callSDK<string>("CoreImage_3864e7f38681b875", 610760037539354, undefined, []);
 
 /** let kCICategoryGradient: String */
-export const kCICategoryGradient: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2682841955569810, undefined, []);
+export const kCICategoryGradient: string = callSDK<string>("CoreImage_3864e7f38681b875", 2682841955569810, undefined, []);
 
 /** let kCICategoryHalftoneEffect: String */
-export const kCICategoryHalftoneEffect: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3390512079478876, undefined, []);
+export const kCICategoryHalftoneEffect: string = callSDK<string>("CoreImage_3864e7f38681b875", 3390512079478876, undefined, []);
 
 /** let kCICategoryHighDynamicRange: String */
-export const kCICategoryHighDynamicRange: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4195404811512359, undefined, []);
+export const kCICategoryHighDynamicRange: string = callSDK<string>("CoreImage_3864e7f38681b875", 4195404811512359, undefined, []);
 
 /** let kCICategoryInterlaced: String */
-export const kCICategoryInterlaced: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3719999449433629, undefined, []);
+export const kCICategoryInterlaced: string = callSDK<string>("CoreImage_3864e7f38681b875", 3719999449433629, undefined, []);
 
 /** let kCICategoryNonSquarePixels: String */
-export const kCICategoryNonSquarePixels: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3165437725722474, undefined, []);
+export const kCICategoryNonSquarePixels: string = callSDK<string>("CoreImage_3864e7f38681b875", 3165437725722474, undefined, []);
 
 /**
  * let kCICategoryReduction: String
  * @availability iOS 5.0+
  */
-export const kCICategoryReduction: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 549604211479598, undefined, []);
+export const kCICategoryReduction: string = callSDK<string>("CoreImage_3864e7f38681b875", 549604211479598, undefined, []);
 
 /** let kCICategorySharpen: String */
-export const kCICategorySharpen: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 889242858930124, undefined, []);
+export const kCICategorySharpen: string = callSDK<string>("CoreImage_3864e7f38681b875", 889242858930124, undefined, []);
 
 /** let kCICategoryStillImage: String */
-export const kCICategoryStillImage: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1092896185139061, undefined, []);
+export const kCICategoryStillImage: string = callSDK<string>("CoreImage_3864e7f38681b875", 1092896185139061, undefined, []);
 
 /** let kCICategoryStylize: String */
-export const kCICategoryStylize: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2338728324271941, undefined, []);
+export const kCICategoryStylize: string = callSDK<string>("CoreImage_3864e7f38681b875", 2338728324271941, undefined, []);
 
 /** let kCICategoryTileEffect: String */
-export const kCICategoryTileEffect: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3904943180027546, undefined, []);
+export const kCICategoryTileEffect: string = callSDK<string>("CoreImage_3864e7f38681b875", 3904943180027546, undefined, []);
 
 /** let kCICategoryTransition: String */
-export const kCICategoryTransition: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3713435894936115, undefined, []);
+export const kCICategoryTransition: string = callSDK<string>("CoreImage_3864e7f38681b875", 3713435894936115, undefined, []);
 
 /** let kCICategoryVideo: String */
-export const kCICategoryVideo: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 186916438095010, undefined, []);
+export const kCICategoryVideo: string = callSDK<string>("CoreImage_3864e7f38681b875", 186916438095010, undefined, []);
 
 /**
  * let kCIInputAmountKey: String
  * @availability iOS 12.0+
  */
-export const kCIInputAmountKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 147645714640892, undefined, []);
+export const kCIInputAmountKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 147645714640892, undefined, []);
 
 /**
  * let kCIInputAngleKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputAngleKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4341026802154160, undefined, []);
+export const kCIInputAngleKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 4341026802154160, undefined, []);
 
 /**
  * let kCIInputAspectRatioKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputAspectRatioKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2612251873989209, undefined, []);
+export const kCIInputAspectRatioKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 2612251873989209, undefined, []);
 
 /**
  * let kCIInputBackgroundImageKey: String
  * @availability iOS 5.0+
  */
-export const kCIInputBackgroundImageKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1886417904999194, undefined, []);
+export const kCIInputBackgroundImageKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 1886417904999194, undefined, []);
 
 /**
  * let kCIInputBacksideImageKey: String
  * @availability iOS 26.0+
  */
-export const kCIInputBacksideImageKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2777713055598332, undefined, []);
+export const kCIInputBacksideImageKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 2777713055598332, undefined, []);
 
 /**
  * let kCIInputBiasKey: String
  * @availability iOS 9.0+
  */
-export const kCIInputBiasKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1230783173523151, undefined, []);
+export const kCIInputBiasKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 1230783173523151, undefined, []);
 
 /**
  * let kCIInputBiasVectorKey: String
  * @availability iOS 26.0+
  */
-export const kCIInputBiasVectorKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2115568225787920, undefined, []);
+export const kCIInputBiasVectorKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 2115568225787920, undefined, []);
 
 /**
  * let kCIInputBrightnessKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputBrightnessKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1297703420620961, undefined, []);
+export const kCIInputBrightnessKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 1297703420620961, undefined, []);
 
 /**
  * let kCIInputCenterKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputCenterKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1831706399803390, undefined, []);
+export const kCIInputCenterKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 1831706399803390, undefined, []);
 
 /**
  * let kCIInputColor0Key: String
  * @availability iOS 26.0+
  */
-export const kCIInputColor0Key: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4429311386750686, undefined, []);
+export const kCIInputColor0Key: string = callSDK<string>("CoreImage_3864e7f38681b875", 4429311386750686, undefined, []);
 
 /**
  * let kCIInputColor1Key: String
  * @availability iOS 26.0+
  */
-export const kCIInputColor1Key: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 752009086772664, undefined, []);
+export const kCIInputColor1Key: string = callSDK<string>("CoreImage_3864e7f38681b875", 752009086772664, undefined, []);
 
 /**
  * let kCIInputColorKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputColorKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3820842234234871, undefined, []);
+export const kCIInputColorKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 3820842234234871, undefined, []);
 
 /**
  * let kCIInputColorSpaceKey: String
  * @availability iOS 26.0+
  */
-export const kCIInputColorSpaceKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4124667737443507, undefined, []);
+export const kCIInputColorSpaceKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 4124667737443507, undefined, []);
 
 /**
  * let kCIInputContrastKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputContrastKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3493456803080817, undefined, []);
+export const kCIInputContrastKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 3493456803080817, undefined, []);
 
 /**
  * let kCIInputCountKey: String
  * @availability iOS 26.0+
  */
-export const kCIInputCountKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1830821364932663, undefined, []);
+export const kCIInputCountKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 1830821364932663, undefined, []);
 
 /**
  * let kCIInputDepthImageKey: String
  * @availability iOS 11.0+
  */
-export const kCIInputDepthImageKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4481656841760840, undefined, []);
+export const kCIInputDepthImageKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 4481656841760840, undefined, []);
 
 /**
  * let kCIInputDisparityImageKey: String
  * @availability iOS 11.0+
  */
-export const kCIInputDisparityImageKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3732755599401446, undefined, []);
+export const kCIInputDisparityImageKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 3732755599401446, undefined, []);
 
 /**
  * let kCIInputEVKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputEVKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3507747255882178, undefined, []);
+export const kCIInputEVKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 3507747255882178, undefined, []);
 
 /**
  * let kCIInputExtentKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputExtentKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3922509355345141, undefined, []);
+export const kCIInputExtentKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 3922509355345141, undefined, []);
 
 /**
  * let kCIInputExtrapolateKey: String
  * @availability iOS 26.0+
  */
-export const kCIInputExtrapolateKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4173449697871156, undefined, []);
+export const kCIInputExtrapolateKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 4173449697871156, undefined, []);
 
 /**
  * let kCIInputGradientImageKey: String
  * @availability iOS 9.0+
  */
-export const kCIInputGradientImageKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1404755316865151, undefined, []);
+export const kCIInputGradientImageKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 1404755316865151, undefined, []);
 
 /**
  * let kCIInputImageKey: String
  * @availability iOS 5.0+
  */
-export const kCIInputImageKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3270839406677828, undefined, []);
+export const kCIInputImageKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 3270839406677828, undefined, []);
 
 /**
  * let kCIInputIntensityKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputIntensityKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 433396460079236, undefined, []);
+export const kCIInputIntensityKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 433396460079236, undefined, []);
 
 /**
  * let kCIInputMaskImageKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputMaskImageKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3008251270273914, undefined, []);
+export const kCIInputMaskImageKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 3008251270273914, undefined, []);
 
 /**
  * let kCIInputMatteImageKey: String
  * @availability iOS 12.0+
  */
-export const kCIInputMatteImageKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3120444149813286, undefined, []);
+export const kCIInputMatteImageKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 3120444149813286, undefined, []);
 
 /**
  * let kCIInputPaletteImageKey: String
  * @availability iOS 26.0+
  */
-export const kCIInputPaletteImageKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4464305928390662, undefined, []);
+export const kCIInputPaletteImageKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 4464305928390662, undefined, []);
 
 /**
  * let kCIInputPerceptualKey: String
  * @availability iOS 26.0+
  */
-export const kCIInputPerceptualKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3184576488714519, undefined, []);
+export const kCIInputPerceptualKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 3184576488714519, undefined, []);
 
 /**
  * let kCIInputPoint0Key: String
  * @availability iOS 26.0+
  */
-export const kCIInputPoint0Key: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2497497942838072, undefined, []);
+export const kCIInputPoint0Key: string = callSDK<string>("CoreImage_3864e7f38681b875", 2497497942838072, undefined, []);
 
 /**
  * let kCIInputPoint1Key: String
  * @availability iOS 26.0+
  */
-export const kCIInputPoint1Key: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4425922142525233, undefined, []);
+export const kCIInputPoint1Key: string = callSDK<string>("CoreImage_3864e7f38681b875", 4425922142525233, undefined, []);
 
 /**
  * let kCIInputRadius0Key: String
  * @availability iOS 26.0+
  */
-export const kCIInputRadius0Key: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2584893179739742, undefined, []);
+export const kCIInputRadius0Key: string = callSDK<string>("CoreImage_3864e7f38681b875", 2584893179739742, undefined, []);
 
 /**
  * let kCIInputRadius1Key: String
  * @availability iOS 26.0+
  */
-export const kCIInputRadius1Key: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3525833165903563, undefined, []);
+export const kCIInputRadius1Key: string = callSDK<string>("CoreImage_3864e7f38681b875", 3525833165903563, undefined, []);
 
 /**
  * let kCIInputRadiusKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputRadiusKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1803640555703956, undefined, []);
+export const kCIInputRadiusKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 1803640555703956, undefined, []);
 
 /**
  * let kCIInputRefractionKey: String
  * @availability iOS 9.0+
  */
-export const kCIInputRefractionKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2573055846989652, undefined, []);
+export const kCIInputRefractionKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 2573055846989652, undefined, []);
 
 /**
  * let kCIInputSaturationKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputSaturationKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4274612326531178, undefined, []);
+export const kCIInputSaturationKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 4274612326531178, undefined, []);
 
 /**
  * let kCIInputScaleKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputScaleKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1936993937196359, undefined, []);
+export const kCIInputScaleKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 1936993937196359, undefined, []);
 
 /**
  * let kCIInputShadingImageKey: String
  * @availability iOS 9.0+
  */
-export const kCIInputShadingImageKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4193370167149265, undefined, []);
+export const kCIInputShadingImageKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 4193370167149265, undefined, []);
 
 /**
  * let kCIInputSharpnessKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputSharpnessKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3801660058239607, undefined, []);
+export const kCIInputSharpnessKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 3801660058239607, undefined, []);
 
 /**
  * let kCIInputTargetImageKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputTargetImageKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1160723265800667, undefined, []);
+export const kCIInputTargetImageKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 1160723265800667, undefined, []);
 
 /**
  * let kCIInputThresholdKey: String
  * @availability iOS 26.0+
  */
-export const kCIInputThresholdKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4232632117988633, undefined, []);
+export const kCIInputThresholdKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 4232632117988633, undefined, []);
 
 /**
  * let kCIInputTimeKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputTimeKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4315061256437772, undefined, []);
+export const kCIInputTimeKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 4315061256437772, undefined, []);
 
 /**
  * let kCIInputTransformKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputTransformKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1936465794416073, undefined, []);
+export const kCIInputTransformKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 1936465794416073, undefined, []);
 
 /**
  * let kCIInputVersionKey: String
  * @availability iOS 6.0+
  */
-export const kCIInputVersionKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3950771269214119, undefined, []);
+export const kCIInputVersionKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 3950771269214119, undefined, []);
 
 /**
  * let kCIInputWeightsKey: String
  * @availability iOS 9.0+
  */
-export const kCIInputWeightsKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3363144548979547, undefined, []);
+export const kCIInputWeightsKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 3363144548979547, undefined, []);
 
 /**
  * let kCIInputWidthKey: String
  * @availability iOS 7.0+
  */
-export const kCIInputWidthKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2009936606667430, undefined, []);
+export const kCIInputWidthKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 2009936606667430, undefined, []);
 
 /**
  * let kCIOutputImageKey: String
  * @availability iOS 5.0+
  */
-export const kCIOutputImageKey: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 916948055914447, undefined, []);
+export const kCIOutputImageKey: string = callSDK<string>("CoreImage_3864e7f38681b875", 916948055914447, undefined, []);
 
 /**
  * let kCISamplerAffineMatrix: String
  * @availability iOS 9.0+
  */
-export const kCISamplerAffineMatrix: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 70152386836070, undefined, []);
+export const kCISamplerAffineMatrix: string = callSDK<string>("CoreImage_3864e7f38681b875", 70152386836070, undefined, []);
 
 /**
  * let kCISamplerColorSpace: String
  * @availability iOS 9.0+
  */
-export const kCISamplerColorSpace: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 421752625540595, undefined, []);
+export const kCISamplerColorSpace: string = callSDK<string>("CoreImage_3864e7f38681b875", 421752625540595, undefined, []);
 
 /**
  * let kCISamplerFilterLinear: String
  * @availability iOS 9.0+
  */
-export const kCISamplerFilterLinear: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 659437093518700, undefined, []);
+export const kCISamplerFilterLinear: string = callSDK<string>("CoreImage_3864e7f38681b875", 659437093518700, undefined, []);
 
 /**
  * let kCISamplerFilterMode: String
  * @availability iOS 9.0+
  */
-export const kCISamplerFilterMode: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 959953076741395, undefined, []);
+export const kCISamplerFilterMode: string = callSDK<string>("CoreImage_3864e7f38681b875", 959953076741395, undefined, []);
 
 /**
  * let kCISamplerFilterNearest: String
  * @availability iOS 9.0+
  */
-export const kCISamplerFilterNearest: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 499607879135640, undefined, []);
+export const kCISamplerFilterNearest: string = callSDK<string>("CoreImage_3864e7f38681b875", 499607879135640, undefined, []);
 
 /**
  * let kCISamplerWrapBlack: String
  * @availability iOS 9.0+
  */
-export const kCISamplerWrapBlack: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4025520809625789, undefined, []);
+export const kCISamplerWrapBlack: string = callSDK<string>("CoreImage_3864e7f38681b875", 4025520809625789, undefined, []);
 
 /**
  * let kCISamplerWrapClamp: String
  * @availability iOS 9.0+
  */
-export const kCISamplerWrapClamp: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2963371062745545, undefined, []);
+export const kCISamplerWrapClamp: string = callSDK<string>("CoreImage_3864e7f38681b875", 2963371062745545, undefined, []);
 
 /**
  * let kCISamplerWrapMode: String
  * @availability iOS 9.0+
  */
-export const kCISamplerWrapMode: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 1089937969100824, undefined, []);
+export const kCISamplerWrapMode: string = callSDK<string>("CoreImage_3864e7f38681b875", 1089937969100824, undefined, []);
 
 /**
  * let kCIUIParameterSet: String
  * @availability iOS 9.0+
  */
-export const kCIUIParameterSet: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3450865369893140, undefined, []);
+export const kCIUIParameterSet: string = callSDK<string>("CoreImage_3864e7f38681b875", 3450865369893140, undefined, []);
 
 /**
  * let kCIUISetAdvanced: String
  * @availability iOS 9.0+
  */
-export const kCIUISetAdvanced: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3779194750541603, undefined, []);
+export const kCIUISetAdvanced: string = callSDK<string>("CoreImage_3864e7f38681b875", 3779194750541603, undefined, []);
 
 /**
  * let kCIUISetBasic: String
  * @availability iOS 9.0+
  */
-export const kCIUISetBasic: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 3423514103213402, undefined, []);
+export const kCIUISetBasic: string = callSDK<string>("CoreImage_3864e7f38681b875", 3423514103213402, undefined, []);
 
 /**
  * let kCIUISetDevelopment: String
  * @availability iOS 9.0+
  */
-export const kCIUISetDevelopment: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 4249528452607694, undefined, []);
+export const kCIUISetDevelopment: string = callSDK<string>("CoreImage_3864e7f38681b875", 4249528452607694, undefined, []);
 
 /**
  * let kCIUISetIntermediate: String
  * @availability iOS 9.0+
  */
-export const kCIUISetIntermediate: string = callSDK<string>("CoreImage_ff42ce03e691ab23", 2741704768569586, undefined, []);
+export const kCIUISetIntermediate: string = callSDK<string>("CoreImage_3864e7f38681b875", 2741704768569586, undefined, []);
 
 /** var COREIMAGE_SUPPORTS_IOSURFACE: Int32 { get } */
-export const COREIMAGE_SUPPORTS_IOSURFACE: number = callSDK<number>("CoreImage_ff42ce03e691ab23", 428101560904852, undefined, []);
+export const COREIMAGE_SUPPORTS_IOSURFACE: number = callSDK<number>("CoreImage_3864e7f38681b875", 428101560904852, undefined, []);
 
 /** var COREIMAGE_SUPPORTS_OPENGLES: Int32 { get } */
-export const COREIMAGE_SUPPORTS_OPENGLES: number = callSDK<number>("CoreImage_ff42ce03e691ab23", 57788556529315, undefined, []);
+export const COREIMAGE_SUPPORTS_OPENGLES: number = callSDK<number>("CoreImage_3864e7f38681b875", 57788556529315, undefined, []);
 
 /** var UNIFIED_CORE_IMAGE: Int32 { get } */
-export const UNIFIED_CORE_IMAGE: number = callSDK<number>("CoreImage_ff42ce03e691ab23", 3466407735733198, undefined, []);
+export const UNIFIED_CORE_IMAGE: number = callSDK<number>("CoreImage_3864e7f38681b875", 3466407735733198, undefined, []);
 
-registerSDKClass("CIBarcodeDescriptor", CIBarcodeDescriptor, { module: "CoreImage_ff42ce03e691ab23", properties: {} });
-registerSDKClass("CIAztecCodeDescriptor", CIAztecCodeDescriptor, { module: "CoreImage_ff42ce03e691ab23", properties: {"dataCodewordCount":1807689904874114,"errorCorrectedPayload":1964684476692715,"isCompact":6937796905479,"layerCount":647384171752410} });
-registerSDKClass("CIKernel", CIKernel, { module: "CoreImage_ff42ce03e691ab23", properties: {"name":3810008604922214} });
-registerSDKClass("CIColorKernel", CIColorKernel, { module: "CoreImage_ff42ce03e691ab23", properties: {}, methods: {"apply":{"id":2591408789704640}} });
-registerSDKClass("CIBlendKernel", CIBlendKernel, { module: "CoreImage_ff42ce03e691ab23", properties: {}, methods: {"applyForegroundBackground":{"id":429083586321870},"applyForegroundBackgroundColorSpace":{"id":3273660505596510}} });
-registerSDKClass("CIColor", CIColor, { module: "CoreImage_ff42ce03e691ab23", properties: {"alpha":1036225163192565,"blue80112":223095363396709,"colorSpace":4382081763230253,"components":4252827730009362,"green44967":1455218267581377,"numberOfComponents":2662101141389416,"red50843":1746273923920670,"stringRepresentation":3512713464169494} });
-registerSDKClass("CIContext", CIContext, { module: "CoreImage_ff42ce03e691ab23", properties: {"workingColorSpace":415630791047197,"workingFormat":45124358896584}, methods: {"heif10Representation":{"id":721908031092835},"heifRepresentation":{"id":4490346051728052},"jpegRepresentation":{"id":2361179897919016},"openEXRRepresentation":{"id":4321294321191806},"pngRepresentation":{"id":3745508329020783},"tiffRepresentation":{"id":148756449274693},"calculateHDRStatsFor":{"id":2828431643946655},"calculateHDRStatsFor85938":{"id":3762248339359964},"calculateHDRStatsFor62120":{"id":817674201232447},"calculateHDRStatsFor78106":{"id":1461981969491657},"clearCaches":{"id":2639124786955740},"createCGImageFrom":{"id":938758886336401},"createCGImageFromFormatColorSpace":{"id":1938596105323907},"createCGImageFromFormatColorSpaceDeferred":{"id":4329315939086314},"createCGImageFromFormatColorSpaceDeferredCalculateHDRStats":{"id":768847568020708},"depthBlurEffectFilterForDisparityImagePortraitEffectsMatteHairSemanticSegmentationGlassesMatteGainMapOrientationOptions":{"id":1313032866025325},"depthBlurEffectFilterForDisparityImagePortraitEffectsMatteHairSemanticSegmentationOrientationOptions":{"id":2515712904142808},"depthBlurEffectFilterForDisparityImagePortraitEffectsMatteOrientationOptions":{"id":3174554053346089},"depthBlurEffectFilterForImageDataOptions":{"id":924131445192601},"depthBlurEffectFilterForImageURLOptions":{"id":2261642649887121},"draw":{"id":1014788893032110},"estimateRender":{"id":4110767782992417},"inputImageMaximumSize":{"id":1897685473627259},"outputImageMaximumSize":{"id":1324231197712576},"prepareRender":{"id":932252644390918},"renderToBitmapRowBytesBoundsFormatColorSpace":{"id":3707910918853677},"renderTo":{"id":3210699879489045},"renderToBoundsColorSpace":{"id":2182589519612118},"renderToBoundsColorSpace89905":{"id":2396362455966293},"renderToCommandBufferBoundsColorSpace":{"id":928784887084534},"startTaskToClear":{"id":1281662242788910},"startTaskToRenderFromToAt":{"id":2861005532193955},"startTaskToRenderTo":{"id":2912441547196549},"writeHEIF10Representation":{"id":3708892136379497},"writeHEIFRepresentation":{"id":2656469965209715},"writeJPEGRepresentation":{"id":1742412888290730},"writeOpenEXRRepresentation":{"id":1007147711523403},"writePNGRepresentation":{"id":2671036326026379},"writeTIFFRepresentation":{"id":3120825543615071}} });
-registerSDKClass("CIDataMatrixCodeDescriptor", CIDataMatrixCodeDescriptor, { module: "CoreImage_ff42ce03e691ab23", properties: {"columnCount":2884414321270826,"eccVersion":1319308204503447,"errorCorrectedPayload":3947081047196173,"rowCount":1464427059481565} });
-registerSDKClass("CIDetector", CIDetector, { module: "CoreImage_ff42ce03e691ab23", properties: {}, methods: {"featuresIn":{"id":413063664683355},"featuresInOptions":{"id":2249788729074438}} });
-registerSDKClass("CIFeature", CIFeature, { module: "CoreImage_ff42ce03e691ab23", properties: {"bounds":3852613149932481,"type":2696851950501402} });
-registerSDKClass("CIFaceFeature", CIFaceFeature, { module: "CoreImage_ff42ce03e691ab23", properties: {"bounds":203427202711552,"faceAngle":1359734003695766,"hasFaceAngle":684802820824088,"hasLeftEyePosition":2518452018633328,"hasMouthPosition":1589480970041337,"hasRightEyePosition":2569521518083759,"hasSmile":2510561327603978,"hasTrackingFrameCount":1903250076203601,"hasTrackingID":4242543418506305,"leftEyeClosed":3828255736926710,"leftEyePosition":1819319845638953,"mouthPosition":4378445018218403,"rightEyeClosed":2755227913423403,"rightEyePosition":128172345899391,"trackingFrameCount":3105150474278363,"trackingID":4207624322803465} });
-registerSDKClass("CIFilter", CIFilter, { module: "CoreImage_ff42ce03e691ab23", properties: {"attributes":920515300754379,"inputKeys":2094942884785754,"name":1054327743274773,"outputImage":3693911128251630,"outputKeys":3723420971018858}, methods: {"setDefaults":{"id":4025799078527178}} });
+registerSDKClass("CIBarcodeDescriptor", CIBarcodeDescriptor, { module: "CoreImage_3864e7f38681b875", properties: {} });
+registerSDKClass("CIAztecCodeDescriptor", CIAztecCodeDescriptor, { module: "CoreImage_3864e7f38681b875", properties: {"dataCodewordCount":1807689904874114,"errorCorrectedPayload":1964684476692715,"isCompact":6937796905479,"layerCount":647384171752410} });
+registerSDKClass("CIKernel", CIKernel, { module: "CoreImage_3864e7f38681b875", properties: {"name":3810008604922214} });
+registerSDKClass("CIColorKernel", CIColorKernel, { module: "CoreImage_3864e7f38681b875", properties: {}, methods: {"apply":{"id":2591408789704640}} });
+registerSDKClass("CIBlendKernel", CIBlendKernel, { module: "CoreImage_3864e7f38681b875", properties: {}, methods: {"applyForegroundBackground":{"id":429083586321870},"applyForegroundBackgroundColorSpace":{"id":3273660505596510}} });
+registerSDKClass("CIColor", CIColor, { module: "CoreImage_3864e7f38681b875", properties: {"alpha":1036225163192565,"blue80112":223095363396709,"colorSpace":4382081763230253,"components":4252827730009362,"green44967":1455218267581377,"numberOfComponents":2662101141389416,"red50843":1746273923920670,"stringRepresentation":3512713464169494} });
+registerSDKClass("CIContext", CIContext, { module: "CoreImage_3864e7f38681b875", properties: {"workingColorSpace":415630791047197,"workingFormat":45124358896584}, methods: {"heif10Representation":{"id":721908031092835},"heifRepresentation":{"id":4490346051728052},"jpegRepresentation":{"id":2361179897919016},"openEXRRepresentation":{"id":4321294321191806},"pngRepresentation":{"id":3745508329020783},"tiffRepresentation":{"id":148756449274693},"calculateHDRStatsFor":{"id":2828431643946655},"calculateHDRStatsFor85938":{"id":3762248339359964},"calculateHDRStatsFor62120":{"id":817674201232447},"calculateHDRStatsFor78106":{"id":1461981969491657},"clearCaches":{"id":2639124786955740},"createCGImageFrom":{"id":938758886336401},"createCGImageFromFormatColorSpace":{"id":1938596105323907},"createCGImageFromFormatColorSpaceDeferred":{"id":4329315939086314},"createCGImageFromFormatColorSpaceDeferredCalculateHDRStats":{"id":768847568020708},"depthBlurEffectFilterForDisparityImagePortraitEffectsMatteHairSemanticSegmentationGlassesMatteGainMapOrientationOptions":{"id":1313032866025325},"depthBlurEffectFilterForDisparityImagePortraitEffectsMatteHairSemanticSegmentationOrientationOptions":{"id":2515712904142808},"depthBlurEffectFilterForDisparityImagePortraitEffectsMatteOrientationOptions":{"id":3174554053346089},"depthBlurEffectFilterForImageDataOptions":{"id":924131445192601},"depthBlurEffectFilterForImageURLOptions":{"id":2261642649887121},"draw":{"id":1014788893032110},"estimateRender":{"id":4110767782992417},"inputImageMaximumSize":{"id":1897685473627259},"outputImageMaximumSize":{"id":1324231197712576},"prepareRender":{"id":932252644390918},"renderToBitmapRowBytesBoundsFormatColorSpace":{"id":3707910918853677},"renderTo":{"id":3210699879489045},"renderToBoundsColorSpace":{"id":2182589519612118},"renderToBoundsColorSpace89905":{"id":2396362455966293},"renderToCommandBufferBoundsColorSpace":{"id":928784887084534},"startTaskToClear":{"id":1281662242788910},"startTaskToRenderFromToAt":{"id":2861005532193955},"startTaskToRenderTo":{"id":2912441547196549},"writeHEIF10Representation":{"id":3708892136379497},"writeHEIFRepresentation":{"id":2656469965209715},"writeJPEGRepresentation":{"id":1742412888290730},"writeOpenEXRRepresentation":{"id":1007147711523403},"writePNGRepresentation":{"id":2671036326026379},"writeTIFFRepresentation":{"id":3120825543615071}} });
+registerSDKClass("CIDataMatrixCodeDescriptor", CIDataMatrixCodeDescriptor, { module: "CoreImage_3864e7f38681b875", properties: {"columnCount":2884414321270826,"eccVersion":1319308204503447,"errorCorrectedPayload":3947081047196173,"rowCount":1464427059481565} });
+registerSDKClass("CIDetector", CIDetector, { module: "CoreImage_3864e7f38681b875", properties: {}, methods: {"featuresIn":{"id":413063664683355},"featuresInOptions":{"id":2249788729074438}} });
+registerSDKClass("CIFeature", CIFeature, { module: "CoreImage_3864e7f38681b875", properties: {"bounds":3852613149932481,"type":2696851950501402} });
+registerSDKClass("CIFaceFeature", CIFaceFeature, { module: "CoreImage_3864e7f38681b875", properties: {"bounds":203427202711552,"faceAngle":1359734003695766,"hasFaceAngle":684802820824088,"hasLeftEyePosition":2518452018633328,"hasMouthPosition":1589480970041337,"hasRightEyePosition":2569521518083759,"hasSmile":2510561327603978,"hasTrackingFrameCount":1903250076203601,"hasTrackingID":4242543418506305,"leftEyeClosed":3828255736926710,"leftEyePosition":1819319845638953,"mouthPosition":4378445018218403,"rightEyeClosed":2755227913423403,"rightEyePosition":128172345899391,"trackingFrameCount":3105150474278363,"trackingID":4207624322803465} });
+registerSDKClass("CIFilter", CIFilter, { module: "CoreImage_3864e7f38681b875", properties: {"attributes":920515300754379,"inputKeys":2094942884785754,"name":1054327743274773,"outputImage":3693911128251630,"outputKeys":3723420971018858}, methods: {"setDefaults":{"id":4025799078527178}} });
 registerSDKProtocol("c:objc(pl)CIFilterConstructor", {"filterWithName":"filter(withName:)"});
 registerSDKProtocol("c:objc(pl)CIFilter", {});
-registerSDKClass("CIFilterShape", CIFilterShape, { module: "CoreImage_ff42ce03e691ab23", properties: {"extent":1427219778582121}, methods: {"insetBy":{"id":2446298143754796},"intersectWith":{"id":4187069511050241},"intersectWith98276":{"id":1619602508307508},"transform":{"id":2955333208599767},"unionWith":{"id":391792762065394},"unionWith85338":{"id":100109135866127}} });
-registerSDKClass("CIImage", CIImage, { module: "CoreImage_ff42ce03e691ab23", properties: {"cgImage":151570558091225,"colorSpace":838859200289314,"contentAverageLightLevel":3256528848054221,"contentHeadroom":2917433983722357,"depthData":527740697036895,"extent":1102446300434521,"metalTexture":1254255066465596,"isOpaque":1721999705507567,"pixelBuffer":1402923063819102,"portraitEffectsMatte":168513863841536,"properties":1711827582677399,"semanticSegmentationMatte":2972532087551234,"url":4291188509881164}, methods: {"autoAdjustmentFilters":{"id":1084654104413908},"autoAdjustmentFiltersOptions":{"id":1992682682595485},"oriented":{"id":2242681367442161},"applyingFilter":{"id":1036369100693417},"applyingFilterParameters":{"id":359757847503253},"applyingGainMap":{"id":1910184023966956},"applyingGainMapHeadroom":{"id":3236857735233389},"applyingGaussianBlur":{"id":4463959782240896},"orientedForExifOrientation":{"id":3850762603734188},"transformedBy":{"id":187367439656566},"transformedByHighQualityDownsample":{"id":1928005822472680},"clampedToExtent":{"id":277212839415033},"clamped":{"id":3252167429851979},"matchedToWorkingSpace":{"id":2262362991534195},"matchedFromWorkingSpace":{"id":3078940989021631},"composited":{"id":1536719927521041},"convertingLabToWorkingSpace":{"id":1798414948296866},"convertingWorkingSpaceToLab":{"id":3448282455273859},"cropped":{"id":3849704321431140},"insertingIntermediate":{"id":1129285544836579},"insertingIntermediateCache":{"id":3705509013749054},"insertingTiledIntermediate":{"id":3822993837326661},"premultiplyingAlpha":{"id":4256566338207470},"samplingLinear":{"id":2786938491529658},"samplingNearest":{"id":413850185919656},"settingAlphaOne":{"id":4113580242078616},"settingContentAverageLightLevel":{"id":4107775814852200},"settingContentHeadroom":{"id":4141379151197231},"settingProperties":{"id":4081270804988483},"unpremultiplyingAlpha":{"id":3393573538084103},"orientationTransformFor":{"id":2074465129980129},"orientationTransformForExifOrientation":{"id":4112938933674718},"regionOfInterest":{"id":1794713720992576}} });
-registerSDKClass("CIImageAccumulator", CIImageAccumulator, { module: "CoreImage_ff42ce03e691ab23", properties: {"extent":455134284660930,"format":999266576140123}, methods: {"clear":{"id":4090887699922637},"image":{"id":551778722022793},"setImage":{"id":3609282687990300},"setImageDirtyRect":{"id":3514753482699061}} });
+registerSDKClass("CIFilterShape", CIFilterShape, { module: "CoreImage_3864e7f38681b875", properties: {"extent":1427219778582121}, methods: {"insetBy":{"id":2446298143754796},"intersectWith":{"id":4187069511050241},"intersectWith98276":{"id":1619602508307508},"transform":{"id":2955333208599767},"unionWith":{"id":391792762065394},"unionWith85338":{"id":100109135866127}} });
+registerSDKClass("CIImage", CIImage, { module: "CoreImage_3864e7f38681b875", properties: {"cgImage":151570558091225,"colorSpace":838859200289314,"contentAverageLightLevel":3256528848054221,"contentHeadroom":2917433983722357,"depthData":527740697036895,"extent":1102446300434521,"metalTexture":1254255066465596,"isOpaque":1721999705507567,"pixelBuffer":1402923063819102,"portraitEffectsMatte":168513863841536,"properties":1711827582677399,"semanticSegmentationMatte":2972532087551234,"url":4291188509881164}, methods: {"autoAdjustmentFilters":{"id":1084654104413908},"autoAdjustmentFiltersOptions":{"id":1992682682595485},"oriented":{"id":2242681367442161},"applyingFilter":{"id":1036369100693417},"applyingFilterParameters":{"id":359757847503253},"applyingGainMap":{"id":1910184023966956},"applyingGainMapHeadroom":{"id":3236857735233389},"applyingGaussianBlur":{"id":4463959782240896},"orientedForExifOrientation":{"id":3850762603734188},"transformedBy":{"id":187367439656566},"transformedByHighQualityDownsample":{"id":1928005822472680},"clampedToExtent":{"id":277212839415033},"clamped":{"id":3252167429851979},"matchedToWorkingSpace":{"id":2262362991534195},"matchedFromWorkingSpace":{"id":3078940989021631},"composited":{"id":1536719927521041},"convertingLabToWorkingSpace":{"id":1798414948296866},"convertingWorkingSpaceToLab":{"id":3448282455273859},"cropped":{"id":3849704321431140},"insertingIntermediate":{"id":1129285544836579},"insertingIntermediateCache":{"id":3705509013749054},"insertingTiledIntermediate":{"id":3822993837326661},"premultiplyingAlpha":{"id":4256566338207470},"samplingLinear":{"id":2786938491529658},"samplingNearest":{"id":413850185919656},"settingAlphaOne":{"id":4113580242078616},"settingContentAverageLightLevel":{"id":4107775814852200},"settingContentHeadroom":{"id":4141379151197231},"settingProperties":{"id":4081270804988483},"unpremultiplyingAlpha":{"id":3393573538084103},"orientationTransformFor":{"id":2074465129980129},"orientationTransformForExifOrientation":{"id":4112938933674718},"regionOfInterest":{"id":1794713720992576}} });
+registerSDKClass("CIImageAccumulator", CIImageAccumulator, { module: "CoreImage_3864e7f38681b875", properties: {"extent":455134284660930,"format":999266576140123}, methods: {"clear":{"id":4090887699922637},"image":{"id":551778722022793},"setImage":{"id":3609282687990300},"setImageDirtyRect":{"id":3514753482699061}} });
 registerSDKProtocol("c:objc(pl)CIImageProcessorInput", {});
-registerSDKClass("CIImageProcessorKernel", CIImageProcessorKernel, { module: "CoreImage_ff42ce03e691ab23", properties: {} });
+registerSDKClass("CIImageProcessorKernel", CIImageProcessorKernel, { module: "CoreImage_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)CIImageProcessorOutput", {"temporarySurfaceIdentifierFormatWidthHeight":"temporarySurface(identifier:format:width:height:)","temporaryPixelBufferIdentifierFormatWidthHeightAttributes":"temporaryPixelBuffer(identifier:format:width:height:attributes:)"});
-registerSDKClass("CIPDF417CodeDescriptor", CIPDF417CodeDescriptor, { module: "CoreImage_ff42ce03e691ab23", properties: {"columnCount":1599760746885324,"errorCorrectedPayload":894644257533863,"isCompact":1455879893023791,"rowCount":1218080443692442} });
-registerSDKClass("CIQRCodeDescriptor", CIQRCodeDescriptor, { module: "CoreImage_ff42ce03e691ab23", properties: {"errorCorrectedPayload":1628706772835090,"errorCorrectionLevel":2256256366890283,"maskPattern":2498475378576129,"symbolVersion":2699866499564963} });
-registerSDKClass("CIQRCodeFeature", CIQRCodeFeature, { module: "CoreImage_ff42ce03e691ab23", properties: {"bottomLeft":2565494008002102,"bottomRight":3703353087965134,"bounds":3012886153598280,"messageString":3655212118151299,"symbolDescriptor":3467137017840059,"topLeft":1274939886240923,"topRight":4307828114062371} });
-registerSDKClass("CIRAWFilter", CIRAWFilter, { module: "CoreImage_ff42ce03e691ab23", properties: {"baselineExposure":2093281534789616,"boostAmount":4130971929393736,"boostShadowAmount":2033685267795120,"colorNoiseReductionAmount":3743933729004494,"isColorNoiseReductionSupported":4223845105627872,"contrastAmount":2901701511211074,"isContrastSupported":4170968888811096,"decoderVersion":1881666873844452,"despeckleAmount":1140906442608393,"isDespeckleSupported":3685574303433629,"detailAmount":2197166344243460,"isDetailSupported":2423361809455753,"isDraftModeEnabled":1815685343633624,"exposure":3695393140401562,"extendedDynamicRangeAmount":4275655932302840,"isGamutMappingEnabled":4241331326481339,"isHighlightRecoveryEnabled":744627540647067,"isHighlightRecoverySupported":4259886940918706,"isLensCorrectionEnabled":3903817612131130,"isLensCorrectionSupported":2575971992271911,"linearSpaceFilter":3214325574583253,"localToneMapAmount":2277097035600635,"isLocalToneMapSupported":1949698828227872,"luminanceNoiseReductionAmount":3688420681644877,"isLuminanceNoiseReductionSupported":494750505682524,"moireReductionAmount":250453772017793,"isMoireReductionSupported":552139037485690,"nativeSize":2888519485434957,"neutralChromaticity":3848029774034962,"neutralLocation":925075626878440,"neutralTemperature":3816283384590891,"neutralTint":4171038625607899,"orientation":4227172898145761,"portraitEffectsMatte":3435571426311521,"previewImage":1949103708834660,"properties":2904273765673803,"scaleFactor":1654351454707602,"semanticSegmentationGlassesMatte":3123506688527309,"semanticSegmentationHairMatte":161031429332635,"semanticSegmentationSkinMatte":2491405308465626,"semanticSegmentationSkyMatte":2025671305346324,"semanticSegmentationTeethMatte":2052952999347291,"shadowBias":3163324131969322,"sharpnessAmount":3607071111038849,"isSharpnessSupported":3287401232674206,"supportedDecoderVersions":3722355124979930}, methods: {"downloadResources":{"id":1199199079597691,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CIRectangleFeature", CIRectangleFeature, { module: "CoreImage_ff42ce03e691ab23", properties: {"bottomLeft":2866683092890487,"bottomRight":1498789322994376,"bounds":3922569197456437,"topLeft":465579060617128,"topRight":2662413030512414} });
-registerSDKClass("CIRenderDestination", CIRenderDestination, { module: "CoreImage_ff42ce03e691ab23", properties: {"alphaMode":3028114638610708,"blendKernel":367424040280508,"blendsInDestinationColorSpace":3805010513899224,"captureTraceURL":4487422513677748,"isClamped":3100276522621371,"colorSpace":2434695198775370,"isDithered":2344233687093935,"isFlipped":2529022641823979,"height":2495020616072392,"width":2785018596398647} });
-registerSDKClass("CIRenderInfo", CIRenderInfo, { module: "CoreImage_ff42ce03e691ab23", properties: {"kernelCompileTime":1698613588093941,"kernelExecutionTime":1039126592615023,"passCount":4162004353332427,"pixelsProcessed":967975754793925} });
-registerSDKClass("CIRenderTask", CIRenderTask, { module: "CoreImage_ff42ce03e691ab23", properties: {"plannedPassCount":2112174959006710,"plannedPeakMemory":1057861177925740,"plannedPixelsOverdrawn":224356842595707,"plannedPixelsProcessed":3233883204378516}, methods: {"waitUntilCompleted":{"id":2453468065861998}} });
-registerSDKClass("CISampler", CISampler, { module: "CoreImage_ff42ce03e691ab23", properties: {"definition":1857538738748680,"extent":3326707850741990} });
-registerSDKClass("CITextFeature", CITextFeature, { module: "CoreImage_ff42ce03e691ab23", properties: {"bottomLeft":59212017244535,"bottomRight":4352038639729135,"bounds":2180960288118645,"subFeatures":144790750244016,"topLeft":1014988353592355,"topRight":3563873189130780} });
-registerSDKClass("CIVector", CIVector, { module: "CoreImage_ff42ce03e691ab23", properties: {"cgAffineTransformValue":2518518873425748,"cgPointValue":3159494920792446,"cgRectValue":2138331714825647,"w":3061212557194741,"x":1194750191239297,"y":959226748157202,"z":3779070283911232,"count":3866420211997342,"stringRepresentation":847047277194034}, methods: {"value":{"id":2320984616199507}} });
-registerSDKClass("CIWarpKernel", CIWarpKernel, { module: "CoreImage_ff42ce03e691ab23", properties: {} });
-registerSDKClass("NSObject", NSObject, { module: "CoreImage_ff42ce03e691ab23", properties: {}, methods: {"provideImageData":{"id":976982836989428},"provideImage":{"id":2156759719173911}} }, true);
-registerSDKClass("NSUserActivity", NSUserActivity, { module: "CoreImage_ff42ce03e691ab23", properties: {"detectedBarcodeDescriptor":1762098043060866} }, true);
+registerSDKClass("CIPDF417CodeDescriptor", CIPDF417CodeDescriptor, { module: "CoreImage_3864e7f38681b875", properties: {"columnCount":1599760746885324,"errorCorrectedPayload":894644257533863,"isCompact":1455879893023791,"rowCount":1218080443692442} });
+registerSDKClass("CIQRCodeDescriptor", CIQRCodeDescriptor, { module: "CoreImage_3864e7f38681b875", properties: {"errorCorrectedPayload":1628706772835090,"errorCorrectionLevel":2256256366890283,"maskPattern":2498475378576129,"symbolVersion":2699866499564963} });
+registerSDKClass("CIQRCodeFeature", CIQRCodeFeature, { module: "CoreImage_3864e7f38681b875", properties: {"bottomLeft":2565494008002102,"bottomRight":3703353087965134,"bounds":3012886153598280,"messageString":3655212118151299,"symbolDescriptor":3467137017840059,"topLeft":1274939886240923,"topRight":4307828114062371} });
+registerSDKClass("CIRAWFilter", CIRAWFilter, { module: "CoreImage_3864e7f38681b875", properties: {"baselineExposure":2093281534789616,"boostAmount":4130971929393736,"boostShadowAmount":2033685267795120,"colorNoiseReductionAmount":3743933729004494,"isColorNoiseReductionSupported":4223845105627872,"contrastAmount":2901701511211074,"isContrastSupported":4170968888811096,"decoderVersion":1881666873844452,"despeckleAmount":1140906442608393,"isDespeckleSupported":3685574303433629,"detailAmount":2197166344243460,"isDetailSupported":2423361809455753,"isDraftModeEnabled":1815685343633624,"exposure":3695393140401562,"extendedDynamicRangeAmount":4275655932302840,"isGamutMappingEnabled":4241331326481339,"isHighlightRecoveryEnabled":744627540647067,"isHighlightRecoverySupported":4259886940918706,"isLensCorrectionEnabled":3903817612131130,"isLensCorrectionSupported":2575971992271911,"linearSpaceFilter":3214325574583253,"localToneMapAmount":2277097035600635,"isLocalToneMapSupported":1949698828227872,"luminanceNoiseReductionAmount":3688420681644877,"isLuminanceNoiseReductionSupported":494750505682524,"moireReductionAmount":250453772017793,"isMoireReductionSupported":552139037485690,"nativeSize":2888519485434957,"neutralChromaticity":3848029774034962,"neutralLocation":925075626878440,"neutralTemperature":3816283384590891,"neutralTint":4171038625607899,"orientation":4227172898145761,"portraitEffectsMatte":3435571426311521,"previewImage":1949103708834660,"properties":2904273765673803,"scaleFactor":1654351454707602,"semanticSegmentationGlassesMatte":3123506688527309,"semanticSegmentationHairMatte":161031429332635,"semanticSegmentationSkinMatte":2491405308465626,"semanticSegmentationSkyMatte":2025671305346324,"semanticSegmentationTeethMatte":2052952999347291,"shadowBias":3163324131969322,"sharpnessAmount":3607071111038849,"isSharpnessSupported":3287401232674206,"supportedDecoderVersions":3722355124979930}, methods: {"downloadResources":{"id":1199199079597691,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CIRectangleFeature", CIRectangleFeature, { module: "CoreImage_3864e7f38681b875", properties: {"bottomLeft":2866683092890487,"bottomRight":1498789322994376,"bounds":3922569197456437,"topLeft":465579060617128,"topRight":2662413030512414} });
+registerSDKClass("CIRenderDestination", CIRenderDestination, { module: "CoreImage_3864e7f38681b875", properties: {"alphaMode":3028114638610708,"blendKernel":367424040280508,"blendsInDestinationColorSpace":3805010513899224,"captureTraceURL":4487422513677748,"isClamped":3100276522621371,"colorSpace":2434695198775370,"isDithered":2344233687093935,"isFlipped":2529022641823979,"height":2495020616072392,"width":2785018596398647} });
+registerSDKClass("CIRenderInfo", CIRenderInfo, { module: "CoreImage_3864e7f38681b875", properties: {"kernelCompileTime":1698613588093941,"kernelExecutionTime":1039126592615023,"passCount":4162004353332427,"pixelsProcessed":967975754793925} });
+registerSDKClass("CIRenderTask", CIRenderTask, { module: "CoreImage_3864e7f38681b875", properties: {"plannedPassCount":2112174959006710,"plannedPeakMemory":1057861177925740,"plannedPixelsOverdrawn":224356842595707,"plannedPixelsProcessed":3233883204378516}, methods: {"waitUntilCompleted":{"id":2453468065861998}} });
+registerSDKClass("CISampler", CISampler, { module: "CoreImage_3864e7f38681b875", properties: {"definition":1857538738748680,"extent":3326707850741990} });
+registerSDKClass("CITextFeature", CITextFeature, { module: "CoreImage_3864e7f38681b875", properties: {"bottomLeft":59212017244535,"bottomRight":4352038639729135,"bounds":2180960288118645,"subFeatures":144790750244016,"topLeft":1014988353592355,"topRight":3563873189130780} });
+registerSDKClass("CIVector", CIVector, { module: "CoreImage_3864e7f38681b875", properties: {"cgAffineTransformValue":2518518873425748,"cgPointValue":3159494920792446,"cgRectValue":2138331714825647,"w":3061212557194741,"x":1194750191239297,"y":959226748157202,"z":3779070283911232,"count":3866420211997342,"stringRepresentation":847047277194034}, methods: {"value":{"id":2320984616199507}} });
+registerSDKClass("CIWarpKernel", CIWarpKernel, { module: "CoreImage_3864e7f38681b875", properties: {} });
+registerSDKClass("NSObject", NSObject, { module: "CoreImage_3864e7f38681b875", properties: {}, methods: {"provideImageData":{"id":976982836989428},"provideImage":{"id":2156759719173911}} }, true);
+registerSDKClass("NSUserActivity", NSUserActivity, { module: "CoreImage_3864e7f38681b875", properties: {"detectedBarcodeDescriptor":1762098043060866} }, true);

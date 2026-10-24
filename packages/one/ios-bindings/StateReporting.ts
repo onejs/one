@@ -19,82 +19,82 @@ export class ReportableMetadataValue extends SDKHandle {
    * init(_ value: Date)
    * @availability iOS 27.0+
    */
-  static init(value: globalThis.Date): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 4050333993477152, undefined, [value]); }
+  static init(value: globalThis.Date): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 4050333993477152, undefined, [value]); }
   /**
    * init(_ value: CGFloat)
    * @availability iOS 27.0+
    */
-  static init12321(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 1136352822661904, undefined, [value]); }
+  static init12321(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 1136352822661904, undefined, [value]); }
   /**
    * init(_ value: String)
    * @availability iOS 27.0+
    */
-  static init35071(value: string): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 938654735080791, undefined, [value]); }
+  static init35071(value: string): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 938654735080791, undefined, [value]); }
   /**
    * init(_ value: Bool)
    * @availability iOS 27.0+
    */
-  static init81318(value: boolean): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 3694632314826241, undefined, [value]); }
+  static init81318(value: boolean): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 3694632314826241, undefined, [value]); }
   /**
    * init(_ value: Double)
    * @availability iOS 27.0+
    */
-  static init39560(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 4252278859039053, undefined, [value]); }
+  static init39560(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 4252278859039053, undefined, [value]); }
   /**
    * init(_ value: Float)
    * @availability iOS 27.0+
    */
-  static init4682(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 3171020630772382, undefined, [value]); }
+  static init4682(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 3171020630772382, undefined, [value]); }
   /**
    * init(_ value: Int)
    * @availability iOS 27.0+
    */
-  static init78325(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 1158015661358668, undefined, [value]); }
+  static init78325(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 1158015661358668, undefined, [value]); }
   /**
    * init(_ value: UInt)
    * @availability iOS 27.0+
    */
-  static init67441(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 159756108675664, undefined, [value]); }
+  static init67441(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 159756108675664, undefined, [value]); }
   /**
    * init(_ value: Int8)
    * @availability iOS 27.0+
    */
-  static init82505(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 2092113350274806, undefined, [value]); }
+  static init82505(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 2092113350274806, undefined, [value]); }
   /**
    * init(_ value: Int16)
    * @availability iOS 27.0+
    */
-  static init90161(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 2718217203912216, undefined, [value]); }
+  static init90161(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 2718217203912216, undefined, [value]); }
   /**
    * init(_ value: Int32)
    * @availability iOS 27.0+
    */
-  static init86007(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 1336018883465743, undefined, [value]); }
+  static init86007(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 1336018883465743, undefined, [value]); }
   /**
    * init(_ value: Int64)
    * @availability iOS 27.0+
    */
-  static init23348(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 4086381558375964, undefined, [value]); }
+  static init23348(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 4086381558375964, undefined, [value]); }
   /**
    * init(_ value: UInt8)
    * @availability iOS 27.0+
    */
-  static init22635(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 832138231755689, undefined, [value]); }
+  static init22635(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 832138231755689, undefined, [value]); }
   /**
    * init(_ value: UInt16)
    * @availability iOS 27.0+
    */
-  static init32571(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 874442085037104, undefined, [value]); }
+  static init32571(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 874442085037104, undefined, [value]); }
   /**
    * init(_ value: UInt32)
    * @availability iOS 27.0+
    */
-  static init73709(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 2917790447301761, undefined, [value]); }
+  static init73709(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 2917790447301761, undefined, [value]); }
   /**
    * init(_ value: UInt64)
    * @availability iOS 27.0+
    */
-  static init92134(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_ff42ce03e691ab23", 4069140208032625, undefined, [value]); }
+  static init92134(value: number): ReportableMetadataValue { return callSDK<ReportableMetadataValue>("StateReporting_3864e7f38681b875", 4069140208032625, undefined, [value]); }
   declare readonly $type: { "s:14StateReporting23ReportableMetadataValueO": true };
 }
 
@@ -107,15 +107,15 @@ export class StateReporter<StableMetadata = unknown, VolatileMetadata = unknown>
    * final func reportTransition(to stateLabel: String?, stableMetadata: StableMetadata? = nil, volatileMetadata: VolatileMetadata? = nil)
    * @availability iOS 27.0+
    */
-  reportTransition(stateLabel?: (string) | null): void { return callSDK<void>("StateReporting_ff42ce03e691ab23", 2266786216688440, this, [stateLabel]); }
+  reportTransition(stateLabel?: (string) | null): void { return callSDK<void>("StateReporting_3864e7f38681b875", 2266786216688440, this, [stateLabel]); }
   /**
    * final let domain: String
    * @availability iOS 27.0+
    */
-  get domain(): string { return callSDK<string>("StateReporting_ff42ce03e691ab23", 232829200395476, this, []); }
+  get domain(): string { return callSDK<string>("StateReporting_3864e7f38681b875", 232829200395476, this, []); }
   declare readonly $type: { "s:14StateReporting0A8ReporterC": true };
 }
 
 registerSDKProtocol("s:14StateReporting18ReportableMetadataP", {});
-registerSDKClass("StateReporting.ReportableMetadataValue", ReportableMetadataValue, { module: "StateReporting_ff42ce03e691ab23", properties: {} });
-registerSDKClass("StateReporting.StateReporter", StateReporter, { module: "StateReporting_ff42ce03e691ab23", properties: {}, methods: {"reportTransition":{"id":2266786216688440}} });
+registerSDKClass("StateReporting.ReportableMetadataValue", ReportableMetadataValue, { module: "StateReporting_3864e7f38681b875", properties: {} });
+registerSDKClass("StateReporting.StateReporter", StateReporter, { module: "StateReporting_3864e7f38681b875", properties: {}, methods: {"reportTransition":{"id":2266786216688440}} });

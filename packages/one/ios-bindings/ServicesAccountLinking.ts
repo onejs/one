@@ -5,13 +5,13 @@ import { SDKHandle, callSDK, callSDKAsync, registerSDKClass, registerSDKProtocol
 /** struct RegistrationError */
 export class RegistrationError extends SDKHandle {
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("ServicesAccountLinking_ff42ce03e691ab23", 790891062459646, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("ServicesAccountLinking_3864e7f38681b875", 790891062459646, undefined, []); }
   /** static var notEligible: RegistrationError.Code { get } */
-  static get notEligible(): RegistrationError_Code { return callSDK<RegistrationError_Code>("ServicesAccountLinking_ff42ce03e691ab23", 3081329358242721, undefined, []); }
+  static get notEligible(): RegistrationError_Code { return callSDK<RegistrationError_Code>("ServicesAccountLinking_3864e7f38681b875", 3081329358242721, undefined, []); }
   /** static var rateLimited: RegistrationError.Code { get } */
-  static get rateLimited(): RegistrationError_Code { return callSDK<RegistrationError_Code>("ServicesAccountLinking_ff42ce03e691ab23", 1197610325971099, undefined, []); }
+  static get rateLimited(): RegistrationError_Code { return callSDK<RegistrationError_Code>("ServicesAccountLinking_3864e7f38681b875", 1197610325971099, undefined, []); }
   /** static var failed: RegistrationError.Code { get } */
-  static get failed(): RegistrationError_Code { return callSDK<RegistrationError_Code>("ServicesAccountLinking_ff42ce03e691ab23", 3996381641580755, undefined, []); }
+  static get failed(): RegistrationError_Code { return callSDK<RegistrationError_Code>("ServicesAccountLinking_3864e7f38681b875", 3996381641580755, undefined, []); }
   declare readonly $type: { "s:SC20SALRegistrationErrorLeV": true };
 }
 
@@ -20,7 +20,7 @@ export type RegistrationError_Code = "notEligible" | "failed" | "rateLimited";
 
 export const RegistrationError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (RegistrationError_Code) | null { return callSDK<(RegistrationError_Code) | null>("ServicesAccountLinking_ff42ce03e691ab23", 1012327287732313, undefined, [rawValue]); }
+  init(rawValue: number): (RegistrationError_Code) | null { return callSDK<(RegistrationError_Code) | null>("ServicesAccountLinking_3864e7f38681b875", 1012327287732313, undefined, [rawValue]); }
 };
 
 /** struct ResellerAccount */
@@ -30,23 +30,23 @@ export class ResellerAccount extends SDKHandle {
   static func registerToken(_ token: String) async throws
    * @availability iOS 16.4+
    */
-  static registerToken(token: string): Promise<void> { return callSDKAsync<void>("ServicesAccountLinking_ff42ce03e691ab23", 2183390127824522, undefined, [token]); }
+  static registerToken(token: string): Promise<void> { return callSDKAsync<void>("ServicesAccountLinking_3864e7f38681b875", 2183390127824522, undefined, [token]); }
   /**
    * @backDeployed(before: iOS 26.2)
   static func registerIdentifier(_ identifier: String) async throws
    * @availability iOS 16.4+
    */
-  static registerIdentifier(identifier: string): Promise<void> { return callSDKAsync<void>("ServicesAccountLinking_ff42ce03e691ab23", 2309896949617225, undefined, [identifier]); }
+  static registerIdentifier(identifier: string): Promise<void> { return callSDKAsync<void>("ServicesAccountLinking_3864e7f38681b875", 2309896949617225, undefined, [identifier]); }
   /** init() */
-  static init(): ResellerAccount { return callSDK<ResellerAccount>("ServicesAccountLinking_ff42ce03e691ab23", 3875786976091657, undefined, []); }
+  static init(): ResellerAccount { return callSDK<ResellerAccount>("ServicesAccountLinking_3864e7f38681b875", 3875786976091657, undefined, []); }
   declare readonly $type: { "c:@SA@SALResellerAccount": true };
 }
 
 /** let RegistrationErrorDomain: String */
-export const RegistrationErrorDomain: string = callSDK<string>("ServicesAccountLinking_ff42ce03e691ab23", 3807705712576401, undefined, []);
+export const RegistrationErrorDomain: string = callSDK<string>("ServicesAccountLinking_3864e7f38681b875", 3807705712576401, undefined, []);
 
 /** let RegistrationErrorRetryAfterKey: String */
-export const RegistrationErrorRetryAfterKey: string = callSDK<string>("ServicesAccountLinking_ff42ce03e691ab23", 1279403638765663, undefined, []);
+export const RegistrationErrorRetryAfterKey: string = callSDK<string>("ServicesAccountLinking_3864e7f38681b875", 1279403638765663, undefined, []);
 
-registerSDKClass("ServicesAccountLinking.RegistrationError", RegistrationError, { module: "ServicesAccountLinking_ff42ce03e691ab23", properties: {} });
-registerSDKClass("ServicesAccountLinking.ResellerAccount", ResellerAccount, { module: "ServicesAccountLinking_ff42ce03e691ab23", properties: {} });
+registerSDKClass("ServicesAccountLinking.RegistrationError", RegistrationError, { module: "ServicesAccountLinking_3864e7f38681b875", properties: {} });
+registerSDKClass("ServicesAccountLinking.ResellerAccount", ResellerAccount, { module: "ServicesAccountLinking_3864e7f38681b875", properties: {} });

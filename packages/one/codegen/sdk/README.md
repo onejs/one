@@ -128,11 +128,11 @@ Removing the declarations and restoring the previous manifest from an otherwise
 identical deterministic gzip package archive reduced it by 2,657,605 bytes. The
 complete local npm archive was 11,232,074 bytes compressed and 77,652,081 unpacked.
 
-The package build lowers generated class and value members to compact tables.
-The shared materializer installs the same descriptors, fixed argument slots,
-Swift identities and observation/background-call metadata before the framework's
-existing registration calls run. Out-pointer signatures retain their generated
-bodies. The native runtime includes the materializer in its existing module,
-so the native module count stays unchanged. Published JavaScript omits comments;
-editor documentation stays in `ios-types`. Both the native package exports and
-One's Metro/Vite resolvers load these same compiled files.
+The package build strips types and comments from native facades and shares
+repeated framework prefixes through fixed call helpers. Class and member syntax
+stays intact, so JavaScript creates the descriptors and names directly. The
+native module count and eager framework registration stay unchanged. Editor
+documentation stays in `ios-types`. Both native package exports and One's
+Metro/Vite resolvers load these same compiled files. Native output remains ESM,
+letting Metro and the browser compiler emit ordinary CommonJS data exports
+without an extra export-getter layer.

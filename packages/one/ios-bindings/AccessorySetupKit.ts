@@ -19,42 +19,42 @@ type $SDK7 = (ASPropertyCompareString) | null;
  */
 export class ASAccessory extends SDKHandle {
   /** init() */
-  static init(): ASAccessory { return callSDK<ASAccessory>("AccessorySetupKit_ff42ce03e691ab23", 3669024516710039, undefined, []); }
+  static init(): ASAccessory { return callSDK<ASAccessory>("AccessorySetupKit_3864e7f38681b875", 3669024516710039, undefined, []); }
   /**
    * var ssid: String? { get }
    * @availability iOS 18.0+
    */
-  get ssid(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_ff42ce03e691ab23", 2914734530532972, this, []); }
+  get ssid(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_3864e7f38681b875", 2914734530532972, this, []); }
   /**
    * var bluetoothIdentifier: UUID? { get }
    * @availability iOS 18.0+
    */
-  get bluetoothIdentifier(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_ff42ce03e691ab23", 1911175871666637, this, []); }
+  get bluetoothIdentifier(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_3864e7f38681b875", 1911175871666637, this, []); }
   /**
    * var bluetoothTransportBridgingIdentifier: Data? { get }
    * @availability iOS 18.0+
    */
-  get bluetoothTransportBridgingIdentifier(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AccessorySetupKit_ff42ce03e691ab23", 1103404994235907, this, []); }
+  get bluetoothTransportBridgingIdentifier(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AccessorySetupKit_3864e7f38681b875", 1103404994235907, this, []); }
   /**
    * @NSCopying var descriptor: ASDiscoveryDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): ASDiscoveryDescriptor { return callSDK<ASDiscoveryDescriptor>("AccessorySetupKit_ff42ce03e691ab23", 7373525458804, this, []); }
+  get descriptor(): ASDiscoveryDescriptor { return callSDK<ASDiscoveryDescriptor>("AccessorySetupKit_3864e7f38681b875", 7373525458804, this, []); }
   /**
    * var displayName: String { get }
    * @availability iOS 18.0+
    */
-  get displayName(): string { return callSDK<string>("AccessorySetupKit_ff42ce03e691ab23", 1602967468563506, this, []); }
+  get displayName(): string { return callSDK<string>("AccessorySetupKit_3864e7f38681b875", 1602967468563506, this, []); }
   /**
    * var state: ASAccessory.AccessoryState { get }
    * @availability iOS 18.0+
    */
-  get state(): ASAccessory_AccessoryState { return callSDK<ASAccessory_AccessoryState>("AccessorySetupKit_ff42ce03e691ab23", 1768942552787339, this, []); }
+  get state(): ASAccessory_AccessoryState { return callSDK<ASAccessory_AccessoryState>("AccessorySetupKit_3864e7f38681b875", 1768942552787339, this, []); }
   /**
    * var wifiAwarePairedDeviceID: ASAccessory.WiFiAwarePairedDeviceID { get }
    * @availability iOS 26.0+
    */
-  get wifiAwarePairedDeviceID(): number { return callSDK<number>("AccessorySetupKit_ff42ce03e691ab23", 1374554358110187, this, []); }
+  get wifiAwarePairedDeviceID(): number { return callSDK<number>("AccessorySetupKit_3864e7f38681b875", 1374554358110187, this, []); }
   declare readonly $type: { "c:objc(cs)ASAccessory": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ssid": true; "bluetoothIdentifier": true; "bluetoothTransportBridgingIdentifier": true; "descriptor": true; "displayName": true; "state": true; "wifiAwarePairedDeviceID": true };
 }
@@ -64,7 +64,7 @@ export type ASAccessory_AccessoryState = "unauthorized" | "awaitingAuthorization
 
 export const ASAccessory_AccessoryState = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ASAccessory_AccessoryState) | null { return callSDK<(ASAccessory_AccessoryState) | null>("AccessorySetupKit_ff42ce03e691ab23", 804282956779045, undefined, [rawValue]); }
+  init(rawValue: number): (ASAccessory_AccessoryState) | null { return callSDK<(ASAccessory_AccessoryState) | null>("AccessorySetupKit_3864e7f38681b875", 804282956779045, undefined, [rawValue]); }
 };
 
 /** struct RenameOptions */
@@ -72,9 +72,9 @@ export type ASAccessory_RenameOptions = Array<"ssid">;
 
 export const ASAccessory_RenameOptions = {
   /** static var ssid: ASAccessory.RenameOptions { get } */
-  get ssid(): ASAccessory_RenameOptions { return callSDK<ASAccessory_RenameOptions>("AccessorySetupKit_ff42ce03e691ab23", 1749257941837886, undefined, []); },
+  get ssid(): ASAccessory_RenameOptions { return callSDK<ASAccessory_RenameOptions>("AccessorySetupKit_3864e7f38681b875", 1749257941837886, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): ASAccessory_RenameOptions { return callSDK<ASAccessory_RenameOptions>("AccessorySetupKit_ff42ce03e691ab23", 689685456475229, undefined, [rawValue]); }
+  init(rawValue: number): ASAccessory_RenameOptions { return callSDK<ASAccessory_RenameOptions>("AccessorySetupKit_3864e7f38681b875", 689685456475229, undefined, [rawValue]); }
 };
 
 /** struct SupportOptions */
@@ -85,13 +85,13 @@ export const ASAccessory_SupportOptions = {
    * static var bluetoothHID: ASAccessory.SupportOptions { get }
    * @availability iOS 18.4+
    */
-  get bluetoothHID(): ASAccessory_SupportOptions { return callSDK<ASAccessory_SupportOptions>("AccessorySetupKit_ff42ce03e691ab23", 799076908612662, undefined, []); },
+  get bluetoothHID(): ASAccessory_SupportOptions { return callSDK<ASAccessory_SupportOptions>("AccessorySetupKit_3864e7f38681b875", 799076908612662, undefined, []); },
   /** static var bluetoothPairingLE: ASAccessory.SupportOptions { get } */
-  get bluetoothPairingLE(): ASAccessory_SupportOptions { return callSDK<ASAccessory_SupportOptions>("AccessorySetupKit_ff42ce03e691ab23", 35469494966218, undefined, []); },
+  get bluetoothPairingLE(): ASAccessory_SupportOptions { return callSDK<ASAccessory_SupportOptions>("AccessorySetupKit_3864e7f38681b875", 35469494966218, undefined, []); },
   /** static var bluetoothTransportBridging: ASAccessory.SupportOptions { get } */
-  get bluetoothTransportBridging(): ASAccessory_SupportOptions { return callSDK<ASAccessory_SupportOptions>("AccessorySetupKit_ff42ce03e691ab23", 3768811544179790, undefined, []); },
+  get bluetoothTransportBridging(): ASAccessory_SupportOptions { return callSDK<ASAccessory_SupportOptions>("AccessorySetupKit_3864e7f38681b875", 3768811544179790, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): ASAccessory_SupportOptions { return callSDK<ASAccessory_SupportOptions>("AccessorySetupKit_ff42ce03e691ab23", 4136616488089376, undefined, [rawValue]); }
+  init(rawValue: number): ASAccessory_SupportOptions { return callSDK<ASAccessory_SupportOptions>("AccessorySetupKit_3864e7f38681b875", 4136616488089376, undefined, [rawValue]); }
 };
 
 /**
@@ -109,17 +109,17 @@ export class ASAccessoryEvent extends SDKHandle {
    * @NSCopying var accessory: ASAccessory? { get }
    * @availability iOS 18.0+
    */
-  get accessory(): (ASAccessory) | null { return callSDK<(ASAccessory) | null>("AccessorySetupKit_ff42ce03e691ab23", 962946711027581, this, []); }
+  get accessory(): (ASAccessory) | null { return callSDK<(ASAccessory) | null>("AccessorySetupKit_3864e7f38681b875", 962946711027581, this, []); }
   /**
    * var error: (any Error)? { get }
    * @availability iOS 18.0+
    */
-  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("AccessorySetupKit_ff42ce03e691ab23", 2395166752935271, this, []); }
+  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("AccessorySetupKit_3864e7f38681b875", 2395166752935271, this, []); }
   /**
    * var eventType: ASAccessoryEventType { get }
    * @availability iOS 18.0+
    */
-  get eventType(): ASAccessoryEventType { return callSDK<ASAccessoryEventType>("AccessorySetupKit_ff42ce03e691ab23", 4135203564523756, this, []); }
+  get eventType(): ASAccessoryEventType { return callSDK<ASAccessoryEventType>("AccessorySetupKit_3864e7f38681b875", 4135203564523756, this, []); }
   declare readonly $type: { "c:objc(cs)ASAccessoryEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessory": true; "error": true; "eventType": true };
 }
@@ -129,7 +129,7 @@ export type ASAccessoryEventType = "unknown" | "activated" | "invalidated" | "mi
 
 export const ASAccessoryEventType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ASAccessoryEventType) | null { return callSDK<(ASAccessoryEventType) | null>("AccessorySetupKit_ff42ce03e691ab23", 1162881869097504, undefined, [rawValue]); }
+  init(rawValue: number): (ASAccessoryEventType) | null { return callSDK<(ASAccessoryEventType) | null>("AccessorySetupKit_3864e7f38681b875", 1162881869097504, undefined, [rawValue]); }
 };
 
 /**
@@ -141,70 +141,70 @@ export class ASAccessorySession extends SDKHandle {
    * func activate(on queue: dispatch_queue_t, eventHandler: @escaping (ASAccessoryEvent) -> Void)
    * @availability iOS 18.0+
    */
-  activate(queue: _Dispatch_DispatchQueue, eventHandler: ((arg0: ASAccessoryEvent) => void)): void { return callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 3316706469609401, this, [queue, eventHandler], [null,{"callback":{"out":[]}}]); }
+  activate(queue: _Dispatch_DispatchQueue, eventHandler: ((arg0: ASAccessoryEvent) => void)): void { return callSDK<void>("AccessorySetupKit_3864e7f38681b875", 3316706469609401, this, [queue, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func failAuthorization(for accessory: ASAccessory) async throws
    * @availability iOS 18.0+
    */
-  failAuthorization(accessory: ASAccessory, completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 557988034788832, this, [accessory, completionHandler], [null,{"callback":{"out":[]}}]); }
+  failAuthorization(accessory: ASAccessory, completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_3864e7f38681b875", 557988034788832, this, [accessory, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func finishAuthorization(for accessory: ASAccessory, settings: ASAccessorySettings) async throws
    * @availability iOS 18.0+
    */
-  finishAuthorization(accessory: ASAccessory, settings: ASAccessorySettings, completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 1412557920475295, this, [accessory, settings, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  finishAuthorization(accessory: ASAccessory, settings: ASAccessorySettings, completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_3864e7f38681b875", 1412557920475295, this, [accessory, settings, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func finishPickerDiscovery() async throws
    * @availability iOS 26.1+
    */
-  finishPickerDiscovery(completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 1646630004332323, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  finishPickerDiscovery(completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_3864e7f38681b875", 1646630004332323, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): ASAccessorySession { return callSDK<ASAccessorySession>("AccessorySetupKit_ff42ce03e691ab23", 2472096180239154, undefined, []); }
+  static init(): ASAccessorySession { return callSDK<ASAccessorySession>("AccessorySetupKit_3864e7f38681b875", 2472096180239154, undefined, []); }
   /**
    * func invalidate()
    * @availability iOS 18.0+
    */
-  invalidate(): void { return callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 3331344564302457, this, []); }
+  invalidate(): void { return callSDK<void>("AccessorySetupKit_3864e7f38681b875", 3331344564302457, this, []); }
   /**
    * func removeAccessory(_ accessory: ASAccessory) async throws
    * @availability iOS 18.0+
    */
-  removeAccessory(accessory: ASAccessory, completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 3636755805333027, this, [accessory, completionHandler], [null,{"callback":{"out":[]}}]); }
+  removeAccessory(accessory: ASAccessory, completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_3864e7f38681b875", 3636755805333027, this, [accessory, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func renameAccessory(_ accessory: ASAccessory, options renameOptions: ASAccessory.RenameOptions = []) async throws
    * @availability iOS 18.0+
    */
-  renameAccessory(accessory: ASAccessory, renameOptions: ASAccessory_RenameOptions, completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 3986317076729587, this, [accessory, renameOptions, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  renameAccessory(accessory: ASAccessory, renameOptions: ASAccessory_RenameOptions, completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_3864e7f38681b875", 3986317076729587, this, [accessory, renameOptions, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func showPicker(for displayItems: [ASPickerDisplayItem]) async throws
    * @availability iOS 18.0+
    */
-  showPickerForCompletionHandler(displayItems: Array<ASPickerDisplayItem>, completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 2462717674960177, this, [displayItems, completionHandler], [null,{"callback":{"out":[]}}]); }
+  showPickerForCompletionHandler(displayItems: Array<ASPickerDisplayItem>, completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_3864e7f38681b875", 2462717674960177, this, [displayItems, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func showPicker() async throws
    * @availability iOS 18.0+
    */
-  showPickerCompletionHandler(completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 1368664831920709, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  showPickerCompletionHandler(completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_3864e7f38681b875", 1368664831920709, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func updateAuthorization(for accessory: ASAccessory, descriptor: ASDiscoveryDescriptor) async throws
    * @availability iOS 26.0+
    */
-  updateAuthorization(accessory: ASAccessory, descriptor: ASDiscoveryDescriptor, completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 937448948619451, this, [accessory, descriptor, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  updateAuthorization(accessory: ASAccessory, descriptor: ASDiscoveryDescriptor, completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_3864e7f38681b875", 937448948619451, this, [accessory, descriptor, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func updatePicker(showing displayItems: [ASDiscoveredDisplayItem]) async throws
    * @availability iOS 26.1+
    */
-  updatePicker(displayItems: Array<ASDiscoveredDisplayItem>, completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 2570702055769958, this, [displayItems, completionHandler], [null,{"callback":{"out":[]}}]); }
+  updatePicker(displayItems: Array<ASDiscoveredDisplayItem>, completionHandler: $SDK1): void { return callSDK<void>("AccessorySetupKit_3864e7f38681b875", 2570702055769958, this, [displayItems, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var accessories: [ASAccessory] { get }
    * @availability iOS 18.0+
    */
-  get accessories(): Array<ASAccessory> { return callSDK<Array<ASAccessory>>("AccessorySetupKit_ff42ce03e691ab23", 2114045080686353, this, []); }
+  get accessories(): Array<ASAccessory> { return callSDK<Array<ASAccessory>>("AccessorySetupKit_3864e7f38681b875", 2114045080686353, this, []); }
   /**
    * @NSCopying var pickerDisplaySettings: ASPickerDisplaySettings? { get set }
    * @availability iOS 26.0+
    */
-  get pickerDisplaySettings(): $SDK4 { return callSDK<$SDK4>("AccessorySetupKit_ff42ce03e691ab23", 3963559319671016, this, []); }
-  set pickerDisplaySettings(value: $SDK4) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 1260025131213644, this, [value]); }
+  get pickerDisplaySettings(): $SDK4 { return callSDK<$SDK4>("AccessorySetupKit_3864e7f38681b875", 3963559319671016, this, []); }
+  set pickerDisplaySettings(value: $SDK4) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 1260025131213644, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASAccessorySession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessories": true; "pickerDisplaySettings": true };
 }
@@ -218,21 +218,21 @@ export class ASAccessorySettings extends SDKHandle {
    * class var `default`: ASAccessorySettings { get }
    * @availability iOS 18.0+
    */
-  static get default(): ASAccessorySettings { return callSDK<ASAccessorySettings>("AccessorySetupKit_ff42ce03e691ab23", 4246993379218071, undefined, []); }
+  static get default(): ASAccessorySettings { return callSDK<ASAccessorySettings>("AccessorySetupKit_3864e7f38681b875", 4246993379218071, undefined, []); }
   /** init() */
-  static init(): ASAccessorySettings { return callSDK<ASAccessorySettings>("AccessorySetupKit_ff42ce03e691ab23", 3452832819099588, undefined, []); }
+  static init(): ASAccessorySettings { return callSDK<ASAccessorySettings>("AccessorySetupKit_3864e7f38681b875", 3452832819099588, undefined, []); }
   /**
    * var ssid: String? { get set }
    * @availability iOS 18.0+
    */
-  get ssid(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_ff42ce03e691ab23", 1885190037248880, this, []); }
-  set ssid(value: (string) | null) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 46256696504957, this, [value]); }
+  get ssid(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_3864e7f38681b875", 1885190037248880, this, []); }
+  set ssid(value: (string) | null) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 46256696504957, this, [value]); }
   /**
    * var bluetoothTransportBridgingIdentifier: Data? { get set }
    * @availability iOS 18.0+
    */
-  get bluetoothTransportBridgingIdentifier(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AccessorySetupKit_ff42ce03e691ab23", 2535282604464947, this, []); }
-  set bluetoothTransportBridgingIdentifier(value: (ArrayBuffer) | null) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 95166063732470, this, [value]); }
+  get bluetoothTransportBridgingIdentifier(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AccessorySetupKit_3864e7f38681b875", 2535282604464947, this, []); }
+  set bluetoothTransportBridgingIdentifier(value: (ArrayBuffer) | null) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 95166063732470, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASAccessorySettings": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ssid": true; "bluetoothTransportBridgingIdentifier": true };
 }
@@ -242,9 +242,9 @@ export type ASBluetoothCompanyIdentifier = (number & {});
 
 export const ASBluetoothCompanyIdentifier = {
   /** init(rawValue: UInt16) */
-  initRawValue(rawValue: number): ASBluetoothCompanyIdentifier { return callSDK<ASBluetoothCompanyIdentifier>("AccessorySetupKit_ff42ce03e691ab23", 2933444920728348, undefined, [rawValue]); },
+  initRawValue(rawValue: number): ASBluetoothCompanyIdentifier { return callSDK<ASBluetoothCompanyIdentifier>("AccessorySetupKit_3864e7f38681b875", 2933444920728348, undefined, [rawValue]); },
   /** init(_ rawValue: UInt16) */
-  init(rawValue: number): ASBluetoothCompanyIdentifier { return callSDK<ASBluetoothCompanyIdentifier>("AccessorySetupKit_ff42ce03e691ab23", 1564846091376364, undefined, [rawValue]); }
+  init(rawValue: number): ASBluetoothCompanyIdentifier { return callSDK<ASBluetoothCompanyIdentifier>("AccessorySetupKit_3864e7f38681b875", 1564846091376364, undefined, [rawValue]); }
 };
 
 /**
@@ -253,17 +253,17 @@ export const ASBluetoothCompanyIdentifier = {
  */
 export class ASDiscoveredAccessory extends (ASAccessory as unknown as Omit<typeof ASAccessory, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ASAccessory)) {
   /** init() */
-  static init(): ASDiscoveredAccessory { return callSDK<ASDiscoveredAccessory>("AccessorySetupKit_ff42ce03e691ab23", 3940033784157140, undefined, []); }
+  static init(): ASDiscoveredAccessory { return callSDK<ASDiscoveredAccessory>("AccessorySetupKit_3864e7f38681b875", 3940033784157140, undefined, []); }
   /**
    * var bluetoothAdvertisementData: [AnyHashable : Any]? { get }
    * @availability iOS 26.1+
    */
-  get bluetoothAdvertisementData(): (NativeMap<unknown, unknown>) | null { return callSDK<(NativeMap<unknown, unknown>) | null>("AccessorySetupKit_ff42ce03e691ab23", 1987255262472053, this, []); }
+  get bluetoothAdvertisementData(): (NativeMap<unknown, unknown>) | null { return callSDK<(NativeMap<unknown, unknown>) | null>("AccessorySetupKit_3864e7f38681b875", 1987255262472053, this, []); }
   /**
    * var bluetoothRSSI: Int? { get }
    * @availability iOS 26.1+
    */
-  get bluetoothRSSI(): (number) | null { return callSDK<(number) | null>("AccessorySetupKit_ff42ce03e691ab23", 2196802476938379, this, []); }
+  get bluetoothRSSI(): (number) | null { return callSDK<(number) | null>("AccessorySetupKit_3864e7f38681b875", 2196802476938379, this, []); }
   declare readonly $type: { "c:objc(cs)ASDiscoveredAccessory": true; "c:objc(cs)ASAccessory": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ssid": true; "bluetoothIdentifier": true; "bluetoothTransportBridgingIdentifier": true; "descriptor": true; "displayName": true; "state": true; "wifiAwarePairedDeviceID": true; "bluetoothAdvertisementData": true };
 }
@@ -277,34 +277,34 @@ export class ASPickerDisplayItem extends SDKHandle {
    * init(name: String, productImage: UIImage, descriptor: ASDiscoveryDescriptor)
    * @availability iOS 18.0+
    */
-  static init(name: string, productImage: _UIKit_UIImage, descriptor: ASDiscoveryDescriptor): ASPickerDisplayItem { return callSDK<ASPickerDisplayItem>("AccessorySetupKit_ff42ce03e691ab23", 1563780753569462, undefined, [name, productImage, descriptor]); }
+  static init(name: string, productImage: _UIKit_UIImage, descriptor: ASDiscoveryDescriptor): ASPickerDisplayItem { return callSDK<ASPickerDisplayItem>("AccessorySetupKit_3864e7f38681b875", 1563780753569462, undefined, [name, productImage, descriptor]); }
   /**
    * @NSCopying var descriptor: ASDiscoveryDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): ASDiscoveryDescriptor { return callSDK<ASDiscoveryDescriptor>("AccessorySetupKit_ff42ce03e691ab23", 830231446889925, this, []); }
+  get descriptor(): ASDiscoveryDescriptor { return callSDK<ASDiscoveryDescriptor>("AccessorySetupKit_3864e7f38681b875", 830231446889925, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 18.0+
    */
-  get name(): string { return callSDK<string>("AccessorySetupKit_ff42ce03e691ab23", 3004462384408004, this, []); }
+  get name(): string { return callSDK<string>("AccessorySetupKit_3864e7f38681b875", 3004462384408004, this, []); }
   /**
    * @NSCopying var productImage: UIImage { get }
    * @availability iOS 18.0+
    */
-  get productImage(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("AccessorySetupKit_ff42ce03e691ab23", 938446278444576, this, []); }
+  get productImage(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("AccessorySetupKit_3864e7f38681b875", 938446278444576, this, []); }
   /**
    * var renameOptions: ASAccessory.RenameOptions { get set }
    * @availability iOS 18.0+
    */
-  get renameOptions(): ASAccessory_RenameOptions { return callSDK<ASAccessory_RenameOptions>("AccessorySetupKit_ff42ce03e691ab23", 1565598114139566, this, []); }
-  set renameOptions(value: ASAccessory_RenameOptions) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 1574690967932550, this, [value]); }
+  get renameOptions(): ASAccessory_RenameOptions { return callSDK<ASAccessory_RenameOptions>("AccessorySetupKit_3864e7f38681b875", 1565598114139566, this, []); }
+  set renameOptions(value: ASAccessory_RenameOptions) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 1574690967932550, this, [value]); }
   /**
    * var setupOptions: ASPickerDisplayItem.SetupOptions { get set }
    * @availability iOS 18.0+
    */
-  get setupOptions(): ASPickerDisplayItem_SetupOptions { return callSDK<ASPickerDisplayItem_SetupOptions>("AccessorySetupKit_ff42ce03e691ab23", 2259120399957748, this, []); }
-  set setupOptions(value: ASPickerDisplayItem_SetupOptions) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 3157727552603863, this, [value]); }
+  get setupOptions(): ASPickerDisplayItem_SetupOptions { return callSDK<ASPickerDisplayItem_SetupOptions>("AccessorySetupKit_3864e7f38681b875", 2259120399957748, this, []); }
+  set setupOptions(value: ASPickerDisplayItem_SetupOptions) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 3157727552603863, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASPickerDisplayItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "descriptor": true; "name": true; "productImage": true; "renameOptions": true; "setupOptions": true };
 }
@@ -318,7 +318,7 @@ export class ASDiscoveredDisplayItem extends (ASPickerDisplayItem as unknown as 
    * init(name: String, productImage: UIImage, accessory: ASDiscoveredAccessory)
    * @availability iOS 26.1+
    */
-  static init(name: string, productImage: _UIKit_UIImage, accessory: ASDiscoveredAccessory): ASDiscoveredDisplayItem { return callSDK<ASDiscoveredDisplayItem>("AccessorySetupKit_ff42ce03e691ab23", 1800325244172867, undefined, [name, productImage, accessory]); }
+  static init(name: string, productImage: _UIKit_UIImage, accessory: ASDiscoveredAccessory): ASDiscoveredDisplayItem { return callSDK<ASDiscoveredDisplayItem>("AccessorySetupKit_3864e7f38681b875", 1800325244172867, undefined, [name, productImage, accessory]); }
   declare readonly $type: { "c:objc(cs)ASDiscoveredDisplayItem": true; "c:objc(cs)ASPickerDisplayItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "descriptor": true; "name": true; "productImage": true; "renameOptions": true; "setupOptions": true };
 }
@@ -329,103 +329,103 @@ export class ASDiscoveredDisplayItem extends (ASPickerDisplayItem as unknown as 
  */
 export class ASDiscoveryDescriptor extends SDKHandle {
   /** init() */
-  static init(): ASDiscoveryDescriptor { return callSDK<ASDiscoveryDescriptor>("AccessorySetupKit_ff42ce03e691ab23", 4169108433334716, undefined, []); }
+  static init(): ASDiscoveryDescriptor { return callSDK<ASDiscoveryDescriptor>("AccessorySetupKit_3864e7f38681b875", 4169108433334716, undefined, []); }
   /**
    * var ssid: String? { get set }
    * @availability iOS 18.0+
    */
-  get ssid(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_ff42ce03e691ab23", 2450049430829887, this, []); }
-  set ssid(value: (string) | null) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 1027267428663595, this, [value]); }
+  get ssid(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_3864e7f38681b875", 2450049430829887, this, []); }
+  set ssid(value: (string) | null) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 1027267428663595, this, [value]); }
   /**
    * var ssidPrefix: String? { get set }
    * @availability iOS 18.0+
    */
-  get ssidPrefix(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_ff42ce03e691ab23", 604557520952133, this, []); }
-  set ssidPrefix(value: (string) | null) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 3535028427516332, this, [value]); }
+  get ssidPrefix(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_3864e7f38681b875", 604557520952133, this, []); }
+  set ssidPrefix(value: (string) | null) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 3535028427516332, this, [value]); }
   /**
    * var bluetoothCompanyIdentifier: ASBluetoothCompanyIdentifier { get set }
    * @availability iOS 18.0+
    */
-  get bluetoothCompanyIdentifier(): ASBluetoothCompanyIdentifier { return callSDK<ASBluetoothCompanyIdentifier>("AccessorySetupKit_ff42ce03e691ab23", 1877538960749370, this, []); }
-  set bluetoothCompanyIdentifier(value: ASBluetoothCompanyIdentifier) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 1852369683286300, this, [value]); }
+  get bluetoothCompanyIdentifier(): ASBluetoothCompanyIdentifier { return callSDK<ASBluetoothCompanyIdentifier>("AccessorySetupKit_3864e7f38681b875", 1877538960749370, this, []); }
+  set bluetoothCompanyIdentifier(value: ASBluetoothCompanyIdentifier) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 1852369683286300, this, [value]); }
   /**
    * var bluetoothManufacturerDataBlob: Data? { get set }
    * @availability iOS 18.0+
    */
-  get bluetoothManufacturerDataBlob(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AccessorySetupKit_ff42ce03e691ab23", 2645457383436764, this, []); }
-  set bluetoothManufacturerDataBlob(value: (ArrayBuffer) | null) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 4015631736899727, this, [value]); }
+  get bluetoothManufacturerDataBlob(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AccessorySetupKit_3864e7f38681b875", 2645457383436764, this, []); }
+  set bluetoothManufacturerDataBlob(value: (ArrayBuffer) | null) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 4015631736899727, this, [value]); }
   /**
    * var bluetoothManufacturerDataMask: Data? { get set }
    * @availability iOS 18.0+
    */
-  get bluetoothManufacturerDataMask(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AccessorySetupKit_ff42ce03e691ab23", 2575416416832171, this, []); }
-  set bluetoothManufacturerDataMask(value: (ArrayBuffer) | null) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 2505053654931169, this, [value]); }
+  get bluetoothManufacturerDataMask(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AccessorySetupKit_3864e7f38681b875", 2575416416832171, this, []); }
+  set bluetoothManufacturerDataMask(value: (ArrayBuffer) | null) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 2505053654931169, this, [value]); }
   /**
    * var bluetoothNameSubstring: String? { get set }
    * @availability iOS 18.0+
    */
-  get bluetoothNameSubstring(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_ff42ce03e691ab23", 2061199841124002, this, []); }
-  set bluetoothNameSubstring(value: (string) | null) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 2785021792388138, this, [value]); }
+  get bluetoothNameSubstring(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_3864e7f38681b875", 2061199841124002, this, []); }
+  set bluetoothNameSubstring(value: (string) | null) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 2785021792388138, this, [value]); }
   /**
    * var bluetoothNameSubstringCompareOptions: NSString.CompareOptions { get set }
    * @availability iOS 18.2+
    */
-  get bluetoothNameSubstringCompareOptions(): _Foundation_NSString_CompareOptions { return callSDK<_Foundation_NSString_CompareOptions>("AccessorySetupKit_ff42ce03e691ab23", 4388259145383350, this, []); }
-  set bluetoothNameSubstringCompareOptions(value: _Foundation_NSString_CompareOptions) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 2710618761433554, this, [value]); }
+  get bluetoothNameSubstringCompareOptions(): _Foundation_NSString_CompareOptions { return callSDK<_Foundation_NSString_CompareOptions>("AccessorySetupKit_3864e7f38681b875", 4388259145383350, this, []); }
+  set bluetoothNameSubstringCompareOptions(value: _Foundation_NSString_CompareOptions) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 2710618761433554, this, [value]); }
   /**
    * var bluetoothRange: ASDiscoveryDescriptor.Range { get set }
    * @availability iOS 18.0+
    */
-  get bluetoothRange(): ASDiscoveryDescriptor_Range { return callSDK<ASDiscoveryDescriptor_Range>("AccessorySetupKit_ff42ce03e691ab23", 1431439750572854, this, []); }
-  set bluetoothRange(value: ASDiscoveryDescriptor_Range) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 541939719793520, this, [value]); }
+  get bluetoothRange(): ASDiscoveryDescriptor_Range { return callSDK<ASDiscoveryDescriptor_Range>("AccessorySetupKit_3864e7f38681b875", 1431439750572854, this, []); }
+  set bluetoothRange(value: ASDiscoveryDescriptor_Range) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 541939719793520, this, [value]); }
   /**
    * var bluetoothServiceDataBlob: Data? { get set }
    * @availability iOS 18.0+
    */
-  get bluetoothServiceDataBlob(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AccessorySetupKit_ff42ce03e691ab23", 2321203704438223, this, []); }
-  set bluetoothServiceDataBlob(value: (ArrayBuffer) | null) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 2130320650846750, this, [value]); }
+  get bluetoothServiceDataBlob(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AccessorySetupKit_3864e7f38681b875", 2321203704438223, this, []); }
+  set bluetoothServiceDataBlob(value: (ArrayBuffer) | null) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 2130320650846750, this, [value]); }
   /**
    * var bluetoothServiceDataMask: Data? { get set }
    * @availability iOS 18.0+
    */
-  get bluetoothServiceDataMask(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AccessorySetupKit_ff42ce03e691ab23", 397849062508785, this, []); }
-  set bluetoothServiceDataMask(value: (ArrayBuffer) | null) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 1504712372910644, this, [value]); }
+  get bluetoothServiceDataMask(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AccessorySetupKit_3864e7f38681b875", 397849062508785, this, []); }
+  set bluetoothServiceDataMask(value: (ArrayBuffer) | null) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 1504712372910644, this, [value]); }
   /**
    * @NSCopying var bluetoothServiceUUID: CBUUID? { get set }
    * @availability iOS 18.0+
    */
-  get bluetoothServiceUUID(): $SDK6 { return callSDK<$SDK6>("AccessorySetupKit_ff42ce03e691ab23", 1238157009667150, this, []); }
-  set bluetoothServiceUUID(value: $SDK6) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 512684313914396, this, [value]); }
+  get bluetoothServiceUUID(): $SDK6 { return callSDK<$SDK6>("AccessorySetupKit_3864e7f38681b875", 1238157009667150, this, []); }
+  set bluetoothServiceUUID(value: $SDK6) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 512684313914396, this, [value]); }
   /**
    * var supportedOptions: ASAccessory.SupportOptions { get set }
    * @availability iOS 18.0+
    */
-  get supportedOptions(): ASAccessory_SupportOptions { return callSDK<ASAccessory_SupportOptions>("AccessorySetupKit_ff42ce03e691ab23", 2560976621033023, this, []); }
-  set supportedOptions(value: ASAccessory_SupportOptions) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 1143907047867094, this, [value]); }
+  get supportedOptions(): ASAccessory_SupportOptions { return callSDK<ASAccessory_SupportOptions>("AccessorySetupKit_3864e7f38681b875", 2560976621033023, this, []); }
+  set supportedOptions(value: ASAccessory_SupportOptions) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 1143907047867094, this, [value]); }
   /**
    * @NSCopying var wifiAwareModelNameMatch: ASPropertyCompareString? { get set }
    * @availability iOS 26.0+
    */
-  get wifiAwareModelNameMatch(): $SDK7 { return callSDK<$SDK7>("AccessorySetupKit_ff42ce03e691ab23", 3637602784000139, this, []); }
-  set wifiAwareModelNameMatch(value: $SDK7) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 4208178448016347, this, [value]); }
+  get wifiAwareModelNameMatch(): $SDK7 { return callSDK<$SDK7>("AccessorySetupKit_3864e7f38681b875", 3637602784000139, this, []); }
+  set wifiAwareModelNameMatch(value: $SDK7) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 4208178448016347, this, [value]); }
   /**
    * var wifiAwareServiceName: String? { get set }
    * @availability iOS 26.0+
    */
-  get wifiAwareServiceName(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_ff42ce03e691ab23", 1752178100765552, this, []); }
-  set wifiAwareServiceName(value: (string) | null) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 4443357765813927, this, [value]); }
+  get wifiAwareServiceName(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_3864e7f38681b875", 1752178100765552, this, []); }
+  set wifiAwareServiceName(value: (string) | null) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 4443357765813927, this, [value]); }
   /**
    * var wifiAwareServiceRole: ASDiscoveryDescriptor.WiFiAwareServiceRole { get set }
    * @availability iOS 26.0+
    */
-  get wifiAwareServiceRole(): ASDiscoveryDescriptor_WiFiAwareServiceRole { return callSDK<ASDiscoveryDescriptor_WiFiAwareServiceRole>("AccessorySetupKit_ff42ce03e691ab23", 1447834718406963, this, []); }
-  set wifiAwareServiceRole(value: ASDiscoveryDescriptor_WiFiAwareServiceRole) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 565345696976889, this, [value]); }
+  get wifiAwareServiceRole(): ASDiscoveryDescriptor_WiFiAwareServiceRole { return callSDK<ASDiscoveryDescriptor_WiFiAwareServiceRole>("AccessorySetupKit_3864e7f38681b875", 1447834718406963, this, []); }
+  set wifiAwareServiceRole(value: ASDiscoveryDescriptor_WiFiAwareServiceRole) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 565345696976889, this, [value]); }
   /**
    * @NSCopying var wifiAwareVendorNameMatch: ASPropertyCompareString? { get set }
    * @availability iOS 26.0+
    */
-  get wifiAwareVendorNameMatch(): $SDK7 { return callSDK<$SDK7>("AccessorySetupKit_ff42ce03e691ab23", 436246093531014, this, []); }
-  set wifiAwareVendorNameMatch(value: $SDK7) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 2932147898269906, this, [value]); }
+  get wifiAwareVendorNameMatch(): $SDK7 { return callSDK<$SDK7>("AccessorySetupKit_3864e7f38681b875", 436246093531014, this, []); }
+  set wifiAwareVendorNameMatch(value: $SDK7) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 2932147898269906, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASDiscoveryDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ssid": true; "ssidPrefix": true; "bluetoothCompanyIdentifier": true; "bluetoothManufacturerDataBlob": true; "bluetoothManufacturerDataMask": true; "bluetoothNameSubstring": true; "bluetoothNameSubstringCompareOptions": true; "bluetoothRange": true; "bluetoothServiceDataBlob": true; "bluetoothServiceDataMask": true; "bluetoothServiceUUID": true; "supportedOptions": true; "wifiAwareModelNameMatch": true; "wifiAwareServiceName": true; "wifiAwareServiceRole": true; "wifiAwareVendorNameMatch": true };
 }
@@ -435,7 +435,7 @@ export type ASDiscoveryDescriptor_Range = "default" | "immediate";
 
 export const ASDiscoveryDescriptor_Range = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ASDiscoveryDescriptor_Range) | null { return callSDK<(ASDiscoveryDescriptor_Range) | null>("AccessorySetupKit_ff42ce03e691ab23", 1305274230593867, undefined, [rawValue]); }
+  init(rawValue: number): (ASDiscoveryDescriptor_Range) | null { return callSDK<(ASDiscoveryDescriptor_Range) | null>("AccessorySetupKit_3864e7f38681b875", 1305274230593867, undefined, [rawValue]); }
 };
 
 /** enum WiFiAwareServiceRole */
@@ -443,7 +443,7 @@ export type ASDiscoveryDescriptor_WiFiAwareServiceRole = "subscriber" | "publish
 
 export const ASDiscoveryDescriptor_WiFiAwareServiceRole = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ASDiscoveryDescriptor_WiFiAwareServiceRole) | null { return callSDK<(ASDiscoveryDescriptor_WiFiAwareServiceRole) | null>("AccessorySetupKit_ff42ce03e691ab23", 1324794753981966, undefined, [rawValue]); }
+  init(rawValue: number): (ASDiscoveryDescriptor_WiFiAwareServiceRole) | null { return callSDK<(ASDiscoveryDescriptor_WiFiAwareServiceRole) | null>("AccessorySetupKit_3864e7f38681b875", 1324794753981966, undefined, [rawValue]); }
 };
 
 /**
@@ -455,67 +455,67 @@ export class ASError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 18.0+
    */
-  static get errorDomain(): string { return callSDK<string>("AccessorySetupKit_ff42ce03e691ab23", 3736365620817753, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("AccessorySetupKit_3864e7f38681b875", 3736365620817753, undefined, []); }
   /**
    * static var invalidated: ASError.Code { get }
    * @availability iOS 18.0+
    */
-  static get invalidated(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_ff42ce03e691ab23", 2119197221656733, undefined, []); }
+  static get invalidated(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_3864e7f38681b875", 2119197221656733, undefined, []); }
   /**
    * static var userCancelled: ASError.Code { get }
    * @availability iOS 18.0+
    */
-  static get userCancelled(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_ff42ce03e691ab23", 4358101438232819, undefined, []); }
+  static get userCancelled(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_3864e7f38681b875", 4358101438232819, undefined, []); }
   /**
    * static var invalidRequest: ASError.Code { get }
    * @availability iOS 18.0+
    */
-  static get invalidRequest(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_ff42ce03e691ab23", 1791615889748249, undefined, []); }
+  static get invalidRequest(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_3864e7f38681b875", 1791615889748249, undefined, []); }
   /**
    * static var userRestricted: ASError.Code { get }
    * @availability iOS 18.0+
    */
-  static get userRestricted(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_ff42ce03e691ab23", 3501984748174269, undefined, []); }
+  static get userRestricted(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_3864e7f38681b875", 3501984748174269, undefined, []); }
   /**
    * static var activationFailed: ASError.Code { get }
    * @availability iOS 18.0+
    */
-  static get activationFailed(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_ff42ce03e691ab23", 876679087611104, undefined, []); }
+  static get activationFailed(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_3864e7f38681b875", 876679087611104, undefined, []); }
   /**
    * static var connectionFailed: ASError.Code { get }
    * @availability iOS 18.0+
    */
-  static get connectionFailed(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_ff42ce03e691ab23", 376207337155858, undefined, []); }
+  static get connectionFailed(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_3864e7f38681b875", 376207337155858, undefined, []); }
   /**
    * static var discoveryTimeout: ASError.Code { get }
    * @availability iOS 18.0+
    */
-  static get discoveryTimeout(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_ff42ce03e691ab23", 3572907079585652, undefined, []); }
+  static get discoveryTimeout(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_3864e7f38681b875", 3572907079585652, undefined, []); }
   /**
    * static var pickerRestricted: ASError.Code { get }
    * @availability iOS 18.0+
    */
-  static get pickerRestricted(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_ff42ce03e691ab23", 3675890108818034, undefined, []); }
+  static get pickerRestricted(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_3864e7f38681b875", 3675890108818034, undefined, []); }
   /**
    * static var extensionNotFound: ASError.Code { get }
    * @availability iOS 18.0+
    */
-  static get extensionNotFound(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_ff42ce03e691ab23", 2387460508957280, undefined, []); }
+  static get extensionNotFound(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_3864e7f38681b875", 2387460508957280, undefined, []); }
   /**
    * static var pickerAlreadyActive: ASError.Code { get }
    * @availability iOS 18.0+
    */
-  static get pickerAlreadyActive(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_ff42ce03e691ab23", 792854741551540, undefined, []); }
+  static get pickerAlreadyActive(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_3864e7f38681b875", 792854741551540, undefined, []); }
   /**
    * static var success: ASError.Code { get }
    * @availability iOS 18.0+
    */
-  static get success(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_ff42ce03e691ab23", 3994185162053127, undefined, []); }
+  static get success(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_3864e7f38681b875", 3994185162053127, undefined, []); }
   /**
    * static var unknown: ASError.Code { get }
    * @availability iOS 18.0+
    */
-  static get unknown(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_ff42ce03e691ab23", 3201749111688031, undefined, []); }
+  static get unknown(): ASError_Code { return callSDK<ASError_Code>("AccessorySetupKit_3864e7f38681b875", 3201749111688031, undefined, []); }
   declare readonly $type: { "s:SC11ASErrorCodeLeV": true };
 }
 
@@ -530,7 +530,7 @@ export const ASError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (ASError_Code) | null { return callSDK<(ASError_Code) | null>("AccessorySetupKit_ff42ce03e691ab23", 265820226135112, undefined, [rawValue]); }
+  init(rawValue: number): (ASError_Code) | null { return callSDK<(ASError_Code) | null>("AccessorySetupKit_3864e7f38681b875", 265820226135112, undefined, [rawValue]); }
 };
 
 /**
@@ -542,20 +542,20 @@ export class ASMigrationDisplayItem extends ASPickerDisplayItem {
    * var hotspotSSID: String? { get set }
    * @availability iOS 18.0+
    */
-  get hotspotSSID(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_ff42ce03e691ab23", 3621416064832802, this, []); }
-  set hotspotSSID(value: (string) | null) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 557629185774817, this, [value]); }
+  get hotspotSSID(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_3864e7f38681b875", 3621416064832802, this, []); }
+  set hotspotSSID(value: (string) | null) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 557629185774817, this, [value]); }
   /**
    * var peripheralIdentifier: UUID? { get set }
    * @availability iOS 18.0+
    */
-  get peripheralIdentifier(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_ff42ce03e691ab23", 90908195503398, this, []); }
-  set peripheralIdentifier(value: (string) | null) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 1637236221757359, this, [value]); }
+  get peripheralIdentifier(): (string) | null { return callSDK<(string) | null>("AccessorySetupKit_3864e7f38681b875", 90908195503398, this, []); }
+  set peripheralIdentifier(value: (string) | null) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 1637236221757359, this, [value]); }
   /**
    * var wifiAwarePairedDeviceID: ASAccessory.WiFiAwarePairedDeviceID { get set }
    * @availability iOS 26.1+
    */
-  get wifiAwarePairedDeviceID(): number { return callSDK<number>("AccessorySetupKit_ff42ce03e691ab23", 3108179598629079, this, []); }
-  set wifiAwarePairedDeviceID(value: number) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 4260207587925313, this, [value]); }
+  get wifiAwarePairedDeviceID(): number { return callSDK<number>("AccessorySetupKit_3864e7f38681b875", 3108179598629079, this, []); }
+  set wifiAwarePairedDeviceID(value: number) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 4260207587925313, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASMigrationDisplayItem": true; "c:objc(cs)ASPickerDisplayItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "descriptor": true; "name": true; "productImage": true; "renameOptions": true; "setupOptions": true; "hotspotSSID": true; "peripheralIdentifier": true; "wifiAwarePairedDeviceID": true };
 }
@@ -565,13 +565,13 @@ export type ASPickerDisplayItem_SetupOptions = Array<"rename" | "confirmAuthoriz
 
 export const ASPickerDisplayItem_SetupOptions = {
   /** static var confirmAuthorization: ASPickerDisplayItem.SetupOptions { get } */
-  get confirmAuthorization(): ASPickerDisplayItem_SetupOptions { return callSDK<ASPickerDisplayItem_SetupOptions>("AccessorySetupKit_ff42ce03e691ab23", 3355061993030192, undefined, []); },
+  get confirmAuthorization(): ASPickerDisplayItem_SetupOptions { return callSDK<ASPickerDisplayItem_SetupOptions>("AccessorySetupKit_3864e7f38681b875", 3355061993030192, undefined, []); },
   /** static var finishInApp: ASPickerDisplayItem.SetupOptions { get } */
-  get finishInApp(): ASPickerDisplayItem_SetupOptions { return callSDK<ASPickerDisplayItem_SetupOptions>("AccessorySetupKit_ff42ce03e691ab23", 2543284927637250, undefined, []); },
+  get finishInApp(): ASPickerDisplayItem_SetupOptions { return callSDK<ASPickerDisplayItem_SetupOptions>("AccessorySetupKit_3864e7f38681b875", 2543284927637250, undefined, []); },
   /** static var rename: ASPickerDisplayItem.SetupOptions { get } */
-  get rename(): ASPickerDisplayItem_SetupOptions { return callSDK<ASPickerDisplayItem_SetupOptions>("AccessorySetupKit_ff42ce03e691ab23", 3025980881265048, undefined, []); },
+  get rename(): ASPickerDisplayItem_SetupOptions { return callSDK<ASPickerDisplayItem_SetupOptions>("AccessorySetupKit_3864e7f38681b875", 3025980881265048, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): ASPickerDisplayItem_SetupOptions { return callSDK<ASPickerDisplayItem_SetupOptions>("AccessorySetupKit_ff42ce03e691ab23", 4137403882728534, undefined, [rawValue]); }
+  init(rawValue: number): ASPickerDisplayItem_SetupOptions { return callSDK<ASPickerDisplayItem_SetupOptions>("AccessorySetupKit_3864e7f38681b875", 4137403882728534, undefined, [rawValue]); }
 };
 
 /**
@@ -583,21 +583,21 @@ export class ASPickerDisplaySettings extends SDKHandle {
    * class var `default`: ASPickerDisplaySettings { get }
    * @availability iOS 26.0+
    */
-  static get default(): ASPickerDisplaySettings { return callSDK<ASPickerDisplaySettings>("AccessorySetupKit_ff42ce03e691ab23", 924355266511964, undefined, []); }
+  static get default(): ASPickerDisplaySettings { return callSDK<ASPickerDisplaySettings>("AccessorySetupKit_3864e7f38681b875", 924355266511964, undefined, []); }
   /** init() */
-  static init(): ASPickerDisplaySettings { return callSDK<ASPickerDisplaySettings>("AccessorySetupKit_ff42ce03e691ab23", 1980939729213652, undefined, []); }
+  static init(): ASPickerDisplaySettings { return callSDK<ASPickerDisplaySettings>("AccessorySetupKit_3864e7f38681b875", 1980939729213652, undefined, []); }
   /**
    * var discoveryTimeout: ASPickerDisplaySettings.DiscoveryTimeout { get set }
    * @availability iOS 26.0+
    */
-  get discoveryTimeout(): ASPickerDisplaySettings_DiscoveryTimeout { return callSDK<ASPickerDisplaySettings_DiscoveryTimeout>("AccessorySetupKit_ff42ce03e691ab23", 1075426861226645, this, []); }
-  set discoveryTimeout(value: ASPickerDisplaySettings_DiscoveryTimeout) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 1934377596428838, this, [value]); }
+  get discoveryTimeout(): ASPickerDisplaySettings_DiscoveryTimeout { return callSDK<ASPickerDisplaySettings_DiscoveryTimeout>("AccessorySetupKit_3864e7f38681b875", 1075426861226645, this, []); }
+  set discoveryTimeout(value: ASPickerDisplaySettings_DiscoveryTimeout) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 1934377596428838, this, [value]); }
   /**
    * var options: ASPickerDisplaySettings.Options { get set }
    * @availability iOS 26.1+
    */
-  get options(): ASPickerDisplaySettings_Options { return callSDK<ASPickerDisplaySettings_Options>("AccessorySetupKit_ff42ce03e691ab23", 3624243790458342, this, []); }
-  set options(value: ASPickerDisplaySettings_Options) { callSDK<void>("AccessorySetupKit_ff42ce03e691ab23", 4447458215604243, this, [value]); }
+  get options(): ASPickerDisplaySettings_Options { return callSDK<ASPickerDisplaySettings_Options>("AccessorySetupKit_3864e7f38681b875", 3624243790458342, this, []); }
+  set options(value: ASPickerDisplaySettings_Options) { callSDK<void>("AccessorySetupKit_3864e7f38681b875", 4447458215604243, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASPickerDisplaySettings": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "discoveryTimeout": true; "options": true };
 }
@@ -613,27 +613,27 @@ export const ASPickerDisplaySettings_DiscoveryTimeout = {
    * static let long: ASPickerDisplaySettings.DiscoveryTimeout
    * @availability iOS 26.0+
    */
-  get long(): ASPickerDisplaySettings_DiscoveryTimeout { return callSDK<ASPickerDisplaySettings_DiscoveryTimeout>("AccessorySetupKit_ff42ce03e691ab23", 2208260438426541, undefined, []); },
+  get long(): ASPickerDisplaySettings_DiscoveryTimeout { return callSDK<ASPickerDisplaySettings_DiscoveryTimeout>("AccessorySetupKit_3864e7f38681b875", 2208260438426541, undefined, []); },
   /**
    * static let medium: ASPickerDisplaySettings.DiscoveryTimeout
    * @availability iOS 26.0+
    */
-  get medium(): ASPickerDisplaySettings_DiscoveryTimeout { return callSDK<ASPickerDisplaySettings_DiscoveryTimeout>("AccessorySetupKit_ff42ce03e691ab23", 249331353604779, undefined, []); },
+  get medium(): ASPickerDisplaySettings_DiscoveryTimeout { return callSDK<ASPickerDisplaySettings_DiscoveryTimeout>("AccessorySetupKit_3864e7f38681b875", 249331353604779, undefined, []); },
   /**
    * static let short: ASPickerDisplaySettings.DiscoveryTimeout
    * @availability iOS 26.0+
    */
-  get short(): ASPickerDisplaySettings_DiscoveryTimeout { return callSDK<ASPickerDisplaySettings_DiscoveryTimeout>("AccessorySetupKit_ff42ce03e691ab23", 362651863931704, undefined, []); },
+  get short(): ASPickerDisplaySettings_DiscoveryTimeout { return callSDK<ASPickerDisplaySettings_DiscoveryTimeout>("AccessorySetupKit_3864e7f38681b875", 362651863931704, undefined, []); },
   /**
    * static let unbounded: ASPickerDisplaySettings.DiscoveryTimeout
    * @availability iOS 26.1+
    */
-  get unbounded(): ASPickerDisplaySettings_DiscoveryTimeout { return callSDK<ASPickerDisplaySettings_DiscoveryTimeout>("AccessorySetupKit_ff42ce03e691ab23", 2512854673146138, undefined, []); },
+  get unbounded(): ASPickerDisplaySettings_DiscoveryTimeout { return callSDK<ASPickerDisplaySettings_DiscoveryTimeout>("AccessorySetupKit_3864e7f38681b875", 2512854673146138, undefined, []); },
   /**
    * init(rawValue: TimeInterval)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): ASPickerDisplaySettings_DiscoveryTimeout { return callSDK<ASPickerDisplaySettings_DiscoveryTimeout>("AccessorySetupKit_ff42ce03e691ab23", 331898749260728, undefined, [rawValue]); }
+  init(rawValue: number): ASPickerDisplaySettings_DiscoveryTimeout { return callSDK<ASPickerDisplaySettings_DiscoveryTimeout>("AccessorySetupKit_3864e7f38681b875", 331898749260728, undefined, [rawValue]); }
 };
 
 /** struct Options */
@@ -641,9 +641,9 @@ export type ASPickerDisplaySettings_Options = Array<"filterDiscoveryResults">;
 
 export const ASPickerDisplaySettings_Options = {
   /** static var filterDiscoveryResults: ASPickerDisplaySettings.Options { get } */
-  get filterDiscoveryResults(): ASPickerDisplaySettings_Options { return callSDK<ASPickerDisplaySettings_Options>("AccessorySetupKit_ff42ce03e691ab23", 617772722342936, undefined, []); },
+  get filterDiscoveryResults(): ASPickerDisplaySettings_Options { return callSDK<ASPickerDisplaySettings_Options>("AccessorySetupKit_3864e7f38681b875", 617772722342936, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): ASPickerDisplaySettings_Options { return callSDK<ASPickerDisplaySettings_Options>("AccessorySetupKit_ff42ce03e691ab23", 2507674964785927, undefined, [rawValue]); }
+  init(rawValue: number): ASPickerDisplaySettings_Options { return callSDK<ASPickerDisplaySettings_Options>("AccessorySetupKit_3864e7f38681b875", 2507674964785927, undefined, [rawValue]); }
 };
 
 /**
@@ -655,33 +655,33 @@ export class ASPropertyCompareString extends SDKHandle {
    * init(string: String, compareOptions: NSString.CompareOptions = [])
    * @availability iOS 26.0+
    */
-  static init(string: string, compareOptions?: _Foundation_NSString_CompareOptions): ASPropertyCompareString { return callSDK<ASPropertyCompareString>("AccessorySetupKit_ff42ce03e691ab23", 493534118702231, undefined, [string, compareOptions]); }
+  static init(string: string, compareOptions?: _Foundation_NSString_CompareOptions): ASPropertyCompareString { return callSDK<ASPropertyCompareString>("AccessorySetupKit_3864e7f38681b875", 493534118702231, undefined, [string, compareOptions]); }
   /**
    * var compareOptions: NSString.CompareOptions { get }
    * @availability iOS 26.0+
    */
-  get compareOptions(): _Foundation_NSString_CompareOptions { return callSDK<_Foundation_NSString_CompareOptions>("AccessorySetupKit_ff42ce03e691ab23", 1596739449144578, this, []); }
+  get compareOptions(): _Foundation_NSString_CompareOptions { return callSDK<_Foundation_NSString_CompareOptions>("AccessorySetupKit_3864e7f38681b875", 1596739449144578, this, []); }
   /**
    * var string: String { get }
    * @availability iOS 26.0+
    */
-  get string(): string { return callSDK<string>("AccessorySetupKit_ff42ce03e691ab23", 3637785102053861, this, []); }
+  get string(): string { return callSDK<string>("AccessorySetupKit_3864e7f38681b875", 3637785102053861, this, []); }
   declare readonly $type: { "c:objc(cs)ASPropertyCompareString": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "compareOptions": true; "string": true };
 }
 
 /** let ASErrorDomain: String */
-export const ASErrorDomain: string = callSDK<string>("AccessorySetupKit_ff42ce03e691ab23", 3923499866864538, undefined, []);
+export const ASErrorDomain: string = callSDK<string>("AccessorySetupKit_3864e7f38681b875", 3923499866864538, undefined, []);
 
-registerSDKClass("ASAccessory", ASAccessory, { module: "AccessorySetupKit_ff42ce03e691ab23", properties: {"ssid":2914734530532972,"bluetoothIdentifier":1911175871666637,"bluetoothTransportBridgingIdentifier":1103404994235907,"descriptor":7373525458804,"displayName":1602967468563506,"state":1768942552787339,"wifiAwarePairedDeviceID":1374554358110187} });
-registerSDKClass("ASAccessoryEvent", ASAccessoryEvent, { module: "AccessorySetupKit_ff42ce03e691ab23", properties: {"accessory":962946711027581,"error":2395166752935271,"eventType":4135203564523756} });
-registerSDKClass("ASAccessorySession", ASAccessorySession, { module: "AccessorySetupKit_ff42ce03e691ab23", properties: {"accessories":2114045080686353,"pickerDisplaySettings":3963559319671016}, methods: {"activate":{"id":3316706469609401,"hints":[null,{"callback":{"out":[]}}]},"failAuthorization":{"id":557988034788832,"hints":[null,{"callback":{"out":[]}}]},"finishAuthorization":{"id":1412557920475295,"hints":[null,null,{"callback":{"out":[]}}]},"finishPickerDiscovery":{"id":1646630004332323,"hints":[{"callback":{"out":[]}}]},"invalidate":{"id":3331344564302457},"removeAccessory":{"id":3636755805333027,"hints":[null,{"callback":{"out":[]}}]},"renameAccessory":{"id":3986317076729587,"hints":[null,null,{"callback":{"out":[]}}]},"showPickerForCompletionHandler":{"id":2462717674960177,"hints":[null,{"callback":{"out":[]}}]},"showPickerCompletionHandler":{"id":1368664831920709,"hints":[{"callback":{"out":[]}}]},"updateAuthorization":{"id":937448948619451,"hints":[null,null,{"callback":{"out":[]}}]},"updatePicker":{"id":2570702055769958,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("ASAccessorySettings", ASAccessorySettings, { module: "AccessorySetupKit_ff42ce03e691ab23", properties: {"ssid":1885190037248880,"bluetoothTransportBridgingIdentifier":2535282604464947} });
-registerSDKClass("ASDiscoveredAccessory", ASDiscoveredAccessory, { module: "AccessorySetupKit_ff42ce03e691ab23", properties: {"bluetoothAdvertisementData":1987255262472053} });
-registerSDKClass("ASPickerDisplayItem", ASPickerDisplayItem, { module: "AccessorySetupKit_ff42ce03e691ab23", properties: {"descriptor":830231446889925,"name":3004462384408004,"productImage":938446278444576,"renameOptions":1565598114139566,"setupOptions":2259120399957748} });
-registerSDKClass("ASDiscoveredDisplayItem", ASDiscoveredDisplayItem, { module: "AccessorySetupKit_ff42ce03e691ab23", properties: {} });
-registerSDKClass("ASDiscoveryDescriptor", ASDiscoveryDescriptor, { module: "AccessorySetupKit_ff42ce03e691ab23", properties: {"ssid":2450049430829887,"ssidPrefix":604557520952133,"bluetoothCompanyIdentifier":1877538960749370,"bluetoothManufacturerDataBlob":2645457383436764,"bluetoothManufacturerDataMask":2575416416832171,"bluetoothNameSubstring":2061199841124002,"bluetoothNameSubstringCompareOptions":4388259145383350,"bluetoothRange":1431439750572854,"bluetoothServiceDataBlob":2321203704438223,"bluetoothServiceDataMask":397849062508785,"bluetoothServiceUUID":1238157009667150,"supportedOptions":2560976621033023,"wifiAwareModelNameMatch":3637602784000139,"wifiAwareServiceName":1752178100765552,"wifiAwareServiceRole":1447834718406963,"wifiAwareVendorNameMatch":436246093531014} });
-registerSDKClass("AccessorySetupKit.ASError", ASError, { module: "AccessorySetupKit_ff42ce03e691ab23", properties: {} });
-registerSDKClass("ASMigrationDisplayItem", ASMigrationDisplayItem, { module: "AccessorySetupKit_ff42ce03e691ab23", properties: {"hotspotSSID":3621416064832802,"peripheralIdentifier":90908195503398,"wifiAwarePairedDeviceID":3108179598629079} });
-registerSDKClass("ASPickerDisplaySettings", ASPickerDisplaySettings, { module: "AccessorySetupKit_ff42ce03e691ab23", properties: {"discoveryTimeout":1075426861226645,"options":3624243790458342} });
-registerSDKClass("ASPropertyCompareString", ASPropertyCompareString, { module: "AccessorySetupKit_ff42ce03e691ab23", properties: {"compareOptions":1596739449144578,"string":3637785102053861} });
+registerSDKClass("ASAccessory", ASAccessory, { module: "AccessorySetupKit_3864e7f38681b875", properties: {"ssid":2914734530532972,"bluetoothIdentifier":1911175871666637,"bluetoothTransportBridgingIdentifier":1103404994235907,"descriptor":7373525458804,"displayName":1602967468563506,"state":1768942552787339,"wifiAwarePairedDeviceID":1374554358110187} });
+registerSDKClass("ASAccessoryEvent", ASAccessoryEvent, { module: "AccessorySetupKit_3864e7f38681b875", properties: {"accessory":962946711027581,"error":2395166752935271,"eventType":4135203564523756} });
+registerSDKClass("ASAccessorySession", ASAccessorySession, { module: "AccessorySetupKit_3864e7f38681b875", properties: {"accessories":2114045080686353,"pickerDisplaySettings":3963559319671016}, methods: {"activate":{"id":3316706469609401,"hints":[null,{"callback":{"out":[]}}]},"failAuthorization":{"id":557988034788832,"hints":[null,{"callback":{"out":[]}}]},"finishAuthorization":{"id":1412557920475295,"hints":[null,null,{"callback":{"out":[]}}]},"finishPickerDiscovery":{"id":1646630004332323,"hints":[{"callback":{"out":[]}}]},"invalidate":{"id":3331344564302457},"removeAccessory":{"id":3636755805333027,"hints":[null,{"callback":{"out":[]}}]},"renameAccessory":{"id":3986317076729587,"hints":[null,null,{"callback":{"out":[]}}]},"showPickerForCompletionHandler":{"id":2462717674960177,"hints":[null,{"callback":{"out":[]}}]},"showPickerCompletionHandler":{"id":1368664831920709,"hints":[{"callback":{"out":[]}}]},"updateAuthorization":{"id":937448948619451,"hints":[null,null,{"callback":{"out":[]}}]},"updatePicker":{"id":2570702055769958,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("ASAccessorySettings", ASAccessorySettings, { module: "AccessorySetupKit_3864e7f38681b875", properties: {"ssid":1885190037248880,"bluetoothTransportBridgingIdentifier":2535282604464947} });
+registerSDKClass("ASDiscoveredAccessory", ASDiscoveredAccessory, { module: "AccessorySetupKit_3864e7f38681b875", properties: {"bluetoothAdvertisementData":1987255262472053} });
+registerSDKClass("ASPickerDisplayItem", ASPickerDisplayItem, { module: "AccessorySetupKit_3864e7f38681b875", properties: {"descriptor":830231446889925,"name":3004462384408004,"productImage":938446278444576,"renameOptions":1565598114139566,"setupOptions":2259120399957748} });
+registerSDKClass("ASDiscoveredDisplayItem", ASDiscoveredDisplayItem, { module: "AccessorySetupKit_3864e7f38681b875", properties: {} });
+registerSDKClass("ASDiscoveryDescriptor", ASDiscoveryDescriptor, { module: "AccessorySetupKit_3864e7f38681b875", properties: {"ssid":2450049430829887,"ssidPrefix":604557520952133,"bluetoothCompanyIdentifier":1877538960749370,"bluetoothManufacturerDataBlob":2645457383436764,"bluetoothManufacturerDataMask":2575416416832171,"bluetoothNameSubstring":2061199841124002,"bluetoothNameSubstringCompareOptions":4388259145383350,"bluetoothRange":1431439750572854,"bluetoothServiceDataBlob":2321203704438223,"bluetoothServiceDataMask":397849062508785,"bluetoothServiceUUID":1238157009667150,"supportedOptions":2560976621033023,"wifiAwareModelNameMatch":3637602784000139,"wifiAwareServiceName":1752178100765552,"wifiAwareServiceRole":1447834718406963,"wifiAwareVendorNameMatch":436246093531014} });
+registerSDKClass("AccessorySetupKit.ASError", ASError, { module: "AccessorySetupKit_3864e7f38681b875", properties: {} });
+registerSDKClass("ASMigrationDisplayItem", ASMigrationDisplayItem, { module: "AccessorySetupKit_3864e7f38681b875", properties: {"hotspotSSID":3621416064832802,"peripheralIdentifier":90908195503398,"wifiAwarePairedDeviceID":3108179598629079} });
+registerSDKClass("ASPickerDisplaySettings", ASPickerDisplaySettings, { module: "AccessorySetupKit_3864e7f38681b875", properties: {"discoveryTimeout":1075426861226645,"options":3624243790458342} });
+registerSDKClass("ASPropertyCompareString", ASPropertyCompareString, { module: "AccessorySetupKit_3864e7f38681b875", properties: {"compareOptions":1596739449144578,"string":3637785102053861} });

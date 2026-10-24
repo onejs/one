@@ -12,43 +12,43 @@ export class MPAppEntityIdentifier extends SDKHandle {
    * static var supportsSecureCoding: Bool { get }
    * @availability iOS 27.0+
    */
-  static get supportsSecureCoding(): boolean { return callSDK<boolean>("_MediaPlayer_AppIntents_ff42ce03e691ab23", 3662452961432208, undefined, []); }
+  static get supportsSecureCoding(): boolean { return callSDK<boolean>("_MediaPlayer_AppIntents_3864e7f38681b875", 3662452961432208, undefined, []); }
   /**
    * final func copy(with zone: NSZone? = nil) -> Any
    * @availability iOS 27.0+
    */
-  copy(): unknown { return callSDK<unknown>("_MediaPlayer_AppIntents_ff42ce03e691ab23", 2991773629684357, this, []); }
+  copy(): unknown { return callSDK<unknown>("_MediaPlayer_AppIntents_3864e7f38681b875", 2991773629684357, this, []); }
   /**
    * final func encode(with coder: NSCoder)
    * @availability iOS 27.0+
    */
-  encode(coder: _Foundation_NSCoder): void { return callSDK<void>("_MediaPlayer_AppIntents_ff42ce03e691ab23", 1718400810351211, this, [coder]); }
+  encode(coder: _Foundation_NSCoder): void { return callSDK<void>("_MediaPlayer_AppIntents_3864e7f38681b875", 1718400810351211, this, [coder]); }
   /**
    * required init?(coder: NSCoder)
    * @availability iOS 27.0+
    */
-  static initCoder(coder: _Foundation_NSCoder): (MPAppEntityIdentifier) | null { return callSDK<(MPAppEntityIdentifier) | null>("_MediaPlayer_AppIntents_ff42ce03e691ab23", 2901848739863771, undefined, [coder]); }
+  static initCoder(coder: _Foundation_NSCoder): (MPAppEntityIdentifier) | null { return callSDK<(MPAppEntityIdentifier) | null>("_MediaPlayer_AppIntents_3864e7f38681b875", 2901848739863771, undefined, [coder]); }
   /**
    * override final func isEqual(_ object: Any?) -> Bool
    * @availability iOS 27.0+
    */
-  isEqual(object?: (unknown) | null): boolean { return callSDK<boolean>("_MediaPlayer_AppIntents_ff42ce03e691ab23", 2505475844491660, this, [object]); }
+  isEqual(object?: (unknown) | null): boolean { return callSDK<boolean>("_MediaPlayer_AppIntents_3864e7f38681b875", 2505475844491660, this, [object]); }
   /**
    * override final var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("_MediaPlayer_AppIntents_ff42ce03e691ab23", 424615702541641, this, []); }
+  get description(): string { return callSDK<string>("_MediaPlayer_AppIntents_3864e7f38681b875", 424615702541641, this, []); }
   /**
    * override final var hash: Int { get }
    * @availability iOS 27.0+
    */
-  get hash(): number { return callSDK<number>("_MediaPlayer_AppIntents_ff42ce03e691ab23", 1610712639048541, this, []); }
+  get hash(): number { return callSDK<number>("_MediaPlayer_AppIntents_3864e7f38681b875", 1610712639048541, this, []); }
   /**
    * convenience init?(entityIdentifier: EntityIdentifier)
    * @availability iOS 27.0+
    */
-  static initEntityIdentifier(entityIdentifier: _AppIntents_EntityIdentifier): (MPAppEntityIdentifier) | null { return callSDK<(MPAppEntityIdentifier) | null>("_MediaPlayer_AppIntents_ff42ce03e691ab23", 276095879704424, undefined, [entityIdentifier]); }
+  static initEntityIdentifier(entityIdentifier: _AppIntents_EntityIdentifier): (MPAppEntityIdentifier) | null { return callSDK<(MPAppEntityIdentifier) | null>("_MediaPlayer_AppIntents_3864e7f38681b875", 276095879704424, undefined, [entityIdentifier]); }
   declare readonly $type: { "c:@M@_MediaPlayer_AppIntents@objc(cs)MPAppEntityIdentifier": true; "c:objc(cs)NSObject": true };
 }
 
-registerSDKClass("_MediaPlayer_AppIntents.MPAppEntityIdentifier", MPAppEntityIdentifier, { module: "_MediaPlayer_AppIntents_ff42ce03e691ab23", properties: {}, methods: {"copy":{"id":2991773629684357},"encode":{"id":1718400810351211},"isEqual":{"id":2505475844491660}} });
+registerSDKClass("_MediaPlayer_AppIntents.MPAppEntityIdentifier", MPAppEntityIdentifier, { module: "_MediaPlayer_AppIntents_3864e7f38681b875", properties: {}, methods: {"copy":{"id":2991773629684357},"encode":{"id":1718400810351211},"isEqual":{"id":2505475844491660}} });

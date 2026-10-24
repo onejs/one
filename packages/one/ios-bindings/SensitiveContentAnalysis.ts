@@ -14,32 +14,32 @@ type $SDK1 = ((arg0: (SCSensitivityAnalysis) | null, arg1: (NativeError) | null)
  */
 export class SCSensitivityAnalysis extends SDKHandle {
   /** init() */
-  static init(): SCSensitivityAnalysis { return callSDK<SCSensitivityAnalysis>("SensitiveContentAnalysis_ff42ce03e691ab23", 4498240767125659, undefined, []); }
+  static init(): SCSensitivityAnalysis { return callSDK<SCSensitivityAnalysis>("SensitiveContentAnalysis_3864e7f38681b875", 4498240767125659, undefined, []); }
   /**
    * var detectedTypes: Set<SCSensitivityAnalysis.ContentType> { get }
    * @availability iOS 27.0+
    */
-  get detectedTypes(): Array<SCSensitivityAnalysis_ContentType> { return callSDK<Array<SCSensitivityAnalysis_ContentType>>("SensitiveContentAnalysis_ff42ce03e691ab23", 2573453587708902, this, []); }
+  get detectedTypes(): Array<SCSensitivityAnalysis_ContentType> { return callSDK<Array<SCSensitivityAnalysis_ContentType>>("SensitiveContentAnalysis_3864e7f38681b875", 2573453587708902, this, []); }
   /**
    * var isSensitive: Bool { get }
    * @availability iOS 17.0+
    */
-  get isSensitive(): boolean { return callSDK<boolean>("SensitiveContentAnalysis_ff42ce03e691ab23", 4091935842114400, this, []); }
+  get isSensitive(): boolean { return callSDK<boolean>("SensitiveContentAnalysis_3864e7f38681b875", 4091935842114400, this, []); }
   /**
    * var shouldIndicateSensitivity: Bool { get }
    * @availability iOS 26.0+
    */
-  get shouldIndicateSensitivity(): boolean { return callSDK<boolean>("SensitiveContentAnalysis_ff42ce03e691ab23", 4301009942727900, this, []); }
+  get shouldIndicateSensitivity(): boolean { return callSDK<boolean>("SensitiveContentAnalysis_3864e7f38681b875", 4301009942727900, this, []); }
   /**
    * var shouldInterruptVideo: Bool { get }
    * @availability iOS 26.0+
    */
-  get shouldInterruptVideo(): boolean { return callSDK<boolean>("SensitiveContentAnalysis_ff42ce03e691ab23", 1779509937643177, this, []); }
+  get shouldInterruptVideo(): boolean { return callSDK<boolean>("SensitiveContentAnalysis_3864e7f38681b875", 1779509937643177, this, []); }
   /**
    * var shouldMuteAudio: Bool { get }
    * @availability iOS 26.0+
    */
-  get shouldMuteAudio(): boolean { return callSDK<boolean>("SensitiveContentAnalysis_ff42ce03e691ab23", 582017893628650, this, []); }
+  get shouldMuteAudio(): boolean { return callSDK<boolean>("SensitiveContentAnalysis_3864e7f38681b875", 582017893628650, this, []); }
   declare readonly $type: { "c:objc(cs)SCSensitivityAnalysis": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "detectedTypes": true; "isSensitive": true; "shouldIndicateSensitivity": true; "shouldInterruptVideo": true; "shouldMuteAudio": true };
 }
@@ -55,17 +55,17 @@ export const SCSensitivityAnalysis_ContentType = {
    * static let goreOrViolence: SCSensitivityAnalysis.ContentType
    * @availability iOS 27.0+
    */
-  get goreOrViolence(): SCSensitivityAnalysis_ContentType { return callSDK<SCSensitivityAnalysis_ContentType>("SensitiveContentAnalysis_ff42ce03e691ab23", 307831605328863, undefined, []); },
+  get goreOrViolence(): SCSensitivityAnalysis_ContentType { return callSDK<SCSensitivityAnalysis_ContentType>("SensitiveContentAnalysis_3864e7f38681b875", 307831605328863, undefined, []); },
   /**
    * static let sexuallyExplicit: SCSensitivityAnalysis.ContentType
    * @availability iOS 27.0+
    */
-  get sexuallyExplicit(): SCSensitivityAnalysis_ContentType { return callSDK<SCSensitivityAnalysis_ContentType>("SensitiveContentAnalysis_ff42ce03e691ab23", 1568725014736199, undefined, []); },
+  get sexuallyExplicit(): SCSensitivityAnalysis_ContentType { return callSDK<SCSensitivityAnalysis_ContentType>("SensitiveContentAnalysis_3864e7f38681b875", 1568725014736199, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): SCSensitivityAnalysis_ContentType { return callSDK<SCSensitivityAnalysis_ContentType>("SensitiveContentAnalysis_ff42ce03e691ab23", 453185401515934, undefined, [rawValue]); }
+  init(rawValue: string): SCSensitivityAnalysis_ContentType { return callSDK<SCSensitivityAnalysis_ContentType>("SensitiveContentAnalysis_3864e7f38681b875", 453185401515934, undefined, [rawValue]); }
 };
 
 /**
@@ -79,7 +79,7 @@ export const SCSensitivityAnalysisPolicy = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (SCSensitivityAnalysisPolicy) | null { return callSDK<(SCSensitivityAnalysisPolicy) | null>("SensitiveContentAnalysis_ff42ce03e691ab23", 2102041874328012, undefined, [rawValue]); }
+  init(rawValue: number): (SCSensitivityAnalysisPolicy) | null { return callSDK<(SCSensitivityAnalysisPolicy) | null>("SensitiveContentAnalysis_3864e7f38681b875", 2102041874328012, undefined, [rawValue]); }
 };
 
 /**
@@ -91,27 +91,27 @@ export class SCSensitivityAnalyzer extends SDKHandle {
    * func analyzeImage(_ image: CGImage) async throws -> SCSensitivityAnalysis
    * @availability iOS 17.0+
    */
-  analyzeImageCompletionHandler(image: _CoreGraphics_CGImage, completionHandler: $SDK1): void { return callSDK<void>("SensitiveContentAnalysis_ff42ce03e691ab23", 3748538304665002, this, [image, completionHandler], [null,{"callback":{"out":[]}}]); }
+  analyzeImageCompletionHandler(image: _CoreGraphics_CGImage, completionHandler: $SDK1): void { return callSDK<void>("SensitiveContentAnalysis_3864e7f38681b875", 3748538304665002, this, [image, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func analyzeImage(at fileURL: URL) async throws -> SCSensitivityAnalysis
    * @availability iOS 17.0+
    */
-  analyzeImageAtCompletionHandler(fileURL: string, completionHandler: $SDK1): void { return callSDK<void>("SensitiveContentAnalysis_ff42ce03e691ab23", 1166373208051408, this, [fileURL, completionHandler], [null,{"callback":{"out":[]}}]); }
+  analyzeImageAtCompletionHandler(fileURL: string, completionHandler: $SDK1): void { return callSDK<void>("SensitiveContentAnalysis_3864e7f38681b875", 1166373208051408, this, [fileURL, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): SCSensitivityAnalyzer { return callSDK<SCSensitivityAnalyzer>("SensitiveContentAnalysis_ff42ce03e691ab23", 3402056134192464, undefined, []); }
+  static init(): SCSensitivityAnalyzer { return callSDK<SCSensitivityAnalyzer>("SensitiveContentAnalysis_3864e7f38681b875", 3402056134192464, undefined, []); }
   /**
    * var analysisPolicy: SCSensitivityAnalysisPolicy { get }
    * @availability iOS 17.0+
    */
-  get analysisPolicy(): SCSensitivityAnalysisPolicy { return callSDK<SCSensitivityAnalysisPolicy>("SensitiveContentAnalysis_ff42ce03e691ab23", 179703866942261, this, []); }
+  get analysisPolicy(): SCSensitivityAnalysisPolicy { return callSDK<SCSensitivityAnalysisPolicy>("SensitiveContentAnalysis_3864e7f38681b875", 179703866942261, this, []); }
   /**
    * func videoAnalysis(forFileAt fileURL: URL) -> SCSensitivityAnalyzer.VideoAnalysisHandler
    * @availability iOS 17.0+
    */
-  videoAnalysis(fileURL: string): SCSensitivityAnalyzer_VideoAnalysisHandler { return callSDK<SCSensitivityAnalyzer_VideoAnalysisHandler>("SensitiveContentAnalysis_ff42ce03e691ab23", 231193257090246, this, [fileURL]); }
+  videoAnalysis(fileURL: string): SCSensitivityAnalyzer_VideoAnalysisHandler { return callSDK<SCSensitivityAnalyzer_VideoAnalysisHandler>("SensitiveContentAnalysis_3864e7f38681b875", 231193257090246, this, [fileURL]); }
   declare readonly $type: { "c:objc(cs)SCSensitivityAnalyzer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "analysisPolicy": true };
 }
@@ -125,13 +125,13 @@ export class SCSensitivityAnalyzer_VideoAnalysisHandler extends SDKHandle {
    * final func hasSensitiveContent() async throws -> SCSensitivityAnalysis
    * @availability iOS 17.0+
    */
-  hasSensitiveContent(): Promise<SCSensitivityAnalysis> { return callSDKAsync<SCSensitivityAnalysis>("SensitiveContentAnalysis_ff42ce03e691ab23", 4168606956380554, this, []); }
+  hasSensitiveContent(): Promise<SCSensitivityAnalysis> { return callSDKAsync<SCSensitivityAnalysis>("SensitiveContentAnalysis_3864e7f38681b875", 4168606956380554, this, []); }
   /**
    * final var progress: Progress
    * @availability iOS 17.0+
    */
-  get progress(): _Foundation_Progress { return callSDK<_Foundation_Progress>("SensitiveContentAnalysis_ff42ce03e691ab23", 2194348222775454, this, []); }
-  set progress(value: _Foundation_Progress) { callSDK<void>("SensitiveContentAnalysis_ff42ce03e691ab23", 4490650302620736, this, [value]); }
+  get progress(): _Foundation_Progress { return callSDK<_Foundation_Progress>("SensitiveContentAnalysis_3864e7f38681b875", 2194348222775454, this, []); }
+  set progress(value: _Foundation_Progress) { callSDK<void>("SensitiveContentAnalysis_3864e7f38681b875", 4490650302620736, this, [value]); }
   declare readonly $type: { "s:So21SCSensitivityAnalyzerC24SensitiveContentAnalysisE05VideoE7HandlerC": true };
 }
 
@@ -144,42 +144,42 @@ export class SCVideoStreamAnalyzer extends SDKHandle {
    * func analyze(_ pixelBuffer: CVPixelBuffer)
    * @availability iOS 26.0+
    */
-  analyze(pixelBuffer: _CoreVideo_CVBuffer): void { return callSDK<void>("SensitiveContentAnalysis_ff42ce03e691ab23", 2902629413770320, this, [pixelBuffer]); }
+  analyze(pixelBuffer: _CoreVideo_CVBuffer): void { return callSDK<void>("SensitiveContentAnalysis_3864e7f38681b875", 2902629413770320, this, [pixelBuffer]); }
   /**
    * func beginAnalysis(of captureDeviceInput: AVCaptureDeviceInput) throws
    * @availability iOS 26.0+
    */
-  beginAnalysisOf(captureDeviceInput: _AVFoundation_AVCaptureDeviceInput): void { return callSDK<void>("SensitiveContentAnalysis_ff42ce03e691ab23", 322761736397650, this, [captureDeviceInput]); }
+  beginAnalysisOf(captureDeviceInput: _AVFoundation_AVCaptureDeviceInput): void { return callSDK<void>("SensitiveContentAnalysis_3864e7f38681b875", 322761736397650, this, [captureDeviceInput]); }
   /**
    * func beginAnalysis(of decompressionSession: VTDecompressionSession) throws
    * @availability iOS 26.0+
    */
-  beginAnalysisOf33840(decompressionSession: _VideoToolbox_VTDecompressionSession): void { return callSDK<void>("SensitiveContentAnalysis_ff42ce03e691ab23", 1595752372886304, this, [decompressionSession]); }
+  beginAnalysisOf33840(decompressionSession: _VideoToolbox_VTDecompressionSession): void { return callSDK<void>("SensitiveContentAnalysis_3864e7f38681b875", 1595752372886304, this, [decompressionSession]); }
   /**
    * func continueStream()
    * @availability iOS 26.0+
    */
-  continueStream(): void { return callSDK<void>("SensitiveContentAnalysis_ff42ce03e691ab23", 768400684158806, this, []); }
+  continueStream(): void { return callSDK<void>("SensitiveContentAnalysis_3864e7f38681b875", 768400684158806, this, []); }
   /**
    * func endAnalysis()
    * @availability iOS 26.0+
    */
-  endAnalysis(): void { return callSDK<void>("SensitiveContentAnalysis_ff42ce03e691ab23", 1563993898065621, this, []); }
+  endAnalysis(): void { return callSDK<void>("SensitiveContentAnalysis_3864e7f38681b875", 1563993898065621, this, []); }
   /**
    * init(participantUUID: String, streamDirection: SCVideoStreamAnalyzer.StreamDirection) throws
    * @availability iOS 26.0+
    */
-  static init(participantUUID: string, streamDirection: SCVideoStreamAnalyzer_StreamDirection): SCVideoStreamAnalyzer { return callSDK<SCVideoStreamAnalyzer>("SensitiveContentAnalysis_ff42ce03e691ab23", 3697127211556761, undefined, [participantUUID, streamDirection]); }
+  static init(participantUUID: string, streamDirection: SCVideoStreamAnalyzer_StreamDirection): SCVideoStreamAnalyzer { return callSDK<SCVideoStreamAnalyzer>("SensitiveContentAnalysis_3864e7f38681b875", 3697127211556761, undefined, [participantUUID, streamDirection]); }
   /**
    * var analysis: SCSensitivityAnalysis? { get }
    * @availability iOS 26.0+
    */
-  get analysis(): (SCSensitivityAnalysis) | null { return callSDK<(SCSensitivityAnalysis) | null>("SensitiveContentAnalysis_ff42ce03e691ab23", 358092732784720, this, []); }
+  get analysis(): (SCSensitivityAnalysis) | null { return callSDK<(SCSensitivityAnalysis) | null>("SensitiveContentAnalysis_3864e7f38681b875", 358092732784720, this, []); }
   /**
    * var analysisChanges: some AsyncSequence<SCSensitivityAnalysis, any Error> { get }
    * @availability iOS 26.0+
    */
-  get analysisChanges(): SDKHandle { return callSDK<SDKHandle>("SensitiveContentAnalysis_ff42ce03e691ab23", 3029009481872761, this, []); }
+  get analysisChanges(): SDKHandle { return callSDK<SDKHandle>("SensitiveContentAnalysis_3864e7f38681b875", 3029009481872761, this, []); }
   declare readonly $type: { "c:objc(cs)SCVideoStreamAnalyzer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "analysis": true };
 }
@@ -195,10 +195,10 @@ export const SCVideoStreamAnalyzer_StreamDirection = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (SCVideoStreamAnalyzer_StreamDirection) | null { return callSDK<(SCVideoStreamAnalyzer_StreamDirection) | null>("SensitiveContentAnalysis_ff42ce03e691ab23", 1654041426791641, undefined, [rawValue]); }
+  init(rawValue: number): (SCVideoStreamAnalyzer_StreamDirection) | null { return callSDK<(SCVideoStreamAnalyzer_StreamDirection) | null>("SensitiveContentAnalysis_3864e7f38681b875", 1654041426791641, undefined, [rawValue]); }
 };
 
-registerSDKClass("SCSensitivityAnalysis", SCSensitivityAnalysis, { module: "SensitiveContentAnalysis_ff42ce03e691ab23", properties: {"detectedTypes":2573453587708902,"isSensitive":4091935842114400,"shouldIndicateSensitivity":4301009942727900,"shouldInterruptVideo":1779509937643177,"shouldMuteAudio":582017893628650} });
-registerSDKClass("SCSensitivityAnalyzer", SCSensitivityAnalyzer, { module: "SensitiveContentAnalysis_ff42ce03e691ab23", properties: {"analysisPolicy":179703866942261}, methods: {"analyzeImageCompletionHandler":{"id":3748538304665002,"hints":[null,{"callback":{"out":[]}}]},"analyzeImageAtCompletionHandler":{"id":1166373208051408,"hints":[null,{"callback":{"out":[]}}]},"videoAnalysis":{"id":231193257090246}} });
-registerSDKClass("SensitiveContentAnalysis.SCSensitivityAnalyzer.VideoAnalysisHandler", SCSensitivityAnalyzer_VideoAnalysisHandler, { module: "SensitiveContentAnalysis_ff42ce03e691ab23", properties: {}, methods: {"hasSensitiveContent":{"id":4168606956380554}} });
-registerSDKClass("SCVideoStreamAnalyzer", SCVideoStreamAnalyzer, { module: "SensitiveContentAnalysis_ff42ce03e691ab23", properties: {"analysis":358092732784720}, methods: {"analyze":{"id":2902629413770320},"beginAnalysisOf":{"id":322761736397650},"beginAnalysisOf33840":{"id":1595752372886304},"continueStream":{"id":768400684158806},"endAnalysis":{"id":1563993898065621}} });
+registerSDKClass("SCSensitivityAnalysis", SCSensitivityAnalysis, { module: "SensitiveContentAnalysis_3864e7f38681b875", properties: {"detectedTypes":2573453587708902,"isSensitive":4091935842114400,"shouldIndicateSensitivity":4301009942727900,"shouldInterruptVideo":1779509937643177,"shouldMuteAudio":582017893628650} });
+registerSDKClass("SCSensitivityAnalyzer", SCSensitivityAnalyzer, { module: "SensitiveContentAnalysis_3864e7f38681b875", properties: {"analysisPolicy":179703866942261}, methods: {"analyzeImageCompletionHandler":{"id":3748538304665002,"hints":[null,{"callback":{"out":[]}}]},"analyzeImageAtCompletionHandler":{"id":1166373208051408,"hints":[null,{"callback":{"out":[]}}]},"videoAnalysis":{"id":231193257090246}} });
+registerSDKClass("SensitiveContentAnalysis.SCSensitivityAnalyzer.VideoAnalysisHandler", SCSensitivityAnalyzer_VideoAnalysisHandler, { module: "SensitiveContentAnalysis_3864e7f38681b875", properties: {}, methods: {"hasSensitiveContent":{"id":4168606956380554}} });
+registerSDKClass("SCVideoStreamAnalyzer", SCVideoStreamAnalyzer, { module: "SensitiveContentAnalysis_3864e7f38681b875", properties: {"analysis":358092732784720}, methods: {"analyze":{"id":2902629413770320},"beginAnalysisOf":{"id":322761736397650},"beginAnalysisOf33840":{"id":1595752372886304},"continueStream":{"id":768400684158806},"endAnalysis":{"id":1563993898065621}} });

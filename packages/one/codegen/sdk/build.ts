@@ -7,8 +7,8 @@
 import { mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { build } from 'esbuild'
-import { lazyFacade } from './lazy'
+import { transform } from 'esbuild'
+import { compactFacade } from './compact'
 
 const dir = dirname(fileURLToPath(import.meta.url))
 const fingerprintPath = join(dir, 'fingerprint.ts')
@@ -55,37 +55,22 @@ export async function buildIosFacades(
   mkdirSync(outdir, { recursive: true })
   await Promise.all(
     facades.map(async (name) => {
-      const code = await lazyFacade(
-        readFileSync(join(bindings, name), 'utf8'),
-        name.slice(0, -3)
+      const { code } = await transform(
+        compactFacade(readFileSync(join(bindings, name), 'utf8')),
+        {
+          loader: 'ts',
+          format: 'esm',
+          target: 'es2020',
+          minifyWhitespace: true,
+          minifySyntax: true,
+          minifyIdentifiers: false,
+          legalComments: 'none',
+        }
       )
       writeFileSync(join(outdir, `${name.slice(0, -3)}.native.js`), code)
     })
   )
   return facades.length
-}
-
-// include the materializer in the existing runtime, keeping module count stable.
-export async function buildIosRuntime(outdir = join(dir, '../../dist/esm')) {
-  await build({
-    entryPoints: [join(dir, '../../src/ios-runtime.native.ts')],
-    outfile: join(outdir, 'ios-runtime.native.js'),
-    bundle: true,
-    format: 'esm',
-    platform: 'neutral',
-    packages: 'external',
-    plugins: [
-      {
-        name: 'shared-sdk-wire',
-        setup(build) {
-          build.onResolve({ filter: /(?:^|\/)wire$/ }, () => ({
-            path: './platform/sdk/wire.native.js',
-            external: true,
-          }))
-        },
-      },
-    ],
-  })
 }
 
 if (import.meta.main) {
@@ -94,6 +79,5 @@ if (import.meta.main) {
   console.log(`sdk app: ${path} ${fingerprint.slice(0, 16)}`)
   if (outdir === undefined) {
     console.log(`ios facades: ${await buildIosFacades()} compiled`)
-    await buildIosRuntime()
   }
 }
