@@ -1,0 +1,193 @@
+name: windows window island
+
+# The window island prototype: Metro bundles its React app on Linux from the
+# repo's installed packages, then the Windows job builds the unforked React
+# Native core as windows core does, the island runtime and its WinRT host, and
+# drives the real window with native input. The shared native-core unit list
+# and host runtime come from the Linux foundation commit until it lands on main.
+on:
+  push:
+    branches: [tm/windows-window-island]
+    paths: ['packages/one/windows/**', '.github/workflows/windows-island.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NATIVE_CORE_COMMIT: d35f3f285dde9d9617d415d2af35067644d49685
+  RN_VERSION: 0.88.0
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version-file: 'package.json'
+      - run: bun install --frozen-lockfile --ignore-scripts
+      - name: bundle
+        run: |
+          mkdir -p out
+          node packages/one/windows/island/app/bundle.mjs out/island.js
+          {
+            echo "react $(node -p "require('./node_modules/react/package.json').version")"
+            echo "react-native $(node -p "require('./node_modules/react-native/package.json').version")"
+            echo "metro $(node -p "require('./node_modules/metro/package.json').version")"
+            echo "island.js sha256 $(sha256sum out/island.js | cut -d' ' -f1) $(stat -c%s out/island.js) bytes"
+            echo "one source $GITHUB_SHA"
+          } | tee out/bundle.txt
+          grep -q "registerComponent('OneWindowsIsland'" out/island.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: island-bundle
+          path: out/
+
+  island:
+    needs: bundle
+    runs-on: windows-2025
+    timeout-minutes: 120
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      # the windows target and the root lockfile; the full tree has generated
+      # paths longer than Windows allows
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: packages/one/windows
+      - name: native-core foundation
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.NATIVE_CORE_COMMIT }}
+          path: foundation
+          sparse-checkout: packages/one/native-core
+      - uses: actions/download-artifact@v4
+        with:
+          name: island-bundle
+          path: bundle
+      - name: react-native and toolchain
+        id: pins
+        run: |
+          New-Item -ItemType Directory -Force out | Out-Null
+          # forward slashes, so the paths read the same inside CMake
+          $temp = $env:RUNNER_TEMP.Replace('\', '/')
+          "ONE_WINDOWS_CACHE=$temp/one-windows-cache" >> $env:GITHUB_ENV
+          "NATIVE_CORE=$($env:GITHUB_WORKSPACE.Replace('\', '/'))/foundation/packages/one/native-core" >> $env:GITHUB_ENV
+
+          # the registry tarball the repo's lockfile pins, checked against its integrity
+          $line = Select-String -Path bun.lock -Pattern "`"react-native`": \[`"react-native@$env:RN_VERSION`"" | Select-Object -First 1
+          if ($line.Line -notmatch '"(sha512-[^"]+)"\],?\s*$') { throw 'no react-native integrity in bun.lock' }
+          $locked = $Matches[1]
+          $pack = npm pack "react-native@$env:RN_VERSION" --pack-destination $temp --json | ConvertFrom-Json
+          if ($pack[0].integrity -ne $locked) { throw "react-native integrity $($pack[0].integrity) is not the locked $locked" }
+          $tgz = "$temp/$($pack[0].filename)"
+          New-Item -ItemType Directory -Force "$temp/rn" | Out-Null
+          & "$env:SystemRoot/System32/tar.exe" -xzf $tgz -C "$temp/rn"
+          if ($LASTEXITCODE) { throw 'could not unpack react-native' }
+          $rnRoot = "$temp/rn/package"
+          "RN_ROOT=$rnRoot" >> $env:GITHUB_ENV
+          $hermes = (Select-String -Path "$rnRoot/sdks/hermes-engine/version.properties" -Pattern '^HERMES_VERSION_NAME=(.*)$').Matches[0].Groups[1].Value
+          "hermes=$hermes" >> $env:GITHUB_OUTPUT
+
+          # the x64 developer environment, with the clang-cl Visual Studio ships
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vs = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Llvm.Clang -property installationPath
+          if (-not $vs) { throw 'no Visual Studio with clang-cl' }
+          cmd /c "`"$vs\VC\Auxiliary\Build\vcvars64.bat`" >nul && set" | ForEach-Object {
+            if ($_ -match '^([A-Za-z_][A-Za-z0-9_]*)=(.*)$' -and [Environment]::GetEnvironmentVariable($Matches[1]) -ne $Matches[2]) {
+              "$($Matches[1])=$($Matches[2])" >> $env:GITHUB_ENV
+            }
+          }
+          $clang = "$vs\VC\Tools\Llvm\x64\bin\clang-cl.exe"
+          "CC=$clang" >> $env:GITHUB_ENV
+          "CXX=$clang" >> $env:GITHUB_ENV
+
+          & {
+            "react-native $env:RN_VERSION $locked"
+            "react-native tarball sha256 $((Get-FileHash $tgz).Hash)"
+            "hermes $hermes"
+            "native-core onejs/one@$env:NATIVE_CORE_COMMIT"
+            "one source $env:GITHUB_SHA"
+            "runner $env:ImageOS $env:ImageVersion"
+            "visual studio $(& $vswhere -latest -property catalog_productDisplayVersion) at $vs"
+            & $clang --version
+          } | Tee-Object out/versions.txt
+      - name: versions in the developer environment
+        run: |
+          & {
+            "msvc toolset $env:VCToolsVersion"
+            "windows sdk $env:WindowsSDKVersion"
+            "cmake $(cmake --version | Select-Object -First 1)"
+            "ninja $(ninja --version)"
+          } | Tee-Object -Append out/versions.txt
+      - name: restore hermes
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/one-windows-cache/hermes-${{ steps.pins.outputs.hermes }}-release
+          key: hermes-${{ steps.pins.outputs.hermes }}-release-cl-${{ hashFiles('packages/one/windows/scripts/prepare-hermes.ps1') }}
+      - name: dependencies
+        run: packages/one/windows/scripts/build-core.ps1 -Phase deps -Logs out
+      - name: react-native core
+        run: packages/one/windows/scripts/build-core.ps1 -Phase core -Logs out
+      - name: hermes
+        id: hermes
+        run: packages/one/windows/scripts/build-core.ps1 -Phase hermes -Logs out
+      - name: save hermes
+        if: steps.hermes.outcome == 'success'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/one-windows-cache/hermes-${{ steps.pins.outputs.hermes }}-release
+          key: hermes-${{ steps.pins.outputs.hermes }}-release-cl-${{ hashFiles('packages/one/windows/scripts/prepare-hermes.ps1') }}
+      # the smoke shares the queue the island runtime now uses
+      - name: smoke
+        run: |
+          packages/one/windows/scripts/build-core.ps1 -Phase smoke -Logs out
+          $core = "$env:ONE_WINDOWS_CACHE/core-$env:RN_VERSION-release"
+          & "$core/one-windows-smoke.exe" "$core/smoke.hbc" 2>&1 | Tee-Object out/smoke.txt
+          exit $LASTEXITCODE
+      - name: island
+        run: |
+          packages/one/windows/scripts/build-core.ps1 -Phase island -Logs out -Bundle bundle/island.js
+          $hostDir = "$env:ONE_WINDOWS_CACHE/core-$env:RN_VERSION-release/island/host"
+          "HOST_DIR=$hostDir" >> $env:GITHUB_ENV
+          & {
+            Get-Content bundle/bundle.txt
+            Get-ChildItem "$env:USERPROFILE/.nuget/packages" -Directory |
+              Where-Object Name -match '^microsoft\.windows(appsdk|\.cppwinrt)' |
+              ForEach-Object { "nuget $($_.Name) $((Get-ChildItem $_.FullName -Directory).Name -join ' ')" }
+            foreach ($dll in 'Microsoft.UI.Xaml.dll', 'Microsoft.WindowsAppRuntime.dll', 'Microsoft.InputStateManager.dll') {
+              if (Test-Path "$hostDir/$dll") { "$dll $((Get-Item "$hostDir/$dll").VersionInfo.FileVersion)" }
+            }
+          } | Tee-Object -Append out/versions.txt
+          Get-FileHash "$hostDir/OneWindowsIsland.exe", "$hostDir/OneWindowsIslandRuntime.dll", "$hostDir/hermesvm.dll", "$hostDir/island.hbc", bundle/island.js, "$hostDir/Microsoft.UI.Xaml.dll", "$hostDir/Microsoft.WindowsAppRuntime.dll" |
+            ForEach-Object { "$($_.Hash) $(Split-Path -Leaf $_.Path) $((Get-Item $_.Path).Length)" } | Tee-Object out/hashes.txt
+      - name: drive the window
+        run: |
+          & {
+            "session $([Diagnostics.Process]::GetCurrentProcess().SessionId) interactive $([Environment]::UserInteractive)"
+            Get-CimInstance Win32_VideoController | ForEach-Object { "video $($_.Name) $($_.CurrentHorizontalResolution)x$($_.CurrentVerticalResolution)" }
+          } | Tee-Object -Append out/versions.txt
+          packages/one/windows/island/drive.ps1 -Exe "$env:HOST_DIR/OneWindowsIsland.exe" -Bundle "$env:HOST_DIR/island.hbc" -Out out/drive
+      - name: summary
+        if: always()
+        run: |
+          & {
+            '```'
+            if (Test-Path out/versions.txt) { Get-Content out/versions.txt }
+            if (Test-Path out/smoke.txt) { ''; Get-Content out/smoke.txt | Select-Object -Last 3 }
+            if (Test-Path out/hashes.txt) { ''; Get-Content out/hashes.txt }
+            if (Test-Path out/drive/drive.txt) { ''; Get-Content out/drive/drive.txt }
+            '```'
+          } | Out-File -Append -Encoding utf8 $env:GITHUB_STEP_SUMMARY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-island
+          path: out/
