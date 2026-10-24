@@ -128,6 +128,18 @@ jobs:
           & "$core/one-windows-smoke.exe" "$core/smoke.hbc" 2>&1 | Tee-Object out/smoke.txt
           $code = $LASTEXITCODE
           $hermes = "$env:ONE_WINDOWS_CACHE/hermes-${{ steps.pins.outputs.hermes }}-release/destroot"
+
+          # controls: a tree laid out differently fails the frame checks, and
+          # JavaScript source fails the bytecode check
+          (Get-Content packages/one/windows/smoke/smoke.js -Raw).Replace('padding: 20', 'padding: 30') | Set-Content "$core/negative.js"
+          & "$hermes/bin/hermesc.exe" -emit-binary -O -out "$core/negative.hbc" "$core/negative.js"
+          & "$core/one-windows-smoke.exe" "$core/negative.hbc" 2>&1 | Tee-Object out/negative.txt
+          if ($LASTEXITCODE -ne 1) { throw "the padding 30 control exited $LASTEXITCODE, not 1" }
+          & "$core/one-windows-smoke.exe" packages/one/windows/smoke/smoke.js 2>&1 | Tee-Object -Append out/negative.txt
+          if ($LASTEXITCODE -ne 1) { throw "the source control exited $LASTEXITCODE, not 1" }
+
+          New-Item -ItemType Directory -Force out/bin | Out-Null
+          Copy-Item "$core/one-windows-smoke.exe", "$core/smoke.hbc", "$hermes/bin/hermesvm.dll" out/bin/
           Get-FileHash "$core/one-windows-smoke.exe", "$core/smoke.hbc", "$core/OneWindowsCore.lib", "$hermes/bin/hermesvm.dll", "$hermes/lib/hermesvm.lib", "$hermes/bin/hermesc.exe" |
             ForEach-Object { "$($_.Hash) $(Split-Path -Leaf $_.Path) $((Get-Item $_.Path).Length)" } | Tee-Object out/hashes.txt
           exit $code
@@ -145,6 +157,7 @@ jobs:
               }
             }
             if (Test-Path out/smoke.txt) { ''; Get-Content out/smoke.txt }
+            if (Test-Path out/negative.txt) { ''; Get-Content out/negative.txt }
             if (Test-Path out/hashes.txt) { ''; Get-Content out/hashes.txt }
             '```'
           } | Out-File -Append -Encoding utf8 $env:GITHUB_STEP_SUMMARY
