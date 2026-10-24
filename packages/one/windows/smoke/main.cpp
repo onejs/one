@@ -235,6 +235,20 @@ int main(int argc, char **argv)
   std::string bundlePath = argv[1];
   setvbuf(stdout, nullptr, _IONBF, 0);
 
+  // the bundle has to be bytecode, which Hermes maps without compiling
+  {
+    std::ifstream file(bundlePath, std::ios::binary);
+    std::string bytes((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    auto *hermesAPI = jsi::castInterface<facebook::hermes::IHermesRootAPI>(facebook::hermes::makeHermesRootAPI());
+    std::string why;
+    auto *data = reinterpret_cast<const uint8_t *>(bytes.data());
+    if (!hermesAPI->hermesBytecodeSanityCheck(data, bytes.size(), &why)) {
+      std::fprintf(stderr, "%s is not Hermes bytecode: %s\n", bundlePath.c_str(), why.c_str());
+      return 1;
+    }
+    std::printf("bundle %s: %zu bytes of Hermes bytecode, runtime bytecode version %u\n", bundlePath.c_str(), bytes.size(), hermesAPI->getBytecodeVersion());
+  }
+
   SmokeQueue main;
   std::mutex errorMutex;
   std::string jsError;
@@ -297,19 +311,6 @@ int main(int argc, char **argv)
   runtime->startSurface("OneWindowsSmoke", [&](SurfaceId id) { surfaceId = id; });
   std::printf("surface %d started at 800x600 with 7 component descriptors\n", surfaceId);
 
-  // the bundle has to be bytecode, which Hermes maps without compiling
-  {
-    std::ifstream file(bundlePath, std::ios::binary);
-    std::string bytes((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-    auto *hermesAPI = jsi::castInterface<facebook::hermes::IHermesRootAPI>(facebook::hermes::makeHermesRootAPI());
-    std::string why;
-    auto *data = reinterpret_cast<const uint8_t *>(bytes.data());
-    if (!hermesAPI->hermesBytecodeSanityCheck(data, bytes.size(), &why)) {
-      std::fprintf(stderr, "%s is not Hermes bytecode: %s\n", bundlePath.c_str(), why.c_str());
-      return 1;
-    }
-    std::printf("bundle %s: %zu bytes of Hermes bytecode, runtime bytecode version %u\n", bundlePath.c_str(), bytes.size(), hermesAPI->getBytecodeVersion());
-  }
   runtime->instance().loadScript(JSBigFileString::fromPath(bundlePath), "file://" + bundlePath);
 
   auto laidOut = [&] {
