@@ -19,12 +19,24 @@ endif()
 include(${DEPS_CMAKE})
 include(${CMAKE_CURRENT_LIST_DIR}/../../native-core/rn-core.cmake)
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GTK4 REQUIRED IMPORTED_TARGET gtk4 pangocairo)
+
+set(ONE_LINUX ${CMAKE_CURRENT_LIST_DIR}/..)
+set(ONE_SHARED_HOST ${CMAKE_CURRENT_LIST_DIR}/../../native-core/host)
+file(GLOB ONE_SHARED_HOST_SOURCES ${ONE_SHARED_HOST}/*.cpp)
+
+# the cxx text layout stub is replaced by the Pango one; images stay the cxx stub
 set(RN_LINUX_SOURCES
-  ${RC}/react/renderer/textlayoutmanager/platform/cxx/react/renderer/textlayoutmanager/TextLayoutManager.cpp
   ${RC}/react/renderer/imagemanager/platform/cxx/react/renderer/imagemanager/ImageManager.cpp
+  ${RN_ROOT}/React/Fabric/AppleEventBeat.cpp
+  ${ONE_LINUX}/cpp/textlayoutmanager/OneLinuxText.cpp
+  ${ONE_LINUX}/cpp/textlayoutmanager/react/renderer/textlayoutmanager/TextLayoutManager.cpp
+  ${ONE_SHARED_HOST_SOURCES}
 )
 
 add_library(OneLinuxCore STATIC ${RN_SOURCES} ${RN_LINUX_SOURCES})
+target_link_libraries(OneLinuxCore PUBLIC PkgConfig::GTK4)
 
 target_include_directories(OneLinuxCore PUBLIC
   ${HERMES_ROOT}/include
@@ -45,7 +57,9 @@ target_include_directories(OneLinuxCore PUBLIC
   ${RC}/react/renderer/components/text/platform/cxx
   ${RC}/react/renderer/components/textinput/platform/ios
   ${RC}/react/renderer/imagemanager/platform/cxx
-  ${RC}/react/renderer/textlayoutmanager/platform/cxx
+  ${ONE_LINUX}/cpp/textlayoutmanager
+  ${ONE_SHARED_HOST}
+  ${RN_ROOT}/React/Fabric
   ${RC}/react/utils/platform/cxx
   ${RN_ROOT}/React/FBReactNativeSpec
 )
@@ -72,3 +86,16 @@ find_package(Threads REQUIRED)
 add_executable(one-linux-smoke ${CMAKE_CURRENT_LIST_DIR}/../smoke/main.cpp)
 target_link_libraries(one-linux-smoke PRIVATE OneLinuxCore)
 set_target_properties(one-linux-smoke PROPERTIES BUILD_RPATH ${HERMES_ROOT}/lib)
+
+add_executable(one-linux
+  ${ONE_LINUX}/host/main.cpp
+  ${ONE_LINUX}/host/OneLinuxHost.cpp
+  ${ONE_LINUX}/host/OneLinuxMountingManager.cpp
+  ${ONE_LINUX}/host/OneLinuxRuntime.cpp
+  ${ONE_LINUX}/host/OneLinuxStartup.cpp
+  ${ONE_LINUX}/host/OneLinuxView.cpp
+)
+target_include_directories(one-linux PRIVATE ${ONE_LINUX}/host)
+target_compile_options(one-linux PRIVATE -include cstdint -Wno-deprecated-declarations)
+target_link_libraries(one-linux PRIVATE OneLinuxCore)
+set_target_properties(one-linux PROPERTIES BUILD_RPATH ${HERMES_ROOT}/lib)
