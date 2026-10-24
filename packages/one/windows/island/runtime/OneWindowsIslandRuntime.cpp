@@ -21,7 +21,6 @@
 #include <react/renderer/scheduler/SchedulerDelegate.h>
 
 #include <algorithm>
-#include <atomic>
 #include <chrono>
 #include <cmath>
 #include <condition_variable>
@@ -184,21 +183,24 @@ IslandView islandView(const ShadowView &shadowView)
 }
 
 // Pulls transactions on the UI thread and hands them to the host flattened.
-// Keeps the toggles' event emitters by tag for the host's input.
+// Keeps the toggles' event emitters by tag for the host's input. Created on
+// the UI thread.
 class Mounting final : public SchedulerDelegate, public std::enable_shared_from_this<Mounting> {
  public:
-  explicit Mounting(IslandHost host) : host_(std::move(host)) {}
+  explicit Mounting(IslandHost host) : host_(std::move(host)), uiThread_(std::this_thread::get_id()) {}
 
   std::function<void(SurfaceId)> mergeReactRevision;
   std::unordered_map<Tag, std::shared_ptr<const OneWindowsToggleEventEmitter>> toggles;
-  // set while the surface stops, to trace its last transaction
-  std::atomic<bool> stopping{false};
 
   void schedulerDidFinishTransaction(const std::shared_ptr<const MountingCoordinator> &) override {}
   void schedulerShouldRenderTransactions(const std::shared_ptr<const MountingCoordinator> &coordinator) override
   {
-    if (stopping) {
-      host_.log("the stopping surface " + std::to_string(coordinator->getSurfaceId()) + " requests its last transaction");
+    // a commit on the UI thread mounts now: stopping a surface commits the
+    // empty tree, then destroys its shadow tree, which revokes the coordinator
+    // before a posted pull could run
+    if (std::this_thread::get_id() == uiThread_) {
+      pull(*coordinator);
+      return;
     }
     host_.postToUi([weak = weak_from_this(), coordinator] {
       if (auto self = weak.lock()) {
@@ -267,6 +269,7 @@ class Mounting final : public SchedulerDelegate, public std::enable_shared_from_
   }
 
   IslandHost host_;
+  std::thread::id uiThread_;
 };
 
 class Runtime final : public IslandRuntime {
@@ -374,7 +377,6 @@ class Runtime final : public IslandRuntime {
 
   void stopSurface() override
   {
-    mounting_->stopping = true;
     runtime_->stopSurface([this](SurfaceId surfaceId) {
       host_.log("surface " + std::to_string(surfaceId) + " stopped and unregistered");
     });
