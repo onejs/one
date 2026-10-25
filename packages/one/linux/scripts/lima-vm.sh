@@ -22,5 +22,5 @@ if ! limactl list -q 2>/dev/null | grep -qx "$name"; then
 fi
 limactl start "$name" --tty=false
 
-# automatic package updates saturate this dev VM's disk during builds and UI checks
+# avoid automatic package updates competing with builds and ui checks in this dev vm
 limactl shell "$name" sudo systemctl disable --now apt-daily.timer apt-daily-upgrade.timer

@@ -537,6 +537,19 @@ tests were added. Images, transforms, hover and existing press behavior remain
 visible in the same captures. No startup timing comparison was made under the
 host's concurrent load.
 
+**VM setup and compatibility checks, 2026-10-24.** RAN: both
+`apt-daily.timer` and `apt-daily-upgrade.timer` are disabled and inactive in the
+dev VM, and `lima-vm.sh` applies that policy after startup. The already-running
+upgrade services were stopped through systemd with their process-only stop
+policy, and the in-flight dpkg transaction was allowed to finish. Automatic
+upgrades had started at boot while the VM reported 95 percent full I/O pressure;
+this is a development VM policy, not a startup performance measurement.
+
+TESTED after the pointer and control changes: the existing Switch still turns
+on, the RN Pressable increments once, and moving over the text-cursor button
+fires hover and changes the cursor. The same capture shows decoded images and
+transformed RN content: [existing interactions](one-linux-native-existing-interactions.webp).
+
 ## Gaps
 
 - M3 is six of the planned ten controls; the next four are not implemented.
