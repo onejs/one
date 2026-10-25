@@ -110,7 +110,12 @@ function resolveNpmHermesc(root: string): string {
       : process.platform === 'win32'
         ? 'win64-bin'
         : 'linux64-bin'
-  return join(dir, 'hermesc', bin, process.platform === 'win32' ? 'hermesc.exe' : 'hermesc')
+  return join(
+    dir,
+    'hermesc',
+    bin,
+    process.platform === 'win32' ? 'hermesc.exe' : 'hermesc'
+  )
 }
 
 function resolveHermesc(root: string, platform: string): string {
@@ -281,23 +286,36 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
         { cwd: root, stdio: 'inherit' }
       )
       writeFileSync(join(intermediatesOut, 'bundle.js'), readFileSync(bundleJs))
-      writeFileSync(join(intermediatesOut, 'main.jsbundle.map'), readFileSync(composedMap))
+      writeFileSync(
+        join(intermediatesOut, 'main.jsbundle.map'),
+        readFileSync(composedMap)
+      )
     }
 
-    // the assets tree the bundler laid out is already the update layout:
-    // React Native resolves each asset at its relative path next to a
-    // bundle loaded from a file url. every served file is content-named.
+    // asset paths install next to the selected bundle loaded from a file url.
+    // every served file is content-named.
     const bundleHash = sha256Base64Url(bytecode)
     writeFileSync(join(assetsOut, bundleHash), readFileSync(bytecode))
     const assets: Array<{ hash: string; url: string; path: string }> = []
-    for (const file of collectFiles(assetsDir)) {
+    const assetFiles = collectFiles(assetsDir).map((file) => ({
+      file,
+      path: relative(assetsDir, file).split(sep).join('/'),
+    }))
+    // android's bundle command places DOM pages beside JS, separate from its
+    // drawable resource tree. both install at paths beneath the update root.
+    if (platform === 'android') {
+      for (const file of collectFiles(join(work, 'one-dom'))) {
+        assetFiles.push({ file, path: relative(work, file).split(sep).join('/') })
+      }
+    }
+    for (const { file, path } of assetFiles) {
       const hash = sha256Base64Url(file)
       const target = join(assetsOut, hash)
       if (!existsSync(target)) writeFileSync(target, readFileSync(file))
       assets.push({
         hash,
         url: `assets/${hash}`,
-        path: relative(assetsDir, file).split(sep).join('/'),
+        path,
       })
     }
     assets.sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0))
@@ -305,7 +323,11 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
       id: randomUUID(),
       createdAt: new Date().toISOString(),
       runtimeVersion,
-      launchAsset: { hash: bundleHash, url: `assets/${bundleHash}`, path: 'main.jsbundle' },
+      launchAsset: {
+        hash: bundleHash,
+        url: `assets/${bundleHash}`,
+        path: 'main.jsbundle',
+      },
       assets,
       metadata,
     }

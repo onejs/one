@@ -96,6 +96,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       {
         platform: buildArgs.platform,
         bundleOutput: `${outDir}${sep}${buildArgs.platform}.js`,
+        assetsDest: outDir,
         dev: false,
         entryFile: '',
         resetCache: true,
