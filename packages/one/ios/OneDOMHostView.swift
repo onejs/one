@@ -4,12 +4,13 @@ import WebKit
 // the native side of a 'use dom' component: one WKWebView per mount, a
 // document-start transport carrying a fresh epoch for every document, and an
 // owned resource origin for built pages. src/dom holds the protocol both sides speak.
-@objcMembers public final class OneDOMHostView: UIView {
-  public var onDocumentStart: ((String, Double) -> Void)?
-  public var onMessage: ((String) -> Void)?
-  public var onLoad: ((String) -> Void)?
-  public var onError: ((String, String, String) -> Void)?
-  public var onProcessTerminated: ((String) -> Void)?
+// only plain types reach One-Swift.h; objective-c++ importers may not see WebKit.
+public final class OneDOMHostView: UIView {
+  @objc public var onDocumentStart: ((String, Double) -> Void)?
+  @objc public var onMessage: ((String) -> Void)?
+  @objc public var onLoad: ((String) -> Void)?
+  @objc public var onError: ((String, String, String) -> Void)?
+  @objc public var onProcessTerminated: ((String) -> Void)?
 
   private var entryId = ""
   private var developmentURL = ""
@@ -17,6 +18,7 @@ import WebKit
   private var bootstrapState = ""
   private var scrollEnabled = true
   private var web: WKWebView?
+  private var navigation: OneDOMNavigation?
   private var resources: OneDOMResourceHandler?
   // the one document this mount may show, without its fragment.
   private var owned: URL?
@@ -24,7 +26,7 @@ import WebKit
   // a second crash before any load finishes stays down instead of looping.
   private var recovering = false
 
-  public func configure(entryId: String, developmentURL: String, bootstrapState: String, scrollEnabled: Bool) {
+  @objc public func configure(entryId: String, developmentURL: String, bootstrapState: String, scrollEnabled: Bool) {
     if web != nil && (entryId != self.entryId || developmentURL != self.developmentURL) {
       teardown()
     }
@@ -37,7 +39,7 @@ import WebKit
 
   // fabric sets the event emitter after props, so loading waits for the
   // finished update; errors found before any navigation still reach JS.
-  public func mount() {
+  @objc public func mount() {
     guard web == nil, !entryId.isEmpty else { return }
     let target: URL
     if !developmentURL.isEmpty {
@@ -67,8 +69,11 @@ import WebKit
     configuration.userContentController.add(proxy, name: "oneDOM")
     configuration.allowsInlineMediaPlayback = true
     let web = WKWebView(frame: bounds, configuration: configuration)
-    web.navigationDelegate = self
-    web.uiDelegate = self
+    let navigation = OneDOMNavigation()
+    navigation.host = self
+    self.navigation = navigation
+    web.navigationDelegate = navigation
+    web.uiDelegate = navigation
     web.isOpaque = false
     web.backgroundColor = .clear
     web.scrollView.backgroundColor = .clear
@@ -90,7 +95,7 @@ import WebKit
 
   // commands arrive in order and go to whichever document is current; the
   // envelope's epoch lets the page drop anything meant for an earlier one.
-  public func post(_ message: String) {
+  @objc public func post(_ message: String) {
     guard let web, !epoch.isEmpty else { return }
     web.callAsyncJavaScript(
       "globalThis.__oneDOMReceive?.(raw)", arguments: ["raw": message], in: nil, in: .page,
@@ -98,7 +103,7 @@ import WebKit
   }
 
   // the page disposes while its realm is alive, then the view goes away.
-  public func teardown() {
+  @objc public func teardown() {
     guard let retiring = web else { return }
     let epoch = self.epoch
     web = nil
@@ -107,6 +112,7 @@ import WebKit
     recovering = false
     retiring.navigationDelegate = nil
     retiring.uiDelegate = nil
+    navigation = nil
     resources?.close()
     resources = nil
     retiring.removeFromSuperview()
@@ -230,9 +236,9 @@ import WebKit
   }
 }
 
-extension OneDOMHostView: WKNavigationDelegate, WKUIDelegate {
-  public func webView(
-    _ webView: WKWebView, decidePolicyFor action: WKNavigationAction,
+extension OneDOMHostView {
+  fileprivate func decide(
+    _ webView: WKWebView, _ action: WKNavigationAction,
     decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
   ) {
     guard webView === web, let frame = action.targetFrame else { return decisionHandler(.cancel) }
@@ -250,8 +256,8 @@ extension OneDOMHostView: WKNavigationDelegate, WKUIDelegate {
     decisionHandler(beginDocument() ? .allow : .cancel)
   }
 
-  public func webView(
-    _ webView: WKWebView, decidePolicyFor response: WKNavigationResponse,
+  fileprivate func decide(
+    _ webView: WKWebView, _ response: WKNavigationResponse,
     decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void
   ) {
     if webView === web, response.isForMainFrame, let http = response.response as? HTTPURLResponse,
@@ -264,23 +270,13 @@ extension OneDOMHostView: WKNavigationDelegate, WKUIDelegate {
     decisionHandler(.allow)
   }
 
-  public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+  fileprivate func finished(_ webView: WKWebView) {
     guard webView === web else { return }
     recovering = false
     onLoad?(epoch)
   }
 
-  public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-    report(webView, error)
-  }
-
-  public func webView(
-    _ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error
-  ) {
-    report(webView, error)
-  }
-
-  private func report(_ webView: WKWebView, _ error: Error) {
+  fileprivate func report(_ webView: WKWebView, _ error: Error) {
     let error = error as NSError
     // a newer navigation replaced this one, or a policy cancel already reported it.
     if webView !== web || error.code == NSURLErrorCancelled
@@ -291,16 +287,55 @@ extension OneDOMHostView: WKNavigationDelegate, WKUIDelegate {
     onError?(epoch, error.localizedDescription, "DOM_LOAD_FAILED")
   }
 
-  public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+  fileprivate func terminated(_ webView: WKWebView) {
     guard webView === web, let owned else { return }
     onProcessTerminated?(epoch)
     guard !recovering else { return }
     recovering = true
     webView.load(URLRequest(url: owned))
   }
+}
+
+// webkit delegates live off the public class so they stay out of One-Swift.h.
+private final class OneDOMNavigation: NSObject, WKNavigationDelegate, WKUIDelegate {
+  weak var host: OneDOMHostView?
+
+  func webView(
+    _ webView: WKWebView, decidePolicyFor action: WKNavigationAction,
+    decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+  ) {
+    guard let host else { return decisionHandler(.cancel) }
+    host.decide(webView, action, decisionHandler: decisionHandler)
+  }
+
+  func webView(
+    _ webView: WKWebView, decidePolicyFor response: WKNavigationResponse,
+    decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void
+  ) {
+    guard let host else { return decisionHandler(.cancel) }
+    host.decide(webView, response, decisionHandler: decisionHandler)
+  }
+
+  func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    host?.finished(webView)
+  }
+
+  func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+    host?.report(webView, error)
+  }
+
+  func webView(
+    _ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error
+  ) {
+    host?.report(webView, error)
+  }
+
+  func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+    host?.terminated(webView)
+  }
 
   // target=_blank and window.open never leave the owned page.
-  public func webView(
+  func webView(
     _ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration,
     for action: WKNavigationAction, windowFeatures: WKWindowFeatures
   ) -> WKWebView? {

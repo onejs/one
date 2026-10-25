@@ -179,15 +179,14 @@ class OneDOMHostView(context: Context) : FrameLayout(context) {
     private inner class Client(private val document: Document) : WebViewClient() {
         override fun shouldInterceptRequest(view: WebView, request: WebResourceRequest): WebResourceResponse? {
             if (request.isForMainFrame && withoutFragment(request.url) == document.owned) return begin()
+            // the owned host never reaches the network; a port or userinfo variant 404s in resolve
+            if (request.url.host?.equals(OneDOMResources.HOST, ignoreCase = true) != true) return null
             if (request.url.authority == OneDOMResources.HOST && request.url.path?.startsWith(CONNECT) == true) {
                 val epoch = request.url.path!!.removePrefix(CONNECT)
                 main.post { connect(document, epoch) }
                 return OneDOMResources.response(204, "text/plain", ByteArrayInputStream(ByteArray(0)), "no-store")
             }
-            val resources = document.resources ?: return null
-            // owned paths never fall through to the network
-            if (request.url.authority == OneDOMResources.HOST) return resources.serve(request.url)
-            return null
+            return document.resources?.serve(request.url) ?: OneDOMResources.missing()
         }
 
         // fetches the owned document, snapshots the committed state with a fresh
