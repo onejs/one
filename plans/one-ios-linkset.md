@@ -247,6 +247,27 @@ Marks are `NSLog("startup_mark ...")` lines: `app_delegate_init` in `AppDelegate
 
 The acceptance bar (within about 100 ms of plain RN before `AppDelegate.init`) is not met: One with no group is 355 ms behind the control. The remaining difference is the frameworks One still links. `otool -L` shows 204 images for One against 74 for the control, including SwiftUI, AVKit, WebKit, MapKit, VisionKit, Translation, LinkPresentation, ContactsUI, EventKit, Photos, SwiftData, WorkoutKit and their overlays. The probe sweep above put the nine mid-weight frameworks at about 100 ms (P2), which does not cover 355 ms; the rest is SwiftUI and the libswift libraries. Nothing here is trimmed yet. One group still costs back nearly all of the gain (wallet 1689 against 608). Routed content is dominated by React Native and One startup, and shows One after no group 137 ms behind the control.
 
+## round three: photos and speech split, and the floor (branch tm/one-ios-linkset-2)
+
+`photos` now also owns `Photos` and the `OneImagePicker` and `OnePhotoLibrary` hybrids, and a new `speech` group owns `Speech` and `OneSpeech`. `OnePhotoLibrary` and `OneSpeech` are compiled only under their group, `OneNativeStyle.swift` imports `Photos` only under `ONE_GROUP_PHOTOS`, and `OneAutolinking` registers both by group. Modifiers declared only by a non-core overlay now carry `frameworks` (`codegen/deriveSDK.ts`) so `modifierGroups` can place them.
+
+### measurement (RAN, 10 interleaved cold launches each, one simulator, load average about 37 because no quiet window was admitted)
+
+| app | app_delegate_init median | routed_content median |
+|---|---|---|
+| plain RN control | 233 | 292 |
+| One, no group (97 libs after the split, 99 before) | 586 | 668 |
+| One, speech group | 592 | 676 |
+
+The gap to plain RN at `AppDelegate.init` is about 353 ms against 355 ms before the split. Moving Photos and Speech out of the no-group binary changed the startup time by less than the run to run spread.
+
+### what keeps the floor there
+
+- The cost is a hub effect. Dyld load time follows the shared expensive dependency set, so removing a few frameworks saves nothing while any other always-compiled file still imports something that reaches it. All the heavy ones have to leave together.
+- The remaining always-compiled importers are `OneNativeStyle.swift` and the `Hybrid*` files for Contacts and ContactsUI, MapKit, WebKit, VisionKit, AVKit, Translation, EventKit, LinkPresentation and GameController overlays.
+- `OneSDKBindings` compiles per-framework `OneSDK_<Framework>.o` files (EventKit, PDFKit, DeviceCheck, CloudKit, LinkPresentation and others) that no group gates. Swift records each module's import closure in every object file, so these keep the frameworks linked.
+- A cheap split of one or two frameworks does not reach the 300 ms target. Reaching it needs one bundled change: gate those hybrids, the `OneNativeStyle.swift` imports and the unconditional SDK binding files behind groups together, then re-measure.
+
 ## how it works
 
 `ios-link-set.json` lists the groups. `one prebuild` writes `ios/one-link-set.json` from the production bundle (`src/cli/iosLinkSet.ts`). `One.podspec` defines `ONE_GROUP_X` conditions for those groups in Release and for all groups in Debug. Group sources, nitro registration and generated modifiers sit under those conditions. A compiled-out component keeps a stub class that renders nothing, and a compiled-out hybrid is not registered, so its call fails through the existing unsupported error. `OneStoreReview` moved to a Swift hybrid in the store group because its SDK import kept StoreKit linked in every app.
@@ -255,7 +276,7 @@ The acceptance bar (within about 100 ms of plain RN before `AppDelegate.init`) i
 
 - The link set is captured at pod install. Adding a feature later needs `one prebuild`; a Release build that needs a missing group fails (see round two).
 - A computed read or an escaping namespace keeps every group. A Metro bundle has no analysis plugin, so prebuild links every group there.
-- The acceptance bar of 100 ms over plain RN is not met (355 ms at `app_delegate_init`); mid-weight frameworks and SwiftUI remain linked.
+- The acceptance bar of 100 ms over plain RN is not met (about 353 ms at `app_delegate_init` after round three); see round three for what keeps the floor.
 - Do not edit `codegen/sdk/app.ts` or other fingerprinted files; the fingerprint is embedded in the published bindings.
 
 ## files
