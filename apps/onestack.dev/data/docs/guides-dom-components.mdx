@@ -6,7 +6,7 @@ description: Use a browser React component inside a native screen, with data pro
 DOM components let a native screen host browser React markup, CSS and browser libraries. On the web, the same import renders the original React component inline.
 
 <Notice>
-  This feature is experimental and unreleased on the feature branch. Build and JavaScript probes and an iOS 27 custom scheme prototype have passed; native host, device behavior and Updates integration are still being proved. The current app targets are iOS 17+ and Android API 24+ through React Native 0.88. These are not claims of testing on those minimum versions or complete native support. Android also needs a modern, updated System WebView: Vite's current browser baseline includes Chrome 111 and iOS 16.4, so the Android OS API alone does not establish browser compatibility.
+  This feature is experimental and unreleased on the feature branch. Build and JavaScript integration probes and an iOS 27 source host harness have passed. Integrated app behavior, Android runtime coverage and Updates activation are still being validated. The current app targets are iOS 17+ and Android API 24+ through React Native 0.88. These are not claims of testing on those minimum versions or complete native support. Android also needs a modern, updated System WebView: Vite's current browser baseline includes Chrome 111 and iOS 16.4, so the Android OS API alone does not establish browser compatibility.
 </Notice>
 
 Use One's default Vite/Rolldown pipeline. Metro, native desktop, Expo Go and Expo Updates support are deferred. Your native binary must include `OneDOMHost`, so adding this feature requires a native rebuild; JavaScript refresh alone cannot add it. See [Build or Run iOS](/docs/guides-ios-native) and [Native Setup](/docs/native-setup). No separate WebView package or Expo compiler is required.
@@ -118,7 +118,7 @@ export default function Screen() {
 }
 ```
 
-Replace `/library` with a route in your app. Navigation is an explicit action owned by the parent. Native router state, providers, native modules and React context do not cross into the browser root. Pass data and actions rather than `children`, React elements or native objects. Browser events stay in the component; pass their data, such as the text string, to an action.
+Replace `/library` with a route in your app. Navigation is an explicit action owned by the parent. In the native host, links that leave the owned page are blocked, and `window.open` opens no window. Use an action such as `onNavigate` to request navigation. Native router state, providers, native modules and React context do not cross into the browser root. Pass data and actions rather than `children`, React elements or native objects. Browser events stay in the component; pass their data, such as the text string, to an action.
 
 The example demonstrates all three handle outcomes: `read()` resolves to a string, `clear()` resolves with no value, and reading an empty editor rejects with an error. Actions and imperative methods always return promises, including on ordinary web renders. Errors preserve `name`, `message` and an optional `code`; stacks are included only in development. Do not depend on a custom error class surviving the boundary.
 
@@ -134,7 +134,9 @@ Pass these options through the optional `dom` prop. They apply to the native hos
 | `scrollEnabled` | Enables browser scrolling; defaults to `true`. |
 | `matchContents` | Uses the measured browser content height at the native container's width. Use this instead of a fixed height when content should size the host. |
 | `onLoad` | Receives `{ entryId, epoch }` when the host document completes loading. |
-| `onError` | Receives `{ name, message, code?, stack?, entryId, epoch? }` for host errors. |
+| `onError` | Receives `{ name, message, code?, stack?, entryId, epoch? }` for host and page errors, including startup failures. |
+
+Page errors include a module evaluation failure, an unhandled rejection and a failed entry script load. When `onError` is omitted, errors are logged.
 
 There is no synchronous bridge, raw script evaluation, arbitrary page source or underlying WebView ref API.
 
@@ -159,7 +161,7 @@ function Illustration() {
 }
 ```
 
-Imported CSS, fonts and images use standard Vite transformations and relative packaged URLs. Unrelated web `public/` files are not copied. Root-relative public URLs such as `/logo.png` are unsupported in packaged DOM components; import the asset instead. Ordinary network requests follow browser CORS rules.
+Imported CSS, fonts and images use standard Vite transformations and relative packaged URLs. Unrelated web `public/` files are not copied. Root-relative public URLs such as `/logo.png` are unsupported in packaged DOM components; import the asset instead. Ordinary network requests follow browser CORS rules. Production page origins are `one-dom://app` on iOS and `https://appassets.androidplatform.net` on Android; development uses the Vite server origin. Verify the request headers on your target WebView when configuring server CORS. The iOS custom scheme probe establishes the page origin but has not measured the HTTP `Origin` header.
 
 On web, One retains the original component and the route's existing [SSG, SSR or SPA rules](/docs/render-modes). The directive does not disable server rendering. Keep browser-only globals out of module evaluation and server renders; access them in effects or event handlers where appropriate. Prefer static asset imports as above over `new URL(..., import.meta.url)` patterns whose meaning differs during SSR.
 
@@ -169,4 +171,4 @@ Development uses the existing reachable Vite server, with browser React Refresh,
 
 Each hosted document has a separate request lifetime. Unmount, disposal or document failure rejects pending bridge calls; replies from an old document cannot resolve calls in its replacement. Already started native actions may still finish their side effects, so rejection is not cancellation. A replacement document receives a fresh committed prop snapshot and later prop updates reconcile normally.
 
-Native loading, navigation policy, keyboard/layout behavior, device coverage and Updates activation still need native integration validation. The build and JavaScript checks do not establish those guarantees.
+Integrated app layout and keyboard behavior, minimum platform coverage and Updates activation still need validation. Focused host, build and JavaScript probes do not establish those app guarantees.
