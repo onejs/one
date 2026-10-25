@@ -423,11 +423,11 @@ function getNativePlugins(
       : []
   // evaluate One's factory once, in its existing position after desktop setup.
   const globalPlugins = globalThis.__vxrnAddNativePlugins?.(platform) || []
-  const trace =
+  const trace: NativeCompilerTrace | undefined =
     dev && command === 'serve'
-      ? ([...globalPlugins, ...userPlugins].find(
+      ? [...globalPlugins, ...userPlugins].find(
           (plugin) => plugin.api?.vxrnNativeCompilerTrace
-        )?.api.vxrnNativeCompilerTrace as NativeCompilerTrace | undefined)
+        )?.api.vxrnNativeCompilerTrace
       : undefined
   const plugins = [
     ...desktopPlugins,
