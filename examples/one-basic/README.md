@@ -5,6 +5,7 @@ root, then start this example:
 
 ```bash
 bun install --frozen-lockfile
+bun run build
 cd examples/one-basic
 bun run dev
 ```
