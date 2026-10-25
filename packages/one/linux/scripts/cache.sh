@@ -10,3 +10,13 @@ mkdir -p "$cache"
 rn_version() {
   sed -n 's/^  "version": "\(.*\)",$/\1/p' "$RN_ROOT/package.json"
 }
+
+one_version() {
+  sed -n 's/^  "version": "\(.*\)",$/\1/p' "$(dirname "${BASH_SOURCE[0]}")/../../package.json"
+}
+
+# the identity of a prebuilt core: it holds One's host code, so it is keyed by
+# the One version as well as the react-native version it was built against
+core_key() {
+  echo "$(one_version)-rn$(rn_version)-$1-$arch"
+}

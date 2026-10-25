@@ -81,7 +81,7 @@ int main(int argc, char **argv)
   App app;
   app.bundlePath = argc > 1 ? argv[1] : defaultBundlePath();
 
-  GtkApplication *application = gtk_application_new("dev.onestack.OneLinux", G_APPLICATION_NON_UNIQUE);
+  GtkApplication *application = gtk_application_new(g_getenv("ONE_LINUX_APP_ID") ? g_getenv("ONE_LINUX_APP_ID") : "dev.onestack.OneLinux", G_APPLICATION_NON_UNIQUE);
   g_signal_connect(application, "activate", G_CALLBACK(activate), &app);
   int status = g_application_run(G_APPLICATION(application), 1, argv);
   g_object_unref(application);

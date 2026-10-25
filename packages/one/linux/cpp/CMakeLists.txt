@@ -149,3 +149,11 @@ target_compile_options(one-linux PRIVATE -iquote ${OPSQLITE_ROOT}/cpp)
 target_compile_options(one-linux PRIVATE -include cstdint -Wno-deprecated-declarations)
 target_link_libraries(one-linux PRIVATE OneLinuxCore)
 set_target_properties(one-linux PROPERTIES BUILD_RPATH ${HERMES_ROOT}/lib)
+
+# the packaged core: the host, the Hermes it links and the compiler that turns an
+# app's bundle into bytecode, in one directory. the host finds libhermesvm.so
+# beside itself and main.jsbundle beside itself, so an app package adds those
+# two next to it.
+set_target_properties(one-linux PROPERTIES INSTALL_RPATH "$ORIGIN")
+install(TARGETS one-linux RUNTIME DESTINATION .)
+install(PROGRAMS ${HERMES_ROOT}/lib/libhermesvm.so ${HERMES_ROOT}/bin/hermesc DESTINATION .)
