@@ -191,6 +191,17 @@ an old revision that just ended. Programmatic value setters cannot start a
 pair. RAN release host and full package builds, Linux bundle and bytecode,
 with fatal GTK warnings; no automated tests.
 
+TESTED review 2 pointer pairing. With the baseline window floating, pressing
+on the desktop, moving into the RN target and releasing produces up 1 with
+down 0 and presses 0. The repaired host ignores that untracked release:
+[untracked release](one-linux-native-pointer-unpaired-fixed.webp).
+A normal click then reports down 1, up 1 and presses 1; moving to empty space
+clears hover: [normal pair](one-linux-native-pointer-paired-fixed.webp).
+The named box-none-root probe does not reproduce stale hover on this routed
+fixture, whose ancestors can still provide a hit target. The null-hit path now
+explicitly emits leave and clears its last target as well. RAN incremental
+release build and real uinput interactions under fatal GTK warnings.
+
 **M3 continuation, 2026-10-25, worker s79514 for s72425.** TESTED all ten
 controls in the studio-64 Ubuntu arm64 VM, GTK 4 release host and embedded
 Linux Hermes bytecode, with `G_DEBUG=fatal-criticals`. The four additions are

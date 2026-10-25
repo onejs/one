@@ -234,6 +234,9 @@ void OneLinuxPointerHandler::updateHover(double x, double y, bool inside)
           cursor = ancestor.cursor;
         }
       }
+    } else if (hoverTarget_) {
+      sendPointer(hoverTarget_, "leave", x, y);
+      hoverTarget_ = 0;
     }
   } else if (hoverTarget_) {
     sendPointer(hoverTarget_, "leave", x, y);
@@ -333,6 +336,9 @@ bool OneLinuxPointerHandler::handle(GdkEvent *event)
       send("move", x, y, true);
     }
   } else if (type == GDK_BUTTON_RELEASE) {
+    if (!touching_) {
+      return false;
+    }
     touching_ = false;
     OneLinuxPointerTarget target{};
     double localX = 0, localY = 0;
