@@ -1,6 +1,17 @@
 One Basic runs on web, iOS, and Android with React Native.
 
-Install dependencies and start the development server:
+When working in the One repository, install its Bun workspace from the repository
+root, then start this example:
+
+```bash
+bun install --frozen-lockfile
+cd examples/one-basic
+bun run dev
+```
+
+Use `bun run` for the native commands below in this workspace. The npm commands
+are for a standalone app created with `npx one`, which replaces workspace
+dependencies with the published One version:
 
 ```bash
 npm install

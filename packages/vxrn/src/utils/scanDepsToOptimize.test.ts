@@ -1,8 +1,9 @@
-import { mkdirSync, mkdtempSync, realpathSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createServer } from 'vite'
-import { describe, expect, test } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
+import FSExtra from 'fs-extra'
 import {
   findDepsToOptimize,
   getScannedOptimizeDepsConfig,
@@ -15,6 +16,49 @@ function writePkg(dir: string, pkg: object) {
   writeFileSync(join(dir, 'package.json'), JSON.stringify(pkg))
   writeFileSync(join(dir, 'index.js'), 'export default null\n')
 }
+
+test('shares manifest reads within a scan and refreshes them on the next scan', async () => {
+  const root = realpathSync(mkdtempSync(join(tmpdir(), 'vxrn-scan-shared-')))
+  writePkg(root, { dependencies: { alpha: '*', beta: '*' } })
+  for (const name of ['alpha', 'beta']) {
+    writePkg(join(root, 'node_modules', name), {
+      name,
+      main: './index.js',
+      dependencies: { common: '*' },
+    })
+  }
+  const common = join(root, 'node_modules', 'common')
+  writePkg(common, {
+    name: 'common',
+    main: './index.js',
+    dependencies: { added: '*' },
+    peerDependencies: { react: '*' },
+  })
+  const readJson = vi.spyOn(FSExtra, 'readJson')
+  try {
+    const result = await scanDepsToOptimize(join(root, 'package.json'))
+    expect(new Set(result.prebundleDeps)).toEqual(new Set(['alpha', 'beta', 'common']))
+    expect(
+      readJson.mock.calls.filter(([file]) => file === join(common, 'package.json'))
+    ).toHaveLength(1)
+
+    // a new invocation must observe changes, including formerly missing packages.
+    writePkg(common, { name: 'common', dependencies: { added: '*' } })
+    writePkg(join(root, 'node_modules', 'added'), {
+      name: 'added',
+      main: './index.js',
+      peerDependencies: { react: '*' },
+    })
+    const changed = await scanDepsToOptimize(join(root, 'package.json'))
+    expect(changed.prebundleDeps).toContain('added')
+    expect(
+      readJson.mock.calls.filter(([file]) => file === join(common, 'package.json'))
+    ).toHaveLength(2)
+  } finally {
+    readJson.mockRestore()
+    rmSync(root, { recursive: true, force: true })
+  }
+})
 
 describe('scanDepsToOptimize codegenConfig', () => {
   test('excludes native codegen packages but keeps plain react deps', async () => {
