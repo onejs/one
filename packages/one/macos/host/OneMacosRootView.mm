@@ -107,8 +107,6 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   // what the current runtime configured, reset with it
   OneMacosAppCommandConfig *_appCommandConfig;
   BOOL _appCommandsListening;
-  // the appearance last seen on the main thread, so getColorScheme never waits for it
-  std::atomic<bool> _darkAppearance;
 }
 
 - (instancetype)initWithBundleURL:(NSURL *)bundleURL moduleName:(NSString *)moduleName view:(NSView *)view
