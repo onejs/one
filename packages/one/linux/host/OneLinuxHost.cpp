@@ -1,5 +1,6 @@
 #include "OneLinuxHost.h"
 #include <OneLinuxControlState.h>
+#include "OneLinuxAppShell.h"
 
 #include <react/featureflags/ReactNativeFeatureFlags.h>
 #include <react/featureflags/ReactNativeFeatureFlagsDefaults.h>
@@ -88,7 +89,7 @@ std::string osVersion()
 
 void firstFrame(GdkFrameClock *clock, gpointer)
 {
-  OneLinuxStartupMark("first frame with content painted");
+  OneLinuxStartupMark("first mounted frame painted");
   g_signal_handlers_disconnect_by_func(clock, reinterpret_cast<gpointer>(firstFrame), nullptr);
 }
 
@@ -104,12 +105,13 @@ class OneLinuxFeatureFlags : public ReactNativeFeatureFlagsDefaults {
 
 } // namespace
 
-OneLinuxHost::OneLinuxHost(std::string bundlePath, std::string moduleName, OneView *surface)
-    : bundlePath_(std::move(bundlePath)), moduleName_(std::move(moduleName)), surface_(surface)
+OneLinuxHost::OneLinuxHost(std::string bundlePath, std::string moduleName, OneView *surface, std::shared_ptr<OneLinuxAppShell> shell)
+    : shell_(std::move(shell)), bundlePath_(std::move(bundlePath)), moduleName_(std::move(moduleName)), surface_(surface)
 {
   // keep the surface and its controllers alive after the window unparents it
   g_object_ref(surface_);
-  ReactNativeFeatureFlags::override(std::make_unique<OneLinuxFeatureFlags>());
+  static std::once_flag flags;
+  std::call_once(flags, [] { ReactNativeFeatureFlags::override(std::make_unique<OneLinuxFeatureFlags>()); });
   dark_ = prefersDark();
   GtkSettings *settings = gtk_settings_get_default();
   auto changed = [](GObject *, GParamSpec *, gpointer data) { static_cast<OneLinuxHost *>(data)->appearanceChanged(); };
@@ -144,8 +146,17 @@ void OneLinuxHost::start()
   OneHostRuntimeOptions options;
   options.jsThread = std::make_shared<OneLinuxMessageQueueThread>();
   options.timerRegistry = std::make_unique<OneLinuxTimerRegistry>();
-  options.createTurboModule = [](jsi::Runtime &runtime, const std::string &name, std::shared_ptr<CallInvoker> jsInvoker, const OneHostModuleContext &moduleContext)
+  shellGeneration_ = std::make_shared<int>(0);
+  std::weak_ptr<int> shellGeneration = shellGeneration_;
+  std::weak_ptr<OneLinuxAppShell> weakShell = shell_;
+  options.createTurboModule = [weakShell](jsi::Runtime &runtime, const std::string &name, std::shared_ptr<CallInvoker> jsInvoker, const OneHostModuleContext &moduleContext)
       -> std::shared_ptr<TurboModule> {
+    if (name == "OneLinuxWindow") {
+      return OneLinuxCreateWindowModule(std::move(jsInvoker), weakShell);
+    }
+    if (name == "OneLinuxAppCommands") {
+      return OneHostCreateAppCommandsModule(name, std::move(jsInvoker), moduleContext);
+    }
     if (name == "ImageLoader") {
       return OneLinuxCreateImageLoaderModule(std::move(jsInvoker));
     }
@@ -195,7 +206,23 @@ void OneLinuxHost::start()
     });
   };
 
+  context.configureAppCommands = [weakShell, shellGeneration](const folly::dynamic &config) {
+    auto error = OneLinuxAppShell::validate(config);
+    if (error.empty()) OneLinuxDispatchMain([weakShell, shellGeneration, config] {
+      if (auto shell = weakShell.lock(); shell && !shellGeneration.expired()) shell->configure(config);
+    });
+    return error;
+  };
+  context.setAppCommandsListening = [weakShell, shellGeneration](bool listening) {
+    OneLinuxDispatchMain([weakShell, shellGeneration, listening] {
+      if (auto shell = weakShell.lock(); shell && !shellGeneration.expired()) shell->setListening(listening);
+    });
+  };
   runtime_ = std::make_shared<OneHostRuntime>(std::move(options));
+  std::weak_ptr<OneHostRuntime> commandRuntime = runtime_;
+  shell_->emitCommand = [commandRuntime](const std::string &id) {
+    if (auto runtime = commandRuntime.lock()) runtime->emitDeviceEvent("oneLinuxAppCommand", id);
+  };
   mountingManager_->setContextContainer(runtime_->contextContainer());
   runtime_->contextContainer()->insert("ImageManager", std::make_shared<ImageManager>(runtime_->contextContainer()));
   mountingManager_->didMount = [this, generation] {
@@ -269,6 +296,9 @@ void OneLinuxHost::start()
 
 void OneLinuxHost::stop()
 {
+  shellGeneration_.reset();
+  shell_->emitCommand = {};
+  shell_->reset();
   generation_++;
   if (download_) {
     g_cancellable_cancel(download_);

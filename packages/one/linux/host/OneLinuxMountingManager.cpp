@@ -26,6 +26,7 @@
 #include <vector>
 
 #include "OneLinuxControl.h"
+#include "OneLinuxNavigation.h"
 
 #include "OneLinuxRuntime.h"
 #include "OneLinuxText.h"
@@ -57,6 +58,7 @@ const std::vector<ComponentDescriptorProvider> &componentProviders()
       concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxTextFieldShadowNode>>(),
       concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxSecureFieldShadowNode>>(),
       concreteComponentDescriptorProvider<TextInputComponentDescriptor>(),
+      concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxNavigationShadowNode>>(),
   };
   return providers;
 }
@@ -128,6 +130,7 @@ struct OneLinuxMountingManager::Record {
   guint commitSource{0};
   std::unique_ptr<OneLinuxTextInput> input;
   std::unique_ptr<OneLinuxControl> nativeControl;
+  std::unique_ptr<OneLinuxNavigation> navigation;
   ConcreteState<OneLinuxControlState>::Shared controlState;
   Size measuredControlSize{-1, -1};
   bool needsMeasurement{true};
@@ -221,6 +224,7 @@ void OneLinuxMountingManager::releaseRecord(Record &record)
   g_clear_object(&record.texture);
   record.input.reset();
   record.nativeControl.reset();
+  record.navigation.reset();
   one_view_set_owner(record.view, nullptr);
   g_object_unref(record.view);
 }
@@ -259,6 +263,10 @@ OneLinuxMountingManager::Record &OneLinuxMountingManager::createView(ComponentHa
   if (OneLinuxControl::supports(handle)) {
     record->nativeControl = std::make_unique<OneLinuxControl>(handle);
     one_view_set_control(record->view, record->nativeControl->widget());
+  }
+  if (handle == OneLinuxNavigationShadowNode::Handle()) {
+    record->navigation = std::make_unique<OneLinuxNavigation>(record->view);
+    one_view_set_control(record->view, record->navigation->widget());
   }
   if (handle == ScrollViewShadowNode::Handle()) {
     GtkWidget *scrollWindow = gtk_scrolled_window_new();
@@ -490,6 +498,7 @@ void OneLinuxMountingManager::restyle(Record &record)
   if (record.nativeControl) {
     record.needsMeasurement |= record.nativeControl->update(std::static_pointer_cast<const OneLinuxControlProps>(record.props), record.eventEmitter);
   }
+  if (record.navigation) record.navigation->update(std::static_pointer_cast<const OneLinuxNavigationProps>(record.props), record.eventEmitter);
 
   if (record.input) {
     // the field sits in the content frame, inside the padding and border
@@ -660,7 +669,8 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
         record.controlState = std::dynamic_pointer_cast<const ConcreteState<OneLinuxControlState>>(child.state);
         updateImageState(record, child.state);
         restyle(record);
-        one_view_insert_child(parentIt->second->container, record.view, mutation.index);
+        if (parentIt->second->navigation) parentIt->second->navigation->insert(record.view, mutation.index);
+        else one_view_insert_child(parentIt->second->container, record.view, mutation.index);
         hasContent_ = true;
         break;
       }
@@ -668,7 +678,9 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
       case ShadowViewMutation::Remove: {
         auto childIt = records_.find(mutation.oldChildShadowView.tag);
         if (childIt != records_.end() && gtk_widget_get_parent(GTK_WIDGET(childIt->second->view))) {
-          one_view_remove_child(childIt->second->view);
+          auto parent = records_.find(mutation.parentTag);
+          if (parent != records_.end() && parent->second->navigation) parent->second->navigation->remove(childIt->second->view);
+          else one_view_remove_child(childIt->second->view);
         }
         break;
       }
@@ -706,6 +718,7 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
       }
     }
   }
+  for (auto &[tag, record] : records_) if (record->navigation) record->navigation->sync();
   flushControlMeasurements(false);
 }
 

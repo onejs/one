@@ -1,48 +1,7 @@
-import type { SFSymbolName } from '../generated/sfSymbolNames';
-export type AppCommandBinding = {
-    id: string;
-    /** a gpui keystroke such as cmd-shift-[, ctrl-tab or up. */
-    key: string;
-    /** a gpui key context; the mac host sets only Input, while a text input has focus. */
-    context?: string | null;
-};
-export type AppCommandMenuItem = {
-    kind: 'action';
-    id: string;
-    label: string;
-} | {
-    kind: 'separator';
-} | {
-    kind: 'submenu';
-    label: string;
-    items: AppCommandMenuItem[];
-};
-export type AppCommandMenu = {
-    label: string;
-    items: AppCommandMenuItem[];
-};
-export type AppCommandConfig = {
-    bindings: AppCommandBinding[];
-    /** the first menu joins the application menu; others join a menu with the same title. */
-    menus: AppCommandMenu[];
-    /** native window toolbar; omitting it leaves the shell's toolbar in place. */
-    toolbar?: AppCommandToolbarItem[];
-};
-export type AppCommandToolbarItem = {
-    kind: 'flexibleSpace';
-} | {
-    kind: 'action';
-    id: string;
-    label: string;
-    systemImage: SFSymbolName;
-    badge?: number;
-};
-export type AppCommandListener = (id: string) => void;
+export type { AppCommandBinding, AppCommandMenuItem, AppCommandMenu, AppCommandConfig, AppCommandToolbarItem, AppCommandListener } from '../desktop/appCommandTypes';
 export declare const AppCommands: {
-    /** replaces the menus and keys of the previous call; throws for an invalid config. */
-    configure(config: AppCommandConfig): void;
-    /** commands reach listeners only while one is registered; returns the remover. */
-    addListener(listener: AppCommandListener): () => void;
+    configure(config: import("./AppCommands.macos").AppCommandConfig): void;
+    addListener(listener: import("./AppCommands.macos").AppCommandListener): () => void;
 };
 export type OneMacAppCommands = typeof AppCommands;
 //# sourceMappingURL=AppCommands.macos.d.ts.map

@@ -18,6 +18,10 @@ OneView *one_view_new(void);
 // a flexible view fills whatever its parent gives it and reports every change
 // of that size, which is how the window's size reaches React
 void one_view_make_surface(OneView *view, OneViewSurfaceCallback callback, gpointer data);
+void one_view_refresh_picking(OneView *view);
+void one_view_set_flexible(OneView *view, gboolean flexible);
+void one_view_set_navigation_handlers(OneView *view, OneView *(*content)(gpointer), void (*allocated)(gpointer), gpointer data);
+OneView *one_view_get_navigation_content(OneView *view);
 
 void one_view_set_frame(OneView *view, double x, double y, double width, double height);
 void one_view_set_background(OneView *view, const GdkRGBA *color);

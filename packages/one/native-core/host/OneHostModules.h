@@ -4,6 +4,9 @@
 
 namespace facebook::react {
 
+std::shared_ptr<TurboModule> OneHostCreateAppCommandsModule(
+    const std::string &name, std::shared_ptr<CallInvoker> jsInvoker, const OneHostModuleContext &context);
+
 // The TurboModules both hosts provide the same way: platform constants, device
 // info, appearance, app state, exception reporting, dev settings, the C++
 // performance, microtask, DOM and idle callback modules, and the inert

@@ -13,6 +13,7 @@
 namespace facebook::react {
 
 class OneHostRuntime;
+class OneLinuxAppShell;
 
 // One React instance and surface mounted into a surface view. Everything is
 // created on the GTK main thread and torn down with `stop`, which `reload`
@@ -21,7 +22,7 @@ class OneLinuxHost {
  public:
   // `bundlePath` is a Hermes bytecode bundle or plain JavaScript file, or the
   // http URL of a dev server bundle
-  OneLinuxHost(std::string bundlePath, std::string moduleName, OneView *surface);
+  OneLinuxHost(std::string bundlePath, std::string moduleName, OneView *surface, std::shared_ptr<OneLinuxAppShell> shell);
   ~OneLinuxHost();
 
   void start();
@@ -37,6 +38,8 @@ class OneLinuxHost {
 
   class SchedulerDelegate;
 
+  std::shared_ptr<OneLinuxAppShell> shell_;
+  std::shared_ptr<int> shellGeneration_;
   std::string bundlePath_;
   std::string moduleName_;
   OneView *surface_;

@@ -263,6 +263,24 @@ std::shared_ptr<TurboModule> featureFlags(std::shared_ptr<CallInvoker> jsInvoker
 
 } // namespace
 
+// menu validation and listener state are shared by desktop command modules.
+std::shared_ptr<TurboModule> OneHostCreateAppCommandsModule(const std::string &name, std::shared_ptr<CallInvoker> jsInvoker, const OneHostModuleContext &context)
+{
+  auto module = std::make_shared<OneHostModule>(name, std::move(jsInvoker));
+  module->method("configure", 1, [context](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
+    auto error = context.configureAppCommands(count > 0 ? jsi::dynamicFromValue(rt, args[0]) : folly::dynamic());
+    if (!error.empty()) {
+      throw jsi::JSError(rt, "AppCommands.configure: " + error);
+    }
+    return jsi::Value::undefined();
+  });
+  module->method("setListening", 1, [context](jsi::Runtime &, const jsi::Value *args, size_t count) {
+    context.setAppCommandsListening(count > 0 && args[0].isBool() && args[0].getBool());
+    return jsi::Value::undefined();
+  });
+  return module;
+}
+
 std::shared_ptr<TurboModule> OneHostCreateTurboModule(
     const std::string &name,
     std::shared_ptr<CallInvoker> jsInvoker,

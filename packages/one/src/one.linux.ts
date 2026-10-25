@@ -1,4 +1,6 @@
 import { One as NativeOne, type OneLinuxAPI, type OneLinux } from './one-shared'
+import { AppCommands } from './platform/linux/AppCommands.linux'
+import { Window } from './platform/linux/Window.linux'
 import { Switch } from './platform/linux/Switch.linux'
 import { Button } from './platform/linux/Button.linux'
 import { SegmentedControl } from './platform/linux/SegmentedControl.linux'
@@ -12,6 +14,8 @@ import { TextField } from './platform/linux/TextField.linux'
 import { SecureField } from './platform/linux/SecureField.linux'
 
 const linux: Readonly<OneLinux> = Object.freeze({
+  AppCommands,
+  Window,
   Switch,
   Button,
   SegmentedControl,

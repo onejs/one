@@ -4,8 +4,12 @@
 #include <ReactCommon/TurboModule.h>
 
 #include <memory>
+#include "OneHostModule.h"
 
 namespace facebook::react {
+
+class OneLinuxAppShell;
+std::shared_ptr<TurboModule> OneLinuxCreateWindowModule(std::shared_ptr<CallInvoker>, std::weak_ptr<OneLinuxAppShell>);
 
 // urls open in the default app through GIO; the app has no initial url
 std::shared_ptr<TurboModule> OneLinuxCreateLinkingModule(std::shared_ptr<CallInvoker> jsInvoker);

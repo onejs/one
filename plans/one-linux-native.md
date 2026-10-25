@@ -117,6 +117,61 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+**M4 app shell and routing, 2026-10-25, s79947 for s72425.** TESTED
+`tests/linux-basic` with the arm64 release host and embedded Linux bytecode.
+The default route opens the routed demo; the original composition demo is
+preserved at `/controls`.
+
+| behavior | GTK owner | proof |
+| --- | --- | --- |
+| Stack push and native back | `GtkStack`, `GtkHeaderBar` | [push](one-linux-native-m4-stack-push.webp), [back with edited text and RN counter retained](one-linux-native-m4-stack-back.webp) |
+| Tabs and state retention | `GtkStackSwitcher` in a header bar | [Settings](one-linux-native-m4-tabs.webp), [state after returning](one-linux-native-m4-tabs-retained.webp) |
+| Tab press contracts | React Navigation and the existing controlled protocol | [prevented selection stays Home](one-linux-native-m4-tab-prevented.webp), [repeated press event](one-linux-native-m4-repeat.webp) |
+| Sidebar selection | `GtkStackSidebar` | [Places route](one-linux-native-m4-sidebar.webp) |
+| Menus and actions | `GMenu`, `GtkPopoverMenu`, `GSimpleActionGroup` | [submenu](one-linux-native-m4-menu.webp), [menu increments 3 to 4](one-linux-native-m4-menu-action.webp) |
+| Key contexts | shared Mac predicate parser | [Input command](one-linux-native-m4-commands-input.webp), [outside Input](one-linux-native-m4-commands-outside.webp) |
+| Multiple windows | `GtkApplicationWindow`, one runtime and command group each | [separate routes and command counts](one-linux-native-m4-two-windows.webp), [native New Window action](one-linux-native-m4-menu-new-window.webp), [close second window](one-linux-native-m4-window-closed.webp) |
+
+One's shared Stack layout and native Tabs screen processing still own file
+routes, protected screens and React Navigation state. Linux supplies the GTK
+presentation for `StackRouter` and `TabRouter`. The native viewport reports its
+content bounds so React Native owns layout within each page. Only the visible
+page participates in pointer hits; GTK hides the other pages and their focus
+targets. Both header back and RN back dispatch through navigation rather than
+mutating GTK's stack independently. Tab selection can be prevented, and repeated
+primary-button presses emit the standard tab event and behavior flags.
+
+Mac and Linux now share AppCommands listener management, command types, the
+TurboModule methods and the key-context predicate parser. The Mac Stack layout
+helper is shared without importing the Mac navigator into a Linux bundle.
+The GTK widget choices follow [GTK's StackSwitcher example](https://gnome.pages.gitlab.gnome.org/gtk/gtk4/getting_started.html)
+and [GNOME's header bar guidance](https://developer.gnome.org/hig/patterns/containers/header-bars.html).
+No libadwaita dependency was needed for this milestone.
+
+The running probe broke two assumptions during development: root navigators
+have no parent tab listener, and the installed React Navigation `navigate`
+action takes a name and params, not a route object. Both adapters now follow
+the installed native-stack and bottom-tabs source contracts. Temporary native
+selection probes were removed before the clean release build.
+
+RAN full One package build, Mac/Linux declaration emit and static view-config
+generation (11 Linux specs), incremental release host build, Linux route bundle,
+Hermes bytecode compilation, package lint (zero errors, eight existing warnings)
+and real uinput interactions. Routing, state and tab cancellation ran with fatal
+warnings. Submenus and windows ran with fatal criticals: Sway 1.9 triggers GDK's
+visible warning that popup repositioning is unavailable. GTK's documented
+remapping path handles it; no application workaround suppresses that warning.
+No automated tests were added. Mac runtime and wider platform checks remain
+with ci-manager through s72425.
+
+RAN a warm startup observation for the routed release fixture under concurrent
+host load: the first mount painted at 60.9 ms and the first frame containing
+visible RN text at 101.9 ms, measured from process start. This is one observation,
+not a distribution or a comparison with the older composition fixture. The
+opt-in startup timeline now distinguishes those two milestones; the native
+shell's first frame is not reported as main content. The capture and error-free
+JS startup identify the first RN text as the routed Home content.
+
 **Review 2 repairs, 2026-10-25, s79947 for s72425.** M4 is paused for the
 lead-assigned review findings in `linux-review2-findings.txt`. TESTED Stepper's
 native API in the arm64 release VM: `label="Amount"`, `in={[0, 3]}` and
@@ -892,6 +947,23 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
 
 ## Gaps
 
+- M4 implements route titles, header visibility/back, Stack push/pop, controlled
+  tab selection and a left sidebar. Custom header/toolbar composition, modal
+  presentations, transition animations, tab icons and the remaining native-stack
+  visual options are not implemented on GTK yet. Repeated primary mouse tab
+  events were exercised; keyboard repeat activation, nested pop-to-top and
+  scroll-to-top need broader interaction validation.
+- Linux AppCommands supports menus, key bindings and Input predicates. The Mac
+  toolbar configuration is omitted from its Linux public config and rejected
+  by the native module. The window API opens another instance of the root;
+  per-window initial routes and cross-window application state are not provided.
+- Sway 1.9 lacks the popup reposition protocol used by GTK submenus. Menu
+  interaction works with GTK's remapping warning visible and fatal criticals;
+  GNOME Shell validation remains outside the headless VM proof.
+- The requested shared Mac control/command code intentionally changes Mac JS
+  modules. Mac's earlier zero-byte bundle expectation cannot be assumed for
+  these requested shared-wrapper changes. s72425 and ci-manager own that gate
+  and the iOS, Android and web byte comparisons; no wider byte result is claimed.
 - M3's ten controls, theme-derived intrinsic sizing, Slider completion,
   indeterminate progress, tagged dropdown items and RN ScrollView composition
   have arm64 release VM proof. Slider touch and wheel completion paths have
@@ -902,8 +974,8 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
   and drag and drop. `cursorColor` is Android only in RN and is not a Linux gap.
 - The earlier scroll, portal color scheme, image and Networking gaps remain.
 
-**Next:** review 2 findings and requested simplifications are repaired; s79947 resumes M4. Lead s72425 and
-ci-manager own the
-full release bundle byte gate and broader platform builds. The existing image,
-portal appearance and Networking gaps remain outside this M3 continuation.
-M4 app shell and routing follows the lead's scheduling.
+**Next:** M4's baseline shell and routing have release VM captures. Lead
+s72425 and ci-manager own review, Mac runtime validation, broader platform builds
+and the release bundle byte gate. M5 packaging and the visual navigation options
+listed above remain. The shared worktree stays held by s72425; owned VM services
+are stopped at handoff.

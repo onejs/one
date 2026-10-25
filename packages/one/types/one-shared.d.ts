@@ -25,6 +25,8 @@ export type OneMacOS = {
     readonly AppCommands: OneMacAppCommands;
 };
 export type OneLinux = {
+    readonly AppCommands: OneMacAppCommands;
+    readonly Window: typeof import('./platform/linux/Window.linux').Window;
     readonly Switch: ComponentType<SwitchProps>;
     readonly Button: ComponentType<LinuxButtonProps>;
     readonly SegmentedControl: ComponentType<LinuxSegmentedControlProps>;

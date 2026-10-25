@@ -217,23 +217,6 @@ std::shared_ptr<TurboModule> fileReaderModule(jsi::Runtime &runtime, std::shared
   return module;
 }
 
-// native menu and key commands for this runtime, emitted as oneMacAppCommand
-std::shared_ptr<TurboModule> appCommands(std::shared_ptr<CallInvoker> jsInvoker, const OneHostModuleContext &context)
-{
-  auto module = std::make_shared<OneHostModule>("OneMacAppCommands", std::move(jsInvoker));
-  module->method("configure", 1, [context](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
-    auto error = context.configureAppCommands(count > 0 ? jsi::dynamicFromValue(rt, args[0]) : folly::dynamic());
-    if (!error.empty()) {
-      throw jsi::JSError(rt, "AppCommands.configure: " + error);
-    }
-    return jsi::Value::undefined();
-  });
-  module->method("setListening", 1, [context](jsi::Runtime &, const jsi::Value *args, size_t count) {
-    context.setAppCommandsListening(count > 0 && args[0].isBool() && args[0].getBool());
-    return jsi::Value::undefined();
-  });
-  return module;
-}
 
 } // namespace
 
@@ -269,7 +252,7 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
     return fileReaderModule(runtime, std::move(jsInvoker));
   }
   if (name == "OneMacAppCommands") {
-    return appCommands(std::move(jsInvoker), context);
+    return OneHostCreateAppCommandsModule(name, std::move(jsInvoker), context);
   }
   if (name == "NativeAnimatedModule") {
     return OneMacosCreateAnimatedModule(std::move(jsInvoker));

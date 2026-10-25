@@ -1,4 +1,5 @@
 #include "OneLinuxView.h"
+#include "OneLinuxStartup.h"
 
 #include <algorithm>
 #include <cmath>
@@ -33,6 +34,10 @@ struct _OneView {
   GtkWidget *control;
   gpointer owner;
   OneView *scroll_content;
+  gboolean flexible;
+  OneView *(*navigation_content)(gpointer);
+  void (*navigation_allocated)(gpointer);
+  gpointer navigation_data;
 
   gboolean surface;
   OneViewSurfaceCallback surface_callback;
@@ -47,7 +52,7 @@ static void one_view_measure(
 {
   OneView *view = ONE_VIEW(widget);
   int size = view->surface ? 0 : static_cast<int>(std::ceil(orientation == GTK_ORIENTATION_HORIZONTAL ? view->width : view->height));
-  *minimum = size;
+  *minimum = view->flexible ? 0 : size;
   *natural = size;
   *minBaseline = -1;
   *natBaseline = -1;
@@ -112,6 +117,7 @@ static void one_view_size_allocate(GtkWidget *widget, int width, int height, int
         gtk_widget_set_overflow(widget,
             view->clips || controlWidth > width || controlHeight > height ? GTK_OVERFLOW_HIDDEN : GTK_OVERFLOW_VISIBLE);
         gtk_widget_allocate(child, controlWidth, controlHeight, control_baseline(child, controlWidth, controlHeight), nullptr);
+        if (view->navigation_allocated) view->navigation_allocated(view->navigation_data);
       }
       continue;
     }
@@ -220,6 +226,9 @@ static void one_view_snapshot(GtkWidget *widget, GtkSnapshot *snapshot)
     graphene_point_t origin = GRAPHENE_POINT_INIT(static_cast<float>(view->text_x), static_cast<float>(view->text_y));
     gtk_snapshot_translate(snapshot, &origin);
     gtk_snapshot_append_layout(snapshot, view->layout, &black);
+    if (view->width > 0 && view->height > 0 && *pango_layout_get_text(view->layout)) {
+      OneLinuxStartupContentPainted(gtk_widget_get_frame_clock(widget));
+    }
     gtk_snapshot_restore(snapshot);
   }
 
@@ -308,11 +317,12 @@ static void update_picking(OneView *view)
   }
   gtk_widget_set_can_target(GTK_WIDGET(view), parent_allows && (view->targets_self || view->targets_children));
   if (view->control) {
-    gtk_widget_set_can_target(view->control, view->targets_self || (view->scroll_content && view->targets_children));
+    gtk_widget_set_can_target(view->control, view->targets_self || ((view->scroll_content || view->navigation_content) && view->targets_children));
   }
   if (view->scroll_content) {
     update_picking(view->scroll_content);
   }
+  if (auto *content = one_view_get_navigation_content(view)) update_picking(content);
   for (GtkWidget *child = gtk_widget_get_first_child(GTK_WIDGET(view)); child; child = gtk_widget_get_next_sibling(child)) {
     if (ONE_IS_VIEW(child)) {
       update_picking(ONE_VIEW(child));
@@ -332,7 +342,7 @@ void one_view_set_pointer_events(OneView *view, gboolean self, gboolean children
 
 void one_view_make_surface(OneView *view, OneViewSurfaceCallback callback, gpointer data)
 {
-  view->surface = TRUE;
+  view->surface = callback != nullptr;
   view->surface_callback = callback;
   view->surface_data = data;
   gtk_widget_set_hexpand(GTK_WIDGET(view), TRUE);
@@ -448,6 +458,28 @@ void one_view_set_control(OneView *view, GtkWidget *control)
 GtkWidget *one_view_get_control(OneView *view)
 {
   return view->control;
+}
+
+void one_view_refresh_picking(OneView *view)
+{
+  update_picking(view);
+}
+
+void one_view_set_flexible(OneView *view, gboolean flexible)
+{
+  view->flexible = flexible;
+}
+
+void one_view_set_navigation_handlers(OneView *view, OneView *(*content)(gpointer), void (*allocated)(gpointer), gpointer data)
+{
+  view->navigation_content = content;
+  view->navigation_allocated = allocated;
+  view->navigation_data = data;
+}
+
+OneView *one_view_get_navigation_content(OneView *view)
+{
+  return view->navigation_content ? view->navigation_content(view->navigation_data) : nullptr;
 }
 
 void one_view_set_scroll(OneView *view, GtkScrolledWindow *scrolled, OneView *content)

@@ -39,3 +39,20 @@ void OneLinuxStartupMark(const char *label)
   double nowMs = now.tv_sec * 1000.0 + now.tv_nsec / 1e6;
   std::fprintf(stderr, "[one-linux] startup %7.1f ms  %s\n", nowMs - start, label);
 }
+
+namespace {
+void contentFrame(GdkFrameClock *clock, gpointer)
+{
+  OneLinuxStartupMark("first frame with RN text painted");
+  g_signal_handlers_disconnect_by_func(clock, reinterpret_cast<gpointer>(contentFrame), nullptr);
+}
+}
+
+void OneLinuxStartupContentPainted(GdkFrameClock *clock)
+{
+  static const bool enabled = std::getenv("ONE_LINUX_STARTUP_LOG") != nullptr;
+  static bool scheduled = false;
+  if (!enabled || scheduled) return;
+  scheduled = true;
+  g_signal_connect(clock, "after-paint", G_CALLBACK(contentFrame), nullptr);
+}

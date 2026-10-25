@@ -89,6 +89,13 @@ OneView *OneLinuxPointerHandler::hitChildren(
     double &localX,
     double &localY)
 {
+  if (auto *content = one_view_get_navigation_content(parent)) {
+    graphene_point_t source{static_cast<float>(x), static_cast<float>(y)}, point;
+    if (gtk_widget_compute_point(GTK_WIDGET(parent), GTK_WIDGET(content), &source, &point)) {
+      return hitTest(content, point.x, point.y, target, localX, localY);
+    }
+    return nullptr;
+  }
   GtkWidget *control = one_view_get_control(parent);
   for (GtkWidget *child = gtk_widget_get_last_child(GTK_WIDGET(parent)); child; child = gtk_widget_get_prev_sibling(child)) {
     if (child == control) {
@@ -164,7 +171,12 @@ bool OneLinuxPointerHandler::localPoint(Tag tag, double x, double y, double &loc
   }
   OneView *parent = surface_;
   for (auto step = path.rbegin(); step != path.rend(); ++step) {
-    if (one_view_get_scroll_content(parent) == *step) {
+    if (one_view_get_navigation_content(parent) == *step) {
+      graphene_point_t source{static_cast<float>(x), static_cast<float>(y)}, point;
+      if (!gtk_widget_compute_point(GTK_WIDGET(parent), GTK_WIDGET(*step), &source, &point)) return false;
+      x = point.x;
+      y = point.y;
+    } else if (one_view_get_scroll_content(parent) == *step) {
       double scrollX, scrollY;
       one_view_get_scroll_offset(parent, &scrollX, &scrollY);
       x += scrollX;

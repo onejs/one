@@ -1,10 +1,24 @@
 #include "OneLinuxModules.h"
+#include "OneLinuxAppShell.h"
+#include "OneLinuxRuntime.h"
 
 #include <gio/gio.h>
 
 #include "OneHostModule.h"
 
 namespace facebook::react {
+
+std::shared_ptr<TurboModule> OneLinuxCreateWindowModule(std::shared_ptr<CallInvoker> invoker, std::weak_ptr<OneLinuxAppShell> shell)
+{
+  auto module = std::make_shared<OneHostModule>("OneLinuxWindow", std::move(invoker));
+  module->method("open", 0, [shell](jsi::Runtime &, const jsi::Value *, size_t) {
+    OneLinuxDispatchMain([shell] {
+      if (auto current = shell.lock(); current && current->openWindow) current->openWindow();
+    });
+    return jsi::Value::undefined();
+  });
+  return module;
+}
 
 std::shared_ptr<TurboModule> OneLinuxCreateLinkingModule(std::shared_ptr<CallInvoker> jsInvoker)
 {

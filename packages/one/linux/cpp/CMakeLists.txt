@@ -128,6 +128,8 @@ set_target_properties(one-linux-smoke PROPERTIES BUILD_RPATH ${HERMES_ROOT}/lib)
 
 add_executable(one-linux
   ${ONE_LINUX}/host/main.cpp
+  ${ONE_LINUX}/host/OneLinuxAppShell.cpp
+  ${ONE_LINUX}/host/OneLinuxNavigation.cpp
   ${ONE_LINUX}/host/OneLinuxHost.cpp
   ${ONE_LINUX}/host/OneLinuxMountingManager.cpp
   ${ONE_LINUX}/host/OneLinuxModules.cpp
