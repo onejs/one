@@ -1,24 +1,12 @@
-import { useControlled } from '../controlled'
+import type { ReactElement } from 'react'
+import { createToggle, type DesktopToggleProps } from '../desktop/createControls'
 import NativeToggle, { type ChangeEvent } from './OneMacToggleNativeComponent'
 
-export type ToggleProps = {
-  label: string
-  isOn: boolean
-  revision?: number
-  onIsOnChange?: (event: { isOn: boolean; revision: number }) => void
-}
+export type ToggleProps = Omit<DesktopToggleProps, 'disabled'>
 
-export function Toggle({ label, isOn, revision = 0, onIsOnChange }: ToggleProps) {
-  const controlled = useControlled((event: ChangeEvent) => {
-    onIsOnChange?.({ isOn: event.isOn, revision: event.revision })
-  }, revision)
-  return (
-    <NativeToggle
-      label={label}
-      isOn={isOn}
-      revision={controlled.revision}
-      acknowledgedEvent={controlled.acknowledgedEvent}
-      onIsOnChange={(event) => controlled.onNativeChange(event.nativeEvent)}
-    />
-  )
-}
+export const Toggle: (props: ToggleProps) => ReactElement = createToggle<ChangeEvent>(
+  (props, binding) => <NativeToggle {...props} revision={binding.revision}
+    acknowledgedEvent={binding.acknowledgedEvent}
+    onIsOnChange={({ nativeEvent }) => binding.onNativeChange(nativeEvent)} />,
+  (event) => event.isOn,
+)

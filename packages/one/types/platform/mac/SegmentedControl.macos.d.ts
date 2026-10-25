@@ -1,16 +1,4 @@
-import type { ViewProps } from 'react-native';
-export type SegmentedControlProps = Omit<ViewProps, 'children'> & {
-    labels: readonly string[];
-    /** zero based selection, or -1 for no selection. */
-    selectedIndex: number;
-    disabled?: boolean;
-    /** tabs and value selection use the system roles on macOS 27 and later. */
-    controlRole?: 'automatic' | 'tabs' | 'valueSelection';
-    revision?: number;
-    onChange?: (event: {
-        selectedIndex: number;
-        revision: number;
-    }) => void;
-};
-export declare function SegmentedControl({ labels, selectedIndex, revision, controlRole, onChange, ...props }: SegmentedControlProps): import("react").JSX.Element;
+import { type DesktopSegmentedControlProps } from '../desktop/createControls';
+export type SegmentedControlProps = DesktopSegmentedControlProps;
+export declare const SegmentedControl: ({ revision, controlRole, onChange, ...props }: DesktopSegmentedControlProps) => import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>>;
 //# sourceMappingURL=SegmentedControl.macos.d.ts.map

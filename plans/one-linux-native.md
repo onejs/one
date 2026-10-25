@@ -247,6 +247,24 @@ completions: [cancellation](one-linux-native-kinds-cancel.webp).
 RAN incremental release host build and real uinput interaction with the
 existing fixture bytecode under fatal GTK warnings. No automated tests.
 
+TESTED simplification S5: Mac and Linux Button, Toggle and SegmentedControl
+now use shared wrapper factories and public prop types. Platform adapters
+preserve the actual wire contracts: Mac Button has a direct press event,
+Linux Button acknowledges counted events, Mac Toggle/segments carry named
+boolean/index fields, and Linux carries numeric values. Mac Toggle now passes
+RN ViewProps and style through. Its disabled API remains unchanged.
+
+The Linux release host accepts the shared Toggle, Button and segment handlers:
+[accepted](one-linux-native-shared-controls-accepted.webp). Rejected edits
+preserve accepted values while acknowledgements advance:
+[rejected](one-linux-native-shared-controls-rejected.webp). A revision reset
+restores values without adding events:
+[reset](one-linux-native-shared-controls-reset.webp).
+RAN full One package build including Mac declarations, static view configs,
+Linux bundle, Hermes bytecode and package lint (zero errors, eight existing
+warnings). Mac runtime interaction remains with CI; native Mac code and wire
+specs did not change. No automated tests.
+
 **M3 continuation, 2026-10-25, worker s79514 for s72425.** TESTED all ten
 controls in the studio-64 Ubuntu arm64 VM, GTK 4 release host and embedded
 Linux Hermes bytecode, with `G_DEBUG=fatal-criticals`. The four additions are
@@ -884,7 +902,7 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
   and drag and drop. `cursorColor` is Android only in RN and is not a Linux gap.
 - The earlier scroll, portal color scheme, image and Networking gaps remain.
 
-**Next:** s79947 repairs review 2 before resuming M4. Lead s72425 and
+**Next:** review 2 findings and requested simplifications are repaired; s79947 resumes M4. Lead s72425 and
 ci-manager own the
 full release bundle byte gate and broader platform builds. The existing image,
 portal appearance and Networking gaps remain outside this M3 continuation.

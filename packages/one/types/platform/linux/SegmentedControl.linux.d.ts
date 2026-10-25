@@ -1,10 +1,5 @@
-import type { ControlledControlProps, ControlChange } from '../controlTypes';
-export type SegmentedControlProps = ControlledControlProps & {
-    labels: readonly string[];
-    selectedIndex: number;
-    onChange?: (event: ControlChange<{
-        selectedIndex: number;
-    }>) => void;
-};
-export declare function SegmentedControl({ labels, selectedIndex, revision, onChange, style, ...props }: SegmentedControlProps): import("react").JSX.Element;
+import type { ReactElement } from 'react';
+import { type DesktopSegmentedControlProps } from '../desktop/createControls';
+export type SegmentedControlProps = Omit<DesktopSegmentedControlProps, 'controlRole'>;
+export declare const SegmentedControl: (props: SegmentedControlProps) => ReactElement;
 //# sourceMappingURL=SegmentedControl.linux.d.ts.map

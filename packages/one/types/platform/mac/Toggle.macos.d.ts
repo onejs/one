@@ -1,11 +1,5 @@
-export type ToggleProps = {
-    label: string;
-    isOn: boolean;
-    revision?: number;
-    onIsOnChange?: (event: {
-        isOn: boolean;
-        revision: number;
-    }) => void;
-};
-export declare function Toggle({ label, isOn, revision, onIsOnChange }: ToggleProps): import("react").JSX.Element;
+import type { ReactElement } from 'react';
+import { type DesktopToggleProps } from '../desktop/createControls';
+export type ToggleProps = Omit<DesktopToggleProps, 'disabled'>;
+export declare const Toggle: (props: ToggleProps) => ReactElement;
 //# sourceMappingURL=Toggle.macos.d.ts.map

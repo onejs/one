@@ -1,40 +1,13 @@
-import type { ControlledControlProps, ControlChange, NumericControlChange } from '../controlTypes'
-import { useControlled } from '../controlled'
+import type { ReactElement } from 'react'
+import type { NumericControlChange } from '../controlTypes'
+import { createSegmentedControl, type DesktopSegmentedControlProps } from '../desktop/createControls'
 import NativeSegmentedControl from './OneLinuxSegmentedControlNativeComponent'
 
-export type SegmentedControlProps = ControlledControlProps & {
-  labels: readonly string[]
-  selectedIndex: number
-  onChange?: (event: ControlChange<{ selectedIndex: number }>) => void
-}
+export type SegmentedControlProps = Omit<DesktopSegmentedControlProps, 'controlRole'>
 
-export function SegmentedControl({
-  labels,
-  selectedIndex,
-  revision = 0,
-  onChange,
-  style,
-  ...props
-}: SegmentedControlProps) {
-  if (
-    !Number.isInteger(selectedIndex) ||
-    selectedIndex < -1 ||
-    selectedIndex >= labels.length
-  ) {
-    throw new Error('SegmentedControl selectedIndex must be -1 or an index in labels')
-  }
-  const controlled = useControlled((event: NumericControlChange) => {
-    onChange?.({ selectedIndex: event.value, revision: event.revision })
-  }, revision)
-  return (
-    <NativeSegmentedControl
-      {...props}
-      labels={labels}
-      value={selectedIndex}
-      style={style}
-      revision={controlled.revision}
-      acknowledgedEvent={controlled.acknowledgedEvent}
-      onControlChange={(event) => controlled.onNativeChange(event.nativeEvent)}
-    />
-  )
-}
+export const SegmentedControl: (props: SegmentedControlProps) => ReactElement = createSegmentedControl<NumericControlChange>(
+  ({ selectedIndex, controlRole: _controlRole, ...props }, binding) => <NativeSegmentedControl {...props}
+    value={selectedIndex} revision={binding.revision} acknowledgedEvent={binding.acknowledgedEvent}
+    onControlChange={({ nativeEvent }) => binding.onNativeChange(nativeEvent)} />,
+  (event) => event.value,
+)

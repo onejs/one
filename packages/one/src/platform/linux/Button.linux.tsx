@@ -1,21 +1,15 @@
-import type { ControlledControlProps } from '../controlTypes'
 import { useControlled } from '../controlled'
+import { createButton, type DesktopButtonProps } from '../desktop/createControls'
 import NativeButton from './OneLinuxButtonNativeComponent'
 
-export type ButtonProps = ControlledControlProps & {
-  title: string
-  onPress?: () => void
-}
+export type ButtonProps = Omit<DesktopButtonProps, 'systemImage' | 'bordered'>
 
-export function Button({ revision = 0, onPress, style, ...props }: ButtonProps) {
-  const controlled = useControlled(() => onPress?.(), revision)
-  return (
-    <NativeButton
-      {...props}
-      style={style}
-      revision={controlled.revision}
-      acknowledgedEvent={controlled.acknowledgedEvent}
-      onControlChange={(event) => controlled.onNativeChange(event.nativeEvent)}
-    />
-  )
-}
+export const Button = createButton(NativeButton, function useNativeProps({ revision = 0, onPress, ...props }: ButtonProps) {
+  const binding = useControlled(() => onPress?.(), revision)
+  return {
+    ...props,
+    revision: binding.revision,
+    acknowledgedEvent: binding.acknowledgedEvent,
+    onControlChange: ({ nativeEvent }) => binding.onNativeChange(nativeEvent),
+  }
+})
