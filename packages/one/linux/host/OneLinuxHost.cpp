@@ -106,6 +106,8 @@ class OneLinuxFeatureFlags : public ReactNativeFeatureFlagsDefaults {
 OneLinuxHost::OneLinuxHost(std::string bundlePath, std::string moduleName, OneView *surface)
     : bundlePath_(std::move(bundlePath)), moduleName_(std::move(moduleName)), surface_(surface)
 {
+  // keep the surface and its controllers alive after the window unparents it
+  g_object_ref(surface_);
   ReactNativeFeatureFlags::override(std::make_unique<OneLinuxFeatureFlags>());
   dark_ = prefersDark();
   GtkSettings *settings = gtk_settings_get_default();
@@ -121,6 +123,7 @@ OneLinuxHost::~OneLinuxHost()
     g_signal_handler_disconnect(settings, handler);
   }
   stop();
+  g_object_unref(surface_);
 }
 
 void OneLinuxHost::start()

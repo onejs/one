@@ -117,6 +117,12 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+TESTED window close ownership: the original release host raised an invalid
+GObject class pointer while closing its last window with `G_DEBUG=fatal-criticals`.
+The host now holds its own surface reference until runtime and pointer teardown
+finish. Repeating the close in debug and release exits 0 with fatal criticals
+still enabled. The capture and close use the same attachment fixture.
+
 **Accepted Linux review repairs, 2026-10-24.** Lead s72425 accepted s78886's
 review and assigned repairs before more M3 controls: inline text attachments,
 RN hover synthesis, GTK pointer picking, the Mac error literal, image request
