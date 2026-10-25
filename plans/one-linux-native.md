@@ -176,6 +176,21 @@ now-clipped increment button used to draw leaves the numeric value at 2.
 This allocation guard also covers the existing RN TextInput control path.
 RAN incremental release host build; no automated tests.
 
+TESTED review 2 Slider cancellation with real uinput button and motion
+sequences. The baseline reproduces both proposed failures: disable during a
+held interaction yields one start and zero completions; a revision change while
+held also leaves one start and zero completions. Disable now completes the
+active interaction before GTK disables it:
+[disabled completion](one-linux-native-slider-disable-fixed.webp).
+A revision change completes the old revision, retains the physical pointer,
+and starts a new pair on continued input. After continued uinput motion and
+release, the fixture shows two starts and two completions:
+[revision completion](one-linux-native-slider-revision-fixed.webp).
+The JS wrapper accepts a final completion only for its tracked start, including
+an old revision that just ended. Programmatic value setters cannot start a
+pair. RAN release host and full package builds, Linux bundle and bytecode,
+with fatal GTK warnings; no automated tests.
+
 **M3 continuation, 2026-10-25, worker s79514 for s72425.** TESTED all ten
 controls in the studio-64 Ubuntu arm64 VM, GTK 4 release host and embedded
 Linux Hermes bytecode, with `G_DEBUG=fatal-criticals`. The four additions are

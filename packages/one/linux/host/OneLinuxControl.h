@@ -29,7 +29,7 @@ class OneLinuxControl {
   void beginSliding();
   void endSliding();
   void finishSliding();
-  void cancelSliding();
+  void cancelSliding(bool notify = false, bool preserveInput = false);
   void report(double value);
 
   ComponentHandle handle_;

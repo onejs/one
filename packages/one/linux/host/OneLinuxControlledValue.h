@@ -36,6 +36,7 @@ class OneLinuxControlledValue {
     return true;
   }
 
+  bool applying() const { return applying_; }
   Value value() const { return value_; }
   int eventCount() const { return eventCount_; }
   int revision() const { return revision_; }

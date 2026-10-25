@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import type { ViewProps } from 'react-native'
 import { useControlled } from '../controlled'
 import NativeSlider, { type ChangeEvent } from './OneLinuxSliderNativeComponent'
@@ -38,6 +39,7 @@ export function Slider({
       'Slider needs a finite value in its range, increasing bounds and a positive step'
     )
   }
+  const slidingRevision = useRef<number | null>(null)
   const controlled = useControlled((event: ChangeEvent) => {
     onValueChange?.({ value: event.value, revision: event.revision })
   }, revision)
@@ -53,10 +55,14 @@ export function Slider({
       acknowledgedEvent={controlled.acknowledgedEvent}
       onControlChange={(event) => controlled.onNativeChange(event.nativeEvent)}
       onSlidingStart={({ nativeEvent }) => {
-        if (nativeEvent.revision === revision) onSlidingStart?.(nativeEvent)
+        if (nativeEvent.revision !== revision) return
+        slidingRevision.current = nativeEvent.revision
+        onSlidingStart?.(nativeEvent)
       }}
       onSlidingComplete={({ nativeEvent }) => {
-        if (nativeEvent.revision === revision) onSlidingComplete?.(nativeEvent)
+        if (nativeEvent.revision !== slidingRevision.current) return
+        slidingRevision.current = null
+        onSlidingComplete?.(nativeEvent)
       }}
     />
   )

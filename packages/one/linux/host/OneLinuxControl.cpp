@@ -104,7 +104,9 @@ void OneLinuxControl::toggled(GtkToggleButton *button, gpointer data)
 
 void OneLinuxControl::slid(GtkRange *range, gpointer data)
 {
-  static_cast<OneLinuxControl *>(data)->report(gtk_range_get_value(range));
+  auto &self = *static_cast<OneLinuxControl *>(data);
+  if (!self.value_.applying() && (self.sliderPointer_ || !self.sliderKeys_.empty())) self.beginSliding();
+  self.report(gtk_range_get_value(range));
 }
 
 void OneLinuxControl::selected(GObject *dropDown, GParamSpec *, gpointer data)
@@ -191,15 +193,18 @@ void OneLinuxControl::finishSliding()
   sliding_ = false;
 }
 
-void OneLinuxControl::cancelSliding()
+void OneLinuxControl::cancelSliding(bool notify, bool preserveInput)
 {
   if (completionSource_) {
     g_source_remove(completionSource_);
     completionSource_ = 0;
   }
-  sliding_ = false;
-  sliderPointer_ = false;
-  sliderKeys_.clear();
+  if (notify) finishSliding();
+  else sliding_ = false;
+  if (!preserveInput) {
+    sliderPointer_ = false;
+    sliderKeys_.clear();
+  }
 }
 
 gboolean OneLinuxControl::sliderEvent(GtkEventControllerLegacy *, GdkEvent *event, gpointer data)
@@ -218,6 +223,10 @@ gboolean OneLinuxControl::sliderEvent(GtkEventControllerLegacy *, GdkEvent *even
         self.sliderPointer_ = false;
         if (self.sliderKeys_.empty()) self.endSliding();
       }
+      break;
+    case GDK_MOTION_NOTIFY:
+    case GDK_TOUCH_UPDATE:
+      if (self.sliderPointer_ && gtk_widget_is_sensitive(self.widget_)) self.beginSliding();
       break;
     case GDK_TOUCH_BEGIN:
       self.beginSliding();
@@ -270,8 +279,11 @@ bool OneLinuxControl::update(std::shared_ptr<const OneLinuxControlProps> next, E
   auto changed = [&](auto member) { return !previous || previous.get()->*member != props.*member; };
   bool measure = changed(&OneLinuxControlProps::title) || changed(&OneLinuxControlProps::labels) ||
       changed(&OneLinuxControlProps::minimumValue) || changed(&OneLinuxControlProps::maximumValue) || changed(&OneLinuxControlProps::step);
-  if (changed(&OneLinuxControlProps::disabled)) gtk_widget_set_sensitive(widget_, !props.disabled);
   emitter_ = std::move(emitter);
+  if (handle_ == OneLinuxSliderShadowNode::Handle() && (props.disabled || (sliding_ && props.revision != slidingRevision_))) {
+    cancelSliding(true, !props.disabled);
+  }
+  if (changed(&OneLinuxControlProps::disabled)) gtk_widget_set_sensitive(widget_, !props.disabled);
   if (handle_ == OneLinuxDropDownShadowNode::Handle()) {
     tagged_ = props.tagged;
     std::optional<std::string> selection;
@@ -315,9 +327,6 @@ bool OneLinuxControl::update(std::shared_ptr<const OneLinuxControlProps> next, E
     return measure;
   }
   value_.update(props.value, props.revision, props.acknowledgedEvent);
-  if (props.disabled || (sliding_ && props.revision != slidingRevision_)) {
-    cancelSliding();
-  }
   value_.apply([&](double value) {
     if (handle_ == OneLinuxButtonShadowNode::Handle()) {
       if (changed(&OneLinuxControlProps::title)) gtk_button_set_label(GTK_BUTTON(widget_), props.title.c_str());
