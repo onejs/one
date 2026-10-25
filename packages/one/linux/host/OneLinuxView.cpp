@@ -104,7 +104,14 @@ static void one_view_size_allocate(GtkWidget *widget, int width, int height, int
       // intrinsic controls have an empty fabric frame until their measured
       // state arrives. gtk entries cannot allocate their internals at zero.
       if (width > 0 && height > 0) {
-        gtk_widget_allocate(child, width, height, control_baseline(child, width, height), nullptr);
+        int minimumWidth, minimumHeight;
+        gtk_widget_measure(child, GTK_ORIENTATION_HORIZONTAL, -1, &minimumWidth, nullptr, nullptr, nullptr);
+        int controlWidth = std::max(width, minimumWidth);
+        gtk_widget_measure(child, GTK_ORIENTATION_VERTICAL, controlWidth, &minimumHeight, nullptr, nullptr, nullptr);
+        int controlHeight = std::max(height, minimumHeight);
+        gtk_widget_set_overflow(widget,
+            view->clips || controlWidth > width || controlHeight > height ? GTK_OVERFLOW_HIDDEN : GTK_OVERFLOW_VISIBLE);
+        gtk_widget_allocate(child, controlWidth, controlHeight, control_baseline(child, controlWidth, controlHeight), nullptr);
       }
       continue;
     }
@@ -223,7 +230,12 @@ static void one_view_snapshot(GtkWidget *widget, GtkSnapshot *snapshot)
     if (child == view->control && (view->width <= 0 || view->height <= 0)) {
       continue;
     }
+    // native internals keep their minimum allocation while rn owns the box.
+    bool clippedControl = child == view->control &&
+        (gtk_widget_get_width(child) > view->width || gtk_widget_get_height(child) > view->height);
+    if (clippedControl) gtk_snapshot_push_clip(snapshot, &bounds);
     gtk_widget_snapshot_child(widget, child, snapshot);
+    if (clippedControl) gtk_snapshot_pop(snapshot);
   }
   if (view->clips) {
     gtk_snapshot_pop(snapshot);

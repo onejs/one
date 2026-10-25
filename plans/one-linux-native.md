@@ -164,6 +164,18 @@ selection and leaves all RN counters at zero:
 [popup surface](one-linux-native-popup-surface.webp). RAN incremental release
 build and real uinput events with fatal GTK warnings enabled.
 
+TESTED review 2 undersized native controls. The baseline `width: 20,
+height: 20` TextField and Stepper do not emit a GTK warning on GTK 4.14 with
+`G_DEBUG=fatal-warnings`, so that proposed warning failure does not reproduce.
+The Stepper does visibly escape its RN box. Native controls now allocate at
+least GTK's measured minimum and clip their drawing and GTK picking to the RN
+frame when it is smaller. The same probe stays running with fatal warnings,
+keeps the 20-pixel boxes and no longer draws the Stepper outside its box:
+[control minimum](one-linux-native-control-minimum.webp). A click where the
+now-clipped increment button used to draw leaves the numeric value at 2.
+This allocation guard also covers the existing RN TextInput control path.
+RAN incremental release host build; no automated tests.
+
 **M3 continuation, 2026-10-25, worker s79514 for s72425.** TESTED all ten
 controls in the studio-64 Ubuntu arm64 VM, GTK 4 release host and embedded
 Linux Hermes bytecode, with `G_DEBUG=fatal-criticals`. The four additions are
