@@ -2,10 +2,15 @@ import type { StyleField } from './catalog'
 import type { DerivedModifier, DerivedViewSlot, EventValueSchema } from './deriveSDK'
 import { continuousNumber, eventValueType } from './emitControls'
 import { sdkGuard } from './sdkGuard'
+import { frameworkGroups, gate, linkSetGroups, modifierGroups } from './linkSet'
 import { callArguments, collectValues, emitValueDecoders, hasRecords, recordSwitchSwift, shapeParameters, valueKey, valueShapesTS, valueValidatorTS } from './emitValues'
 
 // the one gesture that can bind a native state: its translation moves the entry.
 const dragGesture = 'SwiftUI.DragGesture'
+
+// what a call into a compiled-out group reports: the group and the command that links it
+const compiledOut = (groups: readonly string[], what: string) =>
+  `preconditionFailure("${what} needs the ${groups.join(' and ')} feature group, which this build compiled out; run one prebuild --platform ios and rebuild")`
 const eventValueSwift = (value: EventValueSchema, expression: string): string => {
   if (value.kind === 'number') return `Double(${expression})`
   if (value.kind === 'description') return `String(describing: ${expression})`
@@ -71,7 +76,7 @@ export const tabViewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots
 export type TabViewSlotName = keyof typeof tabViewSlotAvailability
 `)
   outputs.set('ios/Generated/OneNativeViewSlots.swift', header + `import SwiftUI
-${[...new Set(slots.filter((slot) => slot.module.startsWith('_')).map((slot) => slot.module.slice(1, -'_SwiftUI'.length)))].map((framework) => `import ${framework}`).join('\n')}
+${[...new Set(slots.filter((slot) => slot.module.startsWith('_')).map((slot) => slot.module.slice(1, -'_SwiftUI'.length)))].map((framework) => gate(frameworkGroups(framework), `import ${framework}`)).join('\n')}
 
 enum OneNativeViewSlotName {
 ${slots.map((slot) => `  static let ${slot.name} = ${JSON.stringify(slot.name)}`).join('\n')}
@@ -92,8 +97,8 @@ ${slots.map((slot) => {
     : base === 'Swift.Float' ? `Swift.Double(${raw}).map({ Swift.Float($0) })`
     : `Swift.Double(${raw}).map({ CoreFoundation.CGFloat($0) })`
   const enumCases = (argument: (typeof slot.arguments)[number], type: string) =>
-    argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${item.ios > slot.ios ? `${sdkGuard(item.ios, `if #available(iOS ${item.ios}, *) { return ${type}.${item.name} }`, '')}
-            preconditionFailure("unavailable ${slot.name}.${argument.field}")` : `return ${type}.${item.name}`}`).join('\n')
+    argument.cases!.map((item) => gate(/^subscriptionStore/.test(item.name) ? ['store'] : [], `          case ${JSON.stringify(item.name)}: ${item.ios > slot.ios ? `${sdkGuard(item.ios, `if #available(iOS ${item.ios}, *) { return ${type}.${item.name} }`, '')}
+            preconditionFailure("unavailable ${slot.name}.${argument.field}")` : `return ${type}.${item.name}`}`)).join('\n')
   const decode = slot.arguments.map((argument, index) => {
     const raw = `decoded[${index}]`
     if (argument.kind === 'bindingBoolean')
@@ -164,7 +169,7 @@ ${slots.map((slot) => {
       combinations.slice(1).map((combo) =>
         `        } else if ${bindings(combo)} {\n          ${call(new Set(combo))}\n`).join('') +
       `        } else {\n          ${call(new Set())}\n        }`
-  return `    case OneNativeViewSlotName.${slot.name}:${sdkGuard(slot.ios, `      if #available(iOS ${slot.ios}, *) {
+  return gate(modifierGroups(slot), `    case OneNativeViewSlotName.${slot.name}:${sdkGuard(slot.ios, `      if #available(iOS ${slot.ios}, *) {
 ${slot.arguments.length ? `        guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String?].self, from: data),
           decoded.count == ${slot.arguments.length} else { preconditionFailure("invalid ${slot.name} slot values") }
@@ -177,7 +182,7 @@ ${decode}
             emit(${JSON.stringify(slot.name)}, encoded)
           })` : normalCall}
       }`, '')}
-      return AnyView(self)`
+      return AnyView(self)`, `    case OneNativeViewSlotName.${slot.name}: ${compiledOut(modifierGroups(slot), `view slot ${slot.name}`)}`)
 }).join('\n')}
     default: preconditionFailure("unknown view slot: \\(name)")
     }
@@ -188,6 +193,8 @@ ${decode}
   // config; a color inside a struct prop reaches the native parser raw, and it reads an
   // unprocessed string as clear. every swiftStyle color is processed on the way out.
   const colorFields = styleFields.filter((field) => field.kind === 'color')
+  // a modifier that takes a feature group's types compiles only with that group
+  const gated = (modifier: DerivedModifier, text: string) => gate(modifierGroups(modifier), text)
   const frameworkImports = [
     ...new Set(
       derived.flatMap((modifier) => [
@@ -204,11 +211,28 @@ ${decode}
   const generatedCalls = derived
     .map(
       (modifier) =>
-        `      case ${JSON.stringify(modifier.name)}:${payLaterModifiers.has(modifier.name) ? `
+        gate(modifierGroups(modifier), `      case ${JSON.stringify(modifier.name)}:${payLaterModifiers.has(modifier.name) ? `
         precondition(!ProcessInfo.processInfo.isiOSAppOnMac, "${modifier.name} is unavailable on macOS")
-       ` : ''} view = AnyView(view.oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}(value, emit: emit))`
+       ` : ''} view = AnyView(view.oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}(value, emit: emit))`, `      case ${JSON.stringify(modifier.name)}: ${compiledOut(modifierGroups(modifier), `modifier ${modifier.name}`)}`)
     )
     .join('\n')
+  // the js names whose use needs a group: its derived modifier and view slot keys and
+  // the store group's subscription store cases. a key needs every group that gates it.
+  const keys: Record<string, { modifiers: Set<string>; slots: Set<string>; values: Set<string> }> = Object.fromEntries(
+    Object.keys(linkSetGroups).map((group) => [group, { modifiers: new Set(), slots: new Set(), values: new Set() }])
+  )
+  for (const modifier of derived) for (const group of modifierGroups(modifier)) keys[group].modifiers.add(modifier.name)
+  for (const slot of slots) {
+    for (const group of modifierGroups(slot)) keys[group].slots.add(slot.name)
+    for (const argument of slot.arguments)
+      for (const item of argument.cases ?? []) if (/^subscriptionStore/.test(item.name)) keys.store.values.add(item.name)
+  }
+  outputs.set('ios-link-set.json', JSON.stringify({
+    groups: Object.fromEntries(Object.entries(linkSetGroups).map(([group, { modifiers: _m, slots: _s, values: _v, ...catalog }]: [string, any]) => [
+      group,
+      { ...catalog, modifiers: [...keys[group].modifiers].sort(), slots: [...keys[group].slots].sort(), values: [...keys[group].values].sort() },
+    ])),
+  }, null, 2) + '\n')
   const generatedMethods = derived
     .map((modifier) => {
       const helper = `oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}`
@@ -1178,6 +1202,7 @@ ${modifier.cases
 ${parsed.replace(/[ \t]+$/gm, '')}
   }`
     })
+    .map((text, index) => gated(derived[index], text))
     .join('\n\n')
   const focusBindings = derived.filter((modifier) => modifier.kind === 'bindingFocusBoolean' || modifier.kind === 'defaultFocusBoolean').map((modifier) => {
     const holder = `OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}FocusBinding`
@@ -2050,8 +2075,8 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
 import UIKit
 import Combine
 ${derived.some((modifier) => modifier.registeredProtocol?.includes('Observation.Observable')) ? 'import Observation' : ''}
-${frameworkImports.map((framework) => `import ${framework}`).join('\n')}
-${derived.some((modifier) => payLaterModifiers.has(modifier.name)) ? '@_weakLinked import _PassKit_SwiftUI' : ''}
+${frameworkImports.map((framework) => gate(frameworkGroups(framework), `import ${framework}`)).join('\n')}
+${derived.some((modifier) => payLaterModifiers.has(modifier.name)) ? gate(['wallet'], '@_weakLinked import _PassKit_SwiftUI') : ''}
 
 ${derived.some((modifier) => modifier.kind === 'registeredValue') ? `@MainActor public enum OneNativeRegisteredValue {
   private static var values: [String: Any] = [:]
@@ -2062,7 +2087,10 @@ ${derived.some((modifier) => modifier.kind === 'registeredValue') ? `@MainActor 
 }
 ` : ''}
 ${derived.some((modifier) => modifier.registeredFactory) ? `@MainActor public struct OneNativeRegisteredModifier {
-  enum Kind { case ${['layoutValue', 'containerValue', 'accessibilityAction', 'onAppIntentExecution', 'reorderContainer', 'mapFeatureSelectionContent', 'transactionTask', ...derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) => modifier.registeredFactory!)].join(', ')} }
+  enum Kind {
+    case ${['layoutValue', 'containerValue', 'accessibilityAction', 'onAppIntentExecution', 'reorderContainer', 'mapFeatureSelectionContent', 'transactionTask'].join(', ')}
+${derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) => gated(modifier, `    case ${modifier.registeredFactory!}`)).join('\n')}
+  }
   let kind: Kind
   let apply: (AnyView) -> AnyView
 
@@ -2110,22 +2138,22 @@ ${derived.some((modifier) => modifier.registeredFactory) ? `@MainActor public st
   ) -> Self {
     Self(kind: .transactionTask) { AnyView($0.transactionTask(configuration, action: action)) }
   }
-${derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) => `
+${derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) => gated(modifier, `
   @available(iOS ${modifier.ios}, *)
   public static func ${modifier.registeredFactory}(_ action: ${modifier.registeredCallbackType}) -> Self {
     Self(kind: .${modifier.registeredFactory}) { AnyView($0.${modifier.sdkName ?? modifier.name}(${modifier.registeredCallbackLabel === '_' ? '' : `${modifier.registeredCallbackLabel}: `}action)) }
-  }`).join('\n')}
+  }`)).join('\n')}
 }
 ` : ''}
 ${derived.some((modifier) => modifier.namespaceParameter || modifier.kind === 'dragContainer' || modifier.kind === 'dragSelection' || modifier.kind === 'dragItemID') ? 'private enum OneNativeNamespace { static let id = Namespace().wrappedValue }\n' : ''}
 ${derived.some((modifier) => modifier.arguments?.some((argument) => argument.type === '[OneNativeRotorEntry]')) ? 'private struct OneNativeRotorEntry: Identifiable { let id: String; var label: String { id } }\n' : ''}
-${derived.filter((modifier) => modifier.kind === 'equatableKey').map((modifier) => sdkGuard(modifier.ios, `@available(iOS ${modifier.ios}, *)
+${derived.filter((modifier) => modifier.kind === 'equatableKey').map((modifier) => gated(modifier, sdkGuard(modifier.ios, `@available(iOS ${modifier.ios}, *)
 private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}KeyView<Content: View>: View, Equatable {
   let key: String
   let content: Content
   static func == (lhs: Self, rhs: Self) -> Bool { lhs.key == rhs.key }
   var body: some View { content }
-}`, '')).join('\n')}
+}`, ''))).join('\n')}
 ${derived.some((modifier) => modifier.preferenceKey === 'OneNativeSDKRectAnchorKey') ? `private struct OneNativeSDKRectAnchorKey: PreferenceKey {
   static var defaultValue: Anchor<CGRect>? { nil }
   static func reduce(value: inout Anchor<CGRect>?, nextValue: () -> Anchor<CGRect>?) {
@@ -2221,7 +2249,7 @@ ${derived.some((modifier) => modifier.uiRecognizer) ? `@available(iOS 18, *)
   }
 }
 ` : ''}
-${derived.filter((modifier) => modifier.kind === 'pickerSelection').map((modifier) => sdkGuard(modifier.ios, `@available(iOS ${modifier.ios}, *)
+${derived.filter((modifier) => modifier.kind === 'pickerSelection').map((modifier) => gated(modifier, sdkGuard(modifier.ios, `@available(iOS ${modifier.ios}, *)
 private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}Picker: ViewModifier {
   let presented: Bool
   let title: String?
@@ -2239,8 +2267,8 @@ private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slic
       selection = nil
     }
   }
-}`, '')).join('\n')}
-${derived.filter((modifier) => modifier.kind === 'transferSelection').map((modifier) => sdkGuard(modifier.ios, `@available(iOS ${modifier.ios}, *)
+}`, ''))).join('\n')}
+${derived.filter((modifier) => modifier.kind === 'transferSelection').map((modifier) => gated(modifier, sdkGuard(modifier.ios, `@available(iOS ${modifier.ios}, *)
 private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}Transfer: ViewModifier {
   let presented: Bool
   let emit: (String, String) -> Void
@@ -2270,8 +2298,8 @@ private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slic
       }
     }
   }
-}`, '')).join('\n')}
-${derived.filter((modifier) => modifier.kind === 'asyncObjectRequest').map((modifier) => `@available(iOS ${modifier.ios}, *)
+}`, ''))).join('\n')}
+${derived.filter((modifier) => modifier.kind === 'asyncObjectRequest').map((modifier) => gated(modifier, `@available(iOS ${modifier.ios}, *)
 @MainActor private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}Request: ViewModifier {
   let latitude: Double
   let longitude: Double
@@ -2300,7 +2328,7 @@ ${derived.filter((modifier) => modifier.kind === 'asyncObjectRequest').map((modi
         set: { emit(${JSON.stringify(modifier.name)}, String($0)) }
       ), ${modifier.label}: object)
   }
-}`).join('\n\n')}
+}`)).join('\n\n')}
 
 public struct OneNativeStyle: Equatable {
 ${properties}

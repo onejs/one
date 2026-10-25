@@ -534,6 +534,30 @@ struct OneUpdatesStateFile: Codable {
 
   // MARK: - reads
 
+  // snapshots the running selection without re-running launch selection.
+  // the dom host keeps this location while its owning react runtime lives.
+  static func currentDOMAssetLocation() -> (selection: String, root: URL)? {
+    lock.lock()
+    defer { lock.unlock() }
+    if !runningEmbedded {
+      guard let id = runningId else { return nil }
+      let encoded = Data(id.utf8).base64EncodedString()
+        .replacingOccurrences(of: "+", with: "-")
+        .replacingOccurrences(of: "/", with: "_")
+        .replacingOccurrences(of: "=", with: "")
+      return ("update-" + encoded, updateDirectory(id: id))
+    }
+    guard let root = embeddedBundleURL()?.deletingLastPathComponent(),
+      let data = try? Data(contentsOf: root.appendingPathComponent("one-dom/manifest.json")),
+      let manifest = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+      let buildId = manifest["buildId"] as? String,
+      !buildId.isEmpty,
+      buildId.rangeOfCharacter(from: CharacterSet(charactersIn:
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._-").inverted) == nil
+    else { return nil }
+    return ("embedded-" + buildId, root)
+  }
+
   // the running update: the selected download, or the embedded update with
   // no manifest. updateId is the embedded id on an embedded launch.
   static func currentUpdateId() -> String? {

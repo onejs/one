@@ -1,6 +1,6 @@
 {
   "name": "one",
-  "version": "2.9.0",
+  "version": "2.11.0",
   "description": "One is a React framework for web, iOS, and Android apps.",
   "license": "BSD-3-Clause",
   "sideEffects": [
@@ -36,6 +36,29 @@
       "types": "./types/ui/index.d.ts",
       "import": "./dist/esm/ui/index.mjs",
       "require": "./dist/cjs/ui/index.cjs"
+    },
+    "./dom": {
+      "react-native": {
+        "types": "./types/dom/index.d.ts",
+        "default": "./dist/esm/dom/index.native.js"
+      },
+      "types": "./types/dom/index.d.ts",
+      "import": "./dist/esm/dom/index.mjs",
+      "require": "./dist/cjs/dom/index.cjs"
+    },
+    "./dom/native": {
+      "react-native": {
+        "types": "./types/dom/host.native.d.ts",
+        "default": "./dist/esm/dom/host.native.js"
+      },
+      "types": "./types/dom/host.native.d.ts",
+      "import": "./dist/esm/dom/host.native.js",
+      "require": "./dist/cjs/dom/host.native.cjs"
+    },
+    "./dom/client": {
+      "types": "./types/dom/client.d.ts",
+      "import": "./dist/esm/dom/client.mjs",
+      "require": "./dist/cjs/dom/client.cjs"
     },
     "./ios/*": {
       "types": "./ios-types/*.d.ts",
@@ -169,6 +192,7 @@
     },
     "./devtools/*": "./devtools/*",
     "./schema.json": "./schema.json",
+    "./ios-link-set.json": "./ios-link-set.json",
     "./tamagui": {
       "react-native": {
         "types": "./types/tamagui.native.d.ts",
@@ -218,10 +242,14 @@
     "android/portal",
     "android/src",
     "cpp",
+    "linux",
+    "macos",
+    "native-core",
     "nitrogen",
     "One.podspec",
     "react-native.config.cjs",
-    "schema.json"
+    "schema.json",
+    "ios-link-set.json"
   ],
   "scripts": {
     "build": "tamagui-build && bun codegen/staticSpecs.ts && bun codegen/sdk/build.ts",
@@ -236,7 +264,7 @@
     "generate": "bun codegen/generate.ts",
     "generate:ios-types": "bun codegen/sdk/declarations.ts",
     "generate:check": "bun codegen/generate.ts --check",
-    "nitrogen": "nitrogen",
+    "nitrogen": "nitrogen && bun codegen/gateNitro.ts",
     "coverage": "bun codegen/coverage.ts",
     "measure": "bun codegen/measure.ts"
   },
@@ -453,6 +481,7 @@
     "ios": {
       "componentProvider": {
         "OneNativePager": "OneNativePagerComponentView",
+        "OneDOMHost": "OneDOMHostComponentView",
         "OneSwiftHost": "OneSwiftHostComponentView",
         "OneNativeArrangementView": "OneNativeArrangementViewComponentView",
         "OneNativeArrangementSlot": "OneNativeArrangementSlotComponentView",

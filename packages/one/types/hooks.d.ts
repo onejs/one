@@ -1,5 +1,7 @@
 import React from 'react';
 import type { OneRouter } from './interfaces/router';
+import { type SearchParamsOptions, type UseSearchParamsSchemaResult } from './searchParams';
+import { type StandardSchemaV1 } from './standardSchema';
 type SearchParams = OneRouter.SearchParams;
 /**
  * Returns the root navigation state from the NavigationContainer.
@@ -125,8 +127,33 @@ export declare function useParams<TParams extends object = SearchParams>(): Part
  * searchParams.getAll('tag')    // ['a', 'b'] for ?tag=a&tag=b
  * ```
  */
-export declare function useSearchParams({ global }?: {
-    global?: boolean | undefined;
-}): URLSearchParams;
+export declare function useSearchParams(options?: SearchParamsOptions): URLSearchParams;
+/**
+ * Reads the query through a Standard Schema (Zod, Valibot, ArkType, any library that
+ * implements https://standardschema.dev) and returns the schema's output with a
+ * function that writes changes back to the URL.
+ *
+ * The schema receives every query key as a string, or an array of strings when the
+ * key repeats. It must validate synchronously. A failed validation throws
+ * `SearchValidationError` during render, which the nearest error boundary catches;
+ * give the schema defaults (`.catch`, `.default`) to read a bad URL as a good one.
+ * Define the schema outside the component so its output stays stable between renders.
+ *
+ * `update` merges into the current URL: path params, other query keys and the hash
+ * are kept, and a key set to `null` or `undefined` is removed. Values are written as
+ * strings, numbers, booleans or arrays of those, with a repeated key per array item.
+ * It adds a history entry unless `{ replace: true }`.
+ *
+ * @example
+ * ```tsx
+ * const tableParams = z.object({ page: z.coerce.number().catch(1) })
+ *
+ * function Table() {
+ *   const [{ page }, update] = useSearchParams(tableParams)
+ *   return <button onClick={() => update({ page: page + 1 })}>Page {page}</button>
+ * }
+ * ```
+ */
+export declare function useSearchParams<Schema extends StandardSchemaV1<unknown, object>>(schema: Schema, options?: SearchParamsOptions): UseSearchParamsSchemaResult<Schema>;
 export {};
 //# sourceMappingURL=hooks.d.ts.map

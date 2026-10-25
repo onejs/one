@@ -7,7 +7,12 @@ export function isWebEnvironment(environment: PartialEnvironment) {
 }
 
 export function isNativeEnvironment(environment: PartialEnvironment) {
-  return environment.name === 'ios' || environment.name === 'android'
+  return (
+    environment.name === 'ios' ||
+    environment.name === 'android' ||
+    environment.name === 'macos' ||
+    environment.name === 'linux'
+  )
 }
 
 export function isIOSEnvironment(environment: PartialEnvironment) {

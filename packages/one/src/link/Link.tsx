@@ -5,6 +5,7 @@ import * as React from 'react'
 import { type GestureResponderEvent, Platform, Text, type TextProps } from 'react-native'
 
 import type { OneRouter } from '../interfaces/router'
+import { applySearchParams } from '../searchParams'
 import { resolveHref } from './href'
 import { useLinkTo } from './useLinkTo'
 
@@ -26,13 +27,14 @@ export const Link = React.forwardRef(function Link(
     push,
     id,
     mask,
+    searchParams,
     // TODO: This does not prevent default on the anchor tag.
     asChild,
     rel,
     target,
     download,
     ...rest
-  }: OneRouter.LinkProps<any>,
+  }: OneRouter.LinkProps<any> & { searchParams?: OneRouter.UntypedSearchParams },
   ref: React.ForwardedRef<Text>
 ) {
   // Mutate the style prop to add the className on web.
@@ -45,8 +47,8 @@ export const Link = React.forwardRef(function Link(
     if (href == null) {
       throw new Error('Link: href is required')
     }
-    return resolveHref(href)
-  }, [href])
+    return applySearchParams(resolveHref(href), searchParams)
+  }, [href, searchParams])
 
   const resolvedMask = React.useMemo(() => {
     return mask ? resolveHref(mask) : undefined

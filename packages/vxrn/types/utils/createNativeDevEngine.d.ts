@@ -7,18 +7,21 @@
  */
 import type { Plugin } from 'rolldown';
 import type { DevEngine } from 'rolldown/experimental';
+import type { NativePlatform } from '@vxrn/utils/platformEnv';
 /** SWC `env.include` for Hermes-compatible downleveling; see HERMES_CLASS_TRANSFORMS. */
 export declare function getHermesSWCIncludes(dev: boolean): string[];
 export interface NativePluginContext {
     root: string;
-    platform: 'ios' | 'android';
+    platform: NativePlatform;
     dev: boolean;
+    command?: 'serve' | 'build';
+    assetsDest?: string;
 }
 interface NativeDevEngineOptions {
     root: string;
     port: number;
     host?: string;
-    platform: 'ios' | 'android';
+    platform: NativePlatform;
     serverUrl?: string;
     plugins?: Plugin[];
     onHmrUpdate?: (update: NativeHmrUpdate) => void;
@@ -51,7 +54,7 @@ interface NativeDevEngineResult {
     getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined;
     close: () => Promise<void>;
 }
-export declare function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean, root: string): {
+export declare function getNativeTransformConfig(platform: NativePlatform, dev: boolean, root: string): {
     jsx: {
         runtime: 'classic';
     };
@@ -68,6 +71,8 @@ export declare function getNativeTransformConfig(platform: 'ios' | 'android', de
  */
 export declare function normalizeNativeCommonJSInterop(code: string): string;
 export declare function postProcessNativeBundle(code: string): string;
+export declare const NATIVE_MODULE_SCOPE_MARKER = "// vxrn: native module scope";
+export declare const NATIVE_DEV_RUNTIME_END = "globalThis.__rolldown_runtime__ = new ReactNativeDevRuntime();";
 /**
  * wrap dev module declarations in a function scope. script-level declarations
  * create global properties that can block react native's lazy polyfills.
@@ -81,7 +86,7 @@ export declare function wrapNativeBundleModuleScope(code: string): string;
 export declare function createNativeDevEngine(options: NativeDevEngineOptions): Promise<NativeDevEngineResult>;
 interface NativeBuildOptions {
     root: string;
-    platform: 'ios' | 'android';
+    platform: NativePlatform;
     dev?: boolean;
     serverUrl?: string;
     entryFile?: string;

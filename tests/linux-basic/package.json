@@ -1,0 +1,21 @@
+{
+  "name": "test-linux-basic",
+  "version": "2.11.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "one dev"
+  },
+  "dependencies": {
+    "one": "workspace:*",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.0",
+    "react-native-web": "^0.21.2"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "typescript": "7.0.2",
+    "vite": "^8.2.2"
+  }
+}

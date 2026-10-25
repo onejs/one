@@ -128,7 +128,7 @@ it('reuses client output for generation while cleaning rebuilt output', async ()
   expect(await readFile(assetPath)).toEqual(asset)
 
   // native builds keep their existing whole-output cleanup even with a step argument
-  for (const platform of ['ios', 'android'] as const) {
+  for (const platform of ['ios', 'android', 'macos', 'linux'] as const) {
     await mkdir('output', { recursive: true })
     await writeFile('output/stale.txt', 'old native output')
     await build(options, { platform, step: 'generate' })
@@ -139,6 +139,7 @@ it('reuses client output for generation while cleaning rebuilt output', async ()
       expect.objectContaining({
         platform,
         bundleOutput: `output/${platform}.js`,
+        assetsDest: 'output',
       })
     )
   }

@@ -1,3 +1,31 @@
+# One 2.11.0 release
+
+Prepare the approved native Mac, Linux, URL schema, iOS link-set and DOM features together in PR #1027 on `tm/macos-resume`. One 2.10.0 was published separately from main for the native application-context API and existing iOS fixes. This branch prepares 2.11.0; final owner review, merge and explicit stable publication remain held. The prior release record below is preserved.
+
+## Included
+
+- Experimental AppKit/Fabric Mac host on the installed React Native core and Hermes, native controls and symbols, menus and keyboard commands, per-window toolbars, semantic colors, scrolling, transport, storage and accessibility.
+- Shared desktop runtime and GTK Linux host with controlled native controls, routing, menus and shortcuts. Portable static PIC ICU and Linux CI build both x86_64 and aarch64.
+- Standard Schema query typing and `validateSearchParams`, with collected component schemas and loader validation before execution.
+- iOS production link groups selected at prebuild; Debug retains all groups and stale Release builds fail with regeneration instructions.
+- One-owned DOM components for iOS and Android through the Vite native bundler, resource handlers and update lifecycle. Metro and desktop DOM deliberately reject unsupported compilation.
+
+## Validation and remaining delivery
+
+The containing published canary `2.0.0-0.canary.1792923527905` identifies runtime source `9cd108ebc7`. The installed Mac archives match registry integrity and package files. Its incremental native Debug build and production macOS bundle pass. The actual inactive app shows populated data and visible light/dark drafts, restores the exact draft after session navigation, changes and restores filters and both panes, and reloads through the native menu. Captures and artifact hashes are retained.
+
+Original combined Mac Debug and embedded offline Release fixtures passed controls, menus, appearance and reload; Linux VM controls and routing passed. Linux portability run 40186988728 built the core and host, compiled bytecode and painted first content on both architectures; neither Hermes binary imports system ICU. Updated packaging scripts have source review but were not repackaged after static ICU. No new startup timing or x86 interaction claim is made.
+
+DOM's original actual iOS Fabric Release proof loads embedded A offline, stages B without activating it, activates native and DOM B together, and rolls a failing C back to B. Eleven selected installed B assets match. Debug actions, refs and HMR passed. Android has host-only coverage, with no Fabric/Updates app claim. Minimum OS, physical devices and comparative performance were not measured. Combined source validation is distinct from that original app proof.
+
+Published URL-schema production browser, public type and generated Vercel-handler checks passed; the corrected cold development probe awaits hydration and committed navigation. Hosted rewrites, worker execution and native query transport remain unexercised. Published iOS linking checks passed no-group Release, all-group Debug, stale rejection and regenerated Apple Pay. The scratch linking fixture omitted drawer routes because the optional peer was absent.
+
+CI found four stale strict plugin-context expectations and a Vite-only DOM route in the default Metro fixture graph. Both are repaired with existing checks and actual Metro/Vite bundle proof. A malformed debug inspect lacking a target id exposed a null-string crash; the shared lookup guard passes actual missing, empty and numeric target commands followed by valid inspection on an incrementally rebuilt host. Exact containing required CI and a final artifact receipt remain with the existing CI owner.
+
+Independent native, DOM, Linux and schema reviews remain attached to their source histories; the focused final repair review is pending. Mac high contrast and active-window accent interactions, bare Tab/two-window checks on the latest combined host, Linux secondary pointer/touch and some advanced navigation options remain limited. Windows and Nitro V1 are separate. No stable release is authorized by preparation.
+
+---
+
 # One 2.9.0 release
 
 Ship the generated iOS SDK and native interface work as one minor release. PR #961 is merged; stable publication is paused while the SDK coverage followup is completed.

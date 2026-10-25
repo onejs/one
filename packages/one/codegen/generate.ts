@@ -8,6 +8,7 @@ import { emitControls } from './emitControls'
 import { emitContainerHosts } from './emitContainerHosts'
 import { emitStyle } from './emitStyle'
 import { sdkGuard } from './sdkGuard'
+import { componentStub, fileGroups, frameworkGroups, gate, linkSetCondition, linkSetGroups } from './linkSet'
 import { deriveModifiers, deriveViewSlots, deriveViews } from './deriveSDK'
 import { emitMenuValidator } from './menuValidator'
 import { emitMenuHost } from './emitMenuHost'
@@ -745,7 +746,7 @@ outputs.set(
 outputs.set('src/platform/menuItems.ts', emitMenuValidator(header, MINIMUM_IOS))
 let swift =
   header +
-  ['SwiftUI', ...frameworks].map((framework) => `import ${framework}\n`).join('') +
+  ['SwiftUI', ...frameworks].map((framework) => `${gate(frameworkGroups(framework), `import ${framework}`)}\n`).join('') +
   '\nenum OneNativeGenerated {\n'
 // a case list that lives on a nested type spells its Swift return type differently from the
 // name the inventory indexes it under.
@@ -757,6 +758,9 @@ const swiftTypeNames: Record<string, string> = {
   LinkPreviewBehavior: 'WebView.LinkPreviewBehavior',
   ElementFullscreenBehavior: 'WebView.ElementFullscreenBehavior',
 }
+// enum parsers for types that only a feature group's framework declares
+const typeGroups = (type: string) =>
+  /^PhotosPicker/.test(type) ? ['photos'] : /^(PayWithApplePay|AddPassToWallet|PK)/.test(type) ? ['wallet'] : []
 for (const [type, cases] of Object.entries(enums)) {
   if (type.endsWith('Style')) continue
   const swiftReturnType = swiftTypeNames[type] ?? type
@@ -776,7 +780,7 @@ for (const [type, cases] of Object.entries(enums)) {
   }
   parser += `    default: preconditionFailure("invalid ${type}: \\(value)")\n    }\n  }`
   // a parser for a type only a newer SDK declares cannot compile against an older one.
-  swift += `${sdkGuard(minimum, parser, '')}\n`
+  swift += `${gate(typeGroups(swiftReturnType), sdkGuard(minimum, parser, ''))}\n`
 }
 swift += '}\n\nextension View {\n'
 for (const method of methods) {
@@ -985,7 +989,13 @@ for (const [path, source] of outputs) {
   const temporary = join(cache, path.replaceAll('/', '_'))
   // swift names public types through the SwiftUI umbrella: the declaring module
   // (SwiftUI or SwiftUICore) moves between SDKs, and SwiftUI re-exports both.
-  const text = path.endsWith('.swift') ? source.replaceAll('SwiftUICore.', 'SwiftUI.') : source
+  let text = path.endsWith('.swift') ? source.replaceAll('SwiftUICore.', 'SwiftUI.') : source
+  // a feature group's sources compile only when the build defines its condition
+  const groups = path.startsWith('ios/') ? fileGroups(path) : []
+  if (groups.length && text.startsWith(header)) {
+    const body = text.slice(header.length)
+    text = header + gate(groups, body, path.endsWith('.mm') ? componentStub(body) : '')
+  }
   writeFileSync(temporary, text.trimEnd() + '\n')
   if (/\.tsx?$/.test(path))
     run('bunx', ['oxfmt', '-c', resolve(root, '../../.prettierrc'), temporary])
@@ -1038,20 +1048,24 @@ if (process.argv.includes('--check') && changed.length)
   throw new Error('Generated SwiftUI bindings differ: ' + changed.join(', '))
 // compile the assembled source so SDK provenance and emitted recipes are checked together.
 // react-native bridge integrations live in subdirectories and compile in the consumer target.
-run(swiftc, [
-  '-typecheck',
-  '-sdk',
-  sdk,
-  '-target',
-  `arm64-apple-ios${MINIMUM_IOS}.0-simulator`,
-  // top-level UIKit content hosts use the fixed sdk runtime's error types.
-  join(root, 'ios/SDK/OneSDKRuntime.swift'),
-  ...['ios', 'ios/Generated'].flatMap((dir) =>
-    readdirSync(join(root, dir))
-      .filter((file) => file.endsWith('.swift'))
-      .map((file) => join(root, dir, file))
-  ),
-])
+// debug defines every group and a release app that uses none defines none; both must compile.
+for (const groups of [Object.keys(linkSetGroups), []]) {
+  run(swiftc, [
+    '-typecheck',
+    '-sdk',
+    sdk,
+    '-target',
+    `arm64-apple-ios${MINIMUM_IOS}.0-simulator`,
+    ...groups.flatMap((group) => ['-D', linkSetCondition(group)]),
+    // top-level UIKit content hosts use the fixed sdk runtime's error types.
+    join(root, 'ios/SDK/OneSDKRuntime.swift'),
+    ...['ios', 'ios/Generated'].flatMap((dir) =>
+      readdirSync(join(root, dir))
+        .filter((file) => file.endsWith('.swift'))
+        .map((file) => join(root, dir, file))
+    ),
+  ])
+}
 run(swiftc, [
   '-sdk',
   run('xcrun', ['--sdk', 'macosx', '--show-sdk-path']),

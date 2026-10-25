@@ -14,6 +14,7 @@ import dev.onejs.onenative.OneNativeCameraManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
 import dev.onejs.onenative.OneNativePagerManager
+import dev.onejs.onenative.OneDOMHostManager
 import dev.onejs.onenative.OneNativeMaskManager
 import dev.onejs.onenative.OneNativeMenuPopupModule
 import dev.onejs.onenative.OneNativeMenuTriggerManager
@@ -97,6 +98,7 @@ class OnePackage : BaseReactPackage() {
             OneNativePortalHostViewManager(),
             OneNativeMaskManager(),
             OneNativePagerManager(),
+            OneDOMHostManager(),
             OneNativeUiMapManager(),
             OneNativePictureInPictureManager(),
             OneKotlinHostManager(),
