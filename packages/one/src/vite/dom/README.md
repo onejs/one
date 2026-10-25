@@ -49,3 +49,31 @@ isolation, discovery behind a lazy import, deferred native evaluation,
 completion of browser assets, deterministic build IDs, symlink identities,
 exclusion of unrelated public assets and removal of stale output. Browser and
 native host interaction are validated separately.
+
+## Browser runtime integration proof
+
+The compiler/browser probe on 2026-10-25 used the built One and VxRN modules
+at `72b352c531` and a byte-identical copy of the native-features
+`fixtures/dom/ProofPage.tsx`. Browser resolution selected the public
+`one/dom/client` and `one/dom` package exports, without runtime aliases.
+Two native graph descriptors produced separate HTML entries sharing the
+browser closure; the second descriptor was discovered behind a lazy native
+import before that module executed.
+
+Chromium exercised two isolated pages in both Vite development and emitted
+production ESM: data reconciliation, value/void/error actions and refs,
+retained refs after factory dependency changes, a delayed action spanning
+such a change, imported image/font/CSS, and deferred lazy evaluation.
+Transitive React Refresh preserved the document and input state. An invalid
+lazy import displayed the error overlay and recovered after repair. Reload
+reset local state and rejected the old ref without changing the other page.
+Production browser resources stayed beneath an immutable build namespace.
+
+The transport was simulated over HTTP with the built JavaScript
+`DOMNativeBridge`; native graph evaluation used a descriptor-only adapter.
+This establishes no Fabric, native origin, WebView, device or Updates proof.
+The source fixture's CSS referenced absent `OneNativeTestFont-BlockA.ttf`;
+the disposable copy used the existing `OneNativeTestFont-Regular.ttf`.
+That fixture correction belongs to its owner. The component itself was
+unchanged. Logs, module/fixture hashes and three 3x WebP captures are retained
+under `~/.team-machine/evidence/one-dom-build/real-runtime` on pro128.
