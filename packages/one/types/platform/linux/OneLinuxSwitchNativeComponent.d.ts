@@ -1,15 +1,15 @@
 import type { ViewProps } from 'react-native';
-import type { DirectEventHandler, Int32 } from 'react-native/Libraries/Types/CodegenTypes';
+import type { DirectEventHandler, Double, Int32 } from 'react-native/Libraries/Types/CodegenTypes';
 export type ChangeEvent = Readonly<{
-    isOn: boolean;
+    value: Double;
     revision: Int32;
     eventCount: Int32;
 }>;
 interface NativeProps extends ViewProps {
-    isOn: boolean;
+    value: Double;
     revision: Int32;
     acknowledgedEvent: Int32;
-    onIsOnChange?: DirectEventHandler<ChangeEvent>;
+    onControlChange?: DirectEventHandler<ChangeEvent>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
 export default _default;

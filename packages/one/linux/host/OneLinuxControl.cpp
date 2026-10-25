@@ -7,7 +7,7 @@ namespace facebook::react {
 
 bool OneLinuxControl::supports(ComponentHandle handle)
 {
-  return handle == OneLinuxButtonShadowNode::Handle() || handle == OneLinuxSegmentedControlShadowNode::Handle() ||
+  return handle == OneLinuxSwitchShadowNode::Handle() || handle == OneLinuxButtonShadowNode::Handle() || handle == OneLinuxSegmentedControlShadowNode::Handle() ||
       handle == OneLinuxSliderShadowNode::Handle() || handle == OneLinuxDropDownShadowNode::Handle() ||
       handle == OneLinuxProgressBarShadowNode::Handle() || handle == OneLinuxToggleShadowNode::Handle() ||
       handle == OneLinuxStepperShadowNode::Handle() || handle == OneLinuxTextFieldShadowNode::Handle() ||
@@ -16,7 +16,10 @@ bool OneLinuxControl::supports(ComponentHandle handle)
 
 OneLinuxControl::OneLinuxControl(ComponentHandle handle) : handle_(handle)
 {
-  if (handle == OneLinuxButtonShadowNode::Handle()) {
+  if (handle == OneLinuxSwitchShadowNode::Handle()) {
+    widget_ = gtk_switch_new();
+    g_signal_connect(widget_, "notify::active", G_CALLBACK(switched), this);
+  } else if (handle == OneLinuxButtonShadowNode::Handle()) {
     widget_ = gtk_button_new();
     g_signal_connect(widget_, "clicked", G_CALLBACK(clicked), this);
   } else if (handle == OneLinuxSegmentedControlShadowNode::Handle()) {
@@ -80,6 +83,11 @@ void OneLinuxControl::report(double value)
     return;
   }
   std::static_pointer_cast<const OneLinuxControlEventEmitter>(emitter_)->onControlChange(value, value_.eventCount(), value_.revision());
+}
+
+void OneLinuxControl::switched(GObject *widget, GParamSpec *, gpointer data)
+{
+  static_cast<OneLinuxControl *>(data)->report(gtk_switch_get_active(GTK_SWITCH(widget)) ? 1 : 0);
 }
 
 void OneLinuxControl::clicked(GtkButton *, gpointer data)
@@ -328,7 +336,9 @@ bool OneLinuxControl::update(std::shared_ptr<const OneLinuxControlProps> next, E
   }
   value_.update(props.value, props.revision, props.acknowledgedEvent);
   value_.apply([&](double value) {
-    if (handle_ == OneLinuxButtonShadowNode::Handle()) {
+    if (handle_ == OneLinuxSwitchShadowNode::Handle()) {
+      gtk_switch_set_active(GTK_SWITCH(widget_), value != 0);
+    } else if (handle_ == OneLinuxButtonShadowNode::Handle()) {
       if (changed(&OneLinuxControlProps::title)) gtk_button_set_label(GTK_BUTTON(widget_), props.title.c_str());
     } else if (handle_ == OneLinuxSegmentedControlShadowNode::Handle()) {
       if (labels_ != props.labels) {

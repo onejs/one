@@ -25,7 +25,6 @@
 #include <cmath>
 #include <vector>
 
-#include <OneLinuxSwitch/OneLinuxSwitchComponentDescriptor.h>
 #include "OneLinuxControl.h"
 
 #include "OneLinuxRuntime.h"
@@ -47,7 +46,7 @@ const std::vector<ComponentDescriptorProvider> &componentProviders()
       concreteComponentDescriptorProvider<ParagraphComponentDescriptor>(),
       concreteComponentDescriptorProvider<TextComponentDescriptor>(),
       concreteComponentDescriptorProvider<RawTextComponentDescriptor>(),
-      concreteComponentDescriptorProvider<OneLinuxSwitchComponentDescriptor>(),
+      concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxSwitchShadowNode>>(),
       concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxButtonShadowNode>>(),
       concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxSegmentedControlShadowNode>>(),
       concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxSliderShadowNode>>(),
@@ -121,10 +120,6 @@ struct OneLinuxMountingManager::Record {
   LayoutMetrics layoutMetrics = EmptyLayoutMetrics;
   ParagraphShadowNode::ConcreteState::Shared paragraphState;
   EventEmitter::Shared eventEmitter;
-  // the switch, when this view is one; its value follows the controlled
-  // protocol of ios/OneNativeControlled.swift
-  GtkWidget *control{nullptr};
-  OneLinuxControlledValue<bool> controlValue;
   // where React children go: the view itself, or a scroll view's content view
   OneView *container;
   ScrollViewShadowNode::ConcreteState::Shared scrollState;
@@ -143,20 +138,6 @@ struct OneLinuxMountingManager::Record {
   GdkTexture *texture{nullptr};
   uint64_t imageRequestId{0};
 };
-
-// a user toggle counts as a native event, which React acknowledges through the
-// props it sends back; a programmatic change from props never reports
-static void switchToggled(GObject *control, GParamSpec *, gpointer data)
-{
-  auto &record = *static_cast<OneLinuxMountingManager::Record *>(data);
-  bool active = gtk_switch_get_active(GTK_SWITCH(control));
-  if (active == record.controlValue.value() || !record.controlValue.record(active)) {
-    return;
-  }
-  if (auto emitter = std::static_pointer_cast<const OneLinuxSwitchEventEmitter>(record.eventEmitter)) {
-    emitter->onIsOnChange({.isOn = active, .eventCount = record.controlValue.eventCount(), .revision = record.controlValue.revision()});
-  }
-}
 
 static ScrollEvent scrollEventFor(OneLinuxMountingManager::Record &record);
 
@@ -271,20 +252,13 @@ OneLinuxMountingManager::Record &OneLinuxMountingManager::createView(ComponentHa
   auto &stored = *record;
   one_view_set_owner(record->view, &stored);
   record->container = record->view;
-  if (handle == OneLinuxSwitchShadowNode::Handle()) {
-    record->control = gtk_switch_new();
-    one_view_set_control(record->view, record->control);
-    g_signal_connect(record->control, "notify::active", G_CALLBACK(switchToggled), &stored);
-  }
   if (handle == TextInputShadowNode::Handle()) {
     record->input = std::make_unique<OneLinuxTextInput>(tag);
-    record->control = record->input->widget();
-    one_view_set_control(record->view, record->control);
+    one_view_set_control(record->view, record->input->widget());
   }
   if (OneLinuxControl::supports(handle)) {
     record->nativeControl = std::make_unique<OneLinuxControl>(handle);
-    record->control = record->nativeControl->widget();
-    one_view_set_control(record->view, record->control);
+    one_view_set_control(record->view, record->nativeControl->widget());
   }
   if (handle == ScrollViewShadowNode::Handle()) {
     GtkWidget *scrollWindow = gtk_scrolled_window_new();
@@ -513,12 +487,6 @@ void OneLinuxMountingManager::restyle(Record &record)
   }
   one_view_set_clips(view, viewProps.getClipsContentToBounds());
 
-  if (record.handle == OneLinuxSwitchShadowNode::Handle()) {
-    const auto &switchProps = static_cast<const OneLinuxSwitchProps &>(*record.props);
-    record.controlValue.update(switchProps.isOn, switchProps.revision, switchProps.acknowledgedEvent);
-    record.controlValue.apply([&](bool value) { gtk_switch_set_active(GTK_SWITCH(record.control), value); });
-  }
-
   if (record.nativeControl) {
     record.needsMeasurement |= record.nativeControl->update(std::static_pointer_cast<const OneLinuxControlProps>(record.props), record.eventEmitter);
   }
@@ -536,7 +504,7 @@ void OneLinuxMountingManager::restyle(Record &record)
 
   if (record.scrollState) {
     const auto &scrollProps = static_cast<const ScrollViewProps &>(*record.props);
-    auto *scrollWindow = GTK_SCROLLED_WINDOW(record.control ? record.control : one_view_get_control(view));
+    auto *scrollWindow = GTK_SCROLLED_WINDOW(one_view_get_control(view));
     // the axis that does not scroll is external, so the scrolled window never
     // asks for the content's full size
     gtk_scrolled_window_set_policy(
@@ -581,7 +549,7 @@ void OneLinuxMountingManager::measureControl(Record &record, ControlMeasurements
   if (!record.controlState) {
     return;
   }
-  GtkWidget *widget = record.nativeControl ? record.nativeControl->widget() : record.control;
+  GtkWidget *widget = record.nativeControl->widget();
   int minimum, width, height;
   gtk_widget_measure(widget, GTK_ORIENTATION_HORIZONTAL, -1, &minimum, &width, nullptr, nullptr);
   gtk_widget_measure(widget, GTK_ORIENTATION_VERTICAL, width, &minimum, &height, nullptr, nullptr);

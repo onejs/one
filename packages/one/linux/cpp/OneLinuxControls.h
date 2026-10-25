@@ -42,6 +42,7 @@ class OneLinuxControlEventEmitter : public ViewEventEmitter {
   void onSelectionChange(const std::string &selection, bool hasSelection, int eventCount, int revision) const;
 };
 
+inline constexpr char OneLinuxSwitchName[] = "OneLinuxSwitch";
 inline constexpr char OneLinuxButtonName[] = "OneLinuxButton";
 inline constexpr char OneLinuxSegmentedControlName[] = "OneLinuxSegmentedControl";
 inline constexpr char OneLinuxSliderName[] = "OneLinuxSlider";
@@ -55,6 +56,7 @@ inline constexpr char OneLinuxSecureFieldName[] = "OneLinuxSecureField";
 template <const char *Name>
 using OneLinuxControlShadowNode = OneLinuxMeasuredControlShadowNode<Name, OneLinuxControlProps, OneLinuxControlEventEmitter>;
 
+using OneLinuxSwitchShadowNode = OneLinuxControlShadowNode<OneLinuxSwitchName>;
 using OneLinuxButtonShadowNode = OneLinuxControlShadowNode<OneLinuxButtonName>;
 using OneLinuxSegmentedControlShadowNode = OneLinuxControlShadowNode<OneLinuxSegmentedControlName>;
 using OneLinuxSliderShadowNode = OneLinuxControlShadowNode<OneLinuxSliderName>;

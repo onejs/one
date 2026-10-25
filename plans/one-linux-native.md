@@ -202,6 +202,17 @@ fixture, whose ancestors can still provide a hit target. The null-hit path now
 explicitly emits leave and clears its last target as well. RAN incremental
 release build and real uinput interactions under fatal GTK warnings.
 
+TESTED simplification S1: Switch now uses the same measured control props,
+event emitter and numeric controlled-value protocol as Toggle. Its public
+boolean API is unchanged. The separate Switch C++ implementation and the
+mounting manager's second control path are removed. Real switch and segment
+interactions still accept changes, acknowledge rejected changes and reset at
+a new revision without events: [accepted](one-linux-native-switch-fold-accepted.webp),
+[rejected](one-linux-native-switch-fold-rejected.webp),
+[revision reset](one-linux-native-switch-fold-revision.webp).
+RAN clean incremental release host and full package builds, the controlled
+fixture bundle and Hermes compilation under fatal GTK warnings.
+
 **M3 continuation, 2026-10-25, worker s79514 for s72425.** TESTED all ten
 controls in the studio-64 Ubuntu arm64 VM, GTK 4 release host and embedded
 Linux Hermes bytecode, with `G_DEBUG=fatal-criticals`. The four additions are

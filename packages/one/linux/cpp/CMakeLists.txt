@@ -35,9 +35,6 @@ set(RN_LINUX_SOURCES
   ${RN_ROOT}/React/Fabric/AppleEventBeat.cpp
   ${ONE_LINUX}/cpp/textlayoutmanager/OneLinuxText.cpp
   ${ONE_LINUX}/cpp/textlayoutmanager/react/renderer/textlayoutmanager/TextLayoutManager.cpp
-  ${ONE_LINUX}/cpp/OneLinuxSwitch/OneLinuxSwitchEventEmitter.cpp
-  ${ONE_LINUX}/cpp/OneLinuxSwitch/OneLinuxSwitchProps.cpp
-  ${ONE_LINUX}/cpp/OneLinuxSwitch/OneLinuxSwitchShadowNode.cpp
   ${ONE_LINUX}/cpp/OneLinuxControls.cpp
   ${ONE_SHARED_HOST_SOURCES}
 )

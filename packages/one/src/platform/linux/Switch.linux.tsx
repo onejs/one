@@ -10,15 +10,15 @@ export type SwitchProps = Omit<ViewProps, 'children'> & {
 
 export function Switch({ isOn, revision = 0, onIsOnChange, ...props }: SwitchProps) {
   const controlled = useControlled((event: ChangeEvent) => {
-    onIsOnChange?.({ isOn: event.isOn, revision: event.revision })
+    onIsOnChange?.({ isOn: event.value !== 0, revision: event.revision })
   }, revision)
   return (
     <NativeSwitch
       {...props}
-      isOn={isOn}
+      value={isOn ? 1 : 0}
       revision={controlled.revision}
       acknowledgedEvent={controlled.acknowledgedEvent}
-      onIsOnChange={(event) => controlled.onNativeChange(event.nativeEvent)}
+      onControlChange={(event) => controlled.onNativeChange(event.nativeEvent)}
     />
   )
 }

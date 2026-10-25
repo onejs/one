@@ -17,6 +17,7 @@ class OneLinuxControl {
   bool update(std::shared_ptr<const OneLinuxControlProps> props, EventEmitter::Shared emitter);
 
  private:
+  static void switched(GObject *, GParamSpec *, gpointer);
   static void clicked(GtkButton *, gpointer);
   static void toggled(GtkToggleButton *, gpointer);
   static void slid(GtkRange *, gpointer);
