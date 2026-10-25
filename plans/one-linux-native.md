@@ -117,69 +117,104 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
-**M3 continuation, 2026-10-25, worker s79514 for s72425.** The next four
-controls are Toggle, Stepper, TextField and SecureField. This is the worker's
-selection within M3, not new owner direction. Toggle follows the existing Mac
-label/isOn contract. Stepper and the two fields follow One's native numeric and
-text contracts in `platform/generated/Controls.native.tsx`, using
-`GtkCheckButton`, `GtkSpinButton`, `GtkEntry` and `GtkPasswordEntry` respectively.
-The two fields share one wrapper implementation. All four use
-`platform/controlled.ts` and the same templated native controlled-value helper
-as Switch, including string values for the fields. Fields submit on Enter;
-SecureField uses GTK's masked entry and its clipboard policy.
+**M3 continuation, 2026-10-25, worker s79514 for s72425.** TESTED all ten
+controls in the studio-64 Ubuntu arm64 VM, GTK 4 release host and embedded
+Linux Hermes bytecode, with `G_DEBUG=fatal-criticals`. The four additions are
+Toggle, Stepper, TextField and SecureField. This is the worker's selection
+within M3. Toggle follows the existing Mac label/isOn contract. Stepper and
+the fields reuse One's native numeric and text contracts in
+`platform/generated/Controls.native.tsx`.
+They cover boolean, bounded numeric, plain text and password input through
+`GtkCheckButton`, `GtkSpinButton`, `GtkEntry` and `GtkPasswordEntry`.
 
-RAN: source lint on 24 files, zero warnings or errors. The incremental Linux
-release host build passed all eight steps. Runtime validation is pending. The VM's startup writer stalled in `pwrite` on the
-external volume; a sample was retained outside the tree and sent to s72425.
-Normal heavy admission initially refused the One package build at 49 GiB free
-under the 50 GiB floor. The lead recovered capacity; one event wait reported
-50.56 GiB and the builds were admitted. The package build caught a misplaced
-indeterminate prop in its event schema, now corrected, then encountered SWC
-file-load EPERM errors. A direct SWC transform passed; the package build is
-being repeated with failing paths recorded outside the repo. These are infrastructure observations,
-not runtime evidence for the new controls. The review fixture is
-`tests/linux-basic/probe/m3-controls.tsx`, available as the controls tab.
+All four wrappers use `platform/controlled.ts` and the same native controlled
+value helper as Switch, extended to string values. The fields share one wrapper
+implementation. Accepted edits produce toggle true, stepper 2.25, text
+`linux`, a masked three-character password and two Enter submissions. Rejecting
+edits leaves those values unchanged. A revision reset restores false, 2, `One`
+and the four-character password without emitting changes. Rejecting another
+edit to each control at revision 1 keeps the reset values. Captures:
+[accepted](one-linux-native-ten-controls-accepted.webp),
+[rejected](one-linux-native-ten-controls-rejected.webp),
+[reset](one-linux-native-ten-controls-reset.webp),
+[rejected after reset](one-linux-native-ten-controls-revision-rejected.webp).
+The fixture is `tests/linux-basic/probe/m3-controls.tsx`, the controls tab of
+`probe/review.tsx`. Disabled counterparts are visible alongside the controls.
 
-INFERRED from the native source: intrinsic sizing now measures each actual GTK
-widget on the main thread and publishes its natural size through Fabric state.
-A state change dirties the Yoga leaf. The wrappers have no fixed default boxes;
-explicit RN style constraints still bound the measured result. Switch uses this
-same path instead of fixed Adwaita dimensions. Theme, font and DPI settings
-trigger fresh measurements. Native compile and theme-change captures remain
-pending the infrastructure recovery.
+TESTED theme-derived intrinsic measurement. GTK measures each actual control
+on its main thread and publishes its natural size as Fabric state; Yoga applies
+RN style constraints. The wrappers have no default layout boxes. The initial
+unmeasured frame stays unallocated until state arrives, because GTK entries
+cannot allocate their internals at zero. Theme, dark preference, font and DPI
+notifications schedule one measurement after GTK's next style/layout frame.
+Changing to Adwaita-dark and Sans 20 grows Toggle from 173x26 to 292x40 and
+Stepper from 112x34 to 135x46. RN text retains its explicit font size and the
+control rows reflow: [theme and font](one-linux-native-ten-controls-theme.webp).
+Measuring directly from the settings notification reproduced stale bounds;
+waiting for GTK's after-paint signal repairs that ordering.
 
-Contract sources: [GTK Widget.measure](https://docs.gtk.org/gtk4/method.Widget.measure.html)
-and [GTK threading](https://docs.gtk.org/gtk4/section-threading.html).
+TESTED Slider completion callbacks with real pointer and keyboard events. A
+pointer interaction ends at 85 percent with two starts and two completions
+including the preceding pointer click. Left arrow changes to 84 percent and
+increments both counters once. Reset restores 25 percent at revision 1 while
+both counters remain three and the last completed value stays 0.84. Captures:
+[pointer](one-linux-native-slider-completion-pointer.webp),
+[keyboard](one-linux-native-slider-completion-key.webp),
+[programmatic reset](one-linux-native-slider-reset-determinate.webp).
+`onSlidingStart` and `onSlidingComplete` carry value and revision. The native
+controller observes GTK input without consuming it and reads the final value
+after GTK handles release. Touch, wheel and focus-loss paths follow that same
+source contract but were not separately exercised in this proof.
 
-INFERRED from source, awaiting native proof: Slider now exposes
-`onSlidingStart` and `onSlidingComplete` with value and revision, matching the
-React Native Slider gesture boundary names. Pointer, touch, changing keys and
-scroll input are observed without consuming GTK events. Completion runs after
-GTK processes release; revision changes and disabling cancel the old gesture.
-Programmatic setters emit no interaction callbacks. ProgressBar accepts an
-omitted value or `indeterminate`; a GTK frame callback pulses activity while
-mapped, and is removed when determinate or destroyed.
+TESTED ProgressBar activity mode: omitting value pulses the GTK bar, with the
+activity block at different positions in the pointer and keyboard captures.
+Changing back to determinate renders the current fraction; the reset capture
+shows both bars at 25 percent. The GTK frame callback is active while mapped
+and removed on determinate mode or destruction.
 
-DropDown now has an alternative tagged contract: `items: {label, value}[]`,
-`selection: string | null`, and `onSelectionChange`. Values must be unique;
-labels may repeat. This follows One.iOS.Picker's distinct selection and Text
-`tag` semantics. The native helper stores the tag, so changing item order does
-not reinterpret an unacknowledged native edit. The existing labels/selectedIndex
-API remains an indexed GTK selection. Both modes share one event counter and
-acknowledgement helper. The fixture covers duplicate labels, reordering and
-clearing, plus activity mode and completion counters.
+TESTED DropDown tagged items, following One.iOS.Picker's distinct selection
+and Text tag semantics. `items: {label, value}[]`, `selection: string | null`
+and `onSelectionChange` preserve distinct values with duplicate labels:
+[beta selected](one-linux-native-dropdown-tagged-beta.webp).
+After an accepted change to alpha, reversing the items preserves alpha at its
+new index without another event:
+[reordered popup](one-linux-native-dropdown-tagged-reordered.webp).
+Rejecting Gamma restores alpha:
+[rejected](one-linux-native-dropdown-tagged-rejected.webp).
+Clearing selection renders GTK's empty selection without a native event:
+[cleared](one-linux-native-dropdown-tagged-cleared.webp).
+Values must be unique; labels may repeat. The existing labels/selectedIndex
+contract remains available and selects Beta/index 1 in the composition capture.
+Both modes share one event counter and the controlled value helper.
 
-Sources: [React Native Slider](https://github.com/callstack/react-native-slider),
-[GTK range](https://docs.gtk.org/gtk4/class.Range.html),
-[GTK progress](https://docs.gtk.org/gtk4/class.ProgressBar.html),
-[GTK dropdown](https://docs.gtk.org/gtk4/class.DropDown.html), and One's own
-`ios/Generated/OneNativePickerView.swift`, `platform/generated/controlTypes.ts`
-and `platform/generated/Controls.native.tsx`.
+TESTED RN content and native controls inside the same ScrollView. At RN offset
+595, the composed GTK Toggle updates React state while RN text and four rows
+remain visible, with controls clipped at the viewport edge:
+[scrolled composition](one-linux-native-ten-controls-scroll.webp).
 
-Contract sources: [GTK CheckButton](https://docs.gtk.org/gtk4/class.CheckButton.html),
+RAN: incremental Linux release host builds, One JS and declaration generation,
+static specs (ten Linux specs, 50 mirrors), SDK generation, `one build
+--platform linux`, Hermes bytecode compilation, source lint on 24 files with
+zero warnings or errors, real uinput interactions and 2560x1600 captures.
+The package build encountered external-volume file-load EPERM errors; the JS
+and declaration stage then passed, and its static-spec/SDK stages passed when
+run separately. No single end-to-end package build success is claimed. The
+package-wide lint also completed with zero errors and eight existing warnings
+outside the changed files. No automated tests were added, RN source was not
+changed, and no startup timing comparison was made under concurrent load.
+
+Contract sources: One's `platform/mac/Toggle.macos.tsx`,
+`platform/generated/Controls.native.tsx`, `platform/generated/controlTypes.ts`
+and `ios/Generated/OneNativePickerView.swift`;
+[GTK Widget.measure](https://docs.gtk.org/gtk4/method.Widget.measure.html),
+[GTK threading](https://docs.gtk.org/gtk4/section-threading.html),
+[GTK CheckButton](https://docs.gtk.org/gtk4/class.CheckButton.html),
 [SpinButton](https://docs.gtk.org/gtk4/class.SpinButton.html),
-[PasswordEntry](https://docs.gtk.org/gtk4/class.PasswordEntry.html).
-
+[PasswordEntry](https://docs.gtk.org/gtk4/class.PasswordEntry.html),
+[React Native Slider](https://github.com/callstack/react-native-slider),
+[GTK range](https://docs.gtk.org/gtk4/class.Range.html),
+[progress](https://docs.gtk.org/gtk4/class.ProgressBar.html) and
+[dropdown](https://docs.gtk.org/gtk4/class.DropDown.html).
 
 TESTED input limits in the release VM host with real typing and clipboard
 paste, for single-line and multiline fields at limits 0, 1 and 2. Typing `abc`
@@ -709,17 +744,17 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
 
 ## Gaps
 
-- M3 has ten control implementations; the latest four await native build and
-  runtime proof. Six have already been validated.
-- Theme-derived intrinsic sizing, Slider completion, indeterminate progress
-  and tagged dropdown items are implemented but await native validation.
+- M3's ten controls, theme-derived intrinsic sizing, Slider completion,
+  indeterminate progress, tagged dropdown items and RN ScrollView composition
+  have arm64 release VM proof. Slider touch and wheel completion paths have
+  not been exercised; x86_64 and broader platform validation remain with CI.
 - Pointer presses support the primary mouse button. Secondary mouse buttons
   and touchscreen sequences are not implemented.
 - Text input still lacks capitalization hints, input method position hints
   and drag and drop. `cursorColor` is Android only in RN and is not a Linux gap.
 - The earlier scroll, portal color scheme, image and Networking gaps remain.
 
-**Next:** validate the latest four M3 controls after VM and disk capacity
-recovery, close the sizing and callback gaps, then the existing image, portal
-appearance and Networking gaps. Lead s72425 and CI own review of the repairs,
-the full release bundle byte gate and broader platform builds.
+**Next:** lead s72425 and ci-manager review the M3 source and captures, run the
+full release bundle byte gate and broader platform builds. The existing image,
+portal appearance and Networking gaps remain outside this M3 continuation.
+M4 app shell and routing follows the lead's scheduling.
