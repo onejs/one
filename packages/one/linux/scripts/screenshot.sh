@@ -9,7 +9,7 @@ bundle="${4:-}"
 work="$(mktemp -d)"
 export XDG_RUNTIME_DIR="$work"
 export WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVICES=1 WLR_RENDERER=pixman
-export GDK_BACKEND=wayland ONE_LINUX_STARTUP_LOG=1
+export GDK_BACKEND=wayland GSK_RENDERER=cairo ONE_LINUX_STARTUP_LOG=1
 
 # sway runs startup commands after its Wayland socket is ready.
 mkfifo "$work/ready"

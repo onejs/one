@@ -148,8 +148,16 @@ checksum-pinned ICU 74.2 with `-fPIC`, static libraries and embedded data in
 the same user cache before configuring Hermes. This follows ICU's
 [Unix source build](https://unicode-org.github.io/icu/userguide/icu4c/build.html)
 and supplies the upstream static ICU option with archives suitable for a shared
-VM. No system ICU development package is required. Runtime and linkage
-validation are pending the next CI run.
+VM. No system ICU development package is required.
+
+TESTED run 40185359129: aarch64 built the entire core and host, compiled the
+Linux Basic bytecode and painted RN text under headless Wayland. Its VM and
+compiler ELF dependencies contain no ICU soname. x86_64 linked the PIC ICU VM
+but failed when linking the core smoke binary: RN's atomic optional double
+feature flags require the `libatomic` runtime on this architecture. The Linux
+core now links that library for both consumers. The headless capture also
+selects GTK's Cairo renderer to avoid hardware renderer discovery on runners
+without a GPU. Full two-architecture success awaits the next run.
 
 **Review 3 fixes, 2026-10-24, one-linux-m5.** RAN a release host build and
 `tests/linux-basic` bundle with a temporary probe page in the arm64 VM under
