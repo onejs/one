@@ -64,18 +64,32 @@ describe('a client navigation validates the query of the page it opens', { timeo
         { timeout: 10_000 }
       )
 
+    // the router commits the url after the data renders, so wait for it
+    const expectUrlPage = (n: number) =>
+      tab.waitForURL((url) => url.searchParams.get('page') === String(n), {
+        timeout: 10_000,
+      })
+
     await tab.goto(`${serverUrl}${page}?page=2&metric=revenue`)
     await tab.waitForSelector('[data-testid="table-next"]')
     expect((await readData()).searchParams.page).toBe(2)
     const afterDocument = await loaderCalls()
 
+    // the document html is interactive only once the page has hydrated, so clicks before
+    // that are lost
+    await tab.waitForFunction(
+      () => document.querySelector('[data-testid="loader-hydrated"]')?.textContent === 'yes',
+      undefined,
+      { timeout: 10_000 }
+    )
+
     // hydration reused the document's data
-    await tab.waitForTimeout(500)
+    await tab.waitForLoadState('networkidle')
     expect(await loaderCalls()).toBe(afterDocument)
 
     await tab.click('[data-testid="table-next"]')
     await expectPage(3)
-    expect(tab.url()).toContain('page=3')
+    await expectUrlPage(3)
     expect(await loaderCalls()).toBe(afterDocument + 1)
 
     await tab.click('[data-testid="table-next-replace"]')
