@@ -140,8 +140,11 @@ Our file-based routing is different, but we can provide similar validation at th
 Component schemas found by the typed-link scanner also validate `searchParams` for loaders. The route-level `validateSearch` export was never consumed by the router, so One's helper is named `validateSearchParams` and a route-file export is not part of the design.
 
 - A server-environment transform adds `__oneSearchSchemas` to a route module that exports a loader and has schemas in itself or its layouts. No schemas, no change.
-- The server validates before the loader and before any `loaderCache` coalesced result, passes `searchParams`, and answers 400 on a rejected query. Document requests of `ssr` routes only.
-- Limits: client loader requests are pathname-keyed, so the query never reaches them; `ssg`, `spa` and the Vercel output are not covered; discovery follows static imports only.
+- The server validates before the loader and before any `loaderCache` coalesced result, passes `searchParams`, and answers 400 on a rejected query. Document requests and client loader requests of `ssr` routes only.
+- Client transport: an `ssr` page's client loader request carries the page query as `__one_search` (canonical sorted form). `loaderProps.search` for that request is that query. Loader state, preload and refetch keys are `path?canonicalQuery` for `ssr` pages; other routes keep pathname keys.
+- A rejected query answers 400 on the loader request; the loader does not run and the client navigation does not commit. A document-load fallback for that case is not implemented.
+- `ssr` pages skip the clientMatches fast path in useLoader because popstate does not rebuild matches.
+- Limits: `ssg`, `spa` and the Vercel serverless template (no `search`, no validation) are not covered; native client URLs merge `platform` with the transport but are untested; `request` in a client loader call carries the loader URL; discovery follows static imports only.
 
 ## Related Work
 

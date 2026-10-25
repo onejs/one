@@ -3,6 +3,7 @@ import type { Middleware, MiddlewareContext } from './createMiddleware'
 import type { RouteNode } from './router/Route'
 import type { RouteInfoCompiled } from './server/createRoutesManifest'
 import type { LoaderProps } from './types'
+import { readLoaderSearch } from './utils/cleanUrl'
 import { isResponse } from './utils/isResponse'
 import { resolveAPIEndpoint, resolveResponse } from './vite/resolveResponse'
 import type { RouteInfo } from './vite/types'
@@ -209,7 +210,9 @@ export async function resolveLoaderRoute(
           url,
           loaderProps: {
             path: url.pathname,
-            search: url.search,
+            // an ssr route's loader gets the query of the page, which the client
+            // sends under a reserved key apart from the loader request's own
+            search: route.type === 'ssr' ? readLoaderSearch(url) : url.search,
             subdomain: getSubdomain(url),
             request: route.type === 'ssr' ? request : undefined,
             params: getLoaderParams(url, route),

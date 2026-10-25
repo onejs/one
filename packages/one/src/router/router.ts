@@ -27,7 +27,13 @@ import { openExternalURL } from '../link/openExternalURL'
 import { resolve } from '../link/path'
 import { checkBlocker } from '../useBlocker'
 import { assertIsReady } from '../utils/assertIsReady'
-import { getLoaderPath, getPreloadCSSPath, getPreloadPath } from '../utils/cleanUrl'
+import {
+  getLoaderPath,
+  getPreloadCSSPath,
+  getPreloadPath,
+  splitLoaderKey,
+  toLoaderKey,
+} from '../utils/cleanUrl'
 import { dynamicImport, isChunkLoadError } from '../utils/dynamicImport'
 import { PLATFORM } from '../utils/platform'
 import { isVersionStale } from '../skewProtection'
@@ -787,7 +793,12 @@ async function doPreloadDev(href: string): Promise<any> {
     }
 
     try {
-      const loaderJSUrl = getLoaderPath(href, true)
+      const loaderJSUrl = getLoaderPath(
+        href,
+        true,
+        undefined,
+        splitLoaderKey(normalizedPath)[1]
+      )
 
       const moduleLoadStart = performance.now()
       const modulePromise = dynamicImport(loaderJSUrl, false)
@@ -851,7 +862,12 @@ async function doPreload(href: string) {
 
   const artifactPaths = getRouteArtifactPaths(href, getResolvedLinking(), routeNode)
   const preloadPath = getPreloadPath(artifactPaths.preload)
-  const loaderPath = getLoaderPath(artifactPaths.loader)
+  const loaderPath = getLoaderPath(
+    artifactPaths.loader,
+    undefined,
+    undefined,
+    splitLoaderKey(normalizeLoaderPath(href))[1]
+  )
   const cssPreloadPath = getPreloadCSSPath(artifactPaths.preload)
 
   recordPreloadStart(href)
@@ -1008,24 +1024,28 @@ export function preloadRoute(href: string, injectCSS = false): Promise<any> | un
       return preloadingLoader[normalizedHref]
     }
 
-    if (!preloadingLoader[href]) {
+    // an ssr route's data depends on its query, so it is keyed the way useLoader keys it
+    const preloadKey = splitLoaderKey(normalizeLoaderPath(href))[1]
+      ? normalizeLoaderPath(href)
+      : href
+    if (!preloadingLoader[preloadKey]) {
       setBoundedPreloadRecord(
         preloadingLoader,
-        href,
+        preloadKey,
         doPreload(href)
           .then((data) => {
             // store only successful preloads so navigation retries a failed hover.
-            setBoundedPreloadRecord(preloadedLoaderData, href, data)
+            setBoundedPreloadRecord(preloadedLoaderData, preloadKey, data)
             return data
           })
           .catch((err) => {
-            delete preloadingLoader[href]
+            delete preloadingLoader[preloadKey]
             throw err
           })
       )
     }
 
-    return preloadingLoader[href]?.then(
+    return preloadingLoader[preloadKey]?.then(
       async (data) => {
         if (injectCSS) {
           // wait for CSS on navigation (max 800ms).
@@ -1055,11 +1075,22 @@ export function preloadRoute(href: string, injectCSS = false): Promise<any> | un
   }
 }
 
-// normalize path to match what useLoader uses for currentPath
-function normalizeLoaderPath(href: string): string {
-  // remove search params and hash, normalize trailing slashes and /index
+function isSsrHref(href: string): boolean {
+  const linking = getResolvedLinking()
+  if (!linking?.getStateFromPath || !routeNode) return false
+  const state = linking.getStateFromPath(href, linking.config)
+  return findRouteNodeFromState(state, routeNode)?.type === 'ssr'
+}
+
+/**
+ * The key loader data is stored under, as useLoader keys it: the pathname with
+ * trailing slash and /index removed. An ssr route's loader reads the query, so its
+ * key keeps the query (hash removed). Other routes drop it.
+ */
+export function normalizeLoaderPath(href: string): string {
   const url = new URL(href, 'http://example.com')
-  return url.pathname.replace(/\/index$/, '').replace(/\/$/, '') || '/'
+  const path = url.pathname.replace(/\/index$/, '').replace(/\/$/, '') || '/'
+  return url.search && isSsrHref(href) ? toLoaderKey(path, url.search) : path
 }
 
 /**

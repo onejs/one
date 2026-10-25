@@ -11,7 +11,7 @@ export declare function getLoaderTimingHistory(): LoaderTimingEntry[];
 /**
  * Imperatively refetch loader data for a given path.
  *
- * @param pathname - The route path to refetch (e.g., '/users/123')
+ * @param href - The route to refetch (e.g., '/users/123'). An ssr route's query is part of what is refetched.
  * @returns Promise that resolves when refetch completes
  * @link https://onestack.dev/docs/api/hooks/useLoaderState#refetchloader
  *
@@ -20,7 +20,7 @@ export declare function getLoaderTimingHistory(): LoaderTimingEntry[];
  * await refetchLoader('/users/123')
  * ```
  */
-export declare function refetchLoader(pathname: string): Promise<void>;
+export declare function refetchLoader(href: string): Promise<void>;
 /**
  * Refetch the loader data for a specific match (identified by routeId) by fetching
  * the current page's loader JS and updating only that match entry in clientMatches.
