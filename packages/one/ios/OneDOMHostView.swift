@@ -161,7 +161,8 @@ public final class OneDOMHostView: UIView {
     let controller = web!.configuration.userContentController
     controller.removeAllUserScripts()
     controller.addUserScript(
-      WKUserScript(source: Self.transport(bootstrap), injectionTime: .atDocumentStart, forMainFrameOnly: true))
+      WKUserScript(
+        source: Self.transport(bootstrap, development: !developmentURL.isEmpty), injectionTime: .atDocumentStart, forMainFrameOnly: true))
     self.epoch = epoch
     onDocumentStart?(epoch, revision)
     return true
@@ -195,22 +196,58 @@ public final class OneDOMHostView: UIView {
 
   // the transport contract from src/dom/browserBridge.ts: bootstrap,
   // postMessage and subscribe, installed before any application script.
-  static func transport(_ bootstrap: String) -> String {
+  static func transport(_ bootstrap: String, development: Bool) -> String {
     """
     (() => {
       const listeners = new Set()
       const handler = window.webkit.messageHandlers.oneDOM
+      const bootstrap = \(bootstrap)
+      const send = (raw) => handler.postMessage(raw)
+      // failures before the page subscribes, such as a module that throws
+      // while evaluating or an entry that fails to load, still reach native.
+      const early = (error, fallback) => {
+        // the same fields serializeError in src/dom/serialize.ts gives
+        let failure = { name: 'Error', message: fallback }
+        try {
+          if (error instanceof Error) {
+            failure = { name: String(error.name || 'Error'), message: String(error.message) }
+            if (typeof error.code === 'string') failure.code = error.code
+            if (\(development) && typeof error.stack === 'string') failure.stack = error.stack
+          } else if (error === null || ['string', 'number', 'boolean', 'bigint'].includes(typeof error)) {
+            failure.message = String(error)
+          }
+        } catch {}
+        send(JSON.stringify({ version: 1, epoch: bootstrap.epoch, type: 'error', error: failure }))
+      }
+      const onError = (event) => {
+        const target = event.target
+        if (event instanceof ErrorEvent) early(event.error, event.message || 'Script error')
+        else if (target instanceof HTMLScriptElement || target instanceof HTMLLinkElement)
+          early(undefined, 'Failed to load ' + (target.src || target.href))
+      }
+      const onRejection = (event) => early(event.reason, 'Unhandled promise rejection')
+      addEventListener('error', onError, true)
+      addEventListener('unhandledrejection', onRejection)
+      // the page's first subscriber reports from then on
+      let handedOff = false
+      const handoff = () => {
+        if (handedOff) return
+        handedOff = true
+        removeEventListener('error', onError, true)
+        removeEventListener('unhandledrejection', onRejection)
+      }
       Object.defineProperty(globalThis, '__oneDOMReceive', {
         value: (raw) => { for (const listener of [...listeners]) listener(raw) },
       })
       Object.defineProperty(globalThis, '__oneDOM', {
         value: Object.freeze({
-          bootstrap: \(bootstrap),
+          bootstrap,
           postMessage(raw) {
             if (typeof raw !== 'string') throw new TypeError('One DOM messages are strings')
-            handler.postMessage(raw)
+            send(raw)
           },
           subscribe(listener) {
+            handoff()
             listeners.add(listener)
             return () => { listeners.delete(listener) }
           },
