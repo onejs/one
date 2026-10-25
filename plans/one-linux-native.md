@@ -203,6 +203,54 @@ cua-driver accessibility actions. No regression found.
   runtime. `tests/macos-basic` has no routes. By reading, the only Mac change
   there is the shared re-export of the Stack layout helper (see below).
 
+**Combined source check, 2026-10-24, one-linux-merge (s80603 for s72425).**
+Source: Linux branch plus the Mac minor batch tm/macos-resume 7fe12ef4c8
+(merge 38109a2814), studio-64.
+
+- RAN `bun run build` and `bun run lint` in `packages/one`: build passed, lint
+  0 errors.
+- Fixed a merge defect: `OneMacosRootView.mm` declared the `_darkAppearance`
+  ivar twice (the Mac batch and the Linux branch each carried it), so the Mac
+  host did not compile. The duplicate is removed (736922cc15). The Linux host
+  and native-core are untouched by the merge (empty diff against the Linux
+  parent).
+- Two stale local products, not source: the gitignored `MacosBasic.xcodeproj`
+  lacked the Bundle JavaScript phase until `xcodegen generate` ran, and the
+  vxrn `dist` predated the Mac bytecode work, so the dev server sent plain JS
+  until `bun run build` in `packages/vxrn`.
+- `tests/macos-basic/probe/Controls.tsx` gained a prominent Button, a
+  PopUpButton with a Select Name button, and a line showing prominent presses,
+  popup index and changes, and the color scheme.
+- TESTED Release (embedded `main.jsbundle`, 2,927,638 bytes, the file the
+  process maps, no network): Button, SegmentedControl, rejected selection,
+  disable, borderless and bordered styles, unmount and remount, the prominent
+  Button, the PopUpButton, app commands and menus, and a live light to dark and
+  dark to light change that re-rendered `scheme`
+  ([controls](one-linux-merge-mac-release-controls.webp),
+  [commands](one-linux-merge-mac-release-commands.webp),
+  [light](one-linux-merge-mac-release-light.webp),
+  [dark](one-linux-merge-mac-release-dark.webp)). Reload host is a no-op in
+  Release (INFERRED: `DevSettings.reload` is dev only).
+- TESTED Debug against the dev server (bytecode served): controls, menus, keys
+  and Reload host (tag and counts reset, one press adds one)
+  ([debug](one-linux-merge-mac-debug.webp)).
+- NOT TESTED: bare `tab` and `shift-tab` (open item above), File > New Window
+  with two windows.
+- TESTED Linux release host in the `one-linux` VM (headless sway, uinput
+  pointer, `tests/linux-basic` bundled for `linux`, VM hermesc bytecode).
+  `build-core.sh release` reported no work to do: the merge changed none of the
+  Linux or native-core sources, and the binary was built at 22:37 after the last
+  C++ change. First frame with RN text at 955 ms on a cold VM page cache. The
+  Home tab rendered, a click on Push detail mounted the Detail page under the GTK
+  back header ([push](one-linux-merge-linux-push.webp)), and Back then Open
+  native controls showed the controls page
+  ([controls](one-linux-merge-linux-controls.webp)); a click on the switch and on
+  Press me toggled it and counted 1
+  ([after](one-linux-merge-linux-controls-after.webp)). Only the known VM
+  warnings (no GPU, no session bus) printed. The images show an asset error
+  because I did not copy `dist/assets` beside the bundle in this run, a setup
+  omission and not a defect. Not run: the Linux dev server path.
+
 **M4 app shell and routing, 2026-10-25, s79947 for s72425.** TESTED
 `tests/linux-basic` with the arm64 release host and embedded Linux bytecode.
 The default route opens the routed demo; the original composition demo is
