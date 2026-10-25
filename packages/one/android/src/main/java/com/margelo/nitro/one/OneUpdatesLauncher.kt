@@ -634,7 +634,7 @@ object OneUpdatesLauncher {
     )
 
     // reads the running selection only; a download must not change a live page.
-    internal fun currentDOMAssetLocation(): DOMAssetLocation? {
+    internal fun currentDOMAssetLocation(applicationContext: Context): DOMAssetLocation? {
         synchronized(lock) {
             if (!runningEmbedded) {
                 val id = runningId ?: return null
@@ -643,9 +643,8 @@ object OneUpdatesLauncher {
                     Base64.URL_SAFE or Base64.NO_PADDING or Base64.NO_WRAP)
                 return DOMAssetLocation("update-$encoded", updateDirectory(id), "")
             }
-            val context = appContext ?: return null
             val buildId = try {
-                context.assets.open("one-dom/manifest.json").use { stream ->
+                applicationContext.assets.open("one-dom/manifest.json").use { stream ->
                     JSONObject(stream.readBytes().toString(Charsets.UTF_8)).getString("buildId")
                 }
             } catch (_: Exception) {
