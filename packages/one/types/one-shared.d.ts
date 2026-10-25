@@ -1,6 +1,7 @@
 import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, LocalAuthentication, ProtectedStore, KeepAwake, Print, StoreReview, QuickActions, Location, FileSystem, Audio, CameraView, Share, Open, PhotoLibrary, MapServices, AppTracking, AppIcon, ScreenOrientation, ScreenCapture, Purchases, ImageManipulator, Device, Crypto as NativeCrypto, Localization, Motion, BackgroundTasks, AppIntents, DeviceAttestation, Contacts, Calendar, WidgetUI, VNDocumentCameraViewController, DataScannerViewController, CNContactViewController, CNMutableContact, CNContactStore, MFMailComposeViewController, MFMessageComposeViewController, Clipboard as NativeClipboard, Barometer as NativeBarometer, LightSensor as NativeLightSensor, Pedometer as NativePedometer, Battery as NativeBattery, Brightness as NativeBrightness, SpeechSynthesis as NativeSpeechSynthesis, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, LaunchScreen, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Storage, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ReservedRegions, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType } from './platform';
 import type { ComponentType } from 'react';
 import type { OneMacAppCommands } from './platform/mac/AppCommands.macos';
+import type { OneLinuxAppCommands } from './platform/linux/AppCommands.linux';
 import type { ImageProps as MacImageProps } from './platform/mac/Image.macos';
 import type { ButtonProps } from './platform/mac/Button.macos';
 import type { SegmentedControlProps } from './platform/mac/SegmentedControl.macos';
@@ -25,7 +26,7 @@ export type OneMacOS = {
     readonly AppCommands: OneMacAppCommands;
 };
 export type OneLinux = {
-    readonly AppCommands: OneMacAppCommands;
+    readonly AppCommands: OneLinuxAppCommands;
     readonly Window: typeof import('./platform/linux/Window.linux').Window;
     readonly Switch: ComponentType<SwitchProps>;
     readonly Button: ComponentType<LinuxButtonProps>;

@@ -21,7 +21,8 @@ bool keystroke(const std::string &source, guint &key, GdkModifierType &modifiers
     if (modifier == "ctrl") flags |= GDK_CONTROL_MASK;
     else if (modifier == "shift") flags |= GDK_SHIFT_MASK;
     else if (modifier == "alt") flags |= GDK_ALT_MASK;
-    else if (modifier == "cmd") flags |= GDK_META_MASK;
+    // cmd is the platform's primary accelerator, which is ctrl on Linux
+    else if (modifier == "cmd") flags |= GDK_CONTROL_MASK;
     else return false;
     rest.erase(0, split + 1);
   }
@@ -39,6 +40,17 @@ bool keystroke(const std::string &source, guint &key, GdkModifierType &modifiers
   }
   modifiers = static_cast<GdkModifierType>(flags);
   return key != GDK_KEY_VoidSymbol && key != 0;
+}
+
+// gtk reads an underscore in a menu label as a mnemonic marker
+std::string label(const folly::dynamic &item)
+{
+  std::string result;
+  for (char c : item["label"].getString()) {
+    if (c == '_') result += '_';
+    result += c;
+  }
+  return result;
 }
 
 std::string checkItems(const folly::dynamic &items)
@@ -135,7 +147,7 @@ GMenu *OneLinuxAppShell::menu(const folly::dynamic &items)
     if (kind == "separator") { flush(); continue; }
     if (kind == "submenu") {
       auto *child = menu(item["items"]);
-      g_menu_append_submenu(section, item["label"].c_str(), G_MENU_MODEL(child));
+      g_menu_append_submenu(section, label(item).c_str(), G_MENU_MODEL(child));
       g_object_unref(child);
     } else {
       auto id = item["id"].getString();
@@ -150,7 +162,7 @@ GMenu *OneLinuxAppShell::menu(const folly::dynamic &items)
         static_cast<OneLinuxAppShell *>(data)->activate(static_cast<const char *>(g_object_get_data(G_OBJECT(action), "command-id")));
       }), this);
       g_action_map_add_action(G_ACTION_MAP(actions_), G_ACTION(action));
-      g_menu_append(section, item["label"].c_str(), ("one." + name).c_str());
+      g_menu_append(section, label(item).c_str(), ("one." + name).c_str());
       g_object_unref(action);
     }
   }
@@ -185,7 +197,7 @@ void OneLinuxAppShell::configure(const folly::dynamic &config)
   auto *model = g_menu_new();
   for (const auto &entry : config["menus"]) {
     auto *child = menu(entry["items"]);
-    g_menu_append_submenu(model, entry["label"].c_str(), G_MENU_MODEL(child));
+    g_menu_append_submenu(model, label(entry).c_str(), G_MENU_MODEL(child));
     g_object_unref(child);
   }
   auto *newWindow = g_simple_action_new("new-window", nullptr);
@@ -211,16 +223,40 @@ void OneLinuxAppShell::setListening(bool listening)
   g_strfreev(names);
 }
 
-gboolean OneLinuxAppShell::keyPressed(GtkEventControllerKey *, guint key, guint, GdkModifierType modifiers, gpointer data)
+// shift-[ arrives as braceleft with shift consumed, while the binding names the
+// physical key: bracketleft with shift held. match that against the key's
+// base symbol in the event's layout.
+static bool matchesBaseKey(GdkEvent *event, guint key, GdkModifierType modifiers)
+{
+  constexpr unsigned mask = GDK_SHIFT_MASK | GDK_CONTROL_MASK | GDK_ALT_MASK | GDK_SUPER_MASK;
+  if ((gdk_event_get_modifier_state(event) & mask) != modifiers) return false;
+  GdkKeymapKey *keys;
+  guint *keyvals;
+  int count;
+  bool matched = false;
+  if (gdk_display_map_keycode(gdk_event_get_display(event), gdk_key_event_get_keycode(event), &keys, &keyvals, &count)) {
+    for (int i = 0; i < count; i++) {
+      if (keys[i].group == static_cast<int>(gdk_key_event_get_layout(event)) && keys[i].level == 0 &&
+          gdk_keyval_to_lower(keyvals[i]) == gdk_keyval_to_lower(key)) matched = true;
+    }
+    g_free(keys);
+    g_free(keyvals);
+  }
+  return matched;
+}
+
+gboolean OneLinuxAppShell::keyPressed(GtkEventControllerKey *controller, guint, guint, GdkModifierType, gpointer data)
 {
   auto &shell = *static_cast<OneLinuxAppShell *>(data);
   if (!shell.listening_) return FALSE;
   auto *focus = gtk_window_get_focus(shell.window_);
   bool input = focus && (GTK_IS_EDITABLE(focus) || GTK_IS_TEXT_VIEW(focus));
-  constexpr unsigned mask = GDK_SHIFT_MASK | GDK_CONTROL_MASK | GDK_ALT_MASK | GDK_META_MASK;
+  auto *event = gtk_event_controller_get_current_event(GTK_EVENT_CONTROLLER(controller));
   for (const auto &binding : shell.bindings_) {
-    if (gdk_keyval_to_lower(key) == gdk_keyval_to_lower(binding.key) &&
-        (modifiers & mask) == binding.modifiers && (!binding.hasContext || binding.context.matches(input))) {
+    // gdk resolves shifted symbols and layouts, so cmd-shift-[ and ctrl-+ match
+    if ((gdk_key_event_matches(event, binding.key, binding.modifiers) == GDK_KEY_MATCH_EXACT ||
+         matchesBaseKey(event, binding.key, binding.modifiers)) &&
+        (!binding.hasContext || binding.context.matches(input))) {
       shell.activate(binding.id);
       return TRUE;
     }

@@ -82,6 +82,7 @@ import {
 } from './platform'
 import type { ComponentType } from 'react'
 import type { OneMacAppCommands } from './platform/mac/AppCommands.macos'
+import type { OneLinuxAppCommands } from './platform/linux/AppCommands.linux'
 import type { ImageProps as MacImageProps } from './platform/mac/Image.macos'
 import type { ButtonProps } from './platform/mac/Button.macos'
 import type { SegmentedControlProps } from './platform/mac/SegmentedControl.macos'
@@ -109,7 +110,7 @@ export type OneMacOS = {
 }
 
 export type OneLinux = {
-  readonly AppCommands: OneMacAppCommands
+  readonly AppCommands: OneLinuxAppCommands
   readonly Window: typeof import('./platform/linux/Window.linux').Window
   readonly Switch: ComponentType<SwitchProps>
   readonly Button: ComponentType<LinuxButtonProps>
