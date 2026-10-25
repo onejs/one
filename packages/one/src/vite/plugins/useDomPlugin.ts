@@ -23,6 +23,7 @@
  **/
 
 import { readFile } from 'node:fs/promises'
+import type { NativePlatform } from '@vxrn/utils/platformEnv'
 import type { Plugin, ResolvedConfig, UserConfig, PluginOption } from 'vite'
 import { DOMRegistry, type DOMDescriptor } from '../dom/registry'
 import { readDOMDirective } from '../dom/directive'
@@ -30,7 +31,7 @@ import { buildDOMAssets, DOM_DEV_PREFIX, domEntryPlugin, domHTML } from '../dom/
 
 interface NativeDOMContext {
   root: string
-  platform: 'ios' | 'android'
+  platform: NativePlatform
   dev: boolean
   command?: 'serve' | 'build'
   assetsDest?: string
@@ -74,6 +75,11 @@ export function useDOMPlugin(options: UseDOMOptions): Plugin {
             if (!transformed.delete(id)) return
             registry.invalidate(id)
             return { code, map: null, meta: { oneDOM: null } }
+          }
+          if (context.platform !== 'ios' && context.platform !== 'android') {
+            this.error(
+              `[one/use-dom] "use dom" supports iOS and Android; ${context.platform} is unsupported`
+            )
           }
           transformed.add(id)
           // substitution precedes dependency resolution: nothing in the browser

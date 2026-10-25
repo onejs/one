@@ -171,6 +171,22 @@ export default function Component() { return <section data-label={label} data-ic
     expect(context.nativeLazyRuns).toBe(1)
     expect(lazy.default).toBe(registry.descriptor(join(root, 'components/Second.tsx')).id)
     expect(browserImports).toEqual([])
+    // unsupported desktop boundaries fail before a proxy can reach rendering.
+    await mkdir(join(root, 'node_modules'))
+    await symlink(
+      new URL('../../../', import.meta.url).pathname,
+      join(root, 'node_modules/one')
+    )
+    for (const platform of ['macos', 'linux'] as const) {
+      await expect(
+        buildNativeBundle({
+          root,
+          platform,
+          entryFile: 'entry.ts',
+          assetsDest: join(root, 'output'),
+        })
+      ).rejects.toThrow(`"use dom" supports iOS and Android; ${platform} is unsupported`)
+    }
     await build()
     expect(JSON.parse(await readFile(manifestPath, 'utf8'))).toEqual(manifest)
     await writeFile(join(root, 'components/browser.ts'), 'export const label = "changed"')
