@@ -35,6 +35,13 @@ export default function Index() {
     }))
   }
   const [images, setImages] = useState<Record<string, string>>({})
+  const [nativePresses, setNativePresses] = useState(0)
+  const [segment, setSegment] = useState(0)
+  const [level, setLevel] = useState(0.25)
+  const [choice, setChoice] = useState(0)
+  const [controlRevision, setControlRevision] = useState(0)
+  const [controlEvents, setControlEvents] = useState(0)
+  const [acceptChanges, setAcceptChanges] = useState(true)
   const report = (key: string, value: string) => setImages((state) => ({ ...state, [key]: value }))
   const remote = { uri: 'http://127.0.0.1:8123/swatch.png' }
   const boxes = [
@@ -123,8 +130,84 @@ export default function Index() {
         testID="linux-scroll"
         scrollEventThrottle={16}
         onScroll={(event) => setOffset(event.nativeEvent.contentOffset.y)}
-        style={{ height: 200, marginTop: 8, borderWidth: 1, borderColor: '#c9c2b2', borderRadius: 8 }}
+        style={{ height: 260, marginTop: 8, borderWidth: 1, borderColor: '#c9c2b2', borderRadius: 8 }}
       >
+        <View style={{ padding: 12, gap: 8 }}>
+          <Text style={{ fontSize: 18, fontWeight: '700', color: '#1f1d1a' }}>
+            GTK controls with React Native content
+          </Text>
+          <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
+            <One.linux.Button
+              title="Native button"
+              onPress={() => setNativePresses((value) => value + 1)}
+            />
+            <One.linux.Button
+              title="Disabled"
+              disabled
+              style={{ width: 100 }}
+              onPress={() => setNativePresses((value) => value + 100)}
+            />
+            <Text
+              style={{ fontSize: 14, color: '#1f1d1a' }}
+            >{`${nativePresses} presses`}</Text>
+          </View>
+          <One.linux.SegmentedControl
+            labels={['One', 'Two', 'Three']}
+            selectedIndex={segment}
+            revision={controlRevision}
+            onChange={(event) => {
+              setControlEvents((value) => value + 1)
+              if (acceptChanges) setSegment(event.selectedIndex)
+            }}
+          />
+          <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
+            <One.linux.Slider
+              value={level}
+              revision={controlRevision}
+              onValueChange={(event) => {
+                setControlEvents((value) => value + 1)
+                if (acceptChanges) setLevel(event.value)
+              }}
+            />
+            <Text
+              style={{ fontSize: 14, color: '#1f1d1a' }}
+            >{`level ${Math.round(level * 100)}%`}</Text>
+          </View>
+          <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
+            <One.linux.DropDown
+              labels={['Alpha', 'Beta', 'Gamma']}
+              selectedIndex={choice}
+              revision={controlRevision}
+              onChange={(event) => {
+                setControlEvents((value) => value + 1)
+                if (acceptChanges) setChoice(event.selectedIndex)
+              }}
+            />
+            <Text
+              style={{ fontSize: 14, color: '#1f1d1a' }}
+            >{`segment ${segment}, choice ${choice}`}</Text>
+          </View>
+          <One.linux.ProgressBar value={level} revision={controlRevision} />
+          <Text
+            style={{ fontSize: 14, color: '#1f1d1a' }}
+          >{`${controlEvents} native changes, revision ${controlRevision}`}</Text>
+          <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
+            <One.linux.Button
+              title="Reset controls"
+              onPress={() => {
+                setSegment(0)
+                setChoice(0)
+                setLevel(0.25)
+                setControlRevision((value) => value + 1)
+              }}
+            />
+            <Pressable onPress={() => setAcceptChanges((value) => !value)}>
+              <Text style={{ fontSize: 14, color: '#2b6cb0' }}>
+                {acceptChanges ? 'accepting changes' : 'rejecting changes'}
+              </Text>
+            </Pressable>
+          </View>
+        </View>
         {Array.from({ length: 40 }, (_, index) => (
           <View
             key={index}

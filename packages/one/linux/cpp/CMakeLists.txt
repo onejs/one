@@ -38,6 +38,7 @@ set(RN_LINUX_SOURCES
   ${ONE_LINUX}/cpp/OneLinuxSwitch/OneLinuxSwitchEventEmitter.cpp
   ${ONE_LINUX}/cpp/OneLinuxSwitch/OneLinuxSwitchProps.cpp
   ${ONE_LINUX}/cpp/OneLinuxSwitch/OneLinuxSwitchShadowNode.cpp
+  ${ONE_LINUX}/cpp/OneLinuxControls.cpp
   ${ONE_SHARED_HOST_SOURCES}
 )
 
@@ -140,6 +141,7 @@ add_executable(one-linux
   ${ONE_LINUX}/host/OneLinuxRuntime.cpp
   ${ONE_LINUX}/host/OneLinuxStartup.cpp
   ${ONE_LINUX}/host/OneLinuxTextInput.cpp
+  ${ONE_LINUX}/host/OneLinuxControl.cpp
   ${ONE_LINUX}/host/OneLinuxWorklets.cpp
   ${ONE_LINUX}/host/OneLinuxView.cpp
 )

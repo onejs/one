@@ -6,6 +6,11 @@ import type { ButtonProps } from './platform/mac/Button.macos';
 import type { SegmentedControlProps } from './platform/mac/SegmentedControl.macos';
 import type { ToggleProps } from './platform/mac/Toggle.macos';
 import type { SwitchProps } from './platform/linux/Switch.linux';
+import type { ButtonProps as LinuxButtonProps } from './platform/linux/Button.linux';
+import type { SegmentedControlProps as LinuxSegmentedControlProps } from './platform/linux/SegmentedControl.linux';
+import type { SliderProps as LinuxSliderProps } from './platform/linux/Slider.linux';
+import type { DropDownProps } from './platform/linux/DropDown.linux';
+import type { ProgressBarProps } from './platform/linux/ProgressBar.linux';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'macos' | 'linux';
 export type OneMacOS = {
@@ -17,6 +22,11 @@ export type OneMacOS = {
 };
 export type OneLinux = {
     readonly Switch: ComponentType<SwitchProps>;
+    readonly Button: ComponentType<LinuxButtonProps>;
+    readonly SegmentedControl: ComponentType<LinuxSegmentedControlProps>;
+    readonly Slider: ComponentType<LinuxSliderProps>;
+    readonly DropDown: ComponentType<DropDownProps>;
+    readonly ProgressBar: ComponentType<ProgressBarProps>;
 };
 export type OneIOS = typeof Swift & {
     readonly MFMailComposeViewController: typeof MFMailComposeViewController;

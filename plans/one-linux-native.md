@@ -496,6 +496,58 @@ a caret that ignores selection color would disprove the claim. RAN: incremental
 release host build, Linux bundle, Hermes bytecode, real key events and pixel
 inspection. No automated tests were added.
 
-**Next:** `Image` `blurRadius`,
-`defaultSource`, the
-portal color scheme, and the Networking gaps above.
+**M3 initial controls, 2026-10-24.** TESTED in `tests/linux-basic` on the
+studio-64 arm64 VM with the release host and embedded Linux bytecode. The Linux
+namespace now has six controls including the existing Switch:
+
+| API | GTK widget | proof |
+| --- | --- | --- |
+| `One.linux.Button` | `GtkButton` | [one press, disabled button unchanged](one-linux-native-button.webp) |
+| `One.linux.SegmentedControl` | grouped `GtkToggleButton`s in a linked `GtkBox` | [selection](one-linux-native-segmented-control.webp) |
+| `One.linux.Slider` | `GtkScale` | [three drag updates to 74 percent](one-linux-native-slider-progress.webp) |
+| `One.linux.DropDown` | `GtkDropDown` with a `GtkStringList` | [popup](one-linux-native-dropdown-open.webp), [Beta selected by keyboard](one-linux-native-dropdown.webp) |
+| `One.linux.ProgressBar` | `GtkProgressBar` | [fraction follows the slider](one-linux-native-slider-progress.webp) |
+
+All five new Fabric components share the native value, revision and event
+acknowledgement implementation in `OneLinuxControl`; the public wrappers use
+`src/platform/controlled.ts`. Programmatic setters are guarded and never emit.
+Button presses carry event counts too. Progress is read only. Selection uses
+zero-based indices or -1 for no selection; dropdown labels are strings. Slider
+`step` is the GTK keyboard increment. Each wrapper has a default box size that
+can be overridden with `style`; it does not yet measure a themed intrinsic size.
+The descriptors and JS specs stay under the Linux directories and outside iOS
+and Android codegen. RN source is unchanged.
+
+The native controls and RN text/rows share one `ScrollView`:
+[scrolled composition](one-linux-native-controls-scroll-mixed.webp), offset 202.
+The UI reported five native changes after a segment selection, three slider
+moves and a dropdown selection. Rejecting a segment change acknowledged the
+event and restored the accepted GTK selection after the hover settled:
+[rejected change](one-linux-native-controls-rejected-settled.webp).
+A revision reset restored segment 0, choice 0 and level 25 percent without
+increasing the six native changes already reported:
+[reset](one-linux-native-controls-reset.webp). A stale visual value, a change
+from the disabled button or an event from that reset would disprove the claim.
+
+RAN: incremental CMake release host build; the One package build and static
+spec generation (six Linux specs, 30 mirrors); `one build --platform linux`;
+Hermes bytecode compilation; source lint (14 files, zero warnings or errors);
+real uinput mouse/keyboard interactions and native screenshots. No automated
+tests were added. Images, transforms, hover and existing press behavior remain
+visible in the same captures. No startup timing comparison was made under the
+host's concurrent load.
+
+## Gaps
+
+- M3 is six of the planned ten controls; the next four are not implemented.
+- Controls have default layout boxes rather than theme-derived intrinsic
+  measurement. Slider completion callbacks and indeterminate progress are not
+  implemented; the dropdown currently accepts string labels only.
+- Pointer presses support the primary mouse button. Secondary mouse buttons
+  and touchscreen sequences are not implemented.
+- Text input still lacks capitalization hints, input method position hints
+  and drag and drop. `cursorColor` is Android only in RN and is not a Linux gap.
+- The earlier scroll, portal color scheme, image and Networking gaps remain.
+
+**Next:** finish the remaining four M3 controls, then continue the existing
+`Image` `blurRadius`/`defaultSource`, portal appearance and Networking gaps.

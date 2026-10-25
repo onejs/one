@@ -26,6 +26,7 @@
 #include <vector>
 
 #include <OneLinuxSwitch/OneLinuxSwitchComponentDescriptor.h>
+#include "OneLinuxControl.h"
 
 #include "OneLinuxRuntime.h"
 #include "OneLinuxText.h"
@@ -47,6 +48,11 @@ const std::vector<ComponentDescriptorProvider> &componentProviders()
       concreteComponentDescriptorProvider<TextComponentDescriptor>(),
       concreteComponentDescriptorProvider<RawTextComponentDescriptor>(),
       concreteComponentDescriptorProvider<OneLinuxSwitchComponentDescriptor>(),
+      concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxButtonShadowNode>>(),
+      concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxSegmentedControlShadowNode>>(),
+      concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxSliderShadowNode>>(),
+      concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxDropDownShadowNode>>(),
+      concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxProgressBarShadowNode>>(),
       concreteComponentDescriptorProvider<TextInputComponentDescriptor>(),
   };
   return providers;
@@ -123,6 +129,7 @@ struct OneLinuxMountingManager::Record {
   gint64 lastScrollEvent{0};
   guint commitSource{0};
   std::unique_ptr<OneLinuxTextInput> input;
+  std::unique_ptr<OneLinuxControl> nativeControl;
   TextInputShadowNode::ConcreteState::Shared inputState;
   ImageShadowNode::ConcreteState::Shared imageState;
   std::shared_ptr<const ImageObserver> imageObserver;
@@ -227,6 +234,7 @@ void OneLinuxMountingManager::releaseRecord(Record &record)
   }
   g_clear_object(&record.texture);
   record.input.reset();
+  record.nativeControl.reset();
   one_view_set_owner(record.view, nullptr);
   g_object_unref(record.view);
 }
@@ -266,6 +274,11 @@ OneLinuxMountingManager::Record &OneLinuxMountingManager::createView(ComponentHa
   if (handle == TextInputShadowNode::Handle()) {
     record->input = std::make_unique<OneLinuxTextInput>(tag);
     record->control = record->input->widget();
+    one_view_set_control(record->view, record->control);
+  }
+  if (OneLinuxControl::supports(handle)) {
+    record->nativeControl = std::make_unique<OneLinuxControl>(handle);
+    record->control = record->nativeControl->widget();
     one_view_set_control(record->view, record->control);
   }
   if (handle == ScrollViewShadowNode::Handle()) {
@@ -501,6 +514,10 @@ void OneLinuxMountingManager::restyle(Record &record)
     record.applyingControl = true;
     gtk_switch_set_active(GTK_SWITCH(record.control), record.controlValue);
     record.applyingControl = false;
+  }
+
+  if (record.nativeControl) {
+    record.nativeControl->update(static_cast<const OneLinuxControlProps &>(*record.props), record.eventEmitter);
   }
 
   if (record.input) {

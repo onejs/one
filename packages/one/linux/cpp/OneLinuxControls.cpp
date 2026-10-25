@@ -1,0 +1,25 @@
+#include "OneLinuxControls.h"
+
+#include <react/renderer/core/propsConversions.h>
+
+namespace facebook::react {
+
+OneLinuxControlProps::OneLinuxControlProps(
+    const PropsParserContext &context, const OneLinuxControlProps &source, const RawProps &raw)
+    : ViewProps(context, source, raw),
+      title(convertRawProp(context, raw, "title", source.title, std::string{})),
+      labels(convertRawProp(context, raw, "labels", source.labels, std::vector<std::string>{})),
+      value(convertRawProp(context, raw, "value", source.value, 0.0)),
+      minimumValue(convertRawProp(context, raw, "minimumValue", source.minimumValue, 0.0)),
+      maximumValue(convertRawProp(context, raw, "maximumValue", source.maximumValue, 1.0)),
+      step(convertRawProp(context, raw, "step", source.step, 0.01)),
+      disabled(convertRawProp(context, raw, "disabled", source.disabled, false)),
+      revision(convertRawProp(context, raw, "revision", source.revision, 0)),
+      acknowledgedEvent(convertRawProp(context, raw, "acknowledgedEvent", source.acknowledgedEvent, 0)) {}
+
+void OneLinuxControlEventEmitter::onControlChange(double value, int eventCount, int revision) const
+{
+  dispatchEvent("controlChange", folly::dynamic::object("value", value)("eventCount", eventCount)("revision", revision), RawEvent::Category::Discrete);
+}
+
+} // namespace facebook::react

@@ -1,7 +1,19 @@
 import { One as NativeOne, type OneLinuxAPI, type OneLinux } from './one-shared'
 import { Switch } from './platform/linux/Switch.linux'
+import { Button } from './platform/linux/Button.linux'
+import { SegmentedControl } from './platform/linux/SegmentedControl.linux'
+import { Slider } from './platform/linux/Slider.linux'
+import { DropDown } from './platform/linux/DropDown.linux'
+import { ProgressBar } from './platform/linux/ProgressBar.linux'
 
-const linux: Readonly<OneLinux> = Object.freeze({ Switch })
+const linux: Readonly<OneLinux> = Object.freeze({
+  Switch,
+  Button,
+  SegmentedControl,
+  Slider,
+  DropDown,
+  ProgressBar,
+})
 
 // own properties over a prototype, so the shared getters stay lazy and the
 // result type is checked against the members it adds
