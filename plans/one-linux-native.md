@@ -117,6 +117,22 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+**Accepted Linux review repairs, 2026-10-24.** Lead s72425 accepted s78886's
+review and assigned repairs before more M3 controls: inline text attachments,
+RN hover synthesis, GTK pointer picking, the Mac error literal, image request
+identity, WebSocket cleanup and UTF-16 input limits. Window close ownership is
+also under runtime validation. These are lead-assigned repairs to the existing
+contract, not new owner feature direction.
+
+TESTED in the Ubuntu arm64 VM: inline View and Image children mount in debug
+and release without an RN patch or attachment assertion. Pango shape attributes
+reserve their measured sizes; the measurement returns an entry for each child,
+including clipped attachments. The probe covers normal, wrapped, ellipsized and
+right aligned text. Unlimited paragraphs now wrap rather than ellipsizing by
+default. The attachment iterator is skipped for paragraphs with no attachments.
+Captures: [release](one-linux-native-attachments-release.webp),
+[debug](one-linux-native-attachments-debug.webp).
+
 M0: this plan.
 
 **Core slice (toolkit neutral), 2026-10-23.** The Linux build of the RN C++ core
@@ -562,5 +578,5 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
   and drag and drop. `cursorColor` is Android only in RN and is not a Linux gap.
 - The earlier scroll, portal color scheme, image and Networking gaps remain.
 
-**Next:** finish the remaining four M3 controls, then continue the existing
-`Image` `blurRadius`/`defaultSource`, portal appearance and Networking gaps.
+**Next:** finish the accepted Linux review repairs above, then the remaining
+four M3 controls and the existing image, portal appearance and Networking gaps.

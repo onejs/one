@@ -129,25 +129,38 @@ PangoLayout *OneLinuxCreateLayout(
     const AttributedString &attributedString,
     const ParagraphAttributes &paragraphAttributes,
     double width,
-    bool applyAlignment)
+    bool applyAlignment,
+    std::vector<OneLinuxTextAttachment> *attachments)
 {
   std::string text;
   PangoAttrList *list = pango_attr_list_new();
   std::optional<TextAlignment> alignment;
 
   for (const auto &fragment : attributedString.getFragments()) {
-    if (fragment.isAttachment()) {
-      continue;
-    }
     const TextAttributes &attributes = fragment.textAttributes;
     if (!alignment) {
       alignment = attributes.alignment;
     }
     guint start = static_cast<guint>(text.size());
-    text += transformed(fragment.string, attributes.textTransform);
+    text += fragment.isAttachment() ? "\xef\xbf\xbc" : transformed(fragment.string, attributes.textTransform);
     guint end = static_cast<guint>(text.size());
     if (start == end) {
       continue;
+    }
+
+    if (fragment.isAttachment()) {
+      auto size = fragment.parentShadowView.layoutMetrics.frame.size;
+      PangoRectangle ink{};
+      PangoRectangle logical{0, -static_cast<int>(std::ceil(size.height * PANGO_SCALE)),
+                             static_cast<int>(std::ceil(size.width * PANGO_SCALE)),
+                             static_cast<int>(std::ceil(size.height * PANGO_SCALE))};
+      PangoAttribute *shape = pango_attr_shape_new(&ink, &logical);
+      shape->start_index = start;
+      shape->end_index = end;
+      pango_attr_list_insert(list, shape);
+      if (attachments) {
+        attachments->push_back({static_cast<int>(start), size});
+      }
     }
 
     PangoFontDescription *description = fontDescription(attributes);
@@ -200,8 +213,8 @@ PangoLayout *OneLinuxCreateLayout(
   pango_layout_set_wrap(layout, PANGO_WRAP_WORD_CHAR);
   if (width >= 0) {
     pango_layout_set_width(layout, static_cast<int>(std::ceil(width * PANGO_SCALE)));
-    pango_layout_set_ellipsize(layout, ellipsizeValue(paragraphAttributes.ellipsizeMode));
     if (paragraphAttributes.maximumNumberOfLines > 0) {
+      pango_layout_set_ellipsize(layout, ellipsizeValue(paragraphAttributes.ellipsizeMode));
       pango_layout_set_height(layout, -paragraphAttributes.maximumNumberOfLines);
     }
   }
