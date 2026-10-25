@@ -222,6 +222,15 @@ a real Slider drag from 25 to 71 percent with one start and one completion.
 RAN full package build, incremental release host build, Linux bundle and
 Hermes bytecode. No automated tests.
 
+RAN simplification S3's codegen feasibility probe. RN's parser rejects an
+imported props base with `Unable to handle prop spread: ControlledProps`.
+Lead s72425 directed keeping wire declarations local rather than adding a
+type import inliner. The public wrappers and generated declarations now share
+view props, disabled/revision props and numeric/text event types through
+`platform/controlTypes.ts`. Native codegen inputs remain self contained.
+RAN full package build, static specs and declaration generation; package lint
+has zero errors and eight existing warnings. No automated tests.
+
 **M3 continuation, 2026-10-25, worker s79514 for s72425.** TESTED all ten
 controls in the studio-64 Ubuntu arm64 VM, GTK 4 release host and embedded
 Linux Hermes bytecode, with `G_DEBUG=fatal-criticals`. The four additions are

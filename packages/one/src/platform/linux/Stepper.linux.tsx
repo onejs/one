@@ -1,15 +1,13 @@
-import type { ViewProps } from 'react-native'
+import type { ControlledControlProps, NumericControlChange } from '../controlTypes'
 import { useControlled } from '../controlled'
-import NativeStepper, { type ChangeEvent } from './OneLinuxStepperNativeComponent'
+import NativeStepper from './OneLinuxStepperNativeComponent'
 
-export type StepperProps = Omit<ViewProps, 'children'> & {
+export type StepperProps = ControlledControlProps & {
   value: number
   label?: string
   in?: readonly [number, number]
   /** increment, in the stepper's value units. */
   step?: number
-  disabled?: boolean
-  revision?: number
   onValueChange: (value: number) => void
 }
 
@@ -34,7 +32,7 @@ export function Stepper({
       'Stepper needs a finite value in its range, increasing bounds and a positive step'
     )
   }
-  const controlled = useControlled((event: ChangeEvent) => {
+  const controlled = useControlled((event: NumericControlChange) => {
     onValueChange(event.value)
   }, revision)
   return (

@@ -1,5 +1,5 @@
-import type { ViewProps } from 'react-native';
-export type ProgressBarProps = Omit<ViewProps, 'children'> & {
+import type { ControlViewProps } from '../controlTypes';
+export type ProgressBarProps = ControlViewProps & {
     value?: number;
     indeterminate?: boolean;
 };

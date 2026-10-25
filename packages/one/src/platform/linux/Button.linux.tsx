@@ -1,16 +1,14 @@
-import type { ViewProps } from 'react-native'
+import type { ControlledControlProps } from '../controlTypes'
 import { useControlled } from '../controlled'
-import NativeButton, { type ChangeEvent } from './OneLinuxButtonNativeComponent'
+import NativeButton from './OneLinuxButtonNativeComponent'
 
-export type ButtonProps = Omit<ViewProps, 'children'> & {
+export type ButtonProps = ControlledControlProps & {
   title: string
-  disabled?: boolean
-  revision?: number
   onPress?: () => void
 }
 
 export function Button({ revision = 0, onPress, style, ...props }: ButtonProps) {
-  const controlled = useControlled((_event: ChangeEvent) => onPress?.(), revision)
+  const controlled = useControlled(() => onPress?.(), revision)
   return (
     <NativeButton
       {...props}

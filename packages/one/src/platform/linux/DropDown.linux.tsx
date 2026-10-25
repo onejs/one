@@ -1,22 +1,19 @@
-import type { ViewProps } from 'react-native'
+import type { ControlledControlProps, ControlChange, NumericControlChange } from '../controlTypes'
 import { useControlled } from '../controlled'
-import NativeDropDown, { type ChangeEvent, type SelectionEvent } from './OneLinuxDropDownNativeComponent'
+import NativeDropDown, { type SelectionEvent } from './OneLinuxDropDownNativeComponent'
 
 export type DropDownItem = Readonly<{ label: string; value: string }>
-export type DropDownProps = Omit<ViewProps, 'children'> & {
-  disabled?: boolean
-  revision?: number
-} & ({
+export type DropDownProps = ControlledControlProps & ({
   labels: readonly string[]
   selectedIndex: number
-  onChange?: (event: { selectedIndex: number; revision: number }) => void
+  onChange?: (event: ControlChange<{ selectedIndex: number }>) => void
   items?: never
   selection?: never
   onSelectionChange?: never
 } | {
   items: readonly DropDownItem[]
   selection: string | null
-  onSelectionChange?: (event: { selection: string | null; revision: number }) => void
+  onSelectionChange?: (event: ControlChange<{ selection: string | null }>) => void
   labels?: never
   selectedIndex?: never
   onChange?: never
@@ -37,7 +34,7 @@ export function DropDown({ labels, selectedIndex, onChange, items, selection, on
   if (!Number.isInteger(index) || index < -1 || index >= nativeLabels.length) {
     throw new Error('DropDown selectedIndex must be -1 or an index in labels')
   }
-  const controlled = useControlled((event: ChangeEvent | SelectionEvent) => {
+  const controlled = useControlled((event: NumericControlChange | SelectionEvent) => {
     if ('hasSelection' in event) {
       onSelectionChange?.({ selection: event.hasSelection ? event.selection : null, revision: event.revision })
     } else {

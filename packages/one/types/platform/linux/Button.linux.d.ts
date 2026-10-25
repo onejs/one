@@ -1,8 +1,6 @@
-import type { ViewProps } from 'react-native';
-export type ButtonProps = Omit<ViewProps, 'children'> & {
+import type { ControlledControlProps } from '../controlTypes';
+export type ButtonProps = ControlledControlProps & {
     title: string;
-    disabled?: boolean;
-    revision?: number;
     onPress?: () => void;
 };
 export declare function Button({ revision, onPress, style, ...props }: ButtonProps): import("react").JSX.Element;

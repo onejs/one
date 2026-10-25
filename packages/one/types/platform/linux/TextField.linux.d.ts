@@ -1,10 +1,8 @@
-import type { ViewProps } from 'react-native';
-export type TextFieldProps = Omit<ViewProps, 'children'> & {
+import type { ControlledControlProps } from '../controlTypes';
+export type TextFieldProps = ControlledControlProps & {
     text: string;
     label?: string;
     prompt?: string;
-    disabled?: boolean;
-    revision?: number;
     onTextChange?: (text: string) => void;
     onSubmit?: () => void;
 };

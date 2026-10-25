@@ -1,19 +1,17 @@
+import type { ControlledControlProps, ControlChange, NumericControlChange } from '../controlTypes'
 import { useRef } from 'react'
-import type { ViewProps } from 'react-native'
 import { useControlled } from '../controlled'
-import NativeSlider, { type ChangeEvent } from './OneLinuxSliderNativeComponent'
+import NativeSlider from './OneLinuxSliderNativeComponent'
 
-export type SliderProps = Omit<ViewProps, 'children'> & {
+export type SliderProps = ControlledControlProps & {
   value: number
   minimumValue?: number
   maximumValue?: number
   /** keyboard increment, in the slider's value units. */
   step?: number
-  disabled?: boolean
-  revision?: number
-  onValueChange?: (event: { value: number; revision: number }) => void
-  onSlidingStart?: (event: { value: number; revision: number }) => void
-  onSlidingComplete?: (event: { value: number; revision: number }) => void
+  onValueChange?: (event: ControlChange<{ value: number }>) => void
+  onSlidingStart?: (event: ControlChange<{ value: number }>) => void
+  onSlidingComplete?: (event: ControlChange<{ value: number }>) => void
 }
 
 export function Slider({
@@ -40,7 +38,7 @@ export function Slider({
     )
   }
   const slidingRevision = useRef<number | null>(null)
-  const controlled = useControlled((event: ChangeEvent) => {
+  const controlled = useControlled((event: NumericControlChange) => {
     onValueChange?.({ value: event.value, revision: event.revision })
   }, revision)
   return (

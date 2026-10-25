@@ -1,15 +1,11 @@
-import type { ViewProps } from 'react-native'
+import type { ControlledControlProps, ControlChange, NumericControlChange } from '../controlTypes'
 import { useControlled } from '../controlled'
-import NativeSegmentedControl, {
-  type ChangeEvent,
-} from './OneLinuxSegmentedControlNativeComponent'
+import NativeSegmentedControl from './OneLinuxSegmentedControlNativeComponent'
 
-export type SegmentedControlProps = Omit<ViewProps, 'children'> & {
+export type SegmentedControlProps = ControlledControlProps & {
   labels: readonly string[]
   selectedIndex: number
-  disabled?: boolean
-  revision?: number
-  onChange?: (event: { selectedIndex: number; revision: number }) => void
+  onChange?: (event: ControlChange<{ selectedIndex: number }>) => void
 }
 
 export function SegmentedControl({
@@ -27,7 +23,7 @@ export function SegmentedControl({
   ) {
     throw new Error('SegmentedControl selectedIndex must be -1 or an index in labels')
   }
-  const controlled = useControlled((event: ChangeEvent) => {
+  const controlled = useControlled((event: NumericControlChange) => {
     onChange?.({ selectedIndex: event.value, revision: event.revision })
   }, revision)
   return (

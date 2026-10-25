@@ -1,7 +1,7 @@
-import type { ViewProps } from 'react-native'
+import type { ControlViewProps } from '../controlTypes'
 import NativeProgressBar from './OneLinuxProgressBarNativeComponent'
 
-export type ProgressBarProps = Omit<ViewProps, 'children'> & {
+export type ProgressBarProps = ControlViewProps & {
   value?: number
   indeterminate?: boolean
 }

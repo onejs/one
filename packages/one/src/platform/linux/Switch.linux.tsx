@@ -1,15 +1,14 @@
-import type { ViewProps } from 'react-native'
+import type { ControlledControlProps, ControlChange, NumericControlChange } from '../controlTypes'
 import { useControlled } from '../controlled'
-import NativeSwitch, { type ChangeEvent } from './OneLinuxSwitchNativeComponent'
+import NativeSwitch from './OneLinuxSwitchNativeComponent'
 
-export type SwitchProps = Omit<ViewProps, 'children'> & {
+export type SwitchProps = ControlledControlProps & {
   isOn: boolean
-  revision?: number
-  onIsOnChange?: (event: { isOn: boolean; revision: number }) => void
+  onIsOnChange?: (event: ControlChange<{ isOn: boolean }>) => void
 }
 
 export function Switch({ isOn, revision = 0, onIsOnChange, ...props }: SwitchProps) {
-  const controlled = useControlled((event: ChangeEvent) => {
+  const controlled = useControlled((event: NumericControlChange) => {
     onIsOnChange?.({ isOn: event.value !== 0, revision: event.revision })
   }, revision)
   return (

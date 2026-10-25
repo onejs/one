@@ -1,14 +1,12 @@
-import type { ViewProps } from 'react-native'
+import type { ControlledControlProps, TextControlChange } from '../controlTypes'
 import { useControlled } from '../controlled'
 import NativeTextField from './OneLinuxTextFieldNativeComponent'
-import NativeSecureField, { type ChangeEvent } from './OneLinuxSecureFieldNativeComponent'
+import NativeSecureField from './OneLinuxSecureFieldNativeComponent'
 
-export type TextFieldProps = Omit<ViewProps, 'children'> & {
+export type TextFieldProps = ControlledControlProps & {
   text: string
   label?: string
   prompt?: string
-  disabled?: boolean
-  revision?: number
   onTextChange?: (text: string) => void
   onSubmit?: () => void
 }
@@ -19,7 +17,7 @@ export function TextField(props: TextFieldProps) {
 
 export function Field({ text, label = '', prompt = '', revision = 0, onTextChange,
   onSubmit, style, secure, ...props }: TextFieldProps & { secure: boolean }) {
-  const controlled = useControlled((event: ChangeEvent) => onTextChange?.(event.text), revision)
+  const controlled = useControlled((event: TextControlChange) => onTextChange?.(event.text), revision)
   const NativeField = secure ? NativeSecureField : NativeTextField
   return <NativeField {...props} text={text} title={label} prompt={prompt}
     style={style}

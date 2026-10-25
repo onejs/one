@@ -1,13 +1,10 @@
-import type { ViewProps } from 'react-native';
-export type SegmentedControlProps = Omit<ViewProps, 'children'> & {
+import type { ControlledControlProps, ControlChange } from '../controlTypes';
+export type SegmentedControlProps = ControlledControlProps & {
     labels: readonly string[];
     selectedIndex: number;
-    disabled?: boolean;
-    revision?: number;
-    onChange?: (event: {
+    onChange?: (event: ControlChange<{
         selectedIndex: number;
-        revision: number;
-    }) => void;
+    }>) => void;
 };
 export declare function SegmentedControl({ labels, selectedIndex, revision, onChange, style, ...props }: SegmentedControlProps): import("react").JSX.Element;
 //# sourceMappingURL=SegmentedControl.linux.d.ts.map
