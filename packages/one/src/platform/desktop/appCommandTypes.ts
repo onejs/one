@@ -31,4 +31,3 @@ export type AppCommandToolbarItem =
   | { kind: 'action'; id: string; label: string; systemImage: SFSymbolName; badge?: number }
 
 export type AppCommandListener = (id: string) => void
-
