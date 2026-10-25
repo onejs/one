@@ -54,6 +54,8 @@ class OneLinuxHost {
   guint generation_{0};
   GCancellable *download_{nullptr};
   gulong settingsHandlers_[4]{};
+  GdkFrameClock *measurementClock_{nullptr};
+  gulong measurementHandler_{0};
 };
 
 } // namespace facebook::react

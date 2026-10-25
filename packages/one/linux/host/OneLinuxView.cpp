@@ -101,7 +101,11 @@ static void one_view_size_allocate(GtkWidget *widget, int width, int height, int
 
   for (GtkWidget *child = gtk_widget_get_first_child(widget); child; child = gtk_widget_get_next_sibling(child)) {
     if (child == view->control) {
-      gtk_widget_allocate(child, width, height, control_baseline(child, width, height), nullptr);
+      // intrinsic controls have an empty fabric frame until their measured
+      // state arrives. gtk entries cannot allocate their internals at zero.
+      if (width > 0 && height > 0) {
+        gtk_widget_allocate(child, width, height, control_baseline(child, width, height), nullptr);
+      }
       continue;
     }
     OneView *childView = ONE_VIEW(child);
@@ -216,6 +220,9 @@ static void one_view_snapshot(GtkWidget *widget, GtkSnapshot *snapshot)
     gtk_snapshot_push_rounded_clip(snapshot, &outline);
   }
   for (GtkWidget *child = gtk_widget_get_first_child(widget); child; child = gtk_widget_get_next_sibling(child)) {
+    if (child == view->control && (view->width <= 0 || view->height <= 0)) {
+      continue;
+    }
     gtk_widget_snapshot_child(widget, child, snapshot);
   }
   if (view->clips) {

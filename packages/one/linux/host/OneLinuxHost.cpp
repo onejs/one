@@ -120,6 +120,10 @@ OneLinuxHost::OneLinuxHost(std::string bundlePath, std::string moduleName, OneVi
 
 OneLinuxHost::~OneLinuxHost()
 {
+  if (measurementHandler_) {
+    g_signal_handler_disconnect(measurementClock_, measurementHandler_);
+    g_clear_object(&measurementClock_);
+  }
   GtkSettings *settings = gtk_settings_get_default();
   for (gulong handler : settingsHandlers_) {
     g_signal_handler_disconnect(settings, handler);
@@ -295,12 +299,21 @@ bool OneLinuxHost::prefersDark()
 
 void OneLinuxHost::appearanceChanged()
 {
-  std::weak_ptr<OneLinuxMountingManager> manager = mountingManager_;
-  OneLinuxDispatchMain([manager] {
-    if (auto strong = manager.lock()) {
-      strong->measureControls();
-    }
-  });
+  // settings notify before gtk has applied the new css. measure after that
+  // frame's style and layout work, once for all settings changed together.
+  if (auto *clock = gtk_widget_get_frame_clock(GTK_WIDGET(surface_)); clock && !measurementHandler_) {
+    measurementClock_ = GDK_FRAME_CLOCK(g_object_ref(clock));
+    measurementHandler_ = g_signal_connect_after(clock, "after-paint", G_CALLBACK(+[](GdkFrameClock *clock, gpointer data) {
+      auto &self = *static_cast<OneLinuxHost *>(data);
+      g_signal_handler_disconnect(clock, self.measurementHandler_);
+      self.measurementHandler_ = 0;
+      if (self.mountingManager_) {
+        self.mountingManager_->measureControls();
+      }
+      g_clear_object(&self.measurementClock_);
+    }), this);
+    gtk_widget_queue_draw(GTK_WIDGET(surface_));
+  }
   bool dark = prefersDark();
   if (dark == dark_) {
     return;
