@@ -5,6 +5,7 @@ import type { OneLinuxAppCommands } from './platform/linux/AppCommands.linux';
 import type { ImageProps as MacImageProps } from './platform/mac/Image.macos';
 import type { ButtonProps } from './platform/mac/Button.macos';
 import type { SegmentedControlProps } from './platform/mac/SegmentedControl.macos';
+import type { PopUpButtonProps } from './platform/mac/PopUpButton.macos';
 import type { ToggleProps } from './platform/mac/Toggle.macos';
 import type { SwitchProps } from './platform/linux/Switch.linux';
 import type { ButtonProps as LinuxButtonProps } from './platform/linux/Button.linux';
@@ -23,6 +24,7 @@ export type OneMacOS = {
     readonly Toggle: ComponentType<ToggleProps>;
     readonly Button: ComponentType<ButtonProps>;
     readonly SegmentedControl: ComponentType<SegmentedControlProps>;
+    readonly PopUpButton: ComponentType<PopUpButtonProps>;
     readonly AppCommands: OneMacAppCommands;
 };
 export type OneLinux = {

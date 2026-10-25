@@ -477,6 +477,10 @@
           "label": "_",
           "bridge": true
         }
+      ],
+      "frameworks": [
+        "SwiftUI",
+        "_AppIntents_SwiftUI"
       ]
     },
     {
@@ -1971,6 +1975,9 @@
           "name": "blackOutline",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -2237,7 +2244,10 @@
         "label": "activityIdentifier",
         "type": "Swift.String",
         "failable": true
-      }
+      },
+      "frameworks": [
+        "_AppIntents_SwiftUI"
+      ]
     },
     {
       "name": "appEntityUIElements",
@@ -2247,7 +2257,10 @@
       "registeredCallbackType": "@escaping @MainActor (AppIntents.AppEntityUIElementsContext) -> [AppIntents.AppEntityUIElement]",
       "registeredCallbackLabel": "_",
       "ios": 18.4,
-      "framework": "AppIntents"
+      "framework": "AppIntents",
+      "frameworks": [
+        "_AppIntents_SwiftUI"
+      ]
     },
     {
       "name": "appStoreMerchandising",
@@ -2271,7 +2284,10 @@
           "label": "kind"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "appStoreOverlayWithAppClipConfiguration",
@@ -3720,7 +3736,10 @@
         }
       ],
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "cuttable",
@@ -3744,7 +3763,10 @@
       "type": "",
       "ios": 27,
       "zeroArgument": true,
-      "framework": "DataDetection"
+      "framework": "DataDetection",
+      "frameworks": [
+        "_DataDetection_SwiftUI"
+      ]
     },
     {
       "name": "datePickerStyle",
@@ -7119,7 +7141,10 @@
           "ios": 18
         }
       ],
-      "label": "matching"
+      "label": "matching",
+      "frameworks": [
+        "_GameController_SwiftUI"
+      ]
     },
     {
       "name": "headerProminence",
@@ -7699,6 +7724,9 @@
           "kind": "string",
           "optional": true
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -9086,7 +9114,10 @@
       "requestProperty": "scene",
       "predicateLabel": "isPresented",
       "label": "initialScene",
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "luminanceToAlpha",
@@ -9101,7 +9132,10 @@
       "type": "SwiftUICore.Binding<Swift.Bool>",
       "label": "isPresented",
       "ios": 15,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID",
@@ -9147,7 +9181,10 @@
         }
       ],
       "ios": 17,
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "mapControlVisibility",
@@ -9168,6 +9205,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "_MapKit_SwiftUI"
       ]
     },
     {
@@ -9194,7 +9234,10 @@
           "ios": 18
         }
       ],
-      "value": "MapItemDetailSelectionAccessoryStyle"
+      "value": "MapItemDetailSelectionAccessoryStyle",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "mapFeatureSelectionContent",
@@ -9202,7 +9245,10 @@
       "type": "@escaping (_MapKit_SwiftUI.MapFeature) -> some MapContent",
       "registeredFactory": "mapFeatureSelectionContent",
       "ios": 17,
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "mapFeatureSelectionDisabled",
@@ -9210,7 +9256,10 @@
       "type": "@escaping (_MapKit_SwiftUI.MapFeature) -> Swift.Bool",
       "predicateInput": "_MapKit_SwiftUI.MapFeature",
       "ios": 17,
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "mapItemDetailPopoverWithCurrentLocation",
@@ -9322,7 +9371,10 @@
         "index": 0,
         "label": "_"
       },
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "mapStyle",
@@ -9344,7 +9396,10 @@
           "ios": 17
         }
       ],
-      "value": "MapStyle"
+      "value": "MapStyle",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "matchedGeometryEffect",
@@ -9498,7 +9553,10 @@
       "type": "SwiftData.ModelContainer",
       "registeredType": "SwiftData.ModelContainer",
       "ios": 17,
-      "framework": "SwiftData"
+      "framework": "SwiftData",
+      "frameworks": [
+        "_SwiftData_SwiftUI"
+      ]
     },
     {
       "name": "modelContext",
@@ -9506,7 +9564,10 @@
       "type": "SwiftData.ModelContext",
       "registeredType": "SwiftData.ModelContext",
       "ios": 17,
-      "framework": "SwiftData"
+      "framework": "SwiftData",
+      "frameworks": [
+        "_SwiftData_SwiftUI"
+      ]
     },
     {
       "name": "modifier",
@@ -9653,6 +9714,9 @@
           "label": "onLoadCompletion",
           "defaultValue": "{ _ in }"
         }
+      ],
+      "frameworks": [
+        "_MusicKit_SwiftUI"
       ]
     },
     {
@@ -9893,6 +9957,9 @@
           "label": "onCompletion",
           "defaultValue": "{ _ in }"
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -9930,7 +9997,10 @@
       "type": "I.Type",
       "registeredFactory": "onAppIntentExecution",
       "ios": 26,
-      "framework": "AppIntents"
+      "framework": "AppIntents",
+      "frameworks": [
+        "_AppIntents_SwiftUI"
+      ]
     },
     {
       "name": "onApplePayCouponCodeChange",
@@ -9940,7 +10010,10 @@
       "registeredCallbackType": "@escaping (Swift.String) async -> PassKit.PKPaymentRequestCouponCodeUpdate",
       "registeredCallbackLabel": "perform",
       "ios": 15.5,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "onApplePayPaymentMethodChange",
@@ -9950,7 +10023,10 @@
       "registeredCallbackType": "@escaping (PassKit.PKPaymentMethod) async -> PassKit.PKPaymentRequestPaymentMethodUpdate",
       "registeredCallbackLabel": "perform",
       "ios": 15.5,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "onApplePayShippingContactChange",
@@ -9960,7 +10036,10 @@
       "registeredCallbackType": "@escaping (PassKit.PKContact) async -> PassKit.PKPaymentRequestShippingContactUpdate",
       "registeredCallbackLabel": "perform",
       "ios": 15.5,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "onApplePayShippingMethodChange",
@@ -9970,7 +10049,10 @@
       "registeredCallbackType": "@escaping (PassKit.PKShippingMethod) async -> PassKit.PKPaymentRequestShippingMethodUpdate",
       "registeredCallbackLabel": "perform",
       "ios": 15.5,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "onCameraCaptureEvent",
@@ -10005,6 +10087,9 @@
           "label": "action",
           "bridge": true
         }
+      ],
+      "frameworks": [
+        "_AVKit_SwiftUI"
       ]
     },
     {
@@ -10527,7 +10612,10 @@
         ]
       },
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "onInAppPurchaseStart",
@@ -10585,7 +10673,10 @@
         ]
       },
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "onInteractiveResizeChange",
@@ -10679,6 +10770,9 @@
           "label": "_",
           "bridge": true
         }
+      ],
+      "frameworks": [
+        "_MapKit_SwiftUI"
       ]
     },
     {
@@ -11435,6 +11529,9 @@
           "name": "calculator",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -11460,6 +11557,9 @@
           "name": "price",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -11468,7 +11568,10 @@
       "type": "",
       "ios": 26,
       "zeroArgument": true,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "payWithApplePayButtonStyle",
@@ -11493,6 +11596,9 @@
           "name": "automatic",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -11533,7 +11639,10 @@
         "selectionLabel": "selection",
         "contentTypesField": "supportedContentTypes",
         "identifierField": "itemIdentifier"
-      }
+      },
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosPickerAccessoryVisibility",
@@ -11600,7 +11709,10 @@
           "label": "edges"
         }
       ],
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosPickerDisabledCapabilities",
@@ -11629,6 +11741,9 @@
           "name": "stagingArea",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
       ]
     },
     {
@@ -11646,6 +11761,9 @@
           "name": "removeLocation",
           "ios": 27
         }
+      ],
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
       ]
     },
     {
@@ -11653,7 +11771,10 @@
       "kind": "optionalString",
       "type": "Swift.String?",
       "ios": 27,
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosPickerStyle",
@@ -11674,6 +11795,9 @@
           "name": "compact",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
       ]
     },
     {
@@ -11697,7 +11821,10 @@
           "label": "onProcessingCompletion"
         }
       ],
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosSharedAlbumCreationSheet",
@@ -11718,7 +11845,10 @@
         "label": "photoLibrary",
         "type": "Photos.PHPhotoLibrary"
       },
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosSharedAlbumCustomizationSheet",
@@ -11746,7 +11876,10 @@
         "label": "photoLibrary",
         "type": "Photos.PHPhotoLibrary"
       },
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosSharedAlbumPostingSheet",
@@ -11775,7 +11908,10 @@
         "label": "photoLibrary",
         "type": "Photos.PHPhotoLibrary"
       },
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "pickerStyle",
@@ -11866,7 +12002,10 @@
         "label": "photoLibrary",
         "type": "Photos.PHPhotoLibrary"
       },
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "preferencePreferredColorScheme",
@@ -11910,7 +12049,10 @@
       "type": "@escaping (_ product: StoreKit.Product, _ subscription: StoreKit.Product.SubscriptionInfo, _ eligibleOffers: [StoreKit.Product.SubscriptionOffer]) -> StoreKit.Product.SubscriptionOffer?",
       "label": "_",
       "ios": 18,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "preferredSubscriptionPricingTerms",
@@ -11919,7 +12061,10 @@
       "label": "_",
       "selectionMember": "pricingTerms",
       "ios": 26.4,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "presentationBackground",
@@ -12436,6 +12581,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -12444,7 +12592,10 @@
       "type": "",
       "ios": 17,
       "zeroArgument": true,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "productViewStyle",
@@ -12469,7 +12620,10 @@
           "ios": 17
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "progressViewStyle",
@@ -12545,7 +12699,10 @@
       "type": "SwiftUICore.Binding<Foundation.URL?>",
       "label": "_",
       "ios": 14,
-      "framework": "QuickLook"
+      "framework": "QuickLook",
+      "frameworks": [
+        "_QuickLook_SwiftUI"
+      ]
     },
     {
       "name": "realityViewCameraControls",
@@ -12574,6 +12731,9 @@
           "name": "tilt",
           "ios": 18
         }
+      ],
+      "frameworks": [
+        "_RealityKit_SwiftUI"
       ]
     },
     {
@@ -12595,6 +12755,9 @@
           "name": "fixedSize",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_RealityKit_SwiftUI"
       ]
     },
     {
@@ -12647,7 +12810,10 @@
           "label": "isPresented"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "renameAction",
@@ -13881,6 +14047,9 @@
           "name": "darkOutline",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_AppIntents_SwiftUI"
       ]
     },
     {
@@ -13902,6 +14071,9 @@
           "name": "whiteOutline",
           "ios": 14
         }
+      ],
+      "frameworks": [
+        "_AuthenticationServices_SwiftUI"
       ]
     },
     {
@@ -14193,6 +14365,9 @@
           "name": "dark",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_AppIntents_SwiftUI"
       ]
     },
     {
@@ -14329,7 +14504,10 @@
           "label": "for"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "storeProductsTask",
@@ -14428,7 +14606,10 @@
         }
       ],
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "storeProductTask",
@@ -14522,7 +14703,10 @@
         }
       ],
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "strikethrough",
@@ -14786,7 +14970,10 @@
         ]
       },
       "ios": 26,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionOfferViewButtonVisibility",
@@ -14829,7 +15016,10 @@
           "label": "for"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionOfferViewDetailAction",
@@ -14837,7 +15027,10 @@
       "type": "(() -> ())?",
       "label": "_",
       "ios": 26,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionOfferViewStyle",
@@ -14854,7 +15047,10 @@
           "ios": 26
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionPromotionalOffer",
@@ -14998,7 +15194,10 @@
         ]
       },
       "ios": 26,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStatusTask",
@@ -15073,7 +15272,10 @@
         }
       ],
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStoreButtonLabel",
@@ -15106,6 +15308,9 @@
           "name": "price",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -15127,6 +15332,9 @@
           "name": "gradientMaterialOnScroll",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -15164,7 +15372,10 @@
           "ios": 17
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStoreOptionGroupStyle",
@@ -15185,7 +15396,10 @@
           "ios": 18
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStorePickerItemBackground",
@@ -15338,7 +15552,10 @@
           "ios": 15
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStorePolicyDestination",
@@ -15371,7 +15588,10 @@
           "label": "for"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStorePolicyForegroundStyle",
@@ -15524,7 +15744,10 @@
           "ios": 15
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStoreSignInAction",
@@ -15532,7 +15755,10 @@
       "type": "(() -> ())?",
       "label": "_",
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "swipeActionsContainer",
@@ -16931,7 +17157,10 @@
       "type": "_SecureElementCredential_SwiftUI.CredentialTransaction.Configuration?",
       "registeredFactory": "transactionTask",
       "ios": 18.1,
-      "framework": "SecureElementCredential"
+      "framework": "SecureElementCredential",
+      "frameworks": [
+        "_SecureElementCredential_SwiftUI"
+      ]
     },
     {
       "name": "transformAnchorPreference",
@@ -17241,7 +17470,10 @@
           "label": "text"
         }
       ],
-      "framework": "Translation"
+      "framework": "Translation",
+      "frameworks": [
+        "_Translation_SwiftUI"
+      ]
     },
     {
       "name": "translationTask",
@@ -17267,7 +17499,10 @@
             "value": "nil"
           }
         ]
-      }
+      },
+      "frameworks": [
+        "_Translation_SwiftUI"
+      ]
     },
     {
       "name": "truncationMode",
@@ -17546,6 +17781,9 @@
           "name": "blackOutline",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -17583,6 +17821,9 @@
           "name": "disabled",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17604,6 +17845,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17625,6 +17869,9 @@
           "name": "disabled",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17646,6 +17893,9 @@
           "name": "disabled",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17667,6 +17917,9 @@
           "name": "disabled",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17805,7 +18058,10 @@
       "label": "_",
       "ios": 26,
       "framework": "WebKit",
-      "bindingType": "SwiftUICore.ScrollPosition"
+      "bindingType": "SwiftUICore.ScrollPosition",
+      "frameworks": [
+        "_WebKit_SwiftUI"
+      ]
     },
     {
       "name": "webViewTextSelection",
@@ -17822,7 +18078,10 @@
           "ios": 15
         }
       ],
-      "framework": "WebKit"
+      "framework": "WebKit",
+      "frameworks": [
+        "_WebKit_SwiftUI"
+      ]
     },
     {
       "name": "windowToolbarFullScreenVisibility",
@@ -17858,7 +18117,10 @@
           "label": "isPresented"
         }
       ],
-      "framework": "WorkoutKit"
+      "framework": "WorkoutKit",
+      "frameworks": [
+        "_WorkoutKit_SwiftUI"
+      ]
     },
     {
       "name": "writingDirection",

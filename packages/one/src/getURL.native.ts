@@ -1,8 +1,14 @@
 import { getDevServer } from './getDevServer'
+import { getNativeApplicationServerURL } from './nativeApplicationContext'
 
 let hasWarnedOnce = false
 
 export function getURL() {
+  const applicationURL = getNativeApplicationServerURL()
+  if (applicationURL) {
+    return applicationURL
+  }
+
   let url = process.env.ONE_SERVER_URL
 
   if (url) {

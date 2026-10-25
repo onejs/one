@@ -1,5 +1,6 @@
 import { accessSync, constants, readFileSync, statSync } from 'node:fs'
 import { execFile } from 'node:child_process'
+import { createRequire } from 'node:module'
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
@@ -77,10 +78,29 @@ function resolvePodHermesc(root: string): string {
   return cliPath.replace(/\$\(PODS_ROOT\)|\$\{PODS_ROOT\}/g, pods)
 }
 
+// through react-native's own dependency graph: it pins the compiler whose
+// bytecode its hermes vm runs. the macos dev server and builds without a
+// hermes-engine pod compile with it.
+export function resolveNpmHermesc(root: string): string {
+  const require = createRequire(join(root, 'package.json'))
+  const reactNativeJson = require.resolve('react-native/package.json')
+  const nested = createRequire(reactNativeJson)
+  const compilerJson = nested.resolve('hermes-compiler/package.json')
+  const dir = compilerJson.slice(0, -'package.json'.length)
+  const bin =
+    process.platform === 'darwin'
+      ? 'osx-bin'
+      : process.platform === 'win32'
+        ? 'win64-bin'
+        : 'linux64-bin'
+  return join(dir, 'hermesc', bin, process.platform === 'win32' ? 'hermesc.exe' : 'hermesc')
+}
+
 // compile once per emitted bundle. the device can start a fresh hermes context
 // without compiling every cold route's module closures on its js thread.
-export function nativeDevBytecodeCompiler(root: string) {
-  const compiler = useHermescOverride() ?? resolvePodHermesc(root)
+export function nativeDevBytecodeCompiler(root: string, platform: 'ios' | 'macos') {
+  const compiler =
+    useHermescOverride() ?? (platform === 'ios' ? resolvePodHermesc(root) : resolveNpmHermesc(root))
   const compiled = new WeakMap<NativeDevBundle, Map<string, Promise<Buffer>>>()
 
   return (bundle: NativeDevBundle, sourceURL: string): Promise<Buffer> => {

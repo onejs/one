@@ -1,0 +1,55 @@
+import { useEffect, useState } from 'react'
+import { Pressable, Text, View } from 'react-native'
+import { refetchLoader, router, useLoader, useLoaderState, type RouteType } from 'one'
+import { DashboardChart } from '~/features/search-params/DashboardChart'
+import { DashboardTable } from '~/features/search-params/DashboardTable'
+import { SortBoundary, StrictSort } from '~/features/search-params/StrictSort'
+
+// the schemas of the components below validate the query before this runs
+export async function loader({
+  searchParams,
+}: RouteType<'/search-params/loader'>['LoaderProps']) {
+  const calls = ((globalThis as any).__searchParamsLoaderCalls ?? 0) + 1
+  ;(globalThis as any).__searchParamsLoaderCalls = calls
+  return { calls, searchParams: searchParams ?? null }
+}
+
+export default function SearchParamsLoaderPage() {
+  const data = useLoader(loader)
+  const { refetch } = useLoaderState(loader)
+  const [refetchError, setRefetchError] = useState('')
+  // effects only run on the client, so this shows when the page has hydrated
+  const [hydrated, setHydrated] = useState(false)
+  useEffect(() => setHydrated(true), [])
+  return (
+    <View testID="search-params-loader-page">
+      <Text testID="loader-data">{JSON.stringify(data)}</Text>
+      <Text testID="loader-hydrated">{hydrated ? 'yes' : 'no'}</Text>
+      <DashboardTable />
+      <DashboardChart />
+      <SortBoundary>
+        <StrictSort />
+      </SortBoundary>
+      <Pressable testID="loader-refetch" onPress={() => refetch()}>
+        <Text>refetch</Text>
+      </Pressable>
+      <Pressable
+        testID="loader-refetch-invalid"
+        onPress={() =>
+          refetchLoader('/search-params/loader?sort=sideways').catch((error) =>
+            setRefetchError(String(error?.message ?? error))
+          )
+        }
+      >
+        <Text>refetch invalid</Text>
+      </Pressable>
+      <Text testID="loader-refetch-error">{refetchError}</Text>
+      <Pressable
+        testID="loader-invalid"
+        onPress={() => router.push('/search-params/loader?sort=sideways')}
+      >
+        <Text>invalid</Text>
+      </Pressable>
+    </View>
+  )
+}

@@ -139,8 +139,9 @@ rebuilds and relaunches `tests/macos-basic` once to prove the move.
   `NativePlatform` type; do not add a third ternary branch where an
   `ios`/`android` ternary already exists, since several treat "not ios" as
   android.
-- The Mac release bundle is plain JS for M1 (the Hermes bytecode step in
-  `reactNativeDevServer.ts` stays iOS only until M6).
+- The Mac dev server serves Hermes bytecode like iOS
+  (`&bytecode=hermes`, compiled with the npm `hermes-compiler`), and
+  release builds embed it (see the release startup section).
 - App and library resolution order: `.macos.*`, `.native.*`, then the plain
   file. No `.ios.*` fallback for app code or third-party packages: a Mac is
   not an iPhone, and silent iOS fallback is how UIKit-only JS sneaks in.
@@ -672,3 +673,49 @@ different per-window layouts before the repair and passed after each owner got
 an independent identifier. The public option is named `controlRole`, leaving
 React Native's existing accessibility `role` intact. Non-default native roles
 use AppKit's automatic style; the existing rounded default stays unchanged.
+
+## 2026-10-23: release startup
+
+Owner target (Contrast `specs/one-macos-native.md`, 2026-10-24 UTC): main
+content in about 250 ms. All numbers are Release `tests/macos-basic` on
+studio-64 (M5 Max), process start to the first Core Animation commit after
+the main mount, median of interleaved launches (TESTED).
+
+- Served plain JS 624 ms, minified 529, Hermes bytecode 230, minified
+  bytecode 205. Release now embeds minified bytecode and maps it in place:
+  185 ms median, 141 best, at load about 5. M6's "Hermes for macOS" bundle
+  step is this.
+- Where the 185 ms goes: about 88 ms before the root view exists (the
+  NSApplication floor is about 40 ms; SwiftUI's `App` lifecycle adds about 25
+  and `WindowGroup` about 20, measured in bare shells), about 35 ms of JS
+  eval and first render overlapping the empty window's first commit, about
+  16 ms to mount 290 views, then about 40 ms of AppKit layout and display.
+  Drawing is about 1 ms.
+- An AppKit delegate shell with the root as the window's content view: 172
+  ms median, 118 best. It saves about 13 ms but would give up the SwiftUI
+  scene API from decision 1, so the shell stays SwiftUI.
+- Creating the root view in the app's `init`, so JS runs while the shell
+  launches: 195 ms on studio-64, better on a loaded M5 Pro. Main thread setup
+  only moves earlier, so it is not taken.
+- The post-mount pass (TESTED, time profile attached during a startup
+  pause): about 40 ms in AppKit's display cycle with no single owner: SwiftUI
+  layout and text resolution inside the control hosting views, SF Symbol
+  rasterization, TextKit 1 layout at draw time, and the Core Animation
+  commit. The fixture is control heavy, so a plainer screen pays less.
+- Remaining structural options, none taken yet: the AppKit shell above, and
+  mounting before the window's first commit so the empty window is never
+  drawn.
+- The bundle's own evaluation was 27 ms, and 17 ms of it was one call:
+  `color-scheme` reads `Appearance.getColorScheme()` at module load, and the
+  host answered it with a synchronous hop to the main thread, which was busy
+  creating the window (TESTED, per-module init timing of the release bundle).
+  The host now keeps the scheme in an atomic written on the main thread at
+  start and on appearance changes. Evaluation dropped to 10 ms and main content
+  to 139 ms median from 195 (12 interleaved rounds each way, two runs, load
+  about 6). The rest of evaluation is spread across 1047 module inits, the
+  largest under 2 ms (worklets setup and the React scheduler).
+- Debug builds request `&bytecode=hermes` from the dev server too. Mac apps
+  have no `hermes-engine` pod, so the dev server compiles with the npm
+  `hermes-compiler` React Native resolves; the first compile of the fixture
+  takes 0.7 s and cached requests 3 ms. Fast Refresh still applies edits
+  (TESTED, Debug `tests/macos-basic`).

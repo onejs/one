@@ -94,7 +94,7 @@ describe('calendar ios production import closure', () => {
         'ios',
         join(here, 'backend.ios.ts')
       )
-      expect(file).toBe(join(packageRoot, 'ios-bindings', `${framework}.ts`))
+      expect(file).toBe(join(packageRoot, 'dist/esm/ios', `${framework}.native.js`))
       expect(existsSync(file!)).toBe(true)
     }
     expect(() =>

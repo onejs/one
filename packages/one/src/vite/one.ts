@@ -31,11 +31,13 @@ import { createDevtoolsPlugin } from './plugins/devtoolsPlugin'
 import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
+import { loaderSearchSchemasPlugin } from './plugins/loaderSearchSchemasPlugin'
 import { criticalCSSPlugin } from './plugins/criticalCSSPlugin'
 import { imageDataPlugin } from './plugins/imageDataPlugin'
 import { createRouteModuleHmrPlugin } from './plugins/routeModuleHmrPlugin'
 import { sourceInspectorPlugin } from './plugins/sourceInspectorPlugin'
 import { swiftPackagePlugin } from './plugins/swiftPackagePlugin'
+import { iosLinkSetPlugin } from './plugins/iosLinkSetPlugin'
 import { iosSdkPlugin } from './plugins/iosSdkPlugin'
 import { kotlinSourcePlugin } from './plugins/kotlinSourcePlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
@@ -990,6 +992,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         swiftPackagePlugin(platform, root),
         kotlinSourcePlugin(platform, root),
         iosSdkPlugin(platform, root),
+        iosLinkSetPlugin(),
       ]
     }
     ;(globalThis as any).__vxrnNativeUserDefine = {
@@ -1063,6 +1066,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     createFileSystemRouterPlugin(options, routeIndex),
 
     generateFileSystemRouteTypesPlugin(options, routeIndex),
+
+    loaderSearchSchemasPlugin(options, routeIndex),
 
     fixDependenciesPlugin(options.patches),
 

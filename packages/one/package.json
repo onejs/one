@@ -169,6 +169,7 @@
     },
     "./devtools/*": "./devtools/*",
     "./schema.json": "./schema.json",
+    "./ios-link-set.json": "./ios-link-set.json",
     "./tamagui": {
       "react-native": {
         "types": "./types/tamagui.native.d.ts",
@@ -224,7 +225,8 @@
     "nitrogen",
     "One.podspec",
     "react-native.config.cjs",
-    "schema.json"
+    "schema.json",
+    "ios-link-set.json"
   ],
   "scripts": {
     "build": "tamagui-build && bun codegen/staticSpecs.ts && bun codegen/sdk/build.ts",
@@ -239,7 +241,7 @@
     "generate": "bun codegen/generate.ts",
     "generate:ios-types": "bun codegen/sdk/declarations.ts",
     "generate:check": "bun codegen/generate.ts --check",
-    "nitrogen": "nitrogen",
+    "nitrogen": "nitrogen && bun codegen/gateNitro.ts",
     "coverage": "bun codegen/coverage.ts",
     "measure": "bun codegen/measure.ts"
   },

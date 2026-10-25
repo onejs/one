@@ -4,13 +4,21 @@ export type PickPartial<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
 export type GlobbedRouteImports = Record<string, () => Promise<unknown>>;
 export type Endpoint = (req: Request) => Response | string | object | null;
 export type RenderApp = (props: RenderAppProps) => Promise<string>;
-export type LoaderProps<Params extends object = Record<string, string | string[]>> = {
+export type LoaderProps<Params extends object = Record<string, string | string[]>, SearchParams extends object | undefined = undefined> = {
     path: string;
     search?: string;
     subdomain?: string;
     params: Params;
     request?: Request;
-};
+} & ([SearchParams] extends [object] ? {
+    /**
+     * the query, validated by the schemas components under this route pass to
+     * `useSearchParams(schema)`. Present on ssr document and query-aware client
+     * loader requests, absent for build-time ssg and spa loaders. Native production
+     * initial loads use static data; refetch requests carry the query.
+     */
+    searchParams?: SearchParams;
+} : {});
 export type RenderAppProps = {
     mode: One.RouteRenderMode | 'spa-shell';
     path: string;

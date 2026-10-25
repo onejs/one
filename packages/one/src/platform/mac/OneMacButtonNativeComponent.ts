@@ -7,6 +7,7 @@ interface NativeProps extends ViewProps {
   systemImage?: string
   disabled?: boolean
   bordered?: WithDefault<boolean, true>
+  prominent?: boolean
   onButtonPress?: DirectEventHandler<Readonly<{}>>
 }
 

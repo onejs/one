@@ -85,7 +85,8 @@
     "@xmldom/xmldom": "0.9.12",
     "fast-xml-parser": "5.9.0",
     "tar": "7.5.11",
-    "undici": "7.29.1",
+    "undici": "7.30.1",
+    "@expo/cli/zod": "4.6.6",
     "esbuild": "0.28.1",
     "vite": "8.3.4",
     "rolldown": "1.2.13",
@@ -184,7 +185,7 @@
     "ultra-runner": "^3.10.5",
     "update-ts-references": "^3.4.0",
     "vxrn": "workspace:*",
-    "zod": "3.25.67",
+    "zod": "4.6.6",
     "@tamagui/cli": "3.1.3"
   },
   "upgradeSets": {

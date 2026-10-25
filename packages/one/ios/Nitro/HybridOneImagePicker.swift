@@ -1,3 +1,4 @@
+#if ONE_GROUP_PHOTOS
 import AVFoundation
 import ImageIO
 import NitroModules
@@ -646,3 +647,4 @@ final class HybridOneImagePickerDelegate: NSObject, PHPickerViewControllerDelega
     owner?.presentationDidDismiss()
   }
 }
+#endif

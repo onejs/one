@@ -101,6 +101,8 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 
   CGSize _size;
   CGFloat _scale;
+  // written on the main thread, read by the appearance module on the js thread
+  std::atomic<bool> _darkAppearance;
   NSInteger _generation;
   // what the current runtime configured, reset with it
   OneMacosAppCommandConfig *_appCommandConfig;
@@ -233,6 +235,18 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 {
   std::weak_ptr<OneHostRuntime> weakRuntime = _runtime;
   NSURL *url = _bundleURL;
+  if (url.isFileURL) {
+    // the embedded bundle is mapped in place; loadScript only queues the eval on the js thread
+    std::unique_ptr<const JSBigString> script;
+    try {
+      script = JSBigFileString::fromPath(url.path.UTF8String);
+    } catch (const std::exception &error) {
+      NSLog(@"[one-macos] bundle load failed: %s", error.what());
+      return;
+    }
+    _runtime->instance().loadScript(std::move(script), url.absoluteString.UTF8String);
+    return;
+  }
   __weak OneMacosHost *weakSelf = self;
   NSURLSessionDataTask *task = [NSURLSession.sharedSession
       dataTaskWithURL:url
@@ -360,8 +374,13 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   if (override.length > 0) {
     return [NSURL URLWithString:override];
   }
+#if DEBUG
   NSString *server = [NSBundle.mainBundle objectForInfoDictionaryKey:@"OneDevServerURL"] ?: @"http://localhost:8081";
-  return [NSURL URLWithString:[server stringByAppendingString:@"/index.bundle?platform=macos&dev=true"]];
+  // precompiled dev bytes: hermes skips parsing the whole bundle on its js thread
+  return [NSURL URLWithString:[server stringByAppendingString:@"/index.bundle?platform=macos&dev=true&bytecode=hermes"]];
+#else
+  return [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"main.jsbundle"];
+#endif
 }
 
 - (instancetype)initWithBundleURL:(NSURL *)bundleURL moduleName:(NSString *)moduleName

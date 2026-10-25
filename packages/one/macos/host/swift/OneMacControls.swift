@@ -13,6 +13,9 @@ final class OneMacButtonHostView: NSView, OneMacosButtonHosting {
   }
   @objc var disabled = false { didSet { button.isEnabled = !disabled } }
   @objc var bordered = true { didSet { button.isBordered = bordered } }
+  // the accent bezel of a dialog's confirming button. it takes no return key
+  // equivalent, so a caller that already handles return does not confirm twice.
+  @objc var prominent = false { didSet { button.bezelColor = prominent ? .controlAccentColor : nil } }
 
   override init(frame: NSRect) {
     super.init(frame: frame)
@@ -96,6 +99,57 @@ final class OneMacSegmentedControlHostView: NSView, OneMacosSegmentedControlHost
   @objc private func selectSegment() {
     guard !disabled, labels.indices.contains(control.selectedSegment) else { return }
     guard controlled.change(control.selectedSegment) else { return }
+    onChange?(controlled.value, controlled.eventCount, controlled.revision)
+  }
+}
+
+@objc(OneMacPopUpButtonHostView)
+final class OneMacPopUpButtonHostView: NSView, OneMacosPopUpButtonHosting {
+  private let control = NSPopUpButton(frame: .zero, pullsDown: false)
+  private var controlled = OneNativeControlled(-1)
+  @objc var onChange: ((Int, Int, Int) -> Void)?
+  @objc var disabled = false { didSet { control.isEnabled = !disabled } }
+  @objc var labels: [String] = [] {
+    didSet {
+      control.removeAllItems()
+      // addItems(withTitles:) drops duplicate titles, so each item is added on its own
+      for label in labels {
+        control.addItem(withTitle: "")
+        control.lastItem?.title = label
+      }
+      displayValue()
+    }
+  }
+
+  override init(frame: NSRect) {
+    super.init(frame: frame)
+    control.target = self
+    control.action = #selector(selectItem)
+    control.autoresizingMask = [.width, .height]
+    control.frame = bounds
+    addSubview(control)
+    setAccessibilityElement(false)
+  }
+
+  required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+  private func displayValue() {
+    control.selectItem(at: labels.indices.contains(controlled.value) ? controlled.value : -1)
+  }
+
+  @objc func applyValue(_ value: Int, acknowledged: Int, revision: Int) {
+    if let next = controlled.applying(value, acknowledged: acknowledged, revision: revision) {
+      controlled = next
+    }
+    displayValue()
+  }
+
+  @objc private func selectItem() {
+    guard !disabled, labels.indices.contains(control.indexOfSelectedItem) else { return }
+    guard controlled.change(control.indexOfSelectedItem) else {
+      displayValue()
+      return
+    }
     onChange?(controlled.value, controlled.eventCount, controlled.revision)
   }
 }

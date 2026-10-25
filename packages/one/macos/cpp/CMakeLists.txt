@@ -38,6 +38,8 @@ file(GLOB ONE_SOURCES CONFIGURE_DEPENDS
   ${ONE_CPP}/OneMacButton/*.mm
   ${ONE_CPP}/OneMacSegmentedControl/*.cpp
   ${ONE_CPP}/OneMacSegmentedControl/*.mm
+  ${ONE_CPP}/OneMacPopUpButton/*.cpp
+  ${ONE_CPP}/OneMacPopUpButton/*.mm
   ${ONE_CPP}/graphics/react/renderer/graphics/*.mm
   ${ONE_CPP}/textlayoutmanager/*.mm
   ${ONE_CPP}/textlayoutmanager/react/renderer/textlayoutmanager/*.mm

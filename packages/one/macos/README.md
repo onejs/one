@@ -85,6 +85,22 @@ Radial and repeating gradients, transition hints and pattern-color stops are
 unsupported. A layer with unsupported stops is left unpainted. Native fixture
 recipes are in `tests/macos-basic/probe/GRADIENTS.md` in the repository.
 
+## JavaScript bundle
+
+Debug builds load `/index.bundle?platform=macos&dev=true&bytecode=hermes`
+from the dev server named by `OneDevServerURL` in `Info.plist` (default
+`http://localhost:8081`). The dev server compiles that bundle to Hermes
+bytecode with the `hermes-compiler` package React Native depends on, or
+`HERMESC_PATH` when set, so Hermes skips parsing it at launch.
+Release builds run `template/macos/scripts/bundle-js.sh` after linking: it
+bundles the app with the React Native CLI, which needs a
+`react-native.config.cjs` that re-exports `one/react-native-config`, compiles
+the result with the app's own `hermesc -O`, and embeds it as `main.jsbundle`.
+The host maps that file in place, with no copy and no main thread hop.
+`ONE_MACOS_BUNDLE_URL` overrides either. A Release build of
+`tests/macos-basic` on an M5 Max shows its main content about 140 ms after
+process start, against 624 ms from served plain JS.
+
 ## Logs
 
 The host writes JS console output, errors and exceptions to the unified log

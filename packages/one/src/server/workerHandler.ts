@@ -21,6 +21,11 @@ import { isResponse } from '../utils/isResponse'
 import { resolveResponse } from '../vite/resolveResponse'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
+import {
+  getLoaderSearchSchemas,
+  withLoaderSearchParams,
+  type LoaderSearchSchemas,
+} from '../loaderSearchParams'
 import { getRouteExportsFromEntry } from './routeExportsFromEntry'
 import { setSSRLoaderData } from './ssrLoaderData'
 import { getFetchStaticHtml } from './staticHtmlFetcher'
@@ -93,6 +98,8 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
   const loaderCache = new Map<string, Function | null>()
   const moduleImportCache = new Map<string, any>()
   const loaderCacheFnMap = new Map<string, Function | null>()
+  // search schemas the build found for a route's loader, null when it has none
+  const loaderSearchSchemaMap = new Map<string, LoaderSearchSchemas | null>()
   const pendingLoaderResults = new Map<
     string,
     { promise: Promise<any>; expires: number }
@@ -192,6 +199,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
       }
 
       const loader = routeExported?.loader || null
+      loaderSearchSchemaMap.set(cacheKey, getLoaderSearchSchemas(routeExported))
       if (!disableModuleCache) {
         loaderCache.set(cacheKey, loader)
         loaderCacheFnMap.set(cacheKey, routeExported?.loaderCache ?? null)
@@ -204,12 +212,21 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
   async function importAndRunLoader(
     routeId: string,
     lazyKey: string | undefined,
-    loaderProps: any
+    requestLoaderProps: any,
+    // only document requests of ssr routes carry the query a loader can validate
+    withSearchParams = false
   ): Promise<{ loaderData: unknown; routeId: string; isEnoent?: boolean }> {
     if (!lazyKey) return { loaderData: undefined, routeId }
 
     // check loaderCache coalescing before resolving
     const cacheMapKey = lazyKey
+    // validate before any cached result is reused, a cold route is validated once loaded
+    let loaderProps = requestLoaderProps
+    const validateSearch = () => {
+      const schemas = withSearchParams && loaderSearchSchemaMap.get(cacheMapKey)
+      if (schemas) loaderProps = withLoaderSearchParams(schemas, requestLoaderProps)
+    }
+    validateSearch()
     const loaderCacheFn = loaderCacheFnMap.get(cacheMapKey)
     let coalFullKey: string | undefined
     let coalTtl = 0
@@ -234,6 +251,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
       const loader =
         loaderOrPromise instanceof Promise ? await loaderOrPromise : loaderOrPromise
       if (!loader) return { loaderData: undefined, routeId }
+      if (loaderProps === requestLoaderProps) validateSearch()
 
       if (coalFullKey) {
         const promise = loader(loaderProps)
@@ -299,6 +317,10 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
 
       if (!loader) return null
 
+      // a client navigation to an ssr route validates its query like the document request
+      const searchSchemas = route.type === 'ssr' && loaderSearchSchemaMap.get(routeFile)
+      if (searchSchemas) loaderProps = withLoaderSearchParams(searchSchemas, loaderProps)
+
       let json
       try {
         json = await loader(loaderProps)
@@ -348,7 +370,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
               })
             } else {
               layoutLoaderPromises.push(
-                importAndRunLoader(layout.contextKey, layout.contextKey, loaderProps)
+                importAndRunLoader(layout.contextKey, layout.contextKey, loaderProps, true)
               )
             }
           }
@@ -356,7 +378,8 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
           const pageLoaderPromise = importAndRunLoader(
             route.file,
             route.file,
-            loaderProps
+            loaderProps,
+            true
           )
 
           let layoutResults: Array<{
@@ -826,6 +849,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
     loaderCache.clear()
     moduleImportCache.clear()
     loaderCacheFnMap.clear()
+    loaderSearchSchemaMap.clear()
     pendingLoaderResults.clear()
     render = null
     renderStream = null
