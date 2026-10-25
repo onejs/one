@@ -288,6 +288,11 @@ bool OneLinuxPointerHandler::handle(GdkEvent *event)
       type != GDK_ENTER_NOTIFY && type != GDK_LEAVE_NOTIFY) {
     return false;
   }
+  GtkNative *native = gtk_widget_get_native(GTK_WIDGET(surface_));
+  // popovers have their own surface and their event positions are local to it.
+  if (!native || gdk_event_get_surface(event) != gtk_native_get_surface(native)) {
+    return false;
+  }
   if ((type == GDK_ENTER_NOTIFY || type == GDK_LEAVE_NOTIFY) && gdk_crossing_event_get_detail(event) == GDK_NOTIFY_INFERIOR) {
     return false;
   }
@@ -298,7 +303,6 @@ bool OneLinuxPointerHandler::handle(GdkEvent *event)
   // event positions are surface coordinates; the surface view sits at the window origin
   double x = 0, y = 0;
   gdk_event_get_position(event, &x, &y);
-  GtkNative *native = gtk_widget_get_native(GTK_WIDGET(surface_));
   double offsetX = 0, offsetY = 0;
   gtk_native_get_surface_transform(native, &offsetX, &offsetY);
   graphene_point_t in = GRAPHENE_POINT_INIT(static_cast<float>(x - offsetX), static_cast<float>(y - offsetY));

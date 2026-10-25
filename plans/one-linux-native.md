@@ -155,6 +155,15 @@ and actual controlled-value changes. With the repair, the entry still contains
 [pending edit](one-linux-native-stepper-pending-edit.webp). This covers finding
 5 together with measurement simplification S6, as assigned by the lead.
 
+TESTED review 2 popup surface boundary. The baseline named probe does not
+reproduce the proposed phantom press on GTK 4.14 under Wayland: selecting Beta
+in the real DropDown leaves the top-left RN target at zero presses, downs and
+ups. The host now explicitly ignores pointer events from other GdkSurfaces.
+Repeating the selection on the repaired release host still changes the GTK
+selection and leaves all RN counters at zero:
+[popup surface](one-linux-native-popup-surface.webp). RAN incremental release
+build and real uinput events with fatal GTK warnings enabled.
+
 **M3 continuation, 2026-10-25, worker s79514 for s72425.** TESTED all ten
 controls in the studio-64 Ubuntu arm64 VM, GTK 4 release host and embedded
 Linux Hermes bytecode, with `G_DEBUG=fatal-criticals`. The four additions are
