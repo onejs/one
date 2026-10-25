@@ -83,12 +83,7 @@ CONTROL
     stage="$work/flatpak"
     mkdir -p "$stage/lib/$id" "$stage/bin" "$stage/share/applications"
     cp -R "$payload/." "$stage/lib/$id/"
-    # hermes links the build host's icu, which the gnome runtime does not carry
-    # at that soname, so it ships beside hermes. the loader reads hermes's own
-    # dependencies from the library path, not from the host's runpath.
-    ldd "$payload/libhermesvm.so" | awk '/libicu/ { print $3 }' | xargs cp -t "$stage/lib/$id/"
-    launcher "/app/lib/$id" "
-export LD_LIBRARY_PATH=/app/lib/$id" > "$stage/bin/$pkg"
+    launcher "/app/lib/$id" > "$stage/bin/$pkg"
     chmod 755 "$stage/bin/$pkg"
     desktop "$pkg" > "$stage/share/applications/$id.desktop"
 

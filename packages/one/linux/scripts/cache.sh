@@ -18,5 +18,5 @@ one_version() {
 # the identity of a prebuilt core: it holds One's host code, so it is keyed by
 # the One version as well as the react-native version it was built against
 core_key() {
-  echo "$(one_version)-rn$(rn_version)-$1-$arch"
+  echo "$(one_version)-rn$(rn_version)-$1-static-icu-$arch"
 }

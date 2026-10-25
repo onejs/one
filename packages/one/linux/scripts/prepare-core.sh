@@ -47,7 +47,7 @@ mkdir -p "$out"
 if [ "${ONE_LINUX_CORE_FROM_SOURCE:-}" != 1 ] && [ -f "$tarball" ]; then
   tar -xzf "$tarball" -C "$out"
 else
-  core="$("$here/build-core.sh" "$config" | tail -n 1)"
+  core="$("$here/build-core.sh" "$config" | tee /dev/stderr | tail -n 1)"
   cmake --install "$core" --prefix "$out" >/dev/null
   strip --strip-unneeded "$out/one-linux" "$out/libhermesvm.so" "$out/hermesc"
 fi

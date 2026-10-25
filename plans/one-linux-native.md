@@ -117,6 +117,33 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+**Linux CI and ICU portability, 2026-10-25, one-linux-ci for s72425.**
+The independent `Linux Native Build` workflow follows the Android native
+workflow's checkout, shared install action with `workspace-focus: one`, path
+filters, push/PR/manual triggers and concurrency policy. Its two matrix entries
+build the source core and GTK host on `ubuntu-24.04` (x86_64) and
+`ubuntu-24.04-arm` (aarch64). They bundle `tests/linux-basic`, compile embedded
+Hermes bytecode, launch under headless Sway and require the opt-in
+`first frame with RN text painted` milestone before taking a screenshot.
+The jobs share no dependency or concurrency group with another platform.
+Launch logs and the screenshot are uploaded even when launch fails.
+
+INFERRED from the pinned Hermes `hermes-v260318099.0.4` source: its
+[Linux compiler workflow](https://github.com/facebook/hermes/blob/hermes-v260318099.0.4/.github/workflows/build-hermesc-linux.yml)
+builds React Native's prebuilt Linux `hermesc` with `HERMES_STATIC_LINK=ON`.
+That option also enables `HERMES_USE_STATIC_ICU` in
+[Hermes CMake](https://github.com/facebook/hermes/blob/hermes-v260318099.0.4/CMakeLists.txt).
+One uses `HERMES_USE_STATIC_ICU=ON` directly, preserving the shared
+`libhermesvm.so` ABI and Unicode behavior while embedding ICU instead of
+requiring the build machine's ICU soname. `HERMES_UNICODE_LITE` would remove
+Unicode functionality, so it is unsuitable for the app runtime. Hermes and
+packaged-core cache identities now distinguish static ICU builds. Flatpak
+packaging no longer copies system ICU libraries or sets a library path for them.
+Both CI architectures inspect the ELF dependencies of the VM and compiler and
+fail if either imports `libicu*.so`. This removes the ICU version requirement;
+GTK, libc and the other system library requirements still follow the build host.
+Runtime and linkage validation are pending the first CI run.
+
 **Review 3 fixes, 2026-10-24, one-linux-m5.** RAN a release host build and
 `tests/linux-basic` bundle with a temporary probe page in the arm64 VM under
 headless sway and a uinput pointer and keyboard, with fatal GTK criticals
