@@ -12,6 +12,7 @@ import {
   type SearchSchemaScan,
 } from './searchParamSchemas'
 import { type InjectMode, injectRouteHelpers } from './injectRouteHelpers'
+import { getSearchSchemaEntries } from './searchSchemaEntries'
 
 const warnedUnassociated = new Set<string>()
 
@@ -24,7 +25,7 @@ function toSearchSchemaType(outDir: string, ref: SearchSchemaRef) {
     if (!specifier.startsWith('.')) specifier = `./${specifier}`
   }
   const quote = (text: string) => `'${text.replace(/[\\']/g, '\\$&')}'`
-  return `OneRouter.SearchParamsOf<typeof import(${quote(specifier)})[${quote(ref.name)}]>`
+  return `typeof import(${quote(specifier)})[${quote(ref.name)}]`
 }
 
 /**
@@ -49,12 +50,14 @@ export async function generateRouteTypes(
   }, {})
   const context = globbedRoutesToRouteContext(routes, routerRoot)
   const outDir = dirname(outFile)
-  const scanSearchSchemas = createSearchSchemaScanner(process.cwd())
+  const { scan: scanSearchSchemas } = createSearchSchemaScanner(process.cwd())
   const scannedFiles = new Set<string>()
   const declarations = getTypedRoutesDeclarationFile(context, {
-    getSearchParamTypes(contextKeys) {
+    getSearchParamTypes(contextKey) {
       const scan: SearchSchemaScan = scanSearchSchemas(
-        contextKeys.map((key) => join(process.cwd(), routerRoot, key))
+        getSearchSchemaEntries(routePaths, contextKey).map((key) =>
+          join(process.cwd(), routerRoot, key)
+        )
       )
       for (const file of scan.files) scannedFiles.add(file)
       for (const { file, line } of scan.unassociated) {

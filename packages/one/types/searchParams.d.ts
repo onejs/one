@@ -42,6 +42,7 @@ export type UseSearchParamsSchemaResult<Schema extends StandardSchemaV1> = reado
 export declare function toSearchRecord(params: Record<string, unknown>, href: string): SearchRecord;
 export declare function searchRecordKey(record: SearchRecord): string;
 export declare function parseSearchRecord<Schema extends StandardSchemaV1>(schema: Schema, record: SearchRecord): StandardSchemaV1.InferOutput<Schema>;
+export declare function describeIssues(issues: readonly StandardSchemaV1.Issue[]): string;
 /**
  * Applies an update onto the current record. Keys the update does not name keep
  * their value and position, a named key with no value is removed.

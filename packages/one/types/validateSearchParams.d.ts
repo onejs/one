@@ -48,6 +48,11 @@ export declare class SearchValidationError extends Error {
     constructor(message: string, issues?: unknown[]);
 }
 /**
+ * Sets an own property, even for a key like `__proto__` that plain assignment would
+ * turn into a prototype change. Query keys come from the URL, so any name can appear.
+ */
+export declare function setOwn(record: object, key: string, value: unknown): void;
+/**
  * Parse search params from URL search string
  */
 export declare function parseSearchString(search: string): Record<string, string | string[]>;
@@ -59,10 +64,10 @@ export declare function parseSearchString(search: string): Record<string, string
  * @returns The validated and transformed search params
  * @throws SearchValidationError if validation fails
  */
-export declare function validateSearch<T extends SearchValidator>(validator: T, input: Record<string, unknown>): InferSearchOutput<T>;
+export declare function validateSearchParams<T extends SearchValidator>(validator: T, input: Record<string, unknown>): InferSearchOutput<T>;
 /**
  * Create a search param validator from a Zod schema.
- * This adapter wraps Zod schemas for use with One's validateSearch.
+ * This adapter wraps Zod schemas for use with One's validateSearchParams.
  *
  * @example
  * ```ts
@@ -74,7 +79,7 @@ export declare function validateSearch<T extends SearchValidator>(validator: T, 
  *   filter: z.string().optional(),
  * })
  *
- * export const validateSearch = zodSearchValidator(searchSchema)
+ * const search = validateSearchParams(zodSearchValidator(searchSchema), input)
  * ```
  */
 export declare function zodSearchValidator<T extends ZodLikeSchema>(schema: T): T;
@@ -93,4 +98,4 @@ export declare function zodSearchValidator<T extends ZodLikeSchema>(schema: T): 
  * ```
  */
 export declare function withFallback<T>(schema: ZodLikeSchema<T>, fallbackValue: T): ZodLikeSchema<T>;
-//# sourceMappingURL=validateSearch.d.ts.map
+//# sourceMappingURL=validateSearchParams.d.ts.map

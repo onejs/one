@@ -12,7 +12,13 @@ import { dirname, join, resolve } from 'node:path'
 import { parseSync } from 'oxc-parser'
 
 /** `module` is an absolute file, or a package specifier TypeScript resolves itself. */
-export type SearchSchemaRef = { module: string; isFile: boolean; name: string }
+export type SearchSchemaRef = {
+  module: string
+  isFile: boolean
+  name: string
+  /** the binding to read when the schema is defined in the scanned file itself */
+  local?: string
+}
 
 type SearchSchemaUse =
   | { kind: 'local'; name: string; line: number }
@@ -25,6 +31,7 @@ type ModuleInfo = {
   uses: SearchSchemaUse[]
   /** local names that are exported, with the exported name */
   exportedLocals: Map<string, string>
+  exportsLoader: boolean
 }
 
 export type SearchSchemaScan = {
@@ -66,7 +73,12 @@ function readModule(file: string): ModuleInfo | undefined {
 }
 
 function analyzeModule(file: string, code: string): ModuleInfo {
-  const info: ModuleInfo = { imports: [], uses: [], exportedLocals: new Map() }
+  const info: ModuleInfo = {
+    imports: [],
+    uses: [],
+    exportedLocals: new Map(),
+    exportsLoader: false,
+  }
   // a module that cannot call the hook has nothing to find, only imports to follow
   const result = parseSync(file, code)
   if (result.errors.length) return info
@@ -114,8 +126,11 @@ function analyzeModule(file: string, code: string): ModuleInfo {
         if (node.source) info.imports.push(node.source.value)
         for (const spec of node.specifiers) {
           if (!node.source) info.exportedLocals.set(spec.local.name, spec.exported.name)
+          if (spec.exported.name === 'loader') info.exportsLoader = true
         }
+        if (node.declaration?.id?.name === 'loader') info.exportsLoader = true
         for (const declarator of node.declaration?.declarations ?? []) {
+          if (declarator.id.name === 'loader') info.exportsLoader = true
           if (declarator.id.type === 'Identifier') {
             info.exportedLocals.set(declarator.id.name, declarator.id.name)
             topLevelNames.add(declarator.id.name)
@@ -292,7 +307,9 @@ export function createSearchSchemaScanner(root: string) {
     return infos.get(file)
   }
 
-  return function scan(entries: string[]): SearchSchemaScan {
+  const exportsLoader = (file: string) => getModule(file)?.exportsLoader ?? false
+
+  function scan(entries: string[]): SearchSchemaScan {
     const files = new Set<string>()
     const schemas = new Map<string, SearchSchemaRef>()
     const unassociated: SearchSchemaScan['unassociated'] = []
@@ -315,7 +332,13 @@ export function createSearchSchemaScanner(root: string) {
           unassociated.push({ file, line: use.line })
         } else if (use.kind === 'local') {
           const name = info.exportedLocals.get(use.name)
-          if (name) schemas.set(`${file}\0${name}`, { module: file, isFile: true, name })
+          if (name)
+            schemas.set(`${file}\0${name}`, {
+              module: file,
+              isFile: true,
+              name,
+              local: use.name,
+            })
           else unassociated.push({ file, line: use.line })
         } else {
           const target = resolveSpecifier(use.source, file)
@@ -349,4 +372,6 @@ export function createSearchSchemaScanner(root: string) {
     )
     return { schemas: sorted, files, unassociated }
   }
+
+  return { scan, exportsLoader }
 }

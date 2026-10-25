@@ -269,7 +269,7 @@ export {
   type ValidationResult,
 } from './validateParams'
 // search param schema
-export { SearchValidationError } from './validateSearch'
+export { SearchValidationError } from './validateSearchParams'
 export type {
   SearchParamsOptions,
   SearchParamsUpdate,

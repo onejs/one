@@ -7,7 +7,7 @@
  */
 
 import { isStandardSchema, validateStandardSchemaSync } from './standardSchema'
-import type { StandardSchema, ZodLikeSchema, SearchValidatorFn } from './validateSearch'
+import type { StandardSchema, ZodLikeSchema, SearchValidatorFn } from './validateSearchParams'
 
 /**
  * All supported validator types for route params

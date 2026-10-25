@@ -11,6 +11,8 @@ export type SearchSchemaRef = {
     module: string;
     isFile: boolean;
     name: string;
+    /** the binding to read when the schema is defined in the scanned file itself */
+    local?: string;
 };
 export type SearchSchemaScan = {
     schemas: SearchSchemaRef[];
@@ -25,5 +27,8 @@ export type SearchSchemaScan = {
  * Scans a set of entry files (a route and its layouts) and everything they import
  * through relative or tsconfig-path specifiers. Packages are not followed.
  */
-export declare function createSearchSchemaScanner(root: string): (entries: string[]) => SearchSchemaScan;
+export declare function createSearchSchemaScanner(root: string): {
+    scan: (entries: string[]) => SearchSchemaScan;
+    exportsLoader: (file: string) => boolean;
+};
 //# sourceMappingURL=searchParamSchemas.d.ts.map

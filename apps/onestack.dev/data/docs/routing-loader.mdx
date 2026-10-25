@@ -193,6 +193,10 @@ export async function loader({ path }) {
 
 Only for [`ssr` type routes](/docs/render-modes#ssr). This will pass the same [Web standard Request object](https://developer.mozilla.org/en-US/docs/Web/API/Request) as API routes.
 
+### searchParams
+
+Only for [`ssr` type routes](/docs/render-modes#ssr). When components under the route pass a schema to [`useSearchParams(schema)`](/docs/hooks-useSearchParams#validated-search-params-in-loaders), the server validates the query before the loader runs and passes the result as `searchParams`. An invalid query answers `400` and the loader does not run. The value is not available when the loader is requested by client navigation.
+
 ## Accepted Return Types
 
 Most JavaScript values, including primitives and objects, will be converted to JSON.

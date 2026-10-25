@@ -100,6 +100,19 @@ function isValidatorFn(value: unknown): value is SearchValidatorFn<unknown, unkn
 }
 
 /**
+ * Sets an own property, even for a key like `__proto__` that plain assignment would
+ * turn into a prototype change. Query keys come from the URL, so any name can appear.
+ */
+export function setOwn(record: object, key: string, value: unknown) {
+  Object.defineProperty(record, key, {
+    value,
+    writable: true,
+    enumerable: true,
+    configurable: true,
+  })
+}
+
+/**
  * Parse search params from URL search string
  */
 export function parseSearchString(search: string): Record<string, string | string[]> {
@@ -107,13 +120,13 @@ export function parseSearchString(search: string): Record<string, string | strin
   const searchParams = new URLSearchParams(search)
 
   searchParams.forEach((value, key) => {
-    const existing = params[key]
+    const existing = Object.hasOwn(params, key) ? params[key] : undefined
     if (existing === undefined) {
-      params[key] = value
+      setOwn(params, key, value)
     } else if (Array.isArray(existing)) {
       existing.push(value)
     } else {
-      params[key] = [existing, value]
+      setOwn(params, key, [existing, value])
     }
   })
 
@@ -128,7 +141,7 @@ export function parseSearchString(search: string): Record<string, string | strin
  * @returns The validated and transformed search params
  * @throws SearchValidationError if validation fails
  */
-export function validateSearch<T extends SearchValidator>(
+export function validateSearchParams<T extends SearchValidator>(
   validator: T,
   input: Record<string, unknown>
 ): InferSearchOutput<T> {
@@ -167,12 +180,12 @@ export function validateSearch<T extends SearchValidator>(
     }
   }
 
-  throw new Error('Invalid validator provided to validateSearch')
+  throw new Error('Invalid validator provided to validateSearchParams')
 }
 
 /**
  * Create a search param validator from a Zod schema.
- * This adapter wraps Zod schemas for use with One's validateSearch.
+ * This adapter wraps Zod schemas for use with One's validateSearchParams.
  *
  * @example
  * ```ts
@@ -184,7 +197,7 @@ export function validateSearch<T extends SearchValidator>(
  *   filter: z.string().optional(),
  * })
  *
- * export const validateSearch = zodSearchValidator(searchSchema)
+ * const search = validateSearchParams(zodSearchValidator(searchSchema), input)
  * ```
  */
 export function zodSearchValidator<T extends ZodLikeSchema>(schema: T): T {

@@ -29,7 +29,7 @@ export declare namespace OneRouter {
      */
     export type RouteType<Path extends string> = Path extends keyof __routes['RouteTypes'] ? __routes['RouteTypes'][Path] : {
         Params: InputRouteParams<Path>;
-        LoaderProps: import('../types').LoaderProps<InputRouteParams<Path>>;
+        LoaderProps: import('../types').LoaderProps<InputRouteParams<Path>, LoaderSearchParams<Path>>;
     };
     type StaticRoutes = __routes extends {
         StaticRoutes: string;
@@ -45,8 +45,13 @@ export declare namespace OneRouter {
      * route types, which refer to each component schema with `typeof import(...)`.
      */
     export type SearchParamsOf<Schema> = Schema extends StandardSchemaV1 ? SearchParamsUpdate<Schema> : {};
+    /** What the schemas produce, the type of `searchParams` in a loader. */
+    export type SearchOutputOf<Schema> = Schema extends StandardSchemaV1 ? StandardSchemaV1.InferOutput<Schema> : {};
     type SearchParamTypes = __routes extends {
         SearchParamTypes: infer Types;
+    } ? Types : {};
+    type SearchParamOutputs = __routes extends {
+        SearchParamOutputs: infer Types;
     } ? Types : {};
     type PathnameOfHref<Path> = Path extends `${infer Before}#${string}` ? PathnameOfHref<Before> : Path extends `${infer Before}?${string}` ? Before : Path;
     /** Search params that any route accepts, used where the route is not typed. */
@@ -56,6 +61,11 @@ export declare namespace OneRouter {
      * components found under that route, or any simple values when none were found.
      */
     export type LinkSearchParams<Path> = PathnameOfHref<Path> extends keyof SearchParamTypes ? SearchParamTypes[PathnameOfHref<Path>] : UntypedSearchParams;
+    /**
+     * The validated search params a loader for this route receives, or `undefined` when
+     * no component under it passes a schema to `useSearchParams`.
+     */
+    export type LoaderSearchParams<Path> = PathnameOfHref<Path> extends keyof SearchParamOutputs ? SearchParamOutputs[PathnameOfHref<Path>] extends object ? SearchParamOutputs[PathnameOfHref<Path>] : undefined : undefined;
     export type NavigationRef = NavigationContainerRefWithCurrent<ParamListBase>;
     export type RelativePathString = `./${string}` | `../${string}` | '..';
     export type AbsoluteRoute = DynamicRouteTemplate | StaticRoutes;

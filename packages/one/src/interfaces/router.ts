@@ -35,7 +35,10 @@ export namespace OneRouter {
     ? __routes['RouteTypes'][Path]
     : {
         Params: InputRouteParams<Path>
-        LoaderProps: import('../types').LoaderProps<InputRouteParams<Path>>
+        LoaderProps: import('../types').LoaderProps<
+          InputRouteParams<Path>,
+          LoaderSearchParams<Path>
+        >
       }
 
   type StaticRoutes = __routes extends { StaticRoutes: string }
@@ -65,7 +68,13 @@ export namespace OneRouter {
     ? SearchParamsUpdate<Schema>
     : {}
 
+  /** What the schemas produce, the type of `searchParams` in a loader. */
+  export type SearchOutputOf<Schema> = Schema extends StandardSchemaV1
+    ? StandardSchemaV1.InferOutput<Schema>
+    : {}
+
   type SearchParamTypes = __routes extends { SearchParamTypes: infer Types } ? Types : {}
+  type SearchParamOutputs = __routes extends { SearchParamOutputs: infer Types } ? Types : {}
 
   type PathnameOfHref<Path> = Path extends `${infer Before}#${string}`
     ? PathnameOfHref<Before>
@@ -84,6 +93,17 @@ export namespace OneRouter {
     PathnameOfHref<Path> extends keyof SearchParamTypes
       ? SearchParamTypes[PathnameOfHref<Path>]
       : UntypedSearchParams
+
+  /**
+   * The validated search params a loader for this route receives, or `undefined` when
+   * no component under it passes a schema to `useSearchParams`.
+   */
+  export type LoaderSearchParams<Path> =
+    PathnameOfHref<Path> extends keyof SearchParamOutputs
+      ? SearchParamOutputs[PathnameOfHref<Path>] extends object
+        ? SearchParamOutputs[PathnameOfHref<Path>]
+        : undefined
+      : undefined
 
   export type NavigationRef = NavigationContainerRefWithCurrent<ParamListBase>
 

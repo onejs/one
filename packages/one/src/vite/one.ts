@@ -31,6 +31,7 @@ import { createDevtoolsPlugin } from './plugins/devtoolsPlugin'
 import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
+import { loaderSearchSchemasPlugin } from './plugins/loaderSearchSchemasPlugin'
 import { criticalCSSPlugin } from './plugins/criticalCSSPlugin'
 import { imageDataPlugin } from './plugins/imageDataPlugin'
 import { createRouteModuleHmrPlugin } from './plugins/routeModuleHmrPlugin'
@@ -1046,6 +1047,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     createFileSystemRouterPlugin(options, routeIndex),
 
     generateFileSystemRouteTypesPlugin(options, routeIndex),
+
+    loaderSearchSchemasPlugin(options, routeIndex),
 
     fixDependenciesPlugin(options.patches),
 
