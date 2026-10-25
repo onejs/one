@@ -131,12 +131,13 @@ export declare function nativeAnimatedGuardPlugin(): Plugin;
  * methods RN calls on it.
  */
 export declare function hmrClientNoopPlugin(): Plugin;
+export type NativeCompilerTrace = (id: string) => ((stage: string, status: 'start' | 'end' | 'error') => void) | undefined;
 /**
  * pipe files through @vxrn/compiler's babel transforms.
  * handles reanimated worklet compilation, async generator downleveling,
  * react compiler, and react-refresh (dev only).
  */
-export declare function vxrnCompilerPlugin(platform: string, dev: boolean, projectRoot?: string, sourceMaps?: boolean): Plugin;
+export declare function vxrnCompilerPlugin(platform: string, dev: boolean, projectRoot?: string, sourceMaps?: boolean, trace?: NativeCompilerTrace): Plugin;
 type NativeAssetData = {
     __packager_asset: true;
     name: string;
