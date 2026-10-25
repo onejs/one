@@ -334,6 +334,29 @@ bool OneLinuxControl::update(std::shared_ptr<const OneLinuxControlProps> next, E
     });
     return measure;
   }
+  if (handle_ == OneLinuxProgressBarShadowNode::Handle()) {
+    if (props.indeterminate) {
+      if (!progressTick_) {
+        lastPulse_ = 0;
+        progressTick_ = gtk_widget_add_tick_callback(widget_, [](GtkWidget *widget, GdkFrameClock *clock, gpointer data) -> gboolean {
+          auto &self = *static_cast<OneLinuxControl *>(data);
+          gint64 now = gdk_frame_clock_get_frame_time(clock);
+          if (now - self.lastPulse_ >= 80000) {
+            gtk_progress_bar_pulse(GTK_PROGRESS_BAR(widget));
+            self.lastPulse_ = now;
+          }
+          return G_SOURCE_CONTINUE;
+        }, this, nullptr);
+      }
+    } else {
+      if (progressTick_) {
+        gtk_widget_remove_tick_callback(widget_, progressTick_);
+        progressTick_ = 0;
+      }
+      gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(widget_), std::clamp(props.value, 0.0, 1.0));
+    }
+    return measure;
+  }
   value_.update(props.value, props.revision, props.acknowledgedEvent);
   value_.apply([&](double value) {
     if (handle_ == OneLinuxSwitchShadowNode::Handle()) {
@@ -387,27 +410,6 @@ bool OneLinuxControl::update(std::shared_ptr<const OneLinuxControlProps> next, E
       }
       if (gtk_spin_button_get_digits(stepper_) != digits) gtk_spin_button_set_digits(stepper_, digits);
       if (gtk_spin_button_get_value(stepper_) != value || changed(&OneLinuxControlProps::revision)) gtk_spin_button_set_value(stepper_, value);
-    } else {
-      if (props.indeterminate) {
-        if (!progressTick_) {
-          lastPulse_ = 0;
-          progressTick_ = gtk_widget_add_tick_callback(widget_, [](GtkWidget *widget, GdkFrameClock *clock, gpointer data) -> gboolean {
-            auto &self = *static_cast<OneLinuxControl *>(data);
-            gint64 now = gdk_frame_clock_get_frame_time(clock);
-            if (now - self.lastPulse_ >= 80000) {
-              gtk_progress_bar_pulse(GTK_PROGRESS_BAR(widget));
-              self.lastPulse_ = now;
-            }
-            return G_SOURCE_CONTINUE;
-          }, this, nullptr);
-        }
-      } else {
-        if (progressTick_) {
-          gtk_widget_remove_tick_callback(widget_, progressTick_);
-          progressTick_ = 0;
-        }
-        gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(widget_), std::clamp(value, 0.0, 1.0));
-      }
     }
   });
   return measure;

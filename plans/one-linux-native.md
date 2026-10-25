@@ -213,6 +213,15 @@ a new revision without events: [accepted](one-linux-native-switch-fold-accepted.
 RAN clean incremental release host and full package builds, the controlled
 fixture bundle and Hermes compilation under fatal GTK warnings.
 
+TESTED simplification S4: ProgressBar now takes only its read-only value and
+activity mode, without revision, acknowledgement, change events or controlled
+hooks. Native progress updates bypass the input protocol. The existing ten
+control fixture switches from [activity mode](one-linux-native-progress-mode.webp)
+to [determinate progress](one-linux-native-progress-determinate.webp), following
+a real Slider drag from 25 to 71 percent with one start and one completion.
+RAN full package build, incremental release host build, Linux bundle and
+Hermes bytecode. No automated tests.
+
 **M3 continuation, 2026-10-25, worker s79514 for s72425.** TESTED all ten
 controls in the studio-64 Ubuntu arm64 VM, GTK 4 release host and embedded
 Linux Hermes bytecode, with `G_DEBUG=fatal-criticals`. The four additions are

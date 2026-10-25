@@ -187,7 +187,7 @@ export default function Index() {
               style={{ fontSize: 14, color: '#1f1d1a' }}
             >{`segment ${segment}, choice ${choice}`}</Text>
           </View>
-          <One.linux.ProgressBar value={level} revision={controlRevision} />
+          <One.linux.ProgressBar value={level} />
           <Text
             style={{ fontSize: 14, color: '#1f1d1a' }}
           >{`${controlEvents} native changes, revision ${controlRevision}`}</Text>
