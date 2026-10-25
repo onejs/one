@@ -109,12 +109,20 @@ class OneHostRuntime : public std::enable_shared_from_this<OneHostRuntime> {
 
   // returns whether the layout changed
   bool updateLayout(double width, double height, double scale);
+  SurfaceId surfaceId() const { return surface_ ? surface_->getSurfaceId() : 0; }
   double width() const { return width_; }
   double height() const { return height_; }
   double scale() const { return scale_; }
 
   void emitDeviceEvent(const std::string &name, folly::dynamic payload);
   void emitDimensions();
+
+  struct StateDataUpdate {
+    Props::Shared props;
+    StateData::Shared data;
+  };
+  // atomically apply measured native state before the mount transaction paints.
+  void updateStateData(SurfaceId surfaceId, const std::unordered_map<Tag, StateDataUpdate> &updates);
 
   // merges queued react revisions on the main thread, once per burst
   void mergeReactRevision(SurfaceId surfaceId, const DispatchMain &dispatchMain);

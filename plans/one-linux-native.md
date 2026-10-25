@@ -130,6 +130,31 @@ Linux bundle, Hermes bytecode compilation and package lint (zero errors,
 existing warnings). No automated tests.
 
 
+TESTED review 2 measurement repair in the same arm64 VM. A temporary native
+snapshot probe sees the baseline's first control frame with 9 controls and 8
+zero allocations, then a second frame with all 9 allocated. GDB counts nine
+`UIManager::updateState` calls on the JavaScript thread. The review's claim
+that those calls commit synchronously on GTK's thread does not reproduce:
+`ConcreteState` defaults to the asynchronous event queue in the installed RN.
+
+The repair measures once after a mount transaction has inserted its controls,
+then uses RN's `cloneMultiple` to commit every changed natural size together.
+The active mount consumes that follow-up transaction before GTK paints. GDB
+sees one batch on the main thread, zero per-control update calls, and all nine
+controls allocated in their first frame. Measurements whose props have already
+been replaced by a newer React commit are discarded. Theme changes use the
+same batch path. No RN source changed, and the temporary snapshot probe was
+removed before the clean release host rebuild.
+
+TESTED review 2 pending Stepper edits. A plain parent rerender leaves the
+control memoized and does not reproduce the reported loss. Changing its
+unrelated native `testID` with that parent rerender does reproduce it: an
+unsubmitted 1 becomes the controlled 2. Controls now apply only changed props
+and actual controlled-value changes. With the repair, the entry still contains
+1 after the parent rerender while React's accepted value remains 2:
+[pending edit](one-linux-native-stepper-pending-edit.webp). This covers finding
+5 together with measurement simplification S6, as assigned by the lead.
+
 **M3 continuation, 2026-10-25, worker s79514 for s72425.** TESTED all ten
 controls in the studio-64 Ubuntu arm64 VM, GTK 4 release host and embedded
 Linux Hermes bytecode, with `G_DEBUG=fatal-criticals`. The four additions are

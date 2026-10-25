@@ -262,8 +262,15 @@ gboolean OneLinuxControl::sliderEvent(GtkEventControllerLegacy *, GdkEvent *even
   return FALSE;
 }
 
-void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Shared emitter)
+bool OneLinuxControl::update(std::shared_ptr<const OneLinuxControlProps> next, EventEmitter::Shared emitter)
 {
+  const auto &props = *next;
+  auto previous = std::move(props_);
+  props_ = std::move(next);
+  auto changed = [&](auto member) { return !previous || previous.get()->*member != props.*member; };
+  bool measure = changed(&OneLinuxControlProps::title) || changed(&OneLinuxControlProps::labels) ||
+      changed(&OneLinuxControlProps::minimumValue) || changed(&OneLinuxControlProps::maximumValue) || changed(&OneLinuxControlProps::step);
+  if (changed(&OneLinuxControlProps::disabled)) gtk_widget_set_sensitive(widget_, !props.disabled);
   emitter_ = std::move(emitter);
   if (handle_ == OneLinuxDropDownShadowNode::Handle()) {
     tagged_ = props.tagged;
@@ -273,7 +280,6 @@ void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Sh
     }
     selection_.update(selection, props.revision, props.acknowledgedEvent);
     selection_.apply([&](const std::optional<std::string> &value) {
-      gtk_widget_set_sensitive(widget_, !props.disabled);
       itemValues_ = props.itemValues;
       if (labels_ != props.labels) {
         labels_ = props.labels;
@@ -293,30 +299,28 @@ void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Sh
           index = std::stoi(*value);
         }
       }
-      gtk_drop_down_set_selected(GTK_DROP_DOWN(widget_), index);
+      if (gtk_drop_down_get_selected(GTK_DROP_DOWN(widget_)) != index) gtk_drop_down_set_selected(GTK_DROP_DOWN(widget_), index);
     });
-    return;
+    return measure;
   }
   if (handle_ == OneLinuxTextFieldShadowNode::Handle() || handle_ == OneLinuxSecureFieldShadowNode::Handle()) {
     text_.update(props.text, props.revision, props.acknowledgedEvent);
     text_.apply([&](const std::string &text) {
-      gtk_widget_set_sensitive(widget_, !props.disabled);
-      g_object_set(widget_, "placeholder-text", props.prompt.c_str(), nullptr);
-      gtk_accessible_update_property(GTK_ACCESSIBLE(widget_), GTK_ACCESSIBLE_PROPERTY_LABEL, props.title.c_str(), -1);
+      if (changed(&OneLinuxControlProps::prompt)) g_object_set(widget_, "placeholder-text", props.prompt.c_str(), nullptr);
+      if (changed(&OneLinuxControlProps::title)) gtk_accessible_update_property(GTK_ACCESSIBLE(widget_), GTK_ACCESSIBLE_PROPERTY_LABEL, props.title.c_str(), -1);
       if (text != gtk_editable_get_text(GTK_EDITABLE(widget_))) {
         gtk_editable_set_text(GTK_EDITABLE(widget_), text.c_str());
       }
     });
-    return;
+    return measure;
   }
   value_.update(props.value, props.revision, props.acknowledgedEvent);
   if (props.disabled || (sliding_ && props.revision != slidingRevision_)) {
     cancelSliding();
   }
   value_.apply([&](double value) {
-    gtk_widget_set_sensitive(widget_, !props.disabled);
     if (handle_ == OneLinuxButtonShadowNode::Handle()) {
-      gtk_button_set_label(GTK_BUTTON(widget_), props.title.c_str());
+      if (changed(&OneLinuxControlProps::title)) gtk_button_set_label(GTK_BUTTON(widget_), props.title.c_str());
     } else if (handle_ == OneLinuxSegmentedControlShadowNode::Handle()) {
       if (labels_ != props.labels) {
         while (GtkWidget *child = gtk_widget_get_first_child(widget_)) {
@@ -339,18 +343,20 @@ void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Sh
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(child), value == index);
       }
     } else if (handle_ == OneLinuxSliderShadowNode::Handle()) {
-      gtk_range_set_range(GTK_RANGE(widget_), props.minimumValue, props.maximumValue);
-      gtk_range_set_increments(GTK_RANGE(widget_), props.step, props.step * 10);
-      gtk_range_set_value(GTK_RANGE(widget_), value);
+      if (changed(&OneLinuxControlProps::minimumValue) || changed(&OneLinuxControlProps::maximumValue)) gtk_range_set_range(GTK_RANGE(widget_), props.minimumValue, props.maximumValue);
+      if (changed(&OneLinuxControlProps::step)) gtk_range_set_increments(GTK_RANGE(widget_), props.step, props.step * 10);
+      if (gtk_range_get_value(GTK_RANGE(widget_)) != value) gtk_range_set_value(GTK_RANGE(widget_), value);
     } else if (handle_ == OneLinuxToggleShadowNode::Handle()) {
-      gtk_check_button_set_label(GTK_CHECK_BUTTON(widget_), props.title.c_str());
+      if (changed(&OneLinuxControlProps::title)) gtk_check_button_set_label(GTK_CHECK_BUTTON(widget_), props.title.c_str());
       gtk_check_button_set_active(GTK_CHECK_BUTTON(widget_), value != 0);
     } else if (handle_ == OneLinuxStepperShadowNode::Handle()) {
-      gtk_label_set_text(GTK_LABEL(stepperLabel_), props.title.c_str());
-      gtk_widget_set_visible(stepperLabel_, !props.title.empty());
-      gtk_accessible_update_property(GTK_ACCESSIBLE(stepper_), GTK_ACCESSIBLE_PROPERTY_LABEL, props.title.c_str(), -1);
-      gtk_spin_button_set_range(stepper_, props.minimumValue, props.maximumValue);
-      gtk_spin_button_set_increments(stepper_, props.step, props.step * 10);
+      if (changed(&OneLinuxControlProps::title)) {
+        gtk_label_set_text(GTK_LABEL(stepperLabel_), props.title.c_str());
+        gtk_widget_set_visible(stepperLabel_, !props.title.empty());
+        gtk_accessible_update_property(GTK_ACCESSIBLE(stepper_), GTK_ACCESSIBLE_PROPERTY_LABEL, props.title.c_str(), -1);
+      }
+      if (changed(&OneLinuxControlProps::minimumValue) || changed(&OneLinuxControlProps::maximumValue)) gtk_spin_button_set_range(stepper_, props.minimumValue, props.maximumValue);
+      if (changed(&OneLinuxControlProps::step)) gtk_spin_button_set_increments(stepper_, props.step, props.step * 10);
       int digits = 0;
       for (double part : {props.step, props.minimumValue, props.maximumValue}) {
         int precision = 0;
@@ -360,8 +366,8 @@ void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Sh
         }
         digits = std::max(digits, precision);
       }
-      gtk_spin_button_set_digits(stepper_, digits);
-      gtk_spin_button_set_value(stepper_, value);
+      if (gtk_spin_button_get_digits(stepper_) != digits) gtk_spin_button_set_digits(stepper_, digits);
+      if (gtk_spin_button_get_value(stepper_) != value || changed(&OneLinuxControlProps::revision)) gtk_spin_button_set_value(stepper_, value);
     } else {
       if (props.indeterminate) {
         if (!progressTick_) {
@@ -385,6 +391,7 @@ void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Sh
       }
     }
   });
+  return measure;
 }
 
 } // namespace facebook::react

@@ -27,9 +27,9 @@ export default function Review2() {
       </Pressable>
       <Text style={{ fontSize: 24 }}>Linux review 2</Text>
       <Text>Stepper numeric value {String(count)}, parent renders {renders}</Text>
-      <One.linux.Stepper label="Amount" value={count} in={[0, 3]} step={1} onValueChange={setCount}
+      <One.linux.Stepper testID={`stepper-${renders}`} label="Amount" value={count} in={[0, 3]} step={1} onValueChange={setCount}
         style={small ? { width: 20, height: 20 } : undefined} />
-      <One.linux.Button title="Rerender parent" onPress={() => setRenders((n) => n + 1)} />
+      <One.linux.Button title="Rerender parent" onPress={() => setTimeout(() => setRenders((n) => n + 1), 2000)} />
       <One.linux.DropDown labels={['Alpha', 'Beta', 'Gamma']} selectedIndex={selection}
         onChange={(event) => setSelection(event.selectedIndex)} />
       <Text>Selected {selection}; popup selection must leave RN counts unchanged</Text>

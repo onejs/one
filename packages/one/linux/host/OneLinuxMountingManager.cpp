@@ -135,6 +135,7 @@ struct OneLinuxMountingManager::Record {
   std::unique_ptr<OneLinuxControl> nativeControl;
   ConcreteState<OneLinuxControlState>::Shared controlState;
   Size measuredControlSize{-1, -1};
+  bool needsMeasurement{true};
   TextInputShadowNode::ConcreteState::Shared inputState;
   ImageShadowNode::ConcreteState::Shared imageState;
   std::shared_ptr<const ImageObserver> imageObserver;
@@ -355,6 +356,11 @@ void OneLinuxMountingManager::setSurfaceSize(double width, double height)
 
 void OneLinuxMountingManager::scheduleTransaction(std::shared_ptr<const MountingCoordinator> coordinator)
 {
+  // native measurement commits reenter the active mount before gtk can paint.
+  if (g_main_context_is_owner(g_main_context_default())) {
+    initiateTransaction(*coordinator);
+    return;
+  }
   std::weak_ptr<OneLinuxMountingManager> weakSelf = weak_from_this();
   OneLinuxDispatchMain([weakSelf, coordinator = std::move(coordinator)] {
     if (auto self = weakSelf.lock()) {
@@ -514,9 +520,8 @@ void OneLinuxMountingManager::restyle(Record &record)
   }
 
   if (record.nativeControl) {
-    record.nativeControl->update(static_cast<const OneLinuxControlProps &>(*record.props), record.eventEmitter);
+    record.needsMeasurement |= record.nativeControl->update(std::static_pointer_cast<const OneLinuxControlProps>(record.props), record.eventEmitter);
   }
-  measureControl(record);
 
   if (record.input) {
     // the field sits in the content frame, inside the padding and border
@@ -571,7 +576,7 @@ void OneLinuxMountingManager::restyle(Record &record)
   }
 }
 
-void OneLinuxMountingManager::measureControl(Record &record)
+void OneLinuxMountingManager::measureControl(Record &record, ControlMeasurements &measurements)
 {
   if (!record.controlState) {
     return;
@@ -583,15 +588,25 @@ void OneLinuxMountingManager::measureControl(Record &record)
   Size size{static_cast<Float>(width), static_cast<Float>(height)};
   if (record.measuredControlSize != size) {
     record.measuredControlSize = size;
-    record.controlState->updateState(OneLinuxControlState{size});
+    measurements.emplace(record.tag, std::make_pair(record.props, size));
   }
+}
+
+void OneLinuxMountingManager::flushControlMeasurements(bool force)
+{
+  ControlMeasurements measurements;
+  for (auto &[tag, record] : records_) {
+    if (force || record->needsMeasurement) {
+      record->needsMeasurement = false;
+      measureControl(*record, measurements);
+    }
+  }
+  if (!measurements.empty() && didMeasureControls) didMeasureControls(measurements);
 }
 
 void OneLinuxMountingManager::measureControls()
 {
-  for (auto &[tag, record] : records_) {
-    measureControl(*record);
-  }
+  flushControlMeasurements(true);
 }
 
 static ScrollEvent scrollEventFor(OneLinuxMountingManager::Record &record)
@@ -678,7 +693,6 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
         updateImageState(record, child.state);
         restyle(record);
         one_view_insert_child(parentIt->second->container, record.view, mutation.index);
-        measureControl(record);
         hasContent_ = true;
         break;
       }
@@ -724,6 +738,7 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
       }
     }
   }
+  flushControlMeasurements(false);
 }
 
 } // namespace facebook::react

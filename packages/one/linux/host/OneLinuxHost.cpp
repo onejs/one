@@ -1,4 +1,5 @@
 #include "OneLinuxHost.h"
+#include <OneLinuxControlState.h>
 
 #include <react/featureflags/ReactNativeFeatureFlags.h>
 #include <react/featureflags/ReactNativeFeatureFlagsDefaults.h>
@@ -208,6 +209,15 @@ void OneLinuxHost::start()
 
   schedulerDelegate_ = std::make_unique<SchedulerDelegate>(mountingManager_);
   std::weak_ptr<OneHostRuntime> weakRuntime = runtime_;
+  mountingManager_->didMeasureControls = [weakRuntime](const OneLinuxMountingManager::ControlMeasurements &measurements) {
+    if (auto runtime = weakRuntime.lock()) {
+      std::unordered_map<Tag, OneHostRuntime::StateDataUpdate> updates;
+      for (const auto &[tag, measured] : measurements) {
+        updates.emplace(tag, OneHostRuntime::StateDataUpdate{measured.first, std::make_shared<const OneLinuxControlState>(OneLinuxControlState{measured.second})});
+      }
+      runtime->updateStateData(runtime->surfaceId(), updates);
+    }
+  };
   schedulerDelegate_->mergeReactRevision = [weakRuntime](SurfaceId surfaceId) {
     if (auto runtime = weakRuntime.lock()) {
       runtime->mergeReactRevision(surfaceId, OneLinuxDispatchMain);

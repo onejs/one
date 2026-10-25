@@ -14,7 +14,7 @@ class OneLinuxControl {
   explicit OneLinuxControl(ComponentHandle handle);
   ~OneLinuxControl();
   GtkWidget *widget() const { return widget_; }
-  void update(const OneLinuxControlProps &props, EventEmitter::Shared emitter);
+  bool update(std::shared_ptr<const OneLinuxControlProps> props, EventEmitter::Shared emitter);
 
  private:
   static void clicked(GtkButton *, gpointer);
@@ -37,6 +37,7 @@ class OneLinuxControl {
   GtkSpinButton *stepper_{nullptr};
   GtkWidget *stepperLabel_{nullptr};
   EventEmitter::Shared emitter_;
+  std::shared_ptr<const OneLinuxControlProps> props_;
   std::vector<std::string> labels_;
   std::vector<std::string> itemValues_;
   bool tagged_{false};

@@ -255,6 +255,30 @@ void OneHostRuntime::emitDimensions()
   emitDeviceEvent("didUpdateDimensions", folly::dynamic::object("window", dims)("screen", dims));
 }
 
+void OneHostRuntime::updateStateData(SurfaceId surfaceId, const std::unordered_map<Tag, StateDataUpdate> &updates)
+{
+  if (!scheduler_ || updates.empty()) return;
+  scheduler_->getUIManager()->getShadowTreeRegistry().visit(surfaceId, [&](const ShadowTree &tree) {
+    tree.commit([&](const RootShadowNode &root) -> RootShadowNode::Unshared {
+      std::unordered_set<std::shared_ptr<const ShadowNodeFamily>> families;
+      std::function<void(const ShadowNode &)> collect = [&](const ShadowNode &node) {
+        auto found = updates.find(node.getTag());
+        // a newer react commit may have changed the measured props already.
+        if (found != updates.end() && found->second.props == node.getProps()) families.insert(node.getFamilyShared());
+        for (const auto &child : node.getChildren()) collect(*child);
+      };
+      collect(root);
+      if (families.empty()) return nullptr;
+      return std::static_pointer_cast<RootShadowNode>(root.cloneMultiple(families, [&](const ShadowNode &node, const ShadowNodeFragment &fragment) {
+        auto found = updates.find(node.getTag());
+        if (found == updates.end() || found->second.props != node.getProps()) return node.clone(fragment);
+        auto state = node.getFamily().getComponentDescriptor().createState(node.getFamily(), found->second.data);
+        return node.clone({.props = fragment.props, .children = fragment.children, .state = state});
+      }));
+    }, {});
+  });
+}
+
 void OneHostRuntime::mergeReactRevision(SurfaceId surfaceId, const DispatchMain &dispatchMain)
 {
   bool needsDispatch = false;
