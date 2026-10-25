@@ -26,6 +26,10 @@ OneLinuxControl::OneLinuxControl(ComponentHandle handle) : handle_(handle)
     widget_ = gtk_scale_new_with_range(GTK_ORIENTATION_HORIZONTAL, 0, 1, 0.01);
     gtk_scale_set_draw_value(GTK_SCALE(widget_), FALSE);
     g_signal_connect(widget_, "value-changed", G_CALLBACK(slid), this);
+    interactionController_ = gtk_event_controller_legacy_new();
+    gtk_event_controller_set_propagation_phase(interactionController_, GTK_PHASE_CAPTURE);
+    g_signal_connect(interactionController_, "event", G_CALLBACK(sliderEvent), this);
+    gtk_widget_add_controller(widget_, interactionController_);
   } else if (handle == OneLinuxDropDownShadowNode::Handle()) {
     widget_ = gtk_drop_down_new(nullptr, nullptr);
     g_signal_connect(widget_, "notify::selected", G_CALLBACK(selected), this);
@@ -48,6 +52,14 @@ OneLinuxControl::OneLinuxControl(ComponentHandle handle) : handle_(handle)
 
 OneLinuxControl::~OneLinuxControl()
 {
+  cancelSliding();
+  if (progressTick_) {
+    gtk_widget_remove_tick_callback(widget_, progressTick_);
+  }
+  if (interactionController_) {
+    g_signal_handlers_disconnect_by_data(interactionController_, this);
+    gtk_widget_remove_controller(widget_, interactionController_);
+  }
   g_signal_handlers_disconnect_by_data(widget_, this);
   if (handle_ == OneLinuxSegmentedControlShadowNode::Handle()) {
     for (GtkWidget *child = gtk_widget_get_first_child(widget_); child; child = gtk_widget_get_next_sibling(child)) {
@@ -92,8 +104,20 @@ void OneLinuxControl::slid(GtkRange *range, gpointer data)
 
 void OneLinuxControl::selected(GObject *dropDown, GParamSpec *, gpointer data)
 {
+  auto &self = *static_cast<OneLinuxControl *>(data);
   guint index = gtk_drop_down_get_selected(GTK_DROP_DOWN(dropDown));
-  static_cast<OneLinuxControl *>(data)->report(index == GTK_INVALID_LIST_POSITION ? -1 : static_cast<double>(index));
+  std::optional<std::string> selection;
+  if (index != GTK_INVALID_LIST_POSITION) {
+    selection = self.tagged_ ? self.itemValues_.at(index) : std::to_string(index);
+  }
+  if (self.emitter_ && self.selection_.record(selection)) {
+    auto emitter = std::static_pointer_cast<const OneLinuxControlEventEmitter>(self.emitter_);
+    if (self.tagged_) {
+      emitter->onSelectionChange(selection.value_or(""), selection.has_value(), self.selection_.eventCount(), self.selection_.revision());
+    } else {
+      emitter->onControlChange(selection ? static_cast<double>(index) : -1, self.selection_.eventCount(), self.selection_.revision());
+    }
+  }
 }
 
 void OneLinuxControl::checked(GtkCheckButton *button, gpointer data)
@@ -123,9 +147,151 @@ void OneLinuxControl::submitted(GtkWidget *, gpointer data)
   }
 }
 
+void OneLinuxControl::beginSliding()
+{
+  if (completionSource_) {
+    g_source_remove(completionSource_);
+    completionSource_ = 0;
+    finishSliding();
+  }
+  if (sliding_) {
+    return;
+  }
+  sliding_ = true;
+  slidingRevision_ = value_.revision();
+  if (emitter_) {
+    std::static_pointer_cast<const OneLinuxControlEventEmitter>(emitter_)->onSliding(true, gtk_range_get_value(GTK_RANGE(widget_)), slidingRevision_);
+  }
+}
+
+void OneLinuxControl::endSliding()
+{
+  if (!sliding_ || completionSource_) {
+    return;
+  }
+  // let gtk finish handling the release before reading the final value.
+  completionSource_ = g_idle_add_full(G_PRIORITY_DEFAULT, [](gpointer data) -> gboolean {
+    auto &self = *static_cast<OneLinuxControl *>(data);
+    self.completionSource_ = 0;
+    self.finishSliding();
+    return G_SOURCE_REMOVE;
+  }, this, nullptr);
+}
+
+void OneLinuxControl::finishSliding()
+{
+  if (sliding_ && emitter_ && slidingRevision_ == value_.revision()) {
+    std::static_pointer_cast<const OneLinuxControlEventEmitter>(emitter_)->onSliding(false, gtk_range_get_value(GTK_RANGE(widget_)), slidingRevision_);
+  }
+  sliding_ = false;
+}
+
+void OneLinuxControl::cancelSliding()
+{
+  if (completionSource_) {
+    g_source_remove(completionSource_);
+    completionSource_ = 0;
+  }
+  sliding_ = false;
+  sliderPointer_ = false;
+  sliderKeys_.clear();
+}
+
+gboolean OneLinuxControl::sliderEvent(GtkEventControllerLegacy *, GdkEvent *event, gpointer data)
+{
+  auto &self = *static_cast<OneLinuxControl *>(data);
+  switch (gdk_event_get_event_type(event)) {
+    case GDK_BUTTON_PRESS:
+    case GDK_BUTTON_RELEASE:
+      if (gdk_button_event_get_button(event) != GDK_BUTTON_PRIMARY) {
+        break;
+      }
+      if (gdk_event_get_event_type(event) == GDK_BUTTON_PRESS) {
+        self.beginSliding();
+        self.sliderPointer_ = true;
+      } else {
+        self.sliderPointer_ = false;
+        if (self.sliderKeys_.empty()) self.endSliding();
+      }
+      break;
+    case GDK_TOUCH_BEGIN:
+      self.beginSliding();
+      self.sliderPointer_ = true;
+      break;
+    case GDK_TOUCH_END:
+    case GDK_TOUCH_CANCEL:
+      self.sliderPointer_ = false;
+      if (self.sliderKeys_.empty()) self.endSliding();
+      break;
+    case GDK_KEY_PRESS:
+    case GDK_KEY_RELEASE: {
+      guint key = gdk_key_event_get_keyval(event);
+      if (key != GDK_KEY_Left && key != GDK_KEY_Right && key != GDK_KEY_Up && key != GDK_KEY_Down &&
+          key != GDK_KEY_Page_Up && key != GDK_KEY_Page_Down && key != GDK_KEY_Home && key != GDK_KEY_End &&
+          key != GDK_KEY_KP_Left && key != GDK_KEY_KP_Right && key != GDK_KEY_KP_Up && key != GDK_KEY_KP_Down &&
+          key != GDK_KEY_KP_Page_Up && key != GDK_KEY_KP_Page_Down && key != GDK_KEY_KP_Home && key != GDK_KEY_KP_End) {
+        break;
+      }
+      if (gdk_event_get_event_type(event) == GDK_KEY_PRESS) {
+        self.beginSliding();
+        self.sliderKeys_.insert(key);
+      } else {
+        self.sliderKeys_.erase(key);
+        if (self.sliderKeys_.empty() && !self.sliderPointer_) self.endSliding();
+      }
+      break;
+    }
+    case GDK_SCROLL:
+      self.beginSliding();
+      self.endSliding();
+      break;
+    case GDK_FOCUS_CHANGE:
+      if (!gdk_focus_event_get_in(event)) {
+        self.sliderKeys_.clear();
+        if (!self.sliderPointer_) self.endSliding();
+      }
+      break;
+    default:
+      break;
+  }
+  return FALSE;
+}
+
 void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Shared emitter)
 {
   emitter_ = std::move(emitter);
+  if (handle_ == OneLinuxDropDownShadowNode::Handle()) {
+    tagged_ = props.tagged;
+    std::optional<std::string> selection;
+    if (tagged_ ? props.hasSelection : props.value >= 0) {
+      selection = tagged_ ? props.selection : std::to_string(static_cast<int>(props.value));
+    }
+    selection_.update(selection, props.revision, props.acknowledgedEvent);
+    selection_.apply([&](const std::optional<std::string> &value) {
+      gtk_widget_set_sensitive(widget_, !props.disabled);
+      itemValues_ = props.itemValues;
+      if (labels_ != props.labels) {
+        labels_ = props.labels;
+        GtkStringList *model = gtk_string_list_new(nullptr);
+        for (const auto &label : labels_) {
+          gtk_string_list_append(model, label.c_str());
+        }
+        gtk_drop_down_set_model(GTK_DROP_DOWN(widget_), G_LIST_MODEL(model));
+        g_object_unref(model);
+      }
+      guint index = GTK_INVALID_LIST_POSITION;
+      if (value) {
+        if (tagged_) {
+          auto item = std::find(itemValues_.begin(), itemValues_.end(), *value);
+          if (item != itemValues_.end()) index = std::distance(itemValues_.begin(), item);
+        } else {
+          index = std::stoi(*value);
+        }
+      }
+      gtk_drop_down_set_selected(GTK_DROP_DOWN(widget_), index);
+    });
+    return;
+  }
   if (handle_ == OneLinuxTextFieldShadowNode::Handle() || handle_ == OneLinuxSecureFieldShadowNode::Handle()) {
     text_.update(props.text, props.revision, props.acknowledgedEvent);
     text_.apply([&](const std::string &text) {
@@ -139,6 +305,9 @@ void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Sh
     return;
   }
   value_.update(props.value, props.revision, props.acknowledgedEvent);
+  if (props.disabled || (sliding_ && props.revision != slidingRevision_)) {
+    cancelSliding();
+  }
   value_.apply([&](double value) {
     gtk_widget_set_sensitive(widget_, !props.disabled);
     if (handle_ == OneLinuxButtonShadowNode::Handle()) {
@@ -168,17 +337,6 @@ void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Sh
       gtk_range_set_range(GTK_RANGE(widget_), props.minimumValue, props.maximumValue);
       gtk_range_set_increments(GTK_RANGE(widget_), props.step, props.step * 10);
       gtk_range_set_value(GTK_RANGE(widget_), value);
-    } else if (handle_ == OneLinuxDropDownShadowNode::Handle()) {
-      if (labels_ != props.labels) {
-        labels_ = props.labels;
-        GtkStringList *model = gtk_string_list_new(nullptr);
-        for (const auto &label : labels_) {
-          gtk_string_list_append(model, label.c_str());
-        }
-        gtk_drop_down_set_model(GTK_DROP_DOWN(widget_), G_LIST_MODEL(model));
-        g_object_unref(model);
-      }
-      gtk_drop_down_set_selected(GTK_DROP_DOWN(widget_), value < 0 ? GTK_INVALID_LIST_POSITION : static_cast<guint>(value));
     } else if (handle_ == OneLinuxToggleShadowNode::Handle()) {
       gtk_check_button_set_label(GTK_CHECK_BUTTON(widget_), props.title.c_str());
       gtk_check_button_set_active(GTK_CHECK_BUTTON(widget_), value != 0);
@@ -197,7 +355,26 @@ void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Sh
       gtk_spin_button_set_digits(GTK_SPIN_BUTTON(widget_), digits);
       gtk_spin_button_set_value(GTK_SPIN_BUTTON(widget_), value);
     } else {
-      gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(widget_), std::clamp(value, 0.0, 1.0));
+      if (props.indeterminate) {
+        if (!progressTick_) {
+          lastPulse_ = 0;
+          progressTick_ = gtk_widget_add_tick_callback(widget_, [](GtkWidget *widget, GdkFrameClock *clock, gpointer data) -> gboolean {
+            auto &self = *static_cast<OneLinuxControl *>(data);
+            gint64 now = gdk_frame_clock_get_frame_time(clock);
+            if (now - self.lastPulse_ >= 80000) {
+              gtk_progress_bar_pulse(GTK_PROGRESS_BAR(widget));
+              self.lastPulse_ = now;
+            }
+            return G_SOURCE_CONTINUE;
+          }, this, nullptr);
+        }
+      } else {
+        if (progressTick_) {
+          gtk_widget_remove_tick_callback(widget_, progressTick_);
+          progressTick_ = 0;
+        }
+        gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(widget_), std::clamp(value, 0.0, 1.0));
+      }
     }
   });
 }

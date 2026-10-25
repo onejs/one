@@ -17,6 +17,12 @@ export default function Controls() {
   const [accept, setAccept] = useState(true)
   const [revision, setRevision] = useState(0)
   const [offset, setOffset] = useState(0)
+  const [starts, setStarts] = useState(0)
+  const [completes, setCompletes] = useState(0)
+  const [finalValue, setFinalValue] = useState(0)
+  const [busy, setBusy] = useState(true)
+  const [selection, setSelection] = useState<string | null>('alpha')
+  const [reverse, setReverse] = useState(false)
   const report = (change: () => void) => {
     setEvents((value) => value + 1)
     if (accept) change()
@@ -30,6 +36,7 @@ export default function Controls() {
     setSegment(0)
     setLevel(0.25)
     setChoice(0)
+    setSelection('alpha')
     setRevision((value) => value + 1)
   }
   return <View style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -72,13 +79,25 @@ export default function Controls() {
         <One.linux.SegmentedControl labels={['One', 'Two', 'Three']} selectedIndex={segment} revision={revision}
           onChange={(event) => report(() => setSegment(event.selectedIndex))} />
       </Row>
-      <Row title="Slider and ProgressBar" note={`${Math.round(level * 100)} percent`}>
-        <One.linux.Slider style={{ width: 240 }} value={level} revision={revision} onValueChange={(event) => report(() => setLevel(event.value))} />
+      <Row title="Slider and ProgressBar" note={`${Math.round(level * 100)} percent | starts ${starts}, completes ${completes}, final ${finalValue.toFixed(2)}`}>
+        <One.linux.Slider style={{ width: 240 }} value={level} revision={revision} onValueChange={(event) => report(() => setLevel(event.value))}
+          onSlidingStart={() => setStarts((value) => value + 1)}
+          onSlidingComplete={(event) => { setCompletes((value) => value + 1); setFinalValue(event.value) }} />
         <One.linux.ProgressBar style={{ width: 240 }} value={level} />
+      </Row>
+      <Row title="ProgressBar activity mode" note={busy ? 'indeterminate' : 'determinate'}>
+        <One.linux.ProgressBar style={{ width: 240 }} value={busy ? undefined : level} />
+        <One.linux.Button title="Change progress mode" onPress={() => setBusy((value) => !value)} />
       </Row>
       <Row title="DropDown" note={`index ${choice}`}>
         <One.linux.DropDown labels={['Alpha', 'Beta', 'Gamma']} selectedIndex={choice} revision={revision}
           onChange={(event) => report(() => setChoice(event.selectedIndex))} />
+      </Row>
+      <Row title="DropDown: stable item values" note={`selection ${selection}`}>
+        <One.linux.DropDown items={reverse ? [...items].reverse() : items} selection={selection} revision={revision}
+          onSelectionChange={(event) => report(() => setSelection(event.selection))} />
+        <One.linux.Button title="Reorder items" onPress={() => setReverse((value) => !value)} />
+        <One.linux.Button title="Clear selection" onPress={() => setSelection(null)} />
       </Row>
       <View style={{ padding: 20, width: 560, backgroundColor: '#e4f3e7', gap: 12 }}>
         <Text style={{ fontSize: 24, color: '#162331' }}>React Native content inside the same ScrollView</Text>
@@ -99,3 +118,5 @@ function Row({ title, note, children }: { title: string; note: string; children:
 }
 const status = { fontSize: 18, color: '#162331' }
 const action = { fontSize: 18, color: '#084da4', backgroundColor: '#e0ecff', padding: 8 }
+
+const items = [{ label: 'Same label', value: 'alpha' }, { label: 'Same label', value: 'beta' }, { label: 'Gamma', value: 'gamma' }]

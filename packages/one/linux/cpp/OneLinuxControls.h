@@ -18,11 +18,16 @@ class OneLinuxControlProps final : public ViewProps {
   std::string text;
   std::string prompt;
   std::vector<std::string> labels;
+  std::vector<std::string> itemValues;
+  std::string selection;
   double value{0};
   double minimumValue{0};
   double maximumValue{1};
   double step{0.01};
   bool disabled{false};
+  bool indeterminate{false};
+  bool tagged{false};
+  bool hasSelection{false};
   int revision{0};
   int acknowledgedEvent{0};
 };
@@ -33,6 +38,8 @@ class OneLinuxControlEventEmitter : public ViewEventEmitter {
   void onControlChange(double value, int eventCount, int revision) const;
   void onTextChange(const std::string &text, int eventCount, int revision) const;
   void onSubmit(int revision) const;
+  void onSliding(bool started, double value, int revision) const;
+  void onSelectionChange(const std::string &selection, bool hasSelection, int eventCount, int revision) const;
 };
 
 inline constexpr char OneLinuxButtonName[] = "OneLinuxButton";

@@ -8,6 +8,7 @@ import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNati
 
 export type ChangeEvent = Readonly<{
   value: Double
+  indeterminate: boolean
   revision: Int32
   eventCount: Int32
 }>

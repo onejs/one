@@ -147,6 +147,31 @@ pending the infrastructure recovery.
 Contract sources: [GTK Widget.measure](https://docs.gtk.org/gtk4/method.Widget.measure.html)
 and [GTK threading](https://docs.gtk.org/gtk4/section-threading.html).
 
+INFERRED from source, awaiting native proof: Slider now exposes
+`onSlidingStart` and `onSlidingComplete` with value and revision, matching the
+React Native Slider gesture boundary names. Pointer, touch, changing keys and
+scroll input are observed without consuming GTK events. Completion runs after
+GTK processes release; revision changes and disabling cancel the old gesture.
+Programmatic setters emit no interaction callbacks. ProgressBar accepts an
+omitted value or `indeterminate`; a GTK frame callback pulses activity while
+mapped, and is removed when determinate or destroyed.
+
+DropDown now has an alternative tagged contract: `items: {label, value}[]`,
+`selection: string | null`, and `onSelectionChange`. Values must be unique;
+labels may repeat. This follows One.iOS.Picker's distinct selection and Text
+`tag` semantics. The native helper stores the tag, so changing item order does
+not reinterpret an unacknowledged native edit. The existing labels/selectedIndex
+API remains an indexed GTK selection. Both modes share one event counter and
+acknowledgement helper. The fixture covers duplicate labels, reordering and
+clearing, plus activity mode and completion counters.
+
+Sources: [React Native Slider](https://github.com/callstack/react-native-slider),
+[GTK range](https://docs.gtk.org/gtk4/class.Range.html),
+[GTK progress](https://docs.gtk.org/gtk4/class.ProgressBar.html),
+[GTK dropdown](https://docs.gtk.org/gtk4/class.DropDown.html), and One's own
+`ios/Generated/OneNativePickerView.swift`, `platform/generated/controlTypes.ts`
+and `platform/generated/Controls.native.tsx`.
+
 Contract sources: [GTK CheckButton](https://docs.gtk.org/gtk4/class.CheckButton.html),
 [SpinButton](https://docs.gtk.org/gtk4/class.SpinButton.html),
 [PasswordEntry](https://docs.gtk.org/gtk4/class.PasswordEntry.html).
@@ -682,9 +707,8 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
 
 - M3 has ten control implementations; the latest four await native build and
   runtime proof. Six have already been validated.
-- Theme-derived intrinsic sizing is implemented but awaits native validation.
-  Slider completion callbacks and indeterminate progress are not implemented;
-  the dropdown currently accepts string labels only.
+- Theme-derived intrinsic sizing, Slider completion, indeterminate progress
+  and tagged dropdown items are implemented but await native validation.
 - Pointer presses support the primary mouse button. Secondary mouse buttons
   and touchscreen sequences are not implemented.
 - Text input still lacks capitalization hints, input method position hints

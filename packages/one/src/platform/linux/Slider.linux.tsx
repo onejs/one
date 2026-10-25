@@ -11,6 +11,8 @@ export type SliderProps = Omit<ViewProps, 'children'> & {
   disabled?: boolean
   revision?: number
   onValueChange?: (event: { value: number; revision: number }) => void
+  onSlidingStart?: (event: { value: number; revision: number }) => void
+  onSlidingComplete?: (event: { value: number; revision: number }) => void
 }
 
 export function Slider({
@@ -20,6 +22,8 @@ export function Slider({
   step = 0.01,
   revision = 0,
   onValueChange,
+  onSlidingStart,
+  onSlidingComplete,
   style,
   ...props
 }: SliderProps) {
@@ -48,6 +52,12 @@ export function Slider({
       revision={controlled.revision}
       acknowledgedEvent={controlled.acknowledgedEvent}
       onControlChange={(event) => controlled.onNativeChange(event.nativeEvent)}
+      onSlidingStart={({ nativeEvent }) => {
+        if (nativeEvent.revision === revision) onSlidingStart?.(nativeEvent)
+      }}
+      onSlidingComplete={({ nativeEvent }) => {
+        if (nativeEvent.revision === revision) onSlidingComplete?.(nativeEvent)
+      }}
     />
   )
 }
