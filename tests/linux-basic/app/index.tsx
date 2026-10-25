@@ -98,7 +98,8 @@ export default function Index() {
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           placeholder="type here"
-            selectionColor="#f1c40f"
+          placeholderTextColor="#c0392b"
+          selectionColor="#9b00d1"
           style={{
             width: 200,
             height: 40,

@@ -212,16 +212,6 @@ PangoLayout *OneLinuxCreateLayout(
   return layout;
 }
 
-PangoAttrList *OneLinuxCreateFieldAttributes(const TextAttributes &attributes)
-{
-  PangoAttrList *list = pango_attr_list_new();
-  if (attributes.foregroundColor) {
-    double opacity = std::isnan(attributes.opacity) ? 1 : attributes.opacity;
-    addColor(list, attributes.foregroundColor, opacity, 0, G_MAXUINT, true);
-  }
-  return list;
-}
-
 // a GtkText measures its line from the font its style gives it, so the field's
 // font goes in its style rather than in the text attributes; the placeholder
 // then shares it

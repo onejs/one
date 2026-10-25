@@ -346,11 +346,11 @@ sway on the studio-64 VM.
 - `selectionColor` sets the selection background through the `selection` CSS
   node on both fields ([window](one-linux-native-selection-color.png)), and
   `placeholderTextColor` colors the multiline placeholder
-  ([window](one-linux-native-placeholder-color.png)). Gaps: `placeholderTextColor`
-  on the single line field (a provider on the placeholder child and label
-  attributes both left it dark, cause not found), `cursorColor` (`caret-color`
-  was set but the caret was never seen in a capture), `autoCapitalize`, input
-  method position hints, or drag and drop.
+  ([window](one-linux-native-placeholder-color.png)). The single-line
+  placeholder and caret colors are fixed in the continuation below.
+  `cursorColor` is Android only in React Native, so it is not a Linux gap;
+  Linux follows the iOS and Mac `selectionColor` contract. Gaps:
+  `autoCapitalize`, input method position hints, or drag and drop.
 - Typed text and placeholder share one vertical position
   ([both](one-linux-native-input-baseline.png), measured: ascender top row 280 and
   baseline row 293 in both). A `GtkText` given no baseline sat its line at the
@@ -472,6 +472,29 @@ missing move, a release with buttons still set, or offsets in window space.
 RAN: the incremental release host build, the Linux bundle and Hermes bytecode.
 No automated tests were added. The primary mouse button remains the supported
 press source; secondary buttons and touchscreen sequences remain unimplemented.
+
+**M2 input colors, 2026-10-24.** TESTED in the same VM with the release
+host and real keyboard input: `placeholderTextColor` colors the single-line
+placeholder independently of typed text; `selectionColor` tints the caret in
+both single-line and multiline fields, as on iOS. Independent `cursorColor`
+is Android only in React Native. Its iOS JS path removes that prop before the
+native view, so Linux does not add an adapter or patch RN to expose it.
+
+The cause was read in [GTK 4.14.5's source](https://github.com/GNOME/gtk/blob/4.14.5/gtk/gtktext.c#L6952):
+`gtk_text_set_attributes` copies the field's attributes to the placeholder.
+The old foreground attribute therefore overrode its CSS color and every later
+update replaced label attributes. Typed color now lives on the `text` CSS
+node, and placeholder color on its own node. GTK's cursor snapshot reads
+`caret-color` from the text style, so `selectionColor` supplies that property.
+The existing CSS font and centered natural-baseline allocation are unchanged;
+the now-unused foreground attribute helper is removed.
+
+Proof: [placeholder and typed text](one-linux-native-input-baseline-colors.webp),
+[caret detail](one-linux-native-input-caret-detail.webp). The same string's
+glyphs occupy rows 255 through 272 in both raw captures. A moved baseline or
+a caret that ignores selection color would disprove the claim. RAN: incremental
+release host build, Linux bundle, Hermes bytecode, real key events and pixel
+inspection. No automated tests were added.
 
 **Next:** `Image` `blurRadius`,
 `defaultSource`, the

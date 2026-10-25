@@ -20,7 +20,6 @@ PangoLayout *OneLinuxCreateLayout(
 
 // The font and color of an editable field's text as one attribute list for
 // GtkText, covering the whole text. The caller owns the returned list.
-PangoAttrList *OneLinuxCreateFieldAttributes(const TextAttributes &attributes);
 // the same font and the color as CSS for the node `selector` names, for a
 // GtkTextView, which takes no attribute list
 std::string OneLinuxCreateFieldFontCss(const TextAttributes &attributes, const char *selector = "text");

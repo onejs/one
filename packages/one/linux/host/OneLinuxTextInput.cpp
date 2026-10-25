@@ -60,9 +60,11 @@ OneLinuxTextInput::OneLinuxTextInput(Tag tag) : tag_(tag)
   gtk_stack_set_vhomogeneous(GTK_STACK(stack_), FALSE);
 
   text_ = gtk_text_new();
+  gtk_text_set_placeholder_text(GTK_TEXT(text_), "");
   fontStyle_ = gtk_css_provider_new();
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   gtk_style_context_add_provider(gtk_widget_get_style_context(text_), GTK_STYLE_PROVIDER(fontStyle_), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+  gtk_style_context_add_provider(gtk_widget_get_style_context(gtk_widget_get_first_child(text_)), GTK_STYLE_PROVIDER(fontStyle_), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
   G_GNUC_END_IGNORE_DEPRECATIONS
   // the field takes whatever width its view gives it
   gtk_editable_set_width_chars(GTK_EDITABLE(text_), 1);
@@ -310,11 +312,14 @@ void OneLinuxTextInput::update(
     gtk_text_set_placeholder_text(GTK_TEXT(text_), textProps.placeholder.empty() ? nullptr : textProps.placeholder.c_str());
 
     auto attributes = textProps.getEffectiveTextAttributes(1);
-    std::string fieldCss = OneLinuxCreateFieldFontCss(attributes) + OneLinuxCreateColorCss(textProps.selectionColor, 1, "text selection", "background-color");
+    // gtk_text_set_attributes copies its foreground onto the placeholder and
+    // overrides CSS. keep color in CSS so each node has its own foreground.
+    std::string fieldCss = OneLinuxCreateFieldFontCss(attributes) + OneLinuxCreateFieldColorCss(attributes, "text") +
+        OneLinuxCreateColorCss(textProps.placeholderTextColor, 1, "placeholder", "color") +
+        (textProps.placeholderTextColor ? "placeholder { opacity: 1; }" : "") +
+        OneLinuxCreateColorCss(textProps.selectionColor, 1, "text", "caret-color") +
+        OneLinuxCreateColorCss(textProps.selectionColor, 1, "text selection", "background-color");
     gtk_css_provider_load_from_string(fontStyle_, fieldCss.c_str());
-    PangoAttrList *list = OneLinuxCreateFieldAttributes(attributes);
-    gtk_text_set_attributes(GTK_TEXT(text_), list);
-    pango_attr_list_unref(list);
     float alignment = 0;
     if (attributes.alignment) {
       alignment = *attributes.alignment == TextAlignment::Center ? 0.5f : *attributes.alignment == TextAlignment::Right ? 1.0f : 0.0f;
@@ -332,6 +337,7 @@ void OneLinuxTextInput::update(
         OneLinuxCreateFieldColorCss(attributes, "textview text") +
         OneLinuxCreateColorCss(textProps.placeholderTextColor, 1, "label", "color") +
         (textProps.placeholderTextColor ? "label { opacity: 1; }" : "label { opacity: 0.5; }") +
+        OneLinuxCreateColorCss(textProps.selectionColor, 1, "textview text", "caret-color") +
         OneLinuxCreateColorCss(textProps.selectionColor, 1, "textview text selection", "background-color");
     gtk_css_provider_load_from_string(viewStyle_, css.c_str());
     updatePlaceholder();
