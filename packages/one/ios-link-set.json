@@ -1,0 +1,196 @@
+{
+  "groups": {
+    "wallet": {
+      "frameworks": [
+        "PassKit"
+      ],
+      "components": [
+        "OneNativePayWithApplePayButton",
+        "OneNativeAddPassToWalletButton"
+      ],
+      "hybrids": [],
+      "modifiers": [
+        "addPassToWalletButtonStyle",
+        "onApplePayCouponCodeChange",
+        "onApplePayPaymentMethodChange",
+        "onApplePayShippingContactChange",
+        "onApplePayShippingMethodChange",
+        "payLaterViewAction",
+        "payLaterViewDisplayStyle",
+        "payWithApplePayButtonDisableCardArt",
+        "payWithApplePayButtonStyle",
+        "verifyIdentityWithWalletButtonStyle"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "store": {
+      "frameworks": [
+        "StoreKit"
+      ],
+      "components": [
+        "OneNativeProductView",
+        "OneNativeStoreView",
+        "OneNativeSubscriptionStoreView"
+      ],
+      "hybrids": [
+        "OnePurchases",
+        "OneStoreReview"
+      ],
+      "uses": [
+        "Purchases",
+        "StoreReview"
+      ],
+      "modifiers": [
+        "appStoreMerchandising",
+        "appStoreOverlayWithAppClipConfiguration",
+        "appStoreOverlayWithAppConfiguration",
+        "currentEntitlementTask",
+        "inAppPurchaseOptions",
+        "manageSubscriptionsSheet",
+        "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID",
+        "offerCodeRedemption",
+        "onInAppPurchaseCompletion",
+        "onInAppPurchaseStart",
+        "preferredSubscriptionOffer",
+        "preferredSubscriptionPricingTerms",
+        "productDescription",
+        "productIconBorder",
+        "productViewStyle",
+        "refundRequestSheet",
+        "storeButton",
+        "storeProductTask",
+        "storeProductsTask",
+        "subscriptionIntroductoryOffer",
+        "subscriptionOfferViewButtonVisibility",
+        "subscriptionOfferViewDetailAction",
+        "subscriptionOfferViewStyle",
+        "subscriptionPromotionalOffer",
+        "subscriptionStatusTask",
+        "subscriptionStoreButtonLabel",
+        "subscriptionStoreControlBackground",
+        "subscriptionStoreControlStyle",
+        "subscriptionStoreOptionGroupStyle",
+        "subscriptionStorePickerItemBackground",
+        "subscriptionStorePolicyDestination",
+        "subscriptionStorePolicyForegroundStyle",
+        "subscriptionStoreSignInAction"
+      ],
+      "slots": [
+        "subscriptionStoreControlIcon",
+        "subscriptionStorePolicyDestination"
+      ],
+      "values": [
+        "subscriptionStore",
+        "subscriptionStoreFullHeight",
+        "subscriptionStoreHeader"
+      ]
+    },
+    "account": {
+      "frameworks": [
+        "AuthenticationServices",
+        "SafariServices"
+      ],
+      "components": [
+        "OneNativeSignInWithAppleButton"
+      ],
+      "hybrids": [
+        "OneAppleAuth",
+        "OneBrowser"
+      ],
+      "uses": [
+        "Auth",
+        "Browser"
+      ],
+      "modifiers": [
+        "signInWithAppleButtonStyle"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "messaging": {
+      "frameworks": [
+        "MessageUI"
+      ],
+      "components": [],
+      "hybrids": [
+        "OneMailCompose",
+        "OneMessageCompose"
+      ],
+      "uses": [
+        "MFMailComposeViewController",
+        "MFMessageComposeViewController"
+      ],
+      "modifiers": [],
+      "slots": [],
+      "values": []
+    },
+    "photos": {
+      "frameworks": [
+        "PhotosUI"
+      ],
+      "components": [
+        "OneNativePhotosPicker",
+        "OneNativeLivePhotoView"
+      ],
+      "hybrids": [
+        "OneImagePicker"
+      ],
+      "uses": [
+        "ImagePicker",
+        "presentLimitedLibraryPicker"
+      ],
+      "modifiers": [
+        "photosPicker",
+        "photosPickerAccessoryVisibility",
+        "photosPickerDisabledCapabilities",
+        "photosPickerMetadataOptions",
+        "photosPickerSearchText",
+        "photosPickerStyle",
+        "photosReferenceImageViewer",
+        "photosSharedAlbumCreationSheet",
+        "photosSharedAlbumCustomizationSheet",
+        "photosSharedAlbumPostingSheet",
+        "postToPhotosSharedAlbumSheet"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "charts": {
+      "frameworks": [
+        "Charts"
+      ],
+      "components": [
+        "OneNativeChart"
+      ],
+      "hybrids": [],
+      "modifiers": [],
+      "slots": [],
+      "values": []
+    },
+    "preview3d": {
+      "frameworks": [
+        "QuickLook",
+        "RealityKit",
+        "RealityFoundation",
+        "MusicKit"
+      ],
+      "components": [
+        "OneNativeQuickLook"
+      ],
+      "hybrids": [],
+      "modifiers": [
+        "environmentRealityViewCameraControls",
+        "musicPickerWithMusicVideo",
+        "musicPickerWithSong",
+        "musicPickerWithTrack",
+        "musicSubscriptionOffer",
+        "quickLookPreview",
+        "realityViewCameraControls",
+        "realityViewLayoutBehavior"
+      ],
+      "slots": [],
+      "values": []
+    }
+  }
+}

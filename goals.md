@@ -1,3 +1,28 @@
+# One 2.10.0 release
+
+Add the experimental native macOS target as one minor release. The complete feature stays on `tm/macos-resume`, in PR #1027, for owner review before merging or stable publication. Package versions are prepared at 2.10.0; this does not publish them. The previous iOS release record below remains intact.
+
+## Included
+
+- An AppKit and Fabric host using the installed React Native core and Hermes, with Mac-specific resolution and build files inside the existing One package.
+- Native text, composition-aware input, scrolling, images, pointer and accessibility events, animation updates and runtime teardown repairs.
+- HTTP, Blob and FileReader, WebSocket, SQLite and native idle callbacks used by a shared application.
+- AppKit buttons with bordered and borderless presentation, segmented controls with native control roles, SF Symbol images, semantic system colors, explicit line-height alignment and linear backgrounds.
+- Typed application menus, keyboard commands and optional per-window toolbars, with independent window routing and hidden-subtree accessibility and focus handling.
+- Native bundle module scoping and a shared One entry whose imports remain valid under platform suffix resolution.
+
+## Validation and release review
+
+Incremental native fixture builds and running probes cover animation without React rerenders, input composition and undo, transport errors and cancellation, native controls, inactive accessibility, menus, appearance, resize and reload. The shared Team Machine app has loaded live rows and transcripts, retained per-session drafts and switched native filters. The combined application passes inactive native menu actions, repeated light/dark draft appearance changes, exact draft restoration after switching sessions, native feed filters and corrected sidebar metadata layout. Related Tamagui native theme and config fixes are reviewed in PR #4378.
+
+The latest runtime candidate is `aa1caa54bb4ec13e24bdcae104d08bbef8303aa2`, published as `2.0.0-0.canary.1792805921308` by release run 40050679650. Packed One, vxrn and compiler manifests identify this source and match registry integrity. All 96 packaged Mac native source files match the consumer installation. Its retained incremental TeamMachineOne Debug build recompiles the base component view and passes; a production JavaScript bundle runs in the real inactive native window. Light and dark image previews keep rounded parent clipping without repeating the radius on the child image. Own-session drafts survive document replacement and return, cleared drafts remain empty, and native feed filters and sidebar toggles restore. The consumer is landed on Team Machine main through `4258a98c36adf5628f7e7c943b0007164791b6c3`; its later minimap accessibility correction is `4361983f17def1dbb8ac0086397d412729895e27`.
+
+Independent reviews cover the native animation and teardown repairs, HTTP and Blob lifetime, input composition and undo, semantic text appearance, symbol point sizing, per-window toolbar identity, accessibility and rounded clipping. The real consumer uses published One and Babel-free Tamagui canaries in its isolated Mac dependency root. Focused Mac typechecking retains three existing GPUI missing-export diagnostics. This establishes neither a native Release build nor a fresh cross-platform runtime comparison. Owner review of the prepared feature is the next step; stable publication requires explicit approval.
+
+No fresh cross-platform binary size or performance comparison is claimed. Reanimated, radial or repeating gradients, gradient transition hints, DynamicColorIOS, multipart or URI request bodies and Blob WebSocket sends remain unsupported. Split view renders its slot only. High contrast, global accent changes and foreground-only interactions were not exercised.
+
+---
+
 # One 2.9.0 release
 
 Ship the generated iOS SDK and native interface work as one minor release. PR #961 is merged; stable publication is paused while the SDK coverage followup is completed.

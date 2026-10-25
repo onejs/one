@@ -1,4 +1,4 @@
-import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { mkdir, mkdtemp, rm, symlink, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -6,6 +6,7 @@ import { runInNewContext } from 'node:vm'
 import { rolldown } from 'rolldown'
 import { resolveConfig, type Plugin } from 'vite'
 import { describe, expect, test } from 'vitest'
+import type { createNativeDevEngine } from '../../../vxrn/src/utils/createNativeDevEngine'
 import type { NativeAppManifest } from '../native/appManifest'
 import { one } from './one'
 
@@ -158,3 +159,60 @@ test.each(['serve', 'build'] as const)(
     }
   }
 )
+
+test('macos rejects a package with only mobile and web implementations at bundle time', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'one-macos-platform-import-'))
+  const fixture = fileURLToPath(
+    new URL('../../../../tests/native-features', import.meta.url)
+  )
+  const originalCwd = process.cwd()
+  const originalPlugins = globalThis.__vxrnAddNativePlugins
+  let native: Awaited<ReturnType<typeof createNativeDevEngine>> | undefined
+  try {
+    const pkg = join(root, 'node_modules/expo-ghostty')
+    await mkdir(pkg, { recursive: true })
+    await symlink(
+      fileURLToPath(new URL('../../', import.meta.url)),
+      join(root, 'node_modules/one')
+    )
+    await writeFile(
+      join(pkg, 'package.json'),
+      JSON.stringify({ name: 'expo-ghostty', main: 'index.js' })
+    )
+    await writeFile(join(pkg, 'index.js'), "export { default } from './GhosttyView'")
+    for (const platform of ['ios', 'android', 'web']) {
+      await writeFile(
+        join(pkg, `GhosttyView.${platform}.js`),
+        `export default '${platform}'`
+      )
+    }
+    process.chdir(fixture)
+    await one({ native: { app: { name: 'ProbeApp' } } })
+    process.chdir(originalCwd)
+    const { createNativeDevEngine } =
+      await import('../../../vxrn/src/utils/createNativeDevEngine')
+    native = await createNativeDevEngine({
+      root,
+      platform: 'macos',
+      port: 0,
+      plugins: [
+        {
+          name: 'macos-platform-import-fixture',
+          transform(_code, id) {
+            if (id.endsWith('/__virtual-native-entry.tsx')) {
+              return "import GhosttyView from 'expo-ghostty'; globalThis.ghostty = GhosttyView"
+            }
+          },
+        },
+      ],
+    })
+    await expect(native.getBundle()).rejects.toThrow(
+      /expo-ghostty\/GhosttyView has no macOS implementation: cannot resolve import "\.\/GhosttyView"/
+    )
+  } finally {
+    await native?.close()
+    process.chdir(originalCwd)
+    globalThis.__vxrnAddNativePlugins = originalPlugins
+    await rm(root, { recursive: true, force: true })
+  }
+})

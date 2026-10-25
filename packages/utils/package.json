@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/utils",
-  "version": "2.9.0",
+  "version": "2.10.0",
   "sideEffects": false,
   "type": "module",
   "types": "./types/index.d.ts",
@@ -23,6 +23,11 @@
       "types": "./types/platformEnv.d.ts",
       "import": "./dist/esm/platformEnv.mjs",
       "require": "./dist/cjs/platformEnv.cjs"
+    },
+    "./desktopReactNativeResolve": {
+      "types": "./types/desktopReactNativeResolve.d.ts",
+      "import": "./dist/esm/desktopReactNativeResolve.mjs",
+      "require": "./dist/cjs/desktopReactNativeResolve.cjs"
     },
     "./empty": {
       "import": "./empty.js",

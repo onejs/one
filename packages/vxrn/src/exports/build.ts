@@ -77,14 +77,19 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
   const outDir = userViteConfig?.build?.outDir ?? 'dist'
 
-  const isNativeBuild = buildArgs.platform === 'ios' || buildArgs.platform === 'android'
+  const platform = buildArgs.platform
+  const isNativeBuild =
+    platform === 'ios' ||
+    platform === 'android' ||
+    platform === 'macos' ||
+    platform === 'linux'
 
   // generation reuses client assets and their manifest, but rebuilds the server
   const cleanDir =
     buildArgs.step === 'generate' && !isNativeBuild ? `${outDir}/server` : outDir
   await rm(cleanDir, { recursive: true, force: true })
 
-  if (buildArgs.platform === 'ios' || buildArgs.platform === 'android') {
+  if (isNativeBuild) {
     const { buildBundle } = await import('../rn-commands/bundle/buildBundle')
 
     return buildBundle(
@@ -94,8 +99,9 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       // default (./src/entry-native.tsx) exists only in plain vxrn apps.
       { root: options.root, vxrnEntries: optionsIn.entries },
       {
-        platform: buildArgs.platform,
-        bundleOutput: `${outDir}${sep}${buildArgs.platform}.js`,
+        platform,
+        bundleOutput: `${outDir}${sep}${platform}.js`,
+        // every native build emits imported assets beside its bundle
         assetsDest: outDir,
         dev: false,
         entryFile: '',

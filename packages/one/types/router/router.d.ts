@@ -117,6 +117,12 @@ export type PreloadEntry = {
 export declare function getPreloadHistory(): PreloadEntry[];
 export declare function preloadRoute(href: string, injectCSS?: boolean): Promise<any> | undefined;
 /**
+ * The key loader data is stored under, as useLoader keys it: the pathname with
+ * trailing slash and /index removed. An ssr route's loader reads the query, so its
+ * key keeps the query (hash removed). Other routes drop it.
+ */
+export declare function normalizeLoaderPath(href: string): string;
+/**
  * Initialize client matches from server context during hydration.
  * Called from createApp when hydrating.
  */

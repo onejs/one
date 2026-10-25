@@ -55,6 +55,7 @@
 #include "HybridOneSecureStoreSpecSwift.hpp"
 #include "HybridOneSpeechSpecSwift.hpp"
 #include "HybridOneSpeechSynthesisSpecSwift.hpp"
+#include "HybridOneStoreReviewSpecSwift.hpp"
 #include "HybridOneUpdatesSpecSwift.hpp"
 #include "One-Swift-Cxx-Umbrella.hpp"
 #include <NitroModules/NitroDefines.hpp>
@@ -1595,6 +1596,22 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneSpeechSynthesisSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneStoreReviewSpec>
+  std::shared_ptr<HybridOneStoreReviewSpec> create_std__shared_ptr_HybridOneStoreReviewSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneStoreReviewSpec_cxx swiftPart = One::HybridOneStoreReviewSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneStoreReviewSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneStoreReviewSpec_(std__shared_ptr_HybridOneStoreReviewSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneStoreReviewSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneStoreReviewSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneStoreReviewSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneStoreReviewSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   
