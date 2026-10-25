@@ -11,6 +11,14 @@ export type SliderProps = Omit<ViewProps, 'children'> & {
         value: number;
         revision: number;
     }) => void;
+    onSlidingStart?: (event: {
+        value: number;
+        revision: number;
+    }) => void;
+    onSlidingComplete?: (event: {
+        value: number;
+        revision: number;
+    }) => void;
 };
-export declare function Slider({ value, minimumValue, maximumValue, step, revision, onValueChange, style, ...props }: SliderProps): import("react").JSX.Element;
+export declare function Slider({ value, minimumValue, maximumValue, step, revision, onValueChange, onSlidingStart, onSlidingComplete, style, ...props }: SliderProps): import("react").JSX.Element;
 //# sourceMappingURL=Slider.linux.d.ts.map

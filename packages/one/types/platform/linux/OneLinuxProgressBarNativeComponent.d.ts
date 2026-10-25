@@ -7,6 +7,7 @@ export type ChangeEvent = Readonly<{
 }>;
 interface NativeProps extends ViewProps {
     value: Double;
+    indeterminate: boolean;
     disabled?: boolean;
     revision: Int32;
     acknowledgedEvent: Int32;

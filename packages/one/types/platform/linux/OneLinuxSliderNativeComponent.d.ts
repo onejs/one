@@ -5,6 +5,10 @@ export type ChangeEvent = Readonly<{
     revision: Int32;
     eventCount: Int32;
 }>;
+type SlidingEvent = Readonly<{
+    value: Double;
+    revision: Int32;
+}>;
 interface NativeProps extends ViewProps {
     value: Double;
     minimumValue: Double;
@@ -14,6 +18,8 @@ interface NativeProps extends ViewProps {
     revision: Int32;
     acknowledgedEvent: Int32;
     onControlChange?: DirectEventHandler<ChangeEvent>;
+    onSlidingStart?: DirectEventHandler<SlidingEvent>;
+    onSlidingComplete?: DirectEventHandler<SlidingEvent>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
 export default _default;

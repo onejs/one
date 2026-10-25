@@ -1,4 +1,5 @@
-export type SwitchProps = {
+import type { ViewProps } from 'react-native';
+export type SwitchProps = Omit<ViewProps, 'children'> & {
     isOn: boolean;
     revision?: number;
     onIsOnChange?: (event: {
@@ -6,5 +7,5 @@ export type SwitchProps = {
         revision: number;
     }) => void;
 };
-export declare function Switch({ isOn, revision, onIsOnChange }: SwitchProps): import("react").JSX.Element;
+export declare function Switch({ isOn, revision, onIsOnChange, ...props }: SwitchProps): import("react").JSX.Element;
 //# sourceMappingURL=Switch.linux.d.ts.map
