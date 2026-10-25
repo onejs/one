@@ -21,9 +21,10 @@ export type LoaderProps<
 } & ([SearchParams] extends [object]
   ? {
       /**
-       * The query, validated by the schemas components under this route pass to
-       * `useSearchParams(schema)`. Present on document requests of `ssr` routes, absent
-       * for loader requests made by client navigation, and for ssg and spa routes.
+       * the query, validated by the schemas components under this route pass to
+       * `useSearchParams(schema)`. Present on ssr document and query-aware client
+       * loader requests, absent for build-time ssg and spa loaders. Native production
+       * initial loads use static data; refetch requests carry the query.
        */
       searchParams?: SearchParams
     }
