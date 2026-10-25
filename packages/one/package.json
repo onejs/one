@@ -37,6 +37,29 @@
       "import": "./dist/esm/ui/index.mjs",
       "require": "./dist/cjs/ui/index.cjs"
     },
+    "./dom": {
+      "react-native": {
+        "types": "./types/dom/index.d.ts",
+        "default": "./dist/esm/dom/index.native.js"
+      },
+      "types": "./types/dom/index.d.ts",
+      "import": "./dist/esm/dom/index.mjs",
+      "require": "./dist/cjs/dom/index.cjs"
+    },
+    "./dom/native": {
+      "react-native": {
+        "types": "./types/dom/host.native.d.ts",
+        "default": "./dist/esm/dom/host.native.js"
+      },
+      "types": "./types/dom/host.native.d.ts",
+      "import": "./dist/esm/dom/host.native.js",
+      "require": "./dist/cjs/dom/host.native.cjs"
+    },
+    "./dom/client": {
+      "types": "./types/dom/client.d.ts",
+      "import": "./dist/esm/dom/client.mjs",
+      "require": "./dist/cjs/dom/client.cjs"
+    },
     "./ios/*": {
       "types": "./ios-types/*.d.ts",
       "react-native": "./dist/esm/ios/*.native.js"
@@ -453,6 +476,7 @@
     "ios": {
       "componentProvider": {
         "OneNativePager": "OneNativePagerComponentView",
+        "OneDOMHost": "OneDOMHostComponentView",
         "OneSwiftHost": "OneSwiftHostComponentView",
         "OneNativeArrangementView": "OneNativeArrangementViewComponentView",
         "OneNativeArrangementSlot": "OneNativeArrangementSlotComponentView",

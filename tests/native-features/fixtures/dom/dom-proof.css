@@ -1,0 +1,21 @@
+@font-face {
+  font-family: OneDOMProof;
+  src: url('../../assets/OneNativeTestFont-BlockA.ttf') format('truetype');
+}
+
+.one-dom-proof {
+  box-sizing: border-box;
+  padding: 12px;
+  color: #172033;
+  background: #eef3fb;
+  font: 14px system-ui, sans-serif;
+}
+
+.one-dom-proof h2 { margin: 0 0 8px; font-size: 17px; }
+.one-dom-proof label { display: grid; gap: 4px; }
+.one-dom-proof input { min-height: 32px; font: inherit; }
+.one-dom-proof .actions { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.one-dom-proof button { padding: 8px; font: inherit; }
+.one-dom-proof output { display: block; min-height: 20px; }
+.one-dom-proof .assets { display: flex; align-items: center; gap: 12px; }
+.one-dom-proof .font-sample { font: 20px OneDOMProof; }

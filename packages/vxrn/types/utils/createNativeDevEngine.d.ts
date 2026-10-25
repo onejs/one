@@ -13,6 +13,8 @@ export interface NativePluginContext {
     root: string;
     platform: 'ios' | 'android';
     dev: boolean;
+    command?: 'serve' | 'build';
+    assetsDest?: string;
 }
 interface NativeDevEngineOptions {
     root: string;

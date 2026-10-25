@@ -19,3 +19,5 @@ Native owns main-frame and origin checks, action/navigation policy, selected imm
 The browser HTML provides `#one-dom-root` with natural height, `display:flow-root`, `width:100%`, `min-width:0` and body margin zero. ResizeObserver schedules one measurement per animation frame; rounded finite sizes suppress unchanged reports. Browser disposal removes its sole transport subscription, global listeners, observer and animation frame.
 
 The focused JavaScript probes cover serialization, callbacks, document races and React commit ordering with a simulated host. Native transport, owned resource loading, navigation checks, device layout/keyboard behavior and performance require independent native and device validation.
+
+The native host source is `host.native.tsx`; `one/dom/native` selects its native build. A bare `native.tsx` filename collides with the package builder platform suffix recognition and loses its ESM output.

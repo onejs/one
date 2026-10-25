@@ -10,6 +10,7 @@ export const frameworks = ['PhotosUI', 'WebKit', 'PassKit'] as const
 // native hosts with handwritten Fabric specs live outside SDK view generation.
 export const handwrittenComponents = [
   'OneNativePager',
+  'OneDOMHost',
   'OneSwiftHost',
   'OneNativeArrangementView',
   'OneNativeArrangementSlot',
@@ -113,7 +114,11 @@ export const menuRoot = {
     { label: 'disabled', prop: 'disabled', type: 'boolean' },
     { label: 'hasPrimaryAction', prop: 'hasPrimaryAction', type: 'boolean' },
     { label: 'menuOrder', prop: 'menuOrder', type: 'string' },
-    { label: 'menuActionDismissBehavior', prop: 'menuActionDismissBehavior', type: 'string' },
+    {
+      label: 'menuActionDismissBehavior',
+      prop: 'menuActionDismissBehavior',
+      type: 'string',
+    },
     { label: 'presentation', prop: 'presentation', type: 'string' },
     { label: 'acknowledgedEvent', prop: 'acknowledgedEvent', type: 'Int32' },
     { label: 'pickerAcknowledgedEvent', prop: 'pickerAcknowledgedEvent', type: 'Int32' },
@@ -221,7 +226,10 @@ export const navigationHost = {
         columns: 3,
         gated: false,
         parameters: [
-          { label: 'columnVisibility', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>' },
+          {
+            label: 'columnVisibility',
+            type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>',
+          },
           { label: 'sidebar', type: '() -> Sidebar' },
           { label: 'content', type: '() -> Content' },
           { label: 'detail', type: '() -> Detail' },
@@ -231,7 +239,10 @@ export const navigationHost = {
         columns: 2,
         gated: false,
         parameters: [
-          { label: 'columnVisibility', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>' },
+          {
+            label: 'columnVisibility',
+            type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>',
+          },
           { label: 'sidebar', type: '() -> Sidebar' },
           { label: 'detail', type: '() -> Detail' },
         ],
@@ -240,8 +251,14 @@ export const navigationHost = {
         columns: 3,
         gated: true,
         parameters: [
-          { label: 'columnVisibility', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>' },
-          { label: 'preferredCompactColumn', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewColumn>' },
+          {
+            label: 'columnVisibility',
+            type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>',
+          },
+          {
+            label: 'preferredCompactColumn',
+            type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewColumn>',
+          },
           { label: 'sidebar', type: '() -> Sidebar' },
           { label: 'content', type: '() -> Content' },
           { label: 'detail', type: '() -> Detail' },
@@ -251,8 +268,14 @@ export const navigationHost = {
         columns: 2,
         gated: true,
         parameters: [
-          { label: 'columnVisibility', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>' },
-          { label: 'preferredCompactColumn', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewColumn>' },
+          {
+            label: 'columnVisibility',
+            type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>',
+          },
+          {
+            label: 'preferredCompactColumn',
+            type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewColumn>',
+          },
           { label: 'sidebar', type: '() -> Sidebar' },
           { label: 'detail', type: '() -> Detail' },
         ],
@@ -270,9 +293,17 @@ export const navigationHost = {
     },
     configure: [
       { label: 'columnVisibility', prop: 'columnVisibility', type: 'string' },
-      { label: 'columnVisibilityIsControlled', prop: 'columnVisibilityIsControlled', type: 'boolean' },
+      {
+        label: 'columnVisibilityIsControlled',
+        prop: 'columnVisibilityIsControlled',
+        type: 'boolean',
+      },
       { label: 'preferredCompactColumn', prop: 'preferredCompactColumn', type: 'string' },
-      { label: 'preferredCompactColumnIsControlled', prop: 'preferredCompactColumnIsControlled', type: 'boolean' },
+      {
+        label: 'preferredCompactColumnIsControlled',
+        prop: 'preferredCompactColumnIsControlled',
+        type: 'boolean',
+      },
     ],
     column: {
       component: 'OneNativeNavigationSplitViewColumn',
@@ -345,7 +376,9 @@ export const tabViewHost = {
   modifiers: [
     {
       name: 'tabViewCustomization',
-      parameters: [{ label: '_', type: 'SwiftUICore.Binding<SwiftUI.TabViewCustomization>?' }],
+      parameters: [
+        { label: '_', type: 'SwiftUICore.Binding<SwiftUI.TabViewCustomization>?' },
+      ],
       requirements: [],
       ios: 18,
     },
@@ -408,8 +441,18 @@ export const tabViewHost = {
   // declares the placement pairs variadic (for placements: ...); the
   // extractor spells one `for`, which every call arity resolves to.
   tabContent: [
-    { name: 'badge', parameters: [{ label: '_', type: 'SwiftUICore.Text?' }], requirements: [], ios: 18 },
-    { name: 'hidden', parameters: [{ label: '_', type: 'Swift.Bool' }], requirements: [], ios: 18 },
+    {
+      name: 'badge',
+      parameters: [{ label: '_', type: 'SwiftUICore.Text?' }],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'hidden',
+      parameters: [{ label: '_', type: 'Swift.Bool' }],
+      requirements: [],
+      ios: 18,
+    },
     {
       name: 'accessibilityLabel',
       parameters: [
@@ -446,8 +489,18 @@ export const tabViewHost = {
       requirements: [],
       ios: 18,
     },
-    { name: 'disabled', parameters: [{ label: '_', type: 'Swift.Bool' }], requirements: [], ios: 18.4 },
-    { name: 'customizationID', parameters: [{ label: '_', type: 'Swift.String' }], requirements: [], ios: 18 },
+    {
+      name: 'disabled',
+      parameters: [{ label: '_', type: 'Swift.Bool' }],
+      requirements: [],
+      ios: 18.4,
+    },
+    {
+      name: 'customizationID',
+      parameters: [{ label: '_', type: 'Swift.String' }],
+      requirements: [],
+      ios: 18,
+    },
     {
       name: 'customizationBehavior',
       parameters: [
@@ -504,7 +557,13 @@ export const tabViewHost = {
     { member: 'titleOnly', type: 'SwiftUI.TitleOnlyLabelStyle', ios: 14 },
   ],
   placements: {
-    tabBar: { owner: 'ToolbarPlacement', member: 'tabBar', type: 'SwiftUI.ToolbarPlacement', ios: 16, floor: true },
+    tabBar: {
+      owner: 'ToolbarPlacement',
+      member: 'tabBar',
+      type: 'SwiftUI.ToolbarPlacement',
+      ios: 16,
+      floor: true,
+    },
     navigation: {
       owner: 'ContainerBackgroundPlacement',
       member: 'navigation',
@@ -993,7 +1052,12 @@ export const components = [
     publicName: 'List',
     host: {
       view: 'List',
-      selection: { label: 'selection', prop: 'selection', controlled: 'selectionIsControlled', event: 'onNativeListSelectionChange' },
+      selection: {
+        label: 'selection',
+        prop: 'selection',
+        controlled: 'selectionIsControlled',
+        event: 'onNativeListSelectionChange',
+      },
       types: { selection: 'Set<' },
       children: 'content',
       initial: { listStyle: '"automatic"' },
@@ -1276,7 +1340,11 @@ export const components = [
     publicName: 'DisclosureGroup',
     host: {
       view: 'DisclosureGroup',
-      binding: { label: 'isExpanded', prop: 'isExpanded', event: 'onNativeDisclosureGroupIsExpandedChange' },
+      binding: {
+        label: 'isExpanded',
+        prop: 'isExpanded',
+        event: 'onNativeDisclosureGroupIsExpandedChange',
+      },
       arguments: { label: 'label' },
       children: 'content',
       modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)'],
@@ -1506,7 +1574,11 @@ export const components = [
     publicName: 'Pager',
     host: {
       view: 'TabView',
-      binding: { label: 'selection', prop: 'selection', event: 'onNativePagerSelectionChange' },
+      binding: {
+        label: 'selection',
+        prop: 'selection',
+        event: 'onNativePagerSelectionChange',
+      },
       pages: {
         label: 'content',
         slot: 'OneNativeTab',

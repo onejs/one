@@ -9,6 +9,7 @@ module.exports = {
             .components.filter((component) => !component.interfaceOnly)
             .map((component) => `${component.name}ComponentDescriptor`),
           'OnePortalComponentDescriptor',
+          'OneDOMHostComponentDescriptor',
         ],
         packageImportPath: 'import dev.onejs.one.OnePackage;',
         packageInstance: 'new OnePackage()',
