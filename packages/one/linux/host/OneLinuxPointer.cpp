@@ -179,7 +179,7 @@ bool OneLinuxPointerHandler::localPoint(Tag tag, double x, double y, double &loc
   return true;
 }
 
-void OneLinuxPointerHandler::sendPointer(Tag tag, const char *type, double x, double y)
+void OneLinuxPointerHandler::sendPointer(Tag tag, const char *type, double x, double y, int button)
 {
   auto emitter = std::static_pointer_cast<const TouchEventEmitter>(emitterFor_(tag));
   if (!emitter) {
@@ -197,7 +197,11 @@ void OneLinuxPointerHandler::sendPointer(Tag tag, const char *type, double x, do
   event.width = 1;
   event.height = 1;
   event.buttons = touching_ ? 1 : 0;
-  event.button = -1;
+  event.button = button;
+  event.shiftKey = modifiers_ & GDK_SHIFT_MASK;
+  event.ctrlKey = modifiers_ & GDK_CONTROL_MASK;
+  event.altKey = modifiers_ & GDK_ALT_MASK;
+  event.metaKey = modifiers_ & GDK_META_MASK;
   event.isPrimary = true;
   event.timeStamp = HighResTimeStamp::now();
   if (!std::strcmp(type, "over")) {
@@ -206,8 +210,16 @@ void OneLinuxPointerHandler::sendPointer(Tag tag, const char *type, double x, do
     emitter->onPointerOut(std::move(event));
   } else if (!std::strcmp(type, "enter")) {
     emitter->onPointerEnter(std::move(event));
-  } else {
+  } else if (!std::strcmp(type, "leave")) {
     emitter->onPointerLeave(std::move(event));
+  } else if (!std::strcmp(type, "down")) {
+    emitter->onPointerDown(std::move(event));
+  } else if (!std::strcmp(type, "move")) {
+    emitter->onPointerMove(std::move(event));
+  } else if (!std::strcmp(type, "up")) {
+    emitter->onPointerUp(std::move(event));
+  } else if (!std::strcmp(type, "cancel")) {
+    emitter->onPointerCancel(std::move(event));
   }
 }
 
@@ -328,6 +340,7 @@ bool OneLinuxPointerHandler::handle(GdkEvent *event)
   }
   x = point.x;
   y = point.y;
+  modifiers_ = gdk_event_get_modifier_state(event);
 
   if (type == GDK_MOTION_NOTIFY || type == GDK_ENTER_NOTIFY || type == GDK_LEAVE_NOTIFY) {
     updateHover(x, y, type != GDK_LEAVE_NOTIFY);
@@ -341,15 +354,31 @@ bool OneLinuxPointerHandler::handle(GdkEvent *event)
     }
     touching_ = true;
     touchTarget_ = target.tag;
+    sendPointer(target.tag, "down", x, y, 0);
     send("start", x, y, true);
-  } else if (touching_ && type == GDK_MOTION_NOTIFY) {
-    send("move", x, y, true);
-  } else if (touching_ && type == GDK_BUTTON_RELEASE) {
+  } else if (type == GDK_MOTION_NOTIFY) {
+    if (!hover_.empty()) {
+      sendPointer(hover_.back().tag, "move", x, y);
+    }
+    if (touching_) {
+      send("move", x, y, true);
+    }
+  } else if (type == GDK_BUTTON_RELEASE) {
     touching_ = false;
-    send("end", x, y, false);
+    OneLinuxPointerTarget target{};
+    double localX = 0, localY = 0;
+    if (hitTest(surface_, x, y, target, localX, localY)) {
+      sendPointer(target.tag, "up", x, y, 0);
+    }
+    if (touchTarget_) {
+      send("end", x, y, false);
+      touchTarget_ = 0;
+    }
   } else if (touching_ && type == GDK_GRAB_BROKEN) {
     touching_ = false;
+    sendPointer(touchTarget_, "cancel", x, y);
     send("cancel", x, y, false);
+    touchTarget_ = 0;
   }
   return false;
 }

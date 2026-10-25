@@ -440,8 +440,8 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
   [scaled](one-linux-native-pointer-coords-scaled.png),
   [rotated](one-linux-native-pointer-coords-rotated.png),
   [nested](one-linux-native-pointer-coords-nested.png). The host sends no
-  `pointerdown`, `pointermove` or `pointerup` yet, only over, out, enter and
-  leave.
+  `pointerdown`, `pointermove` or `pointerup` at this point; these were added
+  in the pointer continuation below.
 - **Multiline `TextInput` (M2):** `multiline` shows a `GtkTextView` (in a
   scrolled window, word wrapped) instead of the `GtkText`; both live in a
   `GtkStack` the view owns, and the same controlled protocol, focus, key,
@@ -454,6 +454,24 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
   insert that fits; typing 21 characters into a 12 character field stops at 12:
   [window](one-linux-native-multiline-maxlength.png). `secureTextEntry` is not
   applied to the multiline field (iOS ignores it there too).
+
+**M2 pointer continuation, 2026-10-24.** TESTED on studio-64's Ubuntu arm64
+Lima VM with the release host, embedded bytecode, headless sway and a uinput
+mouse: `onPointerDown`, `onPointerMove` and `onPointerUp` now use RN's own
+`TouchEventEmitter` pointer path, alongside its existing touch path. Move
+coalescing and listener dispatch remain in RN. Mouse down/up report `button: 0`;
+move reports `button: -1`; buttons and pressure follow the primary button, and
+keyboard modifiers come from GDK. A broken grab also sends pointer cancel.
+The target is hit tested on each mouse event; local offsets still go through
+`localPoint`, including transforms and scroll offsets.
+
+The demo's drag region reports three real uinput moves, then up at local
+`206,46`, `buttons: 0`, `button: 0`:
+[drag](one-linux-native-drag.webp). The observation would be disproved by a
+missing move, a release with buttons still set, or offsets in window space.
+RAN: the incremental release host build, the Linux bundle and Hermes bytecode.
+No automated tests were added. The primary mouse button remains the supported
+press source; secondary buttons and touchscreen sequences remain unimplemented.
 
 **Next:** `Image` `blurRadius`,
 `defaultSource`, the

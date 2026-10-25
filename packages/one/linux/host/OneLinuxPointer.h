@@ -20,13 +20,8 @@ struct OneLinuxPointerTarget {
   Cursor cursor;
 };
 
-// Feeds the primary mouse button to React Native's own touch events, the same
-// path the Mac host uses (a TouchEventEmitter on the view under the pointer),
-// so Pressable and the responder system work unchanged. Hit testing walks the
-// OneView tree by React's frames, deepest and last sibling first. Moving the
-// mouse also sends W3C pointer over, out, enter and leave to the views that
-// listen, which is what Pressable's hover callbacks read, and applies the
-// `cursor` style of the view under the pointer.
+// feeds mouse input through react native's touch and pointer event paths.
+// hit testing walks the mounted frames, transforms and scroll offsets.
 class OneLinuxPointerHandler {
  public:
   using Describe = std::function<bool(OneView *, OneLinuxPointerTarget &)>;
@@ -44,7 +39,7 @@ class OneLinuxPointerHandler {
   bool localPoint(Tag tag, double x, double y, double &localX, double &localY);
   void send(const char *phase, double x, double y, bool stillDown);
   void updateHover(double x, double y, bool inside);
-  void sendPointer(Tag tag, const char *type, double x, double y);
+  void sendPointer(Tag tag, const char *type, double x, double y, int button = -1);
 
   OneView *surface_;
   GtkEventController *controller_;
@@ -62,6 +57,7 @@ class OneLinuxPointerHandler {
 
   bool touching_{false};
   Tag touchTarget_{0};
+  GdkModifierType modifiers_{};
 };
 
 } // namespace facebook::react

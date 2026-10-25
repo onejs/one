@@ -15,6 +15,25 @@ export default function Index() {
   const [boxPress, setBoxPress] = useState('')
   const [touchCoords, setTouchCoords] = useState('')
   const [pointerCoords, setPointerCoords] = useState('')
+  const [drag, setDrag] = useState({
+    phase: 'ready',
+    moves: 0,
+    x: 0,
+    y: 0,
+    buttons: 0,
+    button: -1,
+  })
+  const readDrag = (phase: string, event: any) => {
+    const { offsetX, offsetY, buttons, button } = event.nativeEvent
+    setDrag((last) => ({
+      phase,
+      moves: phase === 'down' ? 0 : last.moves + (phase === 'move' ? 1 : 0),
+      x: round(offsetX),
+      y: round(offsetY),
+      buttons,
+      button,
+    }))
+  }
   const [images, setImages] = useState<Record<string, string>>({})
   const report = (key: string, value: string) => setImages((state) => ({ ...state, [key]: value }))
   const remote = { uri: 'http://127.0.0.1:8123/swatch.png' }
@@ -114,6 +133,28 @@ export default function Index() {
           </View>
         ))}
       </ScrollView>
+      <View
+        onPointerDown={(event) => readDrag('down', event)}
+        onPointerMove={(event) => {
+          if (event.nativeEvent.buttons) readDrag('move', event)
+        }}
+        onPointerUp={(event) => readDrag('up', event)}
+        style={{
+          height: 70,
+          marginTop: 12,
+          padding: 12,
+          backgroundColor: '#d9e8f6',
+          borderRadius: 8,
+        }}
+      >
+        <Text pointerEvents="none" style={{ fontSize: 16, color: '#1f1d1a' }}>
+          Drag here
+        </Text>
+        <Text
+          pointerEvents="none"
+          style={{ fontSize: 14, color: '#1f1d1a' }}
+        >{`${drag.phase}: ${drag.moves} moves, local ${drag.x},${drag.y}, buttons ${drag.buttons}, button ${drag.button}`}</Text>
+      </View>
       </View>
       <View style={{ marginLeft: 48 }}>
         <Text style={{ fontSize: 20, fontWeight: '700', color: '#1f1d1a' }}>images</Text>
