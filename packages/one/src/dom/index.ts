@@ -3,6 +3,7 @@ import {
   useImperativeHandle,
   useLayoutEffect,
   useMemo,
+  useState,
   type DependencyList,
   type Ref,
 } from 'react'
@@ -30,26 +31,40 @@ export function useDOMImperativeHandle<
   T extends { [K in keyof T]: (...args: any[]) => Promise<DOMValue | void> },
 >(ref: Ref<T> | undefined, factory: () => T, deps: DependencyList) {
   const bridge = useContext(DOMBridgeContext)
+  const [lifetime] = useState(() => ({
+    live: false,
+    methods: null as DOMImperativeHandle | null,
+    pending: new Set<(error: Error) => void>(),
+  }))
   const binding = useMemo(() => {
     const methods = factory()
     const wrapped: DOMImperativeHandle = Object.create(null)
-    const lifetime = { live: false, pending: new Set<(error: Error) => void>() }
     for (const name of Object.keys(methods)) {
-      const method = (methods as DOMImperativeHandle)[name]
-      if (typeof method !== 'function' || name === 'then') {
+      if (
+        typeof (methods as DOMImperativeHandle)[name] !== 'function' ||
+        name === 'then'
+      ) {
         throw new DOMBridgeError(`Invalid DOM imperative method ${name}`)
       }
       wrapped[name] = (...args) =>
         new Promise((resolve, reject) => {
           if (!lifetime.live)
             throw new DOMBridgeError('DOM handle is disposed', 'DOM_DISPOSED')
+          const committed = lifetime.methods
+          if (!committed || !Object.hasOwn(committed, name)) {
+            throw new DOMBridgeError(
+              `DOM method ${name} is unavailable`,
+              'DOM_METHOD_UNAVAILABLE'
+            )
+          }
+          const method = committed[name]
           const input = serializeData(args, 'arguments') as DOMValue[]
           lifetime.pending.add(reject)
           void Promise.resolve()
             .then(() => {
               if (!lifetime.live)
                 throw new DOMBridgeError('DOM handle is disposed', 'DOM_DISPOSED')
-              return method.apply(methods, input)
+              return method.apply(committed, input)
             })
             .then(
               (result) => {
@@ -73,19 +88,22 @@ export function useDOMImperativeHandle<
             )
         })
     }
-    return { wrapped: wrapped as T, lifetime }
+    return { wrapped: wrapped as T, methods: methods as DOMImperativeHandle }
   }, deps)
 
   useLayoutEffect(() => {
-    binding.lifetime.live = true
-    const unregister = bridge?.setHandle(binding.wrapped)
+    lifetime.live = true
     return () => {
-      binding.lifetime.live = false
-      for (const reject of binding.lifetime.pending)
+      lifetime.live = false
+      lifetime.methods = null
+      for (const reject of lifetime.pending)
         reject(new DOMBridgeError('DOM handle is disposed', 'DOM_DISPOSED'))
-      binding.lifetime.pending.clear()
-      unregister?.()
+      lifetime.pending.clear()
     }
-  }, [bridge, binding])
+  }, [bridge, lifetime])
+  useLayoutEffect(() => {
+    lifetime.methods = binding.methods
+    return bridge?.setHandle(binding.wrapped)
+  }, [bridge, binding, lifetime])
   useImperativeHandle(ref, () => binding.wrapped, [binding])
 }
