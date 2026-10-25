@@ -130,11 +130,6 @@ export function useDOMPlugin(options: UseDOMOptions): Plugin {
     },
     configResolved(resolved) {
       config = resolved
-      if (options.metro) {
-        config.logger.warn(
-          '[one/use-dom] One DOM components require native.bundler: "vite"; "use dom" is unsupported in Metro'
-        )
-      }
       // keep application browser plugins (including CSS preprocessors), while
       // excluding Vite internals and One's router/native build orchestration.
       browserPlugins = [

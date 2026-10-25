@@ -16,6 +16,7 @@ import {
 import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
 
 import { substituteExpoVirtualEnvSource } from './expoVirtualEnv'
+import { rejectDOMDirective } from './rejectDOMDirective'
 import { getPlatformEnv, metroPlatformToViteEnvironment } from '@vxrn/utils/platformEnv'
 
 /**
@@ -153,7 +154,7 @@ export type WrapModuleOptions = {
 
 // bump whenever this worker's output changes, or metro serves cached modules
 // transformed by the previous version.
-const WORKER_CACHE_KEY_VERSION = '6'
+const WORKER_CACHE_KEY_VERSION = '7'
 
 /**
  * react-native ships jsx inside plain .js files, and oxc disables jsx for .js
@@ -1900,9 +1901,9 @@ export async function transform(
   data: Buffer | string,
   options: MetroWorkerOptions
 ): Promise<MetroWorkerResult> {
-  assertNoUnportedBabelPlugins(options)
-
   let sourceCode = typeof data === 'string' ? data : data.toString('utf8')
+  rejectDOMDirective(sourceCode, filename, options.platform)
+  assertNoUnportedBabelPlugins(options)
   if (/\.(swift|kt)$/.test(filename)) {
     const oneTransforms = loadOneNativeTransforms(projectRoot)
     if (!oneTransforms)
