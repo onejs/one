@@ -157,7 +157,20 @@ but failed when linking the core smoke binary: RN's atomic optional double
 feature flags require the `libatomic` runtime on this architecture. The Linux
 core now links that library for both consumers. The headless capture also
 selects GTK's Cairo renderer to avoid hardware renderer discovery on runners
-without a GPU. Full two-architecture success awaits the next run.
+without a GPU.
+
+TESTED [run 40186988728](https://github.com/onejs/one/actions/runs/40186988728)
+at `000dc373b564824948e82c403a0a47985a40bdb2`: both x86_64 and aarch64
+passed the full source core/GTK host build, VM and compiler ELF dependency
+checks, Linux Basic bytecode build and first RN text paint. Inspected both
+uploaded screenshots: each shows the routed Home page, GTK tabs, RN text,
+buttons and the input. Both `libhermesvm.so` and `hermesc` import only standard
+C/C++ runtime libraries, with no dynamic ICU dependency. The job's startup
+timeline is launch evidence on shared CI runners, not a desktop performance
+benchmark. No additional automated tests were added. No package, canary or
+release was published, and the changed .deb/Flatpak packaging has not been
+rebuilt in this lane. Lead s72425 owns landing into the held minor branch;
+ci-manager owns broader platform and delivery checks.
 
 **Review 3 fixes, 2026-10-24, one-linux-m5.** RAN a release host build and
 `tests/linux-basic` bundle with a temporary probe page in the arm64 VM under
@@ -1157,7 +1170,9 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
 - M3's ten controls, theme-derived intrinsic sizing, Slider completion,
   indeterminate progress, tagged dropdown items and RN ScrollView composition
   have arm64 release VM proof. Slider touch and wheel completion paths have
-  not been exercised; x86_64 and broader platform validation remain with CI.
+  not been exercised. Both x86_64 and aarch64 now have core build and first
+  content paint CI proof; x86_64 interactions and broader platform validation
+  remain with CI.
 - Pointer presses support the primary mouse button. Secondary mouse buttons
   and touchscreen sequences are not implemented.
 - Text input still lacks capitalization hints, input method position hints
@@ -1168,8 +1183,9 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
 prebuilt core (`prepare-core.sh`, `package-core.sh`) and `package-app.sh` for a
 .deb and a Flatpak exist and install and launch in the VM
 ([deb](one-linux-native-m5-deb.webp), [flatpak](one-linux-native-m5-flatpak.webp));
-the canary release job, the plan write-up of the choices and the static ICU
-question remain. M4's baseline shell and routing have release VM captures. Lead
+the canary release job and the remaining packaging plan write-up remain. The
+static ICU choice and both Linux architecture CI checks are recorded above.
+M4's baseline shell and routing have release VM captures. Lead
 s72425 and ci-manager own review, broader platform builds
 and the release bundle byte gate. M5 packaging and the visual navigation options
 listed above remain. The shared worktree stays held by s72425; owned VM services
