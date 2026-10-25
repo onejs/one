@@ -66,6 +66,8 @@ export interface NativePluginContext {
   root: string
   platform: 'ios' | 'android'
   dev: boolean
+  command?: 'serve' | 'build'
+  assetsDest?: string
 }
 
 interface NativeDevEngineOptions {
@@ -264,9 +266,10 @@ function getNativePlugins(
   onAsset?: (asset: NativeAssetData) => void,
   sourceMaps = false,
   userPlugins: Plugin[] = [],
-  minify = false
+  minify = false,
+  command: 'serve' | 'build' = 'serve'
 ): Plugin[] {
-  const context: NativePluginContext = { root, platform, dev }
+  const context: NativePluginContext = { root, platform, dev, command, assetsDest }
   return [
     // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
     ...(globalThis.__vxrnAddNativePlugins?.(platform) || []),
@@ -1162,7 +1165,8 @@ export async function buildNativeBundle(
         undefined,
         sourcemap,
         userPlugins,
-        minify
+        minify,
+        'build'
       ),
       // last, so it sees what every other plugin produced
       nativeBundlePostProcessPlugin(),

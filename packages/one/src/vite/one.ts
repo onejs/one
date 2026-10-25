@@ -42,6 +42,7 @@ import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
 import { environmentGuardPlugin } from './plugins/environmentGuardPlugin'
+import { useDOMPlugin } from './plugins/useDomPlugin'
 import { shouldEnableWorkerdDev } from './cloudflareWranglerConfig'
 import type { One } from './types'
 
@@ -400,7 +401,19 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     } satisfies Plugin
   }
 
+  const domPlugin = useDOMPlugin({
+    root,
+    routerRoot,
+    ignoredRouteFiles: options.router?.ignoredRouteFiles,
+    metro: !!metroOptions,
+    browserPlugins: [
+      createAliasPlugin(withAbsorbedAliases(options.alias)),
+      environmentGuardPlugin(options.environmentGuards),
+    ],
+  })
+
   const devAndProdPlugins: Plugin[] = [
+    domPlugin,
     {
       name: 'one:config',
       __get: options,
@@ -925,6 +938,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
     globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android') => {
       const listed: Plugin[] = [
+        domPlugin,
         backgroundComputationPlugin('native'),
         workletImportsPlugin({}),
         ...(nativeApp
