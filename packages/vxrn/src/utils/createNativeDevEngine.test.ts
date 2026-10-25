@@ -220,8 +220,20 @@ describe.each(['ios', 'android'] as const)('native plugin adapters on %s', (plat
         }
         runInNewContext(code, context)
         expect(Reflect.get(context, 'nativePluginResult')).toEqual([
-          { name: 'global', root, platform, dev: mode === 'dev' },
-          { name: 'direct', root, platform, dev: mode === 'dev' },
+          {
+            name: 'global',
+            root,
+            platform,
+            dev: mode === 'dev',
+            command: mode === 'dev' ? 'serve' : 'build',
+          },
+          {
+            name: 'direct',
+            root,
+            platform,
+            dev: mode === 'dev',
+            command: mode === 'dev' ? 'serve' : 'build',
+          },
           'plain',
         ])
         for (const factory of factories) {
@@ -229,6 +241,7 @@ describe.each(['ios', 'android'] as const)('native plugin adapters on %s', (plat
             root,
             platform,
             dev: mode === 'dev',
+            command: mode === 'dev' ? 'serve' : 'build',
           })
         }
       } finally {
