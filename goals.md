@@ -1,25 +1,28 @@
-# One 2.10.0 release
+# One 2.11.0 release
 
-Add the experimental native macOS target as one minor release. The complete feature stays on `tm/macos-resume`, in PR #1027, for owner review before merging or stable publication. Package versions are prepared at 2.10.0; this does not publish them. The previous iOS release record below remains intact.
+Prepare the approved native Mac, Linux, URL schema, iOS link-set and DOM features together in PR #1027 on `tm/macos-resume`. One 2.10.0 was published separately from main for the native application-context API and existing iOS fixes. This branch prepares 2.11.0; final owner review, merge and explicit stable publication remain held. The prior release record below is preserved.
 
 ## Included
 
-- An AppKit and Fabric host using the installed React Native core and Hermes, with Mac-specific resolution and build files inside the existing One package.
-- Native text, composition-aware input, scrolling, images, pointer and accessibility events, animation updates and runtime teardown repairs.
-- HTTP, Blob and FileReader, WebSocket, SQLite and native idle callbacks used by a shared application.
-- AppKit buttons with bordered and borderless presentation, segmented controls with native control roles, SF Symbol images, semantic system colors, explicit line-height alignment and linear backgrounds.
-- Typed application menus, keyboard commands and optional per-window toolbars, with independent window routing and hidden-subtree accessibility and focus handling.
-- Native bundle module scoping and a shared One entry whose imports remain valid under platform suffix resolution.
+- Experimental AppKit/Fabric Mac host on the installed React Native core and Hermes, native controls and symbols, menus and keyboard commands, per-window toolbars, semantic colors, scrolling, transport, storage and accessibility.
+- Shared desktop runtime and GTK Linux host with controlled native controls, routing, menus and shortcuts. Portable static PIC ICU and Linux CI build both x86_64 and aarch64.
+- Standard Schema query typing and `validateSearchParams`, with collected component schemas and loader validation before execution.
+- iOS production link groups selected at prebuild; Debug retains all groups and stale Release builds fail with regeneration instructions.
+- One-owned DOM components for iOS and Android through the Vite native bundler, resource handlers and update lifecycle. Metro and desktop DOM deliberately reject unsupported compilation.
 
-## Validation and release review
+## Validation and remaining delivery
 
-Incremental native fixture builds and running probes cover animation without React rerenders, input composition and undo, transport errors and cancellation, native controls, inactive accessibility, menus, appearance, resize and reload. The shared Team Machine app has loaded live rows and transcripts, retained per-session drafts and switched native filters. The combined application passes inactive native menu actions, repeated light/dark draft appearance changes, exact draft restoration after switching sessions, native feed filters and corrected sidebar metadata layout. Related Tamagui native theme and config fixes are reviewed in PR #4378.
+The containing published canary `2.0.0-0.canary.1792923527905` identifies runtime source `9cd108ebc7`. The installed Mac archives match registry integrity and package files. Its incremental native Debug build and production macOS bundle pass. The actual inactive app shows populated data and visible light/dark drafts, restores the exact draft after session navigation, changes and restores filters and both panes, and reloads through the native menu. Captures and artifact hashes are retained.
 
-The latest runtime candidate is `aa1caa54bb4ec13e24bdcae104d08bbef8303aa2`, published as `2.0.0-0.canary.1792805921308` by release run 40050679650. Packed One, vxrn and compiler manifests identify this source and match registry integrity. All 96 packaged Mac native source files match the consumer installation. Its retained incremental TeamMachineOne Debug build recompiles the base component view and passes; a production JavaScript bundle runs in the real inactive native window. Light and dark image previews keep rounded parent clipping without repeating the radius on the child image. Own-session drafts survive document replacement and return, cleared drafts remain empty, and native feed filters and sidebar toggles restore. The consumer is landed on Team Machine main through `4258a98c36adf5628f7e7c943b0007164791b6c3`; its later minimap accessibility correction is `4361983f17def1dbb8ac0086397d412729895e27`.
+Original combined Mac Debug and embedded offline Release fixtures passed controls, menus, appearance and reload; Linux VM controls and routing passed. Linux portability run 40186988728 built the core and host, compiled bytecode and painted first content on both architectures; neither Hermes binary imports system ICU. Updated packaging scripts have source review but were not repackaged after static ICU. No new startup timing or x86 interaction claim is made.
 
-Independent reviews cover the native animation and teardown repairs, HTTP and Blob lifetime, input composition and undo, semantic text appearance, symbol point sizing, per-window toolbar identity, accessibility and rounded clipping. The real consumer uses published One and Babel-free Tamagui canaries in its isolated Mac dependency root. Focused Mac typechecking retains three existing GPUI missing-export diagnostics. This establishes neither a native Release build nor a fresh cross-platform runtime comparison. Owner review of the prepared feature is the next step; stable publication requires explicit approval.
+DOM's original actual iOS Fabric Release proof loads embedded A offline, stages B without activating it, activates native and DOM B together, and rolls a failing C back to B. Eleven selected installed B assets match. Debug actions, refs and HMR passed. Android has host-only coverage, with no Fabric/Updates app claim. Minimum OS, physical devices and comparative performance were not measured. Combined source validation is distinct from that original app proof.
 
-No fresh cross-platform binary size or performance comparison is claimed. Reanimated, radial or repeating gradients, gradient transition hints, DynamicColorIOS, multipart or URI request bodies and Blob WebSocket sends remain unsupported. Split view renders its slot only. High contrast, global accent changes and foreground-only interactions were not exercised.
+Published URL-schema production browser, public type and generated Vercel-handler checks passed; the corrected cold development probe awaits hydration and committed navigation. Hosted rewrites, worker execution and native query transport remain unexercised. Published iOS linking checks passed no-group Release, all-group Debug, stale rejection and regenerated Apple Pay. The scratch linking fixture omitted drawer routes because the optional peer was absent.
+
+CI found four stale strict plugin-context expectations and a Vite-only DOM route in the default Metro fixture graph. Both are repaired with existing checks and actual Metro/Vite bundle proof. A malformed debug inspect lacking a target id exposed a null-string crash; the shared lookup guard passes actual missing, empty and numeric target commands followed by valid inspection on an incrementally rebuilt host. Exact containing required CI and a final artifact receipt remain with the existing CI owner.
+
+Independent native, DOM, Linux and schema reviews remain attached to their source histories; the focused final repair review is pending. Mac high contrast and active-window accent interactions, bare Tab/two-window checks on the latest combined host, Linux secondary pointer/touch and some advanced navigation options remain limited. Windows and Nitro V1 are separate. No stable release is authorized by preparation.
 
 ---
 

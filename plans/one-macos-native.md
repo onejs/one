@@ -1,7 +1,7 @@
 # One on native macOS
 
 Experiment lane. The original host work is retained on `tm/macos-resume`,
-with the combined native target prepared for One 2.10.0 in PR #1027.
+with the combined native target prepared for One 2.11.0 in PR #1027.
 The integration lead owns final shared-application acceptance and owner review.
 
 ## Direction
