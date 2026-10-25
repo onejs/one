@@ -21,3 +21,6 @@ if ! limactl list -q 2>/dev/null | grep -qx "$name"; then
     --mount-only "$repo:w" --mount-only "$modules"
 fi
 limactl start "$name" --tty=false
+
+# automatic package updates saturate this dev VM's disk during builds and UI checks
+limactl shell "$name" sudo systemctl disable --now apt-daily.timer apt-daily-upgrade.timer
