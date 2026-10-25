@@ -14,6 +14,8 @@ class OneLinuxControlProps final : public ViewProps {
   OneLinuxControlProps(const PropsParserContext &, const OneLinuxControlProps &, const RawProps &);
 
   std::string title;
+  std::string text;
+  std::string prompt;
   std::vector<std::string> labels;
   double value{0};
   double minimumValue{0};
@@ -28,6 +30,8 @@ class OneLinuxControlEventEmitter : public ViewEventEmitter {
  public:
   using ViewEventEmitter::ViewEventEmitter;
   void onControlChange(double value, int eventCount, int revision) const;
+  void onTextChange(const std::string &text, int eventCount, int revision) const;
+  void onSubmit(int revision) const;
 };
 
 inline constexpr char OneLinuxButtonName[] = "OneLinuxButton";
@@ -35,6 +39,10 @@ inline constexpr char OneLinuxSegmentedControlName[] = "OneLinuxSegmentedControl
 inline constexpr char OneLinuxSliderName[] = "OneLinuxSlider";
 inline constexpr char OneLinuxDropDownName[] = "OneLinuxDropDown";
 inline constexpr char OneLinuxProgressBarName[] = "OneLinuxProgressBar";
+inline constexpr char OneLinuxToggleName[] = "OneLinuxToggle";
+inline constexpr char OneLinuxStepperName[] = "OneLinuxStepper";
+inline constexpr char OneLinuxTextFieldName[] = "OneLinuxTextField";
+inline constexpr char OneLinuxSecureFieldName[] = "OneLinuxSecureField";
 
 template <const char *Name>
 class OneLinuxControlShadowNode final
@@ -56,5 +64,9 @@ using OneLinuxSegmentedControlShadowNode = OneLinuxControlShadowNode<OneLinuxSeg
 using OneLinuxSliderShadowNode = OneLinuxControlShadowNode<OneLinuxSliderName>;
 using OneLinuxDropDownShadowNode = OneLinuxControlShadowNode<OneLinuxDropDownName>;
 using OneLinuxProgressBarShadowNode = OneLinuxControlShadowNode<OneLinuxProgressBarName>;
+using OneLinuxToggleShadowNode = OneLinuxControlShadowNode<OneLinuxToggleName>;
+using OneLinuxStepperShadowNode = OneLinuxControlShadowNode<OneLinuxStepperName>;
+using OneLinuxTextFieldShadowNode = OneLinuxControlShadowNode<OneLinuxTextFieldName>;
+using OneLinuxSecureFieldShadowNode = OneLinuxControlShadowNode<OneLinuxSecureFieldName>;
 
 } // namespace facebook::react

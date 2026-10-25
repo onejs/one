@@ -6,6 +6,11 @@ import { Slider } from './platform/linux/Slider.linux'
 import { DropDown } from './platform/linux/DropDown.linux'
 import { ProgressBar } from './platform/linux/ProgressBar.linux'
 
+import { Toggle } from './platform/linux/Toggle.linux'
+import { Stepper } from './platform/linux/Stepper.linux'
+import { TextField } from './platform/linux/TextField.linux'
+import { SecureField } from './platform/linux/SecureField.linux'
+
 const linux: Readonly<OneLinux> = Object.freeze({
   Switch,
   Button,
@@ -13,6 +18,10 @@ const linux: Readonly<OneLinux> = Object.freeze({
   Slider,
   DropDown,
   ProgressBar,
+  Toggle,
+  Stepper,
+  TextField,
+  SecureField,
 })
 
 // own properties over a prototype, so the shared getters stay lazy and the

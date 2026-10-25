@@ -8,6 +8,8 @@ OneLinuxControlProps::OneLinuxControlProps(
     const PropsParserContext &context, const OneLinuxControlProps &source, const RawProps &raw)
     : ViewProps(context, source, raw),
       title(convertRawProp(context, raw, "title", source.title, std::string{})),
+      text(convertRawProp(context, raw, "text", source.text, std::string{})),
+      prompt(convertRawProp(context, raw, "prompt", source.prompt, std::string{})),
       labels(convertRawProp(context, raw, "labels", source.labels, std::vector<std::string>{})),
       value(convertRawProp(context, raw, "value", source.value, 0.0)),
       minimumValue(convertRawProp(context, raw, "minimumValue", source.minimumValue, 0.0)),
@@ -20,6 +22,16 @@ OneLinuxControlProps::OneLinuxControlProps(
 void OneLinuxControlEventEmitter::onControlChange(double value, int eventCount, int revision) const
 {
   dispatchEvent("controlChange", folly::dynamic::object("value", value)("eventCount", eventCount)("revision", revision), RawEvent::Category::Discrete);
+}
+
+void OneLinuxControlEventEmitter::onTextChange(const std::string &text, int eventCount, int revision) const
+{
+  dispatchEvent("textChange", folly::dynamic::object("text", text)("eventCount", eventCount)("revision", revision), RawEvent::Category::Discrete);
+}
+
+void OneLinuxControlEventEmitter::onSubmit(int revision) const
+{
+  dispatchEvent("submit", folly::dynamic::object("revision", revision), RawEvent::Category::Discrete);
 }
 
 } // namespace facebook::react

@@ -1,6 +1,7 @@
 #include "OneLinuxControl.h"
 
 #include <algorithm>
+#include <cmath>
 
 namespace facebook::react {
 
@@ -8,7 +9,9 @@ bool OneLinuxControl::supports(ComponentHandle handle)
 {
   return handle == OneLinuxButtonShadowNode::Handle() || handle == OneLinuxSegmentedControlShadowNode::Handle() ||
       handle == OneLinuxSliderShadowNode::Handle() || handle == OneLinuxDropDownShadowNode::Handle() ||
-      handle == OneLinuxProgressBarShadowNode::Handle();
+      handle == OneLinuxProgressBarShadowNode::Handle() || handle == OneLinuxToggleShadowNode::Handle() ||
+      handle == OneLinuxStepperShadowNode::Handle() || handle == OneLinuxTextFieldShadowNode::Handle() ||
+      handle == OneLinuxSecureFieldShadowNode::Handle();
 }
 
 OneLinuxControl::OneLinuxControl(ComponentHandle handle) : handle_(handle)
@@ -26,6 +29,17 @@ OneLinuxControl::OneLinuxControl(ComponentHandle handle) : handle_(handle)
   } else if (handle == OneLinuxDropDownShadowNode::Handle()) {
     widget_ = gtk_drop_down_new(nullptr, nullptr);
     g_signal_connect(widget_, "notify::selected", G_CALLBACK(selected), this);
+  } else if (handle == OneLinuxToggleShadowNode::Handle()) {
+    widget_ = gtk_check_button_new();
+    g_signal_connect(widget_, "toggled", G_CALLBACK(checked), this);
+  } else if (handle == OneLinuxStepperShadowNode::Handle()) {
+    widget_ = gtk_spin_button_new_with_range(0, 100, 1);
+    gtk_spin_button_set_numeric(GTK_SPIN_BUTTON(widget_), TRUE);
+    g_signal_connect(widget_, "value-changed", G_CALLBACK(stepped), this);
+  } else if (handle == OneLinuxTextFieldShadowNode::Handle() || handle == OneLinuxSecureFieldShadowNode::Handle()) {
+    widget_ = handle == OneLinuxTextFieldShadowNode::Handle() ? gtk_entry_new() : gtk_password_entry_new();
+    g_signal_connect(widget_, "changed", G_CALLBACK(edited), this);
+    g_signal_connect(widget_, "activate", G_CALLBACK(submitted), this);
   } else {
     widget_ = gtk_progress_bar_new();
   }
@@ -82,9 +96,48 @@ void OneLinuxControl::selected(GObject *dropDown, GParamSpec *, gpointer data)
   static_cast<OneLinuxControl *>(data)->report(index == GTK_INVALID_LIST_POSITION ? -1 : static_cast<double>(index));
 }
 
+void OneLinuxControl::checked(GtkCheckButton *button, gpointer data)
+{
+  static_cast<OneLinuxControl *>(data)->report(gtk_check_button_get_active(button) ? 1 : 0);
+}
+
+void OneLinuxControl::stepped(GtkSpinButton *button, gpointer data)
+{
+  static_cast<OneLinuxControl *>(data)->report(gtk_spin_button_get_value(button));
+}
+
+void OneLinuxControl::edited(GtkEditable *editable, gpointer data)
+{
+  auto &self = *static_cast<OneLinuxControl *>(data);
+  std::string text = gtk_editable_get_text(editable);
+  if (self.emitter_ && text != self.text_.value() && self.text_.record(text)) {
+    std::static_pointer_cast<const OneLinuxControlEventEmitter>(self.emitter_)->onTextChange(text, self.text_.eventCount(), self.text_.revision());
+  }
+}
+
+void OneLinuxControl::submitted(GtkWidget *, gpointer data)
+{
+  auto &self = *static_cast<OneLinuxControl *>(data);
+  if (self.emitter_) {
+    std::static_pointer_cast<const OneLinuxControlEventEmitter>(self.emitter_)->onSubmit(self.text_.revision());
+  }
+}
+
 void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Shared emitter)
 {
   emitter_ = std::move(emitter);
+  if (handle_ == OneLinuxTextFieldShadowNode::Handle() || handle_ == OneLinuxSecureFieldShadowNode::Handle()) {
+    text_.update(props.text, props.revision, props.acknowledgedEvent);
+    text_.apply([&](const std::string &text) {
+      gtk_widget_set_sensitive(widget_, !props.disabled);
+      g_object_set(widget_, "placeholder-text", props.prompt.c_str(), nullptr);
+      gtk_accessible_update_property(GTK_ACCESSIBLE(widget_), GTK_ACCESSIBLE_PROPERTY_LABEL, props.title.c_str(), -1);
+      if (text != gtk_editable_get_text(GTK_EDITABLE(widget_))) {
+        gtk_editable_set_text(GTK_EDITABLE(widget_), text.c_str());
+      }
+    });
+    return;
+  }
   value_.update(props.value, props.revision, props.acknowledgedEvent);
   value_.apply([&](double value) {
     gtk_widget_set_sensitive(widget_, !props.disabled);
@@ -126,6 +179,23 @@ void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Sh
         g_object_unref(model);
       }
       gtk_drop_down_set_selected(GTK_DROP_DOWN(widget_), value < 0 ? GTK_INVALID_LIST_POSITION : static_cast<guint>(value));
+    } else if (handle_ == OneLinuxToggleShadowNode::Handle()) {
+      gtk_check_button_set_label(GTK_CHECK_BUTTON(widget_), props.title.c_str());
+      gtk_check_button_set_active(GTK_CHECK_BUTTON(widget_), value != 0);
+    } else if (handle_ == OneLinuxStepperShadowNode::Handle()) {
+      gtk_spin_button_set_range(GTK_SPIN_BUTTON(widget_), props.minimumValue, props.maximumValue);
+      gtk_spin_button_set_increments(GTK_SPIN_BUTTON(widget_), props.step, props.step * 10);
+      int digits = 0;
+      for (double part : {props.step, props.minimumValue, props.maximumValue}) {
+        int precision = 0;
+        while (precision < 20 && std::abs(part - std::round(part)) > 1e-9) {
+          part *= 10;
+          precision++;
+        }
+        digits = std::max(digits, precision);
+      }
+      gtk_spin_button_set_digits(GTK_SPIN_BUTTON(widget_), digits);
+      gtk_spin_button_set_value(GTK_SPIN_BUTTON(widget_), value);
     } else {
       gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(widget_), std::clamp(value, 0.0, 1.0));
     }

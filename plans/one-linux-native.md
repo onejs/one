@@ -117,6 +117,30 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+**M3 continuation, 2026-10-25, worker s79514 for s72425.** The next four
+controls are Toggle, Stepper, TextField and SecureField. This is the worker's
+selection within M3, not new owner direction. Toggle follows the existing Mac
+label/isOn contract. Stepper and the two fields follow One's native numeric and
+text contracts in `platform/generated/Controls.native.tsx`, using
+`GtkCheckButton`, `GtkSpinButton`, `GtkEntry` and `GtkPasswordEntry` respectively.
+The two fields share one wrapper implementation. All four use
+`platform/controlled.ts` and the same templated native controlled-value helper
+as Switch, including string values for the fields. Fields submit on Enter;
+SecureField uses GTK's masked entry and its clipboard policy.
+
+RAN: source lint on 24 files, zero warnings or errors. Native build and runtime
+validation are pending. The VM's startup writer stalled in `pwrite` on the
+external volume; a sample was retained outside the tree and sent to s72425.
+Normal heavy admission also refused the One package build at 49 GiB free under
+the 50 GiB floor, before running it. These are infrastructure observations,
+not runtime evidence for the new controls. The review fixture is
+`tests/linux-basic/probe/m3-controls.tsx`, available as the controls tab.
+
+Contract sources: [GTK CheckButton](https://docs.gtk.org/gtk4/class.CheckButton.html),
+[SpinButton](https://docs.gtk.org/gtk4/class.SpinButton.html),
+[PasswordEntry](https://docs.gtk.org/gtk4/class.PasswordEntry.html).
+
+
 TESTED input limits in the release VM host with real typing and clipboard
 paste, for single-line and multiline fields at limits 0, 1 and 2. Typing `abc`
 keeps empty, `a` and `ab`, with change counts 0, 1 and 2. Pasting an emoji
@@ -645,7 +669,8 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
 
 ## Gaps
 
-- M3 is six of the planned ten controls; the next four are not implemented.
+- M3 has ten control implementations; the latest four await native build and
+  runtime proof. Six have already been validated.
 - Controls have default layout boxes rather than theme-derived intrinsic
   measurement. Slider completion callbacks and indeterminate progress are not
   implemented; the dropdown currently accepts string labels only.
@@ -655,6 +680,7 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
   and drag and drop. `cursorColor` is Android only in RN and is not a Linux gap.
 - The earlier scroll, portal color scheme, image and Networking gaps remain.
 
-**Next:** the remaining four M3 controls and the existing image, portal
+**Next:** validate the latest four M3 controls after VM and disk capacity
+recovery, close the sizing and callback gaps, then the existing image, portal
 appearance and Networking gaps. Lead s72425 and CI own review of the repairs,
 the full release bundle byte gate and broader platform builds.

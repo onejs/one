@@ -92,6 +92,10 @@ import type { SegmentedControlProps as LinuxSegmentedControlProps } from './plat
 import type { SliderProps as LinuxSliderProps } from './platform/linux/Slider.linux'
 import type { DropDownProps } from './platform/linux/DropDown.linux'
 import type { ProgressBarProps } from './platform/linux/ProgressBar.linux'
+import type { ToggleProps as LinuxToggleProps } from './platform/linux/Toggle.linux'
+import type { StepperProps as LinuxStepperProps } from './platform/linux/Stepper.linux'
+import type { TextFieldProps as LinuxTextFieldProps } from './platform/linux/TextField.linux'
+import type { SecureFieldProps as LinuxSecureFieldProps } from './platform/linux/SecureField.linux'
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context'
 
 export type OnePlatform = 'web' | 'ios' | 'android' | 'macos' | 'linux'
@@ -111,6 +115,10 @@ export type OneLinux = {
   readonly Slider: ComponentType<LinuxSliderProps>
   readonly DropDown: ComponentType<DropDownProps>
   readonly ProgressBar: ComponentType<ProgressBarProps>
+  readonly Toggle: ComponentType<LinuxToggleProps>
+  readonly Stepper: ComponentType<LinuxStepperProps>
+  readonly TextField: ComponentType<LinuxTextFieldProps>
+  readonly SecureField: ComponentType<LinuxSecureFieldProps>
 }
 
 export type OneIOS = typeof Swift & {

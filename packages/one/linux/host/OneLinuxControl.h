@@ -19,6 +19,10 @@ class OneLinuxControl {
   static void toggled(GtkToggleButton *, gpointer);
   static void slid(GtkRange *, gpointer);
   static void selected(GObject *, GParamSpec *, gpointer);
+  static void checked(GtkCheckButton *, gpointer);
+  static void stepped(GtkSpinButton *, gpointer);
+  static void edited(GtkEditable *, gpointer);
+  static void submitted(GtkWidget *, gpointer);
   void report(double value);
 
   ComponentHandle handle_;
@@ -26,6 +30,7 @@ class OneLinuxControl {
   EventEmitter::Shared emitter_;
   std::vector<std::string> labels_;
   OneLinuxControlledValue<double> value_;
+  OneLinuxControlledValue<std::string> text_;
 };
 
 } // namespace facebook::react

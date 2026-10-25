@@ -4,10 +4,11 @@ import ImageRace from './image-race'
 import Sockets from './sockets'
 import MaxLength from './max-length'
 import Controlled from './controlled'
+import Controls from './m3-controls'
 
-const probes = { images: ImageRace, sockets: Sockets, limits: MaxLength, controlled: Controlled }
+const probes = { controls: Controls, images: ImageRace, sockets: Sockets, limits: MaxLength, controlled: Controlled }
 export default function Review() {
-  const [mode, setMode] = useState<keyof typeof probes>('images')
+  const [mode, setMode] = useState<keyof typeof probes>('controls')
   const Probe = probes[mode]
   return <View style={{ flex: 1 }}>
     <View style={{ flexDirection: 'row', backgroundColor: '#d9e8f6', height: 50 }}>

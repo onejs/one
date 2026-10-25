@@ -53,6 +53,10 @@ const std::vector<ComponentDescriptorProvider> &componentProviders()
       concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxSliderShadowNode>>(),
       concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxDropDownShadowNode>>(),
       concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxProgressBarShadowNode>>(),
+      concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxToggleShadowNode>>(),
+      concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxStepperShadowNode>>(),
+      concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxTextFieldShadowNode>>(),
+      concreteComponentDescriptorProvider<ConcreteComponentDescriptor<OneLinuxSecureFieldShadowNode>>(),
       concreteComponentDescriptorProvider<TextInputComponentDescriptor>(),
   };
   return providers;
