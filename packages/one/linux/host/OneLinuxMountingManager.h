@@ -7,6 +7,7 @@
 #include <react/utils/ContextContainer.h>
 
 #include <functional>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <unordered_map>
@@ -47,9 +48,9 @@ class OneLinuxMountingManager : public std::enable_shared_from_this<OneLinuxMoun
   void synchronouslyUpdateViewOnTag(Tag tag, const folly::dynamic &props);
 
   // main thread; an image request's results for the Image view with this tag
-  void imageProgress(Tag tag, float progress, int64_t loaded, int64_t total);
-  void imageLoaded(Tag tag, std::shared_ptr<void> texture);
-  void imageFailed(Tag tag, const std::string &message);
+  void imageProgress(Tag tag, uint64_t requestId, float progress, int64_t loaded, int64_t total);
+  void imageLoaded(Tag tag, uint64_t requestId, std::shared_ptr<void> texture);
+  void imageFailed(Tag tag, uint64_t requestId, const std::string &message);
 
  struct Record;
 
@@ -63,6 +64,7 @@ class OneLinuxMountingManager : public std::enable_shared_from_this<OneLinuxMoun
   void updateImageState(Record &record, const State::Shared &state);
 
   std::unordered_map<Tag, std::unique_ptr<Record>> records_;
+  uint64_t nextImageRequestId_{0};
   std::unique_ptr<OneLinuxPointerHandler> pointer_;
   std::shared_ptr<const ContextContainer> contextContainer_;
   SharedComponentDescriptorRegistry componentDescriptorRegistry_;

@@ -117,6 +117,29 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+TESTED image request identity in the VM: a temporary native probe held A's
+queued completion, mounted B, then drained A's completion, progress and failure.
+The log records A request 1, B request 2, then A drain. The screen keeps B's
+green 48x32 image and emits only B's load and end, with no stale progress or
+error. Observers now belong to individual requests, callbacks carry a manager
+unique request ID, and all three delivery paths reject stale IDs. The temporary
+hook was removed and the clean debug target rebuilt. Capture:
+[image race](one-linux-native-image-race.webp).
+
+Switch and the new controls now share one controlled-value helper for native
+changes, acknowledgements, revision resets and the programmatic application
+guard. TESTED accepted changes (two events), rejected changes (four events,
+values preserved), and rejected changes after revision reset (six events,
+revision 1). Captures: [accepted](one-linux-native-controlled-shared-accepted.webp),
+[rejected](one-linux-native-controlled-shared-rejected.webp),
+[reset](one-linux-native-controlled-shared-reset.webp).
+
+The common review UI is in `tests/linux-basic/probe/review.tsx`. To bundle it,
+temporarily export it from the demo's `app/index.tsx`, build for Linux, then
+restore that entry. `probe/server.py <assets directory>` serves the image and
+WebSocket fixtures on loopback port 8123. The review UI also carries the input
+limit and WebSocket probes for the remaining repairs.
+
 RAN Mac literal isolation check: `StackToolbarBottomHost.macos.tsx` is restored
 byte for byte to `9b92552c77^`. Minifying the baseline and restored module with
 the same production transform yields identical 243-byte outputs, also compared

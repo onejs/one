@@ -45,12 +45,10 @@ OneLinuxControl::~OneLinuxControl()
 
 void OneLinuxControl::report(double value)
 {
-  if (applying_ || !emitter_) {
+  if (!emitter_ || !value_.record(value)) {
     return;
   }
-  value_ = value;
-  eventCount_ += 1;
-  std::static_pointer_cast<const OneLinuxControlEventEmitter>(emitter_)->onControlChange(value, eventCount_, revision_);
+  std::static_pointer_cast<const OneLinuxControlEventEmitter>(emitter_)->onControlChange(value, value_.eventCount(), value_.revision());
 }
 
 void OneLinuxControl::clicked(GtkButton *, gpointer data)
@@ -87,57 +85,51 @@ void OneLinuxControl::selected(GObject *dropDown, GParamSpec *, gpointer data)
 void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Shared emitter)
 {
   emitter_ = std::move(emitter);
-  if (props.revision != revision_) {
-    revision_ = props.revision;
-    eventCount_ = 0;
-    value_ = props.value;
-  } else if (props.acknowledgedEvent >= eventCount_) {
-    value_ = props.value;
-  }
-  applying_ = true;
-  gtk_widget_set_sensitive(widget_, !props.disabled);
-  if (handle_ == OneLinuxButtonShadowNode::Handle()) {
-    gtk_button_set_label(GTK_BUTTON(widget_), props.title.c_str());
-  } else if (handle_ == OneLinuxSegmentedControlShadowNode::Handle()) {
-    if (labels_ != props.labels) {
-      while (GtkWidget *child = gtk_widget_get_first_child(widget_)) {
-        g_signal_handlers_disconnect_by_data(child, this);
-        gtk_box_remove(GTK_BOX(widget_), child);
+  value_.update(props.value, props.revision, props.acknowledgedEvent);
+  value_.apply([&](double value) {
+    gtk_widget_set_sensitive(widget_, !props.disabled);
+    if (handle_ == OneLinuxButtonShadowNode::Handle()) {
+      gtk_button_set_label(GTK_BUTTON(widget_), props.title.c_str());
+    } else if (handle_ == OneLinuxSegmentedControlShadowNode::Handle()) {
+      if (labels_ != props.labels) {
+        while (GtkWidget *child = gtk_widget_get_first_child(widget_)) {
+          g_signal_handlers_disconnect_by_data(child, this);
+          gtk_box_remove(GTK_BOX(widget_), child);
+        }
+        labels_ = props.labels;
+        GtkToggleButton *group = nullptr;
+        for (const auto &label : labels_) {
+          GtkWidget *button = gtk_toggle_button_new_with_label(label.c_str());
+          gtk_toggle_button_set_group(GTK_TOGGLE_BUTTON(button), group);
+          group = GTK_TOGGLE_BUTTON(button);
+          gtk_widget_set_hexpand(button, TRUE);
+          gtk_box_append(GTK_BOX(widget_), button);
+          g_signal_connect(button, "toggled", G_CALLBACK(toggled), this);
+        }
       }
-      labels_ = props.labels;
-      GtkToggleButton *group = nullptr;
-      for (const auto &label : labels_) {
-        GtkWidget *button = gtk_toggle_button_new_with_label(label.c_str());
-        gtk_toggle_button_set_group(GTK_TOGGLE_BUTTON(button), group);
-        group = GTK_TOGGLE_BUTTON(button);
-        gtk_widget_set_hexpand(button, TRUE);
-        gtk_box_append(GTK_BOX(widget_), button);
-        g_signal_connect(button, "toggled", G_CALLBACK(toggled), this);
+      int index = 0;
+      for (GtkWidget *child = gtk_widget_get_first_child(widget_); child; child = gtk_widget_get_next_sibling(child), index++) {
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(child), value == index);
       }
-    }
-    int index = 0;
-    for (GtkWidget *child = gtk_widget_get_first_child(widget_); child; child = gtk_widget_get_next_sibling(child), index++) {
-      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(child), value_ == index);
-    }
-  } else if (handle_ == OneLinuxSliderShadowNode::Handle()) {
-    gtk_range_set_range(GTK_RANGE(widget_), props.minimumValue, props.maximumValue);
-    gtk_range_set_increments(GTK_RANGE(widget_), props.step, props.step * 10);
-    gtk_range_set_value(GTK_RANGE(widget_), value_);
-  } else if (handle_ == OneLinuxDropDownShadowNode::Handle()) {
-    if (labels_ != props.labels) {
-      labels_ = props.labels;
-      GtkStringList *model = gtk_string_list_new(nullptr);
-      for (const auto &label : labels_) {
-        gtk_string_list_append(model, label.c_str());
+    } else if (handle_ == OneLinuxSliderShadowNode::Handle()) {
+      gtk_range_set_range(GTK_RANGE(widget_), props.minimumValue, props.maximumValue);
+      gtk_range_set_increments(GTK_RANGE(widget_), props.step, props.step * 10);
+      gtk_range_set_value(GTK_RANGE(widget_), value);
+    } else if (handle_ == OneLinuxDropDownShadowNode::Handle()) {
+      if (labels_ != props.labels) {
+        labels_ = props.labels;
+        GtkStringList *model = gtk_string_list_new(nullptr);
+        for (const auto &label : labels_) {
+          gtk_string_list_append(model, label.c_str());
+        }
+        gtk_drop_down_set_model(GTK_DROP_DOWN(widget_), G_LIST_MODEL(model));
+        g_object_unref(model);
       }
-      gtk_drop_down_set_model(GTK_DROP_DOWN(widget_), G_LIST_MODEL(model));
-      g_object_unref(model);
+      gtk_drop_down_set_selected(GTK_DROP_DOWN(widget_), value < 0 ? GTK_INVALID_LIST_POSITION : static_cast<guint>(value));
+    } else {
+      gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(widget_), std::clamp(value, 0.0, 1.0));
     }
-    gtk_drop_down_set_selected(GTK_DROP_DOWN(widget_), value_ < 0 ? GTK_INVALID_LIST_POSITION : static_cast<guint>(value_));
-  } else {
-    gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(widget_), std::clamp(value_, 0.0, 1.0));
-  }
-  applying_ = false;
+  });
 }
 
 } // namespace facebook::react

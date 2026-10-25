@@ -2,6 +2,7 @@
 
 #include <gtk/gtk.h>
 #include <OneLinuxControls.h>
+#include "OneLinuxControlledValue.h"
 
 namespace facebook::react {
 
@@ -24,10 +25,7 @@ class OneLinuxControl {
   GtkWidget *widget_;
   EventEmitter::Shared emitter_;
   std::vector<std::string> labels_;
-  double value_{0};
-  int revision_{0};
-  int eventCount_{0};
-  bool applying_{false};
+  OneLinuxControlledValue<double> value_;
 };
 
 } // namespace facebook::react

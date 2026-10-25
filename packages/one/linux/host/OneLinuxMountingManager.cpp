@@ -68,22 +68,23 @@ GdkRGBA rgba(SharedColor color)
 // result on the main one
 class ImageObserver final : public ImageResponseObserver {
  public:
-  ImageObserver(std::weak_ptr<OneLinuxMountingManager> manager, Tag tag) : manager_(std::move(manager)), tag_(tag) {}
+  ImageObserver(std::weak_ptr<OneLinuxMountingManager> manager, Tag tag, uint64_t requestId)
+      : manager_(std::move(manager)), tag_(tag), requestId_(requestId) {}
 
   void didReceiveProgress(float progress, int64_t loaded, int64_t total) const override
   {
-    OneLinuxDispatchMain([manager = manager_, tag = tag_, progress, loaded, total] {
+    OneLinuxDispatchMain([manager = manager_, tag = tag_, requestId = requestId_, progress, loaded, total] {
       if (auto self = manager.lock()) {
-        self->imageProgress(tag, progress, loaded, total);
+        self->imageProgress(tag, requestId, progress, loaded, total);
       }
     });
   }
 
   void didReceiveImage(const ImageResponse &imageResponse) const override
   {
-    OneLinuxDispatchMain([manager = manager_, tag = tag_, texture = imageResponse.getImage()] {
+    OneLinuxDispatchMain([manager = manager_, tag = tag_, requestId = requestId_, texture = imageResponse.getImage()] {
       if (auto self = manager.lock()) {
-        self->imageLoaded(tag, texture);
+        self->imageLoaded(tag, requestId, texture);
       }
     });
   }
@@ -91,9 +92,9 @@ class ImageObserver final : public ImageResponseObserver {
   void didReceiveFailure(const ImageLoadError &error) const override
   {
     auto message = std::static_pointer_cast<std::string>(error.getError());
-    OneLinuxDispatchMain([manager = manager_, tag = tag_, text = message ? *message : std::string("image failed to load")] {
+    OneLinuxDispatchMain([manager = manager_, tag = tag_, requestId = requestId_, text = message ? *message : std::string("image failed to load")] {
       if (auto self = manager.lock()) {
-        self->imageFailed(tag, text);
+        self->imageFailed(tag, requestId, text);
       }
     });
   }
@@ -101,6 +102,7 @@ class ImageObserver final : public ImageResponseObserver {
  private:
   std::weak_ptr<OneLinuxMountingManager> manager_;
   Tag tag_;
+  uint64_t requestId_;
 };
 
 } // namespace
@@ -118,10 +120,7 @@ struct OneLinuxMountingManager::Record {
   // the switch, when this view is one; its value follows the controlled
   // protocol of ios/OneNativeControlled.swift
   GtkWidget *control{nullptr};
-  bool controlValue{false};
-  int controlEventCount{0};
-  int controlRevision{0};
-  bool applyingControl{false};
+  OneLinuxControlledValue<bool> controlValue;
   // where React children go: the view itself, or a scroll view's content view
   OneView *container;
   ScrollViewShadowNode::ConcreteState::Shared scrollState;
@@ -135,6 +134,7 @@ struct OneLinuxMountingManager::Record {
   std::shared_ptr<const ImageObserver> imageObserver;
   std::shared_ptr<const ImageResponseObserverCoordinator> imageCoordinator;
   GdkTexture *texture{nullptr};
+  uint64_t imageRequestId{0};
 };
 
 // a user toggle counts as a native event, which React acknowledges through the
@@ -143,13 +143,11 @@ static void switchToggled(GObject *control, GParamSpec *, gpointer data)
 {
   auto &record = *static_cast<OneLinuxMountingManager::Record *>(data);
   bool active = gtk_switch_get_active(GTK_SWITCH(control));
-  if (record.applyingControl || active == record.controlValue) {
+  if (active == record.controlValue.value() || !record.controlValue.record(active)) {
     return;
   }
-  record.controlValue = active;
-  record.controlEventCount += 1;
   if (auto emitter = std::static_pointer_cast<const OneLinuxSwitchEventEmitter>(record.eventEmitter)) {
-    emitter->onIsOnChange({.isOn = active, .eventCount = record.controlEventCount, .revision = record.controlRevision});
+    emitter->onIsOnChange({.isOn = active, .eventCount = record.controlValue.eventCount(), .revision = record.controlValue.revision()});
   }
 }
 
@@ -406,39 +404,38 @@ void OneLinuxMountingManager::updateImageState(Record &record, const State::Shar
   if (!imageState) {
     return;
   }
-  bool sourceChanged = !record.imageState || record.imageState->getData().getImageSource() != imageState->getData().getImageSource();
+  auto coordinator = imageState->getData().getImageRequest().getSharedObserverCoordinator();
   record.imageState = imageState;
-  if (!sourceChanged) {
+  if (record.imageCoordinator == coordinator) {
     return;
   }
   if (record.imageCoordinator) {
     record.imageCoordinator->removeObserver(record.imageObserver);
   }
   g_clear_object(&record.texture);
-  if (!record.imageObserver) {
-    record.imageObserver = std::make_shared<const ImageObserver>(weak_from_this(), record.tag);
-  }
-  record.imageCoordinator = imageState->getData().getImageRequest().getSharedObserverCoordinator();
+  record.imageRequestId = ++nextImageRequestId_;
+  record.imageObserver = std::make_shared<const ImageObserver>(weak_from_this(), record.tag, record.imageRequestId);
+  record.imageCoordinator = std::move(coordinator);
   if (auto emitter = std::static_pointer_cast<const ImageEventEmitter>(record.eventEmitter)) {
     emitter->onLoadStart();
   }
   record.imageCoordinator->addObserver(record.imageObserver);
 }
 
-void OneLinuxMountingManager::imageProgress(Tag tag, float progress, int64_t loaded, int64_t total)
+void OneLinuxMountingManager::imageProgress(Tag tag, uint64_t requestId, float progress, int64_t loaded, int64_t total)
 {
   auto it = records_.find(tag);
-  if (it != records_.end()) {
+  if (it != records_.end() && it->second->imageRequestId == requestId) {
     if (auto emitter = std::static_pointer_cast<const ImageEventEmitter>(it->second->eventEmitter)) {
       emitter->onProgress(progress, loaded, total);
     }
   }
 }
 
-void OneLinuxMountingManager::imageLoaded(Tag tag, std::shared_ptr<void> texture)
+void OneLinuxMountingManager::imageLoaded(Tag tag, uint64_t requestId, std::shared_ptr<void> texture)
 {
   auto it = records_.find(tag);
-  if (it == records_.end() || !it->second->imageState) {
+  if (it == records_.end() || it->second->imageRequestId != requestId || !it->second->imageState) {
     return;
   }
   Record &record = *it->second;
@@ -454,10 +451,10 @@ void OneLinuxMountingManager::imageLoaded(Tag tag, std::shared_ptr<void> texture
   }
 }
 
-void OneLinuxMountingManager::imageFailed(Tag tag, const std::string &message)
+void OneLinuxMountingManager::imageFailed(Tag tag, uint64_t requestId, const std::string &message)
 {
   auto it = records_.find(tag);
-  if (it != records_.end()) {
+  if (it != records_.end() && it->second->imageRequestId == requestId) {
     if (auto emitter = std::static_pointer_cast<const ImageEventEmitter>(it->second->eventEmitter)) {
       ImageErrorInfo info;
       info.error = message;
@@ -506,16 +503,8 @@ void OneLinuxMountingManager::restyle(Record &record)
 
   if (record.handle == OneLinuxSwitchShadowNode::Handle()) {
     const auto &switchProps = static_cast<const OneLinuxSwitchProps &>(*record.props);
-    if (switchProps.revision != record.controlRevision) {
-      record.controlRevision = switchProps.revision;
-      record.controlEventCount = 0;
-      record.controlValue = switchProps.isOn;
-    } else if (switchProps.acknowledgedEvent >= record.controlEventCount) {
-      record.controlValue = switchProps.isOn;
-    }
-    record.applyingControl = true;
-    gtk_switch_set_active(GTK_SWITCH(record.control), record.controlValue);
-    record.applyingControl = false;
+    record.controlValue.update(switchProps.isOn, switchProps.revision, switchProps.acknowledgedEvent);
+    record.controlValue.apply([&](bool value) { gtk_switch_set_active(GTK_SWITCH(record.control), value); });
   }
 
   if (record.nativeControl) {
