@@ -2,6 +2,7 @@
 import json
 import os
 import subprocess
+import sys
 import time
 
 udid = os.environ["SIMULATOR_UDID"]
@@ -28,11 +29,22 @@ def has_control(node):
 
 
 while time.monotonic() < deadline:
-    snapshot = json.loads(subprocess.check_output(
-        ["axe", "describe-ui", "--udid", udid], text=True,
+    described = subprocess.run(
+        ["axe", "describe-ui", "--udid", udid], text=True, capture_output=True,
         timeout=max(1, deadline - time.monotonic()),
-    ))
-    if has_control(snapshot):
+    )
+    if described.returncode != 0:
+        # a freshly booted simulator can launch apps before its automation
+        # session is ready; one-native-conformance.ts waits the same way.
+        if "Timed out creating the simulator remote automation session" \
+                not in described.stderr + described.stdout:
+            sys.stderr.write(described.stderr)
+            raise subprocess.CalledProcessError(
+                described.returncode, described.args,
+                described.stdout, described.stderr)
+        time.sleep(0.25)
+        continue
+    if has_control(json.loads(described.stdout)):
         break
     time.sleep(0.1)
 else:
