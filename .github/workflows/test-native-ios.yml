@@ -403,7 +403,7 @@ jobs:
               'host-processes.txt': ['ps', '-axo', 'pid,ppid,state,comm'],
               # the app's own log keeps its javascript warnings, such as why the
               # metro socket closed, which never reach the dev server once it has.
-              'app-log.txt': ['xcrun', 'simctl', 'spawn', os.environ.get('SIMULATOR_UDID') or 'booted', 'log', 'show', '--last', '60m', '--style', 'compact', '--predicate', 'process == "NativeFeatureTests"'],
+              'app-log.txt': ['xcrun', 'simctl', 'spawn', os.environ.get('SIMULATOR_UDID') or 'booted', 'log', 'show', '--last', '60m', '--style', 'compact', '--info', '--predicate', 'process == "NativeFeatureTests"'],
               # the processes that launch other apps, for a system app such as
               # shortcuts that a native link opens late or never.
               'system-launch-log.txt': ['xcrun', 'simctl', 'spawn', os.environ.get('SIMULATOR_UDID') or 'booted', 'log', 'show', '--last', '60m', '--style', 'compact', '--predicate', 'process IN {"SpringBoard", "runningboardd", "lsd", "Shortcuts"} OR subsystem == "com.apple.launchservices"'],
