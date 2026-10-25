@@ -172,8 +172,8 @@ opt-in startup timeline now distinguishes those two milestones; the native
 shell's first frame is not reported as main content. The capture and error-free
 JS startup identify the first RN text as the routed Home content.
 
-**Review 2 repairs, 2026-10-25, s79947 for s72425.** M4 is paused for the
-lead-assigned review findings in `linux-review2-findings.txt`. TESTED Stepper's
+**Review 2 repairs, 2026-10-25, s79947 for s72425.** The lead-assigned
+findings in `linux-review2-findings.txt` were repaired before M4. TESTED Stepper's
 native API in the arm64 release VM: `label="Amount"`, `in={[0, 3]}` and
 `onValueChange={setCount}` render a native label and numeric value. Two real
 increment clicks advance 2 to 3 and stay at the upper bound:
@@ -200,6 +200,18 @@ controls allocated in their first frame. Measurements whose props have already
 been replaced by a newer React commit are discarded. Theme changes use the
 same batch path. No RN source changed, and the temporary snapshot probe was
 removed before the clean release host rebuild.
+
+TESTED a stale measurement race found during the final source check. A temporary
+native event changes only the button's `testID` on the JS thread after GTK has
+measured its old props. The baseline correctly rejects that stale measurement,
+but its size cache then suppresses submission for the current props and leaves
+the button at height zero: [before](one-linux-native-measure-race-before.webp).
+The mount now checks Fabric's accepted size as well as GTK's cache, and submits
+when Fabric still differs. Under the same forced race, the stale batch is still
+rejected and the current props receive a 159 by 34 natural size, with a 34-pixel
+layout height: [after](one-linux-native-measure-race-after.webp). Temporary
+probe code was removed before the clean release host rebuild. RAN that build;
+TESTED route push/back and a native button counter on the clean host. No automated tests.
 
 TESTED review 2 pending Stepper edits. A plain parent rerender leaves the
 control memoized and does not reproduce the reported loss. Changing its

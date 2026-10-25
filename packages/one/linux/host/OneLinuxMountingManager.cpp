@@ -497,6 +497,7 @@ void OneLinuxMountingManager::restyle(Record &record)
 
   if (record.nativeControl) {
     record.needsMeasurement |= record.nativeControl->update(std::static_pointer_cast<const OneLinuxControlProps>(record.props), record.eventEmitter);
+    record.needsMeasurement |= record.controlState && record.controlState->getData().size != record.measuredControlSize;
   }
   if (record.navigation) record.navigation->update(std::static_pointer_cast<const OneLinuxNavigationProps>(record.props), record.eventEmitter);
 
@@ -563,8 +564,8 @@ void OneLinuxMountingManager::measureControl(Record &record, ControlMeasurements
   gtk_widget_measure(widget, GTK_ORIENTATION_HORIZONTAL, -1, &minimum, &width, nullptr, nullptr);
   gtk_widget_measure(widget, GTK_ORIENTATION_VERTICAL, width, &minimum, &height, nullptr, nullptr);
   Size size{static_cast<Float>(width), static_cast<Float>(height)};
-  if (record.measuredControlSize != size) {
-    record.measuredControlSize = size;
+  record.measuredControlSize = size;
+  if (record.controlState->getData().size != size) {
     measurements.emplace(record.tag, std::make_pair(record.props, size));
   }
 }
