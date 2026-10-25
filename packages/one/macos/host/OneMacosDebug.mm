@@ -21,6 +21,9 @@ using namespace facebook::react;
 
 static NSView *OneMacosFindTestId(NSView *view, NSString *testId)
 {
+  if (![testId isKindOfClass:NSString.class] || testId.length == 0) {
+    return nil;
+  }
   if ([view isKindOfClass:OneMacosViewComponentView.class]) {
     auto props = ((OneMacosViewComponentView *)view).props;
     if (props && static_cast<const ViewProps &>(*props).testId == testId.UTF8String) {
