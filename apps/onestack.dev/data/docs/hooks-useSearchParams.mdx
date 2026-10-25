@@ -140,11 +140,11 @@ Where it applies:
 
 - `searchParams` is passed for document requests and client navigations of [`ssr` routes](/docs/render-modes#ssr), to the page loader and to the layout loaders above it. Each loader gets the schemas found from its own file and the layouts above it. It is optional in the type, because it is absent in the cases below.
 - An `ssr` route's client navigation and `refetchLoader` send the page's query to the loader request under the reserved key `__one_search`, so the server validates it and the loader receives `searchParams` the same as on a document request. Loader data is stored per query, so push, replace, back and forward each load the data for their own query. Other routes request the loader by pathname only and keep one entry per path.
-- A query the schema rejects answers `400` and the loader does not run. The client navigation that asked for it does not commit, so the URL and page stay as they were. Load the URL as a document to see the server's `400`.
+- A query the schema rejects answers `400` and the loader does not run. A client navigation to it loads the URL as a document, so the server's `400` shows. A `refetchLoader` for it rejects with an error and the loader data stays as it was.
 - `request` in a loader that is asked for by client navigation carries the loader request URL, not the page URL. Read the query from `searchParams`.
 - `ssg` and `spa` routes do not have a query at build time and get no `searchParams`, on document requests and on client navigation.
 - The query is validated before a [`loaderCache`](/docs/routing-loader#loader-cache) coalesced result is reused. Include the query in your cache key when the data depends on it.
-- The Vercel serverless output does not pass `searchParams` or validate.
+- The generated Vercel function validates and passes `searchParams` the same way, using the same code as the other servers. It is covered by a local run of the generated handler, not by a deployment. The page loader also runs again during that function's render, as it did before.
 - Discovery follows static imports, so a schema in a component that is imported conditionally or with `import()` is not found, and a schema used by a component that does not render for a given URL is still checked. Schemas should accept the URLs of every state of the page.
 - Validation is for parsing input. It is not authentication or authorization.
 

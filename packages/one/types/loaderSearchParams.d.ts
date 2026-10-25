@@ -17,4 +17,14 @@ export declare function withLoaderSearchParams<Props extends {
 } | undefined>(thunks: LoaderSearchSchemas, loaderProps: Props): Props & {
     searchParams: Record<string, unknown>;
 };
+/**
+ * Loader props of an ssr route for a server that builds them itself (the generated
+ * Vercel function). A document request has the query of the page, a loader request
+ * has it under the reserved transport key. The result carries `searchParams` when
+ * the route has schemas, or throws the 400 Response.
+ */
+export declare function prepareSsrLoaderProps<Props extends object>(routeExported: any, loaderProps: Props, search: string): Props & {
+    search: string;
+    searchParams?: Record<string, unknown>;
+};
 //# sourceMappingURL=loaderSearchParams.d.ts.map

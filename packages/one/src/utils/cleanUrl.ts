@@ -73,6 +73,14 @@ export function appendLoaderQuery(url: string, name: string, value: string) {
 }
 
 // the page's query as sent with a loader request, '' when there is none
+/**
+ * The marker a loader request answers with when the server rejected it with a 400, as
+ * it does for a query a search schema rejects. The loader did not run.
+ */
+export function isLoaderBadRequest(data: unknown) {
+  return (data as { __oneError?: number } | null | undefined)?.__oneError === 400
+}
+
 export function readLoaderSearch(url: URL) {
   const search = url.searchParams.get(LOADER_SEARCH_PARAM)
   return search ? `?${search}` : ''

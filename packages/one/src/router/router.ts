@@ -31,6 +31,7 @@ import {
   getLoaderPath,
   getPreloadCSSPath,
   getPreloadPath,
+  isLoaderBadRequest,
   splitLoaderKey,
   toLoaderKey,
 } from '../utils/cleanUrl'
@@ -1016,6 +1017,11 @@ export function preloadRoute(href: string, injectCSS = false): Promise<any> | un
           preloadingLoader,
           normalizedHref,
           doPreloadDev(href).then((data) => {
+            // a rejected request is never kept, so a later visit asks the server again
+            if (isLoaderBadRequest(data)) {
+              delete preloadingLoader[normalizedHref]
+              return data
+            }
             setBoundedPreloadRecord(preloadedLoaderData, normalizedHref, data)
             return data
           })
@@ -1035,6 +1041,10 @@ export function preloadRoute(href: string, injectCSS = false): Promise<any> | un
         doPreload(href)
           .then((data) => {
             // store only successful preloads so navigation retries a failed hover.
+            if (isLoaderBadRequest(data)) {
+              delete preloadingLoader[preloadKey]
+              return data
+            }
             setBoundedPreloadRecord(preloadedLoaderData, preloadKey, data)
             return data
           })
@@ -1303,7 +1313,14 @@ export async function linkTo(
   // sync fast path: skip async preload when data is already cached
   // (e.g., from hover/viewport/intent prefetching via PreloadLinks)
   if (!(normalizedPreloadPath in preloadedLoaderData) && !(href in preloadedLoaderData)) {
-    await preloadRoute(href, true)
+    const preloaded = await preloadRoute(href, true)
+    // the server rejected this url (a query a search schema rejects) without running
+    // the loader. load it as a document so the server's own response shows.
+    if (isLoaderBadRequest(preloaded)) {
+      setLoadingState('loaded')
+      window.location.assign(href)
+      return
+    }
   } else if (process.env.NODE_ENV !== 'development') {
     // cached data in prod: still inject CSS (non-blocking so we don't delay nav)
     const inject = cssInjectFunctions[href]

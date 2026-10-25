@@ -97,3 +97,19 @@ export function withLoaderSearchParams<Props extends { search?: string } | undef
   }
   return { ...loaderProps, searchParams }
 }
+
+/**
+ * Loader props of an ssr route for a server that builds them itself (the generated
+ * Vercel function). A document request has the query of the page, a loader request
+ * has it under the reserved transport key. The result carries `searchParams` when
+ * the route has schemas, or throws the 400 Response.
+ */
+export function prepareSsrLoaderProps<Props extends object>(
+  routeExported: any,
+  loaderProps: Props,
+  search: string
+): Props & { search: string; searchParams?: Record<string, unknown> } {
+  const props = { ...loaderProps, search }
+  const schemas = getLoaderSearchSchemas(routeExported)
+  return schemas ? withLoaderSearchParams(schemas, props) : props
+}

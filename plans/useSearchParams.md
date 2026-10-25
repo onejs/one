@@ -142,9 +142,10 @@ Component schemas found by the typed-link scanner also validate `searchParams` f
 - A server-environment transform adds `__oneSearchSchemas` to a route module that exports a loader and has schemas in itself or its layouts. No schemas, no change.
 - The server validates before the loader and before any `loaderCache` coalesced result, passes `searchParams`, and answers 400 on a rejected query. Document requests and client loader requests of `ssr` routes only.
 - Client transport: an `ssr` page's client loader request carries the page query as `__one_search` (canonical sorted form). `loaderProps.search` for that request is that query. Loader state, preload and refetch keys are `path?canonicalQuery` for `ssr` pages; other routes keep pathname keys.
-- A rejected query answers 400 on the loader request; the loader does not run and the client navigation does not commit. A document-load fallback for that case is not implemented.
+- A rejected query answers 400. On a loader request the server turns it into the `__oneError: 400` marker module (with redirects and 401/403, in `loaderResponseToModule`). The client does not cache the marker, a navigation loads the href as a document so the server's 400 shows, and a refetch rejects without replacing data.
 - `ssr` pages skip the clientMatches fast path in useLoader because popstate does not rebuild matches.
-- Limits: `ssg`, `spa` and the Vercel serverless template (no `search`, no validation) are not covered; native client URLs merge `platform` with the transport but are untested; `request` in a client loader call carries the loader URL; discovery follows static imports only.
+- The generated Vercel function reads `__one_search` and validates through `entry.default.loaderRequest` (same code as oneServe), checked by running the generated handler locally. A thrown Response is sent as the answer. Route param keys that a rewrite adds to a page URL are removed from `search`; that branch is not exercised. The page loader runs again during render there (no `matches` or ssr loader data are passed), as before.
+- Limits: `ssg` and `spa` are not covered; native client URLs merge `platform` with the transport but are untested; `request` in a client loader call carries the loader URL; discovery follows static imports only.
 
 ## Related Work
 

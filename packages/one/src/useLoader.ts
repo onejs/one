@@ -20,6 +20,7 @@ import {
 } from './useMatches'
 import {
   appendLoaderQuery,
+  isLoaderBadRequest,
   getLoaderPath,
   getNativeLoaderPath,
   splitLoaderKey,
@@ -229,6 +230,11 @@ export async function refetchLoader(href: string): Promise<void> {
     const executionTime = performance.now() - executionStart
 
     const totalTime = performance.now() - startTime
+
+    // the server rejected the request and did not run the loader
+    if (isLoaderBadRequest(result)) {
+      throw new Error(result.__oneErrorMessage || 'Bad Request')
+    }
 
     // detect server redirect signal during refetch
     if (result?.__oneRedirect) {
@@ -593,6 +599,10 @@ export function useLoaderState<
               const totalTime = performance.now() - startTime
 
               // detect server redirect signal on native
+              if (isLoaderBadRequest(data)) {
+                throw new Error(data.__oneErrorMessage || 'Bad Request')
+              }
+
               if (data?.__oneRedirect) {
                 recordLoaderTiming?.({
                   path: currentPath,
@@ -690,6 +700,10 @@ export function useLoaderState<
           const executionTime = performance.now() - executionStart
 
           const totalTime = performance.now() - startTime
+
+          if (isLoaderBadRequest(result)) {
+            throw new Error(result.__oneErrorMessage || 'Bad Request')
+          }
 
           // detect server redirect signal (fallback if preload didn't catch it)
           if (result?.__oneRedirect) {

@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { Pressable, Text, View } from 'react-native'
-import { router, useLoader, useLoaderState, type RouteType } from 'one'
+import { refetchLoader, router, useLoader, useLoaderState, type RouteType } from 'one'
 import { DashboardChart } from '~/features/search-params/DashboardChart'
 import { DashboardTable } from '~/features/search-params/DashboardTable'
 import { SortBoundary, StrictSort } from '~/features/search-params/StrictSort'
@@ -16,6 +17,7 @@ export async function loader({
 export default function SearchParamsLoaderPage() {
   const data = useLoader(loader)
   const { refetch } = useLoaderState(loader)
+  const [refetchError, setRefetchError] = useState('')
   return (
     <View testID="search-params-loader-page">
       <Text testID="loader-data">{JSON.stringify(data)}</Text>
@@ -27,6 +29,17 @@ export default function SearchParamsLoaderPage() {
       <Pressable testID="loader-refetch" onPress={() => refetch()}>
         <Text>refetch</Text>
       </Pressable>
+      <Pressable
+        testID="loader-refetch-invalid"
+        onPress={() =>
+          refetchLoader('/search-params/loader?sort=sideways').catch((error) =>
+            setRefetchError(String(error?.message ?? error))
+          )
+        }
+      >
+        <Text>refetch invalid</Text>
+      </Pressable>
+      <Text testID="loader-refetch-error">{refetchError}</Text>
       <Pressable
         testID="loader-invalid"
         onPress={() => router.push('/search-params/loader?sort=sideways')}
