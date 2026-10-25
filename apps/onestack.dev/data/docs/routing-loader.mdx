@@ -195,7 +195,7 @@ Only for [`ssr` type routes](/docs/render-modes#ssr). This will pass the same [W
 
 ### searchParams
 
-Only for [`ssr` type routes](/docs/render-modes#ssr). When components under the route pass a schema to [`useSearchParams(schema)`](/docs/hooks-useSearchParams#validated-search-params-in-loaders), the server validates the query before the loader runs and passes the result as `searchParams`. An invalid query answers `400` and the loader does not run. The value is not available when the loader is requested by client navigation.
+Only for [`ssr` type routes](/docs/render-modes#ssr). When components under the route pass a schema to [`useSearchParams(schema)`](/docs/hooks-useSearchParams#validated-search-params-in-loaders), the server validates the query before the loader runs and passes the result as `searchParams`. An invalid query answers `400` and the loader does not run. Client navigation and `refetchLoader` send the page's query too, so the loader receives the same `searchParams` and its data is stored per query.
 
 ## Accepted Return Types
 

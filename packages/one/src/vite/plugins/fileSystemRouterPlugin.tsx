@@ -237,7 +237,8 @@ export function createFileSystemRouterPlugin(
                 const tracked = await trackLoaderDependencies(() => loaderFn(props))
 
                 // register dependencies for HMR
-                const routePath = loaderProps?.path || '/'
+                // an ssr route's data depends on its query, which hot reload refetches by
+                const routePath = (loaderProps?.path || '/') + (route.type === 'ssr' ? (loaderProps?.search ?? '') : '')
                 for (const dep of tracked.dependencies) {
                   const absoluteDep = path.resolve(dep)
                   setBoundedLoaderDep(absoluteDep, routePath)
@@ -556,8 +557,14 @@ export function createFileSystemRouterPlugin(
           let loaderData: any
           if (exported.loader) {
             try {
+              // a client navigation to an ssr route validates its query like the document request
+              const searchSchemas =
+                route.type === 'ssr' ? getLoaderSearchSchemas(exported) : null
+              const runProps = searchSchemas
+                ? withLoaderSearchParams(searchSchemas, loaderProps)
+                : loaderProps
               const tracked = await trackLoaderDependencies(() =>
-                exported.loader(loaderProps)
+                exported.loader(runProps)
               )
               loaderData = tracked.result
 
@@ -569,7 +576,8 @@ export function createFileSystemRouterPlugin(
               }
 
               // Register dependencies: map file path -> route paths that depend on it
-              const routePath = loaderProps?.path || '/'
+              // an ssr route's data depends on its query, which hot reload refetches by
+                const routePath = (loaderProps?.path || '/') + (route.type === 'ssr' ? (loaderProps?.search ?? '') : '')
               for (const dep of tracked.dependencies) {
                 // Resolve to absolute path for consistent lookup when file changes
                 const absoluteDep = path.resolve(dep)

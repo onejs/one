@@ -1,19 +1,30 @@
 import { useCallback, useSyncExternalStore } from 'react'
 import { Platform } from 'react-native'
 import { registerDevtoolsFunction } from './devtools/registry'
-import { useParams, usePathname } from './hooks'
+import { useParams, usePathname, useRouteInfo } from './hooks'
 import { findNearestNotFoundRoute, setNotFoundState } from './notFoundState'
-import { useContextKey } from './router/Route'
+import { useContextKey, useRouteNode } from './router/Route'
 import { getContextKey } from './router/matchers'
 import { router } from './router/imperative-api'
-import { preloadedLoaderData, preloadingLoader, routeNode } from './router/router'
+import {
+  normalizeLoaderPath,
+  preloadedLoaderData,
+  preloadingLoader,
+  routeNode,
+} from './router/router'
 import { ssrLoaderData } from './server/ssrLoaderData'
 import {
   subscribeToClientMatches,
   getClientMatchesSnapshot,
   updateMatchLoaderData,
 } from './useMatches'
-import { getLoaderPath, getNativeLoaderPath } from './utils/cleanUrl'
+import {
+  appendLoaderQuery,
+  getLoaderPath,
+  getNativeLoaderPath,
+  splitLoaderKey,
+  toLoaderKey,
+} from './utils/cleanUrl'
 import { dynamicImport } from './utils/dynamicImport'
 import { weakKey } from './utils/weakKey'
 import { useServerContext } from './vite/one-server-only'
@@ -164,10 +175,13 @@ async function importNativeLoader(url: string): Promise<{ loader?: () => any }> 
 }
 
 // cache-busted so the server reruns the loader; native passes its platform to get CJS back
-function importRefetchLoader(path: string): Promise<{ loader?: () => any } | null> {
-  const loaderJSUrl = getLoaderPath(path, true, `${Date.now()}`)
+function importRefetchLoader(key: string): Promise<{ loader?: () => any } | null> {
+  const [path, search] = splitLoaderKey(key)
+  const loaderJSUrl = getLoaderPath(path, true, `${Date.now()}`, search)
   if (process.env.TAMAGUI_TARGET === 'native') {
-    return importNativeLoader(`${loaderJSUrl}?platform=${Platform.OS}`).catch(() => null)
+    return importNativeLoader(
+      appendLoaderQuery(loaderJSUrl, 'platform', Platform.OS)
+    ).catch(() => null)
   }
   return dynamicImport(loaderJSUrl)?.catch(() => null)
 }
@@ -175,7 +189,7 @@ function importRefetchLoader(path: string): Promise<{ loader?: () => any } | nul
 /**
  * Imperatively refetch loader data for a given path.
  *
- * @param pathname - The route path to refetch (e.g., '/users/123')
+ * @param href - The route to refetch (e.g., '/users/123'). An ssr route's query is part of what is refetched.
  * @returns Promise that resolves when refetch completes
  * @link https://onestack.dev/docs/api/hooks/useLoaderState#refetchloader
  *
@@ -184,22 +198,25 @@ function importRefetchLoader(path: string): Promise<{ loader?: () => any } | nul
  * await refetchLoader('/users/123')
  * ```
  */
-export async function refetchLoader(pathname: string): Promise<void> {
+export async function refetchLoader(href: string): Promise<void> {
   const startTime = performance.now()
+  // state is keyed the way useLoader keys it: an ssr route keeps its query
+  const key = normalizeLoaderPath(href)
+  const pathname = splitLoaderKey(key)[0]
 
-  updateState(pathname, {
+  updateState(key, {
     state: 'loading',
     error: null,
   })
 
   try {
     const moduleLoadStart = performance.now()
-    const module = await importRefetchLoader(pathname)
+    const module = await importRefetchLoader(key)
     const moduleLoadTime = performance.now() - moduleLoadStart
 
     // gracefully handle missing loader (404, no loader export, etc)
     if (!module?.loader) {
-      updateState(pathname, {
+      updateState(key, {
         data: undefined,
         state: 'idle',
         hasLoadedOnce: true,
@@ -223,7 +240,7 @@ export async function refetchLoader(pathname: string): Promise<void> {
         totalTime,
         source: 'refetch',
       })
-      updateState(pathname, {
+      updateState(key, {
         data: undefined,
         state: 'idle',
         hasLoadedOnce: true,
@@ -252,7 +269,7 @@ export async function refetchLoader(pathname: string): Promise<void> {
       return
     }
 
-    updateState(pathname, {
+    updateState(key, {
       data: result,
       state: 'idle',
       timestamp: Date.now(),
@@ -282,7 +299,7 @@ export async function refetchLoader(pathname: string): Promise<void> {
   } catch (err) {
     const totalTime = performance.now() - startTime
 
-    updateState(pathname, {
+    updateState(key, {
       error: err,
       state: 'idle',
     })
@@ -369,6 +386,13 @@ export function useLoaderState<
   // use just the pathname for matching, don't use resolveHref which adds params as query string
   // (the pathname is already resolved like /docs/getting-started, not /docs/[slug])
   const currentPath = pathname.replace(/\/index$/, '').replace(/\/$/, '') || '/'
+  // an ssr route's loader reads the query, so its data is stored and fetched per query
+  const isSsrPage = useRouteNode()?.type === 'ssr'
+  const href = useRouteInfo().unstable_globalHref
+  const loaderKey = isSsrPage
+    ? toLoaderKey(currentPath, new URL(href, 'http://example.com').search)
+    : currentPath
+  const [loaderPath, loaderSearch] = splitLoaderKey(loaderKey)
 
   // server-side only — use pre-resolved loader data so dev and prod behave identically
   // (no re-running loaders during render, data comes from the same source the client gets)
@@ -430,23 +454,29 @@ export function useLoaderState<
 
   // preloaded data from SSR/SSG - only use if server context path matches current path
   const serverContextPath = loaderPropsFromServerContext?.path
+  const serverContextKey =
+    isSsrPage && serverContextPath !== undefined
+      ? toLoaderKey(serverContextPath, loaderPropsFromServerContext?.search ?? '')
+      : serverContextPath
   const preloadedData =
-    serverContextPath === currentPath ? loaderDataFromServerContext : undefined
+    serverContextKey === loaderKey ? loaderDataFromServerContext : undefined
 
   // all hooks must be called unconditionally to satisfy React's rules of hooks
   const loaderStateEntry = useSyncExternalStore(
     subscribe,
-    () => getLoaderState(currentPath, preloadedData),
-    () => getLoaderState(currentPath, preloadedData)
+    () => getLoaderState(loaderKey, preloadedData),
+    () => getLoaderState(loaderKey, preloadedData)
   )
 
-  const refetch = useCallback(() => refetchLoader(currentPath), [currentPath])
+  const refetch = useCallback(() => refetchLoader(loaderKey), [loaderKey])
 
   // if the loader returns a routeId, look up data from matches instead of loaderState
   // only use this path when the match has data (layouts always have data preserved from SSR;
   // pages might have null loaderData during client navigation if preloading hasn't completed,
   // so they fall through to the regular loaderState path which handles suspension/loading)
-  if (matchRouteId) {
+  // an ssr page is excluded: matches are keyed by pathname and not rebuilt on back/forward,
+  // so they cannot tell one query of the page from another
+  if (matchRouteId && !isSsrPage) {
     const match = clientMatches.find((m) => m.routeId === matchRouteId)
     // for page matches (the deepest/last match), verify the pathname matches currentPath.
     // during back/forward navigation, clientMatches may be stale (popstate doesn't update them),
@@ -464,8 +494,8 @@ export function useLoaderState<
         // refetch updates both loaderState (for useLoaderState() consumers without a loader)
         // and the match entry (for this component and useMatches consumers)
         refetch: async () => {
-          await refetchLoader(currentPath)
-          const fresh = loaderState[currentPath]
+          await refetchLoader(loaderKey)
+          const fresh = loaderState[loaderKey]
           if (fresh?.data != null) {
             updateMatchLoaderData(matchRouteId, fresh.data)
           }
@@ -491,37 +521,37 @@ export function useLoaderState<
   ) {
     // check for already-resolved preloaded data first (synchronous)
     // use != null to also exclude null values (which indicate preload failures)
-    const resolvedPreloadData = preloadedLoaderData[currentPath]
+    const resolvedPreloadData = preloadedLoaderData[loaderKey]
     if (resolvedPreloadData != null) {
       // Data was preloaded and already resolved - use it directly
-      delete preloadedLoaderData[currentPath]
-      delete preloadingLoader[currentPath]
+      delete preloadedLoaderData[loaderKey]
+      delete preloadingLoader[loaderKey]
       loaderStateEntry.data = resolvedPreloadData
       loaderStateEntry.hasLoadedOnce = true
-    } else if (preloadingLoader[currentPath]) {
+    } else if (preloadingLoader[loaderKey]) {
       // Preload is in progress - wait for it
-      const preloadPromise = preloadingLoader[currentPath]!
+      const preloadPromise = preloadingLoader[loaderKey]!
       const promise = preloadPromise
         .then((val: any) => {
-          delete preloadingLoader[currentPath]
-          delete preloadedLoaderData[currentPath]
+          delete preloadingLoader[loaderKey]
+          delete preloadedLoaderData[loaderKey]
           // null means preload failed - don't mark as loaded, let initial load handle it
           if (val != null) {
-            updateState(currentPath, {
+            updateState(loaderKey, {
               data: val,
               hasLoadedOnce: true,
               promise: undefined,
             })
           } else {
-            updateState(currentPath, {
+            updateState(loaderKey, {
               promise: undefined,
             })
           }
         })
         .catch((err: any) => {
           console.error(`Error running loader()`, err)
-          delete preloadingLoader[currentPath]
-          updateState(currentPath, {
+          delete preloadingLoader[loaderKey]
+          updateState(loaderKey, {
             error: err,
             promise: undefined,
           })
@@ -538,10 +568,14 @@ export function useLoaderState<
             let nativeLoaderJSUrl: string
             if (process.env.NODE_ENV === 'development') {
               // dev: ?platform=native tells vite plugin to return CJS
-              nativeLoaderJSUrl = `${getLoaderPath(currentPath, true)}?platform=native`
+              nativeLoaderJSUrl = appendLoaderQuery(
+                getLoaderPath(loaderPath, true, undefined, loaderSearch),
+                'platform',
+                'native'
+              )
             } else {
               // prod: the uncached .native.js file, since metro can't inline ONE_CACHE_KEY
-              nativeLoaderJSUrl = getNativeLoaderPath(currentPath)
+              nativeLoaderJSUrl = getNativeLoaderPath(loaderPath)
             }
 
             try {
@@ -568,7 +602,7 @@ export function useLoaderState<
                   totalTime,
                   source: 'initial',
                 })
-                updateState(currentPath, {
+                updateState(loaderKey, {
                   data: undefined,
                   hasLoadedOnce: true,
                   promise: undefined,
@@ -597,7 +631,7 @@ export function useLoaderState<
                 return
               }
 
-              updateState(currentPath, {
+              updateState(loaderKey, {
                 data,
                 hasLoadedOnce: true,
                 promise: undefined,
@@ -619,7 +653,7 @@ export function useLoaderState<
                 `url: ${nativeLoaderJSUrl}`
               )
               const totalTime = performance.now() - startTime
-              updateState(currentPath, {
+              updateState(loaderKey, {
                 data: {},
                 promise: undefined,
               })
@@ -635,7 +669,7 @@ export function useLoaderState<
           }
 
           // web platform
-          const loaderJSUrl = getLoaderPath(currentPath, true)
+          const loaderJSUrl = getLoaderPath(loaderPath, true, undefined, loaderSearch)
 
           const moduleLoadStart = performance.now()
           const module = await dynamicImport(loaderJSUrl)?.catch(() => null)
@@ -643,7 +677,7 @@ export function useLoaderState<
 
           // gracefully handle missing loader (404, no loader export, etc)
           if (!module?.loader) {
-            updateState(currentPath, {
+            updateState(loaderKey, {
               data: undefined,
               hasLoadedOnce: true,
               promise: undefined,
@@ -667,7 +701,7 @@ export function useLoaderState<
               totalTime,
               source: 'initial',
             })
-            updateState(currentPath, {
+            updateState(loaderKey, {
               data: undefined,
               hasLoadedOnce: true,
               promise: undefined,
@@ -695,7 +729,7 @@ export function useLoaderState<
             return
           }
 
-          updateState(currentPath, {
+          updateState(loaderKey, {
             data: result,
             hasLoadedOnce: true,
             promise: undefined,
@@ -712,7 +746,7 @@ export function useLoaderState<
         } catch (err) {
           const totalTime = performance.now() - startTime
 
-          updateState(currentPath, {
+          updateState(loaderKey, {
             error: err,
             promise: undefined,
           })

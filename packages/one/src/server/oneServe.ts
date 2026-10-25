@@ -408,6 +408,11 @@ export async function oneServe(
         return null
       }
 
+      // a client navigation to an ssr route validates its query like the document request
+      const searchSchemas =
+        route.type === 'ssr' && loaderSearchSchemaMap.get(routeFile || serverPath)
+      if (searchSchemas) loaderProps = withLoaderSearchParams(searchSchemas, loaderProps)
+
       let json
       try {
         json = await loader(loaderProps)

@@ -49,17 +49,50 @@ export function getPreloadCSSPath(currentPath: string) {
   return `${clientSideURL}/assets/${cleanUrl(currentPath.slice(1))}${CSS_PRELOAD_JS_POSTFIX}`
 }
 
+// carries the page's query to the loader of an ssr route, which is the only
+// loader that can read it. a reserved key keeps it apart from `platform`.
+export const LOADER_SEARCH_PARAM = '__one_search'
+
+// a loader key is the pathname, plus the query when the route is ssr
+export function splitLoaderKey(key: string): [path: string, search: string] {
+  const index = key.indexOf('?')
+  return index === -1 ? [key, ''] : [key.slice(0, index), key.slice(index)]
+}
+
+// the same query can be written in several orders and encodings (the url, the
+// router state, a link). one canonical form keeps a page's data under one key.
+export function toLoaderKey(path: string, search: string) {
+  const params = new URLSearchParams(search)
+  params.sort()
+  const query = params.toString()
+  return query ? `${path}?${query}` : path
+}
+
+export function appendLoaderQuery(url: string, name: string, value: string) {
+  return `${url}${url.includes('?') ? '&' : '?'}${name}=${value}`
+}
+
+// the page's query as sent with a loader request, '' when there is none
+export function readLoaderSearch(url: URL) {
+  const search = url.searchParams.get(LOADER_SEARCH_PARAM)
+  return search ? `?${search}` : ''
+}
+
 export function getLoaderPath(
   currentPath: string,
   includeUrl = isNative,
-  cacheBust?: string
+  cacheBust?: string,
+  search = ''
 ) {
   const baseURL = includeUrl ? getURL() : ''
   const devPath = process.env.NODE_ENV === 'development' ? '/_one' : ''
 
   const cacheBustSegment = cacheBust ? `_refetch_${cacheBust}_` : ''
 
-  return `${baseURL}${devPath}/assets/${getLoaderFileStem(currentPath)}${cacheBustSegment}${LOADER_JS_POSTFIX}`
+  const loaderPath = `${baseURL}${devPath}/assets/${getLoaderFileStem(currentPath)}${cacheBustSegment}${LOADER_JS_POSTFIX}`
+  return search.length > 1
+    ? appendLoaderQuery(loaderPath, LOADER_SEARCH_PARAM, encodeURIComponent(search.slice(1)))
+    : loaderPath
 }
 
 // native prod reads the uncached .native.js copy the build writes beside each loader
