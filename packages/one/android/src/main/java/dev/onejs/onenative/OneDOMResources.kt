@@ -24,7 +24,7 @@ internal class OneDOMResources private constructor(
         private val manifests = mutableMapOf<String, Map<String, String>>()
 
         fun current(context: Context): OneDOMResources? {
-            val location = OneUpdatesLauncher.currentDOMAssetLocation() ?: return null
+            val location = OneUpdatesLauncher.currentDOMAssetLocation(context.applicationContext) ?: return null
             return OneDOMResources(context.applicationContext, location.selection, location.root, location.assetPrefix)
         }
 

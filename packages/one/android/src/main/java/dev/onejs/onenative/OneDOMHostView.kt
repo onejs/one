@@ -19,6 +19,7 @@ import android.widget.FrameLayout
 import com.facebook.react.common.build.ReactBuildConfig
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
+import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.UUID
@@ -194,8 +195,8 @@ class OneDOMHostView(context: Context) : FrameLayout(context) {
         private fun begin(): WebResourceResponse {
             val epoch = UUID.randomUUID().toString()
             val bootstrap = bootstrap(bootstrapState, entryId, epoch)
-            val html = if (bootstrap == null) null else fetch()
-            val injected = html?.let { inject(it, bootstrap!!.first) }
+            val html = if (bootstrap == null) null else runCatching { fetch() }
+            val injected = html?.getOrNull()?.let { inject(it, bootstrap!!.first, document.resources == null) }
             main.post {
                 if (!current(document)) return@post
                 closePort()
@@ -203,7 +204,8 @@ class OneDOMHostView(context: Context) : FrameLayout(context) {
                 onDocumentStart?.invoke(epoch, bootstrap?.second ?: 0.0)
                 when {
                     bootstrap == null -> onError?.invoke(epoch, "Invalid One DOM bootstrap state", "DOM_PROTOCOL")
-                    html == null -> onError?.invoke(epoch, "One DOM page failed to load", "DOM_LOAD_FAILED")
+                    html?.isFailure == true -> onError?.invoke(
+                        epoch, "One DOM page failed to load: ${html.exceptionOrNull()?.message}", "DOM_LOAD_FAILED")
                     injected == null -> onError?.invoke(epoch, "One DOM page has no <head>", "DOM_LOAD_FAILED")
                 }
             }
@@ -211,19 +213,19 @@ class OneDOMHostView(context: Context) : FrameLayout(context) {
             return OneDOMResources.response(200, "text/html", ByteArrayInputStream(injected.toByteArray()), "no-store")
         }
 
-        private fun fetch(): String? {
+        // throws with the reason, which reaches JS in the load error.
+        private fun fetch(): String {
             val resources = document.resources
             if (resources != null) {
-                val segments = resources.resolve(document.owned) ?: return null
+                val segments = resources.resolve(document.owned) ?: throw IOException("not an owned page")
                 return resources.open(segments)?.use { it.readBytes().toString(Charsets.UTF_8) }
+                    ?: throw IOException("${segments.joinToString("/")} is missing")
             }
             val connection = URL(document.owned.toString()).openConnection() as HttpURLConnection
-            return try {
+            try {
                 connection.instanceFollowRedirects = false
-                if (connection.responseCode != 200) null
-                else connection.inputStream.use { it.readBytes().toString(Charsets.UTF_8) }
-            } catch (_: Exception) {
-                null
+                if (connection.responseCode != 200) throw IOException("${document.owned} responded ${connection.responseCode}")
+                return connection.inputStream.use { it.readBytes().toString(Charsets.UTF_8) }
             } finally {
                 connection.disconnect()
             }
@@ -315,12 +317,16 @@ class OneDOMHostView(context: Context) : FrameLayout(context) {
         // the transport contract from src/dom/browserBridge.ts: bootstrap,
         // postMessage and subscribe, installed before any application script.
         // posts wait for native's port; a frame's message always has a source.
-        fun transport(bootstrap: String) = """
+        fun transport(bootstrap: String, development: Boolean) = """
             (() => {
               const listeners = new Set()
               const bootstrap = $bootstrap
               const pending = []
               let port = null
+              const send = (raw) => {
+                if (port) port.postMessage(raw)
+                else pending.push(raw)
+              }
               const adopt = (event) => {
                 if (port || event.source !== null || event.data !== bootstrap.epoch || event.ports.length !== 1) return
                 event.stopImmediatePropagation()
@@ -330,6 +336,39 @@ class OneDOMHostView(context: Context) : FrameLayout(context) {
               }
               addEventListener('message', adopt, true)
               fetch('https://${OneDOMResources.HOST}$CONNECT' + encodeURIComponent(bootstrap.epoch), { mode: 'no-cors', cache: 'no-store' }).catch(() => {})
+                    // failures before the page subscribes, such as a module that throws
+                    // while evaluating or an entry that fails to load, still reach native.
+                    const early = (error, fallback) => {
+                      // the same fields serializeError in src/dom/serialize.ts gives
+                      let failure = { name: 'Error', message: fallback }
+                      try {
+                        if (error instanceof Error) {
+                          failure = { name: String(error.name || 'Error'), message: String(error.message) }
+                          if (typeof error.code === 'string') failure.code = error.code
+                          if ($development && typeof error.stack === 'string') failure.stack = error.stack
+                        } else if (error === null || ['string', 'number', 'boolean', 'bigint'].includes(typeof error)) {
+                          failure.message = String(error)
+                        }
+                      } catch {}
+                      send(JSON.stringify({ version: 1, epoch: bootstrap.epoch, type: 'error', error: failure }))
+                    }
+                    const onError = (event) => {
+                      const target = event.target
+                      if (event instanceof ErrorEvent) early(event.error, event.message || 'Script error')
+                      else if (target instanceof HTMLScriptElement || target instanceof HTMLLinkElement)
+                        early(undefined, 'Failed to load ' + (target.src || target.href))
+                    }
+                    const onRejection = (event) => early(event.reason, 'Unhandled promise rejection')
+                    addEventListener('error', onError, true)
+                    addEventListener('unhandledrejection', onRejection)
+                    // the page's first subscriber reports from then on
+                    let handedOff = false
+                    const handoff = () => {
+                      if (handedOff) return
+                      handedOff = true
+                      removeEventListener('error', onError, true)
+                      removeEventListener('unhandledrejection', onRejection)
+                    }
               Object.defineProperty(globalThis, '__oneDOMReceive', {
                 value: (raw) => { for (const listener of [...listeners]) listener(raw) },
               })
@@ -338,10 +377,10 @@ class OneDOMHostView(context: Context) : FrameLayout(context) {
                   bootstrap,
                   postMessage(raw) {
                     if (typeof raw !== 'string') throw new TypeError('One DOM messages are strings')
-                    if (port) port.postMessage(raw)
-                    else pending.push(raw)
+                    send(raw)
                   },
                   subscribe(listener) {
+                    handoff()
                     listeners.add(listener)
                     return () => { listeners.delete(listener) }
                   },
@@ -351,9 +390,9 @@ class OneDOMHostView(context: Context) : FrameLayout(context) {
         """.trimIndent()
 
         // json is valid script, but a "</script" inside a string would end the tag.
-        fun inject(html: String, bootstrap: String): String? {
+        fun inject(html: String, bootstrap: String, development: Boolean): String? {
             val match = head.find(html) ?: return null
-            val script = "<script>" + transport(bootstrap.replace("<", "\\u003c")) + "</script>"
+            val script = "<script>" + transport(bootstrap.replace("<", "\\u003c"), development) + "</script>"
             return html.substring(0, match.range.last + 1) + script + html.substring(match.range.last + 1)
         }
     }
