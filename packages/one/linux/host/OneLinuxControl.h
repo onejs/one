@@ -34,6 +34,8 @@ class OneLinuxControl {
 
   ComponentHandle handle_;
   GtkWidget *widget_;
+  GtkSpinButton *stepper_{nullptr};
+  GtkWidget *stepperLabel_{nullptr};
   EventEmitter::Shared emitter_;
   std::vector<std::string> labels_;
   std::vector<std::string> itemValues_;

@@ -62,9 +62,9 @@ export default function Controls() {
         <One.linux.Toggle label="Unavailable" isOn={false} disabled />
       </Row>
       <Row title="Stepper: native numeric value" note={`0 to 5, step 0.25 | natural ${sizes.stepper}`}>
-        <One.linux.Stepper onLayout={measure('stepper')} value={stepper} minimumValue={0} maximumValue={5} step={0.25} revision={revision}
-          onValueChange={(event) => report(() => setStepper(event.value))} />
-        <One.linux.Stepper value={2} disabled />
+        <One.linux.Stepper onLayout={measure('stepper')} value={stepper} label="Amount" in={[0, 5]} step={0.25} revision={revision}
+          onValueChange={(value) => report(() => setStepper(value))} />
+        <One.linux.Stepper value={2} disabled onValueChange={() => {}} />
       </Row>
       <Row title="TextField: controlled text" note={`Enter submits | natural ${sizes.text}`}>
         <One.linux.TextField onLayout={measure('text')} label="Project" prompt="Project name" text={text} revision={revision}

@@ -13,6 +13,7 @@ export type ChangeEvent = Readonly<{
 }>
 
 interface NativeProps extends ViewProps {
+  title: string
   value: Double
   minimumValue: Double
   maximumValue: Double

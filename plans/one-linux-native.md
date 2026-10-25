@@ -117,6 +117,19 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+**Review 2 repairs, 2026-10-25, s79947 for s72425.** M4 is paused for the
+lead-assigned review findings in `linux-review2-findings.txt`. TESTED Stepper's
+native API in the arm64 release VM: `label="Amount"`, `in={[0, 3]}` and
+`onValueChange={setCount}` render a native label and numeric value. Two real
+increment clicks advance 2 to 3 and stay at the upper bound:
+[Stepper contract](one-linux-native-stepper-contract.webp). The public wrapper
+now matches One's native Stepper range and callback shape; the GTK control
+remains a spin button with a label. Its disabled fixture and every Linux sender
+use the same API. RAN incremental release host build, full One package build,
+Linux bundle, Hermes bytecode compilation and package lint (zero errors,
+existing warnings). No automated tests.
+
+
 **M3 continuation, 2026-10-25, worker s79514 for s72425.** TESTED all ten
 controls in the studio-64 Ubuntu arm64 VM, GTK 4 release host and embedded
 Linux Hermes bytecode, with `G_DEBUG=fatal-criticals`. The four additions are
@@ -754,7 +767,8 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
   and drag and drop. `cursorColor` is Android only in RN and is not a Linux gap.
 - The earlier scroll, portal color scheme, image and Networking gaps remain.
 
-**Next:** lead s72425 and ci-manager review the M3 source and captures, run the
+**Next:** s79947 repairs review 2 before resuming M4. Lead s72425 and
+ci-manager own the
 full release bundle byte gate and broader platform builds. The existing image,
 portal appearance and Networking gaps remain outside this M3 continuation.
 M4 app shell and routing follows the lead's scheduling.

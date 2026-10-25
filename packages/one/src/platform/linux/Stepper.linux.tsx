@@ -4,19 +4,19 @@ import NativeStepper, { type ChangeEvent } from './OneLinuxStepperNativeComponen
 
 export type StepperProps = Omit<ViewProps, 'children'> & {
   value: number
-  minimumValue?: number
-  maximumValue?: number
+  label?: string
+  in?: readonly [number, number]
   /** increment, in the stepper's value units. */
   step?: number
   disabled?: boolean
   revision?: number
-  onValueChange?: (event: { value: number; revision: number }) => void
+  onValueChange: (value: number) => void
 }
 
 export function Stepper({
   value,
-  minimumValue = 0,
-  maximumValue = 100,
+  label = '',
+  in: [minimumValue, maximumValue] = [0, 100],
   step = 1,
   revision = 0,
   onValueChange,
@@ -35,12 +35,13 @@ export function Stepper({
     )
   }
   const controlled = useControlled((event: ChangeEvent) => {
-    onValueChange?.({ value: event.value, revision: event.revision })
+    onValueChange(event.value)
   }, revision)
   return (
     <NativeStepper
       {...props}
       value={value}
+      title={label}
       minimumValue={minimumValue}
       maximumValue={maximumValue}
       step={step}

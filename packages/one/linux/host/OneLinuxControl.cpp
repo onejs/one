@@ -37,9 +37,13 @@ OneLinuxControl::OneLinuxControl(ComponentHandle handle) : handle_(handle)
     widget_ = gtk_check_button_new();
     g_signal_connect(widget_, "toggled", G_CALLBACK(checked), this);
   } else if (handle == OneLinuxStepperShadowNode::Handle()) {
-    widget_ = gtk_spin_button_new_with_range(0, 100, 1);
-    gtk_spin_button_set_numeric(GTK_SPIN_BUTTON(widget_), TRUE);
-    g_signal_connect(widget_, "value-changed", G_CALLBACK(stepped), this);
+    widget_ = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 8);
+    stepperLabel_ = gtk_label_new("");
+    gtk_box_append(GTK_BOX(widget_), stepperLabel_);
+    stepper_ = GTK_SPIN_BUTTON(gtk_spin_button_new_with_range(0, 100, 1));
+    gtk_spin_button_set_numeric(stepper_, TRUE);
+    gtk_box_append(GTK_BOX(widget_), GTK_WIDGET(stepper_));
+    g_signal_connect(stepper_, "value-changed", G_CALLBACK(stepped), this);
   } else if (handle == OneLinuxTextFieldShadowNode::Handle() || handle == OneLinuxSecureFieldShadowNode::Handle()) {
     widget_ = handle == OneLinuxTextFieldShadowNode::Handle() ? gtk_entry_new() : gtk_password_entry_new();
     g_signal_connect(widget_, "changed", G_CALLBACK(edited), this);
@@ -61,6 +65,7 @@ OneLinuxControl::~OneLinuxControl()
     gtk_widget_remove_controller(widget_, interactionController_);
   }
   g_signal_handlers_disconnect_by_data(widget_, this);
+  if (stepper_) g_signal_handlers_disconnect_by_data(stepper_, this);
   if (handle_ == OneLinuxSegmentedControlShadowNode::Handle()) {
     for (GtkWidget *child = gtk_widget_get_first_child(widget_); child; child = gtk_widget_get_next_sibling(child)) {
       g_signal_handlers_disconnect_by_data(child, this);
@@ -341,8 +346,11 @@ void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Sh
       gtk_check_button_set_label(GTK_CHECK_BUTTON(widget_), props.title.c_str());
       gtk_check_button_set_active(GTK_CHECK_BUTTON(widget_), value != 0);
     } else if (handle_ == OneLinuxStepperShadowNode::Handle()) {
-      gtk_spin_button_set_range(GTK_SPIN_BUTTON(widget_), props.minimumValue, props.maximumValue);
-      gtk_spin_button_set_increments(GTK_SPIN_BUTTON(widget_), props.step, props.step * 10);
+      gtk_label_set_text(GTK_LABEL(stepperLabel_), props.title.c_str());
+      gtk_widget_set_visible(stepperLabel_, !props.title.empty());
+      gtk_accessible_update_property(GTK_ACCESSIBLE(stepper_), GTK_ACCESSIBLE_PROPERTY_LABEL, props.title.c_str(), -1);
+      gtk_spin_button_set_range(stepper_, props.minimumValue, props.maximumValue);
+      gtk_spin_button_set_increments(stepper_, props.step, props.step * 10);
       int digits = 0;
       for (double part : {props.step, props.minimumValue, props.maximumValue}) {
         int precision = 0;
@@ -352,8 +360,8 @@ void OneLinuxControl::update(const OneLinuxControlProps &props, EventEmitter::Sh
         }
         digits = std::max(digits, precision);
       }
-      gtk_spin_button_set_digits(GTK_SPIN_BUTTON(widget_), digits);
-      gtk_spin_button_set_value(GTK_SPIN_BUTTON(widget_), value);
+      gtk_spin_button_set_digits(stepper_, digits);
+      gtk_spin_button_set_value(stepper_, value);
     } else {
       if (props.indeterminate) {
         if (!progressTick_) {
