@@ -15,10 +15,13 @@ version="$(sed -n 's/^HERMES_VERSION_NAME=//p' "$RN_ROOT/sdks/hermes-engine/vers
 src="$cache/src/hermes-$version"
 
 stamp="$out/.hermes-version"
-key="$version-$config-$arch-static-icu"
+key="$version-$config-$arch-static-icu74.2-pic"
 if [ -f "$out/destroot/lib/libhermesvm.so" ] && [ "$(cat "$stamp" 2>/dev/null)" = "$key" ]; then
   exit 0
 fi
+
+icu="$cache/icu-74.2-pic-$arch"
+"$here/prepare-icu.sh" "$icu"
 
 if [ ! -d "$src" ]; then
   mkdir -p "$cache/src"
@@ -38,6 +41,7 @@ fi
 # comes from react-native, as it does for every other platform
 # upstream's Linux hermesc uses static ICU; keep the VM shared and embed only ICU.
 cmake -G Ninja -S "$src" -B "$out/build" \
+  -U 'ICU_*' -DICU_ROOT="$icu/destroot" \
   -DCMAKE_BUILD_TYPE="$build_type" \
   -DHERMES_ENABLE_DEBUGGER="$debugger" \
   -DHERMES_ENABLE_INTL=OFF \

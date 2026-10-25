@@ -59,7 +59,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y clang-18 cmake ninja-build pkg-config libgtk-4-dev \
-            libsoup-3.0-dev libsqlite3-dev libicu-dev sway grim dbus-x11
+            libsoup-3.0-dev libsqlite3-dev sway grim dbus-x11 fonts-dejavu-core
       - uses: ./.github/actions/install
         with:
           install-playwright: 'false'
@@ -74,8 +74,9 @@ jobs:
             ~/.cache/ReactNative/linux/downloads
             ~/.cache/ReactNative/linux/third-party
             ~/.cache/ReactNative/linux/hermes-*
+            ~/.cache/ReactNative/linux/icu-*
             ~/.cache/ReactNative/linux/deps-*
-          key: linux-native-${{ matrix.arch }}-${{ hashFiles('bun.lock', 'packages/one/linux/scripts/prepare-hermes.sh', 'packages/one/linux/scripts/prepare-deps.sh', 'packages/one/linux/cpp/deps/**') }}
+          key: linux-native-${{ matrix.arch }}-${{ hashFiles('bun.lock', 'packages/one/linux/scripts/prepare-hermes.sh', 'packages/one/linux/scripts/prepare-icu.sh', 'packages/one/linux/scripts/prepare-deps.sh', 'packages/one/linux/cpp/deps/**') }}
       - name: Build the Linux core and GTK host
         run: packages/one/linux/scripts/prepare-core.sh "$RUNNER_TEMP/linux-app" release
       - name: Verify Hermes has no dynamic ICU dependency

@@ -142,7 +142,14 @@ packaging no longer copies system ICU libraries or sets a library path for them.
 Both CI architectures inspect the ELF dependencies of the VM and compiler and
 fail if either imports `libicu*.so`. This removes the ICU version requirement;
 GTK, libc and the other system library requirements still follow the build host.
-Runtime and linkage validation are pending the first CI run.
+TESTED run 40184422620: both architectures compiled Hermes but could not link
+the shared VM against Ubuntu's non-PIC ICU archives. One therefore builds
+checksum-pinned ICU 74.2 with `-fPIC`, static libraries and embedded data in
+the same user cache before configuring Hermes. This follows ICU's
+[Unix source build](https://unicode-org.github.io/icu/userguide/icu4c/build.html)
+and supplies the upstream static ICU option with archives suitable for a shared
+VM. No system ICU development package is required. Runtime and linkage
+validation are pending the next CI run.
 
 **Review 3 fixes, 2026-10-24, one-linux-m5.** RAN a release host build and
 `tests/linux-basic` bundle with a temporary probe page in the arm64 VM under
