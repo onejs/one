@@ -18,7 +18,8 @@ class OneLinuxNavigation {
   void remove(OneView *child);
   void update(std::shared_ptr<const OneLinuxNavigationProps> props, EventEmitter::Shared emitter);
   void sync();
-  void allocated();
+  // the header and sidebar sizes the pages sit inside
+  OneLinuxNavigationState insets() const;
 
  private:
   static gboolean repeatEvent(GtkEventControllerLegacy *, GdkEvent *, gpointer);
@@ -39,7 +40,6 @@ class OneLinuxNavigation {
   std::shared_ptr<const OneLinuxNavigationEventEmitter> emitter_;
   OneLinuxControlledValue<double> selection_;
   bool applying_{false};
-  int width_{-1}, height_{-1};
 };
 
 } // namespace facebook::react

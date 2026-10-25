@@ -117,6 +117,60 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+**Review 3 fixes, 2026-10-24, one-linux-m5.** RAN a release host build and
+`tests/linux-basic` bundle with a temporary probe page in the arm64 VM under
+headless sway and a uinput pointer and keyboard, with fatal GTK criticals
+(fatal warnings for the resize run).
+
+- P2 1 and 2, navigation insets: the native view now measures its header and
+  sidebar and sends them through Fabric state in the same synchronous commit as
+  control sizes. The shadow node turns them into Yoga border (top and left) and
+  the pages fill what is left, so `onContentLayout` and its JS round trip are
+  gone. TESTED the routed page: measure `pageY 67` for a view laid out at
+  `y 20`, and a click 31 px into it reports `pageY 98`, `locationY 31`, so
+  measure and press agree ([origin](one-linux-native-review3-origin.webp)). The
+  first mounted frame already holds the page: first mounted frame 202.8 ms,
+  first frame with RN text 221.7 ms on a cold start under load.
+- P2 3, synchronous mounting: the commit mounts inline only while the host is
+  flushing control measurements on the main thread; other commits queue.
+  Drag-resize was driven by changing the sway output size six times under fatal
+  warnings with controls on the page: no warning, no crash. The unfixed build
+  was not run, so whether it reproduced is INFERRED from reading only.
+- P2 4, DropDown selection: `OneLinuxControl::update` reports whether a prop
+  that can change the natural size changed. TESTED a DropDown with "A" and "A
+  much longer choice here": selecting the second item grows the control and the
+  full label stays visible ([long](one-linux-native-review3-dropdown-long.webp)).
+- P2 5, worklet frames: each worklets module owns its `AnimationFrames`.
+  TESTED two windows each running a worklet `requestAnimationFrame` loop
+  ([two windows](one-linux-native-review3-two-windows.webp)); closing one left
+  the other counting (670 then 790 frames two seconds apart,
+  [after close](one-linux-native-review3-window-closed.webp)).
+- P2 6, bindings: matching uses `gdk_key_event_matches` plus the key's base
+  symbol, so `cmd-shift-[` and `ctrl-+` fire (and `cmd-k`)
+  ([keys](one-linux-native-review3-shifted-keys.webp)). `cmd` means Ctrl on
+  Linux, GTK's primary accelerator. A binding named `ctrl-k` and one named
+  `cmd-k` therefore collide on Linux. This choice is s72425's to confirm.
+- P3 7, lazy tabs: tabs render once focused unless `lazy: false`, and page
+  titles use `tabBarLabel`, then `title`, then the route name. Not exercised
+  in the VM.
+- P3 8, stale props key: the mounting record keeps the last Fabric props apart
+  from the clone a native-driver update makes, and measurements use them.
+  Not exercised in the VM.
+- P3 9, window teardown: did not reproduce, and the suggested fix does not
+  work. TESTED a `destroy` handler: GTK4 emits it after the children are
+  disposed, so the shell touched a dead menu button and aborted under fatal
+  criticals. Nothing in this host closes a window without `close-request`
+  (no `g_application_quit`, SIGTERM unhandled), so the handler stays on
+  `close-request`.
+- P3 10, underscores: menu labels escape `_`; the probe menu `Probe_Menu` shows
+  its underscore ([menu](one-linux-native-review3-menu-underscore.webp)).
+- P3 11: `One.linux.AppCommands` is typed `OneLinuxAppCommands`.
+- Simplifications taken: D1 through the size-affecting prop check and D3
+  through the Fabric insets. Not taken: D2 (a shared keystroke tokenizer in
+  native-core) and D4 (one header bar per window, a design choice for s72425);
+  D5 (control measured twice per allocation) because GTK caches those measures
+  and the vertical minimum depends on the allocated width.
+
 **Mac check after the shared wrappers, 2026-10-24, one-linux-m5.** RAN a
 release build of `tests/macos-basic` at 2a2a4cec85 (BUILD SUCCEEDED, binary
 sha1 634068522109) against the dev bundle on studio-64, driven through
@@ -1018,7 +1072,7 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
   and drag and drop. `cursorColor` is Android only in RN and is not a Linux gap.
 - The earlier scroll, portal color scheme, image and Networking gaps remain.
 
-**Next:** M4's baseline shell and routing have release VM captures. Lead
+**Next:** review 3 fixes are in; M5 packaging is next. M4's baseline shell and routing have release VM captures. Lead
 s72425 and ci-manager own review, Mac runtime validation, broader platform builds
 and the release bundle byte gate. M5 packaging and the visual navigation options
 listed above remain. The shared worktree stays held by s72425; owned VM services

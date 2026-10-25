@@ -240,7 +240,7 @@ void OneLinuxHost::start()
     if (auto runtime = weakRuntime.lock()) {
       std::unordered_map<Tag, OneHostRuntime::StateDataUpdate> updates;
       for (const auto &[tag, measured] : measurements) {
-        updates.emplace(tag, OneHostRuntime::StateDataUpdate{measured.first, std::make_shared<const OneLinuxControlState>(OneLinuxControlState{measured.second})});
+        updates.emplace(tag, OneHostRuntime::StateDataUpdate{measured.first, measured.second});
       }
       runtime->updateStateData(runtime->surfaceId(), updates);
     }

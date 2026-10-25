@@ -6,6 +6,7 @@
 #include <react/renderer/mounting/ShadowViewMutation.h>
 #include <react/utils/ContextContainer.h>
 
+#include <atomic>
 #include <functional>
 #include <cstdint>
 #include <memory>
@@ -39,7 +40,7 @@ class OneLinuxMountingManager : public std::enable_shared_from_this<OneLinuxMoun
   // the root view has no layout metrics of its own; it fills the window
   void setSurfaceSize(double width, double height);
   void measureControls();
-  using ControlMeasurements = std::unordered_map<Tag, std::pair<Props::Shared, Size>>;
+  using ControlMeasurements = std::unordered_map<Tag, std::pair<Props::Shared, StateData::Shared>>;
   std::function<void(const ControlMeasurements &)> didMeasureControls;
 
   // any thread
@@ -75,6 +76,7 @@ class OneLinuxMountingManager : public std::enable_shared_from_this<OneLinuxMoun
   SharedComponentDescriptorRegistry componentDescriptorRegistry_;
   SurfaceId surfaceId_{0};
   OneView *surfaceView_{nullptr};
+  std::atomic<bool> measuring_{false};
   bool transactionInFlight_{false};
   bool followUpTransactionRequired_{false};
   bool hasContent_{false};

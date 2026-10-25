@@ -28,6 +28,12 @@ class OneLinuxControlImpl {
   }
   virtual void prepare(const ControlUpdate &) {}
   virtual void apply(const ControlUpdate &) = 0;
+  // whether this update can change the natural size gtk reports
+  virtual bool affectsSize(const ControlUpdate &update) const {
+    return update.changed(&OneLinuxControlProps::title) || update.changed(&OneLinuxControlProps::labels) ||
+        update.changed(&OneLinuxControlProps::minimumValue) || update.changed(&OneLinuxControlProps::maximumValue) ||
+        update.changed(&OneLinuxControlProps::step);
+  }
   GtkWidget *widget_;
   EventEmitter::Shared emitter_;
   std::shared_ptr<const OneLinuxControlProps> props_;
@@ -297,6 +303,14 @@ struct DropDownControl final : OneLinuxControlImpl {
     }
   }
 
+  // the button shows the selected item, so its width follows the selection
+  bool affectsSize(const ControlUpdate &update) const override {
+    return OneLinuxControlImpl::affectsSize(update) || update.changed(&OneLinuxControlProps::value) ||
+        update.changed(&OneLinuxControlProps::selection) || update.changed(&OneLinuxControlProps::hasSelection) ||
+        update.changed(&OneLinuxControlProps::itemValues) || update.changed(&OneLinuxControlProps::tagged) ||
+        update.changed(&OneLinuxControlProps::revision);
+  }
+
   void apply(const ControlUpdate &update) override {
     const auto &props = update.props;
     tagged_ = props.tagged;
@@ -403,6 +417,11 @@ struct TextFieldControl final : OneLinuxControlImpl {
     }
   }
 
+  // gtk's text widget includes its placeholder in its natural width
+  bool affectsSize(const ControlUpdate &update) const override {
+    return OneLinuxControlImpl::affectsSize(update) || update.changed(&OneLinuxControlProps::prompt);
+  }
+
   void apply(const ControlUpdate &update) override {
     const auto &props = update.props;
     text_.update(props.text, props.revision, props.acknowledgedEvent);
@@ -490,8 +509,7 @@ bool OneLinuxControl::update(std::shared_ptr<const OneLinuxControlProps> next, E
   control_->prepare(update);
   if (update.changed(&OneLinuxControlProps::disabled)) gtk_widget_set_sensitive(control_->widget_, !update.props.disabled);
   control_->apply(update);
-  return update.changed(&OneLinuxControlProps::title) || update.changed(&OneLinuxControlProps::labels) ||
-      update.changed(&OneLinuxControlProps::minimumValue) || update.changed(&OneLinuxControlProps::maximumValue) || update.changed(&OneLinuxControlProps::step);
+  return control_->affectsSize(update);
 }
 
 } // namespace facebook::react

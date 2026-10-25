@@ -41,13 +41,46 @@ class OneLinuxNavigationEventEmitter : public ViewEventEmitter {
     dispatchEvent("select", folly::dynamic::object("index", index)("eventCount", eventCount)("revision", revision), RawEvent::Category::Discrete);
   }
   void onBack() const { dispatchEvent("back", folly::dynamic::object(), RawEvent::Category::Discrete); }
-  void onContentLayout(double width, double height) const
-  {
-    dispatchEvent("contentLayout", folly::dynamic::object("width", width)("height", height));
-  }
+};
+
+// the header and sidebar gtk draws around the pages, measured on the main thread.
+struct OneLinuxNavigationState {
+  Float top{0};
+  Float left{0};
 };
 
 inline constexpr char OneLinuxNavigationName[] = "OneLinuxNavigation";
-using OneLinuxNavigationShadowNode = ConcreteViewShadowNode<OneLinuxNavigationName, OneLinuxNavigationProps, OneLinuxNavigationEventEmitter>;
+
+// the pages are absolutely positioned inside the header and sidebar, which
+// Yoga sees as the node's border, so their Fabric frames match where gtk draws
+// them and measure and touch coordinates agree.
+class OneLinuxNavigationShadowNode final
+    : public ConcreteViewShadowNode<OneLinuxNavigationName, OneLinuxNavigationProps, OneLinuxNavigationEventEmitter, OneLinuxNavigationState> {
+ public:
+  using Base = ConcreteViewShadowNode<OneLinuxNavigationName, OneLinuxNavigationProps, OneLinuxNavigationEventEmitter, OneLinuxNavigationState>;
+
+  OneLinuxNavigationShadowNode(const ShadowNodeFragment &fragment, const ShadowNodeFamily::Shared &family, ShadowNodeTraits traits)
+      : Base(fragment, family, traits)
+  {
+    applyInsets();
+  }
+
+  OneLinuxNavigationShadowNode(const ShadowNode &source, const ShadowNodeFragment &fragment) : Base(source, fragment)
+  {
+    applyInsets();
+    if (getState() != source.getState()) {
+      dirtyLayout();
+    }
+  }
+
+ private:
+  void applyInsets()
+  {
+    const auto &insets = getStateData();
+    auto &style = yogaNode_.style();
+    style.setBorder(yoga::Edge::Top, yoga::StyleLength::points(insets.top));
+    style.setBorder(yoga::Edge::Left, yoga::StyleLength::points(insets.left));
+  }
+};
 
 } // namespace facebook::react

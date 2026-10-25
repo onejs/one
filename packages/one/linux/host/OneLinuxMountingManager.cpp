@@ -119,6 +119,8 @@ struct OneLinuxMountingManager::Record {
   // finalizes the widget
   OneView *view;
   Props::Shared props;
+  // the props of the last Fabric commit; synchronous updates replace props with a clone
+  Props::Shared fabricProps;
   LayoutMetrics layoutMetrics = EmptyLayoutMetrics;
   ParagraphShadowNode::ConcreteState::Shared paragraphState;
   EventEmitter::Shared eventEmitter;
@@ -132,6 +134,7 @@ struct OneLinuxMountingManager::Record {
   std::unique_ptr<OneLinuxControl> nativeControl;
   std::unique_ptr<OneLinuxNavigation> navigation;
   ConcreteState<OneLinuxControlState>::Shared controlState;
+  ConcreteState<OneLinuxNavigationState>::Shared navigationState;
   Size measuredControlSize{-1, -1};
   bool needsMeasurement{true};
   TextInputShadowNode::ConcreteState::Shared inputState;
@@ -338,8 +341,10 @@ void OneLinuxMountingManager::setSurfaceSize(double width, double height)
 
 void OneLinuxMountingManager::scheduleTransaction(std::shared_ptr<const MountingCoordinator> coordinator)
 {
-  // native measurement commits reenter the active mount before gtk can paint.
-  if (g_main_context_is_owner(g_main_context_default())) {
+  // only the measurement commit mounts inline, so the measured sizes land
+  // before gtk paints; other commits wait for a later main loop iteration, as
+  // gtk may be inside a size allocation.
+  if (measuring_ && g_main_context_is_owner(g_main_context_default())) {
     initiateTransaction(*coordinator);
     return;
   }
@@ -556,6 +561,14 @@ void OneLinuxMountingManager::restyle(Record &record)
 
 void OneLinuxMountingManager::measureControl(Record &record, ControlMeasurements &measurements)
 {
+  if (record.navigationState) {
+    auto insets = record.navigation->insets();
+    const auto &current = record.navigationState->getData();
+    if (current.top != insets.top || current.left != insets.left) {
+      measurements.emplace(record.tag, std::make_pair(record.fabricProps, std::make_shared<const OneLinuxNavigationState>(insets)));
+    }
+    return;
+  }
   if (!record.controlState) {
     return;
   }
@@ -566,7 +579,7 @@ void OneLinuxMountingManager::measureControl(Record &record, ControlMeasurements
   Size size{static_cast<Float>(width), static_cast<Float>(height)};
   record.measuredControlSize = size;
   if (record.controlState->getData().size != size) {
-    measurements.emplace(record.tag, std::make_pair(record.props, size));
+    measurements.emplace(record.tag, std::make_pair(record.fabricProps, std::make_shared<const OneLinuxControlState>(OneLinuxControlState{size})));
   }
 }
 
@@ -574,12 +587,16 @@ void OneLinuxMountingManager::flushControlMeasurements(bool force)
 {
   ControlMeasurements measurements;
   for (auto &[tag, record] : records_) {
-    if (force || record->needsMeasurement) {
+    if (force || record->needsMeasurement || record->navigationState) {
       record->needsMeasurement = false;
       measureControl(*record, measurements);
     }
   }
-  if (!measurements.empty() && didMeasureControls) didMeasureControls(measurements);
+  if (!measurements.empty() && didMeasureControls) {
+    measuring_ = true;
+    didMeasureControls(measurements);
+    measuring_ = false;
+  }
 }
 
 void OneLinuxMountingManager::measureControls()
@@ -662,12 +679,14 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
         }
         Record &record = *childIt->second;
         record.props = child.props;
+        record.fabricProps = child.props;
         record.eventEmitter = child.eventEmitter;
         record.layoutMetrics = child.layoutMetrics;
         record.paragraphState = std::dynamic_pointer_cast<const ParagraphShadowNode::ConcreteState>(child.state);
         record.scrollState = std::dynamic_pointer_cast<const ScrollViewShadowNode::ConcreteState>(child.state);
         record.inputState = std::dynamic_pointer_cast<const TextInputShadowNode::ConcreteState>(child.state);
         record.controlState = std::dynamic_pointer_cast<const ConcreteState<OneLinuxControlState>>(child.state);
+        record.navigationState = std::dynamic_pointer_cast<const ConcreteState<OneLinuxNavigationState>>(child.state);
         updateImageState(record, child.state);
         restyle(record);
         if (parentIt->second->navigation) parentIt->second->navigation->insert(record.view, mutation.index);
@@ -698,6 +717,7 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
         record.eventEmitter = newChild.eventEmitter;
         if (oldChild.props != newChild.props) {
           record.props = newChild.props;
+          record.fabricProps = newChild.props;
           changed = true;
         }
         if (oldChild.layoutMetrics != newChild.layoutMetrics) {
@@ -709,6 +729,7 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
           record.scrollState = std::dynamic_pointer_cast<const ScrollViewShadowNode::ConcreteState>(newChild.state);
           record.inputState = std::dynamic_pointer_cast<const TextInputShadowNode::ConcreteState>(newChild.state);
           record.controlState = std::dynamic_pointer_cast<const ConcreteState<OneLinuxControlState>>(newChild.state);
+          record.navigationState = std::dynamic_pointer_cast<const ConcreteState<OneLinuxNavigationState>>(newChild.state);
           updateImageState(record, newChild.state);
           changed = true;
         }

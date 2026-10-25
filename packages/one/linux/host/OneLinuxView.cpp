@@ -36,7 +36,6 @@ struct _OneView {
   OneView *scroll_content;
   gboolean flexible;
   OneView *(*navigation_content)(gpointer);
-  void (*navigation_allocated)(gpointer);
   gpointer navigation_data;
 
   gboolean surface;
@@ -117,7 +116,6 @@ static void one_view_size_allocate(GtkWidget *widget, int width, int height, int
         gtk_widget_set_overflow(widget,
             view->clips || controlWidth > width || controlHeight > height ? GTK_OVERFLOW_HIDDEN : GTK_OVERFLOW_VISIBLE);
         gtk_widget_allocate(child, controlWidth, controlHeight, control_baseline(child, controlWidth, controlHeight), nullptr);
-        if (view->navigation_allocated) view->navigation_allocated(view->navigation_data);
       }
       continue;
     }
@@ -470,10 +468,9 @@ void one_view_set_flexible(OneView *view, gboolean flexible)
   view->flexible = flexible;
 }
 
-void one_view_set_navigation_handlers(OneView *view, OneView *(*content)(gpointer), void (*allocated)(gpointer), gpointer data)
+void one_view_set_navigation_handlers(OneView *view, OneView *(*content)(gpointer), gpointer data)
 {
   view->navigation_content = content;
-  view->navigation_allocated = allocated;
   view->navigation_data = data;
 }
 

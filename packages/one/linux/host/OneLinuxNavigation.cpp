@@ -6,8 +6,7 @@ namespace facebook::react {
 
 OneLinuxNavigation::OneLinuxNavigation(OneView *owner) : owner_(owner)
 {
-  one_view_set_navigation_handlers(owner_, +[](gpointer data) { return static_cast<OneLinuxNavigation *>(data)->visiblePage(); },
-      +[](gpointer data) { static_cast<OneLinuxNavigation *>(data)->allocated(); }, this);
+  one_view_set_navigation_handlers(owner_, +[](gpointer data) { return static_cast<OneLinuxNavigation *>(data)->visiblePage(); }, this);
   box_ = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
   g_object_ref_sink(box_);
   header_ = gtk_header_bar_new();
@@ -64,7 +63,7 @@ OneLinuxNavigation::OneLinuxNavigation(OneView *owner) : owner_(owner)
 
 OneLinuxNavigation::~OneLinuxNavigation()
 {
-  one_view_set_navigation_handlers(owner_, nullptr, nullptr, nullptr);
+  one_view_set_navigation_handlers(owner_, nullptr, nullptr);
   for (auto *controller : repeatControllers_) {
     auto *widget = gtk_event_controller_get_widget(controller);
     g_signal_handlers_disconnect_by_data(controller, this);
@@ -189,15 +188,15 @@ void OneLinuxNavigation::sync()
   applying_ = false;
 }
 
-void OneLinuxNavigation::allocated()
+OneLinuxNavigationState OneLinuxNavigation::insets() const
 {
-  int width = gtk_widget_get_width(GTK_WIDGET(stack_));
-  int height = gtk_widget_get_height(GTK_WIDGET(stack_));
-  if (emitter_ && width > 0 && height > 0 && (width != width_ || height != height_)) {
-    width_ = width;
-    height_ = height;
-    emitter_->onContentLayout(width, height);
-  }
+  OneLinuxNavigationState insets;
+  int height = 0, width = 0;
+  if (gtk_widget_get_visible(header_)) gtk_widget_measure(header_, GTK_ORIENTATION_VERTICAL, -1, nullptr, &height, nullptr, nullptr);
+  if (gtk_widget_get_visible(sidebar_)) gtk_widget_measure(sidebar_, GTK_ORIENTATION_HORIZONTAL, -1, nullptr, &width, nullptr, nullptr);
+  insets.top = height;
+  insets.left = width;
+  return insets;
 }
 
 } // namespace facebook::react

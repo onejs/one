@@ -1,5 +1,5 @@
 import { CommonActions, StackActions } from '@react-navigation/native'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { View } from 'react-native'
 import { useControlled } from '../controlled'
 import NativeNavigation, { type SelectEvent } from './OneLinuxNavigationNativeComponent'
@@ -10,10 +10,12 @@ export function LinuxNavigationView({ state, navigation, descriptors, tabs = fal
   descriptors: any
   tabs?: boolean
 }) {
-  const [content, setContent] = useState({ width: 0, height: 0 })
   const focused = state.routes[state.index]
   const options = descriptors[focused.key].options
   const mode = tabs ? (options.tabBarPosition === 'left' ? 'sidebar' : 'tabs') : 'stack'
+  // tabs render once focused unless they set lazy: false, then stay mounted
+  const rendered = useRef(new Set<string>())
+  rendered.current.add(focused.key)
   const controlled = useControlled((event: SelectEvent) => {
     const route = state.routes[event.index]
     if (!route || !tabs) return
@@ -50,7 +52,10 @@ export function LinuxNavigationView({ state, navigation, descriptors, tabs = fal
       style={{ flex: 1 }}
       mode={mode}
       pageKeys={state.routes.map((route: any) => route.key)}
-      pageTitles={state.routes.map((route: any) => descriptors[route.key].options.title ?? route.name)}
+      pageTitles={state.routes.map((route: any) => {
+        const routeOptions = descriptors[route.key].options
+        return (tabs && typeof routeOptions.tabBarLabel === 'string' ? routeOptions.tabBarLabel : undefined) ?? routeOptions.title ?? route.name
+      })}
       title={typeof options.headerTitle === 'string' ? options.headerTitle : options.title ?? focused.name}
       selectedIndex={state.index}
       headerShown={options.headerShown !== false}
@@ -59,13 +64,15 @@ export function LinuxNavigationView({ state, navigation, descriptors, tabs = fal
       acknowledgedEvent={controlled.acknowledgedEvent}
       onSelect={(event) => controlled.onNativeChange(event.nativeEvent)}
       onBack={() => navigation.goBack()}
-      onContentLayout={({ nativeEvent }) => setContent({ width: nativeEvent.width, height: nativeEvent.height })}
     >
-      {content.width > 0 && state.routes.map((route: any) => (
-        <View key={route.key} collapsable={false} style={{ position: 'absolute', left: 0, top: 0, ...content }}>
-          <View style={[{ flex: 1 }, descriptors[route.key].options.contentStyle]}>
-            {descriptors[route.key].render()}
-          </View>
+      {state.routes.map((route: any) => (
+        // the native view reports its header and sidebar as border, so the pages fill what is left
+        <View key={route.key} collapsable={false} style={{ position: 'absolute', left: 0, top: 0, right: 0, bottom: 0 }}>
+          {!tabs || descriptors[route.key].options.lazy === false || rendered.current.has(route.key) ? (
+            <View style={[{ flex: 1 }, descriptors[route.key].options.contentStyle]}>
+              {descriptors[route.key].render()}
+            </View>
+          ) : null}
         </View>
       ))}
     </NativeNavigation>
