@@ -12,6 +12,7 @@
 #include <worklets/WorkletRuntime/RuntimeBindings.h>
 
 #include <cstdio>
+#include <memory>
 #include <mutex>
 #include <thread>
 #include <vector>
@@ -59,15 +60,10 @@ class MainContextUIScheduler : public worklets::UIScheduler,
 };
 
 // requestAnimationFrame for worklet runtimes: a 60 Hz timeout on the main
-// context that runs only while callbacks are pending
-class AnimationFrames {
+// context that runs only while callbacks are pending. each window's worklets
+// module owns one, so closing a window leaves other windows' frames running.
+class AnimationFrames : public std::enable_shared_from_this<AnimationFrames> {
  public:
-  static AnimationFrames &shared()
-  {
-    static AnimationFrames frames;
-    return frames;
-  }
-
   void request(std::function<void(double)> callback)
   {
     {
@@ -78,9 +74,11 @@ class AnimationFrames {
       }
       armed_ = true;
     }
-    OneLinuxDispatchMain([this] {
-      std::lock_guard<std::mutex> lock(mutex_);
-      source_ = g_timeout_add(16, [](gpointer) -> gboolean { return shared().frame(); }, nullptr);
+    OneLinuxDispatchMain([self = shared_from_this()] {
+      std::lock_guard<std::mutex> lock(self->mutex_);
+      self->source_ = g_timeout_add_full(
+          G_PRIORITY_DEFAULT, 16, [](gpointer data) -> gboolean { return static_cast<std::shared_ptr<AnimationFrames> *>(data)->get()->frame(); },
+          new std::shared_ptr<AnimationFrames>(self), [](gpointer data) { delete static_cast<std::shared_ptr<AnimationFrames> *>(data); });
     });
   }
 
@@ -143,7 +141,7 @@ class WorkletsModule : public TurboModule {
     auto uiScheduler = std::make_shared<MainContextUIScheduler>();
     rnRuntimeStatus_ = std::make_shared<worklets::RNRuntimeStatus>();
     auto bindings = std::make_shared<worklets::RuntimeBindings>(worklets::RuntimeBindings{
-        .requestAnimationFrame = [](std::function<void(const double)> callback) { AnimationFrames::shared().request(std::move(callback)); },
+        .requestAnimationFrame = [frames = frames_](std::function<void(const double)> callback) { frames->request(std::move(callback)); },
         .nativeLoggingHook = nativeLog,
         .networkingBackend = std::make_shared<UnavailableNetworkingBackend>()});
     initializer_ =
@@ -155,7 +153,7 @@ class WorkletsModule : public TurboModule {
 
   ~WorkletsModule() override
   {
-    AnimationFrames::shared().invalidate();
+    frames_->invalidate();
     rnRuntimeStatus_->setDead();
     initializer_->invalidate();
   }
@@ -193,6 +191,7 @@ class WorkletsModule : public TurboModule {
   }
 
   jsi::Runtime &runtime_;
+  std::shared_ptr<AnimationFrames> frames_{std::make_shared<AnimationFrames>()};
   std::shared_ptr<worklets::RNRuntimeStatus> rnRuntimeStatus_;
   std::shared_ptr<worklets::WorkletsModuleProxyInitializer> initializer_;
   std::shared_ptr<worklets::WorkletsModuleProxy> proxy_;
