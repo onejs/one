@@ -35,7 +35,7 @@ export function SegmentedControl({
       {...props}
       labels={labels}
       value={selectedIndex}
-      style={[{ width: 320, height: 34 }, style]}
+      style={style}
       revision={controlled.revision}
       acknowledgedEvent={controlled.acknowledgedEvent}
       onControlChange={(event) => controlled.onNativeChange(event.nativeEvent)}

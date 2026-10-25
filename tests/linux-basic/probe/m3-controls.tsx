@@ -73,8 +73,8 @@ export default function Controls() {
           onChange={(event) => report(() => setSegment(event.selectedIndex))} />
       </Row>
       <Row title="Slider and ProgressBar" note={`${Math.round(level * 100)} percent`}>
-        <One.linux.Slider value={level} revision={revision} onValueChange={(event) => report(() => setLevel(event.value))} />
-        <One.linux.ProgressBar value={level} />
+        <One.linux.Slider style={{ width: 240 }} value={level} revision={revision} onValueChange={(event) => report(() => setLevel(event.value))} />
+        <One.linux.ProgressBar style={{ width: 240 }} value={level} />
       </Row>
       <Row title="DropDown" note={`index ${choice}`}>
         <One.linux.DropDown labels={['Alpha', 'Beta', 'Gamma']} selectedIndex={choice} revision={revision}

@@ -53,7 +53,7 @@ class OneLinuxHost {
   std::atomic<bool> dark_{false};
   guint generation_{0};
   GCancellable *download_{nullptr};
-  gulong settingsHandlers_[2]{0, 0};
+  gulong settingsHandlers_[4]{};
 };
 
 } // namespace facebook::react

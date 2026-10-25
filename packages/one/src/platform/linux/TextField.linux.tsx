@@ -22,7 +22,7 @@ export function Field({ text, label = '', prompt = '', revision = 0, onTextChang
   const controlled = useControlled((event: ChangeEvent) => onTextChange?.(event.text), revision)
   const NativeField = secure ? NativeSecureField : NativeTextField
   return <NativeField {...props} text={text} title={label} prompt={prompt}
-    style={[{ width: 240, height: 34 }, style]}
+    style={style}
     revision={controlled.revision} acknowledgedEvent={controlled.acknowledgedEvent}
     onTextChange={({ nativeEvent }) => controlled.onNativeChange(nativeEvent)}
     onSubmit={({ nativeEvent }) => { if (nativeEvent.revision === revision) onSubmit?.() }} />

@@ -16,7 +16,7 @@ export function ProgressBar({ value, revision = 0, style, ...props }: ProgressBa
     <NativeProgressBar
       {...props}
       value={value}
-      style={[{ width: 240, height: 8 }, style]}
+      style={style}
       revision={controlled.revision}
       acknowledgedEvent={controlled.acknowledgedEvent}
     />

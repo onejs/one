@@ -133,6 +133,8 @@ struct OneLinuxMountingManager::Record {
   guint commitSource{0};
   std::unique_ptr<OneLinuxTextInput> input;
   std::unique_ptr<OneLinuxControl> nativeControl;
+  ConcreteState<OneLinuxControlState>::Shared controlState;
+  Size measuredControlSize{-1, -1};
   TextInputShadowNode::ConcreteState::Shared inputState;
   ImageShadowNode::ConcreteState::Shared imageState;
   std::shared_ptr<const ImageObserver> imageObserver;
@@ -514,6 +516,7 @@ void OneLinuxMountingManager::restyle(Record &record)
   if (record.nativeControl) {
     record.nativeControl->update(static_cast<const OneLinuxControlProps &>(*record.props), record.eventEmitter);
   }
+  measureControl(record);
 
   if (record.input) {
     // the field sits in the content frame, inside the padding and border
@@ -565,6 +568,29 @@ void OneLinuxMountingManager::restyle(Record &record)
     PangoLayout *layout = OneLinuxCreateLayout(data.attributedString, data.paragraphAttributes, frame.size.width, true);
     one_view_set_text(view, layout, frame.origin.x, frame.origin.y);
     g_object_unref(layout);
+  }
+}
+
+void OneLinuxMountingManager::measureControl(Record &record)
+{
+  if (!record.controlState) {
+    return;
+  }
+  GtkWidget *widget = record.nativeControl ? record.nativeControl->widget() : record.control;
+  int minimum, width, height;
+  gtk_widget_measure(widget, GTK_ORIENTATION_HORIZONTAL, -1, &minimum, &width, nullptr, nullptr);
+  gtk_widget_measure(widget, GTK_ORIENTATION_VERTICAL, width, &minimum, &height, nullptr, nullptr);
+  Size size{static_cast<Float>(width), static_cast<Float>(height)};
+  if (record.measuredControlSize != size) {
+    record.measuredControlSize = size;
+    record.controlState->updateState(OneLinuxControlState{size});
+  }
+}
+
+void OneLinuxMountingManager::measureControls()
+{
+  for (auto &[tag, record] : records_) {
+    measureControl(*record);
   }
 }
 
@@ -648,9 +674,11 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
         record.paragraphState = std::dynamic_pointer_cast<const ParagraphShadowNode::ConcreteState>(child.state);
         record.scrollState = std::dynamic_pointer_cast<const ScrollViewShadowNode::ConcreteState>(child.state);
         record.inputState = std::dynamic_pointer_cast<const TextInputShadowNode::ConcreteState>(child.state);
+        record.controlState = std::dynamic_pointer_cast<const ConcreteState<OneLinuxControlState>>(child.state);
         updateImageState(record, child.state);
         restyle(record);
         one_view_insert_child(parentIt->second->container, record.view, mutation.index);
+        measureControl(record);
         hasContent_ = true;
         break;
       }
@@ -685,6 +713,7 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
           record.paragraphState = std::dynamic_pointer_cast<const ParagraphShadowNode::ConcreteState>(newChild.state);
           record.scrollState = std::dynamic_pointer_cast<const ScrollViewShadowNode::ConcreteState>(newChild.state);
           record.inputState = std::dynamic_pointer_cast<const TextInputShadowNode::ConcreteState>(newChild.state);
+          record.controlState = std::dynamic_pointer_cast<const ConcreteState<OneLinuxControlState>>(newChild.state);
           updateImageState(record, newChild.state);
           changed = true;
         }

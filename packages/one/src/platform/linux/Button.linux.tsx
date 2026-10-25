@@ -14,7 +14,7 @@ export function Button({ revision = 0, onPress, style, ...props }: ButtonProps) 
   return (
     <NativeButton
       {...props}
-      style={[{ width: 160, height: 34 }, style]}
+      style={style}
       revision={controlled.revision}
       acknowledgedEvent={controlled.acknowledgedEvent}
       onControlChange={(event) => controlled.onNativeChange(event.nativeEvent)}

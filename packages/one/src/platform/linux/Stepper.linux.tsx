@@ -44,7 +44,7 @@ export function Stepper({
       minimumValue={minimumValue}
       maximumValue={maximumValue}
       step={step}
-      style={[{ width: 150, height: 34 }, style]}
+      style={style}
       revision={controlled.revision}
       acknowledgedEvent={controlled.acknowledgedEvent}
       onControlChange={(event) => controlled.onNativeChange(event.nativeEvent)}

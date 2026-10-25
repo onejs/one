@@ -44,7 +44,7 @@ export function Slider({
       minimumValue={minimumValue}
       maximumValue={maximumValue}
       step={step}
-      style={[{ width: 240, height: 34 }, style]}
+      style={style}
       revision={controlled.revision}
       acknowledgedEvent={controlled.acknowledgedEvent}
       onControlChange={(event) => controlled.onNativeChange(event.nativeEvent)}

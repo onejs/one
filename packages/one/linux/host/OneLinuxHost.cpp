@@ -114,6 +114,8 @@ OneLinuxHost::OneLinuxHost(std::string bundlePath, std::string moduleName, OneVi
   auto changed = [](GObject *, GParamSpec *, gpointer data) { static_cast<OneLinuxHost *>(data)->appearanceChanged(); };
   settingsHandlers_[0] = g_signal_connect(settings, "notify::gtk-application-prefer-dark-theme", G_CALLBACK(+changed), this);
   settingsHandlers_[1] = g_signal_connect(settings, "notify::gtk-theme-name", G_CALLBACK(+changed), this);
+  settingsHandlers_[2] = g_signal_connect(settings, "notify::gtk-font-name", G_CALLBACK(+changed), this);
+  settingsHandlers_[3] = g_signal_connect(settings, "notify::gtk-xft-dpi", G_CALLBACK(+changed), this);
 }
 
 OneLinuxHost::~OneLinuxHost()
@@ -293,6 +295,12 @@ bool OneLinuxHost::prefersDark()
 
 void OneLinuxHost::appearanceChanged()
 {
+  std::weak_ptr<OneLinuxMountingManager> manager = mountingManager_;
+  OneLinuxDispatchMain([manager] {
+    if (auto strong = manager.lock()) {
+      strong->measureControls();
+    }
+  });
   bool dark = prefersDark();
   if (dark == dark_) {
     return;

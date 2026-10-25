@@ -38,6 +38,7 @@ class OneLinuxMountingManager : public std::enable_shared_from_this<OneLinuxMoun
   void detachSurface(SurfaceId surfaceId);
   // the root view has no layout metrics of its own; it fills the window
   void setSurfaceSize(double width, double height);
+  void measureControls();
 
   // any thread
   void scheduleTransaction(std::shared_ptr<const MountingCoordinator> coordinator);
@@ -61,6 +62,7 @@ class OneLinuxMountingManager : public std::enable_shared_from_this<OneLinuxMoun
   void initiateTransaction(const MountingCoordinator &coordinator);
   void performMutations(const ShadowViewMutationList &mutations);
   void restyle(Record &record);
+  void measureControl(Record &record);
   void updateImageState(Record &record, const State::Shared &state);
 
   std::unordered_map<Tag, std::unique_ptr<Record>> records_;

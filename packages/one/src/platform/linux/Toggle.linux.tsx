@@ -15,7 +15,7 @@ export function Toggle({ label, isOn, revision = 0, onIsOnChange, style, ...prop
     onIsOnChange?.({ isOn: event.value !== 0, revision: event.revision })
   }, revision)
   return <NativeToggle {...props} title={label} value={isOn ? 1 : 0}
-    style={[{ width: 240, height: 34 }, style]}
+    style={style}
     revision={controlled.revision} acknowledgedEvent={controlled.acknowledgedEvent}
     onControlChange={({ nativeEvent }) => controlled.onNativeChange(nativeEvent)} />
 }

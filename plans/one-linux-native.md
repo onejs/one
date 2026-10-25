@@ -136,6 +136,17 @@ the 50 GiB floor, before running it. These are infrastructure observations,
 not runtime evidence for the new controls. The review fixture is
 `tests/linux-basic/probe/m3-controls.tsx`, available as the controls tab.
 
+INFERRED from the native source: intrinsic sizing now measures each actual GTK
+widget on the main thread and publishes its natural size through Fabric state.
+A state change dirties the Yoga leaf. The wrappers have no fixed default boxes;
+explicit RN style constraints still bound the measured result. Switch uses this
+same path instead of fixed Adwaita dimensions. Theme, font and DPI settings
+trigger fresh measurements. Native compile and theme-change captures remain
+pending the infrastructure recovery.
+
+Contract sources: [GTK Widget.measure](https://docs.gtk.org/gtk4/method.Widget.measure.html)
+and [GTK threading](https://docs.gtk.org/gtk4/section-threading.html).
+
 Contract sources: [GTK CheckButton](https://docs.gtk.org/gtk4/class.CheckButton.html),
 [SpinButton](https://docs.gtk.org/gtk4/class.SpinButton.html),
 [PasswordEntry](https://docs.gtk.org/gtk4/class.PasswordEntry.html).
@@ -671,9 +682,9 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
 
 - M3 has ten control implementations; the latest four await native build and
   runtime proof. Six have already been validated.
-- Controls have default layout boxes rather than theme-derived intrinsic
-  measurement. Slider completion callbacks and indeterminate progress are not
-  implemented; the dropdown currently accepts string labels only.
+- Theme-derived intrinsic sizing is implemented but awaits native validation.
+  Slider completion callbacks and indeterminate progress are not implemented;
+  the dropdown currently accepts string labels only.
 - Pointer presses support the primary mouse button. Secondary mouse buttons
   and touchscreen sequences are not implemented.
 - Text input still lacks capitalization hints, input method position hints

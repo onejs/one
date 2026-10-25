@@ -4,6 +4,7 @@
 #include <react/renderer/components/view/ViewEventEmitter.h>
 #include <react/renderer/components/view/ViewProps.h>
 #include <react/renderer/core/ConcreteComponentDescriptor.h>
+#include "OneLinuxControlState.h"
 
 namespace facebook::react {
 
@@ -45,19 +46,7 @@ inline constexpr char OneLinuxTextFieldName[] = "OneLinuxTextField";
 inline constexpr char OneLinuxSecureFieldName[] = "OneLinuxSecureField";
 
 template <const char *Name>
-class OneLinuxControlShadowNode final
-    : public ConcreteViewShadowNode<Name, OneLinuxControlProps, OneLinuxControlEventEmitter> {
- public:
-  using Base = ConcreteViewShadowNode<Name, OneLinuxControlProps, OneLinuxControlEventEmitter>;
-  using Base::Base;
-
-  static ShadowNodeTraits BaseTraits()
-  {
-    auto traits = Base::BaseTraits();
-    traits.set(ShadowNodeTraits::Trait::LeafYogaNode);
-    return traits;
-  }
-};
+using OneLinuxControlShadowNode = OneLinuxMeasuredControlShadowNode<Name, OneLinuxControlProps, OneLinuxControlEventEmitter>;
 
 using OneLinuxButtonShadowNode = OneLinuxControlShadowNode<OneLinuxButtonName>;
 using OneLinuxSegmentedControlShadowNode = OneLinuxControlShadowNode<OneLinuxSegmentedControlName>;
