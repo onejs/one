@@ -117,6 +117,38 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+**Mac check after the shared wrappers, 2026-10-24, one-linux-m5.** RAN a
+release build of `tests/macos-basic` at 2a2a4cec85 (BUILD SUCCEEDED, binary
+sha1 634068522109) against the dev bundle on studio-64, driven through
+cua-driver accessibility actions. No regression found.
+
+- TESTED controls through the shared factories: Button presses count once,
+  SegmentedControl selection and `changes` increment, an app-rejected selection
+  keeps the old value with a new revision, Disable controls makes presses no-ops,
+  borderless and bordered styles apply, and unmount then remount keeps state
+  ([controls](one-linux-native-mac-controls.webp), [select](one-linux-native-mac-select.webp),
+  [reject](one-linux-native-mac-reject.webp), [unmount](one-linux-native-mac-unmount.webp)).
+- TESTED app commands: App, Fixture, More and View menu items each add exactly
+  one in steady state (the driver sometimes lands a submenu click late; it never
+  doubled). cmd-shift-[, cmd-alt-k, cmd-shift-9 (hidden), up, ctrl-tab and
+  ctrl-shift-tab each add one ([keys](one-linux-native-mac-keys.webp)). Remove
+  listener sets `listening false` and the fixture items stop counting; Add
+  listener and one press adds one. Configure invalid shows
+  `bindings[0]: unsupported key 'cmd-k cmd-s'` and the fixture menus stay
+  ([invalid](one-linux-native-mac-invalid.webp)). Reload host changes the tag,
+  resets counts and one press adds one ([reload](one-linux-native-mac-reload.webp)).
+- NOT CONFIRMED: bare `tab` and `shift-tab` (context `!Input && !Terminal`)
+  did not count from a foreground driver key, and background `postToPid` keys
+  did not register at all on the inactive app, so that probe cannot tell. INFERRED
+  not caused by the shared wrappers: the JS config and the native key path
+  (`OneMacosAppCommands.mm`, which only lost the moved context parser) are
+  unchanged for it, and `up` with the same context counts. AppKit may consume a
+  plain Tab for key-view movement. Disproved by a baseline build at dba04ff088
+  counting plain Tab.
+- NOT TESTED: File > New Window with two windows, and Stack and Tabs at
+  runtime. `tests/macos-basic` has no routes. By reading, the only Mac change
+  there is the shared re-export of the Stack layout helper (see below).
+
 **M4 app shell and routing, 2026-10-25, s79947 for s72425.** TESTED
 `tests/linux-basic` with the arm64 release host and embedded Linux bytecode.
 The default route opens the routed demo; the original composition demo is
