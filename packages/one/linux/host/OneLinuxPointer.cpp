@@ -204,13 +204,7 @@ void OneLinuxPointerHandler::sendPointer(Tag tag, const char *type, double x, do
   event.metaKey = modifiers_ & GDK_META_MASK;
   event.isPrimary = true;
   event.timeStamp = HighResTimeStamp::now();
-  if (!std::strcmp(type, "over")) {
-    emitter->onPointerOver(std::move(event));
-  } else if (!std::strcmp(type, "out")) {
-    emitter->onPointerOut(std::move(event));
-  } else if (!std::strcmp(type, "enter")) {
-    emitter->onPointerEnter(std::move(event));
-  } else if (!std::strcmp(type, "leave")) {
+  if (!std::strcmp(type, "leave")) {
     emitter->onPointerLeave(std::move(event));
   } else if (!std::strcmp(type, "down")) {
     emitter->onPointerDown(std::move(event));
@@ -223,54 +217,28 @@ void OneLinuxPointerHandler::sendPointer(Tag tag, const char *type, double x, do
   }
 }
 
-// moves the hover chain to what is under (x, y): out and leave for the views
-// left (innermost first), then over and enter for the views entered
-// (outermost first), each only for views that listen
+// react native synthesizes hover transitions from moves at the current target
+// and a single leave when the mouse leaves the surface
 void OneLinuxPointerHandler::updateHover(double x, double y, bool inside)
 {
-  std::vector<Hovered> chain;
   Cursor cursor = Cursor::Auto;
   if (inside) {
     OneLinuxPointerTarget target{};
     double localX = 0, localY = 0;
     if (OneView *hit = hitTest(surface_, x, y, target, localX, localY)) {
-      for (GtkWidget *widget = GTK_WIDGET(hit); widget; widget = gtk_widget_get_parent(widget)) {
+      hoverTarget_ = target.tag;
+      sendPointer(target.tag, "move", x, y);
+      for (GtkWidget *widget = GTK_WIDGET(hit); widget && cursor == Cursor::Auto; widget = gtk_widget_get_parent(widget)) {
         OneLinuxPointerTarget ancestor{};
         if (ONE_IS_VIEW(widget) && describe_(ONE_VIEW(widget), ancestor)) {
-          chain.insert(chain.begin(), {ancestor.tag, ancestor.events});
-          if (cursor == Cursor::Auto) {
-            cursor = ancestor.cursor;
-          }
+          cursor = ancestor.cursor;
         }
       }
     }
+  } else if (hoverTarget_) {
+    sendPointer(hoverTarget_, "leave", x, y);
+    hoverTarget_ = 0;
   }
-
-  size_t common = 0;
-  while (common < hover_.size() && common < chain.size() && hover_[common].tag == chain[common].tag) {
-    common++;
-  }
-  bool sameTarget = common == hover_.size() && common == chain.size();
-  if (!sameTarget) {
-    if (!hover_.empty() && hover_.back().events[ViewEvents::Offset::PointerOut]) {
-      sendPointer(hover_.back().tag, "out", x, y);
-    }
-    for (size_t i = hover_.size(); i > common; i--) {
-      if (hover_[i - 1].events[ViewEvents::Offset::PointerLeave]) {
-        sendPointer(hover_[i - 1].tag, "leave", x, y);
-      }
-    }
-    if (!chain.empty() && chain.back().events[ViewEvents::Offset::PointerOver]) {
-      sendPointer(chain.back().tag, "over", x, y);
-    }
-    for (size_t i = common; i < chain.size(); i++) {
-      if (chain[i].events[ViewEvents::Offset::PointerEnter]) {
-        sendPointer(chain[i].tag, "enter", x, y);
-      }
-    }
-    hover_ = std::move(chain);
-  }
-
   if (cursor != cursor_) {
     cursor_ = cursor;
     gtk_widget_set_cursor_from_name(GTK_WIDGET(surface_), cursorName(cursor));
@@ -357,9 +325,6 @@ bool OneLinuxPointerHandler::handle(GdkEvent *event)
     sendPointer(target.tag, "down", x, y, 0);
     send("start", x, y, true);
   } else if (type == GDK_MOTION_NOTIFY) {
-    if (!hover_.empty()) {
-      sendPointer(hover_.back().tag, "move", x, y);
-    }
     if (touching_) {
       send("move", x, y, true);
     }

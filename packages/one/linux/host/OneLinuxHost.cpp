@@ -91,8 +91,8 @@ void firstFrame(GdkFrameClock *clock, gpointer)
   g_signal_handlers_disconnect_by_func(clock, reinterpret_cast<gpointer>(firstFrame), nullptr);
 }
 
-// Pressable reads hover from W3C pointer enter and leave only with this flag
-// on; the host's pointer handler emits those events
+// pressable reads the pointer enter and leave events synthesized by react
+// native only with this flag enabled
 class OneLinuxFeatureFlags : public ReactNativeFeatureFlagsDefaults {
  public:
   bool shouldPressibilityUseW3CPointerEventsForHover() override

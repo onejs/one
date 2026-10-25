@@ -16,7 +16,6 @@ namespace facebook::react {
 struct OneLinuxPointerTarget {
   Tag tag;
   PointerEventsMode pointerEvents;
-  ViewEvents events;
   Cursor cursor;
 };
 
@@ -47,12 +46,7 @@ class OneLinuxPointerHandler {
   EmitterFor emitterFor_;
   ViewFor viewFor_;
 
-  // what the pointer is over, outermost view first
-  struct Hovered {
-    Tag tag;
-    ViewEvents events;
-  };
-  std::vector<Hovered> hover_;
+  Tag hoverTarget_{0};
   Cursor cursor_{Cursor::Auto};
 
   bool touching_{false};

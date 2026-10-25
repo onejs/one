@@ -117,6 +117,13 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+TESTED nested hover in the VM: entering a child sends one parent enter and one
+child enter; moving back to the parent sends one child leave with no parent
+leave or second enter; leaving the window sends one parent leave. The host now
+sends moves at the hit target and one root leave, following RN's mouse path.
+RN owns hover synthesis. Captures: [child](one-linux-native-hover-child.webp),
+[parent](one-linux-native-hover-parent.webp), [outside](one-linux-native-hover-outside.webp).
+
 TESTED window close ownership: the original release host raised an invalid
 GObject class pointer while closing its last window with `G_DEBUG=fatal-criticals`.
 The host now holds its own surface reference until runtime and pointer teardown

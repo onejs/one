@@ -314,7 +314,6 @@ void OneLinuxMountingManager::attachSurface(SurfaceId surfaceId, OneView *surfac
         target.tag = record->tag;
         const auto &props = static_cast<const ViewProps &>(*record->props);
         target.pointerEvents = props.pointerEvents;
-        target.events = props.events;
         target.cursor = props.cursor;
         return true;
       },
@@ -477,6 +476,9 @@ void OneLinuxMountingManager::restyle(Record &record)
   const auto &metrics = record.layoutMetrics;
   OneView *view = record.view;
 
+  one_view_set_pointer_events(view,
+      viewProps.pointerEvents == PointerEventsMode::Auto || viewProps.pointerEvents == PointerEventsMode::BoxOnly,
+      viewProps.pointerEvents == PointerEventsMode::Auto || viewProps.pointerEvents == PointerEventsMode::BoxNone);
   gtk_widget_set_visible(GTK_WIDGET(view), metrics.displayType != DisplayType::None);
   one_view_set_frame(view, metrics.frame.origin.x, metrics.frame.origin.y, metrics.frame.size.width, metrics.frame.size.height);
   gtk_widget_set_opacity(GTK_WIDGET(view), viewProps.opacity);
