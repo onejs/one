@@ -119,7 +119,8 @@ target_compile_options(OneLinuxCore PRIVATE -iquote ${OPSQLITE_ROOT}/cpp "SHELL:
 add_library(hermesvm SHARED IMPORTED)
 set_target_properties(hermesvm PROPERTIES IMPORTED_LOCATION ${HERMES_ROOT}/lib/libhermesvm.so)
 
-target_link_libraries(OneLinuxCore PUBLIC folly_runtime glog fmt double-conversion fast_float boost hermesvm Threads::Threads ${CMAKE_DL_LIBS})
+# RN's atomic optional<double> feature flags need libatomic on x86_64.
+target_link_libraries(OneLinuxCore PUBLIC folly_runtime glog fmt double-conversion fast_float boost hermesvm atomic Threads::Threads ${CMAKE_DL_LIBS})
 find_package(Threads REQUIRED)
 
 add_executable(one-linux-smoke ${CMAKE_CURRENT_LIST_DIR}/../smoke/main.cpp)

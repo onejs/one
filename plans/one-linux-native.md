@@ -117,6 +117,61 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+**Linux CI and ICU portability, 2026-10-25, one-linux-ci for s72425.**
+The independent `Linux Native Build` workflow follows the Android native
+workflow's checkout, shared install action with `workspace-focus: one`, path
+filters, push/PR/manual triggers and concurrency policy. Its two matrix entries
+build the source core and GTK host on `ubuntu-24.04` (x86_64) and
+`ubuntu-24.04-arm` (aarch64). They bundle `tests/linux-basic`, compile embedded
+Hermes bytecode, launch under headless Sway and require the opt-in
+`first frame with RN text painted` milestone before taking a screenshot.
+The jobs share no dependency or concurrency group with another platform.
+Launch logs and the screenshot are uploaded even when launch fails.
+
+INFERRED from the pinned Hermes `hermes-v260318099.0.4` source: its
+[Linux compiler workflow](https://github.com/facebook/hermes/blob/hermes-v260318099.0.4/.github/workflows/build-hermesc-linux.yml)
+builds React Native's prebuilt Linux `hermesc` with `HERMES_STATIC_LINK=ON`.
+That option also enables `HERMES_USE_STATIC_ICU` in
+[Hermes CMake](https://github.com/facebook/hermes/blob/hermes-v260318099.0.4/CMakeLists.txt).
+One uses `HERMES_USE_STATIC_ICU=ON` directly, preserving the shared
+`libhermesvm.so` ABI and Unicode behavior while embedding ICU instead of
+requiring the build machine's ICU soname. `HERMES_UNICODE_LITE` would remove
+Unicode functionality, so it is unsuitable for the app runtime. Hermes and
+packaged-core cache identities now distinguish static ICU builds. Flatpak
+packaging no longer copies system ICU libraries or sets a library path for them.
+Both CI architectures inspect the ELF dependencies of the VM and compiler and
+fail if either imports `libicu*.so`. This removes the ICU version requirement;
+GTK, libc and the other system library requirements still follow the build host.
+TESTED run 40184422620: both architectures compiled Hermes but could not link
+the shared VM against Ubuntu's non-PIC ICU archives. One therefore builds
+checksum-pinned ICU 74.2 with `-fPIC`, static libraries and embedded data in
+the same user cache before configuring Hermes. This follows ICU's
+[Unix source build](https://unicode-org.github.io/icu/userguide/icu4c/build.html)
+and supplies the upstream static ICU option with archives suitable for a shared
+VM. No system ICU development package is required.
+
+TESTED run 40185359129: aarch64 built the entire core and host, compiled the
+Linux Basic bytecode and painted RN text under headless Wayland. Its VM and
+compiler ELF dependencies contain no ICU soname. x86_64 linked the PIC ICU VM
+but failed when linking the core smoke binary: RN's atomic optional double
+feature flags require the `libatomic` runtime on this architecture. The Linux
+core now links that library for both consumers. The headless capture also
+selects GTK's Cairo renderer to avoid hardware renderer discovery on runners
+without a GPU.
+
+TESTED [run 40186988728](https://github.com/onejs/one/actions/runs/40186988728)
+at `000dc373b564824948e82c403a0a47985a40bdb2`: both x86_64 and aarch64
+passed the full source core/GTK host build, VM and compiler ELF dependency
+checks, Linux Basic bytecode build and first RN text paint. Inspected both
+uploaded screenshots: each shows the routed Home page, GTK tabs, RN text,
+buttons and the input. Both `libhermesvm.so` and `hermesc` import only standard
+C/C++ runtime libraries, with no dynamic ICU dependency. The job's startup
+timeline is launch evidence on shared CI runners, not a desktop performance
+benchmark. No additional automated tests were added. No package, canary or
+release was published, and the changed .deb/Flatpak packaging has not been
+rebuilt in this lane. Lead s72425 owns landing into the held minor branch;
+ci-manager owns broader platform and delivery checks.
+
 **Review 3 fixes, 2026-10-24, one-linux-m5.** RAN a release host build and
 `tests/linux-basic` bundle with a temporary probe page in the arm64 VM under
 headless sway and a uinput pointer and keyboard, with fatal GTK criticals
@@ -1115,7 +1170,9 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
 - M3's ten controls, theme-derived intrinsic sizing, Slider completion,
   indeterminate progress, tagged dropdown items and RN ScrollView composition
   have arm64 release VM proof. Slider touch and wheel completion paths have
-  not been exercised; x86_64 and broader platform validation remain with CI.
+  not been exercised. Both x86_64 and aarch64 now have core build and first
+  content paint CI proof; x86_64 interactions and broader platform validation
+  remain with CI.
 - Pointer presses support the primary mouse button. Secondary mouse buttons
   and touchscreen sequences are not implemented.
 - Text input still lacks capitalization hints, input method position hints
@@ -1126,8 +1183,9 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
 prebuilt core (`prepare-core.sh`, `package-core.sh`) and `package-app.sh` for a
 .deb and a Flatpak exist and install and launch in the VM
 ([deb](one-linux-native-m5-deb.webp), [flatpak](one-linux-native-m5-flatpak.webp));
-the canary release job, the plan write-up of the choices and the static ICU
-question remain. M4's baseline shell and routing have release VM captures. Lead
+the canary release job and the remaining packaging plan write-up remain. The
+static ICU choice and both Linux architecture CI checks are recorded above.
+M4's baseline shell and routing have release VM captures. Lead
 s72425 and ci-manager own review, broader platform builds
 and the release bundle byte gate. M5 packaging and the visual navigation options
 listed above remain. The shared worktree stays held by s72425; owned VM services
