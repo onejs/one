@@ -1060,8 +1060,10 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
   GNOME Shell validation remains outside the headless VM proof.
 - The requested shared Mac control/command code intentionally changes Mac JS
   modules. Mac's earlier zero-byte bundle expectation cannot be assumed for
-  these requested shared-wrapper changes. s72425 and ci-manager own that gate
-  and the iOS, Android and web byte comparisons; no wider byte result is claimed.
+  these requested shared-wrapper changes. The Mac runtime check of
+  `tests/macos-basic` is recorded under "Mac check after the shared wrappers"
+  above. s72425 and ci-manager own the iOS, Android and web byte comparisons;
+  no wider byte result is claimed.
 - M3's ten controls, theme-derived intrinsic sizing, Slider completion,
   indeterminate progress, tagged dropdown items and RN ScrollView composition
   have arm64 release VM proof. Slider touch and wheel completion paths have
@@ -1072,7 +1074,12 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
   and drag and drop. `cursorColor` is Android only in RN and is not a Linux gap.
 - The earlier scroll, portal color scheme, image and Networking gaps remain.
 
-**Next:** review 3 fixes are in; M5 packaging is next. M4's baseline shell and routing have release VM captures. Lead
+**Next:** review 3 fixes are in. M5 is on hold by s72425 until told: the
+prebuilt core (`prepare-core.sh`, `package-core.sh`) and `package-app.sh` for a
+.deb and a Flatpak exist and install and launch in the VM
+([deb](one-linux-native-m5-deb.webp), [flatpak](one-linux-native-m5-flatpak.webp));
+the canary release job, the plan write-up of the choices and the static ICU
+question remain. M4's baseline shell and routing have release VM captures. Lead
 s72425 and ci-manager own review, broader platform builds
 and the release bundle byte gate. M5 packaging and the visual navigation options
 listed above remain. The shared worktree stays held by s72425; owned VM services
