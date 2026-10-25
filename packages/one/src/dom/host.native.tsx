@@ -33,7 +33,7 @@ export function createDOMComponent<
     const report = (error: unknown) => {
       const detail = { entryId, epoch: epoch.current, ...serializeError(error, __DEV__) }
       if (options.current?.onError) options.current.onError(detail)
-      else throw new DOMBridgeError(detail.message, detail.code)
+      else console.error('[one/dom]', detail)
     }
     const [bridge] = useState(
       () =>

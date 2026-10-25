@@ -78,7 +78,10 @@ export class DOMNativeBridge {
             throw new DOMBridgeError('Invalid DOM ready revision')
           this.ready = true
           this.reconcile()
-        } else if (!this.ready || message.type === 'state') {
+        } else if (
+          (!this.ready && message.type !== 'error') ||
+          message.type === 'state'
+        ) {
           throw new DOMBridgeError('Unexpected browser DOM message')
         }
         this.notify(message)
