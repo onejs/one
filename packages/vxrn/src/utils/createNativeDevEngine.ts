@@ -503,6 +503,7 @@ function getNativePlugins(
   }
   const traced = plugins.map((plugin, index) => {
     if (
+      plugin.name !== 'one:use-dom-native' &&
       plugin.name !== 'vxrn:rn-codegen' &&
       plugin.name !== 'one:background-computation:native' &&
       plugin.name !== 'one-client-tree-shake'
