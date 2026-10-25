@@ -423,7 +423,13 @@ function getNativePlugins(
       : []
   // evaluate One's factory once, in its existing position after desktop setup.
   const globalPlugins = globalThis.__vxrnAddNativePlugins?.(platform) || []
-  return [
+  const trace: NativeCompilerTrace | undefined =
+    dev && command === 'serve'
+      ? [...globalPlugins, ...userPlugins].find(
+          (plugin) => plugin.api?.vxrnNativeCompilerTrace
+        )?.api.vxrnNativeCompilerTrace
+      : undefined
+  const plugins = [
     ...desktopPlugins,
     // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
     ...globalPlugins,
@@ -457,17 +463,7 @@ function getNativePlugins(
     rnCodegenPlugin({ projectRoot: root }),
     // lower Flow before worklets and react compiler parse the source with oxc.
     flowStripPlugin(),
-    vxrnCompilerPlugin(
-      platform,
-      dev,
-      root,
-      sourceMaps,
-      dev && command === 'serve'
-        ? [...globalPlugins, ...userPlugins].find(
-            (plugin) => plugin.api?.vxrnNativeCompilerTrace
-          )?.api.vxrnNativeCompilerTrace
-        : undefined
-    ),
+    vxrnCompilerPlugin(platform, dev, root, sourceMaps, trace),
     mixedNativeModulePlugin(sourceMaps),
     // guard undefined native methods in NativeAnimatedHelper
     nativeAnimatedGuardPlugin(),
@@ -484,6 +480,83 @@ function getNativePlugins(
   ].map((plugin: Plugin) =>
     plugin.api?.vxrnNative ? plugin.api.vxrnNative(context) : plugin
   )
+  if (!trace) return plugins
+
+  // temporary fixture-only diagnostics. keep the existing pre hooks in place;
+  // observe their returned promises without replacing them or awaiting again.
+  const start = (id: string, stage: string) => {
+    try {
+      const record = trace(id)
+      if (!record) return
+      const mark = (status: 'start' | 'end' | 'error') => {
+        try {
+          record(stage, status)
+        } catch {
+          // capture must not affect the hook.
+        }
+      }
+      mark('start')
+      return mark
+    } catch {
+      // capture must not affect the hook.
+    }
+  }
+  const traced = plugins.map((plugin, index) => {
+    if (
+      plugin.name !== 'one:use-dom-native' &&
+      plugin.name !== 'vxrn:rn-codegen' &&
+      plugin.name !== 'one:background-computation:native' &&
+      plugin.name !== 'one-client-tree-shake'
+    )
+      return plugin
+    const hook = plugin.transform
+    if (!hook || typeof hook === 'function' || hook.order !== 'pre') return plugin
+    return {
+      ...plugin,
+      transform: {
+        ...hook,
+        handler(this: any, ...args: any[]) {
+          const mark = start(args[1], `pre:${index}:${plugin.name}`)
+          if (!mark) return hook.handler.apply(this, args)
+          try {
+            const result = hook.handler.apply(this, args)
+            if (result instanceof Promise) {
+              // use the native observer, never a user-supplied .then override.
+              // its rejection handler consumes only the observer's branch.
+              try {
+                Promise.prototype.then.call(
+                  result,
+                  () => mark('end'),
+                  () => mark('error')
+                )
+              } catch {
+                // an observer failure must not replace the original promise.
+              }
+            } else {
+              mark('end')
+            }
+            return result
+          } catch (error) {
+            mark('error')
+            throw error
+          }
+        },
+      },
+    }
+  })
+  return [
+    {
+      name: 'test-native-hmr-trace-first-pre',
+      transform: {
+        order: 'pre',
+        handler(_code: string, id: string) {
+          start(id, 'pre:first')?.('end')
+          return null
+        },
+      },
+    },
+    ...traced,
+  ]
 }
 
 // shared output options for native builds. `minify: false` keeps rolldown's
