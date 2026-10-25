@@ -2,10 +2,15 @@ import { mkdtemp, mkdir, readFile, rm, symlink, writeFile } from 'node:fs/promis
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { runInNewContext } from 'node:vm'
+import { createRequire } from 'node:module'
+import { execFile } from 'node:child_process'
+import { promisify } from 'node:util'
 import { resolveConfig } from 'vite'
 import { expect, it } from 'vitest'
 import { useDOMPlugin } from '../plugins/useDomPlugin'
 import type { DOMManifest } from './registry'
+
+const require = createRequire(import.meta.url)
 
 it('isolates DOM dependencies in lazy native graphs and joins deterministic browser assets', async () => {
   const { buildNativeBundle } = await import(
@@ -36,7 +41,7 @@ export default Second;`
     )
     await writeFile(
       join(root, 'browser-runtime.ts'),
-      'export function mountDOMComponent(Component, id) { globalThis.mounted = { Component, id } }'
+      'export function mountDOMComponent(Component, id) { globalThis.mounted = { element: Component(), id } }'
     )
     await writeFile(
       join(root, 'components/browser.ts'),
@@ -56,7 +61,7 @@ import { label } from 'browser-alias';
 import './style.css';
 import icon from './icon.svg';
 export type Props = { title: string };
-export default function Component() { return { label, icon, load: () => import('./deferred') } }`
+export default function Component() { return <section data-label={label} data-icon={icon} data-load={() => import('./deferred')}>DOM JSX</section> }`
     await writeFile(join(root, 'components/First.tsx'), component)
     await writeFile(join(root, 'components/Second.tsx'), component)
     await symlink('./First.tsx', join(root, 'components/Linked.tsx'))
@@ -67,8 +72,20 @@ export default function Component() { return { label, icon, load: () => import('
         configFile: false,
         logLevel: 'silent',
         plugins: [dom],
+        define: { 'process.env.NODE_ENV': JSON.stringify('production') },
+        // native bundling can inherit an already resolved development config.
+        oxc: {
+          jsx: {
+            runtime: 'automatic',
+            importSource: 'custom-jsx',
+            development: true,
+            refresh: true,
+          },
+        },
         resolve: {
           alias: {
+            'custom-jsx/jsx-runtime': require.resolve('react/jsx-runtime'),
+            'custom-jsx/jsx-dev-runtime': require.resolve('react/jsx-dev-runtime'),
             'one/dom/client': join(root, 'browser-runtime.ts'),
             'browser-alias': join(root, 'components/browser.ts'),
           },
@@ -115,8 +132,35 @@ export default function Component() { return { label, icon, load: () => import('
     for (const html of Object.values(manifest.entries)) {
       expect(html).toMatch(/^pages\/dom-[a-f0-9]{32}\/index.html$/)
       // these must already exist when buildNativeBundle returns to packaging.
-      expect(await readFile(join(root, 'output/one-dom', html), 'utf8')).toContain(
-        'one-dom-root'
+      const page = await readFile(join(root, 'output/one-dom', html), 'utf8')
+      expect(page).toContain('one-dom-root')
+      const entry = page.match(/<script[^>]*src="([^"]+)"/)![1]
+      // execute emitted ESM with the real production JSX runtime, including a
+      // deferred browser import; parsing alone misses calls to missing jsxDEV.
+      await promisify(execFile)(
+        process.execPath,
+        [
+          '--input-type=module',
+          '-e',
+          String.raw`
+        import assert from 'node:assert/strict';
+        import { pathToFileURL } from 'node:url';
+        globalThis.document = { createElement: () => ({ relList: { supports: () => true } }) };
+        await import(pathToFileURL(process.argv[1]).href);
+        const { element } = globalThis.mounted;
+        assert.equal(element.type, 'section');
+        assert.equal(element.props['data-label'], 'browser');
+        assert.equal(element.props.children, 'DOM JSX');
+        assert.match(new URL(element.props['data-icon']).pathname, /\/one-dom\/assets\/icon-.*\.svg$/);
+        assert.equal(globalThis.browserLazyRuns, undefined);
+        assert.equal((await element.props['data-load']()).default, 42);
+        assert.equal(globalThis.browserLazyRuns, 1);
+      `,
+          join(root, 'output/one-dom', html, '..', entry),
+        ],
+        {
+          env: { ...process.env, NODE_ENV: 'production' },
+        }
       )
     }
     const context: any = { console, setTimeout, clearTimeout }

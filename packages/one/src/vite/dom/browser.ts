@@ -87,7 +87,9 @@ export async function buildDOMAssets(
           : {
               ...config.oxc,
               ...(typeof config.oxc?.jsx === 'object' && {
-                jsx: { ...config.oxc.jsx, refresh: false },
+                // the native config may have been resolved in development;
+                // packaged pages must use the production JSX runtime.
+                jsx: { ...config.oxc.jsx, development: false, refresh: false },
               }),
             },
       assetsInclude,

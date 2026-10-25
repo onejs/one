@@ -47,8 +47,10 @@ assets from the browser graph instead. There is no network or inline fallback.
 `bun run test src/vite/dom/build.test.ts` in `packages/one` exercises native
 isolation, discovery behind a lazy import, deferred native evaluation,
 completion of browser assets, deterministic build IDs, symlink identities,
-exclusion of unrelated public assets and removal of stale output. Browser and
-native host interaction are validated separately.
+exclusion of unrelated public assets and removal of stale output. It also
+executes each emitted JSX entry with the real production React JSX runtime,
+including a deferred browser import. Browser and native host interaction are
+validated separately.
 
 ## Browser runtime integration proof
 
@@ -77,3 +79,13 @@ the disposable copy used the existing `OneNativeTestFont-Regular.ttf`.
 That fixture correction belongs to its owner. The component itself was
 unchanged. Logs, module/fixture hashes and three 3x WebP captures are retained
 under `~/.team-machine/evidence/one-dom-build/real-runtime` on pro128.
+
+The actual production artifact replay later failed before ready with
+`jsxDEV is not a function`. The earlier probe did not reproduce the resolved
+native configuration. The native build passed `oxc.jsx.development: true` while
+the browser build selected React's production runtime. Packaged browser builds now
+disable JSX development transforms as well as Refresh, preserving the selected
+JSX runtime and import source. The focused build guard reproduces the failure
+with an inherited development config and a custom JSX import source mapped to
+the installed React runtime. The earlier browser proof does not establish
+correctness of final artifacts built through that configuration.
