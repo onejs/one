@@ -4,6 +4,7 @@ import { forwardRef, useState } from 'react'
 import { useDOMImperativeHandle, type DOMProps } from 'one/dom'
 import image from '../../assets/alternate-icon.svg'
 import './dom-proof.css'
+import { domBuildLabel } from './build-label'
 
 export type ProofMethods = {
   read: () => Promise<string>
@@ -55,6 +56,7 @@ export default forwardRef<ProofMethods, Props>(function ProofPage(
 
   return (
     <main className="one-dom-proof" data-testid={`dom-${instance}`}>
+      <p data-testid={`dom-${instance}-build`}>DOM build: {domBuildLabel}</p>
       <h2>
         {instance}: {label}
       </h2>

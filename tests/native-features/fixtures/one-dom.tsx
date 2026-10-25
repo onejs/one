@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 import ProofPage, { type ProofMethods } from './dom/ProofPage'
+import { domBuildLabel } from './dom/build-label'
 
 export default function OneDOMFixture() {
   const [revision, setRevision] = useState(0)
@@ -38,6 +39,7 @@ export default function OneDOMFixture() {
   return (
     <ScrollView contentContainerStyle={styles.screen}>
       <Text style={styles.title}>One DOM components</Text>
+      <Text testID="one-dom-native-build">Native build: {domBuildLabel}</Text>
       <Text testID="one-dom-native-result">Native result: {result}</Text>
       <View style={styles.actions}>
         <Pressable
