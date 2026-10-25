@@ -9,13 +9,25 @@ export type Endpoint = (req: Request) => Response | string | object | null
 
 export type RenderApp = (props: RenderAppProps) => Promise<string>
 
-export type LoaderProps<Params extends object = Record<string, string | string[]>> = {
+export type LoaderProps<
+  Params extends object = Record<string, string | string[]>,
+  SearchParams extends object | undefined = undefined,
+> = {
   path: string
   search?: string
   subdomain?: string
   params: Params
   request?: Request
-}
+} & ([SearchParams] extends [object]
+  ? {
+      /**
+       * The query, validated by the schemas components under this route pass to
+       * `useSearchParams(schema)`. Present on document requests of `ssr` routes, absent
+       * for loader requests made by client navigation, and for ssg and spa routes.
+       */
+      searchParams?: SearchParams
+    }
+  : {})
 
 export type RenderAppProps = {
   mode: One.RouteRenderMode | 'spa-shell'

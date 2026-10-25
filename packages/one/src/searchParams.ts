@@ -8,7 +8,7 @@
  */
 
 import { validateStandardSchemaSync, type StandardSchemaV1 } from './standardSchema'
-import { parseSearchString, SearchValidationError } from './validateSearch'
+import { parseSearchString, SearchValidationError, setOwn } from './validateSearchParams'
 
 /** What a schema receives: every query key, a string or, when repeated, an array. */
 export type SearchRecord = Record<string, string | string[]>
@@ -65,7 +65,7 @@ export function toSearchRecord(
   const record: SearchRecord = {}
   for (const [key, value] of Object.entries(params)) {
     if (value == null || !queryKeys.has(key)) continue
-    record[key] = Array.isArray(value) ? value.map(String) : String(value)
+    setOwn(record, key, Array.isArray(value) ? value.map(String) : String(value))
   }
   return record
 }
@@ -80,20 +80,23 @@ export function parseSearchRecord<Schema extends StandardSchemaV1>(
 ): StandardSchemaV1.InferOutput<Schema> {
   const result = validateStandardSchemaSync(schema, record)
   if (result.issues) {
-    const details = result.issues
-      .map((issue) => {
-        const path = issue.path
-          ?.map((segment) => String(typeof segment === 'object' ? segment.key : segment))
-          .join('.')
-        return path ? `${path}: ${issue.message}` : issue.message
-      })
-      .join('; ')
     throw new SearchValidationError(
-      `Invalid search params (${details})`,
+      `Invalid search params (${describeIssues(result.issues)})`,
       result.issues as unknown[]
     )
   }
   return result.value
+}
+
+export function describeIssues(issues: readonly StandardSchemaV1.Issue[]) {
+  return issues
+    .map((issue) => {
+      const path = issue.path
+        ?.map((segment) => String(typeof segment === 'object' ? segment.key : segment))
+        .join('.')
+      return path ? `${path}: ${issue.message}` : issue.message
+    })
+    .join('; ')
 }
 
 function toStrings(key: string, value: unknown): string[] | undefined {
@@ -124,7 +127,7 @@ export function mergeSearchRecord(
     if (!strings) {
       delete next[key]
     } else {
-      next[key] = strings.length === 1 && !Array.isArray(value) ? strings[0] : strings
+      setOwn(next, key, strings.length === 1 && !Array.isArray(value) ? strings[0] : strings)
     }
   }
   return next

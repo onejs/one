@@ -16,6 +16,11 @@ import { isResponse } from '../../utils/isResponse'
 import { isStatusRedirect } from '../../utils/isStatus'
 import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
 import type { RouteIndex } from '../../utils/routeIndex'
+import {
+  getLoaderSearchSchemas,
+  withLoaderSearchParams,
+  type LoaderSearchSchemas,
+} from '../../loaderSearchParams'
 import { isRouteFileWatchEvent } from '../../utils/routeFileWatch'
 import { trackLoaderDependencies } from '../../utils/trackLoaderDependencies'
 import type { One, RouteInfo } from '../../vite/types'
@@ -216,7 +221,9 @@ export function createFileSystemRouterPlugin(
             // helper to run a loader and track dependencies
             async function runLoaderWithTracking(
               routeNode: RouteNode | { contextKey: string; file?: string },
-              loaderFn: ((props: any) => any) | undefined
+              loaderFn: ((props: any) => any) | undefined,
+              // only ssr document requests carry the query a loader can validate
+              searchSchemas?: LoaderSearchSchemas | null
             ): Promise<{ loaderData: any; routeId: string; isEnoent?: boolean }> {
               const routeId = routeNode.contextKey
               if (!loaderFn) {
@@ -224,7 +231,10 @@ export function createFileSystemRouterPlugin(
               }
 
               try {
-                const tracked = await trackLoaderDependencies(() => loaderFn(loaderProps))
+                const props = searchSchemas
+                  ? withLoaderSearchParams(searchSchemas, loaderProps)
+                  : loaderProps
+                const tracked = await trackLoaderDependencies(() => loaderFn(props))
 
                 // register dependencies for HMR
                 const routePath = loaderProps?.path || '/'
@@ -284,11 +294,19 @@ export function createFileSystemRouterPlugin(
               const layoutLoaderPromises = layoutRoutes.map(async (layout) => {
                 const layoutFile = path.join(routerRoot, layout.contextKey)
                 const layoutExported = await runner.import(layoutFile)
-                return runLoaderWithTracking(layout, layoutExported.loader)
+                return runLoaderWithTracking(
+                  layout,
+                  layoutExported.loader,
+                  route.type === 'ssr' ? getLoaderSearchSchemas(layoutExported) : null
+                )
               })
 
               // run page loader
-              const pageLoaderPromise = runLoaderWithTracking(pageRoute, exported.loader)
+              const pageLoaderPromise = runLoaderWithTracking(
+                pageRoute,
+                exported.loader,
+                route.type === 'ssr' ? getLoaderSearchSchemas(exported) : null
+              )
 
               // wait for all loaders in parallel
               let layoutResults: Awaited<ReturnType<typeof runLoaderWithTracking>>[]

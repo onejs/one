@@ -1,5 +1,4 @@
 import type { OneRouter } from '../interfaces/router';
-import type { LoaderProps } from '../types';
 export declare function createRoute<Path extends string = string>(): {
     useParams: () => Partial<OneRouter.RouteType<Path>["Params"]>;
     useActiveParams: () => Partial<OneRouter.RouteType<Path>["Params"]>;
@@ -14,7 +13,19 @@ export declare function createRoute<Path extends string = string>(): {
      *   return { doc: getDoc(params.slug) }
      * })
      */
-    createLoader: <T>(fn: (props: LoaderProps<OneRouter.RouteType<Path>["Params"]>) => T) => (props: LoaderProps<OneRouter.RouteType<Path>["Params"]>) => T;
+    createLoader: <T>(fn: (props: {
+        path: string;
+        search?: string;
+        subdomain?: string;
+        params: OneRouter.RouteType<Path>["Params"];
+        request?: Request;
+    }) => T) => (props: {
+        path: string;
+        search?: string;
+        subdomain?: string;
+        params: OneRouter.RouteType<Path>["Params"];
+        request?: Request;
+    }) => T;
 };
 declare const postIdRoute: {
     useParams: () => Partial<OneRouter.InputRouteParams<"/feed/[id]">>;
@@ -30,7 +41,19 @@ declare const postIdRoute: {
      *   return { doc: getDoc(params.slug) }
      * })
      */
-    createLoader: <T>(fn: (props: LoaderProps<OneRouter.InputRouteParams<"/feed/[id]">>) => T) => (props: LoaderProps<OneRouter.InputRouteParams<"/feed/[id]">>) => T;
+    createLoader: <T>(fn: (props: {
+        path: string;
+        search?: string;
+        subdomain?: string;
+        params: OneRouter.InputRouteParams<"/feed/[id]">;
+        request?: Request;
+    }) => T) => (props: {
+        path: string;
+        search?: string;
+        subdomain?: string;
+        params: OneRouter.InputRouteParams<"/feed/[id]">;
+        request?: Request;
+    }) => T;
 };
 export declare const route: {
     feed: {

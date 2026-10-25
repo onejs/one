@@ -135,6 +135,14 @@ function Products() {
 
 Our file-based routing is different, but we can provide similar validation at the hook level.
 
+## Loader Validation (decided 2026-10-25)
+
+Component schemas found by the typed-link scanner also validate `searchParams` for loaders. The route-level `validateSearch` export was never consumed by the router, so One's helper is named `validateSearchParams` and a route-file export is not part of the design.
+
+- A server-environment transform adds `__oneSearchSchemas` to a route module that exports a loader and has schemas in itself or its layouts. No schemas, no change.
+- The server validates before the loader and before any `loaderCache` coalesced result, passes `searchParams`, and answers 400 on a rejected query. Document requests of `ssr` routes only.
+- Limits: client loader requests are pathname-keyed, so the query never reaches them; `ssg`, `spa` and the Vercel output are not covered; discovery follows static imports only.
+
 ## Related Work
 
 - `useLocalSearchParams` exists but no validation

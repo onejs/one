@@ -109,7 +109,7 @@ export interface LinkProps<T extends string | object = string>
    * prop still joins an array with commas, so an array there is one string.
    *
    * When the destination route reads its query with `useSearchParams(schema)`, the keys
-   * and values are type checked against that schema. See [useSearchParams](/docs/hooks-useSearchParams).
+   * and values are type checked against that schema. The server validates the same schemas before an `ssr` route's loader runs. See [useSearchParams](/docs/hooks-useSearchParams).
    *
    * @example
    * <Link href="/products" searchParams={{ page: 2 }}>Page 2</Link>
