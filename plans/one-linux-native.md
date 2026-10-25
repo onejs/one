@@ -1073,7 +1073,7 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
 - The earlier scroll, portal color scheme, image and Networking gaps remain.
 
 **Next:** review 3 fixes are in; M5 packaging is next. M4's baseline shell and routing have release VM captures. Lead
-s72425 and ci-manager own review, Mac runtime validation, broader platform builds
+s72425 and ci-manager own review, broader platform builds
 and the release bundle byte gate. M5 packaging and the visual navigation options
 listed above remain. The shared worktree stays held by s72425; owned VM services
 are stopped at handoff.
