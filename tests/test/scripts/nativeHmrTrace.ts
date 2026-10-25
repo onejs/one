@@ -11,6 +11,7 @@ export function nativeHmrTrace(path: string | undefined): Plugin[] {
   const clients = new Set<string>()
   const edits = new Map<string, number>()
   let edit = 0
+  let compilerTransform = 0
   const record = (event: string, detail: Record<string, unknown> = {}) => {
     appendFileSync(
       path,
@@ -28,6 +29,15 @@ export function nativeHmrTrace(path: string | undefined): Plugin[] {
   const plugin: Plugin = {
     name: 'test-native-hmr-trace',
     api: {
+      vxrnNativeCompilerTrace(id: string) {
+        if (!id.includes('/features/hmr/')) return
+        // snapshot the edit at invocation, even if another watch arrives mid-await.
+        const edit = edits.get(id) ?? 0
+        const transform = ++compilerTransform
+        return (stage: string, status: 'start' | 'end' | 'error') => {
+          record(`compiler:${stage}:${status}`, { id, edit, transform })
+        }
+      },
       vxrnNative: () => ({
         name: 'test-native-hmr-trace-native',
         watchChange(id: string, change: unknown) {

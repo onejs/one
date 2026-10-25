@@ -413,16 +413,20 @@ function getNativePlugins(
   command: 'serve' | 'build' = 'serve'
 ): Plugin[] {
   const context: NativePluginContext = { root, platform, dev, command, assetsDest }
-  return [
-    ...(platform === 'macos' || platform === 'linux'
+  const desktopPlugins =
+    platform === 'macos' || platform === 'linux'
       ? [
           desktopReactNativeResolvePlugin(root, platform),
           desktopDistVariantPlugin(platform),
           desktopUnsupportedImportPlugin(platform),
         ]
-      : []),
+      : []
+  // evaluate One's factory once, in its existing position after desktop setup.
+  const globalPlugins = globalThis.__vxrnAddNativePlugins?.(platform) || []
+  return [
+    ...desktopPlugins,
     // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
-    ...(globalThis.__vxrnAddNativePlugins?.(platform) || []),
+    ...globalPlugins,
     // block .server.* and _middleware.* files from entering the native bundle
     serverFileExclusionPlugin(),
     // guard server-only / client-only / web-only / native-only imports
@@ -453,7 +457,17 @@ function getNativePlugins(
     rnCodegenPlugin({ projectRoot: root }),
     // lower Flow before worklets and react compiler parse the source with oxc.
     flowStripPlugin(),
-    vxrnCompilerPlugin(platform, dev, root, sourceMaps),
+    vxrnCompilerPlugin(
+      platform,
+      dev,
+      root,
+      sourceMaps,
+      dev && command === 'serve'
+        ? [...globalPlugins, ...userPlugins].find(
+            (plugin) => plugin.api?.vxrnNativeCompilerTrace
+          )?.api.vxrnNativeCompilerTrace
+        : undefined
+    ),
     mixedNativeModulePlugin(sourceMaps),
     // guard undefined native methods in NativeAnimatedHelper
     nativeAnimatedGuardPlugin(),
@@ -2008,6 +2022,12 @@ function cssStubPlugin(): Plugin {
   }
 }
 
+// temporary diagnostic hook consumed by the opt-in HMR test trace. callbacks are
+// synchronous and best-effort; they must never alter compiler results or errors.
+export type NativeCompilerTrace = (
+  id: string
+) => ((stage: string, status: 'start' | 'end' | 'error') => void) | undefined
+
 /**
  * pipe files through @vxrn/compiler's babel transforms.
  * handles reanimated worklet compilation, async generator downleveling,
@@ -2017,7 +2037,8 @@ export function vxrnCompilerPlugin(
   platform: string,
   dev: boolean,
   projectRoot = process.cwd(),
-  sourceMaps = false
+  sourceMaps = false,
+  trace?: NativeCompilerTrace
 ): Plugin {
   let compiler: typeof import('@vxrn/compiler') | null = null
 
@@ -2034,150 +2055,151 @@ export function vxrnCompilerPlugin(
       if (!/\.[cm]?[jt]sx?$/.test(id)) return
       if (id.includes('\0') || id.includes('virtual:')) return
 
-      const needsRefresh = isRefreshCandidate(id)
-
-      if (!compiler) compiler = await import('@vxrn/compiler')
-
-      const props = {
-        id,
-        code,
-        projectRoot,
-        development: dev,
-        // the compiler's native gate is ios or android. macos and linux use the
-        // ios transforms. module resolution stays .<platform> and does not follow .ios.
-        environment: (platform === 'android' ? 'android' : 'ios') as 'ios' | 'android',
-        reactForRNVersion: '19' as const,
-      }
-
-      let babelOptions = compiler.getBabelOptions(props)
-
-      let curCode = code
-      const intermediateMaps: any[] = []
-
-      const isWorkletPlugin = (entry: any) => {
-        if (!entry) return false
-        const name =
-          typeof entry === 'string' ? entry : Array.isArray(entry) ? entry[0] : null
-        return (
-          typeof name === 'string' &&
-          (name.includes('react-native-worklets') ||
-            name.includes('react-native-reanimated'))
-        )
-      }
-      const workletEntry = babelOptions?.plugins?.find(isWorkletPlugin)
-      const workletPluginOptions = Array.isArray(workletEntry)
-        ? workletEntry[1]
-        : undefined
-      const useWorklets =
-        compiler.isNativeWorkletsEnabled() &&
-        (Boolean(workletEntry) || compiler.shouldTransformWorklets({ id, code }))
-      const compilerPluginIndex =
-        babelOptions?.plugins?.findIndex(
-          (x) => Array.isArray(x) && x[0] === 'babel-plugin-react-compiler'
-        ) ?? -1
-
-      if (compilerPluginIndex !== -1) {
-        // preserve automatic worklet candidates before react compiler hoists them.
-        if (useWorklets) {
-          const prepared = compiler.prepareWorkletsForReactCompiler(
-            id,
-            curCode,
-            sourceMaps
-          )
-          if (prepared) {
-            curCode = prepared.code
-            if (prepared.map) intermediateMaps.push(prepared.map)
-          }
-        }
-        const compilerPluginConfig = babelOptions!.plugins![compilerPluginIndex] as any[]
-        const compilerPluginOptions = compilerPluginConfig[1] || {}
-        const useBabelCompiler =
-          compilerPluginOptions.compiler === 'babel' ||
-          process.env.ONE_REACT_COMPILER === 'babel' ||
-          process.env.VXRN_REACT_COMPILER === 'babel'
-
-        if (!useBabelCompiler) {
-          const compilerOut = await compiler.transformOxcReactCompiler(
-            id,
-            curCode,
-            compilerPluginOptions,
-            sourceMaps
-          )
-          if (compilerOut?.code) {
-            curCode = compilerOut.code
-            if (sourceMaps && compilerOut.map) intermediateMaps.push(compilerOut.map)
-          }
-          babelOptions!.plugins!.splice(compilerPluginIndex, 1)
-          if (
-            babelOptions!.plugins!.length === 0 &&
-            !babelOptions!.configFile &&
-            !babelOptions!.babelrc
-          ) {
-            babelOptions = null
-          }
-        }
-      }
-
-      if (useWorklets) {
-        const workletOut = await compiler.transformWorklets(id, curCode, sourceMaps, {
-          projectRoot,
-          ...workletPluginOptions,
-        })
-        if (workletOut?.code) {
-          curCode = workletOut.code
-          if (sourceMaps && workletOut.map) intermediateMaps.push(workletOut.map)
-        }
-        if (babelOptions?.plugins) {
-          babelOptions.plugins = babelOptions.plugins.filter(
-            (entry) => !isWorkletPlugin(entry)
-          )
-          if (
-            babelOptions.plugins.length === 0 &&
-            !babelOptions.configFile &&
-            !babelOptions.babelrc
-          ) {
-            babelOptions = null
-          }
-        }
-      }
-
-      if (!babelOptions && !needsRefresh) {
-        if (curCode !== code) {
-          let finalMap: any = undefined
-          if (sourceMaps && intermediateMaps.length > 0) {
-            if (intermediateMaps.length === 1) {
-              finalMap = intermediateMaps[0]
-            } else {
-              const remapping = (await import('@jridgewell/remapping')).default
-              finalMap = remapping(intermediateMaps.slice().reverse(), () => null)
+      let active = 'transform'
+      let failed = false
+      let mark: ((stage: string, status: 'start' | 'end' | 'error') => void) | undefined
+      if (trace) {
+        try {
+          const record = trace(id)
+          if (record) {
+            mark = (stage, status) => {
+              active = status === 'start' ? stage : 'transform'
+              try {
+                record(stage, status)
+              } catch {
+                // capture must not affect compilation.
+              }
             }
           }
-          return { code: curCode, map: finalMap }
+        } catch {
+          // capture must not affect compilation.
         }
-        return
       }
+      mark?.('transform', 'start')
+      try {
+        const needsRefresh = isRefreshCandidate(id)
 
-      if (sourceMaps && babelOptions) {
-        // Individual stage maps are collected in intermediateMaps and composed
-        // once via remapping([wrapMap, refreshMap, ...intermediateMaps.reverse()]).
-        // Do not pass intermediateMaps as inputSourceMap to Babel, which would
-        // cause Babel to pre-compose and remapping to double-compose the compiler map.
-        babelOptions = {
-          ...babelOptions,
-          sourceMaps: true,
-          sourceFileName: id,
+        if (!compiler) {
+          mark?.('compiler-import', 'start')
+          compiler = await import('@vxrn/compiler')
+          mark?.('compiler-import', 'end')
         }
-        delete (babelOptions as any).inputSourceMap
-      }
 
-      if (babelOptions) {
-        const result = await compiler.transformBabel(id, curCode, babelOptions)
-        if (result?.code) {
-          curCode = result.code
-          if (sourceMaps && result.map) {
-            intermediateMaps.push(result.map)
+        const props = {
+          id,
+          code,
+          projectRoot,
+          development: dev,
+          // the compiler's native gate is ios or android. macos and linux use the
+          // ios transforms. module resolution stays .<platform> and does not follow .ios.
+          environment: (platform === 'android' ? 'android' : 'ios') as 'ios' | 'android',
+          reactForRNVersion: '19' as const,
+        }
+
+        mark?.('options', 'start')
+        let babelOptions = compiler.getBabelOptions(props)
+        mark?.('options', 'end')
+
+        let curCode = code
+        const intermediateMaps: any[] = []
+
+        const isWorkletPlugin = (entry: any) => {
+          if (!entry) return false
+          const name =
+            typeof entry === 'string' ? entry : Array.isArray(entry) ? entry[0] : null
+          return (
+            typeof name === 'string' &&
+            (name.includes('react-native-worklets') ||
+              name.includes('react-native-reanimated'))
+          )
+        }
+        const workletEntry = babelOptions?.plugins?.find(isWorkletPlugin)
+        const workletPluginOptions = Array.isArray(workletEntry)
+          ? workletEntry[1]
+          : undefined
+        const useWorklets =
+          compiler.isNativeWorkletsEnabled() &&
+          (Boolean(workletEntry) || compiler.shouldTransformWorklets({ id, code }))
+        const compilerPluginIndex =
+          babelOptions?.plugins?.findIndex(
+            (x) => Array.isArray(x) && x[0] === 'babel-plugin-react-compiler'
+          ) ?? -1
+
+        if (compilerPluginIndex !== -1) {
+          // preserve automatic worklet candidates before react compiler hoists them.
+          if (useWorklets) {
+            mark?.('worklets-prepare', 'start')
+            const prepared = compiler.prepareWorkletsForReactCompiler(
+              id,
+              curCode,
+              sourceMaps
+            )
+            mark?.('worklets-prepare', 'end')
+            if (prepared) {
+              curCode = prepared.code
+              if (prepared.map) intermediateMaps.push(prepared.map)
+            }
           }
-          if (!needsRefresh) {
+          const compilerPluginConfig = babelOptions!.plugins![
+            compilerPluginIndex
+          ] as any[]
+          const compilerPluginOptions = compilerPluginConfig[1] || {}
+          const useBabelCompiler =
+            compilerPluginOptions.compiler === 'babel' ||
+            process.env.ONE_REACT_COMPILER === 'babel' ||
+            process.env.VXRN_REACT_COMPILER === 'babel'
+
+          if (!useBabelCompiler) {
+            mark?.('oxc-react-compiler', 'start')
+            const compilerOut = await compiler.transformOxcReactCompiler(
+              id,
+              curCode,
+              compilerPluginOptions,
+              sourceMaps
+            )
+            mark?.('oxc-react-compiler', 'end')
+            if (compilerOut?.code) {
+              curCode = compilerOut.code
+              if (sourceMaps && compilerOut.map) intermediateMaps.push(compilerOut.map)
+            }
+            babelOptions!.plugins!.splice(compilerPluginIndex, 1)
+            if (
+              babelOptions!.plugins!.length === 0 &&
+              !babelOptions!.configFile &&
+              !babelOptions!.babelrc
+            ) {
+              babelOptions = null
+            }
+          }
+        }
+
+        if (useWorklets) {
+          mark?.('worklets', 'start')
+          const workletOut = await compiler.transformWorklets(id, curCode, sourceMaps, {
+            projectRoot,
+            ...workletPluginOptions,
+          })
+          mark?.('worklets', 'end')
+          if (workletOut?.code) {
+            curCode = workletOut.code
+            if (sourceMaps && workletOut.map) intermediateMaps.push(workletOut.map)
+          }
+          if (babelOptions?.plugins) {
+            babelOptions.plugins = babelOptions.plugins.filter(
+              (entry) => !isWorkletPlugin(entry)
+            )
+            if (
+              babelOptions.plugins.length === 0 &&
+              !babelOptions.configFile &&
+              !babelOptions.babelrc
+            ) {
+              babelOptions = null
+            }
+          }
+        }
+
+        if (!babelOptions && !needsRefresh) {
+          if (curCode !== code) {
             let finalMap: any = undefined
             if (sourceMaps && intermediateMaps.length > 0) {
               if (intermediateMaps.length === 1) {
@@ -2189,40 +2211,82 @@ export function vxrnCompilerPlugin(
             }
             return { code: curCode, map: finalMap }
           }
+          return
         }
-      }
 
-      if (needsRefresh) {
-        const { transformSync } = await import('oxc-transform-react')
-        const jsxImportSource =
-          compiler.configuration?.enableNativewind && !id.includes('node_modules')
-            ? 'nativewind'
-            : 'react'
+        if (sourceMaps && babelOptions) {
+          // Individual stage maps are collected in intermediateMaps and composed
+          // once via remapping([wrapMap, refreshMap, ...intermediateMaps.reverse()]).
+          // Do not pass intermediateMaps as inputSourceMap to Babel, which would
+          // cause Babel to pre-compose and remapping to double-compose the compiler map.
+          babelOptions = {
+            ...babelOptions,
+            sourceMaps: true,
+            sourceFileName: id,
+          }
+          delete (babelOptions as any).inputSourceMap
+        }
 
-        const res = transformSync(id, curCode, {
-          jsx: {
-            development: dev,
-            runtime: 'automatic',
-            importSource: jsxImportSource,
-            refresh: {
-              refreshReg: '__vxrnRefreshReg',
-              refreshSig: '__vxrnRefreshSig',
+        if (babelOptions) {
+          mark?.('babel', 'start')
+          const result = await compiler.transformBabel(id, curCode, babelOptions)
+          mark?.('babel', 'end')
+          if (result?.code) {
+            curCode = result.code
+            if (sourceMaps && result.map) {
+              intermediateMaps.push(result.map)
+            }
+            if (!needsRefresh) {
+              let finalMap: any = undefined
+              if (sourceMaps && intermediateMaps.length > 0) {
+                if (intermediateMaps.length === 1) {
+                  finalMap = intermediateMaps[0]
+                } else {
+                  const remapping = (await import('@jridgewell/remapping')).default
+                  finalMap = remapping(intermediateMaps.slice().reverse(), () => null)
+                }
+              }
+              return { code: curCode, map: finalMap }
+            }
+          }
+        }
+
+        if (needsRefresh) {
+          mark?.('refresh-import', 'start')
+          const { transformSync } = await import('oxc-transform-react')
+          mark?.('refresh-import', 'end')
+          const jsxImportSource =
+            compiler.configuration?.enableNativewind && !id.includes('node_modules')
+              ? 'nativewind'
+              : 'react'
+
+          mark?.('refresh', 'start')
+          const res = transformSync(id, curCode, {
+            jsx: {
+              development: dev,
+              runtime: 'automatic',
+              importSource: jsxImportSource,
+              refresh: {
+                refreshReg: '__vxrnRefreshReg',
+                refreshSig: '__vxrnRefreshSig',
+              },
             },
-          },
-          reactCompiler: false,
-          sourcemap: sourceMaps,
-        })
+            reactCompiler: false,
+            sourcemap: sourceMaps,
+          })
 
-        if (res.fatal) {
-          throw new Error(
-            `[vxrn:compiler] oxc react transform failed on ${id}: ${(res.errors ?? [])
-              .map((e: any) => e.message ?? String(e))
-              .join(', ')}`
-          )
-        }
+          if (res.fatal) {
+            throw new Error(
+              `[vxrn:compiler] oxc react transform failed on ${id}: ${(res.errors ?? [])
+                .map((e: any) => e.message ?? String(e))
+                .join(', ')}`
+            )
+          }
 
-        const escapedId = id.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
-        const header = `var __prevRefreshReg = globalThis.$RefreshReg$;
+          mark?.('refresh', 'end')
+
+          const escapedId = id.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+          const header = `var __prevRefreshReg = globalThis.$RefreshReg$;
 var __prevRefreshSig = globalThis.$RefreshSig$;
 if (globalThis.__ReactRefresh) {
   globalThis.$RefreshReg$ = function(type, id) {
@@ -2235,7 +2299,7 @@ var __vxrnRefreshReg = globalThis.$RefreshReg$;
 var __vxrnRefreshSig = globalThis.$RefreshSig$;
 
 `
-        const footer = `
+          const footer = `
 
 globalThis.$RefreshReg$ = __prevRefreshReg;
 globalThis.$RefreshSig$ = __prevRefreshSig;
@@ -2247,29 +2311,36 @@ if (import.meta.hot) {
   });
 }
 `
-        let out: string
-        let finalMap: any = undefined
+          let out: string
+          let finalMap: any = undefined
 
-        if (sourceMaps) {
-          const MagicString = (await import('magic-string')).default
-          const ms = new MagicString(res.code)
-          ms.prepend(header)
-          ms.append(footer)
-          out = ms.toString()
-          const wrapMap = ms.generateMap({ source: id, hires: true })
+          if (sourceMaps) {
+            const MagicString = (await import('magic-string')).default
+            const ms = new MagicString(res.code)
+            ms.prepend(header)
+            ms.append(footer)
+            out = ms.toString()
+            const wrapMap = ms.generateMap({ source: id, hires: true })
 
-          const allMaps = [
-            wrapMap,
-            res.map,
-            ...intermediateMaps.slice().reverse(),
-          ].filter(Boolean)
-          const remapping = (await import('@jridgewell/remapping')).default
-          finalMap = remapping(allMaps, () => null)
-        } else {
-          out = header + res.code + footer
+            const allMaps = [
+              wrapMap,
+              res.map,
+              ...intermediateMaps.slice().reverse(),
+            ].filter(Boolean)
+            const remapping = (await import('@jridgewell/remapping')).default
+            finalMap = remapping(allMaps, () => null)
+          } else {
+            out = header + res.code + footer
+          }
+
+          return { code: out, map: finalMap }
         }
-
-        return { code: out, map: finalMap }
+      } catch (error) {
+        failed = true
+        if (active !== 'transform') mark?.(active, 'error')
+        throw error
+      } finally {
+        mark?.('transform', failed ? 'error' : 'end')
       }
     },
   }
