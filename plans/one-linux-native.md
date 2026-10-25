@@ -117,6 +117,21 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+TESTED input limits in the release VM host with real typing and clipboard
+paste, for single-line and multiline fields at limits 0, 1 and 2. Typing `abc`
+keeps empty, `a` and `ab`, with change counts 0, 1 and 2. Pasting an emoji
+keeps empty at 0 and 1 and accepts its two UTF-16 units at 2. Pasting `A😀B`
+keeps only `A` at both positive limits. Pasting `e` plus a combining acute
+accent rejects the whole composed character at 1 and accepts both units at 2.
+Both modes agree and rejected zero-limit inserts emit no changes. Unlimited
+remains distinct from zero; both GTK insert paths share the UTF-16 budget and
+Pango composed-character boundary calculation. The exact final source passes
+the incremental release host build. Captures:
+[ASCII](one-linux-native-limits-ascii.webp),
+[emoji](one-linux-native-limits-emoji.webp),
+[mixed](one-linux-native-limits-mixed.webp),
+[composed](one-linux-native-limits-composed.webp).
+
 TESTED WebSocket cleanup in the VM: 20 unique JS connections open and close
 without failures. GDB observes 20 native Socket destructors and a registry size
 of zero after every terminal close, with fatal GTK checks enabled. The closed
@@ -146,7 +161,7 @@ The common review UI is in `tests/linux-basic/probe/review.tsx`. To bundle it,
 temporarily export it from the demo's `app/index.tsx`, build for Linux, then
 restore that entry. `probe/server.py <assets directory>` serves the image and
 WebSocket fixtures on loopback port 8123. The review UI also carries the input
-limit and WebSocket probes for the remaining repairs.
+limit and WebSocket probes.
 
 RAN Mac literal isolation check: `StackToolbarBottomHost.macos.tsx` is restored
 byte for byte to `9b92552c77^`. Minifying the baseline and restored module with
@@ -180,9 +195,11 @@ still enabled. The capture and close use the same attachment fixture.
 **Accepted Linux review repairs, 2026-10-24.** Lead s72425 accepted s78886's
 review and assigned repairs before more M3 controls: inline text attachments,
 RN hover synthesis, GTK pointer picking, the Mac error literal, image request
-identity, WebSocket cleanup and UTF-16 input limits. Window close ownership is
-also under runtime validation. These are lead-assigned repairs to the existing
-contract, not new owner feature direction.
+identity, WebSocket cleanup and UTF-16 input limits. These repairs and the
+reproduced window close ownership failure are now fixed and probed above.
+They are lead-assigned repairs to the existing contract, not new owner feature
+direction. At the subscription quota handoff, s72425 owns the successor and CI
+delivery; this worker starts no further M3 work.
 
 TESTED in the Ubuntu arm64 VM: inline View and Image children mount in debug
 and release without an RN patch or attachment assertion. Pango shape attributes
@@ -638,5 +655,6 @@ transformed RN content: [existing interactions](one-linux-native-existing-intera
   and drag and drop. `cursorColor` is Android only in RN and is not a Linux gap.
 - The earlier scroll, portal color scheme, image and Networking gaps remain.
 
-**Next:** finish the accepted Linux review repairs above, then the remaining
-four M3 controls and the existing image, portal appearance and Networking gaps.
+**Next:** the remaining four M3 controls and the existing image, portal
+appearance and Networking gaps. Lead s72425 and CI own review of the repairs,
+the full release bundle byte gate and broader platform builds.

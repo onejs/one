@@ -2,7 +2,9 @@
 
 #include <algorithm>
 #include <cmath>
+#include <cstring>
 #include <limits>
+#include <vector>
 
 #include "OneLinuxText.h"
 
@@ -11,9 +13,9 @@ namespace facebook::react {
 namespace {
 
 // react counts text in utf16 units and gtk in characters
-int utf16Offset(const std::string &text, int characters)
+int utf16Offset(const std::string &text, int characters = -1)
 {
-  const gchar *end = g_utf8_offset_to_pointer(text.c_str(), characters);
+  const gchar *end = characters < 0 ? text.c_str() + text.size() : g_utf8_offset_to_pointer(text.c_str(), characters);
   int units = 0;
   for (const gchar *p = text.c_str(); p < end; p = g_utf8_next_char(p)) {
     units += g_utf8_get_char(p) > 0xFFFF ? 2 : 1;
@@ -69,6 +71,7 @@ OneLinuxTextInput::OneLinuxTextInput(Tag tag) : tag_(tag)
   // the field takes whatever width its view gives it
   gtk_editable_set_width_chars(GTK_EDITABLE(text_), 1);
   g_signal_connect(text_, "changed", G_CALLBACK(changed), this);
+  g_signal_connect(text_, "insert-text", G_CALLBACK(insertEditable), this);
   g_signal_connect(text_, "notify::cursor-position", G_CALLBACK(selectionMoved), this);
   g_signal_connect(text_, "notify::selection-bound", G_CALLBACK(selectionMoved), this);
   g_signal_connect(text_, "activate", G_CALLBACK(activated), this);
@@ -307,8 +310,7 @@ void OneLinuxTextInput::update(
     GtkEditable *editable = GTK_EDITABLE(text_);
     gtk_editable_set_editable(editable, textProps.traits.editable && !textProps.readOnly);
     gtk_text_set_visibility(GTK_TEXT(text_), !textProps.traits.secureTextEntry);
-    maxLength_ = textProps.maxLength == std::numeric_limits<int>::max() ? 0 : std::max(textProps.maxLength, 0);
-    gtk_text_set_max_length(GTK_TEXT(text_), maxLength_);
+    maxLength_ = std::max(textProps.maxLength, 0);
     gtk_text_set_placeholder_text(GTK_TEXT(text_), textProps.placeholder.empty() ? nullptr : textProps.placeholder.c_str());
 
     auto attributes = textProps.getEffectiveTextAttributes(1);
@@ -397,23 +399,67 @@ void OneLinuxTextInput::command(const std::string &name, const folly::dynamic &a
   }
 }
 
-// keeps an insert inside maxLength: the part that fits goes in instead
+// gtk has already removed a replaced selection when its insert signal arrives.
+// budget in utf16 units and truncate only at a composed character boundary.
+int OneLinuxTextInput::insertionBytes(const gchar *text, int length) const
+{
+  if (comingFromJS_ || maxLength_ == std::numeric_limits<int>::max()) {
+    return length;
+  }
+  std::string incoming(text, length);
+  int room = maxLength_ - utf16Offset(currentText());
+  if (utf16Offset(incoming) <= room) {
+    return length;
+  }
+  if (room <= 0) {
+    return 0;
+  }
+  int count = static_cast<int>(g_utf8_strlen(incoming.c_str(), length));
+  std::vector<PangoLogAttr> attributes(count + 1);
+  pango_get_log_attrs(incoming.c_str(), length, -1, pango_language_get_default(), attributes.data(), count + 1);
+  int units = 0;
+  int characters = 0;
+  int accepted = 0;
+  for (const gchar *p = incoming.c_str(); *p; p = g_utf8_next_char(p)) {
+    units += g_utf8_get_char(p) > 0xffff ? 2 : 1;
+    if (units > room) {
+      break;
+    }
+    characters++;
+    if (attributes[characters].is_cursor_position) {
+      accepted = static_cast<int>(g_utf8_next_char(p) - incoming.c_str());
+    }
+  }
+  return accepted;
+}
+
+void OneLinuxTextInput::insertEditable(GtkEditable *editable, gchar *text, gint length, gint *at, gpointer data)
+{
+  auto &self = *static_cast<OneLinuxTextInput *>(data);
+  int bytes = length < 0 ? static_cast<int>(std::strlen(text)) : length;
+  int accepted = self.insertionBytes(text, bytes);
+  if (accepted == bytes) {
+    return;
+  }
+  g_signal_stop_emission_by_name(editable, "insert-text");
+  if (accepted > 0) {
+    g_signal_handlers_block_by_func(editable, reinterpret_cast<gpointer>(insertEditable), data);
+    gtk_editable_insert_text(editable, text, accepted, at);
+    g_signal_handlers_unblock_by_func(editable, reinterpret_cast<gpointer>(insertEditable), data);
+  }
+}
+
 void OneLinuxTextInput::insertText(GtkTextBuffer *buffer, GtkTextIter *at, gchar *text, gint length, gpointer data)
 {
   auto &self = *static_cast<OneLinuxTextInput *>(data);
-  if (self.maxLength_ <= 0) {
-    return;
-  }
-  int room = self.maxLength_ - gtk_text_buffer_get_char_count(buffer);
-  long incoming = g_utf8_strlen(text, length);
-  if (incoming <= room) {
+  int accepted = self.insertionBytes(text, length);
+  if (accepted == length) {
     return;
   }
   g_signal_stop_emission_by_name(buffer, "insert-text");
-  if (room > 0) {
-    const char *end = g_utf8_offset_to_pointer(text, room);
+  if (accepted > 0) {
     g_signal_handlers_block_by_func(buffer, reinterpret_cast<gpointer>(insertText), data);
-    gtk_text_buffer_insert(buffer, at, text, static_cast<gint>(end - text));
+    gtk_text_buffer_insert(buffer, at, text, accepted);
     g_signal_handlers_unblock_by_func(buffer, reinterpret_cast<gpointer>(insertText), data);
   }
 }
