@@ -117,6 +117,13 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+RAN Mac literal isolation check: `StackToolbarBottomHost.macos.tsx` is restored
+byte for byte to `9b92552c77^`. Minifying the baseline and restored module with
+the same production transform yields identical 243-byte outputs, also compared
+with `cmp` inside the VM. This removes the nonconstant Mac error-string change.
+This is a module byte gate; full release bundle comparisons remain a delivery
+check for the lead and CI owner.
+
 TESTED GTK picking in the VM with real clicks on Switch, Button and TextInput:
 under `none` and `box-only`, all three stay inactive and the fields receive no
 focus; `auto` and `box-none` toggle, click and focus normally. RN receives zero
