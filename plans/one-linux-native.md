@@ -231,6 +231,22 @@ view props, disabled/revision props and numeric/text event types through
 RAN full package build, static specs and declaration generation; package lint
 has zero errors and eight existing warnings. No automated tests.
 
+TESTED simplification S2: each GTK control now owns its creation, updates,
+event handlers and cleanup in one per-kind implementation. Only registration
+maps Fabric handles to those implementations; the mounting manager keeps one
+control interface. Numeric controls still share the acknowledgement helper,
+text fields share their entry implementation, and read-only progress owns
+only its animation callback.
+
+The rebuilt release host accepts toggle, Stepper, plain text and password
+input, including two submits: [fields](one-linux-native-kinds-fields.webp).
+Switch, Button, segments, Slider, progress and both dropdown forms retain
+state in RN scrolling content: [selection](one-linux-native-kinds-selection.webp).
+A revision during a held Slider interaction still yields two starts and two
+completions: [cancellation](one-linux-native-kinds-cancel.webp).
+RAN incremental release host build and real uinput interaction with the
+existing fixture bytecode under fatal GTK warnings. No automated tests.
+
 **M3 continuation, 2026-10-25, worker s79514 for s72425.** TESTED all ten
 controls in the studio-64 Ubuntu arm64 VM, GTK 4 release host and embedded
 Linux Hermes bytecode, with `G_DEBUG=fatal-criticals`. The four additions are
