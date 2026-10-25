@@ -99,16 +99,30 @@ describe('a client navigation validates the query of the page it opens', { timeo
     )
     expect((await readData()).searchParams.page).toBe(4)
 
-    // a query a schema rejects never reaches the loader
+    // a refetch of a query a schema rejects does not run the loader or replace the data
     const beforeInvalid = await loaderCalls()
+    const dataBeforeInvalid = await readData()
+    await tab.click('[data-testid="loader-refetch-invalid"]')
+    await tab.waitForFunction(
+      () => !!document.querySelector('[data-testid="loader-refetch-error"]')?.textContent,
+      undefined,
+      { timeout: 10_000 }
+    )
+    expect(await loaderCalls()).toBe(beforeInvalid)
+    expect(await readData()).toEqual(dataBeforeInvalid)
+
+    // a client navigation to it loads the url as a document, which shows the server's 400
     const rejected = tab.waitForResponse(
-      (res) => res.url().includes('sort%3Dsideways') && res.status() === 400
+      (res) =>
+        res.request().resourceType() === 'document' &&
+        res.url().includes('sort=sideways') &&
+        res.status() === 400
     )
     await tab.click('[data-testid="loader-invalid"]')
     await rejected
-    // the navigation does not commit and the loader does not run
+    await tab.waitForURL('**sort=sideways')
+    expect(await tab.textContent('body')).toContain('sort')
     expect(await loaderCalls()).toBe(beforeInvalid)
-    expect(tab.url()).toContain('page=4')
     await tab.close()
   })
 })
