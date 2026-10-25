@@ -8,13 +8,13 @@ import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNati
 
 export type ChangeEvent = Readonly<{
   value: Double
-  indeterminate: boolean
   revision: Int32
   eventCount: Int32
 }>
 
 interface NativeProps extends ViewProps {
   value: Double
+  indeterminate: boolean
   disabled?: boolean
   revision: Int32
   acknowledgedEvent: Int32

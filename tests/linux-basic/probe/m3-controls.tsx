@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Pressable, ScrollView, Text, View } from 'react-native'
+import { Pressable, ScrollView, Text, View, type LayoutChangeEvent } from 'react-native'
 import { One } from 'one'
 
 export default function Controls() {
@@ -23,6 +23,11 @@ export default function Controls() {
   const [busy, setBusy] = useState(true)
   const [selection, setSelection] = useState<string | null>('alpha')
   const [reverse, setReverse] = useState(false)
+  const [sizes, setSizes] = useState<Record<string, string>>({})
+  const measure = (name: string) => ({ nativeEvent: { layout } }: LayoutChangeEvent) => {
+    const size = `${layout.width}x${layout.height}`
+    setSizes((last) => last[name] === size ? last : { ...last, [name]: size })
+  }
   const report = (change: () => void) => {
     setEvents((value) => value + 1)
     if (accept) change()
@@ -51,28 +56,28 @@ export default function Controls() {
     </View>
     <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 20, gap: 18, alignItems: 'flex-start' }}
       onScroll={({ nativeEvent }) => setOffset(nativeEvent.contentOffset.y)} scrollEventThrottle={16}>
-      <Row title="Toggle: Mac label and boolean" note="disabled">
-        <One.linux.Toggle label="Enable notifications" isOn={toggle} revision={revision}
+      <Row title="Toggle: Mac label and boolean" note={`natural ${sizes.toggle}`}>
+        <One.linux.Toggle onLayout={measure('toggle')} label="Enable notifications" isOn={toggle} revision={revision}
           onIsOnChange={(event) => report(() => setToggle(event.isOn))} />
         <One.linux.Toggle label="Unavailable" isOn={false} disabled />
       </Row>
-      <Row title="Stepper: native numeric value" note="0 to 5, step 0.25">
-        <One.linux.Stepper value={stepper} minimumValue={0} maximumValue={5} step={0.25} revision={revision}
+      <Row title="Stepper: native numeric value" note={`0 to 5, step 0.25 | natural ${sizes.stepper}`}>
+        <One.linux.Stepper onLayout={measure('stepper')} value={stepper} minimumValue={0} maximumValue={5} step={0.25} revision={revision}
           onValueChange={(event) => report(() => setStepper(event.value))} />
         <One.linux.Stepper value={2} disabled />
       </Row>
-      <Row title="TextField: controlled text" note="Enter submits">
-        <One.linux.TextField label="Project" prompt="Project name" text={text} revision={revision}
+      <Row title="TextField: controlled text" note={`Enter submits | natural ${sizes.text}`}>
+        <One.linux.TextField onLayout={measure('text')} label="Project" prompt="Project name" text={text} revision={revision}
           onTextChange={(value) => report(() => setText(value))} onSubmit={() => setSubmits((value) => value + 1)} />
         <One.linux.TextField text="Unavailable" disabled />
       </Row>
-      <Row title="SecureField: GTK password entry" note="masked, Enter submits">
-        <One.linux.SecureField label="Password" prompt="Password" text={secret} revision={revision}
+      <Row title="SecureField: GTK password entry" note={`masked, Enter submits | natural ${sizes.secure}`}>
+        <One.linux.SecureField onLayout={measure('secure')} label="Password" prompt="Password" text={secret} revision={revision}
           onTextChange={(value) => report(() => setSecret(value))} onSubmit={() => setSubmits((value) => value + 1)} />
         <One.linux.SecureField text="hidden" disabled />
       </Row>
-      <Row title="Switch and Button" note={`button presses ${presses}`}>
-        <One.linux.Switch isOn={isOn} revision={revision} onIsOnChange={(event) => report(() => setIsOn(event.isOn))} />
+      <Row title="Switch and Button" note={`button presses ${presses} | switch natural ${sizes.switch}`}>
+        <One.linux.Switch onLayout={measure('switch')} isOn={isOn} revision={revision} onIsOnChange={(event) => report(() => setIsOn(event.isOn))} />
         <One.linux.Button title="Native button" onPress={() => setPresses((value) => value + 1)} />
       </Row>
       <Row title="SegmentedControl" note={`index ${segment}`}>

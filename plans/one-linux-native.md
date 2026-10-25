@@ -128,11 +128,15 @@ The two fields share one wrapper implementation. All four use
 as Switch, including string values for the fields. Fields submit on Enter;
 SecureField uses GTK's masked entry and its clipboard policy.
 
-RAN: source lint on 24 files, zero warnings or errors. Native build and runtime
-validation are pending. The VM's startup writer stalled in `pwrite` on the
+RAN: source lint on 24 files, zero warnings or errors. The incremental Linux
+release host build passed all eight steps. Runtime validation is pending. The VM's startup writer stalled in `pwrite` on the
 external volume; a sample was retained outside the tree and sent to s72425.
-Normal heavy admission also refused the One package build at 49 GiB free under
-the 50 GiB floor, before running it. These are infrastructure observations,
+Normal heavy admission initially refused the One package build at 49 GiB free
+under the 50 GiB floor. The lead recovered capacity; one event wait reported
+50.56 GiB and the builds were admitted. The package build caught a misplaced
+indeterminate prop in its event schema, now corrected, then encountered SWC
+file-load EPERM errors. A direct SWC transform passed; the package build is
+being repeated with failing paths recorded outside the repo. These are infrastructure observations,
 not runtime evidence for the new controls. The review fixture is
 `tests/linux-basic/probe/m3-controls.tsx`, available as the controls tab.
 
