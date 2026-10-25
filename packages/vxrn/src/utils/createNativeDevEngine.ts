@@ -413,16 +413,20 @@ function getNativePlugins(
   command: 'serve' | 'build' = 'serve'
 ): Plugin[] {
   const context: NativePluginContext = { root, platform, dev, command, assetsDest }
-  return [
-    ...(platform === 'macos' || platform === 'linux'
+  const desktopPlugins =
+    platform === 'macos' || platform === 'linux'
       ? [
           desktopReactNativeResolvePlugin(root, platform),
           desktopDistVariantPlugin(platform),
           desktopUnsupportedImportPlugin(platform),
         ]
-      : []),
+      : []
+  // evaluate One's factory once, in its existing position after desktop setup.
+  const globalPlugins = globalThis.__vxrnAddNativePlugins?.(platform) || []
+  return [
+    ...desktopPlugins,
     // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
-    ...(globalThis.__vxrnAddNativePlugins?.(platform) || []),
+    ...globalPlugins,
     // block .server.* and _middleware.* files from entering the native bundle
     serverFileExclusionPlugin(),
     // guard server-only / client-only / web-only / native-only imports
@@ -459,8 +463,9 @@ function getNativePlugins(
       root,
       sourceMaps,
       dev && command === 'serve'
-        ? userPlugins.find((plugin) => plugin.api?.vxrnNativeCompilerTrace)?.api
-            .vxrnNativeCompilerTrace
+        ? [...globalPlugins, ...userPlugins].find(
+            (plugin) => plugin.api?.vxrnNativeCompilerTrace
+          )?.api.vxrnNativeCompilerTrace
         : undefined
     ),
     mixedNativeModulePlugin(sourceMaps),
