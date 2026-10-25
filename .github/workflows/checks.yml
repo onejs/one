@@ -9,9 +9,6 @@ on:
       - '**/*.md'
       - '**/CHANGELOG.md'
   pull_request:
-    paths-ignore:
-      - '**/*.md'
-      - '**/CHANGELOG.md'
   merge_group:
   workflow_dispatch:
 
