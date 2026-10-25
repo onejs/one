@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Pressable, Text, View } from 'react-native'
 import { refetchLoader, router, useLoader, useLoaderState, type RouteType } from 'one'
 import { DashboardChart } from '~/features/search-params/DashboardChart'
@@ -18,9 +18,13 @@ export default function SearchParamsLoaderPage() {
   const data = useLoader(loader)
   const { refetch } = useLoaderState(loader)
   const [refetchError, setRefetchError] = useState('')
+  // effects only run on the client, so this shows when the page has hydrated
+  const [hydrated, setHydrated] = useState(false)
+  useEffect(() => setHydrated(true), [])
   return (
     <View testID="search-params-loader-page">
       <Text testID="loader-data">{JSON.stringify(data)}</Text>
+      <Text testID="loader-hydrated">{hydrated ? 'yes' : 'no'}</Text>
       <DashboardTable />
       <DashboardChart />
       <SortBoundary>
