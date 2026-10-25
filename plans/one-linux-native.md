@@ -117,6 +117,15 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+TESTED GTK picking in the VM with real clicks on Switch, Button and TextInput:
+under `none` and `box-only`, all three stay inactive and the fields receive no
+focus; `auto` and `box-none` toggle, click and focus normally. RN receives zero
+touches for `none` and three for each other column, with `box-only` targeting
+its parent. Keyboard Shift-Tab still reaches the two pointer-blocked fields
+and accepts typing. Picking uses GTK's `can-target`, not sensitivity, and is
+updated when views mount, move or change pointer policy. Captures:
+[mouse](one-linux-native-picking.webp), [keyboard](one-linux-native-picking-keyboard.webp).
+
 TESTED nested hover in the VM: entering a child sends one parent enter and one
 child enter; moving back to the parent sends one child leave with no parent
 leave or second enter; leaving the window sends one parent leave. The host now

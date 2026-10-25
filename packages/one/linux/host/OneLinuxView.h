@@ -30,6 +30,8 @@ void one_view_set_transform(OneView *view, const float *matrix);
 // frame origin and transform; false when the transform cannot be inverted
 gboolean one_view_map_from_parent(OneView *view, double x, double y, double *local_x, double *local_y);
 void one_view_set_clips(OneView *view, gboolean clips);
+// mirrors react's self/descendant hit policy without changing keyboard focus
+void one_view_set_pointer_events(OneView *view, gboolean self, gboolean children);
 // takes its own reference to `layout`; origin is inside the view
 void one_view_set_text(OneView *view, PangoLayout *layout, double x, double y);
 

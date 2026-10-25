@@ -14,6 +14,8 @@ struct _OneView {
   GdkRGBA border_color;
   double radius;
   gboolean clips;
+  gboolean targets_self;
+  gboolean targets_children;
 
   PangoLayout *layout;
   double text_x, text_y;
@@ -225,6 +227,13 @@ static void one_view_snapshot(GtkWidget *widget, GtkSnapshot *snapshot)
 // siblings never shadows them and a control inside it still gets its clicks
 static gboolean one_view_contains(GtkWidget *widget, double x, double y)
 {
+  OneView *view = ONE_VIEW(widget);
+  if (!view->targets_self) {
+    return FALSE;
+  }
+  if (!view->targets_children) {
+    return x >= 0 && y >= 0 && x < view->width && y < view->height;
+  }
   for (GtkWidget *child = gtk_widget_get_first_child(widget); child; child = gtk_widget_get_next_sibling(child)) {
     graphene_rect_t bounds;
     graphene_point_t point = {static_cast<float>(x), static_cast<float>(y)};
@@ -258,6 +267,8 @@ static void one_view_class_init(OneViewClass *klass)
 
 static void one_view_init(OneView *view)
 {
+  view->targets_self = TRUE;
+  view->targets_children = TRUE;
   // a view is never the focus itself, but a field inside it must still be able to take it
   gtk_widget_set_focusable(GTK_WIDGET(view), FALSE);
 }
@@ -265,6 +276,39 @@ static void one_view_init(OneView *view)
 OneView *one_view_new(void)
 {
   return ONE_VIEW(g_object_new(ONE_TYPE_VIEW, nullptr));
+}
+
+static void update_picking(OneView *view)
+{
+  gboolean parent_allows = TRUE;
+  for (GtkWidget *parent = gtk_widget_get_parent(GTK_WIDGET(view)); parent; parent = gtk_widget_get_parent(parent)) {
+    if (ONE_IS_VIEW(parent)) {
+      parent_allows = ONE_VIEW(parent)->targets_children;
+      break;
+    }
+  }
+  gtk_widget_set_can_target(GTK_WIDGET(view), parent_allows && (view->targets_self || view->targets_children));
+  if (view->control) {
+    gtk_widget_set_can_target(view->control, view->targets_self || (view->scroll_content && view->targets_children));
+  }
+  if (view->scroll_content) {
+    update_picking(view->scroll_content);
+  }
+  for (GtkWidget *child = gtk_widget_get_first_child(GTK_WIDGET(view)); child; child = gtk_widget_get_next_sibling(child)) {
+    if (ONE_IS_VIEW(child)) {
+      update_picking(ONE_VIEW(child));
+    }
+  }
+}
+
+void one_view_set_pointer_events(OneView *view, gboolean self, gboolean children)
+{
+  if (view->targets_self == self && view->targets_children == children) {
+    return;
+  }
+  view->targets_self = self;
+  view->targets_children = children;
+  update_picking(view);
 }
 
 void one_view_make_surface(OneView *view, OneViewSurfaceCallback callback, gpointer data)
@@ -379,6 +423,7 @@ void one_view_set_control(OneView *view, GtkWidget *control)
 {
   view->control = control;
   gtk_widget_set_parent(control, GTK_WIDGET(view));
+  update_picking(view);
 }
 
 GtkWidget *one_view_get_control(OneView *view)
@@ -391,6 +436,7 @@ void one_view_set_scroll(OneView *view, GtkScrolledWindow *scrolled, OneView *co
   one_view_set_control(view, GTK_WIDGET(scrolled));
   view->scroll_content = content;
   gtk_scrolled_window_set_child(scrolled, GTK_WIDGET(content));
+  update_picking(view);
 }
 
 OneView *one_view_get_scroll_content(OneView *view)
@@ -437,6 +483,7 @@ void one_view_insert_child(OneView *parent, OneView *child, int index)
     sibling = gtk_widget_get_next_sibling(sibling);
   }
   gtk_widget_insert_after(GTK_WIDGET(child), GTK_WIDGET(parent), previous);
+  update_picking(child);
 }
 
 void one_view_remove_child(OneView *child)
