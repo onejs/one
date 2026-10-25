@@ -1,4 +1,5 @@
 #include "OneLinuxWorklets.h"
+#include "OneLinuxRuntime.h"
 
 #include <glib.h>
 
@@ -29,18 +30,6 @@ namespace facebook::react {
 
 namespace {
 
-void runOnMainContext(std::function<void()> job)
-{
-  g_idle_add_full(
-      G_PRIORITY_DEFAULT,
-      [](gpointer data) -> gboolean {
-        (*static_cast<std::function<void()> *>(data))();
-        return G_SOURCE_REMOVE;
-      },
-      new std::function<void()>(std::move(job)),
-      [](gpointer data) { delete static_cast<std::function<void()> *>(data); });
-}
-
 class MainContextUIScheduler : public worklets::UIScheduler,
                                public std::enable_shared_from_this<MainContextUIScheduler> {
  public:
@@ -54,7 +43,7 @@ class MainContextUIScheduler : public worklets::UIScheduler,
     UIScheduler::scheduleOnUI(job);
 
     if (!scheduledOnUI_) {
-      runOnMainContext([weakThis = weak_from_this()] {
+      OneLinuxDispatchMain([weakThis = weak_from_this()] {
         if (auto strongThis = weakThis.lock()) {
           strongThis->triggerUI();
         }
@@ -89,7 +78,7 @@ class AnimationFrames {
       }
       armed_ = true;
     }
-    runOnMainContext([this] {
+    OneLinuxDispatchMain([this] {
       std::lock_guard<std::mutex> lock(mutex_);
       source_ = g_timeout_add(16, [](gpointer) -> gboolean { return shared().frame(); }, nullptr);
     });

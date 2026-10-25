@@ -117,6 +117,14 @@ and on the Linux CI host for x86_64 builds. Timing claims name the machine.
 
 ## Status
 
+TESTED WebSocket cleanup in the VM: 20 unique JS connections open and close
+without failures. GDB observes 20 native Socket destructors and a registry size
+of zero after every terminal close, with fatal GTK checks enabled. The closed
+handler removes the entry while keeping its socket and connection alive through
+the callback. Worklets now shares `OneLinuxDispatchMain` instead of a duplicate
+idle dispatcher with the same priority and lifetime behavior. Debug and release
+host builds pass. Capture: [socket cleanup](one-linux-native-socket-cleanup.webp).
+
 TESTED image request identity in the VM: a temporary native probe held A's
 queued completion, mounted B, then drained A's completion, progress and failure.
 The log records A request 1, B request 2, then A drain. The screen keeps B's

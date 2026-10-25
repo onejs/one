@@ -52,12 +52,15 @@ void fetchFinished(GObject *, GAsyncResult *result, gpointer data)
   state->done(text, {});
 }
 
-// A WebSocket the module owns until it closes. Main thread only.
+class WebSockets;
+
+// a websocket the module owns until it closes. main thread only
 struct Socket {
   int id;
   SoupWebsocketConnection *connection{nullptr};
   GCancellable *cancellable{g_cancellable_new()};
   std::function<void(const std::string &, folly::dynamic)> emit;
+  std::weak_ptr<WebSockets> owner;
 
   ~Socket()
   {
@@ -147,6 +150,17 @@ class WebSockets : public std::enable_shared_from_this<WebSockets> {
     return it != sockets_.end() && it->second->connection ? it->second.get() : nullptr;
   }
 
+  std::unique_ptr<Socket> removeClosed(Socket *socket)
+  {
+    auto it = sockets_.find(socket->id);
+    if (it == sockets_.end() || it->second.get() != socket) {
+      return {};
+    }
+    auto closed = std::move(it->second);
+    sockets_.erase(it);
+    return closed;
+  }
+
   void connectOnMain(const std::string &url, const std::vector<std::string> &protocols, int id)
   {
     SoupMessage *message = soup_message_new(SOUP_METHOD_GET, url.c_str());
@@ -163,6 +177,7 @@ class WebSockets : public std::enable_shared_from_this<WebSockets> {
     auto socket = std::make_unique<Socket>();
     socket->id = id;
     socket->emit = emit_;
+    socket->owner = weak_from_this();
     GCancellable *cancellable = socket->cancellable;
     sockets_[id] = std::move(socket);
     soup_session_websocket_connect_async(
@@ -222,9 +237,18 @@ class WebSockets : public std::enable_shared_from_this<WebSockets> {
     }), &socket);
     g_signal_connect(connection, "closed", G_CALLBACK(+[](SoupWebsocketConnection *connection, gpointer data) {
       auto *self = static_cast<Socket *>(data);
-      self->emit(
+      auto owner = self->owner.lock();
+      if (!owner) {
+        return;
+      }
+      // remove the registry entry now; keep its objects until this callback ends
+      auto closed = owner->removeClosed(self);
+      if (!closed) {
+        return;
+      }
+      closed->emit(
           "websocketClosed",
-          folly::dynamic::object("id", self->id)("code", static_cast<int>(soup_websocket_connection_get_close_code(connection)))(
+          folly::dynamic::object("id", closed->id)("code", static_cast<int>(soup_websocket_connection_get_close_code(connection)))(
               "reason", soup_websocket_connection_get_close_data(connection) ? soup_websocket_connection_get_close_data(connection) : ""));
     }), &socket);
     const char *protocol = soup_websocket_connection_get_protocol(connection);
