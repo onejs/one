@@ -391,7 +391,7 @@ describe('createFileSystemRouterPlugin', () => {
       createRouteIndex({ routerRoot: appDir })
     )
 
-    // neighbor on disk after manifest freeze: not an entry, overmatched by raw glob
+    // neighbor on disk after manifest freeze: never an entry, must stay excluded
     const neighbor = path.join(appDir, 'tabs', 'feed.tsx')
     mkdirSync(path.dirname(neighbor), { recursive: true })
     writeFileSync(neighbor, 'export default function N() { return null }\n')
@@ -402,8 +402,8 @@ describe('createFileSystemRouterPlugin', () => {
     const entries = cfg?.optimizeDeps?.entries
     expect(entries).toBeDefined()
 
-    const { glob } = await import('tinyglobby')
-    const globbed = await glob(entries!, {
+    const { default: fastGlob } = await import('fast-glob')
+    const globbed = fastGlob.sync(entries!, {
       absolute: true,
       cwd: tempRoot,
       ignore: ['**/node_modules/**'],
