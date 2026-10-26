@@ -152,7 +152,7 @@ Where it applies:
 
 An array search param is now written as repeated keys everywhere the router builds a URL, because that is the only form that reads back as the same array. Before, `router.push({ pathname, params: { tags: ['a', 'b'] } })` could not round-trip through the address bar. This is a visible URL change for apps that pass arrays as search params, so it ships in a minor release.
 
-`Link` `params` is unchanged and still joins an array with commas, so `params={{ tags: ['a', 'b'] }}` is the single string `a,b`. Use `searchParams` on `Link` for repeated keys.
+Arrays in a `Link`'s `href.params` still join with commas. For example, `href={{ pathname: '/products', params: { tags: ['a', 'b'] } }}` produces `?tags=a%2Cb`, which reads back as the single string `'a,b'`. This also loses the distinction between commas inside a value and commas between values. Use `searchParams={{ tags: ['a', 'b'] }}` on `Link` to produce repeated keys, `?tags=a&tags=b`, which `useSearchParams().getAll('tags')` reads as `['a', 'b']`.
 
 Typed `Link` discovery reads `paths` from your tsconfig and from a tsconfig it extends by relative path, but not from one it extends from a package.
 
