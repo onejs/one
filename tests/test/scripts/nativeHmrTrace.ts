@@ -35,7 +35,9 @@ export function nativeHmrTrace(path: string | undefined): Plugin[] {
         const edit = edits.get(id) ?? 0
         const transform = ++traceInvocation
         return (stage: string, status: 'start' | 'end' | 'error') => {
-          record(`${stage.startsWith('pre:') ? '' : 'compiler:'}${stage}:${status}`, {
+          const prefix =
+            stage.startsWith('pre:') || stage.startsWith('load:') ? '' : 'compiler:'
+          record(`${prefix}${stage}:${status}`, {
             id,
             edit,
             transform,
