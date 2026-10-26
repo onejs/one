@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/test-package",
-  "version": "2.11.0",
+  "version": "2.11.1",
   "sideEffects": false,
   "type": "module",
   "main": "src/index.js",
