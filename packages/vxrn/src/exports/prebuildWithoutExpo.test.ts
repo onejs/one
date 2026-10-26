@@ -235,7 +235,7 @@ ${APP_DELEGATE_PBXPROJ}`,
     })
     expect(podfile.content).toContain("platform :ios, '17.0'")
     expect(podfile.content).toContain(
-      `config = use_native_modules!(['node', '-e', "process.argv=['', '', 'config'];require(require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli')).run()"])`
+      `config = use_native_modules!(vxrn_skia_dawn_config(['node', '-e', "process.argv=['', '', 'config'];require(require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli')).run()"]))`
     )
     expect(podfile.content).toContain(
       "  # [vxrn/one] nitro web image modular header\n  pod 'SDWebImage', :modular_headers => true\n  # [vxrn/one] swift packages\n  Dir[File.join(__dir__, 'OneSwiftPackages'"
@@ -1086,7 +1086,7 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
       app,
     })
     const podScript = podfile.content?.match(
-      /use_native_modules!\(\['node', '-e', "([^"\n]+)"\]\)/
+      /use_native_modules!\(vxrn_skia_dawn_config\(\['node', '-e', "([^"\n]+)"\]\)\)/
     )?.[1]
     if (!podScript) throw new Error('expected iOS pod discovery command')
     expect(
