@@ -22,7 +22,7 @@
   "dependencies": {
     "@callstack/liquid-glass": "^0.8.1",
     "@react-navigation/native": "8.0.0-alpha.51",
-    "@tamagui/config": "3.1.4",
+    "@tamagui/config": "3.1.5",
     "@vxrn/color-scheme": "workspace:*",
     "one": "workspace:*",
     "react": "19.3.0",
@@ -30,7 +30,7 @@
     "react-native": "0.88.0",
     "react-native-reanimated": "~4.7.1",
     "react-native-web": "^0.21.2",
-    "tamagui": "3.1.4"
+    "tamagui": "3.1.5"
   },
   "devDependencies": {
     "@react-native-community/cli": "^20.2.0",

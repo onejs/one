@@ -6,7 +6,7 @@
     "./package.json": "./package.json",
     ".": {
       "types": "./types/index.d.ts",
-      "// \ud83d\udc4b note - import === require here, mdx-bundler is cjs only must await import() this package": "./",
+      "// 👋 note - import === require here, mdx-bundler is cjs only must await import() this package": "./",
       "import": "./dist/index.js",
       "require": "./dist/index.js",
       "default": "./dist/index.js"
@@ -62,7 +62,7 @@
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
-    "@tamagui/build": "3.1.4",
+    "@tamagui/build": "3.1.5",
     "vitest": "^4.1.0"
   },
   "publishConfig": {
