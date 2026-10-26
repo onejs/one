@@ -1,18 +1,10 @@
+import { appTrackingNative as native } from './backend'
 import { Platform } from 'react-native'
-import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
-import type { AppTrackingPermissionStatus, OneAppTracking } from '../specs/OneAppTracking.nitro'
+import type { AppTrackingPermissionStatus } from '../specs/OneAppTracking.nitro'
 import { AppTracking as unavailableAppTracking } from './unavailable'
 
 export type { AppTrackingPermissionStatus } from '../specs/OneAppTracking.nitro'
-
-let hybrid: OneAppTracking | undefined
-
-function native(): OneAppTracking {
-  if (Platform.OS !== 'ios') throw new Error('AppTracking requires an iOS native build')
-  hybrid ??= NitroModules.createHybridObject<OneAppTracking>('OneAppTracking')
-  return hybrid
-}
 
 function getPermissionStatus(): AppTrackingPermissionStatus {
   try {

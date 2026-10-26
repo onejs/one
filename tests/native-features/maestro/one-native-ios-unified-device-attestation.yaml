@@ -1,0 +1,23 @@
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-device-attestation
+- tapOn:
+    text: 'Open'
+    optional: true
+- assertVisible: 'Availability: pending'
+- tapOn:
+    id: one-native-device-attestation-read
+- assertVisible: 'Availability: AppAttest=false DeviceCheck=false'
+- tapOn:
+    id: one-native-device-attestation-validate
+- assertVisible: 'Invalid: key=E_DEVICE_ATTESTATION_INPUT hash=E_DEVICE_ATTESTATION_INPUT'
+- tapOn:
+    id: one-native-device-attestation-probe
+- assertVisible: 'Attempts: key=E_DEVICE_ATTESTATION_UNAVAILABLE attest=E_DEVICE_ATTESTATION_UNAVAILABLE assertion=E_DEVICE_ATTESTATION_UNAVAILABLE token=E_DEVICE_ATTESTATION_UNAVAILABLE'

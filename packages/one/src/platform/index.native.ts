@@ -1,5 +1,6 @@
 import { Platform } from 'react-native'
 import { Swift as UnsupportedSwift } from './unsupported'
+import { Angle, Gradient, Path, Shading } from './canvas'
 import {
   Button,
   ControlGroup,
@@ -9,11 +10,14 @@ import {
   Glass,
   GlassEffectContainer,
   GeometryReader,
+  TimelineView,
+  OutlineGroup,
+  Table,
+  Canvas,
   Group,
   GroupBox,
   ViewThatFits,
   HStack,
-  Host,
   LabeledContent,
   LazyHStack,
   LazyVStack,
@@ -37,6 +41,8 @@ import {
 import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './AndroidMenu'
 import { ContextMenu as IOSContextMenu, Menu as IOSMenu } from './Menu.native'
 import { Page, Pager } from './Pager.native'
+import { UIKitView } from './UIKitView.native'
+import { collectionCellSource, tableCellSource, UIKitContent } from './UIKitContent.native'
 import { Popover } from './Popover.native'
 import {
   NavigationStack,
@@ -53,7 +59,8 @@ import { KeyframeAnimator, PhaseAnimator } from './Animators.native'
 import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes'
 import * as Controls from './generated/Controls.native'
 import { Map as MapWithControls } from './mapControls.native'
-import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native'
+import { Picker as PickerWithChildren } from './pickerChildren.native'
+import { Tab, TabView, TabSection, TabViewBottomAccessory, TabViewSlot } from './TabView.native'
 import { Compose } from './compose'
 import * as UI from './effects'
 import { Widgets, LiveActivities, WidgetUI } from './widgets/index'
@@ -109,7 +116,7 @@ export const Swift =
   Platform.OS === 'ios'
     ? {
         ArrangementView,
-        Tabs,
+        TabView,
         Tab,
         TabSection,
         TabViewBottomAccessory,
@@ -119,7 +126,6 @@ export const Swift =
         Sheet,
         FullScreenCover,
         Popover,
-        Host,
         HStack,
         VStack,
         ZStack,
@@ -128,6 +134,14 @@ export const Swift =
         Glass,
         GlassEffectContainer,
         GeometryReader,
+        TimelineView,
+        OutlineGroup,
+        Table,
+        Canvas,
+        Angle,
+        Path,
+        Shading,
+        Gradient,
         LabeledContent,
         Button,
         List,
@@ -142,6 +156,10 @@ export const Swift =
         ControlGroup,
         DisclosureGroup,
         Divider,
+        UIKitView,
+        UIKitContent,
+        collectionCellSource,
+        tableCellSource,
         Link,
         Group,
         GroupBox,
@@ -171,6 +189,9 @@ export const Swift =
         // the generated map takes no children; the wrapper validates and names
         // the map-controls slot while the native view composes it.
         Map: MapWithControls,
+        // the generated picker takes no children; the wrapper validates the
+        // tagged text options while the native view composes them.
+        Picker: PickerWithChildren,
       }
     : UnsupportedSwift
 export { Compose }

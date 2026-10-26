@@ -2,7 +2,9 @@
 // edit the generator or catalog, then regenerate.
 import SwiftUI
 import MapKit
+#if ONE_GROUP_STORE
 import StoreKit
+#endif
 
 enum OneNativeViewSlotName {
   static let accessibilityActions = "accessibilityActions"
@@ -65,7 +67,7 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.accessibilityActionsWithAccessibilityActionCategory:      if #available(iOS 18, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid accessibilityActionsWithAccessibilityActionCategory slot values") }
         let argument0: SwiftUI.AccessibilityActionCategory = {
           switch decoded[0] {
@@ -91,16 +93,45 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.alert:      if #available(iOS 15, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
           decoded.count == 2 else { preconditionFailure("invalid alert slot values") }
-        let argument0 = Text(decoded[0])
+        guard let raw0 = decoded[0] else { preconditionFailure("invalid alert.title") }
+        let argument0 = Text(raw0)
         guard decoded[1] == "true" || decoded[1] == "false" else { preconditionFailure("invalid alert.isPresented") }
         let argument1 = Binding<Bool>(get: { decoded[1] == "true" }, set: { emit("alert", String($0)) })
         return AnyView(self.alert(argument0, isPresented: argument1, actions: content))
       }
       return AnyView(self)
     case OneNativeViewSlotName.background:      if #available(iOS 15, *) {
-        return AnyView(self.background(content: content))
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
+          decoded.count == 1 else { preconditionFailure("invalid background slot values") }
+        let argument0: SwiftUI.Alignment? = {
+          switch decoded[0] {
+          case "center": return SwiftUI.Alignment.center
+          case "leading": return SwiftUI.Alignment.leading
+          case "trailing": return SwiftUI.Alignment.trailing
+          case "top": return SwiftUI.Alignment.top
+          case "bottom": return SwiftUI.Alignment.bottom
+          case "topLeading": return SwiftUI.Alignment.topLeading
+          case "topTrailing": return SwiftUI.Alignment.topTrailing
+          case "bottomLeading": return SwiftUI.Alignment.bottomLeading
+          case "bottomTrailing": return SwiftUI.Alignment.bottomTrailing
+          case "centerFirstTextBaseline": return SwiftUI.Alignment.centerFirstTextBaseline
+          case "centerLastTextBaseline": return SwiftUI.Alignment.centerLastTextBaseline
+          case "leadingFirstTextBaseline": return SwiftUI.Alignment.leadingFirstTextBaseline
+          case "leadingLastTextBaseline": return SwiftUI.Alignment.leadingLastTextBaseline
+          case "trailingFirstTextBaseline": return SwiftUI.Alignment.trailingFirstTextBaseline
+          case "trailingLastTextBaseline": return SwiftUI.Alignment.trailingLastTextBaseline
+          case nil: return nil
+          default: preconditionFailure("invalid background.alignment")
+          }
+        }()
+        if let argument0 = argument0 {
+          return AnyView(self.background(alignment: argument0, content: content))
+        } else {
+          return AnyView(self.background(content: content))
+        }
       }
       return AnyView(self)
     case OneNativeViewSlotName.backgroundPreferenceValuePreferredColorScheme:      if #available(iOS 16, *) {
@@ -115,37 +146,82 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.confirmationDialog:      if #available(iOS 15, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
-          decoded.count == 2 else { preconditionFailure("invalid confirmationDialog slot values") }
-        let argument0 = Text(decoded[0])
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
+          decoded.count == 3 else { preconditionFailure("invalid confirmationDialog slot values") }
+        guard let raw0 = decoded[0] else { preconditionFailure("invalid confirmationDialog.title") }
+        let argument0 = Text(raw0)
         guard decoded[1] == "true" || decoded[1] == "false" else { preconditionFailure("invalid confirmationDialog.isPresented") }
         let argument1 = Binding<Bool>(get: { decoded[1] == "true" }, set: { emit("confirmationDialog", String($0)) })
-        return AnyView(self.confirmationDialog(argument0, isPresented: argument1, actions: content))
+        let argument2: SwiftUI.Visibility? = {
+          switch decoded[2] {
+          case "automatic": return SwiftUI.Visibility.automatic
+          case "visible": return SwiftUI.Visibility.visible
+          case "hidden": return SwiftUI.Visibility.hidden
+          case nil: return nil
+          default: preconditionFailure("invalid confirmationDialog.titleVisibility")
+          }
+        }()
+        if let argument2 = argument2 {
+          return AnyView(self.confirmationDialog(argument0, isPresented: argument1, titleVisibility: argument2, actions: content))
+        } else {
+          return AnyView(self.confirmationDialog(argument0, isPresented: argument1, actions: content))
+        }
       }
       return AnyView(self)
     case OneNativeViewSlotName.containerBackground:      if #available(iOS 17, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
-          decoded.count == 1 else { preconditionFailure("invalid containerBackground slot values") }
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
+          decoded.count == 2 else { preconditionFailure("invalid containerBackground slot values") }
         let argument0: SwiftUI.ContainerBackgroundPlacement = {
           switch decoded[0] {
           case "navigation": if #available(iOS 18, *) { return SwiftUI.ContainerBackgroundPlacement.navigation }
             preconditionFailure("unavailable containerBackground.container")
           case "navigationSplitView": if #available(iOS 18, *) { return SwiftUI.ContainerBackgroundPlacement.navigationSplitView }
             preconditionFailure("unavailable containerBackground.container")
+#if ONE_GROUP_STORE
           case "subscriptionStore": return SwiftUI.ContainerBackgroundPlacement.subscriptionStore
+#endif
+#if ONE_GROUP_STORE
           case "subscriptionStoreHeader": return SwiftUI.ContainerBackgroundPlacement.subscriptionStoreHeader
+#endif
+#if ONE_GROUP_STORE
           case "subscriptionStoreFullHeight": return SwiftUI.ContainerBackgroundPlacement.subscriptionStoreFullHeight
+#endif
           case "widget": return SwiftUI.ContainerBackgroundPlacement.widget
           default: preconditionFailure("invalid containerBackground.container")
           }
         }()
-        return AnyView(self.containerBackground(for: argument0, content: content))
+        let argument1: SwiftUI.Alignment? = {
+          switch decoded[1] {
+          case "center": return SwiftUI.Alignment.center
+          case "leading": return SwiftUI.Alignment.leading
+          case "trailing": return SwiftUI.Alignment.trailing
+          case "top": return SwiftUI.Alignment.top
+          case "bottom": return SwiftUI.Alignment.bottom
+          case "topLeading": return SwiftUI.Alignment.topLeading
+          case "topTrailing": return SwiftUI.Alignment.topTrailing
+          case "bottomLeading": return SwiftUI.Alignment.bottomLeading
+          case "bottomTrailing": return SwiftUI.Alignment.bottomTrailing
+          case "centerFirstTextBaseline": return SwiftUI.Alignment.centerFirstTextBaseline
+          case "centerLastTextBaseline": return SwiftUI.Alignment.centerLastTextBaseline
+          case "leadingFirstTextBaseline": return SwiftUI.Alignment.leadingFirstTextBaseline
+          case "leadingLastTextBaseline": return SwiftUI.Alignment.leadingLastTextBaseline
+          case "trailingFirstTextBaseline": return SwiftUI.Alignment.trailingFirstTextBaseline
+          case "trailingLastTextBaseline": return SwiftUI.Alignment.trailingLastTextBaseline
+          case nil: return nil
+          default: preconditionFailure("invalid containerBackground.alignment")
+          }
+        }()
+        if let argument1 = argument1 {
+          return AnyView(self.containerBackground(for: argument0, alignment: argument1, content: content))
+        } else {
+          return AnyView(self.containerBackground(for: argument0, content: content))
+        }
       }
       return AnyView(self)
     case OneNativeViewSlotName.contentToolbar:      if #available(iOS 18.4, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid contentToolbar slot values") }
         let argument0: SwiftUI.ContentToolbarPlacement = {
           switch decoded[0] {
@@ -164,9 +240,10 @@ extension View {
 #if ONE_IOS_27_SDK
       if #available(iOS 27, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
           decoded.count == 2 else { preconditionFailure("invalid dismissalConfirmationDialog slot values") }
-        let argument0 = Text(decoded[0])
+        guard let raw0 = decoded[0] else { preconditionFailure("invalid dismissalConfirmationDialog.title") }
+        let argument0 = Text(raw0)
         guard decoded[1] == "true" || decoded[1] == "false" else { preconditionFailure("invalid dismissalConfirmationDialog.shouldPresent") }
         let argument1 = decoded[1] == "true"
         return AnyView(self.dismissalConfirmationDialog(argument0, shouldPresent: argument1, actions: content))
@@ -180,7 +257,7 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.fullScreenCover:      if #available(iOS 14, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid fullScreenCover slot values") }
         guard decoded[0] == "true" || decoded[0] == "false" else { preconditionFailure("invalid fullScreenCover.isPresented") }
         let argument0 = Binding<Bool>(get: { decoded[0] == "true" }, set: { emit("fullScreenCover", String($0)) })
@@ -189,7 +266,7 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.inspector:      if #available(iOS 17, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid inspector slot values") }
         guard decoded[0] == "true" || decoded[0] == "false" else { preconditionFailure("invalid inspector.isPresented") }
         let argument0 = Binding<Bool>(get: { decoded[0] == "true" }, set: { emit("inspector", String($0)) })
@@ -205,7 +282,35 @@ extension View {
       }
       return AnyView(self)
     case OneNativeViewSlotName.mask:      if #available(iOS 15, *) {
-        return AnyView(self.mask(content))
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
+          decoded.count == 1 else { preconditionFailure("invalid mask slot values") }
+        let argument0: SwiftUI.Alignment? = {
+          switch decoded[0] {
+          case "center": return SwiftUI.Alignment.center
+          case "leading": return SwiftUI.Alignment.leading
+          case "trailing": return SwiftUI.Alignment.trailing
+          case "top": return SwiftUI.Alignment.top
+          case "bottom": return SwiftUI.Alignment.bottom
+          case "topLeading": return SwiftUI.Alignment.topLeading
+          case "topTrailing": return SwiftUI.Alignment.topTrailing
+          case "bottomLeading": return SwiftUI.Alignment.bottomLeading
+          case "bottomTrailing": return SwiftUI.Alignment.bottomTrailing
+          case "centerFirstTextBaseline": return SwiftUI.Alignment.centerFirstTextBaseline
+          case "centerLastTextBaseline": return SwiftUI.Alignment.centerLastTextBaseline
+          case "leadingFirstTextBaseline": return SwiftUI.Alignment.leadingFirstTextBaseline
+          case "leadingLastTextBaseline": return SwiftUI.Alignment.leadingLastTextBaseline
+          case "trailingFirstTextBaseline": return SwiftUI.Alignment.trailingFirstTextBaseline
+          case "trailingLastTextBaseline": return SwiftUI.Alignment.trailingLastTextBaseline
+          case nil: return nil
+          default: preconditionFailure("invalid mask.alignment")
+          }
+        }()
+        if let argument0 = argument0 {
+          return AnyView(self.mask(alignment: argument0, content))
+        } else {
+          return AnyView(self.mask(content))
+        }
       }
       return AnyView(self)
     case OneNativeViewSlotName.navigationBarItemsWithLeading:      if #available(iOS 13, *) {
@@ -218,7 +323,7 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.navigationDestination:      if #available(iOS 16, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid navigationDestination slot values") }
         guard decoded[0] == "true" || decoded[0] == "false" else { preconditionFailure("invalid navigationDestination.isPresented") }
         let argument0 = Binding<Bool>(get: { decoded[0] == "true" }, set: { emit("navigationDestination", String($0)) })
@@ -226,7 +331,35 @@ extension View {
       }
       return AnyView(self)
     case OneNativeViewSlotName.overlay:      if #available(iOS 15, *) {
-        return AnyView(self.overlay(content: content))
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
+          decoded.count == 1 else { preconditionFailure("invalid overlay slot values") }
+        let argument0: SwiftUI.Alignment? = {
+          switch decoded[0] {
+          case "center": return SwiftUI.Alignment.center
+          case "leading": return SwiftUI.Alignment.leading
+          case "trailing": return SwiftUI.Alignment.trailing
+          case "top": return SwiftUI.Alignment.top
+          case "bottom": return SwiftUI.Alignment.bottom
+          case "topLeading": return SwiftUI.Alignment.topLeading
+          case "topTrailing": return SwiftUI.Alignment.topTrailing
+          case "bottomLeading": return SwiftUI.Alignment.bottomLeading
+          case "bottomTrailing": return SwiftUI.Alignment.bottomTrailing
+          case "centerFirstTextBaseline": return SwiftUI.Alignment.centerFirstTextBaseline
+          case "centerLastTextBaseline": return SwiftUI.Alignment.centerLastTextBaseline
+          case "leadingFirstTextBaseline": return SwiftUI.Alignment.leadingFirstTextBaseline
+          case "leadingLastTextBaseline": return SwiftUI.Alignment.leadingLastTextBaseline
+          case "trailingFirstTextBaseline": return SwiftUI.Alignment.trailingFirstTextBaseline
+          case "trailingLastTextBaseline": return SwiftUI.Alignment.trailingLastTextBaseline
+          case nil: return nil
+          default: preconditionFailure("invalid overlay.alignment")
+          }
+        }()
+        if let argument0 = argument0 {
+          return AnyView(self.overlay(alignment: argument0, content: content))
+        } else {
+          return AnyView(self.overlay(content: content))
+        }
       }
       return AnyView(self)
     case OneNativeViewSlotName.overlayPreferenceValuePreferredColorScheme:      if #available(iOS 16, *) {
@@ -241,21 +374,59 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.popover:      if #available(iOS 13, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
-          decoded.count == 1 else { preconditionFailure("invalid popover slot values") }
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
+          decoded.count == 2 else { preconditionFailure("invalid popover slot values") }
         guard decoded[0] == "true" || decoded[0] == "false" else { preconditionFailure("invalid popover.isPresented") }
         let argument0 = Binding<Bool>(get: { decoded[0] == "true" }, set: { emit("popover", String($0)) })
-        return AnyView(self.popover(isPresented: argument0, content: content))
+        let argument1: SwiftUI.Edge? = {
+          switch decoded[1] {
+          case "top": return SwiftUI.Edge.top
+          case "leading": return SwiftUI.Edge.leading
+          case "bottom": return SwiftUI.Edge.bottom
+          case "trailing": return SwiftUI.Edge.trailing
+          case nil: return nil
+          default: preconditionFailure("invalid popover.arrowEdge")
+          }
+        }()
+        return AnyView(self.popover(isPresented: argument0, arrowEdge: argument1, content: content))
       }
       return AnyView(self)
     case OneNativeViewSlotName.presentationBackground:      if #available(iOS 16.4, *) {
-        return AnyView(self.presentationBackground(content: content))
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
+          decoded.count == 1 else { preconditionFailure("invalid presentationBackground slot values") }
+        let argument0: SwiftUI.Alignment? = {
+          switch decoded[0] {
+          case "center": return SwiftUI.Alignment.center
+          case "leading": return SwiftUI.Alignment.leading
+          case "trailing": return SwiftUI.Alignment.trailing
+          case "top": return SwiftUI.Alignment.top
+          case "bottom": return SwiftUI.Alignment.bottom
+          case "topLeading": return SwiftUI.Alignment.topLeading
+          case "topTrailing": return SwiftUI.Alignment.topTrailing
+          case "bottomLeading": return SwiftUI.Alignment.bottomLeading
+          case "bottomTrailing": return SwiftUI.Alignment.bottomTrailing
+          case "centerFirstTextBaseline": return SwiftUI.Alignment.centerFirstTextBaseline
+          case "centerLastTextBaseline": return SwiftUI.Alignment.centerLastTextBaseline
+          case "leadingFirstTextBaseline": return SwiftUI.Alignment.leadingFirstTextBaseline
+          case "leadingLastTextBaseline": return SwiftUI.Alignment.leadingLastTextBaseline
+          case "trailingFirstTextBaseline": return SwiftUI.Alignment.trailingFirstTextBaseline
+          case "trailingLastTextBaseline": return SwiftUI.Alignment.trailingLastTextBaseline
+          case nil: return nil
+          default: preconditionFailure("invalid presentationBackground.alignment")
+          }
+        }()
+        if let argument0 = argument0 {
+          return AnyView(self.presentationBackground(alignment: argument0, content: content))
+        } else {
+          return AnyView(self.presentationBackground(content: content))
+        }
       }
       return AnyView(self)
     case OneNativeViewSlotName.safeAreaBarWithHorizontalEdge:      if #available(iOS 26, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
-          decoded.count == 1 else { preconditionFailure("invalid safeAreaBarWithHorizontalEdge slot values") }
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
+          decoded.count == 3 else { preconditionFailure("invalid safeAreaBarWithHorizontalEdge slot values") }
         let argument0: SwiftUI.HorizontalEdge = {
           switch decoded[0] {
           case "leading": return SwiftUI.HorizontalEdge.leading
@@ -263,13 +434,33 @@ extension View {
           default: preconditionFailure("invalid safeAreaBarWithHorizontalEdge.edge")
           }
         }()
-        return AnyView(self.safeAreaBar(edge: argument0, content: content))
+        let argument1: SwiftUI.VerticalAlignment? = {
+          switch decoded[1] {
+          case "top": return SwiftUI.VerticalAlignment.top
+          case "center": return SwiftUI.VerticalAlignment.center
+          case "bottom": return SwiftUI.VerticalAlignment.bottom
+          case "firstTextBaseline": return SwiftUI.VerticalAlignment.firstTextBaseline
+          case "lastTextBaseline": return SwiftUI.VerticalAlignment.lastTextBaseline
+          case nil: return nil
+          default: preconditionFailure("invalid safeAreaBarWithHorizontalEdge.alignment")
+          }
+        }()
+        let argument2: CoreFoundation.CGFloat? = {
+          guard let raw = decoded[2] else { return nil }
+          guard let parsed = Swift.Double(raw).map({ CoreFoundation.CGFloat($0) }) else { preconditionFailure("invalid safeAreaBarWithHorizontalEdge.spacing") }
+          return parsed
+        }()
+        if let argument1 = argument1 {
+          return AnyView(self.safeAreaBar(edge: argument0, alignment: argument1, spacing: argument2, content: content))
+        } else {
+          return AnyView(self.safeAreaBar(edge: argument0, spacing: argument2, content: content))
+        }
       }
       return AnyView(self)
     case OneNativeViewSlotName.safeAreaBarWithVerticalEdge:      if #available(iOS 26, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
-          decoded.count == 1 else { preconditionFailure("invalid safeAreaBarWithVerticalEdge slot values") }
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
+          decoded.count == 3 else { preconditionFailure("invalid safeAreaBarWithVerticalEdge slot values") }
         let argument0: SwiftUI.VerticalEdge = {
           switch decoded[0] {
           case "top": return SwiftUI.VerticalEdge.top
@@ -277,13 +468,33 @@ extension View {
           default: preconditionFailure("invalid safeAreaBarWithVerticalEdge.edge")
           }
         }()
-        return AnyView(self.safeAreaBar(edge: argument0, content: content))
+        let argument1: SwiftUI.HorizontalAlignment? = {
+          switch decoded[1] {
+          case "leading": return SwiftUI.HorizontalAlignment.leading
+          case "center": return SwiftUI.HorizontalAlignment.center
+          case "trailing": return SwiftUI.HorizontalAlignment.trailing
+          case "listRowSeparatorLeading": return SwiftUI.HorizontalAlignment.listRowSeparatorLeading
+          case "listRowSeparatorTrailing": return SwiftUI.HorizontalAlignment.listRowSeparatorTrailing
+          case nil: return nil
+          default: preconditionFailure("invalid safeAreaBarWithVerticalEdge.alignment")
+          }
+        }()
+        let argument2: CoreFoundation.CGFloat? = {
+          guard let raw = decoded[2] else { return nil }
+          guard let parsed = Swift.Double(raw).map({ CoreFoundation.CGFloat($0) }) else { preconditionFailure("invalid safeAreaBarWithVerticalEdge.spacing") }
+          return parsed
+        }()
+        if let argument1 = argument1 {
+          return AnyView(self.safeAreaBar(edge: argument0, alignment: argument1, spacing: argument2, content: content))
+        } else {
+          return AnyView(self.safeAreaBar(edge: argument0, spacing: argument2, content: content))
+        }
       }
       return AnyView(self)
     case OneNativeViewSlotName.safeAreaInsetWithHorizontalEdge:      if #available(iOS 15, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
-          decoded.count == 1 else { preconditionFailure("invalid safeAreaInsetWithHorizontalEdge slot values") }
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
+          decoded.count == 3 else { preconditionFailure("invalid safeAreaInsetWithHorizontalEdge slot values") }
         let argument0: SwiftUI.HorizontalEdge = {
           switch decoded[0] {
           case "leading": return SwiftUI.HorizontalEdge.leading
@@ -291,13 +502,33 @@ extension View {
           default: preconditionFailure("invalid safeAreaInsetWithHorizontalEdge.edge")
           }
         }()
-        return AnyView(self.safeAreaInset(edge: argument0, content: content))
+        let argument1: SwiftUI.VerticalAlignment? = {
+          switch decoded[1] {
+          case "top": return SwiftUI.VerticalAlignment.top
+          case "center": return SwiftUI.VerticalAlignment.center
+          case "bottom": return SwiftUI.VerticalAlignment.bottom
+          case "firstTextBaseline": return SwiftUI.VerticalAlignment.firstTextBaseline
+          case "lastTextBaseline": return SwiftUI.VerticalAlignment.lastTextBaseline
+          case nil: return nil
+          default: preconditionFailure("invalid safeAreaInsetWithHorizontalEdge.alignment")
+          }
+        }()
+        let argument2: CoreFoundation.CGFloat? = {
+          guard let raw = decoded[2] else { return nil }
+          guard let parsed = Swift.Double(raw).map({ CoreFoundation.CGFloat($0) }) else { preconditionFailure("invalid safeAreaInsetWithHorizontalEdge.spacing") }
+          return parsed
+        }()
+        if let argument1 = argument1 {
+          return AnyView(self.safeAreaInset(edge: argument0, alignment: argument1, spacing: argument2, content: content))
+        } else {
+          return AnyView(self.safeAreaInset(edge: argument0, spacing: argument2, content: content))
+        }
       }
       return AnyView(self)
     case OneNativeViewSlotName.safeAreaInsetWithVerticalEdge:      if #available(iOS 15, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
-          decoded.count == 1 else { preconditionFailure("invalid safeAreaInsetWithVerticalEdge slot values") }
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
+          decoded.count == 3 else { preconditionFailure("invalid safeAreaInsetWithVerticalEdge slot values") }
         let argument0: SwiftUI.VerticalEdge = {
           switch decoded[0] {
           case "top": return SwiftUI.VerticalEdge.top
@@ -305,7 +536,29 @@ extension View {
           default: preconditionFailure("invalid safeAreaInsetWithVerticalEdge.edge")
           }
         }()
-        return AnyView(self.safeAreaInset(edge: argument0, content: content))
+        let argument1: SwiftUI.HorizontalAlignment? = {
+          switch decoded[1] {
+          case "leading": return SwiftUI.HorizontalAlignment.leading
+          case "center": return SwiftUI.HorizontalAlignment.center
+          case "trailing": return SwiftUI.HorizontalAlignment.trailing
+          case "listRowSeparatorLeading": if #available(iOS 16, *) { return SwiftUI.HorizontalAlignment.listRowSeparatorLeading }
+            preconditionFailure("unavailable safeAreaInsetWithVerticalEdge.alignment")
+          case "listRowSeparatorTrailing": if #available(iOS 16, *) { return SwiftUI.HorizontalAlignment.listRowSeparatorTrailing }
+            preconditionFailure("unavailable safeAreaInsetWithVerticalEdge.alignment")
+          case nil: return nil
+          default: preconditionFailure("invalid safeAreaInsetWithVerticalEdge.alignment")
+          }
+        }()
+        let argument2: CoreFoundation.CGFloat? = {
+          guard let raw = decoded[2] else { return nil }
+          guard let parsed = Swift.Double(raw).map({ CoreFoundation.CGFloat($0) }) else { preconditionFailure("invalid safeAreaInsetWithVerticalEdge.spacing") }
+          return parsed
+        }()
+        if let argument1 = argument1 {
+          return AnyView(self.safeAreaInset(edge: argument0, alignment: argument1, spacing: argument2, content: content))
+        } else {
+          return AnyView(self.safeAreaInset(edge: argument0, spacing: argument2, content: content))
+        }
       }
       return AnyView(self)
     case OneNativeViewSlotName.sceneAccessory:
@@ -318,17 +571,19 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.searchScopesWithBindingString:      if #available(iOS 16, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid searchScopesWithBindingString slot values") }
-        let argument0 = Binding<String>(get: { decoded[0] }, set: { emit("searchScopesWithBindingString", $0) })
+        guard let raw0 = decoded[0] else { preconditionFailure("invalid searchScopesWithBindingString.scope") }
+        let argument0 = Binding<String>(get: { raw0 }, set: { emit("searchScopesWithBindingString", $0) })
         return AnyView(self.searchScopes(argument0, scopes: content))
       }
       return AnyView(self)
     case OneNativeViewSlotName.searchScopesWithBindingStringAndSearchScopeActivation:      if #available(iOS 16.4, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
           decoded.count == 2 else { preconditionFailure("invalid searchScopesWithBindingStringAndSearchScopeActivation slot values") }
-        let argument0 = Binding<String>(get: { decoded[0] }, set: { emit("searchScopesWithBindingStringAndSearchScopeActivation", $0) })
+        guard let raw0 = decoded[0] else { preconditionFailure("invalid searchScopesWithBindingStringAndSearchScopeActivation.scope") }
+        let argument0 = Binding<String>(get: { raw0 }, set: { emit("searchScopesWithBindingStringAndSearchScopeActivation", $0) })
         let argument1: SwiftUI.SearchScopeActivation = {
           switch decoded[1] {
           case "automatic": return SwiftUI.SearchScopeActivation.automatic
@@ -350,20 +605,25 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.sheet:      if #available(iOS 13, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid sheet slot values") }
         guard decoded[0] == "true" || decoded[0] == "false" else { preconditionFailure("invalid sheet.isPresented") }
         let argument0 = Binding<Bool>(get: { decoded[0] == "true" }, set: { emit("sheet", String($0)) })
         return AnyView(self.sheet(isPresented: argument0, content: content))
       }
       return AnyView(self)
+#if ONE_GROUP_STORE
     case OneNativeViewSlotName.subscriptionStoreControlIcon:      if #available(iOS 17, *) {
         return AnyView(self.subscriptionStoreControlIcon(icon: { _, _ in content() }))
       }
       return AnyView(self)
+#else
+    case OneNativeViewSlotName.subscriptionStoreControlIcon: preconditionFailure("view slot subscriptionStoreControlIcon needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
     case OneNativeViewSlotName.subscriptionStorePolicyDestination:      if #available(iOS 17, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid subscriptionStorePolicyDestination slot values") }
         let argument0: _StoreKit_SwiftUI.SubscriptionStorePolicyKind = {
           switch decoded[0] {
@@ -375,8 +635,38 @@ extension View {
         return AnyView(self.subscriptionStorePolicyDestination(for: argument0, destination: content))
       }
       return AnyView(self)
+#else
+    case OneNativeViewSlotName.subscriptionStorePolicyDestination: preconditionFailure("view slot subscriptionStorePolicyDestination needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
     case OneNativeViewSlotName.swipeActions:      if #available(iOS 15, *) {
-        return AnyView(self.swipeActions(content: content))
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
+          decoded.count == 2 else { preconditionFailure("invalid swipeActions slot values") }
+        let argument0: SwiftUI.HorizontalEdge? = {
+          switch decoded[0] {
+          case "leading": return SwiftUI.HorizontalEdge.leading
+          case "trailing": return SwiftUI.HorizontalEdge.trailing
+          case nil: return nil
+          default: preconditionFailure("invalid swipeActions.edge")
+          }
+        }()
+        let argument1: Swift.Bool? = {
+          switch decoded[1] {
+          case "true": return true
+          case "false": return false
+          case nil: return nil
+          default: preconditionFailure("invalid swipeActions.allowsFullSwipe")
+          }
+        }()
+        if let argument0 = argument0, let argument1 = argument1 {
+          return AnyView(self.swipeActions(edge: argument0, allowsFullSwipe: argument1, content: content))
+        } else if let argument0 = argument0 {
+          return AnyView(self.swipeActions(edge: argument0, content: content))
+        } else if let argument1 = argument1 {
+          return AnyView(self.swipeActions(allowsFullSwipe: argument1, content: content))
+        } else {
+          return AnyView(self.swipeActions(content: content))
+        }
       }
       return AnyView(self)
     case OneNativeViewSlotName.tabItem:      if #available(iOS 13, *) {
@@ -389,7 +679,7 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.tabViewBottomAccessoryWithBool:      if #available(iOS 26.1, *) {
         guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid tabViewBottomAccessoryWithBool slot values") }
         guard decoded[0] == "true" || decoded[0] == "false" else { preconditionFailure("invalid tabViewBottomAccessoryWithBool.isEnabled") }
         let argument0 = decoded[0] == "true"

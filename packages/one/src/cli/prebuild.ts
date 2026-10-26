@@ -1,6 +1,8 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
-import { join, resolve } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { validateNativeApp } from '../native/appManifest'
+import { writeIosLinkSet } from './iosLinkSet'
 import { loadUserOneOptions } from '../vite/loadConfig'
 
 // default react-native config: xcodebuild's bundle phase and gradle's react
@@ -75,5 +77,27 @@ export async function run(args: { platform?: string; 'no-install'?: boolean }) {
     root: process.cwd(),
     ...args,
     app,
+    beforeInstall:
+      args.platform === 'android'
+        ? undefined
+        : async () => {
+            await writeIosSdk(root)
+            writeIosLinkSet(root)
+          },
   })
+}
+
+// the sdk binding generator ships bundled beside the commonjs and esm builds
+const sdkDirectory =
+  typeof __dirname === 'string'
+    ? join(__dirname, '..', '..', 'sdk')
+    : join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'sdk')
+
+// writes the bindings pod and typescript facades of each `one/ios/<Framework>`
+// the app imports, including dependencies of One's unified ios modules
+async function writeIosSdk(root: string) {
+  const { writeAppSdkPod } = (await import(pathToFileURL(join(sdkDirectory, 'app.mjs')).href)) as {
+    writeAppSdkPod(root: string): Promise<string[]>
+  }
+  await writeAppSdkPod(root)
 }

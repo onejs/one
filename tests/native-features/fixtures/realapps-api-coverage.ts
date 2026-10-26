@@ -15,7 +15,7 @@ export const iosAPIs = [
   'One.iOS.Text',
   'One.iOS.SignInWithAppleButton',
   'One.iOS.Tab',
-  'One.iOS.Tabs',
+  'One.iOS.TabView',
   'One.iOS.Toolbar',
   'One.iOS.ToolbarItemGroup',
 ] as const

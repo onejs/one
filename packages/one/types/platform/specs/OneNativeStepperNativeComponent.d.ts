@@ -38,7 +38,6 @@ interface NativeProps extends ViewProps {
     revision: Int32;
     syncStateId: Int32;
     label: string;
-    disabled: boolean;
     minimumValue: Double;
     maximumValue: Double;
     step: Double;

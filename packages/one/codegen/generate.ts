@@ -1,13 +1,19 @@
+import { collectValues, valueKey } from './emitValues'
 import { containerComponents, contentComponents, emitContainers, environmentMethods } from './emitContainers'
 import { emitPopover, popoverComponents, popoverMethods } from './emitPopover'
 import { animatorComponents, emitAnimators } from './emitAnimators'
 import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
 import { controls as curatedControls } from './controlCatalog'
 import { emitControls } from './emitControls'
+import { emitContainerHosts } from './emitContainerHosts'
 import { emitStyle } from './emitStyle'
 import { sdkGuard } from './sdkGuard'
+import { componentStub, fileGroups, frameworkGroups, gate, linkSetCondition, linkSetGroups } from './linkSet'
 import { deriveModifiers, deriveViewSlots, deriveViews } from './deriveSDK'
 import { emitMenuValidator } from './menuValidator'
+import { emitMenuHost } from './emitMenuHost'
+import { emitNavigationHost } from './emitNavigation'
+import { emitTabViewHost } from './emitTabViewHost'
 import {
   readInventory,
   ios,
@@ -380,7 +386,7 @@ for (const slot of derivedViewSlots) {
             (d.requirements?.includes(`${/^(?:@escaping )?\(\) -> ([A-Za-z_]\w*)$/.exec(parameter.type)?.[1]} : SwiftUICore.View`) ?? false))) &&
     d.parameters.filter((parameter, index) => index !== d.parameters.length - 1 &&
       parameter.defaultValue === undefined).map((parameter) => parameter.type).join('|') ===
-      slot.arguments.map((argument) => argument.type).join('|'))
+      slot.arguments.filter((argument) => !argument.defaulted).map((argument) => argument.type).join('|'))
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${slot.name} slot`)
   coverGeneratedModifier(declaration)
@@ -452,9 +458,10 @@ const { schema: controlComponents, payloads: controlPayloads } = emitControls(
   derivedModifiers,
   controls
 ) ?? { schema: [], payloads: {} }
-emitSheet(header, outputs)
+emitSheet(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS)
 emitContainers(header, outputs, styleFields)
-emitPopover(header, outputs)
+emitContainerHosts(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS, [...components, ...containerComponents, ...contentComponents, ...popoverComponents] as never)
+emitPopover(header, outputs, styleFields)
 emitAnimators(header, outputs)
 emitStyle(header, outputs, styleFields, derivedModifiers, derivedViewSlots)
 // the sync-state TurboModule spec: pod-install and gradle codegen read it from
@@ -739,7 +746,7 @@ outputs.set(
 outputs.set('src/platform/menuItems.ts', emitMenuValidator(header, MINIMUM_IOS))
 let swift =
   header +
-  ['SwiftUI', ...frameworks].map((framework) => `import ${framework}\n`).join('') +
+  ['SwiftUI', ...frameworks].map((framework) => `${gate(frameworkGroups(framework), `import ${framework}`)}\n`).join('') +
   '\nenum OneNativeGenerated {\n'
 // a case list that lives on a nested type spells its Swift return type differently from the
 // name the inventory indexes it under.
@@ -751,6 +758,9 @@ const swiftTypeNames: Record<string, string> = {
   LinkPreviewBehavior: 'WebView.LinkPreviewBehavior',
   ElementFullscreenBehavior: 'WebView.ElementFullscreenBehavior',
 }
+// enum parsers for types that only a feature group's framework declares
+const typeGroups = (type: string) =>
+  /^PhotosPicker/.test(type) ? ['photos'] : /^(PayWithApplePay|AddPassToWallet|PK)/.test(type) ? ['wallet'] : []
 for (const [type, cases] of Object.entries(enums)) {
   if (type.endsWith('Style')) continue
   const swiftReturnType = swiftTypeNames[type] ?? type
@@ -770,7 +780,7 @@ for (const [type, cases] of Object.entries(enums)) {
   }
   parser += `    default: preconditionFailure("invalid ${type}: \\(value)")\n    }\n  }`
   // a parser for a type only a newer SDK declares cannot compile against an older one.
-  swift += `${sdkGuard(minimum, parser, '')}\n`
+  swift += `${gate(typeGroups(swiftReturnType), sdkGuard(minimum, parser, ''))}\n`
 }
 swift += '}\n\nextension View {\n'
 for (const method of methods) {
@@ -884,6 +894,9 @@ ${Object.entries(nativeFields)
 #endif
 `
 )
+emitMenuHost(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS)
+emitNavigationHost(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS)
+emitTabViewHost(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS)
 const manifest = {
   // the ceiling, not the local toolchain: output must be identical on every SDK at or above it.
   sdk: String(MAXIMUM_IOS),
@@ -909,6 +922,8 @@ const manifest = {
   enums,
   modifiers: methods,
   derivedModifiers,
+  // SDK value types once each; modifiers, arguments and parameters name them by key.
+  values: Object.fromEntries(collectValues(derivedModifiers)),
   // the hill-climb sets codegen/coverage.ts reports against: bound view types and
   // view modifier names per SDK module, collected at every selection site above.
   coverage: {
@@ -933,7 +948,8 @@ const manifest = {
       ios: ios(d),
     })),
 }
-outputs.set('codegen/swiftui-manifest.json', JSON.stringify(manifest, null, 2) + '\n')
+outputs.set('codegen/swiftui-manifest.json', JSON.stringify(manifest, (key, value) =>
+  key === 'value' && value?.factories ? valueKey(value.type) : value, 2) + '\n')
 const packagePath = join(root, 'package.json')
 const packageMetadata = JSON.parse(readFileSync(packagePath, 'utf8'))
 packageMetadata.codegenConfig.ios.componentProvider = Object.fromEntries(
@@ -973,7 +989,13 @@ for (const [path, source] of outputs) {
   const temporary = join(cache, path.replaceAll('/', '_'))
   // swift names public types through the SwiftUI umbrella: the declaring module
   // (SwiftUI or SwiftUICore) moves between SDKs, and SwiftUI re-exports both.
-  const text = path.endsWith('.swift') ? source.replaceAll('SwiftUICore.', 'SwiftUI.') : source
+  let text = path.endsWith('.swift') ? source.replaceAll('SwiftUICore.', 'SwiftUI.') : source
+  // a feature group's sources compile only when the build defines its condition
+  const groups = path.startsWith('ios/') ? fileGroups(path) : []
+  if (groups.length && text.startsWith(header)) {
+    const body = text.slice(header.length)
+    text = header + gate(groups, body, path.endsWith('.mm') ? componentStub(body) : '')
+  }
   writeFileSync(temporary, text.trimEnd() + '\n')
   if (/\.tsx?$/.test(path))
     run('bunx', ['oxfmt', '-c', resolve(root, '../../.prettierrc'), temporary])
@@ -1026,18 +1048,24 @@ if (process.argv.includes('--check') && changed.length)
   throw new Error('Generated SwiftUI bindings differ: ' + changed.join(', '))
 // compile the assembled source so SDK provenance and emitted recipes are checked together.
 // react-native bridge integrations live in subdirectories and compile in the consumer target.
-run(swiftc, [
-  '-typecheck',
-  '-sdk',
-  sdk,
-  '-target',
-  `arm64-apple-ios${MINIMUM_IOS}.0-simulator`,
-  ...['ios', 'ios/Generated'].flatMap((dir) =>
-    readdirSync(join(root, dir))
-      .filter((file) => file.endsWith('.swift'))
-      .map((file) => join(root, dir, file))
-  ),
-])
+// debug defines every group and a release app that uses none defines none; both must compile.
+for (const groups of [Object.keys(linkSetGroups), []]) {
+  run(swiftc, [
+    '-typecheck',
+    '-sdk',
+    sdk,
+    '-target',
+    `arm64-apple-ios${MINIMUM_IOS}.0-simulator`,
+    ...groups.flatMap((group) => ['-D', linkSetCondition(group)]),
+    // top-level UIKit content hosts use the fixed sdk runtime's error types.
+    join(root, 'ios/SDK/OneSDKRuntime.swift'),
+    ...['ios', 'ios/Generated'].flatMap((dir) =>
+      readdirSync(join(root, dir))
+        .filter((file) => file.endsWith('.swift'))
+        .map((file) => join(root, dir, file))
+    ),
+  ])
+}
 run(swiftc, [
   '-sdk',
   run('xcrun', ['--sdk', 'macosx', '--show-sdk-path']),

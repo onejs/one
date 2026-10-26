@@ -23,8 +23,22 @@ Pod::Spec.new do |s|
   { '27' => 'ONE_IOS_27_SDK', '27.1' => 'ONE_IOS_27_1_SDK' }.each do |version, flag|
     swift_flags += " -D #{flag}" if sdk_version >= Gem::Version.new(version)
   end
+  # feature groups link only the apple frameworks they need (ios-link-set.json). debug
+  # builds every group. other configurations build the groups the app's production
+  # bundle uses, which `one prebuild` writes to ios/one-link-set.json; an app without
+  # that file builds every group.
+  catalog = JSON.parse(File.read(File.join(__dir__, 'ios-link-set.json')))['groups'].keys
+  link_set_file = File.join(Pod::Config.instance.installation_root, 'one-link-set.json')
+  release_groups = File.exist?(link_set_file) ? JSON.parse(File.read(link_set_file))['groups'] : catalog
+  unknown = release_groups - catalog
+  raise "#{link_set_file} names unknown groups: #{unknown.join(', ')}" unless unknown.empty?
+  group_flags = ->(groups) { groups.map { |group| "ONE_GROUP_#{group.upcase}" } }
   s.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
+    'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => (['$(inherited)'] + group_flags.(release_groups)).join(' '),
+    'SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug]' => (['$(inherited)'] + group_flags.(catalog)).join(' '),
+    'GCC_PREPROCESSOR_DEFINITIONS' => (['$(inherited)'] + group_flags.(release_groups).map { |flag| "#{flag}=1" }).join(' '),
+    'GCC_PREPROCESSOR_DEFINITIONS[config=Debug]' => (['$(inherited)'] + group_flags.(catalog).map { |flag| "#{flag}=1" }).join(' '),
     'SWIFT_COMPILATION_MODE' => 'incremental',
     'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
     'OTHER_SWIFT_FLAGS' => swift_flags,
@@ -38,7 +52,7 @@ Pod::Spec.new do |s|
   s.resource_bundles = { 'One' => ['ios/PrivacyInfo.xcprivacy'] }
   # c entries the app's bridging header imports without importing the one module.
   # nitrogen appends its own public headers after these.
-  s.public_header_files = 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h'
+  s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h'
 
   # nitro hybrid objects: nitrogen generates the specs and bridges from
   # src/specs/*.nitro.ts into nitrogen/generated (see README).
@@ -47,7 +61,7 @@ Pod::Spec.new do |s|
   # objc++ units build without clang modules, so One-Swift.h skips its
   # own @import lines (React, UserNotifications, Social) and never sees the
   # nitro bridge types its c++ section names; every unit gets them first.
-  s.prefix_header_contents = "#ifdef __OBJC__\n#import <React/RCTView.h>\n#import <UserNotifications/UserNotifications.h>\n#import <Social/Social.h>\n#endif\n#ifdef __cplusplus\n#include \"One-Swift-Cxx-Bridge.hpp\"\n#endif"
+  s.prefix_header_contents = "#ifdef __OBJC__\n#import <React/RCTView.h>\n#import <UserNotifications/UserNotifications.h>\n#import <Social/Social.h>\n#endif\n#ifdef __cplusplus\n#include \"OneSDKBridge.h\"\n#include \"One-Swift-Cxx-Bridge.hpp\"\n#endif"
 
   s.dependency 'RNWorklets'
   # webp encoding has no system encoder on ios; expo-image-manipulator uses the same coder.

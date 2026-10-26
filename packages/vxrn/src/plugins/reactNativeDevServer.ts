@@ -5,6 +5,7 @@ import {
   expoClientFromNativeApp,
   type NativeAppManifest,
 } from '@vxrn/utils/nativeAppManifest'
+import type { NativePlatform } from '@vxrn/utils/platformEnv'
 import {
   addConnectedNativeClient,
   removeConnectedNativeClient,
@@ -35,7 +36,7 @@ type ClientMessage = {
 
 type NativeHmrSocket = WebSocket & {
   vxrnClientId: string
-  vxrnPlatform: 'ios' | 'android'
+  vxrnPlatform: NativePlatform
 }
 
 // metro's asset server answers `/assets/<path>` for any asset file inside the
@@ -102,9 +103,11 @@ export function createReactNativeDevServerPlugin(
       const hmrWSS = new WebSocketServer({ noServer: true })
       const clientWSS = new WebSocketServer({ noServer: true })
       const messageWSS = createMessageSocket()
-      const validPlatforms: Record<string, 'ios' | 'android' | undefined> = {
+      const validPlatforms: Record<string, NativePlatform | undefined> = {
         ios: 'ios',
         android: 'android',
+        macos: 'macos',
+        linux: 'linux',
       }
       const devEngines: Record<
         string,
@@ -112,8 +115,10 @@ export function createReactNativeDevServerPlugin(
       > = {}
       const devEngineCreating: Record<string, Promise<unknown> | null> = {}
       const warnedProdBundleRequest = new Set<string>()
-      const pendingReloadPlatforms = new Set<'ios' | 'android'>()
-      let compileBytecode: ReturnType<typeof nativeDevBytecodeCompiler> | undefined
+      const pendingReloadPlatforms = new Set<NativePlatform>()
+      const compileBytecode: Partial<
+        Record<'ios' | 'macos', ReturnType<typeof nativeDevBytecodeCompiler>>
+      > = {}
 
       const devToolsSocketEndpoints = ['/inspector/device', '/inspector/debug']
       const reactNativeDevToolsUrl = `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${getBoundPort(server)}`
@@ -491,7 +496,7 @@ export function createReactNativeDevServerPlugin(
         })
       })
 
-      const getDevEngine = async (platform: 'ios' | 'android') => {
+      const getDevEngine = async (platform: NativePlatform) => {
         while (!devEngines[platform]) {
           // prevent duplicate creation from concurrent requests
           if (!devEngineCreating[platform]) {
@@ -573,12 +578,54 @@ export function createReactNativeDevServerPlugin(
           )
         }
 
+        // react native's default URLSession times out while waiting for a
+        // silent rebuild. start its multipart stream before building, as metro
+        // does, so the native loader can wait for the bundle on that stream.
+        const boundary = String(req.headers.accept || '').includes('multipart/mixed')
+          ? `vxrn-${randomUUID()}`
+          : undefined
+        let progressTimer: ReturnType<typeof setInterval> | undefined
+        if (boundary) {
+          res.writeHead(200, {
+            'Cache-Control': 'no-store',
+            'Content-Type': `multipart/mixed; boundary="${boundary}"`,
+          })
+          res.write('Bundling native code')
+          // URLSession also enforces an idle timeout after receiving headers.
+          // keep reporting the ongoing build until its final part is ready.
+          progressTimer = setInterval(() => {
+            res.write(
+              `\r\n--${boundary}\r\nContent-Type: application/json\r\n\r\n${JSON.stringify({ status: 'Bundling' })}`
+            )
+          }, 10_000)
+          progressTimer.unref()
+          res.once('close', () => clearInterval(progressTimer))
+        }
+        const sendBundle = (status: number, type: string, body: string | Buffer) => {
+          if (boundary) {
+            res.write(
+              `\r\n--${boundary}\r\nContent-Type: ${type}\r\nX-Http-Status: ${status}\r\n\r\n`
+            )
+            res.write(body)
+            res.end(`\r\n--${boundary}--\r\n`)
+          } else {
+            res.writeHead(status, { 'Cache-Control': 'no-store', 'Content-Type': type })
+            res.end(body)
+          }
+        }
+
         try {
           const bundle = await (await getDevEngine(platform)).getBundle()
           let body: string | Buffer = bundle.code
-          if (platform === 'ios' && url.searchParams.get('bytecode') === 'hermes') {
-            compileBytecode ||= nativeDevBytecodeCompiler(root)
-            body = await compileBytecode(
+          if (
+            (platform === 'ios' || platform === 'macos') &&
+            url.searchParams.get('bytecode') === 'hermes'
+          ) {
+            const compile = (compileBytecode[platform] ||= nativeDevBytecodeCompiler(
+              root,
+              platform
+            ))
+            body = await compile(
               bundle,
               `${url.origin}/index.bundle?platform=${platform}`
             )
@@ -591,19 +638,20 @@ export function createReactNativeDevServerPlugin(
           // a DevSettings reload requests this exact URL again. native URL
           // loading may otherwise reuse the first response and restart the app
           // on a route map from before a file was added or removed.
-          res.writeHead(200, {
-            'Cache-Control': 'no-store',
-            'Content-Type': 'text/javascript',
-          })
-          res.end(body)
+          sendBundle(200, 'text/javascript', body)
         } catch (err) {
           console.error(` Error building React Native bundle`)
           console.error(err)
           console.error(
             `\n\n  Note, some errors may happen due to a stale Vite cache, you may want to try re-running with the "--clean" flag`
           )
-          res.writeHead(500, { 'Content-Type': 'text/plain' })
-          res.end(err instanceof Error ? err.stack || err.message : String(err))
+          sendBundle(
+            500,
+            'text/plain',
+            err instanceof Error ? err.stack || err.message : String(err)
+          )
+        } finally {
+          clearInterval(progressTimer)
         }
       }
 

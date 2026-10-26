@@ -27,6 +27,7 @@ export default function OneNativeAnimators() {
   const [phaseLog, onPhaseSize] = useWidthLog()
   const [keyframeLog, onKeyframeSize] = useWidthLog()
   const [invalid, setInvalid] = useState('')
+  const [configuredAnimations, setConfiguredAnimations] = useState(false)
 
   const action = (testID: string, label: string, onPress: () => void) => (
     <Pressable accessibilityRole="button" style={styles.action} testID={testID} onPress={onPress}>
@@ -57,7 +58,11 @@ export default function OneNativeAnimators() {
       <One.iOS.PhaseAnimator
         phases={[0, 1, 2]}
         trigger={phaseTrigger}
-        animation={(phase) => (phase === 2 ? 'snappy' : 'easeInOut')}
+        animation={(phase) => configuredAnimations
+          ? phase === 2
+            ? { kind: 'spring', response: 0.8, dampingFraction: 0.7 }
+            : { kind: 'easeInOut', duration: 1 }
+          : phase === 2 ? 'snappy' : 'easeInOut'}
         style={styles.lane}
         testID="one-native-animators-phase"
       >
@@ -135,6 +140,11 @@ export default function OneNativeAnimators() {
           )}
         </Boundary>
       ) : null}
+      {action(
+        'one-native-animators-configured',
+        configuredAnimations ? 'Named phase animations' : 'Configured phase animations',
+        () => setConfiguredAnimations((value) => !value)
+      )}
     </View>
   )
 }

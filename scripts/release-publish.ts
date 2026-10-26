@@ -52,33 +52,99 @@ export type PublishPackage = {
 type RegistryFetcher = (url: string, init?: RequestInit) => Promise<Response>
 
 const registryVerificationRun = randomUUID()
+const REGISTRY_READ_ATTEMPTS = 3
+const REGISTRY_READ_TIMEOUT_MS = 15_000
+const REGISTRY_RETRY_INTERVAL_MS = 1_000
+
+class RetryableRegistryReadError extends Error {}
 
 export async function isExactVersionPublishedOnNpm({
   name,
   version,
   attempt,
   fetcher = fetch,
+  requestTimeoutMs = REGISTRY_READ_TIMEOUT_MS,
+  retryIntervalMs = REGISTRY_RETRY_INTERVAL_MS,
 }: {
   name: string
   version: string
   attempt: number
   fetcher?: RegistryFetcher
+  requestTimeoutMs?: number
+  retryIntervalMs?: number
 }) {
   const url = new URL(
     `https://registry.npmjs.org/${encodeURIComponent(name)}/${encodeURIComponent(version)}`
   )
-  url.searchParams.set('cache-bust', `${registryVerificationRun}-${attempt}`)
+  // positive attempts already belong to the post-publish verification loop.
+  const readAttempts = attempt === 0 ? REGISTRY_READ_ATTEMPTS : 1
+  // each read, including its body, is bounded. with eight concurrent lookups,
+  // 24 packages take at most three batches of (3 * 15s + 2 * 1s).
+  for (let readAttempt = 0; readAttempt < readAttempts; readAttempt++) {
+    url.searchParams.set(
+      'cache-bust',
+      `${registryVerificationRun}-${readAttempt}-${attempt}`
+    )
+    const controller = new AbortController()
+    let timer: ReturnType<typeof setTimeout> | undefined
+    try {
+      return await Promise.race([
+        read(),
+        new Promise<never>((_, reject) => {
+          timer = setTimeout(() => {
+            reject(new RetryableRegistryReadError('registry read timed out'))
+            controller.abort()
+          }, requestTimeoutMs)
+        }),
+      ])
+    } catch (error) {
+      if (
+        !(error instanceof RetryableRegistryReadError) ||
+        readAttempt === readAttempts - 1
+      ) {
+        throw new Error(`Could not verify ${name}@${version} on npm: ${error}`, {
+          cause: error,
+        })
+      }
+    } finally {
+      clearTimeout(timer)
+    }
+    await defaultWait(retryIntervalMs)
 
-  const response = await fetcher(url.toString(), {
-    headers: { 'Cache-Control': 'no-cache' },
-  })
-  if (!response.ok) {
-    if (response.status === 404) return false
-    throw new Error(`Could not verify ${name}@${version} on npm: HTTP ${response.status}`)
+    async function read() {
+      const response = await fetcher(url.toString(), {
+        headers: { 'Cache-Control': 'no-cache' },
+        signal: controller.signal,
+      }).catch((error) => {
+        throw new RetryableRegistryReadError(`registry transport failed: ${error}`)
+      })
+      if (!response.ok) {
+        // only a registry 404 establishes that publishing this version is safe.
+        void response.body?.cancel().catch(() => {})
+        if (response.status === 404) return false
+        const message = `HTTP ${response.status}`
+        if ([408, 429, 500, 502, 503, 504].includes(response.status)) {
+          throw new RetryableRegistryReadError(message)
+        }
+        throw new Error(message)
+      }
+
+      const metadata: unknown = await response.json().catch((error) => {
+        if (error instanceof SyntaxError) throw error
+        throw new RetryableRegistryReadError(`registry body read failed: ${error}`)
+      })
+      if (
+        !metadata ||
+        typeof metadata !== 'object' ||
+        !('version' in metadata) ||
+        metadata.version !== version
+      ) {
+        throw new Error(`invalid registry metadata: expected version ${version}`)
+      }
+      return true
+    }
   }
-
-  const metadata = (await response.json()) as { version?: unknown }
-  return metadata.version === version
+  throw new Error(`Could not verify ${name}@${version} on npm`)
 }
 
 type PublishPackagesOptions<T extends PublishPackage> = {

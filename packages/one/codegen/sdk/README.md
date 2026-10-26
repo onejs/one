@@ -1,0 +1,138 @@
+# iOS SDK declarations
+
+Run `XDG_CACHE_HOME=$HOME/.cache nice -n 10 bun run generate:ios-types` from
+`packages/one` on a Mac with Xcode to regenerate `ios-types`. This extracts the
+installed SDK's public symbol graphs, compiles each framework's Swift bindings,
+creates its TypeScript facade and emits declarations. Twitter is excluded because
+its deprecated module explicitly rejects Swift imports.
+
+App framework tables compile together in one `OneSDKBindings` module. Multiple
+frameworks can extend the same generic native type, so opening protocols and
+their dispatch methods carry the framework name. Each table calls its own
+witnesses while keeping the native receiver's generic parameters and writing
+mutated values back to the original handle. These internal names do not change
+callable IDs or which APIs a framework exposes.
+
+Swift 6.4 in Xcode 27.1 crashes while deserializing CoreNFC's async
+`authenticate`, `keyUpdate`, `readBuffer` and `sendRequest` overlays with C++
+interop enabled. Their generated async entries await checked continuations
+resumed by the corresponding public `resultHandler` overloads. The SDK keeps
+responsibility for converting response flags, and argument decoding happens
+before entering the nonthrowing continuation body. C++ interop, callable IDs,
+signatures and API coverage are preserved. The complete CoreNFC table was
+compiled to SIL against both device and simulator SDKs with explicit modules,
+C++20 interop and both `-Onone` and `-O`; the original emitter crashed on both
+targets with the same entry manifest.
+
+To emit declarations from an existing directory of generated `.ts` facades, run
+`bun run generate:ios-types --facades /path/to/facades`. This mode does not load
+Xcode or the SDK. The TypeScript compiler removes implementations and registrations;
+it keeps explicit signatures and imports from `one/ios-runtime` and `one/ios/*`.
+Check the facades with strict TypeScript before publishing updated declarations.
+
+The declarations are committed because package release builds run on Ubuntu.
+Applications resolve `one/ios/<Framework>` through One's package exports without
+prebuilds or tsconfig paths. TypeScript selects `ios-types` declarations, including
+when the consumer enables the `react-native` condition. Native bundlers select
+`dist/esm/ios/<Framework>.native.js` through that condition: the package build
+(`codegen/sdk/build.ts`) compiles each `ios-bindings` facade to JavaScript, so
+dependency builds need neither One's Vite or Metro resolver hooks nor a
+TypeScript transform for `declare` fields. There is no browser or default
+runtime export. One's integrations still reject framework imports outside iOS
+and resolve the same compiled native facades for iOS. Native prebuild generates the matching
+framework tables; package resolution does not require an installed Apple SDK.
+
+Running `bun codegen/sdk/build.ts /path/to/output` builds only the standalone
+SDK app bundle in that directory. Omitting the output argument builds the
+shipped bundle and all native facades for the package.
+
+Native reference handles retain actual objects. `kCFAllocatorUseContext` is a
+special C pointer sentinel for `CFAllocatorCreate`, so it is unsupported as an
+SDK handle and omitted from dispatch, facades and declarations. Coverage records
+that reason. Null and real allocator constants remain available.
+
+App Store processing rejects a new app whose binary references `UIWebView`
+(ITMS-90809), so `UIWebView`, its delegate, its enums and every member whose
+signature carries one of them are left out of dispatch, facades and
+declarations.
+
+Bindings typecheck against both the device and the simulator SDK, and drop
+what either rejects: each declares API the other lacks.
+
+CarPlay, GameController, AVFoundation and AuthenticationServices declare some
+C exports without C++ linkage guards in the iOS 27.1 SDK. The generator and
+generated pod name their original SDK umbrella headers in `extern_c` framework modulemaps,
+with the original framework autolinks. C++20 interop stays enabled and the
+framework tables still compile together. No function declarations, signatures
+or callable IDs are replaced.
+
+Tools compiling cached tables outside the pod must import
+`writeSdkNativeSupport` from the installed `dist/sdk/app.mjs` and call it with
+a fresh build support directory and the compiler's selected SDK root. The SDK
+root defaults to the selected iPhone simulator SDK when omitted. Check its returned `generation` against the
+tables' generation and append its returned `swiftFlags` to the compiler
+arguments. The support directory contains `module.modulemap`, whose umbrella
+paths name the selected SDK's original headers. Regenerate support when changing
+SDK roots; it never modifies the SDK or cache. The flags also search the selected
+SDK's original API notes, which supply Swift names and private declarations
+needed by distributed overlays. Generated pods use `$(SDKROOT)` for these
+paths, so device and simulator builds each read their own SDK's notes. Pods
+contain a map for each target SDK and select it through `$(PLATFORM_NAME)`.
+Using the SDK's actual umbrella preserves header ownership when another
+framework imports an individual header. A wrapper umbrella can instead make
+that framework redeclare the header's classes and shadow their nested types.
+
+`ColorSyncTransform.h` marks `kColorSyncPreferredCMM` unavailable on iOS.
+`ColorSyncBase.h` erases that annotation when imported by Swift, but neither
+the device nor simulator SDK exports it. The bridge records that native
+availability reason and emits neither accessor nor a facade declaration.
+On SDK 27.1 this removes two ColorSync entries, from 391 to 389, while keeping
+all remaining callable IDs. The source qualification and outstanding delivery
+checks are recorded in `docs/sdk-native-linkage.md` at the repository root.
+
+Same-framework classes extend their generated parent. Only members a class owns
+and inherited members that need a different JavaScript name are emitted. Swift
+permits incompatible overrides, so those names are removed from the parent's
+TypeScript shape before the subclass redeclares them; the JavaScript base stays
+the parent class.
+
+Measured with the iOS 27.1 SDK on 2026-10-17, across 289 frameworks:
+
+| Facade generation stage | Bytes | Saved at this stage |
+| --- | ---: | ---: |
+| Updated initializer/default-parameter baseline | 51,323,628 | |
+| Parent class inheritance | 41,526,277 | 9,797,351 |
+| Shared accessor documentation and compact JSDoc | 39,873,713 | 1,652,564 |
+| Shared repeated structured types | 38,371,311 | 1,502,402 |
+| Declarations only | 28,102,730 | 10,268,581 |
+
+Every generated facade passed strict TypeScript checking. All 289 declarations
+were also checked as source modules, so declaration checking could not be skipped.
+The runtime probe verified parent prototype inheritance, inherited calls using the
+subclass handle, UIKit class ordering and the MPS accessor/method name collision;
+the original generator failed the prototype regression.
+
+A scratch consumer outside the repository imported HealthKit, UIKit,
+FoundationModels and MetalPerformanceShaders through a local `file:` dependency
+on One, using `moduleResolution: bundler`, strict checking and no tsconfig paths.
+It checked valid calls and expected errors for invalid calls. The consumer used
+`skipLibCheck` for the existing React Native/DOM declaration conflicts; the SDK
+facades and declaration modules were checked independently. TypeScript 7.0.2 took
+0.14 seconds wall time, with 193,445,888 bytes peak RSS (184.5 MiB).
+
+Declaration emission reproduced all files byte for byte with `xcrun` disabled.
+The local npm archive contained all 289 declarations and the runtime types, with
+no SDK call implementations or registration tables in the declarations.
+The package adds 28,102,868 unpacked bytes, including its 138-byte manifest change.
+Removing the declarations and restoring the previous manifest from an otherwise
+identical deterministic gzip package archive reduced it by 2,657,605 bytes. The
+complete local npm archive was 11,232,074 bytes compressed and 77,652,081 unpacked.
+
+The package build strips types and comments from native facades and shares
+repeated framework prefixes through fixed call helpers. Class and member syntax
+stays intact, so JavaScript creates the descriptors and names directly. The
+native module count and eager framework registration stay unchanged. Editor
+documentation stays in `ios-types`. Both native package exports and One's
+Metro/Vite resolvers load these same compiled files. Native output remains ESM,
+letting Metro and the browser compiler emit ordinary CommonJS data exports
+without an extra export-getter layer.

@@ -19,6 +19,12 @@ export type ControlField = {
   nativeValue?: string
   // native-only prop computed from the public props; not part of the public interface.
   derived?: boolean
+  // public-only prop with no native storage; the spec, Swift model, and native
+  // passing skip it, while the public types and adapter keep it.
+  noNative?: true
+  // destructured under another name in the adapter, for props like `in`
+  // that cannot stand alone as a binding.
+  as?: string
   // for `objects`: the payload type name, its element fields, and any public type
   // overrides for those fields (the native side always carries the scalar).
   payload?: {
@@ -130,7 +136,6 @@ export type Control = {
 
 export const commonFields = {
   label: { type: 'string', default: '' },
-  disabled: { type: 'boolean', default: false },
 } as const
 
 // a list of buttons that report an id back, shared by the dialogs and by the empty state.

@@ -487,6 +487,7 @@ export async function waitFor(
   const started = Date.now()
   const deadline = started + timeoutMs
   lastFailedConjuncts = undefined
+  let lastNodes: Node[] | undefined
   while (Date.now() < deadline) {
     let current
     try {
@@ -509,12 +510,17 @@ export async function waitFor(
       }
       throw error
     }
+    lastNodes = current.nodes
+    lastFailedConjuncts = undefined
     if (predicate(current.nodes))
       return { snapshot: current, durationMs: Date.now() - started }
     await Bun.sleep(250)
   }
-  const marker = missingMarker ? `; missing mount marker ${missingMarker}` : ''
-  const diagnosis = lastFailedConjuncts ? `; failed: ${lastFailedConjuncts}` : ''
+  const marker =
+    missingMarker && lastNodes && !exactlyOneId(lastNodes, missingMarker)
+      ? `; mount marker ${missingMarker}: ${matching(lastNodes, { id: missingMarker }).length} matches`
+      : ''
+  const diagnosis = `; failed: ${lastNodes ? (lastFailedConjuncts ?? `${name} predicate`) : 'no usable Android snapshot'}`
   throw new Error(`${name} timed out after ${timeoutMs}ms${marker}${diagnosis}`)
 }
 
@@ -751,6 +757,22 @@ function keyboardShown(config: Config) {
     'dumpsys input_method | grep -m1 mInputShown || true',
   ])
   return /mInputShown\s*=\s*true/.test(shown)
+}
+
+// read only the current client, excluding the service's historical editor records.
+function inputConnectionReady(config: Config) {
+  const client = adbText(config, [
+    'shell',
+    "dumpsys input_method | sed -n '/^Input method client state for /,/^Input method service state for /p'",
+  ])
+  const inputType = /^\s*inputType=0x([0-9a-f]+)/im.exec(client)?.[1]
+  return (
+    /^\s*mActive=true\b/m.test(client) &&
+    /^\s*mServedConnecting=false$/m.test(client) &&
+    /^\s*packageName=(\S+)/m.exec(client)?.[1] === config.packageId &&
+    Number.parseInt(inputType ?? '0', 16) !== 0 &&
+    /^\s*mServedInputConnection=RemoteInputConnectionImpl\{connection=(?!null)[^\s]+ mDeactivateRequested=false\b/m.test(client)
+  )
 }
 
 // the ime leg is vacuous unless the keyboard is actually raised, so fail
@@ -3035,11 +3057,22 @@ async function run(config: Config) {
       tapFresh(config, 'Disconnect the shared state binding', { id: 'one-native-state-disconnect' })
     }
     tapFresh(config, 'State primary native text field', { id: 'one-native-state-field' })
+    // focus starts an asynchronous editor handoff; do not inject keys into its old connection.
+    await expect(
+      'state-native-editor-ready',
+      (nodes) =>
+        diagnose(nodes, [
+          ['primary field focused', (n) => nodeById(n, 'one-native-state-field').attrs.focused === 'true'],
+          ['input connection active', () => inputConnectionReady(config)],
+        ]),
+      'one-native-state-field'
+    )
     adbType(config, 'grace')
     await expect(
       'state-native-edit-updates-hook-and-shared-field',
       (nodes) =>
         diagnose(nodes, [
+          ['primary field received complete native edit', (n) => nodeById(n, 'one-native-state-field').text === 'grace'],
           ['hook value follows native edit', (n) => textIncludes(n, 'Name: grace · Get: grace')],
           ['second bound native field follows edit', (n) => matching(n, { id: 'one-native-state-shared-field' })[0]?.text === 'grace'],
         ]),
@@ -4032,6 +4065,21 @@ async function run(config: Config) {
     requireMetroReverse(config)
     stampDebugHost(config)
     relaunchApp(config)
+    // every suite's first predicate is timed from this launch's bundle run.
+    // fetching the dev bundle from metro is cold-launch cost that freshLeg
+    // budgets at 60s, and a bundle that never runs fails here, before any
+    // predicate.
+    const pid = adbText(config, ['shell', 'pidof', config.packageId]).trim()
+    if (!pid) throw new Error(`${config.packageId} is not running after relaunch`)
+    const bundleStarted = Date.now()
+    const logcat = ['-s', config.deviceId, 'logcat', `--pid=${pid}`, '-s', 'ReactNativeJS:I',
+      '-e', '^Running "', '-m', '1']
+    try {
+      execFileSync('adb', logcat, { stdio: 'ignore', timeout: 60_000 })
+    } catch (error) {
+      throw commandError('adb', logcat, error)
+    }
+    console.log(`PASS bundle-ran after ${Date.now() - bundleStarted}ms`)
 
     if (config.suite === 'launch-screen') {
       await launchScreen()
@@ -4863,6 +4911,22 @@ async function run(config: Config) {
     // exclusion. the nested box sits below the status bar, so its top is 0
     // while the outer top stays positive, which proves per-view overlap
     // rather than forwarded window insets.
+    // back first dismisses an open ime; only a subsequent back pops the route.
+    if (keyboardShown(config)) {
+      pressBack(config)
+      await expect(
+        'inputs-ime-dismissed',
+        (nodes) =>
+          diagnose(nodes, [
+            ['keyboard hidden', () => !keyboardShown(config)],
+            [
+              'inputs screen kept',
+              (n) => exactlyOneId(n, 'one-native-android-inputs-mounted'),
+            ],
+          ]),
+        'one-native-android-inputs-mounted'
+      )
+    }
     pressBack(config)
     await expect(
       'safe-area-home',
@@ -5373,8 +5437,34 @@ async function run(config: Config) {
         .flatMap((node) => [node.text, node.contentDescription])
         .find((text) => text?.startsWith(`${name}: `))
         ?.slice(name.length + 2) ?? null
+    const speechLive = (nodes: Node[], name: string) =>
+      /^start(,transcript)*$/.test(speechLog(nodes, name) ?? '')
     const speechEnded = (nodes: Node[], name: string) =>
       /(^|,)end$/.test(speechLog(nodes, name) ?? '')
+    // a provider error after an accepted start fails the step; cancel has no completion callback: https://developer.android.com/reference/android/speech/SpeechRecognizer#cancel()
+    const expectSpeech = (
+      name: string,
+      predicate: (nodes: Node[]) => boolean,
+      marker: string
+    ) =>
+      expect(
+        name,
+        (nodes) => {
+          for (const session of ['A', 'B']) {
+            const log = speechLog(nodes, session)
+            if (/(^|,)error:/.test(log ?? '')) {
+              const message = nodes
+                .flatMap(nodeValues)
+                .find((value) => value.startsWith('Message: '))
+              throw new Error(
+                `${name}: speech session ${session} failed (${log}); ${message ?? 'no service message'}`
+              )
+            }
+          }
+          return predicate(nodes)
+        },
+        marker
+      )
     const tapSpeech = (id: string) =>
       tapFresh(config, id, { id, role: 'button', clickable: true })
     await expect(
@@ -5406,13 +5496,18 @@ async function run(config: Config) {
       'one-native-speech-request'
     )
     tapSpeech('one-native-speech-start')
+    // the preceding permission probe intentionally left an error in A's log.
+    // await its replacement before treating subsequent errors as terminal.
     await expect(
       'speech-session-opens',
-      (nodes) => speechLog(nodes, 'A')?.startsWith('start') === true,
+      (nodes) =>
+        diagnose(nodes, [
+          [`A live (observed ${speechLog(nodes, 'A')})`, (n) => speechLive(n, 'A')],
+        ]),
       'one-native-speech-start'
     )
     tapSpeech('one-native-speech-stop')
-    await expect(
+    await expectSpeech(
       'speech-stop-ends',
       (nodes) => speechEnded(nodes, 'A'),
       'one-native-speech-stop'
@@ -5421,32 +5516,32 @@ async function run(config: Config) {
     // seconds, so the fixture replaces or aborts an open session the moment
     // it reports start rather than a runner tap later.
     tapSpeech('one-native-speech-replace-live')
-    await expect(
+    await expectSpeech(
       'speech-session-b-opens',
       (nodes) =>
-        speechLog(nodes, 'A') === 'start' && speechLog(nodes, 'B')?.startsWith('start') === true,
+        speechLog(nodes, 'A') === 'start' && speechLive(nodes, 'B'),
       'one-native-speech-replace-live'
     )
     tapSpeech('one-native-speech-stop')
-    await expect(
+    await expectSpeech(
       'speech-replaced-a-stays-silent',
       (nodes) => speechEnded(nodes, 'B') && speechLog(nodes, 'A') === 'start',
       'one-native-speech-stop'
     )
     tapSpeech('one-native-speech-abort-live')
-    await expect(
+    await expectSpeech(
       'speech-session-a-opens-then-aborts',
       (nodes) => speechLog(nodes, 'A') === 'start',
       'one-native-speech-abort-live'
     )
     tapSpeech('one-native-speech-replace')
-    await expect(
+    await expectSpeech(
       'speech-b-opens-after-abort',
-      (nodes) => speechLog(nodes, 'B')?.startsWith('start') === true,
+      (nodes) => speechLive(nodes, 'B'),
       'one-native-speech-replace'
     )
     tapSpeech('one-native-speech-stop')
-    await expect(
+    await expectSpeech(
       'speech-aborted-a-stays-silent',
       (nodes) => speechEnded(nodes, 'B') && speechLog(nodes, 'A') === 'start',
       'one-native-speech-stop'

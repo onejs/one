@@ -8,6 +8,11 @@ struct OneNativeSlot: UIViewRepresentable {
   weak var layoutHost: UIView?
   var onLayout: ((CGRect) -> Void)?
   var onWindowChange: ((ObjectIdentifier, Bool) -> Void)?
+  // the measured React Native content size, when the host reports one. a
+  // presented host sizing to its content reads it as the ideal size; zero
+  // keeps the proposal, as every other host does.
+  var measuredWidth: CGFloat = 0
+  var measuredHeight: CGFloat = 0
 
   func makeUIView(context: Context) -> Container { Container(content: content) }
   func updateUIView(_ view: Container, context: Context) {
@@ -27,7 +32,10 @@ struct OneNativeSlot: UIViewRepresentable {
     view.setNeedsLayout()
   }
   func sizeThatFits(_ proposal: ProposedViewSize, uiView: Container, context: Context) -> CGSize? {
-    CGSize(width: proposal.width ?? UIView.noIntrinsicMetric, height: proposal.height ?? UIView.noIntrinsicMetric)
+    CGSize(
+      width: measuredWidth > 0 ? measuredWidth : (proposal.width ?? UIView.noIntrinsicMetric),
+      height: measuredHeight > 0 ? measuredHeight : (proposal.height ?? UIView.noIntrinsicMetric)
+    )
   }
   static func dismantleUIView(_ view: Container, coordinator: ()) {
     view.onLayout = nil

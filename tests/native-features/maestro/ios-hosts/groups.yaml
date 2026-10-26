@@ -1,0 +1,93 @@
+appId: dev.vxrn.native.tests
+name: groups
+---
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-groups
+      ANCHOR: "Expanded: false"
+- assertVisible: "Details"
+- assertVisible: "Above"
+- assertVisible: "Below"
+- assertVisible: "Visit example"
+- assertVisible: "Grouped"
+- assertVisible: "3"
+- assertVisible: "Swipe me"
+- assertVisible:
+    text: "Below"
+    below:
+      text: "Above"
+- takeScreenshot: groups-initial
+# ControlGroup button emits
+- tapOn: "Add"
+- assertVisible: "Group taps: 1"
+# DisclosureGroup expand, refused collapse, accepted collapse
+- tapOn: "Details"
+- assertVisible: "Expanded: true"
+- assertVisible: "Hidden detail"
+- tapOn:
+    id: one-native-groups-refuse
+- assertVisible: "Refusing"
+- tapOn: "Details"
+- assertVisible: "Expanded: true"
+- assertVisible: "Hidden detail"
+- tapOn:
+    id: one-native-groups-refuse
+- assertVisible: "Accepting"
+- tapOn: "Details"
+- assertVisible: "Expanded: false"
+- assertNotVisible: "Hidden detail"
+# Pager swipe left then back
+- assertVisible: "Pager: a"
+# maestro's xctest drag needs a longer travel than axe's 80pt flick to page
+- swipe:
+    start: "320,470"
+    end: "80,470"
+    duration: 600
+- assertVisible: "Pager: b"
+- assertVisible:
+    id: one-native-pager-b
+- swipe:
+    start: "80,470"
+    end: "320,470"
+    duration: 600
+- assertVisible: "Pager: a"
+# swipe actions: trailing destructive
+- swipe:
+    start: "241,588"
+    end: "161,588"
+    duration: 300
+- assertVisible: "Delete"
+- tapOn: "Delete"
+- assertVisible: "Delete taps: 1"
+- assertNotVisible: "Swipe me"
+- takeScreenshot: groups-destructive-row
+- runFlow:
+    file: _reopen.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-groups
+      ANCHOR: "Swipe me"
+# leading action
+- swipe:
+    start: "161,588"
+    end: "241,588"
+    duration: 300
+- assertVisible: "Pin"
+- tapOn: "Pin"
+- assertVisible: "Pin taps: 1"
+# icon-only button
+- tapOn:
+    id: star.fill
+- assertVisible: "Icon taps: 1"
+- takeScreenshot: groups-icon-button
+- repeat:
+    times: 2
+    commands:
+      - runFlow:
+          file: _reopen.yaml
+          env:
+            ROUTE: nativefeatures://app/one-native-groups
+            ANCHOR: "Swipe me"
+      - assertVisible: "Expanded: false"
+      - assertVisible: "Group taps: 0"
+      - assertVisible: "Pager: a"

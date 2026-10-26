@@ -815,6 +815,46 @@ The SEO Preview panel helps you visualize how your pages will appear in search r
 
 The panel automatically updates as you navigate or modify meta tags, making it easy to verify your SEO configuration during development.
 
+### devtools.plugins
+
+Browser plugin modules to load into the One devtools overlay. Each entry is a module specifier or a path relative to the project root. The module default exports a `OneDevtoolsPlugin`, created with `defineDevtoolsPlugin` from `one/devtools`.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      devtools: {
+        plugins: ['./devtools/runtime-inspector.ts'],
+      },
+    }),
+  ],
+}
+```
+
+See [Dev Tools](/docs/dev-tools#extending-the-web-panel) for the plugin shape.
+
+### devtools.rozenite
+
+React Native DevTools plugins hosted through [Rozenite](https://github.com/callstackincubator/rozenite). One discovers installed Rozenite packages from your dependencies and serves their panels on the native dev server, so `j` and `dt` show them without a Metro wrapper.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      devtools: {
+        rozenite: {
+          include: ['@rozenite/storage-plugin'],
+          exclude: ['@rozenite/network-activity-plugin'],
+          pluginDisplay: 'sidebar', // or 'tabs'
+        },
+      },
+    }),
+  ],
+}
+```
+
+Set `rozenite: false` to keep the stock React Native DevTools frontend. When no plugin is installed, One does not mount the Rozenite host.
+
 ### devtools.routeDebug
 
 The Route Debug panel helps you understand your current route state during development:

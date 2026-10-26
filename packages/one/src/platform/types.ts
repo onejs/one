@@ -5,9 +5,21 @@ export type * from './generated/sheetTypes'
 export type * from './generated/popoverTypes'
 export type * from './generated/containerTypes'
 export type * from './listTypes'
+export type {
+  CanvasColorMode,
+  CanvasPoint,
+  CanvasProps,
+  CanvasRect,
+  CanvasSize,
+  CanvasSymbol,
+  CanvasText,
+  FillStyle,
+  GraphicsContext,
+  RoundedCornerStyle,
+  StrokeStyle,
+} from './canvas'
 export type * from './gridTypes'
 export type * from './groupTypes'
-export type * from './textTypes'
 export type { MapControlsSlot, MapWithControlsProps } from './mapControls'
 import type { ReactNode } from 'react'
 import type { ViewProps } from 'react-native'
@@ -47,8 +59,8 @@ export interface TabContentProps {
   help?: string
 }
 export interface TabProps extends TabContentProps {
-  id: string
-  title: string
+  value: string
+  titleKey: string
   // a tab label shows an SF Symbol or an asset catalog image, never both.
   systemImage?: SFSymbolName | ''
   image?: string
@@ -59,7 +71,7 @@ export interface TabProps extends TabContentProps {
   role?: TabRole
   tabPlacement?: TabPlacement
   testID?: string
-  // an action tab carries onPress instead of a page. Swift.Tabs requires exactly one of them.
+  // an action tab carries onPress instead of a page. Swift.TabView requires exactly one of them.
   onPress?: () => void
   // View modifiers on the page's content, as SwiftUI applies them inside a Tab.
   swiftStyle?: OneNativeStyle
@@ -78,13 +90,13 @@ export interface TabSectionProps extends TabContentProps {
   }[]
   children: ReactNode
 }
-export interface TabsProps extends ViewProps {
+export interface TabViewProps extends ViewProps {
   selection: string
-  onSelectionChange: (id: string) => void
+  onSelectionChange: (value: string) => void
   // a tap on the selected tab, which changes no selection. UIKit asks the tab bar
   // controller's delegate before every selection, the selected tab included; tabs inside a
   // TabSection do not report it.
-  onReselect?: (id: string) => void
+  onReselect?: (value: string) => void
   revision?: number
   tabViewStyle?: TabViewStyle
   // toolbarVisibility(_:for: .tabBar) on every page.

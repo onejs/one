@@ -78,6 +78,7 @@ declare module 'one' {
         | `/one-native-button`
         | `/one-native-calendar`
         | `/one-native-camera`
+        | `/one-native-canvas`
         | `/one-native-clipboard`
         | `/one-native-contact-ui`
         | `/one-native-contacts`
@@ -97,6 +98,7 @@ declare module 'one' {
         | `/one-native-disclosure-group`
         | `/one-native-document-camera`
         | `/one-native-document-picker`
+        | `/one-native-drag-binding`
         | `/one-native-edit-button`
         | `/one-native-editors`
         | `/one-native-effects`
@@ -119,6 +121,9 @@ declare module 'one' {
         | `/one-native-image`
         | `/one-native-image-manipulator`
         | `/one-native-image-picker`
+        | `/one-native-ios-sdk`
+        | `/one-native-ios-sdk-bench`
+        | `/one-native-ios-sdk-state`
         | `/one-native-keep-awake`
         | `/one-native-launch-screen`
         | `/one-native-leaves`
@@ -145,6 +150,7 @@ declare module 'one' {
         | `/one-native-network`
         | `/one-native-notifications`
         | `/one-native-open`
+        | `/one-native-outline-group`
         | `/one-native-paste-button`
         | `/one-native-pedometer`
         | `/one-native-photo-library`
@@ -174,14 +180,19 @@ declare module 'one' {
         | `/one-native-state`
         | `/one-native-storage`
         | `/one-native-store-review`
+        | `/one-native-generated-options`
+        | `/one-native-swift-gestures`
         | `/one-native-swipe-actions`
         | `/one-native-system`
         | `/one-native-tab-lifecycle`
         | `/one-native-tab-oracle`
         | `/one-native-tab-sidebar`
         | `/one-native-tab-slot`
+        | `/one-native-table`
         | `/one-native-tabview`
+        | `/one-native-timeline-view`
         | `/one-native-ui-map`
+        | `/one-native-uikit-view`
         | `/one-native-updates`
         | `/one-native-view-slot`
         | `/one-native-view-snapshot`

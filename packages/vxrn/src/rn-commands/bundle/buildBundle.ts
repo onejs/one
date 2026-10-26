@@ -2,6 +2,7 @@ import FSExtra from 'fs-extra'
 import { clearTransformCache } from '@vxrn/compiler'
 import type { BundleCommandArgs } from '@vxrn/vite-plugin-metro/rn-commands'
 import { resolveConfig } from 'vite'
+import { dirname, join, resolve } from 'node:path'
 import { loadEnv } from '../../exports/loadEnv'
 import { buildNativeBundle } from '../../utils/createNativeDevEngine'
 
@@ -14,7 +15,7 @@ export async function buildBundle(
   bundleImpl: any = null
 ): Promise<void> {
   const {
-    platform, // Android is not supported yet.
+    platform,
     dev,
     bundleOutput,
     // React Native's `--bundle-encoding` names a Node Buffer encoding.
@@ -91,6 +92,17 @@ export async function buildBundle(
     minify,
   })
   const builtBundle = result.code
+
+  // gradle sends drawable resources to assetsDest but packages arbitrary files
+  // from the bundle directory. DOM pages must share that assets root with JS.
+  if (platform === 'android' && assetsDest) {
+    const source = join(assetsDest, 'one-dom')
+    const destination = join(dirname(bundleOutput), 'one-dom')
+    if (resolve(source) !== resolve(destination)) {
+      FSExtra.removeSync(destination)
+      if (FSExtra.existsSync(source)) FSExtra.moveSync(source, destination)
+    }
+  }
 
   // write sourcemap if available and requested
   if (result.map && args.sourcemapOutput) {

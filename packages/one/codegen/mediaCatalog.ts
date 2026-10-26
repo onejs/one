@@ -1056,10 +1056,9 @@ private struct SignInWithAppleButtonSurface: View {
   if (label !== 'signIn' && label !== 'continue' && label !== 'signUp') throw new Error("SignInWithAppleButton label must be 'signIn', 'continue' or 'signUp'")`,
   },
   {
-    // the tap-action Apple Pay button: the label enum picks the artwork's verb and the
-    // style struct picks its color, both mapped by hand because the SDK takes them as
-    // concrete parameters rather than through a generic Style protocol. the request
-    // initializers stay out: a PKPaymentRequest is an object the bridge cannot pass.
+    // the tap-action Apple Pay button: the label enum picks the artwork's verb, and
+    // swiftStyle.payWithApplePayButtonStyle picks its color. the request initializers
+    // stay out: a PKPaymentRequest is an object the bridge cannot pass.
     name: 'PayWithApplePayButton',
     imports: ['PassKit'],
     actions: [{ prop: 'onPress', event: 'Press' }],
@@ -1069,8 +1068,6 @@ private struct SignInWithAppleButtonSurface: View {
         default: 'plain',
         enum: 'PayWithApplePayButtonLabel',
       },
-      payWithApplePayButtonStyle: { type: 'string', default: 'black', enum: 'PayWithApplePayButtonStyle' },
-      disabled: { type: 'boolean', default: false },
     },
     constructors: [
       {
@@ -1081,70 +1078,27 @@ private struct SignInWithAppleButtonSurface: View {
         ],
       },
     ],
-    methods: [
-      {
-        name: 'payWithApplePayButtonStyle',
-        parameters: [{ label: '_', type: '_PassKit_SwiftUI.PayWithApplePayButtonStyle' }],
-        requirements: [],
-      },
-    ],
     swift: `PayWithApplePayButton(OneNativeGenerated.payWithApplePayButtonLabel(model.label)) {
         model.press()
-      }
-      .oneNativePayButtonStyle(model.payWithApplePayButtonStyle)`,
-    extraSwift: `// the style structs carry their cases as static lets on a concrete parameter, so the
-// generic style helper cannot select them and the recipe maps them instead. swiftc
-// -typecheck against the SDK is what proves each case still exists.
-private extension View {
-  @ViewBuilder func oneNativePayButtonStyle(_ value: String) -> some View {
-    switch value {
-    case "white": self.payWithApplePayButtonStyle(.white)
-    case "whiteOutline": self.payWithApplePayButtonStyle(.whiteOutline)
-    case "black": self.payWithApplePayButtonStyle(.black)
-    case "automatic": self.payWithApplePayButtonStyle(.automatic)
-    default: let _ = preconditionFailure("invalid PayWithApplePayButtonStyle: \\(value)"); self
-    }
-  }
-}`,
+      }`,
     validate: `  if (typeof label !== 'string') throw new Error('PayWithApplePayButton label must be a string')`,
   },
   {
-    // the tap-action add-to-wallet button: artwork has no label variant, only the two
-    // black styles. the passes initializers stay out: PKPass objects cannot cross the
+    // the tap-action add-to-wallet button: artwork has no label variant, and
+    // swiftStyle.addPassToWalletButtonStyle picks one of the two black styles. the passes initializers stay out: PKPass objects cannot cross the
     // bridge, so the button reports the tap and the app adds passes natively.
     name: 'AddPassToWalletButton',
     imports: ['PassKit'],
     actions: [{ prop: 'onPress', event: 'Press' }],
-    fields: {
-      addPassToWalletButtonStyle: { type: 'string', default: 'black', enum: 'AddPassToWalletButtonStyle' },
-      disabled: { type: 'boolean', default: false },
-    },
+    fields: {},
     constructors: [
       {
         type: 'AddPassToWalletButton',
         parameters: [{ label: 'action', type: '@escaping () -> Swift.Void' }],
       },
     ],
-    methods: [
-      {
-        name: 'addPassToWalletButtonStyle',
-        parameters: [{ label: '_', type: '_PassKit_SwiftUI.AddPassToWalletButtonStyle' }],
-        requirements: [],
-      },
-    ],
     swift: `AddPassToWalletButton {
         model.press()
-      }
-      .oneNativeWalletButtonStyle(model.addPassToWalletButtonStyle)`,
-    extraSwift: `private extension View {
-  @ViewBuilder func oneNativeWalletButtonStyle(_ value: String) -> some View {
-    switch value {
-    case "black": self.addPassToWalletButtonStyle(.black)
-    case "blackOutline": self.addPassToWalletButtonStyle(.blackOutline)
-    default: let _ = preconditionFailure("invalid AddPassToWalletButtonStyle: \\(value)"); self
-    }
-  }
-}`,
-    validate: `  if (typeof disabled !== 'boolean') throw new Error('AddPassToWalletButton disabled must be a boolean')`,
+      }`,
   },
 ]

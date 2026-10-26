@@ -9,6 +9,7 @@ import type {
 } from './controlTypes'
 import { deriveLeafSwift } from './derive'
 import type { DerivedModifier, EventValueSchema } from './deriveSDK'
+import { collectValues, fieldsTS, hasRecords, recordTS, valueKey, valueTypesTS } from './emitValues'
 import type { Declaration } from './inventory'
 
 const swiftScalar = (type: ActionPayloadType) =>
@@ -56,6 +57,9 @@ const syncNativeValue = (value: ControlValue, synced: string) =>
     synced
   )
 // an enum field defaulting to the empty string means unset; the Swift helper passes self through.
+// a number a NativeState<number> handle may feed: continuous CGFloat or Double.
+export const continuousNumber = (type: string, scalar?: { type: string }) =>
+  ['CoreFoundation.CGFloat', 'Swift.Double'].includes((scalar?.type ?? type).replace(/\?$/, ''))
 const optionalEnum = (field: ControlField) => Boolean(field.enum) && field.default === ''
 // a style field that lists its values gets a named alias, so Swift.Glass can take the same
 // names swiftStyle does. the spec keeps the plain string: React Native's codegen would turn
@@ -68,7 +72,7 @@ const styleFieldType = (field: StyleField) =>
   field.publicType
     ? field.publicType
     : field.kind === 'number'
-    ? 'number'
+    ? 'number | NativeState<number>'
     : field.kind === 'boolean'
       ? 'boolean'
       : field.kind === 'color'
@@ -106,7 +110,7 @@ export function emitControls(
 ) {
   if (!controls.length) return
   // every Fabric host with a swiftStyle struct converts it through this one template, so a
-  // new style field reaches handwritten hosts (Button, Tabs) and generated ones alike.
+  // new style field reaches handwritten hosts (Button, TabView) and generated ones alike.
   outputs.set(
     'ios/Generated/OneNativeStyleDictionary.h',
     header +
@@ -150,7 +154,11 @@ ${styleFields
       kind: 'string' as const,
       derived: true as const,
       publicType:
-        modifier.kind === 'event'
+        modifier.kind === 'style' && modifier.factories?.length
+          ? `SDK${upper(modifier.name)} | ${recordTS(modifier.cases!, modifier.factories, [])}`
+        : hasRecords(modifier.value)
+          ? `SDK${upper(modifier.name)} | SDK${valueKey(modifier.value!.type)}Record${modifier.kind === 'optionalEnum' ? ' | null' : ''}`
+        : modifier.kind === 'event'
           ? '() => void'
           : modifier.kind === 'visualEffect'
             ? `Readonly<{ kind: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}; value: number }>`
@@ -227,7 +235,9 @@ ${styleFields
               : modifier.kind === 'optionalBoolean'
                 ? 'boolean | null'
                 : modifier.kind === 'optionalNumber'
-                  ? 'number | null'
+                  ? continuousNumber(modifier.type, modifier.scalarConstructor) ? 'number | NativeState<number> | null' : 'number | null'
+                : modifier.kind === 'number' && continuousNumber(modifier.type, modifier.scalarConstructor)
+                  ? 'number | NativeState<number>'
                 : modifier.kind === 'optionalString'
                   ? 'string | null'
                   : modifier.kind === 'optionalURL'
@@ -235,7 +245,16 @@ ${styleFields
                   : modifier.kind === 'optionalEnum'
                     ? `SDK${upper(modifier.name)} | null`
                     : modifier.kind === 'gesture'
-                      ? modifier.gestureOptions!.map((option) => `Readonly<{ kind: ${JSON.stringify(option.name)}; onEnded: ${option.eventValue ? `(value: ${eventValueType(option.eventValue)})` : '()'} => void }>`).join(' | ')
+                      ? modifier.gestureOptions!.map((option) => {
+                        const callback = `${option.eventValue ? `(value: ${eventValueType(option.eventValue)})` : '()'} => void`
+                        // a drag may bind a native state and snap it; onEnded then reports the target.
+                        const binds = option.type === 'SwiftUI.DragGesture'
+                        return `Readonly<{ ${[`kind: ${JSON.stringify(option.name)}`, ...fieldsTS(option.options),
+                          ...(binds ? [`bind?: Readonly<{ state: NativeState<number>; axis: 'x' | 'y'; range?: readonly [min: number, max: number] }>`,
+                            'snap?: Readonly<{ targets: readonly number[]; animation: SDKAnimationValue }>'] : []),
+                          ...(option.changed ? [`onChanged?: ${callback}`] : []),
+                          `onEnded: ${binds ? `(value: ${eventValueType(option.eventValue!)} & Readonly<{ snapTarget?: number }>) => void` : callback}`].join('; ')} }>`
+                      }).join(' | ')
                     : modifier.kind === 'defaultFocusBoolean'
                       ? 'boolean'
                     : modifier.kind === 'dragContainer'
@@ -247,7 +266,7 @@ ${styleFields
                     : modifier.kind === 'asyncObjectRequest'
                       ? `Readonly<{ ${modifier.predicateLabel}: Readonly<{ value: boolean; onChange: (value: boolean) => void }>; latitude: number; longitude: number }>`
                     : modifier.kind === 'record'
-                      ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ') : argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'bindingBoolean' ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>' : argument.kind === 'bindingOptionalURL' ? 'Readonly<{ value: string | null; onChange: (value: string | null) => void }>' : argument.kind === 'eventStruct' ? `(value: ${eventValueType(argument.eventValue!)}) => void` : argument.kind === 'classUpdate' || argument.kind === 'structUpdate' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}?: ${field.type === 'Swift.Bool' ? 'boolean' : field.type.endsWith('?') ? 'string | null' : 'string'}`).join('; ')} }>` : argument.kind === 'resultURL' || argument.kind === 'resultURLArray' ? `(result: Readonly<{ success: ${argument.kind === 'resultURL' ? 'string' : 'readonly string[]'} } | { failure: string }>) => void` : argument.kind === 'stringArray' || argument.kind === 'stringSet' ? 'readonly string[]' : argument.kind === 'numericStruct' || argument.kind === 'numericTuple' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}: number`).join('; ')} }>` : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
+                      ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? `${argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}${hasRecords(argument.value) ? ` | SDK${valueKey(argument.value!.type)}Record` : ''}` : argument.kind === 'number' ? continuousNumber(argument.type, argument.scalarConstructor) ? 'number | NativeState<number>' : 'number' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'bindingBoolean' ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>' : argument.kind === 'bindingOptionalURL' ? 'Readonly<{ value: string | null; onChange: (value: string | null) => void }>' : argument.kind === 'eventStruct' ? `(value: ${eventValueType(argument.eventValue!)}) => void` : argument.kind === 'classUpdate' || argument.kind === 'structUpdate' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}?: ${field.type === 'Swift.Bool' ? 'boolean' : field.type.endsWith('?') ? 'string | null' : 'string'}`).join('; ')} }>` : argument.kind === 'resultURL' || argument.kind === 'resultURLArray' ? `(result: Readonly<{ success: ${argument.kind === 'resultURL' ? 'string' : 'readonly string[]'} } | { failure: string }>) => void` : argument.kind === 'stringArray' || argument.kind === 'stringSet' ? 'readonly string[]' : argument.kind === 'numericStruct' || argument.kind === 'numericTuple' || argument.kind === 'numericRange' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}: number`).join('; ')} }>` : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
                       : modifier.kind === 'style' ? undefined
                       : modifier.kind === 'url' ? 'string'
               : modifier.kind === 'string' ? undefined : modifier.kind,
@@ -273,10 +292,9 @@ ${styleFields
     header +
     `import type { ColorValue, ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
-import type { KeyboardType, TextContentType } from '../textTypes'
-import type { IconColorRole } from '../ui/iconRoles'
 import type { SFSymbolName } from './sfSymbolNames'
-${[...new Set(controls.flatMap((control) => control.typeImports ?? []))].map((line) => `${line}\n`).join('')}${hasSync ? `import type { NativeState } from '../syncNativeState'\n` : ''}
+${[...new Set(controls.flatMap((control) => control.typeImports ?? []))].map((line) => `${line}\n`).join('')}import type { NativeState } from '../syncNativeState'
+
 
 ${publicStyleFields
   .filter((field) => field.values)
@@ -287,6 +305,7 @@ ${publicStyleFields
 export type ${styleAlias(field)} = (typeof ${styleValuesName(field)})[number]`
   )
   .join('\n')}
+${valueTypesTS(collectValues(derivedModifiers))}
 
 export interface OneNativeStyle {
 ${publicStyleFields.map((field) => `  ${field.name}?: ${styleFieldType(field)}`).join('\n')}
@@ -311,8 +330,7 @@ export type OneNativeViewProps = Pick<
       .join('')
   let adapters =
     header +
-    `import { Platform } from 'react-native'\nimport { assertTextInputOptions } from '../textTypes'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport { swiftStyleNative${hasSDKEvents ? ', dispatchSDKEvent' : ''} } from './swiftStyleNative'\nimport type * as Types from './controlTypes'\n` +
-    "import { iconColorRoles } from '../ui/iconRoles'\n" +
+    `import { Platform } from 'react-native'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport { swiftStyleNative${hasSDKEvents ? ', dispatchSDKEvent' : ''} } from './swiftStyleNative'\nimport type * as Types from './controlTypes'\n` +
     [...new Set(controls.flatMap((control) => control.adapterImports ?? []))]
       .map((line) => `${line}\n`)
       .join('') +
@@ -330,7 +348,9 @@ export type OneNativeViewProps = Pick<
     const fieldEntries = Object.entries(fields)
     // derived fields are native-only; object arrays travel through their own setter.
     const publicFields = fieldEntries.filter(([, field]) => !field.derived)
-    const plainFields = fieldEntries.filter(
+    // public-only fields have no native storage; native lists skip them.
+    const nativeFields = fieldEntries.filter(([, field]) => !field.noNative)
+    const plainFields = nativeFields.filter(
       ([, field]) => field.type !== 'objects' && field.type !== 'strings'
     )
     const objectFields = fieldEntries.filter(([, field]) => field.type === 'objects')
@@ -344,7 +364,6 @@ export type OneNativeViewProps = Pick<
       ([, field]) => field.type === 'objects' || field.type === 'strings'
     )
     const enumFields = publicFields.filter(([, field]) => field.enum)
-    const disabled = Object.hasOwn(fields, 'disabled')
     // a measured control reports the height SwiftUI measured, so it supplies its own shadow
     // node and the spec must not generate one. fill and presentation controls are sized by
     // React Native, so they keep the shadow node codegen writes.
@@ -439,7 +458,7 @@ ${
             focusRevision: 'Int32',
           }
         : {}),
-      ...Object.fromEntries(fieldEntries.map(([key, field]) => [key, nativeType(field)])),
+      ...Object.fromEntries(nativeFields.map(([key, field]) => [key, nativeType(field)])),
     }
     const events: Record<string, Record<string, string>> = {
       ...(hasSDKEvents ? { onNativeSDKEvent: { name: 'string', value: 'string' } } : {}),
@@ -557,11 +576,12 @@ export default codegenNativeComponent<NativeProps>('${nativeName}'${measured ? '
       ...(value ? [value.prop, value.event, 'revision = 0'] : []),
       ...(control.focus ? ['focused', 'onFocusChange', 'focusRevision = 0'] : []),
       ...actions.map((action) => action.prop),
-      ...publicFields.map(([key, field]) =>
-        field.type === 'objects' || field.required
-          ? key
-          : `${key} = ${field.jsDefault ?? literal(field.default)}`
-      ),
+      ...publicFields.map(([key, field]) => {
+        const binding = field.as ? `${key}: ${field.as}` : key
+        return field.type === 'objects' || field.required
+          ? binding
+          : `${binding} = ${field.jsDefault ?? literal(field.default)}`
+      }),
       'swiftStyle',
       'style',
       '...props',
@@ -609,7 +629,7 @@ ${value ? `    value={${value.sync ? syncNativeValue(value, `synced${upper(value
       control.focus
         ? `    focused={focused ?? sdkFocused?.value ?? false} acknowledgedFocusEvent={focused !== undefined || sdkFocused !== undefined ? controlledFocus.acknowledgedEvent : 0} focusRevision={focusRevision}\n`
         : ''
-    }${fieldEntries.map(([key, field]) => `    ${key}={${field.nativeValue ?? key}}`).join('\n')}
+    }${nativeFields.map(([key, field]) => `    ${key}={${field.nativeValue ?? key}}`).join('\n')}
 ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNativeChange(nativeEvent)}\n` : ''}${
       control.focus
         ? `    onNative${name}FocusChange={({ nativeEvent }) => controlledFocus.onNativeChange(nativeEvent)}\n`
@@ -636,7 +656,7 @@ ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNat
       .join('')}  />
 }
 `
-    const swiftFields = fieldEntries
+    const swiftFields = nativeFields
       .map(
         ([key, field]) =>
           `  @Published var ${key}: ${swiftType(field)} = ${field.type === 'objects' ? '[]' : field.type === 'color' ? 'nil' : literal(field.default)}`
@@ -662,7 +682,7 @@ ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNat
     ]
     // objective-c names the selector from the first label, so it is always unlabeled.
     if (!value && configure.length) configure[0].label = `_ ${configure[0].label}`
-    const guards = ['active', ...(disabled ? ['!disabled'] : [])]
+    const guards = ['active']
     outputs.set(
       `ios/Generated/${nativeName}View.swift`,
       header +
@@ -873,7 +893,7 @@ ${
       }
 `
     : ''
-}${disabled ? '      .disabled(model.disabled)\n' : ''}      .oneNativeAccessibility(model.accessibility${control.decorativeWhenUnlabeled ? ', decorativeWhenUnlabeled: true' : ''})
+}      .oneNativeAccessibility(model.accessibility${control.decorativeWhenUnlabeled ? ', decorativeWhenUnlabeled: true' : ''})
       .oneNativeStyle(model.swiftStyle${hasSDKEvents ? ', emit: model.emitSDKEvent' : ''})
   }
 }

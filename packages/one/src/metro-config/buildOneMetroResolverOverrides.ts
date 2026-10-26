@@ -1,6 +1,7 @@
 import module from 'node:module'
 import path from 'node:path'
 import { absorbedPackageAliases } from '../utils/absorbedPackages'
+import { resolveIosSdkImport } from '../utils/iosSdkFacade'
 
 export type BuildOneMetroResolverOverridesOptions = {
   projectRoot: string
@@ -55,6 +56,16 @@ export function buildOneMetroResolverOverrides({
             moduleName,
             platform
           )
+        }
+
+        const sdkFacade = resolveIosSdkImport(
+          projectRoot,
+          moduleName,
+          platform,
+          context.originModulePath
+        )
+        if (sdkFacade) {
+          return { type: 'sourceFile', filePath: sdkFacade }
         }
 
         // packages one absorbs resolve to one's copy

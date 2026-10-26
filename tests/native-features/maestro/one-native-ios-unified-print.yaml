@@ -1,0 +1,32 @@
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-print
+- tapOn:
+    text: 'Open'
+    optional: true
+- assertVisible: 'Status: idle'
+- tapOn:
+    id: one-native-print-run
+- assertVisible: 'Options'
+- assertVisible: 'Printer'
+- assertVisible: 'No Printer Selected'
+- assertVisible: 'US Letter'
+- assertVisible: 'Page 1 of 1'
+- tapOn: 'Cancel'
+- assertVisible: 'Status: done'
+- assertVisible: 'Available: true'
+- assertVisible: 'PdfBytes: 632'
+- assertVisible: 'Busy: E_PRINT_BUSY'
+- assertVisible: 'Completed: false'
+- assertVisible: 'RemoteURI: E_PRINT_URI'
+- assertVisible: 'Missing: E_PRINT_FILE'
+- assertVisible: 'BadPDF: E_PRINT_PDF'
+- assertVisible: 'InvalidType: Print.printPdf: fileUri must be a non-empty string'
+- assertVisible: 'InvalidName: Print.printPdf: jobName must be a non-empty string when provided'

@@ -32,6 +32,10 @@
   [_container removeChild:[self composableFor:child]];
 }
 
+- (std::shared_ptr<const facebook::react::ViewEventEmitter>)currentEventEmitter {
+  return _eventEmitter;
+}
+
 - (void)prepareForRecycle {
   [super prepareForRecycle];
   [_container reset];

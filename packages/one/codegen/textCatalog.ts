@@ -9,45 +9,16 @@ const submitModifiers: readonly ModifierSelector[] = [
     ],
     requirements: [],
   },
-  {
-    name: 'autocorrectionDisabled',
-    parameters: [{ label: '_', type: 'Swift.Bool' }],
-    requirements: [],
-  },
 ]
 
 const textFields = {
   ...commonFields,
   prompt: { type: 'string', default: '' },
-  textFieldStyle: { type: 'string', default: 'automatic', enum: 'TextFieldStyle' },
-  submitLabel: { type: 'string', default: '', enum: 'SubmitLabel' },
-  textInputAutocapitalization: {
-    type: 'string',
-    default: '',
-    enum: 'TextInputAutocapitalization',
-  },
-  autocorrectionDisabled: { type: 'boolean', default: false },
-  keyboardType: {
-    type: 'string',
-    default: '',
-    publicType: 'KeyboardType',
-  },
-  textContentType: {
-    type: 'string',
-    default: '',
-    publicType: 'TextContentType',
-  },
 } as const
 
-const textModifiers = `      .oneNativeTextFieldStyle(model.textFieldStyle)
-      .oneNativeSubmitLabel(model.submitLabel)
-      .oneNativeTextInputAutocapitalization(model.textInputAutocapitalization)
-      .autocorrectionDisabled(model.autocorrectionDisabled)
-      .oneNativeKeyboardType(model.keyboardType)
-      .oneNativeTextContentType(model.textContentType)
-      .onSubmit(of: .text) { model.submit() }`
+const textModifiers = `      .onSubmit(of: .text) { model.submit() }`
 
-// keyboard type uses a hand-written UIKit converter; focus uses @FocusState and the controlled protocol.
+// focus uses @FocusState and the controlled protocol.
 export const textControls: Control[] = [
   {
     name: 'TextField',
@@ -77,8 +48,7 @@ export const textControls: Control[] = [
         Text(model.label)
       }
 ${textModifiers}`,
-    validate: `  if (typeof text !== 'string' && !isSyncState(text)) throw new Error('TextField text must be a string or NativeState handle')
-  assertTextInputOptions('TextField', keyboardType, textContentType)`,
+    validate: `  if (typeof text !== 'string' && !isSyncState(text)) throw new Error('TextField text must be a string or NativeState handle')`,
   },
   {
     name: 'SecureField',
@@ -104,8 +74,7 @@ ${textModifiers}`,
         Text(model.label)
       }
 ${textModifiers}`,
-    validate: `  if (typeof text !== 'string' && !isSyncState(text)) throw new Error('SecureField text must be a string or NativeState handle')
-  assertTextInputOptions('SecureField', keyboardType, textContentType)`,
+    validate: `  if (typeof text !== 'string' && !isSyncState(text)) throw new Error('SecureField text must be a string or NativeState handle')`,
   },
   {
     // multi-line input. it has no label, prompt, style or submit: return inserts a
@@ -114,29 +83,17 @@ ${textModifiers}`,
     layout: 'fill',
     value: { type: 'string', prop: 'text', event: 'onTextChange', initial: '', sync: true },
     focus: true,
-    fields: {
-      disabled: commonFields.disabled,
-      textInputAutocapitalization: textFields.textInputAutocapitalization,
-      autocorrectionDisabled: textFields.autocorrectionDisabled,
-      keyboardType: textFields.keyboardType,
-      textContentType: textFields.textContentType,
-    },
+    fields: {},
     constructors: [
       {
         type: 'TextEditor',
         parameters: [{ label: 'text', type: 'SwiftUICore.Binding<Swift.String>' }],
       },
     ],
-    methods: [submitModifiers[1]],
     swift: `TextEditor(text: Binding(
         get: { model.controlled.value },
         set: { value in model.change(value) }
-      ))
-      .oneNativeTextInputAutocapitalization(model.textInputAutocapitalization)
-      .autocorrectionDisabled(model.autocorrectionDisabled)
-      .oneNativeKeyboardType(model.keyboardType)
-      .oneNativeTextContentType(model.textContentType)`,
-    validate: `  if (typeof text !== 'string' && !isSyncState(text)) throw new Error('TextEditor text must be a string or NativeState handle')
-  assertTextInputOptions('TextEditor', keyboardType, textContentType)`,
+      ))`,
+    validate: `  if (typeof text !== 'string' && !isSyncState(text)) throw new Error('TextEditor text must be a string or NativeState handle')`,
   },
 ]

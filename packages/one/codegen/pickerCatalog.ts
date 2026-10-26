@@ -3,15 +3,10 @@ import { commonFields, type Control } from './controlTypes'
 export const pickerControls: Control[] = [
   {
     name: 'Picker',
+    contentSlot: { name: 'content', accepts: ['Text'] },
     value: { type: 'string', prop: 'selection', event: 'onSelectionChange', initial: '' },
     fields: {
       ...commonFields,
-      options: {
-        type: 'objects',
-        default: '',
-        payload: { name: 'PickerOption', element: { value: 'string', label: 'string' } },
-      },
-      pickerStyle: { type: 'string', default: 'automatic', enum: 'PickerStyle' },
     },
     constructors: [
       {
@@ -27,27 +22,11 @@ export const pickerControls: Control[] = [
         get: { model.controlled.value },
         set: { value in model.change(value) }
       )) {
-        ForEach(model.options, id: \\.value) { option in
-          Text(option.label).tag(option.value)
-        }
+        ForEach(content.items) { child in child.content }
       } label: {
         Text(model.label)
-      }
-      .oneNativePickerStyle(model.pickerStyle)
-      .oneNativeSegmentedFill(model.pickerStyle)`,
-    extraSwift: `private extension View {
-  // a segmented picker spans its row the way Settings does instead of hugging its
-  // segments, so callers never have to encode the fill themselves.
-  @ViewBuilder func oneNativeSegmentedFill(_ style: String) -> some View {
-    if style == "segmented" { self.frame(maxWidth: .infinity) }
-    else { self }
-  }
-}`,
-    validate: `  if (!Array.isArray(options) || options.some(option => typeof option?.value !== 'string' || typeof option?.label !== 'string')) throw new Error('Picker options must contain string value and label fields')
-  if (!options.length) throw new Error('Picker options must not be empty')
-  if (new Set(options.map(option => option.value)).size !== options.length) throw new Error('Picker option values must be unique')
-  if (!options.some(option => option.value === selection)) throw new Error('Picker selection must match an option value')
-  if (pickerStyle === 'navigationLink') throw new Error('PickerStyle.navigationLink requires a native navigation context that One Native does not provide yet')`,
+      }`,
+    validate: `  if (typeof selection !== 'string') throw new Error('Picker selection must be a string')`,
   },
   {
     name: 'DatePicker',
@@ -62,26 +41,23 @@ export const pickerControls: Control[] = [
     },
     fields: {
       ...commonFields,
-      minimumDate: {
+      // SwiftUI's closed range arrives as one tuple; the scalars stay native-only.
+      // type/default only satisfy the field shape; publicType/jsDefault carry the surface.
+      in: {
         type: 'Double',
-        default: -62135769600000,
-        publicType: 'Date',
-        jsDefault: 'new Date(-62135769600000)',
-        nativeValue: 'minimumDate.getTime()',
+        default: 0,
+        noNative: true,
+        as: 'range',
+        publicType: 'readonly [Date, Date]',
+        jsDefault: '[new Date(-62135769600000), new Date(64092211200000)]',
       },
-      maximumDate: {
-        type: 'Double',
-        default: 64092211200000,
-        publicType: 'Date',
-        jsDefault: 'new Date(64092211200000)',
-        nativeValue: 'maximumDate.getTime()',
-      },
+      minimumDate: { type: 'Double', default: -62135769600000, derived: true, nativeValue: 'range[0].getTime()' },
+      maximumDate: { type: 'Double', default: 64092211200000, derived: true, nativeValue: 'range[1].getTime()' },
       displayedComponents: {
         type: 'string',
         default: 'dateAndTime',
         publicType: "'date' | 'hourAndMinute' | 'dateAndTime'",
       },
-      datePickerStyle: { type: 'string', default: 'automatic', enum: 'DatePickerStyle' },
     },
     constructors: [
       {
@@ -102,8 +78,7 @@ export const pickerControls: Control[] = [
         set: { value in model.change(value.timeIntervalSince1970 * 1000) }
       ), in: Date(timeIntervalSince1970: model.minimumDate / 1000)...Date(timeIntervalSince1970: model.maximumDate / 1000), displayedComponents: oneNativeDatePickerComponents(model.displayedComponents)) {
         Text(model.label)
-      }
-      .oneNativeDatePickerStyle(model.datePickerStyle)`,
+      }`,
     extraSwift: `private func oneNativeDatePickerComponents(_ value: String) -> DatePicker<Text>.Components {
   switch value {
   case "date": return .date
@@ -113,11 +88,11 @@ export const pickerControls: Control[] = [
   }
 }`,
     validate: `  const selectionTime = selection instanceof Date ? selection.getTime() : NaN
-  const minimumTime = minimumDate instanceof Date ? minimumDate.getTime() : NaN
-  const maximumTime = maximumDate instanceof Date ? maximumDate.getTime() : NaN
-  if (![selectionTime, minimumTime, maximumTime].every(Number.isFinite)) throw new Error('DatePicker selection, minimumDate, and maximumDate must be valid Date values')
-  if (minimumTime > maximumTime) throw new Error('DatePicker minimumDate must not be after maximumDate')
-  if (selectionTime < minimumTime || selectionTime > maximumTime) throw new Error('DatePicker selection must be within minimumDate and maximumDate')
+  const minimumTime = range[0] instanceof Date ? range[0].getTime() : NaN
+  const maximumTime = range[1] instanceof Date ? range[1].getTime() : NaN
+  if (![selectionTime, minimumTime, maximumTime].every(Number.isFinite)) throw new Error('DatePicker selection and in bounds must be valid Date values')
+  if (minimumTime > maximumTime) throw new Error('DatePicker in lower bound must not be after the upper bound')
+  if (selectionTime < minimumTime || selectionTime > maximumTime) throw new Error('DatePicker selection must be within its in bounds')
   if (!['date', 'hourAndMinute', 'dateAndTime'].includes(displayedComponents)) throw new Error('DatePicker displayedComponents must be date, hourAndMinute, or dateAndTime')`,
   },
   {
@@ -186,20 +161,18 @@ private func oneNativeEncodeColor(_ color: Color, supportsOpacity: Bool) -> Stri
     },
     fields: {
       ...commonFields,
-      minimumDate: {
+      // SwiftUI's closed range arrives as one tuple; the scalars stay native-only.
+      // type/default only satisfy the field shape; publicType/jsDefault carry the surface.
+      in: {
         type: 'Double',
-        default: -62135769600000,
-        publicType: 'Date',
-        jsDefault: 'new Date(-62135769600000)',
-        nativeValue: 'minimumDate.getTime()',
+        default: 0,
+        noNative: true,
+        as: 'range',
+        publicType: 'readonly [Date, Date]',
+        jsDefault: '[new Date(-62135769600000), new Date(64092211200000)]',
       },
-      maximumDate: {
-        type: 'Double',
-        default: 64092211200000,
-        publicType: 'Date',
-        jsDefault: 'new Date(64092211200000)',
-        nativeValue: 'maximumDate.getTime()',
-      },
+      minimumDate: { type: 'Double', default: -62135769600000, derived: true, nativeValue: 'range[0].getTime()' },
+      maximumDate: { type: 'Double', default: 64092211200000, derived: true, nativeValue: 'range[1].getTime()' },
     },
     constructors: [
       {
@@ -233,10 +206,10 @@ private func oneNativeEncodeDates(_ value: Set<DateComponents>) -> String {
   return String(data: data, encoding: .utf8)!
 }`,
     validate: `  if (!Array.isArray(selection) || selection.some(date => !(date instanceof Date) || Number.isNaN(date.getTime()))) throw new Error('MultiDatePicker selection must be an array of valid Dates')
-  const minimumTime = minimumDate instanceof Date ? minimumDate.getTime() : NaN
-  const maximumTime = maximumDate instanceof Date ? maximumDate.getTime() : NaN
-  if (![minimumTime, maximumTime].every(Number.isFinite)) throw new Error('MultiDatePicker minimumDate and maximumDate must be valid Date values')
-  if (minimumTime > maximumTime) throw new Error('MultiDatePicker minimumDate must not be after maximumDate')
-  if (selection.some(date => date.getTime() < minimumTime || date.getTime() > maximumTime)) throw new Error('MultiDatePicker selection must be within minimumDate and maximumDate')`,
+  const minimumTime = range[0] instanceof Date ? range[0].getTime() : NaN
+  const maximumTime = range[1] instanceof Date ? range[1].getTime() : NaN
+  if (![minimumTime, maximumTime].every(Number.isFinite)) throw new Error('MultiDatePicker in bounds must be valid Date values')
+  if (minimumTime > maximumTime) throw new Error('MultiDatePicker in lower bound must not be after the upper bound')
+  if (selection.some(date => date.getTime() < minimumTime || date.getTime() > maximumTime)) throw new Error('MultiDatePicker selection must be within its in bounds')`,
   },
 ]

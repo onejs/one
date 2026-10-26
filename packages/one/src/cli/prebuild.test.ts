@@ -61,6 +61,7 @@ describe('one prebuild', () => {
       platform: 'ios',
       'no-install': true,
       app,
+      beforeInstall: expect.any(Function),
     })
   })
 
@@ -153,6 +154,7 @@ describe('one prebuild', () => {
       root: process.cwd(),
       platform: 'ios',
       app,
+      beforeInstall: expect.any(Function),
     })
   })
 

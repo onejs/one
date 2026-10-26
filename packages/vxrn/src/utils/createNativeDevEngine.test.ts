@@ -32,6 +32,8 @@ import {
   normalizeNativeCommonJSInterop,
   postProcessNativeBundle,
   vxrnCompilerPlugin,
+  NATIVE_DEV_RUNTIME_END,
+  NATIVE_MODULE_SCOPE_MARKER,
   wrapNativeBundleModuleScope,
   type NativePluginContext,
 } from './createNativeDevEngine'
@@ -218,8 +220,20 @@ describe.each(['ios', 'android'] as const)('native plugin adapters on %s', (plat
         }
         runInNewContext(code, context)
         expect(Reflect.get(context, 'nativePluginResult')).toEqual([
-          { name: 'global', root, platform, dev: mode === 'dev' },
-          { name: 'direct', root, platform, dev: mode === 'dev' },
+          {
+            name: 'global',
+            root,
+            platform,
+            dev: mode === 'dev',
+            command: mode === 'dev' ? 'serve' : 'build',
+          },
+          {
+            name: 'direct',
+            root,
+            platform,
+            dev: mode === 'dev',
+            command: mode === 'dev' ? 'serve' : 'build',
+          },
           'plain',
         ])
         for (const factory of factories) {
@@ -227,6 +241,7 @@ describe.each(['ios', 'android'] as const)('native plugin adapters on %s', (plat
             root,
             platform,
             dev: mode === 'dev',
+            command: mode === 'dev' ? 'serve' : 'build',
           })
         }
       } finally {
@@ -727,13 +742,23 @@ describe('native prelude', () => {
   })
 
   it('does not advertise a host event API that cannot remove listeners', () => {
+    // a bound function prints as [native code], like a host function
     const context = {
-      addEventListener() {},
+      addEventListener: function () {}.bind(null),
     }
 
     runInNewContext(getNativePrelude({ dev: false, platform: 'ios' }), context)
 
     expect(Reflect.get(context, 'addEventListener')).toBeUndefined()
+  })
+
+  it('keeps a javascript addEventListener without a removal API', () => {
+    const addEventListener = function addEventListener() {}
+    const context = { addEventListener }
+
+    runInNewContext(getNativePrelude({ dev: false, platform: 'ios' }), context)
+
+    expect(Reflect.get(context, 'addEventListener')).toBe(addEventListener)
   })
 
   it('preserves a complete host event API', () => {
@@ -1708,30 +1733,32 @@ describe('getNativeTransformConfig platform env defines', () => {
 })
 
 describe('wrapNativeBundleModuleScope', () => {
-  // matches the marker rolldown dev() emits at the start of the runtime region
-  const RUNTIME_MARKER = '//#region \\0rolldown/runtime.js'
-
-  it('wraps module code after the prelude so top-level vars do not leak to global', () => {
-    const prelude = 'globalThis.global = globalThis;\nglobalThis.__DEV__ = true;\n'
+  it.each([
+    ['rolldown 1.2.15', '// \\0rolldown/runtime.js'],
+    ['rolldown 1.2.13', '//#region \\0rolldown/runtime.js'],
+  ])('wraps module code after the prelude with %s module comments', (_, header) => {
+    const prelude = `globalThis.global = globalThis;\nglobalThis.__DEV__ = true;\n${NATIVE_MODULE_SCOPE_MARKER}\n`
     // a top-level `var Headers` in a script becomes a non-configurable global,
     // which is the exact leak that breaks RN's polyfillGlobal in dev
-    const body = `${RUNTIME_MARKER}\nvar fetch_hot, fetch$1, Headers, Request, Response$1;\nglobalThis.__rolldown_runtime__ = {};\n`
+    const body = `${header}\nvar fetch_hot, fetch$1, Headers, Request, Response$1;\nglobalThis.__rolldown_runtime__ = {};\n`
+    const input = prelude + body
 
-    const out = wrapNativeBundleModuleScope(prelude + body)
+    const out = wrapNativeBundleModuleScope(input)
 
-    const openIdx = out.indexOf(';(function() {')
-    expect(openIdx).toBeGreaterThan(-1)
-    // prelude (global setup) stays at script scope, before the wrap opens
-    expect(out.indexOf('globalThis.__DEV__')).toBeLessThan(openIdx)
-    // the leaking declaration is now inside the function scope
-    expect(out.indexOf('var fetch_hot')).toBeGreaterThan(openIdx)
-    // and the result must still be syntactically valid (balanced wrap)
-    expect(() => new Function(out)).not.toThrow()
+    const context = createContext({})
+    runInContext(out, context)
+    expect(runInContext('globalThis.__DEV__', context)).toBe(true)
+    expect(
+      runInContext('Object.getOwnPropertyDescriptor(globalThis, "Headers")', context)
+    ).toBeUndefined()
+    // the opener shares the marker line, so every module keeps its mapped line
+    const lineOf = (code: string) =>
+      code.split('\n').indexOf('var fetch_hot, fetch$1, Headers, Request, Response$1;')
+    expect(lineOf(out)).toBe(lineOf(input))
   })
 
-  it('is a no-op when the runtime marker is absent (e.g. prod bundle)', () => {
-    const input = 'var x = 1;\nconsole.log(x);\n'
-    expect(wrapNativeBundleModuleScope(input)).toBe(input)
+  it('fails the build when the prelude marker is missing', () => {
+    expect(() => wrapNativeBundleModuleScope('var x = 1;\n')).toThrow('script scope')
   })
 })
 
@@ -3112,6 +3139,74 @@ globalThis.externalDefaults = [Component, marker, Scoped, Plain, require('extern
   })
 })
 
+describe('native interop string literals', () => {
+  it('rewrites real __toESM calls while leaving string data alone', () => {
+    const literal = '__toESM(externalModule, 1)'
+    const code = [
+      `const stringData = ${JSON.stringify(literal)}`,
+      'const templateData = `' + literal + '`',
+      `// ${literal}`,
+      `/* ${literal} */`,
+      'const viaRequire = __toESM(require_helper(), 1)',
+      'const viaBinding = __toESM(externalModule, 1)',
+      'const viaLookup = __toESM(__rolldown_runtime__.loadExports("helper"), 1)',
+      'const viaRuntime = __rolldown_runtime__.__toESM(__rolldown_runtime__.loadExports("helper"), 1)',
+      'const renamed = __toESM$2(require_helper(), 1)',
+      'const spaced = __toESM(  require_helper()  ,  1  )',
+      'const interpolated = `${__toESM(externalModule, 1)}`',
+    ].join('\n')
+    const normalized = normalizeNativeCommonJSInterop(code)
+    expect(normalized).toContain(`const stringData = ${JSON.stringify(literal)}`)
+    expect(normalized).toContain('const templateData = `' + literal + '`')
+    expect(normalized).toContain(`// ${literal}`)
+    expect(normalized).toContain(`/* ${literal} */`)
+    expect(normalized).toContain('const viaRequire = __toESM(require_helper())')
+    expect(normalized).toContain('const viaBinding = __toESM(externalModule)')
+    expect(normalized).toContain(
+      'const viaLookup = __toESM(__rolldown_runtime__.loadExports("helper"))'
+    )
+    expect(normalized).toContain(
+      'const viaRuntime = __rolldown_runtime__.__toESM(__rolldown_runtime__.loadExports("helper"))'
+    )
+    expect(normalized).toContain('const renamed = __toESM$2(require_helper())')
+    expect(normalized).toContain('const spaced = __toESM(  require_helper()    )')
+    expect(normalized).toContain('const interpolated = `${__toESM(externalModule)}`')
+  })
+
+  it.each([false, true])(
+    'keeps __toESM string data through buildNativeBundle (minify=%s)',
+    async (minify) => {
+      const literal = '__toESM(externalModule, 1)'
+      const root = await mkdtemp(join(tmpdir(), 'vxrn-interop-literal-'))
+      try {
+        await writeFile(join(root, 'package.json'), JSON.stringify({ type: 'module' }))
+        await writeFile(
+          join(root, 'entry.js'),
+          `globalThis.__interopLiteralProbe = ${JSON.stringify(literal)}\n`
+        )
+        const { code } = await buildNativeBundle({
+          root,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          dev: true,
+          minify,
+        })
+        expect(code).toContain(literal)
+        const context = {
+          clearTimeout,
+          console,
+          process: { env: {} },
+          setTimeout,
+        }
+        runInNewContext(code, context)
+        expect(Reflect.get(context, '__interopLiteralProbe')).toBe(literal)
+      } finally {
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
+})
+
 describe('native Flow sources', () => {
   it.each([true, false])(
     'preserves codegen, worklets and maps with dev=%s',
@@ -3412,6 +3507,56 @@ describe('postProcessNativeBundle', () => {
     expect(lines(out)).toBe(lines(input))
     expect(out).not.toContain('export {')
     expect(out.split('\n')[4]).toBe('var b = 2;')
+  })
+})
+
+describe('native dev bundle post-processing failures', () => {
+  it('rejects the bundle request with the failure instead of timing out', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-postprocess-error-'))
+    await writeFile(join(root, 'package.json'), JSON.stringify({ type: 'module' }))
+    await writeFile(join(root, 'entry.js'), `globalThis.__postprocessProbe = 1\n`)
+    const native = await createNativeDevEngine({
+      root,
+      port: 0,
+      platform: 'ios',
+      plugins: [
+        {
+          name: 'postprocess-error-entry',
+          transform(code, id) {
+            if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.js'`
+          },
+        },
+        {
+          name: 'postprocess-error-poison',
+          renderChunk() {
+            // valid javascript, so rolldown delivers it: the single-line
+            // class fields inside the runtime region gain lines when
+            // downleveled, which throws inside handleOutput.
+            return {
+              code: [
+                NATIVE_MODULE_SCOPE_MARKER,
+                'class Poison { x = 1; y = 2; z = 3; }',
+                NATIVE_DEV_RUNTIME_END,
+                'globalThis.__postprocessProbe = new Poison();',
+                '',
+              ].join('\n'),
+            }
+          },
+        },
+      ],
+    })
+    try {
+      await expect(native.getBundle()).rejects.toThrow(
+        'Hermes runtime transform added lines'
+      )
+      // the failure is recorded for later callers, not just the waiter
+      await expect(native.getBundle()).rejects.toThrow(
+        'Hermes runtime transform added lines'
+      )
+    } finally {
+      await native.close()
+      await rm(root, { recursive: true, force: true })
+    }
   })
 })
 

@@ -1,8 +1,5 @@
 export type MenuOrder = 'automatic' | 'priority' | 'fixed';
 export type Visibility = 'automatic' | 'visible' | 'hidden';
-export type PickerStyle = 'wheel' | 'inline' | 'automatic' | 'segmented' | 'tabs' | 'palette' | 'navigationLink' | 'menu';
-export type DatePickerStyle = 'wheel' | 'automatic' | 'graphical' | 'compact';
-export type ToggleStyle = 'button' | 'automatic' | 'switch';
 export type MenuActionDismissBehavior = 'automatic' | 'enabled' | 'disabled';
 export type TabViewStyle = 'sidebarAdaptable' | 'page' | 'tabBarOnly' | 'automatic';
 export type ButtonRole = 'destructive' | 'cancel' | 'confirm' | 'close';
@@ -13,12 +10,6 @@ export type TabCustomizationBehavior = 'automatic' | 'reorderable' | 'disabled';
 export type TabSectionExpansion = 'automatic' | 'expanded' | 'collapsed';
 export type SpringLoadingBehavior = 'automatic' | 'enabled' | 'disabled';
 export type ControlGroupStyle = 'palette' | 'automatic' | 'navigation' | 'menu' | 'compactMenu';
-export type PrimitiveButtonStyle = 'automatic' | 'glass' | 'borderless' | 'glassProminent' | 'plain' | 'bordered' | 'borderedProminent';
-export type ProgressViewStyle = 'linear' | 'circular' | 'automatic';
-export type GaugeStyle = 'accessoryCircularCapacity' | 'linearCapacity' | 'accessoryLinear' | 'accessoryLinearCapacity' | 'automatic' | 'accessoryCircular';
-export type TextFieldStyle = 'automatic' | 'roundedBorder' | 'bordered' | 'plain';
-export type SubmitLabel = 'done' | 'go' | 'send' | 'join' | 'route' | 'search' | 'return' | 'next' | 'continue';
-export type TextInputAutocapitalization = 'never' | 'words' | 'sentences' | 'characters';
 export type Axis = 'horizontal' | 'vertical';
 export type Edge = 'top' | 'leading' | 'bottom' | 'trailing';
 export type PresentationAdaptation = 'automatic' | 'none' | 'popover' | 'sheet' | 'fullScreenCover';
@@ -26,9 +17,6 @@ export type PresentationContentInteraction = 'automatic' | 'resizes' | 'scrolls'
 export type ColorScheme = 'light' | 'dark';
 export type DynamicTypeSize = 'xSmall' | 'small' | 'medium' | 'large' | 'xLarge' | 'xxLarge' | 'xxxLarge' | 'accessibility1' | 'accessibility2' | 'accessibility3' | 'accessibility4' | 'accessibility5';
 export type ControlSize = 'mini' | 'small' | 'regular' | 'large' | 'extraLarge';
-export type SymbolRenderingMode = 'monochrome' | 'multicolor' | 'hierarchical' | 'palette';
-export type SymbolVariants = 'none' | 'circle' | 'square' | 'rectangle' | 'fill' | 'slash';
-export type ImageScale = 'small' | 'medium' | 'large';
 export type PhotosPickerSelectionBehavior = 'default' | 'ordered' | 'continuous' | 'continuousAndOrdered';
 export type EncodingDisambiguationPolicy = 'automatic' | 'current' | 'compatible';
 export type BackForwardNavigationGesturesBehavior = 'automatic' | 'enabled' | 'disabled';
@@ -38,8 +26,6 @@ export type ElementFullscreenBehavior = 'automatic' | 'enabled' | 'disabled';
 export type ListStyle = 'automatic' | 'sidebar' | 'inset' | 'grouped' | 'insetGrouped' | 'plain';
 export type ToolbarItemPlacement = 'automatic' | 'principal' | 'navigation' | 'primaryAction' | 'secondaryAction' | 'status' | 'confirmationAction' | 'cancellationAction' | 'destructiveAction' | 'keyboard' | 'topBarLeading' | 'topBarTrailing' | 'topBarPinnedTrailing' | 'navigationBarLeading' | 'navigationBarTrailing' | 'title' | 'largeTitle' | 'bottomBar' | 'subtitle' | 'largeSubtitle';
 export type SpacerSizing = 'flexible' | 'fixed';
-export type PayWithApplePayButtonStyle = 'white' | 'whiteOutline' | 'black' | 'automatic';
-export type AddPassToWalletButtonStyle = 'black' | 'blackOutline';
 export type PayWithApplePayButtonLabel = 'plain' | 'buy' | 'addMoney' | 'book' | 'checkout' | 'continue' | 'contribute' | 'donate' | 'inStore' | 'order' | 'reload' | 'rent' | 'setUp' | 'subscribe' | 'support' | 'tip' | 'topUp';
 export declare const swiftUIValues: {
     readonly MenuOrder: {
@@ -51,27 +37,6 @@ export declare const swiftUIValues: {
         readonly automatic: 15;
         readonly visible: 15;
         readonly hidden: 15;
-    };
-    readonly PickerStyle: {
-        readonly wheel: 13;
-        readonly inline: 14;
-        readonly automatic: 13;
-        readonly segmented: 13;
-        readonly tabs: 27;
-        readonly palette: 17;
-        readonly navigationLink: 16;
-        readonly menu: 14;
-    };
-    readonly DatePickerStyle: {
-        readonly wheel: 13;
-        readonly automatic: 13;
-        readonly graphical: 14;
-        readonly compact: 14;
-    };
-    readonly ToggleStyle: {
-        readonly button: 15;
-        readonly automatic: 13;
-        readonly switch: 13;
     };
     readonly MenuActionDismissBehavior: {
         readonly automatic: 16.4;
@@ -126,51 +91,6 @@ export declare const swiftUIValues: {
         readonly menu: 16.4;
         readonly compactMenu: 16.4;
     };
-    readonly PrimitiveButtonStyle: {
-        readonly automatic: 13;
-        readonly glass: 26;
-        readonly borderless: 13;
-        readonly glassProminent: 26;
-        readonly plain: 13;
-        readonly bordered: 15;
-        readonly borderedProminent: 15;
-    };
-    readonly ProgressViewStyle: {
-        readonly linear: 14;
-        readonly circular: 14;
-        readonly automatic: 14;
-    };
-    readonly GaugeStyle: {
-        readonly accessoryCircularCapacity: 16;
-        readonly linearCapacity: 16;
-        readonly accessoryLinear: 16;
-        readonly accessoryLinearCapacity: 16;
-        readonly automatic: 16;
-        readonly accessoryCircular: 16;
-    };
-    readonly TextFieldStyle: {
-        readonly automatic: 13;
-        readonly roundedBorder: 13;
-        readonly bordered: 27;
-        readonly plain: 13;
-    };
-    readonly SubmitLabel: {
-        readonly done: 15;
-        readonly go: 15;
-        readonly send: 15;
-        readonly join: 15;
-        readonly route: 15;
-        readonly search: 15;
-        readonly return: 15;
-        readonly next: 15;
-        readonly continue: 15;
-    };
-    readonly TextInputAutocapitalization: {
-        readonly never: 15;
-        readonly words: 15;
-        readonly sentences: 15;
-        readonly characters: 15;
-    };
     readonly Axis: {
         readonly horizontal: 13;
         readonly vertical: 13;
@@ -217,25 +137,6 @@ export declare const swiftUIValues: {
         readonly regular: 15;
         readonly large: 15;
         readonly extraLarge: 17;
-    };
-    readonly SymbolRenderingMode: {
-        readonly monochrome: 15;
-        readonly multicolor: 15;
-        readonly hierarchical: 15;
-        readonly palette: 15;
-    };
-    readonly SymbolVariants: {
-        readonly none: 15;
-        readonly circle: 15;
-        readonly square: 15;
-        readonly rectangle: 15;
-        readonly fill: 15;
-        readonly slash: 15;
-    };
-    readonly ImageScale: {
-        readonly small: 13;
-        readonly medium: 13;
-        readonly large: 13;
     };
     readonly PhotosPickerSelectionBehavior: {
         readonly default: 16;
@@ -301,16 +202,6 @@ export declare const swiftUIValues: {
     readonly SpacerSizing: {
         readonly flexible: 26;
         readonly fixed: 26;
-    };
-    readonly PayWithApplePayButtonStyle: {
-        readonly white: 16;
-        readonly whiteOutline: 16;
-        readonly black: 16;
-        readonly automatic: 16;
-    };
-    readonly AddPassToWalletButtonStyle: {
-        readonly black: 16;
-        readonly blackOutline: 16;
     };
     readonly PayWithApplePayButtonLabel: {
         readonly plain: 16;

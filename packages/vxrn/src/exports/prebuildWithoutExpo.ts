@@ -245,12 +245,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     let delegate = ReactNativeDelegate()
     let factory = RCTReactNativeFactory(delegate: delegate)
-    delegate.dependencyProvider = RCTAppDependencyProvider()
+    delegate.dependencyProvider = OneDependencyProvider()
     reactNativeDelegate = delegate
     reactNativeFactory = factory
 ${backgroundTasks ? `    OneBackgroundTasksRegisterHost(factory, launchOptions)
 ` : ''}${appIntents ? `    OneAppIntentsRegisterHost(factory, launchOptions)
 ` : ''}    return true
+  }
+}
+
+// react native creates these modules on the main queue while the instance
+// initializes. left lazy, the first js access blocks the js thread on a
+// synchronous main queue hop that waits behind the app's own launch work.
+class OneDependencyProvider: RCTAppDependencyProvider {
+  override func unstableModulesRequiringMainQueueSetup() -> [String] {
+    super.unstableModulesRequiringMainQueueSetup() + [
+      "PlatformConstants",
+      "DeviceInfo",
+      "AccessibilityManager",
+      "Appearance",
+      "OneNativeSafeAreaContext",
+    ]
   }
 }
 

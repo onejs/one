@@ -5,9 +5,9 @@ export type * from './generated/sheetTypes';
 export type * from './generated/popoverTypes';
 export type * from './generated/containerTypes';
 export type * from './listTypes';
+export type { CanvasColorMode, CanvasPoint, CanvasProps, CanvasRect, CanvasSize, CanvasSymbol, CanvasText, FillStyle, GraphicsContext, RoundedCornerStyle, StrokeStyle, } from './canvas';
 export type * from './gridTypes';
 export type * from './groupTypes';
-export type * from './textTypes';
 export type { MapControlsSlot, MapWithControlsProps } from './mapControls';
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
@@ -35,8 +35,8 @@ export interface TabContentProps {
     help?: string;
 }
 export interface TabProps extends TabContentProps {
-    id: string;
-    title: string;
+    value: string;
+    titleKey: string;
     systemImage?: SFSymbolName | '';
     image?: string;
     labelStyle?: SDKLabelStyle;
@@ -60,10 +60,10 @@ export interface TabSectionProps extends TabContentProps {
     }[];
     children: ReactNode;
 }
-export interface TabsProps extends ViewProps {
+export interface TabViewProps extends ViewProps {
     selection: string;
-    onSelectionChange: (id: string) => void;
-    onReselect?: (id: string) => void;
+    onSelectionChange: (value: string) => void;
+    onReselect?: (value: string) => void;
     revision?: number;
     tabViewStyle?: TabViewStyle;
     tabBarVisibility?: Visibility;

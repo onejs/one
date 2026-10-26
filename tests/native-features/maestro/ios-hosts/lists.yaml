@@ -1,0 +1,89 @@
+appId: dev.vxrn.native.tests
+name: lists
+---
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-lists
+      ANCHOR: "List style: automatic"
+- assertVisible: "Apple"
+- assertVisible: "Banana"
+- assertVisible: "Carrot"
+- assertVisible: "Ripe"
+- assertVisible: "IsOn: false"
+- takeScreenshot: lists-initial
+- tapOn: "List button"
+- assertVisible: "List taps: 1"
+# Ripe switch knob (row right edge - 25)
+- tapOn:
+    point: "345,497"
+- assertVisible: "IsOn: true"
+- tapOn:
+    id: one-native-list-style
+- assertVisible: "List style: plain"
+- assertVisible: "Apple"
+- repeat:
+    while:
+      notVisible: "Carrot"
+    times: 24
+    commands:
+      - swipe:
+          start: "200,550"
+          end: "200,450"
+          duration: 300
+- assertVisible: "Carrot"
+- tapOn:
+    id: one-native-list-style
+- assertVisible: "List style: grouped"
+- repeat:
+    while:
+      notVisible: "Carrot"
+    times: 24
+    commands:
+      - swipe:
+          start: "200,550"
+          end: "200,450"
+          duration: 300
+- assertVisible: "Carrot"
+- takeScreenshot: lists-grouped
+# LazyVStack: first rows mounted, last not yet
+- assertVisible: "Row 1"
+- assertNotVisible: "Row 30"
+- repeat:
+    while:
+      notVisible: "Row 30"
+    times: 24
+    commands:
+      - swipe:
+          start: "200,740"
+          end: "200,640"
+          duration: 300
+- assertVisible: "Row 30"
+# LazyHStack
+- assertVisible: "Chip 1"
+- assertNotVisible: "Chip 20"
+- repeat:
+    while:
+      notVisible: "Chip 20"
+    times: 24
+    commands:
+      - swipe:
+          start: "280,805"
+          end: "120,805"
+          duration: 300
+- assertVisible: "Chip 20"
+- takeScreenshot: lists-scrolled
+- repeat:
+    times: 2
+    commands:
+      - runFlow:
+          file: _reopen.yaml
+          env:
+            ROUTE: nativefeatures://app/one-native-lists
+            ANCHOR: "List style: automatic"
+      - assertVisible: "IsOn: false"
+      - assertVisible: "List taps: 0"
+      - assertVisible: "Apple"
+      - tapOn:
+          point: "345,497"
+      - assertVisible: "IsOn: true"

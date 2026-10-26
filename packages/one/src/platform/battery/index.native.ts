@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import { NitroModules } from 'react-native-nitro-modules'
+import { batteryNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
-import type { OneBattery } from '../specs/OneBattery.nitro'
 import type {
   BatteryLevelEvent,
   BatteryPowerModeEvent,
@@ -26,15 +25,9 @@ export type {
 } from './types'
 
 // battery level, state and low power mode matching expo-battery, backed by
-// the OneBattery nitro hybrid object (created on first use and cached).
-// the first listener starts the native monitor, so the first event can
-// never race the subscription.
-let hybrid: OneBattery | undefined
-
-function native(): OneBattery {
-  hybrid ??= NitroModules.createHybridObject<OneBattery>('OneBattery')
-  return hybrid
-}
+// the battery backend: generated sdk bindings on ios, the OneBattery nitro
+// hybrid object everywhere else. the first listener starts the native
+// monitor, so the first event can never race the subscription.
 
 function getLevel(): Promise<number> {
   return native().getLevel().catch(rethrowNativeError)

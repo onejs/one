@@ -1,15 +1,7 @@
+import { keepAwakeNative as native } from './backend'
 import { useEffect, useId } from 'react'
-import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
-import type { OneKeepAwake } from '../specs/OneKeepAwake.nitro'
 import { assertKeepAwakeEnabled, assertKeepAwakeTag, normalizeKeepAwakeTag } from './validate'
-
-let hybrid: OneKeepAwake | undefined
-
-function native(): OneKeepAwake {
-  hybrid ??= NitroModules.createHybridObject<OneKeepAwake>('OneKeepAwake')
-  return hybrid
-}
 
 function isEnabled(): Promise<boolean> {
   return native().isEnabled().catch(rethrowNativeError)

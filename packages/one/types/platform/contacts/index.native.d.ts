@@ -1,5 +1,5 @@
 import type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus } from '../specs/OneContacts.nitro';
-export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus };
+export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus, };
 declare function getPermissionStatus(): ContactsPermissionStatus;
 declare function requestPermission(): Promise<ContactsPermissionStatus>;
 declare function pickContact(): Promise<ContactInfo | undefined>;

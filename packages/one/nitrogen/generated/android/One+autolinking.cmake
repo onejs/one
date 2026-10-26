@@ -86,6 +86,8 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneQuickActionsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneScreenCaptureSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneScreenOrientationSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneSDKHandleSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneSDKSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneSecureStoreSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneShareSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneSpeechSpec.cpp

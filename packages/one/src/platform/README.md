@@ -209,8 +209,8 @@ export function App() {
   const [selection, setSelection] = useState('inbox')
   const [lastAction, setLastAction] = useState('none')
   return (
-    <One.iOS.Tabs selection={selection} onSelectionChange={setSelection}>
-      <One.iOS.Tab id="inbox" title="Inbox" systemImage="tray" badge="3">
+    <One.iOS.TabView selection={selection} onSelectionChange={setSelection}>
+      <One.iOS.Tab value="inbox" titleKey="Inbox" systemImage="tray" badge="3">
         <View style={{ flex: 1, padding: 24 }}>
           <Text>Last action: {lastAction}</Text>
           <One.iOS.Menu
@@ -224,15 +224,15 @@ export function App() {
           </One.iOS.Menu>
         </View>
       </One.iOS.Tab>
-      <One.iOS.Tab id="settings" title="Settings" systemImage="gearshape">
+      <One.iOS.Tab value="settings" titleKey="Settings" systemImage="gearshape">
         <Text>Ordinary React Native content goes here.</Text>
       </One.iOS.Tab>
-    </One.iOS.Tabs>
+    </One.iOS.TabView>
   )
 }
 ```
 
-`One.iOS.Tabs` owns a SwiftUI `TabView` hosted by a Fabric component. It has no
+`One.iOS.TabView` owns a SwiftUI `TabView` hosted by a Fabric component. It has no
 React Navigation dependency. Each keyed page hosts ordinary RN views through
 `UIViewRepresentable`, preserving the React tree and its providers. SwiftUI's
 bounded page allocation updates Fabric state directly; Yoga lays out the RN
@@ -245,7 +245,7 @@ selection synchronously in the callback to accept it; asynchronous decisions
 should keep the old selection until ready. A newer pending tap ignores an older
 acknowledgement.
 
-Tabs require unique nonempty `id` values, a selection naming a mounted tab, and
+TabView requires unique nonempty `id` values, a selection naming a mounted tab, and
 direct `One.iOS.Tab` children (arrays and conditional children are supported).
 One direct `One.iOS.Toolbar` may accompany the tabs. It attaches its items to the
 TabView's own bar, so they share the system's vertical bar when the tab bar is
@@ -266,8 +266,8 @@ legacy `TabView`, which has no roles.
 
 ```tsx
 <One.iOS.Tab
-  id="compose"
-  title="Compose"
+  value="compose"
+  titleKey="Compose"
   systemImage="plus"
   role="search"
   onPress={openComposer}
@@ -301,7 +301,7 @@ updates plus an external `revision` reset. Other iOS versions remain unproven.
 Android Menu rejects picker items until that popup supports native picker
 selection; `onPickerChange` is not forwarded to the Android trigger View.
 
-`One.iOS.Tabs` covers SwiftUI's TabView surface. Every prop mirrors the SwiftUI name and
+`One.iOS.TabView` covers SwiftUI's TabView surface. Every prop mirrors the SwiftUI name and
 takes the SDK's own values; unsupported values, and values above the runtime iOS version,
 are rejected before submitting native props.
 
@@ -322,24 +322,24 @@ are rejected before submitting native props.
 | View modifiers on a tab's content, such as `ignoresSafeArea(_:edges:)` | `One.iOS.Tab` `swiftStyle` |
 
 ```tsx
-<One.iOS.Tabs
+<One.iOS.TabView
   selection={selection}
   onSelectionChange={setSelection}
   tabViewStyle="sidebarAdaptable"
   swiftStyle={{ tabBarMinimizeBehavior: 'onScrollDown' }}
 >
-  <One.iOS.Tab id="home" title="Home" systemImage="house">...</One.iOS.Tab>
+  <One.iOS.Tab value="home" titleKey="Home" systemImage="house">...</One.iOS.Tab>
   <One.iOS.TabSection id="library" title="Library" sectionActions={[{ id: 'add', title: 'Add', systemImage: 'plus', onPress: add }]}>
-    <One.iOS.Tab id="songs" title="Songs" systemImage="music.note" customizationID="songs">...</One.iOS.Tab>
+    <One.iOS.Tab value="songs" titleKey="Songs" systemImage="music.note" customizationID="songs">...</One.iOS.Tab>
   </One.iOS.TabSection>
-  <One.iOS.Tab id="search" title="Search" systemImage="magnifyingglass" role="search">...</One.iOS.Tab>
+  <One.iOS.Tab value="search" titleKey="Search" systemImage="magnifyingglass" role="search">...</One.iOS.Tab>
   <One.iOS.TabViewBottomAccessory>...</One.iOS.TabViewBottomAccessory>
   <One.iOS.Toolbar>
     <One.iOS.ToolbarItem placement="topBarTrailing">
       <One.iOS.Button label="Reload" systemImage="arrow.clockwise" onPress={reload} />
     </One.iOS.ToolbarItem>
   </One.iOS.Toolbar>
-</One.iOS.Tabs>
+</One.iOS.TabView>
 ```
 
 On a foldable (measured on the iOS 27.1 iPhone Duo simulator with
@@ -386,7 +386,7 @@ chrome has nothing to attach to.
 ```
 
 Like a tab bar, a pager takes the box it is given, so it needs its own box
-rather than a seat inside a `One.iOS.Host` or `One.iOS.ZStack`.
+rather than a seat inside a `One.iOS.VStack` or `One.iOS.ZStack`.
 
 The menu's children supply its visual trigger. The SwiftUI menu owns that
 trigger's interaction and accessibility label; use a `View` or any React Native layout
@@ -433,20 +433,18 @@ function Controls() {
         label="Letter"
         selection={letter}
         onSelectionChange={setLetter}
-        options={[
-          { value: 'alpha', label: 'Alpha' },
-          { value: 'beta', label: 'Beta' },
-        ]}
-        pickerStyle="menu"
-      />
+        swiftStyle={{ pickerStyle: 'menu' }}
+      >
+        <One.iOS.Text text="Alpha" swiftStyle={{ tag: 'alpha' }} />
+        <One.iOS.Text text="Beta" swiftStyle={{ tag: 'beta' }} />
+      </One.iOS.Picker>
       <One.iOS.DatePicker
         label="Appointment"
         selection={when}
         onSelectionChange={setWhen}
-        minimumDate={new Date('2026-01-01T00:00:00Z')}
-        maximumDate={new Date('2026-12-31T23:59:59Z')}
+        in={[new Date('2026-01-01T00:00:00Z'), new Date('2026-12-31T23:59:59Z')]}
         displayedComponents="date"
-        datePickerStyle="compact"
+        swiftStyle={{ datePickerStyle: 'compact' }}
       />
       <One.iOS.ColorPicker
         label="Accent"
@@ -459,16 +457,14 @@ function Controls() {
         label="Volume"
         value={volume}
         onValueChange={setVolume}
-        minimumValue={0}
-        maximumValue={100}
+        in={[0, 100]}
         step={5}
       />
       <One.iOS.Stepper
         label="Guests"
         value={guests}
         onValueChange={setGuests}
-        minimumValue={0}
-        maximumValue={10}
+        in={[0, 10]}
         step={1}
       />
     </View>
@@ -476,40 +472,47 @@ function Controls() {
 }
 ```
 
-`Picker` options are `{ value, label }` strings. The list must not be empty,
-values must be unique, and `selection` must match one of them. Supported
-`pickerStyle` values are `automatic`, `menu`, `segmented`, `wheel`, `inline`,
-`tabs`, and `palette`.
+`Picker` options are `Text` children whose `swiftStyle.tag` is the option
+value, as in SwiftUI's `Picker` content builder. Tags must be unique, and
+`selection` must match one of them. Options must be direct `Text` children;
+`Text` nested in Fragments or custom wrappers is rejected. `pickerStyle` is
+a SwiftUI modifier set through `swiftStyle`, and its supported values are
+`automatic`, `menu`, `segmented`, `wheel`, `inline`, `tabs`, and `palette`.
+Outside a Form, a segmented Picker keeps its natural width; pass
+`swiftStyle={{ pickerStyle: 'segmented', maxWidth: Infinity }}` to fill the row.
+Inside a Form row it fills on its own.
 `palette` is accepted outside Menu; on an iOS 27 iPhone it presented as a
 segmented Picker. Earlier iOS presentations are unproven. A Picker embedded
 in Menu content uses the `Menu` item's `type: 'picker'` shape above.
-`navigationLink` throws because it requires a native
-navigation context. Outside a native Form, iOS renders the inline
+`navigationLink` needs an enclosing NavigationStack to push its choices.
+Outside a native Form, iOS renders the inline
 picker as a wheel; the standalone host reserves the same height.
 
-`DatePicker` `selection`, `minimumDate`, and `maximumDate` are `Date` values.
-Omitted bounds default to a wide range. The selection must be a finite date inside
-that range, and `minimumDate` must not be after `maximumDate`.
+`DatePicker` `selection` and `in` bounds are `Date` values. An omitted `in`
+defaults to a wide range. The selection must be a finite date inside
+that range, and the lower bound must not be after the upper bound.
 `displayedComponents` is `date`, `hourAndMinute`, or `dateAndTime` (default).
-`datePickerStyle` is `automatic`, `compact`, `graphical`, or `wheel`.
+`datePickerStyle` is a `swiftStyle` modifier: `automatic`, `compact`, `graphical`, or `wheel`.
 
 `ColorPicker` `selection` is `#RRGGBB` or `#RRGGBBAA`. `supportsOpacity` defaults
 to true.
 
-`Toggle` `isOn` is a boolean or a `useNativeState` handle. `toggleStyle` is `automatic`, `button`, or `switch`.
+`Toggle` `isOn` is a boolean or a `useNativeState` handle. `toggleStyle` is a `swiftStyle` modifier: `automatic`, `button`, or `switch`.
 `systemImage` is an optional SF Symbol shown beside the label through SwiftUI's
 `Toggle(_:systemImage:isOn:)`; an omitted image keeps the text-only toggle.
 
-`Slider` and `Stepper` take finite `value`, `minimumValue`, `maximumValue`, and
-`step` numbers. `minimumValue` must be less than `maximumValue`, `step` must be
-greater than 0, and `value` must sit in that range. Defaults are 0, 100, and 1.
+`Slider` and `Stepper` take finite `value`, `in` bounds, and `step` numbers.
+The lower bound must be less than the upper bound, `step` must be
+greater than 0, and `value` must sit in that range. `in` defaults to
+[0, 100] and `step` to 1.
 
 `Slider` takes text at each end of the track with `minimumValueLabel` and
 `maximumValueLabel`, and SF Symbol names there with `minimumValueImage` and
 `maximumValueImage`. An image wins over a label on the same side. A slider that
 sets none of the four keeps SwiftUI's label-free slider.
 
-Every control also accepts `label`, `disabled`, and `revision`.
+Every control also accepts `label` and `revision`. Disable one with
+`swiftStyle={{ disabled: true }}`.
 
 ## Buttons, indicators, and text input
 
@@ -529,34 +532,32 @@ function Leaves() {
       <One.iOS.Label label="Starred" systemImage="star.fill" />
       <One.iOS.Image
         systemName="star.fill"
-        symbolRenderingMode="hierarchical"
-        imageScale="medium"
+        swiftStyle={{ symbolRenderingMode: 'hierarchical', imageScale: 'medium' }}
       />
       <One.iOS.Button
         label="Delete"
         systemImage="trash"
         buttonRole="destructive"
-        buttonStyle="bordered"
+        swiftStyle={{ buttonStyle: 'bordered' }}
         onPress={() => remove()}
       />
       <One.iOS.ProgressView label="Uploading" value={0.4} total={1} />
-      <One.iOS.ProgressView label="Working" progressViewStyle="circular" />
+      <One.iOS.ProgressView label="Working" swiftStyle={{ progressViewStyle: 'circular' }} />
       <One.iOS.Gauge
         label="Speed"
         value={72}
-        minimumValue={0}
-        maximumValue={120}
+        in={[0, 120]}
         currentValueLabel="72"
         minimumValueLabel="0"
         maximumValueLabel="120"
-        gaugeStyle="accessoryCircular"
+        swiftStyle={{ gaugeStyle: 'accessoryCircular' }}
       />
       <One.iOS.TextField
         label="Name"
         prompt="Your name"
         text={name}
         onTextChange={setName}
-        submitLabel="done"
+        swiftStyle={{ submitLabel: 'done' }}
         onSubmit={() => save(name)}
       />
       <One.iOS.SecureField label="Password" text={secret} onTextChange={setSecret} />
@@ -567,61 +568,64 @@ function Leaves() {
 
 `Text` renders its `text` verbatim, so it never looks up a localized string. `Label`
 pairs a `label` with a required `systemImage` SF Symbol and localizes the label the way
-SwiftUI does. `Image` renders an SF Symbol with `systemName` (`SFSymbolName`, exported from `one`), optional `symbolRenderingMode`,
-`symbolVariant`, `imageScale`, and `variableValue`, or a remote image with `uri` (exactly one of
+SwiftUI does. `Image` renders an SF Symbol with `systemName` (`SFSymbolName`, exported from `one`), optional `variableValue`, or a remote image with `uri` (exactly one of
 the two). A `uri` image loads into `Image(uiImage:)`, fills the frame `swiftStyle` gives it, and
 keeps its own colors, so as a `Button`'s label in a toolbar it becomes the bar item's image: the
 iPhone Duo's edge dock takes it into the item's pill, where `AsyncImage` would stay page content.
 `renderingMode: 'template'` draws it as a template instead, so an app asset glyph takes the
 bar's tint like an SF Symbol.
+`symbolRenderingMode`, `symbolVariant`, and `imageScale` are SwiftUI modifiers set through
+`swiftStyle`.
 All three are display only: they have no events and no controlled value, and they are most useful
 as rows inside a container.
 
 `Button` needs a `label`, a `systemImage`, or children. With only a `systemImage` it
 renders the bare symbol with no title spacing reserved, centered in the button
 frame. With children, the children are the label view (`Button(action:) { label }`)
-and the `label`, `systemImage`, and `subtitle` props must be omitted; passing both
+and the `label` and `systemImage` props must be omitted; passing both
 is a validation error. `Text` stays text-only and never takes children. `buttonRole`
 is `destructive`, `cancel`, `confirm`, `close`, or empty for none; it is named
 `buttonRole` because React Native's `ViewProps` already owns `role` for the
-accessibility role. `confirm` and `close` need iOS 26. `buttonStyle` is
-`automatic`, `plain`, `borderless`, `bordered`, `borderedProminent`, `glass`,
+accessibility role. `confirm` and `close` need iOS 26. The `buttonStyle`
+modifier in `swiftStyle` is `automatic`, `plain`, `borderless`, `bordered`, `borderedProminent`, `glass`,
 or `glassProminent`; the two `glass` styles need iOS 26. Values above the
 runtime version throw from the adapter. `onPress` does
-not fire while `disabled`. `disclosureIndicator` shapes the button as the row iOS uses
-for something that opens: the label, a `Spacer`, and a trailing secondary chevron,
-filling the width the button is given. It is what makes a `Button` inside a `One.iOS.Form`
-read as "Change flight >".
+not fire while `swiftStyle.disabled` is true.
 
 `ProgressView` shows determinate progress when `value` is set and an
 indeterminate spinner when it is omitted. `total` defaults to 1 and must be
-greater than 0; `value` must sit between 0 and `total`. `progressViewStyle` is
-`automatic`, `linear`, or `circular`.
+greater than 0; `value` must sit between 0 and `total`. The `progressViewStyle`
+modifier in `swiftStyle` is `automatic`, `linear`, or `circular`.
 
-`Gauge` takes finite `value`, `minimumValue` (default 0), and `maximumValue`
-(default 1), with `value` inside that range. `currentValueLabel`,
+`Gauge` takes finite `value` and `in` bounds (default [0, 1]),
+with `value` inside that range. `currentValueLabel`,
 `minimumValueLabel`, and `maximumValueLabel` are plain strings; an empty string
-renders empty text rather than omitting the label. `gaugeStyle` is `automatic`,
+renders empty text rather than omitting the label. The `gaugeStyle` modifier in
+`swiftStyle` is `automatic`,
 `linearCapacity`, `accessoryLinear`, `accessoryLinearCapacity`,
 `accessoryCircular`, or `accessoryCircularCapacity`.
 
 `TextField` and `SecureField` take a controlled `text` string and report edits
 through `onTextChange`, using the same acknowledgement and `revision` reset as the
-other controls. `prompt` is the placeholder. `submitLabel` names the return key
-and `onSubmit` fires when it is pressed. `textInputAutocapitalization` is `never`,
-`words`, `sentences`, or `characters`; an empty value leaves the system default.
-`autocorrectionDisabled` defaults to false. `TextField` also takes `axis`:
-`vertical` makes it grow to multiple lines.
+other controls. `prompt` is the placeholder, and `onSubmit` fires when
+return is pressed. `TextField` also takes `axis`: `vertical` makes it grow to
+multiple lines.
+
+`textFieldStyle`, `submitLabel`, `textInputAutocapitalization`,
+`autocorrectionDisabled`, `keyboardType`, and `textContentType` are SwiftUI
+modifiers set through `swiftStyle`, using SwiftUI's case names. `submitLabel` names
+the return key. `textInputAutocapitalization` is `never`, `words`, `sentences`, or
+`characters`. `keyboardType` sets UIKit's `UIKeyboardType` (`default`, `numberPad`,
+`decimalPad`, `emailAddress`, `URL`, etc.), and `textContentType` configures
+semantic text content; `null` means none.
 
 Programmatic focus is controlled through `focused` and `onFocusChange` using the shared
-controlled protocol, mapped to SwiftUI's `@FocusState`. `keyboardType` sets UIKit's
-`UIKeyboardType` (`default`, `numberPad`, `decimalPad`, `emailAddress`, etc.) and `textContentType`
-configures semantic text content.
+controlled protocol, mapped to SwiftUI's `@FocusState`.
 
 `TextEditor` is SwiftUI's multi-line editor. It takes the same controlled `text`,
-`onTextChange`, `revision`, `focused`, `textInputAutocapitalization`,
-`autocorrectionDisabled`, `keyboardType`, and `textContentType` as `TextField`, and
-nothing else: SwiftUI gives it no label, placeholder, style, or submit, and return
+`onTextChange`, `revision`, and `focused` as `TextField`, plus the
+`textInputAutocapitalization`, `autocorrectionDisabled`, `keyboardType`, and
+`textContentType` modifiers in `swiftStyle`, and nothing else: SwiftUI gives it no label, placeholder, style, or submit, and return
 inserts a newline. It has no ideal size, so it fills the box React Native gives it
 and scrolls its text inside that box. Name it with `accessibilityLabel`.
 
@@ -1075,11 +1079,10 @@ event-count and `detentRevision` protocol used by other controlled values.
 interaction is `automatic`, `resizes`, or `scrolls`. Presentation sizing is
 `automatic`, `fitted`, `form`, or `page`; it needs iOS 18 and is ignored below it.
 
-`fitToContents` derives a height detent from the mounted React Native child's laid-out
-height. Use a fixed or intrinsically sized outer child and do not give it `flex: 1`;
+`presentationSizing: 'fitted'` sizes the sheet to its content's ideal height.
+Use a fixed or intrinsically sized outer child and do not give it `flex: 1`;
 a flexible child asks to fill the provisional sheet and therefore has no smaller
-content height to fit. Fit mode owns its detent, so it cannot be combined with
-`selectedDetent` or an `enabledUpThrough` background interaction.
+content height to fit.
 
 Presented sheet content reports Fabric slot state with a local origin. The content
 host supplies a touch handler because presentation leaves the RN surface, the same
@@ -1110,7 +1113,7 @@ own way out, or React must set `isPresented` back to false.
 
 `One.iOS.NavigationStack` is a real SwiftUI `NavigationStack` whose root is the React Native
 content beside it, and `One.iOS.Toolbar` fills its navigation bar with real SwiftUI toolbar
-content. A `One.iOS.Toolbar` directly under `One.iOS.Tabs` attaches to the TabView instead.
+content. A `One.iOS.Toolbar` directly under `One.iOS.TabView` attaches to the TabView instead.
 Use the container whose bar owns the actions.
 
 ```tsx
@@ -1130,14 +1133,13 @@ function Mailbox() {
           <One.iOS.ToolbarItem placement="principal">
             <One.iOS.Picker
               label="Mailbox"
-              pickerStyle="segmented"
+              swiftStyle={{ pickerStyle: 'segmented', maxWidth: Infinity }}
               selection={page}
               onSelectionChange={setPage}
-              options={[
-                { value: 'inbox', label: 'Inbox' },
-                { value: 'archive', label: 'Archive' },
-              ]}
-            />
+            >
+              <One.iOS.Text text="Inbox" swiftStyle={{ tag: 'inbox' }} />
+              <One.iOS.Text text="Archive" swiftStyle={{ tag: 'archive' }} />
+            </One.iOS.Picker>
           </One.iOS.ToolbarItem>
           <One.iOS.ToolbarItem placement="topBarTrailing">
             <One.iOS.Button
@@ -1161,7 +1163,7 @@ A stack takes the box React Native gives it, so give it a height or a flex paren
 React Native children are the stack's root: SwiftUI proposes that box and Yoga lays the
 subtree out inside it, the same contract a `One.iOS.Tab` page follows. `One.iOS.Toolbar`
 elements are read by the stack and never render where they are written, so they are
-direct children beside the content rather than inside it. Tabs accepts one direct
+direct children beside the content rather than inside it. TabView accepts one direct
 toolbar; a toolbar written outside either container is an error rather than a silent
 no-op. More than one stack toolbar merges in declaration order.
 
@@ -1202,7 +1204,7 @@ The stack is the bar and the content, not a navigation path: `path`, `navigation
 and `NavigationLink` are not bound, so pushing and popping screens is still React's.
 Customizable toolbars are not bound either: `ToolbarItem(id:)`, `toolbar(id:)`,
 `defaultCustomization`, and `toolbarCustomizationBehavior` need a toolbar customization
-protocol the way `One.iOS.Tabs` carries `TabViewCustomization`.
+protocol the way `One.iOS.TabView` carries `TabViewCustomization`.
 
 Depend on `one` and rebuild the app after installing pods. `tests/native-features/app/one-native.tsx` exercises
 selection, reordered pages with local state, and nested menus. Control, sheet, and
@@ -1217,25 +1219,24 @@ device/automation constraints.
 
 ## Native composition
 
-`One.iOS.Host` renders One Native controls as one SwiftUI tree instead of one hosting
-controller per control, and reports the height SwiftUI measured back to Yoga. It takes
-no height of its own.
+`One.iOS.HStack` and `One.iOS.VStack` render One Native controls as one SwiftUI tree
+instead of one hosting controller per control, and report the height SwiftUI measured
+back to Yoga. They take no height of their own.
 
 ```tsx
-<One.iOS.Host axis="vertical" spacing={12} alignment="leading">
+<One.iOS.VStack alignment="leading" spacing={12}>
   <One.iOS.Toggle label="Notifications" isOn={on} onIsOnChange={setOn} />
   <One.iOS.Stepper label="Servings" value={servings} onValueChange={setServings} />
   <One.iOS.Button label="Save" onPress={save} />
-</One.iOS.Host>
+</One.iOS.VStack>
 ```
 
-`axis` is `vertical` or `horizontal`, `spacing` is the gap between children in points,
-and `alignment` (`leading`, `center`, `trailing`) is the cross axis, so it places
-children horizontally down a column and vertically across a row.
-
-`One.iOS.HStack` and `One.iOS.VStack` are that host with the axis fixed, so a row is
-`<One.iOS.HStack spacing={8} alignment="center">` and a column is
-`<One.iOS.VStack spacing={8} alignment="leading">`. Neither takes an `axis`.
+Both are generated from SwiftUI's `HStack` and `VStack` and take their arguments:
+`alignment` is the cross axis, a `VerticalAlignment` (`top`, `center`, `bottom`,
+`firstTextBaseline`, `lastTextBaseline`) for a row and a `HorizontalAlignment`
+(`leading`, `center`, `trailing`, `listRowSeparatorLeading`, `listRowSeparatorTrailing`)
+for a column. It defaults to `center`. `spacing` is the gap between children in points;
+unset, SwiftUI picks the system spacing between each pair.
 
 A composed child is still its own Fabric component, so its props, events, enum
 validation and controlled state work exactly as they do standalone. What changes is
@@ -1250,20 +1251,19 @@ Two consequences worth knowing:
   `testID`, `accessibilityLabel`, `backgroundColor` or `onLayout` on a composed
   `One.iOS.Toggle` has no effect. SwiftUI supplies the accessibility element instead, so
   the control is still reachable, under SwiftUI's own label. Put React Native props on
-  the `One.iOS.Host` itself.
+  the stack itself.
 - A child's own `height` style is ignored. The host measures, so the layout comes from
   SwiftUI.
 
 Children are One Native controls, One Native containers, and `One.iOS.Slot`, which is how
 a React Native subtree gets into the SwiftUI tree.
 
-`One.iOS.Host` and `One.iOS.Form` can override the SwiftUI environment for their entire
-composed subtree with `colorScheme`, `dynamicTypeSize`, `controlSize`, `locale`,
-`tint`, and `isEnabled`. `controlSize` is `mini`, `small`, `regular`, `large`, or
-`extraLarge`, and sizes the controls in the subtree the way SwiftUI's
-`.controlSize(_:)` does. Omitted props preserve values inherited from an outer
-SwiftUI container.
-RAN on iOS 27: a bordered prominent Button inside `Host controlSize` and a
+A stack sets the SwiftUI environment for its composed subtree through `swiftStyle`,
+as SwiftUI does with modifiers: `swiftStyle={{ controlSize: 'large' }}` sizes every
+control inside the way `.controlSize(_:)` does. `One.iOS.Form` also takes
+`colorScheme`, `dynamicTypeSize`, `controlSize`, `locale`, `tint`, and `isEnabled`
+props. Omitted values preserve those inherited from an outer SwiftUI container.
+RAN on iOS 27: a bordered prominent Button inside the former `Host controlSize` and a
 standalone Button using `swiftStyle.controlSize` both grew from 28 to 50.33
 points when changed from `mini` to `extraLarge`, and returned to 28 points
 when restored. The ten-check proof (five control-size checks) is in
@@ -1360,7 +1360,7 @@ proof.
 ```
 
 Like a form, a list is greedy: it fills its box rather than reporting an ideal
-height, so it cannot be a child of a `One.iOS.Host` or `One.iOS.ZStack` either.
+height, so it cannot be a child of a `One.iOS.VStack` or `One.iOS.ZStack` either.
 Wrap one row in `One.iOS.ViewSlot name="listRowBackground"` and put a native
 background view in `One.iOS.ViewSlot.Content` to use SwiftUI's row background.
 The background child can change with React state.
@@ -1400,6 +1400,7 @@ host sizes and scroll content remain unproven.
 iPhone fixture places the native inset action on the selected side of its base
 inside a bounded host, and both actions reach React. Scroll content and other
 container sizes remain unproven.
+A standalone `Overlay` or `ViewSlot` reports the height SwiftUI measured back to Yoga, like a ZStack.
 
 `One.iOS.ScrollView` scrolls One Native content vertically by default,
 horizontally with `axes="horizontal"`, or both ways with `axes="both"`.
@@ -1443,6 +1444,7 @@ iOS 27 may clamp a negative row gap to zero.
 child directly in the grid spans its columns, as in SwiftUI. `Grid` takes
 `alignment`, `horizontalSpacing`, and `verticalSpacing`; each `GridRow` can
 override the vertical alignment. Grid rows must be direct children of a grid.
+Like a ZStack, a standalone Grid reports the height SwiftUI measured back to Yoga.
 
 `One.iOS.ArrangementView` (iOS 27.1+) hosts a primary and secondary pane with
 SwiftUI's `automatic`, `split`, or `overlay` arrangement. Use direct
@@ -1489,7 +1491,7 @@ measures its chosen child and vertical fit is unbounded.
 SDK-derived `controlGroupStyle` (`automatic`, `palette`, `navigation`,
 `menu`, or `compactMenu`). The `label` and `systemImage` are plain strings;
 an empty label renders no title. Standalone it reports its native height to
-React Native; inside a `One.iOS.Host`, the parent measures its SwiftUI content.
+React Native; inside a `One.iOS.VStack`, the parent measures its SwiftUI content.
 An explicit `style.height` keeps the requested React Native height.
 
 `One.iOS.DisclosureGroup` is the controlled expandable section: `label` names
@@ -1497,7 +1499,7 @@ it, `isExpanded` with `onIsExpandedChange` owns its state under the same
 acknowledgement and `revision` reset as the other controlled values, so
 keeping the old value in the callback refuses the toggle and rolls the
 native state back. Standalone it reports its collapsed or expanded native
-height to React Native; inside a `One.iOS.Host` or `One.iOS.ZStack`, the parent
+height to React Native; inside a `One.iOS.VStack` or `One.iOS.ZStack`, the parent
 measures it as composed SwiftUI content. It also composes inside
 `One.iOS.ViewThatFits`. An explicit `style.height` keeps that React Native
 height while SwiftUI expands within the box.
@@ -1562,8 +1564,8 @@ A `Form` is height-greedy by default and reports no ideal height, so it fills th
 React Native gives it: give it a height or a flex parent. `sizing="content"` flips it:
 the form reports the height SwiftUI measured, so a form embedded in a sheet wraps its
 rows instead of filling the screen. Either way a `Form` cannot be a child of a
-`One.iOS.Host`. A host measures what it holds, SwiftUI answers zero for a form, and
-the form then renders nothing at all; `One.iOS.Host` throws instead of rendering a blank.
+stack. A stack measures what it holds, SwiftUI answers zero for a form, and the form
+then renders nothing at all; the stack throws instead of rendering a blank.
 A host inside a form or a section works, and so does a section inside a host.
 
 ### React Native inside the SwiftUI tree
@@ -1616,7 +1618,7 @@ glass; setting `material` alone instead draws that material. `interactive` is in
 of the variant, matching `Glass.interactive(_:)`, so clear and regular glass can both
 react to touch. `tint` maps only to `Glass.tint(_:)`; it does not change the accent color
 of controls inside the container. `colorScheme` (`light` or `dark`) sets the appearance
-the surface and its children draw in, as it does on `One.iOS.Host`, so glass over a dark
+the surface and its children draw in, as it does in a stack's `swiftStyle`, so glass over a dark
 band can stay dark while the app is light.
 
 `shape` accepts `capsule`, `circle`, `containerRelativeShape`, `ellipse`, `rectangle`,
@@ -1666,10 +1668,8 @@ function ExamplePopover() {
       isPresented={open}
       onIsPresentedChange={setOpen}
       presentationCompactAdaptation="popover"
-      contentWidth={260}
-      contentHeight={160}
       content={
-        <View style={{ flex: 1, padding: 12 }}>
+        <View style={{ width: 260, height: 160, padding: 12 }}>
           <Text>Popover body</Text>
           <Pressable onPress={() => setOpen(false)}>
             <Text>Close</Text>
@@ -1685,13 +1685,13 @@ function ExamplePopover() {
 
 `isPresented` and `onIsPresentedChange` use the same controlled protocol as the sheet,
 so a tap outside the popover reaches React as a change. SwiftUI sizes a popover from its
-content and a React Native subtree has no ideal size, so `contentWidth` and
-`contentHeight` are required. `arrowEdge` is an `Edge`; leaving it out takes SwiftUI's
-own placement. `presentationCompactAdaptation` is a `PresentationAdaptation`, and its
-default of `automatic` shows the body as a sheet on an iPhone; pass `popover` for a
-popover there.
+content. Give the content a fixed size and do not give it `flex: 1`; a flexible child
+fills the provisional popover and has no smaller size to fit. `arrowEdge` is an `Edge`;
+leaving it out takes SwiftUI's own placement. `presentationCompactAdaptation` is a
+`PresentationAdaptation`, and its default of `automatic` shows the body as a sheet on an
+iPhone; pass `popover` for a popover there.
 
-The trigger reports the height SwiftUI measured back to Yoga, exactly as `One.iOS.Host`
+The trigger reports the height SwiftUI measured back to Yoga, exactly as `One.iOS.VStack`
 does, so never give a popover a height. A popover is a container, so it composes into a
 form, a section or a host, and its trigger can be any One Native content.
 
@@ -1828,12 +1828,12 @@ binding, slot, or layout behavior. The SDK does not supply that React integratio
 
 Fabric children carry RN subtrees. Pure native content uses typed data props;
 a host can support both. Menu nodes flatten to `parentId` records because RN
-codegen cannot express recursive object arrays. Tabs use keyed Fabric children
+codegen cannot express recursive object arrays. TabView uses keyed Fabric children
 because each page contains a live React subtree. Leaf controls use data props.
 Sheets host RN children in a presented slot. A NavigationStack hosts RN children
 in an inline slot and reads Toolbar markers as toolbar content.
 
-Tabs, menu toggles, pickers, form controls, and sheets share optimistic native
+TabView, menu toggles, pickers, form controls, and sheets share optimistic native
 state and numbered acknowledgments. Update React state synchronously in the
 callback to accept an interaction. Keeping the prior value rejects it when the
 event is acknowledged. Increment `revision` to force a new value while earlier

@@ -131,7 +131,41 @@ export async function createSsrServerlessFunction(
     }
 
     const exported = await import(route.serverJsPath.replace('${outDir}/','../'))
-    const loaderData = await exported.loader?.(loaderProps)
+
+    // a document request has the query of the page. a loader request has it under
+    // the reserved transport key, because its own query holds __loader and route
+    // params. a rewritten page path also carries the route params as query keys.
+    const { loaderResponseToModule, prepareSsrLoaderProps, readLoaderSearch } = entry.default.loaderRequest;
+    const pageUrl = new URL(url);
+    if (/\\[|%5B/i.test(url.pathname)) {
+      for (const param of paramNames) pageUrl.searchParams.delete(param.name);
+    }
+    const search = isLoaderRequest ? readLoaderSearch(url) : pageUrl.search;
+
+    const sendResponse = async (response) => {
+      res.statusCode = response.status;
+      response.headers.forEach((value, key) => res.setHeader(key, value));
+      res.end(Buffer.from(await response.arrayBuffer()));
+    };
+
+    // validation runs before the loader, a thrown Response (a rejected query, a
+    // redirect, an error status) is the answer
+    let loaderData;
+    let preparedLoaderProps = loaderProps;
+    try {
+      preparedLoaderProps = prepareSsrLoaderProps(exported, loaderProps, search);
+      loaderData = await exported.loader?.(preparedLoaderProps);
+    } catch (err) {
+      if (!(err instanceof Response)) throw err;
+      if (isLoaderRequest) {
+        const moduleResponse = loaderResponseToModule(err, url);
+        res.setHeader('Cache-Control', 'no-store');
+        await sendResponse(moduleResponse);
+      } else {
+        await sendResponse(err);
+      }
+      return;
+    }
 
     // For loader requests, return the loader data as a JavaScript module
     if (isLoaderRequest) {
@@ -148,7 +182,7 @@ export async function createSsrServerlessFunction(
     const rendered = await render({
       mode: route.type,
       loaderData,
-      loaderProps,
+      loaderProps: preparedLoaderProps,
       path: loaderProps?.path || '/',
       preloads,
       css,

@@ -7,6 +7,7 @@ on:
       - v2-beta
     paths:
       - '.github/actions/install/**'
+      - '.github/actions/android-sdk-package-cache/**'
       - '.github/workflows/test-native-android.yml'
       - 'bun.lock'
       - 'package.json'
@@ -19,6 +20,7 @@ on:
   pull_request:
     paths:
       - '.github/actions/install/**'
+      - '.github/actions/android-sdk-package-cache/**'
       - '.github/workflows/test-native-android.yml'
       - 'bun.lock'
       - 'package.json'
@@ -42,15 +44,27 @@ jobs:
     name: Compile One Native Android consumer
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    env:
+      # the app and One use the root's 27.1 pin; webgpu uses AGP's 28.2 default.
+      ANDROID_SDK_PACKAGES: 'platform-tools platforms;android-37.0 build-tools;37.0.0 ndk;27.1.12297006 ndk;28.2.13676358 cmake;3.22.1'
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '17'
+      - uses: ./.github/actions/android-sdk-package-cache
+        with:
+          packages: ${{ env.ANDROID_SDK_PACKAGES }}
       - uses: android-actions/setup-android@v4
         with:
-          packages: 'platform-tools platforms;android-37.0 build-tools;37.0.0 ndk;27.1.12297006 cmake;3.22.1'
+          packages: ${{ env.ANDROID_SDK_PACKAGES }}
+      # pushes write the package cache, pull requests read it.
+      - if: ${{ github.event_name != 'pull_request' }}
+        uses: ./.github/actions/android-sdk-package-cache
+        with:
+          packages: ${{ env.ANDROID_SDK_PACKAGES }}
+          save: 'true'
       # caches gradle dependencies and the wrapper; pushes write it, pull requests read it.
       - uses: gradle/actions/setup-gradle@v4
         with:
@@ -125,6 +139,7 @@ jobs:
             launch-screen-proof: '1'
     env:
       FIXTURE_AVD_IMAGE: 'system-images;android-37.0;google_apis;x86_64'
+      ANDROID_SDK_PACKAGES: 'platform-tools emulator platforms;android-37.0 build-tools;37.0.0 system-images;android-37.0;google_apis;x86_64'
       FIXTURE_PACKAGE: dev.vxrn.nativefeatures.tests
       FIXTURE_SERIAL: emulator-5554
     steps:
@@ -139,9 +154,17 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - uses: ./.github/actions/android-sdk-package-cache
+        with:
+          packages: ${{ env.ANDROID_SDK_PACKAGES }}
       - uses: android-actions/setup-android@v4
         with:
-          packages: "platform-tools emulator platforms;android-37.0 build-tools;37.0.0 ${{ env.FIXTURE_AVD_IMAGE }}"
+          packages: ${{ env.ANDROID_SDK_PACKAGES }}
+      - if: ${{ github.event_name != 'pull_request' }}
+        uses: ./.github/actions/android-sdk-package-cache
+        with:
+          packages: ${{ env.ANDROID_SDK_PACKAGES }}
+          save: 'true'
       - uses: ./.github/actions/install
         with:
           install-playwright: 'false'
@@ -163,6 +186,11 @@ jobs:
           adb -s "$FIXTURE_SERIAL" shell getprop ro.build.version.sdk
           # a failing suite saves its logcat; the default ring drops a suite's start.
           adb -s "$FIXTURE_SERIAL" logcat -G 16M
+          # a system app that stops responding on the busy emulator raises a
+          # dialog over the fixture app, and the suites read only that window.
+          # android then ends the stalled app without a dialog; the suite loop
+          # fails a suite on the fixture app's own crash or hang.
+          adb -s "$FIXTURE_SERIAL" shell settings put global hide_error_dialogs 1
           # a fresh image opens chrome on its first-run screen, which covers the
           # auth tab the browser suite drives; chrome reads these flags from
           # /data/local/tmp once it is the debug app.
@@ -182,26 +210,48 @@ jobs:
           ONE_NATIVE_LAUNCH_SCREEN_PROOF='${{ matrix.launch-screen-proof }}' \
             nohup bun run dev --port 8081 > "$RUNNER_TEMP/dev-server.log" 2>&1 &
           until curl -s -o /dev/null http://localhost:8081/; do sleep 2; done
-          # warm the same lazy graph requested by the debug app before its mount wait.
+          # match the native dev request's lazy graph; Metro keys eager and lazy graphs separately.
           curl -sSf -o /dev/null 'http://localhost:8081/index.bundle?platform=android&dev=true&lazy=true'
           failed=()
           for suite in $FIXTURE_SUITES; do
             echo "::group::$suite"
-            adb -s "$FIXTURE_SERIAL" logcat -b all -c
-            if bun scripts/one-native-conformance.android.ts --device-id "$FIXTURE_SERIAL" \
+            evidence="$RUNNER_TEMP/fixtures/$suite"
+            mkdir -p "$evidence"
+            status=0
+            adb -s "$FIXTURE_SERIAL" logcat -b all -c > "$evidence/logcat-clear.txt" 2>&1 || status=$?
+            bun scripts/one-native-conformance.android.ts --device-id "$FIXTURE_SERIAL" \
               --package-id "$FIXTURE_PACKAGE" --suite "$suite" \
-              --artifact-dir "$RUNNER_TEMP/fixtures/$suite"; then
+              --artifact-dir "$RUNNER_TEMP/fixtures/$suite" || status=$?
+            # error dialogs are hidden, so the fixture app's own crash or hang,
+            # even one after its last check passed, fails the suite from the event log.
+            observer_status=0
+            adb -s "$FIXTURE_SERIAL" logcat -d -b events -s am_crash am_anr \
+              > "$evidence/events.txt" 2> "$evidence/events-error.txt" || observer_status=$?
+            if [ "$observer_status" != 0 ]; then
+              echo "event log read failed: $observer_status"
+              status=1
+            else
+              match_status=0
+              # event fields begin with user id, pid, and the exact process name.
+              grep -E "\[[0-9]+,[0-9]+,${FIXTURE_PACKAGE//./\\.}(:[^,]+)?," \
+                "$evidence/events.txt" 2> "$evidence/events-match-error.txt" || match_status=$?
+              if [ "$match_status" != 1 ]; then
+                echo "fixture crash/ANR match status: $match_status"
+                status=1
+              fi
+            fi
+            if [ "$status" = 0 ]; then
               echo "SUITE PASS $suite"
             else
               echo "SUITE FAIL $suite"
               failed+=("$suite")
               # what the device saw: launched intents, input and focus moves,
               # touch mode and the input method's target.
-              evidence="$RUNNER_TEMP/fixtures/$suite"
-              mkdir -p "$evidence"
               adb -s "$FIXTURE_SERIAL" logcat -d -v threadtime -b main,system,events,crash > "$evidence/logcat.txt" || true
               adb -s "$FIXTURE_SERIAL" shell dumpsys window > "$evidence/dumpsys-window.txt" || true
               adb -s "$FIXTURE_SERIAL" shell dumpsys input_method > "$evidence/dumpsys-input-method.txt" || true
+              adb -s "$FIXTURE_SERIAL" shell dumpsys notification --noredact > "$evidence/dumpsys-notification.txt" || true
+              adb -s "$FIXTURE_SERIAL" shell dumpsys activity service com.android.systemui/.SystemUIService > "$evidence/dumpsys-systemui.txt" || true
             fi
             echo "::endgroup::"
           done

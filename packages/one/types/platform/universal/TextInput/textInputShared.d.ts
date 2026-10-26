@@ -1,13 +1,12 @@
 import type { KeyboardTypeOptions, ReturnKeyTypeOptions } from 'react-native';
-import type { KeyboardType, TextContentType } from '../../textTypes';
+import type { SDKKeyboardType, SDKSubmitLabel, SDKTextContentType } from '../../generated/controlTypes';
 import type { TextInputProps } from './textInputTypes';
 export declare function resolveEditable(editable: boolean | undefined, readOnly: boolean | undefined): boolean;
 export declare function inputModeToKeyboardType(inputMode: TextInputProps['inputMode']): KeyboardTypeOptions | undefined;
 export declare function enterKeyHintToReturnKeyType(enterKeyHint: TextInputProps['enterKeyHint']): ReturnKeyTypeOptions | undefined;
-export declare function autoCompleteToTextContentType(autoComplete: string | undefined): TextContentType | undefined;
-export declare function iosKeyboardType(value: KeyboardTypeOptions): KeyboardType;
-export type IosSubmitLabel = 'done' | 'go' | 'send' | 'join' | 'route' | 'search' | 'return' | 'next' | 'continue';
-export declare function iosSubmitLabel(value: ReturnKeyTypeOptions): IosSubmitLabel;
+export declare function autoCompleteToTextContentType(autoComplete: string | undefined): SDKTextContentType | null | undefined;
+export declare function iosKeyboardType(value: KeyboardTypeOptions): SDKKeyboardType;
+export declare function iosSubmitLabel(value: ReturnKeyTypeOptions): SDKSubmitLabel;
 export type AndroidKeyboardType = 'default' | 'number' | 'decimal' | 'email' | 'password' | 'phone' | 'url';
 export declare function androidKeyboardType(value: KeyboardTypeOptions): AndroidKeyboardType;
 export type AndroidImeAction = 'default' | 'none' | 'go' | 'search' | 'send' | 'previous' | 'next' | 'done';

@@ -3,7 +3,6 @@ export type PrintResult = {
     completed: boolean;
 };
 export interface OnePrint extends HybridObject<{
-    ios: 'swift';
     android: 'kotlin';
 }> {
     isAvailable(): Promise<boolean>;

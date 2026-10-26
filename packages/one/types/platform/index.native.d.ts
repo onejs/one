@@ -1,6 +1,9 @@
-import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, GlassEffectContainer, GeometryReader, Group, GroupBox, ViewThatFits, HStack, Host, LabeledContent, LazyHStack, LazyVStack, LazyHGrid, LazyVGrid, Grid, GridRow, Link, List, ScrollView, ScrollViewReader, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
+import { Angle, Gradient, Path } from './canvas';
+import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, GlassEffectContainer, GeometryReader, TimelineView, OutlineGroup, Table, Canvas, Group, GroupBox, ViewThatFits, HStack, LabeledContent, LazyHStack, LazyVStack, LazyHGrid, LazyVGrid, Grid, GridRow, Link, List, ScrollView, ScrollViewReader, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
 import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './AndroidMenu';
 import { Page, Pager } from './Pager.native';
+import { UIKitView } from './UIKitView.native';
+import { collectionCellSource, tableCellSource, UIKitContent } from './UIKitContent.native';
 import { Popover } from './Popover.native';
 import { NavigationStack, ToolbarItem, ToolbarItemGroup, ToolbarSpacer } from './NavigationStack.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
@@ -8,7 +11,8 @@ import { withAnimation } from './withAnimation.native';
 import { KeyframeAnimator, PhaseAnimator } from './Animators.native';
 import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes';
 import { Map as MapWithControls } from './mapControls.native';
-import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native';
+import { Picker as PickerWithChildren } from './pickerChildren.native';
+import { Tab, TabView, TabSection, TabViewBottomAccessory, TabViewSlot } from './TabView.native';
 import { Compose } from './compose';
 import * as UI from './effects';
 import { Widgets, LiveActivities, WidgetUI } from './widgets/index';
@@ -27,20 +31,19 @@ export type { ArrangementViewProps, ArrangementPaneProps, ArrangementViewStyle, 
 declare const Menu: typeof AndroidMenu;
 declare const ContextMenu: typeof AndroidContextMenu;
 export declare const Swift: {
-    Picker({ selection, onSelectionChange, revision, label, disabled, options, pickerStyle, swiftStyle, style, ...props }: import("./types").PickerProps): import("react").JSX.Element;
-    DatePicker({ selection, onSelectionChange, revision, label, disabled, minimumDate, maximumDate, displayedComponents, datePickerStyle, swiftStyle, style, ...props }: import("./types").DatePickerProps): import("react").JSX.Element;
-    ColorPicker({ selection, onSelectionChange, revision, label, disabled, supportsOpacity, swiftStyle, style, ...props }: import("./types").ColorPickerProps): import("react").JSX.Element;
-    MultiDatePicker({ selection, onSelectionChange, revision, label, disabled, minimumDate, maximumDate, swiftStyle, style, ...props }: import("./types").MultiDatePickerProps): import("react").JSX.Element;
-    Toggle({ isOn, onIsOnChange, revision, label, disabled, systemImage, toggleStyle, swiftStyle, style, ...props }: import("./types").ToggleProps): import("react").JSX.Element;
-    Slider({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, minimumValueLabel, maximumValueLabel, minimumValueImage, maximumValueImage, swiftStyle, style, ...props }: import("./types").SliderProps): import("react").JSX.Element;
-    Stepper({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, swiftStyle, style, ...props }: import("./types").StepperProps): import("react").JSX.Element;
-    PasteButton({ onPaste, disabled, swiftStyle, style, ...props }: import("./types").PasteButtonProps): import("react").JSX.Element;
+    DatePicker({ selection, onSelectionChange, revision, label, in: range, displayedComponents, swiftStyle, style, ...props }: import("./types").DatePickerProps): import("react").JSX.Element;
+    ColorPicker({ selection, onSelectionChange, revision, label, supportsOpacity, swiftStyle, style, ...props }: import("./types").ColorPickerProps): import("react").JSX.Element;
+    MultiDatePicker({ selection, onSelectionChange, revision, label, in: range, swiftStyle, style, ...props }: import("./types").MultiDatePickerProps): import("react").JSX.Element;
+    Toggle({ isOn, onIsOnChange, revision, label, systemImage, swiftStyle, style, ...props }: import("./types").ToggleProps): import("react").JSX.Element;
+    Slider({ value, onValueChange, revision, label, in: range, step, minimumValueLabel, maximumValueLabel, minimumValueImage, maximumValueImage, swiftStyle, style, ...props }: import("./types").SliderProps): import("react").JSX.Element;
+    Stepper({ value, onValueChange, revision, label, in: range, step, swiftStyle, style, ...props }: import("./types").StepperProps): import("react").JSX.Element;
+    PasteButton({ onPaste, swiftStyle, style, ...props }: import("./types").PasteButtonProps): import("react").JSX.Element;
     Text({ text, swiftStyle, style, ...props }: import("./types").TextProps): import("react").JSX.Element;
-    Label({ label, disabled, systemImage, swiftStyle, style, ...props }: import("./types").LabelProps): import("react").JSX.Element;
-    ProgressView({ label, disabled, value, total, progressViewStyle, swiftStyle, style, ...props }: import("./types").ProgressViewProps): import("react").JSX.Element;
-    Gauge({ label, disabled, value, minimumValue, maximumValue, currentValueLabel, minimumValueLabel, maximumValueLabel, gaugeStyle, swiftStyle, style, ...props }: import("./types").GaugeProps): import("react").JSX.Element;
-    Image({ systemName, uri, renderingMode, symbolRenderingMode, symbolVariant, imageScale, variableValue, colorRole, resizable, swiftStyle, style, ...props }: import("./types").ImageProps): import("react").JSX.Element;
-    ShareLink({ label, disabled, systemImage, item, itemType, subject, message, swiftStyle, style, ...props }: import("./types").ShareLinkProps): import("react").JSX.Element;
+    Label({ label, systemImage, swiftStyle, style, ...props }: import("./types").LabelProps): import("react").JSX.Element;
+    ProgressView({ label, value, total, swiftStyle, style, ...props }: import("./types").ProgressViewProps): import("react").JSX.Element;
+    Gauge({ label, value, in: range, currentValueLabel, minimumValueLabel, maximumValueLabel, swiftStyle, style, ...props }: import("./types").GaugeProps): import("react").JSX.Element;
+    Image({ systemName, uri, renderingMode, variableValue, resizable, swiftStyle, style, ...props }: import("./types").ImageProps): import("react").JSX.Element;
+    ShareLink({ label, systemImage, item, itemType, subject, message, swiftStyle, style, ...props }: import("./types").ShareLinkProps): import("react").JSX.Element;
     ContentUnavailableView({ onAction, title, systemImage, description, actions, swiftStyle, style, ...props }: import("./types").ContentUnavailableViewProps): import("react").JSX.Element;
     Circle({ fill, strokeBorder, lineWidth, swiftStyle, style, ...props }: import("./types").CircleProps): import("react").JSX.Element;
     Capsule({ fill, strokeBorder, lineWidth, swiftStyle, style, ...props }: import("./types").CapsuleProps): import("react").JSX.Element;
@@ -56,17 +59,17 @@ export declare const Swift: {
     MeshGradient({ meshWidth, meshHeight, points, colors, background, smoothsColors, colorSpace, swiftStyle, style, ...props }: import("./types").MeshGradientProps): import("react").JSX.Element;
     VideoPlayer({ onPlaybackStatus, url, autoplay, command, commandRevision, seekToMs, swiftStyle, style, ...props }: import("./types").VideoPlayerProps): import("react").JSX.Element;
     LivePhotoView({ onPlaybackState, assetIdentifier, autoplay, command, commandRevision, swiftStyle, style, ...props }: import("./types").LivePhotoViewProps): import("react").JSX.Element;
-    PhotosPicker({ onPick, onPickItemIdentifier, onPickError, label, disabled, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: import("./types").PhotosPickerProps): import("react").JSX.Element;
+    PhotosPicker({ onPick, onPickItemIdentifier, onPickError, label, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: import("./types").PhotosPickerProps): import("react").JSX.Element;
     WebView({ onNavigate, onTitleChange, onLoadingChange, onLoadStart, onLoadEnd, onError, onHttpError, onMessage, onHistoryChange, onProcessTerminate, url, html, script, command, commandRevision, commandValue, limitsNavigationsToAppBoundDomains, inlineMedia, inspectable, bounces, backForwardNavigationGestures, magnificationGestures, linkPreviews, elementFullscreen, contentBackground, swiftStyle, style, ...props }: import("./types").WebViewProps): import("react").JSX.Element;
     SignInWithAppleButton({ onCompletion, requestedScopes, nonce, label, swiftStyle, style, ...props }: import("./types").SignInWithAppleButtonProps): import("react").JSX.Element;
-    PayWithApplePayButton({ onPress, label, payWithApplePayButtonStyle, disabled, swiftStyle, style, ...props }: import("./types").PayWithApplePayButtonProps): import("react").JSX.Element;
-    AddPassToWalletButton({ onPress, addPassToWalletButtonStyle, disabled, swiftStyle, style, ...props }: import("./types").AddPassToWalletButtonProps): import("react").JSX.Element;
+    PayWithApplePayButton({ onPress, label, swiftStyle, style, ...props }: import("./types").PayWithApplePayButtonProps): import("react").JSX.Element;
+    AddPassToWalletButton({ onPress, swiftStyle, style, ...props }: import("./types").AddPassToWalletButtonProps): import("react").JSX.Element;
     MapCompass({ swiftStyle, style, ...props }: import("./types").MapCompassProps): import("react").JSX.Element;
     MapPitchToggle({ swiftStyle, style, ...props }: import("./types").MapPitchToggleProps): import("react").JSX.Element;
     MapUserLocationButton({ swiftStyle, style, ...props }: import("./types").MapUserLocationButtonProps): import("react").JSX.Element;
-    TextField({ text, onTextChange, revision, focused, onFocusChange, focusRevision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, keyboardType, textContentType, axis, swiftStyle, style, ...props }: import("./types").TextFieldProps): import("react").JSX.Element;
-    SecureField({ text, onTextChange, revision, focused, onFocusChange, focusRevision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, keyboardType, textContentType, swiftStyle, style, ...props }: import("./types").SecureFieldProps): import("react").JSX.Element;
-    TextEditor({ text, onTextChange, revision, focused, onFocusChange, focusRevision, disabled, textInputAutocapitalization, autocorrectionDisabled, keyboardType, textContentType, swiftStyle, style, ...props }: import("./types").TextEditorProps): import("react").JSX.Element;
+    TextField({ text, onTextChange, revision, focused, onFocusChange, focusRevision, onSubmit, label, prompt, axis, swiftStyle, style, ...props }: import("./types").TextFieldProps): import("react").JSX.Element;
+    SecureField({ text, onTextChange, revision, focused, onFocusChange, focusRevision, onSubmit, label, prompt, swiftStyle, style, ...props }: import("./types").SecureFieldProps): import("react").JSX.Element;
+    TextEditor({ text, onTextChange, revision, focused, onFocusChange, focusRevision, swiftStyle, style, ...props }: import("./types").TextEditorProps): import("react").JSX.Element;
     Alert({ isPresented, onIsPresentedChange, revision, onAction, title, message, presenting, actions, swiftStyle, style, ...props }: import("./types").AlertProps): import("react").JSX.Element;
     ConfirmationDialog({ isPresented, onIsPresentedChange, revision, onAction, title, message, presenting, actions, titleVisibility, swiftStyle, style, ...props }: import("./types").ConfirmationDialogProps): import("react").JSX.Element;
     QuickLook({ isPresented, onIsPresentedChange, revision, url, swiftStyle, style, ...props }: import("./types").QuickLookProps): import("react").JSX.Element;
@@ -87,7 +90,7 @@ export declare const Swift: {
         Leading: typeof import("./ArrangementView.native").ArrangementPrimary;
         Detail: typeof import("./ArrangementView.native").ArrangementSecondary;
     };
-    Tabs: typeof Tabs;
+    TabView: typeof TabView;
     Tab: typeof Tab;
     TabSection: typeof TabSection;
     TabViewBottomAccessory: typeof TabViewBottomAccessory;
@@ -97,7 +100,6 @@ export declare const Swift: {
     Sheet: typeof Sheet;
     FullScreenCover: typeof FullScreenCover;
     Popover: typeof Popover;
-    Host: typeof Host;
     HStack: typeof HStack;
     VStack: typeof VStack;
     ZStack: typeof ZStack;
@@ -106,6 +108,95 @@ export declare const Swift: {
     Glass: typeof Glass;
     GlassEffectContainer: typeof GlassEffectContainer;
     GeometryReader: typeof GeometryReader;
+    TimelineView: typeof TimelineView;
+    OutlineGroup: typeof OutlineGroup;
+    Table: typeof Table;
+    Canvas: typeof Canvas;
+    Angle: typeof Angle;
+    Path: typeof Path;
+    Shading: {
+        color(color: import("react-native").ColorValue): {
+            kind: 'color';
+            color: import("react-native").ColorValue;
+        } | {
+            kind: 'linearGradient';
+            gradient: Gradient;
+            startPoint: import("./canvas").CanvasPoint;
+            endPoint: import("./canvas").CanvasPoint;
+        } | {
+            kind: 'radialGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            startRadius: number;
+            endRadius: number;
+        } | {
+            kind: 'conicGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            angle: Angle;
+        };
+        linearGradient(gradient: Gradient, startPoint: import("./canvas").CanvasPoint, endPoint: import("./canvas").CanvasPoint): {
+            kind: 'color';
+            color: import("react-native").ColorValue;
+        } | {
+            kind: 'linearGradient';
+            gradient: Gradient;
+            startPoint: import("./canvas").CanvasPoint;
+            endPoint: import("./canvas").CanvasPoint;
+        } | {
+            kind: 'radialGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            startRadius: number;
+            endRadius: number;
+        } | {
+            kind: 'conicGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            angle: Angle;
+        };
+        radialGradient(gradient: Gradient, center: import("./canvas").CanvasPoint, startRadius: number, endRadius: number): {
+            kind: 'color';
+            color: import("react-native").ColorValue;
+        } | {
+            kind: 'linearGradient';
+            gradient: Gradient;
+            startPoint: import("./canvas").CanvasPoint;
+            endPoint: import("./canvas").CanvasPoint;
+        } | {
+            kind: 'radialGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            startRadius: number;
+            endRadius: number;
+        } | {
+            kind: 'conicGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            angle: Angle;
+        };
+        conicGradient(gradient: Gradient, center: import("./canvas").CanvasPoint, angle_?: Angle): {
+            kind: 'color';
+            color: import("react-native").ColorValue;
+        } | {
+            kind: 'linearGradient';
+            gradient: Gradient;
+            startPoint: import("./canvas").CanvasPoint;
+            endPoint: import("./canvas").CanvasPoint;
+        } | {
+            kind: 'radialGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            startRadius: number;
+            endRadius: number;
+        } | {
+            kind: 'conicGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            angle: Angle;
+        };
+    };
+    Gradient: typeof Gradient;
     LabeledContent: typeof LabeledContent;
     Button: typeof Button;
     List: typeof List;
@@ -120,6 +211,10 @@ export declare const Swift: {
     ControlGroup: typeof ControlGroup;
     DisclosureGroup: typeof DisclosureGroup;
     Divider: typeof Divider;
+    UIKitView: typeof UIKitView;
+    UIKitContent: typeof UIKitContent;
+    collectionCellSource: typeof collectionCellSource;
+    tableCellSource: typeof tableCellSource;
     Link: typeof Link;
     Group: typeof Group;
     GroupBox: typeof GroupBox;
@@ -158,6 +253,7 @@ export declare const Swift: {
     CubicKeyframe: typeof CubicKeyframe;
     MoveKeyframe: typeof MoveKeyframe;
     Map: typeof MapWithControls;
+    Picker: typeof PickerWithChildren;
 };
 export { Compose };
 export { Notifications } from './notifications';

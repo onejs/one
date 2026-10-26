@@ -33,7 +33,13 @@ global.performance = global.performance || { now: function() { return Date.now()
 // hermes can expose addEventListener without the matching removal API. browser
 // libraries use addEventListener as their capability check, then crash during
 // cleanup. keep the incomplete host API from advertising browser event support.
-if (typeof global.addEventListener === 'function' && typeof global.removeEventListener !== 'function') {
+// the bundle runs at script scope, so a module's own top-level
+// function addEventListener declaration is also this global; only a native host function is cleared.
+if (
+  typeof global.addEventListener === 'function' &&
+  typeof global.removeEventListener !== 'function' &&
+  Function.prototype.toString.call(global.addEventListener).indexOf('[native code]') !== -1
+) {
   global.addEventListener = undefined;
 }
 

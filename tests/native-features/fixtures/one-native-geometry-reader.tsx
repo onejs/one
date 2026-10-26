@@ -1,4 +1,11 @@
-import { Component, useCallback, useEffect, useState, type ReactNode } from 'react'
+import {
+  Component,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
@@ -38,6 +45,27 @@ export default function OneNativeGeometryReader() {
   const [frame, setFrame] = useState('none')
   const [staticChild, setStaticChild] = useState(false)
   const [nativeChild, setNativeChild] = useState(false)
+  const traceState = useRef({ sequence: 0, startedAt: 0 })
+  const trace = useCallback((event: string, detail?: unknown) => {
+    // diagnostics must not change the action or error they observe.
+    try {
+      const now = Date.now()
+      const state = traceState.current
+      if (!state.startedAt) state.startedAt = now
+      console.info(
+        '[geometry-reader-fixture]',
+        ++state.sequence,
+        now - state.startedAt,
+        event,
+        detail
+      )
+    } catch {}
+  }, [])
+
+  useEffect(() => trace('ready'), [trace])
+  useEffect(() => {
+    if (nativeChild) trace('native-child-committed')
+  }, [nativeChild, trace])
 
   const onFrame = useCallback((geometry: GeometrySnapshot) => {
     const frame = geometry.frame('global')
@@ -70,7 +98,10 @@ export default function OneNativeGeometryReader() {
           accessibilityRole="button"
           style={styles.action}
           testID="one-native-geometry-reader-invalid-native"
-          onPress={() => setNativeChild(true)}
+          onPress={() => {
+            trace('native-child-press')
+            setNativeChild(true)
+          }}
         >
           <Text style={styles.actionText}>Native child</Text>
         </Pressable>
@@ -92,9 +123,20 @@ export default function OneNativeGeometryReader() {
         </Boundary>
       ) : null}
       {nativeChild ? (
-        <Boundary testID="one-native-geometry-reader-native-error">
-          <One.iOS.GeometryReader>
-            {(() => <View />) as unknown as () => ReactNode}
+        <Boundary
+          testID="one-native-geometry-reader-native-error"
+          onError={(error) => trace('native-child-boundary', error)}
+        >
+          <One.iOS.GeometryReader
+            testID="one-native-geometry-reader-invalid-native-view"
+            onLayout={(event) => trace('native-child-layout', event.nativeEvent.layout)}
+          >
+            {
+              (() => {
+                trace('native-child-builder')
+                return <View />
+              }) as unknown as () => ReactNode
+            }
           </One.iOS.GeometryReader>
         </Boundary>
       ) : null}
@@ -103,12 +145,15 @@ export default function OneNativeGeometryReader() {
 }
 
 class Boundary extends Component<
-  { children: ReactNode; testID: string },
+  { children: ReactNode; testID: string; onError?: (error: unknown) => void },
   { error: string }
 > {
   state = { error: '' }
   static getDerivedStateFromError(error: unknown) {
     return { error: error instanceof Error ? error.message : String(error) }
+  }
+  componentDidCatch(error: unknown) {
+    this.props.onError?.(error)
   }
   render() {
     if (!this.state.error) return this.props.children

@@ -1,4 +1,3 @@
-import { execFileSync } from 'node:child_process'
 import { runZoomWithAppium } from '../scripts/one-native-zoom-appium'
 import { describe, test, expect, beforeAll, afterAll } from 'vitest'
 import { getWebDriverConfig } from '@vxrn/test/ios'
@@ -21,39 +20,6 @@ async function dismissExpectedRenderError(driver: Browser, expectedMessage: stri
   expect(await message.getText()).toContain(expectedMessage)
   await (await waitForElement(driver, 'Dismiss')).click()
   await inspector.waitForDisplayed({ reverse: true, timeout: 30_000 })
-}
-
-function getSimulatorUdid(driver: Browser) {
-  const capabilities = driver.capabilities as Record<string, any>
-  return (
-    capabilities?.udid ||
-    capabilities?.['appium:udid'] ||
-    capabilities?.['appium:options']?.udid ||
-    process.env.SIMULATOR_UDID ||
-    'booted'
-  )
-}
-
-function openSimulatorUrl(driver: Browser, url: string) {
-  execFileSync('xcrun', ['simctl', 'openurl', getSimulatorUdid(driver), url], {
-    stdio: 'inherit',
-  })
-}
-
-// springboard asks before opening the app from a url, and on a loaded host the
-// prompt can appear seconds after `simctl openurl` returns.
-async function acceptOpenUrlPrompt(driver: Browser) {
-  await driver.waitUntil(
-    async () => {
-      try {
-        await driver.acceptAlert()
-        return true
-      } catch {
-        return false
-      }
-    },
-    { timeout: 30_000, timeoutMsg: 'the open url prompt never appeared' }
-  )
 }
 
 describe('one native integration tests', () => {
@@ -198,8 +164,10 @@ describe('one native integration tests', () => {
         await navigateTo(driver, '/')
         await waitForElement(driver, 'home-screen', { timeout: 30_000 })
 
-        openSimulatorUrl(driver, 'nativefeatures://app/deep-link/123')
-        await acceptOpenUrlPrompt(driver)
+        // let ios resolve the registered scheme without springboard's remembered prompt.
+        await driver.execute('mobile: deepLink', {
+          url: 'nativefeatures://app/deep-link/123',
+        })
 
         await waitForElement(driver, 'deep-link-screen', { timeout: 30_000 })
 
@@ -1244,6 +1212,135 @@ describe('one native integration tests', () => {
         'one-native-geometry-reader-native-error'
       )
       expect(await error.getText()).toContain('takes SwiftUI children')
+    })
+  })
+
+  // -- timeline view (WRITTEN, device legs not RAN: device proof belongs to the lane) --
+
+  describe('One Native Timeline View', () => {
+    test('periodic schedule delivers entries from native', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-timeline-view')
+      const view = await waitForElement(driver, 'one-native-timeline-view-periodic', {
+        timeout: 30_000,
+      })
+      expect(await view.isDisplayed()).toBe(true)
+
+      const status = await waitForElement(driver, 'one-native-timeline-view-status')
+      await status.waitUntil(
+        async () => {
+          const match = (await status.getText()).match(/Entries: (\d+)/)
+          return match !== null && Number(match[1]) >= 3
+        },
+        { timeout: 15_000, timeoutMsg: 'periodic timeline did not deliver three entries' }
+      )
+
+      await captureScreenshot(driver, 'one-native-timeline-view-periodic')
+    })
+
+    test('explicit schedule delivers native entries in order', sharedTestOptions, async () => {
+      const view = await waitForElement(driver, 'one-native-timeline-view-explicit')
+      const trail = view.$('XCUIElementTypeStaticText')
+      await view.waitUntil(
+        async () => (await trail.getText()) === 'explicit entries 0 1',
+        { timeout: 10_000, timeoutMsg: 'explicit timeline did not deliver its entries in order' }
+      )
+      await captureScreenshot(driver, 'one-native-timeline-view-explicit')
+    })
+
+    test('an invalid schedule throws instead of mounting', sharedTestOptions, async () => {
+      const invalid = await waitForElement(driver, 'one-native-timeline-view-invalid')
+      await invalid.click()
+      await dismissExpectedRenderError(driver, 'Swift.TimelineView schedule must be')
+      const error = await waitForElement(driver, 'one-native-timeline-view-schedule-error')
+      expect(await error.getText()).toContain('schedule must be')
+    })
+  })
+
+  // -- outline group --
+
+  describe('One Native Outline Group', () => {
+    test('tree rows mount and a branch discloses its children', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-outline-group')
+      const list = await waitForElement(driver, 'one-native-outline-group-list', {
+        timeout: 30_000,
+      })
+      expect(await list.isDisplayed()).toBe(true)
+      const documents = await waitForElement(driver, 'Documents')
+      expect(await documents.isDisplayed()).toBe(true)
+      await captureScreenshot(driver, 'one-native-outline-group-collapsed')
+
+      // in a selectable sidebar list, the row label selects and its child button discloses.
+      const documentsDisclosure = documents.$('./XCUIElementTypeButton')
+      await documentsDisclosure.waitForDisplayed({ timeout: 30_000 })
+      await documentsDisclosure.click()
+      const reports = await waitForElement(driver, 'Reports')
+      expect(await reports.isDisplayed()).toBe(true)
+      await captureScreenshot(driver, 'one-native-outline-group-expanded')
+    })
+
+    test('adding a child to a leaf gives it a disclosure row', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-outline-group-add')).click()
+      const photos = await waitForElement(driver, 'Photos')
+      const photosDisclosure = photos.$('./XCUIElementTypeButton')
+      await photosDisclosure.waitForDisplayed({ timeout: 30_000 })
+      await photosDisclosure.click()
+      const trip = await waitForElement(driver, 'Trip')
+      expect(await trip.isDisplayed()).toBe(true)
+    })
+
+    test('a repeated id throws instead of mounting', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-outline-group-invalid')).click()
+      await dismissExpectedRenderError(driver, 'Swift.OutlineGroup item id x appears twice')
+      const error = await waitForElement(driver, 'one-native-outline-group-id-error')
+      expect(await error.getText()).toContain('appears twice')
+    })
+  })
+
+  // -- table (WRITTEN, device legs not RAN: device proof belongs to the lane) --
+
+  describe('One Native Table', () => {
+    test('the first column draws one cell per row', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-table')
+      const table = await waitForElement(driver, 'one-native-table-table', { timeout: 30_000 })
+      expect(await table.isDisplayed()).toBe(true)
+      for (const name of ['Ada', 'Bo', 'Cy']) {
+        expect(await (await waitForElement(driver, name)).isDisplayed()).toBe(true)
+      }
+      await captureScreenshot(driver, 'one-native-table-ascending')
+    })
+
+    test('the controlled sort prop and re-sorted rows reach the table', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-table-descending')).click()
+      const status = await waitForElement(driver, 'one-native-table-status')
+      expect(await status.getText()).toContain('sort: name descending')
+      expect(await (await waitForElement(driver, 'Cy')).isDisplayed()).toBe(true)
+      await captureScreenshot(driver, 'one-native-table-descending')
+    })
+
+    test('a repeated column id throws instead of mounting', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-table-invalid')).click()
+      await dismissExpectedRenderError(driver, 'Swift.Table column id a appears twice')
+      const error = await waitForElement(driver, 'one-native-table-column-error')
+      expect(await error.getText()).toContain('appears twice')
+    })
+  })
+
+  // -- canvas (WRITTEN, device legs not RAN: device proof belongs to the lane) --
+
+  describe('One Native Canvas', () => {
+    test('the canvases mount at the size native reports', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-canvas')
+      const scene = await waitForElement(driver, 'one-native-canvas-scene', { timeout: 30_000 })
+      expect(await scene.isDisplayed()).toBe(true)
+      expect(await (await waitForElement(driver, 'one-native-canvas-clock')).isDisplayed()).toBe(true)
+      await captureScreenshot(driver, 'one-native-canvas')
+    })
+
+    test('an opacity SwiftUI would reject throws instead of drawing', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-canvas-invalid')).click()
+      await dismissExpectedRenderError(driver, 'Swift.GraphicsContext.opacity must be between 0 and 1')
+      const error = await waitForElement(driver, 'one-native-canvas-opacity-error')
+      expect(await error.getText()).toContain('between 0 and 1')
     })
   })
 

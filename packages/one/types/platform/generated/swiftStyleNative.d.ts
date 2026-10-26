@@ -1,5 +1,5 @@
 import { type ProcessedColorValue } from 'react-native';
-import type { OneNativeStyle } from './controlTypes';
+import type { OneNativeStyle, SDKAnimationValue } from './controlTypes';
 export type OneNativeStyleNative = Readonly<{
     fontSize?: number;
     fontWeight?: string;
@@ -60,6 +60,8 @@ export type SDKEventValueShape = {
     }[];
     open?: true;
 };
+export declare function sdkValueText(value: unknown, key: string, context: string): string;
+export declare function encodeSDKAnimation(value: SDKAnimationValue, context?: string): string;
 export declare function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean;
 export declare function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeStyleNative | undefined;
 export declare function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string, value: string): void;

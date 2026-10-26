@@ -5,14 +5,12 @@ import UIKit
 
 private final class GaugeModel: ObservableObject {
   @Published var label: String = ""
-  @Published var disabled: Bool = false
   @Published var value: Double = 0
   @Published var minimumValue: Double = 0
   @Published var maximumValue: Double = 1
   @Published var currentValueLabel: String = ""
   @Published var minimumValueLabel: String = ""
   @Published var maximumValueLabel: String = ""
-  @Published var gaugeStyle: String = "automatic"
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -41,16 +39,14 @@ private final class GaugeModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ label: String, disabled: Bool, value: Double, minimumValue: Double, maximumValue: Double, currentValueLabel: String, minimumValueLabel: String, maximumValueLabel: String, gaugeStyle: String) {
+  public func configure(_ label: String, value: Double, minimumValue: Double, maximumValue: Double, currentValueLabel: String, minimumValueLabel: String, maximumValueLabel: String) {
     if model.label != label { model.label = label }
-    if model.disabled != disabled { model.disabled = disabled }
     if model.value != value { model.value = value }
     if model.minimumValue != minimumValue { model.minimumValue = minimumValue }
     if model.maximumValue != maximumValue { model.maximumValue = maximumValue }
     if model.currentValueLabel != currentValueLabel { model.currentValueLabel = currentValueLabel }
     if model.minimumValueLabel != minimumValueLabel { model.minimumValueLabel = minimumValueLabel }
     if model.maximumValueLabel != maximumValueLabel { model.maximumValueLabel = maximumValueLabel }
-    if model.gaugeStyle != gaugeStyle { model.gaugeStyle = gaugeStyle }
   }
 
 
@@ -101,8 +97,6 @@ private struct GaugeContent: View {
       } maximumValueLabel: {
         Text(model.maximumValueLabel)
       }
-      .oneNativeGaugeStyle(model.gaugeStyle)
-      .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }

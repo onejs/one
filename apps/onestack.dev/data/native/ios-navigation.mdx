@@ -95,6 +95,40 @@ function Inbox({ save }: { save: () => void }) {
   ]}
 />
 
+## Bar modifiers
+
+The stack reads these `swiftStyle` modifiers inside the `NavigationStack`, so
+each one changes the navigation bar of the stack it is set on.
+
+```tsx
+<One.iOS.NavigationStack
+  style={{ flex: 1 }}
+  swiftStyle={{
+    navigationTitleWithText: 'Accounts',
+    navigationBarTitleDisplayMode: 'inline',
+    toolbarBackground: { visibility: 'visible', bars: 'navigationBar' },
+    toolbarColorScheme: { colorScheme: 'dark', bars: 'navigationBar' },
+    navigationBarBackButtonHidden: true,
+  }}
+>
+  <Text>Your accounts.</Text>
+</One.iOS.NavigationStack>
+```
+
+| Modifier | What it changes |
+| --- | --- |
+| `navigationTitleWithText`, `navigationBarTitleDisplayMode` | The bar title, shown large or inline. |
+| `toolbarBackground`, `toolbarBackgroundVisibility` | Whether the bar draws its own background or lets content show through. |
+| `toolbarColorScheme` | The light or dark scheme the bar is drawn in. |
+| `toolbarVisibility` | Shows or hides the bar. |
+| `navigationBarBackButtonHidden` | Hides the back button on a pushed screen. |
+| `searchable` | Adds the search field and reports its text back. |
+
+The Peach simulator draws each of these for the navigation bar. A `bars`
+value other than `automatic` or `navigationBar` belongs to a tab bar or bottom
+toolbar, so Peach throws instead of guessing, as it does for any other
+navigation or toolbar modifier it does not yet draw.
+
 ## NavigationSplitView
 
 `NavigationSplitView` is SwiftUI's two or three column split view. Its direct
@@ -163,11 +197,11 @@ iOS 17 or later.
 
 ## Toolbar
 
-`Toolbar` becomes one native toolbar. In a `NavigationStack` or `Tabs`, its
+`Toolbar` becomes one native toolbar. In a `NavigationStack` or `TabView`, its
 children are `ToolbarItem`, `ToolbarItemGroup`, or `ToolbarSpacer` elements in
 order. A split view column uses `Toolbar` as a content wrapper and puts those
 entries inside `Toolbar.Content`. `NavigationStack` merges every toolbar it is
-given, and `One.iOS.Tabs` also takes a `Toolbar` child.
+given, and `One.iOS.TabView` also takes a `Toolbar` child.
 
 ```tsx
 import { One } from 'one'

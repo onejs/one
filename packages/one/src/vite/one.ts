@@ -31,16 +31,20 @@ import { createDevtoolsPlugin } from './plugins/devtoolsPlugin'
 import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
+import { loaderSearchSchemasPlugin } from './plugins/loaderSearchSchemasPlugin'
 import { criticalCSSPlugin } from './plugins/criticalCSSPlugin'
 import { imageDataPlugin } from './plugins/imageDataPlugin'
 import { createRouteModuleHmrPlugin } from './plugins/routeModuleHmrPlugin'
 import { sourceInspectorPlugin } from './plugins/sourceInspectorPlugin'
 import { swiftPackagePlugin } from './plugins/swiftPackagePlugin'
+import { iosLinkSetPlugin } from './plugins/iosLinkSetPlugin'
+import { iosSdkPlugin } from './plugins/iosSdkPlugin'
 import { kotlinSourcePlugin } from './plugins/kotlinSourcePlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
 import { environmentGuardPlugin } from './plugins/environmentGuardPlugin'
+import { useDOMPlugin } from './plugins/useDomPlugin'
 import { shouldEnableWorkerdDev } from './cloudflareWranglerConfig'
 import type { One } from './types'
 
@@ -318,7 +322,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   // native bundler, which has no vite environment and so is told its platform
   const createAliasPlugin = (
     alias: NonNullable<One.PluginOptions['alias']>,
-    nativePlatform?: 'ios' | 'android'
+    nativePlatform?: 'ios' | 'android' | 'macos' | 'linux'
   ) => {
     const resolveMap = (map?: Record<string, string>) => {
       if (!map) return null
@@ -399,7 +403,19 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     } satisfies Plugin
   }
 
+  const domPlugin = useDOMPlugin({
+    root,
+    routerRoot,
+    ignoredRouteFiles: options.router?.ignoredRouteFiles,
+    metro: !!metroOptions,
+    browserPlugins: [
+      createAliasPlugin(withAbsorbedAliases(options.alias)),
+      environmentGuardPlugin(options.environmentGuards),
+    ],
+  })
+
   const devAndProdPlugins: Plugin[] = [
+    domPlugin,
     {
       name: 'one:config',
       __get: options,
@@ -784,6 +800,26 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 }),
               },
             },
+            macos: {
+              define: {
+                ...getPlatformEnvDefine('macos'),
+                ...(nativeOptions?.suspendRoutes !== undefined && {
+                  'process.env.ONE_SUSPEND_ROUTES_NATIVE': JSON.stringify(
+                    nativeOptions.suspendRoutes ? '1' : '0'
+                  ),
+                }),
+              },
+            },
+            linux: {
+              define: {
+                ...getPlatformEnvDefine('linux'),
+                ...(nativeOptions?.suspendRoutes !== undefined && {
+                  'process.env.ONE_SUSPEND_ROUTES_NATIVE': JSON.stringify(
+                    nativeOptions.suspendRoutes ? '1' : '0'
+                  ),
+                }),
+              },
+            },
           },
 
           ssr: {
@@ -816,6 +852,16 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               },
             },
             android: {
+              define: {
+                'process.env.TAMAGUI_KEEP_THEMES': '"1"',
+              },
+            },
+            macos: {
+              define: {
+                'process.env.TAMAGUI_KEEP_THEMES': '"1"',
+              },
+            },
+            linux: {
               define: {
                 'process.env.TAMAGUI_KEEP_THEMES': '"1"',
               },
@@ -922,18 +968,26 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         ? undefined
         : (nativeOptions?.bundlerOptions as any)
 
-    globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android') => {
+    globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android' | 'macos' | 'linux') => {
       const listed: Plugin[] = [
+        domPlugin,
         backgroundComputationPlugin('native'),
         workletImportsPlugin({}),
         ...(nativeApp
           ? [
               {
                 name: 'one:externalize-expo-for-native-app',
-                resolveId(source) {
+                resolveId(source, _importer, options) {
                   // native.app binaries have no expo runtime, even when the
                   // workspace hoists an expo package used by another app.
                   if (/^(?:expo(?:-[^/]+)?|@expo\/[^/]+)(?:\/|$)/.test(source)) {
+                    // macos and linux must resolve static imports so unsupported packages fail
+                    // during bundling. optional require calls still use the runtime guard.
+                    if (
+                      (platform === 'macos' || platform === 'linux') &&
+                      options.kind !== 'require-call'
+                    )
+                      return
                     return { id: source, external: true }
                   }
                 },
@@ -951,6 +1005,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         // last, so an app plugin that compiles .swift itself (a simulator) wins
         swiftPackagePlugin(platform, root),
         kotlinSourcePlugin(platform, root),
+        iosSdkPlugin(platform, root),
+        iosLinkSetPlugin(),
       ]
     }
     ;(globalThis as any).__vxrnNativeUserDefine = {
@@ -1025,6 +1081,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
     generateFileSystemRouteTypesPlugin(options, routeIndex),
 
+    loaderSearchSchemasPlugin(options, routeIndex),
+
     fixDependenciesPlugin(options.patches),
 
     createVirtualEntry({
@@ -1063,9 +1121,17 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     ...(() => {
       const devtools = options.devtools ?? true
       const includeUI = devtools !== false
+      const devtoolsOptions = typeof devtools === 'object' ? devtools : undefined
       return [
         // always include devtools plugin for refresh preamble (required for HMR)
-        createDevtoolsPlugin({ includeUI }),
+        createDevtoolsPlugin({
+          includeUI,
+          plugins: devtoolsOptions?.plugins,
+          rozenite: devtoolsOptions?.rozenite,
+          // One's Vite bundler owns the native dev server. Metro mode has its
+          // own Rozenite wrapper, so mounting a second host here would fight it.
+          native: !nativeDisabled && !metroOptions,
+        }),
       ]
     })(),
   ]

@@ -1,3 +1,4 @@
+#if ONE_GROUP_MESSAGING
 import MessageUI
 import NitroModules
 import UIKit
@@ -110,3 +111,4 @@ final class OneMessageComposeDelegate: NSObject, MFMessageComposeViewControllerD
     owner?.finish(value)
   }
 }
+#endif

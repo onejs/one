@@ -6,11 +6,9 @@ import UIKit
 private final class DatePickerModel: ObservableObject {
   @Published var controlled = OneNativeControlled<Double>(0)
   @Published var label: String = ""
-  @Published var disabled: Bool = false
   @Published var minimumDate: Double = -62135769600000
   @Published var maximumDate: Double = 64092211200000
   @Published var displayedComponents: String = "dateAndTime"
-  @Published var datePickerStyle: String = "automatic"
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -19,7 +17,7 @@ private final class DatePickerModel: ObservableObject {
 
   var onChange: ((Double, Int, Int) -> Void)?
   func change(_ value: Double) {
-    guard active, !disabled, controlled.value != value else { return }
+    guard active, controlled.value != value else { return }
     controlled.change(value)
     onChange?(value, controlled.eventCount, controlled.revision)
   }
@@ -46,14 +44,12 @@ private final class DatePickerModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, minimumDate: Double, maximumDate: Double, displayedComponents: String, datePickerStyle: String) {
+  public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, label: String, minimumDate: Double, maximumDate: Double, displayedComponents: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != label { model.label = label }
-    if model.disabled != disabled { model.disabled = disabled }
     if model.minimumDate != minimumDate { model.minimumDate = minimumDate }
     if model.maximumDate != maximumDate { model.maximumDate = maximumDate }
     if model.displayedComponents != displayedComponents { model.displayedComponents = displayedComponents }
-    if model.datePickerStyle != datePickerStyle { model.datePickerStyle = datePickerStyle }
   }
 
 
@@ -102,8 +98,6 @@ private struct DatePickerContent: View {
       ), in: Date(timeIntervalSince1970: model.minimumDate / 1000)...Date(timeIntervalSince1970: model.maximumDate / 1000), displayedComponents: oneNativeDatePickerComponents(model.displayedComponents)) {
         Text(model.label)
       }
-      .oneNativeDatePickerStyle(model.datePickerStyle)
-      .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }

@@ -1,22 +1,15 @@
 import { useEffect, useState } from 'react'
-import { NitroModules } from 'react-native-nitro-modules'
-import type { OneDevice } from '../specs/OneDevice.nitro'
+import { deviceNative as native } from '../device/backend'
 import { toCalendars, toLocales } from './map'
 import type { Calendar, Locale, Localization as LocalizationApi } from './types'
 
 export type { Calendar, Locale, LocalizationApi }
 
 // expo-localization's synchronous reads plus its live hooks, backed by the
-// OneDevice nitro hybrid object (created on first use and cached). the first
-// hook subscription starts the platform locale observer and the last removal
-// stops it, so a change can never race the subscription.
-let hybrid: OneDevice | undefined
-
-function native(): OneDevice {
-  hybrid ??= NitroModules.createHybridObject<OneDevice>('OneDevice')
-  return hybrid
-}
-
+// device backend: generated sdk bindings on ios, the OneDevice nitro hybrid
+// object everywhere else. the first hook subscription starts the platform
+// locale observer and the last removal stops it, so a change can never race
+// the subscription.
 function getLocales(): [Locale, ...Locale[]] {
   return toLocales(native().getLocales())
 }

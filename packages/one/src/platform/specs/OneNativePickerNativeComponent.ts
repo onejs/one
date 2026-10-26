@@ -8,7 +8,7 @@ import type {
   WithDefault,
 } from 'react-native/Libraries/Types/CodegenTypes'
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
-type PickerOption = Readonly<{ value: string; label: string }>
+
 type OneNativeStyleNative = Readonly<{
   fontSize?: WithDefault<Double, -1>
   fontWeight?: string
@@ -46,9 +46,6 @@ interface NativeProps extends ViewProps {
   acknowledgedEvent: Int32
   revision: Int32
   label: string
-  disabled: boolean
-  options: ReadonlyArray<PickerOption>
-  pickerStyle: string
   swiftStyle?: OneNativeStyleNative
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativePickerValueChange?: DirectEventHandler<

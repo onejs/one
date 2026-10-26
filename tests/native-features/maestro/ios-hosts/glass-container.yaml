@@ -1,0 +1,44 @@
+appId: dev.vxrn.native.tests
+name: glass-container
+---
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-glass-container
+      ANCHOR: "Spacing: default"
+# Measured is the GlassEffectContainer onLayout height; must be > 20
+- assertVisible: "Measured: ([2-9]\\d|\\d{3,})"
+- assertVisible: "First glass"
+- assertVisible: "Second glass"
+- assertVisible:
+    id: one-native-glass-container-native
+- assertVisible: { text: "Second glass", rightOf: { text: "First glass" } }
+- takeScreenshot: glass-default
+- tapOn: "First glass"
+- assertVisible: "Glass taps: 1"
+- tapOn:
+    id: one-native-glass-container-spacing
+- assertVisible: "Spacing: 0"
+- assertVisible: "First glass"
+- assertVisible: "Second glass"
+- waitForAnimationToEnd
+- takeScreenshot: glass-spacing-0
+- tapOn:
+    id: one-native-glass-container-spacing
+- assertVisible: "Spacing: 60"
+- assertVisible: "First glass"
+- assertVisible: "Second glass"
+- waitForAnimationToEnd
+- takeScreenshot: glass-spacing-60
+- tapOn:
+    id: one-native-glass-container-spacing
+- assertVisible: "Spacing: -8"
+- assertVisible: "First glass"
+- assertVisible: "Second glass"
+- waitForAnimationToEnd
+- takeScreenshot: glass-spacing-negative
+- tapOn:
+    id: one-native-glass-container-spacing
+- assertVisible: "Spacing: default"
+- assertVisible: "First glass"
+- assertVisible: "Second glass"

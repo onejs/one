@@ -1,8 +1,9 @@
 import { spawn, type ChildProcess } from 'node:child_process'
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
 import getPort from 'get-port'
-import { describe, expect, it, afterEach } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it, afterEach } from 'vitest'
 import { killProcessTree } from './process-tree'
 
 // Resolve one's JS entry (run.mjs) instead of node_modules/.bin/one: on Windows
@@ -31,6 +32,30 @@ const oneRunEntry = join(
  */
 describe('Metro React compiler', { retry: 1 }, () => {
   let devServer: ChildProcess | null = null
+
+  // one prebuild writes a facade for each one/ios framework the app and one's unified
+  // modules import. generating them needs Xcode, so empty modules stand in for the ones
+  // missing here: this test proves Metro bundling with the compiler, not the bindings.
+  const facades = join(process.cwd(), 'node_modules/.one/ios')
+  const written: string[] = []
+  beforeAll(() => {
+    const dist = join(dirname(oneRunEntry), 'dist/esm')
+    mkdirSync(facades, { recursive: true })
+    for (const file of readdirSync(dist, { recursive: true, encoding: 'utf8' })) {
+      if (!file.endsWith('.ios.js')) continue
+      const source = readFileSync(join(dist, file), 'utf8')
+      for (const [, framework] of source.matchAll(/one\/ios\/([A-Za-z_][A-Za-z0-9_]*)/g)) {
+        const facade = join(facades, `${framework}.ts`)
+        if (existsSync(facade)) continue
+        writeFileSync(facade, 'export {}\n')
+        written.push(facade)
+      }
+    }
+  })
+
+  afterAll(() => {
+    for (const facade of written) rmSync(facade)
+  })
 
   afterEach(async () => {
     if (devServer) {

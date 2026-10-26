@@ -2,6 +2,7 @@ import type { ViewProps } from 'react-native';
 import type { DirectEventHandler, Int32 } from 'react-native/Libraries/Types/CodegenTypes';
 interface NativeProps extends ViewProps {
     selection: string;
+    indexDisplayMode: string;
     acknowledgedEvent: Int32;
     revision: Int32;
     onNativePagerSelectionChange?: DirectEventHandler<Readonly<{

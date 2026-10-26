@@ -17,27 +17,6 @@
       "visible": 15,
       "hidden": 15
     },
-    "PickerStyle": {
-      "wheel": 13,
-      "inline": 14,
-      "automatic": 13,
-      "segmented": 13,
-      "tabs": 27,
-      "palette": 17,
-      "navigationLink": 16,
-      "menu": 14
-    },
-    "DatePickerStyle": {
-      "wheel": 13,
-      "automatic": 13,
-      "graphical": 14,
-      "compact": 14
-    },
-    "ToggleStyle": {
-      "button": 15,
-      "automatic": 13,
-      "switch": 13
-    },
     "MenuActionDismissBehavior": {
       "automatic": 16.4,
       "enabled": 16.4,
@@ -91,51 +70,6 @@
       "menu": 16.4,
       "compactMenu": 16.4
     },
-    "PrimitiveButtonStyle": {
-      "automatic": 13,
-      "glass": 26,
-      "borderless": 13,
-      "glassProminent": 26,
-      "plain": 13,
-      "bordered": 15,
-      "borderedProminent": 15
-    },
-    "ProgressViewStyle": {
-      "linear": 14,
-      "circular": 14,
-      "automatic": 14
-    },
-    "GaugeStyle": {
-      "accessoryCircularCapacity": 16,
-      "linearCapacity": 16,
-      "accessoryLinear": 16,
-      "accessoryLinearCapacity": 16,
-      "automatic": 16,
-      "accessoryCircular": 16
-    },
-    "TextFieldStyle": {
-      "automatic": 13,
-      "roundedBorder": 13,
-      "bordered": 27,
-      "plain": 13
-    },
-    "SubmitLabel": {
-      "done": 15,
-      "go": 15,
-      "send": 15,
-      "join": 15,
-      "route": 15,
-      "search": 15,
-      "return": 15,
-      "next": 15,
-      "continue": 15
-    },
-    "TextInputAutocapitalization": {
-      "never": 15,
-      "words": 15,
-      "sentences": 15,
-      "characters": 15
-    },
     "Axis": {
       "horizontal": 13,
       "vertical": 13
@@ -182,25 +116,6 @@
       "regular": 15,
       "large": 15,
       "extraLarge": 17
-    },
-    "SymbolRenderingMode": {
-      "monochrome": 15,
-      "multicolor": 15,
-      "hierarchical": 15,
-      "palette": 15
-    },
-    "SymbolVariants": {
-      "none": 15,
-      "circle": 15,
-      "square": 15,
-      "rectangle": 15,
-      "fill": 15,
-      "slash": 15
-    },
-    "ImageScale": {
-      "small": 13,
-      "medium": 13,
-      "large": 13
     },
     "PhotosPickerSelectionBehavior": {
       "default": 16,
@@ -267,16 +182,6 @@
       "flexible": 26,
       "fixed": 26
     },
-    "PayWithApplePayButtonStyle": {
-      "white": 16,
-      "whiteOutline": 16,
-      "black": 16,
-      "automatic": 16
-    },
-    "AddPassToWalletButtonStyle": {
-      "black": 16,
-      "blackOutline": 16
-    },
     "PayWithApplePayButtonLabel": {
       "plain": 16,
       "buy": 16,
@@ -339,51 +244,6 @@
       "requirements": []
     },
     {
-      "name": "pickerStyle",
-      "type": "PickerStyle",
-      "ios": 13,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "style",
-          "type": "S"
-        }
-      ],
-      "requirements": [
-        "S : SwiftUI.PickerStyle"
-      ]
-    },
-    {
-      "name": "datePickerStyle",
-      "type": "DatePickerStyle",
-      "ios": 13,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "style",
-          "type": "S"
-        }
-      ],
-      "requirements": [
-        "S : SwiftUI.DatePickerStyle"
-      ]
-    },
-    {
-      "name": "toggleStyle",
-      "type": "ToggleStyle",
-      "ios": 13,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "style",
-          "type": "S"
-        }
-      ],
-      "requirements": [
-        "S : SwiftUI.ToggleStyle"
-      ]
-    },
-    {
       "name": "menuActionDismissBehavior",
       "type": "MenuActionDismissBehavior",
       "ios": 16.4,
@@ -427,51 +287,6 @@
       ]
     },
     {
-      "name": "buttonStyle",
-      "type": "PrimitiveButtonStyle",
-      "ios": 13,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "style",
-          "type": "S"
-        }
-      ],
-      "requirements": [
-        "S : SwiftUI.PrimitiveButtonStyle"
-      ]
-    },
-    {
-      "name": "progressViewStyle",
-      "type": "ProgressViewStyle",
-      "ios": 14,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "style",
-          "type": "S"
-        }
-      ],
-      "requirements": [
-        "S : SwiftUI.ProgressViewStyle"
-      ]
-    },
-    {
-      "name": "gaugeStyle",
-      "type": "GaugeStyle",
-      "ios": 16,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "style",
-          "type": "S"
-        }
-      ],
-      "requirements": [
-        "S : SwiftUI.GaugeStyle"
-      ]
-    },
-    {
       "name": "listStyle",
       "type": "ListStyle",
       "ios": 13,
@@ -485,92 +300,6 @@
       "requirements": [
         "S : SwiftUI.ListStyle"
       ]
-    },
-    {
-      "name": "textFieldStyle",
-      "type": "TextFieldStyle",
-      "ios": 13,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "style",
-          "type": "S"
-        }
-      ],
-      "requirements": [
-        "S : SwiftUI.TextFieldStyle"
-      ]
-    },
-    {
-      "name": "submitLabel",
-      "type": "SubmitLabel",
-      "ios": 15,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "submitLabel",
-          "type": "SwiftUI.SubmitLabel"
-        }
-      ],
-      "requirements": []
-    },
-    {
-      "name": "textInputAutocapitalization",
-      "type": "TextInputAutocapitalization",
-      "optional": true,
-      "ios": 15,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "autocapitalization",
-          "type": "SwiftUI.TextInputAutocapitalization?"
-        }
-      ],
-      "requirements": []
-    },
-    {
-      "name": "symbolRenderingMode",
-      "type": "SymbolRenderingMode",
-      "module": "SwiftUICore",
-      "optional": true,
-      "ios": 15,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "mode",
-          "type": "SwiftUICore.SymbolRenderingMode?"
-        }
-      ],
-      "requirements": []
-    },
-    {
-      "name": "symbolVariant",
-      "type": "SymbolVariants",
-      "module": "SwiftUICore",
-      "ios": 15,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "variant",
-          "type": "SwiftUICore.SymbolVariants"
-        }
-      ],
-      "requirements": []
-    },
-    {
-      "name": "imageScale",
-      "type": "ImageScale",
-      "swiftType": "Image.Scale",
-      "module": "SwiftUICore",
-      "ios": 13,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "scale",
-          "type": "SwiftUICore.Image.Scale"
-        }
-      ],
-      "requirements": []
     },
     {
       "name": "webViewBackForwardNavigationGestures",
@@ -730,7 +459,8 @@
           "name": "secondary",
           "ios": 13
         }
-      ]
+      ],
+      "value": "Color"
     },
     {
       "name": "accessibilityAction",
@@ -747,6 +477,10 @@
           "label": "_",
           "bridge": true
         }
+      ],
+      "frameworks": [
+        "SwiftUI",
+        "_AppIntents_SwiftUI"
       ]
     },
     {
@@ -950,7 +684,8 @@
           "name": "isTabBar",
           "ios": 17
         }
-      ]
+      ],
+      "value": "AccessibilityTraits"
     },
     {
       "name": "accessibilityAdjustableAction",
@@ -1665,7 +1400,8 @@
           "name": "isTabBar",
           "ios": 17
         }
-      ]
+      ],
+      "value": "AccessibilityTraits"
     },
     {
       "name": "accessibilityRespondsToUserInteractionWithBool",
@@ -2009,6 +1745,7 @@
           "ios": 17
         }
       ],
+      "value": "AccessibilityTraits",
       "label": "addTraits",
       "sdkName": "accessibility"
     },
@@ -2124,6 +1861,7 @@
           "ios": 17
         }
       ],
+      "value": "AccessibilityTraits",
       "label": "removeTraits",
       "sdkName": "accessibility"
     },
@@ -2237,6 +1975,9 @@
           "name": "blackOutline",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -2490,7 +2231,8 @@
           "name": "linear",
           "ios": 13
         }
-      ]
+      ],
+      "value": "Animation"
     },
     {
       "name": "appEntityIdentifier",
@@ -2502,7 +2244,10 @@
         "label": "activityIdentifier",
         "type": "Swift.String",
         "failable": true
-      }
+      },
+      "frameworks": [
+        "_AppIntents_SwiftUI"
+      ]
     },
     {
       "name": "appEntityUIElements",
@@ -2512,7 +2257,10 @@
       "registeredCallbackType": "@escaping @MainActor (AppIntents.AppEntityUIElementsContext) -> [AppIntents.AppEntityUIElement]",
       "registeredCallbackLabel": "_",
       "ios": 18.4,
-      "framework": "AppIntents"
+      "framework": "AppIntents",
+      "frameworks": [
+        "_AppIntents_SwiftUI"
+      ]
     },
     {
       "name": "appStoreMerchandising",
@@ -2536,7 +2284,10 @@
           "label": "kind"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "appStoreOverlayWithAppClipConfiguration",
@@ -3089,7 +2840,8 @@
           "name": "circle",
           "ios": 17
         }
-      ]
+      ],
+      "value": "ButtonBorderShape"
     },
     {
       "name": "buttonRepeatBehavior",
@@ -3322,7 +3074,8 @@
           "name": "secondary",
           "ios": 13
         }
-      ]
+      ],
+      "value": "Color"
     },
     {
       "name": "colorScheme",
@@ -3826,7 +3579,8 @@
           "name": "interpolate",
           "ios": 16
         }
-      ]
+      ],
+      "value": "ContentTransition"
     },
     {
       "name": "contrast",
@@ -3982,7 +3736,10 @@
         }
       ],
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "cuttable",
@@ -4006,7 +3763,10 @@
       "type": "",
       "ios": 27,
       "zeroArgument": true,
-      "framework": "DataDetection"
+      "framework": "DataDetection",
+      "frameworks": [
+        "_DataDetection_SwiftUI"
+      ]
     },
     {
       "name": "datePickerStyle",
@@ -4826,7 +4586,8 @@
           "name": "bar",
           "ios": 15
         }
-      ]
+      ],
+      "value": "Material"
     },
     {
       "name": "environmentBackgroundProminence",
@@ -4933,7 +4694,8 @@
           "name": "interpolate",
           "ios": 16
         }
-      ]
+      ],
+      "value": "ContentTransition"
     },
     {
       "name": "environmentContentTransitionAddsDrawingGroup",
@@ -5127,7 +4889,8 @@
           "name": "default",
           "ios": 26
         }
-      ]
+      ],
+      "value": "Font"
     },
     {
       "name": "environmentHeaderProminence",
@@ -5380,7 +5143,8 @@
           "name": "loose",
           "ios": 26
         }
-      ]
+      ],
+      "value": "AttributedStringLineHeight"
     },
     {
       "name": "environmentLineLimit",
@@ -6372,7 +6136,8 @@
           "name": "default",
           "ios": 26
         }
-      ]
+      ],
+      "value": "Font"
     },
     {
       "name": "fontDesignWithOptionalDesign",
@@ -6552,7 +6317,8 @@
           "name": "secondary",
           "ios": 13
         }
-      ]
+      ],
+      "value": "Color"
     },
     {
       "name": "formStyle",
@@ -6846,6 +6612,24 @@
           "name": "drag",
           "type": "SwiftUI.DragGesture",
           "ios": 13,
+          "options": [
+            {
+              "field": "minimumDistance",
+              "label": "minimumDistance",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "10"
+            },
+            {
+              "field": "coordinateSpace",
+              "label": "coordinateSpace",
+              "type": "SwiftUICore.CoordinateSpace",
+              "kind": "enum",
+              "value": "CoordinateSpace",
+              "defaultValue": ".local"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -6860,6 +6644,30 @@
                 "value": {
                   "kind": "point"
                 }
+              },
+              {
+                "name": "translation",
+                "value": {
+                  "kind": "size"
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "size"
+                }
+              },
+              {
+                "name": "predictedEndLocation",
+                "value": {
+                  "kind": "point"
+                }
+              },
+              {
+                "name": "predictedEndTranslation",
+                "value": {
+                  "kind": "size"
+                }
               }
             ]
           }
@@ -6868,6 +6676,23 @@
           "name": "longPress",
           "type": "SwiftUI.LongPressGesture",
           "ios": 13,
+          "options": [
+            {
+              "field": "minimumDuration",
+              "label": "minimumDuration",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "maximumDistance",
+              "label": "maximumDistance",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "10"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "boolean"
           }
@@ -6876,6 +6701,16 @@
           "name": "magnify",
           "type": "SwiftUI.MagnifyGesture",
           "ios": 17,
+          "options": [
+            {
+              "field": "minimumScaleDelta",
+              "label": "minimumScaleDelta",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "0.01"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -6924,6 +6759,8 @@
           "name": "rotate",
           "type": "SwiftUI.RotateGesture",
           "ios": 17,
+          "options": [],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -6988,6 +6825,24 @@
           "name": "spatialTap",
           "type": "SwiftUI.SpatialTapGesture",
           "ios": 16,
+          "options": [
+            {
+              "field": "count",
+              "label": "count",
+              "type": "Swift.Int",
+              "kind": "number",
+              "defaultValue": "1"
+            },
+            {
+              "field": "coordinateSpace",
+              "label": "coordinateSpace",
+              "type": "SwiftUICore.CoordinateSpace",
+              "kind": "enum",
+              "value": "CoordinateSpace",
+              "defaultValue": ".local"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -7003,7 +6858,16 @@
         {
           "name": "tap",
           "type": "SwiftUICore.TapGesture",
-          "ios": 13
+          "ios": 13,
+          "options": [
+            {
+              "field": "count",
+              "label": "count",
+              "type": "Swift.Int",
+              "kind": "number",
+              "defaultValue": "1"
+            }
+          ]
         }
       ],
       "ios": 13
@@ -7096,6 +6960,7 @@
         }
       ],
       "ios": 26,
+      "value": "Glass",
       "sdkName": "glassEffect"
     },
     {
@@ -7276,7 +7141,10 @@
           "ios": 18
         }
       ],
-      "label": "matching"
+      "label": "matching",
+      "frameworks": [
+        "_GameController_SwiftUI"
+      ]
     },
     {
       "name": "headerProminence",
@@ -7317,6 +7185,24 @@
           "name": "drag",
           "type": "SwiftUI.DragGesture",
           "ios": 13,
+          "options": [
+            {
+              "field": "minimumDistance",
+              "label": "minimumDistance",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "10"
+            },
+            {
+              "field": "coordinateSpace",
+              "label": "coordinateSpace",
+              "type": "SwiftUICore.CoordinateSpace",
+              "kind": "enum",
+              "value": "CoordinateSpace",
+              "defaultValue": ".local"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -7331,6 +7217,30 @@
                 "value": {
                   "kind": "point"
                 }
+              },
+              {
+                "name": "translation",
+                "value": {
+                  "kind": "size"
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "size"
+                }
+              },
+              {
+                "name": "predictedEndLocation",
+                "value": {
+                  "kind": "point"
+                }
+              },
+              {
+                "name": "predictedEndTranslation",
+                "value": {
+                  "kind": "size"
+                }
               }
             ]
           }
@@ -7339,6 +7249,23 @@
           "name": "longPress",
           "type": "SwiftUI.LongPressGesture",
           "ios": 13,
+          "options": [
+            {
+              "field": "minimumDuration",
+              "label": "minimumDuration",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "maximumDistance",
+              "label": "maximumDistance",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "10"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "boolean"
           }
@@ -7347,6 +7274,16 @@
           "name": "magnify",
           "type": "SwiftUI.MagnifyGesture",
           "ios": 17,
+          "options": [
+            {
+              "field": "minimumScaleDelta",
+              "label": "minimumScaleDelta",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "0.01"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -7395,6 +7332,8 @@
           "name": "rotate",
           "type": "SwiftUI.RotateGesture",
           "ios": 17,
+          "options": [],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -7459,6 +7398,24 @@
           "name": "spatialTap",
           "type": "SwiftUI.SpatialTapGesture",
           "ios": 16,
+          "options": [
+            {
+              "field": "count",
+              "label": "count",
+              "type": "Swift.Int",
+              "kind": "number",
+              "defaultValue": "1"
+            },
+            {
+              "field": "coordinateSpace",
+              "label": "coordinateSpace",
+              "type": "SwiftUICore.CoordinateSpace",
+              "kind": "enum",
+              "value": "CoordinateSpace",
+              "defaultValue": ".local"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -7474,7 +7431,16 @@
         {
           "name": "tap",
           "type": "SwiftUICore.TapGesture",
-          "ios": 13
+          "ios": 13,
+          "options": [
+            {
+              "field": "count",
+              "label": "count",
+              "type": "Swift.Int",
+              "kind": "number",
+              "defaultValue": "1"
+            }
+          ]
         }
       ],
       "ios": 13
@@ -7541,7 +7507,8 @@
           "name": "zero",
           "ios": 13
         }
-      ]
+      ],
+      "value": "Angle"
     },
     {
       "name": "id",
@@ -7757,6 +7724,9 @@
           "kind": "string",
           "optional": true
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -7768,6 +7738,21 @@
         {
           "name": "page",
           "ios": 14
+        }
+      ],
+      "factories": [
+        {
+          "name": "page",
+          "ios": 14,
+          "parameters": [
+            {
+              "field": "backgroundDisplayMode",
+              "label": "backgroundDisplayMode",
+              "type": "SwiftUI.PageIndexViewStyle.BackgroundDisplayMode",
+              "kind": "enum",
+              "value": "PageIndexViewStyleBackgroundDisplayMode"
+            }
+          ]
         }
       ]
     },
@@ -8378,7 +8363,38 @@
           "name": "loose",
           "ios": 26
         }
-      ]
+      ],
+      "value": "AttributedStringLineHeight"
+    },
+    {
+      "name": "lineLimitWithClosedRange",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "aliasSuffix": "ClosedRange",
+      "arguments": [
+        {
+          "kind": "numericRange",
+          "type": "Swift.ClosedRange<Swift.Int>",
+          "optional": false,
+          "fields": [
+            {
+              "name": "lower",
+              "label": "lower",
+              "type": "Swift.Int"
+            },
+            {
+              "name": "upper",
+              "label": "upper",
+              "type": "Swift.Int"
+            }
+          ],
+          "field": "limit",
+          "label": "_"
+        }
+      ],
+      "sdkName": "lineLimit"
     },
     {
       "name": "lineLimitWithLimitAndReservesSpace",
@@ -8410,6 +8426,56 @@
       "kind": "optionalNumber",
       "type": "Swift.Int?",
       "ios": 13,
+      "sdkName": "lineLimit"
+    },
+    {
+      "name": "lineLimitWithPartialRangeFrom",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "aliasSuffix": "PartialRangeFrom",
+      "arguments": [
+        {
+          "kind": "numericRange",
+          "type": "Swift.PartialRangeFrom<Swift.Int>",
+          "optional": false,
+          "fields": [
+            {
+              "name": "lower",
+              "label": "lower",
+              "type": "Swift.Int"
+            }
+          ],
+          "field": "limit",
+          "label": "_"
+        }
+      ],
+      "sdkName": "lineLimit"
+    },
+    {
+      "name": "lineLimitWithPartialRangeThrough",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "aliasSuffix": "PartialRangeThrough",
+      "arguments": [
+        {
+          "kind": "numericRange",
+          "type": "Swift.PartialRangeThrough<Swift.Int>",
+          "optional": false,
+          "fields": [
+            {
+              "name": "upper",
+              "label": "upper",
+              "type": "Swift.Int"
+            }
+          ],
+          "field": "limit",
+          "label": "_"
+        }
+      ],
       "sdkName": "lineLimit"
     },
     {
@@ -8502,6 +8568,7 @@
           "ios": 13
         }
       ],
+      "value": "Color",
       "sdkName": "listItemTint"
     },
     {
@@ -8516,6 +8583,7 @@
           "ios": 14
         }
       ],
+      "value": "ListItemTint",
       "sdkName": "listItemTint"
     },
     {
@@ -8708,6 +8776,7 @@
               "ios": 13
             }
           ],
+          "value": "Color",
           "field": "color",
           "label": "_"
         },
@@ -8950,6 +9019,7 @@
               "ios": 13
             }
           ],
+          "value": "Color",
           "field": "color",
           "label": "_"
         },
@@ -9000,6 +9070,7 @@
           "ios": 17
         }
       ],
+      "value": "ListSectionSpacing",
       "sdkName": "listSectionSpacing"
     },
     {
@@ -9043,7 +9114,10 @@
       "requestProperty": "scene",
       "predicateLabel": "isPresented",
       "label": "initialScene",
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "luminanceToAlpha",
@@ -9058,7 +9132,10 @@
       "type": "SwiftUICore.Binding<Swift.Bool>",
       "label": "isPresented",
       "ios": 15,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID",
@@ -9104,7 +9181,10 @@
         }
       ],
       "ios": 17,
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "mapControlVisibility",
@@ -9125,6 +9205,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "_MapKit_SwiftUI"
       ]
     },
     {
@@ -9150,6 +9233,10 @@
           "name": "caption",
           "ios": 18
         }
+      ],
+      "value": "MapItemDetailSelectionAccessoryStyle",
+      "frameworks": [
+        "_MapKit_SwiftUI"
       ]
     },
     {
@@ -9158,7 +9245,10 @@
       "type": "@escaping (_MapKit_SwiftUI.MapFeature) -> some MapContent",
       "registeredFactory": "mapFeatureSelectionContent",
       "ios": 17,
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "mapFeatureSelectionDisabled",
@@ -9166,7 +9256,10 @@
       "type": "@escaping (_MapKit_SwiftUI.MapFeature) -> Swift.Bool",
       "predicateInput": "_MapKit_SwiftUI.MapFeature",
       "ios": 17,
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "mapItemDetailPopoverWithCurrentLocation",
@@ -9278,7 +9371,10 @@
         "index": 0,
         "label": "_"
       },
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "mapStyle",
@@ -9299,6 +9395,10 @@
           "name": "hybrid",
           "ios": 17
         }
+      ],
+      "value": "MapStyle",
+      "frameworks": [
+        "_MapKit_SwiftUI"
       ]
     },
     {
@@ -9453,7 +9553,10 @@
       "type": "SwiftData.ModelContainer",
       "registeredType": "SwiftData.ModelContainer",
       "ios": 17,
-      "framework": "SwiftData"
+      "framework": "SwiftData",
+      "frameworks": [
+        "_SwiftData_SwiftUI"
+      ]
     },
     {
       "name": "modelContext",
@@ -9461,7 +9564,10 @@
       "type": "SwiftData.ModelContext",
       "registeredType": "SwiftData.ModelContext",
       "ios": 17,
-      "framework": "SwiftData"
+      "framework": "SwiftData",
+      "frameworks": [
+        "_SwiftData_SwiftUI"
+      ]
     },
     {
       "name": "modifier",
@@ -9608,6 +9714,9 @@
           "label": "onLoadCompletion",
           "defaultValue": "{ _ in }"
         }
+      ],
+      "frameworks": [
+        "_MusicKit_SwiftUI"
       ]
     },
     {
@@ -9848,6 +9957,9 @@
           "label": "onCompletion",
           "defaultValue": "{ _ in }"
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -9885,7 +9997,10 @@
       "type": "I.Type",
       "registeredFactory": "onAppIntentExecution",
       "ios": 26,
-      "framework": "AppIntents"
+      "framework": "AppIntents",
+      "frameworks": [
+        "_AppIntents_SwiftUI"
+      ]
     },
     {
       "name": "onApplePayCouponCodeChange",
@@ -9895,7 +10010,10 @@
       "registeredCallbackType": "@escaping (Swift.String) async -> PassKit.PKPaymentRequestCouponCodeUpdate",
       "registeredCallbackLabel": "perform",
       "ios": 15.5,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "onApplePayPaymentMethodChange",
@@ -9905,7 +10023,10 @@
       "registeredCallbackType": "@escaping (PassKit.PKPaymentMethod) async -> PassKit.PKPaymentRequestPaymentMethodUpdate",
       "registeredCallbackLabel": "perform",
       "ios": 15.5,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "onApplePayShippingContactChange",
@@ -9915,7 +10036,10 @@
       "registeredCallbackType": "@escaping (PassKit.PKContact) async -> PassKit.PKPaymentRequestShippingContactUpdate",
       "registeredCallbackLabel": "perform",
       "ios": 15.5,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "onApplePayShippingMethodChange",
@@ -9925,7 +10049,10 @@
       "registeredCallbackType": "@escaping (PassKit.PKShippingMethod) async -> PassKit.PKPaymentRequestShippingMethodUpdate",
       "registeredCallbackLabel": "perform",
       "ios": 15.5,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "onCameraCaptureEvent",
@@ -9960,6 +10087,9 @@
           "label": "action",
           "bridge": true
         }
+      ],
+      "frameworks": [
+        "_AVKit_SwiftUI"
       ]
     },
     {
@@ -10482,7 +10612,10 @@
         ]
       },
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "onInAppPurchaseStart",
@@ -10540,7 +10673,10 @@
         ]
       },
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "onInteractiveResizeChange",
@@ -10634,6 +10770,9 @@
           "label": "_",
           "bridge": true
         }
+      ],
+      "frameworks": [
+        "_MapKit_SwiftUI"
       ]
     },
     {
@@ -11345,7 +11484,8 @@
           "name": "custom",
           "ios": 17
         }
-      ]
+      ],
+      "value": "PaletteSelectionEffect"
     },
     {
       "name": "pasteDestination",
@@ -11389,6 +11529,9 @@
           "name": "calculator",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -11414,6 +11557,9 @@
           "name": "price",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -11422,7 +11568,10 @@
       "type": "",
       "ios": 26,
       "zeroArgument": true,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "payWithApplePayButtonStyle",
@@ -11447,6 +11596,9 @@
           "name": "automatic",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -11487,7 +11639,10 @@
         "selectionLabel": "selection",
         "contentTypesField": "supportedContentTypes",
         "identifierField": "itemIdentifier"
-      }
+      },
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosPickerAccessoryVisibility",
@@ -11554,7 +11709,10 @@
           "label": "edges"
         }
       ],
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosPickerDisabledCapabilities",
@@ -11583,6 +11741,9 @@
           "name": "stagingArea",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
       ]
     },
     {
@@ -11600,6 +11761,9 @@
           "name": "removeLocation",
           "ios": 27
         }
+      ],
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
       ]
     },
     {
@@ -11607,7 +11771,10 @@
       "kind": "optionalString",
       "type": "Swift.String?",
       "ios": 27,
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosPickerStyle",
@@ -11628,6 +11795,9 @@
           "name": "compact",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
       ]
     },
     {
@@ -11651,7 +11821,10 @@
           "label": "onProcessingCompletion"
         }
       ],
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosSharedAlbumCreationSheet",
@@ -11672,7 +11845,10 @@
         "label": "photoLibrary",
         "type": "Photos.PHPhotoLibrary"
       },
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosSharedAlbumCustomizationSheet",
@@ -11700,7 +11876,10 @@
         "label": "photoLibrary",
         "type": "Photos.PHPhotoLibrary"
       },
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosSharedAlbumPostingSheet",
@@ -11729,7 +11908,10 @@
         "label": "photoLibrary",
         "type": "Photos.PHPhotoLibrary"
       },
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "pickerStyle",
@@ -11820,7 +12002,10 @@
         "label": "photoLibrary",
         "type": "Photos.PHPhotoLibrary"
       },
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "preferencePreferredColorScheme",
@@ -11864,7 +12049,10 @@
       "type": "@escaping (_ product: StoreKit.Product, _ subscription: StoreKit.Product.SubscriptionInfo, _ eligibleOffers: [StoreKit.Product.SubscriptionOffer]) -> StoreKit.Product.SubscriptionOffer?",
       "label": "_",
       "ios": 18,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "preferredSubscriptionPricingTerms",
@@ -11873,7 +12061,10 @@
       "label": "_",
       "selectionMember": "pricingTerms",
       "ios": 26.4,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "presentationBackground",
@@ -12045,7 +12236,8 @@
           "name": "disabled",
           "ios": 16.4
         }
-      ]
+      ],
+      "value": "PresentationBackgroundInteraction"
     },
     {
       "name": "presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation",
@@ -12389,6 +12581,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -12397,7 +12592,10 @@
       "type": "",
       "ios": 17,
       "zeroArgument": true,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "productViewStyle",
@@ -12422,7 +12620,10 @@
           "ios": 17
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "progressViewStyle",
@@ -12498,7 +12699,10 @@
       "type": "SwiftUICore.Binding<Foundation.URL?>",
       "label": "_",
       "ios": 14,
-      "framework": "QuickLook"
+      "framework": "QuickLook",
+      "frameworks": [
+        "_QuickLook_SwiftUI"
+      ]
     },
     {
       "name": "realityViewCameraControls",
@@ -12527,6 +12731,9 @@
           "name": "tilt",
           "ios": 18
         }
+      ],
+      "frameworks": [
+        "_RealityKit_SwiftUI"
       ]
     },
     {
@@ -12548,6 +12755,9 @@
           "name": "fixedSize",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_RealityKit_SwiftUI"
       ]
     },
     {
@@ -12600,7 +12810,10 @@
           "label": "isPresented"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "renameAction",
@@ -12747,6 +12960,7 @@
               "ios": 13
             }
           ],
+          "value": "Angle",
           "field": "angle",
           "label": "_"
         },
@@ -13497,7 +13711,8 @@
           "name": "automatic",
           "ios": 17
         }
-      ]
+      ],
+      "value": "TextInputDictationBehavior"
     },
     {
       "name": "searchFocused",
@@ -13672,6 +13887,7 @@
               "ios": 17
             }
           ],
+          "value": "SensoryFeedback",
           "field": "feedback",
           "label": "_"
         },
@@ -13773,6 +13989,7 @@
               "ios": 13
             }
           ],
+          "value": "Color",
           "field": "color",
           "label": "color"
         },
@@ -13830,6 +14047,9 @@
           "name": "darkOutline",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_AppIntents_SwiftUI"
       ]
     },
     {
@@ -13851,6 +14071,9 @@
           "name": "whiteOutline",
           "ios": 14
         }
+      ],
+      "frameworks": [
+        "_AuthenticationServices_SwiftUI"
       ]
     },
     {
@@ -13863,6 +14086,24 @@
           "name": "drag",
           "type": "SwiftUI.DragGesture",
           "ios": 13,
+          "options": [
+            {
+              "field": "minimumDistance",
+              "label": "minimumDistance",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "10"
+            },
+            {
+              "field": "coordinateSpace",
+              "label": "coordinateSpace",
+              "type": "SwiftUICore.CoordinateSpace",
+              "kind": "enum",
+              "value": "CoordinateSpace",
+              "defaultValue": ".local"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -13877,6 +14118,30 @@
                 "value": {
                   "kind": "point"
                 }
+              },
+              {
+                "name": "translation",
+                "value": {
+                  "kind": "size"
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "size"
+                }
+              },
+              {
+                "name": "predictedEndLocation",
+                "value": {
+                  "kind": "point"
+                }
+              },
+              {
+                "name": "predictedEndTranslation",
+                "value": {
+                  "kind": "size"
+                }
               }
             ]
           }
@@ -13885,6 +14150,23 @@
           "name": "longPress",
           "type": "SwiftUI.LongPressGesture",
           "ios": 13,
+          "options": [
+            {
+              "field": "minimumDuration",
+              "label": "minimumDuration",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "maximumDistance",
+              "label": "maximumDistance",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "10"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "boolean"
           }
@@ -13893,6 +14175,16 @@
           "name": "magnify",
           "type": "SwiftUI.MagnifyGesture",
           "ios": 17,
+          "options": [
+            {
+              "field": "minimumScaleDelta",
+              "label": "minimumScaleDelta",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "0.01"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -13941,6 +14233,8 @@
           "name": "rotate",
           "type": "SwiftUI.RotateGesture",
           "ios": 17,
+          "options": [],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -14005,6 +14299,24 @@
           "name": "spatialTap",
           "type": "SwiftUI.SpatialTapGesture",
           "ios": 16,
+          "options": [
+            {
+              "field": "count",
+              "label": "count",
+              "type": "Swift.Int",
+              "kind": "number",
+              "defaultValue": "1"
+            },
+            {
+              "field": "coordinateSpace",
+              "label": "coordinateSpace",
+              "type": "SwiftUICore.CoordinateSpace",
+              "kind": "enum",
+              "value": "CoordinateSpace",
+              "defaultValue": ".local"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -14020,7 +14332,16 @@
         {
           "name": "tap",
           "type": "SwiftUICore.TapGesture",
-          "ios": 13
+          "ios": 13,
+          "options": [
+            {
+              "field": "count",
+              "label": "count",
+              "type": "Swift.Int",
+              "kind": "number",
+              "defaultValue": "1"
+            }
+          ]
         }
       ],
       "ios": 13
@@ -14044,6 +14365,9 @@
           "name": "dark",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_AppIntents_SwiftUI"
       ]
     },
     {
@@ -14180,7 +14504,10 @@
           "label": "for"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "storeProductsTask",
@@ -14279,7 +14606,10 @@
         }
       ],
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "storeProductTask",
@@ -14373,7 +14703,10 @@
         }
       ],
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "strikethrough",
@@ -14499,6 +14832,7 @@
               "ios": 13
             }
           ],
+          "value": "Color",
           "field": "color",
           "label": "color"
         }
@@ -14636,7 +14970,10 @@
         ]
       },
       "ios": 26,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionOfferViewButtonVisibility",
@@ -14679,7 +15016,10 @@
           "label": "for"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionOfferViewDetailAction",
@@ -14687,7 +15027,10 @@
       "type": "(() -> ())?",
       "label": "_",
       "ios": 26,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionOfferViewStyle",
@@ -14704,7 +15047,10 @@
           "ios": 26
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionPromotionalOffer",
@@ -14848,7 +15194,10 @@
         ]
       },
       "ios": 26,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStatusTask",
@@ -14923,7 +15272,10 @@
         }
       ],
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStoreButtonLabel",
@@ -14956,6 +15308,9 @@
           "name": "price",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -14977,6 +15332,9 @@
           "name": "gradientMaterialOnScroll",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -15014,7 +15372,10 @@
           "ios": 17
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStoreOptionGroupStyle",
@@ -15035,7 +15396,10 @@
           "ios": 18
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStorePickerItemBackground",
@@ -15188,7 +15552,10 @@
           "ios": 15
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStorePolicyDestination",
@@ -15221,7 +15588,10 @@
           "label": "for"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStorePolicyForegroundStyle",
@@ -15374,7 +15744,10 @@
           "ios": 15
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStoreSignInAction",
@@ -15382,7 +15755,10 @@
       "type": "(() -> ())?",
       "label": "_",
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "swipeActionsContainer",
@@ -15628,6 +16004,21 @@
         {
           "name": "automatic",
           "ios": 14
+        }
+      ],
+      "factories": [
+        {
+          "name": "page",
+          "ios": 14,
+          "parameters": [
+            {
+              "field": "indexDisplayMode",
+              "label": "indexDisplayMode",
+              "type": "SwiftUI.PageTabViewStyle.IndexDisplayMode",
+              "kind": "enum",
+              "value": "PageTabViewStyleIndexDisplayMode"
+            }
+          ]
         }
       ]
     },
@@ -16157,6 +16548,7 @@
           "ios": 13
         }
       ],
+      "value": "Color",
       "sdkName": "tint"
     },
     {
@@ -16765,7 +17157,10 @@
       "type": "_SecureElementCredential_SwiftUI.CredentialTransaction.Configuration?",
       "registeredFactory": "transactionTask",
       "ios": 18.1,
-      "framework": "SecureElementCredential"
+      "framework": "SecureElementCredential",
+      "frameworks": [
+        "_SecureElementCredential_SwiftUI"
+      ]
     },
     {
       "name": "transformAnchorPreference",
@@ -17051,7 +17446,8 @@
           "name": "scale",
           "ios": 13
         }
-      ]
+      ],
+      "value": "AnyTransition"
     },
     {
       "name": "translationPresentation",
@@ -17074,7 +17470,10 @@
           "label": "text"
         }
       ],
-      "framework": "Translation"
+      "framework": "Translation",
+      "frameworks": [
+        "_Translation_SwiftUI"
+      ]
     },
     {
       "name": "translationTask",
@@ -17100,7 +17499,10 @@
             "value": "nil"
           }
         ]
-      }
+      },
+      "frameworks": [
+        "_Translation_SwiftUI"
+      ]
     },
     {
       "name": "truncationMode",
@@ -17280,6 +17682,7 @@
               "ios": 13
             }
           ],
+          "value": "Color",
           "field": "color",
           "label": "color"
         }
@@ -17378,6 +17781,9 @@
           "name": "blackOutline",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -17415,6 +17821,9 @@
           "name": "disabled",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17436,6 +17845,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17457,6 +17869,9 @@
           "name": "disabled",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17478,6 +17893,9 @@
           "name": "disabled",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17499,6 +17917,9 @@
           "name": "disabled",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17637,7 +18058,10 @@
       "label": "_",
       "ios": 26,
       "framework": "WebKit",
-      "bindingType": "SwiftUICore.ScrollPosition"
+      "bindingType": "SwiftUICore.ScrollPosition",
+      "frameworks": [
+        "_WebKit_SwiftUI"
+      ]
     },
     {
       "name": "webViewTextSelection",
@@ -17654,7 +18078,10 @@
           "ios": 15
         }
       ],
-      "framework": "WebKit"
+      "framework": "WebKit",
+      "frameworks": [
+        "_WebKit_SwiftUI"
+      ]
     },
     {
       "name": "windowToolbarFullScreenVisibility",
@@ -17690,7 +18117,10 @@
           "label": "isPresented"
         }
       ],
-      "framework": "WorkoutKit"
+      "framework": "WorkoutKit",
+      "frameworks": [
+        "_WorkoutKit_SwiftUI"
+      ]
     },
     {
       "name": "writingDirection",
@@ -17764,6 +18194,2850 @@
       "ios": 13
     }
   ],
+  "values": {
+    "AccessibilityTraits": {
+      "type": "SwiftUICore.AccessibilityTraits",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "isButton",
+          "ios": 13
+        },
+        {
+          "name": "isHeader",
+          "ios": 13
+        },
+        {
+          "name": "isSelected",
+          "ios": 13
+        },
+        {
+          "name": "isLink",
+          "ios": 13
+        },
+        {
+          "name": "isSearchField",
+          "ios": 13
+        },
+        {
+          "name": "isImage",
+          "ios": 13
+        },
+        {
+          "name": "playsSound",
+          "ios": 13
+        },
+        {
+          "name": "isKeyboardKey",
+          "ios": 13
+        },
+        {
+          "name": "isStaticText",
+          "ios": 13
+        },
+        {
+          "name": "isSummaryElement",
+          "ios": 13
+        },
+        {
+          "name": "updatesFrequently",
+          "ios": 13
+        },
+        {
+          "name": "startsMediaSession",
+          "ios": 13
+        },
+        {
+          "name": "allowsDirectInteraction",
+          "ios": 13
+        },
+        {
+          "name": "causesPageTurn",
+          "ios": 13
+        },
+        {
+          "name": "isModal",
+          "ios": 13
+        },
+        {
+          "name": "isToggle",
+          "ios": 17
+        },
+        {
+          "name": "isTabBar",
+          "ios": 17
+        }
+      ],
+      "factories": [],
+      "chain": [
+        {
+          "name": "union",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "other",
+              "label": "_",
+              "type": "SwiftUICore.AccessibilityTraits",
+              "kind": "enum",
+              "value": "AccessibilityTraits"
+            }
+          ]
+        },
+        {
+          "name": "intersection",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "other",
+              "label": "_",
+              "type": "SwiftUICore.AccessibilityTraits",
+              "kind": "enum",
+              "value": "AccessibilityTraits"
+            }
+          ]
+        },
+        {
+          "name": "symmetricDifference",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "other",
+              "label": "_",
+              "type": "SwiftUICore.AccessibilityTraits",
+              "kind": "enum",
+              "value": "AccessibilityTraits"
+            }
+          ]
+        }
+      ]
+    },
+    "Angle": {
+      "type": "SwiftUICore.Angle",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "zero",
+          "ios": 13
+        }
+      ],
+      "factories": [
+        {
+          "name": "radians",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "radians",
+              "label": "_",
+              "type": "Swift.Double",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "degrees",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "degrees",
+              "label": "_",
+              "type": "Swift.Double",
+              "kind": "number"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "Animation": {
+      "type": "SwiftUICore.Animation",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "default",
+          "ios": 13
+        },
+        {
+          "name": "interpolatingSpring",
+          "ios": 13
+        },
+        {
+          "name": "spring",
+          "ios": 13
+        },
+        {
+          "name": "interactiveSpring",
+          "ios": 13
+        },
+        {
+          "name": "smooth",
+          "ios": 13
+        },
+        {
+          "name": "snappy",
+          "ios": 13
+        },
+        {
+          "name": "bouncy",
+          "ios": 13
+        },
+        {
+          "name": "easeInOut",
+          "ios": 13
+        },
+        {
+          "name": "easeIn",
+          "ios": 13
+        },
+        {
+          "name": "easeOut",
+          "ios": 13
+        },
+        {
+          "name": "linear",
+          "ios": 13
+        }
+      ],
+      "factories": [
+        {
+          "name": "timingCurve",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "curve",
+              "label": "_",
+              "type": "SwiftUICore.UnitCurve",
+              "kind": "enum",
+              "value": "UnitCurve"
+            },
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "spring",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "spring",
+              "label": "_",
+              "type": "SwiftUICore.Spring",
+              "kind": "enum",
+              "value": "Spring"
+            },
+            {
+              "field": "blendDuration",
+              "label": "blendDuration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number",
+              "defaultValue": "0.0"
+            }
+          ]
+        },
+        {
+          "name": "interpolatingSpring",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "spring",
+              "label": "_",
+              "type": "SwiftUICore.Spring",
+              "kind": "enum",
+              "value": "Spring"
+            },
+            {
+              "field": "initialVelocity",
+              "label": "initialVelocity",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.0"
+            }
+          ]
+        },
+        {
+          "name": "interpolatingSpring",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "mass",
+              "label": "mass",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "1.0"
+            },
+            {
+              "field": "stiffness",
+              "label": "stiffness",
+              "type": "Swift.Double",
+              "kind": "number"
+            },
+            {
+              "field": "damping",
+              "label": "damping",
+              "type": "Swift.Double",
+              "kind": "number"
+            },
+            {
+              "field": "initialVelocity",
+              "label": "initialVelocity",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.0"
+            }
+          ]
+        },
+        {
+          "name": "interpolatingSpring",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "bounce",
+              "label": "bounce",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.0"
+            },
+            {
+              "field": "initialVelocity",
+              "label": "initialVelocity",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.0"
+            }
+          ]
+        },
+        {
+          "name": "spring",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "bounce",
+              "label": "bounce",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.0"
+            },
+            {
+              "field": "blendDuration",
+              "label": "blendDuration",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0"
+            }
+          ]
+        },
+        {
+          "name": "spring",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "response",
+              "label": "response",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "dampingFraction",
+              "label": "dampingFraction",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.825"
+            },
+            {
+              "field": "blendDuration",
+              "label": "blendDuration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number",
+              "defaultValue": "0"
+            }
+          ]
+        },
+        {
+          "name": "interactiveSpring",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "response",
+              "label": "response",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.15"
+            },
+            {
+              "field": "dampingFraction",
+              "label": "dampingFraction",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.86"
+            },
+            {
+              "field": "blendDuration",
+              "label": "blendDuration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number",
+              "defaultValue": "0.25"
+            }
+          ]
+        },
+        {
+          "name": "interactiveSpring",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number",
+              "defaultValue": "0.15"
+            },
+            {
+              "field": "extraBounce",
+              "label": "extraBounce",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.0"
+            },
+            {
+              "field": "blendDuration",
+              "label": "blendDuration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number",
+              "defaultValue": "0.25"
+            }
+          ]
+        },
+        {
+          "name": "smooth",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "extraBounce",
+              "label": "extraBounce",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.0"
+            }
+          ]
+        },
+        {
+          "name": "snappy",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "extraBounce",
+              "label": "extraBounce",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.0"
+            }
+          ]
+        },
+        {
+          "name": "bouncy",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "extraBounce",
+              "label": "extraBounce",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.0"
+            }
+          ]
+        },
+        {
+          "name": "easeInOut",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "easeIn",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "easeOut",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "linear",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "timingCurve",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "p1x",
+              "label": "_",
+              "type": "Swift.Double",
+              "kind": "number"
+            },
+            {
+              "field": "p1y",
+              "label": "_",
+              "type": "Swift.Double",
+              "kind": "number"
+            },
+            {
+              "field": "p2x",
+              "label": "_",
+              "type": "Swift.Double",
+              "kind": "number"
+            },
+            {
+              "field": "p2y",
+              "label": "_",
+              "type": "Swift.Double",
+              "kind": "number"
+            },
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number",
+              "defaultValue": "0.35"
+            }
+          ]
+        }
+      ],
+      "chain": [
+        {
+          "name": "speed",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "speed",
+              "label": "_",
+              "type": "Swift.Double",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "logicallyComplete",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "after",
+              "label": "after",
+              "type": "Foundation.TimeInterval",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "delay",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "delay",
+              "label": "_",
+              "type": "Foundation.TimeInterval",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "repeatCount",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "repeatCount",
+              "label": "_",
+              "type": "Swift.Int",
+              "kind": "number"
+            },
+            {
+              "field": "autoreverses",
+              "label": "autoreverses",
+              "type": "Swift.Bool",
+              "kind": "boolean",
+              "defaultValue": "true"
+            }
+          ]
+        },
+        {
+          "name": "repeatForever",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "autoreverses",
+              "label": "autoreverses",
+              "type": "Swift.Bool",
+              "kind": "boolean",
+              "defaultValue": "true"
+            }
+          ]
+        }
+      ]
+    },
+    "AnyTransition": {
+      "type": "SwiftUICore.AnyTransition",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "opacity",
+          "ios": 13
+        },
+        {
+          "name": "slide",
+          "ios": 13
+        },
+        {
+          "name": "identity",
+          "ios": 13
+        },
+        {
+          "name": "scale",
+          "ios": 13
+        }
+      ],
+      "factories": [
+        {
+          "name": "offset",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "x",
+              "label": "x",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "0"
+            },
+            {
+              "field": "y",
+              "label": "y",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "0"
+            }
+          ]
+        },
+        {
+          "name": "move",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "edge",
+              "label": "edge",
+              "type": "SwiftUICore.Edge",
+              "kind": "enum",
+              "value": "Edge"
+            }
+          ]
+        },
+        {
+          "name": "asymmetric",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "insertion",
+              "label": "insertion",
+              "type": "SwiftUICore.AnyTransition",
+              "kind": "enum",
+              "value": "AnyTransition"
+            },
+            {
+              "field": "removal",
+              "label": "removal",
+              "type": "SwiftUICore.AnyTransition",
+              "kind": "enum",
+              "value": "AnyTransition"
+            }
+          ]
+        },
+        {
+          "name": "push",
+          "ios": 16,
+          "parameters": [
+            {
+              "field": "from",
+              "label": "from",
+              "type": "SwiftUICore.Edge",
+              "kind": "enum",
+              "value": "Edge"
+            }
+          ]
+        },
+        {
+          "name": "scale",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "scale",
+              "label": "scale",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number"
+            },
+            {
+              "field": "anchor",
+              "label": "anchor",
+              "type": "SwiftUICore.UnitPoint",
+              "kind": "enum",
+              "value": "UnitPoint",
+              "defaultValue": ".center"
+            }
+          ]
+        }
+      ],
+      "chain": [
+        {
+          "name": "combined",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "with",
+              "label": "with",
+              "type": "SwiftUICore.AnyTransition",
+              "kind": "enum",
+              "value": "AnyTransition"
+            }
+          ]
+        }
+      ]
+    },
+    "AttributedStringLineHeight": {
+      "type": "Foundation.AttributedString.LineHeight",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "variable",
+          "ios": 26
+        },
+        {
+          "name": "normal",
+          "ios": 26
+        },
+        {
+          "name": "tight",
+          "ios": 26
+        },
+        {
+          "name": "loose",
+          "ios": 26
+        }
+      ],
+      "factories": [
+        {
+          "name": "multiple",
+          "ios": 26,
+          "parameters": [
+            {
+              "field": "factor",
+              "label": "factor",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "leading",
+          "ios": 26,
+          "parameters": [
+            {
+              "field": "increase",
+              "label": "increase",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "exact",
+          "ios": 26,
+          "parameters": [
+            {
+              "field": "points",
+              "label": "points",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "ButtonBorderShape": {
+      "type": "SwiftUI.ButtonBorderShape",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "capsule",
+          "ios": 15
+        },
+        {
+          "name": "roundedRectangle",
+          "ios": 15
+        },
+        {
+          "name": "circle",
+          "ios": 17
+        }
+      ],
+      "factories": [
+        {
+          "name": "roundedRectangle",
+          "ios": 15,
+          "parameters": [
+            {
+              "field": "radius",
+              "label": "radius",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "Color": {
+      "type": "SwiftUICore.Color",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "accentColor",
+          "ios": 13
+        },
+        {
+          "name": "red",
+          "ios": 13
+        },
+        {
+          "name": "orange",
+          "ios": 13
+        },
+        {
+          "name": "yellow",
+          "ios": 13
+        },
+        {
+          "name": "green",
+          "ios": 13
+        },
+        {
+          "name": "mint",
+          "ios": 15
+        },
+        {
+          "name": "teal",
+          "ios": 15
+        },
+        {
+          "name": "cyan",
+          "ios": 15
+        },
+        {
+          "name": "blue",
+          "ios": 13
+        },
+        {
+          "name": "indigo",
+          "ios": 15
+        },
+        {
+          "name": "purple",
+          "ios": 13
+        },
+        {
+          "name": "pink",
+          "ios": 13
+        },
+        {
+          "name": "brown",
+          "ios": 15
+        },
+        {
+          "name": "white",
+          "ios": 13
+        },
+        {
+          "name": "gray",
+          "ios": 13
+        },
+        {
+          "name": "black",
+          "ios": 13
+        },
+        {
+          "name": "clear",
+          "ios": 13
+        },
+        {
+          "name": "primary",
+          "ios": 13
+        },
+        {
+          "name": "secondary",
+          "ios": 13
+        }
+      ],
+      "factories": [],
+      "chain": [
+        {
+          "name": "exposureAdjust",
+          "ios": 26,
+          "parameters": [
+            {
+              "field": "stops",
+              "label": "_",
+              "type": "Swift.Double",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "opacity",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "opacity",
+              "label": "_",
+              "type": "Swift.Double",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "mix",
+          "ios": 18,
+          "parameters": [
+            {
+              "field": "with",
+              "label": "with",
+              "type": "SwiftUICore.Color",
+              "kind": "enum",
+              "value": "Color"
+            },
+            {
+              "field": "by",
+              "label": "by",
+              "type": "Swift.Double",
+              "kind": "number"
+            },
+            {
+              "field": "in",
+              "label": "in",
+              "type": "SwiftUICore.Gradient.ColorSpace",
+              "kind": "enum",
+              "value": "GradientColorSpace",
+              "defaultValue": ".perceptual"
+            }
+          ]
+        }
+      ]
+    },
+    "ContentTransition": {
+      "type": "SwiftUICore.ContentTransition",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "symbolEffect",
+          "ios": 17
+        },
+        {
+          "name": "identity",
+          "ios": 16
+        },
+        {
+          "name": "opacity",
+          "ios": 16
+        },
+        {
+          "name": "interpolate",
+          "ios": 16
+        }
+      ],
+      "factories": [
+        {
+          "name": "numericText",
+          "ios": 16,
+          "parameters": [
+            {
+              "field": "countsDown",
+              "label": "countsDown",
+              "type": "Swift.Bool",
+              "kind": "boolean",
+              "defaultValue": "false"
+            }
+          ]
+        },
+        {
+          "name": "numericText",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "value",
+              "label": "value",
+              "type": "Swift.Double",
+              "kind": "number"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "CoordinateSpace": {
+      "type": "SwiftUICore.CoordinateSpace",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "global",
+          "ios": 13
+        },
+        {
+          "name": "local",
+          "ios": 13
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "Edge": {
+      "type": "SwiftUICore.Edge",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "top",
+          "ios": 13
+        },
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "bottom",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "Font": {
+      "type": "SwiftUICore.Font",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "largeTitle",
+          "ios": 13
+        },
+        {
+          "name": "title",
+          "ios": 13
+        },
+        {
+          "name": "title2",
+          "ios": 14
+        },
+        {
+          "name": "title3",
+          "ios": 14
+        },
+        {
+          "name": "headline",
+          "ios": 13
+        },
+        {
+          "name": "subheadline",
+          "ios": 13
+        },
+        {
+          "name": "body",
+          "ios": 13
+        },
+        {
+          "name": "callout",
+          "ios": 13
+        },
+        {
+          "name": "footnote",
+          "ios": 13
+        },
+        {
+          "name": "caption",
+          "ios": 13
+        },
+        {
+          "name": "caption2",
+          "ios": 14
+        },
+        {
+          "name": "default",
+          "ios": 26
+        }
+      ],
+      "factories": [
+        {
+          "name": "system",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "style",
+              "label": "_",
+              "type": "SwiftUICore.Font.TextStyle",
+              "kind": "enum",
+              "value": "FontTextStyle"
+            },
+            {
+              "field": "design",
+              "label": "design",
+              "type": "SwiftUICore.Font.Design",
+              "kind": "enum",
+              "value": "FontDesign",
+              "defaultValue": ".default"
+            }
+          ]
+        },
+        {
+          "name": "system",
+          "ios": 13,
+          "parameters": [
+            {
+              "field": "size",
+              "label": "size",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number"
+            },
+            {
+              "field": "weight",
+              "label": "weight",
+              "type": "SwiftUICore.Font.Weight",
+              "kind": "enum",
+              "value": "FontWeight",
+              "defaultValue": ".regular"
+            },
+            {
+              "field": "design",
+              "label": "design",
+              "type": "SwiftUICore.Font.Design",
+              "kind": "enum",
+              "value": "FontDesign",
+              "defaultValue": ".default"
+            }
+          ]
+        }
+      ],
+      "chain": [
+        {
+          "name": "monospacedDigit",
+          "ios": 13,
+          "parameters": []
+        },
+        {
+          "name": "width",
+          "ios": 16,
+          "parameters": [
+            {
+              "field": "width",
+              "label": "_",
+              "type": "SwiftUICore.Font.Width",
+              "kind": "enum",
+              "value": "FontWidth"
+            }
+          ]
+        },
+        {
+          "name": "leading",
+          "ios": 14,
+          "parameters": [
+            {
+              "field": "leading",
+              "label": "_",
+              "type": "SwiftUICore.Font.Leading",
+              "kind": "enum",
+              "value": "FontLeading"
+            }
+          ]
+        },
+        {
+          "name": "pointSize",
+          "ios": 26,
+          "parameters": [
+            {
+              "field": "size",
+              "label": "_",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "scaled",
+          "ios": 26,
+          "parameters": [
+            {
+              "field": "by",
+              "label": "by",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number"
+            }
+          ]
+        }
+      ]
+    },
+    "FontDesign": {
+      "type": "SwiftUICore.Font.Design",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "default",
+          "ios": 13
+        },
+        {
+          "name": "serif",
+          "ios": 13
+        },
+        {
+          "name": "rounded",
+          "ios": 13
+        },
+        {
+          "name": "monospaced",
+          "ios": 13
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "FontLeading": {
+      "type": "SwiftUICore.Font.Leading",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "standard",
+          "ios": 14
+        },
+        {
+          "name": "tight",
+          "ios": 14
+        },
+        {
+          "name": "loose",
+          "ios": 14
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "FontTextStyle": {
+      "type": "SwiftUICore.Font.TextStyle",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "largeTitle",
+          "ios": 13
+        },
+        {
+          "name": "title",
+          "ios": 13
+        },
+        {
+          "name": "title2",
+          "ios": 14
+        },
+        {
+          "name": "title3",
+          "ios": 14
+        },
+        {
+          "name": "headline",
+          "ios": 13
+        },
+        {
+          "name": "subheadline",
+          "ios": 13
+        },
+        {
+          "name": "body",
+          "ios": 13
+        },
+        {
+          "name": "callout",
+          "ios": 13
+        },
+        {
+          "name": "footnote",
+          "ios": 13
+        },
+        {
+          "name": "caption",
+          "ios": 13
+        },
+        {
+          "name": "caption2",
+          "ios": 14
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "FontWeight": {
+      "type": "SwiftUICore.Font.Weight",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "ultraLight",
+          "ios": 13
+        },
+        {
+          "name": "thin",
+          "ios": 13
+        },
+        {
+          "name": "light",
+          "ios": 13
+        },
+        {
+          "name": "regular",
+          "ios": 13
+        },
+        {
+          "name": "medium",
+          "ios": 13
+        },
+        {
+          "name": "semibold",
+          "ios": 13
+        },
+        {
+          "name": "bold",
+          "ios": 13
+        },
+        {
+          "name": "heavy",
+          "ios": 13
+        },
+        {
+          "name": "black",
+          "ios": 13
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "FontWidth": {
+      "type": "SwiftUICore.Font.Width",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "compressed",
+          "ios": 16
+        },
+        {
+          "name": "condensed",
+          "ios": 16
+        },
+        {
+          "name": "standard",
+          "ios": 16
+        },
+        {
+          "name": "expanded",
+          "ios": 16
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "Glass": {
+      "type": "SwiftUICore.Glass",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "regular",
+          "ios": 26
+        },
+        {
+          "name": "clear",
+          "ios": 26
+        },
+        {
+          "name": "identity",
+          "ios": 26
+        }
+      ],
+      "factories": [],
+      "chain": [
+        {
+          "name": "interactive",
+          "ios": 26,
+          "parameters": [
+            {
+              "field": "isEnabled",
+              "label": "_",
+              "type": "Swift.Bool",
+              "kind": "boolean",
+              "defaultValue": "true"
+            }
+          ]
+        }
+      ]
+    },
+    "GradientColorSpace": {
+      "type": "SwiftUICore.Gradient.ColorSpace",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "device",
+          "ios": 16
+        },
+        {
+          "name": "perceptual",
+          "ios": 16
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "ListItemTint": {
+      "type": "SwiftUI.ListItemTint",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "monochrome",
+          "ios": 14
+        }
+      ],
+      "factories": [
+        {
+          "name": "fixed",
+          "ios": 14,
+          "parameters": [
+            {
+              "field": "tint",
+              "label": "_",
+              "type": "SwiftUICore.Color",
+              "kind": "enum",
+              "value": "Color"
+            }
+          ]
+        },
+        {
+          "name": "preferred",
+          "ios": 14,
+          "parameters": [
+            {
+              "field": "tint",
+              "label": "_",
+              "type": "SwiftUICore.Color",
+              "kind": "enum",
+              "value": "Color"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "ListSectionSpacing": {
+      "type": "SwiftUI.ListSectionSpacing",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "default",
+          "ios": 17
+        },
+        {
+          "name": "compact",
+          "ios": 17
+        }
+      ],
+      "factories": [
+        {
+          "name": "custom",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "spacing",
+              "label": "_",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "MKPointOfInterestCategory": {
+      "type": "MapKit.MKPointOfInterestCategory",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "airport",
+          "ios": 13
+        },
+        {
+          "name": "airportTerminal",
+          "ios": 27
+        },
+        {
+          "name": "amusementPark",
+          "ios": 13
+        },
+        {
+          "name": "animalService",
+          "ios": 18
+        },
+        {
+          "name": "aquarium",
+          "ios": 13
+        },
+        {
+          "name": "atm",
+          "ios": 13
+        },
+        {
+          "name": "automotiveDealership",
+          "ios": 27
+        },
+        {
+          "name": "automotiveRepair",
+          "ios": 18
+        },
+        {
+          "name": "bakery",
+          "ios": 13
+        },
+        {
+          "name": "bank",
+          "ios": 13
+        },
+        {
+          "name": "baseball",
+          "ios": 18
+        },
+        {
+          "name": "basketball",
+          "ios": 18
+        },
+        {
+          "name": "beach",
+          "ios": 13
+        },
+        {
+          "name": "beauty",
+          "ios": 18
+        },
+        {
+          "name": "bowling",
+          "ios": 18
+        },
+        {
+          "name": "brewery",
+          "ios": 13
+        },
+        {
+          "name": "cafe",
+          "ios": 13
+        },
+        {
+          "name": "campground",
+          "ios": 13
+        },
+        {
+          "name": "carRental",
+          "ios": 13
+        },
+        {
+          "name": "castle",
+          "ios": 18
+        },
+        {
+          "name": "commercialVehicleDealership",
+          "ios": 27
+        },
+        {
+          "name": "conventionCenter",
+          "ios": 18
+        },
+        {
+          "name": "distillery",
+          "ios": 18
+        },
+        {
+          "name": "evCharger",
+          "ios": 13
+        },
+        {
+          "name": "fairground",
+          "ios": 18
+        },
+        {
+          "name": "fireStation",
+          "ios": 13
+        },
+        {
+          "name": "fishing",
+          "ios": 18
+        },
+        {
+          "name": "fitnessCenter",
+          "ios": 13
+        },
+        {
+          "name": "foodMarket",
+          "ios": 13
+        },
+        {
+          "name": "fortress",
+          "ios": 18
+        },
+        {
+          "name": "gasStation",
+          "ios": 13
+        },
+        {
+          "name": "goKart",
+          "ios": 18
+        },
+        {
+          "name": "golf",
+          "ios": 18
+        },
+        {
+          "name": "hiking",
+          "ios": 18
+        },
+        {
+          "name": "hospital",
+          "ios": 13
+        },
+        {
+          "name": "hotel",
+          "ios": 13
+        },
+        {
+          "name": "informationBooth",
+          "ios": 27
+        },
+        {
+          "name": "kayaking",
+          "ios": 18
+        },
+        {
+          "name": "landmark",
+          "ios": 18
+        },
+        {
+          "name": "laundry",
+          "ios": 13
+        },
+        {
+          "name": "library",
+          "ios": 13
+        },
+        {
+          "name": "mailbox",
+          "ios": 18
+        },
+        {
+          "name": "marina",
+          "ios": 13
+        },
+        {
+          "name": "miniGolf",
+          "ios": 18
+        },
+        {
+          "name": "motorbikeDealership",
+          "ios": 27
+        },
+        {
+          "name": "movieTheater",
+          "ios": 13
+        },
+        {
+          "name": "museum",
+          "ios": 13
+        },
+        {
+          "name": "musicVenue",
+          "ios": 18
+        },
+        {
+          "name": "nationalMonument",
+          "ios": 18
+        },
+        {
+          "name": "nationalPark",
+          "ios": 13
+        },
+        {
+          "name": "nightlife",
+          "ios": 13
+        },
+        {
+          "name": "park",
+          "ios": 13
+        },
+        {
+          "name": "parking",
+          "ios": 13
+        },
+        {
+          "name": "pharmacy",
+          "ios": 13
+        },
+        {
+          "name": "picnicArea",
+          "ios": 27
+        },
+        {
+          "name": "planetarium",
+          "ios": 18
+        },
+        {
+          "name": "police",
+          "ios": 13
+        },
+        {
+          "name": "postOffice",
+          "ios": 13
+        },
+        {
+          "name": "publicTransport",
+          "ios": 13
+        },
+        {
+          "name": "rangerStation",
+          "ios": 27
+        },
+        {
+          "name": "restArea",
+          "ios": 27
+        },
+        {
+          "name": "restaurant",
+          "ios": 13
+        },
+        {
+          "name": "restroom",
+          "ios": 13
+        },
+        {
+          "name": "rockClimbing",
+          "ios": 18
+        },
+        {
+          "name": "rvPark",
+          "ios": 18
+        },
+        {
+          "name": "scenicView",
+          "ios": 27
+        },
+        {
+          "name": "school",
+          "ios": 13
+        },
+        {
+          "name": "skatePark",
+          "ios": 18
+        },
+        {
+          "name": "skating",
+          "ios": 18
+        },
+        {
+          "name": "skiing",
+          "ios": 18
+        },
+        {
+          "name": "soccer",
+          "ios": 18
+        },
+        {
+          "name": "spa",
+          "ios": 18
+        },
+        {
+          "name": "stadium",
+          "ios": 13
+        },
+        {
+          "name": "store",
+          "ios": 13
+        },
+        {
+          "name": "surfing",
+          "ios": 18
+        },
+        {
+          "name": "swimming",
+          "ios": 18
+        },
+        {
+          "name": "tennis",
+          "ios": 18
+        },
+        {
+          "name": "theater",
+          "ios": 13
+        },
+        {
+          "name": "ticketOffice",
+          "ios": 27
+        },
+        {
+          "name": "university",
+          "ios": 13
+        },
+        {
+          "name": "visitorCenter",
+          "ios": 27
+        },
+        {
+          "name": "volleyball",
+          "ios": 18
+        },
+        {
+          "name": "winery",
+          "ios": 13
+        },
+        {
+          "name": "zoo",
+          "ios": 13
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "MapItemDetailSelectionAccessoryStyle": {
+      "type": "_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 18
+        },
+        {
+          "name": "callout",
+          "ios": 18
+        },
+        {
+          "name": "sheet",
+          "ios": 18
+        },
+        {
+          "name": "caption",
+          "ios": 18
+        }
+      ],
+      "factories": [
+        {
+          "name": "callout",
+          "ios": 18,
+          "parameters": [
+            {
+              "field": "style",
+              "label": "_",
+              "type": "_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.CalloutStyle",
+              "kind": "enum",
+              "value": "MapItemDetailSelectionAccessoryStyleCalloutStyle",
+              "defaultValue": ".automatic"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "MapItemDetailSelectionAccessoryStyleCalloutStyle": {
+      "type": "_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.CalloutStyle",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 18
+        },
+        {
+          "name": "full",
+          "ios": 18
+        },
+        {
+          "name": "compact",
+          "ios": 18
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "MapStyle": {
+      "type": "_MapKit_SwiftUI.MapStyle",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "standard",
+          "ios": 17
+        },
+        {
+          "name": "imagery",
+          "ios": 17
+        },
+        {
+          "name": "hybrid",
+          "ios": 17
+        }
+      ],
+      "factories": [
+        {
+          "name": "standard",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "elevation",
+              "label": "elevation",
+              "type": "_MapKit_SwiftUI.MapStyle.Elevation",
+              "kind": "enum",
+              "value": "MapStyleElevation",
+              "defaultValue": ".automatic"
+            },
+            {
+              "field": "emphasis",
+              "label": "emphasis",
+              "type": "_MapKit_SwiftUI.MapStyle.StandardEmphasis",
+              "kind": "enum",
+              "value": "MapStyleStandardEmphasis",
+              "defaultValue": ".automatic"
+            },
+            {
+              "field": "pointsOfInterest",
+              "label": "pointsOfInterest",
+              "type": "_MapKit_SwiftUI.PointOfInterestCategories",
+              "kind": "enum",
+              "value": "PointOfInterestCategories",
+              "defaultValue": ".all"
+            },
+            {
+              "field": "showsTraffic",
+              "label": "showsTraffic",
+              "type": "Swift.Bool",
+              "kind": "boolean",
+              "defaultValue": "false"
+            }
+          ]
+        },
+        {
+          "name": "imagery",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "elevation",
+              "label": "elevation",
+              "type": "_MapKit_SwiftUI.MapStyle.Elevation",
+              "kind": "enum",
+              "value": "MapStyleElevation",
+              "defaultValue": ".automatic"
+            }
+          ]
+        },
+        {
+          "name": "hybrid",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "elevation",
+              "label": "elevation",
+              "type": "_MapKit_SwiftUI.MapStyle.Elevation",
+              "kind": "enum",
+              "value": "MapStyleElevation",
+              "defaultValue": ".automatic"
+            },
+            {
+              "field": "pointsOfInterest",
+              "label": "pointsOfInterest",
+              "type": "_MapKit_SwiftUI.PointOfInterestCategories",
+              "kind": "enum",
+              "value": "PointOfInterestCategories",
+              "defaultValue": ".all"
+            },
+            {
+              "field": "showsTraffic",
+              "label": "showsTraffic",
+              "type": "Swift.Bool",
+              "kind": "boolean",
+              "defaultValue": "false"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "MapStyleElevation": {
+      "type": "_MapKit_SwiftUI.MapStyle.Elevation",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 17
+        },
+        {
+          "name": "flat",
+          "ios": 17
+        },
+        {
+          "name": "realistic",
+          "ios": 17
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "MapStyleStandardEmphasis": {
+      "type": "_MapKit_SwiftUI.MapStyle.StandardEmphasis",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 17
+        },
+        {
+          "name": "muted",
+          "ios": 17
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "Material": {
+      "type": "SwiftUICore.Material",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "regular",
+          "ios": 15
+        },
+        {
+          "name": "thick",
+          "ios": 15
+        },
+        {
+          "name": "thin",
+          "ios": 15
+        },
+        {
+          "name": "ultraThin",
+          "ios": 15
+        },
+        {
+          "name": "ultraThick",
+          "ios": 15
+        },
+        {
+          "name": "bar",
+          "ios": 15
+        }
+      ],
+      "factories": [],
+      "chain": [
+        {
+          "name": "materialActiveAppearance",
+          "ios": 18,
+          "parameters": [
+            {
+              "field": "appearance",
+              "label": "_",
+              "type": "SwiftUICore.MaterialActiveAppearance",
+              "kind": "enum",
+              "value": "MaterialActiveAppearance"
+            }
+          ]
+        }
+      ]
+    },
+    "MaterialActiveAppearance": {
+      "type": "SwiftUICore.MaterialActiveAppearance",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 18
+        },
+        {
+          "name": "active",
+          "ios": 18
+        },
+        {
+          "name": "matchWindow",
+          "ios": 18
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "PageIndexViewStyleBackgroundDisplayMode": {
+      "type": "SwiftUI.PageIndexViewStyle.BackgroundDisplayMode",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 14
+        },
+        {
+          "name": "interactive",
+          "ios": 14
+        },
+        {
+          "name": "always",
+          "ios": 14
+        },
+        {
+          "name": "never",
+          "ios": 14
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "PageTabViewStyleIndexDisplayMode": {
+      "type": "SwiftUI.PageTabViewStyle.IndexDisplayMode",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 14
+        },
+        {
+          "name": "always",
+          "ios": 14
+        },
+        {
+          "name": "never",
+          "ios": 14
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "PaletteSelectionEffect": {
+      "type": "SwiftUI.PaletteSelectionEffect",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 17
+        },
+        {
+          "name": "custom",
+          "ios": 17
+        }
+      ],
+      "factories": [
+        {
+          "name": "symbolVariant",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "variant",
+              "label": "_",
+              "type": "SwiftUICore.SymbolVariants",
+              "kind": "enum",
+              "value": "SymbolVariants"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "PointOfInterestCategories": {
+      "type": "_MapKit_SwiftUI.PointOfInterestCategories",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "all",
+          "ios": 17
+        },
+        {
+          "name": "excludingAll",
+          "ios": 17
+        }
+      ],
+      "factories": [
+        {
+          "name": "including",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "categories",
+              "label": "_",
+              "type": "MapKit.MKPointOfInterestCategory",
+              "kind": "enum",
+              "value": "MKPointOfInterestCategory"
+            }
+          ]
+        },
+        {
+          "name": "excluding",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "categories",
+              "label": "_",
+              "type": "MapKit.MKPointOfInterestCategory",
+              "kind": "enum",
+              "value": "MKPointOfInterestCategory"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "PresentationBackgroundInteraction": {
+      "type": "SwiftUI.PresentationBackgroundInteraction",
+      "ios": 16.4,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16.4
+        },
+        {
+          "name": "enabled",
+          "ios": 16.4
+        },
+        {
+          "name": "disabled",
+          "ios": 16.4
+        }
+      ],
+      "factories": [
+        {
+          "name": "enabled",
+          "ios": 16.4,
+          "parameters": [
+            {
+              "field": "upThrough",
+              "label": "upThrough",
+              "type": "SwiftUI.PresentationDetent",
+              "kind": "enum",
+              "value": "PresentationDetent"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "PresentationDetent": {
+      "type": "SwiftUI.PresentationDetent",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "medium",
+          "ios": 16
+        },
+        {
+          "name": "large",
+          "ios": 16
+        }
+      ],
+      "factories": [
+        {
+          "name": "fraction",
+          "ios": 16,
+          "parameters": [
+            {
+              "field": "fraction",
+              "label": "_",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "name": "height",
+          "ios": 16,
+          "parameters": [
+            {
+              "field": "height",
+              "label": "_",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "SensoryFeedback": {
+      "type": "SwiftUI.SensoryFeedback",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "success",
+          "ios": 17
+        },
+        {
+          "name": "warning",
+          "ios": 17
+        },
+        {
+          "name": "error",
+          "ios": 17
+        },
+        {
+          "name": "selection",
+          "ios": 17
+        },
+        {
+          "name": "increase",
+          "ios": 17
+        },
+        {
+          "name": "decrease",
+          "ios": 17
+        },
+        {
+          "name": "start",
+          "ios": 17
+        },
+        {
+          "name": "stop",
+          "ios": 17
+        },
+        {
+          "name": "alignment",
+          "ios": 17
+        },
+        {
+          "name": "levelChange",
+          "ios": 17
+        },
+        {
+          "name": "pathComplete",
+          "ios": 17.5
+        },
+        {
+          "name": "impact",
+          "ios": 17
+        }
+      ],
+      "factories": [
+        {
+          "name": "impact",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "weight",
+              "label": "weight",
+              "type": "SwiftUI.SensoryFeedback.Weight",
+              "kind": "enum",
+              "value": "SensoryFeedbackWeight",
+              "defaultValue": ".medium"
+            },
+            {
+              "field": "intensity",
+              "label": "intensity",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "1.0"
+            }
+          ]
+        },
+        {
+          "name": "impact",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "flexibility",
+              "label": "flexibility",
+              "type": "SwiftUI.SensoryFeedback.Flexibility",
+              "kind": "enum",
+              "value": "SensoryFeedbackFlexibility"
+            },
+            {
+              "field": "intensity",
+              "label": "intensity",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "1.0"
+            }
+          ]
+        },
+        {
+          "name": "selection",
+          "ios": 26,
+          "parameters": [
+            {
+              "field": "feedback",
+              "label": "_",
+              "type": "SwiftUI.SensoryFeedback.SelectionFeedback",
+              "kind": "enum",
+              "value": "SensoryFeedbackSelectionFeedback"
+            }
+          ]
+        },
+        {
+          "name": "press",
+          "ios": 26,
+          "parameters": [
+            {
+              "field": "feedback",
+              "label": "_",
+              "type": "SwiftUI.SensoryFeedback.PressFeedback",
+              "kind": "enum",
+              "value": "SensoryFeedbackPressFeedback"
+            }
+          ]
+        },
+        {
+          "name": "release",
+          "ios": 26,
+          "parameters": [
+            {
+              "field": "feedback",
+              "label": "_",
+              "type": "SwiftUI.SensoryFeedback.ReleaseFeedback",
+              "kind": "enum",
+              "value": "SensoryFeedbackReleaseFeedback"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "SensoryFeedbackFlexibility": {
+      "type": "SwiftUI.SensoryFeedback.Flexibility",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "rigid",
+          "ios": 17
+        },
+        {
+          "name": "solid",
+          "ios": 17
+        },
+        {
+          "name": "soft",
+          "ios": 17
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "SensoryFeedbackPressFeedback": {
+      "type": "SwiftUI.SensoryFeedback.PressFeedback",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "button",
+          "ios": 26
+        },
+        {
+          "name": "buttonIconOnly",
+          "ios": 26
+        },
+        {
+          "name": "slider",
+          "ios": 26
+        },
+        {
+          "name": "toggle",
+          "ios": 26
+        },
+        {
+          "name": "tab",
+          "ios": 26
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "SensoryFeedbackReleaseFeedback": {
+      "type": "SwiftUI.SensoryFeedback.ReleaseFeedback",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "slider",
+          "ios": 26
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "SensoryFeedbackSelectionFeedback": {
+      "type": "SwiftUI.SensoryFeedback.SelectionFeedback",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "maximum",
+          "ios": 26
+        },
+        {
+          "name": "minimum",
+          "ios": 26
+        },
+        {
+          "name": "on",
+          "ios": 26
+        },
+        {
+          "name": "off",
+          "ios": 26
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "SensoryFeedbackWeight": {
+      "type": "SwiftUI.SensoryFeedback.Weight",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "light",
+          "ios": 17
+        },
+        {
+          "name": "medium",
+          "ios": 17
+        },
+        {
+          "name": "heavy",
+          "ios": 17
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "Spring": {
+      "type": "SwiftUICore.Spring",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "smooth",
+          "ios": 17
+        },
+        {
+          "name": "snappy",
+          "ios": 17
+        },
+        {
+          "name": "bouncy",
+          "ios": 17
+        }
+      ],
+      "factories": [
+        {
+          "name": "smooth",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "extraBounce",
+              "label": "extraBounce",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.0"
+            }
+          ]
+        },
+        {
+          "name": "snappy",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "extraBounce",
+              "label": "extraBounce",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.0"
+            }
+          ]
+        },
+        {
+          "name": "bouncy",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "duration",
+              "label": "duration",
+              "type": "Foundation.TimeInterval",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "extraBounce",
+              "label": "extraBounce",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.0"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "SymbolVariants": {
+      "type": "SwiftUICore.SymbolVariants",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "none",
+          "ios": 15
+        },
+        {
+          "name": "circle",
+          "ios": 15
+        },
+        {
+          "name": "square",
+          "ios": 15
+        },
+        {
+          "name": "rectangle",
+          "ios": 15
+        },
+        {
+          "name": "fill",
+          "ios": 15
+        },
+        {
+          "name": "slash",
+          "ios": 15
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "TextInputDictationActivation": {
+      "type": "SwiftUI.TextInputDictationActivation",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "onSelect",
+          "ios": 17
+        },
+        {
+          "name": "onLook",
+          "ios": 17
+        }
+      ],
+      "factories": [],
+      "chain": []
+    },
+    "TextInputDictationBehavior": {
+      "type": "SwiftUI.TextInputDictationBehavior",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 17
+        }
+      ],
+      "factories": [
+        {
+          "name": "inline",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "activation",
+              "label": "activation",
+              "type": "SwiftUI.TextInputDictationActivation",
+              "kind": "enum",
+              "value": "TextInputDictationActivation"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "UnitCurve": {
+      "type": "SwiftUICore.UnitCurve",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "easeInEaseOut",
+          "ios": 17
+        },
+        {
+          "name": "easeInOut",
+          "ios": 17
+        },
+        {
+          "name": "easeIn",
+          "ios": 17
+        },
+        {
+          "name": "easeOut",
+          "ios": 17
+        },
+        {
+          "name": "circularEaseIn",
+          "ios": 17
+        },
+        {
+          "name": "circularEaseOut",
+          "ios": 17
+        },
+        {
+          "name": "circularEaseInOut",
+          "ios": 17
+        },
+        {
+          "name": "linear",
+          "ios": 17
+        }
+      ],
+      "factories": [
+        {
+          "name": "bezier",
+          "ios": 17,
+          "parameters": [
+            {
+              "field": "startControlPoint",
+              "label": "startControlPoint",
+              "type": "SwiftUICore.UnitPoint",
+              "kind": "enum",
+              "value": "UnitPoint"
+            },
+            {
+              "field": "endControlPoint",
+              "label": "endControlPoint",
+              "type": "SwiftUICore.UnitPoint",
+              "kind": "enum",
+              "value": "UnitPoint"
+            }
+          ]
+        }
+      ],
+      "chain": []
+    },
+    "UnitPoint": {
+      "type": "SwiftUICore.UnitPoint",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "zero",
+          "ios": 13
+        },
+        {
+          "name": "center",
+          "ios": 13
+        },
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        },
+        {
+          "name": "top",
+          "ios": 13
+        },
+        {
+          "name": "bottom",
+          "ios": 13
+        },
+        {
+          "name": "topLeading",
+          "ios": 13
+        },
+        {
+          "name": "topTrailing",
+          "ios": 13
+        },
+        {
+          "name": "bottomLeading",
+          "ios": 13
+        },
+        {
+          "name": "bottomTrailing",
+          "ios": 13
+        }
+      ],
+      "factories": [],
+      "chain": []
+    }
+  },
   "coverage": {
     "views": {
       "SwiftUI": [

@@ -42,8 +42,8 @@ Both also accept `accessibilityLabel`, `accessibilityHint`,
 Progress and gauge state is plain props, not controlled values: there is no
 native editing, so no revision or change callback. The wrappers validate the
 numbers before they reach native, then the SwiftUI view draws them.
-`progressViewStyle` and `gaugeStyle` take SwiftUI names checked against the
-device's iOS version.
+`progressViewStyle` and `gaugeStyle` are SwiftUI modifiers set through
+`swiftStyle`, and their names are checked against the device's iOS version.
 
 ## ProgressView
 
@@ -55,7 +55,14 @@ when it is not. `value` must be finite and lie between 0 and `total`, and
 import { One } from 'one'
 
 function Sync({ done, total }: { done: number; total: number }) {
-  return <One.iOS.ProgressView label="Sync" value={done} total={total} progressViewStyle="linear" />
+  return (
+    <One.iOS.ProgressView
+      label="Sync"
+      value={done}
+      total={total}
+      swiftStyle={{ progressViewStyle: 'linear' }}
+    />
+  )
 }
 ```
 
@@ -66,16 +73,17 @@ function Sync({ done, total }: { done: number; total: number }) {
     { name: 'value', type: 'number', description: 'Work done. Leave it unset for a spinner.' },
     { name: 'total', type: 'number', default: '1', description: 'Work in all. Must be above zero.' },
     { name: 'label', type: 'string', default: '""', description: 'Text shown with the bar.' },
-    { name: 'progressViewStyle', type: 'ProgressViewStyle', default: '"automatic"', description: 'automatic, linear, or circular.' },
-    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the view.' },
   ]}
 />
 
+`progressViewStyle` and `disabled` are SwiftUI modifiers set through
+`swiftStyle`. `progressViewStyle` is `automatic`, `linear`, or `circular`.
+
 ## Gauge
 
-`Gauge` shows `value` between `minimumValue` and `maximumValue`. Every number
-must be finite, the minimum must be below the maximum, and the value must lie
-within the range, or the gauge throws.
+`Gauge` shows `value` within `in`. Every number must be finite, the lower
+bound must be below the upper bound, and the value must lie within the
+range, or the gauge throws.
 
 ```tsx
 import { One } from 'one'
@@ -85,9 +93,9 @@ function Speed({ speed }: { speed: number }) {
     <One.iOS.Gauge
       label="Speed"
       value={speed}
-      maximumValue={120}
+      in={[0, 120]}
       currentValueLabel={`${speed}`}
-      gaugeStyle="accessoryCircular"
+      swiftStyle={{ gaugeStyle: 'accessoryCircular' }}
     />
   )
 }
@@ -98,16 +106,17 @@ function Speed({ speed }: { speed: number }) {
   source="generated/controlTypes.ts#GaugeProps"
   data={[
     { name: 'value', type: 'number', default: '0', description: 'The current value.' },
-    { name: 'minimumValue', type: 'number', default: '0', description: 'The low end of the range.' },
-    { name: 'maximumValue', type: 'number', default: '1', description: 'The high end of the range.' },
+    { name: 'in', type: 'readonly [number, number]', default: '[0, 1]', description: 'The allowed range as [lower, upper].' },
     { name: 'label', type: 'string', default: '""', description: 'What the gauge measures.' },
     { name: 'currentValueLabel', type: 'string', default: '""', description: 'Text for the current value.' },
     { name: 'minimumValueLabel', type: 'string', default: '""', description: 'Text at the low end.' },
     { name: 'maximumValueLabel', type: 'string', default: '""', description: 'Text at the high end.' },
-    { name: 'gaugeStyle', type: 'GaugeStyle', default: '"automatic"', description: 'automatic, linearCapacity, accessoryLinear, accessoryLinearCapacity, accessoryCircular, or accessoryCircularCapacity.' },
-    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the gauge.' },
   ]}
 />
+
+`gaugeStyle` and `disabled` are SwiftUI modifiers set through `swiftStyle`.
+`gaugeStyle` is `automatic`, `linearCapacity`, `accessoryLinear`,
+`accessoryLinearCapacity`, `accessoryCircular`, or `accessoryCircularCapacity`.
 
 ## Platform differences
 

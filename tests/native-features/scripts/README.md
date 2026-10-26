@@ -1,5 +1,18 @@
 # One Native Conformance Runner
 
+## DOM fixture
+
+The default `app/` routes run with Metro. Keep the `"use dom"` fixture outside
+that route graph because it requires the Vite native bundler. From
+`tests/native-features`, start its dedicated router entry with:
+
+```sh
+ONE_ROUTER_ROOT=fixtures/dom-app ONE_NATIVE_BUNDLER=rolldown bun run dev --port 8081
+```
+
+`fixtures/dom-app/index.tsx` opens the DOM fixture and provides an Updates
+switch. The default Metro app has no `/one-dom` route.
+
 ## Android source imports in Expo
 
 `app.config.cjs` enables the existing source-import fixture in an Expo-prebuilt

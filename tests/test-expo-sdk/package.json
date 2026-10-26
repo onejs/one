@@ -1,0 +1,22 @@
+{
+  "name": "test-expo-sdk",
+  "version": "2.11.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "one dev",
+    "prebuild:ios": "expo prebuild --platform ios --clean --no-install",
+    "ios": "expo run:ios"
+  },
+  "dependencies": {
+    "@react-navigation/native": "8.0.0-alpha.51",
+    "expo": "58.0.14",
+    "one": "workspace:*",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.0",
+    "react-native-reanimated": "~4.7.1",
+    "react-native-screens": "~4.30.0",
+    "react-native-worklets": "~0.13.0"
+  }
+}

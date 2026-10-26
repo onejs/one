@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
-const options = [
+const choices = [
   { value: 'alpha', label: 'Alpha' },
   { value: 'beta', label: 'Beta' },
   { value: 'gamma', label: 'Gamma' },
@@ -22,23 +22,29 @@ export default function OneNativePickerPalette() {
       <Text>Palette outside Menu</Text>
       <One.iOS.Picker
         label="Palette choice"
-        options={options}
-        pickerStyle="palette"
+        swiftStyle={{ pickerStyle: 'palette' }}
         selection={palette}
         onSelectionChange={setPalette}
         style={styles.picker}
         testID="one-native-picker-palette"
-      />
+      >
+        {choices.map((choice) => (
+          <One.iOS.Text key={choice.value} text={choice.label} swiftStyle={{ tag: choice.value }} />
+        ))}
+      </One.iOS.Picker>
       <Text>Segmented reference</Text>
       <One.iOS.Picker
         label="Segmented choice"
-        options={options}
-        pickerStyle="segmented"
+        swiftStyle={{ pickerStyle: 'segmented', maxWidth: Infinity }}
         selection={segmented}
         onSelectionChange={setSegmented}
         style={styles.picker}
         testID="one-native-picker-segmented"
-      />
+      >
+        {choices.map((choice) => (
+          <One.iOS.Text key={choice.value} text={choice.label} swiftStyle={{ tag: choice.value }} />
+        ))}
+      </One.iOS.Picker>
     </View>
   )
 }

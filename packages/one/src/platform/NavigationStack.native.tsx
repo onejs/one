@@ -33,10 +33,10 @@ const TOOLBAR_CHILDREN =
   'Swift.ToolbarItem, Swift.ToolbarItemGroup, and Swift.ToolbarSpacer'
 
 // the three markers are read by Swift.Toolbar and Swift.NavigationStack and never render
-// where they are written, exactly like Swift.Tab inside Swift.Tabs.
+// where they are written, exactly like Swift.Tab inside Swift.TabView.
 function ToolbarMarker(_props: ToolbarProps): never {
   throw new Error(
-    'Swift.Toolbar must be a direct child of Swift.NavigationStack or Swift.Tabs, or a NavigationSplitView column'
+    'Swift.Toolbar must be a direct child of Swift.NavigationStack or Swift.TabView, or a NavigationSplitView column'
   )
 }
 

@@ -8,10 +8,22 @@ const CATCH_ALL = /\[\.\.\..+?\]/g
 // /[param1] - Match [param1]
 const SLUG = /\[.+?\]/g
 
-export function getTypedRoutesDeclarationFile(ctx: One.RouteContext) {
+export type TypedRoutesOptions = {
+  /**
+   * Type expressions (`typeof import(...)[name]`) for the search param schemas used
+   * under a route, given the context key of its file.
+   */
+  getSearchParamTypes?: (contextKey: string) => string[]
+}
+
+export function getTypedRoutesDeclarationFile(
+  ctx: One.RouteContext,
+  options: TypedRoutesOptions = {}
+) {
   const staticRoutes = new Set<string>()
   const dynamicRoutes = new Set<string>()
   const dynamicRouteContextKeys = new Set<string>()
+  const searchParamSchemas = new Map<string, string[]>()
 
   walkRouteNode(
     getRoutes(ctx, {
@@ -23,7 +35,9 @@ export function getTypedRoutesDeclarationFile(ctx: One.RouteContext) {
     '',
     staticRoutes,
     dynamicRoutes,
-    dynamicRouteContextKeys
+    dynamicRouteContextKeys,
+    searchParamSchemas,
+    options.getSearchParamTypes
   )
 
   const hasRoutes = dynamicRouteContextKeys.size > 0
@@ -39,7 +53,11 @@ declare module 'one' {
       StaticRoutes:${setToUnionType(staticRoutes)}
       DynamicRoutes:${setToUnionType(dynamicRoutes)}
       DynamicRouteTemplate:${setToUnionType(dynamicRouteContextKeys)}
-      IsTyped: true
+      IsTyped: true${
+        searchParamSchemas.size
+          ? `\n      SearchParamTypes: ${generateSearchParamTypesMap(searchParamSchemas, 'SearchParamsOf')}\n      SearchParamOutputs: ${generateSearchParamTypesMap(searchParamSchemas, 'SearchOutputOf')}`
+          : ''
+      }
       ${hasRoutes ? `RouteTypes: ${generateRouteTypesMap(dynamicRouteContextKeys)}` : ''}
     }
   }
@@ -50,13 +68,27 @@ ${
 /**
  * Helper type for route information
  */
-type RouteInfo<Params = Record<string, never>> = {
+type RouteInfo<Params = Record<string, never>, Path extends string = string> = {
   Params: Params
-  LoaderProps: { path: string; search?: string; subdomain?: string; params: Params; request?: Request }
+  LoaderProps: import('one').LoaderProps<Params, OneRouter.LoaderSearchParams<Path>>
 }`
     : ''
 }
 `.trim()
+}
+
+function generateSearchParamTypesMap(
+  searchParamSchemas: Map<string, string[]>,
+  wrapper: 'SearchParamsOf' | 'SearchOutputOf'
+): string {
+  const entries = [...searchParamSchemas]
+    .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
+    .map(
+      ([routePath, schemas]) =>
+        `        '${routePath}': ${schemas.map((schema) => `OneRouter.${wrapper}<${schema}>`).join(' & ')}`
+    )
+    .join('\n')
+  return `{\n${entries}\n      }`
 }
 
 /**
@@ -76,7 +108,7 @@ function generateRouteTypesMap(dynamicRouteContextKeys: Set<string>): string {
       const params = extractParams(routePath)
       const paramsType = params.length === 0 ? '{}' : generateInlineParamsType(params)
 
-      return `        '${routePath}': RouteInfo<${paramsType}>`
+      return `        '${routePath}': RouteInfo<${paramsType}, '${routePath}'>`
     })
     .join('\n')
 
@@ -124,7 +156,9 @@ function walkRouteNode(
   parentRoutePath: string,
   staticRoutes: Set<string>,
   dynamicRoutes: Set<string>,
-  dynamicRouteContextKeys: Set<string>
+  dynamicRouteContextKeys: Set<string>,
+  searchParamSchemas: Map<string, string[]>,
+  getSearchParamTypes: TypedRoutesOptions['getSearchParamTypes']
 ) {
   if (!routeNode) return
 
@@ -133,7 +167,9 @@ function walkRouteNode(
     parentRoutePath,
     staticRoutes,
     dynamicRoutes,
-    dynamicRouteContextKeys
+    dynamicRouteContextKeys,
+    searchParamSchemas,
+    getSearchParamTypes
   )
 
   parentRoutePath = `${removeSupportedExtensions(`${parentRoutePath}/${routeNode.route}`).replace(/\/?index$/, '')}` // replace /index with /
@@ -144,7 +180,9 @@ function walkRouteNode(
       parentRoutePath,
       staticRoutes,
       dynamicRoutes,
-      dynamicRouteContextKeys
+      dynamicRouteContextKeys,
+      searchParamSchemas,
+      getSearchParamTypes
     )
   }
 }
@@ -158,7 +196,9 @@ function addRouteNode(
   parentRoutePath: string,
   staticRoutes: Set<string>,
   dynamicRoutes: Set<string>,
-  dynamicRouteContextKeys: Set<string>
+  dynamicRouteContextKeys: Set<string>,
+  searchParamSchemas: Map<string, string[]>,
+  getSearchParamTypes: TypedRoutesOptions['getSearchParamTypes']
 ) {
   if (!routeNode?.route) return
   if (!isTypedRoute(routeNode.route)) return
@@ -169,8 +209,19 @@ function addRouteNode(
     routePath = `/${routePath}`
   }
 
+  const schemaTypes =
+    routeNode.type !== 'layout'
+      ? getSearchParamTypes?.(routeNode.contextKey)
+      : undefined
+  const addSearchParamTypes = (path: string) => {
+    if (schemaTypes?.length && !searchParamSchemas.has(path)) {
+      searchParamSchemas.set(path, schemaTypes)
+    }
+  }
+
   if (routeNode.dynamic) {
     for (const path of generateCombinations(routePath)) {
+      addSearchParamTypes(path)
       dynamicRouteContextKeys.add(path)
       dynamicRoutes.add(
         // biome-ignore lint/suspicious/noTemplateCurlyInString: intentionally generating type string
@@ -179,6 +230,7 @@ function addRouteNode(
     }
   } else {
     for (const combination of generateCombinations(routePath)) {
+      addSearchParamTypes(combination)
       staticRoutes.add(combination)
     }
   }

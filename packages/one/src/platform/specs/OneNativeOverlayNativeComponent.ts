@@ -10,4 +10,6 @@ interface NativeProps extends ViewProps {
   slotValues: string
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
 }
-export default codegenNativeComponent<NativeProps>('OneNativeOverlay')
+export default codegenNativeComponent<NativeProps>('OneNativeOverlay', {
+  interfaceOnly: true,
+})

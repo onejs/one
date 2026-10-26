@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-plugin-metro",
-  "version": "2.8.0",
+  "version": "2.11.0",
   "sideEffects": false,
   "type": "module",
   "main": "dist/cjs",
@@ -74,7 +74,7 @@
     "@vxrn/utils": "workspace:*",
     "esbuild": "^0.25.12",
     "flow-parser": "^0.336.0",
-    "launch-editor": "^2.10.0",
+    "launch-editor": "^2.14.2",
     "magic-string": "^0.30.21",
     "micromatch": "^4.0.8",
     "oxc-parser": "^0.112.0",
@@ -84,7 +84,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
     "@react-native/dev-middleware": "^0.88.0",
-    "@tamagui/build": "3.0.18",
+    "@tamagui/build": "3.1.4",
     "@types/babel__helper-plugin-utils": "^7",
     "@types/node": "^24.10.0",
     "depcheck": "^1.4.7",

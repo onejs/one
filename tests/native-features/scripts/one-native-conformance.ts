@@ -65,6 +65,7 @@ const suites = [
   'background-tasks',
   'device-attestation',
   'gestures',
+  'swift-gestures',
   'screen-orientation',
   'screen-capture',
   'view-snapshot',
@@ -103,6 +104,7 @@ const suites = [
   'menu-primary-action',
   'menu-picker',
   'popover',
+  'uikit-content',
   'navigation',
   'navigation-split-view',
   'accessibility',
@@ -391,6 +393,22 @@ const has = (nodes: Node[], text: string) =>
   labels(nodes).some((label) => label.includes(text))
 const id = (nodes: Node[], value: string) =>
   nodes.find((node) => node.AXUniqueId === value)
+// content with this id that a person or VoiceOver could still reach: any match with a size,
+// a label, value, title, help, children or actions. iOS can keep an emptied cell's old
+// element in its accessibility cache, with none of those, after the view itself is gone
+export const contentRetained = (nodes: Node[], testID: string) =>
+  nodes.some(
+    (node) =>
+      node.AXUniqueId === testID &&
+      ((node.frame?.width ?? 0) > 0 ||
+        (node.frame?.height ?? 0) > 0 ||
+        Boolean(node.AXLabel) ||
+        (node.AXValue !== undefined && node.AXValue !== null && node.AXValue !== '') ||
+        Boolean(node.title) ||
+        Boolean(node.help) ||
+        (node.children?.length ?? 0) > 0 ||
+        ((node.custom_actions as unknown[] | undefined)?.length ?? 0) > 0)
+  )
 // native hosts share their testID with their group; only the editable control owns the value.
 export const nativeTextField = (nodes: Node[], testID: string) => {
   const fields = nodes.filter(
@@ -408,6 +426,43 @@ export const nativeButton = (nodes: Node[], testID: string) => {
       node.AXUniqueId === testID && node.type === 'Button' && node.role === 'AXButton'
   )
   return buttons.length === 1 ? buttons[0] : undefined
+}
+// an icon-only button can expose its label on the symbol instead of the button.
+export const nativeIconButton = (nodes: Node[], systemName: string, label: string) => {
+  const buttons = nodes.filter((node) => {
+    const frame = node.frame
+    if (
+      node.type !== 'Button' || node.enabled !== true || !frame ||
+      frame.width <= 0 || frame.height <= 0
+    ) return false
+    const symbols: Node[] = []
+    const visit = (child: Node) => {
+      if (
+        child.type === 'Image' && child.AXUniqueId === systemName && child.AXLabel === label
+      )
+        symbols.push(child)
+      child.children?.forEach(visit)
+    }
+    node.children?.forEach(visit)
+    const symbol = symbols.length === 1 ? symbols[0].frame : undefined
+    return Boolean(
+      symbol && symbol.width > 0 && symbol.height > 0 &&
+        symbol.x >= frame.x && symbol.y >= frame.y &&
+        symbol.x + symbol.width <= frame.x + frame.width &&
+        symbol.y + symbol.height <= frame.y + frame.height
+    )
+  })
+  return buttons.length === 1 ? buttons[0] : undefined
+}
+export const visibleFrame = (frame: Node['frame'], viewport: Node['frame']) => {
+  if (!frame || !viewport || [frame, viewport].some((box) =>
+    !Object.values(box).every(Number.isFinite) || box.width <= 0 || box.height <= 0
+  )) return undefined
+  const x = Math.max(frame.x, viewport.x)
+  const y = Math.max(frame.y, viewport.y)
+  const width = Math.min(frame.x + frame.width, viewport.x + viewport.width) - x
+  const height = Math.min(frame.y + frame.height, viewport.y + viewport.height) - y
+  return width > 0 && height > 0 ? { x, y, width, height } : undefined
 }
 const nativeActivitySheet = (nodes: Node[]) => {
   const app = nodes.find((node) => node.type === 'Application')
@@ -440,11 +495,11 @@ const nativeActivitySheet = (nodes: Node[]) => {
   return sheet
 }
 // the activity service reports local bounds; its native container owns the screen origin.
-export const nativeActivityCopy = (nodes: Node[], actions: Node) => {
+export const nativeActivityAction = (nodes: Node[], actions: Node, label: string) => {
   const sheet = nativeActivitySheet(nodes)
   const app = nodes.find((node) => node.type === 'Application')
   const copy = nativeButton(
-    (actions.children ?? []).filter((node) => node.AXLabel === 'Copy'),
+    (actions.children ?? []).filter((node) => node.AXLabel === label),
     'actionGroupCell'
   )
   const frame = copy?.frame
@@ -459,6 +514,7 @@ export const nativeActivityCopy = (nodes: Node[], actions: Node) => {
     actions.pid === app.pid ||
     copy.pid !== actions.pid ||
     copy.enabled !== true ||
+    !Object.values(frame).every(Number.isFinite) ||
     frame.width <= 0 ||
     frame.height <= 0 ||
     frame.x < 0 ||
@@ -469,8 +525,39 @@ export const nativeActivityCopy = (nodes: Node[], actions: Node) => {
     return undefined
   return {
     ...copy,
+    pid: actions.pid,
     frame: { ...frame, x: sheet.frame.x + frame.x, y: sheet.frame.y + frame.y },
   }
+}
+export const nativeActivityCopy = (nodes: Node[], actions: Node) =>
+  nativeActivityAction(nodes, actions, 'Copy')
+
+export const nativeActivityDismissPoint = (nodes: Node[]) => {
+  const sheet = nativeActivitySheet(nodes)
+  const app = nodes.find((node) => node.type === 'Application')
+  const regions = nodes.filter((node) => node.AXUniqueId === 'PopoverDismissRegion')
+  const region = regions.length === 1 ? regions[0] : undefined
+  const screen = app?.frame
+  const box = sheet?.frame
+  if (
+    !screen || !box || !region?.frame || region.type !== 'Group' ||
+    region.role !== 'AXGroup' || region.enabled !== true || region.pid !== app.pid ||
+    ![screen, box, region.frame].every((frame) =>
+      Object.values(frame).every(Number.isFinite) && frame.width > 0 && frame.height > 0
+    )
+  ) return undefined
+  const outside = [
+    { x: screen.x, y: screen.y, width: screen.width, height: box.y - screen.y },
+    { x: screen.x, y: box.y + box.height, width: screen.width,
+      height: screen.y + screen.height - box.y - box.height },
+    { x: screen.x, y: screen.y, width: box.x - screen.x, height: screen.height },
+    { x: box.x + box.width, y: screen.y,
+      width: screen.x + screen.width - box.x - box.width, height: screen.height },
+  ].map((frame) => visibleFrame(frame, region.frame))
+    .filter((frame) => frame && frame.width >= 20 && frame.height >= 20)
+    .sort((a, b) => b!.width * b!.height - a!.width * a!.height)
+  const frame = outside[0]
+  return frame && { x: frame.x + frame.width / 2, y: frame.y + frame.height / 2 }
 }
 // standalone image hosts repeat the testID; the descendant symbol owns its painted frame.
 export const nativeSymbol = (nodes: Node[], testID: string, systemName: string) => {
@@ -925,6 +1012,10 @@ const gpuLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-gpu-screen')) &&
   has(nodes, 'Triangle: ')
+const uikitContentLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  has(nodes, 'Status: ') &&
+  Boolean(id(nodes, 'one-native-uikit-content-replace'))
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -986,6 +1077,8 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
     has(nodes, 'Availability: '),
   gestures: (nodes: Node[]) =>
     Boolean(id(nodes, 'one-native-gestures-box')) && has(nodes, 'Drag: '),
+  'swift-gestures': (nodes: Node[]) =>
+    Boolean(id(nodes, 'one-native-swift-gestures-screen')) && has(nodes, 'Changes: '),
   'screen-orientation': screenOrientationLoaded,
   'screen-capture': (nodes: Node[]) =>
     labels(nodes).some((label) => label.startsWith('Capture state: ')),
@@ -1029,6 +1122,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'menu-primary-action': menuPrimaryActionLoaded,
   'menu-picker': menuPickerLoaded,
   popover: popoverLoaded,
+  'uikit-content': uikitContentLoaded,
   navigation: navigationLoaded,
   'navigation-split-view': navigationSplitViewLoaded,
   accessibility: accessibilityLoaded,
@@ -1135,6 +1229,7 @@ const suiteHome: Record<Suite, string> = {
   'background-tasks': 'nav-one-native-background-tasks',
   'device-attestation': 'nav-one-native-device-attestation',
   gestures: 'nav-one-native-gestures',
+  'swift-gestures': 'nav-one-native-swift-gestures',
   'screen-orientation': 'nav-one-native-screen-orientation',
   'screen-capture': 'nav-one-native-screen-capture',
   'view-snapshot': 'nav-one-native-view-snapshot',
@@ -1173,6 +1268,7 @@ const suiteHome: Record<Suite, string> = {
   'menu-primary-action': 'nav-one-native-menu-primary-action',
   'menu-picker': 'nav-one-native-menu-picker',
   popover: 'nav-one-native-popover',
+  'uikit-content': 'nav-one-native-uikit-content',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
   map: 'nav-one-native-map',
@@ -1994,10 +2090,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     return
   }
   if (config.suite === 'sheets') {
+    const retainedText = 'Retained'
     let expectedCount = 1
     const retained = (nodes: Node[]) =>
       id(nodes, 'one-native-sheet-counter')?.AXLabel === String(expectedCount) &&
-      nativeTextField(nodes, 'one-native-sheet-input')?.AXValue === 'Retained'
+      nativeTextField(nodes, 'one-native-sheet-input')?.AXValue === retainedText
     const sheetContentHasGeometry = (nodes: Node[], yPixels: number) => {
       const frame = nodes.find(
         (node) => node.type === 'StaticText' && node.AXLabel === 'Sheet Content'
@@ -2009,14 +2106,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Math.round((frame?.height ?? 0) * 3) === 56
       )
     }
-    const closed = (nodes: Node[], count: number) => {
-      const text = labels(nodes)
-      return (
-        Boolean(id(nodes, 'one-native-sheet-open')) &&
-        text.includes('closed') &&
-        text[text.indexOf('Dismiss count:') + 1] === String(count)
-      )
-    }
+    const closed = (nodes: Node[], count: number) =>
+      Boolean(id(nodes, 'one-native-sheet-open')) &&
+      id(nodes, 'one-native-sheet-status')?.AXLabel === 'closed' &&
+      id(nodes, 'one-native-sheet-dismiss-count')?.AXLabel === String(count)
     const blockDismiss = async (expected: '0' | '1') => {
       const nodes = await wait('sheet dismiss switch ready', (n) =>
         Boolean(id(n, 'one-native-sheet-block-dismiss')?.frame)
@@ -2066,11 +2159,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => id(n, 'one-native-sheet-counter')?.AXLabel === '1'
     )
     tap({ id: 'one-native-sheet-input' })
-    await typeInto(
-      'RN sheet input',
-      'retained',
-      (n) => nativeTextField(n, 'one-native-sheet-input')?.AXValue
-    )
+    await softType('RN sheet input', retainedText)
     await wait('RN sheet input accepts text', retained)
     screenshot('sheet-input.png')
     tap({ id: 'one-native-sheet-close' })
@@ -2112,7 +2201,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'blocked drag leaves the sheet present and interactive',
       (n) =>
         id(n, 'one-native-sheet-counter')?.AXLabel === '2' &&
-        nativeTextField(n, 'one-native-sheet-input')?.AXValue === 'Retained'
+        nativeTextField(n, 'one-native-sheet-input')?.AXValue === retainedText
     )
     expectedCount = 2
     tap({ id: 'one-native-sheet-close' })
@@ -3765,15 +3854,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ label: 'Pin' })
     await wait('a leading swipe action emits', (n) => status(n, 'Pin taps', 1))
 
-    await wait('an icon-only native Button has a frame', (n) =>
-      n.some(
-        (node) =>
-          node.type === 'Button' &&
-          node.AXLabel === 'Favorite' &&
-          Boolean(node.frame?.width && node.frame?.height)
-      )
+    const iconButtonNodes = await wait('an icon-only native Button has a frame', (n) =>
+      Boolean(nativeIconButton(n, 'star.fill', 'Favorite'))
     )
-    tap({ label: 'Favorite' })
+    const iconButtonFrame = nativeIconButton(iconButtonNodes, 'star.fill', 'Favorite')!.frame!
+    point(
+      iconButtonFrame.x + iconButtonFrame.width / 2,
+      iconButtonFrame.y + iconButtonFrame.height / 2
+    )
     await wait('an icon-only button emits', (n) => status(n, 'Icon taps', 1))
     screenshot('groups-icon-button.png')
 
@@ -4288,6 +4376,41 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('device-attestation-availability.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'swift-gestures') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-swift-gestures')
+    const targetFrame = (nodes: Node[]) => nodes.find((node) =>
+      node.AXUniqueId === 'one-native-swift-gestures-drag' &&
+      node.frame && [node.frame.x, node.frame.y, node.frame.width, node.frame.height].every(Number.isFinite) &&
+      node.frame.width >= 120 && node.frame.height >= 120
+    )?.frame
+    const initial = await wait('SwiftUI drag fixture starts without events', (nodes) =>
+      labels(nodes).includes('Changes: 0') && labels(nodes).includes('Ended: pending') &&
+      Boolean(targetFrame(nodes))
+    )
+    const frame = targetFrame(initial)!
+    screenshot('swift-gesture-before.png', initial)
+    const startX = Math.round(frame.x + frame.width / 4)
+    const endX = Math.round(frame.x + frame.width * 3 / 4)
+    const y = Math.round(frame.y + frame.height / 2)
+    axe([
+      'swipe', '--start-x', String(startX), '--start-y', String(y),
+      '--end-x', String(endX), '--end-y', String(y), '--duration', '0.7',
+    ], config.simulatorId)
+    const ended = await wait('SwiftUI drag reports changes and a complete end payload', (nodes) => {
+      const changes = labels(nodes).find((label) => /^Changes: \d+$/.test(label))
+      const report = labels(nodes).find((label) => label.startsWith('Ended: '))
+      const match = report && /^Ended: translation (-?\d+),(-?\d+) · velocity (-?\d+),(-?\d+) · predicted (-?\d+),(-?\d+)$/.exec(report)
+      if (!changes || Number(changes.slice('Changes: '.length)) <= 0 || !match) return false
+      const [dx, dy, vx, vy, predictedX, predictedY] = match.slice(1).map(Number)
+      return [dx, dy, vx, vy, predictedX, predictedY].every(Number.isFinite) &&
+        Math.abs(dx - (endX - startX)) <= 20 && Math.abs(dy) <= 20
+    })
+    screenshot('swift-gesture-ended.png', ended)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -8588,6 +8711,162 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
+  if (config.suite === 'uikit-content') {
+    const prefix = 'one-native-uikit-content'
+    // the match with a size, since a cached element from an emptied cell can share the id
+    const frameOf = (nodes: Node[], testID: string) =>
+      nodes.find(
+        (node) =>
+          node.AXUniqueId === testID &&
+          (node.frame?.width ?? 0) > 0 &&
+          (node.frame?.height ?? 0) > 0
+      )?.frame
+    const ready = (nodes: Node[], generation: number) =>
+      labels(nodes).includes(`Status: ready generation ${generation}`)
+    const pressed = (nodes: Node[], what: string, count: number) =>
+      labels(nodes).includes(`Press: ${what}; count ${count}`)
+    // a cell's react content sits inside the UIKit container that shows it, at a real size
+    const inside = (nodes: Node[], testID: string, host: string) => {
+      const frame = frameOf(nodes, testID)
+      const outer = frameOf(nodes, `${prefix}-${host}-host`)
+      return Boolean(
+        frame &&
+        outer &&
+        frame.height > 0 &&
+        frame.y >= outer.y - 1 &&
+        frame.y + frame.height <= outer.y + outer.height + 1
+      )
+    }
+    // the table and stack sit below the fold. scroll the screen, never a UIKit host: drags
+    // start in the screen's left gutter, which no host covers, and move by the target's
+    // distance from the middle, slowly enough that the screen does not coast past it
+    const top = 100
+    const shown = (nodes: Node[], frame: Node['frame']) => {
+      const app = nodes.find((node) => node.type === 'Application')?.frame
+      return Boolean(
+        app && frame && frame.y >= top && frame.y + frame.height <= app.height - 40
+      )
+    }
+    const reveal = async (name: string, testID: string) => {
+      for (let attempt = 0; attempt < 8; attempt++) {
+        const nodes = readSnapshot()
+        const app = nodes.find((node) => node.type === 'Application')?.frame
+        const frame = frameOf(nodes, testID)
+        if (!app) throw new Error('The application frame disappeared')
+        if (!frame) throw new Error(`${name}: ${testID} is not in the accessibility tree`)
+        if (shown(nodes, frame)) {
+          let previous = frame
+          return wait(`${name}: ${testID} is on screen and still`, (n) => {
+            const next = frameOf(n, testID)
+            const still = Boolean(next && next.y === previous.y && shown(n, next))
+            if (next) previous = next
+            return still
+          })
+        }
+        const middle = (top + app.height) / 2
+        const distance = Math.max(
+          -app.height * 0.35,
+          Math.min(app.height * 0.35, frame.y + frame.height / 2 - middle)
+        )
+        axe(
+          [
+            'swipe',
+            '--start-x',
+            '6',
+            '--start-y',
+            String(Math.round(middle + distance / 2)),
+            '--end-x',
+            '6',
+            '--end-y',
+            String(Math.round(middle - distance / 2)),
+            '--duration',
+            '0.9',
+          ],
+          config.simulatorId
+        )
+        await new Promise((resolve) => setTimeout(resolve, 400))
+      }
+      throw new Error(`${name}: could not bring ${testID} on screen`)
+    }
+    const press = async (name: string, testID: string) => {
+      const frame = frameOf(await reveal(name, testID), testID)!
+      touch(frame.x + frame.width / 2, frame.y + frame.height / 2)
+    }
+    const firstRow = `${prefix}-collection-press-1`
+    const tableRow = `${prefix}-table-press-101`
+    const badge = `${prefix}-stack-press-201`
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-uikit-content')
+    await wait('generation 0 applies its snapshots', (n) => ready(n, 0))
+    const first = await reveal('the collection shows React rows', firstRow)
+    if (!inside(first, firstRow, 'collection'))
+      throw new Error('row 1 is not inside the collection host')
+    screenshot('uikit-content-ready.png')
+
+    // the touch lands on a UIKit cell, so React sees it only if the cell's content
+    // takes the surface's touches
+    await press('collection press', firstRow)
+    await wait('a React Pressable inside a collection cell takes a press', (n) =>
+      pressed(n, 'collection 1 generation 0', 1)
+    )
+    const table = await reveal('the table shows React rows', tableRow)
+    if (!inside(table, tableRow, 'table'))
+      throw new Error('row 101 is not inside the table host')
+    await press('table press', tableRow)
+    await wait('and one inside a table cell', (n) =>
+      pressed(n, 'table 101 generation 0', 2)
+    )
+    const stack = await reveal('the stack shows a React badge', badge)
+    if (!frameOf(stack, badge)?.height) throw new Error('badge 201 has no height')
+
+    // reconfiguring the first row gives it a second line, so its cell has to grow
+    const before = frameOf(first, firstRow)!.height
+    await press('reconfigure', `${prefix}-collection-reconfigure`)
+    await reveal('the reconfigured row', firstRow)
+    await wait(
+      'a reconfigured row renders its update and its cell grows to fit',
+      (n) =>
+        has(n, 'row 1 v2') &&
+        inside(n, firstRow, 'collection') &&
+        frameOf(n, firstRow)!.height > before + 1,
+      false,
+      () => `row 1 was ${before} high`
+    )
+    screenshot('uikit-content-reconfigured.png')
+
+    await press('unmount', `${prefix}-collection-mounted`)
+    await wait(
+      'unmounting the content empties the cells',
+      (n) => has(n, '(content unmounted)') && !contentRetained(n, firstRow)
+    )
+    await press('remount', `${prefix}-collection-mounted`)
+    await wait('remounted content fills the cells again', (n) =>
+      inside(n, firstRow, 'collection')
+    )
+    await press('remounted press', firstRow)
+    await wait('and the remounted row takes a press', (n) =>
+      pressed(n, 'collection 1 generation 0', 3)
+    )
+
+    // new UIKit views and sources: the old cells retire and the new ones take the items
+    await press('replace', `${prefix}-replace`)
+    await wait('replaced views apply their snapshots', (n) => ready(n, 1))
+    const replaced = await reveal('the new collection shows React rows', firstRow)
+    if (!inside(replaced, firstRow, 'collection'))
+      throw new Error('row 1 is not inside the new collection host')
+    await press('replaced press', firstRow)
+    await wait('and the new collection cell takes a press', (n) =>
+      pressed(n, 'collection 1 generation 1', 4)
+    )
+    screenshot('uikit-content-replaced.png')
+    const newTable = await reveal('the new table shows React rows', tableRow)
+    if (!inside(newTable, tableRow, 'table'))
+      throw new Error('row 101 is not inside the new table host')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
   if (config.suite === 'popover') {
     const status = (nodes: Node[], label: string, expected: string | number) =>
       labels(nodes).includes(`${label}: ${expected}`)
@@ -8829,6 +9108,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       return Number.isFinite(width) ? width : undefined
     }
     const nativeFrame = (nodes: Node[], testID: string) => id(nodes, testID)?.frame
+    const tapColumnRow = async (column: 'sidebar' | 'content', testID: string) => {
+      const rowFrame = (nodes: Node[]) => visibleFrame(
+        nativeFrame(nodes, testID),
+        nativeFrame(nodes, `one-native-split-view-${column}-frame`)
+      )
+      const nodes = await wait(`${testID} has a visible area inside its column`, (n) =>
+        Boolean(rowFrame(n))
+      )
+      const frame = rowFrame(nodes)!
+      point(frame.x + frame.width / 2, frame.y + frame.height / 2)
+    }
     const logNativeMetrics = (step: string, nodes: Node[]) => {
       const appFrame = nodes.find((node) => node.type === 'Application')?.frame
       const metrics =
@@ -8867,7 +9157,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Boolean(id(nodes, 'one-native-split-view-sidebar-frame'))
     )
     logNativeMetrics('uncontrolled Sidebar', uncontrolledSidebar)
-    tap({ id: 'one-native-split-view-mailbox-archive' })
+    await tapColumnRow('sidebar', 'one-native-split-view-mailbox-archive')
     const uncontrolledContent = await wait(
       'uncontrolled Sidebar selection opens Content',
       (nodes) =>
@@ -8877,7 +9167,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('navigation-split-view-uncontrolled-content.png', uncontrolledContent)
     logNativeMetrics('uncontrolled Content', uncontrolledContent)
-    tap({ id: 'one-native-split-view-message-receipt' })
+    await tapColumnRow('content', 'one-native-split-view-message-receipt')
     const uncontrolledDetail = await wait(
       'uncontrolled Content selection opens Detail',
       (nodes) =>
@@ -8979,7 +9269,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('controlled selection can be refused', (nodes) =>
       labels(nodes).includes('Accept selection: false')
     )
-    tap({ id: 'one-native-split-view-mailbox-archive' })
+    await tapColumnRow('sidebar', 'one-native-split-view-mailbox-archive')
     const refused = await wait(
       'a controlled native List reports without committing',
       (nodes) =>
@@ -8994,7 +9284,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('controlled selection is accepted', (nodes) =>
       labels(nodes).includes('Accept selection: true')
     )
-    tap({ id: 'one-native-split-view-mailbox-archive' })
+    await tapColumnRow('sidebar', 'one-native-split-view-mailbox-archive')
     const content = await wait(
       'the accepted mailbox selection opens Content',
       (nodes) =>
@@ -9014,7 +9304,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('message selection can be refused', (nodes) =>
       labels(nodes).includes('Accept selection: false')
     )
-    tap({ id: 'one-native-split-view-message-receipt' })
+    await tapColumnRow('content', 'one-native-split-view-message-receipt')
     const refusedMessage = await wait(
       'controlled message and compact-column proposals do not commit',
       (nodes) =>
@@ -9029,7 +9319,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('message selection is accepted', (nodes) =>
       labels(nodes).includes('Accept selection: true')
     )
-    tap({ id: 'one-native-split-view-message-receipt' })
+    await tapColumnRow('content', 'one-native-split-view-message-receipt')
     const detail = await wait(
       'the accepted message selection opens Detail',
       (nodes) =>
@@ -9510,9 +9800,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // rounds onLayout to whole points; require the independently rounded child union too.
     const status = (nodes: Node[], label: string, expected: string | number) =>
       labels(nodes).includes(`${label}: ${expected}`)
-    // SwiftUI does not publish Host itself as an accessibility element. Require its native
+    // SwiftUI does not publish the stack itself as an accessibility element. Require its native
     // onLayout receipt and independently calculate the exact frame union of its rendered children.
-    const size = (nodes: Node[], width: number, height: number) => {
+    // the stack fills the screen width inside the fixture's 16 point padding.
+    const size = (nodes: Node[], height: number) => {
+      const width = Math.round((appWidth(nodes) ?? 0) - 32)
       const frames = nodes
         .filter(
           (node) =>
@@ -9548,7 +9840,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'one composed child measures its own height',
       (n) =>
-        size(n, 361, 28) &&
+        size(n, 28) &&
         Boolean(control(n, 'CheckBox', 'Toggle')) &&
         status(n, 'IsOn', 'false') &&
         status(n, 'Changes', 0)
@@ -9570,7 +9862,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'children mounted later grow the host',
       (n) =>
-        size(n, 361, 80) &&
+        size(n, 80) &&
         Boolean(control(n, 'Button', 'Composed button')) &&
         Boolean(control(n, 'Button', 'Composed stepper, Increment'))
     )
@@ -9593,7 +9885,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'a wrapping label on a composed child regrows the host',
       (n) =>
-        size(n, 361, 95) &&
+        size(n, 95) &&
         Boolean(
           control(
             n,
@@ -9603,16 +9895,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         )
     )
     tap({ id: 'one-native-host-relabel' })
-    await wait('the shorter label shrinks it back', (n) => size(n, 361, 80))
+    await wait('the shorter label shrinks it back', (n) => size(n, 80))
 
     tap({ id: 'one-native-host-spacing-20' })
-    await wait('spacing adds exactly two gaps', (n) => size(n, 361, 120))
+    await wait('spacing adds exactly two gaps', (n) => size(n, 120))
     tap({ id: 'one-native-host-spacing-0' })
-    await wait('removing spacing restores the packed height', (n) => size(n, 361, 80))
+    await wait('removing spacing restores the packed height', (n) => size(n, 80))
 
     tap({ id: 'one-native-host-axis-horizontal' })
     tap({ id: 'one-native-host-expand' })
-    await wait('a single horizontal child measures the same', (n) => size(n, 361, 28))
+    await wait('a single horizontal child measures the same', (n) => size(n, 28))
     tap({ id: 'one-native-host-expand' })
     await wait('horizontal children lay out across the row', (n) => {
       const toggle = control(n, 'CheckBox', 'Toggle')?.frame
@@ -9625,7 +9917,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         button &&
         decrement &&
         increment &&
-        status(n, 'Host', '361 x 108') &&
+        status(n, 'Host', `${Math.round((appWidth(n) ?? 0) - 32)} x 108`) &&
         pixels(toggle.x + toggle.width) <= pixels(button.x) &&
         pixels(button.x + button.width) <= pixels(decrement.x) &&
         pixels(decrement.x + decrement.width) === pixels(increment.x) &&
@@ -9636,9 +9928,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     screenshot('host-horizontal.png')
     tap({ id: 'one-native-host-axis-vertical' })
     tap({ id: 'one-native-host-expand' })
-    await wait('returning to one vertical child restores the height', (n) =>
-      size(n, 361, 28)
-    )
+    await wait('returning to one vertical child restores the height', (n) => size(n, 28))
 
     for (const cycle of [1, 2]) {
       tap({ label: 'index' })
@@ -9646,7 +9936,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await tapNav('nav-one-native-host')
       await wait(
         `host recycle ${cycle}: fresh host measures again`,
-        (n) => size(n, 361, 28) && status(n, 'IsOn', 'false') && status(n, 'Changes', 0)
+        (n) => size(n, 28) && status(n, 'IsOn', 'false') && status(n, 'Changes', 0)
       )
       await pressSwitch()
       await wait(
@@ -12969,43 +13259,65 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await dismissWarning(true)
     await tapNav('nav-one-native-share')
     await wait('share fixture starts idle', (n) => labels(n).includes('Status: idle'))
-    const frame = snapshot(config.simulatorId).find(
-      (node) => node.type === 'Application'
-    )?.frame
-    if (!frame) throw new Error('share fixture has no application frame')
-    const center = String(Math.round(frame.width / 2))
-    const activityAt = (x: number, y: number) =>
-      JSON.parse(axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)) as Node
-    const dismissShare = () =>
-      axe(
-        [
-          'swipe',
-          '--start-x',
-          center,
-          '--start-y',
-          String(Math.round(frame.height * 0.5)),
-          '--end-x',
-          center,
-          '--end-y',
-          String(Math.round(frame.height * 0.95)),
-          '--duration',
-          '0.5',
-        ],
-        config.simulatorId
+    const activityAt = (x: number, y: number): Node | undefined => {
+      try {
+        return JSON.parse(
+          axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)
+        ) as Node
+      } catch (error) {
+        if (String(error).includes('fullscreen dialog')) return undefined
+        throw error
+      }
+    }
+    const activityAction = (nodes: Node[], label: string) => {
+      const sheet = nativeActivitySheet(nodes)?.frame
+      if (!sheet) return undefined
+      const actions = activityAt(sheet.x + sheet.width / 2, sheet.y + sheet.height - 1)
+      return actions && nativeActivityAction(nodes, actions, label)
+    }
+    const dismissShare = (nodes: Node[]) => {
+      const target = nativeActivityDismissPoint(nodes)
+      if (!target) throw new Error('System activity sheet has no outside dismissal area')
+      const hit = activityAt(target.x, target.y)
+      const app = nodes.find((node) => node.type === 'Application')
+      if (
+        hit?.AXUniqueId !== 'PopoverDismissRegion' || hit.type !== 'Group' ||
+        hit.role !== 'AXGroup' || hit.enabled !== true || hit.pid !== app?.pid
       )
+        throw new Error('System activity dismissal point does not hit its native region')
+      fs.writeFileSync(path.join(config.artifactDir, 'share-dismiss-hit.json'),
+        JSON.stringify({ target, hit }, null, 2))
+      point(target.x, target.y)
+    }
     tap({ id: 'one-native-share-run' })
-    await wait(
+    const textSheet = await wait(
       'share sheet opens with Copy activity',
-      () => activityAt(70, 780).AXLabel?.toLowerCase() === 'copy'
+      (nodes) => Boolean(activityAction(nodes, 'Copy'))
     )
-    screenshot('share-text-and-url.png')
-    point(70, 780)
-    await wait(
+    screenshot('share-text-and-url.png', textSheet)
+    const copy = activityAction(textSheet, 'Copy')
+    if (!copy) throw new Error('System activity sheet lost its unique enabled Copy action')
+    fs.writeFileSync(path.join(config.artifactDir, 'share-copy-action.json'),
+      JSON.stringify(copy, null, 2))
+    const copyPoint = { x: copy.frame.x + copy.frame.width / 2,
+      y: copy.frame.y + copy.frame.height / 2 }
+    const copyHit = activityAt(copyPoint.x, copyPoint.y)
+    fs.writeFileSync(path.join(config.artifactDir, 'share-copy-hit.json'),
+      JSON.stringify({ target: copyPoint, hit: copyHit }, null, 2))
+    if (
+      !copyHit || copyHit.pid !== copy.pid || copyHit.enabled !== true ||
+      !(copyHit.type === 'Button' && copyHit.role === 'AXButton' &&
+        copyHit.AXUniqueId === 'actionGroupCell' && copyHit.AXLabel === 'Copy' ||
+        copyHit.type === 'Image' && copyHit.role === 'AXImage' &&
+        copyHit.AXUniqueId === 'activityImageView' && copyHit.AXLabel === 'copy')
+    ) throw new Error('System activity Copy center does not hit its native action')
+    point(copyPoint.x, copyPoint.y)
+    const fileSheet = await wait(
       'file share opens with Save to Files activity',
-      () => activityAt(155, 820).AXLabel === 'Save to Files'
+      (nodes) => Boolean(activityAction(nodes, 'Save to Files'))
     )
-    screenshot('share-file.png')
-    dismissShare()
+    screenshot('share-file.png', fileSheet)
+    dismissShare(fileSheet)
     await wait(
       'canceled share and input errors settle',
       (n) =>

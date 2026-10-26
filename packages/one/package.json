@@ -1,6 +1,6 @@
 {
   "name": "one",
-  "version": "2.8.0",
+  "version": "2.11.0",
   "description": "One is a React framework for web, iOS, and Android apps.",
   "license": "BSD-3-Clause",
   "sideEffects": [
@@ -8,6 +8,7 @@
     "setup.mjs",
     "setup.js",
     "**/polyfills-mobile.*",
+    "**/ios-runtime.native.*",
     "web-streams-polyfill/polyfill/es5",
     "@azure/core-asynciterator-polyfill",
     "core-js/internals/inspect-source",
@@ -35,6 +36,42 @@
       "types": "./types/ui/index.d.ts",
       "import": "./dist/esm/ui/index.mjs",
       "require": "./dist/cjs/ui/index.cjs"
+    },
+    "./dom": {
+      "react-native": {
+        "types": "./types/dom/index.d.ts",
+        "default": "./dist/esm/dom/index.native.js"
+      },
+      "types": "./types/dom/index.d.ts",
+      "import": "./dist/esm/dom/index.mjs",
+      "require": "./dist/cjs/dom/index.cjs"
+    },
+    "./dom/native": {
+      "react-native": {
+        "types": "./types/dom/host.native.d.ts",
+        "default": "./dist/esm/dom/host.native.js"
+      },
+      "types": "./types/dom/host.native.d.ts",
+      "import": "./dist/esm/dom/host.native.js",
+      "require": "./dist/cjs/dom/host.native.cjs"
+    },
+    "./dom/client": {
+      "types": "./types/dom/client.d.ts",
+      "import": "./dist/esm/dom/client.mjs",
+      "require": "./dist/cjs/dom/client.cjs"
+    },
+    "./ios/*": {
+      "types": "./ios-types/*.d.ts",
+      "react-native": "./dist/esm/ios/*.native.js"
+    },
+    "./ios-runtime": {
+      "react-native": {
+        "types": "./types/ios-runtime.native.d.ts",
+        "default": "./dist/esm/ios-runtime.native.js"
+      },
+      "types": "./types/ios-runtime.d.ts",
+      "import": "./dist/esm/ios-runtime.mjs",
+      "require": "./dist/cjs/ios-runtime.cjs"
     },
     "./vite": {
       "types": "./types/vite.d.ts",
@@ -138,6 +175,11 @@
       "import": "./dist/esm/drawer.mjs",
       "require": "./dist/cjs/drawer.cjs"
     },
+    "./devtools": {
+      "types": "./types/devtools/index.d.ts",
+      "import": "./dist/esm/devtools/index.mjs",
+      "require": "./dist/cjs/devtools/index.cjs"
+    },
     "./headless": {
       "types": "./types/headless.d.ts",
       "import": "./dist/esm/headless.mjs",
@@ -150,6 +192,7 @@
     },
     "./devtools/*": "./devtools/*",
     "./schema.json": "./schema.json",
+    "./ios-link-set.json": "./ios-link-set.json",
     "./tamagui": {
       "react-native": {
         "types": "./types/tamagui.native.d.ts",
@@ -179,6 +222,8 @@
   "files": [
     "src",
     "types",
+    "ios-types",
+    "ios-bindings",
     "dist",
     "devtools",
     "vendor",
@@ -197,13 +242,17 @@
     "android/portal",
     "android/src",
     "cpp",
+    "linux",
+    "macos",
+    "native-core",
     "nitrogen",
     "One.podspec",
     "react-native.config.cjs",
-    "schema.json"
+    "schema.json",
+    "ios-link-set.json"
   ],
   "scripts": {
-    "build": "tamagui-build && bun codegen/staticSpecs.ts",
+    "build": "tamagui-build && bun codegen/staticSpecs.ts && bun codegen/sdk/build.ts",
     "check": "depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
@@ -213,8 +262,9 @@
     "typecheck": "tsc --noEmit",
     "watch": "tamagui-build --watch",
     "generate": "bun codegen/generate.ts",
+    "generate:ios-types": "bun codegen/sdk/declarations.ts",
     "generate:check": "bun codegen/generate.ts --check",
-    "nitrogen": "nitrogen",
+    "nitrogen": "nitrogen && bun codegen/gateNitro.ts",
     "coverage": "bun codegen/coverage.ts",
     "measure": "bun codegen/measure.ts"
   },
@@ -230,6 +280,7 @@
     "@react-navigation/elements": "3.0.0-alpha.55",
     "@react-navigation/native-stack": "8.0.0-alpha.59",
     "@react-navigation/routers": "8.0.0-alpha.21",
+    "@rozenite/middleware": "^2.5.0",
     "@ungap/structured-clone": "^1.2.0",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/compiler": "workspace:*",
@@ -244,7 +295,7 @@
     "fast-deep-equal": "^3.1.3",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.2.0",
-    "hono": "^4.12.8",
+    "hono": "^4.13.11",
     "lightningcss": "^1.30.1",
     "magic-string": "^0.30.21",
     "micromatch": "^4.0.8",
@@ -353,14 +404,14 @@
     }
   },
   "devDependencies": {
-    "@tamagui/sheet": "3.0.18",
+    "@tamagui/sheet": "3.1.4",
     "@callstack/liquid-glass": "^0.8.1",
     "@react-native/babel-plugin-codegen": "0.88.0",
     "@react-native/codegen": "^0.88.0",
     "@react-navigation/core": "8.0.0-alpha.41",
     "@react-navigation/drawer": "8.0.0-alpha.58",
     "@react-navigation/native": "8.0.0-alpha.51",
-    "@tamagui/build": "3.0.18",
+    "@tamagui/build": "3.1.4",
     "@types/node": "^24.10.0",
     "@types/react-dom": "^19.3.0",
     "@types/react-test-renderer": "^19.1.0",
@@ -384,7 +435,7 @@
     "typescript": "7.0.2",
     "vitest": "^4.1.0",
     "yoga-layout": "^3.2.1",
-    "@tamagui/web": "3.0.18",
+    "@tamagui/web": "3.1.4",
     "@babel/core": "^7.28.5",
     "@babel/generator": "7.29.7",
     "@babel/parser": "^7.28.5",
@@ -430,10 +481,13 @@
     "ios": {
       "componentProvider": {
         "OneNativePager": "OneNativePagerComponentView",
+        "OneDOMHost": "OneDOMHostComponentView",
         "OneSwiftHost": "OneSwiftHostComponentView",
         "OneNativeArrangementView": "OneNativeArrangementViewComponentView",
         "OneNativeArrangementSlot": "OneNativeArrangementSlotComponentView",
         "OneNativeCamera": "OneNativeCameraComponentView",
+        "OneNativeUIKitHost": "OneNativeUIKitHostComponentView",
+        "OneNativeContent": "OneNativeContentComponentView",
         "OneNativeMenu": "OneNativeMenuComponentView",
         "OneNativeTab": "OneNativeTabComponentView",
         "OneNativeList": "OneNativeListComponentView",
@@ -520,7 +574,8 @@
         "OneNativeSubscriptionStoreView": "OneNativeSubscriptionStoreViewComponentView",
         "OneNativeSheet": "OneNativeSheetComponentView",
         "OneNativeSheetContent": "OneNativeSheetContentComponentView",
-        "OneNativeHost": "OneNativeHostComponentView",
+        "OneNativeHStack": "OneNativeHStackComponentView",
+        "OneNativeVStack": "OneNativeVStackComponentView",
         "OneNativeZStack": "OneNativeZStackComponentView",
         "OneNativeSpacer": "OneNativeSpacerComponentView",
         "OneNativeForm": "OneNativeFormComponentView",
@@ -530,10 +585,14 @@
         "OneNativeViewThatFits": "OneNativeViewThatFitsComponentView",
         "OneNativeGeometryReader": "OneNativeGeometryReaderComponentView",
         "OneNativeScrollViewReader": "OneNativeScrollViewReaderComponentView",
+        "OneNativeTimelineView": "OneNativeTimelineViewComponentView",
+        "OneNativeOutlineGroup": "OneNativeOutlineGroupComponentView",
+        "OneNativeTable": "OneNativeTableComponentView",
+        "OneNativeCanvas": "OneNativeCanvasComponentView",
         "OneNativeGlassEffectContainer": "OneNativeGlassEffectContainerComponentView",
         "OneNativeButton": "OneNativeButtonComponentView",
         "OneNativeGlass": "OneNativeGlassComponentView",
-        "OneNativeTabs": "OneNativeTabsComponentView",
+        "OneNativeTabView": "OneNativeTabViewComponentView",
         "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
         "OneNativeNavigationStack": "OneNativeNavigationStackComponentView",
         "OneNativeNavigationSplitView": "OneNativeNavigationSplitViewComponentView",
@@ -543,6 +602,8 @@
         "OneNativeToolbarSpacer": "OneNativeToolbarSpacerComponentView",
         "OneNativeNavigationStackContent": "OneNativeNavigationStackContentComponentView",
         "OneNativeNavigationSplitViewColumn": "OneNativeNavigationSplitViewColumnComponentView",
+        "OneNativeTableCell": "OneNativeTableCellComponentView",
+        "OneNativeOutlineRow": "OneNativeOutlineRowComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
         "OneNativePopoverContent": "OneNativePopoverContentComponentView",
         "OneNativePhaseAnimator": "OneNativePhaseAnimatorComponentView",

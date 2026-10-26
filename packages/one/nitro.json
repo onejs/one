@@ -10,6 +10,7 @@
   },
   "autolinking": {
     "OneContactUI": { "ios": { "language": "swift", "implementationClassName": "HybridOneContactUI" } },
+    "OneSDK": { "ios": { "language": "swift", "implementationClassName": "HybridOneSDK" } },
     "NativeCNContact": { "ios": { "language": "swift", "implementationClassName": "HybridNativeCNContact" } },
     "NativeCNContactStore": { "ios": { "language": "swift", "implementationClassName": "HybridNativeCNContactStore" } },
     "OneDataScanner": { "ios": { "language": "swift", "implementationClassName": "HybridOneDataScanner" } },
@@ -27,7 +28,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneLaunchScreen" }
     },
     "OneClipboard": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneClipboard" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneClipboard" }
     },
     "OneBattery": {
@@ -35,7 +35,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneBattery" }
     },
     "OneBrightness": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneBrightness" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneBrightness" }
     },
     "OneSpeechSynthesis": {
@@ -46,11 +45,9 @@
       "all": { "language": "c++", "implementationClassName": "HybridOneCrypto" }
     },
     "OneNetwork": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneNetwork" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneNetwork" }
     },
     "OneAppInfo": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneAppInfo" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneAppInfo" }
     },
     "OneBrowser": {
@@ -62,7 +59,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneImagePicker" }
     },
     "OneDocumentPicker": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneDocumentPicker" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneDocumentPicker" }
     },
     "OneFonts": {
@@ -94,7 +90,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneAppleAuth" }
     },
     "OneLocalAuthentication": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneLocalAuthentication" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneLocalAuthentication" }
     },
     "OneProtectedStore": {
@@ -105,11 +100,9 @@
       "all": { "language": "c++", "implementationClassName": "HybridOneStorage" }
     },
     "OneKeepAwake": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneKeepAwake" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneKeepAwake" }
     },
     "OnePrint": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOnePrint" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOnePrint" }
     },
     "OneStoreReview": {
@@ -133,18 +126,13 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneAudio" }
     },
     "OneShare": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneShare" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneShare" }
     },
     "OnePhotoLibrary": {
       "ios": { "language": "swift", "implementationClassName": "HybridOnePhotoLibrary" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOnePhotoLibrary" }
     },
-    "OneAppTracking": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneAppTracking" }
-    },
     "OneAppIcon": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneAppIcon" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneAppIcon" }
     },
     "OneImageManipulator": {
@@ -166,9 +154,6 @@
     "OneAppIntents": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneAppIntents" }
     },
-    "OneDeviceAttestation": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneDeviceAttestation" }
-    },
     "OneScreenOrientation": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneScreenOrientation" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneScreenOrientation" }
@@ -185,7 +170,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneContacts" }
     },
     "OneCalendar": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneCalendar" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneCalendar" }
     },
     "OneMapServices": {

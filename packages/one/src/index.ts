@@ -1,22 +1,29 @@
 export { createApp } from './createApp'
 
+export type {
+  OneDevtoolsAction,
+  OneDevtoolsActionContext,
+  OneDevtoolsPanel,
+  OneDevtoolsPanelContext,
+  OneDevtoolsPlugin,
+} from './devtools'
 export { One } from './one'
-export { AESEncryptionKey, AESSealedData } from './platform'
+export { AESEncryptionKey, AESSealedData } from './platform/crypto/index'
 // native hooks and adaptive reads are named exports for react-hooks lint.
+export { useFonts } from './platform/fonts'
+export { useKeepAwake } from './platform/keep-awake/index'
+export { useNativeState } from './platform/nativeState'
+export { useNetworkState } from './platform/network'
+export { useLocales, useCalendars } from './platform/localization'
+export { usePreventScreenCapture } from './platform/screen-capture/index'
+export { useAudioPlayer, useAudioPlayerStatus } from './platform/audio/hooks'
 export {
-  useFonts,
-  useKeepAwake,
-  useNativeState,
-  useNetworkState,
-  useLocales,
-  useCalendars,
-  usePreventScreenCapture,
-  useAudioPlayer,
-  useAudioPlayerStatus,
   useBatteryLevel,
   useBatteryState,
   useLowPowerMode,
   usePowerState,
+} from './platform/battery'
+export {
   useSizeClass,
   getSizeClass,
   useHinge,
@@ -26,7 +33,7 @@ export {
   useReservedRegionsReady,
   useWindowSegments,
   useSpanning,
-} from './platform'
+} from './platform/adaptive/index'
 export type {
   PortalProps,
   PortalHostProps,
@@ -61,6 +68,26 @@ export type {
   ScrollViewProxy,
   ScrollViewReaderProps,
   UnitPoint,
+  TimelineSchedule,
+  TimelineCadence,
+  TimelineViewContext,
+  TimelineViewProps,
+  OutlineGroupProps,
+  CanvasColorMode,
+  CanvasPoint,
+  CanvasProps,
+  CanvasRect,
+  CanvasSize,
+  CanvasSymbol,
+  CanvasText,
+  FillStyle,
+  GraphicsContext,
+  RoundedCornerStyle,
+  StrokeStyle,
+  TableColumn,
+  TableProps,
+  TableSort,
+  TableSortDirection,
   ComposeSnackbarHostRef,
   ComposeSnackbarShowOptions,
   ComposeSnackbarResult,
@@ -132,6 +159,8 @@ export {
   type WorkerExecutionContext,
 } from './createAPIRoute'
 export { getURL } from './getURL'
+export { setNativeApplicationContext } from './nativeApplicationContext'
+export type { NativeApplicationContext } from './nativeApplicationContext'
 export { Head } from './head'
 // for easier expo-router migration
 export {
@@ -239,6 +268,16 @@ export {
   type ValidateRouteProps,
   type ValidationResult,
 } from './validateParams'
+// search param schema
+export { SearchValidationError } from './validateSearchParams'
+export type {
+  SearchParamsOptions,
+  SearchParamsUpdate,
+  SearchParamsUpdateOptions,
+  SearchValue,
+  UseSearchParamsSchemaResult,
+} from './searchParams'
+export type { StandardSchemaV1 } from './standardSchema'
 // validation state hook
 export { useValidationState, type ValidationState } from './router/router'
 // React Navigation
