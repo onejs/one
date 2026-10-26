@@ -105,8 +105,8 @@ export interface LinkProps<T extends string | object = string>
   /**
    * Search params to add to `href`. Keys replace the same keys already in `href`; the
    * path, other keys and the hash stay. Strings, numbers, booleans and arrays of those
-   * are written (arrays as repeated keys), `null` and `undefined` remove a key. The `params`
-   * prop still joins an array with commas, so an array there is one string.
+   * are written (arrays as repeated keys), `null` and `undefined` remove a key. Arrays in
+   * `href.params` still join with commas, so an array there reads back as one string.
    *
    * When the destination route reads its query with `useSearchParams(schema)`, the keys
    * and values are type checked against that schema. The server validates the same schemas before an `ssr` route's loader runs. See [useSearchParams](/docs/hooks-useSearchParams).

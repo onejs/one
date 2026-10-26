@@ -61,7 +61,7 @@ const tags = searchParams.getAll('tag')
 
 ## Typed Search Params
 
-Pass a [Standard Schema](https://standardschema.dev) to read the query as typed values and get a function that updates it. Zod, Valibot, ArkType and any other library that implements the standard work, and One does not depend on any of them.
+Pass a [Standard Schema](https://standardschema.dev) to read the query as typed values and get a function that updates it. Use a compatible schema from Zod, Valibot, ArkType, [Effect’s Standard Schema adapter](https://effect.website/docs/v4/schema/standard-schema), or another library that implements the standard.
 
 ```tsx
 import { useSearchParams } from 'one'

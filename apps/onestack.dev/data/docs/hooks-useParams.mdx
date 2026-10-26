@@ -71,7 +71,7 @@ export default function PostPage() {
 }
 ```
 
-The type argument describes the expected values; it does not validate or parse them at runtime. Use [`useSearchParams`](/docs/hooks-useSearchParams#typed-search-params) with a schema for runtime query validation. Export that schema from the route to also type its `Link` search parameters.
+The type argument describes the expected values; it does not validate or parse them at runtime. Use [`useSearchParams`](/docs/hooks-useSearchParams#typed-search-params) with a schema for runtime query validation. Export that schema as a `const` so `Link` can type the route's search parameters.
 
 ## Catch-All Routes
 
