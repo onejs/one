@@ -2,7 +2,7 @@
 title: useSearchParams
 ---
 
-Returns URL search parameters as a read-only `URLSearchParams` object. This provides the standard web API for working with query strings.
+Without a schema, returns the route's path and query parameters as a read-only `URLSearchParams` object. This provides the standard web API for reading the combined parameters, rather than parsing only the URL's query string.
 
 ## Basic Usage
 
@@ -206,19 +206,23 @@ function Filters() {
 | Hook | Returns | Use for |
 |------|---------|---------|
 | `useParams` | Plain object | Quick access to params as object |
-| `useSearchParams` | URLSearchParams | Standard web API, repeated params |
+| `useSearchParams()` without a schema | URLSearchParams | Standard web API, repeated params |
 
-Both hooks include path params and query params. Choose based on which API you prefer:
+Both `useParams()` and `useSearchParams()` without a schema include path params and query params. The return type changes how you read them, not which params are included:
 
 ```tsx
-// Object style
-const { sort, page } = useParams()
+// Route: /users/[id], URL: /users/alice?tab=profile
+const { id, tab } = useParams()
+// id === 'alice', tab === 'profile'
 
-// URLSearchParams style
 const searchParams = useSearchParams()
-const sort = searchParams.get('sort')
-const page = searchParams.get('page')
+searchParams.get('id')  // 'alice'
+searchParams.get('tab') // 'profile'
 ```
+
+If a query key has the same name as a dynamic path parameter, the path value takes precedence. For `/users/alice?id=bob&tab=profile`, both hooks above still return `id` as `'alice'`; the query value `'bob'` is not separately available through them. Use distinct names when you need both values.
+
+The [schema overload](#typed-search-params), `useSearchParams(schema)`, keeps only keys present in the query before validating them. A path-only `id` is excluded, but a query key named `id` still receives the merged path value when the names collide.
 
 ## Expo Router Compatibility
 
