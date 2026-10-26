@@ -73,25 +73,25 @@ const SKIA_DAWN_MARKER = '# [vxrn/one] react-native-skia dawn'
 /**
  * react-native-skia 3 takes dawn from react-native-webgpu whenever node
  * resolution finds that package instead of vendoring its own. a hoisted
- * workspace install finds it even for a target that never links the webgpu
- * pod, and that app then links no dawn at all. once autolinking has declared
- * the target's pods, a target without react-native-webgpu has skia vendor
- * dawn itself, through the RNSKIA_VENDOR_DAWN switch its podspec reads.
+ * workspace install finds it even for an app that never links webgpu, which
+ * then fails on a dawn version mismatch or links no dawn at all. autolinking
+ * evaluates the skia podspec inside use_native_modules!, so the decision is
+ * made before anything else in the Podfile, from the app's own dependencies,
+ * through the RNSKIA_VENDOR_DAWN switch the podspec reads.
  */
 function injectSkiaDawnVendoringIntoPodfile(podfile) {
   if (podfile.includes(SKIA_DAWN_MARKER)) return podfile
-  const match = podfile.match(/^([ \t]*)config = use_native_modules!.*$/m)
-  if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
-  const patch = [
-    SKIA_DAWN_MARKER,
-    "unless current_target_definition.dependencies.any? { |dependency| dependency.root_name == 'react-native-webgpu' }",
-    "  ENV['RNSKIA_VENDOR_DAWN'] ||= '1'",
-    'end',
-  ]
-    .map((line) => match[1] + line)
-    .join('\n')
-  const insertAt = match.index + match[0].length
-  return podfile.slice(0, insertAt) + '\n' + patch + podfile.slice(insertAt)
+  return (
+    [
+      SKIA_DAWN_MARKER,
+      "require 'json'",
+      "vxrn_app_package = JSON.parse(File.read(File.join(__dir__, '..', 'package.json')))",
+      "unless %w[dependencies devDependencies peerDependencies].any? { |key| (vxrn_app_package[key] || {}).key?('react-native-webgpu') }",
+      "  ENV['RNSKIA_VENDOR_DAWN'] ||= '1'",
+      'end',
+      '',
+    ].join('\n') + podfile
+  )
 }
 
 const WEBGPU_HEADERS_MARKER = '# [vxrn/one] webgpu isolated package headers'
