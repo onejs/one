@@ -367,6 +367,7 @@ describe('createFileSystemRouterPlugin', () => {
   it('escapes route entries for optimizeDeps glob', async () => {
     process.env.IS_VXRN_CLI = '1'
     tempRoot = mkdtempSync(path.join(tmpdir(), 'one-router-entries-'))
+    const root = tempRoot
     const appDir = path.join(tempRoot, 'app')
     writeFileSync(path.join(tempRoot, 'package.json'), '{}\n')
     for (const f of ['index.tsx', '(tabs)/feed.tsx', 'docs/[slug]+ssg.tsx']) {
@@ -409,7 +410,7 @@ describe('createFileSystemRouterPlugin', () => {
       ignore: ['**/node_modules/**'],
     })
     const expected = ['app/index.tsx', 'app/(tabs)/feed.tsx', 'app/docs/[slug]+ssg.tsx']
-      .map((f) => path.join(tempRoot, f))
+      .map((f) => path.join(root, f))
       .sort()
     expect([...globbed].sort()).toEqual(expected)
   })
