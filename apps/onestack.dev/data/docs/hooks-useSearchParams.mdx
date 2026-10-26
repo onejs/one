@@ -150,11 +150,11 @@ Where it applies:
 
 ### URL encoding of arrays
 
-An array search param is now written as repeated keys everywhere the router builds a URL, because that is the only form that reads back as the same array. Before, `router.push({ pathname, params: { tags: ['a', 'b'] } })` could not round-trip through the address bar. This is a visible URL change for apps that pass arrays as search params, so it ships in a minor release.
+An array search param is now written as repeated keys everywhere the router builds a URL, because that is the only form that robustly reads back as the same array. Before, `router.push({ pathname, params: { tags: ['a', 'b'] } })` could not round-trip through the address bar. This is a visible URL change for apps that pass arrays as search params, so it ships in a minor release.
 
-`Link` `params` is unchanged and still joins an array with commas, so `params={{ tags: ['a', 'b'] }}` is the single string `a,b`. Use `searchParams` on `Link` for repeated keys.
+The `Link` prop `params` is left unchanged, and still joins an array with commas, so `params={{ tags: ['a', 'b'] }}` becomes the string `'tags=a,b'` in the URL, which `useParams` extracts to the single string `'a,b'`. This can become problematic if the array contains strings (like sentences) which internally also have commas. So it is especially advised use the `searchParams` prop on `Link` for arrays (which will use [repeated keys](https://onestack.dev/docs/hooks-useSearchParams#repeated-parameters) like `tags=a&tags=b` in the URL, so it can robustly be extracted to the array `['a', 'b']`).
 
-Typed `Link` discovery reads `paths` from your tsconfig and from a tsconfig it extends by relative path, but not from one it extends from a package.
+Typed `Link` discovery reads `paths` from your tsconfig, and from a tsconfig it extends by relative path, but not from one it extends from a package.
 
 ## Global Option
 
