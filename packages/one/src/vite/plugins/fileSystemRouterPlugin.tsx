@@ -1,6 +1,7 @@
 import path from 'node:path'
 import { Readable } from 'node:stream'
 import { TLSSocket } from 'node:tls'
+import fastGlob from 'fast-glob'
 import { debounce } from 'perfect-debounce'
 import colors from 'picocolors'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
@@ -694,12 +695,18 @@ export function createFileSystemRouterPlugin(
                 return []
               }
 
-              // optimizeDeps.entries uses tinyglobby — needs forward-slash patterns
+              // optimizeDeps.entries uses tinyglobby — needs forward-slash patterns.
+              // entries are literal route files, so escape glob magic: (group)
+              // and [param] segments would otherwise drop or overmatch.
               return [
-                path.posix.join(`./${routerRoot}`, route.file),
+                fastGlob.escapePath(path.posix.join(`./${routerRoot}`, route.file)),
                 ...(route.layouts?.flatMap((layout) => {
                   if (!layout.contextKey) return []
-                  return [path.posix.join(`./${routerRoot}`, layout.contextKey)]
+                  return [
+                    fastGlob.escapePath(
+                      path.posix.join(`./${routerRoot}`, layout.contextKey)
+                    ),
+                  ]
                 }) || []),
               ]
             })
