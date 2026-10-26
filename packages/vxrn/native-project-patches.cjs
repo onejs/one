@@ -75,22 +75,36 @@ const SKIA_DAWN_MARKER = '# [vxrn/one] react-native-skia dawn'
  * resolution finds that package instead of vendoring its own. a hoisted
  * workspace install finds it even for an app that never links webgpu, which
  * then fails on a dawn version mismatch or links no dawn at all. autolinking
- * evaluates the skia podspec inside use_native_modules!, so the decision is
- * made before anything else in the Podfile, from the app's own dependencies,
- * through the RNSKIA_VENDOR_DAWN switch the podspec reads.
+ * evaluates the skia podspec inside use_native_modules!, so the Podfile reads
+ * the modules its config command links first, and has skia vendor dawn
+ * through the RNSKIA_VENDOR_DAWN switch its podspec reads when webgpu is not
+ * among them.
  */
 function injectSkiaDawnVendoringIntoPodfile(podfile) {
   if (podfile.includes(SKIA_DAWN_MARKER)) return podfile
+  // a bare call runs autolinking's own default command
+  const anchor = /^(\s*config = use_native_modules!)(?:\((.*)\))?$/m
+  if (!anchor.test(podfile))
+    throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
+  const helper = [
+    SKIA_DAWN_MARKER,
+    "require 'json'",
+    'def vxrn_skia_dawn_config(config_command)',
+    '  json, _, status = Pod::Executable.capture_command(config_command[0], config_command[1..], capture: :both)',
+    '  if status.success?',
+    "    linked = JSON.parse(json)['dependencies'] || {}",
+    "    ENV['RNSKIA_VENDOR_DAWN'] ||= '1' unless linked.key?('react-native-webgpu')",
+    '  end',
+    '  config_command',
+    'end',
+    '',
+  ].join('\n')
   return (
-    [
-      SKIA_DAWN_MARKER,
-      "require 'json'",
-      "vxrn_app_package = JSON.parse(File.read(File.join(__dir__, '..', 'package.json')))",
-      "unless %w[dependencies devDependencies peerDependencies].any? { |key| (vxrn_app_package[key] || {}).key?('react-native-webgpu') }",
-      "  ENV['RNSKIA_VENDOR_DAWN'] ||= '1'",
-      'end',
-      '',
-    ].join('\n') + podfile
+    helper +
+    podfile.replace(
+      anchor,
+      (_, call, command = '$default_command') => `${call}(vxrn_skia_dawn_config(${command}))`
+    )
   )
 }
 

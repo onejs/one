@@ -2930,7 +2930,6 @@ end`
       }
       rendered = nativeProjectPatches.injectFmtCxx17FixIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectWebGPUHeaderPathsIntoPodfile(rendered)
-      rendered = nativeProjectPatches.injectSkiaDawnVendoringIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectOneSwiftPackagesIntoPodfile(rendered)
       if (nitroWebImage)
         rendered =
@@ -2944,6 +2943,7 @@ end`
         nativeModulesCall,
         `config = use_native_modules!(['node', '-e', "process.argv=['', '', 'config'];require(require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli')).run()"])`
       )
+      rendered = nativeProjectPatches.injectSkiaDawnVendoringIntoPodfile(rendered)
       if (
         !rendered.includes('[vxrn/one] fmt c++17 fix') ||
         !rendered.includes('[vxrn/one] minify iOS Hermes Release bundle input')
