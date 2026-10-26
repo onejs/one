@@ -391,15 +391,26 @@ describe('createFileSystemRouterPlugin', () => {
       createRouteIndex({ routerRoot: appDir })
     )
 
+    // neighbor on disk after manifest freeze: not an entry, overmatched by raw glob
+    const neighbor = path.join(appDir, 'tabs', 'feed.tsx')
+    mkdirSync(path.dirname(neighbor), { recursive: true })
+    writeFileSync(neighbor, 'export default function N() { return null }\n')
+
     const cfg = (await (plugin as any).config()) as
       | { optimizeDeps?: { entries?: string[] } }
       | undefined
     const entries = cfg?.optimizeDeps?.entries
     expect(entries).toBeDefined()
-    expect(entries).toContain('app/index.tsx')
-    expect(entries!.some((e) => e.includes('(tabs)'))).toBe(false)
-    expect(entries!.some((e) => e.includes('[slug]'))).toBe(false)
-    expect(entries!.some((e) => e.includes('\\(tabs\\)'))).toBe(true)
-    expect(entries!.some((e) => e.includes('\\[slug\\]'))).toBe(true)
+
+    const { glob } = await import('tinyglobby')
+    const globbed = await glob(entries!, {
+      absolute: true,
+      cwd: tempRoot,
+      ignore: ['**/node_modules/**'],
+    })
+    const expected = ['app/index.tsx', 'app/(tabs)/feed.tsx', 'app/docs/[slug]+ssg.tsx']
+      .map((f) => path.join(tempRoot, f))
+      .sort()
+    expect([...globbed].sort()).toEqual(expected)
   })
 })
