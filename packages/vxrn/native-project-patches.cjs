@@ -68,6 +68,32 @@ function injectNitroWebImageModularHeaderIntoPodfile(podfile) {
  */
 const FMT_CXX17_MARKER = '# [vxrn/one] fmt c++17 fix'
 
+const SKIA_DAWN_MARKER = '# [vxrn/one] react-native-skia dawn'
+
+/**
+ * react-native-skia 3 takes dawn from react-native-webgpu whenever node
+ * resolution finds that package instead of vendoring its own. a hoisted
+ * workspace install finds it even for a target that never links the webgpu
+ * pod, and that app then links no dawn at all. once autolinking has declared
+ * the target's pods, a target without react-native-webgpu has skia vendor
+ * dawn itself, through the RNSKIA_VENDOR_DAWN switch its podspec reads.
+ */
+function injectSkiaDawnVendoringIntoPodfile(podfile) {
+  if (podfile.includes(SKIA_DAWN_MARKER)) return podfile
+  const match = podfile.match(/^([ \t]*)config = use_native_modules!.*$/m)
+  if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
+  const patch = [
+    SKIA_DAWN_MARKER,
+    "unless current_target_definition.dependencies.any? { |dependency| dependency.root_name == 'react-native-webgpu' }",
+    "  ENV['RNSKIA_VENDOR_DAWN'] ||= '1'",
+    'end',
+  ]
+    .map((line) => match[1] + line)
+    .join('\n')
+  const insertAt = match.index + match[0].length
+  return podfile.slice(0, insertAt) + '\n' + patch + podfile.slice(insertAt)
+}
+
 const WEBGPU_HEADERS_MARKER = '# [vxrn/one] webgpu isolated package headers'
 
 function injectWebGPUHeaderPathsIntoPodfile(podfile) {
@@ -788,6 +814,7 @@ function holdLaunchScreenInMainActivity(mainActivity) {
 }
 
 module.exports = {
+  injectSkiaDawnVendoringIntoPodfile,
   injectWebGPUHeaderPathsIntoPodfile,
   holdLaunchScreenInMainActivity,
   ONE_NOTIFICATIONS,

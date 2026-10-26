@@ -45,6 +45,7 @@ type NativeProjectPatches = {
   ): string
   injectFmtCxx17FixIntoPodfile(input: string): string
   injectWebGPUHeaderPathsIntoPodfile(input: string): string
+  injectSkiaDawnVendoringIntoPodfile(input: string): string
   injectOneSwiftPackagesIntoPodfile(input: string): string
   injectHermesMinificationPatchIntoPodfile(input: string): string
   injectReactNativeScreensGammaIntoPodfile(input: string): string
@@ -2929,6 +2930,7 @@ end`
       }
       rendered = nativeProjectPatches.injectFmtCxx17FixIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectWebGPUHeaderPathsIntoPodfile(rendered)
+      rendered = nativeProjectPatches.injectSkiaDawnVendoringIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectOneSwiftPackagesIntoPodfile(rendered)
       if (nitroWebImage)
         rendered =
