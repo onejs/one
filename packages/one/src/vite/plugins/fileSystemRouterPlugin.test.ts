@@ -363,4 +363,43 @@ describe('createFileSystemRouterPlugin', () => {
     }
     expect(loader).toHaveBeenCalledTimes(24)
   })
+
+  it('escapes route entries for optimizeDeps glob', async () => {
+    process.env.IS_VXRN_CLI = '1'
+    tempRoot = mkdtempSync(path.join(tmpdir(), 'one-router-entries-'))
+    const appDir = path.join(tempRoot, 'app')
+    writeFileSync(path.join(tempRoot, 'package.json'), '{}\n')
+    for (const f of ['index.tsx', '(tabs)/feed.tsx', 'docs/[slug]+ssg.tsx']) {
+      const full = path.join(appDir, f)
+      mkdirSync(path.dirname(full), { recursive: true })
+      writeFileSync(full, 'export default function X() { return null }\n')
+    }
+
+    ;(globalThis as any).__vxrnPluginConfig__ = {
+      web: {
+        defaultRenderMode: 'ssg',
+      },
+    }
+
+    const { createRouteIndex } = await import('../../utils/routeIndex')
+    const { createFileSystemRouterPlugin } = await import('./fileSystemRouterPlugin')
+    const plugin = createFileSystemRouterPlugin(
+      {
+        router: { root: 'app' },
+        optimization: { autoEntriesScanning: true },
+      },
+      createRouteIndex({ routerRoot: appDir })
+    )
+
+    const cfg = (await (plugin as any).config()) as
+      | { optimizeDeps?: { entries?: string[] } }
+      | undefined
+    const entries = cfg?.optimizeDeps?.entries
+    expect(entries).toBeDefined()
+    expect(entries).toContain('app/index.tsx')
+    expect(entries!.some((e) => e.includes('(tabs)'))).toBe(false)
+    expect(entries!.some((e) => e.includes('[slug]'))).toBe(false)
+    expect(entries!.some((e) => e.includes('\\(tabs\\)'))).toBe(true)
+    expect(entries!.some((e) => e.includes('\\[slug\\]'))).toBe(true)
+  })
 })
