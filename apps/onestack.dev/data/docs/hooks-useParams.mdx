@@ -2,7 +2,7 @@
 title: useParams
 ---
 
-Returns URL parameters for the focused route, including dynamic segments and query string values.
+Returns URL parameters for the focused route as a plain JS object with strings, including dynamic segments and query string values (aka. search parameters). For typed, schema-validated query string values, use `useSearchParams` instead.
 
 On native, this hook reads the mounted screen's own route parameters, including inherited layout parameters. Retained screens keep their own dynamic values when another screen becomes active. On web, dynamic parameters follow the current URL. Use `useActiveParams` to read the active route globally.
 
@@ -71,6 +71,10 @@ export default function PostPage() {
 }
 ```
 
+[!TIP]
+While you can type query string parameters (like `sort?` above) manually here, it is generally recommended to use `useSearchParams` for query state instead of `useParams`. Passing a validation schema to `useSearchParams` enforces runtime safety and provides automatic end-to-end type inference across your entire application—including your `<Link>` components.
+
+
 ## Catch-All Routes
 
 For catch-all routes like `[...slug].tsx`, params are returned as arrays:
@@ -109,5 +113,6 @@ In a stack navigator, if you push a new screen, `useParams` in the previous scre
 ## Related
 
 - [useActiveParams](/docs/hooks-useActiveParams) - Global params that update even when unfocused
+- [useSearchParams](/docs/hooks-useSearchParams) - Read and write schema-validated query parameters with end-to-end type safety
 - [usePathname](/docs/hooks-usePathname) - Get just the pathname
 - [useSegments](/docs/hooks-useSegments) - Get route segments as array
