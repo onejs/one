@@ -16,7 +16,7 @@ Loaders work similarly on native platforms as they do on web:
 
 This means native apps can use the same loader patterns as web apps, with data fetching behavior determined by the route's render mode rather than the platform.
 
-Loaders and their imports are removed from client bundles, so you can access private information from within the loader. The data returned from the loader will be passed to the client, and so should be clear of private information.
+Loaders and their imports are removed from client bundles, so server-only loader code can access private information. The data returned from a loader is sent to the client. Never return secrets or other information that should stay on the server.
 
 ## Accessing Loader Data
 

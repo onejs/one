@@ -277,7 +277,10 @@ export function getNativeTransformConfig(
   }
 }
 
-function desktopReactNativeResolvePlugin(root: string, platform: DesktopPlatform): Plugin {
+function desktopReactNativeResolvePlugin(
+  root: string,
+  platform: DesktopPlatform
+): Plugin {
   const oneRoot = requireOnePackageRoot(root, platform)
   return {
     name: `vxrn:${platform}-react-native-resolve`,
@@ -547,6 +550,13 @@ function getNativePlugins(
   return [
     {
       name: 'test-native-hmr-trace-first-pre',
+      load: {
+        order: 'pre',
+        handler(id: string) {
+          start(id, 'load:first')?.('end')
+          return null
+        },
+      },
       transform: {
         order: 'pre',
         handler(_code: string, id: string) {

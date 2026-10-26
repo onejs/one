@@ -2,7 +2,7 @@
 title: useSearchParams
 ---
 
-Returns URL search parameters as a read-only `URLSearchParams` object. This provides the standard web API for working with query strings.
+Without a schema, returns the route's path and query parameters as a read-only `URLSearchParams` object. This provides the standard web API for reading the combined parameters, rather than parsing only the URL's query string.
 
 ## Basic Usage
 
@@ -61,7 +61,7 @@ const tags = searchParams.getAll('tag')
 
 ## Typed Search Params
 
-Pass a [Standard Schema](https://standardschema.dev) to read the query as typed values and get a function that updates it. Zod, Valibot, ArkType and any other library that implements the standard work, and One does not depend on any of them.
+Pass a [Standard Schema](https://standardschema.dev) to read the query as typed values and get a function that updates it. Use a compatible schema from Zod, Valibot, ArkType, [Effect’s Standard Schema adapter](https://effect.website/docs/v4/schema/standard-schema), or another library that implements the standard.
 
 ```tsx
 import { useSearchParams } from 'one'
@@ -152,7 +152,7 @@ Where it applies:
 
 An array search param is now written as repeated keys everywhere the router builds a URL, because that is the only form that reads back as the same array. Before, `router.push({ pathname, params: { tags: ['a', 'b'] } })` could not round-trip through the address bar. This is a visible URL change for apps that pass arrays as search params, so it ships in a minor release.
 
-`Link` `params` is unchanged and still joins an array with commas, so `params={{ tags: ['a', 'b'] }}` is the single string `a,b`. Use `searchParams` on `Link` for repeated keys.
+Arrays in a `Link`'s `href.params` still join with commas. For example, `href={{ pathname: '/products', params: { tags: ['a', 'b'] } }}` produces `?tags=a%2Cb`, which reads back as the single string `'a,b'`. This also loses the distinction between commas inside a value and commas between values. Use `searchParams={{ tags: ['a', 'b'] }}` on `Link` to produce repeated keys, `?tags=a&tags=b`, which `useSearchParams().getAll('tags')` reads as `['a', 'b']`.
 
 Typed `Link` discovery reads `paths` from your tsconfig and from a tsconfig it extends by relative path, but not from one it extends from a package.
 
@@ -206,19 +206,23 @@ function Filters() {
 | Hook | Returns | Use for |
 |------|---------|---------|
 | `useParams` | Plain object | Quick access to params as object |
-| `useSearchParams` | URLSearchParams | Standard web API, repeated params |
+| `useSearchParams()` without a schema | URLSearchParams | Standard web API, repeated params |
 
-Both hooks include path params and query params. Choose based on which API you prefer:
+Both `useParams()` and `useSearchParams()` without a schema include path params and query params. The return type changes how you read them, not which params are included:
 
 ```tsx
-// Object style
-const { sort, page } = useParams()
+// Route: /users/[id], URL: /users/alice?tab=profile
+const { id, tab } = useParams()
+// id === 'alice', tab === 'profile'
 
-// URLSearchParams style
 const searchParams = useSearchParams()
-const sort = searchParams.get('sort')
-const page = searchParams.get('page')
+searchParams.get('id')  // 'alice'
+searchParams.get('tab') // 'profile'
 ```
+
+If a query key has the same name as a dynamic path parameter, the path value takes precedence. For `/users/alice?id=bob&tab=profile`, both hooks above still return `id` as `'alice'`; the query value `'bob'` is not separately available through them. Use distinct names when you need both values.
+
+The [schema overload](#typed-search-params), `useSearchParams(schema)`, keeps only keys present in the query before validating them. A path-only `id` is excluded, but a query key named `id` still receives the merged path value when the names collide.
 
 ## Expo Router Compatibility
 
