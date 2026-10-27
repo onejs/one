@@ -65,7 +65,6 @@ function watchPosition(
     options.background === true
   )
   return () => {
-    if (!active) return
     active = false
     remove()
   }
