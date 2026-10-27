@@ -398,7 +398,9 @@ export function useLinking(
       }
 
       previousIndexRef.current = index
-      pendingPopStatePathRef.current = path
+      // the hash is part of the url the browser restored; onStateChange compares
+      // against it, so it must carry the hash too
+      pendingPopStatePathRef.current = path + location.hash
 
       // When browser back/forward is clicked, we first need to check if state object for this index exists
       // If it does we'll reset to that state object
@@ -684,6 +686,16 @@ export function useLinking(
         const currentSearch = window.location.search
         if (currentSearch && !path.includes('?') && window.location.pathname === path) {
           path = path + currentSearch
+        }
+      }
+
+      // @modified - browser back/forward lands on a url that carries a hash the
+      // router state does not serialize. with no navigation in flight the url is
+      // the source of truth, so keep its hash instead of replacing it away.
+      if (typeof window !== 'undefined' && !pendingNavigationAction) {
+        const { pathname, search, hash } = window.location
+        if (hash && pathname + search === path) {
+          path = path + hash
         }
       }
 
