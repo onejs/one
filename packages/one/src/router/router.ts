@@ -1231,6 +1231,9 @@ export async function linkTo(
     // Update URL to show the target path (not the intercept route path)
     updateURLWithoutNavigation(href)
 
+    // the navigation is committed: leave the not-found page
+    clearNotFoundState()
+
     // Activate the slot to render the intercept route (using scoped key)
     setSlotState(scopedSlotKey, {
       activeRouteKey: interceptRoute.contextKey,
@@ -1260,6 +1263,7 @@ export async function linkTo(
   setLastAction()
 
   if (href === '..' || href === '../') {
+    clearNotFoundState()
     current.goBack()
     return
   }
@@ -1461,7 +1465,9 @@ export async function linkTo(
 
   // the navigation is committed: only now leave the not-found page. clearing at
   // the start of linkTo re-mounted the 404ed route while the preload was still
-  // in flight, and its loader state (a settled promise on a 404) re-suspended it
+  // in flight. observed: the page froze in that render. inferred, not observed at
+  // the throw site: the remounted route re-suspended on the settled loader
+  // promise a 404 leaves behind
   clearNotFoundState()
 
   // a bit hacky until can figure out a reliable way to tie it to the state

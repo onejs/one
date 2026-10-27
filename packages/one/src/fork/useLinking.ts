@@ -398,7 +398,9 @@ export function useLinking(
       }
 
       previousIndexRef.current = index
-      pendingPopStatePathRef.current = path
+      // the hash is part of the url the browser restored; onStateChange compares
+      // against it, so it must carry the hash too
+      pendingPopStatePathRef.current = path + location.hash
 
       // When browser back/forward is clicked, we first need to check if state object for this index exists
       // If it does we'll reset to that state object
