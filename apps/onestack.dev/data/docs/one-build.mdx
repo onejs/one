@@ -9,7 +9,7 @@ It takes the following arguments (see the [CLI reference](/docs/cli) for every c
 ```bash
 npx one build [options]
 
---platform web|ios|android   # what to build (default: web)
+--platform web|ios|android|macos|linux   # what to build (default: web)
 --only <pattern>             # limit the pages built to a micromatch pattern
 --step <name>                # run a single internal build step
 --skip-env                   # skip loading .env files during build
@@ -20,6 +20,9 @@ To build for iOS for example, you would run:
 ```bash
 npx one build --platform ios
 ```
+
+Desktop builds produce JavaScript bundles, not native app projects. See
+[Native macOS and Linux](/docs/guides-desktop-native) for desktop setup.
 
 ## Building for web
 
