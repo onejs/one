@@ -1,6 +1,6 @@
 {
   "name": "test-macos-basic",
-  "version": "2.11.0",
+  "version": "2.11.5",
   "private": true,
   "type": "module",
   "scripts": {
