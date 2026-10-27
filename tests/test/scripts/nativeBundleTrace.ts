@@ -28,6 +28,7 @@ export function nativeBundleTrace(path: string | undefined): Plugin {
           )
         }
         record('request', { url: req.url, accept: req.headers.accept })
+        res.on('vxrn:bundle-phase', (phase: string) => record('phase', { phase }))
         const writeHead = res.writeHead.bind(res)
         res.writeHead = ((...args: Parameters<typeof res.writeHead>) => {
           record('headers', { status: args[0] })

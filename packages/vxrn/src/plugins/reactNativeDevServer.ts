@@ -615,7 +615,10 @@ export function createReactNativeDevServerPlugin(
         }
 
         try {
+          // the opt-in response trace separates bundle preparation from bytecode.
+          res.emit('vxrn:bundle-phase', 'bundle:start')
           const bundle = await (await getDevEngine(platform)).getBundle()
+          res.emit('vxrn:bundle-phase', 'bundle:ready')
           let body: string | Buffer = bundle.code
           if (
             (platform === 'ios' || platform === 'macos') &&
@@ -625,10 +628,12 @@ export function createReactNativeDevServerPlugin(
               root,
               platform
             ))
+            res.emit('vxrn:bundle-phase', 'bytecode:start')
             body = await compile(
               bundle,
               `${url.origin}/index.bundle?platform=${platform}`
             )
+            res.emit('vxrn:bundle-phase', 'bytecode:ready')
           }
           // a client that connects after this response starts from the current
           // route map and does not need the pending reload intended for the
