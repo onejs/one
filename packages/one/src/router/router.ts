@@ -1176,9 +1176,6 @@ export async function linkTo(
   // This enables intercepting routes to activate
   setNavigationType('soft')
 
-  // clear any active not-found state on new navigation
-  clearNotFoundState()
-
   if (href[0] === '#') {
     // this is just linking to a section of the current page on web
     return
@@ -1461,6 +1458,11 @@ export async function linkTo(
   if (currentRootState?.key && hash > 0) {
     hashes[currentRootState.key] = href.slice(hash)
   }
+
+  // the navigation is committed: only now leave the not-found page. clearing at
+  // the start of linkTo re-mounted the 404ed route while the preload was still
+  // in flight, and its loader state (a settled promise on a 404) re-suspended it
+  clearNotFoundState()
 
   // a bit hacky until can figure out a reliable way to tie it to the state
   nextOptions = options ?? null
