@@ -30,6 +30,7 @@ export const docsRoutes = [
     pages: [
       { title: 'Overview', route: '/docs/native-overview' },
       { title: 'Setup', route: '/docs/native-setup' },
+      { title: 'macOS and Linux', route: '/docs/guides-desktop-native' },
       { title: 'Components', route: '/docs/native-components' },
       { title: 'Platform APIs', route: '/docs/native-apis' },
       { title: 'Swift and Kotlin', route: '/docs/native-source' },
