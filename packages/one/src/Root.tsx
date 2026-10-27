@@ -225,6 +225,8 @@ export function Root(props: RootProps) {
           const initialPath = window.location.pathname + window.location.search
           requestAnimationFrame(() => {
             if (window.location.pathname + window.location.search !== initialPath) return
+            // an explicit navigation owns the state now; do not replay the boot url.
+            if (store.lastIntendedPathname !== undefined) return
             const nav = store.navigationRef?.current
             if (!nav) return
             const linking = getResolvedLinking()
