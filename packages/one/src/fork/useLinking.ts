@@ -687,6 +687,16 @@ export function useLinking(
         }
       }
 
+      // @modified - browser back/forward lands on a url that carries a hash the
+      // router state does not serialize. with no navigation in flight the url is
+      // the source of truth, so keep its hash instead of replacing it away.
+      if (typeof window !== 'undefined' && !pendingNavigationAction) {
+        const { pathname, search, hash } = window.location
+        if (hash && pathname + search === path) {
+          path = path + hash
+        }
+      }
+
       // @modified - extract mask from linkOptions for route masking
       const maskOptions = (state as any).linkOptions?.mask
       const maskHref = maskOptions?.href
