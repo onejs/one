@@ -54,9 +54,21 @@ function watchPosition(
   onError: (error: LocationWatchError) => void,
   options: { background?: boolean } = {}
 ): () => void {
-  return native().addPositionListener(onPosition, (code, message) => {
-    onError(Object.assign(new Error(message), { code }))
-  }, options.background === true)
+  let active = true
+  const remove = native().addPositionListener(
+    (position) => {
+      if (active) onPosition(position)
+    },
+    (code, message) => {
+      if (active) onError(Object.assign(new Error(message), { code }))
+    },
+    options.background === true
+  )
+  return () => {
+    if (!active) return
+    active = false
+    remove()
+  }
 }
 
 function geocodeAddress(address: string): Promise<LocationPlace[]> {
