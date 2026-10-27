@@ -566,6 +566,17 @@ function getNativePlugins(
       },
     },
     ...traced,
+    {
+      name: 'test-native-hmr-trace-load-fallthrough',
+      load: {
+        order: 'post',
+        handler(id: string) {
+          // only reached when earlier load hooks decline this id.
+          start(id, 'load:fallthrough')?.('end')
+          return null
+        },
+      },
+    },
   ]
 }
 
