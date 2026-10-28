@@ -246,7 +246,7 @@ export default {
 
 The native object allows you to configure your native apps.
 
-Pass `false` to completely disable native (iOS/Android) support. When disabled, One will not register the `ios`/`android` Vite environments, skip the Metro / React Native dev server plugins, and skip the rolldown native bundle pipeline — useful when you want to use One purely as a web framework.
+Pass `false` to completely disable native (iOS/Android) support. When disabled, One will not register the `ios`/`android` Vite environments, skip the Metro / React Native dev server plugins, and skip the rolldown native bundle pipeline — useful when you want to use One purely as a web framework. The static build also omits the per-loader `.native.js` twins, which only native clients read; web loaders, routes, and preloaded assets are unchanged.
 
 ```tsx fileName=vite.config.ts
 export default {

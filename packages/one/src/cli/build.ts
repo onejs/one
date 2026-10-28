@@ -548,6 +548,11 @@ export async function build(args: {
   // concurrency limiter for parallel page builds
   const limit = pLimit(buildConcurrency)
 
+  // native:false runs One as a pure web framework: no native bundle exists to
+  // read the per-loader .native.js twins, so buildPage omits them. default and
+  // native-enabled builds keep writing both twins.
+  const skipNativeLoaders = oneOptions.native === false
+
   // initialize worker pool if enabled (default: true)
   const useWorkers = shouldUseWorkers(oneOptions)
   const workerPool = useWorkers ? getWorkerPool(buildConcurrency) : null
@@ -1081,6 +1086,7 @@ export async function build(args: {
             deferredPreloads,
             useAfterLCP,
             useAfterLCPAggressive,
+            skipNativeLoaders,
           })
           .then((built) => ({ built, path }))
       }
@@ -1110,7 +1116,8 @@ export async function build(args: {
             criticalPreloads,
             deferredPreloads,
             useAfterLCP,
-            useAfterLCPAggressive
+            useAfterLCPAggressive,
+            skipNativeLoaders
           )
         })
 

@@ -86,7 +86,8 @@ parentPort.on('message', async (msg: any) => {
           msg.args.criticalPreloads,
           msg.args.deferredPreloads,
           msg.args.useAfterLCP,
-          msg.args.useAfterLCPAggressive
+          msg.args.useAfterLCPAggressive,
+          msg.args.skipNativeLoaders
         )
       })
       // loader data is already in the artifacts and is discarded by the parent.
