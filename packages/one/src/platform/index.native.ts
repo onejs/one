@@ -248,6 +248,7 @@ export type {
 export type {
   AudioPlaybackState,
   AudioPlaybackStatus,
+  AudioPlayOptions,
   AudioPlayer,
   AudioPlayerOptions,
   AudioPlayerSubscription,

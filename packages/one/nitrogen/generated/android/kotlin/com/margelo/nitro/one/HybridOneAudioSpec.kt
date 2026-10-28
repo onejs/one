@@ -40,7 +40,7 @@ abstract class HybridOneAudioSpec: HybridObject() {
   
   @DoNotStrip
   @Keep
-  abstract fun play(uri: String): Promise<AudioPlaybackStatus>
+  abstract fun play(uri: String, options: AudioPlayOptions): Promise<AudioPlaybackStatus>
   
   @DoNotStrip
   @Keep
@@ -131,6 +131,14 @@ abstract class HybridOneAudioSpec: HybridObject() {
   @DoNotStrip
   @Keep
   abstract fun removePlayer(playerId: String): Unit
+  
+  @DoNotStrip
+  @Keep
+  abstract fun setPlayerNowPlayingInfo(playerId: String, info: AudioNowPlayingInfo): Promise<Unit>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun clearPlayerNowPlayingInfo(playerId: String): Promise<Unit>
   
   @DoNotStrip
   @Keep

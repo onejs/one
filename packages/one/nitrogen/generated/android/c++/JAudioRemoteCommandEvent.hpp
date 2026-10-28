@@ -13,6 +13,7 @@
 #include "AudioRemoteCommandType.hpp"
 #include "JAudioRemoteCommandType.hpp"
 #include <optional>
+#include <string>
 
 namespace margelo::nitro::one {
 
@@ -37,9 +38,12 @@ namespace margelo::nitro::one {
       jni::local_ref<JAudioRemoteCommandType> type = this->getFieldValue(fieldType);
       static const auto fieldPositionMs = clazz->getField<jni::JDouble>("positionMs");
       jni::local_ref<jni::JDouble> positionMs = this->getFieldValue(fieldPositionMs);
+      static const auto fieldPlayerId = clazz->getField<jni::JString>("playerId");
+      jni::local_ref<jni::JString> playerId = this->getFieldValue(fieldPlayerId);
       return AudioRemoteCommandEvent(
         type->toCpp(),
-        positionMs != nullptr ? std::make_optional(positionMs->value()) : std::nullopt
+        positionMs != nullptr ? std::make_optional(positionMs->value()) : std::nullopt,
+        playerId != nullptr ? std::make_optional(playerId->toStdString()) : std::nullopt
       );
     }
 
@@ -49,13 +53,14 @@ namespace margelo::nitro::one {
      */
     [[maybe_unused]]
     static jni::local_ref<JAudioRemoteCommandEvent::javaobject> fromCpp(const AudioRemoteCommandEvent& value) {
-      using JSignature = JAudioRemoteCommandEvent(jni::alias_ref<JAudioRemoteCommandType>, jni::alias_ref<jni::JDouble>);
+      using JSignature = JAudioRemoteCommandEvent(jni::alias_ref<JAudioRemoteCommandType>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
         clazz,
         JAudioRemoteCommandType::fromCpp(value.type),
-        value.positionMs.has_value() ? jni::JDouble::valueOf(value.positionMs.value()) : nullptr
+        value.positionMs.has_value() ? jni::JDouble::valueOf(value.positionMs.value()) : nullptr,
+        value.playerId.has_value() ? jni::make_jstring(value.playerId.value()) : nullptr
       );
     }
   };

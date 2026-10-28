@@ -1,5 +1,6 @@
-import type { PitchCorrectionQuality } from '../specs/OneAudio.nitro'
+import type { AudioNowPlayingInfo, PitchCorrectionQuality } from '../specs/OneAudio.nitro'
 import { createPlayerEvents } from './events'
+import { claimNowPlaying, releaseNowPlaying } from './nowPlaying'
 import type {
   AudioPlayer as AudioPlayerShape,
   AudioPlayerOptions,
@@ -195,9 +196,30 @@ export class AudioPlayer implements AudioPlayerShape {
     this.element.load()
   }
 
+  setNowPlayingInfo(info: AudioNowPlayingInfo): Promise<void> {
+    this.assertUsable('setNowPlayingInfo')
+    return claimNowPlaying(
+      {
+        key: this.playerId,
+        element: this.element,
+        play: async () => this.play(),
+        pause: async () => this.pause(),
+        seek: (positionMs) => this.seekTo(positionMs / 1000),
+      },
+      info,
+      'AudioPlayer.setNowPlayingInfo',
+      () => !this.removed
+    )
+  }
+
+  async clearNowPlayingInfo(): Promise<void> {
+    releaseNowPlaying(this.playerId)
+  }
+
   remove(): void {
     if (this.removed) return
     this.removed = true
+    releaseNowPlaying(this.playerId)
     this.events.removeAll()
     this.element.pause()
     this.element.removeAttribute('src')

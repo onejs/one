@@ -163,9 +163,9 @@ open class HybridOneAudioSpec_cxx {
   }
   
   @inline(__always)
-  public final func play(uri: std.string) -> bridge.Result_std__shared_ptr_Promise_AudioPlaybackStatus___ {
+  public final func play(uri: std.string, options: AudioPlayOptions) -> bridge.Result_std__shared_ptr_Promise_AudioPlaybackStatus___ {
     do {
-      let __result = try self.__implementation.play(uri: String(uri))
+      let __result = try self.__implementation.play(uri: String(uri), options: options)
       let __resultCpp = { () -> bridge.std__shared_ptr_Promise_AudioPlaybackStatus__ in
         let __promise = bridge.create_std__shared_ptr_Promise_AudioPlaybackStatus__()
         let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_AudioPlaybackStatus__(__promise)
@@ -579,6 +579,44 @@ open class HybridOneAudioSpec_cxx {
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
       return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func setPlayerNowPlayingInfo(playerId: std.string, info: AudioNowPlayingInfo) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.setPlayerNowPlayingInfo(playerId: String(playerId), info: info)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func clearPlayerNowPlayingInfo(playerId: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.clearPlayerNowPlayingInfo(playerId: String(playerId))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
   

@@ -15,7 +15,7 @@ public protocol HybridOneAudioSpec_protocol: HybridObject {
   // Methods
   func getRecordingPermissionStatus() throws -> Promise<AudioRecordingPermission>
   func requestRecordingPermission() throws -> Promise<AudioRecordingPermission>
-  func play(uri: String) throws -> Promise<AudioPlaybackStatus>
+  func play(uri: String, options: AudioPlayOptions) throws -> Promise<AudioPlaybackStatus>
   func getPlaybackStatus() throws -> Promise<AudioPlaybackStatus>
   func pause() throws -> Promise<AudioPlaybackStatus>
   func resume() throws -> Promise<AudioPlaybackStatus>
@@ -36,6 +36,8 @@ public protocol HybridOneAudioSpec_protocol: HybridObject {
   func playerSeek(playerId: String, seconds: Double, toleranceBeforeMs: Double?, toleranceAfterMs: Double?) throws -> Promise<Void>
   func playerReplace(playerId: String, sourceUri: String?, headers: Dictionary<String, String>?) throws -> Void
   func removePlayer(playerId: String) throws -> Void
+  func setPlayerNowPlayingInfo(playerId: String, info: AudioNowPlayingInfo) throws -> Promise<Void>
+  func clearPlayerNowPlayingInfo(playerId: String) throws -> Promise<Void>
   func getPlayerStatus(playerId: String) throws -> AudioPlayerStatus
   func setPlayerRate(playerId: String, rate: Double, pitchQuality: PitchCorrectionQuality?) throws -> Void
   func setPlayerVolume(playerId: String, volume: Double) throws -> Void

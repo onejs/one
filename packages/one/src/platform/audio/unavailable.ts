@@ -2,6 +2,7 @@ import { validateCallback } from '../validateCallback'
 import { missingNativeBuild } from '../nativeError'
 import type {
   AudioPlaybackStatus,
+  AudioPlayOptions,
   AudioRecordingPermission,
   AudioRecordingResult,
   AudioRecordingStatus,
@@ -13,6 +14,7 @@ import type {
 export type {
   AudioPlaybackState,
   AudioPlaybackStatus,
+  AudioPlayOptions,
   AudioRecordingPermission,
   AudioRecordingResult,
   AudioRecordingState,
@@ -29,7 +31,7 @@ export const Audio = Object.freeze({
     Promise.resolve('denied'),
   requestRecordingPermission: (): Promise<AudioRecordingPermission> =>
     Promise.resolve('denied'),
-  play: (_uri: string): Promise<AudioPlaybackStatus> =>
+  play: (_uri: string, _options?: AudioPlayOptions): Promise<AudioPlaybackStatus> =>
     Promise.reject(missingNativeBuild('Audio.play')),
   getPlaybackStatus: (): Promise<AudioPlaybackStatus> =>
     Promise.resolve({ state: 'idle', positionMs: 0 }),

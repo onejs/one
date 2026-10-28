@@ -278,7 +278,7 @@ export type { FileDirectories, FileEncoding, FileEntry, FileInfo, } from './file
 export { Audio } from './audio/index';
 export { CameraView } from './camera/index.native';
 export type { CameraCapturedPicture, CameraCode, CameraCodeType, CameraFacing, CameraFlashMode, CameraPictureOptions, CameraState, CameraViewProps, CameraViewRef, } from './camera/index.native';
-export type { AudioPlaybackState, AudioPlaybackStatus, AudioPlayer, AudioPlayerOptions, AudioPlayerSubscription, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, AudioSource, AudioSourceObject, AudioStatus, PitchCorrectionQuality, } from './audio/index';
+export type { AudioPlaybackState, AudioPlaybackStatus, AudioPlayOptions, AudioPlayer, AudioPlayerOptions, AudioPlayerSubscription, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, AudioSource, AudioSourceObject, AudioStatus, PitchCorrectionQuality, } from './audio/index';
 export { Share } from './share/index';
 export { Open } from './open/index.native';
 export type { OpenShareContent } from './open/index.native';

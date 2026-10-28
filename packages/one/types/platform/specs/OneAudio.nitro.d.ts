@@ -9,6 +9,10 @@ export interface AudioPlaybackStatus {
     durationMs?: number;
     error?: string;
 }
+export interface AudioPlayOptions {
+    positionMs?: number;
+    paused?: boolean;
+}
 export interface AudioRecordingStatus {
     state: AudioRecordingState;
     uri?: string;
@@ -50,6 +54,7 @@ export type AudioRemoteCommandType = 'play' | 'pause' | 'seek';
 export interface AudioRemoteCommandEvent {
     type: AudioRemoteCommandType;
     positionMs?: number;
+    playerId?: string;
 }
 export interface OneAudio extends HybridObject<{
     ios: 'swift';
@@ -57,7 +62,7 @@ export interface OneAudio extends HybridObject<{
 }> {
     getRecordingPermissionStatus(): Promise<AudioRecordingPermission>;
     requestRecordingPermission(): Promise<AudioRecordingPermission>;
-    play(uri: string): Promise<AudioPlaybackStatus>;
+    play(uri: string, options: AudioPlayOptions): Promise<AudioPlaybackStatus>;
     getPlaybackStatus(): Promise<AudioPlaybackStatus>;
     pause(): Promise<AudioPlaybackStatus>;
     resume(): Promise<AudioPlaybackStatus>;
@@ -78,6 +83,8 @@ export interface OneAudio extends HybridObject<{
     playerSeek(playerId: string, seconds: number, toleranceBeforeMs?: number, toleranceAfterMs?: number): Promise<void>;
     playerReplace(playerId: string, sourceUri?: string, headers?: Record<string, string>): void;
     removePlayer(playerId: string): void;
+    setPlayerNowPlayingInfo(playerId: string, info: AudioNowPlayingInfo): Promise<void>;
+    clearPlayerNowPlayingInfo(playerId: string): Promise<void>;
     getPlayerStatus(playerId: string): AudioPlayerStatus;
     setPlayerRate(playerId: string, rate: number, pitchQuality?: PitchCorrectionQuality): void;
     setPlayerVolume(playerId: string, volume: number): void;

@@ -18,6 +18,8 @@ namespace margelo::nitro::one { enum class AudioRecordingPermission; }
 namespace margelo::nitro::one { struct AudioPlaybackStatus; }
 // Forward declaration of `AudioPlaybackState` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioPlaybackState; }
+// Forward declaration of `AudioPlayOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioPlayOptions; }
 // Forward declaration of `AudioRecordingStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioRecordingStatus; }
 // Forward declaration of `AudioRecordingState` to properly resolve imports.
@@ -45,6 +47,7 @@ namespace margelo::nitro::one { enum class PitchCorrectionQuality; }
 #include "AudioPlaybackState.hpp"
 #include <string>
 #include <optional>
+#include "AudioPlayOptions.hpp"
 #include "AudioRecordingStatus.hpp"
 #include "AudioRecordingState.hpp"
 #include "AudioRecordingResult.hpp"
@@ -124,8 +127,8 @@ namespace margelo::nitro::one {
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::shared_ptr<Promise<AudioPlaybackStatus>> play(const std::string& uri) override {
-      auto __result = _swiftPart.play(uri);
+    inline std::shared_ptr<Promise<AudioPlaybackStatus>> play(const std::string& uri, const AudioPlayOptions& options) override {
+      auto __result = _swiftPart.play(uri, std::forward<decltype(options)>(options));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
@@ -283,6 +286,22 @@ namespace margelo::nitro::one {
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
+    }
+    inline std::shared_ptr<Promise<void>> setPlayerNowPlayingInfo(const std::string& playerId, const AudioNowPlayingInfo& info) override {
+      auto __result = _swiftPart.setPlayerNowPlayingInfo(playerId, std::forward<decltype(info)>(info));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> clearPlayerNowPlayingInfo(const std::string& playerId) override {
+      auto __result = _swiftPart.clearPlayerNowPlayingInfo(playerId);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
     }
     inline AudioPlayerStatus getPlayerStatus(const std::string& playerId) override {
       auto __result = _swiftPart.getPlayerStatus(playerId);

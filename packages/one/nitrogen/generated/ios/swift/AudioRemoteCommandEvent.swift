@@ -18,10 +18,16 @@ public extension AudioRemoteCommandEvent {
   /**
    * Create a new instance of `AudioRemoteCommandEvent`.
    */
-  init(type: AudioRemoteCommandType, positionMs: Double?) {
+  init(type: AudioRemoteCommandType, positionMs: Double?, playerId: String?) {
     self.init(type, { () -> bridge.std__optional_double_ in
       if let __unwrappedValue = positionMs {
         return bridge.create_std__optional_double_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_std__string_ in
+      if let __unwrappedValue = playerId {
+        return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
       } else {
         return .init()
       }
@@ -32,13 +38,25 @@ public extension AudioRemoteCommandEvent {
   var type: AudioRemoteCommandType {
     return self.__type
   }
-
+  
   @inline(__always)
   var positionMs: Double? {
     return { () -> Double? in
       if bridge.has_value_std__optional_double_(self.__positionMs) {
         let __unwrapped = bridge.get_std__optional_double_(self.__positionMs)
         return __unwrapped
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var playerId: String? {
+    return { () -> String? in
+      if bridge.has_value_std__optional_std__string_(self.__playerId) {
+        let __unwrapped = bridge.get_std__optional_std__string_(self.__playerId)
+        return String(__unwrapped)
       } else {
         return nil
       }
