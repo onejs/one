@@ -787,10 +787,6 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
 
     // 6. page routes
     if (isPageRequestMethod(method)) {
-      const pageHandlers: RequestHandlers = {
-        ...requestHandlers,
-        handlePage: (props) => requestHandlers.handlePage(props, fetchStaticHtml),
-      }
       for (const route of compiledManifest.pageRoutes) {
         if (!route.compiledRegex.test(pathname)) continue
 
@@ -820,12 +816,10 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
 
           const response = await resolveResponse(async () => {
             try {
-              return await pageHandlers.handlePage!({
-                request,
-                route,
-                url,
-                loaderProps,
-              })
+              return await requestHandlers.handlePage(
+                { request, route, url, loaderProps },
+                fetchStaticHtml
+              )
             } catch (err) {
               if (isResponse(err)) return err as Response
               throw err
@@ -840,6 +834,10 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
 
         // general path
         try {
+          const pageHandlers: RequestHandlers = {
+            ...requestHandlers,
+            handlePage: (props) => requestHandlers.handlePage(props, fetchStaticHtml),
+          }
           const response = await resolvePageRoute(pageHandlers, request, url, route)
           if (response && isResponse(response)) {
             return setCacheHeaders(response, route, false)

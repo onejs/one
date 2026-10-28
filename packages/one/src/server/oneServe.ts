@@ -28,7 +28,6 @@ import {
 } from '../loaderSearchParams'
 import { getRouteExportsFromEntry } from './routeExportsFromEntry'
 import { setSSRLoaderData } from './ssrLoaderData'
-import { getFetchStaticHtml } from './staticHtmlFetcher'
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 
@@ -64,11 +63,6 @@ function forwardHeaders(response: Response, context: { header: Function }) {
 }
 
 async function readStaticHtml(htmlPath: string, outDir = 'dist'): Promise<string | null> {
-  const fetchStaticHtml = getFetchStaticHtml()
-  if (fetchStaticHtml) {
-    const html = await fetchStaticHtml(htmlPath)
-    if (html) return html
-  }
   try {
     return await readFile(join(`${outDir}/client`, htmlPath), 'utf-8')
   } catch {
