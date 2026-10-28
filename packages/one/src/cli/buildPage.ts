@@ -63,7 +63,8 @@ export async function buildPage(
   criticalPreloads?: string[],
   deferredPreloads?: string[],
   useAfterLCP?: boolean,
-  useAfterLCPAggressive?: boolean
+  useAfterLCPAggressive?: boolean,
+  skipNativeLoaders?: boolean
 ): Promise<One.RouteBuildInfo> {
   let t0 = performance.now()
 
@@ -275,10 +276,12 @@ prefetchCSS()
             loaderPartialPath,
             `export function loader(){return ${redirectData}}`
           )
-          // native-friendly CJS version
-          const nativeCjs = `exports.loader = function(){return ${redirectData}}`
-          await outputFile(loaderPartialPath.replace(/\.js$/, '.native.js'), nativeCjs)
-          await outputFile(uncachedNativePath, nativeCjs)
+          if (!skipNativeLoaders) {
+            // native-friendly CJS version
+            const nativeCjs = `exports.loader = function(){return ${redirectData}}`
+            await outputFile(loaderPartialPath.replace(/\.js$/, '.native.js'), nativeCjs)
+            await outputFile(uncachedNativePath, nativeCjs)
+          }
           loaderPath = getLoaderPath(path)
           loaderData = {}
         } else {
@@ -289,10 +292,12 @@ prefetchCSS()
           // stub of its own to replace)
           const data = JSON.stringify(loaderData)
           await outputFile(loaderPartialPath, `export function loader(){return ${data}}`)
-          // native-friendly CJS version
-          const nativeCjs = `exports.loader = function(){return ${data}}`
-          await outputFile(loaderPartialPath.replace(/\.js$/, '.native.js'), nativeCjs)
-          await outputFile(uncachedNativePath, nativeCjs)
+          if (!skipNativeLoaders) {
+            // native-friendly CJS version
+            const nativeCjs = `exports.loader = function(){return ${data}}`
+            await outputFile(loaderPartialPath.replace(/\.js$/, '.native.js'), nativeCjs)
+            await outputFile(uncachedNativePath, nativeCjs)
+          }
           loaderPath = getLoaderPath(path)
         }
       }
