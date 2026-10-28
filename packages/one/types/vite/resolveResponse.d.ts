@@ -1,4 +1,4 @@
-export declare function resolveResponse(getResponse: () => Promise<Response>): Promise<any>;
+export declare function resolveResponse(getResponse: () => Promise<Response | null>): Promise<any>;
 /**
  * enter ALS context once for the entire request handler.
  */
