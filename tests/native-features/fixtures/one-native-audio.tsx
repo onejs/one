@@ -50,6 +50,7 @@ export default function OneNativeAudio() {
   const [remoteEvents, setRemoteEvents] = useState('none')
   const [remoteErrors, setRemoteErrors] = useState('none')
   const [players, setPlayers] = useState('idle')
+  const [ownership, setOwnership] = useState('idle')
   const [hookUri, setHookUri] = useState<string | null>(null)
   const [hooks, setHooks] = useState('idle')
   const backgroundResult = useRef<{
@@ -550,6 +551,117 @@ export default function OneNativeAudio() {
     }
   }
 
+  async function runOwnership() {
+    setOwnership('running')
+    let stage = 'clip'
+    const code = async (work: () => Promise<unknown>) => {
+      try {
+        await work()
+      } catch (error) {
+        return error && typeof error === 'object' && 'code' in error
+          ? String(error.code)
+          : String(error)
+      }
+      return 'resolved'
+    }
+    const near = (actual: number, expected: number, slack: number) =>
+      Math.abs(actual - expected) <= slack
+    try {
+      const audio = One.Audio
+      const uri = await writeBackgroundClip()
+
+      stage = 'paused load'
+      const loaded = await audio.play(uri, { positionMs: 12_000, paused: true })
+      if (loaded.state !== 'paused' || !near(loaded.positionMs, 12_000, 100))
+        throw new Error(`paused load ${loaded.state}:${loaded.positionMs}`)
+      await pause(600)
+      const held = await audio.getPlaybackStatus()
+      if (held.state !== 'paused' || !near(held.positionMs, loaded.positionMs, 50))
+        throw new Error(`paused load moved ${held.state}:${held.positionMs}`)
+      await audio.resume()
+      await pause(800)
+      const resumed = await audio.getPlaybackStatus()
+      if (resumed.state !== 'playing' || resumed.positionMs < 12_200 || resumed.positionMs > 13_500)
+        throw new Error(`resume ${resumed.state}:${resumed.positionMs}`)
+
+      stage = 'replace'
+      const first = audio.play(uri, { positionMs: 5_000, paused: true })
+      const second = audio.play(uri, { positionMs: 7_000, paused: true })
+      const replaced = await code(() => first)
+      const kept = await second
+      if (replaced !== 'E_AUDIO_STATE' || kept.state !== 'paused' || !near(kept.positionMs, 7_000, 100))
+        throw new Error(`replace ${replaced} ${kept.state}:${kept.positionMs}`)
+
+      stage = 'resume while loading'
+      const loading = audio.play(uri, { positionMs: 3_000, paused: true })
+      const seekWhileLoading = await code(() => audio.seek(1_000))
+      const early = await audio.resume()
+      const started = await loading
+      // ios can still read loading for a moment while the player starts.
+      await pause(400)
+      const running = await audio.getPlaybackStatus()
+      if (
+        seekWhileLoading !== 'E_AUDIO_STATE' ||
+        early.state !== 'loading' ||
+        (started.state !== 'playing' && started.state !== 'loading') ||
+        !near(started.positionMs, 3_000, 100) ||
+        running.state !== 'playing' ||
+        running.positionMs < 3_000
+      )
+        throw new Error(
+          `loading ${seekWhileLoading} ${early.state} ${started.state}:${started.positionMs} ${running.state}:${running.positionMs}`
+        )
+
+      stage = 'clamp'
+      const end = await audio.play(uri, { positionMs: 999_999, paused: true })
+      if (!end.durationMs || !near(end.positionMs, end.durationMs, 100))
+        throw new Error(`clamp ${end.state}:${end.positionMs}/${end.durationMs}`)
+      const negative = await code(() => audio.play(uri, { positionMs: -1 }))
+      if (negative !== 'E_AUDIO_POSITION') throw new Error(`negative ${negative}`)
+      const stopped = audio.play(uri, { paused: true })
+      await audio.stop()
+      const stopCode = await code(() => stopped)
+      if (stopCode !== 'E_AUDIO_STATE') throw new Error(`stop during load ${stopCode}`)
+      const legacy = await audio.play(uri)
+      if (legacy.state !== 'loading' && legacy.state !== 'playing')
+        throw new Error(`legacy ${legacy.state}`)
+
+      stage = 'ownership'
+      await audio.setNowPlayingInfo({ title: 'Global' })
+      const one = audio.createPlayer(uri)
+      const two = audio.createPlayer(uri)
+      one.play()
+      two.volume = 0
+      two.play()
+      await one.setNowPlayingInfo({ title: 'One', artist: 'Fixture' })
+      // the singleton's cleanup no longer owns the session.
+      await audio.clearNowPlayingInfo()
+      await audio.stop()
+      await two.setNowPlayingInfo({ title: 'Two' })
+      await one.clearNowPlayingInfo()
+      one.remove()
+      await one.clearNowPlayingInfo()
+      const removed = await code(() => one.setNowPlayingInfo({ title: 'Gone' }))
+      const blank = await code(() => two.setNowPlayingInfo({ title: ' ' }))
+      const art = await code(() =>
+        two.setNowPlayingInfo({ title: 'Two', artworkUri: 'file:///missing.png' })
+      )
+      await pause(300)
+      const owner = two.getStatus()
+      two.remove()
+      setOwnership(
+        `passed: load:${Math.round(loaded.positionMs)} resume:${Math.round(resumed.positionMs)} ` +
+          `replace:${replaced} clamp:${Math.round(end.positionMs)} owner:${owner.playing} ` +
+          `errors:${removed.includes('removed') ? 'removed' : removed},${blank},${art}`
+      )
+    } catch (error) {
+      await One.Audio.stop().catch(() => {})
+      setOwnership(
+        `error at ${stage}: ${error instanceof Error ? error.message : String(error)}`
+      )
+    }
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.screen}>
       <Text testID="one-native-audio-status">Status: {status}</Text>
@@ -564,6 +676,14 @@ export default function OneNativeAudio() {
         onPress={runPlayers}
       >
         <Text>Run player instances</Text>
+      </Pressable>
+      <Text testID="one-native-audio-ownership">Ownership: {ownership}</Text>
+      <Pressable
+        testID="one-native-audio-ownership-run"
+        style={styles.chip}
+        onPress={runOwnership}
+      >
+        <Text>Run ownership and paused load</Text>
       </Pressable>
       <Text testID="one-native-audio-hooks-state">Hooks state: {hooks}</Text>
       <Pressable

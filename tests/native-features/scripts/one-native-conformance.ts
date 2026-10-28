@@ -123,6 +123,7 @@ const suites = [
   'audio',
   'audio-interruption',
   'audio-remote',
+  'audio-ownership',
   'audio-background',
   'share',
   'photo-library',
@@ -1141,6 +1142,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   audio: audioLoaded,
   'audio-interruption': audioLoaded,
   'audio-remote': audioLoaded,
+  'audio-ownership': audioLoaded,
   'audio-background': audioLoaded,
   share: shareLoaded,
   'photo-library': photoLibraryLoaded,
@@ -1285,6 +1287,7 @@ const suiteHome: Record<Suite, string> = {
   audio: 'nav-one-native-audio',
   'audio-interruption': 'nav-one-native-audio',
   'audio-remote': 'nav-one-native-audio',
+  'audio-ownership': 'nav-one-native-audio',
   'audio-background': 'nav-one-native-audio',
   share: 'nav-one-native-share',
   'photo-library': 'nav-one-native-photo-library',
@@ -13177,6 +13180,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Interruption: began:false,ended:true')
     )
     screenshot('audio-interruption.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'audio-ownership') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-audio')
+    await wait('audio ownership fixture starts idle', (n) =>
+      labels(n).includes('Ownership: idle')
+    )
+    tap({ id: 'one-native-audio-ownership-run' })
+    await wait(
+      'paused loads land before sound and players own now playing',
+      (n) =>
+        labels(n).some(
+          (label) =>
+            label.startsWith('Ownership: passed:') &&
+            label.endsWith('owner:true errors:removed,E_AUDIO_METADATA,E_AUDIO_ARTWORK')
+        ),
+      false,
+      () => labels(snapshot(config.simulatorId)).find((label) => label.startsWith('Ownership:')) ?? ''
+    )
+    screenshot('audio-ownership.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

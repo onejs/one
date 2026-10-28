@@ -33,6 +33,7 @@ namespace margelo::nitro::one { enum class AudioRemoteCommandType; }
 
 #include "AudioRemoteCommandType.hpp"
 #include <optional>
+#include <string>
 
 namespace margelo::nitro::one {
 
@@ -43,10 +44,11 @@ namespace margelo::nitro::one {
   public:
     AudioRemoteCommandType type     SWIFT_PRIVATE;
     std::optional<double> positionMs     SWIFT_PRIVATE;
+    std::optional<std::string> playerId     SWIFT_PRIVATE;
 
   public:
     AudioRemoteCommandEvent() = default;
-    explicit AudioRemoteCommandEvent(AudioRemoteCommandType type, std::optional<double> positionMs): type(type), positionMs(positionMs) {}
+    explicit AudioRemoteCommandEvent(AudioRemoteCommandType type, std::optional<double> positionMs, std::optional<std::string> playerId): type(type), positionMs(positionMs), playerId(playerId) {}
 
   public:
     friend bool operator==(const AudioRemoteCommandEvent& lhs, const AudioRemoteCommandEvent& rhs) = default;
@@ -63,13 +65,15 @@ namespace margelo::nitro {
       jsi::Object obj = arg.asObject(runtime);
       return margelo::nitro::one::AudioRemoteCommandEvent(
         JSIConverter<margelo::nitro::one::AudioRemoteCommandType>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "type"))),
-        JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "positionMs")))
+        JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "positionMs"))),
+        JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "playerId")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::AudioRemoteCommandEvent& arg) {
       jsi::Object obj(runtime);
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "type"), JSIConverter<margelo::nitro::one::AudioRemoteCommandType>::toJSI(runtime, arg.type));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "positionMs"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.positionMs));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "playerId"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.playerId));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -82,6 +86,7 @@ namespace margelo::nitro {
       }
       if (!JSIConverter<margelo::nitro::one::AudioRemoteCommandType>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "type")))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "positionMs")))) return false;
+      if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "playerId")))) return false;
       return true;
     }
   };

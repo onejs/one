@@ -37,6 +37,7 @@ export {
 export type {
   PortalProps,
   PortalHostProps,
+  AudioPlayOptions,
   AudioPlayer,
   AudioPlayerOptions,
   AudioPlayerSubscription,

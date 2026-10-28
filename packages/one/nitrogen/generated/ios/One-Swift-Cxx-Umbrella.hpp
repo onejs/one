@@ -36,6 +36,8 @@ namespace margelo::nitro::one { struct AudioInterruptionEvent; }
 namespace margelo::nitro::one { enum class AudioInterruptionType; }
 // Forward declaration of `AudioNowPlayingInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioNowPlayingInfo; }
+// Forward declaration of `AudioPlayOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioPlayOptions; }
 // Forward declaration of `AudioPlaybackState` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioPlaybackState; }
 // Forward declaration of `AudioPlaybackStatus` to properly resolve imports.
@@ -486,6 +488,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "AudioInterruptionEvent.hpp"
 #include "AudioInterruptionType.hpp"
 #include "AudioNowPlayingInfo.hpp"
+#include "AudioPlayOptions.hpp"
 #include "AudioPlaybackState.hpp"
 #include "AudioPlaybackStatus.hpp"
 #include "AudioPlayerStatus.hpp"

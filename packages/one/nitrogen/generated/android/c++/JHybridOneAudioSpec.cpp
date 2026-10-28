@@ -21,6 +21,8 @@ namespace margelo::nitro::one { enum class AudioRecordingState; }
 namespace margelo::nitro::one { struct AudioRecordingResult; }
 // Forward declaration of `AudioPlayerStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioPlayerStatus; }
+// Forward declaration of `AudioPlayOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioPlayOptions; }
 // Forward declaration of `AudioInterruptionEvent` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioInterruptionEvent; }
 // Forward declaration of `AudioInterruptionType` to properly resolve imports.
@@ -56,6 +58,8 @@ namespace margelo::nitro::one { enum class PitchCorrectionQuality; }
 #include <NitroModules/JNICallable.hpp>
 #include "AudioPlayerStatus.hpp"
 #include "JAudioPlayerStatus.hpp"
+#include "AudioPlayOptions.hpp"
+#include "JAudioPlayOptions.hpp"
 #include "AudioInterruptionEvent.hpp"
 #include "JFunc_void_AudioInterruptionEvent.hpp"
 #include "JAudioInterruptionEvent.hpp"
@@ -137,9 +141,9 @@ namespace margelo::nitro::one {
       return __promise;
     }();
   }
-  std::shared_ptr<Promise<AudioPlaybackStatus>> JHybridOneAudioSpec::play(const std::string& uri) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* uri */)>("play");
-    auto __result = method(_javaPart, jni::make_jstring(uri));
+  std::shared_ptr<Promise<AudioPlaybackStatus>> JHybridOneAudioSpec::play(const std::string& uri, const AudioPlayOptions& options) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* uri */, jni::alias_ref<JAudioPlayOptions> /* options */)>("play");
+    auto __result = method(_javaPart, jni::make_jstring(uri), JAudioPlayOptions::fromCpp(options));
     return [&]() {
       auto __promise = Promise<AudioPlaybackStatus>::create();
       __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
@@ -415,6 +419,36 @@ namespace margelo::nitro::one {
   void JHybridOneAudioSpec::removePlayer(const std::string& playerId) {
     static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* playerId */)>("removePlayer");
     method(_javaPart, jni::make_jstring(playerId));
+  }
+  std::shared_ptr<Promise<void>> JHybridOneAudioSpec::setPlayerNowPlayingInfo(const std::string& playerId, const AudioNowPlayingInfo& info) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* playerId */, jni::alias_ref<JAudioNowPlayingInfo> /* info */)>("setPlayerNowPlayingInfo");
+    auto __result = method(_javaPart, jni::make_jstring(playerId), JAudioNowPlayingInfo::fromCpp(info));
+    return [&]() {
+      auto __promise = Promise<void>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& /* unit */) {
+        __promise->resolve();
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
+  }
+  std::shared_ptr<Promise<void>> JHybridOneAudioSpec::clearPlayerNowPlayingInfo(const std::string& playerId) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* playerId */)>("clearPlayerNowPlayingInfo");
+    auto __result = method(_javaPart, jni::make_jstring(playerId));
+    return [&]() {
+      auto __promise = Promise<void>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& /* unit */) {
+        __promise->resolve();
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
   }
   AudioPlayerStatus JHybridOneAudioSpec::getPlayerStatus(const std::string& playerId) {
     static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JAudioPlayerStatus>(jni::alias_ref<jni::JString> /* playerId */)>("getPlayerStatus");

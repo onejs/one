@@ -1,3 +1,75 @@
+# One audio next minor: Now Playing ownership and paused loading
+
+Issues: [#1065](https://github.com/onejs/one/issues/1065) managed players cannot own
+Now Playing, [#1066](https://github.com/onejs/one/issues/1066) load the global session
+paused at a position. Specs: `~/contrast/plans/contrast/oss-audio-now-playing-1065.md`,
+`oss-audio-paused-load-1066.md`.
+
+This feature batch targets the next minor release. Crossfade timing stays in application code.
+
+This branch prepares the package family at 2.12.0 (2.11.5 is the latest stable).
+No stable release is authorized by preparation.
+
+## API
+
+```ts
+Audio.play(uri, options?: { positionMs?: number; paused?: boolean })
+player.setNowPlayingInfo(info: AudioNowPlayingInfo): Promise<void>
+player.clearNowPlayingInfo(): Promise<void>
+AudioRemoteCommandEvent.playerId?: string
+```
+
+Native bridge: `play(uri, options)`, `setPlayerNowPlayingInfo(playerId, info)`,
+`clearPlayerNowPlayingInfo(playerId)`, and `playerId` on the remote event. The
+bridge takes `options` as a required struct and JavaScript passes `{}` when it
+is omitted: nitrogen 0.37.1 delivers an optional struct argument to Swift as nil
+even when C++ received it (seen on the iOS simulator).
+
+## Decisions
+
+- Paused loading extends `play` with options instead of a new `load` call. Without
+  options `play` is unchanged. With either option it prepares, seeks with zero
+  tolerance, and resolves once the seek lands: paused, or playing from the position.
+- While a prepared load is pending, status is `loading`; `pause` and `resume` set
+  whether it starts; `seek` rejects with `E_AUDIO_STATE`; a new `play` or `stop`
+  rejects it with `E_AUDIO_STATE`. Late completions check the load's identity and
+  do nothing after replacement.
+- Positions past the end clamp to the duration. Load errors reject and leave the
+  status failed. On web a source that cannot seek (no range requests) fails instead
+  of silently starting at 0.
+- One owner holds the single system session: the singleton or one managed player.
+  A claim moves ownership without clearing the card first: Android keeps its
+  `MediaSession` and web keeps the Media Session handlers. iOS starts an
+  `MPNowPlayingSession` for the new player and publishes its card in the same pass,
+  because `addPlayer`/`removePlayer` on the live session raised an Objective-C
+  exception on the iOS 27 simulator. A claim for the same player keeps its session.
+- Owners release only their own claim. `Audio.clearNowPlayingInfo`, `stop` and a new
+  `play` release only the singleton's; `player.clearNowPlayingInfo`, `remove` and
+  hook unmount release only that player's. No fallback to the singleton.
+- Remote play, pause and seek drive the owner only; listeners get `playerId` for a
+  managed owner. The app pauses the other half of a crossfade itself.
+- `player.replace` keeps the claim and metadata. Interruptions pause all players as
+  before and resync the owner's card.
+- Android's background service follows the singleton or the owning managed player.
+- Web: a claim still decoding artwork loses to a newer claim or a release and rejects.
+  Native artwork loads synchronously, so there is no late claim there.
+- Pause during loading before preparation on Android used to start anyway; the
+  prepared listener now honors the pause.
+
+## Validation
+
+- Web: real Chromium and WebKit probe of the bundled module covering paused load,
+  positioned play, resume, pause and seek during load, replacement and stop
+  cancellation, clamp, validation, unseekable source, ownership transfer with remote
+  play, pause and seek, scoped cleanup, late artwork, and metadata never cleared
+  during transfer.
+- iOS simulator: paused load and resume passed in the native-features fixture. Ownership transfer crashed; the subsequent fix has not been rebuilt or rerun because Xcode stalled in build preparation. The full `audio-ownership` suite remains unverified.
+- Android: a Kotlin compile passed before the final bridge change; the final version remains uncompiled on this host due to SDK access failure.
+- Remaining before release: lock screen card and remote play, pause and seek during
+  a transfer on a physical iPhone and Android device.
+
+---
+
 # One 2.11.0 release
 
 Prepare the approved native Mac, Linux, URL schema, iOS link-set and DOM features together in PR #1027 on `tm/macos-resume`. One 2.10.0 was published separately from main for the native application-context API and existing iOS fixes. This branch prepares 2.11.0; final owner review, merge and explicit stable publication remain held. The prior release record below is preserved.

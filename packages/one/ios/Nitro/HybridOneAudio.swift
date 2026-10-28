@@ -18,6 +18,7 @@ final class HybridOneAudio: HybridOneAudioSpec {
     case artwork
     case unknownPlayer
     case rate
+    case replaced
 
     var errorDescription: String? {
       switch self {
@@ -33,6 +34,7 @@ final class HybridOneAudio: HybridOneAudioSpec {
       case .artwork: return "now playing artwork must be an existing image file"
       case .unknownPlayer: return "the audio player id is not active"
       case .rate: return "the playback rate must be within 0 to 2"
+      case .replaced: return "playback was replaced before it was ready"
       }
     }
   }
@@ -51,6 +53,12 @@ final class HybridOneAudio: HybridOneAudioSpec {
   private var nowPlayingInfo: AudioNowPlayingInfo?
   private var nowPlayingArtwork: UIImage?
   private var remoteTargets: [(MPRemoteCommand, Any)] = []
+  // one now playing session at a time, owned by the singleton or by one
+  // managed player. owners clear only their own claim, so an old owner's
+  // cleanup never clears a newer one.
+  private var nowPlayingOwner: NowPlayingOwner?
+  private var ownerObservations: [NSKeyValueObservation] = []
+  private var pendingLoad: PendingLoad?
   private var remoteCommandListeners: [UUID: (AudioRemoteCommandEvent) -> Void] = [:]
 
   private final class ManagedAudioPlayer {
@@ -72,6 +80,24 @@ final class HybridOneAudio: HybridOneAudioSpec {
   }
 
   private var managedPlayers: [String: ManagedAudioPlayer] = [:]
+
+  private enum NowPlayingOwner: Equatable {
+    case global
+    case managed(String)
+  }
+
+  // a singleton play with a position or paused flag: it resolves after the
+  // item is ready and the seek lands, before any sound.
+  private final class PendingLoad {
+    let promise: Promise<AudioPlaybackStatus>
+    let positionMs: Double
+    var seeking = false
+
+    init(promise: Promise<AudioPlaybackStatus>, positionMs: Double) {
+      self.promise = promise
+      self.positionMs = positionMs
+    }
+  }
 
   override init() {
     super.init()
@@ -121,38 +147,102 @@ final class HybridOneAudio: HybridOneAudioSpec {
     return promise
   }
 
-  func play(uri: String) throws -> Promise<AudioPlaybackStatus> {
-    query("play") {
-      guard self.recorder == nil else { throw Problem.busy }
-      let url = try Self.audioURL(uri)
-      if url.isFileURL && !FileManager.default.fileExists(atPath: url.path) {
-        throw Problem.missingFile
+  func play(uri: String, options: AudioPlayOptions) throws -> Promise<AudioPlaybackStatus> {
+    let promise = Promise<AudioPlaybackStatus>()
+    DispatchQueue.main.async {
+      do {
+        if let status = try self.startPlayback(uri: uri, options: options, promise: promise) {
+          promise.resolve(withResult: status)
+        }
+      } catch {
+        promise.reject(withError: Self.failure("play", error))
       }
-      let session = AVAudioSession.sharedInstance()
-      try session.setCategory(.playback, mode: .default)
-      try session.setActive(true)
-      self.clearPlayer()
-      let item = AVPlayerItem(url: url)
-      let player = AVPlayer(playerItem: item)
-      self.player = player
-      self.playerStatusObservation = player.observe(\.timeControlStatus, options: [.new]) {
-        [weak self] _, _ in
-        DispatchQueue.main.async { self?.syncNowPlaying() }
-      }
-      self.itemStatusObservation = item.observe(\.status, options: [.new]) { [weak self] _, _ in
-        DispatchQueue.main.async { self?.syncNowPlaying() }
-      }
-      self.playerURI = url.absoluteString
-      self.playbackPaused = false
-      self.playbackEnded = false
-      self.endObserver = NotificationCenter.default.addObserver(
-        forName: AVPlayerItem.didPlayToEndTimeNotification, object: item, queue: .main
-      ) { [weak self] _ in
-        self?.playbackEnded = true
+    }
+    return promise
+  }
+
+  // returns the status to resolve now, or nil when a prepared load resolves
+  // the promise later.
+  private func startPlayback(
+    uri: String, options: AudioPlayOptions, promise: Promise<AudioPlaybackStatus>
+  ) throws -> AudioPlaybackStatus? {
+    guard self.recorder == nil else { throw Problem.busy }
+    let url = try Self.audioURL(uri)
+    if url.isFileURL && !FileManager.default.fileExists(atPath: url.path) {
+      throw Problem.missingFile
+    }
+    let prepare = options.positionMs != nil || options.paused != nil
+    let positionMs = options.positionMs ?? 0
+    guard positionMs.isFinite && positionMs >= 0 else { throw Problem.position }
+    let session = AVAudioSession.sharedInstance()
+    try session.setCategory(.playback, mode: .default)
+    try session.setActive(true)
+    self.clearPlayer()
+    let item = AVPlayerItem(url: url)
+    let player = AVPlayer(playerItem: item)
+    self.player = player
+    self.playerStatusObservation = player.observe(\.timeControlStatus, options: [.new]) {
+      [weak self] _, _ in
+      DispatchQueue.main.async { self?.syncNowPlaying() }
+    }
+    self.itemStatusObservation = item.observe(\.status, options: [.new]) { [weak self] _, _ in
+      DispatchQueue.main.async {
+        self?.advanceLoad()
         self?.syncNowPlaying()
       }
-      self.player?.play()
-      return self.playbackStatus()
+    }
+    self.playerURI = url.absoluteString
+    self.playbackPaused = options.paused ?? false
+    self.playbackEnded = false
+    self.endObserver = NotificationCenter.default.addObserver(
+      forName: AVPlayerItem.didPlayToEndTimeNotification, object: item, queue: .main
+    ) { [weak self] _ in
+      self?.playbackEnded = true
+      self?.syncNowPlaying()
+    }
+    if prepare {
+      self.pendingLoad = PendingLoad(promise: promise, positionMs: positionMs)
+      self.advanceLoad()
+      return nil
+    }
+    player.play()
+    return self.playbackStatus()
+  }
+
+  // moves a prepared load forward once its item settles: seek exactly to
+  // the position, then play unless paused. replacement or stop rejects the
+  // load in clearPlayer, so a late completion finds a different load and
+  // does nothing.
+  private func advanceLoad() {
+    guard let load = pendingLoad, !load.seeking, let player, let item = player.currentItem
+    else { return }
+    switch item.status {
+    case .failed:
+      pendingLoad = nil
+      load.promise.reject(withError: Self.failure("play", item.error ?? Problem.state))
+    case .readyToPlay:
+      load.seeking = true
+      var seconds = load.positionMs / 1000
+      let duration = item.duration.seconds
+      if duration.isFinite && duration >= 0 { seconds = min(seconds, duration) }
+      player.seek(
+        to: CMTime(seconds: seconds, preferredTimescale: 600),
+        toleranceBefore: .zero, toleranceAfter: .zero
+      ) { [weak self] finished in
+        DispatchQueue.main.async {
+          guard let self, self.pendingLoad === load else { return }
+          self.pendingLoad = nil
+          guard finished, self.player === player else {
+            load.promise.reject(withError: Self.failure("play", Problem.state))
+            return
+          }
+          if !self.playbackPaused { player.play() }
+          self.syncNowPlaying()
+          load.promise.resolve(withResult: self.playbackStatus())
+        }
+      }
+    default:
+      return
     }
   }
 
@@ -178,7 +268,8 @@ final class HybridOneAudio: HybridOneAudioSpec {
         self.playbackEnded = false
       }
       self.playbackPaused = false
-      player.play()
+      // a prepared load plays itself once its seek lands.
+      if self.pendingLoad == nil { player.play() }
       self.syncNowPlaying()
       return self.playbackStatus()
     }
@@ -191,7 +282,9 @@ final class HybridOneAudio: HybridOneAudioSpec {
         promise.reject(withError: Self.failure("seek", Problem.position))
         return
       }
-      guard let player = self.player, player.currentItem?.status == .readyToPlay else {
+      guard let player = self.player, player.currentItem?.status == .readyToPlay,
+        self.pendingLoad == nil
+      else {
         promise.reject(withError: Self.failure("seek", Problem.state))
         return
       }
@@ -311,43 +404,29 @@ final class HybridOneAudio: HybridOneAudioSpec {
   func setNowPlayingInfo(info: AudioNowPlayingInfo) throws -> Promise<Void> {
     perform("setNowPlayingInfo") {
       guard let player = self.player else { throw Problem.state }
-      guard !info.title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-        throw Problem.metadata
-      }
-      var artwork: UIImage?
-      if let artworkUri = info.artworkUri {
-        guard let url = URL(string: artworkUri), url.isFileURL,
-          FileManager.default.fileExists(atPath: url.path),
-          let image = UIImage(contentsOfFile: url.path)
-        else { throw Problem.artwork }
-        artwork = image
-      }
-      if let session = self.nowPlayingSession, session.players.first === player {
-        self.nowPlayingInfo = info
-        self.nowPlayingArtwork = artwork
-        self.syncNowPlaying()
-        return
-      }
-      self.clearNowPlaying()
-      let session = MPNowPlayingSession(players: [player])
-      session.automaticallyPublishesNowPlayingInfo = false
-      self.nowPlayingSession = session
-      self.nowPlayingInfo = info
-      self.nowPlayingArtwork = artwork
-      self.installRemoteCommands(session.remoteCommandCenter)
-      self.syncNowPlaying()
-      session.becomeActiveIfPossible { [weak self, weak session] active in
-        guard active, let session else { return }
-        DispatchQueue.main.async { [weak self] in
-          guard let self, self.nowPlayingSession === session else { return }
-          self.syncNowPlaying()
-        }
-      }
+      let artwork = try Self.nowPlayingArtwork(info)
+      self.claimNowPlaying(.global, player: player, info: info, artwork: artwork)
     }
   }
 
   func clearNowPlayingInfo() throws -> Promise<Void> {
-    perform("clearNowPlayingInfo") { self.clearNowPlaying() }
+    perform("clearNowPlayingInfo") {
+      if self.nowPlayingOwner == .global { self.clearNowPlaying() }
+    }
+  }
+
+  func setPlayerNowPlayingInfo(playerId: String, info: AudioNowPlayingInfo) throws -> Promise<Void> {
+    perform("setPlayerNowPlayingInfo") {
+      let managed = try self.managedPlayer(playerId)
+      let artwork = try Self.nowPlayingArtwork(info)
+      self.claimNowPlaying(.managed(playerId), player: managed.player, info: info, artwork: artwork)
+    }
+  }
+
+  func clearPlayerNowPlayingInfo(playerId: String) throws -> Promise<Void> {
+    perform("clearPlayerNowPlayingInfo") {
+      if self.nowPlayingOwner == .managed(playerId) { self.clearNowPlaying() }
+    }
   }
 
   func addRemoteCommandListener(
@@ -381,16 +460,7 @@ final class HybridOneAudio: HybridOneAudioSpec {
 
   func playerPlay(playerId: String) throws -> Void {
     try mainSync("playerPlay") {
-      let managed = try self.managedPlayer(playerId)
-      let session = AVAudioSession.sharedInstance()
-      try session.setCategory(.playback, mode: .default)
-      try session.setActive(true)
-      if managed.ended {
-        managed.player.seek(to: .zero)
-        managed.ended = false
-      }
-      managed.paused = false
-      managed.player.rate = Float(managed.rate)
+      try self.startManaged(try self.managedPlayer(playerId))
     }
   }
 
@@ -399,6 +469,7 @@ final class HybridOneAudio: HybridOneAudioSpec {
       let managed = try self.managedPlayer(playerId)
       managed.player.pause()
       managed.paused = true
+      self.syncOwner(playerId)
     }
   }
 
@@ -426,6 +497,7 @@ final class HybridOneAudio: HybridOneAudioSpec {
               return
             }
             managed.ended = false
+            self.syncOwner(playerId)
             promise.resolve()
           }
         }
@@ -450,6 +522,10 @@ final class HybridOneAudio: HybridOneAudioSpec {
       managed.paused = true
       managed.ended = false
       self.installPlayerEndObserver(id: playerId, managed: managed)
+      if self.nowPlayingOwner == .managed(playerId) {
+        self.observeOwner()
+        self.syncNowPlaying()
+      }
     }
   }
 
@@ -459,6 +535,7 @@ final class HybridOneAudio: HybridOneAudioSpec {
       return
     }
     guard let managed = managedPlayers.removeValue(forKey: playerId) else { return }
+    if nowPlayingOwner == .managed(playerId) { clearNowPlaying() }
     clearPlayerEndObserver(managed)
     managed.player.pause()
     managed.player.replaceCurrentItem(with: nil)
@@ -516,6 +593,22 @@ final class HybridOneAudio: HybridOneAudioSpec {
       managed.pitchCorrection = enabled
       Self.applyPitch(managed)
     }
+  }
+
+  private func startManaged(_ managed: ManagedAudioPlayer) throws {
+    let session = AVAudioSession.sharedInstance()
+    try session.setCategory(.playback, mode: .default)
+    try session.setActive(true)
+    if managed.ended {
+      managed.player.seek(to: .zero)
+      managed.ended = false
+    }
+    managed.paused = false
+    managed.player.rate = Float(managed.rate)
+  }
+
+  private func syncOwner(_ playerId: String) {
+    if nowPlayingOwner == .managed(playerId) { syncNowPlaying() }
   }
 
   private func managedPlayer(_ id: String) throws -> ManagedAudioPlayer {
@@ -587,6 +680,7 @@ final class HybridOneAudio: HybridOneAudioSpec {
         }
       } else {
         managed.ended = true
+        self.syncOwner(id)
       }
     }
   }
@@ -640,6 +734,7 @@ final class HybridOneAudio: HybridOneAudioSpec {
     let duration = item.duration.seconds
     let state: AudioPlaybackState
     if item.status == .failed { state = .failed }
+    else if pendingLoad != nil { state = .loading }
     else if playbackEnded { state = .ended }
     else if playbackPaused { state = .paused }
     else if item.status != .readyToPlay || player.timeControlStatus == .waitingToPlayAtSpecifiedRate {
@@ -690,9 +785,9 @@ final class HybridOneAudio: HybridOneAudioSpec {
 
   private func handleRemoteToggle() -> MPRemoteCommandHandlerStatus {
     if !Thread.isMainThread { return DispatchQueue.main.sync { self.handleRemoteToggle() } }
-    guard let player else { return .noSuchContent }
+    guard let player = ownerPlayer() else { return .noSuchContent }
     return handleRemoteCommand(
-      playbackPaused || player.timeControlStatus != .playing ? .play : .pause)
+      ownerPaused() || player.timeControlStatus != .playing ? .play : .pause)
   }
 
   private func handleRemoteCommand(
@@ -701,33 +796,143 @@ final class HybridOneAudio: HybridOneAudioSpec {
     if !Thread.isMainThread {
       return DispatchQueue.main.sync { self.handleRemoteCommand(type, positionMs: positionMs) }
     }
-    guard let player, nowPlayingSession != nil else { return .noSuchContent }
-    switch type {
-    case .play:
-      if playbackEnded { player.seek(to: .zero); playbackEnded = false }
-      playbackPaused = false
-      player.play()
-    case .pause:
-      player.pause()
-      playbackPaused = true
-    case .seek:
-      guard let positionMs, positionMs.isFinite, positionMs >= 0 else {
-        return .commandFailed
+    guard nowPlayingSession != nil, let owner = nowPlayingOwner else { return .noSuchContent }
+    if type == .seek {
+      guard let positionMs, positionMs.isFinite, positionMs >= 0 else { return .commandFailed }
+    }
+    var playerId: String?
+    switch owner {
+    case .global:
+      guard let player else { return .noSuchContent }
+      switch type {
+      case .play:
+        if playbackEnded { player.seek(to: .zero); playbackEnded = false }
+        playbackPaused = false
+        if pendingLoad == nil { player.play() }
+      case .pause:
+        player.pause()
+        playbackPaused = true
+      case .seek:
+        guard pendingLoad == nil else { return .commandFailed }
+        seekOwner(player, positionMs: positionMs!)
+        playbackEnded = false
       }
-      player.seek(to: CMTime(seconds: positionMs / 1000, preferredTimescale: 600)) {
-        [weak self] _ in
-        DispatchQueue.main.async { self?.syncNowPlaying() }
+    case .managed(let id):
+      guard let managed = managedPlayers[id] else { return .noSuchContent }
+      playerId = id
+      switch type {
+      case .play:
+        do { try startManaged(managed) } catch { return .commandFailed }
+      case .pause:
+        managed.player.pause()
+        managed.paused = true
+      case .seek:
+        guard managed.player.currentItem?.status == .readyToPlay else { return .commandFailed }
+        seekOwner(managed.player, positionMs: positionMs!)
+        managed.ended = false
       }
-      playbackEnded = false
     }
     syncNowPlaying()
-    let event = AudioRemoteCommandEvent(type: type, positionMs: positionMs)
+    let event = AudioRemoteCommandEvent(type: type, positionMs: positionMs, playerId: playerId)
     for listener in Array(remoteCommandListeners.values) { listener(event) }
     return .success
   }
 
+  private func seekOwner(_ player: AVPlayer, positionMs: Double) {
+    player.seek(to: CMTime(seconds: positionMs / 1000, preferredTimescale: 600)) {
+      [weak self] _ in
+      DispatchQueue.main.async { self?.syncNowPlaying() }
+    }
+  }
+
+  private func ownerPlayer() -> AVPlayer? {
+    switch nowPlayingOwner {
+    case .global: return player
+    case .managed(let id): return managedPlayers[id]?.player
+    case nil: return nil
+    }
+  }
+
+  private func ownerPaused() -> Bool {
+    switch nowPlayingOwner {
+    case .global: return playbackPaused
+    case .managed(let id): return managedPlayers[id]?.paused ?? true
+    case nil: return true
+    }
+  }
+
+  private func ownerEnded() -> Bool {
+    switch nowPlayingOwner {
+    case .global: return playbackEnded
+    case .managed(let id): return managedPlayers[id]?.ended ?? false
+    case nil: return false
+    }
+  }
+
+  private static func nowPlayingArtwork(_ info: AudioNowPlayingInfo) throws -> UIImage? {
+    guard !info.title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+      throw Problem.metadata
+    }
+    guard let artworkUri = info.artworkUri else { return nil }
+    guard let url = URL(string: artworkUri), url.isFileURL,
+      FileManager.default.fileExists(atPath: url.path),
+      let image = UIImage(contentsOfFile: url.path)
+    else { throw Problem.artwork }
+    return image
+  }
+
+  // a claim for the session's own player keeps it. a transfer to another
+  // player starts a session for that player and publishes the new card in
+  // the same pass, without clearing the old one first. swapping players on
+  // one session raised an objective-c exception on the ios 27 simulator.
+  private func claimNowPlaying(
+    _ owner: NowPlayingOwner, player: AVPlayer, info: AudioNowPlayingInfo, artwork: UIImage?
+  ) {
+    nowPlayingInfo = info
+    nowPlayingArtwork = artwork
+    nowPlayingOwner = owner
+    let session: MPNowPlayingSession
+    if let current = nowPlayingSession, current.players.count == 1,
+      current.players[0] === player
+    {
+      session = current
+    } else {
+      for (command, target) in remoteTargets { command.removeTarget(target) }
+      session = MPNowPlayingSession(players: [player])
+      session.automaticallyPublishesNowPlayingInfo = false
+      nowPlayingSession = session
+      installRemoteCommands(session.remoteCommandCenter)
+    }
+    observeOwner()
+    syncNowPlaying()
+    session.becomeActiveIfPossible { [weak self, weak session] active in
+      guard active, let session else { return }
+      DispatchQueue.main.async { [weak self] in
+        guard let self, self.nowPlayingSession === session else { return }
+        self.syncNowPlaying()
+      }
+    }
+  }
+
+  private func observeOwner() {
+    ownerObservations.forEach { $0.invalidate() }
+    ownerObservations.removeAll()
+    guard let player = ownerPlayer() else { return }
+    ownerObservations.append(
+      player.observe(\.timeControlStatus, options: [.new]) { [weak self] _, _ in
+        DispatchQueue.main.async { self?.syncNowPlaying() }
+      })
+    if let item = player.currentItem {
+      ownerObservations.append(
+        item.observe(\.status, options: [.new]) { [weak self] _, _ in
+          DispatchQueue.main.async { self?.syncNowPlaying() }
+        })
+    }
+  }
+
   private func syncNowPlaying() {
-    guard let session = nowPlayingSession, let info = nowPlayingInfo, let player else { return }
+    guard let session = nowPlayingSession, let info = nowPlayingInfo, let player = ownerPlayer()
+    else { return }
     let position = player.currentTime().seconds
     let duration = player.currentItem?.duration.seconds ?? .nan
     var metadata: [String: Any] = [
@@ -735,7 +940,7 @@ final class HybridOneAudio: HybridOneAudioSpec {
       MPNowPlayingInfoPropertyMediaType: MPNowPlayingInfoMediaType.audio.rawValue,
       MPNowPlayingInfoPropertyElapsedPlaybackTime: position.isFinite ? max(0, position) : 0,
       MPNowPlayingInfoPropertyPlaybackRate:
-        !playbackEnded && player.timeControlStatus == .playing ? player.rate : 0.0,
+        !ownerEnded() && player.timeControlStatus == .playing ? player.rate : 0.0,
       MPNowPlayingInfoPropertyDefaultPlaybackRate: 1.0,
     ]
     if let artist = info.artist { metadata[MPMediaItemPropertyArtist] = artist }
@@ -756,10 +961,17 @@ final class HybridOneAudio: HybridOneAudioSpec {
     nowPlayingSession = nil
     nowPlayingInfo = nil
     nowPlayingArtwork = nil
+    nowPlayingOwner = nil
+    ownerObservations.forEach { $0.invalidate() }
+    ownerObservations.removeAll()
   }
 
   private func clearPlayer() {
-    clearNowPlaying()
+    if nowPlayingOwner == .global { clearNowPlaying() }
+    if let load = pendingLoad {
+      pendingLoad = nil
+      load.promise.reject(withError: Self.failure("play", Problem.replaced))
+    }
     playerStatusObservation?.invalidate()
     playerStatusObservation = nil
     itemStatusObservation?.invalidate()
@@ -818,6 +1030,7 @@ final class HybridOneAudio: HybridOneAudioSpec {
     case Problem.artwork: code = "E_AUDIO_ARTWORK"
     case Problem.unknownPlayer: code = "E_AUDIO_STATE"
     case Problem.rate: code = "E_AUDIO_RATE"
+    case Problem.replaced: code = "E_AUDIO_STATE"
     default: code = "E_AUDIO_FAILED"
     }
     return oneNativeError(code, "Audio.\(verb): \(error.localizedDescription)")

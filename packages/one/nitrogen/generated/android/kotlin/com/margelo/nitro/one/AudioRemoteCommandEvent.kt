@@ -23,7 +23,10 @@ data class AudioRemoteCommandEvent(
   val type: AudioRemoteCommandType,
   @DoNotStrip
   @Keep
-  val positionMs: Double?
+  val positionMs: Double?,
+  @DoNotStrip
+  @Keep
+  val playerId: String?
 ) {
   /* primary constructor */
 
@@ -32,12 +35,14 @@ data class AudioRemoteCommandEvent(
     if (other !is AudioRemoteCommandEvent) return false
     return Objects.deepEquals(this.type, other.type)
       && Objects.deepEquals(this.positionMs, other.positionMs)
+      && Objects.deepEquals(this.playerId, other.playerId)
   }
 
   override fun hashCode(): Int {
     return arrayOf<Any?>(
       type,
-      positionMs
+      positionMs,
+      playerId
     ).contentDeepHashCode()
   }
 
@@ -49,8 +54,8 @@ data class AudioRemoteCommandEvent(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(type: AudioRemoteCommandType, positionMs: Double?): AudioRemoteCommandEvent {
-      return AudioRemoteCommandEvent(type, positionMs)
+    private fun fromCpp(type: AudioRemoteCommandType, positionMs: Double?, playerId: String?): AudioRemoteCommandEvent {
+      return AudioRemoteCommandEvent(type, positionMs, playerId)
     }
   }
 }
