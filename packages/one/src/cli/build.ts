@@ -1358,7 +1358,7 @@ if (typeof MessageChannel === 'undefined') {
   }
 }
 
-import { serve, setFetchStaticHtml, withRange } from 'one/serve-worker'
+import { serve, withRange } from 'one/serve-worker'
 
 // Lazy import map - modules load on-demand when route is matched
 const lazyRoutes = {
@@ -1381,44 +1381,40 @@ export default {
       server = await serve(buildInfo, lazyRoutes)
     }
 
-    // set up static HTML fetcher for this request (uses ASSETS binding)
-    if (env.ASSETS) {
-      setFetchStaticHtml(async (path) => {
-        try {
-          const url = new URL(request.url)
-          url.pathname = path
-          const assetResponse = await env.ASSETS.fetch(new Request(url))
-          if (assetResponse && assetResponse.ok) {
-            return await assetResponse.text()
-          }
-        } catch (e) {
-          // asset not found
-        }
-        return null
-      })
-    }
-
-    try {
-      const response = await server.fetch(request, env, ctx)
-
-      // no route matched or 404 → try static assets
-      if (!response || response.status === 404) {
-        if (env.ASSETS) {
+    // keep the asset binding and origin scoped to this request
+    const fetchStaticHtml = env.ASSETS
+      ? async (path) => {
           try {
-            const assetResponse = await env.ASSETS.fetch(request)
-            if (assetResponse && assetResponse.status !== 404) {
-              return await withRange(request, assetResponse)
+            const url = new URL(request.url)
+            url.pathname = path
+            const assetResponse = await env.ASSETS.fetch(new Request(url))
+            if (assetResponse && assetResponse.ok) {
+              return await assetResponse.text()
             }
           } catch (e) {
-            // asset not found, continue with original response
+            // asset not found
           }
+          return null
+        }
+      : undefined
+
+    const response = await server.fetch(request, env, ctx, fetchStaticHtml)
+
+    // no route matched or 404 → try static assets
+    if (!response || response.status === 404) {
+      if (env.ASSETS) {
+        try {
+          const assetResponse = await env.ASSETS.fetch(request)
+          if (assetResponse && assetResponse.status !== 404) {
+            return await withRange(request, assetResponse)
+          }
+        } catch (e) {
+          // asset not found, continue with original response
         }
       }
-
-      return response
-    } finally {
-      setFetchStaticHtml(null)
     }
+
+    return response
   }
 }
 `

@@ -28,7 +28,6 @@ import {
 } from '../loaderSearchParams'
 import { getRouteExportsFromEntry } from './routeExportsFromEntry'
 import { setSSRLoaderData } from './ssrLoaderData'
-import { getFetchStaticHtml } from './staticHtmlFetcher'
 
 export type LazyRoutes = {
   pages?: Record<string, () => Promise<any>>
@@ -160,8 +159,10 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
     return `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found',__oneNotFoundPath:${JSON.stringify(nfPath)}}}`
   }
 
-  async function readStaticHtml(htmlPath: string): Promise<string | null> {
-    const fetchStaticHtml = getFetchStaticHtml()
+  async function readStaticHtml(
+    htmlPath: string,
+    fetchStaticHtml?: (path: string) => Promise<string | null>
+  ): Promise<string | null> {
     if (fetchStaticHtml) return await fetchStaticHtml(htmlPath)
     if (debugRouter) {
       console.warn(`[one/worker] no fetchStaticHtml set, cannot read ${htmlPath}`)
@@ -281,7 +282,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
   }
 
   // request handlers - worker-only, always uses lazyRoutes
-  const requestHandlers: RequestHandlers = {
+  const requestHandlers = {
     async handleStaticFile() {
       // workers serve static assets via platform (ASSETS binding)
       return null
@@ -338,7 +339,14 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
       return `export function loader() { return ${JSON.stringify(json)} }`
     },
 
-    async handlePage({ route, url, loaderProps }) {
+    async handlePage(
+      {
+        route,
+        url,
+        loaderProps,
+      }: Parameters<NonNullable<RequestHandlers['handlePage']>>[0],
+      fetchStaticHtml?: (path: string) => Promise<string | null>
+    ) {
       const routeBuildInfo = routeToBuildInfo[route.file]
 
       if (route.type === 'ssr') {
@@ -370,7 +378,12 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
               })
             } else {
               layoutLoaderPromises.push(
-                importAndRunLoader(layout.contextKey, layout.contextKey, loaderProps, true)
+                importAndRunLoader(
+                  layout.contextKey,
+                  layout.contextKey,
+                  loaderProps,
+                  true
+                )
               )
             }
           }
@@ -415,7 +428,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
             const nfPath = findNearestNotFoundPath(loaderProps?.path || '/')
             const nfHtml = routeMap?.[nfPath]
             if (nfHtml) {
-              const html = await readStaticHtml(nfHtml)
+              const html = await readStaticHtml(nfHtml, fetchStaticHtml)
               if (html) {
                 return new Response(html, {
                   headers: { 'content-type': 'text/html' },
@@ -564,7 +577,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
             : routeMap?.[url.pathname] || routeMap?.[routeBuildInfo?.cleanPath]
 
         if (htmlPath) {
-          const html = await readStaticHtml(htmlPath)
+          const html = await readStaticHtml(htmlPath, fetchStaticHtml)
           if (html) {
             return new Response(html, {
               headers: htmlHeaders,
@@ -579,7 +592,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
           const notFoundHtmlPath = routeMap?.[notFoundRoute]
 
           if (notFoundHtmlPath) {
-            const notFoundHtml = await readStaticHtml(notFoundHtmlPath)
+            const notFoundHtml = await readStaticHtml(notFoundHtmlPath, fetchStaticHtml)
             if (notFoundHtml) {
               const notFoundMarker = `<script>window.__one404=${JSON.stringify({ originalPath: url.pathname, notFoundPath: notFoundRoute })}</script>`
               const injectedHtml = notFoundHtml.includes('</head>')
@@ -599,7 +612,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
         return null
       }
     },
-  }
+  } satisfies RequestHandlers
 
   // set cache headers based on route type
   function setCacheHeaders(
@@ -633,7 +646,8 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
   async function handleRequest(
     request: Request,
     env?: unknown,
-    executionCtx?: unknown
+    executionCtx?: unknown,
+    fetchStaticHtml?: (path: string) => Promise<string | null>
   ): Promise<Response | null> {
     const url = getURLfromRequestURL(request)
     const pathname = url.pathname
@@ -773,6 +787,10 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
 
     // 6. page routes
     if (isPageRequestMethod(method)) {
+      const pageHandlers: RequestHandlers = {
+        ...requestHandlers,
+        handlePage: (props) => requestHandlers.handlePage(props, fetchStaticHtml),
+      }
       for (const route of compiledManifest.pageRoutes) {
         if (!route.compiledRegex.test(pathname)) continue
 
@@ -802,7 +820,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
 
           const response = await resolveResponse(async () => {
             try {
-              return await requestHandlers.handlePage!({
+              return await pageHandlers.handlePage!({
                 request,
                 route,
                 url,
@@ -822,7 +840,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
 
         // general path
         try {
-          const response = await resolvePageRoute(requestHandlers, request, url, route)
+          const response = await resolvePageRoute(pageHandlers, request, url, route)
           if (response && isResponse(response)) {
             return setCacheHeaders(response, route, false)
           }
