@@ -84,7 +84,7 @@ open class HybridOneAudioSpec_cxx {
     }
   }
 
-  
+
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneAudioSpec_cxx {
   }
 
   // Properties
-  
+
 
   // Methods
   @inline(__always)
@@ -142,7 +142,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioRecordingPermission___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func requestRecordingPermission() -> bridge.Result_std__shared_ptr_Promise_AudioRecordingPermission___ {
     do {
@@ -161,7 +161,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioRecordingPermission___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func play(uri: std.string, options: AudioPlayOptions) -> bridge.Result_std__shared_ptr_Promise_AudioPlaybackStatus___ {
     do {
@@ -180,7 +180,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func getPlaybackStatus() -> bridge.Result_std__shared_ptr_Promise_AudioPlaybackStatus___ {
     do {
@@ -199,7 +199,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func pause() -> bridge.Result_std__shared_ptr_Promise_AudioPlaybackStatus___ {
     do {
@@ -218,7 +218,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func resume() -> bridge.Result_std__shared_ptr_Promise_AudioPlaybackStatus___ {
     do {
@@ -237,7 +237,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func seek(positionMs: Double) -> bridge.Result_std__shared_ptr_Promise_AudioPlaybackStatus___ {
     do {
@@ -256,7 +256,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func stop() -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -275,7 +275,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func startRecording() -> bridge.Result_std__shared_ptr_Promise_AudioRecordingStatus___ {
     do {
@@ -294,7 +294,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioRecordingStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func getRecordingStatus() -> bridge.Result_std__shared_ptr_Promise_AudioRecordingStatus___ {
     do {
@@ -313,7 +313,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioRecordingStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func pauseRecording() -> bridge.Result_std__shared_ptr_Promise_AudioRecordingStatus___ {
     do {
@@ -332,7 +332,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioRecordingStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func resumeRecording() -> bridge.Result_std__shared_ptr_Promise_AudioRecordingStatus___ {
     do {
@@ -351,7 +351,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioRecordingStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func stopRecording() -> bridge.Result_std__shared_ptr_Promise_AudioRecordingResult___ {
     do {
@@ -370,7 +370,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioRecordingResult___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func addInterruptionListener(onEvent: bridge.Func_void_AudioInterruptionEvent) -> bridge.Result_std__function_void____ {
     do {
@@ -390,7 +390,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__function_void____(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func setNowPlayingInfo(info: AudioNowPlayingInfo) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -409,7 +409,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func clearNowPlayingInfo() -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -428,7 +428,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func addRemoteCommandListener(onEvent: bridge.Func_void_AudioRemoteCommandEvent) -> bridge.Result_std__function_void____ {
     do {
@@ -448,7 +448,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__function_void____(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func createPlayer(sourceUri: bridge.std__optional_std__string_, headers: bridge.std__optional_std__unordered_map_std__string__std__string__) -> bridge.Result_std__string_ {
     do {
@@ -482,7 +482,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__string_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func playerPlay(playerId: std.string) -> bridge.Result_void_ {
     do {
@@ -493,7 +493,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func playerPause(playerId: std.string) -> bridge.Result_void_ {
     do {
@@ -504,7 +504,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func playerSeek(playerId: std.string, seconds: Double, toleranceBeforeMs: bridge.std__optional_double_, toleranceAfterMs: bridge.std__optional_double_) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -537,7 +537,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func playerReplace(playerId: std.string, sourceUri: bridge.std__optional_std__string_, headers: bridge.std__optional_std__unordered_map_std__string__std__string__) -> bridge.Result_void_ {
     do {
@@ -570,7 +570,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func removePlayer(playerId: std.string) -> bridge.Result_void_ {
     do {
@@ -581,7 +581,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func setPlayerNowPlayingInfo(playerId: std.string, info: AudioNowPlayingInfo) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -600,7 +600,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func clearPlayerNowPlayingInfo(playerId: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -619,7 +619,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func getPlayerStatus(playerId: std.string) -> bridge.Result_AudioPlayerStatus_ {
     do {
@@ -631,7 +631,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_AudioPlayerStatus_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func setPlayerRate(playerId: std.string, rate: Double, pitchQuality: bridge.std__optional_PitchCorrectionQuality_) -> bridge.Result_void_ {
     do {
@@ -642,7 +642,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func setPlayerVolume(playerId: std.string, volume: Double) -> bridge.Result_void_ {
     do {
@@ -653,7 +653,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func setPlayerMuted(playerId: std.string, muted: Bool) -> bridge.Result_void_ {
     do {
@@ -664,7 +664,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func setPlayerLoop(playerId: std.string, loop: Bool) -> bridge.Result_void_ {
     do {
@@ -675,7 +675,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func setPlayerPitchCorrection(playerId: std.string, enabled: Bool) -> bridge.Result_void_ {
     do {

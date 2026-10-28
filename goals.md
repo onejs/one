@@ -63,7 +63,8 @@ even when C++ received it (seen on the iOS simulator).
   cancellation, clamp, validation, unseekable source, ownership transfer with remote
   play, pause and seek, scoped cleanup, late artwork, and metadata never cleared
   during transfer.
-- iOS simulator: conformance suite `audio-ownership` on the native-features fixture.
+- iOS simulator: paused load and resume passed in the native-features fixture. Ownership transfer crashed; the subsequent fix has not been rebuilt or rerun because Xcode stalled in build preparation. The full `audio-ownership` suite remains unverified.
+- Android: a Kotlin compile passed before the final bridge change; the final version remains uncompiled on this host due to SDK access failure.
 - Remaining before release: lock screen card and remote play, pause and seek during
   a transfer on a physical iPhone and Android device.
 

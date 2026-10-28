@@ -27,139 +27,139 @@ import com.margelo.nitro.core.HybridObject
 )
 abstract class HybridOneAudioSpec: HybridObject() {
   // Properties
-  
+
 
   // Methods
   @DoNotStrip
   @Keep
   abstract fun getRecordingPermissionStatus(): Promise<AudioRecordingPermission>
-  
+
   @DoNotStrip
   @Keep
   abstract fun requestRecordingPermission(): Promise<AudioRecordingPermission>
-  
+
   @DoNotStrip
   @Keep
   abstract fun play(uri: String, options: AudioPlayOptions): Promise<AudioPlaybackStatus>
-  
+
   @DoNotStrip
   @Keep
   abstract fun getPlaybackStatus(): Promise<AudioPlaybackStatus>
-  
+
   @DoNotStrip
   @Keep
   abstract fun pause(): Promise<AudioPlaybackStatus>
-  
+
   @DoNotStrip
   @Keep
   abstract fun resume(): Promise<AudioPlaybackStatus>
-  
+
   @DoNotStrip
   @Keep
   abstract fun seek(positionMs: Double): Promise<AudioPlaybackStatus>
-  
+
   @DoNotStrip
   @Keep
   abstract fun stop(): Promise<Unit>
-  
+
   @DoNotStrip
   @Keep
   abstract fun startRecording(): Promise<AudioRecordingStatus>
-  
+
   @DoNotStrip
   @Keep
   abstract fun getRecordingStatus(): Promise<AudioRecordingStatus>
-  
+
   @DoNotStrip
   @Keep
   abstract fun pauseRecording(): Promise<AudioRecordingStatus>
-  
+
   @DoNotStrip
   @Keep
   abstract fun resumeRecording(): Promise<AudioRecordingStatus>
-  
+
   @DoNotStrip
   @Keep
   abstract fun stopRecording(): Promise<AudioRecordingResult>
-  
+
   abstract fun addInterruptionListener(onEvent: (event: AudioInterruptionEvent) -> Unit): () -> Unit
-  
+
   @DoNotStrip
   @Keep
   private fun addInterruptionListener_cxx(onEvent: Func_void_AudioInterruptionEvent): Func_void {
     val __result = addInterruptionListener(onEvent)
     return Func_void_java(__result)
   }
-  
+
   @DoNotStrip
   @Keep
   abstract fun setNowPlayingInfo(info: AudioNowPlayingInfo): Promise<Unit>
-  
+
   @DoNotStrip
   @Keep
   abstract fun clearNowPlayingInfo(): Promise<Unit>
-  
+
   abstract fun addRemoteCommandListener(onEvent: (event: AudioRemoteCommandEvent) -> Unit): () -> Unit
-  
+
   @DoNotStrip
   @Keep
   private fun addRemoteCommandListener_cxx(onEvent: Func_void_AudioRemoteCommandEvent): Func_void {
     val __result = addRemoteCommandListener(onEvent)
     return Func_void_java(__result)
   }
-  
+
   @DoNotStrip
   @Keep
   abstract fun createPlayer(sourceUri: String?, headers: Map<String, String>?): String
-  
+
   @DoNotStrip
   @Keep
   abstract fun playerPlay(playerId: String): Unit
-  
+
   @DoNotStrip
   @Keep
   abstract fun playerPause(playerId: String): Unit
-  
+
   @DoNotStrip
   @Keep
   abstract fun playerSeek(playerId: String, seconds: Double, toleranceBeforeMs: Double?, toleranceAfterMs: Double?): Promise<Unit>
-  
+
   @DoNotStrip
   @Keep
   abstract fun playerReplace(playerId: String, sourceUri: String?, headers: Map<String, String>?): Unit
-  
+
   @DoNotStrip
   @Keep
   abstract fun removePlayer(playerId: String): Unit
-  
+
   @DoNotStrip
   @Keep
   abstract fun setPlayerNowPlayingInfo(playerId: String, info: AudioNowPlayingInfo): Promise<Unit>
-  
+
   @DoNotStrip
   @Keep
   abstract fun clearPlayerNowPlayingInfo(playerId: String): Promise<Unit>
-  
+
   @DoNotStrip
   @Keep
   abstract fun getPlayerStatus(playerId: String): AudioPlayerStatus
-  
+
   @DoNotStrip
   @Keep
   abstract fun setPlayerRate(playerId: String, rate: Double, pitchQuality: PitchCorrectionQuality?): Unit
-  
+
   @DoNotStrip
   @Keep
   abstract fun setPlayerVolume(playerId: String, volume: Double): Unit
-  
+
   @DoNotStrip
   @Keep
   abstract fun setPlayerMuted(playerId: String, muted: Boolean): Unit
-  
+
   @DoNotStrip
   @Keep
   abstract fun setPlayerLoop(playerId: String, loop: Boolean): Unit
-  
+
   @DoNotStrip
   @Keep
   abstract fun setPlayerPitchCorrection(playerId: String, enabled: Boolean): Unit

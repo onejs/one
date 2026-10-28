@@ -38,7 +38,7 @@ public extension AudioRemoteCommandEvent {
   var type: AudioRemoteCommandType {
     return self.__type
   }
-  
+
   @inline(__always)
   var positionMs: Double? {
     return { () -> Double? in
@@ -50,7 +50,7 @@ public extension AudioRemoteCommandEvent {
       }
     }()
   }
-  
+
   @inline(__always)
   var playerId: String? {
     return { () -> String? in
