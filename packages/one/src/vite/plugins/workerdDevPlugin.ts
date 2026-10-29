@@ -172,7 +172,7 @@ export function generateWorkerdDevEntryModule(args: {
   }
 }
 
-import { serve, setFetchStaticHtml } from 'one/serve-worker'
+import { serve } from 'one/serve-worker'
 
 const lazyRoutes = {
   serverEntry: () => import(${JSON.stringify(virtualEntryId)}),
@@ -203,50 +203,46 @@ export default {
       server = await serve(buildInfo, lazyRoutes, { disableModuleCache: true })
     }
 
-    if (env && env.ASSETS) {
-      setFetchStaticHtml(async (path) => {
-        try {
-          const assetUrl = new URL(request.url)
-          assetUrl.pathname = path
-          const assetResponse = await env.ASSETS.fetch(new Request(assetUrl))
-          if (assetResponse && assetResponse.ok) {
-            return await assetResponse.text()
-          }
-        } catch {}
-        return null
-      })
-    }
-
-    try {
-      const response = await server.fetch(request, env, ctx)
-
-      if (!response || response.status === 404) {
-        if (env && env.ASSETS) {
+    const fetchStaticHtml = env && env.ASSETS
+      ? async (path) => {
           try {
-            const assetResponse = await env.ASSETS.fetch(request)
-            if (assetResponse && assetResponse.status !== 404) {
-              return assetResponse
+            const assetUrl = new URL(request.url)
+            assetUrl.pathname = path
+            const assetResponse = await env.ASSETS.fetch(new Request(assetUrl))
+            if (assetResponse && assetResponse.ok) {
+              return await assetResponse.text()
             }
           } catch {}
+          return null
         }
-      }
+      : undefined
 
-      if (!response) {
-        if (request.method === 'GET' || request.method === 'HEAD') {
-          return new Response(
-            '<!DOCTYPE html><html><head>' +
-              ${JSON.stringify(spaPreloadScripts)} +
-              '</head></html>',
-            { headers: { 'content-type': 'text/html' } }
-          )
-        }
-        return new Response('Not Found', { status: 404 })
-      }
+    const response = await server.fetch(request, env, ctx, fetchStaticHtml)
 
-      return response
-    } finally {
-      setFetchStaticHtml(null)
+    if (!response || response.status === 404) {
+      if (env && env.ASSETS) {
+        try {
+          const assetResponse = await env.ASSETS.fetch(request)
+          if (assetResponse && assetResponse.status !== 404) {
+            return assetResponse
+          }
+        } catch {}
+      }
     }
+
+    if (!response) {
+      if (request.method === 'GET' || request.method === 'HEAD') {
+        return new Response(
+          '<!DOCTYPE html><html><head>' +
+            ${JSON.stringify(spaPreloadScripts)} +
+            '</head></html>',
+          { headers: { 'content-type': 'text/html' } }
+        )
+      }
+      return new Response('Not Found', { status: 404 })
+    }
+
+    return response
   }
 }
 `
