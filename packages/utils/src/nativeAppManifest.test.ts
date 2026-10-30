@@ -355,6 +355,21 @@ describe('native.app manifest', () => {
     ).toBe('dark')
   })
 
+  // a preview has no Info.plist, so the manifest carries the purpose strings
+  // prebuild stamps for the native fields.
+  test('the dev manifest carries the usage descriptions the built app has', () => {
+    const client = expoClientFromNativeApp({
+      ...app,
+      imagePicker: { camera: 'Take photos.' },
+      photoLibrary: { readWrite: 'Pick photos.', addOnly: 'Save photos.' },
+    })
+    expect(client.ios?.infoPlist).toMatchObject({
+      NSCameraUsageDescription: 'Take photos.',
+      NSPhotoLibraryUsageDescription: 'Pick photos.',
+      NSPhotoLibraryAddUsageDescription: 'Save photos.',
+    })
+  })
+
   test('the dev manifest carries both native launch background images', () => {
     const client = expoClientFromNativeApp({
       ...app,
