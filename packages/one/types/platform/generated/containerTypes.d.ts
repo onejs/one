@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type { ColorValue, ViewProps } from 'react-native';
 import type { GlassEffect, GlassEffectShape, Material, OneNativeStyle, OneNativeViewProps } from './controlTypes';
 import type * as Styles from './swiftui';
-import type { ColorScheme, ControlSize, DynamicTypeSize, SpacerSizing, ToolbarItemPlacement } from './swiftui';
+import type { ColorScheme, ControlSize, DynamicTypeSize, SpacerSizing, ToolbarDefaultItemKind, ToolbarItemPlacement } from './swiftui';
 import type { SFSymbolName } from './sfSymbolNames';
 export type HStackAlignment = 'top' | 'center' | 'bottom' | 'firstTextBaseline' | 'lastTextBaseline';
 export type VStackAlignment = 'leading' | 'center' | 'trailing' | 'listRowSeparatorLeading' | 'listRowSeparatorTrailing';
@@ -112,6 +112,10 @@ export interface ToolbarItemGroupProps extends OneNativeViewProps {
 }
 export interface ToolbarSpacerProps extends ViewProps {
     sizing?: SpacerSizing;
+    placement?: ToolbarItemPlacement;
+}
+export interface DefaultToolbarItemProps extends ViewProps {
+    kind: ToolbarDefaultItemKind;
     placement?: ToolbarItemPlacement;
 }
 export declare const hStackAlignments: readonly ['top', 'center', 'bottom', 'firstTextBaseline', 'lastTextBaseline'];

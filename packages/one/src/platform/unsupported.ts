@@ -64,6 +64,7 @@ import type {
   ToolbarProps,
   ToolbarContentProps,
   ToolbarSpacerProps,
+  DefaultToolbarItemProps,
   ZStackProps,
   SDKAnimationValue,
   WithAnimationCompletionCriteria,
@@ -303,6 +304,11 @@ function ToolbarSpacer(_props: ToolbarSpacerProps): never {
     'Swift.ToolbarSpacer requires an iOS native build'
   )
 }
+function DefaultToolbarItem(_props: DefaultToolbarItemProps): never {
+  throw new Error(
+    'Swift.DefaultToolbarItem requires an iOS native build'
+  )
+}
 import { ArrangementView } from './ArrangementView'
 import type { KeyframeAnimatorProps, KeyframeValue, PhaseAnimatorProps } from './animatorTypes'
 import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes'
@@ -387,6 +393,7 @@ export const Swift = {
   ToolbarItem,
   ToolbarItemGroup,
   ToolbarSpacer,
+  DefaultToolbarItem,
   PhaseAnimator,
   KeyframeAnimator,
   KeyframeTrack,

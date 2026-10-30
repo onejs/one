@@ -600,6 +600,7 @@
         "OneNativeToolbarItem": "OneNativeToolbarItemComponentView",
         "OneNativeToolbarItemGroup": "OneNativeToolbarItemGroupComponentView",
         "OneNativeToolbarSpacer": "OneNativeToolbarSpacerComponentView",
+        "OneNativeToolbarDefaultItem": "OneNativeToolbarDefaultItemComponentView",
         "OneNativeNavigationStackContent": "OneNativeNavigationStackContentComponentView",
         "OneNativeNavigationSplitViewColumn": "OneNativeNavigationSplitViewColumnComponentView",
         "OneNativeTableCell": "OneNativeTableCellComponentView",

@@ -182,6 +182,11 @@
       "flexible": 26,
       "fixed": 26
     },
+    "ToolbarDefaultItemKind": {
+      "sidebarToggle": 17,
+      "title": 18,
+      "search": 26
+    },
     "PayWithApplePayButtonLabel": {
       "plain": 16,
       "buy": 16,
