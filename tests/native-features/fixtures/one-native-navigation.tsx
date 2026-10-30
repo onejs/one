@@ -72,6 +72,7 @@ export default function OneNativeNavigation() {
               />
             </One.iOS.ToolbarItemGroup>
             <One.iOS.ToolbarSpacer sizing="fixed" placement="topBarLeading" />
+            <One.iOS.DefaultToolbarItem kind="sidebarToggle" placement="topBarLeading" />
             <One.iOS.ToolbarItem placement="topBarTrailing">
               <One.iOS.Button
                 label="Close"
