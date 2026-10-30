@@ -63,6 +63,7 @@ function tabContentModifiers(
   props: TabContentProps & {
     image?: string
     labelStyle?: string
+    navigationStack?: boolean
     section?: string
     tabPlacement?: string
     defaultSectionExpansion?: string
@@ -94,6 +95,7 @@ function tabContentModifiers(
   return JSON.stringify({
     image: props.image,
     labelStyle: props.labelStyle,
+    navigationStack: props.navigationStack,
     section: props.section,
     disabled: props.disabled,
     hidden: props.hidden,

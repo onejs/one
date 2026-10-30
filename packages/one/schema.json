@@ -4876,6 +4876,27 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeToolbarDefaultItem",
+      "publicName": "DefaultToolbarItem",
+      "props": {
+        "kind": {
+          "type": "string",
+          "enum": "ToolbarDefaultItemKind"
+        },
+        "placement": {
+          "type": "string",
+          "enum": "ToolbarItemPlacement"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeNavigationStackContent",
       "publicName": null,
       "props": {},
@@ -5542,6 +5563,11 @@
     "SpacerSizing": {
       "flexible": 26,
       "fixed": 26
+    },
+    "ToolbarDefaultItemKind": {
+      "sidebarToggle": 17,
+      "title": 18,
+      "search": 26
     },
     "PayWithApplePayButtonLabel": {
       "plain": 16,

@@ -178,6 +178,15 @@ export const navigationHost = {
       ],
       gated: true,
     },
+    {
+      kind: 'defaultItem',
+      type: 'DefaultToolbarItem',
+      parameters: [
+        { label: 'kind', type: 'SwiftUI.ToolbarDefaultItemKind' },
+        { label: 'placement', type: 'SwiftUI.ToolbarItemPlacement' },
+      ],
+      gated: true,
+    },
   ],
   markers: [
     {
@@ -189,6 +198,7 @@ export const navigationHost = {
         { label: 'sizing', fixed: '@"flexible"' },
         { label: 'label', fixed: '@""' },
         { label: 'systemImage', fixed: '@""' },
+        { label: 'defaultItem', fixed: '@""' },
       ],
       style: true,
       sdkEvent: true,
@@ -202,6 +212,7 @@ export const navigationHost = {
         { label: 'sizing', fixed: '@"flexible"' },
         { label: 'label', prop: 'label', type: 'string' },
         { label: 'systemImage', prop: 'systemImage', type: 'string' },
+        { label: 'defaultItem', fixed: '@""' },
       ],
       style: true,
       sdkEvent: true,
@@ -215,6 +226,21 @@ export const navigationHost = {
         { label: 'sizing', prop: 'sizing', type: 'string' },
         { label: 'label', fixed: '@""' },
         { label: 'systemImage', fixed: '@""' },
+        { label: 'defaultItem', fixed: '@""' },
+      ],
+      style: false,
+      sdkEvent: false,
+    },
+    {
+      component: 'OneNativeToolbarDefaultItem',
+      kind: 'defaultItem',
+      args: [
+        { label: 'kind', fixed: '@"defaultItem"' },
+        { label: 'placement', prop: 'placement', type: 'string' },
+        { label: 'sizing', fixed: '@"flexible"' },
+        { label: 'label', fixed: '@""' },
+        { label: 'systemImage', fixed: '@""' },
+        { label: 'defaultItem', prop: 'kind', type: 'string' },
       ],
       style: false,
       sdkEvent: false,
@@ -775,6 +801,7 @@ export const enumTypes = [
   // because deprecation lands in newer SDKs first.
   'ToolbarItemPlacement',
   'SpacerSizing',
+  'ToolbarDefaultItemKind',
   // the PassKit buy/book/checkout label list the Apple Pay button takes as an argument.
   'PayWithApplePayButtonLabel',
 ]

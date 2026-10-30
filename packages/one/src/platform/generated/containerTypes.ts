@@ -15,6 +15,7 @@ import type {
   ControlSize,
   DynamicTypeSize,
   SpacerSizing,
+  ToolbarDefaultItemKind,
   ToolbarItemPlacement,
 } from './swiftui'
 import type { SFSymbolName } from './sfSymbolNames'
@@ -149,6 +150,10 @@ export interface ToolbarItemGroupProps extends OneNativeViewProps {
 }
 export interface ToolbarSpacerProps extends ViewProps {
   sizing?: SpacerSizing
+  placement?: ToolbarItemPlacement
+}
+export interface DefaultToolbarItemProps extends ViewProps {
+  kind: ToolbarDefaultItemKind
   placement?: ToolbarItemPlacement
 }
 export const hStackAlignments = [

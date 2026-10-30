@@ -105,6 +105,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ToolbarItem` | navigation, navigation-split-view | n/a | OneSwiftNavigationStackLibraryCase |  |
 | `One.iOS.ToolbarItemGroup` | navigation | n/a | OneSwiftNavigationStackLibraryCase |  |
 | `One.iOS.ToolbarSpacer` | navigation | n/a | OneSwiftNavigationStackLibraryCase |  |
+| `One.iOS.DefaultToolbarItem` | navigation | n/a | OneSwiftNavigationStackLibraryCase |  |
 | `One.iOS.PhaseAnimator` | e2e:one-native-animators | n/a | OneNativeAnimatorsLibraryCase |  |
 | `One.iOS.KeyframeAnimator` | e2e:one-native-animators | n/a | OneNativeAnimatorsLibraryCase |  |
 | `One.iOS.KeyframeTrack` | e2e:one-native-animators | n/a | OneNativeAnimatorsLibraryCase |  |

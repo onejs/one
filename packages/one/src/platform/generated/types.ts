@@ -32,6 +32,7 @@ import type {
   ListStyle,
   ToolbarItemPlacement,
   SpacerSizing,
+  ToolbarDefaultItemKind,
   PayWithApplePayButtonLabel,
 } from './swiftui'
 export type {
@@ -63,6 +64,7 @@ export type {
   ListStyle,
   ToolbarItemPlacement,
   SpacerSizing,
+  ToolbarDefaultItemKind,
   PayWithApplePayButtonLabel,
 } from './swiftui'
 export interface SwiftMenuAction {

@@ -26,6 +26,7 @@ export type ElementFullscreenBehavior = 'automatic' | 'enabled' | 'disabled';
 export type ListStyle = 'automatic' | 'sidebar' | 'inset' | 'grouped' | 'insetGrouped' | 'plain';
 export type ToolbarItemPlacement = 'automatic' | 'principal' | 'navigation' | 'primaryAction' | 'secondaryAction' | 'status' | 'confirmationAction' | 'cancellationAction' | 'destructiveAction' | 'keyboard' | 'topBarLeading' | 'topBarTrailing' | 'topBarPinnedTrailing' | 'navigationBarLeading' | 'navigationBarTrailing' | 'title' | 'largeTitle' | 'bottomBar' | 'subtitle' | 'largeSubtitle';
 export type SpacerSizing = 'flexible' | 'fixed';
+export type ToolbarDefaultItemKind = 'sidebarToggle' | 'title' | 'search';
 export type PayWithApplePayButtonLabel = 'plain' | 'buy' | 'addMoney' | 'book' | 'checkout' | 'continue' | 'contribute' | 'donate' | 'inStore' | 'order' | 'reload' | 'rent' | 'setUp' | 'subscribe' | 'support' | 'tip' | 'topUp';
 export declare const swiftUIValues: {
     readonly MenuOrder: {
@@ -202,6 +203,11 @@ export declare const swiftUIValues: {
     readonly SpacerSizing: {
         readonly flexible: 26;
         readonly fixed: 26;
+    };
+    readonly ToolbarDefaultItemKind: {
+        readonly sidebarToggle: 17;
+        readonly title: 18;
+        readonly search: 26;
     };
     readonly PayWithApplePayButtonLabel: {
         readonly plain: 16;

@@ -18,4 +18,6 @@
 @end
 @interface OneNativeToolbarSpacerComponentView : OneNativeContainerComponentView
 @end
+@interface OneNativeToolbarDefaultItemComponentView : OneNativeContainerComponentView
+@end
 #endif

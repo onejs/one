@@ -50,6 +50,7 @@ import {
   ToolbarItem,
   ToolbarItemGroup,
   ToolbarSpacer,
+  DefaultToolbarItem,
 } from './NavigationStack.native'
 import { NavigationSplitView } from './NavigationSplitView.native'
 import { FullScreenCover, Sheet } from './Sheet.native'
@@ -175,6 +176,7 @@ export const Swift =
         ToolbarItem,
         ToolbarItemGroup,
         ToolbarSpacer,
+        DefaultToolbarItem,
         Spacer,
         Slot,
         withAnimation,

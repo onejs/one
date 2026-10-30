@@ -379,6 +379,19 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid SpacerSizing: \(value)")
     }
   }
+  static func toolbarDefaultItemKind(_ value: String) -> ToolbarDefaultItemKind {
+    switch value {
+    case "sidebarToggle":
+      return .sidebarToggle
+    case "title":
+      if #available(iOS 18, *) { return .title }
+      preconditionFailure("ToolbarDefaultItemKind.title requires iOS 18")
+    case "search":
+      if #available(iOS 26, *) { return .search }
+      preconditionFailure("ToolbarDefaultItemKind.search requires iOS 26")
+    default: preconditionFailure("invalid ToolbarDefaultItemKind: \(value)")
+    }
+  }
 #if ONE_GROUP_WALLET
   static func payWithApplePayButtonLabel(_ value: String) -> PayWithApplePayButtonLabel {
     switch value {

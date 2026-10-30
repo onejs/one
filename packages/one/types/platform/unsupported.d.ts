@@ -1,6 +1,6 @@
 import { Angle, Gradient, Path, type CanvasProps } from './canvas';
 import type { UICollectionView, UICollectionViewDiffableDataSource, UITableView, UITableViewDiffableDataSource } from 'one/ios/UIKit';
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, UIKitViewProps, UIKitContentProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GeometryReaderProps, TimelineViewProps, OutlineGroupProps, TableProps, GroupProps, GroupBoxProps, ViewThatFitsProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, ScrollViewReaderProps, SectionProps, SheetProps, SlotProps, SpacerProps, HStackProps, VStackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabViewProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, ZStackProps, SDKAnimationValue, WithAnimationCompletionCriteria } from './types';
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, UIKitViewProps, UIKitContentProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GeometryReaderProps, TimelineViewProps, OutlineGroupProps, TableProps, GroupProps, GroupBoxProps, ViewThatFitsProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, ScrollViewReaderProps, SectionProps, SheetProps, SlotProps, SpacerProps, HStackProps, VStackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabViewProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, DefaultToolbarItemProps, ZStackProps, SDKAnimationValue, WithAnimationCompletionCriteria } from './types';
 declare function TabView(_props: TabViewProps): never;
 declare function Tab(_props: TabProps): never;
 declare function TabSection(_props: TabSectionProps): never;
@@ -64,6 +64,7 @@ declare function ToolbarContent(_props: ToolbarContentProps): never;
 declare function ToolbarItem(_props: ToolbarItemProps): never;
 declare function ToolbarItemGroup(_props: ToolbarItemGroupProps): never;
 declare function ToolbarSpacer(_props: ToolbarSpacerProps): never;
+declare function DefaultToolbarItem(_props: DefaultToolbarItemProps): never;
 import type { KeyframeAnimatorProps, KeyframeValue, PhaseAnimatorProps } from './animatorTypes';
 import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes';
 import type { MapWithControlsProps } from './mapControls';
@@ -286,6 +287,7 @@ export declare const Swift: {
     ToolbarItem: typeof ToolbarItem;
     ToolbarItemGroup: typeof ToolbarItemGroup;
     ToolbarSpacer: typeof ToolbarSpacer;
+    DefaultToolbarItem: typeof DefaultToolbarItem;
     PhaseAnimator: typeof PhaseAnimator;
     KeyframeAnimator: typeof KeyframeAnimator;
     KeyframeTrack: typeof KeyframeTrack;

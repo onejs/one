@@ -293,6 +293,36 @@ function PageControls({ back, forward }: { back: () => void; forward: () => void
   ]}
 />
 
+## DefaultToolbarItem
+
+`DefaultToolbarItem` places one of the system's own toolbar items, such as the search
+field, where you say. It needs iOS 26 and takes no children. With
+`kind="search"` and `placement="bottomBar"` on a list that is `searchable`, plus
+`searchToolbarBehavior: 'minimize'` in the list's `swiftStyle`, the field becomes the
+detached search circle iPhone shows at the bottom of the screen.
+
+```tsx
+import { One } from 'one'
+
+function BottomSearchToolbar() {
+  return (
+    <One.iOS.Toolbar>
+      <One.iOS.DefaultToolbarItem kind="search" placement="bottomBar" />
+      <One.iOS.ToolbarSpacer sizing="flexible" placement="bottomBar" />
+    </One.iOS.Toolbar>
+  )
+}
+```
+
+<PropsTable
+  title="Props"
+  source="generated/containerTypes.ts#DefaultToolbarItemProps"
+  data={[
+    { name: 'kind', required: true, type: 'ToolbarDefaultItemKind', description: 'Which system item to place, such as search.' },
+    { name: 'placement', type: 'ToolbarItemPlacement', description: 'Where in the bars the item goes.' },
+  ]}
+/>
+
 ## ToolbarSpacer
 
 `ToolbarSpacer` spreads toolbar items apart. It needs iOS 26 and takes no

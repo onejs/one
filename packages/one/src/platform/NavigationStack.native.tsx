@@ -15,6 +15,7 @@ import NativeToolbar from './specs/OneNativeToolbarNativeComponent'
 import NativeToolbarItem from './specs/OneNativeToolbarItemNativeComponent'
 import NativeToolbarItemGroup from './specs/OneNativeToolbarItemGroupNativeComponent'
 import NativeToolbarSpacer from './specs/OneNativeToolbarSpacerNativeComponent'
+import NativeToolbarDefaultItem from './specs/OneNativeToolbarDefaultItemNativeComponent'
 import { viewportStyle } from './viewportStyle'
 import type {
   NavigationStackProps,
@@ -23,6 +24,7 @@ import type {
   ToolbarProps,
   ToolbarContentProps,
   ToolbarSpacerProps,
+  DefaultToolbarItemProps,
 } from './generated/containerTypes'
 
 // the root content is a Fabric child of the stack that hosts the React Native subtree in
@@ -30,7 +32,7 @@ import type {
 const CONTENT_STYLE = { position: 'absolute', left: 0, top: 0 } as const
 
 const TOOLBAR_CHILDREN =
-  'Swift.ToolbarItem, Swift.ToolbarItemGroup, and Swift.ToolbarSpacer'
+  'Swift.ToolbarItem, Swift.ToolbarItemGroup, Swift.ToolbarSpacer, and Swift.DefaultToolbarItem'
 
 // the three markers are read by Swift.Toolbar and Swift.NavigationStack and never render
 // where they are written, exactly like Swift.Tab inside Swift.TabView.
@@ -56,6 +58,10 @@ export function ToolbarItemGroup(_props: ToolbarItemGroupProps): never {
 
 export function ToolbarSpacer(_props: ToolbarSpacerProps): never {
   throw new Error('Swift.ToolbarSpacer must be a direct child of Swift.Toolbar')
+}
+
+export function DefaultToolbarItem(_props: DefaultToolbarItemProps): never {
+  throw new Error('Swift.DefaultToolbarItem must be a direct child of Swift.Toolbar')
 }
 
 // every placement the SDK declares is accepted, and one it does not is rejected before a
@@ -144,6 +150,26 @@ function ToolbarSpacerNode({
   )
 }
 
+function DefaultToolbarItemNode({
+  element,
+  iosVersion,
+}: {
+  element: ReactElement<DefaultToolbarItemProps>
+  iosVersion: number
+}) {
+  const props = element.props
+  if (Children.count(props.children) !== 0)
+    throw new Error('Swift.DefaultToolbarItem takes no children')
+  if (iosVersion < 26) throw new Error('Swift.DefaultToolbarItem requires iOS 26 or later')
+  assertSwiftUIValue('ToolbarDefaultItemKind', props.kind, iosVersion)
+  return (
+    <NativeToolbarDefaultItem
+      {...props}
+      placement={toolbarPlacement(props.placement, 'Swift.DefaultToolbarItem', iosVersion)}
+    />
+  )
+}
+
 // one Swift.Toolbar becomes one native toolbar: its markers read as toolbar entries in
 // the order they are written, and the stack merges every toolbar it is given.
 export function ToolbarNode({
@@ -192,6 +218,14 @@ export function ToolbarNode({
           iosVersion={iosVersion}
         />
       )
+    if (element.type === DefaultToolbarItem)
+      return (
+        <DefaultToolbarItemNode
+          key={key}
+          element={child as ReactElement<DefaultToolbarItemProps>}
+          iosVersion={iosVersion}
+        />
+      )
     throw new Error(`Swift.Toolbar accepts ${TOOLBAR_CHILDREN} elements as children`)
   })
   return <NativeToolbar>{items}</NativeToolbar>
@@ -221,7 +255,8 @@ export function NavigationStack({
         if (
           child.type === ToolbarItem ||
           child.type === ToolbarItemGroup ||
-          child.type === ToolbarSpacer
+          child.type === ToolbarSpacer ||
+          child.type === DefaultToolbarItem
         )
           throw new Error(
             `Swift.NavigationStack accepts Swift.Toolbar elements or React Native content as children; ${TOOLBAR_CHILDREN} belong inside Swift.Toolbar`

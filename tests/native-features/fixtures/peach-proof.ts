@@ -212,6 +212,7 @@ export const peachProof: Record<string, string[]> = {
   'iOS.ToolbarItem': ['OneSwiftNavigationStackLibraryCase'],
   'iOS.ToolbarItemGroup': ['OneSwiftNavigationStackLibraryCase'],
   'iOS.ToolbarSpacer': ['OneSwiftNavigationStackLibraryCase'],
+  'iOS.DefaultToolbarItem': ['OneSwiftNavigationStackLibraryCase'],
   'iOS.UnevenRoundedRectangle': ['OneSwiftShapesGradientsLibraryCase'],
   'iOS.VStack': [
     'OneNativePassKitLibraryCase',

@@ -603,6 +603,17 @@ export const containerComponents = [
     slots: [],
     interfaceOnly: false,
   },
+  {
+    name: 'OneNativeToolbarDefaultItem',
+    publicName: 'DefaultToolbarItem',
+    // a system item the bar places itself, such as the search field or the sidebar toggle.
+    props: { kind: 'string', placement: 'string' },
+    events: {},
+    enumProps: { kind: 'ToolbarDefaultItemKind', placement: 'ToolbarItemPlacement' },
+    layout: { kind: 'container' },
+    slots: [],
+    interfaceOnly: false,
+  },
 ] as const
 
 // a container whose only job is to carry a React Native subtree into a SwiftUI box the
@@ -753,7 +764,7 @@ ${commandEntries.length ? `interface NativeCommands {\n${commandEntries.map(([na
 import type { ColorValue, ViewProps } from 'react-native'
 import type { GlassEffect, GlassEffectShape, Material, OneNativeStyle, OneNativeViewProps } from './controlTypes'
 import type * as Styles from './swiftui'
-import type { ColorScheme, ControlSize, DynamicTypeSize, SpacerSizing, ToolbarItemPlacement } from './swiftui'
+import type { ColorScheme, ControlSize, DynamicTypeSize, SpacerSizing, ToolbarDefaultItemKind, ToolbarItemPlacement } from './swiftui'
 import type { SFSymbolName } from './sfSymbolNames'
 export type HStackAlignment = ${hStackAlignments.map((value) => JSON.stringify(value)).join(' | ')}
 export type VStackAlignment = ${vStackAlignments.map((value) => JSON.stringify(value)).join(' | ')}
@@ -863,6 +874,10 @@ export interface ToolbarItemGroupProps extends OneNativeViewProps {
 }
 export interface ToolbarSpacerProps extends ViewProps {
   sizing?: SpacerSizing
+  placement?: ToolbarItemPlacement
+}
+export interface DefaultToolbarItemProps extends ViewProps {
+  kind: ToolbarDefaultItemKind
   placement?: ToolbarItemPlacement
 }
 export const hStackAlignments = [${hStackAlignments.map((value) => JSON.stringify(value)).join(', ')}] as const
