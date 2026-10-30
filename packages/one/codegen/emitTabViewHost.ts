@@ -410,6 +410,7 @@ struct OneNativeSectionAction: Decodable, Equatable, Identifiable {
 struct OneNativeTabModifiers: Decodable, Equatable {
   var image: String?
   var labelStyle: String?
+  var navigationStack: Bool?
   var section: String?
   var disabled: Bool?
   var hidden: Bool?
@@ -900,17 +901,22 @@ private struct TabViewContent: View {
   @TabContentBuilder<String>
   private func tab(_ page: OneNativeTabItem) -> some TabContent<String> {
     Tab(value: page.id, role: OneNativeGenerated.tabRole(page.role)) {
-      NavigationStack {
-        slot(page)
-          .background(ActionTabHook(host: host, page: page.view))
-          .containerBackground(.clear, for: .navigation)
-          .oneNativeStyle(page.style, emit: page.emit)
-          .toolbarVisibility(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
-          .toolbar {
-            ForEach(model.toolbarEntries) { entry in
-              OneNativeToolbarEntryContent(entry: entry)
+      if page.modifiers.navigationStack == false {
+        styled(slot(page).background(ActionTabHook(host: host, page: page.view)), page)
+      } else {
+        NavigationStack {
+          styled(
+            slot(page)
+              .background(ActionTabHook(host: host, page: page.view))
+              .containerBackground(.clear, for: .navigation),
+            page
+          )
+            .toolbar {
+              ForEach(model.toolbarEntries) { entry in
+                OneNativeToolbarEntryContent(entry: entry)
+              }
             }
-          }
+        }
       }
     } label: {
       if let image = page.modifiers.image {
@@ -923,6 +929,13 @@ private struct TabViewContent: View {
     }
     .badge(page.badge.isEmpty ? nil : Text(page.badge))
     .oneNativeTabContent(page.modifiers)
+  }
+
+  @available(iOS 18.0, *)
+  private func styled(_ content: some View, _ page: OneNativeTabItem) -> some View {
+    content
+      .oneNativeStyle(page.style, emit: page.emit)
+      .toolbarVisibility(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
   }
 
   private var legacyTabView: some View {
