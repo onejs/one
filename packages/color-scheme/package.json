@@ -34,7 +34,7 @@
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
   },
   "devDependencies": {
-    "@tamagui/build": "3.1.8",
+    "@tamagui/build": "3.1.9",
     "react": "19.3.0",
     "react-native": "0.88.0",
     "vitest": "^4.1.0"
