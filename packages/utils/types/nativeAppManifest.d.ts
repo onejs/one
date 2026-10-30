@@ -148,6 +148,7 @@ export interface NativeAppManifest {
     };
 }
 export declare function validateNativeApp(manifest: NativeAppManifest, platform?: 'ios' | 'android' | string): NativeAppManifest;
+export declare function iosUsageDescriptions(app: NativeAppManifest): Map<string, string>;
 export declare function expoClientFromNativeApp(app: NativeAppManifest): {
     name: string;
     slug: string;
@@ -178,7 +179,9 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
         associatedDomains: string[] | undefined;
         usesAppleSignIn: boolean | undefined;
         googleServicesFile: string | undefined;
-        infoPlist: Record<string, PlistValue> | undefined;
+        infoPlist: {
+            [x: string]: PlistValue;
+        };
         entitlements: Record<string, PlistValue> | undefined;
     } | undefined;
     android: {
