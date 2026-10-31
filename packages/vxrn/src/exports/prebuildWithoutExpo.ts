@@ -6,6 +6,7 @@ import { pathToFileURL } from 'node:url'
 import {
   androidIconSuffix,
   appIconPreviewResources,
+  iosUsageDescriptions,
   validateNativeApp,
   type NativeAppIcon,
   type NativeAppManifest,
@@ -2769,54 +2770,7 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
     if (platform === 'ios' && relativePath.endsWith('/Info.plist')) {
       // schemes, usesNonExemptEncryption, and fileSharing stamp above in one
       // anchored block; only the usage descriptions stamp here.
-      const usage = new Map<string, string>()
-      if (app.imagePicker?.camera !== undefined) {
-        usage.set('NSCameraUsageDescription', app.imagePicker.camera)
-      }
-      if (app.imagePicker?.microphone !== undefined) {
-        usage.set('NSMicrophoneUsageDescription', app.imagePicker.microphone)
-      }
-      if (app.photoLibrary !== undefined) {
-        if (app.photoLibrary.addOnly !== undefined) {
-          usage.set('NSPhotoLibraryAddUsageDescription', app.photoLibrary.addOnly)
-        }
-        if (app.photoLibrary.readWrite !== undefined) {
-          usage.set('NSPhotoLibraryUsageDescription', app.photoLibrary.readWrite)
-        }
-      }
-      if (app.contacts !== undefined) {
-        usage.set('NSContactsUsageDescription', app.contacts.usage)
-      }
-      if (app.calendar !== undefined) {
-        if (app.calendar.usage !== undefined) {
-          usage.set('NSCalendarsFullAccessUsageDescription', app.calendar.usage)
-        }
-        if (app.calendar.remindersUsage !== undefined) {
-          usage.set('NSRemindersFullAccessUsageDescription', app.calendar.remindersUsage)
-        }
-      }
-      if (app.location !== undefined) {
-        usage.set('NSLocationWhenInUseUsageDescription', app.location.whenInUse)
-        if (app.location.alwaysAndWhenInUse !== undefined) {
-          usage.set(
-            'NSLocationAlwaysAndWhenInUseUsageDescription',
-            app.location.alwaysAndWhenInUse
-          )
-        }
-      }
-      if (app.pedometer !== undefined) {
-        usage.set('NSMotionUsageDescription', app.pedometer.usage)
-      }
-      if (app.ios?.faceIdUsageDescription !== undefined) {
-        usage.set('NSFaceIDUsageDescription', app.ios.faceIdUsageDescription)
-      }
-      if (app.speech !== undefined) {
-        usage.set('NSSpeechRecognitionUsageDescription', app.speech.recognition)
-        usage.set('NSMicrophoneUsageDescription', app.speech.microphone)
-      }
-      if (app.audio?.microphone !== undefined) {
-        usage.set('NSMicrophoneUsageDescription', app.audio.microphone)
-      }
+      const usage = iosUsageDescriptions(app)
       const additions: [string, string][] = []
       for (const [key, text] of usage) {
         const existing = new RegExp(`(<key>${key}</key>\\s*<string>)[^<]*(</string>)`)
