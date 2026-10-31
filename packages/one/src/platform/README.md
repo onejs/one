@@ -1189,6 +1189,11 @@ initializer, which renders the label the way a menu-style group does.
 `flexible` (the default) or `fixed`, and it takes the same `placement`. It holds no
 children.
 
+`One.iOS.DefaultToolbarItem` is SwiftUI's `DefaultToolbarItem`, also iOS 26 and later. `kind`
+names the system item (`search`) and `placement` says where it goes; with `bottomBar` and a
+`searchToolbarBehavior` of `minimize` on the searchable list it becomes the detached search
+circle. It holds no children.
+
 The bar itself is configured through `swiftStyle`, because every navigation and toolbar
 modifier SwiftUI declares as a scalar is derived into it: `navigationTitleWithText`
 (`navigationTitle(_: Text)`), `navigationTitleWithBindingString` for the `Binding<String>`

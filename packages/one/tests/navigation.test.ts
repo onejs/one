@@ -259,7 +259,7 @@ describe('Swift.Toolbar markers', () => {
 
   it('rejects nested content types a toolbar cannot hold', () => {
     expect(() => render(stack(toolbar(createElement('View', {}))))).toThrow(
-      'Swift.Toolbar accepts Swift.ToolbarItem, Swift.ToolbarItemGroup, and Swift.ToolbarSpacer elements as children'
+      'Swift.Toolbar accepts Swift.ToolbarItem, Swift.ToolbarItemGroup, Swift.ToolbarSpacer, and Swift.DefaultToolbarItem elements as children'
     )
   })
 

@@ -1,3 +1,4 @@
+#if ONE_GROUP_ACCOUNT
 import AuthenticationServices
 import NitroModules
 import React
@@ -249,3 +250,4 @@ final class HybridOneBrowserDelegate: NSObject, SFSafariViewControllerDelegate,
     return RCTKeyWindow() ?? ASPresentationAnchor()
   }
 }
+#endif

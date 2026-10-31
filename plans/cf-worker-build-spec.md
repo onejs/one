@@ -82,9 +82,9 @@ Identical to pass 2 except input is middleware files and output dir is `dist/mid
 ### Pass 4 — Cloudflare worker (case 'cloudflare' in build.ts, only on `deploy: 'cloudflare'`)
 
 Generates `dist/_worker-src.js` on disk, a hand-written ES module that:
-1. Imports `serve, setFetchStaticHtml` from `one/serve-worker` (internal framework helper)
+1. Imports `serve` and `withRange` from `one/serve-worker` (internal framework helpers)
 2. Builds a `lazyRoutes` map: `{ serverEntry: () => import('./server/_virtual_one-entry.js'), pages: {...}, api: {...}, middlewares: {...} }` — every value is a dynamic import closure pointing at a pass 1/2/3 output file
-3. Exports a default `{ fetch(request, env, ctx) { ... } }` that wires the lazy map into the runtime router and handles the CF `ASSETS` binding
+3. Exports a default `{ fetch(request, env, ctx) { ... } }` that wires the lazy map into the runtime router and passes its static HTML reader per request, so overlapping requests retain their own `ASSETS` binding and origin
 
 Then runs a separate `viteBuild()` on `_worker-src.js` with:
 - `ssr: { target: 'node', noExternal: true }`

@@ -63,7 +63,8 @@ export async function buildPage(
   criticalPreloads?: string[],
   deferredPreloads?: string[],
   useAfterLCP?: boolean,
-  useAfterLCPAggressive?: boolean
+  useAfterLCPAggressive?: boolean,
+  skipNativeLoaders?: boolean
 ): Promise<One.RouteBuildInfo> {
   let t0 = performance.now()
 
@@ -275,10 +276,12 @@ prefetchCSS()
             loaderPartialPath,
             `export function loader(){return ${redirectData}}`
           )
-          // native-friendly CJS version
-          const nativeCjs = `exports.loader = function(){return ${redirectData}}`
-          await outputFile(loaderPartialPath.replace(/\.js$/, '.native.js'), nativeCjs)
-          await outputFile(uncachedNativePath, nativeCjs)
+          if (!skipNativeLoaders) {
+            // native-friendly CJS version
+            const nativeCjs = `exports.loader = function(){return ${redirectData}}`
+            await outputFile(loaderPartialPath.replace(/\.js$/, '.native.js'), nativeCjs)
+            await outputFile(uncachedNativePath, nativeCjs)
+          }
           loaderPath = getLoaderPath(path)
           loaderData = {}
         } else {
@@ -289,10 +292,12 @@ prefetchCSS()
           // stub of its own to replace)
           const data = JSON.stringify(loaderData)
           await outputFile(loaderPartialPath, `export function loader(){return ${data}}`)
-          // native-friendly CJS version
-          const nativeCjs = `exports.loader = function(){return ${data}}`
-          await outputFile(loaderPartialPath.replace(/\.js$/, '.native.js'), nativeCjs)
-          await outputFile(uncachedNativePath, nativeCjs)
+          if (!skipNativeLoaders) {
+            // native-friendly CJS version
+            const nativeCjs = `exports.loader = function(){return ${data}}`
+            await outputFile(loaderPartialPath.replace(/\.js$/, '.native.js'), nativeCjs)
+            await outputFile(uncachedNativePath, nativeCjs)
+          }
           loaderPath = getLoaderPath(path)
         }
       }
@@ -544,7 +549,7 @@ function applyAfterLCPScriptLoad(html: string, preloads: string[]): string {
   html = html.replace(/<script\s+type="module"[^>]*async[^>]*><\/script>/gi, '')
 
   // Create the loader script
-  // Nested setTimeout yields to event loop multiple times, letting browser settle before loading scripts
+  // Waits for the parser, then nested setTimeout yields to event loop multiple times, letting browser settle before loading scripts
   const loaderScript = `
 <script>
 (function() {
@@ -570,7 +575,12 @@ function applyAfterLCPScriptLoad(html: string, preloads: string[]): string {
       }, 0);
     }, 0);
   }
-  waitIdle(5);
+  // hydration must not start while the parser is still adding server markup
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { waitIdle(5); });
+  } else {
+    waitIdle(5);
+  }
 })();
 </script>`
 

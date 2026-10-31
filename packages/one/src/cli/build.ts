@@ -186,7 +186,7 @@ function clonePluginHooks(config: InlineConfig): InlineConfig {
 export async function build(args: {
   step?: string
   only?: string
-  platform?: 'ios' | 'web' | 'android'
+  platform?: 'ios' | 'web' | 'android' | 'macos' | 'linux'
   skipEnv?: boolean
 }) {
   installBuildErrorHandlers()
@@ -246,6 +246,17 @@ export async function build(args: {
   // respect vite's build.outDir config, default to 'dist'
   const outDir = viteLoadedConfig?.config?.build?.outDir ?? 'dist'
 
+  // buildInfo retains route-to-client chunks even for modules merged into shared chunks
+  const previousBuildInfo: One.BuildInfo | undefined =
+    args.platform === 'web' && args.step === 'generate'
+      ? await FSExtra.readJSON(toAbsolute(`${outDir}/buildInfo.json`))
+      : undefined
+
+  if (previousBuildInfo) {
+    constants.setCacheKey(previousBuildInfo.constants.CACHE_KEY)
+    process.env.ONE_CACHE_KEY = constants.CACHE_KEY
+  }
+
   const manifest = getManifest({
     routerRoot,
     ignoredRouteFiles: oneOptions.router?.ignoredRouteFiles,
@@ -285,6 +296,33 @@ export async function build(args: {
   // vxrn's build already filled these. filling again would require the port it
   // picked to still be free after the bundle, which another process can take.
   const { options } = vxrnOutput
+
+  if (previousBuildInfo) {
+    const generatedFiles = new Set([
+      ...Object.values(previousBuildInfo.routeMap),
+      ...Object.keys(previousBuildInfo.preloads),
+      ...Object.keys(previousBuildInfo.cssPreloads),
+      ...Object.keys(previousBuildInfo.loaders),
+    ])
+    for (const loaderPath of Object.keys(previousBuildInfo.loaders)) {
+      if (!loaderPath) continue
+      generatedFiles.add(loaderPath.replace(/\.js$/, '.native.js'))
+      generatedFiles.add(
+        loaderPath.replace(
+          constants.LOADER_JS_POSTFIX,
+          constants.NATIVE_LOADER_JS_POSTFIX_UNCACHED
+        )
+      )
+    }
+    await Promise.all([
+      ...['api', 'middlewares', 'static'].map((folder) =>
+        FSExtra.remove(join(outDir, folder))
+      ),
+      ...[...generatedFiles]
+        .filter(Boolean)
+        .map((file) => FSExtra.remove(join(outDir, 'client', file))),
+    ])
+  }
 
   const { optimizeDeps } = getOptimizeDeps('build')
   const { rolldownOptions: _rolldownOptions, ...optimizeDepsNoRolldown } = optimizeDeps
@@ -510,6 +548,11 @@ export async function build(args: {
   // concurrency limiter for parallel page builds
   const limit = pLimit(buildConcurrency)
 
+  // native:false runs One as a pure web framework: no native bundle exists to
+  // read the per-loader .native.js twins, so buildPage omits them. default and
+  // native-enabled builds keep writing both twins.
+  const skipNativeLoaders = oneOptions.native === false
+
   // initialize worker pool if enabled (default: true)
   const useWorkers = shouldUseWorkers(oneOptions)
   const workerPool = useWorkers ? getWorkerPool(buildConcurrency) : null
@@ -543,11 +586,11 @@ export async function build(args: {
   // another route re-exports from stops being a dynamic entry and lands in a
   // plain shared chunk, which has no facade and so gets no source-path key in
   // the manifest either. the facade pass runs second so it wins where both hit.
-  const clientChunksBySource = new Map<string, { fileName: string; imports: string[] }>()
+  const clientChunksBySource = new Map<string, { fileName: string }>()
   if (vxrnOutput.clientOutput) {
     for (const chunk of vxrnOutput.clientOutput) {
       if (chunk.type !== 'chunk') continue
-      const info = { fileName: chunk.fileName, imports: chunk.imports || [] }
+      const info = { fileName: chunk.fileName }
       for (const moduleId of chunk.moduleIds ?? []) {
         clientChunksBySource.set(moduleId, info)
       }
@@ -556,7 +599,16 @@ export async function build(args: {
       if (chunk.type !== 'chunk' || !chunk.facadeModuleId) continue
       clientChunksBySource.set(chunk.facadeModuleId, {
         fileName: chunk.fileName,
-        imports: chunk.imports || [],
+      })
+    }
+  } else if (previousBuildInfo) {
+    for (const route of Object.values(previousBuildInfo.routeToBuildInfo)) {
+      if (!route.clientJsPath) continue
+      const modulePath = normalizePath(
+        join(resolve(process.cwd(), options.root), routerRoot, route.routeFile.slice(2))
+      )
+      clientChunksBySource.set(modulePath, {
+        fileName: normalizePath(relative(clientDir, route.clientJsPath)),
       })
     }
   }
@@ -1034,6 +1086,7 @@ export async function build(args: {
             deferredPreloads,
             useAfterLCP,
             useAfterLCPAggressive,
+            skipNativeLoaders,
           })
           .then((built) => ({ built, path }))
       }
@@ -1063,7 +1116,8 @@ export async function build(args: {
             criticalPreloads,
             deferredPreloads,
             useAfterLCP,
-            useAfterLCPAggressive
+            useAfterLCPAggressive,
+            skipNativeLoaders
           )
         })
 
@@ -1304,7 +1358,7 @@ if (typeof MessageChannel === 'undefined') {
   }
 }
 
-import { serve, setFetchStaticHtml, withRange } from 'one/serve-worker'
+import { serve, withRange } from 'one/serve-worker'
 
 // Lazy import map - modules load on-demand when route is matched
 const lazyRoutes = {
@@ -1327,44 +1381,40 @@ export default {
       server = await serve(buildInfo, lazyRoutes)
     }
 
-    // set up static HTML fetcher for this request (uses ASSETS binding)
-    if (env.ASSETS) {
-      setFetchStaticHtml(async (path) => {
-        try {
-          const url = new URL(request.url)
-          url.pathname = path
-          const assetResponse = await env.ASSETS.fetch(new Request(url))
-          if (assetResponse && assetResponse.ok) {
-            return await assetResponse.text()
-          }
-        } catch (e) {
-          // asset not found
-        }
-        return null
-      })
-    }
-
-    try {
-      const response = await server.fetch(request, env, ctx)
-
-      // no route matched or 404 → try static assets
-      if (!response || response.status === 404) {
-        if (env.ASSETS) {
+    // keep the asset binding and origin scoped to this request
+    const fetchStaticHtml = env.ASSETS
+      ? async (path) => {
           try {
-            const assetResponse = await env.ASSETS.fetch(request)
-            if (assetResponse && assetResponse.status !== 404) {
-              return await withRange(request, assetResponse)
+            const url = new URL(request.url)
+            url.pathname = path
+            const assetResponse = await env.ASSETS.fetch(new Request(url))
+            if (assetResponse && assetResponse.ok) {
+              return await assetResponse.text()
             }
           } catch (e) {
-            // asset not found, continue with original response
+            // asset not found
           }
+          return null
+        }
+      : undefined
+
+    const response = await server.fetch(request, env, ctx, fetchStaticHtml)
+
+    // no route matched or 404 → try static assets
+    if (!response || response.status === 404) {
+      if (env.ASSETS) {
+        try {
+          const assetResponse = await env.ASSETS.fetch(request)
+          if (assetResponse && assetResponse.status !== 404) {
+            return await withRange(request, assetResponse)
+          }
+        } catch (e) {
+          // asset not found, continue with original response
         }
       }
-
-      return response
-    } finally {
-      setFetchStaticHtml(null)
     }
+
+    return response
   }
 }
 `

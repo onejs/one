@@ -1,11 +1,11 @@
-import type { AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingStatus, AudioInterruptionEvent, AudioNowPlayingInfo, AudioRemoteCommandEvent } from '../specs/OneAudio.nitro';
+import type { AudioPlaybackStatus, AudioPlayOptions, AudioRecordingPermission, AudioRecordingResult, AudioRecordingStatus, AudioInterruptionEvent, AudioNowPlayingInfo, AudioRemoteCommandEvent } from '../specs/OneAudio.nitro';
 import { AudioPlayer, createPlayer } from './player.native';
-export type { AudioPlaybackState, AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, AudioInterruptionEvent, AudioInterruptionType, AudioNowPlayingInfo, AudioRemoteCommandEvent, AudioRemoteCommandType, PitchCorrectionQuality, } from '../specs/OneAudio.nitro';
+export type { AudioPlaybackState, AudioPlaybackStatus, AudioPlayOptions, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, AudioInterruptionEvent, AudioInterruptionType, AudioNowPlayingInfo, AudioRemoteCommandEvent, AudioRemoteCommandType, PitchCorrectionQuality, } from '../specs/OneAudio.nitro';
 export type * from './types';
 export declare const Audio: Readonly<{
     getRecordingPermissionStatus: () => Promise<AudioRecordingPermission>;
     requestRecordingPermission: () => Promise<AudioRecordingPermission>;
-    play: (uri: string) => Promise<AudioPlaybackStatus>;
+    play: (uri: string, options?: AudioPlayOptions) => Promise<AudioPlaybackStatus>;
     getPlaybackStatus: () => Promise<AudioPlaybackStatus>;
     pause: () => Promise<AudioPlaybackStatus>;
     resume: () => Promise<AudioPlaybackStatus>;

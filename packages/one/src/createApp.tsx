@@ -2,12 +2,15 @@ import './setup'
 
 import { cloneElement } from 'react'
 import { resolveClientLoader } from './clientLoaderResolver'
+import { loaderResponseToModule } from './loaderResponseToModule'
+import { prepareSsrLoaderProps } from './loaderSearchParams'
 import { Root } from './Root'
 import { render } from './render'
 import { initClientMatches } from './router/router'
 import { registerPreloadedRoute } from './router/useViteRoutes'
 import { setupSkewProtection } from './skewProtection'
 import { handleSkewError, isChunkLoadError } from './utils/dynamicImport'
+import { readLoaderSearch } from './utils/cleanUrl'
 import { findRootLayout } from './utils/findRootLayout'
 import type { RenderAppProps } from './types'
 import type { OneLinkingConfig } from './link/getLinking'
@@ -40,6 +43,8 @@ export function createApp(options: CreateAppProps) {
 
     return {
       options,
+      // shared with the generated vercel function, which builds loader props itself
+      loaderRequest: { loaderResponseToModule, prepareSsrLoaderProps, readLoaderSearch },
       render: async (props: RenderAppProps) => {
         // set render mode env before setup so users can conditionally skip setup in ssg/spa
         const renderMode = props.mode === 'spa-shell' ? 'spa' : props.mode

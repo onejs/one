@@ -2,6 +2,7 @@
 #import "OneNativeContainerSlotComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import "OneNativeContainerSlotShadowNode.h"
 
 using namespace facebook::react;
@@ -20,6 +21,12 @@ using namespace facebook::react;
     _slotView = [OneNativeContainerSlotView new];
     _slotView.content = self;
     __weak OneNativeContainerSlotComponentView *weakSelf = self;
+    _slotView.onSwiftStyleEvent = ^(NSString *name, NSString *value) {
+      OneNativeContainerSlotComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeContainerSlotEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
     _slotView.onLayout = ^(CGRect layout) {
       [weakSelf updateNativeFrame:layout];
     };
@@ -29,6 +36,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeContainerSlotProps>(props);
+  [_slotView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_slotView configureWithHeight:next.height width:next.width];
   [super updateProps:props oldProps:oldProps];
 }

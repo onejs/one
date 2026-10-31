@@ -64,17 +64,22 @@ struct OneNativeMeasuredStandalone<Content: View>: View {
 // update pass; a UIKit-side measurement would need explicit scheduling. composed, the
 // parent measures it instead.
 extension View {
-  func oneNativeMeasured(
+  // composed, no measuring wrapper at all: any modifier outside the row's own style
+  // hides its list tag from the enclosing List, so a tagged row would never select.
+  @ViewBuilder func oneNativeMeasured(
     _ standalone: Bool, _ onHeight: ((CGFloat) -> Void)?
   ) -> some View {
-    // changing measurement keeps the same subtree identity and its state.
-    self
-      .fixedSize(horizontal: false, vertical: standalone)
-      .onGeometryChange(for: CGFloat.self) { proxy in
-        standalone ? proxy.size.height : 0
-      } action: { height in
-        if standalone { onHeight?(height) }
-      }
+    if standalone {
+      self
+        .fixedSize(horizontal: false, vertical: true)
+        .onGeometryChange(for: CGFloat.self) { proxy in
+          proxy.size.height
+        } action: { height in
+          onHeight?(height)
+        }
+    } else {
+      self
+    }
   }
 
   @ViewBuilder func oneNativeScheme(_ standalone: Bool, _ scheme: ColorScheme) -> some View {
@@ -224,6 +229,23 @@ extension OneNativeStyle {
   }
 }
 
+// a standalone host ignores the screen's safe area, so a scroll container in a presented
+// sheet, whose content runs under the home indicator, gets that overlap as a bottom
+// content margin: its last row scrolls clear of the indicator while the box stays
+// edge to edge.
+final class OneNativeHostInsets: ObservableObject {
+  @Published var bottom: CGFloat = 0
+}
+
+private struct OneNativeHostRoot: View {
+  @ObservedObject var insets: OneNativeHostInsets
+  let content: AnyView
+
+  var body: some View {
+    content.contentMargins(.bottom, insets.bottom > 0 ? insets.bottom : nil, for: .scrollContent)
+  }
+}
+
 // every container composes children the same way and differs only in the SwiftUI
 // container it wraps them in, which it supplies at init. a container is composable
 // itself, so containers nest.
@@ -239,6 +261,7 @@ extension OneNativeStyle {
   private var controller: OneNativeHostingController<AnyView>?
   private weak var compositionParent: OneNativeCompositionParent?
   private var active = false
+  private let hostInsets = OneNativeHostInsets()
 
   public var compositionActive: Bool { active }
 
@@ -373,12 +396,44 @@ extension OneNativeStyle {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
 
+  // the sheet this host is presented in: the nearest controller up the parent chain that
+  // its presenter actually presents, when that presentation is a sheet. a controller only
+  // configured as a sheet is not presented, and an unpresented child reports the presenter
+  // it inherits from a presented ancestor, so the presenter must present this very controller.
+  @nonobjc private var presentingSheet: UISheetPresentationController? {
+    var responder: UIResponder? = next
+    while responder != nil && !(responder is UIViewController) { responder = responder?.next }
+    return Self.presentedSheet(of: responder as? UIViewController)
+  }
+
+  @nonobjc static func presentedSheet(of start: UIViewController?) -> UISheetPresentationController? {
+    var controller = start
+    while let current = controller {
+      if current.presentingViewController?.presentedViewController === current {
+        return current.presentationController as? UISheetPresentationController
+      }
+      controller = current.parent
+    }
+    return nil
+  }
+
+  // how far the box reaches into the home indicator's safe area, for a host in a sheet.
+  @nonobjc private func presentedSheetBottomOverlap() -> CGFloat {
+    guard !hostingScreenInsets, let window, presentingSheet != nil else { return 0 }
+    let inset = window.safeAreaInsets.bottom
+    let reach = convert(bounds, to: window).maxY - (window.bounds.maxY - inset)
+    return min(inset, max(0, reach))
+  }
+
   @nonobjc func updateHost() {
     guard compositionParent == nil else { return }
     guard window != nil else { controller?.detach(); propagateActive(false); return }
+    let overlap = presentedSheetBottomOverlap()
+    if hostInsets.bottom != overlap { hostInsets.bottom = overlap }
     if controller == nil {
       controller = OneNativeHostingController(
-        rootView: wrap(published, true), screenInsets: hostingScreenInsets
+        rootView: AnyView(OneNativeHostRoot(insets: hostInsets, content: wrap(published, true))),
+        screenInsets: hostingScreenInsets
       )
     }
     let regions: SafeAreaRegions = hostingScreenInsets ? .all : []

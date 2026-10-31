@@ -1159,11 +1159,12 @@ export function nativeSourceContract(file: string, source: string): NativeSource
   if (!language) throw new Error(`${file}: expected a .swift or .kt source file`)
   const list = tokens(file, source)
   const packageToken = language === 'kotlin' ? list.findIndex((token) => token.text === 'package') : -1
-  const packageName = packageToken < 0 ? undefined : list
+  const packageLine = packageToken < 0 ? [] : list
     .slice(packageToken + 1)
     .filter((token) => token.line === list[packageToken].line)
-    .map((token) => token.text)
-    .join('')
+  // kotlin ends the package header with an optional semicolon
+  while (packageLine.at(-1)?.text === ';') packageLine.pop()
+  const packageName = packageToken < 0 ? undefined : packageLine.map((token) => token.text).join('')
   if (packageName && !/^[A-Za-z_][A-Za-z0-9_]*(\.[A-Za-z_][A-Za-z0-9_]*)*$/.test(packageName)) {
     fail(file, list[packageToken], `unsupported kotlin package ${packageName}`)
   }

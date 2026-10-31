@@ -19,8 +19,6 @@ import { getServerCJSSetting, getServerEntry } from '../utils/getServerEntry'
 import { applyBuiltInPatches } from '../utils/patches'
 import { loadEnv } from './loadEnv'
 
-const { existsSync } = FSExtra
-
 const disableOptimizationConfig = {
   optimizeDeps: {},
 
@@ -79,17 +77,19 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
   const outDir = userViteConfig?.build?.outDir ?? 'dist'
 
-  // clean
-  await Promise.all([
-    (async () => {
-      // lets always clean output folder for now to be sure were correct
-      if (existsSync(outDir)) {
-        await rm(outDir, { recursive: true, force: true })
-      }
-    })(),
-  ])
+  const platform = buildArgs.platform
+  const isNativeBuild =
+    platform === 'ios' ||
+    platform === 'android' ||
+    platform === 'macos' ||
+    platform === 'linux'
 
-  if (buildArgs.platform === 'ios' || buildArgs.platform === 'android') {
+  // generation reuses client assets and their manifest, but rebuilds the server
+  const cleanDir =
+    buildArgs.step === 'generate' && !isNativeBuild ? `${outDir}/server` : outDir
+  await rm(cleanDir, { recursive: true, force: true })
+
+  if (isNativeBuild) {
     const { buildBundle } = await import('../rn-commands/bundle/buildBundle')
 
     return buildBundle(
@@ -99,8 +99,10 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       // default (./src/entry-native.tsx) exists only in plain vxrn apps.
       { root: options.root, vxrnEntries: optionsIn.entries },
       {
-        platform: buildArgs.platform,
-        bundleOutput: `${outDir}${sep}${buildArgs.platform}.js`,
+        platform,
+        bundleOutput: `${outDir}${sep}${platform}.js`,
+        // every native build emits imported assets beside its bundle
+        assetsDest: outDir,
         dev: false,
         entryFile: '',
         resetCache: true,

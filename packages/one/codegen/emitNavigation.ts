@@ -191,6 +191,19 @@ export function emitNavigationHost(
   const spacerBranch = spacerGate
     ? `      // ToolbarSpacer is iOS ${spacerVersion} API and React rejects it below that, so this branch only\n      // ever runs where the SDK declares the type.\n      if #available(iOS ${spacerVersion}, *) {\n        ToolbarSpacer(\n          OneNativeGenerated.spacerSizing(entry.sizing),\n          placement: OneNativeGenerated.toolbarItemPlacement(entry.placement))\n      }`
     : `      ToolbarSpacer(\n        OneNativeGenerated.spacerSizing(entry.sizing),\n        placement: OneNativeGenerated.toolbarItemPlacement(entry.placement))`
+  const defaultItem = selectConstructor(
+    inventory,
+    navigationHost.entries.find((entry) => entry.kind === 'defaultItem')!
+  )
+  const defaultItemVersion = Number.isInteger(ios(defaultItem))
+    ? `${ios(defaultItem)}.0`
+    : `${ios(defaultItem)}`
+  // DefaultToolbarItem is iOS ${defaultItemVersion} API and the sender rejects it below that.
+  const defaultItemBranch = `      if #available(iOS ${defaultItemVersion}, *) {
+        DefaultToolbarItem(
+          kind: OneNativeGenerated.toolbarDefaultItemKind(entry.defaultItem),
+          placement: OneNativeGenerated.toolbarItemPlacement(entry.placement))
+      }`
   outputs.set(
     'ios/Generated/OneNativeNavigationStackView.swift',
     header +
@@ -356,7 +369,7 @@ import UIKit
 // that is what .toolbar { } builds, and the hosting NavigationStack renders the entries
 // with a ForEach the way SwiftUI itself composes toolbar content.
 struct OneNativeToolbarEntry: Identifiable {
-  enum Kind { case item, group, spacer }
+  enum Kind { case item, group, spacer, defaultItem }
 
   let id: ObjectIdentifier
   let kind: Kind
@@ -364,6 +377,7 @@ struct OneNativeToolbarEntry: Identifiable {
   let sizing: String
   let label: String
   let systemImage: String
+  let defaultItem: String
   let content: AnyView?
 }
 
@@ -394,6 +408,8 @@ struct OneNativeToolbarEntryContent: ToolbarContent {
       }
     case .spacer:
 ${spacerBranch}
+    case .defaultItem:
+${defaultItemBranch}
     }
   }
 }
@@ -404,6 +420,7 @@ final class OneNativeToolbarMarkerModel: ObservableObject {
   @Published var sizing = "flexible"
   @Published var label = ""
   @Published var systemImage = ""
+  @Published var defaultItem = ""
   @Published var swiftStyle = OneNativeStyle()
   var onEntryChange: (() -> Void)?
   var onSDKEvent: ((String, String) -> Void)?
@@ -420,7 +437,7 @@ private struct OneNativeToolbarMarkerContent: View {
   }
 }
 
-// a ToolbarItem, a ToolbarItemGroup, or a ToolbarSpacer. all three are the same marker:
+// a ToolbarItem, a ToolbarItemGroup, a ToolbarSpacer, or a DefaultToolbarItem. all four are the same marker:
 // they compose their children and hand the hosting bar one entry to render, and they
 // render nothing where they sit.
 @objcMembers
@@ -437,13 +454,14 @@ public final class OneNativeToolbarMarkerView: OneNativeContainerView {
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
-  public func configure(kind: String, placement: String, sizing: String, label: String, systemImage: String) {
+  public func configure(kind: String, placement: String, sizing: String, label: String, systemImage: String, defaultItem: String) {
     var changed = false
     if model.kind != kind { model.kind = kind; changed = true }
     if model.placement != placement { model.placement = placement; changed = true }
     if model.sizing != sizing { model.sizing = sizing; changed = true }
     if model.label != label { model.label = label; changed = true }
     if model.systemImage != systemImage { model.systemImage = systemImage; changed = true }
+    if model.defaultItem != defaultItem { model.defaultItem = defaultItem; changed = true }
     if changed { model.onEntryChange?() }
   }
 
@@ -457,7 +475,8 @@ public final class OneNativeToolbarMarkerView: OneNativeContainerView {
 
   func entry() -> OneNativeToolbarEntry {
     let kind: OneNativeToolbarEntry.Kind =
-      model.kind == "group" ? .group : model.kind == "spacer" ? .spacer : .item
+      model.kind == "group" ? .group : model.kind == "spacer" ? .spacer
+        : model.kind == "defaultItem" ? .defaultItem : .item
     return OneNativeToolbarEntry(
       id: ObjectIdentifier(self),
       kind: kind,
@@ -465,6 +484,7 @@ public final class OneNativeToolbarMarkerView: OneNativeContainerView {
       sizing: model.sizing,
       label: model.label,
       systemImage: model.systemImage,
+      defaultItem: model.defaultItem,
       content: compositionContent()
     )
   }
@@ -508,7 +528,7 @@ public final class OneNativeToolbarView: OneNativeContainerView {
   public override func insertChild(_ child: UIView, at index: Int) {
     guard let marker = child as? OneNativeToolbarMarkerView else {
       preconditionFailure(
-        "Swift.Toolbar takes Swift.ToolbarItem, Swift.ToolbarItemGroup, and Swift.ToolbarSpacer children")
+        "Swift.Toolbar takes Swift.ToolbarItem, Swift.ToolbarItemGroup, Swift.ToolbarSpacer, and Swift.DefaultToolbarItem children")
     }
     marker.setOnEntryChange { [weak self] in self?.entryChanged() }
     super.insertChild(child, at: index)
@@ -559,6 +579,8 @@ public final class OneNativeToolbarView: OneNativeContainerView {
 @interface OneNativeToolbarItemGroupComponentView : OneNativeContainerComponentView
 @end
 @interface OneNativeToolbarSpacerComponentView : OneNativeContainerComponentView
+@end
+@interface OneNativeToolbarDefaultItemComponentView : OneNativeContainerComponentView
 @end
 #endif
 `
@@ -773,7 +795,7 @@ using namespace facebook::react;
 
 @end
 
-// the three markers are one Swift view configured by kind, so each component view only
+// the four markers are one Swift view configured by kind, so each component view only
 // reads its own props into that shared shape.
 ${markerBlocks}
 `

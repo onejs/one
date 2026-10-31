@@ -1,3 +1,4 @@
+#if ONE_GROUP_STORE
 import Foundation
 import NitroModules
 import StoreKit
@@ -216,3 +217,4 @@ final class HybridOnePurchases: HybridOnePurchasesSpec {
     oneNativeError(code, message)
   }
 }
+#endif

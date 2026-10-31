@@ -27,12 +27,12 @@
  *   })
  *
  *   const response = await server.fetch(request)
+ *   // pass a request-scoped static HTML reader as the fourth argument for SPA or SSG
  *   server.updateRoutes(newManifest, newRoutes)
  */
 export { createWorkerHandler, type LazyRoutes } from './server/workerHandler';
 export { compileManifest } from './createHandleRequest';
 export type { RequestHandlers } from './createHandleRequest';
-export { getFetchStaticHtml, setFetchStaticHtml } from './server/staticHtmlFetcher';
 export type { One } from './vite/types';
 import { type LazyRoutes } from './server/workerHandler';
 import type { One } from './vite/types';
@@ -60,8 +60,8 @@ export type HeadlessServerOptions = {
  * works in browser Web Workers, edge runtimes, etc.
  */
 export declare function createServer(options: HeadlessServerOptions): Promise<{
-    /** handle an incoming request — returns Response or null (unmatched) */
-    fetch: (request: Request, env?: unknown, executionCtx?: unknown) => Promise<Response | null>;
+    /** handle a request with an optional request-scoped static HTML reader */
+    fetch: (request: Request, env?: unknown, executionCtx?: unknown, fetchStaticHtml?: (path: string) => Promise<string | null>) => Promise<Response | null>;
     /** hot-swap the route table without recreating the server */
     updateRoutes(newManifest: One.BuildInfo['manifest'], newRoutes?: LazyRoutes): void;
 }>;

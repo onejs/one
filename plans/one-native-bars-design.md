@@ -273,6 +273,25 @@ still treats an embedded `TabView` as a participating container. B3 runs a
 move to the side, `One.iOS.Tabs` is documented as not Duo-ready and `Tabs` from `one`
 is the recommended path.
 
+**RAN (Team Machine's Duo shell, iPhone Duo simulator, iOS 27.1, 2026-10-30):** an
+embedded `One.iOS.Tab` view does move to the right column once the host has no side
+inset of its own (the app's old side-safe-area margin pushed it inward and hid the
+effect). The nested `NavigationSplitView`'s own bars (back, terminal, overflow) did not:
+they stayed as horizontal pills in the content column, while a native SwiftUI reference
+puts them in the right vertical bar. Removing `toolbarOverflowMenu` from the reference
+does not change that, so the overflow menu is not the trigger. Forwarding
+`childViewControllerForPreferredVerticalBarBehavior` from every One hosting controller
+down the chain (window, RNSScreen, tab bar controller, `OneNativeHostingController`,
+`TabHostingController`, the nested split host) did not move them either. The open
+question is now whether a navigation container inside an RN-placed box can ever take part,
+or whether the split view has to compose inside the Tab's own SwiftUI tree.
+
+Direction for One: bars carry Duo with no app-side workaround, so every gap the Duo
+shell meets is fixed in One: the Tab `navigationStack` prop and measured List row tags
+(8b5ba11087), then `toolbarOverflowMenu`, `verticalBarCompressionBehavior`,
+`visibilityPriority` and `AdaptableTabBarPlacement` as public 27.1 API behind
+availability checks.
+
 **INFERRED:** because all three tracks use container-managed bars, Duo's column comes
 from rebuilding against the 27.1 SDK, with no One code. Apple states the opt-in is the
 rebuild. The proof is running the three fixtures on the iPhone Duo simulator, which

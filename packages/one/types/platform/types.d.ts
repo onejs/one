@@ -44,6 +44,7 @@ export interface TabProps extends TabContentProps {
     role?: TabRole;
     tabPlacement?: TabPlacement;
     testID?: string;
+    navigationStack?: boolean;
     onPress?: () => void;
     swiftStyle?: OneNativeStyle;
     children?: ReactNode;

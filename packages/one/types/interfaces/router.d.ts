@@ -1,6 +1,8 @@
 import type { NavigationContainerRefWithCurrent, NavigationState, ParamListBase, PartialState } from '@react-navigation/core';
 import type { JSX, ReactNode } from 'react';
 import type { GestureResponderEvent, PressableProps, TextProps } from 'react-native';
+import type { SearchParamsUpdate, SearchValue } from '../searchParams';
+import type { StandardSchemaV1 } from '../standardSchema';
 export declare namespace OneRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
     }
@@ -27,7 +29,7 @@ export declare namespace OneRouter {
      */
     export type RouteType<Path extends string> = Path extends keyof __routes['RouteTypes'] ? __routes['RouteTypes'][Path] : {
         Params: InputRouteParams<Path>;
-        LoaderProps: import('../types').LoaderProps<InputRouteParams<Path>>;
+        LoaderProps: import('../types').LoaderProps<InputRouteParams<Path>, LoaderSearchParams<Path>>;
     };
     type StaticRoutes = __routes extends {
         StaticRoutes: string;
@@ -38,6 +40,32 @@ export declare namespace OneRouter {
     export type DynamicRouteTemplate = __routes extends {
         DynamicRouteTemplate: string;
     } ? __routes['DynamicRouteTemplate'] : string;
+    /**
+     * The search params a schema accepts when written to a url. Used by the generated
+     * route types, which refer to each component schema with `typeof import(...)`.
+     */
+    export type SearchParamsOf<Schema> = Schema extends StandardSchemaV1 ? SearchParamsUpdate<Schema> : {};
+    /** What the schemas produce, the type of `searchParams` in a loader. */
+    export type SearchOutputOf<Schema> = Schema extends StandardSchemaV1 ? StandardSchemaV1.InferOutput<Schema> : {};
+    type SearchParamTypes = __routes extends {
+        SearchParamTypes: infer Types;
+    } ? Types : {};
+    type SearchParamOutputs = __routes extends {
+        SearchParamOutputs: infer Types;
+    } ? Types : {};
+    type PathnameOfHref<Path> = Path extends `${infer Before}#${string}` ? PathnameOfHref<Before> : Path extends `${infer Before}?${string}` ? Before : Path;
+    /** Search params that any route accepts, used where the route is not typed. */
+    export type UntypedSearchParams = Record<string, SearchValue | null | undefined>;
+    /**
+     * The search params a link to this pathname can carry: the combined schemas of the
+     * components found under that route, or any simple values when none were found.
+     */
+    export type LinkSearchParams<Path> = PathnameOfHref<Path> extends keyof SearchParamTypes ? SearchParamTypes[PathnameOfHref<Path>] : UntypedSearchParams;
+    /**
+     * The validated search params a loader for this route receives, or `undefined` when
+     * no component under it passes a schema to `useSearchParams`.
+     */
+    export type LoaderSearchParams<Path> = PathnameOfHref<Path> extends keyof SearchParamOutputs ? SearchParamOutputs[PathnameOfHref<Path>] extends object ? SearchParamOutputs[PathnameOfHref<Path>] : undefined : undefined;
     export type NavigationRef = NavigationContainerRefWithCurrent<ParamListBase>;
     export type RelativePathString = `./${string}` | `../${string}` | '..';
     export type AbsoluteRoute = DynamicRouteTemplate | StaticRoutes;
@@ -289,6 +317,18 @@ export declare namespace OneRouter {
     }
     export interface LinkComponent {
         <T extends string | object>(props: React.PropsWithChildren<LinkProps<T>>): JSX.Element;
+        /**
+         * A link that carries search params. They are typed from the schemas of the
+         * components on the destination route and replace a same-named key in `href`.
+         */
+        <Path extends string>(props: React.PropsWithChildren<LinkProps<{
+            __branded__: any;
+        }> & {
+            href: Path | {
+                pathname: Path;
+            };
+            searchParams: LinkSearchParams<Path>;
+        }>): JSX.Element;
         /** Helper method to resolve an Href object into a string. */
         resolveHref: (href: Href) => string;
     }

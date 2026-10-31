@@ -5,7 +5,7 @@ import { Page, Pager } from './Pager.native';
 import { UIKitView } from './UIKitView.native';
 import { collectionCellSource, tableCellSource, UIKitContent } from './UIKitContent.native';
 import { Popover } from './Popover.native';
-import { NavigationStack, ToolbarItem, ToolbarItemGroup, ToolbarSpacer } from './NavigationStack.native';
+import { NavigationStack, ToolbarItem, ToolbarItemGroup, ToolbarSpacer, DefaultToolbarItem } from './NavigationStack.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
 import { withAnimation } from './withAnimation.native';
 import { KeyframeAnimator, PhaseAnimator } from './Animators.native';
@@ -242,6 +242,7 @@ export declare const Swift: {
     ToolbarItem: typeof ToolbarItem;
     ToolbarItemGroup: typeof ToolbarItemGroup;
     ToolbarSpacer: typeof ToolbarSpacer;
+    DefaultToolbarItem: typeof DefaultToolbarItem;
     Spacer: typeof Spacer;
     Slot: typeof Slot;
     withAnimation: typeof withAnimation;
@@ -278,7 +279,7 @@ export type { FileDirectories, FileEncoding, FileEntry, FileInfo, } from './file
 export { Audio } from './audio/index';
 export { CameraView } from './camera/index.native';
 export type { CameraCapturedPicture, CameraCode, CameraCodeType, CameraFacing, CameraFlashMode, CameraPictureOptions, CameraState, CameraViewProps, CameraViewRef, } from './camera/index.native';
-export type { AudioPlaybackState, AudioPlaybackStatus, AudioPlayer, AudioPlayerOptions, AudioPlayerSubscription, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, AudioSource, AudioSourceObject, AudioStatus, PitchCorrectionQuality, } from './audio/index';
+export type { AudioPlaybackState, AudioPlaybackStatus, AudioPlayOptions, AudioPlayer, AudioPlayerOptions, AudioPlayerSubscription, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, AudioSource, AudioSourceObject, AudioStatus, PitchCorrectionQuality, } from './audio/index';
 export { Share } from './share/index';
 export { Open } from './open/index.native';
 export type { OpenShareContent } from './open/index.native';

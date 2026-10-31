@@ -36,6 +36,7 @@ export declare class BuildWorkerPool {
         deferredPreloads?: string[];
         useAfterLCP?: boolean;
         useAfterLCPAggressive?: boolean;
+        skipNativeLoaders?: boolean;
     }): Promise<any>;
     terminate(): Promise<void>;
 }

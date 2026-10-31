@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/compiler",
-  "version": "2.9.0",
+  "version": "2.12.0",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@jridgewell/trace-mapping": "^0.3.25",
-    "@tamagui/build": "3.1.2",
+    "@tamagui/build": "3.1.9",
     "depcheck": "^1.4.7",
     "react-native-worklets": "~0.13.0",
     "rolldown": "^1.2.8",

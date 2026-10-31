@@ -116,6 +116,13 @@ export async function getBaseViteConfig(
           find: 'react-native',
           replacement: 'react-native-web',
         },
+        // react-native-gesture-handler 3 probes reanimated's source with a
+        // guarded require; the optimizer leaves the .tsx external, so it must
+        // map to the built web files or the whole client fails to load
+        {
+          find: /^react-native-reanimated\/src\//,
+          replacement: 'react-native-reanimated/lib/module/',
+        },
         // bundle size optimizations
         {
           find: 'query-string',

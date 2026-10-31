@@ -101,5 +101,19 @@ export interface LinkProps<T extends string | object = string>
    * <Link href="/photos/5/modal" mask="/photos/5">View Photo</Link>
    */
   mask?: Href
+
+  /**
+   * Search params to add to `href`. Keys replace the same keys already in `href`; the
+   * path, other keys and the hash stay. Strings, numbers, booleans and arrays of those
+   * are written (arrays as repeated keys), `null` and `undefined` remove a key. Arrays in
+   * `href.params` still join with commas, so an array there reads back as one string.
+   *
+   * When the destination route reads its query with `useSearchParams(schema)`, the keys
+   * and values are type checked against that schema. The server validates the same schemas before an `ssr` route's loader runs. See [useSearchParams](/docs/hooks-useSearchParams).
+   *
+   * @example
+   * <Link href="/products" searchParams={{ page: 2 }}>Page 2</Link>
+   */
+  searchParams?: Record<string, string | number | boolean | readonly (string | number | boolean)[] | null | undefined>
 }
 ```

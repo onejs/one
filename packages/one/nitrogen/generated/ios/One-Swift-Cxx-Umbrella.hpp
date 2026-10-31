@@ -36,6 +36,8 @@ namespace margelo::nitro::one { struct AudioInterruptionEvent; }
 namespace margelo::nitro::one { enum class AudioInterruptionType; }
 // Forward declaration of `AudioNowPlayingInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioNowPlayingInfo; }
+// Forward declaration of `AudioPlayOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioPlayOptions; }
 // Forward declaration of `AudioPlaybackState` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioPlaybackState; }
 // Forward declaration of `AudioPlaybackStatus` to properly resolve imports.
@@ -260,6 +262,8 @@ namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
 // Forward declaration of `HybridOneSpeechSynthesisSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSpeechSynthesisSpec; }
+// Forward declaration of `HybridOneStoreReviewSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneStoreReviewSpec; }
 // Forward declaration of `HybridOneUpdatesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneUpdatesSpec; }
 // Forward declaration of `ImageCrop` to properly resolve imports.
@@ -484,6 +488,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "AudioInterruptionEvent.hpp"
 #include "AudioInterruptionType.hpp"
 #include "AudioNowPlayingInfo.hpp"
+#include "AudioPlayOptions.hpp"
 #include "AudioPlaybackState.hpp"
 #include "AudioPlaybackStatus.hpp"
 #include "AudioPlayerStatus.hpp"
@@ -596,6 +601,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneSecureStoreSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
 #include "HybridOneSpeechSynthesisSpec.hpp"
+#include "HybridOneStoreReviewSpec.hpp"
 #include "HybridOneUpdatesSpec.hpp"
 #include "ImageCrop.hpp"
 #include "ImagePickerAsset.hpp"
@@ -819,6 +825,8 @@ namespace One { class HybridOneSecureStoreSpec_cxx; }
 namespace One { class HybridOneSpeechSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSynthesisSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSpeechSynthesisSpec_cxx; }
+// Forward declaration of `HybridOneStoreReviewSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneStoreReviewSpec_cxx; }
 // Forward declaration of `HybridOneUpdatesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneUpdatesSpec_cxx; }
 

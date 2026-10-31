@@ -30,6 +30,7 @@ export const docsRoutes = [
     pages: [
       { title: 'Overview', route: '/docs/native-overview' },
       { title: 'Setup', route: '/docs/native-setup' },
+      { title: 'macOS and Linux', route: '/docs/guides-desktop-native' },
       { title: 'Components', route: '/docs/native-components' },
       { title: 'Platform APIs', route: '/docs/native-apis' },
       { title: 'Swift and Kotlin', route: '/docs/native-source' },
@@ -115,6 +116,7 @@ export const docsRoutes = [
       { title: 'Loader Redirects', route: '/docs/guides-loader-redirects' },
       { title: 'Build or Run iOS', route: '/docs/guides-ios-native' },
       { title: 'Calling iOS APIs', route: '/docs/guides-ios-apis' },
+      { title: 'DOM components (experimental)', route: '/docs/guides-dom-components' },
       { title: 'OTA Updates', route: '/docs/guides-ota-updates' },
       { title: 'MDX for web', route: '/docs/guides-mdx' },
       { title: 'Images', route: '/docs/guides-images' },

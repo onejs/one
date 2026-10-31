@@ -6,6 +6,7 @@ import { pathToFileURL } from 'node:url'
 import {
   androidIconSuffix,
   appIconPreviewResources,
+  iosUsageDescriptions,
   validateNativeApp,
   type NativeAppIcon,
   type NativeAppManifest,
@@ -45,6 +46,7 @@ type NativeProjectPatches = {
   ): string
   injectFmtCxx17FixIntoPodfile(input: string): string
   injectWebGPUHeaderPathsIntoPodfile(input: string): string
+  injectSkiaDawnVendoringIntoPodfile(input: string): string
   injectOneSwiftPackagesIntoPodfile(input: string): string
   injectHermesMinificationPatchIntoPodfile(input: string): string
   injectReactNativeScreensGammaIntoPodfile(input: string): string
@@ -245,12 +247,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     let delegate = ReactNativeDelegate()
     let factory = RCTReactNativeFactory(delegate: delegate)
-    delegate.dependencyProvider = RCTAppDependencyProvider()
+    delegate.dependencyProvider = OneDependencyProvider()
     reactNativeDelegate = delegate
     reactNativeFactory = factory
 ${backgroundTasks ? `    OneBackgroundTasksRegisterHost(factory, launchOptions)
 ` : ''}${appIntents ? `    OneAppIntentsRegisterHost(factory, launchOptions)
 ` : ''}    return true
+  }
+}
+
+// react native creates these modules on the main queue while the instance
+// initializes. left lazy, the first js access blocks the js thread on a
+// synchronous main queue hop that waits behind the app's own launch work.
+class OneDependencyProvider: RCTAppDependencyProvider {
+  override func unstableModulesRequiringMainQueueSetup() -> [String] {
+    super.unstableModulesRequiringMainQueueSetup() + [
+      "PlatformConstants",
+      "DeviceInfo",
+      "AccessibilityManager",
+      "Appearance",
+      "OneNativeSafeAreaContext",
+    ]
   }
 }
 
@@ -2753,54 +2770,7 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
     if (platform === 'ios' && relativePath.endsWith('/Info.plist')) {
       // schemes, usesNonExemptEncryption, and fileSharing stamp above in one
       // anchored block; only the usage descriptions stamp here.
-      const usage = new Map<string, string>()
-      if (app.imagePicker?.camera !== undefined) {
-        usage.set('NSCameraUsageDescription', app.imagePicker.camera)
-      }
-      if (app.imagePicker?.microphone !== undefined) {
-        usage.set('NSMicrophoneUsageDescription', app.imagePicker.microphone)
-      }
-      if (app.photoLibrary !== undefined) {
-        if (app.photoLibrary.addOnly !== undefined) {
-          usage.set('NSPhotoLibraryAddUsageDescription', app.photoLibrary.addOnly)
-        }
-        if (app.photoLibrary.readWrite !== undefined) {
-          usage.set('NSPhotoLibraryUsageDescription', app.photoLibrary.readWrite)
-        }
-      }
-      if (app.contacts !== undefined) {
-        usage.set('NSContactsUsageDescription', app.contacts.usage)
-      }
-      if (app.calendar !== undefined) {
-        if (app.calendar.usage !== undefined) {
-          usage.set('NSCalendarsFullAccessUsageDescription', app.calendar.usage)
-        }
-        if (app.calendar.remindersUsage !== undefined) {
-          usage.set('NSRemindersFullAccessUsageDescription', app.calendar.remindersUsage)
-        }
-      }
-      if (app.location !== undefined) {
-        usage.set('NSLocationWhenInUseUsageDescription', app.location.whenInUse)
-        if (app.location.alwaysAndWhenInUse !== undefined) {
-          usage.set(
-            'NSLocationAlwaysAndWhenInUseUsageDescription',
-            app.location.alwaysAndWhenInUse
-          )
-        }
-      }
-      if (app.pedometer !== undefined) {
-        usage.set('NSMotionUsageDescription', app.pedometer.usage)
-      }
-      if (app.ios?.faceIdUsageDescription !== undefined) {
-        usage.set('NSFaceIDUsageDescription', app.ios.faceIdUsageDescription)
-      }
-      if (app.speech !== undefined) {
-        usage.set('NSSpeechRecognitionUsageDescription', app.speech.recognition)
-        usage.set('NSMicrophoneUsageDescription', app.speech.microphone)
-      }
-      if (app.audio?.microphone !== undefined) {
-        usage.set('NSMicrophoneUsageDescription', app.audio.microphone)
-      }
+      const usage = iosUsageDescriptions(app)
       const additions: [string, string][] = []
       for (const [key, text] of usage) {
         const existing = new RegExp(`(<key>${key}</key>\\s*<string>)[^<]*(</string>)`)
@@ -2927,6 +2897,7 @@ end`
         nativeModulesCall,
         `config = use_native_modules!(['node', '-e', "process.argv=['', '', 'config'];require(require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli')).run()"])`
       )
+      rendered = nativeProjectPatches.injectSkiaDawnVendoringIntoPodfile(rendered)
       if (
         !rendered.includes('[vxrn/one] fmt c++17 fix') ||
         !rendered.includes('[vxrn/one] minify iOS Hermes Release bundle input')

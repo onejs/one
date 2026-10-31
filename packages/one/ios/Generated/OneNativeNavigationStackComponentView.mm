@@ -155,7 +155,7 @@ using namespace facebook::react;
 
 @end
 
-// the three markers are one Swift view configured by kind, so each component view only
+// the four markers are one Swift view configured by kind, so each component view only
 // reads its own props into that shared shape.
 @implementation OneNativeToolbarItemComponentView {
   OneNativeToolbarMarkerView *_markerView;
@@ -188,7 +188,8 @@ using namespace facebook::react;
     placement:RCTNSStringFromString(next.placement)
     sizing:@"flexible"
     label:@""
-    systemImage:@""];
+    systemImage:@""
+    defaultItem:@""];
   [_markerView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [super updateProps:props oldProps:oldProps];
 }
@@ -226,7 +227,8 @@ using namespace facebook::react;
     placement:RCTNSStringFromString(next.placement)
     sizing:@"flexible"
     label:RCTNSStringFromString(next.label)
-    systemImage:RCTNSStringFromString(next.systemImage)];
+    systemImage:RCTNSStringFromString(next.systemImage)
+    defaultItem:@""];
   [_markerView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [super updateProps:props oldProps:oldProps];
 }
@@ -257,7 +259,39 @@ using namespace facebook::react;
     placement:RCTNSStringFromString(next.placement)
     sizing:RCTNSStringFromString(next.sizing)
     label:@""
-    systemImage:@""];
+    systemImage:@""
+    defaultItem:@""];
+  [super updateProps:props oldProps:oldProps];
+}
+
+@end
+
+@implementation OneNativeToolbarDefaultItemComponentView {
+  OneNativeToolbarMarkerView *_markerView;
+}
+
++ (ComponentDescriptorProvider)componentDescriptorProvider {
+  return concreteComponentDescriptorProvider<OneNativeToolbarDefaultItemComponentDescriptor>();
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    _props = std::make_shared<const OneNativeToolbarDefaultItemProps>();
+    _markerView = [OneNativeToolbarMarkerView new];
+    self.container = _markerView;
+    self.contentView = _markerView;
+  }
+  return self;
+}
+
+- (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
+  const auto &next = *std::static_pointer_cast<const OneNativeToolbarDefaultItemProps>(props);
+  [_markerView configureWithKind:@"defaultItem"
+    placement:RCTNSStringFromString(next.placement)
+    sizing:@"flexible"
+    label:@""
+    systemImage:@""
+    defaultItem:RCTNSStringFromString(next.kind)];
   [super updateProps:props oldProps:oldProps];
 }
 

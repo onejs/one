@@ -767,6 +767,57 @@ export function validateNativeApp(
   return manifest
 }
 
+// the purpose strings the native fields stamp into the ios Info.plist, shared by
+// prebuild and the manifest so a built app and its dev preview state the same keys.
+export function iosUsageDescriptions(app: NativeAppManifest): Map<string, string> {
+  const usage = new Map<string, string>()
+  if (app.imagePicker?.camera !== undefined) {
+    usage.set('NSCameraUsageDescription', app.imagePicker.camera)
+  }
+  if (app.imagePicker?.microphone !== undefined) {
+    usage.set('NSMicrophoneUsageDescription', app.imagePicker.microphone)
+  }
+  if (app.photoLibrary !== undefined) {
+    if (app.photoLibrary.addOnly !== undefined) {
+      usage.set('NSPhotoLibraryAddUsageDescription', app.photoLibrary.addOnly)
+    }
+    if (app.photoLibrary.readWrite !== undefined) {
+      usage.set('NSPhotoLibraryUsageDescription', app.photoLibrary.readWrite)
+    }
+  }
+  if (app.contacts !== undefined) {
+    usage.set('NSContactsUsageDescription', app.contacts.usage)
+  }
+  if (app.calendar !== undefined) {
+    if (app.calendar.usage !== undefined) {
+      usage.set('NSCalendarsFullAccessUsageDescription', app.calendar.usage)
+    }
+    if (app.calendar.remindersUsage !== undefined) {
+      usage.set('NSRemindersFullAccessUsageDescription', app.calendar.remindersUsage)
+    }
+  }
+  if (app.location !== undefined) {
+    usage.set('NSLocationWhenInUseUsageDescription', app.location.whenInUse)
+    if (app.location.alwaysAndWhenInUse !== undefined) {
+      usage.set('NSLocationAlwaysAndWhenInUseUsageDescription', app.location.alwaysAndWhenInUse)
+    }
+  }
+  if (app.pedometer !== undefined) {
+    usage.set('NSMotionUsageDescription', app.pedometer.usage)
+  }
+  if (app.ios?.faceIdUsageDescription !== undefined) {
+    usage.set('NSFaceIDUsageDescription', app.ios.faceIdUsageDescription)
+  }
+  if (app.speech !== undefined) {
+    usage.set('NSSpeechRecognitionUsageDescription', app.speech.recognition)
+    usage.set('NSMicrophoneUsageDescription', app.speech.microphone)
+  }
+  if (app.audio?.microphone !== undefined) {
+    usage.set('NSMicrophoneUsageDescription', app.audio.microphone)
+  }
+  return usage
+}
+
 // the expo config shape the dev server's manifest carries (`extra.expoClient`)
 // for an app that declares native.app and no expo: clients that read an app's
 // name, scheme or splash from the manifest read a one app the same way.
@@ -802,7 +853,9 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
       associatedDomains: app.ios.associatedDomains,
       usesAppleSignIn: app.ios.usesAppleSignIn,
       googleServicesFile: app.ios.googleServicesFile,
-      infoPlist: app.ios.infoPlist,
+      // a live preview has no Info.plist, so the purpose strings the built
+      // app carries ride in the manifest's infoPlist
+      infoPlist: { ...app.ios.infoPlist, ...Object.fromEntries(iosUsageDescriptions(app)) },
       entitlements: app.ios.entitlements,
     },
     android: app.android && {

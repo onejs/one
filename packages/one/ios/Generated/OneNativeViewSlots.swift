@@ -2,7 +2,9 @@
 // edit the generator or catalog, then regenerate.
 import SwiftUI
 import MapKit
+#if ONE_GROUP_STORE
 import StoreKit
+#endif
 
 enum OneNativeViewSlotName {
   static let accessibilityActions = "accessibilityActions"
@@ -176,9 +178,15 @@ extension View {
             preconditionFailure("unavailable containerBackground.container")
           case "navigationSplitView": if #available(iOS 18, *) { return SwiftUI.ContainerBackgroundPlacement.navigationSplitView }
             preconditionFailure("unavailable containerBackground.container")
+#if ONE_GROUP_STORE
           case "subscriptionStore": return SwiftUI.ContainerBackgroundPlacement.subscriptionStore
+#endif
+#if ONE_GROUP_STORE
           case "subscriptionStoreHeader": return SwiftUI.ContainerBackgroundPlacement.subscriptionStoreHeader
+#endif
+#if ONE_GROUP_STORE
           case "subscriptionStoreFullHeight": return SwiftUI.ContainerBackgroundPlacement.subscriptionStoreFullHeight
+#endif
           case "widget": return SwiftUI.ContainerBackgroundPlacement.widget
           default: preconditionFailure("invalid containerBackground.container")
           }
@@ -604,10 +612,15 @@ extension View {
         return AnyView(self.sheet(isPresented: argument0, content: content))
       }
       return AnyView(self)
+#if ONE_GROUP_STORE
     case OneNativeViewSlotName.subscriptionStoreControlIcon:      if #available(iOS 17, *) {
         return AnyView(self.subscriptionStoreControlIcon(icon: { _, _ in content() }))
       }
       return AnyView(self)
+#else
+    case OneNativeViewSlotName.subscriptionStoreControlIcon: preconditionFailure("view slot subscriptionStoreControlIcon needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
     case OneNativeViewSlotName.subscriptionStorePolicyDestination:      if #available(iOS 17, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -622,6 +635,9 @@ extension View {
         return AnyView(self.subscriptionStorePolicyDestination(for: argument0, destination: content))
       }
       return AnyView(self)
+#else
+    case OneNativeViewSlotName.subscriptionStorePolicyDestination: preconditionFailure("view slot subscriptionStorePolicyDestination needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
     case OneNativeViewSlotName.swipeActions:      if #available(iOS 15, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String?].self, from: data),

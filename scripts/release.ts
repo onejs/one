@@ -7,6 +7,7 @@ import fs, { ensureDir, writeJson, writeJSON } from 'fs-extra'
 import pMap from 'p-map'
 import prompts from 'prompts'
 import { spawnify } from './spawnify'
+import { LocalBuildCancelled, runLocalBuild } from './release-build'
 import {
   ensureNpmAuthentication,
   isExactVersionPublishedOnNpm,
@@ -756,17 +757,7 @@ if (intoIdx !== -1) {
 
     try {
       if (!skipBuild) {
-        await execFile(
-          'bun',
-          [
-            'x',
-            'turbo',
-            'run',
-            'build',
-            ...targetPackages.map(({ name }) => `--filter=${name}`),
-          ],
-          { maxBuffer: 50 * 1024 * 1024 }
-        )
+        await runLocalBuild(targetPackages.map(({ name }) => name))
       }
 
       let released = 0
@@ -862,7 +853,7 @@ if (intoIdx !== -1) {
     .then(() => process.exit(0))
     .catch((err) => {
       console.error(err)
-      process.exit(1)
+      process.exit(err instanceof LocalBuildCancelled ? err.exitCode : 1)
     })
 } else {
   run()

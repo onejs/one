@@ -9,7 +9,7 @@ It takes the following arguments (see the [CLI reference](/docs/cli) for every c
 ```bash
 npx one build [options]
 
---platform web|ios|android   # what to build (default: web)
+--platform web|ios|android|macos|linux   # what to build (default: web)
 --only <pattern>             # limit the pages built to a micromatch pattern
 --step <name>                # run a single internal build step
 --skip-env                   # skip loading .env files during build
@@ -21,6 +21,9 @@ To build for iOS for example, you would run:
 npx one build --platform ios
 ```
 
+Desktop builds produce JavaScript bundles, not native app projects. See
+[Native macOS and Linux](/docs/guides-desktop-native) for desktop setup.
+
 ## Building for web
 
 When building One for web, the output will be a mostly static directory of HTML, CSS, and JavaScript. Internally, One runs a few different Vite production builds to output client, server, and API folders. This output is always in the `dist` directory.
@@ -30,6 +33,8 @@ Ensure your `.env` file has a `ONE_SERVER_URL` set to your production URL, like:
 ```
 ONE_SERVER_URL=https://onestack.dev
 ```
+
+After a successful web build, `one build --step generate` reuses the existing client assets, Vite manifest, and `buildInfo.json` while rebuilding the server and generating pages. Keep these outputs together. Run a full build first, and run it again when client code or routes change.
 
 We provide a production server based on Hono with `one serve` that handles loaders, SSR, and API routes for you. You can choose a deploy target for that server. This can be chosen via your Vite configuration:
 

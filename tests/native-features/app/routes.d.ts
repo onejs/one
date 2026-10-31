@@ -106,6 +106,8 @@ declare module 'one' {
         | `/one-native-fetch`
         | `/one-native-file-system`
         | `/one-native-fonts`
+        | `/one-native-form-slot-style`
+        | `/one-native-generated-options`
         | `/one-native-geofencing`
         | `/one-native-geometry-reader`
         | `/one-native-gestures`
@@ -180,7 +182,6 @@ declare module 'one' {
         | `/one-native-state`
         | `/one-native-storage`
         | `/one-native-store-review`
-        | `/one-native-generated-options`
         | `/one-native-swift-gestures`
         | `/one-native-swipe-actions`
         | `/one-native-system`
@@ -192,6 +193,7 @@ declare module 'one' {
         | `/one-native-tabview`
         | `/one-native-timeline-view`
         | `/one-native-ui-map`
+        | `/one-native-uikit-content`
         | `/one-native-uikit-view`
         | `/one-native-updates`
         | `/one-native-view-slot`
@@ -215,8 +217,8 @@ declare module 'one' {
         | `/shared-element/[id]`
       IsTyped: true
       RouteTypes: {
-        '/deep-link/[id]': RouteInfo<{ id: string }>
-        '/shared-element/[id]': RouteInfo<{ id: string }>
+        '/deep-link/[id]': RouteInfo<{ id: string }, '/deep-link/[id]'>
+        '/shared-element/[id]': RouteInfo<{ id: string }, '/shared-element/[id]'>
       }
     }
   }
@@ -225,7 +227,7 @@ declare module 'one' {
 /**
  * Helper type for route information
  */
-type RouteInfo<Params = Record<string, never>> = {
+type RouteInfo<Params = Record<string, never>, Path extends string = string> = {
   Params: Params
-  LoaderProps: { path: string; search?: string; subdomain?: string; params: Params; request?: Request }
+  LoaderProps: import('one').LoaderProps<Params, OneRouter.LoaderSearchParams<Path>>
 }

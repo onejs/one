@@ -27,13 +27,13 @@
  *   })
  *
  *   const response = await server.fetch(request)
+ *   // pass a request-scoped static HTML reader as the fourth argument for SPA or SSG
  *   server.updateRoutes(newManifest, newRoutes)
  */
 
 export { createWorkerHandler, type LazyRoutes } from './server/workerHandler'
 export { compileManifest } from './createHandleRequest'
 export type { RequestHandlers } from './createHandleRequest'
-export { getFetchStaticHtml, setFetchStaticHtml } from './server/staticHtmlFetcher'
 export type { One } from './vite/types'
 
 import { setServerGlobals } from './server/setServerGlobals'
@@ -92,7 +92,7 @@ export async function createServer(options: HeadlessServerOptions) {
   })
 
   return {
-    /** handle an incoming request — returns Response or null (unmatched) */
+    /** handle a request with an optional request-scoped static HTML reader */
     fetch: handler.handleRequest,
 
     /** hot-swap the route table without recreating the server */

@@ -80,6 +80,7 @@ export type ToolbarItemPlacement =
   | 'subtitle'
   | 'largeSubtitle'
 export type SpacerSizing = 'flexible' | 'fixed'
+export type ToolbarDefaultItemKind = 'sidebarToggle' | 'title' | 'search'
 export type PayWithApplePayButtonLabel =
   | 'plain'
   | 'buy'
@@ -273,6 +274,11 @@ export const swiftUIValues = {
   SpacerSizing: {
     flexible: 26,
     fixed: 26,
+  },
+  ToolbarDefaultItemKind: {
+    sidebarToggle: 17,
+    title: 18,
+    search: 26,
   },
   PayWithApplePayButtonLabel: {
     plain: 16,

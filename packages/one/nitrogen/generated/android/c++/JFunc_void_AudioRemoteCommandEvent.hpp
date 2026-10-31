@@ -17,6 +17,7 @@
 #include "AudioRemoteCommandType.hpp"
 #include "JAudioRemoteCommandType.hpp"
 #include <optional>
+#include <string>
 
 namespace margelo::nitro::one {
 

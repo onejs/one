@@ -924,6 +924,7 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
           let podfile = fs.readFileSync(podfilePath, 'utf8')
           podfile = nativeProjectPatches.injectFmtCxx17FixIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectWebGPUHeaderPathsIntoPodfile(podfile)
+          podfile = nativeProjectPatches.injectSkiaDawnVendoringIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectReactNativeScreensGammaIntoPodfile(podfile)
           if (nativeProjectPatches.hasNitroWebImage(projectRoot)) {

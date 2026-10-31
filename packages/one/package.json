@@ -1,6 +1,6 @@
 {
   "name": "one",
-  "version": "2.9.0",
+  "version": "2.12.0",
   "description": "One is a React framework for web, iOS, and Android apps.",
   "license": "BSD-3-Clause",
   "sideEffects": [
@@ -37,8 +37,32 @@
       "import": "./dist/esm/ui/index.mjs",
       "require": "./dist/cjs/ui/index.cjs"
     },
+    "./dom": {
+      "react-native": {
+        "types": "./types/dom/index.d.ts",
+        "default": "./dist/esm/dom/index.native.js"
+      },
+      "types": "./types/dom/index.d.ts",
+      "import": "./dist/esm/dom/index.mjs",
+      "require": "./dist/cjs/dom/index.cjs"
+    },
+    "./dom/native": {
+      "react-native": {
+        "types": "./types/dom/host.native.d.ts",
+        "default": "./dist/esm/dom/host.native.js"
+      },
+      "types": "./types/dom/host.native.d.ts",
+      "import": "./dist/esm/dom/host.native.js",
+      "require": "./dist/cjs/dom/host.native.cjs"
+    },
+    "./dom/client": {
+      "types": "./types/dom/client.d.ts",
+      "import": "./dist/esm/dom/client.mjs",
+      "require": "./dist/cjs/dom/client.cjs"
+    },
     "./ios/*": {
-      "types": "./ios-types/*.d.ts"
+      "types": "./ios-types/*.d.ts",
+      "react-native": "./dist/esm/ios/*.native.js"
     },
     "./ios-runtime": {
       "react-native": {
@@ -168,6 +192,7 @@
     },
     "./devtools/*": "./devtools/*",
     "./schema.json": "./schema.json",
+    "./ios-link-set.json": "./ios-link-set.json",
     "./tamagui": {
       "react-native": {
         "types": "./types/tamagui.native.d.ts",
@@ -217,10 +242,14 @@
     "android/portal",
     "android/src",
     "cpp",
+    "linux",
+    "macos",
+    "native-core",
     "nitrogen",
     "One.podspec",
     "react-native.config.cjs",
-    "schema.json"
+    "schema.json",
+    "ios-link-set.json"
   ],
   "scripts": {
     "build": "tamagui-build && bun codegen/staticSpecs.ts && bun codegen/sdk/build.ts",
@@ -235,7 +264,7 @@
     "generate": "bun codegen/generate.ts",
     "generate:ios-types": "bun codegen/sdk/declarations.ts",
     "generate:check": "bun codegen/generate.ts --check",
-    "nitrogen": "nitrogen",
+    "nitrogen": "nitrogen && bun codegen/gateNitro.ts",
     "coverage": "bun codegen/coverage.ts",
     "measure": "bun codegen/measure.ts"
   },
@@ -375,14 +404,14 @@
     }
   },
   "devDependencies": {
-    "@tamagui/sheet": "3.1.2",
+    "@tamagui/sheet": "3.1.9",
     "@callstack/liquid-glass": "^0.8.1",
     "@react-native/babel-plugin-codegen": "0.88.0",
     "@react-native/codegen": "^0.88.0",
     "@react-navigation/core": "8.0.0-alpha.41",
     "@react-navigation/drawer": "8.0.0-alpha.58",
     "@react-navigation/native": "8.0.0-alpha.51",
-    "@tamagui/build": "3.1.2",
+    "@tamagui/build": "3.1.9",
     "@types/node": "^24.10.0",
     "@types/react-dom": "^19.3.0",
     "@types/react-test-renderer": "^19.1.0",
@@ -406,7 +435,7 @@
     "typescript": "7.0.2",
     "vitest": "^4.1.0",
     "yoga-layout": "^3.2.1",
-    "@tamagui/web": "3.1.2",
+    "@tamagui/web": "3.1.9",
     "@babel/core": "^7.28.5",
     "@babel/generator": "7.29.7",
     "@babel/parser": "^7.28.5",
@@ -452,6 +481,7 @@
     "ios": {
       "componentProvider": {
         "OneNativePager": "OneNativePagerComponentView",
+        "OneDOMHost": "OneDOMHostComponentView",
         "OneSwiftHost": "OneSwiftHostComponentView",
         "OneNativeArrangementView": "OneNativeArrangementViewComponentView",
         "OneNativeArrangementSlot": "OneNativeArrangementSlotComponentView",
@@ -570,6 +600,7 @@
         "OneNativeToolbarItem": "OneNativeToolbarItemComponentView",
         "OneNativeToolbarItemGroup": "OneNativeToolbarItemGroupComponentView",
         "OneNativeToolbarSpacer": "OneNativeToolbarSpacerComponentView",
+        "OneNativeToolbarDefaultItem": "OneNativeToolbarDefaultItemComponentView",
         "OneNativeNavigationStackContent": "OneNativeNavigationStackContentComponentView",
         "OneNativeNavigationSplitViewColumn": "OneNativeNavigationSplitViewColumnComponentView",
         "OneNativeTableCell": "OneNativeTableCellComponentView",

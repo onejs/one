@@ -1,0 +1,381 @@
+#include "OneLinuxHost.h"
+#include <OneLinuxControlState.h>
+#include "OneLinuxAppShell.h"
+
+#include <react/featureflags/ReactNativeFeatureFlags.h>
+#include <react/featureflags/ReactNativeFeatureFlagsDefaults.h>
+#include <react/renderer/imagemanager/ImageManager.h>
+
+#include <AppleEventBeat.h>
+#include <cxxreact/JSBigString.h>
+#include <react/renderer/scheduler/SchedulerDelegate.h>
+
+#include <sys/utsname.h>
+
+#include <cstdio>
+
+#include "OneHostRuntime.h"
+#include "OneHostModules.h"
+#include "OneLinuxModules.h"
+#include "OneLinuxNetwork.h"
+#include "OneLinuxNitro.h"
+#include "OneLinuxOpSqlite.h"
+#include "OneLinuxRuntime.h"
+#include "OneLinuxStartup.h"
+#include "OneLinuxWorklets.h"
+
+#include <gtk/gtk.h>
+
+namespace facebook::react {
+
+class OneLinuxHost::SchedulerDelegate final : public facebook::react::SchedulerDelegate {
+ public:
+  explicit SchedulerDelegate(std::weak_ptr<OneLinuxMountingManager> manager) : manager_(std::move(manager)) {}
+
+  void schedulerDidFinishTransaction(const std::shared_ptr<const MountingCoordinator> &) override {}
+  void schedulerShouldRenderTransactions(const std::shared_ptr<const MountingCoordinator> &coordinator) override
+  {
+    if (auto manager = manager_.lock()) {
+      manager->scheduleTransaction(coordinator);
+    }
+  }
+  void schedulerShouldMergeReactRevision(SurfaceId surfaceId) override
+  {
+    if (mergeReactRevision) {
+      mergeReactRevision(surfaceId);
+    }
+  }
+  void schedulerDidRequestPreliminaryViewAllocation(const ShadowNode &) override {}
+  void schedulerDidDispatchCommand(const ShadowView &view, const std::string &name, const folly::dynamic &args) override
+  {
+    std::weak_ptr<OneLinuxMountingManager> weakManager = manager_;
+    Tag tag = view.tag;
+    OneLinuxDispatchMain([weakManager, tag, name, args] {
+      if (auto manager = weakManager.lock()) {
+        manager->dispatchCommand(tag, name, args);
+      }
+    });
+  }
+  void schedulerDidSendAccessibilityEvent(const ShadowView &, const std::string &) override {}
+  void schedulerDidSetIsJSResponder(const ShadowView &, bool, bool) override {}
+  void schedulerShouldSynchronouslyUpdateViewOnUIThread(Tag tag, const folly::dynamic &props) override
+  {
+    std::weak_ptr<OneLinuxMountingManager> weakManager = manager_;
+    OneLinuxDispatchMain([weakManager, tag, props] {
+      if (auto manager = weakManager.lock()) {
+        manager->synchronouslyUpdateViewOnTag(tag, props);
+      }
+    });
+  }
+  // uimanager commits these props to the shadow tree itself, as on iOS
+  void schedulerDidUpdateShadowTree(const std::unordered_map<Tag, folly::dynamic> &) override {}
+  void schedulerDidCaptureViewSnapshot(Tag, SurfaceId) override {}
+  void schedulerDidSetViewSnapshot(Tag, Tag, SurfaceId) override {}
+  void schedulerDidClearPendingSnapshots() override {}
+
+  std::function<void(SurfaceId)> mergeReactRevision;
+
+ private:
+  std::weak_ptr<OneLinuxMountingManager> manager_;
+};
+
+namespace {
+
+std::string osVersion()
+{
+  utsname info;
+  return uname(&info) == 0 ? info.release : "";
+}
+
+void firstFrame(GdkFrameClock *clock, gpointer)
+{
+  OneLinuxStartupMark("first mounted frame painted");
+  g_signal_handlers_disconnect_by_func(clock, reinterpret_cast<gpointer>(firstFrame), nullptr);
+}
+
+// pressable reads the pointer enter and leave events synthesized by react
+// native only with this flag enabled
+class OneLinuxFeatureFlags : public ReactNativeFeatureFlagsDefaults {
+ public:
+  bool shouldPressibilityUseW3CPointerEventsForHover() override
+  {
+    return true;
+  }
+};
+
+} // namespace
+
+OneLinuxHost::OneLinuxHost(std::string bundlePath, std::string moduleName, OneView *surface, std::shared_ptr<OneLinuxAppShell> shell)
+    : shell_(std::move(shell)), bundlePath_(std::move(bundlePath)), moduleName_(std::move(moduleName)), surface_(surface)
+{
+  // keep the surface and its controllers alive after the window unparents it
+  g_object_ref(surface_);
+  static std::once_flag flags;
+  std::call_once(flags, [] { ReactNativeFeatureFlags::override(std::make_unique<OneLinuxFeatureFlags>()); });
+  dark_ = prefersDark();
+  GtkSettings *settings = gtk_settings_get_default();
+  auto changed = [](GObject *, GParamSpec *, gpointer data) { static_cast<OneLinuxHost *>(data)->appearanceChanged(); };
+  settingsHandlers_[0] = g_signal_connect(settings, "notify::gtk-application-prefer-dark-theme", G_CALLBACK(+changed), this);
+  settingsHandlers_[1] = g_signal_connect(settings, "notify::gtk-theme-name", G_CALLBACK(+changed), this);
+  settingsHandlers_[2] = g_signal_connect(settings, "notify::gtk-font-name", G_CALLBACK(+changed), this);
+  settingsHandlers_[3] = g_signal_connect(settings, "notify::gtk-xft-dpi", G_CALLBACK(+changed), this);
+}
+
+OneLinuxHost::~OneLinuxHost()
+{
+  if (measurementHandler_) {
+    g_signal_handler_disconnect(measurementClock_, measurementHandler_);
+    g_clear_object(&measurementClock_);
+  }
+  GtkSettings *settings = gtk_settings_get_default();
+  for (gulong handler : settingsHandlers_) {
+    g_signal_handler_disconnect(settings, handler);
+  }
+  stop();
+  g_object_unref(surface_);
+}
+
+void OneLinuxHost::start()
+{
+  generation_++;
+  guint generation = generation_;
+
+  mountingManager_ = std::make_shared<OneLinuxMountingManager>();
+  providerRegistry_ = OneLinuxMountingManager::componentDescriptorProviderRegistry();
+
+  OneHostRuntimeOptions options;
+  options.jsThread = std::make_shared<OneLinuxMessageQueueThread>();
+  options.timerRegistry = std::make_unique<OneLinuxTimerRegistry>();
+  shellGeneration_ = std::make_shared<int>(0);
+  std::weak_ptr<int> shellGeneration = shellGeneration_;
+  std::weak_ptr<OneLinuxAppShell> weakShell = shell_;
+  options.createTurboModule = [weakShell](jsi::Runtime &runtime, const std::string &name, std::shared_ptr<CallInvoker> jsInvoker, const OneHostModuleContext &moduleContext)
+      -> std::shared_ptr<TurboModule> {
+    if (name == "OneLinuxWindow") {
+      return OneLinuxCreateWindowModule(std::move(jsInvoker), weakShell);
+    }
+    if (name == "OneLinuxAppCommands") {
+      return OneHostCreateAppCommandsModule(name, std::move(jsInvoker), moduleContext);
+    }
+    if (name == "ImageLoader") {
+      return OneLinuxCreateImageLoaderModule(std::move(jsInvoker));
+    }
+    if (name == "LinkingManager") {
+      return OneLinuxCreateLinkingModule(std::move(jsInvoker));
+    }
+    if (name == "OPSQLite") {
+      return OneLinuxCreateOpSqliteModule(runtime, std::move(jsInvoker));
+    }
+    if (name == "NitroModules") {
+      return OneLinuxCreateNitroModule(std::move(jsInvoker));
+    }
+    if (name == "WorkletsModule") {
+      return OneLinuxCreateWorkletsModule(runtime, std::move(jsInvoker), moduleContext.isJavaScriptQueue);
+    }
+    if (name == "Networking") {
+      return OneLinuxCreateNetworkingModule(std::move(jsInvoker), moduleContext);
+    }
+    if (name == "WebSocketModule") {
+      return OneLinuxCreateWebSocketModule(std::move(jsInvoker), moduleContext);
+    }
+    return OneHostCreateTurboModule(name, std::move(jsInvoker), moduleContext);
+  };
+  options.hasComponentProvider = [](const std::string &name) { return OneLinuxMountingManager::hasComponentNamed(name); };
+  options.logJsError = [](const std::string &message) { std::fprintf(stderr, "[one-linux] js error: %s\n", message.c_str()); };
+  options.logJsMessage = [](const std::string &message, unsigned int level) {
+    std::fprintf(stderr, "[one-linux] js log(%u): %s\n", level, message.c_str());
+  };
+
+  OneHostModuleContext &context = options.moduleContext;
+  bool remote = bundlePath_.rfind("http://", 0) == 0 || bundlePath_.rfind("https://", 0) == 0;
+  context.scriptURL = remote ? bundlePath_ : "file://" + bundlePath_;
+  context.osVersion = osVersion();
+  context.interfaceIdiom = "desktop";
+  context.localeIdentifier = g_get_language_names()[0];
+  context.windowMetrics = [this]() {
+    std::lock_guard<std::mutex> lock(metricsMutex_);
+    return OneHostWindowMetrics{width_, height_, scale_};
+  };
+  context.colorScheme = [this]() { return std::string(dark_ ? "dark" : "light"); };
+  context.log = [](const std::string &line) { std::fprintf(stderr, "[one-linux] %s\n", line.c_str()); };
+  context.reload = [this, generation]() {
+    OneLinuxDispatchMain([this, generation] {
+      if (generation_ == generation) {
+        reload();
+      }
+    });
+  };
+
+  context.configureAppCommands = [weakShell, shellGeneration](const folly::dynamic &config) {
+    auto error = OneLinuxAppShell::validate(config);
+    if (error.empty()) OneLinuxDispatchMain([weakShell, shellGeneration, config] {
+      if (auto shell = weakShell.lock(); shell && !shellGeneration.expired()) shell->configure(config);
+    });
+    return error;
+  };
+  context.setAppCommandsListening = [weakShell, shellGeneration](bool listening) {
+    OneLinuxDispatchMain([weakShell, shellGeneration, listening] {
+      if (auto shell = weakShell.lock(); shell && !shellGeneration.expired()) shell->setListening(listening);
+    });
+  };
+  runtime_ = std::make_shared<OneHostRuntime>(std::move(options));
+  std::weak_ptr<OneHostRuntime> commandRuntime = runtime_;
+  shell_->emitCommand = [commandRuntime](const std::string &id) {
+    if (auto runtime = commandRuntime.lock()) runtime->emitDeviceEvent("oneLinuxAppCommand", id);
+  };
+  mountingManager_->setContextContainer(runtime_->contextContainer());
+  runtime_->contextContainer()->insert("ImageManager", std::make_shared<ImageManager>(runtime_->contextContainer()));
+  mountingManager_->didMount = [this, generation] {
+    if (generation_ != generation) {
+      return;
+    }
+    OneLinuxStartupMark("first transaction mounted");
+    GdkFrameClock *clock = gtk_widget_get_frame_clock(GTK_WIDGET(surface_));
+    g_signal_connect(clock, "after-paint", G_CALLBACK(firstFrame), nullptr);
+  };
+
+  schedulerDelegate_ = std::make_unique<SchedulerDelegate>(mountingManager_);
+  std::weak_ptr<OneHostRuntime> weakRuntime = runtime_;
+  mountingManager_->didMeasureControls = [weakRuntime](const OneLinuxMountingManager::ControlMeasurements &measurements) {
+    if (auto runtime = weakRuntime.lock()) {
+      std::unordered_map<Tag, OneHostRuntime::StateDataUpdate> updates;
+      for (const auto &[tag, measured] : measurements) {
+        updates.emplace(tag, OneHostRuntime::StateDataUpdate{measured.first, measured.second});
+      }
+      runtime->updateStateData(runtime->surfaceId(), updates);
+    }
+  };
+  schedulerDelegate_->mergeReactRevision = [weakRuntime](SurfaceId surfaceId) {
+    if (auto runtime = weakRuntime.lock()) {
+      runtime->mergeReactRevision(surfaceId, OneLinuxDispatchMain);
+    }
+  };
+
+  auto manager = mountingManager_;
+  runtime_->createScheduler(
+      providerRegistry_,
+      [manager](SharedComponentDescriptorRegistry descriptors) { manager->setComponentDescriptorRegistry(descriptors); },
+      [](std::shared_ptr<EventBeat::OwnerBox> ownerBox, RuntimeScheduler &runtimeScheduler) -> std::unique_ptr<EventBeat> {
+        auto observer = std::make_unique<const OneLinuxRunLoopObserver>(RunLoopObserver::Activity::BeforeWaiting, ownerBox->owner);
+        return std::make_unique<AppleEventBeat>(std::move(ownerBox), std::move(observer), runtimeScheduler);
+      },
+      schedulerDelegate_.get());
+  runtime_->initializeRuntime();
+  OneLinuxStartupMark("runtime ready");
+
+  {
+    std::lock_guard<std::mutex> lock(metricsMutex_);
+    runtime_->updateLayout(width_, height_, scale_);
+  }
+  OneView *surface = surface_;
+  runtime_->startSurface(moduleName_, [manager, surface](SurfaceId surfaceId) { manager->attachSurface(surfaceId, surface); });
+  manager->setSurfaceSize(runtime_->width(), runtime_->height());
+
+  if (remote) {
+    std::weak_ptr<OneHostRuntime> weakRuntime = runtime_;
+    std::string url = bundlePath_;
+    download_ = OneLinuxFetchScript(url, [this, generation, weakRuntime, url](const std::string &body, const std::string &error) {
+      auto runtime = weakRuntime.lock();
+      if (!runtime || generation_ != generation) {
+        return;
+      }
+      if (!error.empty()) {
+        std::fprintf(stderr, "[one-linux] could not load %s: %s\n", url.c_str(), error.c_str());
+        return;
+      }
+      runtime->instance().loadScript(std::make_unique<JSBigStdString>(std::string(body)), url);
+      OneLinuxStartupMark("downloaded bundle handed to the js thread");
+    });
+    return;
+  }
+
+  auto bundle = JSBigFileString::fromPath(bundlePath_);
+  runtime_->instance().loadScript(std::move(bundle), "file://" + bundlePath_);
+  OneLinuxStartupMark("bundle handed to the js thread");
+}
+
+void OneLinuxHost::stop()
+{
+  shellGeneration_.reset();
+  shell_->emitCommand = {};
+  shell_->reset();
+  generation_++;
+  if (download_) {
+    g_cancellable_cancel(download_);
+    g_clear_object(&download_);
+  }
+  if (runtime_) {
+    auto manager = mountingManager_;
+    runtime_->stopSurface([manager](SurfaceId surfaceId) { manager->detachSurface(surfaceId); });
+    runtime_.reset();
+  }
+  // queued transactions hold the manager weakly; the delegate can go once the
+  // runtime that called it is gone
+  schedulerDelegate_.reset();
+  mountingManager_.reset();
+}
+
+void OneLinuxHost::reload()
+{
+  stop();
+  start();
+}
+
+// the dark preference or a theme named for a dark variant, such as Adwaita-dark
+bool OneLinuxHost::prefersDark()
+{
+  GtkSettings *settings = gtk_settings_get_default();
+  gboolean dark = FALSE;
+  gchar *theme = nullptr;
+  g_object_get(settings, "gtk-application-prefer-dark-theme", &dark, "gtk-theme-name", &theme, nullptr);
+  if (theme) {
+    gchar *lower = g_ascii_strdown(theme, -1);
+    dark = dark || g_str_has_suffix(lower, "-dark") || g_str_has_suffix(lower, ":dark");
+    g_free(lower);
+    g_free(theme);
+  }
+  return dark;
+}
+
+void OneLinuxHost::appearanceChanged()
+{
+  // settings notify before gtk has applied the new css. measure after that
+  // frame's style and layout work, once for all settings changed together.
+  if (auto *clock = gtk_widget_get_frame_clock(GTK_WIDGET(surface_)); clock && !measurementHandler_) {
+    measurementClock_ = GDK_FRAME_CLOCK(g_object_ref(clock));
+    measurementHandler_ = g_signal_connect_after(clock, "after-paint", G_CALLBACK(+[](GdkFrameClock *clock, gpointer data) {
+      auto &self = *static_cast<OneLinuxHost *>(data);
+      g_signal_handler_disconnect(clock, self.measurementHandler_);
+      self.measurementHandler_ = 0;
+      if (self.mountingManager_) {
+        self.mountingManager_->measureControls();
+      }
+      g_clear_object(&self.measurementClock_);
+    }), this);
+    gtk_widget_queue_draw(GTK_WIDGET(surface_));
+  }
+  bool dark = prefersDark();
+  if (dark == dark_) {
+    return;
+  }
+  dark_ = dark;
+  if (runtime_) {
+    runtime_->emitDeviceEvent("appearanceChanged", folly::dynamic::object("colorScheme", dark ? "dark" : "light"));
+  }
+}
+
+void OneLinuxHost::updateLayout(double width, double height, double scale)
+{
+  {
+    std::lock_guard<std::mutex> lock(metricsMutex_);
+    width_ = width;
+    height_ = height;
+    scale_ = scale;
+  }
+  if (runtime_ && runtime_->updateLayout(width, height, scale)) {
+    mountingManager_->setSurfaceSize(width, height);
+    runtime_->emitDimensions();
+  }
+}
+
+} // namespace facebook::react

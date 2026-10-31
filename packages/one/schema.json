@@ -4652,7 +4652,16 @@
           "type": "Double"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -4852,6 +4861,27 @@
         "sizing": {
           "type": "string",
           "enum": "SpacerSizing"
+        },
+        "placement": {
+          "type": "string",
+          "enum": "ToolbarItemPlacement"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeToolbarDefaultItem",
+      "publicName": "DefaultToolbarItem",
+      "props": {
+        "kind": {
+          "type": "string",
+          "enum": "ToolbarDefaultItemKind"
         },
         "placement": {
           "type": "string",
@@ -5533,6 +5563,11 @@
     "SpacerSizing": {
       "flexible": 26,
       "fixed": 26
+    },
+    "ToolbarDefaultItemKind": {
+      "sidebarToggle": 17,
+      "title": 18,
+      "search": 26
     },
     "PayWithApplePayButtonLabel": {
       "plain": 16,

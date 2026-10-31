@@ -98,6 +98,16 @@ const inventory: Declaration[] = [
       { label: 'placement', name: 'placement', type: 'SwiftUI.ToolbarItemPlacement' },
     ],
   }),
+  declaration({
+    owner: 'DefaultToolbarItem',
+    kind: 'init',
+    name: 'init',
+    attributes: available26,
+    parameters: [
+      { label: 'kind', name: 'kind', type: 'SwiftUI.ToolbarDefaultItemKind' },
+      { label: 'placement', name: 'placement', type: 'SwiftUI.ToolbarItemPlacement' },
+    ],
+  }),
 ]
 
 const emit = (entries: readonly Declaration[] = splitInventory) => {
@@ -236,12 +246,12 @@ describe('navigation host generation', () => {
       expect(stack).toContain(`public func ${method}`)
     }
     expect(toolbar).toContain(
-      'public func configure(kind: String, placement: String, sizing: String, label: String, systemImage: String)'
+      'public func configure(kind: String, placement: String, sizing: String, label: String, systemImage: String, defaultItem: String)'
     )
     expect(toolbar).toContain('public func setOnEntryChange(_ callback: (() -> Void)?)')
     expect(toolbar).toContain('public func setOnSDKEvent(_ callback: ((String, String) -> Void)?)')
     // the shared configure selector both the mm call sites spell.
-    expect(mm.match(/configureWithKind:@".*?"\n    placement:/g)).toHaveLength(3)
+    expect(mm.match(/configureWithKind:@".*?"\n    placement:/g)).toHaveLength(4)
     expect(mm).toContain('[_markerView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];')
   })
 
@@ -285,7 +295,7 @@ describe('navigation host generation', () => {
         : entry
     )
     const outputs = emit(matured)
-    expect(outputs.get('ios/Generated/OneNativeToolbarView.swift')!).not.toContain('#available')
+    expect(outputs.get('ios/Generated/OneNativeToolbarView.swift')!).not.toContain('ToolbarSpacer is iOS')
     const future = splitInventory.map((entry) =>
       entry.kind === 'init' && entry.owner === 'SwiftUI.ToolbarItem'
         ? { ...entry, attributes: ['@available(iOS 18.0, *)'] }

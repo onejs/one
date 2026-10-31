@@ -71,6 +71,10 @@ export interface TabProps extends TabContentProps {
   role?: TabRole
   tabPlacement?: TabPlacement
   testID?: string
+  // each page sits in a NavigationStack, which gives it a title and toolbar. pass false for a
+  // page that is its own navigation container, such as Swift.NavigationSplitView: SwiftUI
+  // renders no columns for a split view nested in a stack.
+  navigationStack?: boolean
   // an action tab carries onPress instead of a page. Swift.TabView requires exactly one of them.
   onPress?: () => void
   // View modifiers on the page's content, as SwiftUI applies them inside a Tab.

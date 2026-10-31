@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
 import type { SFSymbolName } from './sfSymbolNames';
 import type { MenuOrder, MenuActionDismissBehavior, ButtonRole, ControlGroupStyle } from './swiftui';
-export type { MenuOrder, Visibility, MenuActionDismissBehavior, TabViewStyle, ButtonRole, TabRole, TabPlacement, AdaptableTabBarPlacement, TabCustomizationBehavior, TabSectionExpansion, SpringLoadingBehavior, ControlGroupStyle, Axis, Edge, PresentationAdaptation, PresentationContentInteraction, ColorScheme, DynamicTypeSize, ControlSize, PhotosPickerSelectionBehavior, EncodingDisambiguationPolicy, BackForwardNavigationGesturesBehavior, MagnificationGesturesBehavior, LinkPreviewBehavior, ElementFullscreenBehavior, ListStyle, ToolbarItemPlacement, SpacerSizing, PayWithApplePayButtonLabel, } from './swiftui';
+export type { MenuOrder, Visibility, MenuActionDismissBehavior, TabViewStyle, ButtonRole, TabRole, TabPlacement, AdaptableTabBarPlacement, TabCustomizationBehavior, TabSectionExpansion, SpringLoadingBehavior, ControlGroupStyle, Axis, Edge, PresentationAdaptation, PresentationContentInteraction, ColorScheme, DynamicTypeSize, ControlSize, PhotosPickerSelectionBehavior, EncodingDisambiguationPolicy, BackForwardNavigationGesturesBehavior, MagnificationGesturesBehavior, LinkPreviewBehavior, ElementFullscreenBehavior, ListStyle, ToolbarItemPlacement, SpacerSizing, ToolbarDefaultItemKind, PayWithApplePayButtonLabel, } from './swiftui';
 export interface SwiftMenuAction {
     type: 'action';
     id: string;
