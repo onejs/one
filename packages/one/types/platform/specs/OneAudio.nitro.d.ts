@@ -10,8 +10,8 @@ export interface AudioPlaybackStatus {
     error?: string;
 }
 export interface AudioPlayOptions {
-    positionMs?: number;
     paused?: boolean;
+    positionMs?: number;
 }
 export interface AudioRecordingStatus {
     state: AudioRecordingState;

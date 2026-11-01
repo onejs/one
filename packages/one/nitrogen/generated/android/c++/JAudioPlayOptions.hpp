@@ -31,13 +31,13 @@ namespace margelo::nitro::one {
     [[nodiscard]]
     AudioPlayOptions toCpp() const {
       static const auto clazz = javaClassStatic();
-      static const auto fieldPositionMs = clazz->getField<jni::JDouble>("positionMs");
-      jni::local_ref<jni::JDouble> positionMs = this->getFieldValue(fieldPositionMs);
       static const auto fieldPaused = clazz->getField<jni::JBoolean>("paused");
       jni::local_ref<jni::JBoolean> paused = this->getFieldValue(fieldPaused);
+      static const auto fieldPositionMs = clazz->getField<jni::JDouble>("positionMs");
+      jni::local_ref<jni::JDouble> positionMs = this->getFieldValue(fieldPositionMs);
       return AudioPlayOptions(
-        positionMs != nullptr ? std::make_optional(positionMs->value()) : std::nullopt,
-        paused != nullptr ? std::make_optional(static_cast<bool>(paused->value())) : std::nullopt
+        paused != nullptr ? std::make_optional(static_cast<bool>(paused->value())) : std::nullopt,
+        positionMs != nullptr ? std::make_optional(positionMs->value()) : std::nullopt
       );
     }
 
@@ -47,13 +47,13 @@ namespace margelo::nitro::one {
      */
     [[maybe_unused]]
     static jni::local_ref<JAudioPlayOptions::javaobject> fromCpp(const AudioPlayOptions& value) {
-      using JSignature = JAudioPlayOptions(jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JBoolean>);
+      using JSignature = JAudioPlayOptions(jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JDouble>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
         clazz,
-        value.positionMs.has_value() ? jni::JDouble::valueOf(value.positionMs.value()) : nullptr,
-        value.paused.has_value() ? jni::JBoolean::valueOf(value.paused.value()) : nullptr
+        value.paused.has_value() ? jni::JBoolean::valueOf(value.paused.value()) : nullptr,
+        value.positionMs.has_value() ? jni::JDouble::valueOf(value.positionMs.value()) : nullptr
       );
     }
   };

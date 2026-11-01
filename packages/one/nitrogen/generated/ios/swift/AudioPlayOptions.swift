@@ -18,16 +18,16 @@ public extension AudioPlayOptions {
   /**
    * Create a new instance of `AudioPlayOptions`.
    */
-  init(positionMs: Double?, paused: Bool?) {
-    self.init({ () -> bridge.std__optional_double_ in
-      if let __unwrappedValue = positionMs {
-        return bridge.create_std__optional_double_(__unwrappedValue)
+  init(paused: Bool?, positionMs: Double?) {
+    self.init({ () -> bridge.std__optional_bool_ in
+      if let __unwrappedValue = paused {
+        return bridge.create_std__optional_bool_(__unwrappedValue)
       } else {
         return .init()
       }
-    }(), { () -> bridge.std__optional_bool_ in
-      if let __unwrappedValue = paused {
-        return bridge.create_std__optional_bool_(__unwrappedValue)
+    }(), { () -> bridge.std__optional_double_ in
+      if let __unwrappedValue = positionMs {
+        return bridge.create_std__optional_double_(__unwrappedValue)
       } else {
         return .init()
       }
@@ -35,10 +35,10 @@ public extension AudioPlayOptions {
   }
 
   @inline(__always)
-  var positionMs: Double? {
-    return { () -> Double? in
-      if bridge.has_value_std__optional_double_(self.__positionMs) {
-        let __unwrapped = bridge.get_std__optional_double_(self.__positionMs)
+  var paused: Bool? {
+    return { () -> Bool? in
+      if bridge.has_value_std__optional_bool_(self.__paused) {
+        let __unwrapped = bridge.get_std__optional_bool_(self.__paused)
         return __unwrapped
       } else {
         return nil
@@ -47,10 +47,10 @@ public extension AudioPlayOptions {
   }
 
   @inline(__always)
-  var paused: Bool? {
-    return { () -> Bool? in
-      if bridge.has_value_std__optional_bool_(self.__paused) {
-        let __unwrapped = bridge.get_std__optional_bool_(self.__paused)
+  var positionMs: Double? {
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__positionMs) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__positionMs)
         return __unwrapped
       } else {
         return nil
