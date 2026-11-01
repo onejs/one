@@ -818,6 +818,55 @@ export function iosUsageDescriptions(app: NativeAppManifest): Map<string, string
   return usage
 }
 
+// android declarations authored by native.app, before library manifest merging.
+// prebuild uses the same entries so capped permissions retain their SDK bounds.
+export const androidNotificationPermissions = [
+  'android.permission.POST_NOTIFICATIONS',
+  'android.permission.RECEIVE_BOOT_COMPLETED',
+]
+
+export function androidAppPermissions(app: NativeAppManifest): Map<string, number | undefined> {
+  const permissions = new Map<string, number | undefined>()
+  const add = (name: string, maxSdkVersion?: number) => {
+    const fullName = name.includes('.') ? name : `android.permission.${name}`
+    if (!permissions.has(fullName) || maxSdkVersion === undefined) {
+      permissions.set(fullName, maxSdkVersion)
+    }
+  }
+  if (app.imagePicker?.camera !== undefined) add('CAMERA')
+  if (app.speech !== undefined || app.audio?.microphone !== undefined) add('RECORD_AUDIO')
+  if (app.location !== undefined) {
+    add('ACCESS_COARSE_LOCATION')
+    add('ACCESS_FINE_LOCATION')
+    if (app.location.background) add('ACCESS_BACKGROUND_LOCATION')
+  }
+  if (app.pedometer !== undefined) add('ACTIVITY_RECOGNITION')
+  if (app.brightness === true) add('WRITE_SETTINGS')
+  if (app.notifications !== undefined || app.calendar?.remindersUsage !== undefined) {
+    for (const name of androidNotificationPermissions) add(name)
+  }
+  if (app.photoLibrary?.readWrite !== undefined) {
+    add('READ_MEDIA_IMAGES')
+    add('READ_MEDIA_VIDEO')
+    add('READ_EXTERNAL_STORAGE', 32)
+  }
+  if (app.photoLibrary?.addOnly !== undefined) add('WRITE_EXTERNAL_STORAGE', 28)
+  if (app.contacts !== undefined) {
+    add('READ_CONTACTS')
+    add('WRITE_CONTACTS')
+  }
+  if (app.calendar?.usage !== undefined) {
+    add('READ_CALENDAR')
+    add('WRITE_CALENDAR')
+  }
+  if (app.audio?.background === true) {
+    add('FOREGROUND_SERVICE')
+    add('FOREGROUND_SERVICE_MEDIA_PLAYBACK')
+  }
+  for (const name of app.android?.permissions ?? []) add(name)
+  return permissions
+}
+
 // the expo config shape the dev server's manifest carries (`extra.expoClient`)
 // for an app that declares native.app and no expo: clients that read an app's
 // name, scheme or splash from the manifest read a one app the same way.
@@ -861,7 +910,16 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
     android: app.android && {
       package: app.android.applicationId,
       versionCode: app.android.versionCode,
-      permissions: app.android.permissions,
+      // expo's string list cannot express maxSdkVersion, so only declarations
+      // valid on every SDK can be represented without overstating access.
+      permissions: [...androidAppPermissions(app)]
+        .filter(([name, maxSdk]) =>
+          maxSdk === undefined &&
+          !(app.android?.blockedPermissions ?? []).some((blocked) =>
+            (blocked.includes('.') ? blocked : `android.permission.${blocked}`) === name
+          )
+        )
+        .map(([name]) => name),
       blockedPermissions: app.android.blockedPermissions,
       googleServicesFile: app.android.googleServicesFile,
       adaptiveIcon: app.android.adaptiveIcon && {

@@ -149,6 +149,8 @@ export interface NativeAppManifest {
 }
 export declare function validateNativeApp(manifest: NativeAppManifest, platform?: 'ios' | 'android' | string): NativeAppManifest;
 export declare function iosUsageDescriptions(app: NativeAppManifest): Map<string, string>;
+export declare const androidNotificationPermissions: string[];
+export declare function androidAppPermissions(app: NativeAppManifest): Map<string, number | undefined>;
 export declare function expoClientFromNativeApp(app: NativeAppManifest): {
     name: string;
     slug: string;
@@ -187,7 +189,7 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
     android: {
         package: string;
         versionCode: number | undefined;
-        permissions: string[] | undefined;
+        permissions: string[];
         blockedPermissions: string[] | undefined;
         googleServicesFile: string | undefined;
         adaptiveIcon: {

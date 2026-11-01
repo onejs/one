@@ -734,10 +734,9 @@ const ONE_NOTIFICATIONS = {
   enabledInfoPlistKey: 'OneNativeNotificationsEnabled',
   pushInfoPlistKey: 'OneNativeNotificationsPush',
   apsEnvironment: 'development',
-  androidPermissions: [
-    'android.permission.POST_NOTIFICATIONS',
-    'android.permission.RECEIVE_BOOT_COMPLETED',
-  ],
+  get androidPermissions() {
+    return require('@vxrn/utils/nativeAppManifest').androidNotificationPermissions
+  },
   receiver: 'dev.onejs.onenative.OneNativeNotificationsReceiver',
   receiverAction: 'android.intent.action.BOOT_COMPLETED',
   pushService: 'dev.onejs.onenative.OneNativePushService',
