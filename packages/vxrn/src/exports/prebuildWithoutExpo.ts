@@ -4,6 +4,7 @@ import module from 'node:module'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import {
+  androidAppPermissions,
   androidIconSuffix,
   appIconPreviewResources,
   iosUsageDescriptions,
@@ -2256,86 +2257,42 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         rendered = rendered.replace(anchor, `${stamps.join('\n')}\n${anchor}`)
       }
     }
-    if (
-      platform === 'android' &&
-      relativePath === 'app/src/main/AndroidManifest.xml' &&
-      (app.imagePicker?.camera !== undefined || app.speech !== undefined)
-    ) {
-      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
-      if (!rendered.includes(anchor)) {
-        throw new Error(
-          '[vxrn] cannot stamp the camera or microphone permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
-        )
-      }
-      const stamps: string[] = []
-      if (app.imagePicker?.camera !== undefined) {
-        stamps.push('    <uses-permission android:name="android.permission.CAMERA" />')
+    if (platform === 'android' && relativePath === 'app/src/main/AndroidManifest.xml') {
+      const permissions = androidAppPermissions(app)
+      if (permissions.size || app.android?.blockedPermissions?.length) {
+        const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
+        if (!rendered.includes(anchor)) {
+          const feature = app.imagePicker?.camera !== undefined || app.speech !== undefined
+            ? 'the camera or microphone permission'
+            : app.notifications !== undefined ? 'notification permissions' : 'permissions'
+          throw new Error(
+            `[vxrn] cannot stamp ${feature}: expected the INTERNET permission in app/src/main/AndroidManifest.xml`
+          )
+        }
+        const blocked = new Set((app.android?.blockedPermissions ?? []).map((name) =>
+          name.includes('.') ? name : `android.permission.${name}`
+        ))
+        const lines = [
+          ...[...permissions].filter(([name]) => !blocked.has(name)).map(([name, maxSdk]) =>
+            `    <uses-permission android:name="${name}"${maxSdk === undefined ? '' : ` android:maxSdkVersion="${maxSdk}"`} />`
+          ),
+          ...(app.android?.blockedPermissions ?? []).map((name) =>
+            `    <uses-permission android:name="${name.includes('.') ? name : `android.permission.${name}`}" tools:node="remove" />`
+          ),
+        ]
+        rendered = rendered.replace(anchor, `${anchor}\n${lines.join('\n')}`)
+        if (app.android?.blockedPermissions?.length && !rendered.includes('xmlns:tools=')) {
+          rendered = rendered.replace(
+            'xmlns:android="http://schemas.android.com/apk/res/android"',
+            'xmlns:android="http://schemas.android.com/apk/res/android"\n    xmlns:tools="http://schemas.android.com/tools"'
+          )
+        }
       }
       if (app.speech !== undefined) {
-        // package visibility (android 11+) hides the recognition service
-        // from SpeechRecognizer.isRecognitionAvailable without the query
-        stamps.push(
-          '    <uses-permission android:name="android.permission.RECORD_AUDIO" />',
-          '    <queries>\n      <intent>\n        <action android:name="android.speech.RecognitionService" />\n      </intent>\n    </queries>'
-        )
+        // android 11+ hides recognition services without this query.
+        const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
+        rendered = rendered.replace(anchor, `${anchor}\n    <queries>\n      <intent>\n        <action android:name="android.speech.RecognitionService" />\n      </intent>\n    </queries>`)
       }
-      rendered = rendered.replace(anchor, `${anchor}\n${stamps.join('\n')}`)
-    }
-    if (
-      platform === 'android' &&
-      relativePath === 'app/src/main/AndroidManifest.xml' &&
-      app.location !== undefined
-    ) {
-      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
-      if (!rendered.includes(anchor)) {
-        throw new Error(
-          '[vxrn] cannot stamp location permissions: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
-        )
-      }
-      const stamps = [
-        '    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />',
-        '    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />',
-      ]
-      if (app.location.background) {
-        stamps.push(
-          '    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />'
-        )
-      }
-      rendered = rendered.replace(anchor, `${anchor}\n${stamps.join('\n')}`)
-    }
-    if (
-      platform === 'android' &&
-      relativePath === 'app/src/main/AndroidManifest.xml' &&
-      app.pedometer !== undefined
-    ) {
-      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
-      if (!rendered.includes(anchor)) {
-        throw new Error(
-          '[vxrn] cannot stamp the pedometer permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
-        )
-      }
-      rendered = rendered.replace(
-        anchor,
-        `${anchor}\n    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />`
-      )
-    }
-    if (
-      platform === 'android' &&
-      relativePath === 'app/src/main/AndroidManifest.xml' &&
-      app.brightness === true
-    ) {
-      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
-      if (!rendered.includes(anchor)) {
-        throw new Error(
-          '[vxrn] cannot stamp the brightness permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
-        )
-      }
-      // a special app access grant: the user turns it on in settings, and
-      // Settings.System.canWrite stays false for an app that never declared it.
-      rendered = rendered.replace(
-        anchor,
-        `${anchor}\n    <uses-permission android:name="android.permission.WRITE_SETTINGS" />`
-      )
     }
     if (
       platform === 'android' &&
@@ -2346,20 +2303,6 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       if (!rendered.includes(anchor)) {
         throw new Error(
           '[vxrn] cannot stamp notification permissions: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
-        )
-      }
-      rendered = rendered.replace(
-        anchor,
-        [
-          anchor,
-          ...notificationsHost.androidPermissions.map(
-            (permission) => `    <uses-permission android:name="${permission}" />`
-          ),
-        ].join('\n')
-      )
-      if (!rendered.includes(notificationsHost.androidPermissions[0])) {
-        throw new Error(
-          '[vxrn] failed to stamp notification permissions into app manifest'
         )
       }
       // the alarm and boot receiver lives in the app manifest, never the
@@ -2413,56 +2356,6 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         throw new Error(
           '[vxrn] cannot stamp media permissions: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
         )
-      }
-      const stamps: string[] = []
-      if (
-        app.audio?.microphone !== undefined &&
-        !rendered.includes('android.permission.RECORD_AUDIO')
-      ) {
-        stamps.push('    <uses-permission android:name="android.permission.RECORD_AUDIO" />')
-      }
-      if (app.photoLibrary?.readWrite !== undefined) {
-        stamps.push(
-          '    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />',
-          '    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />',
-          '    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />'
-        )
-      }
-      if (app.photoLibrary?.addOnly !== undefined) {
-        // no install-time permission past 28; the meta-data below is the
-        // declaration the Kotlin add check reads.
-        stamps.push(
-          '    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />'
-        )
-      }
-      if (app.contacts !== undefined) {
-        stamps.push(
-          '    <uses-permission android:name="android.permission.READ_CONTACTS" />',
-          '    <uses-permission android:name="android.permission.WRITE_CONTACTS" />'
-        )
-      }
-      if (app.calendar?.usage !== undefined) {
-        stamps.push(
-          '    <uses-permission android:name="android.permission.READ_CALENDAR" />',
-          '    <uses-permission android:name="android.permission.WRITE_CALENDAR" />'
-        )
-      }
-      if (app.calendar?.remindersUsage !== undefined) {
-        if (!rendered.includes('android.permission.POST_NOTIFICATIONS')) {
-          stamps.push('    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />')
-        }
-        if (!rendered.includes('android.permission.RECEIVE_BOOT_COMPLETED')) {
-          stamps.push('    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />')
-        }
-      }
-      if (app.audio?.background === true) {
-        stamps.push(
-          '    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />',
-          '    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />'
-        )
-      }
-      if (stamps.length) {
-        rendered = rendered.replace(anchor, `${anchor}\n${stamps.join('\n')}`)
       }
       // config markers the Kotlin manifest checks read: add-only has no
       // permission past 28, and background playback gates the service.
@@ -2624,37 +2517,6 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
           ? 'parent="Theme.AppCompat.Light.NoActionBar"'
           : 'parent="Theme.AppCompat.NoActionBar"'
       )
-    }
-    if (
-      platform === 'android' &&
-      relativePath === 'app/src/main/AndroidManifest.xml' &&
-      (app.android?.permissions?.length || app.android?.blockedPermissions?.length)
-    ) {
-      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
-      if (!rendered.includes(anchor)) {
-        throw new Error(
-          '[vxrn] cannot stamp permissions: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
-        )
-      }
-      // a bare name is an android.permission, as expo reads it.
-      const permissionName = (name: string) =>
-        name.includes('.') ? name : `android.permission.${name}`
-      const lines = [
-        ...(app.android?.permissions ?? []).map(
-          (name) => `    <uses-permission android:name="${permissionName(name)}" />`
-        ),
-        ...(app.android?.blockedPermissions ?? []).map(
-          (name) =>
-            `    <uses-permission android:name="${permissionName(name)}" tools:node="remove" />`
-        ),
-      ]
-      rendered = rendered.replace(anchor, `${anchor}\n${lines.join('\n')}`)
-      if (app.android?.blockedPermissions?.length && !rendered.includes('xmlns:tools=')) {
-        rendered = rendered.replace(
-          'xmlns:android="http://schemas.android.com/apk/res/android"',
-          'xmlns:android="http://schemas.android.com/apk/res/android"\n    xmlns:tools="http://schemas.android.com/tools"'
-        )
-      }
     }
     if (
       platform === 'android' &&
