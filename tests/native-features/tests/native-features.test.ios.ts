@@ -772,6 +772,7 @@ describe('one native integration tests', () => {
     })
     await (await waitForElement(driver, 'derived-reset')).click()
     await driver.waitUntil(async () =>
+      (await (await waitForElement(driver, 'derived-image-identity')).getText()) === 'Image identity: 0' &&
       (await (await waitForElement(driver, 'derived-location-actions')).getText()) === 'Location actions: 0' &&
       (await (await waitForElement(driver, 'derived-shortcut-actions')).getText()) === 'Shortcuts actions: 0',
       { timeout: 5000, timeoutMsg: 'derived fixture did not reset its action counts' }
