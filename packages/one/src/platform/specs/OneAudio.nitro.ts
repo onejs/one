@@ -15,8 +15,9 @@ export interface AudioPlaybackStatus {
 // with either field set, play prepares the item and seeks before any sound,
 // resolving once it is ready at the position.
 export interface AudioPlayOptions {
-  positionMs?: number
+  // keep paused first to avoid a Swift C++ interop padding mismatch on iOS.
   paused?: boolean
+  positionMs?: number
 }
 
 export interface AudioRecordingStatus {

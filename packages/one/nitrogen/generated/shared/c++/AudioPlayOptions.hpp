@@ -39,12 +39,12 @@ namespace margelo::nitro::one {
    */
   struct AudioPlayOptions final {
   public:
-    std::optional<double> positionMs     SWIFT_PRIVATE;
     std::optional<bool> paused     SWIFT_PRIVATE;
+    std::optional<double> positionMs     SWIFT_PRIVATE;
 
   public:
     AudioPlayOptions() = default;
-    explicit AudioPlayOptions(std::optional<double> positionMs, std::optional<bool> paused): positionMs(positionMs), paused(paused) {}
+    explicit AudioPlayOptions(std::optional<bool> paused, std::optional<double> positionMs): paused(paused), positionMs(positionMs) {}
 
   public:
     friend bool operator==(const AudioPlayOptions& lhs, const AudioPlayOptions& rhs) = default;
@@ -60,14 +60,14 @@ namespace margelo::nitro {
     static inline margelo::nitro::one::AudioPlayOptions fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return margelo::nitro::one::AudioPlayOptions(
-        JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "positionMs"))),
-        JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "paused")))
+        JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "paused"))),
+        JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "positionMs")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::AudioPlayOptions& arg) {
       jsi::Object obj(runtime);
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "positionMs"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.positionMs));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "paused"), JSIConverter<std::optional<bool>>::toJSI(runtime, arg.paused));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "positionMs"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.positionMs));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -78,8 +78,8 @@ namespace margelo::nitro {
       if (!nitro::isPlainObject(runtime, obj)) {
         return false;
       }
-      if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "positionMs")))) return false;
       if (!JSIConverter<std::optional<bool>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "paused")))) return false;
+      if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "positionMs")))) return false;
       return true;
     }
   };

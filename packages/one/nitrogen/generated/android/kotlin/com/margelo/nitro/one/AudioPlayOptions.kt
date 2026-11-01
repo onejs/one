@@ -20,24 +20,24 @@ import java.util.Objects
 data class AudioPlayOptions(
   @DoNotStrip
   @Keep
-  val positionMs: Double?,
+  val paused: Boolean?,
   @DoNotStrip
   @Keep
-  val paused: Boolean?
+  val positionMs: Double?
 ) {
   /* primary constructor */
 
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
     if (other !is AudioPlayOptions) return false
-    return Objects.deepEquals(this.positionMs, other.positionMs)
-      && Objects.deepEquals(this.paused, other.paused)
+    return Objects.deepEquals(this.paused, other.paused)
+      && Objects.deepEquals(this.positionMs, other.positionMs)
   }
 
   override fun hashCode(): Int {
     return arrayOf<Any?>(
-      positionMs,
-      paused
+      paused,
+      positionMs
     ).contentDeepHashCode()
   }
 
@@ -49,8 +49,8 @@ data class AudioPlayOptions(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(positionMs: Double?, paused: Boolean?): AudioPlayOptions {
-      return AudioPlayOptions(positionMs, paused)
+    private fun fromCpp(paused: Boolean?, positionMs: Double?): AudioPlayOptions {
+      return AudioPlayOptions(paused, positionMs)
     }
   }
 }
