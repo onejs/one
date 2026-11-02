@@ -1,7 +1,7 @@
 import type { NavigationState } from '@react-navigation/core'
 import { StackActions } from '@react-navigation/native'
 import type { OneRouter } from '../../interfaces/router'
-import { matchDynamicName, matchGroupName } from '../matchers'
+import { changesDynamicRoute, matchGroupName } from '../matchers'
 import { getNavigateAction } from './getNavigateAction'
 
 export function getNativeStackReplaceAction(
@@ -20,11 +20,9 @@ export function getNativeStackReplaceAction(
       return null
     }
 
-    const dynamicMatch = matchDynamicName(targetRoute.name)
     const changesDynamicScreen =
       currentRoute.name === targetRoute.name &&
-      dynamicMatch &&
-      currentRoute.params?.[dynamicMatch.name] !== targetRoute.params?.[dynamicMatch.name]
+      changesDynamicRoute(targetRoute.name, currentRoute.params, targetRoute.params)
 
     // a new dynamic screen instance can own a nested navigator of its own.
     if (!currentRoute.state || !targetRoute.state || changesDynamicScreen) {
