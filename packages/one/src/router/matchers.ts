@@ -20,6 +20,17 @@ export function matchDynamicName(name: string): DynamicNameMatch | undefined {
   }
 }
 
+export function changesDynamicRoute(
+  name: string,
+  current: Record<string, unknown> | undefined,
+  target: Record<string, unknown> | undefined
+): boolean {
+  return name.split('/').some((segment) => {
+    const match = matchDynamicName(segment)
+    return match != null && current?.[match.name] !== target?.[match.name]
+  })
+}
+
 /**
  * Match a route pattern against a URL path, segment-by-segment, as a prefix.
  *
