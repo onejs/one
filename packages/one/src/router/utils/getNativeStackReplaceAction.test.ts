@@ -6,7 +6,7 @@ describe('native stack replace', () => {
   it('replaces a nested dynamic screen without losing the screen beneath it', () => {
     const state = {
       stale: false as const,
-      type: 'stack',
+      type: 'stack' as const,
       key: 'hymn-stack',
       index: 1,
       routeNames: ['index', 'hymns/[number]'],
