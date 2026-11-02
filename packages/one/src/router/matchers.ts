@@ -22,12 +22,14 @@ export function matchDynamicName(name: string): DynamicNameMatch | undefined {
 
 export function changesDynamicRoute(
   name: string,
-  current: Record<string, unknown> | undefined,
-  target: Record<string, unknown> | undefined
+  current: object | undefined,
+  target: object | undefined
 ): boolean {
+  const currentParams = current as Record<string, unknown> | undefined
+  const targetParams = target as Record<string, unknown> | undefined
   return name.split('/').some((segment) => {
     const match = matchDynamicName(segment)
-    return match != null && current?.[match.name] !== target?.[match.name]
+    return match != null && currentParams?.[match.name] !== targetParams?.[match.name]
   })
 }
 
