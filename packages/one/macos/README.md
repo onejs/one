@@ -168,3 +168,26 @@ cursor.
 The segmented control's optional `controlRole` is `automatic` (the default), `tabs`, or
 `valueSelection`. On macOS 27 and later it sets AppKit's matching role. Older
 systems retain the existing rounded appearance and single-selection behavior.
+
+## Materials and Liquid Glass
+
+`One.macOS.Material` draws a native system material behind a region. `material`
+is `sidebar` (the default), `content`, `headerView`, `menu`, `underWindow`,
+`window`, `glass` or `glassClear`. `glass` and `glassClear` are Liquid Glass
+(`NSGlassEffectView`, macOS 26 and later) and fall back to the sidebar material
+on older systems. `blending` is `behindWindow` (blur what is behind the window,
+the default) or `withinWindow`. `cornerRadius` rounds the shape.
+
+It has no children and takes no pointer input. Place it absolutely, before the
+content it backs, so the content draws over it:
+
+```tsx
+<View style={{ width: 280 }}>
+  <One.macOS.Material
+    material="glass"
+    cornerRadius={20}
+    style={{ position: 'absolute', top: 8, left: 8, right: 8, bottom: 8 }}
+  />
+  <SessionList />
+</View>
+```
