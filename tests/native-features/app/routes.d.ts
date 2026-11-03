@@ -23,6 +23,7 @@ declare module 'one' {
         | `/menu-test`
         | `/one-native`
         | `/one-native-accessibility`
+        | `/one-native-adaptive`
         | `/one-native-android`
         | `/one-native-android-badges`
         | `/one-native-android-cards`
@@ -34,6 +35,7 @@ declare module 'one' {
         | `/one-native-android-inputs`
         | `/one-native-android-list-items`
         | `/one-native-android-loading`
+        | `/one-native-android-picker-reference`
         | `/one-native-android-pickers`
         | `/one-native-android-progress`
         | `/one-native-android-segmented`
@@ -150,6 +152,7 @@ declare module 'one' {
         | `/one-native-view-that-fits`
         | `/one-native-web-photos`
         | `/one-native-widgets`
+        | `/one-ui-icon`
         | `/one-ui-pager`
         | `/one-ui-text-input`
         | `/split-view-test`
