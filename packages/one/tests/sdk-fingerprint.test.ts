@@ -39,6 +39,11 @@ function buildBundle(outdir: string): string {
 }
 
 describe('sdk generator fingerprint', () => {
+  it('matches the committed runtime facades', () => {
+    const manifest = JSON.parse(readFileSync(join(pkgRoot, 'ios-bindings/manifest.json'), 'utf8'))
+    expect(manifest.generation).toBe(generatorFingerprint().slice(0, 16))
+  })
+
   it('is a stable full sha256', () => {
     const first = generatorFingerprint()
     expect(first).toMatch(/^[0-9a-f]{64}$/)
