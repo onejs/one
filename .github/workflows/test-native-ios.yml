@@ -40,6 +40,7 @@ on:
       - 'packages/one/cpp/**'
       - 'packages/one/nitrogen/**'
       - 'packages/one/codegen/**'
+      - 'packages/one/ios-bindings/**'
       - 'packages/one/schema.json'
       - 'packages/one/src/platform/**'
       - 'packages/one/One.podspec'
