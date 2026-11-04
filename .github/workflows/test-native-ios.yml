@@ -359,7 +359,7 @@ jobs:
         run: bun run test-ios:dev --reporter=verbose --bail=1
 
       - name: Capture native fixture failure diagnostics
-        if: ${{ failure() }}
+        if: ${{ failure() || cancelled() }}
         shell: bash
         env:
           SIMULATOR_UDID: ${{ steps.setup-ios-ui-tests.outputs.simulator_udid }}
