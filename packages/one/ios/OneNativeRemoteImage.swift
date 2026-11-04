@@ -34,6 +34,10 @@ final class OneNativeRemoteImageLoader: ObservableObject {
   }
 }
 
+// a clear image holds the bar item's place while the bytes load, so the bar takes the
+// item as an image from its first frame and only its pixels change when the load lands.
+private let loadingImage = UIGraphicsImageRenderer(size: CGSize(width: 1, height: 1)).image { _ in }
+
 // fills the frame it is given, like a React Native Image's default cover resize mode. it
 // keeps the image's own colors where a bar would template it, unless it is drawn as a
 // template for the bar to tint.
@@ -47,11 +51,7 @@ struct OneNativeRemoteImage: View {
   }
 
   var body: some View {
-    if let image = loader.image {
-      Image(uiImage: image).renderingMode(template ? .template : .original).resizable()
-        .scaledToFill()
-    } else {
-      Color.clear
-    }
+    Image(uiImage: loader.image ?? loadingImage)
+      .renderingMode(template ? .template : .original).resizable().scaledToFill()
   }
 }
