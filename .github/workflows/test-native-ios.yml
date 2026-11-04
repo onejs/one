@@ -360,6 +360,7 @@ jobs:
 
       - name: Capture native fixture failure diagnostics
         if: ${{ failure() || cancelled() }}
+        timeout-minutes: 3
         shell: bash
         env:
           SIMULATOR_UDID: ${{ steps.setup-ios-ui-tests.outputs.simulator_udid }}
@@ -404,10 +405,10 @@ jobs:
               'host-processes.txt': ['ps', '-axo', 'pid,ppid,state,comm'],
               # the app's own log keeps its javascript warnings, such as why the
               # metro socket closed, which never reach the dev server once it has.
-              'app-log.txt': ['xcrun', 'simctl', 'spawn', os.environ.get('SIMULATOR_UDID') or 'booted', 'log', 'show', '--last', '60m', '--style', 'compact', '--info', '--predicate', 'process == "NativeFeatureTests"'],
+              'app-log.txt': ['xcrun', 'simctl', 'spawn', udid, 'log', 'show', '--last', '60m', '--style', 'compact', '--info', '--predicate', 'process == "NativeFeatureTests"'],
               # the processes that launch other apps, for a system app such as
               # shortcuts that a native link opens late or never.
-              'system-launch-log.txt': ['xcrun', 'simctl', 'spawn', os.environ.get('SIMULATOR_UDID') or 'booted', 'log', 'show', '--last', '60m', '--style', 'compact', '--predicate', 'process IN {"SpringBoard", "runningboardd", "lsd", "Shortcuts"} OR subsystem == "com.apple.launchservices"'],
+              'system-launch-log.txt': ['xcrun', 'simctl', 'spawn', udid, 'log', 'show', '--last', '60m', '--style', 'compact', '--predicate', 'process IN {"SpringBoard", "runningboardd", "lsd", "Shortcuts"} OR subsystem == "com.apple.launchservices"'],
           }
           commands.update({
               'xcode-selection.txt': ['xcode-select', '-p'],
@@ -422,7 +423,10 @@ jobs:
               header = f'command={json.dumps(command)}\n'
               # never attribute another booted device's automation evidence to
               # this job when setup failed before publishing its selected udid.
-              if name.startswith('simulator-') and name not in ('simulator-runtimes.txt', 'simulator-devices.txt') and not udid:
+              if not udid and name in {
+                  'simulator-automation-log.txt', 'simulator-version.txt',
+                  'app-log.txt', 'system-launch-log.txt',
+              }:
                   (root / name).write_text(header + 'skipped: selected simulator udid unavailable\n')
                   continue
               try:
