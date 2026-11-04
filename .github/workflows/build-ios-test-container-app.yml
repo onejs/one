@@ -160,8 +160,8 @@ jobs:
         env:
           # include all files that affect native code + the workflow itself (for env var changes).
           # one is a local path pod: Podfile.lock records only its podspec checksum, so its
-          # native sources, nitro output and fabric specs have to be hashed directly.
-          BUILD_HASH: ${{ hashFiles(format('{0}/ios/Podfile.lock', env.test_container_app_path), format('{0}/app.json', env.test_container_app_path), 'packages/vxrn/native-project-patches.cjs', 'packages/vxrn/src/exports/prebuildWithoutExpo.ts', 'packages/vxrn/src/patches/builtInDepPatches.ts', 'packages/one/One.podspec', 'packages/one/nitro.json', 'packages/one/ios/**', 'packages/one/cpp/**', 'packages/one/nitrogen/generated/**', 'packages/one/src/platform/specs/**', '.github/workflows/build-ios-test-container-app.yml') }}
+          # native sources, sdk generation, nitro output and fabric specs have to be hashed directly.
+          BUILD_HASH: ${{ hashFiles(format('{0}/ios/Podfile.lock', env.test_container_app_path), format('{0}/app.json', env.test_container_app_path), 'packages/vxrn/native-project-patches.cjs', 'packages/vxrn/src/exports/prebuildWithoutExpo.ts', 'packages/vxrn/src/patches/builtInDepPatches.ts', 'packages/one/One.podspec', 'packages/one/nitro.json', 'packages/one/ios/**', 'packages/one/cpp/**', 'packages/one/nitrogen/generated/**', 'packages/one/src/platform/specs/**', 'packages/one/codegen/sdk/**', 'packages/one/ios-bindings/**', 'packages/one/src/platform/sdk/wire.ts', 'packages/one/schema.json', '.github/workflows/build-ios-test-container-app.yml') }}
         run: |
           if [ -z "$BUILD_HASH" ]; then
             echo '[ERROR] Failed to calculate build hash.'
