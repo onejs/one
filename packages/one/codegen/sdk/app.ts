@@ -100,9 +100,15 @@ function openCache() {
   const facadeFile = (module: string) => join(cache, `${module}.ts`)
   const manifest = (module: string) => join(cache, `OneSDK_${module}.json`)
 
+  // the extractor's error for each module it could not load, so a module
+  // without a graph reports why instead of only that its graph is missing
+  const extractionErrors = new Map<string, string>()
   let prepared: Promise<ReturnType<typeof prepare>> | undefined
   const ready = () =>
-    (prepared ??= extractGraphs([...known]).then(() => prepare()))
+    (prepared ??= extractGraphs([...known]).then(({ failed }) => {
+      for (const { module, error } of failed) extractionErrors.set(module, error)
+      return prepare()
+    }))
 
   const generate = async (module: string, log: (message: string) => void): Promise<Cached> => {
     if (!known.has(module)) {
@@ -111,7 +117,10 @@ function openCache() {
     if (!existsSync(manifest(module))) {
       log(`[one] generating iOS bindings for ${module}`)
       const result = await generateModule(module, await ready(), cache, { table: tableName(module) })
-      if (!result) throw new Error(`[one] no symbol graph for ${module}`)
+      if (!result) {
+        const error = extractionErrors.get(module)
+        throw new Error(`[one] no symbol graph for ${module}${error ? `: swift-symbolgraph-extract failed: ${error}` : ''}`)
+      }
       if (result.errors.length) throw new Error(`[one] ${module} bindings do not compile:\n${result.errors.join('\n')}`)
       const { entries, skipped } = result.output
       const { bridge } = await ready()
