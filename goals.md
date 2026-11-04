@@ -129,7 +129,9 @@ The approved scope is options a and c in Contrast's
 import capability modules directly. Native SDK output strips comments and types
 and shares framework call prefixes while retaining native class/member syntax,
 eager wrapper registration, descriptors and error timing. Runtime and native
-SDK tables remain on their original coherent generation 3864e7f38681b875.
+SDK tables used generation `3864e7f38681b875` for the comparison below. The current
+facades use `532ffa06eebd2aad` after the diagnostic-only generator refresh, with
+identical signatures and callable IDs.
 
 The Contrast lead selected this class route after comparing both implementations.
 In five production-shaped intercepted-artifact pairs, it saved 2,423,686 SDK bytes

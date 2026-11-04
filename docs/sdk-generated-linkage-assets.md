@@ -1,10 +1,20 @@
 # Generated SDK linkage assets
 
+The current manifest and runtime facades use generation `532ffa06eebd2aad`.
+PR #1091 changed extractor error reporting in `app.ts`, which changed the
+generator fingerprint without changing emitted signatures or callable IDs.
+The identity-only refresh leaves all 290 facades byte-identical after normalizing
+their table generation suffixes. Native qualification below records the prior
+generation; this refresh compiled the SDK bundle and facades without a new native
+application run.
+
+## iOS 27.1 regeneration
+
 The iOS 27.1 assets were regenerated with reviewed source
 `087704d2cabf9082f1dd4f7dd8b350c5a95adc50`, tree
 `2e6b05c055623214f9147b898a6ddf6701618303`. Its full generator fingerprint is
 `3864e7f38681b8753066dde1cf66dca12a9c74b04c0538f49ff3b586cdfc963e`.
-The manifest, runtime facades and native table names use generation
+That regeneration's manifest, runtime facades and native table names used generation
 `3864e7f38681b875`.
 
 The supported `bun run generate:ios-types` completed all 290 frameworks in
@@ -80,7 +90,7 @@ whole-family pin remain separate delivery checks.
 ## Historical fixture boundaries
 
 The CI owner reported these failures from earlier source generations. They are
-separate from the locally qualified `3864e7f38681b875` candidate:
+separate from the previously qualified `3864e7f38681b875` candidate:
 
 | Source | CI run | Committed UIKit namespace | Reported boundary |
 | --- | --- | --- | --- |
