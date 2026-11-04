@@ -1773,9 +1773,11 @@ describe('wrapNativeBundleModuleScope', () => {
     const out = wrapNativeBundleModuleScope(input)
 
     expect(out.indexOf('import { Host }')).toBeLessThan(out.indexOf('(function() {'))
-    const { parseSync } = await import('oxc-parser')
-    const { errors } = parseSync('native-bundle.js', out, { lang: 'js' })
-    expect(errors).toEqual([])
+    // the served bundle inventory parses with acorn under the module goal;
+    // these are its exact options, so a nested import fails here the same
+    // way it failed downstream.
+    const { parse } = await import('acorn')
+    expect(() => parse(out, { ecmaVersion: 'latest', sourceType: 'module' })).not.toThrow()
     // every module keeps its mapped line, as without imports
     const lineOf = (code: string) =>
       code.split('\n').indexOf('var fetch_hot, Headers;')
