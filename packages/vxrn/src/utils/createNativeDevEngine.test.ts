@@ -1760,6 +1760,27 @@ describe('wrapNativeBundleModuleScope', () => {
   it('fails the build when the prelude marker is missing', () => {
     expect(() => wrapNativeBundleModuleScope('var x = 1;\n')).toThrow('script scope')
   })
+
+  it('keeps external imports at the top level outside the scope', async () => {
+    // rolldown leaves an unresolvable specifier as an external ESM import.
+    // imports are only valid at the top level, so the scope opener goes after
+    // them; a host rewrites them to requires before the script runs.
+    const prelude = `globalThis.global = globalThis;\n${NATIVE_MODULE_SCOPE_MARKER}\n`
+    const imports = `import { Host } from "@expo/ui/swift-ui";\nimport { onSubmit } from "@expo/ui/swift-ui/modifiers";\n`
+    const body = `var fetch_hot, Headers;\nglobalThis.__rolldown_runtime__ = {};\n`
+    const input = prelude + imports + body
+
+    const out = wrapNativeBundleModuleScope(input)
+
+    expect(out.indexOf('import { Host }')).toBeLessThan(out.indexOf('(function() {'))
+    const { parseSync } = await import('oxc-parser')
+    const { errors } = parseSync('native-bundle.js', out, { lang: 'js' })
+    expect(errors).toEqual([])
+    // every module keeps its mapped line, as without imports
+    const lineOf = (code: string) =>
+      code.split('\n').indexOf('var fetch_hot, Headers;')
+    expect(lineOf(out)).toBe(lineOf(input))
+  })
 })
 
 describe('getHermesSWCIncludes', () => {

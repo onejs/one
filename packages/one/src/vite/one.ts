@@ -981,13 +981,12 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                   // native.app binaries have no expo runtime, even when the
                   // workspace hoists an expo package used by another app.
                   if (/^(?:expo(?:-[^/]+)?|@expo\/[^/]+)(?:\/|$)/.test(source)) {
-                    // macos and linux must resolve static imports so unsupported packages fail
-                    // during bundling. optional require calls still use the runtime guard.
-                    if (
-                      (platform === 'macos' || platform === 'linux') &&
-                      options.kind !== 'require-call'
-                    )
-                      return
+                    // only optional require calls use the runtime guard. a static
+                    // import must resolve and bundle: no native host loads a bare
+                    // specifier, and an external ESM import nested in the dev scope
+                    // wrapper is not valid JS. resolving also fails unsupported
+                    // packages at bundle time instead of at runtime.
+                    if (options.kind !== 'require-call') return
                     return { id: source, external: true }
                   }
                 },
