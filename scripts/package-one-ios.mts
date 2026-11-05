@@ -85,7 +85,10 @@ for (const sdk of ['iphoneos', 'iphonesimulator']) {
   const modules = existsSync(productFramework)
     ? join(productFramework, 'Modules/One.swiftmodule')
     : join(products, 'One.swiftmodule')
-  cpSync(modules, join(framework, 'Modules/One.swiftmodule'), { recursive: true })
+  cpSync(modules, join(framework, 'Modules/One.swiftmodule'), {
+    recursive: true,
+    dereference: true,
+  })
   // Fabric's app dependency provider imports component headers which CocoaPods
   // treats as private in source builds. ship these along with Nitro's headers.
   const copyHeaders = (directory: string) => {

@@ -24,7 +24,7 @@ import { createRequire } from 'node:module'
 import { dirname, join, resolve } from 'node:path'
 import { Readable } from 'node:stream'
 import { pipeline } from 'node:stream/promises'
-import { fileURLToPath, pathToFileURL } from 'node:url'
+import { fileURLToPath } from 'node:url'
 
 export type Identity = {
   format: 1
@@ -33,6 +33,7 @@ export type Identity = {
   xcode: string
   swift: string
   reactNativePrebuilt: { core: boolean; dependencies: boolean }
+  workletsFlags: Array<[string, string]>
   releaseGroups: string[]
 }
 type Archive = { file: string; sha256: string }
@@ -88,8 +89,20 @@ export function identity(ios: string): Identity {
         'React-Core-prebuilt.podspec',
       ],
     ],
-    ['react-native-nitro-modules', ['ios', 'cpp', 'NitroModules.podspec']],
-    ['react-native-worklets', ['apple', 'Common', 'RNWorklets.podspec']],
+    [
+      'react-native-nitro-modules',
+      ['ios', 'cpp', 'NitroModules.podspec', 'nitro_pod_utils.rb'],
+    ],
+    [
+      'react-native-worklets',
+      [
+        'apple',
+        'Common',
+        'RNWorklets.podspec',
+        'scripts',
+        'src/featureFlags/staticFlags.json',
+      ],
+    ],
   ] satisfies Array<[string, string[]]>) {
     const manifest = require.resolve(`${name}/package.json`)
     dependencies[name] = digestTree(dirname(manifest), ['package.json', ...paths])
@@ -98,6 +111,16 @@ export function identity(ios: string): Identity {
     JSON.parse(readFileSync(join(one, 'ios-link-set.json'), 'utf8')).groups
   ).sort()
   const linkSet = join(ios, 'one-link-set.json')
+  const app = JSON.parse(readFileSync(join(ios, '../package.json'), 'utf8'))
+  const workletsFlags = Object.entries(app.worklets?.staticFeatureFlags ?? {})
+    .map(([name, value]): [string, string] => {
+      assert(
+        ['boolean', 'string', 'number'].includes(typeof value),
+        `invalid Worklets flag: ${name}`
+      )
+      return [name, String(value)]
+    })
+    .sort(([a], [b]) => a.localeCompare(b))
   const groups: unknown = existsSync(linkSet)
     ? JSON.parse(readFileSync(linkSet, 'utf8')).groups
     : catalog
@@ -128,6 +151,7 @@ export function identity(ios: string): Identity {
       core: process.env.RCT_USE_PREBUILT_RNCORE !== '0',
       dependencies: process.env.RCT_USE_RN_DEP !== '0',
     },
+    workletsFlags,
     releaseGroups: [...new Set<string>(groups)].sort(),
   }
 }
@@ -234,7 +258,7 @@ export async function install(
             download.ok && download.body,
             `One iOS ${configuration} download failed: HTTP ${download.status}`
           )
-          await pipeline(Readable.fromWeb(download.body), createWriteStream(archive))
+          await pipeline(Readable.from(download.body), createWriteStream(archive))
         }
         assert.equal(
           await sha256(archive),
@@ -324,7 +348,7 @@ export function select(root: string, destination: string): void {
   })
 }
 
-if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {
+if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const [command, argument] = process.argv.slice(2)
   assert(argument, 'expected an iOS project or binary destination')
   if (command === 'resolve') console.log(JSON.stringify(await install(resolve(argument))))

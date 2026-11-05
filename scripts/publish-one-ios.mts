@@ -27,7 +27,8 @@ if (!process.argv.includes('--publish')) process.exit(0)
 const tag = `one-ios-${manifest.key}`
 // a native identity is immutable; rebuilding it never replaces existing assets.
 const existing = await fetch(
-  `https://api.github.com/repos/onejs/one/releases/tags/${tag}`
+  `https://api.github.com/repos/onejs/one/releases/tags/${tag}`,
+  { headers: { Authorization: `Bearer ${process.env.GH_TOKEN!}` } }
 )
 assert(
   existing.ok || existing.status === 404,
@@ -45,6 +46,7 @@ if (existing.status === 404) {
       '--target',
       process.env.GITHUB_SHA!,
       '--prerelease',
+      '--draft',
       '--latest=false',
       '--title',
       `One iOS binaries ${manifest.key.slice(0, 12)}`,
@@ -56,4 +58,36 @@ if (existing.status === 404) {
     ],
     { stdio: 'inherit' }
   )
+} else if ((await existing.json()).draft) {
+  execFileSync(
+    'gh',
+    [
+      'release',
+      'upload',
+      tag,
+      '--repo',
+      'onejs/one',
+      '--clobber',
+      file,
+      join(directory, debug.file),
+      join(directory, release.file),
+    ],
+    { stdio: 'inherit' }
+  )
+} else {
+  process.exit(0)
 }
+execFileSync(
+  'gh',
+  [
+    'release',
+    'edit',
+    tag,
+    '--repo',
+    'onejs/one',
+    '--draft=false',
+    '--prerelease',
+    '--latest=false',
+  ],
+  { stdio: 'inherit' }
+)

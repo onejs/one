@@ -4,8 +4,8 @@ on:
   pull_request:
     paths:
       - '.github/workflows/prebuilt-ios.yml'
-      - 'scripts/package-one-ios.ts'
-      - 'scripts/publish-one-ios.ts'
+      - 'scripts/package-one-ios.mts'
+      - 'scripts/publish-one-ios.mts'
       - 'packages/one/One.podspec'
       - 'packages/one/ios/**'
       - 'packages/one/cpp/**'
@@ -18,8 +18,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/prebuilt-ios.yml'
-      - 'scripts/package-one-ios.ts'
-      - 'scripts/publish-one-ios.ts'
+      - 'scripts/package-one-ios.mts'
+      - 'scripts/publish-one-ios.mts'
       - 'packages/one/One.podspec'
       - 'packages/one/ios/**'
       - 'packages/one/cpp/**'
@@ -60,7 +60,7 @@ jobs:
         run: USE_FRAMEWORKS=static pod install
       - name: Build and package device and simulator libraries
         run: >-
-          node scripts/package-one-ios.ts
+          node scripts/package-one-ios.mts
           --ios tests/native-features/ios
           --configuration '${{ matrix.configuration }}'
           --output '${{ runner.temp }}/one-ios'
@@ -94,7 +94,7 @@ jobs:
       - name: Publish immutable compatible native libraries
         env:
           GH_TOKEN: ${{ github.token }}
-        run: node scripts/publish-one-ios.ts '${{ runner.temp }}/one-ios' --publish
+        run: node scripts/publish-one-ios.mts '${{ runner.temp }}/one-ios' --publish
 
   validate-consumer:
     name: Build a consumer with precompiled One
@@ -120,7 +120,7 @@ jobs:
         run: rm -f tests/native-features/ios/one-link-set.json
       - name: Verify and import the produced libraries
         run: |
-          node scripts/publish-one-ios.ts '${{ runner.temp }}/one-ios'
+          node scripts/publish-one-ios.mts '${{ runner.temp }}/one-ios'
           node packages/one/ios/prebuilt.ts import tests/native-features/ios '${{ runner.temp }}/one-ios'
       - name: Install pods with a required matching binary
         working-directory: tests/native-features/ios
