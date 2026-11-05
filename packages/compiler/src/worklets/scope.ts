@@ -296,6 +296,9 @@ export function getClosureVariables(fnNode: any, globals: Set<string>): string[]
         if (node.id && node.id.name) {
           currentScope.bindings.add(node.id.name)
         }
+        if (node.decorators) {
+          for (const decorator of node.decorators) walk(decorator)
+        }
         if (node.superClass) walk(node.superClass)
         pushScope(false)
         walk(node.body)
@@ -319,11 +322,34 @@ export function getClosureVariables(fnNode: any, globals: Set<string>): string[]
         return
       }
 
-      case 'MethodDefinition': {
+      case 'MethodDefinition':
+      case 'TSAbstractMethodDefinition': {
         if (node.computed) {
           walk(node.key)
         }
+        if (node.decorators) {
+          for (const decorator of node.decorators) walk(decorator)
+        }
         walk(node.value)
+        return
+      }
+
+      case 'PropertyDefinition':
+      case 'AccessorProperty':
+      case 'TSAbstractPropertyDefinition': {
+        // a plain field name is not a value reference. without this case the
+        // default traversal captures every field name as a closure variable.
+        if (node.computed) {
+          walk(node.key)
+        }
+        if (node.decorators) {
+          for (const decorator of node.decorators) walk(decorator)
+        }
+        if (node.value) walk(node.value)
+        return
+      }
+
+      case 'TSIndexSignature': {
         return
       }
 

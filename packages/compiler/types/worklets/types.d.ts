@@ -18,4 +18,10 @@ export interface WorkletCandidate {
     parent?: any;
     isAutoWorklet: boolean;
 }
+export interface WorkletClassCandidate {
+    node: any;
+    name: string;
+    parent?: any;
+    marker: any;
+}
 //# sourceMappingURL=types.d.ts.map

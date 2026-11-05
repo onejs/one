@@ -7,10 +7,20 @@ import {
   findWorkletCandidates,
   hasDirective,
 } from './autoworklet'
+import {
+  buildClassFactoryDeclaration,
+  classFactoryName,
+  findConstructedNames,
+  findWorkletClasses,
+} from './classes'
 import { createGlobalsSet } from './globals'
 import { calculateWorkletHash } from './hash'
 import { getClosureVariables } from './scope'
-import { buildLocalFunction, serializeWorkletForUI } from './serialize'
+import {
+  buildLocalFunction,
+  serializeWorkletForUI,
+  type ClassReconstruction,
+} from './serialize'
 import type { TransformWorkletsOptions } from './types'
 
 const FUNCTION_TYPES = new Set([
@@ -124,7 +134,11 @@ export function executeWorkletTransform(
   }
 
   const initialCandidates = findWorkletCandidates(initialParse.program)
-  if (initialCandidates.length === 0) {
+  const workletClassesEnabled = !options?.disableWorkletClasses
+  const initialClasses = workletClassesEnabled
+    ? findWorkletClasses(initialParse.program)
+    : []
+  if (initialCandidates.length === 0 && initialClasses.length === 0) {
     let map: any = undefined
     if (sourceMaps) {
       const ms = new MagicString(code)
@@ -153,6 +167,48 @@ export function executeWorkletTransform(
   let currentCode = code
   const initDataDefs = new Map<string, string>()
   const passMaps: any[] = []
+
+  // marked classes become serializable factories before the worklet passes, so
+  // the factories themselves are workletized like any other candidate and a
+  // worklet capturing the class reconstructs it from the factory on the ui
+  // thread instead of capturing the raw class.
+  if (initialClasses.length > 0) {
+    const ms = new MagicString(currentCode)
+    for (const candidate of initialClasses) {
+      const factoryDecl = buildClassFactoryDeclaration(candidate, currentCode)
+      const rebound = `const ${candidate.name} = ${classFactoryName(candidate.name)}();`
+      if (candidate.parent?.type === 'ExportNamedDeclaration') {
+        ms.overwrite(
+          candidate.parent.start,
+          candidate.parent.end,
+          `${factoryDecl}\nexport ${rebound}`
+        )
+      } else if (candidate.parent?.type === 'ExportDefaultDeclaration') {
+        ms.overwrite(
+          candidate.parent.start,
+          candidate.parent.end,
+          `${factoryDecl}\n${rebound}\nexport default ${candidate.name};`
+        )
+      } else {
+        ms.overwrite(
+          candidate.node.start,
+          candidate.node.end,
+          `${factoryDecl}\n${rebound}`
+        )
+      }
+    }
+    if (sourceMaps) {
+      passMaps.push(
+        ms.generateMap({
+          source: cleanId,
+          file: cleanId,
+          hires: true,
+          includeContent: true,
+        })
+      )
+    }
+    currentCode = ms.toString()
+  }
 
   // 3. Iterative bottom-up transformation
   // In each pass, we transform all innermost candidates (candidates that contain NO other candidates in their body).
@@ -202,16 +258,33 @@ export function executeWorkletTransform(
       // `no-worklet-closure` says the worklet captures nothing, so it gets no
       // unpacker line and an empty `__closure`. it is what lets the worklets
       // runtime evaluate the serialized code with no closure to bind.
-      const closureVars = hasDirective(candidate.fnNode, 'no-worklet-closure')
+      let closureVars = hasDirective(candidate.fnNode, 'no-worklet-closure')
         ? []
         : getClosureVariables(candidate.fnNode, globals)
+      // a constructed capture is a worklet class, so the worklet carries the
+      // class factory and rebuilds the class from it on the ui thread.
+      const reconstructions: ClassReconstruction[] = []
+      if (workletClassesEnabled && closureVars.length > 0) {
+        const captured = new Set(closureVars)
+        for (const constructed of findConstructedNames(candidate.fnNode)) {
+          if (!captured.has(constructed)) continue
+          const factory = classFactoryName(constructed)
+          captured.delete(constructed)
+          captured.add(factory)
+          if (!reconstructions.some((r) => r.factory === factory)) {
+            reconstructions.push({ name: constructed, factory })
+          }
+        }
+        closureVars = [...captured].sort()
+      }
       const fnName = candidate.name
 
       const serializedCode = serializeWorkletForUI(
         candidate.fnNode,
         currentCode,
         fnName,
-        closureVars
+        closureVars,
+        reconstructions
       )
       const workletHash = calculateWorkletHash(serializedCode)
       const initDataVar = `_worklet_${workletHash}_init_data`
@@ -242,7 +315,12 @@ export function executeWorkletTransform(
       const localFnCode = buildLocalFunction(candidate.fnNode, currentCode, fnName)
       const localName = fnName || '_worklet'
       // worklets 0.13 captures values in the same order the ui function unpacks them.
-      const closureValues = closureVars.join(', ')
+      // a class factory travels as a member of its class, which the defining
+      // file attached when it built the factory.
+      const factoryOwners = new Map(reconstructions.map((r) => [r.factory, r.name]))
+      const closureValues = closureVars
+        .map((v) => (factoryOwners.has(v) ? `${factoryOwners.get(v)}.${v}` : v))
+        .join(', ')
 
       const iife = `(function () {
     var _e = [new (typeof global !== 'undefined' ? global : globalThis).Error(), 1, -27];
