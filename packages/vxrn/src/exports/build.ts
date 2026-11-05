@@ -221,13 +221,6 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
         manifest: true,
         rolldownOptions: {
           input: ['virtual:one-entry'],
-
-          output: {
-            codeSplitting: {
-              // merge tiny chunks to reduce HTTP requests and total chunk count
-              minSize: 42_000,
-            },
-          },
         },
       },
     } satisfies UserConfig)
