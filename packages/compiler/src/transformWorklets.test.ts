@@ -11,6 +11,26 @@ afterEach(() => {
   configureVXRNCompilerPlugin({ enableReanimated: false, enableNativeWorklets: false })
 })
 
+// moves a worklet into an isolated context the way the ui runtime does: every
+// captured function crosses through its serialized code only. passing a live
+// host function straight in would hide a missing factory, which is how a raw
+// superclass capture once slipped through.
+function transferToUI(value: any, seen = new Map<any, any>()): any {
+  if (typeof value !== 'function') return value
+  if (seen.has(value)) return seen.get(value)
+  if (!value.__initData?.code) {
+    throw new Error(`non-serializable captured function: ${value.name}`)
+  }
+  const ui = runInNewContext(value.__initData.code, {})
+  const receiver: any = {}
+  const rebuilt = (...args: any[]) => ui.apply(receiver, args)
+  seen.set(value, rebuilt)
+  receiver.__closure = (value.__closure ?? []).map((item: any) =>
+    transferToUI(item, seen)
+  )
+  return rebuilt
+}
+
 describe('shouldTransformWorklets', () => {
   it('returns false when enableReanimated is false', () => {
     configureVXRNCompilerPlugin({ enableReanimated: false, enableNativeWorklets: true })
@@ -952,32 +972,35 @@ export default (codegenNativeComponent<NativeProps>('FlowPicker'): HostComponent
     expect(result.code).toContain('Child__classFactory')
     const sandbox: any = {}
     runInNewContext(
-      `${result.code.replace('export var run', 'var run')}\nglobalThis.__test = { run, Child };`,
+      `${result.code.replace('export var run', 'var run')}\nglobalThis.__test = { run, Child, Base };`,
       sandbox
     )
-    const { run, Child } = sandbox.__test
+    const { run, Child, Base } = sandbox.__test
     expect(Child.Child__classFactory.__workletHash).toBeDefined()
+    // the child factory closes over the base factory, never the raw class,
+    // so the whole graph crosses to the ui thread through serialized code.
+    expect(Child.Child__classFactory.__closure).toEqual([Base.Base__classFactory])
     expect(run.__closure).toEqual([Child.Child__classFactory])
     expect(run()).toBe('base+child30')
-    const uiFn = runInNewContext(run.__initData.code, {})
-    expect(uiFn.call({ __closure: run.__closure })).toBe('base+child30')
+    expect(transferToUI(run)()).toBe('base+child30')
   })
 
-  it('honors disableWorkletClasses by capturing the raw class', async () => {
-    const code = `
+  it.each([{ disableWorkletClasses: true }, { bundleMode: true }])(
+    'honors %s by capturing the raw class',
+    async (options) => {
+      const code = `
       class Counter { __workletClass = true; value = 7; read() { return this.value } }
       globalThis.result = function read() { 'worklet'; return new Counter().read() }
     `
-    const result = await transformWorklets('/app/counter.ts', code, false, {
-      disableWorkletClasses: true,
-    })
-    expect(result.code).not.toContain('__classFactory')
-    expect(result.code).toContain('__workletClass')
-    const sandbox: any = {}
-    runInNewContext(`${result.code}\nglobalThis.__testCounter = Counter;`, sandbox)
-    expect(sandbox.result()).toBe(7)
-    expect(sandbox.result.__closure).toEqual([sandbox.__testCounter])
-  })
+      const result = await transformWorklets('/app/counter.ts', code, false, options)
+      expect(result.code).not.toContain('__classFactory')
+      expect(result.code).toContain('__workletClass')
+      const sandbox: any = {}
+      runInNewContext(`${result.code}\nglobalThis.__testCounter = Counter;`, sandbox)
+      expect(sandbox.result()).toBe(7)
+      expect(sandbox.result.__closure).toEqual([sandbox.__testCounter])
+    }
+  )
 
   it('keeps source maps working across the class factory transform', async () => {
     const code = `

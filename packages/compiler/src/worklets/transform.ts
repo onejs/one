@@ -11,6 +11,7 @@ import {
   buildClassFactoryDeclaration,
   classFactoryName,
   findConstructedNames,
+  findUnambiguousClassNames,
   findWorkletClasses,
 } from './classes'
 import { createGlobalsSet } from './globals'
@@ -134,10 +135,16 @@ export function executeWorkletTransform(
   }
 
   const initialCandidates = findWorkletCandidates(initialParse.program)
-  const workletClassesEnabled = !options?.disableWorkletClasses
+  // upstream's plugin skips class work under either flag, and this port has
+  // no bundle-mode support, so both leave classes and their captures raw.
+  const workletClassesEnabled = !options?.disableWorkletClasses && !options?.bundleMode
   const initialClasses = workletClassesEnabled
     ? findWorkletClasses(initialParse.program)
     : []
+  const resolvableClassNames =
+    initialClasses.length > 0
+      ? findUnambiguousClassNames(initialParse.program, initialClasses)
+      : new Set<string>()
   if (initialCandidates.length === 0 && initialClasses.length === 0) {
     let map: any = undefined
     if (sourceMaps) {
@@ -261,19 +268,28 @@ export function executeWorkletTransform(
       let closureVars = hasDirective(candidate.fnNode, 'no-worklet-closure')
         ? []
         : getClosureVariables(candidate.fnNode, globals)
-      // a constructed capture is a worklet class, so the worklet carries the
-      // class factory and rebuilds the class from it on the ui thread.
+      // a capture that is known to be a worklet class travels as its
+      // factory and is rebuilt from it on the ui thread, so a factory
+      // closing over its superclass stays serializable. anything else that
+      // is constructed resolves through its own file like upstream.
       const reconstructions: ClassReconstruction[] = []
       if (workletClassesEnabled && closureVars.length > 0) {
         const captured = new Set(closureVars)
-        for (const constructed of findConstructedNames(candidate.fnNode)) {
-          if (!captured.has(constructed)) continue
-          const factory = classFactoryName(constructed)
-          captured.delete(constructed)
+        const rewriteToFactory = (name: string) => {
+          if (!captured.has(name)) return
+          const factory = classFactoryName(name)
+          captured.delete(name)
           captured.add(factory)
           if (!reconstructions.some((r) => r.factory === factory)) {
-            reconstructions.push({ name: constructed, factory })
+            reconstructions.push({ name, factory })
           }
+        }
+        const knownCaptures = [...captured].filter((name) =>
+          resolvableClassNames.has(name)
+        )
+        for (const name of knownCaptures) rewriteToFactory(name)
+        for (const constructed of findConstructedNames(candidate.fnNode)) {
+          rewriteToFactory(constructed)
         }
         closureVars = [...captured].sort()
       }

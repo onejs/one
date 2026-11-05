@@ -67,6 +67,98 @@ export function classFactoryName(className: string): string {
   return `${className}${WORKLET_CLASS_FACTORY_SUFFIX}`
 }
 
+function collectPatternNames(pattern: any, count: (name: string) => void) {
+  if (!pattern || typeof pattern !== 'object') return
+  switch (pattern.type) {
+    case 'Identifier':
+      count(pattern.name)
+      return
+    case 'AssignmentPattern':
+      collectPatternNames(pattern.left, count)
+      return
+    case 'RestElement':
+      collectPatternNames(pattern.argument, count)
+      return
+    case 'ArrayPattern':
+      for (const element of pattern.elements ?? []) collectPatternNames(element, count)
+      return
+    case 'ObjectPattern':
+      for (const property of pattern.properties ?? []) {
+        if (property?.type === 'Property') collectPatternNames(property.value, count)
+        else if (property?.type === 'RestElement')
+          collectPatternNames(property.argument, count)
+      }
+      return
+    case 'TSParameterProperty':
+      collectPatternNames(pattern.parameter, count)
+      return
+  }
+}
+
+/**
+ * marked class names that are the sole value binding of that name in the file.
+ * every free reference to one necessarily resolves to the marked class, so a
+ * worklet capturing it (a superclass, a static access, an instanceof) carries
+ * the factory instead of the raw class. any other binding of the same name
+ * keeps the previous capture, since the reference may resolve to that one.
+ */
+export function findUnambiguousClassNames(
+  program: any,
+  candidates: WorkletClassCandidate[]
+): Set<string> {
+  const wanted = new Set(candidates.map((candidate) => candidate.name))
+  const counts = new Map<string, number>()
+  const count = (name: string) => {
+    if (wanted.has(name)) counts.set(name, (counts.get(name) ?? 0) + 1)
+  }
+
+  function walk(node: any) {
+    if (!node || typeof node !== 'object') return
+    if (Array.isArray(node)) {
+      for (const item of node) walk(item)
+      return
+    }
+    switch (node.type) {
+      case 'VariableDeclarator':
+        collectPatternNames(node.id, count)
+        break
+      case 'FunctionDeclaration':
+      case 'FunctionExpression':
+        if (node.id?.type === 'Identifier') count(node.id.name)
+        for (const param of node.params ?? []) collectPatternNames(param, count)
+        break
+      case 'ArrowFunctionExpression':
+        for (const param of node.params ?? []) collectPatternNames(param, count)
+        break
+      case 'ClassDeclaration':
+      case 'ClassExpression':
+        if (node.id?.type === 'Identifier') count(node.id.name)
+        break
+      case 'CatchClause':
+        collectPatternNames(node.param, count)
+        break
+      case 'ImportSpecifier':
+      case 'ImportDefaultSpecifier':
+      case 'ImportNamespaceSpecifier':
+        if (node.local?.type === 'Identifier') count(node.local.name)
+        break
+      case 'TSEnumDeclaration':
+      case 'TSModuleDeclaration':
+        if (node.id?.type === 'Identifier') count(node.id.name)
+        break
+    }
+    for (const key of Object.keys(node)) {
+      if (key === 'start' || key === 'end' || key === 'loc' || key === 'range') continue
+      walk(node[key])
+    }
+  }
+
+  walk(program)
+  return new Set(
+    candidates.filter((candidate) => counts.get(candidate.name) === 1).map((c) => c.name)
+  )
+}
+
 const ABSTRACT_MEMBER_TYPES = new Set([
   'TSAbstractMethodDefinition',
   'TSAbstractPropertyDefinition',
