@@ -160,6 +160,8 @@ execFileSync(
   'xcodebuild',
   [
     '-create-xcframework',
+    // serialized Swift modules require the exact compiler in the native identity.
+    '-allow-internal-distribution',
     '-framework',
     join(work, 'iphoneos/One.framework'),
     '-framework',
