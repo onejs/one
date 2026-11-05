@@ -133,4 +133,5 @@ jobs:
           xcodebuild -workspace NativeFeatureTests.xcworkspace -scheme NativeFeatureTests
           -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator'
           -derivedDataPath '${{ runner.temp }}/one-consumer' -jobs 2
-          -packageAuthorizationProvider netrc CODE_SIGNING_ALLOWED=NO ARCHS=arm64 build
+          -packageAuthorizationProvider netrc CODE_SIGNING_ALLOWED=NO
+          COMPILER_INDEX_STORE_ENABLE=NO ARCHS=arm64 build

@@ -72,6 +72,7 @@ for (const sdk of ['iphoneos', 'iphonesimulator']) {
         'ARCHS=arm64',
         'ONLY_ACTIVE_ARCH=YES',
         'CODE_SIGNING_ALLOWED=NO',
+        'COMPILER_INDEX_STORE_ENABLE=NO',
         `CLANG_MODULE_CACHE_PATH=${join(derived, 'ModuleCache.noindex')}`,
         'build',
       ],
