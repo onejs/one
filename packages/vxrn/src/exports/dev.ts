@@ -31,19 +31,18 @@ function processExists(pid: number): boolean {
 
 // Exit if we become orphaned (parent dies). `bun run` stays between One and
 // its launcher, so monitor the launcher's PID too instead of only Bun's PID.
+// PID 1 is a live container or machine init, not a dead parent.
 function setupOrphanDetection() {
   if (process.platform === 'win32') return
 
   const initialPpid = process.ppid
   const launcherPid = readParentPid(initialPpid)
-  if (initialPpid === 1 || launcherPid === 1) {
-    process.exit(0)
-  }
+  const watchedLauncher = launcherPid !== undefined && launcherPid > 1 ? launcherPid : undefined
 
   const interval = setInterval(() => {
     if (
       process.ppid !== initialPpid ||
-      (launcherPid !== undefined && !processExists(launcherPid))
+      (watchedLauncher !== undefined && !processExists(watchedLauncher))
     ) {
       process.exit(0)
     }
