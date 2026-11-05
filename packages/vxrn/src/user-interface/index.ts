@@ -1,3 +1,4 @@
+import { defaultEditor } from '../utils/env-editor'
 import { exec } from 'node:child_process'
 import type { ViteDevServer } from 'vite'
 import { getBoundPort } from '../utils/getBoundPort'
@@ -50,7 +51,7 @@ const COMMANDS = [
     label: 'open editor',
     terminalLabel: '\x1b[1mo\x1b[0mpen \x1b[1me\x1b[0mditor',
     action: async (ctx) => {
-      exec(`${getEditorBinary()} .`)
+      exec(`${defaultEditor().binary} .`)
     },
   },
 
@@ -280,24 +281,6 @@ function clearPrintedInfo() {
   }
 
   lastPrintedInfo = ''
-}
-
-// binary of $EDITOR or $VISUAL: first token's basename, so flags and full
-// paths resolve the same way env-editor resolved them for command values
-function getEditorBinary(): string {
-  const editor = process.env.EDITOR || process.env.VISUAL
-
-  if (!editor) {
-    throw new Error(
-      `Your $EDITOR environment variable is not set. Set it to the command/path of your editor in ~/.zshenv or ~/.bashrc: export EDITOR=code`
-    )
-  }
-
-  return editor
-    .trim()
-    .split(/\s+/, 1)[0]
-    .split(/[/\\]/)
-    .pop()!
 }
 
 function nativeOpen(url: string) {

@@ -1,6 +1,6 @@
 import { clearTransformCache } from '@vxrn/compiler'
 import type { BundleCommandArgs } from '@vxrn/vite-plugin-metro/rn-commands'
-import { existsSync, mkdirSync, renameSync, rmSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, renameSync, rmSync } from 'node:fs'
 import { resolveConfig } from 'vite'
 import { dirname, join, resolve } from 'node:path'
 import { outputFileSync } from '../../utils/fs'
@@ -103,7 +103,13 @@ export async function buildBundle(
       rmSync(destination, { recursive: true, force: true })
       if (existsSync(source)) {
         mkdirSync(dirname(destination), { recursive: true })
-        renameSync(source, destination)
+        try {
+          renameSync(source, destination)
+        } catch (error) {
+          if ((error as NodeJS.ErrnoException).code !== 'EXDEV') throw error
+          cpSync(source, destination, { recursive: true })
+          rmSync(source, { recursive: true })
+        }
       }
     }
   }
