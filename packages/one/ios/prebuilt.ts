@@ -118,7 +118,12 @@ export function identity(ios: string): Identity {
     ]),
     dependencies,
     xcode: execFileSync('xcodebuild', ['-version'], { encoding: 'utf8' }).trim(),
-    swift: execFileSync('xcrun', ['swiftc', '--version'], { encoding: 'utf8' }).trim(),
+    swift: execFileSync('xcrun', ['swiftc', '--version'], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    })
+      .trim()
+      .split('\n')[0]!,
     reactNativePrebuilt: {
       core: process.env.RCT_USE_PREBUILT_RNCORE !== '0',
       dependencies: process.env.RCT_USE_RN_DEP !== '0',

@@ -23,6 +23,7 @@ const manifest: Manifest = {
 }
 const file = join(directory, 'manifest.json')
 writeFileSync(file, `${JSON.stringify(manifest, null, 2)}\n`)
+if (!process.argv.includes('--publish')) process.exit(0)
 const tag = `one-ios-${manifest.key}`
 // a native identity is immutable; rebuilding it never replaces existing assets.
 const existing = await fetch(
