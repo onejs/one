@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process'
 import {
   existsSync,
   mkdirSync,
@@ -24,6 +25,10 @@ vi.mock('vxrn', () => ({
   prebuild: prebuildMock,
 }))
 
+vi.mock('node:child_process', () => ({
+  execFileSync: vi.fn(),
+}))
+
 const app = {
   name: 'MyApp',
   ios: { bundleId: 'dev.one.myapp' },
@@ -40,6 +45,7 @@ describe('one prebuild', () => {
     process.chdir(projectRoot)
     loadUserOneOptionsMock.mockReset()
     prebuildMock.mockReset()
+    vi.mocked(execFileSync).mockReset()
   })
 
   afterEach(() => {
@@ -156,6 +162,30 @@ describe('one prebuild', () => {
       app,
       beforeInstall: expect.any(Function),
     })
+  })
+
+  it('skips iOS SDK generation when xcrun is missing and both platforms were requested', async () => {
+    vi.mocked(execFileSync).mockImplementation(() => {
+      throw Object.assign(new Error('spawnSync xcrun ENOENT'), { code: 'ENOENT' })
+    })
+    loadUserOneOptionsMock.mockResolvedValueOnce({ oneOptions: { native: { app } } })
+
+    await run({ 'no-install': true })
+
+    const beforeInstall = prebuildMock.mock.calls[0][0].beforeInstall as () => Promise<void>
+    await beforeInstall()
+  })
+
+  it('still runs iOS SDK generation when the command is limited to ios', async () => {
+    vi.mocked(execFileSync).mockImplementation(() => {
+      throw Object.assign(new Error('spawnSync xcrun ENOENT'), { code: 'ENOENT' })
+    })
+    loadUserOneOptionsMock.mockResolvedValueOnce({ oneOptions: { native: { app } } })
+
+    await run({ platform: 'ios', 'no-install': true })
+
+    const beforeInstall = prebuildMock.mock.calls[0][0].beforeInstall as () => Promise<void>
+    await expect(beforeInstall()).rejects.toThrow()
   })
 
   it.each(['dependencies', 'devDependencies'])(
