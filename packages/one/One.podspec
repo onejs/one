@@ -2,6 +2,7 @@ require 'json'
 
 package = JSON.parse(File.read(File.join(__dir__, 'package.json')))
 schema = JSON.parse(File.read(File.join(__dir__, 'schema.json')))
+prebuilt = JSON.parse(Pod::Executable.execute_command('node', [File.join(__dir__, 'ios/prebuilt.ts'), 'resolve', Pod::Config.instance.installation_root.to_s]))
 
 Pod::Spec.new do |s|
   s.name           = 'One'
@@ -45,19 +46,37 @@ Pod::Spec.new do |s|
     'HEADER_SEARCH_PATHS' => '"$(PODS_TARGET_SRCROOT)/cpp" "$(OBJECT_FILE_DIR_normal)/$(CURRENT_ARCH)"',
   }
 
-  s.exclude_files = ['ios/Tests/**/*', 'ios/Generated/*ComponentView.mm']
-  s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}', 'cpp/**/*.{h,cpp}'
   # required-reason api declarations (user defaults, boot time, file
   # timestamps, disk space); xcode aggregates these into the app manifest.
   s.resource_bundles = { 'One' => ['ios/PrivacyInfo.xcprivacy'] }
   # c entries the app's bridging header imports without importing the one module.
   # nitrogen appends its own public headers after these.
-  s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h'
-
   # nitro hybrid objects: nitrogen generates the specs and bridges from
   # src/specs/*.nitro.ts into nitrogen/generated (see README).
-  load 'nitrogen/generated/ios/One+autolinking.rb'
-  add_nitrogen_files(s)
+  if prebuilt['path']
+    Pod::UI.puts "[One] Using precompiled iOS libraries (#{File.basename(prebuilt['path'])[0, 12]})"
+    s.vendored_frameworks = "#{prebuilt['path']}/Debug/One.xcframework"
+    s.preserve_paths = ['ios/prebuilt.ts', "#{prebuilt['path']}/**/*"]
+    s.module_map = false
+    s.dependency 'NitroModules'
+    s.script_phase = {
+      :name => '[One] Select precompiled iOS configuration',
+      :execution_position => :before_compile,
+      :always_out_of_date => '1',
+      :script => <<~SCRIPT
+        set -e
+        . "$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh"
+        "$NODE_BINARY" "$PODS_TARGET_SRCROOT/ios/prebuilt.ts" select "$PODS_TARGET_SRCROOT/#{prebuilt['path']}" "$PODS_XCFRAMEWORKS_BUILD_DIR/One"
+      SCRIPT
+    }
+  else
+    Pod::UI.puts "[One] Compiling native sources: #{prebuilt['reason']}"
+    s.exclude_files = ['ios/Tests/**/*', 'ios/Generated/*ComponentView.mm', 'ios/Prebuilt/**/*']
+    s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}', 'cpp/**/*.{h,cpp}'
+    s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h'
+    load 'nitrogen/generated/ios/One+autolinking.rb'
+    add_nitrogen_files(s)
+  end
   # objc++ units build without clang modules, so One-Swift.h skips its
   # own @import lines (React, UserNotifications, Social) and never sees the
   # nitro bridge types its c++ section names; every unit gets them first.

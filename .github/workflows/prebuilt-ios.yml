@@ -1,0 +1,93 @@
+name: Precompiled One iOS
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/prebuilt-ios.yml'
+      - 'scripts/package-one-ios.ts'
+      - 'packages/one/One.podspec'
+      - 'packages/one/ios/**'
+      - 'packages/one/cpp/**'
+      - 'packages/one/nitrogen/**'
+      - 'packages/one/schema.json'
+      - 'packages/one/ios-link-set.json'
+      - 'bun.lock'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/prebuilt-ios.yml'
+      - 'scripts/package-one-ios.ts'
+      - 'packages/one/One.podspec'
+      - 'packages/one/ios/**'
+      - 'packages/one/cpp/**'
+      - 'packages/one/nitrogen/**'
+      - 'packages/one/schema.json'
+      - 'packages/one/ios-link-set.json'
+      - 'bun.lock'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compile:
+    name: One iOS (${{ matrix.configuration }})
+    # standard public arm64 runners, not a paid larger-runner pool.
+    runs-on: xcode-27
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Debug, Release]
+    env:
+      ONE_PREBUILT_IOS: '0'
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/install
+        with:
+          install-playwright: 'false'
+      - name: Generate the native producer
+        working-directory: tests/native-features
+        run: bun run prebuild:native --platform ios --no-install
+      - name: Build the complete release catalog
+        run: rm -f tests/native-features/ios/one-link-set.json
+      - name: Install producer dependencies using React Native binaries
+        working-directory: tests/native-features/ios
+        run: USE_FRAMEWORKS=static pod install
+      - name: Build and package device and simulator libraries
+        run: >-
+          node scripts/package-one-ios.ts
+          --ios tests/native-features/ios
+          --configuration '${{ matrix.configuration }}'
+          --output '${{ runner.temp }}/one-ios'
+          --derived-data '${{ runner.temp }}/one-ios-build'
+      - uses: actions/upload-artifact@v7
+        with:
+          name: one-ios-${{ matrix.configuration }}
+          compression-level: 0
+          retention-days: 3
+          if-no-files-found: error
+          path: |
+            ${{ runner.temp }}/one-ios/*.tar.gz
+            ${{ runner.temp }}/one-ios/*.json
+
+  publish:
+    needs: compile
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: '.node-version'
+      - uses: actions/download-artifact@v7
+        with:
+          pattern: one-ios-*
+          merge-multiple: true
+          path: ${{ runner.temp }}/one-ios
+      - name: Publish immutable compatible native libraries
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/publish-one-ios.ts '${{ runner.temp }}/one-ios'

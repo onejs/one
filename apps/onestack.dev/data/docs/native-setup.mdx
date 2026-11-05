@@ -90,6 +90,28 @@ directly; dependency code and app startup need no separate polyfill setup.
 
 Apps that keep Expo prebuild follow [Coming from Expo](/native/migrating-to-one#keeping-expo-prebuild).
 
+## Precompiled iOS libraries
+
+During `pod install`, One automatically downloads compatible native libraries
+from its public GitHub releases when they are available. The binaries cover
+arm64 iOS devices and Apple Silicon simulators in both Debug and Release.
+They match One's native sources, React Native, Nitro and Worklets sources,
+the exact Xcode and Swift compiler, and the app's Release feature groups.
+Changing any of these inputs selects a different artifact. An unpublished
+combination compiles from source. Download and checksum errors stop installation.
+
+React Native's own precompiled core remains enabled by its upstream default.
+Apps that modify React Native must keep their source-build setting; One does
+not override it. App-specific Swift packages, SDK bindings and native modules
+still compile in the app. Release builds keep their selected feature groups.
+
+The installer requires Node 22.18 or newer. To require a matching binary,
+use `ONE_PREBUILT_IOS=1 pod install`. To compile One from source, use
+`ONE_PREBUILT_IOS=0 pod install`. After changing architectures, dependencies
+or native inputs, run `pod install` again. Public GitHub builds publish the
+complete feature catalog for the supported dependency and Xcode combination;
+other combinations use source builds.
+
 ## Run the app
 
 Start One's development server in one terminal:
