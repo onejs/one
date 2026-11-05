@@ -160,7 +160,7 @@
     "@react-navigation/core": "8.0.0-alpha.41"
   },
   "devDependencies": {
-    "@hono/node-server": "^1.19.14",
+    "@hono/node-server": "^2.1.6",
     "@manypkg/cli": "^0.25.1",
     "@react-native-swc/worklets-plugin": "0.1.5",
     "@tamagui/web": "3.2.3",
