@@ -10,6 +10,7 @@ import {
   mkdirSync,
   readFileSync,
   readdirSync,
+  realpathSync,
   rmSync,
   writeFileSync,
 } from 'node:fs'
@@ -24,6 +25,7 @@ const { values } = parseArgs({
     configuration: { type: 'string' },
     'derived-data': { type: 'string' },
     'skip-build': { type: 'boolean', default: false },
+    'skip-build-sdk': { type: 'string', multiple: true, default: [] },
   },
 })
 assert(values.ios && values.output, '--ios and --output are required')
@@ -32,9 +34,12 @@ assert(
   '--configuration must be Debug or Release'
 )
 const configuration = values.configuration
-const ios = resolve(values.ios)
-const output = resolve(values.output)
-const derived = resolve(values['derived-data'] ?? join(output, 'DerivedData'))
+const ios = realpathSync(values.ios)
+mkdirSync(resolve(values.output), { recursive: true })
+const output = realpathSync(values.output)
+const derivedPath = resolve(values['derived-data'] ?? join(output, 'DerivedData'))
+mkdirSync(derivedPath, { recursive: true })
+const derived = realpathSync(derivedPath)
 const one = resolve(import.meta.dirname, '../packages/one')
 const expected = identity(ios)
 const key = artifactKey(expected)
@@ -44,7 +49,7 @@ rmSync(work, { recursive: true, force: true })
 mkdirSync(work)
 
 for (const sdk of ['iphoneos', 'iphonesimulator']) {
-  if (!values['skip-build']) {
+  if (!values['skip-build'] && !values['skip-build-sdk'].includes(sdk)) {
     execFileSync(
       'xcodebuild',
       [
@@ -67,12 +72,36 @@ for (const sdk of ['iphoneos', 'iphonesimulator']) {
         'ARCHS=arm64',
         'ONLY_ACTIVE_ARCH=YES',
         'CODE_SIGNING_ALLOWED=NO',
+        `CLANG_MODULE_CACHE_PATH=${join(derived, 'ModuleCache.noindex')}`,
         'build',
       ],
       { cwd: ios, stdio: 'inherit', env: { ...process.env, ONE_PREBUILT_IOS: '0' } }
     )
   }
-  const products = join(derived, 'Build/Products', `${configuration}-${sdk}`, 'One')
+  const settings: Array<{ target: string; buildSettings: Record<string, string> }> =
+    JSON.parse(
+      execFileSync(
+        'xcodebuild',
+        [
+          '-project',
+          join(ios, 'Pods/Pods.xcodeproj'),
+          '-scheme',
+          'One',
+          '-configuration',
+          configuration,
+          '-sdk',
+          sdk,
+          '-derivedDataPath',
+          derived,
+          '-showBuildSettings',
+          '-json',
+        ],
+        { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }
+      )
+    )
+  const target = settings.find((entry) => entry.target === 'One')
+  assert(target, 'Xcode did not report the One build settings')
+  const products = target.buildSettings.TARGET_BUILD_DIR!
   const framework = join(work, sdk, 'One.framework')
   const headers = join(framework, 'Headers')
   mkdirSync(headers, { recursive: true })
@@ -108,9 +137,10 @@ for (const sdk of ['iphoneos', 'iphonesimulator']) {
   }
   for (const directory of ['ios', 'cpp', 'nitrogen/generated'])
     copyHeaders(join(one, directory))
-  const swiftHeader = existsSync(join(productFramework, 'Headers/One-Swift.h'))
-    ? join(productFramework, 'Headers/One-Swift.h')
-    : join(products, 'Swift Compatibility Header/One-Swift.h')
+  const swiftHeader = join(
+    target.buildSettings.OBJECT_FILE_DIR_normal!,
+    'arm64/One-Swift.h'
+  )
   copyFileSync(swiftHeader, join(headers, 'One-Swift.h'))
   copyFileSync(
     join(ios, 'Pods/Target Support Files/One/One-umbrella.h'),
