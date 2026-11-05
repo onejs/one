@@ -107,7 +107,7 @@ async function tryConnect(port: number): Promise<Socket | undefined> {
 }
 
 // outermost node_modules above the test, so a bundled worker's bare
-// imports (vite, fs-extra, ...) resolve the way the workspace lays out
+// imports (vite, picocolors, ...) resolve the way the workspace lays out
 function outermostNodeModules(from: string): string {
   let dir = from
   let found: string | undefined

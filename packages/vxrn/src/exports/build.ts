@@ -1,6 +1,6 @@
-import FSExtra from 'fs-extra'
-import { rm } from 'node:fs/promises'
+import { readFile, rm, writeFile } from 'node:fs/promises'
 import { sep } from 'node:path'
+import { readJSON } from '../utils/fs'
 import type { OutputAsset, OutputChunk, RolldownOutput } from 'rolldown'
 import {
   loadConfigFromFile,
@@ -355,11 +355,11 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   }
 
   if (serverOptions !== false) {
-    clientManifest = await FSExtra.readJSON(`${outDir}/client/.vite/manifest.json`)
+    clientManifest = await readJSON(`${outDir}/client/.vite/manifest.json`)
 
     // temp fix - react native web is importing non-existent react 19 apis
-    const old = await FSExtra.readFile(serverEntry, 'utf-8')
-    await FSExtra.writeFile(
+    const old = await readFile(serverEntry, 'utf-8')
+    await writeFile(
       serverEntry,
       old
         .replace(

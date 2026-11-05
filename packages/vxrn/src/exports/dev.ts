@@ -1,11 +1,11 @@
 import { execFileSync } from 'node:child_process'
-import FSExtra from 'fs-extra'
+import { mkdir } from 'node:fs/promises'
 import colors from 'picocolors'
 import { debounce } from 'perfect-debounce'
 import { normalizePath, type PluginOption, type ViteDevServer } from 'vite'
 import type { VXRNOptions } from '../types'
 
-const { ensureDir } = FSExtra
+const ensureDir = (dir: string) => mkdir(dir, { recursive: true })
 
 function readParentPid(pid: number): number | undefined {
   try {

@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createServer } from 'vite'
 import { describe, expect, test, vi } from 'vitest'
-import FSExtra from 'fs-extra'
+import * as fsUtils from './fs'
 import {
   findDepsToOptimize,
   getScannedOptimizeDepsConfig,
@@ -34,7 +34,7 @@ test('shares manifest reads within a scan and refreshes them on the next scan', 
     dependencies: { added: '*' },
     peerDependencies: { react: '*' },
   })
-  const readJson = vi.spyOn(FSExtra, 'readJson')
+  const readJson = vi.spyOn(fsUtils, 'readJSON')
   try {
     const result = await scanDepsToOptimize(join(root, 'package.json'))
     expect(new Set(result.prebundleDeps)).toEqual(new Set(['alpha', 'beta', 'common']))

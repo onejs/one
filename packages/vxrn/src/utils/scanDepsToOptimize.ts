@@ -1,6 +1,7 @@
 import { createDebugger } from '@vxrn/debug'
-import FSExtra from 'fs-extra'
+import { realpath } from 'node:fs/promises'
 import path, { dirname, extname, join, sep } from 'node:path'
+import { pathExists, readJSON } from './fs'
 
 const { debug, debugDetails } = createDebugger(`vxrn:scanDepsToOptimize`)
 
@@ -165,9 +166,9 @@ export async function scanDepsToOptimize(
 ): Promise<ScanDepsResult> {
   // share leaf reads only: sharing recursive promises can deadlock sibling cycles.
   return scanDeps(packageJsonPath, options, {
-    pathExists: memoizeRead((file) => FSExtra.pathExists(file)),
-    realpath: memoizeRead((file) => FSExtra.realpath(file)),
-    readJson: memoizeRead((file) => FSExtra.readJson(file)),
+    pathExists: memoizeRead((file) => pathExists(file)),
+    realpath: memoizeRead((file) => realpath(file)),
+    readJson: memoizeRead((file) => readJSON(file)),
   })
 }
 
@@ -472,7 +473,7 @@ async function resolveDepPkgJsonPath(
 }
 
 export async function findDepPkgJsonPath(dep, dependent) {
-  return findDepPkgJsonPathWithFs(dep, dependent, (file) => FSExtra.pathExists(file))
+  return findDepPkgJsonPathWithFs(dep, dependent, (file) => pathExists(file))
 }
 
 async function findDepPkgJsonPathWithFs(

@@ -1,6 +1,6 @@
 import { dirname, join } from 'node:path'
 
-import FSExtra from 'fs-extra'
+import { realpath } from 'node:fs/promises'
 import { normalizePath } from 'vite'
 
 export async function getVitePath(
@@ -65,7 +65,7 @@ export async function getVitePath(
     )
   }
 
-  const real = await FSExtra.realpath(resolved)
+  const real = await realpath(resolved)
 
   let id = real
 

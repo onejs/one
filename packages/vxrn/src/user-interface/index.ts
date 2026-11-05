@@ -1,3 +1,4 @@
+import { defaultEditor } from '../utils/env-editor'
 import { exec } from 'node:child_process'
 import type { ViteDevServer } from 'vite'
 import { getBoundPort } from '../utils/getBoundPort'
@@ -50,7 +51,6 @@ const COMMANDS = [
     label: 'open editor',
     terminalLabel: '\x1b[1mo\x1b[0mpen \x1b[1me\x1b[0mditor',
     action: async (ctx) => {
-      const { defaultEditor } = await import('env-editor')
       exec(`${defaultEditor().binary} .`)
     },
   },

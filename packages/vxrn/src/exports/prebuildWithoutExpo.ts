@@ -1,5 +1,18 @@
 import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
+import {
+  copyFileSync,
+  existsSync,
+  lstatSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  realpathSync,
+  rmSync,
+  statSync,
+  symlinkSync,
+  writeFileSync,
+} from 'node:fs'
 import module from 'node:module'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -13,8 +26,8 @@ import {
   type NativeAppManifest,
   type PlistValue,
 } from '@vxrn/utils/nativeAppManifest'
-import FSExtra from 'fs-extra'
 import sharp from 'sharp'
+import { readJSONSync } from '../utils/fs'
 import { swiftPackageDirectories } from '../utils/swiftPackageId'
 
 type NativeProjectPatches = {
@@ -298,7 +311,7 @@ ${imports.join('\n')}
 }
 
 function generateOneBridgingHeader(dest: string, app: NativeAppManifest): void {
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(dest, app.name, ONE_BRIDGING_HEADER_NAME),
     renderOneBridgingHeader(app)
   )
@@ -488,11 +501,11 @@ function copyAppResources({
   }
   for (const [file, target] of copies) {
     const source = path.resolve(root, file)
-    if (!FSExtra.existsSync(source)) {
+    if (!existsSync(source)) {
       throw new Error(`[vxrn] native.app names ${file}, which does not exist`)
     }
-    FSExtra.mkdirSync(path.dirname(target), { recursive: true })
-    FSExtra.copyFileSync(source, target)
+    mkdirSync(path.dirname(target), { recursive: true })
+    copyFileSync(source, target)
   }
 }
 
@@ -801,7 +814,7 @@ function generateSceneDelegate(args: {
 }): void {
   const { dest, platform, app } = args
   if (platform !== 'ios') return
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(dest, app.name, 'SceneDelegate.swift'),
     renderSceneDelegateSwift(app.name)
   )
@@ -809,7 +822,7 @@ function generateSceneDelegate(args: {
   // widgets the app gets its own file when it has any entitlement.
   const entitlements = appEntitlements(app)
   if (Object.keys(entitlements).length && !app.ios?.widgets) {
-    FSExtra.writeFileSync(
+    writeFileSync(
       path.join(dest, app.name, `${app.name}.entitlements`),
       renderEntitlements(entitlements)
     )
@@ -818,7 +831,7 @@ function generateSceneDelegate(args: {
 
 function generateIosAppIntents(dest: string, platform: 'ios' | 'android', app: NativeAppManifest): void {
   if (platform !== 'ios' || !app.ios?.appIntents) return
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(dest, app.name, 'OneAppIntents.swift'),
     renderIosAppIntentsSwift(app.ios.appIntents.actions)
   )
@@ -829,17 +842,17 @@ function generateIosWidgets(dest: string, app: NativeAppManifest): void {
   if (!widgets) return
   const appDir = path.join(dest, app.name)
   const extensionDir = path.join(dest, 'OneWidgets')
-  FSExtra.mkdirSync(extensionDir, { recursive: true })
+  mkdirSync(extensionDir, { recursive: true })
   const entitlements = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict><key>com.apple.security.application-groups</key><array><string>${escapeXml(widgets.appGroup)}</string></array></dict></plist>
 `
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(appDir, 'OneAppWidgets.entitlements'),
     renderEntitlements(appEntitlements(app))
   )
-  FSExtra.writeFileSync(path.join(extensionDir, 'OneWidgets.entitlements'), entitlements)
-  FSExtra.writeFileSync(
+  writeFileSync(path.join(extensionDir, 'OneWidgets.entitlements'), entitlements)
+  writeFileSync(
     path.join(extensionDir, 'WidgetInfo.plist'),
     `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -857,7 +870,7 @@ function generateIosWidgets(dest: string, app: NativeAppManifest): void {
 </dict></plist>
 `
   )
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(appDir, 'OneWidgetContract.swift'),
     `import Foundation
 import ActivityKit
@@ -885,7 +898,7 @@ enum OneWidgetContract {
 }
 `
   )
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(extensionDir, 'OneWidget.swift'),
     `import SwiftUI
 import WidgetKit
@@ -1176,7 +1189,7 @@ struct OneWidgetsBundle: WidgetBundle {
 }
 `
   )
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(appDir, 'OneWidgetsBridge.m'),
     `#import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
@@ -1193,7 +1206,7 @@ RCT_EXTERN_METHOD(pushToken:(NSString *)identifier resolver:(RCTPromiseResolveBl
 @end
 `
   )
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(appDir, 'OneWidgetsBridge.swift'),
     `import Foundation
 import React
@@ -1387,7 +1400,7 @@ async function writeAppearanceIcon(args: {
   const variantSource = (variant: { source?: string } | undefined) => {
     if (!variant?.source) return source
     const resolved = path.resolve(root, variant.source)
-    if (!FSExtra.existsSync(resolved)) {
+    if (!existsSync(resolved)) {
       throw new Error(`[vxrn] native.app icon appearance source does not exist: ${resolved}`)
     }
     return resolved
@@ -1421,7 +1434,7 @@ async function writeAppearanceIcon(args: {
     )
     images.push(entry('icon-1024-tinted.png', 'tinted'))
   }
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(iconDir, 'Contents.json'),
     `${JSON.stringify({ images, info: { author: 'xcode', version: 1 } }, null, 2)}\n`
   )
@@ -1441,14 +1454,14 @@ async function generateAppIcons(args: {
     const template: {
       images: Array<{ idiom: string; scale: string; size: string; filename?: string }>
       info: { author: string; version: number }
-    } = JSON.parse(FSExtra.readFileSync(path.join(assetsDir, 'AppIcon.appiconset', 'Contents.json'), 'utf8'))
+    } = JSON.parse(readFileSync(path.join(assetsDir, 'AppIcon.appiconset', 'Contents.json'), 'utf8'))
     const icons: Array<[string, NativeAppIcon]> = [
       ['AppIcon', app.icon],
       ...Object.entries(app.alternateIcons ?? {}),
     ]
     for (const [name, icon] of icons) {
       const source = path.resolve(root, icon.source)
-      if (!FSExtra.existsSync(source)) {
+      if (!existsSync(source)) {
         throw new Error(`[vxrn] native.app icon source does not exist: ${source}`)
       }
       const metadata = await sharp(source).metadata()
@@ -1456,7 +1469,7 @@ async function generateAppIcons(args: {
         throw new Error(`[vxrn] native.app icon source must be a square image at least 1024px wide: ${source}`)
       }
       const iconDir = path.join(assetsDir, `${name}.appiconset`)
-      FSExtra.mkdirSync(iconDir, { recursive: true })
+      mkdirSync(iconDir, { recursive: true })
       if (icon.dark || icon.tinted) {
         await writeAppearanceIcon({ root, iconDir, icon, source })
         continue
@@ -1483,13 +1496,13 @@ async function generateAppIcons(args: {
           .png()
           .toFile(path.join(iconDir, filename))
       }
-      FSExtra.writeFileSync(path.join(iconDir, 'Contents.json'), `${JSON.stringify(contents, null, 2)}\n`)
+      writeFileSync(path.join(iconDir, 'Contents.json'), `${JSON.stringify(contents, null, 2)}\n`)
     }
     return
   }
 
   const source = path.resolve(root, app.icon.source)
-  if (!FSExtra.existsSync(source)) {
+  if (!existsSync(source)) {
     throw new Error(`[vxrn] native.app.icon source does not exist: ${source}`)
   }
   const metadata = await sharp(source).metadata()
@@ -1504,7 +1517,7 @@ async function generateAppIcons(args: {
       Object.entries(app.alternateIcons ?? {}).map(
         async ([name, icon]): Promise<[string, NativeAppIcon, string]> => {
           const alternateSource = path.resolve(root, icon.source)
-          if (!FSExtra.existsSync(alternateSource)) {
+          if (!existsSync(alternateSource)) {
             throw new Error(`[vxrn] native.app icon source does not exist: ${alternateSource}`)
           }
           const alternate = await sharp(alternateSource).metadata()
@@ -1597,8 +1610,8 @@ function generateAndroidIconForwarder(dest: string, app: NativeAppManifest): voi
     ...packageName.split('.'),
     'AppIconLauncherActivity.kt'
   )
-  FSExtra.mkdirSync(path.dirname(file), { recursive: true })
-  FSExtra.writeFileSync(
+  mkdirSync(path.dirname(file), { recursive: true })
+  writeFileSync(
     file,
     `package ${packageName}
 
@@ -1646,19 +1659,19 @@ async function generateAppIconPreviews(args: {
     const resources = appIconPreviewResources(name)
     if (platform === 'android') {
       const dir = path.join(dest, 'app', 'src', 'main', 'res', 'drawable-nodpi')
-      FSExtra.mkdirSync(dir, { recursive: true })
+      mkdirSync(dir, { recursive: true })
       await preview(3).toFile(path.join(dir, `${resources.android}.png`))
       continue
     }
     const dir = path.join(dest, app.name, 'Images.xcassets', `${resources.ios}.imageset`)
-    FSExtra.mkdirSync(dir, { recursive: true })
+    mkdirSync(dir, { recursive: true })
     const images: Array<Record<string, string>> = []
     for (const scale of [1, 2, 3]) {
       const filename = `preview@${scale}x.png`
       await preview(scale).toFile(path.join(dir, filename))
       images.push({ filename, idiom: 'universal', scale: `${scale}x` })
     }
-    FSExtra.writeFileSync(
+    writeFileSync(
       path.join(dir, 'Contents.json'),
       `${JSON.stringify({ images, info: { author: 'xcode', version: 1 } }, null, 2)}\n`
     )
@@ -1687,7 +1700,7 @@ async function generateAdaptiveIcon(args: {
   for (const [layer, file] of Object.entries(layers)) {
     if (!file) continue
     const source = path.resolve(root, file)
-    if (!FSExtra.existsSync(source)) {
+    if (!existsSync(source)) {
       throw new Error(`[vxrn] native.app.android.adaptiveIcon.${layer} does not exist: ${source}`)
     }
     for (const [density, multiplier] of Object.entries(ANDROID_DENSITIES)) {
@@ -1700,7 +1713,7 @@ async function generateAdaptiveIcon(args: {
     }
   }
   if (!adaptiveIcon.background) {
-    FSExtra.writeFileSync(
+    writeFileSync(
       path.join(res, 'values', 'ic_launcher_background.xml'),
       `<?xml version="1.0" encoding="utf-8"?>
 <resources>
@@ -1716,9 +1729,9 @@ async function generateAdaptiveIcon(args: {
 ${adaptiveIcon.monochrome ? '    <monochrome android:drawable="@mipmap/ic_launcher_monochrome"/>\n' : ''}</adaptive-icon>
 `
   const anydpi = path.join(res, 'mipmap-anydpi-v26')
-  FSExtra.mkdirSync(anydpi, { recursive: true })
+  mkdirSync(anydpi, { recursive: true })
   for (const filename of ['ic_launcher.xml', 'ic_launcher_round.xml']) {
-    FSExtra.writeFileSync(path.join(anydpi, filename), adaptiveXml)
+    writeFileSync(path.join(anydpi, filename), adaptiveXml)
   }
 }
 
@@ -1767,8 +1780,8 @@ function generateAccentColor(args: { dest: string; app: NativeAppManifest }): vo
   const accent = args.app.ios?.accentColor
   if (!accent) return
   const colorDir = path.join(args.dest, args.app.name, 'Images.xcassets', 'AccentColor.colorset')
-  FSExtra.mkdirSync(colorDir, { recursive: true })
-  FSExtra.writeFileSync(
+  mkdirSync(colorDir, { recursive: true })
+  writeFileSync(
     path.join(colorDir, 'Contents.json'),
     xcodeColorSet(accent.light, accent.dark)
   )
@@ -1787,7 +1800,7 @@ async function generateSplashScreen(args: {
   const cover = app.splash.resizeMode === 'cover'
   const prepareArtwork = async (sourcePath: string, backgroundColor: string) => {
     const source = path.resolve(root, sourcePath)
-    if (!FSExtra.existsSync(source)) {
+    if (!existsSync(source)) {
       throw new Error(`[vxrn] native.app.splash source does not exist: ${source}`)
     }
     // a vector source rasterizes at the density its largest use needs: the
@@ -1822,7 +1835,7 @@ async function generateSplashScreen(args: {
   // launch surface scales it (aspect-fill on ios, fill on android).
   const readBackground = (sourcePath: string) => {
     const source = path.resolve(root, sourcePath)
-    if (!FSExtra.existsSync(source)) {
+    if (!existsSync(source)) {
       throw new Error(`[vxrn] native.app.splash backgroundImage does not exist: ${source}`)
     }
     return sharp(source).rotate().png().toBuffer({ resolveWithObject: true })
@@ -1841,7 +1854,7 @@ async function generateSplashScreen(args: {
       pointWidth: number | undefined
     ) => {
       const dir = path.join(assets, `${name}.imageset`)
-      FSExtra.mkdirSync(dir, { recursive: true })
+      mkdirSync(dir, { recursive: true })
       const scales = pointWidth === undefined ? [1] : [1, 2, 3]
       const images: Array<Record<string, unknown>> = []
       for (const [variant, suffix, appearances] of [
@@ -1866,7 +1879,7 @@ async function generateSplashScreen(args: {
           })
         }
       }
-      FSExtra.writeFileSync(
+      writeFileSync(
         path.join(dir, 'Contents.json'),
         `${JSON.stringify({ images, info: { author: 'xcode', version: 1 } }, null, 2)}\n`
       )
@@ -1883,13 +1896,13 @@ async function generateSplashScreen(args: {
     }
     // the launch background is a named color so a dark launch gets its own.
     const colorDir = path.join(assets, 'SplashBackground.colorset')
-    FSExtra.mkdirSync(colorDir, { recursive: true })
-    FSExtra.writeFileSync(
+    mkdirSync(colorDir, { recursive: true })
+    writeFileSync(
       path.join(colorDir, 'Contents.json'),
       xcodeColorSet(app.splash.backgroundColor, dark?.backgroundColor)
     )
     const { red, green, blue } = srgb(app.splash.backgroundColor)
-    FSExtra.writeFileSync(
+    writeFileSync(
       path.join(appDir, 'LaunchScreen.storyboard'),
       `<?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="launch-controller">
@@ -1974,7 +1987,7 @@ ${
         .png()
         .toBuffer()
       const drawableDensity = path.join(mainRes, `${drawablePrefix}-${density}`)
-      FSExtra.mkdirSync(drawableDensity, { recursive: true })
+      mkdirSync(drawableDensity, { recursive: true })
       await sharp({
         create: {
           width: canvasSize,
@@ -2007,18 +2020,18 @@ ${
     : undefined
   if (background) {
     const nodpi = path.join(mainRes, 'drawable-nodpi')
-    FSExtra.mkdirSync(nodpi, { recursive: true })
-    FSExtra.writeFileSync(path.join(nodpi, 'splash_background.png'), background.data)
+    mkdirSync(nodpi, { recursive: true })
+    writeFileSync(path.join(nodpi, 'splash_background.png'), background.data)
     if (darkBackground) {
       const nightNodpi = path.join(mainRes, 'drawable-night-nodpi')
-      FSExtra.mkdirSync(nightNodpi, { recursive: true })
-      FSExtra.writeFileSync(
+      mkdirSync(nightNodpi, { recursive: true })
+      writeFileSync(
         path.join(nightNodpi, 'splash_background.png'),
         darkBackground
       )
     }
   }
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(drawable, 'launch_screen.xml'),
     `<?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
@@ -2036,7 +2049,7 @@ ${
 </layer-list>
 `
   )
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(mainRes, 'values', 'colors.xml'),
     `<?xml version="1.0" encoding="utf-8"?>
 <resources>
@@ -2045,8 +2058,8 @@ ${
 `
   )
   if (dark) {
-    FSExtra.mkdirSync(path.join(mainRes, 'values-night'), { recursive: true })
-    FSExtra.writeFileSync(
+    mkdirSync(path.join(mainRes, 'values-night'), { recursive: true })
+    writeFileSync(
       path.join(mainRes, 'values-night', 'colors.xml'),
       `<?xml version="1.0" encoding="utf-8"?>
 <resources>
@@ -2056,19 +2069,19 @@ ${
     )
   }
   const stylesPath = path.join(mainRes, 'values', 'styles.xml')
-  const styles = FSExtra.readFileSync(stylesPath, 'utf8').replace(
+  const styles = readFileSync(stylesPath, 'utf8').replace(
     '        <!-- Customize your theme here. -->',
     '        <item name="android:windowBackground">@drawable/launch_screen</item>'
   )
-  FSExtra.writeFileSync(stylesPath, styles)
+  writeFileSync(stylesPath, styles)
   const stylesV31 = path.join(mainRes, 'values-v31')
-  FSExtra.mkdirSync(stylesV31, { recursive: true })
+  mkdirSync(stylesV31, { recursive: true })
   // a values-v31 AppTheme replaces the base one on API 31+, so it is the base
   // theme (parent included) plus the system splash items, never a bare style.
   if (!styles.includes('</style>')) {
     throw new Error('[vxrn] prebuild template styles.xml lost its AppTheme </style> anchor')
   }
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(stylesV31, 'styles.xml'),
     styles.replace(
       '</style>',
@@ -2901,17 +2914,17 @@ export const generateForPlatform = async (
   const nitroWebImage = platform === 'ios' && nativeProjectPatches.hasNitroWebImage(root)
 
   // owned output: regenerate from the manifest so reruns reproduce bytes.
-  FSExtra.removeSync(dest)
+  rmSync(dest, { recursive: true, force: true })
 
   for (const absoluteSrc of files) {
     const relativeFilePath = path.relative(src, absoluteSrc)
-    const stat = FSExtra.lstatSync(absoluteSrc)
+    const stat = lstatSync(absoluteSrc)
     if (stat.isDirectory()) continue
 
     const extension = path.extname(absoluteSrc)
     const raw = ['.png', '.jar', '.keystore'].includes(extension)
       ? null
-      : FSExtra.readFileSync(absoluteSrc, 'utf8')
+      : readFileSync(absoluteSrc, 'utf8')
     const { destRelativePath, content } = renderPrebuildFile({
       relativePath: relativeFilePath,
       content: raw,
@@ -2920,15 +2933,15 @@ export const generateForPlatform = async (
       nitroWebImage,
     })
     const destPath = path.resolve(dest, destRelativePath)
-    FSExtra.mkdirSync(path.dirname(destPath), { recursive: true })
+    mkdirSync(path.dirname(destPath), { recursive: true })
 
     console.info('copying', '"' + absoluteSrc + '"', 'to', '"' + destPath + '"')
 
     if (content === null) {
-      FSExtra.copyFileSync(absoluteSrc, destPath)
+      copyFileSync(absoluteSrc, destPath)
       continue
     }
-    FSExtra.writeFileSync(destPath, content, {
+    writeFileSync(destPath, content, {
       encoding: 'utf8',
       mode: stat.mode,
     })
@@ -2963,14 +2976,14 @@ const KOTLIN_IMPORT_ARTIFACTS = [
 
 function kotlinSourceImports(dir: string): Set<string> {
   const imports = new Set<string>()
-  if (!FSExtra.existsSync(dir)) return imports
+  if (!existsSync(dir)) return imports
   const visit = (entry: string) => {
-    if (FSExtra.statSync(entry).isDirectory()) {
-      for (const child of FSExtra.readdirSync(entry)) visit(path.join(entry, child))
+    if (statSync(entry).isDirectory()) {
+      for (const child of readdirSync(entry)) visit(path.join(entry, child))
       return
     }
     if (!entry.endsWith('.kt')) return
-    for (const line of FSExtra.readFileSync(entry, 'utf8').split('\n')) {
+    for (const line of readFileSync(entry, 'utf8').split('\n')) {
       const match = /^\s*import\s+([A-Za-z0-9_.]+)/.exec(line)
       if (match) imports.add(match[1])
     }
@@ -2981,8 +2994,8 @@ function kotlinSourceImports(dir: string): Set<string> {
 
 export function enableAppComposeIntegration(dest: string) {
   const rootBuildGradlePath = path.join(dest, 'build.gradle')
-  if (FSExtra.existsSync(rootBuildGradlePath)) {
-    let content = FSExtra.readFileSync(rootBuildGradlePath, 'utf8')
+  if (existsSync(rootBuildGradlePath)) {
+    let content = readFileSync(rootBuildGradlePath, 'utf8')
     const composePluginClasspath =
       '        classpath("org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin:$kotlinVersion")'
     if (!content.includes('org.jetbrains.kotlin.plugin.compose')) {
@@ -2990,13 +3003,13 @@ export function enableAppComposeIntegration(dest: string) {
         ? 'classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")'
         : 'classpath "org.jetbrains.kotlin:kotlin-gradle-plugin"'
       content = insertAfterLine(content, anchor, composePluginClasspath)
-      FSExtra.writeFileSync(rootBuildGradlePath, content, 'utf8')
+      writeFileSync(rootBuildGradlePath, content, 'utf8')
     }
   }
 
   const appBuildGradlePath = path.join(dest, 'app/build.gradle')
-  if (FSExtra.existsSync(appBuildGradlePath)) {
-    let content = FSExtra.readFileSync(appBuildGradlePath, 'utf8')
+  if (existsSync(appBuildGradlePath)) {
+    let content = readFileSync(appBuildGradlePath, 'utf8')
     if (!content.includes('org.jetbrains.kotlin.plugin.compose')) {
       const pluginAnchor = content.includes('apply plugin: "org.jetbrains.kotlin.android"')
         ? 'apply plugin: "org.jetbrains.kotlin.android"'
@@ -3054,7 +3067,7 @@ export function enableAppComposeIntegration(dest: string) {
         ].join('\n')
       )
     }
-    FSExtra.writeFileSync(appBuildGradlePath, content, 'utf8')
+    writeFileSync(appBuildGradlePath, content, 'utf8')
   }
 }
 
@@ -3065,8 +3078,8 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
   // breaks :app:compileDebugKotlin when two preserved copies declare one class.
   const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build', 'tests', '__tests__', 'scripts', 'evidence'])
   const sources: string[] = []
-  const manifest = FSExtra.existsSync(path.join(root, 'package.json'))
-    ? FSExtra.readJsonSync(path.join(root, 'package.json'))
+  const manifest = existsSync(path.join(root, 'package.json'))
+    ? readJSONSync(path.join(root, 'package.json'))
     : {}
   const workspacePatterns: string[] = Array.isArray(manifest.workspaces)
     ? manifest.workspaces
@@ -3079,8 +3092,8 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
   const collect = (dir: string) => {
     // declared workspace packages belong to this build; other nested packages
     // own their sources and fixtures.
-    if (dir !== root && FSExtra.existsSync(path.join(dir, 'package.json')) && !workspaceRoots.has(dir)) return
-    for (const entry of FSExtra.readdirSync(dir, { withFileTypes: true })) {
+    if (dir !== root && existsSync(path.join(dir, 'package.json')) && !workspaceRoots.has(dir)) return
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
       if (entry.name.startsWith('.') || skip.has(entry.name)) continue
       const source = path.join(dir, entry.name)
       if (entry.isDirectory()) collect(source)
@@ -3091,7 +3104,7 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
   // the generator owns this directory: rebuild it so a moved or deleted source
   // cannot leave a stale copy that redeclares a live class.
   const output = path.join(dest, 'app/src/main/java/one/source')
-  FSExtra.removeSync(output)
+  rmSync(output, { recursive: true, force: true })
   if (sources.length === 0) return
   const { kotlinSourceId, renderKotlinSourceGlue, writeNativeSourceDeclaration } = await import(
     '../utils/nativeSourceContract'
@@ -3100,12 +3113,12 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
   for (const source of sources) {
     const id = kotlinSourceId(root, source)
     const target = path.join(output, id)
-    FSExtra.mkdirSync(target, { recursive: true })
-    FSExtra.copyFileSync(source, path.join(target, path.basename(source)))
+    mkdirSync(target, { recursive: true })
+    copyFileSync(source, path.join(target, path.basename(source)))
     const contract = writeNativeSourceDeclaration(source)
     if (contract.views.length > 0) hasViews = true
     if (contract.modules.length > 0 || contract.views.length > 0) {
-      FSExtra.writeFileSync(
+      writeFileSync(
         path.join(target, `OneNativeSource_${id}.kt`),
         renderKotlinSourceGlue(id, contract).source
       )
@@ -3131,11 +3144,11 @@ async function generateSwiftPackages({ root, dest }: { root: string; dest: strin
     const podDir = path.join(dest, 'OneSwiftPackages', id)
     const manifest = swiftPodManifest(
       path.join(packageDir, 'Package.swift'),
-      FSExtra.readFileSync(path.join(packageDir, 'Package.swift'), 'utf8')
+      readFileSync(path.join(packageDir, 'Package.swift'), 'utf8')
     )
     const sources: string[] = []
     const collect = (dir: string) => {
-      for (const entry of FSExtra.readdirSync(dir, { withFileTypes: true })) {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
         // a package at the app root holds the generated native projects too
         if (entry.name.startsWith('.') || skip.has(entry.name)) continue
         const full = path.join(dir, entry.name)
@@ -3155,16 +3168,16 @@ async function generateSwiftPackages({ root, dest }: { root: string; dest: strin
     // tree with real directories and link each file.
     for (const source of sources) {
       const link = path.join(podDir, 'Sources', path.relative(packageDir, source))
-      FSExtra.mkdirSync(path.dirname(link), { recursive: true })
-      FSExtra.symlinkSync(FSExtra.realpathSync(source), link)
+      mkdirSync(path.dirname(link), { recursive: true })
+      symlinkSync(realpathSync(source), link)
     }
     if (artifacts.glue) {
-      FSExtra.writeFileSync(
+      writeFileSync(
         path.join(podDir, 'Sources', 'OneNativeSource.generated.swift'),
         artifacts.glue
       )
     }
-    FSExtra.writeFileSync(
+    writeFileSync(
       path.join(podDir, `${id}.podspec`),
       `Pod::Spec.new do |s|
   s.name = '${id}'
@@ -3183,7 +3196,7 @@ async function generateSwiftPackages({ root, dest }: { root: string; dest: strin
 end
 `
     )
-    FSExtra.writeFileSync(
+    writeFileSync(
       path.join(podDir, 'Register.m'),
       hasView ? `#import <Foundation/Foundation.h>
 
@@ -3237,12 +3250,12 @@ export function applyAndroidDependencyPatches(args: {
     'MainActivity.kt'
   )
   const rendered = nativeProjectPatches.holdLaunchScreenInMainActivity(
-    nativeProjectPatches.addReactNativeScreensFix(FSExtra.readFileSync(activityPath, 'utf8'))
+    nativeProjectPatches.addReactNativeScreensFix(readFileSync(activityPath, 'utf8'))
   )
   if (!rendered.includes('RNScreensFragmentFactory')) {
     throw new Error('[vxrn] failed to apply the react-native-screens activity patch')
   }
-  FSExtra.writeFileSync(activityPath, rendered)
+  writeFileSync(activityPath, rendered)
 }
 
 // use the community cli's final configuration so project-owned dependency
@@ -3270,7 +3283,7 @@ export async function getNativeDependencyInventory(
     let version = 'unknown'
     try {
       version =
-        JSON.parse(FSExtra.readFileSync(path.join(depRoot, 'package.json'), 'utf8'))
+        JSON.parse(readFileSync(path.join(depRoot, 'package.json'), 'utf8'))
           .version ?? 'unknown'
     } catch {}
     const platforms = Object.entries(dependency.platforms)
