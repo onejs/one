@@ -1,7 +1,7 @@
 import type { InlineConfig } from 'vite'
 import { resolvePath } from '@vxrn/resolve'
-import FSExtra from 'fs-extra'
 import { join } from 'node:path'
+import { pathExists, readJSON } from '../utils/fs'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 
 // essentially base web config not base everything
@@ -52,7 +52,7 @@ export async function getBaseViteConfig(
   const postCSSConfigPath = (
     await Promise.all(
       postCSSPaths.map(async (x) => {
-        if (await FSExtra.pathExists(x)) {
+        if (await pathExists(x)) {
           return x
         }
       })
@@ -60,7 +60,7 @@ export async function getBaseViteConfig(
   ).find((x) => typeof x === 'string')
 
   const reactNativePackageJsonPath = resolvePath('react-native/package.json', root)
-  const { version } = await FSExtra.readJSON(reactNativePackageJsonPath)
+  const { version } = await readJSON(reactNativePackageJsonPath)
 
   return {
     mode,

@@ -1,6 +1,6 @@
 import { createDebugger } from '@vxrn/debug'
-import FSExtra from 'fs-extra'
 import path from 'node:path'
+import { outputJSON, readJSON } from '../utils/fs'
 import { createFilter, type Plugin } from 'vite'
 import type { AutoDepOptimizationOptions } from '../types'
 import {
@@ -141,7 +141,7 @@ export async function findDepsToOptimize({
       const {
         lockFileHash: cachedLockFileHash,
         depsToPreBundleForSsr: cachedDepsToPreBundle,
-      } = await FSExtra.readJSON(cacheFilePath)
+      } = await readJSON(cacheFilePath)
 
       if (
         lockFileHash === cachedLockFileHash &&
@@ -167,7 +167,7 @@ export async function findDepsToOptimize({
     }
 
     if (!noCache) {
-      void FSExtra.outputJSON(cacheFilePath, {
+      void outputJSON(cacheFilePath, {
         lockFileHash,
         depsToPreBundleForSsr: value,
       })

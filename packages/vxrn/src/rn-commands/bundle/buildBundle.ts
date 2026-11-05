@@ -1,8 +1,9 @@
-import FSExtra from 'fs-extra'
 import { clearTransformCache } from '@vxrn/compiler'
 import type { BundleCommandArgs } from '@vxrn/vite-plugin-metro/rn-commands'
+import { existsSync, mkdirSync, renameSync, rmSync } from 'node:fs'
 import { resolveConfig } from 'vite'
 import { dirname, join, resolve } from 'node:path'
+import { outputFileSync } from '../../utils/fs'
 import { loadEnv } from '../../exports/loadEnv'
 import { buildNativeBundle } from '../../utils/createNativeDevEngine'
 
@@ -99,18 +100,21 @@ export async function buildBundle(
     const source = join(assetsDest, 'one-dom')
     const destination = join(dirname(bundleOutput), 'one-dom')
     if (resolve(source) !== resolve(destination)) {
-      FSExtra.removeSync(destination)
-      if (FSExtra.existsSync(source)) FSExtra.moveSync(source, destination)
+      rmSync(destination, { recursive: true, force: true })
+      if (existsSync(source)) {
+        mkdirSync(dirname(destination), { recursive: true })
+        renameSync(source, destination)
+      }
     }
   }
 
   // write sourcemap if available and requested
   if (result.map && args.sourcemapOutput) {
-    FSExtra.outputFileSync(args.sourcemapOutput, result.map, { encoding: 'utf8' })
+    outputFileSync(args.sourcemapOutput, result.map, { encoding: 'utf8' })
   }
 
   console.info(`Writing bundle to ${bundleOutput}...`)
-  FSExtra.outputFileSync(bundleOutput, builtBundle, { encoding: bundleEncoding })
+  outputFileSync(bundleOutput, builtBundle, { encoding: bundleEncoding })
   console.info('Done.')
 
   // Prevent the process not getting exited for some unknown reason.

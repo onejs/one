@@ -1,8 +1,9 @@
 import { createHash } from 'node:crypto'
+import { existsSync } from 'node:fs'
+import { readFile } from 'node:fs/promises'
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
-import { readPackageJSON } from 'pkg-types'
+import { basename, dirname, join, resolve } from 'node:path'
 import type { Mode, VXRNOptions } from '../types'
 import { getServerOptionsFilled } from './getServerOptionsFilled'
 import { readState } from '../utils/state'
@@ -38,6 +39,14 @@ const require = createRequire(import.meta.url)
  *   * Over time, we can progressively eliminate dependencies on
  *     `VXRNOptionsFilled` across the codebase.
  */
+export type PackageJSON = {
+  name?: string
+  version?: string
+  dependencies?: Record<string, string>
+  devDependencies?: Record<string, string>
+  [key: string]: any
+}
+
 export type VXRNOptionsFilled = Awaited<ReturnType<typeof fillOptions>>
 
 let optionsFilled: VXRNOptionsFilled | null = null
@@ -113,6 +122,30 @@ export async function fillOptions(
 
 export function getOptionsFilled() {
   return optionsFilled
+}
+
+async function readPackageJSON(cwd = process.cwd()): Promise<PackageJSON> {
+  // nearest package.json walking up, stopping above the shallowest
+  // node_modules segment, matching the pkg-types lookup this replaces
+  let stopDir: string | null = null
+  for (let dir = resolve(cwd); ; ) {
+    if (basename(dir) === 'node_modules') stopDir = dir
+    const parent = dirname(dir)
+    if (parent === dir) break
+    dir = parent
+  }
+  let dir = resolve(cwd)
+  for (;;) {
+    const candidate = join(dir, 'package.json')
+    if (existsSync(candidate)) {
+      return JSON.parse(await readFile(candidate, 'utf8'))
+    }
+    if (stopDir && resolve(dir) === stopDir) break
+    const parent = dirname(dir)
+    if (parent === dir) break
+    dir = parent
+  }
+  throw new Error(`Cannot find matching package.json in ${cwd} or parent directories`)
 }
 
 function hashString(str: string): string {

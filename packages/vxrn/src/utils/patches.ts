@@ -1,15 +1,28 @@
 import { transformSWC } from '@vxrn/compiler'
 import { transformFlowBabel } from '@vxrn/vite-flow'
 import Glob from 'fast-glob'
-import findNodeModules from 'find-node-modules'
-import FSExtra from 'fs-extra'
-import { realpathSync } from 'node:fs'
-import { join } from 'node:path'
-import { rename } from 'node:fs/promises'
+import { existsSync, realpathSync } from 'node:fs'
+import { dirname, join, resolve } from 'node:path'
+import { readFile, rename, stat, writeFile } from 'node:fs/promises'
 import semver from 'semver'
 import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { builtInDepPatches } from '../patches/builtInDepPatches'
+import { readJSON, writeJSON } from './fs'
 import { globDir } from './globDir'
+
+// every node_modules dir from root up to the filesystem root,
+// matching the find-node-modules lookup this replaces
+function findNodeModulesDirs(root: string): string[] {
+  const dirs: string[] = []
+  let dir = resolve(root)
+  for (;;) {
+    const candidate = join(dir, 'node_modules')
+    if (existsSync(candidate)) dirs.push(candidate)
+    const parent = dirname(dir)
+    if (parent === dir) return dirs
+    dir = parent
+  }
+}
 
 type Strategies = 'swc' | 'flow' | 'jsx'
 
@@ -83,14 +96,14 @@ function getOriginalPath(fullPath: string) {
 
 async function readPatchStats(nodeModulesDir: string): Promise<PatchStats> {
   try {
-    return await FSExtra.readJSON(join(nodeModulesDir, STATS_FILE))
+    return await readJSON(join(nodeModulesDir, STATS_FILE))
   } catch {
     return {}
   }
 }
 
 async function writePatchStats(nodeModulesDir: string, stats: PatchStats) {
-  await FSExtra.writeJSON(join(nodeModulesDir, STATS_FILE), stats)
+  await writeJSON(join(nodeModulesDir, STATS_FILE), stats)
 }
 
 type PatchResult = 'applied' | 'ok' | 'skipped'
@@ -111,16 +124,15 @@ export async function applyDependencyPatches(
   // collect unique module names for pnpm store globbing
   const patchModuleNames = [...new Set(patches.map((p) => p.module))]
 
-  const nodeModulesDirs = findNodeModules({ cwd: root }).flatMap((relativePath) => {
-    const dir = join(root, relativePath)
+  const nodeModulesDirs = findNodeModulesDirs(root).flatMap((dir) => {
     const dirs = [dir]
 
     const pnpmBase = join(dir, '.pnpm')
-    if (!FSExtra.existsSync(pnpmBase)) return dirs
+    if (!existsSync(pnpmBase)) return dirs
 
     // pnpm hoists transitive deps into .pnpm/node_modules/ (symlinks to store)
     const pnpmHoistedDir = join(pnpmBase, 'node_modules')
-    if (FSExtra.existsSync(pnpmHoistedDir)) {
+    if (existsSync(pnpmHoistedDir)) {
       dirs.push(pnpmHoistedDir)
     }
 
@@ -159,7 +171,7 @@ export async function applyDependencyPatches(
           try {
             const nodeModuleDir = join(nodeModulesDir, patch.module)
 
-            if (!FSExtra.existsSync(nodeModuleDir)) return
+            if (!existsSync(nodeModuleDir)) return
 
             // deduplicate by real path to avoid patching the same files twice
             // (multiple symlinks/paths can resolve to the same pnpm store entry)
@@ -176,7 +188,7 @@ export async function applyDependencyPatches(
 
             const version = patch.patchFiles.version
             if (typeof version === 'string') {
-              const pkgJSON = await FSExtra.readJSON(join(nodeModuleDir, 'package.json'))
+              const pkgJSON = await readJSON(join(nodeModuleDir, 'package.json'))
               if (!semver.satisfies(pkgJSON.version, version)) return
             }
 
@@ -203,8 +215,8 @@ export async function applyDependencyPatches(
               filePatches.map(async ({ relativePath }) => {
                 const fullPath = join(nodeModuleDir, relativePath)
                 try {
-                  const stat = await FSExtra.stat(fullPath)
-                  return { relativePath, fullPath, stat, exists: true }
+                  const fileStat = await stat(fullPath)
+                  return { relativePath, fullPath, stat: fileStat, exists: true }
                 } catch {
                   return { relativePath, fullPath, stat: null, exists: false }
                 }
@@ -213,15 +225,15 @@ export async function applyDependencyPatches(
 
             // filter to files that need processing
             const filesToProcess = fileStatsResults.filter(
-              ({ fullPath, stat, exists }) => {
-                if (!exists || !stat) return false
+              ({ fullPath, stat: fileStat, exists }) => {
+                if (!exists || !fileStat) return false
                 if (process.env.VXRN_FORCE_PATCH) return true
 
                 const cached = patchStats[fullPath]
                 if (!cached) return true // never patched
 
                 // check if file changed since we patched it
-                return stat.size !== cached.size || stat.mtimeMs !== cached.mtimeMs
+                return fileStat.size !== cached.size || fileStat.mtimeMs !== cached.mtimeMs
               }
             )
 
@@ -246,8 +258,8 @@ export async function applyDependencyPatches(
 
                   // read target and original in parallel
                   const [targetContent, originalContent] = await Promise.all([
-                    FSExtra.readFile(fullPath, 'utf-8'),
-                    FSExtra.readFile(originalPath, 'utf-8').catch(() => null),
+                    readFile(fullPath, 'utf-8'),
+                    readFile(originalPath, 'utf-8').catch(() => null),
                   ])
 
                   // determine source content for patching
@@ -336,8 +348,8 @@ export async function applyDependencyPatches(
                     // check if already has this patched content
                     if (targetContent === patchedContent) {
                       // already patched, just update stats
-                      const stat = await FSExtra.stat(fullPath)
-                      patchStats[fullPath] = { size: stat.size, mtimeMs: stat.mtimeMs }
+                      const fileStat = await stat(fullPath)
+                      patchStats[fullPath] = { size: fileStat.size, mtimeMs: fileStat.mtimeMs }
                       statsChanged = true
                       return
                     }
@@ -350,8 +362,8 @@ export async function applyDependencyPatches(
                     ])
 
                     // update stats
-                    const stat = await FSExtra.stat(fullPath)
-                    patchStats[fullPath] = { size: stat.size, mtimeMs: stat.mtimeMs }
+                    const fileStat = await stat(fullPath)
+                    patchStats[fullPath] = { size: fileStat.size, mtimeMs: fileStat.mtimeMs }
                     statsChanged = true
                     didApplyPatch = true
 
@@ -362,8 +374,8 @@ export async function applyDependencyPatches(
                     }
                   } else {
                     // patch made no changes, still record stats so we skip next time
-                    const stat = await FSExtra.stat(fullPath)
-                    patchStats[fullPath] = { size: stat.size, mtimeMs: stat.mtimeMs }
+                    const fileStat = await stat(fullPath)
+                    patchStats[fullPath] = { size: fileStat.size, mtimeMs: fileStat.mtimeMs }
                     statsChanged = true
                   }
                 } catch (err) {
@@ -405,6 +417,6 @@ export async function applyDependencyPatches(
 
 async function atomicWriteFile(filePath: string, contents: string) {
   const tempPath = filePath + '.vxrn.tmp.' + process.pid + '.' + Date.now()
-  await FSExtra.writeFile(tempPath, contents)
+  await writeFile(tempPath, contents)
   await rename(tempPath, filePath)
 }

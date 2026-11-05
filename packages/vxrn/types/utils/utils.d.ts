@@ -1,5 +1,5 @@
-import type fs from 'node:fs';
-export declare function tryStatSync(file: string): fs.Stats | undefined;
+import { type Stats } from 'node:fs';
+export declare function tryStatSync(file: string): Stats | undefined;
 export declare function lookupFile(dir: string, fileNames: string[]): Promise<string | undefined>;
 export declare function getHash(text: Buffer | string, length?: number): string;
 export declare function getFileHash(path: string): Promise<string>;

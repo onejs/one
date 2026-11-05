@@ -1,5 +1,5 @@
 import { detectPackageManager, type PackageManagerName } from '@vxrn/utils'
-import FSExtra from 'fs-extra'
+import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fillOptions } from '../config/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
@@ -38,7 +38,7 @@ export const prebuild = async ({
 
   try {
     const packageJsonPath = path.join(root, 'package.json')
-    const packageJsonContents = await FSExtra.readFile(packageJsonPath, 'utf8')
+    const packageJsonContents = await readFile(packageJsonPath, 'utf8')
     const { devDependencies } = JSON.parse(packageJsonContents)
     if (!devDependencies?.['@react-native-community/template']) {
       const installCommand: `${PackageManagerName} ${'add' | 'install'} ${'-D'} ${'@react-native-community/template'}` =
@@ -126,9 +126,9 @@ export async function replaceInUTF8File(
   findThis: string,
   replaceWith: string
 ) {
-  const fileContent = await FSExtra.readFile(filePath, 'utf8')
+  const fileContent = await readFile(filePath, 'utf8')
   const replacedFileContent = fileContent.replace(findThis, replaceWith)
   if (replacedFileContent !== fileContent) {
-    await FSExtra.writeFile(filePath, replacedFileContent, 'utf8')
+    await writeFile(filePath, replacedFileContent, 'utf8')
   }
 }

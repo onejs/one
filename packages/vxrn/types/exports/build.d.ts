@@ -26,7 +26,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
             native: string;
             readonly server: './src/entry-server.tsx';
         };
-        readonly packageJSON: import("pkg-types").PackageJson;
+        readonly packageJSON: import("../config/getOptionsFilled").PackageJSON;
         readonly packageVersions: {
             react: string;
             reactNative: string;
