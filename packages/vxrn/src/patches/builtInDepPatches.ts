@@ -446,7 +446,7 @@ ${contents}
   {
     module: 'react-native',
     patchFiles: {
-      version: '>=0.86.0',
+      version: '>=0.86.0 <0.88.0',
 
       'ReactCommon/react/nativemodule/core/platform/ios/ReactCommon/RCTTurboModule.mm': (
         contents
@@ -459,6 +459,35 @@ ${contents}
       // Void methods are always async, re-throw instead of converting to
       // JSError, same as the async branch in performMethodInvocation.
       @throw exception;
+    } @finally {`,
+          `    @try {
+      [inv invokeWithTarget:strongModule];
+    } @catch (NSException *exception) {
+      RCTLogError(@"Exception in %s.%s: %@", moduleName, methodNameStr.c_str(), exception.reason);
+    } @finally {`
+        )
+      },
+    },
+  },
+
+  // 0.88 wraps the same rethrow. the old string matches nothing, so the
+  // exception reaches the process handler again.
+  {
+    module: 'react-native',
+    patchFiles: {
+      version: '>=0.88.0',
+
+      'ReactCommon/react/nativemodule/core/platform/ios/ReactCommon/RCTTurboModule.mm': (
+        contents
+      ) => {
+        if (!contents) return
+        return contents.replace(
+          `    @try {
+      [inv invokeWithTarget:strongModule];
+    } @catch (NSException *exception) {
+      // Void methods are always async, re-throw instead of converting to
+      // JSError, same as the async branch in performMethodInvocation.
+      @throw addModuleIdentityToException(exception, std::string{moduleName}, methodNameStr);
     } @finally {`,
           `    @try {
       [inv invokeWithTarget:strongModule];
