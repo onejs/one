@@ -11,6 +11,7 @@ vi.mock('@vxrn/compiler', () => ({ transformSWC: vi.fn() }))
 vi.mock('@vxrn/vite-flow', () => ({ transformFlowBabel: vi.fn() }))
 
 import { transformSWC } from '@vxrn/compiler'
+import { builtInDepPatches } from '../patches/builtInDepPatches'
 import {
   type DepPatch,
   applyDependencyPatches,
@@ -336,6 +337,37 @@ describe('applyDependencyPatches', () => {
 
     expect(warn.mock.calls.flat().join(' ')).not.toContain('stale')
     warn.mockRestore()
+  })
+
+  it('logs a throwing void TurboModule on both the old and 0.88 catch blocks', () => {
+    const path =
+      'ReactCommon/react/nativemodule/core/platform/ios/ReactCommon/RCTTurboModule.mm'
+    const logged =
+      'RCTLogError(@"Exception in %s.%s: %@", moduleName, methodNameStr.c_str(), exception.reason);'
+    const older = `    @try {
+      [inv invokeWithTarget:strongModule];
+    } @catch (NSException *exception) {
+      // Void methods are always async, re-throw instead of converting to
+      // JSError, same as the async branch in performMethodInvocation.
+      @throw exception;
+    } @finally {`
+    const current = older.replace(
+      '@throw exception;',
+      '@throw addModuleIdentityToException(exception, std::string{moduleName}, methodNameStr);'
+    )
+    const apply = (version: string, source: string) => {
+      const patch = builtInDepPatches.find(
+        (entry) => entry.module === 'react-native' && entry.patchFiles.version === version
+      )
+      const transform = patch?.patchFiles[path]
+      if (typeof transform !== 'function') throw new Error(version)
+      return transform(source)
+    }
+
+    expect(apply('>=0.86.0 <0.88.0', older)).toContain(logged)
+    expect(apply('>=0.86.0 <0.88.0', older)).not.toContain('@throw exception;')
+    expect(apply('>=0.88.0', current)).toContain(logged)
+    expect(apply('>=0.88.0', current)).not.toContain('@throw addModuleIdentityToException')
   })
 
   // a patch is written to node_modules once and then read by every later build,
