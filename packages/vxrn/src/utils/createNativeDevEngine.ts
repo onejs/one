@@ -871,8 +871,10 @@ export const NATIVE_DEV_RUNTIME_END =
  * production uses rolldown's iife format; the dev engine needs this wrapper.
  *
  * keep the prelude at script scope because it installs intentional globals.
- * the dev runtime assigns itself to globalThis, and hmr's direct eval stays
- * inside this closure so it can reach module bindings and runtime helpers.
+ * external ESM imports rolldown left in the output stay at script scope too:
+ * an import nested in the wrapper is not valid JS. the dev runtime assigns
+ * itself to globalThis, and hmr's direct eval stays inside this closure so it
+ * can reach module bindings and runtime helpers.
  */
 export function wrapNativeBundleModuleScope(code: string): string {
   const idx = code.indexOf(NATIVE_MODULE_SCOPE_MARKER)
@@ -882,10 +884,26 @@ export function wrapNativeBundleModuleScope(code: string): string {
     )
   }
 
-  // the opener shares the marker's line (the rest of that line is a comment) so
-  // the wrap costs no lines, and the closer only appends past the last mapped
-  // line. the served bundle therefore stays aligned with Rolldown's source map.
-  return code.slice(0, idx) + ';(function() {' + code.slice(idx) + '\n})();\n'
+  // rolldown emits external imports first, directly after the marker line. the
+  // opener goes after that block (a static import declaration only, never a
+  // dynamic import() or import.meta, which stay scoped like any expression).
+  // the opener shares a line either way and the closer only appends past the
+  // last mapped line, so the served bundle stays aligned with Rolldown's
+  // source map with or without imports.
+  let openerAt = idx
+  let cursor = code.indexOf('\n', idx)
+  cursor = cursor === -1 ? code.length : cursor + 1
+  let open = false
+  while (cursor < code.length) {
+    const end = code.indexOf('\n', cursor)
+    const line = code.slice(cursor, end === -1 ? code.length : end)
+    if (!open && !/^\s*import\s+['"*{\w]/.test(line)) break
+    open = !/;\s*$/.test(line)
+    openerAt = end === -1 ? code.length : end
+    if (end === -1) break
+    cursor = end + 1
+  }
+  return code.slice(0, openerAt) + ';(function() {' + code.slice(openerAt) + '\n})();\n'
 }
 
 /**
