@@ -1,3 +1,20 @@
+# One next minor: precompiled iOS
+
+Nate, 2026-11-05, asked for “publish pre-compiled releases” for iOS using
+“public free runners”, then directed: “OK, why don't you finish both of those?”
+Scope: precompiled One native libraries and their public GitHub producer,
+consumer and publication pipeline, alongside React Native's precompiled core.
+
+PR [#1099](https://github.com/onejs/one/pull/1099) prepares automatic CocoaPods
+consumption for matching native sources, peers, Xcode, compiler and Release
+groups. The binaries contain arm64 device and simulator slices for Debug and
+Release. App-specific Swift packages and SDK bindings remain in the consumer.
+Public releases become visible only after a consumer builds against the binaries.
+
+The branch retains the package family's prepared minor version. Stable npm
+publication requires separate approval. See the precompiled iOS section of
+`apps/onestack.dev/data/docs/native-setup.mdx` for the installation contract.
+
 # One audio next minor: Now Playing ownership and paused loading
 
 Issues: [#1065](https://github.com/onejs/one/issues/1065) managed players cannot own

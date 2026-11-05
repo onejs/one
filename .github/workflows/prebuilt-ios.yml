@@ -49,6 +49,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/install
         with:
+          workspace-focus: 'one'
           install-playwright: 'false'
       - name: Generate the native producer
         working-directory: tests/native-features
@@ -107,6 +108,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/install
         with:
+          workspace-focus: 'one'
           install-playwright: 'false'
       - uses: actions/download-artifact@v7
         with:
