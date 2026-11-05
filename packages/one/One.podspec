@@ -45,7 +45,7 @@ Pod::Spec.new do |s|
     'HEADER_SEARCH_PATHS' => '"$(PODS_TARGET_SRCROOT)/cpp" "$(OBJECT_FILE_DIR_normal)/$(CURRENT_ARCH)"',
   }
 
-  s.exclude_files = 'ios/Tests/**/*'
+  s.exclude_files = ['ios/Tests/**/*', 'ios/Generated/*ComponentView.mm']
   s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}', 'cpp/**/*.{h,cpp}'
   # required-reason api declarations (user defaults, boot time, file
   # timestamps, disk space); xcode aggregates these into the app manifest.
