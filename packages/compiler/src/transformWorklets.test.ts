@@ -11,6 +11,26 @@ afterEach(() => {
   configureVXRNCompilerPlugin({ enableReanimated: false, enableNativeWorklets: false })
 })
 
+// moves a worklet into an isolated context the way the ui runtime does: every
+// captured function crosses through its serialized code only. passing a live
+// host function straight in would hide a missing factory, which is how a raw
+// superclass capture once slipped through.
+function transferToUI(value: any, seen = new Map<any, any>()): any {
+  if (typeof value !== 'function') return value
+  if (seen.has(value)) return seen.get(value)
+  if (!value.__initData?.code) {
+    throw new Error(`non-serializable captured function: ${value.name}`)
+  }
+  const ui = runInNewContext(value.__initData.code, {})
+  const receiver: any = {}
+  const rebuilt = (...args: any[]) => ui.apply(receiver, args)
+  seen.set(value, rebuilt)
+  receiver.__closure = (value.__closure ?? []).map((item: any) =>
+    transferToUI(item, seen)
+  )
+  return rebuilt
+}
+
 describe('shouldTransformWorklets', () => {
   it('returns false when enableReanimated is false', () => {
     configureVXRNCompilerPlugin({ enableReanimated: false, enableNativeWorklets: true })
@@ -333,7 +353,9 @@ export const Picker = (props: { onChange: (v: string) => void }): Node => null
     )
     expect(result.code).toContain('__workletHash')
     expect(result.code).not.toContain('import type')
-    expect(result.map?.sources).toContain('/app/node_modules/flow-picker/js/Picker.ios.js')
+    expect(result.map?.sources).toContain(
+      '/app/node_modules/flow-picker/js/Picker.ios.js'
+    )
     const serialized = result.code.match(/code: ("(?:\\.|[^"\\])*")/)?.[1]
     expect((0, eval)(JSON.parse(serialized!))(21)).toBe(42)
   })
@@ -849,9 +871,182 @@ export default (codegenNativeComponent<NativeProps>('FlowPicker'): HostComponent
     runner(sandbox.exports, sandbox.global)
     expect(sandbox.exports.level1()).toBe(42)
   })
+
+  it('serializes a captured worklet class through its class factory', async () => {
+    const code = `
+      class Counter { __workletClass = true; value = 7; read() { return this.value } }
+      globalThis.result = function read() { 'worklet'; return new Counter().read() }
+    `
+    const result = await transformWorklets('/app/counter.ts', code, false, {
+      pluginVersion: '0.13.0',
+    })
+    expect(result.code).toContain('Counter__classFactory')
+    expect(result.code).not.toContain('__workletClass')
+
+    const sandbox: any = {}
+    runInNewContext(`${result.code}\nglobalThis.__testCounter = Counter;`, sandbox)
+    const read = sandbox.result
+    const Counter = sandbox.__testCounter
+    expect(read()).toBe(7)
+
+    const factory = Counter.Counter__classFactory
+    expect(factory.__workletHash).toBeDefined()
+    expect(factory.__initData.code).toContain('Counter__classFactory')
+    expect(read.__closure).toEqual([factory])
+
+    const uiFn = runInNewContext(read.__initData.code, {})
+    expect(read.__initData.code).toContain('Counter = Counter__classFactory()')
+    expect(uiFn.call({ __closure: read.__closure })).toBe(7)
+
+    const factoryUI = runInNewContext(factory.__initData.code, {})
+    const UICounter = factoryUI.call({ __closure: factory.__closure })
+    expect(new UICounter().read()).toBe(7)
+  })
+
+  it('matches upstream class factory serialization for captured worklet classes', async () => {
+    const code = `
+      class Counter { __workletClass = true; value = 7; read() { return this.value } }
+      export function read() { 'worklet'; return new Counter().read() }
+    `
+    const require = createRequire(import.meta.url)
+    const upstream = require('@babel/core').transformSync(code, {
+      filename: '/app/counter.js',
+      babelrc: false,
+      configFile: false,
+      plugins: [
+        [require.resolve('react-native-worklets/plugin'), { disableSourceMaps: true }],
+      ],
+    })
+    const ours = await transformWorklets('/app/counter.js', code, false, {
+      pluginVersion: '0.13.0',
+    })
+    const evaluate = (output: string) =>
+      new Function('global', `${output.replace(/\bexport /g, '')}; return read`)(
+        globalThis
+      )
+    const upstreamFn = evaluate(upstream.code)
+    const ourFn = evaluate(ours.code)
+    for (const fn of [upstreamFn, ourFn]) {
+      expect(fn.__closure).toHaveLength(1)
+      expect(fn.__closure[0].__workletHash).toBeDefined()
+      expect(fn.__closure[0].__initData.code).toBeDefined()
+      expect(fn()).toBe(7)
+    }
+    const upstreamUI = eval(upstreamFn.__initData.code)
+    const ourUI = eval(ourFn.__initData.code)
+    expect(ourUI.call({ __closure: upstreamFn.__closure })).toBe(7)
+    expect(upstreamUI.call({ __closure: ourFn.__closure })).toBe(7)
+  })
+
+  it('captures outer bindings used by a worklet class in the factory closure', async () => {
+    const code = `
+      const base = 5
+      class Adder { __workletClass = true; add(x) { return x + base } }
+      export function run(v) { 'worklet'; return new Adder().add(v) }
+    `
+    const result = await transformWorklets('/app/adder.ts', code, false, {
+      pluginVersion: '0.13.0',
+    })
+    const sandbox: any = {}
+    runInNewContext(
+      `${result.code.replace('export var run', 'var run')}\nglobalThis.__test = { run, Adder };`,
+      sandbox
+    )
+    const { run, Adder } = sandbox.__test
+    expect(Adder.Adder__classFactory.__closure).toEqual([5])
+    expect(run.__closure).toEqual([Adder.Adder__classFactory])
+    expect(run(2)).toBe(7)
+    const uiFn = runInNewContext(run.__initData.code, {})
+    expect(uiFn.call({ __closure: run.__closure }, 2)).toBe(7)
+  })
+
+  it('handles inheritance between worklet classes', async () => {
+    const code = `
+      abstract class Base { __workletClass = true; abstract v: number; who() { return 'base' } }
+      class Child extends Base { __workletClass = true; v = 30; who() { return super.who() + '+child' } }
+      export function run() { 'worklet'; return new Child().who() + new Child().v }
+    `
+    const result = await transformWorklets('/app/child.ts', code, false, {
+      pluginVersion: '0.13.0',
+    })
+    expect(result.code).toContain('Child__classFactory')
+    const sandbox: any = {}
+    runInNewContext(
+      `${result.code.replace('export var run', 'var run')}\nglobalThis.__test = { run, Child, Base };`,
+      sandbox
+    )
+    const { run, Child, Base } = sandbox.__test
+    expect(Child.Child__classFactory.__workletHash).toBeDefined()
+    // the child factory closes over the base factory, never the raw class,
+    // so the whole graph crosses to the ui thread through serialized code.
+    expect(Child.Child__classFactory.__closure).toEqual([Base.Base__classFactory])
+    expect(run.__closure).toEqual([Child.Child__classFactory])
+    expect(run()).toBe('base+child30')
+    expect(transferToUI(run)()).toBe('base+child30')
+  })
+
+  it.each([{ disableWorkletClasses: true }, { bundleMode: true }])(
+    'honors %s by capturing the raw class',
+    async (options) => {
+      const code = `
+      class Counter { __workletClass = true; value = 7; read() { return this.value } }
+      globalThis.result = function read() { 'worklet'; return new Counter().read() }
+    `
+      const result = await transformWorklets('/app/counter.ts', code, false, options)
+      expect(result.code).not.toContain('__classFactory')
+      expect(result.code).toContain('__workletClass')
+      const sandbox: any = {}
+      runInNewContext(`${result.code}\nglobalThis.__testCounter = Counter;`, sandbox)
+      expect(sandbox.result()).toBe(7)
+      expect(sandbox.result.__closure).toEqual([sandbox.__testCounter])
+    }
+  )
+
+  it('keeps source maps working across the class factory transform', async () => {
+    const code = `
+      class Counter { __workletClass = true; value = 7; read() { return this.value } }
+      export function read() { 'worklet'; return new Counter().read() }
+    `
+    const result = await transformWorklets('/app/counter.ts', code, true, {
+      pluginVersion: '0.13.0',
+    })
+    expect(result.code).toContain('Counter__classFactory')
+    expect(result.map).toBeDefined()
+    expect(result.map?.mappings).toBeDefined()
+    expect(result.map?.sources).toContain('/app/counter.ts')
+  })
+
+  it('keeps the native worklets path free of Babel core', async () => {
+    const dir = path.resolve(__dirname, 'worklets')
+    for (const file of fs.readdirSync(dir)) {
+      if (!file.endsWith('.ts') || file.endsWith('.test.ts')) continue
+      const source = fs.readFileSync(path.join(dir, file), 'utf-8')
+      expect(source, file).not.toContain('@babel/core')
+      expect(source, file).not.toMatch(/from ['"]@babel\//)
+      expect(source, file).not.toMatch(/require\(['"]@babel\//)
+    }
+    const result = await transformWorklets(
+      '/app/counter.ts',
+      `class Counter { __workletClass = true; value = 7; read() { return this.value } }
+       export function read() { 'worklet'; return new Counter().read() }`,
+      false
+    )
+    expect(result.code).toContain('Counter__classFactory')
+  })
 })
 
 describe('worklet detection gate', () => {
+  it('accepts files that only define a worklet class', () => {
+    // a marked class in its own file carries no worklet keyword, but the
+    // importing file's worklet reconstructs it from its class factory, so the
+    // defining file must still reach the transform.
+    configureVXRNCompilerPlugin({ enableReanimated: true, enableNativeWorklets: true })
+    const code = `
+      class Counter { __workletClass = true; value = 7; read() { return this.value } }
+    `
+    expect(shouldTransformWorklets({ id: '/app/Counter.ts', code })).toBe(true)
+  })
+
   it('accepts files whose only worklets come from gesture callbacks', () => {
     // .onBegin/.onEnd/.onTouchesMove are auto-workletized by the transform, so
     // a gate that misses them ships those callbacks untransformed.

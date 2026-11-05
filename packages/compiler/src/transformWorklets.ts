@@ -13,6 +13,10 @@ import {
 // untransformed.
 export const REANIMATED_AUTOWORKLETIZATION_KEYWORDS = [
   'worklet',
+  // a marked class in its own file carries no worklet keyword, but importing
+  // files reconstruct it from its factory, so the defining file must reach
+  // the transform too.
+  '__workletClass',
   'useAnimatedGestureHandler',
   'useAnimatedScrollHandler',
   'useFrameCallback',

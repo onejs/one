@@ -24,6 +24,11 @@ function assertTransformed(
   }
 }
 
+export type ClassReconstruction = {
+  name: string
+  factory: string
+}
+
 /**
  * serializes a worklet function into a string for the hermes ui thread (__initData.code).
  * includes injected unpacker: `const [var1, var2] = this.__closure;`
@@ -33,7 +38,8 @@ export function serializeWorkletForUI(
   fnNode: any,
   code: string,
   name: string | undefined,
-  closureVars: string[]
+  closureVars: string[],
+  reconstructions: ClassReconstruction[] = []
 ): string {
   let rawParams = ''
   if (fnNode.params && fnNode.params.length > 0) {
@@ -53,12 +59,18 @@ export function serializeWorkletForUI(
 
   const unpacker =
     closureVars.length > 0 ? `const [${closureVars.join(', ')}] = this.__closure;\n` : ''
+  const rebuilt =
+    reconstructions.length > 0
+      ? reconstructions
+          .map(({ name, factory }) => `const ${name} = ${factory}();\n`)
+          .join('')
+      : ''
 
   const asyncPrefix = fnNode.async ? 'async ' : ''
   const genPrefix = fnNode.generator ? '*' : ''
   const fnName = name || '_worklet'
 
-  const fullFn = `${asyncPrefix}function${genPrefix} ${fnName}(${rawParams}) {\n${unpacker}${rawBody}\n}`
+  const fullFn = `${asyncPrefix}function${genPrefix} ${fnName}(${rawParams}) {\n${unpacker}${rebuilt}${rawBody}\n}`
 
   const transformed = transformSync('worklet.ts', fullFn)
   assertTransformed(transformed, name, 'serialized')
