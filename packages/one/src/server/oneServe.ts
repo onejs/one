@@ -26,6 +26,7 @@ import {
   withLoaderSearchParams,
   type LoaderSearchSchemas,
 } from '../loaderSearchParams'
+import { requestAtUrl } from './requestAtUrl'
 import { getRouteExportsFromEntry } from './routeExportsFromEntry'
 import { setSSRLoaderData } from './ssrLoaderData'
 
@@ -882,7 +883,7 @@ url: ${url}`)
             const finalUrl = new URL(originalUrl, url.origin)
             // preserve query params (platform=ios, etc.) for native CJS conversion
             finalUrl.search = url.search
-            const cleanedRequest = new Request(finalUrl, request)
+            const cleanedRequest = requestAtUrl(finalUrl, request)
             return resolveLoaderRoute(requestHandlers, cleanedRequest, finalUrl, route)
           }
 
@@ -1059,7 +1060,7 @@ url: ${url}`)
         const finalUrl = new URL(originalUrl, url.origin)
         // preserve query params (platform=ios, etc.) for native CJS conversion
         finalUrl.search = url.search
-        const cleanedRequest = new Request(finalUrl, request)
+        const cleanedRequest = requestAtUrl(finalUrl, request)
 
         try {
           const resolved = await resolveLoaderRoute(

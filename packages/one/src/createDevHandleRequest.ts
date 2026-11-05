@@ -11,6 +11,7 @@ import {
   type RequestHandlerResponse,
   type RequestHandlers,
 } from './createHandleRequest'
+import { requestAtUrl } from './server/requestAtUrl'
 import { getPathFromLoaderPath } from './utils/cleanUrl'
 import { getManifest } from './vite/getManifest'
 
@@ -119,7 +120,7 @@ export function createHandleRequest(
               })
             }
 
-            const cleanedRequest = new Request(finalUrl, request)
+            const cleanedRequest = requestAtUrl(finalUrl, request)
             return resolveLoaderRoute(handlers, cleanedRequest, finalUrl, route)
           }
 
