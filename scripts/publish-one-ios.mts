@@ -28,7 +28,10 @@ const tag = `one-ios-${manifest.key}`
 // a native identity is immutable; rebuilding it never replaces existing assets.
 const existing = await fetch(
   `https://api.github.com/repos/onejs/one/releases/tags/${tag}`,
-  { headers: { Authorization: `Bearer ${process.env.GH_TOKEN!}` } }
+  {
+    headers: { Authorization: `Bearer ${process.env.GH_TOKEN!}` },
+    signal: AbortSignal.timeout(120_000),
+  }
 )
 assert(
   existing.ok || existing.status === 404,
@@ -75,6 +78,19 @@ if (existing.status === 404) {
     { stdio: 'inherit' }
   )
 } else {
+  const published = await fetch(
+    `https://github.com/onejs/one/releases/download/${tag}/manifest.json`,
+    { signal: AbortSignal.timeout(120_000) }
+  )
+  assert(
+    published.ok,
+    `published One iOS manifest lookup failed: HTTP ${published.status}`
+  )
+  assert.deepEqual(
+    await published.json(),
+    manifest,
+    'published native bytes differ; advance the native artifact format before publishing new bytes'
+  )
   process.exit(0)
 }
 execFileSync(

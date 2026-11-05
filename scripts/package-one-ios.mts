@@ -16,7 +16,14 @@ import {
 } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { parseArgs } from 'node:util'
-import { artifactKey, identity } from '../packages/one/ios/prebuilt.ts'
+import {
+  artifactKey,
+  downloadArchive,
+  identity,
+  publishedManifest,
+  sha256,
+  type Archive,
+} from '../packages/one/ios/prebuilt.ts'
 
 const { values } = parseArgs({
   options: {
@@ -26,6 +33,7 @@ const { values } = parseArgs({
     'derived-data': { type: 'string' },
     'skip-build': { type: 'boolean', default: false },
     'skip-build-sdk': { type: 'string', multiple: true, default: [] },
+    'reuse-published': { type: 'boolean', default: false },
   },
 })
 assert(values.ios && values.output, '--ios and --output are required')
@@ -41,9 +49,51 @@ const derivedPath = resolve(values['derived-data'] ?? join(output, 'DerivedData'
 mkdirSync(derivedPath, { recursive: true })
 const derived = realpathSync(derivedPath)
 const one = resolve(import.meta.dirname, '../packages/one')
+const installedPods: string[] = JSON.parse(
+  execFileSync(
+    'ruby',
+    [
+      '-rjson',
+      '-ryaml',
+      '-e',
+      'pods = YAML.load_file(ARGV[0]).fetch("PODS").flat_map { |pod| pod.is_a?(Hash) ? pod.keys : [pod] }; puts JSON.generate(pods.map { |pod| pod.split(" (").first })',
+      join(ios, 'Pods/Manifest.lock'),
+    ],
+    { encoding: 'utf8' }
+  )
+)
+assert(
+  installedPods.includes('React-Core-prebuilt') &&
+    installedPods.includes('ReactNativeDependencies'),
+  'One iOS binary production requires resolved React Native core and dependency binaries'
+)
+assert(
+  ![
+    'RCT_TESTONLY_RNCORE_TARBALL_PATH',
+    'RCT_TESTONLY_RNCORE_VERSION',
+    'RCT_USE_LOCAL_RN_DEP',
+    'RCT_DEPS_VERSION',
+  ].some((name) => process.env[name]),
+  'One iOS binary production requires the standard React Native artifacts'
+)
 const expected = identity(ios)
 const key = artifactKey(expected)
 mkdirSync(output, { recursive: true })
+const writeReceipt = (archive: Archive) =>
+  writeFileSync(
+    join(output, `${configuration}.json`),
+    `${JSON.stringify({ identity: expected, key, configuration, ...archive }, null, 2)}\n`
+  )
+if (values['reuse-published']) {
+  const published = await publishedManifest(expected)
+  if (published) {
+    const archive = published.archives[configuration]
+    await downloadArchive(key, archive, join(output, archive.file))
+    writeReceipt(archive)
+    console.log(`One iOS ${configuration}: reused published ${key}`)
+    process.exit(0)
+  }
+}
 const work = join(output, configuration)
 rmSync(work, { recursive: true, force: true })
 mkdirSync(work)
@@ -177,11 +227,5 @@ execFileSync('tar', ['-czf', join(output, file), '-C', work, 'One.xcframework'],
   stdio: 'inherit',
   env: { ...process.env, COPYFILE_DISABLE: '1' },
 })
-const sha256 = execFileSync('shasum', ['-a', '256', join(output, file)], {
-  encoding: 'utf8',
-}).split(' ')[0]!
-writeFileSync(
-  join(output, `${configuration}.json`),
-  `${JSON.stringify({ identity: expected, key, configuration, file, sha256 }, null, 2)}\n`
-)
+writeReceipt({ file, sha256: await sha256(join(output, file)) })
 console.log(`One iOS ${configuration}: ${join(output, file)}`)

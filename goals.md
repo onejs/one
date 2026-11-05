@@ -6,8 +6,9 @@ Scope: precompiled One native libraries and their public GitHub producer,
 consumer and publication pipeline, alongside React Native's precompiled core.
 
 PR [#1099](https://github.com/onejs/one/pull/1099) prepares automatic CocoaPods
-consumption for matching native sources, peers, Xcode, compiler and Release
-groups. The binaries contain arm64 device and simulator slices for Debug and
+consumption for matching native sources, peers, Xcode and compiler. The complete
+feature catalog also covers apps with a smaller link set. The binaries contain
+arm64 device and simulator slices for Debug and
 Release. App-specific Swift packages and SDK bindings remain in the consumer.
 Public releases become visible only after a consumer builds against the binaries.
 

@@ -96,21 +96,26 @@ During `pod install`, One automatically downloads compatible native libraries
 from its public GitHub releases when they are available. The binaries cover
 arm64 iOS devices and Apple Silicon simulators in both Debug and Release.
 They match One's native sources, React Native, Nitro and Worklets sources,
-the exact Xcode and Swift compiler, and the app's Release feature groups.
+and the exact Xcode and Swift compiler.
 Changing any of these inputs selects a different artifact. An unpublished
 combination compiles from source. Download and checksum errors stop installation.
 
 React Native's own precompiled core remains enabled by its upstream default.
 Apps that modify React Native must keep their source-build setting; One does
-not override it. App-specific Swift packages, SDK bindings and native modules
-still compile in the app. Release builds keep their selected feature groups.
+not override it. One uses binaries only when React Native actually resolved
+its standard precompiled core and dependencies. App-specific Swift packages,
+SDK bindings and native modules still compile in the app. Precompiled One
+includes every optional feature group in Release, so an ordinary app's smaller
+link set also uses the published binary. To retain a smaller native feature
+set, compile One from source.
 
 The installer requires Node 22.18 or newer. To require a matching binary,
 use `ONE_PREBUILT_IOS=1 pod install`. To compile One from source, use
 `ONE_PREBUILT_IOS=0 pod install`. After changing architectures, dependencies
 or native inputs, run `pod install` again. Public GitHub builds publish the
 complete feature catalog for the supported dependency and Xcode combination;
-other combinations use source builds.
+other combinations use source builds. The native artifact format is versioned;
+packaging changes must advance its format before publishing different bytes.
 
 ## Run the app
 

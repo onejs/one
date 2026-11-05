@@ -64,6 +64,7 @@ jobs:
           node scripts/package-one-ios.mts
           --ios tests/native-features/ios
           --configuration '${{ matrix.configuration }}'
+          --reuse-published
           --output '${{ runner.temp }}/one-ios'
           --derived-data '${{ runner.temp }}/one-ios-build'
       - uses: actions/upload-artifact@v7
@@ -118,8 +119,6 @@ jobs:
       - name: Generate the native consumer
         working-directory: tests/native-features
         run: bun run prebuild:native --platform ios --no-install
-      - name: Use the producer's complete release catalog
-        run: rm -f tests/native-features/ios/one-link-set.json
       - name: Verify and import the produced libraries
         run: |
           node scripts/publish-one-ios.mts '${{ runner.temp }}/one-ios'

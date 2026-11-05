@@ -2,7 +2,20 @@ require 'json'
 
 package = JSON.parse(File.read(File.join(__dir__, 'package.json')))
 schema = JSON.parse(File.read(File.join(__dir__, 'schema.json')))
-prebuilt = JSON.parse(Pod::Executable.execute_command('node', [File.join(__dir__, 'ios/prebuilt.ts'), 'resolve', Pod::Config.instance.installation_root.to_s]))
+if ENV['ONE_PREBUILT_IOS'] == '0'
+  prebuilt = { 'reason' => 'source build requested' }
+else
+  # autolinking reads the podspec before use_react_native! initializes these.
+  # use upstream's resolved mode, including an unavailable binary's source build.
+  rn_manifest = Pod::Executable.execute_command('node', ['-p', 'require.resolve("react-native/package.json", {paths: [process.argv[1]]})', Pod::Config.instance.installation_root.to_s]).strip
+  rn_package = JSON.parse(File.read(rn_manifest))
+  ENV['RCT_USE_PREBUILT_RNCORE'] = ENV['RCT_USE_PREBUILT_RNCORE'] == '0' ? '0' : '1'
+  ENV['RCT_USE_RN_DEP'] = ENV['RCT_USE_RN_DEP'] == '0' ? '0' : '1'
+  ReactNativeCoreUtils.setup_rncore(File.dirname(rn_manifest), rn_package['version'])
+  ReactNativeDependenciesUtils.setup_react_native_dependencies(File.dirname(rn_manifest), rn_package['version'])
+  rn_mode = !ReactNativeCoreUtils.build_rncore_from_source() && !ReactNativeDependenciesUtils.build_react_native_deps_from_source() ? 'prebuilt' : 'source'
+  prebuilt = JSON.parse(Pod::Executable.execute_command('node', [File.join(__dir__, 'ios/prebuilt.ts'), 'resolve', Pod::Config.instance.installation_root.to_s, rn_mode]))
+end
 
 Pod::Spec.new do |s|
   s.name           = 'One'
@@ -33,6 +46,7 @@ Pod::Spec.new do |s|
   release_groups = File.exist?(link_set_file) ? JSON.parse(File.read(link_set_file))['groups'] : catalog
   unknown = release_groups - catalog
   raise "#{link_set_file} names unknown groups: #{unknown.join(', ')}" unless unknown.empty?
+  release_groups = catalog if prebuilt['path']
   group_flags = ->(groups) { groups.map { |group| "ONE_GROUP_#{group.upcase}" } }
   s.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
@@ -84,7 +98,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'RNWorklets'
   # webp encoding has no system encoder on ios; expo-image-manipulator uses the same coder.
-  s.dependency 'SDWebImageWebPCoder'
+  s.dependency 'SDWebImageWebPCoder', '0.15.0'
 
   install_modules_dependencies(s)
 end
