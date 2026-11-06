@@ -18,6 +18,34 @@ function pluginEnv(config: any): Record<string, any> {
 }
 
 describe('metro babel env contract', () => {
+  it('reuses dev transform options across restarts while retaining public env invalidation', () => {
+    const config = (cacheKey: string, label = 'first', command = 'serve') =>
+      getMetroBabelConfigFromViteConfig(
+        viteConfig({
+          command,
+          define: {
+            'process.env.ONE_CACHE_KEY': JSON.stringify(cacheKey),
+            'process.env.VITE_LABEL': JSON.stringify(label),
+          },
+        })
+      )
+
+    expect(config('11111111')).toEqual(config('22222222'))
+    expect(config('11111111')).not.toEqual(config('11111111', 'second'))
+    expect(config('11111111', 'first', 'build')).not.toEqual(
+      config('22222222', 'first', 'build')
+    )
+    const env = pluginEnv(
+      viteConfig({
+        command: 'serve',
+        envPrefix: 'ONE_',
+        env: { ONE_CACHE_KEY: '11111111', ONE_PUBLIC_LABEL: 'first' },
+      })
+    )
+    expect(env).toMatchObject({ ONE_PUBLIC_LABEL: 'first', EXPO_PUBLIC_LABEL: 'first' })
+    expect(env).not.toHaveProperty('ONE_CACHE_KEY')
+  })
+
   it('picks up ONE_PUBLIC_ keys by default with Expo aliases', () => {
     const env = pluginEnv(viteConfig({ env: { ONE_PUBLIC_API: 'https://api.test' } }))
     expect(env.ONE_PUBLIC_API).toBe('https://api.test')
