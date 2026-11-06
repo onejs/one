@@ -75,7 +75,11 @@ as in a native app.
 
 ## Props and cost
 
-Props cross as JSON on every update, so a view receives its whole array again
-when one item changes. On an iOS simulator, a 2,000-row array with one row
-changed applies in about one frame. Cost grows with the number of rows sent, not
-the number changed, so page or window a list that holds many thousands of rows.
+Props cross as JSON. The first update of a view sends every prop. Later updates
+send only the props that changed, and for an array of 32 or more items only the
+items whose objects changed (items are compared by identity, so replace an item
+with a new object to change it and keep unchanged items as the same objects).
+The native view keeps its decoded props between updates, so one changed row in a
+2,000-row list costs about one changed row, not 2,000. If the native side and
+JavaScript ever disagree about what was sent, the view asks for every prop again
+on the next render.

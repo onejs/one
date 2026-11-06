@@ -7,9 +7,9 @@ import { BenchList } from '../fixtures/native-screens/bench'
 // flips one row, bumps tick, and times setState to the native onApplied
 // callback. "same" cycles send the rows unchanged, so tick and the callback
 // round trip alone are the baseline; the two kinds alternate so host drift
-// cancels. every update re-sends all rows, so ?rows=10 gives the fixed cost of
-// the round trip to subtract from the 2,000 row run. encode is JSON.stringify of
-// the rows, the lower bound of the js side.
+// cancels. ?rows=10 gives the fixed cost of the round trip to subtract from the
+// 2,000 row run. encode is JSON.stringify of all the rows, which an update used
+// to cost before props crossed as keyed changes.
 const CYCLES = 30
 const makeRows = (count: number) =>
   Array.from({ length: count }, (_, id) => ({ id, title: `Row ${id}`, value: id / 7, flag: false }))
