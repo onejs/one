@@ -154,7 +154,10 @@ fun Counter(rows: List<Row>, tick: Int, note: String? = null, onTap: () -> Unit,
 }`
     )
     const glue = renderKotlinSourceGlue('K_counter', contract).source
-    expect(glue).toContain('emit: (String, String) -> Unit, state: OneNativeSourceKeyedState')
+    // decode runs at prop commit, render reads the held props: a change whose
+    // base the host no longer holds refuses (false) instead of rendering stale
+    expect(glue).toContain('fun apply(view: String, propsJson: String, state: OneNativeSourceKeyedState): Boolean')
+    expect(glue).toContain('fun Content(view: String, state: OneNativeSourceKeyedState, emit: (String, String) -> Unit)')
     expect(glue).toContain('private class HeldCounter_K_counter {')
     expect(glue).toContain('var rows: List<app.counter.Row>? = null')
     expect(glue).toContain('var tick: Int = 0')
@@ -164,12 +167,15 @@ fun Counter(rows: List<Row>, tick: Int, note: String? = null, onTap: () -> Unit,
     expect(glue).toContain('if (sawLists && !hasBase) error("lists: needs a change document")')
     expect(glue).toContain('state.views["Counter"]')
     expect(glue).toContain('state.seq = seq')
+    expect(glue).toContain('if (seq == state.seq) return true')
+    expect(glue).toContain('return false')
     expect(glue).toContain('private fun mergeListsCounterRows(reader: OneJsonReader_K_counter, old: List<app.counter.Row>?, prop: String): List<app.counter.Row> {')
     expect(glue).toContain('rows = mergeListsCounterRows(reader, held?.rows, "rows")')
     expect(glue).toContain('val si = readInt(itemReader, itemPath); if (!itemReader.hasNext()) error("$itemPath: expected element")')
     expect(glue).toContain('rows = h.rows!!')
-    // each view branch closes the document it decoded; a second close after
-    // the view dispatch throws on device (expected '}' at end of document).
+    // apply owns the one reader and closes the document it decoded; a second
+    // close throws on device (expected '}' at end of document).
+    expect(glue.match(/val reader = OneJsonReader_K_counter\(propsJson\)/g)).toHaveLength(1)
     expect(glue.match(/reader\.endDocument\(\)/g)).toHaveLength(1)
   })
 

@@ -2447,8 +2447,7 @@ function viewGlue(
     '',
     `@Keep class OneNativeSourceViews_${sourceId}: OneNativeSourceViewDispatch {`,
     `  override val contractHash = ${JSON.stringify(hash)}`,
-    '  @Composable',
-    '  override fun Content(view: String, propsJson: String, emit: (String, String) -> Unit, state: OneNativeSourceKeyedState) {',
+    '  override fun apply(view: String, propsJson: String, state: OneNativeSourceKeyedState): Boolean {',
     `    val reader = ${readerClass}(propsJson)`,
     `    if (reader.peek() != ${tokenClass}.BEGIN_OBJECT) error("props must be a JSON object")`,
     '    reader.beginObject()',
@@ -2518,10 +2517,9 @@ function viewGlue(
         '        reader.endDocument()',
         '        if (hasBase && !hasSeq) error("seq: required")',
         '        if (sawLists && !hasBase) error("lists: needs a change document")',
-        // full documents fill every field; change documents merge the decoded
-        // props into the held ones and advance the seq. a change the host let
-        // through always applies; anything else renders the held props while
-        // the host resyncs.
+        // full documents fill every field; a change already applied is a
+        // no-op, one based on the held seq merges and advances it, and
+        // anything else refuses so the host asks for a resync.
         '        if (!hasBase) {',
         ...view.props.flatMap((prop) => {
           if (prop.callback || prop.optional) return []
@@ -2540,11 +2538,12 @@ function viewGlue(
           }
           return [`          h.${prop.name} = (${prop.name} ?: error("props.${prop.name}: required"))`]
         }),
-        '          held = h',
         '          if (hasSeq) state.seq = seq',
-        '        } else if (seq != state.seq) {',
-        '          val h = held',
-        '          if (base == state.seq && h != null) {',
+        '          return true',
+        '        }',
+        '        if (seq == state.seq) return true',
+        '        val h = held',
+        '        if (base == state.seq && h != null) {',
         ...view.props.flatMap((prop) => {
           if (prop.callback) {
             return prop.nativeType.endsWith('?') ? [`            if (${prop.name}Doc != null) h.has${cap(prop.name)} = ${prop.name}Doc`] : []
@@ -2555,8 +2554,23 @@ function viewGlue(
           return [`            if (${prop.name} != null) h.${prop.name} = ${prop.name}`]
         }),
         '            state.seq = seq',
+        '            return true',
         '          }',
-        '        }',
+        '        return false',
+        '      }',
+      ]
+    }),
+    '      else -> error("composable $view is not linked; rebuild the app")',
+    '    }',
+    '  }',
+    '  @Composable',
+    '  override fun Content(view: String, state: OneNativeSourceKeyedState, emit: (String, String) -> Unit) {',
+    '    when (view) {',
+    ...contract.views.flatMap((view) => {
+      const holder = `Held${view.name}_${sourceId}`
+      return [
+        `      ${JSON.stringify(view.name)} -> {`,
+        `        val held = state.views[${JSON.stringify(view.name)}] as? ${holder}`,
         '        held?.let { h ->',
         `          ${qualifier}${view.name}(`,
         ...view.props.map((prop) => {

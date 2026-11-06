@@ -2,19 +2,25 @@ package dev.onejs.one
 
 import androidx.compose.runtime.Composable
 
-// generated per .kt source that declares public @Composable functions: renders
-// one of them from the host's json props. a callback reports its arguments
-// through emit as a json array. props arrive as full or keyed change
-// documents; the glue merges changes into the host-owned state and renders
-// the held props, so a disposed composition recomposes the same content.
+// generated per .kt source that declares public @Composable functions. apply
+// decodes one props document and merges it into the host-owned state on the
+// ui thread at prop commit: full documents always apply, a change applies
+// onto the held seq and refuses otherwise (the host answers $resync).
+// Content only renders the held props; a callback reports its arguments
+// through emit as a json array.
 interface OneNativeSourceViewDispatch {
     val contractHash: String
+
+    fun apply(
+        view: String,
+        propsJson: String,
+        state: OneNativeSourceKeyedState,
+    ): Boolean
 
     @Composable
     fun Content(
         view: String,
-        propsJson: String,
-        emit: (String, String) -> Unit,
         state: OneNativeSourceKeyedState,
+        emit: (String, String) -> Unit,
     )
 }

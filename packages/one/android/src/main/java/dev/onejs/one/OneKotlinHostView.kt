@@ -40,7 +40,9 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
     private var committedSource by mutableStateOf("")
     private var committedView by mutableStateOf("")
     private var committedContractHash by mutableStateOf("")
-    private var committedProps by mutableStateOf("{}")
+    private var committedPropsText = "{}"
+    private var committedRevision by mutableStateOf(0)
+    private var resyncPending = false
 
     private val contentLayout = Runnable { layoutComposeContent() }
 
@@ -54,27 +56,23 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         clipChildren = false
         addView(composeView)
         composeView.setContent {
+            // the revision read resubscribes on every applied commit; the
+            // props themselves were merged into the keyed state at commit, so
+            // composition only renders and never gates.
+            val revision = committedRevision
             val source = committedSource
             val view = committedView
-            val hash = committedContractHash
-            val props = committedProps
 
             if (source.isNotEmpty() && view.isNotEmpty()) {
                 val dispatch = OneNativeSourceViewRegistry.get(source)
-                if (dispatch.contractHash != hash) {
-                    error(
-                        "native view $source.$view changed (contract hash mismatch: expected $hash, got ${dispatch.contractHash}); rebuild the app"
-                    )
-                }
                 Layout(
                     content = {
                         dispatch.Content(
                             view = view,
-                            propsJson = props,
+                            state = keyedState,
                             emit = { eventName, eventArgs ->
                                 onHostEvent(source, view, eventName, eventArgs)
                             },
-                            state = keyedState,
                         )
                     },
                 ) { measurables, constraints ->
@@ -83,7 +81,7 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
                     val placeables = measurables.map { it.measure(contentConstraints) }
                     val contentWidth = placeables.maxOfOrNull { it.width } ?: 0
                     val contentHeight = placeables.maxOfOrNull { it.height } ?: 0
-                    if (source == committedSource && view == committedView) {
+                    if (revision == committedRevision && source == committedSource && view == committedView) {
                         val changed = contentWidth != observedWidth || contentHeight != observedHeight
                         observedWidth = contentWidth
                         observedHeight = contentHeight
@@ -136,142 +134,28 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
             keyedState.reset()
         }
 
-        if (sourceOrViewChanged || nextHash != committedContractHash || nextProps != committedProps) {
-            if (!keyedEnvelopeApplies(nextProps)) {
-                emitKeyedResync()
-                return
+        if (sourceOrViewChanged || nextHash != committedContractHash || nextProps != committedPropsText) {
+            if (nextSource.isNotEmpty() && nextView.isNotEmpty()) {
+                val dispatch = OneNativeSourceViewRegistry.get(nextSource)
+                if (dispatch.contractHash != nextHash) {
+                    error(
+                        "native view $nextSource.$nextView changed (contract hash mismatch: expected $nextHash, got ${dispatch.contractHash}); rebuild the app"
+                    )
+                }
+                // decode and merge at commit, whether or not the composition
+                // is attached: a refused change asks for a resync instead of
+                // committing anything.
+                if (!dispatch.apply(nextView, nextProps, keyedState)) {
+                    emitKeyedResync()
+                    return
+                }
             }
             committedSource = nextSource
             committedView = nextView
             committedContractHash = nextHash
-            committedProps = nextProps
+            committedPropsText = nextProps
+            committedRevision++
             requestLayout()
-        }
-    }
-
-    // true when the props document applies onto the held keyed state: full
-    // documents (or legacy ones without a seq) always do, and change
-    // documents do when already applied or based on the held seq. anything
-    // else needs a resync instead of a commit.
-    private fun keyedEnvelopeApplies(propsJson: String): Boolean {
-        val base = readTopLevelInt(propsJson, "\$base") ?: return true
-        val seq = readTopLevelInt(propsJson, "\$seq") ?: return true
-        return seq == keyedState.seq || base == keyedState.seq
-    }
-
-    // reads one top-level integer of a props document, or null when the key
-    // is absent or the head of the document does not parse (the glue then
-    // reports the precise error). stops at the wanted key; nested values are
-    // skipped, never decoded.
-    private fun readTopLevelInt(text: String, want: String): Int? {
-        var pos = 0
-        fun skipSpace() {
-            while (pos < text.length && (text[pos] == ' ' || text[pos] == '\t' || text[pos] == '\n' || text[pos] == '\r')) pos++
-        }
-        // pos at the opening quote; false when the string never closes
-        fun skipRawString(): Boolean {
-            pos++
-            while (pos < text.length) {
-                val c = text[pos++]
-                if (c == '"') return true
-                if (c == '\\') {
-                    if (pos >= text.length) return false
-                    pos++
-                }
-            }
-            return false
-        }
-        fun readKey(into: StringBuilder): Boolean {
-            pos++ // the opening quote
-            while (pos < text.length) {
-                val c = text[pos++]
-                if (c == '"') return true
-                if (c != '\\') {
-                    into.append(c)
-                    continue
-                }
-                if (pos >= text.length) return false
-                when (text[pos++]) {
-                    '"', '\\', '/' -> into.append(text[pos - 1])
-                    'b' -> into.append('\b')
-                    'f' -> into.append('\u000C')
-                    'n' -> into.append('\n')
-                    'r' -> into.append('\r')
-                    't' -> into.append('\t')
-                    'u' -> {
-                        if (pos + 4 > text.length) return false
-                        var code = 0
-                        for (i in 0 until 4) {
-                            val digit = text[pos + i].lowercaseChar()
-                            val value = if (digit in '0'..'9') digit - '0' else if (digit in 'a'..'f') digit - 'a' + 10 else return false
-                            code = code * 16 + value
-                        }
-                        pos += 4
-                        into.append(code.toChar())
-                    }
-                    else -> return false
-                }
-            }
-            return false
-        }
-        fun skipValue(): Boolean {
-            skipSpace()
-            if (pos >= text.length) return false
-            if (text[pos] == '"') return skipRawString()
-            if (text[pos] != '{' && text[pos] != '[') {
-                while (pos < text.length && text[pos] != ',' && text[pos] != '}' && text[pos] != ']' && text[pos] != ' ' && text[pos] != '\t' && text[pos] != '\n' && text[pos] != '\r') pos++
-                return true
-            }
-            var depth = 0
-            while (pos < text.length) {
-                when (text[pos++]) {
-                    '{', '[' -> depth++
-                    '}', ']' -> {
-                        depth--
-                        if (depth == 0) return true
-                        if (depth < 0) return false
-                    }
-                    '"' -> {
-                        pos--
-                        if (!skipRawString()) return false
-                    }
-                    // commas, colons, whitespace and literal text carry no structure
-                    else -> {}
-                }
-            }
-            return false
-        }
-        fun readInt(): Int? {
-            skipSpace()
-            val start = pos
-            if (pos < text.length && text[pos] == '-') pos++
-            while (pos < text.length && text[pos] in '0'..'9') pos++
-            if (pos == start || (text[start] == '-' && pos == start + 1)) return null
-            return text.substring(start, pos).toIntOrNull()
-        }
-        skipSpace()
-        if (pos >= text.length || text[pos] != '{') return null
-        pos++
-        var first = true
-        val key = StringBuilder()
-        while (true) {
-            skipSpace()
-            if (pos >= text.length) return null
-            if (text[pos] == '}') return null
-            if (!first) {
-                if (text[pos] != ',') return null
-                pos++
-                skipSpace()
-            }
-            first = false
-            if (pos >= text.length || text[pos] != '"') return null
-            key.clear()
-            if (!readKey(key)) return null
-            skipSpace()
-            if (pos >= text.length || text[pos] != ':') return null
-            pos++
-            if (key.toString() == want) return readInt()
-            if (!skipValue()) return null
         }
     }
 
@@ -291,15 +175,15 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
 
     // asks javascript for a full document after refusing a change document.
     // runs during the prop commit (never composition), so it cannot compare
-    // against committed props the way view events do.
+    // against committed props the way view events do. commits also run while
+    // detached, so a resync the dispatcher cannot take yet waits for attach.
     private fun emitKeyedResync() {
-        if (!isAttachedToWindow) return
-        dispatchHostEvent(RESYNC_EVENT, "[]")
+        if (!dispatchHostEvent(RESYNC_EVENT, "[]")) resyncPending = true
     }
 
-    private fun dispatchHostEvent(name: String, args: String) {
-        val reactContext = UIManagerHelper.getReactContext(this) ?: return
-        val dispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, id) ?: return
+    private fun dispatchHostEvent(name: String, args: String): Boolean {
+        val reactContext = UIManagerHelper.getReactContext(this) ?: return false
+        val dispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, id) ?: return false
         dispatcher.dispatchEvent(
             OneKotlinHostEvent(
                 surfaceId = UIManagerHelper.getSurfaceId(this),
@@ -308,6 +192,7 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
                 args = args,
             )
         )
+        return true
     }
 
     private fun onContentSizeChanged(
@@ -343,6 +228,7 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
+        if (resyncPending && dispatchHostEvent(RESYNC_EVENT, "[]")) resyncPending = false
         post(contentLayout)
     }
 
@@ -403,6 +289,7 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
     internal fun resetForReuse() {
         removeCallbacks(contentLayout)
         keyedState.reset()
+        resyncPending = false
         reportedWidth = -1.0
         reportedHeight = -1.0
         observedWidth = -1
@@ -410,7 +297,8 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         committedSource = ""
         committedView = ""
         committedContractHash = ""
-        committedProps = "{}"
+        committedPropsText = "{}"
+        committedRevision = 0
         stagedSource = null
         stagedView = null
         stagedContractHash = null
