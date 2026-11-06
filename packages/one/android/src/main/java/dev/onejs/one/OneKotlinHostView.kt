@@ -41,7 +41,6 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
     private var committedView by mutableStateOf("")
     private var committedContractHash by mutableStateOf("")
     private var committedPropsText = "{}"
-    private var committedRevision by mutableStateOf(0)
     private var resyncPending = false
 
     private val contentLayout = Runnable { layoutComposeContent() }
@@ -56,10 +55,9 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         clipChildren = false
         addView(composeView)
         composeView.setContent {
-            // the revision read resubscribes on every applied commit; the
-            // props themselves were merged into the keyed state at commit, so
-            // composition only renders and never gates.
-            val revision = committedRevision
+            // the props were merged into the keyed state at commit;
+            // composition only renders. Content reads the state's revision
+            // itself, so every apply resubscribes the rendering scope.
             val source = committedSource
             val view = committedView
 
@@ -81,7 +79,7 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
                     val placeables = measurables.map { it.measure(contentConstraints) }
                     val contentWidth = placeables.maxOfOrNull { it.width } ?: 0
                     val contentHeight = placeables.maxOfOrNull { it.height } ?: 0
-                    if (revision == committedRevision && source == committedSource && view == committedView) {
+                    if (source == committedSource && view == committedView) {
                         val changed = contentWidth != observedWidth || contentHeight != observedHeight
                         observedWidth = contentWidth
                         observedHeight = contentHeight
@@ -154,7 +152,6 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
             committedView = nextView
             committedContractHash = nextHash
             committedPropsText = nextProps
-            committedRevision++
             requestLayout()
         }
     }
@@ -298,7 +295,6 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         committedView = ""
         committedContractHash = ""
         committedPropsText = "{}"
-        committedRevision = 0
         stagedSource = null
         stagedView = null
         stagedContractHash = null

@@ -2539,6 +2539,7 @@ function viewGlue(
           return [`          h.${prop.name} = (${prop.name} ?: error("props.${prop.name}: required"))`]
         }),
         '          if (hasSeq) state.seq = seq',
+        '          state.revision++',
         '          return true',
         '        }',
         '        if (seq == state.seq) return true',
@@ -2554,6 +2555,7 @@ function viewGlue(
           return [`            if (${prop.name} != null) h.${prop.name} = ${prop.name}`]
         }),
         '            state.seq = seq',
+        '            state.revision++',
         '            return true',
         '          }',
         '        return false',
@@ -2570,6 +2572,8 @@ function viewGlue(
       const holder = `Held${view.name}_${sourceId}`
       return [
         `      ${JSON.stringify(view.name)} -> {`,
+        '        // the revision read resubscribes this scope on every apply',
+        '        val revision = state.revision',
         `        val held = state.views[${JSON.stringify(view.name)}] as? ${holder}`,
         '        held?.let { h ->',
         `          ${qualifier}${view.name}(`,

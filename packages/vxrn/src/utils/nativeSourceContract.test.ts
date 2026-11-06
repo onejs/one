@@ -169,6 +169,8 @@ fun Counter(rows: List<Row>, tick: Int, note: String? = null, onTap: () -> Unit,
     expect(glue).toContain('state.seq = seq')
     expect(glue).toContain('if (seq == state.seq) return true')
     expect(glue).toContain('return false')
+    expect(glue).toContain('state.revision++')
+    expect(glue).toContain('val revision = state.revision')
     expect(glue).toContain('private fun mergeListsCounterRows(reader: OneJsonReader_K_counter, old: List<app.counter.Row>?, prop: String): List<app.counter.Row> {')
     expect(glue).toContain('rows = mergeListsCounterRows(reader, held?.rows, "rows")')
     expect(glue).toContain('val si = readInt(itemReader, itemPath); if (!itemReader.hasNext()) error("$itemPath: expected element")')
