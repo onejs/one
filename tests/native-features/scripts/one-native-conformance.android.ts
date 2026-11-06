@@ -189,9 +189,9 @@ function commandError(command: string, args: string[], error: unknown) {
     message?: string
   }
   const detail =
+    result.message ||
     result.stderr?.toString() ||
     result.stdout?.toString() ||
-    result.message ||
     'unknown error'
   return new Error(`${command} ${args.join(' ')} failed: ${detail}`)
 }
