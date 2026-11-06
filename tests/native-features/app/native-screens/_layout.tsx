@@ -9,7 +9,7 @@ export default function Layout() {
       <Stack
         screenOptions={{
           headerShown: Platform.OS !== 'android',
-          ...(Platform.OS === 'android' ? { statusBarStyle: 'dark' as const } : {}),
+          ...(Platform.OS === 'android' ? { statusBarStyle: 'auto' as const } : {}),
         }}
       >
         <Stack.Screen name="index" options={{ title: 'Entries' }} />
