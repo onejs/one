@@ -43,7 +43,9 @@ for (const name of readdirSync(tmpdir())) {
 }
 const scratchDirs: string[] = []
 function makeScratch(name: string): string {
-  const dir = realpathSync(mkdtempSync(join(tmpdir(), `one-packed-${name}-${process.pid}-`)))
+  const dir = realpathSync(
+    mkdtempSync(join(tmpdir(), `one-packed-${name}-${process.pid}-`))
+  )
   scratchDirs.push(dir)
   return dir
 }
@@ -251,7 +253,7 @@ console.log('one/native ok ' + url);
     expect(out).not.toContain(workspaceRoot)
   })
 
-  it('keeps the default packed closure Expo-free and bundles Metro after its preset is installed', () => {
+  it('keeps the packed closure Expo-free and bundles Metro without an Expo preset', () => {
     const tmp = makeScratch('metro')
     const tarballs = join(tmp, 'tarballs')
     mkdirSync(tarballs)
@@ -410,25 +412,17 @@ if (!config.dependencies['react-native-nitro-modules']) {
       encoding: 'utf8',
     })
 
-    expect(() =>
-      execFileSync(
-        process.execPath,
-        ['-e', "require('./metro.config.cjs').catch((error) => { console.error(error.message); process.exitCode = 1 })"],
-        { cwd: appDir, encoding: 'utf8' }
-      )
-    ).toThrow(/Metro requires babel-preset-expo in the app.*Install with/)
-
-    const expoPresetVersion = JSON.parse(
-      readFileSync(join(workspaceRoot, '../node_modules/babel-preset-expo/package.json'), 'utf8')
-    ).version
-    execFileSync('bun', ['add', '-d', `babel-preset-expo@${expoPresetVersion}`], {
-      cwd: appDir,
-      encoding: 'utf8',
-      timeout: 180_000,
-    })
     expect(
       existsSync(join(appDir, 'node_modules', 'babel-preset-expo', 'package.json'))
-    ).toBe(true)
+    ).toBe(false)
+    execFileSync(
+      process.execPath,
+      [
+        '-e',
+        "require('./metro.config.cjs').catch((error) => { console.error(error.message); process.exitCode = 1 })",
+      ],
+      { cwd: appDir, encoding: 'utf8' }
+    )
 
     // the installed package supplies real runtime facades. an app with no local
     // ios prebuild must bundle those same files, without fabricated SDK modules.
@@ -489,8 +483,9 @@ build().catch(error => { console.error(error); process.exitCode = 1 })
       timeout: 180_000,
     })
     for (const dev of ['true', 'false']) {
-      expect(readFileSync(join(appDir, `bundle.${dev}.js`)).byteLength)
-        .toBeGreaterThan(1_000_000)
+      expect(readFileSync(join(appDir, `bundle.${dev}.js`)).byteLength).toBeGreaterThan(
+        1_000_000
+      )
     }
   })
 

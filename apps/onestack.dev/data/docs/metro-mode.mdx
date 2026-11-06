@@ -16,13 +16,13 @@ One uses Rolldown for native builds by default. Metro is available when you sele
 
 Configure the native bundler to Metro in your `vite.config.ts`:
 
-Metro is not part of One's default install. Add One's Metro plugin and the Expo Babel preset to the app first:
+Metro is not part of One's default install. Add One's Metro plugin to the app first:
 
 ```sh
-bun add -d @vxrn/vite-plugin-metro babel-preset-expo
+bun add -d @vxrn/vite-plugin-metro
 ```
 
-One reports an installation error naming the missing package when Metro starts without them. The default Rolldown path loads neither.
+One reports an installation error when Metro starts without the plugin. The default Rolldown path does not load it.
 
 ```tsx fileName=vite.config.ts
 import type { UserConfig } from 'vite'
