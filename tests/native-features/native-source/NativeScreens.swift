@@ -42,8 +42,11 @@ public struct EntryList: View {
       }
     }
     .navigationTitle("Entries")
+    #if os(iOS)
     .navigationBarTitleDisplayMode(.large)
+    #endif
     .searchable(text: $query)
+    #if os(iOS)
     .toolbar {
       ToolbarItem(placement: .topBarLeading) {
         Button("Sort", action: onSort)
@@ -52,6 +55,7 @@ public struct EntryList: View {
         Button("Add", systemImage: "plus", action: onAdd)
       }
     }
+    #endif
   }
 }
 
@@ -91,7 +95,9 @@ public struct EntryDetail: View {
       }
     }
     .navigationTitle(entry.title)
+    #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
+    #endif
   }
 }
 
@@ -117,7 +123,9 @@ public struct SortSheet: View {
       }
     }
     .navigationTitle("Sort")
+    #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
+    #endif
     .toolbar {
       ToolbarItem(placement: .confirmationAction) {
         Button("Done", action: onClose)
@@ -143,7 +151,9 @@ public struct EntryForm: View {
       }
     }
     .navigationTitle("New entry")
+    #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
+    #endif
     .toolbar {
       ToolbarItem(placement: .cancellationAction) {
         Button("Cancel", action: onCancel)
