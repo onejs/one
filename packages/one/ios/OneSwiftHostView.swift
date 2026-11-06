@@ -104,7 +104,7 @@ public final class OneSwiftHostView: OneNativeContainerView {
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
-  public func reset() {
+  public func dropHeldProps() {
     model.held = nil
     model.dispatch = nil
     model.document = ""

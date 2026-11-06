@@ -54,7 +54,7 @@ using namespace facebook::react;
 // a recycled view starts over: held props and events belong to the last owner
 - (void)prepareForRecycle {
   _pendingEvents = nil;
-  [_hostView reset];
+  [_hostView dropHeldProps];
   [super prepareForRecycle];
 }
 
