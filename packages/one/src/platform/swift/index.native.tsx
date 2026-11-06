@@ -5,8 +5,8 @@ import { StyleSheet } from 'react-native'
 import NativeSwiftHost from '../specs/OneSwiftHostNativeComponent'
 import {
   decodeNativeSourceCallback,
-  stringifyNativeSourceProps,
 } from '../native-source/wire.native'
+import { RESYNC_EVENT, useNativeSourceProps } from '../native-source/wireProps.native'
 import type { SwiftPackageViewProps } from './types'
 
 export type { SwiftPackageViewProps } from './types'
@@ -19,6 +19,7 @@ export function SwiftPackageView({
   fill,
   wires,
 }: SwiftPackageViewProps) {
+  const keyed = useNativeSourceProps(props, wires, view !== '')
   const style = StyleSheet.flatten(props.style)
   const fills = fill || (style?.flex ?? 0) > 0 || (style?.flexGrow ?? 0) > 0
   return (
@@ -27,9 +28,10 @@ export function SwiftPackageView({
       view={view}
       contractHash={contractHash}
       // a typed view's host learns which callbacks the element passed
-      props={stringifyNativeSourceProps(props, wires)}
+      props={keyed.text}
       fill={fills}
       onHostEvent={(event) => {
+        if (event.nativeEvent.name === RESYNC_EVENT) return keyed.resync()
         const callback = props[event.nativeEvent.name]
         if (typeof callback === 'function') {
           const args = JSON.parse(event.nativeEvent.args) as unknown[]

@@ -279,6 +279,25 @@ export function encodeNativeSourceProps(
   return out
 }
 
+export function encodeNativeSourceProp(
+  name: string,
+  value: unknown,
+  wires: NativeSourceViewWires | undefined
+): unknown {
+  const wire = wires?.props[name]
+  return wire === undefined ? value : encodeAt(['props', name], value, wire, wires!.structs)
+}
+
+export function encodeNativeSourceListItem(
+  name: string,
+  index: number,
+  item: unknown,
+  element: NativeSourceWire,
+  structs: NativeSourceStructs
+): unknown {
+  return encodeAt(['props', name, index], item, element, structs)
+}
+
 // a view's props as the json text its native host decodes: wired values
 // encoded, and true for each callback the element passed
 export function stringifyNativeSourceProps(

@@ -4,8 +4,8 @@ import NativeKotlinHost from '../specs/OneKotlinHostNativeComponent'
 import type { KotlinSourceViewProps } from './viewTypes'
 import {
   decodeNativeSourceCallback,
-  stringifyNativeSourceProps,
 } from './wire.native'
+import { RESYNC_EVENT, useNativeSourceProps } from './wireProps.native'
 
 export type { KotlinSourceViewProps } from './viewTypes'
 
@@ -16,6 +16,7 @@ export function KotlinSourceView({
   props,
   wires,
 }: KotlinSourceViewProps) {
+  const keyed = useNativeSourceProps(props, wires, view !== '')
   const [contentSize, setContentSize] = useState<{ width: number; height: number }>()
   return (
     <View style={props.style} collapsable={false}>
@@ -25,8 +26,9 @@ export function KotlinSourceView({
         source={source}
         view={view}
         contractHash={contractHash}
-        props={stringifyNativeSourceProps(props, wires)}
+        props={keyed.text}
         onHostEvent={(event) => {
+          if (event.nativeEvent.name === RESYNC_EVENT) return keyed.resync()
           const callback = props[event.nativeEvent.name]
           if (typeof callback === 'function') {
             const args = JSON.parse(event.nativeEvent.args) as unknown[]
