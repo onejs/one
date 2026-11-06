@@ -29,9 +29,9 @@ public struct EntryList: View {
       } label: {
         HStack {
           VStack(alignment: .leading) {
-            Text(entry.title).foregroundStyle(.primary)
+            Text(entry.title).foregroundStyle(Color.primary)
             if !entry.notes.isEmpty {
-              Text(entry.notes).font(.footnote).foregroundStyle(.secondary).lineLimit(1)
+              Text(entry.notes).font(.footnote).foregroundStyle(Color.secondary).lineLimit(1)
             }
           }
           Spacer()
@@ -107,7 +107,7 @@ public struct SortSheet: View {
           onSelect(option)
         } label: {
           HStack {
-            Text(option == "title" ? "By title" : "Done last").foregroundStyle(.primary)
+            Text(option == "title" ? "By title" : "Done last").foregroundStyle(Color.primary)
             Spacer()
             if option == order {
               Image(systemName: "checkmark").foregroundStyle(.tint)
