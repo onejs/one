@@ -42,6 +42,7 @@ public struct EntryList: View {
       }
     }
     .navigationTitle("Entries")
+    .navigationBarTitleDisplayMode(.large)
     .searchable(text: $query)
     .toolbar {
       ToolbarItem(placement: .topBarLeading) {
