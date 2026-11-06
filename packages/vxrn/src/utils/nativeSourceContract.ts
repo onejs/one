@@ -1450,45 +1450,175 @@ export function renderSwiftSourceGlue(
     '  }',
   ]
   // builds an imported view from the host's json props; a callback reports its
-  // arguments to the host as a json array.
-  const renderViews = (): string[] => [
-    // one pass over the props text: each view decodes its non-callback props
-    // straight into a struct, so the json is parsed once.
-    ...views.flatMap((view) => {
-      return [
-        `  private struct Props_${view.name}: Decodable {`,
-        // the host sends true for each optional callback the element passed
-        ...view.props
-          .filter((prop) => !prop.callback || prop.optional)
-          .map((prop) => `    let \`${prop.name}\`: ${prop.callback ? 'Bool?' : prop.nativeType}`),
-        '  }',
-      ]
-    }),
-    '  static func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView {',
-    '    switch name {',
-    ...views.flatMap((view) => [
-      `    case ${JSON.stringify(view.name)}:`,
-      ...(view.props.some((prop) => !prop.callback || prop.optional)
-        ? [`      let props = try decode(Props_${view.name}.self, from: Data(propsJson.utf8))`]
-        : []),
-      `      return AnyView(${view.name}(`,
-      ...view.props.map((prop, index) => {
-        const comma = index === view.props.length - 1 ? '' : ','
-        const key = JSON.stringify(prop.name)
-        if (prop.callback) {
-          const params = prop.callback.map((arg, n) => `a${n}: ${arg.nativeType}`).join(', ')
-          const lambda = `{ (${params}) -> Void in emit(${key}, args([${prop.callback.map((_, n) => `a${n}`).join(', ')}])) }`
-          // the host sends true for each callback the element passed
-          return `        ${prop.name}: ${prop.optional ? `props.\`${prop.name}\` == true ? ${lambda} : nil` : lambda}${comma}`
-        }
-        return `        ${prop.name}: props.\`${prop.name}\`${comma}`
+  // arguments to the host as a json array. the host holds each view's decoded
+  // props between documents: a full document builds them, a change document
+  // (keyed props, see wireProps.native.ts) edits them, and one that does not
+  // follow the held `$seq` is refused so the host can ask for a full document.
+  const renderViews = (): string[] => {
+    const notLinked = '    default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "swift view \\(name) is not linked; rebuild the app"])'
+    // the optional callbacks ride as ordinary Bool? props
+    const fieldsOf = (view: NativeSourceView) =>
+      view.props
+        .filter((prop) => !prop.callback || prop.optional)
+        .map((prop, index) => {
+          const type = prop.callback ? 'Bool?' : prop.nativeType
+          const optional = type.endsWith('?')
+          const list = /^\[(.*)\]\??$/.exec(type)
+          return {
+            name: prop.name,
+            type,
+            optional,
+            list: list && !list[1].includes(':') ? list[1] : null,
+            key: `p${index}`,
+          }
+        })
+    return [
+      '  private struct OneListPatch<E: Decodable>: Decodable {',
+      '    let length: Int',
+      '    let set: [(Int, E)]',
+      '    private struct Entry: Decodable {',
+      '      let index: Int',
+      '      let value: E',
+      '      init(from decoder: Decoder) throws {',
+      '        var c = try decoder.unkeyedContainer()',
+      '        index = try c.decode(Int.self)',
+      '        value = try c.decode(E.self)',
+      '      }',
+      '    }',
+      '    private enum CodingKeys: String, CodingKey { case length, set }',
+      '    init(from decoder: Decoder) throws {',
+      '      let c = try decoder.container(keyedBy: CodingKeys.self)',
+      '      length = try c.decode(Int.self, forKey: .length)',
+      '      set = try c.decode([Entry].self, forKey: .set).map { ($0.index, $0.value) }',
+      '    }',
+      '  }',
+      // truncate to the new length, replace held indices, append the rest in order
+      '  private nonisolated static func patch<E>(_ list: inout [E], _ patch: OneListPatch<E>) -> Bool {',
+      '    if patch.length < 0 { return false }',
+      '    if list.count > patch.length { list.removeLast(list.count - patch.length) }',
+      '    for (index, value) in patch.set {',
+      '      if index < list.count { list[index] = value } else if index == list.count && index < patch.length { list.append(value) } else { return false }',
+      '    }',
+      '    return list.count == patch.length',
+      '  }',
+      '  private nonisolated static func missing(_ prop: String) -> Error {',
+      '    NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "missing prop \\(prop)"])',
+      '  }',
+      ...views.flatMap((view) => {
+        const fields = fieldsOf(view)
+        const lists = fields.filter((field) => field.list)
+        return [
+          // one pass over the document text: an absent key is nil and a present
+          // one carries its value, which may itself be null for an optional type
+          ...(lists.length > 0
+            ? [
+                `  private struct Lists_${view.name}: Decodable {`,
+                ...lists.map((field) => `    let ${field.key}: OneListPatch<${field.list}>?`),
+                `    private enum CodingKeys: String, CodingKey { ${lists.map((field) => `case ${field.key} = ${JSON.stringify(field.name)}`).join('; ')} }`,
+                '  }',
+              ]
+            : []),
+          `  private struct Doc_${view.name}: Decodable {`,
+          '    let seq: Int',
+          '    let base: Int?',
+          ...(lists.length > 0 ? [`    let lists: Lists_${view.name}?`] : []),
+          ...fields.map((field) => `    let ${field.key}: Optional<${field.type}>`),
+          `    private enum CodingKeys: String, CodingKey { ${['case seq = "$seq"', 'case base = "$base"', 'case lists = "$lists"', ...fields.map((field) => `case ${field.key} = ${JSON.stringify(field.name)}`)].join('; ')} }`,
+          '    init(from decoder: Decoder) throws {',
+          '      let c = try decoder.container(keyedBy: CodingKeys.self)',
+          '      seq = try c.decodeIfPresent(Int.self, forKey: .seq) ?? 0',
+          '      base = try c.decodeIfPresent(Int.self, forKey: .base)',
+          ...(lists.length > 0 ? [`      lists = try c.decodeIfPresent(Lists_${view.name}.self, forKey: .lists)`] : []),
+          ...fields.map(
+            (field) =>
+              `      ${field.key} = try c.contains(.${field.key}) ? Optional<${field.type}>.some(c.decode(${field.type}.self, forKey: .${field.key})) : Optional<${field.type}>.none`
+          ),
+          '    }',
+          '  }',
+          `  private final class Held_${view.name} {`,
+          '    var oneSeq: Int',
+          ...fields.map((field) => `    var \`${field.name}\`: ${field.type}`),
+          `    init(_ d: Doc_${view.name}) throws {`,
+          '      oneSeq = d.seq',
+          ...fields.flatMap((field) =>
+            field.optional
+              ? [`      \`${field.name}\` = d.${field.key}.flatMap { $0 }`]
+              : [
+                  `      guard let ${field.key} = d.${field.key} else { throw ${bodyName}.missing(${JSON.stringify(field.name)}) }`,
+                  `      \`${field.name}\` = ${field.key}`,
+                ]
+          ),
+          '    }',
+          // all or nothing: lists are patched into copies first
+          `    func apply(_ d: Doc_${view.name}) -> Bool {`,
+          '      if d.base != oneSeq { return false }',
+          ...lists.flatMap((field) => [
+            `      var ${field.key} = \`${field.name}\``,
+            `      if let v = d.${field.key} { ${field.key} = v }`,
+            `      if let p = d.lists?.${field.key} {`,
+            ...(field.optional
+              ? [
+                  `        guard var items = ${field.key} else { return false }`,
+                  `        if !${bodyName}.patch(&items, p) { return false }`,
+                  `        ${field.key} = items`,
+                ]
+              : [`        if !${bodyName}.patch(&${field.key}, p) { return false }`]),
+            '      }',
+          ]),
+          ...fields.map((field) =>
+            field.list
+              ? `      \`${field.name}\` = ${field.key}`
+              : `      if let v = d.${field.key} { \`${field.name}\` = v }`
+          ),
+          '      oneSeq = d.seq',
+          '      return true',
+          '    }',
+          '  }',
+        ]
       }),
-      '      ))',
-    ]),
-    '    default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "swift view \\(name) is not linked; rebuild the app"])',
-    '    }',
-    '  }',
-  ]
+      // nil asks the host for a full document
+      '  static func update(_ held: AnyObject?, _ name: String, _ text: String) throws -> AnyObject? {',
+      '    let data = Data(text.utf8)',
+      '    switch name {',
+      ...views.flatMap((view) => [
+        `    case ${JSON.stringify(view.name)}:`,
+        `      let doc = try decode(Doc_${view.name}.self, from: data)`,
+        `      if doc.base == nil { return try Held_${view.name}(doc) }`,
+        `      guard let h = held as? Held_${view.name}, h.apply(doc) else { return nil }`,
+        '      return h',
+      ]),
+      notLinked,
+      '    }',
+      '  }',
+      '  static func build(_ held: AnyObject, _ name: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView {',
+      '    switch name {',
+      ...views.flatMap((view) => [
+        `    case ${JSON.stringify(view.name)}:`,
+        `      guard ${fieldsOf(view).length > 0 ? 'let props = held as?' : 'held is'} Held_${view.name} else { throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "props of another view for \\(name)"]) }`,
+        `      return AnyView(${view.name}(`,
+        ...view.props.map((prop, index) => {
+          const comma = index === view.props.length - 1 ? '' : ','
+          const key = JSON.stringify(prop.name)
+          if (prop.callback) {
+            const params = prop.callback.map((arg, n) => `a${n}: ${arg.nativeType}`).join(', ')
+            const lambda = `{ (${params}) -> Void in emit(${key}, args([${prop.callback.map((_, n) => `a${n}`).join(', ')}])) }`
+            // the host sends true for each callback the element passed
+            return `        ${prop.name}: ${prop.optional ? `props.\`${prop.name}\` == true ? ${lambda} : nil` : lambda}${comma}`
+          }
+          return `        ${prop.name}: props.\`${prop.name}\`${comma}`
+        }),
+        '      ))',
+      ]),
+      notLinked,
+      '    }',
+      '  }',
+      // one-shot entry for hosts that keep no held props (peach)
+      '  static func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView {',
+      '    guard let held = try update(nil, name, propsJson) else { throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "\\(name) needs a full props document"]) }',
+      '    return try build(held, name, emit)',
+      '  }',
+    ]
+  }
   const source = [
     'import Foundation',
     'import SwiftUI',
@@ -1636,6 +1766,8 @@ export function renderSwiftSourceGlue(
       '  public required override init() {}',
       `  public var contractHash: String { ${bodyName}.hash }`,
       `  public func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView { try ${bodyName}.view(name, propsJson, emit) }`,
+      `  public func updateView(_ held: AnyObject?, _ name: String, _ document: String) throws -> AnyObject? { try ${bodyName}.update(held, name, document) }`,
+      `  public func buildView(_ held: AnyObject, _ name: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView { try ${bodyName}.build(held, name, emit) }`,
       '}',
     ] : []),
     '#endif',

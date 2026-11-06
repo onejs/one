@@ -215,8 +215,10 @@ struct Helper: View {
     ])
     const glue = renderSwiftSourceGlue('rn_host_app', [contract]).source
     expect(glue).toContain('@objc(OneNativeSourceViews_rn_host_app) @MainActor public final class OneNativeSourceViews_rn_host_app: NSObject, OneNativeSourceViewDispatch')
-    expect(glue).toContain('let `value`: Double')
-    expect(glue).toContain('let props = try decode(Props_Level.self, from: Data(propsJson.utf8))')
+    expect(glue).toContain('var `value`: Double')
+    expect(glue).toContain('private struct Doc_Level: Decodable')
+    expect(glue).toContain('guard let props = held as? Held_Level else')
+    expect(glue).toContain('public func updateView(_ held: AnyObject?, _ name: String, _ document: String) throws -> AnyObject?')
     expect(glue).toContain('value: props.`value`,')
     expect(glue).toContain('onReset: props.`onReset` == true ? { () -> Void in emit("onReset", args([])) } : nil')
 
