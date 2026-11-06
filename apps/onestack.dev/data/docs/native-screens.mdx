@@ -11,8 +11,8 @@ Android.
 ```tsx
 // app/entries/index.tsx
 import { useRouter } from 'one'
-import { EntryList } from '../../fixtures/views'
-import { useEntries } from '../../fixtures/store'
+import { EntryList } from '../../native/views'
+import { useEntries } from '../../store'
 
 export default function EntriesScreen() {
   const router = useRouter()
@@ -25,6 +25,15 @@ export default function EntriesScreen() {
     />
   )
 }
+```
+
+Import each platform's view from a platform file, so the route stays the same on both:
+
+```ts
+// native/views.ios.ts
+export { EntryList } from './Entries.swift'
+// native/views.android.ts
+export { EntryList } from './Entries.kt'
 ```
 
 Give the view `flex: 1` so it fills the screen. Without it a SwiftUI `List`
@@ -43,7 +52,12 @@ drives the large title. The stack only has to stay out of the way.
 Set these three options:
 
 ```tsx
-<Stack screenOptions={{ headerTransparent: true, headerBackButtonDisplayMode: 'minimal' }}>
+<Stack
+  screenOptions={Platform.select({
+    ios: { headerTransparent: true, headerBackButtonDisplayMode: 'minimal' },
+    default: { headerShown: false },
+  })}
+>
   <Stack.Screen name="index" options={{ title: 'Entries', headerLargeTitleEnabled: true }} />
 </Stack>
 ```
