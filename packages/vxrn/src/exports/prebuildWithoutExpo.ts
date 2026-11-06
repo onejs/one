@@ -69,6 +69,7 @@ type NativeProjectPatches = {
   replaceAppBuildGradleReactBlock(input: string): string
   addDepsPatchToAppBuildGradle(input: string): string
   addReactNativeScreensFix(input: string): string
+  enableEdgeToEdgeInMainActivity(mainActivity: string): string
 }
 
 const requireVxrn = module.createRequire(import.meta.url)
@@ -3250,10 +3251,15 @@ export function applyAndroidDependencyPatches(args: {
     'MainActivity.kt'
   )
   const rendered = nativeProjectPatches.holdLaunchScreenInMainActivity(
-    nativeProjectPatches.addReactNativeScreensFix(readFileSync(activityPath, 'utf8'))
+    nativeProjectPatches.enableEdgeToEdgeInMainActivity(
+      nativeProjectPatches.addReactNativeScreensFix(readFileSync(activityPath, 'utf8'))
+    )
   )
   if (!rendered.includes('RNScreensFragmentFactory')) {
     throw new Error('[vxrn] failed to apply the react-native-screens activity patch')
+  }
+  if (!rendered.includes('enableEdgeToEdge')) {
+    throw new Error('[vxrn] failed to apply the edge-to-edge activity patch')
   }
   writeFileSync(activityPath, rendered)
 }

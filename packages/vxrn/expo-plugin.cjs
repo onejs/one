@@ -901,8 +901,8 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
     [
       withMainActivity,
       (nextConfig) => {
-        const contents = nativeProjectPatches.addReactNativeScreensFix(
-          nextConfig.modResults.contents
+        const contents = nativeProjectPatches.enableEdgeToEdgeInMainActivity(
+          nativeProjectPatches.addReactNativeScreensFix(nextConfig.modResults.contents)
         )
         nextConfig.modResults.contents = options.holdLaunchScreen
           ? nativeProjectPatches.holdLaunchScreenInMainActivity(contents)

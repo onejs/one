@@ -131,6 +131,37 @@ class MainActivity : ReactActivity() {
     expect(result).toContain('RNScreensFragmentFactory')
     expect(result).toContain('super.onCreate(null)')
   })
+
+  it('enables edge-to-edge in MainActivity', () => {
+    const kotlin = patches.enableEdgeToEdgeInMainActivity(
+      patches.addReactNativeScreensFix(`
+package dev.one.test
+import com.facebook.react.ReactActivity
+class MainActivity : ReactActivity() {
+}
+`)
+    )
+
+    expect(kotlin).toContain('import androidx.activity.enableEdgeToEdge')
+    expect(kotlin).toContain('enableEdgeToEdge()')
+    expect(kotlin.indexOf('enableEdgeToEdge()')).toBeLessThan(
+      kotlin.indexOf('super.onCreate(null)')
+    )
+    expect(patches.enableEdgeToEdgeInMainActivity(kotlin)).toBe(kotlin)
+
+    const java = patches.enableEdgeToEdgeInMainActivity(
+      patches.addReactNativeScreensFix(`
+package dev.one.test;
+import com.facebook.react.ReactActivity;
+public class MainActivity extends ReactActivity {
+}
+`)
+    )
+
+    expect(java).toContain('import androidx.activity.EdgeToEdge;')
+    expect(java).toContain('EdgeToEdge.enable(this);')
+    expect(patches.enableEdgeToEdgeInMainActivity(java)).toBe(java)
+  })
 })
 
 function expoProject() {

@@ -12,6 +12,10 @@ export default function Layout() {
       <Stack
         screenOptions={Platform.select({
           ios: { headerTransparent: true, headerBackButtonDisplayMode: 'minimal' as const },
+          // android sets no status bar style: react-native-screens maps
+          // anything but 'dark' to light icons, while unset follows the
+          // system appearance under edge-to-edge like a native app.
+          android: { headerShown: false },
           default: { headerShown: false, statusBarStyle: 'auto' as const },
         })}
       >
