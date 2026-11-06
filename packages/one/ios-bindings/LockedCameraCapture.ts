@@ -28,32 +28,32 @@ export class LockedCameraCaptureManager extends SDKHandle {
    * final var sessionContentURLs: [URL] { get }
    * @availability iOS 18.0+
    */
-  get sessionContentURLs(): Array<string> { return callSDK<Array<string>>("LockedCameraCapture_532ffa06eebd2aad", 767076272375629, this, []); }
+  get sessionContentURLs(): Array<string> { return callSDK<Array<string>>("LockedCameraCapture_afb5cb84016f85d4", 767076272375629, this, []); }
   /**
    * final func endDelayingAppearance()
    * @availability iOS 18.1+
    */
-  endDelayingAppearance(): void { return callSDK<void>("LockedCameraCapture_532ffa06eebd2aad", 768412360036084, this, []); }
+  endDelayingAppearance(): void { return callSDK<void>("LockedCameraCapture_afb5cb84016f85d4", 768412360036084, this, []); }
   /**
    * final var sessionContentUpdates: some AsyncSequence<LockedCameraCaptureManager.SessionContentUpdate, Never> { get }
    * @availability iOS 18.0+
    */
-  get sessionContentUpdates(): SDKHandle { return callSDK<SDKHandle>("LockedCameraCapture_532ffa06eebd2aad", 863882110868866, this, []); }
+  get sessionContentUpdates(): SDKHandle { return callSDK<SDKHandle>("LockedCameraCapture_afb5cb84016f85d4", 863882110868866, this, []); }
   /**
    * final func beginDelayingAppearance()
    * @availability iOS 18.1+
    */
-  beginDelayingAppearance(): void { return callSDK<void>("LockedCameraCapture_532ffa06eebd2aad", 329317147470956, this, []); }
+  beginDelayingAppearance(): void { return callSDK<void>("LockedCameraCapture_afb5cb84016f85d4", 329317147470956, this, []); }
   /**
    * final func invalidateSessionContent(at url: URL) async throws
    * @availability iOS 18.0+
    */
-  invalidateSessionContent(url: string): Promise<void> { return callSDKAsync<void>("LockedCameraCapture_532ffa06eebd2aad", 1021381172336692, this, [url]); }
+  invalidateSessionContent(url: string): Promise<void> { return callSDKAsync<void>("LockedCameraCapture_afb5cb84016f85d4", 1021381172336692, this, [url]); }
   /**
    * static let shared: LockedCameraCaptureManager
    * @availability iOS 18.0+
    */
-  static get shared(): LockedCameraCaptureManager { return callSDK<LockedCameraCaptureManager>("LockedCameraCapture_532ffa06eebd2aad", 1059569315701091, undefined, []); }
+  static get shared(): LockedCameraCaptureManager { return callSDK<LockedCameraCaptureManager>("LockedCameraCapture_afb5cb84016f85d4", 1059569315701091, undefined, []); }
   declare readonly $type: { "s:19LockedCameraCapture0abC7ManagerC": true };
 }
 
@@ -74,17 +74,17 @@ export class LockedCameraCaptureSession extends SDKHandle {
    * final func invalidateSessionContent() async throws
    * @availability iOS 18.0+
    */
-  invalidateSessionContent(): Promise<void> { return callSDKAsync<void>("LockedCameraCapture_532ffa06eebd2aad", 1621571358879514, this, []); }
+  invalidateSessionContent(): Promise<void> { return callSDKAsync<void>("LockedCameraCapture_afb5cb84016f85d4", 1621571358879514, this, []); }
   /**
    * final func openApplication(for userActivity: NSUserActivity) async throws
    * @availability iOS 18.0+
    */
-  openApplication(userActivity: _Foundation_NSUserActivity): Promise<void> { return callSDKAsync<void>("LockedCameraCapture_532ffa06eebd2aad", 1058265602953726, this, [userActivity]); }
+  openApplication(userActivity: _Foundation_NSUserActivity): Promise<void> { return callSDKAsync<void>("LockedCameraCapture_afb5cb84016f85d4", 1058265602953726, this, [userActivity]); }
   /**
    * final var sessionContentURL: URL { get }
    * @availability iOS 18.0+
    */
-  get sessionContentURL(): string { return callSDK<string>("LockedCameraCapture_532ffa06eebd2aad", 1652610489694099, this, []); }
+  get sessionContentURL(): string { return callSDK<string>("LockedCameraCapture_afb5cb84016f85d4", 1652610489694099, this, []); }
   declare readonly $type: { "s:19LockedCameraCapture0abC7SessionC": true };
 }
 
@@ -99,17 +99,17 @@ export const LockedCameraCaptureSession_ApplicationLaunchError = {
    * static var errorDomain: String { get }
    * @availability iOS 18.0+
    */
-  get errorDomain(): string { return callSDK<string>("LockedCameraCapture_532ffa06eebd2aad", 1536371798114806, undefined, []); },
+  get errorDomain(): string { return callSDK<string>("LockedCameraCapture_afb5cb84016f85d4", 1536371798114806, undefined, []); },
   /**
    * var failureReason: String? { get }
    * @availability iOS 18.0+
    */
-  getFailureReason($self: LockedCameraCaptureSession_ApplicationLaunchError): (string) | null { return callSDK<(string) | null>("LockedCameraCapture_532ffa06eebd2aad", 1449834436364584, $self, []); },
+  getFailureReason($self: LockedCameraCaptureSession_ApplicationLaunchError): (string) | null { return callSDK<(string) | null>("LockedCameraCapture_afb5cb84016f85d4", 1449834436364584, $self, []); },
   /**
    * var errorCode: Int { get }
    * @availability iOS 18.0+
    */
-  getErrorCode($self: LockedCameraCaptureSession_ApplicationLaunchError): number { return callSDK<number>("LockedCameraCapture_532ffa06eebd2aad", 3175002444790601, $self, []); }
+  getErrorCode($self: LockedCameraCaptureSession_ApplicationLaunchError): number { return callSDK<number>("LockedCameraCapture_afb5cb84016f85d4", 3175002444790601, $self, []); }
 };
 
 /**
@@ -127,11 +127,11 @@ export class LockedCameraCaptureUIScene<Content = unknown> extends SDKHandle {
 export type LockedCameraCaptureUIScene_Body<Content = unknown> = SDKHandle;
 
 /** let NSUserActivityTypeLockedCameraCapture: String */
-export const NSUserActivityTypeLockedCameraCapture: string = callSDK<string>("LockedCameraCapture_532ffa06eebd2aad", 2378863045618914, undefined, []);
+export const NSUserActivityTypeLockedCameraCapture: string = callSDK<string>("LockedCameraCapture_afb5cb84016f85d4", 2378863045618914, undefined, []);
 
 registerSDKProtocol("s:19LockedCameraCapture0abC9ExtensionP", {"init":"init()"});
 registerSDKProtocol("s:19LockedCameraCapture0abC14ExtensionSceneP", {});
-registerSDKClass("LockedCameraCapture.LockedCameraCaptureManager", LockedCameraCaptureManager, { module: "LockedCameraCapture_532ffa06eebd2aad", properties: {}, methods: {"endDelayingAppearance":{"id":768412360036084},"beginDelayingAppearance":{"id":329317147470956},"invalidateSessionContent":{"id":1021381172336692}} });
-registerSDKClass("LockedCameraCapture.LockedCameraCaptureManager.SessionContentUpdate", LockedCameraCaptureManager_SessionContentUpdate, { module: "LockedCameraCapture_532ffa06eebd2aad", properties: {} });
-registerSDKClass("LockedCameraCapture.LockedCameraCaptureSession", LockedCameraCaptureSession, { module: "LockedCameraCapture_532ffa06eebd2aad", properties: {}, methods: {"invalidateSessionContent":{"id":1621571358879514},"openApplication":{"id":1058265602953726}} });
-registerSDKClass("LockedCameraCapture.LockedCameraCaptureUIScene", LockedCameraCaptureUIScene, { module: "LockedCameraCapture_532ffa06eebd2aad", properties: {} });
+registerSDKClass("LockedCameraCapture.LockedCameraCaptureManager", LockedCameraCaptureManager, { module: "LockedCameraCapture_afb5cb84016f85d4", properties: {}, methods: {"endDelayingAppearance":{"id":768412360036084},"beginDelayingAppearance":{"id":329317147470956},"invalidateSessionContent":{"id":1021381172336692}} });
+registerSDKClass("LockedCameraCapture.LockedCameraCaptureManager.SessionContentUpdate", LockedCameraCaptureManager_SessionContentUpdate, { module: "LockedCameraCapture_afb5cb84016f85d4", properties: {} });
+registerSDKClass("LockedCameraCapture.LockedCameraCaptureSession", LockedCameraCaptureSession, { module: "LockedCameraCapture_afb5cb84016f85d4", properties: {}, methods: {"invalidateSessionContent":{"id":1621571358879514},"openApplication":{"id":1058265602953726}} });
+registerSDKClass("LockedCameraCapture.LockedCameraCaptureUIScene", LockedCameraCaptureUIScene, { module: "LockedCameraCapture_afb5cb84016f85d4", properties: {} });

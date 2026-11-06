@@ -11,77 +11,77 @@ export class CredentialSession extends SDKHandle {
    * static func startSession() async throws -> CredentialSession
    * @availability iOS 18.1+
    */
-  static startSession(): Promise<CredentialSession> { return callSDKAsync<CredentialSession>("SecureElementCredential_532ffa06eebd2aad", 2274621911617422, undefined, []); }
+  static startSession(): Promise<CredentialSession> { return callSDKAsync<CredentialSession>("SecureElementCredential_afb5cb84016f85d4", 2274621911617422, undefined, []); }
   /**
    * func deleteCredential(_ credential: CredentialSession.Credential) async throws
    * @availability iOS 18.1+
    */
-  deleteCredential(credential: CredentialSession_Credential): Promise<void> { return callSDKAsync<void>("SecureElementCredential_532ffa06eebd2aad", 3383054074110827, this, [credential]); }
+  deleteCredential(credential: CredentialSession_Credential): Promise<void> { return callSDKAsync<void>("SecureElementCredential_afb5cb84016f85d4", 3383054074110827, this, [credential]); }
   /**
    * var secureElementInfo: CredentialSession.SecureElementInfo { get async throws }
    * @availability iOS 18.4+
    */
-  get secureElementInfo(): Promise<CredentialSession_SecureElementInfo> { return callSDKAsync<CredentialSession_SecureElementInfo>("SecureElementCredential_532ffa06eebd2aad", 889316347618708, this, []); }
+  get secureElementInfo(): Promise<CredentialSession_SecureElementInfo> { return callSDKAsync<CredentialSession_SecureElementInfo>("SecureElementCredential_afb5cb84016f85d4", 889316347618708, this, []); }
   /**
    * func provisionCredential(configurationUUID: UUID, name: String) async throws -> CredentialSession.Credential
    * @availability iOS 18.1+
    */
-  provisionCredential(configurationUUID: string, name: string): Promise<CredentialSession_Credential> { return callSDKAsync<CredentialSession_Credential>("SecureElementCredential_532ffa06eebd2aad", 2045541835395522, this, [configurationUUID, name]); }
+  provisionCredential(configurationUUID: string, name: string): Promise<CredentialSession_Credential> { return callSDKAsync<CredentialSession_Credential>("SecureElementCredential_afb5cb84016f85d4", 2045541835395522, this, [configurationUUID, name]); }
   /**
    * func invalidate() async throws
    * @availability iOS 18.1+
    */
-  invalidate(): Promise<void> { return callSDKAsync<void>("SecureElementCredential_532ffa06eebd2aad", 3561050200268999, this, []); }
+  invalidate(): Promise<void> { return callSDKAsync<void>("SecureElementCredential_afb5cb84016f85d4", 3561050200268999, this, []); }
   /**
    * static var isEligible: Bool { get async throws }
    * @availability iOS 18.1+
    */
-  static get isEligible(): Promise<boolean> { return callSDKAsync<boolean>("SecureElementCredential_532ffa06eebd2aad", 912285592673976, undefined, []); }
+  static get isEligible(): Promise<boolean> { return callSDKAsync<boolean>("SecureElementCredential_afb5cb84016f85d4", 912285592673976, undefined, []); }
   /**
    * func transceive(_ data: Data) async throws -> Data
    * @availability iOS 18.1+
    */
-  transceive(data: ArrayBuffer): Promise<ArrayBuffer> { return callSDKAsync<ArrayBuffer>("SecureElementCredential_532ffa06eebd2aad", 3555249033295512, this, [data]); }
+  transceive(data: ArrayBuffer): Promise<ArrayBuffer> { return callSDKAsync<ArrayBuffer>("SecureElementCredential_afb5cb84016f85d4", 3555249033295512, this, [data]); }
   /**
    * var eventStream: AsyncStream<CredentialSession.Event> { get async }
    * @availability iOS 18.1+
    */
-  get eventStream(): Promise<SDKSequence<CredentialSession_Event>> { return callSDKAsync<SDKSequence<CredentialSession_Event>>("SecureElementCredential_532ffa06eebd2aad", 3827961166588393, this, []); }
+  get eventStream(): Promise<SDKSequence<CredentialSession_Event>> { return callSDKAsync<SDKSequence<CredentialSession_Event>>("SecureElementCredential_afb5cb84016f85d4", 3827961166588393, this, []); }
   /**
    * func endWiredMode() async throws
    * @availability iOS 18.1+
    */
-  endWiredMode(): Promise<void> { return callSDKAsync<void>("SecureElementCredential_532ffa06eebd2aad", 2241064034747428, this, []); }
+  endWiredMode(): Promise<void> { return callSDKAsync<void>("SecureElementCredential_afb5cb84016f85d4", 2241064034747428, this, []); }
   /**
    * func enterWiredMode(using credential: CredentialSession.Credential) async throws
    * @availability iOS 18.1+
    */
-  enterWiredMode(credential: CredentialSession_Credential): Promise<void> { return callSDKAsync<void>("SecureElementCredential_532ffa06eebd2aad", 2170337812622821, this, [credential]); }
+  enterWiredMode(credential: CredentialSession_Credential): Promise<void> { return callSDKAsync<void>("SecureElementCredential_afb5cb84016f85d4", 2170337812622821, this, [credential]); }
   /**
    * func listCredentials() async throws -> [CredentialSession.Credential]
    * @availability iOS 18.1+
    */
-  listCredentials(): Promise<Array<CredentialSession_Credential>> { return callSDKAsync<Array<CredentialSession_Credential>>("SecureElementCredential_532ffa06eebd2aad", 2738086073232863, this, []); }
+  listCredentials(): Promise<Array<CredentialSession_Credential>> { return callSDKAsync<Array<CredentialSession_Credential>>("SecureElementCredential_afb5cb84016f85d4", 2738086073232863, this, []); }
   /**
    * nonisolated final var unownedExecutor: UnownedSerialExecutor { get }
    * @availability iOS 18.1+
    */
-  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("SecureElementCredential_532ffa06eebd2aad", 2808206431062891, this, []); }
+  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("SecureElementCredential_afb5cb84016f85d4", 2808206431062891, this, []); }
   /**
    * func acquirePresentmentAssertion() async throws -> CredentialSession.PresentmentIntentAssertion
    * @availability iOS 18.1+
    */
-  acquirePresentmentAssertion(): Promise<CredentialSession_PresentmentIntentAssertion> { return callSDKAsync<CredentialSession_PresentmentIntentAssertion>("SecureElementCredential_532ffa06eebd2aad", 1320489226243849, this, []); }
+  acquirePresentmentAssertion(): Promise<CredentialSession_PresentmentIntentAssertion> { return callSDKAsync<CredentialSession_PresentmentIntentAssertion>("SecureElementCredential_afb5cb84016f85d4", 1320489226243849, this, []); }
   /**
    * var state: CredentialSession.State { get async }
    * @availability iOS 18.1+
    */
-  get state(): Promise<CredentialSession_State> { return callSDKAsync<CredentialSession_State>("SecureElementCredential_532ffa06eebd2aad", 2084623019195628, this, []); }
+  get state(): Promise<CredentialSession_State> { return callSDKAsync<CredentialSession_State>("SecureElementCredential_afb5cb84016f85d4", 2084623019195628, this, []); }
   /**
    * init()
    * @availability iOS 18.1+
    */
-  static init(): CredentialSession { return callSDK<CredentialSession>("SecureElementCredential_532ffa06eebd2aad", 656693752565670, undefined, []); }
+  static init(): CredentialSession { return callSDK<CredentialSession>("SecureElementCredential_afb5cb84016f85d4", 656693752565670, undefined, []); }
   declare readonly $type: { "s:23SecureElementCredential0C7SessionC": true };
 }
 
@@ -94,7 +94,7 @@ export class CredentialSession_CardEmulationOptions extends SDKHandle {
    * init()
    * @availability iOS 18.1+
    */
-  static init(): CredentialSession_CardEmulationOptions { return callSDK<CredentialSession_CardEmulationOptions>("SecureElementCredential_532ffa06eebd2aad", 885812487560641, undefined, []); }
+  static init(): CredentialSession_CardEmulationOptions { return callSDK<CredentialSession_CardEmulationOptions>("SecureElementCredential_afb5cb84016f85d4", 885812487560641, undefined, []); }
   declare readonly $type: { "s:23SecureElementCredential0C7SessionC20CardEmulationOptionsV": true };
 }
 
@@ -107,12 +107,12 @@ export class CredentialSession_ConnectivityEvent extends SDKHandle {
    * let instanceApplicationIdentifier: Data
    * @availability iOS 18.1+
    */
-  get instanceApplicationIdentifier(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_532ffa06eebd2aad", 3205332068518495, this, []); }
+  get instanceApplicationIdentifier(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_afb5cb84016f85d4", 3205332068518495, this, []); }
   /**
    * let data: Data
    * @availability iOS 18.1+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_532ffa06eebd2aad", 442522798506795, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_afb5cb84016f85d4", 442522798506795, this, []); }
   declare readonly $type: { "s:23SecureElementCredential0C7SessionC17ConnectivityEventV": true };
 }
 
@@ -125,17 +125,17 @@ export class CredentialSession_Credential extends SDKHandle {
    * let identifier: UUID
    * @availability iOS 18.1+
    */
-  get identifier(): string { return callSDK<string>("SecureElementCredential_532ffa06eebd2aad", 126810801616874, this, []); }
+  get identifier(): string { return callSDK<string>("SecureElementCredential_afb5cb84016f85d4", 126810801616874, this, []); }
   /**
    * let name: String
    * @availability iOS 18.1+
    */
-  get name(): string { return callSDK<string>("SecureElementCredential_532ffa06eebd2aad", 1855038709555817, this, []); }
+  get name(): string { return callSDK<string>("SecureElementCredential_afb5cb84016f85d4", 1855038709555817, this, []); }
   /**
    * let state: CredentialSession.Credential.State
    * @availability iOS 18.1+
    */
-  get state(): CredentialSession_Credential_State { return callSDK<CredentialSession_Credential_State>("SecureElementCredential_532ffa06eebd2aad", 2405798303464637, this, []); }
+  get state(): CredentialSession_Credential_State { return callSDK<CredentialSession_Credential_State>("SecureElementCredential_afb5cb84016f85d4", 2405798303464637, this, []); }
   declare readonly $type: { "s:23SecureElementCredential0C7SessionC0C0V": true };
 }
 
@@ -148,42 +148,42 @@ export class CredentialSession_Credential_InstanceInfo extends SDKHandle {
    * let securityDomainKeyInfo: Data
    * @availability iOS 18.1+
    */
-  get securityDomainKeyInfo(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_532ffa06eebd2aad", 1444717662119181, this, []); }
+  get securityDomainKeyInfo(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_afb5cb84016f85d4", 1444717662119181, this, []); }
   /**
    * let packageAID: Data
    * @availability iOS 18.1+
    */
-  get packageAID(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_532ffa06eebd2aad", 1280904681209567, this, []); }
+  get packageAID(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_afb5cb84016f85d4", 1280904681209567, this, []); }
   /**
    * let instanceAID: Data
    * @availability iOS 18.1+
    */
-  get instanceAID(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_532ffa06eebd2aad", 460313483112839, this, []); }
+  get instanceAID(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_afb5cb84016f85d4", 460313483112839, this, []); }
   /**
    * let instanceType: CredentialSession.Credential.InstanceInfo.InstanceType
    * @availability iOS 18.1+
    */
-  get instanceType(): CredentialSession_Credential_InstanceInfo_InstanceType { return callSDK<CredentialSession_Credential_InstanceInfo_InstanceType>("SecureElementCredential_532ffa06eebd2aad", 3475193580741532, this, []); }
+  get instanceType(): CredentialSession_Credential_InstanceInfo_InstanceType { return callSDK<CredentialSession_Credential_InstanceInfo_InstanceType>("SecureElementCredential_afb5cb84016f85d4", 3475193580741532, this, []); }
   /**
    * let lifeCycleState: Data
    * @availability iOS 18.1+
    */
-  get lifeCycleState(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_532ffa06eebd2aad", 1719618707696169, this, []); }
+  get lifeCycleState(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_afb5cb84016f85d4", 1719618707696169, this, []); }
   /**
    * let securityDomainAID: Data
    * @availability iOS 18.1+
    */
-  get securityDomainAID(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_532ffa06eebd2aad", 3056242643594219, this, []); }
+  get securityDomainAID(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_afb5cb84016f85d4", 3056242643594219, this, []); }
   /**
    * var securityDomainCounter: Int { get async throws }
    * @availability iOS 18.1+
    */
-  get securityDomainCounter(): Promise<number> { return callSDKAsync<number>("SecureElementCredential_532ffa06eebd2aad", 3818447974233285, this, []); }
+  get securityDomainCounter(): Promise<number> { return callSDKAsync<number>("SecureElementCredential_afb5cb84016f85d4", 3818447974233285, this, []); }
   /**
    * let moduleAID: Data
    * @availability iOS 18.1+
    */
-  get moduleAID(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_532ffa06eebd2aad", 1229801650435659, this, []); }
+  get moduleAID(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_afb5cb84016f85d4", 1229801650435659, this, []); }
   declare readonly $type: { "s:23SecureElementCredential0C7SessionC0C0V12InstanceInfoV": true };
 }
 
@@ -212,7 +212,7 @@ export const CredentialSession_ErrorCode = {
    * var failureReason: String? { get }
    * @availability iOS 18.1+
    */
-  getFailureReason($self: CredentialSession_ErrorCode): (string) | null { return callSDK<(string) | null>("SecureElementCredential_532ffa06eebd2aad", 2462232930790792, $self, []); }
+  getFailureReason($self: CredentialSession_ErrorCode): (string) | null { return callSDK<(string) | null>("SecureElementCredential_afb5cb84016f85d4", 2462232930790792, $self, []); }
 };
 
 /**
@@ -238,12 +238,12 @@ export class CredentialSession_PresentmentIntentAssertion extends SDKHandle {
    * final func relinquish() async throws
    * @availability iOS 18.1+
    */
-  relinquish(): Promise<void> { return callSDKAsync<void>("SecureElementCredential_532ffa06eebd2aad", 4137063351207562, this, []); }
+  relinquish(): Promise<void> { return callSDKAsync<void>("SecureElementCredential_afb5cb84016f85d4", 4137063351207562, this, []); }
   /**
    * final var state: CredentialSession.PresentmentIntentAssertion.State { get async }
    * @availability iOS 18.1+
    */
-  get state(): Promise<CredentialSession_PresentmentIntentAssertion_State> { return callSDKAsync<CredentialSession_PresentmentIntentAssertion_State>("SecureElementCredential_532ffa06eebd2aad", 4021421820208650, this, []); }
+  get state(): Promise<CredentialSession_PresentmentIntentAssertion_State> { return callSDKAsync<CredentialSession_PresentmentIntentAssertion_State>("SecureElementCredential_afb5cb84016f85d4", 4021421820208650, this, []); }
   declare readonly $type: { "s:23SecureElementCredential0C7SessionC26PresentmentIntentAssertionC": true };
 }
 
@@ -262,17 +262,17 @@ export class CredentialSession_SecureElementInfo extends SDKHandle {
    * let hardwareReleaseVersionInfo: String
    * @availability iOS 18.4+
    */
-  get hardwareReleaseVersionInfo(): string { return callSDK<string>("SecureElementCredential_532ffa06eebd2aad", 543245190744611, this, []); }
+  get hardwareReleaseVersionInfo(): string { return callSDK<string>("SecureElementCredential_afb5cb84016f85d4", 543245190744611, this, []); }
   /**
    * let secureElementPlatformSigningCertificate: Data
    * @availability iOS 18.4+
    */
-  get secureElementPlatformSigningCertificate(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_532ffa06eebd2aad", 3690602301767457, this, []); }
+  get secureElementPlatformSigningCertificate(): ArrayBuffer { return callSDK<ArrayBuffer>("SecureElementCredential_afb5cb84016f85d4", 3690602301767457, this, []); }
   /**
    * let platformIdentifier: String
    * @availability iOS 27.0+
    */
-  get platformIdentifier(): string { return callSDK<string>("SecureElementCredential_532ffa06eebd2aad", 45512737912716, this, []); }
+  get platformIdentifier(): string { return callSDK<string>("SecureElementCredential_afb5cb84016f85d4", 45512737912716, this, []); }
   declare readonly $type: { "s:23SecureElementCredential0C7SessionC0aB4InfoV": true };
 }
 
@@ -284,13 +284,13 @@ export class CredentialSession_State extends SDKHandle {
   declare readonly $type: { "s:23SecureElementCredential0C7SessionC5StateO": true };
 }
 
-registerSDKClass("SecureElementCredential.CredentialSession", CredentialSession, { module: "SecureElementCredential_532ffa06eebd2aad", properties: {}, methods: {"deleteCredential":{"id":3383054074110827},"provisionCredential":{"id":2045541835395522},"invalidate":{"id":3561050200268999},"transceive":{"id":3555249033295512},"endWiredMode":{"id":2241064034747428},"enterWiredMode":{"id":2170337812622821},"listCredentials":{"id":2738086073232863},"acquirePresentmentAssertion":{"id":1320489226243849}} });
-registerSDKClass("SecureElementCredential.CredentialSession.CardEmulationOptions", CredentialSession_CardEmulationOptions, { module: "SecureElementCredential_532ffa06eebd2aad", properties: {} });
-registerSDKClass("SecureElementCredential.CredentialSession.ConnectivityEvent", CredentialSession_ConnectivityEvent, { module: "SecureElementCredential_532ffa06eebd2aad", properties: {} });
-registerSDKClass("SecureElementCredential.CredentialSession.Credential", CredentialSession_Credential, { module: "SecureElementCredential_532ffa06eebd2aad", properties: {} });
-registerSDKClass("SecureElementCredential.CredentialSession.Credential.InstanceInfo", CredentialSession_Credential_InstanceInfo, { module: "SecureElementCredential_532ffa06eebd2aad", properties: {} });
-registerSDKClass("SecureElementCredential.CredentialSession.Credential.State", CredentialSession_Credential_State, { module: "SecureElementCredential_532ffa06eebd2aad", properties: {} });
-registerSDKClass("SecureElementCredential.CredentialSession.Event", CredentialSession_Event, { module: "SecureElementCredential_532ffa06eebd2aad", properties: {} });
-registerSDKClass("SecureElementCredential.CredentialSession.PresentmentIntentAssertion", CredentialSession_PresentmentIntentAssertion, { module: "SecureElementCredential_532ffa06eebd2aad", properties: {}, methods: {"relinquish":{"id":4137063351207562}} });
-registerSDKClass("SecureElementCredential.CredentialSession.SecureElementInfo", CredentialSession_SecureElementInfo, { module: "SecureElementCredential_532ffa06eebd2aad", properties: {} });
-registerSDKClass("SecureElementCredential.CredentialSession.State", CredentialSession_State, { module: "SecureElementCredential_532ffa06eebd2aad", properties: {} });
+registerSDKClass("SecureElementCredential.CredentialSession", CredentialSession, { module: "SecureElementCredential_afb5cb84016f85d4", properties: {}, methods: {"deleteCredential":{"id":3383054074110827},"provisionCredential":{"id":2045541835395522},"invalidate":{"id":3561050200268999},"transceive":{"id":3555249033295512},"endWiredMode":{"id":2241064034747428},"enterWiredMode":{"id":2170337812622821},"listCredentials":{"id":2738086073232863},"acquirePresentmentAssertion":{"id":1320489226243849}} });
+registerSDKClass("SecureElementCredential.CredentialSession.CardEmulationOptions", CredentialSession_CardEmulationOptions, { module: "SecureElementCredential_afb5cb84016f85d4", properties: {} });
+registerSDKClass("SecureElementCredential.CredentialSession.ConnectivityEvent", CredentialSession_ConnectivityEvent, { module: "SecureElementCredential_afb5cb84016f85d4", properties: {} });
+registerSDKClass("SecureElementCredential.CredentialSession.Credential", CredentialSession_Credential, { module: "SecureElementCredential_afb5cb84016f85d4", properties: {} });
+registerSDKClass("SecureElementCredential.CredentialSession.Credential.InstanceInfo", CredentialSession_Credential_InstanceInfo, { module: "SecureElementCredential_afb5cb84016f85d4", properties: {} });
+registerSDKClass("SecureElementCredential.CredentialSession.Credential.State", CredentialSession_Credential_State, { module: "SecureElementCredential_afb5cb84016f85d4", properties: {} });
+registerSDKClass("SecureElementCredential.CredentialSession.Event", CredentialSession_Event, { module: "SecureElementCredential_afb5cb84016f85d4", properties: {} });
+registerSDKClass("SecureElementCredential.CredentialSession.PresentmentIntentAssertion", CredentialSession_PresentmentIntentAssertion, { module: "SecureElementCredential_afb5cb84016f85d4", properties: {}, methods: {"relinquish":{"id":4137063351207562}} });
+registerSDKClass("SecureElementCredential.CredentialSession.SecureElementInfo", CredentialSession_SecureElementInfo, { module: "SecureElementCredential_afb5cb84016f85d4", properties: {} });
+registerSDKClass("SecureElementCredential.CredentialSession.State", CredentialSession_State, { module: "SecureElementCredential_afb5cb84016f85d4", properties: {} });
