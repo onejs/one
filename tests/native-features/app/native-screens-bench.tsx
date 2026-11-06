@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useLocalSearchParams } from 'one'
 import { Platform, Text, View } from 'react-native'
 import { BenchList } from '../fixtures/native-screens/bench'
 
@@ -6,11 +7,12 @@ import { BenchList } from '../fixtures/native-screens/bench'
 // flips one row, bumps tick, and times setState to the native onApplied
 // callback. "same" cycles send the rows unchanged, so tick and the callback
 // round trip alone are the baseline; the two kinds alternate so host drift
-// cancels. encode is JSON.stringify of the rows, the lower bound of the js side.
-const ROWS = 2000
+// cancels. every update re-sends all rows, so ?rows=10 gives the fixed cost of
+// the round trip to subtract from the 2,000 row run. encode is JSON.stringify of
+// the rows, the lower bound of the js side.
 const CYCLES = 30
-const makeRows = () =>
-  Array.from({ length: ROWS }, (_, id) => ({ id, title: `Row ${id}`, value: id / 7, flag: false }))
+const makeRows = (count: number) =>
+  Array.from({ length: count }, (_, id) => ({ id, title: `Row ${id}`, value: id / 7, flag: false }))
 
 interface Sample {
   kind: 'large' | 'same'
@@ -18,7 +20,8 @@ interface Sample {
 }
 
 export default function NativeScreensBench() {
-  const [state, setState] = useState({ rows: makeRows(), tick: 0 })
+  const ROWS = Number(useLocalSearchParams<{ rows?: string }>().rows ?? 2000)
+  const [state, setState] = useState({ rows: makeRows(ROWS), tick: 0 })
   const [report, setReport] = useState('idle')
   const pending = useRef<{ tick: number; start: number; kind: Sample['kind'] } | null>(null)
   const samples = useRef<Sample[]>([])
