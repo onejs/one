@@ -21,6 +21,10 @@ declare module 'one' {
         | `/color-test`
         | `/docs-capture`
         | `/menu-test`
+        | `/native-screens`
+        | `/native-screens/`
+        | `/native-screens/new`
+        | `/native-screens/sort`
         | `/one-native`
         | `/one-native-accessibility`
         | `/one-native-adaptive`
@@ -211,13 +215,16 @@ declare module 'one' {
         | `/zoom-test`
       DynamicRoutes:
         | `/deep-link/${OneRouter.SingleRoutePart<T>}`
+        | `/native-screens/${OneRouter.SingleRoutePart<T>}`
         | `/shared-element/${OneRouter.SingleRoutePart<T>}`
       DynamicRouteTemplate:
         | `/deep-link/[id]`
+        | `/native-screens/[id]`
         | `/shared-element/[id]`
       IsTyped: true
       RouteTypes: {
         '/deep-link/[id]': RouteInfo<{ id: string }, '/deep-link/[id]'>
+        '/native-screens/[id]': RouteInfo<{ id: string }, '/native-screens/[id]'>
         '/shared-element/[id]': RouteInfo<{ id: string }, '/shared-element/[id]'>
       }
     }

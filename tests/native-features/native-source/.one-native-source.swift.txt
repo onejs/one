@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 @MainActor public enum OneNativeSourceBody_native_source {
-  public static let hash = "3625b03653228126da650c149f15b53ff7089662bd7a1dae91da3e52050a32a8"
+  public static let hash = "739dd37f1ded3690b776eec5739aed01845982c8ab9666198d4676c690e2f9ac"
 #if os(WASI)
   private struct Request: Decodable { let module: String; let method: String; let argsJson: String; let contractHash: String }
   private struct Reply: Encodable { let ok: Bool; let value: String?; let error: String?; let pending: Int32? }
@@ -145,6 +145,40 @@ import SwiftUI
       throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native module \(module) is not linked; rebuild the app"])
     }
   }
+  private static func missing(_ path: String) throws -> Any {
+    throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "\(path): required"])
+  }
+  static func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView {
+    guard let props = try JSONSerialization.jsonObject(with: Data(propsJson.utf8)) as? [String: Any] else {
+      throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "props must be a JSON object"])
+    }
+    switch name {
+    case "EntryList":
+      return AnyView(EntryList(
+        entries: try decode(props["entries"] ?? missing("props.entries"), as: [Entry].self),
+        onSelect: { (a0: String) -> Void in emit("onSelect", args([a0])) },
+        onAdd: { () -> Void in emit("onAdd", args([])) },
+        onSort: { () -> Void in emit("onSort", args([])) }
+      ))
+    case "EntryDetail":
+      return AnyView(EntryDetail(
+        entry: try decode(props["entry"] ?? missing("props.entry"), as: Entry.self),
+        onChange: { (a0: Entry) -> Void in emit("onChange", args([a0])) }
+      ))
+    case "SortSheet":
+      return AnyView(SortSheet(
+        order: try decode(props["order"] ?? missing("props.order"), as: String.self),
+        onSelect: { (a0: String) -> Void in emit("onSelect", args([a0])) },
+        onClose: { () -> Void in emit("onClose", args([])) }
+      ))
+    case "EntryForm":
+      return AnyView(EntryForm(
+        onSubmit: { (a0: String, a1: String) -> Void in emit("onSubmit", args([a0, a1])) },
+        onCancel: { () -> Void in emit("onCancel", args([])) }
+      ))
+    default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "swift view \(name) is not linked; rebuild the app"])
+    }
+  }
 }
 
 #if os(WASI)
@@ -159,6 +193,14 @@ import SwiftUI
 @_expose(wasm, "peach_poll_events")
 @_cdecl("peach_poll_events")
 @MainActor public func peach_poll_events() -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_native_source.pollEvents() }
+@_expose(wasm, "peach_register_views")
+@_cdecl("peach_register_views")
+@MainActor public func peach_register_views() {
+  PeachTypedViews.register { name, contractHash, propsJson, emit in
+    guard contractHash == OneNativeSourceBody_native_source.hash else { return AnyView(Text("swift view native_source.\(name) changed; rebuild the app").foregroundStyle(.red)) }
+    do { return try OneNativeSourceBody_native_source.view(name, propsJson, emit) } catch { return AnyView(Text("\(name): \(error.localizedDescription)").foregroundStyle(.red)) }
+  }
+}
 @main struct OneNativeSourceMain_native_source: App {
   var body: some Scene { WindowGroup { EmptyView() } }
 }
@@ -169,5 +211,10 @@ import SwiftUI
   public required override init() {}
   public var contractHash: String { OneNativeSourceBody_native_source.hash }
   public func call(_ module: String, _ method: String, _ argsJson: String) async throws -> String { try await OneNativeSourceBody_native_source.call(module, method, argsJson) }
+}
+@objc(OneNativeSourceViews_native_source) @MainActor public final class OneNativeSourceViews_native_source: NSObject, OneNativeSourceViewDispatch {
+  public required override init() {}
+  public var contractHash: String { OneNativeSourceBody_native_source.hash }
+  public func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView { try OneNativeSourceBody_native_source.view(name, propsJson, emit) }
 }
 #endif

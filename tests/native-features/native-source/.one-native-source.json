@@ -1,13 +1,19 @@
 {
   "generatedBy": "one typegen",
   "packageId": "native_source",
-  "hash": "3625b03653228126da650c149f15b53ff7089662bd7a1dae91da3e52050a32a8",
+  "hash": "739dd37f1ded3690b776eec5739aed01845982c8ab9666198d4676c690e2f9ac",
   "files": {
     "Audio.swift": [
       "AudioMath"
     ],
     "EscapeHatch.swift": [
       "EscapeHatch"
+    ],
+    "NativeScreens.swift": [
+      "EntryList",
+      "EntryDetail",
+      "SortSheet",
+      "EntryForm"
     ]
   },
   "modules": {
@@ -23,6 +29,26 @@
       "onTick"
     ]
   },
-  "views": {},
+  "views": {
+    "EntryList": [
+      "entries",
+      "onSelect",
+      "onAdd",
+      "onSort"
+    ],
+    "EntryDetail": [
+      "entry",
+      "onChange"
+    ],
+    "SortSheet": [
+      "order",
+      "onSelect",
+      "onClose"
+    ],
+    "EntryForm": [
+      "onSubmit",
+      "onCancel"
+    ]
+  },
   "defaultViewFiles": []
 }
