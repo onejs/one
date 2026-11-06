@@ -1,0 +1,67 @@
+---
+title: Native screens
+description: Route to SwiftUI and Compose views and keep One's router, layouts and state
+---
+
+A route can render a [Swift or Kotlin view](/docs/native-source) as its whole
+screen. The router, layouts and state stay in JavaScript. The screen's contents,
+including the list, the title and the toolbar, are SwiftUI on iOS and Compose on
+Android.
+
+```tsx
+// app/entries/index.tsx
+import { useRouter } from 'one'
+import { EntryList } from '../../fixtures/views'
+import { useEntries } from '../../fixtures/store'
+
+export default function EntriesScreen() {
+  const router = useRouter()
+  const { entries } = useEntries()
+  return (
+    <EntryList
+      style={{ flex: 1 }}
+      entries={entries}
+      onSelect={(id) => router.push(`/entries/${id}`)}
+    />
+  )
+}
+```
+
+Give the view `flex: 1` so it fills the screen. Without it a SwiftUI `List`
+measures its content and collapses. The view reports taps through callbacks, and
+the route calls the router, so deep links, back handling and sheets work as for
+any other screen. State lives in your own store and flows in as props.
+
+The `tests/native-features` app has a complete example under
+`app/native-screens`: a list with search, a detail screen, a sheet and a form.
+
+## iOS
+
+The SwiftUI view owns the bar contents. Its `.navigationTitle`, toolbar items and
+`.searchable` are carried to the screen's navigation bar, and its scroll view
+drives the large title. The stack only has to stay out of the way.
+Set these three options:
+
+```tsx
+<Stack screenOptions={{ headerTransparent: true, headerBackButtonDisplayMode: 'minimal' }}>
+  <Stack.Screen name="index" options={{ title: 'Entries', headerLargeTitleEnabled: true }} />
+</Stack>
+```
+
+- `headerTransparent` lets the view's scroll content run under the bar.
+- `headerBackButtonDisplayMode: 'minimal'` shows the chevron alone, as UIKit does.
+- `headerLargeTitleEnabled` turns on the large title for a list screen.
+
+## Android
+
+Compose draws the app bar, so hide the stack's header with
+`headerShown: false` and put a `TopAppBar` in the composable. Leave
+`statusBarStyle` unset: the status bar icons then follow the system appearance,
+as in a native app.
+
+## Props and cost
+
+Props cross as JSON on every update, so a view receives its whole array again
+when one item changes. On an iOS simulator, a 2,000-row array with one row
+changed applies in about one frame. Cost grows with the number of rows sent, not
+the number changed, so page or window a list that holds many thousands of rows.
