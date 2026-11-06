@@ -2412,7 +2412,7 @@ function viewGlue(
       if (elem === null) return []
       const element = qualifiedType(elem)
       return [
-        `private fun mergeLists${view.name}${cap(prop.name)}(reader: ${readerClass}, old: List<${element}>?, prop: String): List<${element}> {`,
+        `private fun mergeLists${view.name}${cap(prop.name)}(reader: ${readerClass}, old: List<${element}>?, prop: String): List<${element}>? {`,
         `  if (reader.peek() != ${tokenClass}.BEGIN_OBJECT) error("lists.$prop: expected object")`,
         '  reader.beginObject()',
         '  var length = -1',
@@ -2426,7 +2426,11 @@ function viewGlue(
         '  }',
         '  reader.endObject()',
         '  if (length < 0) error("lists.$prop: needs length")',
-        '  val current = old ?: error("lists.$prop: no held list")',
+        // no held list, or a patch that does not fit it, is what a change
+        // on a mismatched base looks like: return null so apply refuses and
+        // the host resyncs. the caller errors when the base matches and the
+        // merge still failed, which is a real protocol bug.
+        '  val current = old ?: return null',
         '  val entries = set ?: emptyList()',
         '  for (j in 1 until entries.size) require(entries[j].first > entries[j - 1].first) { "lists.$prop: set out of order" }',
         `  val fresh = ArrayList<${element}>(length)`,
@@ -2434,7 +2438,7 @@ function viewGlue(
         '  for (i in 0 until length) {',
         '    if (s < entries.size && entries[s].first == i) { fresh.add(entries[s].second); s++ }',
         '    else if (i < current.size) fresh.add(current[i])',
-        '    else error("lists.$prop: missing index $i")',
+        '    else return null',
         '  }',
         '  return fresh',
         '}',
@@ -2478,6 +2482,7 @@ function viewGlue(
           if (zero !== null) return [`        var ${prop.name} = ${zero}`, `        var has${cap(prop.name)} = false`]
           return [`        var ${prop.name}: ${declared}? = null`]
         }),
+        ...lists.map((prop) => `        var ${prop.name}MergeFailed = false`),
         '        while (reader.hasNext()) {',
         `          when (reader.selectName(${options})) {`,
         '            0 -> { seq = readInt(reader, "seq"); hasSeq = true }',
@@ -2489,7 +2494,7 @@ function viewGlue(
         '              while (reader.hasNext()) {',
         `                when (reader.selectName(${lists.map((prop) => JSON.stringify(prop.name)).join(', ')})) {`,
         ...lists.map((prop, listsIndex) =>
-          `                  ${listsIndex} -> ${prop.name} = mergeLists${view.name}${cap(prop.name)}(reader, held?.${prop.name}, ${JSON.stringify(prop.name)})`
+          `                  ${listsIndex} -> { val merged${cap(prop.name)} = mergeLists${view.name}${cap(prop.name)}(reader, held?.${prop.name}, ${JSON.stringify(prop.name)}); if (merged${cap(prop.name)} == null) ${prop.name}MergeFailed = true else ${prop.name} = merged${cap(prop.name)} }`
         ),
         '                  else -> reader.skipValue()',
         '                }',
@@ -2549,10 +2554,17 @@ function viewGlue(
           if (prop.callback) {
             return prop.nativeType.endsWith('?') ? [`            if (${prop.name}Doc != null) h.has${cap(prop.name)} = ${prop.name}Doc`] : []
           }
+          // a failed merge on a matching base is a protocol bug: host and
+          // js agree on the seq but not on the list. on a mismatched base
+          // apply already refused, so this never fires for a resync.
+          const mergeFailed =
+            listElement(prop.nativeType) !== null
+              ? [`            if (${prop.name}MergeFailed) error("lists.${prop.name}: cannot merge")`]
+              : []
           if (prop.optional || prop.nativeType.endsWith('?') || unboxedZero(prop.nativeType) !== null) {
-            return [`            if (has${cap(prop.name)}) h.${prop.name} = ${prop.name}`]
+            return [...mergeFailed, `            if (has${cap(prop.name)}) h.${prop.name} = ${prop.name}`]
           }
-          return [`            if (${prop.name} != null) h.${prop.name} = ${prop.name}`]
+          return [...mergeFailed, `            if (${prop.name} != null) h.${prop.name} = ${prop.name}`]
         }),
         '            state.seq = seq',
         '            state.revision++',
