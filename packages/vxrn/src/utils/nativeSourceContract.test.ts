@@ -167,6 +167,9 @@ fun Counter(rows: List<Row>, tick: Int, note: String? = null, onTap: () -> Unit,
     expect(glue).toContain('private fun mergeListsCounterRows(reader: OneJsonReader_K_counter, old: List<app.counter.Row>?, prop: String): List<app.counter.Row> {')
     expect(glue).toContain('rows = mergeListsCounterRows(reader, held?.rows, "rows")')
     expect(glue).toContain('rows = h.rows!!')
+    // each view branch closes the document it decoded; a second close after
+    // the view dispatch throws on device (expected '}' at end of document).
+    expect(glue.match(/reader\.endDocument\(\)/g)).toHaveLength(1)
   })
 
   it('omits the events import and date/data helpers a contract never uses', () => {

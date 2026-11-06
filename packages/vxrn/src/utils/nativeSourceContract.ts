@@ -2579,8 +2579,6 @@ function viewGlue(
     }),
     '      else -> error("composable $view is not linked; rebuild the app")',
     '    }',
-    '    reader.endObject()',
-    '    reader.endDocument()',
     '  }',
     '}',
     '',
