@@ -21,7 +21,7 @@ const contracts = [
 ]
 const glue = renderSwiftSourceGlue('native_source', contracts).source
 const api = readFileSync(resolve(import.meta.dir, '../../../packages/one/ios/OneSwiftPackage.swift'), 'utf8')
-const protocols = api.slice(api.indexOf('@MainActor public protocol PeachModule'), api.indexOf('// a package\'s typed views'))
+const protocols = api.slice(api.indexOf('@MainActor public protocol PeachModule'), api.indexOf('extension PeachPackage'))
 const source = `import Foundation
 import SwiftUI
 ${protocols}
