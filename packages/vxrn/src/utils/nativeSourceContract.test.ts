@@ -134,13 +134,38 @@ fun helper(x: Int) = x`
     expect(glue).toContain('class OneNativeSourceViews_K_counter: OneNativeSourceViewDispatch')
     expect(glue).toContain('val reader = OneJsonReader_K_counter(propsJson)')
     expect(glue).not.toContain('JSONObject(propsJson)')
-    expect(glue).toContain('onPick = if (hasOnPick) ({ a0 -> emit("onPick"')
+    expect(glue).toContain('onPick = if (h.hasOnPick) ({ a0 -> emit("onPick"')
     expect(() =>
       nativeSourceContract('/app/native/Bad.kt', '@Composable\nfun Bad(count: Int = 1) {}')
     ).toThrow(/Bad\.kt:2:.*may only default to null/)
     expect(() =>
       nativeSourceContract('/app/native/Bad.kt', '@Composable\nfun Bad(onTap: () -> Int) {}')
     ).toThrow(/must return Unit/)
+  })
+
+  it('decodes keyed change documents into held view state', () => {
+    const contract = nativeSourceContract(
+      '/app/native/Counter.kt',
+      `package app.counter
+data class Row(val id: Int, val title: String)
+@Composable
+fun Counter(rows: List<Row>, tick: Int, note: String? = null, onTap: () -> Unit, onPick: ((Int) -> Unit)? = null, modifier: Modifier = Modifier) {
+  Text("x")
+}`
+    )
+    const glue = renderKotlinSourceGlue('K_counter', contract).source
+    expect(glue).toContain('emit: (String, String) -> Unit, state: OneNativeSourceKeyedState')
+    expect(glue).toContain('private class HeldCounter_K_counter {')
+    expect(glue).toContain('var rows: List<app.counter.Row>? = null')
+    expect(glue).toContain('var tick: Int = 0')
+    expect(glue).toContain('var hasOnPick: Boolean = false')
+    expect(glue).toContain('reader.selectName("\\$seq", "\\$base", "\\$lists", "rows", "tick", "note", "onTap", "onPick")')
+    expect(glue).toContain('if (hasBase && !hasSeq) error("seq: required")')
+    expect(glue).toContain('if (sawLists && !hasBase) error("lists: needs a change document")')
+    expect(glue).toContain('state.views["Counter"]')
+    expect(glue).toContain('state.seq = seq')
+    expect(glue).toContain('lists.rows.length')
+    expect(glue).toContain('rows = h.rows!!')
   })
 
   it('omits the events import and date/data helpers a contract never uses', () => {

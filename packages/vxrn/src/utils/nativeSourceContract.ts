@@ -2375,74 +2375,198 @@ function viewGlue(
   const cap = (name: string) => name.slice(0, 1).toUpperCase() + name.slice(1)
   const readerClass = `OneJsonReader_${sourceId}`
   const tokenClass = `OneJsonToken_${sourceId}`
+  // "$seq" etc as kotlin string literals: the dollar escapes or the compiler
+  // reads it as a template of the seq/base locals.
+  const SEQ_KEY = '"\\$seq"'
+  const BASE_KEY = '"\\$base"'
+  const LISTS_KEY = '"\\$lists"'
+  const listElement = (type: string): string | null => {
+    const inner = type.endsWith('?') ? type.slice(0, -1) : type
+    return inner.startsWith('List<') && inner.endsWith('>') ? inner.slice(5, -1) : null
+  }
+  // one untyped holder per view, kept in the host-owned keyed state: full
+  // documents fill every field, change documents merge into them, and every
+  // composition renders from them, so a re-created composition shows the
+  // same content without re-applying.
+  const holders = contract.views.flatMap((view) => [
+    `private class Held${view.name}_${sourceId} {`,
+    ...view.props.flatMap((prop) => {
+      if (prop.callback) {
+        return prop.nativeType.endsWith('?') ? [`  var has${cap(prop.name)}: Boolean = false`] : []
+      }
+      const declared = qualifiedType(prop.nativeType)
+      if (prop.optional || prop.nativeType.endsWith('?')) return [`  var ${prop.name}: ${declared} = null`]
+      const zero = unboxedZero(prop.nativeType)
+      if (zero !== null) return [`  var ${prop.name}: ${declared} = ${zero}`]
+      if (prop.nativeType === 'String') return [`  var ${prop.name}: String = ""`]
+      return [`  var ${prop.name}: ${declared}? = null`]
+    }),
+    '}',
+  ])
   return [
+    ...holders,
+    '',
     `@Keep class OneNativeSourceViews_${sourceId}: OneNativeSourceViewDispatch {`,
     `  override val contractHash = ${JSON.stringify(hash)}`,
     '  @Composable',
-    '  override fun Content(view: String, propsJson: String, emit: (String, String) -> Unit) {',
+    '  override fun Content(view: String, propsJson: String, emit: (String, String) -> Unit, state: OneNativeSourceKeyedState) {',
     `    val reader = ${readerClass}(propsJson)`,
     `    if (reader.peek() != ${tokenClass}.BEGIN_OBJECT) error("props must be a JSON object")`,
     '    reader.beginObject()',
     '    when (view) {',
-    ...contract.views.flatMap((view) => [
-      `      ${JSON.stringify(view.name)} -> {`,
-      // required props start null and fail at the call when the key never
-      // arrived; optional props (always nullable) default to null.
-      ...view.props.flatMap((prop) => {
-        if (prop.callback) {
-          return prop.nativeType.endsWith('?') ? [`        var has${cap(prop.name)} = false`] : []
-        }
-        const declared = qualifiedType(prop.nativeType)
-        if (prop.optional) return [`        var ${prop.name}: ${declared} = null`]
-        const zero = unboxedZero(prop.nativeType)
-        if (zero !== null) return [`        var ${prop.name} = ${zero}`, `        var has${cap(prop.name)} = false`]
-        const boxed = declared.endsWith('?') ? declared : `${declared}?`
-        return [
-          `        var ${prop.name}: ${boxed} = null`,
-          ...(prop.nativeType.endsWith('?') ? [`        var has${cap(prop.name)} = false`] : []),
-        ]
-      }),
-      '        while (reader.hasNext()) {',
-      `          when (reader.selectName(${view.props.map((prop) => JSON.stringify(prop.name)).join(', ')})) {`,
-      ...view.props.map((prop, index) => {
-        if (prop.callback) {
-          // the host sends true for each callback the element passed
-          return prop.nativeType.endsWith('?')
-            ? `            ${index} -> has${cap(prop.name)} = readOptBoolean(reader)`
-            : `            ${index} -> reader.skipValue()`
-        }
-        const path = JSON.stringify(`props.${prop.name}`)
-        const read = `${prop.name} = ${value(prop.nativeType, 'reader', path)}`
-        const needsFlag = !prop.optional && (prop.nativeType.endsWith('?') || unboxedZero(prop.nativeType) !== null)
-        return needsFlag
-          ? `            ${index} -> { ${read}; has${cap(prop.name)} = true }`
-          : `            ${index} -> ${read}`
-      }),
-      '            else -> reader.skipValue()',
-      '          }',
-      '        }',
-      ...view.props.flatMap((prop) =>
-        !prop.callback && !prop.optional && unboxedZero(prop.nativeType) !== null
-          ? [`        if (!has${cap(prop.name)}) error("props.${prop.name}: required")`]
-          : []
-      ),
-      `        ${qualifier}${view.name}(`,
-      ...view.props.map((prop) => {
-        if (prop.callback) {
-          const args = prop.callback.map((_, index) => `a${index}`)
-          const types = prop.callback.map((arg) => arg.nativeType)
-          const body = `emit(${JSON.stringify(prop.name)}, JSONArray()${args.map((arg, index) => `.put(${encode(types[index], arg)})`).join('')}.toString())`
-          const lambda = `{ ${args.length > 0 ? `${args.join(', ')} -> ` : ''}${body} }`
-          return `          ${prop.name} = ${prop.nativeType.endsWith('?') ? `if (has${cap(prop.name)}) (${lambda}) else null` : lambda},`
-        }
-        if (prop.optional) return `          ${prop.name} = ${prop.name},`
-        if (prop.nativeType.endsWith('?')) return `          ${prop.name} = (if (has${cap(prop.name)}) ${prop.name} else error("props.${prop.name}: required")),`
-        if (unboxedZero(prop.nativeType) !== null) return `          ${prop.name} = ${prop.name},`
-        return `          ${prop.name} = (${prop.name} ?: error("props.${prop.name}: required")),`
-      }),
-      '        )',
-      '      }',
-    ]),
+    ...contract.views.flatMap((view) => {
+      const holder = `Held${view.name}_${sourceId}`
+      const lists = view.props.filter((prop) => !prop.callback && listElement(prop.nativeType) !== null)
+      const options = [SEQ_KEY, BASE_KEY, LISTS_KEY, ...view.props.map((prop) => JSON.stringify(prop.name))].join(', ')
+      return [
+        `      ${JSON.stringify(view.name)} -> {`,
+        `        var held = state.views[${JSON.stringify(view.name)}] as? ${holder}`,
+        // the envelope plus the props decoded from this document; presence
+        // flags gate the change commit so absent props keep held values.
+        '        var seq = -1',
+        '        var hasSeq = false',
+        '        var base = -1',
+        '        var hasBase = false',
+        '        var sawLists = false',
+        ...view.props.flatMap((prop) => {
+          if (prop.callback) {
+            return prop.nativeType.endsWith('?') ? [`        var ${prop.name}Doc: Boolean? = null`] : []
+          }
+          const declared = qualifiedType(prop.nativeType)
+          if (prop.optional || prop.nativeType.endsWith('?')) {
+            return [`        var ${prop.name}: ${declared} = null`, `        var has${cap(prop.name)} = false`]
+          }
+          const zero = unboxedZero(prop.nativeType)
+          if (zero !== null) return [`        var ${prop.name} = ${zero}`, `        var has${cap(prop.name)} = false`]
+          return [`        var ${prop.name}: ${declared}? = null`]
+        }),
+        '        while (reader.hasNext()) {',
+        `          when (reader.selectName(${options})) {`,
+        '            0 -> { seq = readInt(reader, "seq"); hasSeq = true }',
+        '            1 -> { base = readInt(reader, "base"); hasBase = true }',
+        '            2 -> {',
+        '              sawLists = true',
+        `              if (reader.peek() != ${tokenClass}.BEGIN_OBJECT) error("lists: expected object")`,
+        '              reader.beginObject()',
+        '              while (reader.hasNext()) {',
+        `                when (reader.selectName(${lists.map((prop) => JSON.stringify(prop.name)).join(', ')})) {`,
+        ...lists.flatMap((prop, listsIndex) => {
+          const elem = listElement(prop.nativeType)
+          if (elem === null) return []
+          const element = qualifiedType(elem)
+          return [
+            `                  ${listsIndex} -> {`,
+            '                    reader.beginObject()',
+            '                    var length = -1',
+            `                    var set: List<Pair<Int, ${element}>>? = null`,
+            '                    while (reader.hasNext()) {',
+            '                      when (reader.selectName("length", "set")) {',
+            `                        0 -> length = readInt(reader, "lists.${prop.name}.length")`,
+            `                        1 -> set = readList(reader, "lists.${prop.name}.set") { itemReader, itemPath -> itemReader.beginArray(); val si = readInt(itemReader, itemPath); val sv = ${value(elem, 'itemReader', 'itemPath')}; itemReader.endArray(); si to sv }`,
+            '                        else -> reader.skipValue()',
+            '                      }',
+            '                    }',
+            '                    reader.endObject()',
+            `                    if (length < 0) error("lists.${prop.name}: needs length")`,
+            `                    val old = held?.${prop.name} ?: error("lists.${prop.name}: no held list")`,
+            '                    val entries = set ?: emptyList()',
+            `                    for (j in 1 until entries.size) require(entries[j].first > entries[j - 1].first) { "lists.${prop.name}: set out of order" }`,
+            `                    val fresh = ArrayList<${element}>(length)`,
+            '                    var s = 0',
+            '                    for (i in 0 until length) {',
+            '                      if (s < entries.size && entries[s].first == i) { fresh.add(entries[s].second); s++ }',
+            '                      else if (i < old.size) fresh.add(old[i])',
+            `                      else error("lists.${prop.name}: missing index $i")`,
+            '                    }',
+            `                    ${prop.name} = fresh`,
+            '                  }',
+          ]
+        }),
+        '                  else -> reader.skipValue()',
+        '                }',
+        '              }',
+        '              reader.endObject()',
+        '            }',
+        ...view.props.map((prop, index) => {
+          const arm = index + 3
+          if (prop.callback) {
+            return prop.nativeType.endsWith('?')
+              ? `            ${arm} -> ${prop.name}Doc = readOptBoolean(reader)`
+              : `            ${arm} -> reader.skipValue()`
+          }
+          const path = JSON.stringify(`props.${prop.name}`)
+          const read = `${prop.name} = ${value(prop.nativeType, 'reader', path)}`
+          const needsFlag = prop.optional || prop.nativeType.endsWith('?') || unboxedZero(prop.nativeType) !== null
+          return needsFlag
+            ? `            ${arm} -> { ${read}; has${cap(prop.name)} = true }`
+            : `            ${arm} -> ${read}`
+        }),
+        '            else -> reader.skipValue()',
+        '          }',
+        '        }',
+        '        reader.endObject()',
+        '        reader.endDocument()',
+        '        if (hasBase && !hasSeq) error("seq: required")',
+        '        if (sawLists && !hasBase) error("lists: needs a change document")',
+        // full documents fill every field; change documents merge the decoded
+        // props into the held ones and advance the seq. a change the host let
+        // through always applies; anything else renders the held props while
+        // the host resyncs.
+        '        if (!hasBase) {',
+        ...view.props.flatMap((prop) => {
+          if (prop.callback || prop.optional) return []
+          if (prop.nativeType.endsWith('?') || unboxedZero(prop.nativeType) !== null) {
+            return [`          if (!has${cap(prop.name)}) error("props.${prop.name}: required")`]
+          }
+          return []
+        }),
+        `          val h = held ?: ${holder}().also { state.views[${JSON.stringify(view.name)}] = it }`,
+        ...view.props.flatMap((prop) => {
+          if (prop.callback) {
+            return prop.nativeType.endsWith('?') ? [`          h.has${cap(prop.name)} = ${prop.name}Doc == true`] : []
+          }
+          if (prop.optional || prop.nativeType.endsWith('?') || unboxedZero(prop.nativeType) !== null) {
+            return [`          h.${prop.name} = ${prop.name}`]
+          }
+          return [`          h.${prop.name} = (${prop.name} ?: error("props.${prop.name}: required"))`]
+        }),
+        '          held = h',
+        '          if (hasSeq) state.seq = seq',
+        '        } else if (seq != state.seq) {',
+        '          val h = held',
+        '          if (base == state.seq && h != null) {',
+        ...view.props.flatMap((prop) => {
+          if (prop.callback) {
+            return prop.nativeType.endsWith('?') ? [`            if (${prop.name}Doc != null) h.has${cap(prop.name)} = ${prop.name}Doc`] : []
+          }
+          if (prop.optional || prop.nativeType.endsWith('?') || unboxedZero(prop.nativeType) !== null) {
+            return [`            if (has${cap(prop.name)}) h.${prop.name} = ${prop.name}`]
+          }
+          return [`            if (${prop.name} != null) h.${prop.name} = ${prop.name}`]
+        }),
+        '            state.seq = seq',
+        '          }',
+        '        }',
+        '        held?.let { h ->',
+        `          ${qualifier}${view.name}(`,
+        ...view.props.map((prop) => {
+          if (prop.callback) {
+            const args = prop.callback.map((_, index) => `a${index}`)
+            const types = prop.callback.map((arg) => arg.nativeType)
+            const body = `emit(${JSON.stringify(prop.name)}, JSONArray()${args.map((arg, index) => `.put(${encode(types[index], arg)})`).join('')}.toString())`
+            const lambda = `{ ${args.length > 0 ? `${args.join(', ')} -> ` : ''}${body} }`
+            return `            ${prop.name} = ${prop.nativeType.endsWith('?') ? `if (h.has${cap(prop.name)}) (${lambda}) else null` : lambda},`
+          }
+          if (prop.optional || prop.nativeType.endsWith('?') || unboxedZero(prop.nativeType) !== null || prop.nativeType === 'String') {
+            return `            ${prop.name} = h.${prop.name},`
+          }
+          return `            ${prop.name} = h.${prop.name}!!,`
+        }),
+        '          )',
+        '        }',
+        '      }',
+      ]
+    }),
     '      else -> error("composable $view is not linked; rebuild the app")',
     '    }',
     '    reader.endObject()',
