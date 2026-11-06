@@ -438,6 +438,7 @@ private struct OneNativeHostRoot: View {
     }
     let regions: SafeAreaRegions = hostingScreenInsets ? .all : []
     if controller?.safeAreaRegions != regions { controller?.safeAreaRegions = regions }
+    controller?.forwardsScreenNavigation = hostingScreenInsets
     controller?.attach(to: self)
     propagateActive(controller?.isAttached == true)
   }
