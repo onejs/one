@@ -1644,6 +1644,17 @@ export function renderSwiftSourceGlue(
   return { hash, source }
 }
 
+// a dummy initializer for a required primitive local: unboxed, so the hot
+// decode loop never boxes values that are always overwritten or checked.
+function unboxedZero(type: string): string | null {
+  if (type === 'Int') return '0'
+  if (type === 'Long') return '0L'
+  if (type === 'Double') return '0.0'
+  if (type === 'Float') return '0f'
+  if (type === 'Boolean') return 'false'
+  return null
+}
+
 export function renderKotlinSourceGlue(
   sourceId: string,
   contract: NativeSourceContract
@@ -1762,6 +1773,8 @@ export function renderKotlinSourceGlue(
     ...struct.fields.flatMap((field) => {
       const declared = qualifiedType(field.nativeType)
       if (field.optional) return [`  var ${field.name}: ${declared} = ${field.fallback}`]
+      const zero = unboxedZero(field.nativeType)
+      if (zero !== null) return [`  var ${field.name} = ${zero}`, `  var has${cap(field.name)} = false`]
       const boxed = declared.endsWith('?') ? declared : `${declared}?`
       return [
         `  var ${field.name}: ${boxed} = null`,
@@ -1769,22 +1782,29 @@ export function renderKotlinSourceGlue(
       ]
     }),
     '  while (reader.hasNext()) {',
-    '    when (reader.nextName()) {',
-    ...struct.fields.map((field) => {
+    `    when (reader.selectName(${struct.fields.map((field) => JSON.stringify(field.name)).join(', ')})) {`,
+    ...struct.fields.map((field, index) => {
       const fieldPath = `"$path.${field.name}"`
       const read = `${field.name} = ${value(field.nativeType, 'reader', fieldPath)}`
-      return field.optional || !field.nativeType.endsWith('?')
-        ? `      ${JSON.stringify(field.name)} -> ${read}`
-        : `      ${JSON.stringify(field.name)} -> { ${read}; has${cap(field.name)} = true }`
+      const needsFlag = !field.optional && (field.nativeType.endsWith('?') || unboxedZero(field.nativeType) !== null)
+      return needsFlag
+        ? `      ${index} -> { ${read}; has${cap(field.name)} = true }`
+        : `      ${index} -> ${read}`
     }),
     '      else -> reader.skipValue()',
     '    }',
     '  }',
     '  reader.endObject()',
+    ...struct.fields.flatMap((field) =>
+      !field.optional && unboxedZero(field.nativeType) !== null
+        ? [`  if (!has${cap(field.name)}) error("$path.${field.name}: required")`]
+        : []
+    ),
     `  return ${qualified(struct.name)}(`,
     ...struct.fields.map((field) => {
       if (field.optional) return `    ${field.name} = ${field.name},`
       if (field.nativeType.endsWith('?')) return `    ${field.name} = (if (has${cap(field.name)}) ${field.name} else error("$path.${field.name}: required")),`
+      if (unboxedZero(field.nativeType) !== null) return `    ${field.name} = ${field.name},`
       return `    ${field.name} = (${field.name} ?: error("$path.${field.name}: required")),`
     }),
     '  )',
@@ -1885,6 +1905,34 @@ export function renderKotlinSourceGlue(
     '    return readString()',
     '  }',
     '',
+    '  // matches an object name against the expected keys without allocating',
+    '  // it: the index of the match, or -1 for an unknown key. the name and',
+    '  // colon are consumed either way, so the caller skips the value on -1.',
+    '  fun selectName(vararg options: String): Int {',
+    '    skipSpace()',
+    '    if (pos >= text.length || text[pos] != \'"\') fail("expected a name")',
+    '    var end = pos + 1',
+    '    while (end < text.length && text[end] != \'"\' && text[end] != \'\\\\\') end++',
+    '    if (end < text.length && text[end] == \'\\\\\') {',
+    '      val decoded = readString()',
+    '      skipSpace()',
+    '      if (pos >= text.length || text[pos] != \':\') fail("expected \':\'")',
+    '      pos++',
+    '      return options.indexOf(decoded)',
+    '    }',
+    '    if (end >= text.length) fail("unterminated string")',
+    '    val length = end - pos - 1',
+    '    var index = -1',
+    '    for (i in options.indices) {',
+    '      if (options[i].length == length && text.regionMatches(pos + 1, options[i], 0, length)) { index = i; break }',
+    '    }',
+    '    pos = end + 1',
+    '    skipSpace()',
+    '    if (pos >= text.length || text[pos] != \':\') fail("expected \':\'")',
+    '    pos++',
+    '    return index',
+    '  }',
+    '',
     '  private fun readString(): String {',
     '    pos++ // the opening quote',
     '    var end = pos',
@@ -1934,6 +1982,45 @@ export function renderKotlinSourceGlue(
     '    while (pos < text.length && (text[pos] in \'0\'..\'9\' || text[pos] == \'.\' || text[pos] == \'e\' || text[pos] == \'E\' || text[pos] == \'+\' || text[pos] == \'-\')) pos++',
     '    if (pos == start) fail("expected a number")',
     '    return text.substring(start, pos).toDoubleOrNull() ?: fail("bad number")',
+    '  }',
+    '',
+    '  // plain-digit fast paths: the value when the token at pos is an integer',
+    '  // in range, null when it needs the double slow path. nothing is',
+    '  // consumed on null, so the caller falls back to nextDouble.',
+    '  fun nextIntOrNull(): Int? {',
+    '    var i = pos',
+    '    val negative = i < text.length && text[i] == \'-\'',
+    '    if (negative) i++',
+    '    var value = 0L',
+    '    val digits = i',
+    '    while (i < text.length && text[i] in \'0\'..\'9\') {',
+    '      value = value * 10 + (text[i] - \'0\')',
+    '      if (value > 2147483648L) return null',
+    '      i++',
+    '    }',
+    '    if (i == digits) return null',
+    '    if (i < text.length && (text[i] == \'.\' || text[i] == \'e\' || text[i] == \'E\')) return null',
+    '    if (!negative && value > 2147483647L) return null',
+    '    pos = i',
+    '    return if (negative) -value.toInt() else value.toInt()',
+    '  }',
+    '',
+    '  fun nextLongOrNull(): Long? {',
+    '    var i = pos',
+    '    val negative = i < text.length && text[i] == \'-\'',
+    '    if (negative) i++',
+    '    var value = 0L',
+    '    val digits = i',
+    '    while (i < text.length && text[i] in \'0\'..\'9\') {',
+    '      val digit = (text[i] - \'0\').toLong()',
+    '      if (value > (9007199254740991L - digit) / 10) return null',
+    '      value = value * 10 + digit',
+    '      i++',
+    '    }',
+    '    if (i == digits) return null',
+    '    if (i < text.length && (text[i] == \'.\' || text[i] == \'e\' || text[i] == \'E\')) return null',
+    '    pos = i',
+    '    return if (negative) -value else value',
     '  }',
     '',
     '  fun nextBoolean(): Boolean {',
@@ -2001,11 +2088,15 @@ export function renderKotlinSourceGlue(
     '  return result',
     '}',
     `private fun readInt(reader: ${readerClass}, path: String): Int {`,
+    `  if (reader.peek() != ${tokenClass}.NUMBER) error("$path: expected number")`,
+    '  reader.nextIntOrNull()?.let { return it }',
     '  val result = readDouble(reader, path)',
     '  if (result % 1.0 != 0.0 || result < Int.MIN_VALUE || result > Int.MAX_VALUE) error("$path: expected Int")',
     '  return result.toInt()',
     '}',
     `private fun readLong(reader: ${readerClass}, path: String): Long {`,
+    `  if (reader.peek() != ${tokenClass}.NUMBER) error("$path: expected number")`,
+    '  reader.nextLongOrNull()?.let { return it }',
     '  val result = readDouble(reader, path)',
     '  if (result % 1.0 != 0.0 || result < -9007199254740991.0 || result > 9007199254740991.0) error("$path: expected safe Long")',
     '  return result.toLong()',
@@ -2165,6 +2256,8 @@ function viewGlue(
         }
         const declared = qualifiedType(prop.nativeType)
         if (prop.optional) return [`        var ${prop.name}: ${declared} = null`]
+        const zero = unboxedZero(prop.nativeType)
+        if (zero !== null) return [`        var ${prop.name} = ${zero}`, `        var has${cap(prop.name)} = false`]
         const boxed = declared.endsWith('?') ? declared : `${declared}?`
         return [
           `        var ${prop.name}: ${boxed} = null`,
@@ -2172,24 +2265,29 @@ function viewGlue(
         ]
       }),
       '        while (reader.hasNext()) {',
-      '          when (reader.nextName()) {',
-      ...view.props.map((prop) => {
-        const key = JSON.stringify(prop.name)
+      `          when (reader.selectName(${view.props.map((prop) => JSON.stringify(prop.name)).join(', ')})) {`,
+      ...view.props.map((prop, index) => {
         if (prop.callback) {
           // the host sends true for each callback the element passed
           return prop.nativeType.endsWith('?')
-            ? `            ${key} -> has${cap(prop.name)} = readOptBoolean(reader)`
-            : `            ${key} -> reader.skipValue()`
+            ? `            ${index} -> has${cap(prop.name)} = readOptBoolean(reader)`
+            : `            ${index} -> reader.skipValue()`
         }
         const path = JSON.stringify(`props.${prop.name}`)
         const read = `${prop.name} = ${value(prop.nativeType, 'reader', path)}`
-        return prop.optional || !prop.nativeType.endsWith('?')
-          ? `            ${key} -> ${read}`
-          : `            ${key} -> { ${read}; has${cap(prop.name)} = true }`
+        const needsFlag = !prop.optional && (prop.nativeType.endsWith('?') || unboxedZero(prop.nativeType) !== null)
+        return needsFlag
+          ? `            ${index} -> { ${read}; has${cap(prop.name)} = true }`
+          : `            ${index} -> ${read}`
       }),
       '            else -> reader.skipValue()',
       '          }',
       '        }',
+      ...view.props.flatMap((prop) =>
+        !prop.callback && !prop.optional && unboxedZero(prop.nativeType) !== null
+          ? [`        if (!has${cap(prop.name)}) error("props.${prop.name}: required")`]
+          : []
+      ),
       `        ${qualifier}${view.name}(`,
       ...view.props.map((prop) => {
         if (prop.callback) {
@@ -2201,6 +2299,7 @@ function viewGlue(
         }
         if (prop.optional) return `          ${prop.name} = ${prop.name},`
         if (prop.nativeType.endsWith('?')) return `          ${prop.name} = (if (has${cap(prop.name)}) ${prop.name} else error("props.${prop.name}: required")),`
+        if (unboxedZero(prop.nativeType) !== null) return `          ${prop.name} = ${prop.name},`
         return `          ${prop.name} = (${prop.name} ?: error("props.${prop.name}: required")),`
       }),
       '        )',
