@@ -2512,6 +2512,17 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         rendered = `${trailed}\n# One.UI.Map: set by native.app.android.googleMapsApiKey.\n${line}\n`
       }
     }
+    if (platform === 'android' && relativePath === 'gradle.properties') {
+      // MainActivity opts into androidx edge-to-edge; this tells react
+      // native the window is edge-to-edge on every api level, so its
+      // status bar paths skip the legacy decorFitsSystemWindows route that
+      // would undo it on android 14 and older.
+      const line = 'edgeToEdgeEnabled=true'
+      if (!rendered.includes(line)) {
+        const trailed = rendered.endsWith('\n') ? rendered : `${rendered}\n`
+        rendered = `${trailed}\n# Edge-to-edge: set by one prebuild to match enableEdgeToEdge in MainActivity.\n${line}\n`
+      }
+    }
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/res/values/styles.xml' &&
