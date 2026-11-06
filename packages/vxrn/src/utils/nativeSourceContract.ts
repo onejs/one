@@ -2420,7 +2420,7 @@ function viewGlue(
         '  while (reader.hasNext()) {',
         '    when (reader.selectName("length", "set")) {',
         `      0 -> length = readInt(reader, "lists.$prop.length")`,
-        `      1 -> set = readList(reader, "lists.$prop.set") { itemReader, itemPath -> itemReader.beginArray(); val si = readInt(itemReader, itemPath); val sv = ${value(elem, 'itemReader', 'itemPath')}; itemReader.endArray(); si to sv }`,
+        `      1 -> set = readList(reader, "lists.$prop.set") { itemReader, itemPath -> itemReader.beginArray(); val si = readInt(itemReader, itemPath); if (!itemReader.hasNext()) error("$itemPath: expected element"); val sv = ${value(elem, 'itemReader', 'itemPath')}; itemReader.endArray(); si to sv }`,
         '      else -> reader.skipValue()',
         '    }',
         '  }',
