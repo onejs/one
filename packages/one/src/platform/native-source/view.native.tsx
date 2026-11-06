@@ -4,7 +4,7 @@ import NativeKotlinHost from '../specs/OneKotlinHostNativeComponent'
 import type { KotlinSourceViewProps } from './viewTypes'
 import {
   decodeNativeSourceCallback,
-  encodeNativeSourceProps,
+  stringifyNativeSourceProps,
 } from './wire.native'
 
 export type { KotlinSourceViewProps } from './viewTypes'
@@ -17,7 +17,6 @@ export function KotlinSourceView({
   wires,
 }: KotlinSourceViewProps) {
   const [contentSize, setContentSize] = useState<{ width: number; height: number }>()
-  const encoded = wires ? encodeNativeSourceProps(props, wires.props, wires.structs) : props
   return (
     <View style={props.style} collapsable={false}>
       {/* yoga uses the natural child size while retaining parent flex and stretch. */}
@@ -26,9 +25,7 @@ export function KotlinSourceView({
         source={source}
         view={view}
         contractHash={contractHash}
-        props={JSON.stringify(encoded, (_key, value) =>
-          typeof value === 'function' ? true : value
-        )}
+        props={stringifyNativeSourceProps(props, wires)}
         onHostEvent={(event) => {
           const callback = props[event.nativeEvent.name]
           if (typeof callback === 'function') {

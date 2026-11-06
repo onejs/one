@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native'
 import NativeSwiftHost from '../specs/OneSwiftHostNativeComponent'
 import {
   decodeNativeSourceCallback,
-  encodeNativeSourceProps,
+  stringifyNativeSourceProps,
 } from '../native-source/wire.native'
 import type { SwiftPackageViewProps } from './types'
 
@@ -21,16 +21,13 @@ export function SwiftPackageView({
 }: SwiftPackageViewProps) {
   const style = StyleSheet.flatten(props.style)
   const fills = fill || (style?.flex ?? 0) > 0 || (style?.flexGrow ?? 0) > 0
-  const encoded = wires ? encodeNativeSourceProps(props, wires.props, wires.structs) : props
   return (
     <NativeSwiftHost
       packageName={packageName}
       view={view}
       contractHash={contractHash}
       // a typed view's host learns which callbacks the element passed
-      props={JSON.stringify(encoded, (_key, value) =>
-        typeof value === 'function' ? true : value
-      )}
+      props={stringifyNativeSourceProps(props, wires)}
       fill={fills}
       onHostEvent={(event) => {
         const callback = props[event.nativeEvent.name]

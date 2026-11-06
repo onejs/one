@@ -69,28 +69,52 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value)
 }
 
-function encodeValue(
-  value: unknown,
-  wire: NativeSourceWire,
-  structs: NativeSourceStructs,
-  path: string
-): unknown {
+// the path to the value being encoded, kept as a stack so a large array costs
+// no string per element; only an error turns it into text.
+const trail: (string | number)[] = []
+
+function trailText(): string {
+  let text = String(trail[0])
+  for (let i = 1; i < trail.length; i++) {
+    text += typeof trail[i] === 'number' ? `[${trail[i]}]` : `.${trail[i]}`
+  }
+  return text
+}
+
+// a struct with no wired fields is already json-shaped, so it passes through
+const plainStructs = new WeakMap<object, boolean>()
+
+function encodeValue(value: unknown, wire: NativeSourceWire, structs: NativeSourceStructs): unknown {
   switch (wire.kind) {
     case 'date':
-      if (!(value instanceof Date)) throw new TypeError(`${path}: expected Date`)
+      if (!(value instanceof Date)) throw new TypeError(`${trailText()}: expected Date`)
       return value
     case 'data':
-      if (!(value instanceof Uint8Array)) throw new TypeError(`${path}: expected Uint8Array`)
+      if (!(value instanceof Uint8Array)) throw new TypeError(`${trailText()}: expected Uint8Array`)
       return base64Encode(value)
     case 'enum':
       if (typeof value !== 'string' && typeof value !== 'number') {
-        throw new TypeError(`${path}: expected an enum value`)
+        throw new TypeError(`${trailText()}: expected an enum value`)
       }
       return value
     case 'struct': {
-      if (!isRecord(value)) throw new TypeError(`${path}: expected ${wire.name}`)
+      if (!isRecord(value)) throw new TypeError(`${trailText()}: expected ${wire.name}`)
       const table = structs[wire.name]
-      if (!table) throw new TypeError(`${path}: unknown struct ${wire.name}`)
+      if (!table) throw new TypeError(`${trailText()}: unknown struct ${wire.name}`)
+      let plain = plainStructs.get(table)
+      if (plain === undefined) {
+        plain = table.fields.every((field) => field.wire === undefined)
+        plainStructs.set(table, plain)
+      }
+      if (plain) {
+        for (const field of table.fields) {
+          if (value[field.name] === undefined && !field.optional) {
+            trail.push(field.name)
+            throw new TypeError(`${trailText()}: required`)
+          }
+        }
+        return value
+      }
       const out: Record<string, unknown> = {}
       for (const key of Object.keys(value)) {
         if (!table.fields.some((field) => field.name === key)) out[key] = value[key]
@@ -98,31 +122,46 @@ function encodeValue(
       for (const field of table.fields) {
         const present = value[field.name] !== undefined
         if (!present) {
-          if (!field.optional) throw new TypeError(`${path}.${field.name}: required`)
+          if (!field.optional) {
+            trail.push(field.name)
+            throw new TypeError(`${trailText()}: required`)
+          }
           continue
         }
-        out[field.name] =
-          field.wire === undefined
-            ? value[field.name]
-            : encodeValue(value[field.name], field.wire, structs, `${path}.${field.name}`)
+        if (field.wire === undefined) {
+          out[field.name] = value[field.name]
+          continue
+        }
+        trail.push(field.name)
+        out[field.name] = encodeValue(value[field.name], field.wire, structs)
+        trail.pop()
       }
       return out
     }
-    case 'array':
-      if (!Array.isArray(value)) throw new TypeError(`${path}: expected an array`)
-      return value.map((item, index) => encodeValue(item, wire.element, structs, `${path}[${index}]`))
+    case 'array': {
+      if (!Array.isArray(value)) throw new TypeError(`${trailText()}: expected an array`)
+      const out = new Array(value.length)
+      trail.push(0)
+      const at = trail.length - 1
+      for (let index = 0; index < value.length; index++) {
+        trail[at] = index
+        out[index] = encodeValue(value[index], wire.element, structs)
+      }
+      trail.pop()
+      return out
+    }
     case 'map': {
-      if (!isRecord(value)) throw new TypeError(`${path}: expected an object`)
+      if (!isRecord(value)) throw new TypeError(`${trailText()}: expected an object`)
       const out: Record<string, unknown> = {}
       for (const key of Object.keys(value)) {
-        out[key] = encodeValue(value[key], wire.value, structs, `${path}.${key}`)
+        trail.push(key)
+        out[key] = encodeValue(value[key], wire.value, structs)
+        trail.pop()
       }
       return out
     }
     case 'nullable':
-      return value === null || value === undefined
-        ? null
-        : encodeValue(value, wire.inner, structs, path)
+      return value === null || value === undefined ? null : encodeValue(value, wire.inner, structs)
   }
 }
 
@@ -195,6 +234,17 @@ function decodeValue(
   }
 }
 
+function encodeAt(
+  path: (string | number)[],
+  value: unknown,
+  wire: NativeSourceWire,
+  structs: NativeSourceStructs
+): unknown {
+  trail.length = 0
+  trail.push(...path)
+  return encodeValue(value, wire, structs)
+}
+
 export function encodeNativeSourceArgs(
   args: unknown[],
   wires: (NativeSourceWire | null | undefined)[],
@@ -204,7 +254,7 @@ export function encodeNativeSourceArgs(
     const wire = wires[index]
     return wire === undefined || wire === null
       ? arg
-      : encodeValue(arg, wire, structs, `args[${index}]`)
+      : encodeAt(['args', index], arg, wire, structs)
   })
 }
 
@@ -224,9 +274,22 @@ export function encodeNativeSourceProps(
   const out: Record<string, unknown> = { ...props }
   for (const name of Object.keys(wires)) {
     if (out[name] === undefined) continue
-    out[name] = encodeValue(out[name], wires[name], structs, `props.${name}`)
+    out[name] = encodeAt(['props', name], out[name], wires[name], structs)
   }
   return out
+}
+
+// a view's props as the json text its native host decodes: wired values
+// encoded, and true for each callback the element passed
+export function stringifyNativeSourceProps(
+  props: Record<string, unknown>,
+  wires: NativeSourceViewWires | undefined
+): string {
+  const out = wires ? encodeNativeSourceProps(props, wires.props, wires.structs) : { ...props }
+  for (const key of Object.keys(out)) {
+    if (typeof out[key] === 'function') out[key] = true
+  }
+  return JSON.stringify(out)
 }
 
 export function decodeNativeSourceCallback(
