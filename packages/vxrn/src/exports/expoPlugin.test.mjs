@@ -313,6 +313,27 @@ describe('vxrn/expo-plugin', () => {
     })
   })
 
+  it('writes edgeToEdgeEnabled to gradle.properties', async () => {
+    const projectRoot = expoProject()
+    const config = withVxrn({
+      name: 'TestApp',
+      slug: 'test-app',
+      _internal: { projectRoot },
+    })
+    const properties = (
+      await config.mods.android.gradleProperties({
+        ...config,
+        modRequest: { projectRoot, introspect: false, projectName: 'TestApp' },
+        modResults: [{ type: 'property', key: 'hermesEnabled', value: 'true' }],
+      })
+    ).modResults
+    expect(properties).toContainEqual({
+      type: 'property',
+      key: 'edgeToEdgeEnabled',
+      value: 'true',
+    })
+  })
+
   it('resolves Expo config plugins from the app and binds the dangerous mod', async () => {
     const projectRoot = expoProject()
     const iosRoot = join(projectRoot, 'ios')

@@ -820,6 +820,24 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
     )
   })
 
+  it('writes edgeToEdgeEnabled to gradle.properties', () => {
+    const props = renderPrebuildFile({
+      relativePath: 'gradle.properties',
+      content: 'hermesEnabled=true',
+      platform: 'android',
+      app,
+    })
+    expect(props.content).toContain('edgeToEdgeEnabled=true')
+
+    const twice = renderPrebuildFile({
+      relativePath: 'gradle.properties',
+      content: props.content,
+      platform: 'android',
+      app,
+    })
+    expect(twice.content).toBe(props.content)
+  })
+
   it('omits notification entries when notifications is unset', () => {
     const bare = { ...app, notifications: undefined }
     const infoPlist = renderPrebuildFile({
