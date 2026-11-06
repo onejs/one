@@ -1,6 +1,7 @@
 // the component a device build answers a `.swift` import with: the swift
 // package compiled into the app, rendered by its registered view or by one of
 // its typed views.
+import { StyleSheet } from 'react-native'
 import NativeSwiftHost from '../specs/OneSwiftHostNativeComponent'
 import {
   decodeNativeSourceCallback,
@@ -18,6 +19,8 @@ export function SwiftPackageView({
   fill,
   wires,
 }: SwiftPackageViewProps) {
+  const style = StyleSheet.flatten(props.style)
+  const fills = fill || (style?.flex ?? 0) > 0 || (style?.flexGrow ?? 0) > 0
   const encoded = wires ? encodeNativeSourceProps(props, wires.props, wires.structs) : props
   return (
     <NativeSwiftHost
@@ -28,7 +31,7 @@ export function SwiftPackageView({
       props={JSON.stringify(encoded, (_key, value) =>
         typeof value === 'function' ? true : value
       )}
-      fill={fill}
+      fill={fills}
       onHostEvent={(event) => {
         const callback = props[event.nativeEvent.name]
         if (typeof callback === 'function') {
@@ -41,7 +44,7 @@ export function SwiftPackageView({
           )
         }
       }}
-      style={fill ? { flex: 1 } : undefined}
+      style={fill ? { flex: 1 } : style}
     />
   )
 }

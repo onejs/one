@@ -1232,11 +1232,12 @@ export function nativeSourceContract(file: string, source: string): NativeSource
     '}',
   ].join('\n')))
   declarations.push(...views.map((view) =>
-    `export declare function ${view.name}(props: {${view.props.map((prop) => ` ${prop.name}${prop.optional ? '?' : ''}: ${prop.type}`).join(';')} }): ReactElement`
+    `export declare function ${view.name}(props: {${view.props.map((prop) => ` ${prop.name}${prop.optional ? '?' : ''}: ${prop.type};`).join('')} style?: StyleProp<ViewStyle> }): ReactElement`
   ))
   if (defaultView) {
     declarations.unshift("export default function SwiftPackage(props: Record<string, unknown>): ReactElement")
   }
+  if (views.length > 0) declarations.unshift("import type { StyleProp, ViewStyle } from 'react-native'")
   if (defaultView || views.length > 0) declarations.unshift("import type { ReactElement } from 'react'")
   const declaration = `${GENERATED_HEADER}${declarations.join('\n\n')}\n`
   return { language, packageName, modules, views, structs, enums, defaultView, hash, declaration }

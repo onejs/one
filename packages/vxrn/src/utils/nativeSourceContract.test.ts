@@ -222,10 +222,10 @@ struct Helper: View {
       compilerOptions: { strict: true, noEmit: true, allowArbitraryExtensions: true, module: 'esnext', moduleResolution: 'bundler', types: [] },
       include: ['use.ts'],
     }))
-    writeFileSync(join(temp, 'react.d.ts'), "declare module 'react' { export interface ReactElement {} }")
+    writeFileSync(join(temp, 'react.d.ts'), "declare module 'react' { export interface ReactElement {} }\ndeclare module 'react-native' { export type ViewStyle = { flex?: number }; export type StyleProp<T> = T | null | undefined }")
     writeFileSync(join(temp, 'use.ts'), `/// <reference path="./react.d.ts" />
 import { Level } from './Level.swift'
-Level({ value: 1, onChange: (next: number) => void next, onReset: null })
+Level({ value: 1, onChange: (next: number) => void next, onReset: null, style: { flex: 1 } })
 Level({ value: 'wrong', onChange: () => {} })
 `)
     // one compilation must accept the valid element and reject only the wrong prop.
