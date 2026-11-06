@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "@vxrn/compiler": "workspace:*",
-    "@vxrn/resolve": "workspace:*",
     "vite": "^8.2.2"
   },
   "devDependencies": {

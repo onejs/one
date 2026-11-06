@@ -29,7 +29,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "url-parse": "^1.5.10"
+    "query-string": "^9.1.0"
   },
   "devDependencies": {
     "@tamagui/build": "3.2.3"
