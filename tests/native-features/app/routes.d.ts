@@ -22,6 +22,7 @@ declare module 'one' {
         | `/docs-capture`
         | `/menu-test`
         | `/native-screens`
+        | `/native-screens-bench`
         | `/native-screens/`
         | `/native-screens/new`
         | `/native-screens/sort`

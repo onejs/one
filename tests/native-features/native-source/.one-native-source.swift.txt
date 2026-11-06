@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 @MainActor public enum OneNativeSourceBody_native_source {
-  public static let hash = "739dd37f1ded3690b776eec5739aed01845982c8ab9666198d4676c690e2f9ac"
+  public static let hash = "11b47785c68d40ccb8612cef6dde5d4494e98c0b4c09b7eb94c5de8240acac3c"
 #if os(WASI)
   private struct Request: Decodable { let module: String; let method: String; let argsJson: String; let contractHash: String }
   private struct Reply: Encodable { let ok: Bool; let value: String?; let error: String?; let pending: Int32? }
@@ -153,6 +153,12 @@ import SwiftUI
       throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "props must be a JSON object"])
     }
     switch name {
+    case "BenchList":
+      return AnyView(BenchList(
+        rows: try decode(props["rows"] ?? missing("props.rows"), as: [BenchRow].self),
+        tick: try decode(props["tick"] ?? missing("props.tick"), as: Int.self),
+        onApplied: { (a0: Int) -> Void in emit("onApplied", args([a0])) }
+      ))
     case "EntryList":
       return AnyView(EntryList(
         entries: try decode(props["entries"] ?? missing("props.entries"), as: [Entry].self),

@@ -1,13 +1,16 @@
 {
   "generatedBy": "one typegen",
   "packageId": "native_source",
-  "hash": "739dd37f1ded3690b776eec5739aed01845982c8ab9666198d4676c690e2f9ac",
+  "hash": "11b47785c68d40ccb8612cef6dde5d4494e98c0b4c09b7eb94c5de8240acac3c",
   "files": {
     "Audio.swift": [
       "AudioMath"
     ],
     "EscapeHatch.swift": [
       "EscapeHatch"
+    ],
+    "NativeBench.swift": [
+      "BenchList"
     ],
     "NativeScreens.swift": [
       "EntryList",
@@ -30,6 +33,11 @@
     ]
   },
   "views": {
+    "BenchList": [
+      "rows",
+      "tick",
+      "onApplied"
+    ],
     "EntryList": [
       "entries",
       "onSelect",
