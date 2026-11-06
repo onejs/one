@@ -29,8 +29,6 @@ ignores:
 
   # Used in metro-entry (can definitely import from self)
   - "one"
-  # metro resolves this from the app; one does not install it
-  - "babel-preset-expo"
   # native only: its nitro hybrid objects load one.ui.image urls, linked through react-native-config
   - "react-native-nitro-web-image"
   # resolved from one's package location for the standalone babel preset
