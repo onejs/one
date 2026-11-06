@@ -132,7 +132,9 @@ fun helper(x: Int) = x`
     ])
     const glue = renderKotlinSourceGlue('K_counter', contract).source
     expect(glue).toContain('class OneNativeSourceViews_K_counter: OneNativeSourceViewDispatch')
-    expect(glue).toContain('onPick = if (props.optBoolean("onPick")) ({ a0 -> emit("onPick"')
+    expect(glue).toContain('val reader = OneJsonReader(propsJson)')
+    expect(glue).not.toContain('JSONObject(propsJson)')
+    expect(glue).toContain('onPick = if (hasOnPick) ({ a0 -> emit("onPick"')
     expect(() =>
       nativeSourceContract('/app/native/Bad.kt', '@Composable\nfun Bad(count: Int = 1) {}')
     ).toThrow(/Bad\.kt:2:.*may only default to null/)
@@ -513,7 +515,7 @@ object Atlas : OneModule {
       'object Atlas : OneModule {\n    fun at(moment: java.util.Date): java.util.Date = moment\n}'
     )
     expect(kotlin.modules[0].methods[0].parameters[0].type).toBe('Date')
-    expect(renderKotlinSourceGlue('K_atlas', kotlin).source).toContain('readDate(args.get(0), "args[0]")')
+    expect(renderKotlinSourceGlue('K_atlas', kotlin).source).toContain('readDate(reader, "args[0]")')
   })
 
   it('rejects unusable named types at their use site', () => {
@@ -575,10 +577,12 @@ public struct Level: View {
 
     const kotlin = nativeSourceContract('/app/native/Atlas.kt', kotlinSource)
     const kotlinGlue = renderKotlinSourceGlue('K_atlas', kotlin).source
-    expect(kotlinGlue).toContain('private fun readPoint(value: Any, path: String): app.atlas.Point {')
+    expect(kotlinGlue).toContain('private class OneJsonReader(private val text: String) {')
+    expect(kotlinGlue).toContain('private fun readPoint(reader: OneJsonReader, path: String): app.atlas.Point {')
     expect(kotlinGlue).toContain('private fun encodePoint(value: app.atlas.Point): JSONObject {')
-    expect(kotlinGlue).toContain('private fun readDate(value: Any, path: String): java.util.Date {')
-    expect(kotlinGlue).toContain('readPoint(args.get(0), "args[0]")')
+    expect(kotlinGlue).toContain('private fun readDate(reader: OneJsonReader, path: String): java.util.Date {')
+    expect(kotlinGlue).toContain('readPoint(reader, "args[0]")')
+    expect(kotlinGlue).not.toContain('JSONArray(argsJson)')
     expect(kotlinGlue).toContain('JSONArray().put(dateToString(result))')
   })
 

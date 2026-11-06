@@ -1655,6 +1655,18 @@ export function renderKotlinSourceGlue(
   const enumsByName = new Map(contract.enums.map((entry) => [entry.name, entry]))
   const qualified = (name: string) => contract.packageName ? `${contract.packageName}.${name}` : name
   const isDateType = (type: string) => type === 'Date' || type === 'java.util.Date'
+  // a declared-variable spelling of a decoded type: struct, enum and date
+  // leaves resolve against the author's package, since the glue file shares
+  // no package or imports with it.
+  const qualifiedType = (type: string): string => {
+    if (type.endsWith('?')) return `${qualifiedType(type.slice(0, -1))}?`
+    if (type.startsWith('List<') && type.endsWith('>')) return `List<${qualifiedType(type.slice(5, -1))}>`
+    if (type.startsWith('Map<String,') && type.endsWith('>')) return `Map<String, ${qualifiedType(type.slice(11, -1))}>`
+    if (structsByName.has(type) || enumsByName.has(type)) return qualified(type)
+    if (isDateType(type)) return 'java.util.Date'
+    if (['String', 'Boolean', 'Double', 'Float', 'Int', 'Long', 'ByteArray'].includes(type)) return type
+    throw new Error(`unsupported kotlin glue type ${type}`)
+  }
   // kotlin/wasm cannot resolve the jvm/android/event-host symbols, so a
   // contract that never mentions dates, bytes or subscriptions must not
   // reference them. every struct helper is always emitted, so a flat scan
@@ -1687,28 +1699,30 @@ export function renderKotlinSourceGlue(
   )
   const needsDate = nativeTypes.some((type) => mentions(type, isDateType))
   const needsData = nativeTypes.some((type) => mentions(type, (leaf) => leaf === 'ByteArray'))
-  const value = (type: string, input: string, path: string): string => {
+  // a decode expression for one value: the reader sits at the value's first
+  // token and the expression consumes exactly it, so props decode in one
+  // pass with no intermediate JSONObject.
+  const value = (type: string, reader: string, path: string): string => {
     if (type.endsWith('?')) {
-      // bind the input once so kotlin smart casts it to Any past the null check.
-      return `(${input}).let { raw -> if (raw == null || raw == JSONObject.NULL) null else ${value(type.slice(0, -1), 'raw', path)} }`
+      return `(if (${reader}.peek() == OneJsonToken.NULL) { ${reader}.nextNull(); null } else ${value(type.slice(0, -1), reader, path)})`
     }
-    if (type === 'String') return `readString(${input}, ${path})`
-    if (type === 'Boolean') return `readBoolean(${input}, ${path})`
-    if (type === 'Double') return `readDouble(${input}, ${path})`
-    if (type === 'Float') return `readDouble(${input}, ${path}).toFloat()`
-    if (type === 'Int') return `readInt(${input}, ${path})`
-    if (type === 'Long') return `readLong(${input}, ${path})`
+    if (type === 'String') return `readString(${reader}, ${path})`
+    if (type === 'Boolean') return `readBoolean(${reader}, ${path})`
+    if (type === 'Double') return `readDouble(${reader}, ${path})`
+    if (type === 'Float') return `readDouble(${reader}, ${path}).toFloat()`
+    if (type === 'Int') return `readInt(${reader}, ${path})`
+    if (type === 'Long') return `readLong(${reader}, ${path})`
     // dates cross as ISO strings, bytes as base64; structs and enums read
     // through the generated helpers below.
-    if (isDateType(type)) return `readDate(${input}, ${path})`
-    if (type === 'ByteArray') return `readData(${input}, ${path})`
-    if (structsByName.has(type)) return `read${type}(${input}, ${path})`
-    if (enumsByName.has(type)) return `read${type}(${input}, ${path})`
+    if (isDateType(type)) return `readDate(${reader}, ${path})`
+    if (type === 'ByteArray') return `readData(${reader}, ${path})`
+    if (structsByName.has(type)) return `read${type}(${reader}, ${path})`
+    if (enumsByName.has(type)) return `read${type}(${reader}, ${path})`
     if (type.startsWith('List<') && type.endsWith('>')) {
-      return `readList(${input}, ${path}) { item, itemPath -> ${value(type.slice(5, -1), 'item', 'itemPath')} }`
+      return `readList(${reader}, ${path}) { itemReader, itemPath -> ${value(type.slice(5, -1), 'itemReader', 'itemPath')} }`
     }
     if (type.startsWith('Map<String,') && type.endsWith('>')) {
-      return `readMap(${input}, ${path}) { item, itemPath -> ${value(type.slice(11, -1), 'item', 'itemPath')} }`
+      return `readMap(${reader}, ${path}) { itemReader, itemPath -> ${value(type.slice(11, -1), 'itemReader', 'itemPath')} }`
     }
     throw new Error(`unsupported kotlin glue type ${type}`)
   }
@@ -1732,17 +1746,41 @@ export function renderKotlinSourceGlue(
     }
     return `JSONObject.wrap(${accessor})`
   }
+  const cap = (name: string) => name.slice(0, 1).toUpperCase() + name.slice(1)
   const structHelpers = contract.structs.flatMap((struct) => [
-    `private fun read${struct.name}(value: Any, path: String): ${qualified(struct.name)} {`,
-    '  val obj = value as? JSONObject ?: error("$path: expected object")',
-    `  return ${qualified(struct.name)}(`,
+    `private fun read${struct.name}(reader: OneJsonReader, path: String): ${qualified(struct.name)} {`,
+    '  if (reader.peek() != OneJsonToken.BEGIN_OBJECT) error("$path: expected object")',
+    '  reader.beginObject()',
+    // required fields start null and fail at the constructor when the key
+    // never arrived; a required nullable needs its own flag so an explicit
+    // null does not read as missing. defaulted fields start at the default.
+    ...struct.fields.flatMap((field) => {
+      const declared = qualifiedType(field.nativeType)
+      if (field.optional) return [`  var ${field.name}: ${declared} = ${field.fallback}`]
+      const boxed = declared.endsWith('?') ? declared : `${declared}?`
+      return [
+        `  var ${field.name}: ${boxed} = null`,
+        ...(field.nativeType.endsWith('?') ? [`  var has${cap(field.name)} = false`] : []),
+      ]
+    }),
+    '  while (reader.hasNext()) {',
+    '    when (reader.nextName()) {',
     ...struct.fields.map((field) => {
       const fieldPath = `"$path.${field.name}"`
-      const required = `error("$path.${field.name}: required")`
-      const input = field.optional
-        ? `(if (obj.has(${JSON.stringify(field.name)})) obj.get(${JSON.stringify(field.name)}) else ${field.fallback ?? required})`
-        : `(obj.opt(${JSON.stringify(field.name)}) ?: ${required})`
-      return `    ${field.name} = ${value(field.nativeType, input, fieldPath)},`
+      const read = `${field.name} = ${value(field.nativeType, 'reader', fieldPath)}`
+      return field.optional || !field.nativeType.endsWith('?')
+        ? `      ${JSON.stringify(field.name)} -> ${read}`
+        : `      ${JSON.stringify(field.name)} -> { ${read}; has${cap(field.name)} = true }`
+    }),
+    '      else -> reader.skipValue()',
+    '    }',
+    '  }',
+    '  reader.endObject()',
+    `  return ${qualified(struct.name)}(`,
+    ...struct.fields.map((field) => {
+      if (field.optional) return `    ${field.name} = ${field.name},`
+      if (field.nativeType.endsWith('?')) return `    ${field.name} = (if (has${cap(field.name)}) ${field.name} else error("$path.${field.name}: required")),`
+      return `    ${field.name} = (${field.name} ?: error("$path.${field.name}: required")),`
     }),
     '  )',
     '}',
@@ -1754,8 +1792,8 @@ export function renderKotlinSourceGlue(
     '}',
   ])
   const enumHelpers = contract.enums.flatMap((entry) => [
-    `private fun read${entry.name}(value: Any, path: String): ${qualified(entry.name)} {`,
-    '  val text = readString(value, path)',
+    `private fun read${entry.name}(reader: OneJsonReader, path: String): ${qualified(entry.name)} {`,
+    '  val text = readString(reader, path)',
     `  return try { ${qualified(entry.name)}.valueOf(text) } catch (e: IllegalArgumentException) { error("$path: expected one of ${entry.cases.map((item) => item.name).join(', ')}") }`,
     '}',
   ])
@@ -1767,37 +1805,244 @@ export function renderKotlinSourceGlue(
     'import org.json.JSONArray',
     'import org.json.JSONObject',
     '',
-    'private fun readString(value: Any, path: String): String = value as? String ?: error("$path: expected string")',
-    'private fun readBoolean(value: Any, path: String): Boolean = value as? Boolean ?: error("$path: expected boolean")',
-    'private fun readDouble(value: Any, path: String): Double {',
-    '  val result = (value as? Number)?.toDouble() ?: error("$path: expected number")',
+    'private enum class OneJsonToken { BEGIN_OBJECT, END_OBJECT, BEGIN_ARRAY, END_ARRAY, STRING, NUMBER, BOOLEAN, NULL }',
+    '',
+    '// a forward-only json reader over the props text: values decode straight',
+    '// into typed props in one pass with no intermediate JSONObject. pure',
+    '// kotlin with no java or android imports, so the same glue compiles for',
+    '// kotlin/wasm.',
+    'private class OneJsonReader(private val text: String) {',
+    '  private var pos = 0',
+    '',
+    '  private fun skipSpace() {',
+    '    while (pos < text.length) {',
+    '      when (text[pos]) {',
+    '        \' \', \'\\t\', \'\\n\', \'\\r\' -> pos++',
+    '        else -> return',
+    '      }',
+    '    }',
+    '  }',
+    '',
+    '  private fun fail(message: String): Nothing = throw IllegalStateException("$message near offset $pos")',
+    '',
+    '  fun peek(): OneJsonToken {',
+    '    skipSpace()',
+    '    if (pos >= text.length) fail("unexpected end of json")',
+    '    return when (text[pos]) {',
+    '      \'{\' -> OneJsonToken.BEGIN_OBJECT',
+    '      \'}\' -> OneJsonToken.END_OBJECT',
+    '      \'[\' -> OneJsonToken.BEGIN_ARRAY',
+    '      \']\' -> OneJsonToken.END_ARRAY',
+    '      \'"\' -> OneJsonToken.STRING',
+    '      \'t\', \'f\' -> OneJsonToken.BOOLEAN',
+    '      \'n\' -> OneJsonToken.NULL',
+    '      \'-\', in \'0\'..\'9\' -> OneJsonToken.NUMBER',
+    '      else -> fail("unexpected character")',
+    '    }',
+    '  }',
+    '',
+    '  private fun expect(char: Char) {',
+    '    skipSpace()',
+    '    if (pos >= text.length || text[pos] != char) fail("expected \'$char\'")',
+    '    pos++',
+    '  }',
+    '',
+    '  fun beginObject() = expect(\'{\')',
+    '  fun endObject() = expect(\'}\')',
+    '  fun beginArray() = expect(\'[\')',
+    '  fun endArray() = expect(\']\')',
+    '',
+    '  // inside an object or array: true when another value follows, consuming',
+    '  // a comma first; false at the closing bracket.',
+    '  fun hasNext(): Boolean {',
+    '    skipSpace()',
+    '    if (pos >= text.length) fail("unexpected end of json")',
+    '    if (text[pos] == \',\') {',
+    '      pos++',
+    '      return true',
+    '    }',
+    '    return text[pos] != \'}\' && text[pos] != \']\'',
+    '  }',
+    '',
+    '  fun nextName(): String {',
+    '    skipSpace()',
+    '    if (pos >= text.length || text[pos] != \'"\') fail("expected a name")',
+    '    val name = readString()',
+    '    skipSpace()',
+    '    if (pos >= text.length || text[pos] != \':\') fail("expected \':\'")',
+    '    pos++',
+    '    return name',
+    '  }',
+    '',
+    '  fun nextString(): String {',
+    '    skipSpace()',
+    '    if (pos >= text.length || text[pos] != \'"\') fail("expected a string")',
+    '    return readString()',
+    '  }',
+    '',
+    '  private fun readString(): String {',
+    '    pos++ // the opening quote',
+    '    var end = pos',
+    '    while (end < text.length && text[end] != \'"\' && text[end] != \'\\\\\') end++',
+    '    if (end < text.length && text[end] == \'"\') {',
+    '      val out = text.substring(pos, end)',
+    '      pos = end + 1',
+    '      return out',
+    '    }',
+    '    val out = StringBuilder(text.substring(pos, end))',
+    '    pos = end',
+    '    while (true) {',
+    '      if (pos >= text.length) fail("unterminated string")',
+    '      val char = text[pos++]',
+    '      if (char == \'"\') return out.toString()',
+    '      if (char != \'\\\\\') {',
+    '        out.append(char)',
+    '        continue',
+    '      }',
+    '      if (pos >= text.length) fail("unterminated escape")',
+    '      when (text[pos++]) {',
+    '        \'"\', \'\\\\\', \'/\' -> out.append(text[pos - 1])',
+    '        \'b\' -> out.append(\'\\b\')',
+    '        \'f\' -> out.append(\'\\u000C\')',
+    '        \'n\' -> out.append(\'\\n\')',
+    '        \'r\' -> out.append(\'\\r\')',
+    '        \'t\' -> out.append(\'\\t\')',
+    '        \'u\' -> {',
+    '          if (pos + 4 > text.length) fail("bad unicode escape")',
+    '          var code = 0',
+    '          for (i in 0 until 4) {',
+    '            val digit = text[pos + i].lowercaseChar()',
+    '            val value = if (digit in \'0\'..\'9\') digit - \'0\' else if (digit in \'a\'..\'f\') digit - \'a\' + 10 else fail("bad unicode escape")',
+    '            code = code * 16 + value',
+    '          }',
+    '          pos += 4',
+    '          out.append(code.toChar())',
+    '        }',
+    '        else -> fail("bad escape")',
+    '      }',
+    '    }',
+    '  }',
+    '',
+    '  fun nextDouble(): Double {',
+    '    skipSpace()',
+    '    val start = pos',
+    '    while (pos < text.length && (text[pos] in \'0\'..\'9\' || text[pos] == \'.\' || text[pos] == \'e\' || text[pos] == \'E\' || text[pos] == \'+\' || text[pos] == \'-\')) pos++',
+    '    if (pos == start) fail("expected a number")',
+    '    return text.substring(start, pos).toDoubleOrNull() ?: fail("bad number")',
+    '  }',
+    '',
+    '  fun nextBoolean(): Boolean {',
+    '    skipSpace()',
+    '    if (text.startsWith("true", pos)) {',
+    '      pos += 4',
+    '      return true',
+    '    }',
+    '    if (text.startsWith("false", pos)) {',
+    '      pos += 5',
+    '      return false',
+    '    }',
+    '    fail("expected a boolean")',
+    '  }',
+    '',
+    '  fun nextNull() {',
+    '    skipSpace()',
+    '    if (!text.startsWith("null", pos)) fail("expected null")',
+    '    pos += 4',
+    '  }',
+    '',
+    '  fun skipValue() {',
+    '    when (peek()) {',
+    '      OneJsonToken.BEGIN_OBJECT -> {',
+    '        beginObject()',
+    '        while (hasNext()) {',
+    '          nextName()',
+    '          skipValue()',
+    '        }',
+    '        endObject()',
+    '      }',
+    '      OneJsonToken.BEGIN_ARRAY -> {',
+    '        beginArray()',
+    '        while (hasNext()) {',
+    '          skipValue()',
+    '        }',
+    '        endArray()',
+    '      }',
+    '      OneJsonToken.STRING -> nextString()',
+    '      OneJsonToken.NUMBER -> nextDouble()',
+    '      OneJsonToken.BOOLEAN -> nextBoolean()',
+    '      OneJsonToken.NULL -> nextNull()',
+    '      else -> fail("unexpected value")',
+    '    }',
+    '  }',
+    '',
+    '  fun endDocument() {',
+    '    skipSpace()',
+    '    if (pos != text.length) fail("trailing characters")',
+    '  }',
+    '}',
+    '',
+    'private fun readString(reader: OneJsonReader, path: String): String {',
+    '  if (reader.peek() != OneJsonToken.STRING) error("$path: expected string")',
+    '  return reader.nextString()',
+    '}',
+    'private fun readBoolean(reader: OneJsonReader, path: String): Boolean {',
+    '  if (reader.peek() != OneJsonToken.BOOLEAN) error("$path: expected boolean")',
+    '  return reader.nextBoolean()',
+    '}',
+    'private fun readDouble(reader: OneJsonReader, path: String): Double {',
+    '  if (reader.peek() != OneJsonToken.NUMBER) error("$path: expected number")',
+    '  val result = reader.nextDouble()',
     '  if (!result.isFinite()) error("$path: expected finite number")',
     '  return result',
     '}',
-    'private fun readInt(value: Any, path: String): Int {',
-    '  val result = readDouble(value, path)',
+    'private fun readInt(reader: OneJsonReader, path: String): Int {',
+    '  val result = readDouble(reader, path)',
     '  if (result % 1.0 != 0.0 || result < Int.MIN_VALUE || result > Int.MAX_VALUE) error("$path: expected Int")',
     '  return result.toInt()',
     '}',
-    'private fun readLong(value: Any, path: String): Long {',
-    '  val result = readDouble(value, path)',
+    'private fun readLong(reader: OneJsonReader, path: String): Long {',
+    '  val result = readDouble(reader, path)',
     '  if (result % 1.0 != 0.0 || result < -9007199254740991.0 || result > 9007199254740991.0) error("$path: expected safe Long")',
     '  return result.toLong()',
     '}',
-    'private fun <T> readList(value: Any, path: String, read: (Any, String) -> T): List<T> {',
-    '  val array = value as? JSONArray ?: error("$path: expected array")',
-    '  return (0 until array.length()).map { index -> read(array.get(index), "$path[$index]") }',
+    '// the host sends true for each callback the element passed; any other',
+    '// value reads as absent.',
+    'private fun readOptBoolean(reader: OneJsonReader): Boolean {',
+    '  if (reader.peek() != OneJsonToken.BOOLEAN) {',
+    '    reader.skipValue()',
+    '    return false',
+    '  }',
+    '  return reader.nextBoolean()',
     '}',
-    'private fun <T> readMap(value: Any, path: String, read: (Any, String) -> T): Map<String, T> {',
-    '  val objectValue = value as? JSONObject ?: error("$path: expected object")',
-    '  return objectValue.keys().asSequence().associateWith { key -> read(objectValue.get(key), "$path.$key") }',
+    'private fun <T> readList(reader: OneJsonReader, path: String, read: (OneJsonReader, String) -> T): List<T> {',
+    '  if (reader.peek() != OneJsonToken.BEGIN_ARRAY) error("$path: expected array")',
+    '  reader.beginArray()',
+    '  val result = mutableListOf<T>()',
+    '  var index = 0',
+    '  while (reader.hasNext()) {',
+    '    result.add(read(reader, "$path[$index]"))',
+    '    index++',
+    '  }',
+    '  reader.endArray()',
+    '  return result',
+    '}',
+    'private fun <T> readMap(reader: OneJsonReader, path: String, read: (OneJsonReader, String) -> T): Map<String, T> {',
+    '  if (reader.peek() != OneJsonToken.BEGIN_OBJECT) error("$path: expected object")',
+    '  reader.beginObject()',
+    '  val result = mutableMapOf<String, T>()',
+    '  while (reader.hasNext()) {',
+    '    val key = reader.nextName()',
+    '    result[key] = read(reader, "$path.$key")',
+    '  }',
+    '  reader.endObject()',
+    '  return result',
     '}',
     // the encoder writes ISO with milliseconds and reads with or without
     // them, so swift, kotlin and javascript dates all parse everywhere.
     ...(needsDate
       ? [
-          'private fun readDate(value: Any, path: String): java.util.Date {',
-          '  val text = readString(value, path)',
+          'private fun readDate(reader: OneJsonReader, path: String): java.util.Date {',
+          '  val text = readString(reader, path)',
           '  for (pattern in arrayOf("yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'", "yyyy-MM-dd\'T\'HH:mm:ss\'Z\'")) {',
           '    try {',
           '      return java.text.SimpleDateFormat(pattern, java.util.Locale.US).apply { timeZone = java.util.TimeZone.getTimeZone("UTC"); isLenient = false }.parse(text) ?: error("$path: expected date")',
@@ -1811,9 +2056,9 @@ export function renderKotlinSourceGlue(
       : []),
     ...(needsData
       ? [
-          'private fun readData(value: Any, path: String): ByteArray {',
+          'private fun readData(reader: OneJsonReader, path: String): ByteArray {',
           '  try {',
-          '    return android.util.Base64.decode(readString(value, path), android.util.Base64.NO_WRAP)',
+          '    return android.util.Base64.decode(readString(reader, path), android.util.Base64.NO_WRAP)',
           '  } catch (decodeError: IllegalArgumentException) {',
           '    error("$path: expected base64 data")',
           '  }',
@@ -1826,7 +2071,9 @@ export function renderKotlinSourceGlue(
     `@Keep class OneNativeSource_${sourceId}: OneNativeSourceDispatch {`,
     `  override val contractHash = ${JSON.stringify(hash)}`,
     '  override suspend fun call(module: String, method: String, argsJson: String): String {',
-    '    val args = JSONArray(argsJson)',
+    '    val reader = OneJsonReader(argsJson)',
+    '    if (reader.peek() != OneJsonToken.BEGIN_ARRAY) error("args must be a JSON array")',
+    '    reader.beginArray()',
     '    return when (module) {',
     ...contract.modules.flatMap((module) => [
       `      ${JSON.stringify(`${sourceId}.${module.name}`)} -> when (method) {`,
@@ -1839,7 +2086,9 @@ export function renderKotlinSourceGlue(
             : `{ ${subscription.payload.map((_, index) => `a${index}`).join(', ')} -> OneNativeSourceEvents.send(${JSON.stringify(channel)}, JSONArray()${subscription.payload.map((arg, index) => `.put(${encode(arg.nativeType, `a${index}`)})`).join('')}.toString()) }`
           return [
             `        ${JSON.stringify(method.name)} -> {`,
-            `          require(args.length() == 0) { "${sourceId}.${module.name}.${method.name} subscribes; it takes no arguments" }`,
+            `          require(!reader.hasNext()) { "${sourceId}.${module.name}.${method.name} subscribes; it takes no arguments" }`,
+            '          reader.endArray()',
+            '          reader.endDocument()',
             `          ${qualified(module.name)}.${method.name}(${closure})`,
             '          "null"',
             '        }',
@@ -1847,11 +2096,12 @@ export function renderKotlinSourceGlue(
         }
         const lines = [
           `        ${JSON.stringify(method.name)} -> {`,
-          `          require(args.length() == ${method.parameters.length}) { "${sourceId}.${module.name}.${method.name} expects ${method.parameters.length} arguments" }`,
         ]
         method.parameters.forEach((parameter, index) => {
-          lines.push(`          val arg${index} = ${value(parameter.nativeType, `args.get(${index})`, JSON.stringify(`args[${index}]`))}`)
+          lines.push(`          val arg${index} = ${value(parameter.nativeType, 'reader', JSON.stringify(`args[${index}]`))}`)
         })
+        lines.push(`          require(!reader.hasNext()) { "${sourceId}.${module.name}.${method.name} expects ${method.parameters.length} arguments" }`)
+        lines.push('          reader.endArray()', '          reader.endDocument()')
         const call = `${qualified(module.name)}.${method.name}(${method.parameters.map((_, index) => `arg${index}`).join(', ')})`
         if (method.result === 'void') {
           lines.push(`          ${call}`, '          "null"')
@@ -1872,7 +2122,7 @@ export function renderKotlinSourceGlue(
     '  }',
     '}',
     '',
-    ...(contract.views.length === 0 ? [] : viewGlue(sourceId, contract, hash, value, encode)),
+    ...(contract.views.length === 0 ? [] : viewGlue(sourceId, contract, hash, value, encode, qualifiedType)),
   ].join('\n')
   return { hash, source }
 }
@@ -1883,38 +2133,76 @@ function viewGlue(
   sourceId: string,
   contract: NativeSourceContract,
   hash: string,
-  value: (type: string, input: string, path: string) => string,
-  encode: (type: string, accessor: string) => string
+  value: (type: string, reader: string, path: string) => string,
+  encode: (type: string, accessor: string) => string,
+  qualifiedType: (type: string) => string
 ): string[] {
   const qualifier = contract.packageName ? `${contract.packageName}.` : ''
+  const cap = (name: string) => name.slice(0, 1).toUpperCase() + name.slice(1)
   return [
     `@Keep class OneNativeSourceViews_${sourceId}: OneNativeSourceViewDispatch {`,
     `  override val contractHash = ${JSON.stringify(hash)}`,
     '  @Composable',
     '  override fun Content(view: String, propsJson: String, emit: (String, String) -> Unit) {',
-    '    val props = JSONObject(propsJson)',
+    '    val reader = OneJsonReader(propsJson)',
+    '    if (reader.peek() != OneJsonToken.BEGIN_OBJECT) error("props must be a JSON object")',
+    '    reader.beginObject()',
     '    when (view) {',
     ...contract.views.flatMap((view) => [
-      `      ${JSON.stringify(view.name)} -> ${qualifier}${view.name}(`,
+      `      ${JSON.stringify(view.name)} -> {`,
+      // required props start null and fail at the call when the key never
+      // arrived; optional props (always nullable) default to null.
+      ...view.props.flatMap((prop) => {
+        if (prop.callback) {
+          return prop.nativeType.endsWith('?') ? [`        var has${cap(prop.name)} = false`] : []
+        }
+        const declared = qualifiedType(prop.nativeType)
+        if (prop.optional) return [`        var ${prop.name}: ${declared} = null`]
+        const boxed = declared.endsWith('?') ? declared : `${declared}?`
+        return [
+          `        var ${prop.name}: ${boxed} = null`,
+          ...(prop.nativeType.endsWith('?') ? [`        var has${cap(prop.name)} = false`] : []),
+        ]
+      }),
+      '        while (reader.hasNext()) {',
+      '          when (reader.nextName()) {',
       ...view.props.map((prop) => {
+        const key = JSON.stringify(prop.name)
+        if (prop.callback) {
+          // the host sends true for each callback the element passed
+          return prop.nativeType.endsWith('?')
+            ? `            ${key} -> has${cap(prop.name)} = readOptBoolean(reader)`
+            : `            ${key} -> reader.skipValue()`
+        }
         const path = JSON.stringify(`props.${prop.name}`)
+        const read = `${prop.name} = ${value(prop.nativeType, 'reader', path)}`
+        return prop.optional || !prop.nativeType.endsWith('?')
+          ? `            ${key} -> ${read}`
+          : `            ${key} -> { ${read}; has${cap(prop.name)} = true }`
+      }),
+      '            else -> reader.skipValue()',
+      '          }',
+      '        }',
+      `        ${qualifier}${view.name}(`,
+      ...view.props.map((prop) => {
         if (prop.callback) {
           const args = prop.callback.map((_, index) => `a${index}`)
           const types = prop.callback.map((arg) => arg.nativeType)
           const body = `emit(${JSON.stringify(prop.name)}, JSONArray()${args.map((arg, index) => `.put(${encode(types[index], arg)})`).join('')}.toString())`
           const lambda = `{ ${args.length > 0 ? `${args.join(', ')} -> ` : ''}${body} }`
-          // the host sends true for each callback the element passed
-          return `        ${prop.name} = ${prop.nativeType.endsWith('?') ? `if (props.optBoolean(${JSON.stringify(prop.name)})) (${lambda}) else null` : lambda},`
+          return `          ${prop.name} = ${prop.nativeType.endsWith('?') ? `if (has${cap(prop.name)}) (${lambda}) else null` : lambda},`
         }
-        const input = prop.optional
-          ? `(props.opt(${JSON.stringify(prop.name)}) ?: JSONObject.NULL)`
-          : `(props.opt(${JSON.stringify(prop.name)}) ?: error(${JSON.stringify(`props.${prop.name}: required`)}))`
-        return `        ${prop.name} = ${value(prop.nativeType, input, path)},`
+        if (prop.optional) return `          ${prop.name} = ${prop.name},`
+        if (prop.nativeType.endsWith('?')) return `          ${prop.name} = (if (has${cap(prop.name)}) ${prop.name} else error("props.${prop.name}: required")),`
+        return `          ${prop.name} = (${prop.name} ?: error("props.${prop.name}: required")),`
       }),
-      '      )',
+      '        )',
+      '      }',
     ]),
     '      else -> error("composable $view is not linked; rebuild the app")',
     '    }',
+    '    reader.endObject()',
+    '    reader.endDocument()',
     '  }',
     '}',
     '',
