@@ -74,7 +74,7 @@ export async function buildIosFacades(
 }
 
 if (import.meta.main) {
-  const outdir = process.argv[2]
+  const outdir = process.argv[2] === '--skip-types' ? undefined : process.argv[2]
   const { path, fingerprint } = await buildSdkApp(outdir)
   console.log(`sdk app: ${path} ${fingerprint.slice(0, 16)}`)
   if (outdir === undefined) {
