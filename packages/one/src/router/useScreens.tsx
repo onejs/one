@@ -642,8 +642,8 @@ function routeToScreen(
   return (
     <Screen
       // Users can override the screen getId function.
-      getId={createGetIdForRoute(route)}
       {...props}
+      getId={props.getId ?? createGetIdForRoute(route)}
       name={navigationRouteName}
       key={navigationRouteName}
       options={(args) => {
