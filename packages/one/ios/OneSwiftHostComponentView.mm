@@ -8,6 +8,9 @@ using namespace facebook::react;
 
 @implementation OneSwiftHostComponentView {
   OneSwiftHostView *_hostView;
+  // events raised while no emitter is attached (updateProps runs before
+  // updateEventEmitter on a new view), flushed once it is
+  NSMutableArray<NSArray<NSString *> *> *_pendingEvents;
 }
 
 + (ComponentDescriptorProvider)componentDescriptorProvider {
@@ -25,13 +28,34 @@ using namespace facebook::react;
       [weakSelf updateMeasuredHeight:height];
     };
     _hostView.onEvent = ^(NSString *name, NSString *args) {
-      OneSwiftHostComponentView *strongSelf = weakSelf;
-      if (!strongSelf || !strongSelf->_eventEmitter) return;
-      auto emitter = std::static_pointer_cast<const OneSwiftHostEventEmitter>(strongSelf->_eventEmitter);
-      emitter->onHostEvent({.name = std::string(name.UTF8String), .args = std::string(args.UTF8String)});
+      [weakSelf emitHostEvent:name args:args];
     };
   }
   return self;
+}
+
+- (void)emitHostEvent:(NSString *)name args:(NSString *)args {
+  if (!_eventEmitter) {
+    if (!_pendingEvents) _pendingEvents = [NSMutableArray new];
+    [_pendingEvents addObject:@[name, args]];
+    return;
+  }
+  auto emitter = std::static_pointer_cast<const OneSwiftHostEventEmitter>(_eventEmitter);
+  emitter->onHostEvent({.name = std::string(name.UTF8String), .args = std::string(args.UTF8String)});
+}
+
+- (void)updateEventEmitter:(EventEmitter::Shared const &)eventEmitter {
+  [super updateEventEmitter:eventEmitter];
+  NSArray<NSArray<NSString *> *> *pending = _pendingEvents;
+  _pendingEvents = nil;
+  for (NSArray<NSString *> *event in pending) [self emitHostEvent:event[0] args:event[1]];
+}
+
+// a recycled view starts over: held props and events belong to the last owner
+- (void)prepareForRecycle {
+  _pendingEvents = nil;
+  [_hostView reset];
+  [super prepareForRecycle];
 }
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {

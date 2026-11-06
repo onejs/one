@@ -104,6 +104,13 @@ public final class OneSwiftHostView: OneNativeContainerView {
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
+  public func reset() {
+    model.held = nil
+    model.dispatch = nil
+    model.document = ""
+    model.revision += 1
+  }
+
   public func configure(packageName: String, view: String, contractHash: String, props: String, fill: Bool) {
     let changed = model.packageName != packageName || model.view != view || model.contractHash != contractHash
     if model.packageName != packageName { model.packageName = packageName }
