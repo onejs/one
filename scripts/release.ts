@@ -352,18 +352,7 @@ async function run() {
 
     if (!skipBuild && !finish) {
       if (canary) {
-        const result = await execFile(
-          'bun',
-          [
-            'x',
-            'turbo',
-            'run',
-            'build',
-            ...packageJsons.map(({ name }) => `--filter=${name}`),
-          ],
-          { maxBuffer: 50 * 1024 * 1024 }
-        )
-        console.info(result.stdout)
+        await runLocalBuild(packageJsons.map(({ name }) => name))
       } else {
         await spawnify('bun run build')
       }

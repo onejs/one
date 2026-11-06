@@ -142,6 +142,8 @@ export const tabBarInterception = [
   'func tabBarController(_ controller: UITabBarController, shouldSelect viewController: UIViewController) -> Bool',
   'current.setContentScrollView(scrollView, for: .bottom)',
   'current.contentScrollView(for: .bottom)',
+  'current.setContentScrollView(scrollView, for: .top)',
+  'current.contentScrollView(for: .top)',
 ] as const
 
 const sdkEvent = { name: 'string', value: 'string' }
@@ -556,7 +558,7 @@ private struct ActionTabHook: UIViewRepresentable {
   }
 }
 
-// the tab bar minimizes for the scroll view the selected controller names for the bottom edge.
+// navigation and tab bars follow the scroll view named for their top and bottom edges.
 // SwiftUI names the ScrollViews it draws itself, but a React Native ScrollView is a UIScrollView
 // inside a representable it cannot see, so the page's first scroll view is named on every
 // controller from the page's root up to the tab bar controller.
@@ -564,6 +566,7 @@ private func nameContentScrollView(of page: UIView, from controller: UIViewContr
   guard let scrollView = firstScrollView(in: page) else { return }
   var next: UIViewController? = controller
   while let current = next, current !== tabBarController {
+    if current.contentScrollView(for: .top) !== scrollView { current.setContentScrollView(scrollView, for: .top) }
     if current.contentScrollView(for: .bottom) !== scrollView { current.setContentScrollView(scrollView, for: .bottom) }
     next = current.parent
   }

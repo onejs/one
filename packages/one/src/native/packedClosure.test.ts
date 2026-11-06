@@ -43,7 +43,9 @@ for (const name of readdirSync(tmpdir())) {
 }
 const scratchDirs: string[] = []
 function makeScratch(name: string): string {
-  const dir = realpathSync(mkdtempSync(join(tmpdir(), `one-packed-${name}-${process.pid}-`)))
+  const dir = realpathSync(
+    mkdtempSync(join(tmpdir(), `one-packed-${name}-${process.pid}-`))
+  )
   scratchDirs.push(dir)
   return dir
 }
@@ -251,7 +253,7 @@ console.log('one/native ok ' + url);
     expect(out).not.toContain(workspaceRoot)
   })
 
-  it('keeps the default packed closure Expo-free and bundles Metro after its preset is installed', () => {
+  it('keeps the packed closure Expo-free and bundles Metro without an Expo preset', () => {
     const tmp = makeScratch('metro')
     const tarballs = join(tmp, 'tarballs')
     mkdirSync(tarballs)
@@ -410,25 +412,17 @@ if (!config.dependencies['react-native-nitro-modules']) {
       encoding: 'utf8',
     })
 
-    expect(() =>
-      execFileSync(
-        process.execPath,
-        ['-e', "require('./metro.config.cjs').catch((error) => { console.error(error.message); process.exitCode = 1 })"],
-        { cwd: appDir, encoding: 'utf8' }
-      )
-    ).toThrow(/Metro requires babel-preset-expo in the app.*Install with/)
-
-    const expoPresetVersion = JSON.parse(
-      readFileSync(join(workspaceRoot, '../node_modules/babel-preset-expo/package.json'), 'utf8')
-    ).version
-    execFileSync('bun', ['add', '-d', `babel-preset-expo@${expoPresetVersion}`], {
-      cwd: appDir,
-      encoding: 'utf8',
-      timeout: 180_000,
-    })
     expect(
       existsSync(join(appDir, 'node_modules', 'babel-preset-expo', 'package.json'))
-    ).toBe(true)
+    ).toBe(false)
+    execFileSync(
+      process.execPath,
+      [
+        '-e',
+        "require('./metro.config.cjs').catch((error) => { console.error(error.message); process.exitCode = 1 })",
+      ],
+      { cwd: appDir, encoding: 'utf8' }
+    )
 
     // the installed package supplies real runtime facades. an app with no local
     // ios prebuild must bundle those same files, without fabricated SDK modules.
@@ -444,14 +438,21 @@ if (!config.dependencies['react-native-nitro-modules']) {
     // keeps only phase lines.
     writeFileSync(
       join(appDir, 'metro-build.cjs'),
-      `const { loadConfig } = require('metro-config')
+      `process.env.ONE_METRO_NATIVE_TRANSFORMS = '1'
+const { loadConfig } = require('metro-config')
 const { runMetro } = require('metro')
 const output = require('metro/private/shared/output/bundle')
 const path = require('node:path')
+const fs = require('node:fs')
+const assert = require('node:assert/strict')
+const formatBundlingError = require('metro/private/lib/formatBundlingError').default
+const { patchMetroServerWithViteConfigAndMetroPluginOptions } = require('@vxrn/vite-plugin-metro')
+const { buildOneBabelPlugins } = require('one/babel-preset')
 const started = Date.now()
 const stamp = () => '+' + ((Date.now() - started) / 1000).toFixed(1) + 's'
 async function build() {
   const config = await loadConfig({ config: 'metro.config.cjs', maxWorkers: 2 })
+  assert.equal(config.transformerPath, require.resolve('@vxrn/vite-plugin-metro/transformer/metroNativeWorker'))
   config.reporter = {
     update(event) {
       if (event.type === 'initialize_done') console.log(stamp() + ' haste ready')
@@ -460,8 +461,43 @@ async function build() {
       else if (event.type === 'bundle_build_failed' || event.type === 'initialize_failed') console.log(stamp() + ' failed ' + event.type)
     },
   }
+  const syntaxCases = [
+    ['broken.tsx', '// ascii', '\\n'],
+    ['broken-unicode.tsx', '// café🙂', '\\n'],
+    ['broken-crlf.tsx', '// café🙂', '\\r\\n'],
+  ]
+  for (const [filename, heading, newline] of syntaxCases) {
+    fs.writeFileSync(filename, [heading, '// second', '// third', 'const greeting = ;', ''].join(newline))
+  }
   const server = await runMetro(config, { watch: false })
+  // use the same server patch as one's native bundle command.
+  patchMetroServerWithViteConfigAndMetroPluginOptions(
+    server,
+    { root: process.cwd(), mode: 'development', base: '/', env: {} },
+    {
+      oneViteMetroBabelConfig: true,
+      babelConfig: { plugins: buildOneBabelPlugins({
+        projectRoot: process.cwd(), relativeRouterRoot: 'app', includeImportMetaEnv: false,
+      }) },
+    }
+  )
   try {
+    for (const [filename] of syntaxCases) {
+      let response
+      try {
+        await output.build(server, {
+          entryFile: filename, platform: 'android', dev: true, minify: false,
+        })
+      } catch (error) {
+        response = JSON.parse(JSON.stringify(formatBundlingError(error)))
+      }
+      assert.equal(response?.type, 'TransformError', JSON.stringify(response))
+      assert.equal(response.filename, filename)
+      assert.equal(response.lineNumber, 4)
+      assert.equal(response.column, 17)
+      assert.match(response.message, /Unexpected token/)
+      console.log(stamp() + ' Android syntax error location: ' + filename + ':4:17')
+    }
     for (const dev of [true, false]) {
       const bundle = await output.build(server, {
         entryFile: 'node_modules/one/metro-entry.js',
@@ -489,8 +525,9 @@ build().catch(error => { console.error(error); process.exitCode = 1 })
       timeout: 180_000,
     })
     for (const dev of ['true', 'false']) {
-      expect(readFileSync(join(appDir, `bundle.${dev}.js`)).byteLength)
-        .toBeGreaterThan(1_000_000)
+      expect(readFileSync(join(appDir, `bundle.${dev}.js`)).byteLength).toBeGreaterThan(
+        1_000_000
+      )
     }
   })
 

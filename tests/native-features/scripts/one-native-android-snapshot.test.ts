@@ -4,7 +4,7 @@ import { expect } from 'bun:test'
 // adb is scripted per test: uiautomator dump steps run down dumpScript
 // ('fail' throws the busy-system signature, 'ok' dumps dumpedXml), taps and
 // swipes are recorded. anything else fails loudly as unstubbed.
-type DumpStep = 'fail' | 'ok'
+type DumpStep = 'fail' | 'fail-after-dump' | 'ok'
 let dumpScript: DumpStep[] = []
 let dumpedXml = ''
 let dumpCalls = 0
@@ -23,6 +23,12 @@ function dispatchExec(args: unknown[]) {
     const step = dumpScript.length ? dumpScript.shift()! : 'ok'
     if (step === 'fail')
       throw new Error('Command failed: Error: Unable to dump window hierarchy')
+    if (step === 'fail-after-dump')
+      throw Object.assign(new Error('Command failed: adb shell uiautomator dump'), {
+        stdout: 'UI hierchary dumped to: /sdcard/one.xml',
+        stderr: '',
+        status: 1,
+      })
     return 'UI hierchary dumped to: /sdcard/one.xml'
   }
   if (head === 'shell input tap') {
@@ -100,7 +106,7 @@ test('snapshot keeps the redbox and empty-tree verdicts', () => {
 })
 
 test('waitFor tolerates transient dumps while awaiting its condition', async () => {
-  reset(['fail', 'fail', 'ok'], readyXml)
+  reset(['fail', 'fail-after-dump', 'ok'], readyXml)
   const result = await waitFor(
     config,
     'ready marker',
