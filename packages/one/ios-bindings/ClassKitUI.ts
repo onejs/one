@@ -19,7 +19,7 @@ export class AssignedDocumentLabel extends SDKHandle {
    * @MainActor @preconcurrency init(role: AssignedDocumentLabel.Role, documentURL: URL)
    * @availability iOS 26.4+
    */
-  static init(role: AssignedDocumentLabel_Role, documentURL: string): Promise<AssignedDocumentLabel> { return callSDKAsync<AssignedDocumentLabel>("ClassKitUI_532ffa06eebd2aad", 1036863786953967, undefined, [role, documentURL]); }
+  static init(role: AssignedDocumentLabel_Role, documentURL: string): Promise<AssignedDocumentLabel> { return callSDKAsync<AssignedDocumentLabel>("ClassKitUI_afb5cb84016f85d4", 1036863786953967, undefined, [role, documentURL]); }
   declare readonly $type: { "s:10ClassKitUI21AssignedDocumentLabelV": true };
 }
 
@@ -38,12 +38,12 @@ export class AssignedDocumentLabel_Role extends SDKHandle {
    * static let date: AssignedDocumentLabel.Role
    * @availability iOS 26.4+
    */
-  static get date(): Promise<AssignedDocumentLabel_Role> { return callSDKAsync<AssignedDocumentLabel_Role>("ClassKitUI_532ffa06eebd2aad", 1771646348880232, undefined, []); }
+  static get date(): Promise<AssignedDocumentLabel_Role> { return callSDKAsync<AssignedDocumentLabel_Role>("ClassKitUI_afb5cb84016f85d4", 1771646348880232, undefined, []); }
   /**
    * static let status: AssignedDocumentLabel.Role
    * @availability iOS 26.4+
    */
-  static get status(): Promise<AssignedDocumentLabel_Role> { return callSDKAsync<AssignedDocumentLabel_Role>("ClassKitUI_532ffa06eebd2aad", 593958158915003, undefined, []); }
+  static get status(): Promise<AssignedDocumentLabel_Role> { return callSDKAsync<AssignedDocumentLabel_Role>("ClassKitUI_afb5cb84016f85d4", 593958158915003, undefined, []); }
   declare readonly $type: { "s:10ClassKitUI21AssignedDocumentLabelV4RoleV": true };
 }
 
@@ -56,7 +56,7 @@ export class AssignedDocumentSubmissionButton extends SDKHandle {
    * @MainActor @preconcurrency init(documentURL: URL)
    * @availability iOS 26.4+
    */
-  static init(documentURL: string): Promise<AssignedDocumentSubmissionButton> { return callSDKAsync<AssignedDocumentSubmissionButton>("ClassKitUI_532ffa06eebd2aad", 1991049754696986, undefined, [documentURL]); }
+  static init(documentURL: string): Promise<AssignedDocumentSubmissionButton> { return callSDKAsync<AssignedDocumentSubmissionButton>("ClassKitUI_afb5cb84016f85d4", 1991049754696986, undefined, [documentURL]); }
   declare readonly $type: { "s:10ClassKitUI32AssignedDocumentSubmissionButtonV": true };
 }
 
@@ -66,7 +66,7 @@ export class AssignedDocumentSubmissionButton extends SDKHandle {
  */
 export type AssignedDocumentSubmissionButton_Body = SDKHandle;
 
-registerSDKClass("ClassKitUI.AssignedDocumentDeferredMenuElement", AssignedDocumentDeferredMenuElement, { module: "ClassKitUI_532ffa06eebd2aad", properties: {} });
-registerSDKClass("ClassKitUI.AssignedDocumentLabel", AssignedDocumentLabel, { module: "ClassKitUI_532ffa06eebd2aad", properties: {} });
-registerSDKClass("ClassKitUI.AssignedDocumentLabel.Role", AssignedDocumentLabel_Role, { module: "ClassKitUI_532ffa06eebd2aad", properties: {} });
-registerSDKClass("ClassKitUI.AssignedDocumentSubmissionButton", AssignedDocumentSubmissionButton, { module: "ClassKitUI_532ffa06eebd2aad", properties: {} });
+registerSDKClass("ClassKitUI.AssignedDocumentDeferredMenuElement", AssignedDocumentDeferredMenuElement, { module: "ClassKitUI_afb5cb84016f85d4", properties: {} });
+registerSDKClass("ClassKitUI.AssignedDocumentLabel", AssignedDocumentLabel, { module: "ClassKitUI_afb5cb84016f85d4", properties: {} });
+registerSDKClass("ClassKitUI.AssignedDocumentLabel.Role", AssignedDocumentLabel_Role, { module: "ClassKitUI_afb5cb84016f85d4", properties: {} });
+registerSDKClass("ClassKitUI.AssignedDocumentSubmissionButton", AssignedDocumentSubmissionButton, { module: "ClassKitUI_afb5cb84016f85d4", properties: {} });
