@@ -899,10 +899,23 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
       },
     ],
     [
+      withGradleProperties,
+      (nextConfig) => {
+        // MainActivity opts into androidx edge-to-edge; this tells react
+        // native the window is edge-to-edge on every api level.
+        const properties = nextConfig.modResults.filter(
+          (item) => !(item.type === 'property' && item.key === 'edgeToEdgeEnabled')
+        )
+        properties.push({ type: 'property', key: 'edgeToEdgeEnabled', value: 'true' })
+        nextConfig.modResults = properties
+        return nextConfig
+      },
+    ],
+    [
       withMainActivity,
       (nextConfig) => {
-        const contents = nativeProjectPatches.addReactNativeScreensFix(
-          nextConfig.modResults.contents
+        const contents = nativeProjectPatches.enableEdgeToEdgeInMainActivity(
+          nativeProjectPatches.addReactNativeScreensFix(nextConfig.modResults.contents)
         )
         nextConfig.modResults.contents = options.holdLaunchScreen
           ? nativeProjectPatches.holdLaunchScreenInMainActivity(contents)

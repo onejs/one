@@ -36,6 +36,7 @@ export const docsRoutes = [
       { title: 'Swift and Kotlin', route: '/docs/native-source' },
       { title: 'Native payload types', route: '/docs/native-source-payloads' },
       { title: 'Native events', route: '/docs/native-source-events' },
+      { title: 'Native screens', route: '/docs/native-screens' },
       { title: 'Platform Notes', route: '/docs/native-platforms' },
     ],
   },

@@ -1232,11 +1232,12 @@ export function nativeSourceContract(file: string, source: string): NativeSource
     '}',
   ].join('\n')))
   declarations.push(...views.map((view) =>
-    `export declare function ${view.name}(props: {${view.props.map((prop) => ` ${prop.name}${prop.optional ? '?' : ''}: ${prop.type}`).join(';')} }): ReactElement`
+    `export declare function ${view.name}(props: {${view.props.map((prop) => ` ${prop.name}${prop.optional ? '?' : ''}: ${prop.type};`).join('')} style?: StyleProp<ViewStyle> }): ReactElement`
   ))
   if (defaultView) {
     declarations.unshift("export default function SwiftPackage(props: Record<string, unknown>): ReactElement")
   }
+  if (views.length > 0) declarations.unshift("import type { StyleProp, ViewStyle } from 'react-native'")
   if (defaultView || views.length > 0) declarations.unshift("import type { ReactElement } from 'react'")
   const declaration = `${GENERATED_HEADER}${declarations.join('\n\n')}\n`
   return { language, packageName, modules, views, structs, enums, defaultView, hash, declaration }
@@ -1449,37 +1450,175 @@ export function renderSwiftSourceGlue(
     '  }',
   ]
   // builds an imported view from the host's json props; a callback reports its
-  // arguments to the host as a json array.
-  const renderViews = (): string[] => [
-    '  private static func missing(_ path: String) throws -> Any {',
-    '    throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "\\(path): required"])',
-    '  }',
-    '  static func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView {',
-    '    guard let props = try JSONSerialization.jsonObject(with: Data(propsJson.utf8)) as? [String: Any] else {',
-    '      throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "props must be a JSON object"])',
-    '    }',
-    '    switch name {',
-    ...views.flatMap((view) => [
-      `    case ${JSON.stringify(view.name)}:`,
-      `      return AnyView(${view.name}(`,
-      ...view.props.map((prop, index) => {
-        const comma = index === view.props.length - 1 ? '' : ','
-        const key = JSON.stringify(prop.name)
-        if (prop.callback) {
-          const params = prop.callback.map((arg, n) => `a${n}: ${arg.nativeType}`).join(', ')
-          const lambda = `{ (${params}) -> Void in emit(${key}, args([${prop.callback.map((_, n) => `a${n}`).join(', ')}])) }`
-          // the host sends true for each callback the element passed
-          return `        ${prop.name}: ${prop.optional ? `(props[${key}] as? Bool) == true ? ${lambda} : nil` : lambda}${comma}`
-        }
-        const input = prop.optional ? `props[${key}] ?? NSNull()` : `props[${key}] ?? missing(${JSON.stringify(`props.${prop.name}`)})`
-        return `        ${prop.name}: try decode(${input}, as: ${prop.nativeType}.self)${comma}`
+  // arguments to the host as a json array. the host holds each view's decoded
+  // props between documents: a full document builds them, a change document
+  // (keyed props, see wireProps.native.ts) edits them, and one that does not
+  // follow the held `$seq` is refused so the host can ask for a full document.
+  const renderViews = (): string[] => {
+    const notLinked = '    default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "swift view \\(name) is not linked; rebuild the app"])'
+    // the optional callbacks ride as ordinary Bool? props
+    const fieldsOf = (view: NativeSourceView) =>
+      view.props
+        .filter((prop) => !prop.callback || prop.optional)
+        .map((prop, index) => {
+          const type = prop.callback ? 'Bool?' : prop.nativeType
+          const optional = type.endsWith('?')
+          const list = /^\[(.*)\]\??$/.exec(type)
+          return {
+            name: prop.name,
+            type,
+            optional,
+            list: list && !list[1].includes(':') ? list[1] : null,
+            key: `p${index}`,
+          }
+        })
+    return [
+      '  private struct OneListPatch<E: Decodable>: Decodable {',
+      '    let length: Int',
+      '    let set: [(Int, E)]',
+      '    private struct Entry: Decodable {',
+      '      let index: Int',
+      '      let value: E',
+      '      init(from decoder: Decoder) throws {',
+      '        var c = try decoder.unkeyedContainer()',
+      '        index = try c.decode(Int.self)',
+      '        value = try c.decode(E.self)',
+      '      }',
+      '    }',
+      '    private enum CodingKeys: String, CodingKey { case length, set }',
+      '    init(from decoder: Decoder) throws {',
+      '      let c = try decoder.container(keyedBy: CodingKeys.self)',
+      '      length = try c.decode(Int.self, forKey: .length)',
+      '      set = try c.decode([Entry].self, forKey: .set).map { ($0.index, $0.value) }',
+      '    }',
+      '  }',
+      // truncate to the new length, replace held indices, append the rest in order
+      '  private nonisolated static func patch<E>(_ list: inout [E], _ patch: OneListPatch<E>) -> Bool {',
+      '    if patch.length < 0 { return false }',
+      '    if list.count > patch.length { list.removeLast(list.count - patch.length) }',
+      '    for (index, value) in patch.set {',
+      '      if index < list.count { list[index] = value } else if index == list.count && index < patch.length { list.append(value) } else { return false }',
+      '    }',
+      '    return list.count == patch.length',
+      '  }',
+      '  private nonisolated static func missing(_ prop: String) -> Error {',
+      '    NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "missing prop \\(prop)"])',
+      '  }',
+      ...views.flatMap((view) => {
+        const fields = fieldsOf(view)
+        const lists = fields.filter((field) => field.list)
+        return [
+          // one pass over the document text: an absent key is nil and a present
+          // one carries its value, which may itself be null for an optional type
+          ...(lists.length > 0
+            ? [
+                `  private struct Lists_${view.name}: Decodable {`,
+                ...lists.map((field) => `    let ${field.key}: OneListPatch<${field.list}>?`),
+                `    private enum CodingKeys: String, CodingKey { ${lists.map((field) => `case ${field.key} = ${JSON.stringify(field.name)}`).join('; ')} }`,
+                '  }',
+              ]
+            : []),
+          `  private struct Doc_${view.name}: Decodable {`,
+          '    let seq: Int',
+          '    let base: Int?',
+          ...(lists.length > 0 ? [`    let lists: Lists_${view.name}?`] : []),
+          ...fields.map((field) => `    let ${field.key}: Optional<${field.type}>`),
+          `    private enum CodingKeys: String, CodingKey { ${['case seq = "$seq"', 'case base = "$base"', 'case lists = "$lists"', ...fields.map((field) => `case ${field.key} = ${JSON.stringify(field.name)}`)].join('; ')} }`,
+          '    init(from decoder: Decoder) throws {',
+          '      let c = try decoder.container(keyedBy: CodingKeys.self)',
+          '      seq = try c.decodeIfPresent(Int.self, forKey: .seq) ?? 0',
+          '      base = try c.decodeIfPresent(Int.self, forKey: .base)',
+          ...(lists.length > 0 ? [`      lists = try c.decodeIfPresent(Lists_${view.name}.self, forKey: .lists)`] : []),
+          ...fields.map(
+            (field) =>
+              `      ${field.key} = try c.contains(.${field.key}) ? Optional<${field.type}>.some(c.decode(${field.type}.self, forKey: .${field.key})) : Optional<${field.type}>.none`
+          ),
+          '    }',
+          '  }',
+          `  private final class Held_${view.name} {`,
+          '    var oneSeq: Int',
+          ...fields.map((field) => `    var \`${field.name}\`: ${field.type}`),
+          `    init(_ d: Doc_${view.name}) throws {`,
+          '      oneSeq = d.seq',
+          ...fields.flatMap((field) =>
+            field.optional
+              ? [`      \`${field.name}\` = d.${field.key}.flatMap { $0 }`]
+              : [
+                  `      guard let ${field.key} = d.${field.key} else { throw ${bodyName}.missing(${JSON.stringify(field.name)}) }`,
+                  `      \`${field.name}\` = ${field.key}`,
+                ]
+          ),
+          '    }',
+          // all or nothing: lists are patched into copies first
+          `    func apply(_ d: Doc_${view.name}) -> Bool {`,
+          '      if d.base != oneSeq { return false }',
+          ...lists.flatMap((field) => [
+            `      var ${field.key} = \`${field.name}\``,
+            `      if let v = d.${field.key} { ${field.key} = v }`,
+            `      if let p = d.lists?.${field.key} {`,
+            ...(field.optional
+              ? [
+                  `        guard var items = ${field.key} else { return false }`,
+                  `        if !${bodyName}.patch(&items, p) { return false }`,
+                  `        ${field.key} = items`,
+                ]
+              : [`        if !${bodyName}.patch(&${field.key}, p) { return false }`]),
+            '      }',
+          ]),
+          ...fields.map((field) =>
+            field.list
+              ? `      \`${field.name}\` = ${field.key}`
+              : `      if let v = d.${field.key} { \`${field.name}\` = v }`
+          ),
+          '      oneSeq = d.seq',
+          '      return true',
+          '    }',
+          '  }',
+        ]
       }),
-      '      ))',
-    ]),
-    '    default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "swift view \\(name) is not linked; rebuild the app"])',
-    '    }',
-    '  }',
-  ]
+      // nil asks the host for a full document
+      '  static func update(_ held: AnyObject?, _ name: String, _ text: String) throws -> AnyObject? {',
+      '    let data = Data(text.utf8)',
+      '    switch name {',
+      ...views.flatMap((view) => [
+        `    case ${JSON.stringify(view.name)}:`,
+        `      let doc = try decode(Doc_${view.name}.self, from: data)`,
+        `      if doc.base == nil { return try Held_${view.name}(doc) }`,
+        `      guard let h = held as? Held_${view.name}, h.apply(doc) else { return nil }`,
+        '      return h',
+      ]),
+      notLinked,
+      '    }',
+      '  }',
+      '  static func build(_ held: AnyObject, _ name: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView {',
+      '    switch name {',
+      ...views.flatMap((view) => [
+        `    case ${JSON.stringify(view.name)}:`,
+        `      guard ${fieldsOf(view).length > 0 ? 'let props = held as?' : 'held is'} Held_${view.name} else { throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "props of another view for \\(name)"]) }`,
+        `      return AnyView(${view.name}(`,
+        ...view.props.map((prop, index) => {
+          const comma = index === view.props.length - 1 ? '' : ','
+          const key = JSON.stringify(prop.name)
+          if (prop.callback) {
+            const params = prop.callback.map((arg, n) => `a${n}: ${arg.nativeType}`).join(', ')
+            const lambda = `{ (${params}) -> Void in emit(${key}, args([${prop.callback.map((_, n) => `a${n}`).join(', ')}])) }`
+            // the host sends true for each callback the element passed
+            return `        ${prop.name}: ${prop.optional ? `props.\`${prop.name}\` == true ? ${lambda} : nil` : lambda}${comma}`
+          }
+          return `        ${prop.name}: props.\`${prop.name}\`${comma}`
+        }),
+        '      ))',
+      ]),
+      notLinked,
+      '    }',
+      '  }',
+      // one-shot entry for hosts that keep no held props (peach)
+      '  static func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView {',
+      '    guard let held = try update(nil, name, propsJson) else { throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "\\(name) needs a full props document"]) }',
+      '    return try build(held, name, emit)',
+      '  }',
+    ]
+  }
   const source = [
     'import Foundation',
     'import SwiftUI',
@@ -1547,12 +1686,14 @@ export function renderSwiftSourceGlue(
     '    if let date = (try? isoDateFractional.parse(text)) ?? (try? isoDate.parse(text)) { return date }',
     '    throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected ISO date")',
     '  }',
-    '  private static func decode<T: Decodable>(_ value: Any, as type: T.Type) throws -> T {',
-    '    let data = try JSONSerialization.data(withJSONObject: value, options: [.fragmentsAllowed])',
+    '  private static func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {',
     '    let decoder = JSONDecoder()',
     '    decoder.dateDecodingStrategy = .custom { try decodeDate($0) }',
     '    decoder.dataDecodingStrategy = .base64',
     '    return try decoder.decode(T.self, from: data)',
+    '  }',
+    '  private static func decode<T: Decodable>(_ value: Any, as type: T.Type) throws -> T {',
+    '    try decode(T.self, from: try JSONSerialization.data(withJSONObject: value, options: [.fragmentsAllowed]))',
     '  }',
     '  private static func encode(_ value: any Encodable) throws -> String {',
     '    let encoder = JSONEncoder()',
@@ -1625,12 +1766,25 @@ export function renderSwiftSourceGlue(
       '  public required override init() {}',
       `  public var contractHash: String { ${bodyName}.hash }`,
       `  public func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView { try ${bodyName}.view(name, propsJson, emit) }`,
+      `  public func updateView(_ held: AnyObject?, _ name: String, _ document: String) throws -> AnyObject? { try ${bodyName}.update(held, name, document) }`,
+      `  public func buildView(_ held: AnyObject, _ name: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView { try ${bodyName}.build(held, name, emit) }`,
       '}',
     ] : []),
     '#endif',
     '',
   ].join('\n')
   return { hash, source }
+}
+
+// a dummy initializer for a required primitive local: unboxed, so the hot
+// decode loop never boxes values that are always overwritten or checked.
+function unboxedZero(type: string): string | null {
+  if (type === 'Int') return '0'
+  if (type === 'Long') return '0L'
+  if (type === 'Double') return '0.0'
+  if (type === 'Float') return '0f'
+  if (type === 'Boolean') return 'false'
+  return null
 }
 
 export function renderKotlinSourceGlue(
@@ -1640,10 +1794,27 @@ export function renderKotlinSourceGlue(
   if (contract.language !== 'kotlin') throw new Error('kotlin glue received a swift contract')
   if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(sourceId)) throw new Error(`invalid kotlin source id ${sourceId}`)
   const hash = createHash('sha256').update(JSON.stringify({ sourceId, contract: contract.hash })).digest('hex')
+  // private top-level classes share the package scope for redeclaration
+  // checks (unlike private functions, which the compiler file-mangles), so
+  // every glue file's reader carries the source id in its name.
+  const readerClass = `OneJsonReader_${sourceId}`
+  const tokenClass = `OneJsonToken_${sourceId}`
   const structsByName = new Map(contract.structs.map((entry) => [entry.name, entry]))
   const enumsByName = new Map(contract.enums.map((entry) => [entry.name, entry]))
   const qualified = (name: string) => contract.packageName ? `${contract.packageName}.${name}` : name
   const isDateType = (type: string) => type === 'Date' || type === 'java.util.Date'
+  // a declared-variable spelling of a decoded type: struct, enum and date
+  // leaves resolve against the author's package, since the glue file shares
+  // no package or imports with it.
+  const qualifiedType = (type: string): string => {
+    if (type.endsWith('?')) return `${qualifiedType(type.slice(0, -1))}?`
+    if (type.startsWith('List<') && type.endsWith('>')) return `List<${qualifiedType(type.slice(5, -1))}>`
+    if (type.startsWith('Map<String,') && type.endsWith('>')) return `Map<String, ${qualifiedType(type.slice(11, -1))}>`
+    if (structsByName.has(type) || enumsByName.has(type)) return qualified(type)
+    if (isDateType(type)) return 'java.util.Date'
+    if (['String', 'Boolean', 'Double', 'Float', 'Int', 'Long', 'ByteArray'].includes(type)) return type
+    throw new Error(`unsupported kotlin glue type ${type}`)
+  }
   // kotlin/wasm cannot resolve the jvm/android/event-host symbols, so a
   // contract that never mentions dates, bytes or subscriptions must not
   // reference them. every struct helper is always emitted, so a flat scan
@@ -1676,28 +1847,30 @@ export function renderKotlinSourceGlue(
   )
   const needsDate = nativeTypes.some((type) => mentions(type, isDateType))
   const needsData = nativeTypes.some((type) => mentions(type, (leaf) => leaf === 'ByteArray'))
-  const value = (type: string, input: string, path: string): string => {
+  // a decode expression for one value: the reader sits at the value's first
+  // token and the expression consumes exactly it, so props decode in one
+  // pass with no intermediate JSONObject.
+  const value = (type: string, reader: string, path: string): string => {
     if (type.endsWith('?')) {
-      // bind the input once so kotlin smart casts it to Any past the null check.
-      return `(${input}).let { raw -> if (raw == null || raw == JSONObject.NULL) null else ${value(type.slice(0, -1), 'raw', path)} }`
+      return `(if (${reader}.peek() == ${tokenClass}.NULL) { ${reader}.nextNull(); null } else ${value(type.slice(0, -1), reader, path)})`
     }
-    if (type === 'String') return `readString(${input}, ${path})`
-    if (type === 'Boolean') return `readBoolean(${input}, ${path})`
-    if (type === 'Double') return `readDouble(${input}, ${path})`
-    if (type === 'Float') return `readDouble(${input}, ${path}).toFloat()`
-    if (type === 'Int') return `readInt(${input}, ${path})`
-    if (type === 'Long') return `readLong(${input}, ${path})`
+    if (type === 'String') return `readString(${reader}, ${path})`
+    if (type === 'Boolean') return `readBoolean(${reader}, ${path})`
+    if (type === 'Double') return `readDouble(${reader}, ${path})`
+    if (type === 'Float') return `readDouble(${reader}, ${path}).toFloat()`
+    if (type === 'Int') return `readInt(${reader}, ${path})`
+    if (type === 'Long') return `readLong(${reader}, ${path})`
     // dates cross as ISO strings, bytes as base64; structs and enums read
     // through the generated helpers below.
-    if (isDateType(type)) return `readDate(${input}, ${path})`
-    if (type === 'ByteArray') return `readData(${input}, ${path})`
-    if (structsByName.has(type)) return `read${type}(${input}, ${path})`
-    if (enumsByName.has(type)) return `read${type}(${input}, ${path})`
+    if (isDateType(type)) return `readDate(${reader}, ${path})`
+    if (type === 'ByteArray') return `readData(${reader}, ${path})`
+    if (structsByName.has(type)) return `read${type}(${reader}, ${path})`
+    if (enumsByName.has(type)) return `read${type}(${reader}, ${path})`
     if (type.startsWith('List<') && type.endsWith('>')) {
-      return `readList(${input}, ${path}) { item, itemPath -> ${value(type.slice(5, -1), 'item', 'itemPath')} }`
+      return `readList(${reader}, ${path}) { itemReader, itemPath -> ${value(type.slice(5, -1), 'itemReader', 'itemPath')} }`
     }
     if (type.startsWith('Map<String,') && type.endsWith('>')) {
-      return `readMap(${input}, ${path}) { item, itemPath -> ${value(type.slice(11, -1), 'item', 'itemPath')} }`
+      return `readMap(${reader}, ${path}) { itemReader, itemPath -> ${value(type.slice(11, -1), 'itemReader', 'itemPath')} }`
     }
     throw new Error(`unsupported kotlin glue type ${type}`)
   }
@@ -1721,17 +1894,50 @@ export function renderKotlinSourceGlue(
     }
     return `JSONObject.wrap(${accessor})`
   }
+  const cap = (name: string) => name.slice(0, 1).toUpperCase() + name.slice(1)
   const structHelpers = contract.structs.flatMap((struct) => [
-    `private fun read${struct.name}(value: Any, path: String): ${qualified(struct.name)} {`,
-    '  val obj = value as? JSONObject ?: error("$path: expected object")',
+    `private fun read${struct.name}(reader: ${readerClass}, path: String): ${qualified(struct.name)} {`,
+    `  if (reader.peek() != ${tokenClass}.BEGIN_OBJECT) error("$path: expected object")`,
+    '  reader.beginObject()',
+    // required fields start null and fail at the constructor when the key
+    // never arrived; a required nullable needs its own flag so an explicit
+    // null does not read as missing. defaulted fields start at the default.
+    ...struct.fields.flatMap((field) => {
+      const declared = qualifiedType(field.nativeType)
+      if (field.optional) return [`  var ${field.name}: ${declared} = ${field.fallback}`]
+      const zero = unboxedZero(field.nativeType)
+      if (zero !== null) return [`  var ${field.name} = ${zero}`, `  var has${cap(field.name)} = false`]
+      const boxed = declared.endsWith('?') ? declared : `${declared}?`
+      return [
+        `  var ${field.name}: ${boxed} = null`,
+        ...(field.nativeType.endsWith('?') ? [`  var has${cap(field.name)} = false`] : []),
+      ]
+    }),
+    '  while (reader.hasNext()) {',
+    `    when (reader.selectName(${struct.fields.map((field) => JSON.stringify(field.name)).join(', ')})) {`,
+    ...struct.fields.map((field, index) => {
+      const fieldPath = `"$path.${field.name}"`
+      const read = `${field.name} = ${value(field.nativeType, 'reader', fieldPath)}`
+      const needsFlag = !field.optional && (field.nativeType.endsWith('?') || unboxedZero(field.nativeType) !== null)
+      return needsFlag
+        ? `      ${index} -> { ${read}; has${cap(field.name)} = true }`
+        : `      ${index} -> ${read}`
+    }),
+    '      else -> reader.skipValue()',
+    '    }',
+    '  }',
+    '  reader.endObject()',
+    ...struct.fields.flatMap((field) =>
+      !field.optional && unboxedZero(field.nativeType) !== null
+        ? [`  if (!has${cap(field.name)}) error("$path.${field.name}: required")`]
+        : []
+    ),
     `  return ${qualified(struct.name)}(`,
     ...struct.fields.map((field) => {
-      const fieldPath = `"$path.${field.name}"`
-      const required = `error("$path.${field.name}: required")`
-      const input = field.optional
-        ? `(if (obj.has(${JSON.stringify(field.name)})) obj.get(${JSON.stringify(field.name)}) else ${field.fallback ?? required})`
-        : `(obj.opt(${JSON.stringify(field.name)}) ?: ${required})`
-      return `    ${field.name} = ${value(field.nativeType, input, fieldPath)},`
+      if (field.optional) return `    ${field.name} = ${field.name},`
+      if (field.nativeType.endsWith('?')) return `    ${field.name} = (if (has${cap(field.name)}) ${field.name} else error("$path.${field.name}: required")),`
+      if (unboxedZero(field.nativeType) !== null) return `    ${field.name} = ${field.name},`
+      return `    ${field.name} = (${field.name} ?: error("$path.${field.name}: required")),`
     }),
     '  )',
     '}',
@@ -1743,50 +1949,328 @@ export function renderKotlinSourceGlue(
     '}',
   ])
   const enumHelpers = contract.enums.flatMap((entry) => [
-    `private fun read${entry.name}(value: Any, path: String): ${qualified(entry.name)} {`,
-    '  val text = readString(value, path)',
+    `private fun read${entry.name}(reader: ${readerClass}, path: String): ${qualified(entry.name)} {`,
+    '  val text = readString(reader, path)',
     `  return try { ${qualified(entry.name)}.valueOf(text) } catch (e: IllegalArgumentException) { error("$path: expected one of ${entry.cases.map((item) => item.name).join(', ')}") }`,
     '}',
   ])
   const source = [
     'import androidx.annotation.Keep',
-    ...(contract.views.length === 0 ? [] : ['import androidx.compose.runtime.Composable', 'import dev.onejs.one.OneNativeSourceViewDispatch']),
+    ...(contract.views.length === 0 ? [] : ['import androidx.compose.runtime.Composable', 'import dev.onejs.one.OneNativeSourceKeyedState', 'import dev.onejs.one.OneNativeSourceViewDispatch']),
     'import dev.onejs.one.OneNativeSourceDispatch',
     ...(needsEvents ? ['import dev.onejs.one.source.OneNativeSourceEvents'] : []),
     'import org.json.JSONArray',
     'import org.json.JSONObject',
     '',
-    'private fun readString(value: Any, path: String): String = value as? String ?: error("$path: expected string")',
-    'private fun readBoolean(value: Any, path: String): Boolean = value as? Boolean ?: error("$path: expected boolean")',
-    'private fun readDouble(value: Any, path: String): Double {',
-    '  val result = (value as? Number)?.toDouble() ?: error("$path: expected number")',
+    `private enum class ${tokenClass} { BEGIN_OBJECT, END_OBJECT, BEGIN_ARRAY, END_ARRAY, STRING, NUMBER, BOOLEAN, NULL }`,
+    '',
+    '// a forward-only json reader over the props text: values decode straight',
+    '// into typed props in one pass with no intermediate JSONObject. pure',
+    '// kotlin with no java or android imports, so the same glue compiles for',
+    '// kotlin/wasm.',
+    `private class ${readerClass}(private val text: String) {`,
+    '  private var pos = 0',
+    '',
+    '  private fun skipSpace() {',
+    '    while (pos < text.length) {',
+    '      when (text[pos]) {',
+    '        \' \', \'\\t\', \'\\n\', \'\\r\' -> pos++',
+    '        else -> return',
+    '      }',
+    '    }',
+    '  }',
+    '',
+    '  private fun fail(message: String): Nothing = throw IllegalStateException("$message near offset $pos")',
+    '',
+    `  fun peek(): ${tokenClass} {`,
+    '    skipSpace()',
+    '    if (pos >= text.length) fail("unexpected end of json")',
+    '    return when (text[pos]) {',
+    `      '{' -> ${tokenClass}.BEGIN_OBJECT`,
+    `      '}' -> ${tokenClass}.END_OBJECT`,
+    `      '[' -> ${tokenClass}.BEGIN_ARRAY`,
+    `      ']' -> ${tokenClass}.END_ARRAY`,
+    `      '"' -> ${tokenClass}.STRING`,
+    `      't', 'f' -> ${tokenClass}.BOOLEAN`,
+    `      'n' -> ${tokenClass}.NULL`,
+    `      '-', in '0'..'9' -> ${tokenClass}.NUMBER`,
+    '      else -> fail("unexpected character")',
+    '    }',
+    '  }',
+    '',
+    '  private fun expect(char: Char) {',
+    '    skipSpace()',
+    '    if (pos >= text.length || text[pos] != char) fail("expected \'$char\'")',
+    '    pos++',
+    '  }',
+    '',
+    '  fun beginObject() = expect(\'{\')',
+    '  fun endObject() = expect(\'}\')',
+    '  fun beginArray() = expect(\'[\')',
+    '  fun endArray() = expect(\']\')',
+    '',
+    '  // inside an object or array: true when another value follows, consuming',
+    '  // a comma first; false at the closing bracket.',
+    '  fun hasNext(): Boolean {',
+    '    skipSpace()',
+    '    if (pos >= text.length) fail("unexpected end of json")',
+    '    if (text[pos] == \',\') {',
+    '      pos++',
+    '      return true',
+    '    }',
+    '    return text[pos] != \'}\' && text[pos] != \']\'',
+    '  }',
+    '',
+    '  fun nextName(): String {',
+    '    skipSpace()',
+    '    if (pos >= text.length || text[pos] != \'"\') fail("expected a name")',
+    '    val name = readString()',
+    '    skipSpace()',
+    '    if (pos >= text.length || text[pos] != \':\') fail("expected \':\'")',
+    '    pos++',
+    '    return name',
+    '  }',
+    '',
+    '  fun nextString(): String {',
+    '    skipSpace()',
+    '    if (pos >= text.length || text[pos] != \'"\') fail("expected a string")',
+    '    return readString()',
+    '  }',
+    '',
+    '  // matches an object name against the expected keys without allocating',
+    '  // it: the index of the match, or -1 for an unknown key. the name and',
+    '  // colon are consumed either way, so the caller skips the value on -1.',
+    '  fun selectName(vararg options: String): Int {',
+    '    skipSpace()',
+    '    if (pos >= text.length || text[pos] != \'"\') fail("expected a name")',
+    '    var end = pos + 1',
+    '    while (end < text.length && text[end] != \'"\' && text[end] != \'\\\\\') end++',
+    '    if (end < text.length && text[end] == \'\\\\\') {',
+    '      val decoded = readString()',
+    '      skipSpace()',
+    '      if (pos >= text.length || text[pos] != \':\') fail("expected \':\'")',
+    '      pos++',
+    '      return options.indexOf(decoded)',
+    '    }',
+    '    if (end >= text.length) fail("unterminated string")',
+    '    val length = end - pos - 1',
+    '    var index = -1',
+    '    for (i in options.indices) {',
+    '      if (options[i].length == length && text.regionMatches(pos + 1, options[i], 0, length)) { index = i; break }',
+    '    }',
+    '    pos = end + 1',
+    '    skipSpace()',
+    '    if (pos >= text.length || text[pos] != \':\') fail("expected \':\'")',
+    '    pos++',
+    '    return index',
+    '  }',
+    '',
+    '  private fun readString(): String {',
+    '    pos++ // the opening quote',
+    '    var end = pos',
+    '    while (end < text.length && text[end] != \'"\' && text[end] != \'\\\\\') end++',
+    '    if (end < text.length && text[end] == \'"\') {',
+    '      val out = text.substring(pos, end)',
+    '      pos = end + 1',
+    '      return out',
+    '    }',
+    '    val out = StringBuilder(text.substring(pos, end))',
+    '    pos = end',
+    '    while (true) {',
+    '      if (pos >= text.length) fail("unterminated string")',
+    '      val char = text[pos++]',
+    '      if (char == \'"\') return out.toString()',
+    '      if (char != \'\\\\\') {',
+    '        out.append(char)',
+    '        continue',
+    '      }',
+    '      if (pos >= text.length) fail("unterminated escape")',
+    '      when (text[pos++]) {',
+    '        \'"\', \'\\\\\', \'/\' -> out.append(text[pos - 1])',
+    '        \'b\' -> out.append(\'\\b\')',
+    '        \'f\' -> out.append(\'\\u000C\')',
+    '        \'n\' -> out.append(\'\\n\')',
+    '        \'r\' -> out.append(\'\\r\')',
+    '        \'t\' -> out.append(\'\\t\')',
+    '        \'u\' -> {',
+    '          if (pos + 4 > text.length) fail("bad unicode escape")',
+    '          var code = 0',
+    '          for (i in 0 until 4) {',
+    '            val digit = text[pos + i].lowercaseChar()',
+    '            val value = if (digit in \'0\'..\'9\') digit - \'0\' else if (digit in \'a\'..\'f\') digit - \'a\' + 10 else fail("bad unicode escape")',
+    '            code = code * 16 + value',
+    '          }',
+    '          pos += 4',
+    '          out.append(code.toChar())',
+    '        }',
+    '        else -> fail("bad escape")',
+    '      }',
+    '    }',
+    '  }',
+    '',
+    '  fun nextDouble(): Double {',
+    '    skipSpace()',
+    '    val start = pos',
+    '    while (pos < text.length && (text[pos] in \'0\'..\'9\' || text[pos] == \'.\' || text[pos] == \'e\' || text[pos] == \'E\' || text[pos] == \'+\' || text[pos] == \'-\')) pos++',
+    '    if (pos == start) fail("expected a number")',
+    '    return text.substring(start, pos).toDoubleOrNull() ?: fail("bad number")',
+    '  }',
+    '',
+    '  // plain-digit fast paths: the value when the token at pos is an integer',
+    '  // in range, null when it needs the double slow path. nothing is',
+    '  // consumed on null, so the caller falls back to nextDouble.',
+    '  fun nextIntOrNull(): Int? {',
+    '    var i = pos',
+    '    val negative = i < text.length && text[i] == \'-\'',
+    '    if (negative) i++',
+    '    var value = 0L',
+    '    val digits = i',
+    '    while (i < text.length && text[i] in \'0\'..\'9\') {',
+    '      value = value * 10 + (text[i] - \'0\')',
+    '      if (value > 2147483648L) return null',
+    '      i++',
+    '    }',
+    '    if (i == digits) return null',
+    '    if (i < text.length && (text[i] == \'.\' || text[i] == \'e\' || text[i] == \'E\')) return null',
+    '    if (!negative && value > 2147483647L) return null',
+    '    pos = i',
+    '    return if (negative) -value.toInt() else value.toInt()',
+    '  }',
+    '',
+    '  fun nextLongOrNull(): Long? {',
+    '    var i = pos',
+    '    val negative = i < text.length && text[i] == \'-\'',
+    '    if (negative) i++',
+    '    var value = 0L',
+    '    val digits = i',
+    '    while (i < text.length && text[i] in \'0\'..\'9\') {',
+    '      val digit = (text[i] - \'0\').toLong()',
+    '      if (value > (9007199254740991L - digit) / 10) return null',
+    '      value = value * 10 + digit',
+    '      i++',
+    '    }',
+    '    if (i == digits) return null',
+    '    if (i < text.length && (text[i] == \'.\' || text[i] == \'e\' || text[i] == \'E\')) return null',
+    '    pos = i',
+    '    return if (negative) -value else value',
+    '  }',
+    '',
+    '  fun nextBoolean(): Boolean {',
+    '    skipSpace()',
+    '    if (text.startsWith("true", pos)) {',
+    '      pos += 4',
+    '      return true',
+    '    }',
+    '    if (text.startsWith("false", pos)) {',
+    '      pos += 5',
+    '      return false',
+    '    }',
+    '    fail("expected a boolean")',
+    '  }',
+    '',
+    '  fun nextNull() {',
+    '    skipSpace()',
+    '    if (!text.startsWith("null", pos)) fail("expected null")',
+    '    pos += 4',
+    '  }',
+    '',
+    '  fun skipValue() {',
+    '    when (peek()) {',
+    `      ${tokenClass}.BEGIN_OBJECT -> {`,
+    '        beginObject()',
+    '        while (hasNext()) {',
+    '          nextName()',
+    '          skipValue()',
+    '        }',
+    '        endObject()',
+    '      }',
+    `      ${tokenClass}.BEGIN_ARRAY -> {`,
+    '        beginArray()',
+    '        while (hasNext()) {',
+    '          skipValue()',
+    '        }',
+    '        endArray()',
+    '      }',
+    `      ${tokenClass}.STRING -> nextString()`,
+    `      ${tokenClass}.NUMBER -> nextDouble()`,
+    `      ${tokenClass}.BOOLEAN -> nextBoolean()`,
+    `      ${tokenClass}.NULL -> nextNull()`,
+    '      else -> fail("unexpected value")',
+    '    }',
+    '  }',
+    '',
+    '  fun endDocument() {',
+    '    skipSpace()',
+    '    if (pos != text.length) fail("trailing characters")',
+    '  }',
+    '}',
+    '',
+    `private fun readString(reader: ${readerClass}, path: String): String {`,
+    `  if (reader.peek() != ${tokenClass}.STRING) error("$path: expected string")`,
+    '  return reader.nextString()',
+    '}',
+    `private fun readBoolean(reader: ${readerClass}, path: String): Boolean {`,
+    `  if (reader.peek() != ${tokenClass}.BOOLEAN) error("$path: expected boolean")`,
+    '  return reader.nextBoolean()',
+    '}',
+    `private fun readDouble(reader: ${readerClass}, path: String): Double {`,
+    `  if (reader.peek() != ${tokenClass}.NUMBER) error("$path: expected number")`,
+    '  val result = reader.nextDouble()',
     '  if (!result.isFinite()) error("$path: expected finite number")',
     '  return result',
     '}',
-    'private fun readInt(value: Any, path: String): Int {',
-    '  val result = readDouble(value, path)',
+    `private fun readInt(reader: ${readerClass}, path: String): Int {`,
+    `  if (reader.peek() != ${tokenClass}.NUMBER) error("$path: expected number")`,
+    '  reader.nextIntOrNull()?.let { return it }',
+    '  val result = readDouble(reader, path)',
     '  if (result % 1.0 != 0.0 || result < Int.MIN_VALUE || result > Int.MAX_VALUE) error("$path: expected Int")',
     '  return result.toInt()',
     '}',
-    'private fun readLong(value: Any, path: String): Long {',
-    '  val result = readDouble(value, path)',
+    `private fun readLong(reader: ${readerClass}, path: String): Long {`,
+    `  if (reader.peek() != ${tokenClass}.NUMBER) error("$path: expected number")`,
+    '  reader.nextLongOrNull()?.let { return it }',
+    '  val result = readDouble(reader, path)',
     '  if (result % 1.0 != 0.0 || result < -9007199254740991.0 || result > 9007199254740991.0) error("$path: expected safe Long")',
     '  return result.toLong()',
     '}',
-    'private fun <T> readList(value: Any, path: String, read: (Any, String) -> T): List<T> {',
-    '  val array = value as? JSONArray ?: error("$path: expected array")',
-    '  return (0 until array.length()).map { index -> read(array.get(index), "$path[$index]") }',
+    '// the host sends true for each callback the element passed; any other',
+    '// value reads as absent.',
+    `private fun readOptBoolean(reader: ${readerClass}): Boolean {`,
+    `  if (reader.peek() != ${tokenClass}.BOOLEAN) {`,
+    '    reader.skipValue()',
+    '    return false',
+    '  }',
+    '  return reader.nextBoolean()',
     '}',
-    'private fun <T> readMap(value: Any, path: String, read: (Any, String) -> T): Map<String, T> {',
-    '  val objectValue = value as? JSONObject ?: error("$path: expected object")',
-    '  return objectValue.keys().asSequence().associateWith { key -> read(objectValue.get(key), "$path.$key") }',
+    `private fun <T> readList(reader: ${readerClass}, path: String, read: (${readerClass}, String) -> T): List<T> {`,
+    `  if (reader.peek() != ${tokenClass}.BEGIN_ARRAY) error("$path: expected array")`,
+    '  reader.beginArray()',
+    '  val result = mutableListOf<T>()',
+    '  var index = 0',
+    '  while (reader.hasNext()) {',
+    '    result.add(read(reader, "$path[$index]"))',
+    '    index++',
+    '  }',
+    '  reader.endArray()',
+    '  return result',
+    '}',
+    `private fun <T> readMap(reader: ${readerClass}, path: String, read: (${readerClass}, String) -> T): Map<String, T> {`,
+    `  if (reader.peek() != ${tokenClass}.BEGIN_OBJECT) error("$path: expected object")`,
+    '  reader.beginObject()',
+    '  val result = mutableMapOf<String, T>()',
+    '  while (reader.hasNext()) {',
+    '    val key = reader.nextName()',
+    '    result[key] = read(reader, "$path.$key")',
+    '  }',
+    '  reader.endObject()',
+    '  return result',
     '}',
     // the encoder writes ISO with milliseconds and reads with or without
     // them, so swift, kotlin and javascript dates all parse everywhere.
     ...(needsDate
       ? [
-          'private fun readDate(value: Any, path: String): java.util.Date {',
-          '  val text = readString(value, path)',
+          `private fun readDate(reader: ${readerClass}, path: String): java.util.Date {`,
+          '  val text = readString(reader, path)',
           '  for (pattern in arrayOf("yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'", "yyyy-MM-dd\'T\'HH:mm:ss\'Z\'")) {',
           '    try {',
           '      return java.text.SimpleDateFormat(pattern, java.util.Locale.US).apply { timeZone = java.util.TimeZone.getTimeZone("UTC"); isLenient = false }.parse(text) ?: error("$path: expected date")',
@@ -1800,9 +2284,9 @@ export function renderKotlinSourceGlue(
       : []),
     ...(needsData
       ? [
-          'private fun readData(value: Any, path: String): ByteArray {',
+          `private fun readData(reader: ${readerClass}, path: String): ByteArray {`,
           '  try {',
-          '    return android.util.Base64.decode(readString(value, path), android.util.Base64.NO_WRAP)',
+          '    return android.util.Base64.decode(readString(reader, path), android.util.Base64.NO_WRAP)',
           '  } catch (decodeError: IllegalArgumentException) {',
           '    error("$path: expected base64 data")',
           '  }',
@@ -1815,7 +2299,9 @@ export function renderKotlinSourceGlue(
     `@Keep class OneNativeSource_${sourceId}: OneNativeSourceDispatch {`,
     `  override val contractHash = ${JSON.stringify(hash)}`,
     '  override suspend fun call(module: String, method: String, argsJson: String): String {',
-    '    val args = JSONArray(argsJson)',
+    `    val reader = ${readerClass}(argsJson)`,
+    `    if (reader.peek() != ${tokenClass}.BEGIN_ARRAY) error("args must be a JSON array")`,
+    '    reader.beginArray()',
     '    return when (module) {',
     ...contract.modules.flatMap((module) => [
       `      ${JSON.stringify(`${sourceId}.${module.name}`)} -> when (method) {`,
@@ -1828,7 +2314,9 @@ export function renderKotlinSourceGlue(
             : `{ ${subscription.payload.map((_, index) => `a${index}`).join(', ')} -> OneNativeSourceEvents.send(${JSON.stringify(channel)}, JSONArray()${subscription.payload.map((arg, index) => `.put(${encode(arg.nativeType, `a${index}`)})`).join('')}.toString()) }`
           return [
             `        ${JSON.stringify(method.name)} -> {`,
-            `          require(args.length() == 0) { "${sourceId}.${module.name}.${method.name} subscribes; it takes no arguments" }`,
+            `          require(!reader.hasNext()) { "${sourceId}.${module.name}.${method.name} subscribes; it takes no arguments" }`,
+            '          reader.endArray()',
+            '          reader.endDocument()',
             `          ${qualified(module.name)}.${method.name}(${closure})`,
             '          "null"',
             '        }',
@@ -1836,11 +2324,18 @@ export function renderKotlinSourceGlue(
         }
         const lines = [
           `        ${JSON.stringify(method.name)} -> {`,
-          `          require(args.length() == ${method.parameters.length}) { "${sourceId}.${module.name}.${method.name} expects ${method.parameters.length} arguments" }`,
         ]
+        const arityMessage = `${sourceId}.${module.name}.${method.name} expects ${method.parameters.length} arguments`
         method.parameters.forEach((parameter, index) => {
-          lines.push(`          val arg${index} = ${value(parameter.nativeType, `args.get(${index})`, JSON.stringify(`args[${index}]`))}`)
+          lines.push(`          val arg${index} = ${value(parameter.nativeType, 'reader', JSON.stringify(`args[${index}]`))}`)
+          // positional args have no key loop to eat commas, so each arg but
+          // the last requires one here; a short array fails as an arity miss.
+          if (index < method.parameters.length - 1) {
+            lines.push(`          require(reader.hasNext()) { ${JSON.stringify(arityMessage)} }`)
+          }
         })
+        lines.push(`          require(!reader.hasNext()) { ${JSON.stringify(arityMessage)} }`)
+        lines.push('          reader.endArray()', '          reader.endDocument()')
         const call = `${qualified(module.name)}.${method.name}(${method.parameters.map((_, index) => `arg${index}`).join(', ')})`
         if (method.result === 'void') {
           lines.push(`          ${call}`, '          "null"')
@@ -1861,7 +2356,7 @@ export function renderKotlinSourceGlue(
     '  }',
     '}',
     '',
-    ...(contract.views.length === 0 ? [] : viewGlue(sourceId, contract, hash, value, encode)),
+    ...(contract.views.length === 0 ? [] : viewGlue(sourceId, contract, hash, value, encode, qualifiedType)),
   ].join('\n')
   return { hash, source }
 }
@@ -1872,36 +2367,246 @@ function viewGlue(
   sourceId: string,
   contract: NativeSourceContract,
   hash: string,
-  value: (type: string, input: string, path: string) => string,
-  encode: (type: string, accessor: string) => string
+  value: (type: string, reader: string, path: string) => string,
+  encode: (type: string, accessor: string) => string,
+  qualifiedType: (type: string) => string
 ): string[] {
   const qualifier = contract.packageName ? `${contract.packageName}.` : ''
+  const cap = (name: string) => name.slice(0, 1).toUpperCase() + name.slice(1)
+  const readerClass = `OneJsonReader_${sourceId}`
+  const tokenClass = `OneJsonToken_${sourceId}`
+  // "$seq" etc as kotlin string literals: the dollar escapes or the compiler
+  // reads it as a template of the seq/base locals.
+  const SEQ_KEY = '"\\$seq"'
+  const BASE_KEY = '"\\$base"'
+  const LISTS_KEY = '"\\$lists"'
+  const listElement = (type: string): string | null => {
+    const inner = type.endsWith('?') ? type.slice(0, -1) : type
+    return inner.startsWith('List<') && inner.endsWith('>') ? inner.slice(5, -1) : null
+  }
+  // one untyped holder per view, kept in the host-owned keyed state: full
+  // documents fill every field, change documents merge into them, and every
+  // composition renders from them, so a re-created composition shows the
+  // same content without re-applying.
+  const holders = contract.views.flatMap((view) => [
+    `private class Held${view.name}_${sourceId} {`,
+    ...view.props.flatMap((prop) => {
+      if (prop.callback) {
+        return prop.nativeType.endsWith('?') ? [`  var has${cap(prop.name)}: Boolean = false`] : []
+      }
+      const declared = qualifiedType(prop.nativeType)
+      if (prop.optional || prop.nativeType.endsWith('?')) return [`  var ${prop.name}: ${declared} = null`]
+      const zero = unboxedZero(prop.nativeType)
+      if (zero !== null) return [`  var ${prop.name}: ${declared} = ${zero}`]
+      if (prop.nativeType === 'String') return [`  var ${prop.name}: String = ""`]
+      return [`  var ${prop.name}: ${declared}? = null`]
+    }),
+    '}',
+  ])
+  // one $lists merger per view list prop, top-level so its temporaries can
+  // never collide with prop-named locals the way branch-inline merge did.
+  const mergers = contract.views.flatMap((view) =>
+    view.props.flatMap((prop) => {
+      if (prop.callback) return []
+      const elem = listElement(prop.nativeType)
+      if (elem === null) return []
+      const element = qualifiedType(elem)
+      return [
+        `private fun mergeLists${view.name}${cap(prop.name)}(reader: ${readerClass}, old: List<${element}>?, prop: String): List<${element}>? {`,
+        `  if (reader.peek() != ${tokenClass}.BEGIN_OBJECT) error("lists.$prop: expected object")`,
+        '  reader.beginObject()',
+        '  var length = -1',
+        `  var set: List<Pair<Int, ${element}>>? = null`,
+        '  while (reader.hasNext()) {',
+        '    when (reader.selectName("length", "set")) {',
+        `      0 -> length = readInt(reader, "lists.$prop.length")`,
+        `      1 -> set = readList(reader, "lists.$prop.set") { itemReader, itemPath -> itemReader.beginArray(); val si = readInt(itemReader, itemPath); if (!itemReader.hasNext()) error("$itemPath: expected element"); val sv = ${value(elem, 'itemReader', 'itemPath')}; itemReader.endArray(); si to sv }`,
+        '      else -> reader.skipValue()',
+        '    }',
+        '  }',
+        '  reader.endObject()',
+        '  if (length < 0) error("lists.$prop: needs length")',
+        // no held list, or a patch that does not fit it, is what a change
+        // on a mismatched base looks like: return null so apply refuses and
+        // the host resyncs. the caller errors when the base matches and the
+        // merge still failed, which is a real protocol bug.
+        '  val current = old ?: return null',
+        '  val entries = set ?: emptyList()',
+        '  for (j in 1 until entries.size) require(entries[j].first > entries[j - 1].first) { "lists.$prop: set out of order" }',
+        `  val fresh = ArrayList<${element}>(length)`,
+        '  var s = 0',
+        '  for (i in 0 until length) {',
+        '    if (s < entries.size && entries[s].first == i) { fresh.add(entries[s].second); s++ }',
+        '    else if (i < current.size) fresh.add(current[i])',
+        '    else return null',
+        '  }',
+        '  return fresh',
+        '}',
+      ]
+    })
+  )
   return [
+    ...holders,
+    ...mergers,
+    '',
     `@Keep class OneNativeSourceViews_${sourceId}: OneNativeSourceViewDispatch {`,
     `  override val contractHash = ${JSON.stringify(hash)}`,
-    '  @Composable',
-    '  override fun Content(view: String, propsJson: String, emit: (String, String) -> Unit) {',
-    '    val props = JSONObject(propsJson)',
+    '  override fun apply(view: String, propsJson: String, state: OneNativeSourceKeyedState): Boolean {',
+    `    val reader = ${readerClass}(propsJson)`,
+    `    if (reader.peek() != ${tokenClass}.BEGIN_OBJECT) error("props must be a JSON object")`,
+    '    reader.beginObject()',
     '    when (view) {',
-    ...contract.views.flatMap((view) => [
-      `      ${JSON.stringify(view.name)} -> ${qualifier}${view.name}(`,
-      ...view.props.map((prop) => {
-        const path = JSON.stringify(`props.${prop.name}`)
-        if (prop.callback) {
-          const args = prop.callback.map((_, index) => `a${index}`)
-          const types = prop.callback.map((arg) => arg.nativeType)
-          const body = `emit(${JSON.stringify(prop.name)}, JSONArray()${args.map((arg, index) => `.put(${encode(types[index], arg)})`).join('')}.toString())`
-          const lambda = `{ ${args.length > 0 ? `${args.join(', ')} -> ` : ''}${body} }`
-          // the host sends true for each callback the element passed
-          return `        ${prop.name} = ${prop.nativeType.endsWith('?') ? `if (props.optBoolean(${JSON.stringify(prop.name)})) (${lambda}) else null` : lambda},`
-        }
-        const input = prop.optional
-          ? `(props.opt(${JSON.stringify(prop.name)}) ?: JSONObject.NULL)`
-          : `(props.opt(${JSON.stringify(prop.name)}) ?: error(${JSON.stringify(`props.${prop.name}: required`)}))`
-        return `        ${prop.name} = ${value(prop.nativeType, input, path)},`
-      }),
-      '      )',
-    ]),
+    ...contract.views.flatMap((view) => {
+      const holder = `Held${view.name}_${sourceId}`
+      const lists = view.props.filter((prop) => !prop.callback && listElement(prop.nativeType) !== null)
+      const options = [SEQ_KEY, BASE_KEY, LISTS_KEY, ...view.props.map((prop) => JSON.stringify(prop.name))].join(', ')
+      return [
+        `      ${JSON.stringify(view.name)} -> {`,
+        `        var held = state.views[${JSON.stringify(view.name)}] as? ${holder}`,
+        // the envelope plus the props decoded from this document; presence
+        // flags gate the change commit so absent props keep held values.
+        '        var seq = -1',
+        '        var hasSeq = false',
+        '        var base = -1',
+        '        var hasBase = false',
+        '        var sawLists = false',
+        ...view.props.flatMap((prop) => {
+          if (prop.callback) {
+            return prop.nativeType.endsWith('?') ? [`        var ${prop.name}Doc: Boolean? = null`] : []
+          }
+          const declared = qualifiedType(prop.nativeType)
+          if (prop.optional || prop.nativeType.endsWith('?')) {
+            return [`        var ${prop.name}: ${declared} = null`, `        var has${cap(prop.name)} = false`]
+          }
+          const zero = unboxedZero(prop.nativeType)
+          if (zero !== null) return [`        var ${prop.name} = ${zero}`, `        var has${cap(prop.name)} = false`]
+          return [`        var ${prop.name}: ${declared}? = null`]
+        }),
+        ...lists.map((prop) => `        var ${prop.name}MergeFailed = false`),
+        '        while (reader.hasNext()) {',
+        `          when (reader.selectName(${options})) {`,
+        '            0 -> { seq = readInt(reader, "seq"); hasSeq = true }',
+        '            1 -> { base = readInt(reader, "base"); hasBase = true }',
+        '            2 -> {',
+        '              sawLists = true',
+        `              if (reader.peek() != ${tokenClass}.BEGIN_OBJECT) error("lists: expected object")`,
+        '              reader.beginObject()',
+        '              while (reader.hasNext()) {',
+        `                when (reader.selectName(${lists.map((prop) => JSON.stringify(prop.name)).join(', ')})) {`,
+        ...lists.map((prop, listsIndex) =>
+          `                  ${listsIndex} -> { val merged${cap(prop.name)} = mergeLists${view.name}${cap(prop.name)}(reader, held?.${prop.name}, ${JSON.stringify(prop.name)}); if (merged${cap(prop.name)} == null) ${prop.name}MergeFailed = true else ${prop.name} = merged${cap(prop.name)} }`
+        ),
+        '                  else -> reader.skipValue()',
+        '                }',
+        '              }',
+        '              reader.endObject()',
+        '            }',
+        ...view.props.map((prop, index) => {
+          const arm = index + 3
+          if (prop.callback) {
+            return prop.nativeType.endsWith('?')
+              ? `            ${arm} -> ${prop.name}Doc = readOptBoolean(reader)`
+              : `            ${arm} -> reader.skipValue()`
+          }
+          const path = JSON.stringify(`props.${prop.name}`)
+          const read = `${prop.name} = ${value(prop.nativeType, 'reader', path)}`
+          const needsFlag = prop.optional || prop.nativeType.endsWith('?') || unboxedZero(prop.nativeType) !== null
+          return needsFlag
+            ? `            ${arm} -> { ${read}; has${cap(prop.name)} = true }`
+            : `            ${arm} -> ${read}`
+        }),
+        '            else -> reader.skipValue()',
+        '          }',
+        '        }',
+        '        reader.endObject()',
+        '        reader.endDocument()',
+        '        if (hasBase && !hasSeq) error("seq: required")',
+        '        if (sawLists && !hasBase) error("lists: needs a change document")',
+        // full documents fill every field; a change already applied is a
+        // no-op, one based on the held seq merges and advances it, and
+        // anything else refuses so the host asks for a resync.
+        '        if (!hasBase) {',
+        ...view.props.flatMap((prop) => {
+          if (prop.callback || prop.optional) return []
+          if (prop.nativeType.endsWith('?') || unboxedZero(prop.nativeType) !== null) {
+            return [`          if (!has${cap(prop.name)}) error("props.${prop.name}: required")`]
+          }
+          return []
+        }),
+        `          val h = held ?: ${holder}().also { state.views[${JSON.stringify(view.name)}] = it }`,
+        ...view.props.flatMap((prop) => {
+          if (prop.callback) {
+            return prop.nativeType.endsWith('?') ? [`          h.has${cap(prop.name)} = ${prop.name}Doc == true`] : []
+          }
+          if (prop.optional || prop.nativeType.endsWith('?') || unboxedZero(prop.nativeType) !== null) {
+            return [`          h.${prop.name} = ${prop.name}`]
+          }
+          return [`          h.${prop.name} = (${prop.name} ?: error("props.${prop.name}: required"))`]
+        }),
+        '          if (hasSeq) state.seq = seq',
+        '          state.revision++',
+        '          return true',
+        '        }',
+        '        if (seq == state.seq) return true',
+        '        val h = held',
+        '        if (base == state.seq && h != null) {',
+        ...view.props.flatMap((prop) => {
+          if (prop.callback) {
+            return prop.nativeType.endsWith('?') ? [`            if (${prop.name}Doc != null) h.has${cap(prop.name)} = ${prop.name}Doc`] : []
+          }
+          // a failed merge on a matching base is a protocol bug: host and
+          // js agree on the seq but not on the list. on a mismatched base
+          // apply already refused, so this never fires for a resync.
+          const mergeFailed =
+            listElement(prop.nativeType) !== null
+              ? [`            if (${prop.name}MergeFailed) error("lists.${prop.name}: cannot merge")`]
+              : []
+          if (prop.optional || prop.nativeType.endsWith('?') || unboxedZero(prop.nativeType) !== null) {
+            return [...mergeFailed, `            if (has${cap(prop.name)}) h.${prop.name} = ${prop.name}`]
+          }
+          return [...mergeFailed, `            if (${prop.name} != null) h.${prop.name} = ${prop.name}`]
+        }),
+        '            state.seq = seq',
+        '            state.revision++',
+        '            return true',
+        '          }',
+        '        return false',
+        '      }',
+      ]
+    }),
+    '      else -> error("composable $view is not linked; rebuild the app")',
+    '    }',
+    '  }',
+    '  @Composable',
+    '  override fun Content(view: String, state: OneNativeSourceKeyedState, emit: (String, String) -> Unit) {',
+    '    when (view) {',
+    ...contract.views.flatMap((view) => {
+      const holder = `Held${view.name}_${sourceId}`
+      return [
+        `      ${JSON.stringify(view.name)} -> {`,
+        '        // the revision read resubscribes this scope on every apply',
+        '        val revision = state.revision',
+        `        val held = state.views[${JSON.stringify(view.name)}] as? ${holder}`,
+        '        held?.let { h ->',
+        `          ${qualifier}${view.name}(`,
+        ...view.props.map((prop) => {
+          if (prop.callback) {
+            const args = prop.callback.map((_, index) => `a${index}`)
+            const types = prop.callback.map((arg) => arg.nativeType)
+            const body = `emit(${JSON.stringify(prop.name)}, JSONArray()${args.map((arg, index) => `.put(${encode(types[index], arg)})`).join('')}.toString())`
+            const lambda = `{ ${args.length > 0 ? `${args.join(', ')} -> ` : ''}${body} }`
+            return `            ${prop.name} = ${prop.nativeType.endsWith('?') ? `if (h.has${cap(prop.name)}) (${lambda}) else null` : lambda},`
+          }
+          if (prop.optional || prop.nativeType.endsWith('?') || unboxedZero(prop.nativeType) !== null || prop.nativeType === 'String') {
+            return `            ${prop.name} = h.${prop.name},`
+          }
+          return `            ${prop.name} = h.${prop.name}!!,`
+        }),
+        '          )',
+        '        }',
+        '      }',
+      ]
+    }),
     '      else -> error("composable $view is not linked; rebuild the app")',
     '    }',
     '  }',

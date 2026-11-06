@@ -13,7 +13,10 @@ export default function Layout() {
   return (
     <>
       <View style={{ flex: 1, display: isSplitView ? 'none' : 'flex' }}>
-        <Stack screenOptions={{ headerShown: true }} />
+        <Stack screenOptions={{ headerShown: true }}>
+          {/* the nested stack draws its own bar */}
+          <Stack.Screen name="native-screens" options={{ headerShown: false }} />
+        </Stack>
       </View>
       {isSplitView ? <SplitViewFixture /> : null}
       {isSplitView ? null : <QuickNavigatePixel />}
