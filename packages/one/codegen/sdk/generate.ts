@@ -96,12 +96,26 @@ export function prepare() {
   return { bridge: new Bridge(buildIndex(facts)), symbols, imports }
 }
 
-const IMPLEMENTATION_DETAIL = /module '([^']+)' is an implementation detail of '[^']+'; import '([^']+)' instead/
+export const IMPLEMENTATION_DETAIL = /module '([^']+)' is an implementation detail of '[^']+'; import '([^']+)' instead/
 
 // swaps imports of implementation detail modules for their public parent,
 // keeping line numbers so compiler errors still map to entries
-function withImports(swift: string, imports: Map<string, string>) {
+export function withImports(swift: string, imports: Map<string, string>) {
   return swift.replace(/^import (\S+)$/gm, (line, module) => imports.has(module) ? `import ${imports.get(module)}` : line)
+}
+
+// records implementation-detail mappings the compiler reports, so later files
+// import the public parent. returns whether anything new was learned.
+export function learnImplementationDetails(errors: string[], imports: Map<string, string>) {
+  let learned = false
+  for (const error of errors) {
+    const match = IMPLEMENTATION_DETAIL.exec(error)
+    if (match && !imports.has(match[1])) {
+      imports.set(match[1], match[2])
+      learned = true
+    }
+  }
+  return learned
 }
 
 // maps compiler errors in a generated file to the entries and conformances
@@ -166,15 +180,7 @@ export async function generateModule(module: string, prepared: ReturnType<typeof
     output.swift = withImports(output.swift, prepared.imports)
     writeFileSync(file, output.swift)
     const errors = await typecheck([file])
-    let learned = false
-    for (const error of errors) {
-      const match = IMPLEMENTATION_DETAIL.exec(error)
-      if (match && !prepared.imports.has(match[1])) {
-        prepared.imports.set(match[1], match[2])
-        learned = true
-      }
-    }
-    if (learned) continue
+    if (learnImplementationDetails(errors, prepared.imports)) continue
     const found = rejected(output.swift, output, errors)
     if (!errors.length || pass === passes || !found.size) return { output, errors, file }
     for (const [key, reason] of found) exclude.set(key, reason)
