@@ -2403,8 +2403,47 @@ function viewGlue(
     }),
     '}',
   ])
+  // one $lists merger per view list prop, top-level so its temporaries can
+  // never collide with prop-named locals the way branch-inline merge did.
+  const mergers = contract.views.flatMap((view) =>
+    view.props.flatMap((prop) => {
+      if (prop.callback) return []
+      const elem = listElement(prop.nativeType)
+      if (elem === null) return []
+      const element = qualifiedType(elem)
+      return [
+        `private fun mergeLists${view.name}${cap(prop.name)}(reader: ${readerClass}, old: List<${element}>?, prop: String): List<${element}> {`,
+        `  if (reader.peek() != ${tokenClass}.BEGIN_OBJECT) error("lists.$prop: expected object")`,
+        '  reader.beginObject()',
+        '  var length = -1',
+        `  var set: List<Pair<Int, ${element}>>? = null`,
+        '  while (reader.hasNext()) {',
+        '    when (reader.selectName("length", "set")) {',
+        `      0 -> length = readInt(reader, "lists.$prop.length")`,
+        `      1 -> set = readList(reader, "lists.$prop.set") { itemReader, itemPath -> itemReader.beginArray(); val si = readInt(itemReader, itemPath); val sv = ${value(elem, 'itemReader', 'itemPath')}; itemReader.endArray(); si to sv }`,
+        '      else -> reader.skipValue()',
+        '    }',
+        '  }',
+        '  reader.endObject()',
+        '  if (length < 0) error("lists.$prop: needs length")',
+        '  val current = old ?: error("lists.$prop: no held list")',
+        '  val entries = set ?: emptyList()',
+        '  for (j in 1 until entries.size) require(entries[j].first > entries[j - 1].first) { "lists.$prop: set out of order" }',
+        `  val fresh = ArrayList<${element}>(length)`,
+        '  var s = 0',
+        '  for (i in 0 until length) {',
+        '    if (s < entries.size && entries[s].first == i) { fresh.add(entries[s].second); s++ }',
+        '    else if (i < current.size) fresh.add(current[i])',
+        '    else error("lists.$prop: missing index $i")',
+        '  }',
+        '  return fresh',
+        '}',
+      ]
+    })
+  )
   return [
     ...holders,
+    ...mergers,
     '',
     `@Keep class OneNativeSourceViews_${sourceId}: OneNativeSourceViewDispatch {`,
     `  override val contractHash = ${JSON.stringify(hash)}`,
@@ -2450,38 +2489,9 @@ function viewGlue(
         '              reader.beginObject()',
         '              while (reader.hasNext()) {',
         `                when (reader.selectName(${lists.map((prop) => JSON.stringify(prop.name)).join(', ')})) {`,
-        ...lists.flatMap((prop, listsIndex) => {
-          const elem = listElement(prop.nativeType)
-          if (elem === null) return []
-          const element = qualifiedType(elem)
-          return [
-            `                  ${listsIndex} -> {`,
-            '                    reader.beginObject()',
-            '                    var length = -1',
-            `                    var set: List<Pair<Int, ${element}>>? = null`,
-            '                    while (reader.hasNext()) {',
-            '                      when (reader.selectName("length", "set")) {',
-            `                        0 -> length = readInt(reader, "lists.${prop.name}.length")`,
-            `                        1 -> set = readList(reader, "lists.${prop.name}.set") { itemReader, itemPath -> itemReader.beginArray(); val si = readInt(itemReader, itemPath); val sv = ${value(elem, 'itemReader', 'itemPath')}; itemReader.endArray(); si to sv }`,
-            '                        else -> reader.skipValue()',
-            '                      }',
-            '                    }',
-            '                    reader.endObject()',
-            `                    if (length < 0) error("lists.${prop.name}: needs length")`,
-            `                    val old = held?.${prop.name} ?: error("lists.${prop.name}: no held list")`,
-            '                    val entries = set ?: emptyList()',
-            `                    for (j in 1 until entries.size) require(entries[j].first > entries[j - 1].first) { "lists.${prop.name}: set out of order" }`,
-            `                    val fresh = ArrayList<${element}>(length)`,
-            '                    var s = 0',
-            '                    for (i in 0 until length) {',
-            '                      if (s < entries.size && entries[s].first == i) { fresh.add(entries[s].second); s++ }',
-            '                      else if (i < old.size) fresh.add(old[i])',
-            `                      else error("lists.${prop.name}: missing index $i")`,
-            '                    }',
-            `                    ${prop.name} = fresh`,
-            '                  }',
-          ]
-        }),
+        ...lists.map((prop, listsIndex) =>
+          `                  ${listsIndex} -> ${prop.name} = mergeLists${view.name}${cap(prop.name)}(reader, held?.${prop.name}, ${JSON.stringify(prop.name)})`
+        ),
         '                  else -> reader.skipValue()',
         '                }',
         '              }',
