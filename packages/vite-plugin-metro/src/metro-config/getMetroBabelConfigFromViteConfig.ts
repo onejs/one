@@ -49,6 +49,10 @@ export function getMetroBabelConfigFromViteConfig(
     }
   }
 
+  // the dev loader accepts any numeric cache suffix. inlining one's per-process
+  // key here would invalidate every metro transform on each server restart.
+  if (config.command === 'serve') delete importMetaEnv.ONE_CACHE_KEY
+
   return {
     plugins: [
       [
