@@ -195,6 +195,7 @@ fun Resources(title: String, onStep: ((Int) -> Unit)? = null) {
       expect(glue).not.toContain(symbol)
     }
     expect(glue).toContain('import androidx.compose.runtime.Composable')
+    expect(glue).toContain('import dev.onejs.one.OneNativeSourceKeyedState')
     expect(glue).toContain('import dev.onejs.one.OneNativeSourceDispatch')
     expect(glue).toContain('title = readString(')
     const dated = nativeSourceContract(

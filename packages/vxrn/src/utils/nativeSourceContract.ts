@@ -1956,7 +1956,7 @@ export function renderKotlinSourceGlue(
   ])
   const source = [
     'import androidx.annotation.Keep',
-    ...(contract.views.length === 0 ? [] : ['import androidx.compose.runtime.Composable', 'import dev.onejs.one.OneNativeSourceViewDispatch']),
+    ...(contract.views.length === 0 ? [] : ['import androidx.compose.runtime.Composable', 'import dev.onejs.one.OneNativeSourceKeyedState', 'import dev.onejs.one.OneNativeSourceViewDispatch']),
     'import dev.onejs.one.OneNativeSourceDispatch',
     ...(needsEvents ? ['import dev.onejs.one.source.OneNativeSourceEvents'] : []),
     'import org.json.JSONArray',
