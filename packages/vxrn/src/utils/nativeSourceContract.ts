@@ -2193,10 +2193,16 @@ export function renderKotlinSourceGlue(
         const lines = [
           `        ${JSON.stringify(method.name)} -> {`,
         ]
+        const arityMessage = `${sourceId}.${module.name}.${method.name} expects ${method.parameters.length} arguments`
         method.parameters.forEach((parameter, index) => {
           lines.push(`          val arg${index} = ${value(parameter.nativeType, 'reader', JSON.stringify(`args[${index}]`))}`)
+          // positional args have no key loop to eat commas, so each arg but
+          // the last requires one here; a short array fails as an arity miss.
+          if (index < method.parameters.length - 1) {
+            lines.push(`          require(reader.hasNext()) { ${JSON.stringify(arityMessage)} }`)
+          }
         })
-        lines.push(`          require(!reader.hasNext()) { "${sourceId}.${module.name}.${method.name} expects ${method.parameters.length} arguments" }`)
+        lines.push(`          require(!reader.hasNext()) { ${JSON.stringify(arityMessage)} }`)
         lines.push('          reader.endArray()', '          reader.endDocument()')
         const call = `${qualified(module.name)}.${method.name}(${method.parameters.map((_, index) => `arg${index}`).join(', ')})`
         if (method.result === 'void') {

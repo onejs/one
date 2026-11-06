@@ -518,6 +518,17 @@ object Atlas : OneModule {
     expect(renderKotlinSourceGlue('K_atlas', kotlin).source).toContain('readDate(reader, "args[0]")')
   })
 
+  it('eats commas between positional module args', () => {
+    const kotlin = nativeSourceContract(
+      '/app/native/Atlas.kt',
+      'object Atlas : OneModule {\n    fun combine(first: Int, second: String): String = second\n}'
+    )
+    const glue = renderKotlinSourceGlue('K_atlas', kotlin).source
+    expect(glue).toContain('val arg0 = readInt(reader, "args[0]")')
+    expect(glue).toContain('require(reader.hasNext()) { "K_atlas.Atlas.combine expects 2 arguments" }')
+    expect(glue).toContain('val arg1 = readString(reader, "args[1]")')
+  })
+
   it('rejects unusable named types at their use site', () => {
     const cases = [
       ['struct Plain {\n  var x: Double\n}\nfinal class Atlas: PeachModule {\n  func pin(_ point: Plain) -> Double { 1 }\n}', /must conform to Codable/],
