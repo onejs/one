@@ -19,7 +19,7 @@ export function getViteMetroPluginOptions({
     Parameters<typeof metroPlugin>[0]
   >['defaultConfigOverrides']
   setupFile?: string | { native?: string; ios?: string; android?: string }
-}): Parameters<typeof metroPlugin>[0] {
+}): NonNullable<Parameters<typeof metroPlugin>[0]> {
   const require = createRequire(projectRoot + '/')
   try {
     require.resolve('@vxrn/vite-plugin-metro')
