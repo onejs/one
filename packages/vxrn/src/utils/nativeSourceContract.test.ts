@@ -213,8 +213,10 @@ struct Helper: View {
     ])
     const glue = renderSwiftSourceGlue('rn_host_app', [contract]).source
     expect(glue).toContain('@objc(OneNativeSourceViews_rn_host_app) @MainActor public final class OneNativeSourceViews_rn_host_app: NSObject, OneNativeSourceViewDispatch')
-    expect(glue).toContain('value: try decode(props["value"] ?? missing("props.value"), as: Double.self),')
-    expect(glue).toContain('onReset: (props["onReset"] as? Bool) == true ? { () -> Void in emit("onReset", args([])) } : nil')
+    expect(glue).toContain('let `value`: Double')
+    expect(glue).toContain('let props = try decode(Props_Level.self, from: Data(propsJson.utf8))')
+    expect(glue).toContain('value: props.`value`,')
+    expect(glue).toContain('onReset: props.`onReset` == true ? { () -> Void in emit("onReset", args([])) } : nil')
 
     const temp = mkdtempSync(join(tmpdir(), 'one-native-source-views-'))
     writeFileSync(join(temp, 'Level.d.swift.ts'), contract.declaration)

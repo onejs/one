@@ -1452,16 +1452,25 @@ export function renderSwiftSourceGlue(
   // builds an imported view from the host's json props; a callback reports its
   // arguments to the host as a json array.
   const renderViews = (): string[] => [
-    '  private static func missing(_ path: String) throws -> Any {',
-    '    throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "\\(path): required"])',
-    '  }',
+    // one pass over the props text: each view decodes its non-callback props
+    // straight into a struct, so the json is parsed once.
+    ...views.flatMap((view) => {
+      return [
+        `  private struct Props_${view.name}: Decodable {`,
+        // the host sends true for each optional callback the element passed
+        ...view.props
+          .filter((prop) => !prop.callback || prop.optional)
+          .map((prop) => `    let \`${prop.name}\`: ${prop.callback ? 'Bool?' : prop.nativeType}`),
+        '  }',
+      ]
+    }),
     '  static func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView {',
-    '    guard let props = try JSONSerialization.jsonObject(with: Data(propsJson.utf8)) as? [String: Any] else {',
-    '      throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "props must be a JSON object"])',
-    '    }',
     '    switch name {',
     ...views.flatMap((view) => [
       `    case ${JSON.stringify(view.name)}:`,
+      ...(view.props.some((prop) => !prop.callback || prop.optional)
+        ? [`      let props = try decode(Props_${view.name}.self, from: Data(propsJson.utf8))`]
+        : []),
       `      return AnyView(${view.name}(`,
       ...view.props.map((prop, index) => {
         const comma = index === view.props.length - 1 ? '' : ','
@@ -1470,10 +1479,9 @@ export function renderSwiftSourceGlue(
           const params = prop.callback.map((arg, n) => `a${n}: ${arg.nativeType}`).join(', ')
           const lambda = `{ (${params}) -> Void in emit(${key}, args([${prop.callback.map((_, n) => `a${n}`).join(', ')}])) }`
           // the host sends true for each callback the element passed
-          return `        ${prop.name}: ${prop.optional ? `(props[${key}] as? Bool) == true ? ${lambda} : nil` : lambda}${comma}`
+          return `        ${prop.name}: ${prop.optional ? `props.\`${prop.name}\` == true ? ${lambda} : nil` : lambda}${comma}`
         }
-        const input = prop.optional ? `props[${key}] ?? NSNull()` : `props[${key}] ?? missing(${JSON.stringify(`props.${prop.name}`)})`
-        return `        ${prop.name}: try decode(${input}, as: ${prop.nativeType}.self)${comma}`
+        return `        ${prop.name}: props.\`${prop.name}\`${comma}`
       }),
       '      ))',
     ]),
@@ -1548,12 +1556,14 @@ export function renderSwiftSourceGlue(
     '    if let date = (try? isoDateFractional.parse(text)) ?? (try? isoDate.parse(text)) { return date }',
     '    throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected ISO date")',
     '  }',
-    '  private static func decode<T: Decodable>(_ value: Any, as type: T.Type) throws -> T {',
-    '    let data = try JSONSerialization.data(withJSONObject: value, options: [.fragmentsAllowed])',
+    '  private static func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {',
     '    let decoder = JSONDecoder()',
     '    decoder.dateDecodingStrategy = .custom { try decodeDate($0) }',
     '    decoder.dataDecodingStrategy = .base64',
     '    return try decoder.decode(T.self, from: data)',
+    '  }',
+    '  private static func decode<T: Decodable>(_ value: Any, as type: T.Type) throws -> T {',
+    '    try decode(T.self, from: try JSONSerialization.data(withJSONObject: value, options: [.fragmentsAllowed]))',
     '  }',
     '  private static func encode(_ value: any Encodable) throws -> String {',
     '    let encoder = JSONEncoder()',
