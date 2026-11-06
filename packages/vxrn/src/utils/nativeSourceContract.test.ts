@@ -132,7 +132,7 @@ fun helper(x: Int) = x`
     ])
     const glue = renderKotlinSourceGlue('K_counter', contract).source
     expect(glue).toContain('class OneNativeSourceViews_K_counter: OneNativeSourceViewDispatch')
-    expect(glue).toContain('val reader = OneJsonReader(propsJson)')
+    expect(glue).toContain('val reader = OneJsonReader_K_counter(propsJson)')
     expect(glue).not.toContain('JSONObject(propsJson)')
     expect(glue).toContain('onPick = if (hasOnPick) ({ a0 -> emit("onPick"')
     expect(() =>
@@ -577,10 +577,10 @@ public struct Level: View {
 
     const kotlin = nativeSourceContract('/app/native/Atlas.kt', kotlinSource)
     const kotlinGlue = renderKotlinSourceGlue('K_atlas', kotlin).source
-    expect(kotlinGlue).toContain('private class OneJsonReader(private val text: String) {')
-    expect(kotlinGlue).toContain('private fun readPoint(reader: OneJsonReader, path: String): app.atlas.Point {')
+    expect(kotlinGlue).toContain('private class OneJsonReader_K_atlas(private val text: String) {')
+    expect(kotlinGlue).toContain('private fun readPoint(reader: OneJsonReader_K_atlas, path: String): app.atlas.Point {')
     expect(kotlinGlue).toContain('private fun encodePoint(value: app.atlas.Point): JSONObject {')
-    expect(kotlinGlue).toContain('private fun readDate(reader: OneJsonReader, path: String): java.util.Date {')
+    expect(kotlinGlue).toContain('private fun readDate(reader: OneJsonReader_K_atlas, path: String): java.util.Date {')
     expect(kotlinGlue).toContain('readPoint(reader, "args[0]")')
     expect(kotlinGlue).not.toContain('JSONArray(argsJson)')
     expect(kotlinGlue).toContain('JSONArray().put(dateToString(result))')

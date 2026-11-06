@@ -1651,6 +1651,11 @@ export function renderKotlinSourceGlue(
   if (contract.language !== 'kotlin') throw new Error('kotlin glue received a swift contract')
   if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(sourceId)) throw new Error(`invalid kotlin source id ${sourceId}`)
   const hash = createHash('sha256').update(JSON.stringify({ sourceId, contract: contract.hash })).digest('hex')
+  // private top-level classes share the package scope for redeclaration
+  // checks (unlike private functions, which the compiler file-mangles), so
+  // every glue file's reader carries the source id in its name.
+  const readerClass = `OneJsonReader_${sourceId}`
+  const tokenClass = `OneJsonToken_${sourceId}`
   const structsByName = new Map(contract.structs.map((entry) => [entry.name, entry]))
   const enumsByName = new Map(contract.enums.map((entry) => [entry.name, entry]))
   const qualified = (name: string) => contract.packageName ? `${contract.packageName}.${name}` : name
@@ -1704,7 +1709,7 @@ export function renderKotlinSourceGlue(
   // pass with no intermediate JSONObject.
   const value = (type: string, reader: string, path: string): string => {
     if (type.endsWith('?')) {
-      return `(if (${reader}.peek() == OneJsonToken.NULL) { ${reader}.nextNull(); null } else ${value(type.slice(0, -1), reader, path)})`
+      return `(if (${reader}.peek() == ${tokenClass}.NULL) { ${reader}.nextNull(); null } else ${value(type.slice(0, -1), reader, path)})`
     }
     if (type === 'String') return `readString(${reader}, ${path})`
     if (type === 'Boolean') return `readBoolean(${reader}, ${path})`
@@ -1748,8 +1753,8 @@ export function renderKotlinSourceGlue(
   }
   const cap = (name: string) => name.slice(0, 1).toUpperCase() + name.slice(1)
   const structHelpers = contract.structs.flatMap((struct) => [
-    `private fun read${struct.name}(reader: OneJsonReader, path: String): ${qualified(struct.name)} {`,
-    '  if (reader.peek() != OneJsonToken.BEGIN_OBJECT) error("$path: expected object")',
+    `private fun read${struct.name}(reader: ${readerClass}, path: String): ${qualified(struct.name)} {`,
+    `  if (reader.peek() != ${tokenClass}.BEGIN_OBJECT) error("$path: expected object")`,
     '  reader.beginObject()',
     // required fields start null and fail at the constructor when the key
     // never arrived; a required nullable needs its own flag so an explicit
@@ -1792,7 +1797,7 @@ export function renderKotlinSourceGlue(
     '}',
   ])
   const enumHelpers = contract.enums.flatMap((entry) => [
-    `private fun read${entry.name}(reader: OneJsonReader, path: String): ${qualified(entry.name)} {`,
+    `private fun read${entry.name}(reader: ${readerClass}, path: String): ${qualified(entry.name)} {`,
     '  val text = readString(reader, path)',
     `  return try { ${qualified(entry.name)}.valueOf(text) } catch (e: IllegalArgumentException) { error("$path: expected one of ${entry.cases.map((item) => item.name).join(', ')}") }`,
     '}',
@@ -1805,13 +1810,13 @@ export function renderKotlinSourceGlue(
     'import org.json.JSONArray',
     'import org.json.JSONObject',
     '',
-    'private enum class OneJsonToken { BEGIN_OBJECT, END_OBJECT, BEGIN_ARRAY, END_ARRAY, STRING, NUMBER, BOOLEAN, NULL }',
+    `private enum class ${tokenClass} { BEGIN_OBJECT, END_OBJECT, BEGIN_ARRAY, END_ARRAY, STRING, NUMBER, BOOLEAN, NULL }`,
     '',
     '// a forward-only json reader over the props text: values decode straight',
     '// into typed props in one pass with no intermediate JSONObject. pure',
     '// kotlin with no java or android imports, so the same glue compiles for',
     '// kotlin/wasm.',
-    'private class OneJsonReader(private val text: String) {',
+    `private class ${readerClass}(private val text: String) {`,
     '  private var pos = 0',
     '',
     '  private fun skipSpace() {',
@@ -1825,18 +1830,18 @@ export function renderKotlinSourceGlue(
     '',
     '  private fun fail(message: String): Nothing = throw IllegalStateException("$message near offset $pos")',
     '',
-    '  fun peek(): OneJsonToken {',
+    `  fun peek(): ${tokenClass} {`,
     '    skipSpace()',
     '    if (pos >= text.length) fail("unexpected end of json")',
     '    return when (text[pos]) {',
-    '      \'{\' -> OneJsonToken.BEGIN_OBJECT',
-    '      \'}\' -> OneJsonToken.END_OBJECT',
-    '      \'[\' -> OneJsonToken.BEGIN_ARRAY',
-    '      \']\' -> OneJsonToken.END_ARRAY',
-    '      \'"\' -> OneJsonToken.STRING',
-    '      \'t\', \'f\' -> OneJsonToken.BOOLEAN',
-    '      \'n\' -> OneJsonToken.NULL',
-    '      \'-\', in \'0\'..\'9\' -> OneJsonToken.NUMBER',
+    `      '{' -> ${tokenClass}.BEGIN_OBJECT`,
+    `      '}' -> ${tokenClass}.END_OBJECT`,
+    `      '[' -> ${tokenClass}.BEGIN_ARRAY`,
+    `      ']' -> ${tokenClass}.END_ARRAY`,
+    `      '"' -> ${tokenClass}.STRING`,
+    `      't', 'f' -> ${tokenClass}.BOOLEAN`,
+    `      'n' -> ${tokenClass}.NULL`,
+    `      '-', in '0'..'9' -> ${tokenClass}.NUMBER`,
     '      else -> fail("unexpected character")',
     '    }',
     '  }',
@@ -1952,7 +1957,7 @@ export function renderKotlinSourceGlue(
     '',
     '  fun skipValue() {',
     '    when (peek()) {',
-    '      OneJsonToken.BEGIN_OBJECT -> {',
+    `      ${tokenClass}.BEGIN_OBJECT -> {`,
     '        beginObject()',
     '        while (hasNext()) {',
     '          nextName()',
@@ -1960,17 +1965,17 @@ export function renderKotlinSourceGlue(
     '        }',
     '        endObject()',
     '      }',
-    '      OneJsonToken.BEGIN_ARRAY -> {',
+    `      ${tokenClass}.BEGIN_ARRAY -> {`,
     '        beginArray()',
     '        while (hasNext()) {',
     '          skipValue()',
     '        }',
     '        endArray()',
     '      }',
-    '      OneJsonToken.STRING -> nextString()',
-    '      OneJsonToken.NUMBER -> nextDouble()',
-    '      OneJsonToken.BOOLEAN -> nextBoolean()',
-    '      OneJsonToken.NULL -> nextNull()',
+    `      ${tokenClass}.STRING -> nextString()`,
+    `      ${tokenClass}.NUMBER -> nextDouble()`,
+    `      ${tokenClass}.BOOLEAN -> nextBoolean()`,
+    `      ${tokenClass}.NULL -> nextNull()`,
     '      else -> fail("unexpected value")',
     '    }',
     '  }',
@@ -1981,41 +1986,41 @@ export function renderKotlinSourceGlue(
     '  }',
     '}',
     '',
-    'private fun readString(reader: OneJsonReader, path: String): String {',
-    '  if (reader.peek() != OneJsonToken.STRING) error("$path: expected string")',
+    `private fun readString(reader: ${readerClass}, path: String): String {`,
+    `  if (reader.peek() != ${tokenClass}.STRING) error("$path: expected string")`,
     '  return reader.nextString()',
     '}',
-    'private fun readBoolean(reader: OneJsonReader, path: String): Boolean {',
-    '  if (reader.peek() != OneJsonToken.BOOLEAN) error("$path: expected boolean")',
+    `private fun readBoolean(reader: ${readerClass}, path: String): Boolean {`,
+    `  if (reader.peek() != ${tokenClass}.BOOLEAN) error("$path: expected boolean")`,
     '  return reader.nextBoolean()',
     '}',
-    'private fun readDouble(reader: OneJsonReader, path: String): Double {',
-    '  if (reader.peek() != OneJsonToken.NUMBER) error("$path: expected number")',
+    `private fun readDouble(reader: ${readerClass}, path: String): Double {`,
+    `  if (reader.peek() != ${tokenClass}.NUMBER) error("$path: expected number")`,
     '  val result = reader.nextDouble()',
     '  if (!result.isFinite()) error("$path: expected finite number")',
     '  return result',
     '}',
-    'private fun readInt(reader: OneJsonReader, path: String): Int {',
+    `private fun readInt(reader: ${readerClass}, path: String): Int {`,
     '  val result = readDouble(reader, path)',
     '  if (result % 1.0 != 0.0 || result < Int.MIN_VALUE || result > Int.MAX_VALUE) error("$path: expected Int")',
     '  return result.toInt()',
     '}',
-    'private fun readLong(reader: OneJsonReader, path: String): Long {',
+    `private fun readLong(reader: ${readerClass}, path: String): Long {`,
     '  val result = readDouble(reader, path)',
     '  if (result % 1.0 != 0.0 || result < -9007199254740991.0 || result > 9007199254740991.0) error("$path: expected safe Long")',
     '  return result.toLong()',
     '}',
     '// the host sends true for each callback the element passed; any other',
     '// value reads as absent.',
-    'private fun readOptBoolean(reader: OneJsonReader): Boolean {',
-    '  if (reader.peek() != OneJsonToken.BOOLEAN) {',
+    `private fun readOptBoolean(reader: ${readerClass}): Boolean {`,
+    `  if (reader.peek() != ${tokenClass}.BOOLEAN) {`,
     '    reader.skipValue()',
     '    return false',
     '  }',
     '  return reader.nextBoolean()',
     '}',
-    'private fun <T> readList(reader: OneJsonReader, path: String, read: (OneJsonReader, String) -> T): List<T> {',
-    '  if (reader.peek() != OneJsonToken.BEGIN_ARRAY) error("$path: expected array")',
+    `private fun <T> readList(reader: ${readerClass}, path: String, read: (${readerClass}, String) -> T): List<T> {`,
+    `  if (reader.peek() != ${tokenClass}.BEGIN_ARRAY) error("$path: expected array")`,
     '  reader.beginArray()',
     '  val result = mutableListOf<T>()',
     '  var index = 0',
@@ -2026,8 +2031,8 @@ export function renderKotlinSourceGlue(
     '  reader.endArray()',
     '  return result',
     '}',
-    'private fun <T> readMap(reader: OneJsonReader, path: String, read: (OneJsonReader, String) -> T): Map<String, T> {',
-    '  if (reader.peek() != OneJsonToken.BEGIN_OBJECT) error("$path: expected object")',
+    `private fun <T> readMap(reader: ${readerClass}, path: String, read: (${readerClass}, String) -> T): Map<String, T> {`,
+    `  if (reader.peek() != ${tokenClass}.BEGIN_OBJECT) error("$path: expected object")`,
     '  reader.beginObject()',
     '  val result = mutableMapOf<String, T>()',
     '  while (reader.hasNext()) {',
@@ -2041,7 +2046,7 @@ export function renderKotlinSourceGlue(
     // them, so swift, kotlin and javascript dates all parse everywhere.
     ...(needsDate
       ? [
-          'private fun readDate(reader: OneJsonReader, path: String): java.util.Date {',
+          `private fun readDate(reader: ${readerClass}, path: String): java.util.Date {`,
           '  val text = readString(reader, path)',
           '  for (pattern in arrayOf("yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'", "yyyy-MM-dd\'T\'HH:mm:ss\'Z\'")) {',
           '    try {',
@@ -2056,7 +2061,7 @@ export function renderKotlinSourceGlue(
       : []),
     ...(needsData
       ? [
-          'private fun readData(reader: OneJsonReader, path: String): ByteArray {',
+          `private fun readData(reader: ${readerClass}, path: String): ByteArray {`,
           '  try {',
           '    return android.util.Base64.decode(readString(reader, path), android.util.Base64.NO_WRAP)',
           '  } catch (decodeError: IllegalArgumentException) {',
@@ -2071,8 +2076,8 @@ export function renderKotlinSourceGlue(
     `@Keep class OneNativeSource_${sourceId}: OneNativeSourceDispatch {`,
     `  override val contractHash = ${JSON.stringify(hash)}`,
     '  override suspend fun call(module: String, method: String, argsJson: String): String {',
-    '    val reader = OneJsonReader(argsJson)',
-    '    if (reader.peek() != OneJsonToken.BEGIN_ARRAY) error("args must be a JSON array")',
+    `    val reader = ${readerClass}(argsJson)`,
+    `    if (reader.peek() != ${tokenClass}.BEGIN_ARRAY) error("args must be a JSON array")`,
     '    reader.beginArray()',
     '    return when (module) {',
     ...contract.modules.flatMap((module) => [
@@ -2139,13 +2144,15 @@ function viewGlue(
 ): string[] {
   const qualifier = contract.packageName ? `${contract.packageName}.` : ''
   const cap = (name: string) => name.slice(0, 1).toUpperCase() + name.slice(1)
+  const readerClass = `OneJsonReader_${sourceId}`
+  const tokenClass = `OneJsonToken_${sourceId}`
   return [
     `@Keep class OneNativeSourceViews_${sourceId}: OneNativeSourceViewDispatch {`,
     `  override val contractHash = ${JSON.stringify(hash)}`,
     '  @Composable',
     '  override fun Content(view: String, propsJson: String, emit: (String, String) -> Unit) {',
-    '    val reader = OneJsonReader(propsJson)',
-    '    if (reader.peek() != OneJsonToken.BEGIN_OBJECT) error("props must be a JSON object")',
+    `    val reader = ${readerClass}(propsJson)`,
+    `    if (reader.peek() != ${tokenClass}.BEGIN_OBJECT) error("props must be a JSON object")`,
     '    reader.beginObject()',
     '    when (view) {',
     ...contract.views.flatMap((view) => [
