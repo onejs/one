@@ -19,6 +19,11 @@ export declare function appIconPreviewResources(name: string | undefined): {
     android: string;
 };
 export declare function nativeAppDefines(app: NativeAppManifest | undefined): Record<string, string>;
+export interface NativeAppPatch {
+    platform: 'ios' | 'android';
+    file: string;
+    patch: (content: string) => string;
+}
 export interface NativeAppManifest {
     name: string;
     displayName?: string;
@@ -78,6 +83,7 @@ export interface NativeAppManifest {
         apsEnvironment?: 'development' | 'production';
     };
     pictureInPicture?: boolean;
+    patches?: NativeAppPatch[];
     updates?: {
         url?: string;
         runtimeVersion: string;

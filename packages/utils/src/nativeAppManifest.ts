@@ -65,6 +65,17 @@ export function nativeAppDefines(app: NativeAppManifest | undefined): Record<str
   return defines
 }
 
+// a library's edit to one generated native file, run at the end of prebuild.
+// file is a path suffix inside ios/ or android/ ("AppDelegate.swift",
+// "MyApp/Info.plist") and must match exactly one generated file. patch returns the new contents; it
+// must return its input unchanged when the edit is already there, and throw
+// when its anchor text is missing so a template change fails the prebuild.
+export interface NativeAppPatch {
+  platform: 'ios' | 'android'
+  file: string
+  patch: (content: string) => string
+}
+
 export interface NativeAppManifest {
   name: string
   displayName?: string
@@ -186,6 +197,7 @@ export interface NativeAppManifest {
   // the launcher, stamps the url and runtime version into the binary, and
   // writes the embedded manifest beside the release bundle. without url the
   // build launches its embedded bundle with updates disabled.
+  patches?: NativeAppPatch[]
   updates?: {
     url?: string
     runtimeVersion: string

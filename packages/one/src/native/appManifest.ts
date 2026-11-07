@@ -5,5 +5,6 @@ export {
   expoClientFromNativeApp,
   validateNativeApp,
   type NativeAppIcon,
+  type NativeAppPatch,
   type NativeAppManifest,
 } from '@vxrn/utils/nativeAppManifest'

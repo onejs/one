@@ -5,6 +5,7 @@ export {
   validateNativeApp,
   type NativeAppIcon,
   type NativeAppManifest,
+  type NativeAppPatch,
 } from './appManifest'
 export {
   ONE_PLATFORM_ENV,
