@@ -1,4 +1,4 @@
-export declare function getOptimizeDeps(mode: 'build' | 'serve'): {
+export declare function getOptimizeDeps(mode: 'build' | 'serve', root?: string): {
     needsInterop: string[];
     depsToOptimize: string[];
     optimizeDeps: {
