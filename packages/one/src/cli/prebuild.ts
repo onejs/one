@@ -85,7 +85,7 @@ export async function run(args: { platform?: string; 'no-install'?: boolean }) {
             // vxrn patches android after this returns. skip ios when xcrun is
             // absent and the command was not limited to ios, so android still finishes.
             if (args.platform !== 'ios' && !xcrunAvailable()) {
-              console.warn('[one] xcrun is not available, so iOS SDK generation was skipped')
+              console.warn('[one] the iOS SDK is not available (xcrun found no iphonesimulator SDK), so iOS SDK generation was skipped')
               return
             }
             await writeIosSdk(root)
@@ -96,10 +96,10 @@ export async function run(args: { platform?: string; 'no-install'?: boolean }) {
 
 function xcrunAvailable() {
   try {
-    execFileSync('xcrun', ['--version'], { stdio: 'ignore' })
+    execFileSync('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-path'], { stdio: 'ignore' })
     return true
-  } catch (error) {
-    return !(error instanceof Error && 'code' in error && error.code === 'ENOENT')
+  } catch {
+    return false
   }
 }
 
