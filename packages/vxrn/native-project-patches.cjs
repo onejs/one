@@ -521,6 +521,11 @@ cd -
  * Ensure patches are applied.
  */
 function addDepsPatchToAppBuildGradle(input) {
+  // enableEdgeToEdge() in MainActivity needs androidx.activity 1.8+, newer than the template resolves
+  const activityDependency = 'implementation "androidx.activity:activity:1.9.3"'
+  if (!input.includes(activityDependency)) {
+    input += `\ndependencies {\n    ${activityDependency}\n}\n`
+  }
   if (input.includes('[vxrn/one] ensure patches are applied')) {
     return input
   }

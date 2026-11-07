@@ -99,6 +99,29 @@ console.error = console.error || function() {};
 console.debug = console.debug || function() {};
 console.trace = console.trace || function() {};
 
+// forward console to the host's logging hook (logcat, os_log) like react native's console polyfill; levels: trace 0, info 1, warn 2, error 3
+if (globalThis.nativeLoggingHook) {
+  var forwardConsole = function(name, level) {
+    var original = console[name];
+    console[name] = function() {
+      var parts = [];
+      for (var i = 0; i < arguments.length; i++) {
+        var arg = arguments[i];
+        try { parts.push(typeof arg === 'string' ? arg : arg instanceof Error ? arg.stack || String(arg) : typeof arg === 'object' && arg !== null ? JSON.stringify(arg) : String(arg)); }
+        catch (e) { parts.push(String(arg)); }
+      }
+      globalThis.nativeLoggingHook(parts.join(' '), level);
+      return original.apply(console, arguments);
+    };
+  };
+  forwardConsole('trace', 0);
+  forwardConsole('log', 1);
+  forwardConsole('info', 1);
+  forwardConsole('debug', 1);
+  forwardConsole('warn', 2);
+  forwardConsole('error', 3);
+}
+
 // reanimated compat - these console methods must exist to avoid EXC_BAD_ACCESS crash
 console.assert = console.assert || function() {};
 console.clear = console.clear || function() {};

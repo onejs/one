@@ -135,19 +135,6 @@ void OneHostRuntime::initializeRuntime()
               return module;
             });
         bindNativeLogger(runtime, logJsMessage);
-        // hermes has no console of its own, so route it through the native logger
-        // before the bundle's own empty console stubs can claim the names
-        runtime.evaluateJavaScript(
-            std::make_shared<jsi::StringBuffer>(
-                "globalThis.console = {};"
-                "['log', 'info', 'warn', 'error', 'debug', 'trace'].forEach(function (name, level) {"
-                "  console[name] = function () {"
-                "    nativeLoggingHook(Array.prototype.map.call(arguments, function (value) {"
-                "      return typeof value === 'string' ? value : (value && value.stack) || String(value);"
-                "    }).join(' '), level);"
-                "  };"
-                "});"),
-            "one-host-console");
         auto provider = hasComponentProvider;
         bindHasComponentProvider(runtime, std::move(provider));
       });
