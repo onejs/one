@@ -36868,18 +36868,6 @@ export declare class ScopedAttributeContainer<S = unknown> extends SDKHandle {
 export type Slice_Regions<Base = unknown> = Array<SDKHandle>;
 /** typealias SocketNativeHandle = Int32 */
 export type SocketNativeHandle = number;
-/** class SocketPort */
-export declare class SocketPort extends Port {
-    readonly $type: {
-        "c:objc(cs)NSSocketPort": true;
-        "c:objc(cs)NSPort": true;
-        "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "reservedSpaceLength": true;
-        "isValid": true;
-    };
-}
 /**
  * @preconcurrency protocol SortComparator<Compared> : Hashable, Sendable
  * @availability iOS 15.0+

@@ -66,8 +66,8 @@ export function sdkModules(sdk = sdkPath()): string[] {
 }
 
 // graphs depend only on the sdk, so every checkout shares one cache
-function cacheDir(version: string) {
-  const dir = join(homedir(), '.cache', 'one', 'sdk-graphs', version)
+function cacheDir(version: string, sdk = 'iphonesimulator') {
+  const dir = join(homedir(), '.cache', 'one', 'sdk-graphs', sdk === 'iphonesimulator' ? version : `${version}-${sdk}`)
   mkdirSync(dir, { recursive: true })
   return dir
 }
@@ -78,10 +78,15 @@ export async function extractGraphs(
   modules: string[],
   { concurrency = 6, minimumIos = '18.0' } = {}
 ): Promise<{ extracted: string[]; failed: { module: string; error: string }[] }> {
-  const sdk = sdkPath()
-  const dir = cacheDir(sdkVersion())
-  const cached = new Set(readdirSync(dir).map((file) => file.split(/[.@]/)[0]))
-  const pending = modules.filter((module) => !cached.has(module))
+  const version = sdkVersion()
+  const targets = [
+    { dir: cacheDir(version), sdk: sdkPath('iphonesimulator'), target: `arm64-apple-ios${minimumIos}-simulator`, cached: new Set<string>() },
+    { dir: cacheDir(version, 'iphoneos'), sdk: sdkPath('iphoneos'), target: `arm64-apple-ios${minimumIos}`, cached: new Set<string>() },
+  ]
+  for (const t of targets) {
+    for (const file of readdirSync(t.dir)) t.cached.add(file.split(/[.@]/)[0])
+  }
+  const pending = modules.filter((module) => targets.some((t) => !t.cached.has(module)))
   const failed: { module: string; error: string }[] = []
   const extracted: string[] = []
   let next = 0
@@ -89,9 +94,12 @@ export async function extractGraphs(
     while (next < pending.length) {
       const module = pending[next++]
       try {
-        await run('xcrun', ['swift-symbolgraph-extract', '-module-name', module,
-          '-target', `arm64-apple-ios${minimumIos}-simulator`, '-sdk', sdk,
-          '-output-dir', dir, '-minimum-access-level', 'public'], { maxBuffer: 64 * 1024 * 1024 })
+        for (const t of targets) {
+          if (t.cached.has(module)) continue
+          await run('xcrun', ['swift-symbolgraph-extract', '-module-name', module,
+            '-target', t.target, '-sdk', t.sdk,
+            '-output-dir', t.dir, '-minimum-access-level', 'public'], { maxBuffer: 64 * 1024 * 1024 })
+        }
         extracted.push(module)
       } catch (error) {
         const text = error instanceof Error && 'stderr' in error ? String(error.stderr) : String(error)
@@ -105,18 +113,35 @@ export async function extractGraphs(
 
 // a module's own graph plus the extension graphs it declares on other modules
 // (`HealthKit@Foundation.symbols.json`), which hold members it adds to them. a
-// cross-import overlay has only extension graphs.
+// cross-import overlay has only extension graphs. symbols missing from the
+// device sdk (such as Foundation's simulator-only SocketPort) are dropped.
 export function loadGraph(module: string): Graph | null {
-  const dir = cacheDir(sdkVersion())
+  const version = sdkVersion()
+  const dir = cacheDir(version)
+  const deviceDir = cacheDir(version, 'iphoneos')
   const files = readdirSync(dir)
     .filter((file) => (file === `${module}.symbols.json` || file.startsWith(`${module}@`)) && file.endsWith('.symbols.json'))
-    .map((file) => join(dir, file))
   if (!files.length) return null
+  const dropped = new Set<string>()
   const graph: Graph = { module, symbols: [], relationships: [] }
   for (const file of files) {
-    const data = JSON.parse(readFileSync(file, 'utf8')) as { symbols: Symbol[]; relationships?: Relationship[] }
-    graph.symbols.push(...data.symbols)
+    const data = JSON.parse(readFileSync(join(dir, file), 'utf8')) as { symbols: Symbol[]; relationships?: Relationship[] }
+    const deviceFile = join(deviceDir, file)
+    const deviceSymbols = existsSync(deviceFile)
+      ? (JSON.parse(readFileSync(deviceFile, 'utf8')) as { symbols: Symbol[] }).symbols
+      : []
+    const deviceIds = deviceSymbols.length ? new Set(deviceSymbols.map((s) => s.identifier.precise)) : null
+    for (const symbol of data.symbols) {
+      if (deviceIds && !deviceIds.has(symbol.identifier.precise)) {
+        dropped.add(symbol.identifier.precise)
+      } else {
+        graph.symbols.push(symbol)
+      }
+    }
     graph.relationships.push(...(data.relationships ?? []))
+  }
+  if (dropped.size) {
+    graph.relationships = graph.relationships.filter((r) => !dropped.has(r.source) && !dropped.has(r.target))
   }
   addInheritedInitializers(graph)
   return graph
