@@ -114,7 +114,7 @@ export type DerivedFactoryParameter = {
   field: string
   label: string
   type: string
-  kind: 'number' | 'boolean' | 'enum'
+  kind: 'number' | 'boolean' | 'string' | 'namespace' | 'enum'
   defaultValue?: string
   value?: DerivedValue
 }
@@ -153,6 +153,11 @@ export const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number
       if (parameter.defaultValue !== undefined && !/^(?:true|false)$/.test(parameter.defaultValue)) return
       return { ...base, kind: 'boolean', ...(parameter.defaultValue !== undefined ? { defaultValue: parameter.defaultValue } : {}) }
     }
+    // an identity, such as NavigationTransition.zoom(sourceID:in:), crosses as a string
+    // and its namespace is one's shared OneNativeNamespace, as matchedTransitionSource's is.
+    if (parameter.type === 'some Hashable' && parameter.defaultValue === undefined)
+      return { ...base, kind: 'string' }
+    if (parameter.type === 'SwiftUICore.Namespace.ID') return { ...base, kind: 'namespace' }
     const value = valueOf(parameter.type, false, depth + 1)
     if (value?.kind !== 'enum' || value.optional) return
     if (parameter.defaultValue !== undefined &&

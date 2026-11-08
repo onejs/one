@@ -6834,7 +6834,32 @@ if #available(iOS 27, *) { self.navigationTransition(.crossFade) } else { self }
 self
 #endif
 
-    default: let _ = preconditionFailure("invalid navigationTransition: \(value)")
+    default:
+      let record = OneNativeSDKRecord(value, "navigationTransition")
+      switch record.kind {
+      case "automatic":
+        switch record.overload([(labels: [], required: [])], chain: []) {
+        case 0: if #available(iOS 18, *) { self.navigationTransition(.automatic) } else { self }
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      case "crossFade":
+        switch record.overload([(labels: [], required: [])], chain: []) {
+        case 0:
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.navigationTransition(.crossFade) } else { self }
+#else
+self
+#endif
+
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      case "zoom":
+        switch record.overload([(labels: ["sourceID"], required: ["sourceID"])], chain: []) {
+        case 0: if #available(iOS 18, *) { self.navigationTransition(.zoom(sourceID: record.string("sourceID")!, in: OneNativeNamespace.id)) } else { self }
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+      }
     }
   }
 

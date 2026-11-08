@@ -1205,8 +1205,14 @@ overload, `navigationBarTitleDisplayMode`, `navigationSubtitle`, `toolbarRole`,
 rest of the generated modifier set. `ToolbarItem` and `ToolbarItemGroup` take
 `swiftStyle` too, applied to their content.
 
-The stack is the bar and the content, not a navigation path: `path`, `navigationDestination`
-and `NavigationLink` are not bound, so pushing and popping screens is still React's.
+The stack holds no navigation path: `path`, `navigationDestination(for:)` and `NavigationLink`
+are not bound. A view can still push one screen with the `navigationDestination`
+`ViewSlot`, whose `isPresented` binding pushes the slot's content and turns false when the
+user goes back. The pushed screen zooms out of a tapped view when that view takes
+`matchedTransitionSource: { id }` and the pushed content takes
+`navigationTransition: { kind: 'zoom', sourceID: id }`; both use One's shared namespace.
+`tests/native-features/app/one-native-navigation-zoom.tsx` pushes a React Native detail
+this way.
 Customizable toolbars are not bound either: `ToolbarItem(id:)`, `toolbar(id:)`,
 `defaultCustomization`, and `toolbarCustomizationBehavior` need a toolbar customization
 protocol the way `One.iOS.TabView` carries `TabViewCustomization`.

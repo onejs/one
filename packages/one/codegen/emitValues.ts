@@ -52,8 +52,11 @@ const chainForm = (method: DerivedFactory) =>
       : 'object'
 
 const parameterSwift = (parameter: DerivedFactoryParameter, record: string, key: string, context: string) => {
+  if (parameter.kind === 'namespace') return 'OneNativeNamespace.id'
   const nested = `${context} + ${swiftString(`.${key}`)}`
-  const read = parameter.kind === 'number'
+  const read = parameter.kind === 'string'
+    ? `${record}.string(${swiftString(key)})`
+    : parameter.kind === 'number'
     ? parameter.type === 'Swift.Int'
       ? `${record}.integer(${swiftString(key)})`
       : parameter.type === 'CoreFoundation.CGFloat' || parameter.type === 'Swift.Float'
@@ -74,8 +77,14 @@ export const callArguments = (factory: DerivedFactory, record: string, context: 
 
 const swiftSet = (items: readonly string[]) => `[${items.map(swiftString).join(', ')}]`
 
-const overloadSwift = (parameters: readonly DerivedFactoryParameter[]) =>
-  `(labels: ${swiftSet(parameters.map((parameter) => parameter.field))}, required: ${swiftSet(parameters.filter((parameter) => parameter.defaultValue === undefined).map((parameter) => parameter.field))})`
+// the parameters javascript passes; a namespace is filled in natively.
+const givenParameters = (parameters: readonly DerivedFactoryParameter[]) =>
+  parameters.filter((parameter) => parameter.kind !== 'namespace')
+
+const overloadSwift = (all: readonly DerivedFactoryParameter[]) => {
+  const parameters = givenParameters(all)
+  return `(labels: ${swiftSet(parameters.map((parameter) => parameter.field))}, required: ${swiftSet(parameters.filter((parameter) => parameter.defaultValue === undefined).map((parameter) => parameter.field))})`
+}
 
 // kinds a record may name, each with its overloads: the bare case first, then factories.
 const kindsOf = (cases: readonly { name: string; ios: number }[], factories: readonly DerivedFactory[]) => {
@@ -232,6 +241,12 @@ struct OneNativeSDKRecord {
     return integer
   }
 
+  func string(_ key: String) -> String? {
+    guard let raw = fields[key] else { return nil }
+    guard let text = raw as? String else { preconditionFailure("invalid \\(context).\\(key)") }
+    return text
+  }
+
   func boolean(_ key: String) -> Bool? {
     guard let raw = fields[key] else { return nil }
     guard let number = raw as? NSNumber, CFGetTypeID(number) == CFBooleanGetTypeID() else {
@@ -255,7 +270,7 @@ const parameterTS = (parameter: DerivedFactoryParameter) =>
   parameter.kind === 'enum' ? `SDK${valueKey(parameter.value!.type)}Value` : parameter.kind
 
 export const fieldsTS = (parameters: readonly DerivedFactoryParameter[]) =>
-  parameters.map((parameter) => `${parameter.field}${parameter.defaultValue === undefined ? '' : '?'}: ${parameterTS(parameter)}`)
+  givenParameters(parameters).map((parameter) => `${parameter.field}${parameter.defaultValue === undefined ? '' : '?'}: ${parameterTS(parameter)}`)
 
 // the record union for a set of cases and factories, with chained methods on every member.
 export function recordTS(cases: readonly { name: string }[], factories: readonly DerivedFactory[], chain: readonly DerivedFactory[]) {
@@ -280,7 +295,7 @@ export type SDK${key}Value = ${names ? `${names} | ` : ''}SDK${key}Record`
 
 type ShapeParameter = { field: string; kind: string; optional?: true; integer?: true; value?: string }
 export const shapeParameters = (parameters: readonly DerivedFactoryParameter[]): ShapeParameter[] =>
-  parameters.map((parameter) => ({
+  givenParameters(parameters).map((parameter) => ({
     field: parameter.field,
     kind: parameter.kind,
     ...(parameter.defaultValue !== undefined ? { optional: true as const } : {}),
@@ -315,6 +330,8 @@ function checkSDKParameter(value: unknown, parameter: SDKValueParameter, context
       throw new Error(context + (parameter.integer ? ' must be an integer' : ' must be finite'))
   } else if (parameter.kind === 'boolean') {
     if (typeof value !== 'boolean') throw new Error(context + ' must be a boolean')
+  } else if (parameter.kind === 'string') {
+    if (typeof value !== 'string') throw new Error(context + ' must be a string')
   } else checkSDKValue(value, parameter.value!, context)
 }
 

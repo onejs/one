@@ -2181,7 +2181,12 @@ export interface OneNativeStyle {
         onChange: (value: string) => void;
     }>;
     navigationTitleWithText?: string;
-    navigationTransition?: SDKNavigationTransition;
+    navigationTransition?: SDKNavigationTransition | Readonly<{
+        kind: 'automatic' | 'crossFade';
+    }> | Readonly<{
+        kind: 'zoom';
+        sourceID: string;
+    }>;
     navigationViewStyle?: SDKNavigationViewStyle;
     offerCodeRedemption?: Readonly<{
         value: boolean;

@@ -9924,6 +9924,26 @@
           "name": "crossFade",
           "ios": 27
         }
+      ],
+      "factories": [
+        {
+          "name": "zoom",
+          "ios": 18,
+          "parameters": [
+            {
+              "field": "sourceID",
+              "label": "sourceID",
+              "type": "some Hashable",
+              "kind": "string"
+            },
+            {
+              "field": "in",
+              "label": "in",
+              "type": "SwiftUICore.Namespace.ID",
+              "kind": "namespace"
+            }
+          ]
+        }
       ]
     },
     {
