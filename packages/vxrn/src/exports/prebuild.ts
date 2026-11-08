@@ -134,11 +134,6 @@ Android:
 // regenerated file it already compiled must be the same file, not equal bytes.
 // what pod install and xcodebuild wrote stays too, so both resume incrementally.
 function reuseUnchangedIosProject(previous: string, next: string) {
-  for (const name of ['Pods', 'Podfile.lock', 'build', '.xcode.env.local']) {
-    const from = path.join(previous, name)
-    const to = path.join(next, name)
-    if (existsSync(from) && !existsSync(to)) renameSync(from, to)
-  }
   for (const entry of readdirSync(next, { recursive: true, withFileTypes: true })) {
     if (!entry.isFile()) continue
     const file = path.join(entry.parentPath, entry.name)
@@ -147,6 +142,11 @@ function reuseUnchangedIosProject(previous: string, next: string) {
     if (lstatSync(old).size !== lstatSync(file).size) continue
     if (!readFileSync(old).equals(readFileSync(file))) continue
     renameSync(old, file)
+  }
+  for (const name of ['Pods', 'Podfile.lock', 'build']) {
+    const from = path.join(previous, name)
+    const to = path.join(next, name)
+    if (existsSync(from) && !existsSync(to)) renameSync(from, to)
   }
   rmSync(previous, { recursive: true, force: true })
 }
