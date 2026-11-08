@@ -894,7 +894,7 @@ enum OneWidgetContract {
   static let appGroup = ${JSON.stringify(widgets.appGroup)}
   static let kind = ${JSON.stringify(widgets.kind)}
   static let dataKey = "one.widget.data"
-  static let actionsKey = "one.widget.actions"
+  static let actionKeyPrefix = "one.widget.action."
 
   struct Data: Codable {
     let title: String
@@ -934,12 +934,36 @@ struct OneWidgetNode: Decodable {
   let style: Style?
   let children: [OneWidgetNode]?
   let systemName: String?
-  let value: Double?
+  let value: Value?
   let total: Double?
   let fill: String?
   let cornerRadius: Double?
   let url: String?
   let action: String?
+
+  enum Value: Decodable {
+    case number(Double)
+    case string(String)
+
+    var number: Double? {
+      if case .number(let value) = self { return value }
+      return nil
+    }
+
+    var string: String? {
+      if case .string(let value) = self { return value }
+      return nil
+    }
+
+    init(from decoder: Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let number = try? container.decode(Double.self) {
+        self = .number(number)
+      } else {
+        self = .string(try container.decode(String.self))
+      }
+    }
+  }
 
   struct Style: Decodable {
     let color: String?
@@ -973,19 +997,14 @@ struct OneWidgetButtonIntent: AppIntent {
 
   func perform() async throws -> some IntentResult {
     if let defaults = UserDefaults(suiteName: OneWidgetContract.appGroup) {
-      var pending = defaults.data(forKey: OneWidgetContract.actionsKey).flatMap {
-        try? JSONDecoder().decode([OneWidgetContract.Action].self, from: $0)
-      } ?? []
-      pending.append(
-        OneWidgetContract.Action(
-          id: UUID().uuidString,
-          action: action,
-          value: value,
-          timestampMs: Date().timeIntervalSince1970 * 1000
-        )
+      let item = OneWidgetContract.Action(
+        id: UUID().uuidString,
+        action: action,
+        value: value,
+        timestampMs: Date().timeIntervalSince1970 * 1000
       )
-      if let encoded = try? JSONEncoder().encode(pending) {
-        defaults.set(encoded, forKey: OneWidgetContract.actionsKey)
+      if let encoded = try? JSONEncoder().encode(item) {
+        defaults.set(encoded, forKey: OneWidgetContract.actionKeyPrefix + item.id)
       }
       CFNotificationCenterPostNotification(
         CFNotificationCenterGetDarwinNotifyCenter(),
@@ -1092,10 +1111,10 @@ struct OneWidgetRendered: View {
             .font(.system(size: CGFloat(node.style?.fontSize ?? 20), weight: weight))
         }
       case "progress":
-        ProgressView(value: node.value ?? 0, total: node.total ?? 1)
+        ProgressView(value: node.value?.number ?? 0, total: node.total ?? 1)
           .tint(oneColor(node.style?.color))
       case "gauge":
-        Gauge(value: node.value ?? 0, in: 0...(node.total ?? 1)) { EmptyView() }
+        Gauge(value: node.value?.number ?? 0, in: 0...(node.total ?? 1)) { EmptyView() }
           .gaugeStyle(.accessoryCircular)
           .tint(oneColor(node.style?.color))
       case "circle":
@@ -1115,7 +1134,7 @@ struct OneWidgetRendered: View {
         }
       case "button":
         if let action = node.action {
-          Button(intent: OneWidgetButtonIntent(action: action, value: node.text)) {
+          Button(intent: OneWidgetButtonIntent(action: action, value: node.value?.string)) {
             ForEach(Array((node.children ?? []).enumerated()), id: \\.offset) { _, child in
               OneWidgetRendered(node: child)
             }
@@ -1308,6 +1327,7 @@ class OneWidgetsBridge: RCTEventEmitter {
   private var tokenTasks: [String: Task<Void, Never>] = [:]
   private var isObservingEvents = false
   private var foregroundObserver: NSObjectProtocol?
+  private let actionLock = NSLock()
 
   override func supportedEvents() -> [String]! { ["oneLiveActivityPushToken", "oneWidgetAction"] }
 
@@ -1370,13 +1390,20 @@ class OneWidgetsBridge: RCTEventEmitter {
   }
 
   private func drainStoredActions() -> [[String: Any]] {
-    guard let defaults = UserDefaults(suiteName: OneWidgetContract.appGroup),
-          let data = defaults.data(forKey: OneWidgetContract.actionsKey),
-          let actions = try? JSONDecoder().decode([OneWidgetContract.Action].self, from: data),
-          !actions.isEmpty else {
+    actionLock.lock()
+    defer { actionLock.unlock() }
+    guard let defaults = UserDefaults(suiteName: OneWidgetContract.appGroup) else {
       return []
     }
-    defaults.removeObject(forKey: OneWidgetContract.actionsKey)
+    var actions: [OneWidgetContract.Action] = []
+    for key in defaults.dictionaryRepresentation().keys where key.hasPrefix(OneWidgetContract.actionKeyPrefix) {
+      guard let data = defaults.data(forKey: key) else { continue }
+      defaults.removeObject(forKey: key)
+      if let action = try? JSONDecoder().decode(OneWidgetContract.Action.self, from: data) {
+        actions.append(action)
+      }
+    }
+    actions.sort { $0.timestampMs < $1.timestampMs }
     return actions.map { action in
       [
         "id": action.id,

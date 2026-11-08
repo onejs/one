@@ -66,7 +66,7 @@ type Node = {
   style?: WidgetStyle
   children?: Node[]
   systemName?: string
-  value?: number
+  value?: number | string
   total?: number
   fill?: string
   cornerRadius?: number
@@ -229,7 +229,7 @@ function node(view: ReactNode): Node | null {
     return {
       type,
       action: buttonProps.action,
-      text: buttonProps.value,
+      value: buttonProps.value,
       style,
       children: children(content),
     }

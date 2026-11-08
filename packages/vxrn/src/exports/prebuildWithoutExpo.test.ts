@@ -2226,8 +2226,13 @@ describe('ios widgets', () => {
     // the shared contract carries the serialized layouts and interactive actions
     const contract = readGenerated('MyApp/OneWidgetContract.swift')
     expect(contract.match(/let layout: String\?/g)).toHaveLength(2)
-    expect(contract).toContain('static let actionsKey = "one.widget.actions"')
+    expect(contract).toContain('static let actionKeyPrefix = "one.widget.action."')
     expect(contract).toContain('struct Action: Codable')
+    expect(rendered).toContain('OneWidgetContract.actionKeyPrefix + item.id')
+    expect(rendered).toContain('OneWidgetButtonIntent(action: action, value: node.value?.string)')
+    expect(readGenerated('MyApp/OneWidgetsBridge.swift')).toContain(
+      'key.hasPrefix(OneWidgetContract.actionKeyPrefix)'
+    )
   }, 180000)
 
   it('emits configured widget families and App Intents spoken dialog metadata', async () => {

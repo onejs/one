@@ -106,7 +106,7 @@ describe('WidgetUI payload', () => {
             {
               type: 'button',
               action: 'toggle-step',
-              text: 'step-1',
+              value: 'step-1',
               style: { padding: 4 },
               children: [{ type: 'text', text: 'Complete step' }],
             },
