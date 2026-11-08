@@ -1025,6 +1025,15 @@ export async function createNativeDevEngine(
     // from @react-navigation/native which doesn't export it). metro silently shims
     // these — rolldown needs an explicit opt-in.
     shimMissingExports: true,
+    onwarn(warning, defaultHandler) {
+      if (
+        warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
+        warning.message.includes('use client')
+      ) {
+        return
+      }
+      defaultHandler(warning)
+    },
 
     moduleTypes: {
       '.js': 'jsx',
@@ -1176,6 +1185,7 @@ try {
     // is only needed when the runtime requests a reload.
     rebuildStrategy: 'never',
     watch: {
+      skipWrite: true,
       exclude: ['**/node_modules/.test/**', '**/.git/**'],
     },
   })
@@ -1399,6 +1409,7 @@ export async function buildNativeBundle(
     : VIRTUAL_NATIVE_ENTRY
 
   const result = await build({
+    write: false,
     input: buildEntry,
     cwd: root,
     platform: 'neutral',
@@ -1414,6 +1425,15 @@ export async function buildNativeBundle(
       lazyBarrel: false,
     },
     shimMissingExports: true,
+    onwarn(warning, defaultHandler) {
+      if (
+        warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
+        warning.message.includes('use client')
+      ) {
+        return
+      }
+      defaultHandler(warning)
+    },
     moduleTypes: { '.js': 'jsx' },
     plugins: [
       ...(entryFile ? [] : [nativeVirtualEntryPlugin(root, { dev, platform }).plugin]),
