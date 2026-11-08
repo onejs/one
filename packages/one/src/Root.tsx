@@ -21,6 +21,7 @@ import { FlagsContext } from './router/FlagsContext'
 import { getResolvedLinking } from './router/linkingConfig'
 import { handleNavigationContainerStateChange } from './router/router'
 import { ServerLocationContext } from './router/serverLocationContext'
+import { LaunchScreenRelease } from './router/LaunchScreenRelease'
 import { useInitializeOneRouter } from './router/useInitializeOneRouter'
 import { useViteRoutes } from './router/useViteRoutes'
 import type { GlobbedRouteImports } from './types'
@@ -168,6 +169,7 @@ export function Root(props: RootProps) {
                 <RootErrorBoundary>
                   <Component />
                 </RootErrorBoundary>
+                <LaunchScreenRelease />
               </>
             </ServerLocationContext.Provider>
           </UpstreamNavigationContainer>
