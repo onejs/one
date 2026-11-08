@@ -6,13 +6,13 @@
 // their ABI and signature-based ids match tables built from another SDK. output
 // is cached per sdk and generator, so a second prebuild only copies files.
 import { createHash } from 'node:crypto'
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
 import { homedir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { emitModule, typeUsrs, type Entry, type ModuleOutput } from './emit'
 import { emitFacade } from './emit-ts'
-import { CXX_INTEROP, generateModule, prepare, SDKS } from './generate'
+import { CXX_INTEROP, generateModule, learnImplementationDetails, prepare, SDKS, typecheck, withImports } from './generate'
 import { extractGraphs, loadGraph, sdkModules, sdkPath, sdkVersion } from './graph'
 import { generatorFingerprint } from './fingerprint'
 import { minimumVersion } from '../../schema.json'
@@ -144,9 +144,28 @@ function openCache() {
   const types = async (module: string, log: (message: string) => void) => {
     if (existsSync(typesFile(module))) return
     const { skipped } = await table(module, log)
-    const { bridge, symbols } = await ready()
+    const { bridge, symbols, imports } = await ready()
     const exclude = new Map(skipped.filter((s) => s.reason.startsWith('compile:')).map((s) => [s.usr, s.reason]))
-    writeFileSync(typesFile(module), emitModule(loadGraph(module)!, bridge, symbols, exclude, { conformancesOnly: true, table: tableName(module) }).swift)
+    const emitTypes = () => withImports(emitModule(loadGraph(module)!, bridge, symbols, exclude, { conformancesOnly: true, table: tableName(module) }).swift, imports)
+    // validate a temp file and publish atomically, so a failure or kill never
+    // leaves an unvalidated file for the existsSync fast path to serve
+    const tmp = `${typesFile(module)}.${process.pid}.tmp.swift`
+    try {
+      writeFileSync(tmp, emitTypes())
+      // a cached table teaches nothing, so the conformances learn their own
+      // implementation-detail imports rather than trusting earlier tables
+      for (;;) {
+        const errors = await typecheck([tmp])
+        if (!learnImplementationDetails(errors, imports)) {
+          if (errors.length) throw new Error(`[one] ${module} conformances do not compile:\n${errors.join('\n').replaceAll(tmp, typesFile(module))}`)
+          renameSync(tmp, typesFile(module))
+          return
+        }
+        writeFileSync(tmp, emitTypes())
+      }
+    } finally {
+      rmSync(tmp, { force: true })
+    }
   }
   return { known, table, types, tableFile, typesFile, facadeFile, generation }
 }
