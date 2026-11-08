@@ -1286,6 +1286,65 @@ describe('ios scene lifecycle', () => {
     expect(sceneDelegate).toContain('RCTLinkingManager.scene(scene, continue: userActivity)')
   })
 
+  it('runs native.app.patches on the generated files and fails on a missing anchor', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-patches-'))
+    const replaceOnce = (from: string, to: string) => (content: string) => {
+      if (content.includes(to)) return content
+      if (!content.includes(from)) throw new Error(`missing anchor: ${from}`)
+      return content.replace(from, to)
+    }
+    const patches = [
+      {
+        platform: 'ios' as const,
+        file: 'AppDelegate.swift',
+        patch: replaceOnce(
+          'Bundle.main.url(forResource: "main", withExtension: "jsbundle")',
+          'HotUpdater.bundleURL()'
+        ),
+      },
+      {
+        platform: 'ios' as const,
+        file: 'MyApp/Info.plist',
+        patch: replaceOnce('<dict>', '<dict>\n\t<key>HotUpdaterChannel</key>\n\t<string>production</string>'),
+      },
+      {
+        platform: 'android' as const,
+        file: 'MainApplication.kt',
+        patch: replaceOnce(
+          'getDefaultReactHost(\n      context = applicationContext,',
+          'getDefaultReactHost(\n      context = applicationContext,\n      jsBundleFilePath = HotUpdater.getJSBundleFile(applicationContext),'
+        ),
+      },
+    ]
+    await generateForPlatform(workspaceRoot, 'ios', { ...app, patches }, join(output, 'ios'))
+    await generateForPlatform(workspaceRoot, 'android', { ...app, patches }, join(output, 'android'))
+    expect(readFileSync(join(output, 'ios', 'MyApp', 'AppDelegate.swift'), 'utf8')).toContain(
+      'HotUpdater.bundleURL()'
+    )
+    expect(readFileSync(join(output, 'ios', 'MyApp', 'Info.plist'), 'utf8')).toContain(
+      'HotUpdaterChannel'
+    )
+    expect(
+      readFileSync(
+        join(output, 'android', 'app/src/main/java/dev/one/myapp/MainApplication.kt'),
+        'utf8'
+      )
+    ).toContain('jsBundleFilePath = HotUpdater.getJSBundleFile(applicationContext)')
+
+    await expect(
+      generateForPlatform(
+        workspaceRoot,
+        'ios',
+        {
+          ...app,
+          patches: [{ platform: 'ios', file: 'AppDelegate.swift', patch: replaceOnce('nope-anchor', 'replacement-text') }],
+        },
+        join(output, 'ios2')
+      )
+    ).rejects.toThrow('missing anchor')
+  })
+
   it('bundles native.app fonts into both platforms from the real template', async () => {
     const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
     const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-fonts-'))

@@ -2972,6 +2972,36 @@ export const generateForPlatform = async (
   if (platform === 'ios') await generateSwiftPackages({ root, dest })
   if (platform === 'android') generateAndroidIconForwarder(dest, app)
   if (platform === 'android') await generateKotlinSources({ root, dest })
+  applyAppPatches(dest, platform, app)
+}
+
+function listFiles(dir: string): string[] {
+  return readdirSync(dir, { withFileTypes: true }).flatMap((entry) =>
+    entry.isDirectory() ? listFiles(path.join(dir, entry.name)) : [path.join(dir, entry.name)]
+  )
+}
+
+function applyAppPatches(dest: string, platform: 'ios' | 'android', app: NativeAppManifest) {
+  const patches = (app.patches ?? []).filter((entry) => entry.platform === platform)
+  if (patches.length === 0) return
+  const files = listFiles(dest)
+  for (const { file, patch } of patches) {
+    const matches = files.filter((candidate) => {
+      const relative = path.relative(dest, candidate).split(path.sep).join('/')
+      return relative === file || relative.endsWith('/' + file)
+    })
+    if (matches.length !== 1) {
+      throw new Error(
+        `[vxrn] native.app.patches: "${file}" matched ${matches.length} ${platform} files, expected exactly one`
+      )
+    }
+    const before = readFileSync(matches[0], 'utf8')
+    const after = patch(before)
+    if (patch(after) !== after) {
+      throw new Error(`[vxrn] native.app.patches: patch for "${file}" is not idempotent`)
+    }
+    writeFileSync(matches[0], after)
+  }
 }
 
 // an imported kotlin source can reach past the base ui/foundation/material3

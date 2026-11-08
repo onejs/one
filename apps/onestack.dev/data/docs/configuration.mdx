@@ -358,6 +358,52 @@ export default {
 
 See the [iOS Native Guide](/docs/guides-ios-native) for the full setup.
 
+### native.app.patches
+
+A list of file patches that `one prebuild` runs on the generated `ios/` and `android/` files, so a library can change them without the edit being lost on the next prebuild. Each patch names a `platform`, a `file` (a path suffix that must match exactly one generated file, like `AppDelegate.swift` or `MyApp/Info.plist`) and a `patch` function that takes the file contents and returns the new contents.
+
+A patch must return its input unchanged when its edit is already present, and throw when its anchor text is missing, so a template change fails the prebuild instead of silently dropping the edit. One calls each patch twice and fails if the second result differs.
+
+```tsx fileName=vite.config.ts
+const replaceOnce = (from: string, to: string) => (content: string) => {
+  if (content.includes(to)) return content
+  if (!content.includes(from)) throw new Error(`missing anchor: ${from}`)
+  return content.replace(from, to)
+}
+
+export default {
+  plugins: [
+    one({
+      native: {
+        app: {
+          name: 'OneApp',
+          ios: { bundleId: 'com.example.oneapp' },
+          android: { applicationId: 'com.example.oneapp' },
+          patches: [
+            {
+              platform: 'ios',
+              file: 'AppDelegate.swift',
+              patch: replaceOnce(
+                'Bundle.main.url(forResource: "main", withExtension: "jsbundle")',
+                'HotUpdater.bundleURL()'
+              ),
+            },
+            {
+              platform: 'android',
+              file: 'MainApplication.kt',
+              patch: replaceOnce(
+                'context = applicationContext,',
+                'context = applicationContext,\n      jsBundleFilePath = HotUpdater.getJSBundleFile(applicationContext),'
+              ),
+            },
+          ],
+        },
+      },
+    }),
+  ],
+}
+```
+
 ### native.suspendRoutes
 
 Wrap each route screen in a React Suspense boundary on native. On native the JS bundle already contains all route modules, so the boundary only catches the async `import()` wrapper which resolves on the next microtick. Set this to `false` to remove the `<Suspense fallback={null}>` wrapper, which prevents a blank flash when JS-driven navigation animations slide a screen in before the fallback is replaced.
