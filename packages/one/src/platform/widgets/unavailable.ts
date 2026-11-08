@@ -1,11 +1,16 @@
 import { missingNativeBuild } from '../nativeError'
-import type { LiveActivityState, PushTokenEvent, WidgetData } from './index.native'
+import type {
+  LiveActivityState,
+  PushTokenEvent,
+  WidgetActionEvent,
+  WidgetData,
+} from './index.native'
 import type { ReactNode } from 'react'
 import type { ActivityView } from './view'
 
 export { WidgetUI, type WidgetStyle, type ActivityView } from './view'
 
-export type { LiveActivityState, PushTokenEvent, WidgetData }
+export type { LiveActivityState, PushTokenEvent, WidgetActionEvent, WidgetData }
 
 export const Widgets = Object.freeze({
   write(_data: WidgetData): Promise<void> {
@@ -13,6 +18,12 @@ export const Widgets = Object.freeze({
   },
   writeView(_view: ReactNode): Promise<void> {
     return Promise.resolve()
+  },
+  claimActions(): Promise<WidgetActionEvent[]> {
+    return Promise.resolve([])
+  },
+  onAction(_listener: (event: WidgetActionEvent) => void): () => void {
+    return () => {}
   },
 })
 
@@ -36,6 +47,12 @@ export const LiveActivities = Object.freeze({
     return Promise.resolve(null)
   },
   onPushToken(_listener: (event: PushTokenEvent) => void): () => void {
+    return () => {}
+  },
+  claimActions(): Promise<WidgetActionEvent[]> {
+    return Promise.resolve([])
+  },
+  onAction(_listener: (event: WidgetActionEvent) => void): () => void {
     return () => {}
   },
 })

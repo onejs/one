@@ -26,6 +26,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-ownership, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | share, location, file-system, image-manipulator, audio, print, screen-capture, android-compose-image, native-modules | OneNativeBehavioralLibraryCase |  |
 | `One.Audio` | audio, audio-interruption, audio-remote, audio-ownership, audio-background | audio, native-modules:unavailable | missing |  |
 | `One.Share` | share | share, native-modules:unavailable | missing |  |
+| `One.ShareTarget` | missing | missing | missing | App Group share extension draft store bridge; conformance suite pending |
 | `One.PhotoLibrary` | photo-library, photo-library-limited, live-photo | native-modules:unavailable | missing |  |
 | `One.MapServices` | map-services | map-services, native-modules:unavailable | missing |  |
 | `One.AppTracking` | app-tracking | native-modules:unavailable | OneNativeBehavioralLibraryCase |  |
@@ -169,6 +170,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ShortcutsLink` | e2e:one-native-derived-views, e2e:one-native-derived-behavior | n/a | OneNativeDerivedViewsLibraryCase |  |
 | `One.iOS.StoreView` | e2e:one-native-derived-views, e2e:one-native-derived-behavior | n/a | missing |  |
 | `One.iOS.SubscriptionStoreView` | e2e:one-native-derived-views, e2e:one-native-derived-behavior | n/a | missing |  |
+| `One.iOS.SiriTipView` | missing | n/a | missing | Siri phrase tip banner; conformance suite pending |
 | `One.iOS.VNDocumentCameraViewController` | e2e:one-native-document-camera | n/a | missing | production Swift unsupported rejection and image encoding checked with transport shims on iOS 27; generated ABI, physical scan/crop, cancellation and permission errors unproven |
 | `One.iOS.DataScannerViewController` | e2e:one-native-data-scanner | n/a | missing | production Swift simulator unsupported checks with transport shims; generated ABI and physical recognition, tracking, zoom, capture and permission gates unproven |
 | `One.iOS.CNContactViewController` | e2e:one-native-contact-ui | n/a | missing | production Swift actual ContactsUI simulator probe with transport shims; full generated ABI and fixture integration remain unproven |

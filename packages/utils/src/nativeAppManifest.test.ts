@@ -200,6 +200,42 @@ describe('native.app manifest', () => {
     expect(() =>
       validateNativeApp({
         ...app,
+        ios: {
+          ...app.ios,
+          widgets: {
+            ...widgets,
+            families: ['systemSmall', 'systemLarge', 'accessoryCircular'],
+          },
+        },
+      })
+    ).not.toThrow()
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: { ...app.ios, widgets: { ...widgets, families: [] } },
+      })
+    ).toThrow(/families/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: {
+          ...app.ios,
+          widgets: { ...widgets, families: ['systemSmall', 'systemSmall'] },
+        },
+      })
+    ).toThrow(/families/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: {
+          ...app.ios,
+          widgets: { ...widgets, families: ['systemExtraLarge' as any] },
+        },
+      })
+    ).toThrow(/families/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
         ios: { ...app.ios, widgets: { ...widgets, pushNotifications: 'yes' as any } },
       })
     ).toThrow(/pushNotifications/)
@@ -224,13 +260,38 @@ describe('native.app manifest', () => {
       textParameterTitle: 'Text',
       shortcutPhrase: 'Echo text in {app}',
     }
-    const withActions = (actions: Array<typeof first>) =>
-      ({ ...app, ios: { ...app.ios, appIntents: { actions } } })
+    const withActions = (
+      actions: NonNullable<NonNullable<NativeAppManifest['ios']>['appIntents']>['actions']
+    ) => ({ ...app, ios: { ...app.ios, appIntents: { actions } } })
     expect(() => validateNativeApp(withActions([first]))).not.toThrow()
+    expect(() =>
+      validateNativeApp(
+        withActions([
+          {
+            ...first,
+            description: 'Speak back a line of text.',
+            systemImageName: 'waveform',
+            openAppWhenRun: true,
+            shortcutPhrases: ['Repeat text in {app}', 'Ask {app} to echo text'],
+          },
+        ])
+      )
+    ).not.toThrow()
     expect(() => validateNativeApp(withActions([first, { ...first }]))).toThrow(/duplicated/)
     expect(() => validateNativeApp(withActions([{ ...first, shortcutPhrase: 'Echo text' }]))).toThrow(/shortcu\w*Phrase/)
     expect(() => validateNativeApp(withActions([{ ...first, shortcutPhrase: '{app} in {app}' }]))).toThrow(/shortcu\w*Phrase/)
+    expect(() =>
+      validateNativeApp(withActions([{ ...first, shortcutPhrases: ['Missing app token'] }]))
+    ).toThrow(/shortcu\w*Phrase/)
+    expect(() =>
+      validateNativeApp(withActions([{ ...first, shortcutPhrases: [] }]))
+    ).toThrow(/shortcu\w*Phrase/)
     expect(() => validateNativeApp(withActions([{ ...first, textParameterTitle: ' ' }]))).toThrow(/textParameterTitle/)
+    expect(() => validateNativeApp(withActions([{ ...first, description: ' ' }]))).toThrow(/description/)
+    expect(() => validateNativeApp(withActions([{ ...first, systemImageName: ' ' }]))).toThrow(/systemImageName/)
+    expect(() =>
+      validateNativeApp(withActions([{ ...first, openAppWhenRun: 'yes' as any }]))
+    ).toThrow(/openAppWhenRun/)
   })
 
   test('rejects missing platform ids and out-of-range platform values', () => {

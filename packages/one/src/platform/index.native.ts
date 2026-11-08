@@ -64,7 +64,8 @@ import { Picker as PickerWithChildren } from './pickerChildren.native'
 import { Tab, TabView, TabSection, TabViewBottomAccessory, TabViewSlot } from './TabView.native'
 import { Compose } from './compose'
 import * as UI from './effects'
-import { Widgets, LiveActivities, WidgetUI } from './widgets/index'
+import { Widgets, LiveActivities, WidgetUI, type WidgetActionEvent } from './widgets/index'
+import { SiriTipView, type SiriTipViewProps } from './system-buttons/index.native'
 
 export * from './extras'
 export { Storage } from './storage/index.native'
@@ -188,6 +189,7 @@ export const Swift =
         CubicKeyframe,
         MoveKeyframe,
         ...Controls,
+        SiriTipView,
         // the generated map takes no children; the wrapper validates and names
         // the map-controls slot while the native view composes it.
         Map: MapWithControls,
@@ -198,7 +200,8 @@ export const Swift =
     : UnsupportedSwift
 export { Compose }
 export { Notifications } from './notifications'
-export { Widgets, LiveActivities, WidgetUI }
+export { Widgets, LiveActivities, WidgetUI, type WidgetActionEvent }
+export { SiriTipView, type SiriTipViewProps }
 export { Menu, ContextMenu }
 export { useNativeState, type NativeState } from './nativeState'
 export { TextInput } from './universal/TextInput/index'
@@ -264,6 +267,12 @@ export type {
   PitchCorrectionQuality,
 } from './audio/index'
 export { Share } from './share/index'
+export { ShareTarget } from './share-target/index.native'
+export type {
+  ShareTargetDraft,
+  ShareTargetItem,
+  ShareTargetItemKind,
+} from './share-target/index.native'
 export { Open } from './open/index.native'
 export type { OpenShareContent } from './open/index.native'
 export type { ShareItem, ShareItemType, ShareResult } from './share/index'

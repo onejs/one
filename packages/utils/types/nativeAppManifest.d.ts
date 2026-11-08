@@ -24,6 +24,8 @@ export interface NativeAppPatch {
     file: string;
     patch: (content: string) => string;
 }
+export declare const IOS_WIDGET_FAMILIES: readonly ['systemSmall', 'systemMedium', 'systemLarge', 'accessoryCircular', 'accessoryRectangular', 'accessoryInline'];
+export type IosWidgetFamily = (typeof IOS_WIDGET_FAMILIES)[number];
 export interface NativeAppManifest {
     name: string;
     displayName?: string;
@@ -114,6 +116,7 @@ export interface NativeAppManifest {
             displayName: string;
             description: string;
             pushNotifications?: boolean;
+            families?: IosWidgetFamily[];
         };
         backgroundTasks?: {
             refresh?: string[];
@@ -123,8 +126,12 @@ export interface NativeAppManifest {
             actions: Array<{
                 id: string;
                 title: string;
+                description?: string;
                 textParameterTitle?: string;
                 shortcutPhrase: string;
+                shortcutPhrases?: string[];
+                systemImageName?: string;
+                openAppWhenRun?: boolean;
             }>;
         };
     };

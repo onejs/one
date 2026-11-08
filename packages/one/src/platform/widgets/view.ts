@@ -28,6 +28,7 @@ type ImageProps = Omit<WidgetProps, 'children'> & { systemName: SFSymbolName }
 type ProgressProps = Omit<WidgetProps, 'children'> & { value: number; total?: number }
 type ShapeProps = Omit<WidgetProps, 'children'> & { fill?: string; cornerRadius?: number }
 type LinkProps = WidgetProps & { url: string }
+type ButtonProps = WidgetProps & { action: string; value?: string }
 
 export const WidgetUI = Object.freeze({
   Text: 'one-widget-text' as unknown as ComponentType<WidgetProps>,
@@ -46,6 +47,7 @@ export const WidgetUI = Object.freeze({
   RoundedRectangle:
     'one-widget-rounded-rectangle' as unknown as ComponentType<ShapeProps>,
   Link: 'one-widget-link' as unknown as ComponentType<LinkProps>,
+  Button: 'one-widget-button' as unknown as ComponentType<ButtonProps>,
 })
 
 export type ActivityView = {
@@ -69,6 +71,7 @@ type Node = {
   fill?: string
   cornerRadius?: number
   url?: string
+  action?: string
 }
 
 const hexColor = /^#[0-9a-fA-F]{6}$/
@@ -160,6 +163,7 @@ function node(view: ReactNode): Node | null {
       'rectangle',
       'rounded-rectangle',
       'link',
+      'button',
     ].includes(type)
   ) {
     throw new Error('Widget JSX only supports WidgetUI primitives and pure components')
@@ -168,7 +172,7 @@ function node(view: ReactNode): Node | null {
     children: content,
     style,
     ...props
-  } = view.props as WidgetProps & ImageProps & ProgressProps & ShapeProps & LinkProps
+  } = view.props as WidgetProps & ImageProps & ProgressProps & ShapeProps & LinkProps & ButtonProps
   checkStyle(style, (props as ShapeProps).fill)
   if (
     (props as ShapeProps).cornerRadius != null &&
@@ -213,6 +217,22 @@ function node(view: ReactNode): Node | null {
       throw new Error('WidgetUI.Link needs an absolute URL')
     }
     return { type, style, url: props.url, children: children(content) }
+  }
+  if (type === 'button') {
+    const buttonProps = props as unknown as ButtonProps
+    if (typeof buttonProps.action !== 'string' || !buttonProps.action.trim()) {
+      throw new Error('WidgetUI.Button needs a non-empty action string')
+    }
+    if (buttonProps.value !== undefined && typeof buttonProps.value !== 'string') {
+      throw new Error('WidgetUI.Button value must be a string')
+    }
+    return {
+      type,
+      action: buttonProps.action,
+      text: buttonProps.value,
+      style,
+      children: children(content),
+    }
   }
   if (type === 'spacer' || type === 'divider') return { type, style }
   return { type, style, children: children(content) }

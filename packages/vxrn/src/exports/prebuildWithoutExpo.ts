@@ -372,6 +372,12 @@ function swiftShortcutPhrase(value: string): string {
 export function renderIosAppIntentsSwift(actions: NonNullable<NonNullable<NativeAppManifest['ios']>['appIntents']>['actions']): string {
   const types = actions.map((action, index) => {
     const summaryTitle = swiftLiteral(action.title).slice(1, -1)
+    const description =
+      action.description === undefined
+        ? ''
+        : `\n  static let description = IntentDescription(${swiftLiteral(action.description)})`
+    const openAppWhenRun =
+      action.openAppWhenRun === true ? '\n  static let openAppWhenRun: Bool = true' : ''
     const text = action.textParameterTitle === undefined ? '' : `
   @Parameter(title: ${swiftLiteral(action.textParameterTitle)}) var text: String
 
@@ -380,20 +386,25 @@ export function renderIosAppIntentsSwift(actions: NonNullable<NonNullable<Native
   }
 `
     return `struct OneAppIntent${index}: AppIntent {
-  static let title: LocalizedStringResource = ${swiftLiteral(action.title)}
+  static let title: LocalizedStringResource = ${swiftLiteral(action.title)}${description}${openAppWhenRun}
 ${text}
-  func perform() async throws -> some IntentResult & ReturnsValue<String> {
+  func perform() async throws -> some IntentResult & ReturnsValue<String> & ProvidesDialog {
     let result = try await oneAppIntentsRun(${swiftLiteral(action.id)}, ${text ? 'text' : 'nil'})
-    return .result(value: result)
+    return .result(value: result, dialog: IntentDialog(stringLiteral: result))
   }
 }`
   })
-  const shortcuts = actions.map((action, index) => `    AppShortcut(
+  const shortcuts = actions.map((action, index) => {
+    const phrases = Array.from(
+      new Set([action.shortcutPhrase, ...(action.shortcutPhrases ?? [])])
+    ).map(swiftShortcutPhrase)
+    return `    AppShortcut(
       intent: OneAppIntent${index}(),
-      phrases: [${swiftShortcutPhrase(action.shortcutPhrase)}],
+      phrases: [${phrases.join(', ')}],
       shortTitle: ${swiftLiteral(action.title)},
-      systemImageName: "bolt.fill"
-    )`).join('\n')
+      systemImageName: ${swiftLiteral(action.systemImageName ?? 'bolt.fill')}
+    )`
+  }).join('\n')
   return `import AppIntents
 import Foundation
 
@@ -871,6 +882,9 @@ function generateIosWidgets(dest: string, app: NativeAppManifest): void {
 </dict></plist>
 `
   )
+  const supportedFamilies = (widgets.families ?? ['systemSmall', 'systemMedium'])
+    .map((family) => `.${family}`)
+    .join(', ')
   writeFileSync(
     path.join(appDir, 'OneWidgetContract.swift'),
     `import Foundation
@@ -880,12 +894,20 @@ enum OneWidgetContract {
   static let appGroup = ${JSON.stringify(widgets.appGroup)}
   static let kind = ${JSON.stringify(widgets.kind)}
   static let dataKey = "one.widget.data"
+  static let actionsKey = "one.widget.actions"
 
   struct Data: Codable {
     let title: String
     let value: String
     let subtitle: String
     let layout: String?
+  }
+
+  struct Action: Codable {
+    let id: String
+    let action: String
+    let value: String?
+    let timestampMs: Double
   }
 
   struct Attributes: ActivityAttributes {
@@ -904,6 +926,7 @@ enum OneWidgetContract {
     `import SwiftUI
 import WidgetKit
 import ActivityKit
+import AppIntents
 
 struct OneWidgetNode: Decodable {
   let type: String
@@ -916,6 +939,7 @@ struct OneWidgetNode: Decodable {
   let fill: String?
   let cornerRadius: Double?
   let url: String?
+  let action: String?
 
   struct Style: Decodable {
     let color: String?
@@ -931,6 +955,49 @@ struct OneWidgetNode: Decodable {
     let opacity: Double?
     let lineLimit: Int?
     let alignment: String?
+  }
+}
+
+struct OneWidgetButtonIntent: AppIntent {
+  static var title: LocalizedStringResource = "Widget Action"
+
+  @Parameter(title: "Action") var action: String
+  @Parameter(title: "Value") var value: String?
+
+  init() {}
+
+  init(action: String, value: String?) {
+    self.action = action
+    self.value = value
+  }
+
+  func perform() async throws -> some IntentResult {
+    if let defaults = UserDefaults(suiteName: OneWidgetContract.appGroup) {
+      var pending = defaults.data(forKey: OneWidgetContract.actionsKey).flatMap {
+        try? JSONDecoder().decode([OneWidgetContract.Action].self, from: $0)
+      } ?? []
+      pending.append(
+        OneWidgetContract.Action(
+          id: UUID().uuidString,
+          action: action,
+          value: value,
+          timestampMs: Date().timeIntervalSince1970 * 1000
+        )
+      )
+      if let encoded = try? JSONEncoder().encode(pending) {
+        defaults.set(encoded, forKey: OneWidgetContract.actionsKey)
+        defaults.synchronize()
+      }
+      CFNotificationCenterPostNotification(
+        CFNotificationCenterGetDarwinNotifyCenter(),
+        CFNotificationName("dev.onejs.widget.action" as CFString),
+        nil,
+        nil,
+        true
+      )
+    }
+    WidgetCenter.shared.reloadTimelines(ofKind: OneWidgetContract.kind)
+    return .result()
   }
 }
 
@@ -1047,6 +1114,15 @@ struct OneWidgetRendered: View {
             }
           }
         }
+      case "button":
+        if let action = node.action {
+          Button(intent: OneWidgetButtonIntent(action: action, value: node.text)) {
+            ForEach(Array((node.children ?? []).enumerated()), id: \\.offset) { _, child in
+              OneWidgetRendered(node: child)
+            }
+          }
+          .buttonStyle(.plain)
+        }
       default: EmptyView()
       }
     }
@@ -1107,7 +1183,7 @@ struct OneWidget: Widget {
     }
     .configurationDisplayName(${JSON.stringify(widgets.displayName)})
     .description(${JSON.stringify(widgets.description)})
-    .supportedFamilies([.systemSmall, .systemMedium])
+    .supportedFamilies([${supportedFamilies}])
   }
 }
 
@@ -1204,31 +1280,112 @@ RCT_EXTERN_METHOD(update:(NSString *)identifier status:(NSString *)status value:
 RCT_EXTERN_METHOD(updateView:(NSString *)identifier layout:(NSString *)layout resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(end:(NSString *)identifier resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(pushToken:(NSString *)identifier resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(claimActions:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 @end
 `
   )
   writeFileSync(
     path.join(appDir, 'OneWidgetsBridge.swift'),
     `import Foundation
+import UIKit
 import React
 import WidgetKit
 import ActivityKit
 
+private func oneWidgetsDarwinCallback(
+  _ center: CFNotificationCenter?,
+  _ observer: UnsafeMutableRawPointer?,
+  _ name: CFNotificationName?,
+  _ object: UnsafeRawPointer?,
+  _ userInfo: CFDictionary?
+) {
+  guard let observer else { return }
+  let bridge = Unmanaged<OneWidgetsBridge>.fromOpaque(observer).takeUnretainedValue()
+  bridge.flushObservedActions()
+}
+
 @objc(OneWidgetsBridge)
 class OneWidgetsBridge: RCTEventEmitter {
   private var tokenTasks: [String: Task<Void, Never>] = [:]
+  private var isObservingEvents = false
+  private var foregroundObserver: NSObjectProtocol?
 
-  override func supportedEvents() -> [String]! { ["oneLiveActivityPushToken"] }
+  override func supportedEvents() -> [String]! { ["oneLiveActivityPushToken", "oneWidgetAction"] }
 
   override func startObserving() {
+    isObservingEvents = true
     for activity in Activity<OneWidgetContract.Attributes>.activities {
       observeToken(activity)
     }
+    CFNotificationCenterAddObserver(
+      CFNotificationCenterGetDarwinNotifyCenter(),
+      Unmanaged.passUnretained(self).toOpaque(),
+      oneWidgetsDarwinCallback,
+      "dev.onejs.widget.action" as CFString,
+      nil,
+      .deliverImmediately
+    )
+    foregroundObserver = NotificationCenter.default.addObserver(
+      forName: UIApplication.didBecomeActiveNotification,
+      object: nil,
+      queue: .main
+    ) { [weak self] _ in
+      self?.flushObservedActions()
+    }
+    flushObservedActions()
   }
 
   override func stopObserving() {
+    isObservingEvents = false
     for task in tokenTasks.values { task.cancel() }
     tokenTasks.removeAll()
+    CFNotificationCenterRemoveObserver(
+      CFNotificationCenterGetDarwinNotifyCenter(),
+      Unmanaged.passUnretained(self).toOpaque(),
+      CFNotificationName("dev.onejs.widget.action" as CFString),
+      nil
+    )
+    if let foregroundObserver {
+      NotificationCenter.default.removeObserver(foregroundObserver)
+      self.foregroundObserver = nil
+    }
+  }
+
+  deinit {
+    CFNotificationCenterRemoveObserver(
+      CFNotificationCenterGetDarwinNotifyCenter(),
+      Unmanaged.passUnretained(self).toOpaque(),
+      CFNotificationName("dev.onejs.widget.action" as CFString),
+      nil
+    )
+    if let foregroundObserver {
+      NotificationCenter.default.removeObserver(foregroundObserver)
+    }
+  }
+
+  fileprivate func flushObservedActions() {
+    guard isObservingEvents else { return }
+    for item in drainStoredActions() {
+      sendEvent(withName: "oneWidgetAction", body: item)
+    }
+  }
+
+  private func drainStoredActions() -> [[String: Any]] {
+    guard let defaults = UserDefaults(suiteName: OneWidgetContract.appGroup),
+          let data = defaults.data(forKey: OneWidgetContract.actionsKey),
+          let actions = try? JSONDecoder().decode([OneWidgetContract.Action].self, from: data),
+          !actions.isEmpty else {
+      return []
+    }
+    defaults.removeObject(forKey: OneWidgetContract.actionsKey)
+    return actions.map { action in
+      [
+        "id": action.id,
+        "action": action.action,
+        "value": action.value ?? NSNull(),
+        "timestampMs": action.timestampMs,
+      ]
+    }
   }
 
   private func observeToken(_ activity: Activity<OneWidgetContract.Attributes>) {
@@ -1369,6 +1526,15 @@ class OneWidgetsBridge: RCTEventEmitter {
     } else {
       resolve(NSNull())
     }
+  }
+
+  @objc(claimActions:rejecter:)
+  func claimActions(_ resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
+    guard UserDefaults(suiteName: OneWidgetContract.appGroup) != nil else {
+      reject("app_group", "Cannot open the configured App Group", nil)
+      return
+    }
+    resolve(drainStoredActions())
   }
 }
 `
