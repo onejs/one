@@ -1,7 +1,6 @@
 import * as UI from './effects'
 import { Swift } from './unsupported'
 import { Widgets, LiveActivities, WidgetUI, type WidgetActionEvent } from './widgets/index'
-import { SiriTipView, type SiriTipViewProps } from './system-buttons/index'
 
 export * from './extras'
 // the package root keeps the navigation toolbar's props under the plain name; the SwiftUI
@@ -45,7 +44,6 @@ export const ContextMenu = Swift.ContextMenu
 export { Compose } from './compose'
 export { Notifications } from './notifications'
 export { Widgets, LiveActivities, WidgetUI, type WidgetActionEvent }
-export { SiriTipView, type SiriTipViewProps }
 export { useNativeState, type NativeState } from './nativeState'
 export { TextInput } from './universal/TextInput/index'
 export type {
@@ -121,7 +119,7 @@ export { ShareTarget } from './share-target/index'
 export type {
   ShareTargetDraft,
   ShareTargetItem,
-  ShareTargetItemKind,
+  ShareTargetSharedFile,
 } from './share-target/index'
 export { Open } from './open/index'
 export type { OpenShareContent } from './open/index'

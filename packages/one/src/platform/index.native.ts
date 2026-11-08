@@ -65,7 +65,6 @@ import { Tab, TabView, TabSection, TabViewBottomAccessory, TabViewSlot } from '.
 import { Compose } from './compose'
 import * as UI from './effects'
 import { Widgets, LiveActivities, WidgetUI, type WidgetActionEvent } from './widgets/index'
-import { SiriTipView, type SiriTipViewProps } from './system-buttons/index.native'
 
 export * from './extras'
 export { Storage } from './storage/index.native'
@@ -189,7 +188,6 @@ export const Swift =
         CubicKeyframe,
         MoveKeyframe,
         ...Controls,
-        SiriTipView,
         // the generated map takes no children; the wrapper validates and names
         // the map-controls slot while the native view composes it.
         Map: MapWithControls,
@@ -201,7 +199,6 @@ export const Swift =
 export { Compose }
 export { Notifications } from './notifications'
 export { Widgets, LiveActivities, WidgetUI, type WidgetActionEvent }
-export { SiriTipView, type SiriTipViewProps }
 export { Menu, ContextMenu }
 export { useNativeState, type NativeState } from './nativeState'
 export { TextInput } from './universal/TextInput/index'
@@ -271,7 +268,7 @@ export { ShareTarget } from './share-target/index.native'
 export type {
   ShareTargetDraft,
   ShareTargetItem,
-  ShareTargetItemKind,
+  ShareTargetSharedFile,
 } from './share-target/index.native'
 export { Open } from './open/index.native'
 export type { OpenShareContent } from './open/index.native'

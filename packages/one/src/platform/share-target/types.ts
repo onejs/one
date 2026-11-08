@@ -1,21 +1,20 @@
-export type ShareTargetItemKind = 'text' | 'url' | 'image' | 'video' | 'audio' | 'file'
-
-export interface ShareTargetItem {
-  id: string
-  kind: ShareTargetItemKind
-  typeIdentifier: string
-  mimeType: string | null
-  suggestedName: string | null
-  text: string | null
-  url: string | null
-  fileUri: string | null
-  byteSize: number | null
+export interface ShareTargetSharedFile {
+  url: string
+  name: string
+  mimeType: string
+  byteCount: number
 }
 
+export type ShareTargetItem =
+  | { kind: 'text'; text: string }
+  | { kind: 'url'; url: string }
+  | { kind: 'file'; file: ShareTargetSharedFile }
+
 export interface ShareTargetDraft {
-  sessionId: string
+  id: string
+  destinationId: string | null
+  text: string
   createdAt: number
-  targetRoute: string | null
-  sourceBundleId: string | null
+  pendingDelivery: boolean | null
   items: ShareTargetItem[]
 }

@@ -71,8 +71,6 @@ test('Android actions report their iOS limit without calling native hosts', asyn
     ],
     ['LiveActivities.end', () => activities.end('proof')],
     ['LiveActivities.onPushToken', () => activities.onPushToken(() => {})],
-    ['LiveActivities.claimActions', () => activities.claimActions()],
-    ['LiveActivities.onAction', () => activities.onAction(() => {})],
   ]
   for (const [name, call] of calls) {
     await expect(Promise.resolve().then(call)).rejects.toThrow(

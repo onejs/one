@@ -248,6 +248,13 @@ ios: {
     kind: 'MyAppStatus',
     displayName: 'My status',
     description: 'Shows the latest status.',
+    families: [
+      'systemSmall',
+      'systemMedium',
+      'accessoryCircular',
+      'accessoryRectangular',
+      'accessoryInline',
+    ],
   },
 }
 ```
@@ -320,13 +327,80 @@ The activity view also accepts `expandedLeading`, `expandedTrailing`, and
 
 `WidgetUI` supports `Text`, `Image` (SF Symbols), `VStack`, `HStack`,
 `ZStack`, `Spacer`, `Divider`, `Progress`, `Gauge`, `Circle`, `Rectangle`,
-`RoundedRectangle`, and `Link`. Styles include color, background color, font size,
+`RoundedRectangle`, `Link`, and `Button`. Styles include color, background color, font size,
 weight and design, padding, corner radius, spacing, size, opacity, line limit,
 and alignment. Colors use six-digit hex values. JSX layouts can contain pure
 function components; compute hook state in the app and pass it as props. The
-`write` and `writeView` methods update the same widget. Android widgets require
-a separate Glance target, storage contract, and lifecycle; this setting
-generates only iOS targets.
+`write` and `writeView` methods update the same widget.
+
+`W.Button` dispatches an interactive `AppIntent` (`OneWidgetButtonIntent`) from a Home Screen widget or Live Activity without foregrounding the app, queuing an action in the App Group that the app claims with `One.Widgets.claimActions()` or observes live with `One.Widgets.onAction(listener)`:
+
+```tsx
+<W.Button action="toggle-playback" value="track-42">
+  <W.HStack style={{ padding: 8, backgroundColor: '#1685B1', borderRadius: 8 }}>
+    <W.Image systemName="play.fill" style={{ color: '#FFFFFF' }} />
+    <W.Text style={{ color: '#FFFFFF', fontWeight: 'semibold' }}>Play</W.Text>
+  </W.HStack>
+</W.Button>
+```
+
+```ts
+const pending = await One.Widgets.claimActions()
+const unsubscribe = One.Widgets.onAction(({ id, action, value, timestampMs }) => {
+  // handle interactive widget or Live Activity button tap
+})
+```
+
+Android widgets require a separate Glance target, storage contract, and lifecycle; this setting generates only iOS targets.
+
+### Siri and App Intents
+
+Set `ios.appIntents.actions` to generate an `AppIntent` per action and register `AppShortcutsProvider` phrases for Siri, the Shortcuts app, Spotlight, and Action Button:
+
+```ts
+ios: {
+  bundleId: 'com.example.myapp',
+  appIntents: {
+    actions: [
+      {
+        id: 'log-water',
+        title: 'Log Water',
+        description: 'Record water intake and speak a summary.',
+        textParameterTitle: 'Amount',
+        shortcutPhrase: 'Log water in {app}',
+        shortcutPhrases: ['Add water in {app}'],
+        systemImageName: 'drop.fill',
+        openAppWhenRun: false,
+      },
+    ],
+  },
+}
+```
+
+Register each handler at module scope in `setupFile.native`:
+
+```ts
+import { One } from 'one'
+
+One.AppIntents.defineAction('log-water', async (text) => {
+  return `Logged ${text || '250ml'}.`
+})
+```
+
+Each generated `AppIntent` conforms to `ProvidesDialog` and returns the handler's string as spoken and visual Siri dialog output.
+
+### Share Extension Drafts
+
+When an iOS Share Extension persists submissions into your App Group with `OneShareTargetDraftStore`, read and discard queued drafts in the main app with `One.ShareTarget`:
+
+```ts
+import { One } from 'one'
+
+const drafts = await One.ShareTarget.getDrafts('group.com.example.myapp')
+for (const draft of drafts) {
+  await One.ShareTarget.discardDraft('group.com.example.myapp', draft.id)
+}
+```
 
 ### iOS Project Setup
 

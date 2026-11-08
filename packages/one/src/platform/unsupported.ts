@@ -1,6 +1,5 @@
 import { Angle, Gradient, Path, Shading, type CanvasProps } from './canvas'
 import { unsupportedControls } from './generated/unsupportedControls'
-import { SiriTipView, type SiriTipViewProps } from './system-buttons/index'
 import type {
   UICollectionView,
   UICollectionViewDiffableDataSource,
@@ -411,9 +410,7 @@ export const Swift = {
     throw new Error('Swift.withAnimation requires an iOS native build')
   },
   ...unsupportedControls,
-  SiriTipView,
   Map: MapWithControlsStub,
   Picker: PickerWithChildrenStub,
 }
-export type { SiriTipViewProps }
 export type * from './types'

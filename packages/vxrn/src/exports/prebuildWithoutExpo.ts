@@ -986,7 +986,6 @@ struct OneWidgetButtonIntent: AppIntent {
       )
       if let encoded = try? JSONEncoder().encode(pending) {
         defaults.set(encoded, forKey: OneWidgetContract.actionsKey)
-        defaults.synchronize()
       }
       CFNotificationCenterPostNotification(
         CFNotificationCenterGetDarwinNotifyCenter(),

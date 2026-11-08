@@ -22,7 +22,6 @@ const fixtureRoot = join(import.meta.dirname, '../../../tests/native-features')
 const knownGaps: Record<string, string> = {
   'UI.PictureInPicture': 'fixture exists; simulators report no PiP, needs a device run',
   ShareTarget: 'App Group share extension draft store bridge; conformance suite pending',
-  'iOS.SiriTipView': 'Siri phrase tip banner; conformance suite pending',
 }
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.

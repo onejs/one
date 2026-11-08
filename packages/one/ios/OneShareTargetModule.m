@@ -6,14 +6,8 @@ RCT_EXTERN_METHOD(getDrafts:(NSString *)appGroup
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(consumeDraft:(NSString *)appGroup
-                  sessionId:(NSString *)sessionId
-                  removeAttachments:(BOOL)removeAttachments
-                  resolve:(RCTPromiseResolveBlock)resolve
-                  reject:(RCTPromiseRejectBlock)reject)
-
 RCT_EXTERN_METHOD(discardDraft:(NSString *)appGroup
-                  sessionId:(NSString *)sessionId
+                  submissionId:(NSString *)submissionId
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 

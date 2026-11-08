@@ -81,16 +81,6 @@ const nativeLiveActivities = Object.freeze({
     )
     return () => subscription.remove()
   },
-  claimActions(): Promise<WidgetActionEvent[]> {
-    return bridge().claimActions()
-  },
-  onAction(listener: (event: WidgetActionEvent) => void): () => void {
-    const subscription = new NativeEventEmitter(bridge()).addListener(
-      'oneWidgetAction',
-      listener
-    )
-    return () => subscription.remove()
-  },
 })
 
 function androidLimit(operation: string): Error {
@@ -131,12 +121,6 @@ const androidLiveActivities = Object.freeze({
   },
   onPushToken(_listener: (event: PushTokenEvent) => void): () => void {
     throw androidLimit('LiveActivities.onPushToken')
-  },
-  claimActions(): Promise<WidgetActionEvent[]> {
-    return Promise.reject(androidLimit('LiveActivities.claimActions'))
-  },
-  onAction(_listener: (event: WidgetActionEvent) => void): () => void {
-    throw androidLimit('LiveActivities.onAction')
   },
 })
 

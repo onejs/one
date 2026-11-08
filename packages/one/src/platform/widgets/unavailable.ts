@@ -49,10 +49,4 @@ export const LiveActivities = Object.freeze({
   onPushToken(_listener: (event: PushTokenEvent) => void): () => void {
     return () => {}
   },
-  claimActions(): Promise<WidgetActionEvent[]> {
-    return Promise.resolve([])
-  },
-  onAction(_listener: (event: WidgetActionEvent) => void): () => void {
-    return () => {}
-  },
 })
