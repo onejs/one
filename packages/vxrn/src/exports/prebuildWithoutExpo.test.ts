@@ -23,6 +23,7 @@ import {
   generateForPlatform,
   generateKotlinSources,
   getNativeDependencyInventory,
+  renderIosAppIntentsSwift,
   renderPrebuildFile,
   renderSceneDelegateSwift,
   type PrebuildAppConfig,
@@ -2198,9 +2199,12 @@ describe('ios widgets', () => {
       'rectangle',
       'rounded-rectangle',
       'link',
+      'button',
     ]) {
       expect(rendered).toContain(`case "${type}":`)
     }
+    expect(rendered).toContain('struct OneWidgetButtonIntent: AppIntent')
+    expect(rendered).toContain('.supportedFamilies([.systemSmall, .systemMedium])')
     // every ActivityView slot needs a decode path in both presentations
     for (const slot of [
       'lockScreen',
@@ -2214,13 +2218,76 @@ describe('ios widgets', () => {
       expect(rendered).toContain(slot)
     }
     // the JSX bridge methods exist on both sides of the React Native bridge
-    for (const method of ['writeView', 'startView', 'updateView']) {
+    for (const method of ['writeView', 'startView', 'updateView', 'claimActions']) {
       expect(readGenerated('MyApp/OneWidgetsBridge.swift')).toContain(method)
       expect(readGenerated('MyApp/OneWidgetsBridge.m')).toContain(method)
     }
-    // the shared contract carries the serialized layouts
+    expect(readGenerated('MyApp/OneWidgetsBridge.swift')).toContain('"oneWidgetAction"')
+    // the shared contract carries the serialized layouts and interactive actions
     const contract = readGenerated('MyApp/OneWidgetContract.swift')
     expect(contract.match(/let layout: String\?/g)).toHaveLength(2)
+    expect(contract).toContain('static let actionsKey = "one.widget.actions"')
+    expect(contract).toContain('struct Action: Codable')
+  }, 180000)
+
+  it('emits configured widget families and App Intents spoken dialog metadata', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-widgets-families-'))
+    await generateForPlatform(
+      workspaceRoot,
+      'ios',
+      {
+        ...widgetsApp,
+        ios: {
+          ...widgetsApp.ios,
+          widgets: {
+            ...widgetsApp.ios.widgets,
+            families: ['systemSmall', 'systemLarge', 'accessoryCircular', 'accessoryRectangular'],
+          },
+        },
+      },
+      join(output, 'ios')
+    )
+    const renderedWidget = readFileSync(
+      join(output, 'ios', 'OneWidgets', 'OneWidget.swift'),
+      'utf8'
+    )
+    expect(renderedWidget).toContain(
+      '.supportedFamilies([.systemSmall, .systemLarge, .accessoryCircular, .accessoryRectangular])'
+    )
+
+    const swift = renderIosAppIntentsSwift([
+      {
+        id: 'dev.one.myapp.ask',
+        title: 'Ask assistant',
+        description: 'Run a voice query and speak the answer.',
+        textParameterTitle: 'Prompt',
+        shortcutPhrase: 'Ask {app} a question',
+        shortcutPhrases: ['Query {app}', 'Ask {app} a question'],
+        systemImageName: 'waveform.circle.fill',
+        openAppWhenRun: true,
+      },
+      {
+        id: 'dev.one.myapp.ping',
+        title: 'Ping',
+        shortcutPhrase: 'Ping {app}',
+      },
+    ])
+    expect(swift).toContain(
+      'func perform() async throws -> some IntentResult & ReturnsValue<String> & ProvidesDialog'
+    )
+    expect(swift).toContain(
+      'return .result(value: result, dialog: IntentDialog(stringLiteral: result))'
+    )
+    expect(swift).toContain(
+      'static let description = IntentDescription("Run a voice query and speak the answer.")'
+    )
+    expect(swift).toContain('static let openAppWhenRun: Bool = true')
+    expect(swift).toContain(
+      'phrases: ["Ask \\(.applicationName) a question", "Query \\(.applicationName)"]'
+    )
+    expect(swift).toContain('systemImageName: "waveform.circle.fill"')
+    expect(swift).toContain('systemImageName: "bolt.fill"')
   }, 180000)
 
   it('regenerates byte-identical widget projects and adds nothing without the config', async () => {

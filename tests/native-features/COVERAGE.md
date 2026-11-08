@@ -26,6 +26,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-ownership, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | share, location, file-system, image-manipulator, audio, print, screen-capture, android-compose-image, native-modules | OneNativeBehavioralLibraryCase |  |
 | `One.Audio` | audio, audio-interruption, audio-remote, audio-ownership, audio-background | audio, native-modules:unavailable | missing |  |
 | `One.Share` | share | share, native-modules:unavailable | missing |  |
+| `One.ShareTarget` | missing | native-modules:unavailable | missing | App Group share extension draft store bridge; conformance suite pending |
 | `One.PhotoLibrary` | photo-library, photo-library-limited, live-photo | native-modules:unavailable | missing |  |
 | `One.MapServices` | map-services | map-services, native-modules:unavailable | missing |  |
 | `One.AppTracking` | app-tracking | native-modules:unavailable | OneNativeBehavioralLibraryCase |  |

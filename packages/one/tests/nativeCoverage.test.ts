@@ -21,6 +21,7 @@ const fixtureRoot = join(import.meta.dirname, '../../../tests/native-features')
 // suite lands; the test fails while a covered export is still listed
 const knownGaps: Record<string, string> = {
   'UI.PictureInPicture': 'fixture exists; simulators report no PiP, needs a device run',
+  ShareTarget: 'App Group share extension draft store bridge; conformance suite pending',
 }
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.

@@ -1,11 +1,13 @@
-import type { LiveActivityState, PushTokenEvent, WidgetData } from './index.native';
+import type { LiveActivityState, PushTokenEvent, WidgetActionEvent, WidgetData } from './index.native';
 import type { ReactNode } from 'react';
 import type { ActivityView } from './view';
 export { WidgetUI, type WidgetStyle, type ActivityView } from './view';
-export type { LiveActivityState, PushTokenEvent, WidgetData };
+export type { LiveActivityState, PushTokenEvent, WidgetActionEvent, WidgetData };
 export declare const Widgets: Readonly<{
     write(_data: WidgetData): Promise<void>;
     writeView(_view: ReactNode): Promise<void>;
+    claimActions(): Promise<WidgetActionEvent[]>;
+    onAction(_listener: (event: WidgetActionEvent) => void): () => void;
 }>;
 export declare const LiveActivities: Readonly<{
     start(_title: string, _state: LiveActivityState, _push?: boolean): Promise<string>;

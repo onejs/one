@@ -76,6 +76,17 @@ export interface NativeAppPatch {
   patch: (content: string) => string
 }
 
+export const IOS_WIDGET_FAMILIES = [
+  'systemSmall',
+  'systemMedium',
+  'systemLarge',
+  'accessoryCircular',
+  'accessoryRectangular',
+  'accessoryInline',
+] as const
+
+export type IosWidgetFamily = (typeof IOS_WIDGET_FAMILIES)[number]
+
 export interface NativeAppManifest {
   name: string
   displayName?: string
@@ -240,6 +251,7 @@ export interface NativeAppManifest {
       displayName: string
       description: string
       pushNotifications?: boolean
+      families?: IosWidgetFamily[]
     }
     // launch handlers for One.BackgroundTasks. define the matching JS
     // handlers in the native setupFile so a background-only launch can run.
@@ -253,8 +265,12 @@ export interface NativeAppManifest {
       actions: Array<{
         id: string
         title: string
+        description?: string
         textParameterTitle?: string
         shortcutPhrase: string
+        shortcutPhrases?: string[]
+        systemImageName?: string
+        openAppWhenRun?: boolean
       }>
     }
   }
@@ -435,6 +451,10 @@ export function validateNativeApp(
     if (!Array.isArray(actions) || actions.length === 0) {
       fail('ios.appIntents.actions must be a non-empty array')
     }
+    const isValidShortcutPhrase = (phrase: unknown): phrase is string =>
+      typeof phrase === 'string' &&
+      phrase.split('{app}').length === 2 &&
+      Boolean(phrase.replace('{app}', '').trim())
     const ids = new Set<string>()
     for (const action of actions) {
       if (
@@ -444,15 +464,24 @@ export function validateNativeApp(
         !action.id.trim() ||
         typeof action.title !== 'string' ||
         !action.title.trim() ||
+        (action.description !== undefined &&
+          (typeof action.description !== 'string' || !action.description.trim())) ||
         (action.textParameterTitle !== undefined &&
           (typeof action.textParameterTitle !== 'string' ||
             !action.textParameterTitle.trim())) ||
-        typeof action.shortcutPhrase !== 'string' ||
-        action.shortcutPhrase.split('{app}').length !== 2 ||
-        !action.shortcutPhrase.replace('{app}', '').trim()
+        (action.systemImageName !== undefined &&
+          (typeof action.systemImageName !== 'string' ||
+            !action.systemImageName.trim())) ||
+        (action.openAppWhenRun !== undefined &&
+          typeof action.openAppWhenRun !== 'boolean') ||
+        !isValidShortcutPhrase(action.shortcutPhrase) ||
+        (action.shortcutPhrases !== undefined &&
+          (!Array.isArray(action.shortcutPhrases) ||
+            action.shortcutPhrases.length === 0 ||
+            !action.shortcutPhrases.every(isValidShortcutPhrase)))
       ) {
         fail(
-          'ios.appIntents actions need unique non-empty id/title, optional textParameterTitle, and a shortcutPhrase with one {app}'
+          'ios.appIntents actions need unique non-empty id/title, optional description/textParameterTitle/systemImageName/openAppWhenRun, and shortcutPhrase(s) each with one {app}'
         )
       }
       if (ids.has(action.id)) fail(`ios.appIntents action "${action.id}" is duplicated`)
@@ -711,6 +740,18 @@ export function validateNativeApp(
         typeof widgets.pushNotifications !== 'boolean'
       ) {
         fail('ios.widgets.pushNotifications must be a boolean')
+      }
+      if (widgets.families !== undefined) {
+        if (
+          !Array.isArray(widgets.families) ||
+          widgets.families.length === 0 ||
+          new Set(widgets.families).size !== widgets.families.length ||
+          widgets.families.some((family) => !IOS_WIDGET_FAMILIES.includes(family))
+        ) {
+          fail(
+            `ios.widgets.families must be a non-empty list of unique families from ${IOS_WIDGET_FAMILIES.join(', ')}`
+          )
+        }
       }
     }
   }

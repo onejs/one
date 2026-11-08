@@ -17,6 +17,7 @@ import {
   Audio,
   CameraView,
   Share,
+  ShareTarget,
   Open,
   PhotoLibrary,
   MapServices,
@@ -191,6 +192,7 @@ export type OneAPI = {
   readonly FileSystem: typeof FileSystem
   readonly Audio: typeof Audio
   readonly Share: typeof Share
+  readonly ShareTarget: typeof ShareTarget
   readonly PhotoLibrary: typeof PhotoLibrary
   readonly MapServices: typeof MapServices
   readonly AppTracking: typeof AppTracking
@@ -319,6 +321,7 @@ export const One: OneAPI = Object.freeze({
   FileSystem,
   Audio,
   Share,
+  ShareTarget,
   PhotoLibrary,
   MapServices,
   AppTracking,

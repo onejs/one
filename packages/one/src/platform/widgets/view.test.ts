@@ -75,7 +75,12 @@ describe('WidgetUI payload', () => {
         }),
         createElement(WidgetUI.Rectangle, { fill: '#FFFFFF', style: { height: 1 } }),
         createElement(WidgetUI.Divider),
-        createElement(WidgetUI.Link, { url: 'onebasic://order/42' }, 'Open order')
+        createElement(WidgetUI.Link, { url: 'onebasic://order/42' }, 'Open order'),
+        createElement(
+          WidgetUI.Button,
+          { action: 'toggle-step', value: 'step-1', style: { padding: 4 } },
+          'Complete step'
+        )
       )
     )
     const encoded = JSON.parse(encodeWidgetView(view))
@@ -98,6 +103,13 @@ describe('WidgetUI payload', () => {
               url: 'onebasic://order/42',
               children: [{ type: 'text', text: 'Open order' }],
             },
+            {
+              type: 'button',
+              action: 'toggle-step',
+              text: 'step-1',
+              style: { padding: 4 },
+              children: [{ type: 'text', text: 'Complete step' }],
+            },
           ],
         },
       ],
@@ -111,6 +123,14 @@ describe('WidgetUI payload', () => {
     expect(() =>
       encodeWidgetView(createElement(WidgetUI.Link, { url: '/relative' }))
     ).toThrow(/absolute/)
+    expect(() =>
+      encodeWidgetView(createElement(WidgetUI.Button, { action: '   ' }))
+    ).toThrow(/action/)
+    expect(() =>
+      encodeWidgetView(
+        createElement(WidgetUI.Button, { action: 'tap', value: 123 as any })
+      )
+    ).toThrow(/value must be a string/)
   })
 
   test('renders conditional branches like React instead of throwing', () => {

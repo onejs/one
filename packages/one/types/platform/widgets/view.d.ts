@@ -33,6 +33,10 @@ type ShapeProps = Omit<WidgetProps, 'children'> & {
 type LinkProps = WidgetProps & {
     url: string;
 };
+type ButtonProps = WidgetProps & {
+    action: string;
+    value?: string;
+};
 export declare const WidgetUI: Readonly<{
     Text: ComponentType<WidgetProps>;
     VStack: ComponentType<WidgetProps>;
@@ -47,6 +51,7 @@ export declare const WidgetUI: Readonly<{
     Rectangle: ComponentType<ShapeProps>;
     RoundedRectangle: ComponentType<ShapeProps>;
     Link: ComponentType<LinkProps>;
+    Button: ComponentType<ButtonProps>;
 }>;
 export type ActivityView = {
     lockScreen: ReactNode;

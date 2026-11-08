@@ -1,6 +1,6 @@
 import * as UI from './effects'
 import { Swift } from './unsupported'
-import { Widgets, LiveActivities, WidgetUI } from './widgets/index'
+import { Widgets, LiveActivities, WidgetUI, type WidgetActionEvent } from './widgets/index'
 
 export * from './extras'
 // the package root keeps the navigation toolbar's props under the plain name; the SwiftUI
@@ -43,7 +43,7 @@ export const Menu = Swift.Menu
 export const ContextMenu = Swift.ContextMenu
 export { Compose } from './compose'
 export { Notifications } from './notifications'
-export { Widgets, LiveActivities, WidgetUI }
+export { Widgets, LiveActivities, WidgetUI, type WidgetActionEvent }
 export { useNativeState, type NativeState } from './nativeState'
 export { TextInput } from './universal/TextInput/index'
 export type {
@@ -115,6 +115,12 @@ export type {
   PitchCorrectionQuality,
 } from './audio/index'
 export { Share } from './share/index'
+export { ShareTarget } from './share-target/index'
+export type {
+  ShareTargetDraft,
+  ShareTargetItem,
+  ShareTargetSharedFile,
+} from './share-target/index'
 export { Open } from './open/index'
 export type { OpenShareContent } from './open/index'
 export type { ShareItem, ShareItemType, ShareResult } from './share/index'

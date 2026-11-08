@@ -14,9 +14,17 @@ export type PushTokenEvent = {
     id: string;
     token: string;
 };
+export type WidgetActionEvent = {
+    id: string;
+    action: string;
+    value: string | null;
+    timestampMs: number;
+};
 declare const nativeWidgets: Readonly<{
     write(data: WidgetData): Promise<void>;
     writeView(view: ReactNode): Promise<void>;
+    claimActions(): Promise<WidgetActionEvent[]>;
+    onAction(listener: (event: WidgetActionEvent) => void): () => void;
 }>;
 declare const nativeLiveActivities: Readonly<{
     start(title: string, state: LiveActivityState, push?: boolean): Promise<string>;
