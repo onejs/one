@@ -46,7 +46,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
       DispatchQueue.main.async {
         lifetime.deliver {
           do {
-            let observation = try table.observe(Int(id), call, Self.observationListener(listener))
+            let observation = try table.observe(Int64(id), call, Self.observationListener(listener))
             lifetime.install { observation.cancel() }
           } catch {
             listener(Self.observationError(error))
@@ -146,7 +146,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
     return OneSDKCall(receiver: recv, argCount: 0, dispatch: wrappedDispatch)
   }
 
-  private static func result(_ value: Any, _ call: OneSDKCall, table: OneSDKTable? = nil, id: Int = 0) -> OneSDKValue {
+  private static func result(_ value: Any, _ call: OneSDKCall, table: OneSDKTable? = nil, id: Int64 = 0) -> OneSDKValue {
     call.retainImplementations(table?.argumentNames(id) ?? [])
     return OneSDKValues.packValue(value, existingHandles: call.handlesOut)
   }
@@ -159,7 +159,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
   }
 
   private static func failure(_ module: String, _ id: Double, _ error: Error) -> OneSDKValue {
-    .ninth(OneSDKValues.envelope(failureData(error, context: "\(module) #\(Int(id))")))
+    .ninth(OneSDKValues.envelope(failureData(error, context: "\(module) #\(Int64(id))")))
   }
 
   func call(
@@ -168,7 +168,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
     do {
       let table = try OneSDKTables.table(module)
       let call = try Self.prepareCall(receiver: receiver, arg0: arg0, arg1: arg1, dispatch: dispatch)
-      return Self.result(try table.sync(Int(id), call), call, table: table, id: Int(id))
+      return Self.result(try table.sync(Int64(id), call), call, table: table, id: Int64(id))
     } catch {
       return Self.failure(module, id, error)
     }
@@ -182,7 +182,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
       let table = try OneSDKTables.table(module)
       let call = try Self.prepareEnvelope(data, dispatch: dispatch, syncDispatch: syncDispatch)
       defer { call.endSynchronousCallbacks() }
-      return Self.result(try table.sync(Int(id), call), call, table: table, id: Int(id))
+      return Self.result(try table.sync(Int64(id), call), call, table: table, id: Int64(id))
     } catch { return Self.failure(module, id, error) }
   }
 
@@ -216,7 +216,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
     }
     return Promise.async {
       do {
-        return Self.result(try await table.async(Int(id), call), call, table: table, id: Int(id))
+        return Self.result(try await table.async(Int64(id), call), call, table: table, id: Int64(id))
       } catch {
         return Self.failure(module, id, error)
       }

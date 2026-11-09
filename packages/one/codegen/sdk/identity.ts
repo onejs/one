@@ -35,7 +35,7 @@ export function assignEntryIds(entries: Omit<Entry, 'swift'>[]): void {
       })),
       returns: entry.returns,
     }))
-    // 52 bits are exact through javascript numbers, Nitro doubles and Swift Int.
+    // 52 bits are exact through javascript numbers, Nitro doubles and Swift Int64.
     const id = Number.parseInt(createHash('sha256').update(signature).digest('hex').slice(0, 13), 16)
     if (seen.has(id)) {
       throw new Error(`duplicate iOS SDK dispatch identity: ${seen.get(id)} and ${entry.key}`)
