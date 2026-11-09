@@ -651,6 +651,26 @@ async function run() {
 // --into <dir>: quick local release, packs each package and unpacks into target node_modules
 const intoIdx = process.argv.indexOf('--into')
 if (intoIdx !== -1) {
+  const reuseUnchangedFiles = async (previous: string, replacement: string) => {
+    if (!(await fs.pathExists(previous)) || !(await fs.lstat(previous)).isDirectory()) return
+    for (const entry of await fs.readdir(replacement, { withFileTypes: true })) {
+      const oldPath = join(previous, entry.name)
+      const nextPath = join(replacement, entry.name)
+      if (entry.isDirectory()) {
+        await reuseUnchangedFiles(oldPath, nextPath)
+      } else if (entry.isFile() && (await fs.pathExists(oldPath))) {
+        const old = await fs.lstat(oldPath)
+        const next = await fs.stat(nextPath)
+        if (
+          old.isFile() && old.size === next.size && old.mode === next.mode &&
+          (await fs.readFile(oldPath)).equals(await fs.readFile(nextPath))
+        ) {
+          await fs.unlink(nextPath)
+          await fs.link(oldPath, nextPath)
+        }
+      }
+    }
+  }
   const targetArg = process.argv[intoIdx + 1]
   if (!targetArg || targetArg.startsWith('--')) {
     console.error('Missing directory argument for --into')
@@ -743,6 +763,7 @@ if (intoIdx !== -1) {
     )
 
     const tmpDir = await fs.mkdtemp(join(tmpdir(), 'one-release-into-'))
+    const installationDirs: string[] = []
 
     try {
       if (!skipBuild) {
@@ -801,9 +822,12 @@ if (intoIdx !== -1) {
               }
             }
             await writeJSON(manifestPath, manifest, { spaces: 2 })
-            for (const [copyIndex, destDir] of destDirs.entries()) {
-              const copyDir = join(tmpDir, `copy-${index}-${copyIndex}`)
+            for (const destDir of destDirs) {
+              await ensureDir(path.dirname(destDir))
+              const copyDir = await fs.mkdtemp(join(path.dirname(destDir), '.one-release-'))
+              installationDirs.push(copyDir)
               await fs.copy(stagedDir, copyDir)
+              await reuseUnchangedFiles(destDir, copyDir)
               // preserve unrelated nested dependencies; external symlinks are replaced
               if (
                 (await fs.pathExists(destDir)) &&
@@ -836,6 +860,7 @@ if (intoIdx !== -1) {
 
       console.info(`\n✅ Released ${released} packages into ${targetDir}`)
     } finally {
+      await Promise.all(installationDirs.map((directory) => fs.remove(directory)))
       await fs.remove(tmpDir)
     }
   })()
