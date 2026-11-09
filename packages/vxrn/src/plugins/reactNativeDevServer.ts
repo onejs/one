@@ -276,8 +276,13 @@ export function createReactNativeDevServerPlugin(
 
         const url = new URL(rawUrl, `http://${req.headers.host || 'localhost'}`)
 
+        // react-native internals stay on Platform.ios.js on macOS and linux, so
+        // AssetSourceResolver asks for `?platform=ios` from a server with no ios
+        // engine. every engine registers the same files, so any one can answer.
         const platform = validPlatforms[url.searchParams.get('platform') || '']
-        const engine = platform ? devEngines[platform] : undefined
+        const engine =
+          (platform ? devEngines[platform] : undefined) ??
+          (platform ? Object.values(devEngines).find(Boolean) : undefined)
 
         let pathname: string
         try {
