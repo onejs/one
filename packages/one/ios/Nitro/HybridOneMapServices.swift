@@ -1,3 +1,4 @@
+#if ONE_GROUP_MAPS
 import CoreLocation
 import MapKit
 import NitroModules
@@ -201,3 +202,5 @@ final class HybridOneMapServices: HybridOneMapServicesSpec {
     oneNativeError(code, message)
   }
 }
+
+#endif

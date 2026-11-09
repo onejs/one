@@ -20,7 +20,7 @@ class SceneDelegate: RCTDefaultReactNativeFactoryDelegate, UIWindowSceneDelegate
     NotificationCenter.default.addObserver(forName: NSNotification.Name("RCTContentDidAppearNotification"), object: nil, queue: nil) { _ in
       if seen { return }
       seen = true
-      startupMark("routed_content")
+      startupMark("first_content")
     }
     dependencyProvider = RCTAppDependencyProvider()
     reactNativeFactory = RCTReactNativeFactory(delegate: self)

@@ -8,6 +8,10 @@ import { callArguments, collectValues, emitValueDecoders, hasRecords, recordSwit
 // the one gesture that can bind a native state: its translation moves the entry.
 const dragGesture = 'SwiftUI.DragGesture'
 
+const slotValueGroups = (type: string, name: string): string[] =>
+  /^subscriptionStore/.test(name) ? ['store']
+    : type === 'SwiftUI.ContainerBackgroundPlacement' && name === 'widget' ? ['widgets'] : []
+
 // what a call into a compiled-out group reports: the group and the command that links it
 const compiledOut = (groups: readonly string[], what: string) =>
   `preconditionFailure("${what} needs the ${groups.join(' and ')} feature group, which this build compiled out; run one prebuild --platform ios and rebuild")`
@@ -97,7 +101,7 @@ ${slots.map((slot) => {
     : base === 'Swift.Float' ? `Swift.Double(${raw}).map({ Swift.Float($0) })`
     : `Swift.Double(${raw}).map({ CoreFoundation.CGFloat($0) })`
   const enumCases = (argument: (typeof slot.arguments)[number], type: string) =>
-    argument.cases!.map((item) => gate(/^subscriptionStore/.test(item.name) ? ['store'] : [], `          case ${JSON.stringify(item.name)}: ${item.ios > slot.ios ? `${sdkGuard(item.ios, `if #available(iOS ${item.ios}, *) { return ${type}.${item.name} }`, '')}
+    argument.cases!.map((item) => gate(slotValueGroups(argument.type, item.name), `          case ${JSON.stringify(item.name)}: ${item.ios > slot.ios ? `${sdkGuard(item.ios, `if #available(iOS ${item.ios}, *) { return ${type}.${item.name} }`, '')}
             preconditionFailure("unavailable ${slot.name}.${argument.field}")` : `return ${type}.${item.name}`}`)).join('\n')
   const decode = slot.arguments.map((argument, index) => {
     const raw = `decoded[${index}]`
@@ -217,7 +221,7 @@ ${decode}
     )
     .join('\n')
   // the js names whose use needs a group: its derived modifier and view slot keys and
-  // the store group's subscription store cases. a key needs every group that gates it.
+  // their framework-specific enum cases. a key needs every group that gates it.
   const keys: Record<string, { modifiers: Set<string>; slots: Set<string>; values: Set<string> }> = Object.fromEntries(
     Object.keys(linkSetGroups).map((group) => [group, { modifiers: new Set(), slots: new Set(), values: new Set() }])
   )
@@ -225,7 +229,8 @@ ${decode}
   for (const slot of slots) {
     for (const group of modifierGroups(slot)) keys[group].slots.add(slot.name)
     for (const argument of slot.arguments)
-      for (const item of argument.cases ?? []) if (/^subscriptionStore/.test(item.name)) keys.store.values.add(item.name)
+      for (const item of argument.cases ?? [])
+        for (const group of slotValueGroups(argument.type, item.name)) keys[group].values.add(item.name)
   }
   outputs.set('ios-link-set.json', JSON.stringify({
     groups: Object.fromEntries(Object.entries(linkSetGroups).map(([group, { modifiers: _m, slots: _s, values: _v, ...catalog }]: [string, any]) => [
@@ -2104,6 +2109,7 @@ ${derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) =
     Self(kind: .containerValue) { AnyView($0.containerValue(keyPath, value)) }
   }
 
+  #if ONE_GROUP_INTENTS
   @available(iOS 18, *)
   public static func accessibilityAction<I: AppIntent>(named label: String, intent: I) -> Self {
     Self(kind: .accessibilityAction) { AnyView($0.accessibilityAction(named: Text(label), intent: intent)) }
@@ -2116,6 +2122,8 @@ ${derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) =
     Self(kind: .onAppIntentExecution) { AnyView($0.onAppIntentExecution(intent, perform: action)) }
   }
 
+  #endif
+
   @available(iOS 27, *)
   public static func reorderContainer<Item: Identifiable>(
     for item: Item.Type, isEnabled: Bool = true,
@@ -2124,13 +2132,16 @@ ${derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) =
     Self(kind: .reorderContainer) { AnyView($0.reorderContainer(for: item, isEnabled: isEnabled, move: move)) }
   }
 
+  #if ONE_GROUP_MAPS
   @available(iOS 17, *)
   public static func mapFeatureSelectionContent<Content: MapContent>(
     @MapContentBuilder content: @escaping (MapFeature) -> Content
   ) -> Self {
     Self(kind: .mapFeatureSelectionContent) { AnyView($0.mapFeatureSelectionContent(content: content)) }
   }
+  #endif
 
+  #if ONE_GROUP_CREDENTIALS
   @available(iOS 18.1, *)
   public static func transactionTask(
     _ configuration: CredentialTransaction.Configuration?,
@@ -2138,6 +2149,7 @@ ${derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) =
   ) -> Self {
     Self(kind: .transactionTask) { AnyView($0.transactionTask(configuration, action: action)) }
   }
+  #endif
 ${derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) => gated(modifier, `
   @available(iOS ${modifier.ios}, *)
   public static func ${modifier.registeredFactory}(_ action: ${modifier.registeredCallbackType}) -> Self {

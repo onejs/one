@@ -65,6 +65,7 @@
   using namespace margelo::nitro;
   using namespace margelo::nitro::one;
 
+#if ONE_GROUP_CONTACTS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneContactUI",
     []() -> std::shared_ptr<HybridObject> {
@@ -72,6 +73,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneSDK",
     []() -> std::shared_ptr<HybridObject> {
@@ -79,6 +81,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_CONTACTS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "NativeCNContact",
     []() -> std::shared_ptr<HybridObject> {
@@ -86,6 +89,8 @@
       return hybridObject;
     }
   );
+#endif
+#if ONE_GROUP_CONTACTS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "NativeCNContactStore",
     []() -> std::shared_ptr<HybridObject> {
@@ -93,6 +98,8 @@
       return hybridObject;
     }
   );
+#endif
+#if ONE_GROUP_VISION
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneDataScanner",
     []() -> std::shared_ptr<HybridObject> {
@@ -100,6 +107,7 @@
       return hybridObject;
     }
   );
+#endif
 #if ONE_GROUP_MESSAGING
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneMailCompose",
@@ -118,6 +126,7 @@
     }
   );
 #endif
+#if ONE_GROUP_VISION
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneDocumentCamera",
     []() -> std::shared_ptr<HybridObject> {
@@ -125,6 +134,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneHaptics",
     []() -> std::shared_ptr<HybridObject> {
@@ -146,6 +156,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_MEDIA
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneSpeechSynthesis",
     []() -> std::shared_ptr<HybridObject> {
@@ -153,6 +164,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneCrypto",
     []() -> std::shared_ptr<HybridObject> {
@@ -265,6 +277,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_MAPS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneLocation",
     []() -> std::shared_ptr<HybridObject> {
@@ -272,6 +285,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneFileSystem",
     []() -> std::shared_ptr<HybridObject> {
@@ -279,6 +293,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_MEDIA
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneAudio",
     []() -> std::shared_ptr<HybridObject> {
@@ -286,6 +301,7 @@
       return hybridObject;
     }
   );
+#endif
 #if ONE_GROUP_PHOTOS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OnePhotoLibrary",
@@ -353,6 +369,7 @@
     }
   );
 #endif
+#if ONE_GROUP_CONTACTS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneContacts",
     []() -> std::shared_ptr<HybridObject> {
@@ -360,6 +377,8 @@
       return hybridObject;
     }
   );
+#endif
+#if ONE_GROUP_MAPS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneMapServices",
     []() -> std::shared_ptr<HybridObject> {
@@ -367,6 +386,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneUpdates",
     []() -> std::shared_ptr<HybridObject> {

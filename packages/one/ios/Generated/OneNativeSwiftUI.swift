@@ -4,7 +4,9 @@ import SwiftUI
 #if ONE_GROUP_PHOTOS
 import PhotosUI
 #endif
+#if ONE_GROUP_WEB
 import WebKit
+#endif
 #if ONE_GROUP_WALLET
 import PassKit
 #endif
@@ -268,6 +270,7 @@ enum OneNativeGenerated {
     }
   }
 #endif
+#if ONE_GROUP_WEB
   @available(iOS 26, *)
   static func backForwardNavigationGesturesBehavior(_ value: String) -> WebView.BackForwardNavigationGesturesBehavior {
     switch value {
@@ -280,6 +283,8 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid BackForwardNavigationGesturesBehavior: \(value)")
     }
   }
+#endif
+#if ONE_GROUP_WEB
   @available(iOS 26, *)
   static func magnificationGesturesBehavior(_ value: String) -> WebView.MagnificationGesturesBehavior {
     switch value {
@@ -292,6 +297,8 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid MagnificationGesturesBehavior: \(value)")
     }
   }
+#endif
+#if ONE_GROUP_WEB
   @available(iOS 26, *)
   static func linkPreviewBehavior(_ value: String) -> WebView.LinkPreviewBehavior {
     switch value {
@@ -304,6 +311,8 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid LinkPreviewBehavior: \(value)")
     }
   }
+#endif
+#if ONE_GROUP_WEB
   @available(iOS 26, *)
   static func elementFullscreenBehavior(_ value: String) -> WebView.ElementFullscreenBehavior {
     switch value {
@@ -316,6 +325,7 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid ElementFullscreenBehavior: \(value)")
     }
   }
+#endif
   static func toolbarItemPlacement(_ value: String) -> ToolbarItemPlacement {
     switch value {
     case "automatic":
@@ -493,6 +503,7 @@ extension View {
     default: let _ = preconditionFailure("invalid ListStyle: \(value)"); self
     }
   }
+#if ONE_GROUP_WEB
   @ViewBuilder func oneNativeWebViewBackForwardNavigationGestures(_ value: String) -> some View {
     if #available(iOS 26, *) {
       if value.isEmpty { self } else { self.webViewBackForwardNavigationGestures(OneNativeGenerated.backForwardNavigationGesturesBehavior(value)) }
@@ -501,6 +512,8 @@ extension View {
       self
     }
   }
+#endif
+#if ONE_GROUP_WEB
   @ViewBuilder func oneNativeWebViewMagnificationGestures(_ value: String) -> some View {
     if #available(iOS 26, *) {
       if value.isEmpty { self } else { self.webViewMagnificationGestures(OneNativeGenerated.magnificationGesturesBehavior(value)) }
@@ -509,6 +522,8 @@ extension View {
       self
     }
   }
+#endif
+#if ONE_GROUP_WEB
   @ViewBuilder func oneNativeWebViewLinkPreviews(_ value: String) -> some View {
     if #available(iOS 26, *) {
       if value.isEmpty { self } else { self.webViewLinkPreviews(OneNativeGenerated.linkPreviewBehavior(value)) }
@@ -517,6 +532,8 @@ extension View {
       self
     }
   }
+#endif
+#if ONE_GROUP_WEB
   @ViewBuilder func oneNativeWebViewElementFullscreenBehavior(_ value: String) -> some View {
     if #available(iOS 26, *) {
       if value.isEmpty { self } else { self.webViewElementFullscreenBehavior(OneNativeGenerated.elementFullscreenBehavior(value)) }
@@ -525,6 +542,8 @@ extension View {
       self
     }
   }
+#endif
+#if ONE_GROUP_WEB
   @ViewBuilder func oneNativeWebViewContentBackground(_ value: String) -> some View {
     if #available(iOS 26, *) {
       if value.isEmpty { self } else { self.webViewContentBackground(OneNativeGenerated.visibility(value)) }
@@ -533,4 +552,5 @@ extension View {
       self
     }
   }
+#endif
 }

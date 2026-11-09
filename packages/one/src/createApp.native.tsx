@@ -1,15 +1,17 @@
-import { AppRegistry, LogBox } from 'react-native' // This should be the first import as it might set up global variables that are needed for the other imports
+import { AppRegistry, LogBox, Platform } from 'react-native' // This should be the first import as it might set up global variables that are needed for the other imports
 import { useSyncExternalStore } from 'react'
 import type { One } from './vite/types'
 import './polyfills-mobile'
 import { Root } from './Root'
 import './setup'
 import type { CreateAppProps } from './createApp'
+import { getInitialURL } from './link/linking'
 
 // TODO temporary
 LogBox.ignoreLogs([/Sending .* with no listeners registered/])
 
 export function createApp(options: CreateAppProps): void {
+  if (Platform.OS === 'ios') getInitialURL()
   let routes = options.routes
   let routeVersion = 0
   const routeListeners = new Set<() => void>()

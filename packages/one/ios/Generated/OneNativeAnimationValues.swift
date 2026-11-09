@@ -2,7 +2,9 @@
 // edit the generator or catalog, then regenerate.
 import SwiftUI
 import Foundation
+#if ONE_GROUP_MAPS
 import MapKit
+#endif
 
 // an SDK value from JavaScript: a bare case name, or a JSON record naming a case or
 // factory in kind with parameters and chained methods by label.
@@ -1038,6 +1040,7 @@ func oneNativeSDKValueListSectionSpacing(_ value: Any, _ context: String) -> Swi
   }()
 }
 
+#if ONE_GROUP_MAPS
 func oneNativeSDKValueMKPointOfInterestCategory(_ value: Any, _ context: String) -> MapKit.MKPointOfInterestCategory {
   let record = OneNativeSDKRecord(value, context)
   return { () -> MapKit.MKPointOfInterestCategory in
@@ -1598,7 +1601,9 @@ if #available(iOS 18, *) { return MapKit.MKPointOfInterestCategory.volleyball }
     }
   }()
 }
+#endif
 
+#if ONE_GROUP_MAPS
 @available(iOS 18, *)
 func oneNativeSDKValueMapItemDetailSelectionAccessoryStyle(_ value: Any, _ context: String) -> _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle {
   let record = OneNativeSDKRecord(value, context)
@@ -1639,7 +1644,9 @@ if #available(iOS 18, *) { return _MapKit_SwiftUI.MapItemDetailSelectionAccessor
     }
   }()
 }
+#endif
 
+#if ONE_GROUP_MAPS
 @available(iOS 18, *)
 func oneNativeSDKValueMapItemDetailSelectionAccessoryStyleCalloutStyle(_ value: Any, _ context: String) -> _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.CalloutStyle {
   let record = OneNativeSDKRecord(value, context)
@@ -1670,7 +1677,9 @@ if #available(iOS 18, *) { return _MapKit_SwiftUI.MapItemDetailSelectionAccessor
     }
   }()
 }
+#endif
 
+#if ONE_GROUP_MAPS
 func oneNativeSDKValueMapStyle(_ value: Any, _ context: String) -> _MapKit_SwiftUI.MapStyle {
   let record = OneNativeSDKRecord(value, context)
   return { () -> _MapKit_SwiftUI.MapStyle in
@@ -1697,7 +1706,9 @@ func oneNativeSDKValueMapStyle(_ value: Any, _ context: String) -> _MapKit_Swift
     }
   }()
 }
+#endif
 
+#if ONE_GROUP_MAPS
 func oneNativeSDKValueMapStyleElevation(_ value: Any, _ context: String) -> _MapKit_SwiftUI.MapStyle.Elevation {
   let record = OneNativeSDKRecord(value, context)
   return { () -> _MapKit_SwiftUI.MapStyle.Elevation in
@@ -1721,7 +1732,9 @@ func oneNativeSDKValueMapStyleElevation(_ value: Any, _ context: String) -> _Map
     }
   }()
 }
+#endif
 
+#if ONE_GROUP_MAPS
 func oneNativeSDKValueMapStyleStandardEmphasis(_ value: Any, _ context: String) -> _MapKit_SwiftUI.MapStyle.StandardEmphasis {
   let record = OneNativeSDKRecord(value, context)
   return { () -> _MapKit_SwiftUI.MapStyle.StandardEmphasis in
@@ -1740,6 +1753,7 @@ func oneNativeSDKValueMapStyleStandardEmphasis(_ value: Any, _ context: String) 
     }
   }()
 }
+#endif
 
 func oneNativeSDKValueMaterial(_ value: Any, _ context: String) -> SwiftUI.Material {
   let record = OneNativeSDKRecord(value, context)
@@ -1892,6 +1906,7 @@ func oneNativeSDKValuePaletteSelectionEffect(_ value: Any, _ context: String) ->
   }()
 }
 
+#if ONE_GROUP_MAPS
 func oneNativeSDKValuePointOfInterestCategories(_ value: Any, _ context: String) -> _MapKit_SwiftUI.PointOfInterestCategories {
   let record = OneNativeSDKRecord(value, context)
   return { () -> _MapKit_SwiftUI.PointOfInterestCategories in
@@ -1920,6 +1935,7 @@ func oneNativeSDKValuePointOfInterestCategories(_ value: Any, _ context: String)
     }
   }()
 }
+#endif
 
 func oneNativeSDKValuePresentationBackgroundInteraction(_ value: Any, _ context: String) -> SwiftUI.PresentationBackgroundInteraction {
   let record = OneNativeSDKRecord(value, context)

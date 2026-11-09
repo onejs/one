@@ -54,7 +54,7 @@ export const modifiers = [
     swiftType: 'WebView.ElementFullscreenBehavior',
     module: '_WebKit_SwiftUI',
   },
-  { name: 'webViewContentBackground', type: 'Visibility', module: 'SwiftUICore' },
+  { name: 'webViewContentBackground', type: 'Visibility', module: 'SwiftUICore', framework: 'WebKit' },
 ] as const
 
 // sdk modifiers one carries past swiftui, chained after the sdk call with its first

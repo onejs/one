@@ -1,3 +1,4 @@
+#if ONE_GROUP_MEDIA
 #import "OneNativeCameraComponentView.h"
 #import <React/RCTConversions.h>
 #import "One-Swift.h"
@@ -90,3 +91,12 @@ using namespace facebook::react;
 }
 
 @end
+
+#else
+#import "OneNativeCameraComponentView.h"
+#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+using namespace facebook::react;
+@implementation OneNativeCameraComponentView
++ (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeCameraComponentDescriptor>(); }
+@end
+#endif

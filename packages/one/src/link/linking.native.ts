@@ -1,4 +1,4 @@
-import { Linking } from 'react-native'
+import { Linking, Platform } from 'react-native'
 
 import { getPathFromState } from '../fork/getPathFromState'
 import { getStateFromPath } from '../fork/getStateFromPath'
@@ -8,7 +8,17 @@ import { getStateFromPath } from '../fork/getStateFromPath'
 // This helps keep the native functionality working like the web functionality.
 // For example, if you had a root navigator where the first screen was `/settings` and the second was `/index`
 // then `/index` would be used on web and `/settings` would be used on native.
-export function getInitialURL(): Promise<string | null> | string {
+let initialURL: Promise<string> | string | undefined
+
+export function getInitialURL(): Promise<string> | string {
+  if (Platform.OS !== 'ios') return readInitialURL()
+  return (initialURL ??= readInitialURL().then((url) => {
+    initialURL = url
+    return url
+  }))
+}
+
+function readInitialURL(): Promise<string> {
   return Promise.race<string>([
     (async () => {
       const url = await Linking.getInitialURL()

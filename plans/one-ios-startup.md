@@ -47,3 +47,13 @@ Gain: about 9 to 11 ms of the ~87 ms from app delegate to routed content, and ab
 - Main thread after `startReactNative` returns: about 8.5 ms of work I did not attribute. INFERRED: scene window and launch screen setup.
 - Appearance's main-queue hop costs about 0.1 ms on the simulator, so the color-scheme `Appearance.getColorScheme()` cost seen on Mac does not reproduce here. No `color-scheme` change.
 - The largest cost is outside JS. RAN in earlier measurement (air-32): 85 to 90 percent of One's simulator cold start is dyld loading 122 images (82 system frameworks, 34 Swift libraries) from the One pod's link set, pre-main 1.4 to 2.1 s against 0.21 s for the rival. It is unmeasured on a device, where it is probably much smaller. Owner: One's iOS pod link set.
+
+## current optimization, 2026-11-09
+
+The historical simulator measurements above do not describe the current React Native prebuilt dependency stack. The matched rebuild and current acceptance results live in `plans/one-ios-linkset.md`.
+
+The shared-state installer now loads Worklets when installing the first shared state. A Release fixture checked a generated Foundation call, a native map and both directions of shared-state updates. Production lazy barrels were tried against the same native binary and rejected: ten alternating launches measured 523.7 ms to route commit with them enabled against 514.5 ms with them disabled. Production retains its existing setting.
+
+The initial URL request previously began during navigation's initial render. iOS now starts that same React Native request when registering the app and caches its result. Once resolved, navigation can consume the launch URL synchronously. This preserves the existing initial-URL source, prefix filtering and cold-link behavior, and avoids an initial provider-only commit when the URL is ready. Android does not prefetch, including its headless registration path. Runtime qualification is in progress.
+
+`RCTContentDidAppearNotification` marks the router provider shell, not necessarily the page. Current comparisons separately record that notification and the target page's React layout-effect timestamp. The page and the plain RN control write the same Settings key; the launch harness subtracts kernel process creation time and waits on filesystem events. These are process cold starts with warm filesystem caches, not device reboots or pixel presentation times.

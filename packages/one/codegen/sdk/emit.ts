@@ -851,7 +851,10 @@ ${methods.join('\n')}
     if (e.usr.startsWith('c:objc(')) e.observation = 'kvo'
     else if (bridge.index.get(e.receiver.usr ?? '')?.conformsTo?.includes(OBSERVABLE)) e.observation = 'tracking'
   }
-  return { module: graph.module, entries, skipped, swift: renderSwift(graph.module, table, [...imports].sort(), conformancesOnly ? [] : entries, [...conformances, ...(conformancesOnly ? [] : openings)], () => emitProtocols(graph, bridge, all, exclude, skipped)) }
+  const swift = renderSwift(graph.module, table, [...imports].sort(), conformancesOnly ? [] : entries, [...conformances, ...(conformancesOnly ? [] : openings)], () => emitProtocols(graph, bridge, all, exclude, skipped))
+  const body = swift.replace(/^import \S+\n/gm, '')
+  return { module: graph.module, entries, skipped, swift: swift.replace(/^import (\S+)\n/gm, (line, module) =>
+    module === 'Foundation' || module === 'One' || module === graph.module || new RegExp(`\\b${module}\\.`).test(body) ? line : '') }
 }
 
 function emitConformance(symbol: Symbol, bridge: Bridge, memberUsrs: string[], byUsr: Map<string, Symbol>, requirements: Set<string>, typeVersion: string | undefined) {

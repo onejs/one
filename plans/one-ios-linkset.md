@@ -4,10 +4,7 @@ Goal: cut the time One's iOS apps spend in dyld before `main`. Subject: `tests/r
 
 ## status
 
-- Stopped on 2026-10-25 UTC by owner direction relayed by startup lead s72425: "we don't need to optimize the startup anymore". Scope: further startup optimization. Round three remains the latest measured implementation; no round-four runtime changes were landed.
-- Done: the framework table, a cause for the pre-main cost, and the size of the saving a trimmed link set gives (probe app, RAN).
-- Not done: a source prototype on `tm/one-ios-linkset`, and One cold launches current against prototype. The previous worker's warm build tree (`one-ios-js2`) no longer exists, so a One build was from scratch. `bun install` onto the Samsung disk alone took 25 minutes on the loaded host and `one prebuild` then sat 21 minutes without output (killed), so no One app was built. Nothing below is a One cold-launch number.
-- Every number is the probe app unless it says otherwise.
+Round five selects SDK bindings from the production bundle and splits the remaining optional framework importers. Current qualification uses a rebuilt React Native control and alternating cold launches in the air-24 quiet queue. The earlier sections record historical probes and build stacks; the current matched comparison is below.
 
 ## method: a probe instead of the One app
 
@@ -279,6 +276,28 @@ Draft work extended the existing group mechanism and began production-graph SDK 
 
 RAN: dependencies installed and the JS dependency build completed before the SDK draft edits. This does not validate the unfinished changes. Native source generation was stopped during Swift typechecking. No iOS app build or timing run started, no simulator was created and no app was launched. There are no new native acceptance results or CI checks to hand off. Further optimization is canceled unless the owner reopens it.
 
+## round five: production SDK selection and remaining framework groups (2026-11-09)
+
+The production bundler records SDK table identities remaining in the emitted JavaScript, after tree shaking. Prebuild uses these frameworks for Release and preserves the source-scanned framework set for Debug. The two configurations have separate generated source directories behind `ONE_SDK_DEBUG`, so changing features in development keeps working. The SDK pod records its Release framework list in the installed CocoaPods xcconfig. A later Release bundle that needs a missing framework fails with the same prebuild instruction as a missing native group. Metro retains the previous conservative full set.
+
+SDK conformance-only files no longer import frameworks used solely by table entries they do not emit. Public SDK entries, signatures and IDs are unchanged; the committed facades and manifest are rekeyed to the new generator fingerprint. The generated native tables and conformances were compiled against device and simulator SDKs, then reused after the pod-only configuration change with their table identity updated. Declaration shapes are unchanged.
+
+New groups cover MapKit and CoreLocation, AVKit, ContactsUI, VisionKit, SwiftData, Translation, WorkoutKit, WebKit, AppIntents, WidgetKit, GameController, DataDetection, SecureElementCredential and media. Media owns camera, audio and speech synthesis, and maps also owns the location service and LocationButton. The existing generator gates their imports, modifier implementations, view slots, value decoders and generated views. Handwritten maps, picture in picture, contact, scanning and DOM sources and Nitro registrations use the same conditions. A `use dom` module enables WebKit through its bundler metadata; generated native DOM proxies are accounted for even though their browser source does not mention a native component.
+
+The shared-state installer initializes Worklets at the first state installation, preserving its required initialization before the native install. An app that imports One without using shared state can avoid that eager JavaScript work.
+
+The first matched comparison, before the final overlay splits, ran ten alternating cold launches per variant after warm-up in the air-24 quiet queue:
+
+| app | AppDelegate.init median ms | route commit median ms |
+|---|---:|---:|
+| plain RN | 301.2 | 361.7 |
+| rebuilt round-three equivalent | 669.6 | 747.0 |
+| selected SDK and first framework groups | 433.8 | 514.5 |
+
+This intermediate result reduced the gap from 368.4 to 132.6 ms at the delegate and from 385.3 to 152.8 ms at route commit. This is a matched reconstruction using the same current dependencies, not an executable built from the old branch. The old 353 ms and 137 ms figures used another build stack and a different content mark.
+
+Final qualification is in progress. The launch comparison rebuilds a round-three-equivalent baseline with the newly separated groups and full SDK tables enabled, then the selected Release app, against the same React Native 0.88 control. It runs alternating cold launches after warm-up on air-24 through the quiet queue. A physical iPhone Air is connected to the build host.
+
 ## how it works
 
 `ios-link-set.json` lists the groups. `one prebuild` writes `ios/one-link-set.json` from the production bundle (`src/cli/iosLinkSet.ts`). `One.podspec` defines `ONE_GROUP_X` conditions for those groups in Release and for all groups in Debug. Group sources, nitro registration and generated modifiers sit under those conditions. A compiled-out component keeps a stub class that renders nothing, and a compiled-out hybrid is not registered, so its call fails through the existing unsupported error. `OneStoreReview` moved to a Swift hybrid in the store group because its SDK import kept StoreKit linked in every app.
@@ -287,8 +306,8 @@ RAN: dependencies installed and the JS dependency build completed before the SDK
 
 - The link set is captured at pod install. Adding a feature later needs `one prebuild`; a Release build that needs a missing group fails (see round two).
 - A computed read or an escaping namespace keeps every group. A Metro bundle has no analysis plugin, so prebuild links every group there.
-- The latest gap is about 353 ms at `app_delegate_init` after round three, against the owner's accepted range of about 250 to 300 ms. Further optimization was canceled before another measurement; see round four.
-- Do not edit `codegen/sdk/app.ts` or other fingerprinted files; the fingerprint is embedded in the published bindings.
+- The historical round-three gap is about 353 ms at `app_delegate_init`. Round five is being measured against a rebuilt control on air-24.
+- SDK generator edits require matching committed facade and manifest identities; round five includes the matching fingerprint regeneration.
 
 ## files
 

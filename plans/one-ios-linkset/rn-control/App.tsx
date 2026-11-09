@@ -1,7 +1,8 @@
 import React from 'react'
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, Settings } from 'react-native'
 
 export default function App() {
+  React.useLayoutEffect(() => { Settings.set({ oneStartupRoutedEpoch: Date.now() }) }, [])
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text testID="hello-word">Hello One!</Text>
