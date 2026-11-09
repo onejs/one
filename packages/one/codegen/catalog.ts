@@ -57,6 +57,13 @@ export const modifiers = [
   { name: 'webViewContentBackground', type: 'Visibility', module: 'SwiftUICore' },
 ] as const
 
+// sdk modifiers one carries past swiftui, chained after the sdk call with its first
+// argument: a matchedTransitionSource is also the router's zoom source of its id
+// (ios/OneZoomSources.swift).
+export const sdkModifierBridges: Readonly<Record<string, string>> = {
+  matchedTransitionSource: 'oneNativeRouterZoomSource',
+}
+
 // a context menu is the same menu content on a different presentation, so Swift.Menu and
 // Swift.ContextMenu are one component with one trigger slot.
 export const menuMethods = [

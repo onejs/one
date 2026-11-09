@@ -6501,6 +6501,7 @@ self
       return raw
     }()
     self.matchedTransitionSource(id: argument0, in: OneNativeNamespace.id)
+      .oneNativeRouterZoomSource(argument0)
     } else { self }
   }
 
