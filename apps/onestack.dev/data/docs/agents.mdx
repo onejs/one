@@ -1,0 +1,82 @@
+---
+title: Coding agents
+description: Install and use One's official agent skills in your app.
+---
+
+One provides skills for agents that build web and native apps. They cover file
+routes, loaders, deployment, and One's native components, including SwiftUI
+layout, tabs, toolbars, style modifiers, and Liquid Glass.
+
+## Install in your app
+
+From your app root, run:
+
+```bash
+npx skills add onejs/skills
+```
+
+Select the One skills and the agents you use. For all six skills with Codex and
+Claude Code, without prompts:
+
+```bash
+npx skills add onejs/skills --skill '*' --agent codex claude-code --yes
+```
+
+Use `--agent cursor` for Cursor, or select it in the interactive installer.
+Project installation keeps skills in `.agents/skills` and creates agent links
+where needed. Codex reads the shared directory directly. Use `--global` only
+when you want the skills available in every project.
+
+Check discovery with `npx skills list`, then start a fresh agent session so its
+skill catalog includes the install. Tell it to use `building-with-one` before
+changing the app and read only the references relevant to the task.
+
+The skills follow current One source. Check your installed `one` version before
+using newer APIs; an older release may need an upgrade. The skills do not
+install or upgrade the framework itself.
+
+## Make setup discoverable
+
+The Basic starter created by `npx one` includes agent instructions. For another
+app or starter, add this to its `AGENTS.md` or `CLAUDE.md`:
+
+```markdown
+Before changing this One app, read the installed building-with-one skill and
+its references for the task. If missing, run npx skills add onejs/skills from
+the app root and select your agent. Use the relevant One topic skill for
+loaders, API routes, render modes, deployment, or recipes. Check APIs against
+the installed one version.
+```
+
+Adding these instructions does not itself install skills. Run the installer,
+then confirm the agent can discover them.
+
+## Choose the skill
+
+| Skill | Use it for |
+| --- | --- |
+| `building-with-one` | Routing, layouts, navigation, hooks, configuration, native UI, SwiftUI modifiers and glass |
+| `one-loaders` | Server data, redirects, refetch, validated queries and caching |
+| `one-api-routes` | HTTP endpoints, method handlers, typed params and worker context |
+| `one-render-modes` | SSG, SSR, SPA, API and layout shells |
+| `one-deployment` | Node, Vercel, Cloudflare Workers, static output and native build boundaries |
+| `one-guides` | Authentication, images, CSS, color scheme, Tamagui, MDX, native builds and troubleshooting |
+
+For example: “Use building-with-one to add an iOS settings screen with One's
+native controls. Check the native layout and style references first.”
+
+## Update
+
+From the project root:
+
+```bash
+npx skills update --project --yes
+```
+
+Start a fresh agent session after updating. Keep the app's framework version in
+mind when applying changed guidance.
+
+Claude Code users can alternatively install the packaged plugin. See the
+[skills repository](https://github.com/onejs/skills) for the marketplace commands
+and complete installation options. Choose one install method for Claude to
+avoid duplicate skill entries.

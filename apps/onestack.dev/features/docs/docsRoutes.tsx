@@ -3,6 +3,7 @@ export const docsRoutes = [
     pages: [
       { title: 'Introduction', route: '/docs/introduction' },
       { title: 'Installation', route: '/docs/installation' },
+      { title: 'Coding agents', route: '/docs/agents' },
       { title: 'Configuration', route: '/docs/configuration' },
       { title: 'Deployment', route: '/docs/guides-deployment' },
       { title: 'Features', route: '/docs/features' },

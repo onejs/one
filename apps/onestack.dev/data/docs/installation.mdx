@@ -20,7 +20,15 @@ If this is your first One app, we recommend taking this route, as you can choose
   npx skills add onejs/skills
   ```
 
-  Full list and per-agent install instructions: [github.com/onejs/skills](https://github.com/onejs/skills).
+  Run this inside your app, select your coding agent, then start a fresh agent
+  session and use `building-with-one`. For all six skills with Codex and Claude
+  Code without prompts:
+
+  ```bash
+  npx skills add onejs/skills --skill '*' --agent codex claude-code --yes
+  ```
+
+  See [Coding agents](/docs/agents) for setup, updates, and the skill list.
 </Notice>
 
 ### 5-minute tutorial

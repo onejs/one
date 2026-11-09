@@ -165,3 +165,11 @@ lane and CI owner. No stable release is authorized.
 
 Option b is excluded. The exploratory root-edge pruning estimate is 7,504,327
 bytes with 347 modules removed. The class route retains One's root public API.
+
+## Agent skill discovery
+
+Prepare a Coding agents page linked from installation, introduction and the docs
+sidebar. Show the verified `onejs/skills` project install, fresh-session discovery,
+updates and topic selection. Public site publication is held for owner approval
+under the upstream-work procedure. The Basic starter's agent instructions ship
+separately. No framework runtime changes or library release are needed.
