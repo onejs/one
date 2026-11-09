@@ -199,7 +199,8 @@ function assertNoGreedyContainer(children: ReactNode, owner: string) {
 // enclosing swiftui view proposes the box.
 function assertGreedyContentBounded(children: ReactNode, style: StyleProp<ViewStyle>, owner: string, composed: boolean) {
   const name = !composed && greedyContainer(children)
-  if (name && typeof StyleSheet.flatten(style)?.height !== 'number')
+  const height = name ? StyleSheet.flatten(style)?.height : undefined
+  if (name && (height == null || height === 'auto'))
     throw new Error(`${name} inside ${owner} fills the ${owner}'s box; give the ${owner} a style height`)
 }
 
