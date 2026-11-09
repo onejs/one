@@ -154,6 +154,7 @@ declare module 'one' {
         | `/one-native-motion`
         | `/one-native-navigation`
         | `/one-native-navigation-split-view`
+        | `/one-native-navigation-zoom`
         | `/one-native-network`
         | `/one-native-notifications`
         | `/one-native-open`

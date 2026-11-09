@@ -57,6 +57,13 @@ export const modifiers = [
   { name: 'webViewContentBackground', type: 'Visibility', module: 'SwiftUICore' },
 ] as const
 
+// sdk modifiers one carries past swiftui, chained after the sdk call with its first
+// argument: a matchedTransitionSource is also the router's zoom source of its id
+// (ios/OneZoomSources.swift).
+export const sdkModifierBridges: Readonly<Record<string, string>> = {
+  matchedTransitionSource: 'oneNativeRouterZoomSource',
+}
+
 // number arguments that also take infinity, as swiftui's .frame(maxWidth: .infinity) does
 export const sdkUnboundedArguments: Readonly<Record<string, readonly string[]>> = {
   frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment: [

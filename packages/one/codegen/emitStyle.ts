@@ -1,4 +1,4 @@
-import { sdkUnboundedArguments, type StyleField } from './catalog'
+import { sdkModifierBridges, sdkUnboundedArguments, type StyleField } from './catalog'
 import type { DerivedModifier, DerivedViewSlot, EventValueSchema } from './deriveSDK'
 import { continuousNumber, eventValueType } from './emitControls'
 import { sdkGuard } from './sdkGuard'
@@ -589,7 +589,7 @@ ${assignments}
       return decoded
     }()
 ${parsedArguments}
-    ${apply(call, 17, true)}`
+    ${apply(call, 17, true)}${Object.hasOwn(sdkModifierBridges, modifier.name) ? `\n      .${sdkModifierBridges[modifier.name]}(argument0)` : ''}`
         const generated = `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     ${modifier.ios > 17 ? sdkGuard(modifier.ios, `if #available(iOS ${modifier.ios}, *) {
       ${body}

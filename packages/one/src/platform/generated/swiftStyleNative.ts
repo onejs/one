@@ -2507,6 +2507,7 @@ const sdkModifierValues: Record<string, string> = {
   listSectionSpacingWithListSectionSpacing: 'ListSectionSpacing',
   mapFeatureSelectionAccessory: 'MapItemDetailSelectionAccessoryStyle',
   mapStyle: 'MapStyle',
+  navigationTransition: 'style:navigationTransition',
   paletteSelectionEffect: 'PaletteSelectionEffect',
   presentationBackgroundInteraction: 'PresentationBackgroundInteraction',
   searchDictationBehavior: 'TextInputDictationBehavior',
@@ -3385,6 +3386,11 @@ const sdkValueShapes: Record<string, SDKValueShape> = {
     ],
     chain: [],
   },
+  'style:navigationTransition': {
+    cases: ['automatic', 'crossFade'],
+    factories: [{ name: 'zoom', parameters: [{ field: 'sourceID', kind: 'string' }] }],
+    chain: [],
+  },
   'style:tabViewStyle': {
     cases: ['sidebarAdaptable', 'page', 'tabBarOnly', 'automatic'],
     factories: [
@@ -3419,6 +3425,8 @@ function checkSDKParameter(
       )
   } else if (parameter.kind === 'boolean') {
     if (typeof value !== 'boolean') throw new Error(context + ' must be a boolean')
+  } else if (parameter.kind === 'string') {
+    if (typeof value !== 'string') throw new Error(context + ' must be a string')
   } else checkSDKValue(value, parameter.value!, context)
 }
 

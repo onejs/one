@@ -67,6 +67,12 @@ struct OneNativeSDKRecord {
     return integer
   }
 
+  func string(_ key: String) -> String? {
+    guard let raw = fields[key] else { return nil }
+    guard let text = raw as? String else { preconditionFailure("invalid \(context).\(key)") }
+    return text
+  }
+
   func boolean(_ key: String) -> Bool? {
     guard let raw = fields[key] else { return nil }
     guard let number = raw as? NSNumber, CFGetTypeID(number) == CFBooleanGetTypeID() else {
