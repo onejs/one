@@ -17,12 +17,12 @@ export const AccessoryAuthorizationResult = {
    * var description: String { get }
    * @availability iOS 26.5+
    */
-  getDescription($self: AccessoryAuthorizationResult): string { return callSDK<string>("AccessoryLiveActivities_8a9cd9e597ca864c", 3670283131861824, $self, []); },
+  getDescription($self: AccessoryAuthorizationResult): string { return callSDK<string>("AccessoryLiveActivities_65c53b4cbac6c6a9", 3670283131861824, $self, []); },
   /**
    * nonisolated static var allCases: [AccessoryAuthorizationResult] { get }
    * @availability iOS 26.5+
    */
-  get allCases(): $SDK0 { return callSDK<$SDK0>("AccessoryLiveActivities_8a9cd9e597ca864c", 3709921195692933, undefined, []); }
+  get allCases(): $SDK0 { return callSDK<$SDK0>("AccessoryLiveActivities_65c53b4cbac6c6a9", 3709921195692933, undefined, []); }
 };
 
 /**
@@ -40,32 +40,32 @@ export class AccessoryLiveActivity extends SDKHandle {
    * let sourceBundleIcon: AccessoryLiveActivity.IconFile?
    * @availability iOS 26.5+
    */
-  get sourceBundleIcon(): (AccessoryLiveActivity_IconFile) | null { return callSDK<(AccessoryLiveActivity_IconFile) | null>("AccessoryLiveActivities_8a9cd9e597ca864c", 4047563833700731, this, []); }
+  get sourceBundleIcon(): (AccessoryLiveActivity_IconFile) | null { return callSDK<(AccessoryLiveActivity_IconFile) | null>("AccessoryLiveActivities_65c53b4cbac6c6a9", 4047563833700731, this, []); }
   /**
    * let sourceBundleName: String
    * @availability iOS 26.5+
    */
-  get sourceBundleName(): string { return callSDK<string>("AccessoryLiveActivities_8a9cd9e597ca864c", 3185154113949138, this, []); }
+  get sourceBundleName(): string { return callSDK<string>("AccessoryLiveActivities_65c53b4cbac6c6a9", 3185154113949138, this, []); }
   /**
    * let activityIdentifier: String
    * @availability iOS 26.5+
    */
-  get activityIdentifier(): string { return callSDK<string>("AccessoryLiveActivities_8a9cd9e597ca864c", 4337749233102375, this, []); }
+  get activityIdentifier(): string { return callSDK<string>("AccessoryLiveActivities_65c53b4cbac6c6a9", 4337749233102375, this, []); }
   /**
    * let sourceBundleIdentifier: String
    * @availability iOS 26.5+
    */
-  get sourceBundleIdentifier(): string { return callSDK<string>("AccessoryLiveActivities_8a9cd9e597ca864c", 4416715418224946, this, []); }
+  get sourceBundleIdentifier(): string { return callSDK<string>("AccessoryLiveActivities_65c53b4cbac6c6a9", 4416715418224946, this, []); }
   /**
    * let state: ActivityState
    * @availability iOS 26.5+
    */
-  get state(): _ActivityKit_ActivityState { return callSDK<_ActivityKit_ActivityState>("AccessoryLiveActivities_8a9cd9e597ca864c", 420192175269726, this, []); }
+  get state(): _ActivityKit_ActivityState { return callSDK<_ActivityKit_ActivityState>("AccessoryLiveActivities_65c53b4cbac6c6a9", 420192175269726, this, []); }
   /**
    * let content: AccessoryLiveActivity.Content?
    * @availability iOS 26.5+
    */
-  get content(): (AccessoryLiveActivity_Content) | null { return callSDK<(AccessoryLiveActivity_Content) | null>("AccessoryLiveActivities_8a9cd9e597ca864c", 363878853623809, this, []); }
+  get content(): (AccessoryLiveActivity_Content) | null { return callSDK<(AccessoryLiveActivity_Content) | null>("AccessoryLiveActivities_65c53b4cbac6c6a9", 363878853623809, this, []); }
   declare readonly $type: { "s:23AccessoryLiveActivities0aB8ActivityV": true };
 }
 
@@ -78,7 +78,7 @@ export class AccessoryLiveActivity_Content extends SDKHandle {
    * let alert: AccessoryLiveActivity.Content.AlertMessage?
    * @availability iOS 26.5+
    */
-  get alert(): (AccessoryLiveActivity_Content_AlertMessage) | null { return callSDK<(AccessoryLiveActivity_Content_AlertMessage) | null>("AccessoryLiveActivities_8a9cd9e597ca864c", 4307931896745600, this, []); }
+  get alert(): (AccessoryLiveActivity_Content_AlertMessage) | null { return callSDK<(AccessoryLiveActivity_Content_AlertMessage) | null>("AccessoryLiveActivities_65c53b4cbac6c6a9", 4307931896745600, this, []); }
   declare readonly $type: { "s:23AccessoryLiveActivities0aB8ActivityV7ContentV": true };
 }
 
@@ -91,12 +91,12 @@ export class AccessoryLiveActivity_Content_AlertMessage extends SDKHandle {
    * let body: String
    * @availability iOS 26.5+
    */
-  get body(): string { return callSDK<string>("AccessoryLiveActivities_8a9cd9e597ca864c", 4022771453244179, this, []); }
+  get body(): string { return callSDK<string>("AccessoryLiveActivities_65c53b4cbac6c6a9", 4022771453244179, this, []); }
   /**
    * let title: String
    * @availability iOS 26.5+
    */
-  get title(): string { return callSDK<string>("AccessoryLiveActivities_8a9cd9e597ca864c", 1035982993643164, this, []); }
+  get title(): string { return callSDK<string>("AccessoryLiveActivities_65c53b4cbac6c6a9", 1035982993643164, this, []); }
   declare readonly $type: { "s:23AccessoryLiveActivities0aB8ActivityV7ContentV12AlertMessageV": true };
 }
 
@@ -109,7 +109,7 @@ export class AccessoryLiveActivity_IconFile extends SDKHandle {
    * var url: URL { get async throws }
    * @availability iOS 26.5+
    */
-  get url(): Promise<string> { return callSDKAsync<string>("AccessoryLiveActivities_8a9cd9e597ca864c", 2767258636078118, this, []); }
+  get url(): Promise<string> { return callSDKAsync<string>("AccessoryLiveActivities_65c53b4cbac6c6a9", 2767258636078118, this, []); }
   declare readonly $type: { "s:23AccessoryLiveActivities0aB8ActivityV8IconFileV": true };
 }
 
@@ -122,17 +122,17 @@ export class LiveActivityForwarding extends SDKHandle {
    * static func authorization(forAccessory accessory: ASAccessory) async throws -> AccessoryAuthorizationResult
    * @availability iOS 26.5+
    */
-  static authorization(accessory: _AccessorySetupKit_ASAccessory): Promise<AccessoryAuthorizationResult> { return callSDKAsync<AccessoryAuthorizationResult>("AccessoryLiveActivities_8a9cd9e597ca864c", 224689740290834, undefined, [accessory]); }
+  static authorization(accessory: _AccessorySetupKit_ASAccessory): Promise<AccessoryAuthorizationResult> { return callSDKAsync<AccessoryAuthorizationResult>("AccessoryLiveActivities_65c53b4cbac6c6a9", 224689740290834, undefined, [accessory]); }
   /**
    * static func presentAuthorizationSheet(forAccessory accessory: ASAccessory) async throws -> AccessoryAuthorizationResult
    * @availability iOS 26.5+
    */
-  static presentAuthorizationSheet(accessory: _AccessorySetupKit_ASAccessory): Promise<AccessoryAuthorizationResult> { return callSDKAsync<AccessoryAuthorizationResult>("AccessoryLiveActivities_8a9cd9e597ca864c", 1496877415569055, undefined, [accessory]); }
+  static presentAuthorizationSheet(accessory: _AccessorySetupKit_ASAccessory): Promise<AccessoryAuthorizationResult> { return callSDKAsync<AccessoryAuthorizationResult>("AccessoryLiveActivities_65c53b4cbac6c6a9", 1496877415569055, undefined, [accessory]); }
   /**
    * static let featureID: String
    * @availability iOS 26.5+
    */
-  static get featureID(): string { return callSDK<string>("AccessoryLiveActivities_8a9cd9e597ca864c", 4243952816091397, undefined, []); }
+  static get featureID(): string { return callSDK<string>("AccessoryLiveActivities_65c53b4cbac6c6a9", 4243952816091397, undefined, []); }
   declare readonly $type: { "s:23AccessoryLiveActivities0B18ActivityForwardingC": true };
 }
 
@@ -183,19 +183,19 @@ export class LiveActivityForwarding_Session extends SDKHandle {
    * final var liveActivities: [AccessoryLiveActivity] { get async throws }
    * @availability iOS 26.5+
    */
-  get liveActivities(): Promise<Array<AccessoryLiveActivity>> { return callSDKAsync<Array<AccessoryLiveActivity>>("AccessoryLiveActivities_8a9cd9e597ca864c", 1530898999378876, this, []); }
+  get liveActivities(): Promise<Array<AccessoryLiveActivity>> { return callSDKAsync<Array<AccessoryLiveActivity>>("AccessoryLiveActivities_65c53b4cbac6c6a9", 1530898999378876, this, []); }
   /**
    * final func send(message: AccessoryMessage) async throws
    * @availability iOS 26.5+
    */
-  send(message: _AccessoryTransportExtension_AccessoryMessage): Promise<void> { return callSDKAsync<void>("AccessoryLiveActivities_8a9cd9e597ca864c", 2345191167520287, this, [message]); }
+  send(message: _AccessoryTransportExtension_AccessoryMessage): Promise<void> { return callSDKAsync<void>("AccessoryLiveActivities_65c53b4cbac6c6a9", 2345191167520287, this, [message]); }
   declare readonly $type: { "s:23AccessoryLiveActivities0B18ActivityForwardingC7SessionC": true };
 }
 
-registerSDKClass("AccessoryLiveActivities.AccessoryLiveActivity", AccessoryLiveActivity, { module: "AccessoryLiveActivities_8a9cd9e597ca864c", properties: {} });
-registerSDKClass("AccessoryLiveActivities.AccessoryLiveActivity.Content", AccessoryLiveActivity_Content, { module: "AccessoryLiveActivities_8a9cd9e597ca864c", properties: {} });
-registerSDKClass("AccessoryLiveActivities.AccessoryLiveActivity.Content.AlertMessage", AccessoryLiveActivity_Content_AlertMessage, { module: "AccessoryLiveActivities_8a9cd9e597ca864c", properties: {} });
-registerSDKClass("AccessoryLiveActivities.AccessoryLiveActivity.IconFile", AccessoryLiveActivity_IconFile, { module: "AccessoryLiveActivities_8a9cd9e597ca864c", properties: {} });
-registerSDKClass("AccessoryLiveActivities.LiveActivityForwarding", LiveActivityForwarding, { module: "AccessoryLiveActivities_8a9cd9e597ca864c", properties: {} });
+registerSDKClass("AccessoryLiveActivities.AccessoryLiveActivity", AccessoryLiveActivity, { module: "AccessoryLiveActivities_65c53b4cbac6c6a9", properties: {} });
+registerSDKClass("AccessoryLiveActivities.AccessoryLiveActivity.Content", AccessoryLiveActivity_Content, { module: "AccessoryLiveActivities_65c53b4cbac6c6a9", properties: {} });
+registerSDKClass("AccessoryLiveActivities.AccessoryLiveActivity.Content.AlertMessage", AccessoryLiveActivity_Content_AlertMessage, { module: "AccessoryLiveActivities_65c53b4cbac6c6a9", properties: {} });
+registerSDKClass("AccessoryLiveActivities.AccessoryLiveActivity.IconFile", AccessoryLiveActivity_IconFile, { module: "AccessoryLiveActivities_65c53b4cbac6c6a9", properties: {} });
+registerSDKClass("AccessoryLiveActivities.LiveActivityForwarding", LiveActivityForwarding, { module: "AccessoryLiveActivities_65c53b4cbac6c6a9", properties: {} });
 registerSDKProtocol("s:23AccessoryLiveActivities0B18ActivityForwardingC0abC7HandlerP", {"activateFor":"activate(for:)","sessionInvalidated":"sessionInvalidated()","messageReceived":"messageReceived(_:)","activityUpdatedForAlert":"activityUpdatedForAlert(_:)","activityUpdated":"activityUpdated(_:)"});
-registerSDKClass("AccessoryLiveActivities.LiveActivityForwarding.Session", LiveActivityForwarding_Session, { module: "AccessoryLiveActivities_8a9cd9e597ca864c", properties: {}, methods: {"send":{"id":2345191167520287}} });
+registerSDKClass("AccessoryLiveActivities.LiveActivityForwarding.Session", LiveActivityForwarding_Session, { module: "AccessoryLiveActivities_65c53b4cbac6c6a9", properties: {}, methods: {"send":{"id":2345191167520287}} });

@@ -25,7 +25,7 @@ export const NFCWindowSceneEvent = {
    * var description: String { get }
    * @availability iOS 17.4+
    */
-  getDescription($self: NFCWindowSceneEvent): string { return callSDK<string>("_CoreNFC_UIKit_8a9cd9e597ca864c", 2911654649218189, $self, []); }
+  getDescription($self: NFCWindowSceneEvent): string { return callSDK<string>("_CoreNFC_UIKit_65c53b4cbac6c6a9", 2911654649218189, $self, []); }
 };
 
 export class UIScene_ConnectionOptions extends SDKHandle {
@@ -33,9 +33,9 @@ export class UIScene_ConnectionOptions extends SDKHandle {
    * @MainActor @preconcurrency var nfcEvent: NFCWindowSceneEvent? { get }
    * @availability iOS 17.4+
    */
-  get nfcEvent(): Promise<(NFCWindowSceneEvent) | null> { return callSDKAsync<(NFCWindowSceneEvent) | null>("_CoreNFC_UIKit_8a9cd9e597ca864c", 3122621173451891, this, []); }
+  get nfcEvent(): Promise<(NFCWindowSceneEvent) | null> { return callSDKAsync<(NFCWindowSceneEvent) | null>("_CoreNFC_UIKit_65c53b4cbac6c6a9", 3122621173451891, this, []); }
   declare readonly $type: { "c:objc(cs)UISceneConnectionOptions": true; "c:objc(cs)NSObject": true };
 }
 
 registerSDKProtocol("s:14_CoreNFC_UIKit22NFCWindowSceneDelegateP", {"windowSceneDidReceiveNFCWindowSceneEvent":"windowScene(_:didReceiveNFCWindowSceneEvent:)"});
-registerSDKClass("UISceneConnectionOptions", UIScene_ConnectionOptions, { module: "_CoreNFC_UIKit_8a9cd9e597ca864c", properties: {} }, true);
+registerSDKClass("UISceneConnectionOptions", UIScene_ConnectionOptions, { module: "_CoreNFC_UIKit_65c53b4cbac6c6a9", properties: {} }, true);

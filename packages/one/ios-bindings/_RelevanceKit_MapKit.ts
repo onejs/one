@@ -8,8 +8,8 @@ export class RelevantContext extends SDKHandle {
    * static func location(category: MKPointOfInterestCategory) -> RelevantContext?
    * @availability iOS 26.0+
    */
-  static location(category: _MapKit_MKPointOfInterestCategory): (_RelevanceKit_RelevantContext) | null { return callSDK<(_RelevanceKit_RelevantContext) | null>("_RelevanceKit_MapKit_8a9cd9e597ca864c", 1192829131189998, undefined, [category]); }
+  static location(category: _MapKit_MKPointOfInterestCategory): (_RelevanceKit_RelevantContext) | null { return callSDK<(_RelevanceKit_RelevantContext) | null>("_RelevanceKit_MapKit_65c53b4cbac6c6a9", 1192829131189998, undefined, [category]); }
   declare readonly $type: { "s:12RelevanceKit15RelevantContextV": true };
 }
 
-registerSDKClass("RelevanceKit.RelevantContext", RelevantContext, { module: "_RelevanceKit_MapKit_8a9cd9e597ca864c", properties: {} }, true);
+registerSDKClass("RelevanceKit.RelevantContext", RelevantContext, { module: "_RelevanceKit_MapKit_65c53b4cbac6c6a9", properties: {} }, true);

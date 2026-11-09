@@ -150,6 +150,7 @@ function readGraphFile(file: string, symbol: (value: Symbol) => void, relationsh
   const tokens = /[{}\[\]"\\]/g
   let depth = 0
   let quoted = false
+  let seenSymbols = false
   let token: RegExpExecArray | null
   while ((token = tokens.exec(json))) {
     const char = token[0]
@@ -162,6 +163,7 @@ function readGraphFile(file: string, symbol: (value: Symbol) => void, relationsh
         quoted = true
         continue
       }
+      if (array[1] === 'symbols') seenSymbols = true
       let at = token.index + array[0].length
       for (;;) {
         while (/\s/.test(json[at] ?? '')) at++
@@ -190,6 +192,9 @@ function readGraphFile(file: string, symbol: (value: Symbol) => void, relationsh
       tokens.lastIndex = at + 1
     } else if (char === '{' || char === '[') depth++
     else if (char === '}' || char === ']') depth--
+  }
+  if (depth !== 0 || quoted || !seenSymbols || !/^\s*\{/.test(json) || !/\}\s*$/.test(json)) {
+    throw new SyntaxError(`Incomplete symbol graph in ${file}`)
   }
 }
 

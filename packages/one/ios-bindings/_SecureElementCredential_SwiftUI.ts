@@ -19,7 +19,7 @@ export class CredentialSession extends SDKHandle {
    * nonisolated func configuration() async throws -> CredentialTransaction.Configuration
    * @availability iOS 18.1+
    */
-  configuration(): Promise<CredentialTransaction_Configuration> { return callSDKAsync<CredentialTransaction_Configuration>("_SecureElementCredential_SwiftUI_8a9cd9e597ca864c", 182430073296002, this, []); }
+  configuration(): Promise<CredentialTransaction_Configuration> { return callSDKAsync<CredentialTransaction_Configuration>("_SecureElementCredential_SwiftUI_65c53b4cbac6c6a9", 182430073296002, this, []); }
   declare readonly $type: { "s:23SecureElementCredential0C7SessionC": true };
 }
 
@@ -32,17 +32,17 @@ export class CredentialTransaction extends SDKHandle {
    * func performCardEmulationTransactionWithCurrentCredential(options: CardEmulationOptions = .init()) async throws
    * @availability iOS 18.1+
    */
-  performCardEmulationTransactionWithCurrentCredential(options?: _SecureElementCredential_CredentialSession_CardEmulationOptions): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_SwiftUI_8a9cd9e597ca864c", 2348085037457850, this, [options]); }
+  performCardEmulationTransactionWithCurrentCredential(options?: _SecureElementCredential_CredentialSession_CardEmulationOptions): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_SwiftUI_65c53b4cbac6c6a9", 2348085037457850, this, [options]); }
   /**
    * func performTransaction(using credential: Credential, options: CardEmulationOptions = .init()) async throws
    * @availability iOS 18.1+
    */
-  performTransaction(credential: _SecureElementCredential_CredentialSession_Credential, options?: _SecureElementCredential_CredentialSession_CardEmulationOptions): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_SwiftUI_8a9cd9e597ca864c", 2658983515898595, this, [credential, options]); }
+  performTransaction(credential: _SecureElementCredential_CredentialSession_Credential, options?: _SecureElementCredential_CredentialSession_CardEmulationOptions): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_SwiftUI_65c53b4cbac6c6a9", 2658983515898595, this, [credential, options]); }
   /**
    * func performTransactionInWiredMode(using credential: Credential, instanceAID: Data) async throws
    * @availability iOS 18.1+
    */
-  performTransactionInWiredMode(credential: _SecureElementCredential_CredentialSession_Credential, instanceAID: ArrayBuffer): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_SwiftUI_8a9cd9e597ca864c", 3556962354289455, this, [credential, instanceAID]); }
+  performTransactionInWiredMode(credential: _SecureElementCredential_CredentialSession_Credential, instanceAID: ArrayBuffer): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_SwiftUI_65c53b4cbac6c6a9", 3556962354289455, this, [credential, instanceAID]); }
   declare readonly $type: { "s:32_SecureElementCredential_SwiftUI0C11TransactionC": true };
 }
 
@@ -55,10 +55,10 @@ export class CredentialTransaction_Configuration extends SDKHandle {
    * func invalidate() async throws
    * @availability iOS 18.1+
    */
-  invalidate(): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_SwiftUI_8a9cd9e597ca864c", 3025189446218846, this, []); }
+  invalidate(): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_SwiftUI_65c53b4cbac6c6a9", 3025189446218846, this, []); }
   declare readonly $type: { "s:32_SecureElementCredential_SwiftUI0C11TransactionC13ConfigurationC": true };
 }
 
-registerSDKClass("SecureElementCredential.CredentialSession", CredentialSession, { module: "_SecureElementCredential_SwiftUI_8a9cd9e597ca864c", properties: {}, methods: {"configuration":{"id":182430073296002}} }, true);
-registerSDKClass("_SecureElementCredential_SwiftUI.CredentialTransaction", CredentialTransaction, { module: "_SecureElementCredential_SwiftUI_8a9cd9e597ca864c", properties: {}, methods: {"performCardEmulationTransactionWithCurrentCredential":{"id":2348085037457850},"performTransaction":{"id":2658983515898595},"performTransactionInWiredMode":{"id":3556962354289455}} });
-registerSDKClass("_SecureElementCredential_SwiftUI.CredentialTransaction.Configuration", CredentialTransaction_Configuration, { module: "_SecureElementCredential_SwiftUI_8a9cd9e597ca864c", properties: {}, methods: {"invalidate":{"id":3025189446218846}} });
+registerSDKClass("SecureElementCredential.CredentialSession", CredentialSession, { module: "_SecureElementCredential_SwiftUI_65c53b4cbac6c6a9", properties: {}, methods: {"configuration":{"id":182430073296002}} }, true);
+registerSDKClass("_SecureElementCredential_SwiftUI.CredentialTransaction", CredentialTransaction, { module: "_SecureElementCredential_SwiftUI_65c53b4cbac6c6a9", properties: {}, methods: {"performCardEmulationTransactionWithCurrentCredential":{"id":2348085037457850},"performTransaction":{"id":2658983515898595},"performTransactionInWiredMode":{"id":3556962354289455}} });
+registerSDKClass("_SecureElementCredential_SwiftUI.CredentialTransaction.Configuration", CredentialTransaction_Configuration, { module: "_SecureElementCredential_SwiftUI_65c53b4cbac6c6a9", properties: {}, methods: {"invalidate":{"id":3025189446218846}} });

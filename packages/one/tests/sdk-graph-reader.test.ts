@@ -40,4 +40,8 @@ it('reads complete symbols and filters simulator-only symbols and their relation
   expect(loadGraph('Example')).toEqual({ module: 'Example', symbols: [keep], relationships: [relationships[0]] })
   writeFileSync(join(device, file), JSON.stringify({ symbols: [], relationships: [] }))
   expect(loadGraph('Example')).toEqual({ module: 'Example', symbols: [keep, drop], relationships })
+  writeFileSync(join(device, file), '{"symbols":[],"relationships":[]')
+  expect(() => loadGraph('Example')).toThrow(SyntaxError)
+  writeFileSync(join(device, file), '{')
+  expect(() => loadGraph('Example')).toThrow(SyntaxError)
 })

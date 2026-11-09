@@ -17,37 +17,37 @@ export class SNAudioFileAnalyzer extends SDKHandle {
    * func add(_ request: any SNRequest, withObserver observer: any SNResultsObserving) throws
    * @availability iOS 13.0+
    */
-  add(request: $SDK0, observer: $SDK1): void { return callSDK<void>("SoundAnalysis_8a9cd9e597ca864c", 1239259060066984, this, [request, observer], [{"protocol":"c:objc(pl)SNRequest"},{"protocol":"c:objc(pl)SNResultsObserving"}]); }
+  add(request: $SDK0, observer: $SDK1): void { return callSDK<void>("SoundAnalysis_65c53b4cbac6c6a9", 1239259060066984, this, [request, observer], [{"protocol":"c:objc(pl)SNRequest"},{"protocol":"c:objc(pl)SNResultsObserving"}]); }
   /**
    * func analyze()
    * @availability iOS 13.0+
    */
-  analyze(): void { return callSDK<void>("SoundAnalysis_8a9cd9e597ca864c", 3625975096303129, this, []); }
+  analyze(): void { return callSDK<void>("SoundAnalysis_65c53b4cbac6c6a9", 3625975096303129, this, []); }
   /**
    * func analyze() async -> Bool
    * @availability iOS 13.0+
    */
-  analyzeCompletionHandler(completionHandler: ((arg0: boolean) => void)): void { return callSDK<void>("SoundAnalysis_8a9cd9e597ca864c", 2166441776260334, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  analyzeCompletionHandler(completionHandler: ((arg0: boolean) => void)): void { return callSDK<void>("SoundAnalysis_65c53b4cbac6c6a9", 2166441776260334, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func cancelAnalysis()
    * @availability iOS 13.0+
    */
-  cancelAnalysis(): void { return callSDK<void>("SoundAnalysis_8a9cd9e597ca864c", 3816176072367148, this, []); }
+  cancelAnalysis(): void { return callSDK<void>("SoundAnalysis_65c53b4cbac6c6a9", 3816176072367148, this, []); }
   /**
    * init(url: URL) throws
    * @availability iOS 13.0+
    */
-  static init(url: string): SNAudioFileAnalyzer { return callSDK<SNAudioFileAnalyzer>("SoundAnalysis_8a9cd9e597ca864c", 2329033697364990, undefined, [url]); }
+  static init(url: string): SNAudioFileAnalyzer { return callSDK<SNAudioFileAnalyzer>("SoundAnalysis_65c53b4cbac6c6a9", 2329033697364990, undefined, [url]); }
   /**
    * func removeAllRequests()
    * @availability iOS 13.0+
    */
-  removeAllRequests(): void { return callSDK<void>("SoundAnalysis_8a9cd9e597ca864c", 3569750978356867, this, []); }
+  removeAllRequests(): void { return callSDK<void>("SoundAnalysis_65c53b4cbac6c6a9", 3569750978356867, this, []); }
   /**
    * func remove(_ request: any SNRequest)
    * @availability iOS 13.0+
    */
-  remove(request: $SDK0): void { return callSDK<void>("SoundAnalysis_8a9cd9e597ca864c", 1320487109496293, this, [request], [{"protocol":"c:objc(pl)SNRequest"}]); }
+  remove(request: $SDK0): void { return callSDK<void>("SoundAnalysis_65c53b4cbac6c6a9", 1320487109496293, this, [request], [{"protocol":"c:objc(pl)SNRequest"}]); }
   declare readonly $type: { "c:objc(cs)SNAudioFileAnalyzer": true; "c:objc(cs)NSObject": true };
 }
 
@@ -60,32 +60,32 @@ export class SNAudioStreamAnalyzer extends SDKHandle {
    * func add(_ request: any SNRequest, withObserver observer: any SNResultsObserving) throws
    * @availability iOS 13.0+
    */
-  add(request: $SDK0, observer: $SDK1): void { return callSDK<void>("SoundAnalysis_8a9cd9e597ca864c", 454135158604846, this, [request, observer], [{"protocol":"c:objc(pl)SNRequest"},{"protocol":"c:objc(pl)SNResultsObserving"}]); }
+  add(request: $SDK0, observer: $SDK1): void { return callSDK<void>("SoundAnalysis_65c53b4cbac6c6a9", 454135158604846, this, [request, observer], [{"protocol":"c:objc(pl)SNRequest"},{"protocol":"c:objc(pl)SNResultsObserving"}]); }
   /**
    * func analyze(_ audioBuffer: AVAudioBuffer, atAudioFramePosition audioFramePosition: AVAudioFramePosition)
    * @availability iOS 13.0+
    */
-  analyze(audioBuffer: _AVFAudio_AVAudioBuffer, audioFramePosition: number): void { return callSDK<void>("SoundAnalysis_8a9cd9e597ca864c", 2733388853207389, this, [audioBuffer, audioFramePosition]); }
+  analyze(audioBuffer: _AVFAudio_AVAudioBuffer, audioFramePosition: number): void { return callSDK<void>("SoundAnalysis_65c53b4cbac6c6a9", 2733388853207389, this, [audioBuffer, audioFramePosition]); }
   /**
    * func completeAnalysis()
    * @availability iOS 13.0+
    */
-  completeAnalysis(): void { return callSDK<void>("SoundAnalysis_8a9cd9e597ca864c", 1243450859156940, this, []); }
+  completeAnalysis(): void { return callSDK<void>("SoundAnalysis_65c53b4cbac6c6a9", 1243450859156940, this, []); }
   /**
    * init(format: AVAudioFormat)
    * @availability iOS 13.0+
    */
-  static init(format: _AVFAudio_AVAudioFormat): SNAudioStreamAnalyzer { return callSDK<SNAudioStreamAnalyzer>("SoundAnalysis_8a9cd9e597ca864c", 1819498160484946, undefined, [format]); }
+  static init(format: _AVFAudio_AVAudioFormat): SNAudioStreamAnalyzer { return callSDK<SNAudioStreamAnalyzer>("SoundAnalysis_65c53b4cbac6c6a9", 1819498160484946, undefined, [format]); }
   /**
    * func removeAllRequests()
    * @availability iOS 13.0+
    */
-  removeAllRequests(): void { return callSDK<void>("SoundAnalysis_8a9cd9e597ca864c", 603837657247231, this, []); }
+  removeAllRequests(): void { return callSDK<void>("SoundAnalysis_65c53b4cbac6c6a9", 603837657247231, this, []); }
   /**
    * func remove(_ request: any SNRequest)
    * @availability iOS 13.0+
    */
-  remove(request: $SDK0): void { return callSDK<void>("SoundAnalysis_8a9cd9e597ca864c", 4346195085652829, this, [request], [{"protocol":"c:objc(pl)SNRequest"}]); }
+  remove(request: $SDK0): void { return callSDK<void>("SoundAnalysis_65c53b4cbac6c6a9", 4346195085652829, this, [request], [{"protocol":"c:objc(pl)SNRequest"}]); }
   declare readonly $type: { "c:objc(cs)SNAudioStreamAnalyzer": true; "c:objc(cs)NSObject": true };
 }
 
@@ -98,12 +98,12 @@ export class SNClassification extends SDKHandle {
    * var confidence: Double { get }
    * @availability iOS 13.0+
    */
-  get confidence(): number { return callSDK<number>("SoundAnalysis_8a9cd9e597ca864c", 3859146313222277, this, []); }
+  get confidence(): number { return callSDK<number>("SoundAnalysis_65c53b4cbac6c6a9", 3859146313222277, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 13.0+
    */
-  get identifier(): string { return callSDK<string>("SoundAnalysis_8a9cd9e597ca864c", 3460319760353781, this, []); }
+  get identifier(): string { return callSDK<string>("SoundAnalysis_65c53b4cbac6c6a9", 3460319760353781, this, []); }
   declare readonly $type: { "c:objc(cs)SNClassification": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "identifier": true };
 }
@@ -117,17 +117,17 @@ export class SNClassificationResult extends SDKHandle {
    * func classification(forIdentifier identifier: String) -> SNClassification?
    * @availability iOS 15.0+
    */
-  classification(identifier: string): (SNClassification) | null { return callSDK<(SNClassification) | null>("SoundAnalysis_8a9cd9e597ca864c", 3688873696597635, this, [identifier]); }
+  classification(identifier: string): (SNClassification) | null { return callSDK<(SNClassification) | null>("SoundAnalysis_65c53b4cbac6c6a9", 3688873696597635, this, [identifier]); }
   /**
    * var classifications: [SNClassification] { get }
    * @availability iOS 13.0+
    */
-  get classifications(): Array<SNClassification> { return callSDK<Array<SNClassification>>("SoundAnalysis_8a9cd9e597ca864c", 2410731876014228, this, []); }
+  get classifications(): Array<SNClassification> { return callSDK<Array<SNClassification>>("SoundAnalysis_65c53b4cbac6c6a9", 2410731876014228, this, []); }
   /**
    * var timeRange: CMTimeRange { get }
    * @availability iOS 13.0+
    */
-  get timeRange(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("SoundAnalysis_8a9cd9e597ca864c", 2768024370880136, this, []); }
+  get timeRange(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("SoundAnalysis_65c53b4cbac6c6a9", 2768024370880136, this, []); }
   declare readonly $type: { "c:objc(cs)SNClassificationResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "classifications": true; "timeRange": true };
 }
@@ -143,12 +143,12 @@ export const SNClassifierIdentifier = {
    * static let version1: SNClassifierIdentifier
    * @availability iOS 15.0+
    */
-  get version1(): SNClassifierIdentifier { return callSDK<SNClassifierIdentifier>("SoundAnalysis_8a9cd9e597ca864c", 2315165245337976, undefined, []); },
+  get version1(): SNClassifierIdentifier { return callSDK<SNClassifierIdentifier>("SoundAnalysis_65c53b4cbac6c6a9", 2315165245337976, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): SNClassifierIdentifier { return callSDK<SNClassifierIdentifier>("SoundAnalysis_8a9cd9e597ca864c", 471856319508772, undefined, [rawValue]); }
+  init(rawValue: string): SNClassifierIdentifier { return callSDK<SNClassifierIdentifier>("SoundAnalysis_65c53b4cbac6c6a9", 471856319508772, undefined, [rawValue]); }
 };
 
 /**
@@ -160,34 +160,34 @@ export class SNClassifySoundRequest extends SDKHandle {
    * init(classifierIdentifier: SNClassifierIdentifier) throws
    * @availability iOS 15.0+
    */
-  static initClassifierIdentifier(classifierIdentifier: SNClassifierIdentifier): SNClassifySoundRequest { return callSDK<SNClassifySoundRequest>("SoundAnalysis_8a9cd9e597ca864c", 1077080192415827, undefined, [classifierIdentifier]); }
+  static initClassifierIdentifier(classifierIdentifier: SNClassifierIdentifier): SNClassifySoundRequest { return callSDK<SNClassifySoundRequest>("SoundAnalysis_65c53b4cbac6c6a9", 1077080192415827, undefined, [classifierIdentifier]); }
   /**
    * init(mlModel: MLModel) throws
    * @availability iOS 13.0+
    */
-  static initMlModel(mlModel: _CoreML_MLModel): SNClassifySoundRequest { return callSDK<SNClassifySoundRequest>("SoundAnalysis_8a9cd9e597ca864c", 3779943372443269, undefined, [mlModel]); }
+  static initMlModel(mlModel: _CoreML_MLModel): SNClassifySoundRequest { return callSDK<SNClassifySoundRequest>("SoundAnalysis_65c53b4cbac6c6a9", 3779943372443269, undefined, [mlModel]); }
   /**
    * var knownClassifications: [String] { get }
    * @availability iOS 15.0+
    */
-  get knownClassifications(): Array<string> { return callSDK<Array<string>>("SoundAnalysis_8a9cd9e597ca864c", 3344898401925153, this, []); }
+  get knownClassifications(): Array<string> { return callSDK<Array<string>>("SoundAnalysis_65c53b4cbac6c6a9", 3344898401925153, this, []); }
   /**
    * var overlapFactor: Double { get set }
    * @availability iOS 13.0+
    */
-  get overlapFactor(): number { return callSDK<number>("SoundAnalysis_8a9cd9e597ca864c", 955386840770577, this, []); }
-  set overlapFactor(value: number) { callSDK<void>("SoundAnalysis_8a9cd9e597ca864c", 733227893708344, this, [value]); }
+  get overlapFactor(): number { return callSDK<number>("SoundAnalysis_65c53b4cbac6c6a9", 955386840770577, this, []); }
+  set overlapFactor(value: number) { callSDK<void>("SoundAnalysis_65c53b4cbac6c6a9", 733227893708344, this, [value]); }
   /**
    * var windowDuration: CMTime { get set }
    * @availability iOS 15.0+
    */
-  get windowDuration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("SoundAnalysis_8a9cd9e597ca864c", 1167816417584675, this, []); }
-  set windowDuration(value: _CoreMedia_CMTime) { callSDK<void>("SoundAnalysis_8a9cd9e597ca864c", 1172079783516572, this, [value]); }
+  get windowDuration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("SoundAnalysis_65c53b4cbac6c6a9", 1167816417584675, this, []); }
+  set windowDuration(value: _CoreMedia_CMTime) { callSDK<void>("SoundAnalysis_65c53b4cbac6c6a9", 1172079783516572, this, [value]); }
   /**
    * @nonobjc var windowDurationConstraint: SNTimeDurationConstraint { get }
    * @availability iOS 15.0+
    */
-  get windowDurationConstraint(): SNTimeDurationConstraint { return callSDK<SNTimeDurationConstraint>("SoundAnalysis_8a9cd9e597ca864c", 2258231770494304, this, []); }
+  get windowDurationConstraint(): SNTimeDurationConstraint { return callSDK<SNTimeDurationConstraint>("SoundAnalysis_65c53b4cbac6c6a9", 2258231770494304, this, []); }
   declare readonly $type: { "c:objc(cs)SNClassifySoundRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "knownClassifications": true; "overlapFactor": true; "windowDuration": true };
 }
@@ -201,32 +201,32 @@ export class SNError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 13.0+
    */
-  static get errorDomain(): string { return callSDK<string>("SoundAnalysis_8a9cd9e597ca864c", 2779144799940949, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("SoundAnalysis_65c53b4cbac6c6a9", 2779144799940949, undefined, []); }
   /**
    * static var invalidFile: SNError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidFile(): SNError_Code { return callSDK<SNError_Code>("SoundAnalysis_8a9cd9e597ca864c", 2430902038590820, undefined, []); }
+  static get invalidFile(): SNError_Code { return callSDK<SNError_Code>("SoundAnalysis_65c53b4cbac6c6a9", 2430902038590820, undefined, []); }
   /**
    * static var invalidModel: SNError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidModel(): SNError_Code { return callSDK<SNError_Code>("SoundAnalysis_8a9cd9e597ca864c", 163304998482178, undefined, []); }
+  static get invalidModel(): SNError_Code { return callSDK<SNError_Code>("SoundAnalysis_65c53b4cbac6c6a9", 163304998482178, undefined, []); }
   /**
    * static var unknownError: SNError.Code { get }
    * @availability iOS 13.0+
    */
-  static get unknownError(): SNError_Code { return callSDK<SNError_Code>("SoundAnalysis_8a9cd9e597ca864c", 920691418285281, undefined, []); }
+  static get unknownError(): SNError_Code { return callSDK<SNError_Code>("SoundAnalysis_65c53b4cbac6c6a9", 920691418285281, undefined, []); }
   /**
    * static var invalidFormat: SNError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidFormat(): SNError_Code { return callSDK<SNError_Code>("SoundAnalysis_8a9cd9e597ca864c", 905522872340383, undefined, []); }
+  static get invalidFormat(): SNError_Code { return callSDK<SNError_Code>("SoundAnalysis_65c53b4cbac6c6a9", 905522872340383, undefined, []); }
   /**
    * static var operationFailed: SNError.Code { get }
    * @availability iOS 13.0+
    */
-  static get operationFailed(): SNError_Code { return callSDK<SNError_Code>("SoundAnalysis_8a9cd9e597ca864c", 2717711291814101, undefined, []); }
+  static get operationFailed(): SNError_Code { return callSDK<SNError_Code>("SoundAnalysis_65c53b4cbac6c6a9", 2717711291814101, undefined, []); }
   declare readonly $type: { "s:SC11SNErrorCodeLeV": true };
 }
 
@@ -241,7 +241,7 @@ export const SNError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (SNError_Code) | null { return callSDK<(SNError_Code) | null>("SoundAnalysis_8a9cd9e597ca864c", 2294481400833290, undefined, [rawValue]); }
+  init(rawValue: number): (SNError_Code) | null { return callSDK<(SNError_Code) | null>("SoundAnalysis_65c53b4cbac6c6a9", 2294481400833290, undefined, [rawValue]); }
 };
 
 /**
@@ -294,15 +294,15 @@ export class SNTimeDurationConstraint extends SDKHandle {
  * let SNErrorDomain: String
  * @availability iOS 13.0+
  */
-export const SNErrorDomain: string = callSDK<string>("SoundAnalysis_8a9cd9e597ca864c", 2412734209911969, undefined, []);
+export const SNErrorDomain: string = callSDK<string>("SoundAnalysis_65c53b4cbac6c6a9", 2412734209911969, undefined, []);
 
-registerSDKClass("SNAudioFileAnalyzer", SNAudioFileAnalyzer, { module: "SoundAnalysis_8a9cd9e597ca864c", properties: {}, methods: {"add":{"id":1239259060066984,"hints":[{"protocol":"c:objc(pl)SNRequest"},{"protocol":"c:objc(pl)SNResultsObserving"}]},"analyze":{"id":3625975096303129},"analyzeCompletionHandler":{"id":2166441776260334,"hints":[{"callback":{"out":[]}}]},"cancelAnalysis":{"id":3816176072367148},"removeAllRequests":{"id":3569750978356867},"remove":{"id":1320487109496293,"hints":[{"protocol":"c:objc(pl)SNRequest"}]}} });
-registerSDKClass("SNAudioStreamAnalyzer", SNAudioStreamAnalyzer, { module: "SoundAnalysis_8a9cd9e597ca864c", properties: {}, methods: {"add":{"id":454135158604846,"hints":[{"protocol":"c:objc(pl)SNRequest"},{"protocol":"c:objc(pl)SNResultsObserving"}]},"analyze":{"id":2733388853207389},"completeAnalysis":{"id":1243450859156940},"removeAllRequests":{"id":603837657247231},"remove":{"id":4346195085652829,"hints":[{"protocol":"c:objc(pl)SNRequest"}]}} });
-registerSDKClass("SNClassification", SNClassification, { module: "SoundAnalysis_8a9cd9e597ca864c", properties: {"confidence":3859146313222277,"identifier":3460319760353781} });
-registerSDKClass("SNClassificationResult", SNClassificationResult, { module: "SoundAnalysis_8a9cd9e597ca864c", properties: {"classifications":2410731876014228,"timeRange":2768024370880136}, methods: {"classification":{"id":3688873696597635}} });
-registerSDKClass("SNClassifySoundRequest", SNClassifySoundRequest, { module: "SoundAnalysis_8a9cd9e597ca864c", properties: {"knownClassifications":3344898401925153,"overlapFactor":955386840770577,"windowDuration":1167816417584675} });
-registerSDKClass("SoundAnalysis.SNError", SNError, { module: "SoundAnalysis_8a9cd9e597ca864c", properties: {} });
+registerSDKClass("SNAudioFileAnalyzer", SNAudioFileAnalyzer, { module: "SoundAnalysis_65c53b4cbac6c6a9", properties: {}, methods: {"add":{"id":1239259060066984,"hints":[{"protocol":"c:objc(pl)SNRequest"},{"protocol":"c:objc(pl)SNResultsObserving"}]},"analyze":{"id":3625975096303129},"analyzeCompletionHandler":{"id":2166441776260334,"hints":[{"callback":{"out":[]}}]},"cancelAnalysis":{"id":3816176072367148},"removeAllRequests":{"id":3569750978356867},"remove":{"id":1320487109496293,"hints":[{"protocol":"c:objc(pl)SNRequest"}]}} });
+registerSDKClass("SNAudioStreamAnalyzer", SNAudioStreamAnalyzer, { module: "SoundAnalysis_65c53b4cbac6c6a9", properties: {}, methods: {"add":{"id":454135158604846,"hints":[{"protocol":"c:objc(pl)SNRequest"},{"protocol":"c:objc(pl)SNResultsObserving"}]},"analyze":{"id":2733388853207389},"completeAnalysis":{"id":1243450859156940},"removeAllRequests":{"id":603837657247231},"remove":{"id":4346195085652829,"hints":[{"protocol":"c:objc(pl)SNRequest"}]}} });
+registerSDKClass("SNClassification", SNClassification, { module: "SoundAnalysis_65c53b4cbac6c6a9", properties: {"confidence":3859146313222277,"identifier":3460319760353781} });
+registerSDKClass("SNClassificationResult", SNClassificationResult, { module: "SoundAnalysis_65c53b4cbac6c6a9", properties: {"classifications":2410731876014228,"timeRange":2768024370880136}, methods: {"classification":{"id":3688873696597635}} });
+registerSDKClass("SNClassifySoundRequest", SNClassifySoundRequest, { module: "SoundAnalysis_65c53b4cbac6c6a9", properties: {"knownClassifications":3344898401925153,"overlapFactor":955386840770577,"windowDuration":1167816417584675} });
+registerSDKClass("SoundAnalysis.SNError", SNError, { module: "SoundAnalysis_65c53b4cbac6c6a9", properties: {} });
 registerSDKProtocol("c:objc(pl)SNRequest", {});
 registerSDKProtocol("c:objc(pl)SNResult", {});
 registerSDKProtocol("c:objc(pl)SNResultsObserving", {"requestDidProduce":"request(_:didProduce:)","requestDidFailWithError":"request(_:didFailWithError:)","requestDidComplete":"requestDidComplete(_:)"});
-registerSDKClass("SoundAnalysis.SNTimeDurationConstraint", SNTimeDurationConstraint, { module: "SoundAnalysis_8a9cd9e597ca864c", properties: {} });
+registerSDKClass("SoundAnalysis.SNTimeDurationConstraint", SNTimeDurationConstraint, { module: "SoundAnalysis_65c53b4cbac6c6a9", properties: {} });

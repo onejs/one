@@ -7,7 +7,7 @@ export class ModelContext extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("_SwiftData_SwiftUI_8a9cd9e597ca864c", 1379466469085243, this, []); }
+  get debugDescription(): string { return callSDK<string>("_SwiftData_SwiftUI_65c53b4cbac6c6a9", 1379466469085243, this, []); }
   declare readonly $type: { "s:9SwiftData12ModelContextC": true };
 }
 
@@ -27,6 +27,6 @@ export class Query<Element = unknown, Result = unknown> extends SDKHandle {
   declare readonly $type: { "s:011_SwiftData_A2UI5QueryV": true };
 }
 
-registerSDKClass("SwiftData.ModelContext", ModelContext, { module: "_SwiftData_SwiftUI_8a9cd9e597ca864c", properties: {} }, true);
-registerSDKClass("_SwiftData_SwiftUI.ModelDocument", ModelDocument, { module: "_SwiftData_SwiftUI_8a9cd9e597ca864c", properties: {} });
-registerSDKClass("_SwiftData_SwiftUI.Query", Query, { module: "_SwiftData_SwiftUI_8a9cd9e597ca864c", properties: {} });
+registerSDKClass("SwiftData.ModelContext", ModelContext, { module: "_SwiftData_SwiftUI_65c53b4cbac6c6a9", properties: {} }, true);
+registerSDKClass("_SwiftData_SwiftUI.ModelDocument", ModelDocument, { module: "_SwiftData_SwiftUI_65c53b4cbac6c6a9", properties: {} });
+registerSDKClass("_SwiftData_SwiftUI.Query", Query, { module: "_SwiftData_SwiftUI_65c53b4cbac6c6a9", properties: {} });
