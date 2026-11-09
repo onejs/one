@@ -1105,6 +1105,7 @@ export const components = [
       initial: { listStyle: '"automatic"' },
       modifiers: ['.oneNativeListStyle(@listStyle)'],
       layout: 'container',
+      screenInsetsWhen: 'true',
       scheme: true,
     },
     props: {

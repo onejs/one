@@ -62,6 +62,7 @@ private struct ListContent: View {
 public final class OneNativeListView: OneNativeContainerView {
   public var onSelectionChange: ((String) -> Void)?
   private let model: ListModel
+  @nonobjc override var hostingScreenInsets: Bool { true }
   private let bridge: OneNativeSchemeBridge
   private var traitRegistration: NSObjectProtocol?
 
@@ -90,8 +91,10 @@ public final class OneNativeListView: OneNativeContainerView {
   }
 
   public func configure(listStyle: String, selection: String, selectionIsControlled: Bool) {
+    let previousScreenInsets = hostingScreenInsets
     if model.listStyle != listStyle { model.listStyle = listStyle }
     model.configureSelection(selection, controlled: selectionIsControlled)
+    if previousScreenInsets != hostingScreenInsets { setNeedsLayout() }
   }
 
   public override func setActive(_ active: Bool) { model.active = active }
