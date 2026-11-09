@@ -93,6 +93,10 @@ using namespace facebook::react;
 
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState {
   _state = std::static_pointer_cast<const OneNativeContentShadowNode::ConcreteState>(state);
+}
+
+- (void)updateLayoutMetrics:(LayoutMetrics const &)layoutMetrics oldLayoutMetrics:(LayoutMetrics const &)oldLayoutMetrics {
+  [super updateLayoutMetrics:layoutMetrics oldLayoutMetrics:oldLayoutMetrics];
   [self reportMeasuredHeight];
 }
 
@@ -108,11 +112,10 @@ using namespace facebook::react;
   _state->updateState(std::move(state));
 }
 
-// the shadow node measures the children's layout, since flattening can remove the
-// authored root from the mounted views. an empty layout reports zero, which unsets it
+// fabric reports the slot's yoga extent even when its authored root is flattened.
 - (void)reportMeasuredHeight {
   if (!_content || !_state) return;
-  const auto height = _state->getData().content.height;
+  const auto height = _layoutMetrics.frame.size.height;
   if (std::isfinite(height) && height >= 0) [_content setMeasuredHeight:height];
 }
 
