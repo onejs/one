@@ -818,7 +818,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     // scope witnesses as well as protocols so each table keeps its own bodies.
     const witness = (name: string) => `oneSDK${name}_${graph.module}`
     const signature = (name: string, conforming: boolean) =>
-      `${name.startsWith('Mutate') && (value || !conforming) ? 'mutating ' : ''}func ${witness(name)}(_ id: Int, _ c: OneSDKCall) ${name.endsWith('Async') ? 'async ' : ''}throws -> Any`
+      `${name.startsWith('Mutate') && (value || !conforming) ? 'mutating ' : ''}func ${witness(name)}(_ id: Int64, _ c: OneSDKCall) ${name.endsWith('Async') ? 'async ' : ''}throws -> Any`
     const names = ['Sync', 'Async', 'Mutate', 'MutateAsync']
     const methods = names.map((name) => {
       const cases = [...bodies].filter(([entry, { mutates }]) => method(entry, mutates) === name).sort(([a], [b]) => a.id - b.id)
@@ -909,7 +909,7 @@ function renderSwift(module: string, table: string, imports: string[], entries: 
     const out: string[] = []
     for (let at = 0; at < list.length; at += CHUNK) {
       const slice = list.slice(at, at + CHUNK)
-      out.push(`  static func ${isAsync ? 'async' : 'sync'}${at / CHUNK}(_ id: Int, _ c: OneSDKCall) ${isAsync ? 'async ' : ''}throws -> Any {
+      out.push(`  static func ${isAsync ? 'async' : 'sync'}${at / CHUNK}(_ id: Int64, _ c: OneSDKCall) ${isAsync ? 'async ' : ''}throws -> Any {
     switch id {
 ${slice.map((e) => `    case ${e.id}: ${e.main ? `return try await { @MainActor in ${e.swift} }()` : e.swift}`).join('\n')}
     default: ${isAsync ? 'return try await OneSDKBackground.run { try sync(id, c) }' : `throw OneSDKError.unknownSymbol("${module}.\\(id)")`}
@@ -929,7 +929,7 @@ ${slice.map((e) => `    case ${e.id}: ${e.main ? `return try await { @MainActor 
   const observations: string[] = []
   for (let at = 0; at < observed.length; at += CHUNK) {
     const slice = observed.slice(at, at + CHUNK)
-    observations.push(`  @MainActor static func observe${at / CHUNK}(_ id: Int, _ c: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription {
+    observations.push(`  @MainActor static func observe${at / CHUNK}(_ id: Int64, _ c: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription {
     switch id {
 ${slice.map((e) => `    case ${e.id}: ${e.swift}`).join('\n')}
     default: throw OneSDKError.unsupported("observable property ${module}.\\(id)")
@@ -940,7 +940,7 @@ ${slice.map((e) => `    case ${e.id}: ${e.swift}`).join('\n')}
   const names: string[] = []
   for (let at = 0; at < named.length; at += CHUNK) {
     const slice = named.slice(at, at + CHUNK)
-    names.push(`  static func names${at / CHUNK}(_ id: Int) -> [String]? {
+    names.push(`  static func names${at / CHUNK}(_ id: Int64) -> [String]? {
     switch id {
 ${slice.map((e) => `    case ${e.id}: return ${JSON.stringify(argumentNames(e))}`).join('\n')}
     default: return nil
@@ -963,29 +963,29 @@ ${imports.filter((m) => m !== 'Foundation').map((m) => `import ${m}`).join('\n')
 ${conformances.join('\n\n')}
 
 @objc(OneSDKTable_${table}) final class OneSDKTable_${module}: NSObject, OneSDKTable {
-  @MainActor func observe(_ id: Int, _ call: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription { try ${name}.observe(id, call, emit) }
-  func argumentNames(_ id: Int) -> [String] { ${name}.argumentNames(id) }
-  func sync(_ id: Int, _ call: OneSDKCall) throws -> Any { try ${name}.sync(id, call) }
-  func async(_ id: Int, _ call: OneSDKCall) async throws -> Any { try await ${name}.async(id, call) }
+  @MainActor func observe(_ id: Int64, _ call: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription { try ${name}.observe(id, call, emit) }
+  func argumentNames(_ id: Int64) -> [String] { ${name}.argumentNames(id) }
+  func sync(_ id: Int64, _ call: OneSDKCall) throws -> Any { try ${name}.sync(id, call) }
+  func async(_ id: Int64, _ call: OneSDKCall) async throws -> Any { try await ${name}.async(id, call) }
 }
 
 enum ${name} {
-  @MainActor static func observe(_ id: Int, _ c: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription {
+  @MainActor static func observe(_ id: Int64, _ c: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription {
 ${observations.map((_, i) => { const slice = observed.slice(i * CHUNK, (i + 1) * CHUNK); return `    if id >= ${slice[0].id} && id <= ${slice.at(-1)!.id} { return try observe${i}(id, c, emit) }` }).join('\n')}
     throw OneSDKError.unsupported("observable property ${module}.\\(id)")
   }
 
-  static func argumentNames(_ id: Int) -> [String] {
+  static func argumentNames(_ id: Int64) -> [String] {
 ${names.map((_, i) => { const slice = named.slice(i * CHUNK, (i + 1) * CHUNK); return `    if id >= ${slice[0].id} && id <= ${slice.at(-1)!.id} { return names${i}(id) ?? [] }` }).join('\n')}
     return []
   }
 
-${syncCallbackIds.length ? `  static let syncCallbackIds: Set<Int> = [${syncCallbackIds.join(', ')}]\n\n` : ''}  static func sync(_ id: Int, _ c: OneSDKCall) throws -> Any {
+${syncCallbackIds.length ? `  static let syncCallbackIds: Set<Int64> = [${syncCallbackIds.join(', ')}]\n\n` : ''}  static func sync(_ id: Int64, _ c: OneSDKCall) throws -> Any {
 ${dispatch(sync, false).join('\n')}
     throw OneSDKError.unknownSymbol("${module}.\\(id)")
   }
 
-  static func async(_ id: Int, _ c: OneSDKCall) async throws -> Any {
+  static func async(_ id: Int64, _ c: OneSDKCall) async throws -> Any {
 ${syncCallbackIds.length ? `    if syncCallbackIds.contains(id) { throw OneSDKError.unsupported("async ${module}.\\(id) with synchronous callbacks") }\n` : ''}${dispatch(async, true).join('\n')}
     return try await OneSDKBackground.run { try sync(id, c) }
   }
