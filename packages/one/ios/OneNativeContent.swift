@@ -9,6 +9,12 @@ import UIKit
 // gives this view, and the view's height is the subtree's measured height.
 @objcMembers
 public final class OneNativeContentView: UIView {
+  // stop react text label discovery before a table asks the same children for its label.
+  public override var accessibilityLabel: String? {
+    get { super.accessibilityLabel ?? "" }
+    set { super.accessibilityLabel = newValue }
+  }
+
   // reports the width yoga lays the subtree out in
   public var onWidth: ((CGFloat) -> Void)? {
     didSet {
