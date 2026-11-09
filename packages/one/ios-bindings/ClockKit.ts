@@ -11,14 +11,14 @@ export class CLKWatchFaceLibrary extends SDKHandle {
    * class let ErrorDomain: String
    * @availability iOS 14.0+
    */
-  static get ErrorDomain(): string { return callSDK<string>("ClockKit_80c97107bb9391cd", 1217310011623269, undefined, []); }
+  static get ErrorDomain(): string { return callSDK<string>("ClockKit_b88ddd0bfd78eefc", 1217310011623269, undefined, []); }
   /**
    * func addWatchFace(at fileURL: URL) async throws
    * @availability iOS 14.0+
    */
-  addWatchFace(fileURL: string, handler: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("ClockKit_80c97107bb9391cd", 945188715141150, this, [fileURL, handler], [null,{"callback":{"out":[]}}]); }
+  addWatchFace(fileURL: string, handler: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("ClockKit_b88ddd0bfd78eefc", 945188715141150, this, [fileURL, handler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): CLKWatchFaceLibrary { return callSDK<CLKWatchFaceLibrary>("ClockKit_80c97107bb9391cd", 4344919700060000, undefined, []); }
+  static init(): CLKWatchFaceLibrary { return callSDK<CLKWatchFaceLibrary>("ClockKit_b88ddd0bfd78eefc", 4344919700060000, undefined, []); }
   declare readonly $type: { "c:objc(cs)CLKWatchFaceLibrary": true; "c:objc(cs)NSObject": true };
 }
 
@@ -33,7 +33,7 @@ export const CLKWatchFaceLibrary_ErrorCode = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (CLKWatchFaceLibrary_ErrorCode) | null { return callSDK<(CLKWatchFaceLibrary_ErrorCode) | null>("ClockKit_80c97107bb9391cd", 542372424267677, undefined, [rawValue]); }
+  init(rawValue: number): (CLKWatchFaceLibrary_ErrorCode) | null { return callSDK<(CLKWatchFaceLibrary_ErrorCode) | null>("ClockKit_b88ddd0bfd78eefc", 542372424267677, undefined, [rawValue]); }
 };
 
-registerSDKClass("CLKWatchFaceLibrary", CLKWatchFaceLibrary, { module: "ClockKit_80c97107bb9391cd", properties: {}, methods: {"addWatchFace":{"id":945188715141150,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CLKWatchFaceLibrary", CLKWatchFaceLibrary, { module: "ClockKit_b88ddd0bfd78eefc", properties: {}, methods: {"addWatchFace":{"id":945188715141150,"hints":[null,{"callback":{"out":[]}}]}} });

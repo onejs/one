@@ -125,26 +125,77 @@ export function loadGraph(module: string): Graph | null {
   const dropped = new Set<string>()
   const graph: Graph = { module, symbols: [], relationships: [] }
   for (const file of files) {
-    const data = JSON.parse(readFileSync(join(dir, file), 'utf8')) as { symbols: Symbol[]; relationships?: Relationship[] }
     const deviceFile = join(deviceDir, file)
-    const deviceSymbols = existsSync(deviceFile)
-      ? (JSON.parse(readFileSync(deviceFile, 'utf8')) as { symbols: Symbol[] }).symbols
-      : []
-    const deviceIds = deviceSymbols.length ? new Set(deviceSymbols.map((s) => s.identifier.precise)) : null
-    for (const symbol of data.symbols) {
-      if (deviceIds && !deviceIds.has(symbol.identifier.precise)) {
+    const deviceIds = new Set<string>()
+    if (existsSync(deviceFile)) readGraphFile(deviceFile, (symbol) => deviceIds.add(symbol.identifier.precise))
+    readGraphFile(join(dir, file), (symbol) => {
+      if (deviceIds.size && !deviceIds.has(symbol.identifier.precise)) {
         dropped.add(symbol.identifier.precise)
       } else {
         graph.symbols.push(symbol)
       }
-    }
-    graph.relationships.push(...(data.relationships ?? []))
+    }, (relationship) => graph.relationships.push(relationship))
   }
   if (dropped.size) {
     graph.relationships = graph.relationships.filter((r) => !dropped.has(r.source) && !dropped.has(r.target))
   }
   addInheritedInitializers(graph)
   return graph
+}
+
+// symbol graphs can exceed hundreds of megabytes. parse one array member at a
+// time so the device graph never expands into an entire second object tree.
+function readGraphFile(file: string, symbol: (value: Symbol) => void, relationship?: (value: Relationship) => void) {
+  const json = readFileSync(file, 'utf8')
+  const tokens = /[{}\[\]"\\]/g
+  let depth = 0
+  let quoted = false
+  let seenSymbols = false
+  let token: RegExpExecArray | null
+  while ((token = tokens.exec(json))) {
+    const char = token[0]
+    if (quoted) {
+      if (char === '\\') tokens.lastIndex++
+      else if (char === '"') quoted = false
+    } else if (char === '"') {
+      const array = depth === 1 && /^"(symbols|relationships)"\s*:\s*\[/.exec(json.slice(token.index))
+      if (!array) {
+        quoted = true
+        continue
+      }
+      if (array[1] === 'symbols') seenSymbols = true
+      let at = token.index + array[0].length
+      for (;;) {
+        while (/\s/.test(json[at] ?? '')) at++
+        if (json[at] === ']') break
+        if (json[at] !== '{') throw new SyntaxError(`Invalid symbol graph array in ${file}`)
+        const start = at
+        tokens.lastIndex = at
+        let objectDepth = 0
+        let inString = false
+        while ((token = tokens.exec(json))) {
+          if (inString) {
+            if (token[0] === '\\') tokens.lastIndex++
+            else if (token[0] === '"') inString = false
+          } else if (token[0] === '"') inString = true
+          else if (token[0] === '{') objectDepth++
+          else if (token[0] === '}' && --objectDepth === 0) break
+        }
+        if (!token) throw new SyntaxError(`Unterminated symbol graph array in ${file}`)
+        if (array[1] === 'symbols') symbol(JSON.parse(json.slice(start, tokens.lastIndex)))
+        else if (relationship) relationship(JSON.parse(json.slice(start, tokens.lastIndex)))
+        at = tokens.lastIndex
+        while (/\s/.test(json[at] ?? '')) at++
+        if (json[at] === ']') break
+        if (json[at++] !== ',') throw new SyntaxError(`Invalid symbol graph array in ${file}`)
+      }
+      tokens.lastIndex = at + 1
+    } else if (char === '{' || char === '[') depth++
+    else if (char === '}' || char === ']') depth--
+  }
+  if (depth !== 0 || quoted || !seenSymbols || !/^\s*\{/.test(json) || !/\}\s*$/.test(json)) {
+    throw new SyntaxError(`Incomplete symbol graph in ${file}`)
+  }
 }
 
 // an objective-c class inherits -init from NSObject, but a symbol graph lists

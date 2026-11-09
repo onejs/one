@@ -64,19 +64,19 @@ export class AnalysisContext extends SDKHandle {
    * final var contextualStrings: [AnalysisContext.ContextualStringsTag : [String]] { get set }
    * @availability iOS 26.0+
    */
-  get contextualStrings(): $SDK0 { return callSDK<$SDK0>("Speech_80c97107bb9391cd", 2984066664410008, this, []); }
-  set contextualStrings(value: $SDK0) { callSDK<void>("Speech_80c97107bb9391cd", 2400527219293249, this, [value]); }
+  get contextualStrings(): $SDK0 { return callSDK<$SDK0>("Speech_b88ddd0bfd78eefc", 2984066664410008, this, []); }
+  set contextualStrings(value: $SDK0) { callSDK<void>("Speech_b88ddd0bfd78eefc", 2400527219293249, this, [value]); }
   /**
    * final var userData: [AnalysisContext.UserDataTag : any Sendable] { get set }
    * @availability iOS 26.0+
    */
-  get userData(): $SDK1 { return callSDK<$SDK1>("Speech_80c97107bb9391cd", 1817373721734178, this, []); }
-  set userData(value: $SDK1) { callSDK<void>("Speech_80c97107bb9391cd", 1380223955369540, this, [value]); }
+  get userData(): $SDK1 { return callSDK<$SDK1>("Speech_b88ddd0bfd78eefc", 1817373721734178, this, []); }
+  set userData(value: $SDK1) { callSDK<void>("Speech_b88ddd0bfd78eefc", 1380223955369540, this, [value]); }
   /**
    * @objc init()
    * @availability iOS 26.0+
    */
-  static init(): AnalysisContext { return callSDK<AnalysisContext>("Speech_80c97107bb9391cd", 614492159112186, undefined, []); }
+  static init(): AnalysisContext { return callSDK<AnalysisContext>("Speech_b88ddd0bfd78eefc", 614492159112186, undefined, []); }
   declare readonly $type: { "s:6Speech15AnalysisContextC": true };
 }
 
@@ -91,22 +91,22 @@ export const AnalysisContext_ContextualStringsTag = {
    * static let general: AnalysisContext.ContextualStringsTag
    * @availability iOS 26.0+
    */
-  get general(): AnalysisContext_ContextualStringsTag { return callSDK<AnalysisContext_ContextualStringsTag>("Speech_80c97107bb9391cd", 2157774439195378, undefined, []); },
+  get general(): AnalysisContext_ContextualStringsTag { return callSDK<AnalysisContext_ContextualStringsTag>("Speech_b88ddd0bfd78eefc", 2157774439195378, undefined, []); },
   /**
    * init(rawValue: AnalysisContext.ContextualStringsTag.RawValue)
    * @availability iOS 26.0+
    */
-  initRawValue(rawValue: string): AnalysisContext_ContextualStringsTag { return callSDK<AnalysisContext_ContextualStringsTag>("Speech_80c97107bb9391cd", 1446318846905376, undefined, [rawValue]); },
+  initRawValue(rawValue: string): AnalysisContext_ContextualStringsTag { return callSDK<AnalysisContext_ContextualStringsTag>("Speech_b88ddd0bfd78eefc", 1446318846905376, undefined, [rawValue]); },
   /**
    * let rawValue: AnalysisContext.ContextualStringsTag.RawValue
    * @availability iOS 26.0+
    */
-  getRawValue($self: AnalysisContext_ContextualStringsTag): string { return callSDK<string>("Speech_80c97107bb9391cd", 2567477802234624, $self, []); },
+  getRawValue($self: AnalysisContext_ContextualStringsTag): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 2567477802234624, $self, []); },
   /**
    * init(_ rawValue: AnalysisContext.ContextualStringsTag.RawValue)
    * @availability iOS 26.0+
    */
-  init(rawValue: string): AnalysisContext_ContextualStringsTag { return callSDK<AnalysisContext_ContextualStringsTag>("Speech_80c97107bb9391cd", 663789411627546, undefined, [rawValue]); }
+  init(rawValue: string): AnalysisContext_ContextualStringsTag { return callSDK<AnalysisContext_ContextualStringsTag>("Speech_b88ddd0bfd78eefc", 663789411627546, undefined, [rawValue]); }
 };
 
 /**
@@ -126,17 +126,17 @@ export const AnalysisContext_UserDataTag = {
    * init(rawValue: AnalysisContext.UserDataTag.RawValue)
    * @availability iOS 26.0+
    */
-  initRawValue(rawValue: string): AnalysisContext_UserDataTag { return callSDK<AnalysisContext_UserDataTag>("Speech_80c97107bb9391cd", 2779063597000328, undefined, [rawValue]); },
+  initRawValue(rawValue: string): AnalysisContext_UserDataTag { return callSDK<AnalysisContext_UserDataTag>("Speech_b88ddd0bfd78eefc", 2779063597000328, undefined, [rawValue]); },
   /**
    * let rawValue: AnalysisContext.UserDataTag.RawValue
    * @availability iOS 26.0+
    */
-  getRawValue($self: AnalysisContext_UserDataTag): string { return callSDK<string>("Speech_80c97107bb9391cd", 347830396444964, $self, []); },
+  getRawValue($self: AnalysisContext_UserDataTag): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 347830396444964, $self, []); },
   /**
    * init(_ rawValue: AnalysisContext.UserDataTag.RawValue)
    * @availability iOS 26.0+
    */
-  init(rawValue: string): AnalysisContext_UserDataTag { return callSDK<AnalysisContext_UserDataTag>("Speech_80c97107bb9391cd", 446108763950482, undefined, [rawValue]); }
+  init(rawValue: string): AnalysisContext_UserDataTag { return callSDK<AnalysisContext_UserDataTag>("Speech_b88ddd0bfd78eefc", 446108763950482, undefined, [rawValue]); }
 };
 
 /**
@@ -154,38 +154,38 @@ export class AnalyzerInput extends SDKHandle {
    * let bufferFormat: AVAudioFormat
    * @availability iOS 27.0+
    */
-  get bufferFormat(): _AVFAudio_AVAudioFormat { return callSDK<_AVFAudio_AVAudioFormat>("Speech_80c97107bb9391cd", 1906133462791089, this, []); }
+  get bufferFormat(): _AVFAudio_AVAudioFormat { return callSDK<_AVFAudio_AVAudioFormat>("Speech_b88ddd0bfd78eefc", 1906133462791089, this, []); }
   /**
    * let bufferDuration: CMTime
    * @availability iOS 27.0+
    */
-  get bufferDuration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Speech_80c97107bb9391cd", 3439887473451097, this, []); }
+  get bufferDuration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Speech_b88ddd0bfd78eefc", 3439887473451097, this, []); }
   /**
    * let bufferStartTime: CMTime?
    * @availability iOS 26.0+
    */
-  get bufferStartTime(): $SDK2 { return callSDK<$SDK2>("Speech_80c97107bb9391cd", 484792116121991, this, []); }
+  get bufferStartTime(): $SDK2 { return callSDK<$SDK2>("Speech_b88ddd0bfd78eefc", 484792116121991, this, []); }
   /**
    * init(buffer: AVAudioPCMBuffer, bufferStartTime: CMTime?)
    * @availability iOS 26.0+
    */
-  static initBufferBufferStartTime(buffer: _AVFAudio_AVAudioPCMBuffer, bufferStartTime?: $SDK2): AnalyzerInput { return callSDK<AnalyzerInput>("Speech_80c97107bb9391cd", 2670231525468499, undefined, [buffer, bufferStartTime]); }
+  static initBufferBufferStartTime(buffer: _AVFAudio_AVAudioPCMBuffer, bufferStartTime?: $SDK2): AnalyzerInput { return callSDK<AnalyzerInput>("Speech_b88ddd0bfd78eefc", 2670231525468499, undefined, [buffer, bufferStartTime]); }
   /**
    * init(buffer: CMReadySampleBuffer<CMReadOnlyDataBlockBuffer>)
    * @availability iOS 27.0+
    */
-  static initBuffer(buffer: _CoreMedia_CMReadySampleBuffer<_CoreMedia_CMReadOnlyDataBlockBuffer>): AnalyzerInput { return callSDK<AnalyzerInput>("Speech_80c97107bb9391cd", 4062826270684514, undefined, [buffer]); }
+  static initBuffer(buffer: _CoreMedia_CMReadySampleBuffer<_CoreMedia_CMReadOnlyDataBlockBuffer>): AnalyzerInput { return callSDK<AnalyzerInput>("Speech_b88ddd0bfd78eefc", 4062826270684514, undefined, [buffer]); }
   /**
    * init(buffer: AVAudioPCMBuffer)
    * @availability iOS 26.0+
    */
-  static initBuffer73090(buffer: _AVFAudio_AVAudioPCMBuffer): AnalyzerInput { return callSDK<AnalyzerInput>("Speech_80c97107bb9391cd", 1874209714631697, undefined, [buffer]); }
+  static initBuffer73090(buffer: _AVFAudio_AVAudioPCMBuffer): AnalyzerInput { return callSDK<AnalyzerInput>("Speech_b88ddd0bfd78eefc", 1874209714631697, undefined, [buffer]); }
   /**
    * var buffer: AVAudioPCMBuffer { get }
    * @availability iOS 26.0+
    * @deprecated iOS 27.0
    */
-  get buffer(): _AVFAudio_AVAudioPCMBuffer { return callSDK<_AVFAudio_AVAudioPCMBuffer>("Speech_80c97107bb9391cd", 1140404101182615, this, []); }
+  get buffer(): _AVFAudio_AVAudioPCMBuffer { return callSDK<_AVFAudio_AVAudioPCMBuffer>("Speech_b88ddd0bfd78eefc", 1140404101182615, this, []); }
   declare readonly $type: { "s:6Speech13AnalyzerInputV": true };
 }
 
@@ -198,22 +198,22 @@ export class AnalyzerInputConverter extends SDKHandle {
    * init(analyzerFormat: AVAudioFormat, configurationHandler: ((AVAudioConverter) -> Void)? = nil)
    * @availability iOS 27.0+
    */
-  static init(analyzerFormat: _AVFAudio_AVAudioFormat, configurationHandler?: (((arg0: _AVFAudio_AVAudioConverter) => void)) | null): AnalyzerInputConverter { return callSDK<AnalyzerInputConverter>("Speech_80c97107bb9391cd", 1068872331406675, undefined, [analyzerFormat, configurationHandler], [null,{"callback":{"out":[]}}]); }
+  static init(analyzerFormat: _AVFAudio_AVAudioFormat, configurationHandler?: (((arg0: _AVFAudio_AVAudioConverter) => void)) | null): AnalyzerInputConverter { return callSDK<AnalyzerInputConverter>("Speech_b88ddd0bfd78eefc", 1068872331406675, undefined, [analyzerFormat, configurationHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * final func flush() throws -> [AnalyzerInput]
    * @availability iOS 27.0+
    */
-  flush(): Array<AnalyzerInput> { return callSDK<Array<AnalyzerInput>>("Speech_80c97107bb9391cd", 513234903283323, this, []); }
+  flush(): Array<AnalyzerInput> { return callSDK<Array<AnalyzerInput>>("Speech_b88ddd0bfd78eefc", 513234903283323, this, []); }
   /**
    * final func convert(_ buffer: AVAudioBuffer, at audioTime: AVAudioTime?) throws -> [AnalyzerInput]
    * @availability iOS 27.0+
    */
-  convert(buffer: _AVFAudio_AVAudioBuffer, audioTime?: (_AVFAudio_AVAudioTime) | null): Array<AnalyzerInput> { return callSDK<Array<AnalyzerInput>>("Speech_80c97107bb9391cd", 3789607708522217, this, [buffer, audioTime]); }
+  convert(buffer: _AVFAudio_AVAudioBuffer, audioTime?: (_AVFAudio_AVAudioTime) | null): Array<AnalyzerInput> { return callSDK<Array<AnalyzerInput>>("Speech_b88ddd0bfd78eefc", 3789607708522217, this, [buffer, audioTime]); }
   /**
    * static func converter(compatibleWith modules: [any SpeechModule]) async throws -> AnalyzerInputConverter
    * @availability iOS 27.0+
    */
-  static converter(modules: Array<SDKHandle>): Promise<AnalyzerInputConverter> { return callSDKAsync<AnalyzerInputConverter>("Speech_80c97107bb9391cd", 4353679718751414, undefined, [modules]); }
+  static converter(modules: Array<SDKHandle>): Promise<AnalyzerInputConverter> { return callSDKAsync<AnalyzerInputConverter>("Speech_b88ddd0bfd78eefc", 4353679718751414, undefined, [modules]); }
   declare readonly $type: { "s:6Speech22AnalyzerInputConverterC": true };
 }
 
@@ -226,22 +226,22 @@ export class AssetInputSequenceProvider extends SDKHandle {
    * final var analyzerInputs: some Sendable & AsyncSequence<AnalyzerInput, any Error> { get }
    * @availability iOS 27.0+
    */
-  get analyzerInputs(): $SDK6 { return callSDK<$SDK6>("Speech_80c97107bb9391cd", 3438412700148439, this, []); }
+  get analyzerInputs(): $SDK6 { return callSDK<$SDK6>("Speech_b88ddd0bfd78eefc", 3438412700148439, this, []); }
   /**
    * init(asset: AVAsset, track: AVAssetTrack, analyzerFormat: AVAudioFormat, priority: TaskPriority? = nil)
    * @availability iOS 27.0+
    */
-  static init(asset: _AVFoundation_AVAsset, track: _AVFoundation_AVAssetTrack, analyzerFormat: _AVFAudio_AVAudioFormat, priority?: (SDKHandle) | null): AssetInputSequenceProvider { return callSDK<AssetInputSequenceProvider>("Speech_80c97107bb9391cd", 974792854704238, undefined, [asset, track, analyzerFormat, priority]); }
+  static init(asset: _AVFoundation_AVAsset, track: _AVFoundation_AVAssetTrack, analyzerFormat: _AVFAudio_AVAudioFormat, priority?: (SDKHandle) | null): AssetInputSequenceProvider { return callSDK<AssetInputSequenceProvider>("Speech_b88ddd0bfd78eefc", 974792854704238, undefined, [asset, track, analyzerFormat, priority]); }
   /**
    * static func provider(from asset: AVAsset, compatibleWith modules: [any SpeechModule], priority: TaskPriority? = nil) async throws -> AssetInputSequenceProvider
    * @availability iOS 27.0+
    */
-  static providerFromCompatibleWithPriority(asset: _AVFoundation_AVAsset, modules: Array<SDKHandle>, priority?: (SDKHandle) | null): Promise<AssetInputSequenceProvider> { return callSDKAsync<AssetInputSequenceProvider>("Speech_80c97107bb9391cd", 3365003919077875, undefined, [asset, modules, priority]); }
+  static providerFromCompatibleWithPriority(asset: _AVFoundation_AVAsset, modules: Array<SDKHandle>, priority?: (SDKHandle) | null): Promise<AssetInputSequenceProvider> { return callSDKAsync<AssetInputSequenceProvider>("Speech_b88ddd0bfd78eefc", 3365003919077875, undefined, [asset, modules, priority]); }
   /**
    * static func provider(from asset: AVAsset, track: AVAssetTrack, compatibleWith modules: [any SpeechModule], priority: TaskPriority? = nil) async throws -> AssetInputSequenceProvider
    * @availability iOS 27.0+
    */
-  static providerFromTrackCompatibleWithPriority(asset: _AVFoundation_AVAsset, track: _AVFoundation_AVAssetTrack, modules: Array<SDKHandle>, priority?: (SDKHandle) | null): Promise<AssetInputSequenceProvider> { return callSDKAsync<AssetInputSequenceProvider>("Speech_80c97107bb9391cd", 1170181176475229, undefined, [asset, track, modules, priority]); }
+  static providerFromTrackCompatibleWithPriority(asset: _AVFoundation_AVAsset, track: _AVFoundation_AVAssetTrack, modules: Array<SDKHandle>, priority?: (SDKHandle) | null): Promise<AssetInputSequenceProvider> { return callSDKAsync<AssetInputSequenceProvider>("Speech_b88ddd0bfd78eefc", 1170181176475229, undefined, [asset, track, modules, priority]); }
   declare readonly $type: { "s:6Speech26AssetInputSequenceProviderC": true };
 }
 
@@ -254,12 +254,12 @@ export class AssetInstallationRequest extends SDKHandle {
    * final var progress: Progress { get }
    * @availability iOS 26.0+
    */
-  get progress(): _Foundation_Progress { return callSDK<_Foundation_Progress>("Speech_80c97107bb9391cd", 630640035660741, this, []); }
+  get progress(): _Foundation_Progress { return callSDK<_Foundation_Progress>("Speech_b88ddd0bfd78eefc", 630640035660741, this, []); }
   /**
    * final func downloadAndInstall() async throws
    * @availability iOS 26.0+
    */
-  downloadAndInstall(): Promise<void> { return callSDKAsync<void>("Speech_80c97107bb9391cd", 2818200581540179, this, []); }
+  downloadAndInstall(): Promise<void> { return callSDKAsync<void>("Speech_b88ddd0bfd78eefc", 2818200581540179, this, []); }
   declare readonly $type: { "c:@M@Speech@objc(cs)AssetInstallationRequest": true; "c:objc(cs)NSObject": true };
 }
 
@@ -272,32 +272,32 @@ export class AssetInventory extends SDKHandle {
    * static var reservedLocales: [Locale] { get async }
    * @availability iOS 26.0+
    */
-  static get reservedLocales(): Promise<$SDK7> { return callSDKAsync<$SDK7>("Speech_80c97107bb9391cd", 4054549066361527, undefined, []); }
+  static get reservedLocales(): Promise<$SDK7> { return callSDKAsync<$SDK7>("Speech_b88ddd0bfd78eefc", 4054549066361527, undefined, []); }
   /**
    * static var maximumReservedLocales: Int { get }
    * @availability iOS 26.0+
    */
-  static get maximumReservedLocales(): number { return callSDK<number>("Speech_80c97107bb9391cd", 3417369543285411, undefined, []); }
+  static get maximumReservedLocales(): number { return callSDK<number>("Speech_b88ddd0bfd78eefc", 3417369543285411, undefined, []); }
   /**
    * static func assetInstallationRequest(supporting modules: [any SpeechModule]) async throws -> AssetInstallationRequest?
    * @availability iOS 26.0+
    */
-  static assetInstallationRequest(modules: Array<SDKHandle>): Promise<(AssetInstallationRequest) | null> { return callSDKAsync<(AssetInstallationRequest) | null>("Speech_80c97107bb9391cd", 3320666691904226, undefined, [modules]); }
+  static assetInstallationRequest(modules: Array<SDKHandle>): Promise<(AssetInstallationRequest) | null> { return callSDKAsync<(AssetInstallationRequest) | null>("Speech_b88ddd0bfd78eefc", 3320666691904226, undefined, [modules]); }
   /**
    * static func status(forModules modules: [any SpeechModule]) async -> AssetInventory.Status
    * @availability iOS 26.0+
    */
-  static status(modules: Array<SDKHandle>): Promise<AssetInventory_Status> { return callSDKAsync<AssetInventory_Status>("Speech_80c97107bb9391cd", 2456752585276478, undefined, [modules]); }
+  static status(modules: Array<SDKHandle>): Promise<AssetInventory_Status> { return callSDKAsync<AssetInventory_Status>("Speech_b88ddd0bfd78eefc", 2456752585276478, undefined, [modules]); }
   /**
    * @discardableResult static func release(reservedLocale: Locale) async -> Bool
    * @availability iOS 26.0+
    */
-  static release(reservedLocale: _Foundation_Locale): Promise<boolean> { return callSDKAsync<boolean>("Speech_80c97107bb9391cd", 2639536915172077, undefined, [reservedLocale]); }
+  static release(reservedLocale: _Foundation_Locale): Promise<boolean> { return callSDKAsync<boolean>("Speech_b88ddd0bfd78eefc", 2639536915172077, undefined, [reservedLocale]); }
   /**
    * @discardableResult static func reserve(locale: Locale) async throws -> Bool
    * @availability iOS 26.0+
    */
-  static reserve(locale: _Foundation_Locale): Promise<boolean> { return callSDKAsync<boolean>("Speech_80c97107bb9391cd", 2604414858413266, undefined, [locale]); }
+  static reserve(locale: _Foundation_Locale): Promise<boolean> { return callSDKAsync<boolean>("Speech_b88ddd0bfd78eefc", 2604414858413266, undefined, [locale]); }
   declare readonly $type: { "s:6Speech14AssetInventoryC": true };
 }
 
@@ -312,7 +312,7 @@ export class AttributedString extends SDKHandle {
    * func rangeOfAudioTimeRangeAttributes(intersecting timeRange: CMTimeRange) -> Range<AttributedString.Index>?
    * @availability iOS 26.0+
    */
-  rangeOfAudioTimeRangeAttributes(timeRange: _CoreMedia_CMTimeRange): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Speech_80c97107bb9391cd", 746137992484069, this, [timeRange]); }
+  rangeOfAudioTimeRangeAttributes(timeRange: _CoreMedia_CMTimeRange): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Speech_b88ddd0bfd78eefc", 746137992484069, this, [timeRange]); }
   declare readonly $type: { "s:10Foundation16AttributedStringV": true };
 }
 
@@ -325,12 +325,12 @@ export class AttributeScopes_SpeechAttributes extends SDKHandle {
    * let audioTimeRange: AttributeScopes.SpeechAttributes.TimeRangeAttribute
    * @availability iOS 26.0+
    */
-  get audioTimeRange(): AttributeScopes_SpeechAttributes_TimeRangeAttribute { return callSDK<AttributeScopes_SpeechAttributes_TimeRangeAttribute>("Speech_80c97107bb9391cd", 3954350751431404, this, []); }
+  get audioTimeRange(): AttributeScopes_SpeechAttributes_TimeRangeAttribute { return callSDK<AttributeScopes_SpeechAttributes_TimeRangeAttribute>("Speech_b88ddd0bfd78eefc", 3954350751431404, this, []); }
   /**
    * let transcriptionConfidence: AttributeScopes.SpeechAttributes.ConfidenceAttribute
    * @availability iOS 26.0+
    */
-  get transcriptionConfidence(): AttributeScopes_SpeechAttributes_ConfidenceAttribute { return callSDK<AttributeScopes_SpeechAttributes_ConfidenceAttribute>("Speech_80c97107bb9391cd", 4242576597394986, this, []); }
+  get transcriptionConfidence(): AttributeScopes_SpeechAttributes_ConfidenceAttribute { return callSDK<AttributeScopes_SpeechAttributes_ConfidenceAttribute>("Speech_b88ddd0bfd78eefc", 4242576597394986, this, []); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO6SpeechE0D10AttributesV": true };
 }
 
@@ -343,7 +343,7 @@ export class AttributeScopes_SpeechAttributes_ConfidenceAttribute extends SDKHan
    * static let name: String
    * @availability iOS 26.0+
    */
-  static get nameValue(): string { return callSDK<string>("Speech_80c97107bb9391cd", 1211182290072933, undefined, []); }
+  static get nameValue(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 1211182290072933, undefined, []); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO6SpeechE0D10AttributesV010ConfidenceB0V": true };
 }
 
@@ -374,17 +374,17 @@ export class AttributeScopes_SpeechAttributes_TimeRangeAttribute extends SDKHand
    * static let name: String
    * @availability iOS 26.0+
    */
-  static get nameValue(): string { return callSDK<string>("Speech_80c97107bb9391cd", 3280065624089541, undefined, []); }
+  static get nameValue(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 3280065624089541, undefined, []); }
   /**
    * static func decode(from decoder: any Decoder) throws -> AttributeScopes.SpeechAttributes.TimeRangeAttribute.Value
    * @availability iOS 26.0+
    */
-  static decode(decoder: SDKHandle): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("Speech_80c97107bb9391cd", 4185736250325647, undefined, [decoder]); }
+  static decode(decoder: SDKHandle): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("Speech_b88ddd0bfd78eefc", 4185736250325647, undefined, [decoder]); }
   /**
    * static func encode(_ value: AttributeScopes.SpeechAttributes.TimeRangeAttribute.Value, to encoder: any Encoder) throws
    * @availability iOS 26.0+
    */
-  static encode(value: _CoreMedia_CMTimeRange, encoder: SDKHandle): void { return callSDK<void>("Speech_80c97107bb9391cd", 4134207593510432, undefined, [value, encoder]); }
+  static encode(value: _CoreMedia_CMTimeRange, encoder: SDKHandle): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 4134207593510432, undefined, [value, encoder]); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO6SpeechE0D10AttributesV09TimeRangeB0V": true };
 }
 
@@ -403,32 +403,32 @@ export class CaptureInputSequenceProvider extends SDKHandle {
    * final var analyzerInputs: some Sendable & AsyncSequence<AnalyzerInput, any Error> { get }
    * @availability iOS 27.0+
    */
-  get analyzerInputs(): $SDK6 { return callSDK<$SDK6>("Speech_80c97107bb9391cd", 1463787006845428, this, []); }
+  get analyzerInputs(): $SDK6 { return callSDK<$SDK6>("Speech_b88ddd0bfd78eefc", 1463787006845428, this, []); }
   /**
    * final var captureSession: AVCaptureSession { get }
    * @availability iOS 27.0+
    */
-  get captureSession(): _AVFoundation_AVCaptureSession { return callSDK<_AVFoundation_AVCaptureSession>("Speech_80c97107bb9391cd", 3709691565608833, this, []); }
+  get captureSession(): _AVFoundation_AVCaptureSession { return callSDK<_AVFoundation_AVCaptureSession>("Speech_b88ddd0bfd78eefc", 3709691565608833, this, []); }
   /**
    * static func providerWithSession(from captureDevice: AVCaptureDevice, compatibleWith modules: [any SpeechModule], priority: TaskPriority? = nil) async throws -> CaptureInputSequenceProvider
    * @availability iOS 27.0+
    */
-  static providerWithSession(captureDevice: _AVFoundation_AVCaptureDevice, modules: Array<SDKHandle>, priority?: (SDKHandle) | null): Promise<CaptureInputSequenceProvider> { return callSDKAsync<CaptureInputSequenceProvider>("Speech_80c97107bb9391cd", 4169976578116248, undefined, [captureDevice, modules, priority]); }
+  static providerWithSession(captureDevice: _AVFoundation_AVCaptureDevice, modules: Array<SDKHandle>, priority?: (SDKHandle) | null): Promise<CaptureInputSequenceProvider> { return callSDKAsync<CaptureInputSequenceProvider>("Speech_b88ddd0bfd78eefc", 4169976578116248, undefined, [captureDevice, modules, priority]); }
   /**
    * final var captureAudioDataOutput: AVCaptureAudioDataOutput { get }
    * @availability iOS 27.0+
    */
-  get captureAudioDataOutput(): _AVFoundation_AVCaptureAudioDataOutput { return callSDK<_AVFoundation_AVCaptureAudioDataOutput>("Speech_80c97107bb9391cd", 3435634066325804, this, []); }
+  get captureAudioDataOutput(): _AVFoundation_AVCaptureAudioDataOutput { return callSDK<_AVFoundation_AVCaptureAudioDataOutput>("Speech_b88ddd0bfd78eefc", 3435634066325804, this, []); }
   /**
    * init(session: AVCaptureSession, analyzerFormat: AVAudioFormat, priority: TaskPriority?) throws
    * @availability iOS 27.0+
    */
-  static init(session: _AVFoundation_AVCaptureSession, analyzerFormat: _AVFAudio_AVAudioFormat, priority?: (SDKHandle) | null): CaptureInputSequenceProvider { return callSDK<CaptureInputSequenceProvider>("Speech_80c97107bb9391cd", 4216922869465022, undefined, [session, analyzerFormat, priority]); }
+  static init(session: _AVFoundation_AVCaptureSession, analyzerFormat: _AVFAudio_AVAudioFormat, priority?: (SDKHandle) | null): CaptureInputSequenceProvider { return callSDK<CaptureInputSequenceProvider>("Speech_b88ddd0bfd78eefc", 4216922869465022, undefined, [session, analyzerFormat, priority]); }
   /**
    * static func provider(from captureDevice: AVCaptureDevice, in session: AVCaptureSession, compatibleWith modules: [any SpeechModule], priority: TaskPriority? = nil) async throws -> CaptureInputSequenceProvider
    * @availability iOS 27.0+
    */
-  static provider(captureDevice: _AVFoundation_AVCaptureDevice, session: _AVFoundation_AVCaptureSession, modules: Array<SDKHandle>, priority?: (SDKHandle) | null): Promise<CaptureInputSequenceProvider> { return callSDKAsync<CaptureInputSequenceProvider>("Speech_80c97107bb9391cd", 1128637778259451, undefined, [captureDevice, session, modules, priority]); }
+  static provider(captureDevice: _AVFoundation_AVCaptureDevice, session: _AVFoundation_AVCaptureSession, modules: Array<SDKHandle>, priority?: (SDKHandle) | null): Promise<CaptureInputSequenceProvider> { return callSDKAsync<CaptureInputSequenceProvider>("Speech_b88ddd0bfd78eefc", 1128637778259451, undefined, [captureDevice, session, modules, priority]); }
   declare readonly $type: { "s:6Speech28CaptureInputSequenceProviderC": true };
 }
 
@@ -453,42 +453,42 @@ export class DictationTranscriber extends SDKHandle {
    * final var selectedLocales: [Locale] { get }
    * @availability iOS 26.0+
    */
-  get selectedLocales(): $SDK7 { return callSDK<$SDK7>("Speech_80c97107bb9391cd", 2788495162642146, this, []); }
+  get selectedLocales(): $SDK7 { return callSDK<$SDK7>("Speech_b88ddd0bfd78eefc", 2788495162642146, this, []); }
   /**
    * static func supportedLocale(equivalentTo locale: Locale) async -> Locale?
    * @availability iOS 26.0+
    */
-  static supportedLocale(locale: _Foundation_Locale): Promise<$SDK9> { return callSDKAsync<$SDK9>("Speech_80c97107bb9391cd", 2241931870112440, undefined, [locale]); }
+  static supportedLocale(locale: _Foundation_Locale): Promise<$SDK9> { return callSDKAsync<$SDK9>("Speech_b88ddd0bfd78eefc", 2241931870112440, undefined, [locale]); }
   /**
    * static var installedLocales: [Locale] { get async }
    * @availability iOS 26.0+
    */
-  static get installedLocales(): Promise<$SDK7> { return callSDKAsync<$SDK7>("Speech_80c97107bb9391cd", 2720130592028660, undefined, []); }
+  static get installedLocales(): Promise<$SDK7> { return callSDKAsync<$SDK7>("Speech_b88ddd0bfd78eefc", 2720130592028660, undefined, []); }
   /**
    * static var supportedLocales: [Locale] { get async }
    * @availability iOS 26.0+
    */
-  static get supportedLocales(): Promise<$SDK7> { return callSDKAsync<$SDK7>("Speech_80c97107bb9391cd", 548261641769804, undefined, []); }
+  static get supportedLocales(): Promise<$SDK7> { return callSDKAsync<$SDK7>("Speech_b88ddd0bfd78eefc", 548261641769804, undefined, []); }
   /**
    * final var availableCompatibleAudioFormats: [AVAudioFormat] { get async }
    * @availability iOS 26.0+
    */
-  get availableCompatibleAudioFormats(): Promise<$SDK10> { return callSDKAsync<$SDK10>("Speech_80c97107bb9391cd", 3478546129310079, this, []); }
+  get availableCompatibleAudioFormats(): Promise<$SDK10> { return callSDKAsync<$SDK10>("Speech_b88ddd0bfd78eefc", 3478546129310079, this, []); }
   /**
    * convenience init(locale: Locale, contentHints: Set<DictationTranscriber.ContentHint>, transcriptionOptions: Set<DictationTranscriber.TranscriptionOption>, reportingOptions: Set<DictationTranscriber.ReportingOption>, attributeOptions: Set<DictationTranscriber.ResultAttributeOption>)
    * @availability iOS 26.0+
    */
-  static initLocaleContentHintsTranscriptionOptionsReportingOptionsAttributeOptions(locale: _Foundation_Locale, contentHints: $SDK11, transcriptionOptions: $SDK12, reportingOptions: $SDK13, attributeOptions: $SDK14): DictationTranscriber { return callSDK<DictationTranscriber>("Speech_80c97107bb9391cd", 3155708255454638, undefined, [locale, contentHints, transcriptionOptions, reportingOptions, attributeOptions]); }
+  static initLocaleContentHintsTranscriptionOptionsReportingOptionsAttributeOptions(locale: _Foundation_Locale, contentHints: $SDK11, transcriptionOptions: $SDK12, reportingOptions: $SDK13, attributeOptions: $SDK14): DictationTranscriber { return callSDK<DictationTranscriber>("Speech_b88ddd0bfd78eefc", 3155708255454638, undefined, [locale, contentHints, transcriptionOptions, reportingOptions, attributeOptions]); }
   /**
    * convenience init(locale: Locale, preset: DictationTranscriber.Preset)
    * @availability iOS 26.0+
    */
-  static initLocalePreset(locale: _Foundation_Locale, preset: DictationTranscriber_Preset): DictationTranscriber { return callSDK<DictationTranscriber>("Speech_80c97107bb9391cd", 566886252837114, undefined, [locale, preset]); }
+  static initLocalePreset(locale: _Foundation_Locale, preset: DictationTranscriber_Preset): DictationTranscriber { return callSDK<DictationTranscriber>("Speech_b88ddd0bfd78eefc", 566886252837114, undefined, [locale, preset]); }
   /**
    * final var results: some Sendable & AsyncSequence<DictationTranscriber.Result, any Error> { get }
    * @availability iOS 26.0+
    */
-  get results(): $SDK6 { return callSDK<$SDK6>("Speech_80c97107bb9391cd", 464964078248149, this, []); }
+  get results(): $SDK6 { return callSDK<$SDK6>("Speech_b88ddd0bfd78eefc", 464964078248149, this, []); }
   declare readonly $type: { "s:6Speech20DictationTranscriberC": true };
 }
 
@@ -501,22 +501,22 @@ export class DictationTranscriber_ContentHint extends SDKHandle {
    * static let atypicalSpeech: DictationTranscriber.ContentHint
    * @availability iOS 26.0+
    */
-  static get atypicalSpeech(): DictationTranscriber_ContentHint { return callSDK<DictationTranscriber_ContentHint>("Speech_80c97107bb9391cd", 114187559370147, undefined, []); }
+  static get atypicalSpeech(): DictationTranscriber_ContentHint { return callSDK<DictationTranscriber_ContentHint>("Speech_b88ddd0bfd78eefc", 114187559370147, undefined, []); }
   /**
    * static func customizedLanguage(modelConfiguration: SFSpeechLanguageModel.Configuration) -> DictationTranscriber.ContentHint
    * @availability iOS 26.0+
    */
-  static customizedLanguage(modelConfiguration: SFSpeechLanguageModel_Configuration): DictationTranscriber_ContentHint { return callSDK<DictationTranscriber_ContentHint>("Speech_80c97107bb9391cd", 4163366868793790, undefined, [modelConfiguration]); }
+  static customizedLanguage(modelConfiguration: SFSpeechLanguageModel_Configuration): DictationTranscriber_ContentHint { return callSDK<DictationTranscriber_ContentHint>("Speech_b88ddd0bfd78eefc", 4163366868793790, undefined, [modelConfiguration]); }
   /**
    * static let farField: DictationTranscriber.ContentHint
    * @availability iOS 26.0+
    */
-  static get farField(): DictationTranscriber_ContentHint { return callSDK<DictationTranscriber_ContentHint>("Speech_80c97107bb9391cd", 4265721885331459, undefined, []); }
+  static get farField(): DictationTranscriber_ContentHint { return callSDK<DictationTranscriber_ContentHint>("Speech_b88ddd0bfd78eefc", 4265721885331459, undefined, []); }
   /**
    * static let shortForm: DictationTranscriber.ContentHint
    * @availability iOS 26.0+
    */
-  static get shortForm(): DictationTranscriber_ContentHint { return callSDK<DictationTranscriber_ContentHint>("Speech_80c97107bb9391cd", 1635842483130505, undefined, []); }
+  static get shortForm(): DictationTranscriber_ContentHint { return callSDK<DictationTranscriber_ContentHint>("Speech_b88ddd0bfd78eefc", 1635842483130505, undefined, []); }
   declare readonly $type: { "s:6Speech20DictationTranscriberC11ContentHintV": true };
 }
 
@@ -529,61 +529,61 @@ export class DictationTranscriber_Preset extends SDKHandle {
    * static let progressiveLongDictation: DictationTranscriber.Preset
    * @availability iOS 26.0+
    */
-  static get progressiveLongDictation(): DictationTranscriber_Preset { return callSDK<DictationTranscriber_Preset>("Speech_80c97107bb9391cd", 2315532373297180, undefined, []); }
+  static get progressiveLongDictation(): DictationTranscriber_Preset { return callSDK<DictationTranscriber_Preset>("Speech_b88ddd0bfd78eefc", 2315532373297180, undefined, []); }
   /**
    * static let timeIndexedLongDictation: DictationTranscriber.Preset
    * @availability iOS 26.0+
    */
-  static get timeIndexedLongDictation(): DictationTranscriber_Preset { return callSDK<DictationTranscriber_Preset>("Speech_80c97107bb9391cd", 711142369825151, undefined, []); }
+  static get timeIndexedLongDictation(): DictationTranscriber_Preset { return callSDK<DictationTranscriber_Preset>("Speech_b88ddd0bfd78eefc", 711142369825151, undefined, []); }
   /**
    * static let progressiveShortDictation: DictationTranscriber.Preset
    * @availability iOS 26.0+
    */
-  static get progressiveShortDictation(): DictationTranscriber_Preset { return callSDK<DictationTranscriber_Preset>("Speech_80c97107bb9391cd", 2755413813460262, undefined, []); }
+  static get progressiveShortDictation(): DictationTranscriber_Preset { return callSDK<DictationTranscriber_Preset>("Speech_b88ddd0bfd78eefc", 2755413813460262, undefined, []); }
   /**
    * static let longDictation: DictationTranscriber.Preset
    * @availability iOS 26.0+
    */
-  static get longDictation(): DictationTranscriber_Preset { return callSDK<DictationTranscriber_Preset>("Speech_80c97107bb9391cd", 3670706451828198, undefined, []); }
+  static get longDictation(): DictationTranscriber_Preset { return callSDK<DictationTranscriber_Preset>("Speech_b88ddd0bfd78eefc", 3670706451828198, undefined, []); }
   /**
    * static let shortDictation: DictationTranscriber.Preset
    * @availability iOS 26.0+
    */
-  static get shortDictation(): DictationTranscriber_Preset { return callSDK<DictationTranscriber_Preset>("Speech_80c97107bb9391cd", 2379225698941707, undefined, []); }
+  static get shortDictation(): DictationTranscriber_Preset { return callSDK<DictationTranscriber_Preset>("Speech_b88ddd0bfd78eefc", 2379225698941707, undefined, []); }
   /**
    * init(contentHints: Set<DictationTranscriber.ContentHint>, transcriptionOptions: Set<DictationTranscriber.TranscriptionOption>, reportingOptions: Set<DictationTranscriber.ReportingOption>, attributeOptions: Set<DictationTranscriber.ResultAttributeOption>)
    * @availability iOS 26.0+
    */
-  static init(contentHints: $SDK11, transcriptionOptions: $SDK12, reportingOptions: $SDK13, attributeOptions: $SDK14): DictationTranscriber_Preset { return callSDK<DictationTranscriber_Preset>("Speech_80c97107bb9391cd", 2419425202915880, undefined, [contentHints, transcriptionOptions, reportingOptions, attributeOptions]); }
+  static init(contentHints: $SDK11, transcriptionOptions: $SDK12, reportingOptions: $SDK13, attributeOptions: $SDK14): DictationTranscriber_Preset { return callSDK<DictationTranscriber_Preset>("Speech_b88ddd0bfd78eefc", 2419425202915880, undefined, [contentHints, transcriptionOptions, reportingOptions, attributeOptions]); }
   /**
    * var contentHints: Set<DictationTranscriber.ContentHint>
    * @availability iOS 26.0+
    */
-  get contentHints(): $SDK11 { return callSDK<$SDK11>("Speech_80c97107bb9391cd", 1924590637526644, this, []); }
-  set contentHints(value: $SDK11) { callSDK<void>("Speech_80c97107bb9391cd", 128178494753451, this, [value]); }
+  get contentHints(): $SDK11 { return callSDK<$SDK11>("Speech_b88ddd0bfd78eefc", 1924590637526644, this, []); }
+  set contentHints(value: $SDK11) { callSDK<void>("Speech_b88ddd0bfd78eefc", 128178494753451, this, [value]); }
   /**
    * var attributeOptions: Set<DictationTranscriber.ResultAttributeOption>
    * @availability iOS 26.0+
    */
-  get attributeOptions(): $SDK14 { return callSDK<$SDK14>("Speech_80c97107bb9391cd", 613759217645366, this, []); }
-  set attributeOptions(value: $SDK14) { callSDK<void>("Speech_80c97107bb9391cd", 4482938095669771, this, [value]); }
+  get attributeOptions(): $SDK14 { return callSDK<$SDK14>("Speech_b88ddd0bfd78eefc", 613759217645366, this, []); }
+  set attributeOptions(value: $SDK14) { callSDK<void>("Speech_b88ddd0bfd78eefc", 4482938095669771, this, [value]); }
   /**
    * var reportingOptions: Set<DictationTranscriber.ReportingOption>
    * @availability iOS 26.0+
    */
-  get reportingOptions(): $SDK13 { return callSDK<$SDK13>("Speech_80c97107bb9391cd", 3197983439800577, this, []); }
-  set reportingOptions(value: $SDK13) { callSDK<void>("Speech_80c97107bb9391cd", 942704546607370, this, [value]); }
+  get reportingOptions(): $SDK13 { return callSDK<$SDK13>("Speech_b88ddd0bfd78eefc", 3197983439800577, this, []); }
+  set reportingOptions(value: $SDK13) { callSDK<void>("Speech_b88ddd0bfd78eefc", 942704546607370, this, [value]); }
   /**
    * var transcriptionOptions: Set<DictationTranscriber.TranscriptionOption>
    * @availability iOS 26.0+
    */
-  get transcriptionOptions(): $SDK12 { return callSDK<$SDK12>("Speech_80c97107bb9391cd", 4150570157933069, this, []); }
-  set transcriptionOptions(value: $SDK12) { callSDK<void>("Speech_80c97107bb9391cd", 2367722219638284, this, [value]); }
+  get transcriptionOptions(): $SDK12 { return callSDK<$SDK12>("Speech_b88ddd0bfd78eefc", 4150570157933069, this, []); }
+  set transcriptionOptions(value: $SDK12) { callSDK<void>("Speech_b88ddd0bfd78eefc", 2367722219638284, this, [value]); }
   /**
    * static let phrase: DictationTranscriber.Preset
    * @availability iOS 26.0+
    */
-  static get phrase(): DictationTranscriber_Preset { return callSDK<DictationTranscriber_Preset>("Speech_80c97107bb9391cd", 2546283120193779, undefined, []); }
+  static get phrase(): DictationTranscriber_Preset { return callSDK<DictationTranscriber_Preset>("Speech_b88ddd0bfd78eefc", 2546283120193779, undefined, []); }
   declare readonly $type: { "s:6Speech20DictationTranscriberC6PresetV": true };
 }
 
@@ -598,7 +598,7 @@ export const DictationTranscriber_ReportingOption = {
    * nonisolated static var allCases: [DictationTranscriber.ReportingOption] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK13 { return callSDK<$SDK13>("Speech_80c97107bb9391cd", 77262178616166, undefined, []); }
+  get allCases(): $SDK13 { return callSDK<$SDK13>("Speech_b88ddd0bfd78eefc", 77262178616166, undefined, []); }
 };
 
 /**
@@ -616,27 +616,27 @@ export class DictationTranscriber_Result extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Speech_80c97107bb9391cd", 4247819685538692, this, []); }
+  get description(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 4247819685538692, this, []); }
   /**
    * let alternatives: [AttributedString]
    * @availability iOS 26.0+
    */
-  get alternatives(): $SDK15 { return callSDK<$SDK15>("Speech_80c97107bb9391cd", 192459818766898, this, []); }
+  get alternatives(): $SDK15 { return callSDK<$SDK15>("Speech_b88ddd0bfd78eefc", 192459818766898, this, []); }
   /**
    * let resultsFinalizationTime: CMTime
    * @availability iOS 26.0+
    */
-  get resultsFinalizationTime(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Speech_80c97107bb9391cd", 77109397286313, this, []); }
+  get resultsFinalizationTime(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Speech_b88ddd0bfd78eefc", 77109397286313, this, []); }
   /**
    * var text: AttributedString { get }
    * @availability iOS 26.0+
    */
-  get text(): _Foundation_AttributedString { return callSDK<_Foundation_AttributedString>("Speech_80c97107bb9391cd", 1531928084511853, this, []); }
+  get text(): _Foundation_AttributedString { return callSDK<_Foundation_AttributedString>("Speech_b88ddd0bfd78eefc", 1531928084511853, this, []); }
   /**
    * let range: CMTimeRange
    * @availability iOS 26.0+
    */
-  get range(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("Speech_80c97107bb9391cd", 4099460448730551, this, []); }
+  get range(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("Speech_b88ddd0bfd78eefc", 4099460448730551, this, []); }
   declare readonly $type: { "s:6Speech20DictationTranscriberC6ResultV": true };
 }
 
@@ -651,7 +651,7 @@ export const DictationTranscriber_ResultAttributeOption = {
    * nonisolated static var allCases: [DictationTranscriber.ResultAttributeOption] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK14 { return callSDK<$SDK14>("Speech_80c97107bb9391cd", 2545484800104948, undefined, []); }
+  get allCases(): $SDK14 { return callSDK<$SDK14>("Speech_b88ddd0bfd78eefc", 2545484800104948, undefined, []); }
 };
 
 /**
@@ -677,7 +677,7 @@ export const DictationTranscriber_TranscriptionOption = {
    * nonisolated static var allCases: [DictationTranscriber.TranscriptionOption] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK12 { return callSDK<$SDK12>("Speech_80c97107bb9391cd", 1987186290188161, undefined, []); }
+  get allCases(): $SDK12 { return callSDK<$SDK12>("Speech_b88ddd0bfd78eefc", 1987186290188161, undefined, []); }
 };
 
 /**
@@ -704,17 +704,17 @@ export interface LocaleDependentSpeechModule {
  */
 export class SFAcousticFeature extends SDKHandle {
   /** init() */
-  static init(): SFAcousticFeature { return callSDK<SFAcousticFeature>("Speech_80c97107bb9391cd", 687950159481325, undefined, []); }
+  static init(): SFAcousticFeature { return callSDK<SFAcousticFeature>("Speech_b88ddd0bfd78eefc", 687950159481325, undefined, []); }
   /**
    * var frameDuration: TimeInterval { get }
    * @availability iOS 13.0+
    */
-  get frameDuration(): number { return callSDK<number>("Speech_80c97107bb9391cd", 228654032186820, this, []); }
+  get frameDuration(): number { return callSDK<number>("Speech_b88ddd0bfd78eefc", 228654032186820, this, []); }
   /**
    * var acousticFeatureValuePerFrame: [Double] { get }
    * @availability iOS 17.0+
    */
-  get acousticFeatureValuePerFrame(): Array<number> { return callSDK<Array<number>>("Speech_80c97107bb9391cd", 326504601852253, this, []); }
+  get acousticFeatureValuePerFrame(): Array<number> { return callSDK<Array<number>>("Speech_b88ddd0bfd78eefc", 326504601852253, this, []); }
   declare readonly $type: { "c:objc(cs)SFAcousticFeature": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "frameDuration": true };
 }
@@ -728,47 +728,47 @@ export class SFCustomLanguageModelData extends SDKHandle {
    * final let identifier: String
    * @availability iOS 17.0+
    */
-  get identifier(): string { return callSDK<string>("Speech_80c97107bb9391cd", 1829296476260731, this, []); }
+  get identifier(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 1829296476260731, this, []); }
   /**
    * static func supportedPhonemes(locale: Locale) -> [String]
    * @availability iOS 17.0+
    */
-  static supportedPhonemes(locale: _Foundation_Locale): Array<string> { return callSDK<Array<string>>("Speech_80c97107bb9391cd", 2736063466402852, undefined, [locale]); }
+  static supportedPhonemes(locale: _Foundation_Locale): Array<string> { return callSDK<Array<string>>("Speech_b88ddd0bfd78eefc", 2736063466402852, undefined, [locale]); }
   /**
    * func export(to path: URL) async throws
    * @availability iOS 17.0+
    */
-  export(path: string): Promise<void> { return callSDKAsync<void>("Speech_80c97107bb9391cd", 4194313180096316, this, [path]); }
+  export(path: string): Promise<void> { return callSDKAsync<void>("Speech_b88ddd0bfd78eefc", 4194313180096316, this, [path]); }
   /**
    * func insert(phraseCount: SFCustomLanguageModelData.PhraseCount)
    * @availability iOS 17.0+
    */
-  insertPhraseCount(phraseCount: SFCustomLanguageModelData_PhraseCount): void { return callSDK<void>("Speech_80c97107bb9391cd", 3342178983366298, this, [phraseCount]); }
+  insertPhraseCount(phraseCount: SFCustomLanguageModelData_PhraseCount): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 3342178983366298, this, [phraseCount]); }
   /**
    * func insert(phraseCountGenerator: SFCustomLanguageModelData.PhraseCountGenerator)
    * @availability iOS 17.0+
    */
-  insertPhraseCountGenerator(phraseCountGenerator: SFCustomLanguageModelData_PhraseCountGenerator): void { return callSDK<void>("Speech_80c97107bb9391cd", 167485168924177, this, [phraseCountGenerator]); }
+  insertPhraseCountGenerator(phraseCountGenerator: SFCustomLanguageModelData_PhraseCountGenerator): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 167485168924177, this, [phraseCountGenerator]); }
   /**
    * func insert(term: SFCustomLanguageModelData.CustomPronunciation)
    * @availability iOS 17.0+
    */
-  insertTerm(term: SFCustomLanguageModelData_CustomPronunciation): void { return callSDK<void>("Speech_80c97107bb9391cd", 238315428173934, this, [term]); }
+  insertTerm(term: SFCustomLanguageModelData_CustomPronunciation): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 238315428173934, this, [term]); }
   /**
    * final let locale: Locale
    * @availability iOS 17.0+
    */
-  get locale(): _Foundation_Locale { return callSDK<_Foundation_Locale>("Speech_80c97107bb9391cd", 3386778089757051, this, []); }
+  get locale(): _Foundation_Locale { return callSDK<_Foundation_Locale>("Speech_b88ddd0bfd78eefc", 3386778089757051, this, []); }
   /**
    * init(locale: Locale, identifier: String, version: String)
    * @availability iOS 17.0+
    */
-  static init(locale: _Foundation_Locale, identifier: string, version: string): SFCustomLanguageModelData { return callSDK<SFCustomLanguageModelData>("Speech_80c97107bb9391cd", 3680097726978549, undefined, [locale, identifier, version]); }
+  static init(locale: _Foundation_Locale, identifier: string, version: string): SFCustomLanguageModelData { return callSDK<SFCustomLanguageModelData>("Speech_b88ddd0bfd78eefc", 3680097726978549, undefined, [locale, identifier, version]); }
   /**
    * final let version: String
    * @availability iOS 17.0+
    */
-  get version(): string { return callSDK<string>("Speech_80c97107bb9391cd", 981736209164282, this, []); }
+  get version(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 981736209164282, this, []); }
   declare readonly $type: { "s:6Speech25SFCustomLanguageModelDataC": true };
 }
 
@@ -781,12 +781,12 @@ export class SFCustomLanguageModelData_CompoundTemplate extends SDKHandle {
    * func insert(generator: SFCustomLanguageModelData.TemplatePhraseCountGenerator)
    * @availability iOS 17.0+
    */
-  insert(generator: SFCustomLanguageModelData_TemplatePhraseCountGenerator): void { return callSDK<void>("Speech_80c97107bb9391cd", 388273625146829, this, [generator]); }
+  insert(generator: SFCustomLanguageModelData_TemplatePhraseCountGenerator): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 388273625146829, this, [generator]); }
   /**
    * init(_ components: [any TemplateInsertable])
    * @availability iOS 17.0+
    */
-  static init(components: $SDK16): SFCustomLanguageModelData_CompoundTemplate { return callSDK<SFCustomLanguageModelData_CompoundTemplate>("Speech_80c97107bb9391cd", 3668052857183812, undefined, [components], [{"array":{"protocol":"s:6Speech18TemplateInsertableP"}}]); }
+  static init(components: $SDK16): SFCustomLanguageModelData_CompoundTemplate { return callSDK<SFCustomLanguageModelData_CompoundTemplate>("Speech_b88ddd0bfd78eefc", 3668052857183812, undefined, [components], [{"array":{"protocol":"s:6Speech18TemplateInsertableP"}}]); }
   declare readonly $type: { "s:6Speech25SFCustomLanguageModelDataC16CompoundTemplateV": true };
 }
 
@@ -799,27 +799,27 @@ export class SFCustomLanguageModelData_CustomPronunciation extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("Speech_80c97107bb9391cd", 2140735494369497, this, []); }
+  get description(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 2140735494369497, this, []); }
   /**
    * func insert(data: SFCustomLanguageModelData)
    * @availability iOS 17.0+
    */
-  insert(data: SFCustomLanguageModelData): void { return callSDK<void>("Speech_80c97107bb9391cd", 974799613770991, this, [data]); }
+  insert(data: SFCustomLanguageModelData): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 974799613770991, this, [data]); }
   /**
    * init(grapheme: String, phonemes: [String])
    * @availability iOS 17.0+
    */
-  static init(grapheme: string, phonemes: Array<string>): SFCustomLanguageModelData_CustomPronunciation { return callSDK<SFCustomLanguageModelData_CustomPronunciation>("Speech_80c97107bb9391cd", 1306003951082803, undefined, [grapheme, phonemes]); }
+  static init(grapheme: string, phonemes: Array<string>): SFCustomLanguageModelData_CustomPronunciation { return callSDK<SFCustomLanguageModelData_CustomPronunciation>("Speech_b88ddd0bfd78eefc", 1306003951082803, undefined, [grapheme, phonemes]); }
   /**
    * let grapheme: String
    * @availability iOS 17.0+
    */
-  get grapheme(): string { return callSDK<string>("Speech_80c97107bb9391cd", 250166268885155, this, []); }
+  get grapheme(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 250166268885155, this, []); }
   /**
    * let phonemes: [String]
    * @availability iOS 17.0+
    */
-  get phonemes(): Array<string> { return callSDK<Array<string>>("Speech_80c97107bb9391cd", 3739534800434976, this, []); }
+  get phonemes(): Array<string> { return callSDK<Array<string>>("Speech_b88ddd0bfd78eefc", 3739534800434976, this, []); }
   declare readonly $type: { "s:6Speech25SFCustomLanguageModelDataC19CustomPronunciationV": true };
 }
 
@@ -832,22 +832,22 @@ export class SFCustomLanguageModelData_DataInsertableBuilder extends SDKHandle {
    * static func buildArray(_ components: [any DataInsertable]) -> any DataInsertable
    * @availability iOS 17.0+
    */
-  static buildArray(components: Array<Implements<DataInsertable> | SDKHandle>): SDKHandle { return callSDK<SDKHandle>("Speech_80c97107bb9391cd", 244524900257349, undefined, [components], [{"array":{"protocol":"s:6Speech14DataInsertableP"}}]); }
+  static buildArray(components: Array<Implements<DataInsertable> | SDKHandle>): SDKHandle { return callSDK<SDKHandle>("Speech_b88ddd0bfd78eefc", 244524900257349, undefined, [components], [{"array":{"protocol":"s:6Speech14DataInsertableP"}}]); }
   /**
    * static func buildEither(first: any DataInsertable) -> any DataInsertable
    * @availability iOS 17.0+
    */
-  static buildEitherFirst(first: $SDK18): SDKHandle { return callSDK<SDKHandle>("Speech_80c97107bb9391cd", 3732591013937316, undefined, [first], [{"protocol":"s:6Speech14DataInsertableP"}]); }
+  static buildEitherFirst(first: $SDK18): SDKHandle { return callSDK<SDKHandle>("Speech_b88ddd0bfd78eefc", 3732591013937316, undefined, [first], [{"protocol":"s:6Speech14DataInsertableP"}]); }
   /**
    * static func buildEither(second: any DataInsertable) -> any DataInsertable
    * @availability iOS 17.0+
    */
-  static buildEitherSecond(second: $SDK18): SDKHandle { return callSDK<SDKHandle>("Speech_80c97107bb9391cd", 1205373260411799, undefined, [second], [{"protocol":"s:6Speech14DataInsertableP"}]); }
+  static buildEitherSecond(second: $SDK18): SDKHandle { return callSDK<SDKHandle>("Speech_b88ddd0bfd78eefc", 1205373260411799, undefined, [second], [{"protocol":"s:6Speech14DataInsertableP"}]); }
   /**
    * static func buildOptional(_ component: (any DataInsertable)?) -> any DataInsertable
    * @availability iOS 17.0+
    */
-  static buildOptional(component?: (Implements<DataInsertable> | SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("Speech_80c97107bb9391cd", 2195817490883341, undefined, [component], [{"protocol":"s:6Speech14DataInsertableP"}]); }
+  static buildOptional(component?: (Implements<DataInsertable> | SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("Speech_b88ddd0bfd78eefc", 2195817490883341, undefined, [component], [{"protocol":"s:6Speech14DataInsertableP"}]); }
   declare readonly $type: { "s:6Speech25SFCustomLanguageModelDataC0E17InsertableBuilderV": true };
 }
 
@@ -860,27 +860,27 @@ export class SFCustomLanguageModelData_PhraseCount extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("Speech_80c97107bb9391cd", 3493775847852447, this, []); }
+  get description(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 3493775847852447, this, []); }
   /**
    * let count: Int
    * @availability iOS 17.0+
    */
-  get count(): number { return callSDK<number>("Speech_80c97107bb9391cd", 255437649881970, this, []); }
+  get count(): number { return callSDK<number>("Speech_b88ddd0bfd78eefc", 255437649881970, this, []); }
   /**
    * func insert(data: SFCustomLanguageModelData)
    * @availability iOS 17.0+
    */
-  insert(data: SFCustomLanguageModelData): void { return callSDK<void>("Speech_80c97107bb9391cd", 3258691539364497, this, [data]); }
+  insert(data: SFCustomLanguageModelData): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 3258691539364497, this, [data]); }
   /**
    * init(phrase: String, count: Int)
    * @availability iOS 17.0+
    */
-  static init(phrase: string, count: number): SFCustomLanguageModelData_PhraseCount { return callSDK<SFCustomLanguageModelData_PhraseCount>("Speech_80c97107bb9391cd", 183430843181638, undefined, [phrase, count]); }
+  static init(phrase: string, count: number): SFCustomLanguageModelData_PhraseCount { return callSDK<SFCustomLanguageModelData_PhraseCount>("Speech_b88ddd0bfd78eefc", 183430843181638, undefined, [phrase, count]); }
   /**
    * let phrase: String
    * @availability iOS 17.0+
    */
-  get phrase(): string { return callSDK<string>("Speech_80c97107bb9391cd", 240904842249549, this, []); }
+  get phrase(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 240904842249549, this, []); }
   declare readonly $type: { "s:6Speech25SFCustomLanguageModelDataC11PhraseCountV": true };
 }
 
@@ -893,17 +893,17 @@ export class SFCustomLanguageModelData_PhraseCountGenerator extends SDKHandle {
    * func makeAsyncIterator() -> SFCustomLanguageModelData.PhraseCountGenerator.Iterator
    * @availability iOS 17.0+
    */
-  makeAsyncIterator(): SFCustomLanguageModelData_PhraseCountGenerator_Iterator { return callSDK<SFCustomLanguageModelData_PhraseCountGenerator_Iterator>("Speech_80c97107bb9391cd", 4433932593727752, this, []); }
+  makeAsyncIterator(): SFCustomLanguageModelData_PhraseCountGenerator_Iterator { return callSDK<SFCustomLanguageModelData_PhraseCountGenerator_Iterator>("Speech_b88ddd0bfd78eefc", 4433932593727752, this, []); }
   /**
    * func insert(data: SFCustomLanguageModelData)
    * @availability iOS 17.0+
    */
-  insert(data: SFCustomLanguageModelData): void { return callSDK<void>("Speech_80c97107bb9391cd", 2842945753838551, this, [data]); }
+  insert(data: SFCustomLanguageModelData): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 2842945753838551, this, [data]); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): SFCustomLanguageModelData_PhraseCountGenerator { return callSDK<SFCustomLanguageModelData_PhraseCountGenerator>("Speech_80c97107bb9391cd", 4275720851691431, undefined, []); }
+  static init(): SFCustomLanguageModelData_PhraseCountGenerator { return callSDK<SFCustomLanguageModelData_PhraseCountGenerator>("Speech_b88ddd0bfd78eefc", 4275720851691431, undefined, []); }
   declare readonly $type: { "s:6Speech25SFCustomLanguageModelDataC20PhraseCountGeneratorC": true };
   declare readonly $element: SFCustomLanguageModelData_PhraseCount;
 }
@@ -929,7 +929,7 @@ export class SFCustomLanguageModelData_PhraseCountGenerator_Iterator extends SDK
    * func next() async throws -> SFCustomLanguageModelData.PhraseCount?
    * @availability iOS 17.0+
    */
-  next(): Promise<$SDK20> { return callSDKAsync<$SDK20>("Speech_80c97107bb9391cd", 1890573840430082, this, []); }
+  next(): Promise<$SDK20> { return callSDKAsync<$SDK20>("Speech_b88ddd0bfd78eefc", 1890573840430082, this, []); }
   declare readonly $type: { "s:6Speech25SFCustomLanguageModelDataC20PhraseCountGeneratorC8IteratorC": true };
 }
 
@@ -948,7 +948,7 @@ export class SFCustomLanguageModelData_PhraseCountsFromTemplates extends SDKHand
    * func insert(data: SFCustomLanguageModelData)
    * @availability iOS 17.0+
    */
-  insert(data: SFCustomLanguageModelData): void { return callSDK<void>("Speech_80c97107bb9391cd", 2130207725887053, this, [data]); }
+  insert(data: SFCustomLanguageModelData): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 2130207725887053, this, [data]); }
   declare readonly $type: { "s:6Speech25SFCustomLanguageModelDataC25PhraseCountsFromTemplatesV": true };
 }
 
@@ -961,22 +961,22 @@ export class SFCustomLanguageModelData_TemplateInsertableBuilder extends SDKHand
    * static func buildArray(_ components: [any TemplateInsertable]) -> any TemplateInsertable
    * @availability iOS 17.0+
    */
-  static buildArray(components: $SDK16): SDKHandle { return callSDK<SDKHandle>("Speech_80c97107bb9391cd", 3987670017950164, undefined, [components], [{"array":{"protocol":"s:6Speech18TemplateInsertableP"}}]); }
+  static buildArray(components: $SDK16): SDKHandle { return callSDK<SDKHandle>("Speech_b88ddd0bfd78eefc", 3987670017950164, undefined, [components], [{"array":{"protocol":"s:6Speech18TemplateInsertableP"}}]); }
   /**
    * static func buildEither(first: any TemplateInsertable) -> any TemplateInsertable
    * @availability iOS 17.0+
    */
-  static buildEitherFirst(first: $SDK21): SDKHandle { return callSDK<SDKHandle>("Speech_80c97107bb9391cd", 795151156378400, undefined, [first], [{"protocol":"s:6Speech18TemplateInsertableP"}]); }
+  static buildEitherFirst(first: $SDK21): SDKHandle { return callSDK<SDKHandle>("Speech_b88ddd0bfd78eefc", 795151156378400, undefined, [first], [{"protocol":"s:6Speech18TemplateInsertableP"}]); }
   /**
    * static func buildEither(second: any TemplateInsertable) -> any TemplateInsertable
    * @availability iOS 17.0+
    */
-  static buildEitherSecond(second: $SDK21): SDKHandle { return callSDK<SDKHandle>("Speech_80c97107bb9391cd", 1690171819914297, undefined, [second], [{"protocol":"s:6Speech18TemplateInsertableP"}]); }
+  static buildEitherSecond(second: $SDK21): SDKHandle { return callSDK<SDKHandle>("Speech_b88ddd0bfd78eefc", 1690171819914297, undefined, [second], [{"protocol":"s:6Speech18TemplateInsertableP"}]); }
   /**
    * static func buildOptional(_ component: (any TemplateInsertable)?) -> any TemplateInsertable
    * @availability iOS 17.0+
    */
-  static buildOptional(component?: (Implements<TemplateInsertable> | SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("Speech_80c97107bb9391cd", 1360097076624074, undefined, [component], [{"protocol":"s:6Speech18TemplateInsertableP"}]); }
+  static buildOptional(component?: (Implements<TemplateInsertable> | SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("Speech_b88ddd0bfd78eefc", 1360097076624074, undefined, [component], [{"protocol":"s:6Speech18TemplateInsertableP"}]); }
   declare readonly $type: { "s:6Speech25SFCustomLanguageModelDataC25TemplateInsertableBuilderV": true };
 }
 
@@ -989,22 +989,22 @@ export class SFCustomLanguageModelData_TemplatePhraseCountGenerator extends (SFC
    * override func makeAsyncIterator() -> SFCustomLanguageModelData.PhraseCountGenerator.Iterator
    * @availability iOS 17.0+
    */
-  makeAsyncIterator(): SFCustomLanguageModelData_PhraseCountGenerator_Iterator { return callSDK<SFCustomLanguageModelData_PhraseCountGenerator_Iterator>("Speech_80c97107bb9391cd", 490302102542856, this, []); }
+  makeAsyncIterator(): SFCustomLanguageModelData_PhraseCountGenerator_Iterator { return callSDK<SFCustomLanguageModelData_PhraseCountGenerator_Iterator>("Speech_b88ddd0bfd78eefc", 490302102542856, this, []); }
   /**
    * func define(className: String, values: [String])
    * @availability iOS 17.0+
    */
-  define(className: string, values: Array<string>): void { return callSDK<void>("Speech_80c97107bb9391cd", 1827320348896645, this, [className, values]); }
+  define(className: string, values: Array<string>): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 1827320348896645, this, [className, values]); }
   /**
    * func insert(template: String, count: Int)
    * @availability iOS 17.0+
    */
-  insert(template: string, count: number): void { return callSDK<void>("Speech_80c97107bb9391cd", 334944952390965, this, [template, count]); }
+  insert(template: string, count: number): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 334944952390965, this, [template, count]); }
   /**
    * override init()
    * @availability iOS 17.0+
    */
-  static init(): SFCustomLanguageModelData_TemplatePhraseCountGenerator { return callSDK<SFCustomLanguageModelData_TemplatePhraseCountGenerator>("Speech_80c97107bb9391cd", 1350188489323106, undefined, []); }
+  static init(): SFCustomLanguageModelData_TemplatePhraseCountGenerator { return callSDK<SFCustomLanguageModelData_TemplatePhraseCountGenerator>("Speech_b88ddd0bfd78eefc", 1350188489323106, undefined, []); }
   declare readonly $type: { "s:6Speech25SFCustomLanguageModelDataC28TemplatePhraseCountGeneratorC": true; "s:6Speech25SFCustomLanguageModelDataC20PhraseCountGeneratorC": true };
 }
 
@@ -1017,12 +1017,12 @@ export class SFCustomLanguageModelData_TemplatePhraseCountGenerator_Iterator ext
    * override func next() async throws -> SFCustomLanguageModelData.PhraseCount?
    * @availability iOS 17.0+
    */
-  next(): Promise<$SDK20> { return callSDKAsync<$SDK20>("Speech_80c97107bb9391cd", 3179548306352522, this, []); }
+  next(): Promise<$SDK20> { return callSDKAsync<$SDK20>("Speech_b88ddd0bfd78eefc", 3179548306352522, this, []); }
   /**
    * init(templates: [SFCustomLanguageModelData.TemplatePhraseCountGenerator.Template], templateClasses: [String : [String]])
    * @availability iOS 17.0+
    */
-  static init(templates: Array<SFCustomLanguageModelData_TemplatePhraseCountGenerator_Template>, templateClasses: Record<string, Array<string>>): SFCustomLanguageModelData_TemplatePhraseCountGenerator_Iterator { return callSDK<SFCustomLanguageModelData_TemplatePhraseCountGenerator_Iterator>("Speech_80c97107bb9391cd", 1270551889443310, undefined, [templates, templateClasses]); }
+  static init(templates: Array<SFCustomLanguageModelData_TemplatePhraseCountGenerator_Template>, templateClasses: Record<string, Array<string>>): SFCustomLanguageModelData_TemplatePhraseCountGenerator_Iterator { return callSDK<SFCustomLanguageModelData_TemplatePhraseCountGenerator_Iterator>("Speech_b88ddd0bfd78eefc", 1270551889443310, undefined, [templates, templateClasses]); }
   declare readonly $type: { "s:6Speech25SFCustomLanguageModelDataC28TemplatePhraseCountGeneratorC8IteratorC": true; "s:6Speech25SFCustomLanguageModelDataC20PhraseCountGeneratorC8IteratorC": true };
 }
 
@@ -1041,22 +1041,22 @@ export class SFCustomLanguageModelData_TemplatePhraseCountGenerator_Template ext
    * let body: String
    * @availability iOS 17.0+
    */
-  get body(): string { return callSDK<string>("Speech_80c97107bb9391cd", 1583052121077829, this, []); }
+  get body(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 1583052121077829, this, []); }
   /**
    * let count: Int
    * @availability iOS 17.0+
    */
-  get count(): number { return callSDK<number>("Speech_80c97107bb9391cd", 816199936943629, this, []); }
+  get count(): number { return callSDK<number>("Speech_b88ddd0bfd78eefc", 816199936943629, this, []); }
   /**
    * func insert(generator: SFCustomLanguageModelData.TemplatePhraseCountGenerator)
    * @availability iOS 17.0+
    */
-  insert(generator: SFCustomLanguageModelData_TemplatePhraseCountGenerator): void { return callSDK<void>("Speech_80c97107bb9391cd", 4414175843208808, this, [generator]); }
+  insert(generator: SFCustomLanguageModelData_TemplatePhraseCountGenerator): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 4414175843208808, this, [generator]); }
   /**
    * init(_ body: String, count: Int)
    * @availability iOS 17.0+
    */
-  static init(body: string, count: number): SFCustomLanguageModelData_TemplatePhraseCountGenerator_Template { return callSDK<SFCustomLanguageModelData_TemplatePhraseCountGenerator_Template>("Speech_80c97107bb9391cd", 2694723743562150, undefined, [body, count]); }
+  static init(body: string, count: number): SFCustomLanguageModelData_TemplatePhraseCountGenerator_Template { return callSDK<SFCustomLanguageModelData_TemplatePhraseCountGenerator_Template>("Speech_b88ddd0bfd78eefc", 2694723743562150, undefined, [body, count]); }
   declare readonly $type: { "s:6Speech25SFCustomLanguageModelDataC28TemplatePhraseCountGeneratorC0F0V": true };
 }
 
@@ -1066,50 +1066,50 @@ export class SFCustomLanguageModelData_TemplatePhraseCountGenerator_Template ext
  */
 export class SFSpeechRecognitionRequest extends SDKHandle {
   /** init() */
-  static init(): SFSpeechRecognitionRequest { return callSDK<SFSpeechRecognitionRequest>("Speech_80c97107bb9391cd", 1545663216409757, undefined, []); }
+  static init(): SFSpeechRecognitionRequest { return callSDK<SFSpeechRecognitionRequest>("Speech_b88ddd0bfd78eefc", 1545663216409757, undefined, []); }
   /**
    * var addsPunctuation: Bool { get set }
    * @availability iOS 16.0+
    */
-  get addsPunctuation(): boolean { return callSDK<boolean>("Speech_80c97107bb9391cd", 2693080212983763, this, []); }
-  set addsPunctuation(value: boolean) { callSDK<void>("Speech_80c97107bb9391cd", 4245716350365250, this, [value]); }
+  get addsPunctuation(): boolean { return callSDK<boolean>("Speech_b88ddd0bfd78eefc", 2693080212983763, this, []); }
+  set addsPunctuation(value: boolean) { callSDK<void>("Speech_b88ddd0bfd78eefc", 4245716350365250, this, [value]); }
   /**
    * var contextualStrings: [String] { get set }
    * @availability iOS 10.0+
    */
-  get contextualStrings(): Array<string> { return callSDK<Array<string>>("Speech_80c97107bb9391cd", 2501318116071023, this, []); }
-  set contextualStrings(value: Array<string>) { callSDK<void>("Speech_80c97107bb9391cd", 15613882697987, this, [value]); }
+  get contextualStrings(): Array<string> { return callSDK<Array<string>>("Speech_b88ddd0bfd78eefc", 2501318116071023, this, []); }
+  set contextualStrings(value: Array<string>) { callSDK<void>("Speech_b88ddd0bfd78eefc", 15613882697987, this, [value]); }
   /**
    * @NSCopying var customizedLanguageModel: SFSpeechLanguageModel.Configuration? { get set }
    * @availability iOS 17.0+
    */
-  get customizedLanguageModel(): $SDK25 { return callSDK<$SDK25>("Speech_80c97107bb9391cd", 3542109272455425, this, []); }
-  set customizedLanguageModel(value: $SDK25) { callSDK<void>("Speech_80c97107bb9391cd", 520028750071014, this, [value]); }
+  get customizedLanguageModel(): $SDK25 { return callSDK<$SDK25>("Speech_b88ddd0bfd78eefc", 3542109272455425, this, []); }
+  set customizedLanguageModel(value: $SDK25) { callSDK<void>("Speech_b88ddd0bfd78eefc", 520028750071014, this, [value]); }
   /**
    * var interactionIdentifier: String? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 15.0
    */
-  get interactionIdentifier(): (string) | null { return callSDK<(string) | null>("Speech_80c97107bb9391cd", 2539364819350429, this, []); }
-  set interactionIdentifier(value: (string) | null) { callSDK<void>("Speech_80c97107bb9391cd", 3056264997613734, this, [value]); }
+  get interactionIdentifier(): (string) | null { return callSDK<(string) | null>("Speech_b88ddd0bfd78eefc", 2539364819350429, this, []); }
+  set interactionIdentifier(value: (string) | null) { callSDK<void>("Speech_b88ddd0bfd78eefc", 3056264997613734, this, [value]); }
   /**
    * var requiresOnDeviceRecognition: Bool { get set }
    * @availability iOS 13.0+
    */
-  get requiresOnDeviceRecognition(): boolean { return callSDK<boolean>("Speech_80c97107bb9391cd", 3817245101471376, this, []); }
-  set requiresOnDeviceRecognition(value: boolean) { callSDK<void>("Speech_80c97107bb9391cd", 3145009873162302, this, [value]); }
+  get requiresOnDeviceRecognition(): boolean { return callSDK<boolean>("Speech_b88ddd0bfd78eefc", 3817245101471376, this, []); }
+  set requiresOnDeviceRecognition(value: boolean) { callSDK<void>("Speech_b88ddd0bfd78eefc", 3145009873162302, this, [value]); }
   /**
    * var shouldReportPartialResults: Bool { get set }
    * @availability iOS 10.0+
    */
-  get shouldReportPartialResults(): boolean { return callSDK<boolean>("Speech_80c97107bb9391cd", 3622167282318669, this, []); }
-  set shouldReportPartialResults(value: boolean) { callSDK<void>("Speech_80c97107bb9391cd", 2325457256722479, this, [value]); }
+  get shouldReportPartialResults(): boolean { return callSDK<boolean>("Speech_b88ddd0bfd78eefc", 3622167282318669, this, []); }
+  set shouldReportPartialResults(value: boolean) { callSDK<void>("Speech_b88ddd0bfd78eefc", 2325457256722479, this, [value]); }
   /**
    * var taskHint: SFSpeechRecognitionTaskHint { get set }
    * @availability iOS 10.0+
    */
-  get taskHint(): SFSpeechRecognitionTaskHint { return callSDK<SFSpeechRecognitionTaskHint>("Speech_80c97107bb9391cd", 2873217318925880, this, []); }
-  set taskHint(value: SFSpeechRecognitionTaskHint) { callSDK<void>("Speech_80c97107bb9391cd", 3140582879707219, this, [value]); }
+  get taskHint(): SFSpeechRecognitionTaskHint { return callSDK<SFSpeechRecognitionTaskHint>("Speech_b88ddd0bfd78eefc", 2873217318925880, this, []); }
+  set taskHint(value: SFSpeechRecognitionTaskHint) { callSDK<void>("Speech_b88ddd0bfd78eefc", 3140582879707219, this, [value]); }
   declare readonly $type: { "c:objc(cs)SFSpeechRecognitionRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "addsPunctuation": true; "contextualStrings": true; "customizedLanguageModel": true; "interactionIdentifier": true; "requiresOnDeviceRecognition": true; "shouldReportPartialResults": true; "taskHint": true };
 }
@@ -1123,24 +1123,24 @@ export class SFSpeechAudioBufferRecognitionRequest extends (SFSpeechRecognitionR
    * func append(_ audioPCMBuffer: AVAudioPCMBuffer)
    * @availability iOS 10.0+
    */
-  append(audioPCMBuffer: _AVFAudio_AVAudioPCMBuffer): void { return callSDK<void>("Speech_80c97107bb9391cd", 2606054404636385, this, [audioPCMBuffer]); }
+  append(audioPCMBuffer: _AVFAudio_AVAudioPCMBuffer): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 2606054404636385, this, [audioPCMBuffer]); }
   /**
    * func appendAudioSampleBuffer(_ sampleBuffer: CMSampleBuffer)
    * @availability iOS 10.0+
    */
-  appendAudioSampleBuffer(sampleBuffer: _CoreMedia_CMSampleBuffer): void { return callSDK<void>("Speech_80c97107bb9391cd", 2533746177355271, this, [sampleBuffer]); }
+  appendAudioSampleBuffer(sampleBuffer: _CoreMedia_CMSampleBuffer): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 2533746177355271, this, [sampleBuffer]); }
   /**
    * func endAudio()
    * @availability iOS 10.0+
    */
-  endAudio(): void { return callSDK<void>("Speech_80c97107bb9391cd", 775545939830288, this, []); }
+  endAudio(): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 775545939830288, this, []); }
   /** init() */
-  static init(): SFSpeechAudioBufferRecognitionRequest { return callSDK<SFSpeechAudioBufferRecognitionRequest>("Speech_80c97107bb9391cd", 4498415907516200, undefined, []); }
+  static init(): SFSpeechAudioBufferRecognitionRequest { return callSDK<SFSpeechAudioBufferRecognitionRequest>("Speech_b88ddd0bfd78eefc", 4498415907516200, undefined, []); }
   /**
    * var nativeAudioFormat: AVAudioFormat { get }
    * @availability iOS 10.0+
    */
-  get nativeAudioFormat(): _AVFAudio_AVAudioFormat { return callSDK<_AVFAudio_AVAudioFormat>("Speech_80c97107bb9391cd", 1795571747594404, this, []); }
+  get nativeAudioFormat(): _AVFAudio_AVAudioFormat { return callSDK<_AVFAudio_AVAudioFormat>("Speech_b88ddd0bfd78eefc", 1795571747594404, this, []); }
   declare readonly $type: { "c:objc(cs)SFSpeechAudioBufferRecognitionRequest": true; "c:objc(cs)SFSpeechRecognitionRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "addsPunctuation": true; "contextualStrings": true; "customizedLanguageModel": true; "interactionIdentifier": true; "requiresOnDeviceRecognition": true; "shouldReportPartialResults": true; "taskHint": true; "nativeAudioFormat": true };
 }
@@ -1154,37 +1154,37 @@ export class SFSpeechError extends SDKHandle {
    * static var internalServiceError: SFSpeechError.Code { get }
    * @availability iOS 17.0+
    */
-  static get internalServiceError(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 1564225352312384, undefined, []); }
+  static get internalServiceError(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 1564225352312384, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 17.0+
    */
-  static get errorDomain(): string { return callSDK<string>("Speech_80c97107bb9391cd", 2978773022563370, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 2978773022563370, undefined, []); }
   /**
    * static var audioReadFailed: SFSpeechError.Code { get }
    * @availability iOS 17.0+
    */
-  static get audioReadFailed(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 3633191252131371, undefined, []); }
+  static get audioReadFailed(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 3633191252131371, undefined, []); }
   /**
    * static var missingParameter: SFSpeechError.Code { get }
    * @availability iOS 17.0+
    */
-  static get missingParameter(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 3860516259701031, undefined, []); }
+  static get missingParameter(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 3860516259701031, undefined, []); }
   /**
    * static var malformedSupplementalModel: SFSpeechError.Code { get }
    * @availability iOS 17.0+
    */
-  static get malformedSupplementalModel(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 55802699928535, undefined, []); }
+  static get malformedSupplementalModel(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 55802699928535, undefined, []); }
   /**
    * static var undefinedTemplateClassName: SFSpeechError.Code { get }
    * @availability iOS 17.0+
    */
-  static get undefinedTemplateClassName(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 2780943336469330, undefined, []); }
+  static get undefinedTemplateClassName(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 2780943336469330, undefined, []); }
   /**
    * static var timeout: SFSpeechError.Code { get }
    * @availability iOS 17.0+
    */
-  static get timeout(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 3811143839241854, undefined, []); }
+  static get timeout(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 3811143839241854, undefined, []); }
   declare readonly $type: { "s:SC17SFSpeechErrorCodeLeV": true };
 }
 
@@ -1199,57 +1199,57 @@ export const SFSpeechError_Code = {
    * static var audioDisordered: SFSpeechError.Code { get }
    * @availability iOS 26.0+
    */
-  get audioDisordered(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 4174856137824295, undefined, []); },
+  get audioDisordered(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 4174856137824295, undefined, []); },
   /**
    * static var moduleOutputFailed: SFSpeechError.Code { get }
    * @availability iOS 26.0+
    */
-  get moduleOutputFailed(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 2051384736868784, undefined, []); },
+  get moduleOutputFailed(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 2051384736868784, undefined, []); },
   /**
    * static var insufficientResources: SFSpeechError.Code { get }
    * @availability iOS 26.0+
    */
-  get insufficientResources(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 3987253999939234, undefined, []); },
+  get insufficientResources(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 3987253999939234, undefined, []); },
   /**
    * static var unexpectedAudioFormat: SFSpeechError.Code { get }
    * @availability iOS 26.0+
    */
-  get unexpectedAudioFormat(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 1699580433859288, undefined, []); },
+  get unexpectedAudioFormat(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 1699580433859288, undefined, []); },
   /**
    * static var assetLocaleNotAllocated: SFSpeechError.Code { get }
    * @availability iOS 26.0+
    */
-  get assetLocaleNotAllocated(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 2886090770164978, undefined, []); },
+  get assetLocaleNotAllocated(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 2886090770164978, undefined, []); },
   /**
    * static var incompatibleAudioFormats: SFSpeechError.Code { get }
    * @availability iOS 26.0+
    */
-  get incompatibleAudioFormats(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 2636962270870436, undefined, []); },
+  get incompatibleAudioFormats(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 2636962270870436, undefined, []); },
   /**
    * static var cannotConfigureAudioSystem: SFSpeechError.Code { get }
    * @availability iOS 27.0+
    */
-  get cannotConfigureAudioSystem(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 1641086722789852, undefined, []); },
+  get cannotConfigureAudioSystem(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 1641086722789852, undefined, []); },
   /**
    * static var tooManyAssetLocalesAllocated: SFSpeechError.Code { get }
    * @availability iOS 26.0+
    */
-  get tooManyAssetLocalesAllocated(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 3729420770776538, undefined, []); },
+  get tooManyAssetLocalesAllocated(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 3729420770776538, undefined, []); },
   /**
    * static var cannotAllocateUnsupportedLocale: SFSpeechError.Code { get }
    * @availability iOS 26.0+
    */
-  get cannotAllocateUnsupportedLocale(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 2605899254083631, undefined, []); },
+  get cannotAllocateUnsupportedLocale(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 2605899254083631, undefined, []); },
   /**
    * static var noModel: SFSpeechError.Code { get }
    * @availability iOS 26.0+
    */
-  get noModel(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_80c97107bb9391cd", 1749666311931745, undefined, []); },
+  get noModel(): SFSpeechError_Code { return callSDK<SFSpeechError_Code>("Speech_b88ddd0bfd78eefc", 1749666311931745, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (SFSpeechError_Code) | null { return callSDK<(SFSpeechError_Code) | null>("Speech_80c97107bb9391cd", 509763622555479, undefined, [rawValue]); }
+  init(rawValue: number): (SFSpeechError_Code) | null { return callSDK<(SFSpeechError_Code) | null>("Speech_b88ddd0bfd78eefc", 509763622555479, undefined, [rawValue]); }
 };
 
 /**
@@ -1262,25 +1262,25 @@ export class SFSpeechLanguageModel extends SDKHandle {
    * @availability iOS 17.0+
    * @deprecated iOS 26.0
    */
-  static prepareCustomLanguageModelForClientIdentifierConfigurationCompletion(asset: string, clientIdentifier: string, configuration: SFSpeechLanguageModel_Configuration, completion: $SDK26): void { return callSDK<void>("Speech_80c97107bb9391cd", 3395606211403705, undefined, [asset, clientIdentifier, configuration, completion], [null,null,null,{"callback":{"out":[]}}]); }
+  static prepareCustomLanguageModelForClientIdentifierConfigurationCompletion(asset: string, clientIdentifier: string, configuration: SFSpeechLanguageModel_Configuration, completion: $SDK26): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 3395606211403705, undefined, [asset, clientIdentifier, configuration, completion], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * class func prepareCustomLanguageModel(for asset: URL, clientIdentifier: String, configuration: SFSpeechLanguageModel.Configuration, ignoresCache: Bool) async throws
    * @availability iOS 17.0+
    * @deprecated iOS 26.0
    */
-  static prepareCustomLanguageModelForClientIdentifierConfigurationIgnoresCacheCompletion(asset: string, clientIdentifier: string, configuration: SFSpeechLanguageModel_Configuration, ignoresCache: boolean, completion: $SDK26): void { return callSDK<void>("Speech_80c97107bb9391cd", 4429452218631742, undefined, [asset, clientIdentifier, configuration, ignoresCache, completion], [null,null,null,null,{"callback":{"out":[]}}]); }
+  static prepareCustomLanguageModelForClientIdentifierConfigurationIgnoresCacheCompletion(asset: string, clientIdentifier: string, configuration: SFSpeechLanguageModel_Configuration, ignoresCache: boolean, completion: $SDK26): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 4429452218631742, undefined, [asset, clientIdentifier, configuration, ignoresCache, completion], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * class func prepareCustomLanguageModel(for asset: URL, configuration: SFSpeechLanguageModel.Configuration) async throws
    * @availability iOS 17.0+
    */
-  static prepareCustomLanguageModelForConfigurationCompletion(asset: string, configuration: SFSpeechLanguageModel_Configuration, completion: $SDK26): void { return callSDK<void>("Speech_80c97107bb9391cd", 1765759976873672, undefined, [asset, configuration, completion], [null,null,{"callback":{"out":[]}}]); }
+  static prepareCustomLanguageModelForConfigurationCompletion(asset: string, configuration: SFSpeechLanguageModel_Configuration, completion: $SDK26): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 1765759976873672, undefined, [asset, configuration, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * class func prepareCustomLanguageModel(for asset: URL, configuration: SFSpeechLanguageModel.Configuration, ignoresCache: Bool) async throws
    * @availability iOS 17.0+
    */
-  static prepareCustomLanguageModelForConfigurationIgnoresCacheCompletion(asset: string, configuration: SFSpeechLanguageModel_Configuration, ignoresCache: boolean, completion: $SDK26): void { return callSDK<void>("Speech_80c97107bb9391cd", 761906163455904, undefined, [asset, configuration, ignoresCache, completion], [null,null,null,{"callback":{"out":[]}}]); }
+  static prepareCustomLanguageModelForConfigurationIgnoresCacheCompletion(asset: string, configuration: SFSpeechLanguageModel_Configuration, ignoresCache: boolean, completion: $SDK26): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 761906163455904, undefined, [asset, configuration, ignoresCache, completion], [null,null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): SFSpeechLanguageModel { return callSDK<SFSpeechLanguageModel>("Speech_80c97107bb9391cd", 3013297171180513, undefined, []); }
+  static init(): SFSpeechLanguageModel { return callSDK<SFSpeechLanguageModel>("Speech_b88ddd0bfd78eefc", 3013297171180513, undefined, []); }
   declare readonly $type: { "c:objc(cs)SFSpeechLanguageModel": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1293,32 +1293,32 @@ export class SFSpeechLanguageModel_Configuration extends SDKHandle {
    * init(languageModel: URL)
    * @availability iOS 17.0+
    */
-  static initLanguageModel(languageModel: string): SFSpeechLanguageModel_Configuration { return callSDK<SFSpeechLanguageModel_Configuration>("Speech_80c97107bb9391cd", 157732576151120, undefined, [languageModel]); }
+  static initLanguageModel(languageModel: string): SFSpeechLanguageModel_Configuration { return callSDK<SFSpeechLanguageModel_Configuration>("Speech_b88ddd0bfd78eefc", 157732576151120, undefined, [languageModel]); }
   /**
    * init(languageModel: URL, vocabulary: URL?)
    * @availability iOS 17.0+
    */
-  static initLanguageModelVocabulary(languageModel: string, vocabulary?: (string) | null): SFSpeechLanguageModel_Configuration { return callSDK<SFSpeechLanguageModel_Configuration>("Speech_80c97107bb9391cd", 1374266752230530, undefined, [languageModel, vocabulary]); }
+  static initLanguageModelVocabulary(languageModel: string, vocabulary?: (string) | null): SFSpeechLanguageModel_Configuration { return callSDK<SFSpeechLanguageModel_Configuration>("Speech_b88ddd0bfd78eefc", 1374266752230530, undefined, [languageModel, vocabulary]); }
   /**
    * init(languageModel: URL, vocabulary: URL?, weight: NSNumber?)
    * @availability iOS 26.0+
    */
-  static initLanguageModelVocabularyWeight(languageModel: string, vocabulary?: (string) | null, weight?: (_Foundation_NSNumber) | null): SFSpeechLanguageModel_Configuration { return callSDK<SFSpeechLanguageModel_Configuration>("Speech_80c97107bb9391cd", 2520373671768348, undefined, [languageModel, vocabulary, weight]); }
+  static initLanguageModelVocabularyWeight(languageModel: string, vocabulary?: (string) | null, weight?: (_Foundation_NSNumber) | null): SFSpeechLanguageModel_Configuration { return callSDK<SFSpeechLanguageModel_Configuration>("Speech_b88ddd0bfd78eefc", 2520373671768348, undefined, [languageModel, vocabulary, weight]); }
   /**
    * var languageModel: URL { get }
    * @availability iOS 17.0+
    */
-  get languageModel(): string { return callSDK<string>("Speech_80c97107bb9391cd", 1608857174007241, this, []); }
+  get languageModel(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 1608857174007241, this, []); }
   /**
    * var vocabulary: URL? { get }
    * @availability iOS 17.0+
    */
-  get vocabulary(): (string) | null { return callSDK<(string) | null>("Speech_80c97107bb9391cd", 456610139487895, this, []); }
+  get vocabulary(): (string) | null { return callSDK<(string) | null>("Speech_b88ddd0bfd78eefc", 456610139487895, this, []); }
   /**
    * @NSCopying var weight: NSNumber? { get }
    * @availability iOS 26.0+
    */
-  get weight(): (_Foundation_NSNumber) | null { return callSDK<(_Foundation_NSNumber) | null>("Speech_80c97107bb9391cd", 1849814387712826, this, []); }
+  get weight(): (_Foundation_NSNumber) | null { return callSDK<(_Foundation_NSNumber) | null>("Speech_b88ddd0bfd78eefc", 1849814387712826, this, []); }
   declare readonly $type: { "c:objc(cs)SFSpeechLanguageModelConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "languageModel": true; "vocabulary": true; "weight": true };
 }
@@ -1329,32 +1329,32 @@ export class SFSpeechLanguageModel_Configuration extends SDKHandle {
  */
 export class SFSpeechRecognitionMetadata extends SDKHandle {
   /** init() */
-  static init(): SFSpeechRecognitionMetadata { return callSDK<SFSpeechRecognitionMetadata>("Speech_80c97107bb9391cd", 2773495840895767, undefined, []); }
+  static init(): SFSpeechRecognitionMetadata { return callSDK<SFSpeechRecognitionMetadata>("Speech_b88ddd0bfd78eefc", 2773495840895767, undefined, []); }
   /**
    * var averagePauseDuration: TimeInterval { get }
    * @availability iOS 14.5+
    */
-  get averagePauseDuration(): number { return callSDK<number>("Speech_80c97107bb9391cd", 2252975661907836, this, []); }
+  get averagePauseDuration(): number { return callSDK<number>("Speech_b88ddd0bfd78eefc", 2252975661907836, this, []); }
   /**
    * var speakingRate: Double { get }
    * @availability iOS 14.5+
    */
-  get speakingRate(): number { return callSDK<number>("Speech_80c97107bb9391cd", 1157502856032235, this, []); }
+  get speakingRate(): number { return callSDK<number>("Speech_b88ddd0bfd78eefc", 1157502856032235, this, []); }
   /**
    * var speechDuration: TimeInterval { get }
    * @availability iOS 14.5+
    */
-  get speechDuration(): number { return callSDK<number>("Speech_80c97107bb9391cd", 2114567397469482, this, []); }
+  get speechDuration(): number { return callSDK<number>("Speech_b88ddd0bfd78eefc", 2114567397469482, this, []); }
   /**
    * var speechStartTimestamp: TimeInterval { get }
    * @availability iOS 14.5+
    */
-  get speechStartTimestamp(): number { return callSDK<number>("Speech_80c97107bb9391cd", 2747069972200473, this, []); }
+  get speechStartTimestamp(): number { return callSDK<number>("Speech_b88ddd0bfd78eefc", 2747069972200473, this, []); }
   /**
    * var voiceAnalytics: SFVoiceAnalytics? { get }
    * @availability iOS 14.5+
    */
-  get voiceAnalytics(): (SFVoiceAnalytics) | null { return callSDK<(SFVoiceAnalytics) | null>("Speech_80c97107bb9391cd", 303364233668731, this, []); }
+  get voiceAnalytics(): (SFVoiceAnalytics) | null { return callSDK<(SFVoiceAnalytics) | null>("Speech_b88ddd0bfd78eefc", 303364233668731, this, []); }
   declare readonly $type: { "c:objc(cs)SFSpeechRecognitionMetadata": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "averagePauseDuration": true; "speakingRate": true; "speechDuration": true; "speechStartTimestamp": true; "voiceAnalytics": true };
 }
@@ -1365,27 +1365,27 @@ export class SFSpeechRecognitionMetadata extends SDKHandle {
  */
 export class SFSpeechRecognitionResult extends SDKHandle {
   /** init() */
-  static init(): SFSpeechRecognitionResult { return callSDK<SFSpeechRecognitionResult>("Speech_80c97107bb9391cd", 599989519793899, undefined, []); }
+  static init(): SFSpeechRecognitionResult { return callSDK<SFSpeechRecognitionResult>("Speech_b88ddd0bfd78eefc", 599989519793899, undefined, []); }
   /**
    * @NSCopying var bestTranscription: SFTranscription { get }
    * @availability iOS 10.0+
    */
-  get bestTranscription(): SFTranscription { return callSDK<SFTranscription>("Speech_80c97107bb9391cd", 4027075138118229, this, []); }
+  get bestTranscription(): SFTranscription { return callSDK<SFTranscription>("Speech_b88ddd0bfd78eefc", 4027075138118229, this, []); }
   /**
    * var isFinal: Bool { get }
    * @availability iOS 10.0+
    */
-  get isFinal(): boolean { return callSDK<boolean>("Speech_80c97107bb9391cd", 3038821589568948, this, []); }
+  get isFinal(): boolean { return callSDK<boolean>("Speech_b88ddd0bfd78eefc", 3038821589568948, this, []); }
   /**
    * var speechRecognitionMetadata: SFSpeechRecognitionMetadata? { get }
    * @availability iOS 14.0+
    */
-  get speechRecognitionMetadata(): (SFSpeechRecognitionMetadata) | null { return callSDK<(SFSpeechRecognitionMetadata) | null>("Speech_80c97107bb9391cd", 1813015037910338, this, []); }
+  get speechRecognitionMetadata(): (SFSpeechRecognitionMetadata) | null { return callSDK<(SFSpeechRecognitionMetadata) | null>("Speech_b88ddd0bfd78eefc", 1813015037910338, this, []); }
   /**
    * var transcriptions: [SFTranscription] { get }
    * @availability iOS 10.0+
    */
-  get transcriptions(): Array<SFTranscription> { return callSDK<Array<SFTranscription>>("Speech_80c97107bb9391cd", 233147000908376, this, []); }
+  get transcriptions(): Array<SFTranscription> { return callSDK<Array<SFTranscription>>("Speech_b88ddd0bfd78eefc", 233147000908376, this, []); }
   declare readonly $type: { "c:objc(cs)SFSpeechRecognitionResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bestTranscription": true; "isFinal": true; "speechRecognitionMetadata": true; "transcriptions": true };
 }
@@ -1399,34 +1399,34 @@ export class SFSpeechRecognitionTask extends SDKHandle {
    * func cancel()
    * @availability iOS 10.0+
    */
-  cancel(): void { return callSDK<void>("Speech_80c97107bb9391cd", 2480185587499249, this, []); }
+  cancel(): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 2480185587499249, this, []); }
   /**
    * func finish()
    * @availability iOS 10.0+
    */
-  finish(): void { return callSDK<void>("Speech_80c97107bb9391cd", 1660390386264681, this, []); }
+  finish(): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 1660390386264681, this, []); }
   /** init() */
-  static init(): SFSpeechRecognitionTask { return callSDK<SFSpeechRecognitionTask>("Speech_80c97107bb9391cd", 1690950586892816, undefined, []); }
+  static init(): SFSpeechRecognitionTask { return callSDK<SFSpeechRecognitionTask>("Speech_b88ddd0bfd78eefc", 1690950586892816, undefined, []); }
   /**
    * var isCancelled: Bool { get }
    * @availability iOS 10.0+
    */
-  get isCancelled(): boolean { return callSDK<boolean>("Speech_80c97107bb9391cd", 3749440879783675, this, []); }
+  get isCancelled(): boolean { return callSDK<boolean>("Speech_b88ddd0bfd78eefc", 3749440879783675, this, []); }
   /**
    * var error: (any Error)? { get }
    * @availability iOS 10.0+
    */
-  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("Speech_80c97107bb9391cd", 3776797847637605, this, []); }
+  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("Speech_b88ddd0bfd78eefc", 3776797847637605, this, []); }
   /**
    * var isFinishing: Bool { get }
    * @availability iOS 10.0+
    */
-  get isFinishing(): boolean { return callSDK<boolean>("Speech_80c97107bb9391cd", 639289190412374, this, []); }
+  get isFinishing(): boolean { return callSDK<boolean>("Speech_b88ddd0bfd78eefc", 639289190412374, this, []); }
   /**
    * var state: SFSpeechRecognitionTaskState { get }
    * @availability iOS 10.0+
    */
-  get state(): SFSpeechRecognitionTaskState { return callSDK<SFSpeechRecognitionTaskState>("Speech_80c97107bb9391cd", 3510023490072390, this, []); }
+  get state(): SFSpeechRecognitionTaskState { return callSDK<SFSpeechRecognitionTaskState>("Speech_b88ddd0bfd78eefc", 3510023490072390, this, []); }
   declare readonly $type: { "c:objc(cs)SFSpeechRecognitionTask": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isCancelled": true; "error": true; "isFinishing": true; "state": true };
 }
@@ -1484,7 +1484,7 @@ export const SFSpeechRecognitionTaskHint = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (SFSpeechRecognitionTaskHint) | null { return callSDK<(SFSpeechRecognitionTaskHint) | null>("Speech_80c97107bb9391cd", 4312784908368238, undefined, [rawValue]); }
+  init(rawValue: number): (SFSpeechRecognitionTaskHint) | null { return callSDK<(SFSpeechRecognitionTaskHint) | null>("Speech_b88ddd0bfd78eefc", 4312784908368238, undefined, [rawValue]); }
 };
 
 /**
@@ -1498,7 +1498,7 @@ export const SFSpeechRecognitionTaskState = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (SFSpeechRecognitionTaskState) | null { return callSDK<(SFSpeechRecognitionTaskState) | null>("Speech_80c97107bb9391cd", 2386506445350756, undefined, [rawValue]); }
+  init(rawValue: number): (SFSpeechRecognitionTaskState) | null { return callSDK<(SFSpeechRecognitionTaskState) | null>("Speech_b88ddd0bfd78eefc", 2386506445350756, undefined, [rawValue]); }
 };
 
 /**
@@ -1510,71 +1510,71 @@ export class SFSpeechRecognizer extends SDKHandle {
    * class func authorizationStatus() -> SFSpeechRecognizerAuthorizationStatus
    * @availability iOS 10.0+
    */
-  static authorizationStatus(): SFSpeechRecognizerAuthorizationStatus { return callSDK<SFSpeechRecognizerAuthorizationStatus>("Speech_80c97107bb9391cd", 143903504444902, undefined, []); }
+  static authorizationStatus(): SFSpeechRecognizerAuthorizationStatus { return callSDK<SFSpeechRecognizerAuthorizationStatus>("Speech_b88ddd0bfd78eefc", 143903504444902, undefined, []); }
   /**
    * class func requestAuthorization(_ handler: @escaping (SFSpeechRecognizerAuthorizationStatus) -> Void)
    * @availability iOS 10.0+
    */
-  static requestAuthorization(handler: ((arg0: SFSpeechRecognizerAuthorizationStatus) => void)): void { return callSDK<void>("Speech_80c97107bb9391cd", 3963612445670887, undefined, [handler], [{"callback":{"out":[]}}]); }
+  static requestAuthorization(handler: ((arg0: SFSpeechRecognizerAuthorizationStatus) => void)): void { return callSDK<void>("Speech_b88ddd0bfd78eefc", 3963612445670887, undefined, [handler], [{"callback":{"out":[]}}]); }
   /**
    * class func supportedLocales() -> Set<Locale>
    * @availability iOS 10.0+
    */
-  static supportedLocales(): $SDK7 { return callSDK<$SDK7>("Speech_80c97107bb9391cd", 357071290620770, undefined, []); }
+  static supportedLocales(): $SDK7 { return callSDK<$SDK7>("Speech_b88ddd0bfd78eefc", 357071290620770, undefined, []); }
   /**
    * convenience init?()
    * @availability iOS 10.0+
    */
-  static init(): (SFSpeechRecognizer) | null { return callSDK<(SFSpeechRecognizer) | null>("Speech_80c97107bb9391cd", 996640731730293, undefined, []); }
+  static init(): (SFSpeechRecognizer) | null { return callSDK<(SFSpeechRecognizer) | null>("Speech_b88ddd0bfd78eefc", 996640731730293, undefined, []); }
   /**
    * init?(locale: Locale)
    * @availability iOS 10.0+
    */
-  static initLocale(locale: _Foundation_Locale): (SFSpeechRecognizer) | null { return callSDK<(SFSpeechRecognizer) | null>("Speech_80c97107bb9391cd", 643164726428575, undefined, [locale]); }
+  static initLocale(locale: _Foundation_Locale): (SFSpeechRecognizer) | null { return callSDK<(SFSpeechRecognizer) | null>("Speech_b88ddd0bfd78eefc", 643164726428575, undefined, [locale]); }
   /**
    * func recognitionTask(with request: SFSpeechRecognitionRequest, delegate: any SFSpeechRecognitionTaskDelegate) -> SFSpeechRecognitionTask
    * @availability iOS 10.0+
    */
-  recognitionTaskWithDelegate(request: SFSpeechRecognitionRequest, delegate: Implements<SFSpeechRecognitionTaskDelegate> | SDKHandle): SFSpeechRecognitionTask { return callSDK<SFSpeechRecognitionTask>("Speech_80c97107bb9391cd", 2576864274513366, this, [request, delegate], [null,{"protocol":"c:objc(pl)SFSpeechRecognitionTaskDelegate"}]); }
+  recognitionTaskWithDelegate(request: SFSpeechRecognitionRequest, delegate: Implements<SFSpeechRecognitionTaskDelegate> | SDKHandle): SFSpeechRecognitionTask { return callSDK<SFSpeechRecognitionTask>("Speech_b88ddd0bfd78eefc", 2576864274513366, this, [request, delegate], [null,{"protocol":"c:objc(pl)SFSpeechRecognitionTaskDelegate"}]); }
   /**
    * func recognitionTask(with request: SFSpeechRecognitionRequest, resultHandler: @escaping (SFSpeechRecognitionResult?, (any Error)?) -> Void) -> SFSpeechRecognitionTask
    * @availability iOS 10.0+
    */
-  recognitionTaskWithResultHandler(request: SFSpeechRecognitionRequest, resultHandler: ((arg0: (SFSpeechRecognitionResult) | null, arg1: (NativeError) | null) => void)): SFSpeechRecognitionTask { return callSDK<SFSpeechRecognitionTask>("Speech_80c97107bb9391cd", 1126236549487097, this, [request, resultHandler], [null,{"callback":{"out":[]}}]); }
+  recognitionTaskWithResultHandler(request: SFSpeechRecognitionRequest, resultHandler: ((arg0: (SFSpeechRecognitionResult) | null, arg1: (NativeError) | null) => void)): SFSpeechRecognitionTask { return callSDK<SFSpeechRecognitionTask>("Speech_b88ddd0bfd78eefc", 1126236549487097, this, [request, resultHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var isAvailable: Bool { get }
    * @availability iOS 10.0+
    */
-  get isAvailable(): boolean { return callSDK<boolean>("Speech_80c97107bb9391cd", 2608645384212510, this, []); }
+  get isAvailable(): boolean { return callSDK<boolean>("Speech_b88ddd0bfd78eefc", 2608645384212510, this, []); }
   /**
    * var defaultTaskHint: SFSpeechRecognitionTaskHint { get set }
    * @availability iOS 10.0+
    */
-  get defaultTaskHint(): SFSpeechRecognitionTaskHint { return callSDK<SFSpeechRecognitionTaskHint>("Speech_80c97107bb9391cd", 850279654983286, this, []); }
-  set defaultTaskHint(value: SFSpeechRecognitionTaskHint) { callSDK<void>("Speech_80c97107bb9391cd", 4086745161786928, this, [value]); }
+  get defaultTaskHint(): SFSpeechRecognitionTaskHint { return callSDK<SFSpeechRecognitionTaskHint>("Speech_b88ddd0bfd78eefc", 850279654983286, this, []); }
+  set defaultTaskHint(value: SFSpeechRecognitionTaskHint) { callSDK<void>("Speech_b88ddd0bfd78eefc", 4086745161786928, this, [value]); }
   /**
    * weak var delegate: (any SFSpeechRecognizerDelegate)? { get set }
    * @availability iOS 10.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Speech_80c97107bb9391cd", 535691469214491, this, []); }
-  set delegate(value: (Implements<SFSpeechRecognizerDelegate> | SDKHandle) | null) { callSDK<void>("Speech_80c97107bb9391cd", 4168853247575425, this, [value], [{"protocol":"c:objc(pl)SFSpeechRecognizerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Speech_b88ddd0bfd78eefc", 535691469214491, this, []); }
+  set delegate(value: (Implements<SFSpeechRecognizerDelegate> | SDKHandle) | null) { callSDK<void>("Speech_b88ddd0bfd78eefc", 4168853247575425, this, [value], [{"protocol":"c:objc(pl)SFSpeechRecognizerDelegate"}]); }
   /**
    * var locale: Locale { get }
    * @availability iOS 10.0+
    */
-  get locale(): _Foundation_Locale { return callSDK<_Foundation_Locale>("Speech_80c97107bb9391cd", 3387865391896397, this, []); }
+  get locale(): _Foundation_Locale { return callSDK<_Foundation_Locale>("Speech_b88ddd0bfd78eefc", 3387865391896397, this, []); }
   /**
    * var queue: OperationQueue { get set }
    * @availability iOS 10.0+
    */
-  get queue(): _Foundation_OperationQueue { return callSDK<_Foundation_OperationQueue>("Speech_80c97107bb9391cd", 2972679221357522, this, []); }
-  set queue(value: _Foundation_OperationQueue) { callSDK<void>("Speech_80c97107bb9391cd", 1618879999247436, this, [value]); }
+  get queue(): _Foundation_OperationQueue { return callSDK<_Foundation_OperationQueue>("Speech_b88ddd0bfd78eefc", 2972679221357522, this, []); }
+  set queue(value: _Foundation_OperationQueue) { callSDK<void>("Speech_b88ddd0bfd78eefc", 1618879999247436, this, [value]); }
   /**
    * var supportsOnDeviceRecognition: Bool { get set }
    * @availability iOS 13.0+
    */
-  get supportsOnDeviceRecognition(): boolean { return callSDK<boolean>("Speech_80c97107bb9391cd", 3021191406598689, this, []); }
-  set supportsOnDeviceRecognition(value: boolean) { callSDK<void>("Speech_80c97107bb9391cd", 2645343390774266, this, [value]); }
+  get supportsOnDeviceRecognition(): boolean { return callSDK<boolean>("Speech_b88ddd0bfd78eefc", 3021191406598689, this, []); }
+  set supportsOnDeviceRecognition(value: boolean) { callSDK<void>("Speech_b88ddd0bfd78eefc", 2645343390774266, this, [value]); }
   declare readonly $type: { "c:objc(cs)SFSpeechRecognizer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAvailable": true; "defaultTaskHint": true; "delegate": true; "locale": true; "queue": true; "supportsOnDeviceRecognition": true };
 }
@@ -1590,7 +1590,7 @@ export const SFSpeechRecognizerAuthorizationStatus = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (SFSpeechRecognizerAuthorizationStatus) | null { return callSDK<(SFSpeechRecognizerAuthorizationStatus) | null>("Speech_80c97107bb9391cd", 2142585308835797, undefined, [rawValue]); }
+  init(rawValue: number): (SFSpeechRecognizerAuthorizationStatus) | null { return callSDK<(SFSpeechRecognizerAuthorizationStatus) | null>("Speech_b88ddd0bfd78eefc", 2142585308835797, undefined, [rawValue]); }
 };
 
 /**
@@ -1614,12 +1614,12 @@ export class SFSpeechURLRecognitionRequest extends (SFSpeechRecognitionRequest a
    * init(url URL: URL)
    * @availability iOS 10.0+
    */
-  static init(URL: string): SFSpeechURLRecognitionRequest { return callSDK<SFSpeechURLRecognitionRequest>("Speech_80c97107bb9391cd", 219729661825925, undefined, [URL]); }
+  static init(URL: string): SFSpeechURLRecognitionRequest { return callSDK<SFSpeechURLRecognitionRequest>("Speech_b88ddd0bfd78eefc", 219729661825925, undefined, [URL]); }
   /**
    * var url: URL { get }
    * @availability iOS 10.0+
    */
-  get url(): string { return callSDK<string>("Speech_80c97107bb9391cd", 4450283222277995, this, []); }
+  get url(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 4450283222277995, this, []); }
   declare readonly $type: { "c:objc(cs)SFSpeechURLRecognitionRequest": true; "c:objc(cs)SFSpeechRecognitionRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "addsPunctuation": true; "contextualStrings": true; "customizedLanguageModel": true; "interactionIdentifier": true; "requiresOnDeviceRecognition": true; "shouldReportPartialResults": true; "taskHint": true; "url": true };
 }
@@ -1630,29 +1630,29 @@ export class SFSpeechURLRecognitionRequest extends (SFSpeechRecognitionRequest a
  */
 export class SFTranscription extends SDKHandle {
   /** init() */
-  static init(): SFTranscription { return callSDK<SFTranscription>("Speech_80c97107bb9391cd", 2561976849682756, undefined, []); }
+  static init(): SFTranscription { return callSDK<SFTranscription>("Speech_b88ddd0bfd78eefc", 2561976849682756, undefined, []); }
   /**
    * var averagePauseDuration: TimeInterval { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.5
    */
-  get averagePauseDuration(): number { return callSDK<number>("Speech_80c97107bb9391cd", 1821114791838443, this, []); }
+  get averagePauseDuration(): number { return callSDK<number>("Speech_b88ddd0bfd78eefc", 1821114791838443, this, []); }
   /**
    * var formattedString: String { get }
    * @availability iOS 10.0+
    */
-  get formattedString(): string { return callSDK<string>("Speech_80c97107bb9391cd", 1726910063464051, this, []); }
+  get formattedString(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 1726910063464051, this, []); }
   /**
    * var segments: [SFTranscriptionSegment] { get }
    * @availability iOS 10.0+
    */
-  get segments(): Array<SFTranscriptionSegment> { return callSDK<Array<SFTranscriptionSegment>>("Speech_80c97107bb9391cd", 560888242119924, this, []); }
+  get segments(): Array<SFTranscriptionSegment> { return callSDK<Array<SFTranscriptionSegment>>("Speech_b88ddd0bfd78eefc", 560888242119924, this, []); }
   /**
    * var speakingRate: Double { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.5
    */
-  get speakingRate(): number { return callSDK<number>("Speech_80c97107bb9391cd", 2562566535643452, this, []); }
+  get speakingRate(): number { return callSDK<number>("Speech_b88ddd0bfd78eefc", 2562566535643452, this, []); }
   declare readonly $type: { "c:objc(cs)SFTranscription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "averagePauseDuration": true; "formattedString": true; "segments": true; "speakingRate": true };
 }
@@ -1663,43 +1663,43 @@ export class SFTranscription extends SDKHandle {
  */
 export class SFTranscriptionSegment extends SDKHandle {
   /** init() */
-  static init(): SFTranscriptionSegment { return callSDK<SFTranscriptionSegment>("Speech_80c97107bb9391cd", 2683958436428850, undefined, []); }
+  static init(): SFTranscriptionSegment { return callSDK<SFTranscriptionSegment>("Speech_b88ddd0bfd78eefc", 2683958436428850, undefined, []); }
   /**
    * var alternativeSubstrings: [String] { get }
    * @availability iOS 10.0+
    */
-  get alternativeSubstrings(): Array<string> { return callSDK<Array<string>>("Speech_80c97107bb9391cd", 2538704222975279, this, []); }
+  get alternativeSubstrings(): Array<string> { return callSDK<Array<string>>("Speech_b88ddd0bfd78eefc", 2538704222975279, this, []); }
   /**
    * var confidence: Float { get }
    * @availability iOS 10.0+
    */
-  get confidence(): number { return callSDK<number>("Speech_80c97107bb9391cd", 3221442628657592, this, []); }
+  get confidence(): number { return callSDK<number>("Speech_b88ddd0bfd78eefc", 3221442628657592, this, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 10.0+
    */
-  get duration(): number { return callSDK<number>("Speech_80c97107bb9391cd", 1234052631126473, this, []); }
+  get duration(): number { return callSDK<number>("Speech_b88ddd0bfd78eefc", 1234052631126473, this, []); }
   /**
    * var substring: String { get }
    * @availability iOS 10.0+
    */
-  get substring(): string { return callSDK<string>("Speech_80c97107bb9391cd", 4435538617419101, this, []); }
+  get substring(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 4435538617419101, this, []); }
   /**
    * var substringRange: NSRange { get }
    * @availability iOS 10.0+
    */
-  get substringRange(): SDKHandle { return callSDK<SDKHandle>("Speech_80c97107bb9391cd", 3961187184813929, this, []); }
+  get substringRange(): SDKHandle { return callSDK<SDKHandle>("Speech_b88ddd0bfd78eefc", 3961187184813929, this, []); }
   /**
    * var timestamp: TimeInterval { get }
    * @availability iOS 10.0+
    */
-  get timestamp(): number { return callSDK<number>("Speech_80c97107bb9391cd", 622402429458728, this, []); }
+  get timestamp(): number { return callSDK<number>("Speech_b88ddd0bfd78eefc", 622402429458728, this, []); }
   /**
    * var voiceAnalytics: SFVoiceAnalytics? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.5
    */
-  get voiceAnalytics(): (SFVoiceAnalytics) | null { return callSDK<(SFVoiceAnalytics) | null>("Speech_80c97107bb9391cd", 2687538691322742, this, []); }
+  get voiceAnalytics(): (SFVoiceAnalytics) | null { return callSDK<(SFVoiceAnalytics) | null>("Speech_b88ddd0bfd78eefc", 2687538691322742, this, []); }
   declare readonly $type: { "c:objc(cs)SFTranscriptionSegment": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alternativeSubstrings": true; "confidence": true; "duration": true; "substring": true; "substringRange": true; "timestamp": true; "voiceAnalytics": true };
 }
@@ -1710,27 +1710,27 @@ export class SFTranscriptionSegment extends SDKHandle {
  */
 export class SFVoiceAnalytics extends SDKHandle {
   /** init() */
-  static init(): SFVoiceAnalytics { return callSDK<SFVoiceAnalytics>("Speech_80c97107bb9391cd", 1210474611944510, undefined, []); }
+  static init(): SFVoiceAnalytics { return callSDK<SFVoiceAnalytics>("Speech_b88ddd0bfd78eefc", 1210474611944510, undefined, []); }
   /**
    * @NSCopying var jitter: SFAcousticFeature { get }
    * @availability iOS 13.0+
    */
-  get jitter(): SFAcousticFeature { return callSDK<SFAcousticFeature>("Speech_80c97107bb9391cd", 1203676913428126, this, []); }
+  get jitter(): SFAcousticFeature { return callSDK<SFAcousticFeature>("Speech_b88ddd0bfd78eefc", 1203676913428126, this, []); }
   /**
    * @NSCopying var pitch: SFAcousticFeature { get }
    * @availability iOS 13.0+
    */
-  get pitch(): SFAcousticFeature { return callSDK<SFAcousticFeature>("Speech_80c97107bb9391cd", 259877496879170, this, []); }
+  get pitch(): SFAcousticFeature { return callSDK<SFAcousticFeature>("Speech_b88ddd0bfd78eefc", 259877496879170, this, []); }
   /**
    * @NSCopying var shimmer: SFAcousticFeature { get }
    * @availability iOS 13.0+
    */
-  get shimmer(): SFAcousticFeature { return callSDK<SFAcousticFeature>("Speech_80c97107bb9391cd", 3876953958891858, this, []); }
+  get shimmer(): SFAcousticFeature { return callSDK<SFAcousticFeature>("Speech_b88ddd0bfd78eefc", 3876953958891858, this, []); }
   /**
    * @NSCopying var voicing: SFAcousticFeature { get }
    * @availability iOS 13.0+
    */
-  get voicing(): SFAcousticFeature { return callSDK<SFAcousticFeature>("Speech_80c97107bb9391cd", 1215121702557682, this, []); }
+  get voicing(): SFAcousticFeature { return callSDK<SFAcousticFeature>("Speech_b88ddd0bfd78eefc", 1215121702557682, this, []); }
   declare readonly $type: { "c:objc(cs)SFVoiceAnalytics": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "jitter": true; "pitch": true; "shimmer": true; "voicing": true };
 }
@@ -1744,87 +1744,87 @@ export class SpeechAnalyzer extends SDKHandle {
    * final func setContext(_ newContext: AnalysisContext) async throws
    * @availability iOS 26.0+
    */
-  setContext(newContext: AnalysisContext): Promise<void> { return callSDKAsync<void>("Speech_80c97107bb9391cd", 3481538110942400, this, [newContext]); }
+  setContext(newContext: AnalysisContext): Promise<void> { return callSDKAsync<void>("Speech_b88ddd0bfd78eefc", 3481538110942400, this, [newContext]); }
   /**
    * final func setModules(_ newModules: [any SpeechModule]) async throws
    * @availability iOS 26.0+
    */
-  setModules(newModules: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("Speech_80c97107bb9391cd", 4287935559139191, this, [newModules]); }
+  setModules(newModules: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("Speech_b88ddd0bfd78eefc", 4287935559139191, this, [newModules]); }
   /**
    * convenience init(inputAudioFile: AVAudioFile, modules: [any SpeechModule], options: SpeechAnalyzer.Options? = nil, analysisContext: AnalysisContext = .init(), finishAfterFile: Bool = false, volatileRangeChangedHandler: sending ((CMTimeRange, Bool, Bool) -> Void)? = nil) async throws
    * @availability iOS 26.0+
    */
-  static initInputAudioFileModulesOptionsAnalysisContextFinishAfterFileVolatileRangeChangedHandler(inputAudioFile: _AVFAudio_AVAudioFile, modules: Array<SDKHandle>, options?: $SDK35, analysisContext?: AnalysisContext, finishAfterFile?: boolean, volatileRangeChangedHandler?: (((arg0: _CoreMedia_CMTimeRange, arg1: boolean, arg2: boolean) => void)) | null): Promise<SpeechAnalyzer> { return callSDKAsync<SpeechAnalyzer>("Speech_80c97107bb9391cd", 644383957096692, undefined, [inputAudioFile, modules, options, analysisContext, finishAfterFile, volatileRangeChangedHandler], [null,null,null,null,null,{"callback":{"out":[]}}]); }
+  static initInputAudioFileModulesOptionsAnalysisContextFinishAfterFileVolatileRangeChangedHandler(inputAudioFile: _AVFAudio_AVAudioFile, modules: Array<SDKHandle>, options?: $SDK35, analysisContext?: AnalysisContext, finishAfterFile?: boolean, volatileRangeChangedHandler?: (((arg0: _CoreMedia_CMTimeRange, arg1: boolean, arg2: boolean) => void)) | null): Promise<SpeechAnalyzer> { return callSDKAsync<SpeechAnalyzer>("Speech_b88ddd0bfd78eefc", 644383957096692, undefined, [inputAudioFile, modules, options, analysisContext, finishAfterFile, volatileRangeChangedHandler], [null,null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * final func analyzeSequence(from audioFile: AVAudioFile) async throws -> CMTime?
    * @availability iOS 26.0+
    */
-  analyzeSequence(audioFile: _AVFAudio_AVAudioFile): Promise<$SDK2> { return callSDKAsync<$SDK2>("Speech_80c97107bb9391cd", 381180422943995, this, [audioFile]); }
+  analyzeSequence(audioFile: _AVFAudio_AVAudioFile): Promise<$SDK2> { return callSDKAsync<$SDK2>("Speech_b88ddd0bfd78eefc", 381180422943995, this, [audioFile]); }
   /**
    * nonisolated final var unownedExecutor: UnownedSerialExecutor { get }
    * @availability iOS 26.0+
    */
-  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("Speech_80c97107bb9391cd", 3543034434597998, this, []); }
+  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("Speech_b88ddd0bfd78eefc", 3543034434597998, this, []); }
   /**
    * final func prepareToAnalyze(in audioFormat: AVAudioFormat?, withProgressReadyHandler progressReadyHandler: sending ((Progress) -> Void)?) async throws
    * @availability iOS 26.0+
    */
-  prepareToAnalyzeInWithProgressReadyHandler(audioFormat?: $SDK37, progressReadyHandler?: (((arg0: _Foundation_Progress) => void)) | null): Promise<void> { return callSDKAsync<void>("Speech_80c97107bb9391cd", 3324724864953268, this, [audioFormat, progressReadyHandler], [null,{"callback":{"out":[]}}]); }
+  prepareToAnalyzeInWithProgressReadyHandler(audioFormat?: $SDK37, progressReadyHandler?: (((arg0: _Foundation_Progress) => void)) | null): Promise<void> { return callSDKAsync<void>("Speech_b88ddd0bfd78eefc", 3324724864953268, this, [audioFormat, progressReadyHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * final func prepareToAnalyze(in audioFormat: AVAudioFormat?) async throws
    * @availability iOS 26.0+
    */
-  prepareToAnalyzeIn(audioFormat?: $SDK37): Promise<void> { return callSDKAsync<void>("Speech_80c97107bb9391cd", 2462196067806308, this, [audioFormat]); }
+  prepareToAnalyzeIn(audioFormat?: $SDK37): Promise<void> { return callSDKAsync<void>("Speech_b88ddd0bfd78eefc", 2462196067806308, this, [audioFormat]); }
   /**
    * final func finalizeAndFinish(through: CMTime) async throws
    * @availability iOS 26.0+
    */
-  finalizeAndFinish(through: _CoreMedia_CMTime): Promise<void> { return callSDKAsync<void>("Speech_80c97107bb9391cd", 3477669732517343, this, [through]); }
+  finalizeAndFinish(through: _CoreMedia_CMTime): Promise<void> { return callSDKAsync<void>("Speech_b88ddd0bfd78eefc", 3477669732517343, this, [through]); }
   /**
    * final func cancelAndFinishNow() async
    * @availability iOS 26.0+
    */
-  cancelAndFinishNow(): Promise<void> { return callSDKAsync<void>("Speech_80c97107bb9391cd", 1131785079963167, this, []); }
+  cancelAndFinishNow(): Promise<void> { return callSDKAsync<void>("Speech_b88ddd0bfd78eefc", 1131785079963167, this, []); }
   /**
    * static func bestAvailableAudioFormat(compatibleWith modules: [any SpeechModule], considering naturalFormat: AVAudioFormat?) async -> AVAudioFormat?
    * @availability iOS 26.0+
    */
-  static bestAvailableAudioFormatCompatibleWithConsidering(modules: Array<SDKHandle>, naturalFormat?: $SDK37): Promise<$SDK37> { return callSDKAsync<$SDK37>("Speech_80c97107bb9391cd", 2402131401366587, undefined, [modules, naturalFormat]); }
+  static bestAvailableAudioFormatCompatibleWithConsidering(modules: Array<SDKHandle>, naturalFormat?: $SDK37): Promise<$SDK37> { return callSDKAsync<$SDK37>("Speech_b88ddd0bfd78eefc", 2402131401366587, undefined, [modules, naturalFormat]); }
   /**
    * static func bestAvailableAudioFormat(compatibleWith modules: [any SpeechModule]) async -> AVAudioFormat?
    * @availability iOS 26.0+
    */
-  static bestAvailableAudioFormatCompatibleWith(modules: Array<SDKHandle>): Promise<$SDK37> { return callSDKAsync<$SDK37>("Speech_80c97107bb9391cd", 3143386774566602, undefined, [modules]); }
+  static bestAvailableAudioFormatCompatibleWith(modules: Array<SDKHandle>): Promise<$SDK37> { return callSDKAsync<$SDK37>("Speech_b88ddd0bfd78eefc", 3143386774566602, undefined, [modules]); }
   /**
    * final func finalizeAndFinishThroughEndOfInput() async throws
    * @availability iOS 26.0+
    */
-  finalizeAndFinishThroughEndOfInput(): Promise<void> { return callSDKAsync<void>("Speech_80c97107bb9391cd", 1069982285216922, this, []); }
+  finalizeAndFinishThroughEndOfInput(): Promise<void> { return callSDKAsync<void>("Speech_b88ddd0bfd78eefc", 1069982285216922, this, []); }
   /**
    * final func start(inputAudioFile audioFile: AVAudioFile, finishAfterFile: Bool = false) async throws
    * @availability iOS 26.0+
    */
-  start(audioFile: _AVFAudio_AVAudioFile, finishAfterFile?: boolean): Promise<void> { return callSDKAsync<void>("Speech_80c97107bb9391cd", 4119066777218184, this, [audioFile, finishAfterFile]); }
+  start(audioFile: _AVFAudio_AVAudioFile, finishAfterFile?: boolean): Promise<void> { return callSDKAsync<void>("Speech_b88ddd0bfd78eefc", 4119066777218184, this, [audioFile, finishAfterFile]); }
   /**
    * final func finish(after: CMTime) async throws
    * @availability iOS 26.0+
    */
-  finish(after: _CoreMedia_CMTime): Promise<void> { return callSDKAsync<void>("Speech_80c97107bb9391cd", 1686628099857143, this, [after]); }
+  finish(after: _CoreMedia_CMTime): Promise<void> { return callSDKAsync<void>("Speech_b88ddd0bfd78eefc", 1686628099857143, this, [after]); }
   /**
    * final var context: AnalysisContext { get async }
    * @availability iOS 26.0+
    */
-  get context(): Promise<AnalysisContext> { return callSDKAsync<AnalysisContext>("Speech_80c97107bb9391cd", 226322205933651, this, []); }
+  get context(): Promise<AnalysisContext> { return callSDKAsync<AnalysisContext>("Speech_b88ddd0bfd78eefc", 226322205933651, this, []); }
   /**
    * convenience init(modules: [any SpeechModule], options: SpeechAnalyzer.Options? = nil)
    * @availability iOS 26.0+
    */
-  static initModulesOptions(modules: Array<SDKHandle>, options?: $SDK35): SpeechAnalyzer { return callSDK<SpeechAnalyzer>("Speech_80c97107bb9391cd", 173182901673432, undefined, [modules, options]); }
+  static initModulesOptions(modules: Array<SDKHandle>, options?: $SDK35): SpeechAnalyzer { return callSDK<SpeechAnalyzer>("Speech_b88ddd0bfd78eefc", 173182901673432, undefined, [modules, options]); }
   /**
    * final func finalize(through: CMTime?) async throws
    * @availability iOS 26.0+
    */
-  finalize(through?: $SDK2): Promise<void> { return callSDKAsync<void>("Speech_80c97107bb9391cd", 4313994484819920, this, [through]); }
+  finalize(through?: $SDK2): Promise<void> { return callSDKAsync<void>("Speech_b88ddd0bfd78eefc", 4313994484819920, this, [through]); }
   declare readonly $type: { "s:6Speech0A8AnalyzerC": true };
 }
 
@@ -1837,27 +1837,27 @@ export class SpeechAnalyzer_Options extends SDKHandle {
    * let modelRetention: SpeechAnalyzer.Options.ModelRetention
    * @availability iOS 26.0+
    */
-  get modelRetention(): SpeechAnalyzer_Options_ModelRetention { return callSDK<SpeechAnalyzer_Options_ModelRetention>("Speech_80c97107bb9391cd", 3463060121048397, this, []); }
+  get modelRetention(): SpeechAnalyzer_Options_ModelRetention { return callSDK<SpeechAnalyzer_Options_ModelRetention>("Speech_b88ddd0bfd78eefc", 3463060121048397, this, []); }
   /**
    * let ignoresResourceLimits: Bool
    * @availability iOS 27.0+
    */
-  get ignoresResourceLimits(): boolean { return callSDK<boolean>("Speech_80c97107bb9391cd", 3720516788986385, this, []); }
+  get ignoresResourceLimits(): boolean { return callSDK<boolean>("Speech_b88ddd0bfd78eefc", 3720516788986385, this, []); }
   /**
    * init(priority: TaskPriority, modelRetention: SpeechAnalyzer.Options.ModelRetention, ignoresResourceLimits: Bool)
    * @availability iOS 27.0+
    */
-  static initPriorityModelRetentionIgnoresResourceLimits(priority: SDKHandle, modelRetention: SpeechAnalyzer_Options_ModelRetention, ignoresResourceLimits: boolean): SpeechAnalyzer_Options { return callSDK<SpeechAnalyzer_Options>("Speech_80c97107bb9391cd", 3663374034706251, undefined, [priority, modelRetention, ignoresResourceLimits]); }
+  static initPriorityModelRetentionIgnoresResourceLimits(priority: SDKHandle, modelRetention: SpeechAnalyzer_Options_ModelRetention, ignoresResourceLimits: boolean): SpeechAnalyzer_Options { return callSDK<SpeechAnalyzer_Options>("Speech_b88ddd0bfd78eefc", 3663374034706251, undefined, [priority, modelRetention, ignoresResourceLimits]); }
   /**
    * init(priority: TaskPriority, modelRetention: SpeechAnalyzer.Options.ModelRetention)
    * @availability iOS 26.0+
    */
-  static initPriorityModelRetention(priority: SDKHandle, modelRetention: SpeechAnalyzer_Options_ModelRetention): SpeechAnalyzer_Options { return callSDK<SpeechAnalyzer_Options>("Speech_80c97107bb9391cd", 2421769081303942, undefined, [priority, modelRetention]); }
+  static initPriorityModelRetention(priority: SDKHandle, modelRetention: SpeechAnalyzer_Options_ModelRetention): SpeechAnalyzer_Options { return callSDK<SpeechAnalyzer_Options>("Speech_b88ddd0bfd78eefc", 2421769081303942, undefined, [priority, modelRetention]); }
   /**
    * let priority: TaskPriority
    * @availability iOS 26.0+
    */
-  get priority(): SDKHandle { return callSDK<SDKHandle>("Speech_80c97107bb9391cd", 4341832738581269, this, []); }
+  get priority(): SDKHandle { return callSDK<SDKHandle>("Speech_b88ddd0bfd78eefc", 4341832738581269, this, []); }
   declare readonly $type: { "s:6Speech0A8AnalyzerC7OptionsV": true };
 }
 
@@ -1872,7 +1872,7 @@ export const SpeechAnalyzer_Options_ModelRetention = {
    * nonisolated static var allCases: [SpeechAnalyzer.Options.ModelRetention] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK39 { return callSDK<$SDK39>("Speech_80c97107bb9391cd", 782096474336170, undefined, []); }
+  get allCases(): $SDK39 { return callSDK<$SDK39>("Speech_b88ddd0bfd78eefc", 782096474336170, undefined, []); }
 };
 
 /**
@@ -1890,22 +1890,22 @@ export class SpeechDetector extends SDKHandle {
    * init(detectionOptions: SpeechDetector.DetectionOptions, reportResults: Bool)
    * @availability iOS 26.0+
    */
-  static initDetectionOptionsReportResults(detectionOptions: SpeechDetector_DetectionOptions, reportResults: boolean): SpeechDetector { return callSDK<SpeechDetector>("Speech_80c97107bb9391cd", 2026348628600527, undefined, [detectionOptions, reportResults]); }
+  static initDetectionOptionsReportResults(detectionOptions: SpeechDetector_DetectionOptions, reportResults: boolean): SpeechDetector { return callSDK<SpeechDetector>("Speech_b88ddd0bfd78eefc", 2026348628600527, undefined, [detectionOptions, reportResults]); }
   /**
    * final var availableCompatibleAudioFormats: [AVAudioFormat] { get }
    * @availability iOS 26.0+
    */
-  get availableCompatibleAudioFormats(): $SDK10 { return callSDK<$SDK10>("Speech_80c97107bb9391cd", 4487898245573144, this, []); }
+  get availableCompatibleAudioFormats(): $SDK10 { return callSDK<$SDK10>("Speech_b88ddd0bfd78eefc", 4487898245573144, this, []); }
   /**
    * final var results: some Sendable & AsyncSequence<SpeechDetector.Result, any Error> { get }
    * @availability iOS 26.0+
    */
-  get results(): $SDK6 { return callSDK<$SDK6>("Speech_80c97107bb9391cd", 1313079271320252, this, []); }
+  get results(): $SDK6 { return callSDK<$SDK6>("Speech_b88ddd0bfd78eefc", 1313079271320252, this, []); }
   /**
    * convenience init()
    * @availability iOS 26.0+
    */
-  static init(): SpeechDetector { return callSDK<SpeechDetector>("Speech_80c97107bb9391cd", 3202707632833425, undefined, []); }
+  static init(): SpeechDetector { return callSDK<SpeechDetector>("Speech_b88ddd0bfd78eefc", 3202707632833425, undefined, []); }
   declare readonly $type: { "s:6Speech0A8DetectorC": true };
 }
 
@@ -1918,12 +1918,12 @@ export class SpeechDetector_DetectionOptions extends SDKHandle {
    * let sensitivityLevel: SpeechDetector.SensitivityLevel
    * @availability iOS 26.0+
    */
-  get sensitivityLevel(): SpeechDetector_SensitivityLevel { return callSDK<SpeechDetector_SensitivityLevel>("Speech_80c97107bb9391cd", 1130440670249374, this, []); }
+  get sensitivityLevel(): SpeechDetector_SensitivityLevel { return callSDK<SpeechDetector_SensitivityLevel>("Speech_b88ddd0bfd78eefc", 1130440670249374, this, []); }
   /**
    * init(sensitivityLevel: SpeechDetector.SensitivityLevel)
    * @availability iOS 26.0+
    */
-  static init(sensitivityLevel: SpeechDetector_SensitivityLevel): SpeechDetector_DetectionOptions { return callSDK<SpeechDetector_DetectionOptions>("Speech_80c97107bb9391cd", 1629624297955150, undefined, [sensitivityLevel]); }
+  static init(sensitivityLevel: SpeechDetector_SensitivityLevel): SpeechDetector_DetectionOptions { return callSDK<SpeechDetector_DetectionOptions>("Speech_b88ddd0bfd78eefc", 1629624297955150, undefined, [sensitivityLevel]); }
   declare readonly $type: { "s:6Speech0A8DetectorC16DetectionOptionsV": true };
 }
 
@@ -1936,22 +1936,22 @@ export class SpeechDetector_Result extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Speech_80c97107bb9391cd", 1393763694614641, this, []); }
+  get description(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 1393763694614641, this, []); }
   /**
    * let speechDetected: Bool
    * @availability iOS 26.0+
    */
-  get speechDetected(): boolean { return callSDK<boolean>("Speech_80c97107bb9391cd", 4398234830500189, this, []); }
+  get speechDetected(): boolean { return callSDK<boolean>("Speech_b88ddd0bfd78eefc", 4398234830500189, this, []); }
   /**
    * let resultsFinalizationTime: CMTime
    * @availability iOS 26.0+
    */
-  get resultsFinalizationTime(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Speech_80c97107bb9391cd", 974574058178311, this, []); }
+  get resultsFinalizationTime(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Speech_b88ddd0bfd78eefc", 974574058178311, this, []); }
   /**
    * let range: CMTimeRange
    * @availability iOS 26.0+
    */
-  get range(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("Speech_80c97107bb9391cd", 1406419613933794, this, []); }
+  get range(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("Speech_b88ddd0bfd78eefc", 1406419613933794, this, []); }
   declare readonly $type: { "s:6Speech0A8DetectorC6ResultV": true };
 }
 
@@ -1972,17 +1972,17 @@ export const SpeechDetector_SensitivityLevel = {
    * nonisolated static var allCases: [SpeechDetector.SensitivityLevel] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK40 { return callSDK<$SDK40>("Speech_80c97107bb9391cd", 2511422367616042, undefined, []); },
+  get allCases(): $SDK40 { return callSDK<$SDK40>("Speech_b88ddd0bfd78eefc", 2511422367616042, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (SpeechDetector_SensitivityLevel) | null { return callSDK<(SpeechDetector_SensitivityLevel) | null>("Speech_80c97107bb9391cd", 4230320956885274, undefined, [rawValue]); },
+  init(rawValue: number): (SpeechDetector_SensitivityLevel) | null { return callSDK<(SpeechDetector_SensitivityLevel) | null>("Speech_b88ddd0bfd78eefc", 4230320956885274, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 26.0+
    */
-  getRawValue($self: SpeechDetector_SensitivityLevel): number { return callSDK<number>("Speech_80c97107bb9391cd", 3923435432224297, $self, []); }
+  getRawValue($self: SpeechDetector_SensitivityLevel): number { return callSDK<number>("Speech_b88ddd0bfd78eefc", 3923435432224297, $self, []); }
 };
 
 /**
@@ -2006,7 +2006,7 @@ export class SpeechModels extends SDKHandle {
    * static func endRetention() async
    * @availability iOS 26.0+
    */
-  static endRetention(): Promise<void> { return callSDKAsync<void>("Speech_80c97107bb9391cd", 4494856555051684, undefined, []); }
+  static endRetention(): Promise<void> { return callSDKAsync<void>("Speech_b88ddd0bfd78eefc", 4494856555051684, undefined, []); }
   declare readonly $type: { "s:6Speech0A6ModelsO": true };
 }
 
@@ -2035,47 +2035,47 @@ export class SpeechTranscriber extends SDKHandle {
    * static var isAvailable: Bool { get }
    * @availability iOS 26.0+
    */
-  static get isAvailable(): boolean { return callSDK<boolean>("Speech_80c97107bb9391cd", 3567141637995867, undefined, []); }
+  static get isAvailable(): boolean { return callSDK<boolean>("Speech_b88ddd0bfd78eefc", 3567141637995867, undefined, []); }
   /**
    * final var selectedLocales: [Locale] { get }
    * @availability iOS 26.0+
    */
-  get selectedLocales(): $SDK7 { return callSDK<$SDK7>("Speech_80c97107bb9391cd", 3825398180722727, this, []); }
+  get selectedLocales(): $SDK7 { return callSDK<$SDK7>("Speech_b88ddd0bfd78eefc", 3825398180722727, this, []); }
   /**
    * static func supportedLocale(equivalentTo locale: Locale) async -> Locale?
    * @availability iOS 26.0+
    */
-  static supportedLocale(locale: _Foundation_Locale): Promise<$SDK9> { return callSDKAsync<$SDK9>("Speech_80c97107bb9391cd", 1034417342351738, undefined, [locale]); }
+  static supportedLocale(locale: _Foundation_Locale): Promise<$SDK9> { return callSDKAsync<$SDK9>("Speech_b88ddd0bfd78eefc", 1034417342351738, undefined, [locale]); }
   /**
    * static var installedLocales: [Locale] { get async }
    * @availability iOS 26.0+
    */
-  static get installedLocales(): Promise<$SDK7> { return callSDKAsync<$SDK7>("Speech_80c97107bb9391cd", 1285927816589364, undefined, []); }
+  static get installedLocales(): Promise<$SDK7> { return callSDKAsync<$SDK7>("Speech_b88ddd0bfd78eefc", 1285927816589364, undefined, []); }
   /**
    * static var supportedLocales: [Locale] { get async }
    * @availability iOS 26.0+
    */
-  static get supportedLocales(): Promise<$SDK7> { return callSDKAsync<$SDK7>("Speech_80c97107bb9391cd", 1796526118449912, undefined, []); }
+  static get supportedLocales(): Promise<$SDK7> { return callSDKAsync<$SDK7>("Speech_b88ddd0bfd78eefc", 1796526118449912, undefined, []); }
   /**
    * final var availableCompatibleAudioFormats: [AVAudioFormat] { get async }
    * @availability iOS 26.0+
    */
-  get availableCompatibleAudioFormats(): Promise<$SDK10> { return callSDKAsync<$SDK10>("Speech_80c97107bb9391cd", 4037457402895409, this, []); }
+  get availableCompatibleAudioFormats(): Promise<$SDK10> { return callSDKAsync<$SDK10>("Speech_b88ddd0bfd78eefc", 4037457402895409, this, []); }
   /**
    * convenience init(locale: Locale, transcriptionOptions: Set<SpeechTranscriber.TranscriptionOption>, reportingOptions: Set<SpeechTranscriber.ReportingOption>, attributeOptions: Set<SpeechTranscriber.ResultAttributeOption>)
    * @availability iOS 26.0+
    */
-  static initLocaleTranscriptionOptionsReportingOptionsAttributeOptions(locale: _Foundation_Locale, transcriptionOptions: $SDK41, reportingOptions: $SDK42, attributeOptions: $SDK43): SpeechTranscriber { return callSDK<SpeechTranscriber>("Speech_80c97107bb9391cd", 554691533940231, undefined, [locale, transcriptionOptions, reportingOptions, attributeOptions]); }
+  static initLocaleTranscriptionOptionsReportingOptionsAttributeOptions(locale: _Foundation_Locale, transcriptionOptions: $SDK41, reportingOptions: $SDK42, attributeOptions: $SDK43): SpeechTranscriber { return callSDK<SpeechTranscriber>("Speech_b88ddd0bfd78eefc", 554691533940231, undefined, [locale, transcriptionOptions, reportingOptions, attributeOptions]); }
   /**
    * convenience init(locale: Locale, preset: SpeechTranscriber.Preset)
    * @availability iOS 26.0+
    */
-  static initLocalePreset(locale: _Foundation_Locale, preset: SpeechTranscriber_Preset): SpeechTranscriber { return callSDK<SpeechTranscriber>("Speech_80c97107bb9391cd", 3953019207280053, undefined, [locale, preset]); }
+  static initLocalePreset(locale: _Foundation_Locale, preset: SpeechTranscriber_Preset): SpeechTranscriber { return callSDK<SpeechTranscriber>("Speech_b88ddd0bfd78eefc", 3953019207280053, undefined, [locale, preset]); }
   /**
    * final var results: some Sendable & AsyncSequence<SpeechTranscriber.Result, any Error> { get }
    * @availability iOS 26.0+
    */
-  get results(): $SDK6 { return callSDK<$SDK6>("Speech_80c97107bb9391cd", 3788715389309722, this, []); }
+  get results(): $SDK6 { return callSDK<$SDK6>("Speech_b88ddd0bfd78eefc", 3788715389309722, this, []); }
   declare readonly $type: { "s:6Speech0A11TranscriberC": true };
 }
 
@@ -2088,50 +2088,50 @@ export class SpeechTranscriber_Preset extends SDKHandle {
    * static let transcription: SpeechTranscriber.Preset
    * @availability iOS 26.0+
    */
-  static get transcription(): SpeechTranscriber_Preset { return callSDK<SpeechTranscriber_Preset>("Speech_80c97107bb9391cd", 2040687722570859, undefined, []); }
+  static get transcription(): SpeechTranscriber_Preset { return callSDK<SpeechTranscriber_Preset>("Speech_b88ddd0bfd78eefc", 2040687722570859, undefined, []); }
   /**
    * var attributeOptions: Set<SpeechTranscriber.ResultAttributeOption>
    * @availability iOS 26.0+
    */
-  get attributeOptions(): $SDK43 { return callSDK<$SDK43>("Speech_80c97107bb9391cd", 2483507981346124, this, []); }
-  set attributeOptions(value: $SDK43) { callSDK<void>("Speech_80c97107bb9391cd", 1188069038366345, this, [value]); }
+  get attributeOptions(): $SDK43 { return callSDK<$SDK43>("Speech_b88ddd0bfd78eefc", 2483507981346124, this, []); }
+  set attributeOptions(value: $SDK43) { callSDK<void>("Speech_b88ddd0bfd78eefc", 1188069038366345, this, [value]); }
   /**
    * var reportingOptions: Set<SpeechTranscriber.ReportingOption>
    * @availability iOS 26.0+
    */
-  get reportingOptions(): $SDK42 { return callSDK<$SDK42>("Speech_80c97107bb9391cd", 3889976870623032, this, []); }
-  set reportingOptions(value: $SDK42) { callSDK<void>("Speech_80c97107bb9391cd", 2878355854983391, this, [value]); }
+  get reportingOptions(): $SDK42 { return callSDK<$SDK42>("Speech_b88ddd0bfd78eefc", 3889976870623032, this, []); }
+  set reportingOptions(value: $SDK42) { callSDK<void>("Speech_b88ddd0bfd78eefc", 2878355854983391, this, [value]); }
   /**
    * init(transcriptionOptions: Set<SpeechTranscriber.TranscriptionOption>, reportingOptions: Set<SpeechTranscriber.ReportingOption>, attributeOptions: Set<SpeechTranscriber.ResultAttributeOption>)
    * @availability iOS 26.0+
    */
-  static init(transcriptionOptions: $SDK41, reportingOptions: $SDK42, attributeOptions: $SDK43): SpeechTranscriber_Preset { return callSDK<SpeechTranscriber_Preset>("Speech_80c97107bb9391cd", 417304382821485, undefined, [transcriptionOptions, reportingOptions, attributeOptions]); }
+  static init(transcriptionOptions: $SDK41, reportingOptions: $SDK42, attributeOptions: $SDK43): SpeechTranscriber_Preset { return callSDK<SpeechTranscriber_Preset>("Speech_b88ddd0bfd78eefc", 417304382821485, undefined, [transcriptionOptions, reportingOptions, attributeOptions]); }
   /**
    * var transcriptionOptions: Set<SpeechTranscriber.TranscriptionOption>
    * @availability iOS 26.0+
    */
-  get transcriptionOptions(): $SDK41 { return callSDK<$SDK41>("Speech_80c97107bb9391cd", 3780463400400962, this, []); }
-  set transcriptionOptions(value: $SDK41) { callSDK<void>("Speech_80c97107bb9391cd", 1186097863907011, this, [value]); }
+  get transcriptionOptions(): $SDK41 { return callSDK<$SDK41>("Speech_b88ddd0bfd78eefc", 3780463400400962, this, []); }
+  set transcriptionOptions(value: $SDK41) { callSDK<void>("Speech_b88ddd0bfd78eefc", 1186097863907011, this, [value]); }
   /**
    * static let progressiveTranscription: SpeechTranscriber.Preset
    * @availability iOS 26.0+
    */
-  static get progressiveTranscription(): SpeechTranscriber_Preset { return callSDK<SpeechTranscriber_Preset>("Speech_80c97107bb9391cd", 497607301940544, undefined, []); }
+  static get progressiveTranscription(): SpeechTranscriber_Preset { return callSDK<SpeechTranscriber_Preset>("Speech_b88ddd0bfd78eefc", 497607301940544, undefined, []); }
   /**
    * static let transcriptionWithAlternatives: SpeechTranscriber.Preset
    * @availability iOS 26.0+
    */
-  static get transcriptionWithAlternatives(): SpeechTranscriber_Preset { return callSDK<SpeechTranscriber_Preset>("Speech_80c97107bb9391cd", 806255150445991, undefined, []); }
+  static get transcriptionWithAlternatives(): SpeechTranscriber_Preset { return callSDK<SpeechTranscriber_Preset>("Speech_b88ddd0bfd78eefc", 806255150445991, undefined, []); }
   /**
    * static let timeIndexedProgressiveTranscription: SpeechTranscriber.Preset
    * @availability iOS 26.0+
    */
-  static get timeIndexedProgressiveTranscription(): SpeechTranscriber_Preset { return callSDK<SpeechTranscriber_Preset>("Speech_80c97107bb9391cd", 2397501624248660, undefined, []); }
+  static get timeIndexedProgressiveTranscription(): SpeechTranscriber_Preset { return callSDK<SpeechTranscriber_Preset>("Speech_b88ddd0bfd78eefc", 2397501624248660, undefined, []); }
   /**
    * static let timeIndexedTranscriptionWithAlternatives: SpeechTranscriber.Preset
    * @availability iOS 26.0+
    */
-  static get timeIndexedTranscriptionWithAlternatives(): SpeechTranscriber_Preset { return callSDK<SpeechTranscriber_Preset>("Speech_80c97107bb9391cd", 242219419623767, undefined, []); }
+  static get timeIndexedTranscriptionWithAlternatives(): SpeechTranscriber_Preset { return callSDK<SpeechTranscriber_Preset>("Speech_b88ddd0bfd78eefc", 242219419623767, undefined, []); }
   declare readonly $type: { "s:6Speech0A11TranscriberC6PresetV": true };
 }
 
@@ -2146,7 +2146,7 @@ export const SpeechTranscriber_ReportingOption = {
    * nonisolated static var allCases: [SpeechTranscriber.ReportingOption] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK42 { return callSDK<$SDK42>("Speech_80c97107bb9391cd", 1627337044091097, undefined, []); }
+  get allCases(): $SDK42 { return callSDK<$SDK42>("Speech_b88ddd0bfd78eefc", 1627337044091097, undefined, []); }
 };
 
 /**
@@ -2164,27 +2164,27 @@ export class SpeechTranscriber_Result extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Speech_80c97107bb9391cd", 2543809904568108, this, []); }
+  get description(): string { return callSDK<string>("Speech_b88ddd0bfd78eefc", 2543809904568108, this, []); }
   /**
    * let alternatives: [AttributedString]
    * @availability iOS 26.0+
    */
-  get alternatives(): $SDK15 { return callSDK<$SDK15>("Speech_80c97107bb9391cd", 1812307355141542, this, []); }
+  get alternatives(): $SDK15 { return callSDK<$SDK15>("Speech_b88ddd0bfd78eefc", 1812307355141542, this, []); }
   /**
    * let resultsFinalizationTime: CMTime
    * @availability iOS 26.0+
    */
-  get resultsFinalizationTime(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Speech_80c97107bb9391cd", 3658479196084750, this, []); }
+  get resultsFinalizationTime(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Speech_b88ddd0bfd78eefc", 3658479196084750, this, []); }
   /**
    * var text: AttributedString { get }
    * @availability iOS 26.0+
    */
-  get text(): _Foundation_AttributedString { return callSDK<_Foundation_AttributedString>("Speech_80c97107bb9391cd", 3879445781138358, this, []); }
+  get text(): _Foundation_AttributedString { return callSDK<_Foundation_AttributedString>("Speech_b88ddd0bfd78eefc", 3879445781138358, this, []); }
   /**
    * let range: CMTimeRange
    * @availability iOS 26.0+
    */
-  get range(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("Speech_80c97107bb9391cd", 77186381681614, this, []); }
+  get range(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("Speech_b88ddd0bfd78eefc", 77186381681614, this, []); }
   declare readonly $type: { "s:6Speech0A11TranscriberC6ResultV": true };
 }
 
@@ -2199,7 +2199,7 @@ export const SpeechTranscriber_ResultAttributeOption = {
    * nonisolated static var allCases: [SpeechTranscriber.ResultAttributeOption] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK43 { return callSDK<$SDK43>("Speech_80c97107bb9391cd", 3827852772626372, undefined, []); }
+  get allCases(): $SDK43 { return callSDK<$SDK43>("Speech_b88ddd0bfd78eefc", 3827852772626372, undefined, []); }
 };
 
 /**
@@ -2225,7 +2225,7 @@ export const SpeechTranscriber_TranscriptionOption = {
    * static let allCases: [SpeechTranscriber.TranscriptionOption]
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK41 { return callSDK<$SDK41>("Speech_80c97107bb9391cd", 889220112550156, undefined, []); }
+  get allCases(): $SDK41 { return callSDK<$SDK41>("Speech_b88ddd0bfd78eefc", 889220112550156, undefined, []); }
 };
 
 /**
@@ -2250,62 +2250,62 @@ export interface TemplateInsertable {
  * let SFSpeechErrorDomain: String
  * @availability iOS 17.0+
  */
-export const SFSpeechErrorDomain: string = callSDK<string>("Speech_80c97107bb9391cd", 2004540652555890, undefined, []);
+export const SFSpeechErrorDomain: string = callSDK<string>("Speech_b88ddd0bfd78eefc", 2004540652555890, undefined, []);
 
-registerSDKClass("Speech.AnalysisContext", AnalysisContext, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.AnalyzerInput", AnalyzerInput, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.AnalyzerInputConverter", AnalyzerInputConverter, { module: "Speech_80c97107bb9391cd", properties: {}, methods: {"flush":{"id":513234903283323},"convert":{"id":3789607708522217}} });
-registerSDKClass("Speech.AssetInputSequenceProvider", AssetInputSequenceProvider, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.AssetInstallationRequest", AssetInstallationRequest, { module: "Speech_80c97107bb9391cd", properties: {}, methods: {"downloadAndInstall":{"id":2818200581540179}} });
-registerSDKClass("Speech.AssetInventory", AssetInventory, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Foundation.AttributedString", AttributedString, { module: "Speech_80c97107bb9391cd", properties: {}, methods: {"rangeOfAudioTimeRangeAttributes":{"id":746137992484069}} }, true);
-registerSDKClass("Speech.AttributeScopes.SpeechAttributes", AttributeScopes_SpeechAttributes, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.AttributeScopes.SpeechAttributes.ConfidenceAttribute", AttributeScopes_SpeechAttributes_ConfidenceAttribute, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.AttributeScopes.SpeechAttributes.TimeRangeAttribute", AttributeScopes_SpeechAttributes_TimeRangeAttribute, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.CaptureInputSequenceProvider", CaptureInputSequenceProvider, { module: "Speech_80c97107bb9391cd", properties: {} });
+registerSDKClass("Speech.AnalysisContext", AnalysisContext, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.AnalyzerInput", AnalyzerInput, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.AnalyzerInputConverter", AnalyzerInputConverter, { module: "Speech_b88ddd0bfd78eefc", properties: {}, methods: {"flush":{"id":513234903283323},"convert":{"id":3789607708522217}} });
+registerSDKClass("Speech.AssetInputSequenceProvider", AssetInputSequenceProvider, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.AssetInstallationRequest", AssetInstallationRequest, { module: "Speech_b88ddd0bfd78eefc", properties: {}, methods: {"downloadAndInstall":{"id":2818200581540179}} });
+registerSDKClass("Speech.AssetInventory", AssetInventory, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Foundation.AttributedString", AttributedString, { module: "Speech_b88ddd0bfd78eefc", properties: {}, methods: {"rangeOfAudioTimeRangeAttributes":{"id":746137992484069}} }, true);
+registerSDKClass("Speech.AttributeScopes.SpeechAttributes", AttributeScopes_SpeechAttributes, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.AttributeScopes.SpeechAttributes.ConfidenceAttribute", AttributeScopes_SpeechAttributes_ConfidenceAttribute, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.AttributeScopes.SpeechAttributes.TimeRangeAttribute", AttributeScopes_SpeechAttributes_TimeRangeAttribute, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.CaptureInputSequenceProvider", CaptureInputSequenceProvider, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
 registerSDKProtocol("s:6Speech14DataInsertableP", {"insertData":"insert(data:)"});
-registerSDKClass("Speech.DictationTranscriber", DictationTranscriber, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.DictationTranscriber.ContentHint", DictationTranscriber_ContentHint, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.DictationTranscriber.Preset", DictationTranscriber_Preset, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.DictationTranscriber.Result", DictationTranscriber_Result, { module: "Speech_80c97107bb9391cd", properties: {} });
+registerSDKClass("Speech.DictationTranscriber", DictationTranscriber, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.DictationTranscriber.ContentHint", DictationTranscriber_ContentHint, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.DictationTranscriber.Preset", DictationTranscriber_Preset, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.DictationTranscriber.Result", DictationTranscriber_Result, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
 registerSDKProtocol("s:6Speech015LocaleDependentA6ModuleP", {"supportedLocaleEquivalentTo":"supportedLocale(equivalentTo:)"});
-registerSDKClass("SFAcousticFeature", SFAcousticFeature, { module: "Speech_80c97107bb9391cd", properties: {"frameDuration":228654032186820} });
-registerSDKClass("Speech.SFCustomLanguageModelData", SFCustomLanguageModelData, { module: "Speech_80c97107bb9391cd", properties: {}, methods: {"export":{"id":4194313180096316},"insertPhraseCount":{"id":3342178983366298},"insertPhraseCountGenerator":{"id":167485168924177},"insertTerm":{"id":238315428173934}} });
-registerSDKClass("Speech.SFCustomLanguageModelData.CompoundTemplate", SFCustomLanguageModelData_CompoundTemplate, { module: "Speech_80c97107bb9391cd", properties: {}, methods: {"insert":{"id":388273625146829}} });
-registerSDKClass("Speech.SFCustomLanguageModelData.CustomPronunciation", SFCustomLanguageModelData_CustomPronunciation, { module: "Speech_80c97107bb9391cd", properties: {}, methods: {"insert":{"id":974799613770991}} });
-registerSDKClass("Speech.SFCustomLanguageModelData.DataInsertableBuilder", SFCustomLanguageModelData_DataInsertableBuilder, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.SFCustomLanguageModelData.PhraseCount", SFCustomLanguageModelData_PhraseCount, { module: "Speech_80c97107bb9391cd", properties: {}, methods: {"insert":{"id":3258691539364497}} });
-registerSDKClass("Speech.SFCustomLanguageModelData.PhraseCountGenerator", SFCustomLanguageModelData_PhraseCountGenerator, { module: "Speech_80c97107bb9391cd", properties: {}, methods: {"makeAsyncIterator":{"id":4433932593727752},"insert":{"id":2842945753838551}} });
-registerSDKClass("Speech.SFCustomLanguageModelData.PhraseCountGenerator.Iterator", SFCustomLanguageModelData_PhraseCountGenerator_Iterator, { module: "Speech_80c97107bb9391cd", properties: {}, methods: {"next":{"id":1890573840430082}} });
-registerSDKClass("Speech.SFCustomLanguageModelData.PhraseCountsFromTemplates", SFCustomLanguageModelData_PhraseCountsFromTemplates, { module: "Speech_80c97107bb9391cd", properties: {}, methods: {"insert":{"id":2130207725887053}} });
-registerSDKClass("Speech.SFCustomLanguageModelData.TemplateInsertableBuilder", SFCustomLanguageModelData_TemplateInsertableBuilder, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.SFCustomLanguageModelData.TemplatePhraseCountGenerator", SFCustomLanguageModelData_TemplatePhraseCountGenerator, { module: "Speech_80c97107bb9391cd", properties: {}, methods: {"makeAsyncIterator":{"id":490302102542856},"define":{"id":1827320348896645},"insert":{"id":334944952390965}} });
-registerSDKClass("Speech.SFCustomLanguageModelData.TemplatePhraseCountGenerator.Iterator", SFCustomLanguageModelData_TemplatePhraseCountGenerator_Iterator, { module: "Speech_80c97107bb9391cd", properties: {}, methods: {"next":{"id":3179548306352522}} });
-registerSDKClass("Speech.SFCustomLanguageModelData.TemplatePhraseCountGenerator.Template", SFCustomLanguageModelData_TemplatePhraseCountGenerator_Template, { module: "Speech_80c97107bb9391cd", properties: {}, methods: {"insert":{"id":4414175843208808}} });
-registerSDKClass("SFSpeechRecognitionRequest", SFSpeechRecognitionRequest, { module: "Speech_80c97107bb9391cd", properties: {"addsPunctuation":2693080212983763,"contextualStrings":2501318116071023,"customizedLanguageModel":3542109272455425,"interactionIdentifier":2539364819350429,"requiresOnDeviceRecognition":3817245101471376,"shouldReportPartialResults":3622167282318669,"taskHint":2873217318925880} });
-registerSDKClass("SFSpeechAudioBufferRecognitionRequest", SFSpeechAudioBufferRecognitionRequest, { module: "Speech_80c97107bb9391cd", properties: {"nativeAudioFormat":1795571747594404}, methods: {"append":{"id":2606054404636385},"appendAudioSampleBuffer":{"id":2533746177355271},"endAudio":{"id":775545939830288}} });
-registerSDKClass("Speech.SFSpeechError", SFSpeechError, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("SFSpeechLanguageModel", SFSpeechLanguageModel, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("SFSpeechLanguageModelConfiguration", SFSpeechLanguageModel_Configuration, { module: "Speech_80c97107bb9391cd", properties: {"languageModel":1608857174007241,"vocabulary":456610139487895,"weight":1849814387712826} });
-registerSDKClass("SFSpeechRecognitionMetadata", SFSpeechRecognitionMetadata, { module: "Speech_80c97107bb9391cd", properties: {"averagePauseDuration":2252975661907836,"speakingRate":1157502856032235,"speechDuration":2114567397469482,"speechStartTimestamp":2747069972200473,"voiceAnalytics":303364233668731} });
-registerSDKClass("SFSpeechRecognitionResult", SFSpeechRecognitionResult, { module: "Speech_80c97107bb9391cd", properties: {"bestTranscription":4027075138118229,"isFinal":3038821589568948,"speechRecognitionMetadata":1813015037910338,"transcriptions":233147000908376} });
-registerSDKClass("SFSpeechRecognitionTask", SFSpeechRecognitionTask, { module: "Speech_80c97107bb9391cd", properties: {"isCancelled":3749440879783675,"error":3776797847637605,"isFinishing":639289190412374,"state":3510023490072390}, methods: {"cancel":{"id":2480185587499249},"finish":{"id":1660390386264681}} });
+registerSDKClass("SFAcousticFeature", SFAcousticFeature, { module: "Speech_b88ddd0bfd78eefc", properties: {"frameDuration":228654032186820} });
+registerSDKClass("Speech.SFCustomLanguageModelData", SFCustomLanguageModelData, { module: "Speech_b88ddd0bfd78eefc", properties: {}, methods: {"export":{"id":4194313180096316},"insertPhraseCount":{"id":3342178983366298},"insertPhraseCountGenerator":{"id":167485168924177},"insertTerm":{"id":238315428173934}} });
+registerSDKClass("Speech.SFCustomLanguageModelData.CompoundTemplate", SFCustomLanguageModelData_CompoundTemplate, { module: "Speech_b88ddd0bfd78eefc", properties: {}, methods: {"insert":{"id":388273625146829}} });
+registerSDKClass("Speech.SFCustomLanguageModelData.CustomPronunciation", SFCustomLanguageModelData_CustomPronunciation, { module: "Speech_b88ddd0bfd78eefc", properties: {}, methods: {"insert":{"id":974799613770991}} });
+registerSDKClass("Speech.SFCustomLanguageModelData.DataInsertableBuilder", SFCustomLanguageModelData_DataInsertableBuilder, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.SFCustomLanguageModelData.PhraseCount", SFCustomLanguageModelData_PhraseCount, { module: "Speech_b88ddd0bfd78eefc", properties: {}, methods: {"insert":{"id":3258691539364497}} });
+registerSDKClass("Speech.SFCustomLanguageModelData.PhraseCountGenerator", SFCustomLanguageModelData_PhraseCountGenerator, { module: "Speech_b88ddd0bfd78eefc", properties: {}, methods: {"makeAsyncIterator":{"id":4433932593727752},"insert":{"id":2842945753838551}} });
+registerSDKClass("Speech.SFCustomLanguageModelData.PhraseCountGenerator.Iterator", SFCustomLanguageModelData_PhraseCountGenerator_Iterator, { module: "Speech_b88ddd0bfd78eefc", properties: {}, methods: {"next":{"id":1890573840430082}} });
+registerSDKClass("Speech.SFCustomLanguageModelData.PhraseCountsFromTemplates", SFCustomLanguageModelData_PhraseCountsFromTemplates, { module: "Speech_b88ddd0bfd78eefc", properties: {}, methods: {"insert":{"id":2130207725887053}} });
+registerSDKClass("Speech.SFCustomLanguageModelData.TemplateInsertableBuilder", SFCustomLanguageModelData_TemplateInsertableBuilder, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.SFCustomLanguageModelData.TemplatePhraseCountGenerator", SFCustomLanguageModelData_TemplatePhraseCountGenerator, { module: "Speech_b88ddd0bfd78eefc", properties: {}, methods: {"makeAsyncIterator":{"id":490302102542856},"define":{"id":1827320348896645},"insert":{"id":334944952390965}} });
+registerSDKClass("Speech.SFCustomLanguageModelData.TemplatePhraseCountGenerator.Iterator", SFCustomLanguageModelData_TemplatePhraseCountGenerator_Iterator, { module: "Speech_b88ddd0bfd78eefc", properties: {}, methods: {"next":{"id":3179548306352522}} });
+registerSDKClass("Speech.SFCustomLanguageModelData.TemplatePhraseCountGenerator.Template", SFCustomLanguageModelData_TemplatePhraseCountGenerator_Template, { module: "Speech_b88ddd0bfd78eefc", properties: {}, methods: {"insert":{"id":4414175843208808}} });
+registerSDKClass("SFSpeechRecognitionRequest", SFSpeechRecognitionRequest, { module: "Speech_b88ddd0bfd78eefc", properties: {"addsPunctuation":2693080212983763,"contextualStrings":2501318116071023,"customizedLanguageModel":3542109272455425,"interactionIdentifier":2539364819350429,"requiresOnDeviceRecognition":3817245101471376,"shouldReportPartialResults":3622167282318669,"taskHint":2873217318925880} });
+registerSDKClass("SFSpeechAudioBufferRecognitionRequest", SFSpeechAudioBufferRecognitionRequest, { module: "Speech_b88ddd0bfd78eefc", properties: {"nativeAudioFormat":1795571747594404}, methods: {"append":{"id":2606054404636385},"appendAudioSampleBuffer":{"id":2533746177355271},"endAudio":{"id":775545939830288}} });
+registerSDKClass("Speech.SFSpeechError", SFSpeechError, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("SFSpeechLanguageModel", SFSpeechLanguageModel, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("SFSpeechLanguageModelConfiguration", SFSpeechLanguageModel_Configuration, { module: "Speech_b88ddd0bfd78eefc", properties: {"languageModel":1608857174007241,"vocabulary":456610139487895,"weight":1849814387712826} });
+registerSDKClass("SFSpeechRecognitionMetadata", SFSpeechRecognitionMetadata, { module: "Speech_b88ddd0bfd78eefc", properties: {"averagePauseDuration":2252975661907836,"speakingRate":1157502856032235,"speechDuration":2114567397469482,"speechStartTimestamp":2747069972200473,"voiceAnalytics":303364233668731} });
+registerSDKClass("SFSpeechRecognitionResult", SFSpeechRecognitionResult, { module: "Speech_b88ddd0bfd78eefc", properties: {"bestTranscription":4027075138118229,"isFinal":3038821589568948,"speechRecognitionMetadata":1813015037910338,"transcriptions":233147000908376} });
+registerSDKClass("SFSpeechRecognitionTask", SFSpeechRecognitionTask, { module: "Speech_b88ddd0bfd78eefc", properties: {"isCancelled":3749440879783675,"error":3776797847637605,"isFinishing":639289190412374,"state":3510023490072390}, methods: {"cancel":{"id":2480185587499249},"finish":{"id":1660390386264681}} });
 registerSDKProtocol("c:objc(pl)SFSpeechRecognitionTaskDelegate", {"speechRecognitionDidDetectSpeech":"speechRecognitionDidDetectSpeech(_:)","speechRecognitionTaskDidHypothesizeTranscription":"speechRecognitionTask(_:didHypothesizeTranscription:)","speechRecognitionTaskDidFinishRecognition":"speechRecognitionTask(_:didFinishRecognition:)","speechRecognitionTaskFinishedReadingAudio":"speechRecognitionTaskFinishedReadingAudio(_:)","speechRecognitionTaskWasCancelled":"speechRecognitionTaskWasCancelled(_:)","speechRecognitionTaskDidFinishSuccessfully":"speechRecognitionTask(_:didFinishSuccessfully:)","speechRecognitionTaskDidProcessAudioDuration":"speechRecognitionTask(_:didProcessAudioDuration:)"});
-registerSDKClass("SFSpeechRecognizer", SFSpeechRecognizer, { module: "Speech_80c97107bb9391cd", properties: {"isAvailable":2608645384212510,"defaultTaskHint":850279654983286,"delegate":535691469214491,"locale":3387865391896397,"queue":2972679221357522,"supportsOnDeviceRecognition":3021191406598689}, methods: {"recognitionTaskWithDelegate":{"id":2576864274513366,"hints":[null,{"protocol":"c:objc(pl)SFSpeechRecognitionTaskDelegate"}]},"recognitionTaskWithResultHandler":{"id":1126236549487097,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("SFSpeechRecognizer", SFSpeechRecognizer, { module: "Speech_b88ddd0bfd78eefc", properties: {"isAvailable":2608645384212510,"defaultTaskHint":850279654983286,"delegate":535691469214491,"locale":3387865391896397,"queue":2972679221357522,"supportsOnDeviceRecognition":3021191406598689}, methods: {"recognitionTaskWithDelegate":{"id":2576864274513366,"hints":[null,{"protocol":"c:objc(pl)SFSpeechRecognitionTaskDelegate"}]},"recognitionTaskWithResultHandler":{"id":1126236549487097,"hints":[null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)SFSpeechRecognizerDelegate", {"speechRecognizerAvailabilityDidChange":"speechRecognizer(_:availabilityDidChange:)"});
-registerSDKClass("SFSpeechURLRecognitionRequest", SFSpeechURLRecognitionRequest, { module: "Speech_80c97107bb9391cd", properties: {"url":4450283222277995} });
-registerSDKClass("SFTranscription", SFTranscription, { module: "Speech_80c97107bb9391cd", properties: {"averagePauseDuration":1821114791838443,"formattedString":1726910063464051,"segments":560888242119924,"speakingRate":2562566535643452} });
-registerSDKClass("SFTranscriptionSegment", SFTranscriptionSegment, { module: "Speech_80c97107bb9391cd", properties: {"alternativeSubstrings":2538704222975279,"confidence":3221442628657592,"duration":1234052631126473,"substring":4435538617419101,"substringRange":3961187184813929,"timestamp":622402429458728,"voiceAnalytics":2687538691322742} });
-registerSDKClass("SFVoiceAnalytics", SFVoiceAnalytics, { module: "Speech_80c97107bb9391cd", properties: {"jitter":1203676913428126,"pitch":259877496879170,"shimmer":3876953958891858,"voicing":1215121702557682} });
-registerSDKClass("Speech.SpeechAnalyzer", SpeechAnalyzer, { module: "Speech_80c97107bb9391cd", properties: {}, methods: {"setContext":{"id":3481538110942400},"setModules":{"id":4287935559139191},"analyzeSequence":{"id":381180422943995},"prepareToAnalyzeInWithProgressReadyHandler":{"id":3324724864953268,"hints":[null,{"callback":{"out":[]}}]},"prepareToAnalyzeIn":{"id":2462196067806308},"finalizeAndFinish":{"id":3477669732517343},"cancelAndFinishNow":{"id":1131785079963167},"finalizeAndFinishThroughEndOfInput":{"id":1069982285216922},"start":{"id":4119066777218184},"finish":{"id":1686628099857143},"finalize":{"id":4313994484819920}} });
-registerSDKClass("Speech.SpeechAnalyzer.Options", SpeechAnalyzer_Options, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.SpeechDetector", SpeechDetector, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.SpeechDetector.DetectionOptions", SpeechDetector_DetectionOptions, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.SpeechDetector.Result", SpeechDetector_Result, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.SpeechModels", SpeechModels, { module: "Speech_80c97107bb9391cd", properties: {} });
+registerSDKClass("SFSpeechURLRecognitionRequest", SFSpeechURLRecognitionRequest, { module: "Speech_b88ddd0bfd78eefc", properties: {"url":4450283222277995} });
+registerSDKClass("SFTranscription", SFTranscription, { module: "Speech_b88ddd0bfd78eefc", properties: {"averagePauseDuration":1821114791838443,"formattedString":1726910063464051,"segments":560888242119924,"speakingRate":2562566535643452} });
+registerSDKClass("SFTranscriptionSegment", SFTranscriptionSegment, { module: "Speech_b88ddd0bfd78eefc", properties: {"alternativeSubstrings":2538704222975279,"confidence":3221442628657592,"duration":1234052631126473,"substring":4435538617419101,"substringRange":3961187184813929,"timestamp":622402429458728,"voiceAnalytics":2687538691322742} });
+registerSDKClass("SFVoiceAnalytics", SFVoiceAnalytics, { module: "Speech_b88ddd0bfd78eefc", properties: {"jitter":1203676913428126,"pitch":259877496879170,"shimmer":3876953958891858,"voicing":1215121702557682} });
+registerSDKClass("Speech.SpeechAnalyzer", SpeechAnalyzer, { module: "Speech_b88ddd0bfd78eefc", properties: {}, methods: {"setContext":{"id":3481538110942400},"setModules":{"id":4287935559139191},"analyzeSequence":{"id":381180422943995},"prepareToAnalyzeInWithProgressReadyHandler":{"id":3324724864953268,"hints":[null,{"callback":{"out":[]}}]},"prepareToAnalyzeIn":{"id":2462196067806308},"finalizeAndFinish":{"id":3477669732517343},"cancelAndFinishNow":{"id":1131785079963167},"finalizeAndFinishThroughEndOfInput":{"id":1069982285216922},"start":{"id":4119066777218184},"finish":{"id":1686628099857143},"finalize":{"id":4313994484819920}} });
+registerSDKClass("Speech.SpeechAnalyzer.Options", SpeechAnalyzer_Options, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.SpeechDetector", SpeechDetector, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.SpeechDetector.DetectionOptions", SpeechDetector_DetectionOptions, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.SpeechDetector.Result", SpeechDetector_Result, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.SpeechModels", SpeechModels, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
 registerSDKProtocol("s:6Speech0A6ModuleP", {});
 registerSDKProtocol("s:6Speech0A12ModuleResultP", {});
-registerSDKClass("Speech.SpeechTranscriber", SpeechTranscriber, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.SpeechTranscriber.Preset", SpeechTranscriber_Preset, { module: "Speech_80c97107bb9391cd", properties: {} });
-registerSDKClass("Speech.SpeechTranscriber.Result", SpeechTranscriber_Result, { module: "Speech_80c97107bb9391cd", properties: {} });
+registerSDKClass("Speech.SpeechTranscriber", SpeechTranscriber, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.SpeechTranscriber.Preset", SpeechTranscriber_Preset, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("Speech.SpeechTranscriber.Result", SpeechTranscriber_Result, { module: "Speech_b88ddd0bfd78eefc", properties: {} });
 registerSDKProtocol("s:6Speech18TemplateInsertableP", {"insertGenerator":"insert(generator:)"});
