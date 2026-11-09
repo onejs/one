@@ -9,7 +9,7 @@ namespace facebook::react {
 extern const char OneNativeContentComponentName[];
 // the content lays out at the width UIKit gives its view, with an undefined height so
 // yoga sizes it to the children, whose extent becomes the view's height
-using OneNativeContentShadowNode = OneNativePresentedSlotShadowNode<OneNativeContentComponentName, OneNativeContentProps, OneNativeContentEventEmitter>;
+using OneNativeContentShadowNode = OneNativeSlotShadowNode<OneNativeContentComponentName, OneNativeContentProps, OneNativeContentEventEmitter>;
 using OneNativeContentComponentDescriptor = OneNativeSlotComponentDescriptor<OneNativeContentShadowNode>;
 }
 #endif
