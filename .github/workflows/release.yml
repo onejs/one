@@ -35,7 +35,7 @@ concurrency:
 jobs:
   ensure-ci:
     if: github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 90
     permissions:
       actions: write
@@ -139,7 +139,7 @@ jobs:
     if: >-
       !cancelled() &&
       (github.event_name == 'push' || needs.ensure-ci.result == 'success')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     permissions:
       contents: write
