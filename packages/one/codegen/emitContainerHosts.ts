@@ -2371,7 +2371,7 @@ ${contextMethods
 #include "OneNativeMeasuredShadowNode.h"
 namespace facebook::react {
 extern const char ${name}ComponentName[];
-using ${name}ShadowNode = OneNativeMeasuredShadowNode<${name}ComponentName, ${name}Props, ${name}EventEmitter>;
+using ${name}ShadowNode = OneNativeMeasuredShadowNode<${name}ComponentName, ${name}Props, ${name}EventEmitter${recipe.boundedHeight ? ', true' : ''}>;
 using ${name}ComponentDescriptor = OneNativeMeasuredComponentDescriptor<${name}ShadowNode>;
 }
 #endif

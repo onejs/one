@@ -4889,7 +4889,7 @@ if #available(iOS 13, *) {
     }()
     let argument2: CoreFoundation.CGFloat? = {
       guard let raw = values[2] else { return nil }
-      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxWidth: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite || number == .infinity else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxWidth: \(raw)") }
       return CGFloat(number)
     }()
     let argument3: CoreFoundation.CGFloat? = {
@@ -4904,7 +4904,7 @@ if #available(iOS 13, *) {
     }()
     let argument5: CoreFoundation.CGFloat? = {
       guard let raw = values[5] else { return nil }
-      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxHeight: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite || number == .infinity else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxHeight: \(raw)") }
       return CGFloat(number)
     }()
     let argument6: SwiftUI.Alignment = {

@@ -1787,6 +1787,7 @@ const sdkRecords: Record<
     kind: string
     optional: boolean
     continuous?: true
+    unbounded?: true
     unique?: boolean
     fields?: readonly { name: string; type: string; integer: boolean }[]
     eventValue?: SDKEventValueShape
@@ -1995,10 +1996,22 @@ const sdkRecords: Record<
     [
       { field: 'minWidth', kind: 'number', optional: true, continuous: true },
       { field: 'idealWidth', kind: 'number', optional: true, continuous: true },
-      { field: 'maxWidth', kind: 'number', optional: true, continuous: true },
+      {
+        field: 'maxWidth',
+        kind: 'number',
+        optional: true,
+        continuous: true,
+        unbounded: true,
+      },
       { field: 'minHeight', kind: 'number', optional: true, continuous: true },
       { field: 'idealHeight', kind: 'number', optional: true, continuous: true },
-      { field: 'maxHeight', kind: 'number', optional: true, continuous: true },
+      {
+        field: 'maxHeight',
+        kind: 'number',
+        optional: true,
+        continuous: true,
+        unbounded: true,
+      },
       { field: 'alignment', kind: 'enum', optional: false },
     ],
   frameWithWidthAndHeightAndAlignment: [
@@ -3882,7 +3895,8 @@ export function swiftStyleNative(
             return sdkNumberState(item, name + '.' + argument.field)
           if (
             argument.kind === 'number' &&
-            (typeof item !== 'number' || !Number.isFinite(item))
+            (typeof item !== 'number' ||
+              !(Number.isFinite(item) || (argument.unbounded && item === Infinity)))
           )
             throw new Error(name + '.' + argument.field + ' must be finite')
           if (argument.kind === 'boolean' && typeof item !== 'boolean')
