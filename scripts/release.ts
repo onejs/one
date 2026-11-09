@@ -651,6 +651,25 @@ async function run() {
 // --into <dir>: quick local release, packs each package and unpacks into target node_modules
 const intoIdx = process.argv.indexOf('--into')
 if (intoIdx !== -1) {
+  const retainUnchangedTimestamps = async (previous: string, replacement: string) => {
+    if (!(await fs.pathExists(previous)) || !(await fs.lstat(previous)).isDirectory()) return
+    for (const entry of await fs.readdir(replacement, { withFileTypes: true })) {
+      const oldPath = join(previous, entry.name)
+      const nextPath = join(replacement, entry.name)
+      if (entry.isDirectory()) {
+        await retainUnchangedTimestamps(oldPath, nextPath)
+      } else if (entry.isFile() && (await fs.pathExists(oldPath))) {
+        const old = await fs.lstat(oldPath)
+        const next = await fs.stat(nextPath)
+        if (
+          old.isFile() && old.size === next.size && old.mode === next.mode &&
+          (await fs.readFile(oldPath)).equals(await fs.readFile(nextPath))
+        ) {
+          await fs.utimes(nextPath, old.atimeMs / 1000, old.mtimeMs / 1000)
+        }
+      }
+    }
+  }
   const targetArg = process.argv[intoIdx + 1]
   if (!targetArg || targetArg.startsWith('--')) {
     console.error('Missing directory argument for --into')
@@ -804,6 +823,7 @@ if (intoIdx !== -1) {
             for (const [copyIndex, destDir] of destDirs.entries()) {
               const copyDir = join(tmpDir, `copy-${index}-${copyIndex}`)
               await fs.copy(stagedDir, copyDir)
+              await retainUnchangedTimestamps(destDir, copyDir)
               // preserve unrelated nested dependencies; external symlinks are replaced
               if (
                 (await fs.pathExists(destDir)) &&
