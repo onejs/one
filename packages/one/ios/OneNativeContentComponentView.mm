@@ -93,6 +93,9 @@ using namespace facebook::react;
 
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState {
   _state = std::static_pointer_cast<const OneNativeContentShadowNode::ConcreteState>(state);
+  // uikit can lay out the content before fabric supplies its state.
+  [self updateNativeWidth:_content.bounds.size.width];
+  [self reportMeasuredHeight];
 }
 
 - (void)updateLayoutMetrics:(LayoutMetrics const &)layoutMetrics oldLayoutMetrics:(LayoutMetrics const &)oldLayoutMetrics {
@@ -103,7 +106,7 @@ using namespace facebook::react;
 // the width UIKit gave the content view. the height stays undefined, so yoga sizes the
 // node to its children
 - (void)updateNativeWidth:(CGFloat)width {
-  if (!_state || !std::isfinite(width)) return;
+  if (!_state || !std::isfinite(width) || width <= 0) return;
   const auto &old = _state->getData();
   if (old.measured && old.size.width == (Float)width) return;
   OneNativeSlotState state = old;
