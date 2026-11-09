@@ -276,8 +276,16 @@ export function createReactNativeDevServerPlugin(
 
         const url = new URL(rawUrl, `http://${req.headers.host || 'localhost'}`)
 
+        // macOS and linux keep react-native internals on Platform.ios.js, so asset
+        // urls say `?platform=ios` with no ios engine. ask the requested engine first, then the rest.
         const platform = validPlatforms[url.searchParams.get('platform') || '']
-        const engine = platform ? devEngines[platform] : undefined
+        const requested = platform ? devEngines[platform] : undefined
+        const engines = platform
+          ? [
+              requested,
+              ...Object.values(devEngines).filter((e) => e !== requested),
+            ].filter((e) => e != null)
+          : []
 
         let pathname: string
         try {
@@ -288,11 +296,12 @@ export function createReactNativeDevServerPlugin(
           return
         }
 
+        const hash = url.searchParams.get('hash') || undefined
         const asset =
-          engine?.getAsset(pathname, url.searchParams.get('hash') || undefined) ??
+          engines.map((e) => e.getAsset(pathname, hash)).find(Boolean) ??
           getProjectAssetFile(root, pathname)
         if (!asset) {
-          if (!engine) return next()
+          if (!engines.length) return next()
           res.writeHead(404, { 'Content-Type': 'text/plain' })
           res.end('Native asset not found')
           return
