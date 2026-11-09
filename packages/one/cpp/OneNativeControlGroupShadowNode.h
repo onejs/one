@@ -7,7 +7,7 @@
 #include "OneNativeMeasuredShadowNode.h"
 namespace facebook::react {
 extern const char OneNativeControlGroupComponentName[];
-using OneNativeControlGroupShadowNode = OneNativeMeasuredShadowNode<OneNativeControlGroupComponentName, OneNativeControlGroupProps, OneNativeControlGroupEventEmitter>;
+using OneNativeControlGroupShadowNode = OneNativeMeasuredShadowNode<OneNativeControlGroupComponentName, OneNativeControlGroupProps, OneNativeControlGroupEventEmitter, true>;
 using OneNativeControlGroupComponentDescriptor = OneNativeMeasuredComponentDescriptor<OneNativeControlGroupShadowNode>;
 }
 #endif

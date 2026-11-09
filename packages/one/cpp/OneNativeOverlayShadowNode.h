@@ -7,7 +7,7 @@
 #include "OneNativeMeasuredShadowNode.h"
 namespace facebook::react {
 extern const char OneNativeOverlayComponentName[];
-using OneNativeOverlayShadowNode = OneNativeMeasuredShadowNode<OneNativeOverlayComponentName, OneNativeOverlayProps, OneNativeOverlayEventEmitter>;
+using OneNativeOverlayShadowNode = OneNativeMeasuredShadowNode<OneNativeOverlayComponentName, OneNativeOverlayProps, OneNativeOverlayEventEmitter, true>;
 using OneNativeOverlayComponentDescriptor = OneNativeMeasuredComponentDescriptor<OneNativeOverlayShadowNode>;
 }
 #endif

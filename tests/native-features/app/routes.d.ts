@@ -215,6 +215,7 @@ declare module 'one' {
         | `/toolbar-test`
         | `/zoom-detail`
         | `/zoom-test`
+        | `/zz-large-title`
       DynamicRoutes:
         | `/deep-link/${OneRouter.SingleRoutePart<T>}`
         | `/native-screens/${OneRouter.SingleRoutePart<T>}`
