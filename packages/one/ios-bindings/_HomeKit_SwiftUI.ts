@@ -12,7 +12,7 @@ export class CameraView extends SDKHandle {
    * nonisolated init(source: HMCameraSource)
    * @availability iOS 14.0+
    */
-  static init(source: _HomeKit_HMCameraSource): Promise<CameraView> { return callSDKAsync<CameraView>("_HomeKit_SwiftUI_27d7de8f28d6fda0", 951763672914663, undefined, [source]); }
+  static init(source: _HomeKit_HMCameraSource): Promise<CameraView> { return callSDKAsync<CameraView>("_HomeKit_SwiftUI_8a9cd9e597ca864c", 951763672914663, undefined, [source]); }
   declare readonly $type: { "s:16_HomeKit_SwiftUI10CameraViewV": true };
 }
 
@@ -22,4 +22,4 @@ export class CameraView extends SDKHandle {
  */
 export type CameraView_Body = SDKHandle;
 
-registerSDKClass("_HomeKit_SwiftUI.CameraView", CameraView, { module: "_HomeKit_SwiftUI_27d7de8f28d6fda0", properties: {} });
+registerSDKClass("_HomeKit_SwiftUI.CameraView", CameraView, { module: "_HomeKit_SwiftUI_8a9cd9e597ca864c", properties: {} });
