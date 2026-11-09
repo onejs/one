@@ -86,7 +86,10 @@ const nextVersion = (() => {
   }
 
   if (canary) {
-    return resolveCanaryVersion(curVersion, { rePublish, baseVersion: '2.0.0' })
+    return resolveCanaryVersion(curVersion, {
+      rePublish,
+      baseVersion: resolveStableVersion(curVersion, { mode: 'patch' }),
+    })
   }
 
   if (rePublish) {
