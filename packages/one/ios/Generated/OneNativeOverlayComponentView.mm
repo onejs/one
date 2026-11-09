@@ -40,9 +40,12 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeOverlayProps>(props);
+  const auto height = next.yogaStyle.dimension(facebook::yoga::Dimension::Height);
+  const bool boundedHeight = !height.isUndefined() && !height.isAuto();
   [_nativeView configureWithAlignment:RCTNSStringFromString(next.alignment)
       slotName:RCTNSStringFromString(next.slotName)
-      slotValues:RCTNSStringFromString(next.slotValues)];
+      slotValues:RCTNSStringFromString(next.slotValues)
+      boundedHeight:boundedHeight];
   [super updateProps:props oldProps:oldProps];
 }
 

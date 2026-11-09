@@ -7,6 +7,7 @@ private final class OverlayModel: ObservableObject {
   @Published var alignment: String = "center"
   @Published var slotName: String = ""
   @Published var slotValues: String = "[]"
+  @Published var boundedHeight: Bool = false
   var onHeight: ((CGFloat) -> Void)?
   @Published var marker: AnyView?
   var onSDKEvent: ((String, String) -> Void)?
@@ -42,7 +43,7 @@ private struct OverlayContent: View {
       }
     }
     .oneNativeContainerStyle(style, skipWhenEmpty: true)
-    .oneNativeMeasured(standalone, model.onHeight)
+    .oneNativeMeasured(standalone && !model.boundedHeight, model.onHeight)
     .oneNativeScheme(standalone, bridge.scheme)
   }
 }
@@ -100,10 +101,11 @@ public final class OneNativeOverlayView: OneNativeContainerView {
     super.didMoveToWindow()
   }
 
-  public func configure(alignment: String, slotName: String, slotValues: String) {
+  public func configure(alignment: String, slotName: String, slotValues: String, boundedHeight: Bool) {
     if model.alignment != alignment { model.alignment = alignment }
     if model.slotName != slotName { model.slotName = slotName }
     if model.slotValues != slotValues { model.slotValues = slotValues }
+    if model.boundedHeight != boundedHeight { model.boundedHeight = boundedHeight }
   }
 
   public override func propagateActive(_ active: Bool) {
@@ -141,6 +143,7 @@ public final class OneNativeOverlayView: OneNativeContainerView {
     model.alignment = "center"
     model.slotName = ""
     model.slotValues = "[]"
+    model.boundedHeight = false
     super.reset()
   }
 }

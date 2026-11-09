@@ -8,7 +8,7 @@ import {
   type ElementRef,
   type ReactNode,
 } from 'react'
-import { Platform } from 'react-native'
+import { Platform, StyleSheet, type StyleProp, type ViewStyle } from 'react-native'
 import { Image, Label, Text } from './generated/Controls.native'
 import { dispatchSDKEvent, swiftStyleNative, validSDKEventValue } from './generated/swiftStyleNative'
 import { viewSlotArguments, viewSlotAvailability, viewSlotEvents } from './generated/viewSlots'
@@ -165,7 +165,9 @@ function nativeEnvironmentProps({
   }
 }
 
-function assertNoGreedyContainer(children: ReactNode, owner: string) {
+// these all take the box they are given instead of reporting an ideal height,
+// so a measured parent reads zero for one and renders nothing at all.
+function greedyContainer(children: ReactNode) {
   for (const child of Children.toArray(children)) {
     if (!isValidElement(child)) continue
     const name =
@@ -182,11 +184,22 @@ function assertNoGreedyContainer(children: ReactNode, owner: string) {
                 : child.type === NavigationStack
                   ? 'Swift.NavigationStack'
                   : null
-    // these all take the box they are given instead of reporting an ideal height,
-    // so a measured parent reads zero for one and renders nothing at all.
-    if (name)
-      throw new Error(`${name} cannot be a child of ${owner}; give it its own box`)
+    if (name) return name
   }
+  return null
+}
+
+function assertNoGreedyContainer(children: ReactNode, owner: string) {
+  const name = greedyContainer(children)
+  if (name) throw new Error(`${name} cannot be a child of ${owner}; give it its own box`)
+}
+
+// an overlay or view slot measures its content unless its style sets a height,
+// so content that takes its box gets that height to fill.
+function assertGreedyContentBounded(children: ReactNode, style: StyleProp<ViewStyle>, owner: string) {
+  const name = greedyContainer(children)
+  if (name && typeof StyleSheet.flatten(style)?.height !== 'number')
+    throw new Error(`${name} inside ${owner} fills the ${owner}'s box; give the ${owner} a style height`)
 }
 
 // every One Native view takes swiftStyle: the converted style and the SDK events its
@@ -1243,6 +1256,7 @@ function OverlayFn({ alignment = 'center', children, style, ...props }: OverlayP
   if (markers.length > 1)
     throw new Error('Swift.Overlay takes a single Overlay.Content child')
   assertOneNativeChildren(children, 'Swift.Overlay')
+  assertGreedyContentBounded(children, style, 'Swift.Overlay')
   return (
     <NativeOverlay {...props} style={[{ alignSelf: 'stretch' }, style]} alignment={alignment} slotName="" slotValues="[]">
       <InsideContainer value={true}>{children}</InsideContainer>
@@ -1263,6 +1277,7 @@ function ViewSlotFn({ name, options, children, style, ...props }: ViewSlotProps)
   if (markers.length !== 1)
     throw new Error('Swift.ViewSlot takes one ViewSlot.Content child')
   assertOneNativeChildren(children, 'Swift.ViewSlot')
+  assertGreedyContentBounded(children, style, 'Swift.ViewSlot')
   const preferenceEvent = Object.hasOwn(viewSlotEvents, name) ? viewSlotEvents[name] : undefined
   if (preferenceEvent && typeof (options as { onValue?: unknown } | undefined)?.onValue !== 'function')
     throw new Error(`Swift.ViewSlot ${name}.onValue must be a callback`)

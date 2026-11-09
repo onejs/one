@@ -1487,6 +1487,7 @@ export const components = [
       viewSlot: { name: 'slotName', values: 'slotValues', event: 'onNativeSDKEvent' },
       initial: { slotValues: '"[]"' },
       layout: 'measured',
+      boundedHeight: true,
       scheme: true,
       skipEmptyStyle: true,
     },
@@ -1499,7 +1500,8 @@ export const components = [
       onNativeSDKEvent: { name: 'string', value: 'string' },
     },
     enumProps: {},
-    // standalone, the overlay and the ViewSlot behind it report the height SwiftUI measured back to Yoga.
+    // standalone, the overlay and the ViewSlot behind it report the height SwiftUI measured back to
+    // Yoga, unless a style height bounds them, as a List or Form inside one needs.
     layout: { kind: 'measured' },
     slots: [
       {
