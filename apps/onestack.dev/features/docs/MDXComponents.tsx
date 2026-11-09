@@ -21,6 +21,7 @@ import { Status } from '../../components/Status'
 import { SubTitle } from '../site/SubTitle'
 import { Badge } from './Badge'
 import { Code, CodeInline } from './Code'
+import { CopyAgentPrompt } from './CopyAgentPrompt'
 import { LinkHeading } from './LinkHeading'
 import { NativeHero } from './NativeHero'
 import { Notice } from './Notice'
@@ -135,6 +136,7 @@ const componentsIn = {
   Code,
   NativeHero,
   Notice,
+  CopyAgentPrompt,
   SubTitle,
   RouteTree,
   PropsTable,

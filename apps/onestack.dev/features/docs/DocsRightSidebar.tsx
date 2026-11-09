@@ -4,6 +4,7 @@ import { type Frontmatter } from '@vxrn/mdx-rust'
 import type { LinkProps } from 'one'
 import { Circle, H4, Paragraph, Separator, XStack, YStack } from 'tamagui'
 import { ScrollView } from '../site/ScrollView'
+import { CopyAgentPrompt } from './CopyAgentPrompt'
 
 const QuickNavLink = ({ href, ...rest }: LinkProps) => (
   <a onClick={(e) => [e.stopPropagation()]} href={href as any}>
@@ -38,7 +39,12 @@ export function DocsRightSidebar({
       left="gtLg:50%"
       marginLeft="gtLg:410px"
       paddingRight="gtMd:5 gtLg:0px"
+      gap="4"
     >
+      <YStack paddingHorizontal="2" pointerEvents="auto">
+        <CopyAgentPrompt size="2" />
+      </YStack>
+
       <YStack
         render="nav"
         aria-labelledby="site-quick-nav-heading"
