@@ -194,10 +194,11 @@ function assertNoGreedyContainer(children: ReactNode, owner: string) {
   if (name) throw new Error(`${name} cannot be a child of ${owner}; give it its own box`)
 }
 
-// an overlay or view slot measures its content unless its style sets a height,
-// so content that takes its box gets that height to fill.
-function assertGreedyContentBounded(children: ReactNode, style: StyleProp<ViewStyle>, owner: string) {
-  const name = greedyContainer(children)
+// a standalone overlay or view slot measures its content unless its style sets a
+// height, so content that takes its box gets that height to fill. composed, the
+// enclosing swiftui view proposes the box.
+function assertGreedyContentBounded(children: ReactNode, style: StyleProp<ViewStyle>, owner: string, composed: boolean) {
+  const name = !composed && greedyContainer(children)
   if (name && typeof StyleSheet.flatten(style)?.height !== 'number')
     throw new Error(`${name} inside ${owner} fills the ${owner}'s box; give the ${owner} a style height`)
 }
@@ -1256,7 +1257,7 @@ function OverlayFn({ alignment = 'center', children, style, ...props }: OverlayP
   if (markers.length > 1)
     throw new Error('Swift.Overlay takes a single Overlay.Content child')
   assertOneNativeChildren(children, 'Swift.Overlay')
-  assertGreedyContentBounded(children, style, 'Swift.Overlay')
+  assertGreedyContentBounded(children, style, 'Swift.Overlay', useContext(InsideContainer))
   return (
     <NativeOverlay {...props} style={[{ alignSelf: 'stretch' }, style]} alignment={alignment} slotName="" slotValues="[]">
       <InsideContainer value={true}>{children}</InsideContainer>
@@ -1277,7 +1278,7 @@ function ViewSlotFn({ name, options, children, style, ...props }: ViewSlotProps)
   if (markers.length !== 1)
     throw new Error('Swift.ViewSlot takes one ViewSlot.Content child')
   assertOneNativeChildren(children, 'Swift.ViewSlot')
-  assertGreedyContentBounded(children, style, 'Swift.ViewSlot')
+  assertGreedyContentBounded(children, style, 'Swift.ViewSlot', useContext(InsideContainer))
   const preferenceEvent = Object.hasOwn(viewSlotEvents, name) ? viewSlotEvents[name] : undefined
   if (preferenceEvent && typeof (options as { onValue?: unknown } | undefined)?.onValue !== 'function')
     throw new Error(`Swift.ViewSlot ${name}.onValue must be a callback`)
