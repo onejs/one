@@ -28,7 +28,9 @@ import AVKit
 #if ONE_GROUP_PHOTOS
 import PhotosUI
 #endif
+#if ONE_GROUP_PHOTOS
 import Photos
+#endif
 import WidgetKit
 #if ONE_GROUP_PREVIEW3D
 import QuickLook

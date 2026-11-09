@@ -127,17 +127,20 @@
     },
     "photos": {
       "frameworks": [
-        "PhotosUI"
+        "PhotosUI",
+        "Photos"
       ],
       "components": [
         "OneNativePhotosPicker",
         "OneNativeLivePhotoView"
       ],
       "hybrids": [
-        "OneImagePicker"
+        "OneImagePicker",
+        "OnePhotoLibrary"
       ],
       "uses": [
         "ImagePicker",
+        "PhotoLibrary",
         "presentLimitedLibraryPicker"
       ],
       "modifiers": [
@@ -189,6 +192,21 @@
         "realityViewCameraControls",
         "realityViewLayoutBehavior"
       ],
+      "slots": [],
+      "values": []
+    },
+    "speech": {
+      "frameworks": [
+        "Speech"
+      ],
+      "components": [],
+      "hybrids": [
+        "OneSpeech"
+      ],
+      "uses": [
+        "Speech"
+      ],
+      "modifiers": [],
       "slots": [],
       "values": []
     }

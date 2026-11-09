@@ -4,6 +4,7 @@ Goal: cut the time One's iOS apps spend in dyld before `main`. Subject: `tests/r
 
 ## status
 
+- Stopped on 2026-10-25 UTC by owner direction relayed by startup lead s72425: "we don't need to optimize the startup anymore". Scope: further startup optimization. Round three remains the latest measured implementation; no round-four runtime changes were landed.
 - Done: the framework table, a cause for the pre-main cost, and the size of the saving a trimmed link set gives (probe app, RAN).
 - Not done: a source prototype on `tm/one-ios-linkset`, and One cold launches current against prototype. The previous worker's warm build tree (`one-ios-js2`) no longer exists, so a One build was from scratch. `bun install` onto the Samsung disk alone took 25 minutes on the loaded host and `one prebuild` then sat 21 minutes without output (killed), so no One app was built. Nothing below is a One cold-launch number.
 - Every number is the probe app unless it says otherwise.
@@ -247,6 +248,37 @@ Marks are `NSLog("startup_mark ...")` lines: `app_delegate_init` in `AppDelegate
 
 The acceptance bar (within about 100 ms of plain RN before `AppDelegate.init`) is not met: One with no group is 355 ms behind the control. The remaining difference is the frameworks One still links. `otool -L` shows 204 images for One against 74 for the control, including SwiftUI, AVKit, WebKit, MapKit, VisionKit, Translation, LinkPresentation, ContactsUI, EventKit, Photos, SwiftData, WorkoutKit and their overlays. The probe sweep above put the nine mid-weight frameworks at about 100 ms (P2), which does not cover 355 ms; the rest is SwiftUI and the libswift libraries. Nothing here is trimmed yet. One group still costs back nearly all of the gain (wallet 1689 against 608). Routed content is dominated by React Native and One startup, and shows One after no group 137 ms behind the control.
 
+## round three: photos and speech split, and the floor (branch tm/one-ios-linkset-2)
+
+`photos` now also owns `Photos` and the `OneImagePicker` and `OnePhotoLibrary` hybrids, and a new `speech` group owns `Speech` and `OneSpeech`. `OnePhotoLibrary` and `OneSpeech` are compiled only under their group, `OneNativeStyle.swift` imports `Photos` only under `ONE_GROUP_PHOTOS`, and `OneAutolinking` registers both by group. Modifiers declared only by a non-core overlay now carry `frameworks` (`codegen/deriveSDK.ts`) so `modifierGroups` can place them.
+
+### measurement (RAN, 10 interleaved cold launches each, one simulator, load average about 37 because no quiet window was admitted)
+
+| app | app_delegate_init median | routed_content median |
+|---|---|---|
+| plain RN control | 233 | 292 |
+| One, no group (97 libs after the split, 99 before) | 586 | 668 |
+| One, speech group | 592 | 676 |
+
+The gap to plain RN at `AppDelegate.init` is about 353 ms against 355 ms before the split. Moving Photos and Speech out of the no-group binary changed the startup time by less than the run to run spread.
+
+### what keeps the floor there
+
+- The cost is a hub effect. Dyld load time follows the shared expensive dependency set, so removing a few frameworks saves nothing while any other always-compiled file still imports something that reaches it. All the heavy ones have to leave together.
+- The remaining always-compiled importers are `OneNativeStyle.swift` and the `Hybrid*` files for Contacts and ContactsUI, MapKit, WebKit, VisionKit, AVKit, Translation, EventKit, LinkPresentation and GameController overlays.
+- `OneSDKBindings` compiles per-framework `OneSDK_<Framework>.o` files (EventKit, PDFKit, DeviceCheck, CloudKit, LinkPresentation and others) that no group gates. Swift records each module's import closure in every object file, so these keep the frameworks linked.
+- A cheap split of one or two frameworks does not reach the 300 ms target. Reaching it needs one bundled change: gate those hybrids, the `OneNativeStyle.swift` imports and the unconditional SDK binding files behind groups together, then re-measure.
+
+## round four: stopped before validation (2026-10-25 UTC)
+
+The owner's accepted bar in Contrast `specs/one-ios-link-set.md` is about 250 to 300 ms behind plain React Native at `AppDelegate.init`. The earlier 100 ms target quoted below is historical. The latest measured gap remains 353 ms from round three. This worker recorded no new cold-launch, link-set or feature result.
+
+RAN, source inspection on pro-64 at `367d7ff4d1`: `codegen/sdk/app.ts` walks every platform `.ios` module whenever app code imports `one`. Its UIKit table includes `UIDocumentProperties.init(metadata:)` taking `LPLinkMetadata`. Gating only the separate LinkPresentation table cannot remove that UIKit dependency. The generated CoreLocation conformances also import Contacts, and EventKit imports MapKit. These observations establish source references, not the timing they cause.
+
+Draft work extended the existing group mechanism and began production-graph SDK selection and generator-level filtering of entries whose types belong to excluded frameworks. The lead authorized fingerprint changes with regeneration of the committed facades and manifest. That regeneration was not performed. The draft was incomplete when s72425 relayed the owner's instruction to stop. It was preserved outside the worktree in `/Users/n8/builders/one-ios-linkset4/unfinished.patch` with `unfinished-notes.md`, then removed from the delivery branch. Do not apply it as a validated implementation.
+
+RAN: dependencies installed and the JS dependency build completed before the SDK draft edits. This does not validate the unfinished changes. Native source generation was stopped during Swift typechecking. No iOS app build or timing run started, no simulator was created and no app was launched. There are no new native acceptance results or CI checks to hand off. Further optimization is canceled unless the owner reopens it.
+
 ## how it works
 
 `ios-link-set.json` lists the groups. `one prebuild` writes `ios/one-link-set.json` from the production bundle (`src/cli/iosLinkSet.ts`). `One.podspec` defines `ONE_GROUP_X` conditions for those groups in Release and for all groups in Debug. Group sources, nitro registration and generated modifiers sit under those conditions. A compiled-out component keeps a stub class that renders nothing, and a compiled-out hybrid is not registered, so its call fails through the existing unsupported error. `OneStoreReview` moved to a Swift hybrid in the store group because its SDK import kept StoreKit linked in every app.
@@ -255,7 +287,7 @@ The acceptance bar (within about 100 ms of plain RN before `AppDelegate.init`) i
 
 - The link set is captured at pod install. Adding a feature later needs `one prebuild`; a Release build that needs a missing group fails (see round two).
 - A computed read or an escaping namespace keeps every group. A Metro bundle has no analysis plugin, so prebuild links every group there.
-- The acceptance bar of 100 ms over plain RN is not met (355 ms at `app_delegate_init`); mid-weight frameworks and SwiftUI remain linked.
+- The latest gap is about 353 ms at `app_delegate_init` after round three, against the owner's accepted range of about 250 to 300 ms. Further optimization was canceled before another measurement; see round four.
 - Do not edit `codegen/sdk/app.ts` or other fingerprinted files; the fingerprint is embedded in the published bindings.
 
 ## files
