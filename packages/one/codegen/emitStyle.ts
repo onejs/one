@@ -1,4 +1,4 @@
-import type { StyleField } from './catalog'
+import { sdkUnboundedArguments, type StyleField } from './catalog'
 import type { DerivedModifier, DerivedViewSlot, EventValueSchema } from './deriveSDK'
 import { continuousNumber, eventValueType } from './emitControls'
 import { sdkGuard } from './sdkGuard'
@@ -504,7 +504,7 @@ ${assignments}
             const value = scalarType === 'CoreFoundation.CGFloat' ? 'CGFloat(number)' : scalarType === 'Swift.Float' ? 'Float(number)' : scalarType === 'Swift.Int' ? 'Int(number)' : 'number'
             return `    let ${variable}: ${argument.type} = {
       guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
-      guard let number = ${continuousNumber(argument.type, argument.scalarConstructor) ? 'oneNativeStyleNumber(raw)' : 'Double(raw)'}, number.isFinite else { preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)") }
+      guard let number = ${continuousNumber(argument.type, argument.scalarConstructor) ? 'oneNativeStyleNumber(raw)' : 'Double(raw)'}, number.isFinite${sdkUnboundedArguments[modifier.name]?.includes(argument.field) ? ' || number == .infinity' : ''} else { preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)") }
       return ${construct(value, argument.scalarConstructor, argument.type)}
     }()`
           }
@@ -1295,7 +1295,7 @@ const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null
 // can bind a native state (DragGesture alone).
 const sdkGestureInputs: Record<string, Record<string, { parameters: readonly SDKValueParameter[]; changed: boolean; binds: boolean }>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'gesture').map((modifier) => [modifier.name, Object.fromEntries(modifier.gestureOptions!.map((option) => [option.name, { parameters: shapeParameters(option.options), changed: Boolean(option.changed), binds: option.type === dragGesture }]))])))}
 const sdkCodableOptional: Record<string, boolean> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'bindingCodable').map((modifier) => [modifier.name, modifier.type.endsWith('?')]))) }
-const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; continuous?: true; unique?: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape; value?: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, type, scalarConstructor, optional, unique, fields, eventValue, value }) => ({ field, kind, optional, ...(kind === 'number' && continuousNumber(type, scalarConstructor) ? { continuous: true } : {}), ...(unique ? { unique } : {}), ...(kind === 'enum' && hasRecords(value) ? { value: valueKey(value!.type) } : {}), ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
+const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; continuous?: true; unbounded?: true; unique?: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape; value?: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, type, scalarConstructor, optional, unique, fields, eventValue, value }) => ({ field, kind, optional, ...(kind === 'number' && continuousNumber(type, scalarConstructor) ? { continuous: true } : {}), ...(sdkUnboundedArguments[modifier.name]?.includes(field) ? { unbounded: true } : {}), ...(unique ? { unique } : {}), ...(kind === 'enum' && hasRecords(value) ? { value: valueKey(value!.type) } : {}), ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
 // SDK values a modifier takes as a case name or a record, by modifier name.
 const sdkModifierValues: Record<string, string> = ${JSON.stringify(Object.fromEntries(derived.flatMap((modifier) =>
   modifier.kind === 'style' && modifier.factories?.length ? [[modifier.name, `style:${modifier.name}`]]
@@ -1478,7 +1478,7 @@ function validTextRanges(value: unknown, text: string): value is OneNativeTextRa
             return JSON.stringify(item)
           }
           if (argument.continuous && isSyncState(item)) return sdkNumberState(item, name + '.' + argument.field)
-          if (argument.kind === 'number' && (typeof item !== 'number' || !Number.isFinite(item))) throw new Error(name + '.' + argument.field + ' must be finite')
+          if (argument.kind === 'number' && (typeof item !== 'number' || !(Number.isFinite(item) || (argument.unbounded && item === Infinity)))) throw new Error(name + '.' + argument.field + ' must be finite')
           if (argument.kind === 'boolean' && typeof item !== 'boolean') throw new Error(name + '.' + argument.field + ' must be a boolean')
           if (argument.value && typeof item === 'object' && item !== null) return sdkValueText(item, argument.value, name + '.' + argument.field)
           if ((argument.kind === 'string' || argument.kind === 'url' || argument.kind === 'enum') && typeof item !== 'string') throw new Error(name + '.' + argument.field + ' must be a string')

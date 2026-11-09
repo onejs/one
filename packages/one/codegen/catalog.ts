@@ -57,6 +57,14 @@ export const modifiers = [
   { name: 'webViewContentBackground', type: 'Visibility', module: 'SwiftUICore' },
 ] as const
 
+// number arguments that also take infinity, as swiftui's .frame(maxWidth: .infinity) does
+export const sdkUnboundedArguments: Readonly<Record<string, readonly string[]>> = {
+  frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment: [
+    'maxWidth',
+    'maxHeight',
+  ],
+}
+
 // a context menu is the same menu content on a different presentation, so Swift.Menu and
 // Swift.ContextMenu are one component with one trigger slot.
 export const menuMethods = [
