@@ -5,11 +5,11 @@ import UIKit
 // 1 registers a cell source and 2 reserves a content id for Swift.UIKitContent, 3 reads
 // that content's view, and 4 and 5 make cell sources.
 @objc(OneSDKTable_OneNativeViews) final class OneSDKTable_OneNativeViews: NSObject, OneSDKTable {
-  @MainActor func observe(_ id: Int, _ call: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription {
+  @MainActor func observe(_ id: Int64, _ call: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription {
     throw OneSDKError.unsupported("observing OneNativeViews #\(id)")
   }
 
-  func argumentNames(_ id: Int) -> [String] {
+  func argumentNames(_ id: Int64) -> [String] {
     switch id {
     case 0, 4, 5: ["view"]
     case 1: ["source"]
@@ -18,7 +18,7 @@ import UIKit
     }
   }
 
-  func sync(_ id: Int, _ call: OneSDKCall) throws -> Any {
+  func sync(_ id: Int64, _ call: OneSDKCall) throws -> Any {
     switch id {
     case 0:
       let object: NSObject = try call.arg(0)
@@ -39,7 +39,7 @@ import UIKit
     }
   }
 
-  func async(_ id: Int, _ call: OneSDKCall) async throws -> Any {
+  func async(_ id: Int64, _ call: OneSDKCall) async throws -> Any {
     switch id {
     case 3:
       return try await { @MainActor in

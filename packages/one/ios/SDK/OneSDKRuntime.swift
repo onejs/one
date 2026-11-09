@@ -1003,10 +1003,10 @@ public enum OneSDKBackground {
 // each framework's generated table, found by name so an app links only the
 // frameworks it imports
 public protocol OneSDKTable: NSObject {
-  @MainActor func observe(_ id: Int, _ call: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription
-  func argumentNames(_ id: Int) -> [String]
-  func sync(_ id: Int, _ call: OneSDKCall) throws -> Any
-  func async(_ id: Int, _ call: OneSDKCall) async throws -> Any
+  @MainActor func observe(_ id: Int64, _ call: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription
+  func argumentNames(_ id: Int64) -> [String]
+  func sync(_ id: Int64, _ call: OneSDKCall) throws -> Any
+  func async(_ id: Int64, _ call: OneSDKCall) async throws -> Any
 }
 
 public enum OneSDKTables {
