@@ -38,7 +38,8 @@ for round in range(a.rounds+1):
      filefd=os.open(path,os.O_RDONLY)
      watcher.control([select.kevent(filefd,filter=select.KQ_FILTER_VNODE,flags=select.KQ_EV_ADD|select.KQ_EV_CLEAR,fflags=select.KQ_NOTE_WRITE)],0)
     marks=dict(line.split() for line in path.read_text().splitlines()) if path.exists() else {}
-    if 'routed_content' in marks: marks.setdefault('first_content',marks.pop('routed_content'))
+    if 'routed_content' in marks and 'first_content' in marks: break
+    if 'routed_content' in marks: marks['first_content']=marks.pop('routed_content')
     route=0
     try:
      inode=prefs.stat().st_ino
@@ -63,7 +64,7 @@ for round in range(a.rounds+1):
    if preferencefd is not None: os.close(preferencefd)
   (root/f'{round}-{label}.txt').write_text(path.read_text())
   path.unlink()
-  row={'round':round,'app':label,**{k:float(v) for k,v in marks.items()}}
+  row={'round':round,'app':label,'capture_delay_ms':time.time()*1000-started,**{k:float(v) for k,v in marks.items()}}
   if round: rows.append(row)
   print(json.dumps(row),flush=True)
   subprocess.run(['xcrun','simctl','terminate',a.sim,bundle],check=True)

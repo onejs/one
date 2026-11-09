@@ -1,7 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useIsFocused } from '@react-navigation/native'
 import type { ReactElement, ReactNode } from 'react'
-import { SharedTransitionBoundary } from 'react-native-reanimated'
+// the leaf is a plain fabric view; the package entry installs animation runtimes.
+import { SharedTransitionBoundary } from 'react-native-reanimated/src/component/SharedTransitionBoundary'
 
 /**
  * Returns a Stack navigator factory. On native this is the stock

@@ -45,5 +45,5 @@ export class IOSurfaceRef extends SDKHandle {
 /** enum IOSurfaceSubsampling */
 export type IOSurfaceSubsampling = "subsamplingUnknown" | "subsamplingNone" | "subsampling422" | "subsampling420" | "subsampling411";
 
-registerSDKClass("IOSurface", IOSurface, { module: "IOSurface_0a5002a99b82e77e", properties: {} });
-registerSDKClass("IOSurface.IOSurfaceRef", IOSurfaceRef, { module: "IOSurface_0a5002a99b82e77e", properties: {} });
+registerSDKClass("IOSurface", IOSurface, { module: "IOSurface_4e2094813cc7c17f", properties: {} });
+registerSDKClass("IOSurface.IOSurfaceRef", IOSurfaceRef, { module: "IOSurface_4e2094813cc7c17f", properties: {} });

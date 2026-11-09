@@ -213,7 +213,7 @@ export async function writeAppSdkPod(root: string, log = console.info, releaseFr
     const dir = join(podDir, 'Sources', configuration)
     mkdirSync(dir, { recursive: true })
     for (const [name, from] of generated.files) {
-      writeFileSync(join(dir, name), `#if ${configuration === 'Debug' ? '' : '!'}ONE_SDK_DEBUG\n${readFileSync(from, 'utf8')}\n#endif\n`)
+      writeFileSync(join(dir, `${configuration}_${name}`), `#if ${configuration === 'Debug' ? '' : '!'}ONE_SDK_DEBUG\n${readFileSync(from, 'utf8')}\n#endif\n`)
     }
   }
   for (const sdk of sdkRoots) {

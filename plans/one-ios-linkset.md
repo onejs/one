@@ -274,11 +274,15 @@ RAN, source inspection on pro-64 at `367d7ff4d1`: `codegen/sdk/app.ts` walks eve
 
 Draft work extended the existing group mechanism and began production-graph SDK selection and generator-level filtering of entries whose types belong to excluded frameworks. The lead authorized fingerprint changes with regeneration of the committed facades and manifest. That regeneration was not performed. The draft was incomplete when s72425 relayed the owner's instruction to stop. It was preserved outside the worktree in `/Users/n8/builders/one-ios-linkset4/unfinished.patch` with `unfinished-notes.md`, then removed from the delivery branch. Do not apply it as a validated implementation.
 
-RAN: dependencies installed and the JS dependency build completed before the SDK draft edits. This does not validate the unfinished changes. Native source generation was stopped during Swift typechecking. No iOS app build or timing run started, no simulator was created and no app was launched. There are no new native acceptance results or CI checks to hand off. Further optimization is canceled unless the owner reopens it.
+RAN: dependencies installed and the JS dependency build completed before the SDK draft edits. This does not validate the unfinished changes. Native source generation was stopped during Swift typechecking. No iOS app build or timing run started, no simulator was created and no app was launched. There are no new native acceptance results or CI checks to hand off. That stop is historical; round five resumes the work.
 
 ## round five: production SDK selection and remaining framework groups (2026-11-09)
 
-The production bundler records SDK table identities remaining in the emitted JavaScript, after tree shaking. Prebuild uses these frameworks for Release and preserves the source-scanned framework set for Debug. The two configurations have separate generated source directories behind `ONE_SDK_DEBUG`, so changing features in development keeps working. The SDK pod records its Release framework list in the installed CocoaPods xcconfig. A later Release bundle that needs a missing framework fails with the same prebuild instruction as a missing native group. Metro retains the previous conservative full set.
+The production bundler records SDK table identities remaining in the emitted JavaScript, after tree shaking, including template literals emitted by the production minifier. Static `One` member reads import the existing component or service export directly. This avoids retaining unrelated SDK backends through the frozen namespace object, preserves object identity and live platform getters, and leaves computed reads and escaping objects unchanged. `One.UI`, `One.iOS` and `One.Android` reads all participate in group detection.
+
+A real production fixture rendering `One.UI.Map`, a native Toggle bound to shared state, and a Foundation UUID now reports `groups: [maps]` and `frameworks: [Foundation]`. Before the static-member transform the same bundle retained thirteen SDK backends, including EventKit, UIKit and PDFKit.
+
+Prebuild uses these frameworks for Release and preserves the source-scanned framework set for Debug. The two configurations have separate generated source directories behind `ONE_SDK_DEBUG`, so changing features in development keeps working. Their Swift filenames include the configuration because Swift rejects duplicate basenames even when their declarations have opposite compilation guards. The SDK pod records its Release framework list in the installed CocoaPods xcconfig. A later Release bundle that needs a missing framework fails with the same prebuild instruction as a missing native group. Metro retains the previous conservative full set.
 
 SDK conformance-only files no longer import frameworks used solely by table entries they do not emit. Public SDK entries, signatures and IDs are unchanged; the committed facades and manifest are rekeyed to the new generator fingerprint. The generated native tables and conformances were compiled against device and simulator SDKs, then reused after the pod-only configuration change with their table identity updated. Declaration shapes are unchanged.
 
@@ -296,7 +300,47 @@ The first matched comparison, before the final overlay splits, ran ten alternati
 
 This intermediate result reduced the gap from 368.4 to 132.6 ms at the delegate and from 385.3 to 152.8 ms at route commit. This is a matched reconstruction using the same current dependencies, not an executable built from the old branch. The old 353 ms and 137 ms figures used another build stack and a different content mark.
 
-Final qualification is in progress. The launch comparison rebuilds a round-three-equivalent baseline with the newly separated groups and full SDK tables enabled, then the selected Release app, against the same React Native 0.88 control. It runs alternating cold launches after warm-up on air-24 through the quiet queue. A physical iPhone Air is connected to the build host.
+### physical device
+
+Ten alternating cold launches per app after warm-up on an iPhone Air, using matching Release dependencies:
+
+| app | AppDelegate.init median ms (min to max) | route commit median ms (min to max) |
+|---|---:|---:|
+| plain RN | 18.14 (15.83 to 18.74) | 50.55 (48.26 to 53.07) |
+| selected One | 25.48 (24.65 to 31.37) | 75.78 (72.25 to 78.85) |
+| One gap | 7.33 | 25.24 |
+
+The phone was connected to pro-64; no physical iPhone was reachable on air-24. Device launches used ordinary local build admission. Both timestamps originate on the phone and subtract its kernel process creation time, so host command and console transport time are excluded. The device numbers show why simulator dyld costs should not be treated as phone costs.
+
+### measurement contract and limits
+
+`RCTContentDidAppearNotification` marks One's router provider shell before the page. These comparisons separately record that notification and the target page's React layout-effect timestamp. The page and plain RN control write the same Settings key; the native helper records its timestamp relative to kernel process creation. The simulator harness also supports the older helper by reading the preference with filesystem events. One warm-up round is excluded, then launch order reverses each round. These are process cold starts with warm filesystem caches, not reboot timings or first-pixel measurements.
+
+The no-group Release app has 54 direct load commands, down from 96 in the matched baseline (plain RN: 34). These counts exclude the `otool -L` header and are not transitive dyld image counts. SwiftUI and core system dependencies remain, and selecting an SDK table retains frameworks required by that table's public parameter and return types. Debug keeps every group and its complete source-selected SDK tables.
+
+### final simulator comparison
+
+Ten alternating cold launches per app after a warm-up round, air-24 iPhone 17 Pro simulator, Release, React Native 0.88. The quiet queue admitted the run after background indexing finished; measurement itself took 143 seconds, including the separate Stack comparison below.
+
+| app | AppDelegate.init median ms (min to max) | route commit median ms (min to max) |
+|---|---:|---:|
+| plain RN | 303.91 (296.53 to 317.22) | 363.74 (358.73 to 385.87) |
+| rebuilt round-three equivalent | 668.45 (660.84 to 685.76) | 742.63 (734.43 to 761.03) |
+| final selected One | 386.68 (378.07 to 395.62) | 458.43 (451.22 to 481.10) |
+| gap before | 364.54 | 378.89 |
+| gap after | 82.77 | 94.70 |
+
+One improves by 281.78 ms at the delegate and 284.20 ms at route commit. Median per-launch delegate-to-route time is 73.50 ms before, 72.19 ms after and 60.88 ms in plain RN. Most of the total saving is before the delegate; about 11 ms extra after it remains on this simulator. The remaining phone gap is 25.24 ms overall and 7.33 ms at the delegate.
+
+A second ten-pair comparison with a Stack root and the same final native binary measured 465.77 ms at route commit with Reanimated's package entry versus 462.02 ms with its existing boundary component imported directly. Median delegate-to-route time is 79.82 versus 76.42 ms. The leaf is the same plain Fabric boundary and preserves the focused-screen `isActive` behavior. Animation components still import Reanimated's package entry and initialize its runtimes when used. A minimal Stack fixture also qualified push and pop at runtime.
+
+### feature and compiler qualification
+
+A Release binary compiled with only maps plus the Foundation SDK table returns a generated Foundation UUID, renders the Cupertino map and propagates shared-state updates from a JavaScript button to native switches and from a native switch back to React text. Its 59 direct load commands include MapKit and its SwiftUI overlay; EventKit, LinkPresentation, WebKit, VisionKit, Photos, SwiftData, StoreKit, MediaPlayer and ContactsUI are absent. The no-group app has 54 direct load commands.
+
+Both all-group and no-group SwiftUI generation passed native typechecking. The final no-group app compiled for device and simulator; the selected maps/Foundation Release app also compiled after the configuration filename repair. Thirteen focused SDK ABI and production-bundler checks passed, including minified table detection, stale native configuration rejection, namespace identity, shadowed bindings and live platform getters. Matching facades and manifest use generator identity `4e2094813cc7c17f`.
+
+Production lazy barrels and initial URL prefetch were tried and rejected; the details are in `plans/one-ios-startup.md`.
 
 ## how it works
 
@@ -306,7 +350,7 @@ Final qualification is in progress. The launch comparison rebuilds a round-three
 
 - The link set is captured at pod install. Adding a feature later needs `one prebuild`; a Release build that needs a missing group fails (see round two).
 - A computed read or an escaping namespace keeps every group. A Metro bundle has no analysis plugin, so prebuild links every group there.
-- The historical round-three gap is about 353 ms at `app_delegate_init`. Round five is being measured against a rebuilt control on air-24.
+- The historical round-three gap used different dependencies and a shell-appearance content mark. Use the matched round-five route-commit comparison for current conclusions.
 - SDK generator edits require matching committed facade and manifest identities; round five includes the matching fingerprint regeneration.
 
 ## files

@@ -32,7 +32,7 @@ it('selects SDK frameworks from the emitted production graph after unused import
       plugins: [iosLinkSetPlugin().api.vxrnNative({ platform: 'ios', dev: false })],
     })
     try {
-      await bundle.generate({ format: 'iife' })
+      await bundle.generate({ format: 'iife', minify: true, globals: { one: 'one' } })
     } finally {
       await bundle.close()
     }

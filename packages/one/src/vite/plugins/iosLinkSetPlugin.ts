@@ -1,6 +1,7 @@
 import { readFileSync, realpathSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import type { Plugin } from 'vite'
+import { nativeOneMembers } from './oneNativeMembers'
 import {
   IOS_LINK_SET_REPORT_ENV,
   assertLinkSet,
@@ -47,6 +48,9 @@ function analysisPlugin(): Plugin {
     own.push(realpathSync(own[0]))
   } catch {}
   const usage = emptyUsage()
+  const rewriteMembers = nativeOneMembers(
+    join(oneDirectory(), 'dist/esm/one-shared.native.js')
+  )
 
   return {
     name: 'one:ios-link-set',
@@ -58,6 +62,7 @@ function analysisPlugin(): Plugin {
         if (own.some((dir) => file.startsWith(dir + '/'))) return
         if (!mightUseGroups(code, keySet, pattern)) return
         analyzeModule(code, file, keySet, usage)
+        return rewriteMembers(code, file)
       },
     },
     generateBundle(_options, bundle) {
@@ -69,7 +74,7 @@ function analysisPlugin(): Plugin {
       for (const output of Object.values(bundle)) {
         if (output.type !== 'chunk') continue
         for (const match of output.code.matchAll(
-          /["']([A-Za-z_][A-Za-z0-9_]*)_([a-f0-9]{16})["']/g
+          /["'`]([A-Za-z_][A-Za-z0-9_]*)_([a-f0-9]{16})["'`]/g
         )) {
           if (match[2] === sdk.generation && sdkModules.has(match[1]))
             frameworks.add(match[1])

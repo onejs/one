@@ -13,54 +13,54 @@ import type { UTType as _UniformTypeIdentifiers_UTType } from "one/ios/UniformTy
  */
 export class SWAttributionView extends SDKHandle {
   /** init() */
-  static init(): Promise<SWAttributionView> { return callSDKAsync<SWAttributionView>("SharedWithYou_0a5002a99b82e77e", 2587049757915180, undefined, []); }
+  static init(): Promise<SWAttributionView> { return callSDKAsync<SWAttributionView>("SharedWithYou_4e2094813cc7c17f", 2587049757915180, undefined, []); }
   /**
    * var backgroundStyle: SWAttributionView.BackgroundStyle { get set }
    * @availability iOS 16.0+
    */
-  get backgroundStyle(): Promise<SWAttributionView_BackgroundStyle> { return callSDKAsync<SWAttributionView_BackgroundStyle>("SharedWithYou_0a5002a99b82e77e", 1871945499356028, this, []); }
-  setBackgroundStyle(value: SWAttributionView_BackgroundStyle): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 3562300732915136, this, [value]); }
+  get backgroundStyle(): Promise<SWAttributionView_BackgroundStyle> { return callSDKAsync<SWAttributionView_BackgroundStyle>("SharedWithYou_4e2094813cc7c17f", 1871945499356028, this, []); }
+  setBackgroundStyle(value: SWAttributionView_BackgroundStyle): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 3562300732915136, this, [value]); }
   /**
    * var displayContext: SWAttributionView.DisplayContext { get set }
    * @availability iOS 16.0+
    */
-  get displayContext(): Promise<SWAttributionView_DisplayContext> { return callSDKAsync<SWAttributionView_DisplayContext>("SharedWithYou_0a5002a99b82e77e", 1001146583062455, this, []); }
-  setDisplayContext(value: SWAttributionView_DisplayContext): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 1125017846279068, this, [value]); }
+  get displayContext(): Promise<SWAttributionView_DisplayContext> { return callSDKAsync<SWAttributionView_DisplayContext>("SharedWithYou_4e2094813cc7c17f", 1001146583062455, this, []); }
+  setDisplayContext(value: SWAttributionView_DisplayContext): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 1125017846279068, this, [value]); }
   /**
    * var highlight: SWHighlight? { get set }
    * @availability iOS 16.0+
    */
-  get highlight(): Promise<(SWHighlight) | null> { return callSDKAsync<(SWHighlight) | null>("SharedWithYou_0a5002a99b82e77e", 608855816952099, this, []); }
-  setHighlight(value?: (SWHighlight) | null): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 4076894990213696, this, [value]); }
+  get highlight(): Promise<(SWHighlight) | null> { return callSDKAsync<(SWHighlight) | null>("SharedWithYou_4e2094813cc7c17f", 608855816952099, this, []); }
+  setHighlight(value?: (SWHighlight) | null): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 4076894990213696, this, [value]); }
   /**
    * var highlightMenu: UIMenu { get }
    * @availability iOS 16.0+
    */
-  get highlightMenu(): Promise<_UIKit_UIMenu> { return callSDKAsync<_UIKit_UIMenu>("SharedWithYou_0a5002a99b82e77e", 517636582323197, this, []); }
+  get highlightMenu(): Promise<_UIKit_UIMenu> { return callSDKAsync<_UIKit_UIMenu>("SharedWithYou_4e2094813cc7c17f", 517636582323197, this, []); }
   /**
    * var horizontalAlignment: SWAttributionView.HorizontalAlignment { get set }
    * @availability iOS 16.0+
    */
-  get horizontalAlignment(): Promise<SWAttributionView_HorizontalAlignment> { return callSDKAsync<SWAttributionView_HorizontalAlignment>("SharedWithYou_0a5002a99b82e77e", 1308101067108733, this, []); }
-  setHorizontalAlignment(value: SWAttributionView_HorizontalAlignment): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 1018706876113484, this, [value]); }
+  get horizontalAlignment(): Promise<SWAttributionView_HorizontalAlignment> { return callSDKAsync<SWAttributionView_HorizontalAlignment>("SharedWithYou_4e2094813cc7c17f", 1308101067108733, this, []); }
+  setHorizontalAlignment(value: SWAttributionView_HorizontalAlignment): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 1018706876113484, this, [value]); }
   /**
    * var menuTitleForHideAction: String? { get set }
    * @availability iOS 16.0+
    */
-  get menuTitleForHideAction(): Promise<(string) | null> { return callSDKAsync<(string) | null>("SharedWithYou_0a5002a99b82e77e", 2850286694602689, this, []); }
-  setMenuTitleForHideAction(value?: (string) | null): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 352793988587279, this, [value]); }
+  get menuTitleForHideAction(): Promise<(string) | null> { return callSDKAsync<(string) | null>("SharedWithYou_4e2094813cc7c17f", 2850286694602689, this, []); }
+  setMenuTitleForHideAction(value?: (string) | null): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 352793988587279, this, [value]); }
   /**
    * var preferredMaxLayoutWidth: CGFloat { get set }
    * @availability iOS 16.0+
    */
-  get preferredMaxLayoutWidth(): Promise<number> { return callSDKAsync<number>("SharedWithYou_0a5002a99b82e77e", 1676395320361076, this, []); }
-  setPreferredMaxLayoutWidth(value: number): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 3343798246080158, this, [value]); }
+  get preferredMaxLayoutWidth(): Promise<number> { return callSDKAsync<number>("SharedWithYou_4e2094813cc7c17f", 1676395320361076, this, []); }
+  setPreferredMaxLayoutWidth(value: number): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 3343798246080158, this, [value]); }
   /**
    * var supplementalMenu: UIMenu? { get set }
    * @availability iOS 16.0+
    */
-  get supplementalMenu(): Promise<(_UIKit_UIMenu) | null> { return callSDKAsync<(_UIKit_UIMenu) | null>("SharedWithYou_0a5002a99b82e77e", 1130087714639510, this, []); }
-  setSupplementalMenu(value?: (_UIKit_UIMenu) | null): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 1013228824361521, this, [value]); }
+  get supplementalMenu(): Promise<(_UIKit_UIMenu) | null> { return callSDKAsync<(_UIKit_UIMenu) | null>("SharedWithYou_4e2094813cc7c17f", 1130087714639510, this, []); }
+  setSupplementalMenu(value?: (_UIKit_UIMenu) | null): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 1013228824361521, this, [value]); }
   declare readonly $type: { "c:objc(cs)SWAttributionView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "backgroundStyle": true; "displayContext": true; "highlight": true; "highlightMenu": true; "horizontalAlignment": true; "menuTitleForHideAction": true; "preferredMaxLayoutWidth": true; "supplementalMenu": true };
 }
@@ -76,7 +76,7 @@ export const SWAttributionView_BackgroundStyle = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): Promise<(SWAttributionView_BackgroundStyle) | null> { return callSDKAsync<(SWAttributionView_BackgroundStyle) | null>("SharedWithYou_0a5002a99b82e77e", 1436683094726283, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(SWAttributionView_BackgroundStyle) | null> { return callSDKAsync<(SWAttributionView_BackgroundStyle) | null>("SharedWithYou_4e2094813cc7c17f", 1436683094726283, undefined, [rawValue]); }
 };
 
 /**
@@ -90,7 +90,7 @@ export const SWAttributionView_DisplayContext = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): Promise<(SWAttributionView_DisplayContext) | null> { return callSDKAsync<(SWAttributionView_DisplayContext) | null>("SharedWithYou_0a5002a99b82e77e", 753235545663499, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(SWAttributionView_DisplayContext) | null> { return callSDKAsync<(SWAttributionView_DisplayContext) | null>("SharedWithYou_4e2094813cc7c17f", 753235545663499, undefined, [rawValue]); }
 };
 
 /**
@@ -104,7 +104,7 @@ export const SWAttributionView_HorizontalAlignment = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): Promise<(SWAttributionView_HorizontalAlignment) | null> { return callSDKAsync<(SWAttributionView_HorizontalAlignment) | null>("SharedWithYou_0a5002a99b82e77e", 3803030441572964, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(SWAttributionView_HorizontalAlignment) | null> { return callSDKAsync<(SWAttributionView_HorizontalAlignment) | null>("SharedWithYou_4e2094813cc7c17f", 3803030441572964, undefined, [rawValue]); }
 };
 
 /**
@@ -116,12 +116,12 @@ export class SWHighlight extends SDKHandle {
    * var url: URL { get }
    * @availability iOS 16.0+
    */
-  get url(): string { return callSDK<string>("SharedWithYou_0a5002a99b82e77e", 2604167846375738, this, []); }
+  get url(): string { return callSDK<string>("SharedWithYou_4e2094813cc7c17f", 2604167846375738, this, []); }
   /**
    * @NSCopying var identifier: any NSCopying & NSSecureCoding { get }
    * @availability iOS 16.0+
    */
-  get identifier(): (SDKHandle) & (SDKHandle) { return callSDK<(SDKHandle) & (SDKHandle)>("SharedWithYou_0a5002a99b82e77e", 1672010981433997, this, []); }
+  get identifier(): (SDKHandle) & (SDKHandle) { return callSDK<(SDKHandle) & (SDKHandle)>("SharedWithYou_4e2094813cc7c17f", 1672010981433997, this, []); }
   declare readonly $type: { "c:objc(cs)SWHighlight": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true; "identifier": true };
 }
@@ -135,22 +135,22 @@ export class SWCollaborationHighlight extends SWHighlight {
    * var collaborationIdentifier: String { get }
    * @availability iOS 16.0+
    */
-  get collaborationIdentifier(): string { return callSDK<string>("SharedWithYou_0a5002a99b82e77e", 3011910438037383, this, []); }
+  get collaborationIdentifier(): string { return callSDK<string>("SharedWithYou_4e2094813cc7c17f", 3011910438037383, this, []); }
   /**
    * var contentType: UTType { get }
    * @availability iOS 16.0+
    */
-  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("SharedWithYou_0a5002a99b82e77e", 1402007374948020, this, []); }
+  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("SharedWithYou_4e2094813cc7c17f", 1402007374948020, this, []); }
   /**
    * var creationDate: Date { get }
    * @availability iOS 16.0+
    */
-  get creationDate(): globalThis.Date { return callSDK<globalThis.Date>("SharedWithYou_0a5002a99b82e77e", 2943062548909563, this, []); }
+  get creationDate(): globalThis.Date { return callSDK<globalThis.Date>("SharedWithYou_4e2094813cc7c17f", 2943062548909563, this, []); }
   /**
    * var title: String? { get }
    * @availability iOS 16.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("SharedWithYou_0a5002a99b82e77e", 3650589407660161, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("SharedWithYou_4e2094813cc7c17f", 3650589407660161, this, []); }
   declare readonly $type: { "c:objc(cs)SWCollaborationHighlight": true; "c:objc(cs)SWHighlight": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true; "identifier": true; "collaborationIdentifier": true; "contentType": true; "creationDate": true; "title": true };
 }
@@ -170,76 +170,76 @@ export class SWCollaborationView extends SDKHandle {
    * func dismissPopover() async
    * @availability iOS 16.0+
    */
-  dismissPopover(completion?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 3411059744353651, this, [completion], [{"callback":{"out":[]}}]); }
+  dismissPopover(completion?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 3411059744353651, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * init(itemProvider: NSItemProvider)
    * @availability iOS 16.0+
    */
-  static init(itemProvider: _Foundation_NSItemProvider): Promise<SWCollaborationView> { return callSDKAsync<SWCollaborationView>("SharedWithYou_0a5002a99b82e77e", 544514110478161, undefined, [itemProvider]); }
+  static init(itemProvider: _Foundation_NSItemProvider): Promise<SWCollaborationView> { return callSDKAsync<SWCollaborationView>("SharedWithYou_4e2094813cc7c17f", 544514110478161, undefined, [itemProvider]); }
   /**
    * func setContent(_ detailViewListContentView: UIView)
    * @availability iOS 16.0+
    */
-  setContent(detailViewListContentView: _UIKit_UIView): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 403904244913334, this, [detailViewListContentView]); }
+  setContent(detailViewListContentView: _UIKit_UIView): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 403904244913334, this, [detailViewListContentView]); }
   /**
    * func setShowManageButton(_ showManageButton: Bool)
    * @availability iOS 16.0+
    */
-  setShowManageButton(showManageButton: boolean): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 826696235072938, this, [showManageButton]); }
+  setShowManageButton(showManageButton: boolean): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 826696235072938, this, [showManageButton]); }
   /**
    * var activeParticipantCount: Int { get set }
    * @availability iOS 16.0+
    */
-  get activeParticipantCount(): Promise<number> { return callSDKAsync<number>("SharedWithYou_0a5002a99b82e77e", 3279718031729481, this, []); }
-  setActiveParticipantCount(value: number): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 2846458343899191, this, [value]); }
+  get activeParticipantCount(): Promise<number> { return callSDKAsync<number>("SharedWithYou_4e2094813cc7c17f", 3279718031729481, this, []); }
+  setActiveParticipantCount(value: number): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 2846458343899191, this, [value]); }
   /**
    * weak var cloudSharingControllerDelegate: (any UICloudSharingControllerDelegate)? { get set }
    * @availability iOS 16.0+
    */
-  get cloudSharingControllerDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("SharedWithYou_0a5002a99b82e77e", 2641601262523931, this, []); }
-  setCloudSharingControllerDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 343216903007838, this, [value]); }
+  get cloudSharingControllerDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("SharedWithYou_4e2094813cc7c17f", 2641601262523931, this, []); }
+  setCloudSharingControllerDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 343216903007838, this, [value]); }
   /**
    * weak var cloudSharingDelegate: (any UICloudSharingControllerDelegate)? { get set }
    * @availability iOS 16.0+
    */
-  get cloudSharingDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("SharedWithYou_0a5002a99b82e77e", 3001763875496316, this, []); }
-  setCloudSharingDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 2611680203894022, this, [value]); }
+  get cloudSharingDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("SharedWithYou_4e2094813cc7c17f", 3001763875496316, this, []); }
+  setCloudSharingDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 2611680203894022, this, [value]); }
   /**
    * weak var delegate: (any SWCollaborationViewDelegate)? { get set }
    * @availability iOS 16.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("SharedWithYou_0a5002a99b82e77e", 2462073672565835, this, []); }
-  setDelegate(value?: (Implements<SWCollaborationViewDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 1686414768644903, this, [value], [{"protocol":"c:objc(pl)SWCollaborationViewDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("SharedWithYou_4e2094813cc7c17f", 2462073672565835, this, []); }
+  setDelegate(value?: (Implements<SWCollaborationViewDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 1686414768644903, this, [value], [{"protocol":"c:objc(pl)SWCollaborationViewDelegate"}]); }
   /**
    * var headerImage: UIImage { get set }
    * @availability iOS 16.0+
    */
-  get headerImage(): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("SharedWithYou_0a5002a99b82e77e", 1524868528308900, this, []); }
-  setHeaderImage(value: _UIKit_UIImage): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 1946146888315318, this, [value]); }
+  get headerImage(): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("SharedWithYou_4e2094813cc7c17f", 1524868528308900, this, []); }
+  setHeaderImage(value: _UIKit_UIImage): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 1946146888315318, this, [value]); }
   /**
    * var headerSubtitle: String { get set }
    * @availability iOS 16.0+
    */
-  get headerSubtitle(): Promise<string> { return callSDKAsync<string>("SharedWithYou_0a5002a99b82e77e", 1629656080414446, this, []); }
-  setHeaderSubtitle(value: string): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 2771473154915156, this, [value]); }
+  get headerSubtitle(): Promise<string> { return callSDKAsync<string>("SharedWithYou_4e2094813cc7c17f", 1629656080414446, this, []); }
+  setHeaderSubtitle(value: string): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 2771473154915156, this, [value]); }
   /**
    * var headerTitle: String { get set }
    * @availability iOS 16.0+
    */
-  get headerTitle(): Promise<string> { return callSDKAsync<string>("SharedWithYou_0a5002a99b82e77e", 3755081582912209, this, []); }
-  setHeaderTitle(value: string): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 1503164045667180, this, [value]); }
+  get headerTitle(): Promise<string> { return callSDKAsync<string>("SharedWithYou_4e2094813cc7c17f", 3755081582912209, this, []); }
+  setHeaderTitle(value: string): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 1503164045667180, this, [value]); }
   /**
    * var manageButtonTitle: String { get set }
    * @availability iOS 16.0+
    */
-  get manageButtonTitle(): Promise<string> { return callSDKAsync<string>("SharedWithYou_0a5002a99b82e77e", 1691028455919231, this, []); }
-  setManageButtonTitle(value: string): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 4260168722770923, this, [value]); }
+  get manageButtonTitle(): Promise<string> { return callSDKAsync<string>("SharedWithYou_4e2094813cc7c17f", 1691028455919231, this, []); }
+  setManageButtonTitle(value: string): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 4260168722770923, this, [value]); }
   /**
    * var pendingAccessRequestsCount: Int { get set }
    * @availability iOS 27.0+
    */
-  get pendingAccessRequestsCount(): Promise<number> { return callSDKAsync<number>("SharedWithYou_0a5002a99b82e77e", 2908863397731517, this, []); }
-  setPendingAccessRequestsCount(value: number): Promise<void> { return callSDKAsync<void>("SharedWithYou_0a5002a99b82e77e", 107834714278606, this, [value]); }
+  get pendingAccessRequestsCount(): Promise<number> { return callSDKAsync<number>("SharedWithYou_4e2094813cc7c17f", 2908863397731517, this, []); }
+  setPendingAccessRequestsCount(value: number): Promise<void> { return callSDKAsync<void>("SharedWithYou_4e2094813cc7c17f", 107834714278606, this, [value]); }
   declare readonly $type: { "c:objc(cs)SWCollaborationView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activeParticipantCount": true; "cloudSharingControllerDelegate": true; "cloudSharingDelegate": true; "delegate": true; "headerImage": true; "headerSubtitle": true; "headerTitle": true; "manageButtonTitle": true; "pendingAccessRequestsCount": true };
 }
@@ -270,60 +270,60 @@ export class SWHighlightCenter extends SDKHandle {
    * class var highlightCollectionTitle: String { get }
    * @availability iOS 16.0+
    */
-  static get highlightCollectionTitle(): string { return callSDK<string>("SharedWithYou_0a5002a99b82e77e", 3615064662288926, undefined, []); }
+  static get highlightCollectionTitle(): string { return callSDK<string>("SharedWithYou_4e2094813cc7c17f", 3615064662288926, undefined, []); }
   /**
    * class var isSystemCollaborationSupportAvailable: Bool { get }
    * @availability iOS 16.0+
    */
-  static get isSystemCollaborationSupportAvailable(): boolean { return callSDK<boolean>("SharedWithYou_0a5002a99b82e77e", 2493862014289940, undefined, []); }
+  static get isSystemCollaborationSupportAvailable(): boolean { return callSDK<boolean>("SharedWithYou_4e2094813cc7c17f", 2493862014289940, undefined, []); }
   /**
    * func clearNotices(for highlight: SWCollaborationHighlight)
    * @availability iOS 16.1+
    */
-  clearNotices(highlight: SWCollaborationHighlight): void { return callSDK<void>("SharedWithYou_0a5002a99b82e77e", 3479337748444228, this, [highlight]); }
+  clearNotices(highlight: SWCollaborationHighlight): void { return callSDK<void>("SharedWithYou_4e2094813cc7c17f", 3479337748444228, this, [highlight]); }
   /**
    * func collaborationHighlight(forIdentifier collaborationIdentifier: SWCollaborationIdentifier) throws -> SWCollaborationHighlight
    * @availability iOS 16.0+
    */
-  collaborationHighlightForIdentifier(collaborationIdentifier: _SharedWithYouCore_SWCollaborationIdentifier): SWCollaborationHighlight { return callSDK<SWCollaborationHighlight>("SharedWithYou_0a5002a99b82e77e", 3872552710445201, this, [collaborationIdentifier]); }
+  collaborationHighlightForIdentifier(collaborationIdentifier: _SharedWithYouCore_SWCollaborationIdentifier): SWCollaborationHighlight { return callSDK<SWCollaborationHighlight>("SharedWithYou_4e2094813cc7c17f", 3872552710445201, this, [collaborationIdentifier]); }
   /**
    * func collaborationHighlight(for URL: URL) async throws -> SWCollaborationHighlight
    * @availability iOS 16.0+
    */
-  getCollaborationHighlight(URL: string, completionHandler: ((arg0: (SWCollaborationHighlight) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("SharedWithYou_0a5002a99b82e77e", 408919427761163, this, [URL, completionHandler], [null,{"callback":{"out":[]}}]); }
+  getCollaborationHighlight(URL: string, completionHandler: ((arg0: (SWCollaborationHighlight) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("SharedWithYou_4e2094813cc7c17f", 408919427761163, this, [URL, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func highlight(for URL: URL) async throws -> SWHighlight
    * @availability iOS 16.0+
    */
-  getHighlightFor(URL: string, completionHandler: ((arg0: (SWHighlight) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("SharedWithYou_0a5002a99b82e77e", 2351112256117523, this, [URL, completionHandler], [null,{"callback":{"out":[]}}]); }
+  getHighlightFor(URL: string, completionHandler: ((arg0: (SWHighlight) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("SharedWithYou_4e2094813cc7c17f", 2351112256117523, this, [URL, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func signedIdentityProof(for collaborationHighlight: SWCollaborationHighlight, using data: Data) async throws -> SWPerson.SignedIdentityProof
    * @availability iOS 16.0+
    */
-  getSignedIdentityProof(collaborationHighlight: SWCollaborationHighlight, data: ArrayBuffer, completionHandler: ((arg0: (_SharedWithYouCore_SWPerson_SignedIdentityProof) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("SharedWithYou_0a5002a99b82e77e", 1681449157136208, this, [collaborationHighlight, data, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  getSignedIdentityProof(collaborationHighlight: SWCollaborationHighlight, data: ArrayBuffer, completionHandler: ((arg0: (_SharedWithYouCore_SWPerson_SignedIdentityProof) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("SharedWithYou_4e2094813cc7c17f", 1681449157136208, this, [collaborationHighlight, data, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): SWHighlightCenter { return callSDK<SWHighlightCenter>("SharedWithYou_0a5002a99b82e77e", 239319768138402, undefined, []); }
+  static init(): SWHighlightCenter { return callSDK<SWHighlightCenter>("SharedWithYou_4e2094813cc7c17f", 239319768138402, undefined, []); }
   /**
    * func postNotice(for event: any SWHighlightEvent)
    * @availability iOS 16.0+
    */
-  postNotice(event: SDKHandle): void { return callSDK<void>("SharedWithYou_0a5002a99b82e77e", 278494373358153, this, [event]); }
+  postNotice(event: SDKHandle): void { return callSDK<void>("SharedWithYou_4e2094813cc7c17f", 278494373358153, this, [event]); }
   /**
    * weak var delegate: (any SWHighlightCenterDelegate)? { get set }
    * @availability iOS 16.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SharedWithYou_0a5002a99b82e77e", 2421116489113017, this, []); }
-  set delegate(value: (Implements<SWHighlightCenterDelegate> | SDKHandle) | null) { callSDK<void>("SharedWithYou_0a5002a99b82e77e", 1281078067363695, this, [value], [{"protocol":"c:objc(pl)SWHighlightCenterDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SharedWithYou_4e2094813cc7c17f", 2421116489113017, this, []); }
+  set delegate(value: (Implements<SWHighlightCenterDelegate> | SDKHandle) | null) { callSDK<void>("SharedWithYou_4e2094813cc7c17f", 1281078067363695, this, [value], [{"protocol":"c:objc(pl)SWHighlightCenterDelegate"}]); }
   /**
    * var highlights: [SWHighlight] { get }
    * @availability iOS 16.0+
    */
-  get highlights(): Array<SWHighlight> { return callSDK<Array<SWHighlight>>("SharedWithYou_0a5002a99b82e77e", 2118522707729108, this, []); }
+  get highlights(): Array<SWHighlight> { return callSDK<Array<SWHighlight>>("SharedWithYou_4e2094813cc7c17f", 2118522707729108, this, []); }
   /**
    * func collaborationHighlight(forIdentifier: String) throws -> SWCollaborationHighlight
    * @availability iOS 16.0+
    */
-  collaborationHighlightForIdentifier13931(forIdentifier: string): SWCollaborationHighlight { return callSDK<SWCollaborationHighlight>("SharedWithYou_0a5002a99b82e77e", 1956712228032529, this, [forIdentifier]); }
+  collaborationHighlightForIdentifier13931(forIdentifier: string): SWCollaborationHighlight { return callSDK<SWCollaborationHighlight>("SharedWithYou_4e2094813cc7c17f", 1956712228032529, this, [forIdentifier]); }
   declare readonly $type: { "c:objc(cs)SWHighlightCenter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "highlights": true };
 }
@@ -348,7 +348,7 @@ export const SWHighlightCenterErrorCode = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (SWHighlightCenterErrorCode) | null { return callSDK<(SWHighlightCenterErrorCode) | null>("SharedWithYou_0a5002a99b82e77e", 3933104036934463, undefined, [rawValue]); }
+  init(rawValue: number): (SWHighlightCenterErrorCode) | null { return callSDK<(SWHighlightCenterErrorCode) | null>("SharedWithYou_4e2094813cc7c17f", 3933104036934463, undefined, [rawValue]); }
 };
 
 /**
@@ -360,17 +360,17 @@ export class SWHighlightChangeEvent extends SDKHandle {
    * init(highlight: SWHighlight, trigger: SWHighlightChangeEventTrigger)
    * @availability iOS 16.0+
    */
-  static init(highlight: SWHighlight, trigger: SWHighlightChangeEventTrigger): SWHighlightChangeEvent { return callSDK<SWHighlightChangeEvent>("SharedWithYou_0a5002a99b82e77e", 536817645545495, undefined, [highlight, trigger]); }
+  static init(highlight: SWHighlight, trigger: SWHighlightChangeEventTrigger): SWHighlightChangeEvent { return callSDK<SWHighlightChangeEvent>("SharedWithYou_4e2094813cc7c17f", 536817645545495, undefined, [highlight, trigger]); }
   /**
    * var changeEventTrigger: SWHighlightChangeEventTrigger { get }
    * @availability iOS 16.0+
    */
-  get changeEventTrigger(): SWHighlightChangeEventTrigger { return callSDK<SWHighlightChangeEventTrigger>("SharedWithYou_0a5002a99b82e77e", 2008393397338475, this, []); }
+  get changeEventTrigger(): SWHighlightChangeEventTrigger { return callSDK<SWHighlightChangeEventTrigger>("SharedWithYou_4e2094813cc7c17f", 2008393397338475, this, []); }
   /**
    * var highlightURL: URL { get }
    * @availability iOS 16.0+
    */
-  get highlightURL(): string { return callSDK<string>("SharedWithYou_0a5002a99b82e77e", 2208003949777595, this, []); }
+  get highlightURL(): string { return callSDK<string>("SharedWithYou_4e2094813cc7c17f", 2208003949777595, this, []); }
   declare readonly $type: { "c:objc(cs)SWHighlightChangeEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "changeEventTrigger": true; "highlightURL": true };
 }
@@ -386,7 +386,7 @@ export const SWHighlightChangeEventTrigger = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (SWHighlightChangeEventTrigger) | null { return callSDK<(SWHighlightChangeEventTrigger) | null>("SharedWithYou_0a5002a99b82e77e", 3435349317843573, undefined, [rawValue]); }
+  init(rawValue: number): (SWHighlightChangeEventTrigger) | null { return callSDK<(SWHighlightChangeEventTrigger) | null>("SharedWithYou_4e2094813cc7c17f", 3435349317843573, undefined, [rawValue]); }
 };
 
 /**
@@ -408,12 +408,12 @@ export class SWHighlightMembershipEvent extends SDKHandle {
    * init(highlight: SWHighlight, trigger: SWHighlightMembershipEventTrigger)
    * @availability iOS 16.0+
    */
-  static init(highlight: SWHighlight, trigger: SWHighlightMembershipEventTrigger): SWHighlightMembershipEvent { return callSDK<SWHighlightMembershipEvent>("SharedWithYou_0a5002a99b82e77e", 389839739040346, undefined, [highlight, trigger]); }
+  static init(highlight: SWHighlight, trigger: SWHighlightMembershipEventTrigger): SWHighlightMembershipEvent { return callSDK<SWHighlightMembershipEvent>("SharedWithYou_4e2094813cc7c17f", 389839739040346, undefined, [highlight, trigger]); }
   /**
    * var membershipEventTrigger: SWHighlightMembershipEventTrigger { get }
    * @availability iOS 16.0+
    */
-  get membershipEventTrigger(): SWHighlightMembershipEventTrigger { return callSDK<SWHighlightMembershipEventTrigger>("SharedWithYou_0a5002a99b82e77e", 2965714047783087, this, []); }
+  get membershipEventTrigger(): SWHighlightMembershipEventTrigger { return callSDK<SWHighlightMembershipEventTrigger>("SharedWithYou_4e2094813cc7c17f", 2965714047783087, this, []); }
   declare readonly $type: { "c:objc(cs)SWHighlightMembershipEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "membershipEventTrigger": true };
 }
@@ -429,7 +429,7 @@ export const SWHighlightMembershipEventTrigger = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (SWHighlightMembershipEventTrigger) | null { return callSDK<(SWHighlightMembershipEventTrigger) | null>("SharedWithYou_0a5002a99b82e77e", 2334110865750511, undefined, [rawValue]); }
+  init(rawValue: number): (SWHighlightMembershipEventTrigger) | null { return callSDK<(SWHighlightMembershipEventTrigger) | null>("SharedWithYou_4e2094813cc7c17f", 2334110865750511, undefined, [rawValue]); }
 };
 
 /**
@@ -441,17 +441,17 @@ export class SWHighlightMentionEvent extends SDKHandle {
    * init(highlight: SWHighlight, mentionedPersonCloudKitShareHandle handle: String)
    * @availability iOS 16.0+
    */
-  static initHighlightMentionedPersonCloudKitShareHandle(highlight: SWHighlight, handle: string): SWHighlightMentionEvent { return callSDK<SWHighlightMentionEvent>("SharedWithYou_0a5002a99b82e77e", 2777048918955383, undefined, [highlight, handle]); }
+  static initHighlightMentionedPersonCloudKitShareHandle(highlight: SWHighlight, handle: string): SWHighlightMentionEvent { return callSDK<SWHighlightMentionEvent>("SharedWithYou_4e2094813cc7c17f", 2777048918955383, undefined, [highlight, handle]); }
   /**
    * init(highlight: SWHighlight, mentionedPersonIdentity identity: SWPerson.Identity)
    * @availability iOS 16.0+
    */
-  static initHighlightMentionedPersonIdentity(highlight: SWHighlight, identity: _SharedWithYouCore_SWPerson_Identity): SWHighlightMentionEvent { return callSDK<SWHighlightMentionEvent>("SharedWithYou_0a5002a99b82e77e", 192590324188847, undefined, [highlight, identity]); }
+  static initHighlightMentionedPersonIdentity(highlight: SWHighlight, identity: _SharedWithYouCore_SWPerson_Identity): SWHighlightMentionEvent { return callSDK<SWHighlightMentionEvent>("SharedWithYou_4e2094813cc7c17f", 192590324188847, undefined, [highlight, identity]); }
   /**
    * var mentionedPersonHandle: String { get }
    * @availability iOS 16.0+
    */
-  get mentionedPersonHandle(): string { return callSDK<string>("SharedWithYou_0a5002a99b82e77e", 4284769514513683, this, []); }
+  get mentionedPersonHandle(): string { return callSDK<string>("SharedWithYou_4e2094813cc7c17f", 4284769514513683, this, []); }
   declare readonly $type: { "c:objc(cs)SWHighlightMentionEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mentionedPersonHandle": true };
 }
@@ -465,12 +465,12 @@ export class SWHighlightPersistenceEvent extends SDKHandle {
    * init(highlight: SWHighlight, trigger: SWHighlightPersistenceEventTrigger)
    * @availability iOS 16.0+
    */
-  static init(highlight: SWHighlight, trigger: SWHighlightPersistenceEventTrigger): SWHighlightPersistenceEvent { return callSDK<SWHighlightPersistenceEvent>("SharedWithYou_0a5002a99b82e77e", 1206605524945123, undefined, [highlight, trigger]); }
+  static init(highlight: SWHighlight, trigger: SWHighlightPersistenceEventTrigger): SWHighlightPersistenceEvent { return callSDK<SWHighlightPersistenceEvent>("SharedWithYou_4e2094813cc7c17f", 1206605524945123, undefined, [highlight, trigger]); }
   /**
    * var persistenceEventTrigger: SWHighlightPersistenceEventTrigger { get }
    * @availability iOS 16.0+
    */
-  get persistenceEventTrigger(): SWHighlightPersistenceEventTrigger { return callSDK<SWHighlightPersistenceEventTrigger>("SharedWithYou_0a5002a99b82e77e", 918606572752541, this, []); }
+  get persistenceEventTrigger(): SWHighlightPersistenceEventTrigger { return callSDK<SWHighlightPersistenceEventTrigger>("SharedWithYou_4e2094813cc7c17f", 918606572752541, this, []); }
   declare readonly $type: { "c:objc(cs)SWHighlightPersistenceEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "persistenceEventTrigger": true };
 }
@@ -486,7 +486,7 @@ export const SWHighlightPersistenceEventTrigger = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (SWHighlightPersistenceEventTrigger) | null { return callSDK<(SWHighlightPersistenceEventTrigger) | null>("SharedWithYou_0a5002a99b82e77e", 1679383289410483, undefined, [rawValue]); }
+  init(rawValue: number): (SWHighlightPersistenceEventTrigger) | null { return callSDK<(SWHighlightPersistenceEventTrigger) | null>("SharedWithYou_4e2094813cc7c17f", 1679383289410483, undefined, [rawValue]); }
 };
 
 /**
@@ -498,7 +498,7 @@ export class SWRemoveParticipantAlertController extends SDKHandle {
    * convenience init(participant: SWPerson, highlight: SWCollaborationHighlight)
    * @availability iOS 16.0+
    */
-  static init(participant: _SharedWithYouCore_SWPerson, highlight: SWCollaborationHighlight): Promise<SWRemoveParticipantAlertController> { return callSDKAsync<SWRemoveParticipantAlertController>("SharedWithYou_0a5002a99b82e77e", 1857063103819354, undefined, [participant, highlight]); }
+  static init(participant: _SharedWithYouCore_SWPerson, highlight: SWCollaborationHighlight): Promise<SWRemoveParticipantAlertController> { return callSDKAsync<SWRemoveParticipantAlertController>("SharedWithYou_4e2094813cc7c17f", 1857063103819354, undefined, [participant, highlight]); }
   declare readonly $type: { "c:objc(cs)SWRemoveParticipantAlertController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -506,24 +506,24 @@ export class SWRemoveParticipantAlertController extends SDKHandle {
  * let SWCollaborationMetadataTypeIdentifier: String
  * @availability iOS 16.0+
  */
-export const SWCollaborationMetadataTypeIdentifier: string = callSDK<string>("SharedWithYou_0a5002a99b82e77e", 2315017654987361, undefined, []);
+export const SWCollaborationMetadataTypeIdentifier: string = callSDK<string>("SharedWithYou_4e2094813cc7c17f", 2315017654987361, undefined, []);
 
 /**
  * let SWCopyRepresentationTypeIdentifier: String
  * @availability iOS 27.0+
  */
-export const SWCopyRepresentationTypeIdentifier: string = callSDK<string>("SharedWithYou_0a5002a99b82e77e", 390511567800057, undefined, []);
+export const SWCopyRepresentationTypeIdentifier: string = callSDK<string>("SharedWithYou_4e2094813cc7c17f", 390511567800057, undefined, []);
 
-registerSDKClass("SWAttributionView", SWAttributionView, { module: "SharedWithYou_0a5002a99b82e77e", properties: {"backgroundStyle":1871945499356028,"displayContext":1001146583062455,"highlight":608855816952099,"highlightMenu":517636582323197,"horizontalAlignment":1308101067108733,"menuTitleForHideAction":2850286694602689,"preferredMaxLayoutWidth":1676395320361076,"supplementalMenu":1130087714639510} });
-registerSDKClass("SWHighlight", SWHighlight, { module: "SharedWithYou_0a5002a99b82e77e", properties: {"url":2604167846375738,"identifier":1672010981433997} });
-registerSDKClass("SWCollaborationHighlight", SWCollaborationHighlight, { module: "SharedWithYou_0a5002a99b82e77e", properties: {"collaborationIdentifier":3011910438037383,"contentType":1402007374948020,"creationDate":2943062548909563,"title":3650589407660161} });
-registerSDKClass("SWCollaborationView", SWCollaborationView, { module: "SharedWithYou_0a5002a99b82e77e", properties: {"activeParticipantCount":3279718031729481,"cloudSharingControllerDelegate":2641601262523931,"cloudSharingDelegate":3001763875496316,"delegate":2462073672565835,"headerImage":1524868528308900,"headerSubtitle":1629656080414446,"headerTitle":3755081582912209,"manageButtonTitle":1691028455919231,"pendingAccessRequestsCount":2908863397731517}, methods: {"dismissPopover":{"id":3411059744353651,"hints":[{"callback":{"out":[]}}]},"setContent":{"id":403904244913334},"setShowManageButton":{"id":826696235072938}} });
+registerSDKClass("SWAttributionView", SWAttributionView, { module: "SharedWithYou_4e2094813cc7c17f", properties: {"backgroundStyle":1871945499356028,"displayContext":1001146583062455,"highlight":608855816952099,"highlightMenu":517636582323197,"horizontalAlignment":1308101067108733,"menuTitleForHideAction":2850286694602689,"preferredMaxLayoutWidth":1676395320361076,"supplementalMenu":1130087714639510} });
+registerSDKClass("SWHighlight", SWHighlight, { module: "SharedWithYou_4e2094813cc7c17f", properties: {"url":2604167846375738,"identifier":1672010981433997} });
+registerSDKClass("SWCollaborationHighlight", SWCollaborationHighlight, { module: "SharedWithYou_4e2094813cc7c17f", properties: {"collaborationIdentifier":3011910438037383,"contentType":1402007374948020,"creationDate":2943062548909563,"title":3650589407660161} });
+registerSDKClass("SWCollaborationView", SWCollaborationView, { module: "SharedWithYou_4e2094813cc7c17f", properties: {"activeParticipantCount":3279718031729481,"cloudSharingControllerDelegate":2641601262523931,"cloudSharingDelegate":3001763875496316,"delegate":2462073672565835,"headerImage":1524868528308900,"headerSubtitle":1629656080414446,"headerTitle":3755081582912209,"manageButtonTitle":1691028455919231,"pendingAccessRequestsCount":2908863397731517}, methods: {"dismissPopover":{"id":3411059744353651,"hints":[{"callback":{"out":[]}}]},"setContent":{"id":403904244913334},"setShowManageButton":{"id":826696235072938}} });
 registerSDKProtocol("c:objc(pl)SWCollaborationViewDelegate", {"collaborationViewWillPresentPopover":"collaborationViewWillPresentPopover(_:)","collaborationViewDidDismissPopover":"collaborationViewDidDismissPopover(_:)"});
-registerSDKClass("SWHighlightCenter", SWHighlightCenter, { module: "SharedWithYou_0a5002a99b82e77e", properties: {"delegate":2421116489113017,"highlights":2118522707729108}, methods: {"clearNotices":{"id":3479337748444228},"collaborationHighlightForIdentifier":{"id":3872552710445201},"getCollaborationHighlight":{"id":408919427761163,"hints":[null,{"callback":{"out":[]}}]},"getHighlightFor":{"id":2351112256117523,"hints":[null,{"callback":{"out":[]}}]},"getSignedIdentityProof":{"id":1681449157136208,"hints":[null,null,{"callback":{"out":[]}}]},"postNotice":{"id":278494373358153},"collaborationHighlightForIdentifier13931":{"id":1956712228032529}} });
+registerSDKClass("SWHighlightCenter", SWHighlightCenter, { module: "SharedWithYou_4e2094813cc7c17f", properties: {"delegate":2421116489113017,"highlights":2118522707729108}, methods: {"clearNotices":{"id":3479337748444228},"collaborationHighlightForIdentifier":{"id":3872552710445201},"getCollaborationHighlight":{"id":408919427761163,"hints":[null,{"callback":{"out":[]}}]},"getHighlightFor":{"id":2351112256117523,"hints":[null,{"callback":{"out":[]}}]},"getSignedIdentityProof":{"id":1681449157136208,"hints":[null,null,{"callback":{"out":[]}}]},"postNotice":{"id":278494373358153},"collaborationHighlightForIdentifier13931":{"id":1956712228032529}} });
 registerSDKProtocol("c:objc(pl)SWHighlightCenterDelegate", {"highlightCenterHighlightsDidChange":"highlightCenterHighlightsDidChange(_:)"});
-registerSDKClass("SWHighlightChangeEvent", SWHighlightChangeEvent, { module: "SharedWithYou_0a5002a99b82e77e", properties: {"changeEventTrigger":2008393397338475,"highlightURL":2208003949777595} });
+registerSDKClass("SWHighlightChangeEvent", SWHighlightChangeEvent, { module: "SharedWithYou_4e2094813cc7c17f", properties: {"changeEventTrigger":2008393397338475,"highlightURL":2208003949777595} });
 registerSDKProtocol("c:objc(pl)SWHighlightEvent", {"copyWith":"copy(with:)","encodeWith":"encode(with:)","initCoder":"init(coder:)"});
-registerSDKClass("SWHighlightMembershipEvent", SWHighlightMembershipEvent, { module: "SharedWithYou_0a5002a99b82e77e", properties: {"membershipEventTrigger":2965714047783087} });
-registerSDKClass("SWHighlightMentionEvent", SWHighlightMentionEvent, { module: "SharedWithYou_0a5002a99b82e77e", properties: {"mentionedPersonHandle":4284769514513683} });
-registerSDKClass("SWHighlightPersistenceEvent", SWHighlightPersistenceEvent, { module: "SharedWithYou_0a5002a99b82e77e", properties: {"persistenceEventTrigger":918606572752541} });
-registerSDKClass("SWRemoveParticipantAlertController", SWRemoveParticipantAlertController, { module: "SharedWithYou_0a5002a99b82e77e", properties: {} });
+registerSDKClass("SWHighlightMembershipEvent", SWHighlightMembershipEvent, { module: "SharedWithYou_4e2094813cc7c17f", properties: {"membershipEventTrigger":2965714047783087} });
+registerSDKClass("SWHighlightMentionEvent", SWHighlightMentionEvent, { module: "SharedWithYou_4e2094813cc7c17f", properties: {"mentionedPersonHandle":4284769514513683} });
+registerSDKClass("SWHighlightPersistenceEvent", SWHighlightPersistenceEvent, { module: "SharedWithYou_4e2094813cc7c17f", properties: {"persistenceEventTrigger":918606572752541} });
+registerSDKClass("SWRemoveParticipantAlertController", SWRemoveParticipantAlertController, { module: "SharedWithYou_4e2094813cc7c17f", properties: {} });
