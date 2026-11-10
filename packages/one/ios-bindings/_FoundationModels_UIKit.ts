@@ -8,8 +8,8 @@ export class Attachment<Content = unknown> extends SDKHandle {
    * init(_ uiImage: UIImage, orientation: UIImage.Orientation? = nil)
    * @availability iOS 27.0+
    */
-  static init(uiImage: _UIKit_UIImage, orientation?: (_UIKit_UIImage_Orientation) | null): _FoundationModels_Attachment<_FoundationModels_ImageAttachmentContent> { return callSDK<_FoundationModels_Attachment<_FoundationModels_ImageAttachmentContent>>("_FoundationModels_UIKit_b88ddd0bfd78eefc", 2891004689182430, undefined, [uiImage, orientation]); }
+  static init(uiImage: _UIKit_UIImage, orientation?: (_UIKit_UIImage_Orientation) | null): _FoundationModels_Attachment<_FoundationModels_ImageAttachmentContent> { return callSDK<_FoundationModels_Attachment<_FoundationModels_ImageAttachmentContent>>("_FoundationModels_UIKit_b66fbf8c99a1c012", 2891004689182430, undefined, [uiImage, orientation]); }
   declare readonly $type: { "s:16FoundationModels10AttachmentV": true };
 }
 
-registerSDKClass("FoundationModels.Attachment", Attachment, { module: "_FoundationModels_UIKit_b88ddd0bfd78eefc", properties: {} }, true);
+registerSDKClass("FoundationModels.Attachment", Attachment, { module: "_FoundationModels_UIKit_b66fbf8c99a1c012", properties: {} }, true);
