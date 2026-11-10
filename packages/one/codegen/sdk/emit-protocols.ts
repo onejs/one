@@ -12,10 +12,11 @@ const SYNC_REASON = 'synchronous protocol result requires an active JS-thread ca
 // checks the generated witness against their concurrency semantics.
 const MARKERS = new Set(['s:s8SendableP', 's:s16SendableMetatypeP'])
 
-// stdlib and foundation values that cross into an objective-c method. other
-// swift structs and enums do not, unless the graph says they bridge.
+// stdlib and foundation values that cross into an objective-c method. character
+// is a swift struct and does not. array, dictionary, set and optional are in
+// this set, and objcRepresentable still requires every generic argument.
 const BRIDGED_USRS = new Set([
-  's:Sb', 's:Si', 's:Su', 's:Sd', 's:Sf', 's:SS', 's:SJ', 's:Ss',
+  's:Sb', 's:Si', 's:Su', 's:Sd', 's:Sf', 's:SS', 's:Ss',
   's:s4Int8V', 's:s5Int16V', 's:s5Int32V', 's:s5Int64V',
   's:s5UInt8V', 's:s6UInt16V', 's:s6UInt32V', 's:s6UInt64V', 's:s7Float16V',
   's:14CoreFoundation7CGFloatV', 's:12CoreGraphics7CGFloatV',
@@ -32,42 +33,101 @@ function objcMethod(usr: string): { selector: string; instance: boolean } | unde
   return { selector: match[2], instance: match[1] === 'im' }
 }
 
-function bridgesToObjC(usr: string, bridge: Bridge, seen = new Set<string>()): boolean {
-  if (BRIDGED_USRS.has(usr) || usr.startsWith('c:')) return true
+// values that bridge to an objective-c object, so an optional of them is nullable.
+// numbers and clang enums are selector-safe on their own and are not.
+const REFERENCE_USRS = new Set([
+  's:SS', 's:Ss',
+  's:10Foundation4DateV', 's:10Foundation3URLV', 's:10Foundation4DataV', 's:10Foundation4UUIDV',
+])
+
+function clangEnum(usr: string | undefined): boolean {
+  return !!usr && usr.includes('@E@')
+}
+
+function bridgesToObjC(usr: string, bridge: Bridge, seen: Set<string>, boxed: boolean): boolean {
+  if (BRIDGED_USRS.has(usr) || usr.startsWith('c:')) return !(boxed && clangEnum(usr))
   if (seen.has(usr)) return false
   seen.add(usr)
   const info = bridge.index.get(usr)
   if (!info) return false
   if (info.conformsTo?.some((id) => bridge.index.get(id)?.path.at(-1) === 'ReferenceConvertible')) return true
-  if (info.kind === 'typealias' && info.alias) return objcRepresentable(info.alias, bridge, seen)
-  if (info.kind === 'class' && info.superclass) return bridgesToObjC(info.superclass, bridge, seen)
+  if (info.kind === 'typealias' && info.alias) return objcRepresentable(info.alias, bridge, seen, boxed)
+  if (info.kind === 'class' && info.superclass) return bridgesToObjC(info.superclass, bridge, seen, boxed)
   return false
 }
 
-function objcRepresentable(type: SwiftType, bridge: Bridge, seen = new Set<string>()): boolean {
+// a metatype is selector-safe only for an objective-c class. string.Type is not.
+function objcClassType(type: SwiftType, bridge: Bridge, seen: Set<string>): boolean {
+  if (type.k === 'existential') return objcClassType(type.t, bridge, seen)
+  if (type.k !== 'named' || type.args.length > 0) return false
+  const name = type.name.split('.').at(-1)!
+  if (name === 'AnyObject' || name === 'AnyClass') return true
+  if (!type.usr) return false
+  if (type.usr.startsWith('c:objc(cs)') || type.usr.startsWith('c:objc(pl)')) return true
+  const key = `class:${type.usr}`
+  if (seen.has(key)) return false
+  seen.add(key)
+  const info = bridge.index.get(type.usr)
+  if (!info || info.kind !== 'class' || !info.superclass) return false
+  if (info.superclass.startsWith('c:objc(cs)')) return true
+  return objcClassType({ k: 'named', name: '', usr: info.superclass, args: [] }, bridge, seen)
+}
+
+// optional bridges only when the wrapped value is an object. collections bridge
+// to nsarray, nsset and nsdictionary, which are objects.
+function objcOptional(type: SwiftType, bridge: Bridge, seen: Set<string>): boolean {
   switch (type.k) {
     case 'optional':
-    case 'array':
-    case 'variadic':
-      return objcRepresentable(type.t, bridge, seen)
-    case 'dictionary':
-      return objcRepresentable(type.key, bridge, seen) && objcRepresentable(type.value, bridge, seen)
     case 'existential':
-      return objcRepresentable(type.t, bridge, seen)
+      return objcOptional(type.t, bridge, seen)
+    case 'array':
+    case 'dictionary':
+      return objcRepresentable(type, bridge, seen)
     case 'composition':
-      return type.items.every((item) => objcRepresentable(item, bridge, seen))
+      return type.items.every((item) => objcOptional(item, bridge, seen))
+    case 'named': {
+      if (type.usr === 's:Sa' || type.usr === 's:Sh' || type.usr === 's:SD' || type.usr === 's:Sq') return objcRepresentable(type, bridge, seen)
+      const name = type.name.split('.').at(-1)!
+      if (name === 'Any' || name === 'AnyObject' || name === 'AnyClass' || name === 'Error') return true
+      if (objcClassType(type, bridge, seen)) return true
+      const info = type.usr ? bridge.index.get(type.usr) : undefined
+      return !!type.usr && (REFERENCE_USRS.has(type.usr) || !!info?.conformsTo?.some((id) => bridge.index.get(id)?.path.at(-1) === 'ReferenceConvertible'))
+    }
+    default:
+      return false
+  }
+}
+
+function objcRepresentable(type: SwiftType, bridge: Bridge, seen = new Set<string>(), boxed = false): boolean {
+  if (boxed && type.k === 'named' && clangEnum(type.usr)) return false
+  switch (type.k) {
+    case 'optional':
+      return objcOptional(type.t, bridge, seen)
+    case 'array':
+      return objcRepresentable(type.t, bridge, seen, true)
+    case 'variadic':
+      return false
+    case 'dictionary':
+      return objcRepresentable(type.key, bridge, seen, true) && objcRepresentable(type.value, bridge, seen, true)
+    case 'existential':
+      return objcRepresentable(type.t, bridge, seen, boxed)
+    case 'composition':
+      return type.items.every((item) => objcRepresentable(item, bridge, seen, boxed))
     case 'function':
+      if (type.throws || type.async) return false
       return type.params.every((param) => objcRepresentable(param.t, bridge, seen)) && objcRepresentable(type.result, bridge, seen)
     case 'tuple':
       return type.items.length === 0
     case 'inout':
       return false
     case 'metatype':
-      return objcRepresentable(type.t, bridge, seen)
+      return objcClassType(type.t, bridge, seen)
     case 'named': {
+      if (type.usr === 's:Sq') return type.args.length === 1 && objcOptional(type.args[0], bridge, seen)
+      if (type.args.some((arg) => !objcRepresentable(arg, bridge, seen, true))) return false
       const name = type.name.split('.').at(-1)!
       if (name === 'Any' || name === 'AnyObject' || name === 'Void' || name === 'AnyClass') return true
-      return !!type.usr && bridgesToObjC(type.usr, bridge, seen)
+      return !!type.usr && bridgesToObjC(type.usr, bridge, seen, boxed)
     }
   }
 }

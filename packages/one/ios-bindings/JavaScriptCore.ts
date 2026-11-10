@@ -29,43 +29,43 @@ export type JSClassAttributes = number;
 /** struct JSClassDefinition */
 export class JSClassDefinition extends SDKHandle {
   /** var attributes: JSClassAttributes */
-  get attributes(): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 2731029405002024, this, []); }
-  set attributes(value: number) { callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 1223844797732321, this, [value]); }
+  get attributes(): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 2731029405002024, this, []); }
+  set attributes(value: number) { callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 1223844797732321, this, [value]); }
   /** var className: UnsafePointer<CChar>! */
-  get className(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 3891297705886577, this, []); }
-  set className(value: (SDKHandle) | null) { callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 2492979384640295, this, [value]); }
+  get className(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 3891297705886577, this, []); }
+  set className(value: (SDKHandle) | null) { callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 2492979384640295, this, [value]); }
   /** var convertToType: JSObjectConvertToTypeCallback! */
-  get convertToType(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: JSType, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: JSType, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null>("JavaScriptCore_2cb2726c65780bbb", 4394174001351948, this, []); }
+  get convertToType(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: JSType, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: JSType, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null>("JavaScriptCore_2f6e018ff7e993f9", 4394174001351948, this, []); }
   /** var deleteProperty: JSObjectDeletePropertyCallback! */
-  get deleteProperty(): $SDK1 { return callSDK<$SDK1>("JavaScriptCore_2cb2726c65780bbb", 1859132572809210, this, []); }
+  get deleteProperty(): $SDK1 { return callSDK<$SDK1>("JavaScriptCore_2f6e018ff7e993f9", 1859132572809210, this, []); }
   /** var finalize: JSObjectFinalizeCallback! */
-  get finalize(): (((arg0: (SDKHandle) | null) => Promise<void>)) | null { return callSDK<(((arg0: (SDKHandle) | null) => Promise<void>)) | null>("JavaScriptCore_2cb2726c65780bbb", 2208917159961910, this, []); }
+  get finalize(): (((arg0: (SDKHandle) | null) => Promise<void>)) | null { return callSDK<(((arg0: (SDKHandle) | null) => Promise<void>)) | null>("JavaScriptCore_2f6e018ff7e993f9", 2208917159961910, this, []); }
   /** var getProperty: JSObjectGetPropertyCallback! */
-  get getProperty(): $SDK3 { return callSDK<$SDK3>("JavaScriptCore_2cb2726c65780bbb", 981185604870414, this, []); }
+  get getProperty(): $SDK3 { return callSDK<$SDK3>("JavaScriptCore_2f6e018ff7e993f9", 981185604870414, this, []); }
   /** var getPropertyNames: JSObjectGetPropertyNamesCallback! */
-  get getPropertyNames(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<void>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<void>)) | null>("JavaScriptCore_2cb2726c65780bbb", 1326967450002747, this, []); }
+  get getPropertyNames(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<void>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<void>)) | null>("JavaScriptCore_2f6e018ff7e993f9", 1326967450002747, this, []); }
   /** var hasInstance: JSObjectHasInstanceCallback! */
-  get hasInstance(): $SDK1 { return callSDK<$SDK1>("JavaScriptCore_2cb2726c65780bbb", 847410746385263, this, []); }
+  get hasInstance(): $SDK1 { return callSDK<$SDK1>("JavaScriptCore_2f6e018ff7e993f9", 847410746385263, this, []); }
   /** var hasProperty: JSObjectHasPropertyCallback! */
-  get hasProperty(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<boolean>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<boolean>)) | null>("JavaScriptCore_2cb2726c65780bbb", 3463767282394951, this, []); }
+  get hasProperty(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<boolean>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<boolean>)) | null>("JavaScriptCore_2f6e018ff7e993f9", 3463767282394951, this, []); }
   /** var initialize: JSObjectInitializeCallback! */
-  get initialize(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null>("JavaScriptCore_2cb2726c65780bbb", 1864909627999010, this, []); }
+  get initialize(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null>("JavaScriptCore_2f6e018ff7e993f9", 1864909627999010, this, []); }
   /** var parentClass: JSClassRef! */
-  get parentClass(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 4229680336609094, this, []); }
-  set parentClass(value: (SDKHandle) | null) { callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 3956653706617459, this, [value]); }
+  get parentClass(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 4229680336609094, this, []); }
+  set parentClass(value: (SDKHandle) | null) { callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 3956653706617459, this, [value]); }
   /** var setProperty: JSObjectSetPropertyCallback! */
-  get setProperty(): $SDK7 { return callSDK<$SDK7>("JavaScriptCore_2cb2726c65780bbb", 4503332277145266, this, []); }
+  get setProperty(): $SDK7 { return callSDK<$SDK7>("JavaScriptCore_2f6e018ff7e993f9", 4503332277145266, this, []); }
   /** var staticFunctions: UnsafePointer<JSStaticFunction>! */
-  get staticFunctions(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 660705678918011, this, []); }
-  set staticFunctions(value: (SDKHandle) | null) { callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 2866453793203955, this, [value]); }
+  get staticFunctions(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 660705678918011, this, []); }
+  set staticFunctions(value: (SDKHandle) | null) { callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 2866453793203955, this, [value]); }
   /** var staticValues: UnsafePointer<JSStaticValue>! */
-  get staticValues(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 3261809422876303, this, []); }
-  set staticValues(value: (SDKHandle) | null) { callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 2929014822065851, this, [value]); }
+  get staticValues(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 3261809422876303, this, []); }
+  set staticValues(value: (SDKHandle) | null) { callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 2929014822065851, this, [value]); }
   /** var version: Int32 */
-  get version(): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 2166909168346146, this, []); }
-  set version(value: number) { callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 4024876435361346, this, [value]); }
+  get version(): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 2166909168346146, this, []); }
+  set version(value: number) { callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 4024876435361346, this, [value]); }
   /** init() */
-  static init(): JSClassDefinition { return callSDK<JSClassDefinition>("JavaScriptCore_2cb2726c65780bbb", 3686631521600586, undefined, []); }
+  static init(): JSClassDefinition { return callSDK<JSClassDefinition>("JavaScriptCore_2f6e018ff7e993f9", 3686631521600586, undefined, []); }
   declare readonly $type: { "c:@SA@JSClassDefinition": true };
 }
 
@@ -78,87 +78,87 @@ export type JSClassRef = SDKHandle;
  */
 export class JSContext extends SDKHandle {
   /** init!(jsGlobalContextRef: JSGlobalContextRef!) */
-  static initJsGlobalContextRef(jsGlobalContextRef?: (SDKHandle) | null): JSContext { return callSDK<JSContext>("JavaScriptCore_2cb2726c65780bbb", 2574411108718403, undefined, [jsGlobalContextRef]); }
+  static initJsGlobalContextRef(jsGlobalContextRef?: (SDKHandle) | null): JSContext { return callSDK<JSContext>("JavaScriptCore_2f6e018ff7e993f9", 2574411108718403, undefined, [jsGlobalContextRef]); }
   /**
    * class func currentArguments() -> [Any]!
    * @availability iOS 7.0+
    */
-  static currentArguments(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("JavaScriptCore_2cb2726c65780bbb", 2385080709209192, undefined, []); }
+  static currentArguments(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("JavaScriptCore_2f6e018ff7e993f9", 2385080709209192, undefined, []); }
   /**
    * class func currentCallee() -> JSValue!
    * @availability iOS 8.0+
    */
-  static currentCallee(): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 909478081812631, undefined, []); }
+  static currentCallee(): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 909478081812631, undefined, []); }
   /**
    * class func current() -> JSContext!
    * @availability iOS 7.0+
    */
-  static current(): (JSContext) | null { return callSDK<(JSContext) | null>("JavaScriptCore_2cb2726c65780bbb", 1435920628572083, undefined, []); }
+  static current(): (JSContext) | null { return callSDK<(JSContext) | null>("JavaScriptCore_2f6e018ff7e993f9", 1435920628572083, undefined, []); }
   /**
    * class func currentThis() -> JSValue!
    * @availability iOS 7.0+
    */
-  static currentThis(): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 2319413513883409, undefined, []); }
+  static currentThis(): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 2319413513883409, undefined, []); }
   /**
    * func evaluateScript(_ script: String!) -> JSValue!
    * @availability iOS 7.0+
    */
-  evaluateScript(script?: (string) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 4189162757989038, this, [script]); }
+  evaluateScript(script?: (string) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 4189162757989038, this, [script]); }
   /**
    * func evaluateScript(_ script: String!, withSourceURL sourceURL: URL!) -> JSValue!
    * @availability iOS 8.0+
    */
-  evaluateScriptWithSourceURL(script?: (string) | null, sourceURL?: (string) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 1055820134280014, this, [script, sourceURL]); }
+  evaluateScriptWithSourceURL(script?: (string) | null, sourceURL?: (string) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 1055820134280014, this, [script, sourceURL]); }
   /**
    * init!()
    * @availability iOS 7.0+
    */
-  static init(): JSContext { return callSDK<JSContext>("JavaScriptCore_2cb2726c65780bbb", 169377487411459, undefined, []); }
+  static init(): JSContext { return callSDK<JSContext>("JavaScriptCore_2f6e018ff7e993f9", 169377487411459, undefined, []); }
   /**
    * init!(virtualMachine: JSVirtualMachine!)
    * @availability iOS 7.0+
    */
-  static initVirtualMachine(virtualMachine?: (JSVirtualMachine) | null): JSContext { return callSDK<JSContext>("JavaScriptCore_2cb2726c65780bbb", 2400894459856119, undefined, [virtualMachine]); }
+  static initVirtualMachine(virtualMachine?: (JSVirtualMachine) | null): JSContext { return callSDK<JSContext>("JavaScriptCore_2f6e018ff7e993f9", 2400894459856119, undefined, [virtualMachine]); }
   /** func objectForKeyedSubscript(_ key: Any!) -> JSValue! */
-  objectForKeyedSubscript(key?: (unknown) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 3847994166520488, this, [key]); }
+  objectForKeyedSubscript(key?: (unknown) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 3847994166520488, this, [key]); }
   /** func setObject(_ object: Any!, forKeyedSubscript key: (any NSCopying & NSObjectProtocol)!) */
-  setObject(object?: (unknown) | null, key?: ((SDKHandle) & (SDKHandle)) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 3018813635839626, this, [object, key]); }
+  setObject(object?: (unknown) | null, key?: ((SDKHandle) & (SDKHandle)) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 3018813635839626, this, [object, key]); }
   /** var jsGlobalContextRef: JSGlobalContextRef! { get } */
-  get jsGlobalContextRef(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 1595054104714473, this, []); }
+  get jsGlobalContextRef(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 1595054104714473, this, []); }
   /**
    * var exception: JSValue! { get set }
    * @availability iOS 7.0+
    */
-  get exception(): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 3780563316916510, this, []); }
-  set exception(value: (JSValue) | null) { callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 3471222822444521, this, [value]); }
+  get exception(): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 3780563316916510, this, []); }
+  set exception(value: (JSValue) | null) { callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 3471222822444521, this, [value]); }
   /**
    * var exceptionHandler: ((JSContext?, JSValue?) -> Void)! { get set }
    * @availability iOS 7.0+
    */
-  get exceptionHandler(): (((arg0: (JSContext) | null, arg1: (JSValue) | null) => Promise<void>)) | null { return callSDK<(((arg0: (JSContext) | null, arg1: (JSValue) | null) => Promise<void>)) | null>("JavaScriptCore_2cb2726c65780bbb", 2503930829344448, this, []); }
-  set exceptionHandler(value: (((arg0: (JSContext) | null, arg1: (JSValue) | null) => void)) | null) { callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 2207073288293697, this, [value], [{"callback":{"out":[]}}]); }
+  get exceptionHandler(): (((arg0: (JSContext) | null, arg1: (JSValue) | null) => Promise<void>)) | null { return callSDK<(((arg0: (JSContext) | null, arg1: (JSValue) | null) => Promise<void>)) | null>("JavaScriptCore_2f6e018ff7e993f9", 2503930829344448, this, []); }
+  set exceptionHandler(value: (((arg0: (JSContext) | null, arg1: (JSValue) | null) => void)) | null) { callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 2207073288293697, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var globalObject: JSValue! { get }
    * @availability iOS 7.0+
    */
-  get globalObject(): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 4077238156817854, this, []); }
+  get globalObject(): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 4077238156817854, this, []); }
   /**
    * var isInspectable: Bool { get set }
    * @availability iOS 16.4+
    */
-  get isInspectable(): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 3907451698204484, this, []); }
-  set isInspectable(value: boolean) { callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 1118557288604682, this, [value]); }
+  get isInspectable(): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 3907451698204484, this, []); }
+  set isInspectable(value: boolean) { callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 1118557288604682, this, [value]); }
   /**
    * var name: String! { get set }
    * @availability iOS 8.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("JavaScriptCore_2cb2726c65780bbb", 2768975793196211, this, []); }
-  set name(value: (string) | null) { callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 2256785710543973, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("JavaScriptCore_2f6e018ff7e993f9", 2768975793196211, this, []); }
+  set name(value: (string) | null) { callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 2256785710543973, this, [value]); }
   /**
    * var virtualMachine: JSVirtualMachine! { get }
    * @availability iOS 7.0+
    */
-  get virtualMachine(): (JSVirtualMachine) | null { return callSDK<(JSVirtualMachine) | null>("JavaScriptCore_2cb2726c65780bbb", 1027520764306502, this, []); }
+  get virtualMachine(): (JSVirtualMachine) | null { return callSDK<(JSVirtualMachine) | null>("JavaScriptCore_2f6e018ff7e993f9", 1027520764306502, this, []); }
   declare readonly $type: { "c:objc(cs)JSContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "jsGlobalContextRef": true; "exception": true; "globalObject": true; "isInspectable": true; "name": true; "virtualMachine": true };
 }
@@ -186,17 +186,17 @@ export class JSManagedValue extends SDKHandle {
    * init!(value: JSValue!, andOwner owner: Any!)
    * @availability iOS 8.0+
    */
-  static initValueAndOwner(value?: (JSValue) | null, owner?: (unknown) | null): JSManagedValue { return callSDK<JSManagedValue>("JavaScriptCore_2cb2726c65780bbb", 3705008038668752, undefined, [value, owner]); }
+  static initValueAndOwner(value?: (JSValue) | null, owner?: (unknown) | null): JSManagedValue { return callSDK<JSManagedValue>("JavaScriptCore_2f6e018ff7e993f9", 3705008038668752, undefined, [value, owner]); }
   /**
    * init!(value: JSValue!)
    * @availability iOS 7.0+
    */
-  static initValue(value?: (JSValue) | null): JSManagedValue { return callSDK<JSManagedValue>("JavaScriptCore_2cb2726c65780bbb", 1531694066567078, undefined, [value]); }
+  static initValue(value?: (JSValue) | null): JSManagedValue { return callSDK<JSManagedValue>("JavaScriptCore_2f6e018ff7e993f9", 1531694066567078, undefined, [value]); }
   /**
    * var value: JSValue! { get }
    * @availability iOS 7.0+
    */
-  get value(): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 3940657746977780, this, []); }
+  get value(): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 3940657746977780, this, []); }
   declare readonly $type: { "c:objc(cs)JSManagedValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "value": true };
 }
@@ -257,36 +257,36 @@ export const JSRelationCondition = {
    * init?(rawValue: UInt32)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (JSRelationCondition) | null { return callSDK<(JSRelationCondition) | null>("JavaScriptCore_2cb2726c65780bbb", 2723761453331477, undefined, [rawValue]); }
+  init(rawValue: number): (JSRelationCondition) | null { return callSDK<(JSRelationCondition) | null>("JavaScriptCore_2f6e018ff7e993f9", 2723761453331477, undefined, [rawValue]); }
 };
 
 /** struct JSStaticFunction */
 export class JSStaticFunction extends SDKHandle {
   /** var attributes: JSPropertyAttributes */
-  get attributes(): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 794157467825814, this, []); }
-  set attributes(value: number) { callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 4325055808740066, this, [value]); }
+  get attributes(): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 794157467825814, this, []); }
+  set attributes(value: number) { callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 4325055808740066, this, [value]); }
   /** var name: UnsafePointer<CChar>! */
-  get name(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 1474869241212862, this, []); }
-  set name(value: (SDKHandle) | null) { callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 3425358746301896, this, [value]); }
+  get name(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 1474869241212862, this, []); }
+  set name(value: (SDKHandle) | null) { callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 3425358746301896, this, [value]); }
   /** init() */
-  static init(): JSStaticFunction { return callSDK<JSStaticFunction>("JavaScriptCore_2cb2726c65780bbb", 4266398332927695, undefined, []); }
+  static init(): JSStaticFunction { return callSDK<JSStaticFunction>("JavaScriptCore_2f6e018ff7e993f9", 4266398332927695, undefined, []); }
   declare readonly $type: { "c:@SA@JSStaticFunction": true };
 }
 
 /** struct JSStaticValue */
 export class JSStaticValue extends SDKHandle {
   /** var attributes: JSPropertyAttributes */
-  get attributes(): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 4226765114753892, this, []); }
-  set attributes(value: number) { callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 4172423875413554, this, [value]); }
+  get attributes(): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 4226765114753892, this, []); }
+  set attributes(value: number) { callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 4172423875413554, this, [value]); }
   /** var getProperty: JSObjectGetPropertyCallback! */
-  get getProperty(): $SDK3 { return callSDK<$SDK3>("JavaScriptCore_2cb2726c65780bbb", 2081447616612192, this, []); }
+  get getProperty(): $SDK3 { return callSDK<$SDK3>("JavaScriptCore_2f6e018ff7e993f9", 2081447616612192, this, []); }
   /** var name: UnsafePointer<CChar>! */
-  get name(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 2353041229573753, this, []); }
-  set name(value: (SDKHandle) | null) { callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 921213776834729, this, [value]); }
+  get name(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 2353041229573753, this, []); }
+  set name(value: (SDKHandle) | null) { callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 921213776834729, this, [value]); }
   /** var setProperty: JSObjectSetPropertyCallback! */
-  get setProperty(): $SDK7 { return callSDK<$SDK7>("JavaScriptCore_2cb2726c65780bbb", 1056942748377053, this, []); }
+  get setProperty(): $SDK7 { return callSDK<$SDK7>("JavaScriptCore_2f6e018ff7e993f9", 1056942748377053, this, []); }
   /** init() */
-  static init(): JSStaticValue { return callSDK<JSStaticValue>("JavaScriptCore_2cb2726c65780bbb", 2836328525191108, undefined, []); }
+  static init(): JSStaticValue { return callSDK<JSStaticValue>("JavaScriptCore_2f6e018ff7e993f9", 2836328525191108, undefined, []); }
   declare readonly $type: { "c:@SA@JSStaticValue": true };
 }
 
@@ -298,12 +298,12 @@ export type JSType = (number & {});
 
 export const JSType = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): JSType { return callSDK<JSType>("JavaScriptCore_2cb2726c65780bbb", 96875750265713, undefined, [rawValue]); },
+  initRawValue(rawValue: number): JSType { return callSDK<JSType>("JavaScriptCore_2f6e018ff7e993f9", 96875750265713, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: JSType): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 432974534855427, $self, []); },
-  setRawValue($self: JSType, value: number): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 4194904654235319, $self, [value]); },
+  getRawValue($self: JSType): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 432974534855427, $self, []); },
+  setRawValue($self: JSType, value: number): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 4194904654235319, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): JSType { return callSDK<JSType>("JavaScriptCore_2cb2726c65780bbb", 3398424252631984, undefined, [rawValue]); }
+  init(rawValue: number): JSType { return callSDK<JSType>("JavaScriptCore_2f6e018ff7e993f9", 3398424252631984, undefined, [rawValue]); }
 };
 
 /** typealias JSTypedArrayBytesDeallocator = (UnsafeMutableRawPointer?, UnsafeMutableRawPointer?) -> Void */
@@ -320,18 +320,18 @@ export const JSTypedArrayType = {
    * init(rawValue: UInt32)
    * @availability iOS 10.0+
    */
-  initRawValue(rawValue: number): JSTypedArrayType { return callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 2493005453876624, undefined, [rawValue]); },
+  initRawValue(rawValue: number): JSTypedArrayType { return callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 2493005453876624, undefined, [rawValue]); },
   /**
    * var rawValue: UInt32
    * @availability iOS 10.0+
    */
-  getRawValue($self: JSTypedArrayType): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 675007282065636, $self, []); },
-  setRawValue($self: JSTypedArrayType, value: number): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 524749151610351, $self, [value]); },
+  getRawValue($self: JSTypedArrayType): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 675007282065636, $self, []); },
+  setRawValue($self: JSTypedArrayType, value: number): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 524749151610351, $self, [value]); },
   /**
    * init(_ rawValue: UInt32)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): JSTypedArrayType { return callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 455108792356031, undefined, [rawValue]); }
+  init(rawValue: number): JSTypedArrayType { return callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 455108792356031, undefined, [rawValue]); }
 };
 
 /**
@@ -343,309 +343,309 @@ export class JSValue extends SDKHandle {
    * init!(bool value: Bool, in context: JSContext!)
    * @availability iOS 7.0+
    */
-  static initBoolIn(value: boolean, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 243799363487730, undefined, [value, context]); }
+  static initBoolIn(value: boolean, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 243799363487730, undefined, [value, context]); }
   /**
    * init!(double value: Double, in context: JSContext!)
    * @availability iOS 7.0+
    */
-  static initDoubleIn(value: number, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 4412363601092308, undefined, [value, context]); }
+  static initDoubleIn(value: number, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 4412363601092308, undefined, [value, context]); }
   /**
    * init!(int32 value: Int32, in context: JSContext!)
    * @availability iOS 7.0+
    */
-  static initInt32In(value: number, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 717319760879328, undefined, [value, context]); }
+  static initInt32In(value: number, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 717319760879328, undefined, [value, context]); }
   /** init!(jsValueRef value: JSValueRef!, in context: JSContext!) */
-  static initJsValueRefIn(value?: (SDKHandle) | null, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 77861419486405, undefined, [value, context]); }
+  static initJsValueRefIn(value?: (SDKHandle) | null, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 77861419486405, undefined, [value, context]); }
   /**
    * init!(newArrayIn context: JSContext!)
    * @availability iOS 7.0+
    */
-  static initNewArrayIn(context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 3442565050088968, undefined, [context]); }
+  static initNewArrayIn(context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 3442565050088968, undefined, [context]); }
   /**
    * init?(newBigIntFrom value: Double, in context: JSContext)
    * @availability iOS 18.0+
    */
-  static initNewBigIntFromIn(value: number, context: JSContext): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 4198414437675052, undefined, [value, context]); }
+  static initNewBigIntFromIn(value: number, context: JSContext): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 4198414437675052, undefined, [value, context]); }
   /**
    * init?(newBigIntFrom int64: Int64, in context: JSContext)
    * @availability iOS 18.0+
    */
-  static initNewBigIntFromIn9283(int64: number, context: JSContext): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 223629474030557, undefined, [int64, context]); }
+  static initNewBigIntFromIn9283(int64: number, context: JSContext): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 223629474030557, undefined, [int64, context]); }
   /**
    * init?(newBigIntFrom string: String, in context: JSContext)
    * @availability iOS 18.0+
    */
-  static initNewBigIntFromIn35821(string: string, context: JSContext): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 225440361093484, undefined, [string, context]); }
+  static initNewBigIntFromIn35821(string: string, context: JSContext): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 225440361093484, undefined, [string, context]); }
   /**
    * init?(newBigIntFrom uint64: UInt64, in context: JSContext)
    * @availability iOS 18.0+
    */
-  static initNewBigIntFromIn52428(uint64: number, context: JSContext): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 1538661800853506, undefined, [uint64, context]); }
+  static initNewBigIntFromIn52428(uint64: number, context: JSContext): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 1538661800853506, undefined, [uint64, context]); }
   /**
    * init!(newErrorFromMessage message: String!, in context: JSContext!)
    * @availability iOS 7.0+
    */
-  static initNewErrorFromMessageIn(message?: (string) | null, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 4069262887970369, undefined, [message, context]); }
+  static initNewErrorFromMessageIn(message?: (string) | null, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 4069262887970369, undefined, [message, context]); }
   /**
    * init!(newObjectIn context: JSContext!)
    * @availability iOS 7.0+
    */
-  static initNewObjectIn(context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 1615203391843083, undefined, [context]); }
+  static initNewObjectIn(context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 1615203391843083, undefined, [context]); }
   /**
    * init!(newPromiseIn context: JSContext!, fromExecutor callback: ((JSValue?, JSValue?) -> Void)!)
    * @availability iOS 13.0+
    */
-  static initNewPromiseInFromExecutor(context?: (JSContext) | null, callback?: (((arg0: (JSValue) | null, arg1: (JSValue) | null) => void)) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 853169696139576, undefined, [context, callback], [null,{"callback":{"out":[]}}]); }
+  static initNewPromiseInFromExecutor(context?: (JSContext) | null, callback?: (((arg0: (JSValue) | null, arg1: (JSValue) | null) => void)) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 853169696139576, undefined, [context, callback], [null,{"callback":{"out":[]}}]); }
   /**
    * init!(newPromiseRejectedWithReason reason: Any!, in context: JSContext!)
    * @availability iOS 13.0+
    */
-  static initNewPromiseRejectedWithReasonIn(reason?: (unknown) | null, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 4448327717393781, undefined, [reason, context]); }
+  static initNewPromiseRejectedWithReasonIn(reason?: (unknown) | null, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 4448327717393781, undefined, [reason, context]); }
   /**
    * init!(newPromiseResolvedWithResult result: Any!, in context: JSContext!)
    * @availability iOS 13.0+
    */
-  static initNewPromiseResolvedWithResultIn(result?: (unknown) | null, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 985943576047903, undefined, [result, context]); }
+  static initNewPromiseResolvedWithResultIn(result?: (unknown) | null, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 985943576047903, undefined, [result, context]); }
   /**
    * init!(newRegularExpressionFromPattern pattern: String!, flags: String!, in context: JSContext!)
    * @availability iOS 7.0+
    */
-  static initNewRegularExpressionFromPatternFlagsIn(pattern?: (string) | null, flags?: (string) | null, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 2025197048281261, undefined, [pattern, flags, context]); }
+  static initNewRegularExpressionFromPatternFlagsIn(pattern?: (string) | null, flags?: (string) | null, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 2025197048281261, undefined, [pattern, flags, context]); }
   /**
    * init!(newSymbolFromDescription description: String!, in context: JSContext!)
    * @availability iOS 13.0+
    */
-  static initNewSymbolFromDescriptionIn(description?: (string) | null, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 3155315811292976, undefined, [description, context]); }
+  static initNewSymbolFromDescriptionIn(description?: (string) | null, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 3155315811292976, undefined, [description, context]); }
   /**
    * init!(nullIn context: JSContext!)
    * @availability iOS 7.0+
    */
-  static initNullIn(context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 4390531801803023, undefined, [context]); }
+  static initNullIn(context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 4390531801803023, undefined, [context]); }
   /**
    * init!(object value: Any!, in context: JSContext!)
    * @availability iOS 7.0+
    */
-  static initObjectIn(value?: (unknown) | null, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 2918897587387539, undefined, [value, context]); }
+  static initObjectIn(value?: (unknown) | null, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 2918897587387539, undefined, [value, context]); }
   /** init!(point: CGPoint, in context: JSContext!) */
-  static initPointIn(point: { x: number; y: number }, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 1344183144380555, undefined, [point, context]); }
+  static initPointIn(point: { x: number; y: number }, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 1344183144380555, undefined, [point, context]); }
   /** init!(range: NSRange, in context: JSContext!) */
-  static initRangeIn(range: SDKHandle, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 41968945349683, undefined, [range, context]); }
+  static initRangeIn(range: SDKHandle, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 41968945349683, undefined, [range, context]); }
   /** init!(rect: CGRect, in context: JSContext!) */
-  static initRectIn(rect: $SDK24, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 1330149646902463, undefined, [rect, context]); }
+  static initRectIn(rect: $SDK24, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 1330149646902463, undefined, [rect, context]); }
   /** init!(size: CGSize, in context: JSContext!) */
-  static initSizeIn(size: $SDK25, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 1677229162585000, undefined, [size, context]); }
+  static initSizeIn(size: $SDK25, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 1677229162585000, undefined, [size, context]); }
   /**
    * init!(uInt32 value: UInt32, in context: JSContext!)
    * @availability iOS 7.0+
    */
-  static initUInt32In(value: number, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 4026074536905941, undefined, [value, context]); }
+  static initUInt32In(value: number, context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 4026074536905941, undefined, [value, context]); }
   /**
    * init!(undefinedIn context: JSContext!)
    * @availability iOS 7.0+
    */
-  static initUndefinedIn(context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2cb2726c65780bbb", 3095830648698428, undefined, [context]); }
+  static initUndefinedIn(context?: (JSContext) | null): JSValue { return callSDK<JSValue>("JavaScriptCore_2f6e018ff7e993f9", 3095830648698428, undefined, [context]); }
   /**
    * func call(withArguments arguments: [Any]!) -> JSValue!
    * @availability iOS 7.0+
    */
-  call(arguments_?: (Array<unknown>) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 1801505453082647, this, [arguments_]); }
+  call(arguments_?: (Array<unknown>) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 1801505453082647, this, [arguments_]); }
   /**
    * func compare(_ other: Double) -> JSRelationCondition
    * @availability iOS 18.0+
    */
-  compare(other: number): JSRelationCondition { return callSDK<JSRelationCondition>("JavaScriptCore_2cb2726c65780bbb", 2669404009431673, this, [other]); }
+  compare(other: number): JSRelationCondition { return callSDK<JSRelationCondition>("JavaScriptCore_2f6e018ff7e993f9", 2669404009431673, this, [other]); }
   /**
    * func compare(_ other: Int64) -> JSRelationCondition
    * @availability iOS 18.0+
    */
-  compare16380(other: number): JSRelationCondition { return callSDK<JSRelationCondition>("JavaScriptCore_2cb2726c65780bbb", 1842518507081603, this, [other]); }
+  compare16380(other: number): JSRelationCondition { return callSDK<JSRelationCondition>("JavaScriptCore_2f6e018ff7e993f9", 1842518507081603, this, [other]); }
   /**
    * func compare(_ other: JSValue) -> JSRelationCondition
    * @availability iOS 18.0+
    */
-  compare72217(other: JSValue): JSRelationCondition { return callSDK<JSRelationCondition>("JavaScriptCore_2cb2726c65780bbb", 1635289150930398, this, [other]); }
+  compare72217(other: JSValue): JSRelationCondition { return callSDK<JSRelationCondition>("JavaScriptCore_2f6e018ff7e993f9", 1635289150930398, this, [other]); }
   /**
    * func compare(_ other: UInt64) -> JSRelationCondition
    * @availability iOS 18.0+
    */
-  compare61657(other: number): JSRelationCondition { return callSDK<JSRelationCondition>("JavaScriptCore_2cb2726c65780bbb", 1871109930097269, this, [other]); }
+  compare61657(other: number): JSRelationCondition { return callSDK<JSRelationCondition>("JavaScriptCore_2f6e018ff7e993f9", 1871109930097269, this, [other]); }
   /**
    * func construct(withArguments arguments: [Any]!) -> JSValue!
    * @availability iOS 7.0+
    */
-  construct(arguments_?: (Array<unknown>) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 668982751339401, this, [arguments_]); }
+  construct(arguments_?: (Array<unknown>) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 668982751339401, this, [arguments_]); }
   /** func defineProperty(_ property: Any!, descriptor: Any!) */
-  defineProperty(property?: (unknown) | null, descriptor?: (unknown) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 819438656707741, this, [property, descriptor]); }
+  defineProperty(property?: (unknown) | null, descriptor?: (unknown) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 819438656707741, this, [property, descriptor]); }
   /** func deleteProperty(_ property: Any!) -> Bool */
-  deleteProperty(property?: (unknown) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 2708903524639110, this, [property]); }
+  deleteProperty(property?: (unknown) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 2708903524639110, this, [property]); }
   /** func hasProperty(_ property: Any!) -> Bool */
-  hasProperty(property?: (unknown) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 1661362222180755, this, [property]); }
+  hasProperty(property?: (unknown) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 1661362222180755, this, [property]); }
   /**
    * func invokeMethod(_ method: String!, withArguments arguments: [Any]!) -> JSValue!
    * @availability iOS 7.0+
    */
-  invokeMethod(method?: (string) | null, arguments_?: (Array<unknown>) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 1371517692800146, this, [method, arguments_]); }
+  invokeMethod(method?: (string) | null, arguments_?: (Array<unknown>) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 1371517692800146, this, [method, arguments_]); }
   /**
    * func isEqual(to value: Any!) -> Bool
    * @availability iOS 7.0+
    */
-  isEqual(value?: (unknown) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 3798407844249262, this, [value]); }
+  isEqual(value?: (unknown) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 3798407844249262, this, [value]); }
   /**
    * func isEqualWithTypeCoercion(to value: Any!) -> Bool
    * @availability iOS 7.0+
    */
-  isEqualWithTypeCoercion(value?: (unknown) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 2789254608852424, this, [value]); }
+  isEqualWithTypeCoercion(value?: (unknown) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 2789254608852424, this, [value]); }
   /**
    * func isInstance(of value: Any!) -> Bool
    * @availability iOS 7.0+
    */
-  isInstance(value?: (unknown) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 1832739281521172, this, [value]); }
+  isInstance(value?: (unknown) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 1832739281521172, this, [value]); }
   /** func objectAtIndexedSubscript(_ index: Int) -> JSValue! */
-  objectAtIndexedSubscript(index: number): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 93531927152062, this, [index]); }
+  objectAtIndexedSubscript(index: number): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 93531927152062, this, [index]); }
   /** func objectForKeyedSubscript(_ key: Any!) -> JSValue! */
-  objectForKeyedSubscript(key?: (unknown) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 4175452967468227, this, [key]); }
+  objectForKeyedSubscript(key?: (unknown) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 4175452967468227, this, [key]); }
   /** func setObject(_ object: Any!, atIndexedSubscript index: Int) */
-  setObjectAtIndexedSubscript(object: (unknown) | null, index: number): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 3420546545551563, this, [object, index]); }
+  setObjectAtIndexedSubscript(object: (unknown) | null, index: number): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 3420546545551563, this, [object, index]); }
   /** func setObject(_ object: Any!, forKeyedSubscript key: Any!) */
-  setObjectForKeyedSubscript(object?: (unknown) | null, key?: (unknown) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 1594159321838543, this, [object, key]); }
+  setObjectForKeyedSubscript(object?: (unknown) | null, key?: (unknown) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 1594159321838543, this, [object, key]); }
   /** func setValue(_ value: Any!, at index: Int) */
-  setValueAt(value: (unknown) | null, index: number): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 1673008300344717, this, [value, index]); }
+  setValueAt(value: (unknown) | null, index: number): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 1673008300344717, this, [value, index]); }
   /** func setValue(_ value: Any!, forProperty property: Any!) */
-  setValueForProperty(value?: (unknown) | null, property?: (unknown) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 3654273400046568, this, [value, property]); }
+  setValueForProperty(value?: (unknown) | null, property?: (unknown) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 3654273400046568, this, [value, property]); }
   /**
    * func toArray() -> [Any]!
    * @availability iOS 7.0+
    */
-  toArray(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("JavaScriptCore_2cb2726c65780bbb", 3139459429426706, this, []); }
+  toArray(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("JavaScriptCore_2f6e018ff7e993f9", 3139459429426706, this, []); }
   /**
    * func toBool() -> Bool
    * @availability iOS 7.0+
    */
-  toBool(): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 4458335925915321, this, []); }
+  toBool(): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 4458335925915321, this, []); }
   /**
    * func toDate() -> Date!
    * @availability iOS 7.0+
    */
-  toDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("JavaScriptCore_2cb2726c65780bbb", 2864650887372502, this, []); }
+  toDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("JavaScriptCore_2f6e018ff7e993f9", 2864650887372502, this, []); }
   /**
    * func toDictionary() -> [AnyHashable : Any]!
    * @availability iOS 7.0+
    */
-  toDictionary(): (NativeMap<unknown, unknown>) | null { return callSDK<(NativeMap<unknown, unknown>) | null>("JavaScriptCore_2cb2726c65780bbb", 1363463064285440, this, []); }
+  toDictionary(): (NativeMap<unknown, unknown>) | null { return callSDK<(NativeMap<unknown, unknown>) | null>("JavaScriptCore_2f6e018ff7e993f9", 1363463064285440, this, []); }
   /**
    * func toDouble() -> Double
    * @availability iOS 7.0+
    */
-  toDouble(): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 1738077679922474, this, []); }
+  toDouble(): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 1738077679922474, this, []); }
   /**
    * func toInt32() -> Int32
    * @availability iOS 7.0+
    */
-  toInt32(): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 207321176485554, this, []); }
+  toInt32(): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 207321176485554, this, []); }
   /**
    * func toInt64() -> Int64
    * @availability iOS 18.0+
    */
-  toInt64(): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 2155540398720013, this, []); }
+  toInt64(): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 2155540398720013, this, []); }
   /**
    * func toNumber() -> NSNumber!
    * @availability iOS 7.0+
    */
-  toNumber(): (_Foundation_NSNumber) | null { return callSDK<(_Foundation_NSNumber) | null>("JavaScriptCore_2cb2726c65780bbb", 3561988959382701, this, []); }
+  toNumber(): (_Foundation_NSNumber) | null { return callSDK<(_Foundation_NSNumber) | null>("JavaScriptCore_2f6e018ff7e993f9", 3561988959382701, this, []); }
   /**
    * func toObject() -> Any!
    * @availability iOS 7.0+
    */
-  toObject(): (unknown) | null { return callSDK<(unknown) | null>("JavaScriptCore_2cb2726c65780bbb", 2520888016353654, this, []); }
+  toObject(): (unknown) | null { return callSDK<(unknown) | null>("JavaScriptCore_2f6e018ff7e993f9", 2520888016353654, this, []); }
   /**
    * func toObjectOf(_ expectedClass: AnyClass!) -> Any!
    * @availability iOS 7.0+
    */
-  toObjectOf(expectedClass?: (string) | null): (unknown) | null { return callSDK<(unknown) | null>("JavaScriptCore_2cb2726c65780bbb", 15702556792933, this, [expectedClass]); }
+  toObjectOf(expectedClass?: (string) | null): (unknown) | null { return callSDK<(unknown) | null>("JavaScriptCore_2f6e018ff7e993f9", 15702556792933, this, [expectedClass]); }
   /** func toPoint() -> CGPoint */
-  toPoint(): { x: number; y: number } { return callSDK<{ x: number; y: number }>("JavaScriptCore_2cb2726c65780bbb", 350473548774311, this, []); }
+  toPoint(): { x: number; y: number } { return callSDK<{ x: number; y: number }>("JavaScriptCore_2f6e018ff7e993f9", 350473548774311, this, []); }
   /** func toRange() -> NSRange */
-  toRange(): SDKHandle { return callSDK<SDKHandle>("JavaScriptCore_2cb2726c65780bbb", 2401676194520542, this, []); }
+  toRange(): SDKHandle { return callSDK<SDKHandle>("JavaScriptCore_2f6e018ff7e993f9", 2401676194520542, this, []); }
   /** func toRect() -> CGRect */
-  toRect(): $SDK24 { return callSDK<$SDK24>("JavaScriptCore_2cb2726c65780bbb", 3555938075416406, this, []); }
+  toRect(): $SDK24 { return callSDK<$SDK24>("JavaScriptCore_2f6e018ff7e993f9", 3555938075416406, this, []); }
   /** func toSize() -> CGSize */
-  toSize(): $SDK25 { return callSDK<$SDK25>("JavaScriptCore_2cb2726c65780bbb", 1016410690361348, this, []); }
+  toSize(): $SDK25 { return callSDK<$SDK25>("JavaScriptCore_2f6e018ff7e993f9", 1016410690361348, this, []); }
   /**
    * func toString() -> String!
    * @availability iOS 7.0+
    */
-  toString(): (string) | null { return callSDK<(string) | null>("JavaScriptCore_2cb2726c65780bbb", 2385727962676668, this, []); }
+  toString(): (string) | null { return callSDK<(string) | null>("JavaScriptCore_2f6e018ff7e993f9", 2385727962676668, this, []); }
   /**
    * func toUInt32() -> UInt32
    * @availability iOS 7.0+
    */
-  toUInt32(): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 1878868571466896, this, []); }
+  toUInt32(): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 1878868571466896, this, []); }
   /**
    * func toUInt64() -> UInt64
    * @availability iOS 18.0+
    */
-  toUInt64(): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 2059300658425448, this, []); }
+  toUInt64(): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 2059300658425448, this, []); }
   /** func atIndex(_ index: Int) -> JSValue! */
-  atIndex(index: number): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 3320307081537710, this, [index]); }
+  atIndex(index: number): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 3320307081537710, this, [index]); }
   /** func forProperty(_ property: Any!) -> JSValue! */
-  forProperty(property?: (unknown) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2cb2726c65780bbb", 3391772453166831, this, [property]); }
+  forProperty(property?: (unknown) | null): (JSValue) | null { return callSDK<(JSValue) | null>("JavaScriptCore_2f6e018ff7e993f9", 3391772453166831, this, [property]); }
   /** var jsValueRef: JSValueRef! { get } */
-  get jsValueRef(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 1682680158302668, this, []); }
+  get jsValueRef(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 1682680158302668, this, []); }
   /**
    * var context: JSContext! { get }
    * @availability iOS 7.0+
    */
-  get context(): (JSContext) | null { return callSDK<(JSContext) | null>("JavaScriptCore_2cb2726c65780bbb", 3472446958149242, this, []); }
+  get context(): (JSContext) | null { return callSDK<(JSContext) | null>("JavaScriptCore_2f6e018ff7e993f9", 3472446958149242, this, []); }
   /**
    * var isArray: Bool { get }
    * @availability iOS 9.0+
    */
-  get isArray(): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 2318932975410209, this, []); }
+  get isArray(): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 2318932975410209, this, []); }
   /**
    * var isBigInt: Bool { get }
    * @availability iOS 18.0+
    */
-  get isBigInt(): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 4143967954957869, this, []); }
+  get isBigInt(): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 4143967954957869, this, []); }
   /**
    * var isBoolean: Bool { get }
    * @availability iOS 7.0+
    */
-  get isBoolean(): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 3932046058680092, this, []); }
+  get isBoolean(): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 3932046058680092, this, []); }
   /**
    * var isDate: Bool { get }
    * @availability iOS 9.0+
    */
-  get isDate(): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 1853741751135596, this, []); }
+  get isDate(): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 1853741751135596, this, []); }
   /**
    * var isNull: Bool { get }
    * @availability iOS 7.0+
    */
-  get isNull(): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 1713570302138363, this, []); }
+  get isNull(): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 1713570302138363, this, []); }
   /**
    * var isNumber: Bool { get }
    * @availability iOS 7.0+
    */
-  get isNumber(): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 1690499065737350, this, []); }
+  get isNumber(): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 1690499065737350, this, []); }
   /**
    * var isObject: Bool { get }
    * @availability iOS 7.0+
    */
-  get isObject(): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 103593781722817, this, []); }
+  get isObject(): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 103593781722817, this, []); }
   /**
    * var isString: Bool { get }
    * @availability iOS 7.0+
    */
-  get isString(): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 2064469598487465, this, []); }
+  get isString(): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 2064469598487465, this, []); }
   /**
    * var isSymbol: Bool { get }
    * @availability iOS 13.0+
    */
-  get isSymbol(): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 2762522787415550, this, []); }
+  get isSymbol(): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 2762522787415550, this, []); }
   /**
    * var isUndefined: Bool { get }
    * @availability iOS 7.0+
    */
-  get isUndefined(): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 3136136646635677, this, []); }
+  get isUndefined(): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 3136136646635677, this, []); }
   declare readonly $type: { "c:objc(cs)JSValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "jsValueRef": true; "context": true; "isArray": true; "isBigInt": true; "isBoolean": true; "isDate": true; "isNull": true; "isNumber": true; "isObject": true; "isString": true; "isSymbol": true; "isUndefined": true };
 }
@@ -665,17 +665,17 @@ export class JSVirtualMachine extends SDKHandle {
    * func addManagedReference(_ object: Any!, withOwner owner: Any!)
    * @availability iOS 7.0+
    */
-  addManagedReference(object?: (unknown) | null, owner?: (unknown) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 1989930816833858, this, [object, owner]); }
+  addManagedReference(object?: (unknown) | null, owner?: (unknown) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 1989930816833858, this, [object, owner]); }
   /**
    * init!()
    * @availability iOS 7.0+
    */
-  static init(): JSVirtualMachine { return callSDK<JSVirtualMachine>("JavaScriptCore_2cb2726c65780bbb", 3067365704702472, undefined, []); }
+  static init(): JSVirtualMachine { return callSDK<JSVirtualMachine>("JavaScriptCore_2f6e018ff7e993f9", 3067365704702472, undefined, []); }
   /**
    * func removeManagedReference(_ object: Any!, withOwner owner: Any!)
    * @availability iOS 7.0+
    */
-  removeManagedReference(object?: (unknown) | null, owner?: (unknown) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 3312630274497326, this, [object, owner]); }
+  removeManagedReference(object?: (unknown) | null, owner?: (unknown) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 3312630274497326, this, [object, owner]); }
   declare readonly $type: { "c:objc(cs)JSVirtualMachine": true; "c:objc(cs)NSObject": true };
 }
 
@@ -683,580 +683,580 @@ export class JSVirtualMachine extends SDKHandle {
  * func JSBigIntCreateWithDouble(_ ctx: JSContextRef, _ value: Double, _ exception: UnsafeMutablePointer<JSValueRef?>?) -> JSValueRef
  * @availability iOS 18.0+
  */
-export function JSBigIntCreateWithDouble(ctx: SDKHandle, value: number): { $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 552655890727861, undefined, [ctx, value, null]); }
+export function JSBigIntCreateWithDouble(ctx: SDKHandle, value: number): { $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 552655890727861, undefined, [ctx, value, null]); }
 
 /**
  * func JSBigIntCreateWithInt64(_ ctx: JSContextRef, _ integer: Int64, _ exception: UnsafeMutablePointer<JSValueRef?>?) -> JSValueRef
  * @availability iOS 18.0+
  */
-export function JSBigIntCreateWithInt64(ctx: SDKHandle, integer: number): { $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 740802412109930, undefined, [ctx, integer, null]); }
+export function JSBigIntCreateWithInt64(ctx: SDKHandle, integer: number): { $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 740802412109930, undefined, [ctx, integer, null]); }
 
 /**
  * func JSBigIntCreateWithString(_ ctx: JSContextRef, _ string: JSStringRef, _ exception: UnsafeMutablePointer<JSValueRef?>?) -> JSValueRef
  * @availability iOS 18.0+
  */
-export function JSBigIntCreateWithString(ctx: SDKHandle, string: SDKHandle): { $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 1953085613704325, undefined, [ctx, string, null]); }
+export function JSBigIntCreateWithString(ctx: SDKHandle, string: SDKHandle): { $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 1953085613704325, undefined, [ctx, string, null]); }
 
 /**
  * func JSBigIntCreateWithUInt64(_ ctx: JSContextRef, _ integer: UInt64, _ exception: UnsafeMutablePointer<JSValueRef?>?) -> JSValueRef
  * @availability iOS 18.0+
  */
-export function JSBigIntCreateWithUInt64(ctx: SDKHandle, integer: number): { $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 1406399548019917, undefined, [ctx, integer, null]); }
+export function JSBigIntCreateWithUInt64(ctx: SDKHandle, integer: number): { $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: SDKHandle; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 1406399548019917, undefined, [ctx, integer, null]); }
 
 /** func JSCheckScriptSyntax(_ ctx: JSContextRef!, _ script: JSStringRef!, _ sourceURL: JSStringRef!, _ startingLineNumber: Int32, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> Bool */
-export function JSCheckScriptSyntax(ctx: (SDKHandle) | null, script: (SDKHandle) | null, sourceURL: (SDKHandle) | null, startingLineNumber: number): { $ret: boolean; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 1859845373982715, undefined, [ctx, script, sourceURL, startingLineNumber, null]); }
+export function JSCheckScriptSyntax(ctx: (SDKHandle) | null, script: (SDKHandle) | null, sourceURL: (SDKHandle) | null, startingLineNumber: number): { $ret: boolean; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 1859845373982715, undefined, [ctx, script, sourceURL, startingLineNumber, null]); }
 
 /** func JSClassCreate(_ definition: UnsafePointer<JSClassDefinition>!) -> JSClassRef! */
-export function JSClassCreate(definition?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 1487670554149232, undefined, [definition]); }
+export function JSClassCreate(definition?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 1487670554149232, undefined, [definition]); }
 
 /** func JSClassRelease(_ jsClass: JSClassRef!) */
-export function JSClassRelease(jsClass?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 3338339098836874, undefined, [jsClass]); }
+export function JSClassRelease(jsClass?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 3338339098836874, undefined, [jsClass]); }
 
 /** func JSClassRetain(_ jsClass: JSClassRef!) -> JSClassRef! */
-export function JSClassRetain(jsClass?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 3959608757621190, undefined, [jsClass]); }
+export function JSClassRetain(jsClass?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 3959608757621190, undefined, [jsClass]); }
 
 /**
  * func JSContextGetGlobalContext(_ ctx: JSContextRef!) -> JSGlobalContextRef!
  * @availability iOS 7.0+
  */
-export function JSContextGetGlobalContext(ctx?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 1093125648561648, undefined, [ctx]); }
+export function JSContextGetGlobalContext(ctx?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 1093125648561648, undefined, [ctx]); }
 
 /** func JSContextGetGlobalObject(_ ctx: JSContextRef!) -> JSObjectRef! */
-export function JSContextGetGlobalObject(ctx?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 1267582083946599, undefined, [ctx]); }
+export function JSContextGetGlobalObject(ctx?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 1267582083946599, undefined, [ctx]); }
 
 /**
  * func JSContextGetGroup(_ ctx: JSContextRef!) -> JSContextGroupRef!
  * @availability iOS 7.0+
  */
-export function JSContextGetGroup(ctx?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 4085547868284748, undefined, [ctx]); }
+export function JSContextGetGroup(ctx?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 4085547868284748, undefined, [ctx]); }
 
 /**
  * func JSContextGroupCreate() -> JSContextGroupRef!
  * @availability iOS 7.0+
  */
-export function JSContextGroupCreate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 869012753394290, undefined, []); }
+export function JSContextGroupCreate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 869012753394290, undefined, []); }
 
 /**
  * func JSContextGroupRelease(_ group: JSContextGroupRef!)
  * @availability iOS 7.0+
  */
-export function JSContextGroupRelease(group?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 2088768366382903, undefined, [group]); }
+export function JSContextGroupRelease(group?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 2088768366382903, undefined, [group]); }
 
 /**
  * func JSContextGroupRetain(_ group: JSContextGroupRef!) -> JSContextGroupRef!
  * @availability iOS 7.0+
  */
-export function JSContextGroupRetain(group?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 3586679069426777, undefined, [group]); }
+export function JSContextGroupRetain(group?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 3586679069426777, undefined, [group]); }
 
 /** func JSEvaluateScript(_ ctx: JSContextRef!, _ script: JSStringRef!, _ thisObject: JSObjectRef!, _ sourceURL: JSStringRef!, _ startingLineNumber: Int32, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSValueRef! */
-export function JSEvaluateScript(ctx: (SDKHandle) | null, script: (SDKHandle) | null, thisObject: (SDKHandle) | null, sourceURL: (SDKHandle) | null, startingLineNumber: number): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 4216322701699039, undefined, [ctx, script, thisObject, sourceURL, startingLineNumber, null]); }
+export function JSEvaluateScript(ctx: (SDKHandle) | null, script: (SDKHandle) | null, thisObject: (SDKHandle) | null, sourceURL: (SDKHandle) | null, startingLineNumber: number): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 4216322701699039, undefined, [ctx, script, thisObject, sourceURL, startingLineNumber, null]); }
 
 /** func JSGarbageCollect(_ ctx: JSContextRef!) */
-export function JSGarbageCollect(ctx?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 1499036777953688, undefined, [ctx]); }
+export function JSGarbageCollect(ctx?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 1499036777953688, undefined, [ctx]); }
 
 /**
  * func JSGlobalContextCopyName(_ ctx: JSGlobalContextRef!) -> JSStringRef!
  * @availability iOS 8.0+
  */
-export function JSGlobalContextCopyName(ctx?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 2577008340715275, undefined, [ctx]); }
+export function JSGlobalContextCopyName(ctx?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 2577008340715275, undefined, [ctx]); }
 
 /**
  * func JSGlobalContextCreate(_ globalObjectClass: JSClassRef!) -> JSGlobalContextRef!
  * @availability iOS 7.0+
  */
-export function JSGlobalContextCreate(globalObjectClass?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 1760616968123434, undefined, [globalObjectClass]); }
+export function JSGlobalContextCreate(globalObjectClass?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 1760616968123434, undefined, [globalObjectClass]); }
 
 /**
  * func JSGlobalContextCreateInGroup(_ group: JSContextGroupRef!, _ globalObjectClass: JSClassRef!) -> JSGlobalContextRef!
  * @availability iOS 7.0+
  */
-export function JSGlobalContextCreateInGroup(group?: (SDKHandle) | null, globalObjectClass?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 951317199770242, undefined, [group, globalObjectClass]); }
+export function JSGlobalContextCreateInGroup(group?: (SDKHandle) | null, globalObjectClass?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 951317199770242, undefined, [group, globalObjectClass]); }
 
 /**
  * func JSGlobalContextIsInspectable(_ ctx: JSGlobalContextRef!) -> Bool
  * @availability iOS 16.4+
  */
-export function JSGlobalContextIsInspectable(ctx?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 1495690792508018, undefined, [ctx]); }
+export function JSGlobalContextIsInspectable(ctx?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 1495690792508018, undefined, [ctx]); }
 
 /** func JSGlobalContextRelease(_ ctx: JSGlobalContextRef!) */
-export function JSGlobalContextRelease(ctx?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 3018600805631707, undefined, [ctx]); }
+export function JSGlobalContextRelease(ctx?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 3018600805631707, undefined, [ctx]); }
 
 /** func JSGlobalContextRetain(_ ctx: JSGlobalContextRef!) -> JSGlobalContextRef! */
-export function JSGlobalContextRetain(ctx?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 4431888388462921, undefined, [ctx]); }
+export function JSGlobalContextRetain(ctx?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 4431888388462921, undefined, [ctx]); }
 
 /**
  * func JSGlobalContextSetInspectable(_ ctx: JSGlobalContextRef!, _ inspectable: Bool)
  * @availability iOS 16.4+
  */
-export function JSGlobalContextSetInspectable(ctx: (SDKHandle) | null, inspectable: boolean): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 130179804294900, undefined, [ctx, inspectable]); }
+export function JSGlobalContextSetInspectable(ctx: (SDKHandle) | null, inspectable: boolean): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 130179804294900, undefined, [ctx, inspectable]); }
 
 /**
  * func JSGlobalContextSetName(_ ctx: JSGlobalContextRef!, _ name: JSStringRef!)
  * @availability iOS 8.0+
  */
-export function JSGlobalContextSetName(ctx?: (SDKHandle) | null, name?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 2371376394806202, undefined, [ctx, name]); }
+export function JSGlobalContextSetName(ctx?: (SDKHandle) | null, name?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 2371376394806202, undefined, [ctx, name]); }
 
 /** func JSObjectCopyPropertyNames(_ ctx: JSContextRef!, _ object: JSObjectRef!) -> JSPropertyNameArrayRef! */
-export function JSObjectCopyPropertyNames(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 1851012397779602, undefined, [ctx, object]); }
+export function JSObjectCopyPropertyNames(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 1851012397779602, undefined, [ctx, object]); }
 
 /** func JSObjectDeleteProperty(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ propertyName: JSStringRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> Bool */
-export function JSObjectDeleteProperty(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null, propertyName?: (SDKHandle) | null): { $ret: boolean; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 2897652381579793, undefined, [ctx, object, propertyName, null]); }
+export function JSObjectDeleteProperty(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null, propertyName?: (SDKHandle) | null): { $ret: boolean; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 2897652381579793, undefined, [ctx, object, propertyName, null]); }
 
 /**
  * func JSObjectDeletePropertyForKey(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ propertyKey: JSValueRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> Bool
  * @availability iOS 13.0+
  */
-export function JSObjectDeletePropertyForKey(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null, propertyKey?: (SDKHandle) | null): { $ret: boolean; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 3383668206407168, undefined, [ctx, object, propertyKey, null]); }
+export function JSObjectDeletePropertyForKey(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null, propertyKey?: (SDKHandle) | null): { $ret: boolean; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 3383668206407168, undefined, [ctx, object, propertyKey, null]); }
 
 /**
  * func JSObjectGetArrayBufferByteLength(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> Int
  * @availability iOS 10.0+
  */
-export function JSObjectGetArrayBufferByteLength(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 1515685597269159, undefined, [ctx, object, null]); }
+export function JSObjectGetArrayBufferByteLength(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 1515685597269159, undefined, [ctx, object, null]); }
 
 /**
  * func JSObjectGetArrayBufferBytesPtr(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> UnsafeMutableRawPointer!
  * @availability iOS 10.0+
  */
-export function JSObjectGetArrayBufferBytesPtr(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 4198759717557233, undefined, [ctx, object, null]); }
+export function JSObjectGetArrayBufferBytesPtr(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 4198759717557233, undefined, [ctx, object, null]); }
 
 /** func JSObjectGetPrivate(_ object: JSObjectRef!) -> UnsafeMutableRawPointer! */
-export function JSObjectGetPrivate(object?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 3149909820023998, undefined, [object]); }
+export function JSObjectGetPrivate(object?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 3149909820023998, undefined, [object]); }
 
 /** func JSObjectGetProperty(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ propertyName: JSStringRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSValueRef! */
-export function JSObjectGetProperty(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null, propertyName?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 3203678711776277, undefined, [ctx, object, propertyName, null]); }
+export function JSObjectGetProperty(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null, propertyName?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 3203678711776277, undefined, [ctx, object, propertyName, null]); }
 
 /** func JSObjectGetPropertyAtIndex(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ propertyIndex: UInt32, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSValueRef! */
-export function JSObjectGetPropertyAtIndex(ctx: (SDKHandle) | null, object: (SDKHandle) | null, propertyIndex: number): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 2610643606729151, undefined, [ctx, object, propertyIndex, null]); }
+export function JSObjectGetPropertyAtIndex(ctx: (SDKHandle) | null, object: (SDKHandle) | null, propertyIndex: number): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 2610643606729151, undefined, [ctx, object, propertyIndex, null]); }
 
 /**
  * func JSObjectGetPropertyForKey(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ propertyKey: JSValueRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSValueRef!
  * @availability iOS 13.0+
  */
-export function JSObjectGetPropertyForKey(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null, propertyKey?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 1918517662040397, undefined, [ctx, object, propertyKey, null]); }
+export function JSObjectGetPropertyForKey(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null, propertyKey?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 1918517662040397, undefined, [ctx, object, propertyKey, null]); }
 
 /** func JSObjectGetPrototype(_ ctx: JSContextRef!, _ object: JSObjectRef!) -> JSValueRef! */
-export function JSObjectGetPrototype(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 708915124011080, undefined, [ctx, object]); }
+export function JSObjectGetPrototype(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 708915124011080, undefined, [ctx, object]); }
 
 /**
  * func JSObjectGetTypedArrayBuffer(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSObjectRef!
  * @availability iOS 10.0+
  */
-export function JSObjectGetTypedArrayBuffer(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 4052634847174307, undefined, [ctx, object, null]); }
+export function JSObjectGetTypedArrayBuffer(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 4052634847174307, undefined, [ctx, object, null]); }
 
 /**
  * func JSObjectGetTypedArrayByteLength(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> Int
  * @availability iOS 10.0+
  */
-export function JSObjectGetTypedArrayByteLength(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 4114372455181501, undefined, [ctx, object, null]); }
+export function JSObjectGetTypedArrayByteLength(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 4114372455181501, undefined, [ctx, object, null]); }
 
 /**
  * func JSObjectGetTypedArrayByteOffset(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> Int
  * @availability iOS 10.0+
  */
-export function JSObjectGetTypedArrayByteOffset(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 965272347794436, undefined, [ctx, object, null]); }
+export function JSObjectGetTypedArrayByteOffset(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 965272347794436, undefined, [ctx, object, null]); }
 
 /**
  * func JSObjectGetTypedArrayBytesPtr(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> UnsafeMutableRawPointer!
  * @availability iOS 10.0+
  */
-export function JSObjectGetTypedArrayBytesPtr(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 4879024356239, undefined, [ctx, object, null]); }
+export function JSObjectGetTypedArrayBytesPtr(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 4879024356239, undefined, [ctx, object, null]); }
 
 /**
  * func JSObjectGetTypedArrayLength(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> Int
  * @availability iOS 10.0+
  */
-export function JSObjectGetTypedArrayLength(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 1875641698536735, undefined, [ctx, object, null]); }
+export function JSObjectGetTypedArrayLength(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 1875641698536735, undefined, [ctx, object, null]); }
 
 /** func JSObjectHasProperty(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ propertyName: JSStringRef!) -> Bool */
-export function JSObjectHasProperty(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null, propertyName?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 2583576794052780, undefined, [ctx, object, propertyName]); }
+export function JSObjectHasProperty(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null, propertyName?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 2583576794052780, undefined, [ctx, object, propertyName]); }
 
 /**
  * func JSObjectHasPropertyForKey(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ propertyKey: JSValueRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> Bool
  * @availability iOS 13.0+
  */
-export function JSObjectHasPropertyForKey(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null, propertyKey?: (SDKHandle) | null): { $ret: boolean; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 2834128424761325, undefined, [ctx, object, propertyKey, null]); }
+export function JSObjectHasPropertyForKey(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null, propertyKey?: (SDKHandle) | null): { $ret: boolean; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 2834128424761325, undefined, [ctx, object, propertyKey, null]); }
 
 /** func JSObjectIsConstructor(_ ctx: JSContextRef!, _ object: JSObjectRef!) -> Bool */
-export function JSObjectIsConstructor(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 2744886841812445, undefined, [ctx, object]); }
+export function JSObjectIsConstructor(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 2744886841812445, undefined, [ctx, object]); }
 
 /** func JSObjectIsFunction(_ ctx: JSContextRef!, _ object: JSObjectRef!) -> Bool */
-export function JSObjectIsFunction(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 819587604221761, undefined, [ctx, object]); }
+export function JSObjectIsFunction(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 819587604221761, undefined, [ctx, object]); }
 
 /** func JSObjectMake(_ ctx: JSContextRef!, _ jsClass: JSClassRef!, _ data: UnsafeMutableRawPointer!) -> JSObjectRef! */
-export function JSObjectMake(ctx?: (SDKHandle) | null, jsClass?: (SDKHandle) | null, data?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 41158301300480, undefined, [ctx, jsClass, data]); }
+export function JSObjectMake(ctx?: (SDKHandle) | null, jsClass?: (SDKHandle) | null, data?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 41158301300480, undefined, [ctx, jsClass, data]); }
 
 /**
  * func JSObjectMakeDeferredPromise(_ ctx: JSContextRef!, _ resolve: UnsafeMutablePointer<JSObjectRef?>!, _ reject: UnsafeMutablePointer<JSObjectRef?>!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSObjectRef!
  * @availability iOS 13.0+
  */
-export function JSObjectMakeDeferredPromise(ctx?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "resolve": (SDKHandle) | null; "reject": (SDKHandle) | null; "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "resolve": (SDKHandle) | null; "reject": (SDKHandle) | null; "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 1142329175573569, undefined, [ctx, null, null, null]); }
+export function JSObjectMakeDeferredPromise(ctx?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "resolve": (SDKHandle) | null; "reject": (SDKHandle) | null; "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "resolve": (SDKHandle) | null; "reject": (SDKHandle) | null; "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 1142329175573569, undefined, [ctx, null, null, null]); }
 
 /**
  * func JSObjectMakeTypedArray(_ ctx: JSContextRef!, _ arrayType: JSTypedArrayType, _ length: Int, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSObjectRef!
  * @availability iOS 10.0+
  */
-export function JSObjectMakeTypedArray(ctx: (SDKHandle) | null, arrayType: JSTypedArrayType, length: number): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 1941755338369565, undefined, [ctx, arrayType, length, null]); }
+export function JSObjectMakeTypedArray(ctx: (SDKHandle) | null, arrayType: JSTypedArrayType, length: number): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 1941755338369565, undefined, [ctx, arrayType, length, null]); }
 
 /**
  * func JSObjectMakeTypedArrayWithArrayBuffer(_ ctx: JSContextRef!, _ arrayType: JSTypedArrayType, _ buffer: JSObjectRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSObjectRef!
  * @availability iOS 10.0+
  */
-export function JSObjectMakeTypedArrayWithArrayBuffer(ctx: (SDKHandle) | null, arrayType: JSTypedArrayType, buffer?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 2095344006274817, undefined, [ctx, arrayType, buffer, null]); }
+export function JSObjectMakeTypedArrayWithArrayBuffer(ctx: (SDKHandle) | null, arrayType: JSTypedArrayType, buffer?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 2095344006274817, undefined, [ctx, arrayType, buffer, null]); }
 
 /**
  * func JSObjectMakeTypedArrayWithArrayBufferAndOffset(_ ctx: JSContextRef!, _ arrayType: JSTypedArrayType, _ buffer: JSObjectRef!, _ byteOffset: Int, _ length: Int, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSObjectRef!
  * @availability iOS 10.0+
  */
-export function JSObjectMakeTypedArrayWithArrayBufferAndOffset(ctx: (SDKHandle) | null, arrayType: JSTypedArrayType, buffer: (SDKHandle) | null, byteOffset: number, length: number): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 532470791943361, undefined, [ctx, arrayType, buffer, byteOffset, length, null]); }
+export function JSObjectMakeTypedArrayWithArrayBufferAndOffset(ctx: (SDKHandle) | null, arrayType: JSTypedArrayType, buffer: (SDKHandle) | null, byteOffset: number, length: number): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 532470791943361, undefined, [ctx, arrayType, buffer, byteOffset, length, null]); }
 
 /** func JSObjectSetPrivate(_ object: JSObjectRef!, _ data: UnsafeMutableRawPointer!) -> Bool */
-export function JSObjectSetPrivate(object?: (SDKHandle) | null, data?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 3662549589196143, undefined, [object, data]); }
+export function JSObjectSetPrivate(object?: (SDKHandle) | null, data?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 3662549589196143, undefined, [object, data]); }
 
 /** func JSObjectSetProperty(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ propertyName: JSStringRef!, _ value: JSValueRef!, _ attributes: JSPropertyAttributes, _ exception: UnsafeMutablePointer<JSValueRef?>!) */
-export function JSObjectSetProperty(ctx: (SDKHandle) | null, object: (SDKHandle) | null, propertyName: (SDKHandle) | null, value: (SDKHandle) | null, attributes: number): { $ret: null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 2832865260830403, undefined, [ctx, object, propertyName, value, attributes, null]); }
+export function JSObjectSetProperty(ctx: (SDKHandle) | null, object: (SDKHandle) | null, propertyName: (SDKHandle) | null, value: (SDKHandle) | null, attributes: number): { $ret: null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 2832865260830403, undefined, [ctx, object, propertyName, value, attributes, null]); }
 
 /** func JSObjectSetPropertyAtIndex(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ propertyIndex: UInt32, _ value: JSValueRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) */
-export function JSObjectSetPropertyAtIndex(ctx: (SDKHandle) | null, object: (SDKHandle) | null, propertyIndex: number, value?: (SDKHandle) | null): { $ret: null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 2373752668375276, undefined, [ctx, object, propertyIndex, value, null]); }
+export function JSObjectSetPropertyAtIndex(ctx: (SDKHandle) | null, object: (SDKHandle) | null, propertyIndex: number, value?: (SDKHandle) | null): { $ret: null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 2373752668375276, undefined, [ctx, object, propertyIndex, value, null]); }
 
 /**
  * func JSObjectSetPropertyForKey(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ propertyKey: JSValueRef!, _ value: JSValueRef!, _ attributes: JSPropertyAttributes, _ exception: UnsafeMutablePointer<JSValueRef?>!)
  * @availability iOS 13.0+
  */
-export function JSObjectSetPropertyForKey(ctx: (SDKHandle) | null, object: (SDKHandle) | null, propertyKey: (SDKHandle) | null, value: (SDKHandle) | null, attributes: number): { $ret: null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 1812292856638334, undefined, [ctx, object, propertyKey, value, attributes, null]); }
+export function JSObjectSetPropertyForKey(ctx: (SDKHandle) | null, object: (SDKHandle) | null, propertyKey: (SDKHandle) | null, value: (SDKHandle) | null, attributes: number): { $ret: null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 1812292856638334, undefined, [ctx, object, propertyKey, value, attributes, null]); }
 
 /** func JSObjectSetPrototype(_ ctx: JSContextRef!, _ object: JSObjectRef!, _ value: JSValueRef!) */
-export function JSObjectSetPrototype(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null, value?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 3769470377491947, undefined, [ctx, object, value]); }
+export function JSObjectSetPrototype(ctx?: (SDKHandle) | null, object?: (SDKHandle) | null, value?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 3769470377491947, undefined, [ctx, object, value]); }
 
 /** func JSPropertyNameAccumulatorAddName(_ accumulator: JSPropertyNameAccumulatorRef!, _ propertyName: JSStringRef!) */
-export function JSPropertyNameAccumulatorAddName(accumulator?: (SDKHandle) | null, propertyName?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 2716433495156497, undefined, [accumulator, propertyName]); }
+export function JSPropertyNameAccumulatorAddName(accumulator?: (SDKHandle) | null, propertyName?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 2716433495156497, undefined, [accumulator, propertyName]); }
 
 /** func JSPropertyNameArrayGetCount(_ array: JSPropertyNameArrayRef!) -> Int */
-export function JSPropertyNameArrayGetCount(array?: (SDKHandle) | null): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 3239667786657830, undefined, [array]); }
+export function JSPropertyNameArrayGetCount(array?: (SDKHandle) | null): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 3239667786657830, undefined, [array]); }
 
 /** func JSPropertyNameArrayGetNameAtIndex(_ array: JSPropertyNameArrayRef!, _ index: Int) -> JSStringRef! */
-export function JSPropertyNameArrayGetNameAtIndex(array: (SDKHandle) | null, index: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 2683938333828939, undefined, [array, index]); }
+export function JSPropertyNameArrayGetNameAtIndex(array: (SDKHandle) | null, index: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 2683938333828939, undefined, [array, index]); }
 
 /** func JSPropertyNameArrayRelease(_ array: JSPropertyNameArrayRef!) */
-export function JSPropertyNameArrayRelease(array?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 4315674476605726, undefined, [array]); }
+export function JSPropertyNameArrayRelease(array?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 4315674476605726, undefined, [array]); }
 
 /** func JSPropertyNameArrayRetain(_ array: JSPropertyNameArrayRef!) -> JSPropertyNameArrayRef! */
-export function JSPropertyNameArrayRetain(array?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 2502099568528916, undefined, [array]); }
+export function JSPropertyNameArrayRetain(array?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 2502099568528916, undefined, [array]); }
 
 /** func JSStringCopyCFString(_ alloc: CFAllocator!, _ string: JSStringRef!) -> CFString! */
-export function JSStringCopyCFString(alloc?: (_CoreFoundation_CFAllocator) | null, string?: (SDKHandle) | null): $SDK29 { return callSDK<$SDK29>("JavaScriptCore_2cb2726c65780bbb", 193651483122666, undefined, [alloc, string]); }
+export function JSStringCopyCFString(alloc?: (_CoreFoundation_CFAllocator) | null, string?: (SDKHandle) | null): $SDK29 { return callSDK<$SDK29>("JavaScriptCore_2f6e018ff7e993f9", 193651483122666, undefined, [alloc, string]); }
 
 /** func JSStringCreateWithCFString(_ string: CFString!) -> JSStringRef! */
-export function JSStringCreateWithCFString(string?: $SDK29): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 1215463404833488, undefined, [string]); }
+export function JSStringCreateWithCFString(string?: $SDK29): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 1215463404833488, undefined, [string]); }
 
 /** func JSStringCreateWithCharacters(_ chars: UnsafePointer<JSChar>!, _ numChars: Int) -> JSStringRef! */
-export function JSStringCreateWithCharacters(chars: (SDKHandle) | null, numChars: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 2945073309806909, undefined, [chars, numChars]); }
+export function JSStringCreateWithCharacters(chars: (SDKHandle) | null, numChars: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 2945073309806909, undefined, [chars, numChars]); }
 
 /** func JSStringCreateWithUTF8CString(_ string: UnsafePointer<CChar>!) -> JSStringRef! */
-export function JSStringCreateWithUTF8CString(string?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 4170001180589512, undefined, [string]); }
+export function JSStringCreateWithUTF8CString(string?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 4170001180589512, undefined, [string]); }
 
 /** func JSStringGetCharactersPtr(_ string: JSStringRef!) -> UnsafePointer<JSChar>! */
-export function JSStringGetCharactersPtr(string?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 2228472337623084, undefined, [string]); }
+export function JSStringGetCharactersPtr(string?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 2228472337623084, undefined, [string]); }
 
 /** func JSStringGetLength(_ string: JSStringRef!) -> Int */
-export function JSStringGetLength(string?: (SDKHandle) | null): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 4088441594842949, undefined, [string]); }
+export function JSStringGetLength(string?: (SDKHandle) | null): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 4088441594842949, undefined, [string]); }
 
 /** func JSStringGetMaximumUTF8CStringSize(_ string: JSStringRef!) -> Int */
-export function JSStringGetMaximumUTF8CStringSize(string?: (SDKHandle) | null): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 2702446867285116, undefined, [string]); }
+export function JSStringGetMaximumUTF8CStringSize(string?: (SDKHandle) | null): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 2702446867285116, undefined, [string]); }
 
 /** func JSStringGetUTF8CString(_ string: JSStringRef!, _ buffer: UnsafeMutablePointer<CChar>!, _ bufferSize: Int) -> Int */
-export function JSStringGetUTF8CString(string: (SDKHandle) | null, buffer: (SDKHandle) | null, bufferSize: number): number { return callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 43633918450722, undefined, [string, buffer, bufferSize]); }
+export function JSStringGetUTF8CString(string: (SDKHandle) | null, buffer: (SDKHandle) | null, bufferSize: number): number { return callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 43633918450722, undefined, [string, buffer, bufferSize]); }
 
 /** func JSStringIsEqual(_ a: JSStringRef!, _ b: JSStringRef!) -> Bool */
-export function JSStringIsEqual(a?: (SDKHandle) | null, b?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 4347270140671356, undefined, [a, b]); }
+export function JSStringIsEqual(a?: (SDKHandle) | null, b?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 4347270140671356, undefined, [a, b]); }
 
 /** func JSStringIsEqualToUTF8CString(_ a: JSStringRef!, _ b: UnsafePointer<CChar>!) -> Bool */
-export function JSStringIsEqualToUTF8CString(a?: (SDKHandle) | null, b?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 4323545251741966, undefined, [a, b]); }
+export function JSStringIsEqualToUTF8CString(a?: (SDKHandle) | null, b?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 4323545251741966, undefined, [a, b]); }
 
 /** func JSStringRelease(_ string: JSStringRef!) */
-export function JSStringRelease(string?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 3693191517716344, undefined, [string]); }
+export function JSStringRelease(string?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 3693191517716344, undefined, [string]); }
 
 /** func JSStringRetain(_ string: JSStringRef!) -> JSStringRef! */
-export function JSStringRetain(string?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 2197267441152461, undefined, [string]); }
+export function JSStringRetain(string?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 2197267441152461, undefined, [string]); }
 
 /**
  * func JSValueCompare(_ ctx: JSContextRef, _ left: JSValueRef, _ right: JSValueRef, _ exception: UnsafeMutablePointer<JSValueRef?>?) -> JSRelationCondition
  * @availability iOS 18.0+
  */
-export function JSValueCompare(ctx: SDKHandle, left: SDKHandle, right: SDKHandle): { $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 850571837936813, undefined, [ctx, left, right, null]); }
+export function JSValueCompare(ctx: SDKHandle, left: SDKHandle, right: SDKHandle): { $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 850571837936813, undefined, [ctx, left, right, null]); }
 
 /**
  * func JSValueCompareDouble(_ ctx: JSContextRef, _ left: JSValueRef, _ right: Double, _ exception: UnsafeMutablePointer<JSValueRef?>?) -> JSRelationCondition
  * @availability iOS 18.0+
  */
-export function JSValueCompareDouble(ctx: SDKHandle, left: SDKHandle, right: number): { $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 68904516927107, undefined, [ctx, left, right, null]); }
+export function JSValueCompareDouble(ctx: SDKHandle, left: SDKHandle, right: number): { $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 68904516927107, undefined, [ctx, left, right, null]); }
 
 /**
  * func JSValueCompareInt64(_ ctx: JSContextRef, _ left: JSValueRef, _ right: Int64, _ exception: UnsafeMutablePointer<JSValueRef?>?) -> JSRelationCondition
  * @availability iOS 18.0+
  */
-export function JSValueCompareInt64(ctx: SDKHandle, left: SDKHandle, right: number): { $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 4351351202531636, undefined, [ctx, left, right, null]); }
+export function JSValueCompareInt64(ctx: SDKHandle, left: SDKHandle, right: number): { $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 4351351202531636, undefined, [ctx, left, right, null]); }
 
 /**
  * func JSValueCompareUInt64(_ ctx: JSContextRef, _ left: JSValueRef, _ right: UInt64, _ exception: UnsafeMutablePointer<JSValueRef?>?) -> JSRelationCondition
  * @availability iOS 18.0+
  */
-export function JSValueCompareUInt64(ctx: SDKHandle, left: SDKHandle, right: number): { $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 634216968463816, undefined, [ctx, left, right, null]); }
+export function JSValueCompareUInt64(ctx: SDKHandle, left: SDKHandle, right: number): { $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: JSRelationCondition; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 634216968463816, undefined, [ctx, left, right, null]); }
 
 /**
  * func JSValueCreateJSONString(_ ctx: JSContextRef!, _ value: JSValueRef!, _ indent: UInt32, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSStringRef!
  * @availability iOS 7.0+
  */
-export function JSValueCreateJSONString(ctx: (SDKHandle) | null, value: (SDKHandle) | null, indent: number): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 2019457717768585, undefined, [ctx, value, indent, null]); }
+export function JSValueCreateJSONString(ctx: (SDKHandle) | null, value: (SDKHandle) | null, indent: number): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 2019457717768585, undefined, [ctx, value, indent, null]); }
 
 /** func JSValueGetType(_ ctx: JSContextRef!, _ value: JSValueRef!) -> JSType */
-export function JSValueGetType(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): JSType { return callSDK<JSType>("JavaScriptCore_2cb2726c65780bbb", 1558451370826372, undefined, [ctx, value]); }
+export function JSValueGetType(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): JSType { return callSDK<JSType>("JavaScriptCore_2f6e018ff7e993f9", 1558451370826372, undefined, [ctx, value]); }
 
 /**
  * func JSValueGetTypedArrayType(_ ctx: JSContextRef!, _ value: JSValueRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSTypedArrayType
  * @availability iOS 10.0+
  */
-export function JSValueGetTypedArrayType(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): { $ret: JSTypedArrayType; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: JSTypedArrayType; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 715808802812267, undefined, [ctx, value, null]); }
+export function JSValueGetTypedArrayType(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): { $ret: JSTypedArrayType; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: JSTypedArrayType; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 715808802812267, undefined, [ctx, value, null]); }
 
 /**
  * func JSValueIsArray(_ ctx: JSContextRef!, _ value: JSValueRef!) -> Bool
  * @availability iOS 9.0+
  */
-export function JSValueIsArray(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 1942511203463496, undefined, [ctx, value]); }
+export function JSValueIsArray(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 1942511203463496, undefined, [ctx, value]); }
 
 /**
  * func JSValueIsBigInt(_ ctx: JSContextRef, _ value: JSValueRef) -> Bool
  * @availability iOS 18.0+
  */
-export function JSValueIsBigInt(ctx: SDKHandle, value: SDKHandle): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 4037504506501105, undefined, [ctx, value]); }
+export function JSValueIsBigInt(ctx: SDKHandle, value: SDKHandle): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 4037504506501105, undefined, [ctx, value]); }
 
 /** func JSValueIsBoolean(_ ctx: JSContextRef!, _ value: JSValueRef!) -> Bool */
-export function JSValueIsBoolean(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 1624269965099993, undefined, [ctx, value]); }
+export function JSValueIsBoolean(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 1624269965099993, undefined, [ctx, value]); }
 
 /**
  * func JSValueIsDate(_ ctx: JSContextRef!, _ value: JSValueRef!) -> Bool
  * @availability iOS 9.0+
  */
-export function JSValueIsDate(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 504222926377871, undefined, [ctx, value]); }
+export function JSValueIsDate(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 504222926377871, undefined, [ctx, value]); }
 
 /** func JSValueIsEqual(_ ctx: JSContextRef!, _ a: JSValueRef!, _ b: JSValueRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> Bool */
-export function JSValueIsEqual(ctx?: (SDKHandle) | null, a?: (SDKHandle) | null, b?: (SDKHandle) | null): { $ret: boolean; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 664456669210384, undefined, [ctx, a, b, null]); }
+export function JSValueIsEqual(ctx?: (SDKHandle) | null, a?: (SDKHandle) | null, b?: (SDKHandle) | null): { $ret: boolean; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 664456669210384, undefined, [ctx, a, b, null]); }
 
 /** func JSValueIsInstanceOfConstructor(_ ctx: JSContextRef!, _ value: JSValueRef!, _ constructor: JSObjectRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> Bool */
-export function JSValueIsInstanceOfConstructor(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null, constructor?: (SDKHandle) | null): { $ret: boolean; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 1856837555307327, undefined, [ctx, value, constructor, null]); }
+export function JSValueIsInstanceOfConstructor(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null, constructor?: (SDKHandle) | null): { $ret: boolean; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 1856837555307327, undefined, [ctx, value, constructor, null]); }
 
 /** func JSValueIsNull(_ ctx: JSContextRef!, _ value: JSValueRef!) -> Bool */
-export function JSValueIsNull(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 4461993740911536, undefined, [ctx, value]); }
+export function JSValueIsNull(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 4461993740911536, undefined, [ctx, value]); }
 
 /** func JSValueIsNumber(_ ctx: JSContextRef!, _ value: JSValueRef!) -> Bool */
-export function JSValueIsNumber(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 1156447876933233, undefined, [ctx, value]); }
+export function JSValueIsNumber(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 1156447876933233, undefined, [ctx, value]); }
 
 /** func JSValueIsObject(_ ctx: JSContextRef!, _ value: JSValueRef!) -> Bool */
-export function JSValueIsObject(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 284883113077992, undefined, [ctx, value]); }
+export function JSValueIsObject(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 284883113077992, undefined, [ctx, value]); }
 
 /** func JSValueIsObjectOfClass(_ ctx: JSContextRef!, _ value: JSValueRef!, _ jsClass: JSClassRef!) -> Bool */
-export function JSValueIsObjectOfClass(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null, jsClass?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 743506516160633, undefined, [ctx, value, jsClass]); }
+export function JSValueIsObjectOfClass(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null, jsClass?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 743506516160633, undefined, [ctx, value, jsClass]); }
 
 /** func JSValueIsStrictEqual(_ ctx: JSContextRef!, _ a: JSValueRef!, _ b: JSValueRef!) -> Bool */
-export function JSValueIsStrictEqual(ctx?: (SDKHandle) | null, a?: (SDKHandle) | null, b?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 1259718982028537, undefined, [ctx, a, b]); }
+export function JSValueIsStrictEqual(ctx?: (SDKHandle) | null, a?: (SDKHandle) | null, b?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 1259718982028537, undefined, [ctx, a, b]); }
 
 /** func JSValueIsString(_ ctx: JSContextRef!, _ value: JSValueRef!) -> Bool */
-export function JSValueIsString(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 2446821055805910, undefined, [ctx, value]); }
+export function JSValueIsString(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 2446821055805910, undefined, [ctx, value]); }
 
 /**
  * func JSValueIsSymbol(_ ctx: JSContextRef!, _ value: JSValueRef!) -> Bool
  * @availability iOS 13.0+
  */
-export function JSValueIsSymbol(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 3997062189784228, undefined, [ctx, value]); }
+export function JSValueIsSymbol(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 3997062189784228, undefined, [ctx, value]); }
 
 /** func JSValueIsUndefined(_ ctx: JSContextRef!, _ value: JSValueRef!) -> Bool */
-export function JSValueIsUndefined(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 367537861361291, undefined, [ctx, value]); }
+export function JSValueIsUndefined(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 367537861361291, undefined, [ctx, value]); }
 
 /** func JSValueMakeBoolean(_ ctx: JSContextRef!, _ boolean: Bool) -> JSValueRef! */
-export function JSValueMakeBoolean(ctx: (SDKHandle) | null, boolean: boolean): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 511155773354418, undefined, [ctx, boolean]); }
+export function JSValueMakeBoolean(ctx: (SDKHandle) | null, boolean: boolean): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 511155773354418, undefined, [ctx, boolean]); }
 
 /**
  * func JSValueMakeFromJSONString(_ ctx: JSContextRef!, _ string: JSStringRef!) -> JSValueRef!
  * @availability iOS 7.0+
  */
-export function JSValueMakeFromJSONString(ctx?: (SDKHandle) | null, string?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 2602218447292050, undefined, [ctx, string]); }
+export function JSValueMakeFromJSONString(ctx?: (SDKHandle) | null, string?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 2602218447292050, undefined, [ctx, string]); }
 
 /** func JSValueMakeNull(_ ctx: JSContextRef!) -> JSValueRef! */
-export function JSValueMakeNull(ctx?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 1856125058761454, undefined, [ctx]); }
+export function JSValueMakeNull(ctx?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 1856125058761454, undefined, [ctx]); }
 
 /** func JSValueMakeNumber(_ ctx: JSContextRef!, _ number: Double) -> JSValueRef! */
-export function JSValueMakeNumber(ctx: (SDKHandle) | null, number: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 2386443050972521, undefined, [ctx, number]); }
+export function JSValueMakeNumber(ctx: (SDKHandle) | null, number: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 2386443050972521, undefined, [ctx, number]); }
 
 /** func JSValueMakeString(_ ctx: JSContextRef!, _ string: JSStringRef!) -> JSValueRef! */
-export function JSValueMakeString(ctx?: (SDKHandle) | null, string?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 1582665236551316, undefined, [ctx, string]); }
+export function JSValueMakeString(ctx?: (SDKHandle) | null, string?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 1582665236551316, undefined, [ctx, string]); }
 
 /**
  * func JSValueMakeSymbol(_ ctx: JSContextRef!, _ description: JSStringRef!) -> JSValueRef!
  * @availability iOS 13.0+
  */
-export function JSValueMakeSymbol(ctx?: (SDKHandle) | null, description?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 2357112403901322, undefined, [ctx, description]); }
+export function JSValueMakeSymbol(ctx?: (SDKHandle) | null, description?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 2357112403901322, undefined, [ctx, description]); }
 
 /** func JSValueMakeUndefined(_ ctx: JSContextRef!) -> JSValueRef! */
-export function JSValueMakeUndefined(ctx?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2cb2726c65780bbb", 4379131789169623, undefined, [ctx]); }
+export function JSValueMakeUndefined(ctx?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("JavaScriptCore_2f6e018ff7e993f9", 4379131789169623, undefined, [ctx]); }
 
 /** func JSValueProtect(_ ctx: JSContextRef!, _ value: JSValueRef!) */
-export function JSValueProtect(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 2178800562570946, undefined, [ctx, value]); }
+export function JSValueProtect(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 2178800562570946, undefined, [ctx, value]); }
 
 /** func JSValueToBoolean(_ ctx: JSContextRef!, _ value: JSValueRef!) -> Bool */
-export function JSValueToBoolean(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2cb2726c65780bbb", 43734063366909, undefined, [ctx, value]); }
+export function JSValueToBoolean(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("JavaScriptCore_2f6e018ff7e993f9", 43734063366909, undefined, [ctx, value]); }
 
 /**
  * func JSValueToInt32(_ ctx: JSContextRef, _ value: JSValueRef, _ exception: UnsafeMutablePointer<JSValueRef?>?) -> Int32
  * @availability iOS 18.0+
  */
-export function JSValueToInt32(ctx: SDKHandle, value: SDKHandle): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 2985246042810192, undefined, [ctx, value, null]); }
+export function JSValueToInt32(ctx: SDKHandle, value: SDKHandle): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 2985246042810192, undefined, [ctx, value, null]); }
 
 /**
  * func JSValueToInt64(_ ctx: JSContextRef, _ value: JSValueRef, _ exception: UnsafeMutablePointer<JSValueRef?>?) -> Int64
  * @availability iOS 18.0+
  */
-export function JSValueToInt64(ctx: SDKHandle, value: SDKHandle): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 2730663598785916, undefined, [ctx, value, null]); }
+export function JSValueToInt64(ctx: SDKHandle, value: SDKHandle): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 2730663598785916, undefined, [ctx, value, null]); }
 
 /** func JSValueToNumber(_ ctx: JSContextRef!, _ value: JSValueRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> Double */
-export function JSValueToNumber(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 3647918053302140, undefined, [ctx, value, null]); }
+export function JSValueToNumber(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 3647918053302140, undefined, [ctx, value, null]); }
 
 /** func JSValueToObject(_ ctx: JSContextRef!, _ value: JSValueRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSObjectRef! */
-export function JSValueToObject(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 1203084923571332, undefined, [ctx, value, null]); }
+export function JSValueToObject(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 1203084923571332, undefined, [ctx, value, null]); }
 
 /** func JSValueToStringCopy(_ ctx: JSContextRef!, _ value: JSValueRef!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSStringRef! */
-export function JSValueToStringCopy(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 881282935834109, undefined, [ctx, value, null]); }
+export function JSValueToStringCopy(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): { $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 881282935834109, undefined, [ctx, value, null]); }
 
 /**
  * func JSValueToUInt32(_ ctx: JSContextRef, _ value: JSValueRef, _ exception: UnsafeMutablePointer<JSValueRef?>?) -> UInt32
  * @availability iOS 18.0+
  */
-export function JSValueToUInt32(ctx: SDKHandle, value: SDKHandle): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 927291015328579, undefined, [ctx, value, null]); }
+export function JSValueToUInt32(ctx: SDKHandle, value: SDKHandle): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 927291015328579, undefined, [ctx, value, null]); }
 
 /**
  * func JSValueToUInt64(_ ctx: JSContextRef, _ value: JSValueRef, _ exception: UnsafeMutablePointer<JSValueRef?>?) -> UInt64
  * @availability iOS 18.0+
  */
-export function JSValueToUInt64(ctx: SDKHandle, value: SDKHandle): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2cb2726c65780bbb", 1032327530332629, undefined, [ctx, value, null]); }
+export function JSValueToUInt64(ctx: SDKHandle, value: SDKHandle): { $ret: number; $out: { "exception": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "exception": (SDKHandle) | null } }>("JavaScriptCore_2f6e018ff7e993f9", 1032327530332629, undefined, [ctx, value, null]); }
 
 /** func JSValueUnprotect(_ ctx: JSContextRef!, _ value: JSValueRef!) */
-export function JSValueUnprotect(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2cb2726c65780bbb", 3581274977686060, undefined, [ctx, value]); }
+export function JSValueUnprotect(ctx?: (SDKHandle) | null, value?: (SDKHandle) | null): void { return callSDK<void>("JavaScriptCore_2f6e018ff7e993f9", 3581274977686060, undefined, [ctx, value]); }
 
 /**
  * var kJSTypeBigInt: JSType { get }
  * @availability iOS 18.0+
  */
-export const kJSTypeBigInt: JSType = callSDK<JSType>("JavaScriptCore_2cb2726c65780bbb", 1989929791314654, undefined, []);
+export const kJSTypeBigInt: JSType = callSDK<JSType>("JavaScriptCore_2f6e018ff7e993f9", 1989929791314654, undefined, []);
 
 /** var kJSTypeBoolean: JSType { get } */
-export const kJSTypeBoolean: JSType = callSDK<JSType>("JavaScriptCore_2cb2726c65780bbb", 2123226391060998, undefined, []);
+export const kJSTypeBoolean: JSType = callSDK<JSType>("JavaScriptCore_2f6e018ff7e993f9", 2123226391060998, undefined, []);
 
 /** var kJSTypeNull: JSType { get } */
-export const kJSTypeNull: JSType = callSDK<JSType>("JavaScriptCore_2cb2726c65780bbb", 964506416372678, undefined, []);
+export const kJSTypeNull: JSType = callSDK<JSType>("JavaScriptCore_2f6e018ff7e993f9", 964506416372678, undefined, []);
 
 /** var kJSTypeNumber: JSType { get } */
-export const kJSTypeNumber: JSType = callSDK<JSType>("JavaScriptCore_2cb2726c65780bbb", 4336340594193133, undefined, []);
+export const kJSTypeNumber: JSType = callSDK<JSType>("JavaScriptCore_2f6e018ff7e993f9", 4336340594193133, undefined, []);
 
 /** var kJSTypeObject: JSType { get } */
-export const kJSTypeObject: JSType = callSDK<JSType>("JavaScriptCore_2cb2726c65780bbb", 1425783664990890, undefined, []);
+export const kJSTypeObject: JSType = callSDK<JSType>("JavaScriptCore_2f6e018ff7e993f9", 1425783664990890, undefined, []);
 
 /** var kJSTypeString: JSType { get } */
-export const kJSTypeString: JSType = callSDK<JSType>("JavaScriptCore_2cb2726c65780bbb", 3806679894826727, undefined, []);
+export const kJSTypeString: JSType = callSDK<JSType>("JavaScriptCore_2f6e018ff7e993f9", 3806679894826727, undefined, []);
 
 /**
  * var kJSTypeSymbol: JSType { get }
  * @availability iOS 13.0+
  */
-export const kJSTypeSymbol: JSType = callSDK<JSType>("JavaScriptCore_2cb2726c65780bbb", 1759521561615453, undefined, []);
+export const kJSTypeSymbol: JSType = callSDK<JSType>("JavaScriptCore_2f6e018ff7e993f9", 1759521561615453, undefined, []);
 
 /** var kJSTypeUndefined: JSType { get } */
-export const kJSTypeUndefined: JSType = callSDK<JSType>("JavaScriptCore_2cb2726c65780bbb", 1807938235341921, undefined, []);
+export const kJSTypeUndefined: JSType = callSDK<JSType>("JavaScriptCore_2f6e018ff7e993f9", 1807938235341921, undefined, []);
 
 /** var kJSTypedArrayTypeArrayBuffer: JSTypedArrayType { get } */
-export const kJSTypedArrayTypeArrayBuffer: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 1207084117438387, undefined, []);
+export const kJSTypedArrayTypeArrayBuffer: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 1207084117438387, undefined, []);
 
 /** var kJSTypedArrayTypeBigInt64Array: JSTypedArrayType { get } */
-export const kJSTypedArrayTypeBigInt64Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 3937375905804612, undefined, []);
+export const kJSTypedArrayTypeBigInt64Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 3937375905804612, undefined, []);
 
 /** var kJSTypedArrayTypeBigUint64Array: JSTypedArrayType { get } */
-export const kJSTypedArrayTypeBigUint64Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 1124754834977146, undefined, []);
+export const kJSTypedArrayTypeBigUint64Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 1124754834977146, undefined, []);
 
 /** var kJSTypedArrayTypeFloat32Array: JSTypedArrayType { get } */
-export const kJSTypedArrayTypeFloat32Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 2307415648318917, undefined, []);
+export const kJSTypedArrayTypeFloat32Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 2307415648318917, undefined, []);
 
 /** var kJSTypedArrayTypeFloat64Array: JSTypedArrayType { get } */
-export const kJSTypedArrayTypeFloat64Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 265496247049466, undefined, []);
+export const kJSTypedArrayTypeFloat64Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 265496247049466, undefined, []);
 
 /** var kJSTypedArrayTypeInt16Array: JSTypedArrayType { get } */
-export const kJSTypedArrayTypeInt16Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 1775250658734037, undefined, []);
+export const kJSTypedArrayTypeInt16Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 1775250658734037, undefined, []);
 
 /** var kJSTypedArrayTypeInt32Array: JSTypedArrayType { get } */
-export const kJSTypedArrayTypeInt32Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 2133593918490400, undefined, []);
+export const kJSTypedArrayTypeInt32Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 2133593918490400, undefined, []);
 
 /** var kJSTypedArrayTypeInt8Array: JSTypedArrayType { get } */
-export const kJSTypedArrayTypeInt8Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 4033179725468825, undefined, []);
+export const kJSTypedArrayTypeInt8Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 4033179725468825, undefined, []);
 
 /** var kJSTypedArrayTypeNone: JSTypedArrayType { get } */
-export const kJSTypedArrayTypeNone: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 564603223990027, undefined, []);
+export const kJSTypedArrayTypeNone: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 564603223990027, undefined, []);
 
 /** var kJSTypedArrayTypeUint16Array: JSTypedArrayType { get } */
-export const kJSTypedArrayTypeUint16Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 2413239350151520, undefined, []);
+export const kJSTypedArrayTypeUint16Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 2413239350151520, undefined, []);
 
 /** var kJSTypedArrayTypeUint32Array: JSTypedArrayType { get } */
-export const kJSTypedArrayTypeUint32Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 1707881916079533, undefined, []);
+export const kJSTypedArrayTypeUint32Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 1707881916079533, undefined, []);
 
 /** var kJSTypedArrayTypeUint8Array: JSTypedArrayType { get } */
-export const kJSTypedArrayTypeUint8Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 3464802694130272, undefined, []);
+export const kJSTypedArrayTypeUint8Array: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 3464802694130272, undefined, []);
 
 /** var kJSTypedArrayTypeUint8ClampedArray: JSTypedArrayType { get } */
-export const kJSTypedArrayTypeUint8ClampedArray: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2cb2726c65780bbb", 2679835252390388, undefined, []);
+export const kJSTypedArrayTypeUint8ClampedArray: JSTypedArrayType = callSDK<JSTypedArrayType>("JavaScriptCore_2f6e018ff7e993f9", 2679835252390388, undefined, []);
 
 /** var kJSClassAttributeNoAutomaticPrototype: Int { get } */
-export const kJSClassAttributeNoAutomaticPrototype: number = callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 1604507171175109, undefined, []);
+export const kJSClassAttributeNoAutomaticPrototype: number = callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 1604507171175109, undefined, []);
 
 /** var kJSClassAttributeNone: Int { get } */
-export const kJSClassAttributeNone: number = callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 1447203561595677, undefined, []);
+export const kJSClassAttributeNone: number = callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 1447203561595677, undefined, []);
 
 /** var kJSPropertyAttributeDontDelete: Int { get } */
-export const kJSPropertyAttributeDontDelete: number = callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 3180580734123955, undefined, []);
+export const kJSPropertyAttributeDontDelete: number = callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 3180580734123955, undefined, []);
 
 /** var kJSPropertyAttributeDontEnum: Int { get } */
-export const kJSPropertyAttributeDontEnum: number = callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 2833008698655816, undefined, []);
+export const kJSPropertyAttributeDontEnum: number = callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 2833008698655816, undefined, []);
 
 /** var kJSPropertyAttributeNone: Int { get } */
-export const kJSPropertyAttributeNone: number = callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 4309583747263570, undefined, []);
+export const kJSPropertyAttributeNone: number = callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 4309583747263570, undefined, []);
 
 /** var kJSPropertyAttributeReadOnly: Int { get } */
-export const kJSPropertyAttributeReadOnly: number = callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 3799044664038311, undefined, []);
+export const kJSPropertyAttributeReadOnly: number = callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 3799044664038311, undefined, []);
 
 /** let JSPropertyDescriptorConfigurableKey: String */
-export const JSPropertyDescriptorConfigurableKey: string = callSDK<string>("JavaScriptCore_2cb2726c65780bbb", 1508467866320059, undefined, []);
+export const JSPropertyDescriptorConfigurableKey: string = callSDK<string>("JavaScriptCore_2f6e018ff7e993f9", 1508467866320059, undefined, []);
 
 /** let JSPropertyDescriptorEnumerableKey: String */
-export const JSPropertyDescriptorEnumerableKey: string = callSDK<string>("JavaScriptCore_2cb2726c65780bbb", 3336923489973059, undefined, []);
+export const JSPropertyDescriptorEnumerableKey: string = callSDK<string>("JavaScriptCore_2f6e018ff7e993f9", 3336923489973059, undefined, []);
 
 /** let JSPropertyDescriptorGetKey: String */
-export const JSPropertyDescriptorGetKey: string = callSDK<string>("JavaScriptCore_2cb2726c65780bbb", 931756904332510, undefined, []);
+export const JSPropertyDescriptorGetKey: string = callSDK<string>("JavaScriptCore_2f6e018ff7e993f9", 931756904332510, undefined, []);
 
 /** let JSPropertyDescriptorSetKey: String */
-export const JSPropertyDescriptorSetKey: string = callSDK<string>("JavaScriptCore_2cb2726c65780bbb", 1566093512044444, undefined, []);
+export const JSPropertyDescriptorSetKey: string = callSDK<string>("JavaScriptCore_2f6e018ff7e993f9", 1566093512044444, undefined, []);
 
 /** let JSPropertyDescriptorValueKey: String */
-export const JSPropertyDescriptorValueKey: string = callSDK<string>("JavaScriptCore_2cb2726c65780bbb", 2121221845291398, undefined, []);
+export const JSPropertyDescriptorValueKey: string = callSDK<string>("JavaScriptCore_2f6e018ff7e993f9", 2121221845291398, undefined, []);
 
 /** let JSPropertyDescriptorWritableKey: String */
-export const JSPropertyDescriptorWritableKey: string = callSDK<string>("JavaScriptCore_2cb2726c65780bbb", 4284913040327938, undefined, []);
+export const JSPropertyDescriptorWritableKey: string = callSDK<string>("JavaScriptCore_2f6e018ff7e993f9", 4284913040327938, undefined, []);
 
 /** let kJSClassDefinitionEmpty: JSClassDefinition */
-export const kJSClassDefinitionEmpty: JSClassDefinition = callSDK<JSClassDefinition>("JavaScriptCore_2cb2726c65780bbb", 1637499873234984, undefined, []);
+export const kJSClassDefinitionEmpty: JSClassDefinition = callSDK<JSClassDefinition>("JavaScriptCore_2f6e018ff7e993f9", 1637499873234984, undefined, []);
 
 /** var JSC_OBJC_API_ENABLED: Int32 { get } */
-export const JSC_OBJC_API_ENABLED: number = callSDK<number>("JavaScriptCore_2cb2726c65780bbb", 3111005916538893, undefined, []);
+export const JSC_OBJC_API_ENABLED: number = callSDK<number>("JavaScriptCore_2f6e018ff7e993f9", 3111005916538893, undefined, []);
 
-registerSDKClass("JavaScriptCore.JSClassDefinition", JSClassDefinition, { module: "JavaScriptCore_2cb2726c65780bbb", properties: {} });
-registerSDKClass("JSContext", JSContext, { module: "JavaScriptCore_2cb2726c65780bbb", properties: {"jsGlobalContextRef":1595054104714473,"exception":3780563316916510,"globalObject":4077238156817854,"isInspectable":3907451698204484,"name":2768975793196211,"virtualMachine":1027520764306502}, methods: {"evaluateScript":{"id":4189162757989038},"evaluateScriptWithSourceURL":{"id":1055820134280014},"objectForKeyedSubscript":{"id":3847994166520488},"setObject":{"id":3018813635839626}} });
+registerSDKClass("JavaScriptCore.JSClassDefinition", JSClassDefinition, { module: "JavaScriptCore_2f6e018ff7e993f9", properties: {} });
+registerSDKClass("JSContext", JSContext, { module: "JavaScriptCore_2f6e018ff7e993f9", properties: {"jsGlobalContextRef":1595054104714473,"exception":3780563316916510,"globalObject":4077238156817854,"isInspectable":3907451698204484,"name":2768975793196211,"virtualMachine":1027520764306502}, methods: {"evaluateScript":{"id":4189162757989038},"evaluateScriptWithSourceURL":{"id":1055820134280014},"objectForKeyedSubscript":{"id":3847994166520488},"setObject":{"id":3018813635839626}} });
 registerSDKProtocol("c:objc(pl)JSExport", {});
-registerSDKClass("JSManagedValue", JSManagedValue, { module: "JavaScriptCore_2cb2726c65780bbb", properties: {"value":3940657746977780} });
-registerSDKClass("JavaScriptCore.JSStaticFunction", JSStaticFunction, { module: "JavaScriptCore_2cb2726c65780bbb", properties: {} });
-registerSDKClass("JavaScriptCore.JSStaticValue", JSStaticValue, { module: "JavaScriptCore_2cb2726c65780bbb", properties: {} });
-registerSDKClass("JSValue", JSValue, { module: "JavaScriptCore_2cb2726c65780bbb", properties: {"jsValueRef":1682680158302668,"context":3472446958149242,"isArray":2318932975410209,"isBigInt":4143967954957869,"isBoolean":3932046058680092,"isDate":1853741751135596,"isNull":1713570302138363,"isNumber":1690499065737350,"isObject":103593781722817,"isString":2064469598487465,"isSymbol":2762522787415550,"isUndefined":3136136646635677}, methods: {"call":{"id":1801505453082647},"compare":{"id":2669404009431673},"compare16380":{"id":1842518507081603},"compare72217":{"id":1635289150930398},"compare61657":{"id":1871109930097269},"construct":{"id":668982751339401},"defineProperty":{"id":819438656707741},"deleteProperty":{"id":2708903524639110},"hasProperty":{"id":1661362222180755},"invokeMethod":{"id":1371517692800146},"isEqual":{"id":3798407844249262},"isEqualWithTypeCoercion":{"id":2789254608852424},"isInstance":{"id":1832739281521172},"objectAtIndexedSubscript":{"id":93531927152062},"objectForKeyedSubscript":{"id":4175452967468227},"setObjectAtIndexedSubscript":{"id":3420546545551563},"setObjectForKeyedSubscript":{"id":1594159321838543},"setValueAt":{"id":1673008300344717},"setValueForProperty":{"id":3654273400046568},"toArray":{"id":3139459429426706},"toBool":{"id":4458335925915321},"toDate":{"id":2864650887372502},"toDictionary":{"id":1363463064285440},"toDouble":{"id":1738077679922474},"toInt32":{"id":207321176485554},"toInt64":{"id":2155540398720013},"toNumber":{"id":3561988959382701},"toObject":{"id":2520888016353654},"toObjectOf":{"id":15702556792933},"toPoint":{"id":350473548774311},"toRange":{"id":2401676194520542},"toRect":{"id":3555938075416406},"toSize":{"id":1016410690361348},"toString":{"id":2385727962676668},"toUInt32":{"id":1878868571466896},"toUInt64":{"id":2059300658425448},"atIndex":{"id":3320307081537710},"forProperty":{"id":3391772453166831}} });
-registerSDKClass("JSVirtualMachine", JSVirtualMachine, { module: "JavaScriptCore_2cb2726c65780bbb", properties: {}, methods: {"addManagedReference":{"id":1989930816833858},"removeManagedReference":{"id":3312630274497326}} });
+registerSDKClass("JSManagedValue", JSManagedValue, { module: "JavaScriptCore_2f6e018ff7e993f9", properties: {"value":3940657746977780} });
+registerSDKClass("JavaScriptCore.JSStaticFunction", JSStaticFunction, { module: "JavaScriptCore_2f6e018ff7e993f9", properties: {} });
+registerSDKClass("JavaScriptCore.JSStaticValue", JSStaticValue, { module: "JavaScriptCore_2f6e018ff7e993f9", properties: {} });
+registerSDKClass("JSValue", JSValue, { module: "JavaScriptCore_2f6e018ff7e993f9", properties: {"jsValueRef":1682680158302668,"context":3472446958149242,"isArray":2318932975410209,"isBigInt":4143967954957869,"isBoolean":3932046058680092,"isDate":1853741751135596,"isNull":1713570302138363,"isNumber":1690499065737350,"isObject":103593781722817,"isString":2064469598487465,"isSymbol":2762522787415550,"isUndefined":3136136646635677}, methods: {"call":{"id":1801505453082647},"compare":{"id":2669404009431673},"compare16380":{"id":1842518507081603},"compare72217":{"id":1635289150930398},"compare61657":{"id":1871109930097269},"construct":{"id":668982751339401},"defineProperty":{"id":819438656707741},"deleteProperty":{"id":2708903524639110},"hasProperty":{"id":1661362222180755},"invokeMethod":{"id":1371517692800146},"isEqual":{"id":3798407844249262},"isEqualWithTypeCoercion":{"id":2789254608852424},"isInstance":{"id":1832739281521172},"objectAtIndexedSubscript":{"id":93531927152062},"objectForKeyedSubscript":{"id":4175452967468227},"setObjectAtIndexedSubscript":{"id":3420546545551563},"setObjectForKeyedSubscript":{"id":1594159321838543},"setValueAt":{"id":1673008300344717},"setValueForProperty":{"id":3654273400046568},"toArray":{"id":3139459429426706},"toBool":{"id":4458335925915321},"toDate":{"id":2864650887372502},"toDictionary":{"id":1363463064285440},"toDouble":{"id":1738077679922474},"toInt32":{"id":207321176485554},"toInt64":{"id":2155540398720013},"toNumber":{"id":3561988959382701},"toObject":{"id":2520888016353654},"toObjectOf":{"id":15702556792933},"toPoint":{"id":350473548774311},"toRange":{"id":2401676194520542},"toRect":{"id":3555938075416406},"toSize":{"id":1016410690361348},"toString":{"id":2385727962676668},"toUInt32":{"id":1878868571466896},"toUInt64":{"id":2059300658425448},"atIndex":{"id":3320307081537710},"forProperty":{"id":3391772453166831}} });
+registerSDKClass("JSVirtualMachine", JSVirtualMachine, { module: "JavaScriptCore_2f6e018ff7e993f9", properties: {}, methods: {"addManagedReference":{"id":1989930816833858},"removeManagedReference":{"id":3312630274497326}} });

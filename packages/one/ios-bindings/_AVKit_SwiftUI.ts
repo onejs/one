@@ -16,4 +16,4 @@ export class VideoPlayer<VideoOverlay = unknown> extends SDKHandle {
  */
 export type VideoPlayer_Body<VideoOverlay = unknown> = SDKHandle;
 
-registerSDKClass("_AVKit_SwiftUI.VideoPlayer", VideoPlayer, { module: "_AVKit_SwiftUI_2cb2726c65780bbb", properties: {} });
+registerSDKClass("_AVKit_SwiftUI.VideoPlayer", VideoPlayer, { module: "_AVKit_SwiftUI_2f6e018ff7e993f9", properties: {} });
