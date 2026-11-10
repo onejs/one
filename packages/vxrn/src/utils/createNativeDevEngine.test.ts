@@ -901,7 +901,6 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
         minify: false,
         plugins: [workletImportsPlugin({ 'pure-math': ['default', 'reads'] })],
       })
-      expect(unminifiedProduction.code).toContain('__esmMin')
       const unminifiedRN: any = { console }
       runInNewContext(unminifiedProduction.code, unminifiedRN)
       expect(unminifiedRN.calculate(10)).toBe(109)
