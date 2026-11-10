@@ -74,17 +74,17 @@ export class JPKIPassContents extends SDKHandle {
    * let userIdentity: JPKIPassContents.UserIdentity?
    * @availability iOS 18.0+
    */
-  get userIdentity(): (JPKIPassContents_UserIdentity) | null { return callSDK<(JPKIPassContents_UserIdentity) | null>("PassKit_2f6e018ff7e993f9", 3006162327692685, this, []); }
+  get userIdentity(): (JPKIPassContents_UserIdentity) | null { return callSDK<(JPKIPassContents_UserIdentity) | null>("PassKit_a624b245971cfd00", 3006162327692685, this, []); }
   /**
    * let signingIdentity: JPKIPassContents.SigningIdentity?
    * @availability iOS 18.0+
    */
-  get signingIdentity(): (JPKIPassContents_SigningIdentity) | null { return callSDK<(JPKIPassContents_SigningIdentity) | null>("PassKit_2f6e018ff7e993f9", 3447443980053831, this, []); }
+  get signingIdentity(): (JPKIPassContents_SigningIdentity) | null { return callSDK<(JPKIPassContents_SigningIdentity) | null>("PassKit_a624b245971cfd00", 3447443980053831, this, []); }
   /**
    * init(_ pass: PKPass) async throws
    * @availability iOS 18.0+
    */
-  static init(pass: PKPass): Promise<JPKIPassContents> { return callSDKAsync<JPKIPassContents>("PassKit_2f6e018ff7e993f9", 709785752542315, undefined, [pass]); }
+  static init(pass: PKPass): Promise<JPKIPassContents> { return callSDKAsync<JPKIPassContents>("PassKit_a624b245971cfd00", 709785752542315, undefined, [pass]); }
   declare readonly $type: { "s:7PassKit16JPKIPassContentsV": true };
 }
 
@@ -97,12 +97,12 @@ export class JPKIPassContents_AuthenticationRequest<IdentityType = unknown> exte
    * init(type: JPKIPassContents.UserIdentity.AuthenticationType)
    * @availability iOS 18.0+
    */
-  static initType(type: JPKIPassContents_UserIdentity_AuthenticationType): $SDK2 { return callSDK<$SDK2>("PassKit_2f6e018ff7e993f9", 3090641969631616, undefined, [type]); }
+  static initType(type: JPKIPassContents_UserIdentity_AuthenticationType): $SDK2 { return callSDK<$SDK2>("PassKit_a624b245971cfd00", 3090641969631616, undefined, [type]); }
   /**
    * init(type: JPKIPassContents.SigningIdentity.AuthenticationType)
    * @availability iOS 18.0+
    */
-  static initType21560(type: JPKIPassContents_SigningIdentity_AuthenticationType): $SDK3 { return callSDK<$SDK3>("PassKit_2f6e018ff7e993f9", 1294262791183077, undefined, [type]); }
+  static initType21560(type: JPKIPassContents_SigningIdentity_AuthenticationType): $SDK3 { return callSDK<$SDK3>("PassKit_a624b245971cfd00", 1294262791183077, undefined, [type]); }
   declare readonly $type: { "s:7PassKit16JPKIPassContentsV21AuthenticationRequestV": true };
 }
 
@@ -115,7 +115,7 @@ export class JPKIPassContents_Certificate<IdentityType = unknown> extends SDKHan
    * let data: Data
    * @availability iOS 18.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_2f6e018ff7e993f9", 3621497308564323, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_a624b245971cfd00", 3621497308564323, this, []); }
   declare readonly $type: { "s:7PassKit16JPKIPassContentsV11CertificateV": true };
 }
 
@@ -153,12 +153,12 @@ export class JPKIPassContents_Signature<IdentityType = unknown> extends SDKHandl
    * let certificate: JPKIPassContents.Certificate<IdentityType>
    * @availability iOS 18.0+
    */
-  get certificate(): JPKIPassContents_Certificate<SDKHandle> { return callSDK<JPKIPassContents_Certificate<SDKHandle>>("PassKit_2f6e018ff7e993f9", 4239143219420305, this, []); }
+  get certificate(): JPKIPassContents_Certificate<SDKHandle> { return callSDK<JPKIPassContents_Certificate<SDKHandle>>("PassKit_a624b245971cfd00", 4239143219420305, this, []); }
   /**
    * let signatureData: Data
    * @availability iOS 18.0+
    */
-  get signatureData(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_2f6e018ff7e993f9", 1117165143715166, this, []); }
+  get signatureData(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_a624b245971cfd00", 1117165143715166, this, []); }
   declare readonly $type: { "s:7PassKit16JPKIPassContentsV9SignatureV": true };
 }
 
@@ -171,27 +171,27 @@ export class JPKIPassContents_SigningIdentity extends SDKHandle {
    * func certificate(using request: JPKIPassContents.AuthenticationRequest<JPKIPassContents.SigningIdentity>) async throws -> JPKIPassContents.Certificate<JPKIPassContents.SigningIdentity>
    * @availability iOS 18.0+
    */
-  certificate(request: $SDK3): Promise<JPKIPassContents_Certificate<JPKIPassContents_SigningIdentity>> { return callSDKAsync<JPKIPassContents_Certificate<JPKIPassContents_SigningIdentity>>("PassKit_2f6e018ff7e993f9", 1189536956165508, this, [request]); }
+  certificate(request: $SDK3): Promise<JPKIPassContents_Certificate<JPKIPassContents_SigningIdentity>> { return callSDKAsync<JPKIPassContents_Certificate<JPKIPassContents_SigningIdentity>>("PassKit_a624b245971cfd00", 1189536956165508, this, [request]); }
   /**
    * func changePassword(from oldValue: String, to newValue: String) async throws
    * @availability iOS 18.0+
    */
-  changePassword(oldValue: string, newValue: string): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 4374426701951301, this, [oldValue, newValue]); }
+  changePassword(oldValue: string, newValue: string): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 4374426701951301, this, [oldValue, newValue]); }
   /**
    * var authenticationTriesRemaining: Int { get async throws }
    * @availability iOS 18.0+
    */
-  get authenticationTriesRemaining(): Promise<number> { return callSDKAsync<number>("PassKit_2f6e018ff7e993f9", 2554975206761642, this, []); }
+  get authenticationTriesRemaining(): Promise<number> { return callSDKAsync<number>("PassKit_a624b245971cfd00", 2554975206761642, this, []); }
   /**
    * func signature(for data: Data, using request: JPKIPassContents.AuthenticationRequest<JPKIPassContents.SigningIdentity>) async throws -> JPKIPassContents.Signature<JPKIPassContents.SigningIdentity>
    * @availability iOS 18.0+
    */
-  signatureForUsing(data: ArrayBuffer, request: $SDK3): Promise<JPKIPassContents_Signature<JPKIPassContents_SigningIdentity>> { return callSDKAsync<JPKIPassContents_Signature<JPKIPassContents_SigningIdentity>>("PassKit_2f6e018ff7e993f9", 1843230558846426, this, [data, request]); }
+  signatureForUsing(data: ArrayBuffer, request: $SDK3): Promise<JPKIPassContents_Signature<JPKIPassContents_SigningIdentity>> { return callSDKAsync<JPKIPassContents_Signature<JPKIPassContents_SigningIdentity>>("PassKit_a624b245971cfd00", 1843230558846426, this, [data, request]); }
   /**
    * func signature(for data: [Data], using request: JPKIPassContents.AuthenticationRequest<JPKIPassContents.SigningIdentity>) async throws -> [JPKIPassContents.Signature<JPKIPassContents.SigningIdentity>]
    * @availability iOS 18.0+
    */
-  signatureForUsing82568(data: Array<ArrayBuffer>, request: $SDK3): Promise<Array<JPKIPassContents_Signature<JPKIPassContents_SigningIdentity>>> { return callSDKAsync<Array<JPKIPassContents_Signature<JPKIPassContents_SigningIdentity>>>("PassKit_2f6e018ff7e993f9", 3038284634001764, this, [data, request]); }
+  signatureForUsing82568(data: Array<ArrayBuffer>, request: $SDK3): Promise<Array<JPKIPassContents_Signature<JPKIPassContents_SigningIdentity>>> { return callSDKAsync<Array<JPKIPassContents_Signature<JPKIPassContents_SigningIdentity>>>("PassKit_a624b245971cfd00", 3038284634001764, this, [data, request]); }
   declare readonly $type: { "s:7PassKit16JPKIPassContentsV15SigningIdentityV": true };
 }
 
@@ -218,27 +218,27 @@ export class JPKIPassContents_UserIdentity extends SDKHandle {
    * func certificate(using request: JPKIPassContents.AuthenticationRequest<JPKIPassContents.UserIdentity>) async throws -> JPKIPassContents.Certificate<JPKIPassContents.UserIdentity>
    * @availability iOS 18.0+
    */
-  certificate(request: $SDK2): Promise<JPKIPassContents_Certificate<JPKIPassContents_UserIdentity>> { return callSDKAsync<JPKIPassContents_Certificate<JPKIPassContents_UserIdentity>>("PassKit_2f6e018ff7e993f9", 3760991240020111, this, [request]); }
+  certificate(request: $SDK2): Promise<JPKIPassContents_Certificate<JPKIPassContents_UserIdentity>> { return callSDKAsync<JPKIPassContents_Certificate<JPKIPassContents_UserIdentity>>("PassKit_a624b245971cfd00", 3760991240020111, this, [request]); }
   /**
    * var authenticationTriesRemaining: Int { get async throws }
    * @availability iOS 18.0+
    */
-  get authenticationTriesRemaining(): Promise<number> { return callSDKAsync<number>("PassKit_2f6e018ff7e993f9", 4357422413382974, this, []); }
+  get authenticationTriesRemaining(): Promise<number> { return callSDKAsync<number>("PassKit_a624b245971cfd00", 4357422413382974, this, []); }
   /**
    * func changePIN(from oldValue: String, to newValue: String) async throws
    * @availability iOS 18.0+
    */
-  changePIN(oldValue: string, newValue: string): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 4067394623973537, this, [oldValue, newValue]); }
+  changePIN(oldValue: string, newValue: string): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 4067394623973537, this, [oldValue, newValue]); }
   /**
    * func signature(for data: Data, using request: JPKIPassContents.AuthenticationRequest<JPKIPassContents.UserIdentity>) async throws -> JPKIPassContents.Signature<JPKIPassContents.UserIdentity>
    * @availability iOS 18.0+
    */
-  signatureForUsing(data: ArrayBuffer, request: $SDK2): Promise<JPKIPassContents_Signature<JPKIPassContents_UserIdentity>> { return callSDKAsync<JPKIPassContents_Signature<JPKIPassContents_UserIdentity>>("PassKit_2f6e018ff7e993f9", 3774591828653380, this, [data, request]); }
+  signatureForUsing(data: ArrayBuffer, request: $SDK2): Promise<JPKIPassContents_Signature<JPKIPassContents_UserIdentity>> { return callSDKAsync<JPKIPassContents_Signature<JPKIPassContents_UserIdentity>>("PassKit_a624b245971cfd00", 3774591828653380, this, [data, request]); }
   /**
    * func signature(for data: [Data], using request: JPKIPassContents.AuthenticationRequest<JPKIPassContents.UserIdentity>) async throws -> [JPKIPassContents.Signature<JPKIPassContents.UserIdentity>]
    * @availability iOS 18.0+
    */
-  signatureForUsing98569(data: Array<ArrayBuffer>, request: $SDK2): Promise<Array<JPKIPassContents_Signature<JPKIPassContents_UserIdentity>>> { return callSDKAsync<Array<JPKIPassContents_Signature<JPKIPassContents_UserIdentity>>>("PassKit_2f6e018ff7e993f9", 1333056302773698, this, [data, request]); }
+  signatureForUsing98569(data: Array<ArrayBuffer>, request: $SDK2): Promise<Array<JPKIPassContents_Signature<JPKIPassContents_UserIdentity>>> { return callSDKAsync<Array<JPKIPassContents_Signature<JPKIPassContents_UserIdentity>>>("PassKit_a624b245971cfd00", 1333056302773698, this, [data, request]); }
   declare readonly $type: { "s:7PassKit16JPKIPassContentsV12UserIdentityV": true };
 }
 
@@ -265,14 +265,14 @@ export class PKAddSecureElementPassConfiguration extends SDKHandle {
    * var issuerIdentifier: String? { get set }
    * @availability iOS 13.4+
    */
-  get issuerIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 2303789948962761, this, []); }
-  set issuerIdentifier(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2223225529278737, this, [value]); }
+  get issuerIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 2303789948962761, this, []); }
+  set issuerIdentifier(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 2223225529278737, this, [value]); }
   /**
    * var localizedDescription: String? { get set }
    * @availability iOS 13.4+
    */
-  get localizedDescription(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 1698639248745894, this, []); }
-  set localizedDescription(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2759857442200038, this, [value]); }
+  get localizedDescription(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 1698639248745894, this, []); }
+  set localizedDescription(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 2759857442200038, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKAddSecureElementPassConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "issuerIdentifier": true; "localizedDescription": true };
 }
@@ -286,37 +286,37 @@ export class PKAddCarKeyPassConfiguration extends PKAddSecureElementPassConfigur
    * init()
    * @availability iOS 13.4+
    */
-  static init(): PKAddCarKeyPassConfiguration { return callSDK<PKAddCarKeyPassConfiguration>("PassKit_2f6e018ff7e993f9", 3743639298980352, undefined, []); }
+  static init(): PKAddCarKeyPassConfiguration { return callSDK<PKAddCarKeyPassConfiguration>("PassKit_a624b245971cfd00", 3743639298980352, undefined, []); }
   /**
    * var manufacturerIdentifier: String? { get set }
    * @availability iOS 16.0+
    */
-  get manufacturerIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 2737749718947031, this, []); }
-  set manufacturerIdentifier(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1523764236226034, this, [value]); }
+  get manufacturerIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 2737749718947031, this, []); }
+  set manufacturerIdentifier(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1523764236226034, this, [value]); }
   /**
    * var password: String { get set }
    * @availability iOS 13.4+
    */
-  get password(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 3840270369670568, this, []); }
-  set password(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 16651305289028, this, [value]); }
+  get password(): string { return callSDK<string>("PassKit_a624b245971cfd00", 3840270369670568, this, []); }
+  set password(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 16651305289028, this, [value]); }
   /**
    * var productPlanIdentifier: String? { get set }
    * @availability iOS 26.4+
    */
-  get productPlanIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 3360264206723454, this, []); }
-  set productPlanIdentifier(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1143695062086771, this, [value]); }
+  get productPlanIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 3360264206723454, this, []); }
+  set productPlanIdentifier(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1143695062086771, this, [value]); }
   /**
    * var provisioningTemplateIdentifier: String? { get set }
    * @availability iOS 16.0+
    */
-  get provisioningTemplateIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 303949277708384, this, []); }
-  set provisioningTemplateIdentifier(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1932204630866077, this, [value]); }
+  get provisioningTemplateIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 303949277708384, this, []); }
+  set provisioningTemplateIdentifier(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1932204630866077, this, [value]); }
   /**
    * var supportedRadioTechnologies: PKRadioTechnology { get set }
    * @availability iOS 14.5+
    */
-  get supportedRadioTechnologies(): PKRadioTechnology { return callSDK<PKRadioTechnology>("PassKit_2f6e018ff7e993f9", 3704654579408891, this, []); }
-  set supportedRadioTechnologies(value: PKRadioTechnology) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3924340282572297, this, [value]); }
+  get supportedRadioTechnologies(): PKRadioTechnology { return callSDK<PKRadioTechnology>("PassKit_a624b245971cfd00", 3704654579408891, this, []); }
+  set supportedRadioTechnologies(value: PKRadioTechnology) { callSDK<void>("PassKit_a624b245971cfd00", 3924340282572297, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKAddCarKeyPassConfiguration": true; "c:objc(cs)PKAddSecureElementPassConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "issuerIdentifier": true; "localizedDescription": true; "manufacturerIdentifier": true; "password": true; "productPlanIdentifier": true; "provisioningTemplateIdentifier": true; "supportedRadioTechnologies": true };
 }
@@ -330,12 +330,12 @@ export class PKAddIdentityDocumentConfiguration extends PKAddSecureElementPassCo
    * class func forMetadata(_ metadata: PKIdentityDocumentMetadata) async throws -> PKAddIdentityDocumentConfiguration
    * @availability iOS 18.0+
    */
-  static forMetadata(metadata: PKIdentityDocumentMetadata, completion: ((arg0: (PKAddIdentityDocumentConfiguration) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 1424980181593709, undefined, [metadata, completion], [null,{"callback":{"out":[]}}]); }
+  static forMetadata(metadata: PKIdentityDocumentMetadata, completion: ((arg0: (PKAddIdentityDocumentConfiguration) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("PassKit_a624b245971cfd00", 1424980181593709, undefined, [metadata, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var metadata: PKIdentityDocumentMetadata { get }
    * @availability iOS 18.0+
    */
-  get metadata(): PKIdentityDocumentMetadata { return callSDK<PKIdentityDocumentMetadata>("PassKit_2f6e018ff7e993f9", 2955677274760853, this, []); }
+  get metadata(): PKIdentityDocumentMetadata { return callSDK<PKIdentityDocumentMetadata>("PassKit_a624b245971cfd00", 2955677274760853, this, []); }
   declare readonly $type: { "c:objc(cs)PKAddIdentityDocumentConfiguration": true; "c:objc(cs)PKAddSecureElementPassConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "issuerIdentifier": true; "localizedDescription": true; "metadata": true };
 }
@@ -349,38 +349,38 @@ export class PKIdentityDocumentMetadata extends SDKHandle {
    * var cardConfigurationIdentifier: String { get }
    * @availability iOS 18.0+
    */
-  get cardConfigurationIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2052592565222309, this, []); }
+  get cardConfigurationIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2052592565222309, this, []); }
   /**
    * var cardTemplateIdentifier: String { get }
    * @availability iOS 18.0+
    */
-  get cardTemplateIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 273739545497028, this, []); }
+  get cardTemplateIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 273739545497028, this, []); }
   /**
    * var credentialIdentifier: String { get }
    * @availability iOS 18.0+
    */
-  get credentialIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 4236268610260866, this, []); }
+  get credentialIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 4236268610260866, this, []); }
   /**
    * var documentType: PKAddIdentityDocumentType { get }
    * @availability iOS 26.0+
    */
-  get documentType(): PKAddIdentityDocumentType { return callSDK<PKAddIdentityDocumentType>("PassKit_2f6e018ff7e993f9", 4010768724518961, this, []); }
+  get documentType(): PKAddIdentityDocumentType { return callSDK<PKAddIdentityDocumentType>("PassKit_a624b245971cfd00", 4010768724518961, this, []); }
   /**
    * var issuingCountryCode: String { get }
    * @availability iOS 26.0+
    */
-  get issuingCountryCode(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 4097401574219300, this, []); }
+  get issuingCountryCode(): string { return callSDK<string>("PassKit_a624b245971cfd00", 4097401574219300, this, []); }
   /**
    * var serverEnvironmentIdentifier: String { get set }
    * @availability iOS 18.0+
    */
-  get serverEnvironmentIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 3762975822965234, this, []); }
-  set serverEnvironmentIdentifier(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2773481834927424, this, [value]); }
+  get serverEnvironmentIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 3762975822965234, this, []); }
+  set serverEnvironmentIdentifier(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 2773481834927424, this, [value]); }
   /**
    * var sharingInstanceIdentifier: String { get }
    * @availability iOS 18.0+
    */
-  get sharingInstanceIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2693669386259620, this, []); }
+  get sharingInstanceIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2693669386259620, this, []); }
   declare readonly $type: { "c:objc(cs)PKIdentityDocumentMetadata": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cardConfigurationIdentifier": true; "cardTemplateIdentifier": true; "credentialIdentifier": true; "documentType": true; "issuingCountryCode": true; "serverEnvironmentIdentifier": true; "sharingInstanceIdentifier": true };
 }
@@ -394,12 +394,12 @@ export class PKAddIdentityDocumentMetadata extends PKIdentityDocumentMetadata {
    * init(provisioningCredentialIdentifier credentialIdentifier: String, sharingInstanceIdentifier: String, cardTemplateIdentifier templateIdentifier: String, issuingCountryCode: String, documentType: PKAddIdentityDocumentType, preview: PKAddPassMetadataPreview)
    * @availability iOS 26.0+
    */
-  static init(credentialIdentifier: string, sharingInstanceIdentifier: string, templateIdentifier: string, issuingCountryCode: string, documentType: PKAddIdentityDocumentType, preview: PKAddPassMetadataPreview): PKAddIdentityDocumentMetadata { return callSDK<PKAddIdentityDocumentMetadata>("PassKit_2f6e018ff7e993f9", 1243830326513589, undefined, [credentialIdentifier, sharingInstanceIdentifier, templateIdentifier, issuingCountryCode, documentType, preview]); }
+  static init(credentialIdentifier: string, sharingInstanceIdentifier: string, templateIdentifier: string, issuingCountryCode: string, documentType: PKAddIdentityDocumentType, preview: PKAddPassMetadataPreview): PKAddIdentityDocumentMetadata { return callSDK<PKAddIdentityDocumentMetadata>("PassKit_a624b245971cfd00", 1243830326513589, undefined, [credentialIdentifier, sharingInstanceIdentifier, templateIdentifier, issuingCountryCode, documentType, preview]); }
   /**
    * var preview: PKAddPassMetadataPreview { get }
    * @availability iOS 26.0+
    */
-  get preview(): PKAddPassMetadataPreview { return callSDK<PKAddPassMetadataPreview>("PassKit_2f6e018ff7e993f9", 1745629646543223, this, []); }
+  get preview(): PKAddPassMetadataPreview { return callSDK<PKAddPassMetadataPreview>("PassKit_a624b245971cfd00", 1745629646543223, this, []); }
   declare readonly $type: { "c:objc(cs)PKAddIdentityDocumentMetadata": true; "c:objc(cs)PKIdentityDocumentMetadata": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cardConfigurationIdentifier": true; "cardTemplateIdentifier": true; "credentialIdentifier": true; "documentType": true; "issuingCountryCode": true; "serverEnvironmentIdentifier": true; "sharingInstanceIdentifier": true; "preview": true };
 }
@@ -409,7 +409,7 @@ export type PKAddIdentityDocumentType = "idCard" | "mDL" | "photoID";
 
 export const PKAddIdentityDocumentType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PKAddIdentityDocumentType) | null { return callSDK<(PKAddIdentityDocumentType) | null>("PassKit_2f6e018ff7e993f9", 576559888113332, undefined, [rawValue]); }
+  init(rawValue: number): (PKAddIdentityDocumentType) | null { return callSDK<(PKAddIdentityDocumentType) | null>("PassKit_a624b245971cfd00", 576559888113332, undefined, [rawValue]); }
 };
 
 /**
@@ -421,13 +421,13 @@ export class PKAddPassButton extends SDKHandle {
    * init(addPassButtonStyle style: PKAddPassButtonStyle)
    * @availability iOS 9.0+
    */
-  static init(style: PKAddPassButtonStyle): Promise<PKAddPassButton> { return callSDKAsync<PKAddPassButton>("PassKit_2f6e018ff7e993f9", 2408361851331178, undefined, [style]); }
+  static init(style: PKAddPassButtonStyle): Promise<PKAddPassButton> { return callSDKAsync<PKAddPassButton>("PassKit_a624b245971cfd00", 2408361851331178, undefined, [style]); }
   /**
    * var addPassButtonStyle: PKAddPassButtonStyle { get set }
    * @availability iOS 9.0+
    */
-  get addPassButtonStyle(): Promise<PKAddPassButtonStyle> { return callSDKAsync<PKAddPassButtonStyle>("PassKit_2f6e018ff7e993f9", 983685829390758, this, []); }
-  setAddPassButtonStyle(value: PKAddPassButtonStyle): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 2628904938642567, this, [value]); }
+  get addPassButtonStyle(): Promise<PKAddPassButtonStyle> { return callSDKAsync<PKAddPassButtonStyle>("PassKit_a624b245971cfd00", 983685829390758, this, []); }
+  setAddPassButtonStyle(value: PKAddPassButtonStyle): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 2628904938642567, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKAddPassButton": true; "c:objc(cs)UIButton": true; "c:objc(cs)UIControl": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "addPassButtonStyle": true };
 }
@@ -443,7 +443,7 @@ export const PKAddPassButtonStyle = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (PKAddPassButtonStyle) | null { return callSDK<(PKAddPassButtonStyle) | null>("PassKit_2f6e018ff7e993f9", 2431064433322934, undefined, [rawValue]); }
+  init(rawValue: number): (PKAddPassButtonStyle) | null { return callSDK<(PKAddPassButtonStyle) | null>("PassKit_a624b245971cfd00", 2431064433322934, undefined, [rawValue]); }
 };
 
 /**
@@ -455,43 +455,43 @@ export class PKAddPassesViewController extends SDKHandle {
    * class func canAddPasses() -> Bool
    * @availability iOS 8.0+
    */
-  static canAddPasses(): Promise<boolean> { return callSDKAsync<boolean>("PassKit_2f6e018ff7e993f9", 4141262105910336, undefined, []); }
+  static canAddPasses(): Promise<boolean> { return callSDKAsync<boolean>("PassKit_a624b245971cfd00", 4141262105910336, undefined, []); }
   /**
    * init(issuerData: Data, signature: Data) throws
    * @availability iOS 16.4+
    */
-  static initIssuerDataSignature(issuerData: ArrayBuffer, signature: ArrayBuffer): Promise<PKAddPassesViewController> { return callSDKAsync<PKAddPassesViewController>("PassKit_2f6e018ff7e993f9", 1221692504407623, undefined, [issuerData, signature]); }
+  static initIssuerDataSignature(issuerData: ArrayBuffer, signature: ArrayBuffer): Promise<PKAddPassesViewController> { return callSDKAsync<PKAddPassesViewController>("PassKit_a624b245971cfd00", 1221692504407623, undefined, [issuerData, signature]); }
   /**
    * init?(pass: PKPass)
    * @availability iOS 6.0+
    */
-  static initPass(pass: PKPass): Promise<(PKAddPassesViewController) | null> { return callSDKAsync<(PKAddPassesViewController) | null>("PassKit_2f6e018ff7e993f9", 3946982556856196, undefined, [pass]); }
+  static initPass(pass: PKPass): Promise<(PKAddPassesViewController) | null> { return callSDKAsync<(PKAddPassesViewController) | null>("PassKit_a624b245971cfd00", 3946982556856196, undefined, [pass]); }
   /**
    * init?(passes: [PKPass])
    * @availability iOS 7.0+
    */
-  static initPasses(passes: Array<PKPass>): Promise<(PKAddPassesViewController) | null> { return callSDKAsync<(PKAddPassesViewController) | null>("PassKit_2f6e018ff7e993f9", 3660936078271619, undefined, [passes]); }
+  static initPasses(passes: Array<PKPass>): Promise<(PKAddPassesViewController) | null> { return callSDKAsync<(PKAddPassesViewController) | null>("PassKit_a624b245971cfd00", 3660936078271619, undefined, [passes]); }
   /**
    * init?(passesArchiveAt passesArchiveFileURL: URL)
    * @availability iOS 27.0+
    */
-  static initPassesArchiveAt(passesArchiveFileURL: string): Promise<(PKAddPassesViewController) | null> { return callSDKAsync<(PKAddPassesViewController) | null>("PassKit_2f6e018ff7e993f9", 624313448330456, undefined, [passesArchiveFileURL]); }
+  static initPassesArchiveAt(passesArchiveFileURL: string): Promise<(PKAddPassesViewController) | null> { return callSDKAsync<(PKAddPassesViewController) | null>("PassKit_a624b245971cfd00", 624313448330456, undefined, [passesArchiveFileURL]); }
   /**
    * init?(passesArchiveData: Data)
    * @availability iOS 27.0+
    */
-  static initPassesArchiveData(passesArchiveData: ArrayBuffer): Promise<(PKAddPassesViewController) | null> { return callSDKAsync<(PKAddPassesViewController) | null>("PassKit_2f6e018ff7e993f9", 2216347627687607, undefined, [passesArchiveData]); }
+  static initPassesArchiveData(passesArchiveData: ArrayBuffer): Promise<(PKAddPassesViewController) | null> { return callSDKAsync<(PKAddPassesViewController) | null>("PassKit_a624b245971cfd00", 2216347627687607, undefined, [passesArchiveData]); }
   /**
    * init?(passesData: [Data])
    * @availability iOS 27.0+
    */
-  static initPassesData(passesData: Array<ArrayBuffer>): Promise<(PKAddPassesViewController) | null> { return callSDKAsync<(PKAddPassesViewController) | null>("PassKit_2f6e018ff7e993f9", 3797682684202960, undefined, [passesData]); }
+  static initPassesData(passesData: Array<ArrayBuffer>): Promise<(PKAddPassesViewController) | null> { return callSDKAsync<(PKAddPassesViewController) | null>("PassKit_a624b245971cfd00", 3797682684202960, undefined, [passesData]); }
   /**
    * weak var delegate: (any PKAddPassesViewControllerDelegate)? { get set }
    * @availability iOS 6.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PassKit_2f6e018ff7e993f9", 2884288730582949, this, []); }
-  setDelegate(value?: (Implements<PKAddPassesViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 4179789707356679, this, [value], [{"protocol":"c:objc(pl)PKAddPassesViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PassKit_a624b245971cfd00", 2884288730582949, this, []); }
+  setDelegate(value?: (Implements<PKAddPassesViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 4179789707356679, this, [value], [{"protocol":"c:objc(pl)PKAddPassesViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)PKAddPassesViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -514,17 +514,17 @@ export class PKAddPassMetadataPreview extends SDKHandle {
    * init(passThumbnail: CGImage, localizedDescription description: String)
    * @availability iOS 18.0+
    */
-  static init(passThumbnail: _CoreGraphics_CGImage, description: string): PKAddPassMetadataPreview { return callSDK<PKAddPassMetadataPreview>("PassKit_2f6e018ff7e993f9", 3584618946837350, undefined, [passThumbnail, description]); }
+  static init(passThumbnail: _CoreGraphics_CGImage, description: string): PKAddPassMetadataPreview { return callSDK<PKAddPassMetadataPreview>("PassKit_a624b245971cfd00", 3584618946837350, undefined, [passThumbnail, description]); }
   /**
    * var localizedDescription: String? { get }
    * @availability iOS 18.0+
    */
-  get localizedDescription(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 399810583680408, this, []); }
+  get localizedDescription(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 399810583680408, this, []); }
   /**
    * unowned(unsafe) var passThumbnailImage: CGImage? { get }
    * @availability iOS 18.0+
    */
-  get passThumbnailImage(): (_CoreGraphics_CGImage) | null { return callSDK<(_CoreGraphics_CGImage) | null>("PassKit_2f6e018ff7e993f9", 261802790699449, this, []); }
+  get passThumbnailImage(): (_CoreGraphics_CGImage) | null { return callSDK<(_CoreGraphics_CGImage) | null>("PassKit_a624b245971cfd00", 261802790699449, this, []); }
   declare readonly $type: { "c:objc(cs)PKAddPassMetadataPreview": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "localizedDescription": true; "passThumbnailImage": true };
 }
@@ -540,7 +540,7 @@ export const PKAddPaymentPassError = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (PKAddPaymentPassError) | null { return callSDK<(PKAddPaymentPassError) | null>("PassKit_2f6e018ff7e993f9", 925550410697366, undefined, [rawValue]); }
+  init(rawValue: number): (PKAddPaymentPassError) | null { return callSDK<(PKAddPaymentPassError) | null>("PassKit_a624b245971cfd00", 925550410697366, undefined, [rawValue]); }
 };
 
 /**
@@ -552,31 +552,31 @@ export class PKAddPaymentPassRequest extends SDKHandle {
    * init()
    * @availability iOS 9.0+
    */
-  static init(): PKAddPaymentPassRequest { return callSDK<PKAddPaymentPassRequest>("PassKit_2f6e018ff7e993f9", 2424930098229280, undefined, []); }
+  static init(): PKAddPaymentPassRequest { return callSDK<PKAddPaymentPassRequest>("PassKit_a624b245971cfd00", 2424930098229280, undefined, []); }
   /**
    * var activationData: Data? { get set }
    * @availability iOS 9.0+
    */
-  get activationData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PassKit_2f6e018ff7e993f9", 4036632714090771, this, []); }
-  set activationData(value: (ArrayBuffer) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4125924729484604, this, [value]); }
+  get activationData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PassKit_a624b245971cfd00", 4036632714090771, this, []); }
+  set activationData(value: (ArrayBuffer) | null) { callSDK<void>("PassKit_a624b245971cfd00", 4125924729484604, this, [value]); }
   /**
    * var encryptedPassData: Data? { get set }
    * @availability iOS 9.0+
    */
-  get encryptedPassData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PassKit_2f6e018ff7e993f9", 845059127820632, this, []); }
-  set encryptedPassData(value: (ArrayBuffer) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4147154909363534, this, [value]); }
+  get encryptedPassData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PassKit_a624b245971cfd00", 845059127820632, this, []); }
+  set encryptedPassData(value: (ArrayBuffer) | null) { callSDK<void>("PassKit_a624b245971cfd00", 4147154909363534, this, [value]); }
   /**
    * var ephemeralPublicKey: Data? { get set }
    * @availability iOS 9.0+
    */
-  get ephemeralPublicKey(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PassKit_2f6e018ff7e993f9", 3237564989173077, this, []); }
-  set ephemeralPublicKey(value: (ArrayBuffer) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 152177531797933, this, [value]); }
+  get ephemeralPublicKey(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PassKit_a624b245971cfd00", 3237564989173077, this, []); }
+  set ephemeralPublicKey(value: (ArrayBuffer) | null) { callSDK<void>("PassKit_a624b245971cfd00", 152177531797933, this, [value]); }
   /**
    * var wrappedKey: Data? { get set }
    * @availability iOS 9.0+
    */
-  get wrappedKey(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PassKit_2f6e018ff7e993f9", 3651954259912306, this, []); }
-  set wrappedKey(value: (ArrayBuffer) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1494154783979345, this, [value]); }
+  get wrappedKey(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PassKit_a624b245971cfd00", 3651954259912306, this, []); }
+  set wrappedKey(value: (ArrayBuffer) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1494154783979345, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKAddPaymentPassRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activationData": true; "encryptedPassData": true; "ephemeralPublicKey": true; "wrappedKey": true };
 }
@@ -590,66 +590,66 @@ export class PKAddPaymentPassRequestConfiguration extends SDKHandle {
    * init?(encryptionScheme: PKEncryptionScheme)
    * @availability iOS 9.0+
    */
-  static init(encryptionScheme: PKEncryptionScheme): (PKAddPaymentPassRequestConfiguration) | null { return callSDK<(PKAddPaymentPassRequestConfiguration) | null>("PassKit_2f6e018ff7e993f9", 372539539436236, undefined, [encryptionScheme]); }
+  static init(encryptionScheme: PKEncryptionScheme): (PKAddPaymentPassRequestConfiguration) | null { return callSDK<(PKAddPaymentPassRequestConfiguration) | null>("PassKit_a624b245971cfd00", 372539539436236, undefined, [encryptionScheme]); }
   /**
    * var cardDetails: [PKLabeledValue] { get set }
    * @availability iOS 10.1+
    */
-  get cardDetails(): Array<PKLabeledValue> { return callSDK<Array<PKLabeledValue>>("PassKit_2f6e018ff7e993f9", 1810611398460942, this, []); }
-  set cardDetails(value: Array<PKLabeledValue>) { callSDK<void>("PassKit_2f6e018ff7e993f9", 55840468401229, this, [value]); }
+  get cardDetails(): Array<PKLabeledValue> { return callSDK<Array<PKLabeledValue>>("PassKit_a624b245971cfd00", 1810611398460942, this, []); }
+  set cardDetails(value: Array<PKLabeledValue>) { callSDK<void>("PassKit_a624b245971cfd00", 55840468401229, this, [value]); }
   /**
    * var cardholderName: String? { get set }
    * @availability iOS 9.0+
    */
-  get cardholderName(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 3916662743048991, this, []); }
-  set cardholderName(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1719487821751306, this, [value]); }
+  get cardholderName(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 3916662743048991, this, []); }
+  set cardholderName(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1719487821751306, this, [value]); }
   /**
    * var encryptionScheme: PKEncryptionScheme { get }
    * @availability iOS 9.0+
    */
-  get encryptionScheme(): PKEncryptionScheme { return callSDK<PKEncryptionScheme>("PassKit_2f6e018ff7e993f9", 479855916662239, this, []); }
+  get encryptionScheme(): PKEncryptionScheme { return callSDK<PKEncryptionScheme>("PassKit_a624b245971cfd00", 479855916662239, this, []); }
   /**
    * var localizedDescription: String? { get set }
    * @availability iOS 9.0+
    */
-  get localizedDescription(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 3563137158429753, this, []); }
-  set localizedDescription(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 297162139987232, this, [value]); }
+  get localizedDescription(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 3563137158429753, this, []); }
+  set localizedDescription(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 297162139987232, this, [value]); }
   /**
    * var paymentNetwork: PKPaymentNetwork? { get set }
    * @availability iOS 9.0+
    */
-  get paymentNetwork(): $SDK18 { return callSDK<$SDK18>("PassKit_2f6e018ff7e993f9", 3573120612875383, this, []); }
-  set paymentNetwork(value: $SDK18) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3545835160607672, this, [value]); }
+  get paymentNetwork(): $SDK18 { return callSDK<$SDK18>("PassKit_a624b245971cfd00", 3573120612875383, this, []); }
+  set paymentNetwork(value: $SDK18) { callSDK<void>("PassKit_a624b245971cfd00", 3545835160607672, this, [value]); }
   /**
    * var primaryAccountIdentifier: String? { get set }
    * @availability iOS 9.0+
    */
-  get primaryAccountIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 3739103068510675, this, []); }
-  set primaryAccountIdentifier(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1869478001818377, this, [value]); }
+  get primaryAccountIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 3739103068510675, this, []); }
+  set primaryAccountIdentifier(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1869478001818377, this, [value]); }
   /**
    * var primaryAccountSuffix: String? { get set }
    * @availability iOS 9.0+
    */
-  get primaryAccountSuffix(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 2084780175542865, this, []); }
-  set primaryAccountSuffix(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1836947058446202, this, [value]); }
+  get primaryAccountSuffix(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 2084780175542865, this, []); }
+  set primaryAccountSuffix(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1836947058446202, this, [value]); }
   /**
    * var productIdentifiers: Set<String> { get set }
    * @availability iOS 12.3+
    */
-  get productIdentifiers(): Array<string> { return callSDK<Array<string>>("PassKit_2f6e018ff7e993f9", 90812120800136, this, []); }
-  set productIdentifiers(value: Array<string>) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2989618352241150, this, [value]); }
+  get productIdentifiers(): Array<string> { return callSDK<Array<string>>("PassKit_a624b245971cfd00", 90812120800136, this, []); }
+  set productIdentifiers(value: Array<string>) { callSDK<void>("PassKit_a624b245971cfd00", 2989618352241150, this, [value]); }
   /**
    * var requiresFelicaSecureElement: Bool { get set }
    * @availability iOS 10.1+
    */
-  get requiresFelicaSecureElement(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 3556537789573899, this, []); }
-  set requiresFelicaSecureElement(value: boolean) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2117384911947381, this, [value]); }
+  get requiresFelicaSecureElement(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 3556537789573899, this, []); }
+  set requiresFelicaSecureElement(value: boolean) { callSDK<void>("PassKit_a624b245971cfd00", 2117384911947381, this, [value]); }
   /**
    * var style: PKAddPaymentPassStyle { get set }
    * @availability iOS 12.0+
    */
-  get style(): PKAddPaymentPassStyle { return callSDK<PKAddPaymentPassStyle>("PassKit_2f6e018ff7e993f9", 2183993471661215, this, []); }
-  set style(value: PKAddPaymentPassStyle) { callSDK<void>("PassKit_2f6e018ff7e993f9", 226556835552193, this, [value]); }
+  get style(): PKAddPaymentPassStyle { return callSDK<PKAddPaymentPassStyle>("PassKit_a624b245971cfd00", 2183993471661215, this, []); }
+  set style(value: PKAddPaymentPassStyle) { callSDK<void>("PassKit_a624b245971cfd00", 226556835552193, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKAddPaymentPassRequestConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cardDetails": true; "cardholderName": true; "encryptionScheme": true; "localizedDescription": true; "paymentNetwork": true; "primaryAccountIdentifier": true; "primaryAccountSuffix": true; "productIdentifiers": true; "requiresFelicaSecureElement": true; "style": true };
 }
@@ -665,7 +665,7 @@ export const PKAddPaymentPassStyle = {
    * init?(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (PKAddPaymentPassStyle) | null { return callSDK<(PKAddPaymentPassStyle) | null>("PassKit_2f6e018ff7e993f9", 716744280026066, undefined, [rawValue]); }
+  init(rawValue: number): (PKAddPaymentPassStyle) | null { return callSDK<(PKAddPaymentPassStyle) | null>("PassKit_a624b245971cfd00", 716744280026066, undefined, [rawValue]); }
 };
 
 /**
@@ -677,18 +677,18 @@ export class PKAddPaymentPassViewController extends SDKHandle {
    * class func canAddPaymentPass() -> Bool
    * @availability iOS 9.0+
    */
-  static canAddPaymentPass(): Promise<boolean> { return callSDKAsync<boolean>("PassKit_2f6e018ff7e993f9", 2474552467198158, undefined, []); }
+  static canAddPaymentPass(): Promise<boolean> { return callSDKAsync<boolean>("PassKit_a624b245971cfd00", 2474552467198158, undefined, []); }
   /**
    * init?(requestConfiguration configuration: PKAddPaymentPassRequestConfiguration, delegate: (any PKAddPaymentPassViewControllerDelegate)?)
    * @availability iOS 9.0+
    */
-  static init(configuration: PKAddPaymentPassRequestConfiguration, delegate?: (SDKHandle) | null): Promise<(PKAddPaymentPassViewController) | null> { return callSDKAsync<(PKAddPaymentPassViewController) | null>("PassKit_2f6e018ff7e993f9", 2369045927061308, undefined, [configuration, delegate]); }
+  static init(configuration: PKAddPaymentPassRequestConfiguration, delegate?: (SDKHandle) | null): Promise<(PKAddPaymentPassViewController) | null> { return callSDKAsync<(PKAddPaymentPassViewController) | null>("PassKit_a624b245971cfd00", 2369045927061308, undefined, [configuration, delegate]); }
   /**
    * weak var delegate: (any PKAddPaymentPassViewControllerDelegate)? { get set }
    * @availability iOS 9.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PassKit_2f6e018ff7e993f9", 2253264179203355, this, []); }
-  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 2913564317498928, this, [value]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PassKit_a624b245971cfd00", 2253264179203355, this, []); }
+  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 2913564317498928, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKAddPaymentPassViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -723,37 +723,37 @@ export const PKAddressField = {
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get all(): PKAddressField { return callSDK<PKAddressField>("PassKit_2f6e018ff7e993f9", 2271761756150510, undefined, []); },
+  get all(): PKAddressField { return callSDK<PKAddressField>("PassKit_a624b245971cfd00", 2271761756150510, undefined, []); },
   /**
    * static var email: PKAddressField { get }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get email(): PKAddressField { return callSDK<PKAddressField>("PassKit_2f6e018ff7e993f9", 1551486592346942, undefined, []); },
+  get email(): PKAddressField { return callSDK<PKAddressField>("PassKit_a624b245971cfd00", 1551486592346942, undefined, []); },
   /**
    * static var name: PKAddressField { get }
    * @availability iOS 8.3+
    * @deprecated iOS 11.0
    */
-  get nameValue(): PKAddressField { return callSDK<PKAddressField>("PassKit_2f6e018ff7e993f9", 1010607978170141, undefined, []); },
+  get nameValue(): PKAddressField { return callSDK<PKAddressField>("PassKit_a624b245971cfd00", 1010607978170141, undefined, []); },
   /**
    * static var phone: PKAddressField { get }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get phone(): PKAddressField { return callSDK<PKAddressField>("PassKit_2f6e018ff7e993f9", 4113708715792682, undefined, []); },
+  get phone(): PKAddressField { return callSDK<PKAddressField>("PassKit_a624b245971cfd00", 4113708715792682, undefined, []); },
   /**
    * static var postalAddress: PKAddressField { get }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get postalAddress(): PKAddressField { return callSDK<PKAddressField>("PassKit_2f6e018ff7e993f9", 3654184027407489, undefined, []); },
+  get postalAddress(): PKAddressField { return callSDK<PKAddressField>("PassKit_a624b245971cfd00", 3654184027407489, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  init(rawValue: number): PKAddressField { return callSDK<PKAddressField>("PassKit_2f6e018ff7e993f9", 627447799056660, undefined, [rawValue]); }
+  init(rawValue: number): PKAddressField { return callSDK<PKAddressField>("PassKit_a624b245971cfd00", 627447799056660, undefined, [rawValue]); }
 };
 
 /**
@@ -765,48 +765,48 @@ export class PKAddSecureElementPassError extends SDKHandle {
    * static var unavailableError: PKAddSecureElementPassError.Code { get }
    * @availability iOS 13.4+
    */
-  static get unavailableError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_2f6e018ff7e993f9", 1633292195009705, undefined, []); }
+  static get unavailableError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_a624b245971cfd00", 1633292195009705, undefined, []); }
   /**
    * static var userCanceledError: PKAddSecureElementPassError.Code { get }
    * @availability iOS 13.4+
    */
-  static get userCanceledError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_2f6e018ff7e993f9", 3368729435622184, undefined, []); }
+  static get userCanceledError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_a624b245971cfd00", 3368729435622184, undefined, []); }
   /**
    * static var deviceNotReadyError: PKAddSecureElementPassError.Code { get }
    * @availability iOS 13.4+
    */
-  static get deviceNotReadyError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_2f6e018ff7e993f9", 26704051720057, undefined, []); }
+  static get deviceNotReadyError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_a624b245971cfd00", 26704051720057, undefined, []); }
   /**
    * static var deviceNotSupportedError: PKAddSecureElementPassError.Code { get }
    * @availability iOS 13.4+
    */
-  static get deviceNotSupportedError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_2f6e018ff7e993f9", 4411090841258646, undefined, []); }
+  static get deviceNotSupportedError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_a624b245971cfd00", 4411090841258646, undefined, []); }
   /**
    * static var invalidConfigurationError: PKAddSecureElementPassError.Code { get }
    * @availability iOS 13.4+
    */
-  static get invalidConfigurationError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_2f6e018ff7e993f9", 4188814910570096, undefined, []); }
+  static get invalidConfigurationError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_a624b245971cfd00", 4188814910570096, undefined, []); }
   /**
    * static var osVersionNotSupportedError: PKAddSecureElementPassError.Code { get }
    * @availability iOS 13.4+
    */
-  static get osVersionNotSupportedError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_2f6e018ff7e993f9", 4038729041360857, undefined, []); }
+  static get osVersionNotSupportedError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_a624b245971cfd00", 4038729041360857, undefined, []); }
   /**
    * static var genericError: PKAddSecureElementPassError.Code { get }
    * @availability iOS 18.0+
    */
-  static get genericError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_2f6e018ff7e993f9", 3114033741376815, undefined, []); }
+  static get genericError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_a624b245971cfd00", 3114033741376815, undefined, []); }
   /**
    * static var unknownError: PKAddSecureElementPassError.Code { get }
    * @availability iOS 13.4+
    * @deprecated iOS 18.0
    */
-  static get unknownError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_2f6e018ff7e993f9", 4363214579114245, undefined, []); }
+  static get unknownError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_a624b245971cfd00", 4363214579114245, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 13.4+
    */
-  static get errorDomain(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 1965836976301218, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("PassKit_a624b245971cfd00", 1965836976301218, undefined, []); }
   declare readonly $type: { "s:SC31PKAddSecureElementPassErrorCodeLeV": true };
 }
 
@@ -822,12 +822,12 @@ export const PKAddSecureElementPassError_Code = {
    * @availability iOS 13.4+
    * @deprecated iOS 18.0
    */
-  get unknownError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_2f6e018ff7e993f9", 2134804167978822, undefined, []); },
+  get unknownError(): PKAddSecureElementPassError_Code { return callSDK<PKAddSecureElementPassError_Code>("PassKit_a624b245971cfd00", 2134804167978822, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 13.4+
    */
-  init(rawValue: number): (PKAddSecureElementPassError_Code) | null { return callSDK<(PKAddSecureElementPassError_Code) | null>("PassKit_2f6e018ff7e993f9", 2102284640910555, undefined, [rawValue]); }
+  init(rawValue: number): (PKAddSecureElementPassError_Code) | null { return callSDK<(PKAddSecureElementPassError_Code) | null>("PassKit_a624b245971cfd00", 2102284640910555, undefined, [rawValue]); }
 };
 
 /**
@@ -839,18 +839,18 @@ export class PKAddSecureElementPassViewController extends SDKHandle {
    * class func canAddSecureElementPass(configuration: PKAddSecureElementPassConfiguration) -> Bool
    * @availability iOS 13.4+
    */
-  static canAddSecureElementPass(configuration: PKAddSecureElementPassConfiguration): Promise<boolean> { return callSDKAsync<boolean>("PassKit_2f6e018ff7e993f9", 2400413987539659, undefined, [configuration]); }
+  static canAddSecureElementPass(configuration: PKAddSecureElementPassConfiguration): Promise<boolean> { return callSDKAsync<boolean>("PassKit_a624b245971cfd00", 2400413987539659, undefined, [configuration]); }
   /**
    * init?(configuration: PKAddSecureElementPassConfiguration, delegate: (any PKAddSecureElementPassViewControllerDelegate)?)
    * @availability iOS 13.4+
    */
-  static init(configuration: PKAddSecureElementPassConfiguration, delegate?: $SDK19): Promise<(PKAddSecureElementPassViewController) | null> { return callSDKAsync<(PKAddSecureElementPassViewController) | null>("PassKit_2f6e018ff7e993f9", 2452114172948762, undefined, [configuration, delegate], [null,{"protocol":"c:objc(pl)PKAddSecureElementPassViewControllerDelegate"}]); }
+  static init(configuration: PKAddSecureElementPassConfiguration, delegate?: $SDK19): Promise<(PKAddSecureElementPassViewController) | null> { return callSDKAsync<(PKAddSecureElementPassViewController) | null>("PassKit_a624b245971cfd00", 2452114172948762, undefined, [configuration, delegate], [null,{"protocol":"c:objc(pl)PKAddSecureElementPassViewControllerDelegate"}]); }
   /**
    * weak var delegate: (any PKAddSecureElementPassViewControllerDelegate)? { get set }
    * @availability iOS 13.4+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PassKit_2f6e018ff7e993f9", 2974338008916153, this, []); }
-  setDelegate(value?: $SDK19): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 1136024093306531, this, [value], [{"protocol":"c:objc(pl)PKAddSecureElementPassViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PassKit_a624b245971cfd00", 2974338008916153, this, []); }
+  setDelegate(value?: $SDK19): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 1136024093306531, this, [value], [{"protocol":"c:objc(pl)PKAddSecureElementPassViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)PKAddSecureElementPassViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -882,29 +882,29 @@ export class PKAddShareablePassConfiguration extends PKAddSecureElementPassConfi
    * class func forPassMetadata(_ passMetadata: [PKShareablePassMetadata], action: PKAddShareablePassConfigurationPrimaryAction) async throws -> PKAddShareablePassConfiguration
    * @availability iOS 16.0+
    */
-  static forPassMetadata(passMetadata: $SDK22, action: PKAddShareablePassConfigurationPrimaryAction, completion: $SDK23): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 1385721082860889, undefined, [passMetadata, action, completion], [null,null,{"callback":{"out":[]}}]); }
+  static forPassMetadata(passMetadata: $SDK22, action: PKAddShareablePassConfigurationPrimaryAction, completion: $SDK23): void { return callSDK<void>("PassKit_a624b245971cfd00", 1385721082860889, undefined, [passMetadata, action, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * class func forPassMetaData(_ passMetadata: [PKShareablePassMetadata], provisioningPolicyIdentifier: String, action: PKAddShareablePassConfigurationPrimaryAction) async throws -> PKAddShareablePassConfiguration
    * @availability iOS 14.0+
    * @deprecated iOS 16.0
    */
-  static forPassMetaData(passMetadata: $SDK22, provisioningPolicyIdentifier: string, action: PKAddShareablePassConfigurationPrimaryAction, completion: $SDK23): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 1190984916162019, undefined, [passMetadata, provisioningPolicyIdentifier, action, completion], [null,null,null,{"callback":{"out":[]}}]); }
+  static forPassMetaData(passMetadata: $SDK22, provisioningPolicyIdentifier: string, action: PKAddShareablePassConfigurationPrimaryAction, completion: $SDK23): void { return callSDK<void>("PassKit_a624b245971cfd00", 1190984916162019, undefined, [passMetadata, provisioningPolicyIdentifier, action, completion], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * var credentialsMetadata: [PKShareablePassMetadata] { get }
    * @availability iOS 14.0+
    */
-  get credentialsMetadata(): $SDK22 { return callSDK<$SDK22>("PassKit_2f6e018ff7e993f9", 3253405958299936, this, []); }
+  get credentialsMetadata(): $SDK22 { return callSDK<$SDK22>("PassKit_a624b245971cfd00", 3253405958299936, this, []); }
   /**
    * var primaryAction: PKAddShareablePassConfigurationPrimaryAction { get }
    * @availability iOS 14.0+
    */
-  get primaryAction(): PKAddShareablePassConfigurationPrimaryAction { return callSDK<PKAddShareablePassConfigurationPrimaryAction>("PassKit_2f6e018ff7e993f9", 2068756423048297, this, []); }
+  get primaryAction(): PKAddShareablePassConfigurationPrimaryAction { return callSDK<PKAddShareablePassConfigurationPrimaryAction>("PassKit_a624b245971cfd00", 2068756423048297, this, []); }
   /**
    * var provisioningPolicyIdentifier: String { get }
    * @availability iOS 14.0+
    * @deprecated iOS 16.0
    */
-  get provisioningPolicyIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 3115162655654618, this, []); }
+  get provisioningPolicyIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 3115162655654618, this, []); }
   declare readonly $type: { "c:objc(cs)PKAddShareablePassConfiguration": true; "c:objc(cs)PKAddSecureElementPassConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "issuerIdentifier": true; "localizedDescription": true; "credentialsMetadata": true; "primaryAction": true; "provisioningPolicyIdentifier": true };
 }
@@ -920,7 +920,7 @@ export const PKAddShareablePassConfigurationPrimaryAction = {
    * init?(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (PKAddShareablePassConfigurationPrimaryAction) | null { return callSDK<(PKAddShareablePassConfigurationPrimaryAction) | null>("PassKit_2f6e018ff7e993f9", 411207172167726, undefined, [rawValue]); }
+  init(rawValue: number): (PKAddShareablePassConfigurationPrimaryAction) | null { return callSDK<(PKAddShareablePassConfigurationPrimaryAction) | null>("PassKit_a624b245971cfd00", 411207172167726, undefined, [rawValue]); }
 };
 
 /**
@@ -934,7 +934,7 @@ export const PKApplePayLaterAvailability = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (PKApplePayLaterAvailability) | null { return callSDK<(PKApplePayLaterAvailability) | null>("PassKit_2f6e018ff7e993f9", 1047256565469809, undefined, [rawValue]); }
+  init(rawValue: number): (PKApplePayLaterAvailability) | null { return callSDK<(PKApplePayLaterAvailability) | null>("PassKit_a624b245971cfd00", 1047256565469809, undefined, [rawValue]); }
 };
 
 /**
@@ -948,7 +948,7 @@ export const PKAutomaticPassPresentationSuppressionResult = {
    * init?(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (PKAutomaticPassPresentationSuppressionResult) | null { return callSDK<(PKAutomaticPassPresentationSuppressionResult) | null>("PassKit_2f6e018ff7e993f9", 1321106558852541, undefined, [rawValue]); }
+  init(rawValue: number): (PKAutomaticPassPresentationSuppressionResult) | null { return callSDK<(PKAutomaticPassPresentationSuppressionResult) | null>("PassKit_a624b245971cfd00", 1321106558852541, undefined, [rawValue]); }
 };
 
 /**
@@ -960,37 +960,37 @@ export class PKAutomaticReloadPaymentRequest extends SDKHandle {
    * init(paymentDescription: String, automaticReloadBilling: PKAutomaticReloadPaymentSummaryItem, managementURL: URL)
    * @availability iOS 16.0+
    */
-  static init(paymentDescription: string, automaticReloadBilling: PKAutomaticReloadPaymentSummaryItem, managementURL: string): PKAutomaticReloadPaymentRequest { return callSDK<PKAutomaticReloadPaymentRequest>("PassKit_2f6e018ff7e993f9", 761464730280880, undefined, [paymentDescription, automaticReloadBilling, managementURL]); }
+  static init(paymentDescription: string, automaticReloadBilling: PKAutomaticReloadPaymentSummaryItem, managementURL: string): PKAutomaticReloadPaymentRequest { return callSDK<PKAutomaticReloadPaymentRequest>("PassKit_a624b245971cfd00", 761464730280880, undefined, [paymentDescription, automaticReloadBilling, managementURL]); }
   /**
    * var automaticReloadBilling: PKAutomaticReloadPaymentSummaryItem { get set }
    * @availability iOS 16.0+
    */
-  get automaticReloadBilling(): PKAutomaticReloadPaymentSummaryItem { return callSDK<PKAutomaticReloadPaymentSummaryItem>("PassKit_2f6e018ff7e993f9", 3682266592939202, this, []); }
-  set automaticReloadBilling(value: PKAutomaticReloadPaymentSummaryItem) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2245153411080927, this, [value]); }
+  get automaticReloadBilling(): PKAutomaticReloadPaymentSummaryItem { return callSDK<PKAutomaticReloadPaymentSummaryItem>("PassKit_a624b245971cfd00", 3682266592939202, this, []); }
+  set automaticReloadBilling(value: PKAutomaticReloadPaymentSummaryItem) { callSDK<void>("PassKit_a624b245971cfd00", 2245153411080927, this, [value]); }
   /**
    * var billingAgreement: String? { get set }
    * @availability iOS 16.0+
    */
-  get billingAgreement(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 2327160615148263, this, []); }
-  set billingAgreement(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 837390408436170, this, [value]); }
+  get billingAgreement(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 2327160615148263, this, []); }
+  set billingAgreement(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 837390408436170, this, [value]); }
   /**
    * var managementURL: URL { get set }
    * @availability iOS 16.0+
    */
-  get managementURL(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 4117404763966103, this, []); }
-  set managementURL(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1569566877833378, this, [value]); }
+  get managementURL(): string { return callSDK<string>("PassKit_a624b245971cfd00", 4117404763966103, this, []); }
+  set managementURL(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 1569566877833378, this, [value]); }
   /**
    * var paymentDescription: String { get set }
    * @availability iOS 16.0+
    */
-  get paymentDescription(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2115029456081030, this, []); }
-  set paymentDescription(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3344527297396712, this, [value]); }
+  get paymentDescription(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2115029456081030, this, []); }
+  set paymentDescription(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 3344527297396712, this, [value]); }
   /**
    * var tokenNotificationURL: URL? { get set }
    * @availability iOS 16.0+
    */
-  get tokenNotificationURL(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 2691039549646108, this, []); }
-  set tokenNotificationURL(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3040097903124871, this, [value]); }
+  get tokenNotificationURL(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 2691039549646108, this, []); }
+  set tokenNotificationURL(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 3040097903124871, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKAutomaticReloadPaymentRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "automaticReloadBilling": true; "billingAgreement": true; "managementURL": true; "paymentDescription": true; "tokenNotificationURL": true };
 }
@@ -1004,30 +1004,30 @@ export class PKPaymentSummaryItem extends SDKHandle {
    * convenience init(label: String, amount: NSDecimalNumber)
    * @availability iOS 8.0+
    */
-  static initLabelAmount(label: string, amount: _Foundation_NSDecimalNumber): PKPaymentSummaryItem { return callSDK<PKPaymentSummaryItem>("PassKit_2f6e018ff7e993f9", 1222263156681309, undefined, [label, amount]); }
+  static initLabelAmount(label: string, amount: _Foundation_NSDecimalNumber): PKPaymentSummaryItem { return callSDK<PKPaymentSummaryItem>("PassKit_a624b245971cfd00", 1222263156681309, undefined, [label, amount]); }
   /**
    * convenience init(label: String, amount: NSDecimalNumber, type: PKPaymentSummaryItemType)
    * @availability iOS 9.0+
    */
-  static initLabelAmountType(label: string, amount: _Foundation_NSDecimalNumber, type: PKPaymentSummaryItemType): PKPaymentSummaryItem { return callSDK<PKPaymentSummaryItem>("PassKit_2f6e018ff7e993f9", 3379394419515493, undefined, [label, amount, type]); }
+  static initLabelAmountType(label: string, amount: _Foundation_NSDecimalNumber, type: PKPaymentSummaryItemType): PKPaymentSummaryItem { return callSDK<PKPaymentSummaryItem>("PassKit_a624b245971cfd00", 3379394419515493, undefined, [label, amount, type]); }
   /**
    * @NSCopying var amount: NSDecimalNumber { get set }
    * @availability iOS 8.0+
    */
-  get amount(): _Foundation_NSDecimalNumber { return callSDK<_Foundation_NSDecimalNumber>("PassKit_2f6e018ff7e993f9", 1268301874319789, this, []); }
-  set amount(value: _Foundation_NSDecimalNumber) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2953478178138992, this, [value]); }
+  get amount(): _Foundation_NSDecimalNumber { return callSDK<_Foundation_NSDecimalNumber>("PassKit_a624b245971cfd00", 1268301874319789, this, []); }
+  set amount(value: _Foundation_NSDecimalNumber) { callSDK<void>("PassKit_a624b245971cfd00", 2953478178138992, this, [value]); }
   /**
    * var label: String { get set }
    * @availability iOS 8.0+
    */
-  get label(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 4192183914532433, this, []); }
-  set label(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1150547368304214, this, [value]); }
+  get label(): string { return callSDK<string>("PassKit_a624b245971cfd00", 4192183914532433, this, []); }
+  set label(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 1150547368304214, this, [value]); }
   /**
    * var type: PKPaymentSummaryItemType { get set }
    * @availability iOS 9.0+
    */
-  get type(): PKPaymentSummaryItemType { return callSDK<PKPaymentSummaryItemType>("PassKit_2f6e018ff7e993f9", 2172397530183353, this, []); }
-  set type(value: PKPaymentSummaryItemType) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1199610707437829, this, [value]); }
+  get type(): PKPaymentSummaryItemType { return callSDK<PKPaymentSummaryItemType>("PassKit_a624b245971cfd00", 2172397530183353, this, []); }
+  set type(value: PKPaymentSummaryItemType) { callSDK<void>("PassKit_a624b245971cfd00", 1199610707437829, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKPaymentSummaryItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "amount": true; "label": true; "type": true };
 }
@@ -1038,13 +1038,13 @@ export class PKPaymentSummaryItem extends SDKHandle {
  */
 export class PKAutomaticReloadPaymentSummaryItem extends PKPaymentSummaryItem {
   /** init() */
-  static init(): PKAutomaticReloadPaymentSummaryItem { return callSDK<PKAutomaticReloadPaymentSummaryItem>("PassKit_2f6e018ff7e993f9", 1786172211495647, undefined, []); }
+  static init(): PKAutomaticReloadPaymentSummaryItem { return callSDK<PKAutomaticReloadPaymentSummaryItem>("PassKit_a624b245971cfd00", 1786172211495647, undefined, []); }
   /**
    * var thresholdAmount: NSDecimalNumber { get set }
    * @availability iOS 16.0+
    */
-  get thresholdAmount(): _Foundation_NSDecimalNumber { return callSDK<_Foundation_NSDecimalNumber>("PassKit_2f6e018ff7e993f9", 1292988156462144, this, []); }
-  set thresholdAmount(value: _Foundation_NSDecimalNumber) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3369297866666205, this, [value]); }
+  get thresholdAmount(): _Foundation_NSDecimalNumber { return callSDK<_Foundation_NSDecimalNumber>("PassKit_a624b245971cfd00", 1292988156462144, this, []); }
+  set thresholdAmount(value: _Foundation_NSDecimalNumber) { callSDK<void>("PassKit_a624b245971cfd00", 3369297866666205, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKAutomaticReloadPaymentSummaryItem": true; "c:objc(cs)PKPaymentSummaryItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "amount": true; "label": true; "type": true; "thresholdAmount": true };
 }
@@ -1060,7 +1060,7 @@ export const PKBarcodeEventConfigurationDataType = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (PKBarcodeEventConfigurationDataType) | null { return callSDK<(PKBarcodeEventConfigurationDataType) | null>("PassKit_2f6e018ff7e993f9", 3789397640080348, undefined, [rawValue]); }
+  init(rawValue: number): (PKBarcodeEventConfigurationDataType) | null { return callSDK<(PKBarcodeEventConfigurationDataType) | null>("PassKit_a624b245971cfd00", 3789397640080348, undefined, [rawValue]); }
 };
 
 /**
@@ -1069,22 +1069,22 @@ export const PKBarcodeEventConfigurationDataType = {
  */
 export class PKBarcodeEventConfigurationRequest extends SDKHandle {
   /** init() */
-  static init(): PKBarcodeEventConfigurationRequest { return callSDK<PKBarcodeEventConfigurationRequest>("PassKit_2f6e018ff7e993f9", 252054602946983, undefined, []); }
+  static init(): PKBarcodeEventConfigurationRequest { return callSDK<PKBarcodeEventConfigurationRequest>("PassKit_a624b245971cfd00", 252054602946983, undefined, []); }
   /**
    * var configurationData: Data { get }
    * @availability iOS 14.0+
    */
-  get configurationData(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_2f6e018ff7e993f9", 3914029085852223, this, []); }
+  get configurationData(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_a624b245971cfd00", 3914029085852223, this, []); }
   /**
    * var configurationDataType: PKBarcodeEventConfigurationDataType { get }
    * @availability iOS 14.0+
    */
-  get configurationDataType(): PKBarcodeEventConfigurationDataType { return callSDK<PKBarcodeEventConfigurationDataType>("PassKit_2f6e018ff7e993f9", 358227362703830, this, []); }
+  get configurationDataType(): PKBarcodeEventConfigurationDataType { return callSDK<PKBarcodeEventConfigurationDataType>("PassKit_a624b245971cfd00", 358227362703830, this, []); }
   /**
    * var deviceAccountIdentifier: String { get }
    * @availability iOS 14.0+
    */
-  get deviceAccountIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 4240776029362233, this, []); }
+  get deviceAccountIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 4240776029362233, this, []); }
   declare readonly $type: { "c:objc(cs)PKBarcodeEventConfigurationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "configurationData": true; "configurationDataType": true; "deviceAccountIdentifier": true };
 }
@@ -1095,17 +1095,17 @@ export class PKBarcodeEventConfigurationRequest extends SDKHandle {
  */
 export class PKBarcodeEventMetadataRequest extends SDKHandle {
   /** init() */
-  static init(): PKBarcodeEventMetadataRequest { return callSDK<PKBarcodeEventMetadataRequest>("PassKit_2f6e018ff7e993f9", 279767128899274, undefined, []); }
+  static init(): PKBarcodeEventMetadataRequest { return callSDK<PKBarcodeEventMetadataRequest>("PassKit_a624b245971cfd00", 279767128899274, undefined, []); }
   /**
    * var deviceAccountIdentifier: String { get }
    * @availability iOS 14.0+
    */
-  get deviceAccountIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 894590772931137, this, []); }
+  get deviceAccountIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 894590772931137, this, []); }
   /**
    * var lastUsedBarcodeIdentifier: String { get }
    * @availability iOS 14.0+
    */
-  get lastUsedBarcodeIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2191485143379345, this, []); }
+  get lastUsedBarcodeIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2191485143379345, this, []); }
   declare readonly $type: { "c:objc(cs)PKBarcodeEventMetadataRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "deviceAccountIdentifier": true; "lastUsedBarcodeIdentifier": true };
 }
@@ -1119,13 +1119,13 @@ export class PKBarcodeEventMetadataResponse extends SDKHandle {
    * init(paymentInformation: Data)
    * @availability iOS 14.0+
    */
-  static init(paymentInformation: ArrayBuffer): PKBarcodeEventMetadataResponse { return callSDK<PKBarcodeEventMetadataResponse>("PassKit_2f6e018ff7e993f9", 3603255784291744, undefined, [paymentInformation]); }
+  static init(paymentInformation: ArrayBuffer): PKBarcodeEventMetadataResponse { return callSDK<PKBarcodeEventMetadataResponse>("PassKit_a624b245971cfd00", 3603255784291744, undefined, [paymentInformation]); }
   /**
    * var paymentInformation: Data { get set }
    * @availability iOS 14.0+
    */
-  get paymentInformation(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_2f6e018ff7e993f9", 2681459977671945, this, []); }
-  set paymentInformation(value: ArrayBuffer) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1457387063631364, this, [value]); }
+  get paymentInformation(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_a624b245971cfd00", 2681459977671945, this, []); }
+  set paymentInformation(value: ArrayBuffer) { callSDK<void>("PassKit_a624b245971cfd00", 1457387063631364, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKBarcodeEventMetadataResponse": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "paymentInformation": true };
 }
@@ -1136,57 +1136,57 @@ export class PKBarcodeEventMetadataResponse extends SDKHandle {
  */
 export class PKBarcodeEventSignatureRequest extends SDKHandle {
   /** init() */
-  static init(): PKBarcodeEventSignatureRequest { return callSDK<PKBarcodeEventSignatureRequest>("PassKit_2f6e018ff7e993f9", 2977014533871822, undefined, []); }
+  static init(): PKBarcodeEventSignatureRequest { return callSDK<PKBarcodeEventSignatureRequest>("PassKit_a624b245971cfd00", 2977014533871822, undefined, []); }
   /**
    * var amount: NSNumber { get }
    * @availability iOS 14.0+
    */
-  get amount(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("PassKit_2f6e018ff7e993f9", 1090838610061894, this, []); }
+  get amount(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("PassKit_a624b245971cfd00", 1090838610061894, this, []); }
   /**
    * var barcodeIdentifier: String { get }
    * @availability iOS 14.0+
    */
-  get barcodeIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2572858998025376, this, []); }
+  get barcodeIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2572858998025376, this, []); }
   /**
    * var currencyCode: String { get }
    * @availability iOS 14.0+
    */
-  get currencyCode(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2947965128077270, this, []); }
+  get currencyCode(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2947965128077270, this, []); }
   /**
    * var deviceAccountIdentifier: String { get }
    * @availability iOS 14.0+
    */
-  get deviceAccountIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2428047179636853, this, []); }
+  get deviceAccountIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2428047179636853, this, []); }
   /**
    * var merchantName: String { get }
    * @availability iOS 14.0+
    */
-  get merchantName(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2527329375920463, this, []); }
+  get merchantName(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2527329375920463, this, []); }
   /**
    * var partialSignature: Data { get }
    * @availability iOS 14.0+
    */
-  get partialSignature(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_2f6e018ff7e993f9", 727899866691176, this, []); }
+  get partialSignature(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_a624b245971cfd00", 727899866691176, this, []); }
   /**
    * var rawMerchantName: String { get }
    * @availability iOS 14.0+
    */
-  get rawMerchantName(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 3379075548687744, this, []); }
+  get rawMerchantName(): string { return callSDK<string>("PassKit_a624b245971cfd00", 3379075548687744, this, []); }
   /**
    * var transactionDate: Date { get }
    * @availability iOS 14.0+
    */
-  get transactionDate(): globalThis.Date { return callSDK<globalThis.Date>("PassKit_2f6e018ff7e993f9", 1352563679237229, this, []); }
+  get transactionDate(): globalThis.Date { return callSDK<globalThis.Date>("PassKit_a624b245971cfd00", 1352563679237229, this, []); }
   /**
    * var transactionIdentifier: String { get }
    * @availability iOS 14.0+
    */
-  get transactionIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 1908684921702509, this, []); }
+  get transactionIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 1908684921702509, this, []); }
   /**
    * var transactionStatus: String { get }
    * @availability iOS 14.0+
    */
-  get transactionStatus(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2325438197397469, this, []); }
+  get transactionStatus(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2325438197397469, this, []); }
   declare readonly $type: { "c:objc(cs)PKBarcodeEventSignatureRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "amount": true; "barcodeIdentifier": true; "currencyCode": true; "deviceAccountIdentifier": true; "merchantName": true; "partialSignature": true; "rawMerchantName": true; "transactionDate": true; "transactionIdentifier": true; "transactionStatus": true };
 }
@@ -1200,13 +1200,13 @@ export class PKBarcodeEventSignatureResponse extends SDKHandle {
    * init(signedData: Data)
    * @availability iOS 14.0+
    */
-  static init(signedData: ArrayBuffer): PKBarcodeEventSignatureResponse { return callSDK<PKBarcodeEventSignatureResponse>("PassKit_2f6e018ff7e993f9", 1585849819104385, undefined, [signedData]); }
+  static init(signedData: ArrayBuffer): PKBarcodeEventSignatureResponse { return callSDK<PKBarcodeEventSignatureResponse>("PassKit_a624b245971cfd00", 1585849819104385, undefined, [signedData]); }
   /**
    * var signedData: Data { get set }
    * @availability iOS 14.0+
    */
-  get signedData(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_2f6e018ff7e993f9", 3931217917967117, this, []); }
-  set signedData(value: ArrayBuffer) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2863635613985130, this, [value]); }
+  get signedData(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_a624b245971cfd00", 3931217917967117, this, []); }
+  set signedData(value: ArrayBuffer) { callSDK<void>("PassKit_a624b245971cfd00", 2863635613985130, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKBarcodeEventSignatureResponse": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "signedData": true };
 }
@@ -1217,38 +1217,38 @@ export class PKBarcodeEventSignatureResponse extends SDKHandle {
  */
 export class PKContact extends SDKHandle {
   /** init() */
-  static init(): PKContact { return callSDK<PKContact>("PassKit_2f6e018ff7e993f9", 830662981868510, undefined, []); }
+  static init(): PKContact { return callSDK<PKContact>("PassKit_a624b245971cfd00", 830662981868510, undefined, []); }
   /**
    * var emailAddress: String? { get set }
    * @availability iOS 9.0+
    */
-  get emailAddress(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 3118985700297257, this, []); }
-  set emailAddress(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 710963195011393, this, [value]); }
+  get emailAddress(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 3118985700297257, this, []); }
+  set emailAddress(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 710963195011393, this, [value]); }
   /**
    * var name: PersonNameComponents? { get set }
    * @availability iOS 9.0+
    */
-  get name(): $SDK24 { return callSDK<$SDK24>("PassKit_2f6e018ff7e993f9", 470739839831902, this, []); }
-  set name(value: $SDK24) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2149393058009168, this, [value]); }
+  get name(): $SDK24 { return callSDK<$SDK24>("PassKit_a624b245971cfd00", 470739839831902, this, []); }
+  set name(value: $SDK24) { callSDK<void>("PassKit_a624b245971cfd00", 2149393058009168, this, [value]); }
   /**
    * var phoneNumber: CNPhoneNumber? { get set }
    * @availability iOS 9.0+
    */
-  get phoneNumber(): $SDK25 { return callSDK<$SDK25>("PassKit_2f6e018ff7e993f9", 4014145900733815, this, []); }
-  set phoneNumber(value: $SDK25) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4081160460304666, this, [value]); }
+  get phoneNumber(): $SDK25 { return callSDK<$SDK25>("PassKit_a624b245971cfd00", 4014145900733815, this, []); }
+  set phoneNumber(value: $SDK25) { callSDK<void>("PassKit_a624b245971cfd00", 4081160460304666, this, [value]); }
   /**
    * var postalAddress: CNPostalAddress? { get set }
    * @availability iOS 9.0+
    */
-  get postalAddress(): $SDK26 { return callSDK<$SDK26>("PassKit_2f6e018ff7e993f9", 3573365714418020, this, []); }
-  set postalAddress(value: $SDK26) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3539014029493144, this, [value]); }
+  get postalAddress(): $SDK26 { return callSDK<$SDK26>("PassKit_a624b245971cfd00", 3573365714418020, this, []); }
+  set postalAddress(value: $SDK26) { callSDK<void>("PassKit_a624b245971cfd00", 3539014029493144, this, [value]); }
   /**
    * var supplementarySubLocality: String? { get set }
    * @availability iOS 9.2+
    * @deprecated iOS 10.3
    */
-  get supplementarySubLocality(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 3374782898653409, this, []); }
-  set supplementarySubLocality(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4030131560076935, this, [value]); }
+  get supplementarySubLocality(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 3374782898653409, this, []); }
+  set supplementarySubLocality(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 4030131560076935, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKContact": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "emailAddress": true; "name": true; "phoneNumber": true; "postalAddress": true; "supplementarySubLocality": true };
 }
@@ -1261,29 +1261,29 @@ export const PKContactField = {
    * static let emailAddress: PKContactField
    * @availability iOS 11.0+
    */
-  get emailAddress(): PKContactField { return callSDK<PKContactField>("PassKit_2f6e018ff7e993f9", 3121413374909143, undefined, []); },
+  get emailAddress(): PKContactField { return callSDK<PKContactField>("PassKit_a624b245971cfd00", 3121413374909143, undefined, []); },
   /**
    * static let name: PKContactField
    * @availability iOS 11.0+
    */
-  get nameValue(): PKContactField { return callSDK<PKContactField>("PassKit_2f6e018ff7e993f9", 4107974787055025, undefined, []); },
+  get nameValue(): PKContactField { return callSDK<PKContactField>("PassKit_a624b245971cfd00", 4107974787055025, undefined, []); },
   /**
    * static let phoneNumber: PKContactField
    * @availability iOS 11.0+
    */
-  get phoneNumber(): PKContactField { return callSDK<PKContactField>("PassKit_2f6e018ff7e993f9", 1112398975342061, undefined, []); },
+  get phoneNumber(): PKContactField { return callSDK<PKContactField>("PassKit_a624b245971cfd00", 1112398975342061, undefined, []); },
   /**
    * static let phoneticName: PKContactField
    * @availability iOS 11.0+
    */
-  get phoneticName(): PKContactField { return callSDK<PKContactField>("PassKit_2f6e018ff7e993f9", 2821799419402785, undefined, []); },
+  get phoneticName(): PKContactField { return callSDK<PKContactField>("PassKit_a624b245971cfd00", 2821799419402785, undefined, []); },
   /**
    * static let postalAddress: PKContactField
    * @availability iOS 11.0+
    */
-  get postalAddress(): PKContactField { return callSDK<PKContactField>("PassKit_2f6e018ff7e993f9", 2171425370363434, undefined, []); },
+  get postalAddress(): PKContactField { return callSDK<PKContactField>("PassKit_a624b245971cfd00", 2171425370363434, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PKContactField { return callSDK<PKContactField>("PassKit_2f6e018ff7e993f9", 1332903554690593, undefined, [rawValue]); }
+  init(rawValue: string): PKContactField { return callSDK<PKContactField>("PassKit_a624b245971cfd00", 1332903554690593, undefined, [rawValue]); }
 };
 
 /**
@@ -1295,17 +1295,17 @@ export class PKDateComponentsRange extends SDKHandle {
    * init?(start startDateComponents: DateComponents, end endDateComponents: DateComponents)
    * @availability iOS 15.0+
    */
-  static init(startDateComponents: _Foundation_DateComponents, endDateComponents: _Foundation_DateComponents): (PKDateComponentsRange) | null { return callSDK<(PKDateComponentsRange) | null>("PassKit_2f6e018ff7e993f9", 4287286944404192, undefined, [startDateComponents, endDateComponents]); }
+  static init(startDateComponents: _Foundation_DateComponents, endDateComponents: _Foundation_DateComponents): (PKDateComponentsRange) | null { return callSDK<(PKDateComponentsRange) | null>("PassKit_a624b245971cfd00", 4287286944404192, undefined, [startDateComponents, endDateComponents]); }
   /**
    * var endDateComponents: DateComponents { get }
    * @availability iOS 15.0+
    */
-  get endDateComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("PassKit_2f6e018ff7e993f9", 1222927445404515, this, []); }
+  get endDateComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("PassKit_a624b245971cfd00", 1222927445404515, this, []); }
   /**
    * var startDateComponents: DateComponents { get }
    * @availability iOS 15.0+
    */
-  get startDateComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("PassKit_2f6e018ff7e993f9", 3744890928642770, this, []); }
+  get startDateComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("PassKit_a624b245971cfd00", 3744890928642770, this, []); }
   declare readonly $type: { "c:objc(cs)PKDateComponentsRange": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "endDateComponents": true; "startDateComponents": true };
 }
@@ -1319,49 +1319,49 @@ export class PKDeferredPaymentRequest extends SDKHandle {
    * init(paymentDescription: String, deferredBilling: PKDeferredPaymentSummaryItem, managementURL: URL)
    * @availability iOS 16.4+
    */
-  static init(paymentDescription: string, deferredBilling: PKDeferredPaymentSummaryItem, managementURL: string): PKDeferredPaymentRequest { return callSDK<PKDeferredPaymentRequest>("PassKit_2f6e018ff7e993f9", 3165382451662129, undefined, [paymentDescription, deferredBilling, managementURL]); }
+  static init(paymentDescription: string, deferredBilling: PKDeferredPaymentSummaryItem, managementURL: string): PKDeferredPaymentRequest { return callSDK<PKDeferredPaymentRequest>("PassKit_a624b245971cfd00", 3165382451662129, undefined, [paymentDescription, deferredBilling, managementURL]); }
   /**
    * var billingAgreement: String? { get set }
    * @availability iOS 16.4+
    */
-  get billingAgreement(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 1711771540626133, this, []); }
-  set billingAgreement(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1925474059945729, this, [value]); }
+  get billingAgreement(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 1711771540626133, this, []); }
+  set billingAgreement(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1925474059945729, this, [value]); }
   /**
    * var deferredBilling: PKDeferredPaymentSummaryItem { get set }
    * @availability iOS 16.4+
    */
-  get deferredBilling(): PKDeferredPaymentSummaryItem { return callSDK<PKDeferredPaymentSummaryItem>("PassKit_2f6e018ff7e993f9", 4366652126518510, this, []); }
-  set deferredBilling(value: PKDeferredPaymentSummaryItem) { callSDK<void>("PassKit_2f6e018ff7e993f9", 151494376889001, this, [value]); }
+  get deferredBilling(): PKDeferredPaymentSummaryItem { return callSDK<PKDeferredPaymentSummaryItem>("PassKit_a624b245971cfd00", 4366652126518510, this, []); }
+  set deferredBilling(value: PKDeferredPaymentSummaryItem) { callSDK<void>("PassKit_a624b245971cfd00", 151494376889001, this, [value]); }
   /**
    * var freeCancellationDate: Date? { get set }
    * @availability iOS 16.4+
    */
-  get freeCancellationDate(): $SDK27 { return callSDK<$SDK27>("PassKit_2f6e018ff7e993f9", 1752247829697840, this, []); }
-  set freeCancellationDate(value: $SDK27) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2697838231816541, this, [value]); }
+  get freeCancellationDate(): $SDK27 { return callSDK<$SDK27>("PassKit_a624b245971cfd00", 1752247829697840, this, []); }
+  set freeCancellationDate(value: $SDK27) { callSDK<void>("PassKit_a624b245971cfd00", 2697838231816541, this, [value]); }
   /**
    * var freeCancellationDateTimeZone: TimeZone? { get set }
    * @availability iOS 16.4+
    */
-  get freeCancellationDateTimeZone(): (_Foundation_TimeZone) | null { return callSDK<(_Foundation_TimeZone) | null>("PassKit_2f6e018ff7e993f9", 3639284076621080, this, []); }
-  set freeCancellationDateTimeZone(value: (_Foundation_TimeZone) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1907521599984120, this, [value]); }
+  get freeCancellationDateTimeZone(): (_Foundation_TimeZone) | null { return callSDK<(_Foundation_TimeZone) | null>("PassKit_a624b245971cfd00", 3639284076621080, this, []); }
+  set freeCancellationDateTimeZone(value: (_Foundation_TimeZone) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1907521599984120, this, [value]); }
   /**
    * var managementURL: URL { get set }
    * @availability iOS 16.4+
    */
-  get managementURL(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 1505694701194401, this, []); }
-  set managementURL(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 662629338771812, this, [value]); }
+  get managementURL(): string { return callSDK<string>("PassKit_a624b245971cfd00", 1505694701194401, this, []); }
+  set managementURL(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 662629338771812, this, [value]); }
   /**
    * var paymentDescription: String { get set }
    * @availability iOS 16.4+
    */
-  get paymentDescription(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 4232874307569576, this, []); }
-  set paymentDescription(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4342375086641239, this, [value]); }
+  get paymentDescription(): string { return callSDK<string>("PassKit_a624b245971cfd00", 4232874307569576, this, []); }
+  set paymentDescription(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 4342375086641239, this, [value]); }
   /**
    * var tokenNotificationURL: URL? { get set }
    * @availability iOS 16.4+
    */
-  get tokenNotificationURL(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 1437657747142826, this, []); }
-  set tokenNotificationURL(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1806237870746140, this, [value]); }
+  get tokenNotificationURL(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 1437657747142826, this, []); }
+  set tokenNotificationURL(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1806237870746140, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKDeferredPaymentRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "billingAgreement": true; "deferredBilling": true; "freeCancellationDate": true; "freeCancellationDateTimeZone": true; "managementURL": true; "paymentDescription": true; "tokenNotificationURL": true };
 }
@@ -1372,13 +1372,13 @@ export class PKDeferredPaymentRequest extends SDKHandle {
  */
 export class PKDeferredPaymentSummaryItem extends PKPaymentSummaryItem {
   /** init() */
-  static init(): PKDeferredPaymentSummaryItem { return callSDK<PKDeferredPaymentSummaryItem>("PassKit_2f6e018ff7e993f9", 418326843399073, undefined, []); }
+  static init(): PKDeferredPaymentSummaryItem { return callSDK<PKDeferredPaymentSummaryItem>("PassKit_a624b245971cfd00", 418326843399073, undefined, []); }
   /**
    * var deferredDate: Date { get set }
    * @availability iOS 15.0+
    */
-  get deferredDate(): globalThis.Date { return callSDK<globalThis.Date>("PassKit_2f6e018ff7e993f9", 3697307860619835, this, []); }
-  set deferredDate(value: globalThis.Date) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1938908044241971, this, [value]); }
+  get deferredDate(): globalThis.Date { return callSDK<globalThis.Date>("PassKit_a624b245971cfd00", 3697307860619835, this, []); }
+  set deferredDate(value: globalThis.Date) { callSDK<void>("PassKit_a624b245971cfd00", 1938908044241971, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKDeferredPaymentSummaryItem": true; "c:objc(cs)PKPaymentSummaryItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "amount": true; "label": true; "type": true; "deferredDate": true };
 }
@@ -1392,22 +1392,22 @@ export class PKDisbursementError extends SDKHandle {
    * static var unsupportedCardError: PKDisbursementError.Code { get }
    * @availability iOS 17.0+
    */
-  static get unsupportedCardError(): PKDisbursementError_Code { return callSDK<PKDisbursementError_Code>("PassKit_2f6e018ff7e993f9", 3359119171940702, undefined, []); }
+  static get unsupportedCardError(): PKDisbursementError_Code { return callSDK<PKDisbursementError_Code>("PassKit_a624b245971cfd00", 3359119171940702, undefined, []); }
   /**
    * static var recipientContactInvalidError: PKDisbursementError.Code { get }
    * @availability iOS 17.0+
    */
-  static get recipientContactInvalidError(): PKDisbursementError_Code { return callSDK<PKDisbursementError_Code>("PassKit_2f6e018ff7e993f9", 458872175209732, undefined, []); }
+  static get recipientContactInvalidError(): PKDisbursementError_Code { return callSDK<PKDisbursementError_Code>("PassKit_a624b245971cfd00", 458872175209732, undefined, []); }
   /**
    * static var unknownError: PKDisbursementError.Code { get }
    * @availability iOS 17.0+
    */
-  static get unknownError(): PKDisbursementError_Code { return callSDK<PKDisbursementError_Code>("PassKit_2f6e018ff7e993f9", 3438621324378849, undefined, []); }
+  static get unknownError(): PKDisbursementError_Code { return callSDK<PKDisbursementError_Code>("PassKit_a624b245971cfd00", 3438621324378849, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 17.0+
    */
-  static get errorDomain(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 4309156386276586, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("PassKit_a624b245971cfd00", 4309156386276586, undefined, []); }
   declare readonly $type: { "s:SC23PKDisbursementErrorCodeLeV": true };
 }
 
@@ -1422,7 +1422,7 @@ export const PKDisbursementError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (PKDisbursementError_Code) | null { return callSDK<(PKDisbursementError_Code) | null>("PassKit_2f6e018ff7e993f9", 3393189632823293, undefined, [rawValue]); }
+  init(rawValue: number): (PKDisbursementError_Code) | null { return callSDK<(PKDisbursementError_Code) | null>("PassKit_a624b245971cfd00", 3393189632823293, undefined, [rawValue]); }
 };
 
 /** struct PKDisbursementErrorKey */
@@ -1433,9 +1433,9 @@ export const PKDisbursementErrorKey = {
    * static let contactFieldUserInfoKey: PKDisbursementErrorKey
    * @availability iOS 17.0+
    */
-  get contactFieldUserInfoKey(): PKDisbursementErrorKey { return callSDK<PKDisbursementErrorKey>("PassKit_2f6e018ff7e993f9", 1192869243417192, undefined, []); },
+  get contactFieldUserInfoKey(): PKDisbursementErrorKey { return callSDK<PKDisbursementErrorKey>("PassKit_a624b245971cfd00", 1192869243417192, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PKDisbursementErrorKey { return callSDK<PKDisbursementErrorKey>("PassKit_2f6e018ff7e993f9", 3060250697980364, undefined, [rawValue]); }
+  init(rawValue: string): PKDisbursementErrorKey { return callSDK<PKDisbursementErrorKey>("PassKit_a624b245971cfd00", 3060250697980364, undefined, [rawValue]); }
 };
 
 /**
@@ -1447,89 +1447,89 @@ export class PKDisbursementRequest extends SDKHandle {
    * class func disbursementCardUnsupportedError() -> any Error
    * @availability iOS 17.0+
    */
-  static disbursementCardUnsupportedError(): NativeError { return callSDK<NativeError>("PassKit_2f6e018ff7e993f9", 3265003877236003, undefined, []); }
+  static disbursementCardUnsupportedError(): NativeError { return callSDK<NativeError>("PassKit_a624b245971cfd00", 3265003877236003, undefined, []); }
   /**
    * class func disbursementContactInvalidError(withContactField field: PKContactField, localizedDescription: String?) -> any Error
    * @availability iOS 17.0+
    */
-  static disbursementContactInvalidError(field: PKContactField, localizedDescription?: (string) | null): NativeError { return callSDK<NativeError>("PassKit_2f6e018ff7e993f9", 667865693610107, undefined, [field, localizedDescription]); }
+  static disbursementContactInvalidError(field: PKContactField, localizedDescription?: (string) | null): NativeError { return callSDK<NativeError>("PassKit_a624b245971cfd00", 667865693610107, undefined, [field, localizedDescription]); }
   /**
    * var applicationData: Data? { get set }
    * @availability iOS 17.0+
    */
-  get applicationData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PassKit_2f6e018ff7e993f9", 2162686915459458, this, []); }
-  set applicationData(value: (ArrayBuffer) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 861116235180200, this, [value]); }
+  get applicationData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PassKit_a624b245971cfd00", 2162686915459458, this, []); }
+  set applicationData(value: (ArrayBuffer) | null) { callSDK<void>("PassKit_a624b245971cfd00", 861116235180200, this, [value]); }
   /**
    * var isDelegatedRequest: Bool { get set }
    * @availability iOS 26.4+
    */
-  get isDelegatedRequest(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 3754538016230762, this, []); }
-  set isDelegatedRequest(value: boolean) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1735427839176509, this, [value]); }
+  get isDelegatedRequest(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 3754538016230762, this, []); }
+  set isDelegatedRequest(value: boolean) { callSDK<void>("PassKit_a624b245971cfd00", 1735427839176509, this, [value]); }
   /**
    * var merchantCapabilities: PKMerchantCapability { get set }
    * @availability iOS 17.0+
    */
-  get merchantCapabilities(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_2f6e018ff7e993f9", 3963922425738964, this, []); }
-  set merchantCapabilities(value: PKMerchantCapability) { callSDK<void>("PassKit_2f6e018ff7e993f9", 303180532271873, this, [value]); }
+  get merchantCapabilities(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_a624b245971cfd00", 3963922425738964, this, []); }
+  set merchantCapabilities(value: PKMerchantCapability) { callSDK<void>("PassKit_a624b245971cfd00", 303180532271873, this, [value]); }
   /**
    * var merchantIdentifier: String { get set }
    * @availability iOS 17.0+
    */
-  get merchantIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 1426140168115311, this, []); }
-  set merchantIdentifier(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2756085380790876, this, [value]); }
+  get merchantIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 1426140168115311, this, []); }
+  set merchantIdentifier(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 2756085380790876, this, [value]); }
   /**
    * var recipientContact: PKContact? { get set }
    * @availability iOS 17.0+
    */
-  get recipientContact(): (PKContact) | null { return callSDK<(PKContact) | null>("PassKit_2f6e018ff7e993f9", 2768677557728440, this, []); }
-  set recipientContact(value: (PKContact) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 221402609500536, this, [value]); }
+  get recipientContact(): (PKContact) | null { return callSDK<(PKContact) | null>("PassKit_a624b245971cfd00", 2768677557728440, this, []); }
+  set recipientContact(value: (PKContact) | null) { callSDK<void>("PassKit_a624b245971cfd00", 221402609500536, this, [value]); }
   /**
    * var requiredRecipientContactFields: [PKContactField] { get set }
    * @availability iOS 17.0+
    */
-  get requiredRecipientContactFields(): Array<PKContactField> { return callSDK<Array<PKContactField>>("PassKit_2f6e018ff7e993f9", 3550208496799110, this, []); }
-  set requiredRecipientContactFields(value: Array<PKContactField>) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3377119931373578, this, [value]); }
+  get requiredRecipientContactFields(): Array<PKContactField> { return callSDK<Array<PKContactField>>("PassKit_a624b245971cfd00", 3550208496799110, this, []); }
+  set requiredRecipientContactFields(value: Array<PKContactField>) { callSDK<void>("PassKit_a624b245971cfd00", 3377119931373578, this, [value]); }
   /**
    * var summaryItems: [PKPaymentSummaryItem] { get set }
    * @availability iOS 17.0+
    */
-  get summaryItems(): $SDK29 { return callSDK<$SDK29>("PassKit_2f6e018ff7e993f9", 2004264346838623, this, []); }
-  set summaryItems(value: $SDK29) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1392866615849165, this, [value]); }
+  get summaryItems(): $SDK29 { return callSDK<$SDK29>("PassKit_a624b245971cfd00", 2004264346838623, this, []); }
+  set summaryItems(value: $SDK29) { callSDK<void>("PassKit_a624b245971cfd00", 1392866615849165, this, [value]); }
   /**
    * var supportedNetworks: [PKPaymentNetwork] { get set }
    * @availability iOS 17.0+
    */
-  get supportedNetworks(): Array<PKPaymentNetwork> { return callSDK<Array<PKPaymentNetwork>>("PassKit_2f6e018ff7e993f9", 4279182558167455, this, []); }
-  set supportedNetworks(value: Array<PKPaymentNetwork>) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4129631032221260, this, [value]); }
+  get supportedNetworks(): Array<PKPaymentNetwork> { return callSDK<Array<PKPaymentNetwork>>("PassKit_a624b245971cfd00", 4279182558167455, this, []); }
+  set supportedNetworks(value: Array<PKPaymentNetwork>) { callSDK<void>("PassKit_a624b245971cfd00", 4129631032221260, this, [value]); }
   /**
    * var unsupportedPrimaryAccountIdentifiers: [String] { get set }
    * @availability iOS 27.0+
    */
-  get unsupportedPrimaryAccountIdentifiers(): Array<string> { return callSDK<Array<string>>("PassKit_2f6e018ff7e993f9", 1693897595328998, this, []); }
-  set unsupportedPrimaryAccountIdentifiers(value: Array<string>) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2048371827202286, this, [value]); }
+  get unsupportedPrimaryAccountIdentifiers(): Array<string> { return callSDK<Array<string>>("PassKit_a624b245971cfd00", 1693897595328998, this, []); }
+  set unsupportedPrimaryAccountIdentifiers(value: Array<string>) { callSDK<void>("PassKit_a624b245971cfd00", 2048371827202286, this, [value]); }
   /**
    * var supportedRegions: [Locale.Region]? { get set }
    * @availability iOS 17.0+
    */
-  get supportedRegions(): $SDK30 { return callSDK<$SDK30>("PassKit_2f6e018ff7e993f9", 2674482354565158, this, []); }
-  set supportedRegions(value: $SDK30) { callSDK<void>("PassKit_2f6e018ff7e993f9", 926707533585522, this, [value]); }
+  get supportedRegions(): $SDK30 { return callSDK<$SDK30>("PassKit_a624b245971cfd00", 2674482354565158, this, []); }
+  set supportedRegions(value: $SDK30) { callSDK<void>("PassKit_a624b245971cfd00", 926707533585522, this, [value]); }
   /**
    * convenience init(merchantIdentifier: String, currency: Locale.Currency, region: Locale.Region, supportedNetworks: [PKPaymentNetwork], merchantCapabilities: PKMerchantCapability, summaryItems: [PKPaymentSummaryItem])
    * @availability iOS 17.0+
    */
-  static init(merchantIdentifier: string, currency: _Foundation_Locale_Currency, region: _Foundation_Locale_Region, supportedNetworks: Array<PKPaymentNetwork>, merchantCapabilities: PKMerchantCapability, summaryItems: $SDK29): PKDisbursementRequest { return callSDK<PKDisbursementRequest>("PassKit_2f6e018ff7e993f9", 1319058564579450, undefined, [merchantIdentifier, currency, region, supportedNetworks, merchantCapabilities, summaryItems]); }
+  static init(merchantIdentifier: string, currency: _Foundation_Locale_Currency, region: _Foundation_Locale_Region, supportedNetworks: Array<PKPaymentNetwork>, merchantCapabilities: PKMerchantCapability, summaryItems: $SDK29): PKDisbursementRequest { return callSDK<PKDisbursementRequest>("PassKit_a624b245971cfd00", 1319058564579450, undefined, [merchantIdentifier, currency, region, supportedNetworks, merchantCapabilities, summaryItems]); }
   /**
    * var region: Locale.Region { get set }
    * @availability iOS 17.0+
    */
-  get region(): _Foundation_Locale_Region { return callSDK<_Foundation_Locale_Region>("PassKit_2f6e018ff7e993f9", 3002711331367015, this, []); }
-  set region(value: _Foundation_Locale_Region) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2861814262800734, this, [value]); }
+  get region(): _Foundation_Locale_Region { return callSDK<_Foundation_Locale_Region>("PassKit_a624b245971cfd00", 3002711331367015, this, []); }
+  set region(value: _Foundation_Locale_Region) { callSDK<void>("PassKit_a624b245971cfd00", 2861814262800734, this, [value]); }
   /**
    * var currency: Locale.Currency { get set }
    * @availability iOS 17.0+
    */
-  get currency(): _Foundation_Locale_Currency { return callSDK<_Foundation_Locale_Currency>("PassKit_2f6e018ff7e993f9", 2352708259300047, this, []); }
-  set currency(value: _Foundation_Locale_Currency) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2935116596533101, this, [value]); }
+  get currency(): _Foundation_Locale_Currency { return callSDK<_Foundation_Locale_Currency>("PassKit_a624b245971cfd00", 2352708259300047, this, []); }
+  set currency(value: _Foundation_Locale_Currency) { callSDK<void>("PassKit_a624b245971cfd00", 2935116596533101, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKDisbursementRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "applicationData": true; "isDelegatedRequest": true; "merchantCapabilities": true; "merchantIdentifier": true; "recipientContact": true; "requiredRecipientContactFields": true; "summaryItems": true; "supportedNetworks": true; "unsupportedPrimaryAccountIdentifiers": true };
 }
@@ -1540,7 +1540,7 @@ export class PKDisbursementRequest extends SDKHandle {
  */
 export class PKDisbursementSummaryItem extends PKPaymentSummaryItem {
   /** init() */
-  static init(): PKDisbursementSummaryItem { return callSDK<PKDisbursementSummaryItem>("PassKit_2f6e018ff7e993f9", 3709808917115963, undefined, []); }
+  static init(): PKDisbursementSummaryItem { return callSDK<PKDisbursementSummaryItem>("PassKit_a624b245971cfd00", 3709808917115963, undefined, []); }
   declare readonly $type: { "c:objc(cs)PKDisbursementSummaryItem": true; "c:objc(cs)PKPaymentSummaryItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "amount": true; "label": true; "type": true };
 }
@@ -1553,14 +1553,14 @@ export const PKEncryptionScheme = {
    * static let ECC_V2: PKEncryptionScheme
    * @availability iOS 9.0+
    */
-  get ECC_V2(): PKEncryptionScheme { return callSDK<PKEncryptionScheme>("PassKit_2f6e018ff7e993f9", 463639205195390, undefined, []); },
+  get ECC_V2(): PKEncryptionScheme { return callSDK<PKEncryptionScheme>("PassKit_a624b245971cfd00", 463639205195390, undefined, []); },
   /**
    * static let RSA_V2: PKEncryptionScheme
    * @availability iOS 10.0+
    */
-  get RSA_V2(): PKEncryptionScheme { return callSDK<PKEncryptionScheme>("PassKit_2f6e018ff7e993f9", 724373769747297, undefined, []); },
+  get RSA_V2(): PKEncryptionScheme { return callSDK<PKEncryptionScheme>("PassKit_a624b245971cfd00", 724373769747297, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PKEncryptionScheme { return callSDK<PKEncryptionScheme>("PassKit_2f6e018ff7e993f9", 1623423138194562, undefined, [rawValue]); }
+  init(rawValue: string): PKEncryptionScheme { return callSDK<PKEncryptionScheme>("PassKit_a624b245971cfd00", 1623423138194562, undefined, [rawValue]); }
 };
 
 /**
@@ -1572,12 +1572,12 @@ export class PKIdentityAnyOfDescriptor extends SDKHandle {
    * init(descriptors: [any PKIdentityDocumentDescriptor])
    * @availability iOS 26.0+
    */
-  static init(descriptors: Array<SDKHandle>): PKIdentityAnyOfDescriptor { return callSDK<PKIdentityAnyOfDescriptor>("PassKit_2f6e018ff7e993f9", 4450331954963386, undefined, [descriptors]); }
+  static init(descriptors: Array<SDKHandle>): PKIdentityAnyOfDescriptor { return callSDK<PKIdentityAnyOfDescriptor>("PassKit_a624b245971cfd00", 4450331954963386, undefined, [descriptors]); }
   /**
    * var descriptors: [any PKIdentityDocumentDescriptor] { get }
    * @availability iOS 26.0+
    */
-  get descriptors(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("PassKit_2f6e018ff7e993f9", 3138697472875176, this, []); }
+  get descriptors(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("PassKit_a624b245971cfd00", 3138697472875176, this, []); }
   declare readonly $type: { "c:objc(cs)PKIdentityAnyOfDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "descriptors": true };
 }
@@ -1591,19 +1591,19 @@ export class PKIdentityAuthorizationController extends SDKHandle {
    * func cancelRequest()
    * @availability iOS 16.0+
    */
-  cancelRequest(): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 3783322921375737, this, []); }
+  cancelRequest(): void { return callSDK<void>("PassKit_a624b245971cfd00", 3783322921375737, this, []); }
   /**
    * func canRequestDocument(_ descriptor: any PKIdentityDocumentDescriptor) async -> Bool
    * @availability iOS 16.0+
    */
-  checkCanRequestDocument(descriptor: SDKHandle, completion: ((arg0: boolean) => void)): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 3276981334613103, this, [descriptor, completion], [null,{"callback":{"out":[]}}]); }
+  checkCanRequestDocument(descriptor: SDKHandle, completion: ((arg0: boolean) => void)): void { return callSDK<void>("PassKit_a624b245971cfd00", 3276981334613103, this, [descriptor, completion], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): PKIdentityAuthorizationController { return callSDK<PKIdentityAuthorizationController>("PassKit_2f6e018ff7e993f9", 4329464522513006, undefined, []); }
+  static init(): PKIdentityAuthorizationController { return callSDK<PKIdentityAuthorizationController>("PassKit_a624b245971cfd00", 4329464522513006, undefined, []); }
   /**
    * func requestDocument(_ request: PKIdentityRequest) async throws -> PKIdentityDocument
    * @availability iOS 16.0+
    */
-  requestDocument(request: PKIdentityRequest, completion: ((arg0: (PKIdentityDocument) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 4449017905324593, this, [request, completion], [null,{"callback":{"out":[]}}]); }
+  requestDocument(request: PKIdentityRequest, completion: ((arg0: (PKIdentityDocument) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("PassKit_a624b245971cfd00", 4449017905324593, this, [request, completion], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)PKIdentityAuthorizationController": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1616,13 +1616,13 @@ export class PKIdentityButton extends SDKHandle {
    * init(label: PKIdentityButton.Label, style: PKIdentityButton.Style)
    * @availability iOS 16.0+
    */
-  static init(label: PKIdentityButton_Label, style: PKIdentityButton_Style): Promise<PKIdentityButton> { return callSDKAsync<PKIdentityButton>("PassKit_2f6e018ff7e993f9", 4161190168657241, undefined, [label, style]); }
+  static init(label: PKIdentityButton_Label, style: PKIdentityButton_Style): Promise<PKIdentityButton> { return callSDKAsync<PKIdentityButton>("PassKit_a624b245971cfd00", 4161190168657241, undefined, [label, style]); }
   /**
    * var cornerRadius: CGFloat { get set }
    * @availability iOS 16.0+
    */
-  get cornerRadius(): Promise<number> { return callSDKAsync<number>("PassKit_2f6e018ff7e993f9", 3971524522681487, this, []); }
-  setCornerRadius(value: number): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 1219571519682929, this, [value]); }
+  get cornerRadius(): Promise<number> { return callSDKAsync<number>("PassKit_a624b245971cfd00", 3971524522681487, this, []); }
+  setCornerRadius(value: number): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 1219571519682929, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKIdentityButton": true; "c:objc(cs)UIControl": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cornerRadius": true };
 }
@@ -1638,7 +1638,7 @@ export const PKIdentityButton_Label = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): Promise<(PKIdentityButton_Label) | null> { return callSDKAsync<(PKIdentityButton_Label) | null>("PassKit_2f6e018ff7e993f9", 912512413600741, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(PKIdentityButton_Label) | null> { return callSDKAsync<(PKIdentityButton_Label) | null>("PassKit_a624b245971cfd00", 912512413600741, undefined, [rawValue]); }
 };
 
 /**
@@ -1652,7 +1652,7 @@ export const PKIdentityButton_Style = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): Promise<(PKIdentityButton_Style) | null> { return callSDKAsync<(PKIdentityButton_Style) | null>("PassKit_2f6e018ff7e993f9", 1718848443718822, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(PKIdentityButton_Style) | null> { return callSDKAsync<(PKIdentityButton_Style) | null>("PassKit_a624b245971cfd00", 1718848443718822, undefined, [rawValue]); }
 };
 
 /**
@@ -1664,7 +1664,7 @@ export class PKIdentityDocument extends SDKHandle {
    * var encryptedData: Data { get }
    * @availability iOS 16.0+
    */
-  get encryptedData(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_2f6e018ff7e993f9", 446960385993708, this, []); }
+  get encryptedData(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_a624b245971cfd00", 446960385993708, this, []); }
   declare readonly $type: { "c:objc(cs)PKIdentityDocument": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "encryptedData": true };
 }
@@ -1692,7 +1692,7 @@ export interface PKIdentityDocumentDescriptor {
  */
 export class PKIdentityDriversLicenseDescriptor extends SDKHandle {
   /** init() */
-  static init(): PKIdentityDriversLicenseDescriptor { return callSDK<PKIdentityDriversLicenseDescriptor>("PassKit_2f6e018ff7e993f9", 1812902478597741, undefined, []); }
+  static init(): PKIdentityDriversLicenseDescriptor { return callSDK<PKIdentityDriversLicenseDescriptor>("PassKit_a624b245971cfd00", 1812902478597741, undefined, []); }
   declare readonly $type: { "c:objc(cs)PKIdentityDriversLicenseDescriptor": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1705,127 +1705,127 @@ export class PKIdentityElement extends SDKHandle {
    * class func age(atLeast age: Int) -> Self
    * @availability iOS 16.0+
    */
-  static ageAtLeast(age: number): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 1836209806178614, undefined, [age]); }
+  static ageAtLeast(age: number): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 1836209806178614, undefined, [age]); }
   /**
    * class var address: PKIdentityElement { get }
    * @availability iOS 16.0+
    */
-  static get address(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 1215313093300068, undefined, []); }
+  static get address(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 1215313093300068, undefined, []); }
   /**
    * class var age: PKIdentityElement { get }
    * @availability iOS 16.0+
    */
-  static get age(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 2007586677626578, undefined, []); }
+  static get age(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 2007586677626578, undefined, []); }
   /**
    * class var dateOfBirth: PKIdentityElement { get }
    * @availability iOS 16.0+
    */
-  static get dateOfBirth(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 2373682799490252, undefined, []); }
+  static get dateOfBirth(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 2373682799490252, undefined, []); }
   /**
    * class var dhsTemporaryLawfulStatus: PKIdentityElement { get }
    * @availability iOS 26.4+
    */
-  static get dhsTemporaryLawfulStatus(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 2125930543863849, undefined, []); }
+  static get dhsTemporaryLawfulStatus(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 2125930543863849, undefined, []); }
   /**
    * class var documentDHSComplianceStatus: PKIdentityElement { get }
    * @availability iOS 17.2+
    */
-  static get documentDHSComplianceStatus(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 1193674562866347, undefined, []); }
+  static get documentDHSComplianceStatus(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 1193674562866347, undefined, []); }
   /**
    * class var documentExpirationDate: PKIdentityElement { get }
    * @availability iOS 16.0+
    */
-  static get documentExpirationDate(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 2205647004146838, undefined, []); }
+  static get documentExpirationDate(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 2205647004146838, undefined, []); }
   /**
    * class var documentIssueDate: PKIdentityElement { get }
    * @availability iOS 16.0+
    */
-  static get documentIssueDate(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 4467165749795233, undefined, []); }
+  static get documentIssueDate(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 4467165749795233, undefined, []); }
   /**
    * class var documentNumber: PKIdentityElement { get }
    * @availability iOS 16.0+
    */
-  static get documentNumber(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 995713220149550, undefined, []); }
+  static get documentNumber(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 995713220149550, undefined, []); }
   /**
    * class var drivingPrivileges: PKIdentityElement { get }
    * @availability iOS 16.0+
    */
-  static get drivingPrivileges(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 2122869167817497, undefined, []); }
+  static get drivingPrivileges(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 2122869167817497, undefined, []); }
   /**
    * class var eyeColor: PKIdentityElement { get }
    * @availability iOS 26.0+
    */
-  static get eyeColor(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 962306241632472, undefined, []); }
+  static get eyeColor(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 962306241632472, undefined, []); }
   /**
    * class var familyName: PKIdentityElement { get }
    * @availability iOS 16.0+
    */
-  static get familyName(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 925520357569177, undefined, []); }
+  static get familyName(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 925520357569177, undefined, []); }
   /**
    * class var givenName: PKIdentityElement { get }
    * @availability iOS 16.0+
    */
-  static get givenName(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 3703001323393957, undefined, []); }
+  static get givenName(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 3703001323393957, undefined, []); }
   /**
    * class var hairColor: PKIdentityElement { get }
    * @availability iOS 26.0+
    */
-  static get hairColor(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 1867388764799609, undefined, []); }
+  static get hairColor(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 1867388764799609, undefined, []); }
   /**
    * class var height: PKIdentityElement { get }
    * @availability iOS 26.0+
    */
-  static get height(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 3371476117678395, undefined, []); }
+  static get height(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 3371476117678395, undefined, []); }
   /**
    * class var issuingAuthority: PKIdentityElement { get }
    * @availability iOS 16.0+
    */
-  static get issuingAuthority(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 4353009742782495, undefined, []); }
+  static get issuingAuthority(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 4353009742782495, undefined, []); }
   /**
    * class var name: PKIdentityElement { get }
    * @availability iOS 27.0+
    */
-  static get nameValue(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 3880147484653986, undefined, []); }
+  static get nameValue(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 3880147484653986, undefined, []); }
   /**
    * class var nationality: PKIdentityElement { get }
    * @availability iOS 26.4+
    */
-  static get nationality(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 655608520983272, undefined, []); }
+  static get nationality(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 655608520983272, undefined, []); }
   /**
    * class var organDonorStatus: PKIdentityElement { get }
    * @availability iOS 26.0+
    */
-  static get organDonorStatus(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 1743536737749506, undefined, []); }
+  static get organDonorStatus(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 1743536737749506, undefined, []); }
   /**
    * class var placeOfBirth: PKIdentityElement { get }
    * @availability iOS 26.4+
    */
-  static get placeOfBirth(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 3670745826317595, undefined, []); }
+  static get placeOfBirth(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 3670745826317595, undefined, []); }
   /**
    * class var portrait: PKIdentityElement { get }
    * @availability iOS 16.0+
    */
-  static get portrait(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 4373992118308666, undefined, []); }
+  static get portrait(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 4373992118308666, undefined, []); }
   /**
    * class var sex: PKIdentityElement { get }
    * @availability iOS 17.2+
    */
-  static get sex(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 3631675902822466, undefined, []); }
+  static get sex(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 3631675902822466, undefined, []); }
   /**
    * class var signatureUsualMark: PKIdentityElement { get }
    * @availability iOS 26.4+
    */
-  static get signatureUsualMark(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 536678396850386, undefined, []); }
+  static get signatureUsualMark(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 536678396850386, undefined, []); }
   /**
    * class var veteranStatus: PKIdentityElement { get }
    * @availability iOS 26.0+
    */
-  static get veteranStatus(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 280506525920155, undefined, []); }
+  static get veteranStatus(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 280506525920155, undefined, []); }
   /**
    * class var weight: PKIdentityElement { get }
    * @availability iOS 26.0+
    */
-  static get weight(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_2f6e018ff7e993f9", 651502610828124, undefined, []); }
+  static get weight(): PKIdentityElement { return callSDK<PKIdentityElement>("PassKit_a624b245971cfd00", 651502610828124, undefined, []); }
   declare readonly $type: { "c:objc(cs)PKIdentityElement": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1838,52 +1838,52 @@ export class PKIdentityError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 16.0+
    */
-  static get errorDomain(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 4196381784540197, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("PassKit_a624b245971cfd00", 4196381784540197, undefined, []); }
   /**
    * static var invalidNonce: PKIdentityError.Code { get }
    * @availability iOS 16.0+
    */
-  static get invalidNonce(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_2f6e018ff7e993f9", 1279762995394522, undefined, []); }
+  static get invalidNonce(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_a624b245971cfd00", 1279762995394522, undefined, []); }
   /**
    * static var notSupported: PKIdentityError.Code { get }
    * @availability iOS 16.0+
    */
-  static get notSupported(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_2f6e018ff7e993f9", 3433545509796047, undefined, []); }
+  static get notSupported(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_a624b245971cfd00", 3433545509796047, undefined, []); }
   /**
    * static var invalidElement: PKIdentityError.Code { get }
    * @availability iOS 16.0+
    */
-  static get invalidElement(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_2f6e018ff7e993f9", 288041258681164, undefined, []); }
+  static get invalidElement(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_a624b245971cfd00", 288041258681164, undefined, []); }
   /**
    * static var networkUnavailable: PKIdentityError.Code { get }
    * @availability iOS 16.0+
    */
-  static get networkUnavailable(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_2f6e018ff7e993f9", 2056455832345599, undefined, []); }
+  static get networkUnavailable(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_a624b245971cfd00", 2056455832345599, undefined, []); }
   /**
    * static var regionNotSupported: PKIdentityError.Code { get }
    * @availability iOS 18.0+
    */
-  static get regionNotSupported(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_2f6e018ff7e993f9", 184287219348044, undefined, []); }
+  static get regionNotSupported(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_a624b245971cfd00", 184287219348044, undefined, []); }
   /**
    * static var noElementsRequested: PKIdentityError.Code { get }
    * @availability iOS 16.0+
    */
-  static get noElementsRequested(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_2f6e018ff7e993f9", 2148552771809883, undefined, []); }
+  static get noElementsRequested(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_a624b245971cfd00", 2148552771809883, undefined, []); }
   /**
    * static var requestAlreadyInProgress: PKIdentityError.Code { get }
    * @availability iOS 16.0+
    */
-  static get requestAlreadyInProgress(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_2f6e018ff7e993f9", 4445651405667105, undefined, []); }
+  static get requestAlreadyInProgress(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_a624b245971cfd00", 4445651405667105, undefined, []); }
   /**
    * static var unknown: PKIdentityError.Code { get }
    * @availability iOS 16.0+
    */
-  static get unknown(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_2f6e018ff7e993f9", 799028685229487, undefined, []); }
+  static get unknown(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_a624b245971cfd00", 799028685229487, undefined, []); }
   /**
    * static var cancelled: PKIdentityError.Code { get }
    * @availability iOS 16.0+
    */
-  static get cancelled(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_2f6e018ff7e993f9", 4371424045642819, undefined, []); }
+  static get cancelled(): PKIdentityError_Code { return callSDK<PKIdentityError_Code>("PassKit_a624b245971cfd00", 4371424045642819, undefined, []); }
   declare readonly $type: { "s:SC15PKIdentityErrorLeV": true };
 }
 
@@ -1898,7 +1898,7 @@ export const PKIdentityError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (PKIdentityError_Code) | null { return callSDK<(PKIdentityError_Code) | null>("PassKit_2f6e018ff7e993f9", 369431518576139, undefined, [rawValue]); }
+  init(rawValue: number): (PKIdentityError_Code) | null { return callSDK<(PKIdentityError_Code) | null>("PassKit_a624b245971cfd00", 369431518576139, undefined, [rawValue]); }
 };
 
 /**
@@ -1910,17 +1910,17 @@ export class PKIdentityIntentToStore extends SDKHandle {
    * class func mayStore(days: Int) -> Self
    * @availability iOS 16.0+
    */
-  static mayStoreDays(days: number): PKIdentityIntentToStore { return callSDK<PKIdentityIntentToStore>("PassKit_2f6e018ff7e993f9", 122491958979426, undefined, [days]); }
+  static mayStoreDays(days: number): PKIdentityIntentToStore { return callSDK<PKIdentityIntentToStore>("PassKit_a624b245971cfd00", 122491958979426, undefined, [days]); }
   /**
    * class var mayStore: PKIdentityIntentToStore { get }
    * @availability iOS 16.0+
    */
-  static get mayStore(): PKIdentityIntentToStore { return callSDK<PKIdentityIntentToStore>("PassKit_2f6e018ff7e993f9", 3056930476056475, undefined, []); }
+  static get mayStore(): PKIdentityIntentToStore { return callSDK<PKIdentityIntentToStore>("PassKit_a624b245971cfd00", 3056930476056475, undefined, []); }
   /**
    * class var willNotStore: PKIdentityIntentToStore { get }
    * @availability iOS 16.0+
    */
-  static get willNotStore(): PKIdentityIntentToStore { return callSDK<PKIdentityIntentToStore>("PassKit_2f6e018ff7e993f9", 330963023127461, undefined, []); }
+  static get willNotStore(): PKIdentityIntentToStore { return callSDK<PKIdentityIntentToStore>("PassKit_a624b245971cfd00", 330963023127461, undefined, []); }
   declare readonly $type: { "c:objc(cs)PKIdentityIntentToStore": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1930,13 +1930,13 @@ export class PKIdentityIntentToStore extends SDKHandle {
  */
 export class PKIdentityNationalIDCardDescriptor extends SDKHandle {
   /** init() */
-  static init(): PKIdentityNationalIDCardDescriptor { return callSDK<PKIdentityNationalIDCardDescriptor>("PassKit_2f6e018ff7e993f9", 1005358666249207, undefined, []); }
+  static init(): PKIdentityNationalIDCardDescriptor { return callSDK<PKIdentityNationalIDCardDescriptor>("PassKit_a624b245971cfd00", 1005358666249207, undefined, []); }
   /**
    * var region: Locale.Region? { get set }
    * @availability iOS 18.0+
    */
-  get region(): $SDK35 { return callSDK<$SDK35>("PassKit_2f6e018ff7e993f9", 3409712427791552, this, []); }
-  set region(value: $SDK35) { callSDK<void>("PassKit_2f6e018ff7e993f9", 769718741408296, this, [value]); }
+  get region(): $SDK35 { return callSDK<$SDK35>("PassKit_a624b245971cfd00", 3409712427791552, this, []); }
+  set region(value: $SDK35) { callSDK<void>("PassKit_a624b245971cfd00", 769718741408296, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKIdentityNationalIDCardDescriptor": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1946,7 +1946,7 @@ export class PKIdentityNationalIDCardDescriptor extends SDKHandle {
  */
 export class PKIdentityPhotoIDDescriptor extends SDKHandle {
   /** init() */
-  static init(): PKIdentityPhotoIDDescriptor { return callSDK<PKIdentityPhotoIDDescriptor>("PassKit_2f6e018ff7e993f9", 3225578943603295, undefined, []); }
+  static init(): PKIdentityPhotoIDDescriptor { return callSDK<PKIdentityPhotoIDDescriptor>("PassKit_a624b245971cfd00", 3225578943603295, undefined, []); }
   declare readonly $type: { "c:objc(cs)PKIdentityPhotoIDDescriptor": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1956,31 +1956,31 @@ export class PKIdentityPhotoIDDescriptor extends SDKHandle {
  */
 export class PKIdentityRequest extends SDKHandle {
   /** init() */
-  static init(): PKIdentityRequest { return callSDK<PKIdentityRequest>("PassKit_2f6e018ff7e993f9", 2147783760754345, undefined, []); }
+  static init(): PKIdentityRequest { return callSDK<PKIdentityRequest>("PassKit_a624b245971cfd00", 2147783760754345, undefined, []); }
   /**
    * var descriptor: (any PKIdentityDocumentDescriptor)? { get set }
    * @availability iOS 16.0+
    */
-  get descriptor(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PassKit_2f6e018ff7e993f9", 3036855819152162, this, []); }
-  set descriptor(value: (SDKHandle) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2430728996886257, this, [value]); }
+  get descriptor(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PassKit_a624b245971cfd00", 3036855819152162, this, []); }
+  set descriptor(value: (SDKHandle) | null) { callSDK<void>("PassKit_a624b245971cfd00", 2430728996886257, this, [value]); }
   /**
    * var merchantIdentifier: String? { get set }
    * @availability iOS 16.0+
    */
-  get merchantIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 2927769663044121, this, []); }
-  set merchantIdentifier(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1902544699813847, this, [value]); }
+  get merchantIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 2927769663044121, this, []); }
+  set merchantIdentifier(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1902544699813847, this, [value]); }
   /**
    * var nonce: Data? { get set }
    * @availability iOS 16.0+
    */
-  get nonce(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PassKit_2f6e018ff7e993f9", 1994888393983783, this, []); }
-  set nonce(value: (ArrayBuffer) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3471029324615060, this, [value]); }
+  get nonce(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PassKit_a624b245971cfd00", 1994888393983783, this, []); }
+  set nonce(value: (ArrayBuffer) | null) { callSDK<void>("PassKit_a624b245971cfd00", 3471029324615060, this, [value]); }
   /**
    * var usageDescriptionKey: String? { get set }
    * @availability iOS 26.2+
    */
-  get usageDescriptionKey(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 211022943933363, this, []); }
-  set usageDescriptionKey(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 54192595919399, this, [value]); }
+  get usageDescriptionKey(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 211022943933363, this, []); }
+  set usageDescriptionKey(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 54192595919399, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKIdentityRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "descriptor": true; "merchantIdentifier": true; "nonce": true; "usageDescriptionKey": true };
 }
@@ -1994,7 +1994,7 @@ export type PKInformationRequestCompletionBlock = ((arg0: PKBarcodeEventMetadata
  */
 export class PKInstantFundsOutFeeSummaryItem extends PKPaymentSummaryItem {
   /** init() */
-  static init(): PKInstantFundsOutFeeSummaryItem { return callSDK<PKInstantFundsOutFeeSummaryItem>("PassKit_2f6e018ff7e993f9", 1033355978006702, undefined, []); }
+  static init(): PKInstantFundsOutFeeSummaryItem { return callSDK<PKInstantFundsOutFeeSummaryItem>("PassKit_a624b245971cfd00", 1033355978006702, undefined, []); }
   declare readonly $type: { "c:objc(cs)PKInstantFundsOutFeeSummaryItem": true; "c:objc(cs)PKPaymentSummaryItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "amount": true; "label": true; "type": true };
 }
@@ -2018,7 +2018,7 @@ export const PKIssuerProvisioningExtensionAuthorizationResult = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (PKIssuerProvisioningExtensionAuthorizationResult) | null { return callSDK<(PKIssuerProvisioningExtensionAuthorizationResult) | null>("PassKit_2f6e018ff7e993f9", 3168778652597037, undefined, [rawValue]); }
+  init(rawValue: number): (PKIssuerProvisioningExtensionAuthorizationResult) | null { return callSDK<(PKIssuerProvisioningExtensionAuthorizationResult) | null>("PassKit_a624b245971cfd00", 3168778652597037, undefined, [rawValue]); }
 };
 
 /**
@@ -2030,24 +2030,24 @@ export class PKIssuerProvisioningExtensionHandler extends SDKHandle {
    * func generateAddPaymentPassRequestForPassEntryWithIdentifier(_ identifier: String, configuration: PKAddPaymentPassRequestConfiguration, certificateChain certificates: [Data], nonce: Data, nonceSignature: Data) async -> PKAddPaymentPassRequest?
    * @availability iOS 14.0+
    */
-  generateAddPaymentPassRequestForPassEntryWithIdentifier(identifier: string, configuration: PKAddPaymentPassRequestConfiguration, certificates: Array<ArrayBuffer>, nonce: ArrayBuffer, nonceSignature: ArrayBuffer, completion: ((arg0: (PKAddPaymentPassRequest) | null) => void)): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 4108868308002836, this, [identifier, configuration, certificates, nonce, nonceSignature, completion], [null,null,null,null,null,{"callback":{"out":[]}}]); }
+  generateAddPaymentPassRequestForPassEntryWithIdentifier(identifier: string, configuration: PKAddPaymentPassRequestConfiguration, certificates: Array<ArrayBuffer>, nonce: ArrayBuffer, nonceSignature: ArrayBuffer, completion: ((arg0: (PKAddPaymentPassRequest) | null) => void)): void { return callSDK<void>("PassKit_a624b245971cfd00", 4108868308002836, this, [identifier, configuration, certificates, nonce, nonceSignature, completion], [null,null,null,null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): PKIssuerProvisioningExtensionHandler { return callSDK<PKIssuerProvisioningExtensionHandler>("PassKit_2f6e018ff7e993f9", 126818281972436, undefined, []); }
+  static init(): PKIssuerProvisioningExtensionHandler { return callSDK<PKIssuerProvisioningExtensionHandler>("PassKit_a624b245971cfd00", 126818281972436, undefined, []); }
   /**
    * func passEntries() async -> [PKIssuerProvisioningExtensionPassEntry]
    * @availability iOS 14.0+
    */
-  passEntries(completion: $SDK38): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 3420388771226460, this, [completion], [{"callback":{"out":[]}}]); }
+  passEntries(completion: $SDK38): void { return callSDK<void>("PassKit_a624b245971cfd00", 3420388771226460, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func remotePassEntries() async -> [PKIssuerProvisioningExtensionPassEntry]
    * @availability iOS 14.0+
    */
-  remotePassEntries(completion: $SDK38): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 742684859825387, this, [completion], [{"callback":{"out":[]}}]); }
+  remotePassEntries(completion: $SDK38): void { return callSDK<void>("PassKit_a624b245971cfd00", 742684859825387, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func status() async -> PKIssuerProvisioningExtensionStatus
    * @availability iOS 14.0+
    */
-  status(completion: ((arg0: PKIssuerProvisioningExtensionStatus) => void)): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 3956967888354035, this, [completion], [{"callback":{"out":[]}}]); }
+  status(completion: ((arg0: PKIssuerProvisioningExtensionStatus) => void)): void { return callSDK<void>("PassKit_a624b245971cfd00", 3956967888354035, this, [completion], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)PKIssuerProvisioningExtensionHandler": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2060,17 +2060,17 @@ export class PKIssuerProvisioningExtensionPassEntry extends SDKHandle {
    * var art: CGImage { get }
    * @availability iOS 14.0+
    */
-  get art(): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("PassKit_2f6e018ff7e993f9", 1293904728929825, this, []); }
+  get art(): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("PassKit_a624b245971cfd00", 1293904728929825, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 14.0+
    */
-  get identifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 4449850063880822, this, []); }
+  get identifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 4449850063880822, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 14.0+
    */
-  get title(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2546950165099823, this, []); }
+  get title(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2546950165099823, this, []); }
   declare readonly $type: { "c:objc(cs)PKIssuerProvisioningExtensionPassEntry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "art": true; "identifier": true; "title": true };
 }
@@ -2084,12 +2084,12 @@ export class PKIssuerProvisioningExtensionPaymentPassEntry extends PKIssuerProvi
    * init?(identifier: String, title: String, art: CGImage, addRequestConfiguration configuration: PKAddPaymentPassRequestConfiguration)
    * @availability iOS 14.0+
    */
-  static init(identifier: string, title: string, art: _CoreGraphics_CGImage, configuration: PKAddPaymentPassRequestConfiguration): (PKIssuerProvisioningExtensionPaymentPassEntry) | null { return callSDK<(PKIssuerProvisioningExtensionPaymentPassEntry) | null>("PassKit_2f6e018ff7e993f9", 938179485164599, undefined, [identifier, title, art, configuration]); }
+  static init(identifier: string, title: string, art: _CoreGraphics_CGImage, configuration: PKAddPaymentPassRequestConfiguration): (PKIssuerProvisioningExtensionPaymentPassEntry) | null { return callSDK<(PKIssuerProvisioningExtensionPaymentPassEntry) | null>("PassKit_a624b245971cfd00", 938179485164599, undefined, [identifier, title, art, configuration]); }
   /**
    * var addRequestConfiguration: PKAddPaymentPassRequestConfiguration { get }
    * @availability iOS 14.0+
    */
-  get addRequestConfiguration(): PKAddPaymentPassRequestConfiguration { return callSDK<PKAddPaymentPassRequestConfiguration>("PassKit_2f6e018ff7e993f9", 3344879332030392, this, []); }
+  get addRequestConfiguration(): PKAddPaymentPassRequestConfiguration { return callSDK<PKAddPaymentPassRequestConfiguration>("PassKit_a624b245971cfd00", 3344879332030392, this, []); }
   declare readonly $type: { "c:objc(cs)PKIssuerProvisioningExtensionPaymentPassEntry": true; "c:objc(cs)PKIssuerProvisioningExtensionPassEntry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "art": true; "identifier": true; "title": true; "addRequestConfiguration": true };
 }
@@ -2103,25 +2103,25 @@ export class PKIssuerProvisioningExtensionStatus extends SDKHandle {
    * init()
    * @availability iOS 14.0+
    */
-  static init(): PKIssuerProvisioningExtensionStatus { return callSDK<PKIssuerProvisioningExtensionStatus>("PassKit_2f6e018ff7e993f9", 1976373466692417, undefined, []); }
+  static init(): PKIssuerProvisioningExtensionStatus { return callSDK<PKIssuerProvisioningExtensionStatus>("PassKit_a624b245971cfd00", 1976373466692417, undefined, []); }
   /**
    * var passEntriesAvailable: Bool { get set }
    * @availability iOS 14.0+
    */
-  get passEntriesAvailable(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 2661075341345582, this, []); }
-  set passEntriesAvailable(value: boolean) { callSDK<void>("PassKit_2f6e018ff7e993f9", 390436000357611, this, [value]); }
+  get passEntriesAvailable(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 2661075341345582, this, []); }
+  set passEntriesAvailable(value: boolean) { callSDK<void>("PassKit_a624b245971cfd00", 390436000357611, this, [value]); }
   /**
    * var remotePassEntriesAvailable: Bool { get set }
    * @availability iOS 14.0+
    */
-  get remotePassEntriesAvailable(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 218687211260766, this, []); }
-  set remotePassEntriesAvailable(value: boolean) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4490523832379076, this, [value]); }
+  get remotePassEntriesAvailable(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 218687211260766, this, []); }
+  set remotePassEntriesAvailable(value: boolean) { callSDK<void>("PassKit_a624b245971cfd00", 4490523832379076, this, [value]); }
   /**
    * var requiresAuthentication: Bool { get set }
    * @availability iOS 14.0+
    */
-  get requiresAuthentication(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 3977851764010776, this, []); }
-  set requiresAuthentication(value: boolean) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2076550377456628, this, [value]); }
+  get requiresAuthentication(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 3977851764010776, this, []); }
+  set requiresAuthentication(value: boolean) { callSDK<void>("PassKit_a624b245971cfd00", 2076550377456628, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKIssuerProvisioningExtensionStatus": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "passEntriesAvailable": true; "remotePassEntriesAvailable": true; "requiresAuthentication": true };
 }
@@ -2135,30 +2135,30 @@ export class PKJapanIndividualNumberCardMetadata extends PKIdentityDocumentMetad
    * init(provisioningCredentialIdentifier credentialIdentifier: String, sharingInstanceIdentifier: String, cardConfigurationIdentifier: String, preview: PKAddPassMetadataPreview)
    * @availability iOS 18.0+
    */
-  static initProvisioningCredentialIdentifierSharingInstanceIdentifierCardConfigurationIdentifierPreview(credentialIdentifier: string, sharingInstanceIdentifier: string, cardConfigurationIdentifier: string, preview: PKAddPassMetadataPreview): PKJapanIndividualNumberCardMetadata { return callSDK<PKJapanIndividualNumberCardMetadata>("PassKit_2f6e018ff7e993f9", 755672575050965, undefined, [credentialIdentifier, sharingInstanceIdentifier, cardConfigurationIdentifier, preview]); }
+  static initProvisioningCredentialIdentifierSharingInstanceIdentifierCardConfigurationIdentifierPreview(credentialIdentifier: string, sharingInstanceIdentifier: string, cardConfigurationIdentifier: string, preview: PKAddPassMetadataPreview): PKJapanIndividualNumberCardMetadata { return callSDK<PKJapanIndividualNumberCardMetadata>("PassKit_a624b245971cfd00", 755672575050965, undefined, [credentialIdentifier, sharingInstanceIdentifier, cardConfigurationIdentifier, preview]); }
   /**
    * init(provisioningCredentialIdentifier credentialIdentifier: String, sharingInstanceIdentifier: String, cardTemplateIdentifier templateIdentifier: String, preview: PKAddPassMetadataPreview)
    * @availability iOS 18.0+
    */
-  static initProvisioningCredentialIdentifierSharingInstanceIdentifierCardTemplateIdentifierPreview(credentialIdentifier: string, sharingInstanceIdentifier: string, templateIdentifier: string, preview: PKAddPassMetadataPreview): PKJapanIndividualNumberCardMetadata { return callSDK<PKJapanIndividualNumberCardMetadata>("PassKit_2f6e018ff7e993f9", 2740906594276196, undefined, [credentialIdentifier, sharingInstanceIdentifier, templateIdentifier, preview]); }
+  static initProvisioningCredentialIdentifierSharingInstanceIdentifierCardTemplateIdentifierPreview(credentialIdentifier: string, sharingInstanceIdentifier: string, templateIdentifier: string, preview: PKAddPassMetadataPreview): PKJapanIndividualNumberCardMetadata { return callSDK<PKJapanIndividualNumberCardMetadata>("PassKit_a624b245971cfd00", 2740906594276196, undefined, [credentialIdentifier, sharingInstanceIdentifier, templateIdentifier, preview]); }
   /**
    * var authenticationPassword: String? { get set }
    * @availability iOS 18.0+
    */
-  get authenticationPassword(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 4042796405362076, this, []); }
-  set authenticationPassword(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2866689856631002, this, [value]); }
+  get authenticationPassword(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 4042796405362076, this, []); }
+  set authenticationPassword(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 2866689856631002, this, [value]); }
   /**
    * var preview: PKAddPassMetadataPreview { get set }
    * @availability iOS 18.0+
    */
-  get preview(): PKAddPassMetadataPreview { return callSDK<PKAddPassMetadataPreview>("PassKit_2f6e018ff7e993f9", 1401406799136788, this, []); }
-  set preview(value: PKAddPassMetadataPreview) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1553867317395230, this, [value]); }
+  get preview(): PKAddPassMetadataPreview { return callSDK<PKAddPassMetadataPreview>("PassKit_a624b245971cfd00", 1401406799136788, this, []); }
+  set preview(value: PKAddPassMetadataPreview) { callSDK<void>("PassKit_a624b245971cfd00", 1553867317395230, this, [value]); }
   /**
    * var signingPassword: String? { get set }
    * @availability iOS 18.0+
    */
-  get signingPassword(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 4414119848732744, this, []); }
-  set signingPassword(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 10259969309747, this, [value]); }
+  get signingPassword(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 4414119848732744, this, []); }
+  set signingPassword(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 10259969309747, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKJapanIndividualNumberCardMetadata": true; "c:objc(cs)PKIdentityDocumentMetadata": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cardConfigurationIdentifier": true; "cardTemplateIdentifier": true; "credentialIdentifier": true; "documentType": true; "issuingCountryCode": true; "serverEnvironmentIdentifier": true; "sharingInstanceIdentifier": true; "authenticationPassword": true; "preview": true; "signingPassword": true };
 }
@@ -2172,17 +2172,17 @@ export class PKLabeledValue extends SDKHandle {
    * init(label: String, value: String)
    * @availability iOS 10.1+
    */
-  static init(label: string, value: string): PKLabeledValue { return callSDK<PKLabeledValue>("PassKit_2f6e018ff7e993f9", 619825301047364, undefined, [label, value]); }
+  static init(label: string, value: string): PKLabeledValue { return callSDK<PKLabeledValue>("PassKit_a624b245971cfd00", 619825301047364, undefined, [label, value]); }
   /**
    * var label: String { get }
    * @availability iOS 10.1+
    */
-  get label(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 1022915310019820, this, []); }
+  get label(): string { return callSDK<string>("PassKit_a624b245971cfd00", 1022915310019820, this, []); }
   /**
    * var value: String { get }
    * @availability iOS 10.1+
    */
-  get value(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 1107814375357065, this, []); }
+  get value(): string { return callSDK<string>("PassKit_a624b245971cfd00", 1107814375357065, this, []); }
   declare readonly $type: { "c:objc(cs)PKLabeledValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "label": true; "value": true };
 }
@@ -2198,135 +2198,135 @@ export const PKMerchantCapability = {
    * static var threeDSecure: PKMerchantCapability { get }
    * @availability iOS 8.0+
    */
-  get threeDSecure(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_2f6e018ff7e993f9", 3167226449527744, undefined, []); },
+  get threeDSecure(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_a624b245971cfd00", 3167226449527744, undefined, []); },
   /**
    * static var credit: PKMerchantCapability { get }
    * @availability iOS 9.0+
    */
-  get credit(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_2f6e018ff7e993f9", 3456197810907992, undefined, []); },
+  get credit(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_a624b245971cfd00", 3456197810907992, undefined, []); },
   /**
    * static var debit: PKMerchantCapability { get }
    * @availability iOS 9.0+
    */
-  get debit(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_2f6e018ff7e993f9", 3759884309570108, undefined, []); },
+  get debit(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_a624b245971cfd00", 3759884309570108, undefined, []); },
   /**
    * static var emv: PKMerchantCapability { get }
    * @availability iOS 8.0+
    */
-  get emv(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_2f6e018ff7e993f9", 876223998585428, undefined, []); },
+  get emv(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_a624b245971cfd00", 876223998585428, undefined, []); },
   /**
    * static var instantFundsOut: PKMerchantCapability { get }
    * @availability iOS 17.0+
    */
-  get instantFundsOut(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_2f6e018ff7e993f9", 2519266689406558, undefined, []); },
+  get instantFundsOut(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_a624b245971cfd00", 2519266689406558, undefined, []); },
   /**
    * @backDeployed(before: macOS 14, iOS 17, watchOS 10)
   static var capability3DS: PKMerchantCapability { get }
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  get capability3DS(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_2f6e018ff7e993f9", 781906325178453, undefined, []); },
+  get capability3DS(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_a624b245971cfd00", 781906325178453, undefined, []); },
   /**
    * @backDeployed(before: macOS 14, iOS 17, watchOS 10)
   static var capabilityEMV: PKMerchantCapability { get }
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  get capabilityEMV(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_2f6e018ff7e993f9", 3331480428736718, undefined, []); },
+  get capabilityEMV(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_a624b245971cfd00", 3331480428736718, undefined, []); },
   /**
    * @backDeployed(before: macOS 14, iOS 17)
   static var capabilityDebit: PKMerchantCapability { get }
    * @availability iOS 9.0+
    * @deprecated iOS 17.0
    */
-  get capabilityDebit(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_2f6e018ff7e993f9", 2155095878395943, undefined, []); },
+  get capabilityDebit(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_a624b245971cfd00", 2155095878395943, undefined, []); },
   /**
    * @backDeployed(before: macOS 14, iOS 17)
   static var capabilityCredit: PKMerchantCapability { get }
    * @availability iOS 9.0+
    * @deprecated iOS 17.0
    */
-  get capabilityCredit(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_2f6e018ff7e993f9", 1416690705092663, undefined, []); },
+  get capabilityCredit(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_a624b245971cfd00", 1416690705092663, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_2f6e018ff7e993f9", 3744476114662402, undefined, [rawValue]); }
+  init(rawValue: number): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_a624b245971cfd00", 3744476114662402, undefined, [rawValue]); }
 };
 
 /** class PKObject */
 export class PKObject extends SDKHandle {
   /** init() */
-  static init(): PKObject { return callSDK<PKObject>("PassKit_2f6e018ff7e993f9", 913414992844152, undefined, []); }
+  static init(): PKObject { return callSDK<PKObject>("PassKit_a624b245971cfd00", 913414992844152, undefined, []); }
   declare readonly $type: { "c:objc(cs)PKObject": true; "c:objc(cs)NSObject": true };
 }
 
 /** class PKPass */
 export class PKPass extends (PKObject as unknown as Omit<typeof PKObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKObject)) {
   /** init(data: Data) throws */
-  static init(data: ArrayBuffer): PKPass { return callSDK<PKPass>("PassKit_2f6e018ff7e993f9", 2403289953696193, undefined, [data]); }
+  static init(data: ArrayBuffer): PKPass { return callSDK<PKPass>("PassKit_a624b245971cfd00", 2403289953696193, undefined, [data]); }
   /** func localizedValue(forFieldKey key: String) -> Any? */
-  localizedValue(key: string): (unknown) | null { return callSDK<(unknown) | null>("PassKit_2f6e018ff7e993f9", 1900150837661076, this, [key]); }
+  localizedValue(key: string): (unknown) | null { return callSDK<(unknown) | null>("PassKit_a624b245971cfd00", 1900150837661076, this, [key]); }
   /** var authenticationToken: String? { get } */
-  get authenticationToken(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 1506215269755720, this, []); }
+  get authenticationToken(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 1506215269755720, this, []); }
   /**
    * var deviceName: String { get }
    * @availability iOS 9.0+
    */
-  get deviceName(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2932713958573152, this, []); }
+  get deviceName(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2932713958573152, this, []); }
   /** @NSCopying var icon: UIImage { get } */
-  get icon(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("PassKit_2f6e018ff7e993f9", 4308146155852224, this, []); }
+  get icon(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("PassKit_a624b245971cfd00", 4308146155852224, this, []); }
   /** var localizedDescription: String { get } */
-  get localizedDescription(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 995279048011778, this, []); }
+  get localizedDescription(): string { return callSDK<string>("PassKit_a624b245971cfd00", 995279048011778, this, []); }
   /** var localizedName: String { get } */
-  get localizedName(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 950813241975426, this, []); }
+  get localizedName(): string { return callSDK<string>("PassKit_a624b245971cfd00", 950813241975426, this, []); }
   /** var organizationName: String { get } */
-  get organizationName(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 3772307604188357, this, []); }
+  get organizationName(): string { return callSDK<string>("PassKit_a624b245971cfd00", 3772307604188357, this, []); }
   /**
    * var passType: PKPassType { get }
    * @availability iOS 8.0+
    */
-  get passType(): PKPassType { return callSDK<PKPassType>("PassKit_2f6e018ff7e993f9", 3982302966105890, this, []); }
+  get passType(): PKPassType { return callSDK<PKPassType>("PassKit_a624b245971cfd00", 3982302966105890, this, []); }
   /** var passTypeIdentifier: String { get } */
-  get passTypeIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 1750645719975935, this, []); }
+  get passTypeIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 1750645719975935, this, []); }
   /** var passURL: URL? { get } */
-  get passURL(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 4080628313259780, this, []); }
+  get passURL(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 4080628313259780, this, []); }
   /**
    * var paymentPass: PKPaymentPass? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  get paymentPass(): (PKPaymentPass) | null { return callSDK<(PKPaymentPass) | null>("PassKit_2f6e018ff7e993f9", 2984991728192442, this, []); }
+  get paymentPass(): (PKPaymentPass) | null { return callSDK<(PKPaymentPass) | null>("PassKit_a624b245971cfd00", 2984991728192442, this, []); }
   /**
    * var relevantDate: Date? { get }
    * @availability iOS 6.0+
    * @deprecated iOS 18.0
    */
-  get relevantDate(): $SDK27 { return callSDK<$SDK27>("PassKit_2f6e018ff7e993f9", 3096502808050744, this, []); }
+  get relevantDate(): $SDK27 { return callSDK<$SDK27>("PassKit_a624b245971cfd00", 3096502808050744, this, []); }
   /**
    * var relevantDates: [PKPassRelevantDate] { get }
    * @availability iOS 18.0+
    */
-  get relevantDates(): Array<PKPassRelevantDate> { return callSDK<Array<PKPassRelevantDate>>("PassKit_2f6e018ff7e993f9", 4474475073879146, this, []); }
+  get relevantDates(): Array<PKPassRelevantDate> { return callSDK<Array<PKPassRelevantDate>>("PassKit_a624b245971cfd00", 4474475073879146, this, []); }
   /**
    * var isRemotePass: Bool { get }
    * @availability iOS 9.0+
    */
-  get isRemotePass(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 1810526391486168, this, []); }
+  get isRemotePass(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 1810526391486168, this, []); }
   /**
    * var secureElementPass: PKSecureElementPass? { get }
    * @availability iOS 13.4+
    */
-  get secureElementPass(): $SDK20 { return callSDK<$SDK20>("PassKit_2f6e018ff7e993f9", 2422793426441229, this, []); }
+  get secureElementPass(): $SDK20 { return callSDK<$SDK20>("PassKit_a624b245971cfd00", 2422793426441229, this, []); }
   /** var serialNumber: String { get } */
-  get serialNumber(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 3157853013591485, this, []); }
+  get serialNumber(): string { return callSDK<string>("PassKit_a624b245971cfd00", 3157853013591485, this, []); }
   /**
    * var userInfo: [AnyHashable : Any]? { get }
    * @availability iOS 7.0+
    */
-  get userInfo(): (NativeMap<unknown, unknown>) | null { return callSDK<(NativeMap<unknown, unknown>) | null>("PassKit_2f6e018ff7e993f9", 1834725876842436, this, []); }
+  get userInfo(): (NativeMap<unknown, unknown>) | null { return callSDK<(NativeMap<unknown, unknown>) | null>("PassKit_a624b245971cfd00", 1834725876842436, this, []); }
   /** var webServiceURL: URL? { get } */
-  get webServiceURL(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 2455997415595736, this, []); }
+  get webServiceURL(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 2455997415595736, this, []); }
   declare readonly $type: { "c:objc(cs)PKPass": true; "c:objc(cs)PKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authenticationToken": true; "deviceName": true; "icon": true; "localizedDescription": true; "localizedName": true; "organizationName": true; "passType": true; "passTypeIdentifier": true; "passURL": true; "paymentPass": true; "relevantDate": true; "relevantDates": true; "isRemotePass": true; "secureElementPass": true; "serialNumber": true; "userInfo": true; "webServiceURL": true };
 }
@@ -2340,32 +2340,32 @@ export class PKPassKitError extends SDKHandle {
    * static var invalidDataError: PKPassKitError.Code { get }
    * @availability iOS 6.0+
    */
-  static get invalidDataError(): PKPassKitError_Code { return callSDK<PKPassKitError_Code>("PassKit_2f6e018ff7e993f9", 3439380076607800, undefined, []); }
+  static get invalidDataError(): PKPassKitError_Code { return callSDK<PKPassKitError_Code>("PassKit_a624b245971cfd00", 3439380076607800, undefined, []); }
   /**
    * static var notEntitledError: PKPassKitError.Code { get }
    * @availability iOS 6.0+
    */
-  static get notEntitledError(): PKPassKitError_Code { return callSDK<PKPassKitError_Code>("PassKit_2f6e018ff7e993f9", 1513066150897490, undefined, []); }
+  static get notEntitledError(): PKPassKitError_Code { return callSDK<PKPassKitError_Code>("PassKit_a624b245971cfd00", 1513066150897490, undefined, []); }
   /**
    * static var unsupportedVersionError: PKPassKitError.Code { get }
    * @availability iOS 6.0+
    */
-  static get unsupportedVersionError(): PKPassKitError_Code { return callSDK<PKPassKitError_Code>("PassKit_2f6e018ff7e993f9", 4175485424785076, undefined, []); }
+  static get unsupportedVersionError(): PKPassKitError_Code { return callSDK<PKPassKitError_Code>("PassKit_a624b245971cfd00", 4175485424785076, undefined, []); }
   /**
    * static var unknownError: PKPassKitError.Code { get }
    * @availability iOS 6.0+
    */
-  static get unknownError(): PKPassKitError_Code { return callSDK<PKPassKitError_Code>("PassKit_2f6e018ff7e993f9", 3775552127990390, undefined, []); }
+  static get unknownError(): PKPassKitError_Code { return callSDK<PKPassKitError_Code>("PassKit_a624b245971cfd00", 3775552127990390, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 6.0+
    */
-  static get errorDomain(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2076467146976563, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2076467146976563, undefined, []); }
   /**
    * static var invalidSignature: PKPassKitError.Code { get }
    * @availability iOS 6.0+
    */
-  static get invalidSignature(): PKPassKitError_Code { return callSDK<PKPassKitError_Code>("PassKit_2f6e018ff7e993f9", 2903279355535220, undefined, []); }
+  static get invalidSignature(): PKPassKitError_Code { return callSDK<PKPassKitError_Code>("PassKit_a624b245971cfd00", 2903279355535220, undefined, []); }
   declare readonly $type: { "s:SC18PKPassKitErrorCodeLeV": true };
 }
 
@@ -2380,7 +2380,7 @@ export const PKPassKitError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 6.0+
    */
-  init(rawValue: number): (PKPassKitError_Code) | null { return callSDK<(PKPassKitError_Code) | null>("PassKit_2f6e018ff7e993f9", 776866209866411, undefined, [rawValue]); }
+  init(rawValue: number): (PKPassKitError_Code) | null { return callSDK<(PKPassKitError_Code) | null>("PassKit_a624b245971cfd00", 776866209866411, undefined, [rawValue]); }
 };
 
 /**
@@ -2392,187 +2392,187 @@ export class PKPassLibrary extends SDKHandle {
    * class func endAutomaticPassPresentationSuppression(withRequestToken requestToken: PKSuppressionRequestToken)
    * @availability iOS 9.0+
    */
-  static endAutomaticPassPresentationSuppression(requestToken: number): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 619011155387725, undefined, [requestToken]); }
+  static endAutomaticPassPresentationSuppression(requestToken: number): void { return callSDK<void>("PassKit_a624b245971cfd00", 619011155387725, undefined, [requestToken]); }
   /**
    * class func isPassLibraryAvailable() -> Bool
    * @availability iOS 6.0+
    */
-  static isPassLibraryAvailable(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 948200644055935, undefined, []); }
+  static isPassLibraryAvailable(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 948200644055935, undefined, []); }
   /**
    * class func isPaymentPassActivationAvailable() -> Bool
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  static isPaymentPassActivationAvailable(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 556561484219024, undefined, []); }
+  static isPaymentPassActivationAvailable(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 556561484219024, undefined, []); }
   /**
    * class func isSuppressingAutomaticPassPresentation() -> Bool
    * @availability iOS 9.0+
    */
-  static isSuppressingAutomaticPassPresentation(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 2029230288366601, undefined, []); }
+  static isSuppressingAutomaticPassPresentation(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 2029230288366601, undefined, []); }
   /**
    * class func requestAutomaticPassPresentationSuppression(responseHandler: @escaping (PKAutomaticPassPresentationSuppressionResult) -> Void) -> PKSuppressionRequestToken
    * @availability iOS 9.0+
    */
-  static requestAutomaticPassPresentationSuppression(responseHandler: ((arg0: PKAutomaticPassPresentationSuppressionResult) => void)): number { return callSDK<number>("PassKit_2f6e018ff7e993f9", 632568565046121, undefined, [responseHandler], [{"callback":{"out":[]}}]); }
+  static requestAutomaticPassPresentationSuppression(responseHandler: ((arg0: PKAutomaticPassPresentationSuppressionResult) => void)): number { return callSDK<number>("PassKit_a624b245971cfd00", 632568565046121, undefined, [responseHandler], [{"callback":{"out":[]}}]); }
   /**
    * func activate(_ paymentPass: PKPaymentPass, withActivationCode activationCode: String, completion: ((Bool, any Error) -> Void)? = nil)
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  activateWithActivationCodeCompletion(paymentPass: PKPaymentPass, activationCode: string, completion?: $SDK43): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 3247952666620013, this, [paymentPass, activationCode, completion], [null,null,{"callback":{"out":[]}}]); }
+  activateWithActivationCodeCompletion(paymentPass: PKPaymentPass, activationCode: string, completion?: $SDK43): void { return callSDK<void>("PassKit_a624b245971cfd00", 3247952666620013, this, [paymentPass, activationCode, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func activate(_ paymentPass: PKPaymentPass, withActivationData activationData: Data, completion: ((Bool, any Error) -> Void)? = nil)
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  activateWithActivationDataCompletion(paymentPass: PKPaymentPass, activationData: ArrayBuffer, completion?: $SDK43): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 1176729619075012, this, [paymentPass, activationData, completion], [null,null,{"callback":{"out":[]}}]); }
+  activateWithActivationDataCompletion(paymentPass: PKPaymentPass, activationData: ArrayBuffer, completion?: $SDK43): void { return callSDK<void>("PassKit_a624b245971cfd00", 1176729619075012, this, [paymentPass, activationData, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func activate(_ secureElementPass: PKSecureElementPass, activationData: Data) async throws -> Bool
    * @availability iOS 13.4+
    */
-  activateActivationDataCompletion(secureElementPass: PKSecureElementPass, activationData: ArrayBuffer, completion?: (((arg0: boolean, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 4490600236510064, this, [secureElementPass, activationData, completion], [null,null,{"callback":{"out":[]}}]); }
+  activateActivationDataCompletion(secureElementPass: PKSecureElementPass, activationData: ArrayBuffer, completion?: (((arg0: boolean, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("PassKit_a624b245971cfd00", 4490600236510064, this, [secureElementPass, activationData, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func addPasses(_ passes: [PKPass]) async -> PKPassLibraryAddPassesStatus
    * @availability iOS 7.0+
    */
-  addPassesWithCompletionHandler(passes: Array<PKPass>, completion?: (((arg0: PKPassLibraryAddPassesStatus) => void)) | null): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 2079466756521208, this, [passes, completion], [null,{"callback":{"out":[]}}]); }
+  addPassesWithCompletionHandler(passes: Array<PKPass>, completion?: (((arg0: PKPassLibraryAddPassesStatus) => void)) | null): void { return callSDK<void>("PassKit_a624b245971cfd00", 2079466756521208, this, [passes, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func addPasses(fromArchiveAt passesArchiveFileURL: URL) async -> PKPassLibraryAddPassesStatus
    * @availability iOS 27.0+
    */
-  addPassesFromArchiveAtCompletion(passesArchiveFileURL: string, completionHandler: $SDK46): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 3877806073870521, this, [passesArchiveFileURL, completionHandler], [null,{"callback":{"out":[]}}]); }
+  addPassesFromArchiveAtCompletion(passesArchiveFileURL: string, completionHandler: $SDK46): void { return callSDK<void>("PassKit_a624b245971cfd00", 3877806073870521, this, [passesArchiveFileURL, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func addPasses(fromArchiveData passesArchiveData: Data) async -> PKPassLibraryAddPassesStatus
    * @availability iOS 27.0+
    */
-  addPassesFromArchiveDataCompletion(passesArchiveData: ArrayBuffer, completionHandler: $SDK46): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 4024226844945670, this, [passesArchiveData, completionHandler], [null,{"callback":{"out":[]}}]); }
+  addPassesFromArchiveDataCompletion(passesArchiveData: ArrayBuffer, completionHandler: $SDK46): void { return callSDK<void>("PassKit_a624b245971cfd00", 4024226844945670, this, [passesArchiveData, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func addPasses(data passesData: [Data]) async -> PKPassLibraryAddPassesStatus
    * @availability iOS 27.0+
    */
-  addPassesDataCompletion(passesData: Array<ArrayBuffer>, completionHandler: $SDK46): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 1650847372493528, this, [passesData, completionHandler], [null,{"callback":{"out":[]}}]); }
+  addPassesDataCompletion(passesData: Array<ArrayBuffer>, completionHandler: $SDK46): void { return callSDK<void>("PassKit_a624b245971cfd00", 1650847372493528, this, [passesData, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func authorizationStatus(for capability: PKPassLibrary.Capability) -> PKPassLibrary.AuthorizationStatus
    * @availability iOS 26.0+
    */
-  authorizationStatus(capability: PKPassLibrary_Capability): PKPassLibrary_AuthorizationStatus { return callSDK<PKPassLibrary_AuthorizationStatus>("PassKit_2f6e018ff7e993f9", 2017897865391957, this, [capability]); }
+  authorizationStatus(capability: PKPassLibrary_Capability): PKPassLibrary_AuthorizationStatus { return callSDK<PKPassLibrary_AuthorizationStatus>("PassKit_a624b245971cfd00", 2017897865391957, this, [capability]); }
   /**
    * func canAddFelicaPass() -> Bool
    * @availability iOS 10.1+
    */
-  canAddFelicaPass(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 2693168382576446, this, []); }
+  canAddFelicaPass(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 2693168382576446, this, []); }
   /**
    * func canAddPaymentPass(withPrimaryAccountIdentifier primaryAccountIdentifier: String) -> Bool
    * @availability iOS 9.0+
    * @deprecated iOS 100000.0
    */
-  canAddPaymentPass(primaryAccountIdentifier: string): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 2728633396280780, this, [primaryAccountIdentifier]); }
+  canAddPaymentPass(primaryAccountIdentifier: string): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 2728633396280780, this, [primaryAccountIdentifier]); }
   /**
    * func canAddSecureElementPass(primaryAccountIdentifier: String) -> Bool
    * @availability iOS 13.4+
    */
-  canAddSecureElementPass(primaryAccountIdentifier: string): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 1467990273735721, this, [primaryAccountIdentifier]); }
+  canAddSecureElementPass(primaryAccountIdentifier: string): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 1467990273735721, this, [primaryAccountIdentifier]); }
   /**
    * func containsPass(_ pass: PKPass) -> Bool
    * @availability iOS 6.0+
    */
-  containsPass(pass: PKPass): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 3305619957077555, this, [pass]); }
+  containsPass(pass: PKPass): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 3305619957077555, this, [pass]); }
   /**
    * func encryptedServiceProviderData(for secureElementPass: PKSecureElementPass) async throws -> [AnyHashable : Any]
    * @availability iOS 16.0+
    */
-  encryptedServiceProviderData(secureElementPass: PKSecureElementPass, completion: ((arg0: (NativeMap<unknown, unknown>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 395090741077987, this, [secureElementPass, completion], [null,{"callback":{"out":[]}}]); }
+  encryptedServiceProviderData(secureElementPass: PKSecureElementPass, completion: ((arg0: (NativeMap<unknown, unknown>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("PassKit_a624b245971cfd00", 395090741077987, this, [secureElementPass, completion], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): PKPassLibrary { return callSDK<PKPassLibrary>("PassKit_2f6e018ff7e993f9", 4465441527377671, undefined, []); }
+  static init(): PKPassLibrary { return callSDK<PKPassLibrary>("PassKit_a624b245971cfd00", 4465441527377671, undefined, []); }
   /**
    * func isPaymentPassActivationAvailable() -> Bool
    * @availability iOS 9.0+
    * @deprecated iOS 100000.0
    */
-  isPaymentPassActivationAvailable10337(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 1402814934606735, this, []); }
+  isPaymentPassActivationAvailable10337(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 1402814934606735, this, []); }
   /**
    * func openPaymentSetup()
    * @availability iOS 8.3+
    */
-  openPaymentSetup(): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 779543698117515, this, []); }
+  openPaymentSetup(): void { return callSDK<void>("PassKit_a624b245971cfd00", 779543698117515, this, []); }
   /**
    * func openPaymentSetup(merchantIdentifier: String)
    * @availability iOS 26.4+
    */
-  openPaymentSetupMerchantIdentifier(merchantIdentifier: string): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 2313514750896534, this, [merchantIdentifier]); }
+  openPaymentSetupMerchantIdentifier(merchantIdentifier: string): void { return callSDK<void>("PassKit_a624b245971cfd00", 2313514750896534, this, [merchantIdentifier]); }
   /**
    * func pass(withPassTypeIdentifier identifier: String, serialNumber: String) -> PKPass?
    * @availability iOS 6.0+
    */
-  pass(identifier: string, serialNumber: string): (PKPass) | null { return callSDK<(PKPass) | null>("PassKit_2f6e018ff7e993f9", 3745796280543515, this, [identifier, serialNumber]); }
+  pass(identifier: string, serialNumber: string): (PKPass) | null { return callSDK<(PKPass) | null>("PassKit_a624b245971cfd00", 3745796280543515, this, [identifier, serialNumber]); }
   /**
    * func passes() -> [PKPass]
    * @availability iOS 6.0+
    */
-  passes(): Array<PKPass> { return callSDK<Array<PKPass>>("PassKit_2f6e018ff7e993f9", 1418177968554316, this, []); }
+  passes(): Array<PKPass> { return callSDK<Array<PKPass>>("PassKit_a624b245971cfd00", 1418177968554316, this, []); }
   /**
    * func passes(of passType: PKPassType) -> [PKPass]
    * @availability iOS 8.0+
    */
-  passesOf(passType: PKPassType): Array<PKPass> { return callSDK<Array<PKPass>>("PassKit_2f6e018ff7e993f9", 202176893544677, this, [passType]); }
+  passesOf(passType: PKPassType): Array<PKPass> { return callSDK<Array<PKPass>>("PassKit_a624b245971cfd00", 202176893544677, this, [passType]); }
   /**
    * func passes(withReaderIdentifier readerIdentifier: String) -> Set<PKSecureElementPass>
    * @availability iOS 6.0+
    */
-  passesWithReaderIdentifier(readerIdentifier: string): Array<PKSecureElementPass> { return callSDK<Array<PKSecureElementPass>>("PassKit_2f6e018ff7e993f9", 2704792295857990, this, [readerIdentifier]); }
+  passesWithReaderIdentifier(readerIdentifier: string): Array<PKSecureElementPass> { return callSDK<Array<PKSecureElementPass>>("PassKit_a624b245971cfd00", 2704792295857990, this, [readerIdentifier]); }
   /**
    * func present(_ pass: PKPaymentPass)
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  present(pass: PKPaymentPass): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 3364357878906529, this, [pass]); }
+  present(pass: PKPaymentPass): void { return callSDK<void>("PassKit_a624b245971cfd00", 3364357878906529, this, [pass]); }
   /**
    * func present(_ pass: PKSecureElementPass)
    * @availability iOS 13.4+
    */
-  present75366(pass: PKSecureElementPass): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 2161693606520438, this, [pass]); }
+  present75366(pass: PKSecureElementPass): void { return callSDK<void>("PassKit_a624b245971cfd00", 2161693606520438, this, [pass]); }
   /**
    * func remotePaymentPasses() -> [PKPaymentPass]
    * @availability iOS 9.0+
    * @deprecated iOS 100000.0
    */
-  remotePaymentPasses(): Array<PKPaymentPass> { return callSDK<Array<PKPaymentPass>>("PassKit_2f6e018ff7e993f9", 876561110752111, this, []); }
+  remotePaymentPasses(): Array<PKPaymentPass> { return callSDK<Array<PKPaymentPass>>("PassKit_a624b245971cfd00", 876561110752111, this, []); }
   /**
    * func removePass(_ pass: PKPass)
    * @availability iOS 6.0+
    */
-  removePass(pass: PKPass): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 3532155555172336, this, [pass]); }
+  removePass(pass: PKPass): void { return callSDK<void>("PassKit_a624b245971cfd00", 3532155555172336, this, [pass]); }
   /**
    * func replacePass(with pass: PKPass) -> Bool
    * @availability iOS 6.0+
    */
-  replacePass(pass: PKPass): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 3289791960745909, this, [pass]); }
+  replacePass(pass: PKPass): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 3289791960745909, this, [pass]); }
   /**
    * func requestAuthorization(for capability: PKPassLibrary.Capability) async -> PKPassLibrary.AuthorizationStatus
    * @availability iOS 26.0+
    */
-  requestAuthorization(capability: PKPassLibrary_Capability, completion: ((arg0: PKPassLibrary_AuthorizationStatus) => void)): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 2520603398212083, this, [capability, completion], [null,{"callback":{"out":[]}}]); }
+  requestAuthorization(capability: PKPassLibrary_Capability, completion: ((arg0: PKPassLibrary_AuthorizationStatus) => void)): void { return callSDK<void>("PassKit_a624b245971cfd00", 2520603398212083, this, [capability, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func serviceProviderData(for secureElementPass: PKSecureElementPass) async throws -> Data
    * @availability iOS 15.0+
    */
-  serviceProviderData(secureElementPass: PKSecureElementPass, completion: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 2856590954344381, this, [secureElementPass, completion], [null,{"callback":{"out":[]}}]); }
+  serviceProviderData(secureElementPass: PKSecureElementPass, completion: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("PassKit_a624b245971cfd00", 2856590954344381, this, [secureElementPass, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func sign(_ signData: Data, using secureElementPass: PKSecureElementPass) async throws -> (Data, Data)
    * @availability iOS 13.4+
    * @deprecated iOS 26.0
    */
-  sign(signData: ArrayBuffer, secureElementPass: PKSecureElementPass, completion: ((arg0: (ArrayBuffer) | null, arg1: (ArrayBuffer) | null, arg2: (NativeError) | null) => void)): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 8810451479784, this, [signData, secureElementPass, completion], [null,null,{"callback":{"out":[]}}]); }
+  sign(signData: ArrayBuffer, secureElementPass: PKSecureElementPass, completion: ((arg0: (ArrayBuffer) | null, arg1: (ArrayBuffer) | null, arg2: (NativeError) | null) => void)): void { return callSDK<void>("PassKit_a624b245971cfd00", 8810451479784, this, [signData, secureElementPass, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var remoteSecureElementPasses: [PKSecureElementPass] { get }
    * @availability iOS 13.4+
    */
-  get remoteSecureElementPasses(): Array<PKSecureElementPass> { return callSDK<Array<PKSecureElementPass>>("PassKit_2f6e018ff7e993f9", 618956811604761, this, []); }
+  get remoteSecureElementPasses(): Array<PKSecureElementPass> { return callSDK<Array<PKSecureElementPass>>("PassKit_a624b245971cfd00", 618956811604761, this, []); }
   /**
    * var isSecureElementPassActivationAvailable: Bool { get }
    * @availability iOS 13.4+
    */
-  get isSecureElementPassActivationAvailable(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 41891062480081, this, []); }
+  get isSecureElementPassActivationAvailable(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 41891062480081, this, []); }
   declare readonly $type: { "c:objc(cs)PKPassLibrary": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "remoteSecureElementPasses": true; "isSecureElementPassActivationAvailable": true };
 }
@@ -2588,7 +2588,7 @@ export const PKPassLibrary_AuthorizationStatus = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (PKPassLibrary_AuthorizationStatus) | null { return callSDK<(PKPassLibrary_AuthorizationStatus) | null>("PassKit_2f6e018ff7e993f9", 2843504881992978, undefined, [rawValue]); }
+  init(rawValue: number): (PKPassLibrary_AuthorizationStatus) | null { return callSDK<(PKPassLibrary_AuthorizationStatus) | null>("PassKit_a624b245971cfd00", 2843504881992978, undefined, [rawValue]); }
 };
 
 /**
@@ -2602,7 +2602,7 @@ export const PKPassLibrary_Capability = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (PKPassLibrary_Capability) | null { return callSDK<(PKPassLibrary_Capability) | null>("PassKit_2f6e018ff7e993f9", 170091704155728, undefined, [rawValue]); }
+  init(rawValue: number): (PKPassLibrary_Capability) | null { return callSDK<(PKPassLibrary_Capability) | null>("PassKit_a624b245971cfd00", 170091704155728, undefined, [rawValue]); }
 };
 
 /**
@@ -2616,7 +2616,7 @@ export const PKPassLibraryAddPassesStatus = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (PKPassLibraryAddPassesStatus) | null { return callSDK<(PKPassLibraryAddPassesStatus) | null>("PassKit_2f6e018ff7e993f9", 2617668118775546, undefined, [rawValue]); }
+  init(rawValue: number): (PKPassLibraryAddPassesStatus) | null { return callSDK<(PKPassLibraryAddPassesStatus) | null>("PassKit_a624b245971cfd00", 2617668118775546, undefined, [rawValue]); }
 };
 
 /** struct PKPassLibraryNotificationKey */
@@ -2627,34 +2627,34 @@ export const PKPassLibraryNotificationKey = {
    * static let addedPassesUserInfoKey: PKPassLibraryNotificationKey
    * @availability iOS 6.0+
    */
-  get addedPassesUserInfoKey(): PKPassLibraryNotificationKey { return callSDK<PKPassLibraryNotificationKey>("PassKit_2f6e018ff7e993f9", 3474884557788876, undefined, []); },
+  get addedPassesUserInfoKey(): PKPassLibraryNotificationKey { return callSDK<PKPassLibraryNotificationKey>("PassKit_a624b245971cfd00", 3474884557788876, undefined, []); },
   /**
    * static let passTypeIdentifierUserInfoKey: PKPassLibraryNotificationKey
    * @availability iOS 6.0+
    */
-  get passTypeIdentifierUserInfoKey(): PKPassLibraryNotificationKey { return callSDK<PKPassLibraryNotificationKey>("PassKit_2f6e018ff7e993f9", 304856692038695, undefined, []); },
+  get passTypeIdentifierUserInfoKey(): PKPassLibraryNotificationKey { return callSDK<PKPassLibraryNotificationKey>("PassKit_a624b245971cfd00", 304856692038695, undefined, []); },
   /**
    * static let recoveredPassesUserInfoKey: PKPassLibraryNotificationKey
    * @availability iOS 15.0+
    */
-  get recoveredPassesUserInfoKey(): PKPassLibraryNotificationKey { return callSDK<PKPassLibraryNotificationKey>("PassKit_2f6e018ff7e993f9", 637242625053322, undefined, []); },
+  get recoveredPassesUserInfoKey(): PKPassLibraryNotificationKey { return callSDK<PKPassLibraryNotificationKey>("PassKit_a624b245971cfd00", 637242625053322, undefined, []); },
   /**
    * static let removedPassInfosUserInfoKey: PKPassLibraryNotificationKey
    * @availability iOS 6.0+
    */
-  get removedPassInfosUserInfoKey(): PKPassLibraryNotificationKey { return callSDK<PKPassLibraryNotificationKey>("PassKit_2f6e018ff7e993f9", 1772858754377796, undefined, []); },
+  get removedPassInfosUserInfoKey(): PKPassLibraryNotificationKey { return callSDK<PKPassLibraryNotificationKey>("PassKit_a624b245971cfd00", 1772858754377796, undefined, []); },
   /**
    * static let replacementPassesUserInfoKey: PKPassLibraryNotificationKey
    * @availability iOS 6.0+
    */
-  get replacementPassesUserInfoKey(): PKPassLibraryNotificationKey { return callSDK<PKPassLibraryNotificationKey>("PassKit_2f6e018ff7e993f9", 21982652830229, undefined, []); },
+  get replacementPassesUserInfoKey(): PKPassLibraryNotificationKey { return callSDK<PKPassLibraryNotificationKey>("PassKit_a624b245971cfd00", 21982652830229, undefined, []); },
   /**
    * static let serialNumberUserInfoKey: PKPassLibraryNotificationKey
    * @availability iOS 6.0+
    */
-  get serialNumberUserInfoKey(): PKPassLibraryNotificationKey { return callSDK<PKPassLibraryNotificationKey>("PassKit_2f6e018ff7e993f9", 246015346832393, undefined, []); },
+  get serialNumberUserInfoKey(): PKPassLibraryNotificationKey { return callSDK<PKPassLibraryNotificationKey>("PassKit_a624b245971cfd00", 246015346832393, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PKPassLibraryNotificationKey { return callSDK<PKPassLibraryNotificationKey>("PassKit_2f6e018ff7e993f9", 4284168112226188, undefined, [rawValue]); }
+  init(rawValue: string): PKPassLibraryNotificationKey { return callSDK<PKPassLibraryNotificationKey>("PassKit_a624b245971cfd00", 4284168112226188, undefined, [rawValue]); }
 };
 
 /** struct PKPassLibraryNotificationName */
@@ -2665,24 +2665,24 @@ export const PKPassLibraryNotificationName = {
    * static let PKPassLibraryDidChange: PKPassLibraryNotificationName
    * @availability iOS 6.0+
    */
-  get PKPassLibraryDidChange(): PKPassLibraryNotificationName { return callSDK<PKPassLibraryNotificationName>("PassKit_2f6e018ff7e993f9", 130364988188759, undefined, []); },
+  get PKPassLibraryDidChange(): PKPassLibraryNotificationName { return callSDK<PKPassLibraryNotificationName>("PassKit_a624b245971cfd00", 130364988188759, undefined, []); },
   /**
    * static let PKPassLibraryRemotePaymentPassesDidChange: PKPassLibraryNotificationName
    * @availability iOS 9.0+
    */
-  get PKPassLibraryRemotePaymentPassesDidChange(): PKPassLibraryNotificationName { return callSDK<PKPassLibraryNotificationName>("PassKit_2f6e018ff7e993f9", 552072944669823, undefined, []); },
+  get PKPassLibraryRemotePaymentPassesDidChange(): PKPassLibraryNotificationName { return callSDK<PKPassLibraryNotificationName>("PassKit_a624b245971cfd00", 552072944669823, undefined, []); },
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): PKPassLibraryNotificationName { return callSDK<PKPassLibraryNotificationName>("PassKit_2f6e018ff7e993f9", 2557956711087628, undefined, [rawValue]); },
+  initRawValue(rawValue: string): PKPassLibraryNotificationName { return callSDK<PKPassLibraryNotificationName>("PassKit_a624b245971cfd00", 2557956711087628, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): PKPassLibraryNotificationName { return callSDK<PKPassLibraryNotificationName>("PassKit_2f6e018ff7e993f9", 2973430785406140, undefined, [rawValue]); }
+  init(rawValue: string): PKPassLibraryNotificationName { return callSDK<PKPassLibraryNotificationName>("PassKit_a624b245971cfd00", 2973430785406140, undefined, [rawValue]); }
 };
 
 /** class PKPassRelevantDate */
 export class PKPassRelevantDate extends SDKHandle {
   /** var date: Date? { get } */
-  get date(): $SDK27 { return callSDK<$SDK27>("PassKit_2f6e018ff7e993f9", 51149105509008, this, []); }
+  get date(): $SDK27 { return callSDK<$SDK27>("PassKit_a624b245971cfd00", 51149105509008, this, []); }
   /** var interval: DateInterval? { get } */
-  get interval(): (_Foundation_DateInterval) | null { return callSDK<(_Foundation_DateInterval) | null>("PassKit_2f6e018ff7e993f9", 4171141793658307, this, []); }
+  get interval(): (_Foundation_DateInterval) | null { return callSDK<(_Foundation_DateInterval) | null>("PassKit_a624b245971cfd00", 4171141793658307, this, []); }
   declare readonly $type: { "c:objc(cs)PKPassRelevantDate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "date": true; "interval": true };
 }
@@ -2699,12 +2699,12 @@ export const PKPassType = {
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  get payment(): PKPassType { return callSDK<PKPassType>("PassKit_2f6e018ff7e993f9", 830980665291625, undefined, []); },
+  get payment(): PKPassType { return callSDK<PKPassType>("PassKit_a624b245971cfd00", 830980665291625, undefined, []); },
   /**
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PKPassType) | null { return callSDK<(PKPassType) | null>("PassKit_2f6e018ff7e993f9", 3556306203756089, undefined, [rawValue]); }
+  init(rawValue: number): (PKPassType) | null { return callSDK<(PKPassType) | null>("PassKit_a624b245971cfd00", 3556306203756089, undefined, [rawValue]); }
 };
 
 /**
@@ -2716,7 +2716,7 @@ export class PKPayLater extends SDKHandle {
    * static func validate(amount: Decimal, currency: Locale.Currency) async -> Bool
    * @availability iOS 17.0+
    */
-  static validate(amount: _Foundation_Decimal, currency: _Foundation_Locale_Currency): Promise<boolean> { return callSDKAsync<boolean>("PassKit_2f6e018ff7e993f9", 3051316982920533, undefined, [amount, currency]); }
+  static validate(amount: _Foundation_Decimal, currency: _Foundation_Locale_Currency): Promise<boolean> { return callSDKAsync<boolean>("PassKit_a624b245971cfd00", 3051316982920533, undefined, [amount, currency]); }
   declare readonly $type: { "s:7PassKit10PKPayLaterO": true };
 }
 
@@ -2731,7 +2731,7 @@ export const PKPayLaterAction = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (PKPayLaterAction) | null { return callSDK<(PKPayLaterAction) | null>("PassKit_2f6e018ff7e993f9", 3600380528088700, undefined, [rawValue]); }
+  init(rawValue: number): (PKPayLaterAction) | null { return callSDK<(PKPayLaterAction) | null>("PassKit_a624b245971cfd00", 3600380528088700, undefined, [rawValue]); }
 };
 
 /**
@@ -2745,7 +2745,7 @@ export const PKPayLaterDisplayStyle = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (PKPayLaterDisplayStyle) | null { return callSDK<(PKPayLaterDisplayStyle) | null>("PassKit_2f6e018ff7e993f9", 412515619702262, undefined, [rawValue]); }
+  init(rawValue: number): (PKPayLaterDisplayStyle) | null { return callSDK<(PKPayLaterDisplayStyle) | null>("PassKit_a624b245971cfd00", 412515619702262, undefined, [rawValue]); }
 };
 
 /**
@@ -2757,37 +2757,37 @@ export class PKPayLaterView extends SDKHandle {
    * var action: PKPayLaterAction { get set }
    * @availability iOS 17.0+
    */
-  get action(): Promise<PKPayLaterAction> { return callSDKAsync<PKPayLaterAction>("PassKit_2f6e018ff7e993f9", 4182501128633681, this, []); }
-  setAction(value: PKPayLaterAction): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 3806242518595021, this, [value]); }
+  get action(): Promise<PKPayLaterAction> { return callSDKAsync<PKPayLaterAction>("PassKit_a624b245971cfd00", 4182501128633681, this, []); }
+  setAction(value: PKPayLaterAction): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 3806242518595021, this, [value]); }
   /**
    * unowned(unsafe) var delegate: any PKPayLaterViewDelegate { get set }
    * @availability iOS 17.0+
    */
-  get delegate(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("PassKit_2f6e018ff7e993f9", 641239618614990, this, []); }
-  setDelegate(value: Implements<PKPayLaterViewDelegate> | SDKHandle): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 79657843267296, this, [value], [{"protocol":"c:objc(pl)PKPayLaterViewDelegate"}]); }
+  get delegate(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("PassKit_a624b245971cfd00", 641239618614990, this, []); }
+  setDelegate(value: Implements<PKPayLaterViewDelegate> | SDKHandle): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 79657843267296, this, [value], [{"protocol":"c:objc(pl)PKPayLaterViewDelegate"}]); }
   /**
    * var displayStyle: PKPayLaterDisplayStyle { get set }
    * @availability iOS 17.0+
    */
-  get displayStyle(): Promise<PKPayLaterDisplayStyle> { return callSDKAsync<PKPayLaterDisplayStyle>("PassKit_2f6e018ff7e993f9", 1185912770455648, this, []); }
-  setDisplayStyle(value: PKPayLaterDisplayStyle): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 1654502724242729, this, [value]); }
+  get displayStyle(): Promise<PKPayLaterDisplayStyle> { return callSDKAsync<PKPayLaterDisplayStyle>("PassKit_a624b245971cfd00", 1185912770455648, this, []); }
+  setDisplayStyle(value: PKPayLaterDisplayStyle): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 1654502724242729, this, [value]); }
   /**
    * @MainActor @preconcurrency convenience init(amount: Decimal, currency: Locale.Currency)
    * @availability iOS 17.0+
    */
-  static init(amount: _Foundation_Decimal, currency: _Foundation_Locale_Currency): Promise<PKPayLaterView> { return callSDKAsync<PKPayLaterView>("PassKit_2f6e018ff7e993f9", 253996597445753, undefined, [amount, currency]); }
+  static init(amount: _Foundation_Decimal, currency: _Foundation_Locale_Currency): Promise<PKPayLaterView> { return callSDKAsync<PKPayLaterView>("PassKit_a624b245971cfd00", 253996597445753, undefined, [amount, currency]); }
   /**
    * @MainActor @preconcurrency var amount: Decimal { get set }
    * @availability iOS 17.0+
    */
-  get amount(): Promise<_Foundation_Decimal> { return callSDKAsync<_Foundation_Decimal>("PassKit_2f6e018ff7e993f9", 2289228966614378, this, []); }
-  setAmount(value: _Foundation_Decimal): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 623195450683941, this, [value]); }
+  get amount(): Promise<_Foundation_Decimal> { return callSDKAsync<_Foundation_Decimal>("PassKit_a624b245971cfd00", 2289228966614378, this, []); }
+  setAmount(value: _Foundation_Decimal): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 623195450683941, this, [value]); }
   /**
    * @MainActor @preconcurrency var currency: Locale.Currency { get set }
    * @availability iOS 17.0+
    */
-  get currency(): Promise<_Foundation_Locale_Currency> { return callSDKAsync<_Foundation_Locale_Currency>("PassKit_2f6e018ff7e993f9", 2573939431023118, this, []); }
-  setCurrency(value: _Foundation_Locale_Currency): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 2076502134676812, this, [value]); }
+  get currency(): Promise<_Foundation_Locale_Currency> { return callSDKAsync<_Foundation_Locale_Currency>("PassKit_a624b245971cfd00", 2573939431023118, this, []); }
+  setCurrency(value: _Foundation_Locale_Currency): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 2076502134676812, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKPayLaterView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "action": true; "delegate": true; "displayStyle": true };
 }
@@ -2810,39 +2810,39 @@ export interface PKPayLaterViewDelegate {
  */
 export class PKPayment extends SDKHandle {
   /** init() */
-  static init(): PKPayment { return callSDK<PKPayment>("PassKit_2f6e018ff7e993f9", 2984543442377644, undefined, []); }
+  static init(): PKPayment { return callSDK<PKPayment>("PassKit_a624b245971cfd00", 2984543442377644, undefined, []); }
   /**
    * unowned(unsafe) var billingAddress: ABRecord? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get billingAddress(): (unknown) | null { return callSDK<(unknown) | null>("PassKit_2f6e018ff7e993f9", 684934138174010, this, []); }
+  get billingAddress(): (unknown) | null { return callSDK<(unknown) | null>("PassKit_a624b245971cfd00", 684934138174010, this, []); }
   /**
    * var billingContact: PKContact? { get }
    * @availability iOS 9.0+
    */
-  get billingContact(): (PKContact) | null { return callSDK<(PKContact) | null>("PassKit_2f6e018ff7e993f9", 4212786315707845, this, []); }
+  get billingContact(): (PKContact) | null { return callSDK<(PKContact) | null>("PassKit_a624b245971cfd00", 4212786315707845, this, []); }
   /**
    * unowned(unsafe) var shippingAddress: ABRecord? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get shippingAddress(): (unknown) | null { return callSDK<(unknown) | null>("PassKit_2f6e018ff7e993f9", 1096642426899250, this, []); }
+  get shippingAddress(): (unknown) | null { return callSDK<(unknown) | null>("PassKit_a624b245971cfd00", 1096642426899250, this, []); }
   /**
    * var shippingContact: PKContact? { get }
    * @availability iOS 9.0+
    */
-  get shippingContact(): (PKContact) | null { return callSDK<(PKContact) | null>("PassKit_2f6e018ff7e993f9", 56908585552683, this, []); }
+  get shippingContact(): (PKContact) | null { return callSDK<(PKContact) | null>("PassKit_a624b245971cfd00", 56908585552683, this, []); }
   /**
    * var shippingMethod: PKShippingMethod? { get }
    * @availability iOS 8.0+
    */
-  get shippingMethod(): (PKShippingMethod) | null { return callSDK<(PKShippingMethod) | null>("PassKit_2f6e018ff7e993f9", 3250916820586372, this, []); }
+  get shippingMethod(): (PKShippingMethod) | null { return callSDK<(PKShippingMethod) | null>("PassKit_a624b245971cfd00", 3250916820586372, this, []); }
   /**
    * var token: PKPaymentToken { get }
    * @availability iOS 8.0+
    */
-  get token(): PKPaymentToken { return callSDK<PKPaymentToken>("PassKit_2f6e018ff7e993f9", 3575400532457482, this, []); }
+  get token(): PKPaymentToken { return callSDK<PKPaymentToken>("PassKit_a624b245971cfd00", 3575400532457482, this, []); }
   declare readonly $type: { "c:objc(cs)PKPayment": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "billingAddress": true; "billingContact": true; "shippingAddress": true; "shippingContact": true; "shippingMethod": true; "token": true };
 }
@@ -2856,58 +2856,58 @@ export class PKPaymentAuthorizationController extends SDKHandle {
    * class func canMakePayments() -> Bool
    * @availability iOS 10.0+
    */
-  static canMakePayments(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 3912955546600656, undefined, []); }
+  static canMakePayments(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 3912955546600656, undefined, []); }
   /**
    * class func canMakePayments(usingNetworks supportedNetworks: [PKPaymentNetwork]) -> Bool
    * @availability iOS 10.0+
    */
-  static canMakePaymentsUsingNetworks(supportedNetworks: Array<PKPaymentNetwork>): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 945950161775667, undefined, [supportedNetworks]); }
+  static canMakePaymentsUsingNetworks(supportedNetworks: Array<PKPaymentNetwork>): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 945950161775667, undefined, [supportedNetworks]); }
   /**
    * class func canMakePayments(usingNetworks supportedNetworks: [PKPaymentNetwork], capabilities capabilties: PKMerchantCapability) -> Bool
    * @availability iOS 10.0+
    */
-  static canMakePaymentsUsingNetworksCapabilities(supportedNetworks: Array<PKPaymentNetwork>, capabilties: PKMerchantCapability): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 2875190678189246, undefined, [supportedNetworks, capabilties]); }
+  static canMakePaymentsUsingNetworksCapabilities(supportedNetworks: Array<PKPaymentNetwork>, capabilties: PKMerchantCapability): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 2875190678189246, undefined, [supportedNetworks, capabilties]); }
   /**
    * class func supportsDisbursements() -> Bool
    * @availability iOS 17.0+
    */
-  static supportsDisbursements(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 1390215408543828, undefined, []); }
+  static supportsDisbursements(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 1390215408543828, undefined, []); }
   /**
    * class func supportsDisbursements(using supportedNetworks: [PKPaymentNetwork]) -> Bool
    * @availability iOS 17.0+
    */
-  static supportsDisbursementsUsing(supportedNetworks: Array<PKPaymentNetwork>): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 1026210114282148, undefined, [supportedNetworks]); }
+  static supportsDisbursementsUsing(supportedNetworks: Array<PKPaymentNetwork>): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 1026210114282148, undefined, [supportedNetworks]); }
   /**
    * class func supportsDisbursements(using supportedNetworks: [PKPaymentNetwork], capabilities capabilties: PKMerchantCapability) -> Bool
    * @availability iOS 17.0+
    */
-  static supportsDisbursementsUsingCapabilities(supportedNetworks: Array<PKPaymentNetwork>, capabilties: PKMerchantCapability): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 2730175476919237, undefined, [supportedNetworks, capabilties]); }
+  static supportsDisbursementsUsingCapabilities(supportedNetworks: Array<PKPaymentNetwork>, capabilties: PKMerchantCapability): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 2730175476919237, undefined, [supportedNetworks, capabilties]); }
   /**
    * func dismiss() async
    * @availability iOS 10.0+
    */
-  dismiss(completion?: ((() => void)) | null): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 3662529987939715, this, [completion], [{"callback":{"out":[]}}]); }
+  dismiss(completion?: ((() => void)) | null): void { return callSDK<void>("PassKit_a624b245971cfd00", 3662529987939715, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * convenience init(disbursementRequest request: PKDisbursementRequest)
    * @availability iOS 17.0+
    */
-  static initDisbursementRequest(request: PKDisbursementRequest): PKPaymentAuthorizationController { return callSDK<PKPaymentAuthorizationController>("PassKit_2f6e018ff7e993f9", 2432970731156818, undefined, [request]); }
+  static initDisbursementRequest(request: PKDisbursementRequest): PKPaymentAuthorizationController { return callSDK<PKPaymentAuthorizationController>("PassKit_a624b245971cfd00", 2432970731156818, undefined, [request]); }
   /**
    * init(paymentRequest request: PKPaymentRequest)
    * @availability iOS 10.0+
    */
-  static initPaymentRequest(request: PKPaymentRequest): PKPaymentAuthorizationController { return callSDK<PKPaymentAuthorizationController>("PassKit_2f6e018ff7e993f9", 3435662641306276, undefined, [request]); }
+  static initPaymentRequest(request: PKPaymentRequest): PKPaymentAuthorizationController { return callSDK<PKPaymentAuthorizationController>("PassKit_a624b245971cfd00", 3435662641306276, undefined, [request]); }
   /**
    * func present() async -> Bool
    * @availability iOS 10.0+
    */
-  present(completion?: (((arg0: boolean) => void)) | null): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 900689944233660, this, [completion], [{"callback":{"out":[]}}]); }
+  present(completion?: (((arg0: boolean) => void)) | null): void { return callSDK<void>("PassKit_a624b245971cfd00", 900689944233660, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * weak var delegate: (any PKPaymentAuthorizationControllerDelegate)? { get set }
    * @availability iOS 10.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PassKit_2f6e018ff7e993f9", 4448800129378479, this, []); }
-  set delegate(value: (Implements<PKPaymentAuthorizationControllerDelegate> | SDKHandle) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1539996939253333, this, [value], [{"protocol":"c:objc(pl)PKPaymentAuthorizationControllerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PassKit_a624b245971cfd00", 4448800129378479, this, []); }
+  set delegate(value: (Implements<PKPaymentAuthorizationControllerDelegate> | SDKHandle) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1539996939253333, this, [value], [{"protocol":"c:objc(pl)PKPaymentAuthorizationControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)PKPaymentAuthorizationController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -2935,25 +2935,25 @@ export class PKPaymentAuthorizationResult extends SDKHandle {
    * init(status: PKPaymentAuthorizationStatus, errors: [any Error]?)
    * @availability iOS 11.0+
    */
-  static init(status: PKPaymentAuthorizationStatus, errors?: $SDK57): PKPaymentAuthorizationResult { return callSDK<PKPaymentAuthorizationResult>("PassKit_2f6e018ff7e993f9", 231614411061832, undefined, [status, errors]); }
+  static init(status: PKPaymentAuthorizationStatus, errors?: $SDK57): PKPaymentAuthorizationResult { return callSDK<PKPaymentAuthorizationResult>("PassKit_a624b245971cfd00", 231614411061832, undefined, [status, errors]); }
   /**
    * var errors: [any Error]! { get set }
    * @availability iOS 11.0+
    */
-  get errors(): $SDK57 { return callSDK<$SDK57>("PassKit_2f6e018ff7e993f9", 4196279304762901, this, []); }
-  set errors(value: $SDK57) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1593146366515155, this, [value]); }
+  get errors(): $SDK57 { return callSDK<$SDK57>("PassKit_a624b245971cfd00", 4196279304762901, this, []); }
+  set errors(value: $SDK57) { callSDK<void>("PassKit_a624b245971cfd00", 1593146366515155, this, [value]); }
   /**
    * var orderDetails: PKPaymentOrderDetails? { get set }
    * @availability iOS 16.0+
    */
-  get orderDetails(): $SDK58 { return callSDK<$SDK58>("PassKit_2f6e018ff7e993f9", 496074497821766, this, []); }
-  set orderDetails(value: $SDK58) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3333888649300149, this, [value]); }
+  get orderDetails(): $SDK58 { return callSDK<$SDK58>("PassKit_a624b245971cfd00", 496074497821766, this, []); }
+  set orderDetails(value: $SDK58) { callSDK<void>("PassKit_a624b245971cfd00", 3333888649300149, this, [value]); }
   /**
    * var status: PKPaymentAuthorizationStatus { get set }
    * @availability iOS 11.0+
    */
-  get status(): PKPaymentAuthorizationStatus { return callSDK<PKPaymentAuthorizationStatus>("PassKit_2f6e018ff7e993f9", 4245299897551876, this, []); }
-  set status(value: PKPaymentAuthorizationStatus) { callSDK<void>("PassKit_2f6e018ff7e993f9", 850997472011080, this, [value]); }
+  get status(): PKPaymentAuthorizationStatus { return callSDK<PKPaymentAuthorizationStatus>("PassKit_a624b245971cfd00", 4245299897551876, this, []); }
+  set status(value: PKPaymentAuthorizationStatus) { callSDK<void>("PassKit_a624b245971cfd00", 850997472011080, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKPaymentAuthorizationResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "errors": true; "orderDetails": true; "status": true };
 }
@@ -2969,7 +2969,7 @@ export const PKPaymentAuthorizationStatus = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PKPaymentAuthorizationStatus) | null { return callSDK<(PKPaymentAuthorizationStatus) | null>("PassKit_2f6e018ff7e993f9", 2680394893527150, undefined, [rawValue]); }
+  init(rawValue: number): (PKPaymentAuthorizationStatus) | null { return callSDK<(PKPaymentAuthorizationStatus) | null>("PassKit_a624b245971cfd00", 2680394893527150, undefined, [rawValue]); }
 };
 
 /**
@@ -2981,48 +2981,48 @@ export class PKPaymentAuthorizationViewController extends SDKHandle {
    * nonisolated class func canMakePayments() -> Bool
    * @availability iOS 8.0+
    */
-  static canMakePayments(): Promise<boolean> { return callSDKAsync<boolean>("PassKit_2f6e018ff7e993f9", 419720321050617, undefined, []); }
+  static canMakePayments(): Promise<boolean> { return callSDKAsync<boolean>("PassKit_a624b245971cfd00", 419720321050617, undefined, []); }
   /**
    * nonisolated class func canMakePayments(usingNetworks supportedNetworks: [PKPaymentNetwork]) -> Bool
    * @availability iOS 8.0+
    */
-  static canMakePaymentsUsingNetworks(supportedNetworks: Array<PKPaymentNetwork>): Promise<boolean> { return callSDKAsync<boolean>("PassKit_2f6e018ff7e993f9", 2994814274974045, undefined, [supportedNetworks]); }
+  static canMakePaymentsUsingNetworks(supportedNetworks: Array<PKPaymentNetwork>): Promise<boolean> { return callSDKAsync<boolean>("PassKit_a624b245971cfd00", 2994814274974045, undefined, [supportedNetworks]); }
   /**
    * nonisolated class func canMakePayments(usingNetworks supportedNetworks: [PKPaymentNetwork], capabilities capabilties: PKMerchantCapability) -> Bool
    * @availability iOS 9.0+
    */
-  static canMakePaymentsUsingNetworksCapabilities(supportedNetworks: Array<PKPaymentNetwork>, capabilties: PKMerchantCapability): Promise<boolean> { return callSDKAsync<boolean>("PassKit_2f6e018ff7e993f9", 926014214128833, undefined, [supportedNetworks, capabilties]); }
+  static canMakePaymentsUsingNetworksCapabilities(supportedNetworks: Array<PKPaymentNetwork>, capabilties: PKMerchantCapability): Promise<boolean> { return callSDKAsync<boolean>("PassKit_a624b245971cfd00", 926014214128833, undefined, [supportedNetworks, capabilties]); }
   /**
    * nonisolated class func supportsDisbursements() -> Bool
    * @availability iOS 17.0+
    */
-  static supportsDisbursements(): Promise<boolean> { return callSDKAsync<boolean>("PassKit_2f6e018ff7e993f9", 579994825504110, undefined, []); }
+  static supportsDisbursements(): Promise<boolean> { return callSDKAsync<boolean>("PassKit_a624b245971cfd00", 579994825504110, undefined, []); }
   /**
    * nonisolated class func supportsDisbursements(using supportedNetworks: [PKPaymentNetwork]) -> Bool
    * @availability iOS 17.0+
    */
-  static supportsDisbursementsUsing(supportedNetworks: Array<PKPaymentNetwork>): Promise<boolean> { return callSDKAsync<boolean>("PassKit_2f6e018ff7e993f9", 2363814590733784, undefined, [supportedNetworks]); }
+  static supportsDisbursementsUsing(supportedNetworks: Array<PKPaymentNetwork>): Promise<boolean> { return callSDKAsync<boolean>("PassKit_a624b245971cfd00", 2363814590733784, undefined, [supportedNetworks]); }
   /**
    * nonisolated class func supportsDisbursements(using supportedNetworks: [PKPaymentNetwork], capabilities: PKMerchantCapability) -> Bool
    * @availability iOS 17.0+
    */
-  static supportsDisbursementsUsingCapabilities(supportedNetworks: Array<PKPaymentNetwork>, capabilities: PKMerchantCapability): Promise<boolean> { return callSDKAsync<boolean>("PassKit_2f6e018ff7e993f9", 3128975883157306, undefined, [supportedNetworks, capabilities]); }
+  static supportsDisbursementsUsingCapabilities(supportedNetworks: Array<PKPaymentNetwork>, capabilities: PKMerchantCapability): Promise<boolean> { return callSDKAsync<boolean>("PassKit_a624b245971cfd00", 3128975883157306, undefined, [supportedNetworks, capabilities]); }
   /**
    * convenience init(disbursementRequest request: PKDisbursementRequest)
    * @availability iOS 17.0+
    */
-  static initDisbursementRequest(request: PKDisbursementRequest): Promise<PKPaymentAuthorizationViewController> { return callSDKAsync<PKPaymentAuthorizationViewController>("PassKit_2f6e018ff7e993f9", 1097873436861139, undefined, [request]); }
+  static initDisbursementRequest(request: PKDisbursementRequest): Promise<PKPaymentAuthorizationViewController> { return callSDKAsync<PKPaymentAuthorizationViewController>("PassKit_a624b245971cfd00", 1097873436861139, undefined, [request]); }
   /**
    * init?(paymentRequest request: PKPaymentRequest)
    * @availability iOS 8.0+
    */
-  static initPaymentRequest(request: PKPaymentRequest): Promise<(PKPaymentAuthorizationViewController) | null> { return callSDKAsync<(PKPaymentAuthorizationViewController) | null>("PassKit_2f6e018ff7e993f9", 3572787147056073, undefined, [request]); }
+  static initPaymentRequest(request: PKPaymentRequest): Promise<(PKPaymentAuthorizationViewController) | null> { return callSDKAsync<(PKPaymentAuthorizationViewController) | null>("PassKit_a624b245971cfd00", 3572787147056073, undefined, [request]); }
   /**
    * weak var delegate: (any PKPaymentAuthorizationViewControllerDelegate)? { get set }
    * @availability iOS 8.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PassKit_2f6e018ff7e993f9", 758143236907620, this, []); }
-  setDelegate(value?: (Implements<PKPaymentAuthorizationViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 1048939783782740, this, [value], [{"protocol":"c:objc(pl)PKPaymentAuthorizationViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PassKit_a624b245971cfd00", 758143236907620, this, []); }
+  setDelegate(value?: (Implements<PKPaymentAuthorizationViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 1048939783782740, this, [value], [{"protocol":"c:objc(pl)PKPaymentAuthorizationViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)PKPaymentAuthorizationViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -3050,18 +3050,18 @@ export class PKPaymentButton extends SDKHandle {
    * init(paymentButtonType type: PKPaymentButtonType, paymentButtonStyle style: PKPaymentButtonStyle)
    * @availability iOS 9.0+
    */
-  static initPaymentButtonTypePaymentButtonStyle(type: PKPaymentButtonType, style: PKPaymentButtonStyle): Promise<PKPaymentButton> { return callSDKAsync<PKPaymentButton>("PassKit_2f6e018ff7e993f9", 1685114510319534, undefined, [type, style]); }
+  static initPaymentButtonTypePaymentButtonStyle(type: PKPaymentButtonType, style: PKPaymentButtonStyle): Promise<PKPaymentButton> { return callSDKAsync<PKPaymentButton>("PassKit_a624b245971cfd00", 1685114510319534, undefined, [type, style]); }
   /**
    * convenience init(type: PKPaymentButtonType, style: PKPaymentButtonStyle, disableCardArt: Bool)
    * @availability iOS 26.0+
    */
-  static initTypeStyleDisableCardArt(type: PKPaymentButtonType, style: PKPaymentButtonStyle, disableCardArt: boolean): Promise<PKPaymentButton> { return callSDKAsync<PKPaymentButton>("PassKit_2f6e018ff7e993f9", 4038609575873858, undefined, [type, style, disableCardArt]); }
+  static initTypeStyleDisableCardArt(type: PKPaymentButtonType, style: PKPaymentButtonStyle, disableCardArt: boolean): Promise<PKPaymentButton> { return callSDKAsync<PKPaymentButton>("PassKit_a624b245971cfd00", 4038609575873858, undefined, [type, style, disableCardArt]); }
   /**
    * var cornerRadius: CGFloat { get set }
    * @availability iOS 12.0+
    */
-  get cornerRadius(): Promise<number> { return callSDKAsync<number>("PassKit_2f6e018ff7e993f9", 346186370768302, this, []); }
-  setCornerRadius(value: number): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 889858276726288, this, [value]); }
+  get cornerRadius(): Promise<number> { return callSDKAsync<number>("PassKit_a624b245971cfd00", 346186370768302, this, []); }
+  setCornerRadius(value: number): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 889858276726288, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKPaymentButton": true; "c:objc(cs)UIButton": true; "c:objc(cs)UIControl": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cornerRadius": true };
 }
@@ -3077,7 +3077,7 @@ export const PKPaymentButtonStyle = {
    * init?(rawValue: Int)
    * @availability iOS 8.3+
    */
-  init(rawValue: number): (PKPaymentButtonStyle) | null { return callSDK<(PKPaymentButtonStyle) | null>("PassKit_2f6e018ff7e993f9", 1880082897210492, undefined, [rawValue]); }
+  init(rawValue: number): (PKPaymentButtonStyle) | null { return callSDK<(PKPaymentButtonStyle) | null>("PassKit_a624b245971cfd00", 1880082897210492, undefined, [rawValue]); }
 };
 
 /**
@@ -3091,7 +3091,7 @@ export const PKPaymentButtonType = {
    * init?(rawValue: Int)
    * @availability iOS 8.3+
    */
-  init(rawValue: number): (PKPaymentButtonType) | null { return callSDK<(PKPaymentButtonType) | null>("PassKit_2f6e018ff7e993f9", 3167566873178432, undefined, [rawValue]); }
+  init(rawValue: number): (PKPaymentButtonType) | null { return callSDK<(PKPaymentButtonType) | null>("PassKit_a624b245971cfd00", 3167566873178432, undefined, [rawValue]); }
 };
 
 /**
@@ -3103,37 +3103,37 @@ export class PKPaymentError extends SDKHandle {
    * static var billingContactInvalidError: PKPaymentError.Code { get }
    * @availability iOS 11.0+
    */
-  static get billingContactInvalidError(): PKPaymentError_Code { return callSDK<PKPaymentError_Code>("PassKit_2f6e018ff7e993f9", 4483367462688350, undefined, []); }
+  static get billingContactInvalidError(): PKPaymentError_Code { return callSDK<PKPaymentError_Code>("PassKit_a624b245971cfd00", 4483367462688350, undefined, []); }
   /**
    * static var shippingContactInvalidError: PKPaymentError.Code { get }
    * @availability iOS 11.0+
    */
-  static get shippingContactInvalidError(): PKPaymentError_Code { return callSDK<PKPaymentError_Code>("PassKit_2f6e018ff7e993f9", 2936659920310031, undefined, []); }
+  static get shippingContactInvalidError(): PKPaymentError_Code { return callSDK<PKPaymentError_Code>("PassKit_a624b245971cfd00", 2936659920310031, undefined, []); }
   /**
    * static var shippingAddressUnserviceableError: PKPaymentError.Code { get }
    * @availability iOS 11.0+
    */
-  static get shippingAddressUnserviceableError(): PKPaymentError_Code { return callSDK<PKPaymentError_Code>("PassKit_2f6e018ff7e993f9", 3480598941916019, undefined, []); }
+  static get shippingAddressUnserviceableError(): PKPaymentError_Code { return callSDK<PKPaymentError_Code>("PassKit_a624b245971cfd00", 3480598941916019, undefined, []); }
   /**
    * static var couponCodeExpiredError: PKPaymentError.Code { get }
    * @availability iOS 15.0+
    */
-  static get couponCodeExpiredError(): PKPaymentError_Code { return callSDK<PKPaymentError_Code>("PassKit_2f6e018ff7e993f9", 1722931076902697, undefined, []); }
+  static get couponCodeExpiredError(): PKPaymentError_Code { return callSDK<PKPaymentError_Code>("PassKit_a624b245971cfd00", 1722931076902697, undefined, []); }
   /**
    * static var couponCodeInvalidError: PKPaymentError.Code { get }
    * @availability iOS 15.0+
    */
-  static get couponCodeInvalidError(): PKPaymentError_Code { return callSDK<PKPaymentError_Code>("PassKit_2f6e018ff7e993f9", 747116141105417, undefined, []); }
+  static get couponCodeInvalidError(): PKPaymentError_Code { return callSDK<PKPaymentError_Code>("PassKit_a624b245971cfd00", 747116141105417, undefined, []); }
   /**
    * static var unknownError: PKPaymentError.Code { get }
    * @availability iOS 11.0+
    */
-  static get unknownError(): PKPaymentError_Code { return callSDK<PKPaymentError_Code>("PassKit_2f6e018ff7e993f9", 4407604837180488, undefined, []); }
+  static get unknownError(): PKPaymentError_Code { return callSDK<PKPaymentError_Code>("PassKit_a624b245971cfd00", 4407604837180488, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 11.0+
    */
-  static get errorDomain(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2933531388800512, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2933531388800512, undefined, []); }
   declare readonly $type: { "s:SC18PKPaymentErrorCodeLeV": true };
 }
 
@@ -3148,7 +3148,7 @@ export const PKPaymentError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (PKPaymentError_Code) | null { return callSDK<(PKPaymentError_Code) | null>("PassKit_2f6e018ff7e993f9", 1410216028756027, undefined, [rawValue]); }
+  init(rawValue: number): (PKPaymentError_Code) | null { return callSDK<(PKPaymentError_Code) | null>("PassKit_a624b245971cfd00", 1410216028756027, undefined, [rawValue]); }
 };
 
 /** struct PKPaymentErrorKey */
@@ -3159,14 +3159,14 @@ export const PKPaymentErrorKey = {
    * static let contactFieldUserInfoKey: PKPaymentErrorKey
    * @availability iOS 11.0+
    */
-  get contactFieldUserInfoKey(): PKPaymentErrorKey { return callSDK<PKPaymentErrorKey>("PassKit_2f6e018ff7e993f9", 3073729793056676, undefined, []); },
+  get contactFieldUserInfoKey(): PKPaymentErrorKey { return callSDK<PKPaymentErrorKey>("PassKit_a624b245971cfd00", 3073729793056676, undefined, []); },
   /**
    * static let postalAddressUserInfoKey: PKPaymentErrorKey
    * @availability iOS 11.0+
    */
-  get postalAddressUserInfoKey(): PKPaymentErrorKey { return callSDK<PKPaymentErrorKey>("PassKit_2f6e018ff7e993f9", 1106049218468347, undefined, []); },
+  get postalAddressUserInfoKey(): PKPaymentErrorKey { return callSDK<PKPaymentErrorKey>("PassKit_a624b245971cfd00", 1106049218468347, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PKPaymentErrorKey { return callSDK<PKPaymentErrorKey>("PassKit_2f6e018ff7e993f9", 254025800927712, undefined, [rawValue]); }
+  init(rawValue: string): PKPaymentErrorKey { return callSDK<PKPaymentErrorKey>("PassKit_a624b245971cfd00", 254025800927712, undefined, [rawValue]); }
 };
 
 /**
@@ -3175,7 +3175,7 @@ export const PKPaymentErrorKey = {
  */
 export class PKPaymentInformationEventExtension extends SDKHandle {
   /** init() */
-  static init(): PKPaymentInformationEventExtension { return callSDK<PKPaymentInformationEventExtension>("PassKit_2f6e018ff7e993f9", 155629617754941, undefined, []); }
+  static init(): PKPaymentInformationEventExtension { return callSDK<PKPaymentInformationEventExtension>("PassKit_a624b245971cfd00", 155629617754941, undefined, []); }
   declare readonly $type: { "c:objc(cs)PKPaymentInformationEventExtension": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3202,7 +3202,7 @@ export class PKPaymentMerchantSession extends SDKHandle {
    * init(dictionary: [AnyHashable : Any])
    * @availability iOS 14.0+
    */
-  static init(dictionary: NativeMap<unknown, unknown>): PKPaymentMerchantSession { return callSDK<PKPaymentMerchantSession>("PassKit_2f6e018ff7e993f9", 4494656564606519, undefined, [dictionary]); }
+  static init(dictionary: NativeMap<unknown, unknown>): PKPaymentMerchantSession { return callSDK<PKPaymentMerchantSession>("PassKit_a624b245971cfd00", 4494656564606519, undefined, [dictionary]); }
   declare readonly $type: { "c:objc(cs)PKPaymentMerchantSession": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3212,38 +3212,38 @@ export class PKPaymentMerchantSession extends SDKHandle {
  */
 export class PKPaymentMethod extends SDKHandle {
   /** init() */
-  static init(): PKPaymentMethod { return callSDK<PKPaymentMethod>("PassKit_2f6e018ff7e993f9", 1703176589368681, undefined, []); }
+  static init(): PKPaymentMethod { return callSDK<PKPaymentMethod>("PassKit_a624b245971cfd00", 1703176589368681, undefined, []); }
   /**
    * @NSCopying var billingAddress: CNContact? { get }
    * @availability iOS 13.0+
    */
-  get billingAddress(): (_Contacts_CNContact) | null { return callSDK<(_Contacts_CNContact) | null>("PassKit_2f6e018ff7e993f9", 1013686125527296, this, []); }
+  get billingAddress(): (_Contacts_CNContact) | null { return callSDK<(_Contacts_CNContact) | null>("PassKit_a624b245971cfd00", 1013686125527296, this, []); }
   /**
    * var displayName: String? { get }
    * @availability iOS 9.0+
    */
-  get displayName(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 3097791675666772, this, []); }
+  get displayName(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 3097791675666772, this, []); }
   /**
    * var network: PKPaymentNetwork? { get }
    * @availability iOS 9.0+
    */
-  get network(): $SDK18 { return callSDK<$SDK18>("PassKit_2f6e018ff7e993f9", 3510739738577186, this, []); }
+  get network(): $SDK18 { return callSDK<$SDK18>("PassKit_a624b245971cfd00", 3510739738577186, this, []); }
   /**
    * @NSCopying var paymentPass: PKPaymentPass? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  get paymentPass(): (PKPaymentPass) | null { return callSDK<(PKPaymentPass) | null>("PassKit_2f6e018ff7e993f9", 445209035885761, this, []); }
+  get paymentPass(): (PKPaymentPass) | null { return callSDK<(PKPaymentPass) | null>("PassKit_a624b245971cfd00", 445209035885761, this, []); }
   /**
    * @NSCopying var secureElementPass: PKSecureElementPass? { get }
    * @availability iOS 13.4+
    */
-  get secureElementPass(): $SDK20 { return callSDK<$SDK20>("PassKit_2f6e018ff7e993f9", 3381697374858899, this, []); }
+  get secureElementPass(): $SDK20 { return callSDK<$SDK20>("PassKit_a624b245971cfd00", 3381697374858899, this, []); }
   /**
    * var type: PKPaymentMethodType { get }
    * @availability iOS 9.0+
    */
-  get type(): PKPaymentMethodType { return callSDK<PKPaymentMethodType>("PassKit_2f6e018ff7e993f9", 862080810857273, this, []); }
+  get type(): PKPaymentMethodType { return callSDK<PKPaymentMethodType>("PassKit_a624b245971cfd00", 862080810857273, this, []); }
   declare readonly $type: { "c:objc(cs)PKPaymentMethod": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "billingAddress": true; "displayName": true; "network": true; "paymentPass": true; "secureElementPass": true; "type": true };
 }
@@ -3259,7 +3259,7 @@ export const PKPaymentMethodType = {
    * init?(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (PKPaymentMethodType) | null { return callSDK<(PKPaymentMethodType) | null>("PassKit_2f6e018ff7e993f9", 4204576444045340, undefined, [rawValue]); }
+  init(rawValue: number): (PKPaymentMethodType) | null { return callSDK<(PKPaymentMethodType) | null>("PassKit_a624b245971cfd00", 4204576444045340, undefined, [rawValue]); }
 };
 
 /** struct PKPaymentNetwork */
@@ -3270,239 +3270,239 @@ export const PKPaymentNetwork = {
    * static let amex: PKPaymentNetwork
    * @availability iOS 8.0+
    */
-  get amex(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 1522546088330268, undefined, []); },
+  get amex(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 1522546088330268, undefined, []); },
   /**
    * static let bancomat: PKPaymentNetwork
    * @availability iOS 16.0+
    * @deprecated iOS 17.0
    */
-  get bancomat(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 3630513793453755, undefined, []); },
+  get bancomat(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 3630513793453755, undefined, []); },
   /**
    * static let bancontact: PKPaymentNetwork
    * @availability iOS 16.0+
    */
-  get bancontact(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 1794714638130142, undefined, []); },
+  get bancontact(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 1794714638130142, undefined, []); },
   /**
    * static let bankAxept: PKPaymentNetwork
    * @availability iOS 17.5+
    */
-  get bankAxept(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 467707251661984, undefined, []); },
+  get bankAxept(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 467707251661984, undefined, []); },
   /**
    * static let barcode: PKPaymentNetwork
    * @availability iOS 14.0+
    */
-  get barcode(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 687059618592173, undefined, []); },
+  get barcode(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 687059618592173, undefined, []); },
   /**
    * static let carteBancaire: PKPaymentNetwork
    * @availability iOS 10.3+
    * @deprecated iOS 11.0
    */
-  get carteBancaire(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 4266324441771792, undefined, []); },
+  get carteBancaire(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 4266324441771792, undefined, []); },
   /**
    * static let carteBancaires: PKPaymentNetwork
    * @availability iOS 11.0+
    * @deprecated iOS 11.2
    */
-  get carteBancaires(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 3120056411299125, undefined, []); },
+  get carteBancaires(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 3120056411299125, undefined, []); },
   /**
    * static let cartesBancaires: PKPaymentNetwork
    * @availability iOS 11.2+
    */
-  get cartesBancaires(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 3324997755027406, undefined, []); },
+  get cartesBancaires(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 3324997755027406, undefined, []); },
   /**
    * static let chinaUnionPay: PKPaymentNetwork
    * @availability iOS 9.2+
    */
-  get chinaUnionPay(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 3753328837964046, undefined, []); },
+  get chinaUnionPay(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 3753328837964046, undefined, []); },
   /**
    * static let conecs: PKPaymentNetwork
    * @availability iOS 26.2+
    */
-  get conecs(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 4116515979745230, undefined, []); },
+  get conecs(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 4116515979745230, undefined, []); },
   /**
    * static let dankort: PKPaymentNetwork
    * @availability iOS 15.1+
    */
-  get dankort(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 3397639311206994, undefined, []); },
+  get dankort(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 3397639311206994, undefined, []); },
   /**
    * static let discover: PKPaymentNetwork
    * @availability iOS 9.0+
    */
-  get discover(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 2429679075521381, undefined, []); },
+  get discover(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 2429679075521381, undefined, []); },
   /**
    * static let eftpos: PKPaymentNetwork
    * @availability iOS 12.0+
    */
-  get eftpos(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 1861247396646581, undefined, []); },
+  get eftpos(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 1861247396646581, undefined, []); },
   /**
    * static let elCorteIngles: PKPaymentNetwork
    * @availability iOS 26.4+
    */
-  get elCorteIngles(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 3109020067798293, undefined, []); },
+  get elCorteIngles(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 3109020067798293, undefined, []); },
   /**
    * static let elcard: PKPaymentNetwork
    * @availability iOS 27.0+
    */
-  get elcard(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 1123346278853459, undefined, []); },
+  get elcard(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 1123346278853459, undefined, []); },
   /**
    * static let electron: PKPaymentNetwork
    * @availability iOS 12.0+
    */
-  get electron(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 4260052824712077, undefined, []); },
+  get electron(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 4260052824712077, undefined, []); },
   /**
    * static let elo: PKPaymentNetwork
    * @availability iOS 12.1+
    */
-  get elo(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 479368920283486, undefined, []); },
+  get elo(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 479368920283486, undefined, []); },
   /**
    * static let girocard: PKPaymentNetwork
    * @availability iOS 14.0+
    */
-  get girocard(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 2341523514982610, undefined, []); },
+  get girocard(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 2341523514982610, undefined, []); },
   /**
    * static let himyan: PKPaymentNetwork
    * @availability iOS 18.4+
    */
-  get himyan(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 78301946962344, undefined, []); },
+  get himyan(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 78301946962344, undefined, []); },
   /**
    * static let humo: PKPaymentNetwork
    * @availability iOS 27.0+
    */
-  get humo(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 3317532581218800, undefined, []); },
+  get humo(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 3317532581218800, undefined, []); },
   /**
    * static let idCredit: PKPaymentNetwork
    * @availability iOS 10.3+
    */
-  get idCredit(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 2522219064207020, undefined, []); },
+  get idCredit(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 2522219064207020, undefined, []); },
   /**
    * static let interac: PKPaymentNetwork
    * @availability iOS 9.2+
    */
-  get interac(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 2748865912387895, undefined, []); },
+  get interac(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 2748865912387895, undefined, []); },
   /**
    * static let JCB: PKPaymentNetwork
    * @availability iOS 10.1+
    */
-  get JCB(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 1693251210234771, undefined, []); },
+  get JCB(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 1693251210234771, undefined, []); },
   /**
    * static let jaywan: PKPaymentNetwork
    * @availability iOS 18.4+
    */
-  get jaywan(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 3870657307486588, undefined, []); },
+  get jaywan(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 3870657307486588, undefined, []); },
   /**
    * static let maal: PKPaymentNetwork
    * @availability iOS 27.0+
    */
-  get maal(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 353001380157801, undefined, []); },
+  get maal(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 353001380157801, undefined, []); },
   /**
    * static let mada: PKPaymentNetwork
    * @availability iOS 12.1+
    */
-  get mada(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 901850551259069, undefined, []); },
+  get mada(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 901850551259069, undefined, []); },
   /**
    * static let maestro: PKPaymentNetwork
    * @availability iOS 12.0+
    */
-  get maestro(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 1642554185777856, undefined, []); },
+  get maestro(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 1642554185777856, undefined, []); },
   /**
    * static let masterCard: PKPaymentNetwork
    * @availability iOS 8.0+
    */
-  get masterCard(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 1933912702449378, undefined, []); },
+  get masterCard(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 1933912702449378, undefined, []); },
   /**
    * static let meeza: PKPaymentNetwork
    * @availability iOS 17.4+
    */
-  get meeza(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 1577007790632640, undefined, []); },
+  get meeza(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 1577007790632640, undefined, []); },
   /**
    * static let mir: PKPaymentNetwork
    * @availability iOS 14.5+
    */
-  get mir(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 1639389995563797, undefined, []); },
+  get mir(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 1639389995563797, undefined, []); },
   /**
    * static let myDebit: PKPaymentNetwork
    * @availability iOS 26.0+
    */
-  get myDebit(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 2940423281644908, undefined, []); },
+  get myDebit(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 2940423281644908, undefined, []); },
   /**
    * static let NAPAS: PKPaymentNetwork
    * @availability iOS 17.5+
    */
-  get NAPAS(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 4464420900753196, undefined, []); },
+  get NAPAS(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 4464420900753196, undefined, []); },
   /**
    * static let nanaco: PKPaymentNetwork
    * @availability iOS 15.0+
    */
-  get nanaco(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 3269815283574851, undefined, []); },
+  get nanaco(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 3269815283574851, undefined, []); },
   /**
    * static let pagoBancomat: PKPaymentNetwork
    * @availability iOS 17.0+
    */
-  get pagoBancomat(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 3176795804821551, undefined, []); },
+  get pagoBancomat(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 3176795804821551, undefined, []); },
   /**
    * static let payPak: PKPaymentNetwork
    * @availability iOS 27.0+
    */
-  get payPak(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 559893348457575, undefined, []); },
+  get payPak(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 559893348457575, undefined, []); },
   /**
    * static let postFinance: PKPaymentNetwork
    * @availability iOS 16.4+
    */
-  get postFinance(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 1596653109789715, undefined, []); },
+  get postFinance(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 1596653109789715, undefined, []); },
   /**
    * static let privateLabel: PKPaymentNetwork
    * @availability iOS 9.0+
    */
-  get privateLabel(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 4046844597571697, undefined, []); },
+  get privateLabel(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 4046844597571697, undefined, []); },
   /**
    * static let quicPay: PKPaymentNetwork
    * @availability iOS 10.3+
    */
-  get quicPay(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 49197087974434, undefined, []); },
+  get quicPay(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 49197087974434, undefined, []); },
   /**
    * static let ruPay: PKPaymentNetwork
    * @availability iOS 27.0+
    */
-  get ruPay(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 4323266543858891, undefined, []); },
+  get ruPay(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 4323266543858891, undefined, []); },
   /**
    * static let suica: PKPaymentNetwork
    * @availability iOS 10.1+
    */
-  get suica(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 799389875463478, undefined, []); },
+  get suica(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 799389875463478, undefined, []); },
   /**
    * static let tmoney: PKPaymentNetwork
    * @availability iOS 17.0+
    */
-  get tmoney(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 2405098126490107, undefined, []); },
+  get tmoney(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 2405098126490107, undefined, []); },
   /**
    * static let uzCard: PKPaymentNetwork
    * @availability iOS 27.0+
    */
-  get uzCard(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 376362277688613, undefined, []); },
+  get uzCard(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 376362277688613, undefined, []); },
   /**
    * static let vPay: PKPaymentNetwork
    * @availability iOS 12.0+
    */
-  get vPay(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 4328508992243091, undefined, []); },
+  get vPay(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 4328508992243091, undefined, []); },
   /**
    * static let verve: PKPaymentNetwork
    * @availability iOS 27.0+
    */
-  get verve(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 2928311295335438, undefined, []); },
+  get verve(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 2928311295335438, undefined, []); },
   /**
    * static let visa: PKPaymentNetwork
    * @availability iOS 8.0+
    */
-  get visa(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 2736172307578078, undefined, []); },
+  get visa(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 2736172307578078, undefined, []); },
   /**
    * static let waon: PKPaymentNetwork
    * @availability iOS 15.0+
    */
-  get waon(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 3961509317750839, undefined, []); },
+  get waon(): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 3961509317750839, undefined, []); },
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 810519509731287, undefined, [rawValue]); },
+  initRawValue(rawValue: string): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 810519509731287, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_2f6e018ff7e993f9", 49263748095494, undefined, [rawValue]); }
+  init(rawValue: string): PKPaymentNetwork { return callSDK<PKPaymentNetwork>("PassKit_a624b245971cfd00", 49263748095494, undefined, [rawValue]); }
 };
 
 /**
@@ -3514,31 +3514,31 @@ export class PKPaymentOrderDetails extends SDKHandle {
    * init(orderTypeIdentifier: String, orderIdentifier: String, webServiceURL: URL, authenticationToken: String)
    * @availability iOS 16.0+
    */
-  static init(orderTypeIdentifier: string, orderIdentifier: string, webServiceURL: string, authenticationToken: string): PKPaymentOrderDetails { return callSDK<PKPaymentOrderDetails>("PassKit_2f6e018ff7e993f9", 3671819260639800, undefined, [orderTypeIdentifier, orderIdentifier, webServiceURL, authenticationToken]); }
+  static init(orderTypeIdentifier: string, orderIdentifier: string, webServiceURL: string, authenticationToken: string): PKPaymentOrderDetails { return callSDK<PKPaymentOrderDetails>("PassKit_a624b245971cfd00", 3671819260639800, undefined, [orderTypeIdentifier, orderIdentifier, webServiceURL, authenticationToken]); }
   /**
    * var authenticationToken: String { get set }
    * @availability iOS 16.0+
    */
-  get authenticationToken(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 3047674821612305, this, []); }
-  set authenticationToken(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2216254828075972, this, [value]); }
+  get authenticationToken(): string { return callSDK<string>("PassKit_a624b245971cfd00", 3047674821612305, this, []); }
+  set authenticationToken(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 2216254828075972, this, [value]); }
   /**
    * var orderIdentifier: String { get set }
    * @availability iOS 16.0+
    */
-  get orderIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 1162824813773399, this, []); }
-  set orderIdentifier(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1262694035627292, this, [value]); }
+  get orderIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 1162824813773399, this, []); }
+  set orderIdentifier(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 1262694035627292, this, [value]); }
   /**
    * var orderTypeIdentifier: String { get set }
    * @availability iOS 16.0+
    */
-  get orderTypeIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 3009862329665925, this, []); }
-  set orderTypeIdentifier(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3258527968695703, this, [value]); }
+  get orderTypeIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 3009862329665925, this, []); }
+  set orderTypeIdentifier(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 3258527968695703, this, [value]); }
   /**
    * var webServiceURL: URL { get set }
    * @availability iOS 16.0+
    */
-  get webServiceURL(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2395165565627264, this, []); }
-  set webServiceURL(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1369654724282670, this, [value]); }
+  get webServiceURL(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2395165565627264, this, []); }
+  set webServiceURL(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 1369654724282670, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKPaymentOrderDetails": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authenticationToken": true; "orderIdentifier": true; "orderTypeIdentifier": true; "webServiceURL": true };
 }
@@ -3549,47 +3549,47 @@ export class PKPaymentOrderDetails extends SDKHandle {
  */
 export class PKSecureElementPass extends (PKPass as unknown as Omit<typeof PKPass, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPass)) {
   /** init() */
-  static init(): PKSecureElementPass { return callSDK<PKSecureElementPass>("PassKit_2f6e018ff7e993f9", 2223966247748184, undefined, []); }
+  static init(): PKSecureElementPass { return callSDK<PKSecureElementPass>("PassKit_a624b245971cfd00", 2223966247748184, undefined, []); }
   /**
    * var deviceAccountIdentifier: String { get }
    * @availability iOS 13.4+
    */
-  get deviceAccountIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 96993916629497, this, []); }
+  get deviceAccountIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 96993916629497, this, []); }
   /**
    * var deviceAccountNumberSuffix: String { get }
    * @availability iOS 13.4+
    */
-  get deviceAccountNumberSuffix(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 1240714519186108, this, []); }
+  get deviceAccountNumberSuffix(): string { return callSDK<string>("PassKit_a624b245971cfd00", 1240714519186108, this, []); }
   /**
    * var devicePassIdentifier: String? { get }
    * @availability iOS 13.4+
    */
-  get devicePassIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 3097085590077936, this, []); }
+  get devicePassIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 3097085590077936, this, []); }
   /**
    * var pairedTerminalIdentifier: String? { get }
    * @availability iOS 13.4+
    */
-  get pairedTerminalIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 924411372390970, this, []); }
+  get pairedTerminalIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 924411372390970, this, []); }
   /**
    * var passActivationState: PKSecureElementPass.PassActivationState { get }
    * @availability iOS 13.4+
    */
-  get passActivationState(): PKSecureElementPass_PassActivationState { return callSDK<PKSecureElementPass_PassActivationState>("PassKit_2f6e018ff7e993f9", 3913165466557126, this, []); }
+  get passActivationState(): PKSecureElementPass_PassActivationState { return callSDK<PKSecureElementPass_PassActivationState>("PassKit_a624b245971cfd00", 3913165466557126, this, []); }
   /**
    * var primaryAccountIdentifier: String { get }
    * @availability iOS 13.4+
    */
-  get primaryAccountIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 783542559721073, this, []); }
+  get primaryAccountIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 783542559721073, this, []); }
   /**
    * var primaryAccountNumberSuffix: String { get }
    * @availability iOS 13.4+
    */
-  get primaryAccountNumberSuffix(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2907835512901871, this, []); }
+  get primaryAccountNumberSuffix(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2907835512901871, this, []); }
   /**
    * var isProvisioningAvailable: Bool { get }
    * @availability iOS 27.0+
    */
-  get isProvisioningAvailable(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 872395736477092, this, []); }
+  get isProvisioningAvailable(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 872395736477092, this, []); }
   declare readonly $type: { "c:objc(cs)PKSecureElementPass": true; "c:objc(cs)PKPass": true; "c:objc(cs)PKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authenticationToken": true; "deviceName": true; "icon": true; "localizedDescription": true; "localizedName": true; "organizationName": true; "passType": true; "passTypeIdentifier": true; "passURL": true; "paymentPass": true; "relevantDate": true; "relevantDates": true; "isRemotePass": true; "secureElementPass": true; "serialNumber": true; "userInfo": true; "webServiceURL": true; "deviceAccountIdentifier": true; "deviceAccountNumberSuffix": true; "devicePassIdentifier": true; "pairedTerminalIdentifier": true; "passActivationState": true; "primaryAccountIdentifier": true; "primaryAccountNumberSuffix": true; "isProvisioningAvailable": true };
 }
@@ -3600,13 +3600,13 @@ export class PKSecureElementPass extends (PKPass as unknown as Omit<typeof PKPas
  */
 export class PKPaymentPass extends (PKSecureElementPass as unknown as Omit<typeof PKSecureElementPass, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKSecureElementPass)) {
   /** init() */
-  static init(): PKPaymentPass { return callSDK<PKPaymentPass>("PassKit_2f6e018ff7e993f9", 3730442926790706, undefined, []); }
+  static init(): PKPaymentPass { return callSDK<PKPaymentPass>("PassKit_a624b245971cfd00", 3730442926790706, undefined, []); }
   /**
    * var activationState: PKPaymentPassActivationState { get }
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  get activationState(): PKPaymentPassActivationState { return callSDK<PKPaymentPassActivationState>("PassKit_2f6e018ff7e993f9", 2070975981486126, this, []); }
+  get activationState(): PKPaymentPassActivationState { return callSDK<PKPaymentPassActivationState>("PassKit_a624b245971cfd00", 2070975981486126, this, []); }
   declare readonly $type: { "c:objc(cs)PKPaymentPass": true; "c:objc(cs)PKSecureElementPass": true; "c:objc(cs)PKPass": true; "c:objc(cs)PKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authenticationToken": true; "deviceName": true; "icon": true; "localizedDescription": true; "localizedName": true; "organizationName": true; "passType": true; "passTypeIdentifier": true; "passURL": true; "paymentPass": true; "relevantDate": true; "relevantDates": true; "isRemotePass": true; "secureElementPass": true; "serialNumber": true; "userInfo": true; "webServiceURL": true; "deviceAccountIdentifier": true; "deviceAccountNumberSuffix": true; "devicePassIdentifier": true; "pairedTerminalIdentifier": true; "passActivationState": true; "primaryAccountIdentifier": true; "primaryAccountNumberSuffix": true; "isProvisioningAvailable": true; "activationState": true };
 }
@@ -3624,7 +3624,7 @@ export const PKPaymentPassActivationState = {
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  init(rawValue: number): (PKPaymentPassActivationState) | null { return callSDK<(PKPaymentPassActivationState) | null>("PassKit_2f6e018ff7e993f9", 957179476129344, undefined, [rawValue]); }
+  init(rawValue: number): (PKPaymentPassActivationState) | null { return callSDK<(PKPaymentPassActivationState) | null>("PassKit_a624b245971cfd00", 957179476129344, undefined, [rawValue]); }
 };
 
 /**
@@ -3636,223 +3636,223 @@ export class PKPaymentRequest extends SDKHandle {
    * class func availableNetworks() -> [PKPaymentNetwork]
    * @availability iOS 10.0+
    */
-  static availableNetworks(): Array<PKPaymentNetwork> { return callSDK<Array<PKPaymentNetwork>>("PassKit_2f6e018ff7e993f9", 3828771896675485, undefined, []); }
+  static availableNetworks(): Array<PKPaymentNetwork> { return callSDK<Array<PKPaymentNetwork>>("PassKit_a624b245971cfd00", 3828771896675485, undefined, []); }
   /**
    * class func paymentBillingAddressInvalidError(withKey postalAddressKey: String, localizedDescription: String?) -> any Error
    * @availability iOS 11.0+
    */
-  static paymentBillingAddressInvalidError(postalAddressKey: string, localizedDescription?: (string) | null): NativeError { return callSDK<NativeError>("PassKit_2f6e018ff7e993f9", 1867638321089768, undefined, [postalAddressKey, localizedDescription]); }
+  static paymentBillingAddressInvalidError(postalAddressKey: string, localizedDescription?: (string) | null): NativeError { return callSDK<NativeError>("PassKit_a624b245971cfd00", 1867638321089768, undefined, [postalAddressKey, localizedDescription]); }
   /**
    * class func paymentContactInvalidError(withContactField field: PKContactField, localizedDescription: String?) -> any Error
    * @availability iOS 11.0+
    */
-  static paymentContactInvalidError(field: PKContactField, localizedDescription?: (string) | null): NativeError { return callSDK<NativeError>("PassKit_2f6e018ff7e993f9", 3634504864160643, undefined, [field, localizedDescription]); }
+  static paymentContactInvalidError(field: PKContactField, localizedDescription?: (string) | null): NativeError { return callSDK<NativeError>("PassKit_a624b245971cfd00", 3634504864160643, undefined, [field, localizedDescription]); }
   /**
    * class func paymentShippingAddressInvalidError(withKey postalAddressKey: String, localizedDescription: String?) -> any Error
    * @availability iOS 11.0+
    */
-  static paymentShippingAddressInvalidError(postalAddressKey: string, localizedDescription?: (string) | null): NativeError { return callSDK<NativeError>("PassKit_2f6e018ff7e993f9", 1827172867477171, undefined, [postalAddressKey, localizedDescription]); }
+  static paymentShippingAddressInvalidError(postalAddressKey: string, localizedDescription?: (string) | null): NativeError { return callSDK<NativeError>("PassKit_a624b245971cfd00", 1827172867477171, undefined, [postalAddressKey, localizedDescription]); }
   /**
    * class func paymentShippingAddressUnserviceableError(withLocalizedDescription localizedDescription: String?) -> any Error
    * @availability iOS 11.0+
    */
-  static paymentShippingAddressUnserviceableError(localizedDescription?: (string) | null): NativeError { return callSDK<NativeError>("PassKit_2f6e018ff7e993f9", 1601843421570440, undefined, [localizedDescription]); }
+  static paymentShippingAddressUnserviceableError(localizedDescription?: (string) | null): NativeError { return callSDK<NativeError>("PassKit_a624b245971cfd00", 1601843421570440, undefined, [localizedDescription]); }
   /** init() */
-  static init(): PKPaymentRequest { return callSDK<PKPaymentRequest>("PassKit_2f6e018ff7e993f9", 3635721863740336, undefined, []); }
+  static init(): PKPaymentRequest { return callSDK<PKPaymentRequest>("PassKit_a624b245971cfd00", 3635721863740336, undefined, []); }
   /**
    * var applicationData: Data? { get set }
    * @availability iOS 8.0+
    */
-  get applicationData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PassKit_2f6e018ff7e993f9", 2581118670453265, this, []); }
-  set applicationData(value: (ArrayBuffer) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1231016805232728, this, [value]); }
+  get applicationData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PassKit_a624b245971cfd00", 2581118670453265, this, []); }
+  set applicationData(value: (ArrayBuffer) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1231016805232728, this, [value]); }
   /**
    * var attributionIdentifier: String? { get set }
    * @availability iOS 26.0+
    */
-  get attributionIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 1791743326706067, this, []); }
-  set attributionIdentifier(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 354397457951915, this, [value]); }
+  get attributionIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 1791743326706067, this, []); }
+  set attributionIdentifier(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 354397457951915, this, [value]); }
   /**
    * var automaticReloadPaymentRequest: PKAutomaticReloadPaymentRequest? { get set }
    * @availability iOS 16.0+
    */
-  get automaticReloadPaymentRequest(): $SDK62 { return callSDK<$SDK62>("PassKit_2f6e018ff7e993f9", 2815537556802361, this, []); }
-  set automaticReloadPaymentRequest(value: $SDK62) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4028027012787049, this, [value]); }
+  get automaticReloadPaymentRequest(): $SDK62 { return callSDK<$SDK62>("PassKit_a624b245971cfd00", 2815537556802361, this, []); }
+  set automaticReloadPaymentRequest(value: $SDK62) { callSDK<void>("PassKit_a624b245971cfd00", 4028027012787049, this, [value]); }
   /**
    * unowned(unsafe) var billingAddress: ABRecord? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get billingAddress(): (unknown) | null { return callSDK<(unknown) | null>("PassKit_2f6e018ff7e993f9", 3615094793018879, this, []); }
-  set billingAddress(value: (unknown) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 870347753467591, this, [value]); }
+  get billingAddress(): (unknown) | null { return callSDK<(unknown) | null>("PassKit_a624b245971cfd00", 3615094793018879, this, []); }
+  set billingAddress(value: (unknown) | null) { callSDK<void>("PassKit_a624b245971cfd00", 870347753467591, this, [value]); }
   /**
    * var billingContact: PKContact? { get set }
    * @availability iOS 9.0+
    */
-  get billingContact(): (PKContact) | null { return callSDK<(PKContact) | null>("PassKit_2f6e018ff7e993f9", 2272893187081597, this, []); }
-  set billingContact(value: (PKContact) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2286032723773280, this, [value]); }
+  get billingContact(): (PKContact) | null { return callSDK<(PKContact) | null>("PassKit_a624b245971cfd00", 2272893187081597, this, []); }
+  set billingContact(value: (PKContact) | null) { callSDK<void>("PassKit_a624b245971cfd00", 2286032723773280, this, [value]); }
   /**
    * var countryCode: String { get set }
    * @availability iOS 8.0+
    */
-  get countryCode(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 1558776796135135, this, []); }
-  set countryCode(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 649088891464683, this, [value]); }
+  get countryCode(): string { return callSDK<string>("PassKit_a624b245971cfd00", 1558776796135135, this, []); }
+  set countryCode(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 649088891464683, this, [value]); }
   /**
    * var couponCode: String? { get set }
    * @availability iOS 15.0+
    */
-  get couponCode(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 1011428108593863, this, []); }
-  set couponCode(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1820020454415197, this, [value]); }
+  get couponCode(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 1011428108593863, this, []); }
+  set couponCode(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1820020454415197, this, [value]); }
   /**
    * var currencyCode: String { get set }
    * @availability iOS 8.0+
    */
-  get currencyCode(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 4459989252567688, this, []); }
-  set currencyCode(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1866032237779024, this, [value]); }
+  get currencyCode(): string { return callSDK<string>("PassKit_a624b245971cfd00", 4459989252567688, this, []); }
+  set currencyCode(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 1866032237779024, this, [value]); }
   /**
    * var deferredPaymentRequest: PKDeferredPaymentRequest? { get set }
    * @availability iOS 16.4+
    */
-  get deferredPaymentRequest(): $SDK63 { return callSDK<$SDK63>("PassKit_2f6e018ff7e993f9", 307973729585468, this, []); }
-  set deferredPaymentRequest(value: $SDK63) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2911152591601317, this, [value]); }
+  get deferredPaymentRequest(): $SDK63 { return callSDK<$SDK63>("PassKit_a624b245971cfd00", 307973729585468, this, []); }
+  set deferredPaymentRequest(value: $SDK63) { callSDK<void>("PassKit_a624b245971cfd00", 2911152591601317, this, [value]); }
   /**
    * var isDelegatedRequest: Bool { get set }
    * @availability iOS 26.4+
    */
-  get isDelegatedRequest(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 1791838991348362, this, []); }
-  set isDelegatedRequest(value: boolean) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3940998706641321, this, [value]); }
+  get isDelegatedRequest(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 1791838991348362, this, []); }
+  set isDelegatedRequest(value: boolean) { callSDK<void>("PassKit_a624b245971cfd00", 3940998706641321, this, [value]); }
   /**
    * var merchantCapabilities: PKMerchantCapability { get set }
    * @availability iOS 8.0+
    */
-  get merchantCapabilities(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_2f6e018ff7e993f9", 3095505959311357, this, []); }
-  set merchantCapabilities(value: PKMerchantCapability) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3547918239940718, this, [value]); }
+  get merchantCapabilities(): PKMerchantCapability { return callSDK<PKMerchantCapability>("PassKit_a624b245971cfd00", 3095505959311357, this, []); }
+  set merchantCapabilities(value: PKMerchantCapability) { callSDK<void>("PassKit_a624b245971cfd00", 3547918239940718, this, [value]); }
   /**
    * var merchantIdentifier: String { get set }
    * @availability iOS 8.0+
    */
-  get merchantIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2028447490540200, this, []); }
-  set merchantIdentifier(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1139364707527945, this, [value]); }
+  get merchantIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2028447490540200, this, []); }
+  set merchantIdentifier(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 1139364707527945, this, [value]); }
   /**
    * var multiTokenContexts: [PKPaymentTokenContext] { get set }
    * @availability iOS 16.0+
    */
-  get multiTokenContexts(): Array<PKPaymentTokenContext> { return callSDK<Array<PKPaymentTokenContext>>("PassKit_2f6e018ff7e993f9", 4183392770107787, this, []); }
-  set multiTokenContexts(value: Array<PKPaymentTokenContext>) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3267239521796466, this, [value]); }
+  get multiTokenContexts(): Array<PKPaymentTokenContext> { return callSDK<Array<PKPaymentTokenContext>>("PassKit_a624b245971cfd00", 4183392770107787, this, []); }
+  set multiTokenContexts(value: Array<PKPaymentTokenContext>) { callSDK<void>("PassKit_a624b245971cfd00", 3267239521796466, this, [value]); }
   /**
    * var paymentSummaryItems: [PKPaymentSummaryItem] { get set }
    * @availability iOS 8.0+
    */
-  get paymentSummaryItems(): $SDK29 { return callSDK<$SDK29>("PassKit_2f6e018ff7e993f9", 3467240215397707, this, []); }
-  set paymentSummaryItems(value: $SDK29) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1121328266888129, this, [value]); }
+  get paymentSummaryItems(): $SDK29 { return callSDK<$SDK29>("PassKit_a624b245971cfd00", 3467240215397707, this, []); }
+  set paymentSummaryItems(value: $SDK29) { callSDK<void>("PassKit_a624b245971cfd00", 1121328266888129, this, [value]); }
   /**
    * var recurringPaymentRequest: PKRecurringPaymentRequest? { get set }
    * @availability iOS 16.0+
    */
-  get recurringPaymentRequest(): $SDK65 { return callSDK<$SDK65>("PassKit_2f6e018ff7e993f9", 3013481502063047, this, []); }
-  set recurringPaymentRequest(value: $SDK65) { callSDK<void>("PassKit_2f6e018ff7e993f9", 149779532993937, this, [value]); }
+  get recurringPaymentRequest(): $SDK65 { return callSDK<$SDK65>("PassKit_a624b245971cfd00", 3013481502063047, this, []); }
+  set recurringPaymentRequest(value: $SDK65) { callSDK<void>("PassKit_a624b245971cfd00", 149779532993937, this, [value]); }
   /**
    * var requiredBillingAddressFields: PKAddressField { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get requiredBillingAddressFields(): PKAddressField { return callSDK<PKAddressField>("PassKit_2f6e018ff7e993f9", 3009182126539139, this, []); }
-  set requiredBillingAddressFields(value: PKAddressField) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3446662304695331, this, [value]); }
+  get requiredBillingAddressFields(): PKAddressField { return callSDK<PKAddressField>("PassKit_a624b245971cfd00", 3009182126539139, this, []); }
+  set requiredBillingAddressFields(value: PKAddressField) { callSDK<void>("PassKit_a624b245971cfd00", 3446662304695331, this, [value]); }
   /**
    * var requiredBillingContactFields: Set<PKContactField> { get set }
    * @availability iOS 11.0+
    */
-  get requiredBillingContactFields(): Array<PKContactField> { return callSDK<Array<PKContactField>>("PassKit_2f6e018ff7e993f9", 681530144681646, this, []); }
-  set requiredBillingContactFields(value: Array<PKContactField>) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1413150790416534, this, [value]); }
+  get requiredBillingContactFields(): Array<PKContactField> { return callSDK<Array<PKContactField>>("PassKit_a624b245971cfd00", 681530144681646, this, []); }
+  set requiredBillingContactFields(value: Array<PKContactField>) { callSDK<void>("PassKit_a624b245971cfd00", 1413150790416534, this, [value]); }
   /**
    * var requiredShippingAddressFields: PKAddressField { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get requiredShippingAddressFields(): PKAddressField { return callSDK<PKAddressField>("PassKit_2f6e018ff7e993f9", 4351706078971460, this, []); }
-  set requiredShippingAddressFields(value: PKAddressField) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2901664450243048, this, [value]); }
+  get requiredShippingAddressFields(): PKAddressField { return callSDK<PKAddressField>("PassKit_a624b245971cfd00", 4351706078971460, this, []); }
+  set requiredShippingAddressFields(value: PKAddressField) { callSDK<void>("PassKit_a624b245971cfd00", 2901664450243048, this, [value]); }
   /**
    * var requiredShippingContactFields: Set<PKContactField> { get set }
    * @availability iOS 11.0+
    */
-  get requiredShippingContactFields(): Array<PKContactField> { return callSDK<Array<PKContactField>>("PassKit_2f6e018ff7e993f9", 3826104826885529, this, []); }
-  set requiredShippingContactFields(value: Array<PKContactField>) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2804863659440917, this, [value]); }
+  get requiredShippingContactFields(): Array<PKContactField> { return callSDK<Array<PKContactField>>("PassKit_a624b245971cfd00", 3826104826885529, this, []); }
+  set requiredShippingContactFields(value: Array<PKContactField>) { callSDK<void>("PassKit_a624b245971cfd00", 2804863659440917, this, [value]); }
   /**
    * unowned(unsafe) var shippingAddress: ABRecord? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get shippingAddress(): (unknown) | null { return callSDK<(unknown) | null>("PassKit_2f6e018ff7e993f9", 2991371905574202, this, []); }
-  set shippingAddress(value: (unknown) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4471778708513668, this, [value]); }
+  get shippingAddress(): (unknown) | null { return callSDK<(unknown) | null>("PassKit_a624b245971cfd00", 2991371905574202, this, []); }
+  set shippingAddress(value: (unknown) | null) { callSDK<void>("PassKit_a624b245971cfd00", 4471778708513668, this, [value]); }
   /**
    * var shippingContact: PKContact? { get set }
    * @availability iOS 9.0+
    */
-  get shippingContact(): (PKContact) | null { return callSDK<(PKContact) | null>("PassKit_2f6e018ff7e993f9", 37151927298470, this, []); }
-  set shippingContact(value: (PKContact) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1860496119714136, this, [value]); }
+  get shippingContact(): (PKContact) | null { return callSDK<(PKContact) | null>("PassKit_a624b245971cfd00", 37151927298470, this, []); }
+  set shippingContact(value: (PKContact) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1860496119714136, this, [value]); }
   /**
    * var shippingContactEditingMode: PKShippingContactEditingMode { get set }
    * @availability iOS 15.0+
    */
-  get shippingContactEditingMode(): PKShippingContactEditingMode { return callSDK<PKShippingContactEditingMode>("PassKit_2f6e018ff7e993f9", 531705218283214, this, []); }
-  set shippingContactEditingMode(value: PKShippingContactEditingMode) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3820678776059243, this, [value]); }
+  get shippingContactEditingMode(): PKShippingContactEditingMode { return callSDK<PKShippingContactEditingMode>("PassKit_a624b245971cfd00", 531705218283214, this, []); }
+  set shippingContactEditingMode(value: PKShippingContactEditingMode) { callSDK<void>("PassKit_a624b245971cfd00", 3820678776059243, this, [value]); }
   /**
    * var shippingMethods: [PKShippingMethod]? { get set }
    * @availability iOS 8.0+
    */
-  get shippingMethods(): $SDK66 { return callSDK<$SDK66>("PassKit_2f6e018ff7e993f9", 4267346457872610, this, []); }
-  set shippingMethods(value: $SDK66) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2552348234572108, this, [value]); }
+  get shippingMethods(): $SDK66 { return callSDK<$SDK66>("PassKit_a624b245971cfd00", 4267346457872610, this, []); }
+  set shippingMethods(value: $SDK66) { callSDK<void>("PassKit_a624b245971cfd00", 2552348234572108, this, [value]); }
   /**
    * var shippingType: PKShippingType { get set }
    * @availability iOS 8.3+
    */
-  get shippingType(): PKShippingType { return callSDK<PKShippingType>("PassKit_2f6e018ff7e993f9", 1798484549603315, this, []); }
-  set shippingType(value: PKShippingType) { callSDK<void>("PassKit_2f6e018ff7e993f9", 32020229523906, this, [value]); }
+  get shippingType(): PKShippingType { return callSDK<PKShippingType>("PassKit_a624b245971cfd00", 1798484549603315, this, []); }
+  set shippingType(value: PKShippingType) { callSDK<void>("PassKit_a624b245971cfd00", 32020229523906, this, [value]); }
   /**
    * var supportedCountries: Set<String>? { get set }
    * @availability iOS 11.0+
    */
-  get supportedCountries(): (Array<string>) | null { return callSDK<(Array<string>) | null>("PassKit_2f6e018ff7e993f9", 897874393112298, this, []); }
-  set supportedCountries(value: (Array<string>) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 426504216813641, this, [value]); }
+  get supportedCountries(): (Array<string>) | null { return callSDK<(Array<string>) | null>("PassKit_a624b245971cfd00", 897874393112298, this, []); }
+  set supportedCountries(value: (Array<string>) | null) { callSDK<void>("PassKit_a624b245971cfd00", 426504216813641, this, [value]); }
   /**
    * var supportedNetworks: [PKPaymentNetwork] { get set }
    * @availability iOS 8.0+
    */
-  get supportedNetworks(): Array<PKPaymentNetwork> { return callSDK<Array<PKPaymentNetwork>>("PassKit_2f6e018ff7e993f9", 356249008125967, this, []); }
-  set supportedNetworks(value: Array<PKPaymentNetwork>) { callSDK<void>("PassKit_2f6e018ff7e993f9", 471097587715670, this, [value]); }
+  get supportedNetworks(): Array<PKPaymentNetwork> { return callSDK<Array<PKPaymentNetwork>>("PassKit_a624b245971cfd00", 356249008125967, this, []); }
+  set supportedNetworks(value: Array<PKPaymentNetwork>) { callSDK<void>("PassKit_a624b245971cfd00", 471097587715670, this, [value]); }
   /**
    * var supportsCouponCode: Bool { get set }
    * @availability iOS 15.0+
    */
-  get supportsCouponCode(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 1975432112146746, this, []); }
-  set supportsCouponCode(value: boolean) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3703521478567863, this, [value]); }
+  get supportsCouponCode(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 1975432112146746, this, []); }
+  set supportsCouponCode(value: boolean) { callSDK<void>("PassKit_a624b245971cfd00", 3703521478567863, this, [value]); }
   /**
    * var unsupportedPrimaryAccountIdentifiers: [String] { get set }
    * @availability iOS 27.0+
    */
-  get unsupportedPrimaryAccountIdentifiers(): Array<string> { return callSDK<Array<string>>("PassKit_2f6e018ff7e993f9", 3355720792698495, this, []); }
-  set unsupportedPrimaryAccountIdentifiers(value: Array<string>) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3793673938310545, this, [value]); }
+  get unsupportedPrimaryAccountIdentifiers(): Array<string> { return callSDK<Array<string>>("PassKit_a624b245971cfd00", 3355720792698495, this, []); }
+  set unsupportedPrimaryAccountIdentifiers(value: Array<string>) { callSDK<void>("PassKit_a624b245971cfd00", 3793673938310545, this, [value]); }
   /**
    * var merchantCategoryCode: PKPaymentRequest.MerchantCategoryCode? { get set }
    * @availability iOS 18.0+
    */
-  get merchantCategoryCode(): $SDK67 { return callSDK<$SDK67>("PassKit_2f6e018ff7e993f9", 1136412384151000, this, []); }
-  set merchantCategoryCode(value: $SDK67) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3587566369893840, this, [value]); }
+  get merchantCategoryCode(): $SDK67 { return callSDK<$SDK67>("PassKit_a624b245971cfd00", 1136412384151000, this, []); }
+  set merchantCategoryCode(value: $SDK67) { callSDK<void>("PassKit_a624b245971cfd00", 3587566369893840, this, [value]); }
   /**
    * var applePayLaterAvailability: PKPaymentRequest.ApplePayLaterAvailability { get set }
    * @availability iOS 17.0+
    */
-  get applePayLaterAvailability(): PKPaymentRequest_ApplePayLaterAvailability { return callSDK<PKPaymentRequest_ApplePayLaterAvailability>("PassKit_2f6e018ff7e993f9", 1758331843596979, this, []); }
-  set applePayLaterAvailability(value: PKPaymentRequest_ApplePayLaterAvailability) { callSDK<void>("PassKit_2f6e018ff7e993f9", 788100865573139, this, [value]); }
+  get applePayLaterAvailability(): PKPaymentRequest_ApplePayLaterAvailability { return callSDK<PKPaymentRequest_ApplePayLaterAvailability>("PassKit_a624b245971cfd00", 1758331843596979, this, []); }
+  set applePayLaterAvailability(value: PKPaymentRequest_ApplePayLaterAvailability) { callSDK<void>("PassKit_a624b245971cfd00", 788100865573139, this, [value]); }
   /**
    * static func paymentCouponCodeExpiredError(localizedDescription: String? = nil) -> any Error
    * @availability iOS 15.0+
    */
-  static paymentCouponCodeExpiredError(localizedDescription?: (string) | null): NativeError { return callSDK<NativeError>("PassKit_2f6e018ff7e993f9", 4006071932926164, undefined, [localizedDescription]); }
+  static paymentCouponCodeExpiredError(localizedDescription?: (string) | null): NativeError { return callSDK<NativeError>("PassKit_a624b245971cfd00", 4006071932926164, undefined, [localizedDescription]); }
   /**
    * static func paymentCouponCodeInvalidError(localizedDescription: String? = nil) -> any Error
    * @availability iOS 15.0+
    */
-  static paymentCouponCodeInvalidError(localizedDescription?: (string) | null): NativeError { return callSDK<NativeError>("PassKit_2f6e018ff7e993f9", 398765861220890, undefined, [localizedDescription]); }
+  static paymentCouponCodeInvalidError(localizedDescription?: (string) | null): NativeError { return callSDK<NativeError>("PassKit_a624b245971cfd00", 398765861220890, undefined, [localizedDescription]); }
   declare readonly $type: { "c:objc(cs)PKPaymentRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "applicationData": true; "attributionIdentifier": true; "automaticReloadPaymentRequest": true; "billingAddress": true; "billingContact": true; "countryCode": true; "couponCode": true; "currencyCode": true; "deferredPaymentRequest": true; "isDelegatedRequest": true; "merchantCapabilities": true; "merchantIdentifier": true; "multiTokenContexts": true; "paymentSummaryItems": true; "recurringPaymentRequest": true; "requiredBillingAddressFields": true; "requiredBillingContactFields": true; "requiredShippingAddressFields": true; "requiredShippingContactFields": true; "shippingAddress": true; "shippingContact": true; "shippingContactEditingMode": true; "shippingMethods": true; "shippingType": true; "supportedCountries": true; "supportedNetworks": true; "supportsCouponCode": true; "unsupportedPrimaryAccountIdentifiers": true };
 }
@@ -3882,22 +3882,22 @@ export const PKPaymentRequest_MerchantCategoryCode = {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  getDescription($self: PKPaymentRequest_MerchantCategoryCode): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 309704895312219, $self, []); },
+  getDescription($self: PKPaymentRequest_MerchantCategoryCode): string { return callSDK<string>("PassKit_a624b245971cfd00", 309704895312219, $self, []); },
   /**
    * init(rawValue: Int16)
    * @availability iOS 18.0+
    */
-  initRawValue(rawValue: number): PKPaymentRequest_MerchantCategoryCode { return callSDK<PKPaymentRequest_MerchantCategoryCode>("PassKit_2f6e018ff7e993f9", 350400597933387, undefined, [rawValue]); },
+  initRawValue(rawValue: number): PKPaymentRequest_MerchantCategoryCode { return callSDK<PKPaymentRequest_MerchantCategoryCode>("PassKit_a624b245971cfd00", 350400597933387, undefined, [rawValue]); },
   /**
    * let rawValue: Int16
    * @availability iOS 18.0+
    */
-  getRawValue($self: PKPaymentRequest_MerchantCategoryCode): number { return callSDK<number>("PassKit_2f6e018ff7e993f9", 3174201606363721, $self, []); },
+  getRawValue($self: PKPaymentRequest_MerchantCategoryCode): number { return callSDK<number>("PassKit_a624b245971cfd00", 3174201606363721, $self, []); },
   /**
    * init?(_ description: String)
    * @availability iOS 18.0+
    */
-  init(description: string): (PKPaymentRequest_MerchantCategoryCode) | null { return callSDK<(PKPaymentRequest_MerchantCategoryCode) | null>("PassKit_2f6e018ff7e993f9", 895453145373281, undefined, [description]); }
+  init(description: string): (PKPaymentRequest_MerchantCategoryCode) | null { return callSDK<(PKPaymentRequest_MerchantCategoryCode) | null>("PassKit_a624b245971cfd00", 895453145373281, undefined, [description]); }
 };
 
 /**
@@ -3915,49 +3915,49 @@ export class PKPaymentRequestUpdate extends SDKHandle {
    * init(paymentSummaryItems: [PKPaymentSummaryItem])
    * @availability iOS 11.0+
    */
-  static init(paymentSummaryItems: $SDK29): PKPaymentRequestUpdate { return callSDK<PKPaymentRequestUpdate>("PassKit_2f6e018ff7e993f9", 584666412824109, undefined, [paymentSummaryItems]); }
+  static init(paymentSummaryItems: $SDK29): PKPaymentRequestUpdate { return callSDK<PKPaymentRequestUpdate>("PassKit_a624b245971cfd00", 584666412824109, undefined, [paymentSummaryItems]); }
   /**
    * var automaticReloadPaymentRequest: PKAutomaticReloadPaymentRequest? { get set }
    * @availability iOS 16.0+
    */
-  get automaticReloadPaymentRequest(): $SDK62 { return callSDK<$SDK62>("PassKit_2f6e018ff7e993f9", 4045210806867953, this, []); }
-  set automaticReloadPaymentRequest(value: $SDK62) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3016418658796724, this, [value]); }
+  get automaticReloadPaymentRequest(): $SDK62 { return callSDK<$SDK62>("PassKit_a624b245971cfd00", 4045210806867953, this, []); }
+  set automaticReloadPaymentRequest(value: $SDK62) { callSDK<void>("PassKit_a624b245971cfd00", 3016418658796724, this, [value]); }
   /**
    * var deferredPaymentRequest: PKDeferredPaymentRequest? { get set }
    * @availability iOS 16.4+
    */
-  get deferredPaymentRequest(): $SDK63 { return callSDK<$SDK63>("PassKit_2f6e018ff7e993f9", 1386378739143800, this, []); }
-  set deferredPaymentRequest(value: $SDK63) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2902837355097302, this, [value]); }
+  get deferredPaymentRequest(): $SDK63 { return callSDK<$SDK63>("PassKit_a624b245971cfd00", 1386378739143800, this, []); }
+  set deferredPaymentRequest(value: $SDK63) { callSDK<void>("PassKit_a624b245971cfd00", 2902837355097302, this, [value]); }
   /**
    * var multiTokenContexts: [PKPaymentTokenContext]? { get set }
    * @availability iOS 16.0+
    */
-  get multiTokenContexts(): $SDK68 { return callSDK<$SDK68>("PassKit_2f6e018ff7e993f9", 2266871466621716, this, []); }
-  set multiTokenContexts(value: $SDK68) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2196720924574105, this, [value]); }
+  get multiTokenContexts(): $SDK68 { return callSDK<$SDK68>("PassKit_a624b245971cfd00", 2266871466621716, this, []); }
+  set multiTokenContexts(value: $SDK68) { callSDK<void>("PassKit_a624b245971cfd00", 2196720924574105, this, [value]); }
   /**
    * var paymentSummaryItems: [PKPaymentSummaryItem] { get set }
    * @availability iOS 11.0+
    */
-  get paymentSummaryItems(): $SDK29 { return callSDK<$SDK29>("PassKit_2f6e018ff7e993f9", 3471889668343110, this, []); }
-  set paymentSummaryItems(value: $SDK29) { callSDK<void>("PassKit_2f6e018ff7e993f9", 717427617466824, this, [value]); }
+  get paymentSummaryItems(): $SDK29 { return callSDK<$SDK29>("PassKit_a624b245971cfd00", 3471889668343110, this, []); }
+  set paymentSummaryItems(value: $SDK29) { callSDK<void>("PassKit_a624b245971cfd00", 717427617466824, this, [value]); }
   /**
    * var recurringPaymentRequest: PKRecurringPaymentRequest? { get set }
    * @availability iOS 16.0+
    */
-  get recurringPaymentRequest(): $SDK65 { return callSDK<$SDK65>("PassKit_2f6e018ff7e993f9", 7799170794130, this, []); }
-  set recurringPaymentRequest(value: $SDK65) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2626358092491657, this, [value]); }
+  get recurringPaymentRequest(): $SDK65 { return callSDK<$SDK65>("PassKit_a624b245971cfd00", 7799170794130, this, []); }
+  set recurringPaymentRequest(value: $SDK65) { callSDK<void>("PassKit_a624b245971cfd00", 2626358092491657, this, [value]); }
   /**
    * var shippingMethods: [PKShippingMethod] { get set }
    * @availability iOS 15.0+
    */
-  get shippingMethods(): Array<PKShippingMethod> { return callSDK<Array<PKShippingMethod>>("PassKit_2f6e018ff7e993f9", 2602084853976998, this, []); }
-  set shippingMethods(value: Array<PKShippingMethod>) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2411914647195043, this, [value]); }
+  get shippingMethods(): Array<PKShippingMethod> { return callSDK<Array<PKShippingMethod>>("PassKit_a624b245971cfd00", 2602084853976998, this, []); }
+  set shippingMethods(value: Array<PKShippingMethod>) { callSDK<void>("PassKit_a624b245971cfd00", 2411914647195043, this, [value]); }
   /**
    * var status: PKPaymentAuthorizationStatus { get set }
    * @availability iOS 11.0+
    */
-  get status(): PKPaymentAuthorizationStatus { return callSDK<PKPaymentAuthorizationStatus>("PassKit_2f6e018ff7e993f9", 3023205931121458, this, []); }
-  set status(value: PKPaymentAuthorizationStatus) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2733346630620338, this, [value]); }
+  get status(): PKPaymentAuthorizationStatus { return callSDK<PKPaymentAuthorizationStatus>("PassKit_a624b245971cfd00", 3023205931121458, this, []); }
+  set status(value: PKPaymentAuthorizationStatus) { callSDK<void>("PassKit_a624b245971cfd00", 2733346630620338, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKPaymentRequestUpdate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "automaticReloadPaymentRequest": true; "deferredPaymentRequest": true; "multiTokenContexts": true; "paymentSummaryItems": true; "recurringPaymentRequest": true; "shippingMethods": true; "status": true };
 }
@@ -3971,13 +3971,13 @@ export class PKPaymentRequestCouponCodeUpdate extends (PKPaymentRequestUpdate as
    * init(errors: [any Error]?, paymentSummaryItems: [PKPaymentSummaryItem], shippingMethods: [PKShippingMethod])
    * @availability iOS 15.0+
    */
-  static init(errors: $SDK57, paymentSummaryItems: $SDK29, shippingMethods: Array<PKShippingMethod>): PKPaymentRequestCouponCodeUpdate { return callSDK<PKPaymentRequestCouponCodeUpdate>("PassKit_2f6e018ff7e993f9", 475671363109656, undefined, [errors, paymentSummaryItems, shippingMethods]); }
+  static init(errors: $SDK57, paymentSummaryItems: $SDK29, shippingMethods: Array<PKShippingMethod>): PKPaymentRequestCouponCodeUpdate { return callSDK<PKPaymentRequestCouponCodeUpdate>("PassKit_a624b245971cfd00", 475671363109656, undefined, [errors, paymentSummaryItems, shippingMethods]); }
   /**
    * var errors: [any Error]! { get set }
    * @availability iOS 15.0+
    */
-  get errors(): $SDK57 { return callSDK<$SDK57>("PassKit_2f6e018ff7e993f9", 3031810258468441, this, []); }
-  set errors(value: $SDK57) { callSDK<void>("PassKit_2f6e018ff7e993f9", 329552178272311, this, [value]); }
+  get errors(): $SDK57 { return callSDK<$SDK57>("PassKit_a624b245971cfd00", 3031810258468441, this, []); }
+  set errors(value: $SDK57) { callSDK<void>("PassKit_a624b245971cfd00", 329552178272311, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKPaymentRequestCouponCodeUpdate": true; "c:objc(cs)PKPaymentRequestUpdate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "automaticReloadPaymentRequest": true; "deferredPaymentRequest": true; "multiTokenContexts": true; "paymentSummaryItems": true; "recurringPaymentRequest": true; "shippingMethods": true; "status": true; "errors": true };
 }
@@ -3991,19 +3991,19 @@ export class PKPaymentRequestMerchantSessionUpdate extends SDKHandle {
    * init(status: PKPaymentAuthorizationStatus, merchantSession session: PKPaymentMerchantSession?)
    * @availability iOS 14.0+
    */
-  static init(status: PKPaymentAuthorizationStatus, session?: $SDK69): PKPaymentRequestMerchantSessionUpdate { return callSDK<PKPaymentRequestMerchantSessionUpdate>("PassKit_2f6e018ff7e993f9", 1738557215010, undefined, [status, session]); }
+  static init(status: PKPaymentAuthorizationStatus, session?: $SDK69): PKPaymentRequestMerchantSessionUpdate { return callSDK<PKPaymentRequestMerchantSessionUpdate>("PassKit_a624b245971cfd00", 1738557215010, undefined, [status, session]); }
   /**
    * var session: PKPaymentMerchantSession? { get set }
    * @availability iOS 14.0+
    */
-  get session(): $SDK69 { return callSDK<$SDK69>("PassKit_2f6e018ff7e993f9", 2893615570822580, this, []); }
-  set session(value: $SDK69) { callSDK<void>("PassKit_2f6e018ff7e993f9", 812319970852962, this, [value]); }
+  get session(): $SDK69 { return callSDK<$SDK69>("PassKit_a624b245971cfd00", 2893615570822580, this, []); }
+  set session(value: $SDK69) { callSDK<void>("PassKit_a624b245971cfd00", 812319970852962, this, [value]); }
   /**
    * var status: PKPaymentAuthorizationStatus { get set }
    * @availability iOS 14.0+
    */
-  get status(): PKPaymentAuthorizationStatus { return callSDK<PKPaymentAuthorizationStatus>("PassKit_2f6e018ff7e993f9", 217813609960780, this, []); }
-  set status(value: PKPaymentAuthorizationStatus) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2622111387818299, this, [value]); }
+  get status(): PKPaymentAuthorizationStatus { return callSDK<PKPaymentAuthorizationStatus>("PassKit_a624b245971cfd00", 217813609960780, this, []); }
+  set status(value: PKPaymentAuthorizationStatus) { callSDK<void>("PassKit_a624b245971cfd00", 2622111387818299, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKPaymentRequestMerchantSessionUpdate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "session": true; "status": true };
 }
@@ -4017,13 +4017,13 @@ export class PKPaymentRequestPaymentMethodUpdate extends (PKPaymentRequestUpdate
    * init(errors: [any Error]?, paymentSummaryItems: [PKPaymentSummaryItem])
    * @availability iOS 11.0+
    */
-  static init(errors: $SDK57, paymentSummaryItems: $SDK29): PKPaymentRequestPaymentMethodUpdate { return callSDK<PKPaymentRequestPaymentMethodUpdate>("PassKit_2f6e018ff7e993f9", 2593942265102217, undefined, [errors, paymentSummaryItems]); }
+  static init(errors: $SDK57, paymentSummaryItems: $SDK29): PKPaymentRequestPaymentMethodUpdate { return callSDK<PKPaymentRequestPaymentMethodUpdate>("PassKit_a624b245971cfd00", 2593942265102217, undefined, [errors, paymentSummaryItems]); }
   /**
    * var errors: [any Error]! { get set }
    * @availability iOS 11.0+
    */
-  get errors(): $SDK57 { return callSDK<$SDK57>("PassKit_2f6e018ff7e993f9", 4044864987595109, this, []); }
-  set errors(value: $SDK57) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1038136462450857, this, [value]); }
+  get errors(): $SDK57 { return callSDK<$SDK57>("PassKit_a624b245971cfd00", 4044864987595109, this, []); }
+  set errors(value: $SDK57) { callSDK<void>("PassKit_a624b245971cfd00", 1038136462450857, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKPaymentRequestPaymentMethodUpdate": true; "c:objc(cs)PKPaymentRequestUpdate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "automaticReloadPaymentRequest": true; "deferredPaymentRequest": true; "multiTokenContexts": true; "paymentSummaryItems": true; "recurringPaymentRequest": true; "shippingMethods": true; "status": true; "errors": true };
 }
@@ -4037,19 +4037,19 @@ export class PKPaymentRequestShippingContactUpdate extends (PKPaymentRequestUpda
    * init(errors: [any Error]?, paymentSummaryItems: [PKPaymentSummaryItem], shippingMethods: [PKShippingMethod])
    * @availability iOS 11.0+
    */
-  static init(errors: $SDK57, paymentSummaryItems: $SDK29, shippingMethods: Array<PKShippingMethod>): PKPaymentRequestShippingContactUpdate { return callSDK<PKPaymentRequestShippingContactUpdate>("PassKit_2f6e018ff7e993f9", 3812386066473030, undefined, [errors, paymentSummaryItems, shippingMethods]); }
+  static init(errors: $SDK57, paymentSummaryItems: $SDK29, shippingMethods: Array<PKShippingMethod>): PKPaymentRequestShippingContactUpdate { return callSDK<PKPaymentRequestShippingContactUpdate>("PassKit_a624b245971cfd00", 3812386066473030, undefined, [errors, paymentSummaryItems, shippingMethods]); }
   /**
    * var errors: [any Error]! { get set }
    * @availability iOS 11.0+
    */
-  get errors(): $SDK57 { return callSDK<$SDK57>("PassKit_2f6e018ff7e993f9", 2440921746102492, this, []); }
-  set errors(value: $SDK57) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1631634278661711, this, [value]); }
+  get errors(): $SDK57 { return callSDK<$SDK57>("PassKit_a624b245971cfd00", 2440921746102492, this, []); }
+  set errors(value: $SDK57) { callSDK<void>("PassKit_a624b245971cfd00", 1631634278661711, this, [value]); }
   /**
    * var shippingMethods: [PKShippingMethod] { get set }
    * @availability iOS 11.0+
    */
-  get shippingMethods(): Array<PKShippingMethod> { return callSDK<Array<PKShippingMethod>>("PassKit_2f6e018ff7e993f9", 1894955898818973, this, []); }
-  set shippingMethods(value: Array<PKShippingMethod>) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4343972276831878, this, [value]); }
+  get shippingMethods(): Array<PKShippingMethod> { return callSDK<Array<PKShippingMethod>>("PassKit_a624b245971cfd00", 1894955898818973, this, []); }
+  set shippingMethods(value: Array<PKShippingMethod>) { callSDK<void>("PassKit_a624b245971cfd00", 4343972276831878, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKPaymentRequestShippingContactUpdate": true; "c:objc(cs)PKPaymentRequestUpdate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "automaticReloadPaymentRequest": true; "deferredPaymentRequest": true; "multiTokenContexts": true; "paymentSummaryItems": true; "recurringPaymentRequest": true; "shippingMethods": true; "status": true; "errors": true };
 }
@@ -4060,7 +4060,7 @@ export class PKPaymentRequestShippingContactUpdate extends (PKPaymentRequestUpda
  */
 export class PKPaymentRequestShippingMethodUpdate extends (PKPaymentRequestUpdate as unknown as Omit<typeof PKPaymentRequestUpdate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPaymentRequestUpdate)) {
   /** init() */
-  static init(): PKPaymentRequestShippingMethodUpdate { return callSDK<PKPaymentRequestShippingMethodUpdate>("PassKit_2f6e018ff7e993f9", 2182334611961354, undefined, []); }
+  static init(): PKPaymentRequestShippingMethodUpdate { return callSDK<PKPaymentRequestShippingMethodUpdate>("PassKit_a624b245971cfd00", 2182334611961354, undefined, []); }
   declare readonly $type: { "c:objc(cs)PKPaymentRequestShippingMethodUpdate": true; "c:objc(cs)PKPaymentRequestUpdate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "automaticReloadPaymentRequest": true; "deferredPaymentRequest": true; "multiTokenContexts": true; "paymentSummaryItems": true; "recurringPaymentRequest": true; "shippingMethods": true; "status": true };
 }
@@ -4076,7 +4076,7 @@ export const PKPaymentSummaryItemType = {
    * init?(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (PKPaymentSummaryItemType) | null { return callSDK<(PKPaymentSummaryItemType) | null>("PassKit_2f6e018ff7e993f9", 3981872702662414, undefined, [rawValue]); }
+  init(rawValue: number): (PKPaymentSummaryItemType) | null { return callSDK<(PKPaymentSummaryItemType) | null>("PassKit_a624b245971cfd00", 3981872702662414, undefined, [rawValue]); }
 };
 
 /**
@@ -4085,34 +4085,34 @@ export const PKPaymentSummaryItemType = {
  */
 export class PKPaymentToken extends SDKHandle {
   /** init() */
-  static init(): PKPaymentToken { return callSDK<PKPaymentToken>("PassKit_2f6e018ff7e993f9", 1584179109572158, undefined, []); }
+  static init(): PKPaymentToken { return callSDK<PKPaymentToken>("PassKit_a624b245971cfd00", 1584179109572158, undefined, []); }
   /**
    * var paymentData: Data { get }
    * @availability iOS 8.0+
    */
-  get paymentData(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_2f6e018ff7e993f9", 1088547217493168, this, []); }
+  get paymentData(): ArrayBuffer { return callSDK<ArrayBuffer>("PassKit_a624b245971cfd00", 1088547217493168, this, []); }
   /**
    * var paymentInstrumentName: String { get }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get paymentInstrumentName(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2440676438623850, this, []); }
+  get paymentInstrumentName(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2440676438623850, this, []); }
   /**
    * var paymentMethod: PKPaymentMethod { get }
    * @availability iOS 9.0+
    */
-  get paymentMethod(): PKPaymentMethod { return callSDK<PKPaymentMethod>("PassKit_2f6e018ff7e993f9", 2516308795130258, this, []); }
+  get paymentMethod(): PKPaymentMethod { return callSDK<PKPaymentMethod>("PassKit_a624b245971cfd00", 2516308795130258, this, []); }
   /**
    * var paymentNetwork: String { get }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get paymentNetwork(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2355739481976960, this, []); }
+  get paymentNetwork(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2355739481976960, this, []); }
   /**
    * var transactionIdentifier: String { get }
    * @availability iOS 8.0+
    */
-  get transactionIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 3114510231357375, this, []); }
+  get transactionIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 3114510231357375, this, []); }
   declare readonly $type: { "c:objc(cs)PKPaymentToken": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "paymentData": true; "paymentInstrumentName": true; "paymentMethod": true; "paymentNetwork": true; "transactionIdentifier": true };
 }
@@ -4126,37 +4126,37 @@ export class PKPaymentTokenContext extends SDKHandle {
    * init(merchantIdentifier: String, externalIdentifier: String, merchantName: String, merchantDomain: String?, amount: NSDecimalNumber)
    * @availability iOS 16.0+
    */
-  static init(merchantIdentifier: string, externalIdentifier: string, merchantName: string, merchantDomain: (string) | null, amount: _Foundation_NSDecimalNumber): PKPaymentTokenContext { return callSDK<PKPaymentTokenContext>("PassKit_2f6e018ff7e993f9", 2259816594992515, undefined, [merchantIdentifier, externalIdentifier, merchantName, merchantDomain, amount]); }
+  static init(merchantIdentifier: string, externalIdentifier: string, merchantName: string, merchantDomain: (string) | null, amount: _Foundation_NSDecimalNumber): PKPaymentTokenContext { return callSDK<PKPaymentTokenContext>("PassKit_a624b245971cfd00", 2259816594992515, undefined, [merchantIdentifier, externalIdentifier, merchantName, merchantDomain, amount]); }
   /**
    * @NSCopying var amount: NSDecimalNumber { get set }
    * @availability iOS 16.0+
    */
-  get amount(): _Foundation_NSDecimalNumber { return callSDK<_Foundation_NSDecimalNumber>("PassKit_2f6e018ff7e993f9", 4040418182001910, this, []); }
-  set amount(value: _Foundation_NSDecimalNumber) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4084748156013980, this, [value]); }
+  get amount(): _Foundation_NSDecimalNumber { return callSDK<_Foundation_NSDecimalNumber>("PassKit_a624b245971cfd00", 4040418182001910, this, []); }
+  set amount(value: _Foundation_NSDecimalNumber) { callSDK<void>("PassKit_a624b245971cfd00", 4084748156013980, this, [value]); }
   /**
    * var externalIdentifier: String { get set }
    * @availability iOS 16.0+
    */
-  get externalIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 642704798641827, this, []); }
-  set externalIdentifier(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1024310310940537, this, [value]); }
+  get externalIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 642704798641827, this, []); }
+  set externalIdentifier(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 1024310310940537, this, [value]); }
   /**
    * var merchantDomain: String? { get set }
    * @availability iOS 16.0+
    */
-  get merchantDomain(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 2576468842307482, this, []); }
-  set merchantDomain(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1215460321284624, this, [value]); }
+  get merchantDomain(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 2576468842307482, this, []); }
+  set merchantDomain(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1215460321284624, this, [value]); }
   /**
    * var merchantIdentifier: String { get set }
    * @availability iOS 16.0+
    */
-  get merchantIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2322739639136745, this, []); }
-  set merchantIdentifier(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 244131896442067, this, [value]); }
+  get merchantIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2322739639136745, this, []); }
+  set merchantIdentifier(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 244131896442067, this, [value]); }
   /**
    * var merchantName: String { get set }
    * @availability iOS 16.0+
    */
-  get merchantName(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2837767902296945, this, []); }
-  set merchantName(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3238864563137443, this, [value]); }
+  get merchantName(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2837767902296945, this, []); }
+  set merchantName(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 3238864563137443, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKPaymentTokenContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "amount": true; "externalIdentifier": true; "merchantDomain": true; "merchantIdentifier": true; "merchantName": true };
 }
@@ -4172,17 +4172,17 @@ export const PKRadioTechnology = {
    * static var bluetooth: PKRadioTechnology { get }
    * @availability iOS 14.5+
    */
-  get bluetooth(): PKRadioTechnology { return callSDK<PKRadioTechnology>("PassKit_2f6e018ff7e993f9", 3281149098870201, undefined, []); },
+  get bluetooth(): PKRadioTechnology { return callSDK<PKRadioTechnology>("PassKit_a624b245971cfd00", 3281149098870201, undefined, []); },
   /**
    * static var NFC: PKRadioTechnology { get }
    * @availability iOS 14.5+
    */
-  get NFC(): PKRadioTechnology { return callSDK<PKRadioTechnology>("PassKit_2f6e018ff7e993f9", 4079012244654126, undefined, []); },
+  get NFC(): PKRadioTechnology { return callSDK<PKRadioTechnology>("PassKit_a624b245971cfd00", 4079012244654126, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 14.5+
    */
-  init(rawValue: number): PKRadioTechnology { return callSDK<PKRadioTechnology>("PassKit_2f6e018ff7e993f9", 3076567664580671, undefined, [rawValue]); }
+  init(rawValue: number): PKRadioTechnology { return callSDK<PKRadioTechnology>("PassKit_a624b245971cfd00", 3076567664580671, undefined, [rawValue]); }
 };
 
 /**
@@ -4194,43 +4194,43 @@ export class PKRecurringPaymentRequest extends SDKHandle {
    * init(paymentDescription: String, regularBilling: PKRecurringPaymentSummaryItem, managementURL: URL)
    * @availability iOS 16.0+
    */
-  static init(paymentDescription: string, regularBilling: PKRecurringPaymentSummaryItem, managementURL: string): PKRecurringPaymentRequest { return callSDK<PKRecurringPaymentRequest>("PassKit_2f6e018ff7e993f9", 1464289087865178, undefined, [paymentDescription, regularBilling, managementURL]); }
+  static init(paymentDescription: string, regularBilling: PKRecurringPaymentSummaryItem, managementURL: string): PKRecurringPaymentRequest { return callSDK<PKRecurringPaymentRequest>("PassKit_a624b245971cfd00", 1464289087865178, undefined, [paymentDescription, regularBilling, managementURL]); }
   /**
    * var billingAgreement: String? { get set }
    * @availability iOS 16.0+
    */
-  get billingAgreement(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 3337206679041199, this, []); }
-  set billingAgreement(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2796604602466421, this, [value]); }
+  get billingAgreement(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 3337206679041199, this, []); }
+  set billingAgreement(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 2796604602466421, this, [value]); }
   /**
    * var managementURL: URL { get set }
    * @availability iOS 16.0+
    */
-  get managementURL(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2339294645976507, this, []); }
-  set managementURL(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 2727037740660821, this, [value]); }
+  get managementURL(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2339294645976507, this, []); }
+  set managementURL(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 2727037740660821, this, [value]); }
   /**
    * var paymentDescription: String { get set }
    * @availability iOS 16.0+
    */
-  get paymentDescription(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 487167645091794, this, []); }
-  set paymentDescription(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 300916533849031, this, [value]); }
+  get paymentDescription(): string { return callSDK<string>("PassKit_a624b245971cfd00", 487167645091794, this, []); }
+  set paymentDescription(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 300916533849031, this, [value]); }
   /**
    * var regularBilling: PKRecurringPaymentSummaryItem { get set }
    * @availability iOS 16.0+
    */
-  get regularBilling(): PKRecurringPaymentSummaryItem { return callSDK<PKRecurringPaymentSummaryItem>("PassKit_2f6e018ff7e993f9", 3185472646427265, this, []); }
-  set regularBilling(value: PKRecurringPaymentSummaryItem) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1198325686170251, this, [value]); }
+  get regularBilling(): PKRecurringPaymentSummaryItem { return callSDK<PKRecurringPaymentSummaryItem>("PassKit_a624b245971cfd00", 3185472646427265, this, []); }
+  set regularBilling(value: PKRecurringPaymentSummaryItem) { callSDK<void>("PassKit_a624b245971cfd00", 1198325686170251, this, [value]); }
   /**
    * var tokenNotificationURL: URL? { get set }
    * @availability iOS 16.0+
    */
-  get tokenNotificationURL(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 3680102781332014, this, []); }
-  set tokenNotificationURL(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3631855125665794, this, [value]); }
+  get tokenNotificationURL(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 3680102781332014, this, []); }
+  set tokenNotificationURL(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 3631855125665794, this, [value]); }
   /**
    * var trialBilling: PKRecurringPaymentSummaryItem? { get set }
    * @availability iOS 16.0+
    */
-  get trialBilling(): $SDK70 { return callSDK<$SDK70>("PassKit_2f6e018ff7e993f9", 4161618007744644, this, []); }
-  set trialBilling(value: $SDK70) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4077987837716856, this, [value]); }
+  get trialBilling(): $SDK70 { return callSDK<$SDK70>("PassKit_a624b245971cfd00", 4161618007744644, this, []); }
+  set trialBilling(value: $SDK70) { callSDK<void>("PassKit_a624b245971cfd00", 4077987837716856, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKRecurringPaymentRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "billingAgreement": true; "managementURL": true; "paymentDescription": true; "regularBilling": true; "tokenNotificationURL": true; "trialBilling": true };
 }
@@ -4241,31 +4241,31 @@ export class PKRecurringPaymentRequest extends SDKHandle {
  */
 export class PKRecurringPaymentSummaryItem extends PKPaymentSummaryItem {
   /** init() */
-  static init(): PKRecurringPaymentSummaryItem { return callSDK<PKRecurringPaymentSummaryItem>("PassKit_2f6e018ff7e993f9", 819056508182564, undefined, []); }
+  static init(): PKRecurringPaymentSummaryItem { return callSDK<PKRecurringPaymentSummaryItem>("PassKit_a624b245971cfd00", 819056508182564, undefined, []); }
   /**
    * var endDate: Date? { get set }
    * @availability iOS 15.0+
    */
-  get endDate(): $SDK27 { return callSDK<$SDK27>("PassKit_2f6e018ff7e993f9", 3822918775294755, this, []); }
-  set endDate(value: $SDK27) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3538530113470515, this, [value]); }
+  get endDate(): $SDK27 { return callSDK<$SDK27>("PassKit_a624b245971cfd00", 3822918775294755, this, []); }
+  set endDate(value: $SDK27) { callSDK<void>("PassKit_a624b245971cfd00", 3538530113470515, this, [value]); }
   /**
    * var intervalCount: Int { get set }
    * @availability iOS 15.0+
    */
-  get intervalCount(): number { return callSDK<number>("PassKit_2f6e018ff7e993f9", 3259087777480613, this, []); }
-  set intervalCount(value: number) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1562179204690727, this, [value]); }
+  get intervalCount(): number { return callSDK<number>("PassKit_a624b245971cfd00", 3259087777480613, this, []); }
+  set intervalCount(value: number) { callSDK<void>("PassKit_a624b245971cfd00", 1562179204690727, this, [value]); }
   /**
    * var intervalUnit: NSCalendar.Unit { get set }
    * @availability iOS 15.0+
    */
-  get intervalUnit(): _Foundation_NSCalendar_Unit { return callSDK<_Foundation_NSCalendar_Unit>("PassKit_2f6e018ff7e993f9", 1079366911064270, this, []); }
-  set intervalUnit(value: _Foundation_NSCalendar_Unit) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3194910685922741, this, [value]); }
+  get intervalUnit(): _Foundation_NSCalendar_Unit { return callSDK<_Foundation_NSCalendar_Unit>("PassKit_a624b245971cfd00", 1079366911064270, this, []); }
+  set intervalUnit(value: _Foundation_NSCalendar_Unit) { callSDK<void>("PassKit_a624b245971cfd00", 3194910685922741, this, [value]); }
   /**
    * var startDate: Date? { get set }
    * @availability iOS 15.0+
    */
-  get startDate(): $SDK27 { return callSDK<$SDK27>("PassKit_2f6e018ff7e993f9", 1313645869859372, this, []); }
-  set startDate(value: $SDK27) { callSDK<void>("PassKit_2f6e018ff7e993f9", 142380469146148, this, [value]); }
+  get startDate(): $SDK27 { return callSDK<$SDK27>("PassKit_a624b245971cfd00", 1313645869859372, this, []); }
+  set startDate(value: $SDK27) { callSDK<void>("PassKit_a624b245971cfd00", 142380469146148, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKRecurringPaymentSummaryItem": true; "c:objc(cs)PKPaymentSummaryItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "amount": true; "label": true; "type": true; "endDate": true; "intervalCount": true; "intervalUnit": true; "startDate": true };
 }
@@ -4281,7 +4281,7 @@ export const PKSecureElementPass_PassActivationState = {
    * init?(rawValue: Int)
    * @availability iOS 13.4+
    */
-  init(rawValue: number): (PKSecureElementPass_PassActivationState) | null { return callSDK<(PKSecureElementPass_PassActivationState) | null>("PassKit_2f6e018ff7e993f9", 594752097381467, undefined, [rawValue]); }
+  init(rawValue: number): (PKSecureElementPass_PassActivationState) | null { return callSDK<(PKSecureElementPass_PassActivationState) | null>("PassKit_a624b245971cfd00", 594752097381467, undefined, [rawValue]); }
 };
 
 /**
@@ -4294,96 +4294,96 @@ export class PKShareablePassMetadata extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 16.0
    */
-  static initProvisioningCredentialIdentifierCardConfigurationIdentifierSharingInstanceIdentifierPassThumbnailImageOwnerDisplayNameLocalizedDescription(credentialIdentifier: string, cardConfigurationIdentifier: string, sharingInstanceIdentifier: string, passThumbnailImage: _CoreGraphics_CGImage, ownerDisplayName: string, localizedDescription: string): (PKShareablePassMetadata) | null { return callSDK<(PKShareablePassMetadata) | null>("PassKit_2f6e018ff7e993f9", 2758012499354847, undefined, [credentialIdentifier, cardConfigurationIdentifier, sharingInstanceIdentifier, passThumbnailImage, ownerDisplayName, localizedDescription]); }
+  static initProvisioningCredentialIdentifierCardConfigurationIdentifierSharingInstanceIdentifierPassThumbnailImageOwnerDisplayNameLocalizedDescription(credentialIdentifier: string, cardConfigurationIdentifier: string, sharingInstanceIdentifier: string, passThumbnailImage: _CoreGraphics_CGImage, ownerDisplayName: string, localizedDescription: string): (PKShareablePassMetadata) | null { return callSDK<(PKShareablePassMetadata) | null>("PassKit_a624b245971cfd00", 2758012499354847, undefined, [credentialIdentifier, cardConfigurationIdentifier, sharingInstanceIdentifier, passThumbnailImage, ownerDisplayName, localizedDescription]); }
   /**
    * init(provisioningCredentialIdentifier credentialIdentifier: String, sharingInstanceIdentifier: String, cardConfigurationIdentifier templateIdentifier: String, preview: PKShareablePassMetadata.Preview)
    * @availability iOS 16.0+
    */
-  static initProvisioningCredentialIdentifierSharingInstanceIdentifierCardConfigurationIdentifierPreview(credentialIdentifier: string, sharingInstanceIdentifier: string, templateIdentifier: string, preview: PKShareablePassMetadata_Preview): PKShareablePassMetadata { return callSDK<PKShareablePassMetadata>("PassKit_2f6e018ff7e993f9", 2136985927757028, undefined, [credentialIdentifier, sharingInstanceIdentifier, templateIdentifier, preview]); }
+  static initProvisioningCredentialIdentifierSharingInstanceIdentifierCardConfigurationIdentifierPreview(credentialIdentifier: string, sharingInstanceIdentifier: string, templateIdentifier: string, preview: PKShareablePassMetadata_Preview): PKShareablePassMetadata { return callSDK<PKShareablePassMetadata>("PassKit_a624b245971cfd00", 2136985927757028, undefined, [credentialIdentifier, sharingInstanceIdentifier, templateIdentifier, preview]); }
   /**
    * init(provisioningCredentialIdentifier credentialIdentifier: String, sharingInstanceIdentifier: String, cardTemplateIdentifier templateIdentifier: String, preview: PKShareablePassMetadata.Preview)
    * @availability iOS 16.0+
    */
-  static initProvisioningCredentialIdentifierSharingInstanceIdentifierCardTemplateIdentifierPreview(credentialIdentifier: string, sharingInstanceIdentifier: string, templateIdentifier: string, preview: PKShareablePassMetadata_Preview): PKShareablePassMetadata { return callSDK<PKShareablePassMetadata>("PassKit_2f6e018ff7e993f9", 2984029102642450, undefined, [credentialIdentifier, sharingInstanceIdentifier, templateIdentifier, preview]); }
+  static initProvisioningCredentialIdentifierSharingInstanceIdentifierCardTemplateIdentifierPreview(credentialIdentifier: string, sharingInstanceIdentifier: string, templateIdentifier: string, preview: PKShareablePassMetadata_Preview): PKShareablePassMetadata { return callSDK<PKShareablePassMetadata>("PassKit_a624b245971cfd00", 2984029102642450, undefined, [credentialIdentifier, sharingInstanceIdentifier, templateIdentifier, preview]); }
   /**
    * init(provisioningCredentialIdentifier credentialIdentifier: String, sharingInstanceIdentifier: String, passThumbnailImage: CGImage, ownerDisplayName: String, localizedDescription: String, accountHash: String, templateIdentifier: String, relyingPartyIdentifier: String, requiresUnifiedAccessCapableDevice: Bool)
    * @availability iOS 15.0+
    * @deprecated iOS 16.0
    */
-  static initProvisioningCredentialIdentifierSharingInstanceIdentifierPassThumbnailImageOwnerDisplayNameLocalizedDescriptionAccountHashTemplateIdentifierRelyingPartyIdentifierRequiresUnifiedAccessCapableDevice(credentialIdentifier: string, sharingInstanceIdentifier: string, passThumbnailImage: _CoreGraphics_CGImage, ownerDisplayName: string, localizedDescription: string, accountHash: string, templateIdentifier: string, relyingPartyIdentifier: string, requiresUnifiedAccessCapableDevice: boolean): PKShareablePassMetadata { return callSDK<PKShareablePassMetadata>("PassKit_2f6e018ff7e993f9", 2587104197948147, undefined, [credentialIdentifier, sharingInstanceIdentifier, passThumbnailImage, ownerDisplayName, localizedDescription, accountHash, templateIdentifier, relyingPartyIdentifier, requiresUnifiedAccessCapableDevice]); }
+  static initProvisioningCredentialIdentifierSharingInstanceIdentifierPassThumbnailImageOwnerDisplayNameLocalizedDescriptionAccountHashTemplateIdentifierRelyingPartyIdentifierRequiresUnifiedAccessCapableDevice(credentialIdentifier: string, sharingInstanceIdentifier: string, passThumbnailImage: _CoreGraphics_CGImage, ownerDisplayName: string, localizedDescription: string, accountHash: string, templateIdentifier: string, relyingPartyIdentifier: string, requiresUnifiedAccessCapableDevice: boolean): PKShareablePassMetadata { return callSDK<PKShareablePassMetadata>("PassKit_a624b245971cfd00", 2587104197948147, undefined, [credentialIdentifier, sharingInstanceIdentifier, passThumbnailImage, ownerDisplayName, localizedDescription, accountHash, templateIdentifier, relyingPartyIdentifier, requiresUnifiedAccessCapableDevice]); }
   /**
    * var accountHash: String { get set }
    * @availability iOS 15.0+
    */
-  get accountHash(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 4000916358153822, this, []); }
-  set accountHash(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 175859347178768, this, [value]); }
+  get accountHash(): string { return callSDK<string>("PassKit_a624b245971cfd00", 4000916358153822, this, []); }
+  set accountHash(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 175859347178768, this, [value]); }
   /**
    * var cardConfigurationIdentifier: String { get }
    * @availability iOS 14.0+
    */
-  get cardConfigurationIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 1163700995627617, this, []); }
+  get cardConfigurationIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 1163700995627617, this, []); }
   /**
    * var cardTemplateIdentifier: String { get }
    * @availability iOS 16.0+
    */
-  get cardTemplateIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2125490118147370, this, []); }
+  get cardTemplateIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2125490118147370, this, []); }
   /**
    * var credentialIdentifier: String { get }
    * @availability iOS 14.0+
    */
-  get credentialIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 675593933763091, this, []); }
+  get credentialIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 675593933763091, this, []); }
   /**
    * var localizedDescription: String { get }
    * @availability iOS 14.0+
    * @deprecated iOS 16.0
    */
-  get localizedDescription(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 3057400007413120, this, []); }
+  get localizedDescription(): string { return callSDK<string>("PassKit_a624b245971cfd00", 3057400007413120, this, []); }
   /**
    * var ownerDisplayName: String { get }
    * @availability iOS 14.0+
    * @deprecated iOS 16.0
    */
-  get ownerDisplayName(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 1725326105834799, this, []); }
+  get ownerDisplayName(): string { return callSDK<string>("PassKit_a624b245971cfd00", 1725326105834799, this, []); }
   /**
    * var passThumbnailImage: CGImage { get }
    * @availability iOS 14.0+
    * @deprecated iOS 16.0
    */
-  get passThumbnailImage(): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("PassKit_2f6e018ff7e993f9", 13108478514845, this, []); }
+  get passThumbnailImage(): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("PassKit_a624b245971cfd00", 13108478514845, this, []); }
   /**
    * var preview: PKShareablePassMetadata.Preview { get }
    * @availability iOS 16.0+
    */
-  get preview(): PKShareablePassMetadata_Preview { return callSDK<PKShareablePassMetadata_Preview>("PassKit_2f6e018ff7e993f9", 4206405621824400, this, []); }
+  get preview(): PKShareablePassMetadata_Preview { return callSDK<PKShareablePassMetadata_Preview>("PassKit_a624b245971cfd00", 4206405621824400, this, []); }
   /**
    * var relyingPartyIdentifier: String { get set }
    * @availability iOS 15.0+
    */
-  get relyingPartyIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 3723293716692567, this, []); }
-  set relyingPartyIdentifier(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4458872924572966, this, [value]); }
+  get relyingPartyIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 3723293716692567, this, []); }
+  set relyingPartyIdentifier(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 4458872924572966, this, [value]); }
   /**
    * var requiresUnifiedAccessCapableDevice: Bool { get set }
    * @availability iOS 15.0+
    */
-  get requiresUnifiedAccessCapableDevice(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 608396203040134, this, []); }
-  set requiresUnifiedAccessCapableDevice(value: boolean) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4107896189662582, this, [value]); }
+  get requiresUnifiedAccessCapableDevice(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 608396203040134, this, []); }
+  set requiresUnifiedAccessCapableDevice(value: boolean) { callSDK<void>("PassKit_a624b245971cfd00", 4107896189662582, this, [value]); }
   /**
    * var serverEnvironmentIdentifier: String { get set }
    * @availability iOS 16.0+
    */
-  get serverEnvironmentIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 285766614873755, this, []); }
-  set serverEnvironmentIdentifier(value: string) { callSDK<void>("PassKit_2f6e018ff7e993f9", 4143640891723786, this, [value]); }
+  get serverEnvironmentIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 285766614873755, this, []); }
+  set serverEnvironmentIdentifier(value: string) { callSDK<void>("PassKit_a624b245971cfd00", 4143640891723786, this, [value]); }
   /**
    * var sharingInstanceIdentifier: String { get }
    * @availability iOS 14.0+
    */
-  get sharingInstanceIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2974988799847096, this, []); }
+  get sharingInstanceIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2974988799847096, this, []); }
   /**
    * var templateIdentifier: String { get }
    * @availability iOS 15.0+
    * @deprecated iOS 16.0
    */
-  get templateIdentifier(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 2280601476917036, this, []); }
+  get templateIdentifier(): string { return callSDK<string>("PassKit_a624b245971cfd00", 2280601476917036, this, []); }
   declare readonly $type: { "c:objc(cs)PKShareablePassMetadata": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accountHash": true; "cardConfigurationIdentifier": true; "cardTemplateIdentifier": true; "credentialIdentifier": true; "localizedDescription": true; "ownerDisplayName": true; "passThumbnailImage": true; "preview": true; "relyingPartyIdentifier": true; "requiresUnifiedAccessCapableDevice": true; "serverEnvironmentIdentifier": true; "sharingInstanceIdentifier": true; "templateIdentifier": true };
 }
@@ -4397,18 +4397,18 @@ export class PKShareablePassMetadata_Preview extends (PKAddPassMetadataPreview a
    * init(templateIdentifier: String)
    * @availability iOS 16.0+
    */
-  static init(templateIdentifier: string): PKShareablePassMetadata_Preview { return callSDK<PKShareablePassMetadata_Preview>("PassKit_2f6e018ff7e993f9", 1196975181977925, undefined, [templateIdentifier]); }
+  static init(templateIdentifier: string): PKShareablePassMetadata_Preview { return callSDK<PKShareablePassMetadata_Preview>("PassKit_a624b245971cfd00", 1196975181977925, undefined, [templateIdentifier]); }
   /**
    * var ownerDisplayName: String? { get set }
    * @availability iOS 16.0+
    */
-  get ownerDisplayName(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 3882208309988525, this, []); }
-  set ownerDisplayName(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1372470286919060, this, [value]); }
+  get ownerDisplayName(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 3882208309988525, this, []); }
+  set ownerDisplayName(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1372470286919060, this, [value]); }
   /**
    * var provisioningTemplateIdentifier: String? { get }
    * @availability iOS 16.0+
    */
-  get provisioningTemplateIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 2776985404724166, this, []); }
+  get provisioningTemplateIdentifier(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 2776985404724166, this, []); }
   declare readonly $type: { "c:objc(cs)PKShareablePassMetadataPreview": true; "c:objc(cs)PKAddPassMetadataPreview": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "localizedDescription": true; "passThumbnailImage": true; "ownerDisplayName": true; "provisioningTemplateIdentifier": true };
 }
@@ -4422,17 +4422,17 @@ export class PKShareSecureElementPassError extends SDKHandle {
    * static var setupError: PKShareSecureElementPassError.Code { get }
    * @availability iOS 16.0+
    */
-  static get setupError(): PKShareSecureElementPassError_Code { return callSDK<PKShareSecureElementPassError_Code>("PassKit_2f6e018ff7e993f9", 3542499276735781, undefined, []); }
+  static get setupError(): PKShareSecureElementPassError_Code { return callSDK<PKShareSecureElementPassError_Code>("PassKit_a624b245971cfd00", 3542499276735781, undefined, []); }
   /**
    * static var unknownError: PKShareSecureElementPassError.Code { get }
    * @availability iOS 16.0+
    */
-  static get unknownError(): PKShareSecureElementPassError_Code { return callSDK<PKShareSecureElementPassError_Code>("PassKit_2f6e018ff7e993f9", 1128209561476354, undefined, []); }
+  static get unknownError(): PKShareSecureElementPassError_Code { return callSDK<PKShareSecureElementPassError_Code>("PassKit_a624b245971cfd00", 1128209561476354, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 16.0+
    */
-  static get errorDomain(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 3127039313135060, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("PassKit_a624b245971cfd00", 3127039313135060, undefined, []); }
   declare readonly $type: { "s:SC33PKShareSecureElementPassErrorCodeLeV": true };
 }
 
@@ -4447,7 +4447,7 @@ export const PKShareSecureElementPassError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (PKShareSecureElementPassError_Code) | null { return callSDK<(PKShareSecureElementPassError_Code) | null>("PassKit_2f6e018ff7e993f9", 2130695457396788, undefined, [rawValue]); }
+  init(rawValue: number): (PKShareSecureElementPassError_Code) | null { return callSDK<(PKShareSecureElementPassError_Code) | null>("PassKit_a624b245971cfd00", 2130695457396788, undefined, [rawValue]); }
 };
 
 /**
@@ -4461,7 +4461,7 @@ export const PKShareSecureElementPassResult = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (PKShareSecureElementPassResult) | null { return callSDK<(PKShareSecureElementPassResult) | null>("PassKit_2f6e018ff7e993f9", 2864034681854744, undefined, [rawValue]); }
+  init(rawValue: number): (PKShareSecureElementPassResult) | null { return callSDK<(PKShareSecureElementPassResult) | null>("PassKit_a624b245971cfd00", 2864034681854744, undefined, [rawValue]); }
 };
 
 /**
@@ -4473,19 +4473,19 @@ export class PKShareSecureElementPassViewController extends SDKHandle {
    * init(secureElementPass pass: PKSecureElementPass, delegate: (any PKShareSecureElementPassViewControllerDelegate)?)
    * @availability iOS 16.0+
    */
-  static init(pass: PKSecureElementPass, delegate?: $SDK71): Promise<PKShareSecureElementPassViewController> { return callSDKAsync<PKShareSecureElementPassViewController>("PassKit_2f6e018ff7e993f9", 1199719355088793, undefined, [pass, delegate], [null,{"protocol":"c:objc(pl)PKShareSecureElementPassViewControllerDelegate"}]); }
+  static init(pass: PKSecureElementPass, delegate?: $SDK71): Promise<PKShareSecureElementPassViewController> { return callSDKAsync<PKShareSecureElementPassViewController>("PassKit_a624b245971cfd00", 1199719355088793, undefined, [pass, delegate], [null,{"protocol":"c:objc(pl)PKShareSecureElementPassViewControllerDelegate"}]); }
   /**
    * weak var delegate: (any PKShareSecureElementPassViewControllerDelegate)? { get set }
    * @availability iOS 16.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PassKit_2f6e018ff7e993f9", 2129680970067732, this, []); }
-  setDelegate(value?: $SDK71): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 131301494096402, this, [value], [{"protocol":"c:objc(pl)PKShareSecureElementPassViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PassKit_a624b245971cfd00", 2129680970067732, this, []); }
+  setDelegate(value?: $SDK71): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 131301494096402, this, [value], [{"protocol":"c:objc(pl)PKShareSecureElementPassViewControllerDelegate"}]); }
   /**
    * var promptToShareURL: Bool { get set }
    * @availability iOS 16.0+
    */
-  get promptToShareURL(): Promise<boolean> { return callSDKAsync<boolean>("PassKit_2f6e018ff7e993f9", 3481723723755226, this, []); }
-  setPromptToShareURL(value: boolean): Promise<void> { return callSDKAsync<void>("PassKit_2f6e018ff7e993f9", 159412447996569, this, [value]); }
+  get promptToShareURL(): Promise<boolean> { return callSDKAsync<boolean>("PassKit_a624b245971cfd00", 3481723723755226, this, []); }
+  setPromptToShareURL(value: boolean): Promise<void> { return callSDKAsync<void>("PassKit_a624b245971cfd00", 159412447996569, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKShareSecureElementPassViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "promptToShareURL": true };
 }
@@ -4518,12 +4518,12 @@ export const PKShippingContactEditingMode = {
    * static var enabled: PKShippingContactEditingMode { get }
    * @availability iOS 15.0+
    */
-  get enabled(): PKShippingContactEditingMode { return callSDK<PKShippingContactEditingMode>("PassKit_2f6e018ff7e993f9", 4454946359829881, undefined, []); },
+  get enabled(): PKShippingContactEditingMode { return callSDK<PKShippingContactEditingMode>("PassKit_a624b245971cfd00", 4454946359829881, undefined, []); },
   /**
    * init?(rawValue: UInt)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (PKShippingContactEditingMode) | null { return callSDK<(PKShippingContactEditingMode) | null>("PassKit_2f6e018ff7e993f9", 3050218254542148, undefined, [rawValue]); }
+  init(rawValue: number): (PKShippingContactEditingMode) | null { return callSDK<(PKShippingContactEditingMode) | null>("PassKit_a624b245971cfd00", 3050218254542148, undefined, [rawValue]); }
 };
 
 /**
@@ -4532,25 +4532,25 @@ export const PKShippingContactEditingMode = {
  */
 export class PKShippingMethod extends PKPaymentSummaryItem {
   /** init() */
-  static init(): PKShippingMethod { return callSDK<PKShippingMethod>("PassKit_2f6e018ff7e993f9", 2246126071532587, undefined, []); }
+  static init(): PKShippingMethod { return callSDK<PKShippingMethod>("PassKit_a624b245971cfd00", 2246126071532587, undefined, []); }
   /**
    * @NSCopying var dateComponentsRange: PKDateComponentsRange? { get set }
    * @availability iOS 15.0+
    */
-  get dateComponentsRange(): $SDK72 { return callSDK<$SDK72>("PassKit_2f6e018ff7e993f9", 2376346005567148, this, []); }
-  set dateComponentsRange(value: $SDK72) { callSDK<void>("PassKit_2f6e018ff7e993f9", 3375900451549301, this, [value]); }
+  get dateComponentsRange(): $SDK72 { return callSDK<$SDK72>("PassKit_a624b245971cfd00", 2376346005567148, this, []); }
+  set dateComponentsRange(value: $SDK72) { callSDK<void>("PassKit_a624b245971cfd00", 3375900451549301, this, [value]); }
   /**
    * var detail: String? { get set }
    * @availability iOS 8.0+
    */
-  get detail(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 2784066443389908, this, []); }
-  set detail(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 429235087183404, this, [value]); }
+  get detail(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 2784066443389908, this, []); }
+  set detail(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 429235087183404, this, [value]); }
   /**
    * var identifier: String? { get set }
    * @availability iOS 8.0+
    */
-  get identifier(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 436918991192170, this, []); }
-  set identifier(value: (string) | null) { callSDK<void>("PassKit_2f6e018ff7e993f9", 1559847078582364, this, [value]); }
+  get identifier(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 436918991192170, this, []); }
+  set identifier(value: (string) | null) { callSDK<void>("PassKit_a624b245971cfd00", 1559847078582364, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKShippingMethod": true; "c:objc(cs)PKPaymentSummaryItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "amount": true; "label": true; "type": true; "dateComponentsRange": true; "detail": true; "identifier": true };
 }
@@ -4566,7 +4566,7 @@ export const PKShippingType = {
    * init?(rawValue: UInt)
    * @availability iOS 8.3+
    */
-  init(rawValue: number): (PKShippingType) | null { return callSDK<(PKShippingType) | null>("PassKit_2f6e018ff7e993f9", 1232062500196956, undefined, [rawValue]); }
+  init(rawValue: number): (PKShippingType) | null { return callSDK<(PKShippingType) | null>("PassKit_a624b245971cfd00", 1232062500196956, undefined, [rawValue]); }
 };
 
 /** typealias PKSignatureRequestCompletionBlock = (PKBarcodeEventSignatureResponse) -> Void */
@@ -4581,22 +4581,22 @@ export class PKStoredValuePassBalance extends SDKHandle {
    * var balanceType: PKStoredValuePassBalance.BalanceType { get }
    * @availability iOS 15.0+
    */
-  get balanceType(): PKStoredValuePassBalance_BalanceType { return callSDK<PKStoredValuePassBalance_BalanceType>("PassKit_2f6e018ff7e993f9", 1281379782728307, this, []); }
+  get balanceType(): PKStoredValuePassBalance_BalanceType { return callSDK<PKStoredValuePassBalance_BalanceType>("PassKit_a624b245971cfd00", 1281379782728307, this, []); }
   /**
    * var currencyCode: String? { get }
    * @availability iOS 15.0+
    */
-  get currencyCode(): (string) | null { return callSDK<(string) | null>("PassKit_2f6e018ff7e993f9", 1084122332309410, this, []); }
+  get currencyCode(): (string) | null { return callSDK<(string) | null>("PassKit_a624b245971cfd00", 1084122332309410, this, []); }
   /**
    * var expiryDate: Date? { get }
    * @availability iOS 15.0+
    */
-  get expiryDate(): $SDK27 { return callSDK<$SDK27>("PassKit_2f6e018ff7e993f9", 1525169281580138, this, []); }
+  get expiryDate(): $SDK27 { return callSDK<$SDK27>("PassKit_a624b245971cfd00", 1525169281580138, this, []); }
   /**
    * var amount: Decimal { get }
    * @availability iOS 15.0+
    */
-  get amount(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("PassKit_2f6e018ff7e993f9", 2295488814576524, this, []); }
+  get amount(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("PassKit_a624b245971cfd00", 2295488814576524, this, []); }
   declare readonly $type: { "c:objc(cs)PKStoredValuePassBalance": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "balanceType": true; "currencyCode": true; "expiryDate": true };
 }
@@ -4609,14 +4609,14 @@ export const PKStoredValuePassBalance_BalanceType = {
    * static let cash: PKStoredValuePassBalance.BalanceType
    * @availability iOS 15.0+
    */
-  get cash(): PKStoredValuePassBalance_BalanceType { return callSDK<PKStoredValuePassBalance_BalanceType>("PassKit_2f6e018ff7e993f9", 441977079795605, undefined, []); },
+  get cash(): PKStoredValuePassBalance_BalanceType { return callSDK<PKStoredValuePassBalance_BalanceType>("PassKit_a624b245971cfd00", 441977079795605, undefined, []); },
   /**
    * static let loyaltyPoints: PKStoredValuePassBalance.BalanceType
    * @availability iOS 15.0+
    */
-  get loyaltyPoints(): PKStoredValuePassBalance_BalanceType { return callSDK<PKStoredValuePassBalance_BalanceType>("PassKit_2f6e018ff7e993f9", 2384691326173773, undefined, []); },
+  get loyaltyPoints(): PKStoredValuePassBalance_BalanceType { return callSDK<PKStoredValuePassBalance_BalanceType>("PassKit_a624b245971cfd00", 2384691326173773, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PKStoredValuePassBalance_BalanceType { return callSDK<PKStoredValuePassBalance_BalanceType>("PassKit_2f6e018ff7e993f9", 3691469308144404, undefined, [rawValue]); }
+  init(rawValue: string): PKStoredValuePassBalance_BalanceType { return callSDK<PKStoredValuePassBalance_BalanceType>("PassKit_a624b245971cfd00", 3691469308144404, undefined, [rawValue]); }
 };
 
 /**
@@ -4628,28 +4628,28 @@ export class PKStoredValuePassProperties extends SDKHandle {
    * @objc dynamic var isBlocked: Bool { get }
    * @availability iOS 15.0+
    */
-  get isBlocked(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 4404219694176980, this, []); }
+  get isBlocked(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 4404219694176980, this, []); }
   /**
    * convenience init?(for pass: PKPass)
    * @availability iOS 15.0+
    */
-  static init(pass: PKPass): (PKStoredValuePassProperties) | null { return callSDK<(PKStoredValuePassProperties) | null>("PassKit_2f6e018ff7e993f9", 2851301121135661, undefined, [pass]); }
+  static init(pass: PKPass): (PKStoredValuePassProperties) | null { return callSDK<(PKStoredValuePassProperties) | null>("PassKit_a624b245971cfd00", 2851301121135661, undefined, [pass]); }
   /**
    * var balances: [PKStoredValuePassBalance] { get }
    * @availability iOS 15.0+
    */
-  get balances(): Array<PKStoredValuePassBalance> { return callSDK<Array<PKStoredValuePassBalance>>("PassKit_2f6e018ff7e993f9", 2693767374590591, this, []); }
+  get balances(): Array<PKStoredValuePassBalance> { return callSDK<Array<PKStoredValuePassBalance>>("PassKit_a624b245971cfd00", 2693767374590591, this, []); }
   /**
    * var isBlacklisted: Bool { get }
    * @availability iOS 15.0+
    * @deprecated iOS 15.0
    */
-  get isBlacklisted(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 3169455796409197, this, []); }
+  get isBlacklisted(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 3169455796409197, this, []); }
   /**
    * var expirationDate: Date? { get }
    * @availability iOS 15.0+
    */
-  get expirationDate(): $SDK27 { return callSDK<$SDK27>("PassKit_2f6e018ff7e993f9", 1070184407338885, this, []); }
+  get expirationDate(): $SDK27 { return callSDK<$SDK27>("PassKit_a624b245971cfd00", 1070184407338885, this, []); }
   declare readonly $type: { "c:objc(cs)PKStoredValuePassProperties": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "balances": true; "isBlacklisted": true; "expirationDate": true };
 }
@@ -4663,37 +4663,37 @@ export class PKTransitPassProperties extends (PKStoredValuePassProperties as unk
    * override dynamic var isBlocked: Bool { get }
    * @availability iOS 14.5+
    */
-  get isBlocked(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 2667603392538937, this, []); }
+  get isBlocked(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 2667603392538937, this, []); }
   /** init() */
-  static init(): PKTransitPassProperties { return callSDK<PKTransitPassProperties>("PassKit_2f6e018ff7e993f9", 3244450213804932, undefined, []); }
+  static init(): PKTransitPassProperties { return callSDK<PKTransitPassProperties>("PassKit_a624b245971cfd00", 3244450213804932, undefined, []); }
   /**
    * var isBlacklisted: Bool { get }
    * @availability iOS 11.3+
    * @deprecated iOS 15.0
    */
-  get isBlacklisted(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 3562262926580200, this, []); }
+  get isBlacklisted(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 3562262926580200, this, []); }
   /**
    * var expirationDate: Date? { get }
    * @availability iOS 11.3+
    */
-  get expirationDate(): $SDK27 { return callSDK<$SDK27>("PassKit_2f6e018ff7e993f9", 1826732638638347, this, []); }
+  get expirationDate(): $SDK27 { return callSDK<$SDK27>("PassKit_a624b245971cfd00", 1826732638638347, this, []); }
   /**
    * var isInStation: Bool { get }
    * @availability iOS 11.3+
    */
-  get isInStation(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 2755590708655377, this, []); }
+  get isInStation(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 2755590708655377, this, []); }
   /**
    * @NSCopying var transitBalance: NSDecimalNumber { get }
    * @availability iOS 11.3+
    * @deprecated iOS 15.0
    */
-  get transitBalance(): _Foundation_NSDecimalNumber { return callSDK<_Foundation_NSDecimalNumber>("PassKit_2f6e018ff7e993f9", 414780498145743, this, []); }
+  get transitBalance(): _Foundation_NSDecimalNumber { return callSDK<_Foundation_NSDecimalNumber>("PassKit_a624b245971cfd00", 414780498145743, this, []); }
   /**
    * var transitBalanceCurrencyCode: String { get }
    * @availability iOS 11.3+
    * @deprecated iOS 15.0
    */
-  get transitBalanceCurrencyCode(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 977590640256391, this, []); }
+  get transitBalanceCurrencyCode(): string { return callSDK<string>("PassKit_a624b245971cfd00", 977590640256391, this, []); }
   declare readonly $type: { "c:objc(cs)PKTransitPassProperties": true; "c:objc(cs)PKStoredValuePassProperties": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "balances": true; "isBlacklisted": true; "expirationDate": true; "isInStation": true; "transitBalance": true; "transitBalanceCurrencyCode": true };
 }
@@ -4707,53 +4707,53 @@ export class PKSuicaPassProperties extends (PKTransitPassProperties as unknown a
    * override dynamic var isBlocked: Bool { get }
    * @availability iOS 10.1+
    */
-  get isBlocked(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 2630546210232771, this, []); }
+  get isBlocked(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 2630546210232771, this, []); }
   /**
    * convenience init?(for pass: PKPass)
    * @availability iOS 10.1+
    */
-  static init(pass: PKPass): (PKSuicaPassProperties) | null { return callSDK<(PKSuicaPassProperties) | null>("PassKit_2f6e018ff7e993f9", 3789336927863236, undefined, [pass]); }
+  static init(pass: PKPass): (PKSuicaPassProperties) | null { return callSDK<(PKSuicaPassProperties) | null>("PassKit_a624b245971cfd00", 3789336927863236, undefined, [pass]); }
   /**
    * var isBalanceAllowedForCommute: Bool { get }
    * @availability iOS 11.3+
    */
-  get isBalanceAllowedForCommute(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 1319207592592811, this, []); }
+  get isBalanceAllowedForCommute(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 1319207592592811, this, []); }
   /**
    * var isBlacklisted: Bool { get }
    * @availability iOS 10.1+
    * @deprecated iOS 15.0
    */
-  get isBlacklisted(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 992519533909840, this, []); }
+  get isBlacklisted(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 992519533909840, this, []); }
   /**
    * var isGreenCarTicketUsed: Bool { get }
    * @availability iOS 10.1+
    */
-  get isGreenCarTicketUsed(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 2768260997948524, this, []); }
+  get isGreenCarTicketUsed(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 2768260997948524, this, []); }
   /**
    * var isInShinkansenStation: Bool { get }
    * @availability iOS 10.1+
    */
-  get isInShinkansenStation(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 761739306598472, this, []); }
+  get isInShinkansenStation(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 761739306598472, this, []); }
   /**
    * var isInStation: Bool { get }
    * @availability iOS 10.1+
    */
-  get isInStation(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 77616309316803, this, []); }
+  get isInStation(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 77616309316803, this, []); }
   /**
    * var isLowBalanceGateNotificationEnabled: Bool { get }
    * @availability iOS 11.3+
    */
-  get isLowBalanceGateNotificationEnabled(): boolean { return callSDK<boolean>("PassKit_2f6e018ff7e993f9", 501252874908729, this, []); }
+  get isLowBalanceGateNotificationEnabled(): boolean { return callSDK<boolean>("PassKit_a624b245971cfd00", 501252874908729, this, []); }
   /**
    * @NSCopying var transitBalance: NSDecimalNumber { get }
    * @availability iOS 10.1+
    */
-  get transitBalance(): _Foundation_NSDecimalNumber { return callSDK<_Foundation_NSDecimalNumber>("PassKit_2f6e018ff7e993f9", 16704335859121, this, []); }
+  get transitBalance(): _Foundation_NSDecimalNumber { return callSDK<_Foundation_NSDecimalNumber>("PassKit_a624b245971cfd00", 16704335859121, this, []); }
   /**
    * var transitBalanceCurrencyCode: String { get }
    * @availability iOS 10.1+
    */
-  get transitBalanceCurrencyCode(): string { return callSDK<string>("PassKit_2f6e018ff7e993f9", 3508240363910447, this, []); }
+  get transitBalanceCurrencyCode(): string { return callSDK<string>("PassKit_a624b245971cfd00", 3508240363910447, this, []); }
   declare readonly $type: { "c:objc(cs)PKSuicaPassProperties": true; "c:objc(cs)PKTransitPassProperties": true; "c:objc(cs)PKStoredValuePassProperties": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "balances": true; "isBlacklisted": true; "expirationDate": true; "isInStation": true; "transitBalance": true; "transitBalanceCurrencyCode": true; "isBalanceAllowedForCommute": true; "isGreenCarTicketUsed": true; "isInShinkansenStation": true; "isLowBalanceGateNotificationEnabled": true };
 }
@@ -4789,7 +4789,7 @@ export const PKVehicleConnectionErrorCode = {
    * init?(rawValue: Int)
    * @availability iOS 15.4+
    */
-  init(rawValue: number): (PKVehicleConnectionErrorCode) | null { return callSDK<(PKVehicleConnectionErrorCode) | null>("PassKit_2f6e018ff7e993f9", 3832116486943271, undefined, [rawValue]); }
+  init(rawValue: number): (PKVehicleConnectionErrorCode) | null { return callSDK<(PKVehicleConnectionErrorCode) | null>("PassKit_a624b245971cfd00", 3832116486943271, undefined, [rawValue]); }
 };
 
 /**
@@ -4801,27 +4801,27 @@ export class PKVehicleConnectionSession extends SDKHandle {
    * class func session(for pass: PKSecureElementPass, delegate: any PKVehicleConnectionDelegate) async throws -> PKVehicleConnectionSession
    * @availability iOS 15.4+
    */
-  static session(pass: PKSecureElementPass, delegate: Implements<PKVehicleConnectionDelegate> | SDKHandle, completion: ((arg0: (PKVehicleConnectionSession) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 1461800524533354, undefined, [pass, delegate, completion], [null,{"protocol":"c:objc(pl)PKVehicleConnectionDelegate"},{"callback":{"out":[]}}]); }
+  static session(pass: PKSecureElementPass, delegate: Implements<PKVehicleConnectionDelegate> | SDKHandle, completion: ((arg0: (PKVehicleConnectionSession) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("PassKit_a624b245971cfd00", 1461800524533354, undefined, [pass, delegate, completion], [null,{"protocol":"c:objc(pl)PKVehicleConnectionDelegate"},{"callback":{"out":[]}}]); }
   /**
    * func invalidate()
    * @availability iOS 15.4+
    */
-  invalidate(): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 3365555173379745, this, []); }
+  invalidate(): void { return callSDK<void>("PassKit_a624b245971cfd00", 3365555173379745, this, []); }
   /**
    * func send(_ message: Data) throws
    * @availability iOS 15.4+
    */
-  send(message: ArrayBuffer): void { return callSDK<void>("PassKit_2f6e018ff7e993f9", 3733235560144780, this, [message]); }
+  send(message: ArrayBuffer): void { return callSDK<void>("PassKit_a624b245971cfd00", 3733235560144780, this, [message]); }
   /**
    * var connectionStatus: PKVehicleConnectionSessionConnectionState { get }
    * @availability iOS 15.4+
    */
-  get connectionStatus(): PKVehicleConnectionSessionConnectionState { return callSDK<PKVehicleConnectionSessionConnectionState>("PassKit_2f6e018ff7e993f9", 4132137150812348, this, []); }
+  get connectionStatus(): PKVehicleConnectionSessionConnectionState { return callSDK<PKVehicleConnectionSessionConnectionState>("PassKit_a624b245971cfd00", 4132137150812348, this, []); }
   /**
    * weak var delegate: (any PKVehicleConnectionDelegate)? { get }
    * @availability iOS 15.4+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PassKit_2f6e018ff7e993f9", 56043860770997, this, []); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PassKit_a624b245971cfd00", 56043860770997, this, []); }
   declare readonly $type: { "c:objc(cs)PKVehicleConnectionSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "connectionStatus": true; "delegate": true };
 }
@@ -4837,151 +4837,151 @@ export const PKVehicleConnectionSessionConnectionState = {
    * init?(rawValue: Int)
    * @availability iOS 15.4+
    */
-  init(rawValue: number): (PKVehicleConnectionSessionConnectionState) | null { return callSDK<(PKVehicleConnectionSessionConnectionState) | null>("PassKit_2f6e018ff7e993f9", 1283961729278241, undefined, [rawValue]); }
+  init(rawValue: number): (PKVehicleConnectionSessionConnectionState) | null { return callSDK<(PKVehicleConnectionSessionConnectionState) | null>("PassKit_a624b245971cfd00", 1283961729278241, undefined, [rawValue]); }
 };
 
 /**
  * let PKAddSecureElementPassErrorDomain: String
  * @availability iOS 13.4+
  */
-export const PKAddSecureElementPassErrorDomain: string = callSDK<string>("PassKit_2f6e018ff7e993f9", 3248243098003620, undefined, []);
+export const PKAddSecureElementPassErrorDomain: string = callSDK<string>("PassKit_a624b245971cfd00", 3248243098003620, undefined, []);
 
 /**
  * let PKDisbursementErrorDomain: String
  * @availability iOS 17.0+
  */
-export const PKDisbursementErrorDomain: string = callSDK<string>("PassKit_2f6e018ff7e993f9", 3366008096894883, undefined, []);
+export const PKDisbursementErrorDomain: string = callSDK<string>("PassKit_a624b245971cfd00", 3366008096894883, undefined, []);
 
 /**
  * let PKIdentityErrorDomain: String
  * @availability iOS 16.0+
  */
-export const PKIdentityErrorDomain: string = callSDK<string>("PassKit_2f6e018ff7e993f9", 258691664462915, undefined, []);
+export const PKIdentityErrorDomain: string = callSDK<string>("PassKit_a624b245971cfd00", 258691664462915, undefined, []);
 
 /**
  * let PKPassKitErrorDomain: String
  * @availability iOS 6.0+
  */
-export const PKPassKitErrorDomain: string = callSDK<string>("PassKit_2f6e018ff7e993f9", 4232240318665395, undefined, []);
+export const PKPassKitErrorDomain: string = callSDK<string>("PassKit_a624b245971cfd00", 4232240318665395, undefined, []);
 
 /**
  * let PKPaymentErrorDomain: String
  * @availability iOS 11.0+
  */
-export const PKPaymentErrorDomain: string = callSDK<string>("PassKit_2f6e018ff7e993f9", 3758792626345354, undefined, []);
+export const PKPaymentErrorDomain: string = callSDK<string>("PassKit_a624b245971cfd00", 3758792626345354, undefined, []);
 
 /**
  * let PKShareSecureElementPassErrorDomain: String
  * @availability iOS 16.0+
  */
-export const PKShareSecureElementPassErrorDomain: string = callSDK<string>("PassKit_2f6e018ff7e993f9", 2185236921111075, undefined, []);
+export const PKShareSecureElementPassErrorDomain: string = callSDK<string>("PassKit_a624b245971cfd00", 2185236921111075, undefined, []);
 
-registerSDKClass("PassKit.JPKIPassContents", JPKIPassContents, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PassKit.JPKIPassContents.AuthenticationRequest", JPKIPassContents_AuthenticationRequest, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PassKit.JPKIPassContents.Certificate", JPKIPassContents_Certificate, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PassKit.JPKIPassContents.Error", JPKIPassContents_Error, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
+registerSDKClass("PassKit.JPKIPassContents", JPKIPassContents, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PassKit.JPKIPassContents.AuthenticationRequest", JPKIPassContents_AuthenticationRequest, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PassKit.JPKIPassContents.Certificate", JPKIPassContents_Certificate, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PassKit.JPKIPassContents.Error", JPKIPassContents_Error, { module: "PassKit_a624b245971cfd00", properties: {} });
 registerSDKProtocol("s:7PassKit16JPKIPassContentsV8IdentityP", {"certificateUsing":"certificate(using:)","signatureForUsing":"signature(for:using:)"});
-registerSDKClass("PassKit.JPKIPassContents.Signature", JPKIPassContents_Signature, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PassKit.JPKIPassContents.SigningIdentity", JPKIPassContents_SigningIdentity, { module: "PassKit_2f6e018ff7e993f9", properties: {}, methods: {"certificate":{"id":1189536956165508},"changePassword":{"id":4374426701951301},"signatureForUsing":{"id":1843230558846426},"signatureForUsing82568":{"id":3038284634001764}} });
-registerSDKClass("PassKit.JPKIPassContents.SigningIdentity.AuthenticationType", JPKIPassContents_SigningIdentity_AuthenticationType, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PassKit.JPKIPassContents.UserIdentity", JPKIPassContents_UserIdentity, { module: "PassKit_2f6e018ff7e993f9", properties: {}, methods: {"certificate":{"id":3760991240020111},"changePIN":{"id":4067394623973537},"signatureForUsing":{"id":3774591828653380},"signatureForUsing98569":{"id":1333056302773698}} });
-registerSDKClass("PassKit.JPKIPassContents.UserIdentity.AuthenticationType", JPKIPassContents_UserIdentity_AuthenticationType, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKAddSecureElementPassConfiguration", PKAddSecureElementPassConfiguration, { module: "PassKit_2f6e018ff7e993f9", properties: {"issuerIdentifier":2303789948962761,"localizedDescription":1698639248745894} });
-registerSDKClass("PKAddCarKeyPassConfiguration", PKAddCarKeyPassConfiguration, { module: "PassKit_2f6e018ff7e993f9", properties: {"manufacturerIdentifier":2737749718947031,"password":3840270369670568,"productPlanIdentifier":3360264206723454,"provisioningTemplateIdentifier":303949277708384,"supportedRadioTechnologies":3704654579408891} });
-registerSDKClass("PKAddIdentityDocumentConfiguration", PKAddIdentityDocumentConfiguration, { module: "PassKit_2f6e018ff7e993f9", properties: {"metadata":2955677274760853} });
-registerSDKClass("PKIdentityDocumentMetadata", PKIdentityDocumentMetadata, { module: "PassKit_2f6e018ff7e993f9", properties: {"cardConfigurationIdentifier":2052592565222309,"cardTemplateIdentifier":273739545497028,"credentialIdentifier":4236268610260866,"documentType":4010768724518961,"issuingCountryCode":4097401574219300,"serverEnvironmentIdentifier":3762975822965234,"sharingInstanceIdentifier":2693669386259620} });
-registerSDKClass("PKAddIdentityDocumentMetadata", PKAddIdentityDocumentMetadata, { module: "PassKit_2f6e018ff7e993f9", properties: {"preview":1745629646543223} });
-registerSDKClass("PKAddPassButton", PKAddPassButton, { module: "PassKit_2f6e018ff7e993f9", properties: {"addPassButtonStyle":983685829390758} });
-registerSDKClass("PKAddPassesViewController", PKAddPassesViewController, { module: "PassKit_2f6e018ff7e993f9", properties: {"delegate":2884288730582949} });
+registerSDKClass("PassKit.JPKIPassContents.Signature", JPKIPassContents_Signature, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PassKit.JPKIPassContents.SigningIdentity", JPKIPassContents_SigningIdentity, { module: "PassKit_a624b245971cfd00", properties: {}, methods: {"certificate":{"id":1189536956165508},"changePassword":{"id":4374426701951301},"signatureForUsing":{"id":1843230558846426},"signatureForUsing82568":{"id":3038284634001764}} });
+registerSDKClass("PassKit.JPKIPassContents.SigningIdentity.AuthenticationType", JPKIPassContents_SigningIdentity_AuthenticationType, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PassKit.JPKIPassContents.UserIdentity", JPKIPassContents_UserIdentity, { module: "PassKit_a624b245971cfd00", properties: {}, methods: {"certificate":{"id":3760991240020111},"changePIN":{"id":4067394623973537},"signatureForUsing":{"id":3774591828653380},"signatureForUsing98569":{"id":1333056302773698}} });
+registerSDKClass("PassKit.JPKIPassContents.UserIdentity.AuthenticationType", JPKIPassContents_UserIdentity_AuthenticationType, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKAddSecureElementPassConfiguration", PKAddSecureElementPassConfiguration, { module: "PassKit_a624b245971cfd00", properties: {"issuerIdentifier":2303789948962761,"localizedDescription":1698639248745894} });
+registerSDKClass("PKAddCarKeyPassConfiguration", PKAddCarKeyPassConfiguration, { module: "PassKit_a624b245971cfd00", properties: {"manufacturerIdentifier":2737749718947031,"password":3840270369670568,"productPlanIdentifier":3360264206723454,"provisioningTemplateIdentifier":303949277708384,"supportedRadioTechnologies":3704654579408891} });
+registerSDKClass("PKAddIdentityDocumentConfiguration", PKAddIdentityDocumentConfiguration, { module: "PassKit_a624b245971cfd00", properties: {"metadata":2955677274760853} });
+registerSDKClass("PKIdentityDocumentMetadata", PKIdentityDocumentMetadata, { module: "PassKit_a624b245971cfd00", properties: {"cardConfigurationIdentifier":2052592565222309,"cardTemplateIdentifier":273739545497028,"credentialIdentifier":4236268610260866,"documentType":4010768724518961,"issuingCountryCode":4097401574219300,"serverEnvironmentIdentifier":3762975822965234,"sharingInstanceIdentifier":2693669386259620} });
+registerSDKClass("PKAddIdentityDocumentMetadata", PKAddIdentityDocumentMetadata, { module: "PassKit_a624b245971cfd00", properties: {"preview":1745629646543223} });
+registerSDKClass("PKAddPassButton", PKAddPassButton, { module: "PassKit_a624b245971cfd00", properties: {"addPassButtonStyle":983685829390758} });
+registerSDKClass("PKAddPassesViewController", PKAddPassesViewController, { module: "PassKit_a624b245971cfd00", properties: {"delegate":2884288730582949} });
 registerSDKProtocol("c:objc(pl)PKAddPassesViewControllerDelegate", {"addPassesViewControllerDidFinish":"addPassesViewControllerDidFinish(_:)"});
-registerSDKClass("PKAddPassMetadataPreview", PKAddPassMetadataPreview, { module: "PassKit_2f6e018ff7e993f9", properties: {"localizedDescription":399810583680408,"passThumbnailImage":261802790699449} });
-registerSDKClass("PKAddPaymentPassRequest", PKAddPaymentPassRequest, { module: "PassKit_2f6e018ff7e993f9", properties: {"activationData":4036632714090771,"encryptedPassData":845059127820632,"ephemeralPublicKey":3237564989173077,"wrappedKey":3651954259912306} });
-registerSDKClass("PKAddPaymentPassRequestConfiguration", PKAddPaymentPassRequestConfiguration, { module: "PassKit_2f6e018ff7e993f9", properties: {"cardDetails":1810611398460942,"cardholderName":3916662743048991,"encryptionScheme":479855916662239,"localizedDescription":3563137158429753,"paymentNetwork":3573120612875383,"primaryAccountIdentifier":3739103068510675,"primaryAccountSuffix":2084780175542865,"productIdentifiers":90812120800136,"requiresFelicaSecureElement":3556537789573899,"style":2183993471661215} });
-registerSDKClass("PKAddPaymentPassViewController", PKAddPaymentPassViewController, { module: "PassKit_2f6e018ff7e993f9", properties: {"delegate":2253264179203355} });
+registerSDKClass("PKAddPassMetadataPreview", PKAddPassMetadataPreview, { module: "PassKit_a624b245971cfd00", properties: {"localizedDescription":399810583680408,"passThumbnailImage":261802790699449} });
+registerSDKClass("PKAddPaymentPassRequest", PKAddPaymentPassRequest, { module: "PassKit_a624b245971cfd00", properties: {"activationData":4036632714090771,"encryptedPassData":845059127820632,"ephemeralPublicKey":3237564989173077,"wrappedKey":3651954259912306} });
+registerSDKClass("PKAddPaymentPassRequestConfiguration", PKAddPaymentPassRequestConfiguration, { module: "PassKit_a624b245971cfd00", properties: {"cardDetails":1810611398460942,"cardholderName":3916662743048991,"encryptionScheme":479855916662239,"localizedDescription":3563137158429753,"paymentNetwork":3573120612875383,"primaryAccountIdentifier":3739103068510675,"primaryAccountSuffix":2084780175542865,"productIdentifiers":90812120800136,"requiresFelicaSecureElement":3556537789573899,"style":2183993471661215} });
+registerSDKClass("PKAddPaymentPassViewController", PKAddPaymentPassViewController, { module: "PassKit_a624b245971cfd00", properties: {"delegate":2253264179203355} });
 registerSDKProtocol("c:objc(pl)PKAddPaymentPassViewControllerDelegate", {"addPaymentPassViewControllerGenerateRequestWithCertificateChainNonceNonceSignature":"addPaymentPassViewController(_:generateRequestWithCertificateChain:nonce:nonceSignature:)","addPaymentPassViewControllerDidFinishAddingError":"addPaymentPassViewController(_:didFinishAdding:error:)"});
-registerSDKClass("PassKit.PKAddSecureElementPassError", PKAddSecureElementPassError, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKAddSecureElementPassViewController", PKAddSecureElementPassViewController, { module: "PassKit_2f6e018ff7e993f9", properties: {"delegate":2974338008916153} });
+registerSDKClass("PassKit.PKAddSecureElementPassError", PKAddSecureElementPassError, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKAddSecureElementPassViewController", PKAddSecureElementPassViewController, { module: "PassKit_a624b245971cfd00", properties: {"delegate":2974338008916153} });
 registerSDKProtocol("c:objc(pl)PKAddSecureElementPassViewControllerDelegate", {"addSecureElementPassViewControllerDidFinishAddingError":"addSecureElementPassViewController(_:didFinishAdding:error:)","addSecureElementPassViewControllerDidFinishAddingSecureElementPassesError":"addSecureElementPassViewController(_:didFinishAddingSecureElementPasses:error:)"});
-registerSDKClass("PKAddShareablePassConfiguration", PKAddShareablePassConfiguration, { module: "PassKit_2f6e018ff7e993f9", properties: {"credentialsMetadata":3253405958299936,"primaryAction":2068756423048297,"provisioningPolicyIdentifier":3115162655654618} });
-registerSDKClass("PKAutomaticReloadPaymentRequest", PKAutomaticReloadPaymentRequest, { module: "PassKit_2f6e018ff7e993f9", properties: {"automaticReloadBilling":3682266592939202,"billingAgreement":2327160615148263,"managementURL":4117404763966103,"paymentDescription":2115029456081030,"tokenNotificationURL":2691039549646108} });
-registerSDKClass("PKPaymentSummaryItem", PKPaymentSummaryItem, { module: "PassKit_2f6e018ff7e993f9", properties: {"amount":1268301874319789,"label":4192183914532433,"type":2172397530183353} });
-registerSDKClass("PKAutomaticReloadPaymentSummaryItem", PKAutomaticReloadPaymentSummaryItem, { module: "PassKit_2f6e018ff7e993f9", properties: {"thresholdAmount":1292988156462144} });
-registerSDKClass("PKBarcodeEventConfigurationRequest", PKBarcodeEventConfigurationRequest, { module: "PassKit_2f6e018ff7e993f9", properties: {"configurationData":3914029085852223,"configurationDataType":358227362703830,"deviceAccountIdentifier":4240776029362233} });
-registerSDKClass("PKBarcodeEventMetadataRequest", PKBarcodeEventMetadataRequest, { module: "PassKit_2f6e018ff7e993f9", properties: {"deviceAccountIdentifier":894590772931137,"lastUsedBarcodeIdentifier":2191485143379345} });
-registerSDKClass("PKBarcodeEventMetadataResponse", PKBarcodeEventMetadataResponse, { module: "PassKit_2f6e018ff7e993f9", properties: {"paymentInformation":2681459977671945} });
-registerSDKClass("PKBarcodeEventSignatureRequest", PKBarcodeEventSignatureRequest, { module: "PassKit_2f6e018ff7e993f9", properties: {"amount":1090838610061894,"barcodeIdentifier":2572858998025376,"currencyCode":2947965128077270,"deviceAccountIdentifier":2428047179636853,"merchantName":2527329375920463,"partialSignature":727899866691176,"rawMerchantName":3379075548687744,"transactionDate":1352563679237229,"transactionIdentifier":1908684921702509,"transactionStatus":2325438197397469} });
-registerSDKClass("PKBarcodeEventSignatureResponse", PKBarcodeEventSignatureResponse, { module: "PassKit_2f6e018ff7e993f9", properties: {"signedData":3931217917967117} });
-registerSDKClass("PKContact", PKContact, { module: "PassKit_2f6e018ff7e993f9", properties: {"emailAddress":3118985700297257,"name":470739839831902,"phoneNumber":4014145900733815,"postalAddress":3573365714418020,"supplementarySubLocality":3374782898653409} });
-registerSDKClass("PKDateComponentsRange", PKDateComponentsRange, { module: "PassKit_2f6e018ff7e993f9", properties: {"endDateComponents":1222927445404515,"startDateComponents":3744890928642770} });
-registerSDKClass("PKDeferredPaymentRequest", PKDeferredPaymentRequest, { module: "PassKit_2f6e018ff7e993f9", properties: {"billingAgreement":1711771540626133,"deferredBilling":4366652126518510,"freeCancellationDate":1752247829697840,"freeCancellationDateTimeZone":3639284076621080,"managementURL":1505694701194401,"paymentDescription":4232874307569576,"tokenNotificationURL":1437657747142826} });
-registerSDKClass("PKDeferredPaymentSummaryItem", PKDeferredPaymentSummaryItem, { module: "PassKit_2f6e018ff7e993f9", properties: {"deferredDate":3697307860619835} });
-registerSDKClass("PassKit.PKDisbursementError", PKDisbursementError, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKDisbursementRequest", PKDisbursementRequest, { module: "PassKit_2f6e018ff7e993f9", properties: {"applicationData":2162686915459458,"isDelegatedRequest":3754538016230762,"merchantCapabilities":3963922425738964,"merchantIdentifier":1426140168115311,"recipientContact":2768677557728440,"requiredRecipientContactFields":3550208496799110,"summaryItems":2004264346838623,"supportedNetworks":4279182558167455,"unsupportedPrimaryAccountIdentifiers":1693897595328998} });
-registerSDKClass("PKDisbursementSummaryItem", PKDisbursementSummaryItem, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKIdentityAnyOfDescriptor", PKIdentityAnyOfDescriptor, { module: "PassKit_2f6e018ff7e993f9", properties: {"descriptors":3138697472875176} });
-registerSDKClass("PKIdentityAuthorizationController", PKIdentityAuthorizationController, { module: "PassKit_2f6e018ff7e993f9", properties: {}, methods: {"cancelRequest":{"id":3783322921375737},"checkCanRequestDocument":{"id":3276981334613103,"hints":[null,{"callback":{"out":[]}}]},"requestDocument":{"id":4449017905324593,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("PKIdentityButton", PKIdentityButton, { module: "PassKit_2f6e018ff7e993f9", properties: {"cornerRadius":3971524522681487} });
-registerSDKClass("PKIdentityDocument", PKIdentityDocument, { module: "PassKit_2f6e018ff7e993f9", properties: {"encryptedData":446960385993708} });
+registerSDKClass("PKAddShareablePassConfiguration", PKAddShareablePassConfiguration, { module: "PassKit_a624b245971cfd00", properties: {"credentialsMetadata":3253405958299936,"primaryAction":2068756423048297,"provisioningPolicyIdentifier":3115162655654618} });
+registerSDKClass("PKAutomaticReloadPaymentRequest", PKAutomaticReloadPaymentRequest, { module: "PassKit_a624b245971cfd00", properties: {"automaticReloadBilling":3682266592939202,"billingAgreement":2327160615148263,"managementURL":4117404763966103,"paymentDescription":2115029456081030,"tokenNotificationURL":2691039549646108} });
+registerSDKClass("PKPaymentSummaryItem", PKPaymentSummaryItem, { module: "PassKit_a624b245971cfd00", properties: {"amount":1268301874319789,"label":4192183914532433,"type":2172397530183353} });
+registerSDKClass("PKAutomaticReloadPaymentSummaryItem", PKAutomaticReloadPaymentSummaryItem, { module: "PassKit_a624b245971cfd00", properties: {"thresholdAmount":1292988156462144} });
+registerSDKClass("PKBarcodeEventConfigurationRequest", PKBarcodeEventConfigurationRequest, { module: "PassKit_a624b245971cfd00", properties: {"configurationData":3914029085852223,"configurationDataType":358227362703830,"deviceAccountIdentifier":4240776029362233} });
+registerSDKClass("PKBarcodeEventMetadataRequest", PKBarcodeEventMetadataRequest, { module: "PassKit_a624b245971cfd00", properties: {"deviceAccountIdentifier":894590772931137,"lastUsedBarcodeIdentifier":2191485143379345} });
+registerSDKClass("PKBarcodeEventMetadataResponse", PKBarcodeEventMetadataResponse, { module: "PassKit_a624b245971cfd00", properties: {"paymentInformation":2681459977671945} });
+registerSDKClass("PKBarcodeEventSignatureRequest", PKBarcodeEventSignatureRequest, { module: "PassKit_a624b245971cfd00", properties: {"amount":1090838610061894,"barcodeIdentifier":2572858998025376,"currencyCode":2947965128077270,"deviceAccountIdentifier":2428047179636853,"merchantName":2527329375920463,"partialSignature":727899866691176,"rawMerchantName":3379075548687744,"transactionDate":1352563679237229,"transactionIdentifier":1908684921702509,"transactionStatus":2325438197397469} });
+registerSDKClass("PKBarcodeEventSignatureResponse", PKBarcodeEventSignatureResponse, { module: "PassKit_a624b245971cfd00", properties: {"signedData":3931217917967117} });
+registerSDKClass("PKContact", PKContact, { module: "PassKit_a624b245971cfd00", properties: {"emailAddress":3118985700297257,"name":470739839831902,"phoneNumber":4014145900733815,"postalAddress":3573365714418020,"supplementarySubLocality":3374782898653409} });
+registerSDKClass("PKDateComponentsRange", PKDateComponentsRange, { module: "PassKit_a624b245971cfd00", properties: {"endDateComponents":1222927445404515,"startDateComponents":3744890928642770} });
+registerSDKClass("PKDeferredPaymentRequest", PKDeferredPaymentRequest, { module: "PassKit_a624b245971cfd00", properties: {"billingAgreement":1711771540626133,"deferredBilling":4366652126518510,"freeCancellationDate":1752247829697840,"freeCancellationDateTimeZone":3639284076621080,"managementURL":1505694701194401,"paymentDescription":4232874307569576,"tokenNotificationURL":1437657747142826} });
+registerSDKClass("PKDeferredPaymentSummaryItem", PKDeferredPaymentSummaryItem, { module: "PassKit_a624b245971cfd00", properties: {"deferredDate":3697307860619835} });
+registerSDKClass("PassKit.PKDisbursementError", PKDisbursementError, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKDisbursementRequest", PKDisbursementRequest, { module: "PassKit_a624b245971cfd00", properties: {"applicationData":2162686915459458,"isDelegatedRequest":3754538016230762,"merchantCapabilities":3963922425738964,"merchantIdentifier":1426140168115311,"recipientContact":2768677557728440,"requiredRecipientContactFields":3550208496799110,"summaryItems":2004264346838623,"supportedNetworks":4279182558167455,"unsupportedPrimaryAccountIdentifiers":1693897595328998} });
+registerSDKClass("PKDisbursementSummaryItem", PKDisbursementSummaryItem, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKIdentityAnyOfDescriptor", PKIdentityAnyOfDescriptor, { module: "PassKit_a624b245971cfd00", properties: {"descriptors":3138697472875176} });
+registerSDKClass("PKIdentityAuthorizationController", PKIdentityAuthorizationController, { module: "PassKit_a624b245971cfd00", properties: {}, methods: {"cancelRequest":{"id":3783322921375737},"checkCanRequestDocument":{"id":3276981334613103,"hints":[null,{"callback":{"out":[]}}]},"requestDocument":{"id":4449017905324593,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("PKIdentityButton", PKIdentityButton, { module: "PassKit_a624b245971cfd00", properties: {"cornerRadius":3971524522681487} });
+registerSDKClass("PKIdentityDocument", PKIdentityDocument, { module: "PassKit_a624b245971cfd00", properties: {"encryptedData":446960385993708} });
 registerSDKProtocol("c:objc(pl)PKIdentityDocumentDescriptor", {"intentToStoreElement":"intentToStore(element:)","addElementsIntentToStore":"addElements(_:intentToStore:)"});
-registerSDKClass("PKIdentityDriversLicenseDescriptor", PKIdentityDriversLicenseDescriptor, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKIdentityElement", PKIdentityElement, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PassKit.PKIdentityError", PKIdentityError, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKIdentityIntentToStore", PKIdentityIntentToStore, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKIdentityNationalIDCardDescriptor", PKIdentityNationalIDCardDescriptor, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKIdentityPhotoIDDescriptor", PKIdentityPhotoIDDescriptor, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKIdentityRequest", PKIdentityRequest, { module: "PassKit_2f6e018ff7e993f9", properties: {"descriptor":3036855819152162,"merchantIdentifier":2927769663044121,"nonce":1994888393983783,"usageDescriptionKey":211022943933363} });
-registerSDKClass("PKInstantFundsOutFeeSummaryItem", PKInstantFundsOutFeeSummaryItem, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
+registerSDKClass("PKIdentityDriversLicenseDescriptor", PKIdentityDriversLicenseDescriptor, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKIdentityElement", PKIdentityElement, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PassKit.PKIdentityError", PKIdentityError, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKIdentityIntentToStore", PKIdentityIntentToStore, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKIdentityNationalIDCardDescriptor", PKIdentityNationalIDCardDescriptor, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKIdentityPhotoIDDescriptor", PKIdentityPhotoIDDescriptor, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKIdentityRequest", PKIdentityRequest, { module: "PassKit_a624b245971cfd00", properties: {"descriptor":3036855819152162,"merchantIdentifier":2927769663044121,"nonce":1994888393983783,"usageDescriptionKey":211022943933363} });
+registerSDKClass("PKInstantFundsOutFeeSummaryItem", PKInstantFundsOutFeeSummaryItem, { module: "PassKit_a624b245971cfd00", properties: {} });
 registerSDKProtocol("c:objc(pl)PKIssuerProvisioningExtensionAuthorizationProviding", {});
-registerSDKClass("PKIssuerProvisioningExtensionHandler", PKIssuerProvisioningExtensionHandler, { module: "PassKit_2f6e018ff7e993f9", properties: {}, methods: {"generateAddPaymentPassRequestForPassEntryWithIdentifier":{"id":4108868308002836,"hints":[null,null,null,null,null,{"callback":{"out":[]}}]},"passEntries":{"id":3420388771226460,"hints":[{"callback":{"out":[]}}]},"remotePassEntries":{"id":742684859825387,"hints":[{"callback":{"out":[]}}]},"status":{"id":3956967888354035,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("PKIssuerProvisioningExtensionPassEntry", PKIssuerProvisioningExtensionPassEntry, { module: "PassKit_2f6e018ff7e993f9", properties: {"art":1293904728929825,"identifier":4449850063880822,"title":2546950165099823} });
-registerSDKClass("PKIssuerProvisioningExtensionPaymentPassEntry", PKIssuerProvisioningExtensionPaymentPassEntry, { module: "PassKit_2f6e018ff7e993f9", properties: {"addRequestConfiguration":3344879332030392} });
-registerSDKClass("PKIssuerProvisioningExtensionStatus", PKIssuerProvisioningExtensionStatus, { module: "PassKit_2f6e018ff7e993f9", properties: {"passEntriesAvailable":2661075341345582,"remotePassEntriesAvailable":218687211260766,"requiresAuthentication":3977851764010776} });
-registerSDKClass("PKJapanIndividualNumberCardMetadata", PKJapanIndividualNumberCardMetadata, { module: "PassKit_2f6e018ff7e993f9", properties: {"authenticationPassword":4042796405362076,"preview":1401406799136788,"signingPassword":4414119848732744} });
-registerSDKClass("PKLabeledValue", PKLabeledValue, { module: "PassKit_2f6e018ff7e993f9", properties: {"label":1022915310019820,"value":1107814375357065} });
-registerSDKClass("PKObject", PKObject, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKPass", PKPass, { module: "PassKit_2f6e018ff7e993f9", properties: {"authenticationToken":1506215269755720,"deviceName":2932713958573152,"icon":4308146155852224,"localizedDescription":995279048011778,"localizedName":950813241975426,"organizationName":3772307604188357,"passType":3982302966105890,"passTypeIdentifier":1750645719975935,"passURL":4080628313259780,"paymentPass":2984991728192442,"relevantDate":3096502808050744,"relevantDates":4474475073879146,"isRemotePass":1810526391486168,"secureElementPass":2422793426441229,"serialNumber":3157853013591485,"userInfo":1834725876842436,"webServiceURL":2455997415595736}, methods: {"localizedValue":{"id":1900150837661076}} });
-registerSDKClass("PassKit.PKPassKitError", PKPassKitError, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKPassLibrary", PKPassLibrary, { module: "PassKit_2f6e018ff7e993f9", properties: {"remoteSecureElementPasses":618956811604761,"isSecureElementPassActivationAvailable":41891062480081}, methods: {"activateWithActivationCodeCompletion":{"id":3247952666620013,"hints":[null,null,{"callback":{"out":[]}}]},"activateWithActivationDataCompletion":{"id":1176729619075012,"hints":[null,null,{"callback":{"out":[]}}]},"activateActivationDataCompletion":{"id":4490600236510064,"hints":[null,null,{"callback":{"out":[]}}]},"addPassesWithCompletionHandler":{"id":2079466756521208,"hints":[null,{"callback":{"out":[]}}]},"addPassesFromArchiveAtCompletion":{"id":3877806073870521,"hints":[null,{"callback":{"out":[]}}]},"addPassesFromArchiveDataCompletion":{"id":4024226844945670,"hints":[null,{"callback":{"out":[]}}]},"addPassesDataCompletion":{"id":1650847372493528,"hints":[null,{"callback":{"out":[]}}]},"authorizationStatus":{"id":2017897865391957},"canAddFelicaPass":{"id":2693168382576446},"canAddPaymentPass":{"id":2728633396280780},"canAddSecureElementPass":{"id":1467990273735721},"containsPass":{"id":3305619957077555},"encryptedServiceProviderData":{"id":395090741077987,"hints":[null,{"callback":{"out":[]}}]},"isPaymentPassActivationAvailable10337":{"id":1402814934606735},"openPaymentSetup":{"id":779543698117515},"openPaymentSetupMerchantIdentifier":{"id":2313514750896534},"pass":{"id":3745796280543515},"passes":{"id":1418177968554316},"passesOf":{"id":202176893544677},"passesWithReaderIdentifier":{"id":2704792295857990},"present":{"id":3364357878906529},"present75366":{"id":2161693606520438},"remotePaymentPasses":{"id":876561110752111},"removePass":{"id":3532155555172336},"replacePass":{"id":3289791960745909},"requestAuthorization":{"id":2520603398212083,"hints":[null,{"callback":{"out":[]}}]},"serviceProviderData":{"id":2856590954344381,"hints":[null,{"callback":{"out":[]}}]},"sign":{"id":8810451479784,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("PKPassRelevantDate", PKPassRelevantDate, { module: "PassKit_2f6e018ff7e993f9", properties: {"date":51149105509008,"interval":4171141793658307} });
-registerSDKClass("PassKit.PKPayLater", PKPayLater, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKPayLaterView", PKPayLaterView, { module: "PassKit_2f6e018ff7e993f9", properties: {"action":4182501128633681,"delegate":641239618614990,"displayStyle":1185912770455648} });
+registerSDKClass("PKIssuerProvisioningExtensionHandler", PKIssuerProvisioningExtensionHandler, { module: "PassKit_a624b245971cfd00", properties: {}, methods: {"generateAddPaymentPassRequestForPassEntryWithIdentifier":{"id":4108868308002836,"hints":[null,null,null,null,null,{"callback":{"out":[]}}]},"passEntries":{"id":3420388771226460,"hints":[{"callback":{"out":[]}}]},"remotePassEntries":{"id":742684859825387,"hints":[{"callback":{"out":[]}}]},"status":{"id":3956967888354035,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("PKIssuerProvisioningExtensionPassEntry", PKIssuerProvisioningExtensionPassEntry, { module: "PassKit_a624b245971cfd00", properties: {"art":1293904728929825,"identifier":4449850063880822,"title":2546950165099823} });
+registerSDKClass("PKIssuerProvisioningExtensionPaymentPassEntry", PKIssuerProvisioningExtensionPaymentPassEntry, { module: "PassKit_a624b245971cfd00", properties: {"addRequestConfiguration":3344879332030392} });
+registerSDKClass("PKIssuerProvisioningExtensionStatus", PKIssuerProvisioningExtensionStatus, { module: "PassKit_a624b245971cfd00", properties: {"passEntriesAvailable":2661075341345582,"remotePassEntriesAvailable":218687211260766,"requiresAuthentication":3977851764010776} });
+registerSDKClass("PKJapanIndividualNumberCardMetadata", PKJapanIndividualNumberCardMetadata, { module: "PassKit_a624b245971cfd00", properties: {"authenticationPassword":4042796405362076,"preview":1401406799136788,"signingPassword":4414119848732744} });
+registerSDKClass("PKLabeledValue", PKLabeledValue, { module: "PassKit_a624b245971cfd00", properties: {"label":1022915310019820,"value":1107814375357065} });
+registerSDKClass("PKObject", PKObject, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKPass", PKPass, { module: "PassKit_a624b245971cfd00", properties: {"authenticationToken":1506215269755720,"deviceName":2932713958573152,"icon":4308146155852224,"localizedDescription":995279048011778,"localizedName":950813241975426,"organizationName":3772307604188357,"passType":3982302966105890,"passTypeIdentifier":1750645719975935,"passURL":4080628313259780,"paymentPass":2984991728192442,"relevantDate":3096502808050744,"relevantDates":4474475073879146,"isRemotePass":1810526391486168,"secureElementPass":2422793426441229,"serialNumber":3157853013591485,"userInfo":1834725876842436,"webServiceURL":2455997415595736}, methods: {"localizedValue":{"id":1900150837661076}} });
+registerSDKClass("PassKit.PKPassKitError", PKPassKitError, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKPassLibrary", PKPassLibrary, { module: "PassKit_a624b245971cfd00", properties: {"remoteSecureElementPasses":618956811604761,"isSecureElementPassActivationAvailable":41891062480081}, methods: {"activateWithActivationCodeCompletion":{"id":3247952666620013,"hints":[null,null,{"callback":{"out":[]}}]},"activateWithActivationDataCompletion":{"id":1176729619075012,"hints":[null,null,{"callback":{"out":[]}}]},"activateActivationDataCompletion":{"id":4490600236510064,"hints":[null,null,{"callback":{"out":[]}}]},"addPassesWithCompletionHandler":{"id":2079466756521208,"hints":[null,{"callback":{"out":[]}}]},"addPassesFromArchiveAtCompletion":{"id":3877806073870521,"hints":[null,{"callback":{"out":[]}}]},"addPassesFromArchiveDataCompletion":{"id":4024226844945670,"hints":[null,{"callback":{"out":[]}}]},"addPassesDataCompletion":{"id":1650847372493528,"hints":[null,{"callback":{"out":[]}}]},"authorizationStatus":{"id":2017897865391957},"canAddFelicaPass":{"id":2693168382576446},"canAddPaymentPass":{"id":2728633396280780},"canAddSecureElementPass":{"id":1467990273735721},"containsPass":{"id":3305619957077555},"encryptedServiceProviderData":{"id":395090741077987,"hints":[null,{"callback":{"out":[]}}]},"isPaymentPassActivationAvailable10337":{"id":1402814934606735},"openPaymentSetup":{"id":779543698117515},"openPaymentSetupMerchantIdentifier":{"id":2313514750896534},"pass":{"id":3745796280543515},"passes":{"id":1418177968554316},"passesOf":{"id":202176893544677},"passesWithReaderIdentifier":{"id":2704792295857990},"present":{"id":3364357878906529},"present75366":{"id":2161693606520438},"remotePaymentPasses":{"id":876561110752111},"removePass":{"id":3532155555172336},"replacePass":{"id":3289791960745909},"requestAuthorization":{"id":2520603398212083,"hints":[null,{"callback":{"out":[]}}]},"serviceProviderData":{"id":2856590954344381,"hints":[null,{"callback":{"out":[]}}]},"sign":{"id":8810451479784,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("PKPassRelevantDate", PKPassRelevantDate, { module: "PassKit_a624b245971cfd00", properties: {"date":51149105509008,"interval":4171141793658307} });
+registerSDKClass("PassKit.PKPayLater", PKPayLater, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKPayLaterView", PKPayLaterView, { module: "PassKit_a624b245971cfd00", properties: {"action":4182501128633681,"delegate":641239618614990,"displayStyle":1185912770455648} });
 registerSDKProtocol("c:objc(pl)PKPayLaterViewDelegate", {"payLaterViewDidUpdateHeight":"payLaterViewDidUpdateHeight(_:)"});
-registerSDKClass("PKPayment", PKPayment, { module: "PassKit_2f6e018ff7e993f9", properties: {"billingAddress":684934138174010,"billingContact":4212786315707845,"shippingAddress":1096642426899250,"shippingContact":56908585552683,"shippingMethod":3250916820586372,"token":3575400532457482} });
-registerSDKClass("PKPaymentAuthorizationController", PKPaymentAuthorizationController, { module: "PassKit_2f6e018ff7e993f9", properties: {"delegate":4448800129378479}, methods: {"dismiss":{"id":3662529987939715,"hints":[{"callback":{"out":[]}}]},"present":{"id":900689944233660,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("PKPayment", PKPayment, { module: "PassKit_a624b245971cfd00", properties: {"billingAddress":684934138174010,"billingContact":4212786315707845,"shippingAddress":1096642426899250,"shippingContact":56908585552683,"shippingMethod":3250916820586372,"token":3575400532457482} });
+registerSDKClass("PKPaymentAuthorizationController", PKPaymentAuthorizationController, { module: "PassKit_a624b245971cfd00", properties: {"delegate":4448800129378479}, methods: {"dismiss":{"id":3662529987939715,"hints":[{"callback":{"out":[]}}]},"present":{"id":900689944233660,"hints":[{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)PKPaymentAuthorizationControllerDelegate", {"paymentAuthorizationControllerDidFinish":"paymentAuthorizationControllerDidFinish(_:)","paymentAuthorizationControllerWillAuthorizePayment":"paymentAuthorizationControllerWillAuthorizePayment(_:)"});
-registerSDKClass("PKPaymentAuthorizationResult", PKPaymentAuthorizationResult, { module: "PassKit_2f6e018ff7e993f9", properties: {"errors":4196279304762901,"orderDetails":496074497821766,"status":4245299897551876} });
-registerSDKClass("PKPaymentAuthorizationViewController", PKPaymentAuthorizationViewController, { module: "PassKit_2f6e018ff7e993f9", properties: {"delegate":758143236907620} });
+registerSDKClass("PKPaymentAuthorizationResult", PKPaymentAuthorizationResult, { module: "PassKit_a624b245971cfd00", properties: {"errors":4196279304762901,"orderDetails":496074497821766,"status":4245299897551876} });
+registerSDKClass("PKPaymentAuthorizationViewController", PKPaymentAuthorizationViewController, { module: "PassKit_a624b245971cfd00", properties: {"delegate":758143236907620} });
 registerSDKProtocol("c:objc(pl)PKPaymentAuthorizationViewControllerDelegate", {"paymentAuthorizationViewControllerDidFinish":"paymentAuthorizationViewControllerDidFinish(_:)","paymentAuthorizationViewControllerWillAuthorizePayment":"paymentAuthorizationViewControllerWillAuthorizePayment(_:)"});
-registerSDKClass("PKPaymentButton", PKPaymentButton, { module: "PassKit_2f6e018ff7e993f9", properties: {"cornerRadius":346186370768302} });
-registerSDKClass("PassKit.PKPaymentError", PKPaymentError, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKPaymentInformationEventExtension", PKPaymentInformationEventExtension, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
+registerSDKClass("PKPaymentButton", PKPaymentButton, { module: "PassKit_a624b245971cfd00", properties: {"cornerRadius":346186370768302} });
+registerSDKClass("PassKit.PKPaymentError", PKPaymentError, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKPaymentInformationEventExtension", PKPaymentInformationEventExtension, { module: "PassKit_a624b245971cfd00", properties: {} });
 registerSDKProtocol("c:objc(pl)PKPaymentInformationRequestHandling", {"handleInformationRequest":"handleInformationRequest(_:)","handle":"handle(_:)"});
-registerSDKClass("PKPaymentMerchantSession", PKPaymentMerchantSession, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKPaymentMethod", PKPaymentMethod, { module: "PassKit_2f6e018ff7e993f9", properties: {"billingAddress":1013686125527296,"displayName":3097791675666772,"network":3510739738577186,"paymentPass":445209035885761,"secureElementPass":3381697374858899,"type":862080810857273} });
-registerSDKClass("PKPaymentOrderDetails", PKPaymentOrderDetails, { module: "PassKit_2f6e018ff7e993f9", properties: {"authenticationToken":3047674821612305,"orderIdentifier":1162824813773399,"orderTypeIdentifier":3009862329665925,"webServiceURL":2395165565627264} });
-registerSDKClass("PKSecureElementPass", PKSecureElementPass, { module: "PassKit_2f6e018ff7e993f9", properties: {"deviceAccountIdentifier":96993916629497,"deviceAccountNumberSuffix":1240714519186108,"devicePassIdentifier":3097085590077936,"pairedTerminalIdentifier":924411372390970,"passActivationState":3913165466557126,"primaryAccountIdentifier":783542559721073,"primaryAccountNumberSuffix":2907835512901871,"isProvisioningAvailable":872395736477092} });
-registerSDKClass("PKPaymentPass", PKPaymentPass, { module: "PassKit_2f6e018ff7e993f9", properties: {"activationState":2070975981486126} });
-registerSDKClass("PKPaymentRequest", PKPaymentRequest, { module: "PassKit_2f6e018ff7e993f9", properties: {"applicationData":2581118670453265,"attributionIdentifier":1791743326706067,"automaticReloadPaymentRequest":2815537556802361,"billingAddress":3615094793018879,"billingContact":2272893187081597,"countryCode":1558776796135135,"couponCode":1011428108593863,"currencyCode":4459989252567688,"deferredPaymentRequest":307973729585468,"isDelegatedRequest":1791838991348362,"merchantCapabilities":3095505959311357,"merchantIdentifier":2028447490540200,"multiTokenContexts":4183392770107787,"paymentSummaryItems":3467240215397707,"recurringPaymentRequest":3013481502063047,"requiredBillingAddressFields":3009182126539139,"requiredBillingContactFields":681530144681646,"requiredShippingAddressFields":4351706078971460,"requiredShippingContactFields":3826104826885529,"shippingAddress":2991371905574202,"shippingContact":37151927298470,"shippingContactEditingMode":531705218283214,"shippingMethods":4267346457872610,"shippingType":1798484549603315,"supportedCountries":897874393112298,"supportedNetworks":356249008125967,"supportsCouponCode":1975432112146746,"unsupportedPrimaryAccountIdentifiers":3355720792698495} });
-registerSDKClass("PassKit.PKPaymentRequest.ApplePayLaterAvailability", PKPaymentRequest_ApplePayLaterAvailability, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKPaymentRequestUpdate", PKPaymentRequestUpdate, { module: "PassKit_2f6e018ff7e993f9", properties: {"automaticReloadPaymentRequest":4045210806867953,"deferredPaymentRequest":1386378739143800,"multiTokenContexts":2266871466621716,"paymentSummaryItems":3471889668343110,"recurringPaymentRequest":7799170794130,"shippingMethods":2602084853976998,"status":3023205931121458} });
-registerSDKClass("PKPaymentRequestCouponCodeUpdate", PKPaymentRequestCouponCodeUpdate, { module: "PassKit_2f6e018ff7e993f9", properties: {"errors":3031810258468441} });
-registerSDKClass("PKPaymentRequestMerchantSessionUpdate", PKPaymentRequestMerchantSessionUpdate, { module: "PassKit_2f6e018ff7e993f9", properties: {"session":2893615570822580,"status":217813609960780} });
-registerSDKClass("PKPaymentRequestPaymentMethodUpdate", PKPaymentRequestPaymentMethodUpdate, { module: "PassKit_2f6e018ff7e993f9", properties: {"errors":4044864987595109} });
-registerSDKClass("PKPaymentRequestShippingContactUpdate", PKPaymentRequestShippingContactUpdate, { module: "PassKit_2f6e018ff7e993f9", properties: {"errors":2440921746102492,"shippingMethods":1894955898818973} });
-registerSDKClass("PKPaymentRequestShippingMethodUpdate", PKPaymentRequestShippingMethodUpdate, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKPaymentToken", PKPaymentToken, { module: "PassKit_2f6e018ff7e993f9", properties: {"paymentData":1088547217493168,"paymentInstrumentName":2440676438623850,"paymentMethod":2516308795130258,"paymentNetwork":2355739481976960,"transactionIdentifier":3114510231357375} });
-registerSDKClass("PKPaymentTokenContext", PKPaymentTokenContext, { module: "PassKit_2f6e018ff7e993f9", properties: {"amount":4040418182001910,"externalIdentifier":642704798641827,"merchantDomain":2576468842307482,"merchantIdentifier":2322739639136745,"merchantName":2837767902296945} });
-registerSDKClass("PKRecurringPaymentRequest", PKRecurringPaymentRequest, { module: "PassKit_2f6e018ff7e993f9", properties: {"billingAgreement":3337206679041199,"managementURL":2339294645976507,"paymentDescription":487167645091794,"regularBilling":3185472646427265,"tokenNotificationURL":3680102781332014,"trialBilling":4161618007744644} });
-registerSDKClass("PKRecurringPaymentSummaryItem", PKRecurringPaymentSummaryItem, { module: "PassKit_2f6e018ff7e993f9", properties: {"endDate":3822918775294755,"intervalCount":3259087777480613,"intervalUnit":1079366911064270,"startDate":1313645869859372} });
-registerSDKClass("PKShareablePassMetadata", PKShareablePassMetadata, { module: "PassKit_2f6e018ff7e993f9", properties: {"accountHash":4000916358153822,"cardConfigurationIdentifier":1163700995627617,"cardTemplateIdentifier":2125490118147370,"credentialIdentifier":675593933763091,"localizedDescription":3057400007413120,"ownerDisplayName":1725326105834799,"passThumbnailImage":13108478514845,"preview":4206405621824400,"relyingPartyIdentifier":3723293716692567,"requiresUnifiedAccessCapableDevice":608396203040134,"serverEnvironmentIdentifier":285766614873755,"sharingInstanceIdentifier":2974988799847096,"templateIdentifier":2280601476917036} });
-registerSDKClass("PKShareablePassMetadataPreview", PKShareablePassMetadata_Preview, { module: "PassKit_2f6e018ff7e993f9", properties: {"ownerDisplayName":3882208309988525,"provisioningTemplateIdentifier":2776985404724166} });
-registerSDKClass("PassKit.PKShareSecureElementPassError", PKShareSecureElementPassError, { module: "PassKit_2f6e018ff7e993f9", properties: {} });
-registerSDKClass("PKShareSecureElementPassViewController", PKShareSecureElementPassViewController, { module: "PassKit_2f6e018ff7e993f9", properties: {"delegate":2129680970067732,"promptToShareURL":3481723723755226} });
+registerSDKClass("PKPaymentMerchantSession", PKPaymentMerchantSession, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKPaymentMethod", PKPaymentMethod, { module: "PassKit_a624b245971cfd00", properties: {"billingAddress":1013686125527296,"displayName":3097791675666772,"network":3510739738577186,"paymentPass":445209035885761,"secureElementPass":3381697374858899,"type":862080810857273} });
+registerSDKClass("PKPaymentOrderDetails", PKPaymentOrderDetails, { module: "PassKit_a624b245971cfd00", properties: {"authenticationToken":3047674821612305,"orderIdentifier":1162824813773399,"orderTypeIdentifier":3009862329665925,"webServiceURL":2395165565627264} });
+registerSDKClass("PKSecureElementPass", PKSecureElementPass, { module: "PassKit_a624b245971cfd00", properties: {"deviceAccountIdentifier":96993916629497,"deviceAccountNumberSuffix":1240714519186108,"devicePassIdentifier":3097085590077936,"pairedTerminalIdentifier":924411372390970,"passActivationState":3913165466557126,"primaryAccountIdentifier":783542559721073,"primaryAccountNumberSuffix":2907835512901871,"isProvisioningAvailable":872395736477092} });
+registerSDKClass("PKPaymentPass", PKPaymentPass, { module: "PassKit_a624b245971cfd00", properties: {"activationState":2070975981486126} });
+registerSDKClass("PKPaymentRequest", PKPaymentRequest, { module: "PassKit_a624b245971cfd00", properties: {"applicationData":2581118670453265,"attributionIdentifier":1791743326706067,"automaticReloadPaymentRequest":2815537556802361,"billingAddress":3615094793018879,"billingContact":2272893187081597,"countryCode":1558776796135135,"couponCode":1011428108593863,"currencyCode":4459989252567688,"deferredPaymentRequest":307973729585468,"isDelegatedRequest":1791838991348362,"merchantCapabilities":3095505959311357,"merchantIdentifier":2028447490540200,"multiTokenContexts":4183392770107787,"paymentSummaryItems":3467240215397707,"recurringPaymentRequest":3013481502063047,"requiredBillingAddressFields":3009182126539139,"requiredBillingContactFields":681530144681646,"requiredShippingAddressFields":4351706078971460,"requiredShippingContactFields":3826104826885529,"shippingAddress":2991371905574202,"shippingContact":37151927298470,"shippingContactEditingMode":531705218283214,"shippingMethods":4267346457872610,"shippingType":1798484549603315,"supportedCountries":897874393112298,"supportedNetworks":356249008125967,"supportsCouponCode":1975432112146746,"unsupportedPrimaryAccountIdentifiers":3355720792698495} });
+registerSDKClass("PassKit.PKPaymentRequest.ApplePayLaterAvailability", PKPaymentRequest_ApplePayLaterAvailability, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKPaymentRequestUpdate", PKPaymentRequestUpdate, { module: "PassKit_a624b245971cfd00", properties: {"automaticReloadPaymentRequest":4045210806867953,"deferredPaymentRequest":1386378739143800,"multiTokenContexts":2266871466621716,"paymentSummaryItems":3471889668343110,"recurringPaymentRequest":7799170794130,"shippingMethods":2602084853976998,"status":3023205931121458} });
+registerSDKClass("PKPaymentRequestCouponCodeUpdate", PKPaymentRequestCouponCodeUpdate, { module: "PassKit_a624b245971cfd00", properties: {"errors":3031810258468441} });
+registerSDKClass("PKPaymentRequestMerchantSessionUpdate", PKPaymentRequestMerchantSessionUpdate, { module: "PassKit_a624b245971cfd00", properties: {"session":2893615570822580,"status":217813609960780} });
+registerSDKClass("PKPaymentRequestPaymentMethodUpdate", PKPaymentRequestPaymentMethodUpdate, { module: "PassKit_a624b245971cfd00", properties: {"errors":4044864987595109} });
+registerSDKClass("PKPaymentRequestShippingContactUpdate", PKPaymentRequestShippingContactUpdate, { module: "PassKit_a624b245971cfd00", properties: {"errors":2440921746102492,"shippingMethods":1894955898818973} });
+registerSDKClass("PKPaymentRequestShippingMethodUpdate", PKPaymentRequestShippingMethodUpdate, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKPaymentToken", PKPaymentToken, { module: "PassKit_a624b245971cfd00", properties: {"paymentData":1088547217493168,"paymentInstrumentName":2440676438623850,"paymentMethod":2516308795130258,"paymentNetwork":2355739481976960,"transactionIdentifier":3114510231357375} });
+registerSDKClass("PKPaymentTokenContext", PKPaymentTokenContext, { module: "PassKit_a624b245971cfd00", properties: {"amount":4040418182001910,"externalIdentifier":642704798641827,"merchantDomain":2576468842307482,"merchantIdentifier":2322739639136745,"merchantName":2837767902296945} });
+registerSDKClass("PKRecurringPaymentRequest", PKRecurringPaymentRequest, { module: "PassKit_a624b245971cfd00", properties: {"billingAgreement":3337206679041199,"managementURL":2339294645976507,"paymentDescription":487167645091794,"regularBilling":3185472646427265,"tokenNotificationURL":3680102781332014,"trialBilling":4161618007744644} });
+registerSDKClass("PKRecurringPaymentSummaryItem", PKRecurringPaymentSummaryItem, { module: "PassKit_a624b245971cfd00", properties: {"endDate":3822918775294755,"intervalCount":3259087777480613,"intervalUnit":1079366911064270,"startDate":1313645869859372} });
+registerSDKClass("PKShareablePassMetadata", PKShareablePassMetadata, { module: "PassKit_a624b245971cfd00", properties: {"accountHash":4000916358153822,"cardConfigurationIdentifier":1163700995627617,"cardTemplateIdentifier":2125490118147370,"credentialIdentifier":675593933763091,"localizedDescription":3057400007413120,"ownerDisplayName":1725326105834799,"passThumbnailImage":13108478514845,"preview":4206405621824400,"relyingPartyIdentifier":3723293716692567,"requiresUnifiedAccessCapableDevice":608396203040134,"serverEnvironmentIdentifier":285766614873755,"sharingInstanceIdentifier":2974988799847096,"templateIdentifier":2280601476917036} });
+registerSDKClass("PKShareablePassMetadataPreview", PKShareablePassMetadata_Preview, { module: "PassKit_a624b245971cfd00", properties: {"ownerDisplayName":3882208309988525,"provisioningTemplateIdentifier":2776985404724166} });
+registerSDKClass("PassKit.PKShareSecureElementPassError", PKShareSecureElementPassError, { module: "PassKit_a624b245971cfd00", properties: {} });
+registerSDKClass("PKShareSecureElementPassViewController", PKShareSecureElementPassViewController, { module: "PassKit_a624b245971cfd00", properties: {"delegate":2129680970067732,"promptToShareURL":3481723723755226} });
 registerSDKProtocol("c:objc(pl)PKShareSecureElementPassViewControllerDelegate", {"shareSecureElementPassViewControllerDidFinishWith":"shareSecureElementPassViewController(_:didFinishWith:)","shareSecureElementPassViewControllerDidCreateShareActivationCode":"shareSecureElementPassViewController(_:didCreateShare:activationCode:)"});
-registerSDKClass("PKShippingMethod", PKShippingMethod, { module: "PassKit_2f6e018ff7e993f9", properties: {"dateComponentsRange":2376346005567148,"detail":2784066443389908,"identifier":436918991192170} });
-registerSDKClass("PKStoredValuePassBalance", PKStoredValuePassBalance, { module: "PassKit_2f6e018ff7e993f9", properties: {"balanceType":1281379782728307,"currencyCode":1084122332309410,"expiryDate":1525169281580138} });
-registerSDKClass("PKStoredValuePassProperties", PKStoredValuePassProperties, { module: "PassKit_2f6e018ff7e993f9", properties: {"balances":2693767374590591,"isBlacklisted":3169455796409197,"expirationDate":1070184407338885} });
-registerSDKClass("PKTransitPassProperties", PKTransitPassProperties, { module: "PassKit_2f6e018ff7e993f9", properties: {"isBlacklisted":3562262926580200,"expirationDate":1826732638638347,"isInStation":2755590708655377,"transitBalance":414780498145743,"transitBalanceCurrencyCode":977590640256391} });
-registerSDKClass("PKSuicaPassProperties", PKSuicaPassProperties, { module: "PassKit_2f6e018ff7e993f9", properties: {"isBalanceAllowedForCommute":1319207592592811,"isBlacklisted":992519533909840,"isGreenCarTicketUsed":2768260997948524,"isInShinkansenStation":761739306598472,"isInStation":77616309316803,"isLowBalanceGateNotificationEnabled":501252874908729,"transitBalance":16704335859121,"transitBalanceCurrencyCode":3508240363910447} });
+registerSDKClass("PKShippingMethod", PKShippingMethod, { module: "PassKit_a624b245971cfd00", properties: {"dateComponentsRange":2376346005567148,"detail":2784066443389908,"identifier":436918991192170} });
+registerSDKClass("PKStoredValuePassBalance", PKStoredValuePassBalance, { module: "PassKit_a624b245971cfd00", properties: {"balanceType":1281379782728307,"currencyCode":1084122332309410,"expiryDate":1525169281580138} });
+registerSDKClass("PKStoredValuePassProperties", PKStoredValuePassProperties, { module: "PassKit_a624b245971cfd00", properties: {"balances":2693767374590591,"isBlacklisted":3169455796409197,"expirationDate":1070184407338885} });
+registerSDKClass("PKTransitPassProperties", PKTransitPassProperties, { module: "PassKit_a624b245971cfd00", properties: {"isBlacklisted":3562262926580200,"expirationDate":1826732638638347,"isInStation":2755590708655377,"transitBalance":414780498145743,"transitBalanceCurrencyCode":977590640256391} });
+registerSDKClass("PKSuicaPassProperties", PKSuicaPassProperties, { module: "PassKit_a624b245971cfd00", properties: {"isBalanceAllowedForCommute":1319207592592811,"isBlacklisted":992519533909840,"isGreenCarTicketUsed":2768260997948524,"isInShinkansenStation":761739306598472,"isInStation":77616309316803,"isLowBalanceGateNotificationEnabled":501252874908729,"transitBalance":16704335859121,"transitBalanceCurrencyCode":3508240363910447} });
 registerSDKProtocol("c:objc(pl)PKVehicleConnectionDelegate", {"sessionDidChange":"sessionDidChange(_:)","sessionDidReceive":"sessionDidReceive(_:)"});
-registerSDKClass("PKVehicleConnectionSession", PKVehicleConnectionSession, { module: "PassKit_2f6e018ff7e993f9", properties: {"connectionStatus":4132137150812348,"delegate":56043860770997}, methods: {"invalidate":{"id":3365555173379745},"send":{"id":3733235560144780}} });
+registerSDKClass("PKVehicleConnectionSession", PKVehicleConnectionSession, { module: "PassKit_a624b245971cfd00", properties: {"connectionStatus":4132137150812348,"delegate":56043860770997}, methods: {"invalidate":{"id":3365555173379745},"send":{"id":3733235560144780}} });

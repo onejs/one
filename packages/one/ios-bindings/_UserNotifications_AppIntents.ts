@@ -9,9 +9,9 @@ export class UNMutableNotificationContent extends SDKHandle {
    * var appEntityIdentifiers: [EntityIdentifier] { get set }
    * @availability iOS 27.0+
    */
-  get appEntityIdentifiers(): $SDK0 { return callSDK<$SDK0>("_UserNotifications_AppIntents_2f6e018ff7e993f9", 2012916374458101, this, []); }
-  set appEntityIdentifiers(value: $SDK0) { callSDK<void>("_UserNotifications_AppIntents_2f6e018ff7e993f9", 4236495739193730, this, [value]); }
+  get appEntityIdentifiers(): $SDK0 { return callSDK<$SDK0>("_UserNotifications_AppIntents_a624b245971cfd00", 2012916374458101, this, []); }
+  set appEntityIdentifiers(value: $SDK0) { callSDK<void>("_UserNotifications_AppIntents_a624b245971cfd00", 4236495739193730, this, [value]); }
   declare readonly $type: { "c:objc(cs)UNMutableNotificationContent": true; "c:objc(cs)UNNotificationContent": true; "c:objc(cs)NSObject": true };
 }
 
-registerSDKClass("UNMutableNotificationContent", UNMutableNotificationContent, { module: "_UserNotifications_AppIntents_2f6e018ff7e993f9", properties: {} }, true);
+registerSDKClass("UNMutableNotificationContent", UNMutableNotificationContent, { module: "_UserNotifications_AppIntents_a624b245971cfd00", properties: {} }, true);

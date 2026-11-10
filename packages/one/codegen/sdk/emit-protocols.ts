@@ -78,6 +78,7 @@ function objcClassType(type: SwiftType, bridge: Bridge, seen: Set<string>): bool
 function objcOptional(type: SwiftType, bridge: Bridge, seen: Set<string>): boolean {
   switch (type.k) {
     case 'optional':
+      return false
     case 'existential':
       return objcOptional(type.t, bridge, seen)
     case 'array':
@@ -102,6 +103,8 @@ function objcRepresentable(type: SwiftType, bridge: Bridge, seen = new Set<strin
   if (boxed && type.k === 'named' && clangEnum(type.usr)) return false
   switch (type.k) {
     case 'optional':
+      // string? is a nullable object. [string?] is not an nsarray member.
+      if (boxed) return false
       return objcOptional(type.t, bridge, seen)
     case 'array':
       return objcRepresentable(type.t, bridge, seen, true)
@@ -123,7 +126,7 @@ function objcRepresentable(type: SwiftType, bridge: Bridge, seen = new Set<strin
     case 'metatype':
       return objcClassType(type.t, bridge, seen)
     case 'named': {
-      if (type.usr === 's:Sq') return type.args.length === 1 && objcOptional(type.args[0], bridge, seen)
+      if (type.usr === 's:Sq') return !boxed && type.args.length === 1 && objcOptional(type.args[0], bridge, seen)
       if (type.args.some((arg) => !objcRepresentable(arg, bridge, seen, true))) return false
       const name = type.name.split('.').at(-1)!
       if (name === 'Any' || name === 'AnyObject' || name === 'Void' || name === 'AnyClass') return true
