@@ -11,17 +11,17 @@ export class ManagedAppCertificatesProvider extends SDKHandle {
    * func certificate(withIdentifier identifier: String) async throws(ManagedAppError) -> SecCertificate
    * @availability iOS 18.4+
    */
-  certificate(identifier: string): Promise<_Security_SecCertificate> { return callSDKAsync<_Security_SecCertificate>("ManagedApp_b66fbf8c99a1c012", 1493114747822027, this, [identifier]); }
+  certificate(identifier: string): Promise<_Security_SecCertificate> { return callSDKAsync<_Security_SecCertificate>("ManagedApp_2cb2726c65780bbb", 1493114747822027, this, [identifier]); }
   /**
    * var identifiers: some AsyncSequence<Array<String>, Never> { get async }
    * @availability iOS 18.4+
    */
-  get identifiers(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("ManagedApp_b66fbf8c99a1c012", 3046135806856797, this, []); }
+  get identifiers(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("ManagedApp_2cb2726c65780bbb", 3046135806856797, this, []); }
   /**
    * init()
    * @availability iOS 18.4+
    */
-  static init(): ManagedAppCertificatesProvider { return callSDK<ManagedAppCertificatesProvider>("ManagedApp_b66fbf8c99a1c012", 2953249156753747, undefined, []); }
+  static init(): ManagedAppCertificatesProvider { return callSDK<ManagedAppCertificatesProvider>("ManagedApp_2cb2726c65780bbb", 2953249156753747, undefined, []); }
   declare readonly $type: { "s:10ManagedApp0aB20CertificatesProviderC": true };
 }
 
@@ -44,47 +44,47 @@ export const ManagedAppConfigurationDecodingErrorCode = {
    * static let keyNotFound: Int
    * @availability iOS 18.4+
    */
-  get keyNotFound(): number { return callSDK<number>("ManagedApp_b66fbf8c99a1c012", 1543147450338916, undefined, []); },
+  get keyNotFound(): number { return callSDK<number>("ManagedApp_2cb2726c65780bbb", 1543147450338916, undefined, []); },
   /**
    * static let typeMismatch: Int
    * @availability iOS 18.4+
    */
-  get typeMismatch(): number { return callSDK<number>("ManagedApp_b66fbf8c99a1c012", 2868243582763719, undefined, []); },
+  get typeMismatch(): number { return callSDK<number>("ManagedApp_2cb2726c65780bbb", 2868243582763719, undefined, []); },
   /**
    * static let dataCorrupted: Int
    * @availability iOS 18.4+
    */
-  get dataCorrupted(): number { return callSDK<number>("ManagedApp_b66fbf8c99a1c012", 1117813754777448, undefined, []); },
+  get dataCorrupted(): number { return callSDK<number>("ManagedApp_2cb2726c65780bbb", 1117813754777448, undefined, []); },
   /**
    * static let firstReserved: Int
    * @availability iOS 18.4+
    */
-  get firstReserved(): number { return callSDK<number>("ManagedApp_b66fbf8c99a1c012", 3429208065214539, undefined, []); },
+  get firstReserved(): number { return callSDK<number>("ManagedApp_2cb2726c65780bbb", 3429208065214539, undefined, []); },
   /**
    * static let valueNotFound: Int
    * @availability iOS 18.4+
    */
-  get valueNotFound(): number { return callSDK<number>("ManagedApp_b66fbf8c99a1c012", 1264329672532538, undefined, []); },
+  get valueNotFound(): number { return callSDK<number>("ManagedApp_2cb2726c65780bbb", 1264329672532538, undefined, []); },
   /**
    * static let generic: Int
    * @availability iOS 18.4+
    */
-  get generic(): number { return callSDK<number>("ManagedApp_b66fbf8c99a1c012", 3996514728404065, undefined, []); },
+  get generic(): number { return callSDK<number>("ManagedApp_2cb2726c65780bbb", 3996514728404065, undefined, []); },
   /**
    * static let timeout: Int
    * @availability iOS 18.4+
    */
-  get timeout(): number { return callSDK<number>("ManagedApp_b66fbf8c99a1c012", 903054119997517, undefined, []); },
+  get timeout(): number { return callSDK<number>("ManagedApp_2cb2726c65780bbb", 903054119997517, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 18.4+
    */
-  init(rawValue: number): (ManagedAppConfigurationDecodingErrorCode) | null { return callSDK<(ManagedAppConfigurationDecodingErrorCode) | null>("ManagedApp_b66fbf8c99a1c012", 1700221108278073, undefined, [rawValue]); },
+  init(rawValue: number): (ManagedAppConfigurationDecodingErrorCode) | null { return callSDK<(ManagedAppConfigurationDecodingErrorCode) | null>("ManagedApp_2cb2726c65780bbb", 1700221108278073, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 18.4+
    */
-  getRawValue($self: ManagedAppConfigurationDecodingErrorCode): number { return callSDK<number>("ManagedApp_b66fbf8c99a1c012", 3092826207889202, $self, []); }
+  getRawValue($self: ManagedAppConfigurationDecodingErrorCode): number { return callSDK<number>("ManagedApp_2cb2726c65780bbb", 3092826207889202, $self, []); }
 };
 
 /**
@@ -102,7 +102,7 @@ export class ManagedAppConfigurationProvider extends SDKHandle {
    * init()
    * @availability iOS 18.4+
    */
-  static init(): ManagedAppConfigurationProvider { return callSDK<ManagedAppConfigurationProvider>("ManagedApp_b66fbf8c99a1c012", 1065233570269416, undefined, []); }
+  static init(): ManagedAppConfigurationProvider { return callSDK<ManagedAppConfigurationProvider>("ManagedApp_2cb2726c65780bbb", 1065233570269416, undefined, []); }
   declare readonly $type: { "s:10ManagedApp0aB21ConfigurationProviderC": true };
 }
 
@@ -121,17 +121,17 @@ export class ManagedAppIdentitiesProvider extends SDKHandle {
    * var identifiers: some AsyncSequence<Array<String>, Never> { get async }
    * @availability iOS 18.4+
    */
-  get identifiers(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("ManagedApp_b66fbf8c99a1c012", 1767617075461340, this, []); }
+  get identifiers(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("ManagedApp_2cb2726c65780bbb", 1767617075461340, this, []); }
   /**
    * func identity(withIdentifier identifier: String) async throws(ManagedAppError) -> SecIdentity
    * @availability iOS 18.4+
    */
-  identity(identifier: string): Promise<_Security_SecIdentity> { return callSDKAsync<_Security_SecIdentity>("ManagedApp_b66fbf8c99a1c012", 3713325084551636, this, [identifier]); }
+  identity(identifier: string): Promise<_Security_SecIdentity> { return callSDKAsync<_Security_SecIdentity>("ManagedApp_2cb2726c65780bbb", 3713325084551636, this, [identifier]); }
   /**
    * init()
    * @availability iOS 18.4+
    */
-  static init(): ManagedAppIdentitiesProvider { return callSDK<ManagedAppIdentitiesProvider>("ManagedApp_b66fbf8c99a1c012", 1587745344176594, undefined, []); }
+  static init(): ManagedAppIdentitiesProvider { return callSDK<ManagedAppIdentitiesProvider>("ManagedApp_2cb2726c65780bbb", 1587745344176594, undefined, []); }
   declare readonly $type: { "s:10ManagedApp0aB18IdentitiesProviderC": true };
 }
 
@@ -144,22 +144,22 @@ export class ManagedAppPasswordsProvider extends SDKHandle {
    * var identifiers: some AsyncSequence<Array<String>, Never> { get async }
    * @availability iOS 18.4+
    */
-  get identifiers(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("ManagedApp_b66fbf8c99a1c012", 3104134814713182, this, []); }
+  get identifiers(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("ManagedApp_2cb2726c65780bbb", 3104134814713182, this, []); }
   /**
    * func password(withIdentifier identifier: String) async throws(ManagedAppError) -> String
    * @availability iOS 18.4+
    */
-  password(identifier: string): Promise<string> { return callSDKAsync<string>("ManagedApp_b66fbf8c99a1c012", 584518729977018, this, [identifier]); }
+  password(identifier: string): Promise<string> { return callSDKAsync<string>("ManagedApp_2cb2726c65780bbb", 584518729977018, this, [identifier]); }
   /**
    * init()
    * @availability iOS 18.4+
    */
-  static init(): ManagedAppPasswordsProvider { return callSDK<ManagedAppPasswordsProvider>("ManagedApp_b66fbf8c99a1c012", 4085781429267682, undefined, []); }
+  static init(): ManagedAppPasswordsProvider { return callSDK<ManagedAppPasswordsProvider>("ManagedApp_2cb2726c65780bbb", 4085781429267682, undefined, []); }
   declare readonly $type: { "s:10ManagedApp0aB17PasswordsProviderC": true };
 }
 
-registerSDKClass("ManagedApp.ManagedAppCertificatesProvider", ManagedAppCertificatesProvider, { module: "ManagedApp_b66fbf8c99a1c012", properties: {}, methods: {"certificate":{"id":1493114747822027}} });
+registerSDKClass("ManagedApp.ManagedAppCertificatesProvider", ManagedAppCertificatesProvider, { module: "ManagedApp_2cb2726c65780bbb", properties: {}, methods: {"certificate":{"id":1493114747822027}} });
 registerSDKProtocol("s:10ManagedApp0aB26ConfigurationDecodingErrorP", {});
-registerSDKClass("ManagedApp.ManagedAppConfigurationProvider", ManagedAppConfigurationProvider, { module: "ManagedApp_b66fbf8c99a1c012", properties: {} });
-registerSDKClass("ManagedApp.ManagedAppIdentitiesProvider", ManagedAppIdentitiesProvider, { module: "ManagedApp_b66fbf8c99a1c012", properties: {}, methods: {"identity":{"id":3713325084551636}} });
-registerSDKClass("ManagedApp.ManagedAppPasswordsProvider", ManagedAppPasswordsProvider, { module: "ManagedApp_b66fbf8c99a1c012", properties: {}, methods: {"password":{"id":584518729977018}} });
+registerSDKClass("ManagedApp.ManagedAppConfigurationProvider", ManagedAppConfigurationProvider, { module: "ManagedApp_2cb2726c65780bbb", properties: {} });
+registerSDKClass("ManagedApp.ManagedAppIdentitiesProvider", ManagedAppIdentitiesProvider, { module: "ManagedApp_2cb2726c65780bbb", properties: {}, methods: {"identity":{"id":3713325084551636}} });
+registerSDKClass("ManagedApp.ManagedAppPasswordsProvider", ManagedAppPasswordsProvider, { module: "ManagedApp_2cb2726c65780bbb", properties: {}, methods: {"password":{"id":584518729977018}} });

@@ -2,7 +2,7 @@
 import { inUniverse, type Bridge } from './bridge'
 import { effectsOf, outputValue, type Skipped } from './emit'
 import { loadGraph, type Fragment, type Graph, type Symbol } from './graph'
-import { parameterType, type SwiftType } from './types'
+import { parameterType, parseType, type SwiftType, TypeParseError } from './types'
 
 const text = (fragments: Fragment[] = []) => fragments.map((f) => f.spelling).join('')
 const quoted = (name: string) => `\`${name.replace(/`/g, '')}\``
@@ -11,6 +11,75 @@ const SYNC_REASON = 'synchronous protocol result requires an active JS-thread ca
 // these standard-library markers have no method requirements. the compiler
 // checks the generated witness against their concurrency semantics.
 const MARKERS = new Set(['s:s8SendableP', 's:s16SendableMetatypeP'])
+
+// stdlib and foundation values that cross into an objective-c method. other
+// swift structs and enums do not, unless the graph says they bridge.
+const BRIDGED_USRS = new Set([
+  's:Sb', 's:Si', 's:Su', 's:Sd', 's:Sf', 's:SS', 's:SJ', 's:Ss',
+  's:s4Int8V', 's:s5Int16V', 's:s5Int32V', 's:s5Int64V',
+  's:s5UInt8V', 's:s6UInt16V', 's:s6UInt32V', 's:s6UInt64V', 's:s7Float16V',
+  's:14CoreFoundation7CGFloatV', 's:12CoreGraphics7CGFloatV',
+  's:s5ErrorP', 's:s4Voida', 's:s8AnyClassa',
+  's:10Foundation4DateV', 's:10Foundation3URLV', 's:10Foundation4DataV', 's:10Foundation4UUIDV',
+  's:Sa', 's:SD', 's:Sh', 's:Sq',
+])
+
+// c:objc(pl)Name(im)archiver:didEncodeObject: — the selector is the objective-c
+// requirement, which is not the selector swift infers from the swift name.
+function objcMethod(usr: string): { selector: string; instance: boolean } | undefined {
+  const match = /^c:objc\([^)]*\)[^(]*\((im|cm)\)([A-Za-z_][A-Za-z0-9_:]*)$/.exec(usr)
+  if (!match) return undefined
+  return { selector: match[2], instance: match[1] === 'im' }
+}
+
+function bridgesToObjC(usr: string, bridge: Bridge, seen = new Set<string>()): boolean {
+  if (BRIDGED_USRS.has(usr) || usr.startsWith('c:')) return true
+  if (seen.has(usr)) return false
+  seen.add(usr)
+  const info = bridge.index.get(usr)
+  if (!info) return false
+  if (info.conformsTo?.some((id) => bridge.index.get(id)?.path.at(-1) === 'ReferenceConvertible')) return true
+  if (info.kind === 'typealias' && info.alias) return objcRepresentable(info.alias, bridge, seen)
+  if (info.kind === 'class' && info.superclass) return bridgesToObjC(info.superclass, bridge, seen)
+  return false
+}
+
+function objcRepresentable(type: SwiftType, bridge: Bridge, seen = new Set<string>()): boolean {
+  switch (type.k) {
+    case 'optional':
+    case 'array':
+    case 'variadic':
+      return objcRepresentable(type.t, bridge, seen)
+    case 'dictionary':
+      return objcRepresentable(type.key, bridge, seen) && objcRepresentable(type.value, bridge, seen)
+    case 'existential':
+      return objcRepresentable(type.t, bridge, seen)
+    case 'composition':
+      return type.items.every((item) => objcRepresentable(item, bridge, seen))
+    case 'function':
+      return type.params.every((param) => objcRepresentable(param.t, bridge, seen)) && objcRepresentable(type.result, bridge, seen)
+    case 'tuple':
+      return type.items.length === 0
+    case 'inout':
+      return false
+    case 'metatype':
+      return objcRepresentable(type.t, bridge, seen)
+    case 'named': {
+      const name = type.name.split('.').at(-1)!
+      if (name === 'Any' || name === 'AnyObject' || name === 'Void' || name === 'AnyClass') return true
+      return !!type.usr && bridgesToObjC(type.usr, bridge, seen)
+    }
+  }
+}
+
+function asType(fragments: Fragment[], parameter: boolean): SwiftType | undefined {
+  try {
+    return parameter ? parameterType(fragments) : parseType(fragments)
+  } catch (error) {
+    if (error instanceof TypeParseError) return undefined
+    throw error
+  }
+}
 
 export function emitProtocols(graph: Graph, bridge: Bridge, all: Map<string, Symbol>, exclude: Map<string, string>, skipped: Skipped[]) {
   const graphs = new Map([[graph.module, graph]])
@@ -88,6 +157,17 @@ export function emitProtocols(graph: Graph, bridge: Bridge, all: Map<string, Sym
       else if (requirement.swiftGenerics?.parameters?.length || /\b(Self|inout|rethrows)\b/.test(decl)) unsupported = 'generic or mutable protocol requirement'
       else if (effects.isAsync && !effects.throws) unsupported = 'async protocol requirement cannot propagate callback failure'
       else if (requirement.functionSignature?.parameters?.some((p) => nonescaping(bridge.functions(parameterType(p.declarationFragments))))) unsupported = 'nonescaping protocol callback cannot use the async dispatcher'
+      const method = objc ? objcMethod(requirement.identifier.precise) : undefined
+      if (!unsupported && method && !method.instance) unsupported = 'class protocol requirement'
+      if (!unsupported && method) {
+        const parameters = requirement.functionSignature?.parameters ?? []
+        const result = !returns || ['()', 'Void'].includes(returns) ? null : asType(requirement.functionSignature?.returns ?? [], false)
+        const representable = parameters.every((p) => {
+          const type = asType(p.declarationFragments, true)
+          return !!type && objcRepresentable(type, bridge)
+        }) && (result === null || (!!result && objcRepresentable(result, bridge)))
+        if (!representable) unsupported = 'not representable in Objective-C'
+      }
       if (unsupported) {
         if (optional) skipped.push({ usr: `${key}:${requirement.identifier.precise}`, path: `${path}.${title}`, reason: unsupported })
         else reason = unsupported
@@ -112,14 +192,15 @@ export function emitProtocols(graph: Graph, bridge: Bridge, all: Map<string, Sym
       const body = awaitsReply
         ? `guard let method = methods[${JSON.stringify(title)}] else { throw OneSDKError.unsupported("missing protocol method ${title}") }\n    ${result ? 'return try await method.resultAsync' : '_ = try await method.responseAsync'}([${values.join(', ')}])`
         : `methods[${JSON.stringify(title)}]?(${values.join(', ')})`
-      methods.push(`  ${available}${objc ? '@objc ' : ''}func ${quoted(base)}(${args.join(', ')})${suffix} {\n    ${body}\n  }`)
+      const attribute = method ? `@objc(${method.selector}) ` : ''
+      methods.push(`  ${available}${attribute}func ${quoted(base)}(${args.join(', ')})${suffix} {\n    ${body}\n  }`)
       accepted.push(title)
       if (!optional) {
         required.push(title)
         classVersion = newest(classVersion, versionOf(requirement))
       }
       // the typed witness reference disambiguates overloaded swift titles.
-      if (objc) {
+      if (method) {
         const reference = `${name}.${quoted(base)}${labels.length ? `(${labels.map((l) => `${l === '_' ? '_' : quoted(l)}:`).join('')})` : ''}`
         const selector = `#selector(${reference} as (${name}) -> (${types.join(', ')})${effects.isAsync ? ' async' : ''}${effects.throws ? ' throws' : ''} -> ${result ?? 'Void'})`
         const version = methodVersion
