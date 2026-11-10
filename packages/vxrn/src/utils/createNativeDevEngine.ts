@@ -1456,6 +1456,8 @@ export async function buildNativeBundle(
       ...getNativeOutputOptions(prelude, sourcemap, minify),
       // native hosts evaluate a script; module bindings must stay out of globals.
       format: 'iife',
+      // cross-chunk ordering wrappers can emit extra chunks even with code splitting off.
+      strictExecutionOrder: false,
     },
   })
   const chunk = result.output.find((o) => o.type === 'chunk' && o.isEntry)
