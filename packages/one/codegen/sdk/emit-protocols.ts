@@ -112,7 +112,7 @@ export function emitProtocols(graph: Graph, bridge: Bridge, all: Map<string, Sym
       const body = awaitsReply
         ? `guard let method = methods[${JSON.stringify(title)}] else { throw OneSDKError.unsupported("missing protocol method ${title}") }\n    ${result ? 'return try await method.resultAsync' : '_ = try await method.responseAsync'}([${values.join(', ')}])`
         : `methods[${JSON.stringify(title)}]?(${values.join(', ')})`
-      methods.push(`  ${available}func ${quoted(base)}(${args.join(', ')})${suffix} {\n    ${body}\n  }`)
+      methods.push(`  ${available}${objc ? '@objc ' : ''}func ${quoted(base)}(${args.join(', ')})${suffix} {\n    ${body}\n  }`)
       accepted.push(title)
       if (!optional) {
         required.push(title)

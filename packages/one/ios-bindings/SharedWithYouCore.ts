@@ -19,24 +19,24 @@ export class SWAction extends SDKHandle {
    * func fail()
    * @availability iOS 16.0+
    */
-  fail(): void { return callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 1680355493627045, this, []); }
+  fail(): void { return callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 1680355493627045, this, []); }
   /**
    * func fulfill()
    * @availability iOS 16.0+
    */
-  fulfill(): void { return callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 4372861863648098, this, []); }
+  fulfill(): void { return callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 4372861863648098, this, []); }
   /** init() */
-  static init(): SWAction { return callSDK<SWAction>("SharedWithYouCore_b88ddd0bfd78eefc", 4272655731393769, undefined, []); }
+  static init(): SWAction { return callSDK<SWAction>("SharedWithYouCore_b66fbf8c99a1c012", 4272655731393769, undefined, []); }
   /**
    * var isComplete: Bool { get }
    * @availability iOS 16.0+
    */
-  get isComplete(): boolean { return callSDK<boolean>("SharedWithYouCore_b88ddd0bfd78eefc", 3221833275061552, this, []); }
+  get isComplete(): boolean { return callSDK<boolean>("SharedWithYouCore_b66fbf8c99a1c012", 3221833275061552, this, []); }
   /**
    * var uuid: UUID { get }
    * @availability iOS 16.0+
    */
-  get uuid(): string { return callSDK<string>("SharedWithYouCore_b88ddd0bfd78eefc", 3827334830982997, this, []); }
+  get uuid(): string { return callSDK<string>("SharedWithYouCore_b66fbf8c99a1c012", 3827334830982997, this, []); }
   declare readonly $type: { "c:objc(cs)SWAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isComplete": true; "uuid": true };
 }
@@ -62,15 +62,15 @@ export class SWCollaborationCoordinator extends SDKHandle {
    * class var shared: SWCollaborationCoordinator { get }
    * @availability iOS 16.0+
    */
-  static get shared(): SWCollaborationCoordinator { return callSDK<SWCollaborationCoordinator>("SharedWithYouCore_b88ddd0bfd78eefc", 3665923067131097, undefined, []); }
+  static get shared(): SWCollaborationCoordinator { return callSDK<SWCollaborationCoordinator>("SharedWithYouCore_b66fbf8c99a1c012", 3665923067131097, undefined, []); }
   /** init() */
-  static init(): SWCollaborationCoordinator { return callSDK<SWCollaborationCoordinator>("SharedWithYouCore_b88ddd0bfd78eefc", 3600451188737426, undefined, []); }
+  static init(): SWCollaborationCoordinator { return callSDK<SWCollaborationCoordinator>("SharedWithYouCore_b66fbf8c99a1c012", 3600451188737426, undefined, []); }
   /**
    * weak var actionHandler: (any SWCollaborationActionHandler)? { get set }
    * @availability iOS 16.0+
    */
-  get actionHandler(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SharedWithYouCore_b88ddd0bfd78eefc", 291354535103983, this, []); }
-  set actionHandler(value: (Implements<SWCollaborationActionHandler> | SDKHandle) | null) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 2156116811650037, this, [value], [{"protocol":"c:objc(pl)SWCollaborationActionHandler"}]); }
+  get actionHandler(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SharedWithYouCore_b66fbf8c99a1c012", 291354535103983, this, []); }
+  set actionHandler(value: (Implements<SWCollaborationActionHandler> | SDKHandle) | null) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 2156116811650037, this, [value], [{"protocol":"c:objc(pl)SWCollaborationActionHandler"}]); }
   declare readonly $type: { "c:objc(cs)SWCollaborationCoordinator": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actionHandler": true };
 }
@@ -80,9 +80,9 @@ export type SWCollaborationIdentifier = (string & {});
 
 export const SWCollaborationIdentifier = {
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): SWCollaborationIdentifier { return callSDK<SWCollaborationIdentifier>("SharedWithYouCore_b88ddd0bfd78eefc", 632685978418934, undefined, [rawValue]); },
+  initRawValue(rawValue: string): SWCollaborationIdentifier { return callSDK<SWCollaborationIdentifier>("SharedWithYouCore_b66fbf8c99a1c012", 632685978418934, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): SWCollaborationIdentifier { return callSDK<SWCollaborationIdentifier>("SharedWithYouCore_b88ddd0bfd78eefc", 2401367988147526, undefined, [rawValue]); }
+  init(rawValue: string): SWCollaborationIdentifier { return callSDK<SWCollaborationIdentifier>("SharedWithYouCore_b66fbf8c99a1c012", 2401367988147526, undefined, [rawValue]); }
 };
 
 /**
@@ -94,52 +94,52 @@ export class SWCollaborationMetadata extends SDKHandle {
    * init(collaborationIdentifier: SWCollaborationIdentifier)
    * @availability iOS 16.0+
    */
-  static initCollaborationIdentifier(collaborationIdentifier: SWCollaborationIdentifier): SWCollaborationMetadata { return callSDK<SWCollaborationMetadata>("SharedWithYouCore_b88ddd0bfd78eefc", 529569686047778, undefined, [collaborationIdentifier]); }
+  static initCollaborationIdentifier(collaborationIdentifier: SWCollaborationIdentifier): SWCollaborationMetadata { return callSDK<SWCollaborationMetadata>("SharedWithYouCore_b66fbf8c99a1c012", 529569686047778, undefined, [collaborationIdentifier]); }
   /**
    * init(localIdentifier: SWLocalCollaborationIdentifier)
    * @availability iOS 16.0+
    */
-  static initLocalIdentifier(localIdentifier: SWLocalCollaborationIdentifier): SWCollaborationMetadata { return callSDK<SWCollaborationMetadata>("SharedWithYouCore_b88ddd0bfd78eefc", 759665866236051, undefined, [localIdentifier]); }
+  static initLocalIdentifier(localIdentifier: SWLocalCollaborationIdentifier): SWCollaborationMetadata { return callSDK<SWCollaborationMetadata>("SharedWithYouCore_b66fbf8c99a1c012", 759665866236051, undefined, [localIdentifier]); }
   /**
    * var collaborationIdentifier: SWCollaborationIdentifier { get }
    * @availability iOS 16.0+
    */
-  get collaborationIdentifier(): SWCollaborationIdentifier { return callSDK<SWCollaborationIdentifier>("SharedWithYouCore_b88ddd0bfd78eefc", 1969159365260153, this, []); }
+  get collaborationIdentifier(): SWCollaborationIdentifier { return callSDK<SWCollaborationIdentifier>("SharedWithYouCore_b66fbf8c99a1c012", 1969159365260153, this, []); }
   /**
    * @NSCopying var defaultShareOptions: SWCollaborationShareOptions? { get set }
    * @availability iOS 16.0+
    */
-  get defaultShareOptions(): $SDK1 { return callSDK<$SDK1>("SharedWithYouCore_b88ddd0bfd78eefc", 4486650622212675, this, []); }
-  set defaultShareOptions(value: $SDK1) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 888618278985087, this, [value]); }
+  get defaultShareOptions(): $SDK1 { return callSDK<$SDK1>("SharedWithYouCore_b66fbf8c99a1c012", 4486650622212675, this, []); }
+  set defaultShareOptions(value: $SDK1) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 888618278985087, this, [value]); }
   /**
    * var initiatorHandle: String? { get set }
    * @availability iOS 16.0+
    */
-  get initiatorHandle(): (string) | null { return callSDK<(string) | null>("SharedWithYouCore_b88ddd0bfd78eefc", 4264926820756109, this, []); }
-  set initiatorHandle(value: (string) | null) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 994898471186196, this, [value]); }
+  get initiatorHandle(): (string) | null { return callSDK<(string) | null>("SharedWithYouCore_b66fbf8c99a1c012", 4264926820756109, this, []); }
+  set initiatorHandle(value: (string) | null) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 994898471186196, this, [value]); }
   /**
    * var initiatorNameComponents: PersonNameComponents? { get set }
    * @availability iOS 16.0+
    */
-  get initiatorNameComponents(): $SDK2 { return callSDK<$SDK2>("SharedWithYouCore_b88ddd0bfd78eefc", 4085672103706938, this, []); }
-  set initiatorNameComponents(value: $SDK2) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 4381691143693752, this, [value]); }
+  get initiatorNameComponents(): $SDK2 { return callSDK<$SDK2>("SharedWithYouCore_b66fbf8c99a1c012", 4085672103706938, this, []); }
+  set initiatorNameComponents(value: $SDK2) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 4381691143693752, this, [value]); }
   /**
    * var localIdentifier: SWLocalCollaborationIdentifier { get }
    * @availability iOS 16.0+
    */
-  get localIdentifier(): SWLocalCollaborationIdentifier { return callSDK<SWLocalCollaborationIdentifier>("SharedWithYouCore_b88ddd0bfd78eefc", 4097819324752926, this, []); }
+  get localIdentifier(): SWLocalCollaborationIdentifier { return callSDK<SWLocalCollaborationIdentifier>("SharedWithYouCore_b66fbf8c99a1c012", 4097819324752926, this, []); }
   /**
    * var title: String? { get set }
    * @availability iOS 16.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("SharedWithYouCore_b88ddd0bfd78eefc", 2540557624512604, this, []); }
-  set title(value: (string) | null) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 2882093321884389, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("SharedWithYouCore_b66fbf8c99a1c012", 2540557624512604, this, []); }
+  set title(value: (string) | null) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 2882093321884389, this, [value]); }
   /**
    * @NSCopying var userSelectedShareOptions: SWCollaborationShareOptions? { get set }
    * @availability iOS 16.0+
    */
-  get userSelectedShareOptions(): $SDK1 { return callSDK<$SDK1>("SharedWithYouCore_b88ddd0bfd78eefc", 2212003900847689, this, []); }
-  set userSelectedShareOptions(value: $SDK1) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 451352768563639, this, [value]); }
+  get userSelectedShareOptions(): $SDK1 { return callSDK<$SDK1>("SharedWithYouCore_b66fbf8c99a1c012", 2212003900847689, this, []); }
+  set userSelectedShareOptions(value: $SDK1) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 451352768563639, this, [value]); }
   declare readonly $type: { "c:objc(cs)SWCollaborationMetadata": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "collaborationIdentifier": true; "defaultShareOptions": true; "initiatorHandle": true; "initiatorNameComponents": true; "localIdentifier": true; "title": true; "userSelectedShareOptions": true };
 }
@@ -153,41 +153,41 @@ export class SWCollaborationOption extends SDKHandle {
    * init(title: String, identifier: String)
    * @availability iOS 16.0+
    */
-  static initTitleIdentifier(title: string, identifier: string): SWCollaborationOption { return callSDK<SWCollaborationOption>("SharedWithYouCore_b88ddd0bfd78eefc", 480553086907312, undefined, [title, identifier]); }
+  static initTitleIdentifier(title: string, identifier: string): SWCollaborationOption { return callSDK<SWCollaborationOption>("SharedWithYouCore_b66fbf8c99a1c012", 480553086907312, undefined, [title, identifier]); }
   /**
    * var identifier: String { get }
    * @availability iOS 16.0+
    */
-  get identifier(): string { return callSDK<string>("SharedWithYouCore_b88ddd0bfd78eefc", 335645252274208, this, []); }
+  get identifier(): string { return callSDK<string>("SharedWithYouCore_b66fbf8c99a1c012", 335645252274208, this, []); }
   /**
    * var requiredOptionsIdentifiers: [String] { get set }
    * @availability iOS 16.0+
    */
-  get requiredOptionsIdentifiers(): Array<string> { return callSDK<Array<string>>("SharedWithYouCore_b88ddd0bfd78eefc", 4346729494782294, this, []); }
-  set requiredOptionsIdentifiers(value: Array<string>) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 3324606687989400, this, [value]); }
+  get requiredOptionsIdentifiers(): Array<string> { return callSDK<Array<string>>("SharedWithYouCore_b66fbf8c99a1c012", 4346729494782294, this, []); }
+  set requiredOptionsIdentifiers(value: Array<string>) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 3324606687989400, this, [value]); }
   /**
    * var isSelected: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isSelected(): boolean { return callSDK<boolean>("SharedWithYouCore_b88ddd0bfd78eefc", 4451457180866312, this, []); }
-  set isSelected(value: boolean) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 644881953908499, this, [value]); }
+  get isSelected(): boolean { return callSDK<boolean>("SharedWithYouCore_b66fbf8c99a1c012", 4451457180866312, this, []); }
+  set isSelected(value: boolean) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 644881953908499, this, [value]); }
   /**
    * var subtitle: String { get set }
    * @availability iOS 16.0+
    */
-  get subtitle(): string { return callSDK<string>("SharedWithYouCore_b88ddd0bfd78eefc", 1557313626338249, this, []); }
-  set subtitle(value: string) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 3255720166328166, this, [value]); }
+  get subtitle(): string { return callSDK<string>("SharedWithYouCore_b66fbf8c99a1c012", 1557313626338249, this, []); }
+  set subtitle(value: string) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 3255720166328166, this, [value]); }
   /**
    * var title: String { get set }
    * @availability iOS 16.0+
    */
-  get title(): string { return callSDK<string>("SharedWithYouCore_b88ddd0bfd78eefc", 3623982263167485, this, []); }
-  set title(value: string) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 1396067001009323, this, [value]); }
+  get title(): string { return callSDK<string>("SharedWithYouCore_b66fbf8c99a1c012", 3623982263167485, this, []); }
+  set title(value: string) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 1396067001009323, this, [value]); }
   /**
    * convenience init(title: String, identifier: String, subtitle: String = "", selected: Bool = false, requiredOptionsIdentifiers: [String] = [])
    * @availability iOS 16.0+
    */
-  static initTitleIdentifierSubtitleSelectedRequiredOptionsIdentifiers(title: string, identifier: string, subtitle?: string, selected?: boolean, requiredOptionsIdentifiers?: Array<string>): SWCollaborationOption { return callSDK<SWCollaborationOption>("SharedWithYouCore_b88ddd0bfd78eefc", 1046638309824876, undefined, [title, identifier, subtitle, selected, requiredOptionsIdentifiers]); }
+  static initTitleIdentifierSubtitleSelectedRequiredOptionsIdentifiers(title: string, identifier: string, subtitle?: string, selected?: boolean, requiredOptionsIdentifiers?: Array<string>): SWCollaborationOption { return callSDK<SWCollaborationOption>("SharedWithYouCore_b66fbf8c99a1c012", 1046638309824876, undefined, [title, identifier, subtitle, selected, requiredOptionsIdentifiers]); }
   declare readonly $type: { "c:objc(cs)SWCollaborationOption": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "requiredOptionsIdentifiers": true; "isSelected": true; "subtitle": true; "title": true };
 }
@@ -201,30 +201,30 @@ export class SWCollaborationOptionsGroup extends SDKHandle {
    * init(identifier: String, options: [SWCollaborationOption])
    * @availability iOS 16.0+
    */
-  static init(identifier: string, options: $SDK3): SWCollaborationOptionsGroup { return callSDK<SWCollaborationOptionsGroup>("SharedWithYouCore_b88ddd0bfd78eefc", 1363158237996906, undefined, [identifier, options]); }
+  static init(identifier: string, options: $SDK3): SWCollaborationOptionsGroup { return callSDK<SWCollaborationOptionsGroup>("SharedWithYouCore_b66fbf8c99a1c012", 1363158237996906, undefined, [identifier, options]); }
   /**
    * var footer: String { get set }
    * @availability iOS 16.0+
    */
-  get footer(): string { return callSDK<string>("SharedWithYouCore_b88ddd0bfd78eefc", 4257232367681001, this, []); }
-  set footer(value: string) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 379778296210851, this, [value]); }
+  get footer(): string { return callSDK<string>("SharedWithYouCore_b66fbf8c99a1c012", 4257232367681001, this, []); }
+  set footer(value: string) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 379778296210851, this, [value]); }
   /**
    * var identifier: String { get }
    * @availability iOS 16.0+
    */
-  get identifier(): string { return callSDK<string>("SharedWithYouCore_b88ddd0bfd78eefc", 1376261652119663, this, []); }
+  get identifier(): string { return callSDK<string>("SharedWithYouCore_b66fbf8c99a1c012", 1376261652119663, this, []); }
   /**
    * var options: [SWCollaborationOption] { get set }
    * @availability iOS 16.0+
    */
-  get options(): $SDK3 { return callSDK<$SDK3>("SharedWithYouCore_b88ddd0bfd78eefc", 1431620969757314, this, []); }
-  set options(value: $SDK3) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 1606340686385996, this, [value]); }
+  get options(): $SDK3 { return callSDK<$SDK3>("SharedWithYouCore_b66fbf8c99a1c012", 1431620969757314, this, []); }
+  set options(value: $SDK3) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 1606340686385996, this, [value]); }
   /**
    * var title: String { get set }
    * @availability iOS 16.0+
    */
-  get title(): string { return callSDK<string>("SharedWithYouCore_b88ddd0bfd78eefc", 2665935635621637, this, []); }
-  set title(value: string) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 2574265911301498, this, [value]); }
+  get title(): string { return callSDK<string>("SharedWithYouCore_b66fbf8c99a1c012", 2665935635621637, this, []); }
+  set title(value: string) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 2574265911301498, this, [value]); }
   declare readonly $type: { "c:objc(cs)SWCollaborationOptionsGroup": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "footer": true; "identifier": true; "options": true; "title": true };
 }
@@ -238,8 +238,8 @@ export class SWCollaborationOptionsPickerGroup extends SWCollaborationOptionsGro
    * var selectedOptionIdentifier: String { get set }
    * @availability iOS 16.0+
    */
-  get selectedOptionIdentifier(): string { return callSDK<string>("SharedWithYouCore_b88ddd0bfd78eefc", 299964227359339, this, []); }
-  set selectedOptionIdentifier(value: string) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 179935551140477, this, [value]); }
+  get selectedOptionIdentifier(): string { return callSDK<string>("SharedWithYouCore_b66fbf8c99a1c012", 299964227359339, this, []); }
+  set selectedOptionIdentifier(value: string) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 179935551140477, this, [value]); }
   declare readonly $type: { "c:objc(cs)SWCollaborationOptionsPickerGroup": true; "c:objc(cs)SWCollaborationOptionsGroup": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "footer": true; "identifier": true; "options": true; "title": true; "selectedOptionIdentifier": true };
 }
@@ -253,29 +253,29 @@ export class SWCollaborationShareOptions extends SDKHandle {
    * init(coder: NSCoder)
    * @availability iOS 16.0+
    */
-  static initCoder(coder: _Foundation_NSCoder): SWCollaborationShareOptions { return callSDK<SWCollaborationShareOptions>("SharedWithYouCore_b88ddd0bfd78eefc", 270281399235013, undefined, [coder]); }
+  static initCoder(coder: _Foundation_NSCoder): SWCollaborationShareOptions { return callSDK<SWCollaborationShareOptions>("SharedWithYouCore_b66fbf8c99a1c012", 270281399235013, undefined, [coder]); }
   /**
    * convenience init(optionsGroups: [SWCollaborationOptionsGroup])
    * @availability iOS 16.0+
    */
-  static initOptionsGroups(optionsGroups: $SDK4): SWCollaborationShareOptions { return callSDK<SWCollaborationShareOptions>("SharedWithYouCore_b88ddd0bfd78eefc", 366496905410624, undefined, [optionsGroups]); }
+  static initOptionsGroups(optionsGroups: $SDK4): SWCollaborationShareOptions { return callSDK<SWCollaborationShareOptions>("SharedWithYouCore_b66fbf8c99a1c012", 366496905410624, undefined, [optionsGroups]); }
   /**
    * init(optionsGroups: [SWCollaborationOptionsGroup], summary: String)
    * @availability iOS 16.0+
    */
-  static initOptionsGroupsSummary(optionsGroups: $SDK4, summary: string): SWCollaborationShareOptions { return callSDK<SWCollaborationShareOptions>("SharedWithYouCore_b88ddd0bfd78eefc", 3692928036838192, undefined, [optionsGroups, summary]); }
+  static initOptionsGroupsSummary(optionsGroups: $SDK4, summary: string): SWCollaborationShareOptions { return callSDK<SWCollaborationShareOptions>("SharedWithYouCore_b66fbf8c99a1c012", 3692928036838192, undefined, [optionsGroups, summary]); }
   /**
    * var optionsGroups: [SWCollaborationOptionsGroup] { get set }
    * @availability iOS 16.0+
    */
-  get optionsGroups(): $SDK4 { return callSDK<$SDK4>("SharedWithYouCore_b88ddd0bfd78eefc", 1289720956233380, this, []); }
-  set optionsGroups(value: $SDK4) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 3466232044215151, this, [value]); }
+  get optionsGroups(): $SDK4 { return callSDK<$SDK4>("SharedWithYouCore_b66fbf8c99a1c012", 1289720956233380, this, []); }
+  set optionsGroups(value: $SDK4) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 3466232044215151, this, [value]); }
   /**
    * var summary: String { get set }
    * @availability iOS 16.0+
    */
-  get summary(): string { return callSDK<string>("SharedWithYouCore_b88ddd0bfd78eefc", 1834253548242048, this, []); }
-  set summary(value: string) { callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 1280680945952829, this, [value]); }
+  get summary(): string { return callSDK<string>("SharedWithYouCore_b66fbf8c99a1c012", 1834253548242048, this, []); }
+  set summary(value: string) { callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 1280680945952829, this, [value]); }
   declare readonly $type: { "c:objc(cs)SWCollaborationShareOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "optionsGroups": true; "summary": true };
 }
@@ -285,9 +285,9 @@ export type SWLocalCollaborationIdentifier = (string & {});
 
 export const SWLocalCollaborationIdentifier = {
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): SWLocalCollaborationIdentifier { return callSDK<SWLocalCollaborationIdentifier>("SharedWithYouCore_b88ddd0bfd78eefc", 1223869953364988, undefined, [rawValue]); },
+  initRawValue(rawValue: string): SWLocalCollaborationIdentifier { return callSDK<SWLocalCollaborationIdentifier>("SharedWithYouCore_b66fbf8c99a1c012", 1223869953364988, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): SWLocalCollaborationIdentifier { return callSDK<SWLocalCollaborationIdentifier>("SharedWithYouCore_b88ddd0bfd78eefc", 1863365594510133, undefined, [rawValue]); }
+  init(rawValue: string): SWLocalCollaborationIdentifier { return callSDK<SWLocalCollaborationIdentifier>("SharedWithYouCore_b66fbf8c99a1c012", 1863365594510133, undefined, [rawValue]); }
 };
 
 /**
@@ -299,7 +299,7 @@ export class SWPerson extends SDKHandle {
    * init(handle: String?, identity: SWPerson.Identity?, displayName: String, thumbnailImageData: Data?)
    * @availability iOS 16.0+
    */
-  static init(handle: (string) | null, identity: (SWPerson_Identity) | null, displayName: string, thumbnailImageData?: (ArrayBuffer) | null): SWPerson { return callSDK<SWPerson>("SharedWithYouCore_b88ddd0bfd78eefc", 1611695189772891, undefined, [handle, identity, displayName, thumbnailImageData]); }
+  static init(handle: (string) | null, identity: (SWPerson_Identity) | null, displayName: string, thumbnailImageData?: (ArrayBuffer) | null): SWPerson { return callSDK<SWPerson>("SharedWithYouCore_b66fbf8c99a1c012", 1611695189772891, undefined, [handle, identity, displayName, thumbnailImageData]); }
   declare readonly $type: { "c:objc(cs)SWPerson": true; "c:objc(cs)NSObject": true };
 }
 
@@ -312,12 +312,12 @@ export class SWPerson_Identity extends SDKHandle {
    * init(rootHash: Data)
    * @availability iOS 16.0+
    */
-  static init(rootHash: ArrayBuffer): SWPerson_Identity { return callSDK<SWPerson_Identity>("SharedWithYouCore_b88ddd0bfd78eefc", 4285524621116719, undefined, [rootHash]); }
+  static init(rootHash: ArrayBuffer): SWPerson_Identity { return callSDK<SWPerson_Identity>("SharedWithYouCore_b66fbf8c99a1c012", 4285524621116719, undefined, [rootHash]); }
   /**
    * var rootHash: Data { get }
    * @availability iOS 16.0+
    */
-  get rootHash(): ArrayBuffer { return callSDK<ArrayBuffer>("SharedWithYouCore_b88ddd0bfd78eefc", 2863133660894023, this, []); }
+  get rootHash(): ArrayBuffer { return callSDK<ArrayBuffer>("SharedWithYouCore_b66fbf8c99a1c012", 2863133660894023, this, []); }
   declare readonly $type: { "c:objc(cs)SWPersonIdentity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "rootHash": true };
 }
@@ -331,17 +331,17 @@ export class SWPerson_IdentityProof extends SDKHandle {
    * var inclusionHashes: [Data] { get }
    * @availability iOS 16.0+
    */
-  get inclusionHashes(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("SharedWithYouCore_b88ddd0bfd78eefc", 3714935123179129, this, []); }
+  get inclusionHashes(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("SharedWithYouCore_b66fbf8c99a1c012", 3714935123179129, this, []); }
   /**
    * var publicKey: Data { get }
    * @availability iOS 16.0+
    */
-  get publicKey(): ArrayBuffer { return callSDK<ArrayBuffer>("SharedWithYouCore_b88ddd0bfd78eefc", 3505454299941933, this, []); }
+  get publicKey(): ArrayBuffer { return callSDK<ArrayBuffer>("SharedWithYouCore_b66fbf8c99a1c012", 3505454299941933, this, []); }
   /**
    * var publicKeyIndex: Int { get }
    * @availability iOS 16.0+
    */
-  get publicKeyIndex(): number { return callSDK<number>("SharedWithYouCore_b88ddd0bfd78eefc", 1547056357060306, this, []); }
+  get publicKeyIndex(): number { return callSDK<number>("SharedWithYouCore_b66fbf8c99a1c012", 1547056357060306, this, []); }
   declare readonly $type: { "c:objc(cs)SWPersonIdentityProof": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "inclusionHashes": true; "publicKey": true; "publicKeyIndex": true };
 }
@@ -355,12 +355,12 @@ export class SWPerson_SignedIdentityProof extends SWPerson_IdentityProof {
    * init(personIdentityProof: SWPerson.IdentityProof, signatureData data: Data)
    * @availability iOS 16.0+
    */
-  static init(personIdentityProof: SWPerson_IdentityProof, data: ArrayBuffer): SWPerson_SignedIdentityProof { return callSDK<SWPerson_SignedIdentityProof>("SharedWithYouCore_b88ddd0bfd78eefc", 2542238140403205, undefined, [personIdentityProof, data]); }
+  static init(personIdentityProof: SWPerson_IdentityProof, data: ArrayBuffer): SWPerson_SignedIdentityProof { return callSDK<SWPerson_SignedIdentityProof>("SharedWithYouCore_b66fbf8c99a1c012", 2542238140403205, undefined, [personIdentityProof, data]); }
   /**
    * var signatureData: Data { get }
    * @availability iOS 16.0+
    */
-  get signatureData(): ArrayBuffer { return callSDK<ArrayBuffer>("SharedWithYouCore_b88ddd0bfd78eefc", 3202446738867031, this, []); }
+  get signatureData(): ArrayBuffer { return callSDK<ArrayBuffer>("SharedWithYouCore_b66fbf8c99a1c012", 3202446738867031, this, []); }
   declare readonly $type: { "c:objc(cs)SWSignedPersonIdentityProof": true; "c:objc(cs)SWPersonIdentityProof": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "inclusionHashes": true; "publicKey": true; "publicKeyIndex": true; "signatureData": true };
 }
@@ -374,12 +374,12 @@ export class SWStartCollaborationAction extends (SWAction as unknown as Omit<typ
    * func fulfill(using url: URL, collaborationIdentifier: SWCollaborationIdentifier)
    * @availability iOS 16.0+
    */
-  fulfill(url: string, collaborationIdentifier: SWCollaborationIdentifier): void { return callSDK<void>("SharedWithYouCore_b88ddd0bfd78eefc", 1544975467075285, this, [url, collaborationIdentifier]); }
+  fulfill(url: string, collaborationIdentifier: SWCollaborationIdentifier): void { return callSDK<void>("SharedWithYouCore_b66fbf8c99a1c012", 1544975467075285, this, [url, collaborationIdentifier]); }
   /**
    * var collaborationMetadata: SWCollaborationMetadata { get }
    * @availability iOS 16.0+
    */
-  get collaborationMetadata(): SWCollaborationMetadata { return callSDK<SWCollaborationMetadata>("SharedWithYouCore_b88ddd0bfd78eefc", 1608242383309872, this, []); }
+  get collaborationMetadata(): SWCollaborationMetadata { return callSDK<SWCollaborationMetadata>("SharedWithYouCore_b66fbf8c99a1c012", 1608242383309872, this, []); }
   declare readonly $type: { "c:objc(cs)SWStartCollaborationAction": true; "c:objc(cs)SWAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isComplete": true; "uuid": true; "collaborationMetadata": true };
 }
@@ -393,17 +393,17 @@ export class SWUpdateCollaborationParticipantsAction extends SWAction {
    * var addedIdentities: [SWPerson.Identity] { get }
    * @availability iOS 16.0+
    */
-  get addedIdentities(): Array<SWPerson_Identity> { return callSDK<Array<SWPerson_Identity>>("SharedWithYouCore_b88ddd0bfd78eefc", 3129595269477956, this, []); }
+  get addedIdentities(): Array<SWPerson_Identity> { return callSDK<Array<SWPerson_Identity>>("SharedWithYouCore_b66fbf8c99a1c012", 3129595269477956, this, []); }
   /**
    * var collaborationMetadata: SWCollaborationMetadata { get }
    * @availability iOS 16.0+
    */
-  get collaborationMetadata(): SWCollaborationMetadata { return callSDK<SWCollaborationMetadata>("SharedWithYouCore_b88ddd0bfd78eefc", 2214824549297343, this, []); }
+  get collaborationMetadata(): SWCollaborationMetadata { return callSDK<SWCollaborationMetadata>("SharedWithYouCore_b66fbf8c99a1c012", 2214824549297343, this, []); }
   /**
    * var removedIdentities: [SWPerson.Identity] { get }
    * @availability iOS 16.0+
    */
-  get removedIdentities(): Array<SWPerson_Identity> { return callSDK<Array<SWPerson_Identity>>("SharedWithYouCore_b88ddd0bfd78eefc", 240979640825781, this, []); }
+  get removedIdentities(): Array<SWPerson_Identity> { return callSDK<Array<SWPerson_Identity>>("SharedWithYouCore_b66fbf8c99a1c012", 240979640825781, this, []); }
   declare readonly $type: { "c:objc(cs)SWUpdateCollaborationParticipantsAction": true; "c:objc(cs)SWAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isComplete": true; "uuid": true; "addedIdentities": true; "collaborationMetadata": true; "removedIdentities": true };
 }
@@ -412,19 +412,19 @@ export class SWUpdateCollaborationParticipantsAction extends SWAction {
  * let UTCollaborationOptionsTypeIdentifier: String
  * @availability iOS 16.0+
  */
-export const UTCollaborationOptionsTypeIdentifier: string = callSDK<string>("SharedWithYouCore_b88ddd0bfd78eefc", 428780880292065, undefined, []);
+export const UTCollaborationOptionsTypeIdentifier: string = callSDK<string>("SharedWithYouCore_b66fbf8c99a1c012", 428780880292065, undefined, []);
 
-registerSDKClass("SWAction", SWAction, { module: "SharedWithYouCore_b88ddd0bfd78eefc", properties: {"isComplete":3221833275061552,"uuid":3827334830982997}, methods: {"fail":{"id":1680355493627045},"fulfill":{"id":4372861863648098}} });
+registerSDKClass("SWAction", SWAction, { module: "SharedWithYouCore_b66fbf8c99a1c012", properties: {"isComplete":3221833275061552,"uuid":3827334830982997}, methods: {"fail":{"id":1680355493627045},"fulfill":{"id":4372861863648098}} });
 registerSDKProtocol("c:objc(pl)SWCollaborationActionHandler", {"collaborationCoordinatorHandle":"collaborationCoordinator(_:handle:)"});
-registerSDKClass("SWCollaborationCoordinator", SWCollaborationCoordinator, { module: "SharedWithYouCore_b88ddd0bfd78eefc", properties: {"actionHandler":291354535103983} });
-registerSDKClass("SWCollaborationMetadata", SWCollaborationMetadata, { module: "SharedWithYouCore_b88ddd0bfd78eefc", properties: {"collaborationIdentifier":1969159365260153,"defaultShareOptions":4486650622212675,"initiatorHandle":4264926820756109,"initiatorNameComponents":4085672103706938,"localIdentifier":4097819324752926,"title":2540557624512604,"userSelectedShareOptions":2212003900847689} });
-registerSDKClass("SWCollaborationOption", SWCollaborationOption, { module: "SharedWithYouCore_b88ddd0bfd78eefc", properties: {"identifier":335645252274208,"requiredOptionsIdentifiers":4346729494782294,"isSelected":4451457180866312,"subtitle":1557313626338249,"title":3623982263167485} });
-registerSDKClass("SWCollaborationOptionsGroup", SWCollaborationOptionsGroup, { module: "SharedWithYouCore_b88ddd0bfd78eefc", properties: {"footer":4257232367681001,"identifier":1376261652119663,"options":1431620969757314,"title":2665935635621637} });
-registerSDKClass("SWCollaborationOptionsPickerGroup", SWCollaborationOptionsPickerGroup, { module: "SharedWithYouCore_b88ddd0bfd78eefc", properties: {"selectedOptionIdentifier":299964227359339} });
-registerSDKClass("SWCollaborationShareOptions", SWCollaborationShareOptions, { module: "SharedWithYouCore_b88ddd0bfd78eefc", properties: {"optionsGroups":1289720956233380,"summary":1834253548242048} });
-registerSDKClass("SWPerson", SWPerson, { module: "SharedWithYouCore_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("SWPersonIdentity", SWPerson_Identity, { module: "SharedWithYouCore_b88ddd0bfd78eefc", properties: {"rootHash":2863133660894023} });
-registerSDKClass("SWPersonIdentityProof", SWPerson_IdentityProof, { module: "SharedWithYouCore_b88ddd0bfd78eefc", properties: {"inclusionHashes":3714935123179129,"publicKey":3505454299941933,"publicKeyIndex":1547056357060306} });
-registerSDKClass("SWSignedPersonIdentityProof", SWPerson_SignedIdentityProof, { module: "SharedWithYouCore_b88ddd0bfd78eefc", properties: {"signatureData":3202446738867031} });
-registerSDKClass("SWStartCollaborationAction", SWStartCollaborationAction, { module: "SharedWithYouCore_b88ddd0bfd78eefc", properties: {"collaborationMetadata":1608242383309872}, methods: {"fulfill":{"id":1544975467075285}} });
-registerSDKClass("SWUpdateCollaborationParticipantsAction", SWUpdateCollaborationParticipantsAction, { module: "SharedWithYouCore_b88ddd0bfd78eefc", properties: {"addedIdentities":3129595269477956,"collaborationMetadata":2214824549297343,"removedIdentities":240979640825781} });
+registerSDKClass("SWCollaborationCoordinator", SWCollaborationCoordinator, { module: "SharedWithYouCore_b66fbf8c99a1c012", properties: {"actionHandler":291354535103983} });
+registerSDKClass("SWCollaborationMetadata", SWCollaborationMetadata, { module: "SharedWithYouCore_b66fbf8c99a1c012", properties: {"collaborationIdentifier":1969159365260153,"defaultShareOptions":4486650622212675,"initiatorHandle":4264926820756109,"initiatorNameComponents":4085672103706938,"localIdentifier":4097819324752926,"title":2540557624512604,"userSelectedShareOptions":2212003900847689} });
+registerSDKClass("SWCollaborationOption", SWCollaborationOption, { module: "SharedWithYouCore_b66fbf8c99a1c012", properties: {"identifier":335645252274208,"requiredOptionsIdentifiers":4346729494782294,"isSelected":4451457180866312,"subtitle":1557313626338249,"title":3623982263167485} });
+registerSDKClass("SWCollaborationOptionsGroup", SWCollaborationOptionsGroup, { module: "SharedWithYouCore_b66fbf8c99a1c012", properties: {"footer":4257232367681001,"identifier":1376261652119663,"options":1431620969757314,"title":2665935635621637} });
+registerSDKClass("SWCollaborationOptionsPickerGroup", SWCollaborationOptionsPickerGroup, { module: "SharedWithYouCore_b66fbf8c99a1c012", properties: {"selectedOptionIdentifier":299964227359339} });
+registerSDKClass("SWCollaborationShareOptions", SWCollaborationShareOptions, { module: "SharedWithYouCore_b66fbf8c99a1c012", properties: {"optionsGroups":1289720956233380,"summary":1834253548242048} });
+registerSDKClass("SWPerson", SWPerson, { module: "SharedWithYouCore_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("SWPersonIdentity", SWPerson_Identity, { module: "SharedWithYouCore_b66fbf8c99a1c012", properties: {"rootHash":2863133660894023} });
+registerSDKClass("SWPersonIdentityProof", SWPerson_IdentityProof, { module: "SharedWithYouCore_b66fbf8c99a1c012", properties: {"inclusionHashes":3714935123179129,"publicKey":3505454299941933,"publicKeyIndex":1547056357060306} });
+registerSDKClass("SWSignedPersonIdentityProof", SWPerson_SignedIdentityProof, { module: "SharedWithYouCore_b66fbf8c99a1c012", properties: {"signatureData":3202446738867031} });
+registerSDKClass("SWStartCollaborationAction", SWStartCollaborationAction, { module: "SharedWithYouCore_b66fbf8c99a1c012", properties: {"collaborationMetadata":1608242383309872}, methods: {"fulfill":{"id":1544975467075285}} });
+registerSDKClass("SWUpdateCollaborationParticipantsAction", SWUpdateCollaborationParticipantsAction, { module: "SharedWithYouCore_b66fbf8c99a1c012", properties: {"addedIdentities":3129595269477956,"collaborationMetadata":2214824549297343,"removedIdentities":240979640825781} });

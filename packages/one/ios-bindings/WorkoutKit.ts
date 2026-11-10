@@ -24,28 +24,28 @@ export class CadenceRangeAlert extends SDKHandle {
    * var targetQuantityLowerBound: HKQuantity { get }
    * @availability iOS 17.0+
    */
-  get targetQuantityLowerBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b88ddd0bfd78eefc", 3383620251953346, this, []); }
+  get targetQuantityLowerBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b66fbf8c99a1c012", 3383620251953346, this, []); }
   /**
    * var targetQuantityUpperBound: HKQuantity { get }
    * @availability iOS 17.0+
    */
-  get targetQuantityUpperBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b88ddd0bfd78eefc", 516445322820241, this, []); }
+  get targetQuantityUpperBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b66fbf8c99a1c012", 516445322820241, this, []); }
   /**
    * var metric: WorkoutAlertMetric { get }
    * @availability iOS 17.0+
    */
-  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b88ddd0bfd78eefc", 1352283998167985, this, []); }
+  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b66fbf8c99a1c012", 1352283998167985, this, []); }
   /**
    * init(target: ClosedRange<Measurement<UnitFrequency>>)
    * @availability iOS 17.0+
    */
-  static init(target: SDKHandle): CadenceRangeAlert { return callSDK<CadenceRangeAlert>("WorkoutKit_b88ddd0bfd78eefc", 2057974005151265, undefined, [target]); }
+  static init(target: SDKHandle): CadenceRangeAlert { return callSDK<CadenceRangeAlert>("WorkoutKit_b66fbf8c99a1c012", 2057974005151265, undefined, [target]); }
   /**
    * var target: ClosedRange<Measurement<UnitFrequency>>
    * @availability iOS 17.0+
    */
-  get target(): SDKHandle { return callSDK<SDKHandle>("WorkoutKit_b88ddd0bfd78eefc", 2151363892759512, this, []); }
-  set target(value: SDKHandle) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 2467071492831144, this, [value]); }
+  get target(): SDKHandle { return callSDK<SDKHandle>("WorkoutKit_b66fbf8c99a1c012", 2151363892759512, this, []); }
+  set target(value: SDKHandle) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 2467071492831144, this, [value]); }
   declare readonly $type: { "s:10WorkoutKit17CadenceRangeAlertV": true };
 }
 
@@ -58,23 +58,23 @@ export class CadenceThresholdAlert extends SDKHandle {
    * var targetQuantity: HKQuantity { get }
    * @availability iOS 17.0+
    */
-  get targetQuantity(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b88ddd0bfd78eefc", 3678266435510141, this, []); }
+  get targetQuantity(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b66fbf8c99a1c012", 3678266435510141, this, []); }
   /**
    * var metric: WorkoutAlertMetric { get }
    * @availability iOS 17.0+
    */
-  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b88ddd0bfd78eefc", 3353819069487540, this, []); }
+  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b66fbf8c99a1c012", 3353819069487540, this, []); }
   /**
    * var target: Measurement<UnitFrequency>
    * @availability iOS 17.0+
    */
-  get target(): $SDK0 { return callSDK<$SDK0>("WorkoutKit_b88ddd0bfd78eefc", 4181183869160880, this, []); }
-  set target(value: $SDK0) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 2385367336843963, this, [value]); }
+  get target(): $SDK0 { return callSDK<$SDK0>("WorkoutKit_b66fbf8c99a1c012", 4181183869160880, this, []); }
+  set target(value: $SDK0) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 2385367336843963, this, [value]); }
   /**
    * init(target: Measurement<UnitFrequency>)
    * @availability iOS 17.0+
    */
-  static init(target: $SDK0): CadenceThresholdAlert { return callSDK<CadenceThresholdAlert>("WorkoutKit_b88ddd0bfd78eefc", 2175192996851212, undefined, [target]); }
+  static init(target: $SDK0): CadenceThresholdAlert { return callSDK<CadenceThresholdAlert>("WorkoutKit_b66fbf8c99a1c012", 2175192996851212, undefined, [target]); }
   declare readonly $type: { "s:10WorkoutKit21CadenceThresholdAlertV": true };
 }
 
@@ -87,58 +87,58 @@ export class CustomWorkout extends SDKHandle {
    * var displayName: String?
    * @availability iOS 17.0+
    */
-  get displayName(): (string) | null { return callSDK<(string) | null>("WorkoutKit_b88ddd0bfd78eefc", 1338579818619647, this, []); }
-  set displayName(value: (string) | null) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 3922047800759819, this, [value]); }
+  get displayName(): (string) | null { return callSDK<(string) | null>("WorkoutKit_b66fbf8c99a1c012", 1338579818619647, this, []); }
+  set displayName(value: (string) | null) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 3922047800759819, this, [value]); }
   /**
    * static func supportsGoal(_ goal: WorkoutGoal, activity: HKWorkoutActivityType, location: HKWorkoutSessionLocationType = .unknown) -> Bool
    * @availability iOS 17.0+
    */
-  static supportsGoal(goal: WorkoutGoal, activity: _HealthKit_HKWorkoutActivityType, location?: _HealthKit_HKWorkoutSessionLocationType): boolean { return callSDK<boolean>("WorkoutKit_b88ddd0bfd78eefc", 1022916244543212, undefined, [goal, activity, location]); }
+  static supportsGoal(goal: WorkoutGoal, activity: _HealthKit_HKWorkoutActivityType, location?: _HealthKit_HKWorkoutSessionLocationType): boolean { return callSDK<boolean>("WorkoutKit_b66fbf8c99a1c012", 1022916244543212, undefined, [goal, activity, location]); }
   /**
    * static func supportsAlert(_ alert: any WorkoutAlert, activity: HKWorkoutActivityType, location: HKWorkoutSessionLocationType = .unknown) -> Bool
    * @availability iOS 17.0+
    */
-  static supportsAlert(alert: SDKHandle, activity: _HealthKit_HKWorkoutActivityType, location?: _HealthKit_HKWorkoutSessionLocationType): boolean { return callSDK<boolean>("WorkoutKit_b88ddd0bfd78eefc", 2919302207292059, undefined, [alert, activity, location]); }
+  static supportsAlert(alert: SDKHandle, activity: _HealthKit_HKWorkoutActivityType, location?: _HealthKit_HKWorkoutSessionLocationType): boolean { return callSDK<boolean>("WorkoutKit_b66fbf8c99a1c012", 2919302207292059, undefined, [alert, activity, location]); }
   /**
    * static func supportsActivity(_ activity: HKWorkoutActivityType) -> Bool
    * @availability iOS 17.0+
    */
-  static supportsActivity(activity: _HealthKit_HKWorkoutActivityType): boolean { return callSDK<boolean>("WorkoutKit_b88ddd0bfd78eefc", 763143608256409, undefined, [activity]); }
+  static supportsActivity(activity: _HealthKit_HKWorkoutActivityType): boolean { return callSDK<boolean>("WorkoutKit_b66fbf8c99a1c012", 763143608256409, undefined, [activity]); }
   /**
    * var blocks: [IntervalBlock] { get set }
    * @availability iOS 17.0+
    */
-  get blocks(): Array<IntervalBlock> { return callSDK<Array<IntervalBlock>>("WorkoutKit_b88ddd0bfd78eefc", 2858661386722903, this, []); }
-  set blocks(value: Array<IntervalBlock>) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 2607205214977112, this, [value]); }
+  get blocks(): Array<IntervalBlock> { return callSDK<Array<IntervalBlock>>("WorkoutKit_b66fbf8c99a1c012", 2858661386722903, this, []); }
+  set blocks(value: Array<IntervalBlock>) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 2607205214977112, this, [value]); }
   /**
    * var warmup: WorkoutStep? { get set }
    * @availability iOS 17.0+
    */
-  get warmup(): (WorkoutStep) | null { return callSDK<(WorkoutStep) | null>("WorkoutKit_b88ddd0bfd78eefc", 1560692888126745, this, []); }
-  set warmup(value: (WorkoutStep) | null) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 2743110817937595, this, [value]); }
+  get warmup(): (WorkoutStep) | null { return callSDK<(WorkoutStep) | null>("WorkoutKit_b66fbf8c99a1c012", 1560692888126745, this, []); }
+  set warmup(value: (WorkoutStep) | null) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 2743110817937595, this, [value]); }
   /**
    * init(activity: HKWorkoutActivityType, location: HKWorkoutSessionLocationType = .unknown, displayName: String? = nil, warmup: WorkoutStep? = nil, blocks: [IntervalBlock] = [], cooldown: WorkoutStep? = nil)
    * @availability iOS 17.0+
    */
-  static init(activity: _HealthKit_HKWorkoutActivityType, location?: _HealthKit_HKWorkoutSessionLocationType, displayName?: (string) | null, warmup?: (WorkoutStep) | null, blocks?: Array<IntervalBlock>, cooldown?: (WorkoutStep) | null): CustomWorkout { return callSDK<CustomWorkout>("WorkoutKit_b88ddd0bfd78eefc", 3634254527131264, undefined, [activity, location, displayName, warmup, blocks, cooldown]); }
+  static init(activity: _HealthKit_HKWorkoutActivityType, location?: _HealthKit_HKWorkoutSessionLocationType, displayName?: (string) | null, warmup?: (WorkoutStep) | null, blocks?: Array<IntervalBlock>, cooldown?: (WorkoutStep) | null): CustomWorkout { return callSDK<CustomWorkout>("WorkoutKit_b66fbf8c99a1c012", 3634254527131264, undefined, [activity, location, displayName, warmup, blocks, cooldown]); }
   /**
    * var activity: HKWorkoutActivityType { get set }
    * @availability iOS 17.0+
    */
-  get activity(): _HealthKit_HKWorkoutActivityType { return callSDK<_HealthKit_HKWorkoutActivityType>("WorkoutKit_b88ddd0bfd78eefc", 864023859991080, this, []); }
-  set activity(value: _HealthKit_HKWorkoutActivityType) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 2635151314416676, this, [value]); }
+  get activity(): _HealthKit_HKWorkoutActivityType { return callSDK<_HealthKit_HKWorkoutActivityType>("WorkoutKit_b66fbf8c99a1c012", 864023859991080, this, []); }
+  set activity(value: _HealthKit_HKWorkoutActivityType) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 2635151314416676, this, [value]); }
   /**
    * var cooldown: WorkoutStep? { get set }
    * @availability iOS 17.0+
    */
-  get cooldown(): (WorkoutStep) | null { return callSDK<(WorkoutStep) | null>("WorkoutKit_b88ddd0bfd78eefc", 3951553019475881, this, []); }
-  set cooldown(value: (WorkoutStep) | null) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 1616490616989722, this, [value]); }
+  get cooldown(): (WorkoutStep) | null { return callSDK<(WorkoutStep) | null>("WorkoutKit_b66fbf8c99a1c012", 3951553019475881, this, []); }
+  set cooldown(value: (WorkoutStep) | null) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 1616490616989722, this, [value]); }
   /**
    * var location: HKWorkoutSessionLocationType { get set }
    * @availability iOS 17.0+
    */
-  get location(): _HealthKit_HKWorkoutSessionLocationType { return callSDK<_HealthKit_HKWorkoutSessionLocationType>("WorkoutKit_b88ddd0bfd78eefc", 3343890102683986, this, []); }
-  set location(value: _HealthKit_HKWorkoutSessionLocationType) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 1454138741373549, this, [value]); }
+  get location(): _HealthKit_HKWorkoutSessionLocationType { return callSDK<_HealthKit_HKWorkoutSessionLocationType>("WorkoutKit_b66fbf8c99a1c012", 3343890102683986, this, []); }
+  set location(value: _HealthKit_HKWorkoutSessionLocationType) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 1454138741373549, this, [value]); }
   declare readonly $type: { "s:10WorkoutKit06CustomA0V": true };
 }
 
@@ -151,28 +151,28 @@ export class HeartRateRangeAlert extends SDKHandle {
    * var targetQuantityLowerBound: HKQuantity { get }
    * @availability iOS 17.0+
    */
-  get targetQuantityLowerBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b88ddd0bfd78eefc", 1756893017411332, this, []); }
+  get targetQuantityLowerBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b66fbf8c99a1c012", 1756893017411332, this, []); }
   /**
    * var targetQuantityUpperBound: HKQuantity { get }
    * @availability iOS 17.0+
    */
-  get targetQuantityUpperBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b88ddd0bfd78eefc", 2805839261966698, this, []); }
+  get targetQuantityUpperBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b66fbf8c99a1c012", 2805839261966698, this, []); }
   /**
    * var metric: WorkoutAlertMetric { get }
    * @availability iOS 17.0+
    */
-  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b88ddd0bfd78eefc", 2449967892636729, this, []); }
+  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b66fbf8c99a1c012", 2449967892636729, this, []); }
   /**
    * init(target: ClosedRange<Measurement<UnitFrequency>>)
    * @availability iOS 17.0+
    */
-  static init(target: SDKHandle): HeartRateRangeAlert { return callSDK<HeartRateRangeAlert>("WorkoutKit_b88ddd0bfd78eefc", 3351007660189870, undefined, [target]); }
+  static init(target: SDKHandle): HeartRateRangeAlert { return callSDK<HeartRateRangeAlert>("WorkoutKit_b66fbf8c99a1c012", 3351007660189870, undefined, [target]); }
   /**
    * var target: ClosedRange<Measurement<UnitFrequency>>
    * @availability iOS 17.0+
    */
-  get target(): SDKHandle { return callSDK<SDKHandle>("WorkoutKit_b88ddd0bfd78eefc", 521598344648498, this, []); }
-  set target(value: SDKHandle) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 3996249489240127, this, [value]); }
+  get target(): SDKHandle { return callSDK<SDKHandle>("WorkoutKit_b66fbf8c99a1c012", 521598344648498, this, []); }
+  set target(value: SDKHandle) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 3996249489240127, this, [value]); }
   declare readonly $type: { "s:10WorkoutKit19HeartRateRangeAlertV": true };
 }
 
@@ -185,18 +185,18 @@ export class HeartRateZoneAlert extends SDKHandle {
    * init(zone: Int)
    * @availability iOS 17.0+
    */
-  static init(zone: number): HeartRateZoneAlert { return callSDK<HeartRateZoneAlert>("WorkoutKit_b88ddd0bfd78eefc", 3970914283681288, undefined, [zone]); }
+  static init(zone: number): HeartRateZoneAlert { return callSDK<HeartRateZoneAlert>("WorkoutKit_b66fbf8c99a1c012", 3970914283681288, undefined, [zone]); }
   /**
    * var zone: Int
    * @availability iOS 17.0+
    */
-  get zone(): number { return callSDK<number>("WorkoutKit_b88ddd0bfd78eefc", 4150027653584674, this, []); }
-  set zone(value: number) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 103685534545097, this, [value]); }
+  get zone(): number { return callSDK<number>("WorkoutKit_b66fbf8c99a1c012", 4150027653584674, this, []); }
+  set zone(value: number) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 103685534545097, this, [value]); }
   /**
    * var metric: WorkoutAlertMetric { get }
    * @availability iOS 17.0+
    */
-  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b88ddd0bfd78eefc", 2702780578025393, this, []); }
+  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b66fbf8c99a1c012", 2702780578025393, this, []); }
   declare readonly $type: { "s:10WorkoutKit18HeartRateZoneAlertV": true };
 }
 
@@ -205,7 +205,7 @@ export class HKWorkout extends SDKHandle {
    * var workoutPlan: WorkoutPlan? { get async throws }
    * @availability iOS 17.0+
    */
-  get workoutPlan(): Promise<(WorkoutPlan) | null> { return callSDKAsync<(WorkoutPlan) | null>("WorkoutKit_b88ddd0bfd78eefc", 2320071297942397, this, []); }
+  get workoutPlan(): Promise<(WorkoutPlan) | null> { return callSDKAsync<(WorkoutPlan) | null>("WorkoutKit_b66fbf8c99a1c012", 2320071297942397, this, []); }
   declare readonly $type: { "c:objc(cs)HKWorkout": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
 }
 
@@ -218,19 +218,19 @@ export class IntervalBlock extends SDKHandle {
    * var iterations: Int { get set }
    * @availability iOS 17.0+
    */
-  get iterations(): number { return callSDK<number>("WorkoutKit_b88ddd0bfd78eefc", 4314740263304015, this, []); }
-  set iterations(value: number) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 1348720217022194, this, [value]); }
+  get iterations(): number { return callSDK<number>("WorkoutKit_b66fbf8c99a1c012", 4314740263304015, this, []); }
+  set iterations(value: number) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 1348720217022194, this, [value]); }
   /**
    * init(steps: [IntervalStep] = [], iterations: Int = 1)
    * @availability iOS 17.0+
    */
-  static init(steps?: Array<IntervalStep>, iterations?: number): IntervalBlock { return callSDK<IntervalBlock>("WorkoutKit_b88ddd0bfd78eefc", 1407905543679954, undefined, [steps, iterations]); }
+  static init(steps?: Array<IntervalStep>, iterations?: number): IntervalBlock { return callSDK<IntervalBlock>("WorkoutKit_b66fbf8c99a1c012", 1407905543679954, undefined, [steps, iterations]); }
   /**
    * var steps: [IntervalStep]
    * @availability iOS 17.0+
    */
-  get steps(): Array<IntervalStep> { return callSDK<Array<IntervalStep>>("WorkoutKit_b88ddd0bfd78eefc", 2912137643733782, this, []); }
-  set steps(value: Array<IntervalStep>) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 1003398494180837, this, [value]); }
+  get steps(): Array<IntervalStep> { return callSDK<Array<IntervalStep>>("WorkoutKit_b66fbf8c99a1c012", 2912137643733782, this, []); }
+  set steps(value: Array<IntervalStep>) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 1003398494180837, this, [value]); }
   declare readonly $type: { "s:10WorkoutKit13IntervalBlockV": true };
 }
 
@@ -243,24 +243,24 @@ export class IntervalStep extends SDKHandle {
    * var step: WorkoutStep
    * @availability iOS 17.0+
    */
-  get step(): WorkoutStep { return callSDK<WorkoutStep>("WorkoutKit_b88ddd0bfd78eefc", 2613370841948336, this, []); }
-  set step(value: WorkoutStep) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 2480432960488956, this, [value]); }
+  get step(): WorkoutStep { return callSDK<WorkoutStep>("WorkoutKit_b66fbf8c99a1c012", 2613370841948336, this, []); }
+  set step(value: WorkoutStep) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 2480432960488956, this, [value]); }
   /**
    * var purpose: IntervalStep.Purpose
    * @availability iOS 17.0+
    */
-  get purpose(): IntervalStep_Purpose { return callSDK<IntervalStep_Purpose>("WorkoutKit_b88ddd0bfd78eefc", 3151891640953411, this, []); }
-  set purpose(value: IntervalStep_Purpose) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 302337257133043, this, [value]); }
+  get purpose(): IntervalStep_Purpose { return callSDK<IntervalStep_Purpose>("WorkoutKit_b66fbf8c99a1c012", 3151891640953411, this, []); }
+  set purpose(value: IntervalStep_Purpose) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 302337257133043, this, [value]); }
   /**
    * init(_ purpose: IntervalStep.Purpose, goal: WorkoutGoal = .open, alert: (any WorkoutAlert)? = nil)
    * @availability iOS 17.0+
    */
-  static initGoalAlert(purpose: IntervalStep_Purpose, goal?: WorkoutGoal, alert?: (SDKHandle) | null): IntervalStep { return callSDK<IntervalStep>("WorkoutKit_b88ddd0bfd78eefc", 188126450856159, undefined, [purpose, goal, alert]); }
+  static initGoalAlert(purpose: IntervalStep_Purpose, goal?: WorkoutGoal, alert?: (SDKHandle) | null): IntervalStep { return callSDK<IntervalStep>("WorkoutKit_b66fbf8c99a1c012", 188126450856159, undefined, [purpose, goal, alert]); }
   /**
    * init(_ purpose: IntervalStep.Purpose, step: WorkoutStep)
    * @availability iOS 17.0+
    */
-  static initStep(purpose: IntervalStep_Purpose, step: WorkoutStep): IntervalStep { return callSDK<IntervalStep>("WorkoutKit_b88ddd0bfd78eefc", 3754797700471643, undefined, [purpose, step]); }
+  static initStep(purpose: IntervalStep_Purpose, step: WorkoutStep): IntervalStep { return callSDK<IntervalStep>("WorkoutKit_b66fbf8c99a1c012", 3754797700471643, undefined, [purpose, step]); }
   declare readonly $type: { "s:10WorkoutKit12IntervalStepV": true };
 }
 
@@ -279,36 +279,36 @@ export class PacerWorkout extends SDKHandle {
    * static func supportsActivity(_ activity: HKWorkoutActivityType) -> Bool
    * @availability iOS 17.0+
    */
-  static supportsActivity(activity: _HealthKit_HKWorkoutActivityType): boolean { return callSDK<boolean>("WorkoutKit_b88ddd0bfd78eefc", 433220659011280, undefined, [activity]); }
+  static supportsActivity(activity: _HealthKit_HKWorkoutActivityType): boolean { return callSDK<boolean>("WorkoutKit_b66fbf8c99a1c012", 433220659011280, undefined, [activity]); }
   /**
    * var time: Measurement<UnitDuration> { get set }
    * @availability iOS 17.0+
    */
-  get time(): $SDK1 { return callSDK<$SDK1>("WorkoutKit_b88ddd0bfd78eefc", 1760310928463472, this, []); }
-  set time(value: $SDK1) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 3687459705433984, this, [value]); }
+  get time(): $SDK1 { return callSDK<$SDK1>("WorkoutKit_b66fbf8c99a1c012", 1760310928463472, this, []); }
+  set time(value: $SDK1) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 3687459705433984, this, [value]); }
   /**
    * init(activity: HKWorkoutActivityType, location: HKWorkoutSessionLocationType = .unknown, distance: Measurement<UnitLength>, time: Measurement<UnitDuration>)
    * @availability iOS 17.0+
    */
-  static init(activity: _HealthKit_HKWorkoutActivityType, location: _HealthKit_HKWorkoutSessionLocationType, distance: $SDK2, time: $SDK1): PacerWorkout { return callSDK<PacerWorkout>("WorkoutKit_b88ddd0bfd78eefc", 3041071944567499, undefined, [activity, location, distance, time]); }
+  static init(activity: _HealthKit_HKWorkoutActivityType, location: _HealthKit_HKWorkoutSessionLocationType, distance: $SDK2, time: $SDK1): PacerWorkout { return callSDK<PacerWorkout>("WorkoutKit_b66fbf8c99a1c012", 3041071944567499, undefined, [activity, location, distance, time]); }
   /**
    * var activity: HKWorkoutActivityType { get set }
    * @availability iOS 17.0+
    */
-  get activity(): _HealthKit_HKWorkoutActivityType { return callSDK<_HealthKit_HKWorkoutActivityType>("WorkoutKit_b88ddd0bfd78eefc", 2364972303892787, this, []); }
-  set activity(value: _HealthKit_HKWorkoutActivityType) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 153544791100550, this, [value]); }
+  get activity(): _HealthKit_HKWorkoutActivityType { return callSDK<_HealthKit_HKWorkoutActivityType>("WorkoutKit_b66fbf8c99a1c012", 2364972303892787, this, []); }
+  set activity(value: _HealthKit_HKWorkoutActivityType) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 153544791100550, this, [value]); }
   /**
    * var distance: Measurement<UnitLength> { get set }
    * @availability iOS 17.0+
    */
-  get distance(): $SDK2 { return callSDK<$SDK2>("WorkoutKit_b88ddd0bfd78eefc", 1179147570926891, this, []); }
-  set distance(value: $SDK2) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 3549953981857409, this, [value]); }
+  get distance(): $SDK2 { return callSDK<$SDK2>("WorkoutKit_b66fbf8c99a1c012", 1179147570926891, this, []); }
+  set distance(value: $SDK2) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 3549953981857409, this, [value]); }
   /**
    * var location: HKWorkoutSessionLocationType
    * @availability iOS 17.0+
    */
-  get location(): _HealthKit_HKWorkoutSessionLocationType { return callSDK<_HealthKit_HKWorkoutSessionLocationType>("WorkoutKit_b88ddd0bfd78eefc", 3360689569387603, this, []); }
-  set location(value: _HealthKit_HKWorkoutSessionLocationType) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 1599604575503723, this, [value]); }
+  get location(): _HealthKit_HKWorkoutSessionLocationType { return callSDK<_HealthKit_HKWorkoutSessionLocationType>("WorkoutKit_b66fbf8c99a1c012", 3360689569387603, this, []); }
+  set location(value: _HealthKit_HKWorkoutSessionLocationType) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 1599604575503723, this, [value]); }
   declare readonly $type: { "s:10WorkoutKit05PacerA0V": true };
 }
 
@@ -321,33 +321,33 @@ export class PowerRangeAlert extends SDKHandle {
    * var targetQuantityLowerBound: HKQuantity { get }
    * @availability iOS 17.0+
    */
-  get targetQuantityLowerBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b88ddd0bfd78eefc", 604786965762252, this, []); }
+  get targetQuantityLowerBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b66fbf8c99a1c012", 604786965762252, this, []); }
   /**
    * var targetQuantityUpperBound: HKQuantity { get }
    * @availability iOS 17.0+
    */
-  get targetQuantityUpperBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b88ddd0bfd78eefc", 1522652874473147, this, []); }
+  get targetQuantityUpperBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b66fbf8c99a1c012", 1522652874473147, this, []); }
   /**
    * var metric: WorkoutAlertMetric { get set }
    * @availability iOS 17.0+
    */
-  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b88ddd0bfd78eefc", 1409899604342793, this, []); }
+  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b66fbf8c99a1c012", 1409899604342793, this, []); }
   /**
    * init(target: ClosedRange<Measurement<UnitPower>>, metric: WorkoutAlertMetric)
    * @availability iOS 17.4+
    */
-  static initTargetMetric(target: SDKHandle, metric: WorkoutAlertMetric): PowerRangeAlert { return callSDK<PowerRangeAlert>("WorkoutKit_b88ddd0bfd78eefc", 881737347586457, undefined, [target, metric]); }
+  static initTargetMetric(target: SDKHandle, metric: WorkoutAlertMetric): PowerRangeAlert { return callSDK<PowerRangeAlert>("WorkoutKit_b66fbf8c99a1c012", 881737347586457, undefined, [target, metric]); }
   /**
    * init(target: ClosedRange<Measurement<UnitPower>>)
    * @availability iOS 17.0+
    */
-  static initTarget(target: SDKHandle): PowerRangeAlert { return callSDK<PowerRangeAlert>("WorkoutKit_b88ddd0bfd78eefc", 3935288404830258, undefined, [target]); }
+  static initTarget(target: SDKHandle): PowerRangeAlert { return callSDK<PowerRangeAlert>("WorkoutKit_b66fbf8c99a1c012", 3935288404830258, undefined, [target]); }
   /**
    * var target: ClosedRange<Measurement<UnitPower>>
    * @availability iOS 17.0+
    */
-  get target(): SDKHandle { return callSDK<SDKHandle>("WorkoutKit_b88ddd0bfd78eefc", 1609969406463762, this, []); }
-  set target(value: SDKHandle) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 890594275525150, this, [value]); }
+  get target(): SDKHandle { return callSDK<SDKHandle>("WorkoutKit_b66fbf8c99a1c012", 1609969406463762, this, []); }
+  set target(value: SDKHandle) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 890594275525150, this, [value]); }
   declare readonly $type: { "s:10WorkoutKit15PowerRangeAlertV": true };
 }
 
@@ -360,28 +360,28 @@ export class PowerThresholdAlert extends SDKHandle {
    * var targetQuantity: HKQuantity { get }
    * @availability iOS 17.0+
    */
-  get targetQuantity(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b88ddd0bfd78eefc", 3101482569659619, this, []); }
+  get targetQuantity(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b66fbf8c99a1c012", 3101482569659619, this, []); }
   /**
    * var metric: WorkoutAlertMetric { get set }
    * @availability iOS 17.0+
    */
-  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b88ddd0bfd78eefc", 2575386485183364, this, []); }
+  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b66fbf8c99a1c012", 2575386485183364, this, []); }
   /**
    * var target: Measurement<UnitPower>
    * @availability iOS 17.0+
    */
-  get target(): $SDK3 { return callSDK<$SDK3>("WorkoutKit_b88ddd0bfd78eefc", 3679175967431545, this, []); }
-  set target(value: $SDK3) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 4172824245161823, this, [value]); }
+  get target(): $SDK3 { return callSDK<$SDK3>("WorkoutKit_b66fbf8c99a1c012", 3679175967431545, this, []); }
+  set target(value: $SDK3) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 4172824245161823, this, [value]); }
   /**
    * init(target: Measurement<UnitPower>, metric: WorkoutAlertMetric)
    * @availability iOS 17.4+
    */
-  static initTargetMetric(target: $SDK3, metric: WorkoutAlertMetric): PowerThresholdAlert { return callSDK<PowerThresholdAlert>("WorkoutKit_b88ddd0bfd78eefc", 800729196453092, undefined, [target, metric]); }
+  static initTargetMetric(target: $SDK3, metric: WorkoutAlertMetric): PowerThresholdAlert { return callSDK<PowerThresholdAlert>("WorkoutKit_b66fbf8c99a1c012", 800729196453092, undefined, [target, metric]); }
   /**
    * init(target: Measurement<UnitPower>)
    * @availability iOS 17.0+
    */
-  static initTarget(target: $SDK3): PowerThresholdAlert { return callSDK<PowerThresholdAlert>("WorkoutKit_b88ddd0bfd78eefc", 1599613045463694, undefined, [target]); }
+  static initTarget(target: $SDK3): PowerThresholdAlert { return callSDK<PowerThresholdAlert>("WorkoutKit_b66fbf8c99a1c012", 1599613045463694, undefined, [target]); }
   declare readonly $type: { "s:10WorkoutKit19PowerThresholdAlertV": true };
 }
 
@@ -394,18 +394,18 @@ export class PowerZoneAlert extends SDKHandle {
    * init(zone: Int)
    * @availability iOS 17.0+
    */
-  static init(zone: number): PowerZoneAlert { return callSDK<PowerZoneAlert>("WorkoutKit_b88ddd0bfd78eefc", 1386191460939666, undefined, [zone]); }
+  static init(zone: number): PowerZoneAlert { return callSDK<PowerZoneAlert>("WorkoutKit_b66fbf8c99a1c012", 1386191460939666, undefined, [zone]); }
   /**
    * var zone: Int
    * @availability iOS 17.0+
    */
-  get zone(): number { return callSDK<number>("WorkoutKit_b88ddd0bfd78eefc", 4410273570505108, this, []); }
-  set zone(value: number) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 3526718079534750, this, [value]); }
+  get zone(): number { return callSDK<number>("WorkoutKit_b66fbf8c99a1c012", 4410273570505108, this, []); }
+  set zone(value: number) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 3526718079534750, this, [value]); }
   /**
    * var metric: WorkoutAlertMetric { get }
    * @availability iOS 17.0+
    */
-  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b88ddd0bfd78eefc", 1062702204570170, this, []); }
+  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b66fbf8c99a1c012", 1062702204570170, this, []); }
   declare readonly $type: { "s:10WorkoutKit14PowerZoneAlertV": true };
 }
 
@@ -418,25 +418,25 @@ export class ScheduledWorkoutPlan extends SDKHandle {
    * var date: DateComponents { get set }
    * @availability iOS 17.0+
    */
-  get date(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("WorkoutKit_b88ddd0bfd78eefc", 1249646956102886, this, []); }
-  set date(value: _Foundation_DateComponents) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 2239862039789053, this, [value]); }
+  get date(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("WorkoutKit_b66fbf8c99a1c012", 1249646956102886, this, []); }
+  set date(value: _Foundation_DateComponents) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 2239862039789053, this, [value]); }
   /**
    * var plan: WorkoutPlan
    * @availability iOS 17.0+
    */
-  get plan(): WorkoutPlan { return callSDK<WorkoutPlan>("WorkoutKit_b88ddd0bfd78eefc", 1685324415151117, this, []); }
-  set plan(value: WorkoutPlan) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 891126648627698, this, [value]); }
+  get plan(): WorkoutPlan { return callSDK<WorkoutPlan>("WorkoutKit_b66fbf8c99a1c012", 1685324415151117, this, []); }
+  set plan(value: WorkoutPlan) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 891126648627698, this, [value]); }
   /**
    * var complete: Bool { get set }
    * @availability iOS 17.0+
    */
-  get complete(): boolean { return callSDK<boolean>("WorkoutKit_b88ddd0bfd78eefc", 2765124550658854, this, []); }
-  set complete(value: boolean) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 307473548986536, this, [value]); }
+  get complete(): boolean { return callSDK<boolean>("WorkoutKit_b66fbf8c99a1c012", 2765124550658854, this, []); }
+  set complete(value: boolean) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 307473548986536, this, [value]); }
   /**
    * init(_ plan: WorkoutPlan, date: DateComponents)
    * @availability iOS 17.0+
    */
-  static init(plan: WorkoutPlan, date: _Foundation_DateComponents): ScheduledWorkoutPlan { return callSDK<ScheduledWorkoutPlan>("WorkoutKit_b88ddd0bfd78eefc", 834464702087555, undefined, [plan, date]); }
+  static init(plan: WorkoutPlan, date: _Foundation_DateComponents): ScheduledWorkoutPlan { return callSDK<ScheduledWorkoutPlan>("WorkoutKit_b66fbf8c99a1c012", 834464702087555, undefined, [plan, date]); }
   declare readonly $type: { "s:10WorkoutKit09ScheduledA4PlanV": true };
 }
 
@@ -449,41 +449,41 @@ export class SingleGoalWorkout extends SDKHandle {
    * static func supportsGoal(_ goal: WorkoutGoal, activity: HKWorkoutActivityType, location: HKWorkoutSessionLocationType = .unknown) -> Bool
    * @availability iOS 17.0+
    */
-  static supportsGoal(goal: WorkoutGoal, activity: _HealthKit_HKWorkoutActivityType, location?: _HealthKit_HKWorkoutSessionLocationType): boolean { return callSDK<boolean>("WorkoutKit_b88ddd0bfd78eefc", 3710010471647507, undefined, [goal, activity, location]); }
+  static supportsGoal(goal: WorkoutGoal, activity: _HealthKit_HKWorkoutActivityType, location?: _HealthKit_HKWorkoutSessionLocationType): boolean { return callSDK<boolean>("WorkoutKit_b66fbf8c99a1c012", 3710010471647507, undefined, [goal, activity, location]); }
   /**
    * static func supportsActivity(_ activity: HKWorkoutActivityType) -> Bool
    * @availability iOS 17.0+
    */
-  static supportsActivity(activity: _HealthKit_HKWorkoutActivityType): boolean { return callSDK<boolean>("WorkoutKit_b88ddd0bfd78eefc", 3082419493197629, undefined, [activity]); }
+  static supportsActivity(activity: _HealthKit_HKWorkoutActivityType): boolean { return callSDK<boolean>("WorkoutKit_b66fbf8c99a1c012", 3082419493197629, undefined, [activity]); }
   /**
    * var swimmingLocation: HKWorkoutSwimmingLocationType
    * @availability iOS 17.0+
    */
-  get swimmingLocation(): _HealthKit_HKWorkoutSwimmingLocationType { return callSDK<_HealthKit_HKWorkoutSwimmingLocationType>("WorkoutKit_b88ddd0bfd78eefc", 1798065058021546, this, []); }
-  set swimmingLocation(value: _HealthKit_HKWorkoutSwimmingLocationType) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 4287970696320314, this, [value]); }
+  get swimmingLocation(): _HealthKit_HKWorkoutSwimmingLocationType { return callSDK<_HealthKit_HKWorkoutSwimmingLocationType>("WorkoutKit_b66fbf8c99a1c012", 1798065058021546, this, []); }
+  set swimmingLocation(value: _HealthKit_HKWorkoutSwimmingLocationType) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 4287970696320314, this, [value]); }
   /**
    * var goal: WorkoutGoal { get set }
    * @availability iOS 17.0+
    */
-  get goal(): WorkoutGoal { return callSDK<WorkoutGoal>("WorkoutKit_b88ddd0bfd78eefc", 4057250925303741, this, []); }
-  set goal(value: WorkoutGoal) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 2411260539155167, this, [value]); }
+  get goal(): WorkoutGoal { return callSDK<WorkoutGoal>("WorkoutKit_b66fbf8c99a1c012", 4057250925303741, this, []); }
+  set goal(value: WorkoutGoal) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 2411260539155167, this, [value]); }
   /**
    * init(activity: HKWorkoutActivityType, location: HKWorkoutSessionLocationType = .unknown, swimmingLocation: HKWorkoutSwimmingLocationType = .unknown, goal: WorkoutGoal = .open)
    * @availability iOS 17.0+
    */
-  static init(activity: _HealthKit_HKWorkoutActivityType, location?: _HealthKit_HKWorkoutSessionLocationType, swimmingLocation?: _HealthKit_HKWorkoutSwimmingLocationType, goal?: WorkoutGoal): SingleGoalWorkout { return callSDK<SingleGoalWorkout>("WorkoutKit_b88ddd0bfd78eefc", 2245703010132502, undefined, [activity, location, swimmingLocation, goal]); }
+  static init(activity: _HealthKit_HKWorkoutActivityType, location?: _HealthKit_HKWorkoutSessionLocationType, swimmingLocation?: _HealthKit_HKWorkoutSwimmingLocationType, goal?: WorkoutGoal): SingleGoalWorkout { return callSDK<SingleGoalWorkout>("WorkoutKit_b66fbf8c99a1c012", 2245703010132502, undefined, [activity, location, swimmingLocation, goal]); }
   /**
    * var activity: HKWorkoutActivityType { get set }
    * @availability iOS 17.0+
    */
-  get activity(): _HealthKit_HKWorkoutActivityType { return callSDK<_HealthKit_HKWorkoutActivityType>("WorkoutKit_b88ddd0bfd78eefc", 2147283256130719, this, []); }
-  set activity(value: _HealthKit_HKWorkoutActivityType) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 2958225969728703, this, [value]); }
+  get activity(): _HealthKit_HKWorkoutActivityType { return callSDK<_HealthKit_HKWorkoutActivityType>("WorkoutKit_b66fbf8c99a1c012", 2147283256130719, this, []); }
+  set activity(value: _HealthKit_HKWorkoutActivityType) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 2958225969728703, this, [value]); }
   /**
    * var location: HKWorkoutSessionLocationType
    * @availability iOS 17.0+
    */
-  get location(): _HealthKit_HKWorkoutSessionLocationType { return callSDK<_HealthKit_HKWorkoutSessionLocationType>("WorkoutKit_b88ddd0bfd78eefc", 611454813881295, this, []); }
-  set location(value: _HealthKit_HKWorkoutSessionLocationType) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 394856334957497, this, [value]); }
+  get location(): _HealthKit_HKWorkoutSessionLocationType { return callSDK<_HealthKit_HKWorkoutSessionLocationType>("WorkoutKit_b66fbf8c99a1c012", 611454813881295, this, []); }
+  set location(value: _HealthKit_HKWorkoutSessionLocationType) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 394856334957497, this, [value]); }
   declare readonly $type: { "s:10WorkoutKit010SingleGoalA0V": true };
 }
 
@@ -496,29 +496,29 @@ export class SpeedRangeAlert extends SDKHandle {
    * var targetQuantityLowerBound: HKQuantity { get }
    * @availability iOS 17.0+
    */
-  get targetQuantityLowerBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b88ddd0bfd78eefc", 651047314775403, this, []); }
+  get targetQuantityLowerBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b66fbf8c99a1c012", 651047314775403, this, []); }
   /**
    * var targetQuantityUpperBound: HKQuantity { get }
    * @availability iOS 17.0+
    */
-  get targetQuantityUpperBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b88ddd0bfd78eefc", 199347801537132, this, []); }
+  get targetQuantityUpperBound(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b66fbf8c99a1c012", 199347801537132, this, []); }
   /**
    * var metric: WorkoutAlertMetric
    * @availability iOS 17.0+
    */
-  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b88ddd0bfd78eefc", 960524940829566, this, []); }
-  set metric(value: WorkoutAlertMetric) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 4039419404547594, this, [value]); }
+  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b66fbf8c99a1c012", 960524940829566, this, []); }
+  set metric(value: WorkoutAlertMetric) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 4039419404547594, this, [value]); }
   /**
    * init(target: ClosedRange<Measurement<UnitSpeed>>, metric: WorkoutAlertMetric)
    * @availability iOS 17.0+
    */
-  static init(target: SDKHandle, metric: WorkoutAlertMetric): SpeedRangeAlert { return callSDK<SpeedRangeAlert>("WorkoutKit_b88ddd0bfd78eefc", 1556211073667687, undefined, [target, metric]); }
+  static init(target: SDKHandle, metric: WorkoutAlertMetric): SpeedRangeAlert { return callSDK<SpeedRangeAlert>("WorkoutKit_b66fbf8c99a1c012", 1556211073667687, undefined, [target, metric]); }
   /**
    * var target: ClosedRange<Measurement<UnitSpeed>>
    * @availability iOS 17.0+
    */
-  get target(): SDKHandle { return callSDK<SDKHandle>("WorkoutKit_b88ddd0bfd78eefc", 3886980876624525, this, []); }
-  set target(value: SDKHandle) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 1423017595029620, this, [value]); }
+  get target(): SDKHandle { return callSDK<SDKHandle>("WorkoutKit_b66fbf8c99a1c012", 3886980876624525, this, []); }
+  set target(value: SDKHandle) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 1423017595029620, this, [value]); }
   declare readonly $type: { "s:10WorkoutKit15SpeedRangeAlertV": true };
 }
 
@@ -531,24 +531,24 @@ export class SpeedThresholdAlert extends SDKHandle {
    * var targetQuantity: HKQuantity { get }
    * @availability iOS 17.0+
    */
-  get targetQuantity(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b88ddd0bfd78eefc", 2471497493705089, this, []); }
+  get targetQuantity(): _HealthKit_HKQuantity { return callSDK<_HealthKit_HKQuantity>("WorkoutKit_b66fbf8c99a1c012", 2471497493705089, this, []); }
   /**
    * var metric: WorkoutAlertMetric
    * @availability iOS 17.0+
    */
-  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b88ddd0bfd78eefc", 1876793264876074, this, []); }
-  set metric(value: WorkoutAlertMetric) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 2566187599728017, this, [value]); }
+  get metric(): WorkoutAlertMetric { return callSDK<WorkoutAlertMetric>("WorkoutKit_b66fbf8c99a1c012", 1876793264876074, this, []); }
+  set metric(value: WorkoutAlertMetric) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 2566187599728017, this, [value]); }
   /**
    * var target: Measurement<UnitSpeed>
    * @availability iOS 17.0+
    */
-  get target(): $SDK4 { return callSDK<$SDK4>("WorkoutKit_b88ddd0bfd78eefc", 4465224373042515, this, []); }
-  set target(value: $SDK4) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 3981384335694660, this, [value]); }
+  get target(): $SDK4 { return callSDK<$SDK4>("WorkoutKit_b66fbf8c99a1c012", 4465224373042515, this, []); }
+  set target(value: $SDK4) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 3981384335694660, this, [value]); }
   /**
    * init(target: Measurement<UnitSpeed>, metric: WorkoutAlertMetric)
    * @availability iOS 17.0+
    */
-  static init(target: $SDK4, metric: WorkoutAlertMetric): SpeedThresholdAlert { return callSDK<SpeedThresholdAlert>("WorkoutKit_b88ddd0bfd78eefc", 2526718568256777, undefined, [target, metric]); }
+  static init(target: $SDK4, metric: WorkoutAlertMetric): SpeedThresholdAlert { return callSDK<SpeedThresholdAlert>("WorkoutKit_b66fbf8c99a1c012", 2526718568256777, undefined, [target, metric]); }
   declare readonly $type: { "s:10WorkoutKit19SpeedThresholdAlertV": true };
 }
 
@@ -567,24 +567,24 @@ export class SwimBikeRunWorkout extends SDKHandle {
    * init(activities: [SwimBikeRunWorkout.Activity], displayName: String? = nil)
    * @availability iOS 17.0+
    */
-  static init(activities: $SDK5, displayName?: (string) | null): SwimBikeRunWorkout { return callSDK<SwimBikeRunWorkout>("WorkoutKit_b88ddd0bfd78eefc", 421353178670750, undefined, [activities, displayName]); }
+  static init(activities: $SDK5, displayName?: (string) | null): SwimBikeRunWorkout { return callSDK<SwimBikeRunWorkout>("WorkoutKit_b66fbf8c99a1c012", 421353178670750, undefined, [activities, displayName]); }
   /**
    * var activities: [SwimBikeRunWorkout.Activity] { get set }
    * @availability iOS 17.0+
    */
-  get activities(): $SDK5 { return callSDK<$SDK5>("WorkoutKit_b88ddd0bfd78eefc", 374310206900974, this, []); }
-  set activities(value: $SDK5) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 524523740022204, this, [value]); }
+  get activities(): $SDK5 { return callSDK<$SDK5>("WorkoutKit_b66fbf8c99a1c012", 374310206900974, this, []); }
+  set activities(value: $SDK5) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 524523740022204, this, [value]); }
   /**
    * var displayName: String?
    * @availability iOS 17.0+
    */
-  get displayName(): (string) | null { return callSDK<(string) | null>("WorkoutKit_b88ddd0bfd78eefc", 67738270965654, this, []); }
-  set displayName(value: (string) | null) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 132617573035446, this, [value]); }
+  get displayName(): (string) | null { return callSDK<(string) | null>("WorkoutKit_b66fbf8c99a1c012", 67738270965654, this, []); }
+  set displayName(value: (string) | null) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 132617573035446, this, [value]); }
   /**
    * static func supportsActivityOrdering(_ activities: [SwimBikeRunWorkout.Activity]) -> Bool
    * @availability iOS 17.0+
    */
-  static supportsActivityOrdering(activities: $SDK5): boolean { return callSDK<boolean>("WorkoutKit_b88ddd0bfd78eefc", 3203553253878107, undefined, [activities]); }
+  static supportsActivityOrdering(activities: $SDK5): boolean { return callSDK<boolean>("WorkoutKit_b66fbf8c99a1c012", 3203553253878107, undefined, [activities]); }
   declare readonly $type: { "s:10WorkoutKit011SwimBikeRunA0V": true };
 }
 
@@ -619,7 +619,7 @@ export const WorkoutAlertMetric = {
    * static var countPerMinute: UnitFrequency { get }
    * @availability iOS 17.0+
    */
-  get countPerMinute(): _Foundation_UnitFrequency { return callSDK<_Foundation_UnitFrequency>("WorkoutKit_b88ddd0bfd78eefc", 3680905545962325, undefined, []); }
+  get countPerMinute(): _Foundation_UnitFrequency { return callSDK<_Foundation_UnitFrequency>("WorkoutKit_b66fbf8c99a1c012", 3680905545962325, undefined, []); }
 };
 
 /**
@@ -639,24 +639,24 @@ export class WorkoutPlan extends SDKHandle {
    * var dataRepresentation: Data { get throws }
    * @availability iOS 17.0+
    */
-  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("WorkoutKit_b88ddd0bfd78eefc", 2184606216176771, this, []); }
+  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("WorkoutKit_b66fbf8c99a1c012", 2184606216176771, this, []); }
   /**
    * var id: UUID
    * @availability iOS 17.0+
    */
-  get id(): string { return callSDK<string>("WorkoutKit_b88ddd0bfd78eefc", 1622256729337776, this, []); }
-  set id(value: string) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 1797605550427344, this, [value]); }
+  get id(): string { return callSDK<string>("WorkoutKit_b66fbf8c99a1c012", 1622256729337776, this, []); }
+  set id(value: string) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 1797605550427344, this, [value]); }
   /**
    * var workout: WorkoutPlan.Workout
    * @availability iOS 17.0+
    */
-  get workout(): WorkoutPlan_Workout { return callSDK<WorkoutPlan_Workout>("WorkoutKit_b88ddd0bfd78eefc", 2336014854158764, this, []); }
-  set workout(value: WorkoutPlan_Workout) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 3675444713109956, this, [value]); }
+  get workout(): WorkoutPlan_Workout { return callSDK<WorkoutPlan_Workout>("WorkoutKit_b66fbf8c99a1c012", 2336014854158764, this, []); }
+  set workout(value: WorkoutPlan_Workout) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 3675444713109956, this, [value]); }
   /**
    * init(_ workout: WorkoutPlan.Workout, id: UUID = UUID())
    * @availability iOS 17.0+
    */
-  static init(workout: WorkoutPlan_Workout, id?: string): WorkoutPlan { return callSDK<WorkoutPlan>("WorkoutKit_b88ddd0bfd78eefc", 1912043280805601, undefined, [workout, id]); }
+  static init(workout: WorkoutPlan_Workout, id?: string): WorkoutPlan { return callSDK<WorkoutPlan>("WorkoutKit_b66fbf8c99a1c012", 1912043280805601, undefined, [workout, id]); }
   declare readonly $type: { "s:10WorkoutKit0A4PlanV": true };
 }
 
@@ -675,7 +675,7 @@ export class WorkoutPlan_Workout extends SDKHandle {
    * var activity: HKWorkoutActivityType { get }
    * @availability iOS 17.0+
    */
-  get activity(): _HealthKit_HKWorkoutActivityType { return callSDK<_HealthKit_HKWorkoutActivityType>("WorkoutKit_b88ddd0bfd78eefc", 596093128378918, this, []); }
+  get activity(): _HealthKit_HKWorkoutActivityType { return callSDK<_HealthKit_HKWorkoutActivityType>("WorkoutKit_b66fbf8c99a1c012", 596093128378918, this, []); }
   declare readonly $type: { "s:10WorkoutKit0A4PlanV0A0O": true };
 }
 
@@ -688,52 +688,52 @@ export class WorkoutScheduler extends SDKHandle {
    * static let maxAllowedScheduledWorkoutCount: Int
    * @availability iOS 17.0+
    */
-  static get maxAllowedScheduledWorkoutCount(): number { return callSDK<number>("WorkoutKit_b88ddd0bfd78eefc", 2534156579856904, undefined, []); }
+  static get maxAllowedScheduledWorkoutCount(): number { return callSDK<number>("WorkoutKit_b66fbf8c99a1c012", 2534156579856904, undefined, []); }
   /**
    * static var isSupported: Bool { get }
    * @availability iOS 17.0+
    */
-  static get isSupported(): boolean { return callSDK<boolean>("WorkoutKit_b88ddd0bfd78eefc", 3537515116591281, undefined, []); }
+  static get isSupported(): boolean { return callSDK<boolean>("WorkoutKit_b66fbf8c99a1c012", 3537515116591281, undefined, []); }
   /**
    * final func markComplete(_ workout: WorkoutPlan, at: DateComponents) async
    * @availability iOS 17.0+
    */
-  markComplete(workout: WorkoutPlan, at: _Foundation_DateComponents): Promise<void> { return callSDKAsync<void>("WorkoutKit_b88ddd0bfd78eefc", 1956015604606080, this, [workout, at]); }
+  markComplete(workout: WorkoutPlan, at: _Foundation_DateComponents): Promise<void> { return callSDKAsync<void>("WorkoutKit_b66fbf8c99a1c012", 1956015604606080, this, [workout, at]); }
   /**
    * final func removeAllWorkouts() async
    * @availability iOS 17.0+
    */
-  removeAllWorkouts(): Promise<void> { return callSDKAsync<void>("WorkoutKit_b88ddd0bfd78eefc", 1252767621986371, this, []); }
+  removeAllWorkouts(): Promise<void> { return callSDKAsync<void>("WorkoutKit_b66fbf8c99a1c012", 1252767621986371, this, []); }
   /**
    * final var scheduledWorkouts: [ScheduledWorkoutPlan] { get async }
    * @availability iOS 17.0+
    */
-  get scheduledWorkouts(): Promise<Array<ScheduledWorkoutPlan>> { return callSDKAsync<Array<ScheduledWorkoutPlan>>("WorkoutKit_b88ddd0bfd78eefc", 221710025195527, this, []); }
+  get scheduledWorkouts(): Promise<Array<ScheduledWorkoutPlan>> { return callSDKAsync<Array<ScheduledWorkoutPlan>>("WorkoutKit_b66fbf8c99a1c012", 221710025195527, this, []); }
   /**
    * final var authorizationState: WorkoutScheduler.AuthorizationState { get async }
    * @availability iOS 17.0+
    */
-  get authorizationState(): Promise<WorkoutScheduler_AuthorizationState> { return callSDKAsync<WorkoutScheduler_AuthorizationState>("WorkoutKit_b88ddd0bfd78eefc", 3245670144619276, this, []); }
+  get authorizationState(): Promise<WorkoutScheduler_AuthorizationState> { return callSDKAsync<WorkoutScheduler_AuthorizationState>("WorkoutKit_b66fbf8c99a1c012", 3245670144619276, this, []); }
   /**
    * final func requestAuthorization() async -> WorkoutScheduler.AuthorizationState
    * @availability iOS 17.0+
    */
-  requestAuthorization(): Promise<WorkoutScheduler_AuthorizationState> { return callSDKAsync<WorkoutScheduler_AuthorizationState>("WorkoutKit_b88ddd0bfd78eefc", 1665091911565267, this, []); }
+  requestAuthorization(): Promise<WorkoutScheduler_AuthorizationState> { return callSDKAsync<WorkoutScheduler_AuthorizationState>("WorkoutKit_b66fbf8c99a1c012", 1665091911565267, this, []); }
   /**
    * final func remove(_ workout: WorkoutPlan, at: DateComponents) async
    * @availability iOS 17.0+
    */
-  remove(workout: WorkoutPlan, at: _Foundation_DateComponents): Promise<void> { return callSDKAsync<void>("WorkoutKit_b88ddd0bfd78eefc", 1471894954270761, this, [workout, at]); }
+  remove(workout: WorkoutPlan, at: _Foundation_DateComponents): Promise<void> { return callSDKAsync<void>("WorkoutKit_b66fbf8c99a1c012", 1471894954270761, this, [workout, at]); }
   /**
    * static let shared: WorkoutScheduler
    * @availability iOS 17.0+
    */
-  static get shared(): WorkoutScheduler { return callSDK<WorkoutScheduler>("WorkoutKit_b88ddd0bfd78eefc", 4235482573064974, undefined, []); }
+  static get shared(): WorkoutScheduler { return callSDK<WorkoutScheduler>("WorkoutKit_b66fbf8c99a1c012", 4235482573064974, undefined, []); }
   /**
    * final func schedule(_ workout: WorkoutPlan, at: DateComponents) async
    * @availability iOS 17.0+
    */
-  schedule(workout: WorkoutPlan, at: _Foundation_DateComponents): Promise<void> { return callSDKAsync<void>("WorkoutKit_b88ddd0bfd78eefc", 4094770559643764, this, [workout, at]); }
+  schedule(workout: WorkoutPlan, at: _Foundation_DateComponents): Promise<void> { return callSDKAsync<void>("WorkoutKit_b66fbf8c99a1c012", 4094770559643764, this, [workout, at]); }
   declare readonly $type: { "s:10WorkoutKit0A9SchedulerC": true };
 }
 
@@ -748,12 +748,12 @@ export const WorkoutScheduler_AuthorizationState = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (WorkoutScheduler_AuthorizationState) | null { return callSDK<(WorkoutScheduler_AuthorizationState) | null>("WorkoutKit_b88ddd0bfd78eefc", 126680783985540, undefined, [rawValue]); },
+  init(rawValue: number): (WorkoutScheduler_AuthorizationState) | null { return callSDK<(WorkoutScheduler_AuthorizationState) | null>("WorkoutKit_b66fbf8c99a1c012", 126680783985540, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: WorkoutScheduler_AuthorizationState): number { return callSDK<number>("WorkoutKit_b88ddd0bfd78eefc", 2505721341168191, $self, []); }
+  getRawValue($self: WorkoutScheduler_AuthorizationState): number { return callSDK<number>("WorkoutKit_b66fbf8c99a1c012", 2505721341168191, $self, []); }
 };
 
 /**
@@ -771,54 +771,54 @@ export class WorkoutStep extends SDKHandle {
    * var displayName: String?
    * @availability iOS 18.0+
    */
-  get displayName(): (string) | null { return callSDK<(string) | null>("WorkoutKit_b88ddd0bfd78eefc", 1531297269319876, this, []); }
-  set displayName(value: (string) | null) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 622286249290263, this, [value]); }
+  get displayName(): (string) | null { return callSDK<(string) | null>("WorkoutKit_b66fbf8c99a1c012", 1531297269319876, this, []); }
+  set displayName(value: (string) | null) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 622286249290263, this, [value]); }
   /**
    * init(goal: WorkoutGoal = .open, alert: (any WorkoutAlert)? = nil, displayName: String? = nil)
    * @availability iOS 18.0+
    */
-  static initGoalAlertDisplayName(goal?: WorkoutGoal, alert?: (SDKHandle) | null, displayName?: (string) | null): WorkoutStep { return callSDK<WorkoutStep>("WorkoutKit_b88ddd0bfd78eefc", 3758992297961737, undefined, [goal, alert, displayName]); }
+  static initGoalAlertDisplayName(goal?: WorkoutGoal, alert?: (SDKHandle) | null, displayName?: (string) | null): WorkoutStep { return callSDK<WorkoutStep>("WorkoutKit_b66fbf8c99a1c012", 3758992297961737, undefined, [goal, alert, displayName]); }
   /**
    * init(goal: WorkoutGoal = .open, alert: (any WorkoutAlert)? = nil)
    * @availability iOS 17.0+
    */
-  static initGoalAlert(goal?: WorkoutGoal, alert?: (SDKHandle) | null): WorkoutStep { return callSDK<WorkoutStep>("WorkoutKit_b88ddd0bfd78eefc", 1631412829293391, undefined, [goal, alert]); }
+  static initGoalAlert(goal?: WorkoutGoal, alert?: (SDKHandle) | null): WorkoutStep { return callSDK<WorkoutStep>("WorkoutKit_b66fbf8c99a1c012", 1631412829293391, undefined, [goal, alert]); }
   /**
    * var goal: WorkoutGoal
    * @availability iOS 17.0+
    */
-  get goal(): WorkoutGoal { return callSDK<WorkoutGoal>("WorkoutKit_b88ddd0bfd78eefc", 3915606786109074, this, []); }
-  set goal(value: WorkoutGoal) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 2116035809082365, this, [value]); }
+  get goal(): WorkoutGoal { return callSDK<WorkoutGoal>("WorkoutKit_b66fbf8c99a1c012", 3915606786109074, this, []); }
+  set goal(value: WorkoutGoal) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 2116035809082365, this, [value]); }
   /**
    * var alert: (any WorkoutAlert)?
    * @availability iOS 17.0+
    */
-  get alert(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("WorkoutKit_b88ddd0bfd78eefc", 2043778151590650, this, []); }
-  set alert(value: (SDKHandle) | null) { callSDK<void>("WorkoutKit_b88ddd0bfd78eefc", 2300573844431273, this, [value]); }
+  get alert(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("WorkoutKit_b66fbf8c99a1c012", 2043778151590650, this, []); }
+  set alert(value: (SDKHandle) | null) { callSDK<void>("WorkoutKit_b66fbf8c99a1c012", 2300573844431273, this, [value]); }
   declare readonly $type: { "s:10WorkoutKit0A4StepV": true };
 }
 
-registerSDKClass("WorkoutKit.CadenceRangeAlert", CadenceRangeAlert, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.CadenceThresholdAlert", CadenceThresholdAlert, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.CustomWorkout", CustomWorkout, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.HeartRateRangeAlert", HeartRateRangeAlert, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.HeartRateZoneAlert", HeartRateZoneAlert, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("HKWorkout", HKWorkout, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} }, true);
-registerSDKClass("WorkoutKit.IntervalBlock", IntervalBlock, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.IntervalStep", IntervalStep, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.PacerWorkout", PacerWorkout, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.PowerRangeAlert", PowerRangeAlert, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.PowerThresholdAlert", PowerThresholdAlert, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.PowerZoneAlert", PowerZoneAlert, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.ScheduledWorkoutPlan", ScheduledWorkoutPlan, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.SingleGoalWorkout", SingleGoalWorkout, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.SpeedRangeAlert", SpeedRangeAlert, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.SpeedThresholdAlert", SpeedThresholdAlert, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.SwimBikeRunWorkout", SwimBikeRunWorkout, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.SwimBikeRunWorkout.Activity", SwimBikeRunWorkout_Activity, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("WorkoutKit.CadenceRangeAlert", CadenceRangeAlert, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.CadenceThresholdAlert", CadenceThresholdAlert, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.CustomWorkout", CustomWorkout, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.HeartRateRangeAlert", HeartRateRangeAlert, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.HeartRateZoneAlert", HeartRateZoneAlert, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("HKWorkout", HKWorkout, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} }, true);
+registerSDKClass("WorkoutKit.IntervalBlock", IntervalBlock, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.IntervalStep", IntervalStep, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.PacerWorkout", PacerWorkout, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.PowerRangeAlert", PowerRangeAlert, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.PowerThresholdAlert", PowerThresholdAlert, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.PowerZoneAlert", PowerZoneAlert, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.ScheduledWorkoutPlan", ScheduledWorkoutPlan, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.SingleGoalWorkout", SingleGoalWorkout, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.SpeedRangeAlert", SpeedRangeAlert, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.SpeedThresholdAlert", SpeedThresholdAlert, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.SwimBikeRunWorkout", SwimBikeRunWorkout, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.SwimBikeRunWorkout.Activity", SwimBikeRunWorkout_Activity, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
 registerSDKProtocol("s:10WorkoutKit0A5AlertP", {"supportsActivityLocation":"supports(activity:location:)"});
-registerSDKClass("WorkoutKit.WorkoutGoal", WorkoutGoal, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.WorkoutPlan", WorkoutPlan, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.WorkoutPlan.Workout", WorkoutPlan_Workout, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
-registerSDKClass("WorkoutKit.WorkoutScheduler", WorkoutScheduler, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {}, methods: {"markComplete":{"id":1956015604606080},"removeAllWorkouts":{"id":1252767621986371},"requestAuthorization":{"id":1665091911565267},"remove":{"id":1471894954270761},"schedule":{"id":4094770559643764}} });
-registerSDKClass("WorkoutKit.WorkoutStep", WorkoutStep, { module: "WorkoutKit_b88ddd0bfd78eefc", properties: {} });
+registerSDKClass("WorkoutKit.WorkoutGoal", WorkoutGoal, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.WorkoutPlan", WorkoutPlan, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.WorkoutPlan.Workout", WorkoutPlan_Workout, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
+registerSDKClass("WorkoutKit.WorkoutScheduler", WorkoutScheduler, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {}, methods: {"markComplete":{"id":1956015604606080},"removeAllWorkouts":{"id":1252767621986371},"requestAuthorization":{"id":1665091911565267},"remove":{"id":1471894954270761},"schedule":{"id":4094770559643764}} });
+registerSDKClass("WorkoutKit.WorkoutStep", WorkoutStep, { module: "WorkoutKit_b66fbf8c99a1c012", properties: {} });
