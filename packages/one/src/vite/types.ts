@@ -538,7 +538,8 @@ export namespace One {
        *
        * - `'after-lcp-aggressive'`: Only modulepreloads critical scripts (entry, layouts).
        *   Non-critical scripts have no modulepreload hints, reducing network saturation.
-       *   Best for pages with many chunks or slow networks.
+       *   Best for pages with many chunks or slow networks. A spa-shell page still preloads its
+       *   non-critical scripts at normal priority, since it paints nothing until they run.
        *
        * @default undefined (all scripts load with async)
        */
