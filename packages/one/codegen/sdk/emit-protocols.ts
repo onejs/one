@@ -84,6 +84,11 @@ function objcOptional(type: SwiftType, bridge: Bridge, seen: Set<string>): boole
     case 'array':
     case 'dictionary':
       return objcRepresentable(type, bridge, seen)
+    case 'function':
+      if (type.throws || type.async) return false
+      return type.params.every((param) => objcRepresentable(param.t, bridge, seen)) && objcRepresentable(type.result, bridge, seen)
+    case 'metatype':
+      return objcClassType(type.t, bridge, seen)
     case 'composition':
       return type.items.every((item) => objcOptional(item, bridge, seen))
     case 'named': {
@@ -117,7 +122,8 @@ function objcRepresentable(type: SwiftType, bridge: Bridge, seen = new Set<strin
     case 'composition':
       return type.items.every((item) => objcRepresentable(item, bridge, seen, boxed))
     case 'function':
-      if (type.throws || type.async) return false
+      // a block is a parameter. an array or dictionary of blocks is not.
+      if (boxed || type.throws || type.async) return false
       return type.params.every((param) => objcRepresentable(param.t, bridge, seen)) && objcRepresentable(type.result, bridge, seen)
     case 'tuple':
       return type.items.length === 0

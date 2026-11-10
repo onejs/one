@@ -38,6 +38,6 @@ export class PermissionButton<Topic = unknown, Label = unknown> extends SDKHandl
  */
 export type PermissionButton_Body<Topic = unknown, Label = unknown> = SDKHandle;
 
-registerSDKClass("_PermissionKit_SwiftUI.AskPermissionAction", AskPermissionAction, { module: "_PermissionKit_SwiftUI_a624b245971cfd00", properties: {} });
-registerSDKClass("_PermissionKit_SwiftUI.CommunicationLimitsButton", CommunicationLimitsButton, { module: "_PermissionKit_SwiftUI_a624b245971cfd00", properties: {} });
-registerSDKClass("_PermissionKit_SwiftUI.PermissionButton", PermissionButton, { module: "_PermissionKit_SwiftUI_a624b245971cfd00", properties: {} });
+registerSDKClass("_PermissionKit_SwiftUI.AskPermissionAction", AskPermissionAction, { module: "_PermissionKit_SwiftUI_86f7e029fa4ce140", properties: {} });
+registerSDKClass("_PermissionKit_SwiftUI.CommunicationLimitsButton", CommunicationLimitsButton, { module: "_PermissionKit_SwiftUI_86f7e029fa4ce140", properties: {} });
+registerSDKClass("_PermissionKit_SwiftUI.PermissionButton", PermissionButton, { module: "_PermissionKit_SwiftUI_86f7e029fa4ce140", properties: {} });

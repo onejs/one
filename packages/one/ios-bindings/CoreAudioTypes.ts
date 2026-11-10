@@ -7,33 +7,33 @@ type $SDK0 = [SDKHandle, SDKHandle, SDKHandle];
 /** struct AudioBuffer */
 export class AudioBuffer extends SDKHandle {
   /** var mData: UnsafeMutableRawPointer? */
-  get mData(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreAudioTypes_a624b245971cfd00", 3440261664058296, this, []); }
-  set mData(value: (SDKHandle) | null) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 2041854529401614, this, [value]); }
+  get mData(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreAudioTypes_86f7e029fa4ce140", 3440261664058296, this, []); }
+  set mData(value: (SDKHandle) | null) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 2041854529401614, this, [value]); }
   /** var mDataByteSize: UInt32 */
-  get mDataByteSize(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3350931293217632, this, []); }
-  set mDataByteSize(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 1601013657558231, this, [value]); }
+  get mDataByteSize(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3350931293217632, this, []); }
+  set mDataByteSize(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 1601013657558231, this, [value]); }
   /** var mNumberChannels: UInt32 */
-  get mNumberChannels(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3897662316900237, this, []); }
-  set mNumberChannels(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 1387944718000013, this, [value]); }
+  get mNumberChannels(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3897662316900237, this, []); }
+  set mNumberChannels(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 1387944718000013, this, [value]); }
   /** init(mNumberChannels: UInt32, mDataByteSize: UInt32, mData: UnsafeMutableRawPointer?) */
-  static initMNumberChannelsMDataByteSizeMData(mNumberChannels: number, mDataByteSize: number, mData?: (SDKHandle) | null): AudioBuffer { return callSDK<AudioBuffer>("CoreAudioTypes_a624b245971cfd00", 1944866562582621, undefined, [mNumberChannels, mDataByteSize, mData]); }
+  static initMNumberChannelsMDataByteSizeMData(mNumberChannels: number, mDataByteSize: number, mData?: (SDKHandle) | null): AudioBuffer { return callSDK<AudioBuffer>("CoreAudioTypes_86f7e029fa4ce140", 1944866562582621, undefined, [mNumberChannels, mDataByteSize, mData]); }
   /** init() */
-  static init(): AudioBuffer { return callSDK<AudioBuffer>("CoreAudioTypes_a624b245971cfd00", 4302960134120149, undefined, []); }
+  static init(): AudioBuffer { return callSDK<AudioBuffer>("CoreAudioTypes_86f7e029fa4ce140", 4302960134120149, undefined, []); }
   declare readonly $type: { "c:@S@AudioBuffer": true };
 }
 
 /** struct AudioBufferList */
 export class AudioBufferList extends SDKHandle {
   /** var mBuffers: AudioBuffer */
-  get mBuffers(): AudioBuffer { return callSDK<AudioBuffer>("CoreAudioTypes_a624b245971cfd00", 2675499127465692, this, []); }
-  set mBuffers(value: AudioBuffer) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 1536027056251620, this, [value]); }
+  get mBuffers(): AudioBuffer { return callSDK<AudioBuffer>("CoreAudioTypes_86f7e029fa4ce140", 2675499127465692, this, []); }
+  set mBuffers(value: AudioBuffer) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 1536027056251620, this, [value]); }
   /** var mNumberBuffers: UInt32 */
-  get mNumberBuffers(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3638397361435016, this, []); }
-  set mNumberBuffers(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3397415643807197, this, [value]); }
+  get mNumberBuffers(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3638397361435016, this, []); }
+  set mNumberBuffers(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3397415643807197, this, [value]); }
   /** init(mNumberBuffers: UInt32, mBuffers: AudioBuffer) */
-  static initMNumberBuffersMBuffers(mNumberBuffers: number, mBuffers: AudioBuffer): AudioBufferList { return callSDK<AudioBufferList>("CoreAudioTypes_a624b245971cfd00", 353250390344197, undefined, [mNumberBuffers, mBuffers]); }
+  static initMNumberBuffersMBuffers(mNumberBuffers: number, mBuffers: AudioBuffer): AudioBufferList { return callSDK<AudioBufferList>("CoreAudioTypes_86f7e029fa4ce140", 353250390344197, undefined, [mNumberBuffers, mBuffers]); }
   /** init() */
-  static init(): AudioBufferList { return callSDK<AudioBufferList>("CoreAudioTypes_a624b245971cfd00", 2895899867133696, undefined, []); }
+  static init(): AudioBufferList { return callSDK<AudioBufferList>("CoreAudioTypes_86f7e029fa4ce140", 2895899867133696, undefined, []); }
   declare readonly $type: { "c:@S@AudioBufferList": true };
 }
 
@@ -42,61 +42,61 @@ export type AudioChannelBitmap = Array<"bit_Left" | "bit_Right" | "bit_Center" |
 
 export const AudioChannelBitmap = {
   /** static var bit_Center: AudioChannelBitmap { get } */
-  get bit_Center(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 2612901179832703, undefined, []); },
+  get bit_Center(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 2612901179832703, undefined, []); },
   /** static var bit_CenterSurround: AudioChannelBitmap { get } */
-  get bit_CenterSurround(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 2919561706801431, undefined, []); },
+  get bit_CenterSurround(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 2919561706801431, undefined, []); },
   /** static var bit_CenterTopFront: AudioChannelBitmap { get } */
-  get bit_CenterTopFront(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 437001519027484, undefined, []); },
+  get bit_CenterTopFront(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 437001519027484, undefined, []); },
   /** static var bit_CenterTopMiddle: AudioChannelBitmap { get } */
-  get bit_CenterTopMiddle(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 2903345019990004, undefined, []); },
+  get bit_CenterTopMiddle(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 2903345019990004, undefined, []); },
   /** static var bit_CenterTopRear: AudioChannelBitmap { get } */
-  get bit_CenterTopRear(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 4101931262198467, undefined, []); },
+  get bit_CenterTopRear(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 4101931262198467, undefined, []); },
   /** static var bit_LFEScreen: AudioChannelBitmap { get } */
-  get bit_LFEScreen(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 7422161348155, undefined, []); },
+  get bit_LFEScreen(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 7422161348155, undefined, []); },
   /** static var bit_Left: AudioChannelBitmap { get } */
-  get bit_Left(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 455701353995300, undefined, []); },
+  get bit_Left(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 455701353995300, undefined, []); },
   /** static var bit_LeftCenter: AudioChannelBitmap { get } */
-  get bit_LeftCenter(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 3177325947225123, undefined, []); },
+  get bit_LeftCenter(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 3177325947225123, undefined, []); },
   /** static var bit_LeftSurround: AudioChannelBitmap { get } */
-  get bit_LeftSurround(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 2405096531932041, undefined, []); },
+  get bit_LeftSurround(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 2405096531932041, undefined, []); },
   /** static var bit_LeftSurroundDirect: AudioChannelBitmap { get } */
-  get bit_LeftSurroundDirect(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 2849881827144717, undefined, []); },
+  get bit_LeftSurroundDirect(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 2849881827144717, undefined, []); },
   /** static var bit_LeftTopFront: AudioChannelBitmap { get } */
-  get bit_LeftTopFront(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 3899272202959497, undefined, []); },
+  get bit_LeftTopFront(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 3899272202959497, undefined, []); },
   /** static var bit_LeftTopMiddle: AudioChannelBitmap { get } */
-  get bit_LeftTopMiddle(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 2570643254034647, undefined, []); },
+  get bit_LeftTopMiddle(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 2570643254034647, undefined, []); },
   /** static var bit_LeftTopRear: AudioChannelBitmap { get } */
-  get bit_LeftTopRear(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 1664405822970796, undefined, []); },
+  get bit_LeftTopRear(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 1664405822970796, undefined, []); },
   /** static var bit_Right: AudioChannelBitmap { get } */
-  get bit_Right(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 153340981400267, undefined, []); },
+  get bit_Right(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 153340981400267, undefined, []); },
   /** static var bit_RightCenter: AudioChannelBitmap { get } */
-  get bit_RightCenter(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 4223638324627418, undefined, []); },
+  get bit_RightCenter(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 4223638324627418, undefined, []); },
   /** static var bit_RightSurround: AudioChannelBitmap { get } */
-  get bit_RightSurround(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 472787481044016, undefined, []); },
+  get bit_RightSurround(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 472787481044016, undefined, []); },
   /** static var bit_RightSurroundDirect: AudioChannelBitmap { get } */
-  get bit_RightSurroundDirect(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 1853097010861579, undefined, []); },
+  get bit_RightSurroundDirect(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 1853097010861579, undefined, []); },
   /** static var bit_RightTopFront: AudioChannelBitmap { get } */
-  get bit_RightTopFront(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 1221941057735393, undefined, []); },
+  get bit_RightTopFront(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 1221941057735393, undefined, []); },
   /** static var bit_RightTopMiddle: AudioChannelBitmap { get } */
-  get bit_RightTopMiddle(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 2873990998865113, undefined, []); },
+  get bit_RightTopMiddle(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 2873990998865113, undefined, []); },
   /** static var bit_RightTopRear: AudioChannelBitmap { get } */
-  get bit_RightTopRear(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 76358279765314, undefined, []); },
+  get bit_RightTopRear(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 76358279765314, undefined, []); },
   /** static var bit_TopBackCenter: AudioChannelBitmap { get } */
-  get bit_TopBackCenter(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 1797152692404318, undefined, []); },
+  get bit_TopBackCenter(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 1797152692404318, undefined, []); },
   /** static var bit_TopBackLeft: AudioChannelBitmap { get } */
-  get bit_TopBackLeft(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 4209272035372486, undefined, []); },
+  get bit_TopBackLeft(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 4209272035372486, undefined, []); },
   /** static var bit_TopBackRight: AudioChannelBitmap { get } */
-  get bit_TopBackRight(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 1380629226582586, undefined, []); },
+  get bit_TopBackRight(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 1380629226582586, undefined, []); },
   /** static var bit_TopCenterSurround: AudioChannelBitmap { get } */
-  get bit_TopCenterSurround(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 2104433120290519, undefined, []); },
+  get bit_TopCenterSurround(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 2104433120290519, undefined, []); },
   /** static var bit_VerticalHeightCenter: AudioChannelBitmap { get } */
-  get bit_VerticalHeightCenter(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 2530427009449047, undefined, []); },
+  get bit_VerticalHeightCenter(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 2530427009449047, undefined, []); },
   /** static var bit_VerticalHeightLeft: AudioChannelBitmap { get } */
-  get bit_VerticalHeightLeft(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 60895032390195, undefined, []); },
+  get bit_VerticalHeightLeft(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 60895032390195, undefined, []); },
   /** static var bit_VerticalHeightRight: AudioChannelBitmap { get } */
-  get bit_VerticalHeightRight(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 3792383437717926, undefined, []); },
+  get bit_VerticalHeightRight(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 3792383437717926, undefined, []); },
   /** init(rawValue: UInt32) */
-  init(rawValue: number): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 823624041635173, undefined, [rawValue]); }
+  init(rawValue: number): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 823624041635173, undefined, [rawValue]); }
 };
 
 /** enum AudioChannelCoordinateIndex */
@@ -104,30 +104,30 @@ export type AudioChannelCoordinateIndex = "coordinates_LeftRight" | "coordinates
 
 export const AudioChannelCoordinateIndex = {
   /** static var coordinates_Azimuth: AudioChannelCoordinateIndex { get } */
-  get coordinates_Azimuth(): AudioChannelCoordinateIndex { return callSDK<AudioChannelCoordinateIndex>("CoreAudioTypes_a624b245971cfd00", 2487114572163668, undefined, []); },
+  get coordinates_Azimuth(): AudioChannelCoordinateIndex { return callSDK<AudioChannelCoordinateIndex>("CoreAudioTypes_86f7e029fa4ce140", 2487114572163668, undefined, []); },
   /** static var coordinates_Distance: AudioChannelCoordinateIndex { get } */
-  get coordinates_Distance(): AudioChannelCoordinateIndex { return callSDK<AudioChannelCoordinateIndex>("CoreAudioTypes_a624b245971cfd00", 2746736783718859, undefined, []); },
+  get coordinates_Distance(): AudioChannelCoordinateIndex { return callSDK<AudioChannelCoordinateIndex>("CoreAudioTypes_86f7e029fa4ce140", 2746736783718859, undefined, []); },
   /** static var coordinates_Elevation: AudioChannelCoordinateIndex { get } */
-  get coordinates_Elevation(): AudioChannelCoordinateIndex { return callSDK<AudioChannelCoordinateIndex>("CoreAudioTypes_a624b245971cfd00", 3963344844253493, undefined, []); },
+  get coordinates_Elevation(): AudioChannelCoordinateIndex { return callSDK<AudioChannelCoordinateIndex>("CoreAudioTypes_86f7e029fa4ce140", 3963344844253493, undefined, []); },
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (AudioChannelCoordinateIndex) | null { return callSDK<(AudioChannelCoordinateIndex) | null>("CoreAudioTypes_a624b245971cfd00", 4127402909620190, undefined, [rawValue]); }
+  init(rawValue: number): (AudioChannelCoordinateIndex) | null { return callSDK<(AudioChannelCoordinateIndex) | null>("CoreAudioTypes_86f7e029fa4ce140", 4127402909620190, undefined, [rawValue]); }
 };
 
 /** struct AudioChannelDescription */
 export class AudioChannelDescription extends SDKHandle {
   /** var mChannelFlags: AudioChannelFlags */
-  get mChannelFlags(): AudioChannelFlags { return callSDK<AudioChannelFlags>("CoreAudioTypes_a624b245971cfd00", 1148427880747729, this, []); }
-  set mChannelFlags(value: AudioChannelFlags) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 4407989745965092, this, [value]); }
+  get mChannelFlags(): AudioChannelFlags { return callSDK<AudioChannelFlags>("CoreAudioTypes_86f7e029fa4ce140", 1148427880747729, this, []); }
+  set mChannelFlags(value: AudioChannelFlags) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 4407989745965092, this, [value]); }
   /** var mChannelLabel: AudioChannelLabel */
-  get mChannelLabel(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3086161600245203, this, []); }
-  set mChannelLabel(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 231546998590838, this, [value]); }
+  get mChannelLabel(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3086161600245203, this, []); }
+  set mChannelLabel(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 231546998590838, this, [value]); }
   /** var mCoordinates: (Float32, Float32, Float32) */
-  get mCoordinates(): $SDK0 { return callSDK<$SDK0>("CoreAudioTypes_a624b245971cfd00", 307673277203789, this, []); }
-  set mCoordinates(value: $SDK0) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 784934199932274, this, [value]); }
+  get mCoordinates(): $SDK0 { return callSDK<$SDK0>("CoreAudioTypes_86f7e029fa4ce140", 307673277203789, this, []); }
+  set mCoordinates(value: $SDK0) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 784934199932274, this, [value]); }
   /** init(mChannelLabel: AudioChannelLabel, mChannelFlags: AudioChannelFlags, mCoordinates: (Float32, Float32, Float32)) */
-  static initMChannelLabelMChannelFlagsMCoordinates(mChannelLabel: number, mChannelFlags: AudioChannelFlags, mCoordinates: $SDK0): AudioChannelDescription { return callSDK<AudioChannelDescription>("CoreAudioTypes_a624b245971cfd00", 3493371511163537, undefined, [mChannelLabel, mChannelFlags, mCoordinates]); }
+  static initMChannelLabelMChannelFlagsMCoordinates(mChannelLabel: number, mChannelFlags: AudioChannelFlags, mCoordinates: $SDK0): AudioChannelDescription { return callSDK<AudioChannelDescription>("CoreAudioTypes_86f7e029fa4ce140", 3493371511163537, undefined, [mChannelLabel, mChannelFlags, mCoordinates]); }
   /** init() */
-  static init(): AudioChannelDescription { return callSDK<AudioChannelDescription>("CoreAudioTypes_a624b245971cfd00", 4344322738424954, undefined, []); }
+  static init(): AudioChannelDescription { return callSDK<AudioChannelDescription>("CoreAudioTypes_86f7e029fa4ce140", 4344322738424954, undefined, []); }
   declare readonly $type: { "c:@S@AudioChannelDescription": true };
 }
 
@@ -136,13 +136,13 @@ export type AudioChannelFlags = Array<"rectangularCoordinates" | "sphericalCoord
 
 export const AudioChannelFlags = {
   /** static var meters: AudioChannelFlags { get } */
-  get meters(): AudioChannelFlags { return callSDK<AudioChannelFlags>("CoreAudioTypes_a624b245971cfd00", 1743207461010233, undefined, []); },
+  get meters(): AudioChannelFlags { return callSDK<AudioChannelFlags>("CoreAudioTypes_86f7e029fa4ce140", 1743207461010233, undefined, []); },
   /** static var rectangularCoordinates: AudioChannelFlags { get } */
-  get rectangularCoordinates(): AudioChannelFlags { return callSDK<AudioChannelFlags>("CoreAudioTypes_a624b245971cfd00", 1900340764345322, undefined, []); },
+  get rectangularCoordinates(): AudioChannelFlags { return callSDK<AudioChannelFlags>("CoreAudioTypes_86f7e029fa4ce140", 1900340764345322, undefined, []); },
   /** static var sphericalCoordinates: AudioChannelFlags { get } */
-  get sphericalCoordinates(): AudioChannelFlags { return callSDK<AudioChannelFlags>("CoreAudioTypes_a624b245971cfd00", 2743979054860417, undefined, []); },
+  get sphericalCoordinates(): AudioChannelFlags { return callSDK<AudioChannelFlags>("CoreAudioTypes_86f7e029fa4ce140", 2743979054860417, undefined, []); },
   /** init(rawValue: UInt32) */
-  init(rawValue: number): AudioChannelFlags { return callSDK<AudioChannelFlags>("CoreAudioTypes_a624b245971cfd00", 4497329043549426, undefined, [rawValue]); }
+  init(rawValue: number): AudioChannelFlags { return callSDK<AudioChannelFlags>("CoreAudioTypes_86f7e029fa4ce140", 4497329043549426, undefined, [rawValue]); }
 };
 
 /** typealias AudioChannelLabel = UInt32 */
@@ -151,21 +151,21 @@ export type AudioChannelLabel = number;
 /** struct AudioChannelLayout */
 export class AudioChannelLayout extends SDKHandle {
   /** var mChannelBitmap: AudioChannelBitmap */
-  get mChannelBitmap(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_a624b245971cfd00", 3329630560754952, this, []); }
-  set mChannelBitmap(value: AudioChannelBitmap) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 550699192783440, this, [value]); }
+  get mChannelBitmap(): AudioChannelBitmap { return callSDK<AudioChannelBitmap>("CoreAudioTypes_86f7e029fa4ce140", 3329630560754952, this, []); }
+  set mChannelBitmap(value: AudioChannelBitmap) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 550699192783440, this, [value]); }
   /** var mChannelDescriptions: AudioChannelDescription */
-  get mChannelDescriptions(): AudioChannelDescription { return callSDK<AudioChannelDescription>("CoreAudioTypes_a624b245971cfd00", 2848225194023516, this, []); }
-  set mChannelDescriptions(value: AudioChannelDescription) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 4331617900557705, this, [value]); }
+  get mChannelDescriptions(): AudioChannelDescription { return callSDK<AudioChannelDescription>("CoreAudioTypes_86f7e029fa4ce140", 2848225194023516, this, []); }
+  set mChannelDescriptions(value: AudioChannelDescription) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 4331617900557705, this, [value]); }
   /** var mChannelLayoutTag: AudioChannelLayoutTag */
-  get mChannelLayoutTag(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 802056882693366, this, []); }
-  set mChannelLayoutTag(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 1227110328161559, this, [value]); }
+  get mChannelLayoutTag(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 802056882693366, this, []); }
+  set mChannelLayoutTag(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 1227110328161559, this, [value]); }
   /** var mNumberChannelDescriptions: UInt32 */
-  get mNumberChannelDescriptions(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 387679471816988, this, []); }
-  set mNumberChannelDescriptions(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3409717951810185, this, [value]); }
+  get mNumberChannelDescriptions(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 387679471816988, this, []); }
+  set mNumberChannelDescriptions(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3409717951810185, this, [value]); }
   /** init(mChannelLayoutTag: AudioChannelLayoutTag, mChannelBitmap: AudioChannelBitmap, mNumberChannelDescriptions: UInt32, mChannelDescriptions: AudioChannelDescription) */
-  static initMChannelLayoutTagMChannelBitmapMNumberChannelDescriptionsMChannelDescriptions(mChannelLayoutTag: number, mChannelBitmap: AudioChannelBitmap, mNumberChannelDescriptions: number, mChannelDescriptions: AudioChannelDescription): AudioChannelLayout { return callSDK<AudioChannelLayout>("CoreAudioTypes_a624b245971cfd00", 157216417256440, undefined, [mChannelLayoutTag, mChannelBitmap, mNumberChannelDescriptions, mChannelDescriptions]); }
+  static initMChannelLayoutTagMChannelBitmapMNumberChannelDescriptionsMChannelDescriptions(mChannelLayoutTag: number, mChannelBitmap: AudioChannelBitmap, mNumberChannelDescriptions: number, mChannelDescriptions: AudioChannelDescription): AudioChannelLayout { return callSDK<AudioChannelLayout>("CoreAudioTypes_86f7e029fa4ce140", 157216417256440, undefined, [mChannelLayoutTag, mChannelBitmap, mNumberChannelDescriptions, mChannelDescriptions]); }
   /** init() */
-  static init(): AudioChannelLayout { return callSDK<AudioChannelLayout>("CoreAudioTypes_a624b245971cfd00", 3598057458139642, undefined, []); }
+  static init(): AudioChannelLayout { return callSDK<AudioChannelLayout>("CoreAudioTypes_86f7e029fa4ce140", 3598057458139642, undefined, []); }
   declare readonly $type: { "c:@S@AudioChannelLayout": true };
 }
 
@@ -175,18 +175,18 @@ export type AudioChannelLayoutTag = number;
 /** struct AudioClassDescription */
 export class AudioClassDescription extends SDKHandle {
   /** var mManufacturer: OSType */
-  get mManufacturer(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_a624b245971cfd00", 1221997136793861, this, []); }
-  set mManufacturer(value: SDKHandle) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 4383376445375071, this, [value]); }
+  get mManufacturer(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_86f7e029fa4ce140", 1221997136793861, this, []); }
+  set mManufacturer(value: SDKHandle) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 4383376445375071, this, [value]); }
   /** var mSubType: OSType */
-  get mSubType(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_a624b245971cfd00", 2443597019829079, this, []); }
-  set mSubType(value: SDKHandle) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 399811464178184, this, [value]); }
+  get mSubType(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_86f7e029fa4ce140", 2443597019829079, this, []); }
+  set mSubType(value: SDKHandle) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 399811464178184, this, [value]); }
   /** var mType: OSType */
-  get mType(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_a624b245971cfd00", 3066858447230748, this, []); }
-  set mType(value: SDKHandle) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 4494769118720635, this, [value]); }
+  get mType(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_86f7e029fa4ce140", 3066858447230748, this, []); }
+  set mType(value: SDKHandle) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 4494769118720635, this, [value]); }
   /** init(mType: OSType, mSubType: OSType, mManufacturer: OSType) */
-  static initMTypeMSubTypeMManufacturer(mType: SDKHandle, mSubType: SDKHandle, mManufacturer: SDKHandle): AudioClassDescription { return callSDK<AudioClassDescription>("CoreAudioTypes_a624b245971cfd00", 1664347673981424, undefined, [mType, mSubType, mManufacturer]); }
+  static initMTypeMSubTypeMManufacturer(mType: SDKHandle, mSubType: SDKHandle, mManufacturer: SDKHandle): AudioClassDescription { return callSDK<AudioClassDescription>("CoreAudioTypes_86f7e029fa4ce140", 1664347673981424, undefined, [mType, mSubType, mManufacturer]); }
   /** init() */
-  static init(): AudioClassDescription { return callSDK<AudioClassDescription>("CoreAudioTypes_a624b245971cfd00", 1210306352819783, undefined, []); }
+  static init(): AudioClassDescription { return callSDK<AudioClassDescription>("CoreAudioTypes_86f7e029fa4ce140", 1210306352819783, undefined, []); }
   declare readonly $type: { "c:@S@AudioClassDescription": true };
 }
 
@@ -199,15 +199,15 @@ export type AudioFormatID = number;
 /** struct AudioFormatListItem */
 export class AudioFormatListItem extends SDKHandle {
   /** var mASBD: AudioStreamBasicDescription */
-  get mASBD(): AudioStreamBasicDescription { return callSDK<AudioStreamBasicDescription>("CoreAudioTypes_a624b245971cfd00", 2086400175996343, this, []); }
-  set mASBD(value: AudioStreamBasicDescription) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3548088808797972, this, [value]); }
+  get mASBD(): AudioStreamBasicDescription { return callSDK<AudioStreamBasicDescription>("CoreAudioTypes_86f7e029fa4ce140", 2086400175996343, this, []); }
+  set mASBD(value: AudioStreamBasicDescription) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3548088808797972, this, [value]); }
   /** var mChannelLayoutTag: AudioChannelLayoutTag */
-  get mChannelLayoutTag(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 475480473913868, this, []); }
-  set mChannelLayoutTag(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 2089082041371356, this, [value]); }
+  get mChannelLayoutTag(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 475480473913868, this, []); }
+  set mChannelLayoutTag(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 2089082041371356, this, [value]); }
   /** init(mASBD: AudioStreamBasicDescription, mChannelLayoutTag: AudioChannelLayoutTag) */
-  static initMASBDMChannelLayoutTag(mASBD: AudioStreamBasicDescription, mChannelLayoutTag: number): AudioFormatListItem { return callSDK<AudioFormatListItem>("CoreAudioTypes_a624b245971cfd00", 4251372977296321, undefined, [mASBD, mChannelLayoutTag]); }
+  static initMASBDMChannelLayoutTag(mASBD: AudioStreamBasicDescription, mChannelLayoutTag: number): AudioFormatListItem { return callSDK<AudioFormatListItem>("CoreAudioTypes_86f7e029fa4ce140", 4251372977296321, undefined, [mASBD, mChannelLayoutTag]); }
   /** init() */
-  static init(): AudioFormatListItem { return callSDK<AudioFormatListItem>("CoreAudioTypes_a624b245971cfd00", 4307531148654804, undefined, []); }
+  static init(): AudioFormatListItem { return callSDK<AudioFormatListItem>("CoreAudioTypes_86f7e029fa4ce140", 4307531148654804, undefined, []); }
   declare readonly $type: { "c:@S@AudioFormatListItem": true };
 }
 
@@ -220,105 +220,105 @@ export type AudioSessionID = number;
 /** struct AudioStreamBasicDescription */
 export class AudioStreamBasicDescription extends SDKHandle {
   /** var mBitsPerChannel: UInt32 */
-  get mBitsPerChannel(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2547720419263973, this, []); }
-  set mBitsPerChannel(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 4240987185093476, this, [value]); }
+  get mBitsPerChannel(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2547720419263973, this, []); }
+  set mBitsPerChannel(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 4240987185093476, this, [value]); }
   /** var mBytesPerFrame: UInt32 */
-  get mBytesPerFrame(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2391479677769587, this, []); }
-  set mBytesPerFrame(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3526187257213106, this, [value]); }
+  get mBytesPerFrame(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2391479677769587, this, []); }
+  set mBytesPerFrame(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3526187257213106, this, [value]); }
   /** var mBytesPerPacket: UInt32 */
-  get mBytesPerPacket(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1437483552477906, this, []); }
-  set mBytesPerPacket(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3371990674367009, this, [value]); }
+  get mBytesPerPacket(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1437483552477906, this, []); }
+  set mBytesPerPacket(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3371990674367009, this, [value]); }
   /** var mChannelsPerFrame: UInt32 */
-  get mChannelsPerFrame(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1606465471361685, this, []); }
-  set mChannelsPerFrame(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 2258034898553791, this, [value]); }
+  get mChannelsPerFrame(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1606465471361685, this, []); }
+  set mChannelsPerFrame(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 2258034898553791, this, [value]); }
   /** var mFormatFlags: AudioFormatFlags */
-  get mFormatFlags(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1126520741363938, this, []); }
-  set mFormatFlags(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 320615977385215, this, [value]); }
+  get mFormatFlags(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1126520741363938, this, []); }
+  set mFormatFlags(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 320615977385215, this, [value]); }
   /** var mFormatID: AudioFormatID */
-  get mFormatID(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3616712269046185, this, []); }
-  set mFormatID(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3689533864970921, this, [value]); }
+  get mFormatID(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3616712269046185, this, []); }
+  set mFormatID(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3689533864970921, this, [value]); }
   /** var mFramesPerPacket: UInt32 */
-  get mFramesPerPacket(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1368493979947437, this, []); }
-  set mFramesPerPacket(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 427199558078784, this, [value]); }
+  get mFramesPerPacket(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1368493979947437, this, []); }
+  set mFramesPerPacket(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 427199558078784, this, [value]); }
   /** var mReserved: UInt32 */
-  get mReserved(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3910084152974207, this, []); }
-  set mReserved(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3413427432735305, this, [value]); }
+  get mReserved(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3910084152974207, this, []); }
+  set mReserved(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3413427432735305, this, [value]); }
   /** var mSampleRate: Float64 */
-  get mSampleRate(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_a624b245971cfd00", 3424501340652836, this, []); }
-  set mSampleRate(value: SDKHandle) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3627056484330320, this, [value]); }
+  get mSampleRate(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_86f7e029fa4ce140", 3424501340652836, this, []); }
+  set mSampleRate(value: SDKHandle) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3627056484330320, this, [value]); }
   /** init(mSampleRate: Float64, mFormatID: AudioFormatID, mFormatFlags: AudioFormatFlags, mBytesPerPacket: UInt32, mFramesPerPacket: UInt32, mBytesPerFrame: UInt32, mChannelsPerFrame: UInt32, mBitsPerChannel: UInt32, mReserved: UInt32) */
-  static initMSampleRateMFormatIDMFormatFlagsMBytesPerPacketMFramesPerPacketMBytesPerFrameMChannelsPerFrameMBitsPerChannelMReserved(mSampleRate: SDKHandle, mFormatID: number, mFormatFlags: number, mBytesPerPacket: number, mFramesPerPacket: number, mBytesPerFrame: number, mChannelsPerFrame: number, mBitsPerChannel: number, mReserved: number): AudioStreamBasicDescription { return callSDK<AudioStreamBasicDescription>("CoreAudioTypes_a624b245971cfd00", 4258000794634368, undefined, [mSampleRate, mFormatID, mFormatFlags, mBytesPerPacket, mFramesPerPacket, mBytesPerFrame, mChannelsPerFrame, mBitsPerChannel, mReserved]); }
+  static initMSampleRateMFormatIDMFormatFlagsMBytesPerPacketMFramesPerPacketMBytesPerFrameMChannelsPerFrameMBitsPerChannelMReserved(mSampleRate: SDKHandle, mFormatID: number, mFormatFlags: number, mBytesPerPacket: number, mFramesPerPacket: number, mBytesPerFrame: number, mChannelsPerFrame: number, mBitsPerChannel: number, mReserved: number): AudioStreamBasicDescription { return callSDK<AudioStreamBasicDescription>("CoreAudioTypes_86f7e029fa4ce140", 4258000794634368, undefined, [mSampleRate, mFormatID, mFormatFlags, mBytesPerPacket, mFramesPerPacket, mBytesPerFrame, mChannelsPerFrame, mBitsPerChannel, mReserved]); }
   /** init() */
-  static init(): AudioStreamBasicDescription { return callSDK<AudioStreamBasicDescription>("CoreAudioTypes_a624b245971cfd00", 455843216665313, undefined, []); }
+  static init(): AudioStreamBasicDescription { return callSDK<AudioStreamBasicDescription>("CoreAudioTypes_86f7e029fa4ce140", 455843216665313, undefined, []); }
   declare readonly $type: { "c:@S@AudioStreamBasicDescription": true };
 }
 
 /** struct AudioStreamPacketDependencyDescription */
 export class AudioStreamPacketDependencyDescription extends SDKHandle {
   /** var mFlags: UInt32 */
-  get mFlags(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2139356603126697, this, []); }
-  set mFlags(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 2114068426314823, this, [value]); }
+  get mFlags(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2139356603126697, this, []); }
+  set mFlags(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 2114068426314823, this, [value]); }
   /** var mIsIndependentlyDecodable: UInt32 */
-  get mIsIndependentlyDecodable(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 854671315262365, this, []); }
-  set mIsIndependentlyDecodable(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3438658242506179, this, [value]); }
+  get mIsIndependentlyDecodable(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 854671315262365, this, []); }
+  set mIsIndependentlyDecodable(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3438658242506179, this, [value]); }
   /** var mPreRollCount: UInt32 */
-  get mPreRollCount(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2476163061213842, this, []); }
-  set mPreRollCount(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3751666520420447, this, [value]); }
+  get mPreRollCount(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2476163061213842, this, []); }
+  set mPreRollCount(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3751666520420447, this, [value]); }
   /** var mReserved: UInt32 */
-  get mReserved(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4097747229649531, this, []); }
-  set mReserved(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 4076176137561286, this, [value]); }
+  get mReserved(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4097747229649531, this, []); }
+  set mReserved(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 4076176137561286, this, [value]); }
   /** init(mIsIndependentlyDecodable: UInt32, mPreRollCount: UInt32, mFlags: UInt32, mReserved: UInt32) */
-  static initMIsIndependentlyDecodableMPreRollCountMFlagsMReserved(mIsIndependentlyDecodable: number, mPreRollCount: number, mFlags: number, mReserved: number): AudioStreamPacketDependencyDescription { return callSDK<AudioStreamPacketDependencyDescription>("CoreAudioTypes_a624b245971cfd00", 541654925547360, undefined, [mIsIndependentlyDecodable, mPreRollCount, mFlags, mReserved]); }
+  static initMIsIndependentlyDecodableMPreRollCountMFlagsMReserved(mIsIndependentlyDecodable: number, mPreRollCount: number, mFlags: number, mReserved: number): AudioStreamPacketDependencyDescription { return callSDK<AudioStreamPacketDependencyDescription>("CoreAudioTypes_86f7e029fa4ce140", 541654925547360, undefined, [mIsIndependentlyDecodable, mPreRollCount, mFlags, mReserved]); }
   /** init() */
-  static init(): AudioStreamPacketDependencyDescription { return callSDK<AudioStreamPacketDependencyDescription>("CoreAudioTypes_a624b245971cfd00", 2026138527340186, undefined, []); }
+  static init(): AudioStreamPacketDependencyDescription { return callSDK<AudioStreamPacketDependencyDescription>("CoreAudioTypes_86f7e029fa4ce140", 2026138527340186, undefined, []); }
   declare readonly $type: { "c:@S@AudioStreamPacketDependencyDescription": true };
 }
 
 /** struct AudioStreamPacketDescription */
 export class AudioStreamPacketDescription extends SDKHandle {
   /** var mDataByteSize: UInt32 */
-  get mDataByteSize(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3438855330843955, this, []); }
-  set mDataByteSize(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 4148737892142171, this, [value]); }
+  get mDataByteSize(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3438855330843955, this, []); }
+  set mDataByteSize(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 4148737892142171, this, [value]); }
   /** var mStartOffset: Int64 */
-  get mStartOffset(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2356814234798292, this, []); }
-  set mStartOffset(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 65715948714039, this, [value]); }
+  get mStartOffset(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2356814234798292, this, []); }
+  set mStartOffset(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 65715948714039, this, [value]); }
   /** var mVariableFramesInPacket: UInt32 */
-  get mVariableFramesInPacket(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 737005114122295, this, []); }
-  set mVariableFramesInPacket(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3548564965342833, this, [value]); }
+  get mVariableFramesInPacket(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 737005114122295, this, []); }
+  set mVariableFramesInPacket(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3548564965342833, this, [value]); }
   /** init(mStartOffset: Int64, mVariableFramesInPacket: UInt32, mDataByteSize: UInt32) */
-  static initMStartOffsetMVariableFramesInPacketMDataByteSize(mStartOffset: number, mVariableFramesInPacket: number, mDataByteSize: number): AudioStreamPacketDescription { return callSDK<AudioStreamPacketDescription>("CoreAudioTypes_a624b245971cfd00", 1348378327030136, undefined, [mStartOffset, mVariableFramesInPacket, mDataByteSize]); }
+  static initMStartOffsetMVariableFramesInPacketMDataByteSize(mStartOffset: number, mVariableFramesInPacket: number, mDataByteSize: number): AudioStreamPacketDescription { return callSDK<AudioStreamPacketDescription>("CoreAudioTypes_86f7e029fa4ce140", 1348378327030136, undefined, [mStartOffset, mVariableFramesInPacket, mDataByteSize]); }
   /** init() */
-  static init(): AudioStreamPacketDescription { return callSDK<AudioStreamPacketDescription>("CoreAudioTypes_a624b245971cfd00", 471369004417516, undefined, []); }
+  static init(): AudioStreamPacketDescription { return callSDK<AudioStreamPacketDescription>("CoreAudioTypes_86f7e029fa4ce140", 471369004417516, undefined, []); }
   declare readonly $type: { "c:@S@AudioStreamPacketDescription": true };
 }
 
 /** struct AudioTimeStamp */
 export class AudioTimeStamp extends SDKHandle {
   /** var mFlags: AudioTimeStampFlags */
-  get mFlags(): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_a624b245971cfd00", 2374585954101369, this, []); }
-  set mFlags(value: AudioTimeStampFlags) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3882252530127843, this, [value]); }
+  get mFlags(): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_86f7e029fa4ce140", 2374585954101369, this, []); }
+  set mFlags(value: AudioTimeStampFlags) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3882252530127843, this, [value]); }
   /** var mHostTime: UInt64 */
-  get mHostTime(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 8516298179954, this, []); }
-  set mHostTime(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 1949480575894204, this, [value]); }
+  get mHostTime(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 8516298179954, this, []); }
+  set mHostTime(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 1949480575894204, this, [value]); }
   /** var mRateScalar: Float64 */
-  get mRateScalar(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_a624b245971cfd00", 2553298892076337, this, []); }
-  set mRateScalar(value: SDKHandle) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 4195740343074343, this, [value]); }
+  get mRateScalar(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_86f7e029fa4ce140", 2553298892076337, this, []); }
+  set mRateScalar(value: SDKHandle) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 4195740343074343, this, [value]); }
   /** var mReserved: UInt32 */
-  get mReserved(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4188665056721548, this, []); }
-  set mReserved(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 2712936007887250, this, [value]); }
+  get mReserved(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4188665056721548, this, []); }
+  set mReserved(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 2712936007887250, this, [value]); }
   /** var mSMPTETime: SMPTETime */
-  get mSMPTETime(): SMPTETime { return callSDK<SMPTETime>("CoreAudioTypes_a624b245971cfd00", 1000330937721214, this, []); }
-  set mSMPTETime(value: SMPTETime) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 1757005860774158, this, [value]); }
+  get mSMPTETime(): SMPTETime { return callSDK<SMPTETime>("CoreAudioTypes_86f7e029fa4ce140", 1000330937721214, this, []); }
+  set mSMPTETime(value: SMPTETime) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 1757005860774158, this, [value]); }
   /** var mSampleTime: Float64 */
-  get mSampleTime(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_a624b245971cfd00", 1249634738573959, this, []); }
-  set mSampleTime(value: SDKHandle) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 2389425438603697, this, [value]); }
+  get mSampleTime(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_86f7e029fa4ce140", 1249634738573959, this, []); }
+  set mSampleTime(value: SDKHandle) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 2389425438603697, this, [value]); }
   /** var mWordClockTime: UInt64 */
-  get mWordClockTime(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3545059032893795, this, []); }
-  set mWordClockTime(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 1189517655771569, this, [value]); }
+  get mWordClockTime(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3545059032893795, this, []); }
+  set mWordClockTime(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 1189517655771569, this, [value]); }
   /** init(mSampleTime: Float64, mHostTime: UInt64, mRateScalar: Float64, mWordClockTime: UInt64, mSMPTETime: SMPTETime, mFlags: AudioTimeStampFlags, mReserved: UInt32) */
-  static initMSampleTimeMHostTimeMRateScalarMWordClockTimeMSMPTETimeMFlagsMReserved(mSampleTime: SDKHandle, mHostTime: number, mRateScalar: SDKHandle, mWordClockTime: number, mSMPTETime: SMPTETime, mFlags: AudioTimeStampFlags, mReserved: number): AudioTimeStamp { return callSDK<AudioTimeStamp>("CoreAudioTypes_a624b245971cfd00", 1722038033944653, undefined, [mSampleTime, mHostTime, mRateScalar, mWordClockTime, mSMPTETime, mFlags, mReserved]); }
+  static initMSampleTimeMHostTimeMRateScalarMWordClockTimeMSMPTETimeMFlagsMReserved(mSampleTime: SDKHandle, mHostTime: number, mRateScalar: SDKHandle, mWordClockTime: number, mSMPTETime: SMPTETime, mFlags: AudioTimeStampFlags, mReserved: number): AudioTimeStamp { return callSDK<AudioTimeStamp>("CoreAudioTypes_86f7e029fa4ce140", 1722038033944653, undefined, [mSampleTime, mHostTime, mRateScalar, mWordClockTime, mSMPTETime, mFlags, mReserved]); }
   /** init() */
-  static init(): AudioTimeStamp { return callSDK<AudioTimeStamp>("CoreAudioTypes_a624b245971cfd00", 2160161037070708, undefined, []); }
+  static init(): AudioTimeStamp { return callSDK<AudioTimeStamp>("CoreAudioTypes_86f7e029fa4ce140", 2160161037070708, undefined, []); }
   declare readonly $type: { "c:@S@AudioTimeStamp": true };
 }
 
@@ -327,19 +327,19 @@ export type AudioTimeStampFlags = Array<"sampleTimeValid" | "hostTimeValid" | "r
 
 export const AudioTimeStampFlags = {
   /** static var hostTimeValid: AudioTimeStampFlags { get } */
-  get hostTimeValid(): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_a624b245971cfd00", 2748221859625852, undefined, []); },
+  get hostTimeValid(): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_86f7e029fa4ce140", 2748221859625852, undefined, []); },
   /** static var rateScalarValid: AudioTimeStampFlags { get } */
-  get rateScalarValid(): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_a624b245971cfd00", 435411699311729, undefined, []); },
+  get rateScalarValid(): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_86f7e029fa4ce140", 435411699311729, undefined, []); },
   /** static var smpteTimeValid: AudioTimeStampFlags { get } */
-  get smpteTimeValid(): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_a624b245971cfd00", 2584701604721007, undefined, []); },
+  get smpteTimeValid(): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_86f7e029fa4ce140", 2584701604721007, undefined, []); },
   /** static var sampleHostTimeValid: AudioTimeStampFlags { get } */
-  get sampleHostTimeValid(): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_a624b245971cfd00", 4421154956372017, undefined, []); },
+  get sampleHostTimeValid(): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_86f7e029fa4ce140", 4421154956372017, undefined, []); },
   /** static var sampleTimeValid: AudioTimeStampFlags { get } */
-  get sampleTimeValid(): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_a624b245971cfd00", 981851101636283, undefined, []); },
+  get sampleTimeValid(): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_86f7e029fa4ce140", 981851101636283, undefined, []); },
   /** static var wordClockTimeValid: AudioTimeStampFlags { get } */
-  get wordClockTimeValid(): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_a624b245971cfd00", 2326470180065479, undefined, []); },
+  get wordClockTimeValid(): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_86f7e029fa4ce140", 2326470180065479, undefined, []); },
   /** init(rawValue: UInt32) */
-  init(rawValue: number): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_a624b245971cfd00", 3775742212608555, undefined, [rawValue]); }
+  init(rawValue: number): AudioTimeStampFlags { return callSDK<AudioTimeStampFlags>("CoreAudioTypes_86f7e029fa4ce140", 3775742212608555, undefined, [rawValue]); }
 };
 
 /** typealias AudioUnitSampleType = Int32 */
@@ -348,34 +348,34 @@ export type AudioUnitSampleType = number;
 /** struct AudioValueRange */
 export class AudioValueRange extends SDKHandle {
   /** var mMaximum: Float64 */
-  get mMaximum(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_a624b245971cfd00", 278706466007683, this, []); }
-  set mMaximum(value: SDKHandle) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 2798909524678452, this, [value]); }
+  get mMaximum(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_86f7e029fa4ce140", 278706466007683, this, []); }
+  set mMaximum(value: SDKHandle) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 2798909524678452, this, [value]); }
   /** var mMinimum: Float64 */
-  get mMinimum(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_a624b245971cfd00", 2326551647891719, this, []); }
-  set mMinimum(value: SDKHandle) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 775483731696792, this, [value]); }
+  get mMinimum(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_86f7e029fa4ce140", 2326551647891719, this, []); }
+  set mMinimum(value: SDKHandle) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 775483731696792, this, [value]); }
   /** init(mMinimum: Float64, mMaximum: Float64) */
-  static initMMinimumMMaximum(mMinimum: SDKHandle, mMaximum: SDKHandle): AudioValueRange { return callSDK<AudioValueRange>("CoreAudioTypes_a624b245971cfd00", 1841116361066569, undefined, [mMinimum, mMaximum]); }
+  static initMMinimumMMaximum(mMinimum: SDKHandle, mMaximum: SDKHandle): AudioValueRange { return callSDK<AudioValueRange>("CoreAudioTypes_86f7e029fa4ce140", 1841116361066569, undefined, [mMinimum, mMaximum]); }
   /** init() */
-  static init(): AudioValueRange { return callSDK<AudioValueRange>("CoreAudioTypes_a624b245971cfd00", 2220751667653052, undefined, []); }
+  static init(): AudioValueRange { return callSDK<AudioValueRange>("CoreAudioTypes_86f7e029fa4ce140", 2220751667653052, undefined, []); }
   declare readonly $type: { "c:@S@AudioValueRange": true };
 }
 
 /** struct AudioValueTranslation */
 export class AudioValueTranslation extends SDKHandle {
   /** var mInputData: UnsafeMutableRawPointer */
-  get mInputData(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_a624b245971cfd00", 3533979927240036, this, []); }
-  set mInputData(value: SDKHandle) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 4488657322694176, this, [value]); }
+  get mInputData(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_86f7e029fa4ce140", 3533979927240036, this, []); }
+  set mInputData(value: SDKHandle) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 4488657322694176, this, [value]); }
   /** var mInputDataSize: UInt32 */
-  get mInputDataSize(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4270670462356143, this, []); }
-  set mInputDataSize(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3914449749274963, this, [value]); }
+  get mInputDataSize(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4270670462356143, this, []); }
+  set mInputDataSize(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3914449749274963, this, [value]); }
   /** var mOutputData: UnsafeMutableRawPointer */
-  get mOutputData(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_a624b245971cfd00", 892459485811249, this, []); }
-  set mOutputData(value: SDKHandle) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 2265843872972855, this, [value]); }
+  get mOutputData(): SDKHandle { return callSDK<SDKHandle>("CoreAudioTypes_86f7e029fa4ce140", 892459485811249, this, []); }
+  set mOutputData(value: SDKHandle) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 2265843872972855, this, [value]); }
   /** var mOutputDataSize: UInt32 */
-  get mOutputDataSize(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 760257970108299, this, []); }
-  set mOutputDataSize(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 872663776387818, this, [value]); }
+  get mOutputDataSize(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 760257970108299, this, []); }
+  set mOutputDataSize(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 872663776387818, this, [value]); }
   /** init(mInputData: UnsafeMutableRawPointer, mInputDataSize: UInt32, mOutputData: UnsafeMutableRawPointer, mOutputDataSize: UInt32) */
-  static init(mInputData: SDKHandle, mInputDataSize: number, mOutputData: SDKHandle, mOutputDataSize: number): AudioValueTranslation { return callSDK<AudioValueTranslation>("CoreAudioTypes_a624b245971cfd00", 3590537988955071, undefined, [mInputData, mInputDataSize, mOutputData, mOutputDataSize]); }
+  static init(mInputData: SDKHandle, mInputDataSize: number, mOutputData: SDKHandle, mOutputDataSize: number): AudioValueTranslation { return callSDK<AudioValueTranslation>("CoreAudioTypes_86f7e029fa4ce140", 3590537988955071, undefined, [mInputData, mInputDataSize, mOutputData, mOutputDataSize]); }
   declare readonly $type: { "c:@S@AudioValueTranslation": true };
 }
 
@@ -393,42 +393,42 @@ export type MPEG4ObjectID = "aac_Main" | "AAC_LC" | "AAC_SSR" | "AAC_LTP" | "AAC
 
 export const MPEG4ObjectID = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (MPEG4ObjectID) | null { return callSDK<(MPEG4ObjectID) | null>("CoreAudioTypes_a624b245971cfd00", 4321180387363906, undefined, [rawValue]); }
+  init(rawValue: number): (MPEG4ObjectID) | null { return callSDK<(MPEG4ObjectID) | null>("CoreAudioTypes_86f7e029fa4ce140", 4321180387363906, undefined, [rawValue]); }
 };
 
 /** struct SMPTETime */
 export class SMPTETime extends SDKHandle {
   /** var mCounter: UInt32 */
-  get mCounter(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2824925734920785, this, []); }
-  set mCounter(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 4262056523266192, this, [value]); }
+  get mCounter(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2824925734920785, this, []); }
+  set mCounter(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 4262056523266192, this, [value]); }
   /** var mFlags: SMPTETimeFlags */
-  get mFlags(): SMPTETimeFlags { return callSDK<SMPTETimeFlags>("CoreAudioTypes_a624b245971cfd00", 2918579034591291, this, []); }
-  set mFlags(value: SMPTETimeFlags) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 1069389019461979, this, [value]); }
+  get mFlags(): SMPTETimeFlags { return callSDK<SMPTETimeFlags>("CoreAudioTypes_86f7e029fa4ce140", 2918579034591291, this, []); }
+  set mFlags(value: SMPTETimeFlags) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 1069389019461979, this, [value]); }
   /** var mFrames: Int16 */
-  get mFrames(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2808652638496509, this, []); }
-  set mFrames(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 1414304138733719, this, [value]); }
+  get mFrames(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2808652638496509, this, []); }
+  set mFrames(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 1414304138733719, this, [value]); }
   /** var mHours: Int16 */
-  get mHours(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2743898729702992, this, []); }
-  set mHours(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 403911511611768, this, [value]); }
+  get mHours(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2743898729702992, this, []); }
+  set mHours(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 403911511611768, this, [value]); }
   /** var mMinutes: Int16 */
-  get mMinutes(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1658263520023052, this, []); }
-  set mMinutes(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 2728587504991757, this, [value]); }
+  get mMinutes(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1658263520023052, this, []); }
+  set mMinutes(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 2728587504991757, this, [value]); }
   /** var mSeconds: Int16 */
-  get mSeconds(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 69682417195895, this, []); }
-  set mSeconds(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3578004911318108, this, [value]); }
+  get mSeconds(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 69682417195895, this, []); }
+  set mSeconds(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3578004911318108, this, [value]); }
   /** var mSubframeDivisor: Int16 */
-  get mSubframeDivisor(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1605612117047992, this, []); }
-  set mSubframeDivisor(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 2749328778220363, this, [value]); }
+  get mSubframeDivisor(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1605612117047992, this, []); }
+  set mSubframeDivisor(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 2749328778220363, this, [value]); }
   /** var mSubframes: Int16 */
-  get mSubframes(): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 379622884070550, this, []); }
-  set mSubframes(value: number) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 1886537662952766, this, [value]); }
+  get mSubframes(): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 379622884070550, this, []); }
+  set mSubframes(value: number) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 1886537662952766, this, [value]); }
   /** var mType: SMPTETimeType */
-  get mType(): SMPTETimeType { return callSDK<SMPTETimeType>("CoreAudioTypes_a624b245971cfd00", 4128594045342, this, []); }
-  set mType(value: SMPTETimeType) { callSDK<void>("CoreAudioTypes_a624b245971cfd00", 3587811121342937, this, [value]); }
+  get mType(): SMPTETimeType { return callSDK<SMPTETimeType>("CoreAudioTypes_86f7e029fa4ce140", 4128594045342, this, []); }
+  set mType(value: SMPTETimeType) { callSDK<void>("CoreAudioTypes_86f7e029fa4ce140", 3587811121342937, this, [value]); }
   /** init(mSubframes: Int16, mSubframeDivisor: Int16, mCounter: UInt32, mType: SMPTETimeType, mFlags: SMPTETimeFlags, mHours: Int16, mMinutes: Int16, mSeconds: Int16, mFrames: Int16) */
-  static initMSubframesMSubframeDivisorMCounterMTypeMFlagsMHoursMMinutesMSecondsMFrames(mSubframes: number, mSubframeDivisor: number, mCounter: number, mType: SMPTETimeType, mFlags: SMPTETimeFlags, mHours: number, mMinutes: number, mSeconds: number, mFrames: number): SMPTETime { return callSDK<SMPTETime>("CoreAudioTypes_a624b245971cfd00", 3883172890339253, undefined, [mSubframes, mSubframeDivisor, mCounter, mType, mFlags, mHours, mMinutes, mSeconds, mFrames]); }
+  static initMSubframesMSubframeDivisorMCounterMTypeMFlagsMHoursMMinutesMSecondsMFrames(mSubframes: number, mSubframeDivisor: number, mCounter: number, mType: SMPTETimeType, mFlags: SMPTETimeFlags, mHours: number, mMinutes: number, mSeconds: number, mFrames: number): SMPTETime { return callSDK<SMPTETime>("CoreAudioTypes_86f7e029fa4ce140", 3883172890339253, undefined, [mSubframes, mSubframeDivisor, mCounter, mType, mFlags, mHours, mMinutes, mSeconds, mFrames]); }
   /** init() */
-  static init(): SMPTETime { return callSDK<SMPTETime>("CoreAudioTypes_a624b245971cfd00", 1797188636619337, undefined, []); }
+  static init(): SMPTETime { return callSDK<SMPTETime>("CoreAudioTypes_86f7e029fa4ce140", 1797188636619337, undefined, []); }
   declare readonly $type: { "c:@S@SMPTETime": true };
 }
 
@@ -437,11 +437,11 @@ export type SMPTETimeFlags = Array<"valid" | "running">;
 
 export const SMPTETimeFlags = {
   /** static var running: SMPTETimeFlags { get } */
-  get running(): SMPTETimeFlags { return callSDK<SMPTETimeFlags>("CoreAudioTypes_a624b245971cfd00", 4200718885756597, undefined, []); },
+  get running(): SMPTETimeFlags { return callSDK<SMPTETimeFlags>("CoreAudioTypes_86f7e029fa4ce140", 4200718885756597, undefined, []); },
   /** static var valid: SMPTETimeFlags { get } */
-  get valid(): SMPTETimeFlags { return callSDK<SMPTETimeFlags>("CoreAudioTypes_a624b245971cfd00", 963299123599268, undefined, []); },
+  get valid(): SMPTETimeFlags { return callSDK<SMPTETimeFlags>("CoreAudioTypes_86f7e029fa4ce140", 963299123599268, undefined, []); },
   /** init(rawValue: UInt32) */
-  init(rawValue: number): SMPTETimeFlags { return callSDK<SMPTETimeFlags>("CoreAudioTypes_a624b245971cfd00", 1106608054691720, undefined, [rawValue]); }
+  init(rawValue: number): SMPTETimeFlags { return callSDK<SMPTETimeFlags>("CoreAudioTypes_86f7e029fa4ce140", 1106608054691720, undefined, [rawValue]); }
 };
 
 /** enum SMPTETimeType */
@@ -449,1220 +449,1220 @@ export type SMPTETimeType = "type24" | "type25" | "type30Drop" | "type30" | "typ
 
 export const SMPTETimeType = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (SMPTETimeType) | null { return callSDK<(SMPTETimeType) | null>("CoreAudioTypes_a624b245971cfd00", 4249379883179138, undefined, [rawValue]); }
+  init(rawValue: number): (SMPTETimeType) | null { return callSDK<(SMPTETimeType) | null>("CoreAudioTypes_86f7e029fa4ce140", 4249379883179138, undefined, [rawValue]); }
 };
 
 /** func AudioChannelLayoutTag_GetNumberOfChannels(_ inLayoutTag: AudioChannelLayoutTag) -> UInt32 */
-export function AudioChannelLayoutTag_GetNumberOfChannels(inLayoutTag: number): number { return callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2243107023130221, undefined, [inLayoutTag]); }
+export function AudioChannelLayoutTag_GetNumberOfChannels(inLayoutTag: number): number { return callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2243107023130221, undefined, [inLayoutTag]); }
 
 /**
  * var AVAudioSessionErrorInsufficientPriority: Int { get }
  * @availability iOS 7.0+
  * @deprecated iOS 12.0
  */
-export const AVAudioSessionErrorInsufficientPriority: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2624448311099405, undefined, []);
+export const AVAudioSessionErrorInsufficientPriority: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2624448311099405, undefined, []);
 
 /** var kAudioChannelLabel_Ambisonic_W: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Ambisonic_W: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3284483755600072, undefined, []);
+export const kAudioChannelLabel_Ambisonic_W: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3284483755600072, undefined, []);
 
 /** var kAudioChannelLabel_Ambisonic_X: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Ambisonic_X: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1499171872316488, undefined, []);
+export const kAudioChannelLabel_Ambisonic_X: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1499171872316488, undefined, []);
 
 /** var kAudioChannelLabel_Ambisonic_Y: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Ambisonic_Y: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2575159812545460, undefined, []);
+export const kAudioChannelLabel_Ambisonic_Y: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2575159812545460, undefined, []);
 
 /** var kAudioChannelLabel_Ambisonic_Z: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Ambisonic_Z: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2199115094770708, undefined, []);
+export const kAudioChannelLabel_Ambisonic_Z: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2199115094770708, undefined, []);
 
 /** var kAudioChannelLabel_BeginReserved: AudioChannelLabel { get } */
-export const kAudioChannelLabel_BeginReserved: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3556423679007052, undefined, []);
+export const kAudioChannelLabel_BeginReserved: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3556423679007052, undefined, []);
 
 /** var kAudioChannelLabel_BinauralLeft: AudioChannelLabel { get } */
-export const kAudioChannelLabel_BinauralLeft: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4449342351011836, undefined, []);
+export const kAudioChannelLabel_BinauralLeft: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4449342351011836, undefined, []);
 
 /** var kAudioChannelLabel_BinauralRight: AudioChannelLabel { get } */
-export const kAudioChannelLabel_BinauralRight: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1368078923105195, undefined, []);
+export const kAudioChannelLabel_BinauralRight: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1368078923105195, undefined, []);
 
 /** var kAudioChannelLabel_Center: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Center: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3311009905171313, undefined, []);
+export const kAudioChannelLabel_Center: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3311009905171313, undefined, []);
 
 /** var kAudioChannelLabel_CenterBottom: AudioChannelLabel { get } */
-export const kAudioChannelLabel_CenterBottom: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1786912101290327, undefined, []);
+export const kAudioChannelLabel_CenterBottom: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1786912101290327, undefined, []);
 
 /** var kAudioChannelLabel_CenterSurround: AudioChannelLabel { get } */
-export const kAudioChannelLabel_CenterSurround: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2627600539043210, undefined, []);
+export const kAudioChannelLabel_CenterSurround: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2627600539043210, undefined, []);
 
 /** var kAudioChannelLabel_CenterSurroundDirect: AudioChannelLabel { get } */
-export const kAudioChannelLabel_CenterSurroundDirect: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4197445971870350, undefined, []);
+export const kAudioChannelLabel_CenterSurroundDirect: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4197445971870350, undefined, []);
 
 /** var kAudioChannelLabel_CenterTopFront: AudioChannelLabel { get } */
-export const kAudioChannelLabel_CenterTopFront: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2726068183832620, undefined, []);
+export const kAudioChannelLabel_CenterTopFront: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2726068183832620, undefined, []);
 
 /** var kAudioChannelLabel_CenterTopMiddle: AudioChannelLabel { get } */
-export const kAudioChannelLabel_CenterTopMiddle: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2494315294859057, undefined, []);
+export const kAudioChannelLabel_CenterTopMiddle: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2494315294859057, undefined, []);
 
 /** var kAudioChannelLabel_CenterTopRear: AudioChannelLabel { get } */
-export const kAudioChannelLabel_CenterTopRear: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3364347533261493, undefined, []);
+export const kAudioChannelLabel_CenterTopRear: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3364347533261493, undefined, []);
 
 /** var kAudioChannelLabel_ClickTrack: AudioChannelLabel { get } */
-export const kAudioChannelLabel_ClickTrack: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2506608452104503, undefined, []);
+export const kAudioChannelLabel_ClickTrack: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2506608452104503, undefined, []);
 
 /** var kAudioChannelLabel_DialogCentricMix: AudioChannelLabel { get } */
-export const kAudioChannelLabel_DialogCentricMix: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2155836129001624, undefined, []);
+export const kAudioChannelLabel_DialogCentricMix: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2155836129001624, undefined, []);
 
 /** var kAudioChannelLabel_Discrete: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1971203029941403, undefined, []);
+export const kAudioChannelLabel_Discrete: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1971203029941403, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_0: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1335790118143598, undefined, []);
+export const kAudioChannelLabel_Discrete_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1335790118143598, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_10: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_10: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4413151258509931, undefined, []);
+export const kAudioChannelLabel_Discrete_10: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4413151258509931, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_11: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_11: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 778579568126338, undefined, []);
+export const kAudioChannelLabel_Discrete_11: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 778579568126338, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_12: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_12: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1151720086429882, undefined, []);
+export const kAudioChannelLabel_Discrete_12: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1151720086429882, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_13: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_13: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1670719375508220, undefined, []);
+export const kAudioChannelLabel_Discrete_13: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1670719375508220, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_14: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_14: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 852879970221367, undefined, []);
+export const kAudioChannelLabel_Discrete_14: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 852879970221367, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_15: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_15: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 581863647946916, undefined, []);
+export const kAudioChannelLabel_Discrete_15: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 581863647946916, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_1: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 651759845232556, undefined, []);
+export const kAudioChannelLabel_Discrete_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 651759845232556, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_2: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1010563109676015, undefined, []);
+export const kAudioChannelLabel_Discrete_2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1010563109676015, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_3: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_3: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 852875759680664, undefined, []);
+export const kAudioChannelLabel_Discrete_3: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 852875759680664, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_4: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_4: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3900704487047883, undefined, []);
+export const kAudioChannelLabel_Discrete_4: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3900704487047883, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_5: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_5: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 422322004698840, undefined, []);
+export const kAudioChannelLabel_Discrete_5: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 422322004698840, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_65535: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_65535: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2572660945708350, undefined, []);
+export const kAudioChannelLabel_Discrete_65535: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2572660945708350, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_6: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_6: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 280547494349489, undefined, []);
+export const kAudioChannelLabel_Discrete_6: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 280547494349489, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_7: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_7: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4362779493988162, undefined, []);
+export const kAudioChannelLabel_Discrete_7: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4362779493988162, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_8: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_8: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2539582020122211, undefined, []);
+export const kAudioChannelLabel_Discrete_8: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2539582020122211, undefined, []);
 
 /** var kAudioChannelLabel_Discrete_9: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Discrete_9: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3475560900805144, undefined, []);
+export const kAudioChannelLabel_Discrete_9: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3475560900805144, undefined, []);
 
 /** var kAudioChannelLabel_EndReserved: AudioChannelLabel { get } */
-export const kAudioChannelLabel_EndReserved: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4067944518469856, undefined, []);
+export const kAudioChannelLabel_EndReserved: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4067944518469856, undefined, []);
 
 /** var kAudioChannelLabel_ForeignLanguage: AudioChannelLabel { get } */
-export const kAudioChannelLabel_ForeignLanguage: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 287727357257004, undefined, []);
+export const kAudioChannelLabel_ForeignLanguage: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 287727357257004, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1076431446824301, undefined, []);
+export const kAudioChannelLabel_HOA_ACN: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1076431446824301, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_0: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3588108079639541, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3588108079639541, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_10: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_10: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2543077427843142, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_10: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2543077427843142, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_11: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_11: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2129673212378242, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_11: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2129673212378242, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_12: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_12: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1249481250474924, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_12: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1249481250474924, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_13: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_13: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3201174231420704, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_13: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3201174231420704, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_14: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_14: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2748025813915235, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_14: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2748025813915235, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_15: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_15: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3145428775598546, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_15: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3145428775598546, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_1: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3440324142434180, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3440324142434180, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_2: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2964857280663898, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2964857280663898, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_3: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_3: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4241489807108778, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_3: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4241489807108778, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_4: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_4: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 914559428853971, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_4: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 914559428853971, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_5: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_5: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 474162271217449, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_5: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 474162271217449, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_65024: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_65024: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4117175381148052, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_65024: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4117175381148052, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_6: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_6: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3208978440143351, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_6: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3208978440143351, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_7: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_7: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2940346052896468, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_7: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2940346052896468, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_8: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_8: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3056605352962385, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_8: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3056605352962385, undefined, []);
 
 /** var kAudioChannelLabel_HOA_ACN_9: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_ACN_9: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1096180145478757, undefined, []);
+export const kAudioChannelLabel_HOA_ACN_9: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1096180145478757, undefined, []);
 
 /** var kAudioChannelLabel_HOA_N3D: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_N3D: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 139353579519425, undefined, []);
+export const kAudioChannelLabel_HOA_N3D: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 139353579519425, undefined, []);
 
 /** var kAudioChannelLabel_HOA_SN3D: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HOA_SN3D: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3851993562989713, undefined, []);
+export const kAudioChannelLabel_HOA_SN3D: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3851993562989713, undefined, []);
 
 /** var kAudioChannelLabel_Haptic: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Haptic: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3956250437973711, undefined, []);
+export const kAudioChannelLabel_Haptic: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3956250437973711, undefined, []);
 
 /** var kAudioChannelLabel_HeadphonesLeft: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HeadphonesLeft: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 136836256742393, undefined, []);
+export const kAudioChannelLabel_HeadphonesLeft: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 136836256742393, undefined, []);
 
 /** var kAudioChannelLabel_HeadphonesRight: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HeadphonesRight: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4468419083825639, undefined, []);
+export const kAudioChannelLabel_HeadphonesRight: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4468419083825639, undefined, []);
 
 /** var kAudioChannelLabel_HearingImpaired: AudioChannelLabel { get } */
-export const kAudioChannelLabel_HearingImpaired: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2384932439088312, undefined, []);
+export const kAudioChannelLabel_HearingImpaired: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2384932439088312, undefined, []);
 
 /** var kAudioChannelLabel_LFE2: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LFE2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3500717964614135, undefined, []);
+export const kAudioChannelLabel_LFE2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3500717964614135, undefined, []);
 
 /** var kAudioChannelLabel_LFE3: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LFE3: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2305376538268730, undefined, []);
+export const kAudioChannelLabel_LFE3: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2305376538268730, undefined, []);
 
 /** var kAudioChannelLabel_LFEScreen: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LFEScreen: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4292109040032556, undefined, []);
+export const kAudioChannelLabel_LFEScreen: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4292109040032556, undefined, []);
 
 /** var kAudioChannelLabel_Left: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Left: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2992797513802817, undefined, []);
+export const kAudioChannelLabel_Left: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2992797513802817, undefined, []);
 
 /** var kAudioChannelLabel_LeftBackSurround: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LeftBackSurround: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 124797417722479, undefined, []);
+export const kAudioChannelLabel_LeftBackSurround: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 124797417722479, undefined, []);
 
 /** var kAudioChannelLabel_LeftBottom: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LeftBottom: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3815586409696112, undefined, []);
+export const kAudioChannelLabel_LeftBottom: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3815586409696112, undefined, []);
 
 /** var kAudioChannelLabel_LeftCenter: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LeftCenter: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2132106330928028, undefined, []);
+export const kAudioChannelLabel_LeftCenter: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2132106330928028, undefined, []);
 
 /** var kAudioChannelLabel_LeftEdgeOfScreen: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LeftEdgeOfScreen: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1626927243992835, undefined, []);
+export const kAudioChannelLabel_LeftEdgeOfScreen: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1626927243992835, undefined, []);
 
 /** var kAudioChannelLabel_LeftSideSurround: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LeftSideSurround: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4345340340832800, undefined, []);
+export const kAudioChannelLabel_LeftSideSurround: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4345340340832800, undefined, []);
 
 /** var kAudioChannelLabel_LeftSurround: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LeftSurround: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3409396181476543, undefined, []);
+export const kAudioChannelLabel_LeftSurround: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3409396181476543, undefined, []);
 
 /** var kAudioChannelLabel_LeftSurroundDirect: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LeftSurroundDirect: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2922528501741518, undefined, []);
+export const kAudioChannelLabel_LeftSurroundDirect: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2922528501741518, undefined, []);
 
 /** var kAudioChannelLabel_LeftTopFront: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LeftTopFront: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3923333651753650, undefined, []);
+export const kAudioChannelLabel_LeftTopFront: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3923333651753650, undefined, []);
 
 /** var kAudioChannelLabel_LeftTopMiddle: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LeftTopMiddle: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 179356766820147, undefined, []);
+export const kAudioChannelLabel_LeftTopMiddle: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 179356766820147, undefined, []);
 
 /** var kAudioChannelLabel_LeftTopRear: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LeftTopRear: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1796453133592725, undefined, []);
+export const kAudioChannelLabel_LeftTopRear: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1796453133592725, undefined, []);
 
 /** var kAudioChannelLabel_LeftTopSurround: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LeftTopSurround: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 17264251238421, undefined, []);
+export const kAudioChannelLabel_LeftTopSurround: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 17264251238421, undefined, []);
 
 /** var kAudioChannelLabel_LeftTotal: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LeftTotal: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 956618852842965, undefined, []);
+export const kAudioChannelLabel_LeftTotal: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 956618852842965, undefined, []);
 
 /** var kAudioChannelLabel_LeftWide: AudioChannelLabel { get } */
-export const kAudioChannelLabel_LeftWide: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1972322824347860, undefined, []);
+export const kAudioChannelLabel_LeftWide: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1972322824347860, undefined, []);
 
 /** var kAudioChannelLabel_MS_Mid: AudioChannelLabel { get } */
-export const kAudioChannelLabel_MS_Mid: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 100569283102959, undefined, []);
+export const kAudioChannelLabel_MS_Mid: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 100569283102959, undefined, []);
 
 /** var kAudioChannelLabel_MS_Side: AudioChannelLabel { get } */
-export const kAudioChannelLabel_MS_Side: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2222226722231287, undefined, []);
+export const kAudioChannelLabel_MS_Side: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2222226722231287, undefined, []);
 
 /** var kAudioChannelLabel_Mono: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Mono: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 911306339613329, undefined, []);
+export const kAudioChannelLabel_Mono: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 911306339613329, undefined, []);
 
 /** var kAudioChannelLabel_Narration: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Narration: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2696489921265035, undefined, []);
+export const kAudioChannelLabel_Narration: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2696489921265035, undefined, []);
 
 /** var kAudioChannelLabel_Object: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Object: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3775584442703153, undefined, []);
+export const kAudioChannelLabel_Object: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3775584442703153, undefined, []);
 
 /** var kAudioChannelLabel_RearSurroundLeft: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RearSurroundLeft: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3472759082077295, undefined, []);
+export const kAudioChannelLabel_RearSurroundLeft: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3472759082077295, undefined, []);
 
 /** var kAudioChannelLabel_RearSurroundRight: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RearSurroundRight: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3495723200760107, undefined, []);
+export const kAudioChannelLabel_RearSurroundRight: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3495723200760107, undefined, []);
 
 /** var kAudioChannelLabel_Right: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Right: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1719322731374459, undefined, []);
+export const kAudioChannelLabel_Right: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1719322731374459, undefined, []);
 
 /** var kAudioChannelLabel_RightBackSurround: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RightBackSurround: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2630168581644867, undefined, []);
+export const kAudioChannelLabel_RightBackSurround: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2630168581644867, undefined, []);
 
 /** var kAudioChannelLabel_RightBottom: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RightBottom: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2072044576750999, undefined, []);
+export const kAudioChannelLabel_RightBottom: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2072044576750999, undefined, []);
 
 /** var kAudioChannelLabel_RightCenter: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RightCenter: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3518235295155269, undefined, []);
+export const kAudioChannelLabel_RightCenter: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3518235295155269, undefined, []);
 
 /** var kAudioChannelLabel_RightEdgeOfScreen: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RightEdgeOfScreen: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1273636679033166, undefined, []);
+export const kAudioChannelLabel_RightEdgeOfScreen: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1273636679033166, undefined, []);
 
 /** var kAudioChannelLabel_RightSideSurround: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RightSideSurround: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2147627146647932, undefined, []);
+export const kAudioChannelLabel_RightSideSurround: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2147627146647932, undefined, []);
 
 /** var kAudioChannelLabel_RightSurround: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RightSurround: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4209378359638235, undefined, []);
+export const kAudioChannelLabel_RightSurround: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4209378359638235, undefined, []);
 
 /** var kAudioChannelLabel_RightSurroundDirect: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RightSurroundDirect: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2657923057796614, undefined, []);
+export const kAudioChannelLabel_RightSurroundDirect: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2657923057796614, undefined, []);
 
 /** var kAudioChannelLabel_RightTopFront: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RightTopFront: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3867141029164012, undefined, []);
+export const kAudioChannelLabel_RightTopFront: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3867141029164012, undefined, []);
 
 /** var kAudioChannelLabel_RightTopMiddle: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RightTopMiddle: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4184968961057177, undefined, []);
+export const kAudioChannelLabel_RightTopMiddle: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4184968961057177, undefined, []);
 
 /** var kAudioChannelLabel_RightTopRear: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RightTopRear: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2964519637902717, undefined, []);
+export const kAudioChannelLabel_RightTopRear: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2964519637902717, undefined, []);
 
 /** var kAudioChannelLabel_RightTopSurround: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RightTopSurround: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1118359382503849, undefined, []);
+export const kAudioChannelLabel_RightTopSurround: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1118359382503849, undefined, []);
 
 /** var kAudioChannelLabel_RightTotal: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RightTotal: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 972167981849362, undefined, []);
+export const kAudioChannelLabel_RightTotal: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 972167981849362, undefined, []);
 
 /** var kAudioChannelLabel_RightWide: AudioChannelLabel { get } */
-export const kAudioChannelLabel_RightWide: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3706157304948774, undefined, []);
+export const kAudioChannelLabel_RightWide: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3706157304948774, undefined, []);
 
 /** var kAudioChannelLabel_TopBackCenter: AudioChannelLabel { get } */
-export const kAudioChannelLabel_TopBackCenter: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1782241977469627, undefined, []);
+export const kAudioChannelLabel_TopBackCenter: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1782241977469627, undefined, []);
 
 /** var kAudioChannelLabel_TopBackLeft: AudioChannelLabel { get } */
-export const kAudioChannelLabel_TopBackLeft: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4334197439213749, undefined, []);
+export const kAudioChannelLabel_TopBackLeft: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4334197439213749, undefined, []);
 
 /** var kAudioChannelLabel_TopBackRight: AudioChannelLabel { get } */
-export const kAudioChannelLabel_TopBackRight: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2062916737839331, undefined, []);
+export const kAudioChannelLabel_TopBackRight: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2062916737839331, undefined, []);
 
 /** var kAudioChannelLabel_TopCenterSurround: AudioChannelLabel { get } */
-export const kAudioChannelLabel_TopCenterSurround: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 717698378580629, undefined, []);
+export const kAudioChannelLabel_TopCenterSurround: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 717698378580629, undefined, []);
 
 /** var kAudioChannelLabel_Unknown: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Unknown: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 167064659154542, undefined, []);
+export const kAudioChannelLabel_Unknown: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 167064659154542, undefined, []);
 
 /** var kAudioChannelLabel_Unused: AudioChannelLabel { get } */
-export const kAudioChannelLabel_Unused: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3958417701208424, undefined, []);
+export const kAudioChannelLabel_Unused: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3958417701208424, undefined, []);
 
 /** var kAudioChannelLabel_UseCoordinates: AudioChannelLabel { get } */
-export const kAudioChannelLabel_UseCoordinates: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 159773552011717, undefined, []);
+export const kAudioChannelLabel_UseCoordinates: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 159773552011717, undefined, []);
 
 /** var kAudioChannelLabel_VerticalHeightCenter: AudioChannelLabel { get } */
-export const kAudioChannelLabel_VerticalHeightCenter: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1709608722829400, undefined, []);
+export const kAudioChannelLabel_VerticalHeightCenter: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1709608722829400, undefined, []);
 
 /** var kAudioChannelLabel_VerticalHeightLeft: AudioChannelLabel { get } */
-export const kAudioChannelLabel_VerticalHeightLeft: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 937009426756441, undefined, []);
+export const kAudioChannelLabel_VerticalHeightLeft: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 937009426756441, undefined, []);
 
 /** var kAudioChannelLabel_VerticalHeightRight: AudioChannelLabel { get } */
-export const kAudioChannelLabel_VerticalHeightRight: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3006644538132460, undefined, []);
+export const kAudioChannelLabel_VerticalHeightRight: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3006644538132460, undefined, []);
 
 /** var kAudioChannelLabel_XY_X: AudioChannelLabel { get } */
-export const kAudioChannelLabel_XY_X: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1738292875427396, undefined, []);
+export const kAudioChannelLabel_XY_X: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1738292875427396, undefined, []);
 
 /** var kAudioChannelLabel_XY_Y: AudioChannelLabel { get } */
-export const kAudioChannelLabel_XY_Y: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 182063580560478, undefined, []);
+export const kAudioChannelLabel_XY_Y: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 182063580560478, undefined, []);
 
 /** var kAudioChannelLayoutTag_AAC_3_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AAC_3_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2400089847003749, undefined, []);
+export const kAudioChannelLayoutTag_AAC_3_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2400089847003749, undefined, []);
 
 /** var kAudioChannelLayoutTag_AAC_4_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AAC_4_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1054533030551557, undefined, []);
+export const kAudioChannelLayoutTag_AAC_4_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1054533030551557, undefined, []);
 
 /** var kAudioChannelLayoutTag_AAC_5_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AAC_5_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1512982970365764, undefined, []);
+export const kAudioChannelLayoutTag_AAC_5_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1512982970365764, undefined, []);
 
 /** var kAudioChannelLayoutTag_AAC_5_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AAC_5_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2852536919961828, undefined, []);
+export const kAudioChannelLayoutTag_AAC_5_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2852536919961828, undefined, []);
 
 /** var kAudioChannelLayoutTag_AAC_6_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AAC_6_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2042181463996683, undefined, []);
+export const kAudioChannelLayoutTag_AAC_6_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2042181463996683, undefined, []);
 
 /** var kAudioChannelLayoutTag_AAC_6_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AAC_6_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3077203627658466, undefined, []);
+export const kAudioChannelLayoutTag_AAC_6_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3077203627658466, undefined, []);
 
 /** var kAudioChannelLayoutTag_AAC_7_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AAC_7_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1326740943858477, undefined, []);
+export const kAudioChannelLayoutTag_AAC_7_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1326740943858477, undefined, []);
 
 /** var kAudioChannelLayoutTag_AAC_7_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AAC_7_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3627827430282062, undefined, []);
+export const kAudioChannelLayoutTag_AAC_7_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3627827430282062, undefined, []);
 
 /** var kAudioChannelLayoutTag_AAC_7_1_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AAC_7_1_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1967444223433644, undefined, []);
+export const kAudioChannelLayoutTag_AAC_7_1_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1967444223433644, undefined, []);
 
 /** var kAudioChannelLayoutTag_AAC_7_1_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AAC_7_1_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1237284677149735, undefined, []);
+export const kAudioChannelLayoutTag_AAC_7_1_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1237284677149735, undefined, []);
 
 /** var kAudioChannelLayoutTag_AAC_Octagonal: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AAC_Octagonal: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3330944678982162, undefined, []);
+export const kAudioChannelLayoutTag_AAC_Octagonal: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3330944678982162, undefined, []);
 
 /** var kAudioChannelLayoutTag_AAC_Quadraphonic: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AAC_Quadraphonic: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3162195029355761, undefined, []);
+export const kAudioChannelLayoutTag_AAC_Quadraphonic: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3162195029355761, undefined, []);
 
 /** var kAudioChannelLayoutTag_AC3_1_0_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AC3_1_0_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3728798323926762, undefined, []);
+export const kAudioChannelLayoutTag_AC3_1_0_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3728798323926762, undefined, []);
 
 /** var kAudioChannelLayoutTag_AC3_2_1_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AC3_2_1_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3742082275021782, undefined, []);
+export const kAudioChannelLayoutTag_AC3_2_1_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3742082275021782, undefined, []);
 
 /** var kAudioChannelLayoutTag_AC3_3_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AC3_3_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1314582005887206, undefined, []);
+export const kAudioChannelLayoutTag_AC3_3_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1314582005887206, undefined, []);
 
 /** var kAudioChannelLayoutTag_AC3_3_0_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AC3_3_0_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4496986401085007, undefined, []);
+export const kAudioChannelLayoutTag_AC3_3_0_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4496986401085007, undefined, []);
 
 /** var kAudioChannelLayoutTag_AC3_3_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AC3_3_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2680285753599451, undefined, []);
+export const kAudioChannelLayoutTag_AC3_3_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2680285753599451, undefined, []);
 
 /** var kAudioChannelLayoutTag_AC3_3_1_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AC3_3_1_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2397310376825397, undefined, []);
+export const kAudioChannelLayoutTag_AC3_3_1_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2397310376825397, undefined, []);
 
 /** var kAudioChannelLayoutTag_Ambisonic_B_Format: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Ambisonic_B_Format: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1204515561171310, undefined, []);
+export const kAudioChannelLayoutTag_Ambisonic_B_Format: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1204515561171310, undefined, []);
 
 /** var kAudioChannelLayoutTag_Atmos_5_1_2: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Atmos_5_1_2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 757428624098434, undefined, []);
+export const kAudioChannelLayoutTag_Atmos_5_1_2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 757428624098434, undefined, []);
 
 /** var kAudioChannelLayoutTag_Atmos_5_1_4: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Atmos_5_1_4: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2547137111036178, undefined, []);
+export const kAudioChannelLayoutTag_Atmos_5_1_4: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2547137111036178, undefined, []);
 
 /** var kAudioChannelLayoutTag_Atmos_7_1_2: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Atmos_7_1_2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2390212689240708, undefined, []);
+export const kAudioChannelLayoutTag_Atmos_7_1_2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2390212689240708, undefined, []);
 
 /** var kAudioChannelLayoutTag_Atmos_7_1_4: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Atmos_7_1_4: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 538072555555799, undefined, []);
+export const kAudioChannelLayoutTag_Atmos_7_1_4: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 538072555555799, undefined, []);
 
 /** var kAudioChannelLayoutTag_Atmos_9_1_6: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Atmos_9_1_6: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4049997360330812, undefined, []);
+export const kAudioChannelLayoutTag_Atmos_9_1_6: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4049997360330812, undefined, []);
 
 /** var kAudioChannelLayoutTag_AudioUnit_4: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AudioUnit_4: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4110907294716957, undefined, []);
+export const kAudioChannelLayoutTag_AudioUnit_4: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4110907294716957, undefined, []);
 
 /** var kAudioChannelLayoutTag_AudioUnit_5: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AudioUnit_5: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1011703714933943, undefined, []);
+export const kAudioChannelLayoutTag_AudioUnit_5: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1011703714933943, undefined, []);
 
 /** var kAudioChannelLayoutTag_AudioUnit_5_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AudioUnit_5_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3869372927303275, undefined, []);
+export const kAudioChannelLayoutTag_AudioUnit_5_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3869372927303275, undefined, []);
 
 /** var kAudioChannelLayoutTag_AudioUnit_5_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AudioUnit_5_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1565091438110954, undefined, []);
+export const kAudioChannelLayoutTag_AudioUnit_5_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1565091438110954, undefined, []);
 
 /** var kAudioChannelLayoutTag_AudioUnit_6: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AudioUnit_6: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3571016017693650, undefined, []);
+export const kAudioChannelLayoutTag_AudioUnit_6: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3571016017693650, undefined, []);
 
 /** var kAudioChannelLayoutTag_AudioUnit_6_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AudioUnit_6_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 828529175063434, undefined, []);
+export const kAudioChannelLayoutTag_AudioUnit_6_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 828529175063434, undefined, []);
 
 /** var kAudioChannelLayoutTag_AudioUnit_6_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AudioUnit_6_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3433825684502362, undefined, []);
+export const kAudioChannelLayoutTag_AudioUnit_6_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3433825684502362, undefined, []);
 
 /** var kAudioChannelLayoutTag_AudioUnit_7_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AudioUnit_7_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3881782262316043, undefined, []);
+export const kAudioChannelLayoutTag_AudioUnit_7_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3881782262316043, undefined, []);
 
 /** var kAudioChannelLayoutTag_AudioUnit_7_0_Front: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AudioUnit_7_0_Front: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4419399590711982, undefined, []);
+export const kAudioChannelLayoutTag_AudioUnit_7_0_Front: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4419399590711982, undefined, []);
 
 /** var kAudioChannelLayoutTag_AudioUnit_7_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AudioUnit_7_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3114513277303226, undefined, []);
+export const kAudioChannelLayoutTag_AudioUnit_7_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3114513277303226, undefined, []);
 
 /** var kAudioChannelLayoutTag_AudioUnit_7_1_Front: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AudioUnit_7_1_Front: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3774342625264828, undefined, []);
+export const kAudioChannelLayoutTag_AudioUnit_7_1_Front: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3774342625264828, undefined, []);
 
 /** var kAudioChannelLayoutTag_AudioUnit_8: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_AudioUnit_8: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 501524774717171, undefined, []);
+export const kAudioChannelLayoutTag_AudioUnit_8: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 501524774717171, undefined, []);
 
 /** var kAudioChannelLayoutTag_BeginReserved: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_BeginReserved: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3673867249225618, undefined, []);
+export const kAudioChannelLayoutTag_BeginReserved: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3673867249225618, undefined, []);
 
 /** var kAudioChannelLayoutTag_Binaural: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Binaural: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2552227658845595, undefined, []);
+export const kAudioChannelLayoutTag_Binaural: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2552227658845595, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_10: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_10: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2414220321253929, undefined, []);
+export const kAudioChannelLayoutTag_CICP_10: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2414220321253929, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_11: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_11: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 637795427655284, undefined, []);
+export const kAudioChannelLayoutTag_CICP_11: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 637795427655284, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_12: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_12: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3035613082906787, undefined, []);
+export const kAudioChannelLayoutTag_CICP_12: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3035613082906787, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_13: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_13: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4097018516596362, undefined, []);
+export const kAudioChannelLayoutTag_CICP_13: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4097018516596362, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_14: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_14: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4383673317481730, undefined, []);
+export const kAudioChannelLayoutTag_CICP_14: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4383673317481730, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_15: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_15: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2738795277810085, undefined, []);
+export const kAudioChannelLayoutTag_CICP_15: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2738795277810085, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_16: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_16: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1468015976207811, undefined, []);
+export const kAudioChannelLayoutTag_CICP_16: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1468015976207811, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_17: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_17: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1265905456401717, undefined, []);
+export const kAudioChannelLayoutTag_CICP_17: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1265905456401717, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_18: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_18: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 370077088476787, undefined, []);
+export const kAudioChannelLayoutTag_CICP_18: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 370077088476787, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_19: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_19: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2626829169615810, undefined, []);
+export const kAudioChannelLayoutTag_CICP_19: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2626829169615810, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1194332050165913, undefined, []);
+export const kAudioChannelLayoutTag_CICP_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1194332050165913, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_20: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_20: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 672283726685361, undefined, []);
+export const kAudioChannelLayoutTag_CICP_20: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 672283726685361, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_2: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4402220933862550, undefined, []);
+export const kAudioChannelLayoutTag_CICP_2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4402220933862550, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_3: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_3: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 89153654317577, undefined, []);
+export const kAudioChannelLayoutTag_CICP_3: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 89153654317577, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_4: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_4: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3338291642738902, undefined, []);
+export const kAudioChannelLayoutTag_CICP_4: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3338291642738902, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_5: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_5: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 868748902566941, undefined, []);
+export const kAudioChannelLayoutTag_CICP_5: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 868748902566941, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_6: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_6: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1664802613030878, undefined, []);
+export const kAudioChannelLayoutTag_CICP_6: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1664802613030878, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_7: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_7: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2844742810305303, undefined, []);
+export const kAudioChannelLayoutTag_CICP_7: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2844742810305303, undefined, []);
 
 /** var kAudioChannelLayoutTag_CICP_9: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_CICP_9: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4207013126322091, undefined, []);
+export const kAudioChannelLayoutTag_CICP_9: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4207013126322091, undefined, []);
 
 /** var kAudioChannelLayoutTag_Cube: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Cube: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3699978718338015, undefined, []);
+export const kAudioChannelLayoutTag_Cube: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3699978718338015, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_3_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_3_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3008961130261743, undefined, []);
+export const kAudioChannelLayoutTag_DTS_3_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3008961130261743, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_4_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_4_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3251987279773058, undefined, []);
+export const kAudioChannelLayoutTag_DTS_4_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3251987279773058, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_6_0_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_6_0_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2390620177362579, undefined, []);
+export const kAudioChannelLayoutTag_DTS_6_0_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2390620177362579, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_6_0_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_6_0_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 935951771598459, undefined, []);
+export const kAudioChannelLayoutTag_DTS_6_0_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 935951771598459, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_6_0_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_6_0_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2857339138754118, undefined, []);
+export const kAudioChannelLayoutTag_DTS_6_0_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2857339138754118, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_6_1_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_6_1_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1515227734351433, undefined, []);
+export const kAudioChannelLayoutTag_DTS_6_1_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1515227734351433, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_6_1_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_6_1_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1306646341500817, undefined, []);
+export const kAudioChannelLayoutTag_DTS_6_1_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1306646341500817, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_6_1_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_6_1_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3626028985481437, undefined, []);
+export const kAudioChannelLayoutTag_DTS_6_1_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3626028985481437, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_6_1_D: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_6_1_D: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1550330362542409, undefined, []);
+export const kAudioChannelLayoutTag_DTS_6_1_D: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1550330362542409, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_7_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_7_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4007579717479282, undefined, []);
+export const kAudioChannelLayoutTag_DTS_7_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4007579717479282, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_7_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_7_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3229370422297181, undefined, []);
+export const kAudioChannelLayoutTag_DTS_7_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3229370422297181, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_8_0_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_8_0_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 565951963209128, undefined, []);
+export const kAudioChannelLayoutTag_DTS_8_0_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 565951963209128, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_8_0_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_8_0_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3065685972231981, undefined, []);
+export const kAudioChannelLayoutTag_DTS_8_0_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3065685972231981, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_8_1_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_8_1_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3622995367005059, undefined, []);
+export const kAudioChannelLayoutTag_DTS_8_1_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3622995367005059, undefined, []);
 
 /** var kAudioChannelLayoutTag_DTS_8_1_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DTS_8_1_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2456682666849049, undefined, []);
+export const kAudioChannelLayoutTag_DTS_8_1_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2456682666849049, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1420502836990071, undefined, []);
+export const kAudioChannelLayoutTag_DVD_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1420502836990071, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_10: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_10: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1324079233573011, undefined, []);
+export const kAudioChannelLayoutTag_DVD_10: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1324079233573011, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_11: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_11: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2729080786001466, undefined, []);
+export const kAudioChannelLayoutTag_DVD_11: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2729080786001466, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_12: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_12: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2465255694392714, undefined, []);
+export const kAudioChannelLayoutTag_DVD_12: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2465255694392714, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_13: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_13: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2787427564417365, undefined, []);
+export const kAudioChannelLayoutTag_DVD_13: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2787427564417365, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_14: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_14: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4071148444562853, undefined, []);
+export const kAudioChannelLayoutTag_DVD_14: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4071148444562853, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_15: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_15: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1983035415345695, undefined, []);
+export const kAudioChannelLayoutTag_DVD_15: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1983035415345695, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_16: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_16: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1161900451900672, undefined, []);
+export const kAudioChannelLayoutTag_DVD_16: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1161900451900672, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_17: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_17: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1365544084239938, undefined, []);
+export const kAudioChannelLayoutTag_DVD_17: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1365544084239938, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_18: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_18: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 994893869049089, undefined, []);
+export const kAudioChannelLayoutTag_DVD_18: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 994893869049089, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_19: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_19: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2280709689901717, undefined, []);
+export const kAudioChannelLayoutTag_DVD_19: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2280709689901717, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4397660393223726, undefined, []);
+export const kAudioChannelLayoutTag_DVD_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4397660393223726, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_20: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_20: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3964261934027423, undefined, []);
+export const kAudioChannelLayoutTag_DVD_20: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3964261934027423, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_2: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 837622098038332, undefined, []);
+export const kAudioChannelLayoutTag_DVD_2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 837622098038332, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_3: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_3: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1249241037497028, undefined, []);
+export const kAudioChannelLayoutTag_DVD_3: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1249241037497028, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_4: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_4: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3222399409332772, undefined, []);
+export const kAudioChannelLayoutTag_DVD_4: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3222399409332772, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_5: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_5: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1096860395027141, undefined, []);
+export const kAudioChannelLayoutTag_DVD_5: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1096860395027141, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_6: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_6: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3106921370303758, undefined, []);
+export const kAudioChannelLayoutTag_DVD_6: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3106921370303758, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_7: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_7: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4271648313026881, undefined, []);
+export const kAudioChannelLayoutTag_DVD_7: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4271648313026881, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_8: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_8: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 691027268887373, undefined, []);
+export const kAudioChannelLayoutTag_DVD_8: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 691027268887373, undefined, []);
 
 /** var kAudioChannelLayoutTag_DVD_9: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DVD_9: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1872664876696208, undefined, []);
+export const kAudioChannelLayoutTag_DVD_9: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1872664876696208, undefined, []);
 
 /** var kAudioChannelLayoutTag_DiscreteInOrder: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_DiscreteInOrder: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1244021938787353, undefined, []);
+export const kAudioChannelLayoutTag_DiscreteInOrder: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1244021938787353, undefined, []);
 
 /** var kAudioChannelLayoutTag_EAC3_6_1_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_EAC3_6_1_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 995907572303815, undefined, []);
+export const kAudioChannelLayoutTag_EAC3_6_1_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 995907572303815, undefined, []);
 
 /** var kAudioChannelLayoutTag_EAC3_6_1_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_EAC3_6_1_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3569401751890488, undefined, []);
+export const kAudioChannelLayoutTag_EAC3_6_1_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3569401751890488, undefined, []);
 
 /** var kAudioChannelLayoutTag_EAC3_6_1_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_EAC3_6_1_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4005238130317683, undefined, []);
+export const kAudioChannelLayoutTag_EAC3_6_1_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4005238130317683, undefined, []);
 
 /** var kAudioChannelLayoutTag_EAC3_7_1_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_EAC3_7_1_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2767576454652547, undefined, []);
+export const kAudioChannelLayoutTag_EAC3_7_1_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2767576454652547, undefined, []);
 
 /** var kAudioChannelLayoutTag_EAC3_7_1_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_EAC3_7_1_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3281991329540455, undefined, []);
+export const kAudioChannelLayoutTag_EAC3_7_1_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3281991329540455, undefined, []);
 
 /** var kAudioChannelLayoutTag_EAC3_7_1_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_EAC3_7_1_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 117165078386262, undefined, []);
+export const kAudioChannelLayoutTag_EAC3_7_1_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 117165078386262, undefined, []);
 
 /** var kAudioChannelLayoutTag_EAC3_7_1_D: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_EAC3_7_1_D: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3641588669820373, undefined, []);
+export const kAudioChannelLayoutTag_EAC3_7_1_D: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3641588669820373, undefined, []);
 
 /** var kAudioChannelLayoutTag_EAC3_7_1_E: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_EAC3_7_1_E: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2662594898329452, undefined, []);
+export const kAudioChannelLayoutTag_EAC3_7_1_E: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2662594898329452, undefined, []);
 
 /** var kAudioChannelLayoutTag_EAC3_7_1_F: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_EAC3_7_1_F: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2317396345749555, undefined, []);
+export const kAudioChannelLayoutTag_EAC3_7_1_F: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2317396345749555, undefined, []);
 
 /** var kAudioChannelLayoutTag_EAC3_7_1_G: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_EAC3_7_1_G: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3474012886609465, undefined, []);
+export const kAudioChannelLayoutTag_EAC3_7_1_G: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3474012886609465, undefined, []);
 
 /** var kAudioChannelLayoutTag_EAC3_7_1_H: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_EAC3_7_1_H: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 217487863806519, undefined, []);
+export const kAudioChannelLayoutTag_EAC3_7_1_H: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 217487863806519, undefined, []);
 
 /** var kAudioChannelLayoutTag_EAC_6_0_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_EAC_6_0_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2790285607884924, undefined, []);
+export const kAudioChannelLayoutTag_EAC_6_0_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2790285607884924, undefined, []);
 
 /** var kAudioChannelLayoutTag_EAC_7_0_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_EAC_7_0_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2600382970426414, undefined, []);
+export const kAudioChannelLayoutTag_EAC_7_0_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2600382970426414, undefined, []);
 
 /** var kAudioChannelLayoutTag_Emagic_Default_7_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Emagic_Default_7_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1888044475400931, undefined, []);
+export const kAudioChannelLayoutTag_Emagic_Default_7_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1888044475400931, undefined, []);
 
 /** var kAudioChannelLayoutTag_EndReserved: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_EndReserved: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3688862954984192, undefined, []);
+export const kAudioChannelLayoutTag_EndReserved: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3688862954984192, undefined, []);
 
 /** var kAudioChannelLayoutTag_HOA_ACN_N3D: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_HOA_ACN_N3D: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 232408614709428, undefined, []);
+export const kAudioChannelLayoutTag_HOA_ACN_N3D: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 232408614709428, undefined, []);
 
 /** var kAudioChannelLayoutTag_HOA_ACN_SN3D: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_HOA_ACN_SN3D: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2242791233974687, undefined, []);
+export const kAudioChannelLayoutTag_HOA_ACN_SN3D: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2242791233974687, undefined, []);
 
 /** var kAudioChannelLayoutTag_Hexagonal: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Hexagonal: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2046886697500031, undefined, []);
+export const kAudioChannelLayoutTag_Hexagonal: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2046886697500031, undefined, []);
 
 /** var kAudioChannelLayoutTag_ITU_1_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_ITU_1_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4417154082617354, undefined, []);
+export const kAudioChannelLayoutTag_ITU_1_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4417154082617354, undefined, []);
 
 /** var kAudioChannelLayoutTag_ITU_2_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_ITU_2_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3132697664777992, undefined, []);
+export const kAudioChannelLayoutTag_ITU_2_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3132697664777992, undefined, []);
 
 /** var kAudioChannelLayoutTag_ITU_2_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_ITU_2_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4175454070322869, undefined, []);
+export const kAudioChannelLayoutTag_ITU_2_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4175454070322869, undefined, []);
 
 /** var kAudioChannelLayoutTag_ITU_2_2: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_ITU_2_2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2423243333327379, undefined, []);
+export const kAudioChannelLayoutTag_ITU_2_2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2423243333327379, undefined, []);
 
 /** var kAudioChannelLayoutTag_ITU_3_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_ITU_3_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1637731124953305, undefined, []);
+export const kAudioChannelLayoutTag_ITU_3_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1637731124953305, undefined, []);
 
 /** var kAudioChannelLayoutTag_ITU_3_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_ITU_3_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3592649005498126, undefined, []);
+export const kAudioChannelLayoutTag_ITU_3_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3592649005498126, undefined, []);
 
 /** var kAudioChannelLayoutTag_ITU_3_2: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_ITU_3_2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1216490628018046, undefined, []);
+export const kAudioChannelLayoutTag_ITU_3_2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1216490628018046, undefined, []);
 
 /** var kAudioChannelLayoutTag_ITU_3_2_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_ITU_3_2_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1671868260263300, undefined, []);
+export const kAudioChannelLayoutTag_ITU_3_2_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1671868260263300, undefined, []);
 
 /** var kAudioChannelLayoutTag_ITU_3_4_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_ITU_3_4_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1632529865522394, undefined, []);
+export const kAudioChannelLayoutTag_ITU_3_4_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1632529865522394, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_4_0_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_4_0_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1847648269702358, undefined, []);
+export const kAudioChannelLayoutTag_Logic_4_0_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1847648269702358, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_4_0_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_4_0_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1709590778479510, undefined, []);
+export const kAudioChannelLayoutTag_Logic_4_0_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1709590778479510, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_4_0_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_4_0_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3641890535132145, undefined, []);
+export const kAudioChannelLayoutTag_Logic_4_0_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3641890535132145, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_5_0_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_5_0_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1587427017212759, undefined, []);
+export const kAudioChannelLayoutTag_Logic_5_0_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1587427017212759, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_5_0_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_5_0_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2785757208408828, undefined, []);
+export const kAudioChannelLayoutTag_Logic_5_0_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2785757208408828, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_5_0_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_5_0_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2125185240159583, undefined, []);
+export const kAudioChannelLayoutTag_Logic_5_0_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2125185240159583, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_5_0_D: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_5_0_D: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 272181417676711, undefined, []);
+export const kAudioChannelLayoutTag_Logic_5_0_D: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 272181417676711, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_5_1_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_5_1_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1183257329556204, undefined, []);
+export const kAudioChannelLayoutTag_Logic_5_1_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1183257329556204, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_5_1_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_5_1_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2796887742243667, undefined, []);
+export const kAudioChannelLayoutTag_Logic_5_1_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2796887742243667, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_5_1_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_5_1_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2810195385438679, undefined, []);
+export const kAudioChannelLayoutTag_Logic_5_1_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2810195385438679, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_5_1_D: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_5_1_D: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1850834047828632, undefined, []);
+export const kAudioChannelLayoutTag_Logic_5_1_D: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1850834047828632, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_6_0_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_6_0_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 117578172132915, undefined, []);
+export const kAudioChannelLayoutTag_Logic_6_0_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 117578172132915, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_6_0_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_6_0_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2911350644903590, undefined, []);
+export const kAudioChannelLayoutTag_Logic_6_0_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2911350644903590, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_6_0_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_6_0_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 443830413806543, undefined, []);
+export const kAudioChannelLayoutTag_Logic_6_0_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 443830413806543, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_6_1_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_6_1_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2238462022473570, undefined, []);
+export const kAudioChannelLayoutTag_Logic_6_1_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2238462022473570, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_6_1_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_6_1_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3094664847960392, undefined, []);
+export const kAudioChannelLayoutTag_Logic_6_1_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3094664847960392, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_6_1_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_6_1_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3092917966635862, undefined, []);
+export const kAudioChannelLayoutTag_Logic_6_1_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3092917966635862, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_6_1_D: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_6_1_D: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1424005208505212, undefined, []);
+export const kAudioChannelLayoutTag_Logic_6_1_D: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1424005208505212, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_7_1_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_7_1_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3692707476153509, undefined, []);
+export const kAudioChannelLayoutTag_Logic_7_1_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3692707476153509, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_7_1_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_7_1_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1110496186257369, undefined, []);
+export const kAudioChannelLayoutTag_Logic_7_1_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1110496186257369, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_7_1_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_7_1_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1453275796153077, undefined, []);
+export const kAudioChannelLayoutTag_Logic_7_1_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1453275796153077, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_7_1_SDDS_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_7_1_SDDS_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2833492685715784, undefined, []);
+export const kAudioChannelLayoutTag_Logic_7_1_SDDS_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2833492685715784, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_7_1_SDDS_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_7_1_SDDS_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2992533571086676, undefined, []);
+export const kAudioChannelLayoutTag_Logic_7_1_SDDS_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2992533571086676, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_7_1_SDDS_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_7_1_SDDS_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1838823719101161, undefined, []);
+export const kAudioChannelLayoutTag_Logic_7_1_SDDS_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1838823719101161, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_Atmos_5_1_2: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_Atmos_5_1_2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2821978848390335, undefined, []);
+export const kAudioChannelLayoutTag_Logic_Atmos_5_1_2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2821978848390335, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_Atmos_5_1_4: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_Atmos_5_1_4: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3760905502288096, undefined, []);
+export const kAudioChannelLayoutTag_Logic_Atmos_5_1_4: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3760905502288096, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_Atmos_7_1_2: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_Atmos_7_1_2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2886413387363378, undefined, []);
+export const kAudioChannelLayoutTag_Logic_Atmos_7_1_2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2886413387363378, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_Atmos_7_1_4_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_Atmos_7_1_4_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2428088576974988, undefined, []);
+export const kAudioChannelLayoutTag_Logic_Atmos_7_1_4_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2428088576974988, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_Atmos_7_1_4_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_Atmos_7_1_4_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3556617784554166, undefined, []);
+export const kAudioChannelLayoutTag_Logic_Atmos_7_1_4_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3556617784554166, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_Atmos_7_1_6: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_Atmos_7_1_6: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 999640890088133, undefined, []);
+export const kAudioChannelLayoutTag_Logic_Atmos_7_1_6: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 999640890088133, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_Mono: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_Mono: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1273222230366287, undefined, []);
+export const kAudioChannelLayoutTag_Logic_Mono: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1273222230366287, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_Quadraphonic: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_Quadraphonic: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3085329776954827, undefined, []);
+export const kAudioChannelLayoutTag_Logic_Quadraphonic: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3085329776954827, undefined, []);
 
 /** var kAudioChannelLayoutTag_Logic_Stereo: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Logic_Stereo: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 19408100770078, undefined, []);
+export const kAudioChannelLayoutTag_Logic_Stereo: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 19408100770078, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_1_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_1_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3281722376054991, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_1_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3281722376054991, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_2_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_2_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3639608648105159, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_2_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3639608648105159, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_3_0_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_3_0_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3840236054447287, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_3_0_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3840236054447287, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_3_0_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_3_0_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3238382756673444, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_3_0_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3238382756673444, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_4_0_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_4_0_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3272768238722637, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_4_0_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3272768238722637, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_4_0_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_4_0_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1910714818890941, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_4_0_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1910714818890941, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_5_0_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_5_0_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3984874213020742, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_5_0_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3984874213020742, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_5_0_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_5_0_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2849136351577745, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_5_0_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2849136351577745, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_5_0_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_5_0_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3761722447969269, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_5_0_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3761722447969269, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_5_0_D: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_5_0_D: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1966832781552261, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_5_0_D: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1966832781552261, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_5_0_E: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_5_0_E: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2339570213514217, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_5_0_E: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2339570213514217, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_5_1_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_5_1_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1500577484662789, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_5_1_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1500577484662789, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_5_1_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_5_1_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4312699646571255, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_5_1_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4312699646571255, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_5_1_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_5_1_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4475485579476356, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_5_1_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4475485579476356, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_5_1_D: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_5_1_D: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1562101808534677, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_5_1_D: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1562101808534677, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_5_1_E: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_5_1_E: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3632486490602258, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_5_1_E: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3632486490602258, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_6_1_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_6_1_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3156281125192344, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_6_1_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3156281125192344, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_6_1_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_6_1_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3312601208367370, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_6_1_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3312601208367370, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_7_1_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_7_1_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 430575198280278, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_7_1_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 430575198280278, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_7_1_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_7_1_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2262461491217440, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_7_1_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2262461491217440, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_7_1_C: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_7_1_C: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 822039612262556, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_7_1_C: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 822039612262556, undefined, []);
 
 /** var kAudioChannelLayoutTag_MPEG_7_1_D: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MPEG_7_1_D: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3982273365821525, undefined, []);
+export const kAudioChannelLayoutTag_MPEG_7_1_D: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3982273365821525, undefined, []);
 
 /** var kAudioChannelLayoutTag_MatrixStereo: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MatrixStereo: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2313593763082789, undefined, []);
+export const kAudioChannelLayoutTag_MatrixStereo: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2313593763082789, undefined, []);
 
 /** var kAudioChannelLayoutTag_MidSide: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_MidSide: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1224418066572529, undefined, []);
+export const kAudioChannelLayoutTag_MidSide: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1224418066572529, undefined, []);
 
 /** var kAudioChannelLayoutTag_Mono: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Mono: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2368780948438390, undefined, []);
+export const kAudioChannelLayoutTag_Mono: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2368780948438390, undefined, []);
 
 /** var kAudioChannelLayoutTag_Octagonal: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Octagonal: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4173779198440947, undefined, []);
+export const kAudioChannelLayoutTag_Octagonal: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4173779198440947, undefined, []);
 
 /** var kAudioChannelLayoutTag_Ogg_3_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Ogg_3_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1435877397847426, undefined, []);
+export const kAudioChannelLayoutTag_Ogg_3_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1435877397847426, undefined, []);
 
 /** var kAudioChannelLayoutTag_Ogg_4_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Ogg_4_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2222577532841996, undefined, []);
+export const kAudioChannelLayoutTag_Ogg_4_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2222577532841996, undefined, []);
 
 /** var kAudioChannelLayoutTag_Ogg_5_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Ogg_5_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1926918713965680, undefined, []);
+export const kAudioChannelLayoutTag_Ogg_5_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1926918713965680, undefined, []);
 
 /** var kAudioChannelLayoutTag_Ogg_5_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Ogg_5_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1993045236424984, undefined, []);
+export const kAudioChannelLayoutTag_Ogg_5_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1993045236424984, undefined, []);
 
 /** var kAudioChannelLayoutTag_Ogg_6_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Ogg_6_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2431672771947266, undefined, []);
+export const kAudioChannelLayoutTag_Ogg_6_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2431672771947266, undefined, []);
 
 /** var kAudioChannelLayoutTag_Ogg_7_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Ogg_7_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3579882955240124, undefined, []);
+export const kAudioChannelLayoutTag_Ogg_7_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3579882955240124, undefined, []);
 
 /** var kAudioChannelLayoutTag_Pentagonal: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Pentagonal: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1173472880337968, undefined, []);
+export const kAudioChannelLayoutTag_Pentagonal: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1173472880337968, undefined, []);
 
 /** var kAudioChannelLayoutTag_Quadraphonic: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Quadraphonic: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2063062992773382, undefined, []);
+export const kAudioChannelLayoutTag_Quadraphonic: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2063062992773382, undefined, []);
 
 /** var kAudioChannelLayoutTag_SMPTE_DTV: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_SMPTE_DTV: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2474774161194229, undefined, []);
+export const kAudioChannelLayoutTag_SMPTE_DTV: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2474774161194229, undefined, []);
 
 /** var kAudioChannelLayoutTag_Stereo: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Stereo: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1236526342641208, undefined, []);
+export const kAudioChannelLayoutTag_Stereo: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1236526342641208, undefined, []);
 
 /** var kAudioChannelLayoutTag_StereoHeadphones: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_StereoHeadphones: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 311027830209803, undefined, []);
+export const kAudioChannelLayoutTag_StereoHeadphones: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 311027830209803, undefined, []);
 
 /** var kAudioChannelLayoutTag_TMH_10_2_full: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_TMH_10_2_full: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 561625683822414, undefined, []);
+export const kAudioChannelLayoutTag_TMH_10_2_full: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 561625683822414, undefined, []);
 
 /** var kAudioChannelLayoutTag_TMH_10_2_std: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_TMH_10_2_std: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4479467815349017, undefined, []);
+export const kAudioChannelLayoutTag_TMH_10_2_std: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4479467815349017, undefined, []);
 
 /** var kAudioChannelLayoutTag_Unknown: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_Unknown: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2166603239774202, undefined, []);
+export const kAudioChannelLayoutTag_Unknown: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2166603239774202, undefined, []);
 
 /** var kAudioChannelLayoutTag_UseChannelBitmap: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_UseChannelBitmap: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2769461252979489, undefined, []);
+export const kAudioChannelLayoutTag_UseChannelBitmap: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2769461252979489, undefined, []);
 
 /** var kAudioChannelLayoutTag_UseChannelDescriptions: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_UseChannelDescriptions: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3284303307828814, undefined, []);
+export const kAudioChannelLayoutTag_UseChannelDescriptions: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3284303307828814, undefined, []);
 
 /** var kAudioChannelLayoutTag_WAVE_2_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_WAVE_2_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 118447049208627, undefined, []);
+export const kAudioChannelLayoutTag_WAVE_2_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 118447049208627, undefined, []);
 
 /** var kAudioChannelLayoutTag_WAVE_3_0: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_WAVE_3_0: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3174155241518123, undefined, []);
+export const kAudioChannelLayoutTag_WAVE_3_0: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3174155241518123, undefined, []);
 
 /** var kAudioChannelLayoutTag_WAVE_4_0_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_WAVE_4_0_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1525676044289248, undefined, []);
+export const kAudioChannelLayoutTag_WAVE_4_0_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1525676044289248, undefined, []);
 
 /** var kAudioChannelLayoutTag_WAVE_4_0_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_WAVE_4_0_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2435636617940130, undefined, []);
+export const kAudioChannelLayoutTag_WAVE_4_0_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2435636617940130, undefined, []);
 
 /** var kAudioChannelLayoutTag_WAVE_5_0_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_WAVE_5_0_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3554263317782162, undefined, []);
+export const kAudioChannelLayoutTag_WAVE_5_0_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3554263317782162, undefined, []);
 
 /** var kAudioChannelLayoutTag_WAVE_5_0_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_WAVE_5_0_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 110474460684685, undefined, []);
+export const kAudioChannelLayoutTag_WAVE_5_0_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 110474460684685, undefined, []);
 
 /** var kAudioChannelLayoutTag_WAVE_5_1_A: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_WAVE_5_1_A: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2169727720896893, undefined, []);
+export const kAudioChannelLayoutTag_WAVE_5_1_A: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2169727720896893, undefined, []);
 
 /** var kAudioChannelLayoutTag_WAVE_5_1_B: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_WAVE_5_1_B: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 796017326441206, undefined, []);
+export const kAudioChannelLayoutTag_WAVE_5_1_B: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 796017326441206, undefined, []);
 
 /** var kAudioChannelLayoutTag_WAVE_6_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_WAVE_6_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2347277184814223, undefined, []);
+export const kAudioChannelLayoutTag_WAVE_6_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2347277184814223, undefined, []);
 
 /** var kAudioChannelLayoutTag_WAVE_7_1: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_WAVE_7_1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3252181643199525, undefined, []);
+export const kAudioChannelLayoutTag_WAVE_7_1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3252181643199525, undefined, []);
 
 /** var kAudioChannelLayoutTag_XY: AudioChannelLayoutTag { get } */
-export const kAudioChannelLayoutTag_XY: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 425368271383996, undefined, []);
+export const kAudioChannelLayoutTag_XY: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 425368271383996, undefined, []);
 
 /** var kAppleLosslessFormatFlag_16BitSourceData: AudioFormatFlags { get } */
-export const kAppleLosslessFormatFlag_16BitSourceData: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2896210062173367, undefined, []);
+export const kAppleLosslessFormatFlag_16BitSourceData: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2896210062173367, undefined, []);
 
 /** var kAppleLosslessFormatFlag_20BitSourceData: AudioFormatFlags { get } */
-export const kAppleLosslessFormatFlag_20BitSourceData: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1522080991009354, undefined, []);
+export const kAppleLosslessFormatFlag_20BitSourceData: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1522080991009354, undefined, []);
 
 /** var kAppleLosslessFormatFlag_24BitSourceData: AudioFormatFlags { get } */
-export const kAppleLosslessFormatFlag_24BitSourceData: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3829862651944632, undefined, []);
+export const kAppleLosslessFormatFlag_24BitSourceData: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3829862651944632, undefined, []);
 
 /** var kAppleLosslessFormatFlag_32BitSourceData: AudioFormatFlags { get } */
-export const kAppleLosslessFormatFlag_32BitSourceData: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1104126997707480, undefined, []);
+export const kAppleLosslessFormatFlag_32BitSourceData: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1104126997707480, undefined, []);
 
 /** var kAudioFormatFlagIsAlignedHigh: AudioFormatFlags { get } */
-export const kAudioFormatFlagIsAlignedHigh: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3069672322961981, undefined, []);
+export const kAudioFormatFlagIsAlignedHigh: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3069672322961981, undefined, []);
 
 /** var kAudioFormatFlagIsBigEndian: AudioFormatFlags { get } */
-export const kAudioFormatFlagIsBigEndian: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1260911974492490, undefined, []);
+export const kAudioFormatFlagIsBigEndian: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1260911974492490, undefined, []);
 
 /** var kAudioFormatFlagIsFloat: AudioFormatFlags { get } */
-export const kAudioFormatFlagIsFloat: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2856034959470782, undefined, []);
+export const kAudioFormatFlagIsFloat: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2856034959470782, undefined, []);
 
 /** var kAudioFormatFlagIsNonInterleaved: AudioFormatFlags { get } */
-export const kAudioFormatFlagIsNonInterleaved: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1584647769039140, undefined, []);
+export const kAudioFormatFlagIsNonInterleaved: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1584647769039140, undefined, []);
 
 /** var kAudioFormatFlagIsNonMixable: AudioFormatFlags { get } */
-export const kAudioFormatFlagIsNonMixable: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 127212053865600, undefined, []);
+export const kAudioFormatFlagIsNonMixable: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 127212053865600, undefined, []);
 
 /** var kAudioFormatFlagIsPacked: AudioFormatFlags { get } */
-export const kAudioFormatFlagIsPacked: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2230745138797001, undefined, []);
+export const kAudioFormatFlagIsPacked: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2230745138797001, undefined, []);
 
 /** var kAudioFormatFlagIsSignedInteger: AudioFormatFlags { get } */
-export const kAudioFormatFlagIsSignedInteger: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 624641497634801, undefined, []);
+export const kAudioFormatFlagIsSignedInteger: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 624641497634801, undefined, []);
 
 /** var kAudioFormatFlagsAreAllClear: AudioFormatFlags { get } */
-export const kAudioFormatFlagsAreAllClear: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1631529702379719, undefined, []);
+export const kAudioFormatFlagsAreAllClear: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1631529702379719, undefined, []);
 
 /** var kLinearPCMFormatFlagIsAlignedHigh: AudioFormatFlags { get } */
-export const kLinearPCMFormatFlagIsAlignedHigh: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3276218553074648, undefined, []);
+export const kLinearPCMFormatFlagIsAlignedHigh: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3276218553074648, undefined, []);
 
 /** var kLinearPCMFormatFlagIsBigEndian: AudioFormatFlags { get } */
-export const kLinearPCMFormatFlagIsBigEndian: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1249964287628481, undefined, []);
+export const kLinearPCMFormatFlagIsBigEndian: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1249964287628481, undefined, []);
 
 /** var kLinearPCMFormatFlagIsFloat: AudioFormatFlags { get } */
-export const kLinearPCMFormatFlagIsFloat: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3377923297209534, undefined, []);
+export const kLinearPCMFormatFlagIsFloat: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3377923297209534, undefined, []);
 
 /** var kLinearPCMFormatFlagIsNonInterleaved: AudioFormatFlags { get } */
-export const kLinearPCMFormatFlagIsNonInterleaved: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2004056158340851, undefined, []);
+export const kLinearPCMFormatFlagIsNonInterleaved: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2004056158340851, undefined, []);
 
 /** var kLinearPCMFormatFlagIsNonMixable: AudioFormatFlags { get } */
-export const kLinearPCMFormatFlagIsNonMixable: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3094030497603852, undefined, []);
+export const kLinearPCMFormatFlagIsNonMixable: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3094030497603852, undefined, []);
 
 /** var kLinearPCMFormatFlagIsPacked: AudioFormatFlags { get } */
-export const kLinearPCMFormatFlagIsPacked: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 205580489466421, undefined, []);
+export const kLinearPCMFormatFlagIsPacked: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 205580489466421, undefined, []);
 
 /** var kLinearPCMFormatFlagIsSignedInteger: AudioFormatFlags { get } */
-export const kLinearPCMFormatFlagIsSignedInteger: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4153324017004147, undefined, []);
+export const kLinearPCMFormatFlagIsSignedInteger: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4153324017004147, undefined, []);
 
 /** var kLinearPCMFormatFlagsAreAllClear: AudioFormatFlags { get } */
-export const kLinearPCMFormatFlagsAreAllClear: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3339993467845627, undefined, []);
+export const kLinearPCMFormatFlagsAreAllClear: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3339993467845627, undefined, []);
 
 /** var kLinearPCMFormatFlagsSampleFractionMask: AudioFormatFlags { get } */
-export const kLinearPCMFormatFlagsSampleFractionMask: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3677196034568723, undefined, []);
+export const kLinearPCMFormatFlagsSampleFractionMask: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3677196034568723, undefined, []);
 
 /** var kLinearPCMFormatFlagsSampleFractionShift: AudioFormatFlags { get } */
-export const kLinearPCMFormatFlagsSampleFractionShift: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3854464878300941, undefined, []);
+export const kLinearPCMFormatFlagsSampleFractionShift: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3854464878300941, undefined, []);
 
 /** var kAudioFormatFlagsAudioUnitCanonical: AudioFormatFlags { get } */
-export const kAudioFormatFlagsAudioUnitCanonical: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4473751545090878, undefined, []);
+export const kAudioFormatFlagsAudioUnitCanonical: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4473751545090878, undefined, []);
 
 /** var kAudioFormatFlagsCanonical: AudioFormatFlags { get } */
-export const kAudioFormatFlagsCanonical: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1398430226082301, undefined, []);
+export const kAudioFormatFlagsCanonical: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1398430226082301, undefined, []);
 
 /** var kAudioFormatFlagsNativeEndian: AudioFormatFlags { get } */
-export const kAudioFormatFlagsNativeEndian: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1843739023675956, undefined, []);
+export const kAudioFormatFlagsNativeEndian: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1843739023675956, undefined, []);
 
 /** var kAudioFormatFlagsNativeFloatPacked: AudioFormatFlags { get } */
-export const kAudioFormatFlagsNativeFloatPacked: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4228611067723858, undefined, []);
+export const kAudioFormatFlagsNativeFloatPacked: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4228611067723858, undefined, []);
 
 /** var kAudioFormat60958AC3: AudioFormatID { get } */
-export const kAudioFormat60958AC3: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1040205395699845, undefined, []);
+export const kAudioFormat60958AC3: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1040205395699845, undefined, []);
 
 /** var kAudioFormatAC3: AudioFormatID { get } */
-export const kAudioFormatAC3: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2347720503143439, undefined, []);
+export const kAudioFormatAC3: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2347720503143439, undefined, []);
 
 /** var kAudioFormatAES3: AudioFormatID { get } */
-export const kAudioFormatAES3: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 141529353156771, undefined, []);
+export const kAudioFormatAES3: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 141529353156771, undefined, []);
 
 /** var kAudioFormatALaw: AudioFormatID { get } */
-export const kAudioFormatALaw: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2403201537925791, undefined, []);
+export const kAudioFormatALaw: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2403201537925791, undefined, []);
 
 /** var kAudioFormatAMR: AudioFormatID { get } */
-export const kAudioFormatAMR: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3972222894394083, undefined, []);
+export const kAudioFormatAMR: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3972222894394083, undefined, []);
 
 /** var kAudioFormatAMR_WB: AudioFormatID { get } */
-export const kAudioFormatAMR_WB: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 15388058511039, undefined, []);
+export const kAudioFormatAMR_WB: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 15388058511039, undefined, []);
 
 /** var kAudioFormatAPAC: AudioFormatID { get } */
-export const kAudioFormatAPAC: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4343780378091825, undefined, []);
+export const kAudioFormatAPAC: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4343780378091825, undefined, []);
 
 /** var kAudioFormatAppleIMA4: AudioFormatID { get } */
-export const kAudioFormatAppleIMA4: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 972767284396958, undefined, []);
+export const kAudioFormatAppleIMA4: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 972767284396958, undefined, []);
 
 /** var kAudioFormatAppleLossless: AudioFormatID { get } */
-export const kAudioFormatAppleLossless: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3115085352832633, undefined, []);
+export const kAudioFormatAppleLossless: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3115085352832633, undefined, []);
 
 /** var kAudioFormatAudible: AudioFormatID { get } */
-export const kAudioFormatAudible: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 126085756899291, undefined, []);
+export const kAudioFormatAudible: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 126085756899291, undefined, []);
 
 /** var kAudioFormatDVIIntelIMA: AudioFormatID { get } */
-export const kAudioFormatDVIIntelIMA: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 255015890294730, undefined, []);
+export const kAudioFormatDVIIntelIMA: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 255015890294730, undefined, []);
 
 /** var kAudioFormatEnhancedAC3: AudioFormatID { get } */
-export const kAudioFormatEnhancedAC3: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3218965987051128, undefined, []);
+export const kAudioFormatEnhancedAC3: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3218965987051128, undefined, []);
 
 /** var kAudioFormatFLAC: AudioFormatID { get } */
-export const kAudioFormatFLAC: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4115484752767435, undefined, []);
+export const kAudioFormatFLAC: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4115484752767435, undefined, []);
 
 /** var kAudioFormatLinearPCM: AudioFormatID { get } */
-export const kAudioFormatLinearPCM: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 328229059596728, undefined, []);
+export const kAudioFormatLinearPCM: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 328229059596728, undefined, []);
 
 /** var kAudioFormatMACE3: AudioFormatID { get } */
-export const kAudioFormatMACE3: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1718006663589861, undefined, []);
+export const kAudioFormatMACE3: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1718006663589861, undefined, []);
 
 /** var kAudioFormatMACE6: AudioFormatID { get } */
-export const kAudioFormatMACE6: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3842841252998925, undefined, []);
+export const kAudioFormatMACE6: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3842841252998925, undefined, []);
 
 /** var kAudioFormatMIDIStream: AudioFormatID { get } */
-export const kAudioFormatMIDIStream: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2150568872240394, undefined, []);
+export const kAudioFormatMIDIStream: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2150568872240394, undefined, []);
 
 /** var kAudioFormatMPEG4AAC: AudioFormatID { get } */
-export const kAudioFormatMPEG4AAC: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4328558256430756, undefined, []);
+export const kAudioFormatMPEG4AAC: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4328558256430756, undefined, []);
 
 /** var kAudioFormatMPEG4AAC_ELD: AudioFormatID { get } */
-export const kAudioFormatMPEG4AAC_ELD: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3878455811971334, undefined, []);
+export const kAudioFormatMPEG4AAC_ELD: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3878455811971334, undefined, []);
 
 /** var kAudioFormatMPEG4AAC_ELD_SBR: AudioFormatID { get } */
-export const kAudioFormatMPEG4AAC_ELD_SBR: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4220452194688805, undefined, []);
+export const kAudioFormatMPEG4AAC_ELD_SBR: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4220452194688805, undefined, []);
 
 /** var kAudioFormatMPEG4AAC_ELD_V2: AudioFormatID { get } */
-export const kAudioFormatMPEG4AAC_ELD_V2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2246927225033398, undefined, []);
+export const kAudioFormatMPEG4AAC_ELD_V2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2246927225033398, undefined, []);
 
 /** var kAudioFormatMPEG4AAC_HE: AudioFormatID { get } */
-export const kAudioFormatMPEG4AAC_HE: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4065520323479928, undefined, []);
+export const kAudioFormatMPEG4AAC_HE: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4065520323479928, undefined, []);
 
 /** var kAudioFormatMPEG4AAC_HE_V2: AudioFormatID { get } */
-export const kAudioFormatMPEG4AAC_HE_V2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2971054405250891, undefined, []);
+export const kAudioFormatMPEG4AAC_HE_V2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2971054405250891, undefined, []);
 
 /** var kAudioFormatMPEG4AAC_LD: AudioFormatID { get } */
-export const kAudioFormatMPEG4AAC_LD: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1698192451482844, undefined, []);
+export const kAudioFormatMPEG4AAC_LD: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1698192451482844, undefined, []);
 
 /** var kAudioFormatMPEG4AAC_Spatial: AudioFormatID { get } */
-export const kAudioFormatMPEG4AAC_Spatial: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1039788817713277, undefined, []);
+export const kAudioFormatMPEG4AAC_Spatial: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1039788817713277, undefined, []);
 
 /** var kAudioFormatMPEG4CELP: AudioFormatID { get } */
-export const kAudioFormatMPEG4CELP: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 365759290069320, undefined, []);
+export const kAudioFormatMPEG4CELP: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 365759290069320, undefined, []);
 
 /** var kAudioFormatMPEG4HVXC: AudioFormatID { get } */
-export const kAudioFormatMPEG4HVXC: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 498645702744589, undefined, []);
+export const kAudioFormatMPEG4HVXC: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 498645702744589, undefined, []);
 
 /** var kAudioFormatMPEG4TwinVQ: AudioFormatID { get } */
-export const kAudioFormatMPEG4TwinVQ: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1427696856043716, undefined, []);
+export const kAudioFormatMPEG4TwinVQ: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1427696856043716, undefined, []);
 
 /** var kAudioFormatMPEGD_USAC: AudioFormatID { get } */
-export const kAudioFormatMPEGD_USAC: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2298755847835247, undefined, []);
+export const kAudioFormatMPEGD_USAC: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2298755847835247, undefined, []);
 
 /** var kAudioFormatMPEGLayer1: AudioFormatID { get } */
-export const kAudioFormatMPEGLayer1: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3847283052321987, undefined, []);
+export const kAudioFormatMPEGLayer1: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3847283052321987, undefined, []);
 
 /** var kAudioFormatMPEGLayer2: AudioFormatID { get } */
-export const kAudioFormatMPEGLayer2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2830122443351118, undefined, []);
+export const kAudioFormatMPEGLayer2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2830122443351118, undefined, []);
 
 /** var kAudioFormatMPEGLayer3: AudioFormatID { get } */
-export const kAudioFormatMPEGLayer3: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3042105952219762, undefined, []);
+export const kAudioFormatMPEGLayer3: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3042105952219762, undefined, []);
 
 /** var kAudioFormatMicrosoftGSM: AudioFormatID { get } */
-export const kAudioFormatMicrosoftGSM: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2079097170160900, undefined, []);
+export const kAudioFormatMicrosoftGSM: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2079097170160900, undefined, []);
 
 /** var kAudioFormatOpus: AudioFormatID { get } */
-export const kAudioFormatOpus: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 528261966706800, undefined, []);
+export const kAudioFormatOpus: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 528261966706800, undefined, []);
 
 /** var kAudioFormatParameterValueStream: AudioFormatID { get } */
-export const kAudioFormatParameterValueStream: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3924343060527149, undefined, []);
+export const kAudioFormatParameterValueStream: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3924343060527149, undefined, []);
 
 /** var kAudioFormatQDesign2: AudioFormatID { get } */
-export const kAudioFormatQDesign2: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2237562176535395, undefined, []);
+export const kAudioFormatQDesign2: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2237562176535395, undefined, []);
 
 /** var kAudioFormatQDesign: AudioFormatID { get } */
-export const kAudioFormatQDesign: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3336498222636105, undefined, []);
+export const kAudioFormatQDesign: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3336498222636105, undefined, []);
 
 /** var kAudioFormatQUALCOMM: AudioFormatID { get } */
-export const kAudioFormatQUALCOMM: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 949280412181756, undefined, []);
+export const kAudioFormatQUALCOMM: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 949280412181756, undefined, []);
 
 /** var kAudioFormatTimeCode: AudioFormatID { get } */
-export const kAudioFormatTimeCode: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2934140490442710, undefined, []);
+export const kAudioFormatTimeCode: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2934140490442710, undefined, []);
 
 /** var kAudioFormatULaw: AudioFormatID { get } */
-export const kAudioFormatULaw: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 187747862908227, undefined, []);
+export const kAudioFormatULaw: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 187747862908227, undefined, []);
 
 /** var kAudioFormatiLBC: AudioFormatID { get } */
-export const kAudioFormatiLBC: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3749297061622023, undefined, []);
+export const kAudioFormatiLBC: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3749297061622023, undefined, []);
 
 /** var kAudio_BadFilePathError: OSStatus { get } */
-export const kAudio_BadFilePathError: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2260665005428551, undefined, []);
+export const kAudio_BadFilePathError: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2260665005428551, undefined, []);
 
 /** var kAudio_FileNotFoundError: OSStatus { get } */
-export const kAudio_FileNotFoundError: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1749291669331242, undefined, []);
+export const kAudio_FileNotFoundError: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1749291669331242, undefined, []);
 
 /** var kAudio_FilePermissionError: OSStatus { get } */
-export const kAudio_FilePermissionError: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1052780988919368, undefined, []);
+export const kAudio_FilePermissionError: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1052780988919368, undefined, []);
 
 /** var kAudio_MemFullError: OSStatus { get } */
-export const kAudio_MemFullError: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1379805259722637, undefined, []);
+export const kAudio_MemFullError: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1379805259722637, undefined, []);
 
 /** var kAudio_NoError: OSStatus { get } */
-export const kAudio_NoError: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 3572612633449338, undefined, []);
+export const kAudio_NoError: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 3572612633449338, undefined, []);
 
 /** var kAudio_ParamError: OSStatus { get } */
-export const kAudio_ParamError: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2023994948643276, undefined, []);
+export const kAudio_ParamError: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2023994948643276, undefined, []);
 
 /** var kAudio_TooManyFilesOpenError: OSStatus { get } */
-export const kAudio_TooManyFilesOpenError: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1616735031349851, undefined, []);
+export const kAudio_TooManyFilesOpenError: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1616735031349851, undefined, []);
 
 /** var kAudio_UnimplementedError: OSStatus { get } */
-export const kAudio_UnimplementedError: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 4122183291701862, undefined, []);
+export const kAudio_UnimplementedError: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 4122183291701862, undefined, []);
 
 /** var kAudioStreamAnyRate: Float64 { get } */
-export const kAudioStreamAnyRate: SDKHandle = callSDK<SDKHandle>("CoreAudioTypes_a624b245971cfd00", 3656004820982155, undefined, []);
+export const kAudioStreamAnyRate: SDKHandle = callSDK<SDKHandle>("CoreAudioTypes_86f7e029fa4ce140", 3656004820982155, undefined, []);
 
 /** var CA_PREFER_FIXED_POINT: Int32 { get } */
-export const CA_PREFER_FIXED_POINT: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 2528567499682019, undefined, []);
+export const CA_PREFER_FIXED_POINT: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 2528567499682019, undefined, []);
 
 /** var COREAUDIOTYPES_VERSION: Int32 { get } */
-export const COREAUDIOTYPES_VERSION: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 13705814134968, undefined, []);
+export const COREAUDIOTYPES_VERSION: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 13705814134968, undefined, []);
 
 /** var kAudioUnitSampleFractionBits: Int32 { get } */
-export const kAudioUnitSampleFractionBits: number = callSDK<number>("CoreAudioTypes_a624b245971cfd00", 1820130087671511, undefined, []);
+export const kAudioUnitSampleFractionBits: number = callSDK<number>("CoreAudioTypes_86f7e029fa4ce140", 1820130087671511, undefined, []);
 
-registerSDKClass("CoreAudioTypes.AudioBuffer", AudioBuffer, { module: "CoreAudioTypes_a624b245971cfd00", properties: {} });
-registerSDKClass("CoreAudioTypes.AudioBufferList", AudioBufferList, { module: "CoreAudioTypes_a624b245971cfd00", properties: {} });
-registerSDKClass("CoreAudioTypes.AudioChannelDescription", AudioChannelDescription, { module: "CoreAudioTypes_a624b245971cfd00", properties: {} });
-registerSDKClass("CoreAudioTypes.AudioChannelLayout", AudioChannelLayout, { module: "CoreAudioTypes_a624b245971cfd00", properties: {} });
-registerSDKClass("CoreAudioTypes.AudioClassDescription", AudioClassDescription, { module: "CoreAudioTypes_a624b245971cfd00", properties: {} });
-registerSDKClass("CoreAudioTypes.AudioFormatListItem", AudioFormatListItem, { module: "CoreAudioTypes_a624b245971cfd00", properties: {} });
-registerSDKClass("CoreAudioTypes.AudioStreamBasicDescription", AudioStreamBasicDescription, { module: "CoreAudioTypes_a624b245971cfd00", properties: {} });
-registerSDKClass("CoreAudioTypes.AudioStreamPacketDependencyDescription", AudioStreamPacketDependencyDescription, { module: "CoreAudioTypes_a624b245971cfd00", properties: {} });
-registerSDKClass("CoreAudioTypes.AudioStreamPacketDescription", AudioStreamPacketDescription, { module: "CoreAudioTypes_a624b245971cfd00", properties: {} });
-registerSDKClass("CoreAudioTypes.AudioTimeStamp", AudioTimeStamp, { module: "CoreAudioTypes_a624b245971cfd00", properties: {} });
-registerSDKClass("CoreAudioTypes.AudioValueRange", AudioValueRange, { module: "CoreAudioTypes_a624b245971cfd00", properties: {} });
-registerSDKClass("CoreAudioTypes.AudioValueTranslation", AudioValueTranslation, { module: "CoreAudioTypes_a624b245971cfd00", properties: {} });
-registerSDKClass("CoreAudioTypes.SMPTETime", SMPTETime, { module: "CoreAudioTypes_a624b245971cfd00", properties: {} });
+registerSDKClass("CoreAudioTypes.AudioBuffer", AudioBuffer, { module: "CoreAudioTypes_86f7e029fa4ce140", properties: {} });
+registerSDKClass("CoreAudioTypes.AudioBufferList", AudioBufferList, { module: "CoreAudioTypes_86f7e029fa4ce140", properties: {} });
+registerSDKClass("CoreAudioTypes.AudioChannelDescription", AudioChannelDescription, { module: "CoreAudioTypes_86f7e029fa4ce140", properties: {} });
+registerSDKClass("CoreAudioTypes.AudioChannelLayout", AudioChannelLayout, { module: "CoreAudioTypes_86f7e029fa4ce140", properties: {} });
+registerSDKClass("CoreAudioTypes.AudioClassDescription", AudioClassDescription, { module: "CoreAudioTypes_86f7e029fa4ce140", properties: {} });
+registerSDKClass("CoreAudioTypes.AudioFormatListItem", AudioFormatListItem, { module: "CoreAudioTypes_86f7e029fa4ce140", properties: {} });
+registerSDKClass("CoreAudioTypes.AudioStreamBasicDescription", AudioStreamBasicDescription, { module: "CoreAudioTypes_86f7e029fa4ce140", properties: {} });
+registerSDKClass("CoreAudioTypes.AudioStreamPacketDependencyDescription", AudioStreamPacketDependencyDescription, { module: "CoreAudioTypes_86f7e029fa4ce140", properties: {} });
+registerSDKClass("CoreAudioTypes.AudioStreamPacketDescription", AudioStreamPacketDescription, { module: "CoreAudioTypes_86f7e029fa4ce140", properties: {} });
+registerSDKClass("CoreAudioTypes.AudioTimeStamp", AudioTimeStamp, { module: "CoreAudioTypes_86f7e029fa4ce140", properties: {} });
+registerSDKClass("CoreAudioTypes.AudioValueRange", AudioValueRange, { module: "CoreAudioTypes_86f7e029fa4ce140", properties: {} });
+registerSDKClass("CoreAudioTypes.AudioValueTranslation", AudioValueTranslation, { module: "CoreAudioTypes_86f7e029fa4ce140", properties: {} });
+registerSDKClass("CoreAudioTypes.SMPTETime", SMPTETime, { module: "CoreAudioTypes_86f7e029fa4ce140", properties: {} });
