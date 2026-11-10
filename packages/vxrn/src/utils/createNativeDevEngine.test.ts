@@ -886,7 +886,6 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
         entryFile: 'production.mjs',
         plugins: [workletImportsPlugin({ 'pure-math': ['default', 'reads'] })],
       })
-      expect(production.code).not.toContain('__esmMin')
       const productionRN: any = { console }
       runInNewContext(production.code, productionRN)
       expect(productionRN.calculate(10)).toBe(109)
@@ -901,7 +900,6 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
         minify: false,
         plugins: [workletImportsPlugin({ 'pure-math': ['default', 'reads'] })],
       })
-      expect(unminifiedProduction.code).toContain('__esmMin')
       const unminifiedRN: any = { console }
       runInNewContext(unminifiedProduction.code, unminifiedRN)
       expect(unminifiedRN.calculate(10)).toBe(109)

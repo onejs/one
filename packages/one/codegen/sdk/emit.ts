@@ -864,9 +864,11 @@ function emitConformance(symbol: Symbol, bridge: Bridge, memberUsrs: string[], b
   const list = (names: string[]) => {
     const always = names.filter((n) => !needsCheck(laterVersion(versionOf.get(n), typeVersion)) || laterVersion(typeVersion, versionOf.get(n)) === typeVersion)
     const later = names.filter((n) => !always.includes(n))
-    const literal = (ns: string[]) => `[${ns.map((n) => `(${JSON.stringify(n)}, .${member(n)})`).join(', ')}]`
+    // Self.member, not a leading dot: a same-named global (a cf constant beside
+    // an extensible-enum member) makes the implicit member ambiguous.
+    const literal = (ns: string[]) => `[${ns.map((n) => `(${JSON.stringify(n)}, Self.${member(n)})`).join(', ')}]`
     if (!later.length) return literal(always)
-    return `{ var out: [(String, Self)] = ${literal(always)}; ${later.map((n) => `if #available(iOS ${versionOf.get(n)}, *) { out.append((${JSON.stringify(n)}, .${member(n)})) }`).join('; ')}; return out }()`
+    return `{ var out: [(String, Self)] = ${literal(always)}; ${later.map((n) => `if #available(iOS ${versionOf.get(n)}, *) { out.append((${JSON.stringify(n)}, Self.${member(n)})) }`).join('; ')}; return out }()`
   }
   const available = needsCheck(typeVersion) ? `@available(iOS ${typeVersion}, *)\n` : ''
   if (info.kind === 'enum' && info.cases?.length && !info.payload) {
