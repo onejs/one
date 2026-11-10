@@ -141,7 +141,7 @@ export function Root(props: RootProps) {
   const deferredPreloads = (props as any).deferredPreloads as string[] | undefined
   // a spa shell paints nothing until its entry's static imports run, so none of
   // them can wait. at low priority chrome trickles them in and delays paint.
-  const deferredPriority = (props as any).mode === 'spa-shell' ? undefined : 'low'
+  const deferredPriority = props.mode === 'spa-shell' ? undefined : 'low'
 
   let contents = (
     <ServerAsyncLocalIDContext.Provider value={value}>
