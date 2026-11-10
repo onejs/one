@@ -738,9 +738,11 @@
         "vitest": "^4.1.0",
       },
       "peerDependencies": {
+        "@react-native-community/template": "*",
         "@vxrn/vite-plugin-metro": "workspace:*",
       },
       "optionalPeers": [
+        "@react-native-community/template",
         "@vxrn/vite-plugin-metro",
       ],
     },

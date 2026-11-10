@@ -127,9 +127,13 @@
     "access": "public"
   },
   "peerDependencies": {
+    "@react-native-community/template": "*",
     "@vxrn/vite-plugin-metro": "workspace:*"
   },
   "peerDependenciesMeta": {
+    "@react-native-community/template": {
+      "optional": true
+    },
     "@vxrn/vite-plugin-metro": {
       "optional": true
     }
