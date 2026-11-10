@@ -139,13 +139,21 @@ export function Root(props: RootProps) {
   // render deferred modulepreload links in the tree
   // React 19 auto-hoists <link> tags to <head>
   const deferredPreloads = (props as any).deferredPreloads as string[] | undefined
+  // a spa shell paints nothing until its entry's static imports run, so none of
+  // them can wait. at low priority chrome trickles them in and delays paint.
+  const deferredPriority = (props as any).mode === 'spa-shell' ? undefined : 'low'
 
   let contents = (
     <ServerAsyncLocalIDContext.Provider value={value}>
       <ServerRenderID.Provider value={id}>
         {typeof window === 'undefined' &&
           deferredPreloads?.map((src) => (
-            <link key={src} rel="modulepreload" fetchPriority="low" href={src} />
+            <link
+              key={src}
+              rel="modulepreload"
+              fetchPriority={deferredPriority}
+              href={src}
+            />
           ))}
         {/* one owns the safe area provider on every platform: apps read it
             through One.UI.SafeArea and never mount their own */}
