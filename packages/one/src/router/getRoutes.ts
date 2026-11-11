@@ -62,9 +62,9 @@ export function getRoutes(
 
   const rootNode = flattenDirectoryTreeToRoutes(directoryTree, options)
 
-  if (!options.ignoreEntryPoints) {
-    crawlAndAppendInitialRoutesAndEntryFiles(rootNode, options)
-  }
+  // initial route names always resolve: a client router skips entry points but
+  // still needs unstable_settings.initialRouteName to build a deep link's stack.
+  crawlAndAppendInitialRoutesAndEntryFiles(rootNode, options)
 
   return rootNode
 }
@@ -831,7 +831,9 @@ function crawlAndAppendInitialRoutesAndEntryFiles(
   entryPoints: string[] = []
 ) {
   if (node.type === 'spa' || node.type === 'ssg' || node.type === 'ssr') {
-    node.entryPoints = [...new Set([...entryPoints, node.contextKey])]
+    if (!options.ignoreEntryPoints) {
+      node.entryPoints = [...new Set([...entryPoints, node.contextKey])]
+    }
   } else if (node.type === 'layout') {
     if (!node.children) {
       throw new Error(`Layout "${node.contextKey}" does not contain any child routes`)
