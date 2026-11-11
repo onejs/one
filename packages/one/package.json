@@ -304,7 +304,6 @@
     "perfect-debounce": "^1.0.0",
     "picocolors": "^1.0.0",
     "react-compiler-runtime": "^1.0.0",
-    "react-native-css-interop": "^0.2.6",
     "react-native-nitro-image": "0.15.2",
     "react-native-nitro-modules": "0.37.1",
     "react-native-nitro-web-image": "0.15.2",
@@ -342,7 +341,8 @@
     "@babel/types": "^7.28.5",
     "babel-dead-code-elimination": "1.0.10",
     "babel-plugin-module-resolver": "^5.0.2",
-    "@vxrn/vite-plugin-metro": "workspace:*"
+    "@vxrn/vite-plugin-metro": "workspace:*",
+    "react-native-css-interop": "^0.2.6"
   },
   "peerDependenciesMeta": {
     "@react-native/babel-preset": {
@@ -401,6 +401,9 @@
     },
     "@vxrn/vite-plugin-metro": {
       "optional": true
+    },
+    "react-native-css-interop": {
+      "optional": true
     }
   },
   "devDependencies": {
@@ -444,7 +447,8 @@
     "@babel/types": "^7.28.5",
     "babel-dead-code-elimination": "1.0.10",
     "babel-plugin-module-resolver": "^5.0.2",
-    "@vxrn/vite-plugin-metro": "workspace:*"
+    "@vxrn/vite-plugin-metro": "workspace:*",
+    "react-native-css-interop": "^0.2.6"
   },
   "publishConfig": {
     "access": "public"
