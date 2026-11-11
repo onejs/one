@@ -370,7 +370,7 @@ export async function createVXRNCompilerPlugin(
   const cssTransformCache = new Map<string, string>()
 
   // fix so we can align the diff between vite and rolldown id (rolldown resolves from root monorepo)
-  const rolldownPath = resolvePath('rolldown')
+  const rolldownPath = resolvePath('rolldown', dirname(fileURLToPath(import.meta.url)))
   const rolldownNodeMods = rolldownPath.slice(
     0,
     rolldownPath.indexOf(sep + 'node_modules')
