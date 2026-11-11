@@ -103,6 +103,7 @@ export interface NativeAppManifest {
             light: string;
             dark?: string;
         };
+        assetCatalog?: string;
         faceIdUsageDescription?: string;
         fileSharing?: boolean;
         associatedDomains?: string[];

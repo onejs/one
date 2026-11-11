@@ -2027,6 +2027,29 @@ describe('generateForPlatform determinism', () => {
     expect(plist).toContain('<key>NSAccentColorName</key>\n\t<string>AccentColor</string>')
   }, 180000)
 
+  it('merges the declared asset catalog and refuses a generated name', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-catalog-'))
+    const catalog = join(output, 'app.xcassets')
+    mkdirSync(join(catalog, 'tab-chat.imageset'), { recursive: true })
+    writeFileSync(join(catalog, 'Contents.json'), '{"info":{"author":"xcode","version":1}}')
+    writeFileSync(join(catalog, 'tab-chat.imageset', 'Contents.json'), '{"images":[]}')
+    writeFileSync(join(catalog, 'tab-chat.imageset', 'tab-chat.png'), 'png')
+    const declared = {
+      ...app,
+      ios: { ...app.ios, accentColor: { light: '#867286' }, assetCatalog: catalog },
+    }
+    await generateForPlatform(workspaceRoot, 'ios', declared, join(output, 'ios'))
+    const merged = join(output, 'ios', 'MyApp', 'Images.xcassets')
+    expect(readFileSync(join(merged, 'tab-chat.imageset', 'tab-chat.png'), 'utf8')).toBe('png')
+    expect(existsSync(join(merged, 'AccentColor.colorset', 'Contents.json'))).toBe(true)
+
+    mkdirSync(join(catalog, 'AccentColor.colorset'))
+    await expect(
+      generateForPlatform(workspaceRoot, 'ios', declared, join(output, 'ios'))
+    ).rejects.toThrow('AccentColor.colorset collides')
+  }, 180000)
+
   it('regenerates byte-identical projects from the same manifest', async () => {
     // root stays the workspace so the installed community template resolves;
     // output goes to isolated temp dirs, never the repo.

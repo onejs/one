@@ -206,6 +206,10 @@ The rest of `native.app` covers appearance, links, and store settings:
 - `ios.accentColor`: `{ light, dark }` hex colors for the app's tint (tab
   selection, text cursor, system controls), read in JS as
   `PlatformColor('AccentColor')`.
+- `ios.assetCatalog`: a project-relative `.xcassets` folder, in the format Xcode
+  writes, whose imagesets, colorsets and symbolsets prebuild merges into the
+  app's asset catalog, for `UIImage(named:)` and a tab's `image`. A name
+  prebuild generates itself, such as `AppIcon` or `AccentColor`, is an error.
 - `fonts`: project-relative `.ttf` or `.otf` files bundled into the app. iOS
   lists them in `UIAppFonts`; Android loads them from `assets/fonts`. Use the
   font's own family name in styles.
