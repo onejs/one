@@ -17,7 +17,7 @@ private struct SwipeActionsActionsContent: View {
 }
 
 @objcMembers
-public final class OneNativeSwipeActionsActionsView: OneNativeContainerView {
+public final class OneNativeSwipeActionsActionsView: OneNativeMarkerView {
   public var edge: String = "trailing"
   public var allowsFullSwipe: Bool = true
   var onConfigurationChange: (() -> Void)?
