@@ -72,3 +72,19 @@ describe('getRoutes', () => {
     expect(notFoundRoutes[0].generated).toBe(true)
   })
 })
+
+describe('getRoutes initial routes', () => {
+  it('reads unstable_settings.initialRouteName when entry points are ignored', () => {
+    const ctx = createMockContext({
+      './_layout.tsx': { default: () => null, unstable_settings: { initialRouteName: '(tabs)' } },
+      './(tabs)/_layout.tsx': { default: () => null },
+      './(tabs)/index.tsx': { default: () => null },
+      './session/[id].tsx': { default: () => null },
+    })
+
+    const root = getRoutes(ctx, { ignoreEntryPoints: true, ignoreRequireErrors: true, platform: 'ios' })
+
+    expect(root?.initialRouteName).toBe('(tabs)')
+    expect(collectRoutes(root!).every((route) => route.entryPoints === undefined)).toBe(true)
+  })
+})
