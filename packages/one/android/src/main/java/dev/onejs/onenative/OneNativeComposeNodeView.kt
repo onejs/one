@@ -404,8 +404,8 @@ internal data class OneNativeMaterialColorScheme(
     val dark: OneNativeMaterialColors? = null,
 ) {
     companion object {
-        fun fromMap(map: ReadableMap?, context: Context): OneNativeMaterialColorScheme {
-            if (map == null) return OneNativeMaterialColorScheme()
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeMaterialColorScheme? {
+            if (map == null) return null
             fun appearance(name: String) =
                 if (map.hasKey(name) && !map.isNull(name)) map.getMap(name)?.let { OneNativeMaterialColors.fromMap(it, context) } else null
             return OneNativeMaterialColorScheme(light = appearance("light"), dark = appearance("dark"))
@@ -1026,7 +1026,7 @@ internal data class OneNativeNavigationBarItemColors(
 
 internal data class OneNativeComposeNodeProps(
     val familyOptions: OneNativeComposeFamilyOptions = OneNativeComposeFamilyOptions(),
-    val materialColorScheme: OneNativeMaterialColorScheme = OneNativeMaterialColorScheme(),
+    val materialColorScheme: OneNativeMaterialColorScheme? = null,
     val nodeType: String? = null,
     val text: String? = null,
     val fontSize: Double = -1.0,
@@ -1201,6 +1201,8 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         private set
     private var submitEventCount = 0
     private var logicalParent: OneNativeComposeNodeView? = null
+    internal val nestedInComposeTree: Boolean
+        get() = logicalParent != null
     private var intrinsicHeight = false
     private var reportedContentHeight = -1
     private val contentLayout = Runnable { layoutComposeContent() }
@@ -1224,7 +1226,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         clipChildren = false
         super.addView(composeView)
         composeView.setContent {
-            OneNativeMaterialTheme(committedProps.materialColorScheme) {
+            OneNativeMaterialTheme(committedProps.materialColorScheme ?: OneNativeMaterialColorScheme()) {
                 Box(modifier = Modifier.fillMaxSize()) {
                     RenderComposeNode(
                         this@OneNativeComposeNodeView,
@@ -2022,10 +2024,27 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     }
 }
 
+// a MaterialTheme inside a Compose tree reaches native as a scheme on its first
+// node below it, which opens a nested theme there the way Compose nests one
 @Composable
 internal fun RenderComposeNode(
     node: OneNativeComposeNodeView,
     outerModifier: Modifier = Modifier,
+) {
+    val nestedScheme = node.renderedProps.materialColorScheme?.takeIf { node.nestedInComposeTree }
+    if (nestedScheme != null) {
+        MaterialTheme(colorScheme = rememberOneNativeColorScheme(nestedScheme)) {
+            RenderComposeNodeContent(node, outerModifier)
+        }
+    } else {
+        RenderComposeNodeContent(node, outerModifier)
+    }
+}
+
+@Composable
+private fun RenderComposeNodeContent(
+    node: OneNativeComposeNodeView,
+    outerModifier: Modifier,
 ) {
     val props = node.renderedProps
     val style = props.composeStyle
@@ -3060,25 +3079,29 @@ private fun OneNativeMaterialTheme(
     supplied: OneNativeMaterialColorScheme,
     content: @Composable () -> Unit,
 ) {
-    val context = LocalContext.current
-    val configuration = LocalConfiguration.current
-    val dark = configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
-    val colors = if (dark) supplied.dark else supplied.light
-    val colorScheme =
-        remember(context, configuration.uiMode, colors) {
-            if (colors != null) {
-                colors.applyTo(if (dark) darkColorScheme() else lightColorScheme())
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                if (dark) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-            } else {
-                if (dark) darkColorScheme() else lightColorScheme()
-            }
-        }
+    val colorScheme = rememberOneNativeColorScheme(supplied)
     MaterialTheme(colorScheme = colorScheme) {
         androidx.compose.runtime.CompositionLocalProvider(
             LocalContentColor provides colorScheme.onSurface,
             content = content,
         )
+    }
+}
+
+@Composable
+private fun rememberOneNativeColorScheme(supplied: OneNativeMaterialColorScheme): ColorScheme {
+    val context = LocalContext.current
+    val configuration = LocalConfiguration.current
+    val dark = configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+    val colors = if (dark) supplied.dark else supplied.light
+    return remember(context, configuration.uiMode, colors) {
+        if (colors != null) {
+            colors.applyTo(if (dark) darkColorScheme() else lightColorScheme())
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (dark) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        } else {
+            if (dark) darkColorScheme() else lightColorScheme()
+        }
     }
 }
 

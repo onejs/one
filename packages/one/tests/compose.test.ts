@@ -171,6 +171,23 @@ describe('material theme', () => {
     expect(tree.children[0].props.materialColorScheme).toBeUndefined()
   })
 
+  it('opens a nested scheme where a theme sits inside the tree', () => {
+    const inner = { light: { primary: '#1E40AF' } }
+    const tree = render(Compose.MaterialTheme, {
+      colorScheme,
+      children: createElement(Compose.Column, {
+        children: createElement(Compose.MaterialTheme, {
+          colorScheme: inner,
+          children: createElement(Compose.Row, { children: createElement(Compose.Text, { text: 'Hi' }) }),
+        }),
+      }),
+    })
+    expect(tree.props.materialColorScheme).toBe(colorScheme)
+    const row = tree.children[0]
+    expect(row.props).toMatchObject({ nodeType: 'row', materialColorScheme: inner })
+    expect(row.children[0].props.materialColorScheme).toBeUndefined()
+  })
+
   it('renders its children outside Android', () => {
     expect(render(Unsupported.MaterialTheme, { colorScheme, children: 'content' })).toBe('content')
   })
