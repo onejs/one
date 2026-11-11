@@ -56,6 +56,7 @@ import type {
   ComposeLazyContentPadding,
   ComposeLazyRowProps,
   ComposeListItemProps,
+  ComposeMaterialThemeProps,
   ComposeLoadingIndicatorProps,
   ComposeModalBottomSheetProperties,
   ComposeModalBottomSheetProps,
@@ -401,6 +402,16 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
 
 const ComposeContext = createContext(false)
 
+// the scheme rides on each tree root, where native opens its MaterialTheme; nested
+// nodes read it from the Compose composition
+const MaterialSchemeContext = createContext<ComposeMaterialThemeProps['colorScheme'] | undefined>(undefined)
+
+function MaterialTheme({ children, colorScheme }: ComposeMaterialThemeProps) {
+  return (
+    <MaterialSchemeContext.Provider value={colorScheme}>{children}</MaterialSchemeContext.Provider>
+  )
+}
+
 const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
   'shape',
   'daterangepicker',
@@ -437,6 +448,7 @@ function ComposeNode({
   ...props
 }: ComposeNativeNodeProps) {
   const nested = useContext(ComposeContext)
+  const materialColorScheme = useContext(MaterialSchemeContext)
   const [contentHeight, setContentHeight] = useState<number>()
   const rootStyle = StyleSheet.flatten(style)
   const intrinsicHeight =
@@ -459,6 +471,7 @@ function ComposeNode({
       {...props}
       composeStyle={composeStyle}
       intrinsicHeight={intrinsicHeight}
+      materialColorScheme={nested ? undefined : materialColorScheme}
       onNativeComposeNodeContentSizeChange={
         intrinsicHeight
           ? (event) => setContentHeight(event.nativeEvent.height)
@@ -2304,6 +2317,7 @@ function SyncSwitch({
 }
 
 export const Compose = {
+  MaterialTheme,
   BasicAlertDialog,
   HorizontalCenteredHeroCarousel,
   HorizontalMultiBrowseCarousel,

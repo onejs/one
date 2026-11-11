@@ -131,6 +131,7 @@ import androidx.compose.material3.ContainedLoadingIndicator
 import androidx.compose.material3.LoadingIndicatorDefaults
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedCard
@@ -238,6 +239,177 @@ internal fun readComposeColor(map: ReadableMap, name: String, context: Context):
                     ?: runCatching { AndroidColor.parseColor(value) }.getOrNull()
             }
         else -> null
+    }
+}
+
+internal data class OneNativeMaterialColors(
+    val primary: Int? = null,
+    val onPrimary: Int? = null,
+    val primaryContainer: Int? = null,
+    val onPrimaryContainer: Int? = null,
+    val inversePrimary: Int? = null,
+    val secondary: Int? = null,
+    val onSecondary: Int? = null,
+    val secondaryContainer: Int? = null,
+    val onSecondaryContainer: Int? = null,
+    val tertiary: Int? = null,
+    val onTertiary: Int? = null,
+    val tertiaryContainer: Int? = null,
+    val onTertiaryContainer: Int? = null,
+    val background: Int? = null,
+    val onBackground: Int? = null,
+    val surface: Int? = null,
+    val onSurface: Int? = null,
+    val surfaceVariant: Int? = null,
+    val onSurfaceVariant: Int? = null,
+    val surfaceTint: Int? = null,
+    val inverseSurface: Int? = null,
+    val inverseOnSurface: Int? = null,
+    val error: Int? = null,
+    val onError: Int? = null,
+    val errorContainer: Int? = null,
+    val onErrorContainer: Int? = null,
+    val outline: Int? = null,
+    val outlineVariant: Int? = null,
+    val scrim: Int? = null,
+    val surfaceBright: Int? = null,
+    val surfaceContainer: Int? = null,
+    val surfaceContainerHigh: Int? = null,
+    val surfaceContainerHighest: Int? = null,
+    val surfaceContainerLow: Int? = null,
+    val surfaceContainerLowest: Int? = null,
+    val surfaceDim: Int? = null,
+    val primaryFixed: Int? = null,
+    val primaryFixedDim: Int? = null,
+    val onPrimaryFixed: Int? = null,
+    val onPrimaryFixedVariant: Int? = null,
+    val secondaryFixed: Int? = null,
+    val secondaryFixedDim: Int? = null,
+    val onSecondaryFixed: Int? = null,
+    val onSecondaryFixedVariant: Int? = null,
+    val tertiaryFixed: Int? = null,
+    val tertiaryFixedDim: Int? = null,
+    val onTertiaryFixed: Int? = null,
+    val onTertiaryFixedVariant: Int? = null,
+) {
+    fun applyTo(base: ColorScheme): ColorScheme = base.copy(
+        primary = primary?.let(::Color) ?: base.primary,
+        onPrimary = onPrimary?.let(::Color) ?: base.onPrimary,
+        primaryContainer = primaryContainer?.let(::Color) ?: base.primaryContainer,
+        onPrimaryContainer = onPrimaryContainer?.let(::Color) ?: base.onPrimaryContainer,
+        inversePrimary = inversePrimary?.let(::Color) ?: base.inversePrimary,
+        secondary = secondary?.let(::Color) ?: base.secondary,
+        onSecondary = onSecondary?.let(::Color) ?: base.onSecondary,
+        secondaryContainer = secondaryContainer?.let(::Color) ?: base.secondaryContainer,
+        onSecondaryContainer = onSecondaryContainer?.let(::Color) ?: base.onSecondaryContainer,
+        tertiary = tertiary?.let(::Color) ?: base.tertiary,
+        onTertiary = onTertiary?.let(::Color) ?: base.onTertiary,
+        tertiaryContainer = tertiaryContainer?.let(::Color) ?: base.tertiaryContainer,
+        onTertiaryContainer = onTertiaryContainer?.let(::Color) ?: base.onTertiaryContainer,
+        background = background?.let(::Color) ?: base.background,
+        onBackground = onBackground?.let(::Color) ?: base.onBackground,
+        surface = surface?.let(::Color) ?: base.surface,
+        onSurface = onSurface?.let(::Color) ?: base.onSurface,
+        surfaceVariant = surfaceVariant?.let(::Color) ?: base.surfaceVariant,
+        onSurfaceVariant = onSurfaceVariant?.let(::Color) ?: base.onSurfaceVariant,
+        // lightColorScheme and darkColorScheme tint surfaces with the supplied primary
+        surfaceTint = (surfaceTint ?: primary)?.let(::Color) ?: base.surfaceTint,
+        inverseSurface = inverseSurface?.let(::Color) ?: base.inverseSurface,
+        inverseOnSurface = inverseOnSurface?.let(::Color) ?: base.inverseOnSurface,
+        error = error?.let(::Color) ?: base.error,
+        onError = onError?.let(::Color) ?: base.onError,
+        errorContainer = errorContainer?.let(::Color) ?: base.errorContainer,
+        onErrorContainer = onErrorContainer?.let(::Color) ?: base.onErrorContainer,
+        outline = outline?.let(::Color) ?: base.outline,
+        outlineVariant = outlineVariant?.let(::Color) ?: base.outlineVariant,
+        scrim = scrim?.let(::Color) ?: base.scrim,
+        surfaceBright = surfaceBright?.let(::Color) ?: base.surfaceBright,
+        surfaceContainer = surfaceContainer?.let(::Color) ?: base.surfaceContainer,
+        surfaceContainerHigh = surfaceContainerHigh?.let(::Color) ?: base.surfaceContainerHigh,
+        surfaceContainerHighest = surfaceContainerHighest?.let(::Color) ?: base.surfaceContainerHighest,
+        surfaceContainerLow = surfaceContainerLow?.let(::Color) ?: base.surfaceContainerLow,
+        surfaceContainerLowest = surfaceContainerLowest?.let(::Color) ?: base.surfaceContainerLowest,
+        surfaceDim = surfaceDim?.let(::Color) ?: base.surfaceDim,
+        primaryFixed = primaryFixed?.let(::Color) ?: base.primaryFixed,
+        primaryFixedDim = primaryFixedDim?.let(::Color) ?: base.primaryFixedDim,
+        onPrimaryFixed = onPrimaryFixed?.let(::Color) ?: base.onPrimaryFixed,
+        onPrimaryFixedVariant = onPrimaryFixedVariant?.let(::Color) ?: base.onPrimaryFixedVariant,
+        secondaryFixed = secondaryFixed?.let(::Color) ?: base.secondaryFixed,
+        secondaryFixedDim = secondaryFixedDim?.let(::Color) ?: base.secondaryFixedDim,
+        onSecondaryFixed = onSecondaryFixed?.let(::Color) ?: base.onSecondaryFixed,
+        onSecondaryFixedVariant = onSecondaryFixedVariant?.let(::Color) ?: base.onSecondaryFixedVariant,
+        tertiaryFixed = tertiaryFixed?.let(::Color) ?: base.tertiaryFixed,
+        tertiaryFixedDim = tertiaryFixedDim?.let(::Color) ?: base.tertiaryFixedDim,
+        onTertiaryFixed = onTertiaryFixed?.let(::Color) ?: base.onTertiaryFixed,
+        onTertiaryFixedVariant = onTertiaryFixedVariant?.let(::Color) ?: base.onTertiaryFixedVariant,
+    )
+
+    companion object {
+        fun fromMap(map: ReadableMap, context: Context): OneNativeMaterialColors =
+            OneNativeMaterialColors(
+                primary = readComposeColor(map, "primary", context),
+                onPrimary = readComposeColor(map, "onPrimary", context),
+                primaryContainer = readComposeColor(map, "primaryContainer", context),
+                onPrimaryContainer = readComposeColor(map, "onPrimaryContainer", context),
+                inversePrimary = readComposeColor(map, "inversePrimary", context),
+                secondary = readComposeColor(map, "secondary", context),
+                onSecondary = readComposeColor(map, "onSecondary", context),
+                secondaryContainer = readComposeColor(map, "secondaryContainer", context),
+                onSecondaryContainer = readComposeColor(map, "onSecondaryContainer", context),
+                tertiary = readComposeColor(map, "tertiary", context),
+                onTertiary = readComposeColor(map, "onTertiary", context),
+                tertiaryContainer = readComposeColor(map, "tertiaryContainer", context),
+                onTertiaryContainer = readComposeColor(map, "onTertiaryContainer", context),
+                background = readComposeColor(map, "background", context),
+                onBackground = readComposeColor(map, "onBackground", context),
+                surface = readComposeColor(map, "surface", context),
+                onSurface = readComposeColor(map, "onSurface", context),
+                surfaceVariant = readComposeColor(map, "surfaceVariant", context),
+                onSurfaceVariant = readComposeColor(map, "onSurfaceVariant", context),
+                surfaceTint = readComposeColor(map, "surfaceTint", context),
+                inverseSurface = readComposeColor(map, "inverseSurface", context),
+                inverseOnSurface = readComposeColor(map, "inverseOnSurface", context),
+                error = readComposeColor(map, "error", context),
+                onError = readComposeColor(map, "onError", context),
+                errorContainer = readComposeColor(map, "errorContainer", context),
+                onErrorContainer = readComposeColor(map, "onErrorContainer", context),
+                outline = readComposeColor(map, "outline", context),
+                outlineVariant = readComposeColor(map, "outlineVariant", context),
+                scrim = readComposeColor(map, "scrim", context),
+                surfaceBright = readComposeColor(map, "surfaceBright", context),
+                surfaceContainer = readComposeColor(map, "surfaceContainer", context),
+                surfaceContainerHigh = readComposeColor(map, "surfaceContainerHigh", context),
+                surfaceContainerHighest = readComposeColor(map, "surfaceContainerHighest", context),
+                surfaceContainerLow = readComposeColor(map, "surfaceContainerLow", context),
+                surfaceContainerLowest = readComposeColor(map, "surfaceContainerLowest", context),
+                surfaceDim = readComposeColor(map, "surfaceDim", context),
+                primaryFixed = readComposeColor(map, "primaryFixed", context),
+                primaryFixedDim = readComposeColor(map, "primaryFixedDim", context),
+                onPrimaryFixed = readComposeColor(map, "onPrimaryFixed", context),
+                onPrimaryFixedVariant = readComposeColor(map, "onPrimaryFixedVariant", context),
+                secondaryFixed = readComposeColor(map, "secondaryFixed", context),
+                secondaryFixedDim = readComposeColor(map, "secondaryFixedDim", context),
+                onSecondaryFixed = readComposeColor(map, "onSecondaryFixed", context),
+                onSecondaryFixedVariant = readComposeColor(map, "onSecondaryFixedVariant", context),
+                tertiaryFixed = readComposeColor(map, "tertiaryFixed", context),
+                tertiaryFixedDim = readComposeColor(map, "tertiaryFixedDim", context),
+                onTertiaryFixed = readComposeColor(map, "onTertiaryFixed", context),
+                onTertiaryFixedVariant = readComposeColor(map, "onTertiaryFixedVariant", context),
+            )
+    }
+}
+
+internal data class OneNativeMaterialColorScheme(
+    val light: OneNativeMaterialColors? = null,
+    val dark: OneNativeMaterialColors? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeMaterialColorScheme {
+            if (map == null) return OneNativeMaterialColorScheme()
+            fun appearance(name: String) =
+                if (map.hasKey(name) && !map.isNull(name)) map.getMap(name)?.let { OneNativeMaterialColors.fromMap(it, context) } else null
+            return OneNativeMaterialColorScheme(light = appearance("light"), dark = appearance("dark"))
+        }
     }
 }
 
@@ -854,6 +1026,7 @@ internal data class OneNativeNavigationBarItemColors(
 
 internal data class OneNativeComposeNodeProps(
     val familyOptions: OneNativeComposeFamilyOptions = OneNativeComposeFamilyOptions(),
+    val materialColorScheme: OneNativeMaterialColorScheme = OneNativeMaterialColorScheme(),
     val nodeType: String? = null,
     val text: String? = null,
     val fontSize: Double = -1.0,
@@ -1051,7 +1224,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         clipChildren = false
         super.addView(composeView)
         composeView.setContent {
-            OneNativeMaterialTheme {
+            OneNativeMaterialTheme(committedProps.materialColorScheme) {
                 Box(modifier = Modifier.fillMaxSize()) {
                     RenderComposeNode(
                         this@OneNativeComposeNodeView,
@@ -1245,6 +1418,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageSwitchColors(value: ReadableMap?) {
         pendingProps = pendingProps.copy(switchColors = OneNativeSwitchColors.fromMap(value, context))
+    }
+
+    internal fun stageMaterialColorScheme(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(materialColorScheme = OneNativeMaterialColorScheme.fromMap(value, context))
     }
 
     internal fun stageCardColors(value: ReadableMap?) {
@@ -2879,13 +3056,19 @@ private fun RenderComposeChip(
 }
 
 @Composable
-private fun OneNativeMaterialTheme(content: @Composable () -> Unit) {
+private fun OneNativeMaterialTheme(
+    supplied: OneNativeMaterialColorScheme,
+    content: @Composable () -> Unit,
+) {
     val context = LocalContext.current
     val configuration = LocalConfiguration.current
     val dark = configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+    val colors = if (dark) supplied.dark else supplied.light
     val colorScheme =
-        remember(context, configuration.uiMode) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        remember(context, configuration.uiMode, colors) {
+            if (colors != null) {
+                colors.applyTo(if (dark) darkColorScheme() else lightColorScheme())
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 if (dark) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
             } else {
                 if (dark) darkColorScheme() else lightColorScheme()

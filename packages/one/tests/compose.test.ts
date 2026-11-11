@@ -158,6 +158,24 @@ describe('button', () => {
 
 // off android every Compose node throws: a missing stub is undefined at the
 // call site, which React reads as a component type it cannot render.
+describe('material theme', () => {
+  const colorScheme = { light: { primary: '#0B6E4F' }, dark: { primary: '#7FD8B4' } }
+
+  it('carries the scheme to the tree root only', () => {
+    const tree = render(Compose.MaterialTheme, {
+      colorScheme,
+      children: createElement(Compose.Column, { children: createElement(Compose.Text, { text: 'Hi' }) }),
+    })
+    expect(tree.props).toMatchObject({ nodeType: 'column', materialColorScheme: colorScheme })
+    expect(tree.children[0].props.nodeType).toBe('text')
+    expect(tree.children[0].props.materialColorScheme).toBeUndefined()
+  })
+
+  it('renders its children outside Android', () => {
+    expect(render(Unsupported.MaterialTheme, { colorScheme, children: 'content' })).toBe('content')
+  })
+})
+
 describe('compose surface', () => {
   it('throws for every node without the native build', () => {
     for (const name of [
