@@ -1309,11 +1309,20 @@ class HybridOneNotifications :
         }
 
         // a force stop cancels the app's alarms; opening the app sets the
-        // stored future ones again at their saved dates.
+        // stored future ones again at their saved dates, restarts repeats that
+        // missed their fire from now, and drops expired one-shots.
         private fun restoreAlarms(context: Context) {
             val now = System.currentTimeMillis()
             for (schedule in loadSchedules(context)) {
-                if (schedule.fireAtMs > now) setAlarm(context, schedule.identifier, schedule.fireAtMs)
+                if (schedule.fireAtMs > now) {
+                    setAlarm(context, schedule.identifier, schedule.fireAtMs)
+                } else if (schedule.repeats) {
+                    val rearmed = schedule.copy(fireAtMs = now + (schedule.seconds * 1000).toLong())
+                    saveSchedule(context, rearmed)
+                    setAlarm(context, schedule.identifier, rearmed.fireAtMs)
+                } else {
+                    removeSchedule(context, schedule.identifier)
+                }
             }
         }
 
