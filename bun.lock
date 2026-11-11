@@ -659,6 +659,8 @@
         "oxc-parser": "^0.112.0",
         "oxc-transform": "^0.148.0",
         "picocolors": "^1.0.0",
+        "resolve-workspace-root": "^2.0.1",
+        "tinyglobby": "^0.2.17",
       },
       "devDependencies": {
         "@biomejs/biome": "2.5.15",
