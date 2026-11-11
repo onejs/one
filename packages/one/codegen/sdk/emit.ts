@@ -953,7 +953,7 @@ ${slice.map((e) => `    case ${e.id}: return ${JSON.stringify(argumentNames(e))}
     const groups: string[] = []
     for (let at = 0; at < list.length; at += CHUNK) {
       const slice = list.slice(at, at + CHUNK)
-      groups.push(`    if id >= ${slice[0].id} && id <= ${slice.at(-1)!.id} { return try ${isAsync ? 'await ' : ''}${isAsync ? 'async' : 'sync'}${at / CHUNK}(id, c) }`)
+      groups.push(`    if id >= (${slice[0].id} as Int64) && id <= (${slice.at(-1)!.id} as Int64) { return try ${isAsync ? 'await ' : ''}${isAsync ? 'async' : 'sync'}${at / CHUNK}(id, c) }`)
     }
     return groups
   }
@@ -973,12 +973,12 @@ ${conformances.join('\n\n')}
 
 enum ${name} {
   @MainActor static func observe(_ id: Int64, _ c: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription {
-${observations.map((_, i) => { const slice = observed.slice(i * CHUNK, (i + 1) * CHUNK); return `    if id >= ${slice[0].id} && id <= ${slice.at(-1)!.id} { return try observe${i}(id, c, emit) }` }).join('\n')}
+${observations.map((_, i) => { const slice = observed.slice(i * CHUNK, (i + 1) * CHUNK); return `    if id >= (${slice[0].id} as Int64) && id <= (${slice.at(-1)!.id} as Int64) { return try observe${i}(id, c, emit) }` }).join('\n')}
     throw OneSDKError.unsupported("observable property ${module}.\\(id)")
   }
 
   static func argumentNames(_ id: Int64) -> [String] {
-${names.map((_, i) => { const slice = named.slice(i * CHUNK, (i + 1) * CHUNK); return `    if id >= ${slice[0].id} && id <= ${slice.at(-1)!.id} { return names${i}(id) ?? [] }` }).join('\n')}
+${names.map((_, i) => { const slice = named.slice(i * CHUNK, (i + 1) * CHUNK); return `    if id >= (${slice[0].id} as Int64) && id <= (${slice.at(-1)!.id} as Int64) { return names${i}(id) ?? [] }` }).join('\n')}
     return []
   }
 
