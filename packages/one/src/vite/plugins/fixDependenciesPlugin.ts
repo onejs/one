@@ -4,8 +4,7 @@ import type { One } from '../types'
 
 export function fixDependenciesPlugin(options?: One.FixDependencies): Plugin {
   const patches: DepPatch[] = []
-  for (const key in options) {
-    const value = options[key]
+  for (const [key, value] of Object.entries(options || {})) {
     if (value && typeof value === 'object') {
       patches.push({
         module: key,

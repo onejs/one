@@ -55,10 +55,12 @@ export namespace One {
     routeModes?: Record<string, RouteRenderMode>
   }
 
-  // todo move into vxrn
-  export type FixDependencies = {
-    [key: string]: DepPatch['patchFiles']
-  }
+  // false skips every built-in patch; a module set to false skips its built-in patch
+  export type FixDependencies =
+    | false
+    | {
+        [key: string]: DepPatch['patchFiles'] | false
+      }
 
   type PluginPlatformTarget = 'native' | 'web'
 

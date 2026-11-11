@@ -2,6 +2,7 @@ import { execFileSync } from 'node:child_process'
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import module from 'node:module'
 import path from 'node:path'
+import type { UserDepPatches } from './patches'
 
 // expo-free run: one owns the dev server, the port, and device forwarding
 // arguments. react native community cli owns build, install, and launch.
@@ -84,6 +85,7 @@ export async function nativeRun({
   simulator,
   udid,
   spawn = defaultSpawn,
+  patches,
 }: {
   root: string
   platform: 'ios' | 'android'
@@ -91,12 +93,13 @@ export async function nativeRun({
   simulator?: string
   udid?: string
   spawn?: NativeRunSpawn
+  patches?: UserDepPatches
 }) {
   const { fillOptions } = await import('../config/getOptionsFilled')
   const { applyBuiltInPatches } = await import('../utils/patches')
   const options = await fillOptions({ root })
 
-  await applyBuiltInPatches(options)
+  await applyBuiltInPatches({ root: options.root, patches })
 
   const { command, argv, port: resolvedPort } = buildNativeRunCommand({
     platform,

@@ -997,6 +997,16 @@ export default {
 
 Any transforms that are applied to specific files in node_modules will only be applied once. The original files will be stored alongside the transformed ones.
 
+One also applies a few built-in patches to React Native packages. Set `patches: false` to skip all of them, or set a package to `false` to skip only its built-in patch:
+
+```tsx fileName=vite.config.ts
+one({
+  patches: {
+    'react-native': false,
+  },
+})
+```
+
 ## router
 
 The router object allows you to configure routing behavior.

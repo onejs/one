@@ -3,7 +3,7 @@ import { existsSync, lstatSync, readdirSync, readFileSync, renameSync, rmSync } 
 import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fillOptions } from '../config/getOptionsFilled'
-import { applyBuiltInPatches } from '../utils/patches'
+import { applyBuiltInPatches, type UserDepPatches } from '../utils/patches'
 import {
   applyAndroidDependencyPatches,
   generateForPlatform,
@@ -22,6 +22,7 @@ export const prebuild = async ({
   'no-install': noInstall = false,
   app,
   beforeInstall,
+  patches,
 }: {
   root: string
   platform?: 'ios' | 'android' | string
@@ -30,12 +31,13 @@ export const prebuild = async ({
   // runs once the native projects exist and before discovery and install, so
   // a caller can add local pods the podfile picks up
   beforeInstall?: () => Promise<void>
+  patches?: UserDepPatches
 }) => {
   validatePrebuildApp(app, platform)
 
   const options = await fillOptions({ root })
 
-  await applyBuiltInPatches(options)
+  await applyBuiltInPatches({ root: options.root, patches })
 
   try {
     const packageJsonPath = path.join(root, 'package.json')

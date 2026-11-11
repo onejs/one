@@ -78,6 +78,7 @@ export async function run(args: { platform?: string; 'no-install'?: boolean }) {
     root: process.cwd(),
     ...args,
     app,
+    patches: oneOptions?.patches,
     beforeInstall:
       args.platform === 'android'
         ? undefined

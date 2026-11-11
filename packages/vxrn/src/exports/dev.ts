@@ -152,12 +152,14 @@ export default defineConfig({
 
   // use one server config as defaults
   // this is a bit hacky for now passing it in like this
-  const oneServerConfig = config?.plugins?.find(
+  const oneConfig = config?.plugins?.find(
     (x) => Array.isArray(x) && x[0]?.['name'] === 'one:config'
-  )?.[0]?.['__get']?.server
+  )?.[0]?.['__get']
+  const oneServerConfig = oneConfig?.server
   const viteServerConfig = config.server
 
   const options = await fillOptions({
+    patches: oneConfig?.patches,
     ...optionsIn,
     server: {
       ...oneServerConfig,
