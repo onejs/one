@@ -62,9 +62,12 @@ export function getRoutes(
 
   const rootNode = flattenDirectoryTreeToRoutes(directoryTree, options)
 
-  // initial route names always resolve: a client router skips entry points but
-  // still needs unstable_settings.initialRouteName to build a deep link's stack.
-  crawlAndAppendInitialRoutesAndEntryFiles(rootNode, options)
+  // a native client skips entry points but still needs
+  // unstable_settings.initialRouteName to build a deep link's stack. its layouts
+  // are already in the bundle; on web the crawl would load split layouts early.
+  if (!options.ignoreEntryPoints || (options.platform && options.platform !== 'web')) {
+    crawlAndAppendInitialRoutesAndEntryFiles(rootNode, options)
+  }
 
   return rootNode
 }

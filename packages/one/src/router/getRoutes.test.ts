@@ -82,7 +82,7 @@ describe('getRoutes initial routes', () => {
       './session/[id].tsx': { default: () => null },
     })
 
-    const root = getRoutes(ctx, { ignoreEntryPoints: true, ignoreRequireErrors: true })
+    const root = getRoutes(ctx, { ignoreEntryPoints: true, ignoreRequireErrors: true, platform: 'ios' })
 
     expect(root?.initialRouteName).toBe('(tabs)')
     expect(collectRoutes(root!).every((route) => route.entryPoints === undefined)).toBe(true)
