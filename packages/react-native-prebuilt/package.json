@@ -34,7 +34,7 @@
     "@vxrn/utils": "workspace:*",
     "@vxrn/vite-flow": "workspace:*",
     "@vxrn/vite-native-hmr": "workspace:*",
-    "esbuild": "^0.25.12",
+    "esbuild": "^0.28.1",
     "fs-extra": "^11.2.0"
   },
   "devDependencies": {

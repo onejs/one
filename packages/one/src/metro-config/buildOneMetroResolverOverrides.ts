@@ -27,10 +27,11 @@ export function buildOneMetroResolverOverrides({
 }: BuildOneMetroResolverOverridesOptions): <T extends MetroConfigLike>(
   defaultConfig: T
 ) => T {
-  const require = module.createRequire(projectRoot + '/')
-  const emptyPath = require.resolve('@vxrn/utils/empty', {
-    paths: [projectRoot],
-  })
+  // one's own dependencies resolve from one, which isolated installs keep out of the app's reach
+  const requireFromOne = module.createRequire(
+    module.createRequire(projectRoot + '/').resolve('one/package.json')
+  )
+  const emptyPath = requireFromOne.resolve('@vxrn/utils/empty')
   const projectPackagePath = path.join(projectRoot, 'package.json')
   const absorbed = absorbedPackageAliases(projectRoot, 'native')
 
