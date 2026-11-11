@@ -17,7 +17,7 @@ private struct OverlayContentContent: View {
 }
 
 @objcMembers
-public final class OneNativeOverlayContentView: OneNativeContainerView {
+public final class OneNativeOverlayContentView: OneNativeMarkerView {
   public init() {
     super.init(styled: { children, style, standalone in
       AnyView(OverlayContentContent(children: children, style: style, standalone: standalone))
