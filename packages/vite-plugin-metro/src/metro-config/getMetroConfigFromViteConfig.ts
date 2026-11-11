@@ -1,6 +1,9 @@
 import { searchForWorkspaceRoot, type ResolvedConfig } from 'vite'
 import { spawn } from 'node:child_process'
-import { resolve } from 'node:path'
+import { globSync, readFileSync } from 'node:fs'
+import { dirname, posix, resolve, sep } from 'node:path'
+import workspace from 'resolve-workspace-root'
+import { globSync as globPackagesSync } from 'tinyglobby'
 import micromatch from 'micromatch'
 import { getDefaultConfig } from '@react-native/metro-config'
 
@@ -55,9 +58,49 @@ function enforceWorkspaceVisibility(
   const workspaceRoot = searchForWorkspaceRoot(projectRoot)
   if (workspaceRoot === projectRoot) return config
 
+  let packages: string[] = []
+  // match expo/metro-config's getWatchFolders discovery and invalid-manifest handling.
+  try {
+    packages = (workspace.getWorkspaceGlobs(workspaceRoot) ?? [])
+      .flatMap((pattern) =>
+        pattern.includes('**')
+          ? globPackagesSync(posix.join(pattern, 'package.json'), {
+              cwd: workspaceRoot,
+              absolute: true,
+              expandDirectories: false,
+              caseSensitiveMatch:
+                process.platform !== 'darwin' && process.platform !== 'win32',
+              ignore: ['**/@(Carthage|Pods|node_modules)/**'],
+            })
+          : globSync(pattern, {
+              cwd: workspaceRoot,
+              exclude: (entry) =>
+                entry
+                  .split(sep)
+                  .some((part) => ['Carthage', 'Pods', 'node_modules'].includes(part)),
+            }).map((directory) => resolve(workspaceRoot, directory, 'package.json'))
+      )
+      .filter((manifest) => {
+        try {
+          JSON.parse(readFileSync(manifest, 'utf8'))
+          return true
+        } catch {
+          return false
+        }
+      })
+      .map((manifest) => dirname(manifest))
+  } catch {
+    packages = []
+  }
+
   return {
     ...config,
-    watchFolders: [...new Set([...(config.watchFolders ?? []), workspaceRoot])],
+    watchFolders: [
+      ...new Set([
+        ...(config.watchFolders ?? []),
+        ...(packages.length ? [resolve(workspaceRoot, 'node_modules'), ...packages] : []),
+      ]),
+    ],
     resolver: {
       ...config.resolver,
       nodeModulesPaths: [
