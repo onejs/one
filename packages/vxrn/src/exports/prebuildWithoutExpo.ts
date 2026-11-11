@@ -2,6 +2,7 @@ import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import {
   copyFileSync,
+  cpSync,
   existsSync,
   lstatSync,
   mkdirSync,
@@ -1980,6 +1981,28 @@ function generateAccentColor(args: { dest: string; app: NativeAppManifest }): vo
   )
 }
 
+// the app's own asset catalog entries, merged beside the ones prebuild
+// generates. a name prebuild already wrote is an error, never an overwrite.
+function mergeAssetCatalog(args: { root: string; dest: string; app: NativeAppManifest }): void {
+  const declared = args.app.ios?.assetCatalog
+  if (!declared) return
+  const source = path.resolve(args.root, declared)
+  if (!existsSync(path.join(source, 'Contents.json'))) {
+    throw new Error(`[vxrn] native.app.ios.assetCatalog ${declared} is not an asset catalog`)
+  }
+  const catalog = path.join(args.dest, args.app.name, 'Images.xcassets')
+  for (const entry of readdirSync(source, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue
+    const target = path.join(catalog, entry.name)
+    if (existsSync(target)) {
+      throw new Error(
+        `[vxrn] native.app.ios.assetCatalog ${entry.name} collides with the generated catalog entry of that name`
+      )
+    }
+    cpSync(path.join(source, entry.name), target, { recursive: true })
+  }
+}
+
 async function generateSplashScreen(args: {
   root: string
   dest: string
@@ -3156,6 +3179,7 @@ export const generateForPlatform = async (
   if (platform === 'android') await generateAdaptiveIcon({ root, dest, app })
   await generateSplashScreen({ root, dest, platform, app })
   if (platform === 'ios') generateAccentColor({ dest, app })
+  if (platform === 'ios') mergeAssetCatalog({ root, dest, app })
   copyAppResources({ root, dest, platform, app })
   generateSceneDelegate({ dest, platform, app })
   generateIosAppIntents(dest, platform, app)
