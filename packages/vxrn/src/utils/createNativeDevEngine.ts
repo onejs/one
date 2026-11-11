@@ -1308,6 +1308,12 @@ try {
     // a runtime invalidation marks the full output stale before reloading. pull
     // that output before serving the cached bundle to the restarted app.
     await queueEngineWork(async () => {
+      // a task that failed in the Hmr stage leaves ensureLatestBuildOutput()
+      // answering nothing, so build from the files as they are first.
+      const state = await engine.getBundleState()
+      if (state.lastBuildErrored && state.lastErrorStage === 'Hmr') {
+        await engine.triggerFullBuild()
+      }
       await engine.ensureLatestBuildOutput()
       await outputProcessed
     })

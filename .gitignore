@@ -55,3 +55,4 @@ node_modules
 # run evidence and proofs (captures, logs, receipts) stay local, never committed; scripts/check-no-proofs.ts enforces it
 evidence/
 proofs/
+.claude/settings.local.json
