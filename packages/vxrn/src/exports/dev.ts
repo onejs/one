@@ -37,7 +37,8 @@ function setupOrphanDetection() {
 
   const initialPpid = process.ppid
   const launcherPid = readParentPid(initialPpid)
-  const watchedLauncher = launcherPid !== undefined && launcherPid > 1 ? launcherPid : undefined
+  const watchedLauncher =
+    launcherPid !== undefined && launcherPid > 1 ? launcherPid : undefined
 
   const interval = setInterval(() => {
     if (
@@ -159,7 +160,8 @@ export default defineConfig({
   const viteServerConfig = config.server
 
   const options = await fillOptions({
-    patches: oneConfig?.patches,
+    // one stores its options when the config first loads, before it returns any plugins
+    patches: globalThis.__oneOptions?.patches,
     ...optionsIn,
     server: {
       ...oneServerConfig,

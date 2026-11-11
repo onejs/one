@@ -1,7 +1,7 @@
 import type { GetTransform } from '@vxrn/compiler';
 import type { metroPlugin } from '@vxrn/vite-plugin-metro';
 import type { Plugin as RolldownPlugin } from 'rolldown';
-import type { AutoDepOptimizationOptions, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
+import type { AutoDepOptimizationOptions, UserDepPatches, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
 import type { One as OneShared } from '../interfaces/router';
 import type { RouteNode } from '../router/Route';
 import type { NativeAppManifest } from '../native/appManifest';
@@ -36,9 +36,7 @@ export declare namespace One {
     export type RouteOptions = {
         routeModes?: Record<string, RouteRenderMode>;
     };
-    export type FixDependencies = false | {
-        [key: string]: DepPatch['patchFiles'] | false;
-    };
+    export type FixDependencies = UserDepPatches;
     type PluginPlatformTarget = 'native' | 'web';
     type CompilerEnvironment = 'ios' | 'android' | 'client' | 'ssr';
     type ReactCompilerFilter = boolean | RegExp | ((id: string, environment: CompilerEnvironment) => boolean);

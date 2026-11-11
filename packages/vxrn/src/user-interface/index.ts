@@ -3,7 +3,6 @@ import { exec } from 'node:child_process'
 import type { ViteDevServer } from 'vite'
 import { getBoundPort } from '../utils/getBoundPort'
 import { nativeRun } from '../utils/nativeRun'
-import type { UserDepPatches } from '../utils/patches'
 
 type Context = {
   server: ViteDevServer
@@ -295,17 +294,17 @@ function nativeOpen(url: string) {
   exec(`${start} ${url}`)
 }
 
-// the app's dependency patch options, which one exposes on its config plugin
-function getPatches(ctx: Context): UserDepPatches | undefined {
-  return ctx.server.config.plugins.find((x) => x.name === 'one:config')?.['__get']?.patches
-}
-
 async function openIos(ctx: Context) {
   const projectRoot = ctx.server.config.root
   const port = getBoundPort(ctx.server)
 
   try {
-    await nativeRun({ root: projectRoot, platform: 'ios', port, patches: getPatches(ctx) })
+    await nativeRun({
+      root: projectRoot,
+      platform: 'ios',
+      port,
+      patches: globalThis.__oneOptions?.patches,
+    })
   } catch (e) {
     const stack = e instanceof Error ? e.stack : null
     console.error(`Failed to open app in iOS Simulator: ${e}${stack ? `\n${stack}` : ''}`)
@@ -317,7 +316,12 @@ async function openAndroid(ctx: Context) {
   const port = getBoundPort(ctx.server)
 
   try {
-    await nativeRun({ root: projectRoot, platform: 'android', port, patches: getPatches(ctx) })
+    await nativeRun({
+      root: projectRoot,
+      platform: 'android',
+      port,
+      patches: globalThis.__oneOptions?.patches,
+    })
   } catch (e) {
     const stack = e instanceof Error ? e.stack : null
     console.error(
