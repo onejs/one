@@ -36,8 +36,8 @@ export declare namespace One {
     export type RouteOptions = {
         routeModes?: Record<string, RouteRenderMode>;
     };
-    export type FixDependencies = {
-        [key: string]: DepPatch['patchFiles'];
+    export type FixDependencies = false | {
+        [key: string]: DepPatch['patchFiles'] | false;
     };
     type PluginPlatformTarget = 'native' | 'web';
     type CompilerEnvironment = 'ios' | 'android' | 'client' | 'ssr';

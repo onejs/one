@@ -31,7 +31,7 @@ describe('one patch', () => {
 
     expect(patchMock).toHaveBeenCalledWith({
       root: process.cwd(),
-      deps: undefined,
+      patches: undefined,
       force: undefined,
     })
   })
@@ -51,7 +51,7 @@ describe('one patch', () => {
 
     expect(patchMock).toHaveBeenCalledWith({
       root: process.cwd(),
-      deps: patches,
+      patches,
       force: true,
     })
   })
