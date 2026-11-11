@@ -1,6 +1,6 @@
-const FRAME_V8 = /^\s*at (.*?)(?: \((.*)\))?$/
+const FRAME_V8 = /^\s*(?:at|in) (.*?)(?: \((.*)\))?$/
 const FRAME_JSC = /^(.*?)@(.*)$/
-const FILE_POSITION = /([^/\s?#()]+?)(?:[?#][^\s()]*?)?:(\d+):(\d+)\)?$/
+const FILE_POSITION = /([^/\\\s?#():]+?)(?:[?#][^\s()]*?)?:(\d+)(?::(\d+))?\)?$/
 
 // a frame's location is only worth showing when it names a real file.
 // eval, blob and anonymous locations point at bundler wrappers, and full
@@ -8,7 +8,7 @@ const FILE_POSITION = /([^/\s?#()]+?)(?:[?#][^\s()]*?)?:(\d+):(\d+)\)?$/
 function shortLocation(location: string) {
   if (/^(eval at|blob:)|<anonymous>|native code/.test(location)) return ''
   const match = location.match(FILE_POSITION)
-  return match ? `${match[1]}:${match[2]}:${match[3]}` : ''
+  return match ? `${match[1]}:${match[2]}${match[3] ? `:${match[3]}` : ''}` : ''
 }
 
 export function cleanErrorStack(stack: string): string[] {
@@ -20,7 +20,7 @@ export function cleanErrorStack(stack: string): string[] {
     if (!v8 && !jsc) continue
     const location = shortLocation((v8?.[2] ?? jsc?.[2] ?? '').trim())
     // v8 prints a bare `at https://host/file.js:1:2` frame for anonymous code
-    const label = !v8?.[2] && v8 && /:\d+:\d+$/.test(name) ? shortLocation(name) : name
+    const label = !v8?.[2] && v8 && /:\d+$/.test(name) ? shortLocation(name) : name
     if (!label && !location) continue
     frames.push(location ? `${label || '<anonymous>'}  ${location}` : label)
   }
