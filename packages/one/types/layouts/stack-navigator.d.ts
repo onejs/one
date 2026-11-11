@@ -8,6 +8,8 @@ export declare const createStackNavigator: import("@react-navigation/core").Type
 export declare function getStackNavigatorProps<Args extends {
     children: ReactElement;
 }>(_children: ReactNode, screenLayout?: (props: Args) => ReactElement): {
+    screenLayout: ((props: Args) => ReactElement) | undefined;
+} | {
     screenLayout: (props: Args) => import("react").JSX.Element;
 };
 //# sourceMappingURL=stack-navigator.d.ts.map

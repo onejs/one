@@ -169,6 +169,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       vxrnVitePlugin({
         metro: metroOptions,
         disableNative: nativeDisabled,
+        patches: options.patches,
       })
     )
   } else {

@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import os from 'node:os'
 import { createRequire } from 'node:module'
 import { runInNewContext } from 'node:vm'
 import { resolveConfig } from 'vite'
@@ -144,16 +145,20 @@ require('@fixture/registry-extra'), require('plain'), require('./local'), requir
           resolver: { ...config?.resolver, ...resolver },
         }),
       } satisfies MetroPluginOptions
+      const require = createRequire(path.join(workspaceRoot, 'package.json'))
+      const { loadConfig } = require('metro-config')
       const config =
         mode === 'input'
-          ? (await buildMetroConfigInputFromViteConfig(viteConfig, options)).defaultConfig
+          ? await loadConfig(
+              { cwd: fixtureRoot, projectRoot: fixtureRoot },
+              (await buildMetroConfigInputFromViteConfig(viteConfig, options)).defaultConfig
+            )
           : await getMetroConfigFromViteConfig(viteConfig, options)
       const entry = path.join(fixtureRoot, 'entry.js')
       fs.writeFileSync(
         entry,
         "globalThis.values=[require('@fixture/first'),require('@fixture/second')];"
       )
-      const require = createRequire(path.join(workspaceRoot, 'package.json'))
       const Server = require('metro/private/Server').default
       const output = require('metro/private/shared/output/bundle')
       const server = new Server({ ...config, maxWorkers: 1 })
@@ -209,7 +214,10 @@ describe('bare main module entry', () => {
       } as any
     )
 
-    expect((defaultConfig as any).watchFolders).toContain(workspaceRoot)
+    expect((defaultConfig as any).watchFolders).not.toContain(workspaceRoot)
+    expect((defaultConfig as any).watchFolders).toContain(
+      path.join(workspaceRoot, 'node_modules')
+    )
     expect((defaultConfig as any).resolver.nodeModulesPaths).toContain(
       path.join(workspaceRoot, 'node_modules')
     )
@@ -266,4 +274,159 @@ describe('watch exclusions', () => {
       )
     ).toBe(false)
   })
+})
+
+describe('workspace visibility', () => {
+  it.each(['array', 'object', 'pnpm', 'recursive'])(
+    'watches workspace packages from %s globs without exposing build output',
+    async (kind) => {
+      const scratch = path.join(os.homedir(), '.scratch', 'metro-workspace-visibility')
+      fs.mkdirSync(scratch, { recursive: true })
+      const workspaceRoot = fs.mkdtempSync(path.join(scratch, 'fixture-'))
+      tmpDirs.push(workspaceRoot)
+      const projectRoot = path.join(workspaceRoot, 'app')
+      const shared = path.join(workspaceRoot, 'packages/shared')
+      const custom = path.join(workspaceRoot, 'custom')
+      const modules = path.join(workspaceRoot, 'node_modules')
+      const installedModules = path.resolve(__dirname, '../../../../node_modules')
+      const globs = ['app', kind === 'recursive' ? 'packages/**' : 'packages/*']
+      fs.writeFileSync(
+        path.join(workspaceRoot, 'package.json'),
+        JSON.stringify({
+          private: true,
+          workspaces:
+            kind === 'pnpm'
+              ? ['wrong/*']
+              : kind === 'object'
+                ? { packages: globs }
+                : globs,
+        })
+      )
+      if (kind === 'pnpm') {
+        fs.writeFileSync(
+          path.join(workspaceRoot, 'pnpm-workspace.yaml'),
+          'packages: &paths\n  - app\n  - "packages/*" # workspace packages\n'
+        )
+      }
+      for (const directory of [
+        projectRoot,
+        shared,
+        custom,
+        modules,
+        path.join(workspaceRoot, 'target'),
+      ]) {
+        fs.mkdirSync(directory, { recursive: true })
+      }
+      fs.writeFileSync(path.join(projectRoot, 'package.json'), '{"private":true}')
+      fs.symlinkSync(installedModules, path.join(projectRoot, 'node_modules'), 'dir')
+      fs.writeFileSync(
+        path.join(shared, 'package.json'),
+        '{"name":"shared","main":"index.js"}'
+      )
+      fs.writeFileSync(path.join(shared, 'index.js'), "module.exports='workspace';")
+      fs.writeFileSync(path.join(custom, 'index.js'), "module.exports='custom';")
+      fs.mkdirSync(path.join(modules, 'root-only'))
+      fs.writeFileSync(path.join(modules, 'root-only/index.js'), "module.exports='root';")
+      fs.writeFileSync(
+        path.join(workspaceRoot, 'target/build-output.js'),
+        "module.exports='target';"
+      )
+      for (const excluded of [
+        'missing-manifest',
+        'invalid',
+        'Pods/hidden',
+        'Carthage/hidden',
+        'node_modules/hidden',
+      ]) {
+        const directory = path.join(workspaceRoot, 'packages', excluded)
+        fs.mkdirSync(directory, { recursive: true })
+        if (excluded !== 'missing-manifest') {
+          fs.writeFileSync(
+            path.join(directory, 'package.json'),
+            excluded === 'invalid' ? '{' : '{}'
+          )
+        }
+      }
+      const { defaultConfig } = await buildMetroConfigInputFromViteConfig(
+        { root: projectRoot } as any,
+        {
+          watchman: false,
+          defaultConfigOverrides: (config: any) => ({
+            watchFolders: [custom, installedModules, custom],
+            resolver: { ...config.resolver, nodeModulesPaths: [modules] },
+          }),
+        } as any
+      )
+      expect(defaultConfig.watchFolders).toEqual([
+        custom,
+        installedModules,
+        modules,
+        projectRoot,
+        shared,
+      ])
+      expect(defaultConfig.resolver.nodeModulesPaths).toEqual([
+        modules,
+        path.join(projectRoot, 'node_modules'),
+      ])
+
+      if (kind !== 'array') return
+      const require = createRequire(path.join(installedModules, '../package.json'))
+      const Server = require('metro/private/Server').default
+      const output = require('metro/private/shared/output/bundle')
+      const entry = path.join(projectRoot, 'entry.js')
+      const forbiddenEntry = path.join(projectRoot, 'forbidden.js')
+      fs.writeFileSync(
+        entry,
+        "globalThis.values=[require('../packages/shared'),require('root-only'),require('../custom')];"
+      )
+      fs.writeFileSync(
+        forbiddenEntry,
+        "globalThis.values=require('../target/build-output');"
+      )
+      for (const exposeRoot of [true, false]) {
+        const server = new Server({
+          ...defaultConfig,
+          watchFolders: [
+            ...defaultConfig.watchFolders,
+            ...(exposeRoot ? [workspaceRoot] : []),
+          ],
+          maxWorkers: 1,
+        })
+        try {
+          if (exposeRoot) {
+            const bundle = await output.build(server, {
+              entryFile: forbiddenEntry,
+              platform: 'android',
+              dev: false,
+              minify: false,
+            })
+            const observed = { values: '' }
+            runInNewContext(bundle.code, observed)
+            expect(observed.values).toBe('target')
+          } else {
+            const bundle = await output.build(server, {
+              entryFile: entry,
+              platform: 'android',
+              dev: false,
+              minify: false,
+            })
+            const observed = { values: [] }
+            runInNewContext(bundle.code, observed)
+            expect(observed.values).toEqual(['workspace', 'root', 'custom'])
+            await expect(
+              output.build(server, {
+                entryFile: forbiddenEntry,
+                platform: 'android',
+                dev: false,
+                minify: false,
+              })
+            ).rejects.toThrow(/Unable to resolve module/)
+          }
+        } finally {
+          await server.end()
+        }
+      }
+    },
+    180_000
+  )
 })

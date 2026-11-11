@@ -39,6 +39,7 @@ export declare function fillOptions(options: VXRNOptions, { mode }?: {
     mode?: Mode;
 }): Promise<{
     readonly skipEnv?: boolean;
+    readonly patches?: import("..").UserDepPatches;
     readonly build?: {
         server?: boolean | import("..").VXRNBuildOptions;
         analyze?: boolean;
@@ -72,6 +73,7 @@ export declare function fillOptions(options: VXRNOptions, { mode }?: {
 }>;
 export declare function getOptionsFilled(): {
     readonly skipEnv?: boolean;
+    readonly patches?: import("..").UserDepPatches;
     readonly build?: {
         server?: boolean | import("..").VXRNBuildOptions;
         analyze?: boolean;

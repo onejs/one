@@ -299,7 +299,12 @@ async function openIos(ctx: Context) {
   const port = getBoundPort(ctx.server)
 
   try {
-    await nativeRun({ root: projectRoot, platform: 'ios', port })
+    await nativeRun({
+      root: projectRoot,
+      platform: 'ios',
+      port,
+      patches: globalThis.__oneOptions?.patches,
+    })
   } catch (e) {
     const stack = e instanceof Error ? e.stack : null
     console.error(`Failed to open app in iOS Simulator: ${e}${stack ? `\n${stack}` : ''}`)
@@ -311,7 +316,12 @@ async function openAndroid(ctx: Context) {
   const port = getBoundPort(ctx.server)
 
   try {
-    await nativeRun({ root: projectRoot, platform: 'android', port })
+    await nativeRun({
+      root: projectRoot,
+      platform: 'android',
+      port,
+      patches: globalThis.__oneOptions?.patches,
+    })
   } catch (e) {
     const stack = e instanceof Error ? e.stack : null
     console.error(

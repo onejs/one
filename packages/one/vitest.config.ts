@@ -112,10 +112,6 @@ export default defineConfig({
             { find: /^react$/, replacement: react },
             { find: /^react-native$/, replacement: reactNativeWeb },
             {
-              find: /^react-native-worklets$/,
-              replacement: resolve(__dirname, 'src/__mocks__/react-native-worklets.ts'),
-            },
-            {
               find: /^react-native\/Libraries\/Utilities\/codegenNativeCommands$/,
               replacement: resolve(__dirname, 'src/__mocks__/codegenNativeCommands.ts'),
             },

@@ -5,7 +5,6 @@ import { existsSync, realpathSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { readFile, rename, stat, writeFile } from 'node:fs/promises'
 import semver from 'semver'
-import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { builtInDepPatches } from '../patches/builtInDepPatches'
 import { readJSON, writeJSON } from './fs'
 import { globDir } from './globDir'
@@ -54,35 +53,40 @@ export function bailIfExists(haystack: string, needle: string) {
 
 export type SimpleDepPatchObject = Record<string, DepPatch['patchFiles']>
 
-export async function applyBuiltInPatches(
-  options: Pick<VXRNOptionsFilled, 'root'>,
-  extraPatches?: SimpleDepPatchObject
-) {
-  const all = [...builtInDepPatches]
+// false skips every built-in patch; a module set to false skips its built-in patch
+export type UserDepPatches = false | Record<string, DepPatch['patchFiles'] | false>
+
+export async function applyBuiltInPatches({
+  root,
+  patches,
+}: {
+  root: string
+  patches?: UserDepPatches
+}) {
+  if (patches === false) return
+
+  const all: DepPatch[] = builtInDepPatches
+    .filter((x) => patches?.[x.module] !== false)
+    .map((x) => ({ module: x.module, patchFiles: { ...x.patchFiles } }))
 
   // merge user patches on top of built ins
-  if (extraPatches) {
-    for (const key in extraPatches) {
-      const extraPatchFiles = extraPatches[key]
-      const existing = all.find((x) => x.module === key)
-      if (existing) {
-        for (const patchKey in extraPatchFiles) {
-          if (existing.patchFiles[patchKey]) {
-            console.warn(
-              `Warning: Overwriting One built-in patch with user patch`,
-              key,
-              patchKey
-            )
-          }
-          existing.patchFiles[patchKey] = extraPatchFiles[patchKey]
+  for (const key in patches) {
+    const extraPatchFiles = patches[key]
+    if (extraPatchFiles === false) continue
+    const existing = all.find((x) => x.module === key)
+    if (existing) {
+      for (const patchKey in extraPatchFiles) {
+        if (existing.patchFiles[patchKey]) {
+          console.warn(`Warning: Overwriting One built-in patch with user patch`, key, patchKey)
         }
-      } else {
-        all.push({ module: key, patchFiles: extraPatchFiles })
+        existing.patchFiles[patchKey] = extraPatchFiles[patchKey]
       }
+    } else {
+      all.push({ module: key, patchFiles: extraPatchFiles })
     }
   }
 
-  await applyDependencyPatches(all, { root: options.root })
+  await applyDependencyPatches(all, { root })
 }
 
 // stats file stores {[filePath]: {size, mtimeMs}} of patched files for fast comparison

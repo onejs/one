@@ -53,8 +53,7 @@
     "magic-string": "^0.30.21",
     "oxc-parser": "^0.112.0",
     "oxc-transform": "^0.148.0",
-    "oxc-transform-react": "^0.145.0",
-    "react-native-css-interop": "^0.2.6"
+    "oxc-transform-react": "^0.145.0"
   },
   "devDependencies": {
     "@jridgewell/trace-mapping": "^0.3.25",
@@ -63,13 +62,18 @@
     "react-native-worklets": "~0.13.0",
     "rolldown": "^1.2.8",
     "vite": "^8.2.2",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.0",
+    "react-native-css-interop": "^0.2.6"
   },
   "peerDependencies": {
-    "vite": "^8.2.2"
+    "vite": "^8.2.2",
+    "react-native-css-interop": "^0.2.6"
   },
   "peerDependenciesMeta": {
     "vite": {
+      "optional": true
+    },
+    "react-native-css-interop": {
       "optional": true
     }
   },

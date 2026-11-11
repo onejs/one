@@ -3,7 +3,7 @@ import type { metroPlugin } from '@vxrn/vite-plugin-metro'
 import type { Plugin as RolldownPlugin } from 'rolldown'
 import type {
   AutoDepOptimizationOptions,
-  DepPatch,
+  UserDepPatches,
   AfterBuildProps as VXRNAfterBuildProps,
   VXRNBuildOptions,
   VXRNOptions,
@@ -55,10 +55,8 @@ export namespace One {
     routeModes?: Record<string, RouteRenderMode>
   }
 
-  // todo move into vxrn
-  export type FixDependencies = {
-    [key: string]: DepPatch['patchFiles']
-  }
+  // false skips every built-in patch; a module set to false skips its built-in patch
+  export type FixDependencies = UserDepPatches
 
   type PluginPlatformTarget = 'native' | 'web'
 
