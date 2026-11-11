@@ -60,42 +60,42 @@ export class AdvancedCommerceProduct extends SDKHandle {
    * var allTransactions: Transaction.Transactions { get }
    * @availability iOS 18.4+
    */
-  get allTransactions(): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_86f7e029fa4ce140", 2519212134744661, this, []); }
+  get allTransactions(): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_d453e9e1f4a52dda", 2519212134744661, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 18.4+
    */
-  get debugDescription(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2279110646966811, this, []); }
+  get debugDescription(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2279110646966811, this, []); }
   /**
    * var latestTransaction: VerificationResult<Transaction>? { get async }
    * @availability iOS 18.4+
    */
-  get latestTransaction(): Promise<$SDK0> { return callSDKAsync<$SDK0>("StoreKit_86f7e029fa4ce140", 270791581515538, this, []); }
+  get latestTransaction(): Promise<$SDK0> { return callSDKAsync<$SDK0>("StoreKit_d453e9e1f4a52dda", 270791581515538, this, []); }
   /**
    * var currentEntitlements: Transaction.Transactions { get }
    * @availability iOS 18.4+
    */
-  get currentEntitlements(): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_86f7e029fa4ce140", 2064718835119584, this, []); }
+  get currentEntitlements(): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_d453e9e1f4a52dda", 2064718835119584, this, []); }
   /**
    * init(id: AdvancedCommerceProduct.ID) async throws
    * @availability iOS 18.4+
    */
-  static init(id: string): Promise<AdvancedCommerceProduct> { return callSDKAsync<AdvancedCommerceProduct>("StoreKit_86f7e029fa4ce140", 3244775795067367, undefined, [id]); }
+  static init(id: string): Promise<AdvancedCommerceProduct> { return callSDKAsync<AdvancedCommerceProduct>("StoreKit_d453e9e1f4a52dda", 3244775795067367, undefined, [id]); }
   /**
    * let id: AdvancedCommerceProduct.ID
    * @availability iOS 18.4+
    */
-  get id(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3862185033258088, this, []); }
+  get id(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3862185033258088, this, []); }
   /**
    * let type: AdvancedCommerceProduct.ProductType
    * @availability iOS 18.4+
    */
-  get type(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_86f7e029fa4ce140", 3165751929977362, this, []); }
+  get type(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_d453e9e1f4a52dda", 3165751929977362, this, []); }
   /**
    * func purchase(compactJWS: String, confirmIn viewController: UIViewController, options: Set<AdvancedCommerceProduct.PurchaseOption> = []) async throws -> AdvancedCommerceProduct.PurchaseResult
    * @availability iOS 18.4+
    */
-  purchase(compactJWS: string, viewController: _UIKit_UIViewController, options?: Array<AdvancedCommerceProduct_PurchaseOption>): Promise<Product_PurchaseResult> { return callSDKAsync<Product_PurchaseResult>("StoreKit_86f7e029fa4ce140", 2679070083073132, this, [compactJWS, viewController, options]); }
+  purchase(compactJWS: string, viewController: _UIKit_UIViewController, options?: Array<AdvancedCommerceProduct_PurchaseOption>): Promise<Product_PurchaseResult> { return callSDKAsync<Product_PurchaseResult>("StoreKit_d453e9e1f4a52dda", 2679070083073132, this, [compactJWS, viewController, options]); }
   declare readonly $type: { "s:8StoreKit23AdvancedCommerceProductV": true };
 }
 
@@ -120,7 +120,7 @@ export class AdvancedCommerceProduct_PurchaseOption extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 18.4+
    */
-  get debugDescription(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2754877192619234, this, []); }
+  get debugDescription(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2754877192619234, this, []); }
   declare readonly $type: { "s:8StoreKit23AdvancedCommerceProductV14PurchaseOptionV": true };
 }
 
@@ -139,53 +139,53 @@ export class AppStore extends SDKHandle {
    * static var ageRatingCode: Int? { get async }
    * @availability iOS 26.2+
    */
-  static get ageRatingCode(): Promise<(number) | null> { return callSDKAsync<(number) | null>("StoreKit_86f7e029fa4ce140", 2285176182784495, undefined, []); }
+  static get ageRatingCode(): Promise<(number) | null> { return callSDKAsync<(number) | null>("StoreKit_d453e9e1f4a52dda", 2285176182784495, undefined, []); }
   /**
    * @MainActor static func requestReview(in scene: UIWindowScene)
    * @availability iOS 16.0+
    */
-  static requestReview(scene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 2113642812952686, undefined, [scene]); }
+  static requestReview(scene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 2113642812952686, undefined, [scene]); }
   /**
    * static var canMakePayments: Bool { get }
    * @availability iOS 15.0+
    */
-  static get canMakePayments(): boolean { return callSDK<boolean>("StoreKit_86f7e029fa4ce140", 1573961697281599, undefined, []); }
+  static get canMakePayments(): boolean { return callSDK<boolean>("StoreKit_d453e9e1f4a52dda", 1573961697281599, undefined, []); }
   /**
    * static var deviceVerificationID: UUID? { get }
    * @availability iOS 15.0+
    */
-  static get deviceVerificationID(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 3243179590890094, undefined, []); }
+  static get deviceVerificationID(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 3243179590890094, undefined, []); }
   /**
    * @MainActor static func presentMerchandising(_ kind: AppStoreMerchandisingKind, from controller: UIViewController) async throws -> AppStoreMerchandisingKind.PresentationResult
    * @availability iOS 26.0+
    */
-  static presentMerchandising(kind: AppStoreMerchandisingKind, controller: _UIKit_UIViewController): Promise<AppStoreMerchandisingKind_PresentationResult> { return callSDKAsync<AppStoreMerchandisingKind_PresentationResult>("StoreKit_86f7e029fa4ce140", 3367571115384493, undefined, [kind, controller]); }
+  static presentMerchandising(kind: AppStoreMerchandisingKind, controller: _UIKit_UIViewController): Promise<AppStoreMerchandisingKind_PresentationResult> { return callSDKAsync<AppStoreMerchandisingKind_PresentationResult>("StoreKit_d453e9e1f4a52dda", 3367571115384493, undefined, [kind, controller]); }
   /**
    * @MainActor static func showManageSubscriptions(in scene: UIWindowScene, subscriptionGroupID: String) async throws
    * @availability iOS 17.0+
    */
-  static showManageSubscriptionsInSubscriptionGroupID(scene: _UIKit_UIWindowScene, subscriptionGroupID: string): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 2738334678107363, undefined, [scene, subscriptionGroupID]); }
+  static showManageSubscriptionsInSubscriptionGroupID(scene: _UIKit_UIWindowScene, subscriptionGroupID: string): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 2738334678107363, undefined, [scene, subscriptionGroupID]); }
   /**
    * @MainActor static func showManageSubscriptions(in scene: UIWindowScene) async throws
    * @availability iOS 15.0+
    */
-  static showManageSubscriptionsIn(scene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 2551359531924941, undefined, [scene]); }
+  static showManageSubscriptionsIn(scene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 2551359531924941, undefined, [scene]); }
   /**
    * @MainActor static func presentOfferCodeRedeemSheet(in scene: UIWindowScene) async throws
    * @availability iOS 16.0+
    * @deprecated iOS 27.0
    */
-  static presentOfferCodeRedeemSheetIn(scene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 2498519761697176, undefined, [scene]); }
+  static presentOfferCodeRedeemSheetIn(scene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 2498519761697176, undefined, [scene]); }
   /**
    * @MainActor static func presentOfferCodeRedeemSheet(from viewController: UIViewController, options: Set<RedeemOption> = []) async throws -> VerificationResult<Transaction>
    * @availability iOS 27.0+
    */
-  static presentOfferCodeRedeemSheetFromOptions(viewController: _UIKit_UIViewController, options?: Array<RedeemOption>): Promise<$SDK2> { return callSDKAsync<$SDK2>("StoreKit_86f7e029fa4ce140", 3257395379274511, undefined, [viewController, options]); }
+  static presentOfferCodeRedeemSheetFromOptions(viewController: _UIKit_UIViewController, options?: Array<RedeemOption>): Promise<$SDK2> { return callSDKAsync<$SDK2>("StoreKit_d453e9e1f4a52dda", 3257395379274511, undefined, [viewController, options]); }
   /**
    * static func sync() async throws
    * @availability iOS 15.0+
    */
-  static sync(): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 256892222102771, undefined, []); }
+  static sync(): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 256892222102771, undefined, []); }
   declare readonly $type: { "s:8StoreKit03AppA0O": true };
 }
 
@@ -200,27 +200,27 @@ export const AppStore_Environment = {
    * static let production: AppStore.Environment
    * @availability iOS 16.0+
    */
-  get production(): AppStore_Environment { return callSDK<AppStore_Environment>("StoreKit_86f7e029fa4ce140", 2749938582427014, undefined, []); },
+  get production(): AppStore_Environment { return callSDK<AppStore_Environment>("StoreKit_d453e9e1f4a52dda", 2749938582427014, undefined, []); },
   /**
    * static let xcode: AppStore.Environment
    * @availability iOS 16.0+
    */
-  get xcode(): AppStore_Environment { return callSDK<AppStore_Environment>("StoreKit_86f7e029fa4ce140", 2673076045022958, undefined, []); },
+  get xcode(): AppStore_Environment { return callSDK<AppStore_Environment>("StoreKit_d453e9e1f4a52dda", 2673076045022958, undefined, []); },
   /**
    * static let sandbox: AppStore.Environment
    * @availability iOS 16.0+
    */
-  get sandbox(): AppStore_Environment { return callSDK<AppStore_Environment>("StoreKit_86f7e029fa4ce140", 3952043610147383, undefined, []); },
+  get sandbox(): AppStore_Environment { return callSDK<AppStore_Environment>("StoreKit_d453e9e1f4a52dda", 3952043610147383, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): AppStore_Environment { return callSDK<AppStore_Environment>("StoreKit_86f7e029fa4ce140", 2868450750035117, undefined, [rawValue]); },
+  init(rawValue: string): AppStore_Environment { return callSDK<AppStore_Environment>("StoreKit_d453e9e1f4a52dda", 2868450750035117, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 16.0+
    */
-  getRawValue($self: AppStore_Environment): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4173244048162144, $self, []); }
+  getRawValue($self: AppStore_Environment): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4173244048162144, $self, []); }
 };
 
 /**
@@ -240,38 +240,38 @@ export const AppStore_Platform = {
    * static let iOS: AppStore.Platform
    * @availability iOS 18.4+
    */
-  get iOS(): AppStore_Platform { return callSDK<AppStore_Platform>("StoreKit_86f7e029fa4ce140", 4125768105746299, undefined, []); },
+  get iOS(): AppStore_Platform { return callSDK<AppStore_Platform>("StoreKit_d453e9e1f4a52dda", 4125768105746299, undefined, []); },
   /**
    * static let tvOS: AppStore.Platform
    * @availability iOS 18.4+
    */
-  get tvOS(): AppStore_Platform { return callSDK<AppStore_Platform>("StoreKit_86f7e029fa4ce140", 4225080931040415, undefined, []); },
+  get tvOS(): AppStore_Platform { return callSDK<AppStore_Platform>("StoreKit_d453e9e1f4a52dda", 4225080931040415, undefined, []); },
   /**
    * static let macOS: AppStore.Platform
    * @availability iOS 18.4+
    */
-  get macOS(): AppStore_Platform { return callSDK<AppStore_Platform>("StoreKit_86f7e029fa4ce140", 3448676250035020, undefined, []); },
+  get macOS(): AppStore_Platform { return callSDK<AppStore_Platform>("StoreKit_d453e9e1f4a52dda", 3448676250035020, undefined, []); },
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   static var managed: AppStore.Platform { get }
    * @availability iOS 18.4+
    */
-  get managed(): AppStore_Platform { return callSDK<AppStore_Platform>("StoreKit_86f7e029fa4ce140", 1560457424892027, undefined, []); },
+  get managed(): AppStore_Platform { return callSDK<AppStore_Platform>("StoreKit_d453e9e1f4a52dda", 1560457424892027, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 18.4+
    */
-  init(rawValue: string): AppStore_Platform { return callSDK<AppStore_Platform>("StoreKit_86f7e029fa4ce140", 2244721695266346, undefined, [rawValue]); },
+  init(rawValue: string): AppStore_Platform { return callSDK<AppStore_Platform>("StoreKit_d453e9e1f4a52dda", 2244721695266346, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 18.4+
    */
-  getRawValue($self: AppStore_Platform): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3694629760464211, $self, []); },
+  getRawValue($self: AppStore_Platform): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3694629760464211, $self, []); },
   /**
    * static let visionOS: AppStore.Platform
    * @availability iOS 18.4+
    */
-  get visionOS(): AppStore_Platform { return callSDK<AppStore_Platform>("StoreKit_86f7e029fa4ce140", 3929612192005438, undefined, []); }
+  get visionOS(): AppStore_Platform { return callSDK<AppStore_Platform>("StoreKit_d453e9e1f4a52dda", 3929612192005438, undefined, []); }
 };
 
 /**
@@ -289,7 +289,7 @@ export class AppStoreMerchandisingKind extends SDKHandle {
    * static func subscriptionBundle(_ groupID: String) -> AppStoreMerchandisingKind
    * @availability iOS 26.0+
    */
-  static subscriptionBundle(groupID: string): AppStoreMerchandisingKind { return callSDK<AppStoreMerchandisingKind>("StoreKit_86f7e029fa4ce140", 1956367682294209, undefined, [groupID]); }
+  static subscriptionBundle(groupID: string): AppStoreMerchandisingKind { return callSDK<AppStoreMerchandisingKind>("StoreKit_d453e9e1f4a52dda", 1956367682294209, undefined, [groupID]); }
   declare readonly $type: { "s:8StoreKit03AppA17MerchandisingKindV": true };
 }
 
@@ -311,117 +311,117 @@ export class AppTransaction extends SDKHandle {
   var appTransactionID: String { get }
    * @availability iOS 16.0+
    */
-  get appTransactionID(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2872216930152917, this, []); }
+  get appTransactionID(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2872216930152917, this, []); }
   /**
    * let originalAppVersion: String
    * @availability iOS 16.0+
    */
-  get originalAppVersion(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3425643962259622, this, []); }
+  get originalAppVersion(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3425643962259622, this, []); }
   /**
    * let appVersion: String
    * @availability iOS 16.0+
    */
-  get appVersion(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3993347541178327, this, []); }
+  get appVersion(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3993347541178327, this, []); }
   /**
    * let signedDate: Date
    * @availability iOS 16.0+
    */
-  get signedDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_86f7e029fa4ce140", 3648201470662279, this, []); }
+  get signedDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_d453e9e1f4a52dda", 3648201470662279, this, []); }
   /**
    * let environment: AppStore.Environment
    * @availability iOS 16.0+
    */
-  get environment(): AppStore_Environment { return callSDK<AppStore_Environment>("StoreKit_86f7e029fa4ce140", 2156209976165317, this, []); }
+  get environment(): AppStore_Environment { return callSDK<AppStore_Environment>("StoreKit_d453e9e1f4a52dda", 2156209976165317, this, []); }
   /**
    * let appVersionID: UInt64?
    * @availability iOS 16.0+
    */
-  get appVersionID(): (number) | null { return callSDK<(number) | null>("StoreKit_86f7e029fa4ce140", 374537418798442, this, []); }
+  get appVersionID(): (number) | null { return callSDK<(number) | null>("StoreKit_d453e9e1f4a52dda", 374537418798442, this, []); }
   /**
    * let preorderDate: Date?
    * @availability iOS 16.0+
    */
-  get preorderDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_86f7e029fa4ce140", 3192620089609143, this, []); }
+  get preorderDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_d453e9e1f4a52dda", 3192620089609143, this, []); }
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   var revocationDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get revocationDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_86f7e029fa4ce140", 2067832611689509, this, []); }
+  get revocationDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_d453e9e1f4a52dda", 2067832611689509, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1393706598746949, this, []); }
+  get debugDescription(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1393706598746949, this, []); }
   /**
    * let originalPlatform: AppStore.Platform
    * @availability iOS 18.4+
    */
-  get originalPlatform(): AppStore_Platform { return callSDK<AppStore_Platform>("StoreKit_86f7e029fa4ce140", 3737833792683531, this, []); }
+  get originalPlatform(): AppStore_Platform { return callSDK<AppStore_Platform>("StoreKit_d453e9e1f4a52dda", 3737833792683531, this, []); }
   /**
    * let deviceVerification: Data
    * @availability iOS 16.0+
    */
-  get deviceVerification(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 1547745182598036, this, []); }
+  get deviceVerification(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 1547745182598036, this, []); }
   /**
    * var jsonRepresentation: Data { get }
    * @availability iOS 16.0+
    */
-  get jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 673894304666610, this, []); }
+  get jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 673894304666610, this, []); }
   /**
    * let originalPurchaseDate: Date
    * @availability iOS 16.0+
    */
-  get originalPurchaseDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_86f7e029fa4ce140", 1686618064796962, this, []); }
+  get originalPurchaseDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_d453e9e1f4a52dda", 1686618064796962, this, []); }
   /**
    * let deviceVerificationNonce: UUID
    * @availability iOS 16.0+
    */
-  get deviceVerificationNonce(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2910143082786316, this, []); }
+  get deviceVerificationNonce(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2910143082786316, this, []); }
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   var storeTypeStringRepresentation: String { get }
    * @availability iOS 16.0+
    * @deprecated iOS 27.0
    */
-  get storeTypeStringRepresentation(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2174214685827782, this, []); }
+  get storeTypeStringRepresentation(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2174214685827782, this, []); }
   /**
    * @backDeployed(before: iOS 18.4, macOS 15.4, tvOS 18.4, watchOS 11.4, visionOS 2.4)
   var originalPlatformStringRepresentation: String { get }
    * @availability iOS 16.0+
    * @deprecated iOS 18.4
    */
-  get originalPlatformStringRepresentation(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3840802125973681, this, []); }
+  get originalPlatformStringRepresentation(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3840802125973681, this, []); }
   /**
    * static var all: AppTransaction.AppTransactions { get }
    * @availability iOS 27.0+
    */
-  static get all(): AppTransaction_AppTransactions { return callSDK<AppTransaction_AppTransactions>("StoreKit_86f7e029fa4ce140", 3529493877782512, undefined, []); }
+  static get all(): AppTransaction_AppTransactions { return callSDK<AppTransaction_AppTransactions>("StoreKit_d453e9e1f4a52dda", 3529493877782512, undefined, []); }
   /**
    * let appID: UInt64?
    * @availability iOS 16.0+
    */
-  get appID(): (number) | null { return callSDK<(number) | null>("StoreKit_86f7e029fa4ce140", 4170688054908734, this, []); }
+  get appID(): (number) | null { return callSDK<(number) | null>("StoreKit_d453e9e1f4a52dda", 4170688054908734, this, []); }
   /**
    * static var shared: VerificationResult<AppTransaction> { get async throws }
    * @availability iOS 16.0+
    */
-  static get shared(): Promise<$SDK4> { return callSDKAsync<$SDK4>("StoreKit_86f7e029fa4ce140", 4365590491347910, undefined, []); }
+  static get shared(): Promise<$SDK4> { return callSDKAsync<$SDK4>("StoreKit_d453e9e1f4a52dda", 4365590491347910, undefined, []); }
   /**
    * static func refresh() async throws -> VerificationResult<AppTransaction>
    * @availability iOS 16.0+
    */
-  static refresh(): Promise<$SDK4> { return callSDKAsync<$SDK4>("StoreKit_86f7e029fa4ce140", 1733989122617655, undefined, []); }
+  static refresh(): Promise<$SDK4> { return callSDKAsync<$SDK4>("StoreKit_d453e9e1f4a52dda", 1733989122617655, undefined, []); }
   /**
    * let bundleID: String
    * @availability iOS 16.0+
    */
-  get bundleID(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 282212444616864, this, []); }
+  get bundleID(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 282212444616864, this, []); }
   /**
    * let storeType: AppTransaction.StoreType
    * @availability iOS 27.0+
    */
-  get storeType(): AppTransaction_StoreType { return callSDK<AppTransaction_StoreType>("StoreKit_86f7e029fa4ce140", 490039208600135, this, []); }
+  get storeType(): AppTransaction_StoreType { return callSDK<AppTransaction_StoreType>("StoreKit_d453e9e1f4a52dda", 490039208600135, this, []); }
   declare readonly $type: { "s:8StoreKit14AppTransactionV": true };
 }
 
@@ -434,7 +434,7 @@ export class AppTransaction_AppTransactions extends SDKHandle {
    * func makeAsyncIterator() -> AppTransaction.AppTransactions.AsyncIterator
    * @availability iOS 27.0+
    */
-  makeAsyncIterator(): AppTransaction_AppTransactions_AsyncIterator { return callSDK<AppTransaction_AppTransactions_AsyncIterator>("StoreKit_86f7e029fa4ce140", 2392335956848867, this, []); }
+  makeAsyncIterator(): AppTransaction_AppTransactions_AsyncIterator { return callSDK<AppTransaction_AppTransactions_AsyncIterator>("StoreKit_d453e9e1f4a52dda", 2392335956848867, this, []); }
   declare readonly $type: { "s:8StoreKit14AppTransactionV0C12TransactionsV": true };
   declare readonly $element: $SDK4;
 }
@@ -448,7 +448,7 @@ export class AppTransaction_AppTransactions_AsyncIterator extends SDKHandle {
    * mutating func next() async -> VerificationResult<AppTransaction>?
    * @availability iOS 27.0+
    */
-  next(): Promise<(VerificationResult<AppTransaction>) | null> { return callSDKAsync<(VerificationResult<AppTransaction>) | null>("StoreKit_86f7e029fa4ce140", 3831335430500732, this, []); }
+  next(): Promise<(VerificationResult<AppTransaction>) | null> { return callSDKAsync<(VerificationResult<AppTransaction>) | null>("StoreKit_d453e9e1f4a52dda", 3831335430500732, this, []); }
   declare readonly $type: { "s:8StoreKit14AppTransactionV0C12TransactionsV13AsyncIteratorV": true };
 }
 
@@ -475,27 +475,27 @@ export const AppTransaction_StoreType = {
    * static let enterprise: AppTransaction.StoreType
    * @availability iOS 27.0+
    */
-  get enterprise(): AppTransaction_StoreType { return callSDK<AppTransaction_StoreType>("StoreKit_86f7e029fa4ce140", 4438418038645281, undefined, []); },
+  get enterprise(): AppTransaction_StoreType { return callSDK<AppTransaction_StoreType>("StoreKit_d453e9e1f4a52dda", 4438418038645281, undefined, []); },
   /**
    * static let consumer: AppTransaction.StoreType
    * @availability iOS 27.0+
    */
-  get consumer(): AppTransaction_StoreType { return callSDK<AppTransaction_StoreType>("StoreKit_86f7e029fa4ce140", 4070843228505444, undefined, []); },
+  get consumer(): AppTransaction_StoreType { return callSDK<AppTransaction_StoreType>("StoreKit_d453e9e1f4a52dda", 4070843228505444, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): AppTransaction_StoreType { return callSDK<AppTransaction_StoreType>("StoreKit_86f7e029fa4ce140", 369455524447575, undefined, [rawValue]); },
+  init(rawValue: string): AppTransaction_StoreType { return callSDK<AppTransaction_StoreType>("StoreKit_d453e9e1f4a52dda", 369455524447575, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: AppTransaction_StoreType): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1547199527560705, $self, []); },
+  getRawValue($self: AppTransaction_StoreType): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1547199527560705, $self, []); },
   /**
    * static let education: AppTransaction.StoreType
    * @availability iOS 27.0+
    */
-  get education(): AppTransaction_StoreType { return callSDK<AppTransaction_StoreType>("StoreKit_86f7e029fa4ce140", 1656915884583122, undefined, []); }
+  get education(): AppTransaction_StoreType { return callSDK<AppTransaction_StoreType>("StoreKit_d453e9e1f4a52dda", 1656915884583122, undefined, []); }
 };
 
 /**
@@ -509,7 +509,7 @@ export class DateComponents extends SDKHandle {
    * init(subscriptionPeriod period: Product.SubscriptionPeriod)
    * @availability iOS 15.0+
    */
-  static init(period: Product_SubscriptionPeriod): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("StoreKit_86f7e029fa4ce140", 2556586332368524, undefined, [period]); }
+  static init(period: Product_SubscriptionPeriod): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("StoreKit_d453e9e1f4a52dda", 2556586332368524, undefined, [period]); }
   declare readonly $type: { "s:10Foundation14DateComponentsV": true };
 }
 
@@ -522,12 +522,12 @@ export class ExternalLinkAccount extends SDKHandle {
    * static func open() async throws
    * @availability iOS 16.0+
    */
-  static open(): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 3175745165120105, undefined, []); }
+  static open(): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 3175745165120105, undefined, []); }
   /**
    * static var canOpen: Bool { get async }
    * @availability iOS 16.0+
    */
-  static get canOpen(): Promise<boolean> { return callSDKAsync<boolean>("StoreKit_86f7e029fa4ce140", 4425139917754096, undefined, []); }
+  static get canOpen(): Promise<boolean> { return callSDKAsync<boolean>("StoreKit_d453e9e1f4a52dda", 4425139917754096, undefined, []); }
   declare readonly $type: { "s:8StoreKit19ExternalLinkAccountO": true };
 }
 
@@ -540,12 +540,12 @@ export class ExternalPurchase extends SDKHandle {
    * static var canPresent: Bool { get async }
    * @availability iOS 17.4+
    */
-  static get canPresent(): Promise<boolean> { return callSDKAsync<boolean>("StoreKit_86f7e029fa4ce140", 3080316302335908, undefined, []); }
+  static get canPresent(): Promise<boolean> { return callSDKAsync<boolean>("StoreKit_d453e9e1f4a52dda", 3080316302335908, undefined, []); }
   /**
    * static func presentNoticeSheet() async throws -> ExternalPurchase.NoticeResult
    * @availability iOS 15.4+
    */
-  static presentNoticeSheet(): Promise<ExternalPurchase_NoticeResult> { return callSDKAsync<ExternalPurchase_NoticeResult>("StoreKit_86f7e029fa4ce140", 2568683768696671, undefined, []); }
+  static presentNoticeSheet(): Promise<ExternalPurchase_NoticeResult> { return callSDKAsync<ExternalPurchase_NoticeResult>("StoreKit_d453e9e1f4a52dda", 2568683768696671, undefined, []); }
   declare readonly $type: { "s:8StoreKit16ExternalPurchaseO": true };
 }
 
@@ -566,17 +566,17 @@ export class ExternalPurchaseCustomLink extends SDKHandle {
    * static var isEligible: Bool { get async }
    * @availability iOS 18.1+
    */
-  static get isEligible(): Promise<boolean> { return callSDKAsync<boolean>("StoreKit_86f7e029fa4ce140", 1823476187183277, undefined, []); }
+  static get isEligible(): Promise<boolean> { return callSDKAsync<boolean>("StoreKit_d453e9e1f4a52dda", 1823476187183277, undefined, []); }
   /**
    * static func showNotice(type: ExternalPurchaseCustomLink.NoticeType) async throws -> ExternalPurchaseCustomLink.NoticeResult
    * @availability iOS 18.1+
    */
-  static showNotice(type: ExternalPurchaseCustomLink_NoticeType): Promise<ExternalPurchaseCustomLink_NoticeResult> { return callSDKAsync<ExternalPurchaseCustomLink_NoticeResult>("StoreKit_86f7e029fa4ce140", 3317250328112011, undefined, [type]); }
+  static showNotice(type: ExternalPurchaseCustomLink_NoticeType): Promise<ExternalPurchaseCustomLink_NoticeResult> { return callSDKAsync<ExternalPurchaseCustomLink_NoticeResult>("StoreKit_d453e9e1f4a52dda", 3317250328112011, undefined, [type]); }
   /**
    * static func token(for tokenType: String) async throws -> ExternalPurchaseCustomLink.Token?
    * @availability iOS 18.1+
    */
-  static token(tokenType: string): Promise<(ExternalPurchaseCustomLink_Token) | null> { return callSDKAsync<(ExternalPurchaseCustomLink_Token) | null>("StoreKit_86f7e029fa4ce140", 2045435926963020, undefined, [tokenType]); }
+  static token(tokenType: string): Promise<(ExternalPurchaseCustomLink_Token) | null> { return callSDKAsync<(ExternalPurchaseCustomLink_Token) | null>("StoreKit_d453e9e1f4a52dda", 2045435926963020, undefined, [tokenType]); }
   declare readonly $type: { "s:8StoreKit26ExternalPurchaseCustomLinkO": true };
 }
 
@@ -597,12 +597,12 @@ export const ExternalPurchaseCustomLink_NoticeType = {
    * init?(rawValue: Int)
    * @availability iOS 18.1+
    */
-  init(rawValue: number): (ExternalPurchaseCustomLink_NoticeType) | null { return callSDK<(ExternalPurchaseCustomLink_NoticeType) | null>("StoreKit_86f7e029fa4ce140", 4497162247983532, undefined, [rawValue]); },
+  init(rawValue: number): (ExternalPurchaseCustomLink_NoticeType) | null { return callSDK<(ExternalPurchaseCustomLink_NoticeType) | null>("StoreKit_d453e9e1f4a52dda", 4497162247983532, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 18.1+
    */
-  getRawValue($self: ExternalPurchaseCustomLink_NoticeType): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 355520025106663, $self, []); }
+  getRawValue($self: ExternalPurchaseCustomLink_NoticeType): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 355520025106663, $self, []); }
 };
 
 /**
@@ -620,7 +620,7 @@ export class ExternalPurchaseCustomLink_Token extends SDKHandle {
    * let value: String
    * @availability iOS 18.1+
    */
-  get value(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 712745325059037, this, []); }
+  get value(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 712745325059037, this, []); }
   declare readonly $type: { "s:8StoreKit26ExternalPurchaseCustomLinkO5TokenV": true };
 }
 
@@ -633,22 +633,22 @@ export class ExternalPurchaseLink extends SDKHandle {
    * static var eligibleURLs: [URL]? { get async }
    * @availability iOS 17.5+
    */
-  static get eligibleURLs(): Promise<(Array<string>) | null> { return callSDKAsync<(Array<string>) | null>("StoreKit_86f7e029fa4ce140", 1460802868826580, undefined, []); }
+  static get eligibleURLs(): Promise<(Array<string>) | null> { return callSDKAsync<(Array<string>) | null>("StoreKit_d453e9e1f4a52dda", 1460802868826580, undefined, []); }
   /**
    * static func open(url: URL) async throws
    * @availability iOS 17.5+
    */
-  static openUrl(url: string): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 4194867005751710, undefined, [url]); }
+  static openUrl(url: string): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 4194867005751710, undefined, [url]); }
   /**
    * static func open() async throws
    * @availability iOS 15.4+
    */
-  static open(): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 1479355335424869, undefined, []); }
+  static open(): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 1479355335424869, undefined, []); }
   /**
    * static var canOpen: Bool { get async }
    * @availability iOS 15.4+
    */
-  static get canOpen(): Promise<boolean> { return callSDKAsync<boolean>("StoreKit_86f7e029fa4ce140", 1988363184024385, undefined, []); }
+  static get canOpen(): Promise<boolean> { return callSDKAsync<boolean>("StoreKit_d453e9e1f4a52dda", 1988363184024385, undefined, []); }
   declare readonly $type: { "s:8StoreKit20ExternalPurchaseLinkO": true };
 }
 
@@ -661,12 +661,12 @@ export class InvalidRequestError extends SDKHandle {
    * let code: Int64
    * @availability iOS 18.4+
    */
-  get code(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 1649241327029543, this, []); }
+  get code(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 1649241327029543, this, []); }
   /**
    * let message: String
    * @availability iOS 18.4+
    */
-  get message(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3577016429995244, this, []); }
+  get message(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3577016429995244, this, []); }
   declare readonly $type: { "s:8StoreKit19InvalidRequestErrorV": true };
 }
 
@@ -679,17 +679,17 @@ export class Message extends SDKHandle {
    * let reason: Message.Reason
    * @availability iOS 16.0+
    */
-  get reason(): Message_Reason { return callSDK<Message_Reason>("StoreKit_86f7e029fa4ce140", 2230777349379908, this, []); }
+  get reason(): Message_Reason { return callSDK<Message_Reason>("StoreKit_d453e9e1f4a52dda", 2230777349379908, this, []); }
   /**
    * @MainActor func display(in scene: UIWindowScene) throws
    * @availability iOS 16.0+
    */
-  display(scene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 1265988406337488, this, [scene]); }
+  display(scene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 1265988406337488, this, [scene]); }
   /**
    * static var messages: Message.Messages { get }
    * @availability iOS 16.0+
    */
-  static get messages(): Message_Messages { return callSDK<Message_Messages>("StoreKit_86f7e029fa4ce140", 1646082258549824, undefined, []); }
+  static get messages(): Message_Messages { return callSDK<Message_Messages>("StoreKit_d453e9e1f4a52dda", 1646082258549824, undefined, []); }
   declare readonly $type: { "s:8StoreKit7MessageV": true };
 }
 
@@ -702,7 +702,7 @@ export class Message_Messages extends SDKHandle {
    * func makeAsyncIterator() -> Message.Messages.AsyncIterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): Message_Messages_AsyncIterator { return callSDK<Message_Messages_AsyncIterator>("StoreKit_86f7e029fa4ce140", 4081307500364996, this, []); }
+  makeAsyncIterator(): Message_Messages_AsyncIterator { return callSDK<Message_Messages_AsyncIterator>("StoreKit_d453e9e1f4a52dda", 4081307500364996, this, []); }
   declare readonly $type: { "s:8StoreKit7MessageV8MessagesV": true };
   declare readonly $element: Message;
 }
@@ -716,7 +716,7 @@ export class Message_Messages_AsyncIterator extends SDKHandle {
    * mutating func next() async -> Message.Messages.Element?
    * @availability iOS 16.0+
    */
-  next(): Promise<(Message) | null> { return callSDKAsync<(Message) | null>("StoreKit_86f7e029fa4ce140", 2036959500550669, this, []); }
+  next(): Promise<(Message) | null> { return callSDKAsync<(Message) | null>("StoreKit_d453e9e1f4a52dda", 2036959500550669, this, []); }
   declare readonly $type: { "s:8StoreKit7MessageV8MessagesV13AsyncIteratorV": true };
 }
 
@@ -743,37 +743,37 @@ export const Message_Reason = {
    * static let billingIssue: Message.Reason
    * @availability iOS 16.4+
    */
-  get billingIssue(): Message_Reason { return callSDK<Message_Reason>("StoreKit_86f7e029fa4ce140", 3377717608384688, undefined, []); },
+  get billingIssue(): Message_Reason { return callSDK<Message_Reason>("StoreKit_d453e9e1f4a52dda", 3377717608384688, undefined, []); },
   /**
    * static let winBackOffer: Message.Reason
    * @availability iOS 18.0+
    */
-  get winBackOffer(): Message_Reason { return callSDK<Message_Reason>("StoreKit_86f7e029fa4ce140", 2314236435071132, undefined, []); },
+  get winBackOffer(): Message_Reason { return callSDK<Message_Reason>("StoreKit_d453e9e1f4a52dda", 2314236435071132, undefined, []); },
   /**
    * var localizedDescription: String { get }
    * @availability iOS 16.0+
    */
-  getLocalizedDescription($self: Message_Reason): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2109725984969790, $self, []); },
+  getLocalizedDescription($self: Message_Reason): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2109725984969790, $self, []); },
   /**
    * static let priceIncreaseConsent: Message.Reason
    * @availability iOS 16.0+
    */
-  get priceIncreaseConsent(): Message_Reason { return callSDK<Message_Reason>("StoreKit_86f7e029fa4ce140", 3783439444461702, undefined, []); },
+  get priceIncreaseConsent(): Message_Reason { return callSDK<Message_Reason>("StoreKit_d453e9e1f4a52dda", 3783439444461702, undefined, []); },
   /**
    * static let generic: Message.Reason
    * @availability iOS 16.0+
    */
-  get generic(): Message_Reason { return callSDK<Message_Reason>("StoreKit_86f7e029fa4ce140", 2872628894806425, undefined, []); },
+  get generic(): Message_Reason { return callSDK<Message_Reason>("StoreKit_d453e9e1f4a52dda", 2872628894806425, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): Message_Reason { return callSDK<Message_Reason>("StoreKit_86f7e029fa4ce140", 729500064272345, undefined, [rawValue]); },
+  init(rawValue: number): Message_Reason { return callSDK<Message_Reason>("StoreKit_d453e9e1f4a52dda", 729500064272345, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 16.0+
    */
-  getRawValue($self: Message_Reason): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 2949690857657180, $self, []); }
+  getRawValue($self: Message_Reason): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 2949690857657180, $self, []); }
 };
 
 /**
@@ -790,19 +790,19 @@ export const NSNotification_Name = {
    * @availability iOS 9.3+
    * @deprecated iOS 18.0
    */
-  get SKCloudServiceCapabilitiesDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("StoreKit_86f7e029fa4ce140", 325115671465002, undefined, []); },
+  get SKCloudServiceCapabilitiesDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("StoreKit_d453e9e1f4a52dda", 325115671465002, undefined, []); },
   /**
    * static let SKStorefrontCountryCodeDidChange: NSNotification.Name
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  get SKStorefrontCountryCodeDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("StoreKit_86f7e029fa4ce140", 4391476760144286, undefined, []); },
+  get SKStorefrontCountryCodeDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("StoreKit_d453e9e1f4a52dda", 4391476760144286, undefined, []); },
   /**
    * static let SKStorefrontIdentifierDidChange: NSNotification.Name
    * @availability iOS 9.3+
    * @deprecated iOS 18.0
    */
-  get SKStorefrontIdentifierDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("StoreKit_86f7e029fa4ce140", 2846360989257385, undefined, []); }
+  get SKStorefrontIdentifierDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("StoreKit_d453e9e1f4a52dda", 2846360989257385, undefined, []); }
 };
 
 /**
@@ -814,17 +814,17 @@ export class PaymentMethodBinding extends SDKHandle {
    * init(id: String) async throws
    * @availability iOS 16.4+
    */
-  static init(id: string): Promise<PaymentMethodBinding> { return callSDKAsync<PaymentMethodBinding>("StoreKit_86f7e029fa4ce140", 3218752974268725, undefined, [id]); }
+  static init(id: string): Promise<PaymentMethodBinding> { return callSDKAsync<PaymentMethodBinding>("StoreKit_d453e9e1f4a52dda", 3218752974268725, undefined, [id]); }
   /**
    * let id: String
    * @availability iOS 16.4+
    */
-  get id(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 720386766855832, this, []); }
+  get id(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 720386766855832, this, []); }
   /**
    * func bind() async throws
    * @availability iOS 16.4+
    */
-  bind(): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 488100630518281, this, []); }
+  bind(): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 488100630518281, this, []); }
   declare readonly $type: { "s:8StoreKit20PaymentMethodBindingV": true };
 }
 
@@ -845,17 +845,17 @@ export const PaymentMethodBinding_PaymentMethodBindingError = {
    * var failureReason: String? { get }
    * @availability iOS 16.4+
    */
-  getFailureReason($self: PaymentMethodBinding_PaymentMethodBindingError): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 1039843522007365, $self, []); },
+  getFailureReason($self: PaymentMethodBinding_PaymentMethodBindingError): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 1039843522007365, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 16.4+
    */
-  getErrorDescription($self: PaymentMethodBinding_PaymentMethodBindingError): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 3477292766926372, $self, []); },
+  getErrorDescription($self: PaymentMethodBinding_PaymentMethodBindingError): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 3477292766926372, $self, []); },
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 16.4+
    */
-  getRecoverySuggestion($self: PaymentMethodBinding_PaymentMethodBindingError): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 1331176147309922, $self, []); }
+  getRecoverySuggestion($self: PaymentMethodBinding_PaymentMethodBindingError): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 1331176147309922, $self, []); }
 };
 
 /**
@@ -867,106 +867,106 @@ export class Product extends SDKHandle {
    * let description: String
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4481013520998700, this, []); }
+  get description(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4481013520998700, this, []); }
   /**
    * let displayName: String
    * @availability iOS 15.0+
    */
-  get displayName(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2255826832164855, this, []); }
+  get displayName(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2255826832164855, this, []); }
   /**
    * let displayPrice: String
    * @availability iOS 15.0+
    */
-  get displayPrice(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 476490408641333, this, []); }
+  get displayPrice(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 476490408641333, this, []); }
   /**
    * let subscription: Product.SubscriptionInfo?
    * @availability iOS 15.0+
    */
-  get subscription(): (Product_SubscriptionInfo) | null { return callSDK<(Product_SubscriptionInfo) | null>("StoreKit_86f7e029fa4ce140", 2465145311642718, this, []); }
+  get subscription(): (Product_SubscriptionInfo) | null { return callSDK<(Product_SubscriptionInfo) | null>("StoreKit_d453e9e1f4a52dda", 2465145311642718, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1748068960924403, this, []); }
+  get debugDescription(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1748068960924403, this, []); }
   /**
    * @backDeployed(before: iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, macCatalyst 16.0)
   var priceFormatStyle: Decimal.FormatStyle.Currency { get }
    * @availability iOS 15.0+
    */
-  get priceFormatStyle(): _Foundation_Decimal_FormatStyle_Currency { return callSDK<_Foundation_Decimal_FormatStyle_Currency>("StoreKit_86f7e029fa4ce140", 2622134823560842, this, []); }
+  get priceFormatStyle(): _Foundation_Decimal_FormatStyle_Currency { return callSDK<_Foundation_Decimal_FormatStyle_Currency>("StoreKit_d453e9e1f4a52dda", 2622134823560842, this, []); }
   /**
    * let isFamilyShareable: Bool
    * @availability iOS 15.0+
    */
-  get isFamilyShareable(): boolean { return callSDK<boolean>("StoreKit_86f7e029fa4ce140", 580384606848899, this, []); }
+  get isFamilyShareable(): boolean { return callSDK<boolean>("StoreKit_d453e9e1f4a52dda", 580384606848899, this, []); }
   /**
    * var latestTransaction: VerificationResult<Transaction>? { get async }
    * @availability iOS 15.0+
    */
-  get latestTransaction(): Promise<$SDK0> { return callSDKAsync<$SDK0>("StoreKit_86f7e029fa4ce140", 4170594011121150, this, []); }
+  get latestTransaction(): Promise<$SDK0> { return callSDKAsync<$SDK0>("StoreKit_d453e9e1f4a52dda", 4170594011121150, this, []); }
   /**
    * var currentEntitlement: VerificationResult<Transaction>? { get async }
    * @availability iOS 15.0+
    * @deprecated iOS 18.4
    */
-  get currentEntitlement(): Promise<$SDK0> { return callSDKAsync<$SDK0>("StoreKit_86f7e029fa4ce140", 1779974849822815, this, []); }
+  get currentEntitlement(): Promise<$SDK0> { return callSDKAsync<$SDK0>("StoreKit_d453e9e1f4a52dda", 1779974849822815, this, []); }
   /**
    * var jsonRepresentation: Data { get }
    * @availability iOS 15.0+
    */
-  get jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 431985770247178, this, []); }
+  get jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 431985770247178, this, []); }
   /**
    * @backDeployed(before: iOS 26.0, macOS 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0)
   var currentEntitlements: Transaction.Transactions { get }
    * @availability iOS 18.4+
    */
-  get currentEntitlements(): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_86f7e029fa4ce140", 4149986122204644, this, []); }
+  get currentEntitlements(): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_d453e9e1f4a52dda", 4149986122204644, this, []); }
   /**
    * @backDeployed(before: iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, macCatalyst 16.0)
   var subscriptionPeriodFormatStyle: Date.ComponentsFormatStyle { get }
    * @availability iOS 15.0+
    */
-  get subscriptionPeriodFormatStyle(): _Foundation_Date_ComponentsFormatStyle { return callSDK<_Foundation_Date_ComponentsFormatStyle>("StoreKit_86f7e029fa4ce140", 766063365056534, this, []); }
+  get subscriptionPeriodFormatStyle(): _Foundation_Date_ComponentsFormatStyle { return callSDK<_Foundation_Date_ComponentsFormatStyle>("StoreKit_d453e9e1f4a52dda", 766063365056534, this, []); }
   /**
    * let id: String
    * @availability iOS 15.0+
    */
-  get id(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2946840363896904, this, []); }
+  get id(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2946840363896904, this, []); }
   /**
    * var subscriptionPeriodUnitFormatStyle: Product.SubscriptionPeriod.Unit.FormatStyle { get }
    * @availability iOS 16.0+
    */
-  get subscriptionPeriodUnitFormatStyle(): Product_SubscriptionPeriod_Unit_FormatStyle { return callSDK<Product_SubscriptionPeriod_Unit_FormatStyle>("StoreKit_86f7e029fa4ce140", 1262772871592640, this, []); }
+  get subscriptionPeriodUnitFormatStyle(): Product_SubscriptionPeriod_Unit_FormatStyle { return callSDK<Product_SubscriptionPeriod_Unit_FormatStyle>("StoreKit_d453e9e1f4a52dda", 1262772871592640, this, []); }
   /**
    * let type: Product.ProductType
    * @availability iOS 15.0+
    */
-  get type(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_86f7e029fa4ce140", 818936066743781, this, []); }
+  get type(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_d453e9e1f4a52dda", 818936066743781, this, []); }
   /**
    * let price: Decimal
    * @availability iOS 15.0+
    */
-  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_86f7e029fa4ce140", 2973624768348894, this, []); }
+  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_d453e9e1f4a52dda", 2973624768348894, this, []); }
   /**
    * static func products<Identifiers>(for identifiers: Identifiers) async throws -> [Product] where Identifiers : Collection, Identifiers.Element == String
    * @availability iOS 15.0+
    */
-  static products(identifiers: Array<string>): Promise<Array<Product>> { return callSDKAsync<Array<Product>>("StoreKit_86f7e029fa4ce140", 2051614348451891, undefined, [identifiers]); }
+  static products(identifiers: Array<string>): Promise<Array<Product>> { return callSDKAsync<Array<Product>>("StoreKit_d453e9e1f4a52dda", 2051614348451891, undefined, [identifiers]); }
   /**
    * @MainActor func purchase(options: Set<Product.PurchaseOption> = []) async throws -> Product.PurchaseResult
    * @availability iOS 15.0+
    */
-  purchaseOptions(options?: $SDK8): Promise<Product_PurchaseResult> { return callSDKAsync<Product_PurchaseResult>("StoreKit_86f7e029fa4ce140", 2028359356356327, this, [options]); }
+  purchaseOptions(options?: $SDK8): Promise<Product_PurchaseResult> { return callSDKAsync<Product_PurchaseResult>("StoreKit_d453e9e1f4a52dda", 2028359356356327, this, [options]); }
   /**
    * func purchase(confirmIn viewController: UIViewController, options: Set<Product.PurchaseOption> = []) async throws -> Product.PurchaseResult
    * @availability iOS 18.2+
    */
-  purchaseConfirmInOptions(viewController: _UIKit_UIViewController, options?: $SDK8): Promise<Product_PurchaseResult> { return callSDKAsync<Product_PurchaseResult>("StoreKit_86f7e029fa4ce140", 3449418759301403, this, [viewController, options]); }
+  purchaseConfirmInOptions(viewController: _UIKit_UIViewController, options?: $SDK8): Promise<Product_PurchaseResult> { return callSDKAsync<Product_PurchaseResult>("StoreKit_d453e9e1f4a52dda", 3449418759301403, this, [viewController, options]); }
   /**
    * @MainActor func purchase(confirmIn scene: some UIScene, options: Set<Product.PurchaseOption> = []) async throws -> Product.PurchaseResult
    * @availability iOS 17.0+
    */
-  purchaseConfirmInOptions44435(scene: _UIKit_UIScene, options?: $SDK8): Promise<Product_PurchaseResult> { return callSDKAsync<Product_PurchaseResult>("StoreKit_86f7e029fa4ce140", 2098701510271861, this, [scene, options]); }
+  purchaseConfirmInOptions44435(scene: _UIKit_UIScene, options?: $SDK8): Promise<Product_PurchaseResult> { return callSDKAsync<Product_PurchaseResult>("StoreKit_d453e9e1f4a52dda", 2098701510271861, this, [scene, options]); }
   declare readonly $type: { "s:8StoreKit7ProductV": true };
 }
 
@@ -987,47 +987,47 @@ export const Product_ProductType = {
    * static let consumable: Product.ProductType
    * @availability iOS 15.0+
    */
-  get consumable(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_86f7e029fa4ce140", 565808274526570, undefined, []); },
+  get consumable(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_d453e9e1f4a52dda", 565808274526570, undefined, []); },
   /**
    * static let nonRenewable: Product.ProductType
    * @availability iOS 15.0+
    */
-  get nonRenewable(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_86f7e029fa4ce140", 3507087189562919, undefined, []); },
+  get nonRenewable(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_d453e9e1f4a52dda", 3507087189562919, undefined, []); },
   /**
    * static let autoRenewable: Product.ProductType
    * @availability iOS 15.0+
    */
-  get autoRenewable(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_86f7e029fa4ce140", 1001346577127808, undefined, []); },
+  get autoRenewable(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_d453e9e1f4a52dda", 1001346577127808, undefined, []); },
   /**
    * static let nonConsumable: Product.ProductType
    * @availability iOS 15.0+
    */
-  get nonConsumable(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_86f7e029fa4ce140", 2920799156917336, undefined, []); },
+  get nonConsumable(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_d453e9e1f4a52dda", 2920799156917336, undefined, []); },
   /**
    * static let subscriptionSuite: Product.ProductType
    * @availability iOS 27.0+
    */
-  get subscriptionSuite(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_86f7e029fa4ce140", 3144428642203033, undefined, []); },
+  get subscriptionSuite(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_d453e9e1f4a52dda", 3144428642203033, undefined, []); },
   /**
    * static let subscriptionBundle: Product.ProductType
    * @availability iOS 27.0+
    */
-  get subscriptionBundle(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_86f7e029fa4ce140", 2038967720479602, undefined, []); },
+  get subscriptionBundle(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_d453e9e1f4a52dda", 2038967720479602, undefined, []); },
   /**
    * var localizedDescription: String { get }
    * @availability iOS 15.4+
    */
-  getLocalizedDescription($self: Product_ProductType): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1957925722029558, $self, []); },
+  getLocalizedDescription($self: Product_ProductType): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1957925722029558, $self, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_86f7e029fa4ce140", 2813081146208312, undefined, [rawValue]); },
+  init(rawValue: string): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_d453e9e1f4a52dda", 2813081146208312, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 15.0+
    */
-  getRawValue($self: Product_ProductType): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2598026629802416, $self, []); }
+  getRawValue($self: Product_ProductType): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2598026629802416, $self, []); }
 };
 
 /**
@@ -1045,28 +1045,28 @@ export class Product_PromotionInfo extends SDKHandle {
    * static func updateProductVisibility(_ visibility: Product.PromotionInfo.Visibility, for productID: Product.ID) async throws
    * @availability iOS 16.4+
    */
-  static updateProductVisibility(visibility: Product_PromotionInfo_Visibility, productID: string): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 1968488281523067, undefined, [visibility, productID]); }
+  static updateProductVisibility(visibility: Product_PromotionInfo_Visibility, productID: string): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 1968488281523067, undefined, [visibility, productID]); }
   /**
    * var visibility: Product.PromotionInfo.Visibility
    * @availability iOS 16.4+
    */
-  get visibility(): Product_PromotionInfo_Visibility { return callSDK<Product_PromotionInfo_Visibility>("StoreKit_86f7e029fa4ce140", 1068797993017707, this, []); }
-  set visibility(value: Product_PromotionInfo_Visibility) { callSDK<void>("StoreKit_86f7e029fa4ce140", 3262850191553537, this, [value]); }
+  get visibility(): Product_PromotionInfo_Visibility { return callSDK<Product_PromotionInfo_Visibility>("StoreKit_d453e9e1f4a52dda", 1068797993017707, this, []); }
+  set visibility(value: Product_PromotionInfo_Visibility) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 3262850191553537, this, [value]); }
   /**
    * static var currentOrder: [Product.PromotionInfo] { get async throws }
    * @availability iOS 16.4+
    */
-  static get currentOrder(): Promise<Array<Product_PromotionInfo>> { return callSDKAsync<Array<Product_PromotionInfo>>("StoreKit_86f7e029fa4ce140", 576804307394779, undefined, []); }
+  static get currentOrder(): Promise<Array<Product_PromotionInfo>> { return callSDKAsync<Array<Product_PromotionInfo>>("StoreKit_d453e9e1f4a52dda", 576804307394779, undefined, []); }
   /**
    * func update() async throws
    * @availability iOS 16.4+
    */
-  update(): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 3451652640668262, this, []); }
+  update(): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 3451652640668262, this, []); }
   /**
    * let productID: Product.ID
    * @availability iOS 16.4+
    */
-  get productID(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 132059634961517, this, []); }
+  get productID(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 132059634961517, this, []); }
   declare readonly $type: { "s:8StoreKit7ProductV13PromotionInfoV": true };
 }
 
@@ -1081,12 +1081,12 @@ export const Product_PromotionInfo_Visibility = {
    * init?(rawValue: Int)
    * @availability iOS 16.4+
    */
-  init(rawValue: number): (Product_PromotionInfo_Visibility) | null { return callSDK<(Product_PromotionInfo_Visibility) | null>("StoreKit_86f7e029fa4ce140", 1665360296440838, undefined, [rawValue]); },
+  init(rawValue: number): (Product_PromotionInfo_Visibility) | null { return callSDK<(Product_PromotionInfo_Visibility) | null>("StoreKit_d453e9e1f4a52dda", 1665360296440838, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 16.4+
    */
-  getRawValue($self: Product_PromotionInfo_Visibility): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 3272808187770208, $self, []); }
+  getRawValue($self: Product_PromotionInfo_Visibility): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 3272808187770208, $self, []); }
 };
 
 /**
@@ -1106,17 +1106,17 @@ export const Product_PurchaseError = {
    * var failureReason: String? { get }
    * @availability iOS 15.4+
    */
-  getFailureReason($self: Product_PurchaseError): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 2239346574723154, $self, []); },
+  getFailureReason($self: Product_PurchaseError): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 2239346574723154, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 15.4+
    */
-  getErrorDescription($self: Product_PurchaseError): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 3171345159362553, $self, []); },
+  getErrorDescription($self: Product_PurchaseError): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 3171345159362553, $self, []); },
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 15.4+
    */
-  getRecoverySuggestion($self: Product_PurchaseError): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 296940605917234, $self, []); }
+  getRecoverySuggestion($self: Product_PurchaseError): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 296940605917234, $self, []); }
 };
 
 /**
@@ -1128,76 +1128,76 @@ export class Product_PurchaseOption extends SDKHandle {
    * static func winBackOffer(_ offer: Product.SubscriptionOffer) -> Product.PurchaseOption
    * @availability iOS 18.0+
    */
-  static winBackOffer(offer: Product_SubscriptionOffer): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_86f7e029fa4ce140", 4444351674800689, undefined, [offer]); }
+  static winBackOffer(offer: Product_SubscriptionOffer): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_d453e9e1f4a52dda", 4444351674800689, undefined, [offer]); }
   /**
    * static func appAccountToken(_ token: UUID) -> Product.PurchaseOption
    * @availability iOS 15.0+
    */
-  static appAccountToken(token: string): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_86f7e029fa4ce140", 3216283229841708, undefined, [token]); }
+  static appAccountToken(token: string): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_d453e9e1f4a52dda", 3216283229841708, undefined, [token]); }
   /**
    * static func billingPlanType(_ type: Product.SubscriptionInfo.BillingPlanType) -> Product.PurchaseOption
    * @availability iOS 26.4+
    */
-  static billingPlanType(type: Product_SubscriptionInfo_BillingPlanType): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_86f7e029fa4ce140", 4074264170411479, undefined, [type]); }
+  static billingPlanType(type: Product_SubscriptionInfo_BillingPlanType): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_d453e9e1f4a52dda", 4074264170411479, undefined, [type]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3361915556564035, this, []); }
+  get debugDescription(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3361915556564035, this, []); }
   /**
    * static func promotionalOffer(offerID: String, keyID: String, nonce: UUID, signature: Data, timestamp: Int) -> Product.PurchaseOption
    * @availability iOS 15.0+
    * @deprecated iOS 26.0
    */
-  static promotionalOfferOfferIDKeyIDNonceSignatureTimestamp(offerID: string, keyID: string, nonce: string, signature: ArrayBuffer, timestamp: number): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_86f7e029fa4ce140", 658661972086348, undefined, [offerID, keyID, nonce, signature, timestamp]); }
+  static promotionalOfferOfferIDKeyIDNonceSignatureTimestamp(offerID: string, keyID: string, nonce: string, signature: ArrayBuffer, timestamp: number): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_d453e9e1f4a52dda", 658661972086348, undefined, [offerID, keyID, nonce, signature, timestamp]); }
   /**
    * static func promotionalOffer(offerID: String, signature: Product.SubscriptionOffer.Signature) -> Product.PurchaseOption
    * @availability iOS 17.4+
    * @deprecated iOS 26.0
    */
-  static promotionalOfferOfferIDSignature(offerID: string, signature: Product_SubscriptionOffer_Signature): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_86f7e029fa4ce140", 3644888971854946, undefined, [offerID, signature]); }
+  static promotionalOfferOfferIDSignature(offerID: string, signature: Product_SubscriptionOffer_Signature): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_d453e9e1f4a52dda", 3644888971854946, undefined, [offerID, signature]); }
   /**
    * @backDeployed(before: iOS 26.0, macOS 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0)
   static func promotionalOffer(_ offerID: String, compactJWS: String) -> [Product.PurchaseOption]
    * @availability iOS 15.0+
    */
-  static promotionalOfferCompactJWS(offerID: string, compactJWS: string): $SDK8 { return callSDK<$SDK8>("StoreKit_86f7e029fa4ce140", 2978748409699573, undefined, [offerID, compactJWS]); }
+  static promotionalOfferCompactJWS(offerID: string, compactJWS: string): $SDK8 { return callSDK<$SDK8>("StoreKit_d453e9e1f4a52dda", 2978748409699573, undefined, [offerID, compactJWS]); }
   /**
    * static func simulatesAskToBuyInSandbox(_ simulateAskToBuy: Bool) -> Product.PurchaseOption
    * @availability iOS 15.0+
    */
-  static simulatesAskToBuyInSandbox(simulateAskToBuy: boolean): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_86f7e029fa4ce140", 1276210780243240, undefined, [simulateAskToBuy]); }
+  static simulatesAskToBuyInSandbox(simulateAskToBuy: boolean): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_d453e9e1f4a52dda", 1276210780243240, undefined, [simulateAskToBuy]); }
   /**
    * @backDeployed(before: iOS 18.4, macOS 15.4, tvOS 18.4, watchOS 11.4, visionOS 2.4)
   static func introductoryOfferEligibility(compactJWS: String) -> Product.PurchaseOption
    * @availability iOS 15.0+
    */
-  static introductoryOfferEligibility(compactJWS: string): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_86f7e029fa4ce140", 78436584434026, undefined, [compactJWS]); }
+  static introductoryOfferEligibility(compactJWS: string): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_d453e9e1f4a52dda", 78436584434026, undefined, [compactJWS]); }
   /**
    * static func custom(key: String, value: Data) -> Product.PurchaseOption
    * @availability iOS 15.0+
    */
-  static customKeyValue(key: string, value: ArrayBuffer): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_86f7e029fa4ce140", 3281768236951718, undefined, [key, value]); }
+  static customKeyValue(key: string, value: ArrayBuffer): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_d453e9e1f4a52dda", 3281768236951718, undefined, [key, value]); }
   /**
    * static func custom(key: String, value: String) -> Product.PurchaseOption
    * @availability iOS 15.0+
    */
-  static customKeyValue95246(key: string, value: string): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_86f7e029fa4ce140", 4195060650404268, undefined, [key, value]); }
+  static customKeyValue95246(key: string, value: string): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_d453e9e1f4a52dda", 4195060650404268, undefined, [key, value]); }
   /**
    * static func custom(key: String, value: Bool) -> Product.PurchaseOption
    * @availability iOS 15.0+
    */
-  static customKeyValue81115(key: string, value: boolean): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_86f7e029fa4ce140", 1781987939696058, undefined, [key, value]); }
+  static customKeyValue81115(key: string, value: boolean): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_d453e9e1f4a52dda", 1781987939696058, undefined, [key, value]); }
   /**
    * static func custom(key: String, value: Double) -> Product.PurchaseOption
    * @availability iOS 15.0+
    */
-  static customKeyValue24829(key: string, value: number): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_86f7e029fa4ce140", 1772125711547405, undefined, [key, value]); }
+  static customKeyValue24829(key: string, value: number): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_d453e9e1f4a52dda", 1772125711547405, undefined, [key, value]); }
   /**
    * static func quantity(_ quantity: Int) -> Product.PurchaseOption
    * @availability iOS 15.0+
    */
-  static quantity(quantity: number): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_86f7e029fa4ce140", 2325586464777373, undefined, [quantity]); }
+  static quantity(quantity: number): Product_PurchaseOption { return callSDK<Product_PurchaseOption>("StoreKit_d453e9e1f4a52dda", 2325586464777373, undefined, [quantity]); }
   declare readonly $type: { "s:8StoreKit7ProductV14PurchaseOptionV": true };
 }
 
@@ -1219,73 +1219,73 @@ export class Product_SubscriptionInfo extends SDKHandle {
   var groupLevel: Int { get }
    * @availability iOS 16.4+
    */
-  get groupLevel(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 3495647145091618, this, []); }
+  get groupLevel(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 3495647145091618, this, []); }
   /**
    * let pricingTerms: [Product.SubscriptionInfo.PricingTerms]
    * @availability iOS 26.4+
    */
-  get pricingTerms(): Array<Product_SubscriptionInfo_PricingTerms> { return callSDK<Array<Product_SubscriptionInfo_PricingTerms>>("StoreKit_86f7e029fa4ce140", 1004240100112687, this, []); }
+  get pricingTerms(): Array<Product_SubscriptionInfo_PricingTerms> { return callSDK<Array<Product_SubscriptionInfo_PricingTerms>>("StoreKit_d453e9e1f4a52dda", 1004240100112687, this, []); }
   /**
    * let winBackOffers: [Product.SubscriptionOffer]
    * @availability iOS 18.0+
    */
-  get winBackOffers(): $SDK11 { return callSDK<$SDK11>("StoreKit_86f7e029fa4ce140", 2100400927595321, this, []); }
+  get winBackOffers(): $SDK11 { return callSDK<$SDK11>("StoreKit_d453e9e1f4a52dda", 2100400927595321, this, []); }
   /**
    * @backDeployed(before: iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0)
   var groupDisplayName: String { get }
    * @availability iOS 16.4+
    */
-  get groupDisplayName(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2980399596255725, this, []); }
+  get groupDisplayName(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2980399596255725, this, []); }
   /**
    * let introductoryOffer: Product.SubscriptionOffer?
    * @availability iOS 15.0+
    */
-  get introductoryOffer(): $SDK12 { return callSDK<$SDK12>("StoreKit_86f7e029fa4ce140", 129817151546048, this, []); }
+  get introductoryOffer(): $SDK12 { return callSDK<$SDK12>("StoreKit_d453e9e1f4a52dda", 129817151546048, this, []); }
   /**
    * let promotionalOffers: [Product.SubscriptionOffer]
    * @availability iOS 15.0+
    */
-  get promotionalOffers(): $SDK11 { return callSDK<$SDK11>("StoreKit_86f7e029fa4ce140", 788027236173155, this, []); }
+  get promotionalOffers(): $SDK11 { return callSDK<$SDK11>("StoreKit_d453e9e1f4a52dda", 788027236173155, this, []); }
   /**
    * let subscriptionPeriod: Product.SubscriptionPeriod
    * @availability iOS 15.0+
    */
-  get subscriptionPeriod(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 390378202410635, this, []); }
+  get subscriptionPeriod(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 390378202410635, this, []); }
   /**
    * let subscriptionGroupID: String
    * @availability iOS 15.0+
    */
-  get subscriptionGroupID(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 942601578783818, this, []); }
+  get subscriptionGroupID(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 942601578783818, this, []); }
   /**
    * let bundledSubscriptions: [Product.SubscriptionInfo.BundledSubscription]
    * @availability iOS 27.0+
    */
-  get bundledSubscriptions(): Array<Product_SubscriptionInfo_BundledSubscription> { return callSDK<Array<Product_SubscriptionInfo_BundledSubscription>>("StoreKit_86f7e029fa4ce140", 3504881244819573, this, []); }
+  get bundledSubscriptions(): Array<Product_SubscriptionInfo_BundledSubscription> { return callSDK<Array<Product_SubscriptionInfo_BundledSubscription>>("StoreKit_d453e9e1f4a52dda", 3504881244819573, this, []); }
   /**
    * static func isEligibleForIntroOffer(for groupID: String) async -> Bool
    * @availability iOS 15.0+
    */
-  static isEligibleForIntroOfferFor(groupID: string): Promise<boolean> { return callSDKAsync<boolean>("StoreKit_86f7e029fa4ce140", 1452467946127801, undefined, [groupID]); }
+  static isEligibleForIntroOfferFor(groupID: string): Promise<boolean> { return callSDKAsync<boolean>("StoreKit_d453e9e1f4a52dda", 1452467946127801, undefined, [groupID]); }
   /**
    * var isEligibleForIntroOffer: Bool { get async }
    * @availability iOS 15.0+
    */
-  get isEligibleForIntroOffer(): Promise<boolean> { return callSDKAsync<boolean>("StoreKit_86f7e029fa4ce140", 3812901454815125, this, []); }
+  get isEligibleForIntroOffer(): Promise<boolean> { return callSDKAsync<boolean>("StoreKit_d453e9e1f4a52dda", 3812901454815125, this, []); }
   /**
    * static func status(transactionID: UInt64) async throws -> SubscriptionStatus?
    * @availability iOS 18.4+
    */
-  static statusTransactionID(transactionID: number): Promise<$SDK14> { return callSDKAsync<$SDK14>("StoreKit_86f7e029fa4ce140", 1988048107032546, undefined, [transactionID]); }
+  static statusTransactionID(transactionID: number): Promise<$SDK14> { return callSDKAsync<$SDK14>("StoreKit_d453e9e1f4a52dda", 1988048107032546, undefined, [transactionID]); }
   /**
    * static func status(for groupID: String) async throws -> [Product.SubscriptionInfo.Status]
    * @availability iOS 15.0+
    */
-  static statusFor(groupID: string): Promise<$SDK15> { return callSDKAsync<$SDK15>("StoreKit_86f7e029fa4ce140", 3868132748911275, undefined, [groupID]); }
+  static statusFor(groupID: string): Promise<$SDK15> { return callSDKAsync<$SDK15>("StoreKit_d453e9e1f4a52dda", 3868132748911275, undefined, [groupID]); }
   /**
    * var status: [Product.SubscriptionInfo.Status] { get async throws }
    * @availability iOS 15.0+
    */
-  get status(): Promise<$SDK15> { return callSDKAsync<$SDK15>("StoreKit_86f7e029fa4ce140", 2476378596720590, this, []); }
+  get status(): Promise<$SDK15> { return callSDKAsync<$SDK15>("StoreKit_d453e9e1f4a52dda", 2476378596720590, this, []); }
   declare readonly $type: { "s:8StoreKit7ProductV16SubscriptionInfoV": true };
 }
 
@@ -1306,22 +1306,22 @@ export const Product_SubscriptionInfo_BillingPlanType = {
    * static let monthly: Product.SubscriptionInfo.BillingPlanType
    * @availability iOS 26.4+
    */
-  get monthly(): Product_SubscriptionInfo_BillingPlanType { return callSDK<Product_SubscriptionInfo_BillingPlanType>("StoreKit_86f7e029fa4ce140", 2022301149318319, undefined, []); },
+  get monthly(): Product_SubscriptionInfo_BillingPlanType { return callSDK<Product_SubscriptionInfo_BillingPlanType>("StoreKit_d453e9e1f4a52dda", 2022301149318319, undefined, []); },
   /**
    * static let upFront: Product.SubscriptionInfo.BillingPlanType
    * @availability iOS 26.4+
    */
-  get upFront(): Product_SubscriptionInfo_BillingPlanType { return callSDK<Product_SubscriptionInfo_BillingPlanType>("StoreKit_86f7e029fa4ce140", 3999602511276380, undefined, []); },
+  get upFront(): Product_SubscriptionInfo_BillingPlanType { return callSDK<Product_SubscriptionInfo_BillingPlanType>("StoreKit_d453e9e1f4a52dda", 3999602511276380, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 26.4+
    */
-  init(rawValue: string): Product_SubscriptionInfo_BillingPlanType { return callSDK<Product_SubscriptionInfo_BillingPlanType>("StoreKit_86f7e029fa4ce140", 2698184973653975, undefined, [rawValue]); },
+  init(rawValue: string): Product_SubscriptionInfo_BillingPlanType { return callSDK<Product_SubscriptionInfo_BillingPlanType>("StoreKit_d453e9e1f4a52dda", 2698184973653975, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 26.4+
    */
-  getRawValue($self: Product_SubscriptionInfo_BillingPlanType): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2724253458924007, $self, []); }
+  getRawValue($self: Product_SubscriptionInfo_BillingPlanType): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2724253458924007, $self, []); }
 };
 
 /**
@@ -1339,47 +1339,47 @@ export class Product_SubscriptionInfo_BundledSubscription extends SDKHandle {
    * let description: String
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1593450091410344, this, []); }
+  get description(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1593450091410344, this, []); }
   /**
    * let displayName: String
    * @availability iOS 27.0+
    */
-  get displayName(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2525438671572384, this, []); }
+  get displayName(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2525438671572384, this, []); }
   /**
    * let displayPrice: String
    * @availability iOS 27.0+
    */
-  get displayPrice(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4395018233486440, this, []); }
+  get displayPrice(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4395018233486440, this, []); }
   /**
    * let isFamilyShareable: Bool
    * @availability iOS 27.0+
    */
-  get isFamilyShareable(): boolean { return callSDK<boolean>("StoreKit_86f7e029fa4ce140", 15002510184737, this, []); }
+  get isFamilyShareable(): boolean { return callSDK<boolean>("StoreKit_d453e9e1f4a52dda", 15002510184737, this, []); }
   /**
    * let subscriptionGroupID: String
    * @availability iOS 27.0+
    */
-  get subscriptionGroupID(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4197096117050299, this, []); }
+  get subscriptionGroupID(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4197096117050299, this, []); }
   /**
    * let subscriptionGroupLevel: Int
    * @availability iOS 27.0+
    */
-  get subscriptionGroupLevel(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 1770083778503545, this, []); }
+  get subscriptionGroupLevel(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 1770083778503545, this, []); }
   /**
    * let subscriptionGroupDisplayName: String
    * @availability iOS 27.0+
    */
-  get subscriptionGroupDisplayName(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 849617329673333, this, []); }
+  get subscriptionGroupDisplayName(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 849617329673333, this, []); }
   /**
    * let id: Product.ID
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3037349633598418, this, []); }
+  get id(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3037349633598418, this, []); }
   /**
    * let price: Decimal
    * @availability iOS 27.0+
    */
-  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_86f7e029fa4ce140", 3234346807463322, this, []); }
+  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_d453e9e1f4a52dda", 3234346807463322, this, []); }
   declare readonly $type: { "s:8StoreKit7ProductV16SubscriptionInfoV07BundledD0V": true };
 }
 
@@ -1392,17 +1392,17 @@ export class Product_SubscriptionInfo_CommitmentInfo extends SDKHandle {
    * let displayPrice: String
    * @availability iOS 26.4+
    */
-  get displayPrice(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2760417876777292, this, []); }
+  get displayPrice(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2760417876777292, this, []); }
   /**
    * let price: Decimal
    * @availability iOS 26.4+
    */
-  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_86f7e029fa4ce140", 4441783056032482, this, []); }
+  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_d453e9e1f4a52dda", 4441783056032482, this, []); }
   /**
    * let period: SubscriptionPeriod
    * @availability iOS 26.4+
    */
-  get period(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 863057195224566, this, []); }
+  get period(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 863057195224566, this, []); }
   declare readonly $type: { "s:8StoreKit7ProductV16SubscriptionInfoV010CommitmentE0V": true };
 }
 
@@ -1415,37 +1415,37 @@ export class Product_SubscriptionInfo_PricingTerms extends SDKHandle {
    * let commitmentInfo: Product.SubscriptionInfo.CommitmentInfo
    * @availability iOS 26.4+
    */
-  get commitmentInfo(): Product_SubscriptionInfo_CommitmentInfo { return callSDK<Product_SubscriptionInfo_CommitmentInfo>("StoreKit_86f7e029fa4ce140", 2392916464515936, this, []); }
+  get commitmentInfo(): Product_SubscriptionInfo_CommitmentInfo { return callSDK<Product_SubscriptionInfo_CommitmentInfo>("StoreKit_d453e9e1f4a52dda", 2392916464515936, this, []); }
   /**
    * let billingPrice: Decimal
    * @availability iOS 26.4+
    */
-  get billingPrice(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_86f7e029fa4ce140", 4102593998035648, this, []); }
+  get billingPrice(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_d453e9e1f4a52dda", 4102593998035648, this, []); }
   /**
    * let billingPeriod: Product.SubscriptionInfo.BillingPeriod
    * @availability iOS 26.4+
    */
-  get billingPeriod(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 1986899194211207, this, []); }
+  get billingPeriod(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 1986899194211207, this, []); }
   /**
    * let billingPlanType: Product.SubscriptionInfo.BillingPlanType
    * @availability iOS 26.4+
    */
-  get billingPlanType(): Product_SubscriptionInfo_BillingPlanType { return callSDK<Product_SubscriptionInfo_BillingPlanType>("StoreKit_86f7e029fa4ce140", 1263139113598541, this, []); }
+  get billingPlanType(): Product_SubscriptionInfo_BillingPlanType { return callSDK<Product_SubscriptionInfo_BillingPlanType>("StoreKit_d453e9e1f4a52dda", 1263139113598541, this, []); }
   /**
    * let subscriptionOffers: [Product.SubscriptionOffer]
    * @availability iOS 26.4+
    */
-  get subscriptionOffers(): $SDK11 { return callSDK<$SDK11>("StoreKit_86f7e029fa4ce140", 3508472297069667, this, []); }
+  get subscriptionOffers(): $SDK11 { return callSDK<$SDK11>("StoreKit_d453e9e1f4a52dda", 3508472297069667, this, []); }
   /**
    * let billingDisplayPrice: String
    * @availability iOS 26.4+
    */
-  get billingDisplayPrice(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1584471068282480, this, []); }
+  get billingDisplayPrice(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1584471068282480, this, []); }
   /**
    * subscript(offers type: Product.SubscriptionOffer.OfferType) -> [Product.SubscriptionOffer] { get }
    * @availability iOS 26.4+
    */
-  subscript(type: Product_SubscriptionOffer_OfferType): $SDK11 { return callSDK<$SDK11>("StoreKit_86f7e029fa4ce140", 216072207568263, this, [type]); }
+  subscript(type: Product_SubscriptionOffer_OfferType): $SDK11 { return callSDK<$SDK11>("StoreKit_d453e9e1f4a52dda", 216072207568263, this, [type]); }
   declare readonly $type: { "s:8StoreKit7ProductV16SubscriptionInfoV12PricingTermsV": true };
 }
 
@@ -1458,197 +1458,197 @@ export class Product_SubscriptionInfo_RenewalInfo extends SDKHandle {
    * let commitmentInfo: Product.SubscriptionInfo.RenewalInfo.CommitmentInfo?
    * @availability iOS 26.4+
    */
-  get commitmentInfo(): (Product_SubscriptionInfo_RenewalInfo_CommitmentInfo) | null { return callSDK<(Product_SubscriptionInfo_RenewalInfo_CommitmentInfo) | null>("StoreKit_86f7e029fa4ce140", 2801355225706123, this, []); }
+  get commitmentInfo(): (Product_SubscriptionInfo_RenewalInfo_CommitmentInfo) | null { return callSDK<(Product_SubscriptionInfo_RenewalInfo_CommitmentInfo) | null>("StoreKit_d453e9e1f4a52dda", 2801355225706123, this, []); }
   /**
    * let advancedCommerceInfo: Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo?
    * @availability iOS 18.4+
    */
-  get advancedCommerceInfo(): (Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo) | null { return callSDK<(Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo) | null>("StoreKit_86f7e029fa4ce140", 1100026097068733, this, []); }
+  get advancedCommerceInfo(): (Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo) | null { return callSDK<(Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo) | null>("StoreKit_d453e9e1f4a52dda", 1100026097068733, this, []); }
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   var bundleProductID: String? { get }
    * @availability iOS 15.0+
    */
-  get bundleProductID(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 1696806075102057, this, []); }
+  get bundleProductID(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 1696806075102057, this, []); }
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   var bundleSubscriptionGroupID: String? { get }
    * @availability iOS 15.0+
    */
-  get bundleSubscriptionGroupID(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 4207677356184522, this, []); }
+  get bundleSubscriptionGroupID(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 4207677356184522, this, []); }
   /**
    * @backDeployed(before: iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, macCatalyst 16.0)
   var recentSubscriptionStartDate: Date { get }
    * @availability iOS 15.0+
    */
-  get recentSubscriptionStartDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_86f7e029fa4ce140", 3042596190424202, this, []); }
+  get recentSubscriptionStartDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_d453e9e1f4a52dda", 3042596190424202, this, []); }
   /**
    * let currentProductID: String
    * @availability iOS 15.0+
    */
-  get currentProductID(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4320219731449925, this, []); }
+  get currentProductID(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4320219731449925, this, []); }
   /**
    * let signedDate: Date
    * @availability iOS 15.0+
    */
-  get signedDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_86f7e029fa4ce140", 2331514072542500, this, []); }
+  get signedDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_d453e9e1f4a52dda", 2331514072542500, this, []); }
   /**
    * let environment: AppStore.Environment
    * @availability iOS 16.0+
    */
-  get environment(): AppStore_Environment { return callSDK<AppStore_Environment>("StoreKit_86f7e029fa4ce140", 1945570580710604, this, []); }
+  get environment(): AppStore_Environment { return callSDK<AppStore_Environment>("StoreKit_d453e9e1f4a52dda", 1945570580710604, this, []); }
   /**
    * @backDeployed(before: iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, macCatalyst 17.0)
   var renewalDate: Date? { get }
    * @availability iOS 15.0+
    */
-  get renewalDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_86f7e029fa4ce140", 972325932895309, this, []); }
+  get renewalDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_d453e9e1f4a52dda", 972325932895309, this, []); }
   /**
    * @backDeployed(before: iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0)
   var currencyCode: String? { get }
    * @availability iOS 15.0+
    * @deprecated iOS 16.0
    */
-  get currencyCode(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 2192613709430711, this, []); }
+  get currencyCode(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 2192613709430711, this, []); }
   /**
    * @backDeployed(before: iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
   var renewalPrice: Decimal? { get }
    * @availability iOS 15.0+
    */
-  get renewalPrice(): $SDK18 { return callSDK<$SDK18>("StoreKit_86f7e029fa4ce140", 3278731568229404, this, []); }
+  get renewalPrice(): $SDK18 { return callSDK<$SDK18>("StoreKit_d453e9e1f4a52dda", 3278731568229404, this, []); }
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   var willUnbundle: Bool { get }
    * @availability iOS 15.0+
    */
-  get willUnbundle(): boolean { return callSDK<boolean>("StoreKit_86f7e029fa4ce140", 96685792859247, this, []); }
+  get willUnbundle(): boolean { return callSDK<boolean>("StoreKit_d453e9e1f4a52dda", 96685792859247, this, []); }
   /**
    * let willAutoRenew: Bool
    * @availability iOS 15.0+
    */
-  get willAutoRenew(): boolean { return callSDK<boolean>("StoreKit_86f7e029fa4ce140", 3083744365159814, this, []); }
+  get willAutoRenew(): boolean { return callSDK<boolean>("StoreKit_d453e9e1f4a52dda", 3083744365159814, this, []); }
   /**
    * @backDeployed(before: iOS 18.4, macOS 15.4, tvOS 18.4, watchOS 11.4, visionOS 2.4)
   var appAccountToken: UUID? { get }
    * @availability iOS 15.0+
    */
-  get appAccountToken(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 2122536537044848, this, []); }
+  get appAccountToken(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 2122536537044848, this, []); }
   /**
    * @backDeployed(before: iOS 18.4, macOS 15.4, tvOS 18.4, watchOS 11.4, visionOS 2.4)
   var appTransactionID: String { get }
    * @availability iOS 15.0+
    */
-  get appTransactionID(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3278978539780223, this, []); }
+  get appTransactionID(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3278978539780223, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 493475663227170, this, []); }
+  get debugDescription(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 493475663227170, this, []); }
   /**
    * let expirationReason: Product.SubscriptionInfo.RenewalInfo.ExpirationReason?
    * @availability iOS 15.0+
    */
-  get expirationReason(): (Product_SubscriptionInfo_RenewalInfo_ExpirationReason) | null { return callSDK<(Product_SubscriptionInfo_RenewalInfo_ExpirationReason) | null>("StoreKit_86f7e029fa4ce140", 2813533831574284, this, []); }
+  get expirationReason(): (Product_SubscriptionInfo_RenewalInfo_ExpirationReason) | null { return callSDK<(Product_SubscriptionInfo_RenewalInfo_ExpirationReason) | null>("StoreKit_d453e9e1f4a52dda", 2813533831574284, this, []); }
   /**
    * let isInBillingRetry: Bool
    * @availability iOS 15.0+
    */
-  get isInBillingRetry(): boolean { return callSDK<boolean>("StoreKit_86f7e029fa4ce140", 3395335319339399, this, []); }
+  get isInBillingRetry(): boolean { return callSDK<boolean>("StoreKit_d453e9e1f4a52dda", 3395335319339399, this, []); }
   /**
    * let deviceVerification: Data
    * @availability iOS 15.0+
    */
-  get deviceVerification(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 4448478123144571, this, []); }
+  get deviceVerification(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 4448478123144571, this, []); }
   /**
    * var jsonRepresentation: Data { get }
    * @availability iOS 15.0+
    */
-  get jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 577199725383242, this, []); }
+  get jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 577199725383242, this, []); }
   /**
    * let autoRenewPreference: String?
    * @availability iOS 15.0+
    */
-  get autoRenewPreference(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 4098809744543183, this, []); }
+  get autoRenewPreference(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 4098809744543183, this, []); }
   /**
    * let priceIncreaseStatus: Product.SubscriptionInfo.RenewalInfo.PriceIncreaseStatus
    * @availability iOS 15.0+
    */
-  get priceIncreaseStatus(): Product_SubscriptionInfo_RenewalInfo_PriceIncreaseStatus { return callSDK<Product_SubscriptionInfo_RenewalInfo_PriceIncreaseStatus>("StoreKit_86f7e029fa4ce140", 1599045141190014, this, []); }
+  get priceIncreaseStatus(): Product_SubscriptionInfo_RenewalInfo_PriceIncreaseStatus { return callSDK<Product_SubscriptionInfo_RenewalInfo_PriceIncreaseStatus>("StoreKit_d453e9e1f4a52dda", 1599045141190014, this, []); }
   /**
    * let originalTransactionID: UInt64
    * @availability iOS 15.0+
    */
-  get originalTransactionID(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 1297990651689668, this, []); }
+  get originalTransactionID(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 1297990651689668, this, []); }
   /**
    * let renewalBillingPlanType: SubscriptionInfo.BillingPlanType?
    * @availability iOS 26.4+
    */
-  get renewalBillingPlanType(): $SDK20 { return callSDK<$SDK20>("StoreKit_86f7e029fa4ce140", 783333097451649, this, []); }
+  get renewalBillingPlanType(): $SDK20 { return callSDK<$SDK20>("StoreKit_d453e9e1f4a52dda", 783333097451649, this, []); }
   /**
    * let deviceVerificationNonce: UUID
    * @availability iOS 15.0+
    */
-  get deviceVerificationNonce(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 530525697048748, this, []); }
+  get deviceVerificationNonce(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 530525697048748, this, []); }
   /**
    * let eligibleWinBackOfferIDs: [String]
    * @availability iOS 18.0+
    */
-  get eligibleWinBackOfferIDs(): Array<string> { return callSDK<Array<string>>("StoreKit_86f7e029fa4ce140", 2312636153231018, this, []); }
+  get eligibleWinBackOfferIDs(): Array<string> { return callSDK<Array<string>>("StoreKit_d453e9e1f4a52dda", 2312636153231018, this, []); }
   /**
    * let gracePeriodExpirationDate: Date?
    * @availability iOS 15.0+
    */
-  get gracePeriodExpirationDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_86f7e029fa4ce140", 3401986469837337, this, []); }
+  get gracePeriodExpirationDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_d453e9e1f4a52dda", 3401986469837337, this, []); }
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   var bundleOriginalTransactionID: String? { get }
    * @availability iOS 15.0+
    */
-  get bundleOriginalTransactionID(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 4168218728092814, this, []); }
+  get bundleOriginalTransactionID(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 4168218728092814, this, []); }
   /**
    * @backDeployed(before: iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, macCatalyst 16.0)
   var environmentStringRepresentation: String { get }
    * @availability iOS 15.0+
    * @deprecated iOS 16.0
    */
-  get environmentStringRepresentation(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3813743576953697, this, []); }
+  get environmentStringRepresentation(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3813743576953697, this, []); }
   /**
    * @backDeployed(before: iOS 18.4, macOS 15.4, tvOS 18.4, watchOS 11.4, visionOS 2.4)
   var offerPeriodStringRepresentation: String? { get }
    * @availability iOS 15.0+
    * @deprecated iOS 18.4
    */
-  get offerPeriodStringRepresentation(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 4374404201265954, this, []); }
+  get offerPeriodStringRepresentation(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 4374404201265954, this, []); }
   /**
    * @backDeployed(before: iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
   var offerPaymentModeStringRepresentation: String? { get }
    * @availability iOS 15.0+
    * @deprecated iOS 18.0
    */
-  get offerPaymentModeStringRepresentation(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 3790965026341336, this, []); }
+  get offerPaymentModeStringRepresentation(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 3790965026341336, this, []); }
   /**
    * let offer: Transaction.Offer?
    * @availability iOS 18.0+
    */
-  get offer(): (Transaction_Offer) | null { return callSDK<(Transaction_Offer) | null>("StoreKit_86f7e029fa4ce140", 374246053232802, this, []); }
+  get offer(): (Transaction_Offer) | null { return callSDK<(Transaction_Offer) | null>("StoreKit_d453e9e1f4a52dda", 374246053232802, this, []); }
   /**
    * var offerID: String? { get }
    * @availability iOS 15.0+
    * @deprecated iOS 18.0
    */
-  get offerID(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 686121289314747, this, []); }
+  get offerID(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 686121289314747, this, []); }
   /**
    * @backDeployed(before: iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
   var currency: Locale.Currency? { get }
    * @availability iOS 16.0+
    */
-  get currency(): $SDK22 { return callSDK<$SDK22>("StoreKit_86f7e029fa4ce140", 564758940165308, this, []); }
+  get currency(): $SDK22 { return callSDK<$SDK22>("StoreKit_d453e9e1f4a52dda", 564758940165308, this, []); }
   /**
    * var offerType: Transaction.OfferType? { get }
    * @availability iOS 15.0+
    * @deprecated iOS 18.0
    */
-  get offerType(): $SDK23 { return callSDK<$SDK23>("StoreKit_86f7e029fa4ce140", 1239801196614180, this, []); }
+  get offerType(): $SDK23 { return callSDK<$SDK23>("StoreKit_d453e9e1f4a52dda", 1239801196614180, this, []); }
   declare readonly $type: { "s:8StoreKit7ProductV16SubscriptionInfoV07RenewalE0V": true };
 }
 
@@ -1661,37 +1661,37 @@ export class Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo extends S
    * let description: String
    * @availability iOS 18.4+
    */
-  get description(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3103401403220488, this, []); }
+  get description(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3103401403220488, this, []); }
   /**
    * let displayName: String
    * @availability iOS 18.4+
    */
-  get displayName(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3812529599393069, this, []); }
+  get displayName(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3812529599393069, this, []); }
   /**
    * let consistencyToken: String
    * @availability iOS 18.4+
    */
-  get consistencyToken(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4396731866915017, this, []); }
+  get consistencyToken(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4396731866915017, this, []); }
   /**
    * let requestReferenceID: String
    * @availability iOS 18.4+
    */
-  get requestReferenceID(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 209033382747695, this, []); }
+  get requestReferenceID(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 209033382747695, this, []); }
   /**
    * let items: [Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo.Item]
    * @availability iOS 18.4+
    */
-  get items(): Array<Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item> { return callSDK<Array<Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item>>("StoreKit_86f7e029fa4ce140", 384340122915808, this, []); }
+  get items(): Array<Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item> { return callSDK<Array<Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item>>("StoreKit_d453e9e1f4a52dda", 384340122915808, this, []); }
   /**
    * let period: SubscriptionPeriod
    * @availability iOS 18.4+
    */
-  get period(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 3544156726323602, this, []); }
+  get period(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 3544156726323602, this, []); }
   /**
    * let taxCode: String
    * @availability iOS 18.4+
    */
-  get taxCode(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3244553491371209, this, []); }
+  get taxCode(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3244553491371209, this, []); }
   declare readonly $type: { "s:8StoreKit7ProductV16SubscriptionInfoV07RenewalE0V016AdvancedCommerceE0V": true };
 }
 
@@ -1704,12 +1704,12 @@ export class Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item exte
    * let priceIncreaseInfo: Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo.Item.PriceIncreaseInfo?
    * @availability iOS 26.2+
    */
-  get priceIncreaseInfo(): (Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo) | null { return callSDK<(Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo) | null>("StoreKit_86f7e029fa4ce140", 1971401016835650, this, []); }
+  get priceIncreaseInfo(): (Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo) | null { return callSDK<(Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo) | null>("StoreKit_d453e9e1f4a52dda", 1971401016835650, this, []); }
   /**
    * let details: Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo.Item.Details
    * @availability iOS 18.4+
    */
-  get details(): Transaction_AdvancedCommerceInfo_Item_Details { return callSDK<Transaction_AdvancedCommerceInfo_Item_Details>("StoreKit_86f7e029fa4ce140", 3704965155267502, this, []); }
+  get details(): Transaction_AdvancedCommerceInfo_Item_Details { return callSDK<Transaction_AdvancedCommerceInfo_Item_Details>("StoreKit_d453e9e1f4a52dda", 3704965155267502, this, []); }
   declare readonly $type: { "s:8StoreKit7ProductV16SubscriptionInfoV07RenewalE0V016AdvancedCommerceE0V4ItemV": true };
 }
 
@@ -1728,17 +1728,17 @@ export class Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_Pric
    * let dependentSKUs: [String]
    * @availability iOS 26.2+
    */
-  get dependentSKUs(): Array<string> { return callSDK<Array<string>>("StoreKit_86f7e029fa4ce140", 3092895302412534, this, []); }
+  get dependentSKUs(): Array<string> { return callSDK<Array<string>>("StoreKit_d453e9e1f4a52dda", 3092895302412534, this, []); }
   /**
    * let price: Decimal
    * @availability iOS 26.2+
    */
-  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_86f7e029fa4ce140", 3074230464715161, this, []); }
+  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_d453e9e1f4a52dda", 3074230464715161, this, []); }
   /**
    * let status: Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo.Item.PriceIncreaseInfo.Status
    * @availability iOS 26.2+
    */
-  get status(): Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status { return callSDK<Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status>("StoreKit_86f7e029fa4ce140", 2685308515986271, this, []); }
+  get status(): Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status { return callSDK<Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status>("StoreKit_d453e9e1f4a52dda", 2685308515986271, this, []); }
   declare readonly $type: { "s:8StoreKit7ProductV16SubscriptionInfoV07RenewalE0V016AdvancedCommerceE0V4ItemV013PriceIncreaseE0V": true };
 }
 
@@ -1753,27 +1753,27 @@ export const Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_Pric
    * static let pending: Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo.Item.PriceIncreaseInfo.Status
    * @availability iOS 26.2+
    */
-  get pending(): Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status { return callSDK<Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status>("StoreKit_86f7e029fa4ce140", 3073566837858470, undefined, []); },
+  get pending(): Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status { return callSDK<Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status>("StoreKit_d453e9e1f4a52dda", 3073566837858470, undefined, []); },
   /**
    * static let accepted: Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo.Item.PriceIncreaseInfo.Status
    * @availability iOS 26.2+
    */
-  get accepted(): Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status { return callSDK<Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status>("StoreKit_86f7e029fa4ce140", 2779509486203593, undefined, []); },
+  get accepted(): Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status { return callSDK<Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status>("StoreKit_d453e9e1f4a52dda", 2779509486203593, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 26.2+
    */
-  init(rawValue: string): Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status { return callSDK<Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status>("StoreKit_86f7e029fa4ce140", 3438601578209599, undefined, [rawValue]); },
+  init(rawValue: string): Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status { return callSDK<Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status>("StoreKit_d453e9e1f4a52dda", 3438601578209599, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 26.2+
    */
-  getRawValue($self: Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3828525282698770, $self, []); },
+  getRawValue($self: Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3828525282698770, $self, []); },
   /**
    * static let scheduled: Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo.Item.PriceIncreaseInfo.Status
    * @availability iOS 26.2+
    */
-  get scheduled(): Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status { return callSDK<Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status>("StoreKit_86f7e029fa4ce140", 3430177537153713, undefined, []); }
+  get scheduled(): Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status { return callSDK<Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status>("StoreKit_d453e9e1f4a52dda", 3430177537153713, undefined, []); }
 };
 
 /**
@@ -1791,27 +1791,27 @@ export class Product_SubscriptionInfo_RenewalInfo_CommitmentInfo extends SDKHand
    * let renewalDate: Date
    * @availability iOS 26.4+
    */
-  get renewalDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_86f7e029fa4ce140", 700156813391321, this, []); }
+  get renewalDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_d453e9e1f4a52dda", 700156813391321, this, []); }
   /**
    * let renewalPrice: Decimal
    * @availability iOS 26.4+
    */
-  get renewalPrice(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_86f7e029fa4ce140", 1353463276396333, this, []); }
+  get renewalPrice(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_d453e9e1f4a52dda", 1353463276396333, this, []); }
   /**
    * let willAutoRenew: Bool
    * @availability iOS 26.4+
    */
-  get willAutoRenew(): boolean { return callSDK<boolean>("StoreKit_86f7e029fa4ce140", 360895025044248, this, []); }
+  get willAutoRenew(): boolean { return callSDK<boolean>("StoreKit_d453e9e1f4a52dda", 360895025044248, this, []); }
   /**
    * let autoRenewPreference: String
    * @availability iOS 26.4+
    */
-  get autoRenewPreference(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3218766365928670, this, []); }
+  get autoRenewPreference(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3218766365928670, this, []); }
   /**
    * let renewalBillingPlanType: SubscriptionInfo.BillingPlanType
    * @availability iOS 26.4+
    */
-  get renewalBillingPlanType(): Product_SubscriptionInfo_BillingPlanType { return callSDK<Product_SubscriptionInfo_BillingPlanType>("StoreKit_86f7e029fa4ce140", 476601540774730, this, []); }
+  get renewalBillingPlanType(): Product_SubscriptionInfo_BillingPlanType { return callSDK<Product_SubscriptionInfo_BillingPlanType>("StoreKit_d453e9e1f4a52dda", 476601540774730, this, []); }
   declare readonly $type: { "s:8StoreKit7ProductV16SubscriptionInfoV07RenewalE0V010CommitmentE0V": true };
 }
 
@@ -1826,48 +1826,48 @@ export const Product_SubscriptionInfo_RenewalInfo_ExpirationReason = {
    * static let billingError: Product.SubscriptionInfo.RenewalInfo.ExpirationReason
    * @availability iOS 15.0+
    */
-  get billingError(): Product_SubscriptionInfo_RenewalInfo_ExpirationReason { return callSDK<Product_SubscriptionInfo_RenewalInfo_ExpirationReason>("StoreKit_86f7e029fa4ce140", 1520724231081494, undefined, []); },
+  get billingError(): Product_SubscriptionInfo_RenewalInfo_ExpirationReason { return callSDK<Product_SubscriptionInfo_RenewalInfo_ExpirationReason>("StoreKit_d453e9e1f4a52dda", 1520724231081494, undefined, []); },
   /**
    * static let autoRenewDisabled: Product.SubscriptionInfo.RenewalInfo.ExpirationReason
    * @availability iOS 15.0+
    */
-  get autoRenewDisabled(): Product_SubscriptionInfo_RenewalInfo_ExpirationReason { return callSDK<Product_SubscriptionInfo_RenewalInfo_ExpirationReason>("StoreKit_86f7e029fa4ce140", 4309838088452463, undefined, []); },
+  get autoRenewDisabled(): Product_SubscriptionInfo_RenewalInfo_ExpirationReason { return callSDK<Product_SubscriptionInfo_RenewalInfo_ExpirationReason>("StoreKit_d453e9e1f4a52dda", 4309838088452463, undefined, []); },
   /**
    * static let productUnavailable: Product.SubscriptionInfo.RenewalInfo.ExpirationReason
    * @availability iOS 15.0+
    */
-  get productUnavailable(): Product_SubscriptionInfo_RenewalInfo_ExpirationReason { return callSDK<Product_SubscriptionInfo_RenewalInfo_ExpirationReason>("StoreKit_86f7e029fa4ce140", 371600419448197, undefined, []); },
+  get productUnavailable(): Product_SubscriptionInfo_RenewalInfo_ExpirationReason { return callSDK<Product_SubscriptionInfo_RenewalInfo_ExpirationReason>("StoreKit_d453e9e1f4a52dda", 371600419448197, undefined, []); },
   /**
    * var localizedDescription: String { get }
    * @availability iOS 15.4+
    */
-  getLocalizedDescription($self: Product_SubscriptionInfo_RenewalInfo_ExpirationReason): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2668582531303718, $self, []); },
+  getLocalizedDescription($self: Product_SubscriptionInfo_RenewalInfo_ExpirationReason): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2668582531303718, $self, []); },
   /**
    * static let didNotConsentToPriceIncrease: Product.SubscriptionInfo.RenewalInfo.ExpirationReason
    * @availability iOS 15.0+
    */
-  get didNotConsentToPriceIncrease(): Product_SubscriptionInfo_RenewalInfo_ExpirationReason { return callSDK<Product_SubscriptionInfo_RenewalInfo_ExpirationReason>("StoreKit_86f7e029fa4ce140", 199338295989106, undefined, []); },
+  get didNotConsentToPriceIncrease(): Product_SubscriptionInfo_RenewalInfo_ExpirationReason { return callSDK<Product_SubscriptionInfo_RenewalInfo_ExpirationReason>("StoreKit_d453e9e1f4a52dda", 199338295989106, undefined, []); },
   /**
    * static let unknown: Product.SubscriptionInfo.RenewalInfo.ExpirationReason
    * @availability iOS 15.0+
    */
-  get unknown(): Product_SubscriptionInfo_RenewalInfo_ExpirationReason { return callSDK<Product_SubscriptionInfo_RenewalInfo_ExpirationReason>("StoreKit_86f7e029fa4ce140", 504315064946474, undefined, []); },
+  get unknown(): Product_SubscriptionInfo_RenewalInfo_ExpirationReason { return callSDK<Product_SubscriptionInfo_RenewalInfo_ExpirationReason>("StoreKit_d453e9e1f4a52dda", 504315064946474, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): Product_SubscriptionInfo_RenewalInfo_ExpirationReason { return callSDK<Product_SubscriptionInfo_RenewalInfo_ExpirationReason>("StoreKit_86f7e029fa4ce140", 46950825426578, undefined, [rawValue]); },
+  init(rawValue: number): Product_SubscriptionInfo_RenewalInfo_ExpirationReason { return callSDK<Product_SubscriptionInfo_RenewalInfo_ExpirationReason>("StoreKit_d453e9e1f4a52dda", 46950825426578, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 15.0+
    */
-  getRawValue($self: Product_SubscriptionInfo_RenewalInfo_ExpirationReason): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 206281196742099, $self, []); },
+  getRawValue($self: Product_SubscriptionInfo_RenewalInfo_ExpirationReason): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 206281196742099, $self, []); },
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   static var unbundled: Product.SubscriptionInfo.RenewalInfo.ExpirationReason { get }
    * @availability iOS 15.0+
    */
-  get unbundled(): Product_SubscriptionInfo_RenewalInfo_ExpirationReason { return callSDK<Product_SubscriptionInfo_RenewalInfo_ExpirationReason>("StoreKit_86f7e029fa4ce140", 3413624886792679, undefined, []); }
+  get unbundled(): Product_SubscriptionInfo_RenewalInfo_ExpirationReason { return callSDK<Product_SubscriptionInfo_RenewalInfo_ExpirationReason>("StoreKit_d453e9e1f4a52dda", 3413624886792679, undefined, []); }
 };
 
 /**
@@ -1887,7 +1887,7 @@ export const Product_SubscriptionInfo_RenewalInfo_PriceIncreaseStatus = {
    * var localizedDescription: String { get }
    * @availability iOS 15.4+
    */
-  getLocalizedDescription($self: Product_SubscriptionInfo_RenewalInfo_PriceIncreaseStatus): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2230338000794493, $self, []); }
+  getLocalizedDescription($self: Product_SubscriptionInfo_RenewalInfo_PriceIncreaseStatus): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2230338000794493, $self, []); }
 };
 
 /**
@@ -1901,42 +1901,42 @@ export const Product_SubscriptionInfo_RenewalState = {
    * static let subscribed: Product.SubscriptionInfo.RenewalState
    * @availability iOS 15.0+
    */
-  get subscribed(): Product_SubscriptionInfo_RenewalState { return callSDK<Product_SubscriptionInfo_RenewalState>("StoreKit_86f7e029fa4ce140", 4281526285207885, undefined, []); },
+  get subscribed(): Product_SubscriptionInfo_RenewalState { return callSDK<Product_SubscriptionInfo_RenewalState>("StoreKit_d453e9e1f4a52dda", 4281526285207885, undefined, []); },
   /**
    * static let inGracePeriod: Product.SubscriptionInfo.RenewalState
    * @availability iOS 15.0+
    */
-  get inGracePeriod(): Product_SubscriptionInfo_RenewalState { return callSDK<Product_SubscriptionInfo_RenewalState>("StoreKit_86f7e029fa4ce140", 1573181379334135, undefined, []); },
+  get inGracePeriod(): Product_SubscriptionInfo_RenewalState { return callSDK<Product_SubscriptionInfo_RenewalState>("StoreKit_d453e9e1f4a52dda", 1573181379334135, undefined, []); },
   /**
    * static let inBillingRetryPeriod: Product.SubscriptionInfo.RenewalState
    * @availability iOS 15.0+
    */
-  get inBillingRetryPeriod(): Product_SubscriptionInfo_RenewalState { return callSDK<Product_SubscriptionInfo_RenewalState>("StoreKit_86f7e029fa4ce140", 4331002010361733, undefined, []); },
+  get inBillingRetryPeriod(): Product_SubscriptionInfo_RenewalState { return callSDK<Product_SubscriptionInfo_RenewalState>("StoreKit_d453e9e1f4a52dda", 4331002010361733, undefined, []); },
   /**
    * var localizedDescription: String { get }
    * @availability iOS 15.4+
    */
-  getLocalizedDescription($self: Product_SubscriptionInfo_RenewalState): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 267574173486875, $self, []); },
+  getLocalizedDescription($self: Product_SubscriptionInfo_RenewalState): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 267574173486875, $self, []); },
   /**
    * static let expired: Product.SubscriptionInfo.RenewalState
    * @availability iOS 15.0+
    */
-  get expired(): Product_SubscriptionInfo_RenewalState { return callSDK<Product_SubscriptionInfo_RenewalState>("StoreKit_86f7e029fa4ce140", 1396653158169633, undefined, []); },
+  get expired(): Product_SubscriptionInfo_RenewalState { return callSDK<Product_SubscriptionInfo_RenewalState>("StoreKit_d453e9e1f4a52dda", 1396653158169633, undefined, []); },
   /**
    * static let revoked: Product.SubscriptionInfo.RenewalState
    * @availability iOS 15.0+
    */
-  get revoked(): Product_SubscriptionInfo_RenewalState { return callSDK<Product_SubscriptionInfo_RenewalState>("StoreKit_86f7e029fa4ce140", 1814531118452894, undefined, []); },
+  get revoked(): Product_SubscriptionInfo_RenewalState { return callSDK<Product_SubscriptionInfo_RenewalState>("StoreKit_d453e9e1f4a52dda", 1814531118452894, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): Product_SubscriptionInfo_RenewalState { return callSDK<Product_SubscriptionInfo_RenewalState>("StoreKit_86f7e029fa4ce140", 3832260243639049, undefined, [rawValue]); },
+  init(rawValue: number): Product_SubscriptionInfo_RenewalState { return callSDK<Product_SubscriptionInfo_RenewalState>("StoreKit_d453e9e1f4a52dda", 3832260243639049, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 15.0+
    */
-  getRawValue($self: Product_SubscriptionInfo_RenewalState): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 4058259178506965, $self, []); }
+  getRawValue($self: Product_SubscriptionInfo_RenewalState): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 4058259178506965, $self, []); }
 };
 
 /**
@@ -1954,27 +1954,27 @@ export class Product_SubscriptionInfo_Status extends SDKHandle {
    * let renewalInfo: VerificationResult<Product.SubscriptionInfo.RenewalInfo>
    * @availability iOS 15.0+
    */
-  get renewalInfo(): VerificationResult<Product_SubscriptionInfo_RenewalInfo> { return callSDK<VerificationResult<Product_SubscriptionInfo_RenewalInfo>>("StoreKit_86f7e029fa4ce140", 1967933881331996, this, []); }
+  get renewalInfo(): VerificationResult<Product_SubscriptionInfo_RenewalInfo> { return callSDK<VerificationResult<Product_SubscriptionInfo_RenewalInfo>>("StoreKit_d453e9e1f4a52dda", 1967933881331996, this, []); }
   /**
    * let transaction: VerificationResult<Transaction>
    * @availability iOS 15.0+
    */
-  get transaction(): $SDK2 { return callSDK<$SDK2>("StoreKit_86f7e029fa4ce140", 1137746125485086, this, []); }
+  get transaction(): $SDK2 { return callSDK<$SDK2>("StoreKit_d453e9e1f4a52dda", 1137746125485086, this, []); }
   /**
    * static var all: AsyncStream<(groupID: String, statuses: [Product.SubscriptionInfo.Status])> { get }
    * @availability iOS 17.0+
    */
-  static get all(): SDKSequence<{ "groupID": string; "statuses": Array<Product_SubscriptionInfo_Status> }> { return callSDK<SDKSequence<{ "groupID": string; "statuses": Array<Product_SubscriptionInfo_Status> }>>("StoreKit_86f7e029fa4ce140", 1827117079934538, undefined, []); }
+  static get all(): SDKSequence<{ "groupID": string; "statuses": Array<Product_SubscriptionInfo_Status> }> { return callSDK<SDKSequence<{ "groupID": string; "statuses": Array<Product_SubscriptionInfo_Status> }>>("StoreKit_d453e9e1f4a52dda", 1827117079934538, undefined, []); }
   /**
    * let state: Product.SubscriptionInfo.RenewalState
    * @availability iOS 15.0+
    */
-  get state(): Product_SubscriptionInfo_RenewalState { return callSDK<Product_SubscriptionInfo_RenewalState>("StoreKit_86f7e029fa4ce140", 2048182945311090, this, []); }
+  get state(): Product_SubscriptionInfo_RenewalState { return callSDK<Product_SubscriptionInfo_RenewalState>("StoreKit_d453e9e1f4a52dda", 2048182945311090, this, []); }
   /**
    * static var updates: Product.SubscriptionInfo.Status.Statuses { get }
    * @availability iOS 15.0+
    */
-  static get updates(): Product_SubscriptionInfo_Status_Statuses { return callSDK<Product_SubscriptionInfo_Status_Statuses>("StoreKit_86f7e029fa4ce140", 1422799889191456, undefined, []); }
+  static get updates(): Product_SubscriptionInfo_Status_Statuses { return callSDK<Product_SubscriptionInfo_Status_Statuses>("StoreKit_d453e9e1f4a52dda", 1422799889191456, undefined, []); }
   declare readonly $type: { "s:8StoreKit7ProductV16SubscriptionInfoV6StatusV": true };
 }
 
@@ -1987,7 +1987,7 @@ export class Product_SubscriptionInfo_Status_Statuses extends SDKHandle {
    * func makeAsyncIterator() -> Product.SubscriptionInfo.Status.Statuses.AsyncIterator
    * @availability iOS 15.0+
    */
-  makeAsyncIterator(): Product_SubscriptionInfo_Status_Statuses_AsyncIterator { return callSDK<Product_SubscriptionInfo_Status_Statuses_AsyncIterator>("StoreKit_86f7e029fa4ce140", 2633496161862480, this, []); }
+  makeAsyncIterator(): Product_SubscriptionInfo_Status_Statuses_AsyncIterator { return callSDK<Product_SubscriptionInfo_Status_Statuses_AsyncIterator>("StoreKit_d453e9e1f4a52dda", 2633496161862480, this, []); }
   declare readonly $type: { "s:8StoreKit7ProductV16SubscriptionInfoV6StatusV8StatusesV": true };
   declare readonly $element: Product_SubscriptionInfo_Status;
 }
@@ -2001,7 +2001,7 @@ export class Product_SubscriptionInfo_Status_Statuses_AsyncIterator extends SDKH
    * mutating func next() async -> Product.SubscriptionInfo.Status.Statuses.Element?
    * @availability iOS 15.0+
    */
-  next(): Promise<$SDK14> { return callSDKAsync<$SDK14>("StoreKit_86f7e029fa4ce140", 2920807590994760, this, []); }
+  next(): Promise<$SDK14> { return callSDKAsync<$SDK14>("StoreKit_d453e9e1f4a52dda", 2920807590994760, this, []); }
   declare readonly $type: { "s:8StoreKit7ProductV16SubscriptionInfoV6StatusV8StatusesV13AsyncIteratorV": true };
 }
 
@@ -2026,37 +2026,37 @@ export class Product_SubscriptionOffer extends SDKHandle {
    * let paymentMode: Product.SubscriptionOffer.PaymentMode
    * @availability iOS 15.0+
    */
-  get paymentMode(): Product_SubscriptionOffer_PaymentMode { return callSDK<Product_SubscriptionOffer_PaymentMode>("StoreKit_86f7e029fa4ce140", 2979752053395434, this, []); }
+  get paymentMode(): Product_SubscriptionOffer_PaymentMode { return callSDK<Product_SubscriptionOffer_PaymentMode>("StoreKit_d453e9e1f4a52dda", 2979752053395434, this, []); }
   /**
    * let periodCount: Int
    * @availability iOS 15.0+
    */
-  get periodCount(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 3894427861068428, this, []); }
+  get periodCount(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 3894427861068428, this, []); }
   /**
    * let displayPrice: String
    * @availability iOS 15.0+
    */
-  get displayPrice(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1340593003494941, this, []); }
+  get displayPrice(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1340593003494941, this, []); }
   /**
    * let id: String?
    * @availability iOS 15.0+
    */
-  get id(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 2002266781899799, this, []); }
+  get id(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 2002266781899799, this, []); }
   /**
    * let type: Product.SubscriptionOffer.OfferType
    * @availability iOS 15.0+
    */
-  get type(): Product_SubscriptionOffer_OfferType { return callSDK<Product_SubscriptionOffer_OfferType>("StoreKit_86f7e029fa4ce140", 1226208212381001, this, []); }
+  get type(): Product_SubscriptionOffer_OfferType { return callSDK<Product_SubscriptionOffer_OfferType>("StoreKit_d453e9e1f4a52dda", 1226208212381001, this, []); }
   /**
    * let price: Decimal
    * @availability iOS 15.0+
    */
-  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_86f7e029fa4ce140", 2285414335816860, this, []); }
+  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_d453e9e1f4a52dda", 2285414335816860, this, []); }
   /**
    * let period: Product.SubscriptionPeriod
    * @availability iOS 15.0+
    */
-  get period(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 2678756854030941, this, []); }
+  get period(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 2678756854030941, this, []); }
   declare readonly $type: { "s:8StoreKit7ProductV17SubscriptionOfferV": true };
 }
 
@@ -2071,32 +2071,32 @@ export const Product_SubscriptionOffer_OfferType = {
    * static let promotional: Product.SubscriptionOffer.OfferType
    * @availability iOS 15.0+
    */
-  get promotional(): Product_SubscriptionOffer_OfferType { return callSDK<Product_SubscriptionOffer_OfferType>("StoreKit_86f7e029fa4ce140", 4323762973862056, undefined, []); },
+  get promotional(): Product_SubscriptionOffer_OfferType { return callSDK<Product_SubscriptionOffer_OfferType>("StoreKit_d453e9e1f4a52dda", 4323762973862056, undefined, []); },
   /**
    * static let introductory: Product.SubscriptionOffer.OfferType
    * @availability iOS 15.0+
    */
-  get introductory(): Product_SubscriptionOffer_OfferType { return callSDK<Product_SubscriptionOffer_OfferType>("StoreKit_86f7e029fa4ce140", 3356953431945863, undefined, []); },
+  get introductory(): Product_SubscriptionOffer_OfferType { return callSDK<Product_SubscriptionOffer_OfferType>("StoreKit_d453e9e1f4a52dda", 3356953431945863, undefined, []); },
   /**
    * var localizedDescription: String { get }
    * @availability iOS 15.4+
    */
-  getLocalizedDescription($self: Product_SubscriptionOffer_OfferType): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3418133552189840, $self, []); },
+  getLocalizedDescription($self: Product_SubscriptionOffer_OfferType): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3418133552189840, $self, []); },
   /**
    * static let winBack: Product.SubscriptionOffer.OfferType
    * @availability iOS 18.0+
    */
-  get winBack(): Product_SubscriptionOffer_OfferType { return callSDK<Product_SubscriptionOffer_OfferType>("StoreKit_86f7e029fa4ce140", 2123600395949012, undefined, []); },
+  get winBack(): Product_SubscriptionOffer_OfferType { return callSDK<Product_SubscriptionOffer_OfferType>("StoreKit_d453e9e1f4a52dda", 2123600395949012, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): Product_SubscriptionOffer_OfferType { return callSDK<Product_SubscriptionOffer_OfferType>("StoreKit_86f7e029fa4ce140", 541636539959684, undefined, [rawValue]); },
+  init(rawValue: string): Product_SubscriptionOffer_OfferType { return callSDK<Product_SubscriptionOffer_OfferType>("StoreKit_d453e9e1f4a52dda", 541636539959684, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 15.0+
    */
-  getRawValue($self: Product_SubscriptionOffer_OfferType): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1754824195196285, $self, []); }
+  getRawValue($self: Product_SubscriptionOffer_OfferType): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1754824195196285, $self, []); }
 };
 
 /**
@@ -2116,32 +2116,32 @@ export const Product_SubscriptionOffer_PaymentMode = {
    * static let payAsYouGo: Product.SubscriptionOffer.PaymentMode
    * @availability iOS 15.0+
    */
-  get payAsYouGo(): Product_SubscriptionOffer_PaymentMode { return callSDK<Product_SubscriptionOffer_PaymentMode>("StoreKit_86f7e029fa4ce140", 811388210947402, undefined, []); },
+  get payAsYouGo(): Product_SubscriptionOffer_PaymentMode { return callSDK<Product_SubscriptionOffer_PaymentMode>("StoreKit_d453e9e1f4a52dda", 811388210947402, undefined, []); },
   /**
    * static let payUpFront: Product.SubscriptionOffer.PaymentMode
    * @availability iOS 15.0+
    */
-  get payUpFront(): Product_SubscriptionOffer_PaymentMode { return callSDK<Product_SubscriptionOffer_PaymentMode>("StoreKit_86f7e029fa4ce140", 459201716234348, undefined, []); },
+  get payUpFront(): Product_SubscriptionOffer_PaymentMode { return callSDK<Product_SubscriptionOffer_PaymentMode>("StoreKit_d453e9e1f4a52dda", 459201716234348, undefined, []); },
   /**
    * var localizedDescription: String { get }
    * @availability iOS 15.4+
    */
-  getLocalizedDescription($self: Product_SubscriptionOffer_PaymentMode): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2132574268901241, $self, []); },
+  getLocalizedDescription($self: Product_SubscriptionOffer_PaymentMode): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2132574268901241, $self, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): Product_SubscriptionOffer_PaymentMode { return callSDK<Product_SubscriptionOffer_PaymentMode>("StoreKit_86f7e029fa4ce140", 4284283481443801, undefined, [rawValue]); },
+  init(rawValue: string): Product_SubscriptionOffer_PaymentMode { return callSDK<Product_SubscriptionOffer_PaymentMode>("StoreKit_d453e9e1f4a52dda", 4284283481443801, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 15.0+
    */
-  getRawValue($self: Product_SubscriptionOffer_PaymentMode): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1406872036039958, $self, []); },
+  getRawValue($self: Product_SubscriptionOffer_PaymentMode): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1406872036039958, $self, []); },
   /**
    * static let freeTrial: Product.SubscriptionOffer.PaymentMode
    * @availability iOS 15.0+
    */
-  get freeTrial(): Product_SubscriptionOffer_PaymentMode { return callSDK<Product_SubscriptionOffer_PaymentMode>("StoreKit_86f7e029fa4ce140", 1309216127344281, undefined, []); }
+  get freeTrial(): Product_SubscriptionOffer_PaymentMode { return callSDK<Product_SubscriptionOffer_PaymentMode>("StoreKit_d453e9e1f4a52dda", 1309216127344281, undefined, []); }
 };
 
 /**
@@ -2161,35 +2161,35 @@ export class Product_SubscriptionOffer_Signature extends SDKHandle {
    * @availability iOS 17.4+
    * @deprecated iOS 26.0
    */
-  static init(keyID: string, nonce: string, timestamp: number, signature: ArrayBuffer): Product_SubscriptionOffer_Signature { return callSDK<Product_SubscriptionOffer_Signature>("StoreKit_86f7e029fa4ce140", 33605643312038, undefined, [keyID, nonce, timestamp, signature]); }
+  static init(keyID: string, nonce: string, timestamp: number, signature: ArrayBuffer): Product_SubscriptionOffer_Signature { return callSDK<Product_SubscriptionOffer_Signature>("StoreKit_d453e9e1f4a52dda", 33605643312038, undefined, [keyID, nonce, timestamp, signature]); }
   /**
    * var keyID: String
    * @availability iOS 17.4+
    * @deprecated iOS 26.0
    */
-  get keyID(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3537242381750097, this, []); }
-  set keyID(value: string) { callSDK<void>("StoreKit_86f7e029fa4ce140", 104719043374953, this, [value]); }
+  get keyID(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3537242381750097, this, []); }
+  set keyID(value: string) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 104719043374953, this, [value]); }
   /**
    * var nonce: UUID
    * @availability iOS 17.4+
    * @deprecated iOS 26.0
    */
-  get nonce(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4110874403636797, this, []); }
-  set nonce(value: string) { callSDK<void>("StoreKit_86f7e029fa4ce140", 4179476121190350, this, [value]); }
+  get nonce(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4110874403636797, this, []); }
+  set nonce(value: string) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 4179476121190350, this, [value]); }
   /**
    * var signature: Data
    * @availability iOS 17.4+
    * @deprecated iOS 26.0
    */
-  get signature(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 3330189255509699, this, []); }
-  set signature(value: ArrayBuffer) { callSDK<void>("StoreKit_86f7e029fa4ce140", 1709021437079297, this, [value]); }
+  get signature(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 3330189255509699, this, []); }
+  set signature(value: ArrayBuffer) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 1709021437079297, this, [value]); }
   /**
    * var timestamp: Int
    * @availability iOS 17.4+
    * @deprecated iOS 26.0
    */
-  get timestamp(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 3287006591865439, this, []); }
-  set timestamp(value: number) { callSDK<void>("StoreKit_86f7e029fa4ce140", 526914169657141, this, [value]); }
+  get timestamp(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 3287006591865439, this, []); }
+  set timestamp(value: number) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 526914169657141, this, [value]); }
   declare readonly $type: { "s:8StoreKit7ProductV17SubscriptionOfferV9SignatureV": true };
 }
 
@@ -2203,70 +2203,70 @@ export class Product_SubscriptionPeriod extends SDKHandle {
   static var everyTwoWeeks: Product.SubscriptionPeriod { get }
    * @availability iOS 16.4+
    */
-  static get everyTwoWeeks(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 2345446290644792, undefined, []); }
+  static get everyTwoWeeks(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 2345446290644792, undefined, []); }
   /**
    * @backDeployed(before: iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
   static var everySixMonths: Product.SubscriptionPeriod { get }
    * @availability iOS 16.4+
    */
-  static get everySixMonths(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 2317684675748994, undefined, []); }
+  static get everySixMonths(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 2317684675748994, undefined, []); }
   /**
    * @backDeployed(before: iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
   static var everyThreeDays: Product.SubscriptionPeriod { get }
    * @availability iOS 16.4+
    */
-  static get everyThreeDays(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 1907028414492637, undefined, []); }
+  static get everyThreeDays(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 1907028414492637, undefined, []); }
   /**
    * @backDeployed(before: iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
   static var everyTwoMonths: Product.SubscriptionPeriod { get }
    * @availability iOS 16.4+
    */
-  static get everyTwoMonths(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 1381384193740559, undefined, []); }
+  static get everyTwoMonths(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 1381384193740559, undefined, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4041421186592683, this, []); }
+  get debugDescription(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4041421186592683, this, []); }
   /**
    * @backDeployed(before: iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
   static var everyThreeMonths: Product.SubscriptionPeriod { get }
    * @availability iOS 16.4+
    */
-  static get everyThreeMonths(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 2647649107688005, undefined, []); }
+  static get everyThreeMonths(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 2647649107688005, undefined, []); }
   /**
    * let unit: Product.SubscriptionPeriod.Unit
    * @availability iOS 15.0+
    */
-  get unit(): Product_SubscriptionPeriod_Unit { return callSDK<Product_SubscriptionPeriod_Unit>("StoreKit_86f7e029fa4ce140", 507182609702242, this, []); }
+  get unit(): Product_SubscriptionPeriod_Unit { return callSDK<Product_SubscriptionPeriod_Unit>("StoreKit_d453e9e1f4a52dda", 507182609702242, this, []); }
   /**
    * let value: Int
    * @availability iOS 15.0+
    */
-  get value(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 1611127933252102, this, []); }
+  get value(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 1611127933252102, this, []); }
   /**
    * @backDeployed(before: iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
   static var weekly: Product.SubscriptionPeriod { get }
    * @availability iOS 16.4+
    */
-  static get weekly(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 3224922950943206, undefined, []); }
+  static get weekly(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 3224922950943206, undefined, []); }
   /**
    * @backDeployed(before: iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
   static var yearly: Product.SubscriptionPeriod { get }
    * @availability iOS 16.4+
    */
-  static get yearly(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 1278316444444395, undefined, []); }
+  static get yearly(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 1278316444444395, undefined, []); }
   /**
    * @backDeployed(before: iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
   static var monthly: Product.SubscriptionPeriod { get }
    * @availability iOS 16.4+
    */
-  static get monthly(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 121776961051709, undefined, []); }
+  static get monthly(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 121776961051709, undefined, []); }
   /**
    * @backDeployed(before: iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, macCatalyst 16.0)
   func dateRange(referenceDate: Date = .now) -> Range<Date>
    * @availability iOS 15.0+
    */
-  dateRange(referenceDate?: globalThis.Date): SDKHandle { return callSDK<SDKHandle>("StoreKit_86f7e029fa4ce140", 1560306420334362, this, [referenceDate]); }
+  dateRange(referenceDate?: globalThis.Date): SDKHandle { return callSDK<SDKHandle>("StoreKit_d453e9e1f4a52dda", 1560306420334362, this, [referenceDate]); }
   declare readonly $type: { "s:8StoreKit7ProductV18SubscriptionPeriodV": true };
 }
 
@@ -2281,12 +2281,12 @@ export const Product_SubscriptionPeriod_Unit = {
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  getDebugDescription($self: Product_SubscriptionPeriod_Unit): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3288698174226763, $self, []); },
+  getDebugDescription($self: Product_SubscriptionPeriod_Unit): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3288698174226763, $self, []); },
   /**
    * var localizedDescription: String { get }
    * @availability iOS 15.4+
    */
-  getLocalizedDescription($self: Product_SubscriptionPeriod_Unit): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4276056608492137, $self, []); }
+  getLocalizedDescription($self: Product_SubscriptionPeriod_Unit): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4276056608492137, $self, []); }
 };
 
 /**
@@ -2298,12 +2298,12 @@ export class Product_SubscriptionPeriod_Unit_FormatStyle extends SDKHandle {
    * func format(_ value: Product.SubscriptionPeriod.Unit) -> String
    * @availability iOS 16.0+
    */
-  format(value: Product_SubscriptionPeriod_Unit): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3233002590723705, this, [value]); }
+  format(value: Product_SubscriptionPeriod_Unit): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3233002590723705, this, [value]); }
   /**
    * func locale(_ locale: Locale) -> Product.SubscriptionPeriod.Unit.FormatStyle
    * @availability iOS 16.0+
    */
-  locale(locale: _Foundation_Locale): Product_SubscriptionPeriod_Unit_FormatStyle { return callSDK<Product_SubscriptionPeriod_Unit_FormatStyle>("StoreKit_86f7e029fa4ce140", 3384323921069268, this, [locale]); }
+  locale(locale: _Foundation_Locale): Product_SubscriptionPeriod_Unit_FormatStyle { return callSDK<Product_SubscriptionPeriod_Unit_FormatStyle>("StoreKit_d453e9e1f4a52dda", 3384323921069268, this, [locale]); }
   declare readonly $type: { "s:8StoreKit7ProductV18SubscriptionPeriodV4UnitO11FormatStyleV": true };
 }
 
@@ -2329,22 +2329,22 @@ export class PurchaseIntent extends SDKHandle {
   var id: Product.ID { get }
    * @availability iOS 16.4+
    */
-  get id(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 759562969164479, this, []); }
+  get id(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 759562969164479, this, []); }
   /**
    * let offer: Product.SubscriptionOffer?
    * @availability iOS 18.0+
    */
-  get offer(): $SDK12 { return callSDK<$SDK12>("StoreKit_86f7e029fa4ce140", 3713292272532442, this, []); }
+  get offer(): $SDK12 { return callSDK<$SDK12>("StoreKit_d453e9e1f4a52dda", 3713292272532442, this, []); }
   /**
    * static var intents: PurchaseIntent.PurchaseIntents { get }
    * @availability iOS 16.4+
    */
-  static get intents(): PurchaseIntent_PurchaseIntents { return callSDK<PurchaseIntent_PurchaseIntents>("StoreKit_86f7e029fa4ce140", 3638177929615283, undefined, []); }
+  static get intents(): PurchaseIntent_PurchaseIntents { return callSDK<PurchaseIntent_PurchaseIntents>("StoreKit_d453e9e1f4a52dda", 3638177929615283, undefined, []); }
   /**
    * let product: Product
    * @availability iOS 16.4+
    */
-  get product(): Product { return callSDK<Product>("StoreKit_86f7e029fa4ce140", 3763821719384318, this, []); }
+  get product(): Product { return callSDK<Product>("StoreKit_d453e9e1f4a52dda", 3763821719384318, this, []); }
   declare readonly $type: { "s:8StoreKit14PurchaseIntentV": true };
 }
 
@@ -2363,7 +2363,7 @@ export class PurchaseIntent_PurchaseIntents extends SDKHandle {
    * func makeAsyncIterator() -> PurchaseIntent.PurchaseIntents.AsyncIterator
    * @availability iOS 16.4+
    */
-  makeAsyncIterator(): PurchaseIntent_PurchaseIntents_AsyncIterator { return callSDK<PurchaseIntent_PurchaseIntents_AsyncIterator>("StoreKit_86f7e029fa4ce140", 4014872352300019, this, []); }
+  makeAsyncIterator(): PurchaseIntent_PurchaseIntents_AsyncIterator { return callSDK<PurchaseIntent_PurchaseIntents_AsyncIterator>("StoreKit_d453e9e1f4a52dda", 4014872352300019, this, []); }
   declare readonly $type: { "s:8StoreKit14PurchaseIntentV0C7IntentsV": true };
   declare readonly $element: PurchaseIntent;
 }
@@ -2377,7 +2377,7 @@ export class PurchaseIntent_PurchaseIntents_AsyncIterator extends SDKHandle {
    * mutating func next() async -> PurchaseIntent.PurchaseIntents.Element?
    * @availability iOS 16.4+
    */
-  next(): Promise<(PurchaseIntent) | null> { return callSDKAsync<(PurchaseIntent) | null>("StoreKit_86f7e029fa4ce140", 1685090185782498, this, []); }
+  next(): Promise<(PurchaseIntent) | null> { return callSDKAsync<(PurchaseIntent) | null>("StoreKit_d453e9e1f4a52dda", 1685090185782498, this, []); }
   declare readonly $type: { "s:8StoreKit14PurchaseIntentV0C7IntentsV13AsyncIteratorV": true };
 }
 
@@ -2410,79 +2410,79 @@ export class SKAdImpression extends SDKHandle {
    * init(sourceAppStoreItemIdentifier: NSNumber, advertisedAppStoreItemIdentifier: NSNumber, adNetworkIdentifier: String, adCampaignIdentifier: NSNumber, adImpressionIdentifier: String, timestamp: NSNumber, signature: String, version: String)
    * @availability iOS 16.0+
    */
-  static init(sourceAppStoreItemIdentifier: _Foundation_NSNumber, advertisedAppStoreItemIdentifier: _Foundation_NSNumber, adNetworkIdentifier: string, adCampaignIdentifier: _Foundation_NSNumber, adImpressionIdentifier: string, timestamp: _Foundation_NSNumber, signature: string, version: string): SKAdImpression { return callSDK<SKAdImpression>("StoreKit_86f7e029fa4ce140", 2371544073573637, undefined, [sourceAppStoreItemIdentifier, advertisedAppStoreItemIdentifier, adNetworkIdentifier, adCampaignIdentifier, adImpressionIdentifier, timestamp, signature, version]); }
+  static init(sourceAppStoreItemIdentifier: _Foundation_NSNumber, advertisedAppStoreItemIdentifier: _Foundation_NSNumber, adNetworkIdentifier: string, adCampaignIdentifier: _Foundation_NSNumber, adImpressionIdentifier: string, timestamp: _Foundation_NSNumber, signature: string, version: string): SKAdImpression { return callSDK<SKAdImpression>("StoreKit_d453e9e1f4a52dda", 2371544073573637, undefined, [sourceAppStoreItemIdentifier, advertisedAppStoreItemIdentifier, adNetworkIdentifier, adCampaignIdentifier, adImpressionIdentifier, timestamp, signature, version]); }
   /**
    * var adCampaignIdentifier: NSNumber { get set }
    * @availability iOS 14.5+
    */
-  get adCampaignIdentifier(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("StoreKit_86f7e029fa4ce140", 2899307830897925, this, []); }
-  set adCampaignIdentifier(value: _Foundation_NSNumber) { callSDK<void>("StoreKit_86f7e029fa4ce140", 3472874839989676, this, [value]); }
+  get adCampaignIdentifier(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("StoreKit_d453e9e1f4a52dda", 2899307830897925, this, []); }
+  set adCampaignIdentifier(value: _Foundation_NSNumber) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 3472874839989676, this, [value]); }
   /**
    * var adDescription: String? { get set }
    * @availability iOS 14.5+
    */
-  get adDescription(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 1260240635996296, this, []); }
-  set adDescription(value: (string) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 470638948606420, this, [value]); }
+  get adDescription(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 1260240635996296, this, []); }
+  set adDescription(value: (string) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 470638948606420, this, [value]); }
   /**
    * var adImpressionIdentifier: String { get set }
    * @availability iOS 14.5+
    */
-  get adImpressionIdentifier(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 70152987154978, this, []); }
-  set adImpressionIdentifier(value: string) { callSDK<void>("StoreKit_86f7e029fa4ce140", 2192800347466987, this, [value]); }
+  get adImpressionIdentifier(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 70152987154978, this, []); }
+  set adImpressionIdentifier(value: string) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 2192800347466987, this, [value]); }
   /**
    * var adNetworkIdentifier: String { get set }
    * @availability iOS 14.5+
    */
-  get adNetworkIdentifier(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 546858913281701, this, []); }
-  set adNetworkIdentifier(value: string) { callSDK<void>("StoreKit_86f7e029fa4ce140", 1660720177504968, this, [value]); }
+  get adNetworkIdentifier(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 546858913281701, this, []); }
+  set adNetworkIdentifier(value: string) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 1660720177504968, this, [value]); }
   /**
    * var adPurchaserName: String? { get set }
    * @availability iOS 14.5+
    */
-  get adPurchaserName(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 3006175832858104, this, []); }
-  set adPurchaserName(value: (string) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 3936629901627093, this, [value]); }
+  get adPurchaserName(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 3006175832858104, this, []); }
+  set adPurchaserName(value: (string) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 3936629901627093, this, [value]); }
   /**
    * var adType: String? { get set }
    * @availability iOS 14.5+
    */
-  get adType(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 2466798264187726, this, []); }
-  set adType(value: (string) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 3852978325872877, this, [value]); }
+  get adType(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 2466798264187726, this, []); }
+  set adType(value: (string) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 3852978325872877, this, [value]); }
   /**
    * var advertisedAppStoreItemIdentifier: NSNumber { get set }
    * @availability iOS 14.5+
    */
-  get advertisedAppStoreItemIdentifier(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("StoreKit_86f7e029fa4ce140", 3287676939929391, this, []); }
-  set advertisedAppStoreItemIdentifier(value: _Foundation_NSNumber) { callSDK<void>("StoreKit_86f7e029fa4ce140", 4302394910900931, this, [value]); }
+  get advertisedAppStoreItemIdentifier(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("StoreKit_d453e9e1f4a52dda", 3287676939929391, this, []); }
+  set advertisedAppStoreItemIdentifier(value: _Foundation_NSNumber) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 4302394910900931, this, [value]); }
   /**
    * var signature: String { get set }
    * @availability iOS 14.5+
    */
-  get signature(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2285951322802274, this, []); }
-  set signature(value: string) { callSDK<void>("StoreKit_86f7e029fa4ce140", 1321338215782363, this, [value]); }
+  get signature(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2285951322802274, this, []); }
+  set signature(value: string) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 1321338215782363, this, [value]); }
   /**
    * var sourceAppStoreItemIdentifier: NSNumber { get set }
    * @availability iOS 14.5+
    */
-  get sourceAppStoreItemIdentifier(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("StoreKit_86f7e029fa4ce140", 100983505455069, this, []); }
-  set sourceAppStoreItemIdentifier(value: _Foundation_NSNumber) { callSDK<void>("StoreKit_86f7e029fa4ce140", 948956023267047, this, [value]); }
+  get sourceAppStoreItemIdentifier(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("StoreKit_d453e9e1f4a52dda", 100983505455069, this, []); }
+  set sourceAppStoreItemIdentifier(value: _Foundation_NSNumber) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 948956023267047, this, [value]); }
   /**
    * var sourceIdentifier: NSNumber { get set }
    * @availability iOS 16.1+
    */
-  get sourceIdentifier(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("StoreKit_86f7e029fa4ce140", 2077078299695777, this, []); }
-  set sourceIdentifier(value: _Foundation_NSNumber) { callSDK<void>("StoreKit_86f7e029fa4ce140", 2721732332479571, this, [value]); }
+  get sourceIdentifier(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("StoreKit_d453e9e1f4a52dda", 2077078299695777, this, []); }
+  set sourceIdentifier(value: _Foundation_NSNumber) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 2721732332479571, this, [value]); }
   /**
    * var timestamp: NSNumber { get set }
    * @availability iOS 14.5+
    */
-  get timestamp(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("StoreKit_86f7e029fa4ce140", 2822174254361553, this, []); }
-  set timestamp(value: _Foundation_NSNumber) { callSDK<void>("StoreKit_86f7e029fa4ce140", 4499517577401986, this, [value]); }
+  get timestamp(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("StoreKit_d453e9e1f4a52dda", 2822174254361553, this, []); }
+  set timestamp(value: _Foundation_NSNumber) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 4499517577401986, this, [value]); }
   /**
    * var version: String { get set }
    * @availability iOS 14.5+
    */
-  get version(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2388879993153756, this, []); }
-  set version(value: string) { callSDK<void>("StoreKit_86f7e029fa4ce140", 1693329161497978, this, [value]); }
+  get version(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2388879993153756, this, []); }
+  set version(value: string) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 1693329161497978, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKAdImpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "adCampaignIdentifier": true; "adDescription": true; "adImpressionIdentifier": true; "adNetworkIdentifier": true; "adPurchaserName": true; "adType": true; "advertisedAppStoreItemIdentifier": true; "signature": true; "sourceAppStoreItemIdentifier": true; "sourceIdentifier": true; "timestamp": true; "version": true };
 }
@@ -2496,41 +2496,41 @@ export class SKAdNetwork extends SDKHandle {
    * class func endImpression(_ impression: SKAdImpression) async throws
    * @availability iOS 14.5+
    */
-  static endImpression(impression: SKAdImpression, completion?: $SDK28): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 1046294664541749, undefined, [impression, completion], [null,{"callback":{"out":[]}}]); }
+  static endImpression(impression: SKAdImpression, completion?: $SDK28): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 1046294664541749, undefined, [impression, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * class func registerAppForAdNetworkAttribution()
    * @availability iOS 11.3+
    * @deprecated iOS 15.4
    */
-  static registerAppForAdNetworkAttribution(): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 2039121608648892, undefined, []); }
+  static registerAppForAdNetworkAttribution(): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 2039121608648892, undefined, []); }
   /**
    * class func startImpression(_ impression: SKAdImpression) async throws
    * @availability iOS 14.5+
    */
-  static startImpression(impression: SKAdImpression, completion?: $SDK28): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 2531657292801620, undefined, [impression, completion], [null,{"callback":{"out":[]}}]); }
+  static startImpression(impression: SKAdImpression, completion?: $SDK28): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 2531657292801620, undefined, [impression, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * class func updateConversionValue(_ conversionValue: Int)
    * @availability iOS 14.0+
    * @deprecated iOS 15.4
    */
-  static updateConversionValue(conversionValue: number): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 106216529495097, undefined, [conversionValue]); }
+  static updateConversionValue(conversionValue: number): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 106216529495097, undefined, [conversionValue]); }
   /**
    * class func updatePostbackConversionValue(_ fineValue: Int, coarseValue: SKAdNetwork.CoarseConversionValue) async throws
    * @availability iOS 16.1+
    */
-  static updatePostbackConversionValueCoarseValueCompletionHandler(fineValue: number, coarseValue: SKAdNetwork_CoarseConversionValue, completion?: $SDK28): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 4148809359205307, undefined, [fineValue, coarseValue, completion], [null,null,{"callback":{"out":[]}}]); }
+  static updatePostbackConversionValueCoarseValueCompletionHandler(fineValue: number, coarseValue: SKAdNetwork_CoarseConversionValue, completion?: $SDK28): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 4148809359205307, undefined, [fineValue, coarseValue, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * class func updatePostbackConversionValue(_ fineValue: Int, coarseValue: SKAdNetwork.CoarseConversionValue, lockWindow: Bool) async throws
    * @availability iOS 16.1+
    */
-  static updatePostbackConversionValueCoarseValueLockWindowCompletionHandler(fineValue: number, coarseValue: SKAdNetwork_CoarseConversionValue, lockWindow: boolean, completion?: $SDK28): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 3980643213703361, undefined, [fineValue, coarseValue, lockWindow, completion], [null,null,null,{"callback":{"out":[]}}]); }
+  static updatePostbackConversionValueCoarseValueLockWindowCompletionHandler(fineValue: number, coarseValue: SKAdNetwork_CoarseConversionValue, lockWindow: boolean, completion?: $SDK28): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 3980643213703361, undefined, [fineValue, coarseValue, lockWindow, completion], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * class func updatePostbackConversionValue(_ conversionValue: Int) async throws
    * @availability iOS 15.4+
    */
-  static updatePostbackConversionValueCompletionHandler(conversionValue: number, completion?: $SDK28): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 2391538899585463, undefined, [conversionValue, completion], [null,{"callback":{"out":[]}}]); }
+  static updatePostbackConversionValueCompletionHandler(conversionValue: number, completion?: $SDK28): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 2391538899585463, undefined, [conversionValue, completion], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): SKAdNetwork { return callSDK<SKAdNetwork>("StoreKit_86f7e029fa4ce140", 4283502947620007, undefined, []); }
+  static init(): SKAdNetwork { return callSDK<SKAdNetwork>("StoreKit_d453e9e1f4a52dda", 4283502947620007, undefined, []); }
   declare readonly $type: { "c:objc(cs)SKAdNetwork": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2545,22 +2545,22 @@ export const SKAdNetwork_CoarseConversionValue = {
    * static let high: SKAdNetwork.CoarseConversionValue
    * @availability iOS 16.1+
    */
-  get high(): SKAdNetwork_CoarseConversionValue { return callSDK<SKAdNetwork_CoarseConversionValue>("StoreKit_86f7e029fa4ce140", 2960557018436137, undefined, []); },
+  get high(): SKAdNetwork_CoarseConversionValue { return callSDK<SKAdNetwork_CoarseConversionValue>("StoreKit_d453e9e1f4a52dda", 2960557018436137, undefined, []); },
   /**
    * static let low: SKAdNetwork.CoarseConversionValue
    * @availability iOS 16.1+
    */
-  get low(): SKAdNetwork_CoarseConversionValue { return callSDK<SKAdNetwork_CoarseConversionValue>("StoreKit_86f7e029fa4ce140", 4285712042981887, undefined, []); },
+  get low(): SKAdNetwork_CoarseConversionValue { return callSDK<SKAdNetwork_CoarseConversionValue>("StoreKit_d453e9e1f4a52dda", 4285712042981887, undefined, []); },
   /**
    * static let medium: SKAdNetwork.CoarseConversionValue
    * @availability iOS 16.1+
    */
-  get medium(): SKAdNetwork_CoarseConversionValue { return callSDK<SKAdNetwork_CoarseConversionValue>("StoreKit_86f7e029fa4ce140", 1210863383948884, undefined, []); },
+  get medium(): SKAdNetwork_CoarseConversionValue { return callSDK<SKAdNetwork_CoarseConversionValue>("StoreKit_d453e9e1f4a52dda", 1210863383948884, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 16.1+
    */
-  init(rawValue: string): SKAdNetwork_CoarseConversionValue { return callSDK<SKAdNetwork_CoarseConversionValue>("StoreKit_86f7e029fa4ce140", 2222871137863149, undefined, [rawValue]); }
+  init(rawValue: string): SKAdNetwork_CoarseConversionValue { return callSDK<SKAdNetwork_CoarseConversionValue>("StoreKit_d453e9e1f4a52dda", 2222871137863149, undefined, [rawValue]); }
 };
 
 /**
@@ -2572,67 +2572,67 @@ export class SKANError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 15.4+
    */
-  static get errorDomain(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1400072230763273, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1400072230763273, undefined, []); }
   /**
    * static var unsupported: SKANError.Code { get }
    * @availability iOS 15.4+
    */
-  static get unsupported(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_86f7e029fa4ce140", 1682249834513109, undefined, []); }
+  static get unsupported(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_d453e9e1f4a52dda", 1682249834513109, undefined, []); }
   /**
    * static var invalidVersion: SKANError.Code { get }
    * @availability iOS 15.4+
    */
-  static get invalidVersion(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_86f7e029fa4ce140", 169233807388131, undefined, []); }
+  static get invalidVersion(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_d453e9e1f4a52dda", 169233807388131, undefined, []); }
   /**
    * static var invalidCampaignId: SKANError.Code { get }
    * @availability iOS 15.4+
    */
-  static get invalidCampaignId(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_86f7e029fa4ce140", 3354360203595712, undefined, []); }
+  static get invalidCampaignId(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_d453e9e1f4a52dda", 3354360203595712, undefined, []); }
   /**
    * static var adNetworkIdMissing: SKANError.Code { get }
    * @availability iOS 15.4+
    */
-  static get adNetworkIdMissing(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_86f7e029fa4ce140", 2143919536816539, undefined, []); }
+  static get adNetworkIdMissing(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_d453e9e1f4a52dda", 2143919536816539, undefined, []); }
   /**
    * static var impressionNotFound: SKANError.Code { get }
    * @availability iOS 15.4+
    */
-  static get impressionNotFound(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_86f7e029fa4ce140", 4027463702822589, undefined, []); }
+  static get impressionNotFound(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_d453e9e1f4a52dda", 4027463702822589, undefined, []); }
   /**
    * static var impressionTooShort: SKANError.Code { get }
    * @availability iOS 15.4+
    */
-  static get impressionTooShort(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_86f7e029fa4ce140", 2067256875432380, undefined, []); }
+  static get impressionTooShort(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_d453e9e1f4a52dda", 2067256875432380, undefined, []); }
   /**
    * static var invalidSourceAppId: SKANError.Code { get }
    * @availability iOS 15.4+
    */
-  static get invalidSourceAppId(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_86f7e029fa4ce140", 353661780585610, undefined, []); }
+  static get invalidSourceAppId(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_d453e9e1f4a52dda", 353661780585610, undefined, []); }
   /**
    * static var mismatchedSourceAppId: SKANError.Code { get }
    * @availability iOS 15.4+
    */
-  static get mismatchedSourceAppId(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_86f7e029fa4ce140", 230250459347506, undefined, []); }
+  static get mismatchedSourceAppId(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_d453e9e1f4a52dda", 230250459347506, undefined, []); }
   /**
    * static var invalidAdvertisedAppId: SKANError.Code { get }
    * @availability iOS 15.4+
    */
-  static get invalidAdvertisedAppId(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_86f7e029fa4ce140", 1635022870142834, undefined, []); }
+  static get invalidAdvertisedAppId(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_d453e9e1f4a52dda", 1635022870142834, undefined, []); }
   /**
    * static var invalidConversionValue: SKANError.Code { get }
    * @availability iOS 15.4+
    */
-  static get invalidConversionValue(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_86f7e029fa4ce140", 4472546088237025, undefined, []); }
+  static get invalidConversionValue(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_d453e9e1f4a52dda", 4472546088237025, undefined, []); }
   /**
    * static var impressionMissingRequiredValue: SKANError.Code { get }
    * @availability iOS 15.4+
    */
-  static get impressionMissingRequiredValue(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_86f7e029fa4ce140", 1023995955178469, undefined, []); }
+  static get impressionMissingRequiredValue(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_d453e9e1f4a52dda", 1023995955178469, undefined, []); }
   /**
    * static var unknown: SKANError.Code { get }
    * @availability iOS 15.4+
    */
-  static get unknown(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_86f7e029fa4ce140", 2052601044875741, undefined, []); }
+  static get unknown(): SKANError_Code { return callSDK<SKANError_Code>("StoreKit_d453e9e1f4a52dda", 2052601044875741, undefined, []); }
   declare readonly $type: { "s:SC9SKANErrorLeV": true };
 }
 
@@ -2647,7 +2647,7 @@ export const SKANError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 15.4+
    */
-  init(rawValue: number): (SKANError_Code) | null { return callSDK<(SKANError_Code) | null>("StoreKit_86f7e029fa4ce140", 2684793213757847, undefined, [rawValue]); }
+  init(rawValue: number): (SKANError_Code) | null { return callSDK<(SKANError_Code) | null>("StoreKit_d453e9e1f4a52dda", 2684793213757847, undefined, [rawValue]); }
 };
 
 /**
@@ -2659,19 +2659,19 @@ export class SKArcadeService extends SDKHandle {
    * class func arcadeSubscriptionStatus(withNonce nonce: UInt64, resultHandler: @escaping (Data?, UInt32, Data?, UInt32, (any Error)?) -> Void)
    * @availability iOS 13.0+
    */
-  static arcadeSubscriptionStatus(nonce: number, resultHandler: $SDK29): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 1107203133603656, undefined, [nonce, resultHandler], [null,{"callback":{"out":[]}}]); }
+  static arcadeSubscriptionStatus(nonce: number, resultHandler: $SDK29): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 1107203133603656, undefined, [nonce, resultHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func registerArcadeAppWithRandom(fromLib randomFromLib: Data, randomFromLibLength: UInt32, resultHandler: @escaping (Data?, UInt32, Data?, UInt32, (any Error)?) -> Void)
    * @availability iOS 13.0+
    */
-  static registerArcadeAppWithRandom(randomFromLib: ArrayBuffer, randomFromLibLength: number, resultHandler: $SDK29): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 3738033680513923, undefined, [randomFromLib, randomFromLibLength, resultHandler], [null,null,{"callback":{"out":[]}}]); }
+  static registerArcadeAppWithRandom(randomFromLib: ArrayBuffer, randomFromLibLength: number, resultHandler: $SDK29): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 3738033680513923, undefined, [randomFromLib, randomFromLibLength, resultHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * class func repairArcadeApp()
    * @availability iOS 13.0+
    */
-  static repairArcadeApp(): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 2873365337954824, undefined, []); }
+  static repairArcadeApp(): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 2873365337954824, undefined, []); }
   /** init() */
-  static init(): SKArcadeService { return callSDK<SKArcadeService>("StoreKit_86f7e029fa4ce140", 2205320911675926, undefined, []); }
+  static init(): SKArcadeService { return callSDK<SKArcadeService>("StoreKit_d453e9e1f4a52dda", 2205320911675926, undefined, []); }
   declare readonly $type: { "c:objc(cs)SKArcadeService": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2688,7 +2688,7 @@ export const SKCloudServiceAuthorizationStatus = {
    * @availability iOS 9.3+
    * @deprecated iOS 18.0
    */
-  init(rawValue: number): (SKCloudServiceAuthorizationStatus) | null { return callSDK<(SKCloudServiceAuthorizationStatus) | null>("StoreKit_86f7e029fa4ce140", 1550186450954009, undefined, [rawValue]); }
+  init(rawValue: number): (SKCloudServiceAuthorizationStatus) | null { return callSDK<(SKCloudServiceAuthorizationStatus) | null>("StoreKit_d453e9e1f4a52dda", 1550186450954009, undefined, [rawValue]); }
 };
 
 /**
@@ -2704,25 +2704,25 @@ export const SKCloudServiceCapability = {
    * @availability iOS 9.3+
    * @deprecated iOS 18.0
    */
-  get addToCloudMusicLibrary(): SKCloudServiceCapability { return callSDK<SKCloudServiceCapability>("StoreKit_86f7e029fa4ce140", 1132870501172129, undefined, []); },
+  get addToCloudMusicLibrary(): SKCloudServiceCapability { return callSDK<SKCloudServiceCapability>("StoreKit_d453e9e1f4a52dda", 1132870501172129, undefined, []); },
   /**
    * static var musicCatalogPlayback: SKCloudServiceCapability { get }
    * @availability iOS 9.3+
    * @deprecated iOS 18.0
    */
-  get musicCatalogPlayback(): SKCloudServiceCapability { return callSDK<SKCloudServiceCapability>("StoreKit_86f7e029fa4ce140", 4299514456120264, undefined, []); },
+  get musicCatalogPlayback(): SKCloudServiceCapability { return callSDK<SKCloudServiceCapability>("StoreKit_d453e9e1f4a52dda", 4299514456120264, undefined, []); },
   /**
    * static var musicCatalogSubscriptionEligible: SKCloudServiceCapability { get }
    * @availability iOS 10.1+
    * @deprecated iOS 18.0
    */
-  get musicCatalogSubscriptionEligible(): SKCloudServiceCapability { return callSDK<SKCloudServiceCapability>("StoreKit_86f7e029fa4ce140", 3356866766909551, undefined, []); },
+  get musicCatalogSubscriptionEligible(): SKCloudServiceCapability { return callSDK<SKCloudServiceCapability>("StoreKit_d453e9e1f4a52dda", 3356866766909551, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 9.3+
    * @deprecated iOS 18.0
    */
-  init(rawValue: number): SKCloudServiceCapability { return callSDK<SKCloudServiceCapability>("StoreKit_86f7e029fa4ce140", 1290965461762108, undefined, [rawValue]); }
+  init(rawValue: number): SKCloudServiceCapability { return callSDK<SKCloudServiceCapability>("StoreKit_d453e9e1f4a52dda", 1290965461762108, undefined, [rawValue]); }
 };
 
 /**
@@ -2736,39 +2736,39 @@ export class SKCloudServiceController extends SDKHandle {
    * @availability iOS 9.3+
    * @deprecated iOS 18.0
    */
-  static authorizationStatus(): SKCloudServiceAuthorizationStatus { return callSDK<SKCloudServiceAuthorizationStatus>("StoreKit_86f7e029fa4ce140", 36878107494514, undefined, []); }
+  static authorizationStatus(): SKCloudServiceAuthorizationStatus { return callSDK<SKCloudServiceAuthorizationStatus>("StoreKit_d453e9e1f4a52dda", 36878107494514, undefined, []); }
   /**
    * class func requestAuthorization() async -> SKCloudServiceAuthorizationStatus
    * @availability iOS 9.3+
    * @deprecated iOS 18.0
    */
-  static requestAuthorization(completionHandler: ((arg0: SKCloudServiceAuthorizationStatus) => void)): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 2049757939023279, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static requestAuthorization(completionHandler: ((arg0: SKCloudServiceAuthorizationStatus) => void)): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 2049757939023279, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): SKCloudServiceController { return callSDK<SKCloudServiceController>("StoreKit_86f7e029fa4ce140", 3984937309759436, undefined, []); }
+  static init(): SKCloudServiceController { return callSDK<SKCloudServiceController>("StoreKit_d453e9e1f4a52dda", 3984937309759436, undefined, []); }
   /**
    * func requestPersonalizationToken(forClientToken clientToken: String, withCompletionHandler completionHandler: @escaping @Sendable (String?, (any Error)?) -> Void)
    * @availability iOS 10.3+
    * @deprecated iOS 11.0
    */
-  requestPersonalizationToken(clientToken: string, completionHandler: $SDK31): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 921831009432419, this, [clientToken, completionHandler], [null,{"callback":{"out":[]}}]); }
+  requestPersonalizationToken(clientToken: string, completionHandler: $SDK31): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 921831009432419, this, [clientToken, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func requestStorefrontCountryCode() async throws -> String
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  requestStorefrontCountryCode(completionHandler: $SDK31): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 3152378021279399, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  requestStorefrontCountryCode(completionHandler: $SDK31): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 3152378021279399, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func requestStorefrontIdentifier() async throws -> String
    * @availability iOS 9.3+
    * @deprecated iOS 18.0
    */
-  requestStorefrontIdentifier(completionHandler: $SDK31): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 3441102327157598, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  requestStorefrontIdentifier(completionHandler: $SDK31): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 3441102327157598, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func requestUserToken(forDeveloperToken developerToken: String) async throws -> String
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  requestUserToken(developerToken: string, completionHandler: $SDK31): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 2427370854108281, this, [developerToken, completionHandler], [null,{"callback":{"out":[]}}]); }
+  requestUserToken(developerToken: string, completionHandler: $SDK31): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 2427370854108281, this, [developerToken, completionHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)SKCloudServiceController": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2781,9 +2781,9 @@ export const SKCloudServiceSetupAction = {
    * @availability iOS 10.1+
    * @deprecated iOS 18.0
    */
-  get subscribe(): SKCloudServiceSetupAction { return callSDK<SKCloudServiceSetupAction>("StoreKit_86f7e029fa4ce140", 1978852242271432, undefined, []); },
+  get subscribe(): SKCloudServiceSetupAction { return callSDK<SKCloudServiceSetupAction>("StoreKit_d453e9e1f4a52dda", 1978852242271432, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SKCloudServiceSetupAction { return callSDK<SKCloudServiceSetupAction>("StoreKit_86f7e029fa4ce140", 3279020355618311, undefined, [rawValue]); }
+  init(rawValue: string): SKCloudServiceSetupAction { return callSDK<SKCloudServiceSetupAction>("StoreKit_d453e9e1f4a52dda", 3279020355618311, undefined, [rawValue]); }
 };
 
 /** struct SKCloudServiceSetupMessageIdentifier */
@@ -2795,27 +2795,27 @@ export const SKCloudServiceSetupMessageIdentifier = {
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  get addMusic(): SKCloudServiceSetupMessageIdentifier { return callSDK<SKCloudServiceSetupMessageIdentifier>("StoreKit_86f7e029fa4ce140", 3008991676566681, undefined, []); },
+  get addMusic(): SKCloudServiceSetupMessageIdentifier { return callSDK<SKCloudServiceSetupMessageIdentifier>("StoreKit_d453e9e1f4a52dda", 3008991676566681, undefined, []); },
   /**
    * static let connect: SKCloudServiceSetupMessageIdentifier
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  get connect(): SKCloudServiceSetupMessageIdentifier { return callSDK<SKCloudServiceSetupMessageIdentifier>("StoreKit_86f7e029fa4ce140", 838104186196710, undefined, []); },
+  get connect(): SKCloudServiceSetupMessageIdentifier { return callSDK<SKCloudServiceSetupMessageIdentifier>("StoreKit_d453e9e1f4a52dda", 838104186196710, undefined, []); },
   /**
    * static let join: SKCloudServiceSetupMessageIdentifier
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  get join(): SKCloudServiceSetupMessageIdentifier { return callSDK<SKCloudServiceSetupMessageIdentifier>("StoreKit_86f7e029fa4ce140", 1593848231900407, undefined, []); },
+  get join(): SKCloudServiceSetupMessageIdentifier { return callSDK<SKCloudServiceSetupMessageIdentifier>("StoreKit_d453e9e1f4a52dda", 1593848231900407, undefined, []); },
   /**
    * static let playMusic: SKCloudServiceSetupMessageIdentifier
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  get playMusic(): SKCloudServiceSetupMessageIdentifier { return callSDK<SKCloudServiceSetupMessageIdentifier>("StoreKit_86f7e029fa4ce140", 2142430558571784, undefined, []); },
+  get playMusic(): SKCloudServiceSetupMessageIdentifier { return callSDK<SKCloudServiceSetupMessageIdentifier>("StoreKit_d453e9e1f4a52dda", 2142430558571784, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SKCloudServiceSetupMessageIdentifier { return callSDK<SKCloudServiceSetupMessageIdentifier>("StoreKit_86f7e029fa4ce140", 2821408474675188, undefined, [rawValue]); }
+  init(rawValue: string): SKCloudServiceSetupMessageIdentifier { return callSDK<SKCloudServiceSetupMessageIdentifier>("StoreKit_d453e9e1f4a52dda", 2821408474675188, undefined, [rawValue]); }
 };
 
 /** struct SKCloudServiceSetupOptionsKey */
@@ -2827,33 +2827,33 @@ export const SKCloudServiceSetupOptionsKey = {
    * @availability iOS 10.1+
    * @deprecated iOS 18.0
    */
-  get action(): SKCloudServiceSetupOptionsKey { return callSDK<SKCloudServiceSetupOptionsKey>("StoreKit_86f7e029fa4ce140", 2974005347896097, undefined, []); },
+  get action(): SKCloudServiceSetupOptionsKey { return callSDK<SKCloudServiceSetupOptionsKey>("StoreKit_d453e9e1f4a52dda", 2974005347896097, undefined, []); },
   /**
    * static let affiliateToken: SKCloudServiceSetupOptionsKey
    * @availability iOS 10.3+
    * @deprecated iOS 18.0
    */
-  get affiliateToken(): SKCloudServiceSetupOptionsKey { return callSDK<SKCloudServiceSetupOptionsKey>("StoreKit_86f7e029fa4ce140", 2109554256724582, undefined, []); },
+  get affiliateToken(): SKCloudServiceSetupOptionsKey { return callSDK<SKCloudServiceSetupOptionsKey>("StoreKit_d453e9e1f4a52dda", 2109554256724582, undefined, []); },
   /**
    * static let campaignToken: SKCloudServiceSetupOptionsKey
    * @availability iOS 10.3+
    * @deprecated iOS 18.0
    */
-  get campaignToken(): SKCloudServiceSetupOptionsKey { return callSDK<SKCloudServiceSetupOptionsKey>("StoreKit_86f7e029fa4ce140", 1286814097276685, undefined, []); },
+  get campaignToken(): SKCloudServiceSetupOptionsKey { return callSDK<SKCloudServiceSetupOptionsKey>("StoreKit_d453e9e1f4a52dda", 1286814097276685, undefined, []); },
   /**
    * static let iTunesItemIdentifier: SKCloudServiceSetupOptionsKey
    * @availability iOS 10.1+
    * @deprecated iOS 18.0
    */
-  get iTunesItemIdentifier(): SKCloudServiceSetupOptionsKey { return callSDK<SKCloudServiceSetupOptionsKey>("StoreKit_86f7e029fa4ce140", 2633328473609713, undefined, []); },
+  get iTunesItemIdentifier(): SKCloudServiceSetupOptionsKey { return callSDK<SKCloudServiceSetupOptionsKey>("StoreKit_d453e9e1f4a52dda", 2633328473609713, undefined, []); },
   /**
    * static let messageIdentifier: SKCloudServiceSetupOptionsKey
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  get messageIdentifier(): SKCloudServiceSetupOptionsKey { return callSDK<SKCloudServiceSetupOptionsKey>("StoreKit_86f7e029fa4ce140", 1115128216333635, undefined, []); },
+  get messageIdentifier(): SKCloudServiceSetupOptionsKey { return callSDK<SKCloudServiceSetupOptionsKey>("StoreKit_d453e9e1f4a52dda", 1115128216333635, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SKCloudServiceSetupOptionsKey { return callSDK<SKCloudServiceSetupOptionsKey>("StoreKit_86f7e029fa4ce140", 3276629290174452, undefined, [rawValue]); }
+  init(rawValue: string): SKCloudServiceSetupOptionsKey { return callSDK<SKCloudServiceSetupOptionsKey>("StoreKit_d453e9e1f4a52dda", 3276629290174452, undefined, [rawValue]); }
 };
 
 /**
@@ -2863,20 +2863,20 @@ export const SKCloudServiceSetupOptionsKey = {
  */
 export class SKCloudServiceSetupViewController extends SDKHandle {
   /** init() */
-  static init(): Promise<SKCloudServiceSetupViewController> { return callSDKAsync<SKCloudServiceSetupViewController>("StoreKit_86f7e029fa4ce140", 4030233472147232, undefined, []); }
+  static init(): Promise<SKCloudServiceSetupViewController> { return callSDKAsync<SKCloudServiceSetupViewController>("StoreKit_d453e9e1f4a52dda", 4030233472147232, undefined, []); }
   /**
    * func load(options: [SKCloudServiceSetupOptionsKey : Any] = [:]) async throws -> Bool
    * @availability iOS 10.1+
    * @deprecated iOS 18.0
    */
-  load(options?: NativeMap<SKCloudServiceSetupOptionsKey, unknown>, completionHandler?: $SDK33): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 857604197931078, this, [options, completionHandler], [null,{"callback":{"out":[]}}]); }
+  load(options?: NativeMap<SKCloudServiceSetupOptionsKey, unknown>, completionHandler?: $SDK33): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 857604197931078, this, [options, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * weak var delegate: (any SKCloudServiceSetupViewControllerDelegate)? { get set }
    * @availability iOS 10.1+
    * @deprecated iOS 18.0
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("StoreKit_86f7e029fa4ce140", 94658438776959, this, []); }
-  setDelegate(value?: (Implements<SKCloudServiceSetupViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 3614023039324360, this, [value], [{"protocol":"c:objc(pl)SKCloudServiceSetupViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("StoreKit_d453e9e1f4a52dda", 94658438776959, this, []); }
+  setDelegate(value?: (Implements<SKCloudServiceSetupViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 3614023039324360, this, [value], [{"protocol":"c:objc(pl)SKCloudServiceSetupViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)SKCloudServiceSetupViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -2902,73 +2902,73 @@ export interface SKCloudServiceSetupViewControllerDelegate {
  */
 export class SKDownload extends SDKHandle {
   /** init() */
-  static init(): SKDownload { return callSDK<SKDownload>("StoreKit_86f7e029fa4ce140", 2654577185714280, undefined, []); }
+  static init(): SKDownload { return callSDK<SKDownload>("StoreKit_d453e9e1f4a52dda", 2654577185714280, undefined, []); }
   /**
    * var contentIdentifier: String { get }
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  get contentIdentifier(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4323632203716311, this, []); }
+  get contentIdentifier(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4323632203716311, this, []); }
   /**
    * var contentLength: Int64 { get }
    * @availability iOS 6.0+
    * @deprecated iOS 13.0
    */
-  get contentLength(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 4433381483429630, this, []); }
+  get contentLength(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 4433381483429630, this, []); }
   /**
    * var contentURL: URL? { get }
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  get contentURL(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 1012295825455459, this, []); }
+  get contentURL(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 1012295825455459, this, []); }
   /**
    * var contentVersion: String { get }
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  get contentVersion(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1316869833542911, this, []); }
+  get contentVersion(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1316869833542911, this, []); }
   /**
    * var downloadState: SKDownloadState { get }
    * @availability iOS 6.0+
    * @deprecated iOS 12.0
    */
-  get downloadState(): SKDownloadState { return callSDK<SKDownloadState>("StoreKit_86f7e029fa4ce140", 3817486435247663, this, []); }
+  get downloadState(): SKDownloadState { return callSDK<SKDownloadState>("StoreKit_d453e9e1f4a52dda", 3817486435247663, this, []); }
   /**
    * var error: (any Error)? { get }
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("StoreKit_86f7e029fa4ce140", 2787963255224597, this, []); }
+  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("StoreKit_d453e9e1f4a52dda", 2787963255224597, this, []); }
   /**
    * var expectedContentLength: Int64 { get }
    * @availability iOS 13.0+
    * @deprecated iOS 16.0
    */
-  get expectedContentLength(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 3836010161070300, this, []); }
+  get expectedContentLength(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 3836010161070300, this, []); }
   /**
    * var progress: Float { get }
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  get progress(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 823903860947616, this, []); }
+  get progress(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 823903860947616, this, []); }
   /**
    * var state: SKDownloadState { get }
    * @availability iOS 12.0+
    * @deprecated iOS 16.0
    */
-  get state(): SKDownloadState { return callSDK<SKDownloadState>("StoreKit_86f7e029fa4ce140", 1047858640664304, this, []); }
+  get state(): SKDownloadState { return callSDK<SKDownloadState>("StoreKit_d453e9e1f4a52dda", 1047858640664304, this, []); }
   /**
    * var timeRemaining: TimeInterval { get }
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  get timeRemaining(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 3407522947137272, this, []); }
+  get timeRemaining(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 3407522947137272, this, []); }
   /**
    * var transaction: SKPaymentTransaction { get }
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  get transaction(): SKPaymentTransaction { return callSDK<SKPaymentTransaction>("StoreKit_86f7e029fa4ce140", 594001743154293, this, []); }
+  get transaction(): SKPaymentTransaction { return callSDK<SKPaymentTransaction>("StoreKit_d453e9e1f4a52dda", 594001743154293, this, []); }
   declare readonly $type: { "c:objc(cs)SKDownload": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contentIdentifier": true; "contentLength": true; "contentURL": true; "contentVersion": true; "downloadState": true; "error": true; "expectedContentLength": true; "progress": true; "state": true; "timeRemaining": true; "transaction": true };
 }
@@ -2986,7 +2986,7 @@ export const SKDownloadState = {
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  init(rawValue: number): (SKDownloadState) | null { return callSDK<(SKDownloadState) | null>("StoreKit_86f7e029fa4ce140", 92725543211583, undefined, [rawValue]); }
+  init(rawValue: number): (SKDownloadState) | null { return callSDK<(SKDownloadState) | null>("StoreKit_d453e9e1f4a52dda", 92725543211583, undefined, [rawValue]); }
 };
 
 /**
@@ -2998,117 +2998,117 @@ export class SKError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 3.0+
    */
-  static get errorDomain(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2102931150706790, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2102931150706790, undefined, []); }
   /**
    * static var clientInvalid: SKError.Code { get }
    * @availability iOS 3.0+
    */
-  static get clientInvalid(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 1667074337271405, undefined, []); }
+  static get clientInvalid(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 1667074337271405, undefined, []); }
   /**
    * static var overlayTimeout: SKError.Code { get }
    * @availability iOS 14.0+
    */
-  static get overlayTimeout(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 2650786719930193, undefined, []); }
+  static get overlayTimeout(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 2650786719930193, undefined, []); }
   /**
    * static var paymentInvalid: SKError.Code { get }
    * @availability iOS 3.0+
    */
-  static get paymentInvalid(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 178137813993359, undefined, []); }
+  static get paymentInvalid(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 178137813993359, undefined, []); }
   /**
    * static var invalidSignature: SKError.Code { get }
    * @availability iOS 12.2+
    */
-  static get invalidSignature(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 2110664590797609, undefined, []); }
+  static get invalidSignature(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 2110664590797609, undefined, []); }
   /**
    * static var overlayCancelled: SKError.Code { get }
    * @availability iOS 12.2+
    */
-  static get overlayCancelled(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 1773336509640267, undefined, []); }
+  static get overlayCancelled(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 1773336509640267, undefined, []); }
   /**
    * static var paymentCancelled: SKError.Code { get }
    * @availability iOS 3.0+
    */
-  static get paymentCancelled(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 2892920614141953, undefined, []); }
+  static get paymentCancelled(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 2892920614141953, undefined, []); }
   /**
    * static var invalidOfferPrice: SKError.Code { get }
    * @availability iOS 12.2+
    */
-  static get invalidOfferPrice(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 3251877236852348, undefined, []); }
+  static get invalidOfferPrice(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 3251877236852348, undefined, []); }
   /**
    * static var paymentNotAllowed: SKError.Code { get }
    * @availability iOS 3.0+
    */
-  static get paymentNotAllowed(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 1390480685780682, undefined, []); }
+  static get paymentNotAllowed(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 1390480685780682, undefined, []); }
   /**
    * static var ineligibleForOffer: SKError.Code { get }
    * @availability iOS 14.0+
    */
-  static get ineligibleForOffer(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 4286797746122810, undefined, []); }
+  static get ineligibleForOffer(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 4286797746122810, undefined, []); }
   /**
    * static var missingOfferParams: SKError.Code { get }
    * @availability iOS 12.2+
    */
-  static get missingOfferParams(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 3840318878697675, undefined, []); }
+  static get missingOfferParams(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 3840318878697675, undefined, []); }
   /**
    * static var cloudServiceRevoked: SKError.Code { get }
    * @availability iOS 10.3+
    */
-  static get cloudServiceRevoked(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 1589177819995544, undefined, []); }
+  static get cloudServiceRevoked(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 1589177819995544, undefined, []); }
   /**
    * static var unsupportedPlatform: SKError.Code { get }
    * @availability iOS 14.0+
    */
-  static get unsupportedPlatform(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 309174011546006, undefined, []); }
+  static get unsupportedPlatform(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 309174011546006, undefined, []); }
   /**
    * static var invalidOfferIdentifier: SKError.Code { get }
    * @availability iOS 12.2+
    */
-  static get invalidOfferIdentifier(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 3053622825605851, undefined, []); }
+  static get invalidOfferIdentifier(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 3053622825605851, undefined, []); }
   /**
    * static var unauthorizedRequestData: SKError.Code { get }
    * @availability iOS 12.2+
    */
-  static get unauthorizedRequestData(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 695138252930014, undefined, []); }
+  static get unauthorizedRequestData(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 695138252930014, undefined, []); }
   /**
    * static var storeProductNotAvailable: SKError.Code { get }
    * @availability iOS 3.0+
    */
-  static get storeProductNotAvailable(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 3545321090262550, undefined, []); }
+  static get storeProductNotAvailable(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 3545321090262550, undefined, []); }
   /**
    * static var overlayInvalidConfiguration: SKError.Code { get }
    * @availability iOS 14.0+
    */
-  static get overlayInvalidConfiguration(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 1197213160878646, undefined, []); }
+  static get overlayInvalidConfiguration(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 1197213160878646, undefined, []); }
   /**
    * static var cloudServicePermissionDenied: SKError.Code { get }
    * @availability iOS 9.3+
    */
-  static get cloudServicePermissionDenied(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 730645484559972, undefined, []); }
+  static get cloudServicePermissionDenied(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 730645484559972, undefined, []); }
   /**
    * static var privacyAcknowledgementRequired: SKError.Code { get }
    * @availability iOS 12.2+
    */
-  static get privacyAcknowledgementRequired(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 3830872080555092, undefined, []); }
+  static get privacyAcknowledgementRequired(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 3830872080555092, undefined, []); }
   /**
    * static var overlayPresentedInBackgroundScene: SKError.Code { get }
    * @availability iOS 14.5+
    */
-  static get overlayPresentedInBackgroundScene(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 4268072437992136, undefined, []); }
+  static get overlayPresentedInBackgroundScene(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 4268072437992136, undefined, []); }
   /**
    * static var cloudServiceNetworkConnectionFailed: SKError.Code { get }
    * @availability iOS 9.3+
    */
-  static get cloudServiceNetworkConnectionFailed(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 2118213942239786, undefined, []); }
+  static get cloudServiceNetworkConnectionFailed(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 2118213942239786, undefined, []); }
   /**
    * static var paymentMethodBindingConfigurationRequired: SKError.Code { get }
    * @availability iOS 26.5+
    */
-  static get paymentMethodBindingConfigurationRequired(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 1169556303613598, undefined, []); }
+  static get paymentMethodBindingConfigurationRequired(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 1169556303613598, undefined, []); }
   /**
    * static var unknown: SKError.Code { get }
    * @availability iOS 3.0+
    */
-  static get unknown(): SKError_Code { return callSDK<SKError_Code>("StoreKit_86f7e029fa4ce140", 17396748580436, undefined, []); }
+  static get unknown(): SKError_Code { return callSDK<SKError_Code>("StoreKit_d453e9e1f4a52dda", 17396748580436, undefined, []); }
   declare readonly $type: { "s:SC11SKErrorCodeLeV": true };
 }
 
@@ -3123,7 +3123,7 @@ export const SKError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): (SKError_Code) | null { return callSDK<(SKError_Code) | null>("StoreKit_86f7e029fa4ce140", 2516654935412709, undefined, [rawValue]); }
+  init(rawValue: number): (SKError_Code) | null { return callSDK<(SKError_Code) | null>("StoreKit_d453e9e1f4a52dda", 2516654935412709, undefined, [rawValue]); }
 };
 
 /**
@@ -3137,43 +3137,43 @@ export class SKPayment extends SDKHandle {
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  static init(product: SKProduct): SKPayment { return callSDK<SKPayment>("StoreKit_86f7e029fa4ce140", 4489976156315985, undefined, [product]); }
+  static init(product: SKProduct): SKPayment { return callSDK<SKPayment>("StoreKit_d453e9e1f4a52dda", 4489976156315985, undefined, [product]); }
   /**
    * var applicationUsername: String? { get }
    * @availability iOS 7.0+
    * @deprecated iOS 18.0
    */
-  get applicationUsername(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 2725380574038754, this, []); }
+  get applicationUsername(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 2725380574038754, this, []); }
   /**
    * @NSCopying var paymentDiscount: SKPaymentDiscount? { get }
    * @availability iOS 12.2+
    * @deprecated iOS 18.0
    */
-  get paymentDiscount(): $SDK35 { return callSDK<$SDK35>("StoreKit_86f7e029fa4ce140", 2696229093381075, this, []); }
+  get paymentDiscount(): $SDK35 { return callSDK<$SDK35>("StoreKit_d453e9e1f4a52dda", 2696229093381075, this, []); }
   /**
    * var productIdentifier: String { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get productIdentifier(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3216854888726612, this, []); }
+  get productIdentifier(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3216854888726612, this, []); }
   /**
    * var quantity: Int { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get quantity(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 4002886819860870, this, []); }
+  get quantity(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 4002886819860870, this, []); }
   /**
    * var requestData: Data? { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get requestData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("StoreKit_86f7e029fa4ce140", 1151111340599672, this, []); }
+  get requestData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("StoreKit_d453e9e1f4a52dda", 1151111340599672, this, []); }
   /**
    * var simulatesAskToBuyInSandbox: Bool { get }
    * @availability iOS 8.3+
    * @deprecated iOS 18.0
    */
-  get simulatesAskToBuyInSandbox(): boolean { return callSDK<boolean>("StoreKit_86f7e029fa4ce140", 3847083639250320, this, []); }
+  get simulatesAskToBuyInSandbox(): boolean { return callSDK<boolean>("StoreKit_d453e9e1f4a52dda", 3847083639250320, this, []); }
   declare readonly $type: { "c:objc(cs)SKPayment": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "applicationUsername": true; "paymentDiscount": true; "productIdentifier": true; "quantity": true; "requestData": true; "simulatesAskToBuyInSandbox": true };
 }
@@ -3185,49 +3185,49 @@ export class SKPayment extends SDKHandle {
  */
 export class SKMutablePayment extends (SKPayment as unknown as Omit<typeof SKPayment, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKPayment, "applicationUsername" | "paymentDiscount" | "productIdentifier" | "quantity" | "requestData" | "simulatesAskToBuyInSandbox">)) {
   /** init() */
-  static init(): SKMutablePayment { return callSDK<SKMutablePayment>("StoreKit_86f7e029fa4ce140", 2468253988137272, undefined, []); }
+  static init(): SKMutablePayment { return callSDK<SKMutablePayment>("StoreKit_d453e9e1f4a52dda", 2468253988137272, undefined, []); }
   /**
    * var applicationUsername: String? { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 18.0
    */
-  get applicationUsername(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 4317916371399834, this, []); }
-  set applicationUsername(value: (string) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 2108030924047032, this, [value]); }
+  get applicationUsername(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 4317916371399834, this, []); }
+  set applicationUsername(value: (string) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 2108030924047032, this, [value]); }
   /**
    * @NSCopying var paymentDiscount: SKPaymentDiscount? { get set }
    * @availability iOS 12.2+
    * @deprecated iOS 18.0
    */
-  get paymentDiscount(): $SDK35 { return callSDK<$SDK35>("StoreKit_86f7e029fa4ce140", 810111171900705, this, []); }
-  set paymentDiscount(value: $SDK35) { callSDK<void>("StoreKit_86f7e029fa4ce140", 4041081742489294, this, [value]); }
+  get paymentDiscount(): $SDK35 { return callSDK<$SDK35>("StoreKit_d453e9e1f4a52dda", 810111171900705, this, []); }
+  set paymentDiscount(value: $SDK35) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 4041081742489294, this, [value]); }
   /**
    * var productIdentifier: String { get set }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get productIdentifier(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2270046124578715, this, []); }
-  set productIdentifier(value: string) { callSDK<void>("StoreKit_86f7e029fa4ce140", 3568028797958921, this, [value]); }
+  get productIdentifier(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2270046124578715, this, []); }
+  set productIdentifier(value: string) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 3568028797958921, this, [value]); }
   /**
    * var quantity: Int { get set }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get quantity(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 2998623966762854, this, []); }
-  set quantity(value: number) { callSDK<void>("StoreKit_86f7e029fa4ce140", 3508835376527450, this, [value]); }
+  get quantity(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 2998623966762854, this, []); }
+  set quantity(value: number) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 3508835376527450, this, [value]); }
   /**
    * var requestData: Data? { get set }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get requestData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("StoreKit_86f7e029fa4ce140", 1135527239487019, this, []); }
-  set requestData(value: (ArrayBuffer) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 4141286753181594, this, [value]); }
+  get requestData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("StoreKit_d453e9e1f4a52dda", 1135527239487019, this, []); }
+  set requestData(value: (ArrayBuffer) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 4141286753181594, this, [value]); }
   /**
    * var simulatesAskToBuyInSandbox: Bool { get set }
    * @availability iOS 8.3+
    * @deprecated iOS 18.0
    */
-  get simulatesAskToBuyInSandbox(): boolean { return callSDK<boolean>("StoreKit_86f7e029fa4ce140", 937141401360218, this, []); }
-  set simulatesAskToBuyInSandbox(value: boolean) { callSDK<void>("StoreKit_86f7e029fa4ce140", 2404113243693506, this, [value]); }
+  get simulatesAskToBuyInSandbox(): boolean { return callSDK<boolean>("StoreKit_d453e9e1f4a52dda", 937141401360218, this, []); }
+  set simulatesAskToBuyInSandbox(value: boolean) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 2404113243693506, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKMutablePayment": true; "c:objc(cs)SKPayment": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "applicationUsername": true; "paymentDiscount": true; "productIdentifier": true; "quantity": true; "requestData": true; "simulatesAskToBuyInSandbox": true };
 }
@@ -3241,28 +3241,28 @@ export class SKOverlay extends SDKHandle {
    * @MainActor class func dismiss(in scene: UIWindowScene)
    * @availability iOS 14.0+
    */
-  static dismiss(scene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 3084242906959285, undefined, [scene]); }
+  static dismiss(scene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 3084242906959285, undefined, [scene]); }
   /**
    * init(configuration: SKOverlay.Configuration)
    * @availability iOS 14.0+
    */
-  static init(configuration: SKOverlay_Configuration): SKOverlay { return callSDK<SKOverlay>("StoreKit_86f7e029fa4ce140", 3869519041781838, undefined, [configuration]); }
+  static init(configuration: SKOverlay_Configuration): SKOverlay { return callSDK<SKOverlay>("StoreKit_d453e9e1f4a52dda", 3869519041781838, undefined, [configuration]); }
   /**
    * @MainActor func present(in scene: UIWindowScene)
    * @availability iOS 14.0+
    */
-  present(scene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 1196680434631142, this, [scene]); }
+  present(scene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 1196680434631142, this, [scene]); }
   /**
    * @NSCopying var configuration: SKOverlay.Configuration { get }
    * @availability iOS 14.0+
    */
-  get configuration(): SKOverlay_Configuration { return callSDK<SKOverlay_Configuration>("StoreKit_86f7e029fa4ce140", 3774972195310429, this, []); }
+  get configuration(): SKOverlay_Configuration { return callSDK<SKOverlay_Configuration>("StoreKit_d453e9e1f4a52dda", 3774972195310429, this, []); }
   /**
    * weak var delegate: (any SKOverlayDelegate)? { get set }
    * @availability iOS 14.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("StoreKit_86f7e029fa4ce140", 1188097193514209, this, []); }
-  set delegate(value: (Implements<SKOverlayDelegate> | SDKHandle) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 3070192614319719, this, [value], [{"protocol":"c:objc(pl)SKOverlayDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("StoreKit_d453e9e1f4a52dda", 1188097193514209, this, []); }
+  set delegate(value: (Implements<SKOverlayDelegate> | SDKHandle) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 3070192614319719, this, [value], [{"protocol":"c:objc(pl)SKOverlayDelegate"}]); }
   declare readonly $type: { "c:objc(cs)SKOverlay": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "configuration": true; "delegate": true };
 }
@@ -3284,47 +3284,47 @@ export class SKOverlay_AppClipConfiguration extends SKOverlay_Configuration {
    * func additionalValue(forKey key: String) -> Any?
    * @availability iOS 14.0+
    */
-  additionalValue(key: string): (unknown) | null { return callSDK<(unknown) | null>("StoreKit_86f7e029fa4ce140", 1885288423058634, this, [key]); }
+  additionalValue(key: string): (unknown) | null { return callSDK<(unknown) | null>("StoreKit_d453e9e1f4a52dda", 1885288423058634, this, [key]); }
   /**
    * init(position: SKOverlay.Position)
    * @availability iOS 14.0+
    */
-  static init(position: SKOverlay_Position): SKOverlay_AppClipConfiguration { return callSDK<SKOverlay_AppClipConfiguration>("StoreKit_86f7e029fa4ce140", 1141755927021336, undefined, [position]); }
+  static init(position: SKOverlay_Position): SKOverlay_AppClipConfiguration { return callSDK<SKOverlay_AppClipConfiguration>("StoreKit_d453e9e1f4a52dda", 1141755927021336, undefined, [position]); }
   /**
    * func setAdditionalValue(_ value: Any?, forKey key: String)
    * @availability iOS 14.0+
    */
-  setAdditionalValue(value: (unknown) | null, key: string): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 1509337124159778, this, [value, key]); }
+  setAdditionalValue(value: (unknown) | null, key: string): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 1509337124159778, this, [value, key]); }
   /**
    * var campaignToken: String? { get set }
    * @availability iOS 14.0+
    */
-  get campaignToken(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 2000359121129604, this, []); }
-  set campaignToken(value: (string) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 923422156824010, this, [value]); }
+  get campaignToken(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 2000359121129604, this, []); }
+  set campaignToken(value: (string) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 923422156824010, this, [value]); }
   /**
    * var customProductPageIdentifier: String? { get set }
    * @availability iOS 15.0+
    */
-  get customProductPageIdentifier(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 3883537354987018, this, []); }
-  set customProductPageIdentifier(value: (string) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 23470833527496, this, [value]); }
+  get customProductPageIdentifier(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 3883537354987018, this, []); }
+  set customProductPageIdentifier(value: (string) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 23470833527496, this, [value]); }
   /**
    * var latestReleaseID: String? { get set }
    * @availability iOS 15.0+
    */
-  get latestReleaseID(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 2266084169192287, this, []); }
-  set latestReleaseID(value: (string) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 1415064725799893, this, [value]); }
+  get latestReleaseID(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 2266084169192287, this, []); }
+  set latestReleaseID(value: (string) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 1415064725799893, this, [value]); }
   /**
    * var position: SKOverlay.Position { get set }
    * @availability iOS 14.0+
    */
-  get position(): SKOverlay_Position { return callSDK<SKOverlay_Position>("StoreKit_86f7e029fa4ce140", 943794654404729, this, []); }
-  set position(value: SKOverlay_Position) { callSDK<void>("StoreKit_86f7e029fa4ce140", 3348951024512457, this, [value]); }
+  get position(): SKOverlay_Position { return callSDK<SKOverlay_Position>("StoreKit_d453e9e1f4a52dda", 943794654404729, this, []); }
+  set position(value: SKOverlay_Position) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 3348951024512457, this, [value]); }
   /**
    * var providerToken: String? { get set }
    * @availability iOS 14.0+
    */
-  get providerToken(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 3186132432893550, this, []); }
-  set providerToken(value: (string) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 4069754942951550, this, [value]); }
+  get providerToken(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 3186132432893550, this, []); }
+  set providerToken(value: (string) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 4069754942951550, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKOverlayAppClipConfiguration": true; "c:objc(cs)SKOverlayConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "campaignToken": true; "customProductPageIdentifier": true; "latestReleaseID": true; "position": true; "providerToken": true };
 }
@@ -3338,64 +3338,64 @@ export class SKOverlay_AppConfiguration extends SKOverlay_Configuration {
    * func additionalValue(forKey key: String) -> Any?
    * @availability iOS 14.0+
    */
-  additionalValue(key: string): (unknown) | null { return callSDK<(unknown) | null>("StoreKit_86f7e029fa4ce140", 1789438250162914, this, [key]); }
+  additionalValue(key: string): (unknown) | null { return callSDK<(unknown) | null>("StoreKit_d453e9e1f4a52dda", 1789438250162914, this, [key]); }
   /**
    * init(appIdentifier: String, position: SKOverlay.Position)
    * @availability iOS 14.0+
    */
-  static init(appIdentifier: string, position: SKOverlay_Position): SKOverlay_AppConfiguration { return callSDK<SKOverlay_AppConfiguration>("StoreKit_86f7e029fa4ce140", 2911249212955200, undefined, [appIdentifier, position]); }
+  static init(appIdentifier: string, position: SKOverlay_Position): SKOverlay_AppConfiguration { return callSDK<SKOverlay_AppConfiguration>("StoreKit_d453e9e1f4a52dda", 2911249212955200, undefined, [appIdentifier, position]); }
   /**
    * func setAdImpression(_ impression: SKAdImpression)
    * @availability iOS 16.0+
    */
-  setAdImpression(impression: SKAdImpression): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 2224723786200180, this, [impression]); }
+  setAdImpression(impression: SKAdImpression): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 2224723786200180, this, [impression]); }
   /**
    * func setAdditionalValue(_ value: Any?, forKey key: String)
    * @availability iOS 14.0+
    */
-  setAdditionalValue(value: (unknown) | null, key: string): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 3925356440295111, this, [value, key]); }
+  setAdditionalValue(value: (unknown) | null, key: string): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 3925356440295111, this, [value, key]); }
   /**
    * var appIdentifier: String { get set }
    * @availability iOS 14.0+
    */
-  get appIdentifier(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3073856761931683, this, []); }
-  set appIdentifier(value: string) { callSDK<void>("StoreKit_86f7e029fa4ce140", 1433644054983973, this, [value]); }
+  get appIdentifier(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3073856761931683, this, []); }
+  set appIdentifier(value: string) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 1433644054983973, this, [value]); }
   /**
    * var campaignToken: String? { get set }
    * @availability iOS 14.0+
    */
-  get campaignToken(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 4278092140086239, this, []); }
-  set campaignToken(value: (string) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 3100580436443943, this, [value]); }
+  get campaignToken(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 4278092140086239, this, []); }
+  set campaignToken(value: (string) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 3100580436443943, this, [value]); }
   /**
    * var customProductPageIdentifier: String? { get set }
    * @availability iOS 15.0+
    */
-  get customProductPageIdentifier(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 750852461009138, this, []); }
-  set customProductPageIdentifier(value: (string) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 3199066381129264, this, [value]); }
+  get customProductPageIdentifier(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 750852461009138, this, []); }
+  set customProductPageIdentifier(value: (string) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 3199066381129264, this, [value]); }
   /**
    * var latestReleaseID: String? { get set }
    * @availability iOS 15.0+
    */
-  get latestReleaseID(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 1244451481423197, this, []); }
-  set latestReleaseID(value: (string) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 1317864886058724, this, [value]); }
+  get latestReleaseID(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 1244451481423197, this, []); }
+  set latestReleaseID(value: (string) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 1317864886058724, this, [value]); }
   /**
    * var position: SKOverlay.Position { get set }
    * @availability iOS 14.0+
    */
-  get position(): SKOverlay_Position { return callSDK<SKOverlay_Position>("StoreKit_86f7e029fa4ce140", 3985606241049752, this, []); }
-  set position(value: SKOverlay_Position) { callSDK<void>("StoreKit_86f7e029fa4ce140", 1485848338302363, this, [value]); }
+  get position(): SKOverlay_Position { return callSDK<SKOverlay_Position>("StoreKit_d453e9e1f4a52dda", 3985606241049752, this, []); }
+  set position(value: SKOverlay_Position) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 1485848338302363, this, [value]); }
   /**
    * var providerToken: String? { get set }
    * @availability iOS 14.0+
    */
-  get providerToken(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 2227378216588797, this, []); }
-  set providerToken(value: (string) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 1358598947991338, this, [value]); }
+  get providerToken(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 2227378216588797, this, []); }
+  set providerToken(value: (string) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 1358598947991338, this, [value]); }
   /**
    * var userDismissible: Bool { get set }
    * @availability iOS 14.0+
    */
-  get userDismissible(): boolean { return callSDK<boolean>("StoreKit_86f7e029fa4ce140", 3052847007579653, this, []); }
-  set userDismissible(value: boolean) { callSDK<void>("StoreKit_86f7e029fa4ce140", 3835828178161325, this, [value]); }
+  get userDismissible(): boolean { return callSDK<boolean>("StoreKit_d453e9e1f4a52dda", 3052847007579653, this, []); }
+  set userDismissible(value: boolean) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 3835828178161325, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKOverlayAppConfiguration": true; "c:objc(cs)SKOverlayConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "appIdentifier": true; "campaignToken": true; "customProductPageIdentifier": true; "latestReleaseID": true; "position": true; "providerToken": true; "userDismissible": true };
 }
@@ -3411,7 +3411,7 @@ export const SKOverlay_Position = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (SKOverlay_Position) | null { return callSDK<(SKOverlay_Position) | null>("StoreKit_86f7e029fa4ce140", 4481535790508490, undefined, [rawValue]); }
+  init(rawValue: number): (SKOverlay_Position) | null { return callSDK<(SKOverlay_Position) | null>("StoreKit_d453e9e1f4a52dda", 4481535790508490, undefined, [rawValue]); }
 };
 
 /**
@@ -3423,17 +3423,17 @@ export class SKOverlay_TransitionContext extends SDKHandle {
    * func addAnimation(_ block: @escaping () -> Void)
    * @availability iOS 14.0+
    */
-  addAnimation(block: (() => void)): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 2103739661107336, this, [block], [{"callback":{"out":[]}}]); }
+  addAnimation(block: (() => void)): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 2103739661107336, this, [block], [{"callback":{"out":[]}}]); }
   /**
    * var endFrame: CGRect { get }
    * @availability iOS 14.0+
    */
-  get endFrame(): $SDK37 { return callSDK<$SDK37>("StoreKit_86f7e029fa4ce140", 40155509272375, this, []); }
+  get endFrame(): $SDK37 { return callSDK<$SDK37>("StoreKit_d453e9e1f4a52dda", 40155509272375, this, []); }
   /**
    * var startFrame: CGRect { get }
    * @availability iOS 14.0+
    */
-  get startFrame(): $SDK37 { return callSDK<$SDK37>("StoreKit_86f7e029fa4ce140", 3906272319874787, this, []); }
+  get startFrame(): $SDK37 { return callSDK<$SDK37>("StoreKit_d453e9e1f4a52dda", 3906272319874787, this, []); }
   declare readonly $type: { "c:objc(cs)SKOverlayTransitionContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "endFrame": true; "startFrame": true };
 }
@@ -3481,37 +3481,37 @@ export class SKPaymentDiscount extends SDKHandle {
    * @availability iOS 12.2+
    * @deprecated iOS 18.0
    */
-  static init(identifier: string, keyIdentifier: string, nonce: string, signature: string, timestamp: _Foundation_NSNumber): SKPaymentDiscount { return callSDK<SKPaymentDiscount>("StoreKit_86f7e029fa4ce140", 3686574541410440, undefined, [identifier, keyIdentifier, nonce, signature, timestamp]); }
+  static init(identifier: string, keyIdentifier: string, nonce: string, signature: string, timestamp: _Foundation_NSNumber): SKPaymentDiscount { return callSDK<SKPaymentDiscount>("StoreKit_d453e9e1f4a52dda", 3686574541410440, undefined, [identifier, keyIdentifier, nonce, signature, timestamp]); }
   /**
    * var identifier: String { get }
    * @availability iOS 12.2+
    * @deprecated iOS 18.0
    */
-  get identifier(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1926036935759219, this, []); }
+  get identifier(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1926036935759219, this, []); }
   /**
    * var keyIdentifier: String { get }
    * @availability iOS 12.2+
    * @deprecated iOS 18.0
    */
-  get keyIdentifier(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 349604636028166, this, []); }
+  get keyIdentifier(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 349604636028166, this, []); }
   /**
    * var nonce: UUID { get }
    * @availability iOS 12.2+
    * @deprecated iOS 18.0
    */
-  get nonce(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 88505613841264, this, []); }
+  get nonce(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 88505613841264, this, []); }
   /**
    * var signature: String { get }
    * @availability iOS 12.2+
    * @deprecated iOS 18.0
    */
-  get signature(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1292412735471256, this, []); }
+  get signature(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1292412735471256, this, []); }
   /**
    * @NSCopying var timestamp: NSNumber { get }
    * @availability iOS 12.2+
    * @deprecated iOS 18.0
    */
-  get timestamp(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("StoreKit_86f7e029fa4ce140", 772877285432398, this, []); }
+  get timestamp(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("StoreKit_d453e9e1f4a52dda", 772877285432398, this, []); }
   declare readonly $type: { "c:objc(cs)SKPaymentDiscount": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "keyIdentifier": true; "nonce": true; "signature": true; "timestamp": true };
 }
@@ -3527,112 +3527,112 @@ export class SKPaymentQueue extends SDKHandle {
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  static canMakePayments(): boolean { return callSDK<boolean>("StoreKit_86f7e029fa4ce140", 3291671783535573, undefined, []); }
+  static canMakePayments(): boolean { return callSDK<boolean>("StoreKit_d453e9e1f4a52dda", 3291671783535573, undefined, []); }
   /**
    * class func `default`() -> Self
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  static default(): SKPaymentQueue { return callSDK<SKPaymentQueue>("StoreKit_86f7e029fa4ce140", 4266953000491638, undefined, []); }
+  static default(): SKPaymentQueue { return callSDK<SKPaymentQueue>("StoreKit_d453e9e1f4a52dda", 4266953000491638, undefined, []); }
   /**
    * func add(_ payment: SKPayment)
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  add(payment: SKPayment): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 4268994378683103, this, [payment]); }
+  add(payment: SKPayment): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 4268994378683103, this, [payment]); }
   /**
    * func add(_ observer: any SKPaymentTransactionObserver)
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  add71084(observer: $SDK38): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 398679177287815, this, [observer], [{"protocol":"c:objc(pl)SKPaymentTransactionObserver"}]); }
+  add71084(observer: $SDK38): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 398679177287815, this, [observer], [{"protocol":"c:objc(pl)SKPaymentTransactionObserver"}]); }
   /**
    * func cancel(_ downloads: [SKDownload])
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  cancel(downloads: Array<SKDownload>): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 4172652989321186, this, [downloads]); }
+  cancel(downloads: Array<SKDownload>): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 4172652989321186, this, [downloads]); }
   /**
    * func finishTransaction(_ transaction: SKPaymentTransaction)
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  finishTransaction(transaction: SKPaymentTransaction): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 1114835747818635, this, [transaction]); }
+  finishTransaction(transaction: SKPaymentTransaction): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 1114835747818635, this, [transaction]); }
   /** init() */
-  static init(): SKPaymentQueue { return callSDK<SKPaymentQueue>("StoreKit_86f7e029fa4ce140", 2325420274504420, undefined, []); }
+  static init(): SKPaymentQueue { return callSDK<SKPaymentQueue>("StoreKit_d453e9e1f4a52dda", 2325420274504420, undefined, []); }
   /**
    * func pause(_ downloads: [SKDownload])
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  pause(downloads: Array<SKDownload>): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 2000500960729500, this, [downloads]); }
+  pause(downloads: Array<SKDownload>): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 2000500960729500, this, [downloads]); }
   /**
    * func presentCodeRedemptionSheet()
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  presentCodeRedemptionSheet(): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 1325441469215185, this, []); }
+  presentCodeRedemptionSheet(): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 1325441469215185, this, []); }
   /**
    * func remove(_ observer: any SKPaymentTransactionObserver)
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  remove(observer: $SDK38): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 1849664685893716, this, [observer], [{"protocol":"c:objc(pl)SKPaymentTransactionObserver"}]); }
+  remove(observer: $SDK38): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 1849664685893716, this, [observer], [{"protocol":"c:objc(pl)SKPaymentTransactionObserver"}]); }
   /**
    * func restoreCompletedTransactions()
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  restoreCompletedTransactions(): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 2857104675177084, this, []); }
+  restoreCompletedTransactions(): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 2857104675177084, this, []); }
   /**
    * func restoreCompletedTransactions(withApplicationUsername username: String?)
    * @availability iOS 7.0+
    * @deprecated iOS 18.0
    */
-  restoreCompletedTransactionsWithApplicationUsername(username?: (string) | null): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 471718952195751, this, [username]); }
+  restoreCompletedTransactionsWithApplicationUsername(username?: (string) | null): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 471718952195751, this, [username]); }
   /**
    * func resume(_ downloads: [SKDownload])
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  resume(downloads: Array<SKDownload>): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 984375259140803, this, [downloads]); }
+  resume(downloads: Array<SKDownload>): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 984375259140803, this, [downloads]); }
   /**
    * func showPriceConsentIfNeeded()
    * @availability iOS 13.4+
    * @deprecated iOS 18.0
    */
-  showPriceConsentIfNeeded(): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 3308704181861654, this, []); }
+  showPriceConsentIfNeeded(): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 3308704181861654, this, []); }
   /**
    * func start(_ downloads: [SKDownload])
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  start(downloads: Array<SKDownload>): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 1091361066950295, this, [downloads]); }
+  start(downloads: Array<SKDownload>): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 1091361066950295, this, [downloads]); }
   /**
    * weak var delegate: (any SKPaymentQueueDelegate)? { get set }
    * @availability iOS 13.0+
    * @deprecated iOS 18.0
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("StoreKit_86f7e029fa4ce140", 4370818173721037, this, []); }
-  set delegate(value: (Implements<SKPaymentQueueDelegate> | SDKHandle) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 1923465896794974, this, [value], [{"protocol":"c:objc(pl)SKPaymentQueueDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("StoreKit_d453e9e1f4a52dda", 4370818173721037, this, []); }
+  set delegate(value: (Implements<SKPaymentQueueDelegate> | SDKHandle) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 1923465896794974, this, [value], [{"protocol":"c:objc(pl)SKPaymentQueueDelegate"}]); }
   /**
    * var storefront: SKStorefront? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 18.0
    */
-  get storefront(): (SKStorefront) | null { return callSDK<(SKStorefront) | null>("StoreKit_86f7e029fa4ce140", 3899479764566125, this, []); }
+  get storefront(): (SKStorefront) | null { return callSDK<(SKStorefront) | null>("StoreKit_d453e9e1f4a52dda", 3899479764566125, this, []); }
   /**
    * var transactionObservers: [any SKPaymentTransactionObserver] { get }
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  get transactionObservers(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("StoreKit_86f7e029fa4ce140", 327492594174627, this, []); }
+  get transactionObservers(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("StoreKit_d453e9e1f4a52dda", 327492594174627, this, []); }
   /**
    * var transactions: [SKPaymentTransaction] { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get transactions(): $SDK40 { return callSDK<$SDK40>("StoreKit_86f7e029fa4ce140", 1734711863335894, this, []); }
+  get transactions(): $SDK40 { return callSDK<$SDK40>("StoreKit_d453e9e1f4a52dda", 1734711863335894, this, []); }
   declare readonly $type: { "c:objc(cs)SKPaymentQueue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "storefront": true; "transactionObservers": true; "transactions": true };
 }
@@ -3653,49 +3653,49 @@ export interface SKPaymentQueueDelegate {
  */
 export class SKPaymentTransaction extends SDKHandle {
   /** init() */
-  static init(): SKPaymentTransaction { return callSDK<SKPaymentTransaction>("StoreKit_86f7e029fa4ce140", 924645193441358, undefined, []); }
+  static init(): SKPaymentTransaction { return callSDK<SKPaymentTransaction>("StoreKit_d453e9e1f4a52dda", 924645193441358, undefined, []); }
   /**
    * var downloads: [SKDownload] { get }
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  get downloads(): Array<SKDownload> { return callSDK<Array<SKDownload>>("StoreKit_86f7e029fa4ce140", 489889012716389, this, []); }
+  get downloads(): Array<SKDownload> { return callSDK<Array<SKDownload>>("StoreKit_d453e9e1f4a52dda", 489889012716389, this, []); }
   /**
    * var error: (any Error)? { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("StoreKit_86f7e029fa4ce140", 740413705266679, this, []); }
+  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("StoreKit_d453e9e1f4a52dda", 740413705266679, this, []); }
   /**
    * var original: SKPaymentTransaction? { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get original(): (SKPaymentTransaction) | null { return callSDK<(SKPaymentTransaction) | null>("StoreKit_86f7e029fa4ce140", 3661418550684478, this, []); }
+  get original(): (SKPaymentTransaction) | null { return callSDK<(SKPaymentTransaction) | null>("StoreKit_d453e9e1f4a52dda", 3661418550684478, this, []); }
   /**
    * var payment: SKPayment { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get payment(): SKPayment { return callSDK<SKPayment>("StoreKit_86f7e029fa4ce140", 3716434395986755, this, []); }
+  get payment(): SKPayment { return callSDK<SKPayment>("StoreKit_d453e9e1f4a52dda", 3716434395986755, this, []); }
   /**
    * var transactionDate: Date? { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get transactionDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_86f7e029fa4ce140", 4327415312851646, this, []); }
+  get transactionDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_d453e9e1f4a52dda", 4327415312851646, this, []); }
   /**
    * var transactionIdentifier: String? { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get transactionIdentifier(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 3801899864432912, this, []); }
+  get transactionIdentifier(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 3801899864432912, this, []); }
   /**
    * var transactionState: SKPaymentTransactionState { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get transactionState(): SKPaymentTransactionState { return callSDK<SKPaymentTransactionState>("StoreKit_86f7e029fa4ce140", 3248471457575755, this, []); }
+  get transactionState(): SKPaymentTransactionState { return callSDK<SKPaymentTransactionState>("StoreKit_d453e9e1f4a52dda", 3248471457575755, this, []); }
   declare readonly $type: { "c:objc(cs)SKPaymentTransaction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "downloads": true; "error": true; "original": true; "payment": true; "transactionDate": true; "transactionIdentifier": true; "transactionState": true };
 }
@@ -3763,7 +3763,7 @@ export const SKPaymentTransactionState = {
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  init(rawValue: number): (SKPaymentTransactionState) | null { return callSDK<(SKPaymentTransactionState) | null>("StoreKit_86f7e029fa4ce140", 774248714459738, undefined, [rawValue]); }
+  init(rawValue: number): (SKPaymentTransactionState) | null { return callSDK<(SKPaymentTransactionState) | null>("StoreKit_d453e9e1f4a52dda", 774248714459738, undefined, [rawValue]); }
 };
 
 /**
@@ -3773,91 +3773,91 @@ export const SKPaymentTransactionState = {
  */
 export class SKProduct extends SDKHandle {
   /** init() */
-  static init(): SKProduct { return callSDK<SKProduct>("StoreKit_86f7e029fa4ce140", 2873835665398910, undefined, []); }
+  static init(): SKProduct { return callSDK<SKProduct>("StoreKit_d453e9e1f4a52dda", 2873835665398910, undefined, []); }
   /**
    * var contentVersion: String { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get contentVersion(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2304293127537762, this, []); }
+  get contentVersion(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2304293127537762, this, []); }
   /**
    * var discounts: [SKProductDiscount] { get }
    * @availability iOS 12.2+
    * @deprecated iOS 18.0
    */
-  get discounts(): Array<SKProductDiscount> { return callSDK<Array<SKProductDiscount>>("StoreKit_86f7e029fa4ce140", 740776734074845, this, []); }
+  get discounts(): Array<SKProductDiscount> { return callSDK<Array<SKProductDiscount>>("StoreKit_d453e9e1f4a52dda", 740776734074845, this, []); }
   /**
    * var downloadContentLengths: [NSNumber] { get }
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  get downloadContentLengths(): Array<_Foundation_NSNumber> { return callSDK<Array<_Foundation_NSNumber>>("StoreKit_86f7e029fa4ce140", 2937250313891576, this, []); }
+  get downloadContentLengths(): Array<_Foundation_NSNumber> { return callSDK<Array<_Foundation_NSNumber>>("StoreKit_d453e9e1f4a52dda", 2937250313891576, this, []); }
   /**
    * var downloadContentVersion: String { get }
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  get downloadContentVersion(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 111557329539283, this, []); }
+  get downloadContentVersion(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 111557329539283, this, []); }
   /**
    * var introductoryPrice: SKProductDiscount? { get }
    * @availability iOS 11.2+
    * @deprecated iOS 18.0
    */
-  get introductoryPrice(): (SKProductDiscount) | null { return callSDK<(SKProductDiscount) | null>("StoreKit_86f7e029fa4ce140", 4418068353112562, this, []); }
+  get introductoryPrice(): (SKProductDiscount) | null { return callSDK<(SKProductDiscount) | null>("StoreKit_d453e9e1f4a52dda", 4418068353112562, this, []); }
   /**
    * var isDownloadable: Bool { get }
    * @availability iOS 6.0+
    * @deprecated iOS 16.0
    */
-  get isDownloadable(): boolean { return callSDK<boolean>("StoreKit_86f7e029fa4ce140", 855602991670417, this, []); }
+  get isDownloadable(): boolean { return callSDK<boolean>("StoreKit_d453e9e1f4a52dda", 855602991670417, this, []); }
   /**
    * var isFamilyShareable: Bool { get }
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  get isFamilyShareable(): boolean { return callSDK<boolean>("StoreKit_86f7e029fa4ce140", 774527640319022, this, []); }
+  get isFamilyShareable(): boolean { return callSDK<boolean>("StoreKit_d453e9e1f4a52dda", 774527640319022, this, []); }
   /**
    * var localizedDescription: String { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get localizedDescription(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1320608318135073, this, []); }
+  get localizedDescription(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1320608318135073, this, []); }
   /**
    * var localizedTitle: String { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get localizedTitle(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1572824455010988, this, []); }
+  get localizedTitle(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1572824455010988, this, []); }
   /**
    * var price: NSDecimalNumber { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get price(): _Foundation_NSDecimalNumber { return callSDK<_Foundation_NSDecimalNumber>("StoreKit_86f7e029fa4ce140", 3454436627254266, this, []); }
+  get price(): _Foundation_NSDecimalNumber { return callSDK<_Foundation_NSDecimalNumber>("StoreKit_d453e9e1f4a52dda", 3454436627254266, this, []); }
   /**
    * var priceLocale: Locale { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get priceLocale(): _Foundation_Locale { return callSDK<_Foundation_Locale>("StoreKit_86f7e029fa4ce140", 3004207645184501, this, []); }
+  get priceLocale(): _Foundation_Locale { return callSDK<_Foundation_Locale>("StoreKit_d453e9e1f4a52dda", 3004207645184501, this, []); }
   /**
    * var productIdentifier: String { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get productIdentifier(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 755136962988834, this, []); }
+  get productIdentifier(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 755136962988834, this, []); }
   /**
    * var subscriptionGroupIdentifier: String? { get }
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  get subscriptionGroupIdentifier(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 1549826923250065, this, []); }
+  get subscriptionGroupIdentifier(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 1549826923250065, this, []); }
   /**
    * var subscriptionPeriod: SKProductSubscriptionPeriod? { get }
    * @availability iOS 11.2+
    * @deprecated iOS 18.0
    */
-  get subscriptionPeriod(): (SKProductSubscriptionPeriod) | null { return callSDK<(SKProductSubscriptionPeriod) | null>("StoreKit_86f7e029fa4ce140", 1796855728729265, this, []); }
+  get subscriptionPeriod(): (SKProductSubscriptionPeriod) | null { return callSDK<(SKProductSubscriptionPeriod) | null>("StoreKit_d453e9e1f4a52dda", 1796855728729265, this, []); }
   declare readonly $type: { "c:objc(cs)SKProduct": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contentVersion": true; "discounts": true; "downloadContentLengths": true; "downloadContentVersion": true; "introductoryPrice": true; "isDownloadable": true; "isFamilyShareable": true; "localizedDescription": true; "localizedTitle": true; "price": true; "priceLocale": true; "productIdentifier": true; "subscriptionGroupIdentifier": true; "subscriptionPeriod": true };
 }
@@ -3875,7 +3875,7 @@ export const SKProduct_PeriodUnit = {
    * @availability iOS 11.2+
    * @deprecated iOS 18.0
    */
-  init(rawValue: number): (SKProduct_PeriodUnit) | null { return callSDK<(SKProduct_PeriodUnit) | null>("StoreKit_86f7e029fa4ce140", 1300544231785705, undefined, [rawValue]); }
+  init(rawValue: number): (SKProduct_PeriodUnit) | null { return callSDK<(SKProduct_PeriodUnit) | null>("StoreKit_d453e9e1f4a52dda", 1300544231785705, undefined, [rawValue]); }
 };
 
 /**
@@ -3885,49 +3885,49 @@ export const SKProduct_PeriodUnit = {
  */
 export class SKProductDiscount extends SDKHandle {
   /** init() */
-  static init(): SKProductDiscount { return callSDK<SKProductDiscount>("StoreKit_86f7e029fa4ce140", 2970510591939906, undefined, []); }
+  static init(): SKProductDiscount { return callSDK<SKProductDiscount>("StoreKit_d453e9e1f4a52dda", 2970510591939906, undefined, []); }
   /**
    * var identifier: String? { get }
    * @availability iOS 12.2+
    * @deprecated iOS 18.0
    */
-  get identifier(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 4303042261915985, this, []); }
+  get identifier(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 4303042261915985, this, []); }
   /**
    * var numberOfPeriods: Int { get }
    * @availability iOS 11.2+
    * @deprecated iOS 18.0
    */
-  get numberOfPeriods(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 3446704320479785, this, []); }
+  get numberOfPeriods(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 3446704320479785, this, []); }
   /**
    * var paymentMode: SKProductDiscount.PaymentMode { get }
    * @availability iOS 11.2+
    * @deprecated iOS 18.0
    */
-  get paymentMode(): SKProductDiscount_PaymentMode { return callSDK<SKProductDiscount_PaymentMode>("StoreKit_86f7e029fa4ce140", 4070713450420244, this, []); }
+  get paymentMode(): SKProductDiscount_PaymentMode { return callSDK<SKProductDiscount_PaymentMode>("StoreKit_d453e9e1f4a52dda", 4070713450420244, this, []); }
   /**
    * var price: NSDecimalNumber { get }
    * @availability iOS 11.2+
    * @deprecated iOS 18.0
    */
-  get price(): _Foundation_NSDecimalNumber { return callSDK<_Foundation_NSDecimalNumber>("StoreKit_86f7e029fa4ce140", 3932887331302834, this, []); }
+  get price(): _Foundation_NSDecimalNumber { return callSDK<_Foundation_NSDecimalNumber>("StoreKit_d453e9e1f4a52dda", 3932887331302834, this, []); }
   /**
    * var priceLocale: Locale { get }
    * @availability iOS 11.2+
    * @deprecated iOS 18.0
    */
-  get priceLocale(): _Foundation_Locale { return callSDK<_Foundation_Locale>("StoreKit_86f7e029fa4ce140", 1795762071673639, this, []); }
+  get priceLocale(): _Foundation_Locale { return callSDK<_Foundation_Locale>("StoreKit_d453e9e1f4a52dda", 1795762071673639, this, []); }
   /**
    * var subscriptionPeriod: SKProductSubscriptionPeriod { get }
    * @availability iOS 11.2+
    * @deprecated iOS 18.0
    */
-  get subscriptionPeriod(): SKProductSubscriptionPeriod { return callSDK<SKProductSubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 3023457853934586, this, []); }
+  get subscriptionPeriod(): SKProductSubscriptionPeriod { return callSDK<SKProductSubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 3023457853934586, this, []); }
   /**
    * var type: SKProductDiscount.Type { get }
    * @availability iOS 12.2+
    * @deprecated iOS 18.0
    */
-  get type(): SKProductDiscount_Type { return callSDK<SKProductDiscount_Type>("StoreKit_86f7e029fa4ce140", 4183004994083674, this, []); }
+  get type(): SKProductDiscount_Type { return callSDK<SKProductDiscount_Type>("StoreKit_d453e9e1f4a52dda", 4183004994083674, this, []); }
   declare readonly $type: { "c:objc(cs)SKProductDiscount": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "numberOfPeriods": true; "paymentMode": true; "price": true; "priceLocale": true; "subscriptionPeriod": true; "type": true };
 }
@@ -3945,7 +3945,7 @@ export const SKProductDiscount_PaymentMode = {
    * @availability iOS 11.2+
    * @deprecated iOS 18.0
    */
-  init(rawValue: number): (SKProductDiscount_PaymentMode) | null { return callSDK<(SKProductDiscount_PaymentMode) | null>("StoreKit_86f7e029fa4ce140", 2678527991677925, undefined, [rawValue]); }
+  init(rawValue: number): (SKProductDiscount_PaymentMode) | null { return callSDK<(SKProductDiscount_PaymentMode) | null>("StoreKit_d453e9e1f4a52dda", 2678527991677925, undefined, [rawValue]); }
 };
 
 /**
@@ -3966,22 +3966,22 @@ export class SKRequest extends SDKHandle {
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  cancel(): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 3901135937047163, this, []); }
+  cancel(): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 3901135937047163, this, []); }
   /** init() */
-  static init(): SKRequest { return callSDK<SKRequest>("StoreKit_86f7e029fa4ce140", 2204066502445117, undefined, []); }
+  static init(): SKRequest { return callSDK<SKRequest>("StoreKit_d453e9e1f4a52dda", 2204066502445117, undefined, []); }
   /**
    * func start()
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  start(): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 4148631971694101, this, []); }
+  start(): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 4148631971694101, this, []); }
   /**
    * weak var delegate: (any SKRequestDelegate)? { get set }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("StoreKit_86f7e029fa4ce140", 3131831074345536, this, []); }
-  set delegate(value: (Implements<SKRequestDelegate> | SDKHandle) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 3664866946102210, this, [value], [{"protocol":"c:objc(pl)SKRequestDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("StoreKit_d453e9e1f4a52dda", 3131831074345536, this, []); }
+  set delegate(value: (Implements<SKRequestDelegate> | SDKHandle) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 3664866946102210, this, [value], [{"protocol":"c:objc(pl)SKRequestDelegate"}]); }
   declare readonly $type: { "c:objc(cs)SKRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -3997,14 +3997,14 @@ export class SKProductsRequest extends (SKRequest as unknown as Omit<typeof SKRe
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  static init(productIdentifiers: Array<string>): SKProductsRequest { return callSDK<SKProductsRequest>("StoreKit_86f7e029fa4ce140", 4106071739675020, undefined, [productIdentifiers]); }
+  static init(productIdentifiers: Array<string>): SKProductsRequest { return callSDK<SKProductsRequest>("StoreKit_d453e9e1f4a52dda", 4106071739675020, undefined, [productIdentifiers]); }
   /**
    * weak var delegate: (any SKProductsRequestDelegate)? { get set }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("StoreKit_86f7e029fa4ce140", 721419320610587, this, []); }
-  set delegate(value: (Implements<SKProductsRequestDelegate> | SDKHandle) | null) { callSDK<void>("StoreKit_86f7e029fa4ce140", 4466798640231652, this, [value], [{"protocol":"c:objc(pl)SKProductsRequestDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("StoreKit_d453e9e1f4a52dda", 721419320610587, this, []); }
+  set delegate(value: (Implements<SKProductsRequestDelegate> | SDKHandle) | null) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 4466798640231652, this, [value], [{"protocol":"c:objc(pl)SKProductsRequestDelegate"}]); }
   declare readonly $type: { "c:objc(cs)SKProductsRequest": true; "c:objc(cs)SKRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -4042,19 +4042,19 @@ export interface SKProductsRequestDelegate {
  */
 export class SKProductsResponse extends SDKHandle {
   /** init() */
-  static init(): SKProductsResponse { return callSDK<SKProductsResponse>("StoreKit_86f7e029fa4ce140", 2930276397112718, undefined, []); }
+  static init(): SKProductsResponse { return callSDK<SKProductsResponse>("StoreKit_d453e9e1f4a52dda", 2930276397112718, undefined, []); }
   /**
    * var invalidProductIdentifiers: [String] { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get invalidProductIdentifiers(): Array<string> { return callSDK<Array<string>>("StoreKit_86f7e029fa4ce140", 1572034240311885, this, []); }
+  get invalidProductIdentifiers(): Array<string> { return callSDK<Array<string>>("StoreKit_d453e9e1f4a52dda", 1572034240311885, this, []); }
   /**
    * var products: [SKProduct] { get }
    * @availability iOS 3.0+
    * @deprecated iOS 18.0
    */
-  get products(): Array<SKProduct> { return callSDK<Array<SKProduct>>("StoreKit_86f7e029fa4ce140", 672937519162242, this, []); }
+  get products(): Array<SKProduct> { return callSDK<Array<SKProduct>>("StoreKit_d453e9e1f4a52dda", 672937519162242, this, []); }
   declare readonly $type: { "c:objc(cs)SKProductsResponse": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "invalidProductIdentifiers": true; "products": true };
 }
@@ -4070,33 +4070,33 @@ export class SKProductStorePromotionController extends SDKHandle {
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  static default(): SKProductStorePromotionController { return callSDK<SKProductStorePromotionController>("StoreKit_86f7e029fa4ce140", 15502589272374, undefined, []); }
+  static default(): SKProductStorePromotionController { return callSDK<SKProductStorePromotionController>("StoreKit_d453e9e1f4a52dda", 15502589272374, undefined, []); }
   /**
    * func promotionOrder() async throws -> [SKProduct]
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  fetchStorePromotionOrder(completionHandler?: (((arg0: Array<SKProduct>, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 3800229817546993, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  fetchStorePromotionOrder(completionHandler?: (((arg0: Array<SKProduct>, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 3800229817546993, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func promotionVisibility(for product: SKProduct) async throws -> SKProductStorePromotionVisibility
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  fetchStorePromotionVisibility(product: SKProduct, completionHandler?: (((arg0: SKProductStorePromotionVisibility, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 887707960267325, this, [product, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchStorePromotionVisibility(product: SKProduct, completionHandler?: (((arg0: SKProductStorePromotionVisibility, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 887707960267325, this, [product, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): SKProductStorePromotionController { return callSDK<SKProductStorePromotionController>("StoreKit_86f7e029fa4ce140", 4035458690244494, undefined, []); }
+  static init(): SKProductStorePromotionController { return callSDK<SKProductStorePromotionController>("StoreKit_d453e9e1f4a52dda", 4035458690244494, undefined, []); }
   /**
    * func update(promotionOrder: [SKProduct]) async throws
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  updateStorePromotionOrderCompletionHandler(promotionOrder: Array<SKProduct>, completionHandler?: $SDK28): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 3569586333412356, this, [promotionOrder, completionHandler], [null,{"callback":{"out":[]}}]); }
+  updateStorePromotionOrderCompletionHandler(promotionOrder: Array<SKProduct>, completionHandler?: $SDK28): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 3569586333412356, this, [promotionOrder, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func update(promotionVisibility: SKProductStorePromotionVisibility, for product: SKProduct) async throws
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  updateStorePromotionVisibilityForCompletionHandler(promotionVisibility: SKProductStorePromotionVisibility, product: SKProduct, completionHandler?: $SDK28): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 74115440983385, this, [promotionVisibility, product, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  updateStorePromotionVisibilityForCompletionHandler(promotionVisibility: SKProductStorePromotionVisibility, product: SKProduct, completionHandler?: $SDK28): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 74115440983385, this, [promotionVisibility, product, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)SKProductStorePromotionController": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4113,7 +4113,7 @@ export const SKProductStorePromotionVisibility = {
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  init(rawValue: number): (SKProductStorePromotionVisibility) | null { return callSDK<(SKProductStorePromotionVisibility) | null>("StoreKit_86f7e029fa4ce140", 3735252777293148, undefined, [rawValue]); }
+  init(rawValue: number): (SKProductStorePromotionVisibility) | null { return callSDK<(SKProductStorePromotionVisibility) | null>("StoreKit_d453e9e1f4a52dda", 3735252777293148, undefined, [rawValue]); }
 };
 
 /**
@@ -4123,19 +4123,19 @@ export const SKProductStorePromotionVisibility = {
  */
 export class SKProductSubscriptionPeriod extends SDKHandle {
   /** init() */
-  static init(): SKProductSubscriptionPeriod { return callSDK<SKProductSubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 851461097135579, undefined, []); }
+  static init(): SKProductSubscriptionPeriod { return callSDK<SKProductSubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 851461097135579, undefined, []); }
   /**
    * var numberOfUnits: Int { get }
    * @availability iOS 11.2+
    * @deprecated iOS 18.0
    */
-  get numberOfUnits(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 221310136658516, this, []); }
+  get numberOfUnits(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 221310136658516, this, []); }
   /**
    * var unit: SKProduct.PeriodUnit { get }
    * @availability iOS 11.2+
    * @deprecated iOS 18.0
    */
-  get unit(): SKProduct_PeriodUnit { return callSDK<SKProduct_PeriodUnit>("StoreKit_86f7e029fa4ce140", 3294548080456573, this, []); }
+  get unit(): SKProduct_PeriodUnit { return callSDK<SKProduct_PeriodUnit>("StoreKit_d453e9e1f4a52dda", 3294548080456573, this, []); }
   declare readonly $type: { "c:objc(cs)SKProductSubscriptionPeriod": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "numberOfUnits": true; "unit": true };
 }
@@ -4151,13 +4151,13 @@ export class SKReceiptRefreshRequest extends (SKRequest as unknown as Omit<typeo
    * @availability iOS 7.0+
    * @deprecated iOS 18.0
    */
-  static init(properties?: $SDK50): SKReceiptRefreshRequest { return callSDK<SKReceiptRefreshRequest>("StoreKit_86f7e029fa4ce140", 2040316275897381, undefined, [properties]); }
+  static init(properties?: $SDK50): SKReceiptRefreshRequest { return callSDK<SKReceiptRefreshRequest>("StoreKit_d453e9e1f4a52dda", 2040316275897381, undefined, [properties]); }
   /**
    * var receiptProperties: [String : Any]? { get }
    * @availability iOS 7.0+
    * @deprecated iOS 18.0
    */
-  get receiptProperties(): $SDK50 { return callSDK<$SDK50>("StoreKit_86f7e029fa4ce140", 100580368223886, this, []); }
+  get receiptProperties(): $SDK50 { return callSDK<$SDK50>("StoreKit_d453e9e1f4a52dda", 100580368223886, this, []); }
   declare readonly $type: { "c:objc(cs)SKReceiptRefreshRequest": true; "c:objc(cs)SKRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "receiptProperties": true };
 }
@@ -4189,19 +4189,19 @@ export interface SKRequestDelegate {
  */
 export class SKStorefront extends SDKHandle {
   /** init() */
-  static init(): SKStorefront { return callSDK<SKStorefront>("StoreKit_86f7e029fa4ce140", 98320742335482, undefined, []); }
+  static init(): SKStorefront { return callSDK<SKStorefront>("StoreKit_d453e9e1f4a52dda", 98320742335482, undefined, []); }
   /**
    * var countryCode: String { get }
    * @availability iOS 13.0+
    * @deprecated iOS 18.0
    */
-  get countryCode(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4423150411359469, this, []); }
+  get countryCode(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4423150411359469, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 13.0+
    * @deprecated iOS 18.0
    */
-  get identifier(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1005977231421117, this, []); }
+  get identifier(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1005977231421117, this, []); }
   declare readonly $type: { "c:objc(cs)SKStorefront": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "countryCode": true; "identifier": true };
 }
@@ -4212,23 +4212,23 @@ export class SKStorefront extends SDKHandle {
  */
 export class SKStoreProductViewController extends SDKHandle {
   /** init() */
-  static init(): Promise<SKStoreProductViewController> { return callSDKAsync<SKStoreProductViewController>("StoreKit_86f7e029fa4ce140", 4096287150783035, undefined, []); }
+  static init(): Promise<SKStoreProductViewController> { return callSDKAsync<SKStoreProductViewController>("StoreKit_d453e9e1f4a52dda", 4096287150783035, undefined, []); }
   /**
    * func loadProduct(withParameters parameters: [String : Any]) async throws -> Bool
    * @availability iOS 6.0+
    */
-  loadProductWithParametersCompletionBlock(parameters: Record<string, unknown>, block?: $SDK33): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 23308298993841, this, [parameters, block], [null,{"callback":{"out":[]}}]); }
+  loadProductWithParametersCompletionBlock(parameters: Record<string, unknown>, block?: $SDK33): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 23308298993841, this, [parameters, block], [null,{"callback":{"out":[]}}]); }
   /**
    * func loadProduct(withParameters parameters: [String : Any], impression: SKAdImpression) async throws -> Bool
    * @availability iOS 16.0+
    */
-  loadProductWithParametersImpressionCompletionBlock(parameters: Record<string, unknown>, impression: SKAdImpression, block?: $SDK33): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 1316989106716904, this, [parameters, impression, block], [null,null,{"callback":{"out":[]}}]); }
+  loadProductWithParametersImpressionCompletionBlock(parameters: Record<string, unknown>, impression: SKAdImpression, block?: $SDK33): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 1316989106716904, this, [parameters, impression, block], [null,null,{"callback":{"out":[]}}]); }
   /**
    * weak var delegate: (any SKStoreProductViewControllerDelegate)? { get set }
    * @availability iOS 6.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("StoreKit_86f7e029fa4ce140", 2340077277441728, this, []); }
-  setDelegate(value?: (Implements<SKStoreProductViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 1491285324104772, this, [value], [{"protocol":"c:objc(pl)SKStoreProductViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("StoreKit_d453e9e1f4a52dda", 2340077277441728, this, []); }
+  setDelegate(value?: (Implements<SKStoreProductViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 1491285324104772, this, [value], [{"protocol":"c:objc(pl)SKStoreProductViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)SKStoreProductViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -4256,15 +4256,15 @@ export class SKStoreReviewController extends SDKHandle {
    * @availability iOS 10.3+
    * @deprecated iOS 14.0
    */
-  static requestReview(): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 3462884535942318, undefined, []); }
+  static requestReview(): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 3462884535942318, undefined, []); }
   /**
    * @MainActor class func requestReview(in windowScene: UIWindowScene)
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  static requestReviewIn(windowScene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 2994910068047347, undefined, [windowScene]); }
+  static requestReviewIn(windowScene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 2994910068047347, undefined, [windowScene]); }
   /** init() */
-  static init(): SKStoreReviewController { return callSDK<SKStoreReviewController>("StoreKit_86f7e029fa4ce140", 782829019915411, undefined, []); }
+  static init(): SKStoreReviewController { return callSDK<SKStoreReviewController>("StoreKit_d453e9e1f4a52dda", 782829019915411, undefined, []); }
   declare readonly $type: { "c:objc(cs)SKStoreReviewController": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4291,28 +4291,28 @@ export class Storefront extends SDKHandle {
    * let countryCode: String
    * @availability iOS 15.0+
    */
-  get countryCode(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4422006818579037, this, []); }
+  get countryCode(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4422006818579037, this, []); }
   /**
    * let id: String
    * @availability iOS 15.0+
    */
-  get id(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3546080728482928, this, []); }
+  get id(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3546080728482928, this, []); }
   /**
    * static var current: Storefront? { get async }
    * @availability iOS 15.0+
    */
-  static get current(): Promise<(Storefront) | null> { return callSDKAsync<(Storefront) | null>("StoreKit_86f7e029fa4ce140", 2419092973559016, undefined, []); }
+  static get current(): Promise<(Storefront) | null> { return callSDKAsync<(Storefront) | null>("StoreKit_d453e9e1f4a52dda", 2419092973559016, undefined, []); }
   /**
    * static var updates: Storefront.Storefronts { get }
    * @availability iOS 15.0+
    */
-  static get updates(): Storefront_Storefronts { return callSDK<Storefront_Storefronts>("StoreKit_86f7e029fa4ce140", 886470307344590, undefined, []); }
+  static get updates(): Storefront_Storefronts { return callSDK<Storefront_Storefronts>("StoreKit_d453e9e1f4a52dda", 886470307344590, undefined, []); }
   /**
    * @backDeployed(before: iOS 18.4, macOS 15.4, tvOS 18.4, watchOS 11.4, visionOS 2.4)
   var currency: Locale.Currency? { get }
    * @availability iOS 17.0+
    */
-  get currency(): $SDK22 { return callSDK<$SDK22>("StoreKit_86f7e029fa4ce140", 3288573800279161, this, []); }
+  get currency(): $SDK22 { return callSDK<$SDK22>("StoreKit_d453e9e1f4a52dda", 3288573800279161, this, []); }
   declare readonly $type: { "s:8StoreKit10StorefrontV": true };
 }
 
@@ -4331,7 +4331,7 @@ export class Storefront_Storefronts extends SDKHandle {
    * func makeAsyncIterator() -> Storefront.Storefronts.AsyncIterator
    * @availability iOS 15.0+
    */
-  makeAsyncIterator(): Storefront_Storefronts_AsyncIterator { return callSDK<Storefront_Storefronts_AsyncIterator>("StoreKit_86f7e029fa4ce140", 4300534594264773, this, []); }
+  makeAsyncIterator(): Storefront_Storefronts_AsyncIterator { return callSDK<Storefront_Storefronts_AsyncIterator>("StoreKit_d453e9e1f4a52dda", 4300534594264773, this, []); }
   declare readonly $type: { "s:8StoreKit10StorefrontV11StorefrontsV": true };
   declare readonly $element: Storefront;
 }
@@ -4345,7 +4345,7 @@ export class Storefront_Storefronts_AsyncIterator extends SDKHandle {
    * mutating func next() async -> Storefront?
    * @availability iOS 15.0+
    */
-  next(): Promise<(Storefront) | null> { return callSDKAsync<(Storefront) | null>("StoreKit_86f7e029fa4ce140", 3140682851620398, this, []); }
+  next(): Promise<(Storefront) | null> { return callSDKAsync<(Storefront) | null>("StoreKit_d453e9e1f4a52dda", 3140682851620398, this, []); }
   declare readonly $type: { "s:8StoreKit10StorefrontV11StorefrontsV13AsyncIteratorV": true };
 }
 
@@ -4370,17 +4370,17 @@ export class StoreKitError extends SDKHandle {
    * var failureReason: String? { get }
    * @availability iOS 15.4+
    */
-  get failureReason(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 4018450008836328, this, []); }
+  get failureReason(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 4018450008836328, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 15.4+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 3986537384113724, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 3986537384113724, this, []); }
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 15.4+
    */
-  get recoverySuggestion(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 3216254993181417, this, []); }
+  get recoverySuggestion(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 3216254993181417, this, []); }
   declare readonly $type: { "s:8StoreKit0aB5ErrorO": true };
 }
 
@@ -4424,322 +4424,322 @@ export class Transaction extends SDKHandle {
   var bundleOriginalTransactionID: String? { get }
    * @availability iOS 15.0+
    */
-  get bundleOriginalTransactionID(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 1374765260541817, this, []); }
+  get bundleOriginalTransactionID(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 1374765260541817, this, []); }
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   var previousOriginalTransactionID: UInt64? { get }
    * @availability iOS 15.0+
    */
-  get previousOriginalTransactionID(): (number) | null { return callSDK<(number) | null>("StoreKit_86f7e029fa4ce140", 3051450940364539, this, []); }
+  get previousOriginalTransactionID(): (number) | null { return callSDK<(number) | null>("StoreKit_d453e9e1f4a52dda", 3051450940364539, this, []); }
   /**
    * @backDeployed(before: iOS 18.4, macOS 15.4, tvOS 18.4, watchOS 11.4, visionOS 2.4)
   var appTransactionID: String { get }
    * @availability iOS 15.0+
    */
-  get appTransactionID(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2521121100450757, this, []); }
+  get appTransactionID(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2521121100450757, this, []); }
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   var bundleTransactionID: String? { get }
    * @availability iOS 15.0+
    */
-  get bundleTransactionID(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 1606008304143394, this, []); }
+  get bundleTransactionID(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 1606008304143394, this, []); }
   /**
    * let isUpgraded: Bool
    * @availability iOS 15.0+
    */
-  get isUpgraded(): boolean { return callSDK<boolean>("StoreKit_86f7e029fa4ce140", 3770873654116826, this, []); }
+  get isUpgraded(): boolean { return callSDK<boolean>("StoreKit_d453e9e1f4a52dda", 3770873654116826, this, []); }
   /**
    * let originalID: UInt64
    * @availability iOS 15.0+
    */
-  get originalID(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 3051067498156997, this, []); }
+  get originalID(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 3051067498156997, this, []); }
   /**
    * let signedDate: Date
    * @availability iOS 15.0+
    */
-  get signedDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_86f7e029fa4ce140", 1921332531817352, this, []); }
+  get signedDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_d453e9e1f4a52dda", 1921332531817352, this, []); }
   /**
    * let storefront: Storefront
    * @availability iOS 17.0+
    */
-  get storefront(): Storefront { return callSDK<Storefront>("StoreKit_86f7e029fa4ce140", 1256438716578876, this, []); }
+  get storefront(): Storefront { return callSDK<Storefront>("StoreKit_d453e9e1f4a52dda", 1256438716578876, this, []); }
   /**
    * static var unfinished: Transaction.Transactions { get }
    * @availability iOS 15.0+
    */
-  static get unfinished(): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_86f7e029fa4ce140", 4458823411471095, undefined, []); }
+  static get unfinished(): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_d453e9e1f4a52dda", 4458823411471095, undefined, []); }
   /**
    * let appBundleID: String
    * @availability iOS 15.0+
    */
-  get appBundleID(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1289723456129219, this, []); }
+  get appBundleID(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1289723456129219, this, []); }
   /**
    * let environment: AppStore.Environment
    * @availability iOS 16.0+
    */
-  get environment(): AppStore_Environment { return callSDK<AppStore_Environment>("StoreKit_86f7e029fa4ce140", 2138242839229827, this, []); }
+  get environment(): AppStore_Environment { return callSDK<AppStore_Environment>("StoreKit_d453e9e1f4a52dda", 2138242839229827, this, []); }
   /**
    * let productType: Product.ProductType
    * @availability iOS 15.0+
    */
-  get productType(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_86f7e029fa4ce140", 4139116391889478, this, []); }
+  get productType(): Product_ProductType { return callSDK<Product_ProductType>("StoreKit_d453e9e1f4a52dda", 4139116391889478, this, []); }
   /**
    * @backDeployed(before: iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0)
   var currencyCode: String? { get }
    * @availability iOS 15.0+
    * @deprecated iOS 16.0
    */
-  get currencyCode(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 4232185588524906, this, []); }
+  get currencyCode(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 4232185588524906, this, []); }
   /**
    * let purchaseDate: Date
    * @availability iOS 15.0+
    */
-  get purchaseDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_86f7e029fa4ce140", 4416460700719205, this, []); }
+  get purchaseDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_d453e9e1f4a52dda", 4416460700719205, this, []); }
   /**
    * let ownershipType: Transaction.OwnershipType
    * @availability iOS 15.0+
    */
-  get ownershipType(): Transaction_OwnershipType { return callSDK<Transaction_OwnershipType>("StoreKit_86f7e029fa4ce140", 3481811418589569, this, []); }
+  get ownershipType(): Transaction_OwnershipType { return callSDK<Transaction_OwnershipType>("StoreKit_d453e9e1f4a52dda", 3481811418589569, this, []); }
   /**
    * let commitmentInfo: Transaction.CommitmentInfo?
    * @availability iOS 26.4+
    */
-  get commitmentInfo(): (Transaction_CommitmentInfo) | null { return callSDK<(Transaction_CommitmentInfo) | null>("StoreKit_86f7e029fa4ce140", 2110640652381977, this, []); }
+  get commitmentInfo(): (Transaction_CommitmentInfo) | null { return callSDK<(Transaction_CommitmentInfo) | null>("StoreKit_d453e9e1f4a52dda", 2110640652381977, this, []); }
   /**
    * let expirationDate: Date?
    * @availability iOS 15.0+
    */
-  get expirationDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_86f7e029fa4ce140", 2454749818189184, this, []); }
+  get expirationDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_d453e9e1f4a52dda", 2454749818189184, this, []); }
   /**
    * let revocationDate: Date?
    * @availability iOS 15.0+
    */
-  get revocationDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_86f7e029fa4ce140", 141068692444112, this, []); }
+  get revocationDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_d453e9e1f4a52dda", 141068692444112, this, []); }
   /**
    * let revocationType: Transaction.RevocationType?
    * @availability iOS 26.4+
    */
-  get revocationType(): (Transaction_RevocationType) | null { return callSDK<(Transaction_RevocationType) | null>("StoreKit_86f7e029fa4ce140", 2294376845493954, this, []); }
+  get revocationType(): (Transaction_RevocationType) | null { return callSDK<(Transaction_RevocationType) | null>("StoreKit_d453e9e1f4a52dda", 2294376845493954, this, []); }
   /**
    * let appAccountToken: UUID?
    * @availability iOS 15.0+
    */
-  get appAccountToken(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 1716820329781110, this, []); }
+  get appAccountToken(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 1716820329781110, this, []); }
   /**
    * let billingPlanType: SubscriptionInfo.BillingPlanType?
    * @availability iOS 26.4+
    */
-  get billingPlanType(): $SDK20 { return callSDK<$SDK20>("StoreKit_86f7e029fa4ce140", 2497362029067291, this, []); }
+  get billingPlanType(): $SDK20 { return callSDK<$SDK20>("StoreKit_d453e9e1f4a52dda", 2497362029067291, this, []); }
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   var bundleProductID: String? { get }
    * @availability iOS 15.0+
    */
-  get bundleProductID(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 456240995012459, this, []); }
+  get bundleProductID(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 456240995012459, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1887862373627774, this, []); }
+  get debugDescription(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1887862373627774, this, []); }
   /**
    * let revocationReason: Transaction.RevocationReason?
    * @availability iOS 15.0+
    */
-  get revocationReason(): (Transaction_RevocationReason) | null { return callSDK<(Transaction_RevocationReason) | null>("StoreKit_86f7e029fa4ce140", 3569186434769935, this, []); }
+  get revocationReason(): (Transaction_RevocationReason) | null { return callSDK<(Transaction_RevocationReason) | null>("StoreKit_d453e9e1f4a52dda", 3569186434769935, this, []); }
   /**
    * let purchasedQuantity: Int
    * @availability iOS 15.0+
    */
-  get purchasedQuantity(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 1912657379595804, this, []); }
+  get purchasedQuantity(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 1912657379595804, this, []); }
   /**
    * func beginRefundRequest(in scene: UIWindowScene) async throws -> Transaction.RefundRequestStatus
    * @availability iOS 15.0+
    */
-  beginRefundRequestIn(scene: _UIKit_UIWindowScene): Promise<Transaction_RefundRequestStatus> { return callSDKAsync<Transaction_RefundRequestStatus>("StoreKit_86f7e029fa4ce140", 4006431752206631, this, [scene]); }
+  beginRefundRequestIn(scene: _UIKit_UIWindowScene): Promise<Transaction_RefundRequestStatus> { return callSDKAsync<Transaction_RefundRequestStatus>("StoreKit_d453e9e1f4a52dda", 4006431752206631, this, [scene]); }
   /**
    * @MainActor static func beginRefundRequest(for transactionID: UInt64, in scene: UIWindowScene) async throws -> Transaction.RefundRequestStatus
    * @availability iOS 15.0+
    */
-  static beginRefundRequestForIn(transactionID: number, scene: _UIKit_UIWindowScene): Promise<Transaction_RefundRequestStatus> { return callSDKAsync<Transaction_RefundRequestStatus>("StoreKit_86f7e029fa4ce140", 1000268263025897, undefined, [transactionID, scene]); }
+  static beginRefundRequestForIn(transactionID: number, scene: _UIKit_UIWindowScene): Promise<Transaction_RefundRequestStatus> { return callSDKAsync<Transaction_RefundRequestStatus>("StoreKit_d453e9e1f4a52dda", 1000268263025897, undefined, [transactionID, scene]); }
   /**
    * static func currentEntitlement(for productID: String) async -> VerificationResult<Transaction>?
    * @availability iOS 15.0+
    * @deprecated iOS 18.4
    */
-  static currentEntitlement(productID: string): Promise<$SDK0> { return callSDKAsync<$SDK0>("StoreKit_86f7e029fa4ce140", 2383728398736419, undefined, [productID]); }
+  static currentEntitlement(productID: string): Promise<$SDK0> { return callSDKAsync<$SDK0>("StoreKit_d453e9e1f4a52dda", 2383728398736419, undefined, [productID]); }
   /**
    * let deviceVerification: Data
    * @availability iOS 15.0+
    */
-  get deviceVerification(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 1349309363716866, this, []); }
+  get deviceVerification(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 1349309363716866, this, []); }
   /**
    * var jsonRepresentation: Data { get }
    * @availability iOS 15.0+
    */
-  get jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 4267905408648128, this, []); }
+  get jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 4267905408648128, this, []); }
   /**
    * @backDeployed(before: iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0)
   var subscriptionStatus: Product.SubscriptionInfo.Status? { get async }
    * @availability iOS 15.0+
    */
-  get subscriptionStatus(): Promise<$SDK14> { return callSDKAsync<$SDK14>("StoreKit_86f7e029fa4ce140", 864848623749073, this, []); }
+  get subscriptionStatus(): Promise<$SDK14> { return callSDKAsync<$SDK14>("StoreKit_d453e9e1f4a52dda", 864848623749073, this, []); }
   /**
    * let webOrderLineItemID: String?
    * @availability iOS 15.0+
    */
-  get webOrderLineItemID(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 950984387798912, this, []); }
+  get webOrderLineItemID(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 950984387798912, this, []); }
   /**
    * static func currentEntitlements(for productID: String) -> Transaction.Transactions
    * @availability iOS 18.4+
    */
-  static currentEntitlementsFor(productID: string): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_86f7e029fa4ce140", 2504339815425039, undefined, [productID]); }
+  static currentEntitlementsFor(productID: string): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_d453e9e1f4a52dda", 2504339815425039, undefined, [productID]); }
   /**
    * static var currentEntitlements: Transaction.Transactions { get }
    * @availability iOS 15.0+
    */
-  static get currentEntitlements(): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_86f7e029fa4ce140", 945999240925502, undefined, []); }
+  static get currentEntitlements(): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_d453e9e1f4a52dda", 945999240925502, undefined, []); }
   /**
    * let subscriptionGroupID: String?
    * @availability iOS 15.0+
    */
-  get subscriptionGroupID(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 297074881968428, this, []); }
+  get subscriptionGroupID(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 297074881968428, this, []); }
   /**
    * let advancedCommerceInfo: Transaction.AdvancedCommerceInfo?
    * @availability iOS 18.4+
    */
-  get advancedCommerceInfo(): (Transaction_AdvancedCommerceInfo) | null { return callSDK<(Transaction_AdvancedCommerceInfo) | null>("StoreKit_86f7e029fa4ce140", 2266915702193805, this, []); }
+  get advancedCommerceInfo(): (Transaction_AdvancedCommerceInfo) | null { return callSDK<(Transaction_AdvancedCommerceInfo) | null>("StoreKit_d453e9e1f4a52dda", 2266915702193805, this, []); }
   /**
    * let originalPurchaseDate: Date
    * @availability iOS 15.0+
    */
-  get originalPurchaseDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_86f7e029fa4ce140", 1432365899271387, this, []); }
+  get originalPurchaseDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_d453e9e1f4a52dda", 1432365899271387, this, []); }
   /**
    * @backDeployed(before: iOS 26.4, macOS 26.4, tvOS 26.4, watchOS 26.4, visionOS 26.4)
   var revocationPercentage: Decimal? { get }
    * @availability iOS 15.0+
    */
-  get revocationPercentage(): $SDK18 { return callSDK<$SDK18>("StoreKit_86f7e029fa4ce140", 3838133881845625, this, []); }
+  get revocationPercentage(): $SDK18 { return callSDK<$SDK18>("StoreKit_d453e9e1f4a52dda", 3838133881845625, this, []); }
   /**
    * @backDeployed(before: iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, macCatalyst 17.0)
   var storefrontCountryCode: String { get }
    * @availability iOS 15.0+
    */
-  get storefrontCountryCode(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1643038453586386, this, []); }
+  get storefrontCountryCode(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1643038453586386, this, []); }
   /**
    * let deviceVerificationNonce: UUID
    * @availability iOS 15.0+
    */
-  get deviceVerificationNonce(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 32367157571159, this, []); }
+  get deviceVerificationNonce(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 32367157571159, this, []); }
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   var bundleSubscriptionGroupID: String? { get }
    * @availability iOS 15.0+
    */
-  get bundleSubscriptionGroupID(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 3054214184804381, this, []); }
+  get bundleSubscriptionGroupID(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 3054214184804381, this, []); }
   /**
    * @backDeployed(before: iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, macCatalyst 17.0)
   var reasonStringRepresentation: String { get }
    * @availability iOS 15.0+
    * @deprecated iOS 17.0
    */
-  get reasonStringRepresentation(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1128125543049287, this, []); }
+  get reasonStringRepresentation(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1128125543049287, this, []); }
   /**
    * let id: UInt64
    * @availability iOS 15.0+
    */
-  get id(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 32424529000847, this, []); }
+  get id(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 32424529000847, this, []); }
   /**
    * @backDeployed(before: iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, macCatalyst 16.0)
   var environmentStringRepresentation: String { get }
    * @availability iOS 15.0+
    * @deprecated iOS 16.0
    */
-  get environmentStringRepresentation(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3357551079694252, this, []); }
+  get environmentStringRepresentation(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3357551079694252, this, []); }
   /**
    * @backDeployed(before: iOS 18.4, macOS 15.4, tvOS 18.4, watchOS 11.4, visionOS 2.4)
   var offerPeriodStringRepresentation: String? { get }
    * @availability iOS 15.0+
    * @deprecated iOS 18.4
    */
-  get offerPeriodStringRepresentation(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 3280174635114277, this, []); }
+  get offerPeriodStringRepresentation(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 3280174635114277, this, []); }
   /**
    * @backDeployed(before: iOS 26.4, macOS 26.4, tvOS 26.4, watchOS 26.4, visionOS 26.4)
   var revocationTypeStringRepresentation: String? { get }
    * @availability iOS 15.0+
    * @deprecated iOS 26.4
    */
-  get revocationTypeStringRepresentation(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 3375670325678945, this, []); }
+  get revocationTypeStringRepresentation(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 3375670325678945, this, []); }
   /**
    * @backDeployed(before: iOS 17.2, macOS 14.2, tvOS 17.2, watchOS 10.2)
   var offerPaymentModeStringRepresentation: String? { get }
    * @availability iOS 15.0+
    * @deprecated iOS 17.2
    */
-  get offerPaymentModeStringRepresentation(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 3409968261153690, this, []); }
+  get offerPaymentModeStringRepresentation(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 3409968261153690, this, []); }
   /**
    * static func all(for productID: String) -> Transaction.Transactions
    * @availability iOS 18.4+
    */
-  static allFor(productID: string): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_86f7e029fa4ce140", 2278505599665848, undefined, [productID]); }
+  static allFor(productID: string): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_d453e9e1f4a52dda", 2278505599665848, undefined, [productID]); }
   /**
    * static var all: Transaction.Transactions { get }
    * @availability iOS 15.0+
    */
-  static get all(): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_86f7e029fa4ce140", 102282196651279, undefined, []); }
+  static get all(): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_d453e9e1f4a52dda", 102282196651279, undefined, []); }
   /**
    * let offer: Transaction.Offer?
    * @availability iOS 17.2+
    */
-  get offer(): (Transaction_Offer) | null { return callSDK<(Transaction_Offer) | null>("StoreKit_86f7e029fa4ce140", 173202478398841, this, []); }
+  get offer(): (Transaction_Offer) | null { return callSDK<(Transaction_Offer) | null>("StoreKit_d453e9e1f4a52dda", 173202478398841, this, []); }
   /**
    * @backDeployed(before: iOS 17.2, macOS 14.2, tvOS 17.2, watchOS 10.2, visionOS 1.1)
   var price: Decimal? { get }
    * @availability iOS 15.0+
    */
-  get price(): $SDK18 { return callSDK<$SDK18>("StoreKit_86f7e029fa4ce140", 3119612361306266, this, []); }
+  get price(): $SDK18 { return callSDK<$SDK18>("StoreKit_d453e9e1f4a52dda", 3119612361306266, this, []); }
   /**
    * func finish() async
    * @availability iOS 15.0+
    */
-  finish(): Promise<void> { return callSDKAsync<void>("StoreKit_86f7e029fa4ce140", 1556841643996190, this, []); }
+  finish(): Promise<void> { return callSDKAsync<void>("StoreKit_d453e9e1f4a52dda", 1556841643996190, this, []); }
   /**
    * static func latest(for productID: String) async -> VerificationResult<Transaction>?
    * @availability iOS 15.0+
    */
-  static latest(productID: string): Promise<$SDK0> { return callSDKAsync<$SDK0>("StoreKit_86f7e029fa4ce140", 2656475968655770, undefined, [productID]); }
+  static latest(productID: string): Promise<$SDK0> { return callSDKAsync<$SDK0>("StoreKit_d453e9e1f4a52dda", 2656475968655770, undefined, [productID]); }
   /**
    * let reason: Transaction.Reason
    * @availability iOS 17.0+
    */
-  get reason(): Transaction_Reason { return callSDK<Transaction_Reason>("StoreKit_86f7e029fa4ce140", 3604444170774550, this, []); }
+  get reason(): Transaction_Reason { return callSDK<Transaction_Reason>("StoreKit_d453e9e1f4a52dda", 3604444170774550, this, []); }
   /**
    * var offerID: String? { get }
    * @availability iOS 15.0+
    * @deprecated iOS 17.2
    */
-  get offerID(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 2302481999401653, this, []); }
+  get offerID(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 2302481999401653, this, []); }
   /**
    * static var updates: Transaction.Transactions { get }
    * @availability iOS 15.0+
    */
-  static get updates(): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_86f7e029fa4ce140", 214070126697778, undefined, []); }
+  static get updates(): Transaction_Transactions { return callSDK<Transaction_Transactions>("StoreKit_d453e9e1f4a52dda", 214070126697778, undefined, []); }
   /**
    * @backDeployed(before: iOS 17.2, macOS 14.2, tvOS 17.2, watchOS 10.2, visionOS 1.1)
   var currency: Locale.Currency? { get }
    * @availability iOS 16.0+
    */
-  get currency(): $SDK22 { return callSDK<$SDK22>("StoreKit_86f7e029fa4ce140", 2174432306816481, this, []); }
+  get currency(): $SDK22 { return callSDK<$SDK22>("StoreKit_d453e9e1f4a52dda", 2174432306816481, this, []); }
   /**
    * var offerType: Transaction.OfferType? { get }
    * @availability iOS 15.0+
    * @deprecated iOS 17.2
    */
-  get offerType(): $SDK23 { return callSDK<$SDK23>("StoreKit_86f7e029fa4ce140", 3963561581539253, this, []); }
+  get offerType(): $SDK23 { return callSDK<$SDK23>("StoreKit_d453e9e1f4a52dda", 3963561581539253, this, []); }
   /**
    * let productID: String
    * @availability iOS 15.0+
    */
-  get productID(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4224642870047122, this, []); }
+  get productID(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4224642870047122, this, []); }
   declare readonly $type: { "s:8StoreKit11TransactionV": true };
 }
 
@@ -4752,47 +4752,47 @@ export class Transaction_AdvancedCommerceInfo extends SDKHandle {
    * let description: String?
    * @availability iOS 18.4+
    */
-  get description(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 4037593401208928, this, []); }
+  get description(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 4037593401208928, this, []); }
   /**
    * let displayName: String?
    * @availability iOS 18.4+
    */
-  get displayName(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 4282749797554248, this, []); }
+  get displayName(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 4282749797554248, this, []); }
   /**
    * let estimatedTax: Decimal
    * @availability iOS 18.4+
    */
-  get estimatedTax(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_86f7e029fa4ce140", 2866786227566163, this, []); }
+  get estimatedTax(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_d453e9e1f4a52dda", 2866786227566163, this, []); }
   /**
    * let taxExclusivePrice: Decimal
    * @availability iOS 18.4+
    */
-  get taxExclusivePrice(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_86f7e029fa4ce140", 1544106939075382, this, []); }
+  get taxExclusivePrice(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_d453e9e1f4a52dda", 1544106939075382, this, []); }
   /**
    * let requestReferenceID: String
    * @availability iOS 18.4+
    */
-  get requestReferenceID(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 223273514293258, this, []); }
+  get requestReferenceID(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 223273514293258, this, []); }
   /**
    * let items: [Transaction.AdvancedCommerceInfo.Item]
    * @availability iOS 18.4+
    */
-  get items(): Array<Transaction_AdvancedCommerceInfo_Item> { return callSDK<Array<Transaction_AdvancedCommerceInfo_Item>>("StoreKit_86f7e029fa4ce140", 3684360171492343, this, []); }
+  get items(): Array<Transaction_AdvancedCommerceInfo_Item> { return callSDK<Array<Transaction_AdvancedCommerceInfo_Item>>("StoreKit_d453e9e1f4a52dda", 3684360171492343, this, []); }
   /**
    * let period: SubscriptionPeriod?
    * @availability iOS 18.4+
    */
-  get period(): $SDK59 { return callSDK<$SDK59>("StoreKit_86f7e029fa4ce140", 3238846333395102, this, []); }
+  get period(): $SDK59 { return callSDK<$SDK59>("StoreKit_d453e9e1f4a52dda", 3238846333395102, this, []); }
   /**
    * let taxCode: String
    * @availability iOS 18.4+
    */
-  get taxCode(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3475309914269521, this, []); }
+  get taxCode(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3475309914269521, this, []); }
   /**
    * let taxRate: Decimal
    * @availability iOS 18.4+
    */
-  get taxRate(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_86f7e029fa4ce140", 1849622144091376, this, []); }
+  get taxRate(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_d453e9e1f4a52dda", 1849622144091376, this, []); }
   declare readonly $type: { "s:8StoreKit11TransactionV20AdvancedCommerceInfoV": true };
 }
 
@@ -4805,17 +4805,17 @@ export class Transaction_AdvancedCommerceInfo_Item extends SDKHandle {
    * let revocationDate: Date?
    * @availability iOS 18.4+
    */
-  get revocationDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_86f7e029fa4ce140", 1813499232102150, this, []); }
+  get revocationDate(): $SDK3 { return callSDK<$SDK3>("StoreKit_d453e9e1f4a52dda", 1813499232102150, this, []); }
   /**
    * let details: Transaction.AdvancedCommerceInfo.Item.Details
    * @availability iOS 18.4+
    */
-  get details(): Transaction_AdvancedCommerceInfo_Item_Details { return callSDK<Transaction_AdvancedCommerceInfo_Item_Details>("StoreKit_86f7e029fa4ce140", 3742394267682633, this, []); }
+  get details(): Transaction_AdvancedCommerceInfo_Item_Details { return callSDK<Transaction_AdvancedCommerceInfo_Item_Details>("StoreKit_d453e9e1f4a52dda", 3742394267682633, this, []); }
   /**
    * let refunds: [Transaction.AdvancedCommerceInfo.Refund]?
    * @availability iOS 18.4+
    */
-  get refunds(): (Array<Transaction_AdvancedCommerceInfo_Refund>) | null { return callSDK<(Array<Transaction_AdvancedCommerceInfo_Refund>) | null>("StoreKit_86f7e029fa4ce140", 3557365108691976, this, []); }
+  get refunds(): (Array<Transaction_AdvancedCommerceInfo_Refund>) | null { return callSDK<(Array<Transaction_AdvancedCommerceInfo_Refund>) | null>("StoreKit_d453e9e1f4a52dda", 3557365108691976, this, []); }
   declare readonly $type: { "s:8StoreKit11TransactionV20AdvancedCommerceInfoV4ItemV": true };
 }
 
@@ -4828,32 +4828,32 @@ export class Transaction_AdvancedCommerceInfo_Item_Details extends SDKHandle {
    * let description: String
    * @availability iOS 18.4+
    */
-  get description(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1523402277550710, this, []); }
+  get description(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1523402277550710, this, []); }
   /**
    * let displayName: String
    * @availability iOS 18.4+
    */
-  get displayName(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4459542189784473, this, []); }
+  get displayName(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4459542189784473, this, []); }
   /**
    * let sku: String
    * @availability iOS 18.4+
    */
-  get sku(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 46573333920813, this, []); }
+  get sku(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 46573333920813, this, []); }
   /**
    * let offer: Transaction.AdvancedCommerceInfo.Offer?
    * @availability iOS 18.4+
    */
-  get offer(): (Transaction_AdvancedCommerceInfo_Offer) | null { return callSDK<(Transaction_AdvancedCommerceInfo_Offer) | null>("StoreKit_86f7e029fa4ce140", 2357847815104869, this, []); }
+  get offer(): (Transaction_AdvancedCommerceInfo_Offer) | null { return callSDK<(Transaction_AdvancedCommerceInfo_Offer) | null>("StoreKit_d453e9e1f4a52dda", 2357847815104869, this, []); }
   /**
    * let price: Decimal
    * @availability iOS 18.4+
    */
-  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_86f7e029fa4ce140", 2457448697282092, this, []); }
+  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_d453e9e1f4a52dda", 2457448697282092, this, []); }
   /**
    * let partners: [Transaction.AdvancedCommerceInfo.Partner]
    * @availability iOS 27.0+
    */
-  get partners(): Array<Transaction_AdvancedCommerceInfo_Partner> { return callSDK<Array<Transaction_AdvancedCommerceInfo_Partner>>("StoreKit_86f7e029fa4ce140", 1588560876489062, this, []); }
+  get partners(): Array<Transaction_AdvancedCommerceInfo_Partner> { return callSDK<Array<Transaction_AdvancedCommerceInfo_Partner>>("StoreKit_d453e9e1f4a52dda", 1588560876489062, this, []); }
   declare readonly $type: { "s:8StoreKit11TransactionV20AdvancedCommerceInfoV4ItemV7DetailsV": true };
 }
 
@@ -4866,22 +4866,22 @@ export class Transaction_AdvancedCommerceInfo_Offer extends SDKHandle {
    * let periodCount: Int
    * @availability iOS 18.4+
    */
-  get periodCount(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 1568668298814590, this, []); }
+  get periodCount(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 1568668298814590, this, []); }
   /**
    * let price: Decimal
    * @availability iOS 18.4+
    */
-  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_86f7e029fa4ce140", 3901762053088185, this, []); }
+  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_d453e9e1f4a52dda", 3901762053088185, this, []); }
   /**
    * let period: SubscriptionPeriod
    * @availability iOS 18.4+
    */
-  get period(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_86f7e029fa4ce140", 1782450007311107, this, []); }
+  get period(): Product_SubscriptionPeriod { return callSDK<Product_SubscriptionPeriod>("StoreKit_d453e9e1f4a52dda", 1782450007311107, this, []); }
   /**
    * let reason: Transaction.AdvancedCommerceInfo.Offer.Reason
    * @availability iOS 18.4+
    */
-  get reason(): Transaction_AdvancedCommerceInfo_Offer_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Offer_Reason>("StoreKit_86f7e029fa4ce140", 3483910561428089, this, []); }
+  get reason(): Transaction_AdvancedCommerceInfo_Offer_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Offer_Reason>("StoreKit_d453e9e1f4a52dda", 3483910561428089, this, []); }
   declare readonly $type: { "s:8StoreKit11TransactionV20AdvancedCommerceInfoV5OfferV": true };
 }
 
@@ -4896,27 +4896,27 @@ export const Transaction_AdvancedCommerceInfo_Offer_Reason = {
    * static let acquisition: Transaction.AdvancedCommerceInfo.Offer.Reason
    * @availability iOS 18.4+
    */
-  get acquisition(): Transaction_AdvancedCommerceInfo_Offer_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Offer_Reason>("StoreKit_86f7e029fa4ce140", 2146055472549242, undefined, []); },
+  get acquisition(): Transaction_AdvancedCommerceInfo_Offer_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Offer_Reason>("StoreKit_d453e9e1f4a52dda", 2146055472549242, undefined, []); },
   /**
    * static let winBack: Transaction.AdvancedCommerceInfo.Offer.Reason
    * @availability iOS 18.4+
    */
-  get winBack(): Transaction_AdvancedCommerceInfo_Offer_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Offer_Reason>("StoreKit_86f7e029fa4ce140", 2825595271353070, undefined, []); },
+  get winBack(): Transaction_AdvancedCommerceInfo_Offer_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Offer_Reason>("StoreKit_d453e9e1f4a52dda", 2825595271353070, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 18.4+
    */
-  init(rawValue: string): Transaction_AdvancedCommerceInfo_Offer_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Offer_Reason>("StoreKit_86f7e029fa4ce140", 144333758663484, undefined, [rawValue]); },
+  init(rawValue: string): Transaction_AdvancedCommerceInfo_Offer_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Offer_Reason>("StoreKit_d453e9e1f4a52dda", 144333758663484, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 18.4+
    */
-  getRawValue($self: Transaction_AdvancedCommerceInfo_Offer_Reason): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 492487789818156, $self, []); },
+  getRawValue($self: Transaction_AdvancedCommerceInfo_Offer_Reason): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 492487789818156, $self, []); },
   /**
    * static let retention: Transaction.AdvancedCommerceInfo.Offer.Reason
    * @availability iOS 18.4+
    */
-  get retention(): Transaction_AdvancedCommerceInfo_Offer_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Offer_Reason>("StoreKit_86f7e029fa4ce140", 4299413011190963, undefined, []); }
+  get retention(): Transaction_AdvancedCommerceInfo_Offer_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Offer_Reason>("StoreKit_d453e9e1f4a52dda", 4299413011190963, undefined, []); }
 };
 
 /**
@@ -4934,12 +4934,12 @@ export class Transaction_AdvancedCommerceInfo_Partner extends SDKHandle {
    * let id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1041174976598857, this, []); }
+  get id(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1041174976598857, this, []); }
   /**
    * let name: String?
    * @availability iOS 27.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 2853951628783978, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 2853951628783978, this, []); }
   declare readonly $type: { "s:8StoreKit11TransactionV20AdvancedCommerceInfoV7PartnerV": true };
 }
 
@@ -4952,22 +4952,22 @@ export class Transaction_AdvancedCommerceInfo_Refund extends SDKHandle {
    * let date: Date
    * @availability iOS 18.4+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_86f7e029fa4ce140", 4015242560283194, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_d453e9e1f4a52dda", 4015242560283194, this, []); }
   /**
    * let type: Transaction.AdvancedCommerceInfo.Refund.RefundType
    * @availability iOS 18.4+
    */
-  get type(): Transaction_AdvancedCommerceInfo_Refund_RefundType { return callSDK<Transaction_AdvancedCommerceInfo_Refund_RefundType>("StoreKit_86f7e029fa4ce140", 3444272725757366, this, []); }
+  get type(): Transaction_AdvancedCommerceInfo_Refund_RefundType { return callSDK<Transaction_AdvancedCommerceInfo_Refund_RefundType>("StoreKit_d453e9e1f4a52dda", 3444272725757366, this, []); }
   /**
    * let amount: Decimal
    * @availability iOS 18.4+
    */
-  get amount(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_86f7e029fa4ce140", 1067886455162919, this, []); }
+  get amount(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_d453e9e1f4a52dda", 1067886455162919, this, []); }
   /**
    * let reason: Transaction.AdvancedCommerceInfo.Refund.Reason
    * @availability iOS 18.4+
    */
-  get reason(): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_86f7e029fa4ce140", 3277562330475757, this, []); }
+  get reason(): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_d453e9e1f4a52dda", 3277562330475757, this, []); }
   declare readonly $type: { "s:8StoreKit11TransactionV20AdvancedCommerceInfoV6RefundV": true };
 }
 
@@ -4982,42 +4982,42 @@ export const Transaction_AdvancedCommerceInfo_Refund_Reason = {
    * static let unintended: Transaction.AdvancedCommerceInfo.Refund.Reason
    * @availability iOS 18.4+
    */
-  get unintended(): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_86f7e029fa4ce140", 2672196090666642, undefined, []); },
+  get unintended(): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_d453e9e1f4a52dda", 2672196090666642, undefined, []); },
   /**
    * static let modifyItems: Transaction.AdvancedCommerceInfo.Refund.Reason
    * @availability iOS 18.4+
    */
-  get modifyItems(): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_86f7e029fa4ce140", 3489004219712393, undefined, []); },
+  get modifyItems(): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_d453e9e1f4a52dda", 3489004219712393, undefined, []); },
   /**
    * static let unfulfilled: Transaction.AdvancedCommerceInfo.Refund.Reason
    * @availability iOS 18.4+
    */
-  get unfulfilled(): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_86f7e029fa4ce140", 2896303369167952, undefined, []); },
+  get unfulfilled(): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_d453e9e1f4a52dda", 2896303369167952, undefined, []); },
   /**
    * static let unsatisfied: Transaction.AdvancedCommerceInfo.Refund.Reason
    * @availability iOS 18.4+
    */
-  get unsatisfied(): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_86f7e029fa4ce140", 1774597070315532, undefined, []); },
+  get unsatisfied(): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_d453e9e1f4a52dda", 1774597070315532, undefined, []); },
   /**
    * static let legal: Transaction.AdvancedCommerceInfo.Refund.Reason
    * @availability iOS 18.4+
    */
-  get legal(): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_86f7e029fa4ce140", 3190480464570296, undefined, []); },
+  get legal(): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_d453e9e1f4a52dda", 3190480464570296, undefined, []); },
   /**
    * static let other: Transaction.AdvancedCommerceInfo.Refund.Reason
    * @availability iOS 18.4+
    */
-  get other(): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_86f7e029fa4ce140", 1381375021341274, undefined, []); },
+  get other(): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_d453e9e1f4a52dda", 1381375021341274, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 18.4+
    */
-  init(rawValue: string): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_86f7e029fa4ce140", 1197209679744675, undefined, [rawValue]); },
+  init(rawValue: string): Transaction_AdvancedCommerceInfo_Refund_Reason { return callSDK<Transaction_AdvancedCommerceInfo_Refund_Reason>("StoreKit_d453e9e1f4a52dda", 1197209679744675, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 18.4+
    */
-  getRawValue($self: Transaction_AdvancedCommerceInfo_Refund_Reason): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2577673497525447, $self, []); }
+  getRawValue($self: Transaction_AdvancedCommerceInfo_Refund_Reason): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2577673497525447, $self, []); }
 };
 
 /**
@@ -5037,27 +5037,27 @@ export const Transaction_AdvancedCommerceInfo_Refund_RefundType = {
    * static let full: Transaction.AdvancedCommerceInfo.Refund.RefundType
    * @availability iOS 18.4+
    */
-  get full(): Transaction_AdvancedCommerceInfo_Refund_RefundType { return callSDK<Transaction_AdvancedCommerceInfo_Refund_RefundType>("StoreKit_86f7e029fa4ce140", 3978910253012650, undefined, []); },
+  get full(): Transaction_AdvancedCommerceInfo_Refund_RefundType { return callSDK<Transaction_AdvancedCommerceInfo_Refund_RefundType>("StoreKit_d453e9e1f4a52dda", 3978910253012650, undefined, []); },
   /**
    * static let custom: Transaction.AdvancedCommerceInfo.Refund.RefundType
    * @availability iOS 18.4+
    */
-  get custom(): Transaction_AdvancedCommerceInfo_Refund_RefundType { return callSDK<Transaction_AdvancedCommerceInfo_Refund_RefundType>("StoreKit_86f7e029fa4ce140", 2629755123000350, undefined, []); },
+  get custom(): Transaction_AdvancedCommerceInfo_Refund_RefundType { return callSDK<Transaction_AdvancedCommerceInfo_Refund_RefundType>("StoreKit_d453e9e1f4a52dda", 2629755123000350, undefined, []); },
   /**
    * static let proRated: Transaction.AdvancedCommerceInfo.Refund.RefundType
    * @availability iOS 18.4+
    */
-  get proRated(): Transaction_AdvancedCommerceInfo_Refund_RefundType { return callSDK<Transaction_AdvancedCommerceInfo_Refund_RefundType>("StoreKit_86f7e029fa4ce140", 3671427832731031, undefined, []); },
+  get proRated(): Transaction_AdvancedCommerceInfo_Refund_RefundType { return callSDK<Transaction_AdvancedCommerceInfo_Refund_RefundType>("StoreKit_d453e9e1f4a52dda", 3671427832731031, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 18.4+
    */
-  init(rawValue: string): Transaction_AdvancedCommerceInfo_Refund_RefundType { return callSDK<Transaction_AdvancedCommerceInfo_Refund_RefundType>("StoreKit_86f7e029fa4ce140", 514245442271265, undefined, [rawValue]); },
+  init(rawValue: string): Transaction_AdvancedCommerceInfo_Refund_RefundType { return callSDK<Transaction_AdvancedCommerceInfo_Refund_RefundType>("StoreKit_d453e9e1f4a52dda", 514245442271265, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 18.4+
    */
-  getRawValue($self: Transaction_AdvancedCommerceInfo_Refund_RefundType): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 598655259723336, $self, []); }
+  getRawValue($self: Transaction_AdvancedCommerceInfo_Refund_RefundType): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 598655259723336, $self, []); }
 };
 
 /**
@@ -5075,22 +5075,22 @@ export class Transaction_CommitmentInfo extends SDKHandle {
    * let expirationDate: Date
    * @availability iOS 26.4+
    */
-  get expirationDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_86f7e029fa4ce140", 2560249651691730, this, []); }
+  get expirationDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_d453e9e1f4a52dda", 2560249651691730, this, []); }
   /**
    * let billingPeriodNumber: UInt64
    * @availability iOS 26.4+
    */
-  get billingPeriodNumber(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 2953789839987386, this, []); }
+  get billingPeriodNumber(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 2953789839987386, this, []); }
   /**
    * let totalBillingPeriods: UInt64
    * @availability iOS 26.4+
    */
-  get totalBillingPeriods(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 4195524811373688, this, []); }
+  get totalBillingPeriods(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 4195524811373688, this, []); }
   /**
    * let price: Decimal
    * @availability iOS 26.4+
    */
-  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_86f7e029fa4ce140", 4004734193532609, this, []); }
+  get price(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("StoreKit_d453e9e1f4a52dda", 4004734193532609, this, []); }
   declare readonly $type: { "s:8StoreKit11TransactionV14CommitmentInfoV": true };
 }
 
@@ -5109,22 +5109,22 @@ export class Transaction_Offer extends SDKHandle {
    * let paymentMode: Transaction.Offer.PaymentMode?
    * @availability iOS 17.2+
    */
-  get paymentMode(): (Transaction_Offer_PaymentMode) | null { return callSDK<(Transaction_Offer_PaymentMode) | null>("StoreKit_86f7e029fa4ce140", 2136214635085527, this, []); }
+  get paymentMode(): (Transaction_Offer_PaymentMode) | null { return callSDK<(Transaction_Offer_PaymentMode) | null>("StoreKit_d453e9e1f4a52dda", 2136214635085527, this, []); }
   /**
    * let id: String?
    * @availability iOS 17.2+
    */
-  get id(): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 2890242920446164, this, []); }
+  get id(): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 2890242920446164, this, []); }
   /**
    * let type: Transaction.OfferType
    * @availability iOS 17.2+
    */
-  get type(): Transaction_OfferType { return callSDK<Transaction_OfferType>("StoreKit_86f7e029fa4ce140", 885997246757190, this, []); }
+  get type(): Transaction_OfferType { return callSDK<Transaction_OfferType>("StoreKit_d453e9e1f4a52dda", 885997246757190, this, []); }
   /**
    * let period: Product.SubscriptionPeriod?
    * @availability iOS 18.4+
    */
-  get period(): $SDK59 { return callSDK<$SDK59>("StoreKit_86f7e029fa4ce140", 3678583912443669, this, []); }
+  get period(): $SDK59 { return callSDK<$SDK59>("StoreKit_d453e9e1f4a52dda", 3678583912443669, this, []); }
   declare readonly $type: { "s:8StoreKit11TransactionV5OfferV": true };
 }
 
@@ -5139,33 +5139,33 @@ export const Transaction_Offer_PaymentMode = {
    * static let payAsYouGo: Transaction.Offer.PaymentMode
    * @availability iOS 17.2+
    */
-  get payAsYouGo(): Transaction_Offer_PaymentMode { return callSDK<Transaction_Offer_PaymentMode>("StoreKit_86f7e029fa4ce140", 2094707533443032, undefined, []); },
+  get payAsYouGo(): Transaction_Offer_PaymentMode { return callSDK<Transaction_Offer_PaymentMode>("StoreKit_d453e9e1f4a52dda", 2094707533443032, undefined, []); },
   /**
    * static let payUpFront: Transaction.Offer.PaymentMode
    * @availability iOS 17.2+
    */
-  get payUpFront(): Transaction_Offer_PaymentMode { return callSDK<Transaction_Offer_PaymentMode>("StoreKit_86f7e029fa4ce140", 3468445029321291, undefined, []); },
+  get payUpFront(): Transaction_Offer_PaymentMode { return callSDK<Transaction_Offer_PaymentMode>("StoreKit_d453e9e1f4a52dda", 3468445029321291, undefined, []); },
   /**
    * @backDeployed(before: iOS 26.0, macOS 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0)
   static var oneTime: Transaction.Offer.PaymentMode { get }
    * @availability iOS 17.2+
    */
-  get oneTime(): Transaction_Offer_PaymentMode { return callSDK<Transaction_Offer_PaymentMode>("StoreKit_86f7e029fa4ce140", 4450409978240052, undefined, []); },
+  get oneTime(): Transaction_Offer_PaymentMode { return callSDK<Transaction_Offer_PaymentMode>("StoreKit_d453e9e1f4a52dda", 4450409978240052, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 17.2+
    */
-  init(rawValue: string): Transaction_Offer_PaymentMode { return callSDK<Transaction_Offer_PaymentMode>("StoreKit_86f7e029fa4ce140", 1993983409405983, undefined, [rawValue]); },
+  init(rawValue: string): Transaction_Offer_PaymentMode { return callSDK<Transaction_Offer_PaymentMode>("StoreKit_d453e9e1f4a52dda", 1993983409405983, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 17.2+
    */
-  getRawValue($self: Transaction_Offer_PaymentMode): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1238004571291839, $self, []); },
+  getRawValue($self: Transaction_Offer_PaymentMode): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1238004571291839, $self, []); },
   /**
    * static let freeTrial: Transaction.Offer.PaymentMode
    * @availability iOS 17.2+
    */
-  get freeTrial(): Transaction_Offer_PaymentMode { return callSDK<Transaction_Offer_PaymentMode>("StoreKit_86f7e029fa4ce140", 835595272201814, undefined, []); }
+  get freeTrial(): Transaction_Offer_PaymentMode { return callSDK<Transaction_Offer_PaymentMode>("StoreKit_d453e9e1f4a52dda", 835595272201814, undefined, []); }
 };
 
 /**
@@ -5185,38 +5185,38 @@ export const Transaction_OfferType = {
    * static let promotional: Transaction.OfferType
    * @availability iOS 15.0+
    */
-  get promotional(): Transaction_OfferType { return callSDK<Transaction_OfferType>("StoreKit_86f7e029fa4ce140", 3252014502009771, undefined, []); },
+  get promotional(): Transaction_OfferType { return callSDK<Transaction_OfferType>("StoreKit_d453e9e1f4a52dda", 3252014502009771, undefined, []); },
   /**
    * static let introductory: Transaction.OfferType
    * @availability iOS 15.0+
    */
-  get introductory(): Transaction_OfferType { return callSDK<Transaction_OfferType>("StoreKit_86f7e029fa4ce140", 4117278954687560, undefined, []); },
+  get introductory(): Transaction_OfferType { return callSDK<Transaction_OfferType>("StoreKit_d453e9e1f4a52dda", 4117278954687560, undefined, []); },
   /**
    * var localizedDescription: String { get }
    * @availability iOS 15.4+
    */
-  getLocalizedDescription($self: Transaction_OfferType): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3347304026262361, $self, []); },
+  getLocalizedDescription($self: Transaction_OfferType): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3347304026262361, $self, []); },
   /**
    * static let code: Transaction.OfferType
    * @availability iOS 15.0+
    */
-  get code(): Transaction_OfferType { return callSDK<Transaction_OfferType>("StoreKit_86f7e029fa4ce140", 3004689533946196, undefined, []); },
+  get code(): Transaction_OfferType { return callSDK<Transaction_OfferType>("StoreKit_d453e9e1f4a52dda", 3004689533946196, undefined, []); },
   /**
    * @backDeployed(before: iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
   static var winBack: Transaction.OfferType { get }
    * @availability iOS 15.0+
    */
-  get winBack(): Transaction_OfferType { return callSDK<Transaction_OfferType>("StoreKit_86f7e029fa4ce140", 1261399935197816, undefined, []); },
+  get winBack(): Transaction_OfferType { return callSDK<Transaction_OfferType>("StoreKit_d453e9e1f4a52dda", 1261399935197816, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): Transaction_OfferType { return callSDK<Transaction_OfferType>("StoreKit_86f7e029fa4ce140", 648982750562991, undefined, [rawValue]); },
+  init(rawValue: number): Transaction_OfferType { return callSDK<Transaction_OfferType>("StoreKit_d453e9e1f4a52dda", 648982750562991, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 15.0+
    */
-  getRawValue($self: Transaction_OfferType): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 2799164810907556, $self, []); }
+  getRawValue($self: Transaction_OfferType): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 2799164810907556, $self, []); }
 };
 
 /**
@@ -5236,33 +5236,33 @@ export const Transaction_OwnershipType = {
    * static let familyShared: Transaction.OwnershipType
    * @availability iOS 15.0+
    */
-  get familyShared(): Transaction_OwnershipType { return callSDK<Transaction_OwnershipType>("StoreKit_86f7e029fa4ce140", 2910573658031963, undefined, []); },
+  get familyShared(): Transaction_OwnershipType { return callSDK<Transaction_OwnershipType>("StoreKit_d453e9e1f4a52dda", 2910573658031963, undefined, []); },
   /**
    * var localizedDescription: String { get }
    * @availability iOS 15.4+
    */
-  getLocalizedDescription($self: Transaction_OwnershipType): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3953785294100633, $self, []); },
+  getLocalizedDescription($self: Transaction_OwnershipType): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3953785294100633, $self, []); },
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   static var assigned: Transaction.OwnershipType { get }
    * @availability iOS 15.0+
    */
-  get assigned(): Transaction_OwnershipType { return callSDK<Transaction_OwnershipType>("StoreKit_86f7e029fa4ce140", 2591072121791667, undefined, []); },
+  get assigned(): Transaction_OwnershipType { return callSDK<Transaction_OwnershipType>("StoreKit_d453e9e1f4a52dda", 2591072121791667, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): Transaction_OwnershipType { return callSDK<Transaction_OwnershipType>("StoreKit_86f7e029fa4ce140", 3264781335313781, undefined, [rawValue]); },
+  init(rawValue: string): Transaction_OwnershipType { return callSDK<Transaction_OwnershipType>("StoreKit_d453e9e1f4a52dda", 3264781335313781, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 15.0+
    */
-  getRawValue($self: Transaction_OwnershipType): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 558467315559400, $self, []); },
+  getRawValue($self: Transaction_OwnershipType): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 558467315559400, $self, []); },
   /**
    * static let purchased: Transaction.OwnershipType
    * @availability iOS 15.0+
    */
-  get purchased(): Transaction_OwnershipType { return callSDK<Transaction_OwnershipType>("StoreKit_86f7e029fa4ce140", 4390308721396085, undefined, []); }
+  get purchased(): Transaction_OwnershipType { return callSDK<Transaction_OwnershipType>("StoreKit_d453e9e1f4a52dda", 4390308721396085, undefined, []); }
 };
 
 /**
@@ -5282,22 +5282,22 @@ export const Transaction_Reason = {
    * static let renewal: Transaction.Reason
    * @availability iOS 17.0+
    */
-  get renewal(): Transaction_Reason { return callSDK<Transaction_Reason>("StoreKit_86f7e029fa4ce140", 2905490492988155, undefined, []); },
+  get renewal(): Transaction_Reason { return callSDK<Transaction_Reason>("StoreKit_d453e9e1f4a52dda", 2905490492988155, undefined, []); },
   /**
    * static let purchase: Transaction.Reason
    * @availability iOS 17.0+
    */
-  get purchase(): Transaction_Reason { return callSDK<Transaction_Reason>("StoreKit_86f7e029fa4ce140", 1044030858639735, undefined, []); },
+  get purchase(): Transaction_Reason { return callSDK<Transaction_Reason>("StoreKit_d453e9e1f4a52dda", 1044030858639735, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 17.0+
    */
-  init(rawValue: string): Transaction_Reason { return callSDK<Transaction_Reason>("StoreKit_86f7e029fa4ce140", 2533816450409648, undefined, [rawValue]); },
+  init(rawValue: string): Transaction_Reason { return callSDK<Transaction_Reason>("StoreKit_d453e9e1f4a52dda", 2533816450409648, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 17.0+
    */
-  getRawValue($self: Transaction_Reason): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4483507199045574, $self, []); }
+  getRawValue($self: Transaction_Reason): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4483507199045574, $self, []); }
 };
 
 /**
@@ -5317,17 +5317,17 @@ export const Transaction_RefundRequestError = {
    * var failureReason: String? { get }
    * @availability iOS 15.4+
    */
-  getFailureReason($self: Transaction_RefundRequestError): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 936609203695624, $self, []); },
+  getFailureReason($self: Transaction_RefundRequestError): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 936609203695624, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 15.4+
    */
-  getErrorDescription($self: Transaction_RefundRequestError): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 2787058891913486, $self, []); },
+  getErrorDescription($self: Transaction_RefundRequestError): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 2787058891913486, $self, []); },
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 15.4+
    */
-  getRecoverySuggestion($self: Transaction_RefundRequestError): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 1085978055554215, $self, []); }
+  getRecoverySuggestion($self: Transaction_RefundRequestError): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 1085978055554215, $self, []); }
 };
 
 /**
@@ -5347,33 +5347,33 @@ export const Transaction_RevocationReason = {
    * static let developerIssue: Transaction.RevocationReason
    * @availability iOS 15.0+
    */
-  get developerIssue(): Transaction_RevocationReason { return callSDK<Transaction_RevocationReason>("StoreKit_86f7e029fa4ce140", 278820742261580, undefined, []); },
+  get developerIssue(): Transaction_RevocationReason { return callSDK<Transaction_RevocationReason>("StoreKit_d453e9e1f4a52dda", 278820742261580, undefined, []); },
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)
   static var upgradedToBundle: Transaction.RevocationReason { get }
    * @availability iOS 15.0+
    */
-  get upgradedToBundle(): Transaction_RevocationReason { return callSDK<Transaction_RevocationReason>("StoreKit_86f7e029fa4ce140", 3299251351176953, undefined, []); },
+  get upgradedToBundle(): Transaction_RevocationReason { return callSDK<Transaction_RevocationReason>("StoreKit_d453e9e1f4a52dda", 3299251351176953, undefined, []); },
   /**
    * var localizedDescription: String { get }
    * @availability iOS 15.4+
    */
-  getLocalizedDescription($self: Transaction_RevocationReason): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3839784879276000, $self, []); },
+  getLocalizedDescription($self: Transaction_RevocationReason): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3839784879276000, $self, []); },
   /**
    * static let other: Transaction.RevocationReason
    * @availability iOS 15.0+
    */
-  get other(): Transaction_RevocationReason { return callSDK<Transaction_RevocationReason>("StoreKit_86f7e029fa4ce140", 1625582883365663, undefined, []); },
+  get other(): Transaction_RevocationReason { return callSDK<Transaction_RevocationReason>("StoreKit_d453e9e1f4a52dda", 1625582883365663, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): Transaction_RevocationReason { return callSDK<Transaction_RevocationReason>("StoreKit_86f7e029fa4ce140", 1842157627480385, undefined, [rawValue]); },
+  init(rawValue: number): Transaction_RevocationReason { return callSDK<Transaction_RevocationReason>("StoreKit_d453e9e1f4a52dda", 1842157627480385, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 15.0+
    */
-  getRawValue($self: Transaction_RevocationReason): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 3755251103062696, $self, []); }
+  getRawValue($self: Transaction_RevocationReason): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 3755251103062696, $self, []); }
 };
 
 /**
@@ -5394,32 +5394,32 @@ export const Transaction_RevocationType = {
   static var assignmentRevocation: Transaction.RevocationType { get }
    * @availability iOS 26.4+
    */
-  get assignmentRevocation(): Transaction_RevocationType { return callSDK<Transaction_RevocationType>("StoreKit_86f7e029fa4ce140", 3625537123114168, undefined, []); },
+  get assignmentRevocation(): Transaction_RevocationType { return callSDK<Transaction_RevocationType>("StoreKit_d453e9e1f4a52dda", 3625537123114168, undefined, []); },
   /**
    * static let familyRevocation: Transaction.RevocationType
    * @availability iOS 26.4+
    */
-  get familyRevocation(): Transaction_RevocationType { return callSDK<Transaction_RevocationType>("StoreKit_86f7e029fa4ce140", 2503825881058546, undefined, []); },
+  get familyRevocation(): Transaction_RevocationType { return callSDK<Transaction_RevocationType>("StoreKit_d453e9e1f4a52dda", 2503825881058546, undefined, []); },
   /**
    * static let fullRefund: Transaction.RevocationType
    * @availability iOS 26.4+
    */
-  get fullRefund(): Transaction_RevocationType { return callSDK<Transaction_RevocationType>("StoreKit_86f7e029fa4ce140", 1623313317173755, undefined, []); },
+  get fullRefund(): Transaction_RevocationType { return callSDK<Transaction_RevocationType>("StoreKit_d453e9e1f4a52dda", 1623313317173755, undefined, []); },
   /**
    * static let proratedRefund: Transaction.RevocationType
    * @availability iOS 26.4+
    */
-  get proratedRefund(): Transaction_RevocationType { return callSDK<Transaction_RevocationType>("StoreKit_86f7e029fa4ce140", 179234406245962, undefined, []); },
+  get proratedRefund(): Transaction_RevocationType { return callSDK<Transaction_RevocationType>("StoreKit_d453e9e1f4a52dda", 179234406245962, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 26.4+
    */
-  init(rawValue: string): Transaction_RevocationType { return callSDK<Transaction_RevocationType>("StoreKit_86f7e029fa4ce140", 3077627055336630, undefined, [rawValue]); },
+  init(rawValue: string): Transaction_RevocationType { return callSDK<Transaction_RevocationType>("StoreKit_d453e9e1f4a52dda", 3077627055336630, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 26.4+
    */
-  getRawValue($self: Transaction_RevocationType): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1343309390783466, $self, []); }
+  getRawValue($self: Transaction_RevocationType): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1343309390783466, $self, []); }
 };
 
 /**
@@ -5437,7 +5437,7 @@ export class Transaction_Transactions extends SDKHandle {
    * func makeAsyncIterator() -> Transaction.Transactions.AsyncIterator
    * @availability iOS 15.0+
    */
-  makeAsyncIterator(): Transaction_Transactions_AsyncIterator { return callSDK<Transaction_Transactions_AsyncIterator>("StoreKit_86f7e029fa4ce140", 574867261870875, this, []); }
+  makeAsyncIterator(): Transaction_Transactions_AsyncIterator { return callSDK<Transaction_Transactions_AsyncIterator>("StoreKit_d453e9e1f4a52dda", 574867261870875, this, []); }
   declare readonly $type: { "s:8StoreKit11TransactionV12TransactionsV": true };
   declare readonly $element: $SDK2;
 }
@@ -5451,7 +5451,7 @@ export class Transaction_Transactions_AsyncIterator extends SDKHandle {
    * mutating func next() async -> VerificationResult<Transaction>?
    * @availability iOS 15.0+
    */
-  next(): Promise<$SDK0> { return callSDKAsync<$SDK0>("StoreKit_86f7e029fa4ce140", 4326775369940750, this, []); }
+  next(): Promise<$SDK0> { return callSDKAsync<$SDK0>("StoreKit_d453e9e1f4a52dda", 4326775369940750, this, []); }
   declare readonly $type: { "s:8StoreKit11TransactionV12TransactionsV13AsyncIteratorV": true };
 }
 
@@ -5476,147 +5476,147 @@ export class VerificationResult<SignedType = unknown> extends SDKHandle {
    * var payloadValue: SignedType { get throws }
    * @availability iOS 15.0+
    */
-  get payloadValue(): unknown { return callSDK<unknown>("StoreKit_86f7e029fa4ce140", 3447917687204263, this, []); }
+  get payloadValue(): unknown { return callSDK<unknown>("StoreKit_d453e9e1f4a52dda", 3447917687204263, this, []); }
   /**
    * var unsafePayloadValue: SignedType { get }
    * @availability iOS 15.0+
    */
-  get unsafePayloadValue(): unknown { return callSDK<unknown>("StoreKit_86f7e029fa4ce140", 2513061247933955, this, []); }
+  get unsafePayloadValue(): unknown { return callSDK<unknown>("StoreKit_d453e9e1f4a52dda", 2513061247933955, this, []); }
   /**
    * var deviceVerification: Data { get }
    * @availability iOS 15.0+
    */
-  get deviceVerification(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 3856459413887405, this, []); }
+  get deviceVerification(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 3856459413887405, this, []); }
   /**
    * var deviceVerificationNonce: UUID { get }
    * @availability iOS 15.0+
    */
-  get deviceVerificationNonce(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 4352151581886949, this, []); }
+  get deviceVerificationNonce(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 4352151581886949, this, []); }
   /**
    * var headerData: Data { get }
    * @availability iOS 15.0+
    */
-  get headerData(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 1124061864942785, this, []); }
+  get headerData(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 1124061864942785, this, []); }
   /**
    * var signedData: Data { get }
    * @availability iOS 15.0+
    */
-  get signedData(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 2555863466403823, this, []); }
+  get signedData(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 2555863466403823, this, []); }
   /**
    * var signedDate: Date { get }
    * @availability iOS 15.0+
    */
-  get signedDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_86f7e029fa4ce140", 3149247272764228, this, []); }
+  get signedDate(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_d453e9e1f4a52dda", 3149247272764228, this, []); }
   /**
    * var payloadData: Data { get }
    * @availability iOS 15.0+
    */
-  get payloadData(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 2028475407865363, this, []); }
+  get payloadData(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 2028475407865363, this, []); }
   /**
    * var signatureData: Data { get }
    * @availability iOS 15.0+
    */
-  get signatureData(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 272795651314289, this, []); }
+  get signatureData(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 272795651314289, this, []); }
   /**
    * var jwsRepresentation: String { get }
    * @availability iOS 15.0+
    */
-  get jwsRepresentation(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 2713702033147935, this, []); }
+  get jwsRepresentation(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 2713702033147935, this, []); }
   /**
    * var signature: P256.Signing.ECDSASignature { get }
    * @availability iOS 15.0+
    */
-  get signature(): _CryptoKit_P256_Signing_ECDSASignature { return callSDK<_CryptoKit_P256_Signing_ECDSASignature>("StoreKit_86f7e029fa4ce140", 3012608978084711, this, []); }
+  get signature(): _CryptoKit_P256_Signing_ECDSASignature { return callSDK<_CryptoKit_P256_Signing_ECDSASignature>("StoreKit_d453e9e1f4a52dda", 3012608978084711, this, []); }
   /**
    * var deviceVerification: Data { get }
    * @availability iOS 16.0+
    */
-  get deviceVerification43932(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 2127081890335710, this, []); }
+  get deviceVerification43932(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 2127081890335710, this, []); }
   /**
    * var deviceVerificationNonce: UUID { get }
    * @availability iOS 16.0+
    */
-  get deviceVerificationNonce49139(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1090938162357878, this, []); }
+  get deviceVerificationNonce49139(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1090938162357878, this, []); }
   /**
    * var headerData: Data { get }
    * @availability iOS 16.0+
    */
-  get headerData80579(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 519753371392029, this, []); }
+  get headerData80579(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 519753371392029, this, []); }
   /**
    * var signedData: Data { get }
    * @availability iOS 16.0+
    */
-  get signedData96986(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 3894137903246562, this, []); }
+  get signedData96986(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 3894137903246562, this, []); }
   /**
    * var signedDate: Date { get }
    * @availability iOS 16.0+
    */
-  get signedDate63934(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_86f7e029fa4ce140", 3274079341451092, this, []); }
+  get signedDate63934(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_d453e9e1f4a52dda", 3274079341451092, this, []); }
   /**
    * var payloadData: Data { get }
    * @availability iOS 16.0+
    */
-  get payloadData82417(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 1703347312674755, this, []); }
+  get payloadData82417(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 1703347312674755, this, []); }
   /**
    * var signatureData: Data { get }
    * @availability iOS 16.0+
    */
-  get signatureData98739(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 3578825606281470, this, []); }
+  get signatureData98739(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 3578825606281470, this, []); }
   /**
    * var jwsRepresentation: String { get }
    * @availability iOS 16.0+
    */
-  get jwsRepresentation27364(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 1521807114359992, this, []); }
+  get jwsRepresentation27364(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 1521807114359992, this, []); }
   /**
    * var signature: P256.Signing.ECDSASignature { get }
    * @availability iOS 16.0+
    */
-  get signature83437(): _CryptoKit_P256_Signing_ECDSASignature { return callSDK<_CryptoKit_P256_Signing_ECDSASignature>("StoreKit_86f7e029fa4ce140", 4087320432284045, this, []); }
+  get signature83437(): _CryptoKit_P256_Signing_ECDSASignature { return callSDK<_CryptoKit_P256_Signing_ECDSASignature>("StoreKit_d453e9e1f4a52dda", 4087320432284045, this, []); }
   /**
    * var deviceVerification: Data { get }
    * @availability iOS 15.0+
    */
-  get deviceVerification2976(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 3882733443822575, this, []); }
+  get deviceVerification2976(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 3882733443822575, this, []); }
   /**
    * var deviceVerificationNonce: UUID { get }
    * @availability iOS 15.0+
    */
-  get deviceVerificationNonce55855(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 512382718575442, this, []); }
+  get deviceVerificationNonce55855(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 512382718575442, this, []); }
   /**
    * var headerData: Data { get }
    * @availability iOS 15.0+
    */
-  get headerData5797(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 3643783165460266, this, []); }
+  get headerData5797(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 3643783165460266, this, []); }
   /**
    * var signedData: Data { get }
    * @availability iOS 15.0+
    */
-  get signedData62824(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 4179907421675826, this, []); }
+  get signedData62824(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 4179907421675826, this, []); }
   /**
    * var signedDate: Date { get }
    * @availability iOS 15.0+
    */
-  get signedDate80884(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_86f7e029fa4ce140", 3330934544975777, this, []); }
+  get signedDate80884(): globalThis.Date { return callSDK<globalThis.Date>("StoreKit_d453e9e1f4a52dda", 3330934544975777, this, []); }
   /**
    * var payloadData: Data { get }
    * @availability iOS 15.0+
    */
-  get payloadData65487(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 1358336546435007, this, []); }
+  get payloadData65487(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 1358336546435007, this, []); }
   /**
    * var signatureData: Data { get }
    * @availability iOS 15.0+
    */
-  get signatureData16253(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_86f7e029fa4ce140", 3362161504688288, this, []); }
+  get signatureData16253(): ArrayBuffer { return callSDK<ArrayBuffer>("StoreKit_d453e9e1f4a52dda", 3362161504688288, this, []); }
   /**
    * var jwsRepresentation: String { get }
    * @availability iOS 15.0+
    */
-  get jwsRepresentation21432(): string { return callSDK<string>("StoreKit_86f7e029fa4ce140", 3301054053817455, this, []); }
+  get jwsRepresentation21432(): string { return callSDK<string>("StoreKit_d453e9e1f4a52dda", 3301054053817455, this, []); }
   /**
    * var signature: P256.Signing.ECDSASignature { get }
    * @availability iOS 15.0+
    */
-  get signature3169(): _CryptoKit_P256_Signing_ECDSASignature { return callSDK<_CryptoKit_P256_Signing_ECDSASignature>("StoreKit_86f7e029fa4ce140", 2064292232590046, this, []); }
+  get signature3169(): _CryptoKit_P256_Signing_ECDSASignature { return callSDK<_CryptoKit_P256_Signing_ECDSASignature>("StoreKit_d453e9e1f4a52dda", 2064292232590046, this, []); }
   declare readonly $type: { "s:8StoreKit18VerificationResultO": true };
 }
 
@@ -5631,30 +5631,30 @@ export const VerificationResult_VerificationError = {
    * var failureReason: String? { get }
    * @availability iOS 15.4+
    */
-  getFailureReason($self: VerificationResult_VerificationError): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 1148367073823446, $self, []); },
+  getFailureReason($self: VerificationResult_VerificationError): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 1148367073823446, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 15.4+
    */
-  getErrorDescription($self: VerificationResult_VerificationError): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 4110359312308985, $self, []); },
+  getErrorDescription($self: VerificationResult_VerificationError): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 4110359312308985, $self, []); },
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 15.4+
    */
-  getRecoverySuggestion($self: VerificationResult_VerificationError): (string) | null { return callSDK<(string) | null>("StoreKit_86f7e029fa4ce140", 2191283119255527, $self, []); }
+  getRecoverySuggestion($self: VerificationResult_VerificationError): (string) | null { return callSDK<(string) | null>("StoreKit_d453e9e1f4a52dda", 2191283119255527, $self, []); }
 };
 
 /**
  * func SKTerminateForInvalidReceipt()
  * @availability iOS 7.1+
  */
-export function SKTerminateForInvalidReceipt(): void { return callSDK<void>("StoreKit_86f7e029fa4ce140", 2156285353555237, undefined, []); }
+export function SKTerminateForInvalidReceipt(): void { return callSDK<void>("StoreKit_d453e9e1f4a52dda", 2156285353555237, undefined, []); }
 
 /**
  * let SKANErrorDomain: String
  * @availability iOS 15.4+
  */
-export const SKANErrorDomain: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 496111906036400, undefined, []);
+export const SKANErrorDomain: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 496111906036400, undefined, []);
 
 /**
  * var SKDownloadTimeRemainingUnknown: TimeInterval
@@ -5662,221 +5662,221 @@ export const SKANErrorDomain: string = callSDK<string>("StoreKit_86f7e029fa4ce14
  * @deprecated iOS 16.0
  */
 export const SKDownloadTimeRemainingUnknown = {
-  get value(): number { return callSDK<number>("StoreKit_86f7e029fa4ce140", 3422490548201351, undefined, []); },
-  set value(value: number) { callSDK<void>("StoreKit_86f7e029fa4ce140", 284845569052409, undefined, [value]); }
+  get value(): number { return callSDK<number>("StoreKit_d453e9e1f4a52dda", 3422490548201351, undefined, []); },
+  set value(value: number) { callSDK<void>("StoreKit_d453e9e1f4a52dda", 284845569052409, undefined, [value]); }
 };
 
 /**
  * let SKErrorDomain: String
  * @availability iOS 3.0+
  */
-export const SKErrorDomain: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 1321377452347650, undefined, []);
+export const SKErrorDomain: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 1321377452347650, undefined, []);
 
 /**
  * let SKReceiptPropertyIsExpired: String
  * @availability iOS 7.0+
  * @deprecated iOS 18.0
  */
-export const SKReceiptPropertyIsExpired: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 4037696160760901, undefined, []);
+export const SKReceiptPropertyIsExpired: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 4037696160760901, undefined, []);
 
 /**
  * let SKReceiptPropertyIsRevoked: String
  * @availability iOS 7.0+
  * @deprecated iOS 18.0
  */
-export const SKReceiptPropertyIsRevoked: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 4081349858100552, undefined, []);
+export const SKReceiptPropertyIsRevoked: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 4081349858100552, undefined, []);
 
 /**
  * let SKReceiptPropertyIsVolumePurchase: String
  * @availability iOS 7.0+
  * @deprecated iOS 18.0
  */
-export const SKReceiptPropertyIsVolumePurchase: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 405182775828947, undefined, []);
+export const SKReceiptPropertyIsVolumePurchase: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 405182775828947, undefined, []);
 
 /**
  * let SKStoreProductParameterAdNetworkAttributionSignature: String
  * @availability iOS 11.3+
  */
-export const SKStoreProductParameterAdNetworkAttributionSignature: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 3043194076369450, undefined, []);
+export const SKStoreProductParameterAdNetworkAttributionSignature: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 3043194076369450, undefined, []);
 
 /**
  * let SKStoreProductParameterAdNetworkCampaignIdentifier: String
  * @availability iOS 11.3+
  */
-export const SKStoreProductParameterAdNetworkCampaignIdentifier: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 648597315381963, undefined, []);
+export const SKStoreProductParameterAdNetworkCampaignIdentifier: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 648597315381963, undefined, []);
 
 /**
  * let SKStoreProductParameterAdNetworkIdentifier: String
  * @availability iOS 11.3+
  */
-export const SKStoreProductParameterAdNetworkIdentifier: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 3336149553239033, undefined, []);
+export const SKStoreProductParameterAdNetworkIdentifier: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 3336149553239033, undefined, []);
 
 /**
  * let SKStoreProductParameterAdNetworkNonce: String
  * @availability iOS 11.3+
  */
-export const SKStoreProductParameterAdNetworkNonce: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 917526640442699, undefined, []);
+export const SKStoreProductParameterAdNetworkNonce: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 917526640442699, undefined, []);
 
 /**
  * let SKStoreProductParameterAdNetworkSourceAppStoreIdentifier: String
  * @availability iOS 14.0+
  */
-export const SKStoreProductParameterAdNetworkSourceAppStoreIdentifier: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 2914423393739373, undefined, []);
+export const SKStoreProductParameterAdNetworkSourceAppStoreIdentifier: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 2914423393739373, undefined, []);
 
 /**
  * let SKStoreProductParameterAdNetworkSourceIdentifier: String
  * @availability iOS 16.1+
  */
-export const SKStoreProductParameterAdNetworkSourceIdentifier: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 102883209502214, undefined, []);
+export const SKStoreProductParameterAdNetworkSourceIdentifier: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 102883209502214, undefined, []);
 
 /**
  * let SKStoreProductParameterAdNetworkTimestamp: String
  * @availability iOS 11.3+
  */
-export const SKStoreProductParameterAdNetworkTimestamp: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 2566142677451965, undefined, []);
+export const SKStoreProductParameterAdNetworkTimestamp: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 2566142677451965, undefined, []);
 
 /**
  * let SKStoreProductParameterAdNetworkVersion: String
  * @availability iOS 14.0+
  */
-export const SKStoreProductParameterAdNetworkVersion: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 2540517550536425, undefined, []);
+export const SKStoreProductParameterAdNetworkVersion: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 2540517550536425, undefined, []);
 
 /**
  * let SKStoreProductParameterAdvertisingPartnerToken: String
  * @availability iOS 9.3+
  */
-export const SKStoreProductParameterAdvertisingPartnerToken: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 459421263068221, undefined, []);
+export const SKStoreProductParameterAdvertisingPartnerToken: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 459421263068221, undefined, []);
 
 /**
  * let SKStoreProductParameterAffiliateToken: String
  * @availability iOS 8.0+
  */
-export const SKStoreProductParameterAffiliateToken: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 421697420063640, undefined, []);
+export const SKStoreProductParameterAffiliateToken: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 421697420063640, undefined, []);
 
 /**
  * let SKStoreProductParameterCampaignToken: String
  * @availability iOS 8.0+
  */
-export const SKStoreProductParameterCampaignToken: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 4256445907155151, undefined, []);
+export const SKStoreProductParameterCampaignToken: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 4256445907155151, undefined, []);
 
 /**
  * let SKStoreProductParameterCustomProductPageIdentifier: String
  * @availability iOS 15.0+
  */
-export const SKStoreProductParameterCustomProductPageIdentifier: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 2769036132590282, undefined, []);
+export const SKStoreProductParameterCustomProductPageIdentifier: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 2769036132590282, undefined, []);
 
 /**
  * let SKStoreProductParameterITunesItemIdentifier: String
  * @availability iOS 6.0+
  */
-export const SKStoreProductParameterITunesItemIdentifier: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 4405777500118260, undefined, []);
+export const SKStoreProductParameterITunesItemIdentifier: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 4405777500118260, undefined, []);
 
 /**
  * let SKStoreProductParameterProductIdentifier: String
  * @availability iOS 11.0+
  */
-export const SKStoreProductParameterProductIdentifier: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 3559235281052921, undefined, []);
+export const SKStoreProductParameterProductIdentifier: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 3559235281052921, undefined, []);
 
 /**
  * let SKStoreProductParameterProviderToken: String
  * @availability iOS 8.3+
  */
-export const SKStoreProductParameterProviderToken: string = callSDK<string>("StoreKit_86f7e029fa4ce140", 4096138751879823, undefined, []);
+export const SKStoreProductParameterProviderToken: string = callSDK<string>("StoreKit_d453e9e1f4a52dda", 4096138751879823, undefined, []);
 
-registerSDKClass("StoreKit.AdvancedCommerceProduct", AdvancedCommerceProduct, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"purchase":{"id":2679070083073132}} });
-registerSDKClass("StoreKit.AdvancedCommerceProduct.PurchaseOption", AdvancedCommerceProduct_PurchaseOption, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.AppStore", AppStore, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.AppStoreMerchandisingKind", AppStoreMerchandisingKind, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.AppStoreMerchandisingKind.PresentationResult", AppStoreMerchandisingKind_PresentationResult, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.AppTransaction", AppTransaction, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.AppTransaction.AppTransactions", AppTransaction_AppTransactions, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"makeAsyncIterator":{"id":2392335956848867}} });
-registerSDKClass("StoreKit.AppTransaction.AppTransactions.AsyncIterator", AppTransaction_AppTransactions_AsyncIterator, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"next":{"id":3831335430500732}} });
-registerSDKClass("Foundation.DateComponents", DateComponents, { module: "StoreKit_86f7e029fa4ce140", properties: {} }, true);
-registerSDKClass("StoreKit.ExternalLinkAccount", ExternalLinkAccount, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.ExternalPurchase", ExternalPurchase, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.ExternalPurchase.NoticeResult", ExternalPurchase_NoticeResult, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.ExternalPurchaseCustomLink", ExternalPurchaseCustomLink, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.ExternalPurchaseCustomLink.Token", ExternalPurchaseCustomLink_Token, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.ExternalPurchaseLink", ExternalPurchaseLink, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.InvalidRequestError", InvalidRequestError, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Message", Message, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"display":{"id":1265988406337488}} });
-registerSDKClass("StoreKit.Message.Messages", Message_Messages, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"makeAsyncIterator":{"id":4081307500364996}} });
-registerSDKClass("StoreKit.Message.Messages.AsyncIterator", Message_Messages_AsyncIterator, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"next":{"id":2036959500550669}} });
-registerSDKClass("StoreKit.PaymentMethodBinding", PaymentMethodBinding, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"bind":{"id":488100630518281}} });
-registerSDKClass("StoreKit.Product", Product, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"purchaseOptions":{"id":2028359356356327},"purchaseConfirmInOptions":{"id":3449418759301403},"purchaseConfirmInOptions44435":{"id":2098701510271861}} });
-registerSDKClass("StoreKit.Product.PromotionInfo", Product_PromotionInfo, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"update":{"id":3451652640668262}} });
-registerSDKClass("StoreKit.Product.PurchaseOption", Product_PurchaseOption, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Product.PurchaseResult", Product_PurchaseResult, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Product.SubscriptionInfo", Product_SubscriptionInfo, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Product.SubscriptionInfo.BundledSubscription", Product_SubscriptionInfo_BundledSubscription, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Product.SubscriptionInfo.CommitmentInfo", Product_SubscriptionInfo_CommitmentInfo, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Product.SubscriptionInfo.PricingTerms", Product_SubscriptionInfo_PricingTerms, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"subscript":{"id":216072207568263}} });
-registerSDKClass("StoreKit.Product.SubscriptionInfo.RenewalInfo", Product_SubscriptionInfo_RenewalInfo, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo", Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo.Item", Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo.Item.PriceIncreaseInfo", Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Product.SubscriptionInfo.RenewalInfo.CommitmentInfo", Product_SubscriptionInfo_RenewalInfo_CommitmentInfo, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Product.SubscriptionInfo.Status", Product_SubscriptionInfo_Status, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Product.SubscriptionInfo.Status.Statuses", Product_SubscriptionInfo_Status_Statuses, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"makeAsyncIterator":{"id":2633496161862480}} });
-registerSDKClass("StoreKit.Product.SubscriptionInfo.Status.Statuses.AsyncIterator", Product_SubscriptionInfo_Status_Statuses_AsyncIterator, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"next":{"id":2920807590994760}} });
-registerSDKClass("StoreKit.Product.SubscriptionOffer", Product_SubscriptionOffer, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Product.SubscriptionOffer.Signature", Product_SubscriptionOffer_Signature, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Product.SubscriptionPeriod", Product_SubscriptionPeriod, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"dateRange":{"id":1560306420334362}} });
-registerSDKClass("StoreKit.Product.SubscriptionPeriod.Unit.FormatStyle", Product_SubscriptionPeriod_Unit_FormatStyle, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"format":{"id":3233002590723705},"locale":{"id":3384323921069268}} });
-registerSDKClass("StoreKit.PurchaseIntent", PurchaseIntent, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.PurchaseIntent.PurchaseIntents", PurchaseIntent_PurchaseIntents, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"makeAsyncIterator":{"id":4014872352300019}} });
-registerSDKClass("StoreKit.PurchaseIntent.PurchaseIntents.AsyncIterator", PurchaseIntent_PurchaseIntents_AsyncIterator, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"next":{"id":1685090185782498}} });
-registerSDKClass("StoreKit.RedeemOption", RedeemOption, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("SKAdImpression", SKAdImpression, { module: "StoreKit_86f7e029fa4ce140", properties: {"adCampaignIdentifier":2899307830897925,"adDescription":1260240635996296,"adImpressionIdentifier":70152987154978,"adNetworkIdentifier":546858913281701,"adPurchaserName":3006175832858104,"adType":2466798264187726,"advertisedAppStoreItemIdentifier":3287676939929391,"signature":2285951322802274,"sourceAppStoreItemIdentifier":100983505455069,"sourceIdentifier":2077078299695777,"timestamp":2822174254361553,"version":2388879993153756} });
-registerSDKClass("SKAdNetwork", SKAdNetwork, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.SKANError", SKANError, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("SKArcadeService", SKArcadeService, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("SKCloudServiceController", SKCloudServiceController, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"requestPersonalizationToken":{"id":921831009432419,"hints":[null,{"callback":{"out":[]}}]},"requestStorefrontCountryCode":{"id":3152378021279399,"hints":[{"callback":{"out":[]}}]},"requestStorefrontIdentifier":{"id":3441102327157598,"hints":[{"callback":{"out":[]}}]},"requestUserToken":{"id":2427370854108281,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("SKCloudServiceSetupViewController", SKCloudServiceSetupViewController, { module: "StoreKit_86f7e029fa4ce140", properties: {"delegate":94658438776959}, methods: {"load":{"id":857604197931078,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("StoreKit.AdvancedCommerceProduct", AdvancedCommerceProduct, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"purchase":{"id":2679070083073132}} });
+registerSDKClass("StoreKit.AdvancedCommerceProduct.PurchaseOption", AdvancedCommerceProduct_PurchaseOption, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.AppStore", AppStore, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.AppStoreMerchandisingKind", AppStoreMerchandisingKind, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.AppStoreMerchandisingKind.PresentationResult", AppStoreMerchandisingKind_PresentationResult, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.AppTransaction", AppTransaction, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.AppTransaction.AppTransactions", AppTransaction_AppTransactions, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"makeAsyncIterator":{"id":2392335956848867}} });
+registerSDKClass("StoreKit.AppTransaction.AppTransactions.AsyncIterator", AppTransaction_AppTransactions_AsyncIterator, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"next":{"id":3831335430500732}} });
+registerSDKClass("Foundation.DateComponents", DateComponents, { module: "StoreKit_d453e9e1f4a52dda", properties: {} }, true);
+registerSDKClass("StoreKit.ExternalLinkAccount", ExternalLinkAccount, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.ExternalPurchase", ExternalPurchase, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.ExternalPurchase.NoticeResult", ExternalPurchase_NoticeResult, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.ExternalPurchaseCustomLink", ExternalPurchaseCustomLink, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.ExternalPurchaseCustomLink.Token", ExternalPurchaseCustomLink_Token, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.ExternalPurchaseLink", ExternalPurchaseLink, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.InvalidRequestError", InvalidRequestError, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Message", Message, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"display":{"id":1265988406337488}} });
+registerSDKClass("StoreKit.Message.Messages", Message_Messages, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"makeAsyncIterator":{"id":4081307500364996}} });
+registerSDKClass("StoreKit.Message.Messages.AsyncIterator", Message_Messages_AsyncIterator, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"next":{"id":2036959500550669}} });
+registerSDKClass("StoreKit.PaymentMethodBinding", PaymentMethodBinding, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"bind":{"id":488100630518281}} });
+registerSDKClass("StoreKit.Product", Product, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"purchaseOptions":{"id":2028359356356327},"purchaseConfirmInOptions":{"id":3449418759301403},"purchaseConfirmInOptions44435":{"id":2098701510271861}} });
+registerSDKClass("StoreKit.Product.PromotionInfo", Product_PromotionInfo, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"update":{"id":3451652640668262}} });
+registerSDKClass("StoreKit.Product.PurchaseOption", Product_PurchaseOption, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Product.PurchaseResult", Product_PurchaseResult, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Product.SubscriptionInfo", Product_SubscriptionInfo, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Product.SubscriptionInfo.BundledSubscription", Product_SubscriptionInfo_BundledSubscription, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Product.SubscriptionInfo.CommitmentInfo", Product_SubscriptionInfo_CommitmentInfo, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Product.SubscriptionInfo.PricingTerms", Product_SubscriptionInfo_PricingTerms, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"subscript":{"id":216072207568263}} });
+registerSDKClass("StoreKit.Product.SubscriptionInfo.RenewalInfo", Product_SubscriptionInfo_RenewalInfo, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo", Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo.Item", Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo.Item.PriceIncreaseInfo", Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Product.SubscriptionInfo.RenewalInfo.CommitmentInfo", Product_SubscriptionInfo_RenewalInfo_CommitmentInfo, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Product.SubscriptionInfo.Status", Product_SubscriptionInfo_Status, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Product.SubscriptionInfo.Status.Statuses", Product_SubscriptionInfo_Status_Statuses, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"makeAsyncIterator":{"id":2633496161862480}} });
+registerSDKClass("StoreKit.Product.SubscriptionInfo.Status.Statuses.AsyncIterator", Product_SubscriptionInfo_Status_Statuses_AsyncIterator, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"next":{"id":2920807590994760}} });
+registerSDKClass("StoreKit.Product.SubscriptionOffer", Product_SubscriptionOffer, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Product.SubscriptionOffer.Signature", Product_SubscriptionOffer_Signature, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Product.SubscriptionPeriod", Product_SubscriptionPeriod, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"dateRange":{"id":1560306420334362}} });
+registerSDKClass("StoreKit.Product.SubscriptionPeriod.Unit.FormatStyle", Product_SubscriptionPeriod_Unit_FormatStyle, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"format":{"id":3233002590723705},"locale":{"id":3384323921069268}} });
+registerSDKClass("StoreKit.PurchaseIntent", PurchaseIntent, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.PurchaseIntent.PurchaseIntents", PurchaseIntent_PurchaseIntents, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"makeAsyncIterator":{"id":4014872352300019}} });
+registerSDKClass("StoreKit.PurchaseIntent.PurchaseIntents.AsyncIterator", PurchaseIntent_PurchaseIntents_AsyncIterator, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"next":{"id":1685090185782498}} });
+registerSDKClass("StoreKit.RedeemOption", RedeemOption, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("SKAdImpression", SKAdImpression, { module: "StoreKit_d453e9e1f4a52dda", properties: {"adCampaignIdentifier":2899307830897925,"adDescription":1260240635996296,"adImpressionIdentifier":70152987154978,"adNetworkIdentifier":546858913281701,"adPurchaserName":3006175832858104,"adType":2466798264187726,"advertisedAppStoreItemIdentifier":3287676939929391,"signature":2285951322802274,"sourceAppStoreItemIdentifier":100983505455069,"sourceIdentifier":2077078299695777,"timestamp":2822174254361553,"version":2388879993153756} });
+registerSDKClass("SKAdNetwork", SKAdNetwork, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.SKANError", SKANError, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("SKArcadeService", SKArcadeService, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("SKCloudServiceController", SKCloudServiceController, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"requestPersonalizationToken":{"id":921831009432419,"hints":[null,{"callback":{"out":[]}}]},"requestStorefrontCountryCode":{"id":3152378021279399,"hints":[{"callback":{"out":[]}}]},"requestStorefrontIdentifier":{"id":3441102327157598,"hints":[{"callback":{"out":[]}}]},"requestUserToken":{"id":2427370854108281,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("SKCloudServiceSetupViewController", SKCloudServiceSetupViewController, { module: "StoreKit_d453e9e1f4a52dda", properties: {"delegate":94658438776959}, methods: {"load":{"id":857604197931078,"hints":[null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)SKCloudServiceSetupViewControllerDelegate", {"cloudServiceSetupViewControllerDidDismiss":"cloudServiceSetupViewControllerDidDismiss(_:)"});
-registerSDKClass("SKDownload", SKDownload, { module: "StoreKit_86f7e029fa4ce140", properties: {"contentIdentifier":4323632203716311,"contentLength":4433381483429630,"contentURL":1012295825455459,"contentVersion":1316869833542911,"downloadState":3817486435247663,"error":2787963255224597,"expectedContentLength":3836010161070300,"progress":823903860947616,"state":1047858640664304,"timeRemaining":3407522947137272,"transaction":594001743154293} });
-registerSDKClass("StoreKit.SKError", SKError, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("SKPayment", SKPayment, { module: "StoreKit_86f7e029fa4ce140", properties: {"applicationUsername":2725380574038754,"paymentDiscount":2696229093381075,"productIdentifier":3216854888726612,"quantity":4002886819860870,"requestData":1151111340599672,"simulatesAskToBuyInSandbox":3847083639250320} });
-registerSDKClass("SKMutablePayment", SKMutablePayment, { module: "StoreKit_86f7e029fa4ce140", properties: {"applicationUsername":4317916371399834,"paymentDiscount":810111171900705,"productIdentifier":2270046124578715,"quantity":2998623966762854,"requestData":1135527239487019,"simulatesAskToBuyInSandbox":937141401360218} });
-registerSDKClass("SKOverlay", SKOverlay, { module: "StoreKit_86f7e029fa4ce140", properties: {"configuration":3774972195310429,"delegate":1188097193514209}, methods: {"present":{"id":1196680434631142}} });
-registerSDKClass("SKOverlayConfiguration", SKOverlay_Configuration, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("SKOverlayAppClipConfiguration", SKOverlay_AppClipConfiguration, { module: "StoreKit_86f7e029fa4ce140", properties: {"campaignToken":2000359121129604,"customProductPageIdentifier":3883537354987018,"latestReleaseID":2266084169192287,"position":943794654404729,"providerToken":3186132432893550}, methods: {"additionalValue":{"id":1885288423058634},"setAdditionalValue":{"id":1509337124159778}} });
-registerSDKClass("SKOverlayAppConfiguration", SKOverlay_AppConfiguration, { module: "StoreKit_86f7e029fa4ce140", properties: {"appIdentifier":3073856761931683,"campaignToken":4278092140086239,"customProductPageIdentifier":750852461009138,"latestReleaseID":1244451481423197,"position":3985606241049752,"providerToken":2227378216588797,"userDismissible":3052847007579653}, methods: {"additionalValue":{"id":1789438250162914},"setAdImpression":{"id":2224723786200180},"setAdditionalValue":{"id":3925356440295111}} });
-registerSDKClass("SKOverlayTransitionContext", SKOverlay_TransitionContext, { module: "StoreKit_86f7e029fa4ce140", properties: {"endFrame":40155509272375,"startFrame":3906272319874787}, methods: {"addAnimation":{"id":2103739661107336,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("SKDownload", SKDownload, { module: "StoreKit_d453e9e1f4a52dda", properties: {"contentIdentifier":4323632203716311,"contentLength":4433381483429630,"contentURL":1012295825455459,"contentVersion":1316869833542911,"downloadState":3817486435247663,"error":2787963255224597,"expectedContentLength":3836010161070300,"progress":823903860947616,"state":1047858640664304,"timeRemaining":3407522947137272,"transaction":594001743154293} });
+registerSDKClass("StoreKit.SKError", SKError, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("SKPayment", SKPayment, { module: "StoreKit_d453e9e1f4a52dda", properties: {"applicationUsername":2725380574038754,"paymentDiscount":2696229093381075,"productIdentifier":3216854888726612,"quantity":4002886819860870,"requestData":1151111340599672,"simulatesAskToBuyInSandbox":3847083639250320} });
+registerSDKClass("SKMutablePayment", SKMutablePayment, { module: "StoreKit_d453e9e1f4a52dda", properties: {"applicationUsername":4317916371399834,"paymentDiscount":810111171900705,"productIdentifier":2270046124578715,"quantity":2998623966762854,"requestData":1135527239487019,"simulatesAskToBuyInSandbox":937141401360218} });
+registerSDKClass("SKOverlay", SKOverlay, { module: "StoreKit_d453e9e1f4a52dda", properties: {"configuration":3774972195310429,"delegate":1188097193514209}, methods: {"present":{"id":1196680434631142}} });
+registerSDKClass("SKOverlayConfiguration", SKOverlay_Configuration, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("SKOverlayAppClipConfiguration", SKOverlay_AppClipConfiguration, { module: "StoreKit_d453e9e1f4a52dda", properties: {"campaignToken":2000359121129604,"customProductPageIdentifier":3883537354987018,"latestReleaseID":2266084169192287,"position":943794654404729,"providerToken":3186132432893550}, methods: {"additionalValue":{"id":1885288423058634},"setAdditionalValue":{"id":1509337124159778}} });
+registerSDKClass("SKOverlayAppConfiguration", SKOverlay_AppConfiguration, { module: "StoreKit_d453e9e1f4a52dda", properties: {"appIdentifier":3073856761931683,"campaignToken":4278092140086239,"customProductPageIdentifier":750852461009138,"latestReleaseID":1244451481423197,"position":3985606241049752,"providerToken":2227378216588797,"userDismissible":3052847007579653}, methods: {"additionalValue":{"id":1789438250162914},"setAdImpression":{"id":2224723786200180},"setAdditionalValue":{"id":3925356440295111}} });
+registerSDKClass("SKOverlayTransitionContext", SKOverlay_TransitionContext, { module: "StoreKit_d453e9e1f4a52dda", properties: {"endFrame":40155509272375,"startFrame":3906272319874787}, methods: {"addAnimation":{"id":2103739661107336,"hints":[{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)SKOverlayDelegate", {"storeOverlayDidFailToLoadError":"storeOverlayDidFailToLoad(_:error:)","storeOverlayWillStartPresentationTransitionContext":"storeOverlayWillStartPresentation(_:transitionContext:)","storeOverlayDidFinishPresentationTransitionContext":"storeOverlayDidFinishPresentation(_:transitionContext:)","storeOverlayWillStartDismissalTransitionContext":"storeOverlayWillStartDismissal(_:transitionContext:)","storeOverlayDidFinishDismissalTransitionContext":"storeOverlayDidFinishDismissal(_:transitionContext:)"});
-registerSDKClass("SKPaymentDiscount", SKPaymentDiscount, { module: "StoreKit_86f7e029fa4ce140", properties: {"identifier":1926036935759219,"keyIdentifier":349604636028166,"nonce":88505613841264,"signature":1292412735471256,"timestamp":772877285432398} });
-registerSDKClass("SKPaymentQueue", SKPaymentQueue, { module: "StoreKit_86f7e029fa4ce140", properties: {"delegate":4370818173721037,"storefront":3899479764566125,"transactionObservers":327492594174627,"transactions":1734711863335894}, methods: {"add":{"id":4268994378683103},"add71084":{"id":398679177287815,"hints":[{"protocol":"c:objc(pl)SKPaymentTransactionObserver"}]},"cancel":{"id":4172652989321186},"finishTransaction":{"id":1114835747818635},"pause":{"id":2000500960729500},"presentCodeRedemptionSheet":{"id":1325441469215185},"remove":{"id":1849664685893716,"hints":[{"protocol":"c:objc(pl)SKPaymentTransactionObserver"}]},"restoreCompletedTransactions":{"id":2857104675177084},"restoreCompletedTransactionsWithApplicationUsername":{"id":471718952195751},"resume":{"id":984375259140803},"showPriceConsentIfNeeded":{"id":3308704181861654},"start":{"id":1091361066950295}} });
+registerSDKClass("SKPaymentDiscount", SKPaymentDiscount, { module: "StoreKit_d453e9e1f4a52dda", properties: {"identifier":1926036935759219,"keyIdentifier":349604636028166,"nonce":88505613841264,"signature":1292412735471256,"timestamp":772877285432398} });
+registerSDKClass("SKPaymentQueue", SKPaymentQueue, { module: "StoreKit_d453e9e1f4a52dda", properties: {"delegate":4370818173721037,"storefront":3899479764566125,"transactionObservers":327492594174627,"transactions":1734711863335894}, methods: {"add":{"id":4268994378683103},"add71084":{"id":398679177287815,"hints":[{"protocol":"c:objc(pl)SKPaymentTransactionObserver"}]},"cancel":{"id":4172652989321186},"finishTransaction":{"id":1114835747818635},"pause":{"id":2000500960729500},"presentCodeRedemptionSheet":{"id":1325441469215185},"remove":{"id":1849664685893716,"hints":[{"protocol":"c:objc(pl)SKPaymentTransactionObserver"}]},"restoreCompletedTransactions":{"id":2857104675177084},"restoreCompletedTransactionsWithApplicationUsername":{"id":471718952195751},"resume":{"id":984375259140803},"showPriceConsentIfNeeded":{"id":3308704181861654},"start":{"id":1091361066950295}} });
 registerSDKProtocol("c:objc(pl)SKPaymentQueueDelegate", {});
-registerSDKClass("SKPaymentTransaction", SKPaymentTransaction, { module: "StoreKit_86f7e029fa4ce140", properties: {"downloads":489889012716389,"error":740413705266679,"original":3661418550684478,"payment":3716434395986755,"transactionDate":4327415312851646,"transactionIdentifier":3801899864432912,"transactionState":3248471457575755} });
+registerSDKClass("SKPaymentTransaction", SKPaymentTransaction, { module: "StoreKit_d453e9e1f4a52dda", properties: {"downloads":489889012716389,"error":740413705266679,"original":3661418550684478,"payment":3716434395986755,"transactionDate":4327415312851646,"transactionIdentifier":3801899864432912,"transactionState":3248471457575755} });
 registerSDKProtocol("c:objc(pl)SKPaymentTransactionObserver", {"paymentQueueUpdatedTransactions":"paymentQueue(_:updatedTransactions:)","paymentQueueRemovedTransactions":"paymentQueue(_:removedTransactions:)","paymentQueueRestoreCompletedTransactionsFailedWithError":"paymentQueue(_:restoreCompletedTransactionsFailedWithError:)","paymentQueueRestoreCompletedTransactionsFinished":"paymentQueueRestoreCompletedTransactionsFinished(_:)","paymentQueueUpdatedDownloads":"paymentQueue(_:updatedDownloads:)","paymentQueueDidChangeStorefront":"paymentQueueDidChangeStorefront(_:)","paymentQueueDidRevokeEntitlementsForProductIdentifiers":"paymentQueue(_:didRevokeEntitlementsForProductIdentifiers:)"});
-registerSDKClass("SKProduct", SKProduct, { module: "StoreKit_86f7e029fa4ce140", properties: {"contentVersion":2304293127537762,"discounts":740776734074845,"downloadContentLengths":2937250313891576,"downloadContentVersion":111557329539283,"introductoryPrice":4418068353112562,"isDownloadable":855602991670417,"isFamilyShareable":774527640319022,"localizedDescription":1320608318135073,"localizedTitle":1572824455010988,"price":3454436627254266,"priceLocale":3004207645184501,"productIdentifier":755136962988834,"subscriptionGroupIdentifier":1549826923250065,"subscriptionPeriod":1796855728729265} });
-registerSDKClass("SKProductDiscount", SKProductDiscount, { module: "StoreKit_86f7e029fa4ce140", properties: {"identifier":4303042261915985,"numberOfPeriods":3446704320479785,"paymentMode":4070713450420244,"price":3932887331302834,"priceLocale":1795762071673639,"subscriptionPeriod":3023457853934586,"type":4183004994083674} });
-registerSDKClass("SKRequest", SKRequest, { module: "StoreKit_86f7e029fa4ce140", properties: {"delegate":3131831074345536}, methods: {"cancel":{"id":3901135937047163},"start":{"id":4148631971694101}} });
-registerSDKClass("SKProductsRequest", SKProductsRequest, { module: "StoreKit_86f7e029fa4ce140", properties: {"delegate":721419320610587} });
+registerSDKClass("SKProduct", SKProduct, { module: "StoreKit_d453e9e1f4a52dda", properties: {"contentVersion":2304293127537762,"discounts":740776734074845,"downloadContentLengths":2937250313891576,"downloadContentVersion":111557329539283,"introductoryPrice":4418068353112562,"isDownloadable":855602991670417,"isFamilyShareable":774527640319022,"localizedDescription":1320608318135073,"localizedTitle":1572824455010988,"price":3454436627254266,"priceLocale":3004207645184501,"productIdentifier":755136962988834,"subscriptionGroupIdentifier":1549826923250065,"subscriptionPeriod":1796855728729265} });
+registerSDKClass("SKProductDiscount", SKProductDiscount, { module: "StoreKit_d453e9e1f4a52dda", properties: {"identifier":4303042261915985,"numberOfPeriods":3446704320479785,"paymentMode":4070713450420244,"price":3932887331302834,"priceLocale":1795762071673639,"subscriptionPeriod":3023457853934586,"type":4183004994083674} });
+registerSDKClass("SKRequest", SKRequest, { module: "StoreKit_d453e9e1f4a52dda", properties: {"delegate":3131831074345536}, methods: {"cancel":{"id":3901135937047163},"start":{"id":4148631971694101}} });
+registerSDKClass("SKProductsRequest", SKProductsRequest, { module: "StoreKit_d453e9e1f4a52dda", properties: {"delegate":721419320610587} });
 registerSDKProtocol("c:objc(pl)SKProductsRequestDelegate", {"requestDidFinish":"requestDidFinish(_:)","requestDidFailWithError":"request(_:didFailWithError:)","productsRequestDidReceive":"productsRequest(_:didReceive:)"});
-registerSDKClass("SKProductsResponse", SKProductsResponse, { module: "StoreKit_86f7e029fa4ce140", properties: {"invalidProductIdentifiers":1572034240311885,"products":672937519162242} });
-registerSDKClass("SKProductStorePromotionController", SKProductStorePromotionController, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"fetchStorePromotionOrder":{"id":3800229817546993,"hints":[{"callback":{"out":[]}}]},"fetchStorePromotionVisibility":{"id":887707960267325,"hints":[null,{"callback":{"out":[]}}]},"updateStorePromotionOrderCompletionHandler":{"id":3569586333412356,"hints":[null,{"callback":{"out":[]}}]},"updateStorePromotionVisibilityForCompletionHandler":{"id":74115440983385,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("SKProductSubscriptionPeriod", SKProductSubscriptionPeriod, { module: "StoreKit_86f7e029fa4ce140", properties: {"numberOfUnits":221310136658516,"unit":3294548080456573} });
-registerSDKClass("SKReceiptRefreshRequest", SKReceiptRefreshRequest, { module: "StoreKit_86f7e029fa4ce140", properties: {"receiptProperties":100580368223886} });
+registerSDKClass("SKProductsResponse", SKProductsResponse, { module: "StoreKit_d453e9e1f4a52dda", properties: {"invalidProductIdentifiers":1572034240311885,"products":672937519162242} });
+registerSDKClass("SKProductStorePromotionController", SKProductStorePromotionController, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"fetchStorePromotionOrder":{"id":3800229817546993,"hints":[{"callback":{"out":[]}}]},"fetchStorePromotionVisibility":{"id":887707960267325,"hints":[null,{"callback":{"out":[]}}]},"updateStorePromotionOrderCompletionHandler":{"id":3569586333412356,"hints":[null,{"callback":{"out":[]}}]},"updateStorePromotionVisibilityForCompletionHandler":{"id":74115440983385,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("SKProductSubscriptionPeriod", SKProductSubscriptionPeriod, { module: "StoreKit_d453e9e1f4a52dda", properties: {"numberOfUnits":221310136658516,"unit":3294548080456573} });
+registerSDKClass("SKReceiptRefreshRequest", SKReceiptRefreshRequest, { module: "StoreKit_d453e9e1f4a52dda", properties: {"receiptProperties":100580368223886} });
 registerSDKProtocol("c:objc(pl)SKRequestDelegate", {"requestDidFinish":"requestDidFinish(_:)","requestDidFailWithError":"request(_:didFailWithError:)"});
-registerSDKClass("SKStorefront", SKStorefront, { module: "StoreKit_86f7e029fa4ce140", properties: {"countryCode":4423150411359469,"identifier":1005977231421117} });
-registerSDKClass("SKStoreProductViewController", SKStoreProductViewController, { module: "StoreKit_86f7e029fa4ce140", properties: {"delegate":2340077277441728}, methods: {"loadProductWithParametersCompletionBlock":{"id":23308298993841,"hints":[null,{"callback":{"out":[]}}]},"loadProductWithParametersImpressionCompletionBlock":{"id":1316989106716904,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("SKStorefront", SKStorefront, { module: "StoreKit_d453e9e1f4a52dda", properties: {"countryCode":4423150411359469,"identifier":1005977231421117} });
+registerSDKClass("SKStoreProductViewController", SKStoreProductViewController, { module: "StoreKit_d453e9e1f4a52dda", properties: {"delegate":2340077277441728}, methods: {"loadProductWithParametersCompletionBlock":{"id":23308298993841,"hints":[null,{"callback":{"out":[]}}]},"loadProductWithParametersImpressionCompletionBlock":{"id":1316989106716904,"hints":[null,null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)SKStoreProductViewControllerDelegate", {"productViewControllerDidFinish":"productViewControllerDidFinish(_:)"});
-registerSDKClass("SKStoreReviewController", SKStoreReviewController, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
+registerSDKClass("SKStoreReviewController", SKStoreReviewController, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
 registerSDKProtocol("s:8StoreKit0A19DownloaderExtensionP", {"init":"init()","downloadsForManifestURLExtensionInfo":"downloads(for:manifestURL:extensionInfo:)","backgroundDownloadDidReceive":"backgroundDownload(_:didReceive:)","backgroundDownloadFailedWithError":"backgroundDownload(_:failedWithError:)","backgroundDownloadFinishedWithFileURL":"backgroundDownload(_:finishedWithFileURL:)","extensionWillTerminate":"extensionWillTerminate()","shouldDownload":"shouldDownload(_:)"});
-registerSDKClass("StoreKit.Storefront", Storefront, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Storefront.Storefronts", Storefront_Storefronts, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"makeAsyncIterator":{"id":4300534594264773}} });
-registerSDKClass("StoreKit.Storefront.Storefronts.AsyncIterator", Storefront_Storefronts_AsyncIterator, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"next":{"id":3140682851620398}} });
-registerSDKClass("StoreKit.StoreKitError", StoreKitError, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Transaction", Transaction, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"beginRefundRequestIn":{"id":4006431752206631},"finish":{"id":1556841643996190}} });
-registerSDKClass("StoreKit.Transaction.AdvancedCommerceInfo", Transaction_AdvancedCommerceInfo, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Transaction.AdvancedCommerceInfo.Item", Transaction_AdvancedCommerceInfo_Item, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Transaction.AdvancedCommerceInfo.Item.Details", Transaction_AdvancedCommerceInfo_Item_Details, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Transaction.AdvancedCommerceInfo.Offer", Transaction_AdvancedCommerceInfo_Offer, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Transaction.AdvancedCommerceInfo.Partner", Transaction_AdvancedCommerceInfo_Partner, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Transaction.AdvancedCommerceInfo.Refund", Transaction_AdvancedCommerceInfo_Refund, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Transaction.CommitmentInfo", Transaction_CommitmentInfo, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Transaction.Offer", Transaction_Offer, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
-registerSDKClass("StoreKit.Transaction.Transactions", Transaction_Transactions, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"makeAsyncIterator":{"id":574867261870875}} });
-registerSDKClass("StoreKit.Transaction.Transactions.AsyncIterator", Transaction_Transactions_AsyncIterator, { module: "StoreKit_86f7e029fa4ce140", properties: {}, methods: {"next":{"id":4326775369940750}} });
-registerSDKClass("StoreKit.VerificationResult", VerificationResult, { module: "StoreKit_86f7e029fa4ce140", properties: {} });
+registerSDKClass("StoreKit.Storefront", Storefront, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Storefront.Storefronts", Storefront_Storefronts, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"makeAsyncIterator":{"id":4300534594264773}} });
+registerSDKClass("StoreKit.Storefront.Storefronts.AsyncIterator", Storefront_Storefronts_AsyncIterator, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"next":{"id":3140682851620398}} });
+registerSDKClass("StoreKit.StoreKitError", StoreKitError, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Transaction", Transaction, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"beginRefundRequestIn":{"id":4006431752206631},"finish":{"id":1556841643996190}} });
+registerSDKClass("StoreKit.Transaction.AdvancedCommerceInfo", Transaction_AdvancedCommerceInfo, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Transaction.AdvancedCommerceInfo.Item", Transaction_AdvancedCommerceInfo_Item, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Transaction.AdvancedCommerceInfo.Item.Details", Transaction_AdvancedCommerceInfo_Item_Details, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Transaction.AdvancedCommerceInfo.Offer", Transaction_AdvancedCommerceInfo_Offer, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Transaction.AdvancedCommerceInfo.Partner", Transaction_AdvancedCommerceInfo_Partner, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Transaction.AdvancedCommerceInfo.Refund", Transaction_AdvancedCommerceInfo_Refund, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Transaction.CommitmentInfo", Transaction_CommitmentInfo, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Transaction.Offer", Transaction_Offer, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("StoreKit.Transaction.Transactions", Transaction_Transactions, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"makeAsyncIterator":{"id":574867261870875}} });
+registerSDKClass("StoreKit.Transaction.Transactions.AsyncIterator", Transaction_Transactions_AsyncIterator, { module: "StoreKit_d453e9e1f4a52dda", properties: {}, methods: {"next":{"id":4326775369940750}} });
+registerSDKClass("StoreKit.VerificationResult", VerificationResult, { module: "StoreKit_d453e9e1f4a52dda", properties: {} });
