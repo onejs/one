@@ -87,6 +87,7 @@ class HybridOneNotifications :
         NitroModules.applicationContext?.let {
             it.addActivityEventListener(activityListener)
             it.addLifecycleEventListener(this)
+            restoreAlarms(it)
         }
         instance = this
     }
@@ -1011,16 +1012,17 @@ class HybridOneNotifications :
             )
         }
 
-        // inexact by design: exact alarms need schedule_exact_alarm, and a
-        // single doze-deferrable path is simpler. a late delivery under doze
-        // is documented, not a bug.
+        // exact needs schedule_exact_alarm from android 12, so there it stays
+        // inexact (bounded to an hour); before 12 an exact alarm needs no
+        // permission and inexact would defer a day-ahead alarm by hours.
         private fun setAlarm(context: Context, identifier: String, fireAtMs: Long) {
             val manager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            manager.setAndAllowWhileIdle(
-                AlarmManager.RTC_WAKEUP,
-                fireAtMs,
-                alarmIntent(context, identifier)
-            )
+            val intent = alarmIntent(context, identifier)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+                manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, fireAtMs, intent)
+            } else {
+                manager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, fireAtMs, intent)
+            }
         }
 
         private fun cancelAlarm(context: Context, identifier: String) {
@@ -1304,6 +1306,24 @@ class HybridOneNotifications :
         // next getDevicePushToken reads the rotated token instead.
         fun onPushTokenRefresh(token: String) {
             instance?.currentListeners()?.onPushToken?.invoke(NativePushToken("android", token))
+        }
+
+        // a force stop cancels the app's alarms; opening the app sets the
+        // stored future ones again at their saved dates, restarts repeats that
+        // missed their fire from now, and drops expired one-shots.
+        private fun restoreAlarms(context: Context) {
+            val now = System.currentTimeMillis()
+            for (schedule in loadSchedules(context)) {
+                if (schedule.fireAtMs > now) {
+                    setAlarm(context, schedule.identifier, schedule.fireAtMs)
+                } else if (schedule.repeats) {
+                    val rearmed = schedule.copy(fireAtMs = now + (schedule.seconds * 1000).toLong())
+                    saveSchedule(context, rearmed)
+                    setAlarm(context, schedule.identifier, rearmed.fireAtMs)
+                } else {
+                    removeSchedule(context, schedule.identifier)
+                }
+            }
         }
 
         // boot entry: future schedules re-arm, repeats restart from now, and
