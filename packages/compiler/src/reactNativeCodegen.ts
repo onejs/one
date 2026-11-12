@@ -78,8 +78,7 @@ export function isReactNativeCodegenSpec(id: string, code: string) {
 
 export function transformReactNativeCodegen(
   code: string,
-  id: string,
-  projectRoot?: string
+  id: string
 ): { code: string; map: any } | null | undefined {
   const cleanId = normalizePath(id.split('?')[0])
 
@@ -92,7 +91,7 @@ export function transformReactNativeCodegen(
     return
   }
 
-  const program = parseSpec(code, cleanId, projectRoot)
+  const program = parseSpec(code, cleanId)
   const body = program?.body
   if (!body) {
     return

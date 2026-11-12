@@ -15,7 +15,7 @@ export async function loadEnv(
   root = process.cwd(),
   userPrefix?: string | string[]
 ) {
-  const loadedEnv = await loadJustEnvFiles(mode)
+  const loadedEnv = await loadJustEnvFiles(mode, root)
   const prefix = userPrefix ? (Array.isArray(userPrefix) ? userPrefix : [userPrefix]) : []
   const isPublicKey = (key: string) => {
     return prefix.some((p) => key.startsWith(p)) || DEFAULT_PREFIX.test(key)
@@ -74,14 +74,14 @@ export async function loadEnv(
  *
  */
 
-function getEnvFilesForMode(mode: Mode) {
+function getEnvFilesForMode(mode: Mode, root: string) {
   return [`.env`, `.env.local`, `.env.${mode}`, `.env.${mode}.local`].map((file) =>
-    normalizePath(join('.', file))
+    normalizePath(join(root, file))
   )
 }
 
-async function loadJustEnvFiles(mode: Mode) {
-  const envFiles = getEnvFilesForMode(mode)
+async function loadJustEnvFiles(mode: Mode, root: string) {
+  const envFiles = getEnvFilesForMode(mode, root)
 
   // load all env files and merge them
   const parsed = Object.fromEntries(

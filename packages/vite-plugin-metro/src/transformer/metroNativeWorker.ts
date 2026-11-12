@@ -2180,7 +2180,7 @@ export async function transform(
   // types there is nothing left to generate from, and react-native's own parser
   // rejects the file with "Could not find component config".
   try {
-    const codegenRes = transformReactNativeCodegen(code, filename, projectRoot)
+    const codegenRes = transformReactNativeCodegen(code, filename)
     if (codegenRes?.code) {
       code = codegenRes.code
       if (codegenRes.map) {
