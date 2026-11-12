@@ -689,6 +689,9 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
   // the sdk pod and typescript facades one prebuild writes, from the same
   // generator: writeAppSdkPod in the one package's built sdk.
   const writeExpoSdkBindings = async () => {
+    // the generator reads the iOS SDK through xcrun, so a prebuild on a host
+    // without Xcode writes the project without the sdk pod.
+    if (process.platform !== 'darwin') return []
     let appModule
     try {
       appModule = path.join(
