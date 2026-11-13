@@ -15,4 +15,4 @@ export declare function brightnessNative(): {
     addListener: typeof addListener;
 };
 export {};
-//# sourceMappingURL=backend.sdk.d.ts.map
+//# sourceMappingURL=backend.sdk.ios.d.ts.map

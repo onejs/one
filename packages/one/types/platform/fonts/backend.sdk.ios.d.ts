@@ -5,4 +5,4 @@ export declare function fontsNative(): {
     isLoaded: typeof isLoaded;
 };
 export {};
-//# sourceMappingURL=backend.sdk.d.ts.map
+//# sourceMappingURL=backend.sdk.ios.d.ts.map

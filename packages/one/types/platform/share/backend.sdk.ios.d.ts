@@ -4,4 +4,4 @@ export declare function shareNative(): {
     share: typeof share;
 };
 export {};
-//# sourceMappingURL=backend.sdk.d.ts.map
+//# sourceMappingURL=backend.sdk.ios.d.ts.map

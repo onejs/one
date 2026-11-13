@@ -6,4 +6,4 @@ export declare function printNative(): {
     printPdf: typeof printPdf;
 };
 export {};
-//# sourceMappingURL=backend.sdk.d.ts.map
+//# sourceMappingURL=backend.sdk.ios.d.ts.map

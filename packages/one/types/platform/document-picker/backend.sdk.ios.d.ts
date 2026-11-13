@@ -5,4 +5,4 @@ export declare function documentPickerNative(_verb: string): {
     getDocument: typeof getDocument;
 };
 export {};
-//# sourceMappingURL=backend.sdk.d.ts.map
+//# sourceMappingURL=backend.sdk.ios.d.ts.map

@@ -5,7 +5,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { transform } from 'esbuild'
 import { resolveIosSdkImport } from '../../utils/iosSdkFacade'
-import type { calendarNative as backendCalendarNative } from './backend.sdk'
+import type { calendarNative as backendCalendarNative } from './backend.sdk.ios'
 
 // boundary integration over the real ios calendar backend. production keeps
 // the public one/ios/* specifiers (native package export, also resolved by
@@ -23,7 +23,7 @@ const packageRoot = join(here, '..', '..', '..')
 async function loadHarness(): Promise<Harness> {
   // single temp module: doubles inlined above the real backend source so both
   // share one instance no matter which loader imports the file.
-  const testSource = readFileSync(join(here, 'backend.sdk.test.ts'), 'utf8')
+  const testSource = readFileSync(join(here, 'backend.sdk.ios.test.ts'), 'utf8')
   const startMarker = '\n// harness-doubles-start\n'
   const endMarker = '\n// harness-doubles-end'
   const start = testSource.indexOf(startMarker)
@@ -31,7 +31,7 @@ async function loadHarness(): Promise<Harness> {
   if (start < 0 || end < 0 || end <= start)
     throw new Error('doubles section missing')
   const doublesTs = testSource.slice(start + startMarker.length, end)
-  const backendSource = readFileSync(join(here, 'backend.sdk.ts'), 'utf8')
+  const backendSource = readFileSync(join(here, 'backend.sdk.ios.ts'), 'utf8')
   const rewritten = backendSource
     .replace(
       /import\s*\{[^}]*\}\s*from\s*'one\/ios\/Foundation'/,
@@ -79,7 +79,7 @@ function backend() {
 
 describe('calendar ios production import closure', () => {
   it('keeps public one/ios specifiers in production source', () => {
-    const source = readFileSync(join(here, 'backend.sdk.ts'), 'utf8')
+    const source = readFileSync(join(here, 'backend.sdk.ios.ts'), 'utf8')
     expect(source).toContain(`from 'one/ios/Foundation'`)
     expect(source).toContain(`from 'one/ios/EventKit'`)
     expect(source).toContain(`from 'one/ios-runtime'`)
@@ -92,7 +92,7 @@ describe('calendar ios production import closure', () => {
         packageRoot,
         `one/ios/${framework}`,
         'ios',
-        join(here, 'backend.sdk.ts')
+        join(here, 'backend.sdk.ios.ts')
       )
       expect(file).toBe(join(packageRoot, 'dist/esm/ios', `${framework}.native.js`))
       expect(existsSync(file!)).toBe(true)
