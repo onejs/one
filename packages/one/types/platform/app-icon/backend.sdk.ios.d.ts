@@ -3,4 +3,4 @@ export declare function appIconNative(): {
     getCurrentName(): Promise<string | undefined>;
     setIcon(name?: string): Promise<void>;
 };
-//# sourceMappingURL=backend.sdk.d.ts.map
+//# sourceMappingURL=backend.sdk.ios.d.ts.map

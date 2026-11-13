@@ -4,4 +4,4 @@ export declare function keepAwakeNative(): {
     activate(tag: string): Promise<void>;
     deactivate(tag: string): Promise<void>;
 };
-//# sourceMappingURL=backend.sdk.d.ts.map
+//# sourceMappingURL=backend.sdk.ios.d.ts.map

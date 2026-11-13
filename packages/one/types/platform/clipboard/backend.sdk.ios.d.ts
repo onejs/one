@@ -17,4 +17,4 @@ export declare function clipboardNative(): {
     clearClipboardListener: typeof clearClipboardListener;
 };
 export {};
-//# sourceMappingURL=backend.sdk.d.ts.map
+//# sourceMappingURL=backend.sdk.ios.d.ts.map

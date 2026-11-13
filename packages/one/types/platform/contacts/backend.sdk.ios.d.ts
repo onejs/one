@@ -16,4 +16,4 @@ export declare function contactsNative(): {
     remove: typeof remove;
 };
 export {};
-//# sourceMappingURL=backend.sdk.d.ts.map
+//# sourceMappingURL=backend.sdk.ios.d.ts.map

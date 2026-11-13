@@ -12,4 +12,4 @@ export declare function deviceNative(): {
     addLocalizationListener: typeof addLocalizationListener;
 };
 export {};
-//# sourceMappingURL=backend.sdk.d.ts.map
+//# sourceMappingURL=backend.sdk.ios.d.ts.map

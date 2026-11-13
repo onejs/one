@@ -6,4 +6,4 @@ export declare function networkNative(): {
     addStateListener: typeof addStateListener;
 };
 export {};
-//# sourceMappingURL=backend.sdk.d.ts.map
+//# sourceMappingURL=backend.sdk.ios.d.ts.map

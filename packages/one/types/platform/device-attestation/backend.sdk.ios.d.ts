@@ -8,4 +8,4 @@ export declare function deviceAttestationNative(): {
     generateAssertion(keyId: string, clientDataHashBase64: string): Promise<string>;
     generateDeviceToken(): Promise<string>;
 };
-//# sourceMappingURL=backend.sdk.d.ts.map
+//# sourceMappingURL=backend.sdk.ios.d.ts.map
