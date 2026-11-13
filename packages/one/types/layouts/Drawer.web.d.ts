@@ -189,7 +189,7 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
     }>, Action>>) | undefined;
     routeNamesChangeBehavior?: ('firstMatch' | 'lastUnhandled') | undefined;
 }, "children">, "ref"> & import("react").RefAttributes<unknown>, "ref"> & import("react").RefAttributes<unknown>> & {
-    Screen: import("react").ComponentType<import("../router/useScreens").ScreenProps<DrawerNavigationOptions, DrawerNavigationState<ParamListBase>, DrawerNavigationEventMap>>;
+    Screen: import("./withLayoutContext").LayoutScreen<DrawerNavigationOptions, DrawerNavigationState<ParamListBase>, DrawerNavigationEventMap>;
 };
 export default Drawer;
 //# sourceMappingURL=Drawer.web.d.ts.map

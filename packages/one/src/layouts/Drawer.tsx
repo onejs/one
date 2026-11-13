@@ -2,11 +2,16 @@ import {
   createDrawerNavigator,
   type DrawerNavigationEventMap,
   type DrawerNavigationOptions,
+  type DrawerNavigatorProps,
 } from '@react-navigation/drawer'
 import type { DrawerNavigationState, ParamListBase } from '@react-navigation/native'
 import React, { type ComponentProps } from 'react'
 
-import { withLayoutContext } from './withLayoutContext'
+import {
+  type LayoutNavigator,
+  type LayoutScreen,
+  withLayoutContext,
+} from './withLayoutContext'
 
 const DrawerNavigator = createDrawerNavigator().Navigator
 
@@ -21,7 +26,13 @@ const DrawerWithRender = React.forwardRef<unknown, ComponentProps<typeof RNDrawe
   (props, ref) => <RNDrawer {...(props as any)} ref={ref} />
 )
 
-type DrawerType = ReturnType<typeof withLayoutContext>
+type DrawerType = LayoutNavigator<DrawerNavigatorProps> & {
+  Screen: LayoutScreen<
+    DrawerNavigationOptions,
+    DrawerNavigationState<ParamListBase>,
+    DrawerNavigationEventMap
+  >
+}
 
 // Preserve withLayoutContext's static Screen so user code like
 // `<Drawer.Screen ... />` keeps working through the render wrapper.

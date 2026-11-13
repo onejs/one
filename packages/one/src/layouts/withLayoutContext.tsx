@@ -156,6 +156,18 @@ export function useResolvedGuardedRedirects(
   }, [guardedRedirects, node])
 }
 
+// named so declarations do not inline each navigator's inferred props
+export type LayoutNavigator<TProps extends { children: React.ReactNode }> =
+  React.ForwardRefExoticComponent<
+    PickPartial<TProps, 'children'> & React.RefAttributes<unknown>
+  >
+
+export type LayoutScreen<
+  TOptions extends object,
+  State extends NavigationState,
+  EventMap extends EventMapBase,
+> = React.ComponentType<ScreenProps<TOptions, State, EventMap>>
+
 /** Return a navigator that automatically injects matched routes and renders nothing when there are no children. Return type with children prop optional */
 export function withLayoutContext<
   TOptions extends object,
@@ -228,7 +240,7 @@ export function withLayoutContext<
       }
     ),
     {
-      Screen: Screen as React.ComponentType<ScreenProps<TOptions, State, EventMap>>,
+      Screen: Screen as LayoutScreen<TOptions, State, EventMap>,
     }
   )
 }
