@@ -1076,7 +1076,7 @@ try {
   var __WS = (init_WebSocket(), __toCommonJS(WebSocket_exports)).default;
   var __devServer = (init_getDevServer(), __toCommonJS(getDevServer_exports)).default();
   var __hmrUrl = __devServer.url.replace(/^http/, 'ws') + 'hot?platform=${platform}&clientId=' + encodeURIComponent(__rolldown_runtime__.clientId);
-  __rolldown_runtime__.setup(new __WS(__hmrUrl));
+  __rolldown_runtime__.setup(new __WS(__hmrUrl), __devServer.url + 'status');
 } catch(e) {
   // a swallowed failure here leaves the app permanently without Fast Refresh and
   // nothing on screen or in the terminal says so.
@@ -3086,7 +3086,7 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
     console.error('[vxrn HMR]: DevSettings.reload is unavailable');
   }
 
-  setup(socket) {
+  setup(socket, statusUrl) {
     if (this._socket) return;
     this._socket = socket;
     var runtime = this;
@@ -3116,6 +3116,24 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
     });
     socket.addEventListener('error', function(event) {
       console.warn('[vxrn HMR]: connection error', (event && event.message) || event);
+    });
+    // a restarted dev server has none of this client's module state, so once it
+    // answers again the app reloads, as vite's client does. 1011 and 1013 come
+    // from a live server refusing this client, where a reload would only loop.
+    socket.addEventListener('close', function(event) {
+      if (!statusUrl || (event && (event.code === 1011 || event.code === 1013))) return;
+      console.warn('[vxrn HMR]: disconnected, reloading once the dev server answers');
+      var waitForServer = function() {
+        fetch(statusUrl).then(
+          function() {
+            runtime.reload('dev server restarted');
+          },
+          function() {
+            setTimeout(waitForServer, 1000);
+          }
+        );
+      };
+      setTimeout(waitForServer, 1000);
     });
   }
 }
