@@ -264,10 +264,16 @@ export function globbedRoutesToRouteContext(
         // native module exports register when the original loader initializes
         // them. an unvisited route can reach this path after another route's edit.
         importPromise = isNative
-          ? routesSync[id]().then(() => hmrImport(routePaths[id]))
+          ? Promise.resolve(routesSync[id]()).then(() => hmrImport(routePaths[id]))
           : hmrImport(routePaths[id])
       } else {
-        importPromise = routesSync[id]()
+        // a bundler that already holds the module (metro's require.context)
+        // returns it directly, so the first render does not suspend
+        const loaded = routesSync[id]()
+        if (!(loaded instanceof Promise)) {
+          return loaded
+        }
+        importPromise = loaded
       }
 
       promises[id] = importPromise
