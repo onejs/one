@@ -12,7 +12,7 @@ export function rnCodegenPlugin(options?: { projectRoot?: string }): Plugin {
     transform: {
       order: 'pre',
       handler(code: string, id: string) {
-        return transformReactNativeCodegen(code, id, options?.projectRoot)
+        return transformReactNativeCodegen(code, id)
       },
     },
   } as Plugin

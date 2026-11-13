@@ -95,6 +95,8 @@ import WorkoutKit
     Self(kind: .onAppIntentExecution) { AnyView($0.onAppIntentExecution(intent, perform: action)) }
   }
 
+
+#if ONE_IOS_27_SDK
   @available(iOS 27, *)
   public static func reorderContainer<Item: Identifiable>(
     for item: Item.Type, isEnabled: Bool = true,
@@ -102,6 +104,8 @@ import WorkoutKit
   ) -> Self where Item.ID: Sendable {
     Self(kind: .reorderContainer) { AnyView($0.reorderContainer(for: item, isEnabled: isEnabled, move: move)) }
   }
+#endif
+
 
   @available(iOS 17, *)
   public static func mapFeatureSelectionContent<Content: MapContent>(
@@ -118,10 +122,14 @@ import WorkoutKit
     Self(kind: .transactionTask) { AnyView($0.transactionTask(configuration, action: action)) }
   }
 
+#if ONE_IOS_27_SDK
+
   @available(iOS 18.4, *)
   public static func appEntityUIElements(_ action: @escaping @MainActor (AppIntents.AppEntityUIElementsContext) -> [AppIntents.AppEntityUIElement]) -> Self {
     Self(kind: .appEntityUIElements) { AnyView($0.appEntityUIElements(action)) }
   }
+#endif
+
 #if ONE_GROUP_WALLET
 
   @available(iOS 15.5, *)
