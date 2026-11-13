@@ -1,11 +1,8 @@
-import type { localAuthenticationNative } from './backend'
+import { localAuthenticationNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
 import type {
   LocalAuthenticationStatus,
 } from '../specs/OneLocalAuthentication.nitro'
-
-// required on first use: the ios backend evaluates its framework bindings on load
-const native: typeof localAuthenticationNative = () => require('./backend').localAuthenticationNative()
 
 export type { LocalAuthenticationStatus }
 

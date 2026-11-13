@@ -1,11 +1,8 @@
 import { Platform } from 'react-native'
-import type { deviceAttestationNative } from './backend'
+import { deviceAttestationNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
 import type { DeviceAttestationAvailability } from '../specs/OneDeviceAttestation.nitro'
 import { DeviceAttestation as unavailableDeviceAttestation } from './unavailable'
-
-// required on first use: the ios backend evaluates its framework bindings on load
-const native: typeof deviceAttestationNative = () => require('./backend').deviceAttestationNative()
 
 export type { DeviceAttestationAvailability } from '../specs/OneDeviceAttestation.nitro'
 

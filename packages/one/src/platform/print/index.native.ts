@@ -1,10 +1,7 @@
-import type { printNative } from './backend'
+import { printNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
 import type { PrintResult } from '../specs/OnePrint.nitro'
 import { assertPrintFileUri, assertPrintJobName } from './validate'
-
-// required on first use: the ios backend evaluates its framework bindings on load
-const native: typeof printNative = () => require('./backend').printNative()
 
 export type { PrintResult }
 

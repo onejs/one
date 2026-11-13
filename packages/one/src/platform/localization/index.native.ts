@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react'
-import type { deviceNative } from '../device/backend'
+import { deviceNative as native } from '../device/backend'
 import { toCalendars, toLocales } from './map'
 import type { Calendar, Locale, Localization as LocalizationApi } from './types'
-
-// required on first use: the ios backend evaluates its framework bindings on load
-const native: typeof deviceNative = () => require('../device/backend').deviceNative()
 
 export type { Calendar, Locale, LocalizationApi }
 

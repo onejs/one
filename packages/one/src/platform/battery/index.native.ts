@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { batteryNative } from './backend'
+import { batteryNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
 import type {
   BatteryLevelEvent,
@@ -14,9 +14,6 @@ import {
   assertLowPowerModeListener,
   assertStateListener,
 } from './validate'
-
-// required on first use: the ios backend evaluates its framework bindings on load
-const native: typeof batteryNative = () => require('./backend').batteryNative()
 
 export type {
   BatteryLevelEvent,

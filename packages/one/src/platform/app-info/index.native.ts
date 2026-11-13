@@ -1,12 +1,11 @@
-import type { readAppInfo } from './backend'
+import { readAppInfo } from './backend'
 import type { AppInfo as AppInfoApi } from './types'
 
 export type { AppInfoApi }
 
-// installed-binary identity is read once on first access and frozen for this
-// process; the ios backend evaluates its framework bindings on load.
+// installed-binary identity is read once, on first access, and frozen for this process.
 let info: AppInfoApi | undefined
-const read: typeof readAppInfo = () => (info ??= require('./backend').readAppInfo())
+const read = () => (info ??= readAppInfo())
 
 export const AppInfo: AppInfoApi = Object.freeze({
   get version() {

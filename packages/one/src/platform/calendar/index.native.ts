@@ -1,4 +1,4 @@
-import type { calendarNative } from './backend'
+import { calendarNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
 import type {
   CalendarEvent,
@@ -10,9 +10,6 @@ import type {
   ReminderInfo,
   ReminderInput,
 } from '../specs/OneCalendar.nitro'
-
-// required on first use: the ios backend evaluates its framework bindings on load
-const native: typeof calendarNative = () => require('./backend').calendarNative()
 
 export type {
   CalendarEvent,

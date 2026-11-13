@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Image } from 'react-native'
-import type { fontsNative } from './backend'
+import { fontsNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
 import type { FontMap, Fonts as FontsApi, FontSource, UseFontsResult } from './types'
-
-// required on first use: the ios backend evaluates its framework bindings on load
-const native: typeof fontsNative = () => require('./backend').fontsNative()
 
 export type * from './types'
 
