@@ -1,8 +1,3 @@
-import type { AppTrackingPermissionStatus } from '../specs/OneAppTracking.nitro';
-declare function status(): AppTrackingPermissionStatus;
-export declare function appTrackingNative(): {
-    getPermissionStatus: typeof status;
-    requestPermission(): Promise<AppTrackingPermissionStatus>;
-};
-export {};
+import type { appTrackingNative as Sdk } from './backend.sdk';
+export declare const appTrackingNative: typeof Sdk;
 //# sourceMappingURL=backend.ios.d.ts.map

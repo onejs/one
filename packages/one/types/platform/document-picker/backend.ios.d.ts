@@ -1,8 +1,3 @@
-import type { ResolvedDocumentPickerOptions } from './options';
-import type { DocumentPickerNativeResult } from '../specs/OneDocumentPicker.nitro';
-declare function getDocument(options: ResolvedDocumentPickerOptions): Promise<DocumentPickerNativeResult>;
-export declare function documentPickerNative(_verb: string): {
-    getDocument: typeof getDocument;
-};
-export {};
+import type { documentPickerNative as Sdk } from './backend.sdk';
+export declare const documentPickerNative: typeof Sdk;
 //# sourceMappingURL=backend.ios.d.ts.map

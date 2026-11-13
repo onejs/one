@@ -1,3 +1,3 @@
-import type { AppInfo } from './types';
-export declare function readAppInfo(): AppInfo;
+import type { readAppInfo as Sdk } from './backend.sdk';
+export declare const readAppInfo: typeof Sdk;
 //# sourceMappingURL=backend.ios.d.ts.map
