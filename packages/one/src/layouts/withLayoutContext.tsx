@@ -156,11 +156,25 @@ export function useResolvedGuardedRedirects(
   }, [guardedRedirects, node])
 }
 
-// named so declarations do not inline each navigator's inferred props
-export type LayoutNavigator<TProps extends { children: React.ReactNode }> =
-  React.ForwardRefExoticComponent<
-    PickPartial<TProps, 'children'> & React.RefAttributes<unknown>
-  >
+// named so declarations do not inline each navigator's inferred props. the
+// navigator's own screenOptions are swapped for One's, which add web-only keys
+type ScreenOptionsArgs<TProps> =
+  Extract<TProps extends { screenOptions?: infer O } ? O : never, (...args: any[]) => any> extends (
+    args: infer A
+  ) => any
+    ? A
+    : never
+
+export type LayoutNavigator<
+  TProps extends { children: React.ReactNode },
+  TOptions extends object,
+> = React.ForwardRefExoticComponent<
+  Omit<TProps, 'children' | 'screenOptions'> & {
+    children?: React.ReactNode
+    id?: string
+    screenOptions?: TOptions | ((args: ScreenOptionsArgs<TProps>) => TOptions)
+  } & React.RefAttributes<unknown>
+>
 
 export type LayoutScreen<
   TOptions extends object,

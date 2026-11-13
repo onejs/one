@@ -164,7 +164,7 @@ type StackToolbarCompound = typeof StackToolbarComponent & {
   Badge: typeof StackToolbarBadge
 }
 
-type StackType = LayoutNavigator<NativeStackNavigatorProps> & {
+type StackType = LayoutNavigator<NativeStackNavigatorProps, StackScreenOptions> & {
   Screen: typeof StackScreen
   Header: typeof StackHeader
   Toolbar: StackToolbarCompound

@@ -30,7 +30,7 @@ const RNTabs = withLayoutContext<
   BottomTabNavigationEventMap
 >(BottomTabNavigator, processNativeTabsScreens)
 
-type TabsType = LayoutNavigator<BottomTabNavigatorProps> & {
+type TabsType = LayoutNavigator<BottomTabNavigatorProps, TabsScreenOptions> & {
   Screen: LayoutScreen<
     TabsScreenOptions,
     TabNavigationState<ParamListBase>,

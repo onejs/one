@@ -15,8 +15,13 @@ import {
 
 const DrawerNavigator = createDrawerNavigator().Navigator
 
+export type DrawerScreenOptions = DrawerNavigationOptions & {
+  /** Web only: keep the screen's subtree mounted after it is left. */
+  keepMounted?: boolean
+}
+
 const RNDrawer = withLayoutContext<
-  DrawerNavigationOptions,
+  DrawerScreenOptions,
   typeof DrawerNavigator,
   DrawerNavigationState<ParamListBase>,
   DrawerNavigationEventMap
@@ -26,9 +31,9 @@ const DrawerWithRender = React.forwardRef<unknown, ComponentProps<typeof RNDrawe
   (props, ref) => <RNDrawer {...(props as any)} ref={ref} />
 )
 
-type DrawerType = LayoutNavigator<DrawerNavigatorProps> & {
+type DrawerType = LayoutNavigator<DrawerNavigatorProps, DrawerScreenOptions> & {
   Screen: LayoutScreen<
-    DrawerNavigationOptions,
+    DrawerScreenOptions,
     DrawerNavigationState<ParamListBase>,
     DrawerNavigationEventMap
   >

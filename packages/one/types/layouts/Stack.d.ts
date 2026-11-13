@@ -1,6 +1,6 @@
 import type { NativeStackNavigatorProps } from '@react-navigation/native-stack';
 import { Protected } from '../views/Protected';
-import { StackHeader, StackHeaderSearchBar, StackScreen, StackToolbarBadge, StackToolbarButton, StackToolbarComponent, StackToolbarIcon, StackToolbarLabel, StackToolbarMenu, StackToolbarMenuAction, StackToolbarSearchBarSlot, StackToolbarSpacer } from './stack-utils';
+import { StackHeader, StackHeaderSearchBar, StackScreen, StackToolbarBadge, StackToolbarButton, StackToolbarComponent, StackToolbarIcon, StackToolbarLabel, StackToolbarMenu, StackToolbarMenuAction, StackToolbarSearchBarSlot, StackToolbarSpacer, type StackScreenOptions } from './stack-utils';
 import { type LayoutNavigator } from './withLayoutContext';
 type StackToolbarCompound = typeof StackToolbarComponent & {
     Button: typeof StackToolbarButton;
@@ -12,7 +12,7 @@ type StackToolbarCompound = typeof StackToolbarComponent & {
     Icon: typeof StackToolbarIcon;
     Badge: typeof StackToolbarBadge;
 };
-type StackType = LayoutNavigator<NativeStackNavigatorProps> & {
+type StackType = LayoutNavigator<NativeStackNavigatorProps, StackScreenOptions> & {
     Screen: typeof StackScreen;
     Header: typeof StackHeader;
     Toolbar: StackToolbarCompound;

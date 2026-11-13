@@ -17,7 +17,9 @@ export type StackScreenOptions = Omit<NativeStackNavigationOptions, 'presentatio
      */
     keepMounted?: boolean;
 };
-export type StackScreenProps = PropsWithChildren<ScreenProps<StackScreenOptions, StackNavigationState<ParamListBase>, NativeStackNavigationEventMap>>;
+export type StackScreenProps = PropsWithChildren<Omit<ScreenProps<StackScreenOptions, StackNavigationState<ParamListBase>, NativeStackNavigationEventMap>, 'options'> & {
+    options?: StackScreenOptions;
+}>;
 /**
  * Stack screen component with support for compositional header configuration.
  *

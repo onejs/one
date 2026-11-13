@@ -8,7 +8,7 @@ export type TabsScreenOptions = BottomTabNavigationOptions & {
     /** Web only: keep the tab's subtree mounted after it is left. */
     keepMounted?: boolean;
 };
-type TabsType = LayoutNavigator<BottomTabNavigatorProps> & {
+type TabsType = LayoutNavigator<BottomTabNavigatorProps, TabsScreenOptions> & {
     Screen: LayoutScreen<TabsScreenOptions, TabNavigationState<ParamListBase>, BottomTabNavigationEventMap>;
     Protected: typeof Protected;
 };
