@@ -193,6 +193,7 @@
         "@babel/plugin-transform-regenerator": "^7.28.4",
         "@jridgewell/remapping": "^2.3.0",
         "@swc/core": "1.16.18",
+        "@types/babel__core": "^7.20.5",
         "@vxrn/utils": "workspace:*",
         "@vxrn/vite-native-client": "workspace:*",
         "astring": "1.9.0",
