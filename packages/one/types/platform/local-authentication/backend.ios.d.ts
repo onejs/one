@@ -1,9 +1,3 @@
-import type { LocalAuthenticationStatus } from '../specs/OneLocalAuthentication.nitro';
-declare function canEvaluatePolicy(): LocalAuthenticationStatus;
-declare function evaluatePolicy(reason: string): Promise<boolean>;
-export declare function localAuthenticationNative(): {
-    canEvaluatePolicy: typeof canEvaluatePolicy;
-    evaluatePolicy: typeof evaluatePolicy;
-};
-export {};
+import type { localAuthenticationNative as Sdk } from './backend.sdk';
+export declare const localAuthenticationNative: typeof Sdk;
 //# sourceMappingURL=backend.ios.d.ts.map

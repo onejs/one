@@ -1,7 +1,3 @@
-export declare function keepAwakeNative(): {
-    isEnabled(): Promise<boolean>;
-    setEnabled(enabled: boolean): Promise<void>;
-    activate(tag: string): Promise<void>;
-    deactivate(tag: string): Promise<void>;
-};
+import type { keepAwakeNative as Sdk } from './backend.sdk';
+export declare const keepAwakeNative: typeof Sdk;
 //# sourceMappingURL=backend.ios.d.ts.map
