@@ -1059,6 +1059,85 @@ globalThis.hostModules = [WebSocket, getDevServer]`
     }
   })
 
+  it('reloads once a restarted dev server answers, but not when a live server refuses the client', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-hmr-reconnect-'))
+    await writeFile(
+      join(root, 'WebSocket.js'),
+      `export default class WebSocket {
+  constructor() { this.listeners = {}; globalThis.hmrSocket = this }
+  addEventListener(type, fn) { this.listeners[type] = fn }
+}`
+    )
+    await writeFile(
+      join(root, 'getDevServer.js'),
+      `export default function getDevServer() {
+  return { url: 'http://localhost:8081/', bundleLoadedFromServer: true }
+}`
+    )
+    await writeFile(
+      join(root, 'entry.mjs'),
+      `import WebSocket from './WebSocket.js'
+import getDevServer from './getDevServer.js'
+globalThis.hostModules = [WebSocket, getDevServer]`
+    )
+    const native = await createNativeDevEngine({
+      root,
+      port: 52279,
+      platform: 'android',
+      plugins: [
+        {
+          name: 'native-hmr-reconnect-entry',
+          transform(_code, id) {
+            if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.mjs'`
+          },
+        },
+      ],
+    })
+    try {
+      const code = (await native.getBundle()).code
+      const run = () => {
+        const fetched: string[] = []
+        const reloads: string[] = []
+        let serverUp = false
+        const context: any = {
+          console: { ...console, warn() {} },
+          clearTimeout,
+          setTimeout: (fn: () => void) => queueMicrotask(fn),
+          fetch: async (url: string) => {
+            fetched.push(url)
+            if (!serverUp) {
+              serverUp = true
+              throw new Error('connection refused')
+            }
+            return { ok: true }
+          },
+        }
+        runInNewContext(code, context)
+        context.__VXRN_RELOAD_NATIVE_DEV_BUNDLE__ = (reason: string) =>
+          reloads.push(reason)
+        return { socket: context.hmrSocket, fetched, reloads }
+      }
+
+      const restarted = run()
+      restarted.socket.listeners.close({ code: 1006 })
+      await new Promise((resolve) => setTimeout(resolve, 20))
+      expect(restarted.fetched).toEqual([
+        'http://localhost:8081/status',
+        'http://localhost:8081/status',
+      ])
+      expect(restarted.reloads).toEqual(['dev server restarted'])
+
+      const refused = run()
+      refused.socket.listeners.close({ code: 1013 })
+      await new Promise((resolve) => setTimeout(resolve, 20))
+      expect(refused.fetched).toEqual([])
+      expect(refused.reloads).toEqual([])
+    } finally {
+      await native.close()
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
   it.each([true, false])(
     'keeps CommonJS default components callable through the native HMR wire path (Babel=%s)',
     async (babel) => {
@@ -1509,7 +1588,12 @@ describe('native function and class names', () => {
         const context: any = { process: { env: {} } }
         context.globalThis = context
         runInNewContext(result.code, context)
-        expect(context.names).toEqual(['UnsupportedFeature', 'UnsupportedFeature', 'read', 'read'])
+        expect(context.names).toEqual([
+          'UnsupportedFeature',
+          'UnsupportedFeature',
+          'read',
+          'read',
+        ])
       }
     } finally {
       await rm(testRoot, { recursive: true, force: true })
@@ -1520,7 +1604,10 @@ describe('native function and class names', () => {
     const root = await mkdtemp(join(tmpdir(), 'vxrn-native-dev-names-'))
     const packageRoot = join(root, 'node_modules', 'errors-pkg')
     await mkdir(packageRoot, { recursive: true })
-    await writeFile(join(packageRoot, 'package.json'), JSON.stringify({ main: './index.js' }))
+    await writeFile(
+      join(packageRoot, 'package.json'),
+      JSON.stringify({ main: './index.js' })
+    )
     // async lowering reprints the lowered classes, renaming each inner
     // constructor that shadows its top-level export.
     await writeFile(
@@ -3863,13 +3950,10 @@ it.each([
   })
   const evaluate = (code: string) => {
     const module = { exports: {} as any }
-    runInNewContext(
-      '(function(module, exports) {' + code + '\n})(module, exports)',
-      {
-        module,
-        exports: module.exports,
-      }
-    )
+    runInNewContext('(function(module, exports) {' + code + '\n})(module, exports)', {
+      module,
+      exports: module.exports,
+    })
     return JSON.parse(JSON.stringify(module.exports))
   }
   expect(actual).toBeDefined()
@@ -3933,33 +4017,27 @@ it.each([
     'probe.tsx',
     'export enum Color { Red }; exports.Color=42; module.exports={value:exports.Color};',
   ],
-])(
-  'matches Metro writable binding semantics in %s: %s',
-  async (filename, source) => {
-    const { transformMixedNativeModule } = await import('@vxrn/compiler')
-    const { transformAsync } = await import('@babel/core')
-    const actual = await transformMixedNativeModule(source, filename)
-    const expected = await transformAsync(source, {
-      filename,
-      babelrc: false,
-      configFile: false,
-      presets: ['module:@react-native/babel-preset'],
+])('matches Metro writable binding semantics in %s: %s', async (filename, source) => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  const { transformAsync } = await import('@babel/core')
+  const actual = await transformMixedNativeModule(source, filename)
+  const expected = await transformAsync(source, {
+    filename,
+    babelrc: false,
+    configFile: false,
+    presets: ['module:@react-native/babel-preset'],
+  })
+  const evaluate = (code: string) => {
+    const module = { exports: {} }
+    runInNewContext('(function(module, exports) {' + code + '\n})(module, exports)', {
+      module,
+      exports: module.exports,
     })
-    const evaluate = (code: string) => {
-      const module = { exports: {} }
-      runInNewContext(
-        '(function(module, exports) {' + code + '\n})(module, exports)',
-        {
-          module,
-          exports: module.exports,
-        }
-      )
-      return JSON.parse(JSON.stringify(module.exports))
-    }
-    expect(actual).toBeDefined()
-    expect(evaluate(actual!.code)).toEqual(evaluate(expected!.code!))
+    return JSON.parse(JSON.stringify(module.exports))
   }
-)
+  expect(actual).toBeDefined()
+  expect(evaluate(actual!.code)).toEqual(evaluate(expected!.code!))
+})
 
 it('composes TypeScript runtime declaration maps to the original source', async () => {
   const { transformMixedNativeModule } = await import('@vxrn/compiler')
