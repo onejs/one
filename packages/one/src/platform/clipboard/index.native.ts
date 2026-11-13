@@ -1,4 +1,4 @@
-import { clipboardNative as native } from './backend'
+import type { clipboardNative } from './backend'
 import { rethrowNativeError } from '../nativeError'
 import type {
   ClipboardGetImageOptions as NativeImageOptions,
@@ -23,6 +23,9 @@ import {
   assertSetStringText,
   assertSetUrl,
 } from './validate'
+
+// required on first use: the ios backend evaluates its framework bindings on load
+const native: typeof clipboardNative = () => require('./backend').clipboardNative()
 
 export type * from './types'
 

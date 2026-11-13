@@ -1,7 +1,10 @@
-import { keepAwakeNative as native } from './backend'
+import type { keepAwakeNative } from './backend'
 import { useEffect, useId } from 'react'
 import { rethrowNativeError } from '../nativeError'
 import { assertKeepAwakeEnabled, assertKeepAwakeTag, normalizeKeepAwakeTag } from './validate'
+
+// required on first use: the ios backend evaluates its framework bindings on load
+const native: typeof keepAwakeNative = () => require('./backend').keepAwakeNative()
 
 function isEnabled(): Promise<boolean> {
   return native().isEnabled().catch(rethrowNativeError)

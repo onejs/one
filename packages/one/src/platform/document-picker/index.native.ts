@@ -1,10 +1,13 @@
-import { documentPickerNative as native } from './backend'
+import type { documentPickerNative } from './backend'
 import type {
   DocumentPickerNativeResult,
 } from '../specs/OneDocumentPicker.nitro'
 import { rethrowNativeError } from '../nativeError'
 import { resolveDocumentPickerOptions } from './options'
 import type { DocumentPickerOptions, DocumentPickerResult } from './types'
+
+// required on first use: the ios backend evaluates its framework bindings on load
+const native: typeof documentPickerNative = () => require('./backend').documentPickerNative()
 
 export type * from './types'
 

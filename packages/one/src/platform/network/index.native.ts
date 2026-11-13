@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
-import { networkNative as native } from './backend'
+import type { networkNative } from './backend'
 import { rethrowNativeError } from '../nativeError'
 import type { NetworkState, NetworkStateSubscription } from './types'
 import { assertStateListener } from './validate'
+
+// required on first use: the ios backend evaluates its framework bindings on load
+const native: typeof networkNative = () => require('./backend').networkNative()
 
 export type { NetworkState, NetworkStateSubscription, NetworkStateType } from './types'
 

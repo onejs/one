@@ -1,4 +1,4 @@
-import { brightnessNative as native } from './backend'
+import type { brightnessNative } from './backend'
 import { rethrowNativeError } from '../nativeError'
 import type {
   BrightnessEvent,
@@ -11,6 +11,9 @@ import {
   assertBrightnessValue,
   assertSystemMode,
 } from './validate'
+
+// required on first use: the ios backend evaluates its framework bindings on load
+const native: typeof brightnessNative = () => require('./backend').brightnessNative()
 
 export type {
   BrightnessEvent,

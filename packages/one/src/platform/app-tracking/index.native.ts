@@ -1,8 +1,11 @@
-import { appTrackingNative as native } from './backend'
+import type { appTrackingNative } from './backend'
 import { Platform } from 'react-native'
 import { rethrowNativeError } from '../nativeError'
 import type { AppTrackingPermissionStatus } from '../specs/OneAppTracking.nitro'
 import { AppTracking as unavailableAppTracking } from './unavailable'
+
+// required on first use: the ios backend evaluates its framework bindings on load
+const native: typeof appTrackingNative = () => require('./backend').appTrackingNative()
 
 export type { AppTrackingPermissionStatus } from '../specs/OneAppTracking.nitro'
 

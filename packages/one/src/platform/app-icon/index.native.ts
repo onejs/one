@@ -1,7 +1,10 @@
-import { appIconNative as native } from './backend'
+import type { appIconNative } from './backend'
 import { Platform } from 'react-native'
 import { rethrowNativeError } from '../nativeError'
 import type { AppIconEntry } from './types'
+
+// required on first use: the ios backend evaluates its framework bindings on load
+const native: typeof appIconNative = () => require('./backend').appIconNative()
 
 export type { AppIconEntry }
 

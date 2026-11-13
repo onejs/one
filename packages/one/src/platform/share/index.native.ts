@@ -1,6 +1,9 @@
-import { shareNative as native } from './backend'
+import type { shareNative } from './backend'
 import { rethrowNativeError } from '../nativeError'
 import type { ShareItem, ShareResult } from '../specs/OneShare.nitro'
+
+// required on first use: the ios backend evaluates its framework bindings on load
+const native: typeof shareNative = () => require('./backend').shareNative()
 
 export type { ShareItem, ShareItemType, ShareResult } from '../specs/OneShare.nitro'
 
