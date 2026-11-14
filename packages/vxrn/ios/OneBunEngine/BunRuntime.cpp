@@ -160,9 +160,11 @@ class JSCRuntime : public jsi::Runtime {
     friend class JSCRuntime;
   };
 
-  using IRuntime::getProperty;
-  using IRuntime::hasProperty;
-  using IRuntime::setPropertyValue;
+  // through Runtime, which declares these itself on older react native and
+  // inherits them from IRuntime on newer
+  using Runtime::getProperty;
+  using Runtime::hasProperty;
+  using Runtime::setPropertyValue;
 
   PointerValue* cloneSymbol(const Runtime::PointerValue* pv) override;
   PointerValue* cloneBigInt(const Runtime::PointerValue* pv) override;
@@ -193,7 +195,11 @@ class JSCRuntime : public jsi::Runtime {
   jsi::String createStringFromAscii(const char* str, size_t length) override;
   jsi::String createStringFromUtf8(const uint8_t* utf8, size_t length) override;
   std::string utf8(const jsi::String& /*str*/) override;
-  size_t length(const jsi::String& /*str*/) override;
+  // virtual on newer react native, absent from Runtime on older
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winconsistent-missing-override"
+  size_t length(const jsi::String& /*str*/);
+#pragma clang diagnostic pop
 
   jsi::Object createObject() override;
   jsi::Object createObject(std::shared_ptr<jsi::HostObject> ho) override;
