@@ -39,6 +39,8 @@ export declare class NativeSync {
     request(): void;
     setActive(active: boolean): void;
     setOnline(online: boolean): void;
+    private connectWake;
+    private disconnectWake;
     private changedAvailability;
     private run;
     stop(): void;
