@@ -34,27 +34,31 @@ const SKIP = new Set(['node_modules', 'ios', 'android', 'dist', 'build', 'types'
 const SOURCE = /\.(?:[cm]?[jt]sx?)$/
 const IMPORT = /['"]one\/ios\/([A-Za-z_][A-Za-z0-9_]*)['"]/g
 const ONE_IMPORT = /(?:\bfrom\s*|\bimport\s*\(?\s*|\brequire\s*\(\s*)['"]one['"]/
+const SDK_BACKEND = /\brequire\(\s*['"](\.\/[\w.-]+\.sdk)['"]\s*\)/g
 
 // the native root barrel loads the unified modules together. their ios
-// implementations and the sdk backends those load on first use contribute
-// framework imports too, even when an app never names one/ios itself. derive these dependencies from the shipped sources
-// rather than maintaining a second list beside the implementations.
+// implementations, and the sdk backends those load on first use, contribute
+// framework imports too, even when an app never names one/ios itself. derive
+// these dependencies from the shipped sources rather than maintaining a second
+// list beside the implementations.
 export function importedFrameworks(
   root: string,
   platformRoot = join(dirname(fileURLToPath(import.meta.url)), '../../src/platform')
 ): string[] {
   const found = new Set<string>()
   let usesOne = false
+  const scan = (file: string, unified: boolean) => {
+    const source = readFileSync(file, 'utf8')
+    for (const match of source.matchAll(IMPORT)) found.add(match[1])
+    if (!unified && ONE_IMPORT.test(source)) usesOne = true
+    if (unified) for (const match of source.matchAll(SDK_BACKEND)) scan(join(dirname(file), `${match[1]}.ts`), true)
+  }
   const walk = (dir: string, unified = false) => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       if (entry.name.startsWith('.') || SKIP.has(entry.name)) continue
       const full = join(dir, entry.name)
       if (entry.isDirectory()) walk(full, unified)
-      else if (SOURCE.test(entry.name) && (!unified || /\.(?:ios|sdk)\.[jt]sx?$/.test(entry.name))) {
-        const source = readFileSync(full, 'utf8')
-        for (const match of source.matchAll(IMPORT)) found.add(match[1])
-        if (!unified && ONE_IMPORT.test(source)) usesOne = true
-      }
+      else if (SOURCE.test(entry.name) && (!unified || /\.ios\.[jt]sx?$/.test(entry.name))) scan(full, unified)
     }
   }
   walk(root)

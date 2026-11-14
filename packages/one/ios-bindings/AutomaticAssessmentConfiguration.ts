@@ -11,22 +11,22 @@ export class AEAssessmentApplication extends SDKHandle {
    * init(bundleIdentifier: String)
    * @availability iOS 17.5+
    */
-  static initBundleIdentifier(bundleIdentifier: string): AEAssessmentApplication { return callSDK<AEAssessmentApplication>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 46009037894613, undefined, [bundleIdentifier]); }
+  static initBundleIdentifier(bundleIdentifier: string): AEAssessmentApplication { return callSDK<AEAssessmentApplication>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 46009037894613, undefined, [bundleIdentifier]); }
   /**
    * init(bundleIdentifier: String, teamIdentifier: String?)
    * @availability iOS 27.0+
    */
-  static initBundleIdentifierTeamIdentifier(bundleIdentifier: string, teamIdentifier?: (string) | null): AEAssessmentApplication { return callSDK<AEAssessmentApplication>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 3590414018004056, undefined, [bundleIdentifier, teamIdentifier]); }
+  static initBundleIdentifierTeamIdentifier(bundleIdentifier: string, teamIdentifier?: (string) | null): AEAssessmentApplication { return callSDK<AEAssessmentApplication>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 3590414018004056, undefined, [bundleIdentifier, teamIdentifier]); }
   /**
    * var bundleIdentifier: String { get }
    * @availability iOS 17.5+
    */
-  get bundleIdentifier(): string { return callSDK<string>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2352681837260564, this, []); }
+  get bundleIdentifier(): string { return callSDK<string>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2352681837260564, this, []); }
   /**
    * var teamIdentifier: String? { get }
    * @availability iOS 27.0+
    */
-  get teamIdentifier(): (string) | null { return callSDK<(string) | null>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1859889440981587, this, []); }
+  get teamIdentifier(): (string) | null { return callSDK<(string) | null>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1859889440981587, this, []); }
   declare readonly $type: { "c:objc(cs)AEAssessmentApplication": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bundleIdentifier": true; "teamIdentifier": true };
 }
@@ -37,118 +37,118 @@ export class AEAssessmentApplication extends SDKHandle {
  */
 export class AEAssessmentConfiguration extends SDKHandle {
   /** init() */
-  static init(): AEAssessmentConfiguration { return callSDK<AEAssessmentConfiguration>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 221008623762930, undefined, []); }
+  static init(): AEAssessmentConfiguration { return callSDK<AEAssessmentConfiguration>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 221008623762930, undefined, []); }
   /**
    * func remove(_ application: AEAssessmentApplication)
    * @availability iOS 17.5+
    */
-  remove(application: AEAssessmentApplication): void { return callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 4102146241481134, this, [application]); }
+  remove(application: AEAssessmentApplication): void { return callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 4102146241481134, this, [application]); }
   /**
    * func setConfiguration(_ configuration: AEAssessmentParticipantConfiguration, for application: AEAssessmentApplication)
    * @availability iOS 17.5+
    */
-  setConfiguration(configuration: AEAssessmentParticipantConfiguration, application: AEAssessmentApplication): void { return callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2249946066078872, this, [configuration, application]); }
+  setConfiguration(configuration: AEAssessmentParticipantConfiguration, application: AEAssessmentApplication): void { return callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2249946066078872, this, [configuration, application]); }
   /**
    * var allowsAccessibilityLiveCaptions: Bool { get set }
    * @availability iOS 26.1+
    */
-  get allowsAccessibilityLiveCaptions(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 3785861910746792, this, []); }
-  set allowsAccessibilityLiveCaptions(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2276982620126738, this, [value]); }
+  get allowsAccessibilityLiveCaptions(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 3785861910746792, this, []); }
+  set allowsAccessibilityLiveCaptions(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2276982620126738, this, [value]); }
   /**
    * var allowsAccessibilityReader: Bool { get set }
    * @availability iOS 26.1+
    */
-  get allowsAccessibilityReader(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2225827813229730, this, []); }
-  set allowsAccessibilityReader(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 3989890828875580, this, [value]); }
+  get allowsAccessibilityReader(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2225827813229730, this, []); }
+  set allowsAccessibilityReader(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 3989890828875580, this, [value]); }
   /**
    * var allowsAccessibilitySpeech: Bool { get set }
    * @availability iOS 14.0+
    * @deprecated iOS 27.0
    */
-  get allowsAccessibilitySpeech(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 449515961704809, this, []); }
-  set allowsAccessibilitySpeech(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 3421190223187231, this, [value]); }
+  get allowsAccessibilitySpeech(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 449515961704809, this, []); }
+  set allowsAccessibilitySpeech(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 3421190223187231, this, [value]); }
   /**
    * var allowsAccessibilitySpokenContent: Bool { get set }
    * @availability iOS 27.0+
    */
-  get allowsAccessibilitySpokenContent(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2900524989158672, this, []); }
-  set allowsAccessibilitySpokenContent(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1850454305378212, this, [value]); }
+  get allowsAccessibilitySpokenContent(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2900524989158672, this, []); }
+  set allowsAccessibilitySpokenContent(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1850454305378212, this, [value]); }
   /**
    * var allowsAccessibilityTypingFeedback: Bool { get set }
    * @availability iOS 26.0+
    */
-  get allowsAccessibilityTypingFeedback(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 3861063850781044, this, []); }
-  set allowsAccessibilityTypingFeedback(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1064664382979885, this, [value]); }
+  get allowsAccessibilityTypingFeedback(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 3861063850781044, this, []); }
+  set allowsAccessibilityTypingFeedback(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1064664382979885, this, [value]); }
   /**
    * var allowsAccessibilityVoiceOver: Bool { get set }
    * @availability iOS 27.0+
    */
-  get allowsAccessibilityVoiceOver(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1762397007122912, this, []); }
-  set allowsAccessibilityVoiceOver(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 4207222371863924, this, [value]); }
+  get allowsAccessibilityVoiceOver(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1762397007122912, this, []); }
+  set allowsAccessibilityVoiceOver(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 4207222371863924, this, [value]); }
   /**
    * var allowsActivityContinuation: Bool { get set }
    * @availability iOS 14.0+
    */
-  get allowsActivityContinuation(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 3739178629253599, this, []); }
-  set allowsActivityContinuation(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2578473255693059, this, [value]); }
+  get allowsActivityContinuation(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 3739178629253599, this, []); }
+  set allowsActivityContinuation(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2578473255693059, this, [value]); }
   /**
    * var allowsContinuousPathKeyboard: Bool { get set }
    * @availability iOS 14.0+
    */
-  get allowsContinuousPathKeyboard(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 3537219221544686, this, []); }
-  set allowsContinuousPathKeyboard(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2718875121757375, this, [value]); }
+  get allowsContinuousPathKeyboard(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 3537219221544686, this, []); }
+  set allowsContinuousPathKeyboard(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2718875121757375, this, [value]); }
   /**
    * var allowsDictation: Bool { get set }
    * @availability iOS 14.0+
    */
-  get allowsDictation(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2411080154478093, this, []); }
-  set allowsDictation(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 779752068657339, this, [value]); }
+  get allowsDictation(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2411080154478093, this, []); }
+  set allowsDictation(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 779752068657339, this, [value]); }
   /**
    * var allowsEmojiKeyboard: Bool { get set }
    * @availability iOS 26.4+
    */
-  get allowsEmojiKeyboard(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1990563255041009, this, []); }
-  set allowsEmojiKeyboard(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1356114466185937, this, [value]); }
+  get allowsEmojiKeyboard(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1990563255041009, this, []); }
+  set allowsEmojiKeyboard(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1356114466185937, this, [value]); }
   /**
    * var allowsKeyboardShortcuts: Bool { get set }
    * @availability iOS 14.0+
    */
-  get allowsKeyboardShortcuts(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1083857077536335, this, []); }
-  set allowsKeyboardShortcuts(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1013213158832798, this, [value]); }
+  get allowsKeyboardShortcuts(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1083857077536335, this, []); }
+  set allowsKeyboardShortcuts(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1013213158832798, this, [value]); }
   /**
    * var allowsPasswordAutoFill: Bool { get set }
    * @availability iOS 14.0+
    */
-  get allowsPasswordAutoFill(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 3089773365665026, this, []); }
-  set allowsPasswordAutoFill(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1920630696001949, this, [value]); }
+  get allowsPasswordAutoFill(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 3089773365665026, this, []); }
+  set allowsPasswordAutoFill(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1920630696001949, this, [value]); }
   /**
    * var allowsPredictiveKeyboard: Bool { get set }
    * @availability iOS 14.0+
    */
-  get allowsPredictiveKeyboard(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2979935912874015, this, []); }
-  set allowsPredictiveKeyboard(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2275073624497777, this, [value]); }
+  get allowsPredictiveKeyboard(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2979935912874015, this, []); }
+  set allowsPredictiveKeyboard(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2275073624497777, this, [value]); }
   /**
    * var allowsSpellCheck: Bool { get set }
    * @availability iOS 14.0+
    */
-  get allowsSpellCheck(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2115164920079869, this, []); }
-  set allowsSpellCheck(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 3767524771540639, this, [value]); }
+  get allowsSpellCheck(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2115164920079869, this, []); }
+  set allowsSpellCheck(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 3767524771540639, this, [value]); }
   /**
    * var autocorrectMode: AEAssessmentConfiguration.AutocorrectMode { get set }
    * @availability iOS 14.0+
    */
-  get autocorrectMode(): AEAssessmentConfiguration_AutocorrectMode { return callSDK<AEAssessmentConfiguration_AutocorrectMode>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 3211132072888104, this, []); }
-  set autocorrectMode(value: AEAssessmentConfiguration_AutocorrectMode) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 307465885472630, this, [value]); }
+  get autocorrectMode(): AEAssessmentConfiguration_AutocorrectMode { return callSDK<AEAssessmentConfiguration_AutocorrectMode>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 3211132072888104, this, []); }
+  set autocorrectMode(value: AEAssessmentConfiguration_AutocorrectMode) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 307465885472630, this, [value]); }
   /**
    * var configurationsByApplication: [AEAssessmentApplication : AEAssessmentParticipantConfiguration] { get }
    * @availability iOS 17.5+
    */
-  get configurationsByApplication(): NativeMap<AEAssessmentApplication, AEAssessmentParticipantConfiguration> { return callSDK<NativeMap<AEAssessmentApplication, AEAssessmentParticipantConfiguration>>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 4001041098906017, this, []); }
+  get configurationsByApplication(): NativeMap<AEAssessmentApplication, AEAssessmentParticipantConfiguration> { return callSDK<NativeMap<AEAssessmentApplication, AEAssessmentParticipantConfiguration>>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 4001041098906017, this, []); }
   /**
    * var mainParticipantConfiguration: AEAssessmentParticipantConfiguration { get }
    * @availability iOS 17.5+
    */
-  get mainParticipantConfiguration(): AEAssessmentParticipantConfiguration { return callSDK<AEAssessmentParticipantConfiguration>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1583946634324690, this, []); }
+  get mainParticipantConfiguration(): AEAssessmentParticipantConfiguration { return callSDK<AEAssessmentParticipantConfiguration>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1583946634324690, this, []); }
   declare readonly $type: { "c:objc(cs)AEAssessmentConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsAccessibilityLiveCaptions": true; "allowsAccessibilityReader": true; "allowsAccessibilitySpeech": true; "allowsAccessibilitySpokenContent": true; "allowsAccessibilityTypingFeedback": true; "allowsAccessibilityVoiceOver": true; "allowsActivityContinuation": true; "allowsContinuousPathKeyboard": true; "allowsDictation": true; "allowsEmojiKeyboard": true; "allowsKeyboardShortcuts": true; "allowsPasswordAutoFill": true; "allowsPredictiveKeyboard": true; "allowsSpellCheck": true; "autocorrectMode": true; "configurationsByApplication": true; "mainParticipantConfiguration": true };
 }
@@ -164,17 +164,17 @@ export const AEAssessmentConfiguration_AutocorrectMode = {
    * static var punctuation: AEAssessmentConfiguration.AutocorrectMode { get }
    * @availability iOS 14.0+
    */
-  get punctuation(): AEAssessmentConfiguration_AutocorrectMode { return callSDK<AEAssessmentConfiguration_AutocorrectMode>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 956589149593080, undefined, []); },
+  get punctuation(): AEAssessmentConfiguration_AutocorrectMode { return callSDK<AEAssessmentConfiguration_AutocorrectMode>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 956589149593080, undefined, []); },
   /**
    * static var spelling: AEAssessmentConfiguration.AutocorrectMode { get }
    * @availability iOS 14.0+
    */
-  get spelling(): AEAssessmentConfiguration_AutocorrectMode { return callSDK<AEAssessmentConfiguration_AutocorrectMode>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 286673689653830, undefined, []); },
+  get spelling(): AEAssessmentConfiguration_AutocorrectMode { return callSDK<AEAssessmentConfiguration_AutocorrectMode>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 286673689653830, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): AEAssessmentConfiguration_AutocorrectMode { return callSDK<AEAssessmentConfiguration_AutocorrectMode>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2559963827796444, undefined, [rawValue]); }
+  init(rawValue: number): AEAssessmentConfiguration_AutocorrectMode { return callSDK<AEAssessmentConfiguration_AutocorrectMode>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2559963827796444, undefined, [rawValue]); }
 };
 
 /**
@@ -186,42 +186,42 @@ export class AEAssessmentError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 13.4+
    */
-  static get errorDomain(): string { return callSDK<string>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 3046770427379371, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 3046770427379371, undefined, []); }
   /**
    * static var unsupportedPlatform: AEAssessmentError.Code { get }
    * @availability iOS 16.0+
    */
-  static get unsupportedPlatform(): AEAssessmentError_Code { return callSDK<AEAssessmentError_Code>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2325881133462915, undefined, []); }
+  static get unsupportedPlatform(): AEAssessmentError_Code { return callSDK<AEAssessmentError_Code>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2325881133462915, undefined, []); }
   /**
    * var notInstalledParticipants: [String]? { get }
    * @availability iOS 26.0+
    */
-  get notInstalledParticipants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1531922686754637, this, []); }
+  get notInstalledParticipants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1531922686754637, this, []); }
   /**
    * var restrictedSystemParticipants: [String]? { get }
    * @availability iOS 26.0+
    */
-  get restrictedSystemParticipants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 235469363613995, this, []); }
+  get restrictedSystemParticipants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 235469363613995, this, []); }
   /**
    * static var configurationUpdatesNotSupported: AEAssessmentError.Code { get }
    * @availability iOS 17.5+
    */
-  static get configurationUpdatesNotSupported(): AEAssessmentError_Code { return callSDK<AEAssessmentError_Code>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2205008299804300, undefined, []); }
+  static get configurationUpdatesNotSupported(): AEAssessmentError_Code { return callSDK<AEAssessmentError_Code>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2205008299804300, undefined, []); }
   /**
    * static var multipleParticipantsNotSupported: AEAssessmentError.Code { get }
    * @availability iOS 17.5+
    */
-  static get multipleParticipantsNotSupported(): AEAssessmentError_Code { return callSDK<AEAssessmentError_Code>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2680907890042880, undefined, []); }
+  static get multipleParticipantsNotSupported(): AEAssessmentError_Code { return callSDK<AEAssessmentError_Code>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2680907890042880, undefined, []); }
   /**
    * static var requiredParticipantsNotAvailable: AEAssessmentError.Code { get }
    * @availability iOS 26.0+
    */
-  static get requiredParticipantsNotAvailable(): AEAssessmentError_Code { return callSDK<AEAssessmentError_Code>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 3665061919866015, undefined, []); }
+  static get requiredParticipantsNotAvailable(): AEAssessmentError_Code { return callSDK<AEAssessmentError_Code>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 3665061919866015, undefined, []); }
   /**
    * static var unknown: AEAssessmentError.Code { get }
    * @availability iOS 13.4+
    */
-  static get unknown(): AEAssessmentError_Code { return callSDK<AEAssessmentError_Code>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 623458107172170, undefined, []); }
+  static get unknown(): AEAssessmentError_Code { return callSDK<AEAssessmentError_Code>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 623458107172170, undefined, []); }
   declare readonly $type: { "s:SC21AEAssessmentErrorCodeLeV": true };
 }
 
@@ -236,7 +236,7 @@ export const AEAssessmentError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 13.4+
    */
-  init(rawValue: number): (AEAssessmentError_Code) | null { return callSDK<(AEAssessmentError_Code) | null>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 60604203242659, undefined, [rawValue]); }
+  init(rawValue: number): (AEAssessmentError_Code) | null { return callSDK<(AEAssessmentError_Code) | null>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 60604203242659, undefined, [rawValue]); }
 };
 
 /**
@@ -248,30 +248,30 @@ export class AEAssessmentParticipantConfiguration extends SDKHandle {
    * class func new() -> Self
    * @availability iOS 17.5+
    */
-  static new(): AEAssessmentParticipantConfiguration { return callSDK<AEAssessmentParticipantConfiguration>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2348137586080330, undefined, []); }
+  static new(): AEAssessmentParticipantConfiguration { return callSDK<AEAssessmentParticipantConfiguration>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2348137586080330, undefined, []); }
   /**
    * init()
    * @availability iOS 17.5+
    */
-  static init(): AEAssessmentParticipantConfiguration { return callSDK<AEAssessmentParticipantConfiguration>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 766488055966832, undefined, []); }
+  static init(): AEAssessmentParticipantConfiguration { return callSDK<AEAssessmentParticipantConfiguration>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 766488055966832, undefined, []); }
   /**
    * var allowsNetworkAccess: Bool { get set }
    * @availability iOS 17.5+
    */
-  get allowsNetworkAccess(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 131762469809251, this, []); }
-  set allowsNetworkAccess(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 3260089553077440, this, [value]); }
+  get allowsNetworkAccess(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 131762469809251, this, []); }
+  set allowsNetworkAccess(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 3260089553077440, this, [value]); }
   /**
    * var configurationInfo: [String : Any] { get set }
    * @availability iOS 18.0+
    */
-  get configurationInfo(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1914170585411907, this, []); }
-  set configurationInfo(value: Record<string, unknown>) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 687457846739752, this, [value]); }
+  get configurationInfo(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1914170585411907, this, []); }
+  set configurationInfo(value: Record<string, unknown>) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 687457846739752, this, [value]); }
   /**
    * var isRequired: Bool { get set }
    * @availability iOS 26.0+
    */
-  get isRequired(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1469550732058711, this, []); }
-  set isRequired(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 83368904863670, this, [value]); }
+  get isRequired(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1469550732058711, this, []); }
+  set isRequired(value: boolean) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 83368904863670, this, [value]); }
   declare readonly $type: { "c:objc(cs)AEAssessmentParticipantConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsNetworkAccess": true; "configurationInfo": true; "isRequired": true };
 }
@@ -285,48 +285,48 @@ export class AEAssessmentSession extends SDKHandle {
    * class var supportsConfigurationUpdates: Bool { get }
    * @availability iOS 17.5+
    */
-  static get supportsConfigurationUpdates(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1166433928930247, undefined, []); }
+  static get supportsConfigurationUpdates(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1166433928930247, undefined, []); }
   /**
    * class var supportsMultipleParticipants: Bool { get }
    * @availability iOS 17.5+
    */
-  static get supportsMultipleParticipants(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 4087825777721986, undefined, []); }
+  static get supportsMultipleParticipants(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 4087825777721986, undefined, []); }
   /**
    * func begin()
    * @availability iOS 13.4+
    */
-  begin(): void { return callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 587090482698380, this, []); }
+  begin(): void { return callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 587090482698380, this, []); }
   /**
    * func end()
    * @availability iOS 13.4+
    */
-  end(): void { return callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 679229891456107, this, []); }
+  end(): void { return callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 679229891456107, this, []); }
   /**
    * init(configuration: AEAssessmentConfiguration)
    * @availability iOS 13.4+
    */
-  static init(configuration: AEAssessmentConfiguration): AEAssessmentSession { return callSDK<AEAssessmentSession>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2935039552682013, undefined, [configuration]); }
+  static init(configuration: AEAssessmentConfiguration): AEAssessmentSession { return callSDK<AEAssessmentSession>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2935039552682013, undefined, [configuration]); }
   /**
    * func update(to configuration: AEAssessmentConfiguration)
    * @availability iOS 17.5+
    */
-  update(configuration: AEAssessmentConfiguration): void { return callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1920912577170508, this, [configuration]); }
+  update(configuration: AEAssessmentConfiguration): void { return callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1920912577170508, this, [configuration]); }
   /**
    * var isActive: Bool { get }
    * @availability iOS 13.4+
    */
-  get isActive(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 3213151077408206, this, []); }
+  get isActive(): boolean { return callSDK<boolean>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 3213151077408206, this, []); }
   /**
    * @NSCopying var configuration: AEAssessmentConfiguration { get }
    * @availability iOS 15.0+
    */
-  get configuration(): AEAssessmentConfiguration { return callSDK<AEAssessmentConfiguration>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 766956341828529, this, []); }
+  get configuration(): AEAssessmentConfiguration { return callSDK<AEAssessmentConfiguration>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 766956341828529, this, []); }
   /**
    * weak var delegate: (any AEAssessmentSessionDelegate)? { get set }
    * @availability iOS 13.4+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 2324862405674235, this, []); }
-  set delegate(value: (Implements<AEAssessmentSessionDelegate> | SDKHandle) | null) { callSDK<void>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1853182479844321, this, [value], [{"protocol":"c:objc(pl)AEAssessmentSessionDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 2324862405674235, this, []); }
+  set delegate(value: (Implements<AEAssessmentSessionDelegate> | SDKHandle) | null) { callSDK<void>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1853182479844321, this, [value], [{"protocol":"c:objc(pl)AEAssessmentSessionDelegate"}]); }
   declare readonly $type: { "c:objc(cs)AEAssessmentSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isActive": true; "configuration": true; "delegate": true };
 }
@@ -372,11 +372,11 @@ export interface AEAssessmentSessionDelegate {
  * let AEAssessmentErrorDomain: String
  * @availability iOS 13.4+
  */
-export const AEAssessmentErrorDomain: string = callSDK<string>("AutomaticAssessmentConfiguration_1f27952b3c5b81e6", 1665398721178736, undefined, []);
+export const AEAssessmentErrorDomain: string = callSDK<string>("AutomaticAssessmentConfiguration_64b39a05e4a4cebd", 1665398721178736, undefined, []);
 
-registerSDKClass("AEAssessmentApplication", AEAssessmentApplication, { module: "AutomaticAssessmentConfiguration_1f27952b3c5b81e6", properties: {"bundleIdentifier":2352681837260564,"teamIdentifier":1859889440981587} });
-registerSDKClass("AEAssessmentConfiguration", AEAssessmentConfiguration, { module: "AutomaticAssessmentConfiguration_1f27952b3c5b81e6", properties: {"allowsAccessibilityLiveCaptions":3785861910746792,"allowsAccessibilityReader":2225827813229730,"allowsAccessibilitySpeech":449515961704809,"allowsAccessibilitySpokenContent":2900524989158672,"allowsAccessibilityTypingFeedback":3861063850781044,"allowsAccessibilityVoiceOver":1762397007122912,"allowsActivityContinuation":3739178629253599,"allowsContinuousPathKeyboard":3537219221544686,"allowsDictation":2411080154478093,"allowsEmojiKeyboard":1990563255041009,"allowsKeyboardShortcuts":1083857077536335,"allowsPasswordAutoFill":3089773365665026,"allowsPredictiveKeyboard":2979935912874015,"allowsSpellCheck":2115164920079869,"autocorrectMode":3211132072888104,"configurationsByApplication":4001041098906017,"mainParticipantConfiguration":1583946634324690}, methods: {"remove":{"id":4102146241481134},"setConfiguration":{"id":2249946066078872}} });
-registerSDKClass("AutomaticAssessmentConfiguration.AEAssessmentError", AEAssessmentError, { module: "AutomaticAssessmentConfiguration_1f27952b3c5b81e6", properties: {} });
-registerSDKClass("AEAssessmentParticipantConfiguration", AEAssessmentParticipantConfiguration, { module: "AutomaticAssessmentConfiguration_1f27952b3c5b81e6", properties: {"allowsNetworkAccess":131762469809251,"configurationInfo":1914170585411907,"isRequired":1469550732058711} });
-registerSDKClass("AEAssessmentSession", AEAssessmentSession, { module: "AutomaticAssessmentConfiguration_1f27952b3c5b81e6", properties: {"isActive":3213151077408206,"configuration":766956341828529,"delegate":2324862405674235}, methods: {"begin":{"id":587090482698380},"end":{"id":679229891456107},"update":{"id":1920912577170508}} });
+registerSDKClass("AEAssessmentApplication", AEAssessmentApplication, { module: "AutomaticAssessmentConfiguration_64b39a05e4a4cebd", properties: {"bundleIdentifier":2352681837260564,"teamIdentifier":1859889440981587} });
+registerSDKClass("AEAssessmentConfiguration", AEAssessmentConfiguration, { module: "AutomaticAssessmentConfiguration_64b39a05e4a4cebd", properties: {"allowsAccessibilityLiveCaptions":3785861910746792,"allowsAccessibilityReader":2225827813229730,"allowsAccessibilitySpeech":449515961704809,"allowsAccessibilitySpokenContent":2900524989158672,"allowsAccessibilityTypingFeedback":3861063850781044,"allowsAccessibilityVoiceOver":1762397007122912,"allowsActivityContinuation":3739178629253599,"allowsContinuousPathKeyboard":3537219221544686,"allowsDictation":2411080154478093,"allowsEmojiKeyboard":1990563255041009,"allowsKeyboardShortcuts":1083857077536335,"allowsPasswordAutoFill":3089773365665026,"allowsPredictiveKeyboard":2979935912874015,"allowsSpellCheck":2115164920079869,"autocorrectMode":3211132072888104,"configurationsByApplication":4001041098906017,"mainParticipantConfiguration":1583946634324690}, methods: {"remove":{"id":4102146241481134},"setConfiguration":{"id":2249946066078872}} });
+registerSDKClass("AutomaticAssessmentConfiguration.AEAssessmentError", AEAssessmentError, { module: "AutomaticAssessmentConfiguration_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("AEAssessmentParticipantConfiguration", AEAssessmentParticipantConfiguration, { module: "AutomaticAssessmentConfiguration_64b39a05e4a4cebd", properties: {"allowsNetworkAccess":131762469809251,"configurationInfo":1914170585411907,"isRequired":1469550732058711} });
+registerSDKClass("AEAssessmentSession", AEAssessmentSession, { module: "AutomaticAssessmentConfiguration_64b39a05e4a4cebd", properties: {"isActive":3213151077408206,"configuration":766956341828529,"delegate":2324862405674235}, methods: {"begin":{"id":587090482698380},"end":{"id":679229891456107},"update":{"id":1920912577170508}} });
 registerSDKProtocol("c:objc(pl)AEAssessmentSessionDelegate", {"assessmentSessionDidBegin":"assessmentSessionDidBegin(_:)","assessmentSessionFailedToBeginWithError":"assessmentSession(_:failedToBeginWithError:)","assessmentSessionWasInterruptedWithError":"assessmentSession(_:wasInterruptedWithError:)","assessmentSessionDidEnd":"assessmentSessionDidEnd(_:)","assessmentSessionDidUpdate":"assessmentSessionDidUpdate(_:)","assessmentSessionFailedToUpdateToError":"assessmentSession(_:failedToUpdateTo:error:)"});
