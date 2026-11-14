@@ -48,7 +48,7 @@ export class NativeSync {
       throw new Error(
         'Native Zero sync intervals must be positive and retryMaxMs must cover retryMinMs'
       )
-    this.unsubscribeWake = options.subscribeWake?.(() => this.request())
+    this.connectWake()
     this.request()
   }
 
@@ -93,15 +93,33 @@ export class NativeSync {
     this.changedAvailability()
   }
 
+  private connectWake() {
+    this.unsubscribeWake ??= this.options.subscribeWake?.(() => this.request())
+  }
+
+  private disconnectWake() {
+    const unsubscribe = this.unsubscribeWake
+    this.unsubscribeWake = undefined
+    try {
+      unsubscribe?.()
+    } catch (error) {
+      this.report(error)
+    }
+  }
+
   private changedAvailability() {
     if (!this.active || !this.online) {
+      this.disconnectWake()
       if (this.timer !== undefined) {
         clearTimeout(this.timer)
         this.timer = undefined
       }
       this.attempt?.abort()
       this.setState({ name: 'disconnected' })
-    } else this.request()
+    } else {
+      this.connectWake()
+      this.request()
+    }
   }
 
   private async run() {
@@ -158,11 +176,7 @@ export class NativeSync {
     this.stopped = true
     if (this.timer !== undefined) clearTimeout(this.timer)
     this.attempt?.abort()
-    try {
-      this.unsubscribeWake?.()
-    } catch (error) {
-      this.report(error)
-    }
+    this.disconnectWake()
     this.setState({ name: 'closed' })
   }
 }

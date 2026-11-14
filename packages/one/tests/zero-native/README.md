@@ -103,6 +103,14 @@ Network requests time out after 60 seconds by default. `requestTimeoutMs` on the
 client configures this limit. Timeouts and close cancellation also settle manual
 push/pull calls when a transport ignores abort; late responses cannot commit.
 
+The Orez transport also exposes `subscribeWake(identity, request)`. Configure
+`wake.auth()` for daemon bearer authentication, or `wake.getToken()` for a cloud
+scoped wake token. The socket sends the durable client and group identities,
+retries failed connections with capped jitter, debounces notifications and closes
+on unsubscribe. Pass it to the sync controller's `subscribeWake` option. The
+controller unsubscribes while inactive or offline and resubscribes on resume,
+so authentication pauses and refreshes also retire the old socket/token attempt.
+
 Wire app lifecycle and network events to `sync.setActive(boolean)` and
 `sync.setOnline(boolean)`. Pausing cancels an in-flight request; resuming starts
 another cycle. Late responses from cancelled attempts cannot commit, including
@@ -247,6 +255,7 @@ The HTTP adapter accepts a consumer-provided payload codec. A separate probe
 using Team Machine's actual encrypted-column codec covers native journal reopen,
 key rotation, bearer refresh, lost push responses, plaintext refusal, and atomic
 decoded row/acknowledgement persistence. The complete app cloud connection,
-command-body transport and cloud wake-token lifecycle remain unverified.
+command-body transport and consumer wiring remain unverified. The generic Orez
+wake channel is covered with real daemon and cloud-token WebSocket handshakes.
 No performance advantage or full Zero compatibility is established. Keep adoption
 opt-in until each application's integration and recovery contracts are covered.

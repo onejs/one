@@ -648,7 +648,8 @@ const syncRows = new Map<string, Row>()
 const syncErrors: unknown[] = []
 let connected!: () => void
 let wakeSync!: () => void
-let wakeUnsubscribed = false
+let wakeSubscriptions = 0
+let wakeUnsubscriptions = 0
 let stalledPull: (() => Promise<PullResponse>) | undefined
 client = new NativeZero({
   engine,
@@ -697,9 +698,10 @@ const sync = client.startSync({
     if (state.name === 'connected') connected()
   },
   subscribeWake: (request) => {
+    wakeSubscriptions++
     wakeSync = request
     return () => {
-      wakeUnsubscribed = true
+      wakeUnsubscriptions++
     }
   },
 })
@@ -710,15 +712,18 @@ assert.equal(syncErrors.length, 1)
 assert.deepEqual(await client.pending(), [])
 assert.equal((await client.run<Row[]>(messages))[0].body, 'durable outbox')
 sync.setOnline(false)
+assert.equal(wakeUnsubscriptions, 1)
 const offlinePulls = syncPulls
 await client.mutate('send', { id: 'offline-next', text: 'offline edit' })
 assert.equal(syncPulls, offlinePulls)
 assert.equal((await client.pending()).length, 1)
 connection = nextConnection()
 sync.setOnline(true)
+assert.equal(wakeSubscriptions, 2)
 await connection
 assert.deepEqual(await client.pending(), [])
 sync.setActive(false)
+assert.equal(wakeUnsubscriptions, 2)
 const backgroundPulls = syncPulls
 await client.mutate('send', { id: 'background', text: 'background edit' })
 wakeSync()
@@ -767,7 +772,7 @@ assert.ok(!(await client.run<Row[]>(messages)).some((row) => row.id === 'stale')
 stopSyncRows()
 await client.close()
 assert.equal(sync.state.name, 'closed')
-assert.ok(wakeUnsubscribed)
+assert.equal(wakeUnsubscriptions, wakeSubscriptions)
 assert.equal(syncErrors.length, 1)
 console.log(
   'managed sync passed: durable startup outbox, retry, pull after push error, offline/background edits, wake coalescing, cancellation, stale response fencing and close cleanup'
@@ -1067,6 +1072,103 @@ try {
 }
 console.log(
   'Orez HTTP push/pull, wrapped mutation errors and durable desired-query versions passed'
+)
+
+const wakeRequests: { path: string; protocol: string | null }[] = []
+let wakeReceived!: () => void
+let socketClosed!: () => void
+const wakeServer = Bun.serve({
+  hostname: '127.0.0.1',
+  port: 0,
+  fetch(request, server) {
+    const url = new URL(request.url)
+    assert.equal(url.searchParams.get('clientID'), 'wake-client')
+    assert.equal(url.searchParams.get('clientGroupID'), 'durable-wake-group')
+    wakeRequests.push({
+      path: url.pathname,
+      protocol: request.headers.get('sec-websocket-protocol'),
+    })
+    if (url.pathname === '/cloud/wake')
+      assert.equal(url.searchParams.get('wakeToken'), 'scoped-token')
+    if (server.upgrade(request)) return
+    return new Response('upgrade required', { status: 400 })
+  },
+  websocket: {
+    open(socket) {
+      socket.subscribe('changes')
+    },
+    message(socket, message) {
+      if (message === 'ping') socket.send('pong')
+    },
+    close() {
+      socketClosed()
+    },
+  },
+})
+const identity = { clientID: 'wake-client', clientGroupID: 'durable-wake-group' }
+let stopWake: (() => void) | undefined
+try {
+  const options = {
+    server: `http://127.0.0.1:${wakeServer.port}`,
+    appID: 'zero',
+    schemaVersion: '1',
+  }
+  const daemonWake = createOrezTransport({
+    ...options,
+    server: options.server + '/daemon',
+    wake: { auth: () => 'unicode-☃' },
+  })
+  let received = new Promise<void>((resolve) => {
+    wakeReceived = resolve
+  })
+  stopWake = daemonWake.subscribeWake(identity, () => wakeReceived())
+  await received
+  assert.deepEqual(wakeRequests[0], {
+    path: '/daemon/wake',
+    protocol: 'orez-auth.' + Buffer.from('unicode-☃').toString('base64url'),
+  })
+  received = new Promise<void>((resolve) => {
+    wakeReceived = resolve
+  })
+  for (let index = 0; index < 10; index++) wakeServer.publish('changes', 'changed')
+  await received
+  let closed = new Promise<void>((resolve) => {
+    socketClosed = resolve
+  })
+  stopWake()
+  await closed
+  let tokens = 0
+  const cloudWake = createOrezTransport({
+    ...options,
+    server: options.server + '/cloud',
+    wake: {
+      auth: () => {
+        throw new Error('cloud wake must use its scoped token')
+      },
+      async getToken() {
+        if (++tokens === 1) throw new Error('temporary token refusal')
+        return 'scoped-token'
+      },
+    },
+  })
+  received = new Promise<void>((resolve) => {
+    wakeReceived = resolve
+  })
+  stopWake = cloudWake.subscribeWake(identity, () => wakeReceived())
+  await received
+  assert.equal(tokens, 2)
+  assert.deepEqual(wakeRequests[1], { path: '/cloud/wake', protocol: null })
+  closed = new Promise<void>((resolve) => {
+    socketClosed = resolve
+  })
+  stopWake()
+  await closed
+} finally {
+  stopWake?.()
+  wakeServer.stop(true)
+}
+console.log(
+  'Orez wake passed durable group identity, daemon bearer protocol, cloud scoped token retry, notification and close cleanup'
 )
 
 const deletionPath = join(folder, 'delete.sqlite')

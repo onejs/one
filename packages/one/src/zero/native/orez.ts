@@ -1,3 +1,4 @@
+import { subscribeOrezWake, type OrezWakeOptions } from './orez-wake'
 import type {
   ClientState,
   DesiredQuery,
@@ -15,13 +16,21 @@ export type OrezTransportOptions = {
   shardNum?: number
   headers?: () => Record<string, string> | Promise<Record<string, string>>
   fetch?: typeof fetch
+  wake?: OrezWakeOptions
   payloadCodec?: {
     encodePush(body: unknown): unknown | Promise<unknown>
     decodePull(body: unknown): unknown | Promise<unknown>
   }
 }
 
-export function createOrezTransport(options: OrezTransportOptions): Transport {
+export interface OrezTransport extends Transport {
+  subscribeWake(
+    identity: Pick<ClientState, 'clientID' | 'clientGroupID'>,
+    request: () => void
+  ): () => void
+}
+
+export function createOrezTransport(options: OrezTransportOptions): OrezTransport {
   const server = options.server.replace(/\/$/, '')
   const request = options.fetch ?? globalThis.fetch.bind(globalThis)
 
@@ -50,6 +59,11 @@ export function createOrezTransport(options: OrezTransportOptions): Transport {
   }
 
   return {
+    subscribeWake(identity, request) {
+      return options.wake
+        ? subscribeOrezWake(server, identity, options.wake, request)
+        : () => {}
+    },
     async pull(
       state: ClientState,
       queries: readonly DesiredQuery[],
