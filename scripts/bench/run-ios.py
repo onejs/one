@@ -3,6 +3,9 @@
 import argparse
 import fcntl
 import json
+import os
+import re
+import selectors
 from pathlib import Path
 import subprocess
 import time
@@ -11,6 +14,40 @@ from report import parse_lines, report
 
 def command(argv, timeout=120):
     return subprocess.run(argv, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=timeout).stdout
+
+
+def capture_console(argv, log, timeout, stop_on_done):
+    deadline = time.monotonic() + timeout
+    terminal = None
+    pending = b''
+    with subprocess.Popen(argv, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) as process, selectors.DefaultSelector() as events, log.open('wb') as stream:
+        events.register(process.stdout, selectors.EVENT_READ)
+        try:
+            while terminal is None or not stop_on_done:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0 or not events.select(remaining):
+                    raise subprocess.TimeoutExpired(argv, timeout)
+                chunk = os.read(process.stdout.fileno(), 65536)
+                if not chunk:
+                    return process.wait(timeout=max(.01, deadline - time.monotonic()))
+                stream.write(chunk)
+                stream.flush()
+                pending += chunk
+                lines = pending.split(b'\n')
+                pending = lines.pop()
+                for line in lines:
+                    marker = re.search(rb'(?:^|\s)BENCH_(DONE|ERROR)(?:\s|$)', line)
+                    if marker and (terminal is None or marker[1] == b'ERROR'):
+                        terminal = marker[1]
+            return 0 if terminal == b'DONE' else 1
+        finally:
+            if process.poll() is None:
+                process.terminate()
+                try:
+                    process.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    process.kill()
+                    process.wait()
 
 
 def main():
@@ -25,6 +62,7 @@ def main():
     parser.add_argument('--cooldown', type=float, default=10)
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--lock', type=Path, default=Path.home() / 'builders/.scratch/bun-aot-rn/iphone.lock')
+    parser.add_argument('--stop-on-done', action='store_true', help='stop console capture on BENCH_DONE or BENCH_ERROR; the next launch terminates any remaining app')
     parser.add_argument('--launch-arg', action='append', default=[], help='additional app argument; use = for flags')
     args = parser.parse_args()
     apps = []
@@ -60,15 +98,16 @@ def main():
                 argv = ['xcrun', 'devicectl', 'device', 'process', 'launch', '--device', args.device,
                         '--terminate-existing', '--console', bundle, '--', '--bench', '--bench-run', str(run), *args.launch_arg]
                 log = args.out / f'{run:02d}-{engine}.log'
-                with log.open('w') as stream:
-                    result = subprocess.run(argv, text=True, stdout=stream, stderr=subprocess.STDOUT, timeout=args.timeout)
+                returncode = capture_console(argv, log, args.timeout, args.stop_on_done)
                 text = log.read_text()
-                if result.returncode or 'BENCH_DONE' not in text or 'BENCH_ERROR' in text:
-                    raise RuntimeError(f'incomplete run: {log} (exit {result.returncode})')
+                if returncode or 'BENCH_DONE' not in text or 'BENCH_ERROR' in text:
+                    raise RuntimeError(f'incomplete run: {log} (exit {returncode})')
                 for line in text.splitlines():
                     if 'BENCH_META ' in line:
                         environment = json.loads(line.split('BENCH_META ', 1)[1])
-                        environments.append(dict(engine=engine, run=run, **environment))
+                        if environment.get('engine', engine) != engine:
+                            raise ValueError(f'metadata engine mismatch: {environment}')
+                        environments.append(dict(environment, engine=engine, run=run))
                         if environment.get('os') != args.os:
                             raise ValueError(f'OS label mismatch: {environment}')
                 metadata['environments'] = environments

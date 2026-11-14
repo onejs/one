@@ -26,6 +26,8 @@ python3 scripts/bench/run-ios.py \
 
 The runner holds the shared phone lock throughout, installs each build as needed, uses `--terminate-existing`, and alternates AB then BA for ten launches per engine. These are process-cold launches with warm OS caches, not reboot-cold launches. Each console log is retained. Incomplete launches and coverage changes fail rather than silently dropping samples. Keep the phone unlocked, at a stable temperature and without other foreground workloads. Power mode and thermal state are captured at launch. Record OS version, battery and thermal conditions alongside the run. Installation between engines and the 10-second cooldown can affect caches and temperature; disclose that in published comparisons.
 
+Apps that remain open after their benchmark, such as Team Machine, can use `run-ios.py --stop-on-done`. The runner streams console output to disk, stops capture on `BENCH_DONE` or `BENCH_ERROR`, and treats an error marker as a failed run. It terminates its own devicectl process; the next launch uses `--terminate-existing` before starting the next process-cold run. The app must send BENCH lines to the console that devicectl captures. BENCH_META may include `app` and `engine` alongside `os`.
+
 The generic report command accepts any app's BENCH lines:
 
 ```sh
