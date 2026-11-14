@@ -1,0 +1,62 @@
+---
+id: t-mvn9jbbg-1a8i0
+title: Deliver approved One patch after exact required native acceptance
+status: done
+active_form: owner approved including PR1029 API in minor; normal release40187853422 dispatched, artifact verification pending
+owner_status:
+  state: landed
+  text: One2.10.0 published latest; exact npm source/native/API content verified, consumer57472 notified
+  updated_at: 1792927636720
+assignees:
+- p103481
+labels:
+- followup:production
+- lane:oss-fixer
+backend: git
+created_at: 1792898602252
+updated_at: 1792929164830
+field_marks:
+  active_form: 1792926730684
+  body: 1792929164830
+  claim: 1792898602252
+  evidence_summary: 1792898602252
+  owner_status: 1792927636720
+  parent: 1792898602252
+  priority: 1792898602252
+  recovery_ref: 1792898602252
+  status: 1792927636720
+  title: 1792898602252
+---
+Approved scope1002 Slot swiftStyle/native event plumbing and presented-sheet bottom safe area only. Owner direct approval recorded in existing slot-style release decision; renewed2026-10-25 directive relayed m57472 asks fix or rerun failing required iOS check then publish approved patch. CurrentOne main9232b50183920fe9ccbd98ba1cd48f9060709bc5, npm latest2.9.2. Exact40132870248 attempt2 failed-job rerun IN_PROGRESS under that direction; parent sole native/publication owner, CI110356 broad routing without duplicate watch. On required native success, confirm source unchanged/reviewed bug-fix scope and standard fullCI green, dispatch normal release.yml patch without force; verify exact npm artifact source/changed files and report version to57472. If red, once-qualify actual attempt2 leaf, repair demonstrated cause through reviewed PR or record actionable blocker. No hidden retry, skipping native gate, or unrelated feature inclusion.
+
+RAN authorized failed-job rerun40132870248 attempt2 completedFAILURE at03:34:09Z, exact9232b50183920fe9ccbd98ba1cd48f9060709bc5. Sole failed121063267481 Warm the Shortcuts app: first axe describe-ui remote automation session creation timeout03:32:04, before fixtures; other9jobsSUCCESS. Once-retained attempt2 log and artifact12584928316 diagnostics under Contrast scripts/tmp/one401328-p103481/attempt2-*. Host log proves Xcode27 frameworks loaded and socket14 connected to testmanagerd03:31:58.974, not successful remote-session creation; simulator-side filtered log contains no contemporaneous exchange. Original reason remains unknown, no source fix selected. Current blocker is failed required native fixture prerequisite on containing9232; no stable publication/third rerun/waiver. Need a reproducible affected Xcode27.0/iOS27 AXe1.8 session or qualified source repair before successor native acceptance.
+
+RAN direct consumer57472 confirms same attempt2 warm-shortcuts firstAXe failure and has asked existing CI110356 to assign helper fixer; consumer will supply fix commit. Gate retains release+rerun custody and awaits source repair, no competing warmup writer or automatic third retry. Historical claim sincePR1021 is consumer inference until actual diff/runner proof; current attempt2 failure itself retained.
+
+RAN direct source-author blocker answered to live r126820 one-warm-session-repair: absolute ORIGINAL attempt2 log and extracted artifact12584928316 locators on Pro128 mc-h39p4gbj818h supplied. Existing peer-readable bytes only, no reacquisition/run. Author source startup/framework contract qualification + reviewer119857 owned separately; gate sole required acceptance/publication retained.
+
+RAN completed r126820 source handoff/taskt-mvl1k7l9: no source patch/PR. Exactattempt2 socket connect rules out absent listener/discovery as sole cause, but begin-session/AX completion unobserved. IMPORTANT original simulator capture timeout60 partial stdout ends03:28:31 BEFORE03:31:58 failure; earlier assumption of no current events corrected to truncated coverage. Host capture also timeout60 but includes currentconnect. Existing Appiumlog onlyGET/status, no qualifiedsession. Remaining prerequisite current server begin-session/AX interval or affected cold functional initialization proof. No speculative socketwait/kickstart/DeviceHub patch, thirdrerun/nativewaiver or stablepublish.
+
+RAN requested PR1043 branch hosted proof dispatchedONCE normal workflow_dispatch test-native-ios.yml: run40160600747 exacthead373b2e042056783cc5317b2f493959178979d279 branch tm/one-warm-shortcuts-ready, parent9232b501. One-file warmhelper change repeats ONLY remote-session-timeout error within original90s; othererrors fail. This is branch falsification/qualification, NOT cause acceptance/nativePASS/merge/stable permission waiver. Existing task owner m57472 requests branch proof then containing-main native acceptance. No overlapping warmup implementation by gate; no additional401328 rerun. Cancelled obsolete replywaitw-bf4d0d, exact runwatch follows.
+
+RAN OSS116738 independently read exact373b PR1043 diff + existing conformance1965..1987 matching bounded timeout-readiness behavior. Original57472 author Opus5.5; prior reviewer119857 exited, ONE other-model Argon4 reviewer m58617 review-one-warm1043 LIVE confirmed as successor, no parallel diagnostic writer. Review exacterror/original90s/realPIDcontrol/unrelatederrors/deadline; no native/fetch/dispatch. Gate existing branch proof40160600747 exactwatchw-5dbe24 retained. Neither source approval nor hostedPASS currently claimed; containing-main/native/release checks conditional.
+
+RAN OSS1140 source review: soleOTHER-model Argon4 m58617 APPROVEPR1043 exact373b2e042056783cc5317b2f493959178979d279. Sixactualhelper behaviorprobes include stderr/stdout exacttimeout, unrelatednonzero/empty/malformed failfast, PID/AXcontrol negatives, all-notready original90s/no terminate, remainingtime near-deadline. No findings/DRYdebt. Durable Air32 /Users/n8/.team-machine/evidence/one-warm1043-review-m58617/handoff.md. SOURCE approval only; gate existing hosted40160600747 watchw-672064 pending. OSS116738 owns normalmerge after requiredchecks+changedsource hosted acceptance, gate sole containing-main/native acceptance+approved patchpublication, diagnosticproposal held/no parallelwriter.
+
+RAN one bounded longwait diagnosis snapshot at05:28, NOTnewproducer/retry: branchrun40160600747 exact373b has9jobsSUCCESS; nativefeaturejob121082147975 IN_PROGRESS since05:06:37, Run One Native feature fixtures step started05:26:19. Thus preceding Warm Shortcuts completedSUCCESS on hostedaffectedsetup and fixtures ACTUALLYstarted, unlike401328attempt2. Fullcase/job result stillpending, no PASS/merge/nativewaiver/stablepublication inferred. Snapshot Pro128 scripts/tmp/one401328-p103481/pr1043-jobs-longwait.json. Exactwatchw-672064 stillactive daemonreports renewed44mdeadline despiteelapsed70m; didnotrearm. Waitcostmostly chain prepconsumer04:19..build04:34..fixturejob05:06; no stall selected from metadata.
+
+RAN PR1043 hosted run40160600747 exact373b2e042056783cc5317b2f493959178979d279 SUCCESS all10 jobs. Once-retained native job121082147975 log proves 74/74 real fixture tests PASS,1/1 file, Warm Shortcuts SUCCESS. Evidence Pro128 scripts/tmp/one401328-p103481/pr1043-terminal.json and pr1043-featurefixtures.log. Existing OSS116738 normal merge requested with changed-source acceptance cleared; gate retains containing-main required CI/native and approved stable patch. Branch success does not waive main checks.
+
+RAN OSS merge receipt and GitHub main workflows: PR1043 merged e122ea7c4fd3dab2456b3116332137334b130852. Existing automatic containing-main iOS40168119454, Checks40168119435, Android40168119451 all in_progress; no duplicate dispatch. Gate adopts existing exact main acceptance chain before approved patch publication.
+
+RAN containing-main e122ea7c4fd3dab2456b3116332137334b130852 iOS40168119454 attempt1 CANCELLED, not fixture failure: native feature fixtures job121105217141 SUCCESS, Warm Shortcuts and actual test step SUCCESS. Checks40168119435/Android40168119451/website40168119440 SUCCESS. RN dev build121093238973 built and uploaded app successfully then cancelled in Post Install Bun cache tar/zstd cleanup at07:39:48; dependent native test matrix SKIPPED. Original logs retained once Pro128 Contrast scripts/tmp/one401328-p103481/main-e122-{dev-build,featurefixtures}.log. Cause of cancellation not established from log. Under direct owner fix/rerun authorization gate reran ONLY cancelled job121093238973 and dependents via gh run rerun40168119454 --job121093238973; accepted exit0. Publication held until full containing-main iOS acceptance. No new source/assertion/deadline or native waiver.
+
+RAN iOS40168119454 successor SUCCESS all10jobs on exact main e122ea7, including native fixtures121113577570 and all4Metro/Rolldown suites. Checks40168119435 andAndroid40168119451 SUCCESS. Prepublication npm latest2.9.2 sourcece34ec2; currentmain remainse122ea7. Exact65commit comparison retained scripts/tmp/one401328-p103481/patch293-source-compare.json. Found public FEATURE PR1029/e221 nativeApplicationContext export on main; actual taskt-mvlo1kz9-1zmg0 quotes owner Merge the One feature but explicitly stable separate/held, no stable approval. Existing PR1002 patch approval covers Slot/nativeevent/sheetbottomsafearea, not this unrelated API. No release dispatched. Owner decision needed to include PR1029 in stable release or retain hold; do not silently publish feature as bugfix patch or alter main to remove it.
+
+OWNER DIRECT2026-10-25 inboxi-1792926550409-15893-0: Include API; release minor. Explicitly authorizes PR1029 native application context API with approved1002 Slot/sheet fixes as MINOR. Normal release.yml --ref main release=minor dispatched ONCE, run40187853422 https://github.com/onejs/one/actions/runs/40187853422; no force/native waiver. Current source615ca69238394fdb2874d8d10f91d2f96285b158 differs accepted e122 only scripts/release-build.ts and scripts/release.ts (#1045 streaming/cancellation), no package/runtime/native delta. Current Checks40177749954 SUCCESS; prior exact package source main iOS40168119454 all10+Android40168119451 SUCCESS. npm latest before dispatch2.9.2. Approval recorded plans/contrast/metro-to-one.md; parent owns terminal delivery, exact npm tarball releaseSourceCommit/Slot/sheet/context verification and consumer publication notice.
+
+Owner approval persisted in Contrast plan source0aff8c3339a037b0d333780a2343c7e447f98749, normal ticket1792926783865-0aff8c3-e7bd7b queued. Prompt-overfit and owning plans/board hooks PASS. Docs-only delivery has normal routing, no extra ticket watcher. Release40187853422 remains sole next exact event; actual version/content not yet verified.
+
+RAN normal owner-approved MINOR release40187853422 SUCCESS ensure-ci/publish, source615ca69238394fdb2874d8d10f91d2f96285b158. npm one@latest2.10.0; exact tarball one-2.10.0.tgz sha1681733387bfa741d814ab0569bbd470f04b6cad0, releaseSourceCommit0f637d42dcaf1ee86cb153a1fe98426b091a87fc exactly stabletagv2.10.0. GitHub compare615ca..0f637 is solely version commit touching manifests+lock. TESTED actual npm tarball nine relevant source/native files byte-identical to accepted release source; Slot swiftStyle/onNativeSDKEvent, generated sheet ignoresSafeArea bottom and actual presenter guard verified. Executed BOTH shipped CJS context variants using node VM: initial undefined, guest URL normalization, overlap rejection, cleanup restore PASS. Pro128 Contrast scripts/tmp/one401328-p103481/published-2.10.0/{one-2.10.0.tgz,pack.json,content-verification.json}. First probe wrongly searched style in internal layout Slot instead of owning ContainerSlot contract, failed assertion retained as failed; corrected full owning-file content/runtime proof PASS. Native main all10/74fixtures+Checks/Android accepted earlier, no force/skip gate. Release objective complete; no consumer install/native downstream proof claimed. No new runtime optimization established beyond already-landed release streaming/cache cleanup followup.
+
+Separate NEXT release owner direction received2026-10-25 11:52Z fromm57472 quoting Nate direct inboxi-1792929097307-31559-0: Yes, ship2.11 once checks pass, then the big video. Scope explicitly1027 DOM components/Mac/Linux, conditional required checks, publication before video. Forwarded exactquote/scope to existing1027 PR/heldpublisher owners69213; requested canonical task/source/remainingchecks and exact single publication owner before dispatch. No2.11 dispatch/replay/newsource/video author started bygate. This completed2.10.0 task remainsDONE;1027 acceptance is separate, no prior2.10 proof substituted.
