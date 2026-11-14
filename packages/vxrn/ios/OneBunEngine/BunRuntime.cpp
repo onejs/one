@@ -1752,11 +1752,11 @@ std::unique_ptr<jsi::Runtime> makeBunRuntime() {
   }
   // leave the globals hermes has, so libraries that detect web apis (such as
   // BroadcastChannel) take their react native paths and react native installs
-  // its own console, timers and polyfills. bun keeps Bun and process, which
-  // compiled code relies on.
+  // its own console, timers and polyfills. Bun and process stay, since compiled
+  // code relies on them; an app that writes one makes it deletable.
   JSStringRef prune = JSStringCreateWithUTF8CString(R"js({
     const keep = new Set(['AggregateError', 'Array', 'ArrayBuffer', 'AsyncDisposableStack', 'Atomics',
-      'BigInt', 'BigInt64Array', 'BigUint64Array', 'Boolean', 'DataView', 'Date', 'DisposableStack',
+      'Bun', 'process', 'BigInt', 'BigInt64Array', 'BigUint64Array', 'Boolean', 'DataView', 'Date', 'DisposableStack',
       'Error', 'EvalError', 'FinalizationRegistry', 'Float16Array', 'Float32Array', 'Float64Array',
       'Function', 'Infinity', 'Int16Array', 'Int32Array', 'Int8Array', 'Intl', 'Iterator', 'JSON', 'Map',
       'Math', 'NaN', 'Number', 'Object', 'Promise', 'Proxy', 'RangeError', 'ReferenceError', 'Reflect',
