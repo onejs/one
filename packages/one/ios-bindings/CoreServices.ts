@@ -11,1040 +11,1040 @@ type $SDK3 = (_CoreFoundation_CFString) | null;
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export function UTTypeConformsTo(inUTI: _CoreFoundation_CFString, inConformsToUTI: _CoreFoundation_CFString): boolean { return callSDK<boolean>("CoreServices_64b39a05e4a4cebd", 50469393380804, undefined, [inUTI, inConformsToUTI]); }
+export function UTTypeConformsTo(inUTI: _CoreFoundation_CFString, inConformsToUTI: _CoreFoundation_CFString): boolean { return callSDK<boolean>("CoreServices_bd41a4085ee86f99", 50469393380804, undefined, [inUTI, inConformsToUTI]); }
 
 /**
  * func UTTypeCopyAllTagsWithClass(_ inUTI: CFString, _ inTagClass: CFString) -> Unmanaged<CFArray>?
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export function UTTypeCopyAllTagsWithClass(inUTI: _CoreFoundation_CFString, inTagClass: _CoreFoundation_CFString): $SDK0 { return callSDK<$SDK0>("CoreServices_64b39a05e4a4cebd", 680688549668031, undefined, [inUTI, inTagClass]); }
+export function UTTypeCopyAllTagsWithClass(inUTI: _CoreFoundation_CFString, inTagClass: _CoreFoundation_CFString): $SDK0 { return callSDK<$SDK0>("CoreServices_bd41a4085ee86f99", 680688549668031, undefined, [inUTI, inTagClass]); }
 
 /**
  * func UTTypeCopyDeclaration(_ inUTI: CFString) -> Unmanaged<CFDictionary>?
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export function UTTypeCopyDeclaration(inUTI: _CoreFoundation_CFString): (_CoreFoundation_CFDictionary) | null { return callSDK<(_CoreFoundation_CFDictionary) | null>("CoreServices_64b39a05e4a4cebd", 1836721105727392, undefined, [inUTI]); }
+export function UTTypeCopyDeclaration(inUTI: _CoreFoundation_CFString): (_CoreFoundation_CFDictionary) | null { return callSDK<(_CoreFoundation_CFDictionary) | null>("CoreServices_bd41a4085ee86f99", 1836721105727392, undefined, [inUTI]); }
 
 /**
  * func UTTypeCopyDeclaringBundleURL(_ inUTI: CFString) -> Unmanaged<CFURL>?
  * @availability iOS 3.0+
  * @deprecated iOS 14.0
  */
-export function UTTypeCopyDeclaringBundleURL(inUTI: _CoreFoundation_CFString): (_CoreFoundation_CFURL) | null { return callSDK<(_CoreFoundation_CFURL) | null>("CoreServices_64b39a05e4a4cebd", 3991719886531712, undefined, [inUTI]); }
+export function UTTypeCopyDeclaringBundleURL(inUTI: _CoreFoundation_CFString): (_CoreFoundation_CFURL) | null { return callSDK<(_CoreFoundation_CFURL) | null>("CoreServices_bd41a4085ee86f99", 3991719886531712, undefined, [inUTI]); }
 
 /**
  * func UTTypeCopyDescription(_ inUTI: CFString) -> Unmanaged<CFString>?
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export function UTTypeCopyDescription(inUTI: _CoreFoundation_CFString): $SDK3 { return callSDK<$SDK3>("CoreServices_64b39a05e4a4cebd", 4199834088102904, undefined, [inUTI]); }
+export function UTTypeCopyDescription(inUTI: _CoreFoundation_CFString): $SDK3 { return callSDK<$SDK3>("CoreServices_bd41a4085ee86f99", 4199834088102904, undefined, [inUTI]); }
 
 /**
  * func UTTypeCopyPreferredTagWithClass(_ inUTI: CFString, _ inTagClass: CFString) -> Unmanaged<CFString>?
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export function UTTypeCopyPreferredTagWithClass(inUTI: _CoreFoundation_CFString, inTagClass: _CoreFoundation_CFString): $SDK3 { return callSDK<$SDK3>("CoreServices_64b39a05e4a4cebd", 1589855694161165, undefined, [inUTI, inTagClass]); }
+export function UTTypeCopyPreferredTagWithClass(inUTI: _CoreFoundation_CFString, inTagClass: _CoreFoundation_CFString): $SDK3 { return callSDK<$SDK3>("CoreServices_bd41a4085ee86f99", 1589855694161165, undefined, [inUTI, inTagClass]); }
 
 /**
  * func UTTypeCreateAllIdentifiersForTag(_ inTagClass: CFString, _ inTag: CFString, _ inConformingToUTI: CFString?) -> Unmanaged<CFArray>?
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export function UTTypeCreateAllIdentifiersForTag(inTagClass: _CoreFoundation_CFString, inTag: _CoreFoundation_CFString, inConformingToUTI?: $SDK3): $SDK0 { return callSDK<$SDK0>("CoreServices_64b39a05e4a4cebd", 776885243355638, undefined, [inTagClass, inTag, inConformingToUTI]); }
+export function UTTypeCreateAllIdentifiersForTag(inTagClass: _CoreFoundation_CFString, inTag: _CoreFoundation_CFString, inConformingToUTI?: $SDK3): $SDK0 { return callSDK<$SDK0>("CoreServices_bd41a4085ee86f99", 776885243355638, undefined, [inTagClass, inTag, inConformingToUTI]); }
 
 /**
  * func UTTypeCreatePreferredIdentifierForTag(_ inTagClass: CFString, _ inTag: CFString, _ inConformingToUTI: CFString?) -> Unmanaged<CFString>?
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export function UTTypeCreatePreferredIdentifierForTag(inTagClass: _CoreFoundation_CFString, inTag: _CoreFoundation_CFString, inConformingToUTI?: $SDK3): $SDK3 { return callSDK<$SDK3>("CoreServices_64b39a05e4a4cebd", 984528456976710, undefined, [inTagClass, inTag, inConformingToUTI]); }
+export function UTTypeCreatePreferredIdentifierForTag(inTagClass: _CoreFoundation_CFString, inTag: _CoreFoundation_CFString, inConformingToUTI?: $SDK3): $SDK3 { return callSDK<$SDK3>("CoreServices_bd41a4085ee86f99", 984528456976710, undefined, [inTagClass, inTag, inConformingToUTI]); }
 
 /**
  * func UTTypeEqual(_ inUTI1: CFString, _ inUTI2: CFString) -> Bool
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export function UTTypeEqual(inUTI1: _CoreFoundation_CFString, inUTI2: _CoreFoundation_CFString): boolean { return callSDK<boolean>("CoreServices_64b39a05e4a4cebd", 1378737852766470, undefined, [inUTI1, inUTI2]); }
+export function UTTypeEqual(inUTI1: _CoreFoundation_CFString, inUTI2: _CoreFoundation_CFString): boolean { return callSDK<boolean>("CoreServices_bd41a4085ee86f99", 1378737852766470, undefined, [inUTI1, inUTI2]); }
 
 /**
  * func UTTypeIsDeclared(_ inUTI: CFString) -> Bool
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export function UTTypeIsDeclared(inUTI: _CoreFoundation_CFString): boolean { return callSDK<boolean>("CoreServices_64b39a05e4a4cebd", 2764879648703994, undefined, [inUTI]); }
+export function UTTypeIsDeclared(inUTI: _CoreFoundation_CFString): boolean { return callSDK<boolean>("CoreServices_bd41a4085ee86f99", 2764879648703994, undefined, [inUTI]); }
 
 /**
  * func UTTypeIsDynamic(_ inUTI: CFString) -> Bool
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export function UTTypeIsDynamic(inUTI: _CoreFoundation_CFString): boolean { return callSDK<boolean>("CoreServices_64b39a05e4a4cebd", 3371653551809131, undefined, [inUTI]); }
+export function UTTypeIsDynamic(inUTI: _CoreFoundation_CFString): boolean { return callSDK<boolean>("CoreServices_bd41a4085ee86f99", 3371653551809131, undefined, [inUTI]); }
 
 /**
  * let kUTExportedTypeDeclarationsKey: CFString
  * @availability iOS 3.0+
  */
-export const kUTExportedTypeDeclarationsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4407518166560739, undefined, []);
+export const kUTExportedTypeDeclarationsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4407518166560739, undefined, []);
 
 /**
  * let kUTImportedTypeDeclarationsKey: CFString
  * @availability iOS 3.0+
  */
-export const kUTImportedTypeDeclarationsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 451204958427285, undefined, []);
+export const kUTImportedTypeDeclarationsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 451204958427285, undefined, []);
 
 /**
  * let kUTTagClassFilenameExtension: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTagClassFilenameExtension: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2969057297546843, undefined, []);
+export const kUTTagClassFilenameExtension: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2969057297546843, undefined, []);
 
 /**
  * let kUTTagClassMIMEType: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTagClassMIMEType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 367622015380957, undefined, []);
+export const kUTTagClassMIMEType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 367622015380957, undefined, []);
 
 /**
  * let kUTType3DContent: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTType3DContent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4201929260470670, undefined, []);
+export const kUTType3DContent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4201929260470670, undefined, []);
 
 /**
  * let kUTTypeAVIMovie: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeAVIMovie: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 246746731085932, undefined, []);
+export const kUTTypeAVIMovie: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 246746731085932, undefined, []);
 
 /**
  * let kUTTypeAliasFile: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeAliasFile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3235499145653300, undefined, []);
+export const kUTTypeAliasFile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3235499145653300, undefined, []);
 
 /**
  * let kUTTypeAliasRecord: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeAliasRecord: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1738856267935897, undefined, []);
+export const kUTTypeAliasRecord: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1738856267935897, undefined, []);
 
 /**
  * let kUTTypeAppleICNS: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeAppleICNS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 294775527583388, undefined, []);
+export const kUTTypeAppleICNS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 294775527583388, undefined, []);
 
 /**
  * let kUTTypeAppleProtectedMPEG4Audio: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeAppleProtectedMPEG4Audio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2516484795517907, undefined, []);
+export const kUTTypeAppleProtectedMPEG4Audio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2516484795517907, undefined, []);
 
 /**
  * let kUTTypeAppleProtectedMPEG4Video: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeAppleProtectedMPEG4Video: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2898959932433270, undefined, []);
+export const kUTTypeAppleProtectedMPEG4Video: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2898959932433270, undefined, []);
 
 /**
  * let kUTTypeAppleScript: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeAppleScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 460504836451765, undefined, []);
+export const kUTTypeAppleScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 460504836451765, undefined, []);
 
 /**
  * let kUTTypeApplication: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeApplication: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 240872718067351, undefined, []);
+export const kUTTypeApplication: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 240872718067351, undefined, []);
 
 /**
  * let kUTTypeApplicationBundle: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeApplicationBundle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1739998945995805, undefined, []);
+export const kUTTypeApplicationBundle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1739998945995805, undefined, []);
 
 /**
  * let kUTTypeApplicationFile: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeApplicationFile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4081156739584225, undefined, []);
+export const kUTTypeApplicationFile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4081156739584225, undefined, []);
 
 /**
  * let kUTTypeArchive: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeArchive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4210949574537715, undefined, []);
+export const kUTTypeArchive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4210949574537715, undefined, []);
 
 /**
  * let kUTTypeAssemblyLanguageSource: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeAssemblyLanguageSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3656373882039383, undefined, []);
+export const kUTTypeAssemblyLanguageSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3656373882039383, undefined, []);
 
 /**
  * let kUTTypeAudio: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeAudio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4056039000820678, undefined, []);
+export const kUTTypeAudio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4056039000820678, undefined, []);
 
 /**
  * let kUTTypeAudioInterchangeFileFormat: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeAudioInterchangeFileFormat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4255283703700957, undefined, []);
+export const kUTTypeAudioInterchangeFileFormat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4255283703700957, undefined, []);
 
 /**
  * let kUTTypeAudiovisualContent: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeAudiovisualContent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 81326736443989, undefined, []);
+export const kUTTypeAudiovisualContent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 81326736443989, undefined, []);
 
 /**
  * let kUTTypeBMP: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeBMP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2733957299517654, undefined, []);
+export const kUTTypeBMP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2733957299517654, undefined, []);
 
 /**
  * let kUTTypeBinaryPropertyList: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeBinaryPropertyList: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2893485624833739, undefined, []);
+export const kUTTypeBinaryPropertyList: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2893485624833739, undefined, []);
 
 /**
  * let kUTTypeBookmark: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeBookmark: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2696732338152606, undefined, []);
+export const kUTTypeBookmark: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2696732338152606, undefined, []);
 
 /**
  * let kUTTypeBundle: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeBundle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1411218593789983, undefined, []);
+export const kUTTypeBundle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1411218593789983, undefined, []);
 
 /**
  * let kUTTypeBzip2Archive: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeBzip2Archive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1567407588805492, undefined, []);
+export const kUTTypeBzip2Archive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1567407588805492, undefined, []);
 
 /**
  * let kUTTypeCHeader: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeCHeader: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3695084688847839, undefined, []);
+export const kUTTypeCHeader: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3695084688847839, undefined, []);
 
 /**
  * let kUTTypeCPlusPlusHeader: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeCPlusPlusHeader: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2745531037714695, undefined, []);
+export const kUTTypeCPlusPlusHeader: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2745531037714695, undefined, []);
 
 /**
  * let kUTTypeCPlusPlusSource: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeCPlusPlusSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1229966322150020, undefined, []);
+export const kUTTypeCPlusPlusSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1229966322150020, undefined, []);
 
 /**
  * let kUTTypeCSource: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeCSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4116268340887149, undefined, []);
+export const kUTTypeCSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4116268340887149, undefined, []);
 
 /**
  * let kUTTypeCalendarEvent: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeCalendarEvent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1858905748303221, undefined, []);
+export const kUTTypeCalendarEvent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1858905748303221, undefined, []);
 
 /**
  * let kUTTypeCommaSeparatedText: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeCommaSeparatedText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 513683423819446, undefined, []);
+export const kUTTypeCommaSeparatedText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 513683423819446, undefined, []);
 
 /**
  * let kUTTypeCompositeContent: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeCompositeContent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 161628577368182, undefined, []);
+export const kUTTypeCompositeContent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 161628577368182, undefined, []);
 
 /**
  * let kUTTypeConformsToKey: CFString
  * @availability iOS 3.0+
  */
-export const kUTTypeConformsToKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 97509019485587, undefined, []);
+export const kUTTypeConformsToKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 97509019485587, undefined, []);
 
 /**
  * let kUTTypeContact: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeContact: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4296987491143233, undefined, []);
+export const kUTTypeContact: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4296987491143233, undefined, []);
 
 /**
  * let kUTTypeContent: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeContent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 283569325776824, undefined, []);
+export const kUTTypeContent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 283569325776824, undefined, []);
 
 /**
  * let kUTTypeData: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4353078973789402, undefined, []);
+export const kUTTypeData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4353078973789402, undefined, []);
 
 /**
  * let kUTTypeDatabase: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeDatabase: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2765218766103622, undefined, []);
+export const kUTTypeDatabase: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2765218766103622, undefined, []);
 
 /**
  * let kUTTypeDelimitedText: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeDelimitedText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1825251950625058, undefined, []);
+export const kUTTypeDelimitedText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1825251950625058, undefined, []);
 
 /**
  * let kUTTypeDescriptionKey: CFString
  * @availability iOS 3.0+
  */
-export const kUTTypeDescriptionKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 502799002198336, undefined, []);
+export const kUTTypeDescriptionKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 502799002198336, undefined, []);
 
 /**
  * let kUTTypeDirectory: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeDirectory: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2893461276659839, undefined, []);
+export const kUTTypeDirectory: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2893461276659839, undefined, []);
 
 /**
  * let kUTTypeDiskImage: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeDiskImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1604768479053118, undefined, []);
+export const kUTTypeDiskImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1604768479053118, undefined, []);
 
 /**
  * let kUTTypeElectronicPublication: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeElectronicPublication: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3962474243632829, undefined, []);
+export const kUTTypeElectronicPublication: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3962474243632829, undefined, []);
 
 /**
  * let kUTTypeEmailMessage: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeEmailMessage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2292242331702393, undefined, []);
+export const kUTTypeEmailMessage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2292242331702393, undefined, []);
 
 /**
  * let kUTTypeExecutable: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeExecutable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 866794372323857, undefined, []);
+export const kUTTypeExecutable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 866794372323857, undefined, []);
 
 /**
  * let kUTTypeFileURL: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeFileURL: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3853594914642871, undefined, []);
+export const kUTTypeFileURL: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3853594914642871, undefined, []);
 
 /**
  * let kUTTypeFlatRTFD: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeFlatRTFD: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4202708408658866, undefined, []);
+export const kUTTypeFlatRTFD: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4202708408658866, undefined, []);
 
 /**
  * let kUTTypeFolder: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeFolder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 907763856297286, undefined, []);
+export const kUTTypeFolder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 907763856297286, undefined, []);
 
 /**
  * let kUTTypeFont: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeFont: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3891444703399936, undefined, []);
+export const kUTTypeFont: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3891444703399936, undefined, []);
 
 /**
  * let kUTTypeFramework: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeFramework: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 691620206861519, undefined, []);
+export const kUTTypeFramework: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 691620206861519, undefined, []);
 
 /**
  * let kUTTypeGIF: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeGIF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3595663217313230, undefined, []);
+export const kUTTypeGIF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3595663217313230, undefined, []);
 
 /**
  * let kUTTypeGNUZipArchive: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeGNUZipArchive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3101164404920143, undefined, []);
+export const kUTTypeGNUZipArchive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3101164404920143, undefined, []);
 
 /**
  * let kUTTypeHTML: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeHTML: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3254452491914337, undefined, []);
+export const kUTTypeHTML: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3254452491914337, undefined, []);
 
 /**
  * let kUTTypeICO: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeICO: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3470665360034600, undefined, []);
+export const kUTTypeICO: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3470665360034600, undefined, []);
 
 /**
  * let kUTTypeIconFileKey: CFString
  * @availability iOS 3.0+
  */
-export const kUTTypeIconFileKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2914509393565285, undefined, []);
+export const kUTTypeIconFileKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2914509393565285, undefined, []);
 
 /**
  * let kUTTypeIdentifierKey: CFString
  * @availability iOS 3.0+
  */
-export const kUTTypeIdentifierKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2064153276917265, undefined, []);
+export const kUTTypeIdentifierKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2064153276917265, undefined, []);
 
 /**
  * let kUTTypeImage: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2881330532232832, undefined, []);
+export const kUTTypeImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2881330532232832, undefined, []);
 
 /**
  * let kUTTypeInkText: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeInkText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1491641142731877, undefined, []);
+export const kUTTypeInkText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1491641142731877, undefined, []);
 
 /**
  * let kUTTypeInternetLocation: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeInternetLocation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2976701898518287, undefined, []);
+export const kUTTypeInternetLocation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2976701898518287, undefined, []);
 
 /**
  * let kUTTypeItem: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeItem: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1150616648695608, undefined, []);
+export const kUTTypeItem: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1150616648695608, undefined, []);
 
 /**
  * let kUTTypeJPEG2000: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeJPEG2000: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2219206698702855, undefined, []);
+export const kUTTypeJPEG2000: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2219206698702855, undefined, []);
 
 /**
  * let kUTTypeJPEG: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeJPEG: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4493384427627793, undefined, []);
+export const kUTTypeJPEG: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4493384427627793, undefined, []);
 
 /**
  * let kUTTypeJSON: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeJSON: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2543195762280598, undefined, []);
+export const kUTTypeJSON: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2543195762280598, undefined, []);
 
 /**
  * let kUTTypeJavaArchive: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeJavaArchive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4264607445357684, undefined, []);
+export const kUTTypeJavaArchive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4264607445357684, undefined, []);
 
 /**
  * let kUTTypeJavaClass: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeJavaClass: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3352411449180420, undefined, []);
+export const kUTTypeJavaClass: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3352411449180420, undefined, []);
 
 /**
  * let kUTTypeJavaScript: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeJavaScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2906341718546625, undefined, []);
+export const kUTTypeJavaScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2906341718546625, undefined, []);
 
 /**
  * let kUTTypeJavaSource: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeJavaSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3699166509700607, undefined, []);
+export const kUTTypeJavaSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3699166509700607, undefined, []);
 
 /**
  * let kUTTypeLivePhoto: CFString
  * @availability iOS 9.1+
  * @deprecated iOS 15.0
  */
-export const kUTTypeLivePhoto: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 775875663952649, undefined, []);
+export const kUTTypeLivePhoto: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 775875663952649, undefined, []);
 
 /**
  * let kUTTypeLog: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeLog: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2528616859080064, undefined, []);
+export const kUTTypeLog: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2528616859080064, undefined, []);
 
 /**
  * let kUTTypeM3UPlaylist: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeM3UPlaylist: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1500561574173839, undefined, []);
+export const kUTTypeM3UPlaylist: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1500561574173839, undefined, []);
 
 /**
  * let kUTTypeMIDIAudio: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeMIDIAudio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1002695738214496, undefined, []);
+export const kUTTypeMIDIAudio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1002695738214496, undefined, []);
 
 /**
  * let kUTTypeMP3: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeMP3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 437292361846012, undefined, []);
+export const kUTTypeMP3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 437292361846012, undefined, []);
 
 /**
  * let kUTTypeMPEG2TransportStream: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeMPEG2TransportStream: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1138512123619833, undefined, []);
+export const kUTTypeMPEG2TransportStream: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1138512123619833, undefined, []);
 
 /**
  * let kUTTypeMPEG2Video: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeMPEG2Video: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2351290336289561, undefined, []);
+export const kUTTypeMPEG2Video: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2351290336289561, undefined, []);
 
 /**
  * let kUTTypeMPEG4: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeMPEG4: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3609164262644016, undefined, []);
+export const kUTTypeMPEG4: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3609164262644016, undefined, []);
 
 /**
  * let kUTTypeMPEG4Audio: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeMPEG4Audio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1232713002416873, undefined, []);
+export const kUTTypeMPEG4Audio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1232713002416873, undefined, []);
 
 /**
  * let kUTTypeMPEG: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeMPEG: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 512424703072482, undefined, []);
+export const kUTTypeMPEG: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 512424703072482, undefined, []);
 
 /**
  * let kUTTypeMessage: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeMessage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 848472880003673, undefined, []);
+export const kUTTypeMessage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 848472880003673, undefined, []);
 
 /**
  * let kUTTypeMountPoint: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeMountPoint: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 900945531255249, undefined, []);
+export const kUTTypeMountPoint: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 900945531255249, undefined, []);
 
 /**
  * let kUTTypeMovie: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeMovie: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1433341092408251, undefined, []);
+export const kUTTypeMovie: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1433341092408251, undefined, []);
 
 /**
  * let kUTTypeOSAScript: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeOSAScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3136361983410686, undefined, []);
+export const kUTTypeOSAScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3136361983410686, undefined, []);
 
 /**
  * let kUTTypeOSAScriptBundle: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeOSAScriptBundle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4102554492053122, undefined, []);
+export const kUTTypeOSAScriptBundle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4102554492053122, undefined, []);
 
 /**
  * let kUTTypeObjectiveCPlusPlusSource: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeObjectiveCPlusPlusSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3465734208865169, undefined, []);
+export const kUTTypeObjectiveCPlusPlusSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3465734208865169, undefined, []);
 
 /**
  * let kUTTypeObjectiveCSource: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeObjectiveCSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1038807782837359, undefined, []);
+export const kUTTypeObjectiveCSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1038807782837359, undefined, []);
 
 /**
  * let kUTTypePDF: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypePDF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2609729179171921, undefined, []);
+export const kUTTypePDF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2609729179171921, undefined, []);
 
 /**
  * let kUTTypePHPScript: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypePHPScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1747483251687583, undefined, []);
+export const kUTTypePHPScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1747483251687583, undefined, []);
 
 /**
  * let kUTTypePICT: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypePICT: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 179820079042371, undefined, []);
+export const kUTTypePICT: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 179820079042371, undefined, []);
 
 /**
  * let kUTTypePKCS12: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypePKCS12: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 28278364930182, undefined, []);
+export const kUTTypePKCS12: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 28278364930182, undefined, []);
 
 /**
  * let kUTTypePNG: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypePNG: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2464381023286374, undefined, []);
+export const kUTTypePNG: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2464381023286374, undefined, []);
 
 /**
  * let kUTTypePackage: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypePackage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2695664287242609, undefined, []);
+export const kUTTypePackage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2695664287242609, undefined, []);
 
 /**
  * let kUTTypePerlScript: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypePerlScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4036605507774971, undefined, []);
+export const kUTTypePerlScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4036605507774971, undefined, []);
 
 /**
  * let kUTTypePlainText: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypePlainText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3341386956983711, undefined, []);
+export const kUTTypePlainText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3341386956983711, undefined, []);
 
 /**
  * let kUTTypePlaylist: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypePlaylist: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4316624383182751, undefined, []);
+export const kUTTypePlaylist: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4316624383182751, undefined, []);
 
 /**
  * let kUTTypePluginBundle: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypePluginBundle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1092333837168566, undefined, []);
+export const kUTTypePluginBundle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1092333837168566, undefined, []);
 
 /**
  * let kUTTypePresentation: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypePresentation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2367468703640807, undefined, []);
+export const kUTTypePresentation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2367468703640807, undefined, []);
 
 /**
  * let kUTTypePropertyList: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypePropertyList: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 663323903974785, undefined, []);
+export const kUTTypePropertyList: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 663323903974785, undefined, []);
 
 /**
  * let kUTTypePythonScript: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypePythonScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3263695994832315, undefined, []);
+export const kUTTypePythonScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3263695994832315, undefined, []);
 
 /**
  * let kUTTypeQuickLookGenerator: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeQuickLookGenerator: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1836922133328417, undefined, []);
+export const kUTTypeQuickLookGenerator: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1836922133328417, undefined, []);
 
 /**
  * let kUTTypeQuickTimeImage: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeQuickTimeImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1709808994677486, undefined, []);
+export const kUTTypeQuickTimeImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1709808994677486, undefined, []);
 
 /**
  * let kUTTypeQuickTimeMovie: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeQuickTimeMovie: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4066476986095921, undefined, []);
+export const kUTTypeQuickTimeMovie: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4066476986095921, undefined, []);
 
 /**
  * let kUTTypeRTF: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeRTF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2986048190427437, undefined, []);
+export const kUTTypeRTF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2986048190427437, undefined, []);
 
 /**
  * let kUTTypeRTFD: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeRTFD: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1592447373657607, undefined, []);
+export const kUTTypeRTFD: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1592447373657607, undefined, []);
 
 /**
  * let kUTTypeRawImage: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeRawImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 969106188203301, undefined, []);
+export const kUTTypeRawImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 969106188203301, undefined, []);
 
 /**
  * let kUTTypeReferenceURLKey: CFString
  * @availability iOS 3.0+
  */
-export const kUTTypeReferenceURLKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 511323513689492, undefined, []);
+export const kUTTypeReferenceURLKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 511323513689492, undefined, []);
 
 /**
  * let kUTTypeResolvable: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeResolvable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 159819949405686, undefined, []);
+export const kUTTypeResolvable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 159819949405686, undefined, []);
 
 /**
  * let kUTTypeRubyScript: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeRubyScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3176905854191526, undefined, []);
+export const kUTTypeRubyScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3176905854191526, undefined, []);
 
 /**
  * let kUTTypeScalableVectorGraphics: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeScalableVectorGraphics: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2818755616346005, undefined, []);
+export const kUTTypeScalableVectorGraphics: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2818755616346005, undefined, []);
 
 /**
  * let kUTTypeScript: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2932481222858329, undefined, []);
+export const kUTTypeScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2932481222858329, undefined, []);
 
 /**
  * let kUTTypeShellScript: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeShellScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2366327996613253, undefined, []);
+export const kUTTypeShellScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2366327996613253, undefined, []);
 
 /**
  * let kUTTypeSourceCode: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeSourceCode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1962369495605560, undefined, []);
+export const kUTTypeSourceCode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1962369495605560, undefined, []);
 
 /**
  * let kUTTypeSpotlightImporter: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeSpotlightImporter: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2187396777189404, undefined, []);
+export const kUTTypeSpotlightImporter: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2187396777189404, undefined, []);
 
 /**
  * let kUTTypeSpreadsheet: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeSpreadsheet: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2619092740269046, undefined, []);
+export const kUTTypeSpreadsheet: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2619092740269046, undefined, []);
 
 /**
  * let kUTTypeSwiftSource: CFString
  * @availability iOS 9.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeSwiftSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4309852305022694, undefined, []);
+export const kUTTypeSwiftSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4309852305022694, undefined, []);
 
 /**
  * let kUTTypeSymLink: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeSymLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 766775017396724, undefined, []);
+export const kUTTypeSymLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 766775017396724, undefined, []);
 
 /**
  * let kUTTypeSystemPreferencesPane: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeSystemPreferencesPane: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3342716015556045, undefined, []);
+export const kUTTypeSystemPreferencesPane: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3342716015556045, undefined, []);
 
 /**
  * let kUTTypeTIFF: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeTIFF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 976980527133793, undefined, []);
+export const kUTTypeTIFF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 976980527133793, undefined, []);
 
 /**
  * let kUTTypeTXNTextAndMultimediaData: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeTXNTextAndMultimediaData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3206595988514376, undefined, []);
+export const kUTTypeTXNTextAndMultimediaData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3206595988514376, undefined, []);
 
 /**
  * let kUTTypeTabSeparatedText: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeTabSeparatedText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1140773453137285, undefined, []);
+export const kUTTypeTabSeparatedText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1140773453137285, undefined, []);
 
 /**
  * let kUTTypeTagSpecificationKey: CFString
  * @availability iOS 3.0+
  */
-export const kUTTypeTagSpecificationKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1582296855631445, undefined, []);
+export const kUTTypeTagSpecificationKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1582296855631445, undefined, []);
 
 /**
  * let kUTTypeText: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3185096912262429, undefined, []);
+export const kUTTypeText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3185096912262429, undefined, []);
 
 /**
  * let kUTTypeToDoItem: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeToDoItem: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 330762961277813, undefined, []);
+export const kUTTypeToDoItem: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 330762961277813, undefined, []);
 
 /**
  * let kUTTypeURL: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeURL: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 607232940022056, undefined, []);
+export const kUTTypeURL: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 607232940022056, undefined, []);
 
 /**
  * let kUTTypeURLBookmarkData: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeURLBookmarkData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4058264312378833, undefined, []);
+export const kUTTypeURLBookmarkData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4058264312378833, undefined, []);
 
 /**
  * let kUTTypeUTF16ExternalPlainText: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeUTF16ExternalPlainText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2497974112598609, undefined, []);
+export const kUTTypeUTF16ExternalPlainText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2497974112598609, undefined, []);
 
 /**
  * let kUTTypeUTF16PlainText: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeUTF16PlainText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1668304981990572, undefined, []);
+export const kUTTypeUTF16PlainText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1668304981990572, undefined, []);
 
 /**
  * let kUTTypeUTF8PlainText: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeUTF8PlainText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2460326523062467, undefined, []);
+export const kUTTypeUTF8PlainText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2460326523062467, undefined, []);
 
 /**
  * let kUTTypeUTF8TabSeparatedText: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeUTF8TabSeparatedText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1838821237284383, undefined, []);
+export const kUTTypeUTF8TabSeparatedText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1838821237284383, undefined, []);
 
 /**
  * let kUTTypeUnixExecutable: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeUnixExecutable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1808926325283477, undefined, []);
+export const kUTTypeUnixExecutable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1808926325283477, undefined, []);
 
 /**
  * let kUTTypeVCard: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeVCard: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4379072345045844, undefined, []);
+export const kUTTypeVCard: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4379072345045844, undefined, []);
 
 /**
  * let kUTTypeVersionKey: CFString
  * @availability iOS 3.0+
  */
-export const kUTTypeVersionKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3646757740687939, undefined, []);
+export const kUTTypeVersionKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3646757740687939, undefined, []);
 
 /**
  * let kUTTypeVideo: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeVideo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3331852078676623, undefined, []);
+export const kUTTypeVideo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3331852078676623, undefined, []);
 
 /**
  * let kUTTypeVolume: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeVolume: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 3182400691293062, undefined, []);
+export const kUTTypeVolume: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 3182400691293062, undefined, []);
 
 /**
  * let kUTTypeWaveformAudio: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeWaveformAudio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1749958334938308, undefined, []);
+export const kUTTypeWaveformAudio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1749958334938308, undefined, []);
 
 /**
  * let kUTTypeWebArchive: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeWebArchive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1158734702113113, undefined, []);
+export const kUTTypeWebArchive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1158734702113113, undefined, []);
 
 /**
  * let kUTTypeWindowsExecutable: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeWindowsExecutable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4004805685662338, undefined, []);
+export const kUTTypeWindowsExecutable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4004805685662338, undefined, []);
 
 /**
  * let kUTTypeX509Certificate: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeX509Certificate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4195094311027036, undefined, []);
+export const kUTTypeX509Certificate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4195094311027036, undefined, []);
 
 /**
  * let kUTTypeXML: CFString
  * @availability iOS 3.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeXML: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 1726499276414911, undefined, []);
+export const kUTTypeXML: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 1726499276414911, undefined, []);
 
 /**
  * let kUTTypeXMLPropertyList: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeXMLPropertyList: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2766151772312466, undefined, []);
+export const kUTTypeXMLPropertyList: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2766151772312466, undefined, []);
 
 /**
  * let kUTTypeXPCService: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeXPCService: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 2426598973531401, undefined, []);
+export const kUTTypeXPCService: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 2426598973531401, undefined, []);
 
 /**
  * let kUTTypeZipArchive: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 15.0
  */
-export const kUTTypeZipArchive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_64b39a05e4a4cebd", 4232121484720135, undefined, []);
+export const kUTTypeZipArchive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreServices_bd41a4085ee86f99", 4232121484720135, undefined, []);
 
 

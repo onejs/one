@@ -13,12 +13,12 @@ export class DDDevicePairingAccess extends SDKHandle {
    * static var `default`: DDDevicePairingAccess { get }
    * @availability iOS 26.0+
    */
-  static get default(): DDDevicePairingAccess { return callSDK<DDDevicePairingAccess>("DeviceDiscoveryUI_64b39a05e4a4cebd", 4083762559589870, undefined, []); }
+  static get default(): DDDevicePairingAccess { return callSDK<DDDevicePairingAccess>("DeviceDiscoveryUI_bd41a4085ee86f99", 4083762559589870, undefined, []); }
   /**
    * static var permanent: DDDevicePairingAccess { get }
    * @availability iOS 26.0+
    */
-  static get permanent(): DDDevicePairingAccess { return callSDK<DDDevicePairingAccess>("DeviceDiscoveryUI_64b39a05e4a4cebd", 2233958307994987, undefined, []); }
+  static get permanent(): DDDevicePairingAccess { return callSDK<DDDevicePairingAccess>("DeviceDiscoveryUI_bd41a4085ee86f99", 2233958307994987, undefined, []); }
   declare readonly $type: { "s:17DeviceDiscoveryUI21DDDevicePairingAccessV": true };
 }
 
@@ -31,17 +31,17 @@ export class DDDevicePairingViewController extends SDKHandle {
    * @MainActor @preconcurrency override final func viewDidLoad()
    * @availability iOS 26.0+
    */
-  viewDidLoad(): Promise<void> { return callSDKAsync<void>("DeviceDiscoveryUI_64b39a05e4a4cebd", 4005062199896256, this, []); }
+  viewDidLoad(): Promise<void> { return callSDKAsync<void>("DeviceDiscoveryUI_bd41a4085ee86f99", 4005062199896256, this, []); }
   /**
    * @MainActor @preconcurrency static func isSupported(_ listenerProvider: any ListenerProvider) -> Bool
    * @availability iOS 26.0+
    */
-  static isSupported(listenerProvider: SDKHandle): Promise<boolean> { return callSDKAsync<boolean>("DeviceDiscoveryUI_64b39a05e4a4cebd", 325563755621736, undefined, [listenerProvider]); }
+  static isSupported(listenerProvider: SDKHandle): Promise<boolean> { return callSDKAsync<boolean>("DeviceDiscoveryUI_bd41a4085ee86f99", 325563755621736, undefined, [listenerProvider]); }
   /**
    * @MainActor @preconcurrency init(listenerProvider: any ListenerProvider, access: DDDevicePairingAccess)
    * @availability iOS 26.0+
    */
-  static init(listenerProvider: SDKHandle, access: DDDevicePairingAccess): Promise<DDDevicePairingViewController> { return callSDKAsync<DDDevicePairingViewController>("DeviceDiscoveryUI_64b39a05e4a4cebd", 280900812676197, undefined, [listenerProvider, access]); }
+  static init(listenerProvider: SDKHandle, access: DDDevicePairingAccess): Promise<DDDevicePairingViewController> { return callSDKAsync<DDDevicePairingViewController>("DeviceDiscoveryUI_bd41a4085ee86f99", 280900812676197, undefined, [listenerProvider, access]); }
   declare readonly $type: { "c:@M@DeviceDiscoveryUI@objc(cs)DDDevicePairingViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -54,25 +54,25 @@ export class DDDevicePickerViewController extends SDKHandle {
    * @MainActor @preconcurrency static func isSupported(_ browseDescriptor: NWBrowser.Descriptor, using: NWParameters? = nil) -> Bool
    * @availability iOS 26.0+
    */
-  static isSupported(browseDescriptor: _Network_NWBrowser_Descriptor, using?: $SDK0): Promise<boolean> { return callSDKAsync<boolean>("DeviceDiscoveryUI_64b39a05e4a4cebd", 2957795970030657, undefined, [browseDescriptor, using]); }
+  static isSupported(browseDescriptor: _Network_NWBrowser_Descriptor, using?: $SDK0): Promise<boolean> { return callSDKAsync<boolean>("DeviceDiscoveryUI_bd41a4085ee86f99", 2957795970030657, undefined, [browseDescriptor, using]); }
   /**
    * @MainActor @preconcurrency convenience init?(browseDescriptor: NWBrowser.Descriptor, parameters: NWParameters? = nil, access: DDDevicePairingAccess = .default)
    * @availability iOS 26.0+
    */
-  static initBrowseDescriptorParametersAccess(browseDescriptor: _Network_NWBrowser_Descriptor, parameters?: $SDK0, access?: DDDevicePairingAccess): Promise<(DDDevicePickerViewController) | null> { return callSDKAsync<(DDDevicePickerViewController) | null>("DeviceDiscoveryUI_64b39a05e4a4cebd", 3892540977679551, undefined, [browseDescriptor, parameters, access]); }
+  static initBrowseDescriptorParametersAccess(browseDescriptor: _Network_NWBrowser_Descriptor, parameters?: $SDK0, access?: DDDevicePairingAccess): Promise<(DDDevicePickerViewController) | null> { return callSDKAsync<(DDDevicePickerViewController) | null>("DeviceDiscoveryUI_bd41a4085ee86f99", 3892540977679551, undefined, [browseDescriptor, parameters, access]); }
   /**
    * @MainActor @preconcurrency convenience init?(browseDescriptor: NWBrowser.Descriptor, parameters: NWParameters? = nil)
    * @availability iOS 26.0+
    */
-  static initBrowseDescriptorParameters(browseDescriptor: _Network_NWBrowser_Descriptor, parameters?: $SDK0): Promise<(DDDevicePickerViewController) | null> { return callSDKAsync<(DDDevicePickerViewController) | null>("DeviceDiscoveryUI_64b39a05e4a4cebd", 3663233832430961, undefined, [browseDescriptor, parameters]); }
+  static initBrowseDescriptorParameters(browseDescriptor: _Network_NWBrowser_Descriptor, parameters?: $SDK0): Promise<(DDDevicePickerViewController) | null> { return callSDKAsync<(DDDevicePickerViewController) | null>("DeviceDiscoveryUI_bd41a4085ee86f99", 3663233832430961, undefined, [browseDescriptor, parameters]); }
   /**
    * @MainActor @preconcurrency var endpoint: NWEndpoint { get async throws }
    * @availability iOS 26.0+
    */
-  get endpoint(): Promise<_Network_NWEndpoint> { return callSDKAsync<_Network_NWEndpoint>("DeviceDiscoveryUI_64b39a05e4a4cebd", 4030773502259498, this, []); }
+  get endpoint(): Promise<_Network_NWEndpoint> { return callSDKAsync<_Network_NWEndpoint>("DeviceDiscoveryUI_bd41a4085ee86f99", 4030773502259498, this, []); }
   declare readonly $type: { "c:objc(cs)DDDevicePickerViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
-registerSDKClass("DeviceDiscoveryUI.DDDevicePairingAccess", DDDevicePairingAccess, { module: "DeviceDiscoveryUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("DeviceDiscoveryUI.DDDevicePairingViewController", DDDevicePairingViewController, { module: "DeviceDiscoveryUI_64b39a05e4a4cebd", properties: {}, methods: {"viewDidLoad":{"id":4005062199896256}} });
-registerSDKClass("DDDevicePickerViewController", DDDevicePickerViewController, { module: "DeviceDiscoveryUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("DeviceDiscoveryUI.DDDevicePairingAccess", DDDevicePairingAccess, { module: "DeviceDiscoveryUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("DeviceDiscoveryUI.DDDevicePairingViewController", DDDevicePairingViewController, { module: "DeviceDiscoveryUI_bd41a4085ee86f99", properties: {}, methods: {"viewDidLoad":{"id":4005062199896256}} });
+registerSDKClass("DDDevicePickerViewController", DDDevicePickerViewController, { module: "DeviceDiscoveryUI_bd41a4085ee86f99", properties: {} });

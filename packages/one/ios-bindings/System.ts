@@ -17,7 +17,7 @@ export class CInterop extends SDKHandle {
    * static func stat(_ path: UnsafePointer<CChar>, _ s: inout CInterop.Stat) -> Int32
    * @availability iOS 15.0+
    */
-  static stat(path: SDKHandle, s: SDKHandle): { $ret: number; $out: { "s": SDKHandle } } { return callSDK<{ $ret: number; $out: { "s": SDKHandle } }>("System_64b39a05e4a4cebd", 3383703031856994, undefined, [path, s]); }
+  static stat(path: SDKHandle, s: SDKHandle): { $ret: number; $out: { "s": SDKHandle } } { return callSDK<{ $ret: number; $out: { "s": SDKHandle } }>("System_bd41a4085ee86f99", 3383703031856994, undefined, [path, s]); }
   declare readonly $type: { "s:6System8CInteropO": true };
 }
 
@@ -98,18 +98,18 @@ export const DeviceID = {
    * init(rawValue: CInterop.DeviceID)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: SDKHandle): DeviceID { return callSDK<DeviceID>("System_64b39a05e4a4cebd", 386850171585741, undefined, [rawValue]); },
+  initRawValue(rawValue: SDKHandle): DeviceID { return callSDK<DeviceID>("System_bd41a4085ee86f99", 386850171585741, undefined, [rawValue]); },
   /**
    * var rawValue: CInterop.DeviceID
    * @availability iOS 27.0+
    */
-  getRawValue($self: DeviceID): SDKHandle { return callSDK<SDKHandle>("System_64b39a05e4a4cebd", 4442558026310979, $self, []); },
-  setRawValue($self: DeviceID, value: SDKHandle): void { return callSDK<void>("System_64b39a05e4a4cebd", 2631066337308990, $self, [value]); },
+  getRawValue($self: DeviceID): SDKHandle { return callSDK<SDKHandle>("System_bd41a4085ee86f99", 4442558026310979, $self, []); },
+  setRawValue($self: DeviceID, value: SDKHandle): void { return callSDK<void>("System_bd41a4085ee86f99", 2631066337308990, $self, [value]); },
   /**
    * init(_ rawValue: CInterop.DeviceID)
    * @availability iOS 27.0+
    */
-  init(rawValue: SDKHandle): DeviceID { return callSDK<DeviceID>("System_64b39a05e4a4cebd", 130554598287598, undefined, [rawValue]); }
+  init(rawValue: SDKHandle): DeviceID { return callSDK<DeviceID>("System_bd41a4085ee86f99", 130554598287598, undefined, [rawValue]); }
 };
 
 /**
@@ -129,567 +129,567 @@ export const Errno = {
    * static var readOnlyFileSystem: Errno { get }
    * @availability iOS 14.0+
    */
-  get readOnlyFileSystem(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3059346034379230, undefined, []); },
+  get readOnlyFileSystem(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3059346034379230, undefined, []); },
   /**
    * static var tooManyOpenFilesInSystem: Errno { get }
    * @availability iOS 14.0+
    */
-  get tooManyOpenFilesInSystem(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1709098809713249, undefined, []); },
+  get tooManyOpenFilesInSystem(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1709098809713249, undefined, []); },
   /**
    * static var lastErrnoValue: Errno { get }
    * @availability iOS 14.0+
    */
-  get lastErrnoValue(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 908003080771665, undefined, []); },
+  get lastErrnoValue(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 908003080771665, undefined, []); },
   /**
    * static var badAddress: Errno { get }
    * @availability iOS 14.0+
    */
-  get badAddress(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2989874643985692, undefined, []); },
+  get badAddress(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2989874643985692, undefined, []); },
   /**
    * static var badCPUType: Errno { get }
    * @availability iOS 14.0+
    */
-  get badCPUType(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2199263101203584, undefined, []); },
+  get badCPUType(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2199263101203584, undefined, []); },
   /**
    * static var badMessage: Errno { get }
    * @availability iOS 14.0+
    */
-  get badMessage(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2275837399956101, undefined, []); },
+  get badMessage(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2275837399956101, undefined, []); },
   /**
    * static var brokenPipe: Errno { get }
    * @availability iOS 14.0+
    */
-  get brokenPipe(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2099374049477272, undefined, []); },
+  get brokenPipe(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2099374049477272, undefined, []); },
   /**
    * static var fileExists: Errno { get }
    * @availability iOS 14.0+
    */
-  get fileExists(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 4272891524384610, undefined, []); },
+  get fileExists(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 4272891524384610, undefined, []); },
   /**
    * static var hostIsDown: Errno { get }
    * @availability iOS 14.0+
    */
-  get hostIsDown(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2698566101516972, undefined, []); },
+  get hostIsDown(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2698566101516972, undefined, []); },
   /**
    * static var noFunction: Errno { get }
    * @availability iOS 14.0+
    */
-  get noFunction(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2341570537609911, undefined, []); },
+  get noFunction(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2341570537609911, undefined, []); },
   /**
    * static var outOfRange: Errno { get }
    * @availability iOS 14.0+
    */
-  get outOfRange(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3107880848039348, undefined, []); },
+  get outOfRange(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3107880848039348, undefined, []); },
   /**
    * static var wouldBlock: Errno { get }
    * @availability iOS 14.0+
    */
-  get wouldBlock(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 4344961756586229, undefined, []); },
+  get wouldBlock(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 4344961756586229, undefined, []); },
   /**
    * var description: String { get }
    * @availability iOS 14.0+
    */
-  getDescription($self: Errno): string { return callSDK<string>("System_64b39a05e4a4cebd", 4271852242894793, $self, []); },
+  getDescription($self: Errno): string { return callSDK<string>("System_bd41a4085ee86f99", 4271852242894793, $self, []); },
   /**
    * static var deviceError: Errno { get }
    * @availability iOS 14.0+
    */
-  get deviceError(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 157053610917167, undefined, []); },
+  get deviceError(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 157053610917167, undefined, []); },
   /**
    * static var illegalSeek: Errno { get }
    * @availability iOS 14.0+
    */
-  get illegalSeek(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1916321575134600, undefined, []); },
+  get illegalSeek(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1916321575134600, undefined, []); },
   /**
    * static var interrupted: Errno { get }
    * @availability iOS 14.0+
    */
-  get interrupted(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3890021078173500, undefined, []); },
+  get interrupted(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3890021078173500, undefined, []); },
   /**
    * static var isDirectory: Errno { get }
    * @availability iOS 14.0+
    */
-  get isDirectory(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 4303835327915882, undefined, []); },
+  get isDirectory(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 4303835327915882, undefined, []); },
   /**
    * static var networkDown: Errno { get }
    * @availability iOS 14.0+
    */
-  get networkDown(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3804521923840886, undefined, []); },
+  get networkDown(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3804521923840886, undefined, []); },
   /**
    * static var outOfDomain: Errno { get }
    * @availability iOS 14.0+
    */
-  get outOfDomain(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1164000862850735, undefined, []); },
+  get outOfDomain(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1164000862850735, undefined, []); },
   /**
    * static var addressInUse: Errno { get }
    * @availability iOS 14.0+
    */
-  get addressInUse(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3705128232554508, undefined, []); },
+  get addressInUse(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3705128232554508, undefined, []); },
   /**
    * static var fileTooLarge: Errno { get }
    * @availability iOS 14.0+
    */
-  get fileTooLarge(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 400168094963409, undefined, []); },
+  get fileTooLarge(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 400168094963409, undefined, []); },
   /**
    * static var improperLink: Errno { get }
    * @availability iOS 14.0+
    */
-  get improperLink(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 869066528745320, undefined, []); },
+  get improperLink(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 869066528745320, undefined, []); },
   /**
    * static var networkReset: Errno { get }
    * @availability iOS 14.0+
    */
-  get networkReset(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 559117417884099, undefined, []); },
+  get networkReset(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 559117417884099, undefined, []); },
   /**
    * static var noSuchPolicy: Errno { get }
    * @availability iOS 14.0+
    */
-  get noSuchPolicy(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 584929695264050, undefined, []); },
+  get noSuchPolicy(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 584929695264050, undefined, []); },
   /**
    * static var notDirectory: Errno { get }
    * @availability iOS 14.0+
    */
-  get notDirectory(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 121947811102957, undefined, []); },
+  get notDirectory(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 121947811102957, undefined, []); },
   /**
    * static var notPermitted: Errno { get }
    * @availability iOS 14.0+
    */
-  get notPermitted(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1670243660680928, undefined, []); },
+  get notPermitted(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1670243660680928, undefined, []); },
   /**
    * static var notSupported: Errno { get }
    * @availability iOS 14.0+
    */
-  get notSupported(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3437794480708168, undefined, []); },
+  get notSupported(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3437794480708168, undefined, []); },
   /**
    * static var resourceBusy: Errno { get }
    * @availability iOS 14.0+
    */
-  get resourceBusy(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 239654191337635, undefined, []); },
+  get resourceBusy(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 239654191337635, undefined, []); },
   /**
    * static var textFileBusy: Errno { get }
    * @availability iOS 14.0+
    */
-  get textFileBusy(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3320477021558152, undefined, []); },
+  get textFileBusy(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3320477021558152, undefined, []); },
   /**
    * static var tooManyLinks: Errno { get }
    * @availability iOS 14.0+
    */
-  get tooManyLinks(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 650027329741028, undefined, []); },
+  get tooManyLinks(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 650027329741028, undefined, []); },
   /**
    * static var tooManyUsers: Errno { get }
    * @availability iOS 14.0+
    */
-  get tooManyUsers(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2985740676447912, undefined, []); },
+  get tooManyUsers(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2985740676447912, undefined, []); },
   /**
    * static var badExecutable: Errno { get }
    * @availability iOS 14.0+
    */
-  get badExecutable(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2230625355095786, undefined, []); },
+  get badExecutable(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2230625355095786, undefined, []); },
   /**
    * static var noBufferSpace: Errno { get }
    * @availability iOS 14.0+
    */
-  get noBufferSpace(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 140933297363851, undefined, []); },
+  get noBufferSpace(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 140933297363851, undefined, []); },
   /**
    * static var noRouteToHost: Errno { get }
    * @availability iOS 14.0+
    */
-  get noRouteToHost(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 274389008916294, undefined, []); },
+  get noRouteToHost(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 274389008916294, undefined, []); },
   /**
    * static var noSuchProcess: Errno { get }
    * @availability iOS 14.0+
    */
-  get noSuchProcess(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3812149401605202, undefined, []); },
+  get noSuchProcess(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3812149401605202, undefined, []); },
   /**
    * static var nowInProgress: Errno { get }
    * @availability iOS 14.0+
    */
-  get nowInProgress(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1519346984190114, undefined, []); },
+  get nowInProgress(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1519346984190114, undefined, []); },
   /**
    * static var protocolError: Errno { get }
    * @availability iOS 14.0+
    */
-  get protocolError(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3936888235171205, undefined, []); },
+  get protocolError(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3936888235171205, undefined, []); },
   /**
    * static var argListTooLong: Errno { get }
    * @availability iOS 14.0+
    */
-  get argListTooLong(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1206916685364154, undefined, []); },
+  get argListTooLong(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1206916685364154, undefined, []); },
   /**
    * static var malformedMachO: Errno { get }
    * @availability iOS 14.0+
    */
-  get malformedMachO(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3463841300811818, undefined, []); },
+  get malformedMachO(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3463841300811818, undefined, []); },
   /**
    * static var messageTooLong: Errno { get }
    * @availability iOS 14.0+
    */
-  get messageTooLong(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1173267346820378, undefined, []); },
+  get messageTooLong(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1173267346820378, undefined, []); },
   /**
    * static var noChildProcess: Errno { get }
    * @availability iOS 14.0+
    */
-  get noChildProcess(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3153147978818075, undefined, []); },
+  get noChildProcess(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3153147978818075, undefined, []); },
   /**
    * static var notBlockDevice: Errno { get }
    * @availability iOS 14.0+
    */
-  get notBlockDevice(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 4468158138308774, undefined, []); },
+  get notBlockDevice(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 4468158138308774, undefined, []); },
   /**
    * static var notRecoverable: Errno { get }
    * @availability iOS 14.0+
    */
-  get notRecoverable(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 641700039661155, undefined, []); },
+  get notRecoverable(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 641700039661155, undefined, []); },
   /**
    * static var socketShutdown: Errno { get }
    * @availability iOS 14.0+
    */
-  get socketShutdown(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3858259751350484, undefined, []); },
+  get socketShutdown(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3858259751350484, undefined, []); },
   /**
    * static var addressRequired: Errno { get }
    * @availability iOS 14.0+
    */
-  get addressRequired(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3432030825071455, undefined, []); },
+  get addressRequired(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3432030825071455, undefined, []); },
   /**
    * static var connectionAbort: Errno { get }
    * @availability iOS 14.0+
    */
-  get connectionAbort(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2033266798058820, undefined, []); },
+  get connectionAbort(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2033266798058820, undefined, []); },
   /**
    * static var connectionReset: Errno { get }
    * @availability iOS 14.0+
    */
-  get connectionReset(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3692056634951857, undefined, []); },
+  get connectionReset(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3692056634951857, undefined, []); },
   /**
    * static var execFormatError: Errno { get }
    * @availability iOS 14.0+
    */
-  get execFormatError(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1010485816205206, undefined, []); },
+  get execFormatError(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1010485816205206, undefined, []); },
   /**
    * static var fileNameTooLong: Errno { get }
    * @availability iOS 14.0+
    */
-  get fileNameTooLong(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2344451781780086, undefined, []); },
+  get fileNameTooLong(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2344451781780086, undefined, []); },
   /**
    * static var invalidArgument: Errno { get }
    * @availability iOS 14.0+
    */
-  get invalidArgument(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2033766059582041, undefined, []); },
+  get invalidArgument(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2033766059582041, undefined, []); },
   /**
    * static var outputQueueFull: Errno { get }
    * @availability iOS 14.0+
    */
-  get outputQueueFull(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3176721053328198, undefined, []); },
+  get outputQueueFull(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3176721053328198, undefined, []); },
   /**
    * static var rpcUnsuccessful: Errno { get }
    * @availability iOS 14.0+
    */
-  get rpcUnsuccessful(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2859557536715144, undefined, []); },
+  get rpcUnsuccessful(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2859557536715144, undefined, []); },
   /**
    * static var alreadyInProcess: Errno { get }
    * @availability iOS 14.0+
    */
-  get alreadyInProcess(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1349106433827142, undefined, []); },
+  get alreadyInProcess(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1349106433827142, undefined, []); },
   /**
    * var debugDescription: String { get }
    * @availability iOS 14.0+
    */
-  getDebugDescription($self: Errno): string { return callSDK<string>("System_64b39a05e4a4cebd", 4349441131997179, $self, []); },
+  getDebugDescription($self: Errno): string { return callSDK<string>("System_bd41a4085ee86f99", 4349441131997179, $self, []); },
   /**
    * static var devicePowerIsOff: Errno { get }
    * @availability iOS 14.0+
    */
-  get devicePowerIsOff(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3079919930829516, undefined, []); },
+  get devicePowerIsOff(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3079919930829516, undefined, []); },
   /**
    * static var permissionDenied: Errno { get }
    * @availability iOS 14.0+
    */
-  get permissionDenied(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 4212464187347453, undefined, []); },
+  get permissionDenied(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 4212464187347453, undefined, []); },
   /**
    * static var tooManyOpenFiles: Errno { get }
    * @availability iOS 14.0+
    */
-  get tooManyOpenFiles(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1915582209610686, undefined, []); },
+  get tooManyOpenFiles(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1915582209610686, undefined, []); },
   /**
    * static var tooManyProcesses: Errno { get }
    * @availability iOS 14.0+
    */
-  get tooManyProcesses(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1306168333218698, undefined, []); },
+  get tooManyProcesses(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1306168333218698, undefined, []); },
   /**
    * static var attributeNotFound: Errno { get }
    * @availability iOS 14.0+
    */
-  get attributeNotFound(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3112145218119344, undefined, []); },
+  get attributeNotFound(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3112145218119344, undefined, []); },
   /**
    * static var badFileDescriptor: Errno { get }
    * @availability iOS 14.0+
    */
-  get badFileDescriptor(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3307914279146776, undefined, []); },
+  get badFileDescriptor(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3307914279146776, undefined, []); },
   /**
    * static var connectionRefused: Errno { get }
    * @availability iOS 14.0+
    */
-  get connectionRefused(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1964555605317741, undefined, []); },
+  get connectionRefused(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1964555605317741, undefined, []); },
   /**
    * static var directoryNotEmpty: Errno { get }
    * @availability iOS 14.0+
    */
-  get directoryNotEmpty(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 4297101795493629, undefined, []); },
+  get directoryNotEmpty(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 4297101795493629, undefined, []); },
   /**
    * static var diskQuotaExceeded: Errno { get }
    * @availability iOS 14.0+
    */
-  get diskQuotaExceeded(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3899210629836084, undefined, []); },
+  get diskQuotaExceeded(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3899210629836084, undefined, []); },
   /**
    * static var identifierRemoved: Errno { get }
    * @availability iOS 14.0+
    */
-  get identifierRemoved(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 4046502027874670, undefined, []); },
+  get identifierRemoved(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 4046502027874670, undefined, []); },
   /**
    * static var needAuthenticator: Errno { get }
    * @availability iOS 14.0+
    */
-  get needAuthenticator(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 4021512688695108, undefined, []); },
+  get needAuthenticator(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 4021512688695108, undefined, []); },
   /**
    * static var noStreamResources: Errno { get }
    * @availability iOS 14.0+
    */
-  get noStreamResources(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 517858816387536, undefined, []); },
+  get noStreamResources(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 517858816387536, undefined, []); },
   /**
    * static var previousOwnerDied: Errno { get }
    * @availability iOS 14.0+
    */
-  get previousOwnerDied(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 4437764171822218, undefined, []); },
+  get previousOwnerDied(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 4437764171822218, undefined, []); },
   /**
    * static var socketIsConnected: Errno { get }
    * @availability iOS 14.0+
    */
-  get socketIsConnected(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3153388035779015, undefined, []); },
+  get socketIsConnected(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3153388035779015, undefined, []); },
   /**
    * static var tooManyReferences: Errno { get }
    * @availability iOS 14.0+
    */
-  get tooManyReferences(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 4084387189720906, undefined, []); },
+  get tooManyReferences(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 4084387189720906, undefined, []); },
   /**
    * static var networkUnreachable: Errno { get }
    * @availability iOS 14.0+
    */
-  get networkUnreachable(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3894675210421734, undefined, []); },
+  get networkUnreachable(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3894675210421734, undefined, []); },
   /**
    * static var rpcVersionMismatch: Errno { get }
    * @availability iOS 14.0+
    */
-  get rpcVersionMismatch(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2448487236758354, undefined, []); },
+  get rpcVersionMismatch(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2448487236758354, undefined, []); },
   /**
    * static var socketNotConnected: Errno { get }
    * @availability iOS 14.0+
    */
-  get socketNotConnected(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2757708410837320, undefined, []); },
+  get socketNotConnected(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2757708410837320, undefined, []); },
   /**
    * static var staleNFSFileHandle: Errno { get }
    * @availability iOS 14.0+
    */
-  get staleNFSFileHandle(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 873600099763894, undefined, []); },
+  get staleNFSFileHandle(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 873600099763894, undefined, []); },
   /**
    * static var addressNotAvailable: Errno { get }
    * @availability iOS 14.0+
    */
-  get addressNotAvailable(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2683800745559415, undefined, []); },
+  get addressNotAvailable(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2683800745559415, undefined, []); },
   /**
    * static var authenticationError: Errno { get }
    * @availability iOS 14.0+
    */
-  get authenticationError(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1902774709680168, undefined, []); },
+  get authenticationError(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1902774709680168, undefined, []); },
   /**
    * static var badFileTypeOrFormat: Errno { get }
    * @availability iOS 14.0+
    */
-  get badFileTypeOrFormat(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2057097342043874, undefined, []); },
+  get badFileTypeOrFormat(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2057097342043874, undefined, []); },
   /**
    * static var illegalByteSequence: Errno { get }
    * @availability iOS 14.0+
    */
-  get illegalByteSequence(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 178975347958589, undefined, []); },
+  get illegalByteSequence(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 178975347958589, undefined, []); },
   /**
    * static var tooManyRemoteLevels: Errno { get }
    * @availability iOS 14.0+
    */
-  get tooManyRemoteLevels(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2419849595832240, undefined, []); },
+  get tooManyRemoteLevels(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2419849595832240, undefined, []); },
   /**
    * static var notSupportedOnSocket: Errno { get }
    * @availability iOS 14.0+
    */
-  get notSupportedOnSocket(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2437386148346460, undefined, []); },
+  get notSupportedOnSocket(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2437386148346460, undefined, []); },
   /**
    * static var protocolNotAvailable: Errno { get }
    * @availability iOS 14.0+
    */
-  get protocolNotAvailable(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3455068965622579, undefined, []); },
+  get protocolNotAvailable(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3455068965622579, undefined, []); },
   /**
    * static var protocolNotSupported: Errno { get }
    * @availability iOS 14.0+
    */
-  get protocolNotSupported(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3649850752295466, undefined, []); },
+  get protocolNotSupported(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3649850752295466, undefined, []); },
   /**
    * static var noSuchAddressOrDevice: Errno { get }
    * @availability iOS 14.0+
    */
-  get noSuchAddressOrDevice(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 4405329085520508, undefined, []); },
+  get noSuchAddressOrDevice(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 4405329085520508, undefined, []); },
   /**
    * static var noSuchFileOrDirectory: Errno { get }
    * @availability iOS 14.0+
    */
-  get noSuchFileOrDirectory(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1860959367489828, undefined, []); },
+  get noSuchFileOrDirectory(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1860959367489828, undefined, []); },
   /**
    * static var rpcProgramUnavailable: Errno { get }
    * @availability iOS 14.0+
    */
-  get rpcProgramUnavailable(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2908366760346488, undefined, []); },
+  get rpcProgramUnavailable(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2908366760346488, undefined, []); },
   /**
    * static var socketTypeNotSupported: Errno { get }
    * @availability iOS 14.0+
    */
-  get socketTypeNotSupported(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2006451604140876, undefined, []); },
+  get socketTypeNotSupported(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2006451604140876, undefined, []); },
   /**
    * static var rpcProcedureUnavailable: Errno { get }
    * @availability iOS 14.0+
    */
-  get rpcProcedureUnavailable(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1110578882628127, undefined, []); },
+  get rpcProcedureUnavailable(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1110578882628127, undefined, []); },
   /**
    * static var addressFamilyNotSupported: Errno { get }
    * @availability iOS 14.0+
    */
-  get addressFamilyNotSupported(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1441774794523603, undefined, []); },
+  get addressFamilyNotSupported(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1441774794523603, undefined, []); },
   /**
    * static var rpcProgramVersionMismatch: Errno { get }
    * @availability iOS 14.0+
    */
-  get rpcProgramVersionMismatch(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1290204271575862, undefined, []); },
+  get rpcProgramVersionMismatch(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1290204271575862, undefined, []); },
   /**
    * static var tooManySymbolicLinkLevels: Errno { get }
    * @availability iOS 14.0+
    */
-  get tooManySymbolicLinkLevels(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3009590367499317, undefined, []); },
+  get tooManySymbolicLinkLevels(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3009590367499317, undefined, []); },
   /**
    * static var protocolFamilyNotSupported: Errno { get }
    * @availability iOS 14.0+
    */
-  get protocolFamilyNotSupported(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 833000278860192, undefined, []); },
+  get protocolFamilyNotSupported(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 833000278860192, undefined, []); },
   /**
    * static var protocolWrongTypeForSocket: Errno { get }
    * @availability iOS 14.0+
    */
-  get protocolWrongTypeForSocket(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1050131782679559, undefined, []); },
+  get protocolWrongTypeForSocket(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1050131782679559, undefined, []); },
   /**
    * static var inappropriateIOCTLForDevice: Errno { get }
    * @availability iOS 14.0+
    */
-  get inappropriateIOCTLForDevice(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1587958331365903, undefined, []); },
+  get inappropriateIOCTLForDevice(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1587958331365903, undefined, []); },
   /**
    * static var sharedLibraryVersionMismatch: Errno { get }
    * @availability iOS 14.0+
    */
-  get sharedLibraryVersionMismatch(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1084030240063346, undefined, []); },
+  get sharedLibraryVersionMismatch(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1084030240063346, undefined, []); },
   /**
    * static var operationNotSupportedByDevice: Errno { get }
    * @availability iOS 14.0+
    */
-  get operationNotSupportedByDevice(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3635153477902480, undefined, []); },
+  get operationNotSupportedByDevice(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3635153477902480, undefined, []); },
   /**
    * static var resourceTemporarilyUnavailable: Errno { get }
    * @availability iOS 14.0+
    */
-  get resourceTemporarilyUnavailable(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3864120342757124, undefined, []); },
+  get resourceTemporarilyUnavailable(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3864120342757124, undefined, []); },
   /**
    * static var noData: Errno { get }
    * @availability iOS 14.0+
    */
-  get noData(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 4061230754676826, undefined, []); },
+  get noData(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 4061230754676826, undefined, []); },
   /**
    * static var noLink: Errno { get }
    * @availability iOS 14.0+
    */
-  get noLink(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 4187391351144335, undefined, []); },
+  get noLink(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 4187391351144335, undefined, []); },
   /**
    * static var ioError: Errno { get }
    * @availability iOS 14.0+
    */
-  get ioError(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 57303575249120, undefined, []); },
+  get ioError(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 57303575249120, undefined, []); },
   /**
    * static var noLocks: Errno { get }
    * @availability iOS 14.0+
    */
-  get noLocks(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 449606328150281, undefined, []); },
+  get noLocks(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 449606328150281, undefined, []); },
   /**
    * static var noSpace: Errno { get }
    * @availability iOS 14.0+
    */
-  get noSpace(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3122839625052612, undefined, []); },
+  get noSpace(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3122839625052612, undefined, []); },
   /**
    * static var notUsed: Errno { get }
    * @availability iOS 14.0+
    */
-  get notUsed(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2300827664998252, undefined, []); },
+  get notUsed(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2300827664998252, undefined, []); },
   /**
    * static var timeout: Errno { get }
    * @availability iOS 14.0+
    */
-  get timeout(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 1526258303956610, undefined, []); },
+  get timeout(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 1526258303956610, undefined, []); },
   /**
    * static var canceled: Errno { get }
    * @availability iOS 14.0+
    */
-  get canceled(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2626420949179211, undefined, []); },
+  get canceled(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2626420949179211, undefined, []); },
   /**
    * static var deadlock: Errno { get }
    * @availability iOS 14.0+
    */
-  get deadlock(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2871697985981717, undefined, []); },
+  get deadlock(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2871697985981717, undefined, []); },
   /**
    * static var multiHop: Errno { get }
    * @availability iOS 14.0+
    */
-  get multiHop(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2362085207449872, undefined, []); },
+  get multiHop(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2362085207449872, undefined, []); },
   /**
    * static var noMemory: Errno { get }
    * @availability iOS 14.0+
    */
-  get noMemory(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3667055645871513, undefined, []); },
+  get noMemory(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3667055645871513, undefined, []); },
   /**
    * static var overflow: Errno { get }
    * @availability iOS 14.0+
    */
-  get overflow(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3573267747001569, undefined, []); },
+  get overflow(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3573267747001569, undefined, []); },
   /**
    * init(rawValue: CInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3993573354192605, undefined, [rawValue]); },
+  init(rawValue: number): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3993573354192605, undefined, [rawValue]); },
   /**
    * let rawValue: CInt
    * @availability iOS 14.0+
    */
-  getRawValue($self: Errno): number { return callSDK<number>("System_64b39a05e4a4cebd", 487599567745746, $self, []); },
+  getRawValue($self: Errno): number { return callSDK<number>("System_bd41a4085ee86f99", 487599567745746, $self, []); },
   /**
    * static var timedOut: Errno { get }
    * @availability iOS 14.0+
    */
-  get timedOut(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 2069398506326214, undefined, []); },
+  get timedOut(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 2069398506326214, undefined, []); },
   /**
    * static var noMessage: Errno { get }
    * @availability iOS 14.0+
    */
-  get noMessage(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 829135184841315, undefined, []); },
+  get noMessage(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 829135184841315, undefined, []); },
   /**
    * static var notSocket: Errno { get }
    * @availability iOS 14.0+
    */
-  get notSocket(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 592358243945321, undefined, []); },
+  get notSocket(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 592358243945321, undefined, []); },
   /**
    * static var notStream: Errno { get }
    * @availability iOS 14.0+
    */
-  get notStream(): Errno { return callSDK<Errno>("System_64b39a05e4a4cebd", 3883976998707192, undefined, []); }
+  get notStream(): Errno { return callSDK<Errno>("System_bd41a4085ee86f99", 3883976998707192, undefined, []); }
 };
 
 /**
@@ -709,112 +709,112 @@ export const FileDescriptor = {
    * func closeAfter<R>(_ body: () throws -> R) throws -> R
    * @availability iOS 14.0+
    */
-  closeAfter($self: FileDescriptor, body: (() => unknown)): unknown { return callSDK<unknown>("System_64b39a05e4a4cebd", 1011864780274347, $self, [body], [{"callback":{"out":[]}}], true); },
+  closeAfter($self: FileDescriptor, body: (() => unknown)): unknown { return callSDK<unknown>("System_bd41a4085ee86f99", 1011864780274347, $self, [body], [{"callback":{"out":[]}}], true); },
   /**
    * static var standardError: FileDescriptor { get }
    * @availability iOS 14.0+
    */
-  get standardError(): FileDescriptor { return callSDK<FileDescriptor>("System_64b39a05e4a4cebd", 2103125046604127, undefined, []); },
+  get standardError(): FileDescriptor { return callSDK<FileDescriptor>("System_bd41a4085ee86f99", 2103125046604127, undefined, []); },
   /**
    * static var standardInput: FileDescriptor { get }
    * @availability iOS 14.0+
    */
-  get standardInput(): FileDescriptor { return callSDK<FileDescriptor>("System_64b39a05e4a4cebd", 4195332323615461, undefined, []); },
+  get standardInput(): FileDescriptor { return callSDK<FileDescriptor>("System_bd41a4085ee86f99", 4195332323615461, undefined, []); },
   /**
    * static var standardOutput: FileDescriptor { get }
    * @availability iOS 14.0+
    */
-  get standardOutput(): FileDescriptor { return callSDK<FileDescriptor>("System_64b39a05e4a4cebd", 1455285747904086, undefined, []); },
+  get standardOutput(): FileDescriptor { return callSDK<FileDescriptor>("System_bd41a4085ee86f99", 1455285747904086, undefined, []); },
   /**
    * static func open(_ path: UnsafePointer<CChar>, _ mode: FileDescriptor.AccessMode, options: FileDescriptor.OpenOptions = FileDescriptor.OpenOptions(), permissions: FilePermissions? = nil, retryOnInterrupt: Bool = true) throws -> FileDescriptor
    * @availability iOS 14.0+
    */
-  openOptionsPermissionsRetryOnInterrupt(path: SDKHandle, mode: FileDescriptor_AccessMode, options?: FileDescriptor_OpenOptions, permissions?: (FilePermissions) | null, retryOnInterrupt?: boolean): FileDescriptor { return callSDK<FileDescriptor>("System_64b39a05e4a4cebd", 2431623842811087, undefined, [path, mode, options, permissions, retryOnInterrupt]); },
+  openOptionsPermissionsRetryOnInterrupt(path: SDKHandle, mode: FileDescriptor_AccessMode, options?: FileDescriptor_OpenOptions, permissions?: (FilePermissions) | null, retryOnInterrupt?: boolean): FileDescriptor { return callSDK<FileDescriptor>("System_bd41a4085ee86f99", 2431623842811087, undefined, [path, mode, options, permissions, retryOnInterrupt]); },
   /**
    * static func open(_ path: FilePath, _ mode: FileDescriptor.AccessMode, options: FileDescriptor.OpenOptions = FileDescriptor.OpenOptions(), permissions: FilePermissions? = nil, retryOnInterrupt: Bool = true) throws -> FileDescriptor
    * @availability iOS 14.0+
    */
-  openOptionsPermissionsRetryOnInterrupt52194(path: FilePath, mode: FileDescriptor_AccessMode, options?: FileDescriptor_OpenOptions, permissions?: (FilePermissions) | null, retryOnInterrupt?: boolean): FileDescriptor { return callSDK<FileDescriptor>("System_64b39a05e4a4cebd", 1274632702245856, undefined, [path, mode, options, permissions, retryOnInterrupt]); },
+  openOptionsPermissionsRetryOnInterrupt52194(path: FilePath, mode: FileDescriptor_AccessMode, options?: FileDescriptor_OpenOptions, permissions?: (FilePermissions) | null, retryOnInterrupt?: boolean): FileDescriptor { return callSDK<FileDescriptor>("System_bd41a4085ee86f99", 1274632702245856, undefined, [path, mode, options, permissions, retryOnInterrupt]); },
   /**
    * static func pipe(options: FileDescriptor.PipeOptions) throws(Errno) -> (readEnd: FileDescriptor, writeEnd: FileDescriptor)
    * @availability iOS 27.0+
    */
-  pipeOptions(options: FileDescriptor_PipeOptions): $SDK1 { return callSDK<$SDK1>("System_64b39a05e4a4cebd", 950862015473173, undefined, [options]); },
+  pipeOptions(options: FileDescriptor_PipeOptions): $SDK1 { return callSDK<$SDK1>("System_bd41a4085ee86f99", 950862015473173, undefined, [options]); },
   /**
    * static func pipe() throws -> (readEnd: FileDescriptor, writeEnd: FileDescriptor)
    * @availability iOS 15.4+
    */
-  pipe(): $SDK1 { return callSDK<$SDK1>("System_64b39a05e4a4cebd", 367412064787361, undefined, []); },
+  pipe(): $SDK1 { return callSDK<$SDK1>("System_bd41a4085ee86f99", 367412064787361, undefined, []); },
   /**
    * func read(fromAbsoluteOffset offset: Int64, into buffer: UnsafeMutableRawBufferPointer, retryOnInterrupt: Bool = true) throws -> Int
    * @availability iOS 14.0+
    */
-  readFromAbsoluteOffsetIntoRetryOnInterrupt($self: FileDescriptor, offset: number, buffer: ArrayBuffer, retryOnInterrupt?: boolean): number { return callSDK<number>("System_64b39a05e4a4cebd", 3067234314052817, $self, [offset, buffer, retryOnInterrupt]); },
+  readFromAbsoluteOffsetIntoRetryOnInterrupt($self: FileDescriptor, offset: number, buffer: ArrayBuffer, retryOnInterrupt?: boolean): number { return callSDK<number>("System_bd41a4085ee86f99", 3067234314052817, $self, [offset, buffer, retryOnInterrupt]); },
   /**
    * func read(into buffer: UnsafeMutableRawBufferPointer, retryOnInterrupt: Bool = true) throws -> Int
    * @availability iOS 14.0+
    */
-  readIntoRetryOnInterrupt($self: FileDescriptor, buffer: ArrayBuffer, retryOnInterrupt?: boolean): number { return callSDK<number>("System_64b39a05e4a4cebd", 3469108286676564, $self, [buffer, retryOnInterrupt]); },
+  readIntoRetryOnInterrupt($self: FileDescriptor, buffer: ArrayBuffer, retryOnInterrupt?: boolean): number { return callSDK<number>("System_bd41a4085ee86f99", 3469108286676564, $self, [buffer, retryOnInterrupt]); },
   /**
    * @discardableResult func seek(offset: Int64, from whence: FileDescriptor.SeekOrigin) throws -> Int64
    * @availability iOS 14.0+
    */
-  seek($self: FileDescriptor, offset: number, whence: FileDescriptor_SeekOrigin): number { return callSDK<number>("System_64b39a05e4a4cebd", 3478156158372312, $self, [offset, whence]); },
+  seek($self: FileDescriptor, offset: number, whence: FileDescriptor_SeekOrigin): number { return callSDK<number>("System_bd41a4085ee86f99", 3478156158372312, $self, [offset, whence]); },
   /**
    * func stat(retryOnInterrupt: Bool = true) throws(Errno) -> Stat
    * @availability iOS 27.0+
    */
-  stat($self: FileDescriptor, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_64b39a05e4a4cebd", 2911854654896666, $self, [retryOnInterrupt]); },
+  stat($self: FileDescriptor, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_bd41a4085ee86f99", 2911854654896666, $self, [retryOnInterrupt]); },
   /**
    * func close() throws
    * @availability iOS 14.0+
    */
-  close($self: FileDescriptor): void { return callSDK<void>("System_64b39a05e4a4cebd", 2537573791481705, $self, []); },
+  close($self: FileDescriptor): void { return callSDK<void>("System_bd41a4085ee86f99", 2537573791481705, $self, []); },
   /**
    * func write(toAbsoluteOffset offset: Int64, _ buffer: UnsafeRawBufferPointer, retryOnInterrupt: Bool = true) throws -> Int
    * @availability iOS 14.0+
    */
-  writeToAbsoluteOffsetRetryOnInterrupt($self: FileDescriptor, offset: number, buffer: ArrayBuffer, retryOnInterrupt?: boolean): number { return callSDK<number>("System_64b39a05e4a4cebd", 2768119735382736, $self, [offset, buffer, retryOnInterrupt]); },
+  writeToAbsoluteOffsetRetryOnInterrupt($self: FileDescriptor, offset: number, buffer: ArrayBuffer, retryOnInterrupt?: boolean): number { return callSDK<number>("System_bd41a4085ee86f99", 2768119735382736, $self, [offset, buffer, retryOnInterrupt]); },
   /**
    * func write(_ buffer: UnsafeRawBufferPointer, retryOnInterrupt: Bool = true) throws -> Int
    * @availability iOS 14.0+
    */
-  writeRetryOnInterrupt($self: FileDescriptor, buffer: ArrayBuffer, retryOnInterrupt?: boolean): number { return callSDK<number>("System_64b39a05e4a4cebd", 1044777041312121, $self, [buffer, retryOnInterrupt]); },
+  writeRetryOnInterrupt($self: FileDescriptor, buffer: ArrayBuffer, retryOnInterrupt?: boolean): number { return callSDK<number>("System_bd41a4085ee86f99", 1044777041312121, $self, [buffer, retryOnInterrupt]); },
   /**
    * func resize(to newSize: Int64, retryOnInterrupt: Bool = true) throws
    * @availability iOS 17.4+
    */
-  resize($self: FileDescriptor, newSize: number, retryOnInterrupt?: boolean): void { return callSDK<void>("System_64b39a05e4a4cebd", 4299010287160503, $self, [newSize, retryOnInterrupt]); },
+  resize($self: FileDescriptor, newSize: number, retryOnInterrupt?: boolean): void { return callSDK<void>("System_bd41a4085ee86f99", 4299010287160503, $self, [newSize, retryOnInterrupt]); },
   /**
    * init(rawValue: CInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): FileDescriptor { return callSDK<FileDescriptor>("System_64b39a05e4a4cebd", 2223668815735012, undefined, [rawValue]); },
+  init(rawValue: number): FileDescriptor { return callSDK<FileDescriptor>("System_bd41a4085ee86f99", 2223668815735012, undefined, [rawValue]); },
   /**
    * let rawValue: CInt
    * @availability iOS 14.0+
    */
-  getRawValue($self: FileDescriptor): number { return callSDK<number>("System_64b39a05e4a4cebd", 1829922508768394, $self, []); },
+  getRawValue($self: FileDescriptor): number { return callSDK<number>("System_bd41a4085ee86f99", 1829922508768394, $self, []); },
   /**
    * @discardableResult func writeAll<S>(toAbsoluteOffset offset: Int64, _ sequence: S) throws -> Int where S : Sequence, S.Element == UInt8
    * @availability iOS 14.0+
    */
-  writeAllToAbsoluteOffset($self: FileDescriptor, offset: number, sequence: Array<number>): number { return callSDK<number>("System_64b39a05e4a4cebd", 4174193040572833, $self, [offset, sequence]); },
+  writeAllToAbsoluteOffset($self: FileDescriptor, offset: number, sequence: Array<number>): number { return callSDK<number>("System_bd41a4085ee86f99", 4174193040572833, $self, [offset, sequence]); },
   /**
    * @discardableResult func writeAll<S>(_ sequence: S) throws -> Int where S : Sequence, S.Element == UInt8
    * @availability iOS 14.0+
    */
-  writeAll($self: FileDescriptor, sequence: Array<number>): number { return callSDK<number>("System_64b39a05e4a4cebd", 771693901008954, $self, [sequence]); },
+  writeAll($self: FileDescriptor, sequence: Array<number>): number { return callSDK<number>("System_bd41a4085ee86f99", 771693901008954, $self, [sequence]); },
   /**
    * func duplicate(as target: FileDescriptor? = nil, retryOnInterrupt: Bool = true) throws -> FileDescriptor
    * @availability iOS 15.0+
    */
-  duplicateAsRetryOnInterrupt($self: FileDescriptor, target?: (FileDescriptor) | null, retryOnInterrupt?: boolean): FileDescriptor { return callSDK<FileDescriptor>("System_64b39a05e4a4cebd", 4395586613758293, $self, [target, retryOnInterrupt]); },
+  duplicateAsRetryOnInterrupt($self: FileDescriptor, target?: (FileDescriptor) | null, retryOnInterrupt?: boolean): FileDescriptor { return callSDK<FileDescriptor>("System_bd41a4085ee86f99", 4395586613758293, $self, [target, retryOnInterrupt]); },
   /**
    * @discardableResult func duplicate(as target: FileDescriptor, options: FileDescriptor.DuplicateOptions, retryOnInterrupt: Bool = true) throws(Errno) -> FileDescriptor
    * @availability iOS 27.0+
    */
-  duplicateAsOptionsRetryOnInterrupt($self: FileDescriptor, target: FileDescriptor, options: FileDescriptor_DuplicateOptions, retryOnInterrupt?: boolean): FileDescriptor { return callSDK<FileDescriptor>("System_64b39a05e4a4cebd", 377335372424422, $self, [target, options, retryOnInterrupt]); }
+  duplicateAsOptionsRetryOnInterrupt($self: FileDescriptor, target: FileDescriptor, options: FileDescriptor_DuplicateOptions, retryOnInterrupt?: boolean): FileDescriptor { return callSDK<FileDescriptor>("System_bd41a4085ee86f99", 377335372424422, $self, [target, options, retryOnInterrupt]); }
 };
 
 /**
@@ -828,38 +828,38 @@ export const FileDescriptor_AccessMode = {
    * var description: String { get }
    * @availability iOS 14.0+
    */
-  getDescription($self: FileDescriptor_AccessMode): string { return callSDK<string>("System_64b39a05e4a4cebd", 2869957962818753, $self, []); },
+  getDescription($self: FileDescriptor_AccessMode): string { return callSDK<string>("System_bd41a4085ee86f99", 2869957962818753, $self, []); },
   /**
    * var debugDescription: String { get }
    * @availability iOS 14.0+
    */
-  getDebugDescription($self: FileDescriptor_AccessMode): string { return callSDK<string>("System_64b39a05e4a4cebd", 1832626931488078, $self, []); },
+  getDebugDescription($self: FileDescriptor_AccessMode): string { return callSDK<string>("System_bd41a4085ee86f99", 1832626931488078, $self, []); },
   /**
    * init(rawValue: CInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): FileDescriptor_AccessMode { return callSDK<FileDescriptor_AccessMode>("System_64b39a05e4a4cebd", 2836880236729927, undefined, [rawValue]); },
+  init(rawValue: number): FileDescriptor_AccessMode { return callSDK<FileDescriptor_AccessMode>("System_bd41a4085ee86f99", 2836880236729927, undefined, [rawValue]); },
   /**
    * var rawValue: CInt
    * @availability iOS 14.0+
    */
-  getRawValue($self: FileDescriptor_AccessMode): number { return callSDK<number>("System_64b39a05e4a4cebd", 3429137882105688, $self, []); },
-  setRawValue($self: FileDescriptor_AccessMode, value: number): void { return callSDK<void>("System_64b39a05e4a4cebd", 1385777626431120, $self, [value]); },
+  getRawValue($self: FileDescriptor_AccessMode): number { return callSDK<number>("System_bd41a4085ee86f99", 3429137882105688, $self, []); },
+  setRawValue($self: FileDescriptor_AccessMode, value: number): void { return callSDK<void>("System_bd41a4085ee86f99", 1385777626431120, $self, [value]); },
   /**
    * static var readOnly: FileDescriptor.AccessMode { get }
    * @availability iOS 14.0+
    */
-  get readOnly(): FileDescriptor_AccessMode { return callSDK<FileDescriptor_AccessMode>("System_64b39a05e4a4cebd", 3264677750058125, undefined, []); },
+  get readOnly(): FileDescriptor_AccessMode { return callSDK<FileDescriptor_AccessMode>("System_bd41a4085ee86f99", 3264677750058125, undefined, []); },
   /**
    * static var readWrite: FileDescriptor.AccessMode { get }
    * @availability iOS 14.0+
    */
-  get readWrite(): FileDescriptor_AccessMode { return callSDK<FileDescriptor_AccessMode>("System_64b39a05e4a4cebd", 2829142084755788, undefined, []); },
+  get readWrite(): FileDescriptor_AccessMode { return callSDK<FileDescriptor_AccessMode>("System_bd41a4085ee86f99", 2829142084755788, undefined, []); },
   /**
    * static var writeOnly: FileDescriptor.AccessMode { get }
    * @availability iOS 14.0+
    */
-  get writeOnly(): FileDescriptor_AccessMode { return callSDK<FileDescriptor_AccessMode>("System_64b39a05e4a4cebd", 455073237821884, undefined, []); }
+  get writeOnly(): FileDescriptor_AccessMode { return callSDK<FileDescriptor_AccessMode>("System_bd41a4085ee86f99", 455073237821884, undefined, []); }
 };
 
 /**
@@ -879,23 +879,23 @@ export const FileDescriptor_DuplicateOptions = {
    * static var closeOnExec: FileDescriptor.DuplicateOptions { get }
    * @availability iOS 27.0+
    */
-  get closeOnExec(): FileDescriptor_DuplicateOptions { return callSDK<FileDescriptor_DuplicateOptions>("System_64b39a05e4a4cebd", 784666317356096, undefined, []); },
+  get closeOnExec(): FileDescriptor_DuplicateOptions { return callSDK<FileDescriptor_DuplicateOptions>("System_bd41a4085ee86f99", 784666317356096, undefined, []); },
   /**
    * static var closeOnFork: FileDescriptor.DuplicateOptions { get }
    * @availability iOS 27.0+
    */
-  get closeOnFork(): FileDescriptor_DuplicateOptions { return callSDK<FileDescriptor_DuplicateOptions>("System_64b39a05e4a4cebd", 898464258957268, undefined, []); },
+  get closeOnFork(): FileDescriptor_DuplicateOptions { return callSDK<FileDescriptor_DuplicateOptions>("System_bd41a4085ee86f99", 898464258957268, undefined, []); },
   /**
    * init(rawValue: CInt)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): FileDescriptor_DuplicateOptions { return callSDK<FileDescriptor_DuplicateOptions>("System_64b39a05e4a4cebd", 1774048870520518, undefined, [rawValue]); },
+  init(rawValue: number): FileDescriptor_DuplicateOptions { return callSDK<FileDescriptor_DuplicateOptions>("System_bd41a4085ee86f99", 1774048870520518, undefined, [rawValue]); },
   /**
    * var rawValue: CInt
    * @availability iOS 27.0+
    */
-  getRawValue($self: FileDescriptor_DuplicateOptions): number { return callSDK<number>("System_64b39a05e4a4cebd", 3531210295288324, $self, []); },
-  setRawValue($self: FileDescriptor_DuplicateOptions, value: number): void { return callSDK<void>("System_64b39a05e4a4cebd", 4469583567611731, $self, [value]); }
+  getRawValue($self: FileDescriptor_DuplicateOptions): number { return callSDK<number>("System_bd41a4085ee86f99", 3531210295288324, $self, []); },
+  setRawValue($self: FileDescriptor_DuplicateOptions, value: number): void { return callSDK<void>("System_bd41a4085ee86f99", 4469583567611731, $self, [value]); }
 };
 
 /**
@@ -927,83 +927,83 @@ export const FileDescriptor_OpenOptions = {
    * static var sharedLock: FileDescriptor.OpenOptions { get }
    * @availability iOS 14.0+
    */
-  get sharedLock(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_64b39a05e4a4cebd", 2206138318140454, undefined, []); },
+  get sharedLock(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_bd41a4085ee86f99", 2206138318140454, undefined, []); },
   /**
    * static var closeOnExec: FileDescriptor.OpenOptions { get }
    * @availability iOS 14.0+
    */
-  get closeOnExec(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_64b39a05e4a4cebd", 2596979886778483, undefined, []); },
+  get closeOnExec(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_bd41a4085ee86f99", 2596979886778483, undefined, []); },
   /**
    * var description: String { get }
    * @availability iOS 14.0+
    */
-  getDescription($self: FileDescriptor_OpenOptions): string { return callSDK<string>("System_64b39a05e4a4cebd", 4023007210651588, $self, []); },
+  getDescription($self: FileDescriptor_OpenOptions): string { return callSDK<string>("System_bd41a4085ee86f99", 4023007210651588, $self, []); },
   /**
    * static var nonBlocking: FileDescriptor.OpenOptions { get }
    * @availability iOS 14.0+
    */
-  get nonBlocking(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_64b39a05e4a4cebd", 3140378972872884, undefined, []); },
+  get nonBlocking(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_bd41a4085ee86f99", 3140378972872884, undefined, []); },
   /**
    * static var exclusiveLock: FileDescriptor.OpenOptions { get }
    * @availability iOS 14.0+
    */
-  get exclusiveLock(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_64b39a05e4a4cebd", 866539179050188, undefined, []); },
+  get exclusiveLock(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_bd41a4085ee86f99", 866539179050188, undefined, []); },
   /**
    * static var exclusiveCreate: FileDescriptor.OpenOptions { get }
    * @availability iOS 14.0+
    */
-  get exclusiveCreate(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_64b39a05e4a4cebd", 2677209224778254, undefined, []); },
+  get exclusiveCreate(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_bd41a4085ee86f99", 2677209224778254, undefined, []); },
   /**
    * var debugDescription: String { get }
    * @availability iOS 14.0+
    */
-  getDebugDescription($self: FileDescriptor_OpenOptions): string { return callSDK<string>("System_64b39a05e4a4cebd", 3904690637496256, $self, []); },
+  getDebugDescription($self: FileDescriptor_OpenOptions): string { return callSDK<string>("System_bd41a4085ee86f99", 3904690637496256, $self, []); },
   /**
    * static var append: FileDescriptor.OpenOptions { get }
    * @availability iOS 14.0+
    */
-  get append(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_64b39a05e4a4cebd", 1077551347554672, undefined, []); },
+  get append(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_bd41a4085ee86f99", 1077551347554672, undefined, []); },
   /**
    * static var create: FileDescriptor.OpenOptions { get }
    * @availability iOS 14.0+
    */
-  get create(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_64b39a05e4a4cebd", 2272573731122471, undefined, []); },
+  get create(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_bd41a4085ee86f99", 2272573731122471, undefined, []); },
   /**
    * static var symlink: FileDescriptor.OpenOptions { get }
    * @availability iOS 14.0+
    */
-  get symlink(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_64b39a05e4a4cebd", 3828411553819955, undefined, []); },
+  get symlink(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_bd41a4085ee86f99", 3828411553819955, undefined, []); },
   /**
    * static var noFollow: FileDescriptor.OpenOptions { get }
    * @availability iOS 14.0+
    */
-  get noFollow(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_64b39a05e4a4cebd", 241127549533492, undefined, []); },
+  get noFollow(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_bd41a4085ee86f99", 241127549533492, undefined, []); },
   /**
    * init(rawValue: CInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_64b39a05e4a4cebd", 4418533761332922, undefined, [rawValue]); },
+  init(rawValue: number): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_bd41a4085ee86f99", 4418533761332922, undefined, [rawValue]); },
   /**
    * var rawValue: CInt
    * @availability iOS 14.0+
    */
-  getRawValue($self: FileDescriptor_OpenOptions): number { return callSDK<number>("System_64b39a05e4a4cebd", 2220061323756499, $self, []); },
-  setRawValue($self: FileDescriptor_OpenOptions, value: number): void { return callSDK<void>("System_64b39a05e4a4cebd", 1519474595971352, $self, [value]); },
+  getRawValue($self: FileDescriptor_OpenOptions): number { return callSDK<number>("System_bd41a4085ee86f99", 2220061323756499, $self, []); },
+  setRawValue($self: FileDescriptor_OpenOptions, value: number): void { return callSDK<void>("System_bd41a4085ee86f99", 1519474595971352, $self, [value]); },
   /**
    * static var truncate: FileDescriptor.OpenOptions { get }
    * @availability iOS 14.0+
    */
-  get truncate(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_64b39a05e4a4cebd", 1960263249951548, undefined, []); },
+  get truncate(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_bd41a4085ee86f99", 1960263249951548, undefined, []); },
   /**
    * static var directory: FileDescriptor.OpenOptions { get }
    * @availability iOS 14.0+
    */
-  get directory(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_64b39a05e4a4cebd", 2093425255197206, undefined, []); },
+  get directory(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_bd41a4085ee86f99", 2093425255197206, undefined, []); },
   /**
    * static var eventOnly: FileDescriptor.OpenOptions { get }
    * @availability iOS 14.0+
    */
-  get eventOnly(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_64b39a05e4a4cebd", 2990753721734540, undefined, []); }
+  get eventOnly(): FileDescriptor_OpenOptions { return callSDK<FileDescriptor_OpenOptions>("System_bd41a4085ee86f99", 2990753721734540, undefined, []); }
 };
 
 /**
@@ -1035,28 +1035,28 @@ export const FileDescriptor_PipeOptions = {
    * static var closeOnExec: FileDescriptor.PipeOptions { get }
    * @availability iOS 27.0+
    */
-  get closeOnExec(): FileDescriptor_PipeOptions { return callSDK<FileDescriptor_PipeOptions>("System_64b39a05e4a4cebd", 1607879447609642, undefined, []); },
+  get closeOnExec(): FileDescriptor_PipeOptions { return callSDK<FileDescriptor_PipeOptions>("System_bd41a4085ee86f99", 1607879447609642, undefined, []); },
   /**
    * static var closeOnFork: FileDescriptor.PipeOptions { get }
    * @availability iOS 27.0+
    */
-  get closeOnFork(): FileDescriptor_PipeOptions { return callSDK<FileDescriptor_PipeOptions>("System_64b39a05e4a4cebd", 4198071408917833, undefined, []); },
+  get closeOnFork(): FileDescriptor_PipeOptions { return callSDK<FileDescriptor_PipeOptions>("System_bd41a4085ee86f99", 4198071408917833, undefined, []); },
   /**
    * static var nonBlocking: FileDescriptor.PipeOptions { get }
    * @availability iOS 27.0+
    */
-  get nonBlocking(): FileDescriptor_PipeOptions { return callSDK<FileDescriptor_PipeOptions>("System_64b39a05e4a4cebd", 1388440941063329, undefined, []); },
+  get nonBlocking(): FileDescriptor_PipeOptions { return callSDK<FileDescriptor_PipeOptions>("System_bd41a4085ee86f99", 1388440941063329, undefined, []); },
   /**
    * init(rawValue: CInt)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): FileDescriptor_PipeOptions { return callSDK<FileDescriptor_PipeOptions>("System_64b39a05e4a4cebd", 4166851779446406, undefined, [rawValue]); },
+  init(rawValue: number): FileDescriptor_PipeOptions { return callSDK<FileDescriptor_PipeOptions>("System_bd41a4085ee86f99", 4166851779446406, undefined, [rawValue]); },
   /**
    * var rawValue: CInt
    * @availability iOS 27.0+
    */
-  getRawValue($self: FileDescriptor_PipeOptions): number { return callSDK<number>("System_64b39a05e4a4cebd", 4300890608176523, $self, []); },
-  setRawValue($self: FileDescriptor_PipeOptions, value: number): void { return callSDK<void>("System_64b39a05e4a4cebd", 4401387133115428, $self, [value]); }
+  getRawValue($self: FileDescriptor_PipeOptions): number { return callSDK<number>("System_bd41a4085ee86f99", 4300890608176523, $self, []); },
+  setRawValue($self: FileDescriptor_PipeOptions, value: number): void { return callSDK<void>("System_bd41a4085ee86f99", 4401387133115428, $self, [value]); }
 };
 
 /**
@@ -1094,48 +1094,48 @@ export const FileDescriptor_SeekOrigin = {
    * var description: String { get }
    * @availability iOS 14.0+
    */
-  getDescription($self: FileDescriptor_SeekOrigin): string { return callSDK<string>("System_64b39a05e4a4cebd", 3607097553878719, $self, []); },
+  getDescription($self: FileDescriptor_SeekOrigin): string { return callSDK<string>("System_bd41a4085ee86f99", 3607097553878719, $self, []); },
   /**
    * var debugDescription: String { get }
    * @availability iOS 14.0+
    */
-  getDebugDescription($self: FileDescriptor_SeekOrigin): string { return callSDK<string>("System_64b39a05e4a4cebd", 1230418304184744, $self, []); },
+  getDebugDescription($self: FileDescriptor_SeekOrigin): string { return callSDK<string>("System_bd41a4085ee86f99", 1230418304184744, $self, []); },
   /**
    * static var end: FileDescriptor.SeekOrigin { get }
    * @availability iOS 14.0+
    */
-  get end(): FileDescriptor_SeekOrigin { return callSDK<FileDescriptor_SeekOrigin>("System_64b39a05e4a4cebd", 2836401741904903, undefined, []); },
+  get end(): FileDescriptor_SeekOrigin { return callSDK<FileDescriptor_SeekOrigin>("System_bd41a4085ee86f99", 2836401741904903, undefined, []); },
   /**
    * static var start: FileDescriptor.SeekOrigin { get }
    * @availability iOS 14.0+
    */
-  get start(): FileDescriptor_SeekOrigin { return callSDK<FileDescriptor_SeekOrigin>("System_64b39a05e4a4cebd", 1930292249953941, undefined, []); },
+  get start(): FileDescriptor_SeekOrigin { return callSDK<FileDescriptor_SeekOrigin>("System_bd41a4085ee86f99", 1930292249953941, undefined, []); },
   /**
    * static var current: FileDescriptor.SeekOrigin { get }
    * @availability iOS 14.0+
    */
-  get current(): FileDescriptor_SeekOrigin { return callSDK<FileDescriptor_SeekOrigin>("System_64b39a05e4a4cebd", 567918178913031, undefined, []); },
+  get current(): FileDescriptor_SeekOrigin { return callSDK<FileDescriptor_SeekOrigin>("System_bd41a4085ee86f99", 567918178913031, undefined, []); },
   /**
    * static var nextData: FileDescriptor.SeekOrigin { get }
    * @availability iOS 14.0+
    */
-  get nextData(): FileDescriptor_SeekOrigin { return callSDK<FileDescriptor_SeekOrigin>("System_64b39a05e4a4cebd", 3043098583467388, undefined, []); },
+  get nextData(): FileDescriptor_SeekOrigin { return callSDK<FileDescriptor_SeekOrigin>("System_bd41a4085ee86f99", 3043098583467388, undefined, []); },
   /**
    * static var nextHole: FileDescriptor.SeekOrigin { get }
    * @availability iOS 14.0+
    */
-  get nextHole(): FileDescriptor_SeekOrigin { return callSDK<FileDescriptor_SeekOrigin>("System_64b39a05e4a4cebd", 1010763844842857, undefined, []); },
+  get nextHole(): FileDescriptor_SeekOrigin { return callSDK<FileDescriptor_SeekOrigin>("System_bd41a4085ee86f99", 1010763844842857, undefined, []); },
   /**
    * init(rawValue: CInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): FileDescriptor_SeekOrigin { return callSDK<FileDescriptor_SeekOrigin>("System_64b39a05e4a4cebd", 1079278854769349, undefined, [rawValue]); },
+  init(rawValue: number): FileDescriptor_SeekOrigin { return callSDK<FileDescriptor_SeekOrigin>("System_bd41a4085ee86f99", 1079278854769349, undefined, [rawValue]); },
   /**
    * var rawValue: CInt
    * @availability iOS 14.0+
    */
-  getRawValue($self: FileDescriptor_SeekOrigin): number { return callSDK<number>("System_64b39a05e4a4cebd", 921363018604314, $self, []); },
-  setRawValue($self: FileDescriptor_SeekOrigin, value: number): void { return callSDK<void>("System_64b39a05e4a4cebd", 2385720378135543, $self, [value]); }
+  getRawValue($self: FileDescriptor_SeekOrigin): number { return callSDK<number>("System_bd41a4085ee86f99", 921363018604314, $self, []); },
+  setRawValue($self: FileDescriptor_SeekOrigin, value: number): void { return callSDK<void>("System_bd41a4085ee86f99", 2385720378135543, $self, [value]); }
 };
 
 /**
@@ -1155,87 +1155,87 @@ export const FileFlags = {
    * static var compressed: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get compressed(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 2093141517468639, undefined, []); },
+  get compressed(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 2093141517468639, undefined, []); },
   /**
    * static var restricted: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get restricted(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 3688697557172470, undefined, []); },
+  get restricted(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 3688697557172470, undefined, []); },
   /**
    * static var userAppend: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get userAppend(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 1173441172069947, undefined, []); },
+  get userAppend(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 1173441172069947, undefined, []); },
   /**
    * static var systemAppend: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get systemAppend(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 1428941324555739, undefined, []); },
+  get systemAppend(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 1428941324555739, undefined, []); },
   /**
    * static var userImmutable: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get userImmutable(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 2520537037236952, undefined, []); },
+  get userImmutable(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 2520537037236952, undefined, []); },
   /**
    * static var systemNoUnlink: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get systemNoUnlink(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 3942987230613272, undefined, []); },
+  get systemNoUnlink(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 3942987230613272, undefined, []); },
   /**
    * static var systemImmutable: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get systemImmutable(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 3947058058646725, undefined, []); },
+  get systemImmutable(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 3947058058646725, undefined, []); },
   /**
    * static var hidden: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get hidden(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 3001751501855396, undefined, []); },
+  get hidden(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 3001751501855396, undefined, []); },
   /**
    * static var noDump: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get noDump(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 4373409755982706, undefined, []); },
+  get noDump(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 4373409755982706, undefined, []); },
   /**
    * static var opaque: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get opaque(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 4231368700015004, undefined, []); },
+  get opaque(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 4231368700015004, undefined, []); },
   /**
    * static var tracked: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get tracked(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 1020631582633447, undefined, []); },
+  get tracked(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 1020631582633447, undefined, []); },
   /**
    * static var archived: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get archived(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 1610387627319173, undefined, []); },
+  get archived(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 1610387627319173, undefined, []); },
   /**
    * static var dataless: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get dataless(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 862674665667043, undefined, []); },
+  get dataless(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 862674665667043, undefined, []); },
   /**
    * static var firmlink: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get firmlink(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 771883145211451, undefined, []); },
+  get firmlink(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 771883145211451, undefined, []); },
   /**
    * init(rawValue: CInterop.FileFlags)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 3608804625160736, undefined, [rawValue]); },
+  init(rawValue: number): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 3608804625160736, undefined, [rawValue]); },
   /**
    * let rawValue: CInterop.FileFlags
    * @availability iOS 27.0+
    */
-  getRawValue($self: FileFlags): number { return callSDK<number>("System_64b39a05e4a4cebd", 3386722555310595, $self, []); },
+  getRawValue($self: FileFlags): number { return callSDK<number>("System_bd41a4085ee86f99", 3386722555310595, $self, []); },
   /**
    * static var dataVault: FileFlags { get }
    * @availability iOS 27.0+
    */
-  get dataVault(): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 4294313567210769, undefined, []); }
+  get dataVault(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 4294313567210769, undefined, []); }
 };
 
 /**
@@ -1267,30 +1267,30 @@ export const FileMode = {
    * var permissions: FilePermissions { get set }
    * @availability iOS 27.0+
    */
-  getPermissions($self: FileMode): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 1622427112843839, $self, []); },
-  setPermissions($self: FileMode, value: FilePermissions): void { return callSDK<void>("System_64b39a05e4a4cebd", 1175642982790295, $self, [value]); },
+  getPermissions($self: FileMode): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 1622427112843839, $self, []); },
+  setPermissions($self: FileMode, value: FilePermissions): void { return callSDK<void>("System_bd41a4085ee86f99", 1175642982790295, $self, [value]); },
   /**
    * init(type: FileType, permissions: FilePermissions)
    * @availability iOS 27.0+
    */
-  initTypePermissions(type: FileType, permissions: FilePermissions): FileMode { return callSDK<FileMode>("System_64b39a05e4a4cebd", 1719812942720637, undefined, [type, permissions]); },
+  initTypePermissions(type: FileType, permissions: FilePermissions): FileMode { return callSDK<FileMode>("System_bd41a4085ee86f99", 1719812942720637, undefined, [type, permissions]); },
   /**
    * var type: FileType { get set }
    * @availability iOS 27.0+
    */
-  getType($self: FileMode): FileType { return callSDK<FileType>("System_64b39a05e4a4cebd", 1824282196919607, $self, []); },
-  setType($self: FileMode, value: FileType): void { return callSDK<void>("System_64b39a05e4a4cebd", 52026737991347, $self, [value]); },
+  getType($self: FileMode): FileType { return callSDK<FileType>("System_bd41a4085ee86f99", 1824282196919607, $self, []); },
+  setType($self: FileMode, value: FileType): void { return callSDK<void>("System_bd41a4085ee86f99", 52026737991347, $self, [value]); },
   /**
    * init(rawValue: CInterop.Mode)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: SDKHandle): FileMode { return callSDK<FileMode>("System_64b39a05e4a4cebd", 1997401629668364, undefined, [rawValue]); },
+  initRawValue(rawValue: SDKHandle): FileMode { return callSDK<FileMode>("System_bd41a4085ee86f99", 1997401629668364, undefined, [rawValue]); },
   /**
    * var rawValue: CInterop.Mode
    * @availability iOS 27.0+
    */
-  getRawValue($self: FileMode): SDKHandle { return callSDK<SDKHandle>("System_64b39a05e4a4cebd", 2150521677320051, $self, []); },
-  setRawValue($self: FileMode, value: SDKHandle): void { return callSDK<void>("System_64b39a05e4a4cebd", 3595121105296131, $self, [value]); }
+  getRawValue($self: FileMode): SDKHandle { return callSDK<SDKHandle>("System_bd41a4085ee86f99", 2150521677320051, $self, []); },
+  setRawValue($self: FileMode, value: SDKHandle): void { return callSDK<void>("System_bd41a4085ee86f99", 3595121105296131, $self, [value]); }
 };
 
 /**
@@ -1308,259 +1308,259 @@ export class FilePath extends SDKHandle {
    * var components: FilePath.ComponentView { get set }
    * @availability iOS 15.0+
    */
-  get components(): FilePath_ComponentView { return callSDK<FilePath_ComponentView>("System_64b39a05e4a4cebd", 2582745366586188, this, []); }
-  set components(value: FilePath_ComponentView) { callSDK<void>("System_64b39a05e4a4cebd", 260556160889290, this, [value]); }
+  get components(): FilePath_ComponentView { return callSDK<FilePath_ComponentView>("System_bd41a4085ee86f99", 2582745366586188, this, []); }
+  set components(value: FilePath_ComponentView) { callSDK<void>("System_bd41a4085ee86f99", 260556160889290, this, [value]); }
   /**
    * var isAbsolute: Bool { get }
    * @availability iOS 15.0+
    */
-  get isAbsolute(): boolean { return callSDK<boolean>("System_64b39a05e4a4cebd", 3383404164276035, this, []); }
+  get isAbsolute(): boolean { return callSDK<boolean>("System_bd41a4085ee86f99", 3383404164276035, this, []); }
   /**
    * var isRelative: Bool { get }
    * @availability iOS 15.0+
    */
-  get isRelative(): boolean { return callSDK<boolean>("System_64b39a05e4a4cebd", 1864018468379635, this, []); }
+  get isRelative(): boolean { return callSDK<boolean>("System_bd41a4085ee86f99", 1864018468379635, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 14.0+
    */
-  get description(): string { return callSDK<string>("System_64b39a05e4a4cebd", 648167506342551, this, []); }
+  get description(): string { return callSDK<string>("System_bd41a4085ee86f99", 648167506342551, this, []); }
   /**
    * func withCString<Result>(_ body: (UnsafePointer<CChar>) throws -> Result) rethrows -> Result
    * @availability iOS 14.0+
    */
-  withCString(body: $SDK2): unknown { return callSDK<unknown>("System_64b39a05e4a4cebd", 4022914643336332, this, [body], [{"callback":{"out":[]}}], true); }
+  withCString(body: $SDK2): unknown { return callSDK<unknown>("System_bd41a4085ee86f99", 4022914643336332, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * mutating func removePrefix(_ prefix: FilePath) -> Bool
    * @availability iOS 15.0+
    */
-  removePrefix(prefix: FilePath): boolean { return callSDK<boolean>("System_64b39a05e4a4cebd", 168893719237208, this, [prefix]); }
+  removePrefix(prefix: FilePath): boolean { return callSDK<boolean>("System_bd41a4085ee86f99", 168893719237208, this, [prefix]); }
   /**
    * func removingRoot() -> FilePath
    * @availability iOS 15.0+
    */
-  removingRoot(): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 1130959136477, this, []); }
+  removingRoot(): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 1130959136477, this, []); }
   /**
    * var lastComponent: FilePath.Component? { get }
    * @availability iOS 15.0+
    */
-  get lastComponent(): (FilePath_Component) | null { return callSDK<(FilePath_Component) | null>("System_64b39a05e4a4cebd", 2305901991796419, this, []); }
+  get lastComponent(): (FilePath_Component) | null { return callSDK<(FilePath_Component) | null>("System_bd41a4085ee86f99", 2305901991796419, this, []); }
   /**
    * init(stringLiteral: String)
    * @availability iOS 14.0+
    */
-  static initStringLiteral(stringLiteral: string): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 2363200859140259, undefined, [stringLiteral]); }
+  static initStringLiteral(stringLiteral: string): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 2363200859140259, undefined, [stringLiteral]); }
   /**
    * init(platformString: UnsafePointer<CInterop.PlatformChar>)
    * @availability iOS 15.0+
    */
-  static initPlatformString(platformString: SDKHandle): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 4219043173607174, undefined, [platformString]); }
+  static initPlatformString(platformString: SDKHandle): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 4219043173607174, undefined, [platformString]); }
   /**
    * init(platformString: String)
    * @availability iOS 15.0+
    */
-  static initPlatformString11582(platformString: string): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 488522912327288, undefined, [platformString]); }
+  static initPlatformString11582(platformString: string): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 488522912327288, undefined, [platformString]); }
   /**
    * init(platformString: [CInterop.PlatformChar])
    * @availability iOS 15.0+
    */
-  static initPlatformString17098(platformString: Array<number>): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 940107950434212, undefined, [platformString]); }
+  static initPlatformString17098(platformString: Array<number>): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 940107950434212, undefined, [platformString]); }
   /**
    * init(platformString: inout CInterop.PlatformChar)
    * @availability iOS 15.0+
    */
-  static initPlatformString31620(platformString: number): { $ret: FilePath; $out: { "platformString": number } } { return callSDK<{ $ret: FilePath; $out: { "platformString": number } }>("System_64b39a05e4a4cebd", 1490773047529458, undefined, [platformString]); }
+  static initPlatformString31620(platformString: number): { $ret: FilePath; $out: { "platformString": number } } { return callSDK<{ $ret: FilePath; $out: { "platformString": number } }>("System_bd41a4085ee86f99", 1490773047529458, undefined, [platformString]); }
   /**
    * mutating func reserveCapacity(_ minimumCapacity: Int)
    * @availability iOS 15.0+
    */
-  reserveCapacity(minimumCapacity: number): void { return callSDK<void>("System_64b39a05e4a4cebd", 903174817558194, this, [minimumCapacity]); }
+  reserveCapacity(minimumCapacity: number): void { return callSDK<void>("System_bd41a4085ee86f99", 903174817558194, this, [minimumCapacity]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 14.0+
    */
-  get debugDescription(): string { return callSDK<string>("System_64b39a05e4a4cebd", 3911932489003103, this, []); }
+  get debugDescription(): string { return callSDK<string>("System_bd41a4085ee86f99", 3911932489003103, this, []); }
   /**
    * var isLexicallyNormal: Bool { get }
    * @availability iOS 15.0+
    */
-  get isLexicallyNormal(): boolean { return callSDK<boolean>("System_64b39a05e4a4cebd", 2562764065549230, this, []); }
+  get isLexicallyNormal(): boolean { return callSDK<boolean>("System_bd41a4085ee86f99", 2562764065549230, this, []); }
   /**
    * mutating func lexicallyNormalize()
    * @availability iOS 15.0+
    */
-  lexicallyNormalize(): void { return callSDK<void>("System_64b39a05e4a4cebd", 3589153908189198, this, []); }
+  lexicallyNormalize(): void { return callSDK<void>("System_bd41a4085ee86f99", 3589153908189198, this, []); }
   /**
    * func lexicallyResolving(_ subpath: FilePath) -> FilePath?
    * @availability iOS 15.0+
    */
-  lexicallyResolving(subpath: FilePath): (FilePath) | null { return callSDK<(FilePath) | null>("System_64b39a05e4a4cebd", 3835716529651449, this, [subpath]); }
+  lexicallyResolving(subpath: FilePath): (FilePath) | null { return callSDK<(FilePath) | null>("System_bd41a4085ee86f99", 3835716529651449, this, [subpath]); }
   /**
    * func withPlatformString<Result>(_ body: (UnsafePointer<CInterop.PlatformChar>) throws -> Result) rethrows -> Result
    * @availability iOS 15.0+
    */
-  withPlatformString(body: $SDK2): unknown { return callSDK<unknown>("System_64b39a05e4a4cebd", 652376208872434, this, [body], [{"callback":{"out":[]}}], true); }
+  withPlatformString(body: $SDK2): unknown { return callSDK<unknown>("System_bd41a4085ee86f99", 652376208872434, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * func lexicallyNormalized() -> FilePath
    * @availability iOS 15.0+
    */
-  lexicallyNormalized(): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 2912027573194489, this, []); }
+  lexicallyNormalized(): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 2912027573194489, this, []); }
   /**
    * @discardableResult mutating func removeLastComponent() -> Bool
    * @availability iOS 15.0+
    */
-  removeLastComponent(): boolean { return callSDK<boolean>("System_64b39a05e4a4cebd", 2152093290059186, this, []); }
+  removeLastComponent(): boolean { return callSDK<boolean>("System_bd41a4085ee86f99", 2152093290059186, this, []); }
   /**
    * func removingLastComponent() -> FilePath
    * @availability iOS 15.0+
    */
-  removingLastComponent(): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 1063821876370246, this, []); }
+  removingLastComponent(): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 1063821876370246, this, []); }
   /**
    * func ends(with other: FilePath) -> Bool
    * @availability iOS 15.0+
    */
-  ends(other: FilePath): boolean { return callSDK<boolean>("System_64b39a05e4a4cebd", 164641385367144, this, [other]); }
+  ends(other: FilePath): boolean { return callSDK<boolean>("System_bd41a4085ee86f99", 164641385367144, this, [other]); }
   /**
    * mutating func push(_ other: FilePath)
    * @availability iOS 15.0+
    */
-  push(other: FilePath): void { return callSDK<void>("System_64b39a05e4a4cebd", 1017292587362759, this, [other]); }
+  push(other: FilePath): void { return callSDK<void>("System_bd41a4085ee86f99", 1017292587362759, this, [other]); }
   /**
    * var root: FilePath.Root? { get set }
    * @availability iOS 15.0+
    */
-  get root(): (FilePath_Root) | null { return callSDK<(FilePath_Root) | null>("System_64b39a05e4a4cebd", 1208620394427914, this, []); }
-  set root(value: (FilePath_Root) | null) { callSDK<void>("System_64b39a05e4a4cebd", 3358792161828440, this, [value]); }
+  get root(): (FilePath_Root) | null { return callSDK<(FilePath_Root) | null>("System_bd41a4085ee86f99", 1208620394427914, this, []); }
+  set root(value: (FilePath_Root) | null) { callSDK<void>("System_bd41a4085ee86f99", 3358792161828440, this, [value]); }
   /**
    * init(root: FilePath.Root?, _ components: FilePath.ComponentView.SubSequence)
    * @availability iOS 15.0+
    */
-  static initRoot(root: (FilePath_Root) | null, components: SDKHandle): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 106588524629148, undefined, [root, components]); }
+  static initRoot(root: (FilePath_Root) | null, components: SDKHandle): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 106588524629148, undefined, [root, components]); }
   /**
    * init<C>(root: FilePath.Root?, _ components: C) where C : Collection, C.Element == FilePath.Component
    * @availability iOS 15.0+
    */
-  static initRoot46201(root: (FilePath_Root) | null, components: $SDK4): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 1960091775617687, undefined, [root, components]); }
+  static initRoot46201(root: (FilePath_Root) | null, components: $SDK4): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 1960091775617687, undefined, [root, components]); }
   /**
    * func stat(relativeTo fd: FileDescriptor, flags: Stat.Flags, retryOnInterrupt: Bool = true) throws(Errno) -> Stat
    * @availability iOS 27.0+
    */
-  statRelativeToFlagsRetryOnInterrupt(fd: FileDescriptor, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_64b39a05e4a4cebd", 3673525808630884, this, [fd, flags, retryOnInterrupt]); }
+  statRelativeToFlagsRetryOnInterrupt(fd: FileDescriptor, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_bd41a4085ee86f99", 3673525808630884, this, [fd, flags, retryOnInterrupt]); }
   /**
    * func stat(followTargetSymlink: Bool = true, retryOnInterrupt: Bool = true) throws(Errno) -> Stat
    * @availability iOS 27.0+
    */
-  statFollowTargetSymlinkRetryOnInterrupt(followTargetSymlink?: boolean, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_64b39a05e4a4cebd", 2696778864231109, this, [followTargetSymlink, retryOnInterrupt]); }
+  statFollowTargetSymlinkRetryOnInterrupt(followTargetSymlink?: boolean, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_bd41a4085ee86f99", 2696778864231109, this, [followTargetSymlink, retryOnInterrupt]); }
   /**
    * func stat(flags: Stat.Flags, retryOnInterrupt: Bool = true) throws(Errno) -> Stat
    * @availability iOS 27.0+
    */
-  statFlagsRetryOnInterrupt(flags: Stat_Flags, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_64b39a05e4a4cebd", 3261037468995822, this, [flags, retryOnInterrupt]); }
+  statFlagsRetryOnInterrupt(flags: Stat_Flags, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_bd41a4085ee86f99", 3261037468995822, this, [flags, retryOnInterrupt]); }
   /**
    * var stem: String? { get }
    * @availability iOS 15.0+
    */
-  get stem(): (string) | null { return callSDK<(string) | null>("System_64b39a05e4a4cebd", 1399832484128041, this, []); }
+  get stem(): (string) | null { return callSDK<(string) | null>("System_bd41a4085ee86f99", 1399832484128041, this, []); }
   /**
    * mutating func append(_ component: FilePath.Component)
    * @availability iOS 15.0+
    */
-  append(component: FilePath_Component): void { return callSDK<void>("System_64b39a05e4a4cebd", 1174671468044274, this, [component]); }
+  append(component: FilePath_Component): void { return callSDK<void>("System_bd41a4085ee86f99", 1174671468044274, this, [component]); }
   /**
    * mutating func append(_ other: String)
    * @availability iOS 15.0+
    */
-  append2980(other: string): void { return callSDK<void>("System_64b39a05e4a4cebd", 2862431382123175, this, [other]); }
+  append2980(other: string): void { return callSDK<void>("System_bd41a4085ee86f99", 2862431382123175, this, [other]); }
   /**
    * mutating func append<C>(_ components: C) where C : Collection, C.Element == FilePath.Component
    * @availability iOS 15.0+
    */
-  append3484(components: $SDK4): void { return callSDK<void>("System_64b39a05e4a4cebd", 1505826829444401, this, [components]); }
+  append3484(components: $SDK4): void { return callSDK<void>("System_bd41a4085ee86f99", 1505826829444401, this, [components]); }
   /**
    * var length: Int { get }
    * @availability iOS 14.0+
    */
-  get length(): number { return callSDK<number>("System_64b39a05e4a4cebd", 4252702562806091, this, []); }
+  get length(): number { return callSDK<number>("System_bd41a4085ee86f99", 4252702562806091, this, []); }
   /**
    * func starts(with other: FilePath) -> Bool
    * @availability iOS 15.0+
    */
-  starts(other: FilePath): boolean { return callSDK<boolean>("System_64b39a05e4a4cebd", 2328741386482283, this, [other]); }
+  starts(other: FilePath): boolean { return callSDK<boolean>("System_bd41a4085ee86f99", 2328741386482283, this, [other]); }
   /**
    * var string: String { get }
    * @availability iOS 15.0+
    */
-  get string(): string { return callSDK<string>("System_64b39a05e4a4cebd", 900886629859091, this, []); }
+  get string(): string { return callSDK<string>("System_bd41a4085ee86f99", 900886629859091, this, []); }
   /**
    * init(cString: UnsafePointer<CChar>)
    * @availability iOS 14.0+
    * @deprecated iOS 15.0
    */
-  static initCString(cString: SDKHandle): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 4498659389359753, undefined, [cString]); }
+  static initCString(cString: SDKHandle): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 4498659389359753, undefined, [cString]); }
   /**
    * @backDeployed(before: macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0)
   init(cString: String)
    * @availability iOS 14.0+
    */
-  static initCString90738(cString: string): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 66557503820859, undefined, [cString]); }
+  static initCString90738(cString: string): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 66557503820859, undefined, [cString]); }
   /**
    * @backDeployed(before: macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0)
   init(cString: [CChar])
    * @availability iOS 14.0+
    */
-  static initCString59262(cString: Array<number>): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 1317206233404055, undefined, [cString]); }
+  static initCString59262(cString: Array<number>): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 1317206233404055, undefined, [cString]); }
   /**
    * @backDeployed(before: macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0)
   init(cString: inout CChar)
    * @availability iOS 14.0+
    */
-  static initCString93128(cString: number): { $ret: FilePath; $out: { "cString": number } } { return callSDK<{ $ret: FilePath; $out: { "cString": number } }>("System_64b39a05e4a4cebd", 1110459715152407, undefined, [cString]); }
+  static initCString93128(cString: number): { $ret: FilePath; $out: { "cString": number } } { return callSDK<{ $ret: FilePath; $out: { "cString": number } }>("System_bd41a4085ee86f99", 1110459715152407, undefined, [cString]); }
   /**
    * var isEmpty: Bool { get }
    * @availability iOS 15.0+
    */
-  get isEmpty(): boolean { return callSDK<boolean>("System_64b39a05e4a4cebd", 817678861248574, this, []); }
+  get isEmpty(): boolean { return callSDK<boolean>("System_bd41a4085ee86f99", 817678861248574, this, []); }
   /**
    * func pushing(_ other: FilePath) -> FilePath
    * @availability iOS 15.0+
    */
-  pushing(other: FilePath): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 3790128484317820, this, [other]); }
+  pushing(other: FilePath): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 3790128484317820, this, [other]); }
   /**
    * func appending(_ other: FilePath.Component) -> FilePath
    * @availability iOS 15.0+
    */
-  appending(other: FilePath_Component): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 382785379185784, this, [other]); }
+  appending(other: FilePath_Component): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 382785379185784, this, [other]); }
   /**
    * func appending(_ other: String) -> FilePath
    * @availability iOS 15.0+
    */
-  appending55732(other: string): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 2847857611095871, this, [other]); }
+  appending55732(other: string): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 2847857611095871, this, [other]); }
   /**
    * func appending<C>(_ components: C) -> FilePath where C : Collection, C.Element == FilePath.Component
    * @availability iOS 15.0+
    */
-  appending13260(components: $SDK4): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 849127748078188, this, [components]); }
+  appending13260(components: $SDK4): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 849127748078188, this, [components]); }
   /**
    * var `extension`: String? { get set }
    * @availability iOS 15.0+
    */
-  get extension(): (string) | null { return callSDK<(string) | null>("System_64b39a05e4a4cebd", 2007339560883869, this, []); }
-  set extension(value: (string) | null) { callSDK<void>("System_64b39a05e4a4cebd", 3724901374785412, this, [value]); }
+  get extension(): (string) | null { return callSDK<(string) | null>("System_bd41a4085ee86f99", 2007339560883869, this, []); }
+  set extension(value: (string) | null) { callSDK<void>("System_bd41a4085ee86f99", 3724901374785412, this, [value]); }
   /**
    * mutating func removeAll(keepingCapacity: Bool = false)
    * @availability iOS 15.0+
    */
-  removeAll(keepingCapacity?: boolean): void { return callSDK<void>("System_64b39a05e4a4cebd", 3459573101373110, this, [keepingCapacity]); }
+  removeAll(keepingCapacity?: boolean): void { return callSDK<void>("System_bd41a4085ee86f99", 3459573101373110, this, [keepingCapacity]); }
   /**
    * init()
    * @availability iOS 14.0+
    */
-  static init(): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 2288279610774092, undefined, []); }
+  static init(): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 2288279610774092, undefined, []); }
   /**
    * init(_ string: String)
    * @availability iOS 14.0+
    */
-  static init73031(string: string): FilePath { return callSDK<FilePath>("System_64b39a05e4a4cebd", 1340861942770593, undefined, [string]); }
+  static init73031(string: string): FilePath { return callSDK<FilePath>("System_bd41a4085ee86f99", 1340861942770593, undefined, [string]); }
   declare readonly $type: { "s:6System8FilePathV": true };
 }
 
@@ -1573,67 +1573,67 @@ export class FilePath_Component extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("System_64b39a05e4a4cebd", 2831088109206256, this, []); }
+  get description(): string { return callSDK<string>("System_bd41a4085ee86f99", 2831088109206256, this, []); }
   /**
    * init(stringLiteral: String)
    * @availability iOS 15.0+
    */
-  static initStringLiteral(stringLiteral: string): FilePath_Component { return callSDK<FilePath_Component>("System_64b39a05e4a4cebd", 337956651962707, undefined, [stringLiteral]); }
+  static initStringLiteral(stringLiteral: string): FilePath_Component { return callSDK<FilePath_Component>("System_bd41a4085ee86f99", 337956651962707, undefined, [stringLiteral]); }
   /**
    * init?(platformString: UnsafePointer<CInterop.PlatformChar>)
    * @availability iOS 15.0+
    */
-  static initPlatformString(platformString: SDKHandle): (FilePath_Component) | null { return callSDK<(FilePath_Component) | null>("System_64b39a05e4a4cebd", 1061365358899697, undefined, [platformString]); }
+  static initPlatformString(platformString: SDKHandle): (FilePath_Component) | null { return callSDK<(FilePath_Component) | null>("System_bd41a4085ee86f99", 1061365358899697, undefined, [platformString]); }
   /**
    * init?(platformString: String)
    * @availability iOS 15.0+
    */
-  static initPlatformString9538(platformString: string): (FilePath_Component) | null { return callSDK<(FilePath_Component) | null>("System_64b39a05e4a4cebd", 1051528642376238, undefined, [platformString]); }
+  static initPlatformString9538(platformString: string): (FilePath_Component) | null { return callSDK<(FilePath_Component) | null>("System_bd41a4085ee86f99", 1051528642376238, undefined, [platformString]); }
   /**
    * init?(platformString: [CInterop.PlatformChar])
    * @availability iOS 15.0+
    */
-  static initPlatformString20462(platformString: Array<number>): (FilePath_Component) | null { return callSDK<(FilePath_Component) | null>("System_64b39a05e4a4cebd", 3852360568227944, undefined, [platformString]); }
+  static initPlatformString20462(platformString: Array<number>): (FilePath_Component) | null { return callSDK<(FilePath_Component) | null>("System_bd41a4085ee86f99", 3852360568227944, undefined, [platformString]); }
   /**
    * init?(platformString: inout CInterop.PlatformChar)
    * @availability iOS 15.0+
    */
-  static initPlatformString57144(platformString: number): { $ret: (FilePath_Component) | null; $out: { "platformString": number } } { return callSDK<{ $ret: (FilePath_Component) | null; $out: { "platformString": number } }>("System_64b39a05e4a4cebd", 4139340405439631, undefined, [platformString]); }
+  static initPlatformString57144(platformString: number): { $ret: (FilePath_Component) | null; $out: { "platformString": number } } { return callSDK<{ $ret: (FilePath_Component) | null; $out: { "platformString": number } }>("System_bd41a4085ee86f99", 4139340405439631, undefined, [platformString]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("System_64b39a05e4a4cebd", 810692863425958, this, []); }
+  get debugDescription(): string { return callSDK<string>("System_bd41a4085ee86f99", 810692863425958, this, []); }
   /**
    * func withPlatformString<Result>(_ body: (UnsafePointer<CInterop.PlatformChar>) throws -> Result) rethrows -> Result
    * @availability iOS 15.0+
    */
-  withPlatformString(body: $SDK2): unknown { return callSDK<unknown>("System_64b39a05e4a4cebd", 4082756388800026, this, [body], [{"callback":{"out":[]}}], true); }
+  withPlatformString(body: $SDK2): unknown { return callSDK<unknown>("System_bd41a4085ee86f99", 4082756388800026, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * var kind: FilePath.Component.Kind { get }
    * @availability iOS 15.0+
    */
-  get kind(): FilePath_Component_Kind { return callSDK<FilePath_Component_Kind>("System_64b39a05e4a4cebd", 615435585313354, this, []); }
+  get kind(): FilePath_Component_Kind { return callSDK<FilePath_Component_Kind>("System_bd41a4085ee86f99", 615435585313354, this, []); }
   /**
    * var stem: String { get }
    * @availability iOS 15.0+
    */
-  get stem(): string { return callSDK<string>("System_64b39a05e4a4cebd", 1768385403172488, this, []); }
+  get stem(): string { return callSDK<string>("System_bd41a4085ee86f99", 1768385403172488, this, []); }
   /**
    * var string: String { get }
    * @availability iOS 15.0+
    */
-  get string(): string { return callSDK<string>("System_64b39a05e4a4cebd", 1151994816774144, this, []); }
+  get string(): string { return callSDK<string>("System_bd41a4085ee86f99", 1151994816774144, this, []); }
   /**
    * var `extension`: String? { get }
    * @availability iOS 15.0+
    */
-  get extension(): (string) | null { return callSDK<(string) | null>("System_64b39a05e4a4cebd", 2922928773521108, this, []); }
+  get extension(): (string) | null { return callSDK<(string) | null>("System_bd41a4085ee86f99", 2922928773521108, this, []); }
   /**
    * init?(_ string: String)
    * @availability iOS 15.0+
    */
-  static init(string: string): (FilePath_Component) | null { return callSDK<(FilePath_Component) | null>("System_64b39a05e4a4cebd", 809618065223647, undefined, [string]); }
+  static init(string: string): (FilePath_Component) | null { return callSDK<(FilePath_Component) | null>("System_bd41a4085ee86f99", 809618065223647, undefined, [string]); }
   declare readonly $type: { "s:6System8FilePathV9ComponentV": true };
 }
 
@@ -1670,37 +1670,37 @@ export class FilePath_ComponentView extends SDKHandle {
    * var startIndex: FilePath.ComponentView.Index { get }
    * @availability iOS 15.0+
    */
-  get startIndex(): FilePath_ComponentView_Index { return callSDK<FilePath_ComponentView_Index>("System_64b39a05e4a4cebd", 402889789740143, this, []); }
+  get startIndex(): FilePath_ComponentView_Index { return callSDK<FilePath_ComponentView_Index>("System_bd41a4085ee86f99", 402889789740143, this, []); }
   /**
    * mutating func replaceSubrange<C>(_ subrange: Range<FilePath.ComponentView.Index>, with newElements: C) where C : Collection, C.Element == FilePath.Component
    * @availability iOS 15.0+
    */
-  replaceSubrange(subrange: SDKHandle, newElements: $SDK4): void { return callSDK<void>("System_64b39a05e4a4cebd", 3845822897480455, this, [subrange, newElements]); }
+  replaceSubrange(subrange: SDKHandle, newElements: $SDK4): void { return callSDK<void>("System_bd41a4085ee86f99", 3845822897480455, this, [subrange, newElements]); }
   /**
    * func index(after i: FilePath.ComponentView.Index) -> FilePath.ComponentView.Index
    * @availability iOS 15.0+
    */
-  indexAfter(i: FilePath_ComponentView_Index): FilePath_ComponentView_Index { return callSDK<FilePath_ComponentView_Index>("System_64b39a05e4a4cebd", 3023193231742848, this, [i]); }
+  indexAfter(i: FilePath_ComponentView_Index): FilePath_ComponentView_Index { return callSDK<FilePath_ComponentView_Index>("System_bd41a4085ee86f99", 3023193231742848, this, [i]); }
   /**
    * func index(before i: FilePath.ComponentView.Index) -> FilePath.ComponentView.Index
    * @availability iOS 15.0+
    */
-  indexBefore(i: FilePath_ComponentView_Index): FilePath_ComponentView_Index { return callSDK<FilePath_ComponentView_Index>("System_64b39a05e4a4cebd", 454541569364861, this, [i]); }
+  indexBefore(i: FilePath_ComponentView_Index): FilePath_ComponentView_Index { return callSDK<FilePath_ComponentView_Index>("System_bd41a4085ee86f99", 454541569364861, this, [i]); }
   /**
    * var endIndex: FilePath.ComponentView.Index { get }
    * @availability iOS 15.0+
    */
-  get endIndex(): FilePath_ComponentView_Index { return callSDK<FilePath_ComponentView_Index>("System_64b39a05e4a4cebd", 1223802598104668, this, []); }
+  get endIndex(): FilePath_ComponentView_Index { return callSDK<FilePath_ComponentView_Index>("System_bd41a4085ee86f99", 1223802598104668, this, []); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): FilePath_ComponentView { return callSDK<FilePath_ComponentView>("System_64b39a05e4a4cebd", 3020824550765283, undefined, []); }
+  static init(): FilePath_ComponentView { return callSDK<FilePath_ComponentView>("System_bd41a4085ee86f99", 3020824550765283, undefined, []); }
   /**
    * subscript(position: FilePath.ComponentView.Index) -> FilePath.Component { get }
    * @availability iOS 15.0+
    */
-  subscript(position: FilePath_ComponentView_Index): FilePath_Component { return callSDK<FilePath_Component>("System_64b39a05e4a4cebd", 3744773456073597, this, [position]); }
+  subscript(position: FilePath_ComponentView_Index): FilePath_Component { return callSDK<FilePath_Component>("System_bd41a4085ee86f99", 3744773456073597, this, [position]); }
   declare readonly $type: { "s:6System8FilePathV13ComponentViewV": true };
 }
 
@@ -1751,52 +1751,52 @@ export class FilePath_Root extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("System_64b39a05e4a4cebd", 1727543049605924, this, []); }
+  get description(): string { return callSDK<string>("System_bd41a4085ee86f99", 1727543049605924, this, []); }
   /**
    * init(stringLiteral: String)
    * @availability iOS 15.0+
    */
-  static initStringLiteral(stringLiteral: string): FilePath_Root { return callSDK<FilePath_Root>("System_64b39a05e4a4cebd", 2451323303799196, undefined, [stringLiteral]); }
+  static initStringLiteral(stringLiteral: string): FilePath_Root { return callSDK<FilePath_Root>("System_bd41a4085ee86f99", 2451323303799196, undefined, [stringLiteral]); }
   /**
    * init?(platformString: UnsafePointer<CInterop.PlatformChar>)
    * @availability iOS 15.0+
    */
-  static initPlatformString(platformString: SDKHandle): (FilePath_Root) | null { return callSDK<(FilePath_Root) | null>("System_64b39a05e4a4cebd", 2041063730747883, undefined, [platformString]); }
+  static initPlatformString(platformString: SDKHandle): (FilePath_Root) | null { return callSDK<(FilePath_Root) | null>("System_bd41a4085ee86f99", 2041063730747883, undefined, [platformString]); }
   /**
    * init?(platformString: String)
    * @availability iOS 15.0+
    */
-  static initPlatformString98740(platformString: string): (FilePath_Root) | null { return callSDK<(FilePath_Root) | null>("System_64b39a05e4a4cebd", 79507544223067, undefined, [platformString]); }
+  static initPlatformString98740(platformString: string): (FilePath_Root) | null { return callSDK<(FilePath_Root) | null>("System_bd41a4085ee86f99", 79507544223067, undefined, [platformString]); }
   /**
    * init?(platformString: [CInterop.PlatformChar])
    * @availability iOS 15.0+
    */
-  static initPlatformString34288(platformString: Array<number>): (FilePath_Root) | null { return callSDK<(FilePath_Root) | null>("System_64b39a05e4a4cebd", 1984308220561731, undefined, [platformString]); }
+  static initPlatformString34288(platformString: Array<number>): (FilePath_Root) | null { return callSDK<(FilePath_Root) | null>("System_bd41a4085ee86f99", 1984308220561731, undefined, [platformString]); }
   /**
    * init?(platformString: inout CInterop.PlatformChar)
    * @availability iOS 15.0+
    */
-  static initPlatformString48946(platformString: number): { $ret: (FilePath_Root) | null; $out: { "platformString": number } } { return callSDK<{ $ret: (FilePath_Root) | null; $out: { "platformString": number } }>("System_64b39a05e4a4cebd", 1195732387896983, undefined, [platformString]); }
+  static initPlatformString48946(platformString: number): { $ret: (FilePath_Root) | null; $out: { "platformString": number } } { return callSDK<{ $ret: (FilePath_Root) | null; $out: { "platformString": number } }>("System_bd41a4085ee86f99", 1195732387896983, undefined, [platformString]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("System_64b39a05e4a4cebd", 308525883042850, this, []); }
+  get debugDescription(): string { return callSDK<string>("System_bd41a4085ee86f99", 308525883042850, this, []); }
   /**
    * func withPlatformString<Result>(_ body: (UnsafePointer<CInterop.PlatformChar>) throws -> Result) rethrows -> Result
    * @availability iOS 15.0+
    */
-  withPlatformString(body: $SDK2): unknown { return callSDK<unknown>("System_64b39a05e4a4cebd", 1372445673602831, this, [body], [{"callback":{"out":[]}}], true); }
+  withPlatformString(body: $SDK2): unknown { return callSDK<unknown>("System_bd41a4085ee86f99", 1372445673602831, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * var string: String { get }
    * @availability iOS 15.0+
    */
-  get string(): string { return callSDK<string>("System_64b39a05e4a4cebd", 2228802207739427, this, []); }
+  get string(): string { return callSDK<string>("System_bd41a4085ee86f99", 2228802207739427, this, []); }
   /**
    * init?(_ string: String)
    * @availability iOS 15.0+
    */
-  static init(string: string): (FilePath_Root) | null { return callSDK<(FilePath_Root) | null>("System_64b39a05e4a4cebd", 712252034991410, undefined, [string]); }
+  static init(string: string): (FilePath_Root) | null { return callSDK<(FilePath_Root) | null>("System_bd41a4085ee86f99", 712252034991410, undefined, [string]); }
   declare readonly $type: { "s:6System8FilePathV4RootV": true };
 }
 
@@ -1841,142 +1841,142 @@ export const FilePermissions = {
    * static var groupWrite: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get groupWrite(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 4176208638403884, undefined, []); },
+  get groupWrite(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 4176208638403884, undefined, []); },
   /**
    * static var otherWrite: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get otherWrite(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 2045401268732727, undefined, []); },
+  get otherWrite(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 2045401268732727, undefined, []); },
   /**
    * static var ownerWrite: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get ownerWrite(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 1348838202536281, undefined, []); },
+  get ownerWrite(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 1348838202536281, undefined, []); },
   /**
    * static var setGroupID: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get setGroupID(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 3836082405248454, undefined, []); },
+  get setGroupID(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 3836082405248454, undefined, []); },
   /**
    * var description: String { get }
    * @availability iOS 14.0+
    */
-  getDescription($self: FilePermissions): string { return callSDK<string>("System_64b39a05e4a4cebd", 1253356345933594, $self, []); },
+  getDescription($self: FilePermissions): string { return callSDK<string>("System_bd41a4085ee86f99", 1253356345933594, $self, []); },
   /**
    * static var groupExecute: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get groupExecute(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 2156764123569343, undefined, []); },
+  get groupExecute(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 2156764123569343, undefined, []); },
   /**
    * static var otherExecute: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get otherExecute(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 3770131851825720, undefined, []); },
+  get otherExecute(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 3770131851825720, undefined, []); },
   /**
    * static var ownerExecute: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get ownerExecute(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 693373458229267, undefined, []); },
+  get ownerExecute(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 693373458229267, undefined, []); },
   /**
    * static var groupReadWrite: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get groupReadWrite(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 32611639292675, undefined, []); },
+  get groupReadWrite(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 32611639292675, undefined, []); },
   /**
    * static var otherReadWrite: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get otherReadWrite(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 2187679370329102, undefined, []); },
+  get otherReadWrite(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 2187679370329102, undefined, []); },
   /**
    * static var ownerReadWrite: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get ownerReadWrite(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 1694148265542590, undefined, []); },
+  get ownerReadWrite(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 1694148265542590, undefined, []); },
   /**
    * var debugDescription: String { get }
    * @availability iOS 14.0+
    */
-  getDebugDescription($self: FilePermissions): string { return callSDK<string>("System_64b39a05e4a4cebd", 3518746780919918, $self, []); },
+  getDebugDescription($self: FilePermissions): string { return callSDK<string>("System_bd41a4085ee86f99", 3518746780919918, $self, []); },
   /**
    * static var groupReadExecute: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get groupReadExecute(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 309147529539625, undefined, []); },
+  get groupReadExecute(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 309147529539625, undefined, []); },
   /**
    * static var otherReadExecute: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get otherReadExecute(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 4115793714046896, undefined, []); },
+  get otherReadExecute(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 4115793714046896, undefined, []); },
   /**
    * static var ownerReadExecute: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get ownerReadExecute(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 3507774768245912, undefined, []); },
+  get ownerReadExecute(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 3507774768245912, undefined, []); },
   /**
    * static var groupWriteExecute: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get groupWriteExecute(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 464815020296502, undefined, []); },
+  get groupWriteExecute(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 464815020296502, undefined, []); },
   /**
    * static var otherWriteExecute: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get otherWriteExecute(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 2301411441222818, undefined, []); },
+  get otherWriteExecute(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 2301411441222818, undefined, []); },
   /**
    * static var ownerWriteExecute: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get ownerWriteExecute(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 1561911718520670, undefined, []); },
+  get ownerWriteExecute(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 1561911718520670, undefined, []); },
   /**
    * static var groupReadWriteExecute: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get groupReadWriteExecute(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 1802147341446485, undefined, []); },
+  get groupReadWriteExecute(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 1802147341446485, undefined, []); },
   /**
    * static var otherReadWriteExecute: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get otherReadWriteExecute(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 1098697597591819, undefined, []); },
+  get otherReadWriteExecute(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 1098697597591819, undefined, []); },
   /**
    * static var ownerReadWriteExecute: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get ownerReadWriteExecute(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 415757911883355, undefined, []); },
+  get ownerReadWriteExecute(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 415757911883355, undefined, []); },
   /**
    * init(rawValue: CModeT)
    * @availability iOS 14.0+
    */
-  init(rawValue: SDKHandle): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 1746427498294276, undefined, [rawValue]); },
+  init(rawValue: SDKHandle): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 1746427498294276, undefined, [rawValue]); },
   /**
    * let rawValue: CModeT
    * @availability iOS 14.0+
    */
-  getRawValue($self: FilePermissions): SDKHandle { return callSDK<SDKHandle>("System_64b39a05e4a4cebd", 3180648250832889, $self, []); },
+  getRawValue($self: FilePermissions): SDKHandle { return callSDK<SDKHandle>("System_bd41a4085ee86f99", 3180648250832889, $self, []); },
   /**
    * static var saveText: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get saveText(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 4342242165830164, undefined, []); },
+  get saveText(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 4342242165830164, undefined, []); },
   /**
    * static var groupRead: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get groupRead(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 511399016197448, undefined, []); },
+  get groupRead(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 511399016197448, undefined, []); },
   /**
    * static var otherRead: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get otherRead(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 2353866409570876, undefined, []); },
+  get otherRead(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 2353866409570876, undefined, []); },
   /**
    * static var ownerRead: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get ownerRead(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 3138140100762504, undefined, []); },
+  get ownerRead(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 3138140100762504, undefined, []); },
   /**
    * static var setUserID: FilePermissions { get }
    * @availability iOS 14.0+
    */
-  get setUserID(): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 2827913545592429, undefined, []); }
+  get setUserID(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 2827913545592429, undefined, []); }
 };
 
 /**
@@ -2008,53 +2008,53 @@ export const FileType = {
    * static var blockSpecial: FileType { get }
    * @availability iOS 27.0+
    */
-  get blockSpecial(): FileType { return callSDK<FileType>("System_64b39a05e4a4cebd", 2888187936317698, undefined, []); },
+  get blockSpecial(): FileType { return callSDK<FileType>("System_bd41a4085ee86f99", 2888187936317698, undefined, []); },
   /**
    * static var symbolicLink: FileType { get }
    * @availability iOS 27.0+
    */
-  get symbolicLink(): FileType { return callSDK<FileType>("System_64b39a05e4a4cebd", 398687352653744, undefined, []); },
+  get symbolicLink(): FileType { return callSDK<FileType>("System_bd41a4085ee86f99", 398687352653744, undefined, []); },
   /**
    * static var characterSpecial: FileType { get }
    * @availability iOS 27.0+
    */
-  get characterSpecial(): FileType { return callSDK<FileType>("System_64b39a05e4a4cebd", 3920855897587761, undefined, []); },
+  get characterSpecial(): FileType { return callSDK<FileType>("System_bd41a4085ee86f99", 3920855897587761, undefined, []); },
   /**
    * static var fifo: FileType { get }
    * @availability iOS 27.0+
    */
-  get fifo(): FileType { return callSDK<FileType>("System_64b39a05e4a4cebd", 2375746605747251, undefined, []); },
+  get fifo(): FileType { return callSDK<FileType>("System_bd41a4085ee86f99", 2375746605747251, undefined, []); },
   /**
    * static var socket: FileType { get }
    * @availability iOS 27.0+
    */
-  get socket(): FileType { return callSDK<FileType>("System_64b39a05e4a4cebd", 904434273981506, undefined, []); },
+  get socket(): FileType { return callSDK<FileType>("System_bd41a4085ee86f99", 904434273981506, undefined, []); },
   /**
    * static var regular: FileType { get }
    * @availability iOS 27.0+
    */
-  get regular(): FileType { return callSDK<FileType>("System_64b39a05e4a4cebd", 3736382202432616, undefined, []); },
+  get regular(): FileType { return callSDK<FileType>("System_bd41a4085ee86f99", 3736382202432616, undefined, []); },
   /**
    * init(rawValue: CInterop.Mode)
    * @availability iOS 27.0+
    */
-  init(rawValue: SDKHandle): FileType { return callSDK<FileType>("System_64b39a05e4a4cebd", 283558945331644, undefined, [rawValue]); },
+  init(rawValue: SDKHandle): FileType { return callSDK<FileType>("System_bd41a4085ee86f99", 283558945331644, undefined, [rawValue]); },
   /**
    * var rawValue: CInterop.Mode
    * @availability iOS 27.0+
    */
-  getRawValue($self: FileType): SDKHandle { return callSDK<SDKHandle>("System_64b39a05e4a4cebd", 3002285654922024, $self, []); },
-  setRawValue($self: FileType, value: SDKHandle): void { return callSDK<void>("System_64b39a05e4a4cebd", 1000838759581509, $self, [value]); },
+  getRawValue($self: FileType): SDKHandle { return callSDK<SDKHandle>("System_bd41a4085ee86f99", 3002285654922024, $self, []); },
+  setRawValue($self: FileType, value: SDKHandle): void { return callSDK<void>("System_bd41a4085ee86f99", 1000838759581509, $self, [value]); },
   /**
    * static var whiteout: FileType { get }
    * @availability iOS 27.0+
    */
-  get whiteout(): FileType { return callSDK<FileType>("System_64b39a05e4a4cebd", 3130194314567983, undefined, []); },
+  get whiteout(): FileType { return callSDK<FileType>("System_bd41a4085ee86f99", 3130194314567983, undefined, []); },
   /**
    * static var directory: FileType { get }
    * @availability iOS 27.0+
    */
-  get directory(): FileType { return callSDK<FileType>("System_64b39a05e4a4cebd", 2310615110712065, undefined, []); }
+  get directory(): FileType { return callSDK<FileType>("System_bd41a4085ee86f99", 2310615110712065, undefined, []); }
 };
 
 /**
@@ -2074,18 +2074,18 @@ export const GroupID = {
    * init(rawValue: CInterop.GroupID)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: SDKHandle): GroupID { return callSDK<GroupID>("System_64b39a05e4a4cebd", 990323956009910, undefined, [rawValue]); },
+  initRawValue(rawValue: SDKHandle): GroupID { return callSDK<GroupID>("System_bd41a4085ee86f99", 990323956009910, undefined, [rawValue]); },
   /**
    * var rawValue: CInterop.GroupID
    * @availability iOS 27.0+
    */
-  getRawValue($self: GroupID): SDKHandle { return callSDK<SDKHandle>("System_64b39a05e4a4cebd", 4452838826585848, $self, []); },
-  setRawValue($self: GroupID, value: SDKHandle): void { return callSDK<void>("System_64b39a05e4a4cebd", 2693327988935983, $self, [value]); },
+  getRawValue($self: GroupID): SDKHandle { return callSDK<SDKHandle>("System_bd41a4085ee86f99", 4452838826585848, $self, []); },
+  setRawValue($self: GroupID, value: SDKHandle): void { return callSDK<void>("System_bd41a4085ee86f99", 2693327988935983, $self, [value]); },
   /**
    * init(_ rawValue: CInterop.GroupID)
    * @availability iOS 27.0+
    */
-  init(rawValue: SDKHandle): GroupID { return callSDK<GroupID>("System_64b39a05e4a4cebd", 2379868609887196, undefined, [rawValue]); }
+  init(rawValue: SDKHandle): GroupID { return callSDK<GroupID>("System_bd41a4085ee86f99", 2379868609887196, undefined, [rawValue]); }
 };
 
 /**
@@ -2105,18 +2105,18 @@ export const Inode = {
    * init(rawValue: CInterop.Inode)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: SDKHandle): Inode { return callSDK<Inode>("System_64b39a05e4a4cebd", 1432879957029181, undefined, [rawValue]); },
+  initRawValue(rawValue: SDKHandle): Inode { return callSDK<Inode>("System_bd41a4085ee86f99", 1432879957029181, undefined, [rawValue]); },
   /**
    * var rawValue: CInterop.Inode
    * @availability iOS 27.0+
    */
-  getRawValue($self: Inode): SDKHandle { return callSDK<SDKHandle>("System_64b39a05e4a4cebd", 2740677043115795, $self, []); },
-  setRawValue($self: Inode, value: SDKHandle): void { return callSDK<void>("System_64b39a05e4a4cebd", 2350893261566813, $self, [value]); },
+  getRawValue($self: Inode): SDKHandle { return callSDK<SDKHandle>("System_bd41a4085ee86f99", 2740677043115795, $self, []); },
+  setRawValue($self: Inode, value: SDKHandle): void { return callSDK<void>("System_bd41a4085ee86f99", 2350893261566813, $self, [value]); },
   /**
    * init(_ rawValue: CInterop.Inode)
    * @availability iOS 27.0+
    */
-  init(rawValue: SDKHandle): Inode { return callSDK<Inode>("System_64b39a05e4a4cebd", 2510027015704241, undefined, [rawValue]); }
+  init(rawValue: SDKHandle): Inode { return callSDK<Inode>("System_bd41a4085ee86f99", 2510027015704241, undefined, [rawValue]); }
 };
 
 /**
@@ -2183,169 +2183,168 @@ export interface MachPortRight {
  * @frozen struct Stat
  * @availability iOS 27.0+
  */
-export type Stat = (number & {});
-
-export const Stat = {
+export class Stat extends SDKHandle {
   /**
    * var permissions: FilePermissions { get set }
    * @availability iOS 27.0+
    */
-  getPermissions($self: Stat): FilePermissions { return callSDK<FilePermissions>("System_64b39a05e4a4cebd", 1839400825216146, $self, []); },
-  setPermissions($self: Stat, value: FilePermissions): void { return callSDK<void>("System_64b39a05e4a4cebd", 2732149443287960, $self, [value]); },
+  get permissions(): FilePermissions { return callSDK<FilePermissions>("System_bd41a4085ee86f99", 1839400825216146, this, []); }
+  set permissions(value: FilePermissions) { callSDK<void>("System_bd41a4085ee86f99", 2732149443287960, this, [value]); }
   /**
    * var st_birthtim: timespec { get set }
    * @availability iOS 27.0+
    */
-  getSt_birthtim($self: Stat): SDKHandle { return callSDK<SDKHandle>("System_64b39a05e4a4cebd", 2175226414720374, $self, []); },
-  setSt_birthtim($self: Stat, value: SDKHandle): void { return callSDK<void>("System_64b39a05e4a4cebd", 3373396142032071, $self, [value]); },
+  get st_birthtim(): SDKHandle { return callSDK<SDKHandle>("System_bd41a4085ee86f99", 2175226414720374, this, []); }
+  set st_birthtim(value: SDKHandle) { callSDK<void>("System_bd41a4085ee86f99", 3373396142032071, this, [value]); }
   /**
    * var sizeAllocated: Int64 { get }
    * @availability iOS 27.0+
    */
-  getSizeAllocated($self: Stat): number { return callSDK<number>("System_64b39a05e4a4cebd", 2610985370418641, $self, []); },
+  get sizeAllocated(): number { return callSDK<number>("System_bd41a4085ee86f99", 2610985370418641, this, []); }
   /**
    * var blocksAllocated: Int64 { get set }
    * @availability iOS 27.0+
    */
-  getBlocksAllocated($self: Stat): number { return callSDK<number>("System_64b39a05e4a4cebd", 2407994453995735, $self, []); },
-  setBlocksAllocated($self: Stat, value: number): void { return callSDK<void>("System_64b39a05e4a4cebd", 2995813973659082, $self, [value]); },
+  get blocksAllocated(): number { return callSDK<number>("System_bd41a4085ee86f99", 2407994453995735, this, []); }
+  set blocksAllocated(value: number) { callSDK<void>("System_bd41a4085ee86f99", 2995813973659082, this, [value]); }
   /**
    * var specialDeviceID: DeviceID { get set }
    * @availability iOS 27.0+
    */
-  getSpecialDeviceID($self: Stat): DeviceID { return callSDK<DeviceID>("System_64b39a05e4a4cebd", 3399335399005266, $self, []); },
-  setSpecialDeviceID($self: Stat, value: DeviceID): void { return callSDK<void>("System_64b39a05e4a4cebd", 1208871585270154, $self, [value]); },
+  get specialDeviceID(): DeviceID { return callSDK<DeviceID>("System_bd41a4085ee86f99", 3399335399005266, this, []); }
+  set specialDeviceID(value: DeviceID) { callSDK<void>("System_bd41a4085ee86f99", 1208871585270154, this, [value]); }
   /**
    * var generationNumber: UInt64 { get set }
    * @availability iOS 27.0+
    */
-  getGenerationNumber($self: Stat): number { return callSDK<number>("System_64b39a05e4a4cebd", 3078067802672150, $self, []); },
-  setGenerationNumber($self: Stat, value: number): void { return callSDK<void>("System_64b39a05e4a4cebd", 878832267814727, $self, [value]); },
+  get generationNumber(): number { return callSDK<number>("System_bd41a4085ee86f99", 3078067802672150, this, []); }
+  set generationNumber(value: number) { callSDK<void>("System_bd41a4085ee86f99", 878832267814727, this, [value]); }
   /**
    * var preferredIOBlockSize: Int { get set }
    * @availability iOS 27.0+
    */
-  getPreferredIOBlockSize($self: Stat): number { return callSDK<number>("System_64b39a05e4a4cebd", 110664298208325, $self, []); },
-  setPreferredIOBlockSize($self: Stat, value: number): void { return callSDK<void>("System_64b39a05e4a4cebd", 3389848618729964, $self, [value]); },
+  get preferredIOBlockSize(): number { return callSDK<number>("System_bd41a4085ee86f99", 110664298208325, this, []); }
+  set preferredIOBlockSize(value: number) { callSDK<void>("System_bd41a4085ee86f99", 3389848618729964, this, [value]); }
   /**
    * var mode: FileMode { get set }
    * @availability iOS 27.0+
    */
-  getMode($self: Stat): FileMode { return callSDK<FileMode>("System_64b39a05e4a4cebd", 934945535249577, $self, []); },
-  setMode($self: Stat, value: FileMode): void { return callSDK<void>("System_64b39a05e4a4cebd", 3044556417601069, $self, [value]); },
+  get mode(): FileMode { return callSDK<FileMode>("System_bd41a4085ee86f99", 934945535249577, this, []); }
+  set mode(value: FileMode) { callSDK<void>("System_bd41a4085ee86f99", 3044556417601069, this, [value]); }
   /**
    * var size: Int64 { get set }
    * @availability iOS 27.0+
    */
-  getSize($self: Stat): number { return callSDK<number>("System_64b39a05e4a4cebd", 2710117781896140, $self, []); },
-  setSize($self: Stat, value: number): void { return callSDK<void>("System_64b39a05e4a4cebd", 3510174050205670, $self, [value]); },
+  get size(): number { return callSDK<number>("System_bd41a4085ee86f99", 2710117781896140, this, []); }
+  set size(value: number) { callSDK<void>("System_bd41a4085ee86f99", 3510174050205670, this, [value]); }
   /**
    * var type: FileType { get set }
    * @availability iOS 27.0+
    */
-  getType($self: Stat): FileType { return callSDK<FileType>("System_64b39a05e4a4cebd", 1760457801764839, $self, []); },
-  setType($self: Stat, value: FileType): void { return callSDK<void>("System_64b39a05e4a4cebd", 2766043307248805, $self, [value]); },
+  get type(): FileType { return callSDK<FileType>("System_bd41a4085ee86f99", 1760457801764839, this, []); }
+  set type(value: FileType) { callSDK<void>("System_bd41a4085ee86f99", 2766043307248805, this, [value]); }
   /**
    * var flags: FileFlags { get set }
    * @availability iOS 27.0+
    */
-  getFlags($self: Stat): FileFlags { return callSDK<FileFlags>("System_64b39a05e4a4cebd", 3117351344841121, $self, []); },
-  setFlags($self: Stat, value: FileFlags): void { return callSDK<void>("System_64b39a05e4a4cebd", 4235341610435753, $self, [value]); },
+  get flags(): FileFlags { return callSDK<FileFlags>("System_bd41a4085ee86f99", 3117351344841121, this, []); }
+  set flags(value: FileFlags) { callSDK<void>("System_bd41a4085ee86f99", 4235341610435753, this, [value]); }
   /**
    * var inode: Inode { get set }
    * @availability iOS 27.0+
    */
-  getInode($self: Stat): Inode { return callSDK<Inode>("System_64b39a05e4a4cebd", 3600144263786890, $self, []); },
-  setInode($self: Stat, value: Inode): void { return callSDK<void>("System_64b39a05e4a4cebd", 449767486331892, $self, [value]); },
+  get inode(): Inode { return callSDK<Inode>("System_bd41a4085ee86f99", 3600144263786890, this, []); }
+  set inode(value: Inode) { callSDK<void>("System_bd41a4085ee86f99", 449767486331892, this, [value]); }
   /**
    * var userID: UserID { get set }
    * @availability iOS 27.0+
    */
-  getUserID($self: Stat): UserID { return callSDK<UserID>("System_64b39a05e4a4cebd", 98093952333960, $self, []); },
-  setUserID($self: Stat, value: UserID): void { return callSDK<void>("System_64b39a05e4a4cebd", 4172561979943945, $self, [value]); },
+  get userID(): UserID { return callSDK<UserID>("System_bd41a4085ee86f99", 98093952333960, this, []); }
+  set userID(value: UserID) { callSDK<void>("System_bd41a4085ee86f99", 4172561979943945, this, [value]); }
   /**
    * var groupID: GroupID { get set }
    * @availability iOS 27.0+
    */
-  getGroupID($self: Stat): GroupID { return callSDK<GroupID>("System_64b39a05e4a4cebd", 1950512868966432, $self, []); },
-  setGroupID($self: Stat, value: GroupID): void { return callSDK<void>("System_64b39a05e4a4cebd", 3757763852133970, $self, [value]); },
+  get groupID(): GroupID { return callSDK<GroupID>("System_bd41a4085ee86f99", 1950512868966432, this, []); }
+  set groupID(value: GroupID) { callSDK<void>("System_bd41a4085ee86f99", 3757763852133970, this, [value]); }
   /**
    * var st_atim: timespec { get set }
    * @availability iOS 27.0+
    */
-  getSt_atim($self: Stat): SDKHandle { return callSDK<SDKHandle>("System_64b39a05e4a4cebd", 746025976590873, $self, []); },
-  setSt_atim($self: Stat, value: SDKHandle): void { return callSDK<void>("System_64b39a05e4a4cebd", 3532041561922584, $self, [value]); },
+  get st_atim(): SDKHandle { return callSDK<SDKHandle>("System_bd41a4085ee86f99", 746025976590873, this, []); }
+  set st_atim(value: SDKHandle) { callSDK<void>("System_bd41a4085ee86f99", 3532041561922584, this, [value]); }
   /**
    * var st_ctim: timespec { get set }
    * @availability iOS 27.0+
    */
-  getSt_ctim($self: Stat): SDKHandle { return callSDK<SDKHandle>("System_64b39a05e4a4cebd", 390747052953304, $self, []); },
-  setSt_ctim($self: Stat, value: SDKHandle): void { return callSDK<void>("System_64b39a05e4a4cebd", 2957678214649965, $self, [value]); },
+  get st_ctim(): SDKHandle { return callSDK<SDKHandle>("System_bd41a4085ee86f99", 390747052953304, this, []); }
+  set st_ctim(value: SDKHandle) { callSDK<void>("System_bd41a4085ee86f99", 2957678214649965, this, [value]); }
   /**
    * var st_mtim: timespec { get set }
    * @availability iOS 27.0+
    */
-  getSt_mtim($self: Stat): SDKHandle { return callSDK<SDKHandle>("System_64b39a05e4a4cebd", 1962682051832792, $self, []); },
-  setSt_mtim($self: Stat, value: SDKHandle): void { return callSDK<void>("System_64b39a05e4a4cebd", 77435457753377, $self, [value]); },
+  get st_mtim(): SDKHandle { return callSDK<SDKHandle>("System_bd41a4085ee86f99", 1962682051832792, this, []); }
+  set st_mtim(value: SDKHandle) { callSDK<void>("System_bd41a4085ee86f99", 77435457753377, this, [value]); }
   /**
    * var deviceID: DeviceID { get set }
    * @availability iOS 27.0+
    */
-  getDeviceID($self: Stat): DeviceID { return callSDK<DeviceID>("System_64b39a05e4a4cebd", 2976503018407138, $self, []); },
-  setDeviceID($self: Stat, value: DeviceID): void { return callSDK<void>("System_64b39a05e4a4cebd", 136839357572401, $self, [value]); },
+  get deviceID(): DeviceID { return callSDK<DeviceID>("System_bd41a4085ee86f99", 2976503018407138, this, []); }
+  set deviceID(value: DeviceID) { callSDK<void>("System_bd41a4085ee86f99", 136839357572401, this, [value]); }
   /**
    * init(rawValue: CInterop.Stat)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: SDKHandle): Stat { return callSDK<Stat>("System_64b39a05e4a4cebd", 1758087852024488, undefined, [rawValue]); },
+  static initRawValue(rawValue: SDKHandle): Stat { return callSDK<Stat>("System_bd41a4085ee86f99", 1758087852024488, undefined, [rawValue]); }
   /**
    * var rawValue: CInterop.Stat
    * @availability iOS 27.0+
    */
-  getRawValue($self: Stat): SDKHandle { return callSDK<SDKHandle>("System_64b39a05e4a4cebd", 3227484923437614, $self, []); },
-  setRawValue($self: Stat, value: SDKHandle): void { return callSDK<void>("System_64b39a05e4a4cebd", 3943892661363134, $self, [value]); },
+  get rawValue(): SDKHandle { return callSDK<SDKHandle>("System_bd41a4085ee86f99", 3227484923437614, this, []); }
+  set rawValue(value: SDKHandle) { callSDK<void>("System_bd41a4085ee86f99", 3943892661363134, this, [value]); }
   /**
    * var linkCount: Int { get set }
    * @availability iOS 27.0+
    */
-  getLinkCount($self: Stat): number { return callSDK<number>("System_64b39a05e4a4cebd", 4205238714137796, $self, []); },
-  setLinkCount($self: Stat, value: number): void { return callSDK<void>("System_64b39a05e4a4cebd", 4088228213348246, $self, [value]); },
+  get linkCount(): number { return callSDK<number>("System_bd41a4085ee86f99", 4205238714137796, this, []); }
+  set linkCount(value: number) { callSDK<void>("System_bd41a4085ee86f99", 4088228213348246, this, [value]); }
   /**
    * init(_ path: UnsafePointer<CChar>, relativeTo fd: FileDescriptor, flags: Stat.Flags, retryOnInterrupt: Bool = true) throws(Errno)
    * @availability iOS 27.0+
    */
-  initRelativeToFlagsRetryOnInterrupt(path: SDKHandle, fd: FileDescriptor, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_64b39a05e4a4cebd", 3273928781886999, undefined, [path, fd, flags, retryOnInterrupt]); },
+  static initRelativeToFlagsRetryOnInterrupt(path: SDKHandle, fd: FileDescriptor, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_bd41a4085ee86f99", 3273928781886999, undefined, [path, fd, flags, retryOnInterrupt]); }
   /**
    * init(_ path: FilePath, relativeTo fd: FileDescriptor, flags: Stat.Flags, retryOnInterrupt: Bool = true) throws(Errno)
    * @availability iOS 27.0+
    */
-  initRelativeToFlagsRetryOnInterrupt18061(path: FilePath, fd: FileDescriptor, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_64b39a05e4a4cebd", 2890659390867052, undefined, [path, fd, flags, retryOnInterrupt]); },
+  static initRelativeToFlagsRetryOnInterrupt18061(path: FilePath, fd: FileDescriptor, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_bd41a4085ee86f99", 2890659390867052, undefined, [path, fd, flags, retryOnInterrupt]); }
   /**
    * init(_ fd: FileDescriptor, retryOnInterrupt: Bool = true) throws(Errno)
    * @availability iOS 27.0+
    */
-  initRetryOnInterrupt(fd: FileDescriptor, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_64b39a05e4a4cebd", 3117205257438653, undefined, [fd, retryOnInterrupt]); },
+  static initRetryOnInterrupt(fd: FileDescriptor, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_bd41a4085ee86f99", 3117205257438653, undefined, [fd, retryOnInterrupt]); }
   /**
    * init(_ path: UnsafePointer<CChar>, followTargetSymlink: Bool = true, retryOnInterrupt: Bool = true) throws(Errno)
    * @availability iOS 27.0+
    */
-  initFollowTargetSymlinkRetryOnInterrupt(path: SDKHandle, followTargetSymlink?: boolean, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_64b39a05e4a4cebd", 1647970971726614, undefined, [path, followTargetSymlink, retryOnInterrupt]); },
+  static initFollowTargetSymlinkRetryOnInterrupt(path: SDKHandle, followTargetSymlink?: boolean, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_bd41a4085ee86f99", 1647970971726614, undefined, [path, followTargetSymlink, retryOnInterrupt]); }
   /**
    * init(_ path: FilePath, followTargetSymlink: Bool = true, retryOnInterrupt: Bool = true) throws(Errno)
    * @availability iOS 27.0+
    */
-  initFollowTargetSymlinkRetryOnInterrupt95195(path: FilePath, followTargetSymlink?: boolean, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_64b39a05e4a4cebd", 3155969307379456, undefined, [path, followTargetSymlink, retryOnInterrupt]); },
+  static initFollowTargetSymlinkRetryOnInterrupt95195(path: FilePath, followTargetSymlink?: boolean, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_bd41a4085ee86f99", 3155969307379456, undefined, [path, followTargetSymlink, retryOnInterrupt]); }
   /**
    * init(_ path: UnsafePointer<CChar>, flags: Stat.Flags, retryOnInterrupt: Bool = true) throws(Errno)
    * @availability iOS 27.0+
    */
-  initFlagsRetryOnInterrupt(path: SDKHandle, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_64b39a05e4a4cebd", 1556278949243873, undefined, [path, flags, retryOnInterrupt]); },
+  static initFlagsRetryOnInterrupt(path: SDKHandle, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_bd41a4085ee86f99", 1556278949243873, undefined, [path, flags, retryOnInterrupt]); }
   /**
    * init(_ path: FilePath, flags: Stat.Flags, retryOnInterrupt: Bool = true) throws(Errno)
    * @availability iOS 27.0+
    */
-  initFlagsRetryOnInterrupt43608(path: FilePath, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_64b39a05e4a4cebd", 4500063668326980, undefined, [path, flags, retryOnInterrupt]); }
-};
+  static initFlagsRetryOnInterrupt43608(path: FilePath, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat { return callSDK<Stat>("System_bd41a4085ee86f99", 4500063668326980, undefined, [path, flags, retryOnInterrupt]); }
+  declare readonly $type: { "s:6System4StatV": true };
+}
 
 /**
  * @frozen struct Flags
@@ -2358,27 +2357,27 @@ export const Stat_Flags = {
    * static var resolveBeneath: Stat.Flags { get }
    * @availability iOS 27.0+
    */
-  get resolveBeneath(): Stat_Flags { return callSDK<Stat_Flags>("System_64b39a05e4a4cebd", 1206802694105872, undefined, []); },
+  get resolveBeneath(): Stat_Flags { return callSDK<Stat_Flags>("System_bd41a4085ee86f99", 1206802694105872, undefined, []); },
   /**
    * static var symlinkNoFollow: Stat.Flags { get }
    * @availability iOS 27.0+
    */
-  get symlinkNoFollow(): Stat_Flags { return callSDK<Stat_Flags>("System_64b39a05e4a4cebd", 590884116371512, undefined, []); },
+  get symlinkNoFollow(): Stat_Flags { return callSDK<Stat_Flags>("System_bd41a4085ee86f99", 590884116371512, undefined, []); },
   /**
    * static var symlinkNoFollowAny: Stat.Flags { get }
    * @availability iOS 27.0+
    */
-  get symlinkNoFollowAny(): Stat_Flags { return callSDK<Stat_Flags>("System_64b39a05e4a4cebd", 1107838171113179, undefined, []); },
+  get symlinkNoFollowAny(): Stat_Flags { return callSDK<Stat_Flags>("System_bd41a4085ee86f99", 1107838171113179, undefined, []); },
   /**
    * init(rawValue: CInt)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): Stat_Flags { return callSDK<Stat_Flags>("System_64b39a05e4a4cebd", 4428038436336787, undefined, [rawValue]); },
+  init(rawValue: number): Stat_Flags { return callSDK<Stat_Flags>("System_bd41a4085ee86f99", 4428038436336787, undefined, [rawValue]); },
   /**
    * let rawValue: CInt
    * @availability iOS 27.0+
    */
-  getRawValue($self: Stat_Flags): number { return callSDK<number>("System_64b39a05e4a4cebd", 743307889990398, $self, []); }
+  getRawValue($self: Stat_Flags): number { return callSDK<number>("System_bd41a4085ee86f99", 743307889990398, $self, []); }
 };
 
 /**
@@ -2416,18 +2415,18 @@ export const UserID = {
    * init(rawValue: CInterop.UserID)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: SDKHandle): UserID { return callSDK<UserID>("System_64b39a05e4a4cebd", 2705573565959289, undefined, [rawValue]); },
+  initRawValue(rawValue: SDKHandle): UserID { return callSDK<UserID>("System_bd41a4085ee86f99", 2705573565959289, undefined, [rawValue]); },
   /**
    * var rawValue: CInterop.UserID
    * @availability iOS 27.0+
    */
-  getRawValue($self: UserID): SDKHandle { return callSDK<SDKHandle>("System_64b39a05e4a4cebd", 1898140666600596, $self, []); },
-  setRawValue($self: UserID, value: SDKHandle): void { return callSDK<void>("System_64b39a05e4a4cebd", 1575687651564952, $self, [value]); },
+  getRawValue($self: UserID): SDKHandle { return callSDK<SDKHandle>("System_bd41a4085ee86f99", 1898140666600596, $self, []); },
+  setRawValue($self: UserID, value: SDKHandle): void { return callSDK<void>("System_bd41a4085ee86f99", 1575687651564952, $self, [value]); },
   /**
    * init(_ rawValue: CInterop.UserID)
    * @availability iOS 27.0+
    */
-  init(rawValue: SDKHandle): UserID { return callSDK<UserID>("System_64b39a05e4a4cebd", 132753518352487, undefined, [rawValue]); }
+  init(rawValue: SDKHandle): UserID { return callSDK<UserID>("System_bd41a4085ee86f99", 132753518352487, undefined, [rawValue]); }
 };
 
 /**
@@ -2436,15 +2435,16 @@ export const UserID = {
  */
 export type UserID_RawValue = SDKHandle;
 
-registerSDKClass("System.CInterop", CInterop, { module: "System_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("System.FilePath", FilePath, { module: "System_64b39a05e4a4cebd", properties: {}, methods: {"removePrefix":{"id":168893719237208},"removingRoot":{"id":1130959136477},"reserveCapacity":{"id":903174817558194},"lexicallyNormalize":{"id":3589153908189198},"lexicallyResolving":{"id":3835716529651449},"lexicallyNormalized":{"id":2912027573194489},"removeLastComponent":{"id":2152093290059186},"removingLastComponent":{"id":1063821876370246},"ends":{"id":164641385367144},"push":{"id":1017292587362759},"statRelativeToFlagsRetryOnInterrupt":{"id":3673525808630884},"statFollowTargetSymlinkRetryOnInterrupt":{"id":2696778864231109},"statFlagsRetryOnInterrupt":{"id":3261037468995822},"append":{"id":1174671468044274},"append2980":{"id":2862431382123175},"append3484":{"id":1505826829444401},"starts":{"id":2328741386482283},"pushing":{"id":3790128484317820},"appending":{"id":382785379185784},"appending55732":{"id":2847857611095871},"appending13260":{"id":849127748078188},"removeAll":{"id":3459573101373110}} });
-registerSDKClass("System.FilePath.Component", FilePath_Component, { module: "System_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("System.FilePath.ComponentView", FilePath_ComponentView, { module: "System_64b39a05e4a4cebd", properties: {}, methods: {"replaceSubrange":{"id":3845822897480455},"indexAfter":{"id":3023193231742848},"indexBefore":{"id":454541569364861},"subscript":{"id":3744773456073597}} });
-registerSDKClass("System.FilePath.ComponentView.Index", FilePath_ComponentView_Index, { module: "System_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("System.FilePath.Root", FilePath_Root, { module: "System_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("System.Mach", Mach, { module: "System_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("System.Mach.Port", Mach_Port, { module: "System_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("System.Mach.ReceiveRight", Mach_ReceiveRight, { module: "System_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("System.Mach.SendOnceRight", Mach_SendOnceRight, { module: "System_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("System.Mach.SendRight", Mach_SendRight, { module: "System_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("System.CInterop", CInterop, { module: "System_bd41a4085ee86f99", properties: {} });
+registerSDKClass("System.FilePath", FilePath, { module: "System_bd41a4085ee86f99", properties: {}, methods: {"removePrefix":{"id":168893719237208},"removingRoot":{"id":1130959136477},"reserveCapacity":{"id":903174817558194},"lexicallyNormalize":{"id":3589153908189198},"lexicallyResolving":{"id":3835716529651449},"lexicallyNormalized":{"id":2912027573194489},"removeLastComponent":{"id":2152093290059186},"removingLastComponent":{"id":1063821876370246},"ends":{"id":164641385367144},"push":{"id":1017292587362759},"statRelativeToFlagsRetryOnInterrupt":{"id":3673525808630884},"statFollowTargetSymlinkRetryOnInterrupt":{"id":2696778864231109},"statFlagsRetryOnInterrupt":{"id":3261037468995822},"append":{"id":1174671468044274},"append2980":{"id":2862431382123175},"append3484":{"id":1505826829444401},"starts":{"id":2328741386482283},"pushing":{"id":3790128484317820},"appending":{"id":382785379185784},"appending55732":{"id":2847857611095871},"appending13260":{"id":849127748078188},"removeAll":{"id":3459573101373110}} });
+registerSDKClass("System.FilePath.Component", FilePath_Component, { module: "System_bd41a4085ee86f99", properties: {} });
+registerSDKClass("System.FilePath.ComponentView", FilePath_ComponentView, { module: "System_bd41a4085ee86f99", properties: {}, methods: {"replaceSubrange":{"id":3845822897480455},"indexAfter":{"id":3023193231742848},"indexBefore":{"id":454541569364861},"subscript":{"id":3744773456073597}} });
+registerSDKClass("System.FilePath.ComponentView.Index", FilePath_ComponentView_Index, { module: "System_bd41a4085ee86f99", properties: {} });
+registerSDKClass("System.FilePath.Root", FilePath_Root, { module: "System_bd41a4085ee86f99", properties: {} });
+registerSDKClass("System.Mach", Mach, { module: "System_bd41a4085ee86f99", properties: {} });
+registerSDKClass("System.Mach.Port", Mach_Port, { module: "System_bd41a4085ee86f99", properties: {} });
+registerSDKClass("System.Mach.ReceiveRight", Mach_ReceiveRight, { module: "System_bd41a4085ee86f99", properties: {} });
+registerSDKClass("System.Mach.SendOnceRight", Mach_SendOnceRight, { module: "System_bd41a4085ee86f99", properties: {} });
+registerSDKClass("System.Mach.SendRight", Mach_SendRight, { module: "System_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:6System13MachPortRightP", {});
+registerSDKClass("System.Stat", Stat, { module: "System_bd41a4085ee86f99", properties: {} });

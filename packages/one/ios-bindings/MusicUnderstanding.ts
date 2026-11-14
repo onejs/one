@@ -20,37 +20,37 @@ export const AnalysisType = {
    * static let instrumentActivity: AnalysisType
    * @availability iOS 27.0+
    */
-  get instrumentActivity(): AnalysisType { return callSDK<AnalysisType>("MusicUnderstanding_64b39a05e4a4cebd", 3664233169785147, undefined, []); },
+  get instrumentActivity(): AnalysisType { return callSDK<AnalysisType>("MusicUnderstanding_bd41a4085ee86f99", 3664233169785147, undefined, []); },
   /**
    * static let key: AnalysisType
    * @availability iOS 27.0+
    */
-  get key(): AnalysisType { return callSDK<AnalysisType>("MusicUnderstanding_64b39a05e4a4cebd", 750734372006320, undefined, []); },
+  get key(): AnalysisType { return callSDK<AnalysisType>("MusicUnderstanding_bd41a4085ee86f99", 750734372006320, undefined, []); },
   /**
    * static let pace: AnalysisType
    * @availability iOS 27.0+
    */
-  get pace(): AnalysisType { return callSDK<AnalysisType>("MusicUnderstanding_64b39a05e4a4cebd", 648293153075927, undefined, []); },
+  get pace(): AnalysisType { return callSDK<AnalysisType>("MusicUnderstanding_bd41a4085ee86f99", 648293153075927, undefined, []); },
   /**
    * static let rhythm: AnalysisType
    * @availability iOS 27.0+
    */
-  get rhythm(): AnalysisType { return callSDK<AnalysisType>("MusicUnderstanding_64b39a05e4a4cebd", 4327280780166876, undefined, []); },
+  get rhythm(): AnalysisType { return callSDK<AnalysisType>("MusicUnderstanding_bd41a4085ee86f99", 4327280780166876, undefined, []); },
   /**
    * static let loudness: AnalysisType
    * @availability iOS 27.0+
    */
-  get loudness(): AnalysisType { return callSDK<AnalysisType>("MusicUnderstanding_64b39a05e4a4cebd", 2882982581463993, undefined, []); },
+  get loudness(): AnalysisType { return callSDK<AnalysisType>("MusicUnderstanding_bd41a4085ee86f99", 2882982581463993, undefined, []); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: AnalysisType): string { return callSDK<string>("MusicUnderstanding_64b39a05e4a4cebd", 2896341269840001, $self, []); },
+  getRawValue($self: AnalysisType): string { return callSDK<string>("MusicUnderstanding_bd41a4085ee86f99", 2896341269840001, $self, []); },
   /**
    * static let structure: AnalysisType
    * @availability iOS 27.0+
    */
-  get structure(): AnalysisType { return callSDK<AnalysisType>("MusicUnderstanding_64b39a05e4a4cebd", 1030923605448188, undefined, []); }
+  get structure(): AnalysisType { return callSDK<AnalysisType>("MusicUnderstanding_bd41a4085ee86f99", 1030923605448188, undefined, []); }
 };
 
 /**
@@ -62,12 +62,12 @@ export class InstrumentActivityResult extends SDKHandle {
    * let ranges: [InstrumentActivityResult.Instrument : [CMTimeRange]]
    * @availability iOS 27.0+
    */
-  get ranges(): NativeMap<InstrumentActivityResult_Instrument, Array<_CoreMedia_CMTimeRange>> { return callSDK<NativeMap<InstrumentActivityResult_Instrument, Array<_CoreMedia_CMTimeRange>>>("MusicUnderstanding_64b39a05e4a4cebd", 3277817410601157, this, []); }
+  get ranges(): NativeMap<InstrumentActivityResult_Instrument, Array<_CoreMedia_CMTimeRange>> { return callSDK<NativeMap<InstrumentActivityResult_Instrument, Array<_CoreMedia_CMTimeRange>>>("MusicUnderstanding_bd41a4085ee86f99", 3277817410601157, this, []); }
   /**
    * let activity: [InstrumentActivityResult.Instrument : [MusicUnderstandingSession.TimedValue<Float>]]
    * @availability iOS 27.0+
    */
-  get activity(): NativeMap<InstrumentActivityResult_Instrument, Array<MusicUnderstandingSession_TimedValue<number>>> { return callSDK<NativeMap<InstrumentActivityResult_Instrument, Array<MusicUnderstandingSession_TimedValue<number>>>>("MusicUnderstanding_64b39a05e4a4cebd", 438328560339560, this, []); }
+  get activity(): NativeMap<InstrumentActivityResult_Instrument, Array<MusicUnderstandingSession_TimedValue<number>>> { return callSDK<NativeMap<InstrumentActivityResult_Instrument, Array<MusicUnderstandingSession_TimedValue<number>>>>("MusicUnderstanding_bd41a4085ee86f99", 438328560339560, this, []); }
   declare readonly $type: { "s:18MusicUnderstanding24InstrumentActivityResultV": true };
 }
 
@@ -82,32 +82,32 @@ export const InstrumentActivityResult_Instrument = {
    * static let bass: InstrumentActivityResult.Instrument
    * @availability iOS 27.0+
    */
-  get bass(): InstrumentActivityResult_Instrument { return callSDK<InstrumentActivityResult_Instrument>("MusicUnderstanding_64b39a05e4a4cebd", 3648957480519013, undefined, []); },
+  get bass(): InstrumentActivityResult_Instrument { return callSDK<InstrumentActivityResult_Instrument>("MusicUnderstanding_bd41a4085ee86f99", 3648957480519013, undefined, []); },
   /**
    * static let drum: InstrumentActivityResult.Instrument
    * @availability iOS 27.0+
    */
-  get drum(): InstrumentActivityResult_Instrument { return callSDK<InstrumentActivityResult_Instrument>("MusicUnderstanding_64b39a05e4a4cebd", 1993402345213586, undefined, []); },
+  get drum(): InstrumentActivityResult_Instrument { return callSDK<InstrumentActivityResult_Instrument>("MusicUnderstanding_bd41a4085ee86f99", 1993402345213586, undefined, []); },
   /**
    * static let other: InstrumentActivityResult.Instrument
    * @availability iOS 27.0+
    */
-  get other(): InstrumentActivityResult_Instrument { return callSDK<InstrumentActivityResult_Instrument>("MusicUnderstanding_64b39a05e4a4cebd", 737134628579003, undefined, []); },
+  get other(): InstrumentActivityResult_Instrument { return callSDK<InstrumentActivityResult_Instrument>("MusicUnderstanding_bd41a4085ee86f99", 737134628579003, undefined, []); },
   /**
    * static let vocal: InstrumentActivityResult.Instrument
    * @availability iOS 27.0+
    */
-  get vocal(): InstrumentActivityResult_Instrument { return callSDK<InstrumentActivityResult_Instrument>("MusicUnderstanding_64b39a05e4a4cebd", 1516528134011919, undefined, []); },
+  get vocal(): InstrumentActivityResult_Instrument { return callSDK<InstrumentActivityResult_Instrument>("MusicUnderstanding_bd41a4085ee86f99", 1516528134011919, undefined, []); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: InstrumentActivityResult_Instrument): string { return callSDK<string>("MusicUnderstanding_64b39a05e4a4cebd", 1736502756169898, $self, []); },
+  getRawValue($self: InstrumentActivityResult_Instrument): string { return callSDK<string>("MusicUnderstanding_bd41a4085ee86f99", 1736502756169898, $self, []); },
   /**
    * var codingKey: any CodingKey { get }
    * @availability iOS 27.0+
    */
-  getCodingKey($self: InstrumentActivityResult_Instrument): SDKHandle { return callSDK<SDKHandle>("MusicUnderstanding_64b39a05e4a4cebd", 3016819231792087, $self, []); }
+  getCodingKey($self: InstrumentActivityResult_Instrument): SDKHandle { return callSDK<SDKHandle>("MusicUnderstanding_bd41a4085ee86f99", 3016819231792087, $self, []); }
 };
 
 /**
@@ -119,7 +119,7 @@ export class KeyResult extends SDKHandle {
    * let ranges: [MusicUnderstandingSession.RangedValue<KeyResult.KeySignature>]
    * @availability iOS 27.0+
    */
-  get ranges(): Array<MusicUnderstandingSession_RangedValue<KeyResult_KeySignature>> { return callSDK<Array<MusicUnderstandingSession_RangedValue<KeyResult_KeySignature>>>("MusicUnderstanding_64b39a05e4a4cebd", 2020340074589001, this, []); }
+  get ranges(): Array<MusicUnderstandingSession_RangedValue<KeyResult_KeySignature>> { return callSDK<Array<MusicUnderstandingSession_RangedValue<KeyResult_KeySignature>>>("MusicUnderstanding_bd41a4085ee86f99", 2020340074589001, this, []); }
   declare readonly $type: { "s:18MusicUnderstanding9KeyResultV": true };
 }
 
@@ -132,12 +132,12 @@ export class KeyResult_KeySignature extends SDKHandle {
    * let mode: KeyResult.Mode
    * @availability iOS 27.0+
    */
-  get mode(): KeyResult_Mode { return callSDK<KeyResult_Mode>("MusicUnderstanding_64b39a05e4a4cebd", 1849174641028737, this, []); }
+  get mode(): KeyResult_Mode { return callSDK<KeyResult_Mode>("MusicUnderstanding_bd41a4085ee86f99", 1849174641028737, this, []); }
   /**
    * let tonic: KeyResult.Tonic
    * @availability iOS 27.0+
    */
-  get tonic(): KeyResult_Tonic { return callSDK<KeyResult_Tonic>("MusicUnderstanding_64b39a05e4a4cebd", 3552155329345427, this, []); }
+  get tonic(): KeyResult_Tonic { return callSDK<KeyResult_Tonic>("MusicUnderstanding_bd41a4085ee86f99", 3552155329345427, this, []); }
   declare readonly $type: { "s:18MusicUnderstanding9KeyResultV0C9SignatureV": true };
 }
 
@@ -152,12 +152,12 @@ export const KeyResult_Mode = {
    * init?(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): (KeyResult_Mode) | null { return callSDK<(KeyResult_Mode) | null>("MusicUnderstanding_64b39a05e4a4cebd", 3055436232805673, undefined, [rawValue]); },
+  init(rawValue: string): (KeyResult_Mode) | null { return callSDK<(KeyResult_Mode) | null>("MusicUnderstanding_bd41a4085ee86f99", 3055436232805673, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: KeyResult_Mode): string { return callSDK<string>("MusicUnderstanding_64b39a05e4a4cebd", 2216629379528602, $self, []); }
+  getRawValue($self: KeyResult_Mode): string { return callSDK<string>("MusicUnderstanding_bd41a4085ee86f99", 2216629379528602, $self, []); }
 };
 
 /**
@@ -177,12 +177,12 @@ export const KeyResult_Tonic = {
    * init?(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): (KeyResult_Tonic) | null { return callSDK<(KeyResult_Tonic) | null>("MusicUnderstanding_64b39a05e4a4cebd", 2535563243209872, undefined, [rawValue]); },
+  init(rawValue: string): (KeyResult_Tonic) | null { return callSDK<(KeyResult_Tonic) | null>("MusicUnderstanding_bd41a4085ee86f99", 2535563243209872, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: KeyResult_Tonic): string { return callSDK<string>("MusicUnderstanding_64b39a05e4a4cebd", 1648211554930542, $self, []); }
+  getRawValue($self: KeyResult_Tonic): string { return callSDK<string>("MusicUnderstanding_bd41a4085ee86f99", 1648211554930542, $self, []); }
 };
 
 /**
@@ -200,22 +200,22 @@ export class LoudnessResult extends SDKHandle {
    * let integrated: MusicUnderstandingSession.TimedValue<Float>
    * @availability iOS 27.0+
    */
-  get integrated(): $SDK3 { return callSDK<$SDK3>("MusicUnderstanding_64b39a05e4a4cebd", 2856518786130231, this, []); }
+  get integrated(): $SDK3 { return callSDK<$SDK3>("MusicUnderstanding_bd41a4085ee86f99", 2856518786130231, this, []); }
   /**
    * let peak: MusicUnderstandingSession.TimedValue<Float>
    * @availability iOS 27.0+
    */
-  get peak(): $SDK3 { return callSDK<$SDK3>("MusicUnderstanding_64b39a05e4a4cebd", 2325367496473097, this, []); }
+  get peak(): $SDK3 { return callSDK<$SDK3>("MusicUnderstanding_bd41a4085ee86f99", 2325367496473097, this, []); }
   /**
    * let momentary: [MusicUnderstandingSession.TimedValue<Float>]
    * @availability iOS 27.0+
    */
-  get momentary(): $SDK4 { return callSDK<$SDK4>("MusicUnderstanding_64b39a05e4a4cebd", 2103329722047672, this, []); }
+  get momentary(): $SDK4 { return callSDK<$SDK4>("MusicUnderstanding_bd41a4085ee86f99", 2103329722047672, this, []); }
   /**
    * let shortTerm: [MusicUnderstandingSession.TimedValue<Float>]
    * @availability iOS 27.0+
    */
-  get shortTerm(): $SDK4 { return callSDK<$SDK4>("MusicUnderstanding_64b39a05e4a4cebd", 2230437199349019, this, []); }
+  get shortTerm(): $SDK4 { return callSDK<$SDK4>("MusicUnderstanding_bd41a4085ee86f99", 2230437199349019, this, []); }
   declare readonly $type: { "s:18MusicUnderstanding14LoudnessResultV": true };
 }
 
@@ -234,32 +234,32 @@ export class MusicUnderstandingSession extends SDKHandle {
    * nonisolated var loudnessResults: some Sendable & AsyncSequence<LoudnessResult, any Error> { get }
    * @availability iOS 27.0+
    */
-  get loudnessResults(): (SDKHandle) & (SDKHandle) { return callSDK<(SDKHandle) & (SDKHandle)>("MusicUnderstanding_64b39a05e4a4cebd", 1972495502927496, this, []); }
+  get loudnessResults(): (SDKHandle) & (SDKHandle) { return callSDK<(SDKHandle) & (SDKHandle)>("MusicUnderstanding_bd41a4085ee86f99", 1972495502927496, this, []); }
   /**
    * nonisolated final var unownedExecutor: UnownedSerialExecutor { get }
    * @availability iOS 27.0+
    */
-  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("MusicUnderstanding_64b39a05e4a4cebd", 726923037004420, this, []); }
+  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("MusicUnderstanding_bd41a4085ee86f99", 726923037004420, this, []); }
   /**
    * convenience init(asset: any AVAsset & Sendable) async throws
    * @availability iOS 27.0+
    */
-  static init(asset: (_AVFoundation_AVAsset) & (SDKHandle)): Promise<MusicUnderstandingSession> { return callSDKAsync<MusicUnderstandingSession>("MusicUnderstanding_64b39a05e4a4cebd", 781429786107066, undefined, [asset]); }
+  static init(asset: (_AVFoundation_AVAsset) & (SDKHandle)): Promise<MusicUnderstandingSession> { return callSDKAsync<MusicUnderstandingSession>("MusicUnderstanding_bd41a4085ee86f99", 781429786107066, undefined, [asset]); }
   /**
    * func cancel() async
    * @availability iOS 27.0+
    */
-  cancel(): Promise<void> { return callSDKAsync<void>("MusicUnderstanding_64b39a05e4a4cebd", 92606989394255, this, []); }
+  cancel(): Promise<void> { return callSDKAsync<void>("MusicUnderstanding_bd41a4085ee86f99", 92606989394255, this, []); }
   /**
    * @discardableResult func analyze(for analysisTypes: Set<AnalysisType>) async throws -> MusicUnderstandingSession.SessionResult
    * @availability iOS 27.0+
    */
-  analyzeFor(analysisTypes: Array<AnalysisType>): Promise<MusicUnderstandingSession_SessionResult> { return callSDKAsync<MusicUnderstandingSession_SessionResult>("MusicUnderstanding_64b39a05e4a4cebd", 4201754668842626, this, [analysisTypes]); }
+  analyzeFor(analysisTypes: Array<AnalysisType>): Promise<MusicUnderstandingSession_SessionResult> { return callSDKAsync<MusicUnderstandingSession_SessionResult>("MusicUnderstanding_bd41a4085ee86f99", 4201754668842626, this, [analysisTypes]); }
   /**
    * @discardableResult func analyze() async throws -> MusicUnderstandingSession.SessionResult
    * @availability iOS 27.0+
    */
-  analyze(): Promise<MusicUnderstandingSession_SessionResult> { return callSDKAsync<MusicUnderstandingSession_SessionResult>("MusicUnderstanding_64b39a05e4a4cebd", 2540076499396782, this, []); }
+  analyze(): Promise<MusicUnderstandingSession_SessionResult> { return callSDKAsync<MusicUnderstandingSession_SessionResult>("MusicUnderstanding_bd41a4085ee86f99", 2540076499396782, this, []); }
   declare readonly $type: { "s:18MusicUnderstanding0aB7SessionC": true };
 }
 
@@ -272,12 +272,12 @@ export class MusicUnderstandingSession_RangedValue<Value = unknown> extends SDKH
    * let range: CMTimeRange
    * @availability iOS 27.0+
    */
-  get range(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("MusicUnderstanding_64b39a05e4a4cebd", 2853399369771713, this, []); }
+  get range(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("MusicUnderstanding_bd41a4085ee86f99", 2853399369771713, this, []); }
   /**
    * let value: Value
    * @availability iOS 27.0+
    */
-  get value(): number { return callSDK<number>("MusicUnderstanding_64b39a05e4a4cebd", 4077517270503003, this, []); }
+  get value(): number { return callSDK<number>("MusicUnderstanding_bd41a4085ee86f99", 4077517270503003, this, []); }
   declare readonly $type: { "s:18MusicUnderstanding0aB7SessionC11RangedValueV": true };
 }
 
@@ -290,32 +290,32 @@ export class MusicUnderstandingSession_SessionResult extends SDKHandle {
    * let instrumentActivity: InstrumentActivityResult?
    * @availability iOS 27.0+
    */
-  get instrumentActivity(): (InstrumentActivityResult) | null { return callSDK<(InstrumentActivityResult) | null>("MusicUnderstanding_64b39a05e4a4cebd", 1665640634514253, this, []); }
+  get instrumentActivity(): (InstrumentActivityResult) | null { return callSDK<(InstrumentActivityResult) | null>("MusicUnderstanding_bd41a4085ee86f99", 1665640634514253, this, []); }
   /**
    * let key: KeyResult?
    * @availability iOS 27.0+
    */
-  get key(): (KeyResult) | null { return callSDK<(KeyResult) | null>("MusicUnderstanding_64b39a05e4a4cebd", 228921878882806, this, []); }
+  get key(): (KeyResult) | null { return callSDK<(KeyResult) | null>("MusicUnderstanding_bd41a4085ee86f99", 228921878882806, this, []); }
   /**
    * let pace: PaceResult?
    * @availability iOS 27.0+
    */
-  get pace(): (PaceResult) | null { return callSDK<(PaceResult) | null>("MusicUnderstanding_64b39a05e4a4cebd", 2834589668354437, this, []); }
+  get pace(): (PaceResult) | null { return callSDK<(PaceResult) | null>("MusicUnderstanding_bd41a4085ee86f99", 2834589668354437, this, []); }
   /**
    * let rhythm: RhythmResult?
    * @availability iOS 27.0+
    */
-  get rhythm(): (RhythmResult) | null { return callSDK<(RhythmResult) | null>("MusicUnderstanding_64b39a05e4a4cebd", 3712748301483001, this, []); }
+  get rhythm(): (RhythmResult) | null { return callSDK<(RhythmResult) | null>("MusicUnderstanding_bd41a4085ee86f99", 3712748301483001, this, []); }
   /**
    * let loudness: LoudnessResult?
    * @availability iOS 27.0+
    */
-  get loudness(): (LoudnessResult) | null { return callSDK<(LoudnessResult) | null>("MusicUnderstanding_64b39a05e4a4cebd", 2717265658438109, this, []); }
+  get loudness(): (LoudnessResult) | null { return callSDK<(LoudnessResult) | null>("MusicUnderstanding_bd41a4085ee86f99", 2717265658438109, this, []); }
   /**
    * let structure: StructureResult?
    * @availability iOS 27.0+
    */
-  get structure(): (StructureResult) | null { return callSDK<(StructureResult) | null>("MusicUnderstanding_64b39a05e4a4cebd", 4299164368586422, this, []); }
+  get structure(): (StructureResult) | null { return callSDK<(StructureResult) | null>("MusicUnderstanding_bd41a4085ee86f99", 4299164368586422, this, []); }
   declare readonly $type: { "s:18MusicUnderstanding0aB7SessionC0C6ResultV": true };
 }
 
@@ -328,12 +328,12 @@ export class MusicUnderstandingSession_TimedValue<Value = unknown> extends SDKHa
    * let time: CMTime
    * @availability iOS 27.0+
    */
-  get time(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("MusicUnderstanding_64b39a05e4a4cebd", 3090710359901929, this, []); }
+  get time(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("MusicUnderstanding_bd41a4085ee86f99", 3090710359901929, this, []); }
   /**
    * let value: Value
    * @availability iOS 27.0+
    */
-  get value(): number { return callSDK<number>("MusicUnderstanding_64b39a05e4a4cebd", 3491600119162195, this, []); }
+  get value(): number { return callSDK<number>("MusicUnderstanding_bd41a4085ee86f99", 3491600119162195, this, []); }
   declare readonly $type: { "s:18MusicUnderstanding0aB7SessionC10TimedValueV": true };
 }
 
@@ -346,7 +346,7 @@ export class PaceResult extends SDKHandle {
    * let ranges: [MusicUnderstandingSession.RangedValue<Double>]
    * @availability iOS 27.0+
    */
-  get ranges(): Array<MusicUnderstandingSession_RangedValue<number>> { return callSDK<Array<MusicUnderstandingSession_RangedValue<number>>>("MusicUnderstanding_64b39a05e4a4cebd", 1401505908599561, this, []); }
+  get ranges(): Array<MusicUnderstandingSession_RangedValue<number>> { return callSDK<Array<MusicUnderstandingSession_RangedValue<number>>>("MusicUnderstanding_bd41a4085ee86f99", 1401505908599561, this, []); }
   declare readonly $type: { "s:18MusicUnderstanding10PaceResultV": true };
 }
 
@@ -359,17 +359,17 @@ export class RhythmResult extends SDKHandle {
    * let beatsPerMinute: Float?
    * @availability iOS 27.0+
    */
-  get beatsPerMinute(): (number) | null { return callSDK<(number) | null>("MusicUnderstanding_64b39a05e4a4cebd", 3977343120110331, this, []); }
+  get beatsPerMinute(): (number) | null { return callSDK<(number) | null>("MusicUnderstanding_bd41a4085ee86f99", 3977343120110331, this, []); }
   /**
    * let bars: [CMTime]
    * @availability iOS 27.0+
    */
-  get bars(): Array<_CoreMedia_CMTime> { return callSDK<Array<_CoreMedia_CMTime>>("MusicUnderstanding_64b39a05e4a4cebd", 56507106748061, this, []); }
+  get bars(): Array<_CoreMedia_CMTime> { return callSDK<Array<_CoreMedia_CMTime>>("MusicUnderstanding_bd41a4085ee86f99", 56507106748061, this, []); }
   /**
    * let beats: [CMTime]
    * @availability iOS 27.0+
    */
-  get beats(): Array<_CoreMedia_CMTime> { return callSDK<Array<_CoreMedia_CMTime>>("MusicUnderstanding_64b39a05e4a4cebd", 4474466393207917, this, []); }
+  get beats(): Array<_CoreMedia_CMTime> { return callSDK<Array<_CoreMedia_CMTime>>("MusicUnderstanding_bd41a4085ee86f99", 4474466393207917, this, []); }
   declare readonly $type: { "s:18MusicUnderstanding12RhythmResultV": true };
 }
 
@@ -382,28 +382,28 @@ export class StructureResult extends SDKHandle {
    * let phrases: [CMTimeRange]
    * @availability iOS 27.0+
    */
-  get phrases(): $SDK11 { return callSDK<$SDK11>("MusicUnderstanding_64b39a05e4a4cebd", 889837295849272, this, []); }
+  get phrases(): $SDK11 { return callSDK<$SDK11>("MusicUnderstanding_bd41a4085ee86f99", 889837295849272, this, []); }
   /**
    * let sections: [CMTimeRange]
    * @availability iOS 27.0+
    */
-  get sections(): $SDK11 { return callSDK<$SDK11>("MusicUnderstanding_64b39a05e4a4cebd", 2575837429093310, this, []); }
+  get sections(): $SDK11 { return callSDK<$SDK11>("MusicUnderstanding_bd41a4085ee86f99", 2575837429093310, this, []); }
   /**
    * let segments: [CMTimeRange]
    * @availability iOS 27.0+
    */
-  get segments(): $SDK11 { return callSDK<$SDK11>("MusicUnderstanding_64b39a05e4a4cebd", 3512688290738713, this, []); }
+  get segments(): $SDK11 { return callSDK<$SDK11>("MusicUnderstanding_bd41a4085ee86f99", 3512688290738713, this, []); }
   declare readonly $type: { "s:18MusicUnderstanding15StructureResultV": true };
 }
 
-registerSDKClass("MusicUnderstanding.InstrumentActivityResult", InstrumentActivityResult, { module: "MusicUnderstanding_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("MusicUnderstanding.KeyResult", KeyResult, { module: "MusicUnderstanding_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("MusicUnderstanding.KeyResult.KeySignature", KeyResult_KeySignature, { module: "MusicUnderstanding_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("MusicUnderstanding.LoudnessResult", LoudnessResult, { module: "MusicUnderstanding_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("MusicUnderstanding.MusicUnderstandingSession", MusicUnderstandingSession, { module: "MusicUnderstanding_64b39a05e4a4cebd", properties: {}, methods: {"cancel":{"id":92606989394255},"analyzeFor":{"id":4201754668842626},"analyze":{"id":2540076499396782}} });
-registerSDKClass("MusicUnderstanding.MusicUnderstandingSession.RangedValue", MusicUnderstandingSession_RangedValue, { module: "MusicUnderstanding_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("MusicUnderstanding.MusicUnderstandingSession.SessionResult", MusicUnderstandingSession_SessionResult, { module: "MusicUnderstanding_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("MusicUnderstanding.MusicUnderstandingSession.TimedValue", MusicUnderstandingSession_TimedValue, { module: "MusicUnderstanding_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("MusicUnderstanding.PaceResult", PaceResult, { module: "MusicUnderstanding_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("MusicUnderstanding.RhythmResult", RhythmResult, { module: "MusicUnderstanding_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("MusicUnderstanding.StructureResult", StructureResult, { module: "MusicUnderstanding_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("MusicUnderstanding.InstrumentActivityResult", InstrumentActivityResult, { module: "MusicUnderstanding_bd41a4085ee86f99", properties: {} });
+registerSDKClass("MusicUnderstanding.KeyResult", KeyResult, { module: "MusicUnderstanding_bd41a4085ee86f99", properties: {} });
+registerSDKClass("MusicUnderstanding.KeyResult.KeySignature", KeyResult_KeySignature, { module: "MusicUnderstanding_bd41a4085ee86f99", properties: {} });
+registerSDKClass("MusicUnderstanding.LoudnessResult", LoudnessResult, { module: "MusicUnderstanding_bd41a4085ee86f99", properties: {} });
+registerSDKClass("MusicUnderstanding.MusicUnderstandingSession", MusicUnderstandingSession, { module: "MusicUnderstanding_bd41a4085ee86f99", properties: {}, methods: {"cancel":{"id":92606989394255},"analyzeFor":{"id":4201754668842626},"analyze":{"id":2540076499396782}} });
+registerSDKClass("MusicUnderstanding.MusicUnderstandingSession.RangedValue", MusicUnderstandingSession_RangedValue, { module: "MusicUnderstanding_bd41a4085ee86f99", properties: {} });
+registerSDKClass("MusicUnderstanding.MusicUnderstandingSession.SessionResult", MusicUnderstandingSession_SessionResult, { module: "MusicUnderstanding_bd41a4085ee86f99", properties: {} });
+registerSDKClass("MusicUnderstanding.MusicUnderstandingSession.TimedValue", MusicUnderstandingSession_TimedValue, { module: "MusicUnderstanding_bd41a4085ee86f99", properties: {} });
+registerSDKClass("MusicUnderstanding.PaceResult", PaceResult, { module: "MusicUnderstanding_bd41a4085ee86f99", properties: {} });
+registerSDKClass("MusicUnderstanding.RhythmResult", RhythmResult, { module: "MusicUnderstanding_bd41a4085ee86f99", properties: {} });
+registerSDKClass("MusicUnderstanding.StructureResult", StructureResult, { module: "MusicUnderstanding_bd41a4085ee86f99", properties: {} });
