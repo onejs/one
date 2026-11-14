@@ -66,7 +66,7 @@ type NativeProjectPatches = {
   injectHermesMinificationPatchIntoPodfile(input: string): string
   injectReactNativeScreensGammaIntoPodfile(input: string): string
   hasNitroWebImage(root: string): boolean
-  injectNitroWebImageModularHeaderIntoPodfile(input: string): string
+  injectModularHeadersIntoPodfile(input: string): string
   replaceAppBuildGradleReactBlock(input: string): string
   addDepsPatchToAppBuildGradle(input: string): string
   addReactNativeScreensFix(input: string): string
@@ -2989,7 +2989,7 @@ end`
       rendered = nativeProjectPatches.injectOneSwiftPackagesIntoPodfile(rendered)
       if (nitroWebImage)
         rendered =
-          nativeProjectPatches.injectNitroWebImageModularHeaderIntoPodfile(rendered)
+          nativeProjectPatches.injectModularHeadersIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(rendered)
       const nativeModulesCall = 'config = use_native_modules!'
       if (rendered.split(nativeModulesCall).length !== 2) {

@@ -47,6 +47,24 @@ Pod::Spec.new do |s|
 
   s.exclude_files = ['ios/Tests/**/*', 'ios/Generated/*ComponentView.mm']
   s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}', 'cpp/**/*.{h,cpp}'
+  op_manifest = IO.popen(['node', '--print', "require.resolve('@op-engineering/op-sqlite/package.json', {paths: [process.argv[1]]})", Pod::Config.instance.installation_root.to_s], &:read).strip
+  raise 'One requires the installed @op-engineering/op-sqlite package' if op_manifest.empty?
+  app_directory = File.dirname(File.dirname(op_manifest))
+  loop do
+    break if File.file?(File.join(app_directory, 'package.json'))
+    parent = File.dirname(app_directory)
+    raise 'op-sqlite application package.json not found' if parent == app_directory
+    app_directory = parent
+  end
+  op_config = JSON.parse(File.read(File.join(app_directory, 'package.json')))['op-sqlite'] || {}
+  if op_config['libsql'] == true || op_config['turso'] == true
+    s.exclude_files = Array(s.attributes_hash['exclude_files']) + ['cpp/zero/**/*']
+    zero_config = s.attributes_hash['pod_target_xcconfig'].dup
+    ['GCC_PREPROCESSOR_DEFINITIONS', 'GCC_PREPROCESSOR_DEFINITIONS[config=Debug]'].each do |key|
+      zero_config[key] += ' ONE_ZERO_SQLITE=0'
+    end
+    s.pod_target_xcconfig = zero_config
+  end
   # required-reason api declarations (user defaults, boot time, file
   # timestamps, disk space); xcode aggregates these into the app manifest.
   s.resource_bundles = { 'One' => ['ios/PrivacyInfo.xcprivacy'] }
@@ -63,6 +81,7 @@ Pod::Spec.new do |s|
   # nitro bridge types its c++ section names; every unit gets them first.
   s.prefix_header_contents = "#ifdef __OBJC__\n#import <React/RCTView.h>\n#import <UserNotifications/UserNotifications.h>\n#import <Social/Social.h>\n#endif\n#ifdef __cplusplus\n#include \"OneSDKBridge.h\"\n#include \"One-Swift-Cxx-Bridge.hpp\"\n#endif"
 
+  s.dependency 'op-sqlite'
   s.dependency 'RNWorklets'
   # webp encoding has no system encoder on ios; expo-image-manipulator uses the same coder.
   s.dependency 'SDWebImageWebPCoder'

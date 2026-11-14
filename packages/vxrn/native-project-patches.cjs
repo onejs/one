@@ -13,46 +13,28 @@ function hasNitroWebImage(root) {
   }
 }
 
-const NITRO_WEB_IMAGE_MARKER = '# [vxrn/one] nitro web image modular header'
-const WEBP_CODER_MARKER = '# [vxrn/one] webp coder modular header'
-
-function injectNitroWebImageModularHeaderIntoPodfile(podfile) {
-  if (
-    !podfile.includes(NITRO_WEB_IMAGE_MARKER) &&
-    !/pod ['"]SDWebImage['"][^\n]*:modular_headers\s*=>\s*true/.test(podfile)
-  ) {
-    const anchor = /^(\s*)config = use_native_modules!.*$/m
-    const match = podfile.match(anchor)
+function injectModularHeadersIntoPodfile(podfile) {
+  const pods = [
+    ['nitro web image', 'SDWebImage'],
+    ['webp coder', 'SDWebImageWebPCoder'],
+    [
+      'native Zero sqlite',
+      'op-sqlite',
+      ', :path => Pathname.new(File.dirname(`node --print "require.resolve(\'@op-engineering/op-sqlite/package.json\')"`.strip)).relative_path_from(Pathname.new(__dir__)).to_s',
+    ],
+  ]
+  for (const [label, name, source = ''] of pods) {
+    const marker = `# [vxrn/one] ${label} modular header`
+    const declaration = new RegExp(
+      `pod ['"]${name}['"][^\\n]*:modular_headers\\s*=>\\s*true`
+    )
+    if (podfile.includes(marker) || declaration.test(podfile)) continue
+    const match = podfile.match(/^(\s*)config = use_native_modules!.*$/m)
     if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
     const insertAt = match.index + match[0].length
     podfile =
       podfile.slice(0, insertAt) +
-      '\n' +
-      match[1] +
-      NITRO_WEB_IMAGE_MARKER +
-      '\n' +
-      match[1] +
-      "pod 'SDWebImage', :modular_headers => true" +
-      podfile.slice(insertAt)
-  }
-  // One.ImageManipulator encodes webp through SDWebImageWebPCoder, which
-  // defines no modules, so static frameworks need its modular headers too.
-  if (
-    !podfile.includes(WEBP_CODER_MARKER) &&
-    !/pod ['"]SDWebImageWebPCoder['"][^\n]*:modular_headers\s*=>\s*true/.test(podfile)
-  ) {
-    const anchor = /^(\s*)config = use_native_modules!.*$/m
-    const match = podfile.match(anchor)
-    if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
-    const insertAt = match.index + match[0].length
-    podfile =
-      podfile.slice(0, insertAt) +
-      '\n' +
-      match[1] +
-      WEBP_CODER_MARKER +
-      '\n' +
-      match[1] +
-      "pod 'SDWebImageWebPCoder', :modular_headers => true" +
+      `\n${match[1]}${marker}\n${match[1]}pod '${name}'${source}, :modular_headers => true` +
       podfile.slice(insertAt)
   }
   return podfile
@@ -882,7 +864,7 @@ module.exports = {
   ONE_LAUNCH_SCREEN,
   holdLaunchScreenOverRootView,
   hasNitroWebImage,
-  injectNitroWebImageModularHeaderIntoPodfile,
+  injectModularHeadersIntoPodfile,
   injectOneSwiftPackagesIntoPodfile,
   addSetCliPathToBundleReactNativeShellScript,
   addPodHermescToBundleReactNativeShellScript,

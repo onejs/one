@@ -33,6 +33,7 @@
 #include "HybridOneFetchSpecSwift.hpp"
 #include "HybridOneAppleAuthSpecSwift.hpp"
 #include "HybridOneProtectedStoreSpecSwift.hpp"
+#include "HybridOneZero.hpp"
 #include "HybridOneStorage.hpp"
 #include "HybridOneStoreReviewSpecSwift.hpp"
 #include "HybridOneQuickActionsSpecSwift.hpp"
@@ -250,6 +251,15 @@
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneProtectedStoreSpec> hybridObject = One::OneAutolinking::createOneProtectedStore();
       return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneZero",
+    []() -> std::shared_ptr<HybridObject> {
+      static_assert(std::is_default_constructible_v<HybridOneZero>,
+                    "The HybridObject \"HybridOneZero\" is not default-constructible! "
+                    "Create a public constructor that takes zero arguments to be able to autolink this HybridObject.");
+      return std::make_shared<HybridOneZero>();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
