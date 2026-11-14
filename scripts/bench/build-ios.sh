@@ -5,6 +5,7 @@ target=${2:-device}
 case "$engine" in hermes|bun) ;; *) exit 2;; esac
 case "$target" in device|simulator) ;; *) exit 2;; esac
 root=$(git rev-parse --show-toplevel)
+source_commit=$(git rev-parse HEAD)
 output=${BENCH_OUTPUT_DIR:-$HOME/builders/.scratch/bun-bench}
 derived=${BENCH_DERIVED_DATA:-$output/derived-$target}
 export BENCH_ENGINE=$engine
@@ -25,9 +26,13 @@ else
   platform=iphonesimulator
 fi
 nice -n 10 xcodebuild "${args[@]}" build > "$output/build-$engine-$target.log" 2>&1
+if [ "$(git rev-parse HEAD)" != "$source_commit" ] || ! git diff --quiet HEAD -- examples/one-bench packages; then
+  echo "source changed during build; discard this result" >&2
+  exit 2
+fi
 mkdir -p "$output/apps/$engine"
 ditto "$derived/Build/Products/Release-$platform/OneBench.app" "$output/apps/$engine/OneBench.app"
-git rev-parse HEAD > "$output/apps/$engine/commit.txt"
+printf "%s\n" "$source_commit" > "$output/apps/$engine/commit.txt"
 python3 - "$output/apps/$engine" "$engine" "$target" <<'PYMETA'
 import hashlib
 import json
