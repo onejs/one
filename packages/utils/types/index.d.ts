@@ -1,9 +1,9 @@
 export * from '@vxrn/debug';
 export * from '@vxrn/resolve';
-export * from './createMessageSocket';
-export * from './detectPackageManager';
-export * from './exec';
-export * from './mustReplace';
-export * from './publicEnv';
-export * from './platformEnv';
+export * from './createMessageSocket.js';
+export * from './detectPackageManager.js';
+export * from './exec.js';
+export * from './mustReplace.js';
+export * from './publicEnv.js';
+export * from './platformEnv.js';
 //# sourceMappingURL=index.d.ts.map

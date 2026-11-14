@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { PickerProps } from './generated/controlTypes';
+import type { PickerProps } from './generated/controlTypes.js';
 export interface PickerChildrenSlot {
     children?: ReactNode;
 }

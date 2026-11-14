@@ -1,4 +1,4 @@
-import type { VXRNServeOptions } from '../types';
+import type { VXRNServeOptions } from '../types.js';
 import type { Hono } from 'hono';
 export declare const applyCompression: (app: Hono, options: VXRNServeOptions) => void;
 export declare const createProdServer: (app: Hono, options: VXRNServeOptions, { skipCompression, outDir, }?: {

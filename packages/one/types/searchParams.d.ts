@@ -6,7 +6,7 @@
  * a value into text, so values are written by one fixed rule: strings, numbers,
  * booleans, or arrays of those, with repeated keys for arrays.
  */
-import { type StandardSchemaV1 } from './standardSchema';
+import { type StandardSchemaV1 } from './standardSchema.js';
 /** What a schema receives: every query key, a string or, when repeated, an array. */
 export type SearchRecord = Record<string, string | string[]>;
 type Scalar = string | number | boolean;

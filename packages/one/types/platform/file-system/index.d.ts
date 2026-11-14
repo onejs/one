@@ -1,7 +1,7 @@
-import type { FileDirectories, FileEncoding, FileEntry, FileInfo } from '../specs/OneFileSystem.nitro';
-import { Directory, File, FileHandle, Paths } from './classes';
+import type { FileDirectories, FileEncoding, FileEntry, FileInfo } from '../specs/OneFileSystem.nitro.js';
+import { Directory, File, FileHandle, Paths } from './classes.js';
 export type { FileDirectories, FileEncoding, FileEntry, FileInfo };
-export type * from './types';
+export type * from './types.js';
 export declare const FileSystem: Readonly<{
     getDirectories: () => FileDirectories;
     getInfo: (uri: string) => Promise<FileInfo>;

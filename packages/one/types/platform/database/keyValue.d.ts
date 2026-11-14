@@ -1,4 +1,4 @@
-import { type DatabaseKeyValue } from './keyValueValidate';
+import { type DatabaseKeyValue } from './keyValueValidate.js';
 export type { DatabaseKeyValue };
 export declare function openKeyValue(options: {
     name: string;

@@ -1,4 +1,4 @@
-import type { HingeState, SizeClass } from './types';
+import type { HingeState, SizeClass } from './types.js';
 export declare function useSizeClass(): SizeClass;
 export declare function getSizeClass(): Promise<SizeClass>;
 export declare function useHinge(): HingeState | null;

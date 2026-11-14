@@ -1,4 +1,4 @@
-import type { BrightnessEvent, BrightnessMode, BrightnessPermissionResponse } from './types';
+import type { BrightnessEvent, BrightnessMode, BrightnessPermissionResponse } from './types.js';
 declare function addListener(listener: (event: BrightnessEvent) => void): () => void;
 export declare function brightnessNative(): {
     get(): Promise<number>;

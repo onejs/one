@@ -1,5 +1,5 @@
-import type { ImageTransformOptions, ImageTransformResult } from '../specs/OneImageManipulator.nitro';
-export type { ImageCrop, OneImageFlip as ImageFlip, OneImageFormat as ImageFormat, ImageResize, ImageTransformResult, } from '../specs/OneImageManipulator.nitro';
+import type { ImageTransformOptions, ImageTransformResult } from '../specs/OneImageManipulator.nitro.js';
+export type { ImageCrop, OneImageFlip as ImageFlip, OneImageFormat as ImageFormat, ImageResize, ImageTransformResult, } from '../specs/OneImageManipulator.nitro.js';
 export type ImageManipulatorOptions = Omit<ImageTransformOptions, 'format'> & {
     format?: ImageTransformOptions['format'];
 };

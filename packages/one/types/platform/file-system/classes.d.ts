@@ -1,7 +1,7 @@
-import { PathUtilities } from './paths';
-import { FileMode } from './types';
-import type { DirectoryCreateOptions, DirectoryStat, FileCreateOptions, FileDigestAlgorithm, FileStat, FileWriteOptions, PathInfo, RelocationOptions } from './types';
-export type * from './types';
+import { PathUtilities } from './paths.js';
+import { FileMode } from './types.js';
+import type { DirectoryCreateOptions, DirectoryStat, FileCreateOptions, FileDigestAlgorithm, FileStat, FileWriteOptions, PathInfo, RelocationOptions } from './types.js';
+export type * from './types.js';
 export declare class FileHandle {
     private targetUri;
     private mode;

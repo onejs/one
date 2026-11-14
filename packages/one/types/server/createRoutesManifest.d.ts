@@ -1,6 +1,6 @@
-import { type Options } from '../router/getRoutes';
-import type { RouteInfo } from '../vite/types';
-export type { Options } from '../router/getRoutes';
+import { type Options } from '../router/getRoutes.js';
+import type { RouteInfo } from '../vite/types.js';
+export type { Options } from '../router/getRoutes.js';
 export type RouteInfoCompiled = RouteInfo & {
     compiledRegex: RegExp;
 };

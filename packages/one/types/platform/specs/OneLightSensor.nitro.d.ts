@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { LightSensorMeasurement } from '../light-sensor/types';
+import type { LightSensorMeasurement } from '../light-sensor/types.js';
 export interface OneLightSensor extends HybridObject<{
     ios: 'swift';
     android: 'kotlin';

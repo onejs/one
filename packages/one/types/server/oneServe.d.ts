@@ -1,5 +1,5 @@
 import type { Hono } from 'hono';
-import type { One } from '../vite/types';
+import type { One } from '../vite/types.js';
 /**
  * Lazy import functions for route modules.
  * Modules are loaded on-demand when a route is matched, not all upfront.

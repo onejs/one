@@ -1,5 +1,5 @@
 import type { AnyMap, HybridObject } from 'react-native-nitro-modules';
-import type { NotificationBehavior, NotificationPermissionStatus } from '../notifications/types';
+import type { NotificationBehavior, NotificationPermissionStatus } from '../notifications/types.js';
 export type NativeTriggerType = 'timeInterval' | 'date' | 'push' | 'unknown';
 export interface NativeTrigger {
     type: NativeTriggerType;

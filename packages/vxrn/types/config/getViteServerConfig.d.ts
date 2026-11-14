@@ -1,5 +1,5 @@
 import { type UserConfig } from 'vite';
-import type { VXRNOptionsFilled } from './getOptionsFilled';
+import type { VXRNOptionsFilled } from './getOptionsFilled.js';
 /**
  * Only used in CLI mode since this hard-codes the `mode` to `'serve'` and contains
  * custom config merging logic.

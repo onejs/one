@@ -1,4 +1,4 @@
-import type { ProtectedStorePolicy } from '../specs/OneProtectedStore.nitro';
+import type { ProtectedStorePolicy } from '../specs/OneProtectedStore.nitro.js';
 export type { ProtectedStorePolicy };
 export declare const ProtectedStore: Readonly<{
     createItem: (_key: string, _value: string, _policy: ProtectedStorePolicy) => Promise<void>;

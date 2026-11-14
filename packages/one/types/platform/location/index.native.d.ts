@@ -1,4 +1,4 @@
-import type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationRegion, RegionCenter, RegionState } from '../specs/OneLocation.nitro';
+import type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationRegion, RegionCenter, RegionState } from '../specs/OneLocation.nitro.js';
 export type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationRegion, RegionCenter, RegionState, };
 declare function getPermissionStatus(): LocationPermissionStatus;
 declare function requestWhenInUsePermission(): Promise<LocationPermissionStatus>;

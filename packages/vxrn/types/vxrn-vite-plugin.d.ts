@@ -1,6 +1,6 @@
 import { type PluginOption } from 'vite';
 import type { MetroPluginOptions } from '@vxrn/vite-plugin-metro';
-import type { UserDepPatches } from './utils/patches';
+import type { UserDepPatches } from './utils/patches.js';
 /**
  * This is considered private API for now, and may change anytime.
  */

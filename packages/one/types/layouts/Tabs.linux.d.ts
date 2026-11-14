@@ -1,4 +1,4 @@
-export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<import("../types").PickPartial<Omit<any, "children" | "initialRouteName" | "layout" | "routeNamesChangeBehavior" | "router" | "screenLayout" | "screenListeners" | "screenOptions"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
+export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<import("../types.js").PickPartial<Omit<any, "children" | "initialRouteName" | "layout" | "routeNamesChangeBehavior" | "router" | "screenLayout" | "screenListeners" | "screenOptions"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
     children: React.ReactNode;
     layout?: ((props: {
         state: Readonly<{
@@ -187,7 +187,7 @@ export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<import
     }>, Action>>) | undefined;
     routeNamesChangeBehavior?: ('firstMatch' | 'lastUnhandled') | undefined;
 }, "children">, "ref"> & import("react").RefAttributes<unknown>> & {
-    Screen: import("./withLayoutContext").LayoutScreen<object, Readonly<{
+    Screen: import("./withLayoutContext.js").LayoutScreen<object, Readonly<{
         key: string;
         index: number;
         routeNames: string[];
@@ -197,8 +197,8 @@ export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<import
         stale: false;
     }>, import("@react-navigation/core").EventMapBase>;
 } & {
-    Protected: import("react").FunctionComponent<import("..").ProtectedProps>;
-    Screen: import("./withLayoutContext").LayoutScreen<object, Readonly<{
+    Protected: import("react").FunctionComponent<import("../index.js").ProtectedProps>;
+    Screen: import("./withLayoutContext.js").LayoutScreen<object, Readonly<{
         key: string;
         index: number;
         routeNames: string[];

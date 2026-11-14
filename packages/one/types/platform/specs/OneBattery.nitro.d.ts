@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { BatteryLevelEvent, BatteryPowerModeEvent, BatteryPowerState, BatteryState, BatteryStateEvent } from '../battery/types';
+import type { BatteryLevelEvent, BatteryPowerModeEvent, BatteryPowerState, BatteryState, BatteryStateEvent } from '../battery/types.js';
 export interface OneBattery extends HybridObject<{
     ios: 'swift';
     android: 'kotlin';

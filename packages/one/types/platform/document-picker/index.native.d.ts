@@ -1,5 +1,5 @@
-import type { DocumentPickerOptions, DocumentPickerResult } from './types';
-export type * from './types';
+import type { DocumentPickerOptions, DocumentPickerResult } from './types.js';
+export type * from './types.js';
 declare function getDocument(options?: DocumentPickerOptions): Promise<DocumentPickerResult>;
 export declare const DocumentPicker: Readonly<{
     getDocument: typeof getDocument;

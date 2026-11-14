@@ -1,7 +1,7 @@
 import type { ComponentType, ReactElement } from 'react';
-import type { ControlledEvent } from '../controlled';
-import { useControlled } from '../controlled';
-import type { ControlledControlProps, ControlChange } from '../controlTypes';
+import type { ControlledEvent } from '../controlled.js';
+import { useControlled } from '../controlled.js';
+import type { ControlledControlProps, ControlChange } from '../controlTypes.js';
 export type DesktopButtonProps = ControlledControlProps & {
     title: string;
     systemImage?: string;

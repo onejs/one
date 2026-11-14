@@ -1,4 +1,4 @@
-import type { LocalAuthenticationStatus } from '../specs/OneLocalAuthentication.nitro';
+import type { LocalAuthenticationStatus } from '../specs/OneLocalAuthentication.nitro.js';
 declare function canEvaluatePolicy(): LocalAuthenticationStatus;
 declare function evaluatePolicy(reason: string): Promise<boolean>;
 export declare function localAuthenticationNative(): {

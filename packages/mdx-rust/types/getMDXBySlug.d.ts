@@ -1,5 +1,5 @@
-import { type GetMDXOptions } from './getMDX';
-import type { Frontmatter } from './types';
+import { type GetMDXOptions } from './getMDX.js';
+import type { Frontmatter } from './types.js';
 export declare const getMDXBySlug: (basePath: string, slug: string, options?: GetMDXOptions) => Promise<{
     frontmatter: Frontmatter;
     code: string;
