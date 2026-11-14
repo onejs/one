@@ -905,7 +905,7 @@ ${release} export USE_HERMES=false ;; esac`
   return insertAfterBundlePhaseRunner(
     withPlainBundle,
     `${ONE_BUN_ENGINE.marker}: compile the release bundle into the app's Bun.framework
-${release} /bin/bash "$ONE_BUN_ENGINE_SCRIPT" ;; esac`
+${release} /bin/bash "$ONE_BUN_ENGINE_SCRIPT" || exit 1 ;; esac`
   )
 }
 

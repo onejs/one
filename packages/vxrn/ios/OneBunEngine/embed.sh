@@ -23,7 +23,11 @@ cp -R "$TEMPLATE/BunCompat.framework" "$FRAMEWORKS/"
 cp -R "$TEMPLATE/Bun.framework" "$FRAMEWORKS/"
 BIN="$FRAMEWORKS/Bun.framework/Bun"
 python3 "$HERE/dylib-id.py" "$BIN" hide
-"$ONE_BUN_ENGINE_DIR/bun" compile "$BUNDLE" ${FLAGS[@]+"${FLAGS[@]}"} \
+# bun picks its parser from the extension and reads .jsbundle as typescript
+ENTRY="$DERIVED_FILE_DIR/one-bun-entry.js"
+mkdir -p "$DERIVED_FILE_DIR"
+cp "$BUNDLE" "$ENTRY"
+"$ONE_BUN_ENGINE_DIR/bun" compile "$ENTRY" ${FLAGS[@]+"${FLAGS[@]}"} \
   --compile-executable-path="$BIN" --outfile="$BIN.compiled"
 mv "$BIN.compiled" "$BIN"
 python3 "$HERE/dylib-id.py" "$BIN" restore
