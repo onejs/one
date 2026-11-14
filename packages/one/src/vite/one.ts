@@ -31,6 +31,7 @@ import { createDevtoolsPlugin } from './plugins/devtoolsPlugin'
 import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
+import { loaderJSXPlugin } from './plugins/loaderJSXPlugin'
 import { loaderSearchSchemasPlugin } from './plugins/loaderSearchSchemasPlugin'
 import { criticalCSSPlugin } from './plugins/criticalCSSPlugin'
 import { imageDataPlugin } from './plugins/imageDataPlugin'
@@ -944,7 +945,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   ] satisfies Plugin[]
 
   // TODO move to single config and through environments
-  const nativeWebDevAndProdPlugsin: Plugin[] = [clientTreeShakePlugin({ routerRoot })]
+  const nativeWebDevAndProdPlugsin: Plugin[] = [
+    loaderJSXPlugin({ routerRoot }),
+    clientTreeShakePlugin({ routerRoot }),
+  ]
 
   // vite config plugins that ship a native form (`api.vxrnNative`). vite
   // resolves the config, in dev and in every native build, before the native
@@ -996,6 +1000,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             ]
           : []),
         createAliasPlugin(withAbsorbedAliases(options.alias), platform),
+        loaderJSXPlugin({ routerRoot }),
         clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),
         ...(viteBundlerOptions?.plugins ?? []),
       ]

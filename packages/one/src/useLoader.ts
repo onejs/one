@@ -1,4 +1,5 @@
 import { useCallback, useSyncExternalStore } from 'react'
+import { reviveLoaderData } from './loaderJSX'
 import { Platform } from 'react-native'
 import { registerDevtoolsFunction } from './devtools/registry'
 import { useParams, usePathname, useRouteInfo } from './hooks'
@@ -370,7 +371,7 @@ export async function refetchMatchLoader(
  * )
  * ```
  */
-export function useLoaderState<
+function useLoaderStateInner<
   Loader extends Function = any,
   Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
 >(
@@ -826,6 +827,27 @@ export function useLoader<
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
   const { data } = useLoaderState(loader)
   return data
+}
+
+function withRevivedData(result: any) {
+  return result && 'data' in result
+    ? { ...result, data: reviveLoaderData(result.data) }
+    : result
+}
+
+export function useLoaderState<
+  Loader extends Function = any,
+  Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
+>(
+  loader?: Loader
+): Loader extends undefined
+  ? { refetch: () => Promise<void>; state: 'idle' | 'loading' }
+  : {
+      data: Returned extends Promise<any> ? Awaited<Returned> : Returned
+      refetch: () => Promise<void>
+      state: 'idle' | 'loading'
+    } {
+  return withRevivedData(useLoaderStateInner(loader)) as any
 }
 
 const results = new Map()
