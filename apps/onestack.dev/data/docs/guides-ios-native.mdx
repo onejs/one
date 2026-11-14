@@ -129,7 +129,7 @@ one({
 
 Apps on `expo prebuild` pass the same option to the plugin: `['vxrn/expo-plugin', { engine: 'bun' }]`.
 
-`pod install` needs `ONE_BUN_ENGINE_DIR` pointing at the Bun runtime directory, which holds the macOS `bun` compiler and `ios/iphoneos` and `ios/iphonesimulator` folders with `Bun.framework` and `BunCompat.framework`. The bundle phase then compiles `main.jsbundle` into the app's `Bun.framework` on every Release build.
+`pod install` needs `ONE_BUN_ENGINE_DIR` pointing at the Bun runtime directory, which holds the macOS `bun` compiler and `ios/iphoneos` and `ios/iphonesimulator` folders with `Bun.framework` and `BunCompat.framework`. The bundle phase then compiles `main.jsbundle` on every Release build and links the program into `BunCompat.framework`, since an App Store binary may have only one executable segment.
 
 Limits:
 
