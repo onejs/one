@@ -57,5 +57,7 @@ Pod::Spec.new do |s|
   install_modules_dependencies(s)
   # with use_frameworks, react/runtime headers live in the JSITooling framework
   add_dependency(s, 'React-jsitooling', framework_name: 'JSITooling')
+  add_dependency(s, 'React-jsinspector', framework_name: 'jsinspector_modern')
+  add_dependency(s, 'React-jsinspectortracing', framework_name: 'jsinspector_moderntracing')
   s.dependency 'React-cxxreact'
 end

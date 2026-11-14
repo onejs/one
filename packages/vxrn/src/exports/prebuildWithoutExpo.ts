@@ -50,7 +50,7 @@ type NativeProjectPatches = {
   }
   pointReleaseBundleURLAtOneUpdates(appDelegate: string): string
   ONE_LAUNCH_SCREEN: { bridgingHeaderImport: string }
-  ONE_BUN_ENGINE: { marker: string; bridgingHeaderImport: string }
+  ONE_BUN_ENGINE: { marker: string; bridgingHeaderImport: string; entitlement: string }
   injectBunEngineIntoPodfile(podfile: string): string
   addBunEngineToBundleReactNativeShellScript(input: string): string
   runBunEngineInAppDelegate(appDelegate: string): string
@@ -83,6 +83,7 @@ const nativeProjectPatches = requireVxrn(
 ) as NativeProjectPatches
 const notificationsHost = nativeProjectPatches.ONE_NOTIFICATIONS
 const updatesHost = nativeProjectPatches.ONE_UPDATES
+const { ONE_BUN_ENGINE } = nativeProjectPatches
 
 /*
 This code block is partially copied from meta owned repos.
@@ -613,6 +614,9 @@ function appEntitlements(app: NativeAppManifest): Record<string, PlistValue> {
   }
   if (app.ios?.usesAppleSignIn) {
     modeled['com.apple.developer.applesignin'] = ['Default']
+  }
+  if (app.ios?.engine === 'bun') {
+    modeled[ONE_BUN_ENGINE.entitlement] = true
   }
   for (const key of Object.keys(app.ios?.entitlements ?? {})) {
     if (key in modeled) {
