@@ -1721,6 +1721,31 @@ std::unique_ptr<jsi::Runtime> makeBunRuntime() {
   if (ctx == nullptr) {
     return nullptr;
   }
+  // leave the globals hermes has, so libraries that detect web apis (such as
+  // BroadcastChannel) take their react native paths and react native installs
+  // its own console, timers and polyfills. bun keeps Bun and process, which
+  // compiled code relies on.
+  JSStringRef prune = JSStringCreateWithUTF8CString(R"js({
+    const keep = new Set(['AggregateError', 'Array', 'ArrayBuffer', 'AsyncDisposableStack', 'Atomics',
+      'BigInt', 'BigInt64Array', 'BigUint64Array', 'Boolean', 'DataView', 'Date', 'DisposableStack',
+      'Error', 'EvalError', 'FinalizationRegistry', 'Float16Array', 'Float32Array', 'Float64Array',
+      'Function', 'Infinity', 'Int16Array', 'Int32Array', 'Int8Array', 'Intl', 'Iterator', 'JSON', 'Map',
+      'Math', 'NaN', 'Number', 'Object', 'Promise', 'Proxy', 'RangeError', 'ReferenceError', 'Reflect',
+      'RegExp', 'Set', 'SharedArrayBuffer', 'String', 'SuppressedError', 'Symbol', 'SyntaxError',
+      'TextEncoder', 'TypeError', 'URIError', 'Uint16Array', 'Uint32Array', 'Uint8Array',
+      'Uint8ClampedArray', 'WeakMap', 'WeakRef', 'WeakSet', 'atob', 'btoa', 'decodeURI', 'decodeURIComponent',
+      'encodeURI', 'encodeURIComponent', 'escape', 'eval', 'globalThis', 'isFinite', 'isNaN',
+      'parseFloat', 'parseInt', 'queueMicrotask', 'undefined', 'unescape'])
+    for (const name of Object.getOwnPropertyNames(globalThis)) {
+      if (!keep.has(name)) Reflect.deleteProperty(globalThis, name)
+    }
+  })js");
+  JSValueRef exc = nullptr;
+  JSEvaluateScript(ctx, prune, nullptr, nullptr, 0, &exc);
+  JSStringRelease(prune);
+  if (exc != nullptr) {
+    return nullptr;
+  }
   return std::make_unique<JSCRuntime>(ctx);
 }
 
