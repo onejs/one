@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-engine=${1:?usage: build-ios.sh hermes\|bun [device\|simulator]}
+engine=${1:?usage: build-ios.sh hermes\|bun [device\|simulator] [--no-prebuild]}
 target=${2:-device}
 case "$engine" in hermes|bun) ;; *) exit 2;; esac
 case "$target" in device|simulator) ;; *) exit 2;; esac
@@ -16,7 +16,11 @@ if ! git -C "$root" diff --quiet HEAD -- examples/one-bench packages; then
   exit 2
 fi
 cd "$root/examples/one-bench"
-bun run prebuild:native --platform ios > "$output/prebuild-$engine-$target.log" 2>&1
+case "${3:-}" in
+  "") bun run prebuild:native --platform ios > "$output/prebuild-$engine-$target.log" 2>&1 ;;
+  --no-prebuild) ;;
+  *) exit 2 ;;
+esac
 args=(-workspace ios/OneBench.xcworkspace -scheme OneBench -configuration Release -derivedDataPath "$derived" -jobs "${BENCH_BUILD_JOBS:-4}" -packageAuthorizationProvider netrc)
 if [ "$target" = device ]; then
   args+=(-destination generic/platform=iOS -allowProvisioningUpdates -authenticationKeyPath "$HOME/.appstoreconnect/private_keys/AuthKey_JY56N857ZK.p8" -authenticationKeyID JY56N857ZK -authenticationKeyIssuerID 69a6de72-dd97-47e3-e053-5b8c7c11a4d1 CODE_SIGN_STYLE=Automatic DEVELOPMENT_TEAM=399WY8X9HY)
@@ -25,6 +29,17 @@ else
   args+=(-destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO ARCHS=arm64 ONLY_ACTIVE_ARCH=YES)
   platform=iphonesimulator
 fi
+python3 - "$derived/Build/Products/Release-$platform/OneBench.app" "$output/apps/$engine/OneBench.app" <<'PYCLEAN'
+from pathlib import Path
+import shutil
+import sys
+for value in sys.argv[1:]:
+    app = Path(value)
+    if app.exists():
+        if app.name != 'OneBench.app' or app.is_symlink():
+            raise RuntimeError(f'unexpected app product: {app}')
+        shutil.rmtree(app)
+PYCLEAN
 nice -n 10 xcodebuild "${args[@]}" build > "$output/build-$engine-$target.log" 2>&1
 if [ "$(git rev-parse HEAD)" != "$source_commit" ] || ! git diff --quiet HEAD -- examples/one-bench packages; then
   echo "source changed during build; discard this result" >&2
