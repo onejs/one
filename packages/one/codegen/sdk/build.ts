@@ -21,6 +21,33 @@ import { splitFacade } from './split-facade'
 const dir = dirname(fileURLToPath(import.meta.url))
 const fingerprintPath = join(dir, 'fingerprint.ts')
 const escaped = fingerprintPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+const PER_CLASS_IMPORT =
+  /['"]one\/ios\/([A-Za-z_][A-Za-z0-9_]*)\/([A-Za-z_$][A-Za-z0-9_$]*)['"]/g
+
+function perClassSdkImports(srcRoot = join(dir, '../../src')): Map<string, Set<string>> {
+  const found = new Map<string, Set<string>>()
+  const walk = (directory: string) => {
+    for (const entry of readdirSync(directory, { withFileTypes: true })) {
+      if (entry.name === '__mocks__') continue
+      const full = join(directory, entry.name)
+      if (entry.isDirectory()) {
+        walk(full)
+      } else if (
+        /\.(?:[cm]?[jt]sx?)$/.test(entry.name) &&
+        !/\.(?:test|spec)\./.test(entry.name)
+      ) {
+        const source = readFileSync(full, 'utf8')
+        for (const match of source.matchAll(PER_CLASS_IMPORT)) {
+          const symbols = found.get(match[1]) ?? new Set<string>()
+          symbols.add(match[2])
+          found.set(match[1], symbols)
+        }
+      }
+    }
+  }
+  walk(srcRoot)
+  return found
+}
 
 export async function buildSdkApp(
   outdir = join(dir, '../../dist/sdk')
@@ -53,12 +80,13 @@ export async function buildSdkApp(
   return { path, fingerprint }
 }
 
-// preserve the full framework registry while letting internal imports select classes.
+// preserve the full framework registry while splitting only per-class imports used by One.
 export async function buildIosFacades(
   outdir = join(dir, '../../dist/esm/ios')
 ): Promise<number> {
   const bindings = join(dir, '../../ios-bindings')
   const facades = readdirSync(bindings).filter((name) => name.endsWith('.ts'))
+  const selectedByFramework = perClassSdkImports()
   rmSync(outdir, { recursive: true, force: true })
   mkdirSync(outdir, { recursive: true })
   const types = join(dir, '../../dist/ios-types')
@@ -79,23 +107,34 @@ export async function buildIosFacades(
         }
       )
       const framework = name.slice(0, -3)
-      const modules = splitFacade(code)
-      const directory = join(outdir, framework)
-      mkdirSync(directory, { recursive: true })
-      const typeDirectory = join(types, framework)
-      mkdirSync(typeDirectory, { recursive: true })
+      const selected = selectedByFramework.get(framework)
       const declaration = join(dir, '../../ios-types', framework)
       writeFileSync(
         join(types, framework + '.d.ts'),
         'export * from ' + JSON.stringify(relative(types, declaration)) + ';\n'
       )
-      for (const [name, source] of modules) {
-        writeFileSync(join(directory, name + '.mjs'), source)
-        if (name === '_calls' || name === '_protocols' || name === 'index') continue
-        const names = source.match(/export \{ ([^}]+) \};\n$/)?.[1]
+      if (!selected || selected.size === 0) {
+        writeFileSync(join(outdir, framework + '.mjs'), code)
+        return
+      }
+      const modules = splitFacade(code, selected)
+      const directory = join(outdir, framework)
+      mkdirSync(directory, { recursive: true })
+      const typeDirectory = join(types, framework)
+      mkdirSync(typeDirectory, { recursive: true })
+      for (const [modName, source] of modules) {
+        writeFileSync(join(directory, modName + '.mjs'), source)
+        if (
+          modName === '_calls' ||
+          modName === '_protocols' ||
+          modName === '_barrel' ||
+          modName === 'index'
+        )
+          continue
+        const names = source.match(/export \{ ([^}]+) \}(?: from "[^"]+")?;\n$/)?.[1]
         if (names)
           writeFileSync(
-            join(typeDirectory, name + '.d.ts'),
+            join(typeDirectory, modName + '.d.ts'),
             'export { ' +
               names +
               ' } from ' +

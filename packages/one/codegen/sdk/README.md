@@ -42,11 +42,13 @@ runtime export. One's integrations still reject framework imports outside iOS
 and resolve the same compiled native facades for iOS. Native prebuild generates the matching
 framework tables; package resolution does not require an installed Apple SDK.
 
-The package build also emits one/ios/<Framework>/<Class> modules as
-dist/esm/ios/<Framework>/<Class>.mjs, grouping nested declarations with their
-class. The framework barrel still registers all classes and protocols. One uses
-per-class imports internally so unrelated registrations stay out of app bundles.
-Generated declaration reexports in dist/ios-types follow the same paths.
+The package build splits the one/ios/<Framework>/<Class> modules that
+`packages/one/src` imports into dist/esm/ios/<Framework>/<Class>.mjs, keeping
+their intra-framework dependencies split and grouping remaining declarations of
+those frameworks into _barrel.mjs while leaving unreferenced frameworks
+single-file. The framework barrel still exports all classes and registers all
+protocols. Generated declaration reexports in dist/ios-types follow the same
+paths.
 
 Running `bun codegen/sdk/build.ts /path/to/output` builds only the standalone
 SDK app bundle in that directory. Omitting the output argument builds the
