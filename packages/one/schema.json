@@ -869,6 +869,29 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeHapticTap",
+      "publicName": "HapticTap",
+      "props": {
+        "feedback": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeEdgeFade",
       "publicName": "EdgeFade",
       "props": {

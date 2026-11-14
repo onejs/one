@@ -523,6 +523,7 @@
         "OneNativeSwiftPager": "OneNativeSwiftPagerComponentView",
         "OneNativeSafeAreaProvider": "OneNativeSafeAreaProviderComponentView",
         "OneNativeReservedRegionsProvider": "OneNativeReservedRegionsProviderComponentView",
+        "OneNativeHapticTap": "OneNativeHapticTapComponentView",
         "OneNativeEdgeFade": "OneNativeEdgeFadeComponentView",
         "OneNativeBlur": "OneNativeBlurComponentView",
         "OneNativeMask": "OneNativeMaskComponentView",
