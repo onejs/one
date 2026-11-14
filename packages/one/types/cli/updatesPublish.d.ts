@@ -4,6 +4,7 @@ type PublishArgs = {
     metadata?: string | string[];
     intermediatesOut?: string | string[];
     runtimeVersion?: string | string[];
+    engine?: string | string[];
 };
 export declare function runUpdatesPublish(args: PublishArgs): Promise<void>;
 export {};
