@@ -7,14 +7,27 @@
 #include <hermes/hermes.h>
 #include <iostream>
 #include <iterator>
+#include <unordered_map>
 
 using namespace facebook;
 using namespace margelo::nitro;
 static std::unique_ptr<facebook::hermes::HermesRuntime> runtime;
 static std::string directory;
+static std::unordered_map<uint64_t, std::shared_ptr<jsi::Function>> timers;
+static uint64_t nextTimer = 0;
 namespace margelo::nitro::one {
 std::string storageDirectory() { return directory; }
 }  // namespace margelo::nitro::one
+
+static void runTask(std::function<void()> task) {
+  try {
+    task();
+    runtime->drainMicrotasks();
+  } catch (const std::exception &error) {
+    std::cerr << error.what() << std::endl;
+    std::_Exit(1);
+  }
+}
 
 class MainDispatcher : public Dispatcher {
  public:
@@ -22,13 +35,7 @@ class MainDispatcher : public Dispatcher {
   void runAsync(std::function<void()> &&fn) override {
     auto task = std::make_shared<std::function<void()>>(std::move(fn));
     dispatch_async(dispatch_get_main_queue(), ^{
-      try {
-        (*task)();
-        runtime->drainMicrotasks();
-      } catch (const std::exception &error) {
-        std::cerr << error.what() << std::endl;
-        std::_Exit(1);
-      }
+      runTask(*task);
     });
   }
 };
@@ -40,6 +47,33 @@ int main(int argc, char **argv) {
     runtime = facebook::hermes::makeHermesRuntime(
         ::hermes::vm::RuntimeConfig::Builder().withMicrotaskQueue(true).build());
     runtime->global().setProperty(*runtime, "global", runtime->global());
+    runtime->global().setProperty(
+        *runtime, "setTimeout",
+        jsi::Function::createFromHostFunction(
+            *runtime, jsi::PropNameID::forAscii(*runtime, "setTimeout"), 2,
+            [](jsi::Runtime &rt, const jsi::Value &, const jsi::Value *args, size_t count) {
+              const auto id = ++nextTimer;
+              timers[id] = std::make_shared<jsi::Function>(args[0].asObject(rt).asFunction(rt));
+              const auto delay = count > 1 ? args[1].asNumber() : 0;
+              dispatch_after(
+                  dispatch_time(DISPATCH_TIME_NOW, static_cast<int64_t>(delay * NSEC_PER_MSEC)),
+                  dispatch_get_main_queue(), ^{
+                    const auto found = timers.find(id);
+                    if (found == timers.end()) return;
+                    const auto callback = found->second;
+                    timers.erase(found);
+                    runTask([callback] { callback->call(*runtime); });
+                  });
+              return jsi::Value(static_cast<double>(id));
+            }));
+    runtime->global().setProperty(
+        *runtime, "clearTimeout",
+        jsi::Function::createFromHostFunction(
+            *runtime, jsi::PropNameID::forAscii(*runtime, "clearTimeout"), 1,
+            [](jsi::Runtime &, const jsi::Value &, const jsi::Value *args, size_t) {
+              timers.erase(static_cast<uint64_t>(args[0].asNumber()));
+              return jsi::Value::undefined();
+            }));
     HybridObjectRegistry::registerHybridObjectConstructor(
         "OneZero", [] { return std::make_shared<margelo::nitro::one::HybridOneZero>(); });
     install(*runtime, std::make_shared<MainDispatcher>());

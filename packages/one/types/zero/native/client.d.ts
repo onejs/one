@@ -1,4 +1,5 @@
 import type { ClientState, DesiredQuery, Engine, JSONValue, MaterializedView, Mutation, Mutators, Query, Schema, Transport, TTL } from './types';
+import { NativeSync, type SyncOptions } from './sync';
 export type NativeZeroOptions = {
     engine: Engine;
     schema: Schema;
@@ -22,6 +23,7 @@ export declare class NativeZero {
     private manualQueries?;
     private managesQueries;
     private queryRefreshQueued;
+    private sync?;
     constructor(options: NativeZeroOptions);
     private enqueue;
     private synchronize;
@@ -34,11 +36,13 @@ export declare class NativeZero {
     ready(): Promise<this>;
     state(): Promise<ClientState>;
     pending(): Promise<Mutation[]>;
+    startSync(options?: SyncOptions): NativeSync;
+    private withSignal;
     private invoke;
     mutate(name: string, args?: JSONValue): Promise<unknown>;
     private applyPull;
-    pull(queries?: readonly DesiredQuery[]): Promise<void>;
-    push(): Promise<void>;
+    pull(queries?: readonly DesiredQuery[], signal?: AbortSignal): Promise<void>;
+    push(signal?: AbortSignal): Promise<void>;
     subscribe(query: Query, listener: (value: unknown) => void): () => void;
     materialize<T = unknown>(query: Query, options?: {
         hash?: string;

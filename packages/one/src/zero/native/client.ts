@@ -20,6 +20,7 @@ import type {
   WriteKind,
 } from './types'
 import { NativeView, queryTTL } from './view'
+import { NativeSync, type SyncOptions } from './sync'
 
 export type NativeZeroOptions = {
   engine: Engine
@@ -87,6 +88,7 @@ export class NativeZero {
   private manualQueries?: readonly DesiredQuery[]
   private managesQueries = false
   private queryRefreshQueued = false
+  private sync?: NativeSync
 
   constructor(private options: NativeZeroOptions) {
     const register = (mutators: Mutators, prefix: string) => {
@@ -165,6 +167,41 @@ export class NativeZero {
 
   pending(): Promise<Mutation[]> {
     return this.enqueue(() => this.request({ op: 'pending' }))
+  }
+
+  startSync(options: SyncOptions = {}): NativeSync {
+    if (this.closed) throw new Error('Native Zero client is closed')
+    if (!this.options.transport)
+      throw new Error('Native Zero transport is not configured')
+    this.sync?.stop()
+    this.sync = new NativeSync(this, options, (error) => this.report(error))
+    return this.sync
+  }
+
+  private async withSignal<T>(
+    signal: AbortSignal | undefined,
+    operation: (signal: AbortSignal) => Promise<T>
+  ): Promise<T> {
+    if (!signal) return operation(this.abort.signal)
+    if (signal.aborted || this.abort.signal.aborted)
+      throw new Error('Native Zero sync stopped')
+    const controller = new AbortController()
+    let rejectAbort!: (error: Error) => void
+    const cancelled = new Promise<never>((_resolve, reject) => {
+      rejectAbort = reject
+    })
+    const abort = () => {
+      controller.abort()
+      rejectAbort(new Error('Native Zero sync stopped'))
+    }
+    signal.addEventListener('abort', abort)
+    this.abort.signal.addEventListener('abort', abort)
+    try {
+      return await Promise.race([operation(controller.signal), cancelled])
+    } finally {
+      signal.removeEventListener('abort', abort)
+      this.abort.signal.removeEventListener('abort', abort)
+    }
   }
 
   private async invoke(
@@ -254,6 +291,7 @@ export class NativeZero {
         throw error
       }
       await this.publish()
+      this.sync?.request()
       return result
     })
   }
@@ -279,7 +317,7 @@ export class NativeZero {
     if (changed) await this.publish()
   }
 
-  pull(queries?: readonly DesiredQuery[]): Promise<void> {
+  pull(queries?: readonly DesiredQuery[], signal?: AbortSignal): Promise<void> {
     const captured: readonly DesiredQuery[] | undefined =
       queries === undefined ? undefined : JSON.parse(serialize({ queries })).queries
     return this.synchronize(async () => {
@@ -306,12 +344,17 @@ export class NativeZero {
           queries: desired ? [...desired.values()] : undefined,
         })
       })
-      const response = await transport.pull(state, state.queries, this.abort.signal)
-      await this.enqueue(() => this.applyPull(response, state))
+      const response = await this.withSignal(signal, (linked) =>
+        transport.pull(state, state.queries, linked)
+      )
+      await this.enqueue(() => {
+        if (signal?.aborted) throw new Error('Native Zero sync stopped')
+        return this.applyPull(response, state)
+      })
     })
   }
 
-  push(): Promise<void> {
+  push(signal?: AbortSignal): Promise<void> {
     return this.synchronize(async () => {
       const transport = this.options.transport
       if (!transport) throw new Error('Native Zero transport is not configured')
@@ -321,7 +364,8 @@ export class NativeZero {
       }))
       if (state.recoveryRequired !== null)
         throw new Error('CLIENT_STATE_NOT_FOUND: pending writes require reconciliation')
-      if (pending.length) await transport.push(state, pending, this.abort.signal)
+      if (pending.length)
+        await this.withSignal(signal, (linked) => transport.push(state, pending, linked))
     })
   }
 
@@ -402,6 +446,10 @@ export class NativeZero {
   }
 
   private refreshQueries() {
+    if (this.sync) {
+      this.sync.request()
+      return
+    }
     if (this.closed || !this.options.transport || this.queryRefreshQueued) return
     this.queryRefreshQueued = true
     queueMicrotask(() => {
@@ -460,6 +508,7 @@ export class NativeZero {
   close(): Promise<void> {
     if (this.closing) return this.closing
     this.closed = true
+    this.sync?.stop()
     this.abort.abort()
     for (const view of [...this.views]) view.destroy()
     for (const registration of this.desiredViews.values()) {

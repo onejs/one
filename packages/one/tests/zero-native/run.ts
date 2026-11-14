@@ -618,6 +618,147 @@ console.log(
   'query retention passed: shared registration, reclaim, TTL update/expiry, close cleanup and ready identity/context'
 )
 
+const syncPath = join(folder, 'sync.sqlite')
+engine = new ProcessEngine(syncPath)
+await engine.ready
+client = new NativeZero({ engine, schema, mutators })
+await client.mutate('send', { id: 'offline-start', text: 'durable outbox' })
+const originalPending = await client.pending()
+await client.close()
+engine = new ProcessEngine(syncPath)
+await engine.ready
+let syncPushes = 0
+let syncPulls = 0
+let syncAck = 0
+const syncRows = new Map<string, Row>()
+const syncErrors: unknown[] = []
+let connected!: () => void
+let wakeSync!: () => void
+let wakeUnsubscribed = false
+let stalledPull: (() => Promise<PullResponse>) | undefined
+client = new NativeZero({
+  engine,
+  schema,
+  mutators,
+  onError: (error) => syncErrors.push(error),
+  transport: {
+    async push(_state, pending) {
+      syncPushes++
+      if (syncPushes === 1) throw new Error('temporary push failure')
+      if (syncPushes === 2) assert.deepEqual(pending, originalPending)
+      for (const mutation of pending) {
+        const args = mutation.args as { id: string; text: string }
+        syncRows.set(args.id, message(args.id, mutation.id, args.text))
+        syncAck = mutation.id
+      }
+    },
+    async pull() {
+      syncPulls++
+      if (stalledPull) {
+        const pull = stalledPull
+        stalledPull = undefined
+        return pull()
+      }
+      return {
+        cookie: syncPulls,
+        rowsPatch: [
+          { op: 'clear' },
+          ...[...syncRows.values()].map((row) => put('message', row)),
+        ],
+        lastMutationIDChanges: { 'integration-client': syncAck },
+      }
+    },
+  },
+})
+const nextConnection = () =>
+  new Promise<void>((resolve) => {
+    connected = resolve
+  })
+let connection = nextConnection()
+const sync = client.startSync({
+  pullIntervalMs: 600_000,
+  retryMinMs: 1,
+  retryMaxMs: 4,
+  onStateChange: (state) => {
+    if (state.name === 'connected') connected()
+  },
+  subscribeWake: (request) => {
+    wakeSync = request
+    return () => {
+      wakeUnsubscribed = true
+    }
+  },
+})
+await connection
+assert.equal(syncPushes, 2)
+assert.equal(syncPulls, 2)
+assert.equal(syncErrors.length, 1)
+assert.deepEqual(await client.pending(), [])
+assert.equal((await client.run<Row[]>(messages))[0].body, 'durable outbox')
+sync.setOnline(false)
+const offlinePulls = syncPulls
+await client.mutate('send', { id: 'offline-next', text: 'offline edit' })
+assert.equal(syncPulls, offlinePulls)
+assert.equal((await client.pending()).length, 1)
+connection = nextConnection()
+sync.setOnline(true)
+await connection
+assert.deepEqual(await client.pending(), [])
+sync.setActive(false)
+const backgroundPulls = syncPulls
+await client.mutate('send', { id: 'background', text: 'background edit' })
+wakeSync()
+assert.equal(syncPulls, backgroundPulls)
+connection = nextConnection()
+sync.setActive(true)
+await connection
+assert.deepEqual(await client.pending(), [])
+let sawRemote!: () => void
+const remoteSeen = new Promise<void>((resolve) => {
+  sawRemote = resolve
+})
+const stopSyncRows = client.subscribe(messages, (rows) => {
+  if ((rows as Row[]).some((row) => row.id === 'wake-remote')) sawRemote()
+})
+await client.state()
+syncRows.set('wake-remote', message('wake-remote', 10, 'wake delivered'))
+const beforeWake = syncPulls
+for (let index = 0; index < 10; index++) wakeSync()
+await remoteSeen
+assert.equal(syncPulls, beforeWake + 1)
+let stalledSyncStarted!: () => void
+let releaseStale!: (response: PullResponse) => void
+const staleStarted = new Promise<void>((resolve) => {
+  stalledSyncStarted = resolve
+})
+stalledPull = () => {
+  stalledSyncStarted()
+  return new Promise((resolve) => {
+    releaseStale = resolve
+  })
+}
+wakeSync()
+await staleStarted
+sync.setActive(false)
+connection = nextConnection()
+sync.setActive(true)
+await connection
+const beforeStale = (await client.state()).cookie
+releaseStale({
+  cookie: 'stale',
+  rowsPatch: [put('message', message('stale', 99, 'late response'))],
+})
+assert.equal((await client.state()).cookie, beforeStale)
+assert.ok(!(await client.run<Row[]>(messages)).some((row) => row.id === 'stale'))
+stopSyncRows()
+await client.close()
+assert.equal(sync.state.name, 'closed')
+assert.ok(wakeUnsubscribed)
+assert.equal(syncErrors.length, 1)
+console.log(
+  'managed sync passed: durable startup outbox, retry, pull after push error, offline/background edits, wake coalescing, cancellation, stale response fencing and close cleanup'
+)
+
 const requests: { version: number; patch: unknown[] }[] = []
 let acknowledgement = 0
 let rejectPush = false

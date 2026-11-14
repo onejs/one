@@ -157,6 +157,79 @@ async function run() {
     closed = true
   }
   check(closed, 'closed client rejects later operations')
+  let attempts = 0
+  let failures = 0
+  let connected!: () => void
+  let awake!: () => void
+  let unsubscribed = false
+  client = await createNativeZero({
+    ...options,
+    onError: () => {
+      failures++
+    },
+    transport: {
+      async pull() {
+        return response
+      },
+      async push(state, pending) {
+        if (++attempts === 1) throw new Error('temporary simulator disconnect')
+        response = {
+          cookie: `sync-${attempts}`,
+          rowsPatch: [
+            { op: 'clear' },
+            ...(await client.run<Row[]>(query)).map((value) => ({
+              op: 'put',
+              tableName: 'message',
+              value,
+            })),
+          ],
+          lastMutationIDChanges: { [state.clientID]: pending[pending.length - 1].id },
+        }
+      },
+    },
+  })
+  let connection = new Promise<void>((resolve) => {
+    connected = resolve
+  })
+  const sync = client.startSync({
+    retryMinMs: 1,
+    retryMaxMs: 4,
+    onStateChange: (state) => {
+      if (state.name === 'connected') connected()
+    },
+    subscribeWake: (request) => {
+      awake = request
+      return () => {
+        unsubscribed = true
+      }
+    },
+  })
+  await connection
+  check(
+    attempts === 2 && failures === 1 && (await client.pending()).length === 0,
+    'Hermes timer retries durable outbox and native pull acknowledges it'
+  )
+  sync.setActive(false)
+  await client.mutate('send')
+  awake()
+  check(
+    attempts === 2 && (await client.pending()).length === 1,
+    'background scheduler preserves local native writes'
+  )
+  connection = new Promise<void>((resolve) => {
+    connected = resolve
+  })
+  sync.setActive(true)
+  await connection
+  check(
+    (await client.pending()).length === 0 && attempts === 3,
+    'simulator foreground resumes native push and acknowledgement'
+  )
+  await client.close()
+  check(
+    sync.state.name === 'closed' && unsubscribed,
+    'native client close stops timers and releases wake listener'
+  )
   report(JSON.stringify({ passed: checks.length, checks }))
 }
 run().catch((error) =>

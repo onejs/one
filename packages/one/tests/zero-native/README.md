@@ -39,9 +39,8 @@ const client = await createNativeZero({
 
 await client.pull([{ hash: queryHash, ast: sessionsQuery.ast }])
 const unsubscribe = client.subscribe(sessionsQuery, setSessions)
+client.startSync()
 await client.mutate('message.send', messageArguments)
-await client.push()
-await client.pull()
 unsubscribe()
 await client.close()
 ```
@@ -71,6 +70,24 @@ Queries accept the pinned Zero builder's `ast` and `format`. Mutators receive
 `tx.run(query)` and `tx.mutate[table].insert/upsert/update/delete(row)`. The factory
 is asynchronous. `state()` and `pending()` expose durable sync state. Push success
 alone never removes pending writes; a subsequent pull must acknowledge them.
+
+`startSync()` sends the durable outbox on startup, requests a pull after local
+mutations and registration changes, and retries failures with capped exponential
+backoff. It still pulls after a push error so a server acknowledgement can settle
+a rejected or already processed mutation. Successful cycles poll every five
+minutes by default. `pullIntervalMs`, `retryMinMs` and `retryMaxMs` configure these
+intervals. `onStateChange` reports connection state and `onError` on the client
+receives failures.
+
+Wire app lifecycle and network events to `sync.setActive(boolean)` and
+`sync.setOnline(boolean)`. Pausing cancels an in-flight request; resuming starts
+another cycle. Late responses from cancelled attempts cannot commit, including
+transports that ignore abort signals. `subscribeWake(request)` can subscribe to
+an existing wake channel and must return its cleanup function; `sync.request()`
+also requests a cycle directly. Triggers coalesce while a cycle is queued or
+running. `sync.stop()` or closing the client cancels scheduling and unsubscribes
+the wake channel. React Native lifecycle, network and wake sources are supplied
+by the consumer; the controller does not install those listeners itself.
 
 Use a stable store name scoped to server, authenticated identity and logical
 client. The store generates and persists its client ID; an optional `clientID`
@@ -157,6 +174,7 @@ adoption decisions and additional compatibility work.
 | Filters, UTF-8 ordering, limits, cursors, null/JSON, singular results, related queries and correlated EXISTS | 18 cases compared with the pinned Zero executable       |
 | Team Machine schema, session/message queries, original message.send replay, session.stop and durable reopen                  | Consumer-source probe through Nitro/Hermes on iOS, recorded with the experiment task |
 | Pinned Zero React provider/useQuery, context-bound queries, query errors and TTL updates                       | React renderer with native driver                        |
+| Managed startup outbox, retry, offline/background edits, wake coalescing and stale cancelled responses          | Native driver integration; startup retry and background/foreground through Hermes/Nitro on iOS |
 | Team Machine on-zero provider, live reconnect and mobile screens                                             | Pending                                                 |
 | One Android consumer native compilation and APK packaging                                                    | Android Native Build CI                                  |
 | Android native Zero runtime, cloud encrypted transport and multiple identity/client adoption                 | Pending                                                 |
@@ -172,8 +190,8 @@ the complete One CocoaPods target or the consumer application's UI builds.
 while retaining the same native engine and bridge.
 
 Unsupported Unicode ILIKE and hidden relationship flattening throw explicitly.
-There is no automatic wake/reconnect scheduling or drop-in `on-zero` provider
-yet. The materialization interface lacks custom view factories and the full
+There is no drop-in `on-zero` provider yet. Managed sync requires consumer wiring
+for lifecycle, network and wake events. The materialization interface lacks custom view factories and the full
 server TTL protocol. The pinned Zero React provider/useQuery path is exercised
 against the native driver, including context-bound queries and error repair;
 this does not exercise Team Machine's complete on-zero provider.
