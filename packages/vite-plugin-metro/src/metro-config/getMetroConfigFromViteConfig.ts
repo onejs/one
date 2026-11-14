@@ -30,7 +30,8 @@ const expoEnvAdditionalExts = ['env', 'local', 'development']
 const metroSourceExts = ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs', 'swift', 'kt']
 const watchmanResponsivePromises = new Map<string, Promise<boolean>>()
 let didWarnAboutWatchmanFallback = false
-const rootIndexBundleRequestPattern = /^(https?:\/\/[^/]+)?\/index\.bundle(?=$|[?#])/
+// the index bundle, its source map and its asset graph name the same entry.
+const rootIndexBundleRequestPattern = /^(https?:\/\/[^/]+)?\/index\.(bundle|map|assets)(?=$|[?#])/
 // expo prebuild writes an AppDelegate (ios) and MainApplication (android) whose
 // debug bundle url is `.expo/.virtual-metro-entry`. expo maps it to the main
 // entry through server.rewriteRequestUrl (see @expo/metro-config
@@ -173,7 +174,7 @@ function rewriteMainModuleBundleUrl(
   if (rootIndexBundleRequestPattern.test(url)) {
     return url.replace(
       rootIndexBundleRequestPattern,
-      `$1/${resolvedMainModulePath}.bundle`
+      `$1/${resolvedMainModulePath}.$2`
     )
   }
   return url.replace(
