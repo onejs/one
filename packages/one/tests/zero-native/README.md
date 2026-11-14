@@ -197,32 +197,42 @@ adoption decisions and additional compatibility work.
 | Team Machine schema, session/message queries, original message.send replay, session.stop and durable reopen                  | Consumer-source probe through Nitro/Hermes on iOS, recorded with the experiment task |
 | Pinned Zero React provider/useQuery, context-bound queries, query errors and TTL updates                       | React renderer with native driver                        |
 | Managed startup outbox, retry, offline/background edits, wake coalescing and stale cancelled responses          | Native driver integration; startup retry and background/foreground through Hermes/Nitro on iOS |
-| Team Machine on-zero provider, live reconnect and mobile screens                                             | Pending                                                 |
+| Team Machine on-zero provider, live daemon screens, composer send and offline restart delivery                 | Actual iOS 27 DEV simulator, with the external-instance provider and app adapter |
 | One Android consumer native compilation and APK packaging                                                    | Android Native Build CI                                  |
 | Android native Zero runtime, cloud encrypted transport and multiple identity/client adoption                 | Pending                                                 |
 | Pinned upstream WebSocket protocol, storage recovery and full upstream suite                                 | Pending                                                 |
-| Production device performance and binary-size comparison                                                     | Pending                                                 |
+| Desktop engine comparison with the pinned in-memory client                                                   | Isolated alternating runs; matching query results and observed mutations |
+| Production mobile performance and binary-size comparison                                                     | Pending                                                 |
 
 The generic runtime probe exercises the generated bridge, generated identity
 across reopen, caught write errors and the native backup exclusion. The iOS
 target compiles at One's minimum iOS 17.
-This harness embeds the generated bridge directly; it does not establish that
-the complete One CocoaPods target or the consumer application's UI builds.
+This harness embeds the generated bridge directly. The separate Team Machine
+DEV simulator check built the complete CocoaPods application and exercised the
+live session list, conversation history and composer. A queued send survived an
+offline app restart and reached the daemon after reconnecting, with its native
+journal acknowledged. That integration remains opt-in on its app branch until
+published package pins and their matching native SDK build are validated.
 `ONE_ZERO_PROBE=/path/to/consumer-probe.ts` selects a consumer-specific entry
 while retaining the same native engine and bridge.
 
 Unsupported Unicode ILIKE and hidden relationship flattening throw explicitly.
-There is no drop-in `on-zero` provider yet. Managed sync requires consumer wiring
+The on-zero provider requires its external-instance support. Managed sync requires consumer wiring
 for lifecycle, network and wake events. The materialization interface lacks custom view factories and the full
 server TTL protocol. The pinned Zero React provider/useQuery path is exercised
 against the native driver, including context-bound queries and error repair;
-this does not exercise Team Machine's complete on-zero provider.
+the separate actual application check covers Team Machine's on-zero provider.
 Subscriptions requery after commits; this slice
 has expression indexes for primary keys and relationship destination fields,
 but no incremental view maintenance. Unchanged pulls skip rebuilding the view;
 changed pulls still copy the full server snapshot and replay pending callbacks.
-The JSON parser still uses SQLite's JSON functions. The generic HTTP
-adapter does not implement Team Machine cloud encryption. No performance win
-or full Zero compatibility is established by these checks. Keep the installed
-applications on their existing client until their integration and recovery
-contracts are covered.
+The JSON parser still uses SQLite's JSON functions; leaf query results reuse
+their validated stored JSON without parsing and serializing it again. In an
+isolated desktop comparison with 200 sessions and 20,000 messages, this reduced
+20-session/50-related-message query medians from about 8.1 to 3.0 ms and an observed
+edit from 8.9 to 4.0 ms. The pinned in-memory client took about 0.5 ms for each.
+The native driver includes durable SQLite and child-process JSON communication;
+these numbers do not measure Nitro, production mobile behavior or storage parity.
+The generic HTTP adapter does not implement Team Machine cloud encryption.
+No performance advantage or full Zero compatibility is established. Keep adoption
+opt-in until each application's integration and recovery contracts are covered.
