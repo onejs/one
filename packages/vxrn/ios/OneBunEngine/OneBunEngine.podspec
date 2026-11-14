@@ -6,8 +6,8 @@ require 'tmpdir'
 # compiler (macOS) and ios/<platform>/{Bun,BunCompat}.framework. a compiled
 # program only loads in the runtime it was compiled against, so the release is
 # pinned. ONE_BUN_ENGINE_DIR points at a local engine build instead.
-engine_version = '0.1.0'
-engine_sha256 = '81d0a29de3c3b8f5cdf6006ff1582fdf873825cc09054ede0c5a162fdc058b67'
+engine_version = '0.1.1'
+engine_sha256 = 'ecc56b3d86fbd622842f0c00ae45959eced31fa7bcc18787940ed30865002213'
 
 # a lambda, since cocoapods evaluates podspecs where top-level methods are not reachable
 one_bun_engine_dir = lambda do

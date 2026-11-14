@@ -497,7 +497,7 @@ void JSCRuntime::queueMicrotask(const jsi::Function& callback) {
 }
 
 bool JSCRuntime::drainMicrotasks(int /*maxMicrotasksHint*/) {
-  // bun holds the JSC lock for the life of the thread, so promise jobs run
+  // bun delays JSC's own microtask drain between ticks, so promise jobs run
   // only when bun ticks; either queue can refill the other.
   do {
     while (!microtaskQueue_.empty()) {
