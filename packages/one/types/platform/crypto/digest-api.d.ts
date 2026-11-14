@@ -1,5 +1,5 @@
-import { type DigestSource } from './digest';
-import type { DigestAlgorithm, DigestStringOptions } from './types';
+import { type DigestSource } from './digest.js';
+import type { DigestAlgorithm, DigestStringOptions } from './types.js';
 export declare const DIGEST_ALGORITHMS: readonly DigestAlgorithm[];
 export declare function assertDigestAlgorithm(algorithm: DigestAlgorithm, verb: string): void;
 export declare function createDigestApi(source: DigestSource): {

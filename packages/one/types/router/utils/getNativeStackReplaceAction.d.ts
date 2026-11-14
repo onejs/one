@@ -1,5 +1,5 @@
 import type { NavigationState } from '@react-navigation/core';
-import type { OneRouter } from '../../interfaces/router';
+import type { OneRouter } from '../../interfaces/router.js';
 export declare function getNativeStackReplaceAction(actionState: OneRouter.ResultState, navigationState: NavigationState): {
     type: "REPLACE";
     payload: {

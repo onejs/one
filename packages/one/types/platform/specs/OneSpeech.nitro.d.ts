@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { SpeechEvent, SpeechPermissionResponse, SpeechStartOptions } from '../speech/types';
+import type { SpeechEvent, SpeechPermissionResponse, SpeechStartOptions } from '../speech/types.js';
 export interface OneSpeech extends HybridObject<{
     ios: 'swift';
     android: 'kotlin';

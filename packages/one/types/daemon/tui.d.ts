@@ -1,4 +1,4 @@
-import type { DaemonState } from './types';
+import type { DaemonState } from './types.js';
 type RouteMode = 'most-recent' | 'ask';
 export declare function getRouteMode(): RouteMode;
 export declare function startTUI(state: DaemonState): void;

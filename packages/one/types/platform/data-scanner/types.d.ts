@@ -1,6 +1,6 @@
-import type { DataScannerConfiguration, DataScannerRecognizedItem, DataScannerRect, DataScannerScanningUnavailable } from '../specs/OneDataScanner.nitro';
-import type { UIImage } from '../vision-kit/types';
-export type { DataScannerQualityLevel, DataScannerTextContentType, DataScannerScanningUnavailable, DataScannerRecognizedDataType, DataScannerBounds, } from '../specs/OneDataScanner.nitro';
+import type { DataScannerConfiguration, DataScannerRecognizedItem, DataScannerRect, DataScannerScanningUnavailable } from '../specs/OneDataScanner.nitro.js';
+import type { UIImage } from '../vision-kit/types.js';
+export type { DataScannerQualityLevel, DataScannerTextContentType, DataScannerScanningUnavailable, DataScannerRecognizedDataType, DataScannerBounds, } from '../specs/OneDataScanner.nitro.js';
 export type RecognizedItem = DataScannerRecognizedItem;
 export type DataScannerOptions = Pick<DataScannerConfiguration, 'recognizedDataTypes'> & Partial<Omit<DataScannerConfiguration, 'recognizedDataTypes'>>;
 export interface DataScannerViewControllerDelegate<Controller = DataScannerController> {

@@ -1,4 +1,4 @@
-import type { VXRNOptions } from '../types';
+import type { VXRNOptions } from '../types.js';
 export type PatchOptions = VXRNOptions & {
     force?: boolean;
 };

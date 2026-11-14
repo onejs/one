@@ -1,5 +1,5 @@
 import type { ColorValue, ImageSourcePropType } from 'react-native';
-import type { BasicTextStyle } from '../toolbar/types';
+import type { BasicTextStyle } from '../toolbar/types.js';
 export interface MenuActionProps {
     identifier: string;
     title: string;

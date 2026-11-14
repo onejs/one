@@ -1,4 +1,4 @@
-import type { Calendar, Locale, Localization as LocalizationApi } from './types';
+import type { Calendar, Locale, Localization as LocalizationApi } from './types.js';
 export type { Calendar, Locale, LocalizationApi };
 declare function useLocales(): [Locale, ...Locale[]];
 declare function useCalendars(): [Calendar, ...Calendar[]];

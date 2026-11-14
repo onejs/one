@@ -1,5 +1,5 @@
-import type { BarometerMeasurement, BarometerSubscription } from './types';
-export type { BarometerMeasurement, BarometerSubscription } from './types';
+import type { BarometerMeasurement, BarometerSubscription } from './types.js';
+export type { BarometerMeasurement, BarometerSubscription } from './types.js';
 declare function isAvailable(): boolean;
 declare function setUpdateInterval(intervalMs: number): void;
 declare function addListener(listener: (event: BarometerMeasurement) => void): BarometerSubscription;

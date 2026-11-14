@@ -1,4 +1,4 @@
-import type { ServerRegistration, RouteBinding, DaemonState } from './types';
+import type { ServerRegistration, RouteBinding, DaemonState } from './types.js';
 export declare function createRegistry(): DaemonState;
 export declare function checkServerAlive(server: ServerRegistration): Promise<boolean>;
 export declare function pruneDeadServers(state: DaemonState, onPruned?: (server: ServerRegistration) => void): Promise<number>;

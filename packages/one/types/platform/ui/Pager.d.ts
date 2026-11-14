@@ -1,4 +1,4 @@
-import { type PagerRef } from './pagerTypes';
+import { type PagerRef } from './pagerTypes.js';
 export declare const Pager: import("react").ForwardRefExoticComponent<import("react-native").ViewProps & {
     children?: import("react").ReactNode;
     initialPage?: number;
@@ -10,9 +10,9 @@ export declare const Pager: import("react").ForwardRefExoticComponent<import("re
     overdrag?: boolean;
     overScrollMode?: 'auto' | 'always' | 'never';
     keyboardDismissMode?: 'none' | 'on-drag';
-    onPageScroll?: (event: import("./pagerTypes").PagerScrollEvent) => void;
-    onPageSelected?: (event: import("./pagerTypes").PagerSelectedEvent) => void;
-    onPageScrollStateChanged?: (event: import("./pagerTypes").PagerScrollStateEvent) => void;
+    onPageScroll?: (event: import("./pagerTypes.js").PagerScrollEvent) => void;
+    onPageSelected?: (event: import("./pagerTypes.js").PagerSelectedEvent) => void;
+    onPageScrollStateChanged?: (event: import("./pagerTypes.js").PagerScrollStateEvent) => void;
 } & import("react").RefAttributes<PagerRef>>;
-export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent, } from './pagerTypes';
+export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent, } from './pagerTypes.js';
 //# sourceMappingURL=Pager.d.ts.map

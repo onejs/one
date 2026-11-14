@@ -1,4 +1,4 @@
-import type { AudioStatus } from './types';
+import type { AudioStatus } from './types.js';
 export type StatusReader = () => AudioStatus;
 export declare function createPlayerEvents(read: StatusReader, updateIntervalMs: number): {
     add(event: string, listener: (status: AudioStatus) => void): {

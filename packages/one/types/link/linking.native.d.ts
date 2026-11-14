@@ -1,5 +1,5 @@
-import { getPathFromState } from '../fork/getPathFromState';
-import { getStateFromPath } from '../fork/getStateFromPath';
+import { getPathFromState } from '../fork/getPathFromState.js';
+import { getStateFromPath } from '../fork/getStateFromPath.js';
 export declare function getInitialURL(): Promise<string | null> | string;
 export declare function getRootURL(): string;
 export declare function getDefaultLinkingPrefixes(): string[];

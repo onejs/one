@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import { type ActivityView } from './view';
-export { WidgetUI, type WidgetStyle, type ActivityView } from './view';
+import { type ActivityView } from './view.js';
+export { WidgetUI, type WidgetStyle, type ActivityView } from './view.js';
 export type WidgetData = {
     title: string;
     value: string;

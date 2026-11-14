@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { AndroidHaptic, HapticImpact, HapticNotification } from '../haptics/types';
+import type { AndroidHaptic, HapticImpact, HapticNotification } from '../haptics/types.js';
 export interface OneHaptics extends HybridObject<{
     ios: 'swift';
     android: 'kotlin';

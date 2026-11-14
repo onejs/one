@@ -1,4 +1,4 @@
-import type * as Types from './controlTypes';
+import type * as Types from './controlTypes.js';
 declare function Picker(_props: Types.PickerProps): never;
 declare function DatePicker(_props: Types.DatePickerProps): never;
 declare function ColorPicker(_props: Types.ColorPickerProps): never;

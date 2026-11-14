@@ -1,5 +1,5 @@
-import { FileMode, type FileDigestAlgorithm } from './types';
-import type { FileEncoding } from '../specs/OneFileSystem.nitro';
+import { FileMode, type FileDigestAlgorithm } from './types.js';
+import type { FileEncoding } from '../specs/OneFileSystem.nitro.js';
 export declare function assertUri(uri: unknown, owner: string): asserts uri is string;
 export declare function assertMode(mode: unknown, owner: string): asserts mode is FileMode;
 export declare function assertEncoding(encoding: unknown, owner: string): asserts encoding is FileEncoding;

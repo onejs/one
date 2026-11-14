@@ -1,4 +1,4 @@
-import { useQuery as useQueryZero } from './useQueryZero';
+import { useQuery as useQueryZero } from './useQueryZero.js';
 /**
  * This adds server handoff support to useQuery
  */

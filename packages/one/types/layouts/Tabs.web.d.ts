@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { Screen } from '../views/Screen';
+import { Screen } from '../views/Screen.js';
 type WebTabsNavigatorProps = {
     children?: ReactNode;
     headlessChildren?: ReactNode[];
@@ -13,7 +13,7 @@ type TabsProps = Omit<WebTabsNavigatorProps, 'headlessChildren'> & {
     tabBar?: unknown;
 };
 export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<TabsProps, "ref"> & import("react").RefAttributes<unknown>> & {
-    Protected: import("react").FunctionComponent<import("..").ProtectedProps>;
+    Protected: import("react").FunctionComponent<import("../index.js").ProtectedProps>;
     Screen: typeof Screen;
 };
 export default Tabs;

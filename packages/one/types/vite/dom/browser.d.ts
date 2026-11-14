@@ -1,5 +1,5 @@
 import { type Plugin, type ResolvedConfig, type UserConfig } from 'vite';
-import type { DOMDescriptor, DOMManifest, DOMRegistry } from './registry';
+import type { DOMDescriptor, DOMManifest, DOMRegistry } from './registry.js';
 export declare const DOM_DEV_PREFIX = "/_one/dom/";
 export declare function domEntrySource(descriptor: DOMDescriptor, development?: boolean): string;
 export declare function domEntryPlugin(registry: DOMRegistry, development?: () => boolean): Plugin;

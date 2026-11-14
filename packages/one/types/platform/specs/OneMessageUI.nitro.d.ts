@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { DocumentCameraError } from './OneDocumentCamera.nitro';
+import type { DocumentCameraError } from './OneDocumentCamera.nitro.js';
 export type MailComposeResult = 'cancelled' | 'saved' | 'sent' | 'failed';
 export type MessageComposeResult = 'cancelled' | 'sent' | 'failed';
 export interface OneMailCompose extends HybridObject<{

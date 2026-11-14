@@ -20,7 +20,7 @@ export declare function getMockContext(context: MockContextConfig): ((id: string
 };
 export declare function getMockConfig(context: MockContextConfig, metaOnly?: boolean): {
     initialRouteName?: string;
-    screens: Record<string, import("./getReactNavigationConfig").Screen>;
+    screens: Record<string, import("./getReactNavigationConfig.js").Screen>;
 };
 export {};
 //# sourceMappingURL=testing-utils.d.ts.map

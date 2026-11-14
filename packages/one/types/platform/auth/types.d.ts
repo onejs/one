@@ -1,5 +1,5 @@
-export type { AppleAuthScope, AppleCredentialState, AppleRealUserStatus, } from '../specs/OneAppleAuth.nitro';
-import type { AppleAuthScope, AppleCredentialState, AppleRealUserStatus } from '../specs/OneAppleAuth.nitro';
+export type { AppleAuthScope, AppleCredentialState, AppleRealUserStatus, } from '../specs/OneAppleAuth.nitro.js';
+import type { AppleAuthScope, AppleCredentialState, AppleRealUserStatus } from '../specs/OneAppleAuth.nitro.js';
 export interface AppleFullName {
     namePrefix: string | null;
     givenName: string | null;
