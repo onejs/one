@@ -1,0 +1,1 @@
+{"id":"00000001794672077316:8453180f30d5d952b9424951be14adfd","text":"Implementation in progress: One micro app with native process/footprint/display-link module, generic Python BENCH report and alternating device runner. Working from merged origin/feat/bun-aot-engine. Local package outputs building for simulator validation."}
