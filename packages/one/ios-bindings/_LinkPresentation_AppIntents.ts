@@ -8,12 +8,12 @@ export class LinkMetadata extends SDKHandle {
    * nonisolated var displayRepresentation: DisplayRepresentation { get }
    * @availability iOS 26.4+
    */
-  get displayRepresentation(): _AppIntents_DisplayRepresentation { return callSDK<_AppIntents_DisplayRepresentation>("_LinkPresentation_AppIntents_d453e9e1f4a52dda", 836024121675018, this, []); }
+  get displayRepresentation(): _AppIntents_DisplayRepresentation { return callSDK<_AppIntents_DisplayRepresentation>("_LinkPresentation_AppIntents_1f27952b3c5b81e6", 836024121675018, this, []); }
   /**
    * static let typeDisplayRepresentation: TypeDisplayRepresentation
    * @availability iOS 26.4+
    */
-  static get typeDisplayRepresentation(): _AppIntents_TypeDisplayRepresentation { return callSDK<_AppIntents_TypeDisplayRepresentation>("_LinkPresentation_AppIntents_d453e9e1f4a52dda", 3999932151113296, undefined, []); }
+  static get typeDisplayRepresentation(): _AppIntents_TypeDisplayRepresentation { return callSDK<_AppIntents_TypeDisplayRepresentation>("_LinkPresentation_AppIntents_1f27952b3c5b81e6", 3999932151113296, undefined, []); }
   declare readonly $type: { "s:16LinkPresentation0A8MetadataV": true };
 }
 
@@ -35,4 +35,4 @@ export type LinkMetadata_UnwrappedType = _LinkPresentation_LinkMetadata;
  */
 export type LinkMetadata_ValueType = _LinkPresentation_LinkMetadata;
 
-registerSDKClass("LinkPresentation.LinkMetadata", LinkMetadata, { module: "_LinkPresentation_AppIntents_d453e9e1f4a52dda", properties: {} }, true);
+registerSDKClass("LinkPresentation.LinkMetadata", LinkMetadata, { module: "_LinkPresentation_AppIntents_1f27952b3c5b81e6", properties: {} }, true);

@@ -11,42 +11,42 @@ export class GameSaveSyncedDirectory extends SDKHandle {
    * class func openDirectory(containerIdentifier: String? = nil) -> GameSaveSyncedDirectory
    * @availability iOS 26.0+
    */
-  static openDirectory(containerIdentifier?: (string) | null): GameSaveSyncedDirectory { return callSDK<GameSaveSyncedDirectory>("GameSave_d453e9e1f4a52dda", 2578384601209968, undefined, [containerIdentifier]); }
+  static openDirectory(containerIdentifier?: (string) | null): GameSaveSyncedDirectory { return callSDK<GameSaveSyncedDirectory>("GameSave_1f27952b3c5b81e6", 2578384601209968, undefined, [containerIdentifier]); }
   /**
    * func finishSyncing(statusDisplay window: UIWindow) async
    * @availability iOS 26.0+
    */
-  finishSyncingStatusDisplay(window: _UIKit_UIWindow): Promise<void> { return callSDKAsync<void>("GameSave_d453e9e1f4a52dda", 1153908211372377, this, [window]); }
+  finishSyncingStatusDisplay(window: _UIKit_UIWindow): Promise<void> { return callSDKAsync<void>("GameSave_1f27952b3c5b81e6", 1153908211372377, this, [window]); }
   /**
    * func finishSyncing() async
    * @availability iOS 26.0+
    */
-  finishSyncing(): Promise<void> { return callSDKAsync<void>("GameSave_d453e9e1f4a52dda", 2051283812853076, this, []); }
+  finishSyncing(): Promise<void> { return callSDKAsync<void>("GameSave_1f27952b3c5b81e6", 2051283812853076, this, []); }
   /**
    * func resolveConflicts(with version: GameSaveSyncedDirectory.Version)
    * @availability iOS 26.0+
    */
-  resolveConflicts(version: GameSaveSyncedDirectory_Version): void { return callSDK<void>("GameSave_d453e9e1f4a52dda", 1700633197115863, this, [version]); }
+  resolveConflicts(version: GameSaveSyncedDirectory_Version): void { return callSDK<void>("GameSave_1f27952b3c5b81e6", 1700633197115863, this, [version]); }
   /**
    * func triggerPendingUpload() async -> Bool
    * @availability iOS 26.0+
    */
-  triggerPendingUpload(): Promise<boolean> { return callSDKAsync<boolean>("GameSave_d453e9e1f4a52dda", 414338451683432, this, []); }
+  triggerPendingUpload(): Promise<boolean> { return callSDKAsync<boolean>("GameSave_1f27952b3c5b81e6", 414338451683432, this, []); }
   /**
    * var id: String { get }
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("GameSave_d453e9e1f4a52dda", 2878971386971211, this, []); }
+  get id(): string { return callSDK<string>("GameSave_1f27952b3c5b81e6", 2878971386971211, this, []); }
   /**
    * func close()
    * @availability iOS 26.0+
    */
-  close(): void { return callSDK<void>("GameSave_d453e9e1f4a52dda", 4271952062640652, this, []); }
+  close(): void { return callSDK<void>("GameSave_1f27952b3c5b81e6", 4271952062640652, this, []); }
   /**
    * var state: GameSaveSyncedDirectory.State { get }
    * @availability iOS 26.0+
    */
-  get state(): GameSaveSyncedDirectory_State { return callSDK<GameSaveSyncedDirectory_State>("GameSave_d453e9e1f4a52dda", 3914737835343946, this, []); }
+  get state(): GameSaveSyncedDirectory_State { return callSDK<GameSaveSyncedDirectory_State>("GameSave_1f27952b3c5b81e6", 3914737835343946, this, []); }
   declare readonly $type: { "s:8GameSave0aB15SyncedDirectoryC": true };
   declare readonly $observable: { "id": true; "state": true };
 }
@@ -66,7 +66,7 @@ export class GameSaveSyncedDirectory_State extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("GameSave_d453e9e1f4a52dda", 4258282609778449, this, []); }
+  get description(): string { return callSDK<string>("GameSave_1f27952b3c5b81e6", 4258282609778449, this, []); }
   declare readonly $type: { "s:8GameSave0aB15SyncedDirectoryC5StateO": true };
 }
 
@@ -79,33 +79,33 @@ export class GameSaveSyncedDirectory_Version extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("GameSave_d453e9e1f4a52dda", 2247625221132439, this, []); }
+  get description(): string { return callSDK<string>("GameSave_1f27952b3c5b81e6", 2247625221132439, this, []); }
   /**
    * var modifiedDate: Date
    * @availability iOS 26.0+
    */
-  get modifiedDate(): globalThis.Date { return callSDK<globalThis.Date>("GameSave_d453e9e1f4a52dda", 2173623728683223, this, []); }
-  set modifiedDate(value: globalThis.Date) { callSDK<void>("GameSave_d453e9e1f4a52dda", 3349723936224468, this, [value]); }
+  get modifiedDate(): globalThis.Date { return callSDK<globalThis.Date>("GameSave_1f27952b3c5b81e6", 2173623728683223, this, []); }
+  set modifiedDate(value: globalThis.Date) { callSDK<void>("GameSave_1f27952b3c5b81e6", 3349723936224468, this, [value]); }
   /**
    * var localizedNameOfSavingComputer: String { get }
    * @availability iOS 26.0+
    */
-  get localizedNameOfSavingComputer(): string { return callSDK<string>("GameSave_d453e9e1f4a52dda", 1948850325311827, this, []); }
+  get localizedNameOfSavingComputer(): string { return callSDK<string>("GameSave_1f27952b3c5b81e6", 1948850325311827, this, []); }
   /**
    * var id: URL { get }
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("GameSave_d453e9e1f4a52dda", 2598839239241031, this, []); }
+  get id(): string { return callSDK<string>("GameSave_1f27952b3c5b81e6", 2598839239241031, this, []); }
   /**
    * var url: URL { get }
    * @availability iOS 26.0+
    */
-  get url(): string { return callSDK<string>("GameSave_d453e9e1f4a52dda", 3185243412128301, this, []); }
+  get url(): string { return callSDK<string>("GameSave_1f27952b3c5b81e6", 3185243412128301, this, []); }
   /**
    * var isLocal: Bool { get }
    * @availability iOS 26.0+
    */
-  get isLocal(): boolean { return callSDK<boolean>("GameSave_d453e9e1f4a52dda", 907764840428028, this, []); }
+  get isLocal(): boolean { return callSDK<boolean>("GameSave_1f27952b3c5b81e6", 907764840428028, this, []); }
   declare readonly $type: { "s:8GameSave0aB15SyncedDirectoryC7VersionC": true };
 }
 
@@ -118,19 +118,19 @@ export type GameSaveSyncedDirectory_Version_ID = string;
 /** class GSSyncedDirectory */
 export class GSSyncedDirectory extends SDKHandle {
   /** class func open(forContainerIdentifier containerIdentifier: String?) -> GSSyncedDirectory */
-  static open(containerIdentifier?: (string) | null): GSSyncedDirectory { return callSDK<GSSyncedDirectory>("GameSave_d453e9e1f4a52dda", 2448889071191039, undefined, [containerIdentifier]); }
+  static open(containerIdentifier?: (string) | null): GSSyncedDirectory { return callSDK<GSSyncedDirectory>("GameSave_1f27952b3c5b81e6", 2448889071191039, undefined, [containerIdentifier]); }
   /** func close() */
-  close(): void { return callSDK<void>("GameSave_d453e9e1f4a52dda", 1762471344281077, this, []); }
+  close(): void { return callSDK<void>("GameSave_1f27952b3c5b81e6", 1762471344281077, this, []); }
   /** func finishSyncing(_ statusDisplay: UIWindow) async */
-  finishSyncingCompletionHandler(statusDisplay: _UIKit_UIWindow, completion: (() => void)): void { return callSDK<void>("GameSave_d453e9e1f4a52dda", 2682456667838226, this, [statusDisplay, completion], [null,{"callback":{"out":[]}}]); }
+  finishSyncingCompletionHandler(statusDisplay: _UIKit_UIWindow, completion: (() => void)): void { return callSDK<void>("GameSave_1f27952b3c5b81e6", 2682456667838226, this, [statusDisplay, completion], [null,{"callback":{"out":[]}}]); }
   /** func finishSyncing() async */
-  finishSyncingCompletionHandler90901(completion: (() => void)): void { return callSDK<void>("GameSave_d453e9e1f4a52dda", 1671324306860106, this, [completion], [{"callback":{"out":[]}}]); }
+  finishSyncingCompletionHandler90901(completion: (() => void)): void { return callSDK<void>("GameSave_1f27952b3c5b81e6", 1671324306860106, this, [completion], [{"callback":{"out":[]}}]); }
   /** func resolveConflicts(with version: GSSyncedDirectoryVersion) */
-  resolveConflicts(version: GSSyncedDirectoryVersion): void { return callSDK<void>("GameSave_d453e9e1f4a52dda", 502146688056267, this, [version]); }
+  resolveConflicts(version: GSSyncedDirectoryVersion): void { return callSDK<void>("GameSave_1f27952b3c5b81e6", 502146688056267, this, [version]); }
   /** func triggerPendingUpload() async -> Bool */
-  triggerPendingUpload(completion: ((arg0: boolean) => void)): void { return callSDK<void>("GameSave_d453e9e1f4a52dda", 3991910114518151, this, [completion], [{"callback":{"out":[]}}]); }
+  triggerPendingUpload(completion: ((arg0: boolean) => void)): void { return callSDK<void>("GameSave_1f27952b3c5b81e6", 3991910114518151, this, [completion], [{"callback":{"out":[]}}]); }
   /** var directoryState: GSSyncedDirectoryState { get } */
-  get directoryState(): GSSyncedDirectoryState { return callSDK<GSSyncedDirectoryState>("GameSave_d453e9e1f4a52dda", 36429805661117, this, []); }
+  get directoryState(): GSSyncedDirectoryState { return callSDK<GSSyncedDirectoryState>("GameSave_1f27952b3c5b81e6", 36429805661117, this, []); }
   declare readonly $type: { "c:objc(cs)GSSyncedDirectory": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "directoryState": true };
 }
@@ -138,13 +138,13 @@ export class GSSyncedDirectory extends SDKHandle {
 /** class GSSyncedDirectoryState */
 export class GSSyncedDirectoryState extends SDKHandle {
   /** var conflictedVersions: [GSSyncedDirectoryVersion]? { get } */
-  get conflictedVersions(): (Array<GSSyncedDirectoryVersion>) | null { return callSDK<(Array<GSSyncedDirectoryVersion>) | null>("GameSave_d453e9e1f4a52dda", 3326550175427770, this, []); }
+  get conflictedVersions(): (Array<GSSyncedDirectoryVersion>) | null { return callSDK<(Array<GSSyncedDirectoryVersion>) | null>("GameSave_1f27952b3c5b81e6", 3326550175427770, this, []); }
   /** var error: (any Error)? { get } */
-  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("GameSave_d453e9e1f4a52dda", 3297972459967944, this, []); }
+  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("GameSave_1f27952b3c5b81e6", 3297972459967944, this, []); }
   /** var state: GSSyncState { get } */
-  get state(): GSSyncState { return callSDK<GSSyncState>("GameSave_d453e9e1f4a52dda", 1929242953194163, this, []); }
+  get state(): GSSyncState { return callSDK<GSSyncState>("GameSave_1f27952b3c5b81e6", 1929242953194163, this, []); }
   /** var url: URL? { get } */
-  get url(): (string) | null { return callSDK<(string) | null>("GameSave_d453e9e1f4a52dda", 3966926382917045, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("GameSave_1f27952b3c5b81e6", 3966926382917045, this, []); }
   declare readonly $type: { "c:objc(cs)GSSyncedDirectoryState": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "conflictedVersions": true; "error": true; "state": true; "url": true };
 }
@@ -152,15 +152,15 @@ export class GSSyncedDirectoryState extends SDKHandle {
 /** class GSSyncedDirectoryVersion */
 export class GSSyncedDirectoryVersion extends SDKHandle {
   /** var description: String { get } */
-  get description(): string { return callSDK<string>("GameSave_d453e9e1f4a52dda", 1102351343156128, this, []); }
+  get description(): string { return callSDK<string>("GameSave_1f27952b3c5b81e6", 1102351343156128, this, []); }
   /** var isLocal: Bool { get } */
-  get isLocal(): boolean { return callSDK<boolean>("GameSave_d453e9e1f4a52dda", 815513918160591, this, []); }
+  get isLocal(): boolean { return callSDK<boolean>("GameSave_1f27952b3c5b81e6", 815513918160591, this, []); }
   /** var localizedNameOfSavingComputer: String { get } */
-  get localizedNameOfSavingComputer(): string { return callSDK<string>("GameSave_d453e9e1f4a52dda", 3737313608337585, this, []); }
+  get localizedNameOfSavingComputer(): string { return callSDK<string>("GameSave_1f27952b3c5b81e6", 3737313608337585, this, []); }
   /** var modifiedDate: Date { get } */
-  get modifiedDate(): globalThis.Date { return callSDK<globalThis.Date>("GameSave_d453e9e1f4a52dda", 2910622541772575, this, []); }
+  get modifiedDate(): globalThis.Date { return callSDK<globalThis.Date>("GameSave_1f27952b3c5b81e6", 2910622541772575, this, []); }
   /** var url: URL { get } */
-  get url(): string { return callSDK<string>("GameSave_d453e9e1f4a52dda", 107311494955131, this, []); }
+  get url(): string { return callSDK<string>("GameSave_1f27952b3c5b81e6", 107311494955131, this, []); }
   declare readonly $type: { "c:objc(cs)GSSyncedDirectoryVersion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "description": true; "isLocal": true; "localizedNameOfSavingComputer": true; "modifiedDate": true; "url": true };
 }
@@ -170,18 +170,18 @@ export type GSSyncState = "ready" | "offline" | "local" | "syncing" | "conflicte
 
 export const GSSyncState = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (GSSyncState) | null { return callSDK<(GSSyncState) | null>("GameSave_d453e9e1f4a52dda", 3878632603118, undefined, [rawValue]); }
+  init(rawValue: number): (GSSyncState) | null { return callSDK<(GSSyncState) | null>("GameSave_1f27952b3c5b81e6", 3878632603118, undefined, [rawValue]); }
 };
 
 /**
  * let GameSaveErrorDomain: String
  * @availability iOS 26.0+
  */
-export const GameSaveErrorDomain: string = callSDK<string>("GameSave_d453e9e1f4a52dda", 3741326153799756, undefined, []);
+export const GameSaveErrorDomain: string = callSDK<string>("GameSave_1f27952b3c5b81e6", 3741326153799756, undefined, []);
 
-registerSDKClass("GameSave.GameSaveSyncedDirectory", GameSaveSyncedDirectory, { module: "GameSave_d453e9e1f4a52dda", properties: {"id":2878971386971211,"state":3914737835343946}, methods: {"finishSyncingStatusDisplay":{"id":1153908211372377},"finishSyncing":{"id":2051283812853076},"resolveConflicts":{"id":1700633197115863},"triggerPendingUpload":{"id":414338451683432},"close":{"id":4271952062640652}} });
-registerSDKClass("GameSave.GameSaveSyncedDirectory.State", GameSaveSyncedDirectory_State, { module: "GameSave_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("GameSave.GameSaveSyncedDirectory.Version", GameSaveSyncedDirectory_Version, { module: "GameSave_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("GSSyncedDirectory", GSSyncedDirectory, { module: "GameSave_d453e9e1f4a52dda", properties: {"directoryState":36429805661117}, methods: {"close":{"id":1762471344281077},"finishSyncingCompletionHandler":{"id":2682456667838226,"hints":[null,{"callback":{"out":[]}}]},"finishSyncingCompletionHandler90901":{"id":1671324306860106,"hints":[{"callback":{"out":[]}}]},"resolveConflicts":{"id":502146688056267},"triggerPendingUpload":{"id":3991910114518151,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("GSSyncedDirectoryState", GSSyncedDirectoryState, { module: "GameSave_d453e9e1f4a52dda", properties: {"conflictedVersions":3326550175427770,"error":3297972459967944,"state":1929242953194163,"url":3966926382917045} });
-registerSDKClass("GSSyncedDirectoryVersion", GSSyncedDirectoryVersion, { module: "GameSave_d453e9e1f4a52dda", properties: {"description":1102351343156128,"isLocal":815513918160591,"localizedNameOfSavingComputer":3737313608337585,"modifiedDate":2910622541772575,"url":107311494955131} });
+registerSDKClass("GameSave.GameSaveSyncedDirectory", GameSaveSyncedDirectory, { module: "GameSave_1f27952b3c5b81e6", properties: {"id":2878971386971211,"state":3914737835343946}, methods: {"finishSyncingStatusDisplay":{"id":1153908211372377},"finishSyncing":{"id":2051283812853076},"resolveConflicts":{"id":1700633197115863},"triggerPendingUpload":{"id":414338451683432},"close":{"id":4271952062640652}} });
+registerSDKClass("GameSave.GameSaveSyncedDirectory.State", GameSaveSyncedDirectory_State, { module: "GameSave_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("GameSave.GameSaveSyncedDirectory.Version", GameSaveSyncedDirectory_Version, { module: "GameSave_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("GSSyncedDirectory", GSSyncedDirectory, { module: "GameSave_1f27952b3c5b81e6", properties: {"directoryState":36429805661117}, methods: {"close":{"id":1762471344281077},"finishSyncingCompletionHandler":{"id":2682456667838226,"hints":[null,{"callback":{"out":[]}}]},"finishSyncingCompletionHandler90901":{"id":1671324306860106,"hints":[{"callback":{"out":[]}}]},"resolveConflicts":{"id":502146688056267},"triggerPendingUpload":{"id":3991910114518151,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("GSSyncedDirectoryState", GSSyncedDirectoryState, { module: "GameSave_1f27952b3c5b81e6", properties: {"conflictedVersions":3326550175427770,"error":3297972459967944,"state":1929242953194163,"url":3966926382917045} });
+registerSDKClass("GSSyncedDirectoryVersion", GSSyncedDirectoryVersion, { module: "GameSave_1f27952b3c5b81e6", properties: {"description":1102351343156128,"isLocal":815513918160591,"localizedNameOfSavingComputer":3737313608337585,"modifiedDate":2910622541772575,"url":107311494955131} });

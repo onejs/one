@@ -21,13 +21,14 @@ type $SDK7 = {
     width: number;
     height: number;
 };
-type $SDK10 = (_CoreGraphics_CGColor) | null;
-type $SDK12 = (_CoreGraphics_CGPath) | null;
-type $SDK13 = (Array<CAEmitterCell>) | null;
-type $SDK14 = (Array<_Foundation_NSNumber>) | null;
-type $SDK15 = (CAAnimationRotationMode) | null;
-type $SDK16 = (Array<CAMediaTimingFunction>) | null;
-type $SDK18 = (_CoreGraphics_CGColorSpace) | null;
+type $SDK8 = (Record<string, SDKHandle>) | null;
+type $SDK9 = (_CoreGraphics_CGColor) | null;
+type $SDK11 = (_CoreGraphics_CGPath) | null;
+type $SDK12 = (Array<CAEmitterCell>) | null;
+type $SDK13 = (Array<_Foundation_NSNumber>) | null;
+type $SDK14 = (CAAnimationRotationMode) | null;
+type $SDK15 = (Array<CAMediaTimingFunction>) | null;
+type $SDK17 = (_CoreGraphics_CGColorSpace) | null;
 /**
  * protocol CAAction
  * @availability iOS 2.0+
@@ -632,8 +633,8 @@ export declare class CALayer extends SDKHandle {
      * var actions: [String : any CAAction]? { get set }
      * @availability iOS 2.0+
      */
-    get actions(): (Record<string, SDKHandle>) | null;
-    set actions(value: (Record<string, Implements<CAAction> | SDKHandle>) | null);
+    get actions(): $SDK8;
+    set actions(value: $SDK8);
     /**
      * var allowsEdgeAntialiasing: Bool { get set }
      * @availability iOS 2.0+
@@ -662,8 +663,8 @@ export declare class CALayer extends SDKHandle {
      * var backgroundColor: CGColor? { get set }
      * @availability iOS 2.0+
      */
-    get backgroundColor(): $SDK10;
-    set backgroundColor(value: $SDK10);
+    get backgroundColor(): $SDK9;
+    set backgroundColor(value: $SDK9);
     /**
      * var backgroundFilters: [Any]? { get set }
      * @availability iOS 2.0+
@@ -674,8 +675,8 @@ export declare class CALayer extends SDKHandle {
      * var borderColor: CGColor? { get set }
      * @availability iOS 2.0+
      */
-    get borderColor(): $SDK10;
-    set borderColor(value: $SDK10);
+    get borderColor(): $SDK9;
+    set borderColor(value: $SDK9);
     /**
      * var borderWidth: CGFloat { get set }
      * @availability iOS 2.0+
@@ -878,8 +879,8 @@ export declare class CALayer extends SDKHandle {
      * var shadowColor: CGColor? { get set }
      * @availability iOS 2.0+
      */
-    get shadowColor(): $SDK10;
-    set shadowColor(value: $SDK10);
+    get shadowColor(): $SDK9;
+    set shadowColor(value: $SDK9);
     /**
      * var shadowOffset: CGSize { get set }
      * @availability iOS 2.0+
@@ -896,8 +897,8 @@ export declare class CALayer extends SDKHandle {
      * var shadowPath: CGPath? { get set }
      * @availability iOS 2.0+
      */
-    get shadowPath(): $SDK12;
-    set shadowPath(value: $SDK12);
+    get shadowPath(): $SDK11;
+    set shadowPath(value: $SDK11);
     /**
      * var shadowRadius: CGFloat { get set }
      * @availability iOS 2.0+
@@ -1222,8 +1223,8 @@ export declare class CAEmitterCell extends SDKHandle {
      * var color: CGColor? { get set }
      * @availability iOS 5.0+
      */
-    get color(): $SDK10;
-    set color(value: $SDK10);
+    get color(): $SDK9;
+    set color(value: $SDK9);
     /**
      * var contents: Any? { get set }
      * @availability iOS 5.0+
@@ -1264,8 +1265,8 @@ export declare class CAEmitterCell extends SDKHandle {
      * var emitterCells: [CAEmitterCell]? { get set }
      * @availability iOS 5.0+
      */
-    get emitterCells(): $SDK13;
-    set emitterCells(value: $SDK13);
+    get emitterCells(): $SDK12;
+    set emitterCells(value: $SDK12);
     /**
      * var isEnabled: Bool { get set }
      * @availability iOS 5.0+
@@ -1458,8 +1459,8 @@ export declare class CAEmitterLayer extends CAEmitterLayer_base {
      * var emitterCells: [CAEmitterCell]? { get set }
      * @availability iOS 5.0+
      */
-    get emitterCells(): $SDK13;
-    set emitterCells(value: $SDK13);
+    get emitterCells(): $SDK12;
+    set emitterCells(value: $SDK12);
     /**
      * var emitterDepth: CGFloat { get set }
      * @availability iOS 5.0+
@@ -1794,8 +1795,8 @@ export declare class CAGradientLayer extends CAGradientLayer_base {
      * var locations: [NSNumber]? { get set }
      * @availability iOS 3.0+
      */
-    get locations(): $SDK14;
-    set locations(value: $SDK14);
+    get locations(): $SDK13;
+    set locations(value: $SDK13);
     /**
      * var startPoint: CGPoint { get set }
      * @availability iOS 3.0+
@@ -1916,8 +1917,8 @@ export declare class CAKeyframeAnimation extends CAKeyframeAnimation_base {
      * var biasValues: [NSNumber]? { get set }
      * @availability iOS 2.0+
      */
-    get biasValues(): $SDK14;
-    set biasValues(value: $SDK14);
+    get biasValues(): $SDK13;
+    set biasValues(value: $SDK13);
     /**
      * var calculationMode: CAAnimationCalculationMode { get set }
      * @availability iOS 2.0+
@@ -1928,38 +1929,38 @@ export declare class CAKeyframeAnimation extends CAKeyframeAnimation_base {
      * var continuityValues: [NSNumber]? { get set }
      * @availability iOS 2.0+
      */
-    get continuityValues(): $SDK14;
-    set continuityValues(value: $SDK14);
+    get continuityValues(): $SDK13;
+    set continuityValues(value: $SDK13);
     /**
      * var keyTimes: [NSNumber]? { get set }
      * @availability iOS 2.0+
      */
-    get keyTimes(): $SDK14;
-    set keyTimes(value: $SDK14);
+    get keyTimes(): $SDK13;
+    set keyTimes(value: $SDK13);
     /**
      * var path: CGPath? { get set }
      * @availability iOS 2.0+
      */
-    get path(): $SDK12;
-    set path(value: $SDK12);
+    get path(): $SDK11;
+    set path(value: $SDK11);
     /**
      * var rotationMode: CAAnimationRotationMode? { get set }
      * @availability iOS 2.0+
      */
-    get rotationMode(): $SDK15;
-    set rotationMode(value: $SDK15);
+    get rotationMode(): $SDK14;
+    set rotationMode(value: $SDK14);
     /**
      * var tensionValues: [NSNumber]? { get set }
      * @availability iOS 2.0+
      */
-    get tensionValues(): $SDK14;
-    set tensionValues(value: $SDK14);
+    get tensionValues(): $SDK13;
+    set tensionValues(value: $SDK13);
     /**
      * var timingFunctions: [CAMediaTimingFunction]? { get set }
      * @availability iOS 2.0+
      */
-    get timingFunctions(): $SDK16;
-    set timingFunctions(value: $SDK16);
+    get timingFunctions(): $SDK15;
+    set timingFunctions(value: $SDK15);
     /**
      * var values: [Any]? { get set }
      * @availability iOS 2.0+
@@ -2467,8 +2468,8 @@ export declare class CAMetalLayer extends CAMetalLayer_base {
      * var colorspace: CGColorSpace? { get set }
      * @availability iOS 13.0+
      */
-    get colorspace(): $SDK18;
-    set colorspace(value: $SDK18);
+    get colorspace(): $SDK17;
+    set colorspace(value: $SDK17);
     /**
      * var developerHUDProperties: [AnyHashable : Any]? { get set }
      * @availability iOS 16.0+
@@ -2693,8 +2694,8 @@ export declare class CAReplicatorLayer extends CAReplicatorLayer_base {
      * var instanceColor: CGColor? { get set }
      * @availability iOS 3.0+
      */
-    get instanceColor(): $SDK10;
-    set instanceColor(value: $SDK10);
+    get instanceColor(): $SDK9;
+    set instanceColor(value: $SDK9);
     /**
      * var instanceCount: Int { get set }
      * @availability iOS 3.0+
@@ -2937,8 +2938,8 @@ export declare class CAShapeLayer extends CAShapeLayer_base {
      * var fillColor: CGColor? { get set }
      * @availability iOS 3.0+
      */
-    get fillColor(): $SDK10;
-    set fillColor(value: $SDK10);
+    get fillColor(): $SDK9;
+    set fillColor(value: $SDK9);
     /**
      * var fillRule: CAShapeLayerFillRule { get set }
      * @availability iOS 3.0+
@@ -2955,8 +2956,8 @@ export declare class CAShapeLayer extends CAShapeLayer_base {
      * var lineDashPattern: [NSNumber]? { get set }
      * @availability iOS 3.0+
      */
-    get lineDashPattern(): $SDK14;
-    set lineDashPattern(value: $SDK14);
+    get lineDashPattern(): $SDK13;
+    set lineDashPattern(value: $SDK13);
     /**
      * var lineDashPhase: CGFloat { get set }
      * @availability iOS 3.0+
@@ -2985,14 +2986,14 @@ export declare class CAShapeLayer extends CAShapeLayer_base {
      * var path: CGPath? { get set }
      * @availability iOS 3.0+
      */
-    get path(): $SDK12;
-    set path(value: $SDK12);
+    get path(): $SDK11;
+    set path(value: $SDK11);
     /**
      * var strokeColor: CGColor? { get set }
      * @availability iOS 3.0+
      */
-    get strokeColor(): $SDK10;
-    set strokeColor(value: $SDK10);
+    get strokeColor(): $SDK9;
+    set strokeColor(value: $SDK9);
     /**
      * var strokeEnd: CGFloat { get set }
      * @availability iOS 3.0+
@@ -3278,8 +3279,8 @@ export declare class CATextLayer extends CATextLayer_base {
      * var foregroundColor: CGColor? { get set }
      * @availability iOS 2.0+
      */
-    get foregroundColor(): $SDK10;
-    set foregroundColor(value: $SDK10);
+    get foregroundColor(): $SDK9;
+    set foregroundColor(value: $SDK9);
     /**
      * var string: Any? { get set }
      * @availability iOS 2.0+

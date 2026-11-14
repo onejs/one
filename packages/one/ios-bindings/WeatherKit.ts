@@ -38,20 +38,20 @@ export class CloudCoverByAltitude extends SDKHandle {
    * var low: Double
    * @availability iOS 18.0+
    */
-  get low(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 3024034207824166, this, []); }
-  set low(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1887895274909697, this, [value]); }
+  get low(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 3024034207824166, this, []); }
+  set low(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1887895274909697, this, [value]); }
   /**
    * var high: Double
    * @availability iOS 18.0+
    */
-  get high(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 2956640722474195, this, []); }
-  set high(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3047116543022248, this, [value]); }
+  get high(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 2956640722474195, this, []); }
+  set high(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3047116543022248, this, [value]); }
   /**
    * var medium: Double
    * @availability iOS 18.0+
    */
-  get medium(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 3924623588528550, this, []); }
-  set medium(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1869326501466678, this, [value]); }
+  get medium(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 3924623588528550, this, []); }
+  set medium(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1869326501466678, this, [value]); }
   declare readonly $type: { "s:10WeatherKit20CloudCoverByAltitudeV": true };
 }
 
@@ -64,104 +64,104 @@ export class CurrentWeather extends SDKHandle {
    * var cloudCover: Double
    * @availability iOS 16.0+
    */
-  get cloudCover(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 2393663344205664, this, []); }
-  set cloudCover(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4180085337593324, this, [value]); }
+  get cloudCover(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 2393663344205664, this, []); }
+  set cloudCover(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4180085337593324, this, [value]); }
   /**
    * var isDaylight: Bool
    * @availability iOS 16.0+
    */
-  get isDaylight(): boolean { return callSDK<boolean>("WeatherKit_d453e9e1f4a52dda", 1855292199754368, this, []); }
-  set isDaylight(value: boolean) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2644964725316106, this, [value]); }
+  get isDaylight(): boolean { return callSDK<boolean>("WeatherKit_1f27952b3c5b81e6", 1855292199754368, this, []); }
+  set isDaylight(value: boolean) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2644964725316106, this, [value]); }
   /**
    * var symbolName: String
    * @availability iOS 16.0+
    */
-  get symbolName(): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 3134003572602786, this, []); }
-  set symbolName(value: string) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2282645063313783, this, [value]); }
+  get symbolName(): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 3134003572602786, this, []); }
+  set symbolName(value: string) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2282645063313783, this, [value]); }
   /**
    * var visibility: Measurement<UnitLength>
    * @availability iOS 16.0+
    */
-  get visibility(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 1886336975806643, this, []); }
-  set visibility(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3873991385131137, this, [value]); }
+  get visibility(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 1886336975806643, this, []); }
+  set visibility(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3873991385131137, this, [value]); }
   /**
    * var temperature: Measurement<UnitTemperature>
    * @availability iOS 16.0+
    */
-  get temperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 2473481576460136, this, []); }
-  set temperature(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3911784524161817, this, [value]); }
+  get temperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 2473481576460136, this, []); }
+  set temperature(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3911784524161817, this, [value]); }
   /**
    * var pressureTrend: PressureTrend
    * @availability iOS 16.0+
    */
-  get pressureTrend(): PressureTrend { return callSDK<PressureTrend>("WeatherKit_d453e9e1f4a52dda", 3161280808356851, this, []); }
-  set pressureTrend(value: PressureTrend) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4178991677976976, this, [value]); }
+  get pressureTrend(): PressureTrend { return callSDK<PressureTrend>("WeatherKit_1f27952b3c5b81e6", 3161280808356851, this, []); }
+  set pressureTrend(value: PressureTrend) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4178991677976976, this, [value]); }
   /**
    * var apparentTemperature: Measurement<UnitTemperature>
    * @availability iOS 16.0+
    */
-  get apparentTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 1833038857121256, this, []); }
-  set apparentTemperature(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1565207280864447, this, [value]); }
+  get apparentTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 1833038857121256, this, []); }
+  set apparentTemperature(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1565207280864447, this, [value]); }
   /**
    * var cloudCoverByAltitude: CloudCoverByAltitude
    * @availability iOS 18.0+
    */
-  get cloudCoverByAltitude(): CloudCoverByAltitude { return callSDK<CloudCoverByAltitude>("WeatherKit_d453e9e1f4a52dda", 2499975461160484, this, []); }
-  set cloudCoverByAltitude(value: CloudCoverByAltitude) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2378993670264310, this, [value]); }
+  get cloudCoverByAltitude(): CloudCoverByAltitude { return callSDK<CloudCoverByAltitude>("WeatherKit_1f27952b3c5b81e6", 2499975461160484, this, []); }
+  set cloudCoverByAltitude(value: CloudCoverByAltitude) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2378993670264310, this, [value]); }
   /**
    * var precipitationIntensity: Measurement<UnitSpeed>
    * @availability iOS 16.0+
    */
-  get precipitationIntensity(): $SDK2 { return callSDK<$SDK2>("WeatherKit_d453e9e1f4a52dda", 1275765598067522, this, []); }
-  set precipitationIntensity(value: $SDK2) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 903627668651492, this, [value]); }
+  get precipitationIntensity(): $SDK2 { return callSDK<$SDK2>("WeatherKit_1f27952b3c5b81e6", 1275765598067522, this, []); }
+  set precipitationIntensity(value: $SDK2) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 903627668651492, this, [value]); }
   /**
    * var date: Date
    * @availability iOS 16.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_d453e9e1f4a52dda", 3610965308812677, this, []); }
-  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4122134074258964, this, [value]); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_1f27952b3c5b81e6", 3610965308812677, this, []); }
+  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4122134074258964, this, [value]); }
   /**
    * var wind: Wind
    * @availability iOS 16.0+
    */
-  get wind(): Wind { return callSDK<Wind>("WeatherKit_d453e9e1f4a52dda", 167246973101817, this, []); }
-  set wind(value: Wind) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1170843766309345, this, [value]); }
+  get wind(): Wind { return callSDK<Wind>("WeatherKit_1f27952b3c5b81e6", 167246973101817, this, []); }
+  set wind(value: Wind) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1170843766309345, this, [value]); }
   /**
    * var uvIndex: UVIndex
    * @availability iOS 16.0+
    */
-  get uvIndex(): UVIndex { return callSDK<UVIndex>("WeatherKit_d453e9e1f4a52dda", 4195632363763998, this, []); }
-  set uvIndex(value: UVIndex) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3883996062331678, this, [value]); }
+  get uvIndex(): UVIndex { return callSDK<UVIndex>("WeatherKit_1f27952b3c5b81e6", 4195632363763998, this, []); }
+  set uvIndex(value: UVIndex) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3883996062331678, this, [value]); }
   /**
    * var dewPoint: Measurement<UnitTemperature>
    * @availability iOS 16.0+
    */
-  get dewPoint(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 3621481871419573, this, []); }
-  set dewPoint(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4036902568283297, this, [value]); }
+  get dewPoint(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 3621481871419573, this, []); }
+  set dewPoint(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4036902568283297, this, [value]); }
   /**
    * var humidity: Double
    * @availability iOS 16.0+
    */
-  get humidity(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 953324265498912, this, []); }
-  set humidity(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2479916878702645, this, [value]); }
+  get humidity(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 953324265498912, this, []); }
+  set humidity(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2479916878702645, this, [value]); }
   /**
    * var metadata: WeatherMetadata
    * @availability iOS 16.0+
    */
-  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_d453e9e1f4a52dda", 1812309859476061, this, []); }
-  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2423638115753767, this, [value]); }
+  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_1f27952b3c5b81e6", 1812309859476061, this, []); }
+  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2423638115753767, this, [value]); }
   /**
    * var pressure: Measurement<UnitPressure>
    * @availability iOS 16.0+
    */
-  get pressure(): $SDK3 { return callSDK<$SDK3>("WeatherKit_d453e9e1f4a52dda", 1311773446804745, this, []); }
-  set pressure(value: $SDK3) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1648193297616, this, [value]); }
+  get pressure(): $SDK3 { return callSDK<$SDK3>("WeatherKit_1f27952b3c5b81e6", 1311773446804745, this, []); }
+  set pressure(value: $SDK3) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1648193297616, this, [value]); }
   /**
    * var condition: WeatherCondition
    * @availability iOS 16.0+
    */
-  get condition(): WeatherCondition { return callSDK<WeatherCondition>("WeatherKit_d453e9e1f4a52dda", 1791408055114502, this, []); }
-  set condition(value: WeatherCondition) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1020225692448897, this, [value]); }
+  get condition(): WeatherCondition { return callSDK<WeatherCondition>("WeatherKit_1f27952b3c5b81e6", 1791408055114502, this, []); }
+  set condition(value: WeatherCondition) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1020225692448897, this, [value]); }
   declare readonly $type: { "s:10WeatherKit07CurrentA0V": true };
 }
 
@@ -174,35 +174,35 @@ export class DailyWeatherStatistics<T = unknown> extends SDKHandle {
    * var startIndex: DailyWeatherStatistics<T>.Index { get }
    * @availability iOS 18.0+
    */
-  get startIndex(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 2732657851798417, this, []); }
+  get startIndex(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 2732657851798417, this, []); }
   /**
    * var baselineStartDate: Date
    * @availability iOS 18.0+
    */
-  get baselineStartDate(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_d453e9e1f4a52dda", 1607583954935787, this, []); }
-  set baselineStartDate(value: globalThis.Date) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4033437825692555, this, [value]); }
+  get baselineStartDate(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_1f27952b3c5b81e6", 1607583954935787, this, []); }
+  set baselineStartDate(value: globalThis.Date) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4033437825692555, this, [value]); }
   /**
    * var days: [T]
    * @availability iOS 18.0+
    */
-  get days(): Array<number> { return callSDK<Array<number>>("WeatherKit_d453e9e1f4a52dda", 252936413352785, this, []); }
-  set days(value: Array<number>) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3722566246557815, this, [value]); }
+  get days(): Array<number> { return callSDK<Array<number>>("WeatherKit_1f27952b3c5b81e6", 252936413352785, this, []); }
+  set days(value: Array<number>) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3722566246557815, this, [value]); }
   /**
    * var endIndex: DailyWeatherStatistics<T>.Index { get }
    * @availability iOS 18.0+
    */
-  get endIndex(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 4480210155809885, this, []); }
+  get endIndex(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 4480210155809885, this, []); }
   /**
    * var metadata: WeatherMetadata
    * @availability iOS 18.0+
    */
-  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_d453e9e1f4a52dda", 3875048506435434, this, []); }
-  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2677436484377793, this, [value]); }
+  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_1f27952b3c5b81e6", 3875048506435434, this, []); }
+  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2677436484377793, this, [value]); }
   /**
    * subscript(position: DailyWeatherStatistics<T>.Index) -> DailyWeatherStatistics<T>.Element { get }
    * @availability iOS 18.0+
    */
-  subscript(position: number): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 1843240736297363, this, [position]); }
+  subscript(position: number): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 1843240736297363, this, [position]); }
   declare readonly $type: { "s:10WeatherKit05DailyA10StatisticsV": true };
 }
 
@@ -245,12 +245,12 @@ export class DailyWeatherStatisticsQuery<T = unknown> extends SDKHandle {
    * static var temperature: DailyWeatherStatisticsQuery<DayTemperatureStatistics> { get }
    * @availability iOS 18.0+
    */
-  static get temperature(): DailyWeatherStatisticsQuery<DayTemperatureStatistics> { return callSDK<DailyWeatherStatisticsQuery<DayTemperatureStatistics>>("WeatherKit_d453e9e1f4a52dda", 245026345562903, undefined, []); }
+  static get temperature(): DailyWeatherStatisticsQuery<DayTemperatureStatistics> { return callSDK<DailyWeatherStatisticsQuery<DayTemperatureStatistics>>("WeatherKit_1f27952b3c5b81e6", 245026345562903, undefined, []); }
   /**
    * static var precipitation: DailyWeatherStatisticsQuery<DayPrecipitationStatistics> { get }
    * @availability iOS 18.0+
    */
-  static get precipitation(): DailyWeatherStatisticsQuery<DayPrecipitationStatistics> { return callSDK<DailyWeatherStatisticsQuery<DayPrecipitationStatistics>>("WeatherKit_d453e9e1f4a52dda", 2384587802777917, undefined, []); }
+  static get precipitation(): DailyWeatherStatisticsQuery<DayPrecipitationStatistics> { return callSDK<DailyWeatherStatisticsQuery<DayPrecipitationStatistics>>("WeatherKit_1f27952b3c5b81e6", 2384587802777917, undefined, []); }
   declare readonly $type: { "s:10WeatherKit05DailyA15StatisticsQueryV": true };
 }
 
@@ -263,29 +263,29 @@ export class DailyWeatherSummary<T = unknown> extends SDKHandle {
    * var startIndex: DailyWeatherSummary<T>.Index { get }
    * @availability iOS 18.0+
    */
-  get startIndex(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 874556791799553, this, []); }
+  get startIndex(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 874556791799553, this, []); }
   /**
    * var days: [T]
    * @availability iOS 18.0+
    */
-  get days(): Array<number> { return callSDK<Array<number>>("WeatherKit_d453e9e1f4a52dda", 4125535638352762, this, []); }
-  set days(value: Array<number>) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3836597548705001, this, [value]); }
+  get days(): Array<number> { return callSDK<Array<number>>("WeatherKit_1f27952b3c5b81e6", 4125535638352762, this, []); }
+  set days(value: Array<number>) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3836597548705001, this, [value]); }
   /**
    * var endIndex: DailyWeatherSummary<T>.Index { get }
    * @availability iOS 18.0+
    */
-  get endIndex(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 3254916144069471, this, []); }
+  get endIndex(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 3254916144069471, this, []); }
   /**
    * var metadata: WeatherMetadata
    * @availability iOS 18.0+
    */
-  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_d453e9e1f4a52dda", 3985162469808868, this, []); }
-  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4157424988413197, this, [value]); }
+  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_1f27952b3c5b81e6", 3985162469808868, this, []); }
+  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4157424988413197, this, [value]); }
   /**
    * subscript(position: DailyWeatherSummary<T>.Index) -> DailyWeatherSummary<T>.Element { get }
    * @availability iOS 18.0+
    */
-  subscript(position: number): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 3311289781398060, this, [position]); }
+  subscript(position: number): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 3311289781398060, this, [position]); }
   declare readonly $type: { "s:10WeatherKit05DailyA7SummaryV": true };
 }
 
@@ -328,12 +328,12 @@ export class DailyWeatherSummaryQuery<T = unknown> extends SDKHandle {
    * static var temperature: DailyWeatherSummaryQuery<DayTemperatureSummary> { get }
    * @availability iOS 18.0+
    */
-  static get temperature(): DailyWeatherSummaryQuery<DayTemperatureSummary> { return callSDK<DailyWeatherSummaryQuery<DayTemperatureSummary>>("WeatherKit_d453e9e1f4a52dda", 359093440271685, undefined, []); }
+  static get temperature(): DailyWeatherSummaryQuery<DayTemperatureSummary> { return callSDK<DailyWeatherSummaryQuery<DayTemperatureSummary>>("WeatherKit_1f27952b3c5b81e6", 359093440271685, undefined, []); }
   /**
    * static var precipitation: DailyWeatherSummaryQuery<DayPrecipitationSummary> { get }
    * @availability iOS 18.0+
    */
-  static get precipitation(): DailyWeatherSummaryQuery<DayPrecipitationSummary> { return callSDK<DailyWeatherSummaryQuery<DayPrecipitationSummary>>("WeatherKit_d453e9e1f4a52dda", 3411018636358265, undefined, []); }
+  static get precipitation(): DailyWeatherSummaryQuery<DayPrecipitationSummary> { return callSDK<DailyWeatherSummaryQuery<DayPrecipitationSummary>>("WeatherKit_1f27952b3c5b81e6", 3411018636358265, undefined, []); }
   declare readonly $type: { "s:10WeatherKit05DailyA12SummaryQueryV": true };
 }
 
@@ -346,86 +346,86 @@ export class DayPartForecast extends SDKHandle {
    * var cloudCover: Double
    * @availability iOS 18.0+
    */
-  get cloudCover(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 3489944139376268, this, []); }
-  set cloudCover(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1374908652815619, this, [value]); }
+  get cloudCover(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 3489944139376268, this, []); }
+  set cloudCover(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1374908652815619, this, [value]); }
   /**
    * var highWindSpeed: Measurement<UnitSpeed>
    * @availability iOS 18.0+
    */
-  get highWindSpeed(): $SDK2 { return callSDK<$SDK2>("WeatherKit_d453e9e1f4a52dda", 534753269060961, this, []); }
-  set highWindSpeed(value: $SDK2) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 955477977099299, this, [value]); }
+  get highWindSpeed(): $SDK2 { return callSDK<$SDK2>("WeatherKit_1f27952b3c5b81e6", 534753269060961, this, []); }
+  set highWindSpeed(value: $SDK2) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 955477977099299, this, [value]); }
   /**
    * var precipitation: Precipitation
    * @availability iOS 18.0+
    */
-  get precipitation(): Precipitation { return callSDK<Precipitation>("WeatherKit_d453e9e1f4a52dda", 1289751695699284, this, []); }
-  set precipitation(value: Precipitation) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 94754800483121, this, [value]); }
+  get precipitation(): Precipitation { return callSDK<Precipitation>("WeatherKit_1f27952b3c5b81e6", 1289751695699284, this, []); }
+  set precipitation(value: Precipitation) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 94754800483121, this, [value]); }
   /**
    * var lowTemperature: Measurement<UnitTemperature>
    * @availability iOS 18.0+
    */
-  get lowTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 2982845169518974, this, []); }
-  set lowTemperature(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1025811676457356, this, [value]); }
+  get lowTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 2982845169518974, this, []); }
+  set lowTemperature(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1025811676457356, this, [value]); }
   /**
    * var highTemperature: Measurement<UnitTemperature>
    * @availability iOS 18.0+
    */
-  get highTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 240203688116906, this, []); }
-  set highTemperature(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4233794935139175, this, [value]); }
+  get highTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 240203688116906, this, []); }
+  set highTemperature(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4233794935139175, this, [value]); }
   /**
    * var maximumHumidity: Double
    * @availability iOS 18.0+
    */
-  get maximumHumidity(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 264112370513211, this, []); }
-  set maximumHumidity(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3935038314786414, this, [value]); }
+  get maximumHumidity(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 264112370513211, this, []); }
+  set maximumHumidity(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3935038314786414, this, [value]); }
   /**
    * var minimumHumidity: Double
    * @availability iOS 18.0+
    */
-  get minimumHumidity(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 2240232480431700, this, []); }
-  set minimumHumidity(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 744938549416123, this, [value]); }
+  get minimumHumidity(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 2240232480431700, this, []); }
+  set minimumHumidity(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 744938549416123, this, [value]); }
   /**
    * var maximumVisibility: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get maximumVisibility(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 4121770642586827, this, []); }
-  set maximumVisibility(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4141971883261657, this, [value]); }
+  get maximumVisibility(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 4121770642586827, this, []); }
+  set maximumVisibility(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4141971883261657, this, [value]); }
   /**
    * var minimumVisibility: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get minimumVisibility(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 2621738291817189, this, []); }
-  set minimumVisibility(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 100682765478920, this, [value]); }
+  get minimumVisibility(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 2621738291817189, this, []); }
+  set minimumVisibility(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 100682765478920, this, [value]); }
   /**
    * var precipitationChance: Double
    * @availability iOS 18.0+
    */
-  get precipitationChance(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 3936286995971219, this, []); }
-  set precipitationChance(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 280121378337958, this, [value]); }
+  get precipitationChance(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 3936286995971219, this, []); }
+  set precipitationChance(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 280121378337958, this, [value]); }
   /**
    * var cloudCoverByAltitude: CloudCoverByAltitude
    * @availability iOS 18.0+
    */
-  get cloudCoverByAltitude(): CloudCoverByAltitude { return callSDK<CloudCoverByAltitude>("WeatherKit_d453e9e1f4a52dda", 4162457719560356, this, []); }
-  set cloudCoverByAltitude(value: CloudCoverByAltitude) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2420570912045485, this, [value]); }
+  get cloudCoverByAltitude(): CloudCoverByAltitude { return callSDK<CloudCoverByAltitude>("WeatherKit_1f27952b3c5b81e6", 4162457719560356, this, []); }
+  set cloudCoverByAltitude(value: CloudCoverByAltitude) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2420570912045485, this, [value]); }
   /**
    * var precipitationAmountByType: PrecipitationAmountByType
    * @availability iOS 18.0+
    */
-  get precipitationAmountByType(): PrecipitationAmountByType { return callSDK<PrecipitationAmountByType>("WeatherKit_d453e9e1f4a52dda", 1405508523757581, this, []); }
-  set precipitationAmountByType(value: PrecipitationAmountByType) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 554074599221656, this, [value]); }
+  get precipitationAmountByType(): PrecipitationAmountByType { return callSDK<PrecipitationAmountByType>("WeatherKit_1f27952b3c5b81e6", 1405508523757581, this, []); }
+  set precipitationAmountByType(value: PrecipitationAmountByType) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 554074599221656, this, [value]); }
   /**
    * var wind: Wind
    * @availability iOS 18.0+
    */
-  get wind(): Wind { return callSDK<Wind>("WeatherKit_d453e9e1f4a52dda", 4326747681266980, this, []); }
-  set wind(value: Wind) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2687862774169494, this, [value]); }
+  get wind(): Wind { return callSDK<Wind>("WeatherKit_1f27952b3c5b81e6", 4326747681266980, this, []); }
+  set wind(value: Wind) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2687862774169494, this, [value]); }
   /**
    * var condition: WeatherCondition
    * @availability iOS 18.0+
    */
-  get condition(): WeatherCondition { return callSDK<WeatherCondition>("WeatherKit_d453e9e1f4a52dda", 1687030321051123, this, []); }
-  set condition(value: WeatherCondition) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3064755189997084, this, [value]); }
+  get condition(): WeatherCondition { return callSDK<WeatherCondition>("WeatherKit_1f27952b3c5b81e6", 1687030321051123, this, []); }
+  set condition(value: WeatherCondition) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3064755189997084, this, [value]); }
   declare readonly $type: { "s:10WeatherKit15DayPartForecastV": true };
 }
 
@@ -438,26 +438,26 @@ export class DayPrecipitationStatistics extends SDKHandle {
    * var averagePrecipitationProbability: Double
    * @availability iOS 18.0+
    */
-  get averagePrecipitationProbability(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 2213070228946001, this, []); }
-  set averagePrecipitationProbability(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1018441219179760, this, [value]); }
+  get averagePrecipitationProbability(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 2213070228946001, this, []); }
+  set averagePrecipitationProbability(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1018441219179760, this, [value]); }
   /**
    * var averagePrecipitationAmount: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get averagePrecipitationAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 1863920864252253, this, []); }
-  set averagePrecipitationAmount(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2295235687524395, this, [value]); }
+  get averagePrecipitationAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 1863920864252253, this, []); }
+  set averagePrecipitationAmount(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2295235687524395, this, [value]); }
   /**
    * var averageSnowfallAmount: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get averageSnowfallAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 1202771095134112, this, []); }
-  set averageSnowfallAmount(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1975525232622750, this, [value]); }
+  get averageSnowfallAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 1202771095134112, this, []); }
+  set averageSnowfallAmount(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1975525232622750, this, [value]); }
   /**
    * var day: Int
    * @availability iOS 18.0+
    */
-  get day(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 2465113241060231, this, []); }
-  set day(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1416813775737121, this, [value]); }
+  get day(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 2465113241060231, this, []); }
+  set day(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1416813775737121, this, [value]); }
   declare readonly $type: { "s:10WeatherKit26DayPrecipitationStatisticsV": true };
 }
 
@@ -470,20 +470,20 @@ export class DayPrecipitationSummary extends SDKHandle {
    * var snowfallAmount: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get snowfallAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 2013836651379449, this, []); }
-  set snowfallAmount(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4474713497850708, this, [value]); }
+  get snowfallAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 2013836651379449, this, []); }
+  set snowfallAmount(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4474713497850708, this, [value]); }
   /**
    * var precipitationAmount: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get precipitationAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 3357292575514771, this, []); }
-  set precipitationAmount(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 341215467236354, this, [value]); }
+  get precipitationAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 3357292575514771, this, []); }
+  set precipitationAmount(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 341215467236354, this, [value]); }
   /**
    * var date: Date
    * @availability iOS 18.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_d453e9e1f4a52dda", 3877658489395800, this, []); }
-  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2359953806872622, this, [value]); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_1f27952b3c5b81e6", 3877658489395800, this, []); }
+  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2359953806872622, this, [value]); }
   declare readonly $type: { "s:10WeatherKit23DayPrecipitationSummaryV": true };
 }
 
@@ -496,20 +496,20 @@ export class DayTemperatureStatistics extends SDKHandle {
    * var averageLowTemperature: Measurement<UnitTemperature>
    * @availability iOS 18.0+
    */
-  get averageLowTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 2455959343521474, this, []); }
-  set averageLowTemperature(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2271156848272724, this, [value]); }
+  get averageLowTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 2455959343521474, this, []); }
+  set averageLowTemperature(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2271156848272724, this, [value]); }
   /**
    * var averageHighTemperature: Measurement<UnitTemperature>
    * @availability iOS 18.0+
    */
-  get averageHighTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 945890042351760, this, []); }
-  set averageHighTemperature(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1273609334652860, this, [value]); }
+  get averageHighTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 945890042351760, this, []); }
+  set averageHighTemperature(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1273609334652860, this, [value]); }
   /**
    * var day: Int
    * @availability iOS 18.0+
    */
-  get day(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 2586380933869732, this, []); }
-  set day(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3097687637275609, this, [value]); }
+  get day(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 2586380933869732, this, []); }
+  set day(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3097687637275609, this, [value]); }
   declare readonly $type: { "s:10WeatherKit24DayTemperatureStatisticsV": true };
 }
 
@@ -522,20 +522,20 @@ export class DayTemperatureSummary extends SDKHandle {
    * var lowTemperature: Measurement<UnitTemperature>
    * @availability iOS 18.0+
    */
-  get lowTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 2092879647149952, this, []); }
-  set lowTemperature(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2718908031285871, this, [value]); }
+  get lowTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 2092879647149952, this, []); }
+  set lowTemperature(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2718908031285871, this, [value]); }
   /**
    * var highTemperature: Measurement<UnitTemperature>
    * @availability iOS 18.0+
    */
-  get highTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 605156470069145, this, []); }
-  set highTemperature(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2970593934624473, this, [value]); }
+  get highTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 605156470069145, this, []); }
+  set highTemperature(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2970593934624473, this, [value]); }
   /**
    * var date: Date
    * @availability iOS 18.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_d453e9e1f4a52dda", 2918613050302505, this, []); }
-  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4209160843990872, this, [value]); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_1f27952b3c5b81e6", 2918613050302505, this, []); }
+  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4209160843990872, this, [value]); }
   declare readonly $type: { "s:10WeatherKit21DayTemperatureSummaryV": true };
 }
 
@@ -548,155 +548,155 @@ export class DayWeather extends SDKHandle {
    * var restOfDayForecast: DayPartForecast?
    * @availability iOS 18.0+
    */
-  get restOfDayForecast(): (DayPartForecast) | null { return callSDK<(DayPartForecast) | null>("WeatherKit_d453e9e1f4a52dda", 3391808575012027, this, []); }
-  set restOfDayForecast(value: (DayPartForecast) | null) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2984983306452079, this, [value]); }
+  get restOfDayForecast(): (DayPartForecast) | null { return callSDK<(DayPartForecast) | null>("WeatherKit_1f27952b3c5b81e6", 3391808575012027, this, []); }
+  set restOfDayForecast(value: (DayPartForecast) | null) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2984983306452079, this, [value]); }
   /**
    * var symbolName: String
    * @availability iOS 16.0+
    */
-  get symbolName(): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 2263659792823830, this, []); }
-  set symbolName(value: string) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3197410734019942, this, [value]); }
+  get symbolName(): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 2263659792823830, this, []); }
+  set symbolName(value: string) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3197410734019942, this, [value]); }
   /**
    * var highWindSpeed: Measurement<UnitSpeed>?
    * @availability iOS 18.0+
    */
-  get highWindSpeed(): $SDK9 { return callSDK<$SDK9>("WeatherKit_d453e9e1f4a52dda", 3148658714955594, this, []); }
-  set highWindSpeed(value: $SDK9) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2467063853650858, this, [value]); }
+  get highWindSpeed(): $SDK9 { return callSDK<$SDK9>("WeatherKit_1f27952b3c5b81e6", 3148658714955594, this, []); }
+  set highWindSpeed(value: $SDK9) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2467063853650858, this, [value]); }
   /**
    * var precipitation: Precipitation
    * @availability iOS 16.0+
    */
-  get precipitation(): Precipitation { return callSDK<Precipitation>("WeatherKit_d453e9e1f4a52dda", 280691974838653, this, []); }
-  set precipitation(value: Precipitation) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1787795255055589, this, [value]); }
+  get precipitation(): Precipitation { return callSDK<Precipitation>("WeatherKit_1f27952b3c5b81e6", 280691974838653, this, []); }
+  set precipitation(value: Precipitation) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1787795255055589, this, [value]); }
   /**
    * var lowTemperature: Measurement<UnitTemperature>
    * @availability iOS 16.0+
    */
-  get lowTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 1273445196607046, this, []); }
-  set lowTemperature(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 694763744058476, this, [value]); }
+  get lowTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 1273445196607046, this, []); }
+  set lowTemperature(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 694763744058476, this, [value]); }
   /**
    * var rainfallAmount: Measurement<UnitLength>
    * @availability iOS 16.0+
    * @deprecated iOS 16.4
    */
-  get rainfallAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 481474572482864, this, []); }
-  set rainfallAmount(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2699206071248971, this, [value]); }
+  get rainfallAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 481474572482864, this, []); }
+  set rainfallAmount(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2699206071248971, this, [value]); }
   /**
    * var snowfallAmount: Measurement<UnitLength>
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  get snowfallAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 2970272467279995, this, []); }
-  set snowfallAmount(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2205275734756880, this, [value]); }
+  get snowfallAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 2970272467279995, this, []); }
+  set snowfallAmount(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2205275734756880, this, [value]); }
   /**
    * var daytimeForecast: DayPartForecast
    * @availability iOS 18.0+
    */
-  get daytimeForecast(): DayPartForecast { return callSDK<DayPartForecast>("WeatherKit_d453e9e1f4a52dda", 2372340097697602, this, []); }
-  set daytimeForecast(value: DayPartForecast) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3214405032479189, this, [value]); }
+  get daytimeForecast(): DayPartForecast { return callSDK<DayPartForecast>("WeatherKit_1f27952b3c5b81e6", 2372340097697602, this, []); }
+  set daytimeForecast(value: DayPartForecast) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3214405032479189, this, [value]); }
   /**
    * var highTemperature: Measurement<UnitTemperature>
    * @availability iOS 16.0+
    */
-  get highTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 4141985117921594, this, []); }
-  set highTemperature(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2641084395740526, this, [value]); }
+  get highTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 4141985117921594, this, []); }
+  set highTemperature(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2641084395740526, this, [value]); }
   /**
    * var maximumHumidity: Double
    * @availability iOS 18.0+
    */
-  get maximumHumidity(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 1668479769352057, this, []); }
-  set maximumHumidity(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 421185949361011, this, [value]); }
+  get maximumHumidity(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 1668479769352057, this, []); }
+  set maximumHumidity(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 421185949361011, this, [value]); }
   /**
    * var minimumHumidity: Double
    * @availability iOS 18.0+
    */
-  get minimumHumidity(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 4262944510930637, this, []); }
-  set minimumHumidity(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 225080174721547, this, [value]); }
+  get minimumHumidity(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 4262944510930637, this, []); }
+  set minimumHumidity(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 225080174721547, this, [value]); }
   /**
    * var maximumVisibility: Double
    * @availability iOS 18.0+
    */
-  get maximumVisibility(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 3044112576163421, this, []); }
-  set maximumVisibility(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2644783255440041, this, [value]); }
+  get maximumVisibility(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 3044112576163421, this, []); }
+  set maximumVisibility(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2644783255440041, this, [value]); }
   /**
    * var minimumVisibility: Double
    * @availability iOS 18.0+
    */
-  get minimumVisibility(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 1285754911397257, this, []); }
-  set minimumVisibility(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4019927405885361, this, [value]); }
+  get minimumVisibility(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 1285754911397257, this, []); }
+  set minimumVisibility(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4019927405885361, this, [value]); }
   /**
    * var overnightForecast: DayPartForecast
    * @availability iOS 18.0+
    */
-  get overnightForecast(): DayPartForecast { return callSDK<DayPartForecast>("WeatherKit_d453e9e1f4a52dda", 1929277317973656, this, []); }
-  set overnightForecast(value: DayPartForecast) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1522864080069675, this, [value]); }
+  get overnightForecast(): DayPartForecast { return callSDK<DayPartForecast>("WeatherKit_1f27952b3c5b81e6", 1929277317973656, this, []); }
+  set overnightForecast(value: DayPartForecast) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1522864080069675, this, [value]); }
   /**
    * var lowTemperatureTime: Date?
    * @availability iOS 18.0+
    */
-  get lowTemperatureTime(): $SDK10 { return callSDK<$SDK10>("WeatherKit_d453e9e1f4a52dda", 2150285956211035, this, []); }
-  set lowTemperatureTime(value: $SDK10) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3323266163292176, this, [value]); }
+  get lowTemperatureTime(): $SDK10 { return callSDK<$SDK10>("WeatherKit_1f27952b3c5b81e6", 2150285956211035, this, []); }
+  set lowTemperatureTime(value: $SDK10) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3323266163292176, this, [value]); }
   /**
    * var highTemperatureTime: Date?
    * @availability iOS 18.0+
    */
-  get highTemperatureTime(): $SDK10 { return callSDK<$SDK10>("WeatherKit_d453e9e1f4a52dda", 3770302957755675, this, []); }
-  set highTemperatureTime(value: $SDK10) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2388140003141113, this, [value]); }
+  get highTemperatureTime(): $SDK10 { return callSDK<$SDK10>("WeatherKit_1f27952b3c5b81e6", 3770302957755675, this, []); }
+  set highTemperatureTime(value: $SDK10) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2388140003141113, this, [value]); }
   /**
    * @backDeployed(before: iOS 16.4, macOS 13.3, tvOS 16.4, watchOS 9.4)
   var precipitationAmount: Measurement<UnitLength> { get }
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  get precipitationAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 2757067870501227, this, []); }
+  get precipitationAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 2757067870501227, this, []); }
   /**
    * var precipitationChance: Double
    * @availability iOS 16.0+
    */
-  get precipitationChance(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 2151971986372191, this, []); }
-  set precipitationChance(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 254066455513885, this, [value]); }
+  get precipitationChance(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 2151971986372191, this, []); }
+  set precipitationChance(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 254066455513885, this, [value]); }
   /**
    * var precipitationAmountByType: PrecipitationAmountByType
    * @availability iOS 18.0+
    */
-  get precipitationAmountByType(): PrecipitationAmountByType { return callSDK<PrecipitationAmountByType>("WeatherKit_d453e9e1f4a52dda", 2952727000651041, this, []); }
-  set precipitationAmountByType(value: PrecipitationAmountByType) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3490412189988117, this, [value]); }
+  get precipitationAmountByType(): PrecipitationAmountByType { return callSDK<PrecipitationAmountByType>("WeatherKit_1f27952b3c5b81e6", 2952727000651041, this, []); }
+  set precipitationAmountByType(value: PrecipitationAmountByType) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3490412189988117, this, [value]); }
   /**
    * var sun: SunEvents
    * @availability iOS 16.0+
    */
-  get sun(): SunEvents { return callSDK<SunEvents>("WeatherKit_d453e9e1f4a52dda", 2209733217628453, this, []); }
-  set sun(value: SunEvents) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 490895806672168, this, [value]); }
+  get sun(): SunEvents { return callSDK<SunEvents>("WeatherKit_1f27952b3c5b81e6", 2209733217628453, this, []); }
+  set sun(value: SunEvents) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 490895806672168, this, [value]); }
   /**
    * var date: Date
    * @availability iOS 16.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_d453e9e1f4a52dda", 3531675095676283, this, []); }
-  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3015001958139334, this, [value]); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_1f27952b3c5b81e6", 3531675095676283, this, []); }
+  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3015001958139334, this, [value]); }
   /**
    * var moon: MoonEvents
    * @availability iOS 16.0+
    */
-  get moon(): MoonEvents { return callSDK<MoonEvents>("WeatherKit_d453e9e1f4a52dda", 1534891051804401, this, []); }
-  set moon(value: MoonEvents) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1956493572835831, this, [value]); }
+  get moon(): MoonEvents { return callSDK<MoonEvents>("WeatherKit_1f27952b3c5b81e6", 1534891051804401, this, []); }
+  set moon(value: MoonEvents) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1956493572835831, this, [value]); }
   /**
    * var wind: Wind
    * @availability iOS 16.0+
    */
-  get wind(): Wind { return callSDK<Wind>("WeatherKit_d453e9e1f4a52dda", 617475410409292, this, []); }
-  set wind(value: Wind) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4109577412927891, this, [value]); }
+  get wind(): Wind { return callSDK<Wind>("WeatherKit_1f27952b3c5b81e6", 617475410409292, this, []); }
+  set wind(value: Wind) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4109577412927891, this, [value]); }
   /**
    * var uvIndex: UVIndex
    * @availability iOS 16.0+
    */
-  get uvIndex(): UVIndex { return callSDK<UVIndex>("WeatherKit_d453e9e1f4a52dda", 4045912254825263, this, []); }
-  set uvIndex(value: UVIndex) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3917815494874263, this, [value]); }
+  get uvIndex(): UVIndex { return callSDK<UVIndex>("WeatherKit_1f27952b3c5b81e6", 4045912254825263, this, []); }
+  set uvIndex(value: UVIndex) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3917815494874263, this, [value]); }
   /**
    * var condition: WeatherCondition
    * @availability iOS 16.0+
    */
-  get condition(): WeatherCondition { return callSDK<WeatherCondition>("WeatherKit_d453e9e1f4a52dda", 1283375055191453, this, []); }
-  set condition(value: WeatherCondition) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1027754417645255, this, [value]); }
+  get condition(): WeatherCondition { return callSDK<WeatherCondition>("WeatherKit_1f27952b3c5b81e6", 1283375055191453, this, []); }
+  set condition(value: WeatherCondition) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1027754417645255, this, [value]); }
   declare readonly $type: { "s:10WeatherKit03DayA0V": true };
 }
 
@@ -715,34 +715,34 @@ export class Forecast<Element = unknown> extends SDKHandle {
    * var startIndex: Forecast<Element>.Index { get }
    * @availability iOS 16.0+
    */
-  get startIndex(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 83344189319469, this, []); }
+  get startIndex(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 83344189319469, this, []); }
   /**
    * var endIndex: Forecast<Element>.Index { get }
    * @availability iOS 16.0+
    */
-  get endIndex(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 2410979884631772, this, []); }
+  get endIndex(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 2410979884631772, this, []); }
   /**
    * var forecast: [Element]
    * @availability iOS 16.0+
    */
-  get forecast(): Array<number> { return callSDK<Array<number>>("WeatherKit_d453e9e1f4a52dda", 1645414757500046, this, []); }
-  set forecast(value: Array<number>) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1864286190299437, this, [value]); }
+  get forecast(): Array<number> { return callSDK<Array<number>>("WeatherKit_1f27952b3c5b81e6", 1645414757500046, this, []); }
+  set forecast(value: Array<number>) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1864286190299437, this, [value]); }
   /**
    * var metadata: WeatherMetadata
    * @availability iOS 16.0+
    */
-  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_d453e9e1f4a52dda", 2535663820773617, this, []); }
-  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2784839608768244, this, [value]); }
+  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_1f27952b3c5b81e6", 2535663820773617, this, []); }
+  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2784839608768244, this, [value]); }
   /**
    * var summary: String { get }
    * @availability iOS 16.0+
    */
-  get summary(): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 1376316911075444, this, []); }
+  get summary(): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 1376316911075444, this, []); }
   /**
    * subscript(position: Forecast<Element>.Index) -> Element { get }
    * @availability iOS 16.0+
    */
-  subscript(position: number): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 2308669367383164, this, [position]); }
+  subscript(position: number): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 2308669367383164, this, [position]); }
   declare readonly $type: { "s:10WeatherKit8ForecastV": true };
 }
 
@@ -787,29 +787,29 @@ export class HistoricalComparisons extends SDKHandle {
    * var startIndex: HistoricalComparisons.Index { get }
    * @availability iOS 18.0+
    */
-  get startIndex(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 244821393263653, this, []); }
+  get startIndex(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 244821393263653, this, []); }
   /**
    * var comparisons: [HistoricalComparison]
    * @availability iOS 18.0+
    */
-  get comparisons(): Array<HistoricalComparison> { return callSDK<Array<HistoricalComparison>>("WeatherKit_d453e9e1f4a52dda", 4414864593153401, this, []); }
-  set comparisons(value: Array<HistoricalComparison>) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2169914870331309, this, [value]); }
+  get comparisons(): Array<HistoricalComparison> { return callSDK<Array<HistoricalComparison>>("WeatherKit_1f27952b3c5b81e6", 4414864593153401, this, []); }
+  set comparisons(value: Array<HistoricalComparison>) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2169914870331309, this, [value]); }
   /**
    * var endIndex: HistoricalComparisons.Index { get }
    * @availability iOS 18.0+
    */
-  get endIndex(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 3761320519409107, this, []); }
+  get endIndex(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 3761320519409107, this, []); }
   /**
    * var metadata: WeatherMetadata
    * @availability iOS 18.0+
    */
-  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_d453e9e1f4a52dda", 683899888379122, this, []); }
-  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 756942164290748, this, [value]); }
+  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_1f27952b3c5b81e6", 683899888379122, this, []); }
+  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 756942164290748, this, [value]); }
   /**
    * subscript(position: HistoricalComparisons.Index) -> HistoricalComparisons.Element { get }
    * @availability iOS 18.0+
    */
-  subscript(position: number): HistoricalComparison { return callSDK<HistoricalComparison>("WeatherKit_d453e9e1f4a52dda", 2012573501612865, this, [position]); }
+  subscript(position: number): HistoricalComparison { return callSDK<HistoricalComparison>("WeatherKit_1f27952b3c5b81e6", 2012573501612865, this, [position]); }
   declare readonly $type: { "s:10WeatherKit21HistoricalComparisonsV": true };
 }
 
@@ -852,35 +852,35 @@ export class HourlyWeatherStatistics<T = unknown> extends SDKHandle {
    * var startIndex: HourlyWeatherStatistics<T>.Index { get }
    * @availability iOS 18.0+
    */
-  get startIndex(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 1201983811771011, this, []); }
+  get startIndex(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 1201983811771011, this, []); }
   /**
    * var baselineStartDate: Date
    * @availability iOS 18.0+
    */
-  get baselineStartDate(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_d453e9e1f4a52dda", 3605754199685581, this, []); }
-  set baselineStartDate(value: globalThis.Date) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4052125087716651, this, [value]); }
+  get baselineStartDate(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_1f27952b3c5b81e6", 3605754199685581, this, []); }
+  set baselineStartDate(value: globalThis.Date) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4052125087716651, this, [value]); }
   /**
    * var hours: [T]
    * @availability iOS 18.0+
    */
-  get hours(): Array<number> { return callSDK<Array<number>>("WeatherKit_d453e9e1f4a52dda", 2760470146082454, this, []); }
-  set hours(value: Array<number>) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 771559176176959, this, [value]); }
+  get hours(): Array<number> { return callSDK<Array<number>>("WeatherKit_1f27952b3c5b81e6", 2760470146082454, this, []); }
+  set hours(value: Array<number>) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 771559176176959, this, [value]); }
   /**
    * var endIndex: HourlyWeatherStatistics<T>.Index { get }
    * @availability iOS 18.0+
    */
-  get endIndex(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 2843897501027529, this, []); }
+  get endIndex(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 2843897501027529, this, []); }
   /**
    * var metadata: WeatherMetadata
    * @availability iOS 18.0+
    */
-  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_d453e9e1f4a52dda", 2826979553678860, this, []); }
-  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2023251932973878, this, [value]); }
+  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_1f27952b3c5b81e6", 2826979553678860, this, []); }
+  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2023251932973878, this, [value]); }
   /**
    * subscript(position: HourlyWeatherStatistics<T>.Index) -> HourlyWeatherStatistics<T>.Element { get }
    * @availability iOS 18.0+
    */
-  subscript(position: number): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 4180143328066408, this, [position]); }
+  subscript(position: number): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 4180143328066408, this, [position]); }
   declare readonly $type: { "s:10WeatherKit06HourlyA10StatisticsV": true };
 }
 
@@ -923,7 +923,7 @@ export class HourlyWeatherStatisticsQuery<T = unknown> extends SDKHandle {
    * static var temperature: HourlyWeatherStatisticsQuery<HourTemperatureStatistics> { get }
    * @availability iOS 18.0+
    */
-  static get temperature(): HourlyWeatherStatisticsQuery<HourTemperatureStatistics> { return callSDK<HourlyWeatherStatisticsQuery<HourTemperatureStatistics>>("WeatherKit_d453e9e1f4a52dda", 2900785926671706, undefined, []); }
+  static get temperature(): HourlyWeatherStatisticsQuery<HourTemperatureStatistics> { return callSDK<HourlyWeatherStatisticsQuery<HourTemperatureStatistics>>("WeatherKit_1f27952b3c5b81e6", 2900785926671706, undefined, []); }
   declare readonly $type: { "s:10WeatherKit06HourlyA15StatisticsQueryV": true };
 }
 
@@ -936,14 +936,14 @@ export class HourTemperatureStatistics extends SDKHandle {
    * var percentiles: Percentiles<UnitTemperature>
    * @availability iOS 18.0+
    */
-  get percentiles(): $SDK13 { return callSDK<$SDK13>("WeatherKit_d453e9e1f4a52dda", 4352863015415699, this, []); }
-  set percentiles(value: $SDK13) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3854906887327357, this, [value]); }
+  get percentiles(): $SDK13 { return callSDK<$SDK13>("WeatherKit_1f27952b3c5b81e6", 4352863015415699, this, []); }
+  set percentiles(value: $SDK13) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3854906887327357, this, [value]); }
   /**
    * var hour: Int
    * @availability iOS 18.0+
    */
-  get hour(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 2430248181243655, this, []); }
-  set hour(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1562180186590576, this, [value]); }
+  get hour(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 2430248181243655, this, []); }
+  set hour(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1562180186590576, this, [value]); }
   declare readonly $type: { "s:10WeatherKit25HourTemperatureStatisticsV": true };
 }
 
@@ -956,116 +956,116 @@ export class HourWeather extends SDKHandle {
    * var cloudCover: Double
    * @availability iOS 16.0+
    */
-  get cloudCover(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 3182159716995866, this, []); }
-  set cloudCover(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1848783453867028, this, [value]); }
+  get cloudCover(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 3182159716995866, this, []); }
+  set cloudCover(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1848783453867028, this, [value]); }
   /**
    * var isDaylight: Bool
    * @availability iOS 16.0+
    */
-  get isDaylight(): boolean { return callSDK<boolean>("WeatherKit_d453e9e1f4a52dda", 581145191784572, this, []); }
-  set isDaylight(value: boolean) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2926220322659634, this, [value]); }
+  get isDaylight(): boolean { return callSDK<boolean>("WeatherKit_1f27952b3c5b81e6", 581145191784572, this, []); }
+  set isDaylight(value: boolean) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2926220322659634, this, [value]); }
   /**
    * var symbolName: String
    * @availability iOS 16.0+
    */
-  get symbolName(): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 3795640404283789, this, []); }
-  set symbolName(value: string) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3394413284254545, this, [value]); }
+  get symbolName(): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 3795640404283789, this, []); }
+  set symbolName(value: string) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3394413284254545, this, [value]); }
   /**
    * var visibility: Measurement<UnitLength>
    * @availability iOS 16.0+
    */
-  get visibility(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 2530562526117118, this, []); }
-  set visibility(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3695760781557632, this, [value]); }
+  get visibility(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 2530562526117118, this, []); }
+  set visibility(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3695760781557632, this, [value]); }
   /**
    * var temperature: Measurement<UnitTemperature>
    * @availability iOS 16.0+
    */
-  get temperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 571005968253033, this, []); }
-  set temperature(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 22474497021174, this, [value]); }
+  get temperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 571005968253033, this, []); }
+  set temperature(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 22474497021174, this, [value]); }
   /**
    * var precipitation: Precipitation
    * @availability iOS 16.0+
    */
-  get precipitation(): Precipitation { return callSDK<Precipitation>("WeatherKit_d453e9e1f4a52dda", 2233384595195424, this, []); }
-  set precipitation(value: Precipitation) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 109918765770628, this, [value]); }
+  get precipitation(): Precipitation { return callSDK<Precipitation>("WeatherKit_1f27952b3c5b81e6", 2233384595195424, this, []); }
+  set precipitation(value: Precipitation) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 109918765770628, this, [value]); }
   /**
    * var pressureTrend: PressureTrend
    * @availability iOS 16.0+
    */
-  get pressureTrend(): PressureTrend { return callSDK<PressureTrend>("WeatherKit_d453e9e1f4a52dda", 2139858008384858, this, []); }
-  set pressureTrend(value: PressureTrend) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2583061976603737, this, [value]); }
+  get pressureTrend(): PressureTrend { return callSDK<PressureTrend>("WeatherKit_1f27952b3c5b81e6", 2139858008384858, this, []); }
+  set pressureTrend(value: PressureTrend) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2583061976603737, this, [value]); }
   /**
    * var snowfallAmount: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get snowfallAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 3451536765500606, this, []); }
-  set snowfallAmount(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3335456766760984, this, [value]); }
+  get snowfallAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 3451536765500606, this, []); }
+  set snowfallAmount(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3335456766760984, this, [value]); }
   /**
    * var apparentTemperature: Measurement<UnitTemperature>
    * @availability iOS 16.0+
    */
-  get apparentTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 2846080756212928, this, []); }
-  set apparentTemperature(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3040938568692742, this, [value]); }
+  get apparentTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 2846080756212928, this, []); }
+  set apparentTemperature(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3040938568692742, this, [value]); }
   /**
    * var precipitationAmount: Measurement<UnitLength>
    * @availability iOS 16.0+
    */
-  get precipitationAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 1368375192237474, this, []); }
-  set precipitationAmount(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1318460627690004, this, [value]); }
+  get precipitationAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 1368375192237474, this, []); }
+  set precipitationAmount(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1318460627690004, this, [value]); }
   /**
    * var precipitationChance: Double
    * @availability iOS 16.0+
    */
-  get precipitationChance(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 765809727424082, this, []); }
-  set precipitationChance(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1788934703283142, this, [value]); }
+  get precipitationChance(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 765809727424082, this, []); }
+  set precipitationChance(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1788934703283142, this, [value]); }
   /**
    * var cloudCoverByAltitude: CloudCoverByAltitude
    * @availability iOS 18.0+
    */
-  get cloudCoverByAltitude(): CloudCoverByAltitude { return callSDK<CloudCoverByAltitude>("WeatherKit_d453e9e1f4a52dda", 634155543477207, this, []); }
-  set cloudCoverByAltitude(value: CloudCoverByAltitude) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2372520439560238, this, [value]); }
+  get cloudCoverByAltitude(): CloudCoverByAltitude { return callSDK<CloudCoverByAltitude>("WeatherKit_1f27952b3c5b81e6", 634155543477207, this, []); }
+  set cloudCoverByAltitude(value: CloudCoverByAltitude) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2372520439560238, this, [value]); }
   /**
    * var date: Date
    * @availability iOS 16.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_d453e9e1f4a52dda", 2435156390393227, this, []); }
-  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4356697355116478, this, [value]); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_1f27952b3c5b81e6", 2435156390393227, this, []); }
+  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4356697355116478, this, [value]); }
   /**
    * var wind: Wind
    * @availability iOS 16.0+
    */
-  get wind(): Wind { return callSDK<Wind>("WeatherKit_d453e9e1f4a52dda", 412686245204586, this, []); }
-  set wind(value: Wind) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1492025123052775, this, [value]); }
+  get wind(): Wind { return callSDK<Wind>("WeatherKit_1f27952b3c5b81e6", 412686245204586, this, []); }
+  set wind(value: Wind) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1492025123052775, this, [value]); }
   /**
    * var uvIndex: UVIndex
    * @availability iOS 16.0+
    */
-  get uvIndex(): UVIndex { return callSDK<UVIndex>("WeatherKit_d453e9e1f4a52dda", 3774974709233362, this, []); }
-  set uvIndex(value: UVIndex) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4075558712818432, this, [value]); }
+  get uvIndex(): UVIndex { return callSDK<UVIndex>("WeatherKit_1f27952b3c5b81e6", 3774974709233362, this, []); }
+  set uvIndex(value: UVIndex) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4075558712818432, this, [value]); }
   /**
    * var dewPoint: Measurement<UnitTemperature>
    * @availability iOS 16.0+
    */
-  get dewPoint(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 4086465126517647, this, []); }
-  set dewPoint(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1401821811829429, this, [value]); }
+  get dewPoint(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 4086465126517647, this, []); }
+  set dewPoint(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1401821811829429, this, [value]); }
   /**
    * var humidity: Double
    * @availability iOS 16.0+
    */
-  get humidity(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 3829486489278858, this, []); }
-  set humidity(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4119064096215080, this, [value]); }
+  get humidity(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 3829486489278858, this, []); }
+  set humidity(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4119064096215080, this, [value]); }
   /**
    * var pressure: Measurement<UnitPressure>
    * @availability iOS 16.0+
    */
-  get pressure(): $SDK3 { return callSDK<$SDK3>("WeatherKit_d453e9e1f4a52dda", 1436206194534885, this, []); }
-  set pressure(value: $SDK3) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2010381090984217, this, [value]); }
+  get pressure(): $SDK3 { return callSDK<$SDK3>("WeatherKit_1f27952b3c5b81e6", 1436206194534885, this, []); }
+  set pressure(value: $SDK3) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2010381090984217, this, [value]); }
   /**
    * var condition: WeatherCondition
    * @availability iOS 16.0+
    */
-  get condition(): WeatherCondition { return callSDK<WeatherCondition>("WeatherKit_d453e9e1f4a52dda", 1142014691876811, this, []); }
-  set condition(value: WeatherCondition) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 514758502880900, this, [value]); }
+  get condition(): WeatherCondition { return callSDK<WeatherCondition>("WeatherKit_1f27952b3c5b81e6", 1142014691876811, this, []); }
+  set condition(value: WeatherCondition) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 514758502880900, this, [value]); }
   declare readonly $type: { "s:10WeatherKit04HourA0V": true };
 }
 
@@ -1078,26 +1078,26 @@ export class MinuteWeather extends SDKHandle {
    * var precipitation: Precipitation
    * @availability iOS 16.0+
    */
-  get precipitation(): Precipitation { return callSDK<Precipitation>("WeatherKit_d453e9e1f4a52dda", 1393112922606017, this, []); }
-  set precipitation(value: Precipitation) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3014199918515190, this, [value]); }
+  get precipitation(): Precipitation { return callSDK<Precipitation>("WeatherKit_1f27952b3c5b81e6", 1393112922606017, this, []); }
+  set precipitation(value: Precipitation) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3014199918515190, this, [value]); }
   /**
    * var precipitationChance: Double
    * @availability iOS 16.0+
    */
-  get precipitationChance(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 268995579598206, this, []); }
-  set precipitationChance(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4062385940159052, this, [value]); }
+  get precipitationChance(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 268995579598206, this, []); }
+  set precipitationChance(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4062385940159052, this, [value]); }
   /**
    * var precipitationIntensity: Measurement<UnitSpeed>
    * @availability iOS 16.0+
    */
-  get precipitationIntensity(): $SDK2 { return callSDK<$SDK2>("WeatherKit_d453e9e1f4a52dda", 336557213075454, this, []); }
-  set precipitationIntensity(value: $SDK2) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3121542151061531, this, [value]); }
+  get precipitationIntensity(): $SDK2 { return callSDK<$SDK2>("WeatherKit_1f27952b3c5b81e6", 336557213075454, this, []); }
+  set precipitationIntensity(value: $SDK2) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3121542151061531, this, [value]); }
   /**
    * var date: Date
    * @availability iOS 16.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_d453e9e1f4a52dda", 2907042169577967, this, []); }
-  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1275845968493357, this, [value]); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_1f27952b3c5b81e6", 2907042169577967, this, []); }
+  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1275845968493357, this, [value]); }
   declare readonly $type: { "s:10WeatherKit06MinuteA0V": true };
 }
 
@@ -1110,35 +1110,35 @@ export class MonthlyWeatherStatistics<T = unknown> extends SDKHandle {
    * var startIndex: MonthlyWeatherStatistics<T>.Index { get }
    * @availability iOS 18.0+
    */
-  get startIndex(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 1760105731425393, this, []); }
+  get startIndex(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 1760105731425393, this, []); }
   /**
    * var baselineStartDate: Date
    * @availability iOS 18.0+
    */
-  get baselineStartDate(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_d453e9e1f4a52dda", 812824927484330, this, []); }
-  set baselineStartDate(value: globalThis.Date) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1059098312121867, this, [value]); }
+  get baselineStartDate(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_1f27952b3c5b81e6", 812824927484330, this, []); }
+  set baselineStartDate(value: globalThis.Date) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1059098312121867, this, [value]); }
   /**
    * var months: [T]
    * @availability iOS 18.0+
    */
-  get months(): Array<number> { return callSDK<Array<number>>("WeatherKit_d453e9e1f4a52dda", 1548513866575845, this, []); }
-  set months(value: Array<number>) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3901272981960335, this, [value]); }
+  get months(): Array<number> { return callSDK<Array<number>>("WeatherKit_1f27952b3c5b81e6", 1548513866575845, this, []); }
+  set months(value: Array<number>) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3901272981960335, this, [value]); }
   /**
    * var endIndex: MonthlyWeatherStatistics<T>.Index { get }
    * @availability iOS 18.0+
    */
-  get endIndex(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 617145530441791, this, []); }
+  get endIndex(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 617145530441791, this, []); }
   /**
    * var metadata: WeatherMetadata
    * @availability iOS 18.0+
    */
-  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_d453e9e1f4a52dda", 735548742711181, this, []); }
-  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1004807364241237, this, [value]); }
+  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_1f27952b3c5b81e6", 735548742711181, this, []); }
+  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1004807364241237, this, [value]); }
   /**
    * subscript(position: MonthlyWeatherStatistics<T>.Index) -> MonthlyWeatherStatistics<T>.Element { get }
    * @availability iOS 18.0+
    */
-  subscript(position: number): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 1520397644706116, this, [position]); }
+  subscript(position: number): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 1520397644706116, this, [position]); }
   declare readonly $type: { "s:10WeatherKit07MonthlyA10StatisticsV": true };
 }
 
@@ -1181,12 +1181,12 @@ export class MonthlyWeatherStatisticsQuery<T = unknown> extends SDKHandle {
    * static var temperature: MonthlyWeatherStatisticsQuery<MonthTemperatureStatistics> { get }
    * @availability iOS 18.0+
    */
-  static get temperature(): MonthlyWeatherStatisticsQuery<MonthTemperatureStatistics> { return callSDK<MonthlyWeatherStatisticsQuery<MonthTemperatureStatistics>>("WeatherKit_d453e9e1f4a52dda", 3402723808162715, undefined, []); }
+  static get temperature(): MonthlyWeatherStatisticsQuery<MonthTemperatureStatistics> { return callSDK<MonthlyWeatherStatisticsQuery<MonthTemperatureStatistics>>("WeatherKit_1f27952b3c5b81e6", 3402723808162715, undefined, []); }
   /**
    * static var precipitation: MonthlyWeatherStatisticsQuery<MonthPrecipitationStatistics> { get }
    * @availability iOS 18.0+
    */
-  static get precipitation(): MonthlyWeatherStatisticsQuery<MonthPrecipitationStatistics> { return callSDK<MonthlyWeatherStatisticsQuery<MonthPrecipitationStatistics>>("WeatherKit_d453e9e1f4a52dda", 515789009575016, undefined, []); }
+  static get precipitation(): MonthlyWeatherStatisticsQuery<MonthPrecipitationStatistics> { return callSDK<MonthlyWeatherStatisticsQuery<MonthPrecipitationStatistics>>("WeatherKit_1f27952b3c5b81e6", 515789009575016, undefined, []); }
   declare readonly $type: { "s:10WeatherKit07MonthlyA15StatisticsQueryV": true };
 }
 
@@ -1199,26 +1199,26 @@ export class MonthPrecipitationStatistics extends SDKHandle {
    * var averagePrecipitationProbability: Double
    * @availability iOS 18.0+
    */
-  get averagePrecipitationProbability(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 4139011725017062, this, []); }
-  set averagePrecipitationProbability(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4050128092867055, this, [value]); }
+  get averagePrecipitationProbability(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 4139011725017062, this, []); }
+  set averagePrecipitationProbability(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4050128092867055, this, [value]); }
   /**
    * var averagePrecipitationAmount: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get averagePrecipitationAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 4500650970572042, this, []); }
-  set averagePrecipitationAmount(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1398641220869061, this, [value]); }
+  get averagePrecipitationAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 4500650970572042, this, []); }
+  set averagePrecipitationAmount(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1398641220869061, this, [value]); }
   /**
    * var averageSnowfallAmount: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get averageSnowfallAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 3420491736525533, this, []); }
-  set averageSnowfallAmount(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2870851361875646, this, [value]); }
+  get averageSnowfallAmount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 3420491736525533, this, []); }
+  set averageSnowfallAmount(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2870851361875646, this, [value]); }
   /**
    * var month: Int
    * @availability iOS 18.0+
    */
-  get month(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 1305240462388785, this, []); }
-  set month(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4171144313210316, this, [value]); }
+  get month(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 1305240462388785, this, []); }
+  set month(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4171144313210316, this, [value]); }
   declare readonly $type: { "s:10WeatherKit28MonthPrecipitationStatisticsV": true };
 }
 
@@ -1231,20 +1231,20 @@ export class MonthTemperatureStatistics extends SDKHandle {
    * var averageLowTemperature: Measurement<UnitTemperature>
    * @availability iOS 18.0+
    */
-  get averageLowTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 1531419953182048, this, []); }
-  set averageLowTemperature(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1272319337064938, this, [value]); }
+  get averageLowTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 1531419953182048, this, []); }
+  set averageLowTemperature(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1272319337064938, this, [value]); }
   /**
    * var averageHighTemperature: Measurement<UnitTemperature>
    * @availability iOS 18.0+
    */
-  get averageHighTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_d453e9e1f4a52dda", 912086731385177, this, []); }
-  set averageHighTemperature(value: $SDK1) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3486282856468083, this, [value]); }
+  get averageHighTemperature(): $SDK1 { return callSDK<$SDK1>("WeatherKit_1f27952b3c5b81e6", 912086731385177, this, []); }
+  set averageHighTemperature(value: $SDK1) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3486282856468083, this, [value]); }
   /**
    * var month: Int
    * @availability iOS 18.0+
    */
-  get month(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 3573232583857181, this, []); }
-  set month(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1471972784097073, this, [value]); }
+  get month(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 3573232583857181, this, []); }
+  set month(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1471972784097073, this, [value]); }
   declare readonly $type: { "s:10WeatherKit26MonthTemperatureStatisticsV": true };
 }
 
@@ -1257,20 +1257,20 @@ export class MoonEvents extends SDKHandle {
    * var phase: MoonPhase
    * @availability iOS 16.0+
    */
-  get phase(): MoonPhase { return callSDK<MoonPhase>("WeatherKit_d453e9e1f4a52dda", 2134162203711367, this, []); }
-  set phase(value: MoonPhase) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1299975721796533, this, [value]); }
+  get phase(): MoonPhase { return callSDK<MoonPhase>("WeatherKit_1f27952b3c5b81e6", 2134162203711367, this, []); }
+  set phase(value: MoonPhase) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1299975721796533, this, [value]); }
   /**
    * var moonset: Date?
    * @availability iOS 16.0+
    */
-  get moonset(): $SDK10 { return callSDK<$SDK10>("WeatherKit_d453e9e1f4a52dda", 192011569775146, this, []); }
-  set moonset(value: $SDK10) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 307183347995824, this, [value]); }
+  get moonset(): $SDK10 { return callSDK<$SDK10>("WeatherKit_1f27952b3c5b81e6", 192011569775146, this, []); }
+  set moonset(value: $SDK10) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 307183347995824, this, [value]); }
   /**
    * var moonrise: Date?
    * @availability iOS 16.0+
    */
-  get moonrise(): $SDK10 { return callSDK<$SDK10>("WeatherKit_d453e9e1f4a52dda", 1619465571348216, this, []); }
-  set moonrise(value: $SDK10) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4087910540123525, this, [value]); }
+  get moonrise(): $SDK10 { return callSDK<$SDK10>("WeatherKit_1f27952b3c5b81e6", 1619465571348216, this, []); }
+  set moonrise(value: $SDK10) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4087910540123525, this, [value]); }
   declare readonly $type: { "s:10WeatherKit10MoonEventsV": true };
 }
 
@@ -1285,32 +1285,32 @@ export const MoonPhase = {
    * var symbolName: String { get }
    * @availability iOS 16.0+
    */
-  getSymbolName($self: MoonPhase): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 1776449109681381, $self, []); },
+  getSymbolName($self: MoonPhase): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 1776449109681381, $self, []); },
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  getDescription($self: MoonPhase): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 152862147229727, $self, []); },
+  getDescription($self: MoonPhase): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 152862147229727, $self, []); },
   /**
    * var accessibilityDescription: String { get }
    * @availability iOS 16.0+
    */
-  getAccessibilityDescription($self: MoonPhase): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 1788121365471306, $self, []); },
+  getAccessibilityDescription($self: MoonPhase): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 1788121365471306, $self, []); },
   /**
    * nonisolated static var allCases: [MoonPhase] { get }
    * @availability iOS 16.0+
    */
-  get allCases(): Array<MoonPhase> { return callSDK<Array<MoonPhase>>("WeatherKit_d453e9e1f4a52dda", 126846838761821, undefined, []); },
+  get allCases(): Array<MoonPhase> { return callSDK<Array<MoonPhase>>("WeatherKit_1f27952b3c5b81e6", 126846838761821, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): (MoonPhase) | null { return callSDK<(MoonPhase) | null>("WeatherKit_d453e9e1f4a52dda", 3295714105858557, undefined, [rawValue]); },
+  init(rawValue: string): (MoonPhase) | null { return callSDK<(MoonPhase) | null>("WeatherKit_1f27952b3c5b81e6", 3295714105858557, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: MoonPhase): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 869598120524871, $self, []); }
+  getRawValue($self: MoonPhase): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 869598120524871, $self, []); }
 };
 
 /**
@@ -1334,20 +1334,20 @@ export class Percentiles<Dimension = unknown> extends SDKHandle {
    * var p10: Measurement<Dimension>
    * @availability iOS 18.0+
    */
-  get p10(): $SDK16 { return callSDK<$SDK16>("WeatherKit_d453e9e1f4a52dda", 2157439894352578, this, []); }
-  set p10(value: $SDK16) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2095318871906131, this, [value]); }
+  get p10(): $SDK16 { return callSDK<$SDK16>("WeatherKit_1f27952b3c5b81e6", 2157439894352578, this, []); }
+  set p10(value: $SDK16) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2095318871906131, this, [value]); }
   /**
    * var p50: Measurement<Dimension>
    * @availability iOS 18.0+
    */
-  get p50(): $SDK16 { return callSDK<$SDK16>("WeatherKit_d453e9e1f4a52dda", 3753659208262841, this, []); }
-  set p50(value: $SDK16) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 824728980805078, this, [value]); }
+  get p50(): $SDK16 { return callSDK<$SDK16>("WeatherKit_1f27952b3c5b81e6", 3753659208262841, this, []); }
+  set p50(value: $SDK16) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 824728980805078, this, [value]); }
   /**
    * var p90: Measurement<Dimension>
    * @availability iOS 18.0+
    */
-  get p90(): $SDK16 { return callSDK<$SDK16>("WeatherKit_d453e9e1f4a52dda", 1325411619056906, this, []); }
-  set p90(value: $SDK16) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 854588091025791, this, [value]); }
+  get p90(): $SDK16 { return callSDK<$SDK16>("WeatherKit_1f27952b3c5b81e6", 1325411619056906, this, []); }
+  set p90(value: $SDK16) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 854588091025791, this, [value]); }
   declare readonly $type: { "s:10WeatherKit11PercentilesV": true };
 }
 
@@ -1362,27 +1362,27 @@ export const Precipitation = {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  getDescription($self: Precipitation): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 3927370741866894, $self, []); },
+  getDescription($self: Precipitation): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 3927370741866894, $self, []); },
   /**
    * var accessibilityDescription: String { get }
    * @availability iOS 16.0+
    */
-  getAccessibilityDescription($self: Precipitation): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 1189558997892086, $self, []); },
+  getAccessibilityDescription($self: Precipitation): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 1189558997892086, $self, []); },
   /**
    * nonisolated static var allCases: [Precipitation] { get }
    * @availability iOS 16.0+
    */
-  get allCases(): Array<Precipitation> { return callSDK<Array<Precipitation>>("WeatherKit_d453e9e1f4a52dda", 3780265567492165, undefined, []); },
+  get allCases(): Array<Precipitation> { return callSDK<Array<Precipitation>>("WeatherKit_1f27952b3c5b81e6", 3780265567492165, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): (Precipitation) | null { return callSDK<(Precipitation) | null>("WeatherKit_d453e9e1f4a52dda", 3130137948004899, undefined, [rawValue]); },
+  init(rawValue: string): (Precipitation) | null { return callSDK<(Precipitation) | null>("WeatherKit_1f27952b3c5b81e6", 3130137948004899, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: Precipitation): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 1651093489719348, $self, []); }
+  getRawValue($self: Precipitation): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 1651093489719348, $self, []); }
 };
 
 /**
@@ -1406,38 +1406,38 @@ export class PrecipitationAmountByType extends SDKHandle {
    * var snowfallAmount: SnowfallAmount
    * @availability iOS 18.0+
    */
-  get snowfallAmount(): SnowfallAmount { return callSDK<SnowfallAmount>("WeatherKit_d453e9e1f4a52dda", 2052949546260905, this, []); }
-  set snowfallAmount(value: SnowfallAmount) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3614292422376736, this, [value]); }
+  get snowfallAmount(): SnowfallAmount { return callSDK<SnowfallAmount>("WeatherKit_1f27952b3c5b81e6", 2052949546260905, this, []); }
+  set snowfallAmount(value: SnowfallAmount) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3614292422376736, this, [value]); }
   /**
    * var precipitation: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get precipitation(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 2171324798291207, this, []); }
-  set precipitation(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3199096344029287, this, [value]); }
+  get precipitation(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 2171324798291207, this, []); }
+  set precipitation(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3199096344029287, this, [value]); }
   /**
    * var hail: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get hail(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 2469227990455144, this, []); }
-  set hail(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4045359767082170, this, [value]); }
+  get hail(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 2469227990455144, this, []); }
+  set hail(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4045359767082170, this, [value]); }
   /**
    * var mixed: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get mixed(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 1050095973598818, this, []); }
-  set mixed(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 364072694127535, this, [value]); }
+  get mixed(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 1050095973598818, this, []); }
+  set mixed(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 364072694127535, this, [value]); }
   /**
    * var sleet: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get sleet(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 675737519333872, this, []); }
-  set sleet(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1501890510281568, this, [value]); }
+  get sleet(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 675737519333872, this, []); }
+  set sleet(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1501890510281568, this, [value]); }
   /**
    * var rainfall: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get rainfall(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 1426422012747268, this, []); }
-  set rainfall(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3904497935361497, this, [value]); }
+  get rainfall(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 1426422012747268, this, []); }
+  set rainfall(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3904497935361497, this, [value]); }
   declare readonly $type: { "s:10WeatherKit25PrecipitationAmountByTypeV": true };
 }
 
@@ -1452,27 +1452,27 @@ export const PressureTrend = {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  getDescription($self: PressureTrend): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 2071195954174362, $self, []); },
+  getDescription($self: PressureTrend): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 2071195954174362, $self, []); },
   /**
    * var accessibilityDescription: String { get }
    * @availability iOS 16.0+
    */
-  getAccessibilityDescription($self: PressureTrend): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 2612265842234645, $self, []); },
+  getAccessibilityDescription($self: PressureTrend): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 2612265842234645, $self, []); },
   /**
    * nonisolated static var allCases: [PressureTrend] { get }
    * @availability iOS 16.0+
    */
-  get allCases(): Array<PressureTrend> { return callSDK<Array<PressureTrend>>("WeatherKit_d453e9e1f4a52dda", 3956453674367269, undefined, []); },
+  get allCases(): Array<PressureTrend> { return callSDK<Array<PressureTrend>>("WeatherKit_1f27952b3c5b81e6", 3956453674367269, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): (PressureTrend) | null { return callSDK<(PressureTrend) | null>("WeatherKit_d453e9e1f4a52dda", 125917000131849, undefined, [rawValue]); },
+  init(rawValue: string): (PressureTrend) | null { return callSDK<(PressureTrend) | null>("WeatherKit_1f27952b3c5b81e6", 125917000131849, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: PressureTrend): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 344600367686336, $self, []); }
+  getRawValue($self: PressureTrend): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 344600367686336, $self, []); }
 };
 
 /**
@@ -1496,38 +1496,38 @@ export class SnowfallAmount extends SDKHandle {
    * var amountLiquidEquivalent: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get amountLiquidEquivalent(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 21495414989401, this, []); }
-  set amountLiquidEquivalent(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2917333279774364, this, [value]); }
+  get amountLiquidEquivalent(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 21495414989401, this, []); }
+  set amountLiquidEquivalent(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2917333279774364, this, [value]); }
   /**
    * var maximumLiquidEquivalent: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get maximumLiquidEquivalent(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 2057142326592097, this, []); }
-  set maximumLiquidEquivalent(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1113110680872664, this, [value]); }
+  get maximumLiquidEquivalent(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 2057142326592097, this, []); }
+  set maximumLiquidEquivalent(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1113110680872664, this, [value]); }
   /**
    * var minimumLiquidEquivalent: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get minimumLiquidEquivalent(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 793259588125917, this, []); }
-  set minimumLiquidEquivalent(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3904994707746402, this, [value]); }
+  get minimumLiquidEquivalent(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 793259588125917, this, []); }
+  set minimumLiquidEquivalent(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3904994707746402, this, [value]); }
   /**
    * var amount: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get amount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 4071994454847667, this, []); }
-  set amount(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1292941007812636, this, [value]); }
+  get amount(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 4071994454847667, this, []); }
+  set amount(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1292941007812636, this, [value]); }
   /**
    * var maximum: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get maximum(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 1181625674354649, this, []); }
-  set maximum(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3103889502752132, this, [value]); }
+  get maximum(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 1181625674354649, this, []); }
+  set maximum(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3103889502752132, this, [value]); }
   /**
    * var minimum: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get minimum(): $SDK0 { return callSDK<$SDK0>("WeatherKit_d453e9e1f4a52dda", 4459586725295864, this, []); }
-  set minimum(value: $SDK0) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 786574833677909, this, [value]); }
+  get minimum(): $SDK0 { return callSDK<$SDK0>("WeatherKit_1f27952b3c5b81e6", 4459586725295864, this, []); }
+  set minimum(value: $SDK0) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 786574833677909, this, [value]); }
   declare readonly $type: { "s:10WeatherKit14SnowfallAmountV": true };
 }
 
@@ -1540,62 +1540,62 @@ export class SunEvents extends SDKHandle {
    * var nauticalDawn: Date?
    * @availability iOS 16.0+
    */
-  get nauticalDawn(): $SDK10 { return callSDK<$SDK10>("WeatherKit_d453e9e1f4a52dda", 625479615384394, this, []); }
-  set nauticalDawn(value: $SDK10) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1833636141714999, this, [value]); }
+  get nauticalDawn(): $SDK10 { return callSDK<$SDK10>("WeatherKit_1f27952b3c5b81e6", 625479615384394, this, []); }
+  set nauticalDawn(value: $SDK10) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1833636141714999, this, [value]); }
   /**
    * var nauticalDusk: Date?
    * @availability iOS 16.0+
    */
-  get nauticalDusk(): $SDK10 { return callSDK<$SDK10>("WeatherKit_d453e9e1f4a52dda", 2950999314071219, this, []); }
-  set nauticalDusk(value: $SDK10) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2742925862755044, this, [value]); }
+  get nauticalDusk(): $SDK10 { return callSDK<$SDK10>("WeatherKit_1f27952b3c5b81e6", 2950999314071219, this, []); }
+  set nauticalDusk(value: $SDK10) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2742925862755044, this, [value]); }
   /**
    * var solarMidnight: Date?
    * @availability iOS 16.0+
    */
-  get solarMidnight(): $SDK10 { return callSDK<$SDK10>("WeatherKit_d453e9e1f4a52dda", 873302624258491, this, []); }
-  set solarMidnight(value: $SDK10) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1136668905644500, this, [value]); }
+  get solarMidnight(): $SDK10 { return callSDK<$SDK10>("WeatherKit_1f27952b3c5b81e6", 873302624258491, this, []); }
+  set solarMidnight(value: $SDK10) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1136668905644500, this, [value]); }
   /**
    * var astronomicalDawn: Date?
    * @availability iOS 16.0+
    */
-  get astronomicalDawn(): $SDK10 { return callSDK<$SDK10>("WeatherKit_d453e9e1f4a52dda", 1552280692507437, this, []); }
-  set astronomicalDawn(value: $SDK10) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1791312840257192, this, [value]); }
+  get astronomicalDawn(): $SDK10 { return callSDK<$SDK10>("WeatherKit_1f27952b3c5b81e6", 1552280692507437, this, []); }
+  set astronomicalDawn(value: $SDK10) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1791312840257192, this, [value]); }
   /**
    * var astronomicalDusk: Date?
    * @availability iOS 16.0+
    */
-  get astronomicalDusk(): $SDK10 { return callSDK<$SDK10>("WeatherKit_d453e9e1f4a52dda", 175306396370506, this, []); }
-  set astronomicalDusk(value: $SDK10) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2540043303282574, this, [value]); }
+  get astronomicalDusk(): $SDK10 { return callSDK<$SDK10>("WeatherKit_1f27952b3c5b81e6", 175306396370506, this, []); }
+  set astronomicalDusk(value: $SDK10) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2540043303282574, this, [value]); }
   /**
    * var sunset: Date?
    * @availability iOS 16.0+
    */
-  get sunset(): $SDK10 { return callSDK<$SDK10>("WeatherKit_d453e9e1f4a52dda", 711139594600732, this, []); }
-  set sunset(value: $SDK10) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1512714182737426, this, [value]); }
+  get sunset(): $SDK10 { return callSDK<$SDK10>("WeatherKit_1f27952b3c5b81e6", 711139594600732, this, []); }
+  set sunset(value: $SDK10) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1512714182737426, this, [value]); }
   /**
    * var sunrise: Date?
    * @availability iOS 16.0+
    */
-  get sunrise(): $SDK10 { return callSDK<$SDK10>("WeatherKit_d453e9e1f4a52dda", 4395937405947537, this, []); }
-  set sunrise(value: $SDK10) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 723376645335043, this, [value]); }
+  get sunrise(): $SDK10 { return callSDK<$SDK10>("WeatherKit_1f27952b3c5b81e6", 4395937405947537, this, []); }
+  set sunrise(value: $SDK10) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 723376645335043, this, [value]); }
   /**
    * var civilDawn: Date?
    * @availability iOS 16.0+
    */
-  get civilDawn(): $SDK10 { return callSDK<$SDK10>("WeatherKit_d453e9e1f4a52dda", 3313944879302647, this, []); }
-  set civilDawn(value: $SDK10) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2601545432089029, this, [value]); }
+  get civilDawn(): $SDK10 { return callSDK<$SDK10>("WeatherKit_1f27952b3c5b81e6", 3313944879302647, this, []); }
+  set civilDawn(value: $SDK10) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2601545432089029, this, [value]); }
   /**
    * var civilDusk: Date?
    * @availability iOS 16.0+
    */
-  get civilDusk(): $SDK10 { return callSDK<$SDK10>("WeatherKit_d453e9e1f4a52dda", 1213414596341177, this, []); }
-  set civilDusk(value: $SDK10) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4023103588124617, this, [value]); }
+  get civilDusk(): $SDK10 { return callSDK<$SDK10>("WeatherKit_1f27952b3c5b81e6", 1213414596341177, this, []); }
+  set civilDusk(value: $SDK10) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4023103588124617, this, [value]); }
   /**
    * var solarNoon: Date?
    * @availability iOS 16.0+
    */
-  get solarNoon(): $SDK10 { return callSDK<$SDK10>("WeatherKit_d453e9e1f4a52dda", 4311090507373295, this, []); }
-  set solarNoon(value: $SDK10) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4324001045873364, this, [value]); }
+  get solarNoon(): $SDK10 { return callSDK<$SDK10>("WeatherKit_1f27952b3c5b81e6", 4311090507373295, this, []); }
+  set solarNoon(value: $SDK10) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4324001045873364, this, [value]); }
   declare readonly $type: { "s:10WeatherKit9SunEventsV": true };
 }
 
@@ -1608,20 +1608,20 @@ export class Trend<Dimension = unknown> extends SDKHandle {
    * var currentValue: Measurement<Dimension>
    * @availability iOS 18.0+
    */
-  get currentValue(): $SDK16 { return callSDK<$SDK16>("WeatherKit_d453e9e1f4a52dda", 3882475481919387, this, []); }
-  set currentValue(value: $SDK16) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1553866855965215, this, [value]); }
+  get currentValue(): $SDK16 { return callSDK<$SDK16>("WeatherKit_1f27952b3c5b81e6", 3882475481919387, this, []); }
+  set currentValue(value: $SDK16) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1553866855965215, this, [value]); }
   /**
    * var baseline: TrendBaseline<Dimension>
    * @availability iOS 18.0+
    */
-  get baseline(): TrendBaseline<unknown> { return callSDK<TrendBaseline<unknown>>("WeatherKit_d453e9e1f4a52dda", 934742556552265, this, []); }
-  set baseline(value: TrendBaseline<unknown>) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3509196844558563, this, [value]); }
+  get baseline(): TrendBaseline<unknown> { return callSDK<TrendBaseline<unknown>>("WeatherKit_1f27952b3c5b81e6", 934742556552265, this, []); }
+  set baseline(value: TrendBaseline<unknown>) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3509196844558563, this, [value]); }
   /**
    * var deviation: Deviation
    * @availability iOS 18.0+
    */
-  get deviation(): Deviation { return callSDK<Deviation>("WeatherKit_d453e9e1f4a52dda", 4046427940588123, this, []); }
-  set deviation(value: Deviation) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2839666197086761, this, [value]); }
+  get deviation(): Deviation { return callSDK<Deviation>("WeatherKit_1f27952b3c5b81e6", 4046427940588123, this, []); }
+  set deviation(value: Deviation) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2839666197086761, this, [value]); }
   declare readonly $type: { "s:10WeatherKit5TrendV": true };
 }
 
@@ -1634,17 +1634,17 @@ export class TrendBaseline<Dimension = unknown> extends SDKHandle {
    * let kind: TrendBaseline<Dimension>.Kind
    * @availability iOS 18.0+
    */
-  get kind(): TrendBaseline_Kind<unknown> { return callSDK<TrendBaseline_Kind<unknown>>("WeatherKit_d453e9e1f4a52dda", 3379530534810274, this, []); }
+  get kind(): TrendBaseline_Kind<unknown> { return callSDK<TrendBaseline_Kind<unknown>>("WeatherKit_1f27952b3c5b81e6", 3379530534810274, this, []); }
   /**
    * let value: Measurement<Dimension>
    * @availability iOS 18.0+
    */
-  get value(): $SDK16 { return callSDK<$SDK16>("WeatherKit_d453e9e1f4a52dda", 3099407267279690, this, []); }
+  get value(): $SDK16 { return callSDK<$SDK16>("WeatherKit_1f27952b3c5b81e6", 3099407267279690, this, []); }
   /**
    * let startDate: Date
    * @availability iOS 18.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_d453e9e1f4a52dda", 4077434182131518, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_1f27952b3c5b81e6", 4077434182131518, this, []); }
   declare readonly $type: { "s:10WeatherKit13TrendBaselineV": true };
 }
 
@@ -1663,14 +1663,14 @@ export class UVIndex extends SDKHandle {
    * var value: Int
    * @availability iOS 16.0+
    */
-  get value(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 1602384681355708, this, []); }
-  set value(value: number) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 876619269790939, this, [value]); }
+  get value(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 1602384681355708, this, []); }
+  set value(value: number) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 876619269790939, this, [value]); }
   /**
    * var category: UVIndex.ExposureCategory
    * @availability iOS 16.0+
    */
-  get category(): UVIndex_ExposureCategory { return callSDK<UVIndex_ExposureCategory>("WeatherKit_d453e9e1f4a52dda", 2887418672866409, this, []); }
-  set category(value: UVIndex_ExposureCategory) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1927305987913150, this, [value]); }
+  get category(): UVIndex_ExposureCategory { return callSDK<UVIndex_ExposureCategory>("WeatherKit_1f27952b3c5b81e6", 2887418672866409, this, []); }
+  set category(value: UVIndex_ExposureCategory) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1927305987913150, this, [value]); }
   declare readonly $type: { "s:10WeatherKit7UVIndexV": true };
 }
 
@@ -1685,32 +1685,32 @@ export const UVIndex_ExposureCategory = {
    * var rangeValue: ClosedRange<Int> { get }
    * @availability iOS 16.0+
    */
-  getRangeValue($self: UVIndex_ExposureCategory): SDKHandle { return callSDK<SDKHandle>("WeatherKit_d453e9e1f4a52dda", 3369791170604974, $self, []); },
+  getRangeValue($self: UVIndex_ExposureCategory): SDKHandle { return callSDK<SDKHandle>("WeatherKit_1f27952b3c5b81e6", 3369791170604974, $self, []); },
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  getDescription($self: UVIndex_ExposureCategory): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 4226367073879356, $self, []); },
+  getDescription($self: UVIndex_ExposureCategory): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 4226367073879356, $self, []); },
   /**
    * var accessibilityDescription: String { get }
    * @availability iOS 16.0+
    */
-  getAccessibilityDescription($self: UVIndex_ExposureCategory): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 3175555058007135, $self, []); },
+  getAccessibilityDescription($self: UVIndex_ExposureCategory): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 3175555058007135, $self, []); },
   /**
    * nonisolated static var allCases: [UVIndex.ExposureCategory] { get }
    * @availability iOS 16.0+
    */
-  get allCases(): $SDK18 { return callSDK<$SDK18>("WeatherKit_d453e9e1f4a52dda", 2484613295380698, undefined, []); },
+  get allCases(): $SDK18 { return callSDK<$SDK18>("WeatherKit_1f27952b3c5b81e6", 2484613295380698, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): (UVIndex_ExposureCategory) | null { return callSDK<(UVIndex_ExposureCategory) | null>("WeatherKit_d453e9e1f4a52dda", 26723730652022, undefined, [rawValue]); },
+  init(rawValue: string): (UVIndex_ExposureCategory) | null { return callSDK<(UVIndex_ExposureCategory) | null>("WeatherKit_1f27952b3c5b81e6", 26723730652022, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: UVIndex_ExposureCategory): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 4369269131293886, $self, []); }
+  getRawValue($self: UVIndex_ExposureCategory): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 4369269131293886, $self, []); }
 };
 
 /**
@@ -1734,38 +1734,38 @@ export class Weather extends SDKHandle {
    * var currentWeather: CurrentWeather
    * @availability iOS 16.0+
    */
-  get currentWeather(): CurrentWeather { return callSDK<CurrentWeather>("WeatherKit_d453e9e1f4a52dda", 3091494227311635, this, []); }
-  set currentWeather(value: CurrentWeather) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1960019635899335, this, [value]); }
+  get currentWeather(): CurrentWeather { return callSDK<CurrentWeather>("WeatherKit_1f27952b3c5b81e6", 3091494227311635, this, []); }
+  set currentWeather(value: CurrentWeather) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1960019635899335, this, [value]); }
   /**
    * var availability: WeatherAvailability
    * @availability iOS 16.0+
    */
-  get availability(): WeatherAvailability { return callSDK<WeatherAvailability>("WeatherKit_d453e9e1f4a52dda", 753146265092243, this, []); }
-  set availability(value: WeatherAvailability) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4383957397274079, this, [value]); }
+  get availability(): WeatherAvailability { return callSDK<WeatherAvailability>("WeatherKit_1f27952b3c5b81e6", 753146265092243, this, []); }
+  set availability(value: WeatherAvailability) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4383957397274079, this, [value]); }
   /**
    * var dailyForecast: Forecast<DayWeather>
    * @availability iOS 16.0+
    */
-  get dailyForecast(): Forecast<DayWeather> { return callSDK<Forecast<DayWeather>>("WeatherKit_d453e9e1f4a52dda", 2494203852299558, this, []); }
-  set dailyForecast(value: Forecast<DayWeather>) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1628322148867402, this, [value]); }
+  get dailyForecast(): Forecast<DayWeather> { return callSDK<Forecast<DayWeather>>("WeatherKit_1f27952b3c5b81e6", 2494203852299558, this, []); }
+  set dailyForecast(value: Forecast<DayWeather>) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1628322148867402, this, [value]); }
   /**
    * var weatherAlerts: [WeatherAlert]?
    * @availability iOS 16.0+
    */
-  get weatherAlerts(): (Array<WeatherAlert>) | null { return callSDK<(Array<WeatherAlert>) | null>("WeatherKit_d453e9e1f4a52dda", 2803996999371047, this, []); }
-  set weatherAlerts(value: (Array<WeatherAlert>) | null) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 408578794881197, this, [value]); }
+  get weatherAlerts(): (Array<WeatherAlert>) | null { return callSDK<(Array<WeatherAlert>) | null>("WeatherKit_1f27952b3c5b81e6", 2803996999371047, this, []); }
+  set weatherAlerts(value: (Array<WeatherAlert>) | null) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 408578794881197, this, [value]); }
   /**
    * var hourlyForecast: Forecast<HourWeather>
    * @availability iOS 16.0+
    */
-  get hourlyForecast(): Forecast<HourWeather> { return callSDK<Forecast<HourWeather>>("WeatherKit_d453e9e1f4a52dda", 4268855257797973, this, []); }
-  set hourlyForecast(value: Forecast<HourWeather>) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2432648859038949, this, [value]); }
+  get hourlyForecast(): Forecast<HourWeather> { return callSDK<Forecast<HourWeather>>("WeatherKit_1f27952b3c5b81e6", 4268855257797973, this, []); }
+  set hourlyForecast(value: Forecast<HourWeather>) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2432648859038949, this, [value]); }
   /**
    * var minuteForecast: Forecast<MinuteWeather>?
    * @availability iOS 16.0+
    */
-  get minuteForecast(): $SDK20 { return callSDK<$SDK20>("WeatherKit_d453e9e1f4a52dda", 2258611850529805, this, []); }
-  set minuteForecast(value: $SDK20) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3459112032840885, this, [value]); }
+  get minuteForecast(): $SDK20 { return callSDK<$SDK20>("WeatherKit_1f27952b3c5b81e6", 2258611850529805, this, []); }
+  set minuteForecast(value: $SDK20) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3459112032840885, this, [value]); }
   declare readonly $type: { "s:10WeatherKit0A0V": true };
 }
 
@@ -1778,38 +1778,38 @@ export class WeatherAlert extends SDKHandle {
    * var detailsURL: URL
    * @availability iOS 16.0+
    */
-  get detailsURL(): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 1497107664948106, this, []); }
-  set detailsURL(value: string) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1232866624120623, this, [value]); }
+  get detailsURL(): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 1497107664948106, this, []); }
+  set detailsURL(value: string) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1232866624120623, this, [value]); }
   /**
    * var region: String?
    * @availability iOS 16.0+
    */
-  get region(): (string) | null { return callSDK<(string) | null>("WeatherKit_d453e9e1f4a52dda", 155715558567802, this, []); }
-  set region(value: (string) | null) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3790184790633425, this, [value]); }
+  get region(): (string) | null { return callSDK<(string) | null>("WeatherKit_1f27952b3c5b81e6", 155715558567802, this, []); }
+  set region(value: (string) | null) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3790184790633425, this, [value]); }
   /**
    * var source: String
    * @availability iOS 16.0+
    */
-  get source(): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 934770093440120, this, []); }
-  set source(value: string) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2399422643895127, this, [value]); }
+  get source(): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 934770093440120, this, []); }
+  set source(value: string) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2399422643895127, this, [value]); }
   /**
    * var summary: String
    * @availability iOS 16.0+
    */
-  get summary(): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 2612206293695267, this, []); }
-  set summary(value: string) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1775906775003882, this, [value]); }
+  get summary(): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 2612206293695267, this, []); }
+  set summary(value: string) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1775906775003882, this, [value]); }
   /**
    * var metadata: WeatherMetadata
    * @availability iOS 16.0+
    */
-  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_d453e9e1f4a52dda", 574133851742490, this, []); }
-  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1026450220356674, this, [value]); }
+  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_1f27952b3c5b81e6", 574133851742490, this, []); }
+  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1026450220356674, this, [value]); }
   /**
    * var severity: WeatherSeverity
    * @availability iOS 16.0+
    */
-  get severity(): WeatherSeverity { return callSDK<WeatherSeverity>("WeatherKit_d453e9e1f4a52dda", 3969295671031082, this, []); }
-  set severity(value: WeatherSeverity) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2675250676127527, this, [value]); }
+  get severity(): WeatherSeverity { return callSDK<WeatherSeverity>("WeatherKit_1f27952b3c5b81e6", 3969295671031082, this, []); }
+  set severity(value: WeatherSeverity) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2675250676127527, this, [value]); }
   declare readonly $type: { "s:10WeatherKit0A5AlertV": true };
 }
 
@@ -1822,37 +1822,37 @@ export class WeatherAttribution extends SDKHandle {
    * var legalAttributionText: String { get }
    * @availability iOS 16.4+
    */
-  get legalAttributionText(): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 3011827537272857, this, []); }
+  get legalAttributionText(): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 3011827537272857, this, []); }
   /**
    * var serviceName: String { get set }
    * @availability iOS 16.0+
    */
-  get serviceName(): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 64446665181591, this, []); }
-  set serviceName(value: string) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2151024521905265, this, [value]); }
+  get serviceName(): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 64446665181591, this, []); }
+  set serviceName(value: string) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2151024521905265, this, [value]); }
   /**
    * var legalPageURL: URL { get set }
    * @availability iOS 16.0+
    */
-  get legalPageURL(): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 66129602345807, this, []); }
-  set legalPageURL(value: string) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4352465769528666, this, [value]); }
+  get legalPageURL(): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 66129602345807, this, []); }
+  set legalPageURL(value: string) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4352465769528666, this, [value]); }
   /**
    * var squareMarkURL: URL { get set }
    * @availability iOS 16.0+
    */
-  get squareMarkURL(): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 3311144234204257, this, []); }
-  set squareMarkURL(value: string) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 228043230153164, this, [value]); }
+  get squareMarkURL(): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 3311144234204257, this, []); }
+  set squareMarkURL(value: string) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 228043230153164, this, [value]); }
   /**
    * var combinedMarkDarkURL: URL { get set }
    * @availability iOS 16.0+
    */
-  get combinedMarkDarkURL(): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 3990107816487897, this, []); }
-  set combinedMarkDarkURL(value: string) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 981271663914667, this, [value]); }
+  get combinedMarkDarkURL(): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 3990107816487897, this, []); }
+  set combinedMarkDarkURL(value: string) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 981271663914667, this, [value]); }
   /**
    * var combinedMarkLightURL: URL { get set }
    * @availability iOS 16.0+
    */
-  get combinedMarkLightURL(): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 3566283002717348, this, []); }
-  set combinedMarkLightURL(value: string) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3609217851695908, this, [value]); }
+  get combinedMarkLightURL(): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 3566283002717348, this, []); }
+  set combinedMarkLightURL(value: string) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3609217851695908, this, [value]); }
   declare readonly $type: { "s:10WeatherKit0A11AttributionV": true };
 }
 
@@ -1865,14 +1865,14 @@ export class WeatherAvailability extends SDKHandle {
    * var alertAvailability: WeatherAvailability.AvailabilityKind
    * @availability iOS 16.0+
    */
-  get alertAvailability(): WeatherAvailability_AvailabilityKind { return callSDK<WeatherAvailability_AvailabilityKind>("WeatherKit_d453e9e1f4a52dda", 3320692837393514, this, []); }
-  set alertAvailability(value: WeatherAvailability_AvailabilityKind) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3584290498493718, this, [value]); }
+  get alertAvailability(): WeatherAvailability_AvailabilityKind { return callSDK<WeatherAvailability_AvailabilityKind>("WeatherKit_1f27952b3c5b81e6", 3320692837393514, this, []); }
+  set alertAvailability(value: WeatherAvailability_AvailabilityKind) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3584290498493718, this, [value]); }
   /**
    * var minuteAvailability: WeatherAvailability.AvailabilityKind
    * @availability iOS 16.0+
    */
-  get minuteAvailability(): WeatherAvailability_AvailabilityKind { return callSDK<WeatherAvailability_AvailabilityKind>("WeatherKit_d453e9e1f4a52dda", 1894183409540419, this, []); }
-  set minuteAvailability(value: WeatherAvailability_AvailabilityKind) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3149348733632758, this, [value]); }
+  get minuteAvailability(): WeatherAvailability_AvailabilityKind { return callSDK<WeatherAvailability_AvailabilityKind>("WeatherKit_1f27952b3c5b81e6", 1894183409540419, this, []); }
+  set minuteAvailability(value: WeatherAvailability_AvailabilityKind) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3149348733632758, this, [value]); }
   declare readonly $type: { "s:10WeatherKit0A12AvailabilityV": true };
 }
 
@@ -1887,12 +1887,12 @@ export const WeatherAvailability_AvailabilityKind = {
    * init?(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): (WeatherAvailability_AvailabilityKind) | null { return callSDK<(WeatherAvailability_AvailabilityKind) | null>("WeatherKit_d453e9e1f4a52dda", 3608078029518443, undefined, [rawValue]); },
+  init(rawValue: string): (WeatherAvailability_AvailabilityKind) | null { return callSDK<(WeatherAvailability_AvailabilityKind) | null>("WeatherKit_1f27952b3c5b81e6", 3608078029518443, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: WeatherAvailability_AvailabilityKind): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 4242108516740672, $self, []); }
+  getRawValue($self: WeatherAvailability_AvailabilityKind): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 4242108516740672, $self, []); }
 };
 
 /**
@@ -1910,32 +1910,32 @@ export class WeatherChange extends SDKHandle {
    * var lowTemperature: WeatherChange.Direction
    * @availability iOS 18.0+
    */
-  get lowTemperature(): WeatherChange_Direction { return callSDK<WeatherChange_Direction>("WeatherKit_d453e9e1f4a52dda", 3335105922958130, this, []); }
-  set lowTemperature(value: WeatherChange_Direction) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1577197031464899, this, [value]); }
+  get lowTemperature(): WeatherChange_Direction { return callSDK<WeatherChange_Direction>("WeatherKit_1f27952b3c5b81e6", 3335105922958130, this, []); }
+  set lowTemperature(value: WeatherChange_Direction) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1577197031464899, this, [value]); }
   /**
    * var highTemperature: WeatherChange.Direction
    * @availability iOS 18.0+
    */
-  get highTemperature(): WeatherChange_Direction { return callSDK<WeatherChange_Direction>("WeatherKit_d453e9e1f4a52dda", 686473025211229, this, []); }
-  set highTemperature(value: WeatherChange_Direction) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2332602726692374, this, [value]); }
+  get highTemperature(): WeatherChange_Direction { return callSDK<WeatherChange_Direction>("WeatherKit_1f27952b3c5b81e6", 686473025211229, this, []); }
+  set highTemperature(value: WeatherChange_Direction) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2332602726692374, this, [value]); }
   /**
    * var dayPrecipitationAmount: WeatherChange.Direction
    * @availability iOS 18.0+
    */
-  get dayPrecipitationAmount(): WeatherChange_Direction { return callSDK<WeatherChange_Direction>("WeatherKit_d453e9e1f4a52dda", 2731082860425795, this, []); }
-  set dayPrecipitationAmount(value: WeatherChange_Direction) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 277726792994948, this, [value]); }
+  get dayPrecipitationAmount(): WeatherChange_Direction { return callSDK<WeatherChange_Direction>("WeatherKit_1f27952b3c5b81e6", 2731082860425795, this, []); }
+  set dayPrecipitationAmount(value: WeatherChange_Direction) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 277726792994948, this, [value]); }
   /**
    * var nightPrecipitationAmount: WeatherChange.Direction
    * @availability iOS 18.0+
    */
-  get nightPrecipitationAmount(): WeatherChange_Direction { return callSDK<WeatherChange_Direction>("WeatherKit_d453e9e1f4a52dda", 3151062771934386, this, []); }
-  set nightPrecipitationAmount(value: WeatherChange_Direction) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1796729484488055, this, [value]); }
+  get nightPrecipitationAmount(): WeatherChange_Direction { return callSDK<WeatherChange_Direction>("WeatherKit_1f27952b3c5b81e6", 3151062771934386, this, []); }
+  set nightPrecipitationAmount(value: WeatherChange_Direction) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1796729484488055, this, [value]); }
   /**
    * var date: Date
    * @availability iOS 18.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_d453e9e1f4a52dda", 602329146459616, this, []); }
-  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2080166598729299, this, [value]); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_1f27952b3c5b81e6", 602329146459616, this, []); }
+  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2080166598729299, this, [value]); }
   declare readonly $type: { "s:10WeatherKit0A6ChangeV": true };
 }
 
@@ -1954,29 +1954,29 @@ export class WeatherChanges extends SDKHandle {
    * var startIndex: WeatherChanges.Index { get }
    * @availability iOS 18.0+
    */
-  get startIndex(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 305524050637684, this, []); }
+  get startIndex(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 305524050637684, this, []); }
   /**
    * var changes: [WeatherChange]
    * @availability iOS 18.0+
    */
-  get changes(): Array<WeatherChange> { return callSDK<Array<WeatherChange>>("WeatherKit_d453e9e1f4a52dda", 1654092357272385, this, []); }
-  set changes(value: Array<WeatherChange>) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 3190773699313335, this, [value]); }
+  get changes(): Array<WeatherChange> { return callSDK<Array<WeatherChange>>("WeatherKit_1f27952b3c5b81e6", 1654092357272385, this, []); }
+  set changes(value: Array<WeatherChange>) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 3190773699313335, this, [value]); }
   /**
    * var endIndex: WeatherChanges.Index { get }
    * @availability iOS 18.0+
    */
-  get endIndex(): number { return callSDK<number>("WeatherKit_d453e9e1f4a52dda", 2280987649601079, this, []); }
+  get endIndex(): number { return callSDK<number>("WeatherKit_1f27952b3c5b81e6", 2280987649601079, this, []); }
   /**
    * var metadata: WeatherMetadata
    * @availability iOS 18.0+
    */
-  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_d453e9e1f4a52dda", 2543733405760780, this, []); }
-  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1439515828274565, this, [value]); }
+  get metadata(): WeatherMetadata { return callSDK<WeatherMetadata>("WeatherKit_1f27952b3c5b81e6", 2543733405760780, this, []); }
+  set metadata(value: WeatherMetadata) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1439515828274565, this, [value]); }
   /**
    * subscript(position: WeatherChanges.Index) -> WeatherChanges.Element { get }
    * @availability iOS 18.0+
    */
-  subscript(position: number): WeatherChange { return callSDK<WeatherChange>("WeatherKit_d453e9e1f4a52dda", 3058091693657921, this, [position]); }
+  subscript(position: number): WeatherChange { return callSDK<WeatherChange>("WeatherKit_1f27952b3c5b81e6", 3058091693657921, this, [position]); }
   declare readonly $type: { "s:10WeatherKit0A7ChangesV": true };
 }
 
@@ -2021,27 +2021,27 @@ export const WeatherCondition = {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  getDescription($self: WeatherCondition): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 2188973859296361, $self, []); },
+  getDescription($self: WeatherCondition): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 2188973859296361, $self, []); },
   /**
    * var accessibilityDescription: String { get }
    * @availability iOS 16.0+
    */
-  getAccessibilityDescription($self: WeatherCondition): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 1569025518374472, $self, []); },
+  getAccessibilityDescription($self: WeatherCondition): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 1569025518374472, $self, []); },
   /**
    * nonisolated static var allCases: [WeatherCondition] { get }
    * @availability iOS 16.0+
    */
-  get allCases(): Array<WeatherCondition> { return callSDK<Array<WeatherCondition>>("WeatherKit_d453e9e1f4a52dda", 130405129823598, undefined, []); },
+  get allCases(): Array<WeatherCondition> { return callSDK<Array<WeatherCondition>>("WeatherKit_1f27952b3c5b81e6", 130405129823598, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): (WeatherCondition) | null { return callSDK<(WeatherCondition) | null>("WeatherKit_d453e9e1f4a52dda", 3675007575876474, undefined, [rawValue]); },
+  init(rawValue: string): (WeatherCondition) | null { return callSDK<(WeatherCondition) | null>("WeatherKit_1f27952b3c5b81e6", 3675007575876474, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: WeatherCondition): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 3066777668600309, $self, []); }
+  getRawValue($self: WeatherCondition): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 3066777668600309, $self, []); }
 };
 
 /**
@@ -2067,22 +2067,22 @@ export const WeatherError = {
    * var helpAnchor: String? { get }
    * @availability iOS 16.0+
    */
-  getHelpAnchor($self: WeatherError): (string) | null { return callSDK<(string) | null>("WeatherKit_d453e9e1f4a52dda", 3208443200639566, $self, []); },
+  getHelpAnchor($self: WeatherError): (string) | null { return callSDK<(string) | null>("WeatherKit_1f27952b3c5b81e6", 3208443200639566, $self, []); },
   /**
    * var failureReason: String? { get }
    * @availability iOS 16.0+
    */
-  getFailureReason($self: WeatherError): (string) | null { return callSDK<(string) | null>("WeatherKit_d453e9e1f4a52dda", 1677196489971486, $self, []); },
+  getFailureReason($self: WeatherError): (string) | null { return callSDK<(string) | null>("WeatherKit_1f27952b3c5b81e6", 1677196489971486, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  getErrorDescription($self: WeatherError): (string) | null { return callSDK<(string) | null>("WeatherKit_d453e9e1f4a52dda", 671075750037487, $self, []); },
+  getErrorDescription($self: WeatherError): (string) | null { return callSDK<(string) | null>("WeatherKit_1f27952b3c5b81e6", 671075750037487, $self, []); },
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 16.0+
    */
-  getRecoverySuggestion($self: WeatherError): (string) | null { return callSDK<(string) | null>("WeatherKit_d453e9e1f4a52dda", 4230434528378012, $self, []); }
+  getRecoverySuggestion($self: WeatherError): (string) | null { return callSDK<(string) | null>("WeatherKit_1f27952b3c5b81e6", 4230434528378012, $self, []); }
 };
 
 /**
@@ -2094,19 +2094,19 @@ export class WeatherMetadata extends SDKHandle {
    * var expirationDate: Date
    * @availability iOS 16.0+
    */
-  get expirationDate(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_d453e9e1f4a52dda", 413858371405425, this, []); }
-  set expirationDate(value: globalThis.Date) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 598625108627009, this, [value]); }
+  get expirationDate(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_1f27952b3c5b81e6", 413858371405425, this, []); }
+  set expirationDate(value: globalThis.Date) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 598625108627009, this, [value]); }
   /**
    * var date: Date
    * @availability iOS 16.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_d453e9e1f4a52dda", 1859222189824427, this, []); }
-  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 538172616372034, this, [value]); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("WeatherKit_1f27952b3c5b81e6", 1859222189824427, this, []); }
+  set date(value: globalThis.Date) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 538172616372034, this, [value]); }
   /**
    * var location: CLLocation { get }
    * @availability iOS 16.0+
    */
-  get location(): __LocationEssentials_CLLocation { return callSDK<__LocationEssentials_CLLocation>("WeatherKit_d453e9e1f4a52dda", 669889999546145, this, []); }
+  get location(): __LocationEssentials_CLLocation { return callSDK<__LocationEssentials_CLLocation>("WeatherKit_1f27952b3c5b81e6", 669889999546145, this, []); }
   declare readonly $type: { "s:10WeatherKit0A8MetadataV": true };
 }
 
@@ -2119,52 +2119,52 @@ export class WeatherQuery<T = unknown> extends SDKHandle {
    * static var availability: WeatherQuery<WeatherAvailability> { get }
    * @availability iOS 16.0+
    */
-  static get availability(): WeatherQuery<WeatherAvailability> { return callSDK<WeatherQuery<WeatherAvailability>>("WeatherKit_d453e9e1f4a52dda", 1008316662508345, undefined, []); }
+  static get availability(): WeatherQuery<WeatherAvailability> { return callSDK<WeatherQuery<WeatherAvailability>>("WeatherKit_1f27952b3c5b81e6", 1008316662508345, undefined, []); }
   /**
    * static var historicalComparisons: WeatherQuery<HistoricalComparisons?> { get }
    * @availability iOS 18.0+
    */
-  static get historicalComparisons(): WeatherQuery<(HistoricalComparisons) | null> { return callSDK<WeatherQuery<(HistoricalComparisons) | null>>("WeatherKit_d453e9e1f4a52dda", 105192116501622, undefined, []); }
+  static get historicalComparisons(): WeatherQuery<(HistoricalComparisons) | null> { return callSDK<WeatherQuery<(HistoricalComparisons) | null>>("WeatherKit_1f27952b3c5b81e6", 105192116501622, undefined, []); }
   /**
    * static var daily: WeatherQuery<Forecast<DayWeather>> { get }
    * @availability iOS 16.0+
    */
-  static get daily(): $SDK23 { return callSDK<$SDK23>("WeatherKit_d453e9e1f4a52dda", 347255072673019, undefined, []); }
+  static get daily(): $SDK23 { return callSDK<$SDK23>("WeatherKit_1f27952b3c5b81e6", 347255072673019, undefined, []); }
   /**
    * static var alerts: WeatherQuery<[WeatherAlert]?> { get }
    * @availability iOS 16.0+
    */
-  static get alerts(): WeatherQuery<(Array<WeatherAlert>) | null> { return callSDK<WeatherQuery<(Array<WeatherAlert>) | null>>("WeatherKit_d453e9e1f4a52dda", 91781202341531, undefined, []); }
+  static get alerts(): WeatherQuery<(Array<WeatherAlert>) | null> { return callSDK<WeatherQuery<(Array<WeatherAlert>) | null>>("WeatherKit_1f27952b3c5b81e6", 91781202341531, undefined, []); }
   /**
    * static var hourly: WeatherQuery<Forecast<HourWeather>> { get }
    * @availability iOS 16.0+
    */
-  static get hourly(): $SDK25 { return callSDK<$SDK25>("WeatherKit_d453e9e1f4a52dda", 4433053409847851, undefined, []); }
+  static get hourly(): $SDK25 { return callSDK<$SDK25>("WeatherKit_1f27952b3c5b81e6", 4433053409847851, undefined, []); }
   /**
    * static var minute: WeatherQuery<Forecast<MinuteWeather>?> { get }
    * @availability iOS 16.0+
    */
-  static get minute(): WeatherQuery<(Forecast<MinuteWeather>) | null> { return callSDK<WeatherQuery<(Forecast<MinuteWeather>) | null>>("WeatherKit_d453e9e1f4a52dda", 2546882457264216, undefined, []); }
+  static get minute(): WeatherQuery<(Forecast<MinuteWeather>) | null> { return callSDK<WeatherQuery<(Forecast<MinuteWeather>) | null>>("WeatherKit_1f27952b3c5b81e6", 2546882457264216, undefined, []); }
   /**
    * static var changes: WeatherQuery<WeatherChanges?> { get }
    * @availability iOS 18.0+
    */
-  static get changes(): WeatherQuery<(WeatherChanges) | null> { return callSDK<WeatherQuery<(WeatherChanges) | null>>("WeatherKit_d453e9e1f4a52dda", 2303344044116901, undefined, []); }
+  static get changes(): WeatherQuery<(WeatherChanges) | null> { return callSDK<WeatherQuery<(WeatherChanges) | null>>("WeatherKit_1f27952b3c5b81e6", 2303344044116901, undefined, []); }
   /**
    * static var current: WeatherQuery<CurrentWeather> { get }
    * @availability iOS 16.0+
    */
-  static get current(): WeatherQuery<CurrentWeather> { return callSDK<WeatherQuery<CurrentWeather>>("WeatherKit_d453e9e1f4a52dda", 763351831522166, undefined, []); }
+  static get current(): WeatherQuery<CurrentWeather> { return callSDK<WeatherQuery<CurrentWeather>>("WeatherKit_1f27952b3c5b81e6", 763351831522166, undefined, []); }
   /**
    * static func daily(startDate: Date, endDate: Date) -> WeatherQuery<T>
    * @availability iOS 16.0+
    */
-  static dailyStartDateEndDate(startDate: globalThis.Date, endDate: globalThis.Date): $SDK23 { return callSDK<$SDK23>("WeatherKit_d453e9e1f4a52dda", 4164850738219769, undefined, [startDate, endDate]); }
+  static dailyStartDateEndDate(startDate: globalThis.Date, endDate: globalThis.Date): $SDK23 { return callSDK<$SDK23>("WeatherKit_1f27952b3c5b81e6", 4164850738219769, undefined, [startDate, endDate]); }
   /**
    * static func hourly(startDate: Date, endDate: Date) -> WeatherQuery<T>
    * @availability iOS 16.0+
    */
-  static hourlyStartDateEndDate(startDate: globalThis.Date, endDate: globalThis.Date): $SDK25 { return callSDK<$SDK25>("WeatherKit_d453e9e1f4a52dda", 1425129847019727, undefined, [startDate, endDate]); }
+  static hourlyStartDateEndDate(startDate: globalThis.Date, endDate: globalThis.Date): $SDK25 { return callSDK<$SDK25>("WeatherKit_1f27952b3c5b81e6", 1425129847019727, undefined, [startDate, endDate]); }
   declare readonly $type: { "s:10WeatherKit0A5QueryV": true };
 }
 
@@ -2177,52 +2177,52 @@ export class WeatherService extends SDKHandle {
    * final var attribution: WeatherAttribution { get async throws }
    * @availability iOS 16.0+
    */
-  get attribution(): Promise<WeatherAttribution> { return callSDKAsync<WeatherAttribution>("WeatherKit_d453e9e1f4a52dda", 4219139251422073, this, []); }
+  get attribution(): Promise<WeatherAttribution> { return callSDKAsync<WeatherAttribution>("WeatherKit_1f27952b3c5b81e6", 4219139251422073, this, []); }
   /**
    * static let shared: WeatherService
    * @availability iOS 16.0+
    */
-  static get shared(): WeatherService { return callSDK<WeatherService>("WeatherKit_d453e9e1f4a52dda", 3161258907897528, undefined, []); }
+  static get shared(): WeatherService { return callSDK<WeatherService>("WeatherKit_1f27952b3c5b81e6", 3161258907897528, undefined, []); }
   /**
    * @preconcurrency final func weather<T1, T2, T3, T4, T5, T6>(for location: CLLocation, including dataSet1: WeatherQuery<T1>, _ dataSet2: WeatherQuery<T2>, _ dataSet3: WeatherQuery<T3>, _ dataSet4: WeatherQuery<T4>, _ dataSet5: WeatherQuery<T5>, _ dataSet6: WeatherQuery<T6>) async throws -> (T1, T2, T3, T4, T5, T6) where T1 : Sendable, T2 : Sendable, T3 : Sendable, T4 : Sendable, T5 : Sendable, T6 : Sendable
    * @availability iOS 16.0+
    */
-  weatherForIncluding(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>, dataSet3: WeatherQuery<number>, dataSet4: WeatherQuery<number>, dataSet5: WeatherQuery<number>, dataSet6: WeatherQuery<number>): Promise<[number, number, number, number, number, number]> { return callSDKAsync<[number, number, number, number, number, number]>("WeatherKit_d453e9e1f4a52dda", 562933633799703, this, [location, dataSet1, dataSet2, dataSet3, dataSet4, dataSet5, dataSet6]); }
+  weatherForIncluding(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>, dataSet3: WeatherQuery<number>, dataSet4: WeatherQuery<number>, dataSet5: WeatherQuery<number>, dataSet6: WeatherQuery<number>): Promise<[number, number, number, number, number, number]> { return callSDKAsync<[number, number, number, number, number, number]>("WeatherKit_1f27952b3c5b81e6", 562933633799703, this, [location, dataSet1, dataSet2, dataSet3, dataSet4, dataSet5, dataSet6]); }
   /**
    * @preconcurrency final func weather<T1, T2, T3, T4, T5>(for location: CLLocation, including dataSet1: WeatherQuery<T1>, _ dataSet2: WeatherQuery<T2>, _ dataSet3: WeatherQuery<T3>, _ dataSet4: WeatherQuery<T4>, _ dataSet5: WeatherQuery<T5>) async throws -> (T1, T2, T3, T4, T5) where T1 : Sendable, T2 : Sendable, T3 : Sendable, T4 : Sendable, T5 : Sendable
    * @availability iOS 16.0+
    */
-  weatherForIncluding11867(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>, dataSet3: WeatherQuery<number>, dataSet4: WeatherQuery<number>, dataSet5: WeatherQuery<number>): Promise<[number, number, number, number, number]> { return callSDKAsync<[number, number, number, number, number]>("WeatherKit_d453e9e1f4a52dda", 714398311846413, this, [location, dataSet1, dataSet2, dataSet3, dataSet4, dataSet5]); }
+  weatherForIncluding11867(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>, dataSet3: WeatherQuery<number>, dataSet4: WeatherQuery<number>, dataSet5: WeatherQuery<number>): Promise<[number, number, number, number, number]> { return callSDKAsync<[number, number, number, number, number]>("WeatherKit_1f27952b3c5b81e6", 714398311846413, this, [location, dataSet1, dataSet2, dataSet3, dataSet4, dataSet5]); }
   /**
    * @preconcurrency final func weather<T1, T2, T3, T4>(for location: CLLocation, including dataSet1: WeatherQuery<T1>, _ dataSet2: WeatherQuery<T2>, _ dataSet3: WeatherQuery<T3>, _ dataSet4: WeatherQuery<T4>) async throws -> (T1, T2, T3, T4) where T1 : Sendable, T2 : Sendable, T3 : Sendable, T4 : Sendable
    * @availability iOS 16.0+
    */
-  weatherForIncluding48270(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>, dataSet3: WeatherQuery<number>, dataSet4: WeatherQuery<number>): Promise<[number, number, number, number]> { return callSDKAsync<[number, number, number, number]>("WeatherKit_d453e9e1f4a52dda", 2184851275033037, this, [location, dataSet1, dataSet2, dataSet3, dataSet4]); }
+  weatherForIncluding48270(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>, dataSet3: WeatherQuery<number>, dataSet4: WeatherQuery<number>): Promise<[number, number, number, number]> { return callSDKAsync<[number, number, number, number]>("WeatherKit_1f27952b3c5b81e6", 2184851275033037, this, [location, dataSet1, dataSet2, dataSet3, dataSet4]); }
   /**
    * @preconcurrency final func weather<T1, T2, T3>(for location: CLLocation, including dataSet1: WeatherQuery<T1>, _ dataSet2: WeatherQuery<T2>, _ dataSet3: WeatherQuery<T3>) async throws -> (T1, T2, T3) where T1 : Sendable, T2 : Sendable, T3 : Sendable
    * @availability iOS 16.0+
    */
-  weatherForIncluding66675(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>, dataSet3: WeatherQuery<number>): Promise<[number, number, number]> { return callSDKAsync<[number, number, number]>("WeatherKit_d453e9e1f4a52dda", 581489068285255, this, [location, dataSet1, dataSet2, dataSet3]); }
+  weatherForIncluding66675(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>, dataSet3: WeatherQuery<number>): Promise<[number, number, number]> { return callSDKAsync<[number, number, number]>("WeatherKit_1f27952b3c5b81e6", 581489068285255, this, [location, dataSet1, dataSet2, dataSet3]); }
   /**
    * @preconcurrency final func weather<T1, T2>(for location: CLLocation, including dataSet1: WeatherQuery<T1>, _ dataSet2: WeatherQuery<T2>) async throws -> (T1, T2) where T1 : Sendable, T2 : Sendable
    * @availability iOS 16.0+
    */
-  weatherForIncluding90072(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>): Promise<[number, number]> { return callSDKAsync<[number, number]>("WeatherKit_d453e9e1f4a52dda", 3257082995119844, this, [location, dataSet1, dataSet2]); }
+  weatherForIncluding90072(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>): Promise<[number, number]> { return callSDKAsync<[number, number]>("WeatherKit_1f27952b3c5b81e6", 3257082995119844, this, [location, dataSet1, dataSet2]); }
   /**
    * @preconcurrency final func weather<T>(for location: CLLocation, including dataSet: WeatherQuery<T>) async throws -> T where T : Sendable
    * @availability iOS 16.0+
    */
-  weatherForIncluding80774(location: __LocationEssentials_CLLocation, dataSet: WeatherQuery<number>): Promise<number> { return callSDKAsync<number>("WeatherKit_d453e9e1f4a52dda", 1671235513728835, this, [location, dataSet]); }
+  weatherForIncluding80774(location: __LocationEssentials_CLLocation, dataSet: WeatherQuery<number>): Promise<number> { return callSDKAsync<number>("WeatherKit_1f27952b3c5b81e6", 1671235513728835, this, [location, dataSet]); }
   /**
    * final func weather(for location: CLLocation) async throws -> Weather
    * @availability iOS 16.0+
    */
-  weatherFor(location: __LocationEssentials_CLLocation): Promise<Weather> { return callSDKAsync<Weather>("WeatherKit_d453e9e1f4a52dda", 2414513685135462, this, [location]); }
+  weatherFor(location: __LocationEssentials_CLLocation): Promise<Weather> { return callSDKAsync<Weather>("WeatherKit_1f27952b3c5b81e6", 2414513685135462, this, [location]); }
   /**
    * convenience init()
    * @availability iOS 16.0+
    */
-  static init(): WeatherService { return callSDK<WeatherService>("WeatherKit_d453e9e1f4a52dda", 1093021360952914, undefined, []); }
+  static init(): WeatherService { return callSDK<WeatherService>("WeatherKit_1f27952b3c5b81e6", 1093021360952914, undefined, []); }
   declare readonly $type: { "s:10WeatherKit0A7ServiceC": true };
 }
 
@@ -2237,27 +2237,27 @@ export const WeatherSeverity = {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  getDescription($self: WeatherSeverity): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 3639423469146560, $self, []); },
+  getDescription($self: WeatherSeverity): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 3639423469146560, $self, []); },
   /**
    * var accessibilityDescription: String { get }
    * @availability iOS 16.0+
    */
-  getAccessibilityDescription($self: WeatherSeverity): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 928180160865913, $self, []); },
+  getAccessibilityDescription($self: WeatherSeverity): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 928180160865913, $self, []); },
   /**
    * nonisolated static var allCases: [WeatherSeverity] { get }
    * @availability iOS 16.0+
    */
-  get allCases(): Array<WeatherSeverity> { return callSDK<Array<WeatherSeverity>>("WeatherKit_d453e9e1f4a52dda", 576484659584534, undefined, []); },
+  get allCases(): Array<WeatherSeverity> { return callSDK<Array<WeatherSeverity>>("WeatherKit_1f27952b3c5b81e6", 576484659584534, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): (WeatherSeverity) | null { return callSDK<(WeatherSeverity) | null>("WeatherKit_d453e9e1f4a52dda", 137774343591903, undefined, [rawValue]); },
+  init(rawValue: string): (WeatherSeverity) | null { return callSDK<(WeatherSeverity) | null>("WeatherKit_1f27952b3c5b81e6", 137774343591903, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: WeatherSeverity): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 1827873670676629, $self, []); }
+  getRawValue($self: WeatherSeverity): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 1827873670676629, $self, []); }
 };
 
 /**
@@ -2281,26 +2281,26 @@ export class Wind extends SDKHandle {
    * var compassDirection: Wind.CompassDirection
    * @availability iOS 16.0+
    */
-  get compassDirection(): Wind_CompassDirection { return callSDK<Wind_CompassDirection>("WeatherKit_d453e9e1f4a52dda", 646140028317821, this, []); }
-  set compassDirection(value: Wind_CompassDirection) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4289579849895685, this, [value]); }
+  get compassDirection(): Wind_CompassDirection { return callSDK<Wind_CompassDirection>("WeatherKit_1f27952b3c5b81e6", 646140028317821, this, []); }
+  set compassDirection(value: Wind_CompassDirection) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4289579849895685, this, [value]); }
   /**
    * var gust: Measurement<UnitSpeed>?
    * @availability iOS 16.0+
    */
-  get gust(): $SDK9 { return callSDK<$SDK9>("WeatherKit_d453e9e1f4a52dda", 2291941264803915, this, []); }
-  set gust(value: $SDK9) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 4175283985358979, this, [value]); }
+  get gust(): $SDK9 { return callSDK<$SDK9>("WeatherKit_1f27952b3c5b81e6", 2291941264803915, this, []); }
+  set gust(value: $SDK9) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 4175283985358979, this, [value]); }
   /**
    * var speed: Measurement<UnitSpeed>
    * @availability iOS 16.0+
    */
-  get speed(): $SDK2 { return callSDK<$SDK2>("WeatherKit_d453e9e1f4a52dda", 555791402427665, this, []); }
-  set speed(value: $SDK2) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 1371431785822864, this, [value]); }
+  get speed(): $SDK2 { return callSDK<$SDK2>("WeatherKit_1f27952b3c5b81e6", 555791402427665, this, []); }
+  set speed(value: $SDK2) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 1371431785822864, this, [value]); }
   /**
    * var direction: Measurement<UnitAngle>
    * @availability iOS 16.0+
    */
-  get direction(): $SDK33 { return callSDK<$SDK33>("WeatherKit_d453e9e1f4a52dda", 1156332314585708, this, []); }
-  set direction(value: $SDK33) { callSDK<void>("WeatherKit_d453e9e1f4a52dda", 2307272655708484, this, [value]); }
+  get direction(): $SDK33 { return callSDK<$SDK33>("WeatherKit_1f27952b3c5b81e6", 1156332314585708, this, []); }
+  set direction(value: $SDK33) { callSDK<void>("WeatherKit_1f27952b3c5b81e6", 2307272655708484, this, [value]); }
   declare readonly $type: { "s:10WeatherKit4WindV": true };
 }
 
@@ -2315,32 +2315,32 @@ export const Wind_CompassDirection = {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  getDescription($self: Wind_CompassDirection): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 1744445496938451, $self, []); },
+  getDescription($self: Wind_CompassDirection): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 1744445496938451, $self, []); },
   /**
    * var abbreviation: String { get }
    * @availability iOS 16.0+
    */
-  getAbbreviation($self: Wind_CompassDirection): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 909333086276250, $self, []); },
+  getAbbreviation($self: Wind_CompassDirection): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 909333086276250, $self, []); },
   /**
    * var accessibilityDescription: String { get }
    * @availability iOS 16.0+
    */
-  getAccessibilityDescription($self: Wind_CompassDirection): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 1754854759945381, $self, []); },
+  getAccessibilityDescription($self: Wind_CompassDirection): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 1754854759945381, $self, []); },
   /**
    * nonisolated static var allCases: [Wind.CompassDirection] { get }
    * @availability iOS 16.0+
    */
-  get allCases(): Array<Wind_CompassDirection> { return callSDK<Array<Wind_CompassDirection>>("WeatherKit_d453e9e1f4a52dda", 833357051113068, undefined, []); },
+  get allCases(): Array<Wind_CompassDirection> { return callSDK<Array<Wind_CompassDirection>>("WeatherKit_1f27952b3c5b81e6", 833357051113068, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): (Wind_CompassDirection) | null { return callSDK<(Wind_CompassDirection) | null>("WeatherKit_d453e9e1f4a52dda", 2667549046129168, undefined, [rawValue]); },
+  init(rawValue: string): (Wind_CompassDirection) | null { return callSDK<(Wind_CompassDirection) | null>("WeatherKit_1f27952b3c5b81e6", 2667549046129168, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: Wind_CompassDirection): string { return callSDK<string>("WeatherKit_d453e9e1f4a52dda", 4121496451259336, $self, []); }
+  getRawValue($self: Wind_CompassDirection): string { return callSDK<string>("WeatherKit_1f27952b3c5b81e6", 4121496451259336, $self, []); }
 };
 
 /**
@@ -2355,45 +2355,45 @@ export type Wind_CompassDirection_AllCases = Array<Wind_CompassDirection>;
  */
 export type Wind_CompassDirection_RawValue = string;
 
-registerSDKClass("WeatherKit.CloudCoverByAltitude", CloudCoverByAltitude, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.CurrentWeather", CurrentWeather, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.DailyWeatherStatistics", DailyWeatherStatistics, { module: "WeatherKit_d453e9e1f4a52dda", properties: {}, methods: {"subscript":{"id":1843240736297363}} });
-registerSDKClass("WeatherKit.DailyWeatherStatisticsQuery", DailyWeatherStatisticsQuery, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.DailyWeatherSummary", DailyWeatherSummary, { module: "WeatherKit_d453e9e1f4a52dda", properties: {}, methods: {"subscript":{"id":3311289781398060}} });
-registerSDKClass("WeatherKit.DailyWeatherSummaryQuery", DailyWeatherSummaryQuery, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.DayPartForecast", DayPartForecast, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.DayPrecipitationStatistics", DayPrecipitationStatistics, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.DayPrecipitationSummary", DayPrecipitationSummary, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.DayTemperatureStatistics", DayTemperatureStatistics, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.DayTemperatureSummary", DayTemperatureSummary, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.DayWeather", DayWeather, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.Forecast", Forecast, { module: "WeatherKit_d453e9e1f4a52dda", properties: {}, methods: {"subscript":{"id":2308669367383164}} });
-registerSDKClass("WeatherKit.HistoricalComparison", HistoricalComparison, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.HistoricalComparisons", HistoricalComparisons, { module: "WeatherKit_d453e9e1f4a52dda", properties: {}, methods: {"subscript":{"id":2012573501612865}} });
-registerSDKClass("WeatherKit.HourlyWeatherStatistics", HourlyWeatherStatistics, { module: "WeatherKit_d453e9e1f4a52dda", properties: {}, methods: {"subscript":{"id":4180143328066408}} });
-registerSDKClass("WeatherKit.HourlyWeatherStatisticsQuery", HourlyWeatherStatisticsQuery, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.HourTemperatureStatistics", HourTemperatureStatistics, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.HourWeather", HourWeather, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.MinuteWeather", MinuteWeather, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.MonthlyWeatherStatistics", MonthlyWeatherStatistics, { module: "WeatherKit_d453e9e1f4a52dda", properties: {}, methods: {"subscript":{"id":1520397644706116}} });
-registerSDKClass("WeatherKit.MonthlyWeatherStatisticsQuery", MonthlyWeatherStatisticsQuery, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.MonthPrecipitationStatistics", MonthPrecipitationStatistics, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.MonthTemperatureStatistics", MonthTemperatureStatistics, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.MoonEvents", MoonEvents, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.Percentiles", Percentiles, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.PrecipitationAmountByType", PrecipitationAmountByType, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.SnowfallAmount", SnowfallAmount, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.SunEvents", SunEvents, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.Trend", Trend, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.TrendBaseline", TrendBaseline, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.UVIndex", UVIndex, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.Weather", Weather, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.WeatherAlert", WeatherAlert, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.WeatherAttribution", WeatherAttribution, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.WeatherAvailability", WeatherAvailability, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.WeatherChange", WeatherChange, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.WeatherChanges", WeatherChanges, { module: "WeatherKit_d453e9e1f4a52dda", properties: {}, methods: {"subscript":{"id":3058091693657921}} });
-registerSDKClass("WeatherKit.WeatherMetadata", WeatherMetadata, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.WeatherQuery", WeatherQuery, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
-registerSDKClass("WeatherKit.WeatherService", WeatherService, { module: "WeatherKit_d453e9e1f4a52dda", properties: {}, methods: {"weatherForIncluding":{"id":562933633799703},"weatherForIncluding11867":{"id":714398311846413},"weatherForIncluding48270":{"id":2184851275033037},"weatherForIncluding66675":{"id":581489068285255},"weatherForIncluding90072":{"id":3257082995119844},"weatherForIncluding80774":{"id":1671235513728835},"weatherFor":{"id":2414513685135462}} });
-registerSDKClass("WeatherKit.Wind", Wind, { module: "WeatherKit_d453e9e1f4a52dda", properties: {} });
+registerSDKClass("WeatherKit.CloudCoverByAltitude", CloudCoverByAltitude, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.CurrentWeather", CurrentWeather, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.DailyWeatherStatistics", DailyWeatherStatistics, { module: "WeatherKit_1f27952b3c5b81e6", properties: {}, methods: {"subscript":{"id":1843240736297363}} });
+registerSDKClass("WeatherKit.DailyWeatherStatisticsQuery", DailyWeatherStatisticsQuery, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.DailyWeatherSummary", DailyWeatherSummary, { module: "WeatherKit_1f27952b3c5b81e6", properties: {}, methods: {"subscript":{"id":3311289781398060}} });
+registerSDKClass("WeatherKit.DailyWeatherSummaryQuery", DailyWeatherSummaryQuery, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.DayPartForecast", DayPartForecast, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.DayPrecipitationStatistics", DayPrecipitationStatistics, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.DayPrecipitationSummary", DayPrecipitationSummary, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.DayTemperatureStatistics", DayTemperatureStatistics, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.DayTemperatureSummary", DayTemperatureSummary, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.DayWeather", DayWeather, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.Forecast", Forecast, { module: "WeatherKit_1f27952b3c5b81e6", properties: {}, methods: {"subscript":{"id":2308669367383164}} });
+registerSDKClass("WeatherKit.HistoricalComparison", HistoricalComparison, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.HistoricalComparisons", HistoricalComparisons, { module: "WeatherKit_1f27952b3c5b81e6", properties: {}, methods: {"subscript":{"id":2012573501612865}} });
+registerSDKClass("WeatherKit.HourlyWeatherStatistics", HourlyWeatherStatistics, { module: "WeatherKit_1f27952b3c5b81e6", properties: {}, methods: {"subscript":{"id":4180143328066408}} });
+registerSDKClass("WeatherKit.HourlyWeatherStatisticsQuery", HourlyWeatherStatisticsQuery, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.HourTemperatureStatistics", HourTemperatureStatistics, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.HourWeather", HourWeather, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.MinuteWeather", MinuteWeather, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.MonthlyWeatherStatistics", MonthlyWeatherStatistics, { module: "WeatherKit_1f27952b3c5b81e6", properties: {}, methods: {"subscript":{"id":1520397644706116}} });
+registerSDKClass("WeatherKit.MonthlyWeatherStatisticsQuery", MonthlyWeatherStatisticsQuery, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.MonthPrecipitationStatistics", MonthPrecipitationStatistics, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.MonthTemperatureStatistics", MonthTemperatureStatistics, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.MoonEvents", MoonEvents, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.Percentiles", Percentiles, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.PrecipitationAmountByType", PrecipitationAmountByType, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.SnowfallAmount", SnowfallAmount, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.SunEvents", SunEvents, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.Trend", Trend, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.TrendBaseline", TrendBaseline, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.UVIndex", UVIndex, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.Weather", Weather, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.WeatherAlert", WeatherAlert, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.WeatherAttribution", WeatherAttribution, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.WeatherAvailability", WeatherAvailability, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.WeatherChange", WeatherChange, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.WeatherChanges", WeatherChanges, { module: "WeatherKit_1f27952b3c5b81e6", properties: {}, methods: {"subscript":{"id":3058091693657921}} });
+registerSDKClass("WeatherKit.WeatherMetadata", WeatherMetadata, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.WeatherQuery", WeatherQuery, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("WeatherKit.WeatherService", WeatherService, { module: "WeatherKit_1f27952b3c5b81e6", properties: {}, methods: {"weatherForIncluding":{"id":562933633799703},"weatherForIncluding11867":{"id":714398311846413},"weatherForIncluding48270":{"id":2184851275033037},"weatherForIncluding66675":{"id":581489068285255},"weatherForIncluding90072":{"id":3257082995119844},"weatherForIncluding80774":{"id":1671235513728835},"weatherFor":{"id":2414513685135462}} });
+registerSDKClass("WeatherKit.Wind", Wind, { module: "WeatherKit_1f27952b3c5b81e6", properties: {} });

@@ -246,6 +246,15 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
   const opened = new Map<string, { info: DeclarationInfo; value: boolean; bodies: Map<Entry, { body: string; mutates: boolean }> }>()
   const seen = new Set<string>()
   const imports = new Set<string>([graph.module])
+  // type names each import supplies; generated swift often spells them unqualified
+  const importedNames = new Map<string, Set<string>>()
+  const importType = (ref: string) => {
+    const info = bridge.index.get(ref)
+    if (!info?.module) return
+    imports.add(info.module)
+    if (!importedNames.has(info.module)) importedNames.set(info.module, new Set())
+    importedNames.get(info.module)!.add(info.path[0])
+  }
 
   // members of a protocol extension can lack a memberOf relationship; their
   // path still names the owner
@@ -503,10 +512,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
             const defaultValue = defaults[i]
             if (defaultValue?.startsWith('#') || !bridge.type(parameterType(parameter.declarationFragments), 'input', generics).ok) { simple = false; return }
             const spelled = replaceTypes(swiftTypeText(parameterTypeFragments(parameter.declarationFragments)).replace(/^inout\s+/, ''))
-            for (const ref of typeUsrs(type)) {
-              const module = bridge.index.get(ref)?.module
-              if (module) imports.add(module)
-            }
+            for (const ref of typeUsrs(type)) importType(ref)
             entryParams.push({ label: argLabel, name, type, optional: type.k === 'optional', hasDefault: defaultValue !== undefined })
             const value = defaultValue !== undefined
               ? `try c.arg(${entryParams.length - 1}, or: ${replaceTypes(scoped(defaultValue))})`
@@ -592,10 +598,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       const prefix = argLabel === '_' ? '' : `${label(argLabel)}: `
       const spelled = replace(swiftTypeText(fragments)).replace(/^inout\s+/, '')
       if (/\bsome\b/.test(spelled)) reason = 'opaque parameter'
-      for (const ref of typeUsrs(type)) {
-        const module = bridge.index.get(ref)?.module
-        if (module) imports.add(module)
-      }
+      for (const ref of typeUsrs(type)) importType(ref)
       const name = parameter.internalName ?? parameter.name
       const isInOut = parsed.k === 'inout' || new RegExp(`\\b${name}\\s*:\\s*inout\\b`).test(decl)
       if (isInOut) {
@@ -851,7 +854,11 @@ ${methods.join('\n')}
     if (e.usr.startsWith('c:objc(')) e.observation = 'kvo'
     else if (bridge.index.get(e.receiver.usr ?? '')?.conformsTo?.includes(OBSERVABLE)) e.observation = 'tracking'
   }
-  return { module: graph.module, entries, skipped, swift: renderSwift(graph.module, table, [...imports].sort(), conformancesOnly ? [] : entries, [...conformances, ...(conformancesOnly ? [] : openings)], () => emitProtocols(graph, bridge, all, exclude, skipped)) }
+  const swift = renderSwift(graph.module, table, [...imports].sort(), conformancesOnly ? [] : entries, [...conformances, ...(conformancesOnly ? [] : openings)], () => emitProtocols(graph, bridge, all, exclude, skipped))
+  const body = swift.replace(/^import \S+\n/gm, '')
+  return { module: graph.module, entries, skipped, swift: swift.replace(/^import (\S+)\n/gm, (line, module) =>
+    module === 'Foundation' || module === 'One' || module === graph.module || new RegExp(`\\b${module}\\.`).test(body) ||
+    [...importedNames.get(module) ?? []].some((name) => new RegExp(`\\b${name}\\b`).test(body)) ? line : '') }
 }
 
 function emitConformance(symbol: Symbol, bridge: Bridge, memberUsrs: string[], byUsr: Map<string, Symbol>, requirements: Set<string>, typeVersion: string | undefined) {

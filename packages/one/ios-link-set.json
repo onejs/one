@@ -127,17 +127,20 @@
     },
     "photos": {
       "frameworks": [
-        "PhotosUI"
+        "PhotosUI",
+        "Photos"
       ],
       "components": [
         "OneNativePhotosPicker",
         "OneNativeLivePhotoView"
       ],
       "hybrids": [
-        "OneImagePicker"
+        "OneImagePicker",
+        "OnePhotoLibrary"
       ],
       "uses": [
         "ImagePicker",
+        "PhotoLibrary",
         "presentLimitedLibraryPicker"
       ],
       "modifiers": [
@@ -189,6 +192,290 @@
         "realityViewCameraControls",
         "realityViewLayoutBehavior"
       ],
+      "slots": [],
+      "values": []
+    },
+    "speech": {
+      "frameworks": [
+        "Speech"
+      ],
+      "components": [],
+      "hybrids": [
+        "OneSpeech"
+      ],
+      "uses": [
+        "Speech"
+      ],
+      "modifiers": [],
+      "slots": [],
+      "values": []
+    },
+    "maps": {
+      "frameworks": [
+        "MapKit",
+        "CoreLocation",
+        "CoreLocationUI"
+      ],
+      "components": [
+        "OneNativeMap",
+        "OneNativeMapUserLocationButton",
+        "OneNativeMapPitchToggle",
+        "OneNativeMapCompass",
+        "OneNativeUiMap",
+        "OneNativeLocationButton"
+      ],
+      "hybrids": [
+        "OneMapServices",
+        "OneLocation"
+      ],
+      "uses": [
+        "MapServices",
+        "Map",
+        "Location",
+        "LocationButton"
+      ],
+      "modifiers": [
+        "lookAroundViewer",
+        "mapCameraKeyframeAnimator",
+        "mapControlVisibility",
+        "mapFeatureSelectionAccessory",
+        "mapFeatureSelectionContent",
+        "mapFeatureSelectionDisabled",
+        "mapItemDetailPopoverWithCurrentLocation",
+        "mapItemDetailPopoverWithCurrentLocationAndArrowEdge",
+        "mapItemDetailSheetWithCurrentLocation",
+        "mapScope",
+        "mapStyle",
+        "onMapCameraChange",
+        "onMapCameraChangeWithEventStruct"
+      ],
+      "slots": [
+        "mapControls"
+      ],
+      "values": []
+    },
+    "video": {
+      "frameworks": [
+        "AVKit"
+      ],
+      "components": [
+        "OneNativeVideoPlayer",
+        "OneNativePictureInPicture"
+      ],
+      "hybrids": [],
+      "uses": [
+        "PictureInPicture",
+        "VideoPlayer"
+      ],
+      "modifiers": [
+        "onCameraCaptureEvent",
+        "onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction",
+        "onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "contacts": {
+      "frameworks": [
+        "ContactsUI"
+      ],
+      "components": [],
+      "hybrids": [
+        "OneContacts",
+        "OneContactUI",
+        "NativeCNContact",
+        "NativeCNContactStore"
+      ],
+      "uses": [
+        "Contacts",
+        "CNContactViewController",
+        "CNMutableContact",
+        "CNContactStore"
+      ],
+      "modifiers": [],
+      "slots": [],
+      "values": []
+    },
+    "vision": {
+      "frameworks": [
+        "VisionKit"
+      ],
+      "components": [],
+      "hybrids": [
+        "OneDataScanner",
+        "OneDocumentCamera"
+      ],
+      "uses": [
+        "DataScannerViewController",
+        "VNDocumentCameraViewController"
+      ],
+      "modifiers": [],
+      "slots": [],
+      "values": []
+    },
+    "swiftdata": {
+      "frameworks": [
+        "SwiftData"
+      ],
+      "components": [],
+      "hybrids": [],
+      "modifiers": [
+        "modelContainer",
+        "modelContext"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "translation": {
+      "frameworks": [
+        "Translation"
+      ],
+      "components": [],
+      "hybrids": [],
+      "modifiers": [
+        "translationPresentation",
+        "translationTask"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "workout": {
+      "frameworks": [
+        "WorkoutKit"
+      ],
+      "components": [],
+      "hybrids": [],
+      "modifiers": [
+        "workoutPreview"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "web": {
+      "frameworks": [
+        "WebKit"
+      ],
+      "components": [
+        "OneNativeWebView",
+        "OneDOMHost"
+      ],
+      "hybrids": [],
+      "uses": [
+        "WebView",
+        "createDOMComponent"
+      ],
+      "modifiers": [
+        "webViewBackForwardNavigationGestures",
+        "webViewContentBackground",
+        "webViewElementFullscreenBehavior",
+        "webViewLinkPreviews",
+        "webViewMagnificationGestures",
+        "webViewOnScrollGeometryChangeWithContainerSize",
+        "webViewOnScrollGeometryChangeWithContentOffset",
+        "webViewOnScrollGeometryChangeWithContentSize",
+        "webViewScrollPosition",
+        "webViewTextSelection"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "intents": {
+      "frameworks": [
+        "AppIntents"
+      ],
+      "components": [
+        "OneNativeShortcutsLink"
+      ],
+      "hybrids": [],
+      "uses": [
+        "ShortcutsLink"
+      ],
+      "modifiers": [
+        "accessibilityAction",
+        "accessibilityActionWithAppIntent",
+        "appEntityIdentifier",
+        "appEntityUIElements",
+        "onAppIntentExecution",
+        "shortcutsLinkStyle",
+        "siriTipViewStyle"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "widgets": {
+      "frameworks": [
+        "WidgetKit"
+      ],
+      "components": [],
+      "hybrids": [],
+      "uses": [],
+      "modifiers": [
+        "previewContext"
+      ],
+      "slots": [],
+      "values": [
+        "widget"
+      ]
+    },
+    "controllers": {
+      "frameworks": [
+        "GameController"
+      ],
+      "components": [],
+      "hybrids": [],
+      "uses": [],
+      "modifiers": [
+        "handlesGameControllerEvents"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "credentials": {
+      "frameworks": [
+        "SecureElementCredential"
+      ],
+      "components": [],
+      "hybrids": [],
+      "uses": [],
+      "modifiers": [
+        "transactionTask"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "detection": {
+      "frameworks": [
+        "DataDetection"
+      ],
+      "components": [],
+      "hybrids": [],
+      "uses": [],
+      "modifiers": [
+        "dataDetection"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "media": {
+      "frameworks": [
+        "MediaPlayer"
+      ],
+      "components": [
+        "OneNativeCamera"
+      ],
+      "hybrids": [
+        "OneAudio",
+        "OneSpeechSynthesis"
+      ],
+      "uses": [
+        "Audio",
+        "Camera",
+        "SpeechSynthesis",
+        "CameraView",
+        "useAudioPlayer",
+        "useAudioPlayerStatus"
+      ],
+      "modifiers": [],
       "slots": [],
       "values": []
     }

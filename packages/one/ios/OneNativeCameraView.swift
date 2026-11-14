@@ -1,3 +1,4 @@
+#if ONE_GROUP_MEDIA
 import AVFoundation
 import UIKit
 
@@ -441,3 +442,5 @@ private final class CameraPhotoDelegate: NSObject, AVCapturePhotoCaptureDelegate
     }
   }
 }
+
+#endif

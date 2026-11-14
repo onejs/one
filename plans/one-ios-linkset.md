@@ -4,9 +4,7 @@ Goal: cut the time One's iOS apps spend in dyld before `main`. Subject: `tests/r
 
 ## status
 
-- Done: the framework table, a cause for the pre-main cost, and the size of the saving a trimmed link set gives (probe app, RAN).
-- Not done: a source prototype on `tm/one-ios-linkset`, and One cold launches current against prototype. The previous worker's warm build tree (`one-ios-js2`) no longer exists, so a One build was from scratch. `bun install` onto the Samsung disk alone took 25 minutes on the loaded host and `one prebuild` then sat 21 minutes without output (killed), so no One app was built. Nothing below is a One cold-launch number.
-- Every number is the probe app unless it says otherwise.
+Round five selects SDK bindings from the production bundle and splits the remaining optional framework importers. Current qualification uses a rebuilt React Native control and alternating cold launches in the air-24 quiet queue. The earlier sections record historical probes and build stacks; the current matched comparison is below.
 
 ## method: a probe instead of the One app
 
@@ -247,6 +245,103 @@ Marks are `NSLog("startup_mark ...")` lines: `app_delegate_init` in `AppDelegate
 
 The acceptance bar (within about 100 ms of plain RN before `AppDelegate.init`) is not met: One with no group is 355 ms behind the control. The remaining difference is the frameworks One still links. `otool -L` shows 204 images for One against 74 for the control, including SwiftUI, AVKit, WebKit, MapKit, VisionKit, Translation, LinkPresentation, ContactsUI, EventKit, Photos, SwiftData, WorkoutKit and their overlays. The probe sweep above put the nine mid-weight frameworks at about 100 ms (P2), which does not cover 355 ms; the rest is SwiftUI and the libswift libraries. Nothing here is trimmed yet. One group still costs back nearly all of the gain (wallet 1689 against 608). Routed content is dominated by React Native and One startup, and shows One after no group 137 ms behind the control.
 
+## round three: photos and speech split, and the floor (branch tm/one-ios-linkset-2)
+
+`photos` now also owns `Photos` and the `OneImagePicker` and `OnePhotoLibrary` hybrids, and a new `speech` group owns `Speech` and `OneSpeech`. `OnePhotoLibrary` and `OneSpeech` are compiled only under their group, `OneNativeStyle.swift` imports `Photos` only under `ONE_GROUP_PHOTOS`, and `OneAutolinking` registers both by group. Modifiers declared only by a non-core overlay now carry `frameworks` (`codegen/deriveSDK.ts`) so `modifierGroups` can place them.
+
+### measurement (RAN, 10 interleaved cold launches each, one simulator, load average about 37 because no quiet window was admitted)
+
+| app | app_delegate_init median | routed_content median |
+|---|---|---|
+| plain RN control | 233 | 292 |
+| One, no group (97 libs after the split, 99 before) | 586 | 668 |
+| One, speech group | 592 | 676 |
+
+The gap to plain RN at `AppDelegate.init` is about 353 ms against 355 ms before the split. Moving Photos and Speech out of the no-group binary changed the startup time by less than the run to run spread.
+
+### what keeps the floor there
+
+- The cost is a hub effect. Dyld load time follows the shared expensive dependency set, so removing a few frameworks saves nothing while any other always-compiled file still imports something that reaches it. All the heavy ones have to leave together.
+- The remaining always-compiled importers are `OneNativeStyle.swift` and the `Hybrid*` files for Contacts and ContactsUI, MapKit, WebKit, VisionKit, AVKit, Translation, EventKit, LinkPresentation and GameController overlays.
+- `OneSDKBindings` compiles per-framework `OneSDK_<Framework>.o` files (EventKit, PDFKit, DeviceCheck, CloudKit, LinkPresentation and others) that no group gates. Swift records each module's import closure in every object file, so these keep the frameworks linked.
+- A cheap split of one or two frameworks does not reach the 300 ms target. Reaching it needs one bundled change: gate those hybrids, the `OneNativeStyle.swift` imports and the unconditional SDK binding files behind groups together, then re-measure.
+
+## round four: stopped before validation (2026-10-25 UTC)
+
+The owner's accepted bar in Contrast `specs/one-ios-link-set.md` is about 250 to 300 ms behind plain React Native at `AppDelegate.init`. The earlier 100 ms target quoted below is historical. The latest measured gap remains 353 ms from round three. This worker recorded no new cold-launch, link-set or feature result.
+
+RAN, source inspection on pro-64 at `367d7ff4d1`: `codegen/sdk/app.ts` walks every platform `.ios` module whenever app code imports `one`. Its UIKit table includes `UIDocumentProperties.init(metadata:)` taking `LPLinkMetadata`. Gating only the separate LinkPresentation table cannot remove that UIKit dependency. The generated CoreLocation conformances also import Contacts, and EventKit imports MapKit. These observations establish source references, not the timing they cause.
+
+Draft work extended the existing group mechanism and began production-graph SDK selection and generator-level filtering of entries whose types belong to excluded frameworks. The lead authorized fingerprint changes with regeneration of the committed facades and manifest. That regeneration was not performed. The draft was incomplete when s72425 relayed the owner's instruction to stop. It was preserved outside the worktree in `/Users/n8/builders/one-ios-linkset4/unfinished.patch` with `unfinished-notes.md`, then removed from the delivery branch. Do not apply it as a validated implementation.
+
+RAN: dependencies installed and the JS dependency build completed before the SDK draft edits. This does not validate the unfinished changes. Native source generation was stopped during Swift typechecking. No iOS app build or timing run started, no simulator was created and no app was launched. There are no new native acceptance results or CI checks to hand off. That stop is historical; round five resumes the work.
+
+## round five: production SDK selection and remaining framework groups (2026-11-09)
+
+The production bundler records SDK table identities remaining in the emitted JavaScript, after tree shaking, including template literals emitted by the production minifier. Static `One` member reads import the existing component or service export directly. This avoids retaining unrelated SDK backends through the frozen namespace object, preserves object identity and live platform getters, and leaves computed reads and escaping objects unchanged. `One.UI`, `One.iOS` and `One.Android` reads all participate in group detection.
+
+A real production fixture rendering `One.UI.Map`, a native Toggle bound to shared state, and a Foundation UUID now reports `groups: [maps]` and `frameworks: [Foundation]`. Before the static-member transform the same bundle retained thirteen SDK backends, including EventKit, UIKit and PDFKit.
+
+Prebuild uses these frameworks for Release and preserves the source-scanned framework set for Debug. The two configurations have separate generated source directories behind `ONE_SDK_DEBUG`, so changing features in development keeps working. Their Swift filenames include the configuration because Swift rejects duplicate basenames even when their declarations have opposite compilation guards. The SDK pod records its Release framework list in the installed CocoaPods xcconfig. A later Release bundle that needs a missing framework fails with the same prebuild instruction as a missing native group. Metro retains the previous conservative full set.
+
+SDK conformance-only files no longer import frameworks used solely by table entries they do not emit. Public SDK entries, signatures and IDs are unchanged; the committed facades and manifest are rekeyed to the new generator fingerprint. The generated native tables and conformances were compiled against device and simulator SDKs, then reused after the pod-only configuration change with their table identity updated. Declaration shapes are unchanged.
+
+New groups cover MapKit and CoreLocation, AVKit, ContactsUI, VisionKit, SwiftData, Translation, WorkoutKit, WebKit, AppIntents, WidgetKit, GameController, DataDetection, SecureElementCredential and media. Media owns camera, audio and speech synthesis, and maps also owns the location service and LocationButton. The existing generator gates their imports, modifier implementations, view slots, value decoders and generated views. Handwritten maps, picture in picture, contact, scanning and DOM sources and Nitro registrations use the same conditions. A `use dom` module enables WebKit through its bundler metadata; generated native DOM proxies are accounted for even though their browser source does not mention a native component.
+
+The shared-state installer initializes Worklets at the first state installation, preserving its required initialization before the native install. An app that imports One without using shared state can avoid that eager JavaScript work.
+
+The first matched comparison, before the final overlay splits, ran ten alternating cold launches per variant after warm-up in the air-24 quiet queue:
+
+| app | AppDelegate.init median ms | route commit median ms |
+|---|---:|---:|
+| plain RN | 301.2 | 361.7 |
+| rebuilt round-three equivalent | 669.6 | 747.0 |
+| selected SDK and first framework groups | 433.8 | 514.5 |
+
+This intermediate result reduced the gap from 368.4 to 132.6 ms at the delegate and from 385.3 to 152.8 ms at route commit. This is a matched reconstruction using the same current dependencies, not an executable built from the old branch. The old 353 ms and 137 ms figures used another build stack and a different content mark.
+
+### physical device
+
+Ten alternating cold launches per app after warm-up on an iPhone Air, using matching Release dependencies:
+
+| app | AppDelegate.init median ms (min to max) | route commit median ms (min to max) |
+|---|---:|---:|
+| plain RN | 18.14 (15.83 to 18.74) | 50.55 (48.26 to 53.07) |
+| selected One | 25.48 (24.65 to 31.37) | 75.78 (72.25 to 78.85) |
+| One gap | 7.33 | 25.24 |
+
+The phone was connected to pro-64; no physical iPhone was reachable on air-24. Device launches used ordinary local build admission. Both timestamps originate on the phone and subtract its kernel process creation time, so host command and console transport time are excluded. The device numbers show why simulator dyld costs should not be treated as phone costs.
+
+### measurement contract and limits
+
+`RCTContentDidAppearNotification` marks One's router provider shell before the page. These comparisons separately record that notification and the target page's React layout-effect timestamp. The page and plain RN control write the same Settings key; the native helper records its timestamp relative to kernel process creation. The simulator harness also supports the older helper by reading the preference with filesystem events. One warm-up round is excluded, then launch order reverses each round. These are process cold starts with warm filesystem caches, not reboot timings or first-pixel measurements.
+
+The no-group Release app has 54 direct load commands, down from 96 in the matched baseline (plain RN: 34). These counts exclude the `otool -L` header and are not transitive dyld image counts. SwiftUI and core system dependencies remain, and selecting an SDK table retains frameworks required by that table's public parameter and return types. Debug keeps every group and its complete source-selected SDK tables.
+
+### final simulator comparison
+
+Ten alternating cold launches per app after a warm-up round, air-24 iPhone 17 Pro simulator, Release, React Native 0.88. The quiet queue admitted the run after background indexing finished; measurement itself took 143 seconds, including the separate Stack comparison below.
+
+| app | AppDelegate.init median ms (min to max) | route commit median ms (min to max) |
+|---|---:|---:|
+| plain RN | 303.91 (296.53 to 317.22) | 363.74 (358.73 to 385.87) |
+| rebuilt round-three equivalent | 668.45 (660.84 to 685.76) | 742.63 (734.43 to 761.03) |
+| final selected One | 386.68 (378.07 to 395.62) | 458.43 (451.22 to 481.10) |
+| gap before | 364.54 | 378.89 |
+| gap after | 82.77 | 94.70 |
+
+One improves by 281.78 ms at the delegate and 284.20 ms at route commit. Median per-launch delegate-to-route time is 73.50 ms before, 72.19 ms after and 60.88 ms in plain RN. Most of the total saving is before the delegate; about 11 ms extra after it remains on this simulator. The remaining phone gap is 25.24 ms overall and 7.33 ms at the delegate.
+
+A second ten-pair comparison with a Stack root and the same final native binary measured 465.77 ms at route commit with Reanimated's package entry versus 462.02 ms with its existing boundary component imported directly. Median delegate-to-route time is 79.82 versus 76.42 ms. The leaf is the same plain Fabric boundary and preserves the focused-screen `isActive` behavior. Animation components still import Reanimated's package entry and initialize its runtimes when used. A minimal Stack fixture also qualified push and pop at runtime.
+
+### feature and compiler qualification
+
+A Release binary compiled with only maps plus the Foundation SDK table returns a generated Foundation UUID, renders the Cupertino map and propagates shared-state updates from a JavaScript button to native switches and from a native switch back to React text. Its 59 direct load commands include MapKit and its SwiftUI overlay; EventKit, LinkPresentation, WebKit, VisionKit, Photos, SwiftData, StoreKit, MediaPlayer and ContactsUI are absent. The no-group app has 54 direct load commands.
+
+Both all-group and no-group SwiftUI generation passed native typechecking. The final no-group app compiled for device and simulator; the selected maps/Foundation Release app also compiled after the configuration filename repair. Thirteen focused SDK ABI and production-bundler checks passed, including minified table detection, stale native configuration rejection, namespace identity, shadowed bindings and live platform getters. Matching facades and manifest use generator identity `4e2094813cc7c17f`.
+
+Production lazy barrels and initial URL prefetch were tried and rejected; the details are in `plans/one-ios-startup.md`.
+
 ## how it works
 
 `ios-link-set.json` lists the groups. `one prebuild` writes `ios/one-link-set.json` from the production bundle (`src/cli/iosLinkSet.ts`). `One.podspec` defines `ONE_GROUP_X` conditions for those groups in Release and for all groups in Debug. Group sources, nitro registration and generated modifiers sit under those conditions. A compiled-out component keeps a stub class that renders nothing, and a compiled-out hybrid is not registered, so its call fails through the existing unsupported error. `OneStoreReview` moved to a Swift hybrid in the store group because its SDK import kept StoreKit linked in every app.
@@ -255,8 +350,8 @@ The acceptance bar (within about 100 ms of plain RN before `AppDelegate.init`) i
 
 - The link set is captured at pod install. Adding a feature later needs `one prebuild`; a Release build that needs a missing group fails (see round two).
 - A computed read or an escaping namespace keeps every group. A Metro bundle has no analysis plugin, so prebuild links every group there.
-- The acceptance bar of 100 ms over plain RN is not met (355 ms at `app_delegate_init`); mid-weight frameworks and SwiftUI remain linked.
-- Do not edit `codegen/sdk/app.ts` or other fingerprinted files; the fingerprint is embedded in the published bindings.
+- The historical round-three gap used different dependencies and a shell-appearance content mark. Use the matched round-five route-commit comparison for current conclusions.
+- SDK generator edits require matching committed facade and manifest identities; round five includes the matching fingerprint regeneration.
 
 ## files
 

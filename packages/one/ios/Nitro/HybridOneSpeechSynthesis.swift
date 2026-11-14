@@ -1,3 +1,4 @@
+#if ONE_GROUP_MEDIA
 import AVFoundation
 import NitroModules
 
@@ -183,3 +184,5 @@ final class HybridOneSpeechSynthesisDelegate: NSObject, AVSpeechSynthesizerDeleg
     owner?.finish(utterance, type: .stopped, message: nil)
   }
 }
+
+#endif

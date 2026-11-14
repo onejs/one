@@ -4,7 +4,9 @@ import SwiftUI
 import UIKit
 import Combine
 import Observation
+#if ONE_GROUP_INTENTS
 import AppIntents
+#endif
 import Accessibility
 #if ONE_GROUP_WALLET
 import PassKit
@@ -12,24 +14,40 @@ import PassKit
 #if ONE_GROUP_STORE
 import StoreKit
 #endif
+#if ONE_GROUP_DETECTION
 import DataDetection
+#endif
 #if ONE_GROUP_PREVIEW3D
 import RealityKit
 #endif
 import UniformTypeIdentifiers
+#if ONE_GROUP_CONTROLLERS
 import GameController
+#endif
+#if ONE_GROUP_MAPS
 import MapKit
+#endif
+#if ONE_GROUP_MAPS
 import CoreLocation
+#endif
+#if ONE_GROUP_SWIFTDATA
 import SwiftData
+#endif
 #if ONE_GROUP_PREVIEW3D
 import MusicKit
 #endif
+#if ONE_GROUP_VIDEO
 import AVKit
+#endif
 #if ONE_GROUP_PHOTOS
 import PhotosUI
 #endif
+#if ONE_GROUP_PHOTOS
 import Photos
+#endif
+#if ONE_GROUP_WIDGETS
 import WidgetKit
+#endif
 #if ONE_GROUP_PREVIEW3D
 import QuickLook
 #endif
@@ -37,10 +55,18 @@ import QuickLook
 import AuthenticationServices
 #endif
 import Symbols
+#if ONE_GROUP_CREDENTIALS
 import SecureElementCredential
+#endif
+#if ONE_GROUP_TRANSLATION
 import Translation
+#endif
+#if ONE_GROUP_WEB
 import WebKit
+#endif
+#if ONE_GROUP_WORKOUT
 import WorkoutKit
+#endif
 #if ONE_GROUP_WALLET
 @_weakLinked import _PassKit_SwiftUI
 #endif
@@ -56,7 +82,9 @@ import WorkoutKit
 @MainActor public struct OneNativeRegisteredModifier {
   enum Kind {
     case layoutValue, containerValue, accessibilityAction, onAppIntentExecution, reorderContainer, mapFeatureSelectionContent, transactionTask
+#if ONE_GROUP_INTENTS
     case appEntityUIElements
+#endif
 #if ONE_GROUP_WALLET
     case onApplePayCouponCodeChange
 #endif
@@ -83,6 +111,7 @@ import WorkoutKit
     Self(kind: .containerValue) { AnyView($0.containerValue(keyPath, value)) }
   }
 
+  #if ONE_GROUP_INTENTS
   @available(iOS 18, *)
   public static func accessibilityAction<I: AppIntent>(named label: String, intent: I) -> Self {
     Self(kind: .accessibilityAction) { AnyView($0.accessibilityAction(named: Text(label), intent: intent)) }
@@ -94,6 +123,8 @@ import WorkoutKit
   ) -> Self {
     Self(kind: .onAppIntentExecution) { AnyView($0.onAppIntentExecution(intent, perform: action)) }
   }
+
+  #endif
 
 
 #if ONE_IOS_27_SDK
@@ -107,13 +138,16 @@ import WorkoutKit
 #endif
 
 
+  #if ONE_GROUP_MAPS
   @available(iOS 17, *)
   public static func mapFeatureSelectionContent<Content: MapContent>(
     @MapContentBuilder content: @escaping (MapFeature) -> Content
   ) -> Self {
     Self(kind: .mapFeatureSelectionContent) { AnyView($0.mapFeatureSelectionContent(content: content)) }
   }
+  #endif
 
+  #if ONE_GROUP_CREDENTIALS
   @available(iOS 18.1, *)
   public static func transactionTask(
     _ configuration: CredentialTransaction.Configuration?,
@@ -121,6 +155,8 @@ import WorkoutKit
   ) -> Self {
     Self(kind: .transactionTask) { AnyView($0.transactionTask(configuration, action: action)) }
   }
+  #endif
+#if ONE_GROUP_INTENTS
 
 #if ONE_IOS_27_SDK
 
@@ -130,6 +166,7 @@ import WorkoutKit
   }
 #endif
 
+#endif
 #if ONE_GROUP_WALLET
 
   @available(iOS 15.5, *)
@@ -374,6 +411,7 @@ private struct OneNativeSDKPhotosPickerTransfer: ViewModifier {
   }
 }
 #endif
+#if ONE_GROUP_MAPS
 @available(iOS 17, *)
 @MainActor private struct OneNativeSDKLookAroundViewerRequest: ViewModifier {
   let latitude: Double
@@ -404,6 +442,7 @@ private struct OneNativeSDKPhotosPickerTransfer: ViewModifier {
       ), initialScene: object)
   }
 }
+#endif
 
 public struct OneNativeStyle: Equatable {
   public var fontSize: CGFloat? {
@@ -613,8 +652,16 @@ extension View {
       let value = pair[1]
       switch name {
       case "accentColor": view = AnyView(view.oneNativeSDKAccentColor(value, emit: emit))
+#if ONE_GROUP_INTENTS
       case "accessibilityAction": view = AnyView(view.oneNativeSDKAccessibilityAction(value, emit: emit))
+#else
+      case "accessibilityAction": preconditionFailure("modifier accessibilityAction needs the intents feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_INTENTS
       case "accessibilityActionWithAppIntent": view = AnyView(view.oneNativeSDKAccessibilityActionWithAppIntent(value, emit: emit))
+#else
+      case "accessibilityActionWithAppIntent": preconditionFailure("modifier accessibilityActionWithAppIntent needs the intents feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "accessibilityActivationPointWithActivationPointAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityActivationPointWithActivationPointAndIsEnabled(value, emit: emit))
       case "accessibilityActivationPointWithUnitPoint": view = AnyView(view.oneNativeSDKAccessibilityActivationPointWithUnitPoint(value, emit: emit))
       case "accessibilityAddTraits": view = AnyView(view.oneNativeSDKAccessibilityAddTraits(value, emit: emit))
@@ -680,8 +727,16 @@ extension View {
       case "allowsWindowActivationEventsWithOptionalBool": view = AnyView(view.oneNativeSDKAllowsWindowActivationEventsWithOptionalBool(value, emit: emit))
       case "anchorPreference": view = AnyView(view.oneNativeSDKAnchorPreference(value, emit: emit))
       case "animation": view = AnyView(view.oneNativeSDKAnimation(value, emit: emit))
+#if ONE_GROUP_INTENTS
       case "appEntityIdentifier": view = AnyView(view.oneNativeSDKAppEntityIdentifier(value, emit: emit))
+#else
+      case "appEntityIdentifier": preconditionFailure("modifier appEntityIdentifier needs the intents feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_INTENTS
       case "appEntityUIElements": view = AnyView(view.oneNativeSDKAppEntityUIElements(value, emit: emit))
+#else
+      case "appEntityUIElements": preconditionFailure("modifier appEntityUIElements needs the intents feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
 #if ONE_GROUP_STORE
       case "appStoreMerchandising": view = AnyView(view.oneNativeSDKAppStoreMerchandising(value, emit: emit))
 #else
@@ -747,7 +802,11 @@ extension View {
       case "currentEntitlementTask": preconditionFailure("modifier currentEntitlementTask needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "cuttable": view = AnyView(view.oneNativeSDKCuttable(value, emit: emit))
+#if ONE_GROUP_DETECTION
       case "dataDetection": view = AnyView(view.oneNativeSDKDataDetection(value, emit: emit))
+#else
+      case "dataDetection": preconditionFailure("modifier dataDetection needs the detection feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "datePickerStyle": view = AnyView(view.oneNativeSDKDatePickerStyle(value, emit: emit))
       case "defaultAdaptableTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultAdaptableTabBarPlacement(value, emit: emit))
       case "defaultAppStorage": view = AnyView(view.oneNativeSDKDefaultAppStorage(value, emit: emit))
@@ -895,7 +954,11 @@ extension View {
       case "groupBoxStyle": view = AnyView(view.oneNativeSDKGroupBoxStyle(value, emit: emit))
       case "handGestureShortcut": view = AnyView(view.oneNativeSDKHandGestureShortcut(value, emit: emit))
       case "handlesExternalEvents": view = AnyView(view.oneNativeSDKHandlesExternalEvents(value, emit: emit))
+#if ONE_GROUP_CONTROLLERS
       case "handlesGameControllerEvents": view = AnyView(view.oneNativeSDKHandlesGameControllerEvents(value, emit: emit))
+#else
+      case "handlesGameControllerEvents": preconditionFailure("modifier handlesGameControllerEvents needs the controllers feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "headerProminence": view = AnyView(view.oneNativeSDKHeaderProminence(value, emit: emit))
       case "help": view = AnyView(view.oneNativeSDKHelp(value, emit: emit))
       case "hidden": view = AnyView(view.oneNativeSDKHidden(value, emit: emit))
@@ -958,7 +1021,11 @@ extension View {
       case "listSectionSpacingWithCGFloat": view = AnyView(view.oneNativeSDKListSectionSpacingWithCGFloat(value, emit: emit))
       case "listSectionSpacingWithListSectionSpacing": view = AnyView(view.oneNativeSDKListSectionSpacingWithListSectionSpacing(value, emit: emit))
       case "listStyle": view = AnyView(view.oneNativeSDKListStyle(value, emit: emit))
+#if ONE_GROUP_MAPS
       case "lookAroundViewer": view = AnyView(view.oneNativeSDKLookAroundViewer(value, emit: emit))
+#else
+      case "lookAroundViewer": preconditionFailure("modifier lookAroundViewer needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "luminanceToAlpha": view = AnyView(view.oneNativeSDKLuminanceToAlpha(value, emit: emit))
 #if ONE_GROUP_STORE
       case "manageSubscriptionsSheet": view = AnyView(view.oneNativeSDKManageSubscriptionsSheet(value, emit: emit))
@@ -970,16 +1037,56 @@ extension View {
 #else
       case "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID": preconditionFailure("modifier manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
+#if ONE_GROUP_MAPS
       case "mapCameraKeyframeAnimator": view = AnyView(view.oneNativeSDKMapCameraKeyframeAnimator(value, emit: emit))
+#else
+      case "mapCameraKeyframeAnimator": preconditionFailure("modifier mapCameraKeyframeAnimator needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapControlVisibility": view = AnyView(view.oneNativeSDKMapControlVisibility(value, emit: emit))
+#else
+      case "mapControlVisibility": preconditionFailure("modifier mapControlVisibility needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapFeatureSelectionAccessory": view = AnyView(view.oneNativeSDKMapFeatureSelectionAccessory(value, emit: emit))
+#else
+      case "mapFeatureSelectionAccessory": preconditionFailure("modifier mapFeatureSelectionAccessory needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapFeatureSelectionContent": view = AnyView(view.oneNativeSDKMapFeatureSelectionContent(value, emit: emit))
+#else
+      case "mapFeatureSelectionContent": preconditionFailure("modifier mapFeatureSelectionContent needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapFeatureSelectionDisabled": view = AnyView(view.oneNativeSDKMapFeatureSelectionDisabled(value, emit: emit))
+#else
+      case "mapFeatureSelectionDisabled": preconditionFailure("modifier mapFeatureSelectionDisabled needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapItemDetailPopoverWithCurrentLocation": view = AnyView(view.oneNativeSDKMapItemDetailPopoverWithCurrentLocation(value, emit: emit))
+#else
+      case "mapItemDetailPopoverWithCurrentLocation": preconditionFailure("modifier mapItemDetailPopoverWithCurrentLocation needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapItemDetailPopoverWithCurrentLocationAndArrowEdge": view = AnyView(view.oneNativeSDKMapItemDetailPopoverWithCurrentLocationAndArrowEdge(value, emit: emit))
+#else
+      case "mapItemDetailPopoverWithCurrentLocationAndArrowEdge": preconditionFailure("modifier mapItemDetailPopoverWithCurrentLocationAndArrowEdge needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapItemDetailSheetWithCurrentLocation": view = AnyView(view.oneNativeSDKMapItemDetailSheetWithCurrentLocation(value, emit: emit))
+#else
+      case "mapItemDetailSheetWithCurrentLocation": preconditionFailure("modifier mapItemDetailSheetWithCurrentLocation needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapScope": view = AnyView(view.oneNativeSDKMapScope(value, emit: emit))
+#else
+      case "mapScope": preconditionFailure("modifier mapScope needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapStyle": view = AnyView(view.oneNativeSDKMapStyle(value, emit: emit))
+#else
+      case "mapStyle": preconditionFailure("modifier mapStyle needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "matchedGeometryEffect": view = AnyView(view.oneNativeSDKMatchedGeometryEffect(value, emit: emit))
       case "matchedTransitionSource": view = AnyView(view.oneNativeSDKMatchedTransitionSource(value, emit: emit))
       case "materialActiveAppearance": view = AnyView(view.oneNativeSDKMaterialActiveAppearance(value, emit: emit))
@@ -988,8 +1095,16 @@ extension View {
       case "menuOrder": view = AnyView(view.oneNativeSDKMenuOrder(value, emit: emit))
       case "menuStyle": view = AnyView(view.oneNativeSDKMenuStyle(value, emit: emit))
       case "minimumScaleFactor": view = AnyView(view.oneNativeSDKMinimumScaleFactor(value, emit: emit))
+#if ONE_GROUP_SWIFTDATA
       case "modelContainer": view = AnyView(view.oneNativeSDKModelContainer(value, emit: emit))
+#else
+      case "modelContainer": preconditionFailure("modifier modelContainer needs the swiftdata feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_SWIFTDATA
       case "modelContext": view = AnyView(view.oneNativeSDKModelContext(value, emit: emit))
+#else
+      case "modelContext": preconditionFailure("modifier modelContext needs the swiftdata feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "modifier": view = AnyView(view.oneNativeSDKModifier(value, emit: emit))
       case "monospaced": view = AnyView(view.oneNativeSDKMonospaced(value, emit: emit))
       case "monospacedDigit": view = AnyView(view.oneNativeSDKMonospacedDigit(value, emit: emit))
@@ -1038,7 +1153,11 @@ extension View {
 #endif
       case "offset": view = AnyView(view.oneNativeSDKOffset(value, emit: emit))
       case "onAppear": view = AnyView(view.oneNativeSDKOnAppear(value, emit: emit))
+#if ONE_GROUP_INTENTS
       case "onAppIntentExecution": view = AnyView(view.oneNativeSDKOnAppIntentExecution(value, emit: emit))
+#else
+      case "onAppIntentExecution": preconditionFailure("modifier onAppIntentExecution needs the intents feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
 #if ONE_GROUP_WALLET
       case "onApplePayCouponCodeChange": view = AnyView(view.oneNativeSDKOnApplePayCouponCodeChange(value, emit: emit))
 #else
@@ -1059,9 +1178,21 @@ extension View {
 #else
       case "onApplePayShippingMethodChange": preconditionFailure("modifier onApplePayShippingMethodChange needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
+#if ONE_GROUP_VIDEO
       case "onCameraCaptureEvent": view = AnyView(view.oneNativeSDKOnCameraCaptureEvent(value, emit: emit))
+#else
+      case "onCameraCaptureEvent": preconditionFailure("modifier onCameraCaptureEvent needs the video feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_VIDEO
       case "onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction": view = AnyView(view.oneNativeSDKOnCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction(value, emit: emit))
+#else
+      case "onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction": preconditionFailure("modifier onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction needs the video feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_VIDEO
       case "onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction": view = AnyView(view.oneNativeSDKOnCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction(value, emit: emit))
+#else
+      case "onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction": preconditionFailure("modifier onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction needs the video feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "onChange": view = AnyView(view.oneNativeSDKOnChange(value, emit: emit))
       case "onContinueUserActivity": view = AnyView(view.oneNativeSDKOnContinueUserActivity(value, emit: emit))
       case "onContinuousHover": view = AnyView(view.oneNativeSDKOnContinuousHover(value, emit: emit))
@@ -1085,8 +1216,16 @@ extension View {
       case "onInteractiveResizeChange": view = AnyView(view.oneNativeSDKOnInteractiveResizeChange(value, emit: emit))
       case "onKeyPress": view = AnyView(view.oneNativeSDKOnKeyPress(value, emit: emit))
       case "onLongPressGesture": view = AnyView(view.oneNativeSDKOnLongPressGesture(value, emit: emit))
+#if ONE_GROUP_MAPS
       case "onMapCameraChange": view = AnyView(view.oneNativeSDKOnMapCameraChange(value, emit: emit))
+#else
+      case "onMapCameraChange": preconditionFailure("modifier onMapCameraChange needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "onMapCameraChangeWithEventStruct": view = AnyView(view.oneNativeSDKOnMapCameraChangeWithEventStruct(value, emit: emit))
+#else
+      case "onMapCameraChangeWithEventStruct": preconditionFailure("modifier onMapCameraChangeWithEventStruct needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "onOpenURLWithPerform": view = AnyView(view.oneNativeSDKOnOpenURLWithPerform(value, emit: emit))
       case "onOpenURLWithPrefersInApp": view = AnyView(view.oneNativeSDKOnOpenURLWithPrefersInApp(value, emit: emit))
       case "onPencilDoubleTap": view = AnyView(view.oneNativeSDKOnPencilDoubleTap(value, emit: emit))
@@ -1210,7 +1349,11 @@ extension View {
       case "presentationDragIndicator": view = AnyView(view.oneNativeSDKPresentationDragIndicator(value, emit: emit))
       case "presentationPlacement": view = AnyView(view.oneNativeSDKPresentationPlacement(value, emit: emit))
       case "presentationSizing": view = AnyView(view.oneNativeSDKPresentationSizing(value, emit: emit))
+#if ONE_GROUP_WIDGETS
       case "previewContext": view = AnyView(view.oneNativeSDKPreviewContext(value, emit: emit))
+#else
+      case "previewContext": preconditionFailure("modifier previewContext needs the widgets feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "previewDevice": view = AnyView(view.oneNativeSDKPreviewDevice(value, emit: emit))
       case "previewDisplayName": view = AnyView(view.oneNativeSDKPreviewDisplayName(value, emit: emit))
       case "previewInterfaceOrientation": view = AnyView(view.oneNativeSDKPreviewInterfaceOrientation(value, emit: emit))
@@ -1295,14 +1438,22 @@ extension View {
       case "selectionDisabled": view = AnyView(view.oneNativeSDKSelectionDisabled(value, emit: emit))
       case "sensoryFeedback": view = AnyView(view.oneNativeSDKSensoryFeedback(value, emit: emit))
       case "shadow": view = AnyView(view.oneNativeSDKShadow(value, emit: emit))
+#if ONE_GROUP_INTENTS
       case "shortcutsLinkStyle": view = AnyView(view.oneNativeSDKShortcutsLinkStyle(value, emit: emit))
+#else
+      case "shortcutsLinkStyle": preconditionFailure("modifier shortcutsLinkStyle needs the intents feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
 #if ONE_GROUP_ACCOUNT
       case "signInWithAppleButtonStyle": view = AnyView(view.oneNativeSDKSignInWithAppleButtonStyle(value, emit: emit))
 #else
       case "signInWithAppleButtonStyle": preconditionFailure("modifier signInWithAppleButtonStyle needs the account feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "simultaneousGesture": view = AnyView(view.oneNativeSDKSimultaneousGesture(value, emit: emit))
+#if ONE_GROUP_INTENTS
       case "siriTipViewStyle": view = AnyView(view.oneNativeSDKSiriTipViewStyle(value, emit: emit))
+#else
+      case "siriTipViewStyle": preconditionFailure("modifier siriTipViewStyle needs the intents feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "sliderThumbVisibility": view = AnyView(view.oneNativeSDKSliderThumbVisibility(value, emit: emit))
       case "speechAdjustedPitch": view = AnyView(view.oneNativeSDKSpeechAdjustedPitch(value, emit: emit))
       case "speechAlwaysIncludesPunctuation": view = AnyView(view.oneNativeSDKSpeechAlwaysIncludesPunctuation(value, emit: emit))
@@ -1440,7 +1591,11 @@ extension View {
       case "toolbarWithVisibilityAndBars": view = AnyView(view.oneNativeSDKToolbarWithVisibilityAndBars(value, emit: emit))
       case "tracking": view = AnyView(view.oneNativeSDKTracking(value, emit: emit))
       case "transaction": view = AnyView(view.oneNativeSDKTransaction(value, emit: emit))
+#if ONE_GROUP_CREDENTIALS
       case "transactionTask": view = AnyView(view.oneNativeSDKTransactionTask(value, emit: emit))
+#else
+      case "transactionTask": preconditionFailure("modifier transactionTask needs the credentials feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "transformAnchorPreference": view = AnyView(view.oneNativeSDKTransformAnchorPreference(value, emit: emit))
       case "transformEffect": view = AnyView(view.oneNativeSDKTransformEffect(value, emit: emit))
       case "transformEnvironmentAccessibilityEnabled": view = AnyView(view.oneNativeSDKTransformEnvironmentAccessibilityEnabled(value, emit: emit))
@@ -1462,8 +1617,16 @@ extension View {
       case "transformEnvironmentSystemPrefersReducedResourceUsage": view = AnyView(view.oneNativeSDKTransformEnvironmentSystemPrefersReducedResourceUsage(value, emit: emit))
       case "transformPreferencePreferredColorScheme": view = AnyView(view.oneNativeSDKTransformPreferencePreferredColorScheme(value, emit: emit))
       case "transition": view = AnyView(view.oneNativeSDKTransition(value, emit: emit))
+#if ONE_GROUP_TRANSLATION
       case "translationPresentation": view = AnyView(view.oneNativeSDKTranslationPresentation(value, emit: emit))
+#else
+      case "translationPresentation": preconditionFailure("modifier translationPresentation needs the translation feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_TRANSLATION
       case "translationTask": view = AnyView(view.oneNativeSDKTranslationTask(value, emit: emit))
+#else
+      case "translationTask": preconditionFailure("modifier translationTask needs the translation feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "truncationMode": view = AnyView(view.oneNativeSDKTruncationMode(value, emit: emit))
       case "typeSelectEquivalent": view = AnyView(view.oneNativeSDKTypeSelectEquivalent(value, emit: emit))
       case "typesettingLanguage": view = AnyView(view.oneNativeSDKTypesettingLanguage(value, emit: emit))
@@ -1476,18 +1639,62 @@ extension View {
       case "verifyIdentityWithWalletButtonStyle": preconditionFailure("modifier verifyIdentityWithWalletButtonStyle needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "visualEffect": view = AnyView(view.oneNativeSDKVisualEffect(value, emit: emit))
+#if ONE_GROUP_WEB
       case "webViewBackForwardNavigationGestures": view = AnyView(view.oneNativeSDKWebViewBackForwardNavigationGestures(value, emit: emit))
+#else
+      case "webViewBackForwardNavigationGestures": preconditionFailure("modifier webViewBackForwardNavigationGestures needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewContentBackground": view = AnyView(view.oneNativeSDKWebViewContentBackground(value, emit: emit))
+#else
+      case "webViewContentBackground": preconditionFailure("modifier webViewContentBackground needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewElementFullscreenBehavior": view = AnyView(view.oneNativeSDKWebViewElementFullscreenBehavior(value, emit: emit))
+#else
+      case "webViewElementFullscreenBehavior": preconditionFailure("modifier webViewElementFullscreenBehavior needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewLinkPreviews": view = AnyView(view.oneNativeSDKWebViewLinkPreviews(value, emit: emit))
+#else
+      case "webViewLinkPreviews": preconditionFailure("modifier webViewLinkPreviews needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewMagnificationGestures": view = AnyView(view.oneNativeSDKWebViewMagnificationGestures(value, emit: emit))
+#else
+      case "webViewMagnificationGestures": preconditionFailure("modifier webViewMagnificationGestures needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewOnScrollGeometryChangeWithContainerSize": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContainerSize(value, emit: emit))
+#else
+      case "webViewOnScrollGeometryChangeWithContainerSize": preconditionFailure("modifier webViewOnScrollGeometryChangeWithContainerSize needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewOnScrollGeometryChangeWithContentOffset": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContentOffset(value, emit: emit))
+#else
+      case "webViewOnScrollGeometryChangeWithContentOffset": preconditionFailure("modifier webViewOnScrollGeometryChangeWithContentOffset needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewOnScrollGeometryChangeWithContentSize": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContentSize(value, emit: emit))
+#else
+      case "webViewOnScrollGeometryChangeWithContentSize": preconditionFailure("modifier webViewOnScrollGeometryChangeWithContentSize needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewScrollPosition": view = AnyView(view.oneNativeSDKWebViewScrollPosition(value, emit: emit))
+#else
+      case "webViewScrollPosition": preconditionFailure("modifier webViewScrollPosition needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewTextSelection": view = AnyView(view.oneNativeSDKWebViewTextSelection(value, emit: emit))
+#else
+      case "webViewTextSelection": preconditionFailure("modifier webViewTextSelection needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "windowToolbarFullScreenVisibility": view = AnyView(view.oneNativeSDKWindowToolbarFullScreenVisibility(value, emit: emit))
+#if ONE_GROUP_WORKOUT
       case "workoutPreview": view = AnyView(view.oneNativeSDKWorkoutPreview(value, emit: emit))
+#else
+      case "workoutPreview": preconditionFailure("modifier workoutPreview needs the workout feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "writingDirection": view = AnyView(view.oneNativeSDKWritingDirection(value, emit: emit))
       case "writingToolsAffordanceVisibility": view = AnyView(view.oneNativeSDKWritingToolsAffordanceVisibility(value, emit: emit))
       case "writingToolsBehavior": view = AnyView(view.oneNativeSDKWritingToolsBehavior(value, emit: emit))
@@ -1710,10 +1917,13 @@ extension View {
     }
   }
 
+#if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.accessibilityAction(.default, { emit("accessibilityAction", "") })
   }
+#endif
 
+#if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityActionWithAppIntent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) {
       let registered: OneNativeRegisteredModifier = {
@@ -1726,6 +1936,7 @@ extension View {
       registered.apply(AnyView(self))
     } else { self }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityActivationPointWithActivationPointAndIsEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) {
@@ -2617,12 +2828,15 @@ extension View {
     }
   }
 
+#if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKAppEntityIdentifier(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if value == "null" { if #available(iOS 18.4, *) { self.appEntityIdentifier(nil as AppIntents.EntityIdentifier?) } else { self } } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       if #available(iOS 18.4, *) { self.appEntityIdentifier((AppIntents.EntityIdentifier(activityIdentifier: decoded) ?? { () -> AppIntents.EntityIdentifier in preconditionFailure("invalid appEntityIdentifier") }())) } else { self }
     } else { preconditionFailure("invalid appEntityIdentifier: \(value)") } }
   }
+#endif
 
+#if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKAppEntityUIElements(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18.4, *) {
       let registered: OneNativeRegisteredModifier = {
@@ -2635,6 +2849,7 @@ extension View {
       registered.apply(AnyView(self))
     } else { self }
   }
+#endif
 
 #if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKAppStoreMerchandising(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -3438,6 +3653,7 @@ self
 
   }
 
+#if ONE_GROUP_DETECTION
   @ViewBuilder fileprivate func oneNativeSDKDataDetection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid dataDetection: \(value)")
     if value == "true" { 
@@ -3448,6 +3664,7 @@ self
 #endif
  } else { self }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKDatePickerStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -5280,6 +5497,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
     self.handlesExternalEvents(preferring: argument0, allowing: argument1)
   }
 
+#if ONE_GROUP_CONTROLLERS
   @ViewBuilder fileprivate func oneNativeSDKHandlesGameControllerEvents(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -5287,6 +5505,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
     default: let _ = preconditionFailure("invalid handlesGameControllerEvents: \(value)")
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKHeaderProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -6285,6 +6504,7 @@ self
     }
   }
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKLookAroundViewer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let config: (Bool, Double, Double) = {
       guard let data = value.data(using: .utf8),
@@ -6298,6 +6518,7 @@ self
     }()
     self.modifier(OneNativeSDKLookAroundViewerRequest(latitude: config.1, longitude: config.2, presented: config.0, emit: emit))
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKLuminanceToAlpha(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid luminanceToAlpha: \(value)")
@@ -6331,6 +6552,7 @@ self
   }
 #endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapCameraKeyframeAnimator(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let config: OneNativeSDKSeedKeyframeAnimation = {
       guard let data = value.data(using: .utf8),
@@ -6369,7 +6591,9 @@ self
     default: let _ = preconditionFailure("invalid mapCameraKeyframeAnimator property")
     }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapControlVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -6379,7 +6603,9 @@ self
     default: let _ = preconditionFailure("invalid mapControlVisibility: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapFeatureSelectionAccessory(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(nil as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
@@ -6390,7 +6616,9 @@ self
     default: if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(oneNativeSDKValueMapItemDetailSelectionAccessoryStyle(value, "mapFeatureSelectionAccessory") as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
     }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapFeatureSelectionContent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 17, *) {
       let registered: OneNativeRegisteredModifier = {
@@ -6403,12 +6631,16 @@ self
       registered.apply(AnyView(self))
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapFeatureSelectionDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid mapFeatureSelectionDisabled: \(value)")
       self.mapFeatureSelectionDisabled({ (_: _MapKit_SwiftUI.MapFeature) in value == "true" })
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapItemDetailPopoverWithCurrentLocation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) {
       let values: [String?] = {
@@ -6424,7 +6656,9 @@ self
     self.mapItemDetailPopover(isPresented: argument0, item: MapKit.MKMapItem.forCurrentLocation())
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapItemDetailPopoverWithCurrentLocationAndArrowEdge(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) {
       let values: [String?] = {
@@ -6450,7 +6684,9 @@ self
     self.mapItemDetailPopover(isPresented: argument0, item: MapKit.MKMapItem.forCurrentLocation(), arrowEdge: argument1)
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapItemDetailSheetWithCurrentLocation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) {
       let values: [String?] = {
@@ -6466,12 +6702,16 @@ self
     self.mapItemDetailSheet(isPresented: argument0, item: MapKit.MKMapItem.forCurrentLocation())
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapScope(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid mapScope: \(value)")
     if value == "true" { self.mapScope(OneNativeNamespace.id) } else { self }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -6481,6 +6721,7 @@ self
     default: self.mapStyle(oneNativeSDKValueMapStyle(value, "mapStyle"))
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKMatchedGeometryEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
@@ -6569,6 +6810,7 @@ self
       } else { preconditionFailure("invalid minimumScaleFactor: \(value)") }
   }
 
+#if ONE_GROUP_SWIFTDATA
   @ViewBuilder fileprivate func oneNativeSDKModelContainer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 17, *) {
       let registered: SwiftData.ModelContainer = {
@@ -6580,7 +6822,9 @@ self
       AnyView(self.modelContainer(registered))
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_SWIFTDATA
   @ViewBuilder fileprivate func oneNativeSDKModelContext(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 17, *) {
       let registered: SwiftData.ModelContext = {
@@ -6592,6 +6836,7 @@ self
       AnyView(self.modelContext(registered))
     } else { self }
   }
+#endif
 
   @available(iOS 13, *)
   fileprivate func oneNativeSDKModifierRegistered<T: SwiftUI.ViewModifier>(_ registered: T) -> some View {
@@ -6913,6 +7158,7 @@ self
     self.onAppear(perform: { emit("onAppear", "") })
   }
 
+#if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKOnAppIntentExecution(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) {
       let registered: OneNativeRegisteredModifier = {
@@ -6925,6 +7171,7 @@ self
       registered.apply(AnyView(self))
     } else { self }
   }
+#endif
 
 #if ONE_GROUP_WALLET
   @ViewBuilder fileprivate func oneNativeSDKOnApplePayCouponCodeChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -6986,6 +7233,7 @@ self
   }
 #endif
 
+#if ONE_GROUP_VIDEO
   @ViewBuilder fileprivate func oneNativeSDKOnCameraCaptureEvent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) { self.onCameraCaptureEvent(isEnabled: true, action: { item in
       let payload = (["phase": ({ () -> String in switch item.phase { case .began: return "began" case .cancelled: return "cancelled" case .ended: return "ended" @unknown default: return "unknown" } })()] as [String: Any])
@@ -6994,7 +7242,9 @@ self
       emit("onCameraCaptureEvent", encoded)
     }) } else { self }
   }
+#endif
 
+#if ONE_GROUP_VIDEO
   @ViewBuilder fileprivate func oneNativeSDKOnCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) {
       let values: [String?] = {
@@ -7028,7 +7278,9 @@ self
     self.onCameraCaptureEvent(isEnabled: argument0, defaultSoundDisabled: argument1, primaryAction: argument2, secondaryAction: argument3)
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_VIDEO
   @ViewBuilder fileprivate func oneNativeSDKOnCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) {
       let values: [String?] = {
@@ -7057,6 +7309,7 @@ self
     self.onCameraCaptureEvent(isEnabled: argument0, primaryAction: argument1, secondaryAction: argument2)
     } else { self }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKOnChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onChange(of: value, perform: { changed in emit("onChange", changed) })
@@ -7236,10 +7489,13 @@ self
     self.onLongPressGesture(minimumDuration: 0.5, maximumDistance: 10, perform: { emit("onLongPressGesture", "") }, onPressingChanged: nil)
   }
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKOnMapCameraChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onMapCameraChange(frequency: .onEnd, { emit("onMapCameraChange", "") })
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKOnMapCameraChangeWithEventStruct(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onMapCameraChange(frequency: .onEnd, { item in
       let payload = (["camera": (["distance": Double(item.camera.distance), "heading": Double(item.camera.heading), "pitch": Double(item.camera.pitch)] as [String: Any])] as [String: Any])
@@ -7248,6 +7504,7 @@ self
       emit("onMapCameraChangeWithEventStruct", encoded)
     })
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKOnOpenURLWithPerform(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onOpenURL(perform: { value in emit("onOpenURLWithPerform", value.absoluteString) })
@@ -7989,6 +8246,7 @@ self
     }
   }
 
+#if ONE_GROUP_WIDGETS
   @ViewBuilder fileprivate func oneNativeSDKPreviewContext(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -8018,6 +8276,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     }()
     self.previewContext(WidgetKit.WidgetPreviewContext(family: argument0))
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKPreviewDevice(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if value == "null" { self.previewDevice(nil as SwiftUI.PreviewDevice?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
@@ -8897,6 +9156,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
     self.shadow(color: argument0, radius: argument1, x: argument2, y: argument3)
   }
 
+#if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKShortcutsLinkStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -8909,6 +9169,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
     default: let _ = preconditionFailure("invalid shortcutsLinkStyle: \(value)")
     }
   }
+#endif
 
 #if ONE_GROUP_ACCOUNT
   @ViewBuilder fileprivate func oneNativeSDKSignInWithAppleButtonStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -9039,6 +9300,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
     }
   }
 
+#if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKSiriTipViewStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -9048,6 +9310,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
     default: let _ = preconditionFailure("invalid siriTipViewStyle: \(value)")
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKSliderThumbVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -10445,6 +10708,7 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
     self.transaction(argument0)
   }
 
+#if ONE_GROUP_CREDENTIALS
   @ViewBuilder fileprivate func oneNativeSDKTransactionTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18.1, *) {
       let registered: OneNativeRegisteredModifier = {
@@ -10457,6 +10721,7 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
       registered.apply(AnyView(self))
     } else { self }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKTransformAnchorPreference(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.transformAnchorPreference(key: OneNativeSDKRectAnchorKey.self, value: .bounds) { current, anchor in current = anchor }
@@ -10613,6 +10878,7 @@ self
     }
   }
 
+#if ONE_GROUP_TRANSLATION
   @ViewBuilder fileprivate func oneNativeSDKTranslationPresentation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 17.4, *) {
       let values: [String?] = {
@@ -10632,7 +10898,9 @@ self
     self.translationPresentation(isPresented: argument0, text: argument1)
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_TRANSLATION
   @ViewBuilder fileprivate func oneNativeSDKTranslationTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) { self.translationTask(source: nil, target: nil, action: { session in
       let payload: [String: Any]
@@ -10647,6 +10915,7 @@ self
       emit("translationTask", encoded)
     }) } else { self }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKTruncationMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -10831,6 +11100,7 @@ self
     }
   }
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewBackForwardNavigationGestures(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -10840,7 +11110,9 @@ self
     default: let _ = preconditionFailure("invalid webViewBackForwardNavigationGestures: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewContentBackground(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -10850,7 +11122,9 @@ self
     default: let _ = preconditionFailure("invalid webViewContentBackground: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewElementFullscreenBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -10860,7 +11134,9 @@ self
     default: let _ = preconditionFailure("invalid webViewElementFullscreenBehavior: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewLinkPreviews(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -10870,7 +11146,9 @@ self
     default: let _ = preconditionFailure("invalid webViewLinkPreviews: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewMagnificationGestures(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -10880,7 +11158,9 @@ self
     default: let _ = preconditionFailure("invalid webViewMagnificationGestures: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewOnScrollGeometryChangeWithContainerSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) { self.webViewOnScrollGeometryChange(for: CoreFoundation.CGSize.self, of: { $0.containerSize }, action: { oldValue, newValue in
       let payload = (["oldValue": (["width": Double(oldValue.width), "height": Double(oldValue.height)] as [String: Any]), "newValue": (["width": Double(newValue.width), "height": Double(newValue.height)] as [String: Any])] as [String: Any])
@@ -10889,7 +11169,9 @@ self
       emit("webViewOnScrollGeometryChangeWithContainerSize", encoded)
     }) } else { self }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewOnScrollGeometryChangeWithContentOffset(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) { self.webViewOnScrollGeometryChange(for: CoreFoundation.CGPoint.self, of: { $0.contentOffset }, action: { oldValue, newValue in
       let payload = (["oldValue": (["x": Double(oldValue.x), "y": Double(oldValue.y)] as [String: Any]), "newValue": (["x": Double(newValue.x), "y": Double(newValue.y)] as [String: Any])] as [String: Any])
@@ -10898,7 +11180,9 @@ self
       emit("webViewOnScrollGeometryChangeWithContentOffset", encoded)
     }) } else { self }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewOnScrollGeometryChangeWithContentSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) { self.webViewOnScrollGeometryChange(for: CoreFoundation.CGSize.self, of: { $0.contentSize }, action: { oldValue, newValue in
       let payload = (["oldValue": (["width": Double(oldValue.width), "height": Double(oldValue.height)] as [String: Any]), "newValue": (["width": Double(newValue.width), "height": Double(newValue.height)] as [String: Any])] as [String: Any])
@@ -10907,7 +11191,9 @@ self
       emit("webViewOnScrollGeometryChangeWithContentSize", encoded)
     }) } else { self }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewScrollPosition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) {
       let point: CGPoint? = {
@@ -10929,7 +11215,9 @@ self
       }))
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewTextSelection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -10938,6 +11226,7 @@ self
     default: let _ = preconditionFailure("invalid webViewTextSelection: \(value)")
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKWindowToolbarFullScreenVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -10947,6 +11236,7 @@ self
     }
   }
 
+#if ONE_GROUP_WORKOUT
   @ViewBuilder fileprivate func oneNativeSDKWorkoutPreview(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -10964,6 +11254,7 @@ self
     }()
     self.workoutPreview(argument0, isPresented: argument1)
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKWritingDirection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {

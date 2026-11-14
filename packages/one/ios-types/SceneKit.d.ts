@@ -46,9 +46,8 @@ type $SDK59 = {
     height: number;
 };
 type $SDK60 = (NativeMap<SCNSceneSource_LoadingOption, unknown>) | null;
-type $SDK68 = (((arg0: number, arg1: number, arg2: (SCNNode) | null, arg3: SCNRenderer) => Promise<void>)) | null;
-type $SDK69 = (_UIKit_UIBezierPath) | null;
-type $SDK71 = (_QuartzCore_CAMediaTimingFunction) | null;
+type $SDK68 = (_UIKit_UIBezierPath) | null;
+type $SDK70 = (_QuartzCore_CAMediaTimingFunction) | null;
 export declare class CAAnimation extends SDKHandle {
     /**
      * init(SCNAnimation animation: SCNAnimation)
@@ -980,7 +979,7 @@ export declare class SCNBox extends SCNGeometry {
     };
 }
 /** typealias SCNBufferBindingBlock = (any SCNBufferStream, SCNNode, any SCNShadable, SCNRenderer) -> Void */
-export type SCNBufferBindingBlock = ((arg0: Implements<SCNBufferStream> | SDKHandle, arg1: SCNNode, arg2: Implements<SCNShadable> | SDKHandle, arg3: SCNRenderer) => Promise<void>);
+export type SCNBufferBindingBlock = ((arg0: SDKHandle, arg1: SCNNode, arg2: Implements<SCNShadable> | SDKHandle, arg3: SCNRenderer) => Promise<void>);
 /**
  * enum SCNBufferFrequency
  * @availability iOS 9.0+
@@ -5395,10 +5394,6 @@ export declare const SCNSceneSourceStatus: {
 export type SCNSceneSourceStatusHandler = ((arg0: number, arg1: SCNSceneSourceStatus, arg2: (NativeError) | null, arg3: NativeOut<boolean>) => Promise<void>);
 /** protocol SCNShadable : NSObjectProtocol */
 export interface SCNShadable {
-    /** optional func handleBinding(ofSymbol symbol: String, handler block: SCNBindingBlock? = nil) */
-    "handleBindingOfSymbolHandler"?: (arg0: string, arg1: $SDK68) => void;
-    /** optional func handleUnbinding(ofSymbol symbol: String, handler block: SCNBindingBlock? = nil) */
-    "handleUnbindingOfSymbolHandler"?: (arg0: string, arg1: $SDK68) => void;
 }
 /** struct SCNShaderModifierEntryPoint */
 export type SCNShaderModifierEntryPoint = "geometry" | "surface" | "lightingModel" | "fragment" | (string & {});
@@ -5423,13 +5418,13 @@ export declare const SCNShadowMode: {
 /** class SCNShape */
 export declare class SCNShape extends SCNGeometry {
     /** convenience init(path: UIBezierPath?, extrusionDepth: CGFloat) */
-    static init(path: $SDK69, extrusionDepth: number): SCNShape;
+    static init(path: $SDK68, extrusionDepth: number): SCNShape;
     /** var chamferMode: SCNChamferMode { get set } */
     get chamferMode(): SCNChamferMode;
     set chamferMode(value: SCNChamferMode);
     /** @NSCopying var chamferProfile: UIBezierPath? { get set } */
-    get chamferProfile(): $SDK69;
-    set chamferProfile(value: $SDK69);
+    get chamferProfile(): $SDK68;
+    set chamferProfile(value: $SDK68);
     /** var chamferRadius: CGFloat { get set } */
     get chamferRadius(): number;
     set chamferRadius(value: number);
@@ -5437,8 +5432,8 @@ export declare class SCNShape extends SCNGeometry {
     get extrusionDepth(): number;
     set extrusionDepth(value: number);
     /** @NSCopying var path: UIBezierPath? { get set } */
-    get path(): $SDK69;
-    set path(value: $SDK69);
+    get path(): $SDK68;
+    set path(value: $SDK68);
     readonly $type: {
         "c:objc(cs)SCNShape": true;
         "c:objc(cs)SCNGeometry": true;
@@ -5632,8 +5627,8 @@ export declare class SCNText extends SCNGeometry {
     get alignmentMode(): string;
     set alignmentMode(value: string);
     /** @NSCopying var chamferProfile: UIBezierPath? { get set } */
-    get chamferProfile(): $SDK69;
-    set chamferProfile(value: $SDK69);
+    get chamferProfile(): $SDK68;
+    set chamferProfile(value: $SDK68);
     /** var chamferRadius: CGFloat { get set } */
     get chamferRadius(): number;
     set chamferRadius(value: number);
@@ -5770,8 +5765,8 @@ export declare class SCNTransaction extends SDKHandle {
     static get animationDuration(): number;
     static set animationDuration(value: number);
     /** @NSCopying class var animationTimingFunction: CAMediaTimingFunction? { get set } */
-    static get animationTimingFunction(): $SDK71;
-    static set animationTimingFunction(value: $SDK71);
+    static get animationTimingFunction(): $SDK70;
+    static set animationTimingFunction(value: $SDK70);
     /** class var completionBlock: (() -> Void)? { get set } */
     static get completionBlock(): $SDK16;
     static set completionBlock(value: ((() => void)) | null);

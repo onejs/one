@@ -1,3 +1,4 @@
+#if ONE_GROUP_CONTACTS
 import Contacts
 import ContactsUI
 import NitroModules
@@ -423,3 +424,5 @@ final class HybridOneContactsPickerDelegate: NSObject, CNContactPickerDelegate,
     owner?.didDismissPicker()
   }
 }
+
+#endif

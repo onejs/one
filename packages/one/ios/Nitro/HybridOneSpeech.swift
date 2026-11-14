@@ -1,3 +1,4 @@
+#if ONE_GROUP_SPEECH
 import AVFoundation
 import NitroModules
 import Speech
@@ -273,3 +274,4 @@ final class HybridOneSpeech: HybridOneSpeechSpec {
     }
   }
 }
+#endif

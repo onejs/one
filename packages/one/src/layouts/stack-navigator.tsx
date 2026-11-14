@@ -9,12 +9,13 @@ import type { ReactElement, ReactNode } from 'react'
  */
 export const createStackNavigator = createNativeStackNavigator
 
-// reanimated is an optional peer, so an app without it gets no shared transitions
+// reanimated is an optional peer, so an app without it gets no shared transitions.
+// the leaf is a plain fabric view; the package entry installs animation runtimes.
 let SharedTransitionBoundary:
   | typeof import('react-native-reanimated').SharedTransitionBoundary
   | undefined
 try {
-  SharedTransitionBoundary = require('react-native-reanimated').SharedTransitionBoundary
+  SharedTransitionBoundary = require('react-native-reanimated/src/component/SharedTransitionBoundary').SharedTransitionBoundary
 } catch {}
 
 // reanimated matches sharedTransitionTag views only inside an active boundary,

@@ -1,3 +1,4 @@
+#if ONE_GROUP_MAPS
 import MapKit
 import SwiftUI
 import UIKit
@@ -328,3 +329,5 @@ private extension CGPoint {
     sqrt(pow(x - other.x, 2) + pow(y - other.y, 2))
   }
 }
+
+#endif

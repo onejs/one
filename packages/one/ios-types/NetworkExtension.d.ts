@@ -15,22 +15,22 @@ type $SDK9 = (Array<NEOnDemandRule>) | null;
 type $SDK12 = ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void);
 type $SDK13 = (_Network_NWEndpoint) | null;
 type $SDK14 = NativeMap<unknown, unknown>;
-type $SDK18 = (NEDNSProxyProviderProtocol) | null;
-type $SDK20 = (NEProxySettings) | null;
-type $SDK23 = ((arg0: NEFilterControlVerdict) => void);
-type $SDK24 = (Record<string, string>) | null;
-type $SDK25 = (Record<string, Record<string, _ObjectiveC_NSObject>>) | null;
-type $SDK26 = (NEFilterProviderConfiguration) | null;
-type $SDK28 = Array<_Foundation_NSNumber>;
-type $SDK29 = (Record<string, _ObjectiveC_NSObject>) | null;
-type $SDK35 = (Array<NEIPv4Route>) | null;
-type $SDK36 = (Array<NEIPv6Route>) | null;
-type $SDK37 = (Array<NEEvaluateConnectionRule>) | null;
-type $SDK40 = (_Foundation_NSNumber) | null;
-type $SDK47 = (_Foundation_LocalizedStringResource) | null;
-type $SDK48 = Array<NEVPNIKEv2PostQuantumKeyExchangeMethod>;
-type $SDK49 = (NEVPNIKEv2PPKConfiguration) | null;
-type $SDK50 = (Array<_Foundation_NSNumber>) | null;
+type $SDK17 = (NEDNSProxyProviderProtocol) | null;
+type $SDK19 = (NEProxySettings) | null;
+type $SDK22 = ((arg0: NEFilterControlVerdict) => void);
+type $SDK23 = (Record<string, string>) | null;
+type $SDK24 = (Record<string, Record<string, _ObjectiveC_NSObject>>) | null;
+type $SDK25 = (NEFilterProviderConfiguration) | null;
+type $SDK27 = Array<_Foundation_NSNumber>;
+type $SDK28 = (Record<string, _ObjectiveC_NSObject>) | null;
+type $SDK34 = (Array<NEIPv4Route>) | null;
+type $SDK35 = (Array<NEIPv6Route>) | null;
+type $SDK36 = (Array<NEEvaluateConnectionRule>) | null;
+type $SDK39 = (_Foundation_NSNumber) | null;
+type $SDK46 = (_Foundation_LocalizedStringResource) | null;
+type $SDK47 = Array<NEVPNIKEv2PostQuantumKeyExchangeMethod>;
+type $SDK48 = (NEVPNIKEv2PPKConfiguration) | null;
+type $SDK49 = (Array<_Foundation_NSNumber>) | null;
 /**
  * @MainActor @preconcurrency class NEAppExtensionConfiguration
  * @availability iOS 26.0+
@@ -603,7 +603,7 @@ export declare class NEAppPushManager extends SDKHandle {
      * @availability iOS 14.0+
      */
     get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<NEAppPushDelegate> | SDKHandle) | null);
+    set delegate(value: (SDKHandle) | null);
     /**
      * var isEnabled: Bool { get set }
      * @availability iOS 14.0+
@@ -1004,8 +1004,8 @@ export declare class NEDNSProxyManager extends SDKHandle {
      * var providerProtocol: NEDNSProxyProviderProtocol? { get set }
      * @availability iOS 11.0+
      */
-    get providerProtocol(): $SDK18;
-    set providerProtocol(value: $SDK18);
+    get providerProtocol(): $SDK17;
+    set providerProtocol(value: $SDK17);
     readonly $type: {
         "c:objc(cs)NEDNSProxyManager": true;
         "c:objc(cs)NSObject": true;
@@ -1148,8 +1148,8 @@ export declare class NEVPNProtocol extends SDKHandle {
      * @NSCopying var proxySettings: NEProxySettings? { get set }
      * @availability iOS 9.0+
      */
-    get proxySettings(): $SDK20;
-    set proxySettings(value: $SDK20);
+    get proxySettings(): $SDK19;
+    set proxySettings(value: $SDK19);
     /**
      * var serverAddress: String? { get set }
      * @availability iOS 8.0+
@@ -1513,12 +1513,12 @@ export declare class NEFilterControlProvider extends NEFilterControlProvider_bas
      * func handleNewFlow(_ flow: NEFilterFlow) async -> NEFilterControlVerdict
      * @availability iOS 9.0+
      */
-    handleNewFlow(flow: NEFilterFlow, completionHandler: $SDK23): void;
+    handleNewFlow(flow: NEFilterFlow, completionHandler: $SDK22): void;
     /**
      * func handleRemediation(for flow: NEFilterFlow) async -> NEFilterControlVerdict
      * @availability iOS 9.0+
      */
-    handleRemediation(flow: NEFilterFlow, completionHandler: $SDK23): void;
+    handleRemediation(flow: NEFilterFlow, completionHandler: $SDK22): void;
     /** init() */
     static init(): NEFilterControlProvider;
     /**
@@ -1530,14 +1530,14 @@ export declare class NEFilterControlProvider extends NEFilterControlProvider_bas
      * var urlAppendStringMap: [String : String]? { get set }
      * @availability iOS 9.0+
      */
-    get urlAppendStringMap(): $SDK24;
-    set urlAppendStringMap(value: $SDK24);
+    get urlAppendStringMap(): $SDK23;
+    set urlAppendStringMap(value: $SDK23);
     /**
      * var remediationMap: [String : [String : NSObject]]? { get set }
      * @availability iOS 9.0+
      */
-    get remediationMap(): $SDK25;
-    set remediationMap(value: $SDK25);
+    get remediationMap(): $SDK24;
+    set remediationMap(value: $SDK24);
     readonly $type: {
         "c:objc(cs)NEFilterControlProvider": true;
         "c:objc(cs)NEFilterProvider": true;
@@ -1789,8 +1789,8 @@ export declare class NEFilterManager extends SDKHandle {
      * var providerConfiguration: NEFilterProviderConfiguration? { get set }
      * @availability iOS 9.0+
      */
-    get providerConfiguration(): $SDK26;
-    set providerConfiguration(value: $SDK26);
+    get providerConfiguration(): $SDK25;
+    set providerConfiguration(value: $SDK25);
     readonly $type: {
         "c:objc(cs)NEFilterManager": true;
         "c:objc(cs)NSObject": true;
@@ -2272,8 +2272,8 @@ export declare class NEHotspotEAPSettings extends SDKHandle {
      * var supportedEAPTypes: [NSNumber] { get set }
      * @availability iOS 11.0+
      */
-    get supportedEAPTypes(): $SDK28;
-    set supportedEAPTypes(value: $SDK28);
+    get supportedEAPTypes(): $SDK27;
+    set supportedEAPTypes(value: $SDK27);
     /**
      * var isTLSClientCertificateRequired: Bool { get set }
      * @availability iOS 11.0+
@@ -2400,7 +2400,7 @@ export declare class NEHotspotHelper extends SDKHandle {
      * @availability iOS 9.0+
      * @deprecated iOS 26.0
      */
-    static register(options: $SDK29, queue: _Dispatch_DispatchQueue, handler: ((arg0: NEHotspotHelperCommand) => void)): boolean;
+    static register(options: $SDK28, queue: _Dispatch_DispatchQueue, handler: ((arg0: NEHotspotHelperCommand) => void)): boolean;
     /**
      * class func supportedNetworkInterfaces() -> [Any]?
      * @availability iOS 9.0+
@@ -2789,14 +2789,14 @@ export declare class NEIPv4Settings extends SDKHandle {
      * var excludedRoutes: [NEIPv4Route]? { get set }
      * @availability iOS 9.0+
      */
-    get excludedRoutes(): $SDK35;
-    set excludedRoutes(value: $SDK35);
+    get excludedRoutes(): $SDK34;
+    set excludedRoutes(value: $SDK34);
     /**
      * var includedRoutes: [NEIPv4Route]? { get set }
      * @availability iOS 9.0+
      */
-    get includedRoutes(): $SDK35;
-    set includedRoutes(value: $SDK35);
+    get includedRoutes(): $SDK34;
+    set includedRoutes(value: $SDK34);
     /**
      * var subnetMasks: [String] { get }
      * @availability iOS 9.0+
@@ -2863,7 +2863,7 @@ export declare class NEIPv6Settings extends SDKHandle {
      * init(addresses: [String], networkPrefixLengths: [NSNumber])
      * @availability iOS 9.0+
      */
-    static init(addresses: Array<string>, networkPrefixLengths: $SDK28): NEIPv6Settings;
+    static init(addresses: Array<string>, networkPrefixLengths: $SDK27): NEIPv6Settings;
     /**
      * var addresses: [String] { get }
      * @availability iOS 9.0+
@@ -2873,19 +2873,19 @@ export declare class NEIPv6Settings extends SDKHandle {
      * var excludedRoutes: [NEIPv6Route]? { get set }
      * @availability iOS 9.0+
      */
-    get excludedRoutes(): $SDK36;
-    set excludedRoutes(value: $SDK36);
+    get excludedRoutes(): $SDK35;
+    set excludedRoutes(value: $SDK35);
     /**
      * var includedRoutes: [NEIPv6Route]? { get set }
      * @availability iOS 9.0+
      */
-    get includedRoutes(): $SDK36;
-    set includedRoutes(value: $SDK36);
+    get includedRoutes(): $SDK35;
+    set includedRoutes(value: $SDK35);
     /**
      * var networkPrefixLengths: [NSNumber] { get }
      * @availability iOS 9.0+
      */
-    get networkPrefixLengths(): $SDK28;
+    get networkPrefixLengths(): $SDK27;
     readonly $type: {
         "c:objc(cs)NEIPv6Settings": true;
         "c:objc(cs)NSObject": true;
@@ -3020,8 +3020,8 @@ export declare class NEOnDemandRuleEvaluateConnection extends NEOnDemandRuleEval
      * var connectionRules: [NEEvaluateConnectionRule]? { get set }
      * @availability iOS 8.0+
      */
-    get connectionRules(): $SDK37;
-    set connectionRules(value: $SDK37);
+    get connectionRules(): $SDK36;
+    set connectionRules(value: $SDK36);
     readonly $type: {
         "c:objc(cs)NEOnDemandRuleEvaluateConnection": true;
         "c:objc(cs)NEOnDemandRule": true;
@@ -3132,7 +3132,7 @@ export declare class NEPacketTunnelFlow extends SDKHandle {
      * func writePackets(_ packets: [Data], withProtocols protocols: [NSNumber]) -> Bool
      * @availability iOS 9.0+
      */
-    writePackets(packets: Array<ArrayBuffer>, protocols: $SDK28): boolean;
+    writePackets(packets: Array<ArrayBuffer>, protocols: $SDK27): boolean;
     readonly $type: {
         "c:objc(cs)NEPacketTunnelFlow": true;
         "c:objc(cs)NSObject": true;
@@ -3158,8 +3158,8 @@ export declare class NETunnelNetworkSettings extends SDKHandle {
      * @NSCopying var proxySettings: NEProxySettings? { get set }
      * @availability iOS 9.0+
      */
-    get proxySettings(): $SDK20;
-    set proxySettings(value: $SDK20);
+    get proxySettings(): $SDK19;
+    set proxySettings(value: $SDK19);
     /**
      * var tunnelRemoteAddress: String { get }
      * @availability iOS 9.0+
@@ -3199,14 +3199,14 @@ export declare class NEPacketTunnelNetworkSettings extends NEPacketTunnelNetwork
      * @NSCopying var mtu: NSNumber? { get set }
      * @availability iOS 9.0+
      */
-    get mtu(): $SDK40;
-    set mtu(value: $SDK40);
+    get mtu(): $SDK39;
+    set mtu(value: $SDK39);
     /**
      * @NSCopying var tunnelOverheadBytes: NSNumber? { get set }
      * @availability iOS 9.0+
      */
-    get tunnelOverheadBytes(): $SDK40;
-    set tunnelOverheadBytes(value: $SDK40);
+    get tunnelOverheadBytes(): $SDK39;
+    set tunnelOverheadBytes(value: $SDK39);
     readonly $type: {
         "c:objc(cs)NEPacketTunnelNetworkSettings": true;
         "c:objc(cs)NETunnelNetworkSettings": true;
@@ -3239,7 +3239,7 @@ export declare class NEPacketTunnelProvider extends NEPacketTunnelProvider_base 
      * func startTunnel(options: [String : NSObject]? = nil) async throws
      * @availability iOS 9.0+
      */
-    startTunnel(options: $SDK29, completionHandler: $SDK0): void;
+    startTunnel(options: $SDK28, completionHandler: $SDK0): void;
     /**
      * func stopTunnel(with reason: NEProviderStopReason) async
      * @availability iOS 9.0+
@@ -3797,7 +3797,7 @@ export declare class NEVPNConnection extends SDKHandle {
      * func startVPNTunnel(options: [String : NSObject]? = nil) throws
      * @availability iOS 9.0+
      */
-    startVPNTunnelOptions(options?: $SDK29): void;
+    startVPNTunnelOptions(options?: $SDK28): void;
     /**
      * func stopVPNTunnel()
      * @availability iOS 8.0+
@@ -3996,8 +3996,8 @@ export declare class NEURLFilterManager extends SDKHandle {
      * var localizedDescription: LocalizedStringResource?
      * @availability iOS 26.0+
      */
-    get localizedDescription(): $SDK47;
-    set localizedDescription(value: $SDK47);
+    get localizedDescription(): $SDK46;
+    set localizedDescription(value: $SDK46);
     /**
      * func refreshPIRParameters() async throws
      * @availability iOS 26.0+
@@ -4537,8 +4537,8 @@ export declare class NEVPNIKEv2SecurityAssociationParameters extends SDKHandle {
      * var postQuantumKeyExchangeMethods: [NEVPNIKEv2PostQuantumKeyExchangeMethod] { get set }
      * @availability iOS 26.0+
      */
-    get postQuantumKeyExchangeMethods(): $SDK48;
-    set postQuantumKeyExchangeMethods(value: $SDK48);
+    get postQuantumKeyExchangeMethods(): $SDK47;
+    set postQuantumKeyExchangeMethods(value: $SDK47);
     readonly $type: {
         "c:objc(cs)NEVPNIKEv2SecurityAssociationParameters": true;
         "c:objc(cs)NSObject": true;
@@ -4716,8 +4716,8 @@ export declare class NEVPNProtocolIKEv2 extends NEVPNProtocolIKEv2_base {
      * @NSCopying var ppkConfiguration: NEVPNIKEv2PPKConfiguration? { get set }
      * @availability iOS 18.0+
      */
-    get ppkConfiguration(): $SDK49;
-    set ppkConfiguration(value: $SDK49);
+    get ppkConfiguration(): $SDK48;
+    set ppkConfiguration(value: $SDK48);
     /**
      * var serverCertificateCommonName: String? { get set }
      * @availability iOS 8.0+
@@ -4813,7 +4813,7 @@ export declare class NSMutableURLRequest extends SDKHandle {
         "c:objc(cs)NSObject": true;
     };
 }
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GKPlayerAuthenticationDidChangeNotificationName" | "GKPlayerDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderDomainDidChange" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMusicPlayerControllerQueueDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /**
      * static let NEDNSProxyConfigurationDidChange: NSNotification.Name
@@ -5119,8 +5119,8 @@ export declare class NWTLSParameters extends SDKHandle {
      * @availability iOS 9.0+
      * @deprecated iOS 18.0
      */
-    get sslCipherSuites(): $SDK50;
-    set sslCipherSuites(value: $SDK50);
+    get sslCipherSuites(): $SDK49;
+    set sslCipherSuites(value: $SDK49);
     /**
      * var tlsSessionID: Data? { get set }
      * @availability iOS 9.0+

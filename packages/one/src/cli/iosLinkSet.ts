@@ -18,10 +18,12 @@ export function readCatalog(): LinkSetCatalog {
 
 // the directory of the one package, whose own sources are not the app's use of it
 export function oneDirectory(): string {
-  let dir = typeof __dirname === 'string' ? __dirname : dirname(fileURLToPath(import.meta.url))
+  let dir =
+    typeof __dirname === 'string' ? __dirname : dirname(fileURLToPath(import.meta.url))
   while (!existsSync(join(dir, 'ios-link-set.json'))) {
     const parent = dirname(dir)
-    if (parent === dir) throw new Error('[one] ios-link-set.json not found beside the one package')
+    if (parent === dir)
+      throw new Error('[one] ios-link-set.json not found beside the one package')
     dir = parent
   }
   return dir
@@ -29,21 +31,52 @@ export function oneDirectory(): string {
 
 // the groups the pod compiled into a configuration, read from the build settings
 // cocoapods wrote at pod install. undefined for a configuration that links every group.
-export function compiledGroups(podsRoot: string, configuration: string): string[] | undefined {
-  const file = join(podsRoot, 'Target Support Files', 'One', `One.${configuration.toLowerCase()}.xcconfig`)
+export function compiledGroups(
+  podsRoot: string,
+  configuration: string
+): string[] | undefined {
+  const file = join(
+    podsRoot,
+    'Target Support Files',
+    'One',
+    `One.${configuration.toLowerCase()}.xcconfig`
+  )
   if (!existsSync(file)) return undefined
   const line = readFileSync(file, 'utf8')
     .split('\n')
     .find((text) => text.startsWith('SWIFT_ACTIVE_COMPILATION_CONDITIONS ='))
   if (line === undefined) return []
   const flags = new Set(line.match(/ONE_GROUP_[A-Z0-9_]+/g))
-  return Object.keys(readCatalog().groups).filter((group) => flags.has(`ONE_GROUP_${group.toUpperCase()}`))
+  return Object.keys(readCatalog().groups).filter((group) =>
+    flags.has(`ONE_GROUP_${group.toUpperCase()}`)
+  )
 }
 
 // fails a release build whose shipped bundle needs a group the binary left out
-export function assertLinkSet(needed: string[], env: NodeJS.ProcessEnv = process.env) {
+export function assertLinkSet(
+  needed: string[],
+  env: NodeJS.ProcessEnv = process.env,
+  frameworks: string[] = []
+) {
   const { PODS_ROOT: podsRoot, CONFIGURATION: configuration } = env
   if (!podsRoot || !configuration || configuration === 'Debug') return
+  const sdkConfig = join(
+    podsRoot,
+    'Target Support Files',
+    'OneSDKBindings',
+    `OneSDKBindings.${configuration.toLowerCase()}.xcconfig`
+  )
+  const sdkFrameworks = existsSync(sdkConfig)
+    ? (readFileSync(sdkConfig, 'utf8')
+        .match(/^ONE_IOS_SDK_FRAMEWORKS = *(.*)$/m)?.[1]
+        .trim()
+        .split(/\s+/) ?? [])
+    : []
+  const missingFrameworks = frameworks.filter((module) => !sdkFrameworks.includes(module))
+  if (missingFrameworks.length)
+    throw new Error(
+      `[one] this ${configuration} build lacks iOS SDK bindings for ${missingFrameworks.join(', ')}. Run \`one prebuild --platform ios\` and build again.`
+    )
   const compiled = compiledGroups(podsRoot, configuration)
   if (!compiled) return
   const missing = needed.filter((group) => !compiled.includes(group))
@@ -57,9 +90,9 @@ export function assertLinkSet(needed: string[], env: NodeJS.ProcessEnv = process
 // records which groups its module graph uses.
 export function writeIosLinkSet(root: string) {
   const cli = createRequire(join(root, 'package.json')).resolve(
-    createRequire(createRequire(join(root, 'package.json')).resolve('vxrn/package.json')).resolve(
-      '@react-native-community/cli/build/bin.js'
-    )
+    createRequire(
+      createRequire(join(root, 'package.json')).resolve('vxrn/package.json')
+    ).resolve('@react-native-community/cli/build/bin.js')
   )
   const out = mkdtempSync(join(tmpdir(), 'one-link-set-'))
   const bundlePath = join(out, 'main.jsbundle')
@@ -67,19 +100,40 @@ export function writeIosLinkSet(root: string) {
   try {
     execFileSync(
       process.execPath,
-      [cli, 'bundle', '--platform', 'ios', '--dev', 'false', '--entry-file', 'index.js',
-        '--bundle-output', bundlePath, '--assets-dest', out],
-      { cwd: root, stdio: 'inherit', env: { ...process.env, [IOS_LINK_SET_REPORT_ENV]: reportPath } }
+      [
+        cli,
+        'bundle',
+        '--platform',
+        'ios',
+        '--dev',
+        'false',
+        '--entry-file',
+        'index.js',
+        '--bundle-output',
+        bundlePath,
+        '--assets-dest',
+        out,
+      ],
+      {
+        cwd: root,
+        stdio: 'inherit',
+        env: { ...process.env, [IOS_LINK_SET_REPORT_ENV]: reportPath },
+      }
     )
     // a bundler without the analysis plugin (metro) leaves no report, so link everything
-    let groups: string[]
-    if (existsSync(reportPath)) groups = JSON.parse(readFileSync(reportPath, 'utf8')).groups
+    let selection: { groups: string[]; frameworks?: string[] }
+    if (existsSync(reportPath)) selection = JSON.parse(readFileSync(reportPath, 'utf8'))
     else {
-      groups = Object.keys(readCatalog().groups)
-      console.warn('[one] the bundler produced no link set report, so a release build links every iOS feature group')
+      selection = { groups: Object.keys(readCatalog().groups) }
+      console.warn(
+        '[one] the bundler produced no link set report, so a release build links every iOS feature group'
+      )
     }
-    writeFileSync(join(root, IOS_LINK_SET_FILE), JSON.stringify({ groups }, null, 2) + '\n')
-    return groups
+    writeFileSync(
+      join(root, IOS_LINK_SET_FILE),
+      JSON.stringify(selection, null, 2) + '\n'
+    )
+    return selection
   } finally {
     rmSync(out, { recursive: true, force: true })
   }
