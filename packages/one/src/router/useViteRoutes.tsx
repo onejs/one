@@ -10,6 +10,13 @@ import { hmrImport } from './hmrImport'
 let lastVersion = 0
 let context
 
+// the stand-in module a route gets when its import failed, mapped to that error.
+const routeLoadErrors = new WeakMap<object, unknown>()
+
+export function getRouteLoadError(route: unknown): unknown {
+  return typeof route === 'object' && route ? routeLoadErrors.get(route) : undefined
+}
+
 // for some reason putting it in state doesnt even re-render
 export function useViteRoutes(
   routes: GlobbedRouteImports,
@@ -330,9 +337,9 @@ export function globbedRoutesToRouteContext(
                 .catch(() => {})
             }
           }
-          loadedRoutes[id] = {
-            default: () => null,
-          }
+          const failed = { default: () => null }
+          routeLoadErrors.set(failed, err)
+          loadedRoutes[id] = failed
           delete promises[id]
         })
 
