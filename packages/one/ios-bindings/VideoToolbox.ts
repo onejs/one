@@ -44,12 +44,12 @@ export const VTCompressionSessionOptionFlags = {
    * static var beginFinalPass: VTCompressionSessionOptionFlags { get }
    * @availability iOS 8.0+
    */
-  get beginFinalPass(): VTCompressionSessionOptionFlags { return callSDK<VTCompressionSessionOptionFlags>("VideoToolbox_1f27952b3c5b81e6", 1749790733699594, undefined, []); },
+  get beginFinalPass(): VTCompressionSessionOptionFlags { return callSDK<VTCompressionSessionOptionFlags>("VideoToolbox_64b39a05e4a4cebd", 1749790733699594, undefined, []); },
   /**
    * init(rawValue: UInt32)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): VTCompressionSessionOptionFlags { return callSDK<VTCompressionSessionOptionFlags>("VideoToolbox_1f27952b3c5b81e6", 4312420957127627, undefined, [rawValue]); }
+  init(rawValue: number): VTCompressionSessionOptionFlags { return callSDK<VTCompressionSessionOptionFlags>("VideoToolbox_64b39a05e4a4cebd", 4312420957127627, undefined, [rawValue]); }
 };
 
 /** struct VTDecodeFrameFlags */
@@ -57,7 +57,7 @@ export type VTDecodeFrameFlags = Array<number>;
 
 export const VTDecodeFrameFlags = {
   /** init(rawValue: UInt32) */
-  init(rawValue: number): VTDecodeFrameFlags { return callSDK<VTDecodeFrameFlags>("VideoToolbox_1f27952b3c5b81e6", 698051015699474, undefined, [rawValue]); }
+  init(rawValue: number): VTDecodeFrameFlags { return callSDK<VTDecodeFrameFlags>("VideoToolbox_64b39a05e4a4cebd", 698051015699474, undefined, [rawValue]); }
 };
 
 /** struct VTDecodeInfoFlags */
@@ -65,17 +65,17 @@ export type VTDecodeInfoFlags = Array<"asynchronous" | "frameDropped" | "imageBu
 
 export const VTDecodeInfoFlags = {
   /** static var asynchronous: VTDecodeInfoFlags { get } */
-  get asynchronous(): VTDecodeInfoFlags { return callSDK<VTDecodeInfoFlags>("VideoToolbox_1f27952b3c5b81e6", 2897136287054714, undefined, []); },
+  get asynchronous(): VTDecodeInfoFlags { return callSDK<VTDecodeInfoFlags>("VideoToolbox_64b39a05e4a4cebd", 2897136287054714, undefined, []); },
   /** static var frameDropped: VTDecodeInfoFlags { get } */
-  get frameDropped(): VTDecodeInfoFlags { return callSDK<VTDecodeInfoFlags>("VideoToolbox_1f27952b3c5b81e6", 3873648190304988, undefined, []); },
+  get frameDropped(): VTDecodeInfoFlags { return callSDK<VTDecodeInfoFlags>("VideoToolbox_64b39a05e4a4cebd", 3873648190304988, undefined, []); },
   /** static var frameInterrupted: VTDecodeInfoFlags { get } */
-  get frameInterrupted(): VTDecodeInfoFlags { return callSDK<VTDecodeInfoFlags>("VideoToolbox_1f27952b3c5b81e6", 2640901783293665, undefined, []); },
+  get frameInterrupted(): VTDecodeInfoFlags { return callSDK<VTDecodeInfoFlags>("VideoToolbox_64b39a05e4a4cebd", 2640901783293665, undefined, []); },
   /** static var imageBufferModifiable: VTDecodeInfoFlags { get } */
-  get imageBufferModifiable(): VTDecodeInfoFlags { return callSDK<VTDecodeInfoFlags>("VideoToolbox_1f27952b3c5b81e6", 3491274770987417, undefined, []); },
+  get imageBufferModifiable(): VTDecodeInfoFlags { return callSDK<VTDecodeInfoFlags>("VideoToolbox_64b39a05e4a4cebd", 3491274770987417, undefined, []); },
   /** static var skippedLeadingFrameDropped: VTDecodeInfoFlags { get } */
-  get skippedLeadingFrameDropped(): VTDecodeInfoFlags { return callSDK<VTDecodeInfoFlags>("VideoToolbox_1f27952b3c5b81e6", 293070096074736, undefined, []); },
+  get skippedLeadingFrameDropped(): VTDecodeInfoFlags { return callSDK<VTDecodeInfoFlags>("VideoToolbox_64b39a05e4a4cebd", 293070096074736, undefined, []); },
   /** init(rawValue: UInt32) */
-  init(rawValue: number): VTDecodeInfoFlags { return callSDK<VTDecodeInfoFlags>("VideoToolbox_1f27952b3c5b81e6", 2890537241781553, undefined, [rawValue]); }
+  init(rawValue: number): VTDecodeInfoFlags { return callSDK<VTDecodeInfoFlags>("VideoToolbox_64b39a05e4a4cebd", 2890537241781553, undefined, [rawValue]); }
 };
 
 /**
@@ -99,13 +99,13 @@ export class VTDecompressionOutputCallbackRecord extends SDKHandle {
    * var decompressionOutputRefCon: UnsafeMutableRawPointer?
    * @availability iOS 8.0+
    */
-  get decompressionOutputRefCon(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("VideoToolbox_1f27952b3c5b81e6", 3472672261375021, this, []); }
-  set decompressionOutputRefCon(value: (SDKHandle) | null) { callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 2731097084438520, this, [value]); }
+  get decompressionOutputRefCon(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("VideoToolbox_64b39a05e4a4cebd", 3472672261375021, this, []); }
+  set decompressionOutputRefCon(value: (SDKHandle) | null) { callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 2731097084438520, this, [value]); }
   /**
    * init()
    * @availability iOS 8.0+
    */
-  static init(): VTDecompressionOutputCallbackRecord { return callSDK<VTDecompressionOutputCallbackRecord>("VideoToolbox_1f27952b3c5b81e6", 2235516873456149, undefined, []); }
+  static init(): VTDecompressionOutputCallbackRecord { return callSDK<VTDecompressionOutputCallbackRecord>("VideoToolbox_64b39a05e4a4cebd", 2235516873456149, undefined, []); }
   declare readonly $type: { "c:@S@VTDecompressionOutputCallbackRecord": true };
 }
 
@@ -131,11 +131,11 @@ export type VTEncodeInfoFlags = Array<"asynchronous" | "frameDropped">;
 
 export const VTEncodeInfoFlags = {
   /** static var asynchronous: VTEncodeInfoFlags { get } */
-  get asynchronous(): VTEncodeInfoFlags { return callSDK<VTEncodeInfoFlags>("VideoToolbox_1f27952b3c5b81e6", 1841906675512687, undefined, []); },
+  get asynchronous(): VTEncodeInfoFlags { return callSDK<VTEncodeInfoFlags>("VideoToolbox_64b39a05e4a4cebd", 1841906675512687, undefined, []); },
   /** static var frameDropped: VTEncodeInfoFlags { get } */
-  get frameDropped(): VTEncodeInfoFlags { return callSDK<VTEncodeInfoFlags>("VideoToolbox_1f27952b3c5b81e6", 2306377395310796, undefined, []); },
+  get frameDropped(): VTEncodeInfoFlags { return callSDK<VTEncodeInfoFlags>("VideoToolbox_64b39a05e4a4cebd", 2306377395310796, undefined, []); },
   /** init(rawValue: UInt32) */
-  init(rawValue: number): VTEncodeInfoFlags { return callSDK<VTEncodeInfoFlags>("VideoToolbox_1f27952b3c5b81e6", 857845472095907, undefined, [rawValue]); }
+  init(rawValue: number): VTEncodeInfoFlags { return callSDK<VTEncodeInfoFlags>("VideoToolbox_64b39a05e4a4cebd", 857845472095907, undefined, [rawValue]); }
 };
 
 /**
@@ -147,33 +147,33 @@ export class VTFrameProcessor extends SDKHandle {
    * func endSession()
    * @availability iOS 26.0+
    */
-  endSession(): void { return callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 2868896918800943, this, []); }
+  endSession(): void { return callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 2868896918800943, this, []); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): VTFrameProcessor { return callSDK<VTFrameProcessor>("VideoToolbox_1f27952b3c5b81e6", 641703146015964, undefined, []); }
+  static init(): VTFrameProcessor { return callSDK<VTFrameProcessor>("VideoToolbox_64b39a05e4a4cebd", 641703146015964, undefined, []); }
   /**
    * func process(with commandBuffer: any MTLCommandBuffer, parameters: any VTFrameProcessorParameters)
    * @availability iOS 26.0+
    */
-  processWithParameters(commandBuffer: SDKHandle, parameters: SDKHandle): void { return callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 3317669247642648, this, [commandBuffer, parameters]); }
+  processWithParameters(commandBuffer: SDKHandle, parameters: SDKHandle): void { return callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 3317669247642648, this, [commandBuffer, parameters]); }
   /**
    * func process(parameters: any VTFrameProcessorParameters) async throws -> any VTFrameProcessorParameters
    * @availability iOS 26.0+
    */
-  processParametersCompletionHandler(parameters: SDKHandle, completionHandler: ((arg0: SDKHandle, arg1: (NativeError) | null) => void)): void { return callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 312605789840937, this, [parameters, completionHandler], [null,{"callback":{"out":[]}}]); }
+  processParametersCompletionHandler(parameters: SDKHandle, completionHandler: ((arg0: SDKHandle, arg1: (NativeError) | null) => void)): void { return callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 312605789840937, this, [parameters, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func startSession(configuration: any VTFrameProcessorConfiguration) throws
    * @availability iOS 26.0+
    */
-  startSession(configuration: SDKHandle): void { return callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 1436274152911025, this, [configuration]); }
+  startSession(configuration: SDKHandle): void { return callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 1436274152911025, this, [configuration]); }
   /**
    * func process(parameters: any VTFrameProcessorParameters) -> some AsyncSequence<VTFrameProcessorFrame.ReadOnlyFrame, any Error>
   
    * @availability iOS 26.0+
    */
-  processParameters(parameters: SDKHandle): SDKHandle { return callSDK<SDKHandle>("VideoToolbox_1f27952b3c5b81e6", 572129011950607, this, [parameters]); }
+  processParameters(parameters: SDKHandle): SDKHandle { return callSDK<SDKHandle>("VideoToolbox_64b39a05e4a4cebd", 572129011950607, this, [parameters]); }
   declare readonly $type: { "c:objc(cs)VTFrameProcessor": true; "c:objc(cs)NSObject": true };
 }
 
@@ -188,35 +188,35 @@ export interface VTFrameProcessorConfiguration {
 /** struct VTFrameProcessorError */
 export class VTFrameProcessorError extends SDKHandle {
   /** static var processingError: VTFrameProcessorError.Code { get } */
-  static get processingError(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_1f27952b3c5b81e6", 3666624523796974, undefined, []); }
+  static get processingError(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_64b39a05e4a4cebd", 3666624523796974, undefined, []); }
   /** static var sessionLevelError: VTFrameProcessorError.Code { get } */
-  static get sessionLevelError(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_1f27952b3c5b81e6", 3902568331253596, undefined, []); }
+  static get sessionLevelError(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_64b39a05e4a4cebd", 3902568331253596, undefined, []); }
   /** static var invalidParameterError: VTFrameProcessorError.Code { get } */
-  static get invalidParameterError(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_1f27952b3c5b81e6", 1633177727187396, undefined, []); }
+  static get invalidParameterError(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_64b39a05e4a4cebd", 1633177727187396, undefined, []); }
   /** static var fatalError: VTFrameProcessorError.Code { get } */
-  static get fatalError(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_1f27952b3c5b81e6", 4118826683515973, undefined, []); }
+  static get fatalError(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_64b39a05e4a4cebd", 4118826683515973, undefined, []); }
   /** static var unknownError: VTFrameProcessorError.Code { get } */
-  static get unknownError(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_1f27952b3c5b81e6", 1236964226360627, undefined, []); }
+  static get unknownError(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_64b39a05e4a4cebd", 1236964226360627, undefined, []); }
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("VideoToolbox_1f27952b3c5b81e6", 2705899282518642, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("VideoToolbox_64b39a05e4a4cebd", 2705899282518642, undefined, []); }
   /** static var unsupportedInput: VTFrameProcessorError.Code { get } */
-  static get unsupportedInput(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_1f27952b3c5b81e6", 4421313389814667, undefined, []); }
+  static get unsupportedInput(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_64b39a05e4a4cebd", 4421313389814667, undefined, []); }
   /** static var sessionNotStarted: VTFrameProcessorError.Code { get } */
-  static get sessionNotStarted(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_1f27952b3c5b81e6", 3682951373750435, undefined, []); }
+  static get sessionNotStarted(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_64b39a05e4a4cebd", 3682951373750435, undefined, []); }
   /** static var invalidFrameTiming: VTFrameProcessorError.Code { get } */
-  static get invalidFrameTiming(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_1f27952b3c5b81e6", 1562089623008813, undefined, []); }
+  static get invalidFrameTiming(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_64b39a05e4a4cebd", 1562089623008813, undefined, []); }
   /** static var assetDownloadFailed: VTFrameProcessorError.Code { get } */
-  static get assetDownloadFailed(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_1f27952b3c5b81e6", 1575716307300308, undefined, []); }
+  static get assetDownloadFailed(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_64b39a05e4a4cebd", 1575716307300308, undefined, []); }
   /** static var initializationFailed: VTFrameProcessorError.Code { get } */
-  static get initializationFailed(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_1f27952b3c5b81e6", 2991232565850666, undefined, []); }
+  static get initializationFailed(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_64b39a05e4a4cebd", 2991232565850666, undefined, []); }
   /** static var revisionNotSupported: VTFrameProcessorError.Code { get } */
-  static get revisionNotSupported(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_1f27952b3c5b81e6", 2247465101836817, undefined, []); }
+  static get revisionNotSupported(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_64b39a05e4a4cebd", 2247465101836817, undefined, []); }
   /** static var sessionAlreadyActive: VTFrameProcessorError.Code { get } */
-  static get sessionAlreadyActive(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_1f27952b3c5b81e6", 3025083888328483, undefined, []); }
+  static get sessionAlreadyActive(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_64b39a05e4a4cebd", 3025083888328483, undefined, []); }
   /** static var unsupportedResolution: VTFrameProcessorError.Code { get } */
-  static get unsupportedResolution(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_1f27952b3c5b81e6", 1661107495579822, undefined, []); }
+  static get unsupportedResolution(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_64b39a05e4a4cebd", 1661107495579822, undefined, []); }
   /** static var memoryAllocationFailure: VTFrameProcessorError.Code { get } */
-  static get memoryAllocationFailure(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_1f27952b3c5b81e6", 2416330147158632, undefined, []); }
+  static get memoryAllocationFailure(): VTFrameProcessorError_Code { return callSDK<VTFrameProcessorError_Code>("VideoToolbox_64b39a05e4a4cebd", 2416330147158632, undefined, []); }
   declare readonly $type: { "s:SC21VTFrameProcessorErrorLeV": true };
 }
 
@@ -225,7 +225,7 @@ export type VTFrameProcessorError_Code = "unknownError" | "unsupportedResolution
 
 export const VTFrameProcessorError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (VTFrameProcessorError_Code) | null { return callSDK<(VTFrameProcessorError_Code) | null>("VideoToolbox_1f27952b3c5b81e6", 2995212228361553, undefined, [rawValue]); }
+  init(rawValue: number): (VTFrameProcessorError_Code) | null { return callSDK<(VTFrameProcessorError_Code) | null>("VideoToolbox_64b39a05e4a4cebd", 2995212228361553, undefined, [rawValue]); }
 };
 
 /**
@@ -237,17 +237,17 @@ export class VTFrameProcessorFrame extends SDKHandle {
    * init?(buffer: CVPixelBuffer, presentationTimeStamp: CMTime)
    * @availability iOS 26.0+
    */
-  static init(buffer: _CoreVideo_CVBuffer, presentationTimeStamp: _CoreMedia_CMTime): (VTFrameProcessorFrame) | null { return callSDK<(VTFrameProcessorFrame) | null>("VideoToolbox_1f27952b3c5b81e6", 1345466766274363, undefined, [buffer, presentationTimeStamp]); }
+  static init(buffer: _CoreVideo_CVBuffer, presentationTimeStamp: _CoreMedia_CMTime): (VTFrameProcessorFrame) | null { return callSDK<(VTFrameProcessorFrame) | null>("VideoToolbox_64b39a05e4a4cebd", 1345466766274363, undefined, [buffer, presentationTimeStamp]); }
   /**
    * var buffer: CVPixelBuffer { get }
    * @availability iOS 26.0+
    */
-  get buffer(): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("VideoToolbox_1f27952b3c5b81e6", 3415647503944369, this, []); }
+  get buffer(): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("VideoToolbox_64b39a05e4a4cebd", 3415647503944369, this, []); }
   /**
    * var presentationTimeStamp: CMTime { get }
    * @availability iOS 26.0+
    */
-  get presentationTimeStamp(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("VideoToolbox_1f27952b3c5b81e6", 1615279671469759, this, []); }
+  get presentationTimeStamp(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("VideoToolbox_64b39a05e4a4cebd", 1615279671469759, this, []); }
   declare readonly $type: { "c:objc(cs)VTFrameProcessorFrame": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "buffer": true; "presentationTimeStamp": true };
 }
@@ -261,19 +261,19 @@ export class VTFrameProcessorFrame_ReadOnlyFrame extends SDKHandle {
    * var frame: CVReadOnlyPixelBuffer
    * @availability iOS 26.0+
    */
-  get frame(): _CoreVideo_CVReadOnlyPixelBuffer { return callSDK<_CoreVideo_CVReadOnlyPixelBuffer>("VideoToolbox_1f27952b3c5b81e6", 4455583525515488, this, []); }
-  set frame(value: _CoreVideo_CVReadOnlyPixelBuffer) { callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 1330940138057746, this, [value]); }
+  get frame(): _CoreVideo_CVReadOnlyPixelBuffer { return callSDK<_CoreVideo_CVReadOnlyPixelBuffer>("VideoToolbox_64b39a05e4a4cebd", 4455583525515488, this, []); }
+  set frame(value: _CoreVideo_CVReadOnlyPixelBuffer) { callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 1330940138057746, this, [value]); }
   /**
    * init(frame: CVReadOnlyPixelBuffer, timeStamp: CMTime)
    * @availability iOS 26.0+
    */
-  static init(frame: _CoreVideo_CVReadOnlyPixelBuffer, timeStamp: _CoreMedia_CMTime): VTFrameProcessorFrame_ReadOnlyFrame { return callSDK<VTFrameProcessorFrame_ReadOnlyFrame>("VideoToolbox_1f27952b3c5b81e6", 362498409228518, undefined, [frame, timeStamp]); }
+  static init(frame: _CoreVideo_CVReadOnlyPixelBuffer, timeStamp: _CoreMedia_CMTime): VTFrameProcessorFrame_ReadOnlyFrame { return callSDK<VTFrameProcessorFrame_ReadOnlyFrame>("VideoToolbox_64b39a05e4a4cebd", 362498409228518, undefined, [frame, timeStamp]); }
   /**
    * var timeStamp: CMTime
    * @availability iOS 26.0+
    */
-  get timeStamp(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("VideoToolbox_1f27952b3c5b81e6", 1465131345202339, this, []); }
-  set timeStamp(value: _CoreMedia_CMTime) { callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 99602229443615, this, [value]); }
+  get timeStamp(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("VideoToolbox_64b39a05e4a4cebd", 1465131345202339, this, []); }
+  set timeStamp(value: _CoreMedia_CMTime) { callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 99602229443615, this, [value]); }
   declare readonly $type: { "s:So21VTFrameProcessorFrameC12VideoToolboxE08ReadOnlyC0V": true };
 }
 
@@ -286,17 +286,17 @@ export class VTFrameProcessorOpticalFlow extends SDKHandle {
    * init?(forwardFlow: CVPixelBuffer, backwardFlow: CVPixelBuffer)
    * @availability iOS 26.0+
    */
-  static init(forwardFlow: _CoreVideo_CVBuffer, backwardFlow: _CoreVideo_CVBuffer): (VTFrameProcessorOpticalFlow) | null { return callSDK<(VTFrameProcessorOpticalFlow) | null>("VideoToolbox_1f27952b3c5b81e6", 464660276753444, undefined, [forwardFlow, backwardFlow]); }
+  static init(forwardFlow: _CoreVideo_CVBuffer, backwardFlow: _CoreVideo_CVBuffer): (VTFrameProcessorOpticalFlow) | null { return callSDK<(VTFrameProcessorOpticalFlow) | null>("VideoToolbox_64b39a05e4a4cebd", 464660276753444, undefined, [forwardFlow, backwardFlow]); }
   /**
    * var backwardFlow: CVPixelBuffer { get }
    * @availability iOS 26.0+
    */
-  get backwardFlow(): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("VideoToolbox_1f27952b3c5b81e6", 1735736087226698, this, []); }
+  get backwardFlow(): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("VideoToolbox_64b39a05e4a4cebd", 1735736087226698, this, []); }
   /**
    * var forwardFlow: CVPixelBuffer { get }
    * @availability iOS 26.0+
    */
-  get forwardFlow(): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("VideoToolbox_1f27952b3c5b81e6", 1162151319266806, this, []); }
+  get forwardFlow(): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("VideoToolbox_64b39a05e4a4cebd", 1162151319266806, this, []); }
   declare readonly $type: { "c:objc(cs)VTFrameProcessorOpticalFlow": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "backwardFlow": true; "forwardFlow": true };
 }
@@ -325,41 +325,41 @@ export const VTHDRPerFrameMetadataGenerationHDRFormatType = {
    * init(rawValue: CFString)
    * @availability iOS 18.0+
    */
-  initRawValue(rawValue: _CoreFoundation_CFString): VTHDRPerFrameMetadataGenerationHDRFormatType { return callSDK<VTHDRPerFrameMetadataGenerationHDRFormatType>("VideoToolbox_1f27952b3c5b81e6", 3463711968956653, undefined, [rawValue]); },
+  initRawValue(rawValue: _CoreFoundation_CFString): VTHDRPerFrameMetadataGenerationHDRFormatType { return callSDK<VTHDRPerFrameMetadataGenerationHDRFormatType>("VideoToolbox_64b39a05e4a4cebd", 3463711968956653, undefined, [rawValue]); },
   /**
    * init(_ rawValue: CFString)
    * @availability iOS 18.0+
    */
-  init(rawValue: _CoreFoundation_CFString): VTHDRPerFrameMetadataGenerationHDRFormatType { return callSDK<VTHDRPerFrameMetadataGenerationHDRFormatType>("VideoToolbox_1f27952b3c5b81e6", 101375186075213, undefined, [rawValue]); }
+  init(rawValue: _CoreFoundation_CFString): VTHDRPerFrameMetadataGenerationHDRFormatType { return callSDK<VTHDRPerFrameMetadataGenerationHDRFormatType>("VideoToolbox_64b39a05e4a4cebd", 101375186075213, undefined, [rawValue]); }
 };
 
 /** struct VTInt32Point */
 export class VTInt32Point extends SDKHandle {
   /** var x: Int32 */
-  get x(): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1054005265753390, this, []); }
-  set x(value: number) { callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 2518471967740189, this, [value]); }
+  get x(): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1054005265753390, this, []); }
+  set x(value: number) { callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 2518471967740189, this, [value]); }
   /** var y: Int32 */
-  get y(): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 797912574093287, this, []); }
-  set y(value: number) { callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 2872624407228197, this, [value]); }
+  get y(): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 797912574093287, this, []); }
+  set y(value: number) { callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 2872624407228197, this, [value]); }
   /** init(x: Int32, y: Int32) */
-  static initXY(x: number, y: number): VTInt32Point { return callSDK<VTInt32Point>("VideoToolbox_1f27952b3c5b81e6", 4420315522541799, undefined, [x, y]); }
+  static initXY(x: number, y: number): VTInt32Point { return callSDK<VTInt32Point>("VideoToolbox_64b39a05e4a4cebd", 4420315522541799, undefined, [x, y]); }
   /** init() */
-  static init(): VTInt32Point { return callSDK<VTInt32Point>("VideoToolbox_1f27952b3c5b81e6", 2806459456431546, undefined, []); }
+  static init(): VTInt32Point { return callSDK<VTInt32Point>("VideoToolbox_64b39a05e4a4cebd", 2806459456431546, undefined, []); }
   declare readonly $type: { "c:@S@VTInt32Point": true };
 }
 
 /** struct VTInt32Size */
 export class VTInt32Size extends SDKHandle {
   /** var height: Int32 */
-  get height(): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1078685509793647, this, []); }
-  set height(value: number) { callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 1308320532922722, this, [value]); }
+  get height(): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1078685509793647, this, []); }
+  set height(value: number) { callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 1308320532922722, this, [value]); }
   /** var width: Int32 */
-  get width(): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 2100446442818195, this, []); }
-  set width(value: number) { callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 644187111592769, this, [value]); }
+  get width(): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 2100446442818195, this, []); }
+  set width(value: number) { callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 644187111592769, this, [value]); }
   /** init(width: Int32, height: Int32) */
-  static initWidthHeight(width: number, height: number): VTInt32Size { return callSDK<VTInt32Size>("VideoToolbox_1f27952b3c5b81e6", 2814763927553765, undefined, [width, height]); }
+  static initWidthHeight(width: number, height: number): VTInt32Size { return callSDK<VTInt32Size>("VideoToolbox_64b39a05e4a4cebd", 2814763927553765, undefined, [width, height]); }
   /** init() */
-  static init(): VTInt32Size { return callSDK<VTInt32Size>("VideoToolbox_1f27952b3c5b81e6", 2807593241730098, undefined, []); }
+  static init(): VTInt32Size { return callSDK<VTInt32Size>("VideoToolbox_64b39a05e4a4cebd", 2807593241730098, undefined, []); }
   declare readonly $type: { "c:@S@VTInt32Size": true };
 }
 
@@ -375,32 +375,32 @@ export class VTMotionEstimationSession extends SDKHandle {
    * final var motionVectorSize: VTMotionEstimationSession.BlockSize { get throws }
    * @availability iOS 26.0+
    */
-  get motionVectorSize(): VTMotionEstimationSession_BlockSize { return callSDK<VTMotionEstimationSession_BlockSize>("VideoToolbox_1f27952b3c5b81e6", 3932456256052661, this, []); }
+  get motionVectorSize(): VTMotionEstimationSession_BlockSize { return callSDK<VTMotionEstimationSession_BlockSize>("VideoToolbox_64b39a05e4a4cebd", 3932456256052661, this, []); }
   /**
    * final var useMultiPassSearch: Bool { get }
    * @availability iOS 26.0+
    */
-  get useMultiPassSearch(): boolean { return callSDK<boolean>("VideoToolbox_1f27952b3c5b81e6", 460057508783908, this, []); }
+  get useMultiPassSearch(): boolean { return callSDK<boolean>("VideoToolbox_64b39a05e4a4cebd", 460057508783908, this, []); }
   /**
    * final var sourcePixelBufferAttributes: [String : any Sendable] { get }
    * @availability iOS 26.0+
    */
-  get sourcePixelBufferAttributes(): Record<string, SDKHandle> { return callSDK<Record<string, SDKHandle>>("VideoToolbox_1f27952b3c5b81e6", 793736746087367, this, []); }
+  get sourcePixelBufferAttributes(): Record<string, SDKHandle> { return callSDK<Record<string, SDKHandle>>("VideoToolbox_64b39a05e4a4cebd", 793736746087367, this, []); }
   /**
    * final var label: String? { get }
    * @availability iOS 26.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("VideoToolbox_1f27952b3c5b81e6", 338518422869930, this, []); }
+  get label(): (string) | null { return callSDK<(string) | null>("VideoToolbox_64b39a05e4a4cebd", 338518422869930, this, []); }
   /**
    * init(width: UInt32, height: UInt32, motionVectorSize: VTMotionEstimationSession.BlockSize = .blockSize16x16, useMultiPassSearch: Bool = false, label: String? = nil) throws
    * @availability iOS 26.0+
    */
-  static init(width: number, height: number, motionVectorSize?: VTMotionEstimationSession_BlockSize, useMultiPassSearch?: boolean, label?: (string) | null): VTMotionEstimationSession { return callSDK<VTMotionEstimationSession>("VideoToolbox_1f27952b3c5b81e6", 4202488993142496, undefined, [width, height, motionVectorSize, useMultiPassSearch, label]); }
+  static init(width: number, height: number, motionVectorSize?: VTMotionEstimationSession_BlockSize, useMultiPassSearch?: boolean, label?: (string) | null): VTMotionEstimationSession { return callSDK<VTMotionEstimationSession>("VideoToolbox_64b39a05e4a4cebd", 4202488993142496, undefined, [width, height, motionVectorSize, useMultiPassSearch, label]); }
   /**
    * final func motion(of currentImage: CVReadOnlyPixelBuffer, comparedTo referenceImage: CVReadOnlyPixelBuffer, flags: VTMotionEstimationSession.FrameFlags = .init(rawValue:0)) async throws -> VTMotionEstimationSession.Motion
    * @availability iOS 26.0+
    */
-  motion(currentImage: _CoreVideo_CVReadOnlyPixelBuffer, referenceImage: _CoreVideo_CVReadOnlyPixelBuffer, flags?: VTMotionEstimationSession_FrameFlags): Promise<VTMotionEstimationSession_Motion> { return callSDKAsync<VTMotionEstimationSession_Motion>("VideoToolbox_1f27952b3c5b81e6", 2931279491376729, this, [currentImage, referenceImage, flags]); }
+  motion(currentImage: _CoreVideo_CVReadOnlyPixelBuffer, referenceImage: _CoreVideo_CVReadOnlyPixelBuffer, flags?: VTMotionEstimationSession_FrameFlags): Promise<VTMotionEstimationSession_Motion> { return callSDKAsync<VTMotionEstimationSession_Motion>("VideoToolbox_64b39a05e4a4cebd", 2931279491376729, this, [currentImage, referenceImage, flags]); }
   declare readonly $type: { "s:12VideoToolbox25VTMotionEstimationSessionC": true };
 }
 
@@ -415,12 +415,12 @@ export const VTMotionEstimationSession_BlockSize = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (VTMotionEstimationSession_BlockSize) | null { return callSDK<(VTMotionEstimationSession_BlockSize) | null>("VideoToolbox_1f27952b3c5b81e6", 3313091227008077, undefined, [rawValue]); },
+  init(rawValue: number): (VTMotionEstimationSession_BlockSize) | null { return callSDK<(VTMotionEstimationSession_BlockSize) | null>("VideoToolbox_64b39a05e4a4cebd", 3313091227008077, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 26.0+
    */
-  getRawValue($self: VTMotionEstimationSession_BlockSize): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 624694663084590, $self, []); }
+  getRawValue($self: VTMotionEstimationSession_BlockSize): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 624694663084590, $self, []); }
 };
 
 /**
@@ -440,18 +440,18 @@ export const VTMotionEstimationSession_FrameFlags = {
    * static let currentBufferWillBeNextReferenceBuffer: VTMotionEstimationSession.FrameFlags
    * @availability iOS 26.0+
    */
-  get currentBufferWillBeNextReferenceBuffer(): VTMotionEstimationSession_FrameFlags { return callSDK<VTMotionEstimationSession_FrameFlags>("VideoToolbox_1f27952b3c5b81e6", 4451145652219842, undefined, []); },
+  get currentBufferWillBeNextReferenceBuffer(): VTMotionEstimationSession_FrameFlags { return callSDK<VTMotionEstimationSession_FrameFlags>("VideoToolbox_64b39a05e4a4cebd", 4451145652219842, undefined, []); },
   /**
    * init(rawValue: UInt32)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): VTMotionEstimationSession_FrameFlags { return callSDK<VTMotionEstimationSession_FrameFlags>("VideoToolbox_1f27952b3c5b81e6", 3067652068325235, undefined, [rawValue]); },
+  init(rawValue: number): VTMotionEstimationSession_FrameFlags { return callSDK<VTMotionEstimationSession_FrameFlags>("VideoToolbox_64b39a05e4a4cebd", 3067652068325235, undefined, [rawValue]); },
   /**
    * var rawValue: UInt32
    * @availability iOS 26.0+
    */
-  getRawValue($self: VTMotionEstimationSession_FrameFlags): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3735869900989069, $self, []); },
-  setRawValue($self: VTMotionEstimationSession_FrameFlags, value: number): void { return callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 938420985481722, $self, [value]); }
+  getRawValue($self: VTMotionEstimationSession_FrameFlags): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3735869900989069, $self, []); },
+  setRawValue($self: VTMotionEstimationSession_FrameFlags, value: number): void { return callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 938420985481722, $self, [value]); }
 };
 
 /**
@@ -481,7 +481,7 @@ export class VTMotionEstimationSession_Motion extends SDKHandle {
    * var motionVector: CVReadOnlyPixelBuffer { get }
    * @availability iOS 26.0+
    */
-  get motionVector(): _CoreVideo_CVReadOnlyPixelBuffer { return callSDK<_CoreVideo_CVReadOnlyPixelBuffer>("VideoToolbox_1f27952b3c5b81e6", 1231908031713926, this, []); }
+  get motionVector(): _CoreVideo_CVReadOnlyPixelBuffer { return callSDK<_CoreVideo_CVReadOnlyPixelBuffer>("VideoToolbox_64b39a05e4a4cebd", 1231908031713926, this, []); }
   declare readonly $type: { "s:12VideoToolbox25VTMotionEstimationSessionC6MotionV": true };
 }
 
@@ -513,2180 +513,2180 @@ export type VTSession = unknown;
  * func VTCompressionSessionBeginPass(_ session: VTCompressionSession, flags beginPassFlags: VTCompressionSessionOptionFlags, _ reserved: UnsafeMutablePointer<UInt32>?) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTCompressionSessionBeginPass(session: VTCompressionSession, beginPassFlags: VTCompressionSessionOptionFlags, reserved?: (SDKHandle) | null): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 88591575128171, undefined, [session, beginPassFlags, reserved]); }
+export function VTCompressionSessionBeginPass(session: VTCompressionSession, beginPassFlags: VTCompressionSessionOptionFlags, reserved?: (SDKHandle) | null): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 88591575128171, undefined, [session, beginPassFlags, reserved]); }
 
 /**
  * func VTCompressionSessionCompleteFrames(_ session: VTCompressionSession, untilPresentationTimeStamp completeUntilPresentationTimeStamp: CMTime) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTCompressionSessionCompleteFrames(session: VTCompressionSession, completeUntilPresentationTimeStamp: _CoreMedia_CMTime): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 4303232257773237, undefined, [session, completeUntilPresentationTimeStamp]); }
+export function VTCompressionSessionCompleteFrames(session: VTCompressionSession, completeUntilPresentationTimeStamp: _CoreMedia_CMTime): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 4303232257773237, undefined, [session, completeUntilPresentationTimeStamp]); }
 
 /**
  * func VTCompressionSessionEndPass(_ session: VTCompressionSession, furtherPassesRequestedOut: UnsafeMutablePointer<DarwinBoolean>?, _ reserved: UnsafeMutablePointer<UInt32>?) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTCompressionSessionEndPass(session: VTCompressionSession, reserved?: (SDKHandle) | null): { $ret: number; $out: { "furtherPassesRequestedOut": boolean } } { return callSDK<{ $ret: number; $out: { "furtherPassesRequestedOut": boolean } }>("VideoToolbox_1f27952b3c5b81e6", 110588638084138, undefined, [session, null, reserved]); }
+export function VTCompressionSessionEndPass(session: VTCompressionSession, reserved?: (SDKHandle) | null): { $ret: number; $out: { "furtherPassesRequestedOut": boolean } } { return callSDK<{ $ret: number; $out: { "furtherPassesRequestedOut": boolean } }>("VideoToolbox_64b39a05e4a4cebd", 110588638084138, undefined, [session, null, reserved]); }
 
 /**
  * func VTCompressionSessionGetPixelBufferPool(_ session: VTCompressionSession) -> CVPixelBufferPool?
  * @availability iOS 8.0+
  */
-export function VTCompressionSessionGetPixelBufferPool(session: VTCompressionSession): (_CoreVideo_CVPixelBufferPool) | null { return callSDK<(_CoreVideo_CVPixelBufferPool) | null>("VideoToolbox_1f27952b3c5b81e6", 236244687837884, undefined, [session]); }
+export function VTCompressionSessionGetPixelBufferPool(session: VTCompressionSession): (_CoreVideo_CVPixelBufferPool) | null { return callSDK<(_CoreVideo_CVPixelBufferPool) | null>("VideoToolbox_64b39a05e4a4cebd", 236244687837884, undefined, [session]); }
 
 /**
  * func VTCompressionSessionGetTimeRangesForNextPass(_ session: VTCompressionSession, timeRangeCountOut: UnsafeMutablePointer<CMItemCount>, timeRangeArrayOut: UnsafeMutablePointer<UnsafePointer<CMTimeRange>?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTCompressionSessionGetTimeRangesForNextPass(session: VTCompressionSession, timeRangeCountOut: SDKHandle): { $ret: number; $out: { "timeRangeArrayOut": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "timeRangeArrayOut": (SDKHandle) | null } }>("VideoToolbox_1f27952b3c5b81e6", 1871259086411447, undefined, [session, timeRangeCountOut, null]); }
+export function VTCompressionSessionGetTimeRangesForNextPass(session: VTCompressionSession, timeRangeCountOut: SDKHandle): { $ret: number; $out: { "timeRangeArrayOut": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "timeRangeArrayOut": (SDKHandle) | null } }>("VideoToolbox_64b39a05e4a4cebd", 1871259086411447, undefined, [session, timeRangeCountOut, null]); }
 
 /**
  * func VTCompressionSessionGetTypeID() -> CFTypeID
  * @availability iOS 8.0+
  */
-export function VTCompressionSessionGetTypeID(): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 155488404044426, undefined, []); }
+export function VTCompressionSessionGetTypeID(): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 155488404044426, undefined, []); }
 
 /**
  * func VTCompressionSessionInvalidate(_ session: VTCompressionSession)
  * @availability iOS 8.0+
  */
-export function VTCompressionSessionInvalidate(session: VTCompressionSession): void { return callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 871023890729687, undefined, [session]); }
+export function VTCompressionSessionInvalidate(session: VTCompressionSession): void { return callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 871023890729687, undefined, [session]); }
 
 /**
  * func VTCompressionSessionPrepareToEncodeFrames(_ session: VTCompressionSession) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTCompressionSessionPrepareToEncodeFrames(session: VTCompressionSession): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1851325412607267, undefined, [session]); }
+export function VTCompressionSessionPrepareToEncodeFrames(session: VTCompressionSession): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1851325412607267, undefined, [session]); }
 
 /**
  * func VTCopySupportedPropertyDictionaryForEncoder(width: Int32, height: Int32, codecType: CMVideoCodecType, encoderSpecification: CFDictionary?, encoderIDOut: UnsafeMutablePointer<CFString?>?, supportedPropertiesOut: UnsafeMutablePointer<CFDictionary?>?) -> OSStatus
  * @availability iOS 11.0+
  */
-export function VTCopySupportedPropertyDictionaryForEncoder(width: number, height: number, codecType: SDKHandle, encoderSpecification?: $SDK11): { $ret: number; $out: { "encoderIDOut": $SDK10; "supportedPropertiesOut": $SDK11 } } { return callSDK<{ $ret: number; $out: { "encoderIDOut": $SDK10; "supportedPropertiesOut": $SDK11 } }>("VideoToolbox_1f27952b3c5b81e6", 183345407891217, undefined, [width, height, codecType, encoderSpecification, null, null]); }
+export function VTCopySupportedPropertyDictionaryForEncoder(width: number, height: number, codecType: SDKHandle, encoderSpecification?: $SDK11): { $ret: number; $out: { "encoderIDOut": $SDK10; "supportedPropertiesOut": $SDK11 } } { return callSDK<{ $ret: number; $out: { "encoderIDOut": $SDK10; "supportedPropertiesOut": $SDK11 } }>("VideoToolbox_64b39a05e4a4cebd", 183345407891217, undefined, [width, height, codecType, encoderSpecification, null, null]); }
 
 /**
  * func VTCopyVideoEncoderList(_ options: CFDictionary?, _ listOfVideoEncodersOut: UnsafeMutablePointer<CFArray?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTCopyVideoEncoderList(options?: $SDK11): { $ret: number; $out: { "listOfVideoEncodersOut": (_CoreFoundation_CFArray) | null } } { return callSDK<{ $ret: number; $out: { "listOfVideoEncodersOut": (_CoreFoundation_CFArray) | null } }>("VideoToolbox_1f27952b3c5b81e6", 250890987867020, undefined, [options, null]); }
+export function VTCopyVideoEncoderList(options?: $SDK11): { $ret: number; $out: { "listOfVideoEncodersOut": (_CoreFoundation_CFArray) | null } } { return callSDK<{ $ret: number; $out: { "listOfVideoEncodersOut": (_CoreFoundation_CFArray) | null } }>("VideoToolbox_64b39a05e4a4cebd", 250890987867020, undefined, [options, null]); }
 
 /**
  * func VTCreateCGImageFromCVPixelBuffer(_ pixelBuffer: CVPixelBuffer, options: CFDictionary?, imageOut: UnsafeMutablePointer<CGImage?>) -> OSStatus
  * @availability iOS 9.0+
  */
-export function VTCreateCGImageFromCVPixelBuffer(pixelBuffer: _CoreVideo_CVBuffer, options?: $SDK11): { $ret: number; $out: { "imageOut": (_CoreGraphics_CGImage) | null } } { return callSDK<{ $ret: number; $out: { "imageOut": (_CoreGraphics_CGImage) | null } }>("VideoToolbox_1f27952b3c5b81e6", 857945531541319, undefined, [pixelBuffer, options, null]); }
+export function VTCreateCGImageFromCVPixelBuffer(pixelBuffer: _CoreVideo_CVBuffer, options?: $SDK11): { $ret: number; $out: { "imageOut": (_CoreGraphics_CGImage) | null } } { return callSDK<{ $ret: number; $out: { "imageOut": (_CoreGraphics_CGImage) | null } }>("VideoToolbox_64b39a05e4a4cebd", 857945531541319, undefined, [pixelBuffer, options, null]); }
 
 /**
  * func VTDecompressionSessionCanAcceptFormatDescription(_ session: VTDecompressionSession, formatDescription newFormatDesc: CMFormatDescription) -> Bool
  * @availability iOS 8.0+
  */
-export function VTDecompressionSessionCanAcceptFormatDescription(session: VTDecompressionSession, newFormatDesc: _CoreMedia_CMFormatDescription): boolean { return callSDK<boolean>("VideoToolbox_1f27952b3c5b81e6", 4396389508690114, undefined, [session, newFormatDesc]); }
+export function VTDecompressionSessionCanAcceptFormatDescription(session: VTDecompressionSession, newFormatDesc: _CoreMedia_CMFormatDescription): boolean { return callSDK<boolean>("VideoToolbox_64b39a05e4a4cebd", 4396389508690114, undefined, [session, newFormatDesc]); }
 
 /**
  * func VTDecompressionSessionCopyBlackPixelBuffer(_ session: VTDecompressionSession, pixelBufferOut: UnsafeMutablePointer<CVPixelBuffer?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTDecompressionSessionCopyBlackPixelBuffer(session: VTDecompressionSession): { $ret: number; $out: { "pixelBufferOut": (_CoreVideo_CVBuffer) | null } } { return callSDK<{ $ret: number; $out: { "pixelBufferOut": (_CoreVideo_CVBuffer) | null } }>("VideoToolbox_1f27952b3c5b81e6", 1967144209194787, undefined, [session, null]); }
+export function VTDecompressionSessionCopyBlackPixelBuffer(session: VTDecompressionSession): { $ret: number; $out: { "pixelBufferOut": (_CoreVideo_CVBuffer) | null } } { return callSDK<{ $ret: number; $out: { "pixelBufferOut": (_CoreVideo_CVBuffer) | null } }>("VideoToolbox_64b39a05e4a4cebd", 1967144209194787, undefined, [session, null]); }
 
 /**
  * func VTDecompressionSessionCreate(allocator: CFAllocator?, formatDescription videoFormatDescription: CMVideoFormatDescription, decoderSpecification videoDecoderSpecification: CFDictionary?, imageBufferAttributes destinationImageBufferAttributes: CFDictionary?, outputCallback: UnsafePointer<VTDecompressionOutputCallbackRecord>?, decompressionSessionOut: UnsafeMutablePointer<VTDecompressionSession?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTDecompressionSessionCreateAllocatorFormatDescriptionDecoderSpecificationImageBufferAttributesOutputCallbackDecompressionSessionOut(allocator: $SDK16, videoFormatDescription: _CoreMedia_CMFormatDescription, videoDecoderSpecification?: $SDK11, destinationImageBufferAttributes?: $SDK11, outputCallback?: (SDKHandle) | null): { $ret: number; $out: { "decompressionSessionOut": $SDK15 } } { return callSDK<{ $ret: number; $out: { "decompressionSessionOut": $SDK15 } }>("VideoToolbox_1f27952b3c5b81e6", 2983102023391568, undefined, [allocator, videoFormatDescription, videoDecoderSpecification, destinationImageBufferAttributes, outputCallback, null]); }
+export function VTDecompressionSessionCreateAllocatorFormatDescriptionDecoderSpecificationImageBufferAttributesOutputCallbackDecompressionSessionOut(allocator: $SDK16, videoFormatDescription: _CoreMedia_CMFormatDescription, videoDecoderSpecification?: $SDK11, destinationImageBufferAttributes?: $SDK11, outputCallback?: (SDKHandle) | null): { $ret: number; $out: { "decompressionSessionOut": $SDK15 } } { return callSDK<{ $ret: number; $out: { "decompressionSessionOut": $SDK15 } }>("VideoToolbox_64b39a05e4a4cebd", 2983102023391568, undefined, [allocator, videoFormatDescription, videoDecoderSpecification, destinationImageBufferAttributes, outputCallback, null]); }
 
 /**
  * func VTDecompressionSessionFinishDelayedFrames(_ session: VTDecompressionSession) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTDecompressionSessionFinishDelayedFrames(session: VTDecompressionSession): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 2279262978298518, undefined, [session]); }
+export function VTDecompressionSessionFinishDelayedFrames(session: VTDecompressionSession): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 2279262978298518, undefined, [session]); }
 
 /**
  * func VTDecompressionSessionGetTypeID() -> CFTypeID
  * @availability iOS 8.0+
  */
-export function VTDecompressionSessionGetTypeID(): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1877463677967841, undefined, []); }
+export function VTDecompressionSessionGetTypeID(): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1877463677967841, undefined, []); }
 
 /**
  * func VTDecompressionSessionInvalidate(_ session: VTDecompressionSession)
  * @availability iOS 8.0+
  */
-export function VTDecompressionSessionInvalidate(session: VTDecompressionSession): void { return callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 2771216487525463, undefined, [session]); }
+export function VTDecompressionSessionInvalidate(session: VTDecompressionSession): void { return callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 2771216487525463, undefined, [session]); }
 
 /**
  * func VTDecompressionSessionWaitForAsynchronousFrames(_ session: VTDecompressionSession) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTDecompressionSessionWaitForAsynchronousFrames(session: VTDecompressionSession): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 2888187331879034, undefined, [session]); }
+export function VTDecompressionSessionWaitForAsynchronousFrames(session: VTDecompressionSession): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 2888187331879034, undefined, [session]); }
 
 /**
  * func VTFrameSiloAddSampleBuffer(_ silo: VTFrameSilo, sampleBuffer: CMSampleBuffer) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTFrameSiloAddSampleBuffer(silo: VTFrameSilo, sampleBuffer: _CoreMedia_CMSampleBuffer): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 918451165578330, undefined, [silo, sampleBuffer]); }
+export function VTFrameSiloAddSampleBuffer(silo: VTFrameSilo, sampleBuffer: _CoreMedia_CMSampleBuffer): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 918451165578330, undefined, [silo, sampleBuffer]); }
 
 /**
  * func VTFrameSiloCreate(allocator: CFAllocator?, fileURL: CFURL?, timeRange: CMTimeRange, options: CFDictionary?, frameSiloOut: UnsafeMutablePointer<VTFrameSilo?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTFrameSiloCreate(allocator: $SDK16, fileURL: $SDK17, timeRange: _CoreMedia_CMTimeRange, options?: $SDK11): { $ret: number; $out: { "frameSiloOut": (VTFrameSilo) | null } } { return callSDK<{ $ret: number; $out: { "frameSiloOut": (VTFrameSilo) | null } }>("VideoToolbox_1f27952b3c5b81e6", 1018107938298004, undefined, [allocator, fileURL, timeRange, options, null]); }
+export function VTFrameSiloCreate(allocator: $SDK16, fileURL: $SDK17, timeRange: _CoreMedia_CMTimeRange, options?: $SDK11): { $ret: number; $out: { "frameSiloOut": (VTFrameSilo) | null } } { return callSDK<{ $ret: number; $out: { "frameSiloOut": (VTFrameSilo) | null } }>("VideoToolbox_64b39a05e4a4cebd", 1018107938298004, undefined, [allocator, fileURL, timeRange, options, null]); }
 
 /**
  * func VTFrameSiloGetProgressOfCurrentPass(_ silo: VTFrameSilo, progressOut: UnsafeMutablePointer<Float32>) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTFrameSiloGetProgressOfCurrentPass(silo: VTFrameSilo, progressOut: SDKHandle): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3651819840809388, undefined, [silo, progressOut]); }
+export function VTFrameSiloGetProgressOfCurrentPass(silo: VTFrameSilo, progressOut: SDKHandle): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3651819840809388, undefined, [silo, progressOut]); }
 
 /**
  * func VTFrameSiloGetTypeID() -> CFTypeID
  * @availability iOS 8.0+
  */
-export function VTFrameSiloGetTypeID(): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 184063684608305, undefined, []); }
+export function VTFrameSiloGetTypeID(): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 184063684608305, undefined, []); }
 
 /**
  * func VTFrameSiloSetTimeRangesForNextPass(_ silo: VTFrameSilo, timeRangeCount: CMItemCount, timeRangeArray: UnsafePointer<CMTimeRange>) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTFrameSiloSetTimeRangesForNextPass(silo: VTFrameSilo, timeRangeCount: number, timeRangeArray: SDKHandle): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3128792814090633, undefined, [silo, timeRangeCount, timeRangeArray]); }
+export function VTFrameSiloSetTimeRangesForNextPass(silo: VTFrameSilo, timeRangeCount: number, timeRangeArray: SDKHandle): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3128792814090633, undefined, [silo, timeRangeCount, timeRangeArray]); }
 
 /**
  * func VTIsHardwareDecodeSupported(_ codecType: CMVideoCodecType) -> Bool
  * @availability iOS 11.0+
  */
-export function VTIsHardwareDecodeSupported(codecType: SDKHandle): boolean { return callSDK<boolean>("VideoToolbox_1f27952b3c5b81e6", 3520519603478896, undefined, [codecType]); }
+export function VTIsHardwareDecodeSupported(codecType: SDKHandle): boolean { return callSDK<boolean>("VideoToolbox_64b39a05e4a4cebd", 3520519603478896, undefined, [codecType]); }
 
 /**
  * func VTIsStereoMVHEVCDecodeSupported() -> Bool
  * @availability iOS 17.0+
  */
-export function VTIsStereoMVHEVCDecodeSupported(): boolean { return callSDK<boolean>("VideoToolbox_1f27952b3c5b81e6", 2824033609639365, undefined, []); }
+export function VTIsStereoMVHEVCDecodeSupported(): boolean { return callSDK<boolean>("VideoToolbox_64b39a05e4a4cebd", 2824033609639365, undefined, []); }
 
 /**
  * func VTIsStereoMVHEVCEncodeSupported() -> Bool
  * @availability iOS 17.0+
  */
-export function VTIsStereoMVHEVCEncodeSupported(): boolean { return callSDK<boolean>("VideoToolbox_1f27952b3c5b81e6", 3560126689928829, undefined, []); }
+export function VTIsStereoMVHEVCEncodeSupported(): boolean { return callSDK<boolean>("VideoToolbox_64b39a05e4a4cebd", 3560126689928829, undefined, []); }
 
 /**
  * func VTMultiPassStorageClose(_ multiPassStorage: VTMultiPassStorage) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTMultiPassStorageClose(multiPassStorage: VTMultiPassStorage): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 4333290127678562, undefined, [multiPassStorage]); }
+export function VTMultiPassStorageClose(multiPassStorage: VTMultiPassStorage): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 4333290127678562, undefined, [multiPassStorage]); }
 
 /**
  * func VTMultiPassStorageCreate(allocator: CFAllocator?, fileURL: CFURL?, timeRange: CMTimeRange, options: CFDictionary?, multiPassStorageOut: UnsafeMutablePointer<VTMultiPassStorage?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTMultiPassStorageCreate(allocator: $SDK16, fileURL: $SDK17, timeRange: _CoreMedia_CMTimeRange, options?: $SDK11): { $ret: number; $out: { "multiPassStorageOut": (VTMultiPassStorage) | null } } { return callSDK<{ $ret: number; $out: { "multiPassStorageOut": (VTMultiPassStorage) | null } }>("VideoToolbox_1f27952b3c5b81e6", 3294260339711041, undefined, [allocator, fileURL, timeRange, options, null]); }
+export function VTMultiPassStorageCreate(allocator: $SDK16, fileURL: $SDK17, timeRange: _CoreMedia_CMTimeRange, options?: $SDK11): { $ret: number; $out: { "multiPassStorageOut": (VTMultiPassStorage) | null } } { return callSDK<{ $ret: number; $out: { "multiPassStorageOut": (VTMultiPassStorage) | null } }>("VideoToolbox_64b39a05e4a4cebd", 3294260339711041, undefined, [allocator, fileURL, timeRange, options, null]); }
 
 /**
  * func VTMultiPassStorageGetTypeID() -> CFTypeID
  * @availability iOS 8.0+
  */
-export function VTMultiPassStorageGetTypeID(): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3986465225771436, undefined, []); }
+export function VTMultiPassStorageGetTypeID(): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3986465225771436, undefined, []); }
 
 /**
  * func VTPixelRotationSessionCreate(_ allocator: CFAllocator?, _ pixelRotationSessionOut: UnsafeMutablePointer<VTPixelRotationSession?>) -> OSStatus
  * @availability iOS 16.0+
  */
-export function VTPixelRotationSessionCreate(allocator?: $SDK16): { $ret: number; $out: { "pixelRotationSessionOut": (VTPixelRotationSession) | null } } { return callSDK<{ $ret: number; $out: { "pixelRotationSessionOut": (VTPixelRotationSession) | null } }>("VideoToolbox_1f27952b3c5b81e6", 3622386676523681, undefined, [allocator, null]); }
+export function VTPixelRotationSessionCreate(allocator?: $SDK16): { $ret: number; $out: { "pixelRotationSessionOut": (VTPixelRotationSession) | null } } { return callSDK<{ $ret: number; $out: { "pixelRotationSessionOut": (VTPixelRotationSession) | null } }>("VideoToolbox_64b39a05e4a4cebd", 3622386676523681, undefined, [allocator, null]); }
 
 /**
  * func VTPixelRotationSessionGetTypeID() -> CFTypeID
  * @availability iOS 16.0+
  */
-export function VTPixelRotationSessionGetTypeID(): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3159260251489940, undefined, []); }
+export function VTPixelRotationSessionGetTypeID(): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3159260251489940, undefined, []); }
 
 /**
  * func VTPixelRotationSessionInvalidate(_ session: VTPixelRotationSession)
  * @availability iOS 16.0+
  */
-export function VTPixelRotationSessionInvalidate(session: VTPixelRotationSession): void { return callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 2066477940428359, undefined, [session]); }
+export function VTPixelRotationSessionInvalidate(session: VTPixelRotationSession): void { return callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 2066477940428359, undefined, [session]); }
 
 /**
  * func VTPixelRotationSessionRotateImage(_ session: VTPixelRotationSession, _ sourceBuffer: CVPixelBuffer, _ destinationBuffer: CVPixelBuffer) -> OSStatus
  * @availability iOS 16.0+
  */
-export function VTPixelRotationSessionRotateImage(session: VTPixelRotationSession, sourceBuffer: _CoreVideo_CVBuffer, destinationBuffer: _CoreVideo_CVBuffer): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3489873859947094, undefined, [session, sourceBuffer, destinationBuffer]); }
+export function VTPixelRotationSessionRotateImage(session: VTPixelRotationSession, sourceBuffer: _CoreVideo_CVBuffer, destinationBuffer: _CoreVideo_CVBuffer): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3489873859947094, undefined, [session, sourceBuffer, destinationBuffer]); }
 
 /**
  * func VTPixelTransferSessionCreate(allocator: CFAllocator?, pixelTransferSessionOut: UnsafeMutablePointer<VTPixelTransferSession?>) -> OSStatus
  * @availability iOS 16.0+
  */
-export function VTPixelTransferSessionCreate(allocator?: $SDK16): { $ret: number; $out: { "pixelTransferSessionOut": (VTPixelTransferSession) | null } } { return callSDK<{ $ret: number; $out: { "pixelTransferSessionOut": (VTPixelTransferSession) | null } }>("VideoToolbox_1f27952b3c5b81e6", 1980463453355665, undefined, [allocator, null]); }
+export function VTPixelTransferSessionCreate(allocator?: $SDK16): { $ret: number; $out: { "pixelTransferSessionOut": (VTPixelTransferSession) | null } } { return callSDK<{ $ret: number; $out: { "pixelTransferSessionOut": (VTPixelTransferSession) | null } }>("VideoToolbox_64b39a05e4a4cebd", 1980463453355665, undefined, [allocator, null]); }
 
 /**
  * func VTPixelTransferSessionGetTypeID() -> CFTypeID
  * @availability iOS 16.0+
  */
-export function VTPixelTransferSessionGetTypeID(): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1738406034940840, undefined, []); }
+export function VTPixelTransferSessionGetTypeID(): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1738406034940840, undefined, []); }
 
 /**
  * func VTPixelTransferSessionInvalidate(_ session: VTPixelTransferSession)
  * @availability iOS 16.0+
  */
-export function VTPixelTransferSessionInvalidate(session: VTPixelTransferSession): void { return callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 467778972782244, undefined, [session]); }
+export function VTPixelTransferSessionInvalidate(session: VTPixelTransferSession): void { return callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 467778972782244, undefined, [session]); }
 
 /**
  * func VTPixelTransferSessionTransferImage(_ session: VTPixelTransferSession, from sourceBuffer: CVPixelBuffer, to destinationBuffer: CVPixelBuffer) -> OSStatus
  * @availability iOS 16.0+
  */
-export function VTPixelTransferSessionTransferImage(session: VTPixelTransferSession, sourceBuffer: _CoreVideo_CVBuffer, destinationBuffer: _CoreVideo_CVBuffer): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3160928665399796, undefined, [session, sourceBuffer, destinationBuffer]); }
+export function VTPixelTransferSessionTransferImage(session: VTPixelTransferSession, sourceBuffer: _CoreVideo_CVBuffer, destinationBuffer: _CoreVideo_CVBuffer): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3160928665399796, undefined, [session, sourceBuffer, destinationBuffer]); }
 
 /**
  * func VTRegisterSupplementalVideoDecoderIfAvailable(_ codecType: CMVideoCodecType)
  * @availability iOS 26.2+
  */
-export function VTRegisterSupplementalVideoDecoderIfAvailable(codecType: SDKHandle): void { return callSDK<void>("VideoToolbox_1f27952b3c5b81e6", 3969432190449332, undefined, [codecType]); }
+export function VTRegisterSupplementalVideoDecoderIfAvailable(codecType: SDKHandle): void { return callSDK<void>("VideoToolbox_64b39a05e4a4cebd", 3969432190449332, undefined, [codecType]); }
 
 /**
  * func VTSessionCopyProperty(_ session: VTSession, key propertyKey: CFString, allocator: CFAllocator?, valueOut propertyValueOut: UnsafeMutableRawPointer?) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTSessionCopyProperty(session: unknown, propertyKey: _CoreFoundation_CFString, allocator?: $SDK16, propertyValueOut?: (SDKHandle) | null): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1217322968610749, undefined, [session, propertyKey, allocator, propertyValueOut]); }
+export function VTSessionCopyProperty(session: unknown, propertyKey: _CoreFoundation_CFString, allocator?: $SDK16, propertyValueOut?: (SDKHandle) | null): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1217322968610749, undefined, [session, propertyKey, allocator, propertyValueOut]); }
 
 /**
  * func VTSessionCopySerializableProperties(_ session: VTSession, allocator: CFAllocator?, dictionaryOut: UnsafeMutablePointer<CFDictionary?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTSessionCopySerializableProperties(session: unknown, allocator?: $SDK16): { $ret: number; $out: { "dictionaryOut": $SDK11 } } { return callSDK<{ $ret: number; $out: { "dictionaryOut": $SDK11 } }>("VideoToolbox_1f27952b3c5b81e6", 937157862274024, undefined, [session, allocator, null]); }
+export function VTSessionCopySerializableProperties(session: unknown, allocator?: $SDK16): { $ret: number; $out: { "dictionaryOut": $SDK11 } } { return callSDK<{ $ret: number; $out: { "dictionaryOut": $SDK11 } }>("VideoToolbox_64b39a05e4a4cebd", 937157862274024, undefined, [session, allocator, null]); }
 
 /**
  * func VTSessionCopySupportedPropertyDictionary(_ session: VTSession, supportedPropertyDictionaryOut: UnsafeMutablePointer<CFDictionary?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTSessionCopySupportedPropertyDictionary(session: unknown): { $ret: number; $out: { "supportedPropertyDictionaryOut": $SDK11 } } { return callSDK<{ $ret: number; $out: { "supportedPropertyDictionaryOut": $SDK11 } }>("VideoToolbox_1f27952b3c5b81e6", 805027902902528, undefined, [session, null]); }
+export function VTSessionCopySupportedPropertyDictionary(session: unknown): { $ret: number; $out: { "supportedPropertyDictionaryOut": $SDK11 } } { return callSDK<{ $ret: number; $out: { "supportedPropertyDictionaryOut": $SDK11 } }>("VideoToolbox_64b39a05e4a4cebd", 805027902902528, undefined, [session, null]); }
 
 /**
  * func VTSessionSetProperties(_ session: VTSession, propertyDictionary: CFDictionary) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTSessionSetProperties(session: unknown, propertyDictionary: _CoreFoundation_CFDictionary): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 4412776450952638, undefined, [session, propertyDictionary]); }
+export function VTSessionSetProperties(session: unknown, propertyDictionary: _CoreFoundation_CFDictionary): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 4412776450952638, undefined, [session, propertyDictionary]); }
 
 /**
  * func VTSessionSetProperty(_ session: VTSession, key propertyKey: CFString, value propertyValue: CFTypeRef?) -> OSStatus
  * @availability iOS 8.0+
  */
-export function VTSessionSetProperty(session: unknown, propertyKey: _CoreFoundation_CFString, propertyValue?: (unknown) | null): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 4426896274031189, undefined, [session, propertyKey, propertyValue]); }
+export function VTSessionSetProperty(session: unknown, propertyKey: _CoreFoundation_CFString, propertyValue?: (unknown) | null): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 4426896274031189, undefined, [session, propertyKey, propertyValue]); }
 
 /**
  * func VTDecompressionSessionCreate(allocator: CFAllocator?, formatDescription videoFormatDescription: CMVideoFormatDescription, decoderSpecification videoDecoderSpecification: CFDictionary?, imageBufferAttributes destinationImageBufferAttributes: CFDictionary?, decompressionSessionOut: UnsafeMutablePointer<VTDecompressionSession?>) -> OSStatus
  * @availability iOS 17.0+
  */
-export function VTDecompressionSessionCreateAllocatorFormatDescriptionDecoderSpecificationImageBufferAttributesDecompressionSessionOut(allocator: $SDK16, videoFormatDescription: _CoreMedia_CMFormatDescription, videoDecoderSpecification?: $SDK11, destinationImageBufferAttributes?: $SDK11): { $ret: number; $out: { "decompressionSessionOut": $SDK15 } } { return callSDK<{ $ret: number; $out: { "decompressionSessionOut": $SDK15 } }>("VideoToolbox_1f27952b3c5b81e6", 3457046822289022, undefined, [allocator, videoFormatDescription, videoDecoderSpecification, destinationImageBufferAttributes, null]); }
+export function VTDecompressionSessionCreateAllocatorFormatDescriptionDecoderSpecificationImageBufferAttributesDecompressionSessionOut(allocator: $SDK16, videoFormatDescription: _CoreMedia_CMFormatDescription, videoDecoderSpecification?: $SDK11, destinationImageBufferAttributes?: $SDK11): { $ret: number; $out: { "decompressionSessionOut": $SDK15 } } { return callSDK<{ $ret: number; $out: { "decompressionSessionOut": $SDK15 } }>("VideoToolbox_64b39a05e4a4cebd", 3457046822289022, undefined, [allocator, videoFormatDescription, videoDecoderSpecification, destinationImageBufferAttributes, null]); }
 
 /**
  * func VTDecompressionSessionDecodeFrame(_ session: VTDecompressionSession, sampleBuffer: CMSampleBuffer, flags decodeFlags: VTDecodeFrameFlags, infoFlagsOut: UnsafeMutablePointer<VTDecodeInfoFlags>?, completionHandler: @escaping @Sendable (OSStatus, VTDecodeInfoFlags, CVImageBuffer?, [CMTaggedBuffer]?, CMTime, CMTime) -> Void) -> OSStatus
  * @availability iOS 17.0+
  */
-export function VTDecompressionSessionDecodeFrame(session: VTDecompressionSession, sampleBuffer: _CoreMedia_CMSampleBuffer, decodeFlags: VTDecodeFrameFlags, infoFlagsOut: (SDKHandle) | null, completionHandler: ((arg0: number, arg1: VTDecodeInfoFlags, arg2: (_CoreVideo_CVBuffer) | null, arg3: (Array<_CoreMedia_CMTaggedBuffer>) | null, arg4: _CoreMedia_CMTime, arg5: _CoreMedia_CMTime) => void)): number { return callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1584856993014898, undefined, [session, sampleBuffer, decodeFlags, infoFlagsOut, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+export function VTDecompressionSessionDecodeFrame(session: VTDecompressionSession, sampleBuffer: _CoreMedia_CMSampleBuffer, decodeFlags: VTDecodeFrameFlags, infoFlagsOut: (SDKHandle) | null, completionHandler: ((arg0: number, arg1: VTDecodeInfoFlags, arg2: (_CoreVideo_CVBuffer) | null, arg3: (Array<_CoreMedia_CMTaggedBuffer>) | null, arg4: _CoreMedia_CMTime, arg5: _CoreMedia_CMTime) => void)): number { return callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1584856993014898, undefined, [session, sampleBuffer, decodeFlags, infoFlagsOut, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
 
 /** var kVTAllocationFailedErr: OSStatus { get } */
-export const kVTAllocationFailedErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 4405811879027579, undefined, []);
+export const kVTAllocationFailedErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 4405811879027579, undefined, []);
 
 /** var kVTColorCorrectionImageRotationFailedErr: OSStatus { get } */
-export const kVTColorCorrectionImageRotationFailedErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 4481673600305977, undefined, []);
+export const kVTColorCorrectionImageRotationFailedErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 4481673600305977, undefined, []);
 
 /** var kVTColorCorrectionPixelTransferFailedErr: OSStatus { get } */
-export const kVTColorCorrectionPixelTransferFailedErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 2720500842844356, undefined, []);
+export const kVTColorCorrectionPixelTransferFailedErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 2720500842844356, undefined, []);
 
 /** var kVTColorSyncTransformConvertFailedErr: OSStatus { get } */
-export const kVTColorSyncTransformConvertFailedErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 286518258411649, undefined, []);
+export const kVTColorSyncTransformConvertFailedErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 286518258411649, undefined, []);
 
 /** var kVTCouldNotCreateColorCorrectionDataErr: OSStatus { get } */
-export const kVTCouldNotCreateColorCorrectionDataErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3638091881238884, undefined, []);
+export const kVTCouldNotCreateColorCorrectionDataErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3638091881238884, undefined, []);
 
 /** var kVTCouldNotCreateInstanceErr: OSStatus { get } */
-export const kVTCouldNotCreateInstanceErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 757512014016194, undefined, []);
+export const kVTCouldNotCreateInstanceErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 757512014016194, undefined, []);
 
 /** var kVTCouldNotFindExtensionErr: OSStatus { get } */
-export const kVTCouldNotFindExtensionErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1758286681498113, undefined, []);
+export const kVTCouldNotFindExtensionErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1758286681498113, undefined, []);
 
 /** var kVTCouldNotFindTemporalFilterErr: OSStatus { get } */
-export const kVTCouldNotFindTemporalFilterErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 4103605854565792, undefined, []);
+export const kVTCouldNotFindTemporalFilterErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 4103605854565792, undefined, []);
 
 /** var kVTCouldNotFindVideoDecoderErr: OSStatus { get } */
-export const kVTCouldNotFindVideoDecoderErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 2170805837868995, undefined, []);
+export const kVTCouldNotFindVideoDecoderErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 2170805837868995, undefined, []);
 
 /** var kVTCouldNotFindVideoEncoderErr: OSStatus { get } */
-export const kVTCouldNotFindVideoEncoderErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1102773638134559, undefined, []);
+export const kVTCouldNotFindVideoEncoderErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1102773638134559, undefined, []);
 
 /** var kVTCouldNotOutputTaggedBufferGroupErr: OSStatus { get } */
-export const kVTCouldNotOutputTaggedBufferGroupErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 861364382939034, undefined, []);
+export const kVTCouldNotOutputTaggedBufferGroupErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 861364382939034, undefined, []);
 
 /** var kVTExtensionConflictErr: OSStatus { get } */
-export const kVTExtensionConflictErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 66555669455700, undefined, []);
+export const kVTExtensionConflictErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 66555669455700, undefined, []);
 
 /** var kVTExtensionDisabledErr: OSStatus { get } */
-export const kVTExtensionDisabledErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1368234489987563, undefined, []);
+export const kVTExtensionDisabledErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1368234489987563, undefined, []);
 
 /** var kVTFormatDescriptionChangeNotSupportedErr: OSStatus { get } */
-export const kVTFormatDescriptionChangeNotSupportedErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3990080624985922, undefined, []);
+export const kVTFormatDescriptionChangeNotSupportedErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3990080624985922, undefined, []);
 
 /** var kVTFrameSiloInvalidTimeRangeErr: OSStatus { get } */
-export const kVTFrameSiloInvalidTimeRangeErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 2106029642529123, undefined, []);
+export const kVTFrameSiloInvalidTimeRangeErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 2106029642529123, undefined, []);
 
 /** var kVTFrameSiloInvalidTimeStampErr: OSStatus { get } */
-export const kVTFrameSiloInvalidTimeStampErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 4069563772485945, undefined, []);
+export const kVTFrameSiloInvalidTimeStampErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 4069563772485945, undefined, []);
 
 /** var kVTImageRotationNotSupportedErr: OSStatus { get } */
-export const kVTImageRotationNotSupportedErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1951476217441725, undefined, []);
+export const kVTImageRotationNotSupportedErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1951476217441725, undefined, []);
 
 /** var kVTInsufficientSourceColorDataErr: OSStatus { get } */
-export const kVTInsufficientSourceColorDataErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3807220704132193, undefined, []);
+export const kVTInsufficientSourceColorDataErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3807220704132193, undefined, []);
 
 /** var kVTInvalidSessionErr: OSStatus { get } */
-export const kVTInvalidSessionErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 4457137993917332, undefined, []);
+export const kVTInvalidSessionErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 4457137993917332, undefined, []);
 
 /** var kVTLogTransferFunctionMismatchErr: OSStatus { get } */
-export const kVTLogTransferFunctionMismatchErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 291896125418611, undefined, []);
+export const kVTLogTransferFunctionMismatchErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 291896125418611, undefined, []);
 
 /** var kVTMultiPassStorageIdentifierMismatchErr: OSStatus { get } */
-export const kVTMultiPassStorageIdentifierMismatchErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 2105916218839228, undefined, []);
+export const kVTMultiPassStorageIdentifierMismatchErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 2105916218839228, undefined, []);
 
 /** var kVTMultiPassStorageInvalidErr: OSStatus { get } */
-export const kVTMultiPassStorageInvalidErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1523698920654335, undefined, []);
+export const kVTMultiPassStorageInvalidErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1523698920654335, undefined, []);
 
 /** var kVTParameterErr: OSStatus { get } */
-export const kVTParameterErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 889680931171856, undefined, []);
+export const kVTParameterErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 889680931171856, undefined, []);
 
 /** var kVTPixelRotationNotSupportedErr: OSStatus { get } */
-export const kVTPixelRotationNotSupportedErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 113915829839268, undefined, []);
+export const kVTPixelRotationNotSupportedErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 113915829839268, undefined, []);
 
 /** var kVTPixelTransferNotPermittedErr: OSStatus { get } */
-export const kVTPixelTransferNotPermittedErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 2738061087503357, undefined, []);
+export const kVTPixelTransferNotPermittedErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 2738061087503357, undefined, []);
 
 /** var kVTPixelTransferNotSupportedErr: OSStatus { get } */
-export const kVTPixelTransferNotSupportedErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1932481111671198, undefined, []);
+export const kVTPixelTransferNotSupportedErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1932481111671198, undefined, []);
 
 /** var kVTPropertyNotSupportedErr: OSStatus { get } */
-export const kVTPropertyNotSupportedErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1138548239702740, undefined, []);
+export const kVTPropertyNotSupportedErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1138548239702740, undefined, []);
 
 /** var kVTPropertyReadOnlyErr: OSStatus { get } */
-export const kVTPropertyReadOnlyErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 4075692318725332, undefined, []);
+export const kVTPropertyReadOnlyErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 4075692318725332, undefined, []);
 
 /** var kVTSessionMalfunctionErr: OSStatus { get } */
-export const kVTSessionMalfunctionErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 983254976257884, undefined, []);
+export const kVTSessionMalfunctionErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 983254976257884, undefined, []);
 
 /** var kVTVideoDecoderAuthorizationErr: OSStatus { get } */
-export const kVTVideoDecoderAuthorizationErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1030911659851125, undefined, []);
+export const kVTVideoDecoderAuthorizationErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1030911659851125, undefined, []);
 
 /** var kVTVideoDecoderBadDataErr: OSStatus { get } */
-export const kVTVideoDecoderBadDataErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 1033350265560210, undefined, []);
+export const kVTVideoDecoderBadDataErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 1033350265560210, undefined, []);
 
 /** var kVTVideoDecoderCallbackMessagingErr: OSStatus { get } */
-export const kVTVideoDecoderCallbackMessagingErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 2247166160185301, undefined, []);
+export const kVTVideoDecoderCallbackMessagingErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 2247166160185301, undefined, []);
 
 /** var kVTVideoDecoderMalfunctionErr: OSStatus { get } */
-export const kVTVideoDecoderMalfunctionErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 4402504308941224, undefined, []);
+export const kVTVideoDecoderMalfunctionErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 4402504308941224, undefined, []);
 
 /** var kVTVideoDecoderNeedsRosettaErr: OSStatus { get } */
-export const kVTVideoDecoderNeedsRosettaErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 2503379003460164, undefined, []);
+export const kVTVideoDecoderNeedsRosettaErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 2503379003460164, undefined, []);
 
 /** var kVTVideoDecoderNotAvailableNowErr: OSStatus { get } */
-export const kVTVideoDecoderNotAvailableNowErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 4477836937355061, undefined, []);
+export const kVTVideoDecoderNotAvailableNowErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 4477836937355061, undefined, []);
 
 /** var kVTVideoDecoderReferenceMissingErr: OSStatus { get } */
-export const kVTVideoDecoderReferenceMissingErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 4219370448852490, undefined, []);
+export const kVTVideoDecoderReferenceMissingErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 4219370448852490, undefined, []);
 
 /** var kVTVideoDecoderRemovedErr: OSStatus { get } */
-export const kVTVideoDecoderRemovedErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3326114846665711, undefined, []);
+export const kVTVideoDecoderRemovedErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3326114846665711, undefined, []);
 
 /** var kVTVideoDecoderUnknownErr: OSStatus { get } */
-export const kVTVideoDecoderUnknownErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 2604014944314603, undefined, []);
+export const kVTVideoDecoderUnknownErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 2604014944314603, undefined, []);
 
 /** var kVTVideoDecoderUnsupportedDataFormatErr: OSStatus { get } */
-export const kVTVideoDecoderUnsupportedDataFormatErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3646385181023705, undefined, []);
+export const kVTVideoDecoderUnsupportedDataFormatErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3646385181023705, undefined, []);
 
 /** var kVTVideoEncoderAuthorizationErr: OSStatus { get } */
-export const kVTVideoEncoderAuthorizationErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 816068997644508, undefined, []);
+export const kVTVideoEncoderAuthorizationErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 816068997644508, undefined, []);
 
 /** var kVTVideoEncoderAutoWhiteBalanceNotLockedErr: OSStatus { get } */
-export const kVTVideoEncoderAutoWhiteBalanceNotLockedErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 4383143900378567, undefined, []);
+export const kVTVideoEncoderAutoWhiteBalanceNotLockedErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 4383143900378567, undefined, []);
 
 /** var kVTVideoEncoderMVHEVCVideoLayerIDsMismatchErr: OSStatus { get } */
-export const kVTVideoEncoderMVHEVCVideoLayerIDsMismatchErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 219469200176569, undefined, []);
+export const kVTVideoEncoderMVHEVCVideoLayerIDsMismatchErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 219469200176569, undefined, []);
 
 /** var kVTVideoEncoderMalfunctionErr: OSStatus { get } */
-export const kVTVideoEncoderMalfunctionErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3836198947217646, undefined, []);
+export const kVTVideoEncoderMalfunctionErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3836198947217646, undefined, []);
 
 /** var kVTVideoEncoderNeedsRosettaErr: OSStatus { get } */
-export const kVTVideoEncoderNeedsRosettaErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3750114498217122, undefined, []);
+export const kVTVideoEncoderNeedsRosettaErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3750114498217122, undefined, []);
 
 /** var kVTVideoEncoderNotAvailableNowErr: OSStatus { get } */
-export const kVTVideoEncoderNotAvailableNowErr: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 208886805323299, undefined, []);
+export const kVTVideoEncoderNotAvailableNowErr: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 208886805323299, undefined, []);
 
 /** var kVTQPModulationLevel_Default: Int { get } */
-export const kVTQPModulationLevel_Default: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 578766320218742, undefined, []);
+export const kVTQPModulationLevel_Default: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 578766320218742, undefined, []);
 
 /** var kVTQPModulationLevel_Disable: Int { get } */
-export const kVTQPModulationLevel_Disable: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 2676564658646457, undefined, []);
+export const kVTQPModulationLevel_Disable: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 2676564658646457, undefined, []);
 
 /** var kVTUnlimitedFrameDelayCount: Int { get } */
-export const kVTUnlimitedFrameDelayCount: number = callSDK<number>("VideoToolbox_1f27952b3c5b81e6", 3342391284774392, undefined, []);
+export const kVTUnlimitedFrameDelayCount: number = callSDK<number>("VideoToolbox_64b39a05e4a4cebd", 3342391284774392, undefined, []);
 
 /**
  * let VTFrameProcessorErrorDomain: String
  * @availability iOS 26.0+
  */
-export const VTFrameProcessorErrorDomain: string = callSDK<string>("VideoToolbox_1f27952b3c5b81e6", 2357497379058437, undefined, []);
+export const VTFrameProcessorErrorDomain: string = callSDK<string>("VideoToolbox_64b39a05e4a4cebd", 2357497379058437, undefined, []);
 
 /**
  * let kVTAlphaChannelMode_PremultipliedAlpha: CFString
  * @availability iOS 13.0+
  */
-export const kVTAlphaChannelMode_PremultipliedAlpha: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1135506880248922, undefined, []);
+export const kVTAlphaChannelMode_PremultipliedAlpha: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1135506880248922, undefined, []);
 
 /**
  * let kVTAlphaChannelMode_StraightAlpha: CFString
  * @availability iOS 13.0+
  */
-export const kVTAlphaChannelMode_StraightAlpha: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3776683467572154, undefined, []);
+export const kVTAlphaChannelMode_StraightAlpha: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3776683467572154, undefined, []);
 
 /**
  * let kVTCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline: CFString
  * @availability iOS 26.0+
  */
-export const kVTCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1055921226960561, undefined, []);
+export const kVTCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1055921226960561, undefined, []);
 
 /**
  * let kVTCameraCalibrationLensAlgorithmKind_ParametricLens: CFString
  * @availability iOS 26.0+
  */
-export const kVTCameraCalibrationLensAlgorithmKind_ParametricLens: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2065870266773818, undefined, []);
+export const kVTCameraCalibrationLensAlgorithmKind_ParametricLens: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2065870266773818, undefined, []);
 
 /**
  * let kVTCameraCalibrationLensDomain_Color: CFString
  * @availability iOS 26.0+
  */
-export const kVTCameraCalibrationLensDomain_Color: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1906337573885791, undefined, []);
+export const kVTCameraCalibrationLensDomain_Color: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1906337573885791, undefined, []);
 
 /**
  * let kVTCameraCalibrationLensRole_Left: CFString
  * @availability iOS 26.0+
  */
-export const kVTCameraCalibrationLensRole_Left: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 460449021377719, undefined, []);
+export const kVTCameraCalibrationLensRole_Left: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 460449021377719, undefined, []);
 
 /**
  * let kVTCameraCalibrationLensRole_Mono: CFString
  * @availability iOS 26.0+
  */
-export const kVTCameraCalibrationLensRole_Mono: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1660728462114160, undefined, []);
+export const kVTCameraCalibrationLensRole_Mono: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1660728462114160, undefined, []);
 
 /**
  * let kVTCameraCalibrationLensRole_Right: CFString
  * @availability iOS 26.0+
  */
-export const kVTCameraCalibrationLensRole_Right: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2658008781059544, undefined, []);
+export const kVTCameraCalibrationLensRole_Right: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2658008781059544, undefined, []);
 
 /**
  * let kVTCompressionPreset_Balanced: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPreset_Balanced: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2825259996988541, undefined, []);
+export const kVTCompressionPreset_Balanced: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2825259996988541, undefined, []);
 
 /**
  * let kVTCompressionPreset_ConsistentQuality: CFString
  * @availability iOS 27.0+
  */
-export const kVTCompressionPreset_ConsistentQuality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2749086036374467, undefined, []);
+export const kVTCompressionPreset_ConsistentQuality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2749086036374467, undefined, []);
 
 /**
  * let kVTCompressionPreset_HighQuality: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPreset_HighQuality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 220721905013841, undefined, []);
+export const kVTCompressionPreset_HighQuality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 220721905013841, undefined, []);
 
 /**
  * let kVTCompressionPreset_HighSpeed: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPreset_HighSpeed: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3503386221295436, undefined, []);
+export const kVTCompressionPreset_HighSpeed: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3503386221295436, undefined, []);
 
 /**
  * let kVTCompressionPreset_VideoConferencing: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPreset_VideoConferencing: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3244208070671254, undefined, []);
+export const kVTCompressionPreset_VideoConferencing: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3244208070671254, undefined, []);
 
 /**
  * let kVTCompressionPropertyCameraCalibrationKey_ExtrinsicOrientationQuaternion: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyCameraCalibrationKey_ExtrinsicOrientationQuaternion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4197546095260798, undefined, []);
+export const kVTCompressionPropertyCameraCalibrationKey_ExtrinsicOrientationQuaternion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4197546095260798, undefined, []);
 
 /**
  * let kVTCompressionPropertyCameraCalibrationKey_ExtrinsicOriginSource: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyCameraCalibrationKey_ExtrinsicOriginSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3077920104948225, undefined, []);
+export const kVTCompressionPropertyCameraCalibrationKey_ExtrinsicOriginSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3077920104948225, undefined, []);
 
 /**
  * let kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrix: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrix: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2103338498538878, undefined, []);
+export const kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrix: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2103338498538878, undefined, []);
 
 /**
  * let kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrixProjectionOffset: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrixProjectionOffset: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3772187341271989, undefined, []);
+export const kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrixProjectionOffset: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3772187341271989, undefined, []);
 
 /**
  * let kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrixReferenceDimensions: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrixReferenceDimensions: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1768402216590044, undefined, []);
+export const kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrixReferenceDimensions: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1768402216590044, undefined, []);
 
 /**
  * let kVTCompressionPropertyCameraCalibrationKey_LensAlgorithmKind: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyCameraCalibrationKey_LensAlgorithmKind: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3600559817541570, undefined, []);
+export const kVTCompressionPropertyCameraCalibrationKey_LensAlgorithmKind: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3600559817541570, undefined, []);
 
 /**
  * let kVTCompressionPropertyCameraCalibrationKey_LensDistortions: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyCameraCalibrationKey_LensDistortions: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1480784280994453, undefined, []);
+export const kVTCompressionPropertyCameraCalibrationKey_LensDistortions: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1480784280994453, undefined, []);
 
 /**
  * let kVTCompressionPropertyCameraCalibrationKey_LensDomain: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyCameraCalibrationKey_LensDomain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2714679229843182, undefined, []);
+export const kVTCompressionPropertyCameraCalibrationKey_LensDomain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2714679229843182, undefined, []);
 
 /**
  * let kVTCompressionPropertyCameraCalibrationKey_LensFrameAdjustmentsPolynomialX: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyCameraCalibrationKey_LensFrameAdjustmentsPolynomialX: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1569650222716052, undefined, []);
+export const kVTCompressionPropertyCameraCalibrationKey_LensFrameAdjustmentsPolynomialX: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1569650222716052, undefined, []);
 
 /**
  * let kVTCompressionPropertyCameraCalibrationKey_LensFrameAdjustmentsPolynomialY: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyCameraCalibrationKey_LensFrameAdjustmentsPolynomialY: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 54302838935797, undefined, []);
+export const kVTCompressionPropertyCameraCalibrationKey_LensFrameAdjustmentsPolynomialY: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 54302838935797, undefined, []);
 
 /**
  * let kVTCompressionPropertyCameraCalibrationKey_LensIdentifier: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyCameraCalibrationKey_LensIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4082132803005182, undefined, []);
+export const kVTCompressionPropertyCameraCalibrationKey_LensIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4082132803005182, undefined, []);
 
 /**
  * let kVTCompressionPropertyCameraCalibrationKey_LensRole: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyCameraCalibrationKey_LensRole: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3973408531861370, undefined, []);
+export const kVTCompressionPropertyCameraCalibrationKey_LensRole: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3973408531861370, undefined, []);
 
 /**
  * let kVTCompressionPropertyCameraCalibrationKey_RadialAngleLimit: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyCameraCalibrationKey_RadialAngleLimit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2728909558925398, undefined, []);
+export const kVTCompressionPropertyCameraCalibrationKey_RadialAngleLimit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2728909558925398, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_AllowFrameReordering: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_AllowFrameReordering: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2712579978530599, undefined, []);
+export const kVTCompressionPropertyKey_AllowFrameReordering: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2712579978530599, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_AllowOpenGOP: CFString
  * @availability iOS 12.0+
  */
-export const kVTCompressionPropertyKey_AllowOpenGOP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3849516834024687, undefined, []);
+export const kVTCompressionPropertyKey_AllowOpenGOP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3849516834024687, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_AllowTemporalCompression: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_AllowTemporalCompression: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3201802175094609, undefined, []);
+export const kVTCompressionPropertyKey_AllowTemporalCompression: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3201802175094609, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_AlphaChannelMode: CFString
  * @availability iOS 13.0+
  */
-export const kVTCompressionPropertyKey_AlphaChannelMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1769318291535211, undefined, []);
+export const kVTCompressionPropertyKey_AlphaChannelMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1769318291535211, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_AspectRatio16x9: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_AspectRatio16x9: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4119671681255415, undefined, []);
+export const kVTCompressionPropertyKey_AspectRatio16x9: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4119671681255415, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_AverageBitRate: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_AverageBitRate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1747928807807984, undefined, []);
+export const kVTCompressionPropertyKey_AverageBitRate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1747928807807984, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_BaseLayerBitRateFraction: CFString
  * @availability iOS 15.0+
  */
-export const kVTCompressionPropertyKey_BaseLayerBitRateFraction: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2643722105782836, undefined, []);
+export const kVTCompressionPropertyKey_BaseLayerBitRateFraction: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2643722105782836, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_BaseLayerFrameRate: CFString
  * @availability iOS 11.0+
  */
-export const kVTCompressionPropertyKey_BaseLayerFrameRate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2000077472357415, undefined, []);
+export const kVTCompressionPropertyKey_BaseLayerFrameRate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2000077472357415, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_BaseLayerFrameRateFraction: CFString
  * @availability iOS 14.5+
  */
-export const kVTCompressionPropertyKey_BaseLayerFrameRateFraction: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1602168098513520, undefined, []);
+export const kVTCompressionPropertyKey_BaseLayerFrameRateFraction: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1602168098513520, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_CalculateMeanSquaredError: CFString
  * @availability iOS 17.4+
  */
-export const kVTCompressionPropertyKey_CalculateMeanSquaredError: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2359550673602818, undefined, []);
+export const kVTCompressionPropertyKey_CalculateMeanSquaredError: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2359550673602818, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_CameraCalibrationDataLensCollection: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyKey_CameraCalibrationDataLensCollection: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4044631585329001, undefined, []);
+export const kVTCompressionPropertyKey_CameraCalibrationDataLensCollection: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4044631585329001, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_CleanAperture: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_CleanAperture: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 119290401087256, undefined, []);
+export const kVTCompressionPropertyKey_CleanAperture: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 119290401087256, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_ColorPrimaries: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_ColorPrimaries: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2631745146863371, undefined, []);
+export const kVTCompressionPropertyKey_ColorPrimaries: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2631745146863371, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_ConstantBitRate: CFString
  * @availability iOS 16.0+
  */
-export const kVTCompressionPropertyKey_ConstantBitRate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1378582498799547, undefined, []);
+export const kVTCompressionPropertyKey_ConstantBitRate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1378582498799547, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_ConstantQualityFactor: CFString
  * @availability iOS 27.0+
  */
-export const kVTCompressionPropertyKey_ConstantQualityFactor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3192552662731422, undefined, []);
+export const kVTCompressionPropertyKey_ConstantQualityFactor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3192552662731422, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_ContentLightLevelInfo: CFString
  * @availability iOS 11.0+
  */
-export const kVTCompressionPropertyKey_ContentLightLevelInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 364503484187127, undefined, []);
+export const kVTCompressionPropertyKey_ContentLightLevelInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 364503484187127, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_DataRateLimits: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_DataRateLimits: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2071787933996213, undefined, []);
+export const kVTCompressionPropertyKey_DataRateLimits: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2071787933996213, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_Depth: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_Depth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 166316179451029, undefined, []);
+export const kVTCompressionPropertyKey_Depth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 166316179451029, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_EnableLTR: CFString
  * @availability iOS 15.0+
  */
-export const kVTCompressionPropertyKey_EnableLTR: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1035726888632163, undefined, []);
+export const kVTCompressionPropertyKey_EnableLTR: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1035726888632163, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_EncoderID: CFString
  * @availability iOS 11.0+
  */
-export const kVTCompressionPropertyKey_EncoderID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1687188456346458, undefined, []);
+export const kVTCompressionPropertyKey_EncoderID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1687188456346458, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_EstimatedAverageBytesPerFrame: CFString
  * @availability iOS 16.0+
  */
-export const kVTCompressionPropertyKey_EstimatedAverageBytesPerFrame: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4132634919944389, undefined, []);
+export const kVTCompressionPropertyKey_EstimatedAverageBytesPerFrame: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4132634919944389, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_ExpectedDuration: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_ExpectedDuration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 159014536541960, undefined, []);
+export const kVTCompressionPropertyKey_ExpectedDuration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 159014536541960, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_ExpectedFrameRate: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_ExpectedFrameRate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2833221199784856, undefined, []);
+export const kVTCompressionPropertyKey_ExpectedFrameRate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2833221199784856, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_FieldCount: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_FieldCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1294673552143240, undefined, []);
+export const kVTCompressionPropertyKey_FieldCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1294673552143240, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_FieldDetail: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_FieldDetail: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3591038247659347, undefined, []);
+export const kVTCompressionPropertyKey_FieldDetail: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3591038247659347, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_GammaLevel: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_GammaLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 594869691659094, undefined, []);
+export const kVTCompressionPropertyKey_GammaLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 594869691659094, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_H264EntropyMode: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_H264EntropyMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1358323254876392, undefined, []);
+export const kVTCompressionPropertyKey_H264EntropyMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1358323254876392, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_HDRMetadataInsertionMode: CFString
  * @availability iOS 14.0+
  */
-export const kVTCompressionPropertyKey_HDRMetadataInsertionMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3371654966388550, undefined, []);
+export const kVTCompressionPropertyKey_HDRMetadataInsertionMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3371654966388550, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_HasLeftStereoEyeView: CFString
  * @availability iOS 17.0+
  */
-export const kVTCompressionPropertyKey_HasLeftStereoEyeView: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1329389629210777, undefined, []);
+export const kVTCompressionPropertyKey_HasLeftStereoEyeView: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1329389629210777, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_HasRightStereoEyeView: CFString
  * @availability iOS 17.0+
  */
-export const kVTCompressionPropertyKey_HasRightStereoEyeView: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1942754389601628, undefined, []);
+export const kVTCompressionPropertyKey_HasRightStereoEyeView: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1942754389601628, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_HeroEye: CFString
  * @availability iOS 17.0+
  */
-export const kVTCompressionPropertyKey_HeroEye: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4097992966764468, undefined, []);
+export const kVTCompressionPropertyKey_HeroEye: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4097992966764468, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_HorizontalDisparityAdjustment: CFString
  * @availability iOS 17.0+
  */
-export const kVTCompressionPropertyKey_HorizontalDisparityAdjustment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2844318373626649, undefined, []);
+export const kVTCompressionPropertyKey_HorizontalDisparityAdjustment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2844318373626649, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_HorizontalFieldOfView: CFString
  * @availability iOS 17.4+
  */
-export const kVTCompressionPropertyKey_HorizontalFieldOfView: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3990258050425730, undefined, []);
+export const kVTCompressionPropertyKey_HorizontalFieldOfView: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3990258050425730, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_ICCProfile: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_ICCProfile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3731952113462787, undefined, []);
+export const kVTCompressionPropertyKey_ICCProfile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3731952113462787, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_LogTransferFunction: CFString
  * @availability iOS 27.0+
  */
-export const kVTCompressionPropertyKey_LogTransferFunction: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4469257416859356, undefined, []);
+export const kVTCompressionPropertyKey_LogTransferFunction: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4469257416859356, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MVHEVCLeftAndRightViewIDs: CFString
  * @availability iOS 17.0+
  */
-export const kVTCompressionPropertyKey_MVHEVCLeftAndRightViewIDs: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 149665301120669, undefined, []);
+export const kVTCompressionPropertyKey_MVHEVCLeftAndRightViewIDs: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 149665301120669, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MVHEVCVideoLayerIDs: CFString
  * @availability iOS 17.0+
  */
-export const kVTCompressionPropertyKey_MVHEVCVideoLayerIDs: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1223167868824196, undefined, []);
+export const kVTCompressionPropertyKey_MVHEVCVideoLayerIDs: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1223167868824196, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MVHEVCViewIDs: CFString
  * @availability iOS 17.0+
  */
-export const kVTCompressionPropertyKey_MVHEVCViewIDs: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 137276808995964, undefined, []);
+export const kVTCompressionPropertyKey_MVHEVCViewIDs: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 137276808995964, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MasteringDisplayColorVolume: CFString
  * @availability iOS 11.0+
  */
-export const kVTCompressionPropertyKey_MasteringDisplayColorVolume: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 558058924048677, undefined, []);
+export const kVTCompressionPropertyKey_MasteringDisplayColorVolume: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 558058924048677, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MaxAllowedFrameQP: CFString
  * @availability iOS 15.0+
  */
-export const kVTCompressionPropertyKey_MaxAllowedFrameQP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2211697979676099, undefined, []);
+export const kVTCompressionPropertyKey_MaxAllowedFrameQP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2211697979676099, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MaxFrameDelayCount: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_MaxFrameDelayCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3180471908048372, undefined, []);
+export const kVTCompressionPropertyKey_MaxFrameDelayCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3180471908048372, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MaxH264SliceBytes: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_MaxH264SliceBytes: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2370607005867674, undefined, []);
+export const kVTCompressionPropertyKey_MaxH264SliceBytes: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2370607005867674, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MaxKeyFrameInterval: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_MaxKeyFrameInterval: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1952586293039970, undefined, []);
+export const kVTCompressionPropertyKey_MaxKeyFrameInterval: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1952586293039970, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MaxKeyFrameIntervalDuration: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_MaxKeyFrameIntervalDuration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1958646915092419, undefined, []);
+export const kVTCompressionPropertyKey_MaxKeyFrameIntervalDuration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1958646915092419, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MaximizePowerEfficiency: CFString
  * @availability iOS 12.0+
  */
-export const kVTCompressionPropertyKey_MaximizePowerEfficiency: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2986715547559255, undefined, []);
+export const kVTCompressionPropertyKey_MaximizePowerEfficiency: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2986715547559255, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MaximumRealTimeFrameRate: CFString
  * @availability iOS 18.0+
  */
-export const kVTCompressionPropertyKey_MaximumRealTimeFrameRate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 499523398484718, undefined, []);
+export const kVTCompressionPropertyKey_MaximumRealTimeFrameRate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 499523398484718, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MinAllowedFrameQP: CFString
  * @availability iOS 16.0+
  */
-export const kVTCompressionPropertyKey_MinAllowedFrameQP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 780179628054610, undefined, []);
+export const kVTCompressionPropertyKey_MinAllowedFrameQP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 780179628054610, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MoreFramesAfterEnd: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_MoreFramesAfterEnd: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1032767642306735, undefined, []);
+export const kVTCompressionPropertyKey_MoreFramesAfterEnd: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1032767642306735, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MoreFramesBeforeStart: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_MoreFramesBeforeStart: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2474365476040499, undefined, []);
+export const kVTCompressionPropertyKey_MoreFramesBeforeStart: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2474365476040499, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_MultiPassStorage: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_MultiPassStorage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2578377124331146, undefined, []);
+export const kVTCompressionPropertyKey_MultiPassStorage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2578377124331146, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_NumberOfPendingFrames: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_NumberOfPendingFrames: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1691064806741515, undefined, []);
+export const kVTCompressionPropertyKey_NumberOfPendingFrames: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1691064806741515, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_OutputBitDepth: CFString
  * @availability iOS 15.4+
  */
-export const kVTCompressionPropertyKey_OutputBitDepth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 438259329645607, undefined, []);
+export const kVTCompressionPropertyKey_OutputBitDepth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 438259329645607, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_PixelAspectRatio: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_PixelAspectRatio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4279892584718917, undefined, []);
+export const kVTCompressionPropertyKey_PixelAspectRatio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4279892584718917, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_PixelBufferPoolIsShared: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_PixelBufferPoolIsShared: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 617859409984899, undefined, []);
+export const kVTCompressionPropertyKey_PixelBufferPoolIsShared: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 617859409984899, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_PixelTransferProperties: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_PixelTransferProperties: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1699400788751293, undefined, []);
+export const kVTCompressionPropertyKey_PixelTransferProperties: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1699400788751293, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_PreserveAlphaChannel: CFString
  * @availability iOS 16.0+
  */
-export const kVTCompressionPropertyKey_PreserveAlphaChannel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 395159803004365, undefined, []);
+export const kVTCompressionPropertyKey_PreserveAlphaChannel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 395159803004365, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_PreserveDynamicHDRMetadata: CFString
  * @availability iOS 14.0+
  */
-export const kVTCompressionPropertyKey_PreserveDynamicHDRMetadata: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4347810157715390, undefined, []);
+export const kVTCompressionPropertyKey_PreserveDynamicHDRMetadata: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4347810157715390, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_PrioritizeEncodingSpeedOverQuality: CFString
  * @availability iOS 14.0+
  */
-export const kVTCompressionPropertyKey_PrioritizeEncodingSpeedOverQuality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2762048710977084, undefined, []);
+export const kVTCompressionPropertyKey_PrioritizeEncodingSpeedOverQuality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2762048710977084, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_ProfileLevel: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_ProfileLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 593355182548732, undefined, []);
+export const kVTCompressionPropertyKey_ProfileLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 593355182548732, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_ProgressiveScan: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_ProgressiveScan: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3288527443236721, undefined, []);
+export const kVTCompressionPropertyKey_ProgressiveScan: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3288527443236721, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_ProjectionKind: CFString
  * @availability iOS 18.0+
  */
-export const kVTCompressionPropertyKey_ProjectionKind: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 671870414506613, undefined, []);
+export const kVTCompressionPropertyKey_ProjectionKind: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 671870414506613, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_Quality: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_Quality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1440676930287830, undefined, []);
+export const kVTCompressionPropertyKey_Quality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1440676930287830, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_RealTime: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_RealTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 467323539769211, undefined, []);
+export const kVTCompressionPropertyKey_RealTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 467323539769211, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_RecommendedParallelizedSubdivisionMinimumDuration: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyKey_RecommendedParallelizedSubdivisionMinimumDuration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 630639884225362, undefined, []);
+export const kVTCompressionPropertyKey_RecommendedParallelizedSubdivisionMinimumDuration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 630639884225362, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_RecommendedParallelizedSubdivisionMinimumFrameCount: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyKey_RecommendedParallelizedSubdivisionMinimumFrameCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1920146324277444, undefined, []);
+export const kVTCompressionPropertyKey_RecommendedParallelizedSubdivisionMinimumFrameCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1920146324277444, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_ReferenceBufferCount: CFString
  * @availability iOS 16.0+
  */
-export const kVTCompressionPropertyKey_ReferenceBufferCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1619464824287724, undefined, []);
+export const kVTCompressionPropertyKey_ReferenceBufferCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1619464824287724, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_SourceFrameCount: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_SourceFrameCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4441710454160914, undefined, []);
+export const kVTCompressionPropertyKey_SourceFrameCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4441710454160914, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_StereoCameraBaseline: CFString
  * @availability iOS 17.0+
  */
-export const kVTCompressionPropertyKey_StereoCameraBaseline: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 933235481653281, undefined, []);
+export const kVTCompressionPropertyKey_StereoCameraBaseline: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 933235481653281, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_SupportedPresetDictionaries: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyKey_SupportedPresetDictionaries: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1062356333262580, undefined, []);
+export const kVTCompressionPropertyKey_SupportedPresetDictionaries: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1062356333262580, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_SupportsBaseFrameQP: CFString
  * @availability iOS 15.0+
  */
-export const kVTCompressionPropertyKey_SupportsBaseFrameQP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3275134197716903, undefined, []);
+export const kVTCompressionPropertyKey_SupportsBaseFrameQP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3275134197716903, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_TargetQualityForAlpha: CFString
  * @availability iOS 13.0+
  */
-export const kVTCompressionPropertyKey_TargetQualityForAlpha: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 974107293032275, undefined, []);
+export const kVTCompressionPropertyKey_TargetQualityForAlpha: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 974107293032275, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_TransferFunction: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_TransferFunction: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1454148786612581, undefined, []);
+export const kVTCompressionPropertyKey_TransferFunction: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1454148786612581, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_UsingGPURegistryID: CFString
  * @availability iOS 13.0+
  */
-export const kVTCompressionPropertyKey_UsingGPURegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4128242674283382, undefined, []);
+export const kVTCompressionPropertyKey_UsingGPURegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4128242674283382, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_UsingHardwareAcceleratedVideoEncoder: CFString
  * @availability iOS 17.4+
  */
-export const kVTCompressionPropertyKey_UsingHardwareAcceleratedVideoEncoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 632167392134840, undefined, []);
+export const kVTCompressionPropertyKey_UsingHardwareAcceleratedVideoEncoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 632167392134840, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_VBVBufferDuration: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyKey_VBVBufferDuration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3950520774352805, undefined, []);
+export const kVTCompressionPropertyKey_VBVBufferDuration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3950520774352805, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_VBVInitialDelayPercentage: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyKey_VBVInitialDelayPercentage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 463470654522952, undefined, []);
+export const kVTCompressionPropertyKey_VBVInitialDelayPercentage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 463470654522952, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_VBVMaxBitRate: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyKey_VBVMaxBitRate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2266404481860428, undefined, []);
+export const kVTCompressionPropertyKey_VBVMaxBitRate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2266404481860428, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_VariableBitRate: CFString
  * @availability iOS 26.0+
  */
-export const kVTCompressionPropertyKey_VariableBitRate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4350318214273821, undefined, []);
+export const kVTCompressionPropertyKey_VariableBitRate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4350318214273821, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_VideoEncoderPixelBufferAttributes: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_VideoEncoderPixelBufferAttributes: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1080362164125827, undefined, []);
+export const kVTCompressionPropertyKey_VideoEncoderPixelBufferAttributes: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1080362164125827, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_ViewPackingKind: CFString
  * @availability iOS 18.0+
  */
-export const kVTCompressionPropertyKey_ViewPackingKind: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 716992462456540, undefined, []);
+export const kVTCompressionPropertyKey_ViewPackingKind: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 716992462456540, undefined, []);
 
 /**
  * let kVTCompressionPropertyKey_YCbCrMatrix: CFString
  * @availability iOS 8.0+
  */
-export const kVTCompressionPropertyKey_YCbCrMatrix: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1344279479973680, undefined, []);
+export const kVTCompressionPropertyKey_YCbCrMatrix: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1344279479973680, undefined, []);
 
 /**
  * let kVTDecodeFrameOptionKey_ContentAnalyzerCropRectangle: CFString
  * @availability iOS 26.0+
  */
-export const kVTDecodeFrameOptionKey_ContentAnalyzerCropRectangle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2063000626320813, undefined, []);
+export const kVTDecodeFrameOptionKey_ContentAnalyzerCropRectangle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2063000626320813, undefined, []);
 
 /**
  * let kVTDecodeFrameOptionKey_ContentAnalyzerRotation: CFString
  * @availability iOS 26.0+
  */
-export const kVTDecodeFrameOptionKey_ContentAnalyzerRotation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4413454712930918, undefined, []);
+export const kVTDecodeFrameOptionKey_ContentAnalyzerRotation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4413454712930918, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions: CFString
  * @availability iOS 18.0+
  */
-export const kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1026197693891391, undefined, []);
+export const kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1026197693891391, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_ContentHasInterframeDependencies: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_ContentHasInterframeDependencies: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3571655612684806, undefined, []);
+export const kVTDecompressionPropertyKey_ContentHasInterframeDependencies: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3571655612684806, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_DeinterlaceMode: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_DeinterlaceMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4009853039940403, undefined, []);
+export const kVTDecompressionPropertyKey_DeinterlaceMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4009853039940403, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_FieldMode: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_FieldMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3219135156506870, undefined, []);
+export const kVTDecompressionPropertyKey_FieldMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3219135156506870, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_GeneratePerFrameHDRDisplayMetadata: CFString
  * @availability iOS 17.0+
  */
-export const kVTDecompressionPropertyKey_GeneratePerFrameHDRDisplayMetadata: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1360780400266217, undefined, []);
+export const kVTDecompressionPropertyKey_GeneratePerFrameHDRDisplayMetadata: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1360780400266217, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_MaxOutputPresentationTimeStampOfFramesBeingDecoded: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_MaxOutputPresentationTimeStampOfFramesBeingDecoded: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3037738182690748, undefined, []);
+export const kVTDecompressionPropertyKey_MaxOutputPresentationTimeStampOfFramesBeingDecoded: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3037738182690748, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_MaximizePowerEfficiency: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_MaximizePowerEfficiency: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2641832447887348, undefined, []);
+export const kVTDecompressionPropertyKey_MaximizePowerEfficiency: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2641832447887348, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_MinOutputPresentationTimeStampOfFramesBeingDecoded: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_MinOutputPresentationTimeStampOfFramesBeingDecoded: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3626120852364337, undefined, []);
+export const kVTDecompressionPropertyKey_MinOutputPresentationTimeStampOfFramesBeingDecoded: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3626120852364337, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_NumberOfFramesBeingDecoded: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_NumberOfFramesBeingDecoded: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1631690803405350, undefined, []);
+export const kVTDecompressionPropertyKey_NumberOfFramesBeingDecoded: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1631690803405350, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_OnlyTheseFrames: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_OnlyTheseFrames: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3312146844284282, undefined, []);
+export const kVTDecompressionPropertyKey_OnlyTheseFrames: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3312146844284282, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_OutputPoolRequestedMinimumBufferCount: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_OutputPoolRequestedMinimumBufferCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2574086950207152, undefined, []);
+export const kVTDecompressionPropertyKey_OutputPoolRequestedMinimumBufferCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2574086950207152, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_PixelBufferPool: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_PixelBufferPool: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3272540906955160, undefined, []);
+export const kVTDecompressionPropertyKey_PixelBufferPool: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3272540906955160, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_PixelBufferPoolIsShared: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_PixelBufferPoolIsShared: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4147142905912688, undefined, []);
+export const kVTDecompressionPropertyKey_PixelBufferPoolIsShared: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4147142905912688, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3824880285349996, undefined, []);
+export const kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3824880285349996, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_PixelTransferProperties: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_PixelTransferProperties: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3081372096904574, undefined, []);
+export const kVTDecompressionPropertyKey_PixelTransferProperties: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3081372096904574, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_PropagatePerFrameHDRDisplayMetadata: CFString
  * @availability iOS 14.0+
  */
-export const kVTDecompressionPropertyKey_PropagatePerFrameHDRDisplayMetadata: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4308275049257316, undefined, []);
+export const kVTDecompressionPropertyKey_PropagatePerFrameHDRDisplayMetadata: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4308275049257316, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_RealTime: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_RealTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 335504205051439, undefined, []);
+export const kVTDecompressionPropertyKey_RealTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 335504205051439, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_ReducedCoefficientDecode: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_ReducedCoefficientDecode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 159711687943161, undefined, []);
+export const kVTDecompressionPropertyKey_ReducedCoefficientDecode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 159711687943161, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_ReducedFrameDelivery: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_ReducedFrameDelivery: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2358791879607478, undefined, []);
+export const kVTDecompressionPropertyKey_ReducedFrameDelivery: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2358791879607478, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_ReducedResolutionDecode: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_ReducedResolutionDecode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3272682143985376, undefined, []);
+export const kVTDecompressionPropertyKey_ReducedResolutionDecode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3272682143985376, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_RequestedMVHEVCVideoLayerIDs: CFString
  * @availability iOS 17.0+
  */
-export const kVTDecompressionPropertyKey_RequestedMVHEVCVideoLayerIDs: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2989588255059750, undefined, []);
+export const kVTDecompressionPropertyKey_RequestedMVHEVCVideoLayerIDs: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2989588255059750, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1046132571597363, undefined, []);
+export const kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1046132571597363, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2953663133323544, undefined, []);
+export const kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2953663133323544, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 75793484369576, undefined, []);
+export const kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 75793484369576, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_ThreadCount: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionPropertyKey_ThreadCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2972762268432101, undefined, []);
+export const kVTDecompressionPropertyKey_ThreadCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2972762268432101, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_UsingGPURegistryID: CFString
  * @availability iOS 13.0+
  */
-export const kVTDecompressionPropertyKey_UsingGPURegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 661082875402432, undefined, []);
+export const kVTDecompressionPropertyKey_UsingGPURegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 661082875402432, undefined, []);
 
 /**
  * let kVTDecompressionPropertyKey_UsingHardwareAcceleratedVideoDecoder: CFString
  * @availability iOS 17.0+
  */
-export const kVTDecompressionPropertyKey_UsingHardwareAcceleratedVideoDecoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4439889495998034, undefined, []);
+export const kVTDecompressionPropertyKey_UsingHardwareAcceleratedVideoDecoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4439889495998034, undefined, []);
 
 /**
  * let kVTDecompressionProperty_DeinterlaceMode_Temporal: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionProperty_DeinterlaceMode_Temporal: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2859712211535212, undefined, []);
+export const kVTDecompressionProperty_DeinterlaceMode_Temporal: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2859712211535212, undefined, []);
 
 /**
  * let kVTDecompressionProperty_DeinterlaceMode_VerticalFilter: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionProperty_DeinterlaceMode_VerticalFilter: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2277419666663119, undefined, []);
+export const kVTDecompressionProperty_DeinterlaceMode_VerticalFilter: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2277419666663119, undefined, []);
 
 /**
  * let kVTDecompressionProperty_FieldMode_BothFields: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionProperty_FieldMode_BothFields: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3950512299911544, undefined, []);
+export const kVTDecompressionProperty_FieldMode_BothFields: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3950512299911544, undefined, []);
 
 /**
  * let kVTDecompressionProperty_FieldMode_BottomFieldOnly: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionProperty_FieldMode_BottomFieldOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1685515490170788, undefined, []);
+export const kVTDecompressionProperty_FieldMode_BottomFieldOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1685515490170788, undefined, []);
 
 /**
  * let kVTDecompressionProperty_FieldMode_DeinterlaceFields: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionProperty_FieldMode_DeinterlaceFields: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2766774610491422, undefined, []);
+export const kVTDecompressionProperty_FieldMode_DeinterlaceFields: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2766774610491422, undefined, []);
 
 /**
  * let kVTDecompressionProperty_FieldMode_SingleField: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionProperty_FieldMode_SingleField: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 213710163929998, undefined, []);
+export const kVTDecompressionProperty_FieldMode_SingleField: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 213710163929998, undefined, []);
 
 /**
  * let kVTDecompressionProperty_FieldMode_TopFieldOnly: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionProperty_FieldMode_TopFieldOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3665908921228393, undefined, []);
+export const kVTDecompressionProperty_FieldMode_TopFieldOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3665908921228393, undefined, []);
 
 /**
  * let kVTDecompressionProperty_OnlyTheseFrames_AllFrames: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionProperty_OnlyTheseFrames_AllFrames: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3473472515821127, undefined, []);
+export const kVTDecompressionProperty_OnlyTheseFrames_AllFrames: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3473472515821127, undefined, []);
 
 /**
  * let kVTDecompressionProperty_OnlyTheseFrames_IFrames: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionProperty_OnlyTheseFrames_IFrames: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3228304589359093, undefined, []);
+export const kVTDecompressionProperty_OnlyTheseFrames_IFrames: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3228304589359093, undefined, []);
 
 /**
  * let kVTDecompressionProperty_OnlyTheseFrames_KeyFrames: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionProperty_OnlyTheseFrames_KeyFrames: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1965359459204297, undefined, []);
+export const kVTDecompressionProperty_OnlyTheseFrames_KeyFrames: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1965359459204297, undefined, []);
 
 /**
  * let kVTDecompressionProperty_OnlyTheseFrames_NonDroppableFrames: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionProperty_OnlyTheseFrames_NonDroppableFrames: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2759729239303273, undefined, []);
+export const kVTDecompressionProperty_OnlyTheseFrames_NonDroppableFrames: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2759729239303273, undefined, []);
 
 /**
  * let kVTDecompressionProperty_TemporalLevelLimit: CFString
  * @availability iOS 11.0+
  */
-export const kVTDecompressionProperty_TemporalLevelLimit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 74267791690109, undefined, []);
+export const kVTDecompressionProperty_TemporalLevelLimit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 74267791690109, undefined, []);
 
 /**
  * let kVTDecompressionResolutionKey_Height: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionResolutionKey_Height: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1711682151915028, undefined, []);
+export const kVTDecompressionResolutionKey_Height: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1711682151915028, undefined, []);
 
 /**
  * let kVTDecompressionResolutionKey_Width: CFString
  * @availability iOS 8.0+
  */
-export const kVTDecompressionResolutionKey_Width: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 139909195558059, undefined, []);
+export const kVTDecompressionResolutionKey_Width: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 139909195558059, undefined, []);
 
 /**
  * let kVTDownsamplingMode_Average: CFString
  * @availability iOS 9.0+
  */
-export const kVTDownsamplingMode_Average: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3599778473972280, undefined, []);
+export const kVTDownsamplingMode_Average: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3599778473972280, undefined, []);
 
 /**
  * let kVTDownsamplingMode_Decimate: CFString
  * @availability iOS 9.0+
  */
-export const kVTDownsamplingMode_Decimate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2290548277720342, undefined, []);
+export const kVTDownsamplingMode_Decimate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2290548277720342, undefined, []);
 
 /**
  * let kVTEncodeFrameOptionKey_AcknowledgedLTRTokens: CFString
  * @availability iOS 15.0+
  */
-export const kVTEncodeFrameOptionKey_AcknowledgedLTRTokens: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2718565356057029, undefined, []);
+export const kVTEncodeFrameOptionKey_AcknowledgedLTRTokens: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2718565356057029, undefined, []);
 
 /**
  * let kVTEncodeFrameOptionKey_BaseFrameQP: CFString
  * @availability iOS 15.0+
  */
-export const kVTEncodeFrameOptionKey_BaseFrameQP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4052392154118024, undefined, []);
+export const kVTEncodeFrameOptionKey_BaseFrameQP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4052392154118024, undefined, []);
 
 /**
  * let kVTEncodeFrameOptionKey_ForceKeyFrame: CFString
  * @availability iOS 8.0+
  */
-export const kVTEncodeFrameOptionKey_ForceKeyFrame: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2153884523037558, undefined, []);
+export const kVTEncodeFrameOptionKey_ForceKeyFrame: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2153884523037558, undefined, []);
 
 /**
  * let kVTEncodeFrameOptionKey_ForceLTRRefresh: CFString
  * @availability iOS 15.0+
  */
-export const kVTEncodeFrameOptionKey_ForceLTRRefresh: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1429340408359127, undefined, []);
+export const kVTEncodeFrameOptionKey_ForceLTRRefresh: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1429340408359127, undefined, []);
 
 /**
  * let kVTH264EntropyMode_CABAC: CFString
  * @availability iOS 8.0+
  */
-export const kVTH264EntropyMode_CABAC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3670352948699284, undefined, []);
+export const kVTH264EntropyMode_CABAC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3670352948699284, undefined, []);
 
 /**
  * let kVTH264EntropyMode_CAVLC: CFString
  * @availability iOS 8.0+
  */
-export const kVTH264EntropyMode_CAVLC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1231651069847877, undefined, []);
+export const kVTH264EntropyMode_CAVLC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1231651069847877, undefined, []);
 
 /**
  * let kVTHDRMetadataInsertionMode_Auto: CFString
  * @availability iOS 14.0+
  */
-export const kVTHDRMetadataInsertionMode_Auto: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3029349981111622, undefined, []);
+export const kVTHDRMetadataInsertionMode_Auto: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3029349981111622, undefined, []);
 
 /**
  * let kVTHDRMetadataInsertionMode_None: CFString
  * @availability iOS 14.0+
  */
-export const kVTHDRMetadataInsertionMode_None: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4416290423905962, undefined, []);
+export const kVTHDRMetadataInsertionMode_None: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4416290423905962, undefined, []);
 
 /**
  * let kVTHDRMetadataInsertionMode_RequestSDRRangePreservation: CFString
  * @availability iOS 26.0+
  */
-export const kVTHDRMetadataInsertionMode_RequestSDRRangePreservation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 494320924813243, undefined, []);
+export const kVTHDRMetadataInsertionMode_RequestSDRRangePreservation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 494320924813243, undefined, []);
 
 /**
  * let kVTHDRPerFrameMetadataGenerationOptionsKey_HDRFormats: CFString
  * @availability iOS 18.0+
  */
-export const kVTHDRPerFrameMetadataGenerationOptionsKey_HDRFormats: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3631935806940395, undefined, []);
+export const kVTHDRPerFrameMetadataGenerationOptionsKey_HDRFormats: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3631935806940395, undefined, []);
 
 /**
  * let kVTHeroEye_Left: CFString
  * @availability iOS 26.0+
  */
-export const kVTHeroEye_Left: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 658625421749589, undefined, []);
+export const kVTHeroEye_Left: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 658625421749589, undefined, []);
 
 /**
  * let kVTHeroEye_Right: CFString
  * @availability iOS 26.0+
  */
-export const kVTHeroEye_Right: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1646169039531636, undefined, []);
+export const kVTHeroEye_Right: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1646169039531636, undefined, []);
 
 /**
  * let kVTMotionEstimationSessionCreationOption_Label: CFString!
  * @availability iOS 26.0+
  */
-export const kVTMotionEstimationSessionCreationOption_Label: $SDK10 = callSDK<$SDK10>("VideoToolbox_1f27952b3c5b81e6", 1491189590476775, undefined, []);
+export const kVTMotionEstimationSessionCreationOption_Label: $SDK10 = callSDK<$SDK10>("VideoToolbox_64b39a05e4a4cebd", 1491189590476775, undefined, []);
 
 /**
  * let kVTMotionEstimationSessionCreationOption_MotionVectorSize: CFString!
  * @availability iOS 26.0+
  */
-export const kVTMotionEstimationSessionCreationOption_MotionVectorSize: $SDK10 = callSDK<$SDK10>("VideoToolbox_1f27952b3c5b81e6", 881420686843352, undefined, []);
+export const kVTMotionEstimationSessionCreationOption_MotionVectorSize: $SDK10 = callSDK<$SDK10>("VideoToolbox_64b39a05e4a4cebd", 881420686843352, undefined, []);
 
 /**
  * let kVTMotionEstimationSessionCreationOption_UseMultiPassSearch: CFString!
  * @availability iOS 26.0+
  */
-export const kVTMotionEstimationSessionCreationOption_UseMultiPassSearch: $SDK10 = callSDK<$SDK10>("VideoToolbox_1f27952b3c5b81e6", 256332867755352, undefined, []);
+export const kVTMotionEstimationSessionCreationOption_UseMultiPassSearch: $SDK10 = callSDK<$SDK10>("VideoToolbox_64b39a05e4a4cebd", 256332867755352, undefined, []);
 
 /**
  * let kVTMultiPassStorageCreationOption_DoNotDelete: CFString
  * @availability iOS 8.0+
  */
-export const kVTMultiPassStorageCreationOption_DoNotDelete: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1965388548043153, undefined, []);
+export const kVTMultiPassStorageCreationOption_DoNotDelete: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1965388548043153, undefined, []);
 
 /**
  * let kVTPixelRotationPropertyKey_FlipHorizontalOrientation: CFString
  * @availability iOS 16.0+
  */
-export const kVTPixelRotationPropertyKey_FlipHorizontalOrientation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 875315033306296, undefined, []);
+export const kVTPixelRotationPropertyKey_FlipHorizontalOrientation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 875315033306296, undefined, []);
 
 /**
  * let kVTPixelRotationPropertyKey_FlipVerticalOrientation: CFString
  * @availability iOS 16.0+
  */
-export const kVTPixelRotationPropertyKey_FlipVerticalOrientation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1875959555725092, undefined, []);
+export const kVTPixelRotationPropertyKey_FlipVerticalOrientation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1875959555725092, undefined, []);
 
 /**
  * let kVTPixelRotationPropertyKey_Rotation: CFString
  * @availability iOS 16.0+
  */
-export const kVTPixelRotationPropertyKey_Rotation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1332676757109519, undefined, []);
+export const kVTPixelRotationPropertyKey_Rotation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1332676757109519, undefined, []);
 
 /**
  * let kVTPixelTransferPropertyKey_DestinationCleanAperture: CFString
  * @availability iOS 9.0+
  */
-export const kVTPixelTransferPropertyKey_DestinationCleanAperture: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 516677391423139, undefined, []);
+export const kVTPixelTransferPropertyKey_DestinationCleanAperture: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 516677391423139, undefined, []);
 
 /**
  * let kVTPixelTransferPropertyKey_DestinationColorPrimaries: CFString
  * @availability iOS 9.0+
  */
-export const kVTPixelTransferPropertyKey_DestinationColorPrimaries: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3194032533299336, undefined, []);
+export const kVTPixelTransferPropertyKey_DestinationColorPrimaries: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3194032533299336, undefined, []);
 
 /**
  * let kVTPixelTransferPropertyKey_DestinationICCProfile: CFString
  * @availability iOS 9.0+
  */
-export const kVTPixelTransferPropertyKey_DestinationICCProfile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1590987674065565, undefined, []);
+export const kVTPixelTransferPropertyKey_DestinationICCProfile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1590987674065565, undefined, []);
 
 /**
  * let kVTPixelTransferPropertyKey_DestinationPixelAspectRatio: CFString
  * @availability iOS 9.0+
  */
-export const kVTPixelTransferPropertyKey_DestinationPixelAspectRatio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3280045567382140, undefined, []);
+export const kVTPixelTransferPropertyKey_DestinationPixelAspectRatio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3280045567382140, undefined, []);
 
 /**
  * let kVTPixelTransferPropertyKey_DestinationTransferFunction: CFString
  * @availability iOS 9.0+
  */
-export const kVTPixelTransferPropertyKey_DestinationTransferFunction: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1138317000888754, undefined, []);
+export const kVTPixelTransferPropertyKey_DestinationTransferFunction: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1138317000888754, undefined, []);
 
 /**
  * let kVTPixelTransferPropertyKey_DestinationYCbCrMatrix: CFString
  * @availability iOS 9.0+
  */
-export const kVTPixelTransferPropertyKey_DestinationYCbCrMatrix: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1917116441655120, undefined, []);
+export const kVTPixelTransferPropertyKey_DestinationYCbCrMatrix: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1917116441655120, undefined, []);
 
 /**
  * let kVTPixelTransferPropertyKey_DownsamplingMode: CFString
  * @availability iOS 9.0+
  */
-export const kVTPixelTransferPropertyKey_DownsamplingMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3063309867066220, undefined, []);
+export const kVTPixelTransferPropertyKey_DownsamplingMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3063309867066220, undefined, []);
 
 /**
  * let kVTPixelTransferPropertyKey_RealTime: CFString
  * @availability iOS 13.0+
  */
-export const kVTPixelTransferPropertyKey_RealTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2660763442829393, undefined, []);
+export const kVTPixelTransferPropertyKey_RealTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2660763442829393, undefined, []);
 
 /**
  * let kVTPixelTransferPropertyKey_ScalingMode: CFString
  * @availability iOS 9.0+
  */
-export const kVTPixelTransferPropertyKey_ScalingMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1285759845565601, undefined, []);
+export const kVTPixelTransferPropertyKey_ScalingMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1285759845565601, undefined, []);
 
 /**
  * let kVTProfileLevel_H263_Profile0_Level10: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H263_Profile0_Level10: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1653255552933386, undefined, []);
+export const kVTProfileLevel_H263_Profile0_Level10: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1653255552933386, undefined, []);
 
 /**
  * let kVTProfileLevel_H263_Profile0_Level45: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H263_Profile0_Level45: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1490246712926623, undefined, []);
+export const kVTProfileLevel_H263_Profile0_Level45: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1490246712926623, undefined, []);
 
 /**
  * let kVTProfileLevel_H263_Profile3_Level45: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H263_Profile3_Level45: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 306873047256251, undefined, []);
+export const kVTProfileLevel_H263_Profile3_Level45: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 306873047256251, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Baseline_1_3: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Baseline_1_3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2749540386199390, undefined, []);
+export const kVTProfileLevel_H264_Baseline_1_3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2749540386199390, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Baseline_3_0: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Baseline_3_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3671828350162140, undefined, []);
+export const kVTProfileLevel_H264_Baseline_3_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3671828350162140, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Baseline_3_1: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Baseline_3_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 471572389578671, undefined, []);
+export const kVTProfileLevel_H264_Baseline_3_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 471572389578671, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Baseline_3_2: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Baseline_3_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 71000816338800, undefined, []);
+export const kVTProfileLevel_H264_Baseline_3_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 71000816338800, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Baseline_4_0: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Baseline_4_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4171759208751642, undefined, []);
+export const kVTProfileLevel_H264_Baseline_4_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4171759208751642, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Baseline_4_1: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Baseline_4_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4480403874035765, undefined, []);
+export const kVTProfileLevel_H264_Baseline_4_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4480403874035765, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Baseline_4_2: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Baseline_4_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2360768603823294, undefined, []);
+export const kVTProfileLevel_H264_Baseline_4_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2360768603823294, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Baseline_5_0: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Baseline_5_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3623234422664485, undefined, []);
+export const kVTProfileLevel_H264_Baseline_5_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3623234422664485, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Baseline_5_1: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Baseline_5_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1630288218227278, undefined, []);
+export const kVTProfileLevel_H264_Baseline_5_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1630288218227278, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Baseline_5_2: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Baseline_5_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 398488158369722, undefined, []);
+export const kVTProfileLevel_H264_Baseline_5_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 398488158369722, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Baseline_AutoLevel: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Baseline_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4476273447086447, undefined, []);
+export const kVTProfileLevel_H264_Baseline_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4476273447086447, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_ConstrainedBaseline_AutoLevel: CFString
  * @availability iOS 15.0+
  */
-export const kVTProfileLevel_H264_ConstrainedBaseline_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4397122810748543, undefined, []);
+export const kVTProfileLevel_H264_ConstrainedBaseline_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4397122810748543, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_ConstrainedHigh_AutoLevel: CFString
  * @availability iOS 15.0+
  */
-export const kVTProfileLevel_H264_ConstrainedHigh_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 412652402104581, undefined, []);
+export const kVTProfileLevel_H264_ConstrainedHigh_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 412652402104581, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Extended_5_0: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Extended_5_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1816047533509588, undefined, []);
+export const kVTProfileLevel_H264_Extended_5_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1816047533509588, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Extended_AutoLevel: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Extended_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1180646051681631, undefined, []);
+export const kVTProfileLevel_H264_Extended_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1180646051681631, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_High_3_0: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_High_3_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 288129280577446, undefined, []);
+export const kVTProfileLevel_H264_High_3_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 288129280577446, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_High_3_1: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_High_3_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 568141941947782, undefined, []);
+export const kVTProfileLevel_H264_High_3_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 568141941947782, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_High_3_2: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_High_3_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4273791457189298, undefined, []);
+export const kVTProfileLevel_H264_High_3_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4273791457189298, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_High_4_0: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_High_4_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3392924804981164, undefined, []);
+export const kVTProfileLevel_H264_High_4_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3392924804981164, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_High_4_1: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_High_4_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2430405870447478, undefined, []);
+export const kVTProfileLevel_H264_High_4_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2430405870447478, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_High_4_2: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_High_4_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4256892568821285, undefined, []);
+export const kVTProfileLevel_H264_High_4_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4256892568821285, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_High_5_0: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_High_5_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2428920741837049, undefined, []);
+export const kVTProfileLevel_H264_High_5_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2428920741837049, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_High_5_1: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_High_5_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2433887502857927, undefined, []);
+export const kVTProfileLevel_H264_High_5_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2433887502857927, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_High_5_2: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_High_5_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3504894728614763, undefined, []);
+export const kVTProfileLevel_H264_High_5_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3504894728614763, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_High_AutoLevel: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_High_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3633580064688445, undefined, []);
+export const kVTProfileLevel_H264_High_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3633580064688445, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Main_3_0: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Main_3_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2711178634020620, undefined, []);
+export const kVTProfileLevel_H264_Main_3_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2711178634020620, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Main_3_1: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Main_3_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3263376832356922, undefined, []);
+export const kVTProfileLevel_H264_Main_3_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3263376832356922, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Main_3_2: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Main_3_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3875511720759596, undefined, []);
+export const kVTProfileLevel_H264_Main_3_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3875511720759596, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Main_4_0: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Main_4_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1417650726310418, undefined, []);
+export const kVTProfileLevel_H264_Main_4_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1417650726310418, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Main_4_1: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Main_4_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3142690376018326, undefined, []);
+export const kVTProfileLevel_H264_Main_4_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3142690376018326, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Main_4_2: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Main_4_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2940532842565812, undefined, []);
+export const kVTProfileLevel_H264_Main_4_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2940532842565812, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Main_5_0: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Main_5_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3621764192247306, undefined, []);
+export const kVTProfileLevel_H264_Main_5_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3621764192247306, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Main_5_1: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Main_5_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4226171555084888, undefined, []);
+export const kVTProfileLevel_H264_Main_5_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4226171555084888, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Main_5_2: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Main_5_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 21806852677097, undefined, []);
+export const kVTProfileLevel_H264_Main_5_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 21806852677097, undefined, []);
 
 /**
  * let kVTProfileLevel_H264_Main_AutoLevel: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_H264_Main_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3858696338864463, undefined, []);
+export const kVTProfileLevel_H264_Main_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3858696338864463, undefined, []);
 
 /**
  * let kVTProfileLevel_HEVC_Main10_AutoLevel: CFString
  * @availability iOS 11.0+
  */
-export const kVTProfileLevel_HEVC_Main10_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4138905337456698, undefined, []);
+export const kVTProfileLevel_HEVC_Main10_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4138905337456698, undefined, []);
 
 /**
  * let kVTProfileLevel_HEVC_Main42210_AutoLevel: CFString
  * @availability iOS 15.4+
  */
-export const kVTProfileLevel_HEVC_Main42210_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3565650185668970, undefined, []);
+export const kVTProfileLevel_HEVC_Main42210_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3565650185668970, undefined, []);
 
 /**
  * let kVTProfileLevel_HEVC_Main_AutoLevel: CFString
  * @availability iOS 11.0+
  */
-export const kVTProfileLevel_HEVC_Main_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1887075336410295, undefined, []);
+export const kVTProfileLevel_HEVC_Main_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1887075336410295, undefined, []);
 
 /**
  * let kVTProfileLevel_HEVC_Monochrome10_AutoLevel: CFString
  * @availability iOS 13.0+
  */
-export const kVTProfileLevel_HEVC_Monochrome10_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2909049786636603, undefined, []);
+export const kVTProfileLevel_HEVC_Monochrome10_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2909049786636603, undefined, []);
 
 /**
  * let kVTProfileLevel_HEVC_Monochrome_AutoLevel: CFString
  * @availability iOS 11.0+
  */
-export const kVTProfileLevel_HEVC_Monochrome_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1433099322672803, undefined, []);
+export const kVTProfileLevel_HEVC_Monochrome_AutoLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1433099322672803, undefined, []);
 
 /**
  * let kVTProfileLevel_MP4V_AdvancedSimple_L0: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_MP4V_AdvancedSimple_L0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1315701363232646, undefined, []);
+export const kVTProfileLevel_MP4V_AdvancedSimple_L0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1315701363232646, undefined, []);
 
 /**
  * let kVTProfileLevel_MP4V_AdvancedSimple_L1: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_MP4V_AdvancedSimple_L1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1127148950215383, undefined, []);
+export const kVTProfileLevel_MP4V_AdvancedSimple_L1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1127148950215383, undefined, []);
 
 /**
  * let kVTProfileLevel_MP4V_AdvancedSimple_L2: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_MP4V_AdvancedSimple_L2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 573670889899073, undefined, []);
+export const kVTProfileLevel_MP4V_AdvancedSimple_L2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 573670889899073, undefined, []);
 
 /**
  * let kVTProfileLevel_MP4V_AdvancedSimple_L3: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_MP4V_AdvancedSimple_L3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1888381490359560, undefined, []);
+export const kVTProfileLevel_MP4V_AdvancedSimple_L3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1888381490359560, undefined, []);
 
 /**
  * let kVTProfileLevel_MP4V_AdvancedSimple_L4: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_MP4V_AdvancedSimple_L4: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2324244497055464, undefined, []);
+export const kVTProfileLevel_MP4V_AdvancedSimple_L4: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2324244497055464, undefined, []);
 
 /**
  * let kVTProfileLevel_MP4V_Main_L2: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_MP4V_Main_L2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 833475388716650, undefined, []);
+export const kVTProfileLevel_MP4V_Main_L2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 833475388716650, undefined, []);
 
 /**
  * let kVTProfileLevel_MP4V_Main_L3: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_MP4V_Main_L3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1411146085413683, undefined, []);
+export const kVTProfileLevel_MP4V_Main_L3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1411146085413683, undefined, []);
 
 /**
  * let kVTProfileLevel_MP4V_Main_L4: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_MP4V_Main_L4: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1590574292128786, undefined, []);
+export const kVTProfileLevel_MP4V_Main_L4: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1590574292128786, undefined, []);
 
 /**
  * let kVTProfileLevel_MP4V_Simple_L0: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_MP4V_Simple_L0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 852796714651005, undefined, []);
+export const kVTProfileLevel_MP4V_Simple_L0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 852796714651005, undefined, []);
 
 /**
  * let kVTProfileLevel_MP4V_Simple_L1: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_MP4V_Simple_L1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2228698336458187, undefined, []);
+export const kVTProfileLevel_MP4V_Simple_L1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2228698336458187, undefined, []);
 
 /**
  * let kVTProfileLevel_MP4V_Simple_L2: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_MP4V_Simple_L2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 490323702785270, undefined, []);
+export const kVTProfileLevel_MP4V_Simple_L2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 490323702785270, undefined, []);
 
 /**
  * let kVTProfileLevel_MP4V_Simple_L3: CFString
  * @availability iOS 8.0+
  */
-export const kVTProfileLevel_MP4V_Simple_L3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1950456109784906, undefined, []);
+export const kVTProfileLevel_MP4V_Simple_L3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1950456109784906, undefined, []);
 
 /**
  * let kVTProjectionKind_AppleImmersiveVideo: CFString
  * @availability iOS 27.0+
  */
-export const kVTProjectionKind_AppleImmersiveVideo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1940482144494648, undefined, []);
+export const kVTProjectionKind_AppleImmersiveVideo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1940482144494648, undefined, []);
 
 /**
  * let kVTProjectionKind_Equirectangular: CFString
  * @availability iOS 26.0+
  */
-export const kVTProjectionKind_Equirectangular: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 684578763805110, undefined, []);
+export const kVTProjectionKind_Equirectangular: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 684578763805110, undefined, []);
 
 /**
  * let kVTProjectionKind_HalfEquirectangular: CFString
  * @availability iOS 26.0+
  */
-export const kVTProjectionKind_HalfEquirectangular: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1689286319037871, undefined, []);
+export const kVTProjectionKind_HalfEquirectangular: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1689286319037871, undefined, []);
 
 /**
  * let kVTProjectionKind_ParametricImmersive: CFString
  * @availability iOS 26.0+
  */
-export const kVTProjectionKind_ParametricImmersive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3524139168799953, undefined, []);
+export const kVTProjectionKind_ParametricImmersive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3524139168799953, undefined, []);
 
 /**
  * let kVTProjectionKind_Rectilinear: CFString
  * @availability iOS 26.0+
  */
-export const kVTProjectionKind_Rectilinear: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2059227881765749, undefined, []);
+export const kVTProjectionKind_Rectilinear: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2059227881765749, undefined, []);
 
 /**
  * let kVTPropertyDocumentationKey: CFString
  * @availability iOS 8.0+
  */
-export const kVTPropertyDocumentationKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1306464711062017, undefined, []);
+export const kVTPropertyDocumentationKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1306464711062017, undefined, []);
 
 /**
  * let kVTPropertyReadWriteStatusKey: CFString
  * @availability iOS 8.0+
  */
-export const kVTPropertyReadWriteStatusKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2876526317572721, undefined, []);
+export const kVTPropertyReadWriteStatusKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2876526317572721, undefined, []);
 
 /**
  * let kVTPropertyReadWriteStatus_ReadOnly: CFString
  * @availability iOS 8.0+
  */
-export const kVTPropertyReadWriteStatus_ReadOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1790480969565011, undefined, []);
+export const kVTPropertyReadWriteStatus_ReadOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1790480969565011, undefined, []);
 
 /**
  * let kVTPropertyReadWriteStatus_ReadWrite: CFString
  * @availability iOS 8.0+
  */
-export const kVTPropertyReadWriteStatus_ReadWrite: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4144481267970176, undefined, []);
+export const kVTPropertyReadWriteStatus_ReadWrite: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4144481267970176, undefined, []);
 
 /**
  * let kVTPropertyShouldBeSerializedKey: CFString
  * @availability iOS 8.0+
  */
-export const kVTPropertyShouldBeSerializedKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1299295085047933, undefined, []);
+export const kVTPropertyShouldBeSerializedKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1299295085047933, undefined, []);
 
 /**
  * let kVTPropertySupportedValueListKey: CFString
  * @availability iOS 8.0+
  */
-export const kVTPropertySupportedValueListKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1762089046155866, undefined, []);
+export const kVTPropertySupportedValueListKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1762089046155866, undefined, []);
 
 /**
  * let kVTPropertySupportedValueMaximumKey: CFString
  * @availability iOS 8.0+
  */
-export const kVTPropertySupportedValueMaximumKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 783546075293065, undefined, []);
+export const kVTPropertySupportedValueMaximumKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 783546075293065, undefined, []);
 
 /**
  * let kVTPropertySupportedValueMinimumKey: CFString
  * @availability iOS 8.0+
  */
-export const kVTPropertySupportedValueMinimumKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4490740778372801, undefined, []);
+export const kVTPropertySupportedValueMinimumKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4490740778372801, undefined, []);
 
 /**
  * let kVTPropertyTypeKey: CFString
  * @availability iOS 8.0+
  */
-export const kVTPropertyTypeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1190525918168102, undefined, []);
+export const kVTPropertyTypeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1190525918168102, undefined, []);
 
 /**
  * let kVTPropertyType_Boolean: CFString
  * @availability iOS 8.0+
  */
-export const kVTPropertyType_Boolean: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4026020805966114, undefined, []);
+export const kVTPropertyType_Boolean: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4026020805966114, undefined, []);
 
 /**
  * let kVTPropertyType_Enumeration: CFString
  * @availability iOS 8.0+
  */
-export const kVTPropertyType_Enumeration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1294630498050772, undefined, []);
+export const kVTPropertyType_Enumeration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1294630498050772, undefined, []);
 
 /**
  * let kVTPropertyType_Number: CFString
  * @availability iOS 8.0+
  */
-export const kVTPropertyType_Number: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 928745638101908, undefined, []);
+export const kVTPropertyType_Number: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 928745638101908, undefined, []);
 
 /**
  * let kVTRotation_0: CFString
  * @availability iOS 16.0+
  */
-export const kVTRotation_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3163341993522535, undefined, []);
+export const kVTRotation_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3163341993522535, undefined, []);
 
 /**
  * let kVTRotation_180: CFString
  * @availability iOS 16.0+
  */
-export const kVTRotation_180: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 207146900183598, undefined, []);
+export const kVTRotation_180: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 207146900183598, undefined, []);
 
 /**
  * let kVTRotation_CCW90: CFString
  * @availability iOS 16.0+
  */
-export const kVTRotation_CCW90: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2211926796157202, undefined, []);
+export const kVTRotation_CCW90: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2211926796157202, undefined, []);
 
 /**
  * let kVTRotation_CW90: CFString
  * @availability iOS 16.0+
  */
-export const kVTRotation_CW90: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2058503812842220, undefined, []);
+export const kVTRotation_CW90: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2058503812842220, undefined, []);
 
 /**
  * let kVTSampleAttachmentKey_QualityMetrics: CFString
  * @availability iOS 17.4+
  */
-export const kVTSampleAttachmentKey_QualityMetrics: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3263586349000384, undefined, []);
+export const kVTSampleAttachmentKey_QualityMetrics: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3263586349000384, undefined, []);
 
 /**
  * let kVTSampleAttachmentKey_RequireLTRAcknowledgementToken: CFString
  * @availability iOS 15.0+
  */
-export const kVTSampleAttachmentKey_RequireLTRAcknowledgementToken: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4136041001677999, undefined, []);
+export const kVTSampleAttachmentKey_RequireLTRAcknowledgementToken: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4136041001677999, undefined, []);
 
 /**
  * let kVTSampleAttachmentQualityMetricsKey_ChromaBlueMeanSquaredError: CFString
  * @availability iOS 17.4+
  */
-export const kVTSampleAttachmentQualityMetricsKey_ChromaBlueMeanSquaredError: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1958316624978533, undefined, []);
+export const kVTSampleAttachmentQualityMetricsKey_ChromaBlueMeanSquaredError: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1958316624978533, undefined, []);
 
 /**
  * let kVTSampleAttachmentQualityMetricsKey_ChromaRedMeanSquaredError: CFString
  * @availability iOS 17.4+
  */
-export const kVTSampleAttachmentQualityMetricsKey_ChromaRedMeanSquaredError: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2413852414543007, undefined, []);
+export const kVTSampleAttachmentQualityMetricsKey_ChromaRedMeanSquaredError: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2413852414543007, undefined, []);
 
 /**
  * let kVTSampleAttachmentQualityMetricsKey_LumaMeanSquaredError: CFString
  * @availability iOS 17.4+
  */
-export const kVTSampleAttachmentQualityMetricsKey_LumaMeanSquaredError: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3458242510784355, undefined, []);
+export const kVTSampleAttachmentQualityMetricsKey_LumaMeanSquaredError: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3458242510784355, undefined, []);
 
 /**
  * let kVTScalingMode_CropSourceToCleanAperture: CFString
  * @availability iOS 9.0+
  */
-export const kVTScalingMode_CropSourceToCleanAperture: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3972866373917981, undefined, []);
+export const kVTScalingMode_CropSourceToCleanAperture: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3972866373917981, undefined, []);
 
 /**
  * let kVTScalingMode_Letterbox: CFString
  * @availability iOS 9.0+
  */
-export const kVTScalingMode_Letterbox: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3273846680984660, undefined, []);
+export const kVTScalingMode_Letterbox: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3273846680984660, undefined, []);
 
 /**
  * let kVTScalingMode_Normal: CFString
  * @availability iOS 9.0+
  */
-export const kVTScalingMode_Normal: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1434017971702440, undefined, []);
+export const kVTScalingMode_Normal: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1434017971702440, undefined, []);
 
 /**
  * let kVTScalingMode_Trim: CFString
  * @availability iOS 9.0+
  */
-export const kVTScalingMode_Trim: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3838756308761111, undefined, []);
+export const kVTScalingMode_Trim: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3838756308761111, undefined, []);
 
 /**
  * let kVTVideoDecoderSpecification_EnableHardwareAcceleratedVideoDecoder: CFString
  * @availability iOS 17.0+
  */
-export const kVTVideoDecoderSpecification_EnableHardwareAcceleratedVideoDecoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 1068611959712645, undefined, []);
+export const kVTVideoDecoderSpecification_EnableHardwareAcceleratedVideoDecoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 1068611959712645, undefined, []);
 
 /**
  * let kVTVideoDecoderSpecification_PreferredDecoderGPURegistryID: CFString
  * @availability iOS 11.3+
  */
-export const kVTVideoDecoderSpecification_PreferredDecoderGPURegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2711856716905081, undefined, []);
+export const kVTVideoDecoderSpecification_PreferredDecoderGPURegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2711856716905081, undefined, []);
 
 /**
  * let kVTVideoDecoderSpecification_RequireHardwareAcceleratedVideoDecoder: CFString
  * @availability iOS 17.0+
  */
-export const kVTVideoDecoderSpecification_RequireHardwareAcceleratedVideoDecoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2619606860181992, undefined, []);
+export const kVTVideoDecoderSpecification_RequireHardwareAcceleratedVideoDecoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2619606860181992, undefined, []);
 
 /**
  * let kVTVideoDecoderSpecification_RequiredDecoderGPURegistryID: CFString
  * @availability iOS 11.3+
  */
-export const kVTVideoDecoderSpecification_RequiredDecoderGPURegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3608980968655098, undefined, []);
+export const kVTVideoDecoderSpecification_RequiredDecoderGPURegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3608980968655098, undefined, []);
 
 /**
  * let kVTVideoEncoderListOption_IncludeStandardDefinitionDVEncoders: CFString
  * @availability iOS 15.0+
  */
-export const kVTVideoEncoderListOption_IncludeStandardDefinitionDVEncoders: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3208410595047804, undefined, []);
+export const kVTVideoEncoderListOption_IncludeStandardDefinitionDVEncoders: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3208410595047804, undefined, []);
 
 /**
  * let kVTVideoEncoderList_CodecName: CFString
  * @availability iOS 8.0+
  */
-export const kVTVideoEncoderList_CodecName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 685194532710622, undefined, []);
+export const kVTVideoEncoderList_CodecName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 685194532710622, undefined, []);
 
 /**
  * let kVTVideoEncoderList_CodecType: CFString
  * @availability iOS 8.0+
  */
-export const kVTVideoEncoderList_CodecType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4023627779519433, undefined, []);
+export const kVTVideoEncoderList_CodecType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4023627779519433, undefined, []);
 
 /**
  * let kVTVideoEncoderList_DisplayName: CFString
  * @availability iOS 8.0+
  */
-export const kVTVideoEncoderList_DisplayName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3259223088244014, undefined, []);
+export const kVTVideoEncoderList_DisplayName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3259223088244014, undefined, []);
 
 /**
  * let kVTVideoEncoderList_EncoderID: CFString
  * @availability iOS 8.0+
  */
-export const kVTVideoEncoderList_EncoderID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2236573333169902, undefined, []);
+export const kVTVideoEncoderList_EncoderID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2236573333169902, undefined, []);
 
 /**
  * let kVTVideoEncoderList_EncoderName: CFString
  * @availability iOS 8.0+
  */
-export const kVTVideoEncoderList_EncoderName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4025013377434874, undefined, []);
+export const kVTVideoEncoderList_EncoderName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4025013377434874, undefined, []);
 
 /**
  * let kVTVideoEncoderList_GPURegistryID: CFString
  * @availability iOS 13.0+
  */
-export const kVTVideoEncoderList_GPURegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2188162071360334, undefined, []);
+export const kVTVideoEncoderList_GPURegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2188162071360334, undefined, []);
 
 /**
  * let kVTVideoEncoderList_InstanceLimit: CFString
  * @availability iOS 13.0+
  */
-export const kVTVideoEncoderList_InstanceLimit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3856238878193440, undefined, []);
+export const kVTVideoEncoderList_InstanceLimit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3856238878193440, undefined, []);
 
 /**
  * let kVTVideoEncoderList_IsHardwareAccelerated: CFString
  * @availability iOS 13.0+
  */
-export const kVTVideoEncoderList_IsHardwareAccelerated: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3446010821948777, undefined, []);
+export const kVTVideoEncoderList_IsHardwareAccelerated: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3446010821948777, undefined, []);
 
 /**
  * let kVTVideoEncoderList_PerformanceRating: CFString
  * @availability iOS 13.0+
  */
-export const kVTVideoEncoderList_PerformanceRating: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4493207006287020, undefined, []);
+export const kVTVideoEncoderList_PerformanceRating: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4493207006287020, undefined, []);
 
 /**
  * let kVTVideoEncoderList_QualityRating: CFString
  * @availability iOS 13.0+
  */
-export const kVTVideoEncoderList_QualityRating: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3918063207486678, undefined, []);
+export const kVTVideoEncoderList_QualityRating: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3918063207486678, undefined, []);
 
 /**
  * let kVTVideoEncoderList_SupportedSelectionProperties: CFString
  * @availability iOS 13.0+
  */
-export const kVTVideoEncoderList_SupportedSelectionProperties: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 393166683084561, undefined, []);
+export const kVTVideoEncoderList_SupportedSelectionProperties: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 393166683084561, undefined, []);
 
 /**
  * let kVTVideoEncoderList_SupportsFrameReordering: CFString
  * @availability iOS 14.0+
  */
-export const kVTVideoEncoderList_SupportsFrameReordering: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 838853495580595, undefined, []);
+export const kVTVideoEncoderList_SupportsFrameReordering: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 838853495580595, undefined, []);
 
 /**
  * let kVTVideoEncoderSpecification_EnableHardwareAcceleratedVideoEncoder: CFString
  * @availability iOS 17.4+
  */
-export const kVTVideoEncoderSpecification_EnableHardwareAcceleratedVideoEncoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 386769779573194, undefined, []);
+export const kVTVideoEncoderSpecification_EnableHardwareAcceleratedVideoEncoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 386769779573194, undefined, []);
 
 /**
  * let kVTVideoEncoderSpecification_EnableLowLatencyRateControl: CFString
  * @availability iOS 14.5+
  */
-export const kVTVideoEncoderSpecification_EnableLowLatencyRateControl: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2442103342436138, undefined, []);
+export const kVTVideoEncoderSpecification_EnableLowLatencyRateControl: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2442103342436138, undefined, []);
 
 /**
  * let kVTVideoEncoderSpecification_EncoderID: CFString
  * @availability iOS 8.0+
  */
-export const kVTVideoEncoderSpecification_EncoderID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3423452394683485, undefined, []);
+export const kVTVideoEncoderSpecification_EncoderID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3423452394683485, undefined, []);
 
 /**
  * let kVTVideoEncoderSpecification_PreferredEncoderGPURegistryID: CFString
  * @availability iOS 13.0+
  */
-export const kVTVideoEncoderSpecification_PreferredEncoderGPURegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3251169703951790, undefined, []);
+export const kVTVideoEncoderSpecification_PreferredEncoderGPURegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3251169703951790, undefined, []);
 
 /**
  * let kVTVideoEncoderSpecification_RequireHardwareAcceleratedVideoEncoder: CFString
  * @availability iOS 17.4+
  */
-export const kVTVideoEncoderSpecification_RequireHardwareAcceleratedVideoEncoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 4500207485371049, undefined, []);
+export const kVTVideoEncoderSpecification_RequireHardwareAcceleratedVideoEncoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 4500207485371049, undefined, []);
 
 /**
  * let kVTVideoEncoderSpecification_RequiredEncoderGPURegistryID: CFString
  * @availability iOS 13.0+
  */
-export const kVTVideoEncoderSpecification_RequiredEncoderGPURegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 2442325579813736, undefined, []);
+export const kVTVideoEncoderSpecification_RequiredEncoderGPURegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 2442325579813736, undefined, []);
 
 /**
  * let kVTViewPackingKind_OverUnder: CFString
  * @availability iOS 26.0+
  */
-export const kVTViewPackingKind_OverUnder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 229651042250963, undefined, []);
+export const kVTViewPackingKind_OverUnder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 229651042250963, undefined, []);
 
 /**
  * let kVTViewPackingKind_SideBySide: CFString
  * @availability iOS 26.0+
  */
-export const kVTViewPackingKind_SideBySide: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_1f27952b3c5b81e6", 3947051115422170, undefined, []);
+export const kVTViewPackingKind_SideBySide: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("VideoToolbox_64b39a05e4a4cebd", 3947051115422170, undefined, []);
 
 /** var VT_SUPPORT_COLORSYNC_PIXEL_TRANSFER: Bool { get } */
-export const VT_SUPPORT_COLORSYNC_PIXEL_TRANSFER: boolean = callSDK<boolean>("VideoToolbox_1f27952b3c5b81e6", 3441707176076179, undefined, []);
+export const VT_SUPPORT_COLORSYNC_PIXEL_TRANSFER: boolean = callSDK<boolean>("VideoToolbox_64b39a05e4a4cebd", 3441707176076179, undefined, []);
 
-registerSDKClass("VideoToolbox.VTCompressionSession", VTCompressionSession, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {} });
-registerSDKClass("VideoToolbox.VTDecompressionOutputCallbackRecord", VTDecompressionOutputCallbackRecord, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {} });
-registerSDKClass("VideoToolbox.VTDecompressionSession", VTDecompressionSession, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {} });
-registerSDKClass("VTFrameProcessor", VTFrameProcessor, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {}, methods: {"endSession":{"id":2868896918800943},"processWithParameters":{"id":3317669247642648},"processParametersCompletionHandler":{"id":312605789840937,"hints":[null,{"callback":{"out":[]}}]},"startSession":{"id":1436274152911025},"processParameters":{"id":572129011950607}} });
+registerSDKClass("VideoToolbox.VTCompressionSession", VTCompressionSession, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("VideoToolbox.VTDecompressionOutputCallbackRecord", VTDecompressionOutputCallbackRecord, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("VideoToolbox.VTDecompressionSession", VTDecompressionSession, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("VTFrameProcessor", VTFrameProcessor, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {}, methods: {"endSession":{"id":2868896918800943},"processWithParameters":{"id":3317669247642648},"processParametersCompletionHandler":{"id":312605789840937,"hints":[null,{"callback":{"out":[]}}]},"startSession":{"id":1436274152911025},"processParameters":{"id":572129011950607}} });
 registerSDKProtocol("c:objc(pl)VTFrameProcessorConfiguration", {});
-registerSDKClass("VideoToolbox.VTFrameProcessorError", VTFrameProcessorError, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {} });
-registerSDKClass("VTFrameProcessorFrame", VTFrameProcessorFrame, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {"buffer":3415647503944369,"presentationTimeStamp":1615279671469759} });
-registerSDKClass("VideoToolbox.VTFrameProcessorFrame.ReadOnlyFrame", VTFrameProcessorFrame_ReadOnlyFrame, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {} });
-registerSDKClass("VTFrameProcessorOpticalFlow", VTFrameProcessorOpticalFlow, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {"backwardFlow":1735736087226698,"forwardFlow":1162151319266806} });
+registerSDKClass("VideoToolbox.VTFrameProcessorError", VTFrameProcessorError, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("VTFrameProcessorFrame", VTFrameProcessorFrame, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {"buffer":3415647503944369,"presentationTimeStamp":1615279671469759} });
+registerSDKClass("VideoToolbox.VTFrameProcessorFrame.ReadOnlyFrame", VTFrameProcessorFrame_ReadOnlyFrame, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("VTFrameProcessorOpticalFlow", VTFrameProcessorOpticalFlow, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {"backwardFlow":1735736087226698,"forwardFlow":1162151319266806} });
 registerSDKProtocol("c:objc(pl)VTFrameProcessorParameters", {});
-registerSDKClass("VideoToolbox.VTFrameSilo", VTFrameSilo, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {} });
-registerSDKClass("VideoToolbox.VTInt32Point", VTInt32Point, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {} });
-registerSDKClass("VideoToolbox.VTInt32Size", VTInt32Size, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {} });
-registerSDKClass("VideoToolbox.VTMotionEstimationSession", VTMotionEstimationSession, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {}, methods: {"motion":{"id":2931279491376729}} });
-registerSDKClass("VideoToolbox.VTMotionEstimationSession.Motion", VTMotionEstimationSession_Motion, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {} });
-registerSDKClass("VideoToolbox.VTMultiPassStorage", VTMultiPassStorage, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {} });
-registerSDKClass("VideoToolbox.VTPixelRotationSession", VTPixelRotationSession, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {} });
-registerSDKClass("VideoToolbox.VTPixelTransferSession", VTPixelTransferSession, { module: "VideoToolbox_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("VideoToolbox.VTFrameSilo", VTFrameSilo, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("VideoToolbox.VTInt32Point", VTInt32Point, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("VideoToolbox.VTInt32Size", VTInt32Size, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("VideoToolbox.VTMotionEstimationSession", VTMotionEstimationSession, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {}, methods: {"motion":{"id":2931279491376729}} });
+registerSDKClass("VideoToolbox.VTMotionEstimationSession.Motion", VTMotionEstimationSession_Motion, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("VideoToolbox.VTMultiPassStorage", VTMultiPassStorage, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("VideoToolbox.VTPixelRotationSession", VTPixelRotationSession, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("VideoToolbox.VTPixelTransferSession", VTPixelTransferSession, { module: "VideoToolbox_64b39a05e4a4cebd", properties: {} });
