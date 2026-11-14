@@ -65,6 +65,7 @@ def main():
     parser.add_argument('--os', required=True)
     parser.add_argument('--commit', required=True)
     parser.add_argument('--app', action='append', required=True, help='engine=/absolute/path/App.app')
+    parser.add_argument('--order', choices=['alternating', 'balanced'], default='alternating')
     parser.add_argument('--runs', type=int, default=10)
     parser.add_argument('--timeout', type=int, default=180)
     parser.add_argument('--cooldown', type=float, default=10)
@@ -88,7 +89,7 @@ def main():
         parser.error('positive run count and distinct engines required')
     args.out.mkdir(parents=True, exist_ok=False)
     args.lock.parent.mkdir(parents=True, exist_ok=True)
-    metadata = dict(device=f'{args.device_name} simulator ({args.host})' if args.simulator else args.device_name, udid=args.device or args.simulator, target='simulator' if args.simulator else 'device', host=args.host, cooldownSeconds=args.cooldown, os=args.os, commit=args.commit, runs=args.runs,
+    metadata = dict(device=f'{args.device_name} simulator ({args.host})' if args.simulator else args.device_name, udid=args.device or args.simulator, target='simulator' if args.simulator else 'device', host=args.host, order=args.order, cooldownSeconds=args.cooldown, os=args.os, commit=args.commit, runs=args.runs,
                     method='Release · alternating engines · process-cold launches · warm OS caches · no debugger',
                     apps=[dict(engine=e, path=str(p), bundle=b) for e, p, b in apps])
     (args.out / 'manifest.json').write_text(json.dumps(metadata, indent=2))
@@ -98,7 +99,7 @@ def main():
         fcntl.flock(lock, fcntl.LOCK_EX)
         installed = {}
         for run in range(args.runs):
-            order = apps if run % 2 == 0 else list(reversed(apps))
+            order = apps if args.order == 'alternating' or run % 2 == 0 else list(reversed(apps))
             for engine, app, bundle in order:
                 if installed.get(bundle) != engine:
                     receipt = command(['xcrun', 'simctl', 'install', args.simulator, str(app)] if args.simulator else ['xcrun', 'devicectl', 'device', 'install', 'app', '--device', args.device, str(app)], timeout=300)
