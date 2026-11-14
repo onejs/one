@@ -92,6 +92,7 @@
 #include "JFunc_void_std__optional_std__string_.hpp"
 #include <NitroModules/DefaultConstructableObject.hpp>
 #include "HybridOneCrypto.hpp"
+#include "HybridOneZero.hpp"
 #include "HybridOneStorage.hpp"
 
 namespace margelo::nitro::one {
@@ -664,6 +665,15 @@ void registerAllNatives() {
     "OneProtectedStore",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneProtectedStoreSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneZero",
+    []() -> std::shared_ptr<HybridObject> {
+      static_assert(std::is_default_constructible_v<HybridOneZero>,
+                    "The HybridObject \"HybridOneZero\" is not default-constructible! "
+                    "Create a public constructor that takes zero arguments to be able to autolink this HybridObject.");
+      return std::make_shared<HybridOneZero>();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

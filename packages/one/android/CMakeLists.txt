@@ -8,6 +8,7 @@ set(PACKAGE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..)
 set(CPP_DIR ${PACKAGE_DIR}/cpp)
 set(JNI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp)
 
+find_package(op-sqlite REQUIRED CONFIG)
 find_package(fbjni REQUIRED CONFIG)
 find_package(ReactAndroid REQUIRED CONFIG)
 find_package(react-native-worklets REQUIRED CONFIG)
@@ -23,15 +24,19 @@ add_library(
   ${JNI_DIR}/OneNativeSyncJni.cpp
   ${JNI_DIR}/OneStorageDirectory.cpp
   ${CPP_DIR}/OneNativeSyncHost.cpp
+  ${CPP_DIR}/HybridOneZero.cpp
+  ${CPP_DIR}/zero/Client.cpp
   ${CPP_DIR}/HybridOneStorage.cpp
   ${CPP_DIR}/HybridOneCrypto.cpp)
 
-target_include_directories(One PRIVATE ${CPP_DIR} ${JNI_DIR})
+get_target_property(OP_SQLITE_INCLUDE_DIR op-sqlite::op-sqlite INTERFACE_INCLUDE_DIRECTORIES)
+target_include_directories(One PRIVATE ${CPP_DIR} ${JNI_DIR} "${OP_SQLITE_INCLUDE_DIR}/op-engineering_op-sqlite")
 
 include(${CMAKE_SOURCE_DIR}/../nitrogen/generated/android/One+autolinking.cmake)
 
 target_link_libraries(
   One
+  op-sqlite::op-sqlite
   fbjni::fbjni
   ReactAndroid::jsi
   ReactAndroid::reactnative

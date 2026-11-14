@@ -63,6 +63,7 @@ Pod::Spec.new do |s|
   # nitro bridge types its c++ section names; every unit gets them first.
   s.prefix_header_contents = "#ifdef __OBJC__\n#import <React/RCTView.h>\n#import <UserNotifications/UserNotifications.h>\n#import <Social/Social.h>\n#endif\n#ifdef __cplusplus\n#include \"OneSDKBridge.h\"\n#include \"One-Swift-Cxx-Bridge.hpp\"\n#endif"
 
+  s.dependency 'op-sqlite', '18.2.5'
   s.dependency 'RNWorklets'
   # webp encoding has no system encoder on ios; expo-image-manipulator uses the same coder.
   s.dependency 'SDWebImageWebPCoder'

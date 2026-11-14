@@ -172,6 +172,7 @@ dependencies {
         implementation "com.google.maps.android:maps-compose:6.10.0"
         implementation "androidx.lifecycle:lifecycle-runtime:2.9.3"
     }
+    implementation project(":op-engineering_op-sqlite")
     implementation project(":react-native-nitro-modules")
     // firebase messaging only when the app opted into push via the manifest
     // flag; without it nothing here references it, which is what keeps it
