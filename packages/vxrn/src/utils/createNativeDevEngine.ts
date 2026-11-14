@@ -1041,6 +1041,12 @@ export async function createNativeDevEngine(
 
     plugins: [
       virtualEntry.plugin,
+      {
+        name: 'vxrn:native-output-tracker',
+        generateBundle() {
+          generatedOutputs++
+        },
+      },
       ...getNativePlugins(
         root,
         platform,
@@ -1085,11 +1091,20 @@ try {
 `,
   }
 
-  // rolldown does not await this callback, so `ensureLatestBuildOutput()`
-  // resolves while the emitted chunk is still being post-processed and
-  // `currentBundle` still holds the previous build. anything that has to see
-  // the finished bundle waits on this too.
-  let outputProcessed: Promise<void> = Promise.resolve()
+  // rolldown does not await onOutput, and delivers it on its own tick, so
+  // `ensureLatestBuildOutput()` can resolve before onOutput has even started
+  // and `currentBundle` still holds the previous build. generateBundle runs
+  // inside the build, before that promise resolves, so counting it there lets
+  // anything that needs the finished bundle wait for every generated output.
+  let generatedOutputs = 0
+  let processedOutputs = 0
+  let outputWaiters: Array<() => void> = []
+  const outputsProcessed = (): Promise<void> =>
+    processedOutputs >= generatedOutputs
+      ? Promise.resolve()
+      : new Promise<void>((resolve) => {
+          outputWaiters.push(resolve)
+        })
 
   let engine: Awaited<ReturnType<typeof dev>>
   let routeWatcher: FSWatcher | undefined
@@ -1115,14 +1130,15 @@ try {
 
   engine = await dev(inputOptions, outputOptions, {
     onOutput: async (result) => {
-      let finishOutput = () => {}
-      outputProcessed = new Promise<void>((resolve) => {
-        finishOutput = resolve
-      })
       try {
         await handleOutput(result)
       } finally {
-        finishOutput()
+        if (!(result instanceof Error)) processedOutputs++
+        if (processedOutputs >= generatedOutputs) {
+          const waiters = outputWaiters
+          outputWaiters = []
+          for (const resolve of waiters) resolve()
+        }
       }
     },
 
@@ -1315,7 +1331,7 @@ try {
         await engine.triggerFullBuild()
       }
       await engine.ensureLatestBuildOutput()
-      await outputProcessed
+      await outputsProcessed()
     })
     if (currentBundle) return currentBundle
     if (firstBuildError) throw firstBuildError
@@ -1352,7 +1368,7 @@ try {
       // calling ensureLatestBuildOutput() here would kick off a full bundle
       // rebuild that blocks WatchEvent HMR tasks and replaces the map before
       // the device has reloaded.
-      await outputProcessed
+      await outputsProcessed()
       if (currentBundle) return currentBundle.map
       return (await getBundle()).map
     },
