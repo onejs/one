@@ -55,6 +55,7 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = link.merge('CLANG_CXX_LANGUAGE_STANDARD' => 'c++20')
   s.user_target_xcconfig = link
   install_modules_dependencies(s)
-  s.dependency 'React-jsitooling'
+  # with use_frameworks, react/runtime headers live in the JSITooling framework
+  add_dependency(s, 'React-jsitooling', framework_name: 'JSITooling')
   s.dependency 'React-cxxreact'
 end
