@@ -1,4 +1,4 @@
-import type { ClientState, DesiredQuery, Engine, JSONValue, Mutation, Mutators, Query, Schema, Transport } from './types';
+import type { ClientState, DesiredQuery, Engine, JSONValue, MaterializedView, Mutation, Mutators, Query, Schema, Transport } from './types';
 export type NativeZeroOptions = {
     engine: Engine;
     schema: Schema;
@@ -15,6 +15,11 @@ export declare class NativeZero {
     private abort;
     private subscriptions;
     private mutators;
+    private views;
+    private desiredViews;
+    private manualQueries?;
+    private managesQueries;
+    private queryRefreshQueued;
     constructor(options: NativeZeroOptions);
     private enqueue;
     private synchronize;
@@ -30,6 +35,10 @@ export declare class NativeZero {
     pull(queries?: readonly DesiredQuery[]): Promise<void>;
     push(): Promise<void>;
     subscribe(query: Query, listener: (value: unknown) => void): () => void;
+    materialize<T = unknown>(query: Query, options?: {
+        hash?: string;
+    }): MaterializedView<T>;
+    private refreshQueries;
     private report;
     private publish;
     close(): Promise<void>;

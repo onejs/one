@@ -46,6 +46,20 @@ unsubscribe()
 await client.close()
 ```
 
+`materialize(query, { hash })` returns a view with `data`, `addListener` and
+`destroy`. A pinned Zero builder supplies its own hash, so `{ hash }` is optional
+for those queries. Active views share desired-query registrations by hash;
+destroying the last view removes its registration on the next pull. Registration
+changes schedule a pull when a transport is configured. Explicit desired queries
+passed to `pull(queries)` remain registered independently of active views.
+
+Listeners receive `(data, resultType, error?)`. Cached data starts as `unknown`;
+only the server's got-query acknowledgement marks it `complete`. Query errors
+and acknowledgements persist atomically with the rows and cursor, including
+responses with no row changes. This is the first materialization interface, not
+yet a drop-in Zero view: TTL retention, custom view factories and named-query
+resolution through an application context remain unimplemented.
+
 Queries accept the pinned Zero builder's `ast` and `format`. Mutators receive
 `tx.run(query)` and `tx.mutate[table].insert/upsert/update/delete(row)`. The factory
 is asynchronous. `state()` and `pending()` expose durable sync state. Push success
@@ -132,10 +146,12 @@ adoption decisions and additional compatibility work.
 | Process exits during an uncommitted write                                                                    | Native driver integration                               |
 | Local work during a stalled pull, duplicate insert, partial upsert, server drift, schema change and recovery fencing | Native driver integration |
 | Wrapped Orez application errors and durable desired queries                                                  | Local HTTP integration                                  |
+| Materialized cached/optimistic data, query registration/refcounts, completion, query errors, rollback and disposal | Native driver integration and real HTTP got-query normalization |
 | Filters, UTF-8 ordering, limits, cursors, null/JSON, singular results, related queries and correlated EXISTS | 18 cases compared with the pinned Zero executable       |
 | Team Machine schema, session/message queries, original message.send replay, session.stop and durable reopen                  | Consumer-source probe through Nitro/Hermes on iOS, recorded with the experiment task |
 | Existing React provider and hooks, live reconnect and mobile screens                                         | Pending                                                 |
-| Android app packaging, cloud encrypted transport and multiple identity/client adoption                       | Pending                                                 |
+| One Android consumer native compilation and APK packaging                                                    | Android Native Build CI                                  |
+| Android native Zero runtime, cloud encrypted transport and multiple identity/client adoption                 | Pending                                                 |
 | Pinned upstream WebSocket protocol, storage recovery and full upstream suite                                 | Pending                                                 |
 | Production device performance and binary-size comparison                                                     | Pending                                                 |
 
@@ -148,8 +164,9 @@ the complete One CocoaPods target or the consumer application's UI builds.
 while retaining the same native engine and bridge.
 
 Unsupported Unicode ILIKE and hidden relationship flattening throw explicitly.
-There is no automatic wake/reconnect scheduling, query materialization API or
-drop-in `on-zero` provider yet. Subscriptions requery after commits; this slice
+There is no automatic wake/reconnect scheduling or drop-in `on-zero` provider
+yet. The materialization interface lacks TTL retention and custom view factories.
+Subscriptions requery after commits; this slice
 has expression indexes for primary keys and relationship destination fields,
 but no incremental view maintenance. Unchanged pulls skip rebuilding the view;
 changed pulls still copy the full server snapshot and replay pending callbacks.

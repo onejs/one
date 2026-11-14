@@ -289,6 +289,8 @@ struct Client::Impl {
         setMeta("cookie", Json());
         setMeta("queries", Json::Array{});
         setMeta("needsRebase", true);
+        setMeta("completedQueries", Json::Array{});
+        setMeta("queryErrors", Json::Object{});
       }
       std::set<std::string> indexExpressions;
       const auto indexFields = [&](const std::string& name, const Json::Array& fields) {
@@ -322,6 +324,8 @@ struct Client::Impl {
       if (meta("cookie").null()) setMeta("cookie", Json());
       if (meta("queryVersion").null()) setMeta("queryVersion", 0);
       if (meta("queries").null()) setMeta("queries", Json::Array{});
+      if (meta("completedQueries").null()) setMeta("completedQueries", Json::Array{});
+      if (meta("queryErrors").null()) setMeta("queryErrors", Json::Object{});
       sql(db, "COMMIT");
     } catch (...) {
       sqlite3_close_v2(db);
@@ -638,7 +642,9 @@ struct Client::Impl {
                         {"lastMutationID", meta("lastMutationID")},
                         {"queryVersion", meta("queryVersion")},
                         {"queries", meta("queries")},
-                        {"recoveryRequired", meta("recoveryRequired")}};
+                        {"recoveryRequired", meta("recoveryRequired")},
+                        {"completedQueries", meta("completedQueries")},
+                        {"queryErrors", meta("queryErrors")}};
   }
   void begin(const std::string& kind) {
     if (!transaction.empty()) throw std::runtime_error("a native transaction is already active");
@@ -725,12 +731,19 @@ struct Client::Impl {
         bool changed = ack != previousAck ||
                        (response.has("rowsPatch") && !response.at("rowsPatch").items().empty()) ||
                        meta("needsRebase") == Json(true);
+        const Json previousCompleted = meta("completedQueries");
+        const Json previousErrors = meta("queryErrors");
+        Json::Object errors = previousErrors.fields();
+        std::set<std::string> completed;
+        for (const auto& hash : previousCompleted.items()) completed.insert(hash.string());
         if (response.has("rowsPatch")) {
           for (const Json& patch : response.at("rowsPatch").items()) {
             std::string kind = patch.at("op").string();
-            if (kind == "clear")
+            if (kind == "clear") {
               sql(db, "DELETE FROM one_zero_base");
-            else if (kind == "put" || kind == "del") {
+              completed.clear();
+              errors.clear();
+            } else if (kind == "put" || kind == "del") {
               if (!serverTables.contains(patch.at("tableName").string())) continue;
               auto [name, row] = mapServerRow(patch.at("tableName").string(),
                                               patch.at(kind == "put" ? "value" : "id"));
@@ -776,6 +789,35 @@ struct Client::Impl {
               throw std::runtime_error("unsupported row patch: " + kind);
           }
         }
+        if (response.has("gotQueriesPatch")) {
+          for (const auto& patch : response.at("gotQueriesPatch").items()) {
+            const std::string kind = patch.at("op").string();
+            if (kind == "clear") {
+              completed.clear();
+              errors.clear();
+            } else if (kind == "put") {
+              completed.insert(patch.at("hash").string());
+              errors.erase(patch.at("hash").string());
+            } else if (kind == "del") {
+              completed.erase(patch.at("hash").string());
+              errors.erase(patch.at("hash").string());
+            } else
+              throw std::runtime_error("unsupported completed query patch: " + kind);
+          }
+        }
+        if (response.has("queryErrors")) {
+          for (const auto& error : response.at("queryErrors").items()) {
+            const std::string hash = error.at("hash").string();
+            completed.erase(hash);
+            errors.insert_or_assign(hash, error.at("message").string());
+          }
+        }
+        Json::Array completedValues;
+        for (const auto& hash : completed) completedValues.emplace_back(hash);
+        Json nextCompleted(std::move(completedValues));
+        setMeta("completedQueries", nextCompleted);
+        Json nextErrors(std::move(errors));
+        setMeta("queryErrors", nextErrors);
         if (changed) {
           sql(db, "DELETE FROM one_zero_view");
           sql(db, "INSERT INTO one_zero_view SELECT * FROM one_zero_base");
@@ -785,7 +827,8 @@ struct Client::Impl {
         setMeta("needsRebase", false);
         return Json::Object{{"transaction", transaction},
                             {"pending", changed ? pending() : Json(Json::Array{})},
-                            {"changed", changed}};
+                            {"changed", changed || nextCompleted != previousCompleted ||
+                                            nextErrors != previousErrors}};
       } catch (...) {
         rollback();
         throw;

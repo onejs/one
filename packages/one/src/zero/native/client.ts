@@ -4,17 +4,21 @@ import type {
   Engine,
   Format,
   JSONValue,
+  MaterializedView,
   Mutation,
   Mutator,
   Mutators,
   PullResponse,
   Query,
+  QueryError,
+  QueryResultType,
   Schema,
   TableMutations,
   Transaction,
   Transport,
   WriteKind,
 } from './types'
+import { NativeView } from './view'
 
 export type NativeZeroOptions = {
   engine: Engine
@@ -26,7 +30,9 @@ export type NativeZeroOptions = {
 
 type Subscription = {
   query: Query
-  listener: (value: unknown) => void
+  listener: (value: unknown, resultType: QueryResultType, error?: QueryError) => void
+  hash?: string
+  onError?: (error: QueryError) => void
   previous?: string
   published?: boolean
   active: boolean
@@ -65,6 +71,11 @@ export class NativeZero {
   private abort = new AbortController()
   private subscriptions = new Set<Subscription>()
   private mutators = new Map<string, Mutator>()
+  private views = new Set<NativeView<unknown>>()
+  private desiredViews = new Map<string, { desired: DesiredQuery; count: number }>()
+  private manualQueries?: readonly DesiredQuery[]
+  private managesQueries = false
+  private queryRefreshQueued = false
 
   constructor(private options: NativeZeroOptions) {
     const register = (mutators: Mutators, prefix: string) => {
@@ -239,12 +250,32 @@ export class NativeZero {
   }
 
   pull(queries?: readonly DesiredQuery[]): Promise<void> {
+    const captured: readonly DesiredQuery[] | undefined =
+      queries === undefined ? undefined : JSON.parse(serialize({ queries })).queries
     return this.synchronize(async () => {
       const transport = this.options.transport
       if (!transport) throw new Error('Native Zero transport is not configured')
-      const state = await this.enqueue(() =>
-        this.request<ClientState>({ op: 'setQueries', queries })
-      )
+      if (captured !== undefined) {
+        if (new Set(captured.map((query) => query.hash)).size !== captured.length)
+          throw new Error('desired queries require distinct nonempty hashes')
+        this.manualQueries = captured
+        this.managesQueries = true
+      }
+      const state = await this.enqueue(() => {
+        const desired = this.managesQueries
+          ? new Map((this.manualQueries ?? []).map((query) => [query.hash, query]))
+          : undefined
+        for (const [hash, view] of this.desiredViews) {
+          const manual = desired!.get(hash)
+          if (manual && serialize(manual) !== serialize(view.desired))
+            throw new Error('Native Zero query hash refers to different queries')
+          desired!.set(hash, view.desired)
+        }
+        return this.request<ClientState>({
+          op: 'setQueries',
+          queries: desired ? [...desired.values()] : undefined,
+        })
+      })
       const response = await transport.pull(state, state.queries, this.abort.signal)
       await this.enqueue(() => this.applyPull(response, state))
     })
@@ -277,6 +308,59 @@ export class NativeZero {
     }
   }
 
+  materialize<T = unknown>(
+    query: Query,
+    options: { hash?: string } = {}
+  ): MaterializedView<T> {
+    if (this.closed) throw new Error('Native Zero client is closed')
+    const hash = options.hash ?? query.hash?.()
+    if (!hash) throw new Error('Native Zero materialization requires a query hash')
+    const captured = JSON.parse(
+      serialize({ ast: query.ast, format: query.format })
+    ) as Query
+    const desired: DesiredQuery = { hash, ast: captured.ast }
+    const existing = this.desiredViews.get(hash)
+    if (existing && serialize(existing.desired) !== serialize(desired))
+      throw new Error('Native Zero query hash refers to different queries')
+    this.managesQueries = true
+    this.desiredViews.set(hash, { desired, count: (existing?.count ?? 0) + 1 })
+    const subscription: Subscription = {
+      query: captured,
+      hash,
+      active: true,
+      listener: (data, resultType, error) => view.update(data as T, resultType, error),
+      onError: (error) => view.update(view.data, 'error', error),
+    }
+    const view = new NativeView<T>(
+      (captured.format?.singular ? undefined : []) as T,
+      () => {
+        subscription.active = false
+        this.subscriptions.delete(subscription)
+        this.views.delete(view as NativeView<unknown>)
+        const registered = this.desiredViews.get(hash)!
+        if (--registered.count === 0) this.desiredViews.delete(hash)
+        this.refreshQueries()
+      },
+      (error) => this.report(error)
+    )
+    this.views.add(view as NativeView<unknown>)
+    this.subscriptions.add(subscription)
+    void this.enqueue(() => this.publish([subscription])).catch((error) =>
+      this.report(error)
+    )
+    this.refreshQueries()
+    return view
+  }
+
+  private refreshQueries() {
+    if (this.closed || !this.options.transport || this.queryRefreshQueued) return
+    this.queryRefreshQueued = true
+    queueMicrotask(() => {
+      this.queryRefreshQueued = false
+      if (!this.closed) void this.pull().catch((error) => this.report(error))
+    })
+  }
+
   private report(error: unknown) {
     queueMicrotask(() => {
       if (this.options.onError) this.options.onError(error)
@@ -285,11 +369,25 @@ export class NativeZero {
   }
 
   private async publish(subscriptions: Iterable<Subscription> = this.subscriptions) {
-    for (const subscription of subscriptions) {
+    const entries = [...subscriptions]
+    const state = entries.some((subscription) => subscription.hash)
+      ? await this.request<ClientState>({ op: 'state' })
+      : undefined
+    const complete = new Set(state?.completedQueries)
+    const errors = new Map(Object.entries(state?.queryErrors ?? {}))
+    for (const subscription of entries) {
       if (!subscription.active || this.closed) continue
       try {
         const value = await this.query(subscription.query)
-        const serialized = JSON.stringify(value)
+        const message = subscription.hash ? errors.get(subscription.hash) : undefined
+        const error: QueryError | undefined =
+          message === undefined ? undefined : { error: 'app', message }
+        const resultType: QueryResultType = error
+          ? 'error'
+          : subscription.hash && complete.has(subscription.hash)
+            ? 'complete'
+            : 'unknown'
+        const serialized = JSON.stringify([value, resultType, error])
         if (
           !subscription.active ||
           this.closed ||
@@ -298,9 +396,14 @@ export class NativeZero {
           continue
         subscription.previous = serialized
         subscription.published = true
-        subscription.listener(value)
+        subscription.listener(value, resultType, error)
       } catch (error) {
-        this.report(error)
+        if (subscription.onError)
+          subscription.onError({
+            error: 'app',
+            message: error instanceof Error ? error.message : String(error),
+          })
+        else this.report(error)
       }
     }
   }
@@ -309,6 +412,7 @@ export class NativeZero {
     if (this.closing) return this.closing
     this.closed = true
     this.abort.abort()
+    for (const view of [...this.views]) view.destroy()
     this.subscriptions.clear()
     this.closing = this.tail.then(() => this.options.engine.close())
     return this.closing

@@ -443,6 +443,124 @@ console.log(
   'review regressions passed: nonblocking sync, CRUD merge/no-op, server drift, schema rebase, error handling and recovery fencing'
 )
 
+const viewPath = join(folder, 'views.sqlite')
+engine = new ProcessEngine(viewPath)
+await engine.ready
+let viewResponse: PullResponse = {
+  cookie: 'views-1',
+  rowsPatch: [put('message', message('server', 1, 'view snapshot'))],
+  gotQueriesPatch: [{ op: 'put', hash: 'live-messages' }],
+}
+const viewRequests: readonly import('../../src/zero/native/types').DesiredQuery[][] = []
+const viewErrors: unknown[] = []
+client = new NativeZero({
+  engine,
+  schema,
+  mutators,
+  onError: (error) => viewErrors.push(error),
+  transport: {
+    async pull(_state, queries) {
+      ;(viewRequests as import('../../src/zero/native/types').DesiredQuery[][]).push([
+        ...queries,
+      ])
+      return viewResponse
+    },
+    async push() {},
+  },
+})
+const view = client.materialize<Row[]>(messages, { hash: 'live-messages' })
+assert.deepEqual(view.data, [])
+const viewEvents: { data: Row[]; type: string; message?: string }[] = []
+let viewReady!: () => void
+const viewComplete = new Promise<void>((resolve) => {
+  viewReady = resolve
+})
+view.addListener((data, type, error) => {
+  viewEvents.push({ data, type, message: error?.message })
+  if (type === 'complete') viewReady()
+})
+await viewComplete
+assert.equal(viewEvents[0].type, 'unknown')
+assert.equal(view.data[0].body, 'view snapshot')
+const sharedView = client.materialize<Row[]>({ ...messages, hash: () => 'live-messages' })
+assert.throws(
+  () => client.materialize({ ast: { table: 'session' } }, { hash: 'live-messages' }),
+  /different queries/
+)
+await client.mutate('send', { id: 'view-local', text: 'optimistic view' })
+assert.equal(view.data[1].body, 'optimistic view')
+viewResponse = {
+  cookie: 'views-2',
+  queryErrors: [{ hash: 'live-messages', message: 'query denied' }],
+}
+await client.pull()
+assert.equal(viewEvents.at(-1)?.type, 'error')
+assert.equal(viewEvents.at(-1)?.message, 'query denied')
+assert.equal(view.data[1].body, 'optimistic view')
+viewResponse = {
+  cookie: 'views-3',
+  gotQueriesPatch: [{ op: 'put', hash: 'live-messages' }],
+}
+await client.pull()
+assert.equal(viewEvents.at(-1)?.type, 'complete')
+assert.equal(view.data[1].body, 'optimistic view')
+rejectReplay = true
+viewResponse = {
+  cookie: 'views-failed',
+  rowsPatch: [put('message', message('bad-rebase', 3, 'must roll back'))],
+  gotQueriesPatch: [{ op: 'del', hash: 'live-messages' }],
+}
+await assert.rejects(client.pull(), /replay deliberately failed/)
+rejectReplay = false
+assert.equal((await client.state()).cookie, 'views-3')
+assert.deepEqual((await client.state()).completedQueries, ['live-messages'])
+assert.equal(viewEvents.at(-1)?.type, 'complete')
+viewResponse = { cookie: 'views-4' }
+await client.pull([{ hash: 'manual-messages', ast: messages.ast }])
+sharedView.destroy()
+await client.pull()
+assert.deepEqual(
+  viewRequests
+    .at(-1)
+    ?.map((query) => query.hash)
+    .sort(),
+  ['live-messages', 'manual-messages']
+)
+const beforeDestroy = viewEvents.length
+view.destroy()
+view.destroy()
+await client.pull()
+assert.deepEqual(
+  viewRequests.at(-1)?.map((query) => query.hash),
+  ['manual-messages']
+)
+assert.equal(viewEvents.length, beforeDestroy)
+assert.deepEqual(viewErrors, [])
+await client.close()
+engine = new ProcessEngine(viewPath)
+await engine.ready
+client = new NativeZero({ engine, schema, mutators })
+const reopenedView = client.materialize<Row[]>(messages, { hash: 'live-messages' })
+let reopenedType = 'unknown'
+reopenedView.addListener((_data, type) => {
+  reopenedType = type
+})
+await client.state()
+assert.equal(reopenedType, 'complete')
+assert.equal(reopenedView.data[1].body, 'optimistic view')
+let inheritedHashType = 'pending'
+const inheritedHashView = client.materialize<Row[]>(messages, { hash: 'toString' })
+inheritedHashView.addListener((_data, type) => {
+  inheritedHashType = type
+})
+await client.state()
+assert.equal(inheritedHashType, 'unknown')
+await client.close()
+assert.throws(() => reopenedView.addListener(() => {}), /destroyed/)
+console.log(
+  'materialized views passed: query registration/refcounts, optimistic data, completion/error-only pulls, rollback, disposal and durable reopen'
+)
+
 const requests: { version: number; patch: unknown[] }[] = []
 let acknowledgement = 0
 let rejectPush = false
@@ -479,6 +597,12 @@ const server = createServer(async (request, reply) => {
           put('message', message('server', 1, 'HTTP snapshot')),
         ],
         lastMutationIDChanges: { 'integration-client': acknowledgement },
+        gotQueries: {
+          version: body.queries.version,
+          patch: body.queries.patch
+            .filter((query: { op: string }) => query.op === 'put')
+            .map((query: { hash: string }) => ({ op: 'put', hash: query.hash })),
+        },
       })
     )
   }
@@ -502,6 +626,7 @@ try {
     transport: createOrezTransport(httpOptions),
   })
   await client.pull([{ hash: 'messages', ast: messages.ast }])
+  assert.deepEqual((await client.state()).completedQueries, ['messages'])
   await client.mutate('send', { id: 'http-local', text: 'HTTP mutation' })
   rejectPush = true
   await assert.rejects(client.push(), /Orez mutation failed/)

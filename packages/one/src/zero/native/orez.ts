@@ -68,6 +68,19 @@ export function createOrezTransport(options: OrezTransportOptions): Transport {
       if (!response || typeof response !== 'object' || !('cookie' in response)) {
         throw new Error('Orez pull returned an invalid response')
       }
+      if ('gotQueries' in response && response.gotQueries !== undefined) {
+        const got = response.gotQueries
+        if (
+          !got ||
+          typeof got !== 'object' ||
+          !('version' in got) ||
+          !Number.isSafeInteger(got.version) ||
+          !('patch' in got) ||
+          !Array.isArray(got.patch)
+        )
+          throw new Error('Orez pull returned invalid gotQueries')
+        return { ...response, gotQueriesPatch: got.patch } as PullResponse
+      }
       return response as PullResponse
     },
     async push(state: ClientState, mutations: readonly Mutation[], signal: AbortSignal) {

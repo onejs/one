@@ -9,7 +9,19 @@ export type Format = {
 export type Query = {
     ast: unknown;
     format?: Format;
+    hash?: () => string;
 };
+export type QueryResultType = 'unknown' | 'complete' | 'error';
+export type QueryError = {
+    error: 'app';
+    message: string;
+};
+export type ViewListener<T> = (data: T, resultType: QueryResultType, error?: QueryError) => void;
+export interface MaterializedView<T> {
+    readonly data: T;
+    addListener(listener: ViewListener<T>): () => void;
+    destroy(): void;
+}
 export type Mutation = {
     id: number;
     clientID: string;
@@ -26,12 +38,19 @@ export type ClientState = {
     queryVersion: number;
     queries: readonly DesiredQuery[];
     recoveryRequired: number | null;
+    completedQueries: readonly string[];
+    queryErrors: Readonly<Record<string, string>>;
 };
 export type PullResponse = {
     cookie: JSONValue;
     lastMutationIDChanges?: Record<string, number>;
     rowsPatch?: readonly JSONValue[];
     unchanged?: boolean;
+    gotQueriesPatch?: readonly JSONValue[];
+    queryErrors?: readonly {
+        hash: string;
+        message: string;
+    }[];
     [key: string]: JSONValue | undefined;
 };
 export interface Engine {

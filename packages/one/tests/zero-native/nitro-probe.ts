@@ -126,6 +126,25 @@ async function run() {
     (await client.run<Row[]>(query))[2].body === 'recovered',
     'caught native write failure can recover in Hermes'
   )
+  response = { cookie: 4, gotQueriesPatch: [{ op: 'put', hash: 'nitro-live' }] }
+  const view = client.materialize<Row[]>(query, { hash: 'nitro-live' })
+  let complete!: () => void
+  const completed = new Promise<void>((resolve) => {
+    complete = resolve
+  })
+  view.addListener((_data, resultType) => {
+    if (resultType === 'complete') complete()
+  })
+  await completed
+  check(
+    view.data[2].body === 'recovered',
+    'materialized native view retains optimistic data across completion-only pull'
+  )
+  check(
+    (await client.state()).completedQueries.includes('nitro-live'),
+    'native query completion persists through Nitro'
+  )
+  view.destroy()
   await client.close()
   let closed = false
   try {
