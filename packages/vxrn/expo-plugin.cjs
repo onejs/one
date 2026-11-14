@@ -949,7 +949,7 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
           podfile = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectReactNativeScreensGammaIntoPodfile(podfile)
           if (nativeProjectPatches.hasNitroWebImage(projectRoot)) {
-            podfile = nativeProjectPatches.injectNitroWebImageModularHeaderIntoPodfile(podfile)
+            podfile = nativeProjectPatches.injectModularHeadersIntoPodfile(podfile)
           }
           fs.writeFileSync(podfilePath, podfile, 'utf8')
           return nextConfig

@@ -1,0 +1,64 @@
+import type { ClientState, DesiredQuery, Engine, MaterializedView, Mutation, NativeMutate, Mutators, Query, Schema, Transport, TTL } from './types';
+import { NativeSync, type SyncOptions } from './sync';
+export type NativeZeroOptions<M extends Mutators = Mutators> = {
+    engine: Engine;
+    schema: Schema;
+    mutators: M;
+    transport?: Transport;
+    requestTimeoutMs?: number;
+    onError?: (error: unknown) => void;
+    context?: unknown;
+};
+export declare class NativeZero<M extends Mutators = Mutators> {
+    private options;
+    private tail;
+    private syncTail;
+    private closed;
+    private closing?;
+    private deleting?;
+    private abort;
+    private subscriptions;
+    private mutators;
+    private views;
+    private identity?;
+    private desiredViews;
+    private manualQueries?;
+    private managesQueries;
+    private queryRefreshQueued;
+    private sync?;
+    private serverResults;
+    private requestTimeoutMs;
+    readonly mutate: NativeMutate<M>;
+    constructor(options: NativeZeroOptions<M>);
+    private enqueue;
+    private synchronize;
+    private request;
+    private dispatch;
+    private query;
+    run<T = unknown>(query: Query): Promise<T>;
+    get clientID(): string;
+    get context(): unknown;
+    ready(): Promise<this>;
+    state(): Promise<ClientState>;
+    pending(): Promise<Mutation[]>;
+    startSync(options?: SyncOptions): NativeSync;
+    private withSignal;
+    private invoke;
+    private issueMutation;
+    private executeMutation;
+    private applyPull;
+    pull(queries?: readonly DesiredQuery[], signal?: AbortSignal): Promise<void>;
+    push(signal?: AbortSignal): Promise<void>;
+    subscribe(query: Query, listener: (value: unknown) => void): () => void;
+    materialize<T = unknown>(query: Query, options?: {
+        hash?: string;
+        ttl?: TTL;
+    }): MaterializedView<T>;
+    private refreshQueries;
+    private report;
+    private publish;
+    close(): Promise<void>;
+    delete(): Promise<void>;
+    private shutdown;
+}
+//# sourceMappingURL=client.d.ts.map
