@@ -93,6 +93,12 @@ minutes by default. `pullIntervalMs`, `retryMinMs` and `retryMaxMs` configure th
 intervals. `onStateChange` reports connection state and `onError` on the client
 receives failures.
 
+`createOrezTransport` accepts an optional `payloadCodec` with `encodePush(body)`
+and `decodePull(body)`. Encoding finishes before the HTTP push; decoding finishes
+before validating or committing a pull. A codec failure preserves the pending
+journal and prior server cursor. The consumer owns keys, enrollment and codec
+installation; supplying no codec keeps ordinary Orez wire payloads.
+
 Network requests time out after 60 seconds by default. `requestTimeoutMs` on the
 client configures this limit. Timeouts and close cancellation also settle manual
 push/pull calls when a transport ignores abort; late responses cannot commit.
@@ -237,6 +243,10 @@ isolated desktop comparison with 200 sessions and 20,000 messages, this reduced
 edit from 8.9 to 4.0 ms. The pinned in-memory client took about 0.5 ms for each.
 The native driver includes durable SQLite and child-process JSON communication;
 these numbers do not measure Nitro, production mobile behavior or storage parity.
-The generic HTTP adapter does not implement Team Machine cloud encryption.
+The HTTP adapter accepts a consumer-provided payload codec. A separate probe
+using Team Machine's actual encrypted-column codec covers native journal reopen,
+key rotation, bearer refresh, lost push responses, plaintext refusal, and atomic
+decoded row/acknowledgement persistence. The complete app cloud connection,
+command-body transport and cloud wake-token lifecycle remain unverified.
 No performance advantage or full Zero compatibility is established. Keep adoption
 opt-in until each application's integration and recovery contracts are covered.

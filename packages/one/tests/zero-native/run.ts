@@ -914,12 +914,31 @@ console.log(
 const requests: { version: number; patch: unknown[] }[] = []
 let acknowledgement = 0
 let rejectPush = false
+let rejectEncode = false
+let rejectDecode = false
+let encodedPushes = 0
+const payloadCodec = {
+  encodePush(body: unknown) {
+    if (rejectEncode) throw new Error('payload encoding failed')
+    encodedPushes++
+    return { sealed: Buffer.from(JSON.stringify(body)).toString('base64') }
+  },
+  decodePull(body: unknown) {
+    if (rejectDecode) throw new Error('payload decoding failed')
+    return JSON.parse(
+      Buffer.from((body as { sealed: string }).sealed, 'base64').toString()
+    )
+  },
+}
 const server = createServer(async (request, reply) => {
   const chunks: Buffer[] = []
   for await (const chunk of request) chunks.push(Buffer.from(chunk))
-  const body = JSON.parse(Buffer.concat(chunks).toString())
+  const wire = JSON.parse(Buffer.concat(chunks).toString())
+  const coded = request.headers['x-test-codec'] === '1'
   reply.setHeader('content-type', 'application/json')
   if (request.url?.startsWith('/push')) {
+    if (coded) assert.deepEqual(Object.keys(wire), ['sealed'])
+    const body = coded ? JSON.parse(Buffer.from(wire.sealed, 'base64').toString()) : wire
     assert.equal(body.mutations[0].type, 'custom')
     assert.deepEqual(body.mutations[0].args, [
       { id: 'http-local', text: 'HTTP mutation' },
@@ -938,22 +957,25 @@ const server = createServer(async (request, reply) => {
       })
     )
   } else {
+    const body = wire
     requests.push(body.queries)
+    const response = {
+      cookie: requests.length,
+      rowsPatch: [{ op: 'clear' }, put('message', message('server', 1, 'HTTP snapshot'))],
+      lastMutationIDChanges: { 'integration-client': acknowledgement },
+      gotQueries: {
+        version: body.queries.version,
+        patch: body.queries.patch
+          .filter((query: { op: string }) => query.op === 'put')
+          .map((query: { hash: string }) => ({ op: 'put', hash: query.hash })),
+      },
+    }
     reply.end(
-      JSON.stringify({
-        cookie: requests.length,
-        rowsPatch: [
-          { op: 'clear' },
-          put('message', message('server', 1, 'HTTP snapshot')),
-        ],
-        lastMutationIDChanges: { 'integration-client': acknowledgement },
-        gotQueries: {
-          version: body.queries.version,
-          patch: body.queries.patch
-            .filter((query: { op: string }) => query.op === 'put')
-            .map((query: { hash: string }) => ({ op: 'put', hash: query.hash })),
-        },
-      })
+      JSON.stringify(
+        coded
+          ? { sealed: Buffer.from(JSON.stringify(response)).toString('base64') }
+          : response
+      )
     )
   }
 })
@@ -965,6 +987,8 @@ const httpOptions = {
   server: `http://127.0.0.1:${address.port}`,
   appID: 'native-proof',
   schemaVersion: '1',
+  payloadCodec,
+  headers: () => ({ 'x-test-codec': '1' }),
 }
 try {
   engine = new ProcessEngine(join(folder, 'http.sqlite'))
@@ -977,8 +1001,22 @@ try {
   })
   await client.pull([{ hash: 'messages', ast: messages.ast }])
   assert.deepEqual((await client.state()).completedQueries, ['messages'])
+  const beforeDecodeFailure = await client.state()
+  rejectDecode = true
+  await assert.rejects(client.pull(), /payload decoding failed/)
+  rejectDecode = false
+  assert.deepEqual(await client.state(), {
+    ...beforeDecodeFailure,
+    queryVersion: beforeDecodeFailure.queryVersion + 1,
+  })
+  assert.deepEqual(await client.run(messages), [message('server', 1, 'HTTP snapshot')])
   const httpMutation = client.mutate('send', { id: 'http-local', text: 'HTTP mutation' })
   assert.deepEqual(await httpMutation.client, { type: 'success' })
+  rejectEncode = true
+  await assert.rejects(client.push(), /payload encoding failed/)
+  assert.equal(encodedPushes, 0)
+  assert.equal((await client.pending()).length, 1)
+  rejectEncode = false
   rejectPush = true
   await assert.rejects(client.push(), /Orez mutation failed/)
   assert.deepEqual(await httpMutation.server, {
@@ -998,8 +1036,28 @@ try {
     transport: createOrezTransport(httpOptions),
   })
   await client.pull()
-  assert.equal(requests[1].version, requests[0].version + 1)
-  assert.deepEqual(requests[1].patch, requests[0].patch)
+  assert.equal(requests[2].version, requests[1].version + 1)
+  assert.deepEqual(requests[2].patch, requests[0].patch)
+  assert.deepEqual(await client.pending(), [])
+  await client.close()
+  acknowledgement = 0
+  engine = new ProcessEngine(join(folder, 'http-plain.sqlite'))
+  await engine.ready
+  client = new NativeZero({
+    engine,
+    schema,
+    mutators,
+    transport: createOrezTransport({
+      server: httpOptions.server,
+      appID: httpOptions.appID,
+      schemaVersion: httpOptions.schemaVersion,
+    }),
+  })
+  await client.pull([{ hash: 'messages', ast: messages.ast }])
+  assert.deepEqual(await client.run(messages), [message('server', 1, 'HTTP snapshot')])
+  await client.mutate('send', { id: 'http-local', text: 'HTTP mutation' })
+  await client.push()
+  await client.pull()
   assert.deepEqual(await client.pending(), [])
   await client.close()
 } finally {

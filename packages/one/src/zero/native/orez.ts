@@ -15,6 +15,10 @@ export type OrezTransportOptions = {
   shardNum?: number
   headers?: () => Record<string, string> | Promise<Record<string, string>>
   fetch?: typeof fetch
+  payloadCodec?: {
+    encodePush(body: unknown): unknown | Promise<unknown>
+    decodePull(body: unknown): unknown | Promise<unknown>
+  }
 }
 
 export function createOrezTransport(options: OrezTransportOptions): Transport {
@@ -23,7 +27,7 @@ export function createOrezTransport(options: OrezTransportOptions): Transport {
 
   const post = async (
     path: 'pull' | 'push',
-    body: object,
+    body: unknown,
     signal: AbortSignal
   ): Promise<unknown> => {
     const url = new URL(`${server}/${path}`)
@@ -51,7 +55,7 @@ export function createOrezTransport(options: OrezTransportOptions): Transport {
       queries: readonly DesiredQuery[],
       signal: AbortSignal
     ) {
-      const response = await post(
+      const received = await post(
         'pull',
         {
           clientID: state.clientID,
@@ -67,6 +71,9 @@ export function createOrezTransport(options: OrezTransportOptions): Transport {
         },
         signal
       )
+      const response = options.payloadCodec
+        ? await options.payloadCodec.decodePull(received)
+        : received
       if (!response || typeof response !== 'object' || !('cookie' in response)) {
         throw new Error('Orez pull returned an invalid response')
       }
@@ -86,19 +93,20 @@ export function createOrezTransport(options: OrezTransportOptions): Transport {
       return response as PullResponse
     },
     async push(state: ClientState, mutations: readonly Mutation[], signal: AbortSignal) {
+      const body = {
+        clientGroupID: state.clientGroupID,
+        pushVersion: 1,
+        schemaVersion: options.schemaVersion,
+        timestamp: Date.now(),
+        mutations: mutations.map((mutation) => ({
+          ...mutation,
+          type: 'custom',
+          args: [mutation.args],
+        })),
+      }
       const received = await post(
         'push',
-        {
-          clientGroupID: state.clientGroupID,
-          pushVersion: 1,
-          schemaVersion: options.schemaVersion,
-          timestamp: Date.now(),
-          mutations: mutations.map((mutation) => ({
-            ...mutation,
-            type: 'custom',
-            args: [mutation.args],
-          })),
-        },
+        options.payloadCodec ? await options.payloadCodec.encodePush(body) : body,
         signal
       )
       if (!received || typeof received !== 'object')
