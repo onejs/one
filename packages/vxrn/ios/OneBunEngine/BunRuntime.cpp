@@ -20,6 +20,8 @@ extern "C" {
 void* bun_embed_create(int argc, const char* const* argv);
 int bun_embed_run_entry(const void** exception);
 void bun_embed_tick(void);
+void* bun_embed_drop_locks(void* globalContext);
+void bun_embed_grab_locks(void* dropper);
 }
 
 #include <JavaScriptCore/JavaScript.h>
@@ -842,6 +844,24 @@ jsi::Object JSCRuntime::createObject() {
 
 // HostObject details
 namespace {
+// bun runs a class's property callbacks holding the JSC lock, where upstream
+// drops it. a host object's get can wait on the main thread, which takes the
+// lock (react native creating a main-queue module), so it runs without it.
+class DroppedLocks {
+ public:
+  explicit DroppedLocks(JSContextRef ctx)
+      : dropper_(bun_embed_drop_locks(
+            const_cast<OpaqueJSContext*>(JSContextGetGlobalContext(ctx)))) {}
+  ~DroppedLocks() {
+    bun_embed_grab_locks(dropper_);
+  }
+  DroppedLocks(const DroppedLocks&) = delete;
+  DroppedLocks& operator=(const DroppedLocks&) = delete;
+
+ private:
+  void* dropper_;
+};
+
 struct HostObjectProxyBase {
   HostObjectProxyBase(
       JSCRuntime& rt,
@@ -868,6 +888,7 @@ jsi::Object JSCRuntime::createObject(std::shared_ptr<jsi::HostObject> ho) {
       jsi::PropNameID sym = rt.createPropNameID(propName);
       jsi::Value ret;
       try {
+        DroppedLocks unlocked(ctx);
         ret = proxy->hostObject->get(rt, sym);
       } catch (const jsi::JSError& error) {
         *exception = rt.valueRef(error.value());
@@ -911,7 +932,9 @@ jsi::Object JSCRuntime::createObject(std::shared_ptr<jsi::HostObject> ho) {
       auto& rt = proxy->runtime;
       jsi::PropNameID sym = rt.createPropNameID(propName);
       try {
-        proxy->hostObject->set(rt, sym, rt.createValue(value));
+        jsi::Value arg = rt.createValue(value);
+        DroppedLocks unlocked(ctx);
+        proxy->hostObject->set(rt, sym, arg);
       } catch (const jsi::JSError& error) {
         *exception = rt.valueRef(error.value());
         return false;
