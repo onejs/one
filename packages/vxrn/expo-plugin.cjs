@@ -1,6 +1,7 @@
 const fs = require('node:fs')
 const { createRequire } = require('node:module')
 const path = require('node:path')
+const { execFileSync } = require('node:child_process')
 const { pathToFileURL } = require('node:url')
 const nativeProjectPatches = require('./native-project-patches.cjs')
 
@@ -699,6 +700,18 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
       )
     } catch (error) {
       throw new Error(`[vxrn/expo-plugin] cannot resolve the one package: ${error.message}`)
+    }
+    // as in one prebuild: a host without the iOS SDK (linux, windows) still
+    // generates the project, without the bindings pod it cannot compile.
+    try {
+      execFileSync('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-path'], {
+        stdio: 'ignore',
+      })
+    } catch {
+      console.warn(
+        '[vxrn/expo-plugin] the iOS SDK is not available (xcrun found no iphonesimulator SDK), so iOS SDK generation was skipped'
+      )
+      return []
     }
     const { writeAppSdkPod } = await import(pathToFileURL(appModule).href)
     return writeAppSdkPod(projectRoot)
