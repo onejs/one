@@ -238,17 +238,21 @@ export default function ComposeFamilyFixture() {
       {family === 'toolbar' && (
         <>
           <Text testID="compose-family-toolbar-status">{`FAB presses: ${fabPresses}`}</Text>
-          <One.Android.HorizontalFloatingToolbar variant="vibrant" style={{ height: 100 }}>
-            <One.Android.IconButton onClick={() => setFabPresses((value) => value + 10)}>
-              <One.Android.Icon name="edit" />
-            </One.Android.IconButton>
-            <One.Android.HorizontalFloatingToolbar.FloatingActionButton
-              testID="compose-family-toolbar-fab"
-              onPress={() => setFabPresses((value) => value + 1)}
-            >
-              <One.Android.Icon name="add" />
-            </One.Android.HorizontalFloatingToolbar.FloatingActionButton>
-          </One.Android.HorizontalFloatingToolbar>
+          <One.Android.MaterialTheme
+            colorScheme={{ light: { primaryContainer: '#9cf2e4' }, dark: { primaryContainer: '#005048' } }}
+          >
+            <One.Android.HorizontalFloatingToolbar variant="vibrant" style={{ height: 100 }}>
+              <One.Android.IconButton onClick={() => setFabPresses((value) => value + 10)}>
+                <One.Android.Icon name="edit" />
+              </One.Android.IconButton>
+              <One.Android.HorizontalFloatingToolbar.FloatingActionButton
+                testID="compose-family-toolbar-fab"
+                onPress={() => setFabPresses((value) => value + 1)}
+              >
+                <One.Android.Icon name="add" />
+              </One.Android.HorizontalFloatingToolbar.FloatingActionButton>
+            </One.Android.HorizontalFloatingToolbar>
+          </One.Android.MaterialTheme>
         </>
       )}
       {family === 'shape' && (

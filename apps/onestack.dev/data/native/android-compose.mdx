@@ -50,6 +50,42 @@ acknowledges, and raising `revision` with a new value resets the control
 from the outside. `TextField` and `SyncSwitch` bind `NativeState` handles
 so keystrokes and flips converge without a React render.
 
+## Theme colors
+
+Compose views draw from the device's dynamic color scheme, which follows the
+wallpaper on Android 12 and later and is the Material baseline before that.
+Wrap them in `MaterialTheme` to draw from your own colors instead, the way a
+Compose app passes a `ColorScheme` to its own `MaterialTheme`:
+
+```tsx
+import { One } from 'one'
+
+const colorScheme = {
+  light: { primary: '#0B6E4F', primaryContainer: '#B6F2D6', onPrimaryContainer: '#002116' },
+  dark: { primary: '#7FD8B4', primaryContainer: '#005138', onPrimaryContainer: '#B6F2D6' },
+}
+
+export function Root({ children }: { children: React.ReactNode }) {
+  return <One.Android.MaterialTheme colorScheme={colorScheme}>{children}</One.Android.MaterialTheme>
+}
+```
+
+The theme is a React context, so it can sit anywhere above the Compose views,
+including outside any Compose tree; on iOS and web it renders its children
+unchanged. Each appearance builds `lightColorScheme(...)` or
+`darkColorScheme(...)`: roles you leave out take the Material defaults, and
+`surfaceTint` follows `primary`. An appearance you leave out keeps the
+dynamic scheme. The closest theme wins.
+
+<PropsTable
+  title="MaterialTheme"
+  source="composeTypes.ts#ComposeMaterialThemeProps"
+  data={[
+    { name: 'colorScheme', type: '{ light?: ComposeMaterialColors; dark?: ComposeMaterialColors }', description: 'Material 3 color roles for each appearance, from primary to the fixed roles.' },
+    { name: 'children', type: 'ReactNode', description: 'The views it themes.' },
+  ]}
+/>
+
 ## Shared props
 
 Every node takes these. Nodes also take `accessibilityLabel`,

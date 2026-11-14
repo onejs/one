@@ -7,6 +7,7 @@ import type {
   ComposeBadgeProps,
   ComposeBadgedBoxProps,
   ComposeListItemProps,
+  ComposeMaterialThemeProps,
   ComposeBoxProps,
   ComposeButtonProps,
   ComposeCardProps,
@@ -57,6 +58,12 @@ import type {
   ComposeToggleButtonProps,
   ComposeTooltipBoxProps,
 } from './composeTypes'
+
+// a theme draws nothing, so an app can hold its scheme at a root shared with
+// other platforms
+function MaterialTheme({ children }: ComposeMaterialThemeProps): ReactNode {
+  return children
+}
 
 function unsupported(name: string): never {
   throw new Error(
@@ -441,6 +448,7 @@ const Shape = Object.fromEntries(
 >
 
 export const Compose = {
+  MaterialTheme,
   BasicAlertDialog,
   HorizontalCenteredHeroCarousel,
   HorizontalMultiBrowseCarousel,

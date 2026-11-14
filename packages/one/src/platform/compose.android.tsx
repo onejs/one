@@ -56,6 +56,7 @@ import type {
   ComposeLazyContentPadding,
   ComposeLazyRowProps,
   ComposeListItemProps,
+  ComposeMaterialThemeProps,
   ComposeLoadingIndicatorProps,
   ComposeModalBottomSheetProperties,
   ComposeModalBottomSheetProps,
@@ -401,6 +402,20 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
 
 const ComposeContext = createContext(false)
 
+type MaterialScheme = ComposeMaterialThemeProps['colorScheme'] | undefined
+
+// a scheme crosses to native on a tree root and on the first node below a theme
+// placed inside the tree, where native opens a nested MaterialTheme; other nodes
+// read it from the Compose composition
+const MaterialSchemeContext = createContext<MaterialScheme>(undefined)
+const AppliedSchemeContext = createContext<MaterialScheme>(undefined)
+
+function MaterialTheme({ children, colorScheme }: ComposeMaterialThemeProps) {
+  return (
+    <MaterialSchemeContext.Provider value={colorScheme}>{children}</MaterialSchemeContext.Provider>
+  )
+}
+
 const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
   'shape',
   'daterangepicker',
@@ -437,6 +452,8 @@ function ComposeNode({
   ...props
 }: ComposeNativeNodeProps) {
   const nested = useContext(ComposeContext)
+  const materialColorScheme = useContext(MaterialSchemeContext)
+  const appliedScheme = useContext(AppliedSchemeContext)
   const [contentHeight, setContentHeight] = useState<number>()
   const rootStyle = StyleSheet.flatten(style)
   const intrinsicHeight =
@@ -459,6 +476,9 @@ function ComposeNode({
       {...props}
       composeStyle={composeStyle}
       intrinsicHeight={intrinsicHeight}
+      materialColorScheme={
+        nested && materialColorScheme === appliedScheme ? undefined : materialColorScheme
+      }
       onNativeComposeNodeContentSizeChange={
         intrinsicHeight
           ? (event) => setContentHeight(event.nativeEvent.height)
@@ -476,7 +496,11 @@ function ComposeNode({
       }
       collapsable={false}
     >
-      <ComposeContext.Provider value={true}>{children}</ComposeContext.Provider>
+      <ComposeContext.Provider value={true}>
+        <AppliedSchemeContext.Provider value={materialColorScheme}>
+          {children}
+        </AppliedSchemeContext.Provider>
+      </ComposeContext.Provider>
     </NativeComposeNode>
   )
 }
@@ -2304,6 +2328,7 @@ function SyncSwitch({
 }
 
 export const Compose = {
+  MaterialTheme,
   BasicAlertDialog,
   HorizontalCenteredHeroCarousel,
   HorizontalMultiBrowseCarousel,

@@ -36,6 +36,8 @@ const partialGaps: Record<string, string> = {
     'table fixture registered; iOS row sizing, updates and reuse unproven',
   usePreventScreenCapture:
     'Android 37 emulator mount/unmount and manual-hold overlap proven with FLAG_SECURE pixels; iOS suite steps unrun',
+  'Android.MaterialTheme':
+    'Compose family Maestro fixture registered; supplied scheme colors unproven on device; m30241 owns required device gates',
   'Android.BasicAlertDialog':
     'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
   'Android.HorizontalCenteredHeroCarousel':
