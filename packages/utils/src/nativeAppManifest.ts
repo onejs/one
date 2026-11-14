@@ -221,6 +221,10 @@ export interface NativeAppManifest {
     screensGamma?: boolean
     useFrameworks?: 'static' | 'dynamic'
     ccache?: boolean
+    // 'bun' runs release builds on bun's ahead-of-time compiled javascript
+    // instead of hermes; debug builds stay on hermes. pod install reads the
+    // bun runtime from ONE_BUN_ENGINE_DIR.
+    engine?: 'hermes' | 'bun'
     usesNonExemptEncryption?: boolean
     // the tint the system gives the app's controls, tab selection and text
     // cursor, as xcode's AccentColor asset; js reads PlatformColor('AccentColor').
@@ -695,6 +699,13 @@ export function validateNativeApp(
     typeof manifest.pictureInPicture !== 'boolean'
   ) {
     fail('pictureInPicture must be a boolean')
+  }
+  if (
+    manifest.ios?.engine !== undefined &&
+    manifest.ios.engine !== 'hermes' &&
+    manifest.ios.engine !== 'bun'
+  ) {
+    fail(`ios.engine must be 'hermes' or 'bun'`)
   }
   if (manifest.updates !== undefined) {
     if (

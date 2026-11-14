@@ -113,6 +113,33 @@ After the archive process completes, Xcode will automatically open the Organizer
   You can also open the Organizer window by clicking "Window" → "Organizer" on the menu bar.
 </Notice>
 
+### Bun engine (experimental)
+
+Release builds can run on Bun's ahead-of-time compiler instead of Hermes. The release bundle is compiled into machine code at build time, inside Bun's fork of JavaScriptCore, and shipped in the signed app. Development builds keep Hermes and fast refresh.
+
+```ts
+one({
+  native: {
+    app: {
+      ios: { bundleId: 'com.example.app', engine: 'bun' },
+    },
+  },
+})
+```
+
+Apps on `expo prebuild` pass the same option to the plugin: `['vxrn/expo-plugin', { engine: 'bun' }]`.
+
+`pod install` needs `ONE_BUN_ENGINE_DIR` pointing at the Bun runtime directory, which holds the macOS `bun` compiler and `ios/iphoneos` and `ios/iphonesimulator` folders with `Bun.framework` and `BunCompat.framework`. The bundle phase then compiles `main.jsbundle` on every Release build and links the program into `BunCompat.framework`, since an App Store binary may have only one executable segment.
+
+Limits:
+
+* iOS only for now. Android stays on Hermes.
+* Code that is only known at run time, such as `new Function`, `eval` and over-the-air update bundles, runs in the interpreter without the speedup. Leave OTA updates off for Bun builds.
+* Reanimated and worklets runtimes stay on Hermes.
+* The engine adds about 140 MB to the app today.
+
+Remove `engine: 'bun'` and prebuild again to go back to Hermes.
+
 
 ## Project Setup
 
