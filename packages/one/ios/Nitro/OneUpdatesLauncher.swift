@@ -11,7 +11,7 @@ import React
 //
 // layout under application support:
 //   one-updates/state.json          every downloaded update plus launching
-//   one-updates/<id>/main.jsbundle  the hermes bundle react native loads
+//   one-updates/<id>/main.jsbundle  the bundle react native loads
 //   one-updates/<id>/<path>         each asset where the resolver looks
 //   one-updates/.tmp-<id>/          a fetch in progress, renamed on success
 
