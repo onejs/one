@@ -1588,12 +1588,7 @@ describe('native function and class names', () => {
         const context: any = { process: { env: {} } }
         context.globalThis = context
         runInNewContext(result.code, context)
-        expect(context.names).toEqual([
-          'UnsupportedFeature',
-          'UnsupportedFeature',
-          'read',
-          'read',
-        ])
+        expect(context.names).toEqual(['UnsupportedFeature', 'UnsupportedFeature', 'read', 'read'])
       }
     } finally {
       await rm(testRoot, { recursive: true, force: true })
@@ -1604,10 +1599,7 @@ describe('native function and class names', () => {
     const root = await mkdtemp(join(tmpdir(), 'vxrn-native-dev-names-'))
     const packageRoot = join(root, 'node_modules', 'errors-pkg')
     await mkdir(packageRoot, { recursive: true })
-    await writeFile(
-      join(packageRoot, 'package.json'),
-      JSON.stringify({ main: './index.js' })
-    )
+    await writeFile(join(packageRoot, 'package.json'), JSON.stringify({ main: './index.js' }))
     // async lowering reprints the lowered classes, renaming each inner
     // constructor that shadows its top-level export.
     await writeFile(
@@ -2993,42 +2985,35 @@ globalThis.__nativeAssetProbe = [icon, back, animation]
 })
 
 describe('native asset scale siblings', () => {
-  it(
-    'rebuilds the asset module when only a scale sibling is rewritten',
-    { timeout: 30_000 },
-    async () => {
-      const root = realpathSync(
-        await mkdtemp(join(tmpdir(), 'vxrn-native-asset-sibling-'))
+  it('rebuilds the asset module when only a scale sibling is rewritten', async () => {
+    const root = realpathSync(await mkdtemp(join(tmpdir(), 'vxrn-native-asset-sibling-')))
+    await mkdir(join(root, 'app'), { recursive: true })
+    await writeFile(join(root, 'icon.png'), 'icon-1x')
+    await writeFile(join(root, 'icon@3x.png'), 'icon-3x-old')
+    await writeFile(
+      join(root, 'app/index.tsx'),
+      `import icon from '../icon.png'\nexport default icon\n`
+    )
+
+    const native = await createNativeDevEngine({ root, port: 0, platform: 'ios' })
+    try {
+      const hashOf = (code: string) => code.match(/"hash":\s*"([0-9a-f]{32})"/)?.[1]
+      const before = hashOf((await native.getBundle()).code)
+      expect(before).toBeDefined()
+
+      await saveFile(join(root, 'icon@3x.png'), 'icon-3x-new-longer')
+
+      await vi.waitFor(
+        async () => {
+          expect(hashOf((await native.getBundle()).code)).not.toBe(before)
+        },
+        { timeout: 10_000 }
       )
-      await mkdir(join(root, 'app'), { recursive: true })
-      await writeFile(join(root, 'icon.png'), 'icon-1x')
-      await writeFile(join(root, 'icon@3x.png'), 'icon-3x-old')
-      await writeFile(
-        join(root, 'app/index.tsx'),
-        `import icon from '../icon.png'\nexport default icon\n`
-      )
-
-      const native = await createNativeDevEngine({ root, port: 0, platform: 'ios' })
-      try {
-        const hashOf = (code: string) => code.match(/"hash":\s*"([0-9a-f]{32})"/)?.[1]
-        const initial = await native.getBundle()
-        const before = hashOf(initial.code)
-        expect(before).toBeDefined()
-
-        await saveFile(join(root, 'icon@3x.png'), 'icon-3x-new-longer')
-
-        await vi.waitFor(
-          async () => {
-            expect(hashOf((await native.getBundle()).code)).not.toBe(before)
-          },
-          { timeout: 10_000 }
-        )
-      } finally {
-        await native.close()
-        await rm(root, { recursive: true, force: true })
-      }
+    } finally {
+      await native.close()
+      await rm(root, { recursive: true, force: true })
     }
-  )
+  }, 30_000)
 })
 
 describe('native conditional exports', () => {
@@ -3989,10 +3974,13 @@ it.each([
   })
   const evaluate = (code: string) => {
     const module = { exports: {} as any }
-    runInNewContext('(function(module, exports) {' + code + '\n})(module, exports)', {
-      module,
-      exports: module.exports,
-    })
+    runInNewContext(
+      '(function(module, exports) {' + code + '\n})(module, exports)',
+      {
+        module,
+        exports: module.exports,
+      }
+    )
     return JSON.parse(JSON.stringify(module.exports))
   }
   expect(actual).toBeDefined()
@@ -4056,27 +4044,33 @@ it.each([
     'probe.tsx',
     'export enum Color { Red }; exports.Color=42; module.exports={value:exports.Color};',
   ],
-])('matches Metro writable binding semantics in %s: %s', async (filename, source) => {
-  const { transformMixedNativeModule } = await import('@vxrn/compiler')
-  const { transformAsync } = await import('@babel/core')
-  const actual = await transformMixedNativeModule(source, filename)
-  const expected = await transformAsync(source, {
-    filename,
-    babelrc: false,
-    configFile: false,
-    presets: ['module:@react-native/babel-preset'],
-  })
-  const evaluate = (code: string) => {
-    const module = { exports: {} }
-    runInNewContext('(function(module, exports) {' + code + '\n})(module, exports)', {
-      module,
-      exports: module.exports,
+])(
+  'matches Metro writable binding semantics in %s: %s',
+  async (filename, source) => {
+    const { transformMixedNativeModule } = await import('@vxrn/compiler')
+    const { transformAsync } = await import('@babel/core')
+    const actual = await transformMixedNativeModule(source, filename)
+    const expected = await transformAsync(source, {
+      filename,
+      babelrc: false,
+      configFile: false,
+      presets: ['module:@react-native/babel-preset'],
     })
-    return JSON.parse(JSON.stringify(module.exports))
+    const evaluate = (code: string) => {
+      const module = { exports: {} }
+      runInNewContext(
+        '(function(module, exports) {' + code + '\n})(module, exports)',
+        {
+          module,
+          exports: module.exports,
+        }
+      )
+      return JSON.parse(JSON.stringify(module.exports))
+    }
+    expect(actual).toBeDefined()
+    expect(evaluate(actual!.code)).toEqual(evaluate(expected!.code!))
   }
-  expect(actual).toBeDefined()
-  expect(evaluate(actual!.code)).toEqual(evaluate(expected!.code!))
-})
+)
 
 it('composes TypeScript runtime declaration maps to the original source', async () => {
   const { transformMixedNativeModule } = await import('@vxrn/compiler')
