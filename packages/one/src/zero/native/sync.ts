@@ -3,6 +3,7 @@ export type SyncState =
   | { name: 'error'; error: unknown }
 
 export type SyncOptions = {
+  active?: boolean
   pullIntervalMs?: number
   retryMinMs?: number
   retryMaxMs?: number
@@ -36,6 +37,8 @@ export class NativeSync {
     private options: SyncOptions,
     private report: (error: unknown) => void
   ) {
+    this.active = options.active ?? true
+    this.current = { name: this.active ? 'connecting' : 'disconnected' }
     this.pullInterval = options.pullIntervalMs ?? 300_000
     this.retryMin = options.retryMinMs ?? 1000
     this.retryMax = options.retryMaxMs ?? 30_000
@@ -48,7 +51,7 @@ export class NativeSync {
       throw new Error(
         'Native Zero sync intervals must be positive and retryMaxMs must cover retryMinMs'
       )
-    this.connectWake()
+    if (this.active) this.connectWake()
     this.request()
   }
 

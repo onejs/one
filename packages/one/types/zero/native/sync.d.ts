@@ -5,6 +5,7 @@ export type SyncState = {
     error: unknown;
 };
 export type SyncOptions = {
+    active?: boolean;
     pullIntervalMs?: number;
     retryMinMs?: number;
     retryMaxMs?: number;

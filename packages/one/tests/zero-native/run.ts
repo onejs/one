@@ -691,6 +691,7 @@ const nextConnection = () =>
   })
 let connection = nextConnection()
 const sync = client.startSync({
+  active: false,
   pullIntervalMs: 600_000,
   retryMinMs: 1,
   retryMaxMs: 4,
@@ -705,6 +706,12 @@ const sync = client.startSync({
     }
   },
 })
+await client.state()
+assert.equal(syncPushes, 0)
+assert.equal(syncPulls, 0)
+assert.equal(wakeSubscriptions, 0)
+assert.equal(sync.state.name, 'disconnected')
+sync.setActive(true)
 await connection
 assert.equal(syncPushes, 2)
 assert.equal(syncPulls, 2)
@@ -945,6 +952,7 @@ const server = createServer(async (request, reply) => {
     if (coded) assert.deepEqual(Object.keys(wire), ['sealed'])
     const body = coded ? JSON.parse(Buffer.from(wire.sealed, 'base64').toString()) : wire
     assert.equal(body.mutations[0].type, 'custom')
+    assert.equal(body.mutations[0].name, 'message|send')
     assert.deepEqual(body.mutations[0].args, [
       { id: 'http-local', text: 'HTTP mutation' },
     ])
@@ -1001,7 +1009,7 @@ try {
   client = new NativeZero({
     engine,
     schema,
-    mutators,
+    mutators: { message: { send: mutators.send } },
     transport: createOrezTransport(httpOptions),
   })
   await client.pull([{ hash: 'messages', ast: messages.ast }])
@@ -1015,7 +1023,10 @@ try {
     queryVersion: beforeDecodeFailure.queryVersion + 1,
   })
   assert.deepEqual(await client.run(messages), [message('server', 1, 'HTTP snapshot')])
-  const httpMutation = client.mutate('send', { id: 'http-local', text: 'HTTP mutation' })
+  const httpMutation = client.mutate.message.send({
+    id: 'http-local',
+    text: 'HTTP mutation',
+  })
   assert.deepEqual(await httpMutation.client, { type: 'success' })
   rejectEncode = true
   await assert.rejects(client.push(), /payload encoding failed/)
@@ -1037,7 +1048,7 @@ try {
   client = new NativeZero({
     engine,
     schema,
-    mutators,
+    mutators: { message: { send: mutators.send } },
     transport: createOrezTransport(httpOptions),
   })
   await client.pull()
@@ -1051,7 +1062,7 @@ try {
   client = new NativeZero({
     engine,
     schema,
-    mutators,
+    mutators: { message: { send: mutators.send } },
     transport: createOrezTransport({
       server: httpOptions.server,
       appID: httpOptions.appID,
@@ -1060,7 +1071,7 @@ try {
   })
   await client.pull([{ hash: 'messages', ast: messages.ast }])
   assert.deepEqual(await client.run(messages), [message('server', 1, 'HTTP snapshot')])
-  await client.mutate('send', { id: 'http-local', text: 'HTTP mutation' })
+  await client.mutate.message.send({ id: 'http-local', text: 'HTTP mutation' })
   await client.push()
   await client.pull()
   assert.deepEqual(await client.pending(), [])

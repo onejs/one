@@ -114,6 +114,7 @@ export function createOrezTransport(options: OrezTransportOptions): OrezTranspor
         timestamp: Date.now(),
         mutations: mutations.map((mutation) => ({
           ...mutation,
+          name: mutation.name.replaceAll('.', '|'),
           type: 'custom',
           args: [mutation.args],
         })),

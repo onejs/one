@@ -171,7 +171,10 @@ project and repository replicas, seeds synthetic rows under the actual schema,
 and compares complete ordered/nested results. It uses client query semantics;
 server authorization and the running Contrast UI are outside this check.
 The current trace compares 26 mobile registrations and eight repository query
-variants under a 63-table schema, with 15 mobile queries and all eight repository variants returning fixture rows.
+variants under a 63-table schema. Every query must return fixture rows and exclude
+a different scoped identity. Predicate literals supply matching enum, IN and LIKE
+fixtures; tied sort values and a cursor inside the history exercise ordering and
+paging boundaries.
 
 The first command builds the pure engine and runs durable optimistic/replay,
 rollback, acknowledgement, subscription, abrupt process-exit and HTTP transport
@@ -253,7 +256,9 @@ while retaining the same native engine and bridge.
 Unsupported Unicode ILIKE and hidden paths beyond the pinned two-hop junction shape throw explicitly.
 Junction queries select visible targets through an existential join, so duplicate links
 produce one target row and unlinking one duplicate preserves that row. The pinned
-builder itself rejects ordering and limits inside junction callbacks.
+builder itself rejects ordering and limits inside junction callbacks. Native
+NOT EXISTS is an extension: the pinned client rejects not(exists()), so it is not
+counted as a parity case.
 The on-zero provider requires its external-instance support. Managed sync requires consumer wiring
 for lifecycle, network and wake events. The materialization interface lacks custom view factories and the full
 server TTL protocol. The pinned Zero React provider/useQuery path is exercised
