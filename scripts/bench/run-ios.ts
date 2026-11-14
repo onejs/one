@@ -478,7 +478,7 @@ if (import.meta.main) {
         const environment = JSON.parse(line.slice(line.indexOf('BENCH_META ') + 11))
         if (
           (environment.engine && environment.engine !== engine) ||
-          environment.os !== args.os
+          (environment.os !== undefined && environment.os !== args.os)
         )
           throw new Error(`metadata mismatch: ${JSON.stringify(environment)}`)
         metadata.environments.push({ ...environment, engine, run })
