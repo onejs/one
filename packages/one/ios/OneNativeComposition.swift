@@ -458,6 +458,43 @@ private struct OneNativeHostRoot: View {
   }
 }
 
+// a destination can stay visible after swiftui removes its presenting root from the window.
+@objcMembers public class OneNativeMarkerView: OneNativeContainerView {
+  private var appearances = 0
+  private var lifetime = 0
+
+  public override func propagateActive(_ active: Bool) {}
+
+  private func changeAppearances(_ delta: Int, lifetime: Int) {
+    guard lifetime == self.lifetime else { return }
+    appearances = max(0, appearances + delta)
+    super.propagateActive(appearances > 0)
+  }
+
+  private func clearVisibility() {
+    lifetime += 1
+    appearances = 0
+    super.propagateActive(false)
+  }
+
+  public override func compositionContent() -> AnyView {
+    let lifetime = self.lifetime
+    return AnyView(super.compositionContent()
+      .onAppear { [weak self] in self?.changeAppearances(1, lifetime: lifetime) }
+      .onDisappear { [weak self] in self?.changeAppearances(-1, lifetime: lifetime) })
+  }
+
+  public override func decompose() {
+    clearVisibility()
+    super.decompose()
+  }
+
+  public override func reset() {
+    clearVisibility()
+    super.reset()
+  }
+}
+
 // the style chain applies this from another file: in the same file swiftc 6.4 expands its
 // opaque result into oneNativeStyle's and crashes lowering it
 extension View {

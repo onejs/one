@@ -7,32 +7,32 @@ export class NSItemProvider extends SDKHandle {
    * func registeredContentTypes(conformingTo contentType: UTType) -> [UTType]
    * @availability iOS 16.0+
    */
-  registeredContentTypesConformingTo(contentType: UTType): Array<UTType> { return callSDK<Array<UTType>>("UniformTypeIdentifiers_4e2094813cc7c17f", 2007984271694342, this, [contentType]); }
+  registeredContentTypesConformingTo(contentType: UTType): Array<UTType> { return callSDK<Array<UTType>>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2007984271694342, this, [contentType]); }
   /**
    * var registeredContentTypes: [UTType] { get }
    * @availability iOS 16.0+
    */
-  get registeredContentTypes(): Array<UTType> { return callSDK<Array<UTType>>("UniformTypeIdentifiers_4e2094813cc7c17f", 2037610060004223, this, []); }
+  get registeredContentTypes(): Array<UTType> { return callSDK<Array<UTType>>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2037610060004223, this, []); }
   /**
    * var registeredContentTypesForOpenInPlace: [UTType] { get }
    * @availability iOS 16.0+
    */
-  get registeredContentTypesForOpenInPlace(): Array<UTType> { return callSDK<Array<UTType>>("UniformTypeIdentifiers_4e2094813cc7c17f", 1370690961706630, this, []); }
+  get registeredContentTypesForOpenInPlace(): Array<UTType> { return callSDK<Array<UTType>>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1370690961706630, this, []); }
   /**
    * convenience init(contentsOf fileURL: URL, contentType: UTType?, openInPlace: Bool = false, coordinated: Bool = false, visibility: NSItemProviderRepresentationVisibility = .all)
    * @availability iOS 16.0+
    */
-  static init(fileURL: string, contentType?: (UTType) | null, openInPlace?: boolean, coordinated?: boolean, visibility?: _Foundation_NSItemProviderRepresentationVisibility): _Foundation_NSItemProvider { return callSDK<_Foundation_NSItemProvider>("UniformTypeIdentifiers_4e2094813cc7c17f", 3558376912973491, undefined, [fileURL, contentType, openInPlace, coordinated, visibility]); }
+  static init(fileURL: string, contentType?: (UTType) | null, openInPlace?: boolean, coordinated?: boolean, visibility?: _Foundation_NSItemProviderRepresentationVisibility): _Foundation_NSItemProvider { return callSDK<_Foundation_NSItemProvider>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3558376912973491, undefined, [fileURL, contentType, openInPlace, coordinated, visibility]); }
   /**
    * func loadDataRepresentation(for contentType: UTType, completionHandler: @escaping @Sendable (Data?, (any Error)?) -> Void) -> Progress
    * @availability iOS 16.0+
    */
-  loadDataRepresentation(contentType: UTType, completionHandler: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): _Foundation_Progress { return callSDK<_Foundation_Progress>("UniformTypeIdentifiers_4e2094813cc7c17f", 3935878251753430, this, [contentType, completionHandler], [null,{"callback":{"out":[]}}]); }
+  loadDataRepresentation(contentType: UTType, completionHandler: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): _Foundation_Progress { return callSDK<_Foundation_Progress>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3935878251753430, this, [contentType, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func loadFileRepresentation(for contentType: UTType, openInPlace: Bool = false, completionHandler: @escaping @Sendable (URL?, Bool, (any Error)?) -> Void) -> Progress
    * @availability iOS 16.0+
    */
-  loadFileRepresentation(contentType: UTType, openInPlace: boolean, completionHandler: ((arg0: (string) | null, arg1: boolean, arg2: (NativeError) | null) => void)): _Foundation_Progress { return callSDK<_Foundation_Progress>("UniformTypeIdentifiers_4e2094813cc7c17f", 117755018974091, this, [contentType, openInPlace, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  loadFileRepresentation(contentType: UTType, openInPlace: boolean, completionHandler: ((arg0: (string) | null, arg1: boolean, arg2: (NativeError) | null) => void)): _Foundation_Progress { return callSDK<_Foundation_Progress>("UniformTypeIdentifiers_1f27952b3c5b81e6", 117755018974091, this, [contentType, openInPlace, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)NSItemProvider": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "registeredContentTypes": true; "registeredContentTypesForOpenInPlace": true };
 }
@@ -42,12 +42,12 @@ export class NSString extends SDKHandle {
    * func appendingPathComponent(_ partialName: String, conformingTo contentType: UTType) -> String
    * @availability iOS 14.0+
    */
-  appendingPathComponent(partialName: string, contentType: UTType): string { return callSDK<string>("UniformTypeIdentifiers_4e2094813cc7c17f", 57110566506043, this, [partialName, contentType]); }
+  appendingPathComponent(partialName: string, contentType: UTType): string { return callSDK<string>("UniformTypeIdentifiers_1f27952b3c5b81e6", 57110566506043, this, [partialName, contentType]); }
   /**
    * func appendingPathExtension(for contentType: UTType) -> String
    * @availability iOS 14.0+
    */
-  appendingPathExtension(contentType: UTType): string { return callSDK<string>("UniformTypeIdentifiers_4e2094813cc7c17f", 1875375689236267, this, [contentType]); }
+  appendingPathExtension(contentType: UTType): string { return callSDK<string>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1875375689236267, this, [contentType]); }
   declare readonly $type: { "c:objc(cs)NSString": true; "c:objc(cs)NSObject": true };
 }
 
@@ -56,12 +56,12 @@ export class NSURL extends SDKHandle {
    * func appendingPathComponent(_ partialName: String, conformingTo contentType: UTType) -> URL
    * @availability iOS 14.0+
    */
-  appendingPathComponent(partialName: string, contentType: UTType): string { return callSDK<string>("UniformTypeIdentifiers_4e2094813cc7c17f", 3834944049347682, this, [partialName, contentType]); }
+  appendingPathComponent(partialName: string, contentType: UTType): string { return callSDK<string>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3834944049347682, this, [partialName, contentType]); }
   /**
    * func appendingPathExtension(for contentType: UTType) -> URL
    * @availability iOS 14.0+
    */
-  appendingPathExtension(contentType: UTType): string { return callSDK<string>("UniformTypeIdentifiers_4e2094813cc7c17f", 3647758844543008, this, [contentType]); }
+  appendingPathExtension(contentType: UTType): string { return callSDK<string>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3647758844543008, this, [contentType]); }
   declare readonly $type: { "c:objc(cs)NSURL": true; "c:objc(cs)NSObject": true };
 }
 
@@ -70,22 +70,22 @@ export class URL extends SDKHandle {
    * mutating func appendPathComponent(_ partialName: String, conformingTo contentType: UTType)
    * @availability iOS 14.0+
    */
-  appendPathComponent(partialName: string, contentType: UTType): void { return callSDK<void>("UniformTypeIdentifiers_4e2094813cc7c17f", 3960937573792457, this, [partialName, contentType]); }
+  appendPathComponent(partialName: string, contentType: UTType): void { return callSDK<void>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3960937573792457, this, [partialName, contentType]); }
   /**
    * mutating func appendPathExtension(for contentType: UTType)
    * @availability iOS 14.0+
    */
-  appendPathExtension(contentType: UTType): void { return callSDK<void>("UniformTypeIdentifiers_4e2094813cc7c17f", 862922596655737, this, [contentType]); }
+  appendPathExtension(contentType: UTType): void { return callSDK<void>("UniformTypeIdentifiers_1f27952b3c5b81e6", 862922596655737, this, [contentType]); }
   /**
    * func appendingPathComponent(_ partialName: String, conformingTo contentType: UTType) -> URL
    * @availability iOS 14.0+
    */
-  appendingPathComponent(partialName: string, contentType: UTType): string { return callSDK<string>("UniformTypeIdentifiers_4e2094813cc7c17f", 1182311202138661, this, [partialName, contentType]); }
+  appendingPathComponent(partialName: string, contentType: UTType): string { return callSDK<string>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1182311202138661, this, [partialName, contentType]); }
   /**
    * func appendingPathExtension(for contentType: UTType) -> URL
    * @availability iOS 14.0+
    */
-  appendingPathExtension(contentType: UTType): string { return callSDK<string>("UniformTypeIdentifiers_4e2094813cc7c17f", 521067618537623, this, [contentType]); }
+  appendingPathExtension(contentType: UTType): string { return callSDK<string>("UniformTypeIdentifiers_1f27952b3c5b81e6", 521067618537623, this, [contentType]); }
   declare readonly $type: { "s:10Foundation3URLV": true };
 }
 
@@ -94,7 +94,7 @@ export class URLResourceValues extends SDKHandle {
    * var contentType: UTType? { get }
    * @availability iOS 14.0+
    */
-  get contentType(): (UTType) | null { return callSDK<(UTType) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 2529169191198517, this, []); }
+  get contentType(): (UTType) | null { return callSDK<(UTType) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2529169191198517, this, []); }
   declare readonly $type: { "s:10Foundation17URLResourceValuesV": true };
 }
 
@@ -109,32 +109,32 @@ export const UTTagClass = {
    * static var mimeType: UTTagClass { get }
    * @availability iOS 14.0+
    */
-  get mimeType(): UTTagClass { return callSDK<UTTagClass>("UniformTypeIdentifiers_4e2094813cc7c17f", 3914172888582159, undefined, []); },
+  get mimeType(): UTTagClass { return callSDK<UTTagClass>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3914172888582159, undefined, []); },
   /**
    * var description: String { get }
    * @availability iOS 14.0+
    */
-  getDescription($self: UTTagClass): string { return callSDK<string>("UniformTypeIdentifiers_4e2094813cc7c17f", 3257429462172721, $self, []); },
+  getDescription($self: UTTagClass): string { return callSDK<string>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3257429462172721, $self, []); },
   /**
    * var debugDescription: String { get }
    * @availability iOS 14.0+
    */
-  getDebugDescription($self: UTTagClass): string { return callSDK<string>("UniformTypeIdentifiers_4e2094813cc7c17f", 4467462458696113, $self, []); },
+  getDebugDescription($self: UTTagClass): string { return callSDK<string>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4467462458696113, $self, []); },
   /**
    * static var filenameExtension: UTTagClass { get }
    * @availability iOS 14.0+
    */
-  get filenameExtension(): UTTagClass { return callSDK<UTTagClass>("UniformTypeIdentifiers_4e2094813cc7c17f", 328714189005269, undefined, []); },
+  get filenameExtension(): UTTagClass { return callSDK<UTTagClass>("UniformTypeIdentifiers_1f27952b3c5b81e6", 328714189005269, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 14.0+
    */
-  init(rawValue: string): UTTagClass { return callSDK<UTTagClass>("UniformTypeIdentifiers_4e2094813cc7c17f", 2638570215162066, undefined, [rawValue]); },
+  init(rawValue: string): UTTagClass { return callSDK<UTTagClass>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2638570215162066, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 14.0+
    */
-  getRawValue($self: UTTagClass): string { return callSDK<string>("UniformTypeIdentifiers_4e2094813cc7c17f", 2128701966566273, $self, []); }
+  getRawValue($self: UTTagClass): string { return callSDK<string>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2128701966566273, $self, []); }
 };
 
 /**
@@ -152,827 +152,827 @@ export class UTType extends SDKHandle {
    * init?(mimeType: String, conformingTo supertype: UTType = .data)
    * @availability iOS 14.0+
    */
-  static initMimeTypeConformingTo(mimeType: string, supertype?: UTType): (UTType) | null { return callSDK<(UTType) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 332514724425822, undefined, [mimeType, supertype]); }
+  static initMimeTypeConformingTo(mimeType: string, supertype?: UTType): (UTType) | null { return callSDK<(UTType) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 332514724425822, undefined, [mimeType, supertype]); }
   /**
    * static var cPlusPlusHeader: UTType { get }
    * @availability iOS 14.0+
    */
-  static get cPlusPlusHeader(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2806570938697966, undefined, []); }
+  static get cPlusPlusHeader(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2806570938697966, undefined, []); }
   /**
    * static var cPlusPlusSource: UTType { get }
    * @availability iOS 14.0+
    */
-  static get cPlusPlusSource(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1180423753103724, undefined, []); }
+  static get cPlusPlusSource(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1180423753103724, undefined, []); }
   /**
    * static var executable: UTType { get }
    * @availability iOS 14.0+
    */
-  static get executable(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3521946472927795, undefined, []); }
+  static get executable(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3521946472927795, undefined, []); }
   /**
    * init(exportedAs identifier: String, conformingTo parentType: UTType? = nil)
    * @availability iOS 14.0+
    */
-  static initExportedAsConformingTo(identifier: string, parentType?: (UTType) | null): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 795649614389633, undefined, [identifier, parentType]); }
+  static initExportedAsConformingTo(identifier: string, parentType?: (UTType) | null): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 795649614389633, undefined, [identifier, parentType]); }
   /**
    * init?(identifier: String, allowUndeclared: Bool)
    * @availability iOS 27.0+
    */
-  static initIdentifierAllowUndeclared(identifier: string, allowUndeclared: boolean): (UTType) | null { return callSDK<(UTType) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 723002137528355, undefined, [identifier, allowUndeclared]); }
+  static initIdentifierAllowUndeclared(identifier: string, allowUndeclared: boolean): (UTType) | null { return callSDK<(UTType) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 723002137528355, undefined, [identifier, allowUndeclared]); }
   /**
    * var identifier: String { get }
    * @availability iOS 14.0+
    */
-  get identifier(): string { return callSDK<string>("UniformTypeIdentifiers_4e2094813cc7c17f", 1926255709592877, this, []); }
+  get identifier(): string { return callSDK<string>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1926255709592877, this, []); }
   /**
    * init(importedAs identifier: String, conformingTo parentType: UTType? = nil)
    * @availability iOS 14.0+
    */
-  static initImportedAsConformingTo(identifier: string, parentType?: (UTType) | null): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 248856677164232, undefined, [identifier, parentType]); }
+  static initImportedAsConformingTo(identifier: string, parentType?: (UTType) | null): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 248856677164232, undefined, [identifier, parentType]); }
   /**
    * var isDeclared: Bool { get }
    * @availability iOS 14.0+
    */
-  get isDeclared(): boolean { return callSDK<boolean>("UniformTypeIdentifiers_4e2094813cc7c17f", 3977635677239242, this, []); }
+  get isDeclared(): boolean { return callSDK<boolean>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3977635677239242, this, []); }
   /**
    * static var javaScript: UTType { get }
    * @availability iOS 14.0+
    */
-  static get javaScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1033416496789970, undefined, []); }
+  static get javaScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1033416496789970, undefined, []); }
   /**
    * static var mountPoint: UTType { get }
    * @availability iOS 14.0+
    */
-  static get mountPoint(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3830240920636403, undefined, []); }
+  static get mountPoint(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3830240920636403, undefined, []); }
   /**
    * static var mpeg2Video: UTType { get }
    * @availability iOS 14.0+
    */
-  static get mpeg2Video(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2645411554562134, undefined, []); }
+  static get mpeg2Video(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2645411554562134, undefined, []); }
   /**
    * static var mpeg4Audio: UTType { get }
    * @availability iOS 14.0+
    */
-  static get mpeg4Audio(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2080675252202363, undefined, []); }
+  static get mpeg4Audio(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2080675252202363, undefined, []); }
   /**
    * static var mpeg4Movie: UTType { get }
    * @availability iOS 14.0+
    */
-  static get mpeg4Movie(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2520473087034954, undefined, []); }
+  static get mpeg4Movie(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2520473087034954, undefined, []); }
   /**
    * static var perlScript: UTType { get }
    * @availability iOS 14.0+
    */
-  static get perlScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4187320869627881, undefined, []); }
+  static get perlScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4187320869627881, undefined, []); }
   /**
    * static var resolvable: UTType { get }
    * @availability iOS 14.0+
    */
-  static get resolvable(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 208209923282681, undefined, []); }
+  static get resolvable(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 208209923282681, undefined, []); }
   /**
    * static var rubyScript: UTType { get }
    * @availability iOS 14.0+
    */
-  static get rubyScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3271419615351508, undefined, []); }
+  static get rubyScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3271419615351508, undefined, []); }
   /**
    * static var sourceCode: UTType { get }
    * @availability iOS 14.0+
    */
-  static get sourceCode(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3203159720699490, undefined, []); }
+  static get sourceCode(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3203159720699490, undefined, []); }
   /**
    * var supertypes: Set<UTType> { get }
    * @availability iOS 14.0+
    */
-  get supertypes(): Array<UTType> { return callSDK<Array<UTType>>("UniformTypeIdentifiers_4e2094813cc7c17f", 2350373862226529, this, []); }
+  get supertypes(): Array<UTType> { return callSDK<Array<UTType>>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2350373862226529, this, []); }
   /**
    * static var tarArchive: UTType { get }
    * @availability iOS 18.0+
    */
-  static get tarArchive(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1268015795974093, undefined, []); }
+  static get tarArchive(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1268015795974093, undefined, []); }
   /**
    * static var webArchive: UTType { get }
    * @availability iOS 14.0+
    */
-  static get webArchive(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4100920394668128, undefined, []); }
+  static get webArchive(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4100920394668128, undefined, []); }
   /**
    * static var xpcService: UTType { get }
    * @availability iOS 14.0+
    */
-  static get xpcService(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4304546212320258, undefined, []); }
+  static get xpcService(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4304546212320258, undefined, []); }
   /**
    * static var appleScript: UTType { get }
    * @availability iOS 14.0+
    */
-  static get appleScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 437175383624265, undefined, []); }
+  static get appleScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 437175383624265, undefined, []); }
   /**
    * static var application: UTType { get }
    * @availability iOS 14.0+
    */
-  static get application(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1639139607172287, undefined, []); }
+  static get application(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1639139607172287, undefined, []); }
   /**
    * var description: String { get }
    * @availability iOS 14.0+
    */
-  get description(): string { return callSDK<string>("UniformTypeIdentifiers_4e2094813cc7c17f", 4376642250491424, this, []); }
+  get description(): string { return callSDK<string>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4376642250491424, this, []); }
   /**
    * func isSupertype(of type: UTType) -> Bool
    * @availability iOS 14.0+
    */
-  isSupertype(type: UTType): boolean { return callSDK<boolean>("UniformTypeIdentifiers_4e2094813cc7c17f", 393715837012088, this, [type]); }
+  isSupertype(type: UTType): boolean { return callSDK<boolean>("UniformTypeIdentifiers_1f27952b3c5b81e6", 393715837012088, this, [type]); }
   /**
    * static var m3uPlaylist: UTType { get }
    * @availability iOS 14.0+
    */
-  static get m3uPlaylist(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1343866507106320, undefined, []); }
+  static get m3uPlaylist(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1343866507106320, undefined, []); }
   /**
    * static var realityFile: UTType { get }
    * @availability iOS 14.0+
    */
-  static get realityFile(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1861343070593929, undefined, []); }
+  static get realityFile(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1861343070593929, undefined, []); }
   /**
    * static var shellScript: UTType { get }
    * @availability iOS 14.0+
    */
-  static get shellScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1306095965075357, undefined, []); }
+  static get shellScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1306095965075357, undefined, []); }
   /**
    * static var spreadsheet: UTType { get }
    * @availability iOS 14.0+
    */
-  static get spreadsheet(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1192343201757103, undefined, []); }
+  static get spreadsheet(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1192343201757103, undefined, []); }
   /**
    * static var swiftSource: UTType { get }
    * @availability iOS 14.0+
    */
-  static get swiftSource(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 342970944729084, undefined, []); }
+  static get swiftSource(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 342970944729084, undefined, []); }
   /**
    * static var appleArchive: UTType { get }
    * @availability iOS 14.0+
    */
-  static get appleArchive(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1914423040156759, undefined, []); }
+  static get appleArchive(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1914423040156759, undefined, []); }
   /**
    * static var emailMessage: UTType { get }
    * @availability iOS 14.0+
    */
-  static get emailMessage(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 859415882515741, undefined, []); }
+  static get emailMessage(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 859415882515741, undefined, []); }
   /**
    * static var pluginBundle: UTType { get }
    * @availability iOS 14.0+
    */
-  static get pluginBundle(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3012326602657156, undefined, []); }
+  static get pluginBundle(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3012326602657156, undefined, []); }
   /**
    * static var presentation: UTType { get }
    * @availability iOS 14.0+
    */
-  static get presentation(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4158327037096547, undefined, []); }
+  static get presentation(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4158327037096547, undefined, []); }
   /**
    * static var propertyList: UTType { get }
    * @availability iOS 14.0+
    */
-  static get propertyList(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2104188050696257, undefined, []); }
+  static get propertyList(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2104188050696257, undefined, []); }
   /**
    * static var pythonScript: UTType { get }
    * @availability iOS 14.0+
    */
-  static get pythonScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2821767399095927, undefined, []); }
+  static get pythonScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2821767399095927, undefined, []); }
   /**
    * var referenceURL: URL? { get }
    * @availability iOS 14.0+
    */
-  get referenceURL(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 2314099183567735, this, []); }
+  get referenceURL(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2314099183567735, this, []); }
   /**
    * static var symbolicLink: UTType { get }
    * @availability iOS 14.0+
    */
-  static get symbolicLink(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2521126729287563, undefined, []); }
+  static get symbolicLink(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2521126729287563, undefined, []); }
   /**
    * static var calendarEvent: UTType { get }
    * @availability iOS 14.0+
    */
-  static get calendarEvent(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4328808193444474, undefined, []); }
+  static get calendarEvent(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4328808193444474, undefined, []); }
   /**
    * static var delimitedText: UTType { get }
    * @availability iOS 14.0+
    */
-  static get delimitedText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2305576423042564, undefined, []); }
+  static get delimitedText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2305576423042564, undefined, []); }
   /**
    * static var sceneKitScene: UTType { get }
    * @availability iOS 14.0+
    */
-  static get sceneKitScene(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 371334683951438, undefined, []); }
+  static get sceneKitScene(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 371334683951438, undefined, []); }
   /**
    * static var threeDContent: UTType { get }
    * @availability iOS 14.0+
    */
-  static get threeDContent(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3753599382596930, undefined, []); }
+  static get threeDContent(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3753599382596930, undefined, []); }
   /**
    * static var utf8PlainText: UTType { get }
    * @availability iOS 14.0+
    */
-  static get utf8PlainText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1742097667316288, undefined, []); }
+  static get utf8PlainText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1742097667316288, undefined, []); }
   /**
    * static var quickTimeMovie: UTType { get }
    * @availability iOS 14.0+
    */
-  static get quickTimeMovie(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 51477176207989, undefined, []); }
+  static get quickTimeMovie(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 51477176207989, undefined, []); }
   /**
    * static var unixExecutable: UTType { get }
    * @availability iOS 14.0+
    */
-  static get unixExecutable(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3411314508304778, undefined, []); }
+  static get unixExecutable(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3411314508304778, undefined, []); }
   /**
    * static var utf16PlainText: UTType { get }
    * @availability iOS 14.0+
    */
-  static get utf16PlainText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2124323303045592, undefined, []); }
+  static get utf16PlainText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2124323303045592, undefined, []); }
   /**
    * static var osaScriptBundle: UTType { get }
    * @availability iOS 14.0+
    */
-  static get osaScriptBundle(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3446816525139558, undefined, []); }
+  static get osaScriptBundle(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3446816525139558, undefined, []); }
   /**
    * static var urlBookmarkData: UTType { get }
    * @availability iOS 14.0+
    */
-  static get urlBookmarkData(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4437909531322602, undefined, []); }
+  static get urlBookmarkData(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4437909531322602, undefined, []); }
   /**
    * static var x509Certificate: UTType { get }
    * @availability iOS 14.0+
    */
-  static get x509Certificate(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1730764456174215, undefined, []); }
+  static get x509Certificate(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1730764456174215, undefined, []); }
   /**
    * static var xmlPropertyList: UTType { get }
    * @availability iOS 14.0+
    */
-  static get xmlPropertyList(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4185096140334741, undefined, []); }
+  static get xmlPropertyList(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4185096140334741, undefined, []); }
   /**
    * static var compositeContent: UTType { get }
    * @availability iOS 14.0+
    */
-  static get compositeContent(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 241375560429659, undefined, []); }
+  static get compositeContent(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 241375560429659, undefined, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 14.0+
    */
-  get debugDescription(): string { return callSDK<string>("UniformTypeIdentifiers_4e2094813cc7c17f", 257921889431016, this, []); }
+  get debugDescription(): string { return callSDK<string>("UniformTypeIdentifiers_1f27952b3c5b81e6", 257921889431016, this, []); }
   /**
    * static var internetLocation: UTType { get }
    * @availability iOS 14.0+
    */
-  static get internetLocation(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2767340538179399, undefined, []); }
+  static get internetLocation(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2767340538179399, undefined, []); }
   /**
    * static var internetShortcut: UTType { get }
    * @availability iOS 14.0+
    */
-  static get internetShortcut(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4431726284182188, undefined, []); }
+  static get internetShortcut(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4431726284182188, undefined, []); }
   /**
    * static var objectiveCSource: UTType { get }
    * @availability iOS 14.0+
    */
-  static get objectiveCSource(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 591379518199813, undefined, []); }
+  static get objectiveCSource(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 591379518199813, undefined, []); }
   /**
    * static var tabSeparatedText: UTType { get }
    * @availability iOS 14.0+
    */
-  static get tabSeparatedText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2936522420703047, undefined, []); }
+  static get tabSeparatedText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2936522420703047, undefined, []); }
   /**
    * static var applicationBundle: UTType { get }
    * @availability iOS 14.0+
    */
-  static get applicationBundle(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2637875606639151, undefined, []); }
+  static get applicationBundle(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2637875606639151, undefined, []); }
   /**
    * static var arReferenceObject: UTType { get }
    * @availability iOS 14.0+
    */
-  static get arReferenceObject(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1240271375468620, undefined, []); }
+  static get arReferenceObject(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1240271375468620, undefined, []); }
   /**
    * init?(filenameExtension: String, conformingTo supertype: UTType = .data)
    * @availability iOS 14.0+
    */
-  static initFilenameExtensionConformingTo(filenameExtension: string, supertype?: UTType): (UTType) | null { return callSDK<(UTType) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 2482937278055273, undefined, [filenameExtension, supertype]); }
+  static initFilenameExtensionConformingTo(filenameExtension: string, supertype?: UTType): (UTType) | null { return callSDK<(UTType) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2482937278055273, undefined, [filenameExtension, supertype]); }
   /**
    * var preferredMIMEType: String? { get }
    * @availability iOS 14.0+
    */
-  get preferredMIMEType(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 104855432003687, this, []); }
+  get preferredMIMEType(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 104855432003687, this, []); }
   /**
    * static var spotlightImporter: UTType { get }
    * @availability iOS 14.0+
    */
-  static get spotlightImporter(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 594440548862264, undefined, []); }
+  static get spotlightImporter(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 594440548862264, undefined, []); }
   /**
    * static var audiovisualContent: UTType { get }
    * @availability iOS 14.0+
    */
-  static get audiovisualContent(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4383870280014503, undefined, []); }
+  static get audiovisualContent(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4383870280014503, undefined, []); }
   /**
    * static var binaryPropertyList: UTType { get }
    * @availability iOS 14.0+
    */
-  static get binaryPropertyList(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 561634388859691, undefined, []); }
+  static get binaryPropertyList(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 561634388859691, undefined, []); }
   /**
    * static var commaSeparatedText: UTType { get }
    * @availability iOS 14.0+
    */
-  static get commaSeparatedText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 133725699985562, undefined, []); }
+  static get commaSeparatedText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 133725699985562, undefined, []); }
   /**
    * static var quickLookGenerator: UTType { get }
    * @availability iOS 14.0+
    */
-  static get quickLookGenerator(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2157166772475173, undefined, []); }
+  static get quickLookGenerator(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2157166772475173, undefined, []); }
   /**
    * static var applicationExtension: UTType { get }
    * @availability iOS 14.0+
    */
-  static get applicationExtension(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2153195072699330, undefined, []); }
+  static get applicationExtension(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2153195072699330, undefined, []); }
   /**
    * var localizedDescription: String? { get }
    * @availability iOS 14.0+
    */
-  get localizedDescription(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 2856834084872602, this, []); }
+  get localizedDescription(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2856834084872602, this, []); }
   /**
    * static var mpeg2TransportStream: UTType { get }
    * @availability iOS 14.0+
    */
-  static get mpeg2TransportStream(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1054951608089726, undefined, []); }
+  static get mpeg2TransportStream(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1054951608089726, undefined, []); }
   /**
    * static var utf8TabSeparatedText: UTType { get }
    * @availability iOS 14.0+
    */
-  static get utf8TabSeparatedText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2524119204666061, undefined, []); }
+  static get utf8TabSeparatedText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2524119204666061, undefined, []); }
   /**
    * static var systemPreferencesPane: UTType { get }
    * @availability iOS 14.0+
    */
-  static get systemPreferencesPane(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1158519396656049, undefined, []); }
+  static get systemPreferencesPane(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1158519396656049, undefined, []); }
   /**
    * static var assemblyLanguageSource: UTType { get }
    * @availability iOS 14.0+
    */
-  static get assemblyLanguageSource(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3582688636001082, undefined, []); }
+  static get assemblyLanguageSource(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3582688636001082, undefined, []); }
   /**
    * static var utf16ExternalPlainText: UTType { get }
    * @availability iOS 14.0+
    */
-  static get utf16ExternalPlainText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1538505990609263, undefined, []); }
+  static get utf16ExternalPlainText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1538505990609263, undefined, []); }
   /**
    * static var appleProtectedMPEG4Audio: UTType { get }
    * @availability iOS 14.0+
    */
-  static get appleProtectedMPEG4Audio(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1063860587474888, undefined, []); }
+  static get appleProtectedMPEG4Audio(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1063860587474888, undefined, []); }
   /**
    * static var appleProtectedMPEG4Video: UTType { get }
    * @availability iOS 14.0+
    */
-  static get appleProtectedMPEG4Video(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2328125163851448, undefined, []); }
+  static get appleProtectedMPEG4Video(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2328125163851448, undefined, []); }
   /**
    * static var linkPresentationMetadata: UTType { get }
    * @availability iOS 18.0+
    */
-  static get linkPresentationMetadata(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 56344241112062, undefined, []); }
+  static get linkPresentationMetadata(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 56344241112062, undefined, []); }
   /**
    * static var objectiveCPlusPlusSource: UTType { get }
    * @availability iOS 14.0+
    */
-  static get objectiveCPlusPlusSource(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 585413555350424, undefined, []); }
+  static get objectiveCPlusPlusSource(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 585413555350424, undefined, []); }
   /**
    * var preferredFilenameExtension: String? { get }
    * @availability iOS 14.0+
    */
-  get preferredFilenameExtension(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 4010833671807270, this, []); }
+  get preferredFilenameExtension(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4010833671807270, this, []); }
   /**
    * static var avi: UTType { get }
    * @availability iOS 14.0+
    */
-  static get avi(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3550347878884126, undefined, []); }
+  static get avi(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3550347878884126, undefined, []); }
   /**
    * static var bmp: UTType { get }
    * @availability iOS 14.0+
    */
-  static get bmp(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3611475208168063, undefined, []); }
+  static get bmp(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3611475208168063, undefined, []); }
   /**
    * static var bz2: UTType { get }
    * @availability iOS 14.0+
    */
-  static get bz2(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1684848470809455, undefined, []); }
+  static get bz2(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1684848470809455, undefined, []); }
   /**
    * static var css: UTType { get }
    * @availability iOS 18.0+
    */
-  static get css(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2378632684564852, undefined, []); }
+  static get css(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2378632684564852, undefined, []); }
   /**
    * static var dng: UTType { get }
    * @availability iOS 18.0+
    */
-  static get dng(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 620261859138088, undefined, []); }
+  static get dng(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 620261859138088, undefined, []); }
   /**
    * static var exe: UTType { get }
    * @availability iOS 14.0+
    */
-  static get exe(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2430389707236797, undefined, []); }
+  static get exe(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2430389707236797, undefined, []); }
   /**
    * static var exr: UTType { get }
    * @availability iOS 18.0+
    */
-  static get exr(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 786472600197473, undefined, []); }
+  static get exr(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 786472600197473, undefined, []); }
   /**
    * static var gif: UTType { get }
    * @availability iOS 14.0+
    */
-  static get gif(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1378048837702607, undefined, []); }
+  static get gif(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1378048837702607, undefined, []); }
   /**
    * static var ico: UTType { get }
    * @availability iOS 14.0+
    */
-  static get ico(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1645407023024483, undefined, []); }
+  static get ico(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1645407023024483, undefined, []); }
   /**
    * static var log: UTType { get }
    * @availability iOS 14.0+
    */
-  static get log(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2141243757199883, undefined, []); }
+  static get log(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2141243757199883, undefined, []); }
   /**
    * static var mp3: UTType { get }
    * @availability iOS 14.0+
    */
-  static get mp3(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4167153382808790, undefined, []); }
+  static get mp3(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4167153382808790, undefined, []); }
   /**
    * static var pdf: UTType { get }
    * @availability iOS 14.0+
    */
-  static get pdf(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 355503836542644, undefined, []); }
+  static get pdf(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 355503836542644, undefined, []); }
   /**
    * static var png: UTType { get }
    * @availability iOS 14.0+
    */
-  static get png(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1989618813317975, undefined, []); }
+  static get png(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1989618813317975, undefined, []); }
   /**
    * static var rtf: UTType { get }
    * @availability iOS 14.0+
    */
-  static get rtf(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 865927291015994, undefined, []); }
+  static get rtf(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 865927291015994, undefined, []); }
   /**
    * static var svg: UTType { get }
    * @availability iOS 14.0+
    */
-  static get svg(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3033537673121679, undefined, []); }
+  static get svg(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3033537673121679, undefined, []); }
   /**
    * init?(tag: String, tagClass: UTTagClass, conformingTo supertype: UTType?)
    * @availability iOS 14.0+
    */
-  static initTagTagClassConformingTo(tag: string, tagClass: UTTagClass, supertype?: (UTType) | null): (UTType) | null { return callSDK<(UTType) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 4048634239816127, undefined, [tag, tagClass, supertype]); }
+  static initTagTagClassConformingTo(tag: string, tagClass: UTTagClass, supertype?: (UTType) | null): (UTType) | null { return callSDK<(UTType) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4048634239816127, undefined, [tag, tagClass, supertype]); }
   /**
    * static var url: UTType { get }
    * @availability iOS 14.0+
    */
-  static get url(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 843178043678796, undefined, []); }
+  static get url(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 843178043678796, undefined, []); }
   /**
    * static var usd: UTType { get }
    * @availability iOS 14.0+
    */
-  static get usd(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 726377154347437, undefined, []); }
+  static get usd(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 726377154347437, undefined, []); }
   /**
    * static var wav: UTType { get }
    * @availability iOS 14.0+
    */
-  static get wav(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 874251608672963, undefined, []); }
+  static get wav(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 874251608672963, undefined, []); }
   /**
    * static var xml: UTType { get }
    * @availability iOS 14.0+
    */
-  static get xml(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2067555913422012, undefined, []); }
+  static get xml(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2067555913422012, undefined, []); }
   /**
    * static var zip: UTType { get }
    * @availability iOS 14.0+
    */
-  static get zip(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3136514151209844, undefined, []); }
+  static get zip(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3136514151209844, undefined, []); }
   /**
    * static var ahap: UTType { get }
    * @availability iOS 17.0+
    */
-  static get ahap(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1644684605821248, undefined, []); }
+  static get ahap(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1644684605821248, undefined, []); }
   /**
    * static var aiff: UTType { get }
    * @availability iOS 14.0+
    */
-  static get aiff(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 645944038210336, undefined, []); }
+  static get aiff(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 645944038210336, undefined, []); }
   /**
    * static var data: UTType { get }
    * @availability iOS 14.0+
    */
-  static get data(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2440685197084171, undefined, []); }
+  static get data(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2440685197084171, undefined, []); }
   /**
    * static var epub: UTType { get }
    * @availability iOS 14.0+
    */
-  static get epub(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3138573569766259, undefined, []); }
+  static get epub(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3138573569766259, undefined, []); }
   /**
    * static var font: UTType { get }
    * @availability iOS 14.0+
    */
-  static get font(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3330647680246451, undefined, []); }
+  static get font(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3330647680246451, undefined, []); }
   /**
    * static var gzip: UTType { get }
    * @availability iOS 14.0+
    */
-  static get gzip(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3555564487362629, undefined, []); }
+  static get gzip(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3555564487362629, undefined, []); }
   /**
    * static var heic: UTType { get }
    * @availability iOS 14.0+
    */
-  static get heic(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2781175165969685, undefined, []); }
+  static get heic(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2781175165969685, undefined, []); }
   /**
    * static var heif: UTType { get }
    * @availability iOS 14.0+
    */
-  static get heif(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4441056118973498, undefined, []); }
+  static get heif(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4441056118973498, undefined, []); }
   /**
    * static var html: UTType { get }
    * @availability iOS 14.0+
    */
-  static get html(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1352295234638031, undefined, []); }
+  static get html(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1352295234638031, undefined, []); }
   /**
    * static var icns: UTType { get }
    * @availability iOS 14.0+
    */
-  static get icns(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2876593078030343, undefined, []); }
+  static get icns(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2876593078030343, undefined, []); }
   /**
    * static var item: UTType { get }
    * @availability iOS 14.0+
    */
-  static get item(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2714002328272798, undefined, []); }
+  static get item(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2714002328272798, undefined, []); }
   /**
    * static var jpeg: UTType { get }
    * @availability iOS 14.0+
    */
-  static get jpeg(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4483726761762109, undefined, []); }
+  static get jpeg(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4483726761762109, undefined, []); }
   /**
    * static var json: UTType { get }
    * @availability iOS 14.0+
    */
-  static get json(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1432606351715764, undefined, []); }
+  static get json(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1432606351715764, undefined, []); }
   /**
    * static var midi: UTType { get }
    * @availability iOS 14.0+
    */
-  static get midi(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2366685023008178, undefined, []); }
+  static get midi(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2366685023008178, undefined, []); }
   /**
    * static var mpeg: UTType { get }
    * @availability iOS 14.0+
    */
-  static get mpeg(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2819523341692154, undefined, []); }
+  static get mpeg(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2819523341692154, undefined, []); }
   /**
    * static var rtfd: UTType { get }
    * @availability iOS 14.0+
    */
-  static get rtfd(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3853826155796165, undefined, []); }
+  static get rtfd(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3853826155796165, undefined, []); }
   /**
    * var tags: [UTTagClass : [String]] { get }
    * @availability iOS 14.0+
    */
-  get tags(): NativeMap<UTTagClass, Array<string>> { return callSDK<NativeMap<UTTagClass, Array<string>>>("UniformTypeIdentifiers_4e2094813cc7c17f", 2286816940504952, this, []); }
+  get tags(): NativeMap<UTTagClass, Array<string>> { return callSDK<NativeMap<UTTagClass, Array<string>>>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2286816940504952, this, []); }
   /**
    * static var text: UTType { get }
    * @availability iOS 14.0+
    */
-  static get text(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4035785291305529, undefined, []); }
+  static get text(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4035785291305529, undefined, []); }
   /**
    * static var tiff: UTType { get }
    * @availability iOS 14.0+
    */
-  static get tiff(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3786300544686423, undefined, []); }
+  static get tiff(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3786300544686423, undefined, []); }
   /**
    * static var usdz: UTType { get }
    * @availability iOS 14.0+
    */
-  static get usdz(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3494792586971338, undefined, []); }
+  static get usdz(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3494792586971338, undefined, []); }
   /**
    * static var webP: UTType { get }
    * @availability iOS 14.0+
    */
-  static get webP(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3111843936712054, undefined, []); }
+  static get webP(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3111843936712054, undefined, []); }
   /**
    * static var yaml: UTType { get }
    * @availability iOS 14.0+
    */
-  static get yaml(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1303312996209436, undefined, []); }
+  static get yaml(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1303312996209436, undefined, []); }
   /**
    * static var audio: UTType { get }
    * @availability iOS 14.0+
    */
-  static get audio(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1862140162620426, undefined, []); }
+  static get audio(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1862140162620426, undefined, []); }
   /**
    * static var heics: UTType { get }
    * @availability iOS 18.0+
    */
-  static get heics(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3722231670165284, undefined, []); }
+  static get heics(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3722231670165284, undefined, []); }
   /**
    * static var image: UTType { get }
    * @availability iOS 14.0+
    */
-  static get image(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1753061290389481, undefined, []); }
+  static get image(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1753061290389481, undefined, []); }
   /**
    * static var movie: UTType { get }
    * @availability iOS 14.0+
    */
-  static get movie(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 75848935069266, undefined, []); }
+  static get movie(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 75848935069266, undefined, []); }
   /**
    * static func types(tag: String, tagClass: UTTagClass, conformingTo supertype: UTType?) -> [UTType]
    * @availability iOS 14.0+
    */
-  static types(tag: string, tagClass: UTTagClass, supertype?: (UTType) | null): Array<UTType> { return callSDK<Array<UTType>>("UniformTypeIdentifiers_4e2094813cc7c17f", 3048244219216210, undefined, [tag, tagClass, supertype]); }
+  static types(tag: string, tagClass: UTTagClass, supertype?: (UTType) | null): Array<UTType> { return callSDK<Array<UTType>>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3048244219216210, undefined, [tag, tagClass, supertype]); }
   /**
    * static var vCard: UTType { get }
    * @availability iOS 14.0+
    */
-  static get vCard(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1143471916399828, undefined, []); }
+  static get vCard(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1143471916399828, undefined, []); }
   /**
    * static var video: UTType { get }
    * @availability iOS 14.0+
    */
-  static get video(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2534259996055731, undefined, []); }
+  static get video(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2534259996055731, undefined, []); }
   /**
    * static var bundle: UTType { get }
    * @availability iOS 14.0+
    */
-  static get bundle(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3336319496353891, undefined, []); }
+  static get bundle(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3336319496353891, undefined, []); }
   /**
    * static var folder: UTType { get }
    * @availability iOS 14.0+
    */
-  static get folder(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 302660485122860, undefined, []); }
+  static get folder(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 302660485122860, undefined, []); }
   /**
    * static var jpegxl: UTType { get }
    * @availability iOS 18.2+
    */
-  static get jpegxl(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4147110997035925, undefined, []); }
+  static get jpegxl(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4147110997035925, undefined, []); }
   /**
    * static var pkcs12: UTType { get }
    * @availability iOS 14.0+
    */
-  static get pkcs12(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1052701124310651, undefined, []); }
+  static get pkcs12(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1052701124310651, undefined, []); }
   /**
    * static var script: UTType { get }
    * @availability iOS 14.0+
    */
-  static get script(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2071725377634283, undefined, []); }
+  static get script(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2071725377634283, undefined, []); }
   /**
    * static var volume: UTType { get }
    * @availability iOS 14.0+
    */
-  static get volume(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 180957380153529, undefined, []); }
+  static get volume(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 180957380153529, undefined, []); }
   /**
    * static var archive: UTType { get }
    * @availability iOS 14.0+
    */
-  static get archive(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4073532792331764, undefined, []); }
+  static get archive(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4073532792331764, undefined, []); }
   /**
    * static var cHeader: UTType { get }
    * @availability iOS 14.0+
    */
-  static get cHeader(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1293167338751804, undefined, []); }
+  static get cHeader(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1293167338751804, undefined, []); }
   /**
    * static var cSource: UTType { get }
    * @availability iOS 14.0+
    */
-  static get cSource(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1289215233083720, undefined, []); }
+  static get cSource(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1289215233083720, undefined, []); }
   /**
    * static var contact: UTType { get }
    * @availability iOS 14.0+
    */
-  static get contact(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3866659816922417, undefined, []); }
+  static get contact(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3866659816922417, undefined, []); }
   /**
    * static var content: UTType { get }
    * @availability iOS 14.0+
    */
-  static get content(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3464162596877706, undefined, []); }
+  static get content(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3464162596877706, undefined, []); }
   /**
    * static var fileURL: UTType { get }
    * @availability iOS 14.0+
    */
-  static get fileURL(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 857441075852969, undefined, []); }
+  static get fileURL(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 857441075852969, undefined, []); }
   /**
    * static var geoJSON: UTType { get }
    * @availability iOS 18.0+
    */
-  static get geoJSON(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1034568849670701, undefined, []); }
+  static get geoJSON(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1034568849670701, undefined, []); }
   /**
    * static var message: UTType { get }
    * @availability iOS 14.0+
    */
-  static get message(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 510210935584515, undefined, []); }
+  static get message(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 510210935584515, undefined, []); }
   /**
    * static var package: UTType { get }
    * @availability iOS 14.0+
    */
-  static get package(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1095521058308415, undefined, []); }
+  static get package(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1095521058308415, undefined, []); }
   /**
    * var version: Int? { get }
    * @availability iOS 14.0+
    */
-  get version(): (number) | null { return callSDK<(number) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 2678283570792918, this, []); }
+  get version(): (number) | null { return callSDK<(number) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2678283570792918, this, []); }
   /**
    * static var bookmark: UTType { get }
    * @availability iOS 14.0+
    */
-  static get bookmark(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1070365397719952, undefined, []); }
+  static get bookmark(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1070365397719952, undefined, []); }
   /**
    * func conforms(to type: UTType) -> Bool
    * @availability iOS 14.0+
    */
-  conforms(type: UTType): boolean { return callSDK<boolean>("UniformTypeIdentifiers_4e2094813cc7c17f", 2573175844502961, this, [type]); }
+  conforms(type: UTType): boolean { return callSDK<boolean>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2573175844502961, this, [type]); }
   /**
    * static var database: UTType { get }
    * @availability iOS 14.0+
    */
-  static get database(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3018916590042871, undefined, []); }
+  static get database(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3018916590042871, undefined, []); }
   /**
    * static var flatRTFD: UTType { get }
    * @availability iOS 14.0+
    */
-  static get flatRTFD(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1965756139635931, undefined, []); }
+  static get flatRTFD(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1965756139635931, undefined, []); }
   /**
    * var isPublic: Bool { get }
    * @availability iOS 14.0+
    */
-  get isPublic(): boolean { return callSDK<boolean>("UniformTypeIdentifiers_4e2094813cc7c17f", 1260551636044832, this, []); }
+  get isPublic(): boolean { return callSDK<boolean>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1260551636044832, this, []); }
   /**
    * static var makefile: UTType { get }
    * @availability iOS 15.0+
    */
-  static get makefile(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1078583555247993, undefined, []); }
+  static get makefile(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1078583555247993, undefined, []); }
   /**
    * static var markdown: UTType { get }
    * @availability iOS 27.0+
    */
-  static get markdown(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 54614627086996, undefined, []); }
+  static get markdown(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 54614627086996, undefined, []); }
   /**
    * static var playlist: UTType { get }
    * @availability iOS 14.0+
    */
-  static get playlist(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3099223086672428, undefined, []); }
+  static get playlist(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3099223086672428, undefined, []); }
   /**
    * static var rawImage: UTType { get }
    * @availability iOS 14.0+
    */
-  static get rawImage(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 27222859311585, undefined, []); }
+  static get rawImage(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 27222859311585, undefined, []); }
   /**
    * static var toDoItem: UTType { get }
    * @availability iOS 14.0+
    */
-  static get toDoItem(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2441810996000786, undefined, []); }
+  static get toDoItem(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2441810996000786, undefined, []); }
   /**
    * static var aliasFile: UTType { get }
    * @availability iOS 14.0+
    */
-  static get aliasFile(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2177490239335675, undefined, []); }
+  static get aliasFile(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2177490239335675, undefined, []); }
   /**
    * static var directory: UTType { get }
    * @availability iOS 14.0+
    */
-  static get directory(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2374153144695630, undefined, []); }
+  static get directory(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2374153144695630, undefined, []); }
   /**
    * static var diskImage: UTType { get }
    * @availability iOS 14.0+
    */
-  static get diskImage(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1458858375576542, undefined, []); }
+  static get diskImage(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1458858375576542, undefined, []); }
   /**
    * static var framework: UTType { get }
    * @availability iOS 14.0+
    */
-  static get framework(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 4265814086914878, undefined, []); }
+  static get framework(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4265814086914878, undefined, []); }
   /**
    * var isDynamic: Bool { get }
    * @availability iOS 14.0+
    */
-  get isDynamic(): boolean { return callSDK<boolean>("UniformTypeIdentifiers_4e2094813cc7c17f", 2341488552393692, this, []); }
+  get isDynamic(): boolean { return callSDK<boolean>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2341488552393692, this, []); }
   /**
    * func isSubtype(of type: UTType) -> Bool
    * @availability iOS 14.0+
    */
-  isSubtype(type: UTType): boolean { return callSDK<boolean>("UniformTypeIdentifiers_4e2094813cc7c17f", 3780037698343950, this, [type]); }
+  isSubtype(type: UTType): boolean { return callSDK<boolean>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3780037698343950, this, [type]); }
   /**
    * static var livePhoto: UTType { get }
    * @availability iOS 14.0+
    */
-  static get livePhoto(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2812117186431670, undefined, []); }
+  static get livePhoto(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2812117186431670, undefined, []); }
   /**
    * static var osaScript: UTType { get }
    * @availability iOS 14.0+
    */
-  static get osaScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 3147386802863817, undefined, []); }
+  static get osaScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3147386802863817, undefined, []); }
   /**
    * static var phpScript: UTType { get }
    * @availability iOS 14.0+
    */
-  static get phpScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 2093332194210289, undefined, []); }
+  static get phpScript(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2093332194210289, undefined, []); }
   /**
    * static var plainText: UTType { get }
    * @availability iOS 14.0+
    */
-  static get plainText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_4e2094813cc7c17f", 1680649102435432, undefined, []); }
+  static get plainText(): UTType { return callSDK<UTType>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1680649102435432, undefined, []); }
   /**
    * init?(_ identifier: String)
    * @availability iOS 14.0+
    */
-  static init(identifier: string): (UTType) | null { return callSDK<(UTType) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 2304899308356962, undefined, [identifier]); }
+  static init(identifier: string): (UTType) | null { return callSDK<(UTType) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2304899308356962, undefined, [identifier]); }
   declare readonly $type: { "s:22UniformTypeIdentifiers6UTTypeV": true };
 }
 
@@ -991,140 +991,140 @@ export class UTTypeReference extends SDKHandle {
    * init(exportedAs identifier: String)
    * @availability iOS 14.0+
    */
-  static initExportedAs(identifier: string): UTTypeReference { return callSDK<UTTypeReference>("UniformTypeIdentifiers_4e2094813cc7c17f", 1796785774910667, undefined, [identifier]); }
+  static initExportedAs(identifier: string): UTTypeReference { return callSDK<UTTypeReference>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1796785774910667, undefined, [identifier]); }
   /**
    * init(exportedAs identifier: String, conformingTo parentType: UTType)
    * @availability iOS 14.0+
    */
-  static initExportedAsConformingTo(identifier: string, parentType: UTType): UTTypeReference { return callSDK<UTTypeReference>("UniformTypeIdentifiers_4e2094813cc7c17f", 3164911228160613, undefined, [identifier, parentType]); }
+  static initExportedAsConformingTo(identifier: string, parentType: UTType): UTTypeReference { return callSDK<UTTypeReference>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3164911228160613, undefined, [identifier, parentType]); }
   /**
    * init(importedAs identifier: String)
    * @availability iOS 14.0+
    */
-  static initImportedAs(identifier: string): UTTypeReference { return callSDK<UTTypeReference>("UniformTypeIdentifiers_4e2094813cc7c17f", 870023868285408, undefined, [identifier]); }
+  static initImportedAs(identifier: string): UTTypeReference { return callSDK<UTTypeReference>("UniformTypeIdentifiers_1f27952b3c5b81e6", 870023868285408, undefined, [identifier]); }
   /**
    * init(importedAs identifier: String, conformingTo parentType: UTType)
    * @availability iOS 14.0+
    */
-  static initImportedAsConformingTo(identifier: string, parentType: UTType): UTTypeReference { return callSDK<UTTypeReference>("UniformTypeIdentifiers_4e2094813cc7c17f", 2068855949066370, undefined, [identifier, parentType]); }
+  static initImportedAsConformingTo(identifier: string, parentType: UTType): UTTypeReference { return callSDK<UTTypeReference>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2068855949066370, undefined, [identifier, parentType]); }
   /**
    * convenience init?(filenameExtension: String)
    * @availability iOS 14.0+
    */
-  static initFilenameExtension(filenameExtension: string): (UTTypeReference) | null { return callSDK<(UTTypeReference) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 1984568064846982, undefined, [filenameExtension]); }
+  static initFilenameExtension(filenameExtension: string): (UTTypeReference) | null { return callSDK<(UTTypeReference) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1984568064846982, undefined, [filenameExtension]); }
   /**
    * convenience init?(filenameExtension: String, conformingTo supertype: UTType)
    * @availability iOS 14.0+
    */
-  static initFilenameExtensionConformingTo(filenameExtension: string, supertype: UTType): (UTTypeReference) | null { return callSDK<(UTTypeReference) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 824043852673484, undefined, [filenameExtension, supertype]); }
+  static initFilenameExtensionConformingTo(filenameExtension: string, supertype: UTType): (UTTypeReference) | null { return callSDK<(UTTypeReference) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 824043852673484, undefined, [filenameExtension, supertype]); }
   /**
    * convenience init?(_ identifier: String)
    * @availability iOS 14.0+
    */
-  static init(identifier: string): (UTTypeReference) | null { return callSDK<(UTTypeReference) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 3285960898934088, undefined, [identifier]); }
+  static init(identifier: string): (UTTypeReference) | null { return callSDK<(UTTypeReference) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3285960898934088, undefined, [identifier]); }
   /**
    * convenience init?(identifier: String, allowUndeclared: Bool)
    * @availability iOS 27.0+
    */
-  static initIdentifierAllowUndeclared(identifier: string, allowUndeclared: boolean): (UTTypeReference) | null { return callSDK<(UTTypeReference) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 2649904445911826, undefined, [identifier, allowUndeclared]); }
+  static initIdentifierAllowUndeclared(identifier: string, allowUndeclared: boolean): (UTTypeReference) | null { return callSDK<(UTTypeReference) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2649904445911826, undefined, [identifier, allowUndeclared]); }
   /**
    * convenience init?(mimeType: String)
    * @availability iOS 14.0+
    */
-  static initMimeType(mimeType: string): (UTTypeReference) | null { return callSDK<(UTTypeReference) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 1427407058416882, undefined, [mimeType]); }
+  static initMimeType(mimeType: string): (UTTypeReference) | null { return callSDK<(UTTypeReference) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1427407058416882, undefined, [mimeType]); }
   /**
    * convenience init?(mimeType: String, conformingTo supertype: UTType)
    * @availability iOS 14.0+
    */
-  static initMimeTypeConformingTo(mimeType: string, supertype: UTType): (UTTypeReference) | null { return callSDK<(UTTypeReference) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 3281240852747770, undefined, [mimeType, supertype]); }
+  static initMimeTypeConformingTo(mimeType: string, supertype: UTType): (UTTypeReference) | null { return callSDK<(UTTypeReference) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3281240852747770, undefined, [mimeType, supertype]); }
   /**
    * convenience init?(tag: String, tagClass: String, conformingTo supertype: UTType?)
    * @availability iOS 14.0+
    */
-  static initTagTagClassConformingTo(tag: string, tagClass: string, supertype?: (UTType) | null): (UTTypeReference) | null { return callSDK<(UTTypeReference) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 77157120645326, undefined, [tag, tagClass, supertype]); }
+  static initTagTagClassConformingTo(tag: string, tagClass: string, supertype?: (UTType) | null): (UTTypeReference) | null { return callSDK<(UTTypeReference) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 77157120645326, undefined, [tag, tagClass, supertype]); }
   /**
    * class func types(tag: String, tagClass: String, conformingTo supertype: UTType?) -> [UTType]
    * @availability iOS 14.0+
    */
-  static types(tag: string, tagClass: string, supertype?: (UTType) | null): Array<UTType> { return callSDK<Array<UTType>>("UniformTypeIdentifiers_4e2094813cc7c17f", 4125565619022040, undefined, [tag, tagClass, supertype]); }
+  static types(tag: string, tagClass: string, supertype?: (UTType) | null): Array<UTType> { return callSDK<Array<UTType>>("UniformTypeIdentifiers_1f27952b3c5b81e6", 4125565619022040, undefined, [tag, tagClass, supertype]); }
   /**
    * func conforms(to type: UTType) -> Bool
    * @availability iOS 14.0+
    */
-  conforms(type: UTType): boolean { return callSDK<boolean>("UniformTypeIdentifiers_4e2094813cc7c17f", 1115316002752029, this, [type]); }
+  conforms(type: UTType): boolean { return callSDK<boolean>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1115316002752029, this, [type]); }
   /**
    * func isSubtype(of type: UTType) -> Bool
    * @availability iOS 14.0+
    */
-  isSubtype(type: UTType): boolean { return callSDK<boolean>("UniformTypeIdentifiers_4e2094813cc7c17f", 1579140324190226, this, [type]); }
+  isSubtype(type: UTType): boolean { return callSDK<boolean>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1579140324190226, this, [type]); }
   /**
    * func isSupertype(of type: UTType) -> Bool
    * @availability iOS 14.0+
    */
-  isSupertype(type: UTType): boolean { return callSDK<boolean>("UniformTypeIdentifiers_4e2094813cc7c17f", 100282087421285, this, [type]); }
+  isSupertype(type: UTType): boolean { return callSDK<boolean>("UniformTypeIdentifiers_1f27952b3c5b81e6", 100282087421285, this, [type]); }
   /**
    * var isDeclared: Bool { get }
    * @availability iOS 14.0+
    */
-  get isDeclared(): boolean { return callSDK<boolean>("UniformTypeIdentifiers_4e2094813cc7c17f", 2604693242226649, this, []); }
+  get isDeclared(): boolean { return callSDK<boolean>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2604693242226649, this, []); }
   /**
    * var isDynamic: Bool { get }
    * @availability iOS 14.0+
    */
-  get isDynamic(): boolean { return callSDK<boolean>("UniformTypeIdentifiers_4e2094813cc7c17f", 301088120197280, this, []); }
+  get isDynamic(): boolean { return callSDK<boolean>("UniformTypeIdentifiers_1f27952b3c5b81e6", 301088120197280, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 14.0+
    */
-  get identifier(): string { return callSDK<string>("UniformTypeIdentifiers_4e2094813cc7c17f", 2528473437112223, this, []); }
+  get identifier(): string { return callSDK<string>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2528473437112223, this, []); }
   /**
    * var localizedDescription: String? { get }
    * @availability iOS 14.0+
    */
-  get localizedDescription(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 340156773001234, this, []); }
+  get localizedDescription(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 340156773001234, this, []); }
   /**
    * var preferredFilenameExtension: String? { get }
    * @availability iOS 14.0+
    */
-  get preferredFilenameExtension(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 2471101607727771, this, []); }
+  get preferredFilenameExtension(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2471101607727771, this, []); }
   /**
    * var preferredMIMEType: String? { get }
    * @availability iOS 14.0+
    */
-  get preferredMIMEType(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 2930549510916857, this, []); }
+  get preferredMIMEType(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2930549510916857, this, []); }
   /**
    * var isPublic: Bool { get }
    * @availability iOS 14.0+
    */
-  get isPublic(): boolean { return callSDK<boolean>("UniformTypeIdentifiers_4e2094813cc7c17f", 669932052591479, this, []); }
+  get isPublic(): boolean { return callSDK<boolean>("UniformTypeIdentifiers_1f27952b3c5b81e6", 669932052591479, this, []); }
   /**
    * var referenceURL: URL? { get }
    * @availability iOS 14.0+
    */
-  get referenceURL(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 2293474435887351, this, []); }
+  get referenceURL(): (string) | null { return callSDK<(string) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 2293474435887351, this, []); }
   /**
    * var supertypes: Set<UTType> { get }
    * @availability iOS 14.0+
    */
-  get supertypes(): Array<UTType> { return callSDK<Array<UTType>>("UniformTypeIdentifiers_4e2094813cc7c17f", 3888677764541961, this, []); }
+  get supertypes(): Array<UTType> { return callSDK<Array<UTType>>("UniformTypeIdentifiers_1f27952b3c5b81e6", 3888677764541961, this, []); }
   /**
    * var tags: [String : [String]] { get }
    * @availability iOS 14.0+
    */
-  get tags(): Record<string, Array<string>> { return callSDK<Record<string, Array<string>>>("UniformTypeIdentifiers_4e2094813cc7c17f", 1245300350667258, this, []); }
+  get tags(): Record<string, Array<string>> { return callSDK<Record<string, Array<string>>>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1245300350667258, this, []); }
   /**
    * var version: NSNumber? { get }
    * @availability iOS 14.0+
    */
-  get version(): (_Foundation_NSNumber) | null { return callSDK<(_Foundation_NSNumber) | null>("UniformTypeIdentifiers_4e2094813cc7c17f", 1053935047115764, this, []); }
+  get version(): (_Foundation_NSNumber) | null { return callSDK<(_Foundation_NSNumber) | null>("UniformTypeIdentifiers_1f27952b3c5b81e6", 1053935047115764, this, []); }
   declare readonly $type: { "c:objc(cs)UTType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isDeclared": true; "isDynamic": true; "identifier": true; "localizedDescription": true; "preferredFilenameExtension": true; "preferredMIMEType": true; "isPublic": true; "referenceURL": true; "supertypes": true; "tags": true; "version": true };
 }
 
-registerSDKClass("NSItemProvider", NSItemProvider, { module: "UniformTypeIdentifiers_4e2094813cc7c17f", properties: {"registeredContentTypes":2037610060004223,"registeredContentTypesForOpenInPlace":1370690961706630}, methods: {"registeredContentTypesConformingTo":{"id":2007984271694342},"loadDataRepresentation":{"id":3935878251753430,"hints":[null,{"callback":{"out":[]}}]},"loadFileRepresentation":{"id":117755018974091,"hints":[null,null,{"callback":{"out":[]}}]}} }, true);
-registerSDKClass("NSString", NSString, { module: "UniformTypeIdentifiers_4e2094813cc7c17f", properties: {}, methods: {"appendingPathComponent":{"id":57110566506043},"appendingPathExtension":{"id":1875375689236267}} }, true);
-registerSDKClass("NSURL", NSURL, { module: "UniformTypeIdentifiers_4e2094813cc7c17f", properties: {}, methods: {"appendingPathComponent":{"id":3834944049347682},"appendingPathExtension":{"id":3647758844543008}} }, true);
-registerSDKClass("Foundation.URL", URL, { module: "UniformTypeIdentifiers_4e2094813cc7c17f", properties: {}, methods: {"appendPathComponent":{"id":3960937573792457},"appendPathExtension":{"id":862922596655737},"appendingPathComponent":{"id":1182311202138661},"appendingPathExtension":{"id":521067618537623}} }, true);
-registerSDKClass("Foundation.URLResourceValues", URLResourceValues, { module: "UniformTypeIdentifiers_4e2094813cc7c17f", properties: {} }, true);
-registerSDKClass("UniformTypeIdentifiers.UTType", UTType, { module: "UniformTypeIdentifiers_4e2094813cc7c17f", properties: {}, methods: {"isSupertype":{"id":393715837012088},"conforms":{"id":2573175844502961},"isSubtype":{"id":3780037698343950}} });
-registerSDKClass("UTType", UTTypeReference, { module: "UniformTypeIdentifiers_4e2094813cc7c17f", properties: {"isDeclared":2604693242226649,"isDynamic":301088120197280,"identifier":2528473437112223,"localizedDescription":340156773001234,"preferredFilenameExtension":2471101607727771,"preferredMIMEType":2930549510916857,"isPublic":669932052591479,"referenceURL":2293474435887351,"supertypes":3888677764541961,"tags":1245300350667258,"version":1053935047115764}, methods: {"conforms":{"id":1115316002752029},"isSubtype":{"id":1579140324190226},"isSupertype":{"id":100282087421285}} });
+registerSDKClass("NSItemProvider", NSItemProvider, { module: "UniformTypeIdentifiers_1f27952b3c5b81e6", properties: {"registeredContentTypes":2037610060004223,"registeredContentTypesForOpenInPlace":1370690961706630}, methods: {"registeredContentTypesConformingTo":{"id":2007984271694342},"loadDataRepresentation":{"id":3935878251753430,"hints":[null,{"callback":{"out":[]}}]},"loadFileRepresentation":{"id":117755018974091,"hints":[null,null,{"callback":{"out":[]}}]}} }, true);
+registerSDKClass("NSString", NSString, { module: "UniformTypeIdentifiers_1f27952b3c5b81e6", properties: {}, methods: {"appendingPathComponent":{"id":57110566506043},"appendingPathExtension":{"id":1875375689236267}} }, true);
+registerSDKClass("NSURL", NSURL, { module: "UniformTypeIdentifiers_1f27952b3c5b81e6", properties: {}, methods: {"appendingPathComponent":{"id":3834944049347682},"appendingPathExtension":{"id":3647758844543008}} }, true);
+registerSDKClass("Foundation.URL", URL, { module: "UniformTypeIdentifiers_1f27952b3c5b81e6", properties: {}, methods: {"appendPathComponent":{"id":3960937573792457},"appendPathExtension":{"id":862922596655737},"appendingPathComponent":{"id":1182311202138661},"appendingPathExtension":{"id":521067618537623}} }, true);
+registerSDKClass("Foundation.URLResourceValues", URLResourceValues, { module: "UniformTypeIdentifiers_1f27952b3c5b81e6", properties: {} }, true);
+registerSDKClass("UniformTypeIdentifiers.UTType", UTType, { module: "UniformTypeIdentifiers_1f27952b3c5b81e6", properties: {}, methods: {"isSupertype":{"id":393715837012088},"conforms":{"id":2573175844502961},"isSubtype":{"id":3780037698343950}} });
+registerSDKClass("UTType", UTTypeReference, { module: "UniformTypeIdentifiers_1f27952b3c5b81e6", properties: {"isDeclared":2604693242226649,"isDynamic":301088120197280,"identifier":2528473437112223,"localizedDescription":340156773001234,"preferredFilenameExtension":2471101607727771,"preferredMIMEType":2930549510916857,"isPublic":669932052591479,"referenceURL":2293474435887351,"supertypes":3888677764541961,"tags":1245300350667258,"version":1053935047115764}, methods: {"conforms":{"id":1115316002752029},"isSubtype":{"id":1579140324190226},"isSupertype":{"id":100282087421285}} });

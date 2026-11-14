@@ -19,15 +19,15 @@ type $SDK3 = {
     x: number;
     y: number;
 };
-type $SDK12 = (_Foundation_NSAttributedString) | null;
-type $SDK14 = Array<_UIKit_UITextSelectionRect>;
-type $SDK18 = {
+type $SDK11 = (_Foundation_NSAttributedString) | null;
+type $SDK13 = Array<_UIKit_UITextSelectionRect>;
+type $SDK17 = {
     width: number;
     height: number;
 };
-type $SDK22 = ((arg0: boolean, arg1: (ArrayBuffer) | null) => void);
-type $SDK25 = ((arg0: SDKHandle, arg1: ArrayBuffer) => void);
-type $SDK30 = Array<RestrictedSandboxRevision>;
+type $SDK21 = ((arg0: boolean, arg1: (ArrayBuffer) | null) => void);
+type $SDK24 = ((arg0: SDKHandle, arg1: ArrayBuffer) => void);
+type $SDK29 = Array<RestrictedSandboxRevision>;
 /** struct BEAccessibility */
 export declare class BEAccessibility extends SDKHandle {
     /**
@@ -797,7 +797,6 @@ export interface BEScrollViewDelegate {
     "scrollViewDidScroll"?: (arg0: _UIKit_UIScrollView) => void;
     "scrollViewDidZoom"?: (arg0: _UIKit_UIScrollView) => void;
     "scrollViewWillBeginDragging"?: (arg0: _UIKit_UIScrollView) => void;
-    "scrollViewWillEndDraggingWithVelocityTargetContentOffset"?: (arg0: _UIKit_UIScrollView, arg1: $SDK3, arg2: "animatableData" | SDKHandle) => void;
     "scrollViewDidEndDraggingWillDecelerate"?: (arg0: _UIKit_UIScrollView, arg1: boolean) => void;
     "scrollViewWillBeginDecelerating"?: (arg0: _UIKit_UIScrollView) => void;
     "scrollViewDidEndDecelerating"?: (arg0: _UIKit_UIScrollView) => void;
@@ -930,7 +929,7 @@ export declare class BETextDocumentContext extends SDKHandle {
      * init(attributedSelectedText selectedText: NSAttributedString?, contextBefore: NSAttributedString?, contextAfter: NSAttributedString?, markedText: NSAttributedString?, selectedRangeInMarkedText: NSRange)
      * @availability iOS 17.4+
      */
-    static initAttributedSelectedTextContextBeforeContextAfterMarkedTextSelectedRangeInMarkedText(selectedText: $SDK12, contextBefore: $SDK12, contextAfter: $SDK12, markedText: $SDK12, selectedRangeInMarkedText: SDKHandle): BETextDocumentContext;
+    static initAttributedSelectedTextContextBeforeContextAfterMarkedTextSelectedRangeInMarkedText(selectedText: $SDK11, contextBefore: $SDK11, contextAfter: $SDK11, markedText: $SDK11, selectedRangeInMarkedText: SDKHandle): BETextDocumentContext;
     /**
      * init(selectedText: String?, contextBefore: String?, contextAfter: String?, markedText: String?, selectedRangeInMarkedText: NSRange)
      * @availability iOS 17.4+
@@ -1166,7 +1165,7 @@ export interface BETextInput {
      * func replaceText(_ originalText: String, withText replacementText: String, options: BETextReplacementOptions = []) async -> [UITextSelectionRect]
      * @availability iOS 17.4+
      */
-    "replaceTextWithTextOptions"?: (arg0: string, arg1: string, arg2: BETextReplacementOptions) => Promise<$SDK14>;
+    "replaceTextWithTextOptions"?: (arg0: string, arg1: string, arg2: BETextReplacementOptions) => Promise<$SDK13>;
     /**
      * func requestTextContextForAutocorrection() async -> BETextDocumentContext
      * @availability iOS 17.4+
@@ -1176,7 +1175,7 @@ export interface BETextInput {
      * func requestTextRects(for input: String) async -> [UITextSelectionRect]
      * @availability iOS 17.4+
      */
-    "requestTextRectsFor"?: (arg0: string) => Promise<$SDK14>;
+    "requestTextRectsFor"?: (arg0: string) => Promise<$SDK13>;
     /**
      * func requestPreferredArrowDirectionForEditMenu() async -> UIEditMenuArrowDirection
      * @availability iOS 17.4+
@@ -1231,7 +1230,7 @@ export interface BETextInput {
      * func selectionRects(for range: UITextRange) -> [UITextSelectionRect]
      * @availability iOS 17.4+
      */
-    "selectionRectsFor"?: (arg0: _UIKit_UITextRange) => $SDK14;
+    "selectionRectsFor"?: (arg0: _UIKit_UITextRange) => $SDK13;
     /**
      * func selectWordForReplacement()
      * @availability iOS 17.4+
@@ -1286,7 +1285,7 @@ export interface BETextInput {
      * func setAttributedMarkedText(_ markedText: NSAttributedString?, selectedRange: NSRange)
      * @availability iOS 17.4+
      */
-    "setAttributedMarkedTextSelectedRange"?: (arg0: $SDK12, arg1: SDKHandle) => void;
+    "setAttributedMarkedTextSelectedRange"?: (arg0: $SDK11, arg1: SDKHandle) => void;
     /**
      * func unmarkText()
      * @availability iOS 17.4+
@@ -1341,7 +1340,7 @@ export interface BETextInput {
      * func insertTextPlaceholder(size: CGSize) async -> UITextPlaceholder
      * @availability iOS 17.4+
      */
-    "insertTextPlaceholderSize"?: (arg0: $SDK18) => Promise<_UIKit_UITextPlaceholder>;
+    "insertTextPlaceholderSize"?: (arg0: $SDK17) => Promise<_UIKit_UITextPlaceholder>;
     /**
      * func remove(_ placeholder: UITextPlaceholder, willInsertText: Bool) async
      * @availability iOS 17.4+
@@ -1606,12 +1605,12 @@ export declare class BEWebContentFilter extends SDKHandle {
      * func evaluateURL(_ url: URL) async -> (Bool, Data?)
      * @availability iOS 26.2+
      */
-    evaluateURLCompletionHandler(url: string, completionHandler: $SDK22): void;
+    evaluateURLCompletionHandler(url: string, completionHandler: $SDK21): void;
     /**
      * func evaluateURL(_ url: URL, mainFrameURL: URL, isMainFrame: Bool) async -> (Bool, Data?)
      * @availability iOS 27.0+
      */
-    evaluateURLMainFrameURLIsMainFrameCompletionHandler(url: string, mainFrameURL: string, isMainFrame: boolean, completionHandler: $SDK22): void;
+    evaluateURLMainFrameURLIsMainFrameCompletionHandler(url: string, mainFrameURL: string, isMainFrame: boolean, completionHandler: $SDK21): void;
     /** init() */
     static init(): BEWebContentFilter;
     /**
@@ -1695,7 +1694,7 @@ export declare class LayerHierarchyHandle extends SDKHandle {
      * func encode(_ block: (mach_port_t, Data) -> Void)
      * @availability iOS 26.0+
      */
-    encode(block: $SDK25): void;
+    encode(block: $SDK24): void;
     readonly $type: {
         "c:objc(cs)BELayerHierarchyHandle": true;
         "c:objc(cs)NSObject": true;
@@ -1745,7 +1744,7 @@ export declare class LayerHierarchyHostingTransactionCoordinator extends SDKHand
      * func encode(_ block: (mach_port_t, Data) -> Void)
      * @availability iOS 26.0+
      */
-    encode(block: $SDK25): void;
+    encode(block: $SDK24): void;
     readonly $type: {
         "c:objc(cs)BELayerHierarchyHostingTransactionCoordinator": true;
         "c:objc(cs)NSObject": true;
@@ -1995,7 +1994,7 @@ export declare class NSObject extends SDKHandle {
      * var browserAccessibilityImageDataSize: CGSize { get }
      * @availability iOS 27.0+
      */
-    get browserAccessibilityImageDataSize(): $SDK18;
+    get browserAccessibilityImageDataSize(): $SDK17;
     readonly $type: {
         "c:objc(cs)NSObject": true;
     };
@@ -2151,13 +2150,13 @@ export declare const RestrictedSandboxRevision: {
      * static var allCases: [RestrictedSandboxRevision] { get }
      * @availability iOS 17.4+
      */
-    readonly allCases: $SDK30;
+    readonly allCases: $SDK29;
 };
 /**
  * typealias AllCases = [RestrictedSandboxRevision]
  * @availability iOS 17.4+
  */
-export type RestrictedSandboxRevision_AllCases = $SDK30;
+export type RestrictedSandboxRevision_AllCases = $SDK29;
 /**
  * protocol WebContentExtension : RestrictedSandboxAppliable, AppExtension
  * @availability iOS 17.4+

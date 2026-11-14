@@ -50,17 +50,17 @@ export const PHLivePhotoBadgeOptions = {
    * static var liveOff: PHLivePhotoBadgeOptions { get }
    * @availability iOS 9.1+
    */
-  get liveOff(): PHLivePhotoBadgeOptions { return callSDK<PHLivePhotoBadgeOptions>("PhotosUI_4e2094813cc7c17f", 1009732244023677, undefined, []); },
+  get liveOff(): PHLivePhotoBadgeOptions { return callSDK<PHLivePhotoBadgeOptions>("PhotosUI_1f27952b3c5b81e6", 1009732244023677, undefined, []); },
   /**
    * static var overContent: PHLivePhotoBadgeOptions { get }
    * @availability iOS 9.1+
    */
-  get overContent(): PHLivePhotoBadgeOptions { return callSDK<PHLivePhotoBadgeOptions>("PhotosUI_4e2094813cc7c17f", 997127457640381, undefined, []); },
+  get overContent(): PHLivePhotoBadgeOptions { return callSDK<PHLivePhotoBadgeOptions>("PhotosUI_1f27952b3c5b81e6", 997127457640381, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 9.1+
    */
-  init(rawValue: number): PHLivePhotoBadgeOptions { return callSDK<PHLivePhotoBadgeOptions>("PhotosUI_4e2094813cc7c17f", 3432170588901207, undefined, [rawValue]); }
+  init(rawValue: number): PHLivePhotoBadgeOptions { return callSDK<PHLivePhotoBadgeOptions>("PhotosUI_1f27952b3c5b81e6", 3432170588901207, undefined, [rawValue]); }
 };
 
 /**
@@ -72,48 +72,48 @@ export class PHLivePhotoView extends SDKHandle {
    * class func livePhotoBadgeImage(options badgeOptions: PHLivePhotoBadgeOptions = []) -> UIImage
    * @availability iOS 9.1+
    */
-  static livePhotoBadgeImage(badgeOptions?: PHLivePhotoBadgeOptions): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("PhotosUI_4e2094813cc7c17f", 3561764281323639, undefined, [badgeOptions]); }
+  static livePhotoBadgeImage(badgeOptions?: PHLivePhotoBadgeOptions): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("PhotosUI_1f27952b3c5b81e6", 3561764281323639, undefined, [badgeOptions]); }
   /** init() */
-  static init(): Promise<PHLivePhotoView> { return callSDKAsync<PHLivePhotoView>("PhotosUI_4e2094813cc7c17f", 2758958159474412, undefined, []); }
+  static init(): Promise<PHLivePhotoView> { return callSDKAsync<PHLivePhotoView>("PhotosUI_1f27952b3c5b81e6", 2758958159474412, undefined, []); }
   /**
    * func startPlayback(with playbackStyle: PHLivePhotoViewPlaybackStyle)
    * @availability iOS 9.1+
    */
-  startPlayback(playbackStyle: PHLivePhotoViewPlaybackStyle): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 1772057302404545, this, [playbackStyle]); }
+  startPlayback(playbackStyle: PHLivePhotoViewPlaybackStyle): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 1772057302404545, this, [playbackStyle]); }
   /**
    * func stopPlayback()
    * @availability iOS 9.1+
    */
-  stopPlayback(): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 2864658977096061, this, []); }
+  stopPlayback(): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 2864658977096061, this, []); }
   /**
    * var contentsRect: CGRect { get set }
    * @availability iOS 17.0+
    */
-  get contentsRect(): Promise<$SDK1> { return callSDKAsync<$SDK1>("PhotosUI_4e2094813cc7c17f", 1604671118250346, this, []); }
-  setContentsRect(value: $SDK1): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 2409325980610489, this, [value]); }
+  get contentsRect(): Promise<$SDK1> { return callSDKAsync<$SDK1>("PhotosUI_1f27952b3c5b81e6", 1604671118250346, this, []); }
+  setContentsRect(value: $SDK1): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 2409325980610489, this, [value]); }
   /**
    * weak var delegate: (any PHLivePhotoViewDelegate)? { get set }
    * @availability iOS 9.1+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PhotosUI_4e2094813cc7c17f", 3138949990051018, this, []); }
-  setDelegate(value?: (Implements<PHLivePhotoViewDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 3833415144425785, this, [value], [{"protocol":"c:objc(pl)PHLivePhotoViewDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PhotosUI_1f27952b3c5b81e6", 3138949990051018, this, []); }
+  setDelegate(value?: (Implements<PHLivePhotoViewDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 3833415144425785, this, [value], [{"protocol":"c:objc(pl)PHLivePhotoViewDelegate"}]); }
   /**
    * var livePhoto: PHLivePhoto? { get set }
    * @availability iOS 9.1+
    */
-  get livePhoto(): Promise<$SDK3> { return callSDKAsync<$SDK3>("PhotosUI_4e2094813cc7c17f", 2635452308221845, this, []); }
-  setLivePhoto(value?: $SDK3): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 3921267217006325, this, [value]); }
+  get livePhoto(): Promise<$SDK3> { return callSDKAsync<$SDK3>("PhotosUI_1f27952b3c5b81e6", 2635452308221845, this, []); }
+  setLivePhoto(value?: $SDK3): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 3921267217006325, this, [value]); }
   /**
    * var isMuted: Bool { get set }
    * @availability iOS 9.1+
    */
-  get isMuted(): Promise<boolean> { return callSDKAsync<boolean>("PhotosUI_4e2094813cc7c17f", 1096377315367673, this, []); }
-  setIsMuted(value: boolean): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 2475720788238219, this, [value]); }
+  get isMuted(): Promise<boolean> { return callSDKAsync<boolean>("PhotosUI_1f27952b3c5b81e6", 1096377315367673, this, []); }
+  setIsMuted(value: boolean): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 2475720788238219, this, [value]); }
   /**
    * var playbackGestureRecognizer: UIGestureRecognizer { get }
    * @availability iOS 9.1+
    */
-  get playbackGestureRecognizer(): Promise<_UIKit_UIGestureRecognizer> { return callSDKAsync<_UIKit_UIGestureRecognizer>("PhotosUI_4e2094813cc7c17f", 3900509450971829, this, []); }
+  get playbackGestureRecognizer(): Promise<_UIKit_UIGestureRecognizer> { return callSDKAsync<_UIKit_UIGestureRecognizer>("PhotosUI_1f27952b3c5b81e6", 3900509450971829, this, []); }
   declare readonly $type: { "c:objc(cs)PHLivePhotoView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contentsRect": true; "delegate": true; "livePhoto": true; "isMuted": true; "playbackGestureRecognizer": true };
 }
@@ -146,7 +146,7 @@ export const PHLivePhotoViewPlaybackStyle = {
    * init?(rawValue: Int)
    * @availability iOS 9.1+
    */
-  init(rawValue: number): (PHLivePhotoViewPlaybackStyle) | null { return callSDK<(PHLivePhotoViewPlaybackStyle) | null>("PhotosUI_4e2094813cc7c17f", 4286798628158066, undefined, [rawValue]); }
+  init(rawValue: number): (PHLivePhotoViewPlaybackStyle) | null { return callSDK<(PHLivePhotoViewPlaybackStyle) | null>("PhotosUI_1f27952b3c5b81e6", 4286798628158066, undefined, [rawValue]); }
 };
 
 export class PHPhotoLibrary extends SDKHandle {
@@ -154,12 +154,12 @@ export class PHPhotoLibrary extends SDKHandle {
    * func presentLimitedLibraryPicker(from controller: UIViewController)
    * @availability iOS 14.0+
    */
-  presentLimitedLibraryPickerFrom(controller: _UIKit_UIViewController): void { return callSDK<void>("PhotosUI_4e2094813cc7c17f", 1891373908726072, this, [controller]); }
+  presentLimitedLibraryPickerFrom(controller: _UIKit_UIViewController): void { return callSDK<void>("PhotosUI_1f27952b3c5b81e6", 1891373908726072, this, [controller]); }
   /**
    * func presentLimitedLibraryPicker(from controller: UIViewController) async -> [String]
    * @availability iOS 15.0+
    */
-  presentLimitedLibraryPickerFromCompletionHandler(controller: _UIKit_UIViewController, completionHandler: ((arg0: Array<string>) => void)): void { return callSDK<void>("PhotosUI_4e2094813cc7c17f", 2264044977527042, this, [controller, completionHandler], [null,{"callback":{"out":[]}}]); }
+  presentLimitedLibraryPickerFromCompletionHandler(controller: _UIKit_UIViewController, completionHandler: ((arg0: Array<string>) => void)): void { return callSDK<void>("PhotosUI_1f27952b3c5b81e6", 2264044977527042, this, [controller, completionHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)PHPhotoLibrary": true; "c:objc(cs)NSObject": true };
 }
 
@@ -174,32 +174,32 @@ export const PHPickerCapabilities = {
    * static var collectionNavigation: PHPickerCapabilities { get }
    * @availability iOS 17.0+
    */
-  get collectionNavigation(): PHPickerCapabilities { return callSDK<PHPickerCapabilities>("PhotosUI_4e2094813cc7c17f", 2188760976370748, undefined, []); },
+  get collectionNavigation(): PHPickerCapabilities { return callSDK<PHPickerCapabilities>("PhotosUI_1f27952b3c5b81e6", 2188760976370748, undefined, []); },
   /**
    * static var search: PHPickerCapabilities { get }
    * @availability iOS 17.0+
    */
-  get search(): PHPickerCapabilities { return callSDK<PHPickerCapabilities>("PhotosUI_4e2094813cc7c17f", 1487649684458007, undefined, []); },
+  get search(): PHPickerCapabilities { return callSDK<PHPickerCapabilities>("PhotosUI_1f27952b3c5b81e6", 1487649684458007, undefined, []); },
   /**
    * static var selectionActions: PHPickerCapabilities { get }
    * @availability iOS 17.0+
    */
-  get selectionActions(): PHPickerCapabilities { return callSDK<PHPickerCapabilities>("PhotosUI_4e2094813cc7c17f", 1295743647373856, undefined, []); },
+  get selectionActions(): PHPickerCapabilities { return callSDK<PHPickerCapabilities>("PhotosUI_1f27952b3c5b81e6", 1295743647373856, undefined, []); },
   /**
    * static var sensitivityAnalysisIntervention: PHPickerCapabilities { get }
    * @availability iOS 17.0+
    */
-  get sensitivityAnalysisIntervention(): PHPickerCapabilities { return callSDK<PHPickerCapabilities>("PhotosUI_4e2094813cc7c17f", 3283713173589967, undefined, []); },
+  get sensitivityAnalysisIntervention(): PHPickerCapabilities { return callSDK<PHPickerCapabilities>("PhotosUI_1f27952b3c5b81e6", 3283713173589967, undefined, []); },
   /**
    * static var stagingArea: PHPickerCapabilities { get }
    * @availability iOS 17.0+
    */
-  get stagingArea(): PHPickerCapabilities { return callSDK<PHPickerCapabilities>("PhotosUI_4e2094813cc7c17f", 261954669108817, undefined, []); },
+  get stagingArea(): PHPickerCapabilities { return callSDK<PHPickerCapabilities>("PhotosUI_1f27952b3c5b81e6", 261954669108817, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): PHPickerCapabilities { return callSDK<PHPickerCapabilities>("PhotosUI_4e2094813cc7c17f", 113585963392660, undefined, [rawValue]); }
+  init(rawValue: number): PHPickerCapabilities { return callSDK<PHPickerCapabilities>("PhotosUI_1f27952b3c5b81e6", 113585963392660, undefined, [rawValue]); }
 };
 
 /**
@@ -211,72 +211,72 @@ export class PHPickerConfiguration extends SDKHandle {
    * var searchText: PHPickerSearchText? { get set }
    * @availability iOS 27.0+
    */
-  get searchText(): $SDK5 { return callSDK<$SDK5>("PhotosUI_4e2094813cc7c17f", 2261855298627821, this, []); }
-  set searchText(value: $SDK5) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 2183414217912535, this, [value]); }
+  get searchText(): $SDK5 { return callSDK<$SDK5>("PhotosUI_1f27952b3c5b81e6", 2261855298627821, this, []); }
+  set searchText(value: $SDK5) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 2183414217912535, this, [value]); }
   /**
    * init(photoLibrary: PHPhotoLibrary)
    * @availability iOS 14.0+
    */
-  static initPhotoLibrary(photoLibrary: _Photos_PHPhotoLibrary): PHPickerConfiguration { return callSDK<PHPickerConfiguration>("PhotosUI_4e2094813cc7c17f", 894127317961927, undefined, [photoLibrary]); }
+  static initPhotoLibrary(photoLibrary: _Photos_PHPhotoLibrary): PHPickerConfiguration { return callSDK<PHPickerConfiguration>("PhotosUI_1f27952b3c5b81e6", 894127317961927, undefined, [photoLibrary]); }
   /**
    * var selectionLimit: Int
    * @availability iOS 14.0+
    */
-  get selectionLimit(): number { return callSDK<number>("PhotosUI_4e2094813cc7c17f", 604424081536938, this, []); }
-  set selectionLimit(value: number) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 2423438317039537, this, [value]); }
+  get selectionLimit(): number { return callSDK<number>("PhotosUI_1f27952b3c5b81e6", 604424081536938, this, []); }
+  set selectionLimit(value: number) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 2423438317039537, this, [value]); }
   /**
    * var metadataOptions: PHPickerMetadataOptions { get set }
    * @availability iOS 27.0+
    */
-  get metadataOptions(): PHPickerMetadataOptions { return callSDK<PHPickerMetadataOptions>("PhotosUI_4e2094813cc7c17f", 3020593376857475, this, []); }
-  set metadataOptions(value: PHPickerMetadataOptions) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 2284956484403885, this, [value]); }
+  get metadataOptions(): PHPickerMetadataOptions { return callSDK<PHPickerMetadataOptions>("PhotosUI_1f27952b3c5b81e6", 3020593376857475, this, []); }
+  set metadataOptions(value: PHPickerMetadataOptions) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 2284956484403885, this, [value]); }
   /**
    * var disabledCapabilities: PHPickerCapabilities { get set }
    * @availability iOS 17.0+
    */
-  get disabledCapabilities(): PHPickerCapabilities { return callSDK<PHPickerCapabilities>("PhotosUI_4e2094813cc7c17f", 602807879606129, this, []); }
-  set disabledCapabilities(value: PHPickerCapabilities) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 918271643086809, this, [value]); }
+  get disabledCapabilities(): PHPickerCapabilities { return callSDK<PHPickerCapabilities>("PhotosUI_1f27952b3c5b81e6", 602807879606129, this, []); }
+  set disabledCapabilities(value: PHPickerCapabilities) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 918271643086809, this, [value]); }
   /**
    * var edgesWithoutContentMargins: NSDirectionalRectEdge { get set }
    * @availability iOS 17.0+
    */
-  get edgesWithoutContentMargins(): _UIKit_NSDirectionalRectEdge { return callSDK<_UIKit_NSDirectionalRectEdge>("PhotosUI_4e2094813cc7c17f", 2535494309755924, this, []); }
-  set edgesWithoutContentMargins(value: _UIKit_NSDirectionalRectEdge) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 1430010535696899, this, [value]); }
+  get edgesWithoutContentMargins(): _UIKit_NSDirectionalRectEdge { return callSDK<_UIKit_NSDirectionalRectEdge>("PhotosUI_1f27952b3c5b81e6", 2535494309755924, this, []); }
+  set edgesWithoutContentMargins(value: _UIKit_NSDirectionalRectEdge) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 1430010535696899, this, [value]); }
   /**
    * var preselectedAssetIdentifiers: [String] { get set }
    * @availability iOS 15.0+
    */
-  get preselectedAssetIdentifiers(): Array<string> { return callSDK<Array<string>>("PhotosUI_4e2094813cc7c17f", 2905464759385678, this, []); }
-  set preselectedAssetIdentifiers(value: Array<string>) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 2195801883813068, this, [value]); }
+  get preselectedAssetIdentifiers(): Array<string> { return callSDK<Array<string>>("PhotosUI_1f27952b3c5b81e6", 2905464759385678, this, []); }
+  set preselectedAssetIdentifiers(value: Array<string>) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 2195801883813068, this, [value]); }
   /**
    * var preferredAssetRepresentationMode: PHPickerConfiguration.AssetRepresentationMode
    * @availability iOS 14.0+
    */
-  get preferredAssetRepresentationMode(): PHPickerConfiguration_AssetRepresentationMode { return callSDK<PHPickerConfiguration_AssetRepresentationMode>("PhotosUI_4e2094813cc7c17f", 4293299313036103, this, []); }
-  set preferredAssetRepresentationMode(value: PHPickerConfiguration_AssetRepresentationMode) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 1590474085340757, this, [value]); }
+  get preferredAssetRepresentationMode(): PHPickerConfiguration_AssetRepresentationMode { return callSDK<PHPickerConfiguration_AssetRepresentationMode>("PhotosUI_1f27952b3c5b81e6", 4293299313036103, this, []); }
+  set preferredAssetRepresentationMode(value: PHPickerConfiguration_AssetRepresentationMode) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 1590474085340757, this, [value]); }
   /**
    * var mode: PHPickerMode
    * @availability iOS 17.0+
    */
-  get mode(): PHPickerMode { return callSDK<PHPickerMode>("PhotosUI_4e2094813cc7c17f", 3486151277141578, this, []); }
-  set mode(value: PHPickerMode) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 1761050394118612, this, [value]); }
+  get mode(): PHPickerMode { return callSDK<PHPickerMode>("PhotosUI_1f27952b3c5b81e6", 3486151277141578, this, []); }
+  set mode(value: PHPickerMode) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 1761050394118612, this, [value]); }
   /**
    * var filter: PHPickerFilter?
    * @availability iOS 14.0+
    */
-  get filter(): (PHPickerFilter) | null { return callSDK<(PHPickerFilter) | null>("PhotosUI_4e2094813cc7c17f", 466840397540262, this, []); }
-  set filter(value: (PHPickerFilter) | null) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 1564859648730595, this, [value]); }
+  get filter(): (PHPickerFilter) | null { return callSDK<(PHPickerFilter) | null>("PhotosUI_1f27952b3c5b81e6", 466840397540262, this, []); }
+  set filter(value: (PHPickerFilter) | null) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 1564859648730595, this, [value]); }
   /**
    * var selection: PHPickerConfiguration.Selection
    * @availability iOS 15.0+
    */
-  get selection(): PHPickerConfiguration_Selection { return callSDK<PHPickerConfiguration_Selection>("PhotosUI_4e2094813cc7c17f", 2819021135041092, this, []); }
-  set selection(value: PHPickerConfiguration_Selection) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 3156695058576670, this, [value]); }
+  get selection(): PHPickerConfiguration_Selection { return callSDK<PHPickerConfiguration_Selection>("PhotosUI_1f27952b3c5b81e6", 2819021135041092, this, []); }
+  set selection(value: PHPickerConfiguration_Selection) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 3156695058576670, this, [value]); }
   /**
    * init()
    * @availability iOS 14.0+
    */
-  static init(): PHPickerConfiguration { return callSDK<PHPickerConfiguration>("PhotosUI_4e2094813cc7c17f", 1231826961971613, undefined, []); }
+  static init(): PHPickerConfiguration { return callSDK<PHPickerConfiguration>("PhotosUI_1f27952b3c5b81e6", 1231826961971613, undefined, []); }
   declare readonly $type: { "s:8PhotosUI21PHPickerConfigurationV": true };
 }
 
@@ -301,25 +301,25 @@ export class PHPickerConfiguration_Update extends SDKHandle {
    * var searchText: PHPickerSearchText? { get set }
    * @availability iOS 27.0+
    */
-  get searchText(): $SDK5 { return callSDK<$SDK5>("PhotosUI_4e2094813cc7c17f", 405257946821332, this, []); }
-  set searchText(value: $SDK5) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 4102341619450845, this, [value]); }
+  get searchText(): $SDK5 { return callSDK<$SDK5>("PhotosUI_1f27952b3c5b81e6", 405257946821332, this, []); }
+  set searchText(value: $SDK5) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 4102341619450845, this, [value]); }
   /**
    * var selectionLimit: Int?
    * @availability iOS 17.0+
    */
-  get selectionLimit(): (number) | null { return callSDK<(number) | null>("PhotosUI_4e2094813cc7c17f", 4176234381578037, this, []); }
-  set selectionLimit(value: (number) | null) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 3860836567974991, this, [value]); }
+  get selectionLimit(): (number) | null { return callSDK<(number) | null>("PhotosUI_1f27952b3c5b81e6", 4176234381578037, this, []); }
+  set selectionLimit(value: (number) | null) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 3860836567974991, this, [value]); }
   /**
    * var edgesWithoutContentMargins: NSDirectionalRectEdge? { get set }
    * @availability iOS 17.0+
    */
-  get edgesWithoutContentMargins(): $SDK6 { return callSDK<$SDK6>("PhotosUI_4e2094813cc7c17f", 502081250527128, this, []); }
-  set edgesWithoutContentMargins(value: $SDK6) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 4288603384789880, this, [value]); }
+  get edgesWithoutContentMargins(): $SDK6 { return callSDK<$SDK6>("PhotosUI_1f27952b3c5b81e6", 502081250527128, this, []); }
+  set edgesWithoutContentMargins(value: $SDK6) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 4288603384789880, this, [value]); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): PHPickerConfiguration_Update { return callSDK<PHPickerConfiguration_Update>("PhotosUI_4e2094813cc7c17f", 4294973780374171, undefined, []); }
+  static init(): PHPickerConfiguration_Update { return callSDK<PHPickerConfiguration_Update>("PhotosUI_1f27952b3c5b81e6", 4294973780374171, undefined, []); }
   declare readonly $type: { "s:8PhotosUI21PHPickerConfigurationV6UpdateV": true };
 }
 
@@ -334,7 +334,7 @@ export const PHPickerConfigurationAssetRepresentationMode = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (PHPickerConfigurationAssetRepresentationMode) | null { return callSDK<(PHPickerConfigurationAssetRepresentationMode) | null>("PhotosUI_4e2094813cc7c17f", 510362629007397, undefined, [rawValue]); }
+  init(rawValue: number): (PHPickerConfigurationAssetRepresentationMode) | null { return callSDK<(PHPickerConfigurationAssetRepresentationMode) | null>("PhotosUI_1f27952b3c5b81e6", 510362629007397, undefined, [rawValue]); }
 };
 
 /**
@@ -348,7 +348,7 @@ export const PHPickerConfigurationSelection = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (PHPickerConfigurationSelection) | null { return callSDK<(PHPickerConfigurationSelection) | null>("PhotosUI_4e2094813cc7c17f", 1735486316447429, undefined, [rawValue]); }
+  init(rawValue: number): (PHPickerConfigurationSelection) | null { return callSDK<(PHPickerConfigurationSelection) | null>("PhotosUI_1f27952b3c5b81e6", 1735486316447429, undefined, [rawValue]); }
 };
 
 /**
@@ -360,82 +360,82 @@ export class PHPickerFilter extends SDKHandle {
    * static let depthEffectPhotos: PHPickerFilter
    * @availability iOS 16.0+
    */
-  static get depthEffectPhotos(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 1478316108088026, undefined, []); }
+  static get depthEffectPhotos(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 1478316108088026, undefined, []); }
   /**
    * static let livePhotos: PHPickerFilter
    * @availability iOS 14.0+
    */
-  static get livePhotos(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 3570187301724306, undefined, []); }
+  static get livePhotos(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 3570187301724306, undefined, []); }
   /**
    * static let screenshots: PHPickerFilter
    * @availability iOS 15.0+
    */
-  static get screenshots(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 3769274500625863, undefined, []); }
+  static get screenshots(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 3769274500625863, undefined, []); }
   /**
    * static let slomoVideos: PHPickerFilter
    * @availability iOS 15.0+
    */
-  static get slomoVideos(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 4234398816435111, undefined, []); }
+  static get slomoVideos(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 4234398816435111, undefined, []); }
   /**
    * static let spatialMedia: PHPickerFilter
    * @availability iOS 18.0+
    */
-  static get spatialMedia(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 1979574501896892, undefined, []); }
+  static get spatialMedia(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 1979574501896892, undefined, []); }
   /**
    * static func playbackStyle(_ playbackStyle: PHAsset.PlaybackStyle) -> PHPickerFilter
    * @availability iOS 15.0+
    */
-  static playbackStyle(playbackStyle: _Photos_PHAsset_PlaybackStyle): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 401734359787887, undefined, [playbackStyle]); }
+  static playbackStyle(playbackStyle: _Photos_PHAsset_PlaybackStyle): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 401734359787887, undefined, [playbackStyle]); }
   /**
    * static let cinematicVideos: PHPickerFilter
    * @availability iOS 16.0+
    */
-  static get cinematicVideos(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 4336671800550324, undefined, []); }
+  static get cinematicVideos(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 4336671800550324, undefined, []); }
   /**
    * static let timelapseVideos: PHPickerFilter
    * @availability iOS 15.0+
    */
-  static get timelapseVideos(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 1038654509240324, undefined, []); }
+  static get timelapseVideos(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 1038654509240324, undefined, []); }
   /**
    * static let screenRecordings: PHPickerFilter
    * @availability iOS 15.0+
    */
-  static get screenRecordings(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 3035528369374392, undefined, []); }
+  static get screenRecordings(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 3035528369374392, undefined, []); }
   /**
    * static func all(of subfilters: [PHPickerFilter]) -> PHPickerFilter
    * @availability iOS 15.0+
    */
-  static all(subfilters: Array<PHPickerFilter>): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 3958431606479992, undefined, [subfilters]); }
+  static all(subfilters: Array<PHPickerFilter>): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 3958431606479992, undefined, [subfilters]); }
   /**
    * static func any(of subfilters: [PHPickerFilter]) -> PHPickerFilter
    * @availability iOS 14.0+
    */
-  static any(subfilters: Array<PHPickerFilter>): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 2586832252529759, undefined, [subfilters]); }
+  static any(subfilters: Array<PHPickerFilter>): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 2586832252529759, undefined, [subfilters]); }
   /**
    * static func not(_ filter: PHPickerFilter) -> PHPickerFilter
    * @availability iOS 15.0+
    */
-  static not(filter: PHPickerFilter): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 736681121051714, undefined, [filter]); }
+  static not(filter: PHPickerFilter): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 736681121051714, undefined, [filter]); }
   /**
    * static let bursts: PHPickerFilter
    * @availability iOS 16.0+
    */
-  static get bursts(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 4294059151809971, undefined, []); }
+  static get bursts(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 4294059151809971, undefined, []); }
   /**
    * static let images: PHPickerFilter
    * @availability iOS 14.0+
    */
-  static get images(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 1344137276725846, undefined, []); }
+  static get images(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 1344137276725846, undefined, []); }
   /**
    * static let videos: PHPickerFilter
    * @availability iOS 14.0+
    */
-  static get videos(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 1521890021539010, undefined, []); }
+  static get videos(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 1521890021539010, undefined, []); }
   /**
    * static let panoramas: PHPickerFilter
    * @availability iOS 15.0+
    */
-  static get panoramas(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_4e2094813cc7c17f", 4088726206629483, undefined, []); }
+  static get panoramas(): PHPickerFilter { return callSDK<PHPickerFilter>("PhotosUI_1f27952b3c5b81e6", 4088726206629483, undefined, []); }
   declare readonly $type: { "s:8PhotosUI14PHPickerFilterV": true };
 }
 
@@ -450,17 +450,17 @@ export const PHPickerMetadataOptions = {
    * static var removeCaptions: PHPickerMetadataOptions { get }
    * @availability iOS 27.0+
    */
-  get removeCaptions(): PHPickerMetadataOptions { return callSDK<PHPickerMetadataOptions>("PhotosUI_4e2094813cc7c17f", 2375808255463809, undefined, []); },
+  get removeCaptions(): PHPickerMetadataOptions { return callSDK<PHPickerMetadataOptions>("PhotosUI_1f27952b3c5b81e6", 2375808255463809, undefined, []); },
   /**
    * static var removeLocation: PHPickerMetadataOptions { get }
    * @availability iOS 27.0+
    */
-  get removeLocation(): PHPickerMetadataOptions { return callSDK<PHPickerMetadataOptions>("PhotosUI_4e2094813cc7c17f", 492428274057808, undefined, []); },
+  get removeLocation(): PHPickerMetadataOptions { return callSDK<PHPickerMetadataOptions>("PhotosUI_1f27952b3c5b81e6", 492428274057808, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): PHPickerMetadataOptions { return callSDK<PHPickerMetadataOptions>("PhotosUI_4e2094813cc7c17f", 1470305838261278, undefined, [rawValue]); }
+  init(rawValue: number): PHPickerMetadataOptions { return callSDK<PHPickerMetadataOptions>("PhotosUI_1f27952b3c5b81e6", 1470305838261278, undefined, [rawValue]); }
 };
 
 /**
@@ -472,13 +472,13 @@ export class PHPickerMode extends SDKHandle {
    * static var compact: PHPickerMode
    * @availability iOS 17.0+
    */
-  static get compact(): PHPickerMode { return callSDK<PHPickerMode>("PhotosUI_4e2094813cc7c17f", 871530252136726, undefined, []); }
-  static set compact(value: PHPickerMode) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 2553930686531749, undefined, [value]); }
+  static get compact(): PHPickerMode { return callSDK<PHPickerMode>("PhotosUI_1f27952b3c5b81e6", 871530252136726, undefined, []); }
+  static set compact(value: PHPickerMode) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 2553930686531749, undefined, [value]); }
   /**
    * static let `default`: PHPickerMode
    * @availability iOS 17.0+
    */
-  static get default(): PHPickerMode { return callSDK<PHPickerMode>("PhotosUI_4e2094813cc7c17f", 3752819591577773, undefined, []); }
+  static get default(): PHPickerMode { return callSDK<PHPickerMode>("PhotosUI_1f27952b3c5b81e6", 3752819591577773, undefined, []); }
   declare readonly $type: { "s:8PhotosUI12PHPickerModeV": true };
 }
 
@@ -491,12 +491,12 @@ export class PHPickerResult extends SDKHandle {
    * let itemProvider: NSItemProvider
    * @availability iOS 14.0+
    */
-  get itemProvider(): _Foundation_NSItemProvider { return callSDK<_Foundation_NSItemProvider>("PhotosUI_4e2094813cc7c17f", 1904362994884550, this, []); }
+  get itemProvider(): _Foundation_NSItemProvider { return callSDK<_Foundation_NSItemProvider>("PhotosUI_1f27952b3c5b81e6", 1904362994884550, this, []); }
   /**
    * var assetIdentifier: String? { get }
    * @availability iOS 14.0+
    */
-  get assetIdentifier(): (string) | null { return callSDK<(string) | null>("PhotosUI_4e2094813cc7c17f", 163637583479270, this, []); }
+  get assetIdentifier(): (string) | null { return callSDK<(string) | null>("PhotosUI_1f27952b3c5b81e6", 163637583479270, this, []); }
   declare readonly $type: { "s:8PhotosUI14PHPickerResultV": true };
 }
 
@@ -509,12 +509,12 @@ export class PHPickerSearchText extends SDKHandle {
    * init(photoSearchSuggestion: UIPhotoSearchSuggestion)
    * @availability iOS 27.0+
    */
-  static initPhotoSearchSuggestion(photoSearchSuggestion: _UIKit_UIPhotoSearchSuggestion): PHPickerSearchText { return callSDK<PHPickerSearchText>("PhotosUI_4e2094813cc7c17f", 1937068217733569, undefined, [photoSearchSuggestion]); }
+  static initPhotoSearchSuggestion(photoSearchSuggestion: _UIKit_UIPhotoSearchSuggestion): PHPickerSearchText { return callSDK<PHPickerSearchText>("PhotosUI_1f27952b3c5b81e6", 1937068217733569, undefined, [photoSearchSuggestion]); }
   /**
    * init(_ string: String)
    * @availability iOS 27.0+
    */
-  static init(string: string): PHPickerSearchText { return callSDK<PHPickerSearchText>("PhotosUI_4e2094813cc7c17f", 3825782657645970, undefined, [string]); }
+  static init(string: string): PHPickerSearchText { return callSDK<PHPickerSearchText>("PhotosUI_1f27952b3c5b81e6", 3825782657645970, undefined, [string]); }
   declare readonly $type: { "s:8PhotosUI18PHPickerSearchTextV": true };
 }
 
@@ -527,48 +527,48 @@ export class PHPickerViewController extends SDKHandle {
    * func deselectAssets(withIdentifiers identifiers: [String])
    * @availability iOS 16.0+
    */
-  deselectAssets(identifiers: Array<string>): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 3707516038064903, this, [identifiers]); }
+  deselectAssets(identifiers: Array<string>): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 3707516038064903, this, [identifiers]); }
   /**
    * func moveAsset(withIdentifier identifier: String, afterAssetWithIdentifier afterIdentifier: String?)
    * @availability iOS 16.0+
    */
-  moveAsset(identifier: string, afterIdentifier?: (string) | null): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 1567583035625484, this, [identifier, afterIdentifier]); }
+  moveAsset(identifier: string, afterIdentifier?: (string) | null): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 1567583035625484, this, [identifier, afterIdentifier]); }
   /**
    * func scrollToInitialPosition()
    * @availability iOS 17.0+
    */
-  scrollToInitialPosition(): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 1773432627543811, this, []); }
+  scrollToInitialPosition(): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 1773432627543811, this, []); }
   /**
    * func zoomIn()
    * @availability iOS 17.0+
    */
-  zoomIn(): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 4140894360387457, this, []); }
+  zoomIn(): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 4140894360387457, this, []); }
   /**
    * func zoomOut()
    * @availability iOS 17.0+
    */
-  zoomOut(): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 2146609599978696, this, []); }
+  zoomOut(): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 2146609599978696, this, []); }
   /**
    * @MainActor @preconcurrency func updatePicker(using configuration: PHPickerConfiguration.Update)
    * @availability iOS 17.0+
    */
-  updatePicker(configuration: PHPickerConfiguration_Update): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 1389354373639354, this, [configuration]); }
+  updatePicker(configuration: PHPickerConfiguration_Update): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 1389354373639354, this, [configuration]); }
   /**
    * @MainActor @preconcurrency var configuration: PHPickerConfiguration { get }
    * @availability iOS 14.0+
    */
-  get configuration(): Promise<PHPickerConfiguration> { return callSDKAsync<PHPickerConfiguration>("PhotosUI_4e2094813cc7c17f", 2069655396423402, this, []); }
+  get configuration(): Promise<PHPickerConfiguration> { return callSDKAsync<PHPickerConfiguration>("PhotosUI_1f27952b3c5b81e6", 2069655396423402, this, []); }
   /**
    * @MainActor @preconcurrency convenience init(configuration: PHPickerConfiguration)
    * @availability iOS 14.0+
    */
-  static init(configuration: PHPickerConfiguration): Promise<PHPickerViewController> { return callSDKAsync<PHPickerViewController>("PhotosUI_4e2094813cc7c17f", 4426455838391820, undefined, [configuration]); }
+  static init(configuration: PHPickerConfiguration): Promise<PHPickerViewController> { return callSDKAsync<PHPickerViewController>("PhotosUI_1f27952b3c5b81e6", 4426455838391820, undefined, [configuration]); }
   /**
    * @MainActor @preconcurrency weak var delegate: (any PHPickerViewControllerDelegate)? { get set }
    * @availability iOS 14.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PhotosUI_4e2094813cc7c17f", 441029366727813, this, []); }
-  setDelegate(value?: (Implements<PHPickerViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 4416920005301750, this, [value], [{"protocol":"s:8PhotosUI30PHPickerViewControllerDelegateP"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PhotosUI_1f27952b3c5b81e6", 441029366727813, this, []); }
+  setDelegate(value?: (Implements<PHPickerViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 4416920005301750, this, [value], [{"protocol":"s:8PhotosUI30PHPickerViewControllerDelegateP"}]); }
   declare readonly $type: { "c:objc(cs)PHPickerViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -593,24 +593,24 @@ export class PHSharedAlbumCreationConfiguration extends SDKHandle {
    * var defaultTitle: String?
    * @availability iOS 27.0+
    */
-  get defaultTitle(): (string) | null { return callSDK<(string) | null>("PhotosUI_4e2094813cc7c17f", 308065978252577, this, []); }
-  set defaultTitle(value: (string) | null) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 4379090073026459, this, [value]); }
+  get defaultTitle(): (string) | null { return callSDK<(string) | null>("PhotosUI_1f27952b3c5b81e6", 308065978252577, this, []); }
+  set defaultTitle(value: (string) | null) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 4379090073026459, this, [value]); }
   /**
    * init(photoLibrary: PHPhotoLibrary)
    * @availability iOS 27.0+
    */
-  static init(photoLibrary: _Photos_PHPhotoLibrary): PHSharedAlbumCreationConfiguration { return callSDK<PHSharedAlbumCreationConfiguration>("PhotosUI_4e2094813cc7c17f", 829030879585892, undefined, [photoLibrary]); }
+  static init(photoLibrary: _Photos_PHPhotoLibrary): PHSharedAlbumCreationConfiguration { return callSDK<PHSharedAlbumCreationConfiguration>("PhotosUI_1f27952b3c5b81e6", 829030879585892, undefined, [photoLibrary]); }
   /**
    * let photoLibrary: PHPhotoLibrary
    * @availability iOS 27.0+
    */
-  get photoLibrary(): _Photos_PHPhotoLibrary { return callSDK<_Photos_PHPhotoLibrary>("PhotosUI_4e2094813cc7c17f", 332688844825143, this, []); }
+  get photoLibrary(): _Photos_PHPhotoLibrary { return callSDK<_Photos_PHPhotoLibrary>("PhotosUI_1f27952b3c5b81e6", 332688844825143, this, []); }
   /**
    * var defaultPolicy: PHSharedAlbumCreationSharingPolicy
    * @availability iOS 27.0+
    */
-  get defaultPolicy(): PHSharedAlbumCreationSharingPolicy { return callSDK<PHSharedAlbumCreationSharingPolicy>("PhotosUI_4e2094813cc7c17f", 3880002674909247, this, []); }
-  set defaultPolicy(value: PHSharedAlbumCreationSharingPolicy) { callSDK<void>("PhotosUI_4e2094813cc7c17f", 2145337368785969, this, [value]); }
+  get defaultPolicy(): PHSharedAlbumCreationSharingPolicy { return callSDK<PHSharedAlbumCreationSharingPolicy>("PhotosUI_1f27952b3c5b81e6", 3880002674909247, this, []); }
+  set defaultPolicy(value: PHSharedAlbumCreationSharingPolicy) { callSDK<void>("PhotosUI_1f27952b3c5b81e6", 2145337368785969, this, [value]); }
   declare readonly $type: { "s:8PhotosUI34PHSharedAlbumCreationConfigurationV": true };
 }
 
@@ -623,17 +623,17 @@ export class PHSharedAlbumCreationResult extends SDKHandle {
    * var albumIdentifier: String? { get }
    * @availability iOS 27.0+
    */
-  get albumIdentifier(): (string) | null { return callSDK<(string) | null>("PhotosUI_4e2094813cc7c17f", 1304216864198062, this, []); }
+  get albumIdentifier(): (string) | null { return callSDK<(string) | null>("PhotosUI_1f27952b3c5b81e6", 1304216864198062, this, []); }
   /**
    * var error: (any Error)? { get }
    * @availability iOS 27.0+
    */
-  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("PhotosUI_4e2094813cc7c17f", 736340926531668, this, []); }
+  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("PhotosUI_1f27952b3c5b81e6", 736340926531668, this, []); }
   /**
    * var albumURL: URL? { get }
    * @availability iOS 27.0+
    */
-  get albumURL(): (string) | null { return callSDK<(string) | null>("PhotosUI_4e2094813cc7c17f", 4343471422140004, this, []); }
+  get albumURL(): (string) | null { return callSDK<(string) | null>("PhotosUI_1f27952b3c5b81e6", 4343471422140004, this, []); }
   declare readonly $type: { "s:8PhotosUI27PHSharedAlbumCreationResultV": true };
 }
 
@@ -648,7 +648,7 @@ export const PHSharedAlbumCreationSharingPolicy = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (PHSharedAlbumCreationSharingPolicy) | null { return callSDK<(PHSharedAlbumCreationSharingPolicy) | null>("PhotosUI_4e2094813cc7c17f", 127061266788648, undefined, [rawValue]); }
+  init(rawValue: number): (PHSharedAlbumCreationSharingPolicy) | null { return callSDK<(PHSharedAlbumCreationSharingPolicy) | null>("PhotosUI_1f27952b3c5b81e6", 127061266788648, undefined, [rawValue]); }
 };
 
 /**
@@ -660,18 +660,18 @@ export class PHSharedAlbumCreationViewController extends SDKHandle {
    * @NSCopying var creationResult: __PHSharedAlbumCreationResult? { get }
    * @availability iOS 27.0+
    */
-  get creationResult(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PhotosUI_4e2094813cc7c17f", 3115701471584675, this, []); }
+  get creationResult(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PhotosUI_1f27952b3c5b81e6", 3115701471584675, this, []); }
   /**
    * weak var delegate: (any PHSharedAlbumCreationViewController.Delegate)? { get set }
    * @availability iOS 27.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PhotosUI_4e2094813cc7c17f", 3413905960204275, this, []); }
-  setDelegate(value?: (Implements<PHSharedAlbumCreationViewController_Delegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 1151572604836076, this, [value], [{"protocol":"c:objc(pl)PHSharedAlbumCreationViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PhotosUI_1f27952b3c5b81e6", 3413905960204275, this, []); }
+  setDelegate(value?: (Implements<PHSharedAlbumCreationViewController_Delegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 1151572604836076, this, [value], [{"protocol":"c:objc(pl)PHSharedAlbumCreationViewControllerDelegate"}]); }
   /**
    * @MainActor @preconcurrency convenience init(configuration: PHSharedAlbumCreationConfiguration)
    * @availability iOS 27.0+
    */
-  static init(configuration: PHSharedAlbumCreationConfiguration): Promise<PHSharedAlbumCreationViewController> { return callSDKAsync<PHSharedAlbumCreationViewController>("PhotosUI_4e2094813cc7c17f", 2330794968136234, undefined, [configuration]); }
+  static init(configuration: PHSharedAlbumCreationConfiguration): Promise<PHSharedAlbumCreationViewController> { return callSDKAsync<PHSharedAlbumCreationViewController>("PhotosUI_1f27952b3c5b81e6", 2330794968136234, undefined, [configuration]); }
   declare readonly $type: { "c:objc(cs)PHSharedAlbumCreationViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "creationResult": true; "delegate": true };
 }
@@ -697,18 +697,18 @@ export class PHSharedAlbumCustomizationViewController extends SDKHandle {
    * init(albumIdentifier: String, photoLibrary: PHPhotoLibrary)
    * @availability iOS 27.0+
    */
-  static init(albumIdentifier: string, photoLibrary: _Photos_PHPhotoLibrary): Promise<PHSharedAlbumCustomizationViewController> { return callSDKAsync<PHSharedAlbumCustomizationViewController>("PhotosUI_4e2094813cc7c17f", 2983841413666474, undefined, [albumIdentifier, photoLibrary]); }
+  static init(albumIdentifier: string, photoLibrary: _Photos_PHPhotoLibrary): Promise<PHSharedAlbumCustomizationViewController> { return callSDKAsync<PHSharedAlbumCustomizationViewController>("PhotosUI_1f27952b3c5b81e6", 2983841413666474, undefined, [albumIdentifier, photoLibrary]); }
   /**
    * var albumIdentifier: String { get }
    * @availability iOS 27.0+
    */
-  get albumIdentifier(): Promise<string> { return callSDKAsync<string>("PhotosUI_4e2094813cc7c17f", 3737122441881179, this, []); }
+  get albumIdentifier(): Promise<string> { return callSDKAsync<string>("PhotosUI_1f27952b3c5b81e6", 3737122441881179, this, []); }
   /**
    * weak var delegate: (any PHSharedAlbumCustomizationViewController.Delegate)? { get set }
    * @availability iOS 27.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PhotosUI_4e2094813cc7c17f", 1234430916995227, this, []); }
-  setDelegate(value?: (Implements<PHSharedAlbumCustomizationViewController_Delegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 214748761597633, this, [value], [{"protocol":"c:objc(pl)PHSharedAlbumCustomizationViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PhotosUI_1f27952b3c5b81e6", 1234430916995227, this, []); }
+  setDelegate(value?: (Implements<PHSharedAlbumCustomizationViewController_Delegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 214748761597633, this, [value], [{"protocol":"c:objc(pl)PHSharedAlbumCustomizationViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)PHSharedAlbumCustomizationViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "albumIdentifier": true; "delegate": true };
 }
@@ -734,18 +734,18 @@ export class PHSharedAlbumPostingViewController extends SDKHandle {
    * var albumIdentifier: String? { get }
    * @availability iOS 27.0+
    */
-  get albumIdentifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("PhotosUI_4e2094813cc7c17f", 2798368806301927, this, []); }
+  get albumIdentifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("PhotosUI_1f27952b3c5b81e6", 2798368806301927, this, []); }
   /**
    * weak var delegate: (any PHSharedAlbumPostingViewController.Delegate)? { get set }
    * @availability iOS 27.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PhotosUI_4e2094813cc7c17f", 2699526669792172, this, []); }
-  setDelegate(value?: (Implements<PHSharedAlbumPostingViewController_Delegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PhotosUI_4e2094813cc7c17f", 891585979987773, this, [value], [{"protocol":"c:objc(pl)PHSharedAlbumPostingViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PhotosUI_1f27952b3c5b81e6", 2699526669792172, this, []); }
+  setDelegate(value?: (Implements<PHSharedAlbumPostingViewController_Delegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PhotosUI_1f27952b3c5b81e6", 891585979987773, this, [value], [{"protocol":"c:objc(pl)PHSharedAlbumPostingViewControllerDelegate"}]); }
   /**
    * @MainActor @preconcurrency convenience init(items: [PHPickerResult], defaultAlbumIdentifier: String?, photoLibrary: PHPhotoLibrary)
    * @availability iOS 27.0+
    */
-  static init(items: Array<PHPickerResult>, defaultAlbumIdentifier: (string) | null, photoLibrary: _Photos_PHPhotoLibrary): Promise<PHSharedAlbumPostingViewController> { return callSDKAsync<PHSharedAlbumPostingViewController>("PhotosUI_4e2094813cc7c17f", 577666147233059, undefined, [items, defaultAlbumIdentifier, photoLibrary]); }
+  static init(items: Array<PHPickerResult>, defaultAlbumIdentifier: (string) | null, photoLibrary: _Photos_PHPhotoLibrary): Promise<PHSharedAlbumPostingViewController> { return callSDKAsync<PHSharedAlbumPostingViewController>("PhotosUI_1f27952b3c5b81e6", 577666147233059, undefined, [items, defaultAlbumIdentifier, photoLibrary]); }
   declare readonly $type: { "c:objc(cs)PHSharedAlbumPostingViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "albumIdentifier": true; "delegate": true };
 }
@@ -763,22 +763,22 @@ export interface PHSharedAlbumPostingViewController_Delegate {
 }
 
 registerSDKProtocol("c:objc(pl)PHContentEditingController", {"canHandle":"canHandle(_:)","startContentEditingWithPlaceholderImage":"startContentEditing(with:placeholderImage:)","finishContentEditing":"finishContentEditing()","cancelContentEditing":"cancelContentEditing()"});
-registerSDKClass("PHLivePhotoView", PHLivePhotoView, { module: "PhotosUI_4e2094813cc7c17f", properties: {"contentsRect":1604671118250346,"delegate":3138949990051018,"livePhoto":2635452308221845,"isMuted":1096377315367673,"playbackGestureRecognizer":3900509450971829}, methods: {"startPlayback":{"id":1772057302404545},"stopPlayback":{"id":2864658977096061}} });
+registerSDKClass("PHLivePhotoView", PHLivePhotoView, { module: "PhotosUI_1f27952b3c5b81e6", properties: {"contentsRect":1604671118250346,"delegate":3138949990051018,"livePhoto":2635452308221845,"isMuted":1096377315367673,"playbackGestureRecognizer":3900509450971829}, methods: {"startPlayback":{"id":1772057302404545},"stopPlayback":{"id":2864658977096061}} });
 registerSDKProtocol("c:objc(pl)PHLivePhotoViewDelegate", {"livePhotoViewWillBeginPlaybackWith":"livePhotoView(_:willBeginPlaybackWith:)","livePhotoViewDidEndPlaybackWith":"livePhotoView(_:didEndPlaybackWith:)"});
-registerSDKClass("PHPhotoLibrary", PHPhotoLibrary, { module: "PhotosUI_4e2094813cc7c17f", properties: {}, methods: {"presentLimitedLibraryPickerFrom":{"id":1891373908726072},"presentLimitedLibraryPickerFromCompletionHandler":{"id":2264044977527042,"hints":[null,{"callback":{"out":[]}}]}} }, true);
-registerSDKClass("PhotosUI.PHPickerConfiguration", PHPickerConfiguration, { module: "PhotosUI_4e2094813cc7c17f", properties: {} });
-registerSDKClass("PhotosUI.PHPickerConfiguration.Update", PHPickerConfiguration_Update, { module: "PhotosUI_4e2094813cc7c17f", properties: {} });
-registerSDKClass("PhotosUI.PHPickerFilter", PHPickerFilter, { module: "PhotosUI_4e2094813cc7c17f", properties: {} });
-registerSDKClass("PhotosUI.PHPickerMode", PHPickerMode, { module: "PhotosUI_4e2094813cc7c17f", properties: {} });
-registerSDKClass("PhotosUI.PHPickerResult", PHPickerResult, { module: "PhotosUI_4e2094813cc7c17f", properties: {} });
-registerSDKClass("PhotosUI.PHPickerSearchText", PHPickerSearchText, { module: "PhotosUI_4e2094813cc7c17f", properties: {} });
-registerSDKClass("PHPickerViewController", PHPickerViewController, { module: "PhotosUI_4e2094813cc7c17f", properties: {}, methods: {"deselectAssets":{"id":3707516038064903},"moveAsset":{"id":1567583035625484},"scrollToInitialPosition":{"id":1773432627543811},"zoomIn":{"id":4140894360387457},"zoomOut":{"id":2146609599978696},"updatePicker":{"id":1389354373639354}} });
+registerSDKClass("PHPhotoLibrary", PHPhotoLibrary, { module: "PhotosUI_1f27952b3c5b81e6", properties: {}, methods: {"presentLimitedLibraryPickerFrom":{"id":1891373908726072},"presentLimitedLibraryPickerFromCompletionHandler":{"id":2264044977527042,"hints":[null,{"callback":{"out":[]}}]}} }, true);
+registerSDKClass("PhotosUI.PHPickerConfiguration", PHPickerConfiguration, { module: "PhotosUI_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("PhotosUI.PHPickerConfiguration.Update", PHPickerConfiguration_Update, { module: "PhotosUI_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("PhotosUI.PHPickerFilter", PHPickerFilter, { module: "PhotosUI_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("PhotosUI.PHPickerMode", PHPickerMode, { module: "PhotosUI_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("PhotosUI.PHPickerResult", PHPickerResult, { module: "PhotosUI_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("PhotosUI.PHPickerSearchText", PHPickerSearchText, { module: "PhotosUI_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("PHPickerViewController", PHPickerViewController, { module: "PhotosUI_1f27952b3c5b81e6", properties: {}, methods: {"deselectAssets":{"id":3707516038064903},"moveAsset":{"id":1567583035625484},"scrollToInitialPosition":{"id":1773432627543811},"zoomIn":{"id":4140894360387457},"zoomOut":{"id":2146609599978696},"updatePicker":{"id":1389354373639354}} });
 registerSDKProtocol("s:8PhotosUI30PHPickerViewControllerDelegateP", {"pickerDidFinishPicking":"picker(_:didFinishPicking:)"});
-registerSDKClass("PhotosUI.PHSharedAlbumCreationConfiguration", PHSharedAlbumCreationConfiguration, { module: "PhotosUI_4e2094813cc7c17f", properties: {} });
-registerSDKClass("PhotosUI.PHSharedAlbumCreationResult", PHSharedAlbumCreationResult, { module: "PhotosUI_4e2094813cc7c17f", properties: {} });
-registerSDKClass("PHSharedAlbumCreationViewController", PHSharedAlbumCreationViewController, { module: "PhotosUI_4e2094813cc7c17f", properties: {"creationResult":3115701471584675,"delegate":3413905960204275} });
+registerSDKClass("PhotosUI.PHSharedAlbumCreationConfiguration", PHSharedAlbumCreationConfiguration, { module: "PhotosUI_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("PhotosUI.PHSharedAlbumCreationResult", PHSharedAlbumCreationResult, { module: "PhotosUI_1f27952b3c5b81e6", properties: {} });
+registerSDKClass("PHSharedAlbumCreationViewController", PHSharedAlbumCreationViewController, { module: "PhotosUI_1f27952b3c5b81e6", properties: {"creationResult":3115701471584675,"delegate":3413905960204275} });
 registerSDKProtocol("c:objc(pl)PHSharedAlbumCreationViewControllerDelegate", {"sharedAlbumCreationViewControllerDidCompleteWithError":"sharedAlbumCreationViewController(_:didCompleteWithError:)"});
-registerSDKClass("PHSharedAlbumCustomizationViewController", PHSharedAlbumCustomizationViewController, { module: "PhotosUI_4e2094813cc7c17f", properties: {"albumIdentifier":3737122441881179,"delegate":1234430916995227} });
+registerSDKClass("PHSharedAlbumCustomizationViewController", PHSharedAlbumCustomizationViewController, { module: "PhotosUI_1f27952b3c5b81e6", properties: {"albumIdentifier":3737122441881179,"delegate":1234430916995227} });
 registerSDKProtocol("c:objc(pl)PHSharedAlbumCustomizationViewControllerDelegate", {"sharedAlbumCustomizationViewControllerDidCompleteWithError":"sharedAlbumCustomizationViewController(_:didCompleteWithError:)"});
-registerSDKClass("PHSharedAlbumPostingViewController", PHSharedAlbumPostingViewController, { module: "PhotosUI_4e2094813cc7c17f", properties: {"albumIdentifier":2798368806301927,"delegate":2699526669792172} });
+registerSDKClass("PHSharedAlbumPostingViewController", PHSharedAlbumPostingViewController, { module: "PhotosUI_1f27952b3c5b81e6", properties: {"albumIdentifier":2798368806301927,"delegate":2699526669792172} });
 registerSDKProtocol("c:objc(pl)PHSharedAlbumPostingViewControllerDelegate", {"sharedAlbumPostingViewControllerDidCompleteWithError":"sharedAlbumPostingViewController(_:didCompleteWithError:)"});

@@ -273,6 +273,7 @@ export async function build(args: {
     {
       skipEnv: args.skipEnv ?? oneOptions.skipEnv,
       server: oneOptions.server,
+      patches: oneOptions.patches,
       build: {
         analyze: true,
         server:

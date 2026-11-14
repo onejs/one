@@ -451,7 +451,7 @@ export type SHMediaItem_ID = string;
  * struct SHMediaItemProperty
  * @availability iOS 15.0+
  */
-export type SHMediaItemProperty = "timeRanges" | "frequencySkewRanges" | "shazamID" | "title" | "subtitle" | "artist" | "webURL" | "appleMusicID" | "appleMusicURL" | "artworkURL" | "videoURL" | "explicitContent" | "genres" | "ISRC" | "creationDate" | "matchOffset" | "frequencySkew" | "confidence" | (string & {});
+export type SHMediaItemProperty = "timeRanges" | "frequencySkewRanges" | "matchOffset" | "frequencySkew" | "confidence" | "shazamID" | "title" | "subtitle" | "artist" | "webURL" | "appleMusicID" | "appleMusicURL" | "artworkURL" | "videoURL" | "explicitContent" | "genres" | "ISRC" | "creationDate" | (string & {});
 export declare const SHMediaItemProperty: {
     /**
      * static let appleMusicID: SHMediaItemProperty

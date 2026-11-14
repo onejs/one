@@ -30,5 +30,6 @@ export async function run(args: { simulator?: string; udid?: string }) {
     port,
     simulator: args.simulator,
     udid: args.udid,
+    patches: options?.oneOptions.patches,
   })
 }

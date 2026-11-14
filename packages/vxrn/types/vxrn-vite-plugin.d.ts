@@ -1,5 +1,6 @@
 import { type PluginOption } from 'vite';
 import type { MetroPluginOptions } from '@vxrn/vite-plugin-metro';
+import type { UserDepPatches } from './utils/patches';
 /**
  * This is considered private API for now, and may change anytime.
  */
@@ -11,6 +12,7 @@ type VxrnPluginOptions = {
      * runs as a pure web framework.
      */
     disableNative?: boolean;
+    patches?: UserDepPatches;
 };
 /**
  * [Experimental] VxRN as a Vite plugin.

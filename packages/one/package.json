@@ -304,7 +304,6 @@
     "perfect-debounce": "^1.0.0",
     "picocolors": "^1.0.0",
     "react-compiler-runtime": "^1.0.0",
-    "react-native-css-interop": "^0.2.6",
     "react-native-nitro-image": "0.15.2",
     "react-native-nitro-modules": "0.37.1",
     "react-native-nitro-web-image": "0.15.2",
@@ -335,14 +334,15 @@
     "@tamagui/sheet": ">=3.0.0-beta.1537.1 <4 || >=3.0.0-0.canary <3.0.0-1",
     "@tamagui/web": ">=3.0.0-beta.1537.1 <4 || >=3.0.0-0.canary <3.0.0-1",
     "@babel/core": "^7.28.5",
-    "@babel/generator": "7.29.7",
+    "@babel/generator": "^7.28.5",
     "@babel/parser": "^7.28.5",
     "@babel/plugin-transform-export-namespace-from": "^7.27.1",
     "@babel/traverse": "^7.28.5",
     "@babel/types": "^7.28.5",
     "babel-dead-code-elimination": "1.0.10",
     "babel-plugin-module-resolver": "^5.0.2",
-    "@vxrn/vite-plugin-metro": "workspace:*"
+    "@vxrn/vite-plugin-metro": "workspace:*",
+    "react-native-css-interop": "^0.2.6"
   },
   "peerDependenciesMeta": {
     "@react-native/babel-preset": {
@@ -401,24 +401,27 @@
     },
     "@vxrn/vite-plugin-metro": {
       "optional": true
+    },
+    "react-native-css-interop": {
+      "optional": true
     }
   },
   "devDependencies": {
-    "@tamagui/sheet": "3.3.1",
+    "@tamagui/sheet": "3.3.2",
     "@callstack/liquid-glass": "^0.8.1",
     "@react-native/babel-plugin-codegen": "0.88.0",
     "@react-native/codegen": "^0.88.0",
     "@react-navigation/core": "8.0.0-alpha.41",
     "@react-navigation/drawer": "8.0.0-alpha.58",
     "@react-navigation/native": "8.0.0-alpha.51",
-    "@tamagui/build": "3.3.1",
+    "@tamagui/build": "3.3.2",
     "@types/node": "^24.10.0",
     "@types/react-dom": "^19.3.0",
     "@types/react-test-renderer": "^19.1.0",
     "@types/xxhashjs": "^0.2.4",
     "@vxrn/emitter": "workspace:*",
     "depcheck": "^1.4.7",
-    "esbuild": "^0.25.12",
+    "esbuild": "^0.28.1",
     "immer": "^10.1.1",
     "nitrogen": "0.37.1",
     "react": "19.3.0",
@@ -435,7 +438,7 @@
     "typescript": "7.0.2",
     "vitest": "^4.1.0",
     "yoga-layout": "^3.2.1",
-    "@tamagui/web": "3.3.1",
+    "@tamagui/web": "3.3.2",
     "@babel/core": "^7.28.5",
     "@babel/generator": "7.29.7",
     "@babel/parser": "^7.28.5",
@@ -444,7 +447,8 @@
     "@babel/types": "^7.28.5",
     "babel-dead-code-elimination": "1.0.10",
     "babel-plugin-module-resolver": "^5.0.2",
-    "@vxrn/vite-plugin-metro": "workspace:*"
+    "@vxrn/vite-plugin-metro": "workspace:*",
+    "react-native-css-interop": "^0.2.6"
   },
   "publishConfig": {
     "access": "public"

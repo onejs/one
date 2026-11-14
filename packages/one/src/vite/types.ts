@@ -3,7 +3,7 @@ import type { metroPlugin } from '@vxrn/vite-plugin-metro'
 import type { Plugin as RolldownPlugin } from 'rolldown'
 import type {
   AutoDepOptimizationOptions,
-  DepPatch,
+  UserDepPatches,
   AfterBuildProps as VXRNAfterBuildProps,
   VXRNBuildOptions,
   VXRNOptions,
@@ -55,10 +55,8 @@ export namespace One {
     routeModes?: Record<string, RouteRenderMode>
   }
 
-  // todo move into vxrn
-  export type FixDependencies = {
-    [key: string]: DepPatch['patchFiles']
-  }
+  // false skips every built-in patch; a module set to false skips its built-in patch
+  export type FixDependencies = UserDepPatches
 
   type PluginPlatformTarget = 'native' | 'web'
 
@@ -538,7 +536,8 @@ export namespace One {
        *
        * - `'after-lcp-aggressive'`: Only modulepreloads critical scripts (entry, layouts).
        *   Non-critical scripts have no modulepreload hints, reducing network saturation.
-       *   Best for pages with many chunks or slow networks.
+       *   Best for pages with many chunks or slow networks. A spa-shell page still preloads its
+       *   non-critical scripts at normal priority, since it paints nothing until they run.
        *
        * @default undefined (all scripts load with async)
        */

@@ -228,6 +228,10 @@ export interface NativeAppManifest {
       light: string
       dark?: string
     }
+    // a checked-in folder in xcode's asset catalog format (imagesets,
+    // colorsets, symbolsets with their Contents.json) whose entries prebuild
+    // merges into the generated Images.xcassets, as UIImage(named:) finds them.
+    assetCatalog?: string
     // system prompt text for Face ID through One.LocalAuthentication.
     faceIdUsageDescription?: string
     // exposes the app's Documents in the Files app and document pickers.
@@ -678,6 +682,13 @@ export function validateNativeApp(
       (accent.dark !== undefined && !HEX_COLOR.test(accent.dark)))
   ) {
     fail('ios.accentColor light and dark must be six-digit hex colors')
+  }
+  const assetCatalog = manifest.ios?.assetCatalog
+  if (
+    assetCatalog !== undefined &&
+    (typeof assetCatalog !== 'string' || !assetCatalog.endsWith('.xcassets'))
+  ) {
+    fail('ios.assetCatalog must name a folder ending in .xcassets')
   }
   if (
     manifest.pictureInPicture !== undefined &&

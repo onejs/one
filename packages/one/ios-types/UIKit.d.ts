@@ -11,7 +11,7 @@ import type { DDMatchMoneyAmount as _DataDetection_DDMatchMoneyAmount, DDMatchPh
 import type { ColorResource as _DeveloperToolsSupport_ColorResource, ImageResource as _DeveloperToolsSupport_ImageResource } from "one/ios/DeveloperToolsSupport";
 import type { AttributeScopes_FoundationAttributes as _Foundation_AttributeScopes_FoundationAttributes, AttributedString_AttributeRunBoundaries as _Foundation_AttributedString_AttributeRunBoundaries, AttributeScopeCodableConfiguration as _Foundation_AttributeScopeCodableConfiguration, NSNumber as _Foundation_NSNumber, NSAttributedString as _Foundation_NSAttributedString, IndexPath as _Foundation_IndexPath, NSCoder as _Foundation_NSCoder, NSAttributedString_Key as _Foundation_NSAttributedString_Key, FileWrapper as _Foundation_FileWrapper, NSDictionary as _Foundation_NSDictionary, Bundle as _Foundation_Bundle, NSIndexPath as _Foundation_NSIndexPath, NSNotification_Name as _Foundation_NSNotification_Name, OperationQueue as _Foundation_OperationQueue, ComparisonResult as _Foundation_ComparisonResult, NSString_EnumerationOptions as _Foundation_NSString_EnumerationOptions, CharacterSet as _Foundation_CharacterSet, Locale as _Foundation_Locale, NSValue as _Foundation_NSValue, RunLoop_Mode as _Foundation_RunLoop_Mode, Notification as _Foundation_Notification, NSUserActivity as _Foundation_NSUserActivity, UndoManager as _Foundation_UndoManager, NSItemProvider as _Foundation_NSItemProvider, NSExceptionName as _Foundation_NSExceptionName, NSExtensionContext as _Foundation_NSExtensionContext, AttributedString as _Foundation_AttributedString, DateComponents as _Foundation_DateComponents, DateInterval as _Foundation_DateInterval, Calendar as _Foundation_Calendar, TimeZone as _Foundation_TimeZone, IndexSet as _Foundation_IndexSet, AttributeContainer as _Foundation_AttributeContainer, PersonNameComponents as _Foundation_PersonNameComponents, Progress as _Foundation_Progress, NSPredicate as _Foundation_NSPredicate, Predicate as _Foundation_Predicate, NSCalendar_Unit as _Foundation_NSCalendar_Unit, NSArray as _Foundation_NSArray, NSTextCheckingResult as _Foundation_NSTextCheckingResult, LocalizedStringResource as _Foundation_LocalizedStringResource, NSString_CompareOptions as _Foundation_NSString_CompareOptions, Locale_Language as _Foundation_Locale_Language, URLThumbnailDictionaryItem as _Foundation_URLThumbnailDictionaryItem, NSMutableData as _Foundation_NSMutableData } from "one/ios/Foundation";
 import type { LPLinkMetadata as _LinkPresentation_LPLinkMetadata } from "one/ios/LinkPresentation";
-import type { Selector as _ObjectiveC_Selector, NSZone as _ObjectiveC_NSZone } from "one/ios/ObjectiveC";
+import type { NSZone as _ObjectiveC_NSZone, Selector as _ObjectiveC_Selector } from "one/ios/ObjectiveC";
 import type { CALayer as _QuartzCore_CALayer, CATransform3D as _QuartzCore_CATransform3D, CALayerCornerCurve as _QuartzCore_CALayerCornerCurve, CAFrameRateRange as _QuartzCore_CAFrameRateRange, CADisplayLink as _QuartzCore_CADisplayLink } from "one/ios/QuartzCore";
 import type { SymbolEffectOptions as _Symbols_SymbolEffectOptions, ContentTransitionSymbolEffect as _Symbols_ContentTransitionSymbolEffect } from "one/ios/Symbols";
 import type { UTType as _UniformTypeIdentifiers_UTType } from "one/ios/UniformTypeIdentifiers";
@@ -1327,7 +1327,7 @@ export declare const NSAttributedString_DocumentType: {
      */
     init(rawValue: string): NSAttributedString_DocumentType;
 };
-export type NSAttributedString_Key = "AXSpeechAttributeSSML" | "suggestionHighlight" | "inlinePresentationIntent" | "alternateDescription" | "imageURL" | "languageIdentifier" | "markdownSourcePosition" | "replacementIndex" | "morphology" | "inflectionRule" | "agreeWithArgument" | "agreeWithConcept" | "referentConcept" | "inflectionAlternative" | "localizedNumberFormat" | "listItemDelimiter" | "presentationIntentAttributeName" | "textItemTag" | "font" | "paragraphStyle" | "foregroundColor" | "backgroundColor" | "ligature" | "kern" | "tracking" | "strikethroughStyle" | "underlineStyle" | "strokeColor" | "strokeWidth" | "shadow" | "textEffect" | "attachment" | "link" | "baselineOffset" | "underlineColor" | "strikethroughColor" | "writingDirection" | "textHighlightStyle" | "textHighlightColorScheme" | "adaptiveImageGlyph" | "writingToolsExclusionAttributeName" | "obliqueness" | "expansion" | "verticalGlyphForm" | "accessibilitySpeechPunctuation" | "accessibilitySpeechLanguage" | "accessibilitySpeechPitch" | "accessibilitySpeechQueueAnnouncement" | "accessibilitySpeechAnnouncementPriority" | "accessibilitySpeechIPANotation" | "accessibilitySpeechSpellOut" | "accessibilityTextHeadingLevel" | "accessibilityTextCustom" | "UIAccessibilityTextAttributeContext" | (string & {});
+export type NSAttributedString_Key = "AXSpeechAttributeSSML" | "suggestionHighlight" | "inlinePresentationIntent" | "alternateDescription" | "imageURL" | "languageIdentifier" | "markdownSourcePosition" | "replacementIndex" | "morphology" | "inflectionRule" | "agreeWithArgument" | "agreeWithConcept" | "referentConcept" | "inflectionAlternative" | "localizedNumberFormat" | "listItemDelimiter" | "presentationIntentAttributeName" | "font" | "paragraphStyle" | "foregroundColor" | "backgroundColor" | "ligature" | "kern" | "tracking" | "strikethroughStyle" | "underlineStyle" | "strokeColor" | "strokeWidth" | "shadow" | "textEffect" | "attachment" | "link" | "baselineOffset" | "underlineColor" | "strikethroughColor" | "writingDirection" | "textHighlightStyle" | "textHighlightColorScheme" | "adaptiveImageGlyph" | "writingToolsExclusionAttributeName" | "obliqueness" | "expansion" | "verticalGlyphForm" | "accessibilitySpeechPunctuation" | "accessibilitySpeechLanguage" | "accessibilitySpeechPitch" | "accessibilitySpeechQueueAnnouncement" | "accessibilitySpeechAnnouncementPriority" | "accessibilitySpeechIPANotation" | "accessibilitySpeechSpellOut" | "accessibilityTextHeadingLevel" | "accessibilityTextCustom" | "UIAccessibilityTextAttributeContext" | "textItemTag" | (string & {});
 export declare const NSAttributedString_Key: {
     /**
      * static let adaptiveImageGlyph: NSAttributedString.Key
@@ -4515,7 +4515,7 @@ export declare class NSMutableParagraphStyle extends NSMutableParagraphStyle_bas
         "usesDefaultHyphenation": true;
     };
 }
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GKPlayerAuthenticationDidChangeNotificationName" | "GKPlayerDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderDomainDidChange" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMusicPlayerControllerQueueDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /**
      * static let unsupportedAttributeAddedNotification: NSNotification.Name
@@ -7204,16 +7204,6 @@ export declare const NSTextStorage_EditActions: {
  * @availability iOS 7.0+
  */
 export interface NSTextStorageDelegate {
-    /**
-     * optional func textStorage(_ textStorage: NSTextStorage, willProcessEditing editedMask: NSTextStorage.EditActions, range editedRange: NSRange, changeInLength delta: Int)
-     * @availability iOS 7.0+
-     */
-    "textStorageWillProcessEditingRangeChangeInLength"?: (arg0: NSTextStorage, arg1: NSTextStorage_EditActions, arg2: SDKHandle, arg3: number) => void;
-    /**
-     * optional func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorage.EditActions, range editedRange: NSRange, changeInLength delta: Int)
-     * @availability iOS 7.0+
-     */
-    "textStorageDidProcessEditingRangeChangeInLength"?: (arg0: NSTextStorage, arg1: NSTextStorage_EditActions, arg2: SDKHandle, arg3: number) => void;
 }
 /**
  * protocol NSTextStorageObserving : NSObjectProtocol
@@ -11541,7 +11531,7 @@ export declare const UIActivityItemsConfigurationInteraction: {
  * struct UIActivityItemsConfigurationMetadataKey
  * @availability iOS 13.0+
  */
-export type UIActivityItemsConfigurationMetadataKey = "collaborationModeRestrictions" | "shareRecipients" | "title" | "messageBody" | "linkPresentationMetadata" | (string & {});
+export type UIActivityItemsConfigurationMetadataKey = "title" | "messageBody" | "linkPresentationMetadata" | "shareRecipients" | "collaborationModeRestrictions" | (string & {});
 export declare const UIActivityItemsConfigurationMetadataKey: {
     /**
      * static let collaborationModeRestrictions: UIActivityItemsConfigurationMetadataKey
@@ -14637,12 +14627,6 @@ export interface UIApplicationDelegate {
      * @availability iOS 3.0+
      */
     "applicationDidFailToRegisterForRemoteNotificationsWithError"?: (arg0: UIApplication, arg1: NativeError) => void;
-    /**
-     * optional func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any])
-     * @availability iOS 3.0+
-     * @deprecated iOS 10.0
-     */
-    "applicationDidReceiveRemoteNotification"?: (arg0: UIApplication, arg1: $SDK29) => void;
     /**
      * optional func application(_ application: UIApplication, didReceive notification: UILocalNotification)
      * @availability iOS 4.0+
@@ -21401,11 +21385,6 @@ export interface UICollectionViewDelegate {
      */
     "scrollViewWillBeginDragging"?: (arg0: UIScrollView) => void;
     /**
-     * optional func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
-     * @availability iOS 5.0+
-     */
-    "scrollViewWillEndDraggingWithVelocityTargetContentOffset"?: (arg0: UIScrollView, arg1: $SDK26, arg2: $SDK51) => void;
-    /**
      * optional func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
      * @availability iOS 2.0+
      */
@@ -21490,12 +21469,6 @@ export interface UICollectionViewDelegate {
      * @availability iOS 8.0+
      */
     "collectionViewDidEndDisplayingSupplementaryViewForElementOfKindAt"?: (arg0: UICollectionView, arg1: UICollectionReusableView, arg2: string, arg3: _Foundation_IndexPath) => void;
-    /**
-     * optional func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?)
-     * @availability iOS 6.0+
-     * @deprecated iOS 13.0
-     */
-    "collectionViewPerformActionForItemAtWithSender"?: (arg0: UICollectionView, arg1: _ObjectiveC_Selector, arg2: _Foundation_IndexPath, arg3: (unknown) | null) => void;
     /**
      * optional func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator)
      * @availability iOS 9.0+
@@ -21545,11 +21518,6 @@ export interface UICollectionViewDelegateFlowLayout {
      */
     "scrollViewWillBeginDragging"?: (arg0: UIScrollView) => void;
     /**
-     * optional func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
-     * @availability iOS 5.0+
-     */
-    "scrollViewWillEndDraggingWithVelocityTargetContentOffset"?: (arg0: UIScrollView, arg1: $SDK26, arg2: $SDK51) => void;
-    /**
      * optional func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
      * @availability iOS 2.0+
      */
@@ -21634,12 +21602,6 @@ export interface UICollectionViewDelegateFlowLayout {
      * @availability iOS 8.0+
      */
     "collectionViewDidEndDisplayingSupplementaryViewForElementOfKindAt"?: (arg0: UICollectionView, arg1: UICollectionReusableView, arg2: string, arg3: _Foundation_IndexPath) => void;
-    /**
-     * optional func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?)
-     * @availability iOS 6.0+
-     * @deprecated iOS 13.0
-     */
-    "collectionViewPerformActionForItemAtWithSender"?: (arg0: UICollectionView, arg1: _ObjectiveC_Selector, arg2: _Foundation_IndexPath, arg3: (unknown) | null) => void;
     /**
      * optional func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator)
      * @availability iOS 9.0+
@@ -41650,12 +41612,6 @@ export interface UIPopoverControllerDelegate {
      * @deprecated iOS 9.0
      */
     "popoverControllerDidDismissPopover"?: (arg0: UIPopoverController) => void;
-    /**
-     * optional func popoverController(_ popoverController: UIPopoverController, willRepositionPopoverTo rect: UnsafeMutablePointer<CGRect>, in view: AutoreleasingUnsafeMutablePointer<UIView>)
-     * @availability iOS 7.0+
-     * @deprecated iOS 9.0
-     */
-    "popoverControllerWillRepositionPopoverToIn"?: (arg0: UIPopoverController, arg1: $SDK51, arg2: unknown) => void;
 }
 /**
  * @MainActor class UIPresentationController
@@ -41956,11 +41912,6 @@ export interface UIPopoverPresentationControllerDelegate {
      * @deprecated iOS 13.0
      */
     "popoverPresentationControllerDidDismissPopover"?: (arg0: UIPopoverPresentationController) => void;
-    /**
-     * optional func popoverPresentationController(_ popoverPresentationController: UIPopoverPresentationController, willRepositionPopoverTo rect: UnsafeMutablePointer<CGRect>, in view: AutoreleasingUnsafeMutablePointer<UIView>)
-     * @availability iOS 8.0+
-     */
-    "popoverPresentationControllerWillRepositionPopoverToIn"?: (arg0: UIPopoverPresentationController, arg1: $SDK51, arg2: unknown) => void;
 }
 /**
  * protocol UIPopoverPresentationControllerSourceItem : NSObjectProtocol
@@ -45209,7 +45160,7 @@ export declare class UISceneSession extends SDKHandle {
  * struct Role
  * @availability iOS 13.0+
  */
-export type UISceneSession_Role = "CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication" | "CPTemplateApplicationDashboardSceneSessionRoleApplication" | "carTemplateApplication" | "windowApplication" | "windowExternalDisplayNonInteractive" | "windowExternalDisplay" | "windowAssistiveAccessApplication" | "windowCameraCaptureAccessory" | (string & {});
+export type UISceneSession_Role = "CPTemplateApplicationDashboardSceneSessionRoleApplication" | "CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication" | "carTemplateApplication" | "windowApplication" | "windowExternalDisplayNonInteractive" | "windowExternalDisplay" | "windowAssistiveAccessApplication" | "windowCameraCaptureAccessory" | (string & {});
 export declare const UISceneSession_Role: {
     /**
      * static let windowApplication: UISceneSession.Role
@@ -46076,11 +46027,6 @@ export interface UIScrollViewAccessibilityDelegate {
      */
     "scrollViewWillBeginDragging"?: (arg0: UIScrollView) => void;
     /**
-     * optional func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
-     * @availability iOS 5.0+
-     */
-    "scrollViewWillEndDraggingWithVelocityTargetContentOffset"?: (arg0: UIScrollView, arg1: $SDK26, arg2: $SDK51) => void;
-    /**
      * optional func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
      * @availability iOS 2.0+
      */
@@ -46138,11 +46084,6 @@ export interface UIScrollViewDelegate {
      * @availability iOS 2.0+
      */
     "scrollViewWillBeginDragging"?: (arg0: UIScrollView) => void;
-    /**
-     * optional func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
-     * @availability iOS 5.0+
-     */
-    "scrollViewWillEndDraggingWithVelocityTargetContentOffset"?: (arg0: UIScrollView, arg1: $SDK26, arg2: $SDK51) => void;
     /**
      * optional func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
      * @availability iOS 2.0+
@@ -54178,11 +54119,6 @@ export interface UITableViewDelegate {
      */
     "scrollViewWillBeginDragging"?: (arg0: UIScrollView) => void;
     /**
-     * optional func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
-     * @availability iOS 5.0+
-     */
-    "scrollViewWillEndDraggingWithVelocityTargetContentOffset"?: (arg0: UIScrollView, arg1: $SDK26, arg2: $SDK51) => void;
-    /**
      * optional func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
      * @availability iOS 2.0+
      */
@@ -54292,12 +54228,6 @@ export interface UITableViewDelegate {
      * @availability iOS 8.0+
      */
     "tableViewDidEndEditingRowAt"?: (arg0: UITableView, arg1: $SDK261) => void;
-    /**
-     * optional func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?)
-     * @availability iOS 5.0+
-     * @deprecated iOS 13.0
-     */
-    "tableViewPerformActionForRowAtWithSender"?: (arg0: UITableView, arg1: _ObjectiveC_Selector, arg2: _Foundation_IndexPath, arg3: (unknown) | null) => void;
     /**
      * optional func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator)
      * @availability iOS 9.0+
@@ -55801,11 +55731,6 @@ export interface UITextDraggable {
     /** optional func insertText(_ text: String, alternatives: [String], style: UITextAlternativeStyle) */
     "insertTextAlternativesStyle"?: (arg0: string, arg1: Array<string>, arg2: UITextAlternativeStyle) => void;
     /**
-     * optional func setAttributedMarkedText(_ markedText: NSAttributedString?, selectedRange: NSRange)
-     * @availability iOS 3.2+
-     */
-    "setAttributedMarkedTextSelectedRange"?: (arg0: $SDK58, arg1: SDKHandle) => void;
-    /**
      * optional func remove(_ textPlaceholder: UITextPlaceholder)
      * @availability iOS 13.0+
      */
@@ -56105,11 +56030,6 @@ export interface UITextDroppable {
     "removeDictationResultPlaceholderWillInsertResult"?: (arg0: unknown, arg1: boolean) => void;
     /** optional func insertText(_ text: String, alternatives: [String], style: UITextAlternativeStyle) */
     "insertTextAlternativesStyle"?: (arg0: string, arg1: Array<string>, arg2: UITextAlternativeStyle) => void;
-    /**
-     * optional func setAttributedMarkedText(_ markedText: NSAttributedString?, selectedRange: NSRange)
-     * @availability iOS 3.2+
-     */
-    "setAttributedMarkedTextSelectedRange"?: (arg0: $SDK58, arg1: SDKHandle) => void;
     /**
      * optional func remove(_ textPlaceholder: UITextPlaceholder)
      * @availability iOS 13.0+
@@ -57242,11 +57162,6 @@ export interface UITextInput {
     "removeDictationResultPlaceholderWillInsertResult"?: (arg0: unknown, arg1: boolean) => void;
     /** optional func insertText(_ text: String, alternatives: [String], style: UITextAlternativeStyle) */
     "insertTextAlternativesStyle"?: (arg0: string, arg1: Array<string>, arg2: UITextAlternativeStyle) => void;
-    /**
-     * optional func setAttributedMarkedText(_ markedText: NSAttributedString?, selectedRange: NSRange)
-     * @availability iOS 3.2+
-     */
-    "setAttributedMarkedTextSelectedRange"?: (arg0: $SDK58, arg1: SDKHandle) => void;
     /**
      * optional func remove(_ textPlaceholder: UITextPlaceholder)
      * @availability iOS 13.0+
@@ -58849,11 +58764,6 @@ export interface UITextViewDelegate {
      * @availability iOS 2.0+
      */
     "scrollViewWillBeginDragging"?: (arg0: UIScrollView) => void;
-    /**
-     * optional func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
-     * @availability iOS 5.0+
-     */
-    "scrollViewWillEndDraggingWithVelocityTargetContentOffset"?: (arg0: UIScrollView, arg1: $SDK26, arg2: $SDK51) => void;
     /**
      * optional func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
      * @availability iOS 2.0+

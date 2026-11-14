@@ -126,6 +126,8 @@ import WorkoutKit
 
   #endif
 
+
+#if ONE_IOS_27_SDK
   @available(iOS 27, *)
   public static func reorderContainer<Item: Identifiable>(
     for item: Item.Type, isEnabled: Bool = true,
@@ -133,6 +135,8 @@ import WorkoutKit
   ) -> Self where Item.ID: Sendable {
     Self(kind: .reorderContainer) { AnyView($0.reorderContainer(for: item, isEnabled: isEnabled, move: move)) }
   }
+#endif
+
 
   #if ONE_GROUP_MAPS
   @available(iOS 17, *)
@@ -154,10 +158,14 @@ import WorkoutKit
   #endif
 #if ONE_GROUP_INTENTS
 
+#if ONE_IOS_27_SDK
+
   @available(iOS 18.4, *)
   public static func appEntityUIElements(_ action: @escaping @MainActor (AppIntents.AppEntityUIElementsContext) -> [AppIntents.AppEntityUIElement]) -> Self {
     Self(kind: .appEntityUIElements) { AnyView($0.appEntityUIElements(action)) }
   }
+#endif
+
 #endif
 #if ONE_GROUP_WALLET
 

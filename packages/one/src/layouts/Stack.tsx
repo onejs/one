@@ -2,6 +2,7 @@ import type { ParamListBase, StackNavigationState } from '@react-navigation/nati
 import type {
   NativeStackNavigationEventMap,
   NativeStackNavigationOptions,
+  NativeStackNavigatorProps,
 } from '@react-navigation/native-stack'
 import React, { Children, type ComponentProps, useMemo } from 'react'
 import { isChildOfType } from '../utils/children'
@@ -28,7 +29,7 @@ import {
   type StackScreenProps,
   type StackToolbarProps,
 } from './stack-utils'
-import { withLayoutContext } from './withLayoutContext'
+import { type LayoutNavigator, withLayoutContext } from './withLayoutContext'
 
 const NativeStackNavigator = createStackNavigator().Navigator
 
@@ -163,7 +164,7 @@ type StackToolbarCompound = typeof StackToolbarComponent & {
   Badge: typeof StackToolbarBadge
 }
 
-type StackType = ReturnType<typeof withLayoutContext> & {
+type StackType = LayoutNavigator<NativeStackNavigatorProps, StackScreenOptions> & {
   Screen: typeof StackScreen
   Header: typeof StackHeader
   Toolbar: StackToolbarCompound

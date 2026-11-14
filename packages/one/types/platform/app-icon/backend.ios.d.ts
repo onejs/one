@@ -1,6 +1,3 @@
-export declare function appIconNative(): {
-    isSupported(): Promise<boolean>;
-    getCurrentName(): Promise<string | undefined>;
-    setIcon(name?: string): Promise<void>;
-};
+import type { appIconNative as Sdk } from './backend.sdk';
+export declare const appIconNative: typeof Sdk;
 //# sourceMappingURL=backend.ios.d.ts.map

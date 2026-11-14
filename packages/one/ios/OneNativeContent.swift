@@ -280,7 +280,7 @@ final class OneNativeContentCollectionCell: UICollectionViewCell, OneNativeConte
   private weak var source: OneNativeCellSource?
   private(set) var item: Int?
 
-  override init(frame: CGRect) {
+  required override init(frame: CGRect) {
     super.init(frame: frame)
     holder.frame = contentView.bounds
     holder.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -324,7 +324,7 @@ final class OneNativeContentTableCell: UITableViewCell, OneNativeContentCell {
   private weak var source: OneNativeCellSource?
   private(set) var item: Int?
 
-  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+  required override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     holder.frame = contentView.bounds
     holder.autoresizingMask = [.flexibleWidth, .flexibleHeight]

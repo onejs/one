@@ -7,6 +7,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
     };
     options: {
         readonly skipEnv?: boolean;
+        readonly patches?: import("..").UserDepPatches;
         readonly build?: {
             server?: boolean | import("..").VXRNBuildOptions;
             analyze?: boolean;

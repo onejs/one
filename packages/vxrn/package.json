@@ -112,7 +112,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
     "@jridgewell/gen-mapping": "^0.3.5",
-    "@tamagui/build": "3.3.1",
+    "@tamagui/build": "3.3.2",
     "@types/node": "^24.10.0",
     "@types/ws": "^8.18.1",
     "depcheck": "^1.4.7",
@@ -127,9 +127,13 @@
     "access": "public"
   },
   "peerDependencies": {
+    "@react-native-community/template": "*",
     "@vxrn/vite-plugin-metro": "workspace:*"
   },
   "peerDependenciesMeta": {
+    "@react-native-community/template": {
+      "optional": true
+    },
     "@vxrn/vite-plugin-metro": {
       "optional": true
     }

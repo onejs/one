@@ -246,6 +246,15 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
   const opened = new Map<string, { info: DeclarationInfo; value: boolean; bodies: Map<Entry, { body: string; mutates: boolean }> }>()
   const seen = new Set<string>()
   const imports = new Set<string>([graph.module])
+  // type names each import supplies; generated swift often spells them unqualified
+  const importedNames = new Map<string, Set<string>>()
+  const importType = (ref: string) => {
+    const info = bridge.index.get(ref)
+    if (!info?.module) return
+    imports.add(info.module)
+    if (!importedNames.has(info.module)) importedNames.set(info.module, new Set())
+    importedNames.get(info.module)!.add(info.path[0])
+  }
 
   // members of a protocol extension can lack a memberOf relationship; their
   // path still names the owner
@@ -503,10 +512,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
             const defaultValue = defaults[i]
             if (defaultValue?.startsWith('#') || !bridge.type(parameterType(parameter.declarationFragments), 'input', generics).ok) { simple = false; return }
             const spelled = replaceTypes(swiftTypeText(parameterTypeFragments(parameter.declarationFragments)).replace(/^inout\s+/, ''))
-            for (const ref of typeUsrs(type)) {
-              const module = bridge.index.get(ref)?.module
-              if (module) imports.add(module)
-            }
+            for (const ref of typeUsrs(type)) importType(ref)
             entryParams.push({ label: argLabel, name, type, optional: type.k === 'optional', hasDefault: defaultValue !== undefined })
             const value = defaultValue !== undefined
               ? `try c.arg(${entryParams.length - 1}, or: ${replaceTypes(scoped(defaultValue))})`
@@ -592,10 +598,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       const prefix = argLabel === '_' ? '' : `${label(argLabel)}: `
       const spelled = replace(swiftTypeText(fragments)).replace(/^inout\s+/, '')
       if (/\bsome\b/.test(spelled)) reason = 'opaque parameter'
-      for (const ref of typeUsrs(type)) {
-        const module = bridge.index.get(ref)?.module
-        if (module) imports.add(module)
-      }
+      for (const ref of typeUsrs(type)) importType(ref)
       const name = parameter.internalName ?? parameter.name
       const isInOut = parsed.k === 'inout' || new RegExp(`\\b${name}\\s*:\\s*inout\\b`).test(decl)
       if (isInOut) {
@@ -854,7 +857,8 @@ ${methods.join('\n')}
   const swift = renderSwift(graph.module, table, [...imports].sort(), conformancesOnly ? [] : entries, [...conformances, ...(conformancesOnly ? [] : openings)], () => emitProtocols(graph, bridge, all, exclude, skipped))
   const body = swift.replace(/^import \S+\n/gm, '')
   return { module: graph.module, entries, skipped, swift: swift.replace(/^import (\S+)\n/gm, (line, module) =>
-    module === 'Foundation' || module === 'One' || module === graph.module || new RegExp(`\\b${module}\\.`).test(body) ? line : '') }
+    module === 'Foundation' || module === 'One' || module === graph.module || new RegExp(`\\b${module}\\.`).test(body) ||
+    [...importedNames.get(module) ?? []].some((name) => new RegExp(`\\b${name}\\b`).test(body)) ? line : '') }
 }
 
 function emitConformance(symbol: Symbol, bridge: Bridge, memberUsrs: string[], byUsr: Map<string, Symbol>, requirements: Set<string>, typeVersion: string | undefined) {
@@ -867,9 +871,11 @@ function emitConformance(symbol: Symbol, bridge: Bridge, memberUsrs: string[], b
   const list = (names: string[]) => {
     const always = names.filter((n) => !needsCheck(laterVersion(versionOf.get(n), typeVersion)) || laterVersion(typeVersion, versionOf.get(n)) === typeVersion)
     const later = names.filter((n) => !always.includes(n))
-    const literal = (ns: string[]) => `[${ns.map((n) => `(${JSON.stringify(n)}, .${member(n)})`).join(', ')}]`
+    // Self.member, not a leading dot: a same-named global (a cf constant beside
+    // an extensible-enum member) makes the implicit member ambiguous.
+    const literal = (ns: string[]) => `[${ns.map((n) => `(${JSON.stringify(n)}, Self.${member(n)})`).join(', ')}]`
     if (!later.length) return literal(always)
-    return `{ var out: [(String, Self)] = ${literal(always)}; ${later.map((n) => `if #available(iOS ${versionOf.get(n)}, *) { out.append((${JSON.stringify(n)}, .${member(n)})) }`).join('; ')}; return out }()`
+    return `{ var out: [(String, Self)] = ${literal(always)}; ${later.map((n) => `if #available(iOS ${versionOf.get(n)}, *) { out.append((${JSON.stringify(n)}, Self.${member(n)})) }`).join('; ')}; return out }()`
   }
   const available = needsCheck(typeVersion) ? `@available(iOS ${typeVersion}, *)\n` : ''
   if (info.kind === 'enum' && info.cases?.length && !info.payload) {
@@ -954,7 +960,7 @@ ${slice.map((e) => `    case ${e.id}: return ${JSON.stringify(argumentNames(e))}
     const groups: string[] = []
     for (let at = 0; at < list.length; at += CHUNK) {
       const slice = list.slice(at, at + CHUNK)
-      groups.push(`    if id >= ${slice[0].id} && id <= ${slice.at(-1)!.id} { return try ${isAsync ? 'await ' : ''}${isAsync ? 'async' : 'sync'}${at / CHUNK}(id, c) }`)
+      groups.push(`    if id >= (${slice[0].id} as Int64) && id <= (${slice.at(-1)!.id} as Int64) { return try ${isAsync ? 'await ' : ''}${isAsync ? 'async' : 'sync'}${at / CHUNK}(id, c) }`)
     }
     return groups
   }
@@ -974,12 +980,12 @@ ${conformances.join('\n\n')}
 
 enum ${name} {
   @MainActor static func observe(_ id: Int64, _ c: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription {
-${observations.map((_, i) => { const slice = observed.slice(i * CHUNK, (i + 1) * CHUNK); return `    if id >= ${slice[0].id} && id <= ${slice.at(-1)!.id} { return try observe${i}(id, c, emit) }` }).join('\n')}
+${observations.map((_, i) => { const slice = observed.slice(i * CHUNK, (i + 1) * CHUNK); return `    if id >= (${slice[0].id} as Int64) && id <= (${slice.at(-1)!.id} as Int64) { return try observe${i}(id, c, emit) }` }).join('\n')}
     throw OneSDKError.unsupported("observable property ${module}.\\(id)")
   }
 
   static func argumentNames(_ id: Int64) -> [String] {
-${names.map((_, i) => { const slice = named.slice(i * CHUNK, (i + 1) * CHUNK); return `    if id >= ${slice[0].id} && id <= ${slice.at(-1)!.id} { return names${i}(id) ?? [] }` }).join('\n')}
+${names.map((_, i) => { const slice = named.slice(i * CHUNK, (i + 1) * CHUNK); return `    if id >= (${slice[0].id} as Int64) && id <= (${slice.at(-1)!.id} as Int64) { return names${i}(id) ?? [] }` }).join('\n')}
     return []
   }
 

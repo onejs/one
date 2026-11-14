@@ -55,7 +55,7 @@ export async function buildBundleWithConfig(
     customResolverOptions,
   }
 
-  const server = new Server(config)
+  const server = new Server(config, { watch: false })
 
   if (patchServer) {
     patchServer(server)

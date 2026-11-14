@@ -2,6 +2,7 @@ import type { Hono } from 'hono'
 import type { ServerOptions as HttpsServerOptions } from 'node:https'
 import type { OutputAsset, OutputChunk, TreeshakingOptions } from 'rolldown'
 import type { FilterPattern, InlineConfig, UserConfig } from 'vite'
+import type { UserDepPatches } from './utils/patches'
 
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]]
 
@@ -88,6 +89,12 @@ export type VXRNOptions = {
    * Skip loading .env files during build
    */
   skipEnv?: boolean
+
+  /**
+   * Patches applied to installed dependencies on top of the built-in ones.
+   * `false` skips every built-in patch; a module set to `false` skips its built-in patch.
+   */
+  patches?: UserDepPatches
 
   /**
    * The entry points to your app. For web, it defaults to using your `root` to look for an index.html

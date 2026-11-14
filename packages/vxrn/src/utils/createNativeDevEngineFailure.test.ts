@@ -17,6 +17,9 @@ vi.mock('rolldown/experimental', () => ({
     async run() {
       await callbacks.onOutput(rolldownState.firstBuildError)
     },
+    async getBundleState() {
+      return { lastBuildErrored: false }
+    },
     async ensureLatestBuildOutput() {},
     async close() {},
   }),

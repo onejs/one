@@ -1,6 +1,9 @@
 import { searchForWorkspaceRoot, type ResolvedConfig } from 'vite'
 import { spawn } from 'node:child_process'
-import { resolve } from 'node:path'
+import { readFileSync } from 'node:fs'
+import { dirname, posix, resolve } from 'node:path'
+import workspace from 'resolve-workspace-root'
+import { globSync as globPackagesSync } from 'tinyglobby'
 import micromatch from 'micromatch'
 import { getDefaultConfig } from '@react-native/metro-config'
 
@@ -55,9 +58,41 @@ function enforceWorkspaceVisibility(
   const workspaceRoot = searchForWorkspaceRoot(projectRoot)
   if (workspaceRoot === projectRoot) return config
 
+  let packages: string[] = []
+  // match expo/metro-config's getWatchFolders discovery and invalid-manifest handling.
+  try {
+    packages = (workspace.getWorkspaceGlobs(workspaceRoot) ?? [])
+      .flatMap((pattern) =>
+        globPackagesSync(posix.join(pattern, 'package.json'), {
+          cwd: workspaceRoot,
+          absolute: true,
+          expandDirectories: false,
+          caseSensitiveMatch:
+            process.platform !== 'darwin' && process.platform !== 'win32',
+          ignore: ['**/@(Carthage|Pods|node_modules)/**'],
+        })
+      )
+      .filter((manifest) => {
+        try {
+          JSON.parse(readFileSync(manifest, 'utf8'))
+          return true
+        } catch {
+          return false
+        }
+      })
+      .map((manifest) => dirname(manifest))
+  } catch {
+    packages = []
+  }
+
   return {
     ...config,
-    watchFolders: [...new Set([...(config.watchFolders ?? []), workspaceRoot])],
+    watchFolders: [
+      ...new Set([
+        ...(config.watchFolders ?? []),
+        ...(packages.length ? [resolve(workspaceRoot, 'node_modules'), ...packages] : []),
+      ]),
+    ],
     resolver: {
       ...config.resolver,
       nodeModulesPaths: [
@@ -115,7 +150,12 @@ function oneRootFor(projectRoot: string, platform: DesktopPlatform) {
 
 function getPlatformFromBundleUrl(url: string): 'ios' | 'android' | 'macos' | 'linux' {
   const platform = url.match(/[?&]platform=(ios|android|macos|linux)(?:&|$)/)?.[1]
-  if (platform === 'ios' || platform === 'android' || platform === 'macos' || platform === 'linux')
+  if (
+    platform === 'ios' ||
+    platform === 'android' ||
+    platform === 'macos' ||
+    platform === 'linux'
+  )
     return platform
   return 'ios'
 }
@@ -365,11 +405,7 @@ export async function buildMetroConfigInputFromViteConfig(
       blockList,
       sourceExts: metroSourceExts,
       platforms: [
-        ...new Set([
-          ...(_defaultConfig?.resolver?.platforms ?? []),
-          'macos',
-          'linux',
-        ]),
+        ...new Set([...(_defaultConfig?.resolver?.platforms ?? []), 'macos', 'linux']),
       ],
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
@@ -377,11 +413,7 @@ export async function buildMetroConfigInputFromViteConfig(
 
         if (excludeModules && excludeModules.length > 0) {
           if (micromatch.isMatch(moduleName, excludeModules)) {
-            return origResolveRequestFn(
-              context,
-              '@vxrn/utils/empty',
-              platform
-            )
+            return origResolveRequestFn(context, '@vxrn/utils/empty', platform)
           }
         }
 
@@ -527,11 +559,7 @@ export async function getMetroConfigFromViteConfig(
       blockList,
       sourceExts: metroSourceExts,
       platforms: [
-        ...new Set([
-          ...(_defaultConfig?.resolver?.platforms ?? []),
-          'macos',
-          'linux',
-        ]),
+        ...new Set([...(_defaultConfig?.resolver?.platforms ?? []), 'macos', 'linux']),
       ],
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
@@ -540,11 +568,7 @@ export async function getMetroConfigFromViteConfig(
         // Handle excludeModules - resolve excluded modules to empty module using glob patterns
         if (excludeModules && excludeModules.length > 0) {
           if (micromatch.isMatch(moduleName, excludeModules)) {
-            return origResolveRequestFn(
-              context,
-              '@vxrn/utils/empty',
-              platform
-            )
+            return origResolveRequestFn(context, '@vxrn/utils/empty', platform)
           }
         }
 

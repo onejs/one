@@ -57,7 +57,7 @@ describe('getViteMetroPluginOptions babel-config coexistence', () => {
     expect(opts?.babelConfig?.plugins?.length).toBe(5)
   })
 
-  it('starts Metro without the unused Expo preset in an isolated app', () => {
+  it('starts Metro in an isolated app without the Expo preset, a tsconfig or One dependencies of its own', () => {
     const isolatedApp = fs.mkdtempSync(path.join(os.tmpdir(), 'one-metro-no-expo-'))
     const workspaceRoot = path.resolve(__dirname, '../../../../')
     try {
@@ -65,18 +65,14 @@ describe('getViteMetroPluginOptions babel-config coexistence', () => {
         path.join(isolatedApp, 'package.json'),
         JSON.stringify({ name: 'tmp' })
       )
-      fs.writeFileSync(
-        path.join(isolatedApp, 'tsconfig.json'),
-        JSON.stringify({ compilerOptions: { paths: {} } })
-      )
-      for (const name of ['one', '@vxrn/utils', '@vxrn/vite-plugin-metro']) {
+      for (const name of ['one', '@vxrn/vite-plugin-metro']) {
         const destination = path.join(isolatedApp, 'node_modules', name)
         fs.mkdirSync(path.dirname(destination), { recursive: true })
         fs.symlinkSync(path.join(workspaceRoot, 'node_modules', name), destination, 'dir')
       }
-      expect(() =>
-        createRequire(isolatedApp + '/').resolve('babel-preset-expo')
-      ).toThrow()
+      for (const name of ['babel-preset-expo', '@vxrn/utils/empty']) {
+        expect(() => createRequire(isolatedApp + '/').resolve(name)).toThrow()
+      }
       const opts = getViteMetroPluginOptions({
         projectRoot: isolatedApp,
         relativeRouterRoot: 'app',

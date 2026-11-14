@@ -1,9 +1,3 @@
-import type { PrintResult } from '../specs/OnePrint.nitro';
-declare function isAvailable(): Promise<boolean>;
-declare function printPdf(fileUri: string, jobName?: string): Promise<PrintResult>;
-export declare function printNative(): {
-    isAvailable: typeof isAvailable;
-    printPdf: typeof printPdf;
-};
-export {};
+import type { printNative as Sdk } from './backend.sdk';
+export declare const printNative: typeof Sdk;
 //# sourceMappingURL=backend.ios.d.ts.map

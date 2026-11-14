@@ -1,8 +1,3 @@
-declare function isLoaded(name: string): boolean;
-declare function load(name: string, uri: string): Promise<void>;
-export declare function fontsNative(): {
-    load: typeof load;
-    isLoaded: typeof isLoaded;
-};
-export {};
+import type { fontsNative as Sdk } from './backend.sdk';
+export declare const fontsNative: typeof Sdk;
 //# sourceMappingURL=backend.ios.d.ts.map

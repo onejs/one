@@ -178,3 +178,12 @@ describe('native routes after HMR', () => {
     expect(loadWidget).toHaveBeenCalledOnce()
   })
 })
+
+describe('routes a bundler already holds', () => {
+  it('returns a synchronously loaded route without throwing a promise', () => {
+    const route = { default: () => 'home' }
+    const context = globbedRoutesToRouteContext({ '/app/index.tsx': () => route }, 'app')
+
+    expect(context('./index.tsx')).toBe(route)
+  })
+})

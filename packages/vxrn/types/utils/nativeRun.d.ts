@@ -1,3 +1,4 @@
+import type { UserDepPatches } from './patches';
 export declare function buildNativeRunCommand(args: {
     platform: 'ios' | 'android';
     port?: number;
@@ -13,13 +14,14 @@ export type NativeRunSpawn = (executable: string, argv: string[], options: {
     stdio: 'inherit';
     env: NodeJS.ProcessEnv;
 }) => void;
-export declare function nativeRun({ root, platform, port, simulator, udid, spawn, }: {
+export declare function nativeRun({ root, platform, port, simulator, udid, spawn, patches, }: {
     root: string;
     platform: 'ios' | 'android';
     port?: number;
     simulator?: string;
     udid?: string;
     spawn?: NativeRunSpawn;
+    patches?: UserDepPatches;
 }): Promise<void>;
 export declare function resolveIosBundleId(root: string): string | null;
 //# sourceMappingURL=nativeRun.d.ts.map

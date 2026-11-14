@@ -5,6 +5,7 @@ import { getBaseVitePlugins } from './config/getBaseVitePlugins'
 import { getNonCliModeOnlyVitePlugins } from './config/getNonCliModeOnlyVitePlugins'
 import { getReactNativePlugins } from './config/getReactNativePlugins'
 import type { MetroPluginOptions } from '@vxrn/vite-plugin-metro'
+import type { UserDepPatches } from './utils/patches'
 
 /**
  * This is considered private API for now, and may change anytime.
@@ -17,6 +18,7 @@ type VxrnPluginOptions = {
    * runs as a pure web framework.
    */
   disableNative?: boolean
+  patches?: UserDepPatches
 }
 
 /**
@@ -71,7 +73,7 @@ export function vxrn(options?: VxrnPluginOptions): PluginOption {
     ...getNonCliModeOnlyVitePlugins(),
     ...(options?.disableNative
       ? []
-      : getReactNativePlugins({}, { metro: options?.metro || null })),
+      : getReactNativePlugins({ patches: options?.patches }, { metro: options?.metro || null })),
   ]
 }
 

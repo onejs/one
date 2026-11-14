@@ -2124,13 +2124,13 @@ ${derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) =
 
   #endif
 
-  @available(iOS 27, *)
+${sdkGuard(27, `  @available(iOS 27, *)
   public static func reorderContainer<Item: Identifiable>(
     for item: Item.Type, isEnabled: Bool = true,
     move: @escaping (ReorderDifference<Item.ID, ReorderableSingleCollectionIdentifier>) -> Void
   ) -> Self where Item.ID: Sendable {
     Self(kind: .reorderContainer) { AnyView($0.reorderContainer(for: item, isEnabled: isEnabled, move: move)) }
-  }
+  }`, '')}
 
   #if ONE_GROUP_MAPS
   @available(iOS 17, *)
@@ -2150,11 +2150,11 @@ ${derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) =
     Self(kind: .transactionTask) { AnyView($0.transactionTask(configuration, action: action)) }
   }
   #endif
-${derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) => gated(modifier, `
+${derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) => gated(modifier, sdkGuard(modifier.registeredCallbackType!.includes('AppEntityUIElement') ? 27 : modifier.ios, `
   @available(iOS ${modifier.ios}, *)
   public static func ${modifier.registeredFactory}(_ action: ${modifier.registeredCallbackType}) -> Self {
     Self(kind: .${modifier.registeredFactory}) { AnyView($0.${modifier.sdkName ?? modifier.name}(${modifier.registeredCallbackLabel === '_' ? '' : `${modifier.registeredCallbackLabel}: `}action)) }
-  }`)).join('\n')}
+  }`, ''))).join('\n')}
 }
 ` : ''}
 ${derived.some((modifier) => modifier.namespaceParameter || modifier.kind === 'dragContainer' || modifier.kind === 'dragSelection' || modifier.kind === 'dragItemID') ? 'private enum OneNativeNamespace { static let id = Namespace().wrappedValue }\n' : ''}

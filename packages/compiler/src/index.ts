@@ -9,7 +9,6 @@ import { readFile } from 'node:fs/promises'
 import { dirname, extname, join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { resolvePath } from '@vxrn/utils'
-import { cssToReactNativeRuntime } from 'react-native-css-interop/css-to-rn/index.js'
 import type { OutputChunk } from 'rolldown'
 import type { PluginOption, ResolvedConfig, UserConfig } from 'vite'
 import { configuration, isNativeWorkletsEnabled } from './configure'
@@ -369,8 +368,8 @@ export async function createVXRNCompilerPlugin(
 
   const cssTransformCache = new Map<string, string>()
 
-  // fix so we can align the diff between vite and rolldown id (rolldown resolves from root monorepo)
-  const rolldownPath = resolvePath('rolldown')
+  // aligns vite and rolldown ids; rolldown is vite's dependency, so it resolves from vite under isolated installs
+  const rolldownPath = resolvePath('rolldown', dirname(resolvePath('vite/package.json')))
   const rolldownNodeMods = rolldownPath.slice(
     0,
     rolldownPath.indexOf(sep + 'node_modules')
@@ -411,13 +410,17 @@ export async function createVXRNCompilerPlugin(
       // only .css files can match, so let rust reject everything else
       transform: {
         filter: { id: /\.css$/ },
-        handler(codeIn: string, id: string) {
+        async handler(codeIn: string, id: string) {
           const environment = getEnvName(this.environment.name)
           if (
             configuration.enableNativeCSS &&
             (environment === 'ios' || environment === 'android')
           ) {
             {
+              // an optional peer, installed only by apps that enable native css
+              const { cssToReactNativeRuntime } = await import(
+                'react-native-css-interop/css-to-rn/index.js'
+              )
               const data = JSON.stringify(
                 cssToReactNativeRuntime(codeIn, { inlineRem: 16 })
               )
