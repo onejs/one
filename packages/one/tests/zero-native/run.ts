@@ -759,6 +759,71 @@ console.log(
   'managed sync passed: durable startup outbox, retry, pull after push error, offline/background edits, wake coalescing, cancellation, stale response fencing and close cleanup'
 )
 
+const deadlineEngine = new ProcessEngine(join(folder, 'request-deadline.sqlite'))
+await deadlineEngine.ready
+let finishLatePull!: (response: PullResponse) => void
+const deadlineClient = new NativeZero({
+  engine: deadlineEngine,
+  schema,
+  mutators,
+  requestTimeoutMs: 10,
+  transport: {
+    async pull() {
+      return new Promise<PullResponse>((resolve) => {
+        finishLatePull = resolve
+      })
+    },
+    async push() {},
+  },
+})
+let watchdog: ReturnType<typeof setTimeout>
+try {
+  await assert.rejects(
+    Promise.race([
+      deadlineClient.pull(),
+      new Promise<never>((_resolve, reject) => {
+        watchdog = setTimeout(() => reject(new Error('probe deadline expired')), 2000)
+      }),
+    ]),
+    /request timed out/
+  )
+  finishLatePull({
+    cookie: 1,
+    rowsPatch: [put('message', message('late-deadline', 1, 'stale'))],
+  })
+  assert.equal((await deadlineClient.state()).cookie, null)
+  assert.deepEqual(await deadlineClient.run(messages), [])
+} finally {
+  clearTimeout(watchdog!)
+  await deadlineClient.close()
+}
+const closeEngine = new ProcessEngine(join(folder, 'request-close.sqlite'))
+await closeEngine.ready
+let closeStarted!: () => void
+const closeStart = new Promise<void>((resolve) => {
+  closeStarted = resolve
+})
+const closeClient = new NativeZero({
+  engine: closeEngine,
+  schema,
+  mutators,
+  transport: {
+    async pull() {
+      closeStarted()
+      return new Promise<PullResponse>(() => {})
+    },
+    async push() {},
+  },
+})
+const interrupted = closeClient.pull()
+const closedRequest = assert.rejects(interrupted, /sync stopped/)
+await closeStart
+await closeClient.close()
+await closedRequest
+console.log(
+  'network deadlines and close cancel manual requests even when transport ignores abort'
+)
+
 const resultEngine = new ProcessEngine(join(folder, 'mutation-results.sqlite'))
 await resultEngine.ready
 let resultAck = 0

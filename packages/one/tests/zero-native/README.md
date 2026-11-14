@@ -93,6 +93,10 @@ minutes by default. `pullIntervalMs`, `retryMinMs` and `retryMaxMs` configure th
 intervals. `onStateChange` reports connection state and `onError` on the client
 receives failures.
 
+Network requests time out after 60 seconds by default. `requestTimeoutMs` on the
+client configures this limit. Timeouts and close cancellation also settle manual
+push/pull calls when a transport ignores abort; late responses cannot commit.
+
 Wire app lifecycle and network events to `sync.setActive(boolean)` and
 `sync.setOnline(boolean)`. Pausing cancels an in-flight request; resuming starts
 another cycle. Late responses from cancelled attempts cannot commit, including

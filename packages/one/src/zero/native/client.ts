@@ -30,6 +30,7 @@ export type NativeZeroOptions<M extends Mutators = Mutators> = {
   schema: Schema
   mutators: M
   transport?: Transport
+  requestTimeoutMs?: number
   onError?: (error: unknown) => void
   context?: unknown
 }
@@ -94,9 +95,13 @@ export class NativeZero<M extends Mutators = Mutators> {
   private queryRefreshQueued = false
   private sync?: NativeSync
   private serverResults = new Map<number, (result: MutationResultDetails) => void>()
+  private requestTimeoutMs: number
   readonly mutate: NativeMutate<M>
 
   constructor(private options: NativeZeroOptions<M>) {
+    this.requestTimeoutMs = options.requestTimeoutMs ?? 60_000
+    if (!Number.isFinite(this.requestTimeoutMs) || this.requestTimeoutMs <= 0)
+      throw new Error('Native Zero request timeout must be positive and finite')
     const register = (mutators: Mutators, prefix: string): object => {
       const functions = Object.create(null)
       for (const [name, value] of Object.entries(mutators)) {
@@ -195,8 +200,7 @@ export class NativeZero<M extends Mutators = Mutators> {
     signal: AbortSignal | undefined,
     operation: (signal: AbortSignal) => Promise<T>
   ): Promise<T> {
-    if (!signal) return operation(this.abort.signal)
-    if (signal.aborted || this.abort.signal.aborted)
+    if (signal?.aborted || this.abort.signal.aborted)
       throw new Error('Native Zero sync stopped')
     const controller = new AbortController()
     let rejectAbort!: (error: Error) => void
@@ -204,15 +208,20 @@ export class NativeZero<M extends Mutators = Mutators> {
       rejectAbort = reject
     })
     const abort = () => {
-      controller.abort()
       rejectAbort(new Error('Native Zero sync stopped'))
+      controller.abort()
     }
-    signal.addEventListener('abort', abort)
+    const timeout = setTimeout(() => {
+      rejectAbort(new Error('Native Zero request timed out'))
+      controller.abort()
+    }, this.requestTimeoutMs)
+    signal?.addEventListener('abort', abort)
     this.abort.signal.addEventListener('abort', abort)
     try {
       return await Promise.race([operation(controller.signal), cancelled])
     } finally {
-      signal.removeEventListener('abort', abort)
+      clearTimeout(timeout)
+      signal?.removeEventListener('abort', abort)
       this.abort.signal.removeEventListener('abort', abort)
     }
   }

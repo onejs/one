@@ -5,6 +5,7 @@ export type NativeZeroOptions<M extends Mutators = Mutators> = {
     schema: Schema;
     mutators: M;
     transport?: Transport;
+    requestTimeoutMs?: number;
     onError?: (error: unknown) => void;
     context?: unknown;
 };
@@ -26,6 +27,7 @@ export declare class NativeZero<M extends Mutators = Mutators> {
     private queryRefreshQueued;
     private sync?;
     private serverResults;
+    private requestTimeoutMs;
     readonly mutate: NativeMutate<M>;
     constructor(options: NativeZeroOptions<M>);
     private enqueue;
