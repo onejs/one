@@ -1,3 +1,7 @@
+import 'one/ios/UIKit/UIWindow'
+import 'one/ios/UIKit/UIViewController'
+import 'one/ios/UIKit/UIView'
+import 'one/ios/UIKit/UIPresentationController'
 import { FileManager } from 'one/ios/Foundation/FileManager'
 import { NSUUID } from 'one/ios/Foundation/NSUUID'
 import { NSURL } from 'one/ios/Foundation/NSURL'

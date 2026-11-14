@@ -1,3 +1,6 @@
+import 'one/ios/UIKit/UIWindow'
+import 'one/ios/UIKit/UIViewController'
+import 'one/ios/UIKit/UIView'
 import { FileManager } from 'one/ios/Foundation/FileManager'
 import { NSError } from 'one/ios/Foundation/NSError'
 import { NSURL } from 'one/ios/Foundation/NSURL'

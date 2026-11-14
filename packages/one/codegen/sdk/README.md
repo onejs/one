@@ -142,3 +142,5 @@ documentation stays in `ios-types`. Both native package exports and One's
 Metro/Vite resolvers load these same compiled files. Native output remains ESM,
 letting Metro and the browser compiler emit ordinary CommonJS data exports
 without an extra export-getter layer.
+
+Per-class consumers must also import wrapper modules for returned handles whose members they use. For example, UIApplication.keyWindow needs the UIWindow wrapper before accessing rootViewController. Side-effect imports register these wrappers; generated SDK modules are marked as side effects so bundlers retain registration.

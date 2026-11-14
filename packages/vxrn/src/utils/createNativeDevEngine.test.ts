@@ -2645,6 +2645,9 @@ export function Box() {
   })
 
   it('intercepts tuple worklet plugins with options, executes One OXC with options, and skips Babel when enableNativeWorklets is true', async () => {
+    const cacheDirectory = await mkdtemp(join(tmpdir(), 'vxrn-native-transform-cache-'))
+    const previousCache = process.env.ONE_NATIVE_TRANSFORM_CACHE_DIR
+    process.env.ONE_NATIVE_TRANSFORM_CACHE_DIR = cacheDirectory
     const compiler = await import('@vxrn/compiler')
     const { vi } = await import('vitest')
     const babelSpy = vi.spyOn(compiler, 'transformBabel')
@@ -2688,6 +2691,9 @@ export function Box() {
       // Babel was completely skipped
       expect(babelSpy).not.toHaveBeenCalled()
     } finally {
+      if (previousCache === undefined) delete process.env.ONE_NATIVE_TRANSFORM_CACHE_DIR
+      else process.env.ONE_NATIVE_TRANSFORM_CACHE_DIR = previousCache
+      await rm(cacheDirectory, { recursive: true, force: true })
       babelSpy.mockRestore()
       workletSpy.mockRestore()
       getBabelOptionsSpy.mockRestore()

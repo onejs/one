@@ -1,3 +1,8 @@
+import 'one/ios/UIKit/UIWindow'
+import 'one/ios/UIKit/UIView'
+import 'one/ios/UIKit/UIPresentationController'
+import 'one/ios/Contacts/CNPostalAddress'
+import 'one/ios/Foundation/NSString'
 import type { HybridObject } from 'react-native-nitro-modules'
 import { CNContact } from 'one/ios/Contacts/CNContact'
 import { CNContactEmailAddressesKey } from 'one/ios/Contacts/CNContactEmailAddressesKey'

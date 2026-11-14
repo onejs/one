@@ -1,3 +1,4 @@
+import 'one/ios/Network/NWPath'
 import { NWPathMonitor } from 'one/ios/Network/NWPathMonitor'
 import type { NWPath } from 'one/ios/Network'
 import { DispatchQueue } from 'one/ios/Dispatch/DispatchQueue'
