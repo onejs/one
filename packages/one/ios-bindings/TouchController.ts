@@ -21,19 +21,19 @@ export class TCButton extends SDKHandle {
    * var colliderShape: TCColliderShape { get }
    * @availability iOS 26.0+
    */
-  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_64b39a05e4a4cebd", 346382195957023, this, []); }
+  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_bd41a4085ee86f99", 346382195957023, this, []); }
   /**
    * var contents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get contents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 2116172185334031, this, []); }
-  set contents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 4101967148943884, this, [value]); }
+  get contents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 2116172185334031, this, []); }
+  set contents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 4101967148943884, this, [value]); }
   /**
    * var highlightDuration: TimeInterval { get set }
    * @availability iOS 26.0+
    */
-  get highlightDuration(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 1708967437500476, this, []); }
-  set highlightDuration(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 591233150387319, this, [value]); }
+  get highlightDuration(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 1708967437500476, this, []); }
+  set highlightDuration(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 591233150387319, this, [value]); }
   declare readonly $type: { "c:objc(cs)TCButton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "colliderShape": true; "contents": true; "highlightDuration": true };
 }
@@ -47,61 +47,61 @@ export class TCButtonDescriptor extends SDKHandle {
    * init()
    * @availability iOS 26.0+
    */
-  static init(): TCButtonDescriptor { return callSDK<TCButtonDescriptor>("TouchController_64b39a05e4a4cebd", 2091170298349624, undefined, []); }
+  static init(): TCButtonDescriptor { return callSDK<TCButtonDescriptor>("TouchController_bd41a4085ee86f99", 2091170298349624, undefined, []); }
   /**
    * var anchor: TCControlLayoutAnchor { get set }
    * @availability iOS 26.0+
    */
-  get anchor(): TCControlLayoutAnchor { return callSDK<TCControlLayoutAnchor>("TouchController_64b39a05e4a4cebd", 881142434606367, this, []); }
-  set anchor(value: TCControlLayoutAnchor) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3486495918840675, this, [value]); }
+  get anchor(): TCControlLayoutAnchor { return callSDK<TCControlLayoutAnchor>("TouchController_bd41a4085ee86f99", 881142434606367, this, []); }
+  set anchor(value: TCControlLayoutAnchor) { callSDK<void>("TouchController_bd41a4085ee86f99", 3486495918840675, this, [value]); }
   /**
    * var anchorCoordinateSystem: TCControlLayoutAnchorCoordinateSystem { get set }
    * @availability iOS 26.0+
    */
-  get anchorCoordinateSystem(): TCControlLayoutAnchorCoordinateSystem { return callSDK<TCControlLayoutAnchorCoordinateSystem>("TouchController_64b39a05e4a4cebd", 3988269821845638, this, []); }
-  set anchorCoordinateSystem(value: TCControlLayoutAnchorCoordinateSystem) { callSDK<void>("TouchController_64b39a05e4a4cebd", 631361152068686, this, [value]); }
+  get anchorCoordinateSystem(): TCControlLayoutAnchorCoordinateSystem { return callSDK<TCControlLayoutAnchorCoordinateSystem>("TouchController_bd41a4085ee86f99", 3988269821845638, this, []); }
+  set anchorCoordinateSystem(value: TCControlLayoutAnchorCoordinateSystem) { callSDK<void>("TouchController_bd41a4085ee86f99", 631361152068686, this, [value]); }
   /**
    * var colliderShape: TCColliderShape { get set }
    * @availability iOS 26.0+
    */
-  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_64b39a05e4a4cebd", 1235278881046902, this, []); }
-  set colliderShape(value: TCColliderShape) { callSDK<void>("TouchController_64b39a05e4a4cebd", 4347306766561881, this, [value]); }
+  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_bd41a4085ee86f99", 1235278881046902, this, []); }
+  set colliderShape(value: TCColliderShape) { callSDK<void>("TouchController_bd41a4085ee86f99", 4347306766561881, this, [value]); }
   /**
    * var contents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get contents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 2381620400426021, this, []); }
-  set contents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3229171949936139, this, [value]); }
+  get contents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 2381620400426021, this, []); }
+  set contents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 3229171949936139, this, [value]); }
   /**
    * var highlightDuration: TimeInterval { get set }
    * @availability iOS 26.0+
    */
-  get highlightDuration(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 719769724035346, this, []); }
-  set highlightDuration(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 912486881466731, this, [value]); }
+  get highlightDuration(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 719769724035346, this, []); }
+  set highlightDuration(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 912486881466731, this, [value]); }
   /**
    * var label: TCControlLabel { get set }
    * @availability iOS 26.0+
    */
-  get label(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 370236044394441, this, []); }
-  set label(value: TCControlLabel) { callSDK<void>("TouchController_64b39a05e4a4cebd", 105246760791446, this, [value]); }
+  get label(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 370236044394441, this, []); }
+  set label(value: TCControlLabel) { callSDK<void>("TouchController_bd41a4085ee86f99", 105246760791446, this, [value]); }
   /**
    * var offset: CGPoint { get set }
    * @availability iOS 26.0+
    */
-  get offset(): $SDK1 { return callSDK<$SDK1>("TouchController_64b39a05e4a4cebd", 4161859843252922, this, []); }
-  set offset(value: $SDK1) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2481269643837896, this, [value]); }
+  get offset(): $SDK1 { return callSDK<$SDK1>("TouchController_bd41a4085ee86f99", 4161859843252922, this, []); }
+  set offset(value: $SDK1) { callSDK<void>("TouchController_bd41a4085ee86f99", 2481269643837896, this, [value]); }
   /**
    * var size: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 3337680647213826, this, []); }
-  set size(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2661852534772624, this, [value]); }
+  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 3337680647213826, this, []); }
+  set size(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 2661852534772624, this, [value]); }
   /**
    * var zIndex: Int { get set }
    * @availability iOS 26.0+
    */
-  get zIndex(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 285925897493638, this, []); }
-  set zIndex(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2302187260978005, this, [value]); }
+  get zIndex(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 285925897493638, this, []); }
+  set zIndex(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 2302187260978005, this, [value]); }
   declare readonly $type: { "c:objc(cs)TCButtonDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchor": true; "anchorCoordinateSystem": true; "colliderShape": true; "contents": true; "highlightDuration": true; "label": true; "offset": true; "size": true; "zIndex": true };
 }
@@ -117,7 +117,7 @@ export const TCColliderShape = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (TCColliderShape) | null { return callSDK<(TCColliderShape) | null>("TouchController_64b39a05e4a4cebd", 2175022229514356, undefined, [rawValue]); }
+  init(rawValue: number): (TCColliderShape) | null { return callSDK<(TCColliderShape) | null>("TouchController_bd41a4085ee86f99", 2175022229514356, undefined, [rawValue]); }
 };
 
 /**
@@ -151,47 +151,47 @@ export class TCControlContents extends SDKHandle {
    * class func buttonContents(forSystemImageNamed imageName: String, size: CGSize, shape: TCControlContents.ButtonShape, controller: TCTouchController) -> TCControlContents
    * @availability iOS 26.0+
    */
-  static buttonContents(imageName: string, size: $SDK2, shape: TCControlContents_ButtonShape, controller: TCTouchController): TCControlContents { return callSDK<TCControlContents>("TouchController_64b39a05e4a4cebd", 1356149525751779, undefined, [imageName, size, shape, controller]); }
+  static buttonContents(imageName: string, size: $SDK2, shape: TCControlContents_ButtonShape, controller: TCTouchController): TCControlContents { return callSDK<TCControlContents>("TouchController_bd41a4085ee86f99", 1356149525751779, undefined, [imageName, size, shape, controller]); }
   /**
    * convenience init(images: [TCControlImage])
    * @availability iOS 26.0+
    */
-  static init(images: Array<TCControlImage>): TCControlContents { return callSDK<TCControlContents>("TouchController_64b39a05e4a4cebd", 1446142814732859, undefined, [images]); }
+  static init(images: Array<TCControlImage>): TCControlContents { return callSDK<TCControlContents>("TouchController_bd41a4085ee86f99", 1446142814732859, undefined, [images]); }
   /**
    * class func directionPadContents(label: TCControlLabel, size: CGSize, style: TCControlContents.DpadElementStyle, direction: TCControlContents.DpadDirection, controller: TCTouchController) -> TCControlContents
    * @availability iOS 26.0+
    */
-  static directionPadContents(label: TCControlLabel, size: $SDK2, style: TCControlContents_DpadElementStyle, direction: TCControlContents_DpadDirection, controller: TCTouchController): TCControlContents { return callSDK<TCControlContents>("TouchController_64b39a05e4a4cebd", 4259947935230230, undefined, [label, size, style, direction, controller]); }
+  static directionPadContents(label: TCControlLabel, size: $SDK2, style: TCControlContents_DpadElementStyle, direction: TCControlContents_DpadDirection, controller: TCTouchController): TCControlContents { return callSDK<TCControlContents>("TouchController_bd41a4085ee86f99", 4259947935230230, undefined, [label, size, style, direction, controller]); }
   /**
    * class func switchedOnContents(forSystemImageNamed imageName: String, size: CGSize, shape: TCControlContents.ButtonShape, controller: TCTouchController) -> TCControlContents
    * @availability iOS 26.0+
    */
-  static switchedOnContents(imageName: string, size: $SDK2, shape: TCControlContents_ButtonShape, controller: TCTouchController): TCControlContents { return callSDK<TCControlContents>("TouchController_64b39a05e4a4cebd", 2023153977766578, undefined, [imageName, size, shape, controller]); }
+  static switchedOnContents(imageName: string, size: $SDK2, shape: TCControlContents_ButtonShape, controller: TCTouchController): TCControlContents { return callSDK<TCControlContents>("TouchController_bd41a4085ee86f99", 2023153977766578, undefined, [imageName, size, shape, controller]); }
   /**
    * class func throttleBackgroundContents(size: CGSize, controller: TCTouchController) -> TCControlContents
    * @availability iOS 26.0+
    */
-  static throttleBackgroundContents(size: $SDK2, controller: TCTouchController): TCControlContents { return callSDK<TCControlContents>("TouchController_64b39a05e4a4cebd", 2882895124607128, undefined, [size, controller]); }
+  static throttleBackgroundContents(size: $SDK2, controller: TCTouchController): TCControlContents { return callSDK<TCControlContents>("TouchController_bd41a4085ee86f99", 2882895124607128, undefined, [size, controller]); }
   /**
    * class func throttleIndicatorContents(size: CGSize, controller: TCTouchController) -> TCControlContents
    * @availability iOS 26.0+
    */
-  static throttleIndicatorContents(size: $SDK2, controller: TCTouchController): TCControlContents { return callSDK<TCControlContents>("TouchController_64b39a05e4a4cebd", 4424301420985441, undefined, [size, controller]); }
+  static throttleIndicatorContents(size: $SDK2, controller: TCTouchController): TCControlContents { return callSDK<TCControlContents>("TouchController_bd41a4085ee86f99", 4424301420985441, undefined, [size, controller]); }
   /**
    * class func thumbstickStickBackgroundContents(size: CGSize, controller: TCTouchController) -> TCControlContents
    * @availability iOS 26.0+
    */
-  static thumbstickStickBackgroundContents(size: $SDK2, controller: TCTouchController): TCControlContents { return callSDK<TCControlContents>("TouchController_64b39a05e4a4cebd", 3094613936031254, undefined, [size, controller]); }
+  static thumbstickStickBackgroundContents(size: $SDK2, controller: TCTouchController): TCControlContents { return callSDK<TCControlContents>("TouchController_bd41a4085ee86f99", 3094613936031254, undefined, [size, controller]); }
   /**
    * class func thumbstickStickContents(size: CGSize, controller: TCTouchController) -> TCControlContents
    * @availability iOS 26.0+
    */
-  static thumbstickStickContents(size: $SDK2, controller: TCTouchController): TCControlContents { return callSDK<TCControlContents>("TouchController_64b39a05e4a4cebd", 4210671955330035, undefined, [size, controller]); }
+  static thumbstickStickContents(size: $SDK2, controller: TCTouchController): TCControlContents { return callSDK<TCControlContents>("TouchController_bd41a4085ee86f99", 4210671955330035, undefined, [size, controller]); }
   /**
    * var images: [TCControlImage] { get }
    * @availability iOS 26.0+
    */
-  get images(): Array<TCControlImage> { return callSDK<Array<TCControlImage>>("TouchController_64b39a05e4a4cebd", 79090449710299, this, []); }
+  get images(): Array<TCControlImage> { return callSDK<Array<TCControlImage>>("TouchController_bd41a4085ee86f99", 79090449710299, this, []); }
   declare readonly $type: { "c:objc(cs)TCControlContents": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "images": true };
 }
@@ -207,7 +207,7 @@ export const TCControlContents_ButtonShape = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (TCControlContents_ButtonShape) | null { return callSDK<(TCControlContents_ButtonShape) | null>("TouchController_64b39a05e4a4cebd", 3216004814274619, undefined, [rawValue]); }
+  init(rawValue: number): (TCControlContents_ButtonShape) | null { return callSDK<(TCControlContents_ButtonShape) | null>("TouchController_bd41a4085ee86f99", 3216004814274619, undefined, [rawValue]); }
 };
 
 /**
@@ -221,7 +221,7 @@ export const TCControlContents_DpadDirection = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (TCControlContents_DpadDirection) | null { return callSDK<(TCControlContents_DpadDirection) | null>("TouchController_64b39a05e4a4cebd", 3850808619380394, undefined, [rawValue]); }
+  init(rawValue: number): (TCControlContents_DpadDirection) | null { return callSDK<(TCControlContents_DpadDirection) | null>("TouchController_bd41a4085ee86f99", 3850808619380394, undefined, [rawValue]); }
 };
 
 /**
@@ -235,7 +235,7 @@ export const TCControlContents_DpadElementStyle = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (TCControlContents_DpadElementStyle) | null { return callSDK<(TCControlContents_DpadElementStyle) | null>("TouchController_64b39a05e4a4cebd", 1020574683648553, undefined, [rawValue]); }
+  init(rawValue: number): (TCControlContents_DpadElementStyle) | null { return callSDK<(TCControlContents_DpadElementStyle) | null>("TouchController_bd41a4085ee86f99", 1020574683648553, undefined, [rawValue]); }
 };
 
 /**
@@ -247,52 +247,52 @@ export class TCControlImage extends SDKHandle {
    * convenience init?(cgImage: CGImage, size: CGSize, device: any MTLDevice)
    * @availability iOS 26.0+
    */
-  static initCgImageSizeDevice(cgImage: _CoreGraphics_CGImage, size: $SDK2, device: SDKHandle): (TCControlImage) | null { return callSDK<(TCControlImage) | null>("TouchController_64b39a05e4a4cebd", 1170966012266169, undefined, [cgImage, size, device]); }
+  static initCgImageSizeDevice(cgImage: _CoreGraphics_CGImage, size: $SDK2, device: SDKHandle): (TCControlImage) | null { return callSDK<(TCControlImage) | null>("TouchController_bd41a4085ee86f99", 1170966012266169, undefined, [cgImage, size, device]); }
   /**
    * convenience init(texture: any MTLTexture, size: CGSize)
    * @availability iOS 26.0+
    */
-  static initTextureSize(texture: SDKHandle, size: $SDK2): TCControlImage { return callSDK<TCControlImage>("TouchController_64b39a05e4a4cebd", 577631758506952, undefined, [texture, size]); }
+  static initTextureSize(texture: SDKHandle, size: $SDK2): TCControlImage { return callSDK<TCControlImage>("TouchController_bd41a4085ee86f99", 577631758506952, undefined, [texture, size]); }
   /**
    * init(texture: any MTLTexture, size: CGSize, highlight highlightTexture: (any MTLTexture)?, offset: CGPoint, tintColor: CGColor)
    * @availability iOS 26.0+
    */
-  static initTextureSizeHighlightOffsetTintColor(texture: SDKHandle, size: $SDK2, highlightTexture: (SDKHandle) | null, offset: $SDK1, tintColor: _CoreGraphics_CGColor): TCControlImage { return callSDK<TCControlImage>("TouchController_64b39a05e4a4cebd", 3809882517518843, undefined, [texture, size, highlightTexture, offset, tintColor]); }
+  static initTextureSizeHighlightOffsetTintColor(texture: SDKHandle, size: $SDK2, highlightTexture: (SDKHandle) | null, offset: $SDK1, tintColor: _CoreGraphics_CGColor): TCControlImage { return callSDK<TCControlImage>("TouchController_bd41a4085ee86f99", 3809882517518843, undefined, [texture, size, highlightTexture, offset, tintColor]); }
   /**
    * convenience init?(uiImage: UIImage, size: CGSize, device: any MTLDevice)
    * @availability iOS 26.0+
    */
-  static initUiImageSizeDevice(uiImage: _UIKit_UIImage, size: $SDK2, device: SDKHandle): (TCControlImage) | null { return callSDK<(TCControlImage) | null>("TouchController_64b39a05e4a4cebd", 191688495435633, undefined, [uiImage, size, device]); }
+  static initUiImageSizeDevice(uiImage: _UIKit_UIImage, size: $SDK2, device: SDKHandle): (TCControlImage) | null { return callSDK<(TCControlImage) | null>("TouchController_bd41a4085ee86f99", 191688495435633, undefined, [uiImage, size, device]); }
   /**
    * var highlightTexture: (any MTLTexture)? { get set }
    * @availability iOS 26.0+
    */
-  get highlightTexture(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("TouchController_64b39a05e4a4cebd", 3618700425635870, this, []); }
-  set highlightTexture(value: (SDKHandle) | null) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2834976116411492, this, [value]); }
+  get highlightTexture(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("TouchController_bd41a4085ee86f99", 3618700425635870, this, []); }
+  set highlightTexture(value: (SDKHandle) | null) { callSDK<void>("TouchController_bd41a4085ee86f99", 2834976116411492, this, [value]); }
   /**
    * var offset: CGPoint { get set }
    * @availability iOS 26.0+
    */
-  get offset(): $SDK1 { return callSDK<$SDK1>("TouchController_64b39a05e4a4cebd", 3987125042839141, this, []); }
-  set offset(value: $SDK1) { callSDK<void>("TouchController_64b39a05e4a4cebd", 981836306313119, this, [value]); }
+  get offset(): $SDK1 { return callSDK<$SDK1>("TouchController_bd41a4085ee86f99", 3987125042839141, this, []); }
+  set offset(value: $SDK1) { callSDK<void>("TouchController_bd41a4085ee86f99", 981836306313119, this, [value]); }
   /**
    * var size: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 806760001632515, this, []); }
-  set size(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 440007821602178, this, [value]); }
+  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 806760001632515, this, []); }
+  set size(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 440007821602178, this, [value]); }
   /**
    * var texture: any MTLTexture { get set }
    * @availability iOS 26.0+
    */
-  get texture(): SDKHandle { return callSDK<SDKHandle>("TouchController_64b39a05e4a4cebd", 2746268714499636, this, []); }
-  set texture(value: SDKHandle) { callSDK<void>("TouchController_64b39a05e4a4cebd", 925553416561283, this, [value]); }
+  get texture(): SDKHandle { return callSDK<SDKHandle>("TouchController_bd41a4085ee86f99", 2746268714499636, this, []); }
+  set texture(value: SDKHandle) { callSDK<void>("TouchController_bd41a4085ee86f99", 925553416561283, this, [value]); }
   /**
    * unowned(unsafe) var tintColor: CGColor { get set }
    * @availability iOS 26.0+
    */
-  get tintColor(): _CoreGraphics_CGColor { return callSDK<_CoreGraphics_CGColor>("TouchController_64b39a05e4a4cebd", 430730398879158, this, []); }
-  set tintColor(value: _CoreGraphics_CGColor) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1835693127178837, this, [value]); }
+  get tintColor(): _CoreGraphics_CGColor { return callSDK<_CoreGraphics_CGColor>("TouchController_bd41a4085ee86f99", 430730398879158, this, []); }
+  set tintColor(value: _CoreGraphics_CGColor) { callSDK<void>("TouchController_bd41a4085ee86f99", 1835693127178837, this, [value]); }
   declare readonly $type: { "c:objc(cs)TCControlImage": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "highlightTexture": true; "offset": true; "size": true; "texture": true; "tintColor": true };
 }
@@ -306,92 +306,92 @@ export class TCControlLabel extends SDKHandle {
    * class var buttonA: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get buttonA(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 183563230763827, undefined, []); }
+  static get buttonA(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 183563230763827, undefined, []); }
   /**
    * class var buttonB: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get buttonB(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 964158488577790, undefined, []); }
+  static get buttonB(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 964158488577790, undefined, []); }
   /**
    * class var buttonLeftShoulder: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get buttonLeftShoulder(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 3174249746461357, undefined, []); }
+  static get buttonLeftShoulder(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 3174249746461357, undefined, []); }
   /**
    * class var buttonLeftTrigger: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get buttonLeftTrigger(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 1868208110443148, undefined, []); }
+  static get buttonLeftTrigger(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 1868208110443148, undefined, []); }
   /**
    * class var buttonMenu: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get buttonMenu(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 3098365797382525, undefined, []); }
+  static get buttonMenu(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 3098365797382525, undefined, []); }
   /**
    * class var buttonOptions: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get buttonOptions(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 3147951898305161, undefined, []); }
+  static get buttonOptions(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 3147951898305161, undefined, []); }
   /**
    * class var buttonRightShoulder: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get buttonRightShoulder(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 3184133933920082, undefined, []); }
+  static get buttonRightShoulder(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 3184133933920082, undefined, []); }
   /**
    * class var buttonRightTrigger: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get buttonRightTrigger(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 1197508259399948, undefined, []); }
+  static get buttonRightTrigger(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 1197508259399948, undefined, []); }
   /**
    * class var buttonX: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get buttonX(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 1995821615831823, undefined, []); }
+  static get buttonX(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 1995821615831823, undefined, []); }
   /**
    * class var buttonY: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get buttonY(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 3823894125688713, undefined, []); }
+  static get buttonY(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 3823894125688713, undefined, []); }
   /**
    * class var directionPad: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get directionPad(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 3222905334218430, undefined, []); }
+  static get directionPad(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 3222905334218430, undefined, []); }
   /**
    * class var leftThumbstick: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get leftThumbstick(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 4233522122559493, undefined, []); }
+  static get leftThumbstick(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 4233522122559493, undefined, []); }
   /**
    * class var leftThumbstickButton: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get leftThumbstickButton(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 4266209685288482, undefined, []); }
+  static get leftThumbstickButton(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 4266209685288482, undefined, []); }
   /**
    * class var rightThumbstick: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get rightThumbstick(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 153310341704684, undefined, []); }
+  static get rightThumbstick(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 153310341704684, undefined, []); }
   /**
    * class var rightThumbstickButton: TCControlLabel { get }
    * @availability iOS 26.0+
    */
-  static get rightThumbstickButton(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 151055220751503, undefined, []); }
+  static get rightThumbstickButton(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 151055220751503, undefined, []); }
   /**
    * init(name: String, role: TCControlLabel.Role)
    * @availability iOS 26.0+
    */
-  static init(name: string, role: TCControlLabel_Role): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 2235655288348004, undefined, [name, role]); }
+  static init(name: string, role: TCControlLabel_Role): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 2235655288348004, undefined, [name, role]); }
   /**
    * var name: String { get }
    * @availability iOS 26.0+
    */
-  get name(): string { return callSDK<string>("TouchController_64b39a05e4a4cebd", 4140895312913941, this, []); }
+  get name(): string { return callSDK<string>("TouchController_bd41a4085ee86f99", 4140895312913941, this, []); }
   /**
    * var role: TCControlLabel.Role { get }
    * @availability iOS 26.0+
    */
-  get role(): TCControlLabel_Role { return callSDK<TCControlLabel_Role>("TouchController_64b39a05e4a4cebd", 3054485014238172, this, []); }
+  get role(): TCControlLabel_Role { return callSDK<TCControlLabel_Role>("TouchController_bd41a4085ee86f99", 3054485014238172, this, []); }
   declare readonly $type: { "c:objc(cs)TCControlLabel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true; "role": true };
 }
@@ -407,7 +407,7 @@ export const TCControlLabel_Role = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (TCControlLabel_Role) | null { return callSDK<(TCControlLabel_Role) | null>("TouchController_64b39a05e4a4cebd", 3680552998157737, undefined, [rawValue]); }
+  init(rawValue: number): (TCControlLabel_Role) | null { return callSDK<(TCControlLabel_Role) | null>("TouchController_bd41a4085ee86f99", 3680552998157737, undefined, [rawValue]); }
 };
 
 /**
@@ -429,7 +429,7 @@ export const TCControlLayoutAnchor = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (TCControlLayoutAnchor) | null { return callSDK<(TCControlLayoutAnchor) | null>("TouchController_64b39a05e4a4cebd", 1793909961183562, undefined, [rawValue]); }
+  init(rawValue: number): (TCControlLayoutAnchor) | null { return callSDK<(TCControlLayoutAnchor) | null>("TouchController_bd41a4085ee86f99", 1793909961183562, undefined, [rawValue]); }
 };
 
 /**
@@ -443,7 +443,7 @@ export const TCControlLayoutAnchorCoordinateSystem = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (TCControlLayoutAnchorCoordinateSystem) | null { return callSDK<(TCControlLayoutAnchorCoordinateSystem) | null>("TouchController_64b39a05e4a4cebd", 2255355343884302, undefined, [rawValue]); }
+  init(rawValue: number): (TCControlLayoutAnchorCoordinateSystem) | null { return callSDK<(TCControlLayoutAnchorCoordinateSystem) | null>("TouchController_bd41a4085ee86f99", 2255355343884302, undefined, [rawValue]); }
 };
 
 /**
@@ -455,85 +455,85 @@ export class TCDirectionPad extends SDKHandle {
    * var colliderShape: TCColliderShape { get }
    * @availability iOS 26.0+
    */
-  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_64b39a05e4a4cebd", 1162967025888367, this, []); }
+  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_bd41a4085ee86f99", 1162967025888367, this, []); }
   /**
    * var compositeLabel: TCControlLabel? { get set }
    * @availability iOS 26.0+
    */
-  get compositeLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_64b39a05e4a4cebd", 3900412171122415, this, []); }
-  set compositeLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3545756369476507, this, [value]); }
+  get compositeLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_bd41a4085ee86f99", 3900412171122415, this, []); }
+  set compositeLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_bd41a4085ee86f99", 3545756369476507, this, [value]); }
   /**
    * var isDigital: Bool { get set }
    * @availability iOS 26.0+
    */
-  get isDigital(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 2372363859426293, this, []); }
-  set isDigital(value: boolean) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1081204967511060, this, [value]); }
+  get isDigital(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 2372363859426293, this, []); }
+  set isDigital(value: boolean) { callSDK<void>("TouchController_bd41a4085ee86f99", 1081204967511060, this, [value]); }
   /**
    * var downContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get downContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 3822166453702897, this, []); }
-  set downContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2851589383542566, this, [value]); }
+  get downContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 3822166453702897, this, []); }
+  set downContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 2851589383542566, this, [value]); }
   /**
    * var downLabel: TCControlLabel? { get set }
    * @availability iOS 26.0+
    */
-  get downLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_64b39a05e4a4cebd", 1741934874259507, this, []); }
-  set downLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1777423413753845, this, [value]); }
+  get downLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_bd41a4085ee86f99", 1741934874259507, this, []); }
+  set downLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_bd41a4085ee86f99", 1777423413753845, this, [value]); }
   /**
    * var highlightDuration: TimeInterval { get set }
    * @availability iOS 26.0+
    */
-  get highlightDuration(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 4379059876577189, this, []); }
-  set highlightDuration(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 612489734239346, this, [value]); }
+  get highlightDuration(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 4379059876577189, this, []); }
+  set highlightDuration(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 612489734239346, this, [value]); }
   /**
    * var leftContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get leftContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 4318673752344260, this, []); }
-  set leftContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1840135482891122, this, [value]); }
+  get leftContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 4318673752344260, this, []); }
+  set leftContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 1840135482891122, this, [value]); }
   /**
    * var leftLabel: TCControlLabel? { get set }
    * @availability iOS 26.0+
    */
-  get leftLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_64b39a05e4a4cebd", 1586757758793599, this, []); }
-  set leftLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2957126835857278, this, [value]); }
+  get leftLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_bd41a4085ee86f99", 1586757758793599, this, []); }
+  set leftLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_bd41a4085ee86f99", 2957126835857278, this, [value]); }
   /**
    * var inputIsMutuallyExclusive: Bool { get set }
    * @availability iOS 26.0+
    */
-  get inputIsMutuallyExclusive(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 659854039964867, this, []); }
-  set inputIsMutuallyExclusive(value: boolean) { callSDK<void>("TouchController_64b39a05e4a4cebd", 732194179645086, this, [value]); }
+  get inputIsMutuallyExclusive(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 659854039964867, this, []); }
+  set inputIsMutuallyExclusive(value: boolean) { callSDK<void>("TouchController_bd41a4085ee86f99", 732194179645086, this, [value]); }
   /**
    * var isRadial: Bool { get set }
    * @availability iOS 26.0+
    */
-  get isRadial(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 4203415227205560, this, []); }
-  set isRadial(value: boolean) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1452843630126324, this, [value]); }
+  get isRadial(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 4203415227205560, this, []); }
+  set isRadial(value: boolean) { callSDK<void>("TouchController_bd41a4085ee86f99", 1452843630126324, this, [value]); }
   /**
    * var rightContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get rightContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 1851522257158481, this, []); }
-  set rightContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3703805325561776, this, [value]); }
+  get rightContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 1851522257158481, this, []); }
+  set rightContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 3703805325561776, this, [value]); }
   /**
    * var rightLabel: TCControlLabel? { get set }
    * @availability iOS 26.0+
    */
-  get rightLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_64b39a05e4a4cebd", 3852439592979808, this, []); }
-  set rightLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3305713189175995, this, [value]); }
+  get rightLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_bd41a4085ee86f99", 3852439592979808, this, []); }
+  set rightLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_bd41a4085ee86f99", 3305713189175995, this, [value]); }
   /**
    * var upContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get upContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 38383964539148, this, []); }
-  set upContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1746015567922882, this, [value]); }
+  get upContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 38383964539148, this, []); }
+  set upContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 1746015567922882, this, [value]); }
   /**
    * var upLabel: TCControlLabel? { get set }
    * @availability iOS 26.0+
    */
-  get upLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_64b39a05e4a4cebd", 3476993815406512, this, []); }
-  set upLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3180686506367136, this, [value]); }
+  get upLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_bd41a4085ee86f99", 3476993815406512, this, []); }
+  set upLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_bd41a4085ee86f99", 3180686506367136, this, [value]); }
   declare readonly $type: { "c:objc(cs)TCDirectionPad": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "colliderShape": true; "compositeLabel": true; "isDigital": true; "downContents": true; "downLabel": true; "highlightDuration": true; "leftContents": true; "leftLabel": true; "inputIsMutuallyExclusive": true; "isRadial": true; "rightContents": true; "rightLabel": true; "upContents": true; "upLabel": true };
 }
@@ -547,121 +547,121 @@ export class TCDirectionPadDescriptor extends SDKHandle {
    * init()
    * @availability iOS 26.0+
    */
-  static init(): TCDirectionPadDescriptor { return callSDK<TCDirectionPadDescriptor>("TouchController_64b39a05e4a4cebd", 3917794827237799, undefined, []); }
+  static init(): TCDirectionPadDescriptor { return callSDK<TCDirectionPadDescriptor>("TouchController_bd41a4085ee86f99", 3917794827237799, undefined, []); }
   /**
    * var anchor: TCControlLayoutAnchor { get set }
    * @availability iOS 26.0+
    */
-  get anchor(): TCControlLayoutAnchor { return callSDK<TCControlLayoutAnchor>("TouchController_64b39a05e4a4cebd", 2848265006066870, this, []); }
-  set anchor(value: TCControlLayoutAnchor) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1753729629713119, this, [value]); }
+  get anchor(): TCControlLayoutAnchor { return callSDK<TCControlLayoutAnchor>("TouchController_bd41a4085ee86f99", 2848265006066870, this, []); }
+  set anchor(value: TCControlLayoutAnchor) { callSDK<void>("TouchController_bd41a4085ee86f99", 1753729629713119, this, [value]); }
   /**
    * var anchorCoordinateSystem: TCControlLayoutAnchorCoordinateSystem { get set }
    * @availability iOS 26.0+
    */
-  get anchorCoordinateSystem(): TCControlLayoutAnchorCoordinateSystem { return callSDK<TCControlLayoutAnchorCoordinateSystem>("TouchController_64b39a05e4a4cebd", 3900868648701374, this, []); }
-  set anchorCoordinateSystem(value: TCControlLayoutAnchorCoordinateSystem) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1687720440583412, this, [value]); }
+  get anchorCoordinateSystem(): TCControlLayoutAnchorCoordinateSystem { return callSDK<TCControlLayoutAnchorCoordinateSystem>("TouchController_bd41a4085ee86f99", 3900868648701374, this, []); }
+  set anchorCoordinateSystem(value: TCControlLayoutAnchorCoordinateSystem) { callSDK<void>("TouchController_bd41a4085ee86f99", 1687720440583412, this, [value]); }
   /**
    * var colliderShape: TCColliderShape { get set }
    * @availability iOS 26.0+
    */
-  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_64b39a05e4a4cebd", 845975400623152, this, []); }
-  set colliderShape(value: TCColliderShape) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1248819881627550, this, [value]); }
+  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_bd41a4085ee86f99", 845975400623152, this, []); }
+  set colliderShape(value: TCColliderShape) { callSDK<void>("TouchController_bd41a4085ee86f99", 1248819881627550, this, [value]); }
   /**
    * var compositeLabel: TCControlLabel? { get set }
    * @availability iOS 26.0+
    */
-  get compositeLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_64b39a05e4a4cebd", 1255426633130144, this, []); }
-  set compositeLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2292759393552629, this, [value]); }
+  get compositeLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_bd41a4085ee86f99", 1255426633130144, this, []); }
+  set compositeLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_bd41a4085ee86f99", 2292759393552629, this, [value]); }
   /**
    * var isDigital: Bool { get set }
    * @availability iOS 26.0+
    */
-  get isDigital(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 1754627126456713, this, []); }
-  set isDigital(value: boolean) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1865741444620933, this, [value]); }
+  get isDigital(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 1754627126456713, this, []); }
+  set isDigital(value: boolean) { callSDK<void>("TouchController_bd41a4085ee86f99", 1865741444620933, this, [value]); }
   /**
    * var downContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get downContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 675055308668764, this, []); }
-  set downContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3866148343376738, this, [value]); }
+  get downContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 675055308668764, this, []); }
+  set downContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 3866148343376738, this, [value]); }
   /**
    * var downLabel: TCControlLabel? { get set }
    * @availability iOS 26.0+
    */
-  get downLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_64b39a05e4a4cebd", 20374606802803, this, []); }
-  set downLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3993134049822606, this, [value]); }
+  get downLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_bd41a4085ee86f99", 20374606802803, this, []); }
+  set downLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_bd41a4085ee86f99", 3993134049822606, this, [value]); }
   /**
    * var highlightDuration: TimeInterval { get set }
    * @availability iOS 26.0+
    */
-  get highlightDuration(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 1074775867198617, this, []); }
-  set highlightDuration(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 167125482453430, this, [value]); }
+  get highlightDuration(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 1074775867198617, this, []); }
+  set highlightDuration(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 167125482453430, this, [value]); }
   /**
    * var leftContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get leftContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 2790211331900559, this, []); }
-  set leftContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1148077614074916, this, [value]); }
+  get leftContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 2790211331900559, this, []); }
+  set leftContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 1148077614074916, this, [value]); }
   /**
    * var leftLabel: TCControlLabel? { get set }
    * @availability iOS 26.0+
    */
-  get leftLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_64b39a05e4a4cebd", 2195961944453444, this, []); }
-  set leftLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_64b39a05e4a4cebd", 848949739929393, this, [value]); }
+  get leftLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_bd41a4085ee86f99", 2195961944453444, this, []); }
+  set leftLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_bd41a4085ee86f99", 848949739929393, this, [value]); }
   /**
    * var inputIsMutuallyExclusive: Bool { get set }
    * @availability iOS 26.0+
    */
-  get inputIsMutuallyExclusive(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 1491338230472669, this, []); }
-  set inputIsMutuallyExclusive(value: boolean) { callSDK<void>("TouchController_64b39a05e4a4cebd", 4031165586857415, this, [value]); }
+  get inputIsMutuallyExclusive(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 1491338230472669, this, []); }
+  set inputIsMutuallyExclusive(value: boolean) { callSDK<void>("TouchController_bd41a4085ee86f99", 4031165586857415, this, [value]); }
   /**
    * var offset: CGPoint { get set }
    * @availability iOS 26.0+
    */
-  get offset(): $SDK1 { return callSDK<$SDK1>("TouchController_64b39a05e4a4cebd", 3089422138940811, this, []); }
-  set offset(value: $SDK1) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2543589351080940, this, [value]); }
+  get offset(): $SDK1 { return callSDK<$SDK1>("TouchController_bd41a4085ee86f99", 3089422138940811, this, []); }
+  set offset(value: $SDK1) { callSDK<void>("TouchController_bd41a4085ee86f99", 2543589351080940, this, [value]); }
   /**
    * var isRadial: Bool { get set }
    * @availability iOS 26.0+
    */
-  get isRadial(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 2669482458917715, this, []); }
-  set isRadial(value: boolean) { callSDK<void>("TouchController_64b39a05e4a4cebd", 4011379869507416, this, [value]); }
+  get isRadial(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 2669482458917715, this, []); }
+  set isRadial(value: boolean) { callSDK<void>("TouchController_bd41a4085ee86f99", 4011379869507416, this, [value]); }
   /**
    * var rightContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get rightContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 4272187119355367, this, []); }
-  set rightContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1834084071791678, this, [value]); }
+  get rightContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 4272187119355367, this, []); }
+  set rightContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 1834084071791678, this, [value]); }
   /**
    * var rightLabel: TCControlLabel? { get set }
    * @availability iOS 26.0+
    */
-  get rightLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_64b39a05e4a4cebd", 1577052721944260, this, []); }
-  set rightLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3569851737191203, this, [value]); }
+  get rightLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_bd41a4085ee86f99", 1577052721944260, this, []); }
+  set rightLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_bd41a4085ee86f99", 3569851737191203, this, [value]); }
   /**
    * var size: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 3628332321872734, this, []); }
-  set size(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2093318770875990, this, [value]); }
+  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 3628332321872734, this, []); }
+  set size(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 2093318770875990, this, [value]); }
   /**
    * var upContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get upContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 1477911875626852, this, []); }
-  set upContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3877285231124426, this, [value]); }
+  get upContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 1477911875626852, this, []); }
+  set upContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 3877285231124426, this, [value]); }
   /**
    * var upLabel: TCControlLabel? { get set }
    * @availability iOS 26.0+
    */
-  get upLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_64b39a05e4a4cebd", 4302801237249208, this, []); }
-  set upLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3387751470151823, this, [value]); }
+  get upLabel(): (TCControlLabel) | null { return callSDK<(TCControlLabel) | null>("TouchController_bd41a4085ee86f99", 4302801237249208, this, []); }
+  set upLabel(value: (TCControlLabel) | null) { callSDK<void>("TouchController_bd41a4085ee86f99", 3387751470151823, this, [value]); }
   /**
    * var zIndex: Int { get set }
    * @availability iOS 26.0+
    */
-  get zIndex(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 456051030161638, this, []); }
-  set zIndex(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2770215208844765, this, [value]); }
+  get zIndex(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 456051030161638, this, []); }
+  set zIndex(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 2770215208844765, this, [value]); }
   declare readonly $type: { "c:objc(cs)TCDirectionPadDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchor": true; "anchorCoordinateSystem": true; "colliderShape": true; "compositeLabel": true; "isDigital": true; "downContents": true; "downLabel": true; "highlightDuration": true; "leftContents": true; "leftLabel": true; "inputIsMutuallyExclusive": true; "offset": true; "isRadial": true; "rightContents": true; "rightLabel": true; "size": true; "upContents": true; "upLabel": true; "zIndex": true };
 }
@@ -675,30 +675,30 @@ export class TCSwitch extends SDKHandle {
    * var colliderShape: TCColliderShape { get }
    * @availability iOS 26.0+
    */
-  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_64b39a05e4a4cebd", 158847526395824, this, []); }
+  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_bd41a4085ee86f99", 158847526395824, this, []); }
   /**
    * var contents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get contents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 3346409128329048, this, []); }
-  set contents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1746890679963222, this, [value]); }
+  get contents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 3346409128329048, this, []); }
+  set contents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 1746890679963222, this, [value]); }
   /**
    * var highlightDuration: TimeInterval { get set }
    * @availability iOS 26.0+
    */
-  get highlightDuration(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 1650833000593937, this, []); }
-  set highlightDuration(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 638050018844487, this, [value]); }
+  get highlightDuration(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 1650833000593937, this, []); }
+  set highlightDuration(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 638050018844487, this, [value]); }
   /**
    * var isSwitchedOn: Bool { get }
    * @availability iOS 26.0+
    */
-  get isSwitchedOn(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 3318299554303700, this, []); }
+  get isSwitchedOn(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 3318299554303700, this, []); }
   /**
    * var switchedOnContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get switchedOnContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 289874421266255, this, []); }
-  set switchedOnContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1886315185375268, this, [value]); }
+  get switchedOnContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 289874421266255, this, []); }
+  set switchedOnContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 1886315185375268, this, [value]); }
   declare readonly $type: { "c:objc(cs)TCSwitch": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "colliderShape": true; "contents": true; "highlightDuration": true; "isSwitchedOn": true; "switchedOnContents": true };
 }
@@ -712,67 +712,67 @@ export class TCSwitchDescriptor extends SDKHandle {
    * init()
    * @availability iOS 26.0+
    */
-  static init(): TCSwitchDescriptor { return callSDK<TCSwitchDescriptor>("TouchController_64b39a05e4a4cebd", 4089371598000855, undefined, []); }
+  static init(): TCSwitchDescriptor { return callSDK<TCSwitchDescriptor>("TouchController_bd41a4085ee86f99", 4089371598000855, undefined, []); }
   /**
    * var anchor: TCControlLayoutAnchor { get set }
    * @availability iOS 26.0+
    */
-  get anchor(): TCControlLayoutAnchor { return callSDK<TCControlLayoutAnchor>("TouchController_64b39a05e4a4cebd", 3963477059522556, this, []); }
-  set anchor(value: TCControlLayoutAnchor) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3545617744810107, this, [value]); }
+  get anchor(): TCControlLayoutAnchor { return callSDK<TCControlLayoutAnchor>("TouchController_bd41a4085ee86f99", 3963477059522556, this, []); }
+  set anchor(value: TCControlLayoutAnchor) { callSDK<void>("TouchController_bd41a4085ee86f99", 3545617744810107, this, [value]); }
   /**
    * var anchorCoordinateSystem: TCControlLayoutAnchorCoordinateSystem { get set }
    * @availability iOS 26.0+
    */
-  get anchorCoordinateSystem(): TCControlLayoutAnchorCoordinateSystem { return callSDK<TCControlLayoutAnchorCoordinateSystem>("TouchController_64b39a05e4a4cebd", 3300036279335699, this, []); }
-  set anchorCoordinateSystem(value: TCControlLayoutAnchorCoordinateSystem) { callSDK<void>("TouchController_64b39a05e4a4cebd", 159743362188294, this, [value]); }
+  get anchorCoordinateSystem(): TCControlLayoutAnchorCoordinateSystem { return callSDK<TCControlLayoutAnchorCoordinateSystem>("TouchController_bd41a4085ee86f99", 3300036279335699, this, []); }
+  set anchorCoordinateSystem(value: TCControlLayoutAnchorCoordinateSystem) { callSDK<void>("TouchController_bd41a4085ee86f99", 159743362188294, this, [value]); }
   /**
    * var colliderShape: TCColliderShape { get set }
    * @availability iOS 26.0+
    */
-  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_64b39a05e4a4cebd", 2782572821880776, this, []); }
-  set colliderShape(value: TCColliderShape) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3471244935035992, this, [value]); }
+  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_bd41a4085ee86f99", 2782572821880776, this, []); }
+  set colliderShape(value: TCColliderShape) { callSDK<void>("TouchController_bd41a4085ee86f99", 3471244935035992, this, [value]); }
   /**
    * var contents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get contents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 1970886470433232, this, []); }
-  set contents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1469657158519981, this, [value]); }
+  get contents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 1970886470433232, this, []); }
+  set contents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 1469657158519981, this, [value]); }
   /**
    * var highlightDuration: TimeInterval { get set }
    * @availability iOS 26.0+
    */
-  get highlightDuration(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 2570555014142044, this, []); }
-  set highlightDuration(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2956108936414493, this, [value]); }
+  get highlightDuration(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 2570555014142044, this, []); }
+  set highlightDuration(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 2956108936414493, this, [value]); }
   /**
    * var label: TCControlLabel { get set }
    * @availability iOS 26.0+
    */
-  get label(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 3760495980610439, this, []); }
-  set label(value: TCControlLabel) { callSDK<void>("TouchController_64b39a05e4a4cebd", 4169571404857977, this, [value]); }
+  get label(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 3760495980610439, this, []); }
+  set label(value: TCControlLabel) { callSDK<void>("TouchController_bd41a4085ee86f99", 4169571404857977, this, [value]); }
   /**
    * var offset: CGPoint { get set }
    * @availability iOS 26.0+
    */
-  get offset(): $SDK1 { return callSDK<$SDK1>("TouchController_64b39a05e4a4cebd", 1229048786047328, this, []); }
-  set offset(value: $SDK1) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3934073635182736, this, [value]); }
+  get offset(): $SDK1 { return callSDK<$SDK1>("TouchController_bd41a4085ee86f99", 1229048786047328, this, []); }
+  set offset(value: $SDK1) { callSDK<void>("TouchController_bd41a4085ee86f99", 3934073635182736, this, [value]); }
   /**
    * var size: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 4306696736659692, this, []); }
-  set size(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2125760212222044, this, [value]); }
+  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 4306696736659692, this, []); }
+  set size(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 2125760212222044, this, [value]); }
   /**
    * var switchedOnContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get switchedOnContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 922901437995103, this, []); }
-  set switchedOnContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 707358949344385, this, [value]); }
+  get switchedOnContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 922901437995103, this, []); }
+  set switchedOnContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 707358949344385, this, [value]); }
   /**
    * var zIndex: Int { get set }
    * @availability iOS 26.0+
    */
-  get zIndex(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 204174861721682, this, []); }
-  set zIndex(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2926507835413175, this, [value]); }
+  get zIndex(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 204174861721682, this, []); }
+  set zIndex(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 2926507835413175, this, [value]); }
   declare readonly $type: { "c:objc(cs)TCSwitchDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchor": true; "anchorCoordinateSystem": true; "colliderShape": true; "contents": true; "highlightDuration": true; "label": true; "offset": true; "size": true; "switchedOnContents": true; "zIndex": true };
 }
@@ -786,54 +786,54 @@ export class TCThrottle extends SDKHandle {
    * var backgroundContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get backgroundContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 3341684051524522, this, []); }
-  set backgroundContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1761687118324452, this, [value]); }
+  get backgroundContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 3341684051524522, this, []); }
+  set backgroundContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 1761687118324452, this, [value]); }
   /**
    * var baseValue: CGFloat { get set }
    * @availability iOS 26.0+
    */
-  get baseValue(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 1502965913588633, this, []); }
-  set baseValue(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1438108464879279, this, [value]); }
+  get baseValue(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 1502965913588633, this, []); }
+  set baseValue(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 1438108464879279, this, [value]); }
   /**
    * var colliderShape: TCColliderShape { get }
    * @availability iOS 26.0+
    */
-  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_64b39a05e4a4cebd", 258797893545824, this, []); }
+  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_bd41a4085ee86f99", 258797893545824, this, []); }
   /**
    * var highlightDuration: TimeInterval { get set }
    * @availability iOS 26.0+
    */
-  get highlightDuration(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 3235648696888688, this, []); }
-  set highlightDuration(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2820693194972943, this, [value]); }
+  get highlightDuration(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 3235648696888688, this, []); }
+  set highlightDuration(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 2820693194972943, this, [value]); }
   /**
    * var indicatorContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get indicatorContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 4310216887458491, this, []); }
-  set indicatorContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1408696888573566, this, [value]); }
+  get indicatorContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 4310216887458491, this, []); }
+  set indicatorContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 1408696888573566, this, [value]); }
   /**
    * var indicatorSize: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get indicatorSize(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 1267997263326690, this, []); }
-  set indicatorSize(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3821840099301171, this, [value]); }
+  get indicatorSize(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 1267997263326690, this, []); }
+  set indicatorSize(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 3821840099301171, this, [value]); }
   /**
    * var orientation: TCThrottle.Orientation { get }
    * @availability iOS 26.0+
    */
-  get orientation(): TCThrottle_Orientation { return callSDK<TCThrottle_Orientation>("TouchController_64b39a05e4a4cebd", 1815322897496701, this, []); }
+  get orientation(): TCThrottle_Orientation { return callSDK<TCThrottle_Orientation>("TouchController_bd41a4085ee86f99", 1815322897496701, this, []); }
   /**
    * var snapsToBaseValue: Bool { get set }
    * @availability iOS 26.0+
    */
-  get snapsToBaseValue(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 237530749300137, this, []); }
-  set snapsToBaseValue(value: boolean) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1002469193729715, this, [value]); }
+  get snapsToBaseValue(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 237530749300137, this, []); }
+  set snapsToBaseValue(value: boolean) { callSDK<void>("TouchController_bd41a4085ee86f99", 1002469193729715, this, [value]); }
   /**
    * var throttleSize: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get throttleSize(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 4046093659364948, this, []); }
-  set throttleSize(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3111384239433026, this, [value]); }
+  get throttleSize(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 4046093659364948, this, []); }
+  set throttleSize(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 3111384239433026, this, [value]); }
   declare readonly $type: { "c:objc(cs)TCThrottle": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "backgroundContents": true; "baseValue": true; "colliderShape": true; "highlightDuration": true; "indicatorContents": true; "indicatorSize": true; "orientation": true; "snapsToBaseValue": true; "throttleSize": true };
 }
@@ -849,7 +849,7 @@ export const TCThrottle_Orientation = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (TCThrottle_Orientation) | null { return callSDK<(TCThrottle_Orientation) | null>("TouchController_64b39a05e4a4cebd", 1904571392339968, undefined, [rawValue]); }
+  init(rawValue: number): (TCThrottle_Orientation) | null { return callSDK<(TCThrottle_Orientation) | null>("TouchController_bd41a4085ee86f99", 1904571392339968, undefined, [rawValue]); }
 };
 
 /**
@@ -861,97 +861,97 @@ export class TCThrottleDescriptor extends SDKHandle {
    * init()
    * @availability iOS 26.0+
    */
-  static init(): TCThrottleDescriptor { return callSDK<TCThrottleDescriptor>("TouchController_64b39a05e4a4cebd", 797576297563003, undefined, []); }
+  static init(): TCThrottleDescriptor { return callSDK<TCThrottleDescriptor>("TouchController_bd41a4085ee86f99", 797576297563003, undefined, []); }
   /**
    * var anchor: TCControlLayoutAnchor { get set }
    * @availability iOS 26.0+
    */
-  get anchor(): TCControlLayoutAnchor { return callSDK<TCControlLayoutAnchor>("TouchController_64b39a05e4a4cebd", 2307412493597696, this, []); }
-  set anchor(value: TCControlLayoutAnchor) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1608388560987828, this, [value]); }
+  get anchor(): TCControlLayoutAnchor { return callSDK<TCControlLayoutAnchor>("TouchController_bd41a4085ee86f99", 2307412493597696, this, []); }
+  set anchor(value: TCControlLayoutAnchor) { callSDK<void>("TouchController_bd41a4085ee86f99", 1608388560987828, this, [value]); }
   /**
    * var anchorCoordinateSystem: TCControlLayoutAnchorCoordinateSystem { get set }
    * @availability iOS 26.0+
    */
-  get anchorCoordinateSystem(): TCControlLayoutAnchorCoordinateSystem { return callSDK<TCControlLayoutAnchorCoordinateSystem>("TouchController_64b39a05e4a4cebd", 810014090748639, this, []); }
-  set anchorCoordinateSystem(value: TCControlLayoutAnchorCoordinateSystem) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1170735745109035, this, [value]); }
+  get anchorCoordinateSystem(): TCControlLayoutAnchorCoordinateSystem { return callSDK<TCControlLayoutAnchorCoordinateSystem>("TouchController_bd41a4085ee86f99", 810014090748639, this, []); }
+  set anchorCoordinateSystem(value: TCControlLayoutAnchorCoordinateSystem) { callSDK<void>("TouchController_bd41a4085ee86f99", 1170735745109035, this, [value]); }
   /**
    * var backgroundContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get backgroundContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 482818038011364, this, []); }
-  set backgroundContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 638235444061638, this, [value]); }
+  get backgroundContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 482818038011364, this, []); }
+  set backgroundContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 638235444061638, this, [value]); }
   /**
    * var baseValue: CGFloat { get set }
    * @availability iOS 26.0+
    */
-  get baseValue(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 2136273688708893, this, []); }
-  set baseValue(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 4218640994555055, this, [value]); }
+  get baseValue(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 2136273688708893, this, []); }
+  set baseValue(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 4218640994555055, this, [value]); }
   /**
    * var colliderShape: TCColliderShape { get set }
    * @availability iOS 26.0+
    */
-  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_64b39a05e4a4cebd", 3967147814582238, this, []); }
-  set colliderShape(value: TCColliderShape) { callSDK<void>("TouchController_64b39a05e4a4cebd", 719448721514942, this, [value]); }
+  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_bd41a4085ee86f99", 3967147814582238, this, []); }
+  set colliderShape(value: TCColliderShape) { callSDK<void>("TouchController_bd41a4085ee86f99", 719448721514942, this, [value]); }
   /**
    * var highlightDuration: TimeInterval { get set }
    * @availability iOS 26.0+
    */
-  get highlightDuration(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 2814572571039684, this, []); }
-  set highlightDuration(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2044814509479727, this, [value]); }
+  get highlightDuration(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 2814572571039684, this, []); }
+  set highlightDuration(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 2044814509479727, this, [value]); }
   /**
    * var indicatorContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get indicatorContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 4235489475747624, this, []); }
-  set indicatorContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 652285230283204, this, [value]); }
+  get indicatorContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 4235489475747624, this, []); }
+  set indicatorContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 652285230283204, this, [value]); }
   /**
    * var indicatorSize: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get indicatorSize(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 1120891407482709, this, []); }
-  set indicatorSize(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 502845313643692, this, [value]); }
+  get indicatorSize(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 1120891407482709, this, []); }
+  set indicatorSize(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 502845313643692, this, [value]); }
   /**
    * var label: TCControlLabel { get set }
    * @availability iOS 26.0+
    */
-  get label(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 956047533986945, this, []); }
-  set label(value: TCControlLabel) { callSDK<void>("TouchController_64b39a05e4a4cebd", 53250208558857, this, [value]); }
+  get label(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 956047533986945, this, []); }
+  set label(value: TCControlLabel) { callSDK<void>("TouchController_bd41a4085ee86f99", 53250208558857, this, [value]); }
   /**
    * var offset: CGPoint { get set }
    * @availability iOS 26.0+
    */
-  get offset(): $SDK1 { return callSDK<$SDK1>("TouchController_64b39a05e4a4cebd", 1397886088088192, this, []); }
-  set offset(value: $SDK1) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3719072530318589, this, [value]); }
+  get offset(): $SDK1 { return callSDK<$SDK1>("TouchController_bd41a4085ee86f99", 1397886088088192, this, []); }
+  set offset(value: $SDK1) { callSDK<void>("TouchController_bd41a4085ee86f99", 3719072530318589, this, [value]); }
   /**
    * var orientation: TCThrottle.Orientation { get set }
    * @availability iOS 26.0+
    */
-  get orientation(): TCThrottle_Orientation { return callSDK<TCThrottle_Orientation>("TouchController_64b39a05e4a4cebd", 4159313291486624, this, []); }
-  set orientation(value: TCThrottle_Orientation) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2607555885701347, this, [value]); }
+  get orientation(): TCThrottle_Orientation { return callSDK<TCThrottle_Orientation>("TouchController_bd41a4085ee86f99", 4159313291486624, this, []); }
+  set orientation(value: TCThrottle_Orientation) { callSDK<void>("TouchController_bd41a4085ee86f99", 2607555885701347, this, [value]); }
   /**
    * var size: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 2710858205805416, this, []); }
-  set size(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1819873862753394, this, [value]); }
+  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 2710858205805416, this, []); }
+  set size(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 1819873862753394, this, [value]); }
   /**
    * var snapsToBaseValue: Bool { get set }
    * @availability iOS 26.0+
    */
-  get snapsToBaseValue(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 2876781835252753, this, []); }
-  set snapsToBaseValue(value: boolean) { callSDK<void>("TouchController_64b39a05e4a4cebd", 4156920750284916, this, [value]); }
+  get snapsToBaseValue(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 2876781835252753, this, []); }
+  set snapsToBaseValue(value: boolean) { callSDK<void>("TouchController_bd41a4085ee86f99", 4156920750284916, this, [value]); }
   /**
    * var throttleSize: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get throttleSize(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 1810604444351357, this, []); }
-  set throttleSize(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3738323308689385, this, [value]); }
+  get throttleSize(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 1810604444351357, this, []); }
+  set throttleSize(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 3738323308689385, this, [value]); }
   /**
    * var zIndex: Int { get set }
    * @availability iOS 26.0+
    */
-  get zIndex(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 3054356700421986, this, []); }
-  set zIndex(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 4043157594152654, this, [value]); }
+  get zIndex(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 3054356700421986, this, []); }
+  set zIndex(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 4043157594152654, this, [value]); }
   declare readonly $type: { "c:objc(cs)TCThrottleDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchor": true; "anchorCoordinateSystem": true; "backgroundContents": true; "baseValue": true; "colliderShape": true; "highlightDuration": true; "indicatorContents": true; "indicatorSize": true; "label": true; "offset": true; "orientation": true; "size": true; "snapsToBaseValue": true; "throttleSize": true; "zIndex": true };
 }
@@ -965,37 +965,37 @@ export class TCThumbstick extends SDKHandle {
    * var backgroundContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get backgroundContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 2155748575623411, this, []); }
-  set backgroundContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 626024091659892, this, [value]); }
+  get backgroundContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 2155748575623411, this, []); }
+  set backgroundContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 626024091659892, this, [value]); }
   /**
    * var colliderShape: TCColliderShape { get }
    * @availability iOS 26.0+
    */
-  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_64b39a05e4a4cebd", 4128563785708904, this, []); }
+  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_bd41a4085ee86f99", 4128563785708904, this, []); }
   /**
    * var hidesWhenNotPressed: Bool { get set }
    * @availability iOS 26.0+
    */
-  get hidesWhenNotPressed(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 151618654489587, this, []); }
-  set hidesWhenNotPressed(value: boolean) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3765576396703515, this, [value]); }
+  get hidesWhenNotPressed(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 151618654489587, this, []); }
+  set hidesWhenNotPressed(value: boolean) { callSDK<void>("TouchController_bd41a4085ee86f99", 3765576396703515, this, [value]); }
   /**
    * var highlightDuration: TimeInterval { get set }
    * @availability iOS 26.0+
    */
-  get highlightDuration(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 2259527126630792, this, []); }
-  set highlightDuration(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 355722422793198, this, [value]); }
+  get highlightDuration(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 2259527126630792, this, []); }
+  set highlightDuration(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 355722422793198, this, [value]); }
   /**
    * var stickContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get stickContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 3492357506029333, this, []); }
-  set stickContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2172745131620131, this, [value]); }
+  get stickContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 3492357506029333, this, []); }
+  set stickContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 2172745131620131, this, [value]); }
   /**
    * var stickSize: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get stickSize(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 3612554307925845, this, []); }
-  set stickSize(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2012822160544404, this, [value]); }
+  get stickSize(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 3612554307925845, this, []); }
+  set stickSize(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 2012822160544404, this, [value]); }
   declare readonly $type: { "c:objc(cs)TCThumbstick": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "backgroundContents": true; "colliderShape": true; "hidesWhenNotPressed": true; "highlightDuration": true; "stickContents": true; "stickSize": true };
 }
@@ -1009,79 +1009,79 @@ export class TCThumbstickDescriptor extends SDKHandle {
    * init()
    * @availability iOS 26.0+
    */
-  static init(): TCThumbstickDescriptor { return callSDK<TCThumbstickDescriptor>("TouchController_64b39a05e4a4cebd", 2397495421745311, undefined, []); }
+  static init(): TCThumbstickDescriptor { return callSDK<TCThumbstickDescriptor>("TouchController_bd41a4085ee86f99", 2397495421745311, undefined, []); }
   /**
    * var anchor: TCControlLayoutAnchor { get set }
    * @availability iOS 26.0+
    */
-  get anchor(): TCControlLayoutAnchor { return callSDK<TCControlLayoutAnchor>("TouchController_64b39a05e4a4cebd", 2822648919805409, this, []); }
-  set anchor(value: TCControlLayoutAnchor) { callSDK<void>("TouchController_64b39a05e4a4cebd", 4144283799619467, this, [value]); }
+  get anchor(): TCControlLayoutAnchor { return callSDK<TCControlLayoutAnchor>("TouchController_bd41a4085ee86f99", 2822648919805409, this, []); }
+  set anchor(value: TCControlLayoutAnchor) { callSDK<void>("TouchController_bd41a4085ee86f99", 4144283799619467, this, [value]); }
   /**
    * var anchorCoordinateSystem: TCControlLayoutAnchorCoordinateSystem { get set }
    * @availability iOS 26.0+
    */
-  get anchorCoordinateSystem(): TCControlLayoutAnchorCoordinateSystem { return callSDK<TCControlLayoutAnchorCoordinateSystem>("TouchController_64b39a05e4a4cebd", 3761188389487433, this, []); }
-  set anchorCoordinateSystem(value: TCControlLayoutAnchorCoordinateSystem) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1000811209739684, this, [value]); }
+  get anchorCoordinateSystem(): TCControlLayoutAnchorCoordinateSystem { return callSDK<TCControlLayoutAnchorCoordinateSystem>("TouchController_bd41a4085ee86f99", 3761188389487433, this, []); }
+  set anchorCoordinateSystem(value: TCControlLayoutAnchorCoordinateSystem) { callSDK<void>("TouchController_bd41a4085ee86f99", 1000811209739684, this, [value]); }
   /**
    * var backgroundContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get backgroundContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 706746412863743, this, []); }
-  set backgroundContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2488650959736815, this, [value]); }
+  get backgroundContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 706746412863743, this, []); }
+  set backgroundContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 2488650959736815, this, [value]); }
   /**
    * var colliderShape: TCColliderShape { get set }
    * @availability iOS 26.0+
    */
-  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_64b39a05e4a4cebd", 1430033077451192, this, []); }
-  set colliderShape(value: TCColliderShape) { callSDK<void>("TouchController_64b39a05e4a4cebd", 502344250481794, this, [value]); }
+  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_bd41a4085ee86f99", 1430033077451192, this, []); }
+  set colliderShape(value: TCColliderShape) { callSDK<void>("TouchController_bd41a4085ee86f99", 502344250481794, this, [value]); }
   /**
    * var hidesWhenNotPressed: Bool { get set }
    * @availability iOS 26.0+
    */
-  get hidesWhenNotPressed(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 3550482363446863, this, []); }
-  set hidesWhenNotPressed(value: boolean) { callSDK<void>("TouchController_64b39a05e4a4cebd", 4022367805651345, this, [value]); }
+  get hidesWhenNotPressed(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 3550482363446863, this, []); }
+  set hidesWhenNotPressed(value: boolean) { callSDK<void>("TouchController_bd41a4085ee86f99", 4022367805651345, this, [value]); }
   /**
    * var highlightDuration: TimeInterval { get set }
    * @availability iOS 26.0+
    */
-  get highlightDuration(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 4415770803023860, this, []); }
-  set highlightDuration(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3392746776209440, this, [value]); }
+  get highlightDuration(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 4415770803023860, this, []); }
+  set highlightDuration(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 3392746776209440, this, [value]); }
   /**
    * var label: TCControlLabel { get set }
    * @availability iOS 26.0+
    */
-  get label(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 1008490185922414, this, []); }
-  set label(value: TCControlLabel) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1986403584006060, this, [value]); }
+  get label(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 1008490185922414, this, []); }
+  set label(value: TCControlLabel) { callSDK<void>("TouchController_bd41a4085ee86f99", 1986403584006060, this, [value]); }
   /**
    * var offset: CGPoint { get set }
    * @availability iOS 26.0+
    */
-  get offset(): $SDK1 { return callSDK<$SDK1>("TouchController_64b39a05e4a4cebd", 428673238472228, this, []); }
-  set offset(value: $SDK1) { callSDK<void>("TouchController_64b39a05e4a4cebd", 146139170984213, this, [value]); }
+  get offset(): $SDK1 { return callSDK<$SDK1>("TouchController_bd41a4085ee86f99", 428673238472228, this, []); }
+  set offset(value: $SDK1) { callSDK<void>("TouchController_bd41a4085ee86f99", 146139170984213, this, [value]); }
   /**
    * var size: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 2564164749456760, this, []); }
-  set size(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2115804482200526, this, [value]); }
+  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 2564164749456760, this, []); }
+  set size(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 2115804482200526, this, [value]); }
   /**
    * var stickContents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get stickContents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 4409628247614955, this, []); }
-  set stickContents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3045048269477471, this, [value]); }
+  get stickContents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 4409628247614955, this, []); }
+  set stickContents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 3045048269477471, this, [value]); }
   /**
    * var stickSize: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get stickSize(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 3894787385627017, this, []); }
-  set stickSize(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2745992695115016, this, [value]); }
+  get stickSize(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 3894787385627017, this, []); }
+  set stickSize(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 2745992695115016, this, [value]); }
   /**
    * var zIndex: Int { get set }
    * @availability iOS 26.0+
    */
-  get zIndex(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 3261232045099617, this, []); }
-  set zIndex(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 425896896920646, this, [value]); }
+  get zIndex(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 3261232045099617, this, []); }
+  set zIndex(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 425896896920646, this, [value]); }
   declare readonly $type: { "c:objc(cs)TCThumbstickDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchor": true; "anchorCoordinateSystem": true; "backgroundContents": true; "colliderShape": true; "hidesWhenNotPressed": true; "highlightDuration": true; "label": true; "offset": true; "size": true; "stickContents": true; "stickSize": true; "zIndex": true };
 }
@@ -1095,154 +1095,154 @@ export class TCTouchController extends SDKHandle {
    * class var isSupported: Bool { get }
    * @availability iOS 26.0+
    */
-  static get isSupported(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 3538747758229313, undefined, []); }
+  static get isSupported(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 3538747758229313, undefined, []); }
   /**
    * func addButton(descriptor: TCButtonDescriptor) -> TCButton
    * @availability iOS 26.0+
    */
-  addButton(descriptor: TCButtonDescriptor): TCButton { return callSDK<TCButton>("TouchController_64b39a05e4a4cebd", 1571258742336744, this, [descriptor]); }
+  addButton(descriptor: TCButtonDescriptor): TCButton { return callSDK<TCButton>("TouchController_bd41a4085ee86f99", 1571258742336744, this, [descriptor]); }
   /**
    * func addDirectionPad(descriptor: TCDirectionPadDescriptor) -> TCDirectionPad
    * @availability iOS 26.0+
    */
-  addDirectionPad(descriptor: TCDirectionPadDescriptor): TCDirectionPad { return callSDK<TCDirectionPad>("TouchController_64b39a05e4a4cebd", 1647033041082687, this, [descriptor]); }
+  addDirectionPad(descriptor: TCDirectionPadDescriptor): TCDirectionPad { return callSDK<TCDirectionPad>("TouchController_bd41a4085ee86f99", 1647033041082687, this, [descriptor]); }
   /**
    * func addSwitch(descriptor: TCSwitchDescriptor) -> TCSwitch
    * @availability iOS 26.0+
    */
-  addSwitch(descriptor: TCSwitchDescriptor): TCSwitch { return callSDK<TCSwitch>("TouchController_64b39a05e4a4cebd", 2773872105183579, this, [descriptor]); }
+  addSwitch(descriptor: TCSwitchDescriptor): TCSwitch { return callSDK<TCSwitch>("TouchController_bd41a4085ee86f99", 2773872105183579, this, [descriptor]); }
   /**
    * func addThrottle(descriptor: TCThrottleDescriptor) -> TCThrottle
    * @availability iOS 26.0+
    */
-  addThrottle(descriptor: TCThrottleDescriptor): TCThrottle { return callSDK<TCThrottle>("TouchController_64b39a05e4a4cebd", 1692313096817911, this, [descriptor]); }
+  addThrottle(descriptor: TCThrottleDescriptor): TCThrottle { return callSDK<TCThrottle>("TouchController_bd41a4085ee86f99", 1692313096817911, this, [descriptor]); }
   /**
    * func addThumbstick(descriptor: TCThumbstickDescriptor) -> TCThumbstick
    * @availability iOS 26.0+
    */
-  addThumbstick(descriptor: TCThumbstickDescriptor): TCThumbstick { return callSDK<TCThumbstick>("TouchController_64b39a05e4a4cebd", 3374191653018918, this, [descriptor]); }
+  addThumbstick(descriptor: TCThumbstickDescriptor): TCThumbstick { return callSDK<TCThumbstick>("TouchController_bd41a4085ee86f99", 3374191653018918, this, [descriptor]); }
   /**
    * func addTouchpad(descriptor: TCTouchpadDescriptor) -> TCTouchpad
    * @availability iOS 26.0+
    */
-  addTouchpad(descriptor: TCTouchpadDescriptor): TCTouchpad { return callSDK<TCTouchpad>("TouchController_64b39a05e4a4cebd", 3518466252286569, this, [descriptor]); }
+  addTouchpad(descriptor: TCTouchpadDescriptor): TCTouchpad { return callSDK<TCTouchpad>("TouchController_bd41a4085ee86f99", 3518466252286569, this, [descriptor]); }
   /**
    * func automaticallyLayoutControls(for labels: [TCControlLabel])
    * @availability iOS 26.0+
    */
-  automaticallyLayoutControls(labels: Array<TCControlLabel>): void { return callSDK<void>("TouchController_64b39a05e4a4cebd", 4426535527804801, this, [labels]); }
+  automaticallyLayoutControls(labels: Array<TCControlLabel>): void { return callSDK<void>("TouchController_bd41a4085ee86f99", 4426535527804801, this, [labels]); }
   /**
    * func connect()
    * @availability iOS 26.0+
    */
-  connect(): void { return callSDK<void>("TouchController_64b39a05e4a4cebd", 123652146163314, this, []); }
+  connect(): void { return callSDK<void>("TouchController_bd41a4085ee86f99", 123652146163314, this, []); }
   /**
    * func control(at point: CGPoint) -> (any TCControl)?
    * @availability iOS 26.0+
    */
-  control(point: $SDK1): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("TouchController_64b39a05e4a4cebd", 1568484360306092, this, [point]); }
+  control(point: $SDK1): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("TouchController_bd41a4085ee86f99", 1568484360306092, this, [point]); }
   /**
    * func disconnect()
    * @availability iOS 26.0+
    */
-  disconnect(): void { return callSDK<void>("TouchController_64b39a05e4a4cebd", 2441094147680951, this, []); }
+  disconnect(): void { return callSDK<void>("TouchController_bd41a4085ee86f99", 2441094147680951, this, []); }
   /**
    * func handleTouchBegan(at point: CGPoint, index: Int) -> Bool
    * @availability iOS 26.0+
    */
-  handleTouchBegan(point: $SDK1, index: number): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 243632449907686, this, [point, index]); }
+  handleTouchBegan(point: $SDK1, index: number): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 243632449907686, this, [point, index]); }
   /**
    * func handleTouchEnded(at point: CGPoint, index: Int) -> Bool
    * @availability iOS 26.0+
    */
-  handleTouchEnded(point: $SDK1, index: number): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 4409148848947456, this, [point, index]); }
+  handleTouchEnded(point: $SDK1, index: number): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 4409148848947456, this, [point, index]); }
   /**
    * func handleTouchMoved(at point: CGPoint, index: Int) -> Bool
    * @availability iOS 26.0+
    */
-  handleTouchMoved(point: $SDK1, index: number): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 588028407685541, this, [point, index]); }
+  handleTouchMoved(point: $SDK1, index: number): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 588028407685541, this, [point, index]); }
   /**
    * init(descriptor: TCTouchControllerDescriptor)
    * @availability iOS 26.0+
    */
-  static init(descriptor: TCTouchControllerDescriptor): TCTouchController { return callSDK<TCTouchController>("TouchController_64b39a05e4a4cebd", 1965882087076142, undefined, [descriptor]); }
+  static init(descriptor: TCTouchControllerDescriptor): TCTouchController { return callSDK<TCTouchController>("TouchController_bd41a4085ee86f99", 1965882087076142, undefined, [descriptor]); }
   /**
    * func removeAllControls()
    * @availability iOS 26.0+
    */
-  removeAllControls(): void { return callSDK<void>("TouchController_64b39a05e4a4cebd", 3069798118307956, this, []); }
+  removeAllControls(): void { return callSDK<void>("TouchController_bd41a4085ee86f99", 3069798118307956, this, []); }
   /**
    * func removeControl(_ control: any TCControl)
    * @availability iOS 26.0+
    */
-  removeControl(control: SDKHandle): void { return callSDK<void>("TouchController_64b39a05e4a4cebd", 3977887683079111, this, [control]); }
+  removeControl(control: SDKHandle): void { return callSDK<void>("TouchController_bd41a4085ee86f99", 3977887683079111, this, [control]); }
   /**
    * func render(using encoder: any MTLRenderCommandEncoder)
    * @availability iOS 26.0+
    */
-  render(encoder: SDKHandle): void { return callSDK<void>("TouchController_64b39a05e4a4cebd", 934139178624185, this, [encoder]); }
+  render(encoder: SDKHandle): void { return callSDK<void>("TouchController_bd41a4085ee86f99", 934139178624185, this, [encoder]); }
   /**
    * var buttons: [TCButton] { get }
    * @availability iOS 26.0+
    */
-  get buttons(): Array<TCButton> { return callSDK<Array<TCButton>>("TouchController_64b39a05e4a4cebd", 4038601657437829, this, []); }
+  get buttons(): Array<TCButton> { return callSDK<Array<TCButton>>("TouchController_bd41a4085ee86f99", 4038601657437829, this, []); }
   /**
    * var isConnected: Bool { get }
    * @availability iOS 26.0+
    */
-  get isConnected(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 3781146366288685, this, []); }
+  get isConnected(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 3781146366288685, this, []); }
   /**
    * var controller: GCController { get }
    * @availability iOS 26.0+
    */
-  get controller(): _GameController_GCController { return callSDK<_GameController_GCController>("TouchController_64b39a05e4a4cebd", 4339642845478213, this, []); }
+  get controller(): _GameController_GCController { return callSDK<_GameController_GCController>("TouchController_bd41a4085ee86f99", 4339642845478213, this, []); }
   /**
    * var controls: [any TCControl] { get }
    * @availability iOS 26.0+
    */
-  get controls(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("TouchController_64b39a05e4a4cebd", 1471732103479144, this, []); }
+  get controls(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("TouchController_bd41a4085ee86f99", 1471732103479144, this, []); }
   /**
    * var device: any MTLDevice { get }
    * @availability iOS 26.0+
    */
-  get device(): SDKHandle { return callSDK<SDKHandle>("TouchController_64b39a05e4a4cebd", 2006352345248060, this, []); }
+  get device(): SDKHandle { return callSDK<SDKHandle>("TouchController_bd41a4085ee86f99", 2006352345248060, this, []); }
   /**
    * var directionPads: [TCDirectionPad] { get }
    * @availability iOS 26.0+
    */
-  get directionPads(): Array<TCDirectionPad> { return callSDK<Array<TCDirectionPad>>("TouchController_64b39a05e4a4cebd", 510375417463079, this, []); }
+  get directionPads(): Array<TCDirectionPad> { return callSDK<Array<TCDirectionPad>>("TouchController_bd41a4085ee86f99", 510375417463079, this, []); }
   /**
    * var drawableSize: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get drawableSize(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 2440161160466844, this, []); }
-  set drawableSize(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2935273095550172, this, [value]); }
+  get drawableSize(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 2440161160466844, this, []); }
+  set drawableSize(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 2935273095550172, this, [value]); }
   /**
    * var size: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 3692872010077981, this, []); }
-  set size(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2748362657133233, this, [value]); }
+  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 3692872010077981, this, []); }
+  set size(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 2748362657133233, this, [value]); }
   /**
    * var switches: [TCSwitch] { get }
    * @availability iOS 26.0+
    */
-  get switches(): Array<TCSwitch> { return callSDK<Array<TCSwitch>>("TouchController_64b39a05e4a4cebd", 957641333168279, this, []); }
+  get switches(): Array<TCSwitch> { return callSDK<Array<TCSwitch>>("TouchController_bd41a4085ee86f99", 957641333168279, this, []); }
   /**
    * var throttles: [TCThrottle] { get }
    * @availability iOS 26.0+
    */
-  get throttles(): Array<TCThrottle> { return callSDK<Array<TCThrottle>>("TouchController_64b39a05e4a4cebd", 3915133297069545, this, []); }
+  get throttles(): Array<TCThrottle> { return callSDK<Array<TCThrottle>>("TouchController_bd41a4085ee86f99", 3915133297069545, this, []); }
   /**
    * var thumbsticks: [TCThumbstick] { get }
    * @availability iOS 26.0+
    */
-  get thumbsticks(): Array<TCThumbstick> { return callSDK<Array<TCThumbstick>>("TouchController_64b39a05e4a4cebd", 4296965813589782, this, []); }
+  get thumbsticks(): Array<TCThumbstick> { return callSDK<Array<TCThumbstick>>("TouchController_bd41a4085ee86f99", 4296965813589782, this, []); }
   /**
    * var touchpads: [TCTouchpad] { get }
    * @availability iOS 26.0+
    */
-  get touchpads(): Array<TCTouchpad> { return callSDK<Array<TCTouchpad>>("TouchController_64b39a05e4a4cebd", 1392891834301345, this, []); }
+  get touchpads(): Array<TCTouchpad> { return callSDK<Array<TCTouchpad>>("TouchController_bd41a4085ee86f99", 1392891834301345, this, []); }
   declare readonly $type: { "c:objc(cs)TCTouchController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "buttons": true; "isConnected": true; "controller": true; "controls": true; "device": true; "directionPads": true; "drawableSize": true; "size": true; "switches": true; "throttles": true; "thumbsticks": true; "touchpads": true };
 }
@@ -1256,54 +1256,54 @@ export class TCTouchControllerDescriptor extends SDKHandle {
    * init()
    * @availability iOS 26.0+
    */
-  static init(): TCTouchControllerDescriptor { return callSDK<TCTouchControllerDescriptor>("TouchController_64b39a05e4a4cebd", 1528084122961763, undefined, []); }
+  static init(): TCTouchControllerDescriptor { return callSDK<TCTouchControllerDescriptor>("TouchController_bd41a4085ee86f99", 1528084122961763, undefined, []); }
   /**
    * convenience init(mtkView: MTKView)
    * @availability iOS 26.0+
    */
-  static initMtkView(mtkView: _MetalKit_MTKView): TCTouchControllerDescriptor { return callSDK<TCTouchControllerDescriptor>("TouchController_64b39a05e4a4cebd", 1132540180688145, undefined, [mtkView]); }
+  static initMtkView(mtkView: _MetalKit_MTKView): TCTouchControllerDescriptor { return callSDK<TCTouchControllerDescriptor>("TouchController_bd41a4085ee86f99", 1132540180688145, undefined, [mtkView]); }
   /**
    * var colorPixelFormat: MTLPixelFormat { get set }
    * @availability iOS 26.0+
    */
-  get colorPixelFormat(): _Metal_MTLPixelFormat { return callSDK<_Metal_MTLPixelFormat>("TouchController_64b39a05e4a4cebd", 144953901234670, this, []); }
-  set colorPixelFormat(value: _Metal_MTLPixelFormat) { callSDK<void>("TouchController_64b39a05e4a4cebd", 4385352525603637, this, [value]); }
+  get colorPixelFormat(): _Metal_MTLPixelFormat { return callSDK<_Metal_MTLPixelFormat>("TouchController_bd41a4085ee86f99", 144953901234670, this, []); }
+  set colorPixelFormat(value: _Metal_MTLPixelFormat) { callSDK<void>("TouchController_bd41a4085ee86f99", 4385352525603637, this, [value]); }
   /**
    * var depthAttachmentPixelFormat: MTLPixelFormat { get set }
    * @availability iOS 26.0+
    */
-  get depthAttachmentPixelFormat(): _Metal_MTLPixelFormat { return callSDK<_Metal_MTLPixelFormat>("TouchController_64b39a05e4a4cebd", 1455494212066291, this, []); }
-  set depthAttachmentPixelFormat(value: _Metal_MTLPixelFormat) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2468845986414956, this, [value]); }
+  get depthAttachmentPixelFormat(): _Metal_MTLPixelFormat { return callSDK<_Metal_MTLPixelFormat>("TouchController_bd41a4085ee86f99", 1455494212066291, this, []); }
+  set depthAttachmentPixelFormat(value: _Metal_MTLPixelFormat) { callSDK<void>("TouchController_bd41a4085ee86f99", 2468845986414956, this, [value]); }
   /**
    * var device: any MTLDevice { get set }
    * @availability iOS 26.0+
    */
-  get device(): SDKHandle { return callSDK<SDKHandle>("TouchController_64b39a05e4a4cebd", 1984851191622620, this, []); }
-  set device(value: SDKHandle) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2993229860673199, this, [value]); }
+  get device(): SDKHandle { return callSDK<SDKHandle>("TouchController_bd41a4085ee86f99", 1984851191622620, this, []); }
+  set device(value: SDKHandle) { callSDK<void>("TouchController_bd41a4085ee86f99", 2993229860673199, this, [value]); }
   /**
    * var drawableSize: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get drawableSize(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 3252242785200405, this, []); }
-  set drawableSize(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 307697025992538, this, [value]); }
+  get drawableSize(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 3252242785200405, this, []); }
+  set drawableSize(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 307697025992538, this, [value]); }
   /**
    * var sampleCount: Int { get set }
    * @availability iOS 26.0+
    */
-  get sampleCount(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 1474847975235806, this, []); }
-  set sampleCount(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2733201230134695, this, [value]); }
+  get sampleCount(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 1474847975235806, this, []); }
+  set sampleCount(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 2733201230134695, this, [value]); }
   /**
    * var size: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 526792534380123, this, []); }
-  set size(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 3597641193069069, this, [value]); }
+  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 526792534380123, this, []); }
+  set size(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 3597641193069069, this, [value]); }
   /**
    * var stencilAttachmentPixelFormat: MTLPixelFormat { get set }
    * @availability iOS 26.0+
    */
-  get stencilAttachmentPixelFormat(): _Metal_MTLPixelFormat { return callSDK<_Metal_MTLPixelFormat>("TouchController_64b39a05e4a4cebd", 2419063606211040, this, []); }
-  set stencilAttachmentPixelFormat(value: _Metal_MTLPixelFormat) { callSDK<void>("TouchController_64b39a05e4a4cebd", 848759419207688, this, [value]); }
+  get stencilAttachmentPixelFormat(): _Metal_MTLPixelFormat { return callSDK<_Metal_MTLPixelFormat>("TouchController_bd41a4085ee86f99", 2419063606211040, this, []); }
+  set stencilAttachmentPixelFormat(value: _Metal_MTLPixelFormat) { callSDK<void>("TouchController_bd41a4085ee86f99", 848759419207688, this, [value]); }
   declare readonly $type: { "c:objc(cs)TCTouchControllerDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "colorPixelFormat": true; "depthAttachmentPixelFormat": true; "device": true; "drawableSize": true; "sampleCount": true; "size": true; "stencilAttachmentPixelFormat": true };
 }
@@ -1317,25 +1317,25 @@ export class TCTouchpad extends SDKHandle {
    * var colliderShape: TCColliderShape { get }
    * @availability iOS 26.0+
    */
-  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_64b39a05e4a4cebd", 3290184498218869, this, []); }
+  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_bd41a4085ee86f99", 3290184498218869, this, []); }
   /**
    * var contents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get contents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 1644727766384002, this, []); }
-  set contents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 137317393748790, this, [value]); }
+  get contents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 1644727766384002, this, []); }
+  set contents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 137317393748790, this, [value]); }
   /**
    * var highlightDuration: TimeInterval { get set }
    * @availability iOS 26.0+
    */
-  get highlightDuration(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 2827851274210757, this, []); }
-  set highlightDuration(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 4100119470095904, this, [value]); }
+  get highlightDuration(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 2827851274210757, this, []); }
+  set highlightDuration(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 4100119470095904, this, [value]); }
   /**
    * var reportsRelativeValues: Bool { get set }
    * @availability iOS 26.0+
    */
-  get reportsRelativeValues(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 2920337017189484, this, []); }
-  set reportsRelativeValues(value: boolean) { callSDK<void>("TouchController_64b39a05e4a4cebd", 4034371270212667, this, [value]); }
+  get reportsRelativeValues(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 2920337017189484, this, []); }
+  set reportsRelativeValues(value: boolean) { callSDK<void>("TouchController_bd41a4085ee86f99", 4034371270212667, this, [value]); }
   declare readonly $type: { "c:objc(cs)TCTouchpad": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "colliderShape": true; "contents": true; "highlightDuration": true; "reportsRelativeValues": true };
 }
@@ -1349,67 +1349,67 @@ export class TCTouchpadDescriptor extends SDKHandle {
    * init()
    * @availability iOS 26.0+
    */
-  static init(): TCTouchpadDescriptor { return callSDK<TCTouchpadDescriptor>("TouchController_64b39a05e4a4cebd", 1976773371864893, undefined, []); }
+  static init(): TCTouchpadDescriptor { return callSDK<TCTouchpadDescriptor>("TouchController_bd41a4085ee86f99", 1976773371864893, undefined, []); }
   /**
    * var anchor: TCControlLayoutAnchor { get set }
    * @availability iOS 26.0+
    */
-  get anchor(): TCControlLayoutAnchor { return callSDK<TCControlLayoutAnchor>("TouchController_64b39a05e4a4cebd", 3628996080672086, this, []); }
-  set anchor(value: TCControlLayoutAnchor) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1726128316314112, this, [value]); }
+  get anchor(): TCControlLayoutAnchor { return callSDK<TCControlLayoutAnchor>("TouchController_bd41a4085ee86f99", 3628996080672086, this, []); }
+  set anchor(value: TCControlLayoutAnchor) { callSDK<void>("TouchController_bd41a4085ee86f99", 1726128316314112, this, [value]); }
   /**
    * var anchorCoordinateSystem: TCControlLayoutAnchorCoordinateSystem { get set }
    * @availability iOS 26.0+
    */
-  get anchorCoordinateSystem(): TCControlLayoutAnchorCoordinateSystem { return callSDK<TCControlLayoutAnchorCoordinateSystem>("TouchController_64b39a05e4a4cebd", 3207038033767585, this, []); }
-  set anchorCoordinateSystem(value: TCControlLayoutAnchorCoordinateSystem) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1004593510178877, this, [value]); }
+  get anchorCoordinateSystem(): TCControlLayoutAnchorCoordinateSystem { return callSDK<TCControlLayoutAnchorCoordinateSystem>("TouchController_bd41a4085ee86f99", 3207038033767585, this, []); }
+  set anchorCoordinateSystem(value: TCControlLayoutAnchorCoordinateSystem) { callSDK<void>("TouchController_bd41a4085ee86f99", 1004593510178877, this, [value]); }
   /**
    * var colliderShape: TCColliderShape { get set }
    * @availability iOS 26.0+
    */
-  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_64b39a05e4a4cebd", 4062491111788210, this, []); }
-  set colliderShape(value: TCColliderShape) { callSDK<void>("TouchController_64b39a05e4a4cebd", 4153465829701263, this, [value]); }
+  get colliderShape(): TCColliderShape { return callSDK<TCColliderShape>("TouchController_bd41a4085ee86f99", 4062491111788210, this, []); }
+  set colliderShape(value: TCColliderShape) { callSDK<void>("TouchController_bd41a4085ee86f99", 4153465829701263, this, [value]); }
   /**
    * var contents: TCControlContents? { get set }
    * @availability iOS 26.0+
    */
-  get contents(): $SDK0 { return callSDK<$SDK0>("TouchController_64b39a05e4a4cebd", 2263152008160759, this, []); }
-  set contents(value: $SDK0) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2136628969976053, this, [value]); }
+  get contents(): $SDK0 { return callSDK<$SDK0>("TouchController_bd41a4085ee86f99", 2263152008160759, this, []); }
+  set contents(value: $SDK0) { callSDK<void>("TouchController_bd41a4085ee86f99", 2136628969976053, this, [value]); }
   /**
    * var highlightDuration: TimeInterval { get set }
    * @availability iOS 26.0+
    */
-  get highlightDuration(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 2530248305678027, this, []); }
-  set highlightDuration(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2381168415285040, this, [value]); }
+  get highlightDuration(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 2530248305678027, this, []); }
+  set highlightDuration(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 2381168415285040, this, [value]); }
   /**
    * var label: TCControlLabel { get set }
    * @availability iOS 26.0+
    */
-  get label(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_64b39a05e4a4cebd", 213050174598830, this, []); }
-  set label(value: TCControlLabel) { callSDK<void>("TouchController_64b39a05e4a4cebd", 19225976619668, this, [value]); }
+  get label(): TCControlLabel { return callSDK<TCControlLabel>("TouchController_bd41a4085ee86f99", 213050174598830, this, []); }
+  set label(value: TCControlLabel) { callSDK<void>("TouchController_bd41a4085ee86f99", 19225976619668, this, [value]); }
   /**
    * var offset: CGPoint { get set }
    * @availability iOS 26.0+
    */
-  get offset(): $SDK1 { return callSDK<$SDK1>("TouchController_64b39a05e4a4cebd", 2659525636969995, this, []); }
-  set offset(value: $SDK1) { callSDK<void>("TouchController_64b39a05e4a4cebd", 80161461459916, this, [value]); }
+  get offset(): $SDK1 { return callSDK<$SDK1>("TouchController_bd41a4085ee86f99", 2659525636969995, this, []); }
+  set offset(value: $SDK1) { callSDK<void>("TouchController_bd41a4085ee86f99", 80161461459916, this, [value]); }
   /**
    * var reportsRelativeValues: Bool { get set }
    * @availability iOS 26.0+
    */
-  get reportsRelativeValues(): boolean { return callSDK<boolean>("TouchController_64b39a05e4a4cebd", 1983419854840328, this, []); }
-  set reportsRelativeValues(value: boolean) { callSDK<void>("TouchController_64b39a05e4a4cebd", 2311124823884085, this, [value]); }
+  get reportsRelativeValues(): boolean { return callSDK<boolean>("TouchController_bd41a4085ee86f99", 1983419854840328, this, []); }
+  set reportsRelativeValues(value: boolean) { callSDK<void>("TouchController_bd41a4085ee86f99", 2311124823884085, this, [value]); }
   /**
    * var size: CGSize { get set }
    * @availability iOS 26.0+
    */
-  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_64b39a05e4a4cebd", 4250340462550098, this, []); }
-  set size(value: $SDK2) { callSDK<void>("TouchController_64b39a05e4a4cebd", 1717004069126889, this, [value]); }
+  get size(): $SDK2 { return callSDK<$SDK2>("TouchController_bd41a4085ee86f99", 4250340462550098, this, []); }
+  set size(value: $SDK2) { callSDK<void>("TouchController_bd41a4085ee86f99", 1717004069126889, this, [value]); }
   /**
    * var zIndex: Int { get set }
    * @availability iOS 26.0+
    */
-  get zIndex(): number { return callSDK<number>("TouchController_64b39a05e4a4cebd", 709002357284239, this, []); }
-  set zIndex(value: number) { callSDK<void>("TouchController_64b39a05e4a4cebd", 468040627268237, this, [value]); }
+  get zIndex(): number { return callSDK<number>("TouchController_bd41a4085ee86f99", 709002357284239, this, []); }
+  set zIndex(value: number) { callSDK<void>("TouchController_bd41a4085ee86f99", 468040627268237, this, [value]); }
   declare readonly $type: { "c:objc(cs)TCTouchpadDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchor": true; "anchorCoordinateSystem": true; "colliderShape": true; "contents": true; "highlightDuration": true; "label": true; "offset": true; "reportsRelativeValues": true; "size": true; "zIndex": true };
 }
@@ -1418,24 +1418,24 @@ export class TCTouchpadDescriptor extends SDKHandle {
  * let TCGameControllerProductCategoryTouchController: String
  * @availability iOS 26.0+
  */
-export const TCGameControllerProductCategoryTouchController: string = callSDK<string>("TouchController_64b39a05e4a4cebd", 4491365160934148, undefined, []);
+export const TCGameControllerProductCategoryTouchController: string = callSDK<string>("TouchController_bd41a4085ee86f99", 4491365160934148, undefined, []);
 
-registerSDKClass("TCButton", TCButton, { module: "TouchController_64b39a05e4a4cebd", properties: {"colliderShape":346382195957023,"contents":2116172185334031,"highlightDuration":1708967437500476} });
-registerSDKClass("TCButtonDescriptor", TCButtonDescriptor, { module: "TouchController_64b39a05e4a4cebd", properties: {"anchor":881142434606367,"anchorCoordinateSystem":3988269821845638,"colliderShape":1235278881046902,"contents":2381620400426021,"highlightDuration":719769724035346,"label":370236044394441,"offset":4161859843252922,"size":3337680647213826,"zIndex":285925897493638} });
+registerSDKClass("TCButton", TCButton, { module: "TouchController_bd41a4085ee86f99", properties: {"colliderShape":346382195957023,"contents":2116172185334031,"highlightDuration":1708967437500476} });
+registerSDKClass("TCButtonDescriptor", TCButtonDescriptor, { module: "TouchController_bd41a4085ee86f99", properties: {"anchor":881142434606367,"anchorCoordinateSystem":3988269821845638,"colliderShape":1235278881046902,"contents":2381620400426021,"highlightDuration":719769724035346,"label":370236044394441,"offset":4161859843252922,"size":3337680647213826,"zIndex":285925897493638} });
 registerSDKProtocol("c:objc(pl)TCControl", {"handleTouchBeganAt":"handleTouchBegan(at:)","handleTouchMovedAt":"handleTouchMoved(at:)","handleTouchEndedAt":"handleTouchEnded(at:)"});
-registerSDKClass("TCControlContents", TCControlContents, { module: "TouchController_64b39a05e4a4cebd", properties: {"images":79090449710299} });
-registerSDKClass("TCControlImage", TCControlImage, { module: "TouchController_64b39a05e4a4cebd", properties: {"highlightTexture":3618700425635870,"offset":3987125042839141,"size":806760001632515,"texture":2746268714499636,"tintColor":430730398879158} });
-registerSDKClass("TCControlLabel", TCControlLabel, { module: "TouchController_64b39a05e4a4cebd", properties: {"name":4140895312913941,"role":3054485014238172} });
+registerSDKClass("TCControlContents", TCControlContents, { module: "TouchController_bd41a4085ee86f99", properties: {"images":79090449710299} });
+registerSDKClass("TCControlImage", TCControlImage, { module: "TouchController_bd41a4085ee86f99", properties: {"highlightTexture":3618700425635870,"offset":3987125042839141,"size":806760001632515,"texture":2746268714499636,"tintColor":430730398879158} });
+registerSDKClass("TCControlLabel", TCControlLabel, { module: "TouchController_bd41a4085ee86f99", properties: {"name":4140895312913941,"role":3054485014238172} });
 registerSDKProtocol("c:objc(pl)TCControlLayout", {});
-registerSDKClass("TCDirectionPad", TCDirectionPad, { module: "TouchController_64b39a05e4a4cebd", properties: {"colliderShape":1162967025888367,"compositeLabel":3900412171122415,"isDigital":2372363859426293,"downContents":3822166453702897,"downLabel":1741934874259507,"highlightDuration":4379059876577189,"leftContents":4318673752344260,"leftLabel":1586757758793599,"inputIsMutuallyExclusive":659854039964867,"isRadial":4203415227205560,"rightContents":1851522257158481,"rightLabel":3852439592979808,"upContents":38383964539148,"upLabel":3476993815406512} });
-registerSDKClass("TCDirectionPadDescriptor", TCDirectionPadDescriptor, { module: "TouchController_64b39a05e4a4cebd", properties: {"anchor":2848265006066870,"anchorCoordinateSystem":3900868648701374,"colliderShape":845975400623152,"compositeLabel":1255426633130144,"isDigital":1754627126456713,"downContents":675055308668764,"downLabel":20374606802803,"highlightDuration":1074775867198617,"leftContents":2790211331900559,"leftLabel":2195961944453444,"inputIsMutuallyExclusive":1491338230472669,"offset":3089422138940811,"isRadial":2669482458917715,"rightContents":4272187119355367,"rightLabel":1577052721944260,"size":3628332321872734,"upContents":1477911875626852,"upLabel":4302801237249208,"zIndex":456051030161638} });
-registerSDKClass("TCSwitch", TCSwitch, { module: "TouchController_64b39a05e4a4cebd", properties: {"colliderShape":158847526395824,"contents":3346409128329048,"highlightDuration":1650833000593937,"isSwitchedOn":3318299554303700,"switchedOnContents":289874421266255} });
-registerSDKClass("TCSwitchDescriptor", TCSwitchDescriptor, { module: "TouchController_64b39a05e4a4cebd", properties: {"anchor":3963477059522556,"anchorCoordinateSystem":3300036279335699,"colliderShape":2782572821880776,"contents":1970886470433232,"highlightDuration":2570555014142044,"label":3760495980610439,"offset":1229048786047328,"size":4306696736659692,"switchedOnContents":922901437995103,"zIndex":204174861721682} });
-registerSDKClass("TCThrottle", TCThrottle, { module: "TouchController_64b39a05e4a4cebd", properties: {"backgroundContents":3341684051524522,"baseValue":1502965913588633,"colliderShape":258797893545824,"highlightDuration":3235648696888688,"indicatorContents":4310216887458491,"indicatorSize":1267997263326690,"orientation":1815322897496701,"snapsToBaseValue":237530749300137,"throttleSize":4046093659364948} });
-registerSDKClass("TCThrottleDescriptor", TCThrottleDescriptor, { module: "TouchController_64b39a05e4a4cebd", properties: {"anchor":2307412493597696,"anchorCoordinateSystem":810014090748639,"backgroundContents":482818038011364,"baseValue":2136273688708893,"colliderShape":3967147814582238,"highlightDuration":2814572571039684,"indicatorContents":4235489475747624,"indicatorSize":1120891407482709,"label":956047533986945,"offset":1397886088088192,"orientation":4159313291486624,"size":2710858205805416,"snapsToBaseValue":2876781835252753,"throttleSize":1810604444351357,"zIndex":3054356700421986} });
-registerSDKClass("TCThumbstick", TCThumbstick, { module: "TouchController_64b39a05e4a4cebd", properties: {"backgroundContents":2155748575623411,"colliderShape":4128563785708904,"hidesWhenNotPressed":151618654489587,"highlightDuration":2259527126630792,"stickContents":3492357506029333,"stickSize":3612554307925845} });
-registerSDKClass("TCThumbstickDescriptor", TCThumbstickDescriptor, { module: "TouchController_64b39a05e4a4cebd", properties: {"anchor":2822648919805409,"anchorCoordinateSystem":3761188389487433,"backgroundContents":706746412863743,"colliderShape":1430033077451192,"hidesWhenNotPressed":3550482363446863,"highlightDuration":4415770803023860,"label":1008490185922414,"offset":428673238472228,"size":2564164749456760,"stickContents":4409628247614955,"stickSize":3894787385627017,"zIndex":3261232045099617} });
-registerSDKClass("TCTouchController", TCTouchController, { module: "TouchController_64b39a05e4a4cebd", properties: {"buttons":4038601657437829,"isConnected":3781146366288685,"controller":4339642845478213,"controls":1471732103479144,"device":2006352345248060,"directionPads":510375417463079,"drawableSize":2440161160466844,"size":3692872010077981,"switches":957641333168279,"throttles":3915133297069545,"thumbsticks":4296965813589782,"touchpads":1392891834301345}, methods: {"addButton":{"id":1571258742336744},"addDirectionPad":{"id":1647033041082687},"addSwitch":{"id":2773872105183579},"addThrottle":{"id":1692313096817911},"addThumbstick":{"id":3374191653018918},"addTouchpad":{"id":3518466252286569},"automaticallyLayoutControls":{"id":4426535527804801},"connect":{"id":123652146163314},"control":{"id":1568484360306092},"disconnect":{"id":2441094147680951},"handleTouchBegan":{"id":243632449907686},"handleTouchEnded":{"id":4409148848947456},"handleTouchMoved":{"id":588028407685541},"removeAllControls":{"id":3069798118307956},"removeControl":{"id":3977887683079111},"render":{"id":934139178624185}} });
-registerSDKClass("TCTouchControllerDescriptor", TCTouchControllerDescriptor, { module: "TouchController_64b39a05e4a4cebd", properties: {"colorPixelFormat":144953901234670,"depthAttachmentPixelFormat":1455494212066291,"device":1984851191622620,"drawableSize":3252242785200405,"sampleCount":1474847975235806,"size":526792534380123,"stencilAttachmentPixelFormat":2419063606211040} });
-registerSDKClass("TCTouchpad", TCTouchpad, { module: "TouchController_64b39a05e4a4cebd", properties: {"colliderShape":3290184498218869,"contents":1644727766384002,"highlightDuration":2827851274210757,"reportsRelativeValues":2920337017189484} });
-registerSDKClass("TCTouchpadDescriptor", TCTouchpadDescriptor, { module: "TouchController_64b39a05e4a4cebd", properties: {"anchor":3628996080672086,"anchorCoordinateSystem":3207038033767585,"colliderShape":4062491111788210,"contents":2263152008160759,"highlightDuration":2530248305678027,"label":213050174598830,"offset":2659525636969995,"reportsRelativeValues":1983419854840328,"size":4250340462550098,"zIndex":709002357284239} });
+registerSDKClass("TCDirectionPad", TCDirectionPad, { module: "TouchController_bd41a4085ee86f99", properties: {"colliderShape":1162967025888367,"compositeLabel":3900412171122415,"isDigital":2372363859426293,"downContents":3822166453702897,"downLabel":1741934874259507,"highlightDuration":4379059876577189,"leftContents":4318673752344260,"leftLabel":1586757758793599,"inputIsMutuallyExclusive":659854039964867,"isRadial":4203415227205560,"rightContents":1851522257158481,"rightLabel":3852439592979808,"upContents":38383964539148,"upLabel":3476993815406512} });
+registerSDKClass("TCDirectionPadDescriptor", TCDirectionPadDescriptor, { module: "TouchController_bd41a4085ee86f99", properties: {"anchor":2848265006066870,"anchorCoordinateSystem":3900868648701374,"colliderShape":845975400623152,"compositeLabel":1255426633130144,"isDigital":1754627126456713,"downContents":675055308668764,"downLabel":20374606802803,"highlightDuration":1074775867198617,"leftContents":2790211331900559,"leftLabel":2195961944453444,"inputIsMutuallyExclusive":1491338230472669,"offset":3089422138940811,"isRadial":2669482458917715,"rightContents":4272187119355367,"rightLabel":1577052721944260,"size":3628332321872734,"upContents":1477911875626852,"upLabel":4302801237249208,"zIndex":456051030161638} });
+registerSDKClass("TCSwitch", TCSwitch, { module: "TouchController_bd41a4085ee86f99", properties: {"colliderShape":158847526395824,"contents":3346409128329048,"highlightDuration":1650833000593937,"isSwitchedOn":3318299554303700,"switchedOnContents":289874421266255} });
+registerSDKClass("TCSwitchDescriptor", TCSwitchDescriptor, { module: "TouchController_bd41a4085ee86f99", properties: {"anchor":3963477059522556,"anchorCoordinateSystem":3300036279335699,"colliderShape":2782572821880776,"contents":1970886470433232,"highlightDuration":2570555014142044,"label":3760495980610439,"offset":1229048786047328,"size":4306696736659692,"switchedOnContents":922901437995103,"zIndex":204174861721682} });
+registerSDKClass("TCThrottle", TCThrottle, { module: "TouchController_bd41a4085ee86f99", properties: {"backgroundContents":3341684051524522,"baseValue":1502965913588633,"colliderShape":258797893545824,"highlightDuration":3235648696888688,"indicatorContents":4310216887458491,"indicatorSize":1267997263326690,"orientation":1815322897496701,"snapsToBaseValue":237530749300137,"throttleSize":4046093659364948} });
+registerSDKClass("TCThrottleDescriptor", TCThrottleDescriptor, { module: "TouchController_bd41a4085ee86f99", properties: {"anchor":2307412493597696,"anchorCoordinateSystem":810014090748639,"backgroundContents":482818038011364,"baseValue":2136273688708893,"colliderShape":3967147814582238,"highlightDuration":2814572571039684,"indicatorContents":4235489475747624,"indicatorSize":1120891407482709,"label":956047533986945,"offset":1397886088088192,"orientation":4159313291486624,"size":2710858205805416,"snapsToBaseValue":2876781835252753,"throttleSize":1810604444351357,"zIndex":3054356700421986} });
+registerSDKClass("TCThumbstick", TCThumbstick, { module: "TouchController_bd41a4085ee86f99", properties: {"backgroundContents":2155748575623411,"colliderShape":4128563785708904,"hidesWhenNotPressed":151618654489587,"highlightDuration":2259527126630792,"stickContents":3492357506029333,"stickSize":3612554307925845} });
+registerSDKClass("TCThumbstickDescriptor", TCThumbstickDescriptor, { module: "TouchController_bd41a4085ee86f99", properties: {"anchor":2822648919805409,"anchorCoordinateSystem":3761188389487433,"backgroundContents":706746412863743,"colliderShape":1430033077451192,"hidesWhenNotPressed":3550482363446863,"highlightDuration":4415770803023860,"label":1008490185922414,"offset":428673238472228,"size":2564164749456760,"stickContents":4409628247614955,"stickSize":3894787385627017,"zIndex":3261232045099617} });
+registerSDKClass("TCTouchController", TCTouchController, { module: "TouchController_bd41a4085ee86f99", properties: {"buttons":4038601657437829,"isConnected":3781146366288685,"controller":4339642845478213,"controls":1471732103479144,"device":2006352345248060,"directionPads":510375417463079,"drawableSize":2440161160466844,"size":3692872010077981,"switches":957641333168279,"throttles":3915133297069545,"thumbsticks":4296965813589782,"touchpads":1392891834301345}, methods: {"addButton":{"id":1571258742336744},"addDirectionPad":{"id":1647033041082687},"addSwitch":{"id":2773872105183579},"addThrottle":{"id":1692313096817911},"addThumbstick":{"id":3374191653018918},"addTouchpad":{"id":3518466252286569},"automaticallyLayoutControls":{"id":4426535527804801},"connect":{"id":123652146163314},"control":{"id":1568484360306092},"disconnect":{"id":2441094147680951},"handleTouchBegan":{"id":243632449907686},"handleTouchEnded":{"id":4409148848947456},"handleTouchMoved":{"id":588028407685541},"removeAllControls":{"id":3069798118307956},"removeControl":{"id":3977887683079111},"render":{"id":934139178624185}} });
+registerSDKClass("TCTouchControllerDescriptor", TCTouchControllerDescriptor, { module: "TouchController_bd41a4085ee86f99", properties: {"colorPixelFormat":144953901234670,"depthAttachmentPixelFormat":1455494212066291,"device":1984851191622620,"drawableSize":3252242785200405,"sampleCount":1474847975235806,"size":526792534380123,"stencilAttachmentPixelFormat":2419063606211040} });
+registerSDKClass("TCTouchpad", TCTouchpad, { module: "TouchController_bd41a4085ee86f99", properties: {"colliderShape":3290184498218869,"contents":1644727766384002,"highlightDuration":2827851274210757,"reportsRelativeValues":2920337017189484} });
+registerSDKClass("TCTouchpadDescriptor", TCTouchpadDescriptor, { module: "TouchController_bd41a4085ee86f99", properties: {"anchor":3628996080672086,"anchorCoordinateSystem":3207038033767585,"colliderShape":4062491111788210,"contents":2263152008160759,"highlightDuration":2530248305678027,"label":213050174598830,"offset":2659525636969995,"reportsRelativeValues":1983419854840328,"size":4250340462550098,"zIndex":709002357284239} });

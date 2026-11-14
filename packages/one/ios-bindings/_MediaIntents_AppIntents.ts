@@ -10,17 +10,17 @@ export class AudioSearch extends SDKHandle {
    * var displayRepresentation: DisplayRepresentation { get }
    * @availability iOS 27.0+
    */
-  get displayRepresentation(): _AppIntents_DisplayRepresentation { return callSDK<_AppIntents_DisplayRepresentation>("_MediaIntents_AppIntents_64b39a05e4a4cebd", 3305630082412405, this, []); }
+  get displayRepresentation(): _AppIntents_DisplayRepresentation { return callSDK<_AppIntents_DisplayRepresentation>("_MediaIntents_AppIntents_bd41a4085ee86f99", 3305630082412405, this, []); }
   /**
    * static let typeDisplayRepresentation: TypeDisplayRepresentation
    * @availability iOS 27.0+
    */
-  static get typeDisplayRepresentation(): _AppIntents_TypeDisplayRepresentation { return callSDK<_AppIntents_TypeDisplayRepresentation>("_MediaIntents_AppIntents_64b39a05e4a4cebd", 4426575243978178, undefined, []); }
+  static get typeDisplayRepresentation(): _AppIntents_TypeDisplayRepresentation { return callSDK<_AppIntents_TypeDisplayRepresentation>("_MediaIntents_AppIntents_bd41a4085ee86f99", 4426575243978178, undefined, []); }
   /**
    * static let defaultResolverSpecification: EmptyResolverSpecification<AudioSearch>
    * @availability iOS 27.0+
    */
-  static get defaultResolverSpecification(): $SDK0 { return callSDK<$SDK0>("_MediaIntents_AppIntents_64b39a05e4a4cebd", 552544681104584, undefined, []); }
+  static get defaultResolverSpecification(): $SDK0 { return callSDK<$SDK0>("_MediaIntents_AppIntents_bd41a4085ee86f99", 552544681104584, undefined, []); }
   declare readonly $type: { "s:12MediaIntents11AudioSearchV": true };
 }
 
@@ -42,4 +42,4 @@ export type AudioSearch_UnwrappedType = _MediaIntents_AudioSearch;
  */
 export type AudioSearch_ValueType = _MediaIntents_AudioSearch;
 
-registerSDKClass("MediaIntents.AudioSearch", AudioSearch, { module: "_MediaIntents_AppIntents_64b39a05e4a4cebd", properties: {} }, true);
+registerSDKClass("MediaIntents.AudioSearch", AudioSearch, { module: "_MediaIntents_AppIntents_bd41a4085ee86f99", properties: {} }, true);

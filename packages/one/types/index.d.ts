@@ -2,6 +2,8 @@ export { createApp } from './createApp';
 export type { OneDevtoolsAction, OneDevtoolsActionContext, OneDevtoolsPanel, OneDevtoolsPanelContext, OneDevtoolsPlugin, } from './devtools';
 export { One } from './one';
 export { AESEncryptionKey, AESSealedData } from './platform/crypto/index';
+export { EdgeFade } from './platform/effects/EdgeFade';
+export type { EdgeFadeProps } from './platform/effects/types';
 export { useFonts } from './platform/fonts';
 export { useKeepAwake } from './platform/keep-awake/index';
 export { useNativeState } from './platform/nativeState';

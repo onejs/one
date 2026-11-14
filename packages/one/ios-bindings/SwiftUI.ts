@@ -215,17 +215,17 @@ export class AccessibilityChildBehavior extends SDKHandle {
    * static let ignore: AccessibilityChildBehavior
    * @availability iOS 13.0+
    */
-  static get ignore(): AccessibilityChildBehavior { return callSDK<AccessibilityChildBehavior>("SwiftUI_64b39a05e4a4cebd", 629236798267142, undefined, []); }
+  static get ignore(): AccessibilityChildBehavior { return callSDK<AccessibilityChildBehavior>("SwiftUI_bd41a4085ee86f99", 629236798267142, undefined, []); }
   /**
    * static let combine: AccessibilityChildBehavior
    * @availability iOS 13.0+
    */
-  static get combine(): AccessibilityChildBehavior { return callSDK<AccessibilityChildBehavior>("SwiftUI_64b39a05e4a4cebd", 4422521799338067, undefined, []); }
+  static get combine(): AccessibilityChildBehavior { return callSDK<AccessibilityChildBehavior>("SwiftUI_bd41a4085ee86f99", 4422521799338067, undefined, []); }
   /**
    * static let contain: AccessibilityChildBehavior
    * @availability iOS 13.0+
    */
-  static get contain(): AccessibilityChildBehavior { return callSDK<AccessibilityChildBehavior>("SwiftUI_64b39a05e4a4cebd", 3599074275359050, undefined, []); }
+  static get contain(): AccessibilityChildBehavior { return callSDK<AccessibilityChildBehavior>("SwiftUI_bd41a4085ee86f99", 3599074275359050, undefined, []); }
   declare readonly $type: { "s:7SwiftUI26AccessibilityChildBehaviorV": true };
 }
 
@@ -238,33 +238,33 @@ export class AccessibilityFocusState<Value = unknown> extends SDKHandle {
    * var wrappedValue: Value { get nonmutating set }
    * @availability iOS 15.0+
    */
-  get wrappedValue(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 570568170286201, this, []); }
-  set wrappedValue(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2354817735526748, this, [value]); }
+  get wrappedValue(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 570568170286201, this, []); }
+  set wrappedValue(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2354817735526748, this, [value]); }
   /**
    * var projectedValue: AccessibilityFocusState<Value>.Binding { get }
    * @availability iOS 15.0+
    */
-  get projectedValue(): $SDK0 { return callSDK<$SDK0>("SwiftUI_64b39a05e4a4cebd", 1284879050419713, this, []); }
+  get projectedValue(): $SDK0 { return callSDK<$SDK0>("SwiftUI_bd41a4085ee86f99", 1284879050419713, this, []); }
   /**
    * init(for technologies: AccessibilityTechnologies) where Value == Bool
    * @availability iOS 15.0+
    */
-  static initFor(technologies: _SwiftUICore_AccessibilityTechnologies): $SDK1 { return callSDK<$SDK1>("SwiftUI_64b39a05e4a4cebd", 52557856424854, undefined, [technologies]); }
+  static initFor(technologies: _SwiftUICore_AccessibilityTechnologies): $SDK1 { return callSDK<$SDK1>("SwiftUI_bd41a4085ee86f99", 52557856424854, undefined, [technologies]); }
   /**
    * init<T>(for technologies: AccessibilityTechnologies) where Value == T?, T : Hashable
    * @availability iOS 15.0+
    */
-  static initFor83063(technologies: _SwiftUICore_AccessibilityTechnologies): $SDK2 { return callSDK<$SDK2>("SwiftUI_64b39a05e4a4cebd", 350275110229633, undefined, [technologies]); }
+  static initFor83063(technologies: _SwiftUICore_AccessibilityTechnologies): $SDK2 { return callSDK<$SDK2>("SwiftUI_bd41a4085ee86f99", 350275110229633, undefined, [technologies]); }
   /**
    * init() where Value == Bool
    * @availability iOS 15.0+
    */
-  static init(): $SDK1 { return callSDK<$SDK1>("SwiftUI_64b39a05e4a4cebd", 3486570015618309, undefined, []); }
+  static init(): $SDK1 { return callSDK<$SDK1>("SwiftUI_bd41a4085ee86f99", 3486570015618309, undefined, []); }
   /**
    * init<T>() where Value == T?, T : Hashable
    * @availability iOS 15.0+
    */
-  static init72086(): $SDK2 { return callSDK<$SDK2>("SwiftUI_64b39a05e4a4cebd", 194485281044375, undefined, []); }
+  static init72086(): $SDK2 { return callSDK<$SDK2>("SwiftUI_bd41a4085ee86f99", 194485281044375, undefined, []); }
   declare readonly $type: { "s:7SwiftUI23AccessibilityFocusStateV": true };
 }
 
@@ -277,13 +277,13 @@ export class AccessibilityFocusState_Binding<Value = unknown> extends SDKHandle 
    * var wrappedValue: Value { get nonmutating set }
    * @availability iOS 15.0+
    */
-  get wrappedValue(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 1895771570372037, this, []); }
-  set wrappedValue(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2544421358088334, this, [value]); }
+  get wrappedValue(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 1895771570372037, this, []); }
+  set wrappedValue(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2544421358088334, this, [value]); }
   /**
    * var projectedValue: AccessibilityFocusState<Value>.Binding { get }
    * @availability iOS 15.0+
    */
-  get projectedValue(): $SDK0 { return callSDK<$SDK0>("SwiftUI_64b39a05e4a4cebd", 1005280430022059, this, []); }
+  get projectedValue(): $SDK0 { return callSDK<$SDK0>("SwiftUI_bd41a4085ee86f99", 1005280430022059, this, []); }
   declare readonly $type: { "s:7SwiftUI23AccessibilityFocusStateV7BindingV": true };
 }
 
@@ -318,67 +318,67 @@ export class AccessibilityRotorEntry<ID = unknown> extends SDKHandle {
    * @MainActor @preconcurrency var body: Never { get }
    * @availability iOS 15.0+
    */
-  get body(): Promise<never> { return callSDKAsync<never>("SwiftUI_64b39a05e4a4cebd", 1780620886109053, this, []); }
+  get body(): Promise<never> { return callSDKAsync<never>("SwiftUI_bd41a4085ee86f99", 1780620886109053, this, []); }
   /**
    * @export(implementation) init(_ label: LocalizedStringResource, id: ID, in namespace: Namespace.ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {})
    * @availability iOS 16.0+
    */
-  static initIdInTextRangePrepare(label: _Foundation_LocalizedStringResource, id: number, namespace: _SwiftUICore_Namespace_ID, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_64b39a05e4a4cebd", 2911049635598295, undefined, [label, id, namespace, textRange, prepare], [null,null,null,null,{"callback":{"out":[]}}]); }
+  static initIdInTextRangePrepare(label: _Foundation_LocalizedStringResource, id: number, namespace: _SwiftUICore_Namespace_ID, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_bd41a4085ee86f99", 2911049635598295, undefined, [label, id, namespace, textRange, prepare], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(_ labelKey: LocalizedStringKey, id: ID, in namespace: Namespace.ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {})
    * @availability iOS 15.0+
    */
-  static initIdInTextRangePrepare42212(labelKey: _SwiftUICore_LocalizedStringKey, id: number, namespace: _SwiftUICore_Namespace_ID, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_64b39a05e4a4cebd", 23596282293774, undefined, [labelKey, id, namespace, textRange, prepare], [null,null,null,null,{"callback":{"out":[]}}]); }
+  static initIdInTextRangePrepare42212(labelKey: _SwiftUICore_LocalizedStringKey, id: number, namespace: _SwiftUICore_Namespace_ID, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_bd41a4085ee86f99", 23596282293774, undefined, [labelKey, id, namespace, textRange, prepare], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(_ label: Text, id: ID, in namespace: Namespace.ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {})
    * @availability iOS 15.0+
    */
-  static initIdInTextRangePrepare27547(label: _SwiftUICore_Text, id: number, namespace: _SwiftUICore_Namespace_ID, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_64b39a05e4a4cebd", 3515311155693750, undefined, [label, id, namespace, textRange, prepare], [null,null,null,null,{"callback":{"out":[]}}]); }
+  static initIdInTextRangePrepare27547(label: _SwiftUICore_Text, id: number, namespace: _SwiftUICore_Namespace_ID, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_bd41a4085ee86f99", 3515311155693750, undefined, [label, id, namespace, textRange, prepare], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) init(_ label: LocalizedStringResource, id: ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {})
    * @availability iOS 16.0+
    */
-  static initIdTextRangePrepare(label: _Foundation_LocalizedStringResource, id: number, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_64b39a05e4a4cebd", 765526107860257, undefined, [label, id, textRange, prepare], [null,null,null,{"callback":{"out":[]}}]); }
+  static initIdTextRangePrepare(label: _Foundation_LocalizedStringResource, id: number, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_bd41a4085ee86f99", 765526107860257, undefined, [label, id, textRange, prepare], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(_ labelKey: LocalizedStringKey, id: ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {})
    * @availability iOS 15.0+
    */
-  static initIdTextRangePrepare57174(labelKey: _SwiftUICore_LocalizedStringKey, id: number, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_64b39a05e4a4cebd", 1828789285391840, undefined, [labelKey, id, textRange, prepare], [null,null,null,{"callback":{"out":[]}}]); }
+  static initIdTextRangePrepare57174(labelKey: _SwiftUICore_LocalizedStringKey, id: number, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_bd41a4085ee86f99", 1828789285391840, undefined, [labelKey, id, textRange, prepare], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(_ label: Text, id: ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {})
    * @availability iOS 15.0+
    */
-  static initIdTextRangePrepare84633(label: _SwiftUICore_Text, id: number, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_64b39a05e4a4cebd", 4162199317887777, undefined, [label, id, textRange, prepare], [null,null,null,{"callback":{"out":[]}}]); }
+  static initIdTextRangePrepare84633(label: _SwiftUICore_Text, id: number, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_bd41a4085ee86f99", 4162199317887777, undefined, [label, id, textRange, prepare], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init<L>(_ label: L, id: ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {}) where L : StringProtocol
    * @availability iOS 15.0+
    */
-  static initIdTextRangePrepare87936(label: string, id: number, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_64b39a05e4a4cebd", 1419390309125611, undefined, [label, id, textRange, prepare], [null,null,null,{"callback":{"out":[]}}]); }
+  static initIdTextRangePrepare87936(label: string, id: number, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_bd41a4085ee86f99", 1419390309125611, undefined, [label, id, textRange, prepare], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) init(_ label: LocalizedStringResource, textRange: Range<String.Index>, prepare: @escaping () -> Void = {}) where ID == Never
    * @availability iOS 16.0+
    */
-  static initTextRangePrepare(label: _Foundation_LocalizedStringResource, textRange: SDKHandle, prepare?: (() => void)): $SDK4 { return callSDK<$SDK4>("SwiftUI_64b39a05e4a4cebd", 4050204554518163, undefined, [label, textRange, prepare], [null,null,{"callback":{"out":[]}}]); }
+  static initTextRangePrepare(label: _Foundation_LocalizedStringResource, textRange: SDKHandle, prepare?: (() => void)): $SDK4 { return callSDK<$SDK4>("SwiftUI_bd41a4085ee86f99", 4050204554518163, undefined, [label, textRange, prepare], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(_ label: Text? = nil, textRange: Range<String.Index>, prepare: @escaping () -> Void = {}) where ID == Never
    * @availability iOS 15.0+
    */
-  static initTextRangePrepare24341(label: $SDK5, textRange: SDKHandle, prepare?: (() => void)): $SDK4 { return callSDK<$SDK4>("SwiftUI_64b39a05e4a4cebd", 801762880947163, undefined, [label, textRange, prepare], [null,null,{"callback":{"out":[]}}]); }
+  static initTextRangePrepare24341(label: $SDK5, textRange: SDKHandle, prepare?: (() => void)): $SDK4 { return callSDK<$SDK4>("SwiftUI_bd41a4085ee86f99", 801762880947163, undefined, [label, textRange, prepare], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init<L>(_ label: L, textRange: Range<String.Index>, prepare: @escaping () -> Void = {}) where ID == Never, L : StringProtocol
    * @availability iOS 15.0+
    */
-  static initTextRangePrepare24101(label: string, textRange: SDKHandle, prepare?: (() => void)): $SDK4 { return callSDK<$SDK4>("SwiftUI_64b39a05e4a4cebd", 2277276429669352, undefined, [label, textRange, prepare], [null,null,{"callback":{"out":[]}}]); }
+  static initTextRangePrepare24101(label: string, textRange: SDKHandle, prepare?: (() => void)): $SDK4 { return callSDK<$SDK4>("SwiftUI_bd41a4085ee86f99", 2277276429669352, undefined, [label, textRange, prepare], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(_ labelKey: LocalizedStringKey, textRange: Range<String.Index>, prepare: @escaping () -> Void = {})
    * @availability iOS 15.0+
    */
-  static initTextRangePrepare56839(labelKey: _SwiftUICore_LocalizedStringKey, textRange: SDKHandle, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_64b39a05e4a4cebd", 1375738475914666, undefined, [labelKey, textRange, prepare], [null,null,{"callback":{"out":[]}}]); }
+  static initTextRangePrepare56839(labelKey: _SwiftUICore_LocalizedStringKey, textRange: SDKHandle, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_bd41a4085ee86f99", 1375738475914666, undefined, [labelKey, textRange, prepare], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init<L>(_ label: L, _ id: ID, in namespace: Namespace.ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {}) where L : StringProtocol
    * @availability iOS 15.0+
    */
-  static initInTextRangePrepare(label: string, id: number, namespace: _SwiftUICore_Namespace_ID, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_64b39a05e4a4cebd", 4358550597581865, undefined, [label, id, namespace, textRange, prepare], [null,null,null,null,{"callback":{"out":[]}}]); }
+  static initInTextRangePrepare(label: string, id: number, namespace: _SwiftUICore_Namespace_ID, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3 { return callSDK<$SDK3>("SwiftUI_bd41a4085ee86f99", 4358550597581865, undefined, [label, id, namespace, textRange, prepare], [null,null,null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7SwiftUI23AccessibilityRotorEntryV": true };
 }
 
@@ -397,67 +397,67 @@ export class AccessibilitySystemRotor extends SDKHandle {
    * static var italicText: AccessibilitySystemRotor { get }
    * @availability iOS 15.0+
    */
-  static get italicText(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_64b39a05e4a4cebd", 194906921155073, undefined, []); }
+  static get italicText(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_bd41a4085ee86f99", 194906921155073, undefined, []); }
   /**
    * static var textFields: AccessibilitySystemRotor { get }
    * @availability iOS 15.0+
    */
-  static get textFields(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_64b39a05e4a4cebd", 1287124846456489, undefined, []); }
+  static get textFields(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_bd41a4085ee86f99", 1287124846456489, undefined, []); }
   /**
    * static var underlineText: AccessibilitySystemRotor { get }
    * @availability iOS 15.0+
    */
-  static get underlineText(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_64b39a05e4a4cebd", 3342399740561896, undefined, []); }
+  static get underlineText(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_bd41a4085ee86f99", 3342399740561896, undefined, []); }
   /**
    * static var misspelledWords: AccessibilitySystemRotor { get }
    * @availability iOS 15.0+
    */
-  static get misspelledWords(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_64b39a05e4a4cebd", 3703153458891575, undefined, []); }
+  static get misspelledWords(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_bd41a4085ee86f99", 3703153458891575, undefined, []); }
   /**
    * static func links(visited: Bool) -> AccessibilitySystemRotor
    * @availability iOS 15.0+
    */
-  static linksVisited(visited: boolean): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_64b39a05e4a4cebd", 2217193724687547, undefined, [visited]); }
+  static linksVisited(visited: boolean): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_bd41a4085ee86f99", 2217193724687547, undefined, [visited]); }
   /**
    * static var links: AccessibilitySystemRotor { get }
    * @availability iOS 15.0+
    */
-  static get links(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_64b39a05e4a4cebd", 1651831329922021, undefined, []); }
+  static get links(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_bd41a4085ee86f99", 1651831329922021, undefined, []); }
   /**
    * static var lists: AccessibilitySystemRotor { get }
    * @availability iOS 15.0+
    */
-  static get lists(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_64b39a05e4a4cebd", 1297417858479704, undefined, []); }
+  static get lists(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_bd41a4085ee86f99", 1297417858479704, undefined, []); }
   /**
    * static var images: AccessibilitySystemRotor { get }
    * @availability iOS 15.0+
    */
-  static get images(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_64b39a05e4a4cebd", 3468322230981364, undefined, []); }
+  static get images(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_bd41a4085ee86f99", 3468322230981364, undefined, []); }
   /**
    * static var tables: AccessibilitySystemRotor { get }
    * @availability iOS 15.0+
    */
-  static get tables(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_64b39a05e4a4cebd", 4469429441050703, undefined, []); }
+  static get tables(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_bd41a4085ee86f99", 4469429441050703, undefined, []); }
   /**
    * static var boldText: AccessibilitySystemRotor { get }
    * @availability iOS 15.0+
    */
-  static get boldText(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_64b39a05e4a4cebd", 108403737775376, undefined, []); }
+  static get boldText(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_bd41a4085ee86f99", 108403737775376, undefined, []); }
   /**
    * static func headings(level: AccessibilityHeadingLevel) -> AccessibilitySystemRotor
    * @availability iOS 15.0+
    */
-  static headingsLevel(level: _SwiftUICore_AccessibilityHeadingLevel): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_64b39a05e4a4cebd", 4274030950410344, undefined, [level]); }
+  static headingsLevel(level: _SwiftUICore_AccessibilityHeadingLevel): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_bd41a4085ee86f99", 4274030950410344, undefined, [level]); }
   /**
    * static var headings: AccessibilitySystemRotor { get }
    * @availability iOS 15.0+
    */
-  static get headings(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_64b39a05e4a4cebd", 2615581483015745, undefined, []); }
+  static get headings(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_bd41a4085ee86f99", 2615581483015745, undefined, []); }
   /**
    * static var landmarks: AccessibilitySystemRotor { get }
    * @availability iOS 15.0+
    */
-  static get landmarks(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_64b39a05e4a4cebd", 2771423929335624, undefined, []); }
+  static get landmarks(): AccessibilitySystemRotor { return callSDK<AccessibilitySystemRotor>("SwiftUI_bd41a4085ee86f99", 2771423929335624, undefined, []); }
   declare readonly $type: { "s:7SwiftUI24AccessibilitySystemRotorV": true };
 }
 
@@ -470,7 +470,7 @@ export class AccessoryCircularCapacityGaugeStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 16.0+
    */
-  static init(): Promise<AccessoryCircularCapacityGaugeStyle> { return callSDKAsync<AccessoryCircularCapacityGaugeStyle>("SwiftUI_64b39a05e4a4cebd", 3570222088124802, undefined, []); }
+  static init(): Promise<AccessoryCircularCapacityGaugeStyle> { return callSDKAsync<AccessoryCircularCapacityGaugeStyle>("SwiftUI_bd41a4085ee86f99", 3570222088124802, undefined, []); }
   declare readonly $type: { "s:7SwiftUI35AccessoryCircularCapacityGaugeStyleV": true };
 }
 
@@ -489,7 +489,7 @@ export class AccessoryCircularGaugeStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 16.0+
    */
-  static init(): Promise<AccessoryCircularGaugeStyle> { return callSDKAsync<AccessoryCircularGaugeStyle>("SwiftUI_64b39a05e4a4cebd", 1280196423297696, undefined, []); }
+  static init(): Promise<AccessoryCircularGaugeStyle> { return callSDKAsync<AccessoryCircularGaugeStyle>("SwiftUI_bd41a4085ee86f99", 1280196423297696, undefined, []); }
   declare readonly $type: { "s:7SwiftUI27AccessoryCircularGaugeStyleV": true };
 }
 
@@ -508,7 +508,7 @@ export class AccessoryLinearCapacityGaugeStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 16.0+
    */
-  static init(): Promise<AccessoryLinearCapacityGaugeStyle> { return callSDKAsync<AccessoryLinearCapacityGaugeStyle>("SwiftUI_64b39a05e4a4cebd", 460422497576738, undefined, []); }
+  static init(): Promise<AccessoryLinearCapacityGaugeStyle> { return callSDKAsync<AccessoryLinearCapacityGaugeStyle>("SwiftUI_bd41a4085ee86f99", 460422497576738, undefined, []); }
   declare readonly $type: { "s:7SwiftUI33AccessoryLinearCapacityGaugeStyleV": true };
 }
 
@@ -527,7 +527,7 @@ export class AccessoryLinearGaugeStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 16.0+
    */
-  static init(): Promise<AccessoryLinearGaugeStyle> { return callSDKAsync<AccessoryLinearGaugeStyle>("SwiftUI_64b39a05e4a4cebd", 2275378307491085, undefined, []); }
+  static init(): Promise<AccessoryLinearGaugeStyle> { return callSDKAsync<AccessoryLinearGaugeStyle>("SwiftUI_bd41a4085ee86f99", 2275378307491085, undefined, []); }
   declare readonly $type: { "s:7SwiftUI25AccessoryLinearGaugeStyleV": true };
 }
 
@@ -548,7 +548,7 @@ export class ActionSheet extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static init(title: _SwiftUICore_Text, message?: $SDK5, buttons?: Array<Alert_Button>): ActionSheet { return callSDK<ActionSheet>("SwiftUI_64b39a05e4a4cebd", 446091649611638, undefined, [title, message, buttons]); }
+  static init(title: _SwiftUICore_Text, message?: $SDK5, buttons?: Array<Alert_Button>): ActionSheet { return callSDK<ActionSheet>("SwiftUI_bd41a4085ee86f99", 446091649611638, undefined, [title, message, buttons]); }
   declare readonly $type: { "s:7SwiftUI11ActionSheetV": true };
 }
 
@@ -568,17 +568,17 @@ export class AdaptableTabBarPlacement extends SDKHandle {
    * static let tabBar: AdaptableTabBarPlacement
    * @availability iOS 18.0+
    */
-  static get tabBar(): AdaptableTabBarPlacement { return callSDK<AdaptableTabBarPlacement>("SwiftUI_64b39a05e4a4cebd", 286242413935564, undefined, []); }
+  static get tabBar(): AdaptableTabBarPlacement { return callSDK<AdaptableTabBarPlacement>("SwiftUI_bd41a4085ee86f99", 286242413935564, undefined, []); }
   /**
    * static let sidebar: AdaptableTabBarPlacement
    * @availability iOS 18.0+
    */
-  static get sidebar(): AdaptableTabBarPlacement { return callSDK<AdaptableTabBarPlacement>("SwiftUI_64b39a05e4a4cebd", 4288910828759863, undefined, []); }
+  static get sidebar(): AdaptableTabBarPlacement { return callSDK<AdaptableTabBarPlacement>("SwiftUI_bd41a4085ee86f99", 4288910828759863, undefined, []); }
   /**
    * static let automatic: AdaptableTabBarPlacement
    * @availability iOS 18.0+
    */
-  static get automatic(): AdaptableTabBarPlacement { return callSDK<AdaptableTabBarPlacement>("SwiftUI_64b39a05e4a4cebd", 888152132528422, undefined, []); }
+  static get automatic(): AdaptableTabBarPlacement { return callSDK<AdaptableTabBarPlacement>("SwiftUI_bd41a4085ee86f99", 888152132528422, undefined, []); }
   declare readonly $type: { "s:7SwiftUI24AdaptableTabBarPlacementV": true };
 }
 
@@ -593,13 +593,13 @@ export class Alert extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initTitleMessageDismissButton(title: _SwiftUICore_Text, message?: $SDK5, dismissButton?: (Alert_Button) | null): Alert { return callSDK<Alert>("SwiftUI_64b39a05e4a4cebd", 2845509818224491, undefined, [title, message, dismissButton]); }
+  static initTitleMessageDismissButton(title: _SwiftUICore_Text, message?: $SDK5, dismissButton?: (Alert_Button) | null): Alert { return callSDK<Alert>("SwiftUI_bd41a4085ee86f99", 2845509818224491, undefined, [title, message, dismissButton]); }
   /**
    * init(title: Text, message: Text? = nil, primaryButton: Alert.Button, secondaryButton: Alert.Button)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initTitleMessagePrimaryButtonSecondaryButton(title: _SwiftUICore_Text, message: $SDK5, primaryButton: Alert_Button, secondaryButton: Alert_Button): Alert { return callSDK<Alert>("SwiftUI_64b39a05e4a4cebd", 1416466311436614, undefined, [title, message, primaryButton, secondaryButton]); }
+  static initTitleMessagePrimaryButtonSecondaryButton(title: _SwiftUICore_Text, message: $SDK5, primaryButton: Alert_Button, secondaryButton: Alert_Button): Alert { return callSDK<Alert>("SwiftUI_bd41a4085ee86f99", 1416466311436614, undefined, [title, message, primaryButton, secondaryButton]); }
   declare readonly $type: { "s:7SwiftUI5AlertV": true };
 }
 
@@ -614,25 +614,25 @@ export class Alert_Button extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static destructive(label: _SwiftUICore_Text, action?: ((() => void)) | null): Alert_Button { return callSDK<Alert_Button>("SwiftUI_64b39a05e4a4cebd", 1851531597305576, undefined, [label, action], [null,{"callback":{"out":[]}}]); }
+  static destructive(label: _SwiftUICore_Text, action?: ((() => void)) | null): Alert_Button { return callSDK<Alert_Button>("SwiftUI_bd41a4085ee86f99", 1851531597305576, undefined, [label, action], [null,{"callback":{"out":[]}}]); }
   /**
    * static func cancel(_ label: Text, action: (() -> Void)? = {}) -> Alert.Button
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static cancelAction(label: _SwiftUICore_Text, action?: ((() => void)) | null): Alert_Button { return callSDK<Alert_Button>("SwiftUI_64b39a05e4a4cebd", 629705778497476, undefined, [label, action], [null,{"callback":{"out":[]}}]); }
+  static cancelAction(label: _SwiftUICore_Text, action?: ((() => void)) | null): Alert_Button { return callSDK<Alert_Button>("SwiftUI_bd41a4085ee86f99", 629705778497476, undefined, [label, action], [null,{"callback":{"out":[]}}]); }
   /**
    * static func cancel(_ action: (() -> Void)? = {}) -> Alert.Button
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static cancel(action?: ((() => void)) | null): Alert_Button { return callSDK<Alert_Button>("SwiftUI_64b39a05e4a4cebd", 2340830278613532, undefined, [action], [{"callback":{"out":[]}}]); }
+  static cancel(action?: ((() => void)) | null): Alert_Button { return callSDK<Alert_Button>("SwiftUI_bd41a4085ee86f99", 2340830278613532, undefined, [action], [{"callback":{"out":[]}}]); }
   /**
    * static func `default`(_ label: Text, action: (() -> Void)? = {}) -> Alert.Button
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static default(label: _SwiftUICore_Text, action?: ((() => void)) | null): Alert_Button { return callSDK<Alert_Button>("SwiftUI_64b39a05e4a4cebd", 2883443099724215, undefined, [label, action], [null,{"callback":{"out":[]}}]); }
+  static default(label: _SwiftUICore_Text, action?: ((() => void)) | null): Alert_Button { return callSDK<Alert_Button>("SwiftUI_bd41a4085ee86f99", 2883443099724215, undefined, [label, action], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7SwiftUI5AlertV6ButtonV": true };
 }
 
@@ -654,12 +654,12 @@ export class AnimationTimelineSchedule extends SDKHandle {
    * init(minimumInterval: Double? = nil, paused: Bool = false)
    * @availability iOS 15.0+
    */
-  static init(minimumInterval?: (number) | null, paused?: boolean): AnimationTimelineSchedule { return callSDK<AnimationTimelineSchedule>("SwiftUI_64b39a05e4a4cebd", 3156701353749263, undefined, [minimumInterval, paused]); }
+  static init(minimumInterval?: (number) | null, paused?: boolean): AnimationTimelineSchedule { return callSDK<AnimationTimelineSchedule>("SwiftUI_bd41a4085ee86f99", 3156701353749263, undefined, [minimumInterval, paused]); }
   /**
    * func entries(from start: Date, mode: TimelineScheduleMode) -> AnimationTimelineSchedule.Entries
    * @availability iOS 15.0+
    */
-  entries(start: globalThis.Date, mode: _SwiftUICore_TimelineScheduleMode): AnimationTimelineSchedule_Entries { return callSDK<AnimationTimelineSchedule_Entries>("SwiftUI_64b39a05e4a4cebd", 3231733896121084, this, [start, mode]); }
+  entries(start: globalThis.Date, mode: _SwiftUICore_TimelineScheduleMode): AnimationTimelineSchedule_Entries { return callSDK<AnimationTimelineSchedule_Entries>("SwiftUI_bd41a4085ee86f99", 3231733896121084, this, [start, mode]); }
   declare readonly $type: { "s:7SwiftUI25AnimationTimelineScheduleV": true };
 }
 
@@ -672,7 +672,7 @@ export class AnimationTimelineSchedule_Entries extends SDKHandle {
    * mutating func next() -> Date?
    * @availability iOS 15.0+
    */
-  next(): $SDK6 { return callSDK<$SDK6>("SwiftUI_64b39a05e4a4cebd", 2677758567830822, this, []); }
+  next(): $SDK6 { return callSDK<$SDK6>("SwiftUI_bd41a4085ee86f99", 2677758567830822, this, []); }
   declare readonly $type: { "s:7SwiftUI25AnimationTimelineScheduleV7EntriesV": true };
 }
 
@@ -705,18 +705,18 @@ export class AnyScrollTargetBehavior extends SDKHandle {
    * func updateTarget(_ target: inout ScrollTarget, context: AnyScrollTargetBehavior.TargetContext)
    * @availability iOS 18.0+
    */
-  updateTarget(target: _SwiftUICore_ScrollTarget, context: ScrollTargetBehaviorContext): { $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } } { return callSDK<{ $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } }>("SwiftUI_64b39a05e4a4cebd", 2507752049873633, this, [target, context]); }
+  updateTarget(target: _SwiftUICore_ScrollTarget, context: ScrollTargetBehaviorContext): { $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } } { return callSDK<{ $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } }>("SwiftUI_bd41a4085ee86f99", 2507752049873633, this, [target, context]); }
   /**
    * func properties(context: AnyScrollTargetBehavior.PropertiesContext) -> AnyScrollTargetBehavior.Properties
    * @availability iOS 18.4+
    */
-  properties(context: ScrollTargetBehaviorPropertiesContext): ScrollTargetBehaviorProperties { return callSDK<ScrollTargetBehaviorProperties>("SwiftUI_64b39a05e4a4cebd", 4360117217142973, this, [context]); }
+  properties(context: ScrollTargetBehaviorPropertiesContext): ScrollTargetBehaviorProperties { return callSDK<ScrollTargetBehaviorProperties>("SwiftUI_bd41a4085ee86f99", 4360117217142973, this, [context]); }
   /**
    * var base: any ScrollTargetBehavior
    * @availability iOS 18.0+
    */
-  get base(): SDKHandle { return callSDK<SDKHandle>("SwiftUI_64b39a05e4a4cebd", 3745131119517269, this, []); }
-  set base(value: SDKHandle) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2636639667659355, this, [value]); }
+  get base(): SDKHandle { return callSDK<SDKHandle>("SwiftUI_bd41a4085ee86f99", 3745131119517269, this, []); }
+  set base(value: SDKHandle) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2636639667659355, this, [value]); }
   declare readonly $type: { "s:7SwiftUI23AnyScrollTargetBehaviorV": true };
 }
 
@@ -761,93 +761,93 @@ export class AppStorage<Value = unknown> extends SDKHandle {
    * init(wrappedValue: Value, _ key: String, store: UserDefaults? = nil) where Value == URL
    * @availability iOS 14.0+
    */
-  static initWrappedValueStore(wrappedValue: string, key: string, store?: $SDK7): AppStorage<string> { return callSDK<AppStorage<string>>("SwiftUI_64b39a05e4a4cebd", 1437434229989861, undefined, [wrappedValue, key, store]); }
+  static initWrappedValueStore(wrappedValue: string, key: string, store?: $SDK7): AppStorage<string> { return callSDK<AppStorage<string>>("SwiftUI_bd41a4085ee86f99", 1437434229989861, undefined, [wrappedValue, key, store]); }
   /**
    * init(wrappedValue: Value, _ key: String, store: UserDefaults? = nil) where Value == Data
    * @availability iOS 14.0+
    */
-  static initWrappedValueStore76520(wrappedValue: ArrayBuffer, key: string, store?: $SDK7): AppStorage<ArrayBuffer> { return callSDK<AppStorage<ArrayBuffer>>("SwiftUI_64b39a05e4a4cebd", 1532906679899491, undefined, [wrappedValue, key, store]); }
+  static initWrappedValueStore76520(wrappedValue: ArrayBuffer, key: string, store?: $SDK7): AppStorage<ArrayBuffer> { return callSDK<AppStorage<ArrayBuffer>>("SwiftUI_bd41a4085ee86f99", 1532906679899491, undefined, [wrappedValue, key, store]); }
   /**
    * init(wrappedValue: Value, _ key: String, store: UserDefaults? = nil) where Value == Date
    * @availability iOS 18.0+
    */
-  static initWrappedValueStore61228(wrappedValue: globalThis.Date, key: string, store?: $SDK7): AppStorage<globalThis.Date> { return callSDK<AppStorage<globalThis.Date>>("SwiftUI_64b39a05e4a4cebd", 3603385021466916, undefined, [wrappedValue, key, store]); }
+  static initWrappedValueStore61228(wrappedValue: globalThis.Date, key: string, store?: $SDK7): AppStorage<globalThis.Date> { return callSDK<AppStorage<globalThis.Date>>("SwiftUI_bd41a4085ee86f99", 3603385021466916, undefined, [wrappedValue, key, store]); }
   /**
    * init(wrappedValue: Value = ToolbarLabelStyle.automatic, _ key: String, store: UserDefaults? = nil) where Value == ToolbarLabelStyle
    * @availability iOS 18.0+
    */
-  static initWrappedValueStore19462(wrappedValue: ToolbarLabelStyle, key: string, store?: $SDK7): AppStorage<ToolbarLabelStyle> { return callSDK<AppStorage<ToolbarLabelStyle>>("SwiftUI_64b39a05e4a4cebd", 3456476774067681, undefined, [wrappedValue, key, store]); }
+  static initWrappedValueStore19462(wrappedValue: ToolbarLabelStyle, key: string, store?: $SDK7): AppStorage<ToolbarLabelStyle> { return callSDK<AppStorage<ToolbarLabelStyle>>("SwiftUI_bd41a4085ee86f99", 3456476774067681, undefined, [wrappedValue, key, store]); }
   /**
    * init(wrappedValue: Value = TabViewCustomization(), _ key: String, store: UserDefaults? = nil) where Value == TabViewCustomization
    * @availability iOS 18.0+
    */
-  static initWrappedValueStore81153(wrappedValue: TabViewCustomization, key: string, store?: $SDK7): AppStorage<TabViewCustomization> { return callSDK<AppStorage<TabViewCustomization>>("SwiftUI_64b39a05e4a4cebd", 1050772348548822, undefined, [wrappedValue, key, store]); }
+  static initWrappedValueStore81153(wrappedValue: TabViewCustomization, key: string, store?: $SDK7): AppStorage<TabViewCustomization> { return callSDK<AppStorage<TabViewCustomization>>("SwiftUI_bd41a4085ee86f99", 1050772348548822, undefined, [wrappedValue, key, store]); }
   /**
    * init(wrappedValue: Value, _ key: String, store: UserDefaults? = nil) where Value == String
    * @availability iOS 14.0+
    */
-  static initWrappedValueStore47224(wrappedValue: string, key: string, store?: $SDK7): AppStorage<string> { return callSDK<AppStorage<string>>("SwiftUI_64b39a05e4a4cebd", 858338867514920, undefined, [wrappedValue, key, store]); }
+  static initWrappedValueStore47224(wrappedValue: string, key: string, store?: $SDK7): AppStorage<string> { return callSDK<AppStorage<string>>("SwiftUI_bd41a4085ee86f99", 858338867514920, undefined, [wrappedValue, key, store]); }
   /**
    * init(wrappedValue: Value, _ key: String, store: UserDefaults? = nil) where Value == Bool
    * @availability iOS 14.0+
    */
-  static initWrappedValueStore6643(wrappedValue: boolean, key: string, store?: $SDK7): AppStorage<boolean> { return callSDK<AppStorage<boolean>>("SwiftUI_64b39a05e4a4cebd", 1106773224833912, undefined, [wrappedValue, key, store]); }
+  static initWrappedValueStore6643(wrappedValue: boolean, key: string, store?: $SDK7): AppStorage<boolean> { return callSDK<AppStorage<boolean>>("SwiftUI_bd41a4085ee86f99", 1106773224833912, undefined, [wrappedValue, key, store]); }
   /**
    * init(wrappedValue: Value, _ key: String, store: UserDefaults? = nil) where Value == Double
    * @availability iOS 14.0+
    */
-  static initWrappedValueStore28873(wrappedValue: number, key: string, store?: $SDK7): AppStorage<number> { return callSDK<AppStorage<number>>("SwiftUI_64b39a05e4a4cebd", 2758908125984272, undefined, [wrappedValue, key, store]); }
+  static initWrappedValueStore28873(wrappedValue: number, key: string, store?: $SDK7): AppStorage<number> { return callSDK<AppStorage<number>>("SwiftUI_bd41a4085ee86f99", 2758908125984272, undefined, [wrappedValue, key, store]); }
   /**
    * init(wrappedValue: Value, _ key: String, store: UserDefaults? = nil) where Value == Int
    * @availability iOS 14.0+
    */
-  static initWrappedValueStore64522(wrappedValue: number, key: string, store?: $SDK7): AppStorage<number> { return callSDK<AppStorage<number>>("SwiftUI_64b39a05e4a4cebd", 2738688704843001, undefined, [wrappedValue, key, store]); }
+  static initWrappedValueStore64522(wrappedValue: number, key: string, store?: $SDK7): AppStorage<number> { return callSDK<AppStorage<number>>("SwiftUI_bd41a4085ee86f99", 2738688704843001, undefined, [wrappedValue, key, store]); }
   /**
    * var wrappedValue: Value { get nonmutating set }
    * @availability iOS 14.0+
    */
-  get wrappedValue(): unknown { return callSDK<unknown>("SwiftUI_64b39a05e4a4cebd", 1237216805280933, this, []); }
-  set wrappedValue(value: unknown) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3757725531319042, this, [value]); }
+  get wrappedValue(): unknown { return callSDK<unknown>("SwiftUI_bd41a4085ee86f99", 1237216805280933, this, []); }
+  set wrappedValue(value: unknown) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3757725531319042, this, [value]); }
   /**
    * var projectedValue: Binding<Value> { get }
    * @availability iOS 14.0+
    */
-  get projectedValue(): $SDK11 { return callSDK<$SDK11>("SwiftUI_64b39a05e4a4cebd", 3148252660822911, this, []); }
+  get projectedValue(): $SDK11 { return callSDK<$SDK11>("SwiftUI_bd41a4085ee86f99", 3148252660822911, this, []); }
   /**
    * init(_ key: String, store: UserDefaults? = nil) where Value == URL?
    * @availability iOS 14.0+
    */
-  static initStore(key: string, store?: $SDK7): AppStorage<(string) | null> { return callSDK<AppStorage<(string) | null>>("SwiftUI_64b39a05e4a4cebd", 1821867435211832, undefined, [key, store]); }
+  static initStore(key: string, store?: $SDK7): AppStorage<(string) | null> { return callSDK<AppStorage<(string) | null>>("SwiftUI_bd41a4085ee86f99", 1821867435211832, undefined, [key, store]); }
   /**
    * init(_ key: String, store: UserDefaults? = nil) where Value == Data?
    * @availability iOS 14.0+
    */
-  static initStore27961(key: string, store?: $SDK7): AppStorage<(ArrayBuffer) | null> { return callSDK<AppStorage<(ArrayBuffer) | null>>("SwiftUI_64b39a05e4a4cebd", 463511606357805, undefined, [key, store]); }
+  static initStore27961(key: string, store?: $SDK7): AppStorage<(ArrayBuffer) | null> { return callSDK<AppStorage<(ArrayBuffer) | null>>("SwiftUI_bd41a4085ee86f99", 463511606357805, undefined, [key, store]); }
   /**
    * init(_ key: String, store: UserDefaults? = nil) where Value == Date?
    * @availability iOS 18.0+
    */
-  static initStore93821(key: string, store?: $SDK7): AppStorage<(globalThis.Date) | null> { return callSDK<AppStorage<(globalThis.Date) | null>>("SwiftUI_64b39a05e4a4cebd", 735267764574119, undefined, [key, store]); }
+  static initStore93821(key: string, store?: $SDK7): AppStorage<(globalThis.Date) | null> { return callSDK<AppStorage<(globalThis.Date) | null>>("SwiftUI_bd41a4085ee86f99", 735267764574119, undefined, [key, store]); }
   /**
    * init(_ key: String, store: UserDefaults? = nil) where Value == String?
    * @availability iOS 14.0+
    */
-  static initStore81156(key: string, store?: $SDK7): AppStorage<(string) | null> { return callSDK<AppStorage<(string) | null>>("SwiftUI_64b39a05e4a4cebd", 2967058321456383, undefined, [key, store]); }
+  static initStore81156(key: string, store?: $SDK7): AppStorage<(string) | null> { return callSDK<AppStorage<(string) | null>>("SwiftUI_bd41a4085ee86f99", 2967058321456383, undefined, [key, store]); }
   /**
    * init(_ key: String, store: UserDefaults? = nil) where Value == Bool?
    * @availability iOS 14.0+
    */
-  static initStore67225(key: string, store?: $SDK7): AppStorage<(boolean) | null> { return callSDK<AppStorage<(boolean) | null>>("SwiftUI_64b39a05e4a4cebd", 96091573028401, undefined, [key, store]); }
+  static initStore67225(key: string, store?: $SDK7): AppStorage<(boolean) | null> { return callSDK<AppStorage<(boolean) | null>>("SwiftUI_bd41a4085ee86f99", 96091573028401, undefined, [key, store]); }
   /**
    * init(_ key: String, store: UserDefaults? = nil) where Value == Double?
    * @availability iOS 14.0+
    */
-  static initStore8511(key: string, store?: $SDK7): AppStorage<(number) | null> { return callSDK<AppStorage<(number) | null>>("SwiftUI_64b39a05e4a4cebd", 2761433513095628, undefined, [key, store]); }
+  static initStore8511(key: string, store?: $SDK7): AppStorage<(number) | null> { return callSDK<AppStorage<(number) | null>>("SwiftUI_bd41a4085ee86f99", 2761433513095628, undefined, [key, store]); }
   /**
    * init(_ key: String, store: UserDefaults? = nil) where Value == Int?
    * @availability iOS 14.0+
    */
-  static initStore56582(key: string, store?: $SDK7): AppStorage<(number) | null> { return callSDK<AppStorage<(number) | null>>("SwiftUI_64b39a05e4a4cebd", 2650670304984845, undefined, [key, store]); }
+  static initStore56582(key: string, store?: $SDK7): AppStorage<(number) | null> { return callSDK<AppStorage<(number) | null>>("SwiftUI_bd41a4085ee86f99", 2650670304984845, undefined, [key, store]); }
   declare readonly $type: { "s:7SwiftUI10AppStorageV": true };
 }
 
@@ -874,12 +874,12 @@ export class AsyncImage<Content = unknown> extends SDKHandle {
    * nonisolated init(url: URL?, scale: CGFloat = 1) where Content == Image
    * @availability iOS 15.0+
    */
-  static initUrlScale(url?: (string) | null, scale?: number): $SDK17 { return callSDK<$SDK17>("SwiftUI_64b39a05e4a4cebd", 336520817950429, undefined, [url, scale]); }
+  static initUrlScale(url?: (string) | null, scale?: number): $SDK17 { return callSDK<$SDK17>("SwiftUI_bd41a4085ee86f99", 336520817950429, undefined, [url, scale]); }
   /**
    * nonisolated init(request: URLRequest, scale: CGFloat = 1) where Content == Image
    * @availability iOS 27.0+
    */
-  static initRequestScale(request: _Foundation_URLRequest, scale?: number): $SDK17 { return callSDK<$SDK17>("SwiftUI_64b39a05e4a4cebd", 4463754921190941, undefined, [request, scale]); }
+  static initRequestScale(request: _Foundation_URLRequest, scale?: number): $SDK17 { return callSDK<$SDK17>("SwiftUI_bd41a4085ee86f99", 4463754921190941, undefined, [request, scale]); }
   declare readonly $type: { "s:7SwiftUI10AsyncImageV": true };
 }
 
@@ -898,12 +898,12 @@ export class AsyncImagePhase extends SDKHandle {
    * var error: (any Error)? { get }
    * @availability iOS 15.0+
    */
-  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("SwiftUI_64b39a05e4a4cebd", 1256531410969240, this, []); }
+  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("SwiftUI_bd41a4085ee86f99", 1256531410969240, this, []); }
   /**
    * var image: Image? { get }
    * @availability iOS 15.0+
    */
-  get image(): (_SwiftUICore_Image) | null { return callSDK<(_SwiftUICore_Image) | null>("SwiftUI_64b39a05e4a4cebd", 2125222813889031, this, []); }
+  get image(): (_SwiftUICore_Image) | null { return callSDK<(_SwiftUICore_Image) | null>("SwiftUI_bd41a4085ee86f99", 2125222813889031, this, []); }
   declare readonly $type: { "s:7SwiftUI15AsyncImagePhaseO": true };
 }
 
@@ -912,22 +912,22 @@ export class AttributedString extends SDKHandle {
    * init(transferable: AttributedTextFormatting.Transferable, in environment: EnvironmentValues) throws
    * @availability iOS 26.0+
    */
-  static init(transferable: AttributedTextFormatting_Transferable, environment: _SwiftUICore_EnvironmentValues): _Foundation_AttributedString { return callSDK<_Foundation_AttributedString>("SwiftUI_64b39a05e4a4cebd", 4366016727959688, undefined, [transferable, environment]); }
+  static init(transferable: AttributedTextFormatting_Transferable, environment: _SwiftUICore_EnvironmentValues): _Foundation_AttributedString { return callSDK<_Foundation_AttributedString>("SwiftUI_bd41a4085ee86f99", 4366016727959688, undefined, [transferable, environment]); }
   /**
    * mutating func transformAttributes<E>(in selection: inout AttributedTextSelection, body: (inout AttributeContainer) throws(E) -> Void) throws(E) where E : Error
    * @availability iOS 26.0+
    */
-  transformAttributes(selection: AttributedTextSelection, body: ((arg0: _Foundation_AttributeContainer) => void)): { $ret: null; $out: { "selection": AttributedTextSelection } } { return callSDK<{ $ret: null; $out: { "selection": AttributedTextSelection } }>("SwiftUI_64b39a05e4a4cebd", 4342471098088645, this, [selection, body], [null,{"callback":{"out":[]}}], true); }
+  transformAttributes(selection: AttributedTextSelection, body: ((arg0: _Foundation_AttributeContainer) => void)): { $ret: null; $out: { "selection": AttributedTextSelection } } { return callSDK<{ $ret: null; $out: { "selection": AttributedTextSelection } }>("SwiftUI_bd41a4085ee86f99", 4342471098088645, this, [selection, body], [null,{"callback":{"out":[]}}], true); }
   /**
    * mutating func transform<E>(updating selection: inout AttributedTextSelection, body: (inout AttributedString) throws(E) -> Void) throws(E) where E : Error
    * @availability iOS 26.0+
    */
-  transform(selection: AttributedTextSelection, body: ((arg0: _Foundation_AttributedString) => void)): { $ret: null; $out: { "selection": AttributedTextSelection } } { return callSDK<{ $ret: null; $out: { "selection": AttributedTextSelection } }>("SwiftUI_64b39a05e4a4cebd", 2352425711639672, this, [selection, body], [null,{"callback":{"out":[]}}], true); }
+  transform(selection: AttributedTextSelection, body: ((arg0: _Foundation_AttributedString) => void)): { $ret: null; $out: { "selection": AttributedTextSelection } } { return callSDK<{ $ret: null; $out: { "selection": AttributedTextSelection } }>("SwiftUI_bd41a4085ee86f99", 2352425711639672, this, [selection, body], [null,{"callback":{"out":[]}}], true); }
   /**
    * subscript(selection: AttributedTextSelection) -> DiscontiguousAttributedSubstring { get }
    * @availability iOS 26.0+
    */
-  subscript(selection: AttributedTextSelection): _Foundation_DiscontiguousAttributedSubstring { return callSDK<_Foundation_DiscontiguousAttributedSubstring>("SwiftUI_64b39a05e4a4cebd", 1290311629928749, this, [selection]); }
+  subscript(selection: AttributedTextSelection): _Foundation_DiscontiguousAttributedSubstring { return callSDK<_Foundation_DiscontiguousAttributedSubstring>("SwiftUI_bd41a4085ee86f99", 1290311629928749, this, [selection]); }
   declare readonly $type: { "s:10Foundation16AttributedStringV": true };
 }
 
@@ -940,7 +940,7 @@ export class AttributedTextFormatting_Transferable extends SDKHandle {
    * init(text: AttributedString, in environment: EnvironmentValues)
    * @availability iOS 26.0+
    */
-  static init(text: _Foundation_AttributedString, environment: _SwiftUICore_EnvironmentValues): AttributedTextFormatting_Transferable { return callSDK<AttributedTextFormatting_Transferable>("SwiftUI_64b39a05e4a4cebd", 3365697807013105, undefined, [text, environment]); }
+  static init(text: _Foundation_AttributedString, environment: _SwiftUICore_EnvironmentValues): AttributedTextFormatting_Transferable { return callSDK<AttributedTextFormatting_Transferable>("SwiftUI_bd41a4085ee86f99", 3365697807013105, undefined, [text, environment]); }
   declare readonly $type: { "s:7SwiftUI24AttributedTextFormattingOAAE12TransferableV": true };
 }
 
@@ -959,42 +959,42 @@ export class AttributedTextSelection extends SDKHandle {
    * func attributes(in text: AttributedString) -> AttributedTextSelection.Attributes<AttributedString>
    * @availability iOS 26.0+
    */
-  attributes(text: _Foundation_AttributedString): AttributedTextSelection_Attributes<_Foundation_AttributedString> { return callSDK<AttributedTextSelection_Attributes<_Foundation_AttributedString>>("SwiftUI_64b39a05e4a4cebd", 4167817570471293, this, [text]); }
+  attributes(text: _Foundation_AttributedString): AttributedTextSelection_Attributes<_Foundation_AttributedString> { return callSDK<AttributedTextSelection_Attributes<_Foundation_AttributedString>>("SwiftUI_bd41a4085ee86f99", 4167817570471293, this, [text]); }
   /**
    * init(insertionPoint: AttributedString.Index, typingAttributes: AttributeContainer? = nil)
    * @availability iOS 26.0+
    */
-  static initInsertionPointTypingAttributes(insertionPoint: _Foundation_AttributedString_Index, typingAttributes?: (_Foundation_AttributeContainer) | null): AttributedTextSelection { return callSDK<AttributedTextSelection>("SwiftUI_64b39a05e4a4cebd", 2493750986107766, undefined, [insertionPoint, typingAttributes]); }
+  static initInsertionPointTypingAttributes(insertionPoint: _Foundation_AttributedString_Index, typingAttributes?: (_Foundation_AttributeContainer) | null): AttributedTextSelection { return callSDK<AttributedTextSelection>("SwiftUI_bd41a4085ee86f99", 2493750986107766, undefined, [insertionPoint, typingAttributes]); }
   /**
    * func typingAttributes(in text: AttributedString) -> AttributeContainer
    * @availability iOS 26.0+
    */
-  typingAttributes(text: _Foundation_AttributedString): _Foundation_AttributeContainer { return callSDK<_Foundation_AttributeContainer>("SwiftUI_64b39a05e4a4cebd", 3118129844055111, this, [text]); }
+  typingAttributes(text: _Foundation_AttributedString): _Foundation_AttributeContainer { return callSDK<_Foundation_AttributeContainer>("SwiftUI_bd41a4085ee86f99", 3118129844055111, this, [text]); }
   /**
    * init(range: Range<AttributedString.Index>)
    * @availability iOS 26.0+
    */
-  static initRange(range: SDKHandle): AttributedTextSelection { return callSDK<AttributedTextSelection>("SwiftUI_64b39a05e4a4cebd", 2866090572406533, undefined, [range]); }
+  static initRange(range: SDKHandle): AttributedTextSelection { return callSDK<AttributedTextSelection>("SwiftUI_bd41a4085ee86f99", 2866090572406533, undefined, [range]); }
   /**
    * init(ranges: RangeSet<AttributedString.Index>)
    * @availability iOS 26.0+
    */
-  static initRanges(ranges: SDKHandle): AttributedTextSelection { return callSDK<AttributedTextSelection>("SwiftUI_64b39a05e4a4cebd", 1013792541260054, undefined, [ranges]); }
+  static initRanges(ranges: SDKHandle): AttributedTextSelection { return callSDK<AttributedTextSelection>("SwiftUI_bd41a4085ee86f99", 1013792541260054, undefined, [ranges]); }
   /**
    * func indices(in text: AttributedString) -> AttributedTextSelection.Indices
    * @availability iOS 26.0+
    */
-  indices(text: _Foundation_AttributedString): AttributedTextSelection_Indices { return callSDK<AttributedTextSelection_Indices>("SwiftUI_64b39a05e4a4cebd", 3582445374051415, this, [text]); }
+  indices(text: _Foundation_AttributedString): AttributedTextSelection_Indices { return callSDK<AttributedTextSelection_Indices>("SwiftUI_bd41a4085ee86f99", 3582445374051415, this, [text]); }
   /**
    * func affinity(in text: AttributedString) -> TextSelectionAffinity
    * @availability iOS 26.0+
    */
-  affinity(text: _Foundation_AttributedString): TextSelectionAffinity { return callSDK<TextSelectionAffinity>("SwiftUI_64b39a05e4a4cebd", 1524148341693192, this, [text]); }
+  affinity(text: _Foundation_AttributedString): TextSelectionAffinity { return callSDK<TextSelectionAffinity>("SwiftUI_bd41a4085ee86f99", 1524148341693192, this, [text]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): AttributedTextSelection { return callSDK<AttributedTextSelection>("SwiftUI_64b39a05e4a4cebd", 750736027463214, undefined, []); }
+  static init(): AttributedTextSelection { return callSDK<AttributedTextSelection>("SwiftUI_bd41a4085ee86f99", 750736027463214, undefined, []); }
   declare readonly $type: { "s:7SwiftUI23AttributedTextSelectionV": true };
 }
 
@@ -1049,7 +1049,7 @@ export class AutomaticDisclosureGroupStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 16.0+
    */
-  static init(): Promise<AutomaticDisclosureGroupStyle> { return callSDKAsync<AutomaticDisclosureGroupStyle>("SwiftUI_64b39a05e4a4cebd", 547619420487459, undefined, []); }
+  static init(): Promise<AutomaticDisclosureGroupStyle> { return callSDKAsync<AutomaticDisclosureGroupStyle>("SwiftUI_bd41a4085ee86f99", 547619420487459, undefined, []); }
   declare readonly $type: { "s:7SwiftUI29AutomaticDisclosureGroupStyleV": true };
 }
 
@@ -1068,7 +1068,7 @@ export class AutomaticFormStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 16.0+
    */
-  static init(): AutomaticFormStyle { return callSDK<AutomaticFormStyle>("SwiftUI_64b39a05e4a4cebd", 2529556634297068, undefined, []); }
+  static init(): AutomaticFormStyle { return callSDK<AutomaticFormStyle>("SwiftUI_bd41a4085ee86f99", 2529556634297068, undefined, []); }
   declare readonly $type: { "s:7SwiftUI18AutomaticFormStyleV": true };
 }
 
@@ -1087,7 +1087,7 @@ export class AutomaticLabeledContentStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 16.0+
    */
-  static init(): AutomaticLabeledContentStyle { return callSDK<AutomaticLabeledContentStyle>("SwiftUI_64b39a05e4a4cebd", 3120308577725402, undefined, []); }
+  static init(): AutomaticLabeledContentStyle { return callSDK<AutomaticLabeledContentStyle>("SwiftUI_bd41a4085ee86f99", 3120308577725402, undefined, []); }
   declare readonly $type: { "s:7SwiftUI28AutomaticLabeledContentStyleV": true };
 }
 
@@ -1106,7 +1106,7 @@ export class AutomaticNavigationSplitViewStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 16.0+
    */
-  static init(): Promise<AutomaticNavigationSplitViewStyle> { return callSDKAsync<AutomaticNavigationSplitViewStyle>("SwiftUI_64b39a05e4a4cebd", 2627472853628428, undefined, []); }
+  static init(): Promise<AutomaticNavigationSplitViewStyle> { return callSDKAsync<AutomaticNavigationSplitViewStyle>("SwiftUI_bd41a4085ee86f99", 2627472853628428, undefined, []); }
   declare readonly $type: { "s:7SwiftUI33AutomaticNavigationSplitViewStyleV": true };
 }
 
@@ -1133,7 +1133,7 @@ export class AutomaticPresentationSizing extends SDKHandle {
    * func proposedSize(for root: PresentationSizingRoot, context: PresentationSizingContext) -> ProposedViewSize
    * @availability iOS 18.0+
    */
-  proposedSize(root: PresentationSizingRoot, context: PresentationSizingContext): _SwiftUICore_ProposedViewSize { return callSDK<_SwiftUICore_ProposedViewSize>("SwiftUI_64b39a05e4a4cebd", 810384492707840, this, [root, context]); }
+  proposedSize(root: PresentationSizingRoot, context: PresentationSizingContext): _SwiftUICore_ProposedViewSize { return callSDK<_SwiftUICore_ProposedViewSize>("SwiftUI_bd41a4085ee86f99", 810384492707840, this, [root, context]); }
   declare readonly $type: { "s:7SwiftUI27AutomaticPresentationSizingV": true };
 }
 
@@ -1160,12 +1160,12 @@ export class AutomaticTextEditorStyle extends SDKHandle {
    * @MainActor @preconcurrency func makeBody(configuration: AutomaticTextEditorStyle.Configuration) -> AutomaticTextEditorStyle.Body
    * @availability iOS 17.0+
    */
-  makeBody(configuration: TextEditorStyleConfiguration): Promise<AutomaticTextEditorStyle_Body> { return callSDKAsync<AutomaticTextEditorStyle_Body>("SwiftUI_64b39a05e4a4cebd", 3645621634824657, this, [configuration]); }
+  makeBody(configuration: TextEditorStyleConfiguration): Promise<AutomaticTextEditorStyle_Body> { return callSDKAsync<AutomaticTextEditorStyle_Body>("SwiftUI_bd41a4085ee86f99", 3645621634824657, this, [configuration]); }
   /**
    * @MainActor @preconcurrency init()
    * @availability iOS 17.0+
    */
-  static init(): Promise<AutomaticTextEditorStyle> { return callSDKAsync<AutomaticTextEditorStyle>("SwiftUI_64b39a05e4a4cebd", 2045373776236267, undefined, []); }
+  static init(): Promise<AutomaticTextEditorStyle> { return callSDKAsync<AutomaticTextEditorStyle>("SwiftUI_bd41a4085ee86f99", 2045373776236267, undefined, []); }
   declare readonly $type: { "s:7SwiftUI24AutomaticTextEditorStyleV": true };
 }
 
@@ -1192,22 +1192,22 @@ export class BackgroundTask<Request = unknown, Response = unknown> extends SDKHa
    * static func processingTask(_ identifier: String) -> BackgroundTask<Void, Void>
    * @availability iOS 27.0+
    */
-  static processingTask(identifier: string): $SDK23 { return callSDK<$SDK23>("SwiftUI_64b39a05e4a4cebd", 356815963241109, undefined, [identifier]); }
+  static processingTask(identifier: string): $SDK23 { return callSDK<$SDK23>("SwiftUI_bd41a4085ee86f99", 356815963241109, undefined, [identifier]); }
   /**
    * static func appRefresh(_ identifier: String) -> BackgroundTask<Void, Void>
    * @availability iOS 16.0+
    */
-  static appRefresh(identifier: string): $SDK23 { return callSDK<$SDK23>("SwiftUI_64b39a05e4a4cebd", 3570258505549376, undefined, [identifier]); }
+  static appRefresh(identifier: string): $SDK23 { return callSDK<$SDK23>("SwiftUI_bd41a4085ee86f99", 3570258505549376, undefined, [identifier]); }
   /**
    * static var urlSession: BackgroundTask<String, Void> { get }
    * @availability iOS 16.0+
    */
-  static get urlSession(): BackgroundTask<string, void> { return callSDK<BackgroundTask<string, void>>("SwiftUI_64b39a05e4a4cebd", 1002204587640834, undefined, []); }
+  static get urlSession(): BackgroundTask<string, void> { return callSDK<BackgroundTask<string, void>>("SwiftUI_bd41a4085ee86f99", 1002204587640834, undefined, []); }
   /**
    * static func urlSession(_ identifier: String) -> BackgroundTask<Void, Void>
    * @availability iOS 16.0+
    */
-  static urlSession88335(identifier: string): $SDK23 { return callSDK<$SDK23>("SwiftUI_64b39a05e4a4cebd", 3767779374165659, undefined, [identifier]); }
+  static urlSession88335(identifier: string): $SDK23 { return callSDK<$SDK23>("SwiftUI_bd41a4085ee86f99", 3767779374165659, undefined, [identifier]); }
   declare readonly $type: { "s:7SwiftUI14BackgroundTaskV": true };
 }
 
@@ -1220,17 +1220,17 @@ export class BadgeProminence extends SDKHandle {
    * static let standard: BadgeProminence
    * @availability iOS 17.0+
    */
-  static get standard(): BadgeProminence { return callSDK<BadgeProminence>("SwiftUI_64b39a05e4a4cebd", 876220288358687, undefined, []); }
+  static get standard(): BadgeProminence { return callSDK<BadgeProminence>("SwiftUI_bd41a4085ee86f99", 876220288358687, undefined, []); }
   /**
    * static let decreased: BadgeProminence
    * @availability iOS 17.0+
    */
-  static get decreased(): BadgeProminence { return callSDK<BadgeProminence>("SwiftUI_64b39a05e4a4cebd", 3921673793141841, undefined, []); }
+  static get decreased(): BadgeProminence { return callSDK<BadgeProminence>("SwiftUI_bd41a4085ee86f99", 3921673793141841, undefined, []); }
   /**
    * static let increased: BadgeProminence
    * @availability iOS 17.0+
    */
-  static get increased(): BadgeProminence { return callSDK<BadgeProminence>("SwiftUI_64b39a05e4a4cebd", 3719790493985413, undefined, []); }
+  static get increased(): BadgeProminence { return callSDK<BadgeProminence>("SwiftUI_bd41a4085ee86f99", 3719790493985413, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15BadgeProminenceV": true };
 }
 
@@ -1243,7 +1243,7 @@ export class BalancedNavigationSplitViewStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 16.0+
    */
-  static init(): Promise<BalancedNavigationSplitViewStyle> { return callSDKAsync<BalancedNavigationSplitViewStyle>("SwiftUI_64b39a05e4a4cebd", 1453691722530262, undefined, []); }
+  static init(): Promise<BalancedNavigationSplitViewStyle> { return callSDKAsync<BalancedNavigationSplitViewStyle>("SwiftUI_bd41a4085ee86f99", 1453691722530262, undefined, []); }
   declare readonly $type: { "s:7SwiftUI32BalancedNavigationSplitViewStyleV": true };
 }
 
@@ -1262,7 +1262,7 @@ export class BorderedButtonStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 15.0+
    */
-  static init(): BorderedButtonStyle { return callSDK<BorderedButtonStyle>("SwiftUI_64b39a05e4a4cebd", 2284885126329240, undefined, []); }
+  static init(): BorderedButtonStyle { return callSDK<BorderedButtonStyle>("SwiftUI_bd41a4085ee86f99", 2284885126329240, undefined, []); }
   declare readonly $type: { "s:7SwiftUI19BorderedButtonStyleV": true };
 }
 
@@ -1281,7 +1281,7 @@ export class BorderedProminentButtonStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 15.0+
    */
-  static init(): BorderedProminentButtonStyle { return callSDK<BorderedProminentButtonStyle>("SwiftUI_64b39a05e4a4cebd", 39238197352803, undefined, []); }
+  static init(): BorderedProminentButtonStyle { return callSDK<BorderedProminentButtonStyle>("SwiftUI_bd41a4085ee86f99", 39238197352803, undefined, []); }
   declare readonly $type: { "s:7SwiftUI28BorderedProminentButtonStyleV": true };
 }
 
@@ -1300,7 +1300,7 @@ export class BorderedTextFieldStyle extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): BorderedTextFieldStyle { return callSDK<BorderedTextFieldStyle>("SwiftUI_64b39a05e4a4cebd", 105298439874603, undefined, []); }
+  static init(): BorderedTextFieldStyle { return callSDK<BorderedTextFieldStyle>("SwiftUI_bd41a4085ee86f99", 105298439874603, undefined, []); }
   declare readonly $type: { "s:7SwiftUI22BorderedTextFieldStyleV": true };
 }
 
@@ -1315,7 +1315,7 @@ export class BorderlessButtonMenuStyle extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  static init(): BorderlessButtonMenuStyle { return callSDK<BorderlessButtonMenuStyle>("SwiftUI_64b39a05e4a4cebd", 3115940793876874, undefined, []); }
+  static init(): BorderlessButtonMenuStyle { return callSDK<BorderlessButtonMenuStyle>("SwiftUI_bd41a4085ee86f99", 3115940793876874, undefined, []); }
   declare readonly $type: { "s:7SwiftUI25BorderlessButtonMenuStyleV": true };
 }
 
@@ -1335,7 +1335,7 @@ export class BorderlessButtonStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 13.0+
    */
-  static init(): BorderlessButtonStyle { return callSDK<BorderlessButtonStyle>("SwiftUI_64b39a05e4a4cebd", 3606735693341000, undefined, []); }
+  static init(): BorderlessButtonStyle { return callSDK<BorderlessButtonStyle>("SwiftUI_bd41a4085ee86f99", 3606735693341000, undefined, []); }
   declare readonly $type: { "s:7SwiftUI21BorderlessButtonStyleV": true };
 }
 
@@ -1354,42 +1354,42 @@ export class Button<Label = unknown> extends SDKHandle {
    * @preconcurrency nonisolated init(role: ButtonRole, action: @escaping @MainActor () -> Void)
    * @availability iOS 26.0+
    */
-  static initRoleAction(role: ButtonRole, action: (() => void)): Promise<Button<DefaultButtonLabel>> { return callSDKAsync<Button<DefaultButtonLabel>>("SwiftUI_64b39a05e4a4cebd", 2492112616242514, undefined, [role, action], [null,{"callback":{"out":[]}}]); }
+  static initRoleAction(role: ButtonRole, action: (() => void)): Promise<Button<DefaultButtonLabel>> { return callSDKAsync<Button<DefaultButtonLabel>>("SwiftUI_bd41a4085ee86f99", 2492112616242514, undefined, [role, action], [null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated init(_ configuration: PrimitiveButtonStyleConfiguration)
    * @availability iOS 13.0+
    */
-  static init(configuration: PrimitiveButtonStyleConfiguration): Button<PrimitiveButtonStyleConfiguration_Label> { return callSDK<Button<PrimitiveButtonStyleConfiguration_Label>>("SwiftUI_64b39a05e4a4cebd", 2649318809729569, undefined, [configuration]); }
+  static init(configuration: PrimitiveButtonStyleConfiguration): Button<PrimitiveButtonStyleConfiguration_Label> { return callSDK<Button<PrimitiveButtonStyleConfiguration_Label>>("SwiftUI_bd41a4085ee86f99", 2649318809729569, undefined, [configuration]); }
   /**
    * @preconcurrency @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, role: ButtonRole?, action: @escaping @MainActor () -> Void)
    * @availability iOS 16.0+
    */
-  static initRoleAction13932(titleResource: _Foundation_LocalizedStringResource, role: (ButtonRole) | null, action: (() => void)): Promise<$SDK27> { return callSDKAsync<$SDK27>("SwiftUI_64b39a05e4a4cebd", 3442602269180195, undefined, [titleResource, role, action], [null,null,{"callback":{"out":[]}}]); }
+  static initRoleAction13932(titleResource: _Foundation_LocalizedStringResource, role: (ButtonRole) | null, action: (() => void)): Promise<$SDK27> { return callSDKAsync<$SDK27>("SwiftUI_bd41a4085ee86f99", 3442602269180195, undefined, [titleResource, role, action], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency nonisolated init(_ titleKey: LocalizedStringKey, role: ButtonRole?, action: @escaping @MainActor () -> Void)
    * @availability iOS 15.0+
    */
-  static initRoleAction94939(titleKey: _SwiftUICore_LocalizedStringKey, role: (ButtonRole) | null, action: (() => void)): Promise<$SDK27> { return callSDKAsync<$SDK27>("SwiftUI_64b39a05e4a4cebd", 2035516235443481, undefined, [titleKey, role, action], [null,null,{"callback":{"out":[]}}]); }
+  static initRoleAction94939(titleKey: _SwiftUICore_LocalizedStringKey, role: (ButtonRole) | null, action: (() => void)): Promise<$SDK27> { return callSDKAsync<$SDK27>("SwiftUI_bd41a4085ee86f99", 2035516235443481, undefined, [titleKey, role, action], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency nonisolated init<S>(_ title: S, role: ButtonRole?, action: @escaping @MainActor () -> Void) where S : StringProtocol
    * @availability iOS 15.0+
    */
-  static initRoleAction99449(title: string, role: (ButtonRole) | null, action: (() => void)): Promise<$SDK27> { return callSDKAsync<$SDK27>("SwiftUI_64b39a05e4a4cebd", 3572481765315409, undefined, [title, role, action], [null,null,{"callback":{"out":[]}}]); }
+  static initRoleAction99449(title: string, role: (ButtonRole) | null, action: (() => void)): Promise<$SDK27> { return callSDKAsync<$SDK27>("SwiftUI_bd41a4085ee86f99", 3572481765315409, undefined, [title, role, action], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, action: @escaping @MainActor () -> Void)
    * @availability iOS 16.0+
    */
-  static initAction(titleResource: _Foundation_LocalizedStringResource, action: (() => void)): Promise<$SDK27> { return callSDKAsync<$SDK27>("SwiftUI_64b39a05e4a4cebd", 4080507004317836, undefined, [titleResource, action], [null,{"callback":{"out":[]}}]); }
+  static initAction(titleResource: _Foundation_LocalizedStringResource, action: (() => void)): Promise<$SDK27> { return callSDKAsync<$SDK27>("SwiftUI_bd41a4085ee86f99", 4080507004317836, undefined, [titleResource, action], [null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency nonisolated init(_ titleKey: LocalizedStringKey, action: @escaping @MainActor () -> Void)
    * @availability iOS 13.0+
    */
-  static initAction12422(titleKey: _SwiftUICore_LocalizedStringKey, action: (() => void)): Promise<$SDK27> { return callSDKAsync<$SDK27>("SwiftUI_64b39a05e4a4cebd", 414306852413676, undefined, [titleKey, action], [null,{"callback":{"out":[]}}]); }
+  static initAction12422(titleKey: _SwiftUICore_LocalizedStringKey, action: (() => void)): Promise<$SDK27> { return callSDKAsync<$SDK27>("SwiftUI_bd41a4085ee86f99", 414306852413676, undefined, [titleKey, action], [null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency nonisolated init<S>(_ title: S, action: @escaping @MainActor () -> Void) where S : StringProtocol
    * @availability iOS 13.0+
    */
-  static initAction1196(title: string, action: (() => void)): Promise<$SDK27> { return callSDKAsync<$SDK27>("SwiftUI_64b39a05e4a4cebd", 4125129785225212, undefined, [title, action], [null,{"callback":{"out":[]}}]); }
+  static initAction1196(title: string, action: (() => void)): Promise<$SDK27> { return callSDKAsync<$SDK27>("SwiftUI_bd41a4085ee86f99", 4125129785225212, undefined, [title, action], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7SwiftUI6ButtonV": true };
 }
 
@@ -1408,32 +1408,32 @@ export class ButtonBorderShape extends SDKHandle {
    * static func roundedRectangle(radius: CGFloat) -> ButtonBorderShape
    * @availability iOS 15.0+
    */
-  static roundedRectangleRadius(radius: number): ButtonBorderShape { return callSDK<ButtonBorderShape>("SwiftUI_64b39a05e4a4cebd", 837321574100092, undefined, [radius]); }
+  static roundedRectangleRadius(radius: number): ButtonBorderShape { return callSDK<ButtonBorderShape>("SwiftUI_bd41a4085ee86f99", 837321574100092, undefined, [radius]); }
   /**
    * static let roundedRectangle: ButtonBorderShape
    * @availability iOS 15.0+
    */
-  static get roundedRectangle(): ButtonBorderShape { return callSDK<ButtonBorderShape>("SwiftUI_64b39a05e4a4cebd", 3399729698178598, undefined, []); }
+  static get roundedRectangle(): ButtonBorderShape { return callSDK<ButtonBorderShape>("SwiftUI_bd41a4085ee86f99", 3399729698178598, undefined, []); }
   /**
    * nonisolated func path(in rect: CGRect) -> Path
    * @availability iOS 17.0+
    */
-  path(rect: $SDK28): _SwiftUICore_Path { return callSDK<_SwiftUICore_Path>("SwiftUI_64b39a05e4a4cebd", 3551836234636063, this, [rect]); }
+  path(rect: $SDK28): _SwiftUICore_Path { return callSDK<_SwiftUICore_Path>("SwiftUI_bd41a4085ee86f99", 3551836234636063, this, [rect]); }
   /**
    * static let circle: ButtonBorderShape
    * @availability iOS 17.0+
    */
-  static get circle(): ButtonBorderShape { return callSDK<ButtonBorderShape>("SwiftUI_64b39a05e4a4cebd", 1280324216410479, undefined, []); }
+  static get circle(): ButtonBorderShape { return callSDK<ButtonBorderShape>("SwiftUI_bd41a4085ee86f99", 1280324216410479, undefined, []); }
   /**
    * static let capsule: ButtonBorderShape
    * @availability iOS 15.0+
    */
-  static get capsule(): ButtonBorderShape { return callSDK<ButtonBorderShape>("SwiftUI_64b39a05e4a4cebd", 2412617641350405, undefined, []); }
+  static get capsule(): ButtonBorderShape { return callSDK<ButtonBorderShape>("SwiftUI_bd41a4085ee86f99", 2412617641350405, undefined, []); }
   /**
    * static let automatic: ButtonBorderShape
    * @availability iOS 15.0+
    */
-  static get automatic(): ButtonBorderShape { return callSDK<ButtonBorderShape>("SwiftUI_64b39a05e4a4cebd", 4122700321664437, undefined, []); }
+  static get automatic(): ButtonBorderShape { return callSDK<ButtonBorderShape>("SwiftUI_bd41a4085ee86f99", 4122700321664437, undefined, []); }
   declare readonly $type: { "s:7SwiftUI17ButtonBorderShapeV": true };
 }
 
@@ -1464,7 +1464,7 @@ export class ButtonMenuStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 16.0+
    */
-  static init(): ButtonMenuStyle { return callSDK<ButtonMenuStyle>("SwiftUI_64b39a05e4a4cebd", 2507414720089024, undefined, []); }
+  static init(): ButtonMenuStyle { return callSDK<ButtonMenuStyle>("SwiftUI_bd41a4085ee86f99", 2507414720089024, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15ButtonMenuStyleV": true };
 }
 
@@ -1483,17 +1483,17 @@ export class ButtonRepeatBehavior extends SDKHandle {
    * static let enabled: ButtonRepeatBehavior
    * @availability iOS 17.0+
    */
-  static get enabled(): ButtonRepeatBehavior { return callSDK<ButtonRepeatBehavior>("SwiftUI_64b39a05e4a4cebd", 958766714508108, undefined, []); }
+  static get enabled(): ButtonRepeatBehavior { return callSDK<ButtonRepeatBehavior>("SwiftUI_bd41a4085ee86f99", 958766714508108, undefined, []); }
   /**
    * static let disabled: ButtonRepeatBehavior
    * @availability iOS 17.0+
    */
-  static get disabled(): ButtonRepeatBehavior { return callSDK<ButtonRepeatBehavior>("SwiftUI_64b39a05e4a4cebd", 3569732414848917, undefined, []); }
+  static get disabled(): ButtonRepeatBehavior { return callSDK<ButtonRepeatBehavior>("SwiftUI_bd41a4085ee86f99", 3569732414848917, undefined, []); }
   /**
    * static let automatic: ButtonRepeatBehavior
    * @availability iOS 17.0+
    */
-  static get automatic(): ButtonRepeatBehavior { return callSDK<ButtonRepeatBehavior>("SwiftUI_64b39a05e4a4cebd", 1732995044316293, undefined, []); }
+  static get automatic(): ButtonRepeatBehavior { return callSDK<ButtonRepeatBehavior>("SwiftUI_bd41a4085ee86f99", 1732995044316293, undefined, []); }
   declare readonly $type: { "s:7SwiftUI20ButtonRepeatBehaviorV": true };
 }
 
@@ -1506,22 +1506,22 @@ export class ButtonRole extends SDKHandle {
    * static let destructive: ButtonRole
    * @availability iOS 15.0+
    */
-  static get destructive(): ButtonRole { return callSDK<ButtonRole>("SwiftUI_64b39a05e4a4cebd", 53506098188824, undefined, []); }
+  static get destructive(): ButtonRole { return callSDK<ButtonRole>("SwiftUI_bd41a4085ee86f99", 53506098188824, undefined, []); }
   /**
    * static let close: ButtonRole
    * @availability iOS 26.0+
    */
-  static get close(): ButtonRole { return callSDK<ButtonRole>("SwiftUI_64b39a05e4a4cebd", 4333709533780543, undefined, []); }
+  static get close(): ButtonRole { return callSDK<ButtonRole>("SwiftUI_bd41a4085ee86f99", 4333709533780543, undefined, []); }
   /**
    * static let cancel: ButtonRole
    * @availability iOS 15.0+
    */
-  static get cancel(): ButtonRole { return callSDK<ButtonRole>("SwiftUI_64b39a05e4a4cebd", 96641637900488, undefined, []); }
+  static get cancel(): ButtonRole { return callSDK<ButtonRole>("SwiftUI_bd41a4085ee86f99", 96641637900488, undefined, []); }
   /**
    * static let confirm: ButtonRole
    * @availability iOS 26.0+
    */
-  static get confirm(): ButtonRole { return callSDK<ButtonRole>("SwiftUI_64b39a05e4a4cebd", 437738939127236, undefined, []); }
+  static get confirm(): ButtonRole { return callSDK<ButtonRole>("SwiftUI_bd41a4085ee86f99", 437738939127236, undefined, []); }
   declare readonly $type: { "s:7SwiftUI10ButtonRoleV": true };
 }
 
@@ -1552,17 +1552,17 @@ export class ButtonStyleConfiguration extends SDKHandle {
    * let role: ButtonRole?
    * @availability iOS 15.0+
    */
-  get role(): (ButtonRole) | null { return callSDK<(ButtonRole) | null>("SwiftUI_64b39a05e4a4cebd", 4295841868954756, this, []); }
+  get role(): (ButtonRole) | null { return callSDK<(ButtonRole) | null>("SwiftUI_bd41a4085ee86f99", 4295841868954756, this, []); }
   /**
    * let label: ButtonStyleConfiguration.Label
    * @availability iOS 13.0+
    */
-  get label(): ButtonStyleConfiguration_Label { return callSDK<ButtonStyleConfiguration_Label>("SwiftUI_64b39a05e4a4cebd", 3953658562583228, this, []); }
+  get label(): ButtonStyleConfiguration_Label { return callSDK<ButtonStyleConfiguration_Label>("SwiftUI_bd41a4085ee86f99", 3953658562583228, this, []); }
   /**
    * let isPressed: Bool
    * @availability iOS 13.0+
    */
-  get isPressed(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 4378926703648929, this, []); }
+  get isPressed(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 4378926703648929, this, []); }
   declare readonly $type: { "s:7SwiftUI24ButtonStyleConfigurationV": true };
 }
 
@@ -1589,7 +1589,7 @@ export class ButtonToggleStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 15.0+
    */
-  static init(): ButtonToggleStyle { return callSDK<ButtonToggleStyle>("SwiftUI_64b39a05e4a4cebd", 1996483491044610, undefined, []); }
+  static init(): ButtonToggleStyle { return callSDK<ButtonToggleStyle>("SwiftUI_bd41a4085ee86f99", 1996483491044610, undefined, []); }
   declare readonly $type: { "s:7SwiftUI17ButtonToggleStyleV": true };
 }
 
@@ -1623,12 +1623,12 @@ export class CircularProgressViewStyle extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  static initTint(tint: _SwiftUICore_Color): CircularProgressViewStyle { return callSDK<CircularProgressViewStyle>("SwiftUI_64b39a05e4a4cebd", 714384926776206, undefined, [tint]); }
+  static initTint(tint: _SwiftUICore_Color): CircularProgressViewStyle { return callSDK<CircularProgressViewStyle>("SwiftUI_bd41a4085ee86f99", 714384926776206, undefined, [tint]); }
   /**
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): CircularProgressViewStyle { return callSDK<CircularProgressViewStyle>("SwiftUI_64b39a05e4a4cebd", 2575155360787453, undefined, []); }
+  static init(): CircularProgressViewStyle { return callSDK<CircularProgressViewStyle>("SwiftUI_bd41a4085ee86f99", 2575155360787453, undefined, []); }
   declare readonly $type: { "s:7SwiftUI25CircularProgressViewStyleV": true };
 }
 
@@ -1643,13 +1643,13 @@ export class Color extends SDKHandle {
    * init(uiColor: UIColor)
    * @availability iOS 15.0+
    */
-  static initUiColor(uiColor: _UIKit_UIColor): _SwiftUICore_Color { return callSDK<_SwiftUICore_Color>("SwiftUI_64b39a05e4a4cebd", 3294764729136356, undefined, [uiColor]); }
+  static initUiColor(uiColor: _UIKit_UIColor): _SwiftUICore_Color { return callSDK<_SwiftUICore_Color>("SwiftUI_bd41a4085ee86f99", 3294764729136356, undefined, [uiColor]); }
   /**
    * init(_ color: UIColor)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static init(color: _UIKit_UIColor): _SwiftUICore_Color { return callSDK<_SwiftUICore_Color>("SwiftUI_64b39a05e4a4cebd", 132562380462885, undefined, [color]); }
+  static init(color: _UIKit_UIColor): _SwiftUICore_Color { return callSDK<_SwiftUICore_Color>("SwiftUI_bd41a4085ee86f99", 132562380462885, undefined, [color]); }
   declare readonly $type: { "s:7SwiftUI5ColorV": true };
 }
 
@@ -1668,32 +1668,32 @@ export class ColorPicker<Label = unknown> extends SDKHandle {
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, selection: Binding<Color>, supportsOpacity: Bool = true)
    * @availability iOS 16.0+
    */
-  static initSelectionSupportsOpacity(titleResource: _Foundation_LocalizedStringResource, selection: $SDK30, supportsOpacity?: boolean): $SDK29 { return callSDK<$SDK29>("SwiftUI_64b39a05e4a4cebd", 1518912428986823, undefined, [titleResource, selection, supportsOpacity]); }
+  static initSelectionSupportsOpacity(titleResource: _Foundation_LocalizedStringResource, selection: $SDK30, supportsOpacity?: boolean): $SDK29 { return callSDK<$SDK29>("SwiftUI_bd41a4085ee86f99", 1518912428986823, undefined, [titleResource, selection, supportsOpacity]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, selection: Binding<CGColor>, supportsOpacity: Bool = true)
    * @availability iOS 16.0+
    */
-  static initSelectionSupportsOpacity85758(titleResource: _Foundation_LocalizedStringResource, selection: $SDK31, supportsOpacity?: boolean): $SDK29 { return callSDK<$SDK29>("SwiftUI_64b39a05e4a4cebd", 4086103627916329, undefined, [titleResource, selection, supportsOpacity]); }
+  static initSelectionSupportsOpacity85758(titleResource: _Foundation_LocalizedStringResource, selection: $SDK31, supportsOpacity?: boolean): $SDK29 { return callSDK<$SDK29>("SwiftUI_bd41a4085ee86f99", 4086103627916329, undefined, [titleResource, selection, supportsOpacity]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<Color>, supportsOpacity: Bool = true)
    * @availability iOS 14.0+
    */
-  static initSelectionSupportsOpacity99584(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK30, supportsOpacity?: boolean): $SDK29 { return callSDK<$SDK29>("SwiftUI_64b39a05e4a4cebd", 333616259502606, undefined, [titleKey, selection, supportsOpacity]); }
+  static initSelectionSupportsOpacity99584(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK30, supportsOpacity?: boolean): $SDK29 { return callSDK<$SDK29>("SwiftUI_bd41a4085ee86f99", 333616259502606, undefined, [titleKey, selection, supportsOpacity]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<CGColor>, supportsOpacity: Bool = true)
    * @availability iOS 14.0+
    */
-  static initSelectionSupportsOpacity84113(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK31, supportsOpacity?: boolean): $SDK29 { return callSDK<$SDK29>("SwiftUI_64b39a05e4a4cebd", 759156807464850, undefined, [titleKey, selection, supportsOpacity]); }
+  static initSelectionSupportsOpacity84113(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK31, supportsOpacity?: boolean): $SDK29 { return callSDK<$SDK29>("SwiftUI_bd41a4085ee86f99", 759156807464850, undefined, [titleKey, selection, supportsOpacity]); }
   /**
    * nonisolated init<S>(_ title: S, selection: Binding<Color>, supportsOpacity: Bool = true) where S : StringProtocol
    * @availability iOS 14.0+
    */
-  static initSelectionSupportsOpacity54936(title: string, selection: $SDK30, supportsOpacity?: boolean): $SDK29 { return callSDK<$SDK29>("SwiftUI_64b39a05e4a4cebd", 1479934550336869, undefined, [title, selection, supportsOpacity]); }
+  static initSelectionSupportsOpacity54936(title: string, selection: $SDK30, supportsOpacity?: boolean): $SDK29 { return callSDK<$SDK29>("SwiftUI_bd41a4085ee86f99", 1479934550336869, undefined, [title, selection, supportsOpacity]); }
   /**
    * nonisolated init<S>(_ title: S, selection: Binding<CGColor>, supportsOpacity: Bool = true) where S : StringProtocol
    * @availability iOS 14.0+
    */
-  static initSelectionSupportsOpacity18447(title: string, selection: $SDK31, supportsOpacity?: boolean): $SDK29 { return callSDK<$SDK29>("SwiftUI_64b39a05e4a4cebd", 2119650186617718, undefined, [title, selection, supportsOpacity]); }
+  static initSelectionSupportsOpacity18447(title: string, selection: $SDK31, supportsOpacity?: boolean): $SDK29 { return callSDK<$SDK29>("SwiftUI_bd41a4085ee86f99", 2119650186617718, undefined, [title, selection, supportsOpacity]); }
   declare readonly $type: { "s:7SwiftUI11ColorPickerV": true };
 }
 
@@ -1710,7 +1710,7 @@ export const ColorScheme = {
    * init?(_ uiUserInterfaceStyle: UIUserInterfaceStyle)
    * @availability iOS 14.0+
    */
-  init(uiUserInterfaceStyle: _UIKit_UIUserInterfaceStyle): (_SwiftUICore_ColorScheme) | null { return callSDK<(_SwiftUICore_ColorScheme) | null>("SwiftUI_64b39a05e4a4cebd", 3429070220336266, undefined, [uiUserInterfaceStyle]); }
+  init(uiUserInterfaceStyle: _UIKit_UIUserInterfaceStyle): (_SwiftUICore_ColorScheme) | null { return callSDK<(_SwiftUICore_ColorScheme) | null>("SwiftUI_bd41a4085ee86f99", 3429070220336266, undefined, [uiUserInterfaceStyle]); }
 };
 
 export type ColorSchemeContrast = "standard" | "increased";
@@ -1720,7 +1720,7 @@ export const ColorSchemeContrast = {
    * init?(_ uiAccessibilityContrast: UIAccessibilityContrast)
    * @availability iOS 14.0+
    */
-  init(uiAccessibilityContrast: _UIKit_UIAccessibilityContrast): (_SwiftUICore_ColorSchemeContrast) | null { return callSDK<(_SwiftUICore_ColorSchemeContrast) | null>("SwiftUI_64b39a05e4a4cebd", 2733061932341640, undefined, [uiAccessibilityContrast]); }
+  init(uiAccessibilityContrast: _UIKit_UIAccessibilityContrast): (_SwiftUICore_ColorSchemeContrast) | null { return callSDK<(_SwiftUICore_ColorSchemeContrast) | null>("SwiftUI_bd41a4085ee86f99", 2733061932341640, undefined, [uiAccessibilityContrast]); }
 };
 
 /**
@@ -1741,7 +1741,7 @@ export class ColumnsFormStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 16.0+
    */
-  static init(): ColumnsFormStyle { return callSDK<ColumnsFormStyle>("SwiftUI_64b39a05e4a4cebd", 1160017389604356, undefined, []); }
+  static init(): ColumnsFormStyle { return callSDK<ColumnsFormStyle>("SwiftUI_bd41a4085ee86f99", 1160017389604356, undefined, []); }
   declare readonly $type: { "s:7SwiftUI16ColumnsFormStyleV": true };
 }
 
@@ -1774,92 +1774,92 @@ export class CommandGroupPlacement extends SDKHandle {
    * static let pasteboard: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get pasteboard(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 3493872126062153, undefined, []); }
+  static get pasteboard(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 3493872126062153, undefined, []); }
   /**
    * static let windowSize: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get windowSize(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 512662421988287, undefined, []); }
+  static get windowSize(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 512662421988287, undefined, []); }
   /**
    * static let appSettings: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get appSettings(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 756715367795933, undefined, []); }
+  static get appSettings(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 756715367795933, undefined, []); }
   /**
    * static let textEditing: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get textEditing(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 2285038504553020, undefined, []); }
+  static get textEditing(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 2285038504553020, undefined, []); }
   /**
    * static let importExport: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get importExport(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 1909954263854704, undefined, []); }
+  static get importExport(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 1909954263854704, undefined, []); }
   /**
    * static let appVisibility: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get appVisibility(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 898283449840407, undefined, []); }
+  static get appVisibility(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 898283449840407, undefined, []); }
   /**
    * static let appTermination: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get appTermination(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 1048106340986151, undefined, []); }
+  static get appTermination(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 1048106340986151, undefined, []); }
   /**
    * static let systemServices: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get systemServices(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 1061246868120060, undefined, []); }
+  static get systemServices(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 1061246868120060, undefined, []); }
   /**
    * static let textFormatting: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get textFormatting(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 3115701629626091, undefined, []); }
+  static get textFormatting(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 3115701629626091, undefined, []); }
   /**
    * static let windowArrangement: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get windowArrangement(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 865137507850249, undefined, []); }
+  static get windowArrangement(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 865137507850249, undefined, []); }
   /**
    * static let help: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get help(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 3907954961085765, undefined, []); }
+  static get help(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 3907954961085765, undefined, []); }
   /**
    * static let appInfo: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get appInfo(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 3395404156506728, undefined, []); }
+  static get appInfo(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 3395404156506728, undefined, []); }
   /**
    * static let newItem: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get newItem(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 1254941242814637, undefined, []); }
+  static get newItem(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 1254941242814637, undefined, []); }
   /**
    * static let sidebar: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get sidebar(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 245977075691241, undefined, []); }
+  static get sidebar(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 245977075691241, undefined, []); }
   /**
    * static let toolbar: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get toolbar(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 1150115187004591, undefined, []); }
+  static get toolbar(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 1150115187004591, undefined, []); }
   /**
    * static let saveItem: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get saveItem(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 4118279628736332, undefined, []); }
+  static get saveItem(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 4118279628736332, undefined, []); }
   /**
    * static let undoRedo: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get undoRedo(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 1614185566275329, undefined, []); }
+  static get undoRedo(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 1614185566275329, undefined, []); }
   /**
    * static let printItem: CommandGroupPlacement
    * @availability iOS 14.0+
    */
-  static get printItem(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_64b39a05e4a4cebd", 3245393499221284, undefined, []); }
+  static get printItem(): CommandGroupPlacement { return callSDK<CommandGroupPlacement>("SwiftUI_bd41a4085ee86f99", 3245393499221284, undefined, []); }
   declare readonly $type: { "s:7SwiftUI21CommandGroupPlacementV": true };
 }
 
@@ -1894,7 +1894,7 @@ export class CommandsBuilder extends SDKHandle {
    * @export(implementation) static func buildBlock() -> EmptyCommands
    * @availability iOS 14.0+
    */
-  static buildBlock(): EmptyCommands { return callSDK<EmptyCommands>("SwiftUI_64b39a05e4a4cebd", 3881281374559372, undefined, []); }
+  static buildBlock(): EmptyCommands { return callSDK<EmptyCommands>("SwiftUI_bd41a4085ee86f99", 3881281374559372, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15CommandsBuilderV": true };
 }
 
@@ -1907,7 +1907,7 @@ export class CompactDatePickerStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): CompactDatePickerStyle { return callSDK<CompactDatePickerStyle>("SwiftUI_64b39a05e4a4cebd", 4323540274023917, undefined, []); }
+  static init(): CompactDatePickerStyle { return callSDK<CompactDatePickerStyle>("SwiftUI_bd41a4085ee86f99", 4323540274023917, undefined, []); }
   declare readonly $type: { "s:7SwiftUI22CompactDatePickerStyleV": true };
 }
 
@@ -1926,7 +1926,7 @@ export class CompactMenuControlGroupStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 16.4+
    */
-  static init(): CompactMenuControlGroupStyle { return callSDK<CompactMenuControlGroupStyle>("SwiftUI_64b39a05e4a4cebd", 3929170572610644, undefined, []); }
+  static init(): CompactMenuControlGroupStyle { return callSDK<CompactMenuControlGroupStyle>("SwiftUI_bd41a4085ee86f99", 3929170572610644, undefined, []); }
   declare readonly $type: { "s:7SwiftUI28CompactMenuControlGroupStyleV": true };
 }
 
@@ -1945,12 +1945,12 @@ export class ContainerBackgroundPlacement extends SDKHandle {
    * static let navigation: ContainerBackgroundPlacement
    * @availability iOS 18.0+
    */
-  static get navigation(): ContainerBackgroundPlacement { return callSDK<ContainerBackgroundPlacement>("SwiftUI_64b39a05e4a4cebd", 4433374673694858, undefined, []); }
+  static get navigation(): ContainerBackgroundPlacement { return callSDK<ContainerBackgroundPlacement>("SwiftUI_bd41a4085ee86f99", 4433374673694858, undefined, []); }
   /**
    * static let navigationSplitView: ContainerBackgroundPlacement
    * @availability iOS 18.0+
    */
-  static get navigationSplitView(): ContainerBackgroundPlacement { return callSDK<ContainerBackgroundPlacement>("SwiftUI_64b39a05e4a4cebd", 558497916033171, undefined, []); }
+  static get navigationSplitView(): ContainerBackgroundPlacement { return callSDK<ContainerBackgroundPlacement>("SwiftUI_bd41a4085ee86f99", 558497916033171, undefined, []); }
   declare readonly $type: { "s:7SwiftUI28ContainerBackgroundPlacementV": true };
 }
 
@@ -1963,17 +1963,17 @@ export class ContentMarginPlacement extends SDKHandle {
    * static var scrollContent: ContentMarginPlacement { get }
    * @availability iOS 17.0+
    */
-  static get scrollContent(): ContentMarginPlacement { return callSDK<ContentMarginPlacement>("SwiftUI_64b39a05e4a4cebd", 3591067882485970, undefined, []); }
+  static get scrollContent(): ContentMarginPlacement { return callSDK<ContentMarginPlacement>("SwiftUI_bd41a4085ee86f99", 3591067882485970, undefined, []); }
   /**
    * static var scrollIndicators: ContentMarginPlacement { get }
    * @availability iOS 17.0+
    */
-  static get scrollIndicators(): ContentMarginPlacement { return callSDK<ContentMarginPlacement>("SwiftUI_64b39a05e4a4cebd", 3056176765349453, undefined, []); }
+  static get scrollIndicators(): ContentMarginPlacement { return callSDK<ContentMarginPlacement>("SwiftUI_bd41a4085ee86f99", 3056176765349453, undefined, []); }
   /**
    * static var automatic: ContentMarginPlacement { get }
    * @availability iOS 17.0+
    */
-  static get automatic(): ContentMarginPlacement { return callSDK<ContentMarginPlacement>("SwiftUI_64b39a05e4a4cebd", 2758020633631202, undefined, []); }
+  static get automatic(): ContentMarginPlacement { return callSDK<ContentMarginPlacement>("SwiftUI_bd41a4085ee86f99", 2758020633631202, undefined, []); }
   declare readonly $type: { "s:7SwiftUI22ContentMarginPlacementV": true };
 }
 
@@ -1984,7 +1984,7 @@ export const ContentSizeCategory = {
    * init?(_ uiSizeCategory: UIContentSizeCategory)
    * @availability iOS 14.0+
    */
-  init(uiSizeCategory: _UIKit_UIContentSizeCategory): (_SwiftUICore_ContentSizeCategory) | null { return callSDK<(_SwiftUICore_ContentSizeCategory) | null>("SwiftUI_64b39a05e4a4cebd", 1543401247773239, undefined, [uiSizeCategory]); }
+  init(uiSizeCategory: _UIKit_UIContentSizeCategory): (_SwiftUICore_ContentSizeCategory) | null { return callSDK<(_SwiftUICore_ContentSizeCategory) | null>("SwiftUI_bd41a4085ee86f99", 1543401247773239, undefined, [uiSizeCategory]); }
 };
 
 /**
@@ -1996,7 +1996,7 @@ export class ContentToolbarPlacement extends SDKHandle {
    * static let tabViewSidebar: ContentToolbarPlacement
    * @availability iOS 18.4+
    */
-  static get tabViewSidebar(): ContentToolbarPlacement { return callSDK<ContentToolbarPlacement>("SwiftUI_64b39a05e4a4cebd", 1626575288601868, undefined, []); }
+  static get tabViewSidebar(): ContentToolbarPlacement { return callSDK<ContentToolbarPlacement>("SwiftUI_bd41a4085ee86f99", 1626575288601868, undefined, []); }
   declare readonly $type: { "s:7SwiftUI23ContentToolbarPlacementV": true };
 }
 
@@ -2009,12 +2009,12 @@ export class ContentUnavailableView<Label = unknown, Description = unknown, Acti
    * static func search(text: String) -> ContentUnavailableView<Label, Description, Actions>
    * @availability iOS 17.0+
    */
-  static searchText(text: string): $SDK32 { return callSDK<$SDK32>("SwiftUI_64b39a05e4a4cebd", 4170889093857934, undefined, [text]); }
+  static searchText(text: string): $SDK32 { return callSDK<$SDK32>("SwiftUI_bd41a4085ee86f99", 4170889093857934, undefined, [text]); }
   /**
    * static var search: ContentUnavailableView<SearchUnavailableContent.Label, SearchUnavailableContent.Description, SearchUnavailableContent.Actions> { get }
    * @availability iOS 17.0+
    */
-  static get search(): $SDK32 { return callSDK<$SDK32>("SwiftUI_64b39a05e4a4cebd", 1207005116315846, undefined, []); }
+  static get search(): $SDK32 { return callSDK<$SDK32>("SwiftUI_bd41a4085ee86f99", 1207005116315846, undefined, []); }
   declare readonly $type: { "s:7SwiftUI22ContentUnavailableViewV": true };
 }
 
@@ -2042,7 +2042,7 @@ export class ControlGroup<Content = unknown> extends SDKHandle {
    * nonisolated init(_ configuration: ControlGroupStyleConfiguration)
    * @availability iOS 15.0+
    */
-  static init(configuration: ControlGroupStyleConfiguration): ControlGroup<ControlGroupStyleConfiguration_Content> { return callSDK<ControlGroup<ControlGroupStyleConfiguration_Content>>("SwiftUI_64b39a05e4a4cebd", 3039960107302715, undefined, [configuration]); }
+  static init(configuration: ControlGroupStyleConfiguration): ControlGroup<ControlGroupStyleConfiguration_Content> { return callSDK<ControlGroup<ControlGroupStyleConfiguration_Content>>("SwiftUI_bd41a4085ee86f99", 3039960107302715, undefined, [configuration]); }
   declare readonly $type: { "s:7SwiftUI12ControlGroupV": true };
 }
 
@@ -2079,12 +2079,12 @@ export class ControlGroupStyleConfiguration extends SDKHandle {
    * let label: ControlGroupStyleConfiguration.Label
    * @availability iOS 16.0+
    */
-  get label(): ControlGroupStyleConfiguration_Label { return callSDK<ControlGroupStyleConfiguration_Label>("SwiftUI_64b39a05e4a4cebd", 3362164767472937, this, []); }
+  get label(): ControlGroupStyleConfiguration_Label { return callSDK<ControlGroupStyleConfiguration_Label>("SwiftUI_bd41a4085ee86f99", 3362164767472937, this, []); }
   /**
    * let content: ControlGroupStyleConfiguration.Content
    * @availability iOS 15.0+
    */
-  get content(): ControlGroupStyleConfiguration_Content { return callSDK<ControlGroupStyleConfiguration_Content>("SwiftUI_64b39a05e4a4cebd", 4289850366763785, this, []); }
+  get content(): ControlGroupStyleConfiguration_Content { return callSDK<ControlGroupStyleConfiguration_Content>("SwiftUI_bd41a4085ee86f99", 4289850366763785, this, []); }
   declare readonly $type: { "s:7SwiftUI30ControlGroupStyleConfigurationV": true };
 }
 
@@ -2145,7 +2145,7 @@ export class ControlWidgetConfigurationBuilder extends SDKHandle {
    * @export(implementation) static func buildExpression<Content>(_ content: Content) -> Content where Content : ControlWidgetConfiguration
    * @availability iOS 18.0+
    */
-  static buildExpression(content: EmptyControlWidgetConfiguration): EmptyControlWidgetConfiguration { return callSDK<EmptyControlWidgetConfiguration>("SwiftUI_64b39a05e4a4cebd", 2782261023358173, undefined, [content]); }
+  static buildExpression(content: EmptyControlWidgetConfiguration): EmptyControlWidgetConfiguration { return callSDK<EmptyControlWidgetConfiguration>("SwiftUI_bd41a4085ee86f99", 2782261023358173, undefined, [content]); }
   declare readonly $type: { "s:7SwiftUI33ControlWidgetConfigurationBuilderV": true };
 }
 
@@ -2166,7 +2166,7 @@ export class ControlWidgetTemplateBuilder extends SDKHandle {
    * @export(implementation) static func buildExpression<Content>(_ content: Content) -> Content where Content : ControlWidgetTemplate
    * @availability iOS 18.0+
    */
-  static buildExpression(content: EmptyControlWidgetTemplate): EmptyControlWidgetTemplate { return callSDK<EmptyControlWidgetTemplate>("SwiftUI_64b39a05e4a4cebd", 3321994461051996, undefined, [content]); }
+  static buildExpression(content: EmptyControlWidgetTemplate): EmptyControlWidgetTemplate { return callSDK<EmptyControlWidgetTemplate>("SwiftUI_bd41a4085ee86f99", 3321994461051996, undefined, [content]); }
   declare readonly $type: { "s:7SwiftUI28ControlWidgetTemplateBuilderV": true };
 }
 
@@ -2213,62 +2213,62 @@ export class DatePicker<Label = unknown> extends SDKHandle {
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, selection: Binding<Date>, displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date])
    * @availability iOS 16.0+
    */
-  static initSelectionDisplayedComponents(titleResource: _Foundation_LocalizedStringResource, selection: $SDK35, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_64b39a05e4a4cebd", 3438695467744015, undefined, [titleResource, selection, displayedComponents]); }
+  static initSelectionDisplayedComponents(titleResource: _Foundation_LocalizedStringResource, selection: $SDK35, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_bd41a4085ee86f99", 3438695467744015, undefined, [titleResource, selection, displayedComponents]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<Date>, displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date])
    * @availability iOS 13.0+
    */
-  static initSelectionDisplayedComponents73492(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK35, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_64b39a05e4a4cebd", 3346535236428699, undefined, [titleKey, selection, displayedComponents]); }
+  static initSelectionDisplayedComponents73492(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK35, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_bd41a4085ee86f99", 3346535236428699, undefined, [titleKey, selection, displayedComponents]); }
   /**
    * nonisolated init<S>(_ title: S, selection: Binding<Date>, displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date]) where S : StringProtocol
    * @availability iOS 13.0+
    */
-  static initSelectionDisplayedComponents71804(title: string, selection: $SDK35, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_64b39a05e4a4cebd", 738095343291230, undefined, [title, selection, displayedComponents]); }
+  static initSelectionDisplayedComponents71804(title: string, selection: $SDK35, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_bd41a4085ee86f99", 738095343291230, undefined, [title, selection, displayedComponents]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, selection: Binding<Date>, in range: ClosedRange<Date>, displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date])
    * @availability iOS 16.0+
    */
-  static initSelectionInDisplayedComponents(titleResource: _Foundation_LocalizedStringResource, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_64b39a05e4a4cebd", 1121492617277442, undefined, [titleResource, selection, range, displayedComponents]); }
+  static initSelectionInDisplayedComponents(titleResource: _Foundation_LocalizedStringResource, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_bd41a4085ee86f99", 1121492617277442, undefined, [titleResource, selection, range, displayedComponents]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, selection: Binding<Date>, in range: PartialRangeFrom<Date>, displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date])
    * @availability iOS 16.0+
    */
-  static initSelectionInDisplayedComponents56805(titleResource: _Foundation_LocalizedStringResource, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_64b39a05e4a4cebd", 3389179410007174, undefined, [titleResource, selection, range, displayedComponents]); }
+  static initSelectionInDisplayedComponents56805(titleResource: _Foundation_LocalizedStringResource, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_bd41a4085ee86f99", 3389179410007174, undefined, [titleResource, selection, range, displayedComponents]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, selection: Binding<Date>, in range: PartialRangeThrough<Date>, displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date])
    * @availability iOS 16.0+
    */
-  static initSelectionInDisplayedComponents31303(titleResource: _Foundation_LocalizedStringResource, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_64b39a05e4a4cebd", 4200808859703108, undefined, [titleResource, selection, range, displayedComponents]); }
+  static initSelectionInDisplayedComponents31303(titleResource: _Foundation_LocalizedStringResource, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_bd41a4085ee86f99", 4200808859703108, undefined, [titleResource, selection, range, displayedComponents]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<Date>, in range: ClosedRange<Date>, displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date])
    * @availability iOS 13.0+
    */
-  static initSelectionInDisplayedComponents74860(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_64b39a05e4a4cebd", 2047692620188775, undefined, [titleKey, selection, range, displayedComponents]); }
+  static initSelectionInDisplayedComponents74860(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_bd41a4085ee86f99", 2047692620188775, undefined, [titleKey, selection, range, displayedComponents]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<Date>, in range: PartialRangeFrom<Date>, displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date])
    * @availability iOS 13.0+
    */
-  static initSelectionInDisplayedComponents29051(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_64b39a05e4a4cebd", 528212134279823, undefined, [titleKey, selection, range, displayedComponents]); }
+  static initSelectionInDisplayedComponents29051(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_bd41a4085ee86f99", 528212134279823, undefined, [titleKey, selection, range, displayedComponents]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<Date>, in range: PartialRangeThrough<Date>, displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date])
    * @availability iOS 13.0+
    */
-  static initSelectionInDisplayedComponents2613(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_64b39a05e4a4cebd", 1946850679103426, undefined, [titleKey, selection, range, displayedComponents]); }
+  static initSelectionInDisplayedComponents2613(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_bd41a4085ee86f99", 1946850679103426, undefined, [titleKey, selection, range, displayedComponents]); }
   /**
    * nonisolated init<S>(_ title: S, selection: Binding<Date>, in range: ClosedRange<Date>, displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date]) where S : StringProtocol
    * @availability iOS 13.0+
    */
-  static initSelectionInDisplayedComponents27492(title: string, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_64b39a05e4a4cebd", 3838171974733909, undefined, [title, selection, range, displayedComponents]); }
+  static initSelectionInDisplayedComponents27492(title: string, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_bd41a4085ee86f99", 3838171974733909, undefined, [title, selection, range, displayedComponents]); }
   /**
    * nonisolated init<S>(_ title: S, selection: Binding<Date>, in range: PartialRangeFrom<Date>, displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date]) where S : StringProtocol
    * @availability iOS 13.0+
    */
-  static initSelectionInDisplayedComponents37443(title: string, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_64b39a05e4a4cebd", 738856527861906, undefined, [title, selection, range, displayedComponents]); }
+  static initSelectionInDisplayedComponents37443(title: string, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_bd41a4085ee86f99", 738856527861906, undefined, [title, selection, range, displayedComponents]); }
   /**
    * nonisolated init<S>(_ title: S, selection: Binding<Date>, in range: PartialRangeThrough<Date>, displayedComponents: DatePicker<Label>.Components = [.hourAndMinute, .date]) where S : StringProtocol
    * @availability iOS 13.0+
    */
-  static initSelectionInDisplayedComponents34807(title: string, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_64b39a05e4a4cebd", 2259136199541089, undefined, [title, selection, range, displayedComponents]); }
+  static initSelectionInDisplayedComponents34807(title: string, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34 { return callSDK<$SDK34>("SwiftUI_bd41a4085ee86f99", 2259136199541089, undefined, [title, selection, range, displayedComponents]); }
   declare readonly $type: { "s:7SwiftUI10DatePickerV": true };
 }
 
@@ -2295,22 +2295,22 @@ export const DatePickerComponents = {
    * static let hourAndMinute: DatePickerComponents
    * @availability iOS 13.0+
    */
-  get hourAndMinute(): DatePickerComponents { return callSDK<DatePickerComponents>("SwiftUI_64b39a05e4a4cebd", 2004031207421450, undefined, []); },
+  get hourAndMinute(): DatePickerComponents { return callSDK<DatePickerComponents>("SwiftUI_bd41a4085ee86f99", 2004031207421450, undefined, []); },
   /**
    * static let date: DatePickerComponents
    * @availability iOS 13.0+
    */
-  get date(): DatePickerComponents { return callSDK<DatePickerComponents>("SwiftUI_64b39a05e4a4cebd", 879479843144993, undefined, []); },
+  get date(): DatePickerComponents { return callSDK<DatePickerComponents>("SwiftUI_bd41a4085ee86f99", 879479843144993, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): DatePickerComponents { return callSDK<DatePickerComponents>("SwiftUI_64b39a05e4a4cebd", 3894366567237555, undefined, [rawValue]); },
+  init(rawValue: number): DatePickerComponents { return callSDK<DatePickerComponents>("SwiftUI_bd41a4085ee86f99", 3894366567237555, undefined, [rawValue]); },
   /**
    * let rawValue: UInt
    * @availability iOS 13.0+
    */
-  getRawValue($self: DatePickerComponents): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 21036080971104, $self, []); }
+  getRawValue($self: DatePickerComponents): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 21036080971104, $self, []); }
 };
 
 /**
@@ -2358,36 +2358,36 @@ export class DatePickerStyleConfiguration extends SDKHandle {
    * var maximumDate: Date?
    * @availability iOS 16.0+
    */
-  get maximumDate(): $SDK6 { return callSDK<$SDK6>("SwiftUI_64b39a05e4a4cebd", 1050246543895241, this, []); }
-  set maximumDate(value: $SDK6) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 402602097021807, this, [value]); }
+  get maximumDate(): $SDK6 { return callSDK<$SDK6>("SwiftUI_bd41a4085ee86f99", 1050246543895241, this, []); }
+  set maximumDate(value: $SDK6) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 402602097021807, this, [value]); }
   /**
    * var minimumDate: Date?
    * @availability iOS 16.0+
    */
-  get minimumDate(): $SDK6 { return callSDK<$SDK6>("SwiftUI_64b39a05e4a4cebd", 2781969980923090, this, []); }
-  set minimumDate(value: $SDK6) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3978083088490505, this, [value]); }
+  get minimumDate(): $SDK6 { return callSDK<$SDK6>("SwiftUI_bd41a4085ee86f99", 2781969980923090, this, []); }
+  set minimumDate(value: $SDK6) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3978083088490505, this, [value]); }
   /**
    * var $selection: Binding<Date> { get }
    * @availability iOS 16.0+
    */
-  get $selection(): $SDK35 { return callSDK<$SDK35>("SwiftUI_64b39a05e4a4cebd", 1664292253470491, this, []); }
+  get $selection(): $SDK35 { return callSDK<$SDK35>("SwiftUI_bd41a4085ee86f99", 1664292253470491, this, []); }
   /**
    * var displayedComponents: DatePickerComponents
    * @availability iOS 16.0+
    */
-  get displayedComponents(): DatePickerComponents { return callSDK<DatePickerComponents>("SwiftUI_64b39a05e4a4cebd", 1694507005774319, this, []); }
-  set displayedComponents(value: DatePickerComponents) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1740331480812438, this, [value]); }
+  get displayedComponents(): DatePickerComponents { return callSDK<DatePickerComponents>("SwiftUI_bd41a4085ee86f99", 1694507005774319, this, []); }
+  set displayedComponents(value: DatePickerComponents) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1740331480812438, this, [value]); }
   /**
    * let label: DatePickerStyleConfiguration.Label
    * @availability iOS 16.0+
    */
-  get label(): DatePickerStyleConfiguration_Label { return callSDK<DatePickerStyleConfiguration_Label>("SwiftUI_64b39a05e4a4cebd", 1401848736720147, this, []); }
+  get label(): DatePickerStyleConfiguration_Label { return callSDK<DatePickerStyleConfiguration_Label>("SwiftUI_bd41a4085ee86f99", 1401848736720147, this, []); }
   /**
    * @Binding var selection: Date { get nonmutating set }
    * @availability iOS 16.0+
    */
-  get selection(): globalThis.Date { return callSDK<globalThis.Date>("SwiftUI_64b39a05e4a4cebd", 4424368489109988, this, []); }
-  set selection(value: globalThis.Date) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2021452781584479, this, [value]); }
+  get selection(): globalThis.Date { return callSDK<globalThis.Date>("SwiftUI_bd41a4085ee86f99", 4424368489109988, this, []); }
+  set selection(value: globalThis.Date) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2021452781584479, this, [value]); }
   declare readonly $type: { "s:7SwiftUI28DatePickerStyleConfigurationV": true };
 }
 
@@ -2428,7 +2428,7 @@ export class DefaultButtonStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 13.0+
    */
-  static init(): DefaultButtonStyle { return callSDK<DefaultButtonStyle>("SwiftUI_64b39a05e4a4cebd", 4241497196864935, undefined, []); }
+  static init(): DefaultButtonStyle { return callSDK<DefaultButtonStyle>("SwiftUI_bd41a4085ee86f99", 4241497196864935, undefined, []); }
   declare readonly $type: { "s:7SwiftUI18DefaultButtonStyleV": true };
 }
 
@@ -2447,7 +2447,7 @@ export class DefaultDatePickerStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 13.0+
    */
-  static init(): Promise<DefaultDatePickerStyle> { return callSDKAsync<DefaultDatePickerStyle>("SwiftUI_64b39a05e4a4cebd", 3622309194168020, undefined, []); }
+  static init(): Promise<DefaultDatePickerStyle> { return callSDKAsync<DefaultDatePickerStyle>("SwiftUI_bd41a4085ee86f99", 3622309194168020, undefined, []); }
   declare readonly $type: { "s:7SwiftUI22DefaultDatePickerStyleV": true };
 }
 
@@ -2480,7 +2480,7 @@ export class DefaultDocumentGroupLaunchActions extends SDKHandle {
    * nonisolated init()
    * @availability iOS 18.0+
    */
-  static init(): DefaultDocumentGroupLaunchActions { return callSDK<DefaultDocumentGroupLaunchActions>("SwiftUI_64b39a05e4a4cebd", 2186340407468961, undefined, []); }
+  static init(): DefaultDocumentGroupLaunchActions { return callSDK<DefaultDocumentGroupLaunchActions>("SwiftUI_bd41a4085ee86f99", 2186340407468961, undefined, []); }
   declare readonly $type: { "s:7SwiftUI33DefaultDocumentGroupLaunchActionsV": true };
 }
 
@@ -2499,12 +2499,12 @@ export class DefaultFocusEvaluationPriority extends SDKHandle {
    * static let userInitiated: DefaultFocusEvaluationPriority
    * @availability iOS 16.0+
    */
-  static get userInitiated(): DefaultFocusEvaluationPriority { return callSDK<DefaultFocusEvaluationPriority>("SwiftUI_64b39a05e4a4cebd", 3336776728716423, undefined, []); }
+  static get userInitiated(): DefaultFocusEvaluationPriority { return callSDK<DefaultFocusEvaluationPriority>("SwiftUI_bd41a4085ee86f99", 3336776728716423, undefined, []); }
   /**
    * static let automatic: DefaultFocusEvaluationPriority
    * @availability iOS 16.0+
    */
-  static get automatic(): DefaultFocusEvaluationPriority { return callSDK<DefaultFocusEvaluationPriority>("SwiftUI_64b39a05e4a4cebd", 2480117865462385, undefined, []); }
+  static get automatic(): DefaultFocusEvaluationPriority { return callSDK<DefaultFocusEvaluationPriority>("SwiftUI_bd41a4085ee86f99", 2480117865462385, undefined, []); }
   declare readonly $type: { "s:7SwiftUI30DefaultFocusEvaluationPriorityV": true };
 }
 
@@ -2517,7 +2517,7 @@ export class DefaultGaugeStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 16.0+
    */
-  static init(): Promise<DefaultGaugeStyle> { return callSDKAsync<DefaultGaugeStyle>("SwiftUI_64b39a05e4a4cebd", 1715835800243083, undefined, []); }
+  static init(): Promise<DefaultGaugeStyle> { return callSDKAsync<DefaultGaugeStyle>("SwiftUI_bd41a4085ee86f99", 1715835800243083, undefined, []); }
   declare readonly $type: { "s:7SwiftUI17DefaultGaugeStyleV": true };
 }
 
@@ -2536,7 +2536,7 @@ export class DefaultGroupBoxStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): DefaultGroupBoxStyle { return callSDK<DefaultGroupBoxStyle>("SwiftUI_64b39a05e4a4cebd", 3862988602983268, undefined, []); }
+  static init(): DefaultGroupBoxStyle { return callSDK<DefaultGroupBoxStyle>("SwiftUI_bd41a4085ee86f99", 3862988602983268, undefined, []); }
   declare readonly $type: { "s:7SwiftUI20DefaultGroupBoxStyleV": true };
 }
 
@@ -2555,7 +2555,7 @@ export class DefaultLabelStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): DefaultLabelStyle { return callSDK<DefaultLabelStyle>("SwiftUI_64b39a05e4a4cebd", 1800251463053219, undefined, []); }
+  static init(): DefaultLabelStyle { return callSDK<DefaultLabelStyle>("SwiftUI_bd41a4085ee86f99", 1800251463053219, undefined, []); }
   declare readonly $type: { "s:7SwiftUI17DefaultLabelStyleV": true };
 }
 
@@ -2574,7 +2574,7 @@ export class DefaultListStyle extends SDKHandle {
    * init()
    * @availability iOS 13.0+
    */
-  static init(): DefaultListStyle { return callSDK<DefaultListStyle>("SwiftUI_64b39a05e4a4cebd", 3604134885406145, undefined, []); }
+  static init(): DefaultListStyle { return callSDK<DefaultListStyle>("SwiftUI_bd41a4085ee86f99", 3604134885406145, undefined, []); }
   declare readonly $type: { "s:7SwiftUI16DefaultListStyleV": true };
 }
 
@@ -2587,7 +2587,7 @@ export class DefaultMenuStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): DefaultMenuStyle { return callSDK<DefaultMenuStyle>("SwiftUI_64b39a05e4a4cebd", 3717136547657503, undefined, []); }
+  static init(): DefaultMenuStyle { return callSDK<DefaultMenuStyle>("SwiftUI_bd41a4085ee86f99", 3717136547657503, undefined, []); }
   declare readonly $type: { "s:7SwiftUI16DefaultMenuStyleV": true };
 }
 
@@ -2608,7 +2608,7 @@ export class DefaultNavigationViewStyle extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static init(): DefaultNavigationViewStyle { return callSDK<DefaultNavigationViewStyle>("SwiftUI_64b39a05e4a4cebd", 2770827552137642, undefined, []); }
+  static init(): DefaultNavigationViewStyle { return callSDK<DefaultNavigationViewStyle>("SwiftUI_bd41a4085ee86f99", 2770827552137642, undefined, []); }
   declare readonly $type: { "s:7SwiftUI26DefaultNavigationViewStyleV": true };
 }
 
@@ -2635,7 +2635,7 @@ export class DefaultPickerStyle extends SDKHandle {
    * init()
    * @availability iOS 13.0+
    */
-  static init(): DefaultPickerStyle { return callSDK<DefaultPickerStyle>("SwiftUI_64b39a05e4a4cebd", 4170600954214152, undefined, []); }
+  static init(): DefaultPickerStyle { return callSDK<DefaultPickerStyle>("SwiftUI_bd41a4085ee86f99", 4170600954214152, undefined, []); }
   declare readonly $type: { "s:7SwiftUI18DefaultPickerStyleV": true };
 }
 
@@ -2648,7 +2648,7 @@ export class DefaultProgressViewStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): DefaultProgressViewStyle { return callSDK<DefaultProgressViewStyle>("SwiftUI_64b39a05e4a4cebd", 181304990257060, undefined, []); }
+  static init(): DefaultProgressViewStyle { return callSDK<DefaultProgressViewStyle>("SwiftUI_bd41a4085ee86f99", 181304990257060, undefined, []); }
   declare readonly $type: { "s:7SwiftUI24DefaultProgressViewStyleV": true };
 }
 
@@ -2695,7 +2695,7 @@ export class DefaultTabViewStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): DefaultTabViewStyle { return callSDK<DefaultTabViewStyle>("SwiftUI_64b39a05e4a4cebd", 513850211175048, undefined, []); }
+  static init(): DefaultTabViewStyle { return callSDK<DefaultTabViewStyle>("SwiftUI_bd41a4085ee86f99", 513850211175048, undefined, []); }
   declare readonly $type: { "s:7SwiftUI19DefaultTabViewStyleV": true };
 }
 
@@ -2708,7 +2708,7 @@ export class DefaultTextFieldStyle extends SDKHandle {
    * init()
    * @availability iOS 13.0+
    */
-  static init(): DefaultTextFieldStyle { return callSDK<DefaultTextFieldStyle>("SwiftUI_64b39a05e4a4cebd", 3671412482986561, undefined, []); }
+  static init(): DefaultTextFieldStyle { return callSDK<DefaultTextFieldStyle>("SwiftUI_bd41a4085ee86f99", 3671412482986561, undefined, []); }
   declare readonly $type: { "s:7SwiftUI21DefaultTextFieldStyleV": true };
 }
 
@@ -2721,7 +2721,7 @@ export class DefaultToggleStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 13.0+
    */
-  static init(): DefaultToggleStyle { return callSDK<DefaultToggleStyle>("SwiftUI_64b39a05e4a4cebd", 2935698463246937, undefined, []); }
+  static init(): DefaultToggleStyle { return callSDK<DefaultToggleStyle>("SwiftUI_bd41a4085ee86f99", 2935698463246937, undefined, []); }
   declare readonly $type: { "s:7SwiftUI18DefaultToggleStyleV": true };
 }
 
@@ -2740,7 +2740,7 @@ export class DefaultToolbarItem extends SDKHandle {
    * nonisolated init(kind: ToolbarDefaultItemKind, placement: ToolbarItemPlacement = .automatic)
    * @availability iOS 26.0+
    */
-  static init(kind: ToolbarDefaultItemKind, placement?: ToolbarItemPlacement): DefaultToolbarItem { return callSDK<DefaultToolbarItem>("SwiftUI_64b39a05e4a4cebd", 2652061512505733, undefined, [kind, placement]); }
+  static init(kind: ToolbarDefaultItemKind, placement?: ToolbarItemPlacement): DefaultToolbarItem { return callSDK<DefaultToolbarItem>("SwiftUI_bd41a4085ee86f99", 2652061512505733, undefined, [kind, placement]); }
   declare readonly $type: { "s:7SwiftUI18DefaultToolbarItemV": true };
 }
 
@@ -2759,17 +2759,17 @@ export class DialogSeverity extends SDKHandle {
    * static let critical: DialogSeverity
    * @availability iOS 17.0+
    */
-  static get critical(): DialogSeverity { return callSDK<DialogSeverity>("SwiftUI_64b39a05e4a4cebd", 937159423475921, undefined, []); }
+  static get critical(): DialogSeverity { return callSDK<DialogSeverity>("SwiftUI_bd41a4085ee86f99", 937159423475921, undefined, []); }
   /**
    * static let standard: DialogSeverity
    * @availability iOS 17.0+
    */
-  static get standard(): DialogSeverity { return callSDK<DialogSeverity>("SwiftUI_64b39a05e4a4cebd", 2087050220483426, undefined, []); }
+  static get standard(): DialogSeverity { return callSDK<DialogSeverity>("SwiftUI_bd41a4085ee86f99", 2087050220483426, undefined, []); }
   /**
    * static let automatic: DialogSeverity
    * @availability iOS 17.0+
    */
-  static get automatic(): DialogSeverity { return callSDK<DialogSeverity>("SwiftUI_64b39a05e4a4cebd", 4378782932246097, undefined, []); }
+  static get automatic(): DialogSeverity { return callSDK<DialogSeverity>("SwiftUI_bd41a4085ee86f99", 4378782932246097, undefined, []); }
   declare readonly $type: { "s:7SwiftUI14DialogSeverityV": true };
 }
 
@@ -2814,23 +2814,23 @@ export class DisclosureGroupStyleConfiguration extends SDKHandle {
    * @Binding var isExpanded: Bool { get nonmutating set }
    * @availability iOS 16.0+
    */
-  get isExpanded(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 3617952938822132, this, []); }
-  set isExpanded(value: boolean) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2705423230838671, this, [value]); }
+  get isExpanded(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 3617952938822132, this, []); }
+  set isExpanded(value: boolean) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2705423230838671, this, [value]); }
   /**
    * var $isExpanded: Binding<Bool> { get }
    * @availability iOS 16.0+
    */
-  get $isExpanded(): $SDK36 { return callSDK<$SDK36>("SwiftUI_64b39a05e4a4cebd", 2593730893909500, this, []); }
+  get $isExpanded(): $SDK36 { return callSDK<$SDK36>("SwiftUI_bd41a4085ee86f99", 2593730893909500, this, []); }
   /**
    * let label: DisclosureGroupStyleConfiguration.Label
    * @availability iOS 16.0+
    */
-  get label(): DisclosureGroupStyleConfiguration_Label { return callSDK<DisclosureGroupStyleConfiguration_Label>("SwiftUI_64b39a05e4a4cebd", 2670795566619608, this, []); }
+  get label(): DisclosureGroupStyleConfiguration_Label { return callSDK<DisclosureGroupStyleConfiguration_Label>("SwiftUI_bd41a4085ee86f99", 2670795566619608, this, []); }
   /**
    * let content: DisclosureGroupStyleConfiguration.Content
    * @availability iOS 16.0+
    */
-  get content(): DisclosureGroupStyleConfiguration_Content { return callSDK<DisclosureGroupStyleConfiguration_Content>("SwiftUI_64b39a05e4a4cebd", 3736411787324153, this, []); }
+  get content(): DisclosureGroupStyleConfiguration_Content { return callSDK<DisclosureGroupStyleConfiguration_Content>("SwiftUI_bd41a4085ee86f99", 3736411787324153, this, []); }
   declare readonly $type: { "s:7SwiftUI33DisclosureGroupStyleConfigurationV": true };
 }
 
@@ -2891,7 +2891,7 @@ export class DismissAction extends SDKHandle {
    * @MainActor @preconcurrency func callAsFunction()
    * @availability iOS 15.0+
    */
-  callAsFunction(): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 2681340548445208, this, []); }
+  callAsFunction(): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 2681340548445208, this, []); }
   declare readonly $type: { "s:7SwiftUI13DismissActionV": true };
 }
 
@@ -2904,12 +2904,12 @@ export class DismissBehavior extends SDKHandle {
    * static let destructive: DismissBehavior
    * @availability iOS 17.0+
    */
-  static get destructive(): DismissBehavior { return callSDK<DismissBehavior>("SwiftUI_64b39a05e4a4cebd", 3529747103626341, undefined, []); }
+  static get destructive(): DismissBehavior { return callSDK<DismissBehavior>("SwiftUI_bd41a4085ee86f99", 3529747103626341, undefined, []); }
   /**
    * static let interactive: DismissBehavior
    * @availability iOS 17.0+
    */
-  static get interactive(): DismissBehavior { return callSDK<DismissBehavior>("SwiftUI_64b39a05e4a4cebd", 2233943851000786, undefined, []); }
+  static get interactive(): DismissBehavior { return callSDK<DismissBehavior>("SwiftUI_bd41a4085ee86f99", 2233943851000786, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15DismissBehaviorV": true };
 }
 
@@ -2922,7 +2922,7 @@ export class DismissSearchAction extends SDKHandle {
    * @MainActor @preconcurrency func callAsFunction()
    * @availability iOS 15.0+
    */
-  callAsFunction(): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 2822906993247715, this, []); }
+  callAsFunction(): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 2822906993247715, this, []); }
   declare readonly $type: { "s:7SwiftUI19DismissSearchActionV": true };
 }
 
@@ -2935,22 +2935,22 @@ export class DismissWindowAction extends SDKHandle {
    * @MainActor @preconcurrency func callAsFunction<D>(id: String, value: D) where D : Decodable, D : Encodable, D : Hashable
    * @availability iOS 17.0+
    */
-  callAsFunctionIdValue(id: string, value: number): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 4270580368897174, this, [id, value]); }
+  callAsFunctionIdValue(id: string, value: number): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 4270580368897174, this, [id, value]); }
   /**
    * @MainActor @preconcurrency func callAsFunction(id: String)
    * @availability iOS 17.0+
    */
-  callAsFunctionId(id: string): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 3721606626882972, this, [id]); }
+  callAsFunctionId(id: string): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 3721606626882972, this, [id]); }
   /**
    * @MainActor @preconcurrency func callAsFunction<D>(value: D) where D : Decodable, D : Encodable, D : Hashable
    * @availability iOS 17.0+
    */
-  callAsFunctionValue(value: number): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 2056243990728056, this, [value]); }
+  callAsFunctionValue(value: number): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 2056243990728056, this, [value]); }
   /**
    * @MainActor @preconcurrency func callAsFunction()
    * @availability iOS 17.0+
    */
-  callAsFunction(): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 1048015263666443, this, []); }
+  callAsFunction(): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 1048015263666443, this, []); }
   declare readonly $type: { "s:7SwiftUI19DismissWindowActionV": true };
 }
 
@@ -2963,7 +2963,7 @@ export class Divider extends SDKHandle {
    * nonisolated init()
    * @availability iOS 13.0+
    */
-  static init(): Divider { return callSDK<Divider>("SwiftUI_64b39a05e4a4cebd", 4434306366593305, undefined, []); }
+  static init(): Divider { return callSDK<Divider>("SwiftUI_bd41a4085ee86f99", 4434306366593305, undefined, []); }
   declare readonly $type: { "s:7SwiftUI7DividerV": true };
 }
 
@@ -3017,12 +3017,12 @@ export class DocumentConfiguration extends SDKHandle {
    * var isEditable: Bool { get }
    * @availability iOS 17.0+
    */
-  get isEditable(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 3244440837928774, this, []); }
+  get isEditable(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 3244440837928774, this, []); }
   /**
    * var fileURL: URL? { get }
    * @availability iOS 17.0+
    */
-  get fileURL(): (string) | null { return callSDK<(string) | null>("SwiftUI_64b39a05e4a4cebd", 3690045355849368, this, []); }
+  get fileURL(): (string) | null { return callSDK<(string) | null>("SwiftUI_bd41a4085ee86f99", 3690045355849368, this, []); }
   declare readonly $type: { "s:7SwiftUI21DocumentConfigurationV": true };
 }
 
@@ -3035,12 +3035,12 @@ export class DocumentCreationContext extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 4283549501667384, this, []); }
+  get description(): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 4283549501667384, this, []); }
   /**
    * var creationSource: DocumentCreationSource? { get }
    * @availability iOS 27.0+
    */
-  get creationSource(): $SDK37 { return callSDK<$SDK37>("SwiftUI_64b39a05e4a4cebd", 3150225321088553, this, []); }
+  get creationSource(): $SDK37 { return callSDK<$SDK37>("SwiftUI_bd41a4085ee86f99", 3150225321088553, this, []); }
   declare readonly $type: { "s:7SwiftUI23DocumentCreationContextV": true };
 }
 
@@ -3053,7 +3053,7 @@ export class DocumentCreationSource extends SDKHandle {
    * init(id: String)
    * @availability iOS 27.0+
    */
-  static init(id: string): DocumentCreationSource { return callSDK<DocumentCreationSource>("SwiftUI_64b39a05e4a4cebd", 2351264721521670, undefined, [id]); }
+  static init(id: string): DocumentCreationSource { return callSDK<DocumentCreationSource>("SwiftUI_bd41a4085ee86f99", 2351264721521670, undefined, [id]); }
   declare readonly $type: { "s:7SwiftUI22DocumentCreationSourceV": true };
 }
 
@@ -3094,14 +3094,14 @@ export class DocumentLaunchGeometryProxy extends SDKHandle {
    * var titleViewFrame: CGRect
    * @availability iOS 18.0+
    */
-  get titleViewFrame(): $SDK28 { return callSDK<$SDK28>("SwiftUI_64b39a05e4a4cebd", 1614439224565275, this, []); }
-  set titleViewFrame(value: $SDK28) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1928670765947583, this, [value]); }
+  get titleViewFrame(): $SDK28 { return callSDK<$SDK28>("SwiftUI_bd41a4085ee86f99", 1614439224565275, this, []); }
+  set titleViewFrame(value: $SDK28) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1928670765947583, this, [value]); }
   /**
    * var frame: CGRect
    * @availability iOS 18.0+
    */
-  get frame(): $SDK28 { return callSDK<$SDK28>("SwiftUI_64b39a05e4a4cebd", 1382289566864949, this, []); }
-  set frame(value: $SDK28) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1463912333120474, this, [value]); }
+  get frame(): $SDK28 { return callSDK<$SDK28>("SwiftUI_bd41a4085ee86f99", 1382289566864949, this, []); }
+  set frame(value: $SDK28) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1463912333120474, this, [value]); }
   declare readonly $type: { "s:7SwiftUI27DocumentLaunchGeometryProxyV": true };
 }
 
@@ -3128,12 +3128,12 @@ export class DocumentReadConfiguration extends SDKHandle {
    * var contentType: UTType { get }
    * @availability iOS 27.0+
    */
-  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("SwiftUI_64b39a05e4a4cebd", 3579045336748863, this, []); }
+  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("SwiftUI_bd41a4085ee86f99", 3579045336748863, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 3206287158708213, this, []); }
+  get description(): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 3206287158708213, this, []); }
   declare readonly $type: { "s:7SwiftUI25DocumentReadConfigurationV": true };
 }
 
@@ -3158,12 +3158,12 @@ export class DocumentWriteConfiguration extends SDKHandle {
    * var contentType: UTType { get }
    * @availability iOS 27.0+
    */
-  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("SwiftUI_64b39a05e4a4cebd", 3341436345219161, this, []); }
+  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("SwiftUI_bd41a4085ee86f99", 3341436345219161, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 1653821737759046, this, []); }
+  get description(): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 1653821737759046, this, []); }
   declare readonly $type: { "s:7SwiftUI26DocumentWriteConfigurationV": true };
 }
 
@@ -3190,7 +3190,7 @@ export class DoubleColumnNavigationViewStyle extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static init(): DoubleColumnNavigationViewStyle { return callSDK<DoubleColumnNavigationViewStyle>("SwiftUI_64b39a05e4a4cebd", 2536111735632362, undefined, []); }
+  static init(): DoubleColumnNavigationViewStyle { return callSDK<DoubleColumnNavigationViewStyle>("SwiftUI_bd41a4085ee86f99", 2536111735632362, undefined, []); }
   declare readonly $type: { "s:7SwiftUI31DoubleColumnNavigationViewStyleV": true };
 }
 
@@ -3203,29 +3203,29 @@ export class DragConfiguration extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 26.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 2175888549940270, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 2175888549940270, this, []); }
   /**
    * init(operationsWithinApp: DragConfiguration.OperationsWithinApp = .init(), operationsOutsideApp: DragConfiguration.OperationsOutsideApp = .init())
    * @availability iOS 26.0+
    */
-  static initOperationsWithinAppOperationsOutsideApp(operationsWithinApp?: DragConfiguration_OperationsWithinApp, operationsOutsideApp?: DragConfiguration_OperationsOutsideApp): DragConfiguration { return callSDK<DragConfiguration>("SwiftUI_64b39a05e4a4cebd", 3593796414192489, undefined, [operationsWithinApp, operationsOutsideApp]); }
+  static initOperationsWithinAppOperationsOutsideApp(operationsWithinApp?: DragConfiguration_OperationsWithinApp, operationsOutsideApp?: DragConfiguration_OperationsOutsideApp): DragConfiguration { return callSDK<DragConfiguration>("SwiftUI_bd41a4085ee86f99", 3593796414192489, undefined, [operationsWithinApp, operationsOutsideApp]); }
   /**
    * var operationsWithinApp: DragConfiguration.OperationsWithinApp { get set }
    * @availability iOS 26.0+
    */
-  get operationsWithinApp(): DragConfiguration_OperationsWithinApp { return callSDK<DragConfiguration_OperationsWithinApp>("SwiftUI_64b39a05e4a4cebd", 4275396759289121, this, []); }
-  set operationsWithinApp(value: DragConfiguration_OperationsWithinApp) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4047392301141957, this, [value]); }
+  get operationsWithinApp(): DragConfiguration_OperationsWithinApp { return callSDK<DragConfiguration_OperationsWithinApp>("SwiftUI_bd41a4085ee86f99", 4275396759289121, this, []); }
+  set operationsWithinApp(value: DragConfiguration_OperationsWithinApp) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 4047392301141957, this, [value]); }
   /**
    * var operationsOutsideApp: DragConfiguration.OperationsOutsideApp { get set }
    * @availability iOS 26.0+
    */
-  get operationsOutsideApp(): DragConfiguration_OperationsOutsideApp { return callSDK<DragConfiguration_OperationsOutsideApp>("SwiftUI_64b39a05e4a4cebd", 1706172017620648, this, []); }
-  set operationsOutsideApp(value: DragConfiguration_OperationsOutsideApp) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3154319421702614, this, [value]); }
+  get operationsOutsideApp(): DragConfiguration_OperationsOutsideApp { return callSDK<DragConfiguration_OperationsOutsideApp>("SwiftUI_bd41a4085ee86f99", 1706172017620648, this, []); }
+  set operationsOutsideApp(value: DragConfiguration_OperationsOutsideApp) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3154319421702614, this, [value]); }
   /**
    * init(allowMove: Bool)
    * @availability iOS 26.0+
    */
-  static initAllowMove(allowMove: boolean): DragConfiguration { return callSDK<DragConfiguration>("SwiftUI_64b39a05e4a4cebd", 628453580265208, undefined, [allowMove]); }
+  static initAllowMove(allowMove: boolean): DragConfiguration { return callSDK<DragConfiguration>("SwiftUI_bd41a4085ee86f99", 628453580265208, undefined, [allowMove]); }
   declare readonly $type: { "s:7SwiftUI17DragConfigurationV": true };
 }
 
@@ -3238,7 +3238,7 @@ export class DragConfiguration_OperationsOutsideApp extends SDKHandle {
    * init(allowCopy: Bool = true)
    * @availability iOS 26.0+
    */
-  static init(allowCopy?: boolean): DragConfiguration_OperationsOutsideApp { return callSDK<DragConfiguration_OperationsOutsideApp>("SwiftUI_64b39a05e4a4cebd", 684263971708226, undefined, [allowCopy]); }
+  static init(allowCopy?: boolean): DragConfiguration_OperationsOutsideApp { return callSDK<DragConfiguration_OperationsOutsideApp>("SwiftUI_bd41a4085ee86f99", 684263971708226, undefined, [allowCopy]); }
   declare readonly $type: { "s:7SwiftUI17DragConfigurationV20OperationsOutsideAppV": true };
 }
 
@@ -3251,7 +3251,7 @@ export class DragConfiguration_OperationsWithinApp extends SDKHandle {
    * init(allowMove: Bool = false)
    * @availability iOS 26.0+
    */
-  static init(allowMove?: boolean): DragConfiguration_OperationsWithinApp { return callSDK<DragConfiguration_OperationsWithinApp>("SwiftUI_64b39a05e4a4cebd", 3742189741981160, undefined, [allowMove]); }
+  static init(allowMove?: boolean): DragConfiguration_OperationsWithinApp { return callSDK<DragConfiguration_OperationsWithinApp>("SwiftUI_bd41a4085ee86f99", 3742189741981160, undefined, [allowMove]); }
   declare readonly $type: { "s:7SwiftUI17DragConfigurationV19OperationsWithinAppV": true };
 }
 
@@ -3264,20 +3264,20 @@ export class DragGesture extends SDKHandle {
    * @MainActor @preconcurrency var coordinateSpace: CoordinateSpace
    * @availability iOS 13.0+
    */
-  get coordinateSpace(): Promise<_SwiftUICore_CoordinateSpace> { return callSDKAsync<_SwiftUICore_CoordinateSpace>("SwiftUI_64b39a05e4a4cebd", 3432295989941482, this, []); }
-  setCoordinateSpace(value: _SwiftUICore_CoordinateSpace): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 4014195942615155, this, [value]); }
+  get coordinateSpace(): Promise<_SwiftUICore_CoordinateSpace> { return callSDKAsync<_SwiftUICore_CoordinateSpace>("SwiftUI_bd41a4085ee86f99", 3432295989941482, this, []); }
+  setCoordinateSpace(value: _SwiftUICore_CoordinateSpace): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 4014195942615155, this, [value]); }
   /**
    * @MainActor @preconcurrency var minimumDistance: CGFloat
    * @availability iOS 13.0+
    */
-  get minimumDistance(): Promise<number> { return callSDKAsync<number>("SwiftUI_64b39a05e4a4cebd", 1786280795115798, this, []); }
-  setMinimumDistance(value: number): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 1276507868470792, this, [value]); }
+  get minimumDistance(): Promise<number> { return callSDKAsync<number>("SwiftUI_bd41a4085ee86f99", 1786280795115798, this, []); }
+  setMinimumDistance(value: number): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 1276507868470792, this, [value]); }
   /**
    * @MainActor @preconcurrency init(minimumDistance: CGFloat = 10, coordinateSpace: CoordinateSpace = .local)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static init(minimumDistance?: number, coordinateSpace?: _SwiftUICore_CoordinateSpace): Promise<DragGesture> { return callSDKAsync<DragGesture>("SwiftUI_64b39a05e4a4cebd", 35722987918755, undefined, [minimumDistance, coordinateSpace]); }
+  static init(minimumDistance?: number, coordinateSpace?: _SwiftUICore_CoordinateSpace): Promise<DragGesture> { return callSDKAsync<DragGesture>("SwiftUI_bd41a4085ee86f99", 35722987918755, undefined, [minimumDistance, coordinateSpace]); }
   declare readonly $type: { "s:7SwiftUI11DragGestureV": true };
 }
 
@@ -3296,40 +3296,40 @@ export class DragGesture_Value extends SDKHandle {
    * var translation: CGSize { get }
    * @availability iOS 13.0+
    */
-  get translation(): Promise<$SDK38> { return callSDKAsync<$SDK38>("SwiftUI_64b39a05e4a4cebd", 4325759482631115, this, []); }
+  get translation(): Promise<$SDK38> { return callSDKAsync<$SDK38>("SwiftUI_bd41a4085ee86f99", 4325759482631115, this, []); }
   /**
    * var startLocation: CGPoint
    * @availability iOS 13.0+
    */
-  get startLocation(): Promise<$SDK39> { return callSDKAsync<$SDK39>("SwiftUI_64b39a05e4a4cebd", 3232348014975502, this, []); }
-  setStartLocation(value: $SDK39): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 1168962388752356, this, [value]); }
+  get startLocation(): Promise<$SDK39> { return callSDKAsync<$SDK39>("SwiftUI_bd41a4085ee86f99", 3232348014975502, this, []); }
+  setStartLocation(value: $SDK39): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 1168962388752356, this, [value]); }
   /**
    * var predictedEndLocation: CGPoint { get }
    * @availability iOS 13.0+
    */
-  get predictedEndLocation(): Promise<$SDK39> { return callSDKAsync<$SDK39>("SwiftUI_64b39a05e4a4cebd", 2731473553476785, this, []); }
+  get predictedEndLocation(): Promise<$SDK39> { return callSDKAsync<$SDK39>("SwiftUI_bd41a4085ee86f99", 2731473553476785, this, []); }
   /**
    * var predictedEndTranslation: CGSize { get }
    * @availability iOS 13.0+
    */
-  get predictedEndTranslation(): Promise<$SDK38> { return callSDKAsync<$SDK38>("SwiftUI_64b39a05e4a4cebd", 4385517761875921, this, []); }
+  get predictedEndTranslation(): Promise<$SDK38> { return callSDKAsync<$SDK38>("SwiftUI_bd41a4085ee86f99", 4385517761875921, this, []); }
   /**
    * var time: Date
    * @availability iOS 13.0+
    */
-  get time(): Promise<globalThis.Date> { return callSDKAsync<globalThis.Date>("SwiftUI_64b39a05e4a4cebd", 4099802746041367, this, []); }
-  setTime(value: globalThis.Date): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 1133087808344353, this, [value]); }
+  get time(): Promise<globalThis.Date> { return callSDKAsync<globalThis.Date>("SwiftUI_bd41a4085ee86f99", 4099802746041367, this, []); }
+  setTime(value: globalThis.Date): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 1133087808344353, this, [value]); }
   /**
    * var location: CGPoint
    * @availability iOS 13.0+
    */
-  get location(): Promise<$SDK39> { return callSDKAsync<$SDK39>("SwiftUI_64b39a05e4a4cebd", 1838071111623242, this, []); }
-  setLocation(value: $SDK39): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 447127709398871, this, [value]); }
+  get location(): Promise<$SDK39> { return callSDKAsync<$SDK39>("SwiftUI_bd41a4085ee86f99", 1838071111623242, this, []); }
+  setLocation(value: $SDK39): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 447127709398871, this, [value]); }
   /**
    * @export(implementation) var velocity: CGSize { get }
    * @availability iOS 13.0+
    */
-  get velocity(): Promise<$SDK38> { return callSDKAsync<$SDK38>("SwiftUI_64b39a05e4a4cebd", 1853124209261442, this, []); }
+  get velocity(): Promise<$SDK38> { return callSDKAsync<$SDK38>("SwiftUI_bd41a4085ee86f99", 1853124209261442, this, []); }
   declare readonly $type: { "s:7SwiftUI11DragGestureV5ValueV": true };
 }
 
@@ -3342,28 +3342,28 @@ export class DragSession extends SDKHandle {
    * func draggedItemIDs<ItemID>(for type: ItemID.Type) -> [ItemID] where ItemID : Hashable
    * @availability iOS 26.0+
    */
-  draggedItemIDs(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): Array<unknown> { return callSDK<Array<unknown>>("SwiftUI_64b39a05e4a4cebd", 2808160344507022, this, [type]); }
+  draggedItemIDs(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): Array<unknown> { return callSDK<Array<unknown>>("SwiftUI_bd41a4085ee86f99", 2808160344507022, this, [type]); }
   /**
    * var draggedItemIndex: Int { get }
    * @availability iOS 26.0+
    */
-  get draggedItemIndex(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 796809434346710, this, []); }
+  get draggedItemIndex(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 796809434346710, this, []); }
   /**
    * var id: DragSession.ID { get }
    * @availability iOS 26.0+
    */
-  get id(): DragSession_ID { return callSDK<DragSession_ID>("SwiftUI_64b39a05e4a4cebd", 1910945574805084, this, []); }
+  get id(): DragSession_ID { return callSDK<DragSession_ID>("SwiftUI_bd41a4085ee86f99", 1910945574805084, this, []); }
   /**
    * var phase: DragSession.Phase { get }
    * @availability iOS 26.0+
    */
-  get phase(): DragSession_Phase { return callSDK<DragSession_Phase>("SwiftUI_64b39a05e4a4cebd", 444250713122883, this, []); }
+  get phase(): DragSession_Phase { return callSDK<DragSession_Phase>("SwiftUI_bd41a4085ee86f99", 444250713122883, this, []); }
   /**
    * var location: CGPoint
    * @availability iOS 26.0+
    */
-  get location(): $SDK39 { return callSDK<$SDK39>("SwiftUI_64b39a05e4a4cebd", 2546771735678672, this, []); }
-  set location(value: $SDK39) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1179496664243038, this, [value]); }
+  get location(): $SDK39 { return callSDK<$SDK39>("SwiftUI_bd41a4085ee86f99", 2546771735678672, this, []); }
+  set location(value: $SDK39) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1179496664243038, this, [value]); }
   declare readonly $type: { "s:7SwiftUI11DragSessionV": true };
 }
 
@@ -3376,12 +3376,12 @@ export class DragSession_ID extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 26.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 4478246348302712, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 4478246348302712, this, []); }
   /**
    * func matches(_ dragSession: any UIDragSession) -> Bool
    * @availability iOS 26.0+
    */
-  matches(dragSession: SDKHandle): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 2133287957377209, this, [dragSession]); }
+  matches(dragSession: SDKHandle): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 2133287957377209, this, [dragSession]); }
   declare readonly $type: { "s:7SwiftUI11DragSessionV2IDV": true };
 }
 
@@ -3394,7 +3394,7 @@ export class DragSession_Phase extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 3786893992273559, this, []); }
+  get description(): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 3786893992273559, this, []); }
   declare readonly $type: { "s:7SwiftUI11DragSessionV5PhaseO": true };
 }
 
@@ -3407,12 +3407,12 @@ export class DropConfiguration extends SDKHandle {
    * var operation: DropOperation { get }
    * @availability iOS 26.0+
    */
-  get operation(): DropOperation { return callSDK<DropOperation>("SwiftUI_64b39a05e4a4cebd", 4385580682610794, this, []); }
+  get operation(): DropOperation { return callSDK<DropOperation>("SwiftUI_bd41a4085ee86f99", 4385580682610794, this, []); }
   /**
    * init(operation: DropOperation)
    * @availability iOS 26.0+
    */
-  static init(operation: DropOperation): DropConfiguration { return callSDK<DropConfiguration>("SwiftUI_64b39a05e4a4cebd", 2783156041855396, undefined, [operation]); }
+  static init(operation: DropOperation): DropConfiguration { return callSDK<DropConfiguration>("SwiftUI_bd41a4085ee86f99", 2783156041855396, undefined, [operation]); }
   declare readonly $type: { "s:7SwiftUI17DropConfigurationV": true };
 }
 
@@ -3457,29 +3457,29 @@ export class DropInfo extends SDKHandle {
    * func itemProviders(for contentTypes: [UTType]) -> [NSItemProvider]
    * @availability iOS 14.0+
    */
-  itemProvidersFor(contentTypes: $SDK41): $SDK40 { return callSDK<$SDK40>("SwiftUI_64b39a05e4a4cebd", 2009223509183017, this, [contentTypes]); }
+  itemProvidersFor(contentTypes: $SDK41): $SDK40 { return callSDK<$SDK40>("SwiftUI_bd41a4085ee86f99", 2009223509183017, this, [contentTypes]); }
   /**
    * func itemProviders(for types: [String]) -> [NSItemProvider]
    * @availability iOS 13.4+
    * @deprecated iOS 100000.0
    */
-  itemProvidersFor92542(types: Array<string>): $SDK40 { return callSDK<$SDK40>("SwiftUI_64b39a05e4a4cebd", 915283616149666, this, [types]); }
+  itemProvidersFor92542(types: Array<string>): $SDK40 { return callSDK<$SDK40>("SwiftUI_bd41a4085ee86f99", 915283616149666, this, [types]); }
   /**
    * func hasItemsConforming(to contentTypes: [UTType]) -> Bool
    * @availability iOS 14.0+
    */
-  hasItemsConformingTo(contentTypes: $SDK41): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 4044350647754887, this, [contentTypes]); }
+  hasItemsConformingTo(contentTypes: $SDK41): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 4044350647754887, this, [contentTypes]); }
   /**
    * func hasItemsConforming(to types: [String]) -> Bool
    * @availability iOS 13.4+
    * @deprecated iOS 100000.0
    */
-  hasItemsConformingTo4243(types: Array<string>): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 2583188463398385, this, [types]); }
+  hasItemsConformingTo4243(types: Array<string>): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 2583188463398385, this, [types]); }
   /**
    * var location: CGPoint { get }
    * @availability iOS 13.4+
    */
-  get location(): $SDK39 { return callSDK<$SDK39>("SwiftUI_64b39a05e4a4cebd", 3715910434575027, this, []); }
+  get location(): $SDK39 { return callSDK<$SDK39>("SwiftUI_bd41a4085ee86f99", 3715910434575027, this, []); }
   declare readonly $type: { "s:7SwiftUI8DropInfoV": true };
 }
 
@@ -3500,37 +3500,37 @@ export const DropOperation_Set = {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  getDescription($self: DropOperation_Set): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 3818648899053528, $self, []); },
+  getDescription($self: DropOperation_Set): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 3818648899053528, $self, []); },
   /**
    * static let copy: DropOperation.Set
    * @availability iOS 26.0+
    */
-  get copy(): DropOperation_Set { return callSDK<DropOperation_Set>("SwiftUI_64b39a05e4a4cebd", 3844324408890741, undefined, []); },
+  get copy(): DropOperation_Set { return callSDK<DropOperation_Set>("SwiftUI_bd41a4085ee86f99", 3844324408890741, undefined, []); },
   /**
    * static let move: DropOperation.Set
    * @availability iOS 26.0+
    */
-  get move(): DropOperation_Set { return callSDK<DropOperation_Set>("SwiftUI_64b39a05e4a4cebd", 1166941941091947, undefined, []); },
+  get move(): DropOperation_Set { return callSDK<DropOperation_Set>("SwiftUI_bd41a4085ee86f99", 1166941941091947, undefined, []); },
   /**
    * static let cancel: DropOperation.Set
    * @availability iOS 26.0+
    */
-  get cancel(): DropOperation_Set { return callSDK<DropOperation_Set>("SwiftUI_64b39a05e4a4cebd", 302176864669007, undefined, []); },
+  get cancel(): DropOperation_Set { return callSDK<DropOperation_Set>("SwiftUI_bd41a4085ee86f99", 302176864669007, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): DropOperation_Set { return callSDK<DropOperation_Set>("SwiftUI_64b39a05e4a4cebd", 1387382606139373, undefined, [rawValue]); },
+  init(rawValue: number): DropOperation_Set { return callSDK<DropOperation_Set>("SwiftUI_bd41a4085ee86f99", 1387382606139373, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 26.0+
    */
-  getRawValue($self: DropOperation_Set): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 3825410203420004, $self, []); },
+  getRawValue($self: DropOperation_Set): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 3825410203420004, $self, []); },
   /**
    * static let forbidden: DropOperation.Set
    * @availability iOS 26.0+
    */
-  get forbidden(): DropOperation_Set { return callSDK<DropOperation_Set>("SwiftUI_64b39a05e4a4cebd", 2534302734253806, undefined, []); }
+  get forbidden(): DropOperation_Set { return callSDK<DropOperation_Set>("SwiftUI_bd41a4085ee86f99", 2534302734253806, undefined, []); }
 };
 
 /**
@@ -3560,27 +3560,27 @@ export class DropProposal extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 26.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 3699322675070830, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 3699322675070830, this, []); }
   /**
    * init(withinApplication: DropOperation, outsideApplication: DropOperation)
    * @availability iOS 26.0+
    */
-  static initWithinApplicationOutsideApplication(withinApplication: DropOperation, outsideApplication: DropOperation): DropProposal { return callSDK<DropProposal>("SwiftUI_64b39a05e4a4cebd", 1717118657352755, undefined, [withinApplication, outsideApplication]); }
+  static initWithinApplicationOutsideApplication(withinApplication: DropOperation, outsideApplication: DropOperation): DropProposal { return callSDK<DropProposal>("SwiftUI_bd41a4085ee86f99", 1717118657352755, undefined, [withinApplication, outsideApplication]); }
   /**
    * let operationOutsideApplication: DropOperation?
    * @availability iOS 26.0+
    */
-  get operationOutsideApplication(): (DropOperation) | null { return callSDK<(DropOperation) | null>("SwiftUI_64b39a05e4a4cebd", 55403407245520, this, []); }
+  get operationOutsideApplication(): (DropOperation) | null { return callSDK<(DropOperation) | null>("SwiftUI_bd41a4085ee86f99", 55403407245520, this, []); }
   /**
    * let operation: DropOperation
    * @availability iOS 13.4+
    */
-  get operation(): DropOperation { return callSDK<DropOperation>("SwiftUI_64b39a05e4a4cebd", 14981510213824, this, []); }
+  get operation(): DropOperation { return callSDK<DropOperation>("SwiftUI_bd41a4085ee86f99", 14981510213824, this, []); }
   /**
    * init(operation: DropOperation)
    * @availability iOS 13.4+
    */
-  static initOperation(operation: DropOperation): DropProposal { return callSDK<DropProposal>("SwiftUI_64b39a05e4a4cebd", 2743908189783640, undefined, [operation]); }
+  static initOperation(operation: DropOperation): DropProposal { return callSDK<DropProposal>("SwiftUI_bd41a4085ee86f99", 2743908189783640, undefined, [operation]); }
   declare readonly $type: { "s:7SwiftUI12DropProposalV": true };
 }
 
@@ -3593,47 +3593,47 @@ export class DropSession extends SDKHandle {
    * var localSession: DropSession.LocalSession?
    * @availability iOS 26.0+
    */
-  get localSession(): $SDK42 { return callSDK<$SDK42>("SwiftUI_64b39a05e4a4cebd", 525046771298440, this, []); }
-  set localSession(value: $SDK42) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1701819625880990, this, [value]); }
+  get localSession(): $SDK42 { return callSDK<$SDK42>("SwiftUI_bd41a4085ee86f99", 525046771298440, this, []); }
+  set localSession(value: $SDK42) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1701819625880990, this, [value]); }
   /**
    * var itemsCount: Int
    * @availability iOS 26.0+
    */
-  get itemsCount(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 4132899347489075, this, []); }
-  set itemsCount(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2073946900371057, this, [value]); }
+  get itemsCount(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 4132899347489075, this, []); }
+  set itemsCount(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2073946900371057, this, [value]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 26.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 2115083211698231, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 2115083211698231, this, []); }
   /**
    * var suggestedOperations: DropOperation.Set
    * @availability iOS 26.0+
    */
-  get suggestedOperations(): DropOperation_Set { return callSDK<DropOperation_Set>("SwiftUI_64b39a05e4a4cebd", 3442492454350535, this, []); }
-  set suggestedOperations(value: DropOperation_Set) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 435709271450462, this, [value]); }
+  get suggestedOperations(): DropOperation_Set { return callSDK<DropOperation_Set>("SwiftUI_bd41a4085ee86f99", 3442492454350535, this, []); }
+  set suggestedOperations(value: DropOperation_Set) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 435709271450462, this, [value]); }
   /**
    * var id: DropSession.ID { get }
    * @availability iOS 26.0+
    */
-  get id(): DropSession_ID { return callSDK<DropSession_ID>("SwiftUI_64b39a05e4a4cebd", 2683456681539343, this, []); }
+  get id(): DropSession_ID { return callSDK<DropSession_ID>("SwiftUI_bd41a4085ee86f99", 2683456681539343, this, []); }
   /**
    * var size: CGSize
    * @availability iOS 26.0+
    */
-  get size(): $SDK38 { return callSDK<$SDK38>("SwiftUI_64b39a05e4a4cebd", 439480532688527, this, []); }
-  set size(value: $SDK38) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3737172963099560, this, [value]); }
+  get size(): $SDK38 { return callSDK<$SDK38>("SwiftUI_bd41a4085ee86f99", 439480532688527, this, []); }
+  set size(value: $SDK38) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3737172963099560, this, [value]); }
   /**
    * var phase: DropSession.Phase { get }
    * @availability iOS 26.0+
    */
-  get phase(): DropSession_Phase { return callSDK<DropSession_Phase>("SwiftUI_64b39a05e4a4cebd", 3537056248243355, this, []); }
+  get phase(): DropSession_Phase { return callSDK<DropSession_Phase>("SwiftUI_bd41a4085ee86f99", 3537056248243355, this, []); }
   /**
    * var location: CGPoint
    * @availability iOS 26.0+
    */
-  get location(): $SDK39 { return callSDK<$SDK39>("SwiftUI_64b39a05e4a4cebd", 417461604680900, this, []); }
-  set location(value: $SDK39) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3500556237727294, this, [value]); }
+  get location(): $SDK39 { return callSDK<$SDK39>("SwiftUI_bd41a4085ee86f99", 417461604680900, this, []); }
+  set location(value: $SDK39) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3500556237727294, this, [value]); }
   declare readonly $type: { "s:7SwiftUI11DropSessionV": true };
 }
 
@@ -3646,12 +3646,12 @@ export class DropSession_ID extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 2513871036070514, this, []); }
+  get description(): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 2513871036070514, this, []); }
   /**
    * func matches(_ dropSession: any UIDropSession) -> Bool
    * @availability iOS 26.0+
    */
-  matches(dropSession: SDKHandle): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 916693553465104, this, [dropSession]); }
+  matches(dropSession: SDKHandle): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 916693553465104, this, [dropSession]); }
   declare readonly $type: { "s:7SwiftUI11DropSessionV2IDV": true };
 }
 
@@ -3664,7 +3664,7 @@ export class DropSession_LocalSession extends SDKHandle {
    * func draggedItemIDs<ItemID>(for type: ItemID.Type) -> [ItemID] where ItemID : Hashable
    * @availability iOS 26.0+
    */
-  draggedItemIDs(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): Array<unknown> { return callSDK<Array<unknown>>("SwiftUI_64b39a05e4a4cebd", 226614065282517, this, [type]); }
+  draggedItemIDs(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): Array<unknown> { return callSDK<Array<unknown>>("SwiftUI_bd41a4085ee86f99", 226614065282517, this, [type]); }
   declare readonly $type: { "s:7SwiftUI11DropSessionV05LocalD0V": true };
 }
 
@@ -3677,7 +3677,7 @@ export class DropSession_Phase extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 2965370457312635, this, []); }
+  get description(): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 2965370457312635, this, []); }
   declare readonly $type: { "s:7SwiftUI11DropSessionV5PhaseO": true };
 }
 
@@ -3696,7 +3696,7 @@ export const DynamicTypeSize = {
    * init?(_ uiSizeCategory: UIContentSizeCategory)
    * @availability iOS 15.0+
    */
-  init(uiSizeCategory: _UIKit_UIContentSizeCategory): (_SwiftUICore_DynamicTypeSize) | null { return callSDK<(_SwiftUICore_DynamicTypeSize) | null>("SwiftUI_64b39a05e4a4cebd", 2140341023926851, undefined, [uiSizeCategory]); }
+  init(uiSizeCategory: _UIKit_UIContentSizeCategory): (_SwiftUICore_DynamicTypeSize) | null { return callSDK<(_SwiftUICore_DynamicTypeSize) | null>("SwiftUI_bd41a4085ee86f99", 2140341023926851, undefined, [uiSizeCategory]); }
 };
 
 export class EdgeInsets extends SDKHandle {
@@ -3704,7 +3704,7 @@ export class EdgeInsets extends SDKHandle {
    * init(_ nsEdgeInsets: NSDirectionalEdgeInsets)
    * @availability iOS 14.0+
    */
-  static init(nsEdgeInsets: $SDK43): _SwiftUICore_EdgeInsets { return callSDK<_SwiftUICore_EdgeInsets>("SwiftUI_64b39a05e4a4cebd", 778436020248926, undefined, [nsEdgeInsets]); }
+  static init(nsEdgeInsets: $SDK43): _SwiftUICore_EdgeInsets { return callSDK<_SwiftUICore_EdgeInsets>("SwiftUI_bd41a4085ee86f99", 778436020248926, undefined, [nsEdgeInsets]); }
   declare readonly $type: { "s:7SwiftUI10EdgeInsetsV": true };
 }
 
@@ -3733,17 +3733,17 @@ export const EditActions = {
    * static var all: EditActions<Data> { get }
    * @availability iOS 16.0+
    */
-  get all(): EditActions<unknown> { return callSDK<EditActions<unknown>>("SwiftUI_64b39a05e4a4cebd", 3134120706050278, undefined, []); },
+  get all(): EditActions<unknown> { return callSDK<EditActions<unknown>>("SwiftUI_bd41a4085ee86f99", 3134120706050278, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): EditActions<unknown> { return callSDK<EditActions<unknown>>("SwiftUI_64b39a05e4a4cebd", 664513284133894, undefined, [rawValue]); },
+  init(rawValue: number): EditActions<unknown> { return callSDK<EditActions<unknown>>("SwiftUI_bd41a4085ee86f99", 664513284133894, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 16.0+
    */
-  getRawValue($self: EditActions): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 2435419182125055, $self, []); }
+  getRawValue($self: EditActions): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 2435419182125055, $self, []); }
 };
 
 /**
@@ -3773,7 +3773,7 @@ export class EditButton extends SDKHandle {
    * nonisolated init()
    * @availability iOS 13.0+
    */
-  static init(): EditButton { return callSDK<EditButton>("SwiftUI_64b39a05e4a4cebd", 2378008024995340, undefined, []); }
+  static init(): EditButton { return callSDK<EditButton>("SwiftUI_bd41a4085ee86f99", 2378008024995340, undefined, []); }
   declare readonly $type: { "s:7SwiftUI10EditButtonV": true };
 }
 
@@ -3794,7 +3794,7 @@ export const EditMode = {
    * var isEditing: Bool { get }
    * @availability iOS 13.0+
    */
-  getIsEditing($self: EditMode): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 3390718265201497, $self, []); }
+  getIsEditing($self: EditMode): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 3390718265201497, $self, []); }
 };
 
 /**
@@ -3806,7 +3806,7 @@ export class EmptyCommands extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): EmptyCommands { return callSDK<EmptyCommands>("SwiftUI_64b39a05e4a4cebd", 3021220144897323, undefined, []); }
+  static init(): EmptyCommands { return callSDK<EmptyCommands>("SwiftUI_bd41a4085ee86f99", 3021220144897323, undefined, []); }
   declare readonly $type: { "s:7SwiftUI13EmptyCommandsV": true };
 }
 
@@ -3825,7 +3825,7 @@ export class EmptyControlWidgetConfiguration extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 18.0+
    */
-  static init(): Promise<EmptyControlWidgetConfiguration> { return callSDKAsync<EmptyControlWidgetConfiguration>("SwiftUI_64b39a05e4a4cebd", 648936759706658, undefined, []); }
+  static init(): Promise<EmptyControlWidgetConfiguration> { return callSDKAsync<EmptyControlWidgetConfiguration>("SwiftUI_bd41a4085ee86f99", 648936759706658, undefined, []); }
   declare readonly $type: { "s:7SwiftUI31EmptyControlWidgetConfigurationV": true };
 }
 
@@ -3844,7 +3844,7 @@ export class EmptyControlWidgetTemplate extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 18.0+
    */
-  static init(): Promise<EmptyControlWidgetTemplate> { return callSDKAsync<EmptyControlWidgetTemplate>("SwiftUI_64b39a05e4a4cebd", 4429035489136213, undefined, []); }
+  static init(): Promise<EmptyControlWidgetTemplate> { return callSDKAsync<EmptyControlWidgetTemplate>("SwiftUI_bd41a4085ee86f99", 4429035489136213, undefined, []); }
   declare readonly $type: { "s:7SwiftUI26EmptyControlWidgetTemplateV": true };
 }
 
@@ -3891,7 +3891,7 @@ export class EmptyWidgetConfiguration extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): EmptyWidgetConfiguration { return callSDK<EmptyWidgetConfiguration>("SwiftUI_64b39a05e4a4cebd", 870647350102560, undefined, []); }
+  static init(): EmptyWidgetConfiguration { return callSDK<EmptyWidgetConfiguration>("SwiftUI_bd41a4085ee86f99", 870647350102560, undefined, []); }
   declare readonly $type: { "s:7SwiftUI24EmptyWidgetConfigurationV": true };
 }
 
@@ -3906,296 +3906,296 @@ export class EnvironmentValues extends SDKHandle {
    * var openWindow: OpenWindowAction { get }
    * @availability iOS 16.0+
    */
-  get openWindow(): OpenWindowAction { return callSDK<OpenWindowAction>("SwiftUI_64b39a05e4a4cebd", 3801338351332550, this, []); }
+  get openWindow(): OpenWindowAction { return callSDK<OpenWindowAction>("SwiftUI_bd41a4085ee86f99", 3801338351332550, this, []); }
   /**
    * var scenePhase: ScenePhase { get set }
    * @availability iOS 14.0+
    */
-  get scenePhase(): ScenePhase { return callSDK<ScenePhase>("SwiftUI_64b39a05e4a4cebd", 1355401292782806, this, []); }
-  set scenePhase(value: ScenePhase) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 852016084315543, this, [value]); }
+  get scenePhase(): ScenePhase { return callSDK<ScenePhase>("SwiftUI_bd41a4085ee86f99", 1355401292782806, this, []); }
+  set scenePhase(value: ScenePhase) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 852016084315543, this, [value]); }
   /**
    * var findContext: FindContext? { get }
    * @availability iOS 26.0+
    */
-  get findContext(): (FindContext) | null { return callSDK<(FindContext) | null>("SwiftUI_64b39a05e4a4cebd", 2255392975566592, this, []); }
+  get findContext(): (FindContext) | null { return callSDK<(FindContext) | null>("SwiftUI_bd41a4085ee86f99", 2255392975566592, this, []); }
   /**
    * var isPresented: Bool { get }
    * @availability iOS 15.0+
    */
-  get isPresented(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 2824221534360788, this, []); }
+  get isPresented(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 2824221534360788, this, []); }
   /**
    * var isSearching: Bool { get }
    * @availability iOS 15.0+
    */
-  get isSearching(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 2862435061359463, this, []); }
+  get isSearching(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 2862435061359463, this, []); }
   /**
    * var undoManager: UndoManager? { get }
    * @availability iOS 13.0+
    */
-  get undoManager(): $SDK44 { return callSDK<$SDK44>("SwiftUI_64b39a05e4a4cebd", 2257294482924568, this, []); }
+  get undoManager(): $SDK44 { return callSDK<$SDK44>("SwiftUI_bd41a4085ee86f99", 2257294482924568, this, []); }
   /**
    * var dismissSearch: DismissSearchAction { get }
    * @availability iOS 15.0+
    */
-  get dismissSearch(): DismissSearchAction { return callSDK<DismissSearchAction>("SwiftUI_64b39a05e4a4cebd", 4037485798043176, this, []); }
+  get dismissSearch(): DismissSearchAction { return callSDK<DismissSearchAction>("SwiftUI_bd41a4085ee86f99", 4037485798043176, this, []); }
   /**
    * var dismissWindow: DismissWindowAction { get }
    * @availability iOS 17.0+
    */
-  get dismissWindow(): DismissWindowAction { return callSDK<DismissWindowAction>("SwiftUI_64b39a05e4a4cebd", 3233205488898511, this, []); }
+  get dismissWindow(): DismissWindowAction { return callSDK<DismissWindowAction>("SwiftUI_bd41a4085ee86f99", 3233205488898511, this, []); }
   /**
    * var sidebarRowSize: SidebarRowSize { get set }
    * @availability iOS 16.0+
    */
-  get sidebarRowSize(): SidebarRowSize { return callSDK<SidebarRowSize>("SwiftUI_64b39a05e4a4cebd", 4185132033263454, this, []); }
-  set sidebarRowSize(value: SidebarRowSize) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2355847993335043, this, [value]); }
+  get sidebarRowSize(): SidebarRowSize { return callSDK<SidebarRowSize>("SwiftUI_bd41a4085ee86f99", 4185132033263454, this, []); }
+  set sidebarRowSize(value: SidebarRowSize) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2355847993335043, this, [value]); }
   /**
    * var badgeProminence: BadgeProminence { get set }
    * @availability iOS 17.0+
    */
-  get badgeProminence(): BadgeProminence { return callSDK<BadgeProminence>("SwiftUI_64b39a05e4a4cebd", 1911740659055029, this, []); }
-  set badgeProminence(value: BadgeProminence) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3341967443770555, this, [value]); }
+  get badgeProminence(): BadgeProminence { return callSDK<BadgeProminence>("SwiftUI_bd41a4085ee86f99", 1911740659055029, this, []); }
+  set badgeProminence(value: BadgeProminence) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3341967443770555, this, [value]); }
   /**
    * var isSceneCaptured: Bool { get set }
    * @availability iOS 17.0+
    */
-  get isSceneCaptured(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 765342601153432, this, []); }
-  set isSceneCaptured(value: boolean) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1312970085723856, this, [value]); }
+  get isSceneCaptured(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 765342601153432, this, []); }
+  set isSceneCaptured(value: boolean) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1312970085723856, this, [value]); }
   /**
    * var isScrollEnabled: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isScrollEnabled(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 108117657652081, this, []); }
-  set isScrollEnabled(value: boolean) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3004023295162056, this, [value]); }
+  get isScrollEnabled(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 108117657652081, this, []); }
+  set isScrollEnabled(value: boolean) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3004023295162056, this, [value]); }
   /**
    * var tabBarPlacement: TabBarPlacement? { get }
    * @availability iOS 18.0+
    */
-  get tabBarPlacement(): (TabBarPlacement) | null { return callSDK<(TabBarPlacement) | null>("SwiftUI_64b39a05e4a4cebd", 2109294937791114, this, []); }
+  get tabBarPlacement(): (TabBarPlacement) | null { return callSDK<(TabBarPlacement) | null>("SwiftUI_bd41a4085ee86f99", 2109294937791114, this, []); }
   /**
    * var keyboardShortcut: KeyboardShortcut? { get }
    * @availability iOS 15.0+
    */
-  get keyboardShortcut(): (KeyboardShortcut) | null { return callSDK<(KeyboardShortcut) | null>("SwiftUI_64b39a05e4a4cebd", 2539627988931814, this, []); }
+  get keyboardShortcut(): (KeyboardShortcut) | null { return callSDK<(KeyboardShortcut) | null>("SwiftUI_bd41a4085ee86f99", 2539627988931814, this, []); }
   /**
    * var labelsVisibility: Visibility { get set }
    * @availability iOS 18.0+
    */
-  get labelsVisibility(): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("SwiftUI_64b39a05e4a4cebd", 1835248699235988, this, []); }
-  set labelsVisibility(value: _SwiftUICore_Visibility) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2534379511457341, this, [value]); }
+  get labelsVisibility(): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("SwiftUI_bd41a4085ee86f99", 1835248699235988, this, []); }
+  set labelsVisibility(value: _SwiftUICore_Visibility) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2534379511457341, this, [value]); }
   /**
    * var presentationMode: Binding<PresentationMode> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get presentationMode(): _SwiftUICore_Binding<PresentationMode> { return callSDK<_SwiftUICore_Binding<PresentationMode>>("SwiftUI_64b39a05e4a4cebd", 3261721646178290, this, []); }
+  get presentationMode(): _SwiftUICore_Binding<PresentationMode> { return callSDK<_SwiftUICore_Binding<PresentationMode>>("SwiftUI_bd41a4085ee86f99", 3261721646178290, this, []); }
   /**
    * var toolbarLabelStyle: ToolbarLabelStyle? { get }
    * @availability iOS 18.0+
    */
-  get toolbarLabelStyle(): (ToolbarLabelStyle) | null { return callSDK<(ToolbarLabelStyle) | null>("SwiftUI_64b39a05e4a4cebd", 777875293591817, this, []); }
+  get toolbarLabelStyle(): (ToolbarLabelStyle) | null { return callSDK<(ToolbarLabelStyle) | null>("SwiftUI_bd41a4085ee86f99", 777875293591817, this, []); }
   /**
    * var buttonRepeatBehavior: ButtonRepeatBehavior { get }
    * @availability iOS 17.0+
    */
-  get buttonRepeatBehavior(): ButtonRepeatBehavior { return callSDK<ButtonRepeatBehavior>("SwiftUI_64b39a05e4a4cebd", 3206256876015096, this, []); }
+  get buttonRepeatBehavior(): ButtonRepeatBehavior { return callSDK<ButtonRepeatBehavior>("SwiftUI_bd41a4085ee86f99", 3206256876015096, this, []); }
   /**
    * var isFocusEffectEnabled: Bool { get set }
    * @availability iOS 17.0+
    */
-  get isFocusEffectEnabled(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 2544350919023153, this, []); }
-  set isFocusEffectEnabled(value: boolean) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3100172243650641, this, [value]); }
+  get isFocusEffectEnabled(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 2544350919023153, this, []); }
+  set isFocusEffectEnabled(value: boolean) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3100172243650641, this, [value]); }
   /**
    * var managedObjectContext: NSManagedObjectContext { get set }
    * @availability iOS 13.0+
    */
-  get managedObjectContext(): _CoreData_NSManagedObjectContext { return callSDK<_CoreData_NSManagedObjectContext>("SwiftUI_64b39a05e4a4cebd", 1098945373782169, this, []); }
-  set managedObjectContext(value: _CoreData_NSManagedObjectContext) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4157580415040552, this, [value]); }
+  get managedObjectContext(): _CoreData_NSManagedObjectContext { return callSDK<_CoreData_NSManagedObjectContext>("SwiftUI_bd41a4085ee86f99", 1098945373782169, this, []); }
+  set managedObjectContext(value: _CoreData_NSManagedObjectContext) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 4157580415040552, this, [value]); }
   /**
    * var supportsRemoteScenes: Bool { get }
    * @availability iOS 26.0+
    */
-  get supportsRemoteScenes(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 919971623030901, this, []); }
+  get supportsRemoteScenes(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 919971623030901, this, []); }
   /**
    * var writingToolsBehavior: WritingToolsBehavior? { get }
    * @availability iOS 18.0+
    */
-  get writingToolsBehavior(): (WritingToolsBehavior) | null { return callSDK<(WritingToolsBehavior) | null>("SwiftUI_64b39a05e4a4cebd", 3524617619914541, this, []); }
+  get writingToolsBehavior(): (WritingToolsBehavior) | null { return callSDK<(WritingToolsBehavior) | null>("SwiftUI_bd41a4085ee86f99", 3524617619914541, this, []); }
   /**
    * var disableAutocorrection: Bool? { get set }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get disableAutocorrection(): (boolean) | null { return callSDK<(boolean) | null>("SwiftUI_64b39a05e4a4cebd", 644603264150225, this, []); }
-  set disableAutocorrection(value: (boolean) | null) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2579453606228373, this, [value]); }
+  get disableAutocorrection(): (boolean) | null { return callSDK<(boolean) | null>("SwiftUI_bd41a4085ee86f99", 644603264150225, this, []); }
+  set disableAutocorrection(value: (boolean) | null) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2579453606228373, this, [value]); }
   /**
    * var documentConfiguration: DocumentConfiguration? { get }
    * @availability iOS 17.0+
    */
-  get documentConfiguration(): (DocumentConfiguration) | null { return callSDK<(DocumentConfiguration) | null>("SwiftUI_64b39a05e4a4cebd", 1359037791518335, this, []); }
+  get documentConfiguration(): (DocumentConfiguration) | null { return callSDK<(DocumentConfiguration) | null>("SwiftUI_bd41a4085ee86f99", 1359037791518335, this, []); }
   /**
    * var springLoadingBehavior: SpringLoadingBehavior { get }
    * @availability iOS 17.0+
    */
-  get springLoadingBehavior(): SpringLoadingBehavior { return callSDK<SpringLoadingBehavior>("SwiftUI_64b39a05e4a4cebd", 4308888953979170, this, []); }
+  get springLoadingBehavior(): SpringLoadingBehavior { return callSDK<SpringLoadingBehavior>("SwiftUI_bd41a4085ee86f99", 4308888953979170, this, []); }
   /**
    * var textSelectionAffinity: TextSelectionAffinity { get set }
    * @availability iOS 18.0+
    */
-  get textSelectionAffinity(): TextSelectionAffinity { return callSDK<TextSelectionAffinity>("SwiftUI_64b39a05e4a4cebd", 3701326947189941, this, []); }
-  set textSelectionAffinity(value: TextSelectionAffinity) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3132614795012013, this, [value]); }
+  get textSelectionAffinity(): TextSelectionAffinity { return callSDK<TextSelectionAffinity>("SwiftUI_bd41a4085ee86f99", 3701326947189941, this, []); }
+  set textSelectionAffinity(value: TextSelectionAffinity) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3132614795012013, this, [value]); }
   /**
    * @export(implementation) var autocorrectionDisabled: Bool { get set }
    * @availability iOS 13.0+
    */
-  get autocorrectionDisabled(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 2907090721521241, this, []); }
-  set autocorrectionDisabled(value: boolean) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1155547633331044, this, [value]); }
+  get autocorrectionDisabled(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 2907090721521241, this, []); }
+  set autocorrectionDisabled(value: boolean) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1155547633331044, this, [value]); }
   /**
    * var labelReservedIconWidth: CGFloat? { get }
    * @availability iOS 26.0+
    */
-  get labelReservedIconWidth(): (number) | null { return callSDK<(number) | null>("SwiftUI_64b39a05e4a4cebd", 1239932066898728, this, []); }
+  get labelReservedIconWidth(): (number) | null { return callSDK<(number) | null>("SwiftUI_bd41a4085ee86f99", 1239932066898728, this, []); }
   /**
    * var defaultMinListRowHeight: CGFloat { get set }
    * @availability iOS 13.0+
    */
-  get defaultMinListRowHeight(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 928335086094546, this, []); }
-  set defaultMinListRowHeight(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 175099642176709, this, [value]); }
+  get defaultMinListRowHeight(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 928335086094546, this, []); }
+  set defaultMinListRowHeight(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 175099642176709, this, [value]); }
   /**
    * var isTabBarShowingSections: Bool { get }
    * @availability iOS 18.0+
    */
-  get isTabBarShowingSections(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 402683667983399, this, []); }
+  get isTabBarShowingSections(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 402683667983399, this, []); }
   /**
    * var labelIconToTitleSpacing: CGFloat? { get }
    * @availability iOS 26.0+
    */
-  get labelIconToTitleSpacing(): (number) | null { return callSDK<(number) | null>("SwiftUI_64b39a05e4a4cebd", 932607340842515, this, []); }
+  get labelIconToTitleSpacing(): (number) | null { return callSDK<(number) | null>("SwiftUI_bd41a4085ee86f99", 932607340842515, this, []); }
   /**
    * var menuIndicatorVisibility: Visibility { get set }
    * @availability iOS 15.0+
    */
-  get menuIndicatorVisibility(): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("SwiftUI_64b39a05e4a4cebd", 2773291099556248, this, []); }
-  set menuIndicatorVisibility(value: _SwiftUICore_Visibility) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3864709864899793, this, [value]); }
+  get menuIndicatorVisibility(): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("SwiftUI_bd41a4085ee86f99", 2773291099556248, this, []); }
+  set menuIndicatorVisibility(value: _SwiftUICore_Visibility) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3864709864899793, this, [value]); }
   /**
    * var supportsMultipleWindows: Bool { get }
    * @availability iOS 16.0+
    */
-  get supportsMultipleWindows(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 1652077707729428, this, []); }
+  get supportsMultipleWindows(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 1652077707729428, this, []); }
   /**
    * var isTabViewSidebarAvailable: Bool { get }
    * @availability iOS 27.0+
    */
-  get isTabViewSidebarAvailable(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 4500968492316240, this, []); }
+  get isTabViewSidebarAvailable(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 4500968492316240, this, []); }
   /**
    * var defaultMinListHeaderHeight: CGFloat? { get set }
    * @availability iOS 13.0+
    */
-  get defaultMinListHeaderHeight(): (number) | null { return callSDK<(number) | null>("SwiftUI_64b39a05e4a4cebd", 2666998198460581, this, []); }
-  set defaultMinListHeaderHeight(value: (number) | null) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 600306751161802, this, [value]); }
+  get defaultMinListHeaderHeight(): (number) | null { return callSDK<(number) | null>("SwiftUI_bd41a4085ee86f99", 2666998198460581, this, []); }
+  set defaultMinListHeaderHeight(value: (number) | null) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 600306751161802, this, [value]); }
   /**
    * var searchSuggestionsPlacement: SearchSuggestionsPlacement { get }
    * @availability iOS 16.0+
    */
-  get searchSuggestionsPlacement(): SearchSuggestionsPlacement { return callSDK<SearchSuggestionsPlacement>("SwiftUI_64b39a05e4a4cebd", 706337979739582, this, []); }
+  get searchSuggestionsPlacement(): SearchSuggestionsPlacement { return callSDK<SearchSuggestionsPlacement>("SwiftUI_bd41a4085ee86f99", 706337979739582, this, []); }
   /**
    * var isUserAuthenticationEnabled: Bool { get }
    * @availability iOS 18.0+
    */
-  get isUserAuthenticationEnabled(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 3759568988208608, this, []); }
+  get isUserAuthenticationEnabled(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 3759568988208608, this, []); }
   /**
    * var scrollDismissesKeyboardMode: ScrollDismissesKeyboardMode { get set }
    * @availability iOS 16.0+
    */
-  get scrollDismissesKeyboardMode(): ScrollDismissesKeyboardMode { return callSDK<ScrollDismissesKeyboardMode>("SwiftUI_64b39a05e4a4cebd", 4283163552490301, this, []); }
-  set scrollDismissesKeyboardMode(value: ScrollDismissesKeyboardMode) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4372161103416930, this, [value]); }
+  get scrollDismissesKeyboardMode(): ScrollDismissesKeyboardMode { return callSDK<ScrollDismissesKeyboardMode>("SwiftUI_bd41a4085ee86f99", 4283163552490301, this, []); }
+  set scrollDismissesKeyboardMode(value: ScrollDismissesKeyboardMode) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 4372161103416930, this, [value]); }
   /**
    * var preferredPencilSqueezeAction: PencilPreferredAction { get }
    * @availability iOS 17.5+
    */
-  get preferredPencilSqueezeAction(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_64b39a05e4a4cebd", 261095811011249, this, []); }
+  get preferredPencilSqueezeAction(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_bd41a4085ee86f99", 261095811011249, this, []); }
   /**
    * var verticalScrollBounceBehavior: ScrollBounceBehavior { get set }
    * @availability iOS 16.4+
    */
-  get verticalScrollBounceBehavior(): ScrollBounceBehavior { return callSDK<ScrollBounceBehavior>("SwiftUI_64b39a05e4a4cebd", 2967597278645274, this, []); }
-  set verticalScrollBounceBehavior(value: ScrollBounceBehavior) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2248478997618933, this, [value]); }
+  get verticalScrollBounceBehavior(): ScrollBounceBehavior { return callSDK<ScrollBounceBehavior>("SwiftUI_bd41a4085ee86f99", 2967597278645274, this, []); }
+  set verticalScrollBounceBehavior(value: ScrollBounceBehavior) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2248478997618933, this, [value]); }
   /**
    * var horizontalScrollBounceBehavior: ScrollBounceBehavior { get set }
    * @availability iOS 16.4+
    */
-  get horizontalScrollBounceBehavior(): ScrollBounceBehavior { return callSDK<ScrollBounceBehavior>("SwiftUI_64b39a05e4a4cebd", 3090823402336597, this, []); }
-  set horizontalScrollBounceBehavior(value: ScrollBounceBehavior) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1635705376124197, this, [value]); }
+  get horizontalScrollBounceBehavior(): ScrollBounceBehavior { return callSDK<ScrollBounceBehavior>("SwiftUI_bd41a4085ee86f99", 3090823402336597, this, []); }
+  set horizontalScrollBounceBehavior(value: ScrollBounceBehavior) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1635705376124197, this, [value]); }
   /**
    * var preferredPencilDoubleTapAction: PencilPreferredAction { get }
    * @availability iOS 17.5+
    */
-  get preferredPencilDoubleTapAction(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_64b39a05e4a4cebd", 3320063707352554, this, []); }
+  get preferredPencilDoubleTapAction(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_bd41a4085ee86f99", 3320063707352554, this, []); }
   /**
    * var tabViewBottomAccessoryPlacement: TabViewBottomAccessoryPlacement? { get }
    * @availability iOS 26.0+
    */
-  get tabViewBottomAccessoryPlacement(): (TabViewBottomAccessoryPlacement) | null { return callSDK<(TabViewBottomAccessoryPlacement) | null>("SwiftUI_64b39a05e4a4cebd", 392826647479417, this, []); }
+  get tabViewBottomAccessoryPlacement(): (TabViewBottomAccessoryPlacement) | null { return callSDK<(TabViewBottomAccessoryPlacement) | null>("SwiftUI_bd41a4085ee86f99", 392826647479417, this, []); }
   /**
    * var accessibilityQuickActionsEnabled: Bool { get }
    * @availability iOS 16.0+
    */
-  get accessibilityQuickActionsEnabled(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 1435915285445015, this, []); }
+  get accessibilityQuickActionsEnabled(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 1435915285445015, this, []); }
   /**
    * @export(implementation) var navigationLinkIndicatorVisibility: Visibility { get }
    * @availability iOS 17.0+
    */
-  get navigationLinkIndicatorVisibility(): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("SwiftUI_64b39a05e4a4cebd", 1434301716907788, this, []); }
+  get navigationLinkIndicatorVisibility(): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("SwiftUI_bd41a4085ee86f99", 1434301716907788, this, []); }
   /**
    * var systemPrefersReducedResourceUsage: Bool { get set }
    * @availability iOS 27.0+
    */
-  get systemPrefersReducedResourceUsage(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 4236187513375513, this, []); }
-  set systemPrefersReducedResourceUsage(value: boolean) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1941196332807651, this, [value]); }
+  get systemPrefersReducedResourceUsage(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 4236187513375513, this, []); }
+  set systemPrefersReducedResourceUsage(value: boolean) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1941196332807651, this, [value]); }
   /**
    * var verticalScrollIndicatorVisibility: ScrollIndicatorVisibility { get set }
    * @availability iOS 16.0+
    */
-  get verticalScrollIndicatorVisibility(): ScrollIndicatorVisibility { return callSDK<ScrollIndicatorVisibility>("SwiftUI_64b39a05e4a4cebd", 3428039912464281, this, []); }
-  set verticalScrollIndicatorVisibility(value: ScrollIndicatorVisibility) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2112337360562879, this, [value]); }
+  get verticalScrollIndicatorVisibility(): ScrollIndicatorVisibility { return callSDK<ScrollIndicatorVisibility>("SwiftUI_bd41a4085ee86f99", 3428039912464281, this, []); }
+  set verticalScrollIndicatorVisibility(value: ScrollIndicatorVisibility) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2112337360562879, this, [value]); }
   /**
    * var horizontalScrollIndicatorVisibility: ScrollIndicatorVisibility { get set }
    * @availability iOS 16.0+
    */
-  get horizontalScrollIndicatorVisibility(): ScrollIndicatorVisibility { return callSDK<ScrollIndicatorVisibility>("SwiftUI_64b39a05e4a4cebd", 2451145824069261, this, []); }
-  set horizontalScrollIndicatorVisibility(value: ScrollIndicatorVisibility) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1844318798044962, this, [value]); }
+  get horizontalScrollIndicatorVisibility(): ScrollIndicatorVisibility { return callSDK<ScrollIndicatorVisibility>("SwiftUI_bd41a4085ee86f99", 2451145824069261, this, []); }
+  set horizontalScrollIndicatorVisibility(value: ScrollIndicatorVisibility) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1844318798044962, this, [value]); }
   /**
    * var rename: RenameAction? { get }
    * @availability iOS 16.0+
    */
-  get rename(): (RenameAction) | null { return callSDK<(RenameAction) | null>("SwiftUI_64b39a05e4a4cebd", 3794352544125063, this, []); }
+  get rename(): (RenameAction) | null { return callSDK<(RenameAction) | null>("SwiftUI_bd41a4085ee86f99", 3794352544125063, this, []); }
   /**
    * var dismiss: DismissAction { get }
    * @availability iOS 15.0+
    */
-  get dismiss(): DismissAction { return callSDK<DismissAction>("SwiftUI_64b39a05e4a4cebd", 2160416925497701, this, []); }
+  get dismiss(): DismissAction { return callSDK<DismissAction>("SwiftUI_bd41a4085ee86f99", 2160416925497701, this, []); }
   /**
    * var refresh: RefreshAction? { get }
    * @availability iOS 15.0+
    */
-  get refresh(): (RefreshAction) | null { return callSDK<(RefreshAction) | null>("SwiftUI_64b39a05e4a4cebd", 4413307732442812, this, []); }
+  get refresh(): (RefreshAction) | null { return callSDK<(RefreshAction) | null>("SwiftUI_bd41a4085ee86f99", 4413307732442812, this, []); }
   /**
    * var editMode: Binding<EditMode>? { get set }
    * @availability iOS 13.0+
    */
-  get editMode(): $SDK52 { return callSDK<$SDK52>("SwiftUI_64b39a05e4a4cebd", 1374766324085297, this, []); }
-  set editMode(value: $SDK52) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2986313039243641, this, [value]); }
+  get editMode(): $SDK52 { return callSDK<$SDK52>("SwiftUI_bd41a4085ee86f99", 1374766324085297, this, []); }
+  set editMode(value: $SDK52) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2986313039243641, this, [value]); }
   /**
    * var isFocused: Bool { get }
    * @availability iOS 14.0+
    */
-  get isFocused(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 442843383972880, this, []); }
+  get isFocused(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 442843383972880, this, []); }
   /**
    * var menuOrder: MenuOrder { get set }
    * @availability iOS 16.0+
    */
-  get menuOrder(): MenuOrder { return callSDK<MenuOrder>("SwiftUI_64b39a05e4a4cebd", 736711242518948, this, []); }
-  set menuOrder(value: MenuOrder) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4389958539312214, this, [value]); }
+  get menuOrder(): MenuOrder { return callSDK<MenuOrder>("SwiftUI_bd41a4085ee86f99", 736711242518948, this, []); }
+  set menuOrder(value: MenuOrder) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 4389958539312214, this, [value]); }
   declare readonly $type: { "s:7SwiftUI17EnvironmentValuesV": true };
 }
 
@@ -4208,8 +4208,8 @@ export class EquatableView<Content = unknown> extends SDKHandle {
    * var content: Content
    * @availability iOS 13.0+
    */
-  get content(): SDKHandle { return callSDK<SDKHandle>("SwiftUI_64b39a05e4a4cebd", 2804581962000599, this, []); }
-  set content(value: SDKHandle) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3099112699228111, this, [value]); }
+  get content(): SDKHandle { return callSDK<SDKHandle>("SwiftUI_bd41a4085ee86f99", 2804581962000599, this, []); }
+  set content(value: SDKHandle) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3099112699228111, this, [value]); }
   declare readonly $type: { "s:7SwiftUI13EquatableViewV": true };
 }
 
@@ -4242,8 +4242,8 @@ export class FetchedResults<Result = unknown> extends SDKHandle {
    * @MainActor @preconcurrency var sortDescriptors: [SortDescriptor<Result>] { get nonmutating set }
    * @availability iOS 15.0+
    */
-  get sortDescriptors(): Promise<$SDK53> { return callSDKAsync<$SDK53>("SwiftUI_64b39a05e4a4cebd", 3043508681245208, this, []); }
-  setSortDescriptors(value: $SDK53): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 929610064711731, this, [value]); }
+  get sortDescriptors(): Promise<$SDK53> { return callSDKAsync<$SDK53>("SwiftUI_bd41a4085ee86f99", 3043508681245208, this, []); }
+  setSortDescriptors(value: $SDK53): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 929610064711731, this, [value]); }
   declare readonly $type: { "s:7SwiftUI14FetchedResultsV": true };
 }
 
@@ -4286,12 +4286,12 @@ export class FetchRequest<Result = unknown> extends SDKHandle {
    * @MainActor @preconcurrency init(sortDescriptors: [SortDescriptor<Result>], predicate: NSPredicate? = nil, animation: Animation? = nil)
    * @availability iOS 15.0+
    */
-  static initSortDescriptorsPredicateAnimation(sortDescriptors: $SDK53, predicate?: $SDK55, animation?: $SDK56): Promise<$SDK54> { return callSDKAsync<$SDK54>("SwiftUI_64b39a05e4a4cebd", 741692818598583, undefined, [sortDescriptors, predicate, animation]); }
+  static initSortDescriptorsPredicateAnimation(sortDescriptors: $SDK53, predicate?: $SDK55, animation?: $SDK56): Promise<$SDK54> { return callSDKAsync<$SDK54>("SwiftUI_bd41a4085ee86f99", 741692818598583, undefined, [sortDescriptors, predicate, animation]); }
   /**
    * @MainActor @preconcurrency init(sortDescriptors: [NSSortDescriptor], predicate: NSPredicate? = nil, animation: Animation? = nil)
    * @availability iOS 13.0+
    */
-  static initSortDescriptorsPredicateAnimation29941(sortDescriptors: $SDK57, predicate?: $SDK55, animation?: $SDK56): Promise<$SDK54> { return callSDKAsync<$SDK54>("SwiftUI_64b39a05e4a4cebd", 2863654628257173, undefined, [sortDescriptors, predicate, animation]); }
+  static initSortDescriptorsPredicateAnimation29941(sortDescriptors: $SDK57, predicate?: $SDK55, animation?: $SDK56): Promise<$SDK54> { return callSDKAsync<$SDK54>("SwiftUI_bd41a4085ee86f99", 2863654628257173, undefined, [sortDescriptors, predicate, animation]); }
   declare readonly $type: { "s:7SwiftUI12FetchRequestV": true };
 }
 
@@ -4304,8 +4304,8 @@ export class FetchRequest_Configuration<Result = unknown> extends SDKHandle {
    * @MainActor @preconcurrency var sortDescriptors: [SortDescriptor<Result>] { get set }
    * @availability iOS 15.0+
    */
-  get sortDescriptors(): Promise<$SDK53> { return callSDKAsync<$SDK53>("SwiftUI_64b39a05e4a4cebd", 3474752831696982, this, []); }
-  setSortDescriptors(value: $SDK53): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 3234534335532340, this, [value]); }
+  get sortDescriptors(): Promise<$SDK53> { return callSDKAsync<$SDK53>("SwiftUI_bd41a4085ee86f99", 3474752831696982, this, []); }
+  setSortDescriptors(value: $SDK53): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 3234534335532340, this, [value]); }
   declare readonly $type: { "s:7SwiftUI12FetchRequestV13ConfigurationV": true };
 }
 
@@ -4320,27 +4320,27 @@ export const FileDialogBrowserOptions = {
    * static let displayFileExtensions: FileDialogBrowserOptions
    * @availability iOS 17.0+
    */
-  get displayFileExtensions(): FileDialogBrowserOptions { return callSDK<FileDialogBrowserOptions>("SwiftUI_64b39a05e4a4cebd", 2223029990274606, undefined, []); },
+  get displayFileExtensions(): FileDialogBrowserOptions { return callSDK<FileDialogBrowserOptions>("SwiftUI_bd41a4085ee86f99", 2223029990274606, undefined, []); },
   /**
    * static let enumeratePackages: FileDialogBrowserOptions
    * @availability iOS 17.0+
    */
-  get enumeratePackages(): FileDialogBrowserOptions { return callSDK<FileDialogBrowserOptions>("SwiftUI_64b39a05e4a4cebd", 3862108390214186, undefined, []); },
+  get enumeratePackages(): FileDialogBrowserOptions { return callSDK<FileDialogBrowserOptions>("SwiftUI_bd41a4085ee86f99", 3862108390214186, undefined, []); },
   /**
    * static let includeHiddenFiles: FileDialogBrowserOptions
    * @availability iOS 17.0+
    */
-  get includeHiddenFiles(): FileDialogBrowserOptions { return callSDK<FileDialogBrowserOptions>("SwiftUI_64b39a05e4a4cebd", 190464539918927, undefined, []); },
+  get includeHiddenFiles(): FileDialogBrowserOptions { return callSDK<FileDialogBrowserOptions>("SwiftUI_bd41a4085ee86f99", 190464539918927, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): FileDialogBrowserOptions { return callSDK<FileDialogBrowserOptions>("SwiftUI_64b39a05e4a4cebd", 2285533238069063, undefined, [rawValue]); },
+  init(rawValue: number): FileDialogBrowserOptions { return callSDK<FileDialogBrowserOptions>("SwiftUI_bd41a4085ee86f99", 2285533238069063, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 17.0+
    */
-  getRawValue($self: FileDialogBrowserOptions): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 3697326622958250, $self, []); }
+  getRawValue($self: FileDialogBrowserOptions): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 3697326622958250, $self, []); }
 };
 
 /**
@@ -4406,27 +4406,27 @@ export class FileDocumentConfiguration<Document = unknown> extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get isEditable(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 2778700360139887, this, []); }
-  set isEditable(value: boolean) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2880882660248778, this, [value]); }
+  get isEditable(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 2778700360139887, this, []); }
+  set isEditable(value: boolean) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2880882660248778, this, [value]); }
   /**
    * var creationSource: DocumentCreationSource? { get }
    * @availability iOS 27.0+
    * @deprecated iOS 100000.0
    */
-  get creationSource(): $SDK37 { return callSDK<$SDK37>("SwiftUI_64b39a05e4a4cebd", 729350938461289, this, []); }
+  get creationSource(): $SDK37 { return callSDK<$SDK37>("SwiftUI_bd41a4085ee86f99", 729350938461289, this, []); }
   /**
    * var fileURL: URL?
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get fileURL(): (string) | null { return callSDK<(string) | null>("SwiftUI_64b39a05e4a4cebd", 1674283042492805, this, []); }
-  set fileURL(value: (string) | null) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 228659143194847, this, [value]); }
+  get fileURL(): (string) | null { return callSDK<(string) | null>("SwiftUI_bd41a4085ee86f99", 1674283042492805, this, []); }
+  set fileURL(value: (string) | null) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 228659143194847, this, [value]); }
   /**
    * var $document: Binding<Document> { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get $document(): _SwiftUICore_Binding<SDKHandle> { return callSDK<_SwiftUICore_Binding<SDKHandle>>("SwiftUI_64b39a05e4a4cebd", 2867271686693246, this, []); }
+  get $document(): _SwiftUICore_Binding<SDKHandle> { return callSDK<_SwiftUICore_Binding<SDKHandle>>("SwiftUI_bd41a4085ee86f99", 2867271686693246, this, []); }
   declare readonly $type: { "s:7SwiftUI25FileDocumentConfigurationV": true };
 }
 
@@ -4441,13 +4441,13 @@ export class FileDocumentReadConfiguration extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("SwiftUI_64b39a05e4a4cebd", 2508755707548212, this, []); }
+  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("SwiftUI_bd41a4085ee86f99", 2508755707548212, this, []); }
   /**
    * let file: FileWrapper
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get file(): _Foundation_FileWrapper { return callSDK<_Foundation_FileWrapper>("SwiftUI_64b39a05e4a4cebd", 1012343919681345, this, []); }
+  get file(): _Foundation_FileWrapper { return callSDK<_Foundation_FileWrapper>("SwiftUI_bd41a4085ee86f99", 1012343919681345, this, []); }
   declare readonly $type: { "s:7SwiftUI29FileDocumentReadConfigurationV": true };
 }
 
@@ -4462,13 +4462,13 @@ export class FileDocumentWriteConfiguration extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get existingFile(): (_Foundation_FileWrapper) | null { return callSDK<(_Foundation_FileWrapper) | null>("SwiftUI_64b39a05e4a4cebd", 2085691380532974, this, []); }
+  get existingFile(): (_Foundation_FileWrapper) | null { return callSDK<(_Foundation_FileWrapper) | null>("SwiftUI_bd41a4085ee86f99", 2085691380532974, this, []); }
   /**
    * let contentType: UTType
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("SwiftUI_64b39a05e4a4cebd", 2902681427870284, this, []); }
+  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("SwiftUI_bd41a4085ee86f99", 2902681427870284, this, []); }
   declare readonly $type: { "s:7SwiftUI30FileDocumentWriteConfigurationV": true };
 }
 
@@ -4481,7 +4481,7 @@ export class FileWrapperDocumentReader<Snapshot = unknown> extends SDKHandle {
    * init(_ configuration: sending FileWrapperDocumentReader<Snapshot>.ReadConfiguration, makeSnapshot: @escaping (FileWrapper) async throws -> sending Snapshot)
    * @availability iOS 27.0+
    */
-  static init(configuration: DocumentReadConfiguration, makeSnapshot: ((arg0: _Foundation_FileWrapper) => Promise<unknown>)): FileWrapperDocumentReader<unknown> { return callSDK<FileWrapperDocumentReader<unknown>>("SwiftUI_64b39a05e4a4cebd", 3299640573202941, undefined, [configuration, makeSnapshot], [null,{"callback":{"out":[]}}]); }
+  static init(configuration: DocumentReadConfiguration, makeSnapshot: ((arg0: _Foundation_FileWrapper) => Promise<unknown>)): FileWrapperDocumentReader<unknown> { return callSDK<FileWrapperDocumentReader<unknown>>("SwiftUI_bd41a4085ee86f99", 3299640573202941, undefined, [configuration, makeSnapshot], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7SwiftUI25FileWrapperDocumentReaderV": true };
 }
 
@@ -4506,7 +4506,7 @@ export class FileWrapperDocumentWriter<Snapshot = unknown> extends SDKHandle {
    * init(_ configuration: sending FileWrapperDocumentWriter<Snapshot>.WriteConfiguration, makeFileWrapper: @escaping (Snapshot, FileWrapper?) async throws -> FileWrapper)
    * @availability iOS 27.0+
    */
-  static init(configuration: DocumentWriteConfiguration, makeFileWrapper: ((arg0: unknown, arg1: (_Foundation_FileWrapper) | null) => Promise<_Foundation_FileWrapper>)): FileWrapperDocumentWriter<unknown> { return callSDK<FileWrapperDocumentWriter<unknown>>("SwiftUI_64b39a05e4a4cebd", 2831797537579518, undefined, [configuration, makeFileWrapper], [null,{"callback":{"out":[]}}]); }
+  static init(configuration: DocumentWriteConfiguration, makeFileWrapper: ((arg0: unknown, arg1: (_Foundation_FileWrapper) | null) => Promise<_Foundation_FileWrapper>)): FileWrapperDocumentWriter<unknown> { return callSDK<FileWrapperDocumentWriter<unknown>>("SwiftUI_bd41a4085ee86f99", 2831797537579518, undefined, [configuration, makeFileWrapper], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7SwiftUI25FileWrapperDocumentWriterV": true };
 }
 
@@ -4531,14 +4531,14 @@ export class FindContext extends SDKHandle {
    * var isPresented: Binding<Bool>?
    * @availability iOS 26.0+
    */
-  get isPresented(): $SDK64 { return callSDK<$SDK64>("SwiftUI_64b39a05e4a4cebd", 4085490301967090, this, []); }
-  set isPresented(value: $SDK64) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1116865153470664, this, [value]); }
+  get isPresented(): $SDK64 { return callSDK<$SDK64>("SwiftUI_bd41a4085ee86f99", 4085490301967090, this, []); }
+  set isPresented(value: $SDK64) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1116865153470664, this, [value]); }
   /**
    * var supportsReplace: Bool
    * @availability iOS 26.0+
    */
-  get supportsReplace(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 88567931515813, this, []); }
-  set supportsReplace(value: boolean) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4445692198615247, this, [value]); }
+  get supportsReplace(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 88567931515813, this, []); }
+  set supportsReplace(value: boolean) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 4445692198615247, this, [value]); }
   declare readonly $type: { "s:7SwiftUI11FindContextV": true };
 }
 
@@ -4551,7 +4551,7 @@ export class FittedPresentationSizing extends SDKHandle {
    * func proposedSize(for root: PresentationSizingRoot, context: PresentationSizingContext) -> ProposedViewSize
    * @availability iOS 18.0+
    */
-  proposedSize(root: PresentationSizingRoot, context: PresentationSizingContext): _SwiftUICore_ProposedViewSize { return callSDK<_SwiftUICore_ProposedViewSize>("SwiftUI_64b39a05e4a4cebd", 3281887656599374, this, [root, context]); }
+  proposedSize(root: PresentationSizingRoot, context: PresentationSizingContext): _SwiftUICore_ProposedViewSize { return callSDK<_SwiftUICore_ProposedViewSize>("SwiftUI_bd41a4085ee86f99", 3281887656599374, this, [root, context]); }
   declare readonly $type: { "s:7SwiftUI24FittedPresentationSizingV": true };
 }
 
@@ -4564,18 +4564,18 @@ export class FocusedBinding<Value = unknown> extends SDKHandle {
    * var wrappedValue: Value? { get nonmutating set }
    * @availability iOS 14.0+
    */
-  get wrappedValue(): (unknown) | null { return callSDK<(unknown) | null>("SwiftUI_64b39a05e4a4cebd", 3224035795205688, this, []); }
-  set wrappedValue(value: (unknown) | null) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3719750159769946, this, [value]); }
+  get wrappedValue(): (unknown) | null { return callSDK<(unknown) | null>("SwiftUI_bd41a4085ee86f99", 3224035795205688, this, []); }
+  set wrappedValue(value: (unknown) | null) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3719750159769946, this, [value]); }
   /**
    * var projectedValue: Binding<Value?> { get }
    * @availability iOS 14.0+
    */
-  get projectedValue(): _SwiftUICore_Binding<(unknown) | null> { return callSDK<_SwiftUICore_Binding<(unknown) | null>>("SwiftUI_64b39a05e4a4cebd", 3827325510948749, this, []); }
+  get projectedValue(): _SwiftUICore_Binding<(unknown) | null> { return callSDK<_SwiftUICore_Binding<(unknown) | null>>("SwiftUI_bd41a4085ee86f99", 3827325510948749, this, []); }
   /**
    * init(_ keyPath: KeyPath<FocusedValues, Binding<Value>?>)
    * @availability iOS 14.0+
    */
-  static init(keyPath: SDKHandle): FocusedBinding<unknown> { return callSDK<FocusedBinding<unknown>>("SwiftUI_64b39a05e4a4cebd", 2337685083175920, undefined, [keyPath]); }
+  static init(keyPath: SDKHandle): FocusedBinding<unknown> { return callSDK<FocusedBinding<unknown>>("SwiftUI_bd41a4085ee86f99", 2337685083175920, undefined, [keyPath]); }
   declare readonly $type: { "s:7SwiftUI14FocusedBindingV": true };
 }
 
@@ -4604,12 +4604,12 @@ export class FocusedValue<Value = unknown> extends SDKHandle {
    * var wrappedValue: Value? { get }
    * @availability iOS 14.0+
    */
-  get wrappedValue(): (unknown) | null { return callSDK<(unknown) | null>("SwiftUI_64b39a05e4a4cebd", 2482494075344615, this, []); }
+  get wrappedValue(): (unknown) | null { return callSDK<(unknown) | null>("SwiftUI_bd41a4085ee86f99", 2482494075344615, this, []); }
   /**
    * init(_ keyPath: KeyPath<FocusedValues, Value?>)
    * @availability iOS 14.0+
    */
-  static init(keyPath: SDKHandle): FocusedValue<unknown> { return callSDK<FocusedValue<unknown>>("SwiftUI_64b39a05e4a4cebd", 2397937800423272, undefined, [keyPath]); }
+  static init(keyPath: SDKHandle): FocusedValue<unknown> { return callSDK<FocusedValue<unknown>>("SwiftUI_bd41a4085ee86f99", 2397937800423272, undefined, [keyPath]); }
   declare readonly $type: { "s:7SwiftUI12FocusedValueV": true };
 }
 
@@ -4640,28 +4640,28 @@ export const FocusInteractions = {
    * static let edit: FocusInteractions
    * @availability iOS 17.0+
    */
-  get edit(): FocusInteractions { return callSDK<FocusInteractions>("SwiftUI_64b39a05e4a4cebd", 3114403343169895, undefined, []); },
+  get edit(): FocusInteractions { return callSDK<FocusInteractions>("SwiftUI_bd41a4085ee86f99", 3114403343169895, undefined, []); },
   /**
    * static let activate: FocusInteractions
    * @availability iOS 17.0+
    */
-  get activate(): FocusInteractions { return callSDK<FocusInteractions>("SwiftUI_64b39a05e4a4cebd", 2086798260910716, undefined, []); },
+  get activate(): FocusInteractions { return callSDK<FocusInteractions>("SwiftUI_bd41a4085ee86f99", 2086798260910716, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): FocusInteractions { return callSDK<FocusInteractions>("SwiftUI_64b39a05e4a4cebd", 4074564410433221, undefined, [rawValue]); },
+  init(rawValue: number): FocusInteractions { return callSDK<FocusInteractions>("SwiftUI_bd41a4085ee86f99", 4074564410433221, undefined, [rawValue]); },
   /**
    * var rawValue: Int
    * @availability iOS 17.0+
    */
-  getRawValue($self: FocusInteractions): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 1362763085261269, $self, []); },
-  setRawValue($self: FocusInteractions, value: number): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4398750381873046, $self, [value]); },
+  getRawValue($self: FocusInteractions): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 1362763085261269, $self, []); },
+  setRawValue($self: FocusInteractions, value: number): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 4398750381873046, $self, [value]); },
   /**
    * static var automatic: FocusInteractions { get }
    * @availability iOS 17.0+
    */
-  get automatic(): FocusInteractions { return callSDK<FocusInteractions>("SwiftUI_64b39a05e4a4cebd", 1224479199158156, undefined, []); }
+  get automatic(): FocusInteractions { return callSDK<FocusInteractions>("SwiftUI_bd41a4085ee86f99", 1224479199158156, undefined, []); }
 };
 
 /**
@@ -4691,23 +4691,23 @@ export class FocusState<Value = unknown> extends SDKHandle {
    * var wrappedValue: Value { get nonmutating set }
    * @availability iOS 15.0+
    */
-  get wrappedValue(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 3322969609102930, this, []); }
-  set wrappedValue(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 230017836670417, this, [value]); }
+  get wrappedValue(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 3322969609102930, this, []); }
+  set wrappedValue(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 230017836670417, this, [value]); }
   /**
    * var projectedValue: FocusState<Value>.Binding { get }
    * @availability iOS 15.0+
    */
-  get projectedValue(): FocusState_Binding<number> { return callSDK<FocusState_Binding<number>>("SwiftUI_64b39a05e4a4cebd", 868974121096543, this, []); }
+  get projectedValue(): FocusState_Binding<number> { return callSDK<FocusState_Binding<number>>("SwiftUI_bd41a4085ee86f99", 868974121096543, this, []); }
   /**
    * init() where Value == Bool
    * @availability iOS 15.0+
    */
-  static init(): FocusState<boolean> { return callSDK<FocusState<boolean>>("SwiftUI_64b39a05e4a4cebd", 347985613509962, undefined, []); }
+  static init(): FocusState<boolean> { return callSDK<FocusState<boolean>>("SwiftUI_bd41a4085ee86f99", 347985613509962, undefined, []); }
   /**
    * init<T>() where Value == T?, T : Hashable
    * @availability iOS 15.0+
    */
-  static init79870(): FocusState<(number) | null> { return callSDK<FocusState<(number) | null>>("SwiftUI_64b39a05e4a4cebd", 1876161598950814, undefined, []); }
+  static init79870(): FocusState<(number) | null> { return callSDK<FocusState<(number) | null>>("SwiftUI_bd41a4085ee86f99", 1876161598950814, undefined, []); }
   declare readonly $type: { "s:7SwiftUI10FocusStateV": true };
 }
 
@@ -4720,13 +4720,13 @@ export class FocusState_Binding<Value = unknown> extends SDKHandle {
    * var wrappedValue: Value { get nonmutating set }
    * @availability iOS 15.0+
    */
-  get wrappedValue(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 4489859146314842, this, []); }
-  set wrappedValue(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1890185560460695, this, [value]); }
+  get wrappedValue(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 4489859146314842, this, []); }
+  set wrappedValue(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1890185560460695, this, [value]); }
   /**
    * var projectedValue: FocusState<Value>.Binding { get }
    * @availability iOS 15.0+
    */
-  get projectedValue(): FocusState_Binding<number> { return callSDK<FocusState_Binding<number>>("SwiftUI_64b39a05e4a4cebd", 3448292609247353, this, []); }
+  get projectedValue(): FocusState_Binding<number> { return callSDK<FocusState_Binding<number>>("SwiftUI_bd41a4085ee86f99", 3448292609247353, this, []); }
   declare readonly $type: { "s:7SwiftUI10FocusStateV7BindingV": true };
 }
 
@@ -4763,7 +4763,7 @@ export class Form<Content = unknown> extends SDKHandle {
    * nonisolated init(_ configuration: FormStyleConfiguration)
    * @availability iOS 16.0+
    */
-  static init(configuration: FormStyleConfiguration): Form<FormStyleConfiguration_Content> { return callSDK<Form<FormStyleConfiguration_Content>>("SwiftUI_64b39a05e4a4cebd", 3406660049400460, undefined, [configuration]); }
+  static init(configuration: FormStyleConfiguration): Form<FormStyleConfiguration_Content> { return callSDK<Form<FormStyleConfiguration_Content>>("SwiftUI_bd41a4085ee86f99", 3406660049400460, undefined, [configuration]); }
   declare readonly $type: { "s:7SwiftUI4FormV": true };
 }
 
@@ -4782,7 +4782,7 @@ export class FormPresentationSizing extends SDKHandle {
    * func proposedSize(for root: PresentationSizingRoot, context: PresentationSizingContext) -> ProposedViewSize
    * @availability iOS 18.0+
    */
-  proposedSize(root: PresentationSizingRoot, context: PresentationSizingContext): _SwiftUICore_ProposedViewSize { return callSDK<_SwiftUICore_ProposedViewSize>("SwiftUI_64b39a05e4a4cebd", 4471489481444279, this, [root, context]); }
+  proposedSize(root: PresentationSizingRoot, context: PresentationSizingContext): _SwiftUICore_ProposedViewSize { return callSDK<_SwiftUICore_ProposedViewSize>("SwiftUI_bd41a4085ee86f99", 4471489481444279, this, [root, context]); }
   declare readonly $type: { "s:7SwiftUI22FormPresentationSizingV": true };
 }
 
@@ -4813,7 +4813,7 @@ export class FormStyleConfiguration extends SDKHandle {
    * let content: FormStyleConfiguration.Content
    * @availability iOS 16.0+
    */
-  get content(): FormStyleConfiguration_Content { return callSDK<FormStyleConfiguration_Content>("SwiftUI_64b39a05e4a4cebd", 2758619326430803, this, []); }
+  get content(): FormStyleConfiguration_Content { return callSDK<FormStyleConfiguration_Content>("SwiftUI_bd41a4085ee86f99", 2758619326430803, this, []); }
   declare readonly $type: { "s:7SwiftUI22FormStyleConfigurationV": true };
 }
 
@@ -4872,32 +4872,32 @@ export class GaugeStyleConfiguration extends SDKHandle {
    * var currentValueLabel: GaugeStyleConfiguration.CurrentValueLabel?
    * @availability iOS 16.0+
    */
-  get currentValueLabel(): $SDK69 { return callSDK<$SDK69>("SwiftUI_64b39a05e4a4cebd", 4283279417626152, this, []); }
-  set currentValueLabel(value: $SDK69) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 710451938438894, this, [value]); }
+  get currentValueLabel(): $SDK69 { return callSDK<$SDK69>("SwiftUI_bd41a4085ee86f99", 4283279417626152, this, []); }
+  set currentValueLabel(value: $SDK69) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 710451938438894, this, [value]); }
   /**
    * var maximumValueLabel: GaugeStyleConfiguration.MaximumValueLabel?
    * @availability iOS 16.0+
    */
-  get maximumValueLabel(): $SDK70 { return callSDK<$SDK70>("SwiftUI_64b39a05e4a4cebd", 217151759723617, this, []); }
-  set maximumValueLabel(value: $SDK70) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2716693263592461, this, [value]); }
+  get maximumValueLabel(): $SDK70 { return callSDK<$SDK70>("SwiftUI_bd41a4085ee86f99", 217151759723617, this, []); }
+  set maximumValueLabel(value: $SDK70) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2716693263592461, this, [value]); }
   /**
    * var minimumValueLabel: GaugeStyleConfiguration.MinimumValueLabel?
    * @availability iOS 16.0+
    */
-  get minimumValueLabel(): $SDK71 { return callSDK<$SDK71>("SwiftUI_64b39a05e4a4cebd", 2443414926065669, this, []); }
-  set minimumValueLabel(value: $SDK71) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2725296141032601, this, [value]); }
+  get minimumValueLabel(): $SDK71 { return callSDK<$SDK71>("SwiftUI_bd41a4085ee86f99", 2443414926065669, this, []); }
+  set minimumValueLabel(value: $SDK71) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2725296141032601, this, [value]); }
   /**
    * var label: GaugeStyleConfiguration.Label
    * @availability iOS 16.0+
    */
-  get label(): GaugeStyleConfiguration_Label { return callSDK<GaugeStyleConfiguration_Label>("SwiftUI_64b39a05e4a4cebd", 1696132930978981, this, []); }
-  set label(value: GaugeStyleConfiguration_Label) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3165063397387216, this, [value]); }
+  get label(): GaugeStyleConfiguration_Label { return callSDK<GaugeStyleConfiguration_Label>("SwiftUI_bd41a4085ee86f99", 1696132930978981, this, []); }
+  set label(value: GaugeStyleConfiguration_Label) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3165063397387216, this, [value]); }
   /**
    * var value: Double
    * @availability iOS 16.0+
    */
-  get value(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 275230715942541, this, []); }
-  set value(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 757856351746153, this, [value]); }
+  get value(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 275230715942541, this, []); }
+  set value(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 757856351746153, this, [value]); }
   declare readonly $type: { "s:7SwiftUI23GaugeStyleConfigurationV": true };
 }
 
@@ -4980,42 +4980,42 @@ export class GestureState<Value = unknown> extends SDKHandle {
    * @export(implementation) init(initialValue: Value, resetTransaction: Transaction)
    * @availability iOS 13.0+
    */
-  static initInitialValueResetTransaction(initialValue: unknown, resetTransaction: _SwiftUICore_Transaction): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_64b39a05e4a4cebd", 4114819511908590, undefined, [initialValue, resetTransaction]); }
+  static initInitialValueResetTransaction(initialValue: unknown, resetTransaction: _SwiftUICore_Transaction): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_bd41a4085ee86f99", 4114819511908590, undefined, [initialValue, resetTransaction]); }
   /**
    * @export(implementation) init(initialValue: Value, reset: @escaping (Value, inout Transaction) -> Void)
    * @availability iOS 13.0+
    */
-  static initInitialValueReset(initialValue: unknown, reset: $SDK72): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_64b39a05e4a4cebd", 1730513725356910, undefined, [initialValue, reset], [null,{"callback":{"out":[]}}]); }
+  static initInitialValueReset(initialValue: unknown, reset: $SDK72): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_bd41a4085ee86f99", 1730513725356910, undefined, [initialValue, reset], [null,{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) init(initialValue: Value)
    * @availability iOS 13.0+
    */
-  static initInitialValue(initialValue: unknown): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_64b39a05e4a4cebd", 2513022249588179, undefined, [initialValue]); }
+  static initInitialValue(initialValue: unknown): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_bd41a4085ee86f99", 2513022249588179, undefined, [initialValue]); }
   /**
    * init(wrappedValue: Value, resetTransaction: Transaction)
    * @availability iOS 13.0+
    */
-  static initWrappedValueResetTransaction(wrappedValue: unknown, resetTransaction: _SwiftUICore_Transaction): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_64b39a05e4a4cebd", 3177774018190019, undefined, [wrappedValue, resetTransaction]); }
+  static initWrappedValueResetTransaction(wrappedValue: unknown, resetTransaction: _SwiftUICore_Transaction): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_bd41a4085ee86f99", 3177774018190019, undefined, [wrappedValue, resetTransaction]); }
   /**
    * init(wrappedValue: Value, reset: @escaping (Value, inout Transaction) -> Void)
    * @availability iOS 13.0+
    */
-  static initWrappedValueReset(wrappedValue: unknown, reset: $SDK72): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_64b39a05e4a4cebd", 3293539046386022, undefined, [wrappedValue, reset], [null,{"callback":{"out":[]}}]); }
+  static initWrappedValueReset(wrappedValue: unknown, reset: $SDK72): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_bd41a4085ee86f99", 3293539046386022, undefined, [wrappedValue, reset], [null,{"callback":{"out":[]}}]); }
   /**
    * init(wrappedValue: Value)
    * @availability iOS 13.0+
    */
-  static initWrappedValue(wrappedValue: unknown): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_64b39a05e4a4cebd", 3858848884870448, undefined, [wrappedValue]); }
+  static initWrappedValue(wrappedValue: unknown): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_bd41a4085ee86f99", 3858848884870448, undefined, [wrappedValue]); }
   /**
    * var wrappedValue: Value { get }
    * @availability iOS 13.0+
    */
-  get wrappedValue(): unknown { return callSDK<unknown>("SwiftUI_64b39a05e4a4cebd", 1670210896672602, this, []); }
+  get wrappedValue(): unknown { return callSDK<unknown>("SwiftUI_bd41a4085ee86f99", 1670210896672602, this, []); }
   /**
    * var projectedValue: GestureState<Value> { get }
    * @availability iOS 13.0+
    */
-  get projectedValue(): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_64b39a05e4a4cebd", 2872295554051821, this, []); }
+  get projectedValue(): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_bd41a4085ee86f99", 2872295554051821, this, []); }
   declare readonly $type: { "s:7SwiftUI12GestureStateV": true };
 }
 
@@ -5028,8 +5028,8 @@ export class GestureStateGesture<Base = unknown, State = unknown> extends SDKHan
    * var state: GestureState<State>
    * @availability iOS 13.0+
    */
-  get state(): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_64b39a05e4a4cebd", 844510554262926, this, []); }
-  set state(value: GestureState<unknown>) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1949906394505767, this, [value]); }
+  get state(): GestureState<unknown> { return callSDK<GestureState<unknown>>("SwiftUI_bd41a4085ee86f99", 844510554262926, this, []); }
+  set state(value: GestureState<unknown>) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1949906394505767, this, [value]); }
   declare readonly $type: { "s:7SwiftUI012GestureStateC0V": true };
 }
 
@@ -5054,12 +5054,12 @@ export class GlassButtonStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 26.0+
    */
-  static init(): GlassButtonStyle { return callSDK<GlassButtonStyle>("SwiftUI_64b39a05e4a4cebd", 1774562611587774, undefined, []); }
+  static init(): GlassButtonStyle { return callSDK<GlassButtonStyle>("SwiftUI_bd41a4085ee86f99", 1774562611587774, undefined, []); }
   /**
    * nonisolated init(_ glass: Glass)
    * @availability iOS 26.1+
    */
-  static init87555(glass: _SwiftUICore_Glass): GlassButtonStyle { return callSDK<GlassButtonStyle>("SwiftUI_64b39a05e4a4cebd", 928416126370746, undefined, [glass]); }
+  static init87555(glass: _SwiftUICore_Glass): GlassButtonStyle { return callSDK<GlassButtonStyle>("SwiftUI_bd41a4085ee86f99", 928416126370746, undefined, [glass]); }
   declare readonly $type: { "s:7SwiftUI16GlassButtonStyleV": true };
 }
 
@@ -5078,7 +5078,7 @@ export class GlassProminentButtonStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 26.0+
    */
-  static init(): GlassProminentButtonStyle { return callSDK<GlassProminentButtonStyle>("SwiftUI_64b39a05e4a4cebd", 3193417339541054, undefined, []); }
+  static init(): GlassProminentButtonStyle { return callSDK<GlassProminentButtonStyle>("SwiftUI_bd41a4085ee86f99", 3193417339541054, undefined, []); }
   declare readonly $type: { "s:7SwiftUI25GlassProminentButtonStyleV": true };
 }
 
@@ -5097,7 +5097,7 @@ export class GraphicalDatePickerStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): GraphicalDatePickerStyle { return callSDK<GraphicalDatePickerStyle>("SwiftUI_64b39a05e4a4cebd", 470997929034007, undefined, []); }
+  static init(): GraphicalDatePickerStyle { return callSDK<GraphicalDatePickerStyle>("SwiftUI_bd41a4085ee86f99", 470997929034007, undefined, []); }
   declare readonly $type: { "s:7SwiftUI24GraphicalDatePickerStyleV": true };
 }
 
@@ -5130,25 +5130,25 @@ export class GridItem extends SDKHandle {
    * var size: GridItem.Size
    * @availability iOS 14.0+
    */
-  get size(): GridItem_Size { return callSDK<GridItem_Size>("SwiftUI_64b39a05e4a4cebd", 3141991861216096, this, []); }
-  set size(value: GridItem_Size) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3105433345814770, this, [value]); }
+  get size(): GridItem_Size { return callSDK<GridItem_Size>("SwiftUI_bd41a4085ee86f99", 3141991861216096, this, []); }
+  set size(value: GridItem_Size) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3105433345814770, this, [value]); }
   /**
    * var spacing: CGFloat?
    * @availability iOS 14.0+
    */
-  get spacing(): (number) | null { return callSDK<(number) | null>("SwiftUI_64b39a05e4a4cebd", 366878283993699, this, []); }
-  set spacing(value: (number) | null) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1192735190164512, this, [value]); }
+  get spacing(): (number) | null { return callSDK<(number) | null>("SwiftUI_bd41a4085ee86f99", 366878283993699, this, []); }
+  set spacing(value: (number) | null) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1192735190164512, this, [value]); }
   /**
    * var alignment: Alignment?
    * @availability iOS 14.0+
    */
-  get alignment(): $SDK73 { return callSDK<$SDK73>("SwiftUI_64b39a05e4a4cebd", 4283566748050344, this, []); }
-  set alignment(value: $SDK73) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 963812615484647, this, [value]); }
+  get alignment(): $SDK73 { return callSDK<$SDK73>("SwiftUI_bd41a4085ee86f99", 4283566748050344, this, []); }
+  set alignment(value: $SDK73) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 963812615484647, this, [value]); }
   /**
    * init(_ size: GridItem.Size = .flexible(), spacing: CGFloat? = nil, alignment: Alignment? = nil)
    * @availability iOS 14.0+
    */
-  static init(size?: GridItem_Size, spacing?: (number) | null, alignment?: $SDK73): GridItem { return callSDK<GridItem>("SwiftUI_64b39a05e4a4cebd", 4432615319490948, undefined, [size, spacing, alignment]); }
+  static init(size?: GridItem_Size, spacing?: (number) | null, alignment?: $SDK73): GridItem { return callSDK<GridItem>("SwiftUI_bd41a4085ee86f99", 4432615319490948, undefined, [size, spacing, alignment]); }
   declare readonly $type: { "s:7SwiftUI8GridItemV": true };
 }
 
@@ -5169,60 +5169,60 @@ export class GridLayout extends SDKHandle {
    * nonisolated func updateCache(_ cache: inout GridLayout.Cache, subviews: GridLayout.Subviews)
    * @availability iOS 16.0+
    */
-  updateCache(cache: GridLayout_Cache, subviews: _SwiftUICore_LayoutSubviews): { $ret: null; $out: { "cache": GridLayout_Cache } } { return callSDK<{ $ret: null; $out: { "cache": GridLayout_Cache } }>("SwiftUI_64b39a05e4a4cebd", 3362150856304118, this, [cache, subviews]); }
+  updateCache(cache: GridLayout_Cache, subviews: _SwiftUICore_LayoutSubviews): { $ret: null; $out: { "cache": GridLayout_Cache } } { return callSDK<{ $ret: null; $out: { "cache": GridLayout_Cache } }>("SwiftUI_bd41a4085ee86f99", 3362150856304118, this, [cache, subviews]); }
   /**
    * nonisolated func sizeThatFits(proposal: ProposedViewSize, subviews: GridLayout.Subviews, cache: inout GridLayout.Cache) -> CGSize
    * @availability iOS 16.0+
    */
-  sizeThatFits(proposal: _SwiftUICore_ProposedViewSize, subviews: _SwiftUICore_LayoutSubviews, cache: GridLayout_Cache): { $ret: $SDK38; $out: { "cache": GridLayout_Cache } } { return callSDK<{ $ret: $SDK38; $out: { "cache": GridLayout_Cache } }>("SwiftUI_64b39a05e4a4cebd", 2070166168416593, this, [proposal, subviews, cache]); }
+  sizeThatFits(proposal: _SwiftUICore_ProposedViewSize, subviews: _SwiftUICore_LayoutSubviews, cache: GridLayout_Cache): { $ret: $SDK38; $out: { "cache": GridLayout_Cache } } { return callSDK<{ $ret: $SDK38; $out: { "cache": GridLayout_Cache } }>("SwiftUI_bd41a4085ee86f99", 2070166168416593, this, [proposal, subviews, cache]); }
   /**
    * nonisolated func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: GridLayout.Subviews, cache: inout GridLayout.Cache)
    * @availability iOS 16.0+
    */
-  placeSubviews(bounds: $SDK28, proposal: _SwiftUICore_ProposedViewSize, subviews: _SwiftUICore_LayoutSubviews, cache: GridLayout_Cache): { $ret: null; $out: { "cache": GridLayout_Cache } } { return callSDK<{ $ret: null; $out: { "cache": GridLayout_Cache } }>("SwiftUI_64b39a05e4a4cebd", 2562501920025854, this, [bounds, proposal, subviews, cache]); }
+  placeSubviews(bounds: $SDK28, proposal: _SwiftUICore_ProposedViewSize, subviews: _SwiftUICore_LayoutSubviews, cache: GridLayout_Cache): { $ret: null; $out: { "cache": GridLayout_Cache } } { return callSDK<{ $ret: null; $out: { "cache": GridLayout_Cache } }>("SwiftUI_bd41a4085ee86f99", 2562501920025854, this, [bounds, proposal, subviews, cache]); }
   /**
    * var verticalSpacing: CGFloat?
    * @availability iOS 16.0+
    */
-  get verticalSpacing(): (number) | null { return callSDK<(number) | null>("SwiftUI_64b39a05e4a4cebd", 4330157578146773, this, []); }
-  set verticalSpacing(value: (number) | null) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 605361324678488, this, [value]); }
+  get verticalSpacing(): (number) | null { return callSDK<(number) | null>("SwiftUI_bd41a4085ee86f99", 4330157578146773, this, []); }
+  set verticalSpacing(value: (number) | null) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 605361324678488, this, [value]); }
   /**
    * nonisolated func explicitAlignment(of guide: HorizontalAlignment, in bounds: CGRect, proposal: ProposedViewSize, subviews: GridLayout.Subviews, cache: inout GridLayout.Cache) -> CGFloat?
    * @availability iOS 16.0+
    */
-  explicitAlignmentOfInProposalSubviewsCache(guide: _SwiftUICore_HorizontalAlignment, bounds: $SDK28, proposal: _SwiftUICore_ProposedViewSize, subviews: _SwiftUICore_LayoutSubviews, cache: GridLayout_Cache): { $ret: (number) | null; $out: { "cache": GridLayout_Cache } } { return callSDK<{ $ret: (number) | null; $out: { "cache": GridLayout_Cache } }>("SwiftUI_64b39a05e4a4cebd", 4033483349795722, this, [guide, bounds, proposal, subviews, cache]); }
+  explicitAlignmentOfInProposalSubviewsCache(guide: _SwiftUICore_HorizontalAlignment, bounds: $SDK28, proposal: _SwiftUICore_ProposedViewSize, subviews: _SwiftUICore_LayoutSubviews, cache: GridLayout_Cache): { $ret: (number) | null; $out: { "cache": GridLayout_Cache } } { return callSDK<{ $ret: (number) | null; $out: { "cache": GridLayout_Cache } }>("SwiftUI_bd41a4085ee86f99", 4033483349795722, this, [guide, bounds, proposal, subviews, cache]); }
   /**
    * nonisolated func explicitAlignment(of guide: VerticalAlignment, in bounds: CGRect, proposal: ProposedViewSize, subviews: GridLayout.Subviews, cache: inout GridLayout.Cache) -> CGFloat?
    * @availability iOS 16.0+
    */
-  explicitAlignmentOfInProposalSubviewsCache85184(guide: _SwiftUICore_VerticalAlignment, bounds: $SDK28, proposal: _SwiftUICore_ProposedViewSize, subviews: _SwiftUICore_LayoutSubviews, cache: GridLayout_Cache): { $ret: (number) | null; $out: { "cache": GridLayout_Cache } } { return callSDK<{ $ret: (number) | null; $out: { "cache": GridLayout_Cache } }>("SwiftUI_64b39a05e4a4cebd", 3186232866301665, this, [guide, bounds, proposal, subviews, cache]); }
+  explicitAlignmentOfInProposalSubviewsCache85184(guide: _SwiftUICore_VerticalAlignment, bounds: $SDK28, proposal: _SwiftUICore_ProposedViewSize, subviews: _SwiftUICore_LayoutSubviews, cache: GridLayout_Cache): { $ret: (number) | null; $out: { "cache": GridLayout_Cache } } { return callSDK<{ $ret: (number) | null; $out: { "cache": GridLayout_Cache } }>("SwiftUI_bd41a4085ee86f99", 3186232866301665, this, [guide, bounds, proposal, subviews, cache]); }
   /**
    * var horizontalSpacing: CGFloat?
    * @availability iOS 16.0+
    */
-  get horizontalSpacing(): (number) | null { return callSDK<(number) | null>("SwiftUI_64b39a05e4a4cebd", 3779412888393067, this, []); }
-  set horizontalSpacing(value: (number) | null) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3178644198423283, this, [value]); }
+  get horizontalSpacing(): (number) | null { return callSDK<(number) | null>("SwiftUI_bd41a4085ee86f99", 3779412888393067, this, []); }
+  set horizontalSpacing(value: (number) | null) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3178644198423283, this, [value]); }
   /**
    * nonisolated func spacing(subviews: GridLayout.Subviews, cache: inout GridLayout.Cache) -> ViewSpacing
    * @availability iOS 16.0+
    */
-  spacing(subviews: _SwiftUICore_LayoutSubviews, cache: GridLayout_Cache): { $ret: _SwiftUICore_ViewSpacing; $out: { "cache": GridLayout_Cache } } { return callSDK<{ $ret: _SwiftUICore_ViewSpacing; $out: { "cache": GridLayout_Cache } }>("SwiftUI_64b39a05e4a4cebd", 815747752848758, this, [subviews, cache]); }
+  spacing(subviews: _SwiftUICore_LayoutSubviews, cache: GridLayout_Cache): { $ret: _SwiftUICore_ViewSpacing; $out: { "cache": GridLayout_Cache } } { return callSDK<{ $ret: _SwiftUICore_ViewSpacing; $out: { "cache": GridLayout_Cache } }>("SwiftUI_bd41a4085ee86f99", 815747752848758, this, [subviews, cache]); }
   /**
    * nonisolated init(alignment: Alignment = .center, horizontalSpacing: CGFloat? = nil, verticalSpacing: CGFloat? = nil)
    * @availability iOS 16.0+
    */
-  static init(alignment?: _SwiftUICore_Alignment, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): GridLayout { return callSDK<GridLayout>("SwiftUI_64b39a05e4a4cebd", 2290894491389569, undefined, [alignment, horizontalSpacing, verticalSpacing]); }
+  static init(alignment?: _SwiftUICore_Alignment, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): GridLayout { return callSDK<GridLayout>("SwiftUI_bd41a4085ee86f99", 2290894491389569, undefined, [alignment, horizontalSpacing, verticalSpacing]); }
   /**
    * var alignment: Alignment
    * @availability iOS 16.0+
    */
-  get alignment(): _SwiftUICore_Alignment { return callSDK<_SwiftUICore_Alignment>("SwiftUI_64b39a05e4a4cebd", 611420082165253, this, []); }
-  set alignment(value: _SwiftUICore_Alignment) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4401143689638187, this, [value]); }
+  get alignment(): _SwiftUICore_Alignment { return callSDK<_SwiftUICore_Alignment>("SwiftUI_bd41a4085ee86f99", 611420082165253, this, []); }
+  set alignment(value: _SwiftUICore_Alignment) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 4401143689638187, this, [value]); }
   /**
    * nonisolated func makeCache(subviews: GridLayout.Subviews) -> GridLayout.Cache
    * @availability iOS 16.0+
    */
-  makeCache(subviews: _SwiftUICore_LayoutSubviews): GridLayout_Cache { return callSDK<GridLayout_Cache>("SwiftUI_64b39a05e4a4cebd", 3531254493987057, this, [subviews]); }
+  makeCache(subviews: _SwiftUICore_LayoutSubviews): GridLayout_Cache { return callSDK<GridLayout_Cache>("SwiftUI_bd41a4085ee86f99", 3531254493987057, this, [subviews]); }
   declare readonly $type: { "s:7SwiftUI10GridLayoutV": true };
 }
 
@@ -5305,7 +5305,7 @@ export class GroupBox<Label = unknown, Content = unknown> extends SDKHandle {
    * nonisolated init(_ configuration: GroupBoxStyleConfiguration)
    * @availability iOS 14.0+
    */
-  static init(configuration: GroupBoxStyleConfiguration): GroupBox<GroupBoxStyleConfiguration_Label, GroupBoxStyleConfiguration_Content> { return callSDK<GroupBox<GroupBoxStyleConfiguration_Label, GroupBoxStyleConfiguration_Content>>("SwiftUI_64b39a05e4a4cebd", 1012482487031802, undefined, [configuration]); }
+  static init(configuration: GroupBoxStyleConfiguration): GroupBox<GroupBoxStyleConfiguration_Label, GroupBoxStyleConfiguration_Content> { return callSDK<GroupBox<GroupBoxStyleConfiguration_Label, GroupBoxStyleConfiguration_Content>>("SwiftUI_bd41a4085ee86f99", 1012482487031802, undefined, [configuration]); }
   declare readonly $type: { "s:7SwiftUI8GroupBoxV": true };
 }
 
@@ -5342,12 +5342,12 @@ export class GroupBoxStyleConfiguration extends SDKHandle {
    * let label: GroupBoxStyleConfiguration.Label
    * @availability iOS 14.0+
    */
-  get label(): GroupBoxStyleConfiguration_Label { return callSDK<GroupBoxStyleConfiguration_Label>("SwiftUI_64b39a05e4a4cebd", 768009701773339, this, []); }
+  get label(): GroupBoxStyleConfiguration_Label { return callSDK<GroupBoxStyleConfiguration_Label>("SwiftUI_bd41a4085ee86f99", 768009701773339, this, []); }
   /**
    * let content: GroupBoxStyleConfiguration.Content
    * @availability iOS 14.0+
    */
-  get content(): GroupBoxStyleConfiguration_Content { return callSDK<GroupBoxStyleConfiguration_Content>("SwiftUI_64b39a05e4a4cebd", 356841904556482, this, []); }
+  get content(): GroupBoxStyleConfiguration_Content { return callSDK<GroupBoxStyleConfiguration_Content>("SwiftUI_bd41a4085ee86f99", 356841904556482, this, []); }
   declare readonly $type: { "s:7SwiftUI26GroupBoxStyleConfigurationV": true };
 }
 
@@ -5388,7 +5388,7 @@ export class GroupedFormStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 16.0+
    */
-  static init(): GroupedFormStyle { return callSDK<GroupedFormStyle>("SwiftUI_64b39a05e4a4cebd", 3198997808659924, undefined, []); }
+  static init(): GroupedFormStyle { return callSDK<GroupedFormStyle>("SwiftUI_bd41a4085ee86f99", 3198997808659924, undefined, []); }
   declare readonly $type: { "s:7SwiftUI16GroupedFormStyleV": true };
 }
 
@@ -5407,7 +5407,7 @@ export class GroupedListStyle extends SDKHandle {
    * init()
    * @availability iOS 13.0+
    */
-  static init(): GroupedListStyle { return callSDK<GroupedListStyle>("SwiftUI_64b39a05e4a4cebd", 444785155948219, undefined, []); }
+  static init(): GroupedListStyle { return callSDK<GroupedListStyle>("SwiftUI_bd41a4085ee86f99", 444785155948219, undefined, []); }
   declare readonly $type: { "s:7SwiftUI16GroupedListStyleV": true };
 }
 
@@ -5420,7 +5420,7 @@ export class HandGestureShortcut extends SDKHandle {
    * static let primaryAction: HandGestureShortcut
    * @availability iOS 18.0+
    */
-  static get primaryAction(): HandGestureShortcut { return callSDK<HandGestureShortcut>("SwiftUI_64b39a05e4a4cebd", 1360210698751714, undefined, []); }
+  static get primaryAction(): HandGestureShortcut { return callSDK<HandGestureShortcut>("SwiftUI_bd41a4085ee86f99", 1360210698751714, undefined, []); }
   declare readonly $type: { "s:7SwiftUI19HandGestureShortcutV": true };
 }
 
@@ -5441,7 +5441,7 @@ export class IconOnlyLabelStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): IconOnlyLabelStyle { return callSDK<IconOnlyLabelStyle>("SwiftUI_64b39a05e4a4cebd", 1612606526939630, undefined, []); }
+  static init(): IconOnlyLabelStyle { return callSDK<IconOnlyLabelStyle>("SwiftUI_bd41a4085ee86f99", 1612606526939630, undefined, []); }
   declare readonly $type: { "s:7SwiftUI18IconOnlyLabelStyleV": true };
 }
 
@@ -5456,7 +5456,7 @@ export class Image extends SDKHandle {
    * init(uiImage: UIImage)
    * @availability iOS 13.0+
    */
-  static init(uiImage: _UIKit_UIImage): _SwiftUICore_Image { return callSDK<_SwiftUICore_Image>("SwiftUI_64b39a05e4a4cebd", 1659721099845805, undefined, [uiImage]); }
+  static init(uiImage: _UIKit_UIImage): _SwiftUICore_Image { return callSDK<_SwiftUICore_Image>("SwiftUI_bd41a4085ee86f99", 1659721099845805, undefined, [uiImage]); }
   declare readonly $type: { "s:7SwiftUI5ImageV": true };
 }
 
@@ -5471,7 +5471,7 @@ export class ImageRenderer<Content = unknown> extends SDKHandle {
    * @MainActor final var uiImage: UIImage? { get }
    * @availability iOS 16.0+
    */
-  get uiImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("SwiftUI_64b39a05e4a4cebd", 1345718728054183, this, []); }
+  get uiImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("SwiftUI_bd41a4085ee86f99", 1345718728054183, this, []); }
   declare readonly $type: { "s:7SwiftUI13ImageRendererC": true };
   declare readonly $observable: { "uiImage": true };
 }
@@ -5485,22 +5485,22 @@ export class IndexedIdentifierCollection<Base = unknown, ID = unknown> extends S
    * var startIndex: IndexedIdentifierCollection<Base, ID>.Index { get }
    * @availability iOS 16.0+
    */
-  get startIndex(): SDKHandle { return callSDK<SDKHandle>("SwiftUI_64b39a05e4a4cebd", 3824265313275998, this, []); }
+  get startIndex(): SDKHandle { return callSDK<SDKHandle>("SwiftUI_bd41a4085ee86f99", 3824265313275998, this, []); }
   /**
    * func index(after i: IndexedIdentifierCollection<Base, ID>.Index) -> IndexedIdentifierCollection<Base, ID>.Index
    * @availability iOS 16.0+
    */
-  index(i: SDKHandle): SDKHandle { return callSDK<SDKHandle>("SwiftUI_64b39a05e4a4cebd", 308739038916296, this, [i]); }
+  index(i: SDKHandle): SDKHandle { return callSDK<SDKHandle>("SwiftUI_bd41a4085ee86f99", 308739038916296, this, [i]); }
   /**
    * var endIndex: IndexedIdentifierCollection<Base, ID>.Index { get }
    * @availability iOS 16.0+
    */
-  get endIndex(): SDKHandle { return callSDK<SDKHandle>("SwiftUI_64b39a05e4a4cebd", 1823330498766563, this, []); }
+  get endIndex(): SDKHandle { return callSDK<SDKHandle>("SwiftUI_bd41a4085ee86f99", 1823330498766563, this, []); }
   /**
    * subscript(position: IndexedIdentifierCollection<Base, ID>.Index) -> IndexedIdentifierCollection<Base, ID>.Element { get }
    * @availability iOS 16.0+
    */
-  subscript(position: SDKHandle): IndexedIdentifierCollection_Element<SDKHandle, number> { return callSDK<IndexedIdentifierCollection_Element<SDKHandle, number>>("SwiftUI_64b39a05e4a4cebd", 2159989002461527, this, [position]); }
+  subscript(position: SDKHandle): IndexedIdentifierCollection_Element<SDKHandle, number> { return callSDK<IndexedIdentifierCollection_Element<SDKHandle, number>>("SwiftUI_bd41a4085ee86f99", 2159989002461527, this, [position]); }
   declare readonly $type: { "s:7SwiftUI27IndexedIdentifierCollectionV": true };
 }
 
@@ -5553,7 +5553,7 @@ export class InlinePickerStyle extends SDKHandle {
    * init()
    * @availability iOS 14.0+
    */
-  static init(): InlinePickerStyle { return callSDK<InlinePickerStyle>("SwiftUI_64b39a05e4a4cebd", 893221489716079, undefined, []); }
+  static init(): InlinePickerStyle { return callSDK<InlinePickerStyle>("SwiftUI_bd41a4085ee86f99", 893221489716079, undefined, []); }
   declare readonly $type: { "s:7SwiftUI17InlinePickerStyleV": true };
 }
 
@@ -5566,7 +5566,7 @@ export class InsetGroupedListStyle extends SDKHandle {
    * init()
    * @availability iOS 14.0+
    */
-  static init(): InsetGroupedListStyle { return callSDK<InsetGroupedListStyle>("SwiftUI_64b39a05e4a4cebd", 755574059147785, undefined, []); }
+  static init(): InsetGroupedListStyle { return callSDK<InsetGroupedListStyle>("SwiftUI_bd41a4085ee86f99", 755574059147785, undefined, []); }
   declare readonly $type: { "s:7SwiftUI21InsetGroupedListStyleV": true };
 }
 
@@ -5579,7 +5579,7 @@ export class InsetListStyle extends SDKHandle {
    * init()
    * @availability iOS 14.0+
    */
-  static init(): InsetListStyle { return callSDK<InsetListStyle>("SwiftUI_64b39a05e4a4cebd", 267179565818017, undefined, []); }
+  static init(): InsetListStyle { return callSDK<InsetListStyle>("SwiftUI_bd41a4085ee86f99", 267179565818017, undefined, []); }
   declare readonly $type: { "s:7SwiftUI14InsetListStyleV": true };
 }
 
@@ -5592,7 +5592,7 @@ export class InsetTableStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 16.0+
    */
-  static init(): InsetTableStyle { return callSDK<InsetTableStyle>("SwiftUI_64b39a05e4a4cebd", 1914731291264275, undefined, []); }
+  static init(): InsetTableStyle { return callSDK<InsetTableStyle>("SwiftUI_bd41a4085ee86f99", 1914731291264275, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15InsetTableStyleV": true };
 }
 
@@ -5611,7 +5611,7 @@ export class InspectorCommands extends SDKHandle {
    * nonisolated init()
    * @availability iOS 17.0+
    */
-  static init(): InspectorCommands { return callSDK<InspectorCommands>("SwiftUI_64b39a05e4a4cebd", 2934220692758930, undefined, []); }
+  static init(): InspectorCommands { return callSDK<InspectorCommands>("SwiftUI_bd41a4085ee86f99", 2934220692758930, undefined, []); }
   declare readonly $type: { "s:7SwiftUI17InspectorCommandsV": true };
 }
 
@@ -5630,32 +5630,32 @@ export class InterfaceOrientation extends SDKHandle {
    * static let landscapeLeft: InterfaceOrientation
    * @availability iOS 15.0+
    */
-  static get landscapeLeft(): InterfaceOrientation { return callSDK<InterfaceOrientation>("SwiftUI_64b39a05e4a4cebd", 3542746071350863, undefined, []); }
+  static get landscapeLeft(): InterfaceOrientation { return callSDK<InterfaceOrientation>("SwiftUI_bd41a4085ee86f99", 3542746071350863, undefined, []); }
   /**
    * static let landscapeRight: InterfaceOrientation
    * @availability iOS 15.0+
    */
-  static get landscapeRight(): InterfaceOrientation { return callSDK<InterfaceOrientation>("SwiftUI_64b39a05e4a4cebd", 1380663139078016, undefined, []); }
+  static get landscapeRight(): InterfaceOrientation { return callSDK<InterfaceOrientation>("SwiftUI_bd41a4085ee86f99", 1380663139078016, undefined, []); }
   /**
    * static let portraitUpsideDown: InterfaceOrientation
    * @availability iOS 15.0+
    */
-  static get portraitUpsideDown(): InterfaceOrientation { return callSDK<InterfaceOrientation>("SwiftUI_64b39a05e4a4cebd", 301659231667064, undefined, []); }
+  static get portraitUpsideDown(): InterfaceOrientation { return callSDK<InterfaceOrientation>("SwiftUI_bd41a4085ee86f99", 301659231667064, undefined, []); }
   /**
    * var id: String { get }
    * @availability iOS 15.0+
    */
-  get id(): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 405763860716905, this, []); }
+  get id(): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 405763860716905, this, []); }
   /**
    * static var allCases: [InterfaceOrientation] { get }
    * @availability iOS 15.0+
    */
-  static get allCases(): Array<InterfaceOrientation> { return callSDK<Array<InterfaceOrientation>>("SwiftUI_64b39a05e4a4cebd", 4476877182302539, undefined, []); }
+  static get allCases(): Array<InterfaceOrientation> { return callSDK<Array<InterfaceOrientation>>("SwiftUI_bd41a4085ee86f99", 4476877182302539, undefined, []); }
   /**
    * static let portrait: InterfaceOrientation
    * @availability iOS 15.0+
    */
-  static get portrait(): InterfaceOrientation { return callSDK<InterfaceOrientation>("SwiftUI_64b39a05e4a4cebd", 865578121536221, undefined, []); }
+  static get portrait(): InterfaceOrientation { return callSDK<InterfaceOrientation>("SwiftUI_bd41a4085ee86f99", 865578121536221, undefined, []); }
   declare readonly $type: { "s:7SwiftUI20InterfaceOrientationV": true };
 }
 
@@ -5680,7 +5680,7 @@ export class ItemProviderTableRowModifier extends SDKHandle {
    * @MainActor @preconcurrency var body: some _TableRowContentModifier { get }
    * @availability iOS 16.0+
    */
-  get body(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("SwiftUI_64b39a05e4a4cebd", 2338952523906075, this, []); }
+  get body(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("SwiftUI_bd41a4085ee86f99", 2338952523906075, this, []); }
   declare readonly $type: { "s:7SwiftUI28ItemProviderTableRowModifierV": true };
 }
 
@@ -5699,40 +5699,40 @@ export class KeyboardShortcut extends SDKHandle {
    * static let cancelAction: KeyboardShortcut
    * @availability iOS 14.0+
    */
-  static get cancelAction(): KeyboardShortcut { return callSDK<KeyboardShortcut>("SwiftUI_64b39a05e4a4cebd", 1511129443068197, undefined, []); }
+  static get cancelAction(): KeyboardShortcut { return callSDK<KeyboardShortcut>("SwiftUI_bd41a4085ee86f99", 1511129443068197, undefined, []); }
   /**
    * var localization: KeyboardShortcut.Localization
    * @availability iOS 15.0+
    */
-  get localization(): KeyboardShortcut_Localization { return callSDK<KeyboardShortcut_Localization>("SwiftUI_64b39a05e4a4cebd", 3660497630849722, this, []); }
-  set localization(value: KeyboardShortcut_Localization) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2119820890974385, this, [value]); }
+  get localization(): KeyboardShortcut_Localization { return callSDK<KeyboardShortcut_Localization>("SwiftUI_bd41a4085ee86f99", 3660497630849722, this, []); }
+  set localization(value: KeyboardShortcut_Localization) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2119820890974385, this, [value]); }
   /**
    * static let defaultAction: KeyboardShortcut
    * @availability iOS 14.0+
    */
-  static get defaultAction(): KeyboardShortcut { return callSDK<KeyboardShortcut>("SwiftUI_64b39a05e4a4cebd", 3809567747455140, undefined, []); }
+  static get defaultAction(): KeyboardShortcut { return callSDK<KeyboardShortcut>("SwiftUI_bd41a4085ee86f99", 3809567747455140, undefined, []); }
   /**
    * var key: KeyEquivalent
    * @availability iOS 14.0+
    */
-  get key(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 1400306468358323, this, []); }
-  set key(value: KeyEquivalent) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2974578368566681, this, [value]); }
+  get key(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 1400306468358323, this, []); }
+  set key(value: KeyEquivalent) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2974578368566681, this, [value]); }
   /**
    * var modifiers: EventModifiers
    * @availability iOS 14.0+
    */
-  get modifiers(): _SwiftUICore_EventModifiers { return callSDK<_SwiftUICore_EventModifiers>("SwiftUI_64b39a05e4a4cebd", 2681356093958549, this, []); }
-  set modifiers(value: _SwiftUICore_EventModifiers) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1756877456630015, this, [value]); }
+  get modifiers(): _SwiftUICore_EventModifiers { return callSDK<_SwiftUICore_EventModifiers>("SwiftUI_bd41a4085ee86f99", 2681356093958549, this, []); }
+  set modifiers(value: _SwiftUICore_EventModifiers) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1756877456630015, this, [value]); }
   /**
    * init(_ key: KeyEquivalent, modifiers: EventModifiers = .command, localization: KeyboardShortcut.Localization)
    * @availability iOS 15.0+
    */
-  static initModifiersLocalization(key: KeyEquivalent, modifiers: _SwiftUICore_EventModifiers, localization: KeyboardShortcut_Localization): KeyboardShortcut { return callSDK<KeyboardShortcut>("SwiftUI_64b39a05e4a4cebd", 980788927519751, undefined, [key, modifiers, localization]); }
+  static initModifiersLocalization(key: KeyEquivalent, modifiers: _SwiftUICore_EventModifiers, localization: KeyboardShortcut_Localization): KeyboardShortcut { return callSDK<KeyboardShortcut>("SwiftUI_bd41a4085ee86f99", 980788927519751, undefined, [key, modifiers, localization]); }
   /**
    * init(_ key: KeyEquivalent, modifiers: EventModifiers = .command)
    * @availability iOS 14.0+
    */
-  static initModifiers(key: KeyEquivalent, modifiers?: _SwiftUICore_EventModifiers): KeyboardShortcut { return callSDK<KeyboardShortcut>("SwiftUI_64b39a05e4a4cebd", 374193202671235, undefined, [key, modifiers]); }
+  static initModifiers(key: KeyEquivalent, modifiers?: _SwiftUICore_EventModifiers): KeyboardShortcut { return callSDK<KeyboardShortcut>("SwiftUI_bd41a4085ee86f99", 374193202671235, undefined, [key, modifiers]); }
   declare readonly $type: { "s:7SwiftUI16KeyboardShortcutV": true };
 }
 
@@ -5745,17 +5745,17 @@ export class KeyboardShortcut_Localization extends SDKHandle {
    * static let withoutMirroring: KeyboardShortcut.Localization
    * @availability iOS 15.0+
    */
-  static get withoutMirroring(): KeyboardShortcut_Localization { return callSDK<KeyboardShortcut_Localization>("SwiftUI_64b39a05e4a4cebd", 710610449349118, undefined, []); }
+  static get withoutMirroring(): KeyboardShortcut_Localization { return callSDK<KeyboardShortcut_Localization>("SwiftUI_bd41a4085ee86f99", 710610449349118, undefined, []); }
   /**
    * static let custom: KeyboardShortcut.Localization
    * @availability iOS 15.0+
    */
-  static get custom(): KeyboardShortcut_Localization { return callSDK<KeyboardShortcut_Localization>("SwiftUI_64b39a05e4a4cebd", 501822852658831, undefined, []); }
+  static get custom(): KeyboardShortcut_Localization { return callSDK<KeyboardShortcut_Localization>("SwiftUI_bd41a4085ee86f99", 501822852658831, undefined, []); }
   /**
    * static let automatic: KeyboardShortcut.Localization
    * @availability iOS 15.0+
    */
-  static get automatic(): KeyboardShortcut_Localization { return callSDK<KeyboardShortcut_Localization>("SwiftUI_64b39a05e4a4cebd", 3330906025223957, undefined, []); }
+  static get automatic(): KeyboardShortcut_Localization { return callSDK<KeyboardShortcut_Localization>("SwiftUI_bd41a4085ee86f99", 3330906025223957, undefined, []); }
   declare readonly $type: { "s:7SwiftUI16KeyboardShortcutV12LocalizationV": true };
 }
 
@@ -5768,93 +5768,93 @@ export class KeyEquivalent extends SDKHandle {
    * static let rightArrow: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get rightArrow(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 1737925283743255, undefined, []); }
+  static get rightArrow(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 1737925283743255, undefined, []); }
   /**
    * static let deleteForward: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get deleteForward(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 3642910650595216, undefined, []); }
+  static get deleteForward(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 3642910650595216, undefined, []); }
   /**
    * init(extendedGraphemeClusterLiteral: Character)
    * @availability iOS 14.0+
    */
-  static initExtendedGraphemeClusterLiteral(extendedGraphemeClusterLiteral: string): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 1675186965222125, undefined, [extendedGraphemeClusterLiteral]); }
+  static initExtendedGraphemeClusterLiteral(extendedGraphemeClusterLiteral: string): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 1675186965222125, undefined, [extendedGraphemeClusterLiteral]); }
   /**
    * static let end: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get end(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 2986432153297106, undefined, []); }
+  static get end(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 2986432153297106, undefined, []); }
   /**
    * static let tab: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get tab(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 689592922157401, undefined, []); }
+  static get tab(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 689592922157401, undefined, []); }
   /**
    * static let home: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get home(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 2914500044941349, undefined, []); }
+  static get home(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 2914500044941349, undefined, []); }
   /**
    * static let clear: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get clear(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 3825068849440616, undefined, []); }
+  static get clear(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 3825068849440616, undefined, []); }
   /**
    * static let space: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get space(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 1354911074452484, undefined, []); }
+  static get space(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 1354911074452484, undefined, []); }
   /**
    * static let delete: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get delete(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 2946957722382504, undefined, []); }
+  static get delete(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 2946957722382504, undefined, []); }
   /**
    * static let escape: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get escape(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 2349717684781627, undefined, []); }
+  static get escape(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 2349717684781627, undefined, []); }
   /**
    * static let pageUp: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get pageUp(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 795063722102182, undefined, []); }
+  static get pageUp(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 795063722102182, undefined, []); }
   /**
    * static let `return`: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get return(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 435690055850586, undefined, []); }
+  static get return(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 435690055850586, undefined, []); }
   /**
    * static let upArrow: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get upArrow(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 1492610212327320, undefined, []); }
+  static get upArrow(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 1492610212327320, undefined, []); }
   /**
    * static let pageDown: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get pageDown(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 1779973746242375, undefined, []); }
+  static get pageDown(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 1779973746242375, undefined, []); }
   /**
    * var character: Character
    * @availability iOS 14.0+
    */
-  get character(): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 1474269345029974, this, []); }
-  set character(value: string) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3280457155727799, this, [value]); }
+  get character(): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 1474269345029974, this, []); }
+  set character(value: string) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3280457155727799, this, [value]); }
   /**
    * static let downArrow: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get downArrow(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 2462220464608121, undefined, []); }
+  static get downArrow(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 2462220464608121, undefined, []); }
   /**
    * static let leftArrow: KeyEquivalent
    * @availability iOS 14.0+
    */
-  static get leftArrow(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 1838174743660215, undefined, []); }
+  static get leftArrow(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 1838174743660215, undefined, []); }
   /**
    * init(_ character: Character)
    * @availability iOS 14.0+
    */
-  static init(character: string): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 2859809224227305, undefined, [character]); }
+  static init(character: string): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 2859809224227305, undefined, [character]); }
   declare readonly $type: { "s:7SwiftUI13KeyEquivalentV": true };
 }
 
@@ -5879,27 +5879,27 @@ export class KeyPress extends SDKHandle {
    * let characters: String
    * @availability iOS 17.0+
    */
-  get characters(): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 2997272085865694, this, []); }
+  get characters(): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 2997272085865694, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 434416568205738, this, []); }
+  get debugDescription(): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 434416568205738, this, []); }
   /**
    * let key: KeyEquivalent
    * @availability iOS 17.0+
    */
-  get key(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_64b39a05e4a4cebd", 4241114930789454, this, []); }
+  get key(): KeyEquivalent { return callSDK<KeyEquivalent>("SwiftUI_bd41a4085ee86f99", 4241114930789454, this, []); }
   /**
    * let phase: KeyPress.Phases
    * @availability iOS 17.0+
    */
-  get phase(): KeyPress_Phases { return callSDK<KeyPress_Phases>("SwiftUI_64b39a05e4a4cebd", 1296928408572001, this, []); }
+  get phase(): KeyPress_Phases { return callSDK<KeyPress_Phases>("SwiftUI_bd41a4085ee86f99", 1296928408572001, this, []); }
   /**
    * let modifiers: EventModifiers
    * @availability iOS 17.0+
    */
-  get modifiers(): _SwiftUICore_EventModifiers { return callSDK<_SwiftUICore_EventModifiers>("SwiftUI_64b39a05e4a4cebd", 2627144928917634, this, []); }
+  get modifiers(): _SwiftUICore_EventModifiers { return callSDK<_SwiftUICore_EventModifiers>("SwiftUI_bd41a4085ee86f99", 2627144928917634, this, []); }
   declare readonly $type: { "s:7SwiftUI8KeyPressV": true };
 }
 
@@ -5914,37 +5914,37 @@ export const KeyPress_Phases = {
    * var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  getDebugDescription($self: KeyPress_Phases): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 574080254350013, $self, []); },
+  getDebugDescription($self: KeyPress_Phases): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 574080254350013, $self, []); },
   /**
    * static let up: KeyPress.Phases
    * @availability iOS 17.0+
    */
-  get up(): KeyPress_Phases { return callSDK<KeyPress_Phases>("SwiftUI_64b39a05e4a4cebd", 2253379996865865, undefined, []); },
+  get up(): KeyPress_Phases { return callSDK<KeyPress_Phases>("SwiftUI_bd41a4085ee86f99", 2253379996865865, undefined, []); },
   /**
    * static let all: KeyPress.Phases
    * @availability iOS 17.0+
    */
-  get all(): KeyPress_Phases { return callSDK<KeyPress_Phases>("SwiftUI_64b39a05e4a4cebd", 1744477024057003, undefined, []); },
+  get all(): KeyPress_Phases { return callSDK<KeyPress_Phases>("SwiftUI_bd41a4085ee86f99", 1744477024057003, undefined, []); },
   /**
    * static let down: KeyPress.Phases
    * @availability iOS 17.0+
    */
-  get down(): KeyPress_Phases { return callSDK<KeyPress_Phases>("SwiftUI_64b39a05e4a4cebd", 1067242868127461, undefined, []); },
+  get down(): KeyPress_Phases { return callSDK<KeyPress_Phases>("SwiftUI_bd41a4085ee86f99", 1067242868127461, undefined, []); },
   /**
    * static let `repeat`: KeyPress.Phases
    * @availability iOS 17.0+
    */
-  get repeat(): KeyPress_Phases { return callSDK<KeyPress_Phases>("SwiftUI_64b39a05e4a4cebd", 2034331369570617, undefined, []); },
+  get repeat(): KeyPress_Phases { return callSDK<KeyPress_Phases>("SwiftUI_bd41a4085ee86f99", 2034331369570617, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): KeyPress_Phases { return callSDK<KeyPress_Phases>("SwiftUI_64b39a05e4a4cebd", 2467822385450841, undefined, [rawValue]); },
+  init(rawValue: number): KeyPress_Phases { return callSDK<KeyPress_Phases>("SwiftUI_bd41a4085ee86f99", 2467822385450841, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 17.0+
    */
-  getRawValue($self: KeyPress_Phases): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 2139140526235539, $self, []); }
+  getRawValue($self: KeyPress_Phases): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 2139140526235539, $self, []); }
 };
 
 /**
@@ -5980,52 +5980,52 @@ export class Label<Title = unknown, Icon = unknown> extends SDKHandle {
    * nonisolated init(_ configuration: LabelStyleConfiguration)
    * @availability iOS 14.0+
    */
-  static init(configuration: LabelStyleConfiguration): Label<LabelStyleConfiguration_Title, LabelStyleConfiguration_Icon> { return callSDK<Label<LabelStyleConfiguration_Title, LabelStyleConfiguration_Icon>>("SwiftUI_64b39a05e4a4cebd", 3492220620802029, undefined, [configuration]); }
+  static init(configuration: LabelStyleConfiguration): Label<LabelStyleConfiguration_Title, LabelStyleConfiguration_Icon> { return callSDK<Label<LabelStyleConfiguration_Title, LabelStyleConfiguration_Icon>>("SwiftUI_bd41a4085ee86f99", 3492220620802029, undefined, [configuration]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, systemImage name: String)
    * @availability iOS 16.0+
    */
-  static initSystemImage(titleResource: _Foundation_LocalizedStringResource, name: string): $SDK79 { return callSDK<$SDK79>("SwiftUI_64b39a05e4a4cebd", 2329021573172516, undefined, [titleResource, name]); }
+  static initSystemImage(titleResource: _Foundation_LocalizedStringResource, name: string): $SDK79 { return callSDK<$SDK79>("SwiftUI_bd41a4085ee86f99", 2329021573172516, undefined, [titleResource, name]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, systemImage name: String)
    * @availability iOS 14.0+
    */
-  static initSystemImage2271(titleKey: _SwiftUICore_LocalizedStringKey, name: string): $SDK79 { return callSDK<$SDK79>("SwiftUI_64b39a05e4a4cebd", 2252796943357391, undefined, [titleKey, name]); }
+  static initSystemImage2271(titleKey: _SwiftUICore_LocalizedStringKey, name: string): $SDK79 { return callSDK<$SDK79>("SwiftUI_bd41a4085ee86f99", 2252796943357391, undefined, [titleKey, name]); }
   /**
    * nonisolated init<S>(_ title: S, systemImage name: String) where S : StringProtocol
    * @availability iOS 14.0+
    */
-  static initSystemImage62115(title: string, name: string): $SDK79 { return callSDK<$SDK79>("SwiftUI_64b39a05e4a4cebd", 1278951791872698, undefined, [title, name]); }
+  static initSystemImage62115(title: string, name: string): $SDK79 { return callSDK<$SDK79>("SwiftUI_bd41a4085ee86f99", 1278951791872698, undefined, [title, name]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, image resource: ImageResource)
    * @availability iOS 17.0+
    */
-  static initImage(titleResource: _Foundation_LocalizedStringResource, resource: _DeveloperToolsSupport_ImageResource): $SDK79 { return callSDK<$SDK79>("SwiftUI_64b39a05e4a4cebd", 3368821702976650, undefined, [titleResource, resource]); }
+  static initImage(titleResource: _Foundation_LocalizedStringResource, resource: _DeveloperToolsSupport_ImageResource): $SDK79 { return callSDK<$SDK79>("SwiftUI_bd41a4085ee86f99", 3368821702976650, undefined, [titleResource, resource]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, image name: String)
    * @availability iOS 16.0+
    */
-  static initImage96328(titleResource: _Foundation_LocalizedStringResource, name: string): $SDK79 { return callSDK<$SDK79>("SwiftUI_64b39a05e4a4cebd", 1280782859980996, undefined, [titleResource, name]); }
+  static initImage96328(titleResource: _Foundation_LocalizedStringResource, name: string): $SDK79 { return callSDK<$SDK79>("SwiftUI_bd41a4085ee86f99", 1280782859980996, undefined, [titleResource, name]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, image resource: ImageResource)
    * @availability iOS 17.0+
    */
-  static initImage7343(titleKey: _SwiftUICore_LocalizedStringKey, resource: _DeveloperToolsSupport_ImageResource): $SDK79 { return callSDK<$SDK79>("SwiftUI_64b39a05e4a4cebd", 3127648031472231, undefined, [titleKey, resource]); }
+  static initImage7343(titleKey: _SwiftUICore_LocalizedStringKey, resource: _DeveloperToolsSupport_ImageResource): $SDK79 { return callSDK<$SDK79>("SwiftUI_bd41a4085ee86f99", 3127648031472231, undefined, [titleKey, resource]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, image name: String)
    * @availability iOS 14.0+
    */
-  static initImage25193(titleKey: _SwiftUICore_LocalizedStringKey, name: string): $SDK79 { return callSDK<$SDK79>("SwiftUI_64b39a05e4a4cebd", 4075595427163967, undefined, [titleKey, name]); }
+  static initImage25193(titleKey: _SwiftUICore_LocalizedStringKey, name: string): $SDK79 { return callSDK<$SDK79>("SwiftUI_bd41a4085ee86f99", 4075595427163967, undefined, [titleKey, name]); }
   /**
    * nonisolated init<S>(_ title: S, image resource: ImageResource) where S : StringProtocol
    * @availability iOS 17.0+
    */
-  static initImage11013(title: string, resource: _DeveloperToolsSupport_ImageResource): $SDK79 { return callSDK<$SDK79>("SwiftUI_64b39a05e4a4cebd", 3689661720070843, undefined, [title, resource]); }
+  static initImage11013(title: string, resource: _DeveloperToolsSupport_ImageResource): $SDK79 { return callSDK<$SDK79>("SwiftUI_bd41a4085ee86f99", 3689661720070843, undefined, [title, resource]); }
   /**
    * nonisolated init<S>(_ title: S, image name: String) where S : StringProtocol
    * @availability iOS 14.0+
    */
-  static initImage13949(title: string, name: string): $SDK79 { return callSDK<$SDK79>("SwiftUI_64b39a05e4a4cebd", 4138637081606916, undefined, [title, name]); }
+  static initImage13949(title: string, name: string): $SDK79 { return callSDK<$SDK79>("SwiftUI_bd41a4085ee86f99", 4138637081606916, undefined, [title, name]); }
   declare readonly $type: { "s:7SwiftUI5LabelV": true };
 }
 
@@ -6044,22 +6044,22 @@ export class LabeledContent<Label = unknown, Content = unknown> extends SDKHandl
    * init(_ configuration: LabeledContentStyleConfiguration)
    * @availability iOS 16.0+
    */
-  static init(configuration: LabeledContentStyleConfiguration): LabeledContent<LabeledContentStyleConfiguration_Label, LabeledContentStyleConfiguration_Content> { return callSDK<LabeledContent<LabeledContentStyleConfiguration_Label, LabeledContentStyleConfiguration_Content>>("SwiftUI_64b39a05e4a4cebd", 2447683537979236, undefined, [configuration]); }
+  static init(configuration: LabeledContentStyleConfiguration): LabeledContent<LabeledContentStyleConfiguration_Label, LabeledContentStyleConfiguration_Content> { return callSDK<LabeledContent<LabeledContentStyleConfiguration_Label, LabeledContentStyleConfiguration_Content>>("SwiftUI_bd41a4085ee86f99", 2447683537979236, undefined, [configuration]); }
   /**
    * init<S>(_ titleResource: LocalizedStringResource, value: S) where S : StringProtocol
    * @availability iOS 26.0+
    */
-  static initValue(titleResource: _Foundation_LocalizedStringResource, value: string): $SDK81 { return callSDK<$SDK81>("SwiftUI_64b39a05e4a4cebd", 1679676976151641, undefined, [titleResource, value]); }
+  static initValue(titleResource: _Foundation_LocalizedStringResource, value: string): $SDK81 { return callSDK<$SDK81>("SwiftUI_bd41a4085ee86f99", 1679676976151641, undefined, [titleResource, value]); }
   /**
    * init<S>(_ titleKey: LocalizedStringKey, value: S) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initValue57286(titleKey: _SwiftUICore_LocalizedStringKey, value: string): $SDK81 { return callSDK<$SDK81>("SwiftUI_64b39a05e4a4cebd", 3003537670229848, undefined, [titleKey, value]); }
+  static initValue57286(titleKey: _SwiftUICore_LocalizedStringKey, value: string): $SDK81 { return callSDK<$SDK81>("SwiftUI_bd41a4085ee86f99", 3003537670229848, undefined, [titleKey, value]); }
   /**
    * init<S1, S2>(_ title: S1, value: S2) where S1 : StringProtocol, S2 : StringProtocol
    * @availability iOS 16.0+
    */
-  static initValue9836(title: string, value: string): $SDK81 { return callSDK<$SDK81>("SwiftUI_64b39a05e4a4cebd", 4056941961681951, undefined, [title, value]); }
+  static initValue9836(title: string, value: string): $SDK81 { return callSDK<$SDK81>("SwiftUI_bd41a4085ee86f99", 4056941961681951, undefined, [title, value]); }
   declare readonly $type: { "s:7SwiftUI14LabeledContentV": true };
 }
 
@@ -6096,12 +6096,12 @@ export class LabeledContentStyleConfiguration extends SDKHandle {
    * let label: LabeledContentStyleConfiguration.Label
    * @availability iOS 16.0+
    */
-  get label(): LabeledContentStyleConfiguration_Label { return callSDK<LabeledContentStyleConfiguration_Label>("SwiftUI_64b39a05e4a4cebd", 1684600612992411, this, []); }
+  get label(): LabeledContentStyleConfiguration_Label { return callSDK<LabeledContentStyleConfiguration_Label>("SwiftUI_bd41a4085ee86f99", 1684600612992411, this, []); }
   /**
    * let content: LabeledContentStyleConfiguration.Content
    * @availability iOS 16.0+
    */
-  get content(): LabeledContentStyleConfiguration_Content { return callSDK<LabeledContentStyleConfiguration_Content>("SwiftUI_64b39a05e4a4cebd", 1583977164921151, this, []); }
+  get content(): LabeledContentStyleConfiguration_Content { return callSDK<LabeledContentStyleConfiguration_Content>("SwiftUI_bd41a4085ee86f99", 1583977164921151, this, []); }
   declare readonly $type: { "s:7SwiftUI32LabeledContentStyleConfigurationV": true };
 }
 
@@ -6188,12 +6188,12 @@ export class LabelStyleConfiguration extends SDKHandle {
    * var icon: LabelStyleConfiguration.Icon { get }
    * @availability iOS 14.0+
    */
-  get icon(): LabelStyleConfiguration_Icon { return callSDK<LabelStyleConfiguration_Icon>("SwiftUI_64b39a05e4a4cebd", 894767453650766, this, []); }
+  get icon(): LabelStyleConfiguration_Icon { return callSDK<LabelStyleConfiguration_Icon>("SwiftUI_bd41a4085ee86f99", 894767453650766, this, []); }
   /**
    * var title: LabelStyleConfiguration.Title { get }
    * @availability iOS 14.0+
    */
-  get title(): LabelStyleConfiguration_Title { return callSDK<LabelStyleConfiguration_Title>("SwiftUI_64b39a05e4a4cebd", 2687444672156219, this, []); }
+  get title(): LabelStyleConfiguration_Title { return callSDK<LabelStyleConfiguration_Title>("SwiftUI_bd41a4085ee86f99", 2687444672156219, this, []); }
   declare readonly $type: { "s:7SwiftUI23LabelStyleConfigurationV": true };
 }
 
@@ -6232,7 +6232,7 @@ export const LayoutDirection = {
    * init?(_ uiLayoutDirection: UITraitEnvironmentLayoutDirection)
    * @availability iOS 14.0+
    */
-  init(uiLayoutDirection: _UIKit_UITraitEnvironmentLayoutDirection): (_SwiftUICore_LayoutDirection) | null { return callSDK<(_SwiftUICore_LayoutDirection) | null>("SwiftUI_64b39a05e4a4cebd", 1836354993157090, undefined, [uiLayoutDirection]); }
+  init(uiLayoutDirection: _UIKit_UITraitEnvironmentLayoutDirection): (_SwiftUICore_LayoutDirection) | null { return callSDK<(_SwiftUICore_LayoutDirection) | null>("SwiftUI_bd41a4085ee86f99", 1836354993157090, undefined, [uiLayoutDirection]); }
 };
 
 export class LayoutSubview extends SDKHandle {
@@ -6240,7 +6240,7 @@ export class LayoutSubview extends SDKHandle {
    * var containerValues: ContainerValues { get }
    * @availability iOS 18.0+
    */
-  get containerValues(): _SwiftUICore_ContainerValues { return callSDK<_SwiftUICore_ContainerValues>("SwiftUI_64b39a05e4a4cebd", 3555125719099300, this, []); }
+  get containerValues(): _SwiftUICore_ContainerValues { return callSDK<_SwiftUICore_ContainerValues>("SwiftUI_bd41a4085ee86f99", 3555125719099300, this, []); }
   declare readonly $type: { "s:7SwiftUI13LayoutSubviewV": true };
 }
 
@@ -6279,7 +6279,7 @@ export const LegibilityWeight = {
    * init?(_ uiLegibilityWeight: UILegibilityWeight)
    * @availability iOS 14.0+
    */
-  init(uiLegibilityWeight: _UIKit_UILegibilityWeight): (_SwiftUICore_LegibilityWeight) | null { return callSDK<(_SwiftUICore_LegibilityWeight) | null>("SwiftUI_64b39a05e4a4cebd", 3260155542090013, undefined, [uiLegibilityWeight]); }
+  init(uiLegibilityWeight: _UIKit_UILegibilityWeight): (_SwiftUICore_LegibilityWeight) | null { return callSDK<(_SwiftUICore_LegibilityWeight) | null>("SwiftUI_bd41a4085ee86f99", 3260155542090013, undefined, [uiLegibilityWeight]); }
 };
 
 /**
@@ -6305,7 +6305,7 @@ export class LinearCapacityGaugeStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 16.0+
    */
-  static init(): Promise<LinearCapacityGaugeStyle> { return callSDKAsync<LinearCapacityGaugeStyle>("SwiftUI_64b39a05e4a4cebd", 382078678482792, undefined, []); }
+  static init(): Promise<LinearCapacityGaugeStyle> { return callSDKAsync<LinearCapacityGaugeStyle>("SwiftUI_bd41a4085ee86f99", 382078678482792, undefined, []); }
   declare readonly $type: { "s:7SwiftUI24LinearCapacityGaugeStyleV": true };
 }
 
@@ -6325,12 +6325,12 @@ export class LinearProgressViewStyle extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  static initTint(tint: _SwiftUICore_Color): LinearProgressViewStyle { return callSDK<LinearProgressViewStyle>("SwiftUI_64b39a05e4a4cebd", 2452967321620449, undefined, [tint]); }
+  static initTint(tint: _SwiftUICore_Color): LinearProgressViewStyle { return callSDK<LinearProgressViewStyle>("SwiftUI_bd41a4085ee86f99", 2452967321620449, undefined, [tint]); }
   /**
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): LinearProgressViewStyle { return callSDK<LinearProgressViewStyle>("SwiftUI_64b39a05e4a4cebd", 2230270596375700, undefined, []); }
+  static init(): LinearProgressViewStyle { return callSDK<LinearProgressViewStyle>("SwiftUI_bd41a4085ee86f99", 2230270596375700, undefined, []); }
   declare readonly $type: { "s:7SwiftUI23LinearProgressViewStyleV": true };
 }
 
@@ -6349,17 +6349,17 @@ export class Link<Label = unknown> extends SDKHandle {
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, destination: URL)
    * @availability iOS 16.0+
    */
-  static initDestination(titleResource: _Foundation_LocalizedStringResource, destination: string): Promise<Link<_SwiftUICore_Text>> { return callSDKAsync<Link<_SwiftUICore_Text>>("SwiftUI_64b39a05e4a4cebd", 339909023527438, undefined, [titleResource, destination]); }
+  static initDestination(titleResource: _Foundation_LocalizedStringResource, destination: string): Promise<Link<_SwiftUICore_Text>> { return callSDKAsync<Link<_SwiftUICore_Text>>("SwiftUI_bd41a4085ee86f99", 339909023527438, undefined, [titleResource, destination]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, destination: URL)
    * @availability iOS 14.0+
    */
-  static initDestination43721(titleKey: _SwiftUICore_LocalizedStringKey, destination: string): Promise<Link<_SwiftUICore_Text>> { return callSDKAsync<Link<_SwiftUICore_Text>>("SwiftUI_64b39a05e4a4cebd", 3345256924031170, undefined, [titleKey, destination]); }
+  static initDestination43721(titleKey: _SwiftUICore_LocalizedStringKey, destination: string): Promise<Link<_SwiftUICore_Text>> { return callSDKAsync<Link<_SwiftUICore_Text>>("SwiftUI_bd41a4085ee86f99", 3345256924031170, undefined, [titleKey, destination]); }
   /**
    * nonisolated init<S>(_ title: S, destination: URL) where S : StringProtocol
    * @availability iOS 14.0+
    */
-  static initDestination68447(title: string, destination: string): Promise<Link<_SwiftUICore_Text>> { return callSDKAsync<Link<_SwiftUICore_Text>>("SwiftUI_64b39a05e4a4cebd", 2291646819982251, undefined, [title, destination]); }
+  static initDestination68447(title: string, destination: string): Promise<Link<_SwiftUICore_Text>> { return callSDKAsync<Link<_SwiftUICore_Text>>("SwiftUI_bd41a4085ee86f99", 2291646819982251, undefined, [title, destination]); }
   declare readonly $type: { "s:7SwiftUI4LinkV": true };
 }
 
@@ -6378,7 +6378,7 @@ export class LinkShapeStyle extends SDKHandle {
    * init()
    * @availability iOS 17.0+
    */
-  static init(): LinkShapeStyle { return callSDK<LinkShapeStyle>("SwiftUI_64b39a05e4a4cebd", 3132168119601115, undefined, []); }
+  static init(): LinkShapeStyle { return callSDK<LinkShapeStyle>("SwiftUI_bd41a4085ee86f99", 3132168119601115, undefined, []); }
   declare readonly $type: { "s:7SwiftUI14LinkShapeStyleV": true };
 }
 
@@ -6411,17 +6411,17 @@ export class ListItemTint extends SDKHandle {
    * static let monochrome: ListItemTint
    * @availability iOS 14.0+
    */
-  static get monochrome(): ListItemTint { return callSDK<ListItemTint>("SwiftUI_64b39a05e4a4cebd", 4234908777833014, undefined, []); }
+  static get monochrome(): ListItemTint { return callSDK<ListItemTint>("SwiftUI_bd41a4085ee86f99", 4234908777833014, undefined, []); }
   /**
    * static func fixed(_ tint: Color) -> ListItemTint
    * @availability iOS 14.0+
    */
-  static fixed(tint: _SwiftUICore_Color): ListItemTint { return callSDK<ListItemTint>("SwiftUI_64b39a05e4a4cebd", 1611071543784785, undefined, [tint]); }
+  static fixed(tint: _SwiftUICore_Color): ListItemTint { return callSDK<ListItemTint>("SwiftUI_bd41a4085ee86f99", 1611071543784785, undefined, [tint]); }
   /**
    * static func preferred(_ tint: Color) -> ListItemTint
    * @availability iOS 14.0+
    */
-  static preferred(tint: _SwiftUICore_Color): ListItemTint { return callSDK<ListItemTint>("SwiftUI_64b39a05e4a4cebd", 1026223164149759, undefined, [tint]); }
+  static preferred(tint: _SwiftUICore_Color): ListItemTint { return callSDK<ListItemTint>("SwiftUI_bd41a4085ee86f99", 1026223164149759, undefined, [tint]); }
   declare readonly $type: { "s:7SwiftUI12ListItemTintV": true };
 }
 
@@ -6434,17 +6434,17 @@ export class ListSectionSpacing extends SDKHandle {
    * static func custom(_ spacing: CGFloat) -> ListSectionSpacing
    * @availability iOS 17.0+
    */
-  static custom(spacing: number): ListSectionSpacing { return callSDK<ListSectionSpacing>("SwiftUI_64b39a05e4a4cebd", 878920155538064, undefined, [spacing]); }
+  static custom(spacing: number): ListSectionSpacing { return callSDK<ListSectionSpacing>("SwiftUI_bd41a4085ee86f99", 878920155538064, undefined, [spacing]); }
   /**
    * static let compact: ListSectionSpacing
    * @availability iOS 17.0+
    */
-  static get compact(): ListSectionSpacing { return callSDK<ListSectionSpacing>("SwiftUI_64b39a05e4a4cebd", 3638160471347201, undefined, []); }
+  static get compact(): ListSectionSpacing { return callSDK<ListSectionSpacing>("SwiftUI_bd41a4085ee86f99", 3638160471347201, undefined, []); }
   /**
    * static let `default`: ListSectionSpacing
    * @availability iOS 17.0+
    */
-  static get default(): ListSectionSpacing { return callSDK<ListSectionSpacing>("SwiftUI_64b39a05e4a4cebd", 700194429698831, undefined, []); }
+  static get default(): ListSectionSpacing { return callSDK<ListSectionSpacing>("SwiftUI_bd41a4085ee86f99", 700194429698831, undefined, []); }
   declare readonly $type: { "s:7SwiftUI18ListSectionSpacingV": true };
 }
 
@@ -6465,24 +6465,24 @@ export class LongPressGesture extends SDKHandle {
    * nonisolated var maximumDistance: CGFloat { get set }
    * @availability iOS 13.0+
    */
-  get maximumDistance(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 2857737821726154, this, []); }
-  set maximumDistance(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 81850807620429, this, [value]); }
+  get maximumDistance(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 2857737821726154, this, []); }
+  set maximumDistance(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 81850807620429, this, [value]); }
   /**
    * nonisolated init(minimumDuration: Double = 0.5, maximumDistance: CGFloat = 10, inputKinds: GestureInputKinds = .all)
    * @availability iOS 27.0+
    */
-  static initMinimumDurationMaximumDistanceInputKinds(minimumDuration?: number, maximumDistance?: number, inputKinds?: _SwiftUICore_GestureInputKinds): LongPressGesture { return callSDK<LongPressGesture>("SwiftUI_64b39a05e4a4cebd", 2736939097904067, undefined, [minimumDuration, maximumDistance, inputKinds]); }
+  static initMinimumDurationMaximumDistanceInputKinds(minimumDuration?: number, maximumDistance?: number, inputKinds?: _SwiftUICore_GestureInputKinds): LongPressGesture { return callSDK<LongPressGesture>("SwiftUI_bd41a4085ee86f99", 2736939097904067, undefined, [minimumDuration, maximumDistance, inputKinds]); }
   /**
    * nonisolated init(minimumDuration: Double = 0.5, maximumDistance: CGFloat = 10)
    * @availability iOS 13.0+
    */
-  static initMinimumDurationMaximumDistance(minimumDuration?: number, maximumDistance?: number): LongPressGesture { return callSDK<LongPressGesture>("SwiftUI_64b39a05e4a4cebd", 3683764762664312, undefined, [minimumDuration, maximumDistance]); }
+  static initMinimumDurationMaximumDistance(minimumDuration?: number, maximumDistance?: number): LongPressGesture { return callSDK<LongPressGesture>("SwiftUI_bd41a4085ee86f99", 3683764762664312, undefined, [minimumDuration, maximumDistance]); }
   /**
    * var minimumDuration: Double
    * @availability iOS 13.0+
    */
-  get minimumDuration(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 244951451047747, this, []); }
-  set minimumDuration(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 847141224823998, this, [value]); }
+  get minimumDuration(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 244951451047747, this, []); }
+  set minimumDuration(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 847141224823998, this, [value]); }
   declare readonly $type: { "s:7SwiftUI16LongPressGestureV": true };
 }
 
@@ -6509,14 +6509,14 @@ export class MagnificationGesture extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get minimumScaleDelta(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 1221047378255949, this, []); }
-  set minimumScaleDelta(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3814300421929049, this, [value]); }
+  get minimumScaleDelta(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 1221047378255949, this, []); }
+  set minimumScaleDelta(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3814300421929049, this, [value]); }
   /**
    * nonisolated init(minimumScaleDelta: CGFloat = 0.01)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static init(minimumScaleDelta?: number): MagnificationGesture { return callSDK<MagnificationGesture>("SwiftUI_64b39a05e4a4cebd", 3883343170954482, undefined, [minimumScaleDelta]); }
+  static init(minimumScaleDelta?: number): MagnificationGesture { return callSDK<MagnificationGesture>("SwiftUI_bd41a4085ee86f99", 3883343170954482, undefined, [minimumScaleDelta]); }
   declare readonly $type: { "s:7SwiftUI20MagnificationGestureV": true };
 }
 
@@ -6543,18 +6543,18 @@ export class MagnifyGesture extends SDKHandle {
    * nonisolated init(minimumScaleDelta: CGFloat = 0.01, inputKinds: GestureInputKinds = .all)
    * @availability iOS 27.0+
    */
-  static initMinimumScaleDeltaInputKinds(minimumScaleDelta?: number, inputKinds?: _SwiftUICore_GestureInputKinds): MagnifyGesture { return callSDK<MagnifyGesture>("SwiftUI_64b39a05e4a4cebd", 2088409418054097, undefined, [minimumScaleDelta, inputKinds]); }
+  static initMinimumScaleDeltaInputKinds(minimumScaleDelta?: number, inputKinds?: _SwiftUICore_GestureInputKinds): MagnifyGesture { return callSDK<MagnifyGesture>("SwiftUI_bd41a4085ee86f99", 2088409418054097, undefined, [minimumScaleDelta, inputKinds]); }
   /**
    * var minimumScaleDelta: CGFloat
    * @availability iOS 17.0+
    */
-  get minimumScaleDelta(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 3390542404427645, this, []); }
-  set minimumScaleDelta(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 175320048979396, this, [value]); }
+  get minimumScaleDelta(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 3390542404427645, this, []); }
+  set minimumScaleDelta(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 175320048979396, this, [value]); }
   /**
    * nonisolated init(minimumScaleDelta: CGFloat = 0.01)
    * @availability iOS 17.0+
    */
-  static initMinimumScaleDelta(minimumScaleDelta?: number): MagnifyGesture { return callSDK<MagnifyGesture>("SwiftUI_64b39a05e4a4cebd", 413438633730559, undefined, [minimumScaleDelta]); }
+  static initMinimumScaleDelta(minimumScaleDelta?: number): MagnifyGesture { return callSDK<MagnifyGesture>("SwiftUI_bd41a4085ee86f99", 413438633730559, undefined, [minimumScaleDelta]); }
   declare readonly $type: { "s:7SwiftUI14MagnifyGestureV": true };
 }
 
@@ -6573,32 +6573,32 @@ export class MagnifyGesture_Value extends SDKHandle {
    * var startAnchor: UnitPoint
    * @availability iOS 17.0+
    */
-  get startAnchor(): _SwiftUICore_UnitPoint { return callSDK<_SwiftUICore_UnitPoint>("SwiftUI_64b39a05e4a4cebd", 3794960722931098, this, []); }
-  set startAnchor(value: _SwiftUICore_UnitPoint) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1991957721636950, this, [value]); }
+  get startAnchor(): _SwiftUICore_UnitPoint { return callSDK<_SwiftUICore_UnitPoint>("SwiftUI_bd41a4085ee86f99", 3794960722931098, this, []); }
+  set startAnchor(value: _SwiftUICore_UnitPoint) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1991957721636950, this, [value]); }
   /**
    * var magnification: CGFloat
    * @availability iOS 17.0+
    */
-  get magnification(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 1390411314230734, this, []); }
-  set magnification(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 218477269177658, this, [value]); }
+  get magnification(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 1390411314230734, this, []); }
+  set magnification(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 218477269177658, this, [value]); }
   /**
    * var startLocation: CGPoint
    * @availability iOS 17.0+
    */
-  get startLocation(): $SDK39 { return callSDK<$SDK39>("SwiftUI_64b39a05e4a4cebd", 125346582617158, this, []); }
-  set startLocation(value: $SDK39) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2317561715868326, this, [value]); }
+  get startLocation(): $SDK39 { return callSDK<$SDK39>("SwiftUI_bd41a4085ee86f99", 125346582617158, this, []); }
+  set startLocation(value: $SDK39) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2317561715868326, this, [value]); }
   /**
    * var time: Date
    * @availability iOS 17.0+
    */
-  get time(): globalThis.Date { return callSDK<globalThis.Date>("SwiftUI_64b39a05e4a4cebd", 34128130411648, this, []); }
-  set time(value: globalThis.Date) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1248065593895991, this, [value]); }
+  get time(): globalThis.Date { return callSDK<globalThis.Date>("SwiftUI_bd41a4085ee86f99", 34128130411648, this, []); }
+  set time(value: globalThis.Date) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1248065593895991, this, [value]); }
   /**
    * var velocity: CGFloat
    * @availability iOS 17.0+
    */
-  get velocity(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 1034704445939519, this, []); }
-  set velocity(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1836087900858986, this, [value]); }
+  get velocity(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 1034704445939519, this, []); }
+  set velocity(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1836087900858986, this, [value]); }
   declare readonly $type: { "s:7SwiftUI14MagnifyGestureV5ValueV": true };
 }
 
@@ -6619,7 +6619,7 @@ export class Menu<Label = unknown, Content = unknown> extends SDKHandle {
    * nonisolated init(_ configuration: MenuStyleConfiguration)
    * @availability iOS 14.0+
    */
-  static init(configuration: MenuStyleConfiguration): Menu<MenuStyleConfiguration_Label, MenuStyleConfiguration_Content> { return callSDK<Menu<MenuStyleConfiguration_Label, MenuStyleConfiguration_Content>>("SwiftUI_64b39a05e4a4cebd", 3618219071530924, undefined, [configuration]); }
+  static init(configuration: MenuStyleConfiguration): Menu<MenuStyleConfiguration_Label, MenuStyleConfiguration_Content> { return callSDK<Menu<MenuStyleConfiguration_Label, MenuStyleConfiguration_Content>>("SwiftUI_bd41a4085ee86f99", 3618219071530924, undefined, [configuration]); }
   declare readonly $type: { "s:7SwiftUI4MenuV": true };
 }
 
@@ -6638,17 +6638,17 @@ export class MenuActionDismissBehavior extends SDKHandle {
    * static let enabled: MenuActionDismissBehavior
    * @availability iOS 16.4+
    */
-  static get enabled(): MenuActionDismissBehavior { return callSDK<MenuActionDismissBehavior>("SwiftUI_64b39a05e4a4cebd", 546460555394421, undefined, []); }
+  static get enabled(): MenuActionDismissBehavior { return callSDK<MenuActionDismissBehavior>("SwiftUI_bd41a4085ee86f99", 546460555394421, undefined, []); }
   /**
    * static let disabled: MenuActionDismissBehavior
    * @availability iOS 16.4+
    */
-  static get disabled(): MenuActionDismissBehavior { return callSDK<MenuActionDismissBehavior>("SwiftUI_64b39a05e4a4cebd", 2918753686263409, undefined, []); }
+  static get disabled(): MenuActionDismissBehavior { return callSDK<MenuActionDismissBehavior>("SwiftUI_bd41a4085ee86f99", 2918753686263409, undefined, []); }
   /**
    * static let automatic: MenuActionDismissBehavior
    * @availability iOS 16.4+
    */
-  static get automatic(): MenuActionDismissBehavior { return callSDK<MenuActionDismissBehavior>("SwiftUI_64b39a05e4a4cebd", 1234224544115538, undefined, []); }
+  static get automatic(): MenuActionDismissBehavior { return callSDK<MenuActionDismissBehavior>("SwiftUI_bd41a4085ee86f99", 1234224544115538, undefined, []); }
   declare readonly $type: { "s:7SwiftUI25MenuActionDismissBehaviorV": true };
 }
 
@@ -6661,7 +6661,7 @@ export class MenuControlGroupStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 16.4+
    */
-  static init(): MenuControlGroupStyle { return callSDK<MenuControlGroupStyle>("SwiftUI_64b39a05e4a4cebd", 2557663604797877, undefined, []); }
+  static init(): MenuControlGroupStyle { return callSDK<MenuControlGroupStyle>("SwiftUI_bd41a4085ee86f99", 2557663604797877, undefined, []); }
   declare readonly $type: { "s:7SwiftUI21MenuControlGroupStyleV": true };
 }
 
@@ -6680,17 +6680,17 @@ export class MenuOrder extends SDKHandle {
    * static let fixed: MenuOrder
    * @availability iOS 16.0+
    */
-  static get fixed(): MenuOrder { return callSDK<MenuOrder>("SwiftUI_64b39a05e4a4cebd", 2976386789694663, undefined, []); }
+  static get fixed(): MenuOrder { return callSDK<MenuOrder>("SwiftUI_bd41a4085ee86f99", 2976386789694663, undefined, []); }
   /**
    * static let priority: MenuOrder
    * @availability iOS 16.0+
    */
-  static get priority(): MenuOrder { return callSDK<MenuOrder>("SwiftUI_64b39a05e4a4cebd", 4195111549310527, undefined, []); }
+  static get priority(): MenuOrder { return callSDK<MenuOrder>("SwiftUI_bd41a4085ee86f99", 4195111549310527, undefined, []); }
   /**
    * static let automatic: MenuOrder
    * @availability iOS 16.0+
    */
-  static get automatic(): MenuOrder { return callSDK<MenuOrder>("SwiftUI_64b39a05e4a4cebd", 1879123856694984, undefined, []); }
+  static get automatic(): MenuOrder { return callSDK<MenuOrder>("SwiftUI_bd41a4085ee86f99", 1879123856694984, undefined, []); }
   declare readonly $type: { "s:7SwiftUI9MenuOrderV": true };
 }
 
@@ -6703,7 +6703,7 @@ export class MenuPickerStyle extends SDKHandle {
    * init()
    * @availability iOS 14.0+
    */
-  static init(): MenuPickerStyle { return callSDK<MenuPickerStyle>("SwiftUI_64b39a05e4a4cebd", 1082373155580227, undefined, []); }
+  static init(): MenuPickerStyle { return callSDK<MenuPickerStyle>("SwiftUI_bd41a4085ee86f99", 1082373155580227, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15MenuPickerStyleV": true };
 }
 
@@ -6766,494 +6766,494 @@ export class ModifiedContent<Content = unknown, Modifier = unknown> extends SDKH
    * nonisolated func accessibilityTextContentType(_ textContentType: AccessibilityTextContentType) -> ModifiedContent<Content, Modifier>
    * @availability iOS 15.0+
    */
-  accessibilityTextContentType(textContentType: _SwiftUICore_AccessibilityTextContentType): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1683030707641488, this, [textContentType]); }
+  accessibilityTextContentType(textContentType: _SwiftUICore_AccessibilityTextContentType): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1683030707641488, this, [textContentType]); }
   /**
    * @export(implementation) nonisolated func accessibilityCustomContent(_ label: LocalizedStringResource, _ value: Text, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
    * @availability iOS 16.0+
    */
-  accessibilityCustomContentImportance(label: _Foundation_LocalizedStringResource, value: _SwiftUICore_Text, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 604697785659809, this, [label, value, importance]); }
+  accessibilityCustomContentImportance(label: _Foundation_LocalizedStringResource, value: _SwiftUICore_Text, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 604697785659809, this, [label, value, importance]); }
   /**
    * @export(implementation) nonisolated func accessibilityCustomContent(_ label: LocalizedStringResource, _ valueResource: LocalizedStringResource, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
    * @availability iOS 16.0+
    */
-  accessibilityCustomContentImportance10348(label: _Foundation_LocalizedStringResource, valueResource: _Foundation_LocalizedStringResource, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 244522415114084, this, [label, valueResource, importance]); }
+  accessibilityCustomContentImportance10348(label: _Foundation_LocalizedStringResource, valueResource: _Foundation_LocalizedStringResource, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 244522415114084, this, [label, valueResource, importance]); }
   /**
    * @export(implementation) nonisolated func accessibilityCustomContent(_ key: AccessibilityCustomContentKey, _ valueResource: LocalizedStringResource, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
    * @availability iOS 16.0+
    */
-  accessibilityCustomContentImportance46334(key: _SwiftUICore_AccessibilityCustomContentKey, valueResource: _Foundation_LocalizedStringResource, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 796623160790766, this, [key, valueResource, importance]); }
+  accessibilityCustomContentImportance46334(key: _SwiftUICore_AccessibilityCustomContentKey, valueResource: _Foundation_LocalizedStringResource, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 796623160790766, this, [key, valueResource, importance]); }
   /**
    * nonisolated func accessibilityCustomContent(_ key: AccessibilityCustomContentKey, _ valueKey: LocalizedStringKey, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
    * @availability iOS 15.0+
    */
-  accessibilityCustomContentImportance12196(key: _SwiftUICore_AccessibilityCustomContentKey, valueKey: _SwiftUICore_LocalizedStringKey, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2052286341513521, this, [key, valueKey, importance]); }
+  accessibilityCustomContentImportance12196(key: _SwiftUICore_AccessibilityCustomContentKey, valueKey: _SwiftUICore_LocalizedStringKey, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2052286341513521, this, [key, valueKey, importance]); }
   /**
    * nonisolated func accessibilityCustomContent(_ key: AccessibilityCustomContentKey, _ value: Text?, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
    * @availability iOS 15.0+
    */
-  accessibilityCustomContentImportance91880(key: _SwiftUICore_AccessibilityCustomContentKey, value?: $SDK5, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3903470322323432, this, [key, value, importance]); }
+  accessibilityCustomContentImportance91880(key: _SwiftUICore_AccessibilityCustomContentKey, value?: $SDK5, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3903470322323432, this, [key, value, importance]); }
   /**
    * nonisolated func accessibilityCustomContent<V>(_ key: AccessibilityCustomContentKey, _ value: V, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier> where V : StringProtocol
    * @availability iOS 15.0+
    */
-  accessibilityCustomContentImportance44464(key: _SwiftUICore_AccessibilityCustomContentKey, value: string, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 950744326489132, this, [key, value, importance]); }
+  accessibilityCustomContentImportance44464(key: _SwiftUICore_AccessibilityCustomContentKey, value: string, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 950744326489132, this, [key, value, importance]); }
   /**
    * nonisolated func accessibilityCustomContent(_ labelKey: LocalizedStringKey, _ value: Text, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
    * @availability iOS 15.0+
    */
-  accessibilityCustomContentImportance34294(labelKey: _SwiftUICore_LocalizedStringKey, value: _SwiftUICore_Text, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2510660822045237, this, [labelKey, value, importance]); }
+  accessibilityCustomContentImportance34294(labelKey: _SwiftUICore_LocalizedStringKey, value: _SwiftUICore_Text, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2510660822045237, this, [labelKey, value, importance]); }
   /**
    * nonisolated func accessibilityCustomContent(_ labelKey: LocalizedStringKey, _ valueKey: LocalizedStringKey, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
    * @availability iOS 15.0+
    */
-  accessibilityCustomContentImportance87932(labelKey: _SwiftUICore_LocalizedStringKey, valueKey: _SwiftUICore_LocalizedStringKey, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2628122264549826, this, [labelKey, valueKey, importance]); }
+  accessibilityCustomContentImportance87932(labelKey: _SwiftUICore_LocalizedStringKey, valueKey: _SwiftUICore_LocalizedStringKey, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2628122264549826, this, [labelKey, valueKey, importance]); }
   /**
    * nonisolated func accessibilityCustomContent<V>(_ labelKey: LocalizedStringKey, _ value: V, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier> where V : StringProtocol
    * @availability iOS 15.0+
    */
-  accessibilityCustomContentImportance10724(labelKey: _SwiftUICore_LocalizedStringKey, value: string, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1101945441505425, this, [labelKey, value, importance]); }
+  accessibilityCustomContentImportance10724(labelKey: _SwiftUICore_LocalizedStringKey, value: string, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1101945441505425, this, [labelKey, value, importance]); }
   /**
    * nonisolated func accessibilityCustomContent(_ label: Text, _ value: Text, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
    * @availability iOS 15.0+
    */
-  accessibilityCustomContentImportance47391(label: _SwiftUICore_Text, value: _SwiftUICore_Text, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2036952055392985, this, [label, value, importance]); }
+  accessibilityCustomContentImportance47391(label: _SwiftUICore_Text, value: _SwiftUICore_Text, importance?: _Accessibility_AXCustomContent_Importance): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2036952055392985, this, [label, value, importance]); }
   /**
    * nonisolated func accessibility(identifier: String) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  accessibilityIdentifier(identifier: string): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 4387366716421292, this, [identifier]); }
+  accessibilityIdentifier(identifier: string): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 4387366716421292, this, [identifier]); }
   /**
    * nonisolated func accessibility(inputLabels: [Text]) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  accessibilityInputLabels(inputLabels: $SDK84): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3661540608052944, this, [inputLabels]); }
+  accessibilityInputLabels(inputLabels: $SDK84): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3661540608052944, this, [inputLabels]); }
   /**
    * nonisolated func accessibility(removeTraits traits: AccessibilityTraits) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  accessibilityRemoveTraits(traits: _SwiftUICore_AccessibilityTraits): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 175537454180945, this, [traits]); }
+  accessibilityRemoveTraits(traits: _SwiftUICore_AccessibilityTraits): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 175537454180945, this, [traits]); }
   /**
    * nonisolated func accessibility(sortPriority: Double) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  accessibilitySortPriority(sortPriority: number): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 680541596320445, this, [sortPriority]); }
+  accessibilitySortPriority(sortPriority: number): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 680541596320445, this, [sortPriority]); }
   /**
    * nonisolated func accessibility(activationPoint: UnitPoint) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  accessibilityActivationPoint(activationPoint: _SwiftUICore_UnitPoint): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1573798411522781, this, [activationPoint]); }
+  accessibilityActivationPoint(activationPoint: _SwiftUICore_UnitPoint): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1573798411522781, this, [activationPoint]); }
   /**
    * nonisolated func accessibility(activationPoint: CGPoint) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  accessibilityActivationPoint50753(activationPoint: $SDK39): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2414300813754319, this, [activationPoint]); }
+  accessibilityActivationPoint50753(activationPoint: $SDK39): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2414300813754319, this, [activationPoint]); }
   /**
    * nonisolated func accessibility(selectionIdentifier: AnyHashable) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    * @deprecated
    */
-  accessibilitySelectionIdentifier(selectionIdentifier: unknown): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1134430140495144, this, [selectionIdentifier]); }
+  accessibilitySelectionIdentifier(selectionIdentifier: unknown): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1134430140495144, this, [selectionIdentifier]); }
   /**
    * nonisolated func accessibility(hint: Text) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  accessibilityHint(hint: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2134100210354418, this, [hint]); }
+  accessibilityHint(hint: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2134100210354418, this, [hint]); }
   /**
    * nonisolated func accessibility(label: Text) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  accessibilityLabel(label: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 4503478560951937, this, [label]); }
+  accessibilityLabel(label: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 4503478560951937, this, [label]); }
   /**
    * nonisolated func accessibility(value: Text) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  accessibilityValue(value: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 821495169019637, this, [value]); }
+  accessibilityValue(value: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 821495169019637, this, [value]); }
   /**
    * nonisolated func accessibility(hidden: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  accessibilityHidden(hidden: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 285772550700998, this, [hidden]); }
+  accessibilityHidden(hidden: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 285772550700998, this, [hidden]); }
   /**
    * nonisolated func accessibility(addTraits traits: AccessibilityTraits) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  accessibilityAddTraits(traits: _SwiftUICore_AccessibilityTraits): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2050703988571520, this, [traits]); }
+  accessibilityAddTraits(traits: _SwiftUICore_AccessibilityTraits): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2050703988571520, this, [traits]); }
   /**
    * @export(implementation) nonisolated func accessibilityHint(_ hint: LocalizedStringResource, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityHintIsEnabled(hint: _Foundation_LocalizedStringResource, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3850618393191115, this, [hint, isEnabled]); }
+  accessibilityHintIsEnabled(hint: _Foundation_LocalizedStringResource, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3850618393191115, this, [hint, isEnabled]); }
   /**
    * nonisolated func accessibilityHint(_ hintKey: LocalizedStringKey, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityHintIsEnabled33751(hintKey: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 406943486891111, this, [hintKey, isEnabled]); }
+  accessibilityHintIsEnabled33751(hintKey: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 406943486891111, this, [hintKey, isEnabled]); }
   /**
    * nonisolated func accessibilityHint(_ hint: Text, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityHintIsEnabled90268(hint: _SwiftUICore_Text, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3806318737888397, this, [hint, isEnabled]); }
+  accessibilityHintIsEnabled90268(hint: _SwiftUICore_Text, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3806318737888397, this, [hint, isEnabled]); }
   /**
    * nonisolated func accessibilityHint<S>(_ hint: S, isEnabled: Bool) -> ModifiedContent<Content, Modifier> where S : StringProtocol
    * @availability iOS 18.0+
    */
-  accessibilityHintIsEnabled7070(hint: string, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 4500085675024518, this, [hint, isEnabled]); }
+  accessibilityHintIsEnabled7070(hint: string, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 4500085675024518, this, [hint, isEnabled]); }
   /**
    * @export(implementation) nonisolated func accessibilityHint(_ hint: LocalizedStringResource) -> ModifiedContent<Content, Modifier>
    * @availability iOS 16.0+
    */
-  accessibilityHint6706(hint: _Foundation_LocalizedStringResource): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 685148104333484, this, [hint]); }
+  accessibilityHint6706(hint: _Foundation_LocalizedStringResource): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 685148104333484, this, [hint]); }
   /**
    * nonisolated func accessibilityHint(_ hintKey: LocalizedStringKey) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityHint79825(hintKey: _SwiftUICore_LocalizedStringKey): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 454245052364945, this, [hintKey]); }
+  accessibilityHint79825(hintKey: _SwiftUICore_LocalizedStringKey): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 454245052364945, this, [hintKey]); }
   /**
    * nonisolated func accessibilityHint(_ hint: Text) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityHint49722(hint: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1558261832356149, this, [hint]); }
+  accessibilityHint49722(hint: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1558261832356149, this, [hint]); }
   /**
    * nonisolated func accessibilityHint<S>(_ hint: S) -> ModifiedContent<Content, Modifier> where S : StringProtocol
    * @availability iOS 14.0+
    */
-  accessibilityHint1752(hint: string): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2533881557721832, this, [hint]); }
+  accessibilityHint1752(hint: string): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2533881557721832, this, [hint]); }
   /**
    * @export(implementation) nonisolated func accessibilityLabel(_ label: LocalizedStringResource, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityLabelIsEnabled(label: _Foundation_LocalizedStringResource, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1144077197383755, this, [label, isEnabled]); }
+  accessibilityLabelIsEnabled(label: _Foundation_LocalizedStringResource, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1144077197383755, this, [label, isEnabled]); }
   /**
    * nonisolated func accessibilityLabel(_ labelKey: LocalizedStringKey, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityLabelIsEnabled24399(labelKey: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3221744963436690, this, [labelKey, isEnabled]); }
+  accessibilityLabelIsEnabled24399(labelKey: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3221744963436690, this, [labelKey, isEnabled]); }
   /**
    * nonisolated func accessibilityLabel(_ label: Text, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityLabelIsEnabled83668(label: _SwiftUICore_Text, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3737523400271685, this, [label, isEnabled]); }
+  accessibilityLabelIsEnabled83668(label: _SwiftUICore_Text, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3737523400271685, this, [label, isEnabled]); }
   /**
    * nonisolated func accessibilityLabel<S>(_ label: S, isEnabled: Bool) -> ModifiedContent<Content, Modifier> where S : StringProtocol
    * @availability iOS 18.0+
    */
-  accessibilityLabelIsEnabled59766(label: string, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 798420597887300, this, [label, isEnabled]); }
+  accessibilityLabelIsEnabled59766(label: string, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 798420597887300, this, [label, isEnabled]); }
   /**
    * @export(implementation) nonisolated func accessibilityLabel(_ label: LocalizedStringResource) -> ModifiedContent<Content, Modifier>
    * @availability iOS 16.0+
    */
-  accessibilityLabel51354(label: _Foundation_LocalizedStringResource): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1554155233930379, this, [label]); }
+  accessibilityLabel51354(label: _Foundation_LocalizedStringResource): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1554155233930379, this, [label]); }
   /**
    * nonisolated func accessibilityLabel(_ labelKey: LocalizedStringKey) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityLabel23513(labelKey: _SwiftUICore_LocalizedStringKey): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3310891042574754, this, [labelKey]); }
+  accessibilityLabel23513(labelKey: _SwiftUICore_LocalizedStringKey): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3310891042574754, this, [labelKey]); }
   /**
    * nonisolated func accessibilityLabel(_ label: Text) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityLabel76226(label: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2570784948749524, this, [label]); }
+  accessibilityLabel76226(label: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2570784948749524, this, [label]); }
   /**
    * nonisolated func accessibilityLabel<S>(_ label: S) -> ModifiedContent<Content, Modifier> where S : StringProtocol
    * @availability iOS 14.0+
    */
-  accessibilityLabel39648(label: string): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1190418882138061, this, [label]); }
+  accessibilityLabel39648(label: string): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1190418882138061, this, [label]); }
   /**
    * @export(implementation) nonisolated func accessibilityValue(_ valueResource: LocalizedStringResource, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityValueIsEnabled(valueResource: _Foundation_LocalizedStringResource, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 212729334905079, this, [valueResource, isEnabled]); }
+  accessibilityValueIsEnabled(valueResource: _Foundation_LocalizedStringResource, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 212729334905079, this, [valueResource, isEnabled]); }
   /**
    * nonisolated func accessibilityValue(_ valueKey: LocalizedStringKey, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityValueIsEnabled11436(valueKey: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 209658969615222, this, [valueKey, isEnabled]); }
+  accessibilityValueIsEnabled11436(valueKey: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 209658969615222, this, [valueKey, isEnabled]); }
   /**
    * nonisolated func accessibilityValue(_ valueDescription: Text, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityValueIsEnabled88301(valueDescription: _SwiftUICore_Text, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2621858579497452, this, [valueDescription, isEnabled]); }
+  accessibilityValueIsEnabled88301(valueDescription: _SwiftUICore_Text, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2621858579497452, this, [valueDescription, isEnabled]); }
   /**
    * nonisolated func accessibilityValue<S>(_ value: S, isEnabled: Bool) -> ModifiedContent<Content, Modifier> where S : StringProtocol
    * @availability iOS 18.0+
    */
-  accessibilityValueIsEnabled67781(value: string, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 603570680475521, this, [value, isEnabled]); }
+  accessibilityValueIsEnabled67781(value: string, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 603570680475521, this, [value, isEnabled]); }
   /**
    * @export(implementation) nonisolated func accessibilityValue(_ valueResource: LocalizedStringResource) -> ModifiedContent<Content, Modifier>
    * @availability iOS 16.0+
    */
-  accessibilityValue82539(valueResource: _Foundation_LocalizedStringResource): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3515918931030946, this, [valueResource]); }
+  accessibilityValue82539(valueResource: _Foundation_LocalizedStringResource): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3515918931030946, this, [valueResource]); }
   /**
    * nonisolated func accessibilityValue(_ valueKey: LocalizedStringKey) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityValue26398(valueKey: _SwiftUICore_LocalizedStringKey): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2591748145416482, this, [valueKey]); }
+  accessibilityValue26398(valueKey: _SwiftUICore_LocalizedStringKey): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2591748145416482, this, [valueKey]); }
   /**
    * nonisolated func accessibilityValue(_ valueDescription: Text) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityValue78983(valueDescription: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 323725527831210, this, [valueDescription]); }
+  accessibilityValue78983(valueDescription: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 323725527831210, this, [valueDescription]); }
   /**
    * nonisolated func accessibilityValue<S>(_ value: S) -> ModifiedContent<Content, Modifier> where S : StringProtocol
    * @availability iOS 14.0+
    */
-  accessibilityValue55499(value: string): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3197056298963282, this, [value]); }
+  accessibilityValue55499(value: string): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3197056298963282, this, [value]); }
   /**
    * @export(implementation) nonisolated func accessibilityAction(named nameResource: LocalizedStringResource, _ handler: @escaping () -> Void) -> ModifiedContent<Content, Modifier>
    * @availability iOS 16.0+
    */
-  accessibilityActionNamed(nameResource: _Foundation_LocalizedStringResource, handler: (() => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2546863830672134, this, [nameResource, handler], [null,{"callback":{"out":[]}}]); }
+  accessibilityActionNamed(nameResource: _Foundation_LocalizedStringResource, handler: (() => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2546863830672134, this, [nameResource, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated func accessibilityAction(named nameKey: LocalizedStringKey, _ handler: @escaping () -> Void) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityActionNamed23798(nameKey: _SwiftUICore_LocalizedStringKey, handler: (() => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3001934721264352, this, [nameKey, handler], [null,{"callback":{"out":[]}}]); }
+  accessibilityActionNamed23798(nameKey: _SwiftUICore_LocalizedStringKey, handler: (() => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3001934721264352, this, [nameKey, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated func accessibilityAction(named name: Text, _ handler: @escaping () -> Void) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    */
-  accessibilityActionNamed39113(name: _SwiftUICore_Text, handler: (() => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 141890860655235, this, [name, handler], [null,{"callback":{"out":[]}}]); }
+  accessibilityActionNamed39113(name: _SwiftUICore_Text, handler: (() => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 141890860655235, this, [name, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated func accessibilityAction<S>(named name: S, _ handler: @escaping () -> Void) -> ModifiedContent<Content, Modifier> where S : StringProtocol
    * @availability iOS 14.0+
    */
-  accessibilityActionNamed2533(name: string, handler: (() => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1712706640027572, this, [name, handler], [null,{"callback":{"out":[]}}]); }
+  accessibilityActionNamed2533(name: string, handler: (() => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1712706640027572, this, [name, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated func accessibilityAction(_ actionKind: AccessibilityActionKind = .default, _ handler: @escaping () -> Void) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    */
-  accessibilityAction(actionKind: _SwiftUICore_AccessibilityActionKind, handler: (() => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1036473926604437, this, [actionKind, handler], [null,{"callback":{"out":[]}}]); }
+  accessibilityAction(actionKind: _SwiftUICore_AccessibilityActionKind, handler: (() => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1036473926604437, this, [actionKind, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated func accessibilityHidden(_ hidden: Bool, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityHiddenIsEnabled(hidden: boolean, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3625688184205996, this, [hidden, isEnabled]); }
+  accessibilityHiddenIsEnabled(hidden: boolean, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3625688184205996, this, [hidden, isEnabled]); }
   /**
    * nonisolated func accessibilityHidden(_ hidden: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityHidden39175(hidden: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3237396487777321, this, [hidden]); }
+  accessibilityHidden39175(hidden: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3237396487777321, this, [hidden]); }
   /**
    * nonisolated func accessibilityHeading(_ level: AccessibilityHeadingLevel) -> ModifiedContent<Content, Modifier>
    * @availability iOS 15.0+
    */
-  accessibilityHeading(level: _SwiftUICore_AccessibilityHeadingLevel): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2251167504096687, this, [level]); }
+  accessibilityHeading(level: _SwiftUICore_AccessibilityHeadingLevel): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2251167504096687, this, [level]); }
   /**
    * nonisolated func accessibilityAddTraits(_ traits: AccessibilityTraits) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityAddTraits763(traits: _SwiftUICore_AccessibilityTraits): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1183399821877042, this, [traits]); }
+  accessibilityAddTraits763(traits: _SwiftUICore_AccessibilityTraits): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1183399821877042, this, [traits]); }
   /**
    * @export(implementation) nonisolated func accessibilityDragPoint(_ point: UnitPoint, description: LocalizedStringResource, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityDragPointDescriptionIsEnabled(point: _SwiftUICore_UnitPoint, description: _Foundation_LocalizedStringResource, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 105131495720403, this, [point, description, isEnabled]); }
+  accessibilityDragPointDescriptionIsEnabled(point: _SwiftUICore_UnitPoint, description: _Foundation_LocalizedStringResource, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 105131495720403, this, [point, description, isEnabled]); }
   /**
    * nonisolated func accessibilityDragPoint(_ point: UnitPoint, description: LocalizedStringKey, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityDragPointDescriptionIsEnabled94838(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1929614452316574, this, [point, description, isEnabled]); }
+  accessibilityDragPointDescriptionIsEnabled94838(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1929614452316574, this, [point, description, isEnabled]); }
   /**
    * nonisolated func accessibilityDragPoint(_ point: UnitPoint, description: Text, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityDragPointDescriptionIsEnabled84627(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1888682407111400, this, [point, description, isEnabled]); }
+  accessibilityDragPointDescriptionIsEnabled84627(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1888682407111400, this, [point, description, isEnabled]); }
   /**
    * nonisolated func accessibilityDragPoint<S>(_ point: UnitPoint, description: S, isEnabled: Bool) -> ModifiedContent<Content, Modifier> where S : StringProtocol
    * @availability iOS 18.0+
    */
-  accessibilityDragPointDescriptionIsEnabled38855(point: _SwiftUICore_UnitPoint, description: string, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1229066947382377, this, [point, description, isEnabled]); }
+  accessibilityDragPointDescriptionIsEnabled38855(point: _SwiftUICore_UnitPoint, description: string, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1229066947382377, this, [point, description, isEnabled]); }
   /**
    * @export(implementation) nonisolated func accessibilityDragPoint(_ point: UnitPoint, description: LocalizedStringResource) -> ModifiedContent<Content, Modifier>
    * @availability iOS 16.0+
    */
-  accessibilityDragPointDescription(point: _SwiftUICore_UnitPoint, description: _Foundation_LocalizedStringResource): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2636006749277939, this, [point, description]); }
+  accessibilityDragPointDescription(point: _SwiftUICore_UnitPoint, description: _Foundation_LocalizedStringResource): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2636006749277939, this, [point, description]); }
   /**
    * nonisolated func accessibilityDragPoint(_ point: UnitPoint, description: LocalizedStringKey) -> ModifiedContent<Content, Modifier>
    * @availability iOS 16.0+
    */
-  accessibilityDragPointDescription48707(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2523466917011835, this, [point, description]); }
+  accessibilityDragPointDescription48707(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2523466917011835, this, [point, description]); }
   /**
    * nonisolated func accessibilityDragPoint(_ point: UnitPoint, description: Text) -> ModifiedContent<Content, Modifier>
    * @availability iOS 16.0+
    */
-  accessibilityDragPointDescription75042(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2947608110916547, this, [point, description]); }
+  accessibilityDragPointDescription75042(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2947608110916547, this, [point, description]); }
   /**
    * nonisolated func accessibilityDragPoint<S>(_ point: UnitPoint, description: S) -> ModifiedContent<Content, Modifier> where S : StringProtocol
    * @availability iOS 16.0+
    */
-  accessibilityDragPointDescription60812(point: _SwiftUICore_UnitPoint, description: string): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3757785020678787, this, [point, description]); }
+  accessibilityDragPointDescription60812(point: _SwiftUICore_UnitPoint, description: string): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3757785020678787, this, [point, description]); }
   /**
    * @export(implementation) nonisolated func accessibilityDropPoint(_ point: UnitPoint, description: LocalizedStringResource, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityDropPointDescriptionIsEnabled(point: _SwiftUICore_UnitPoint, description: _Foundation_LocalizedStringResource, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 783520377520976, this, [point, description, isEnabled]); }
+  accessibilityDropPointDescriptionIsEnabled(point: _SwiftUICore_UnitPoint, description: _Foundation_LocalizedStringResource, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 783520377520976, this, [point, description, isEnabled]); }
   /**
    * nonisolated func accessibilityDropPoint(_ point: UnitPoint, description: LocalizedStringKey, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityDropPointDescriptionIsEnabled12507(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 977717020724703, this, [point, description, isEnabled]); }
+  accessibilityDropPointDescriptionIsEnabled12507(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 977717020724703, this, [point, description, isEnabled]); }
   /**
    * nonisolated func accessibilityDropPoint(_ point: UnitPoint, description: Text, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityDropPointDescriptionIsEnabled53484(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1784800401363765, this, [point, description, isEnabled]); }
+  accessibilityDropPointDescriptionIsEnabled53484(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1784800401363765, this, [point, description, isEnabled]); }
   /**
    * nonisolated func accessibilityDropPoint<S>(_ point: UnitPoint, description: S, isEnabled: Bool) -> ModifiedContent<Content, Modifier> where S : StringProtocol
    * @availability iOS 18.0+
    */
-  accessibilityDropPointDescriptionIsEnabled11398(point: _SwiftUICore_UnitPoint, description: string, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2665218501525732, this, [point, description, isEnabled]); }
+  accessibilityDropPointDescriptionIsEnabled11398(point: _SwiftUICore_UnitPoint, description: string, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2665218501525732, this, [point, description, isEnabled]); }
   /**
    * @export(implementation) nonisolated func accessibilityDropPoint(_ point: UnitPoint, description: LocalizedStringResource) -> ModifiedContent<Content, Modifier>
    * @availability iOS 16.0+
    */
-  accessibilityDropPointDescription(point: _SwiftUICore_UnitPoint, description: _Foundation_LocalizedStringResource): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3933480408606581, this, [point, description]); }
+  accessibilityDropPointDescription(point: _SwiftUICore_UnitPoint, description: _Foundation_LocalizedStringResource): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3933480408606581, this, [point, description]); }
   /**
    * nonisolated func accessibilityDropPoint(_ point: UnitPoint, description: LocalizedStringKey) -> ModifiedContent<Content, Modifier>
    * @availability iOS 16.0+
    */
-  accessibilityDropPointDescription92014(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 338780959226664, this, [point, description]); }
+  accessibilityDropPointDescription92014(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 338780959226664, this, [point, description]); }
   /**
    * nonisolated func accessibilityDropPoint(_ point: UnitPoint, description: Text) -> ModifiedContent<Content, Modifier>
    * @availability iOS 16.0+
    */
-  accessibilityDropPointDescription15621(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3498836315469792, this, [point, description]); }
+  accessibilityDropPointDescription15621(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3498836315469792, this, [point, description]); }
   /**
    * nonisolated func accessibilityDropPoint<S>(_ point: UnitPoint, description: S) -> ModifiedContent<Content, Modifier> where S : StringProtocol
    * @availability iOS 16.0+
    */
-  accessibilityDropPointDescription58425(point: _SwiftUICore_UnitPoint, description: string): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3291440412207767, this, [point, description]); }
+  accessibilityDropPointDescription58425(point: _SwiftUICore_UnitPoint, description: string): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3291440412207767, this, [point, description]); }
   /**
    * nonisolated func accessibilityIdentifier(_ identifier: String, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityIdentifierIsEnabled(identifier: string, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3980406509235598, this, [identifier, isEnabled]); }
+  accessibilityIdentifierIsEnabled(identifier: string, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3980406509235598, this, [identifier, isEnabled]); }
   /**
    * nonisolated func accessibilityIdentifier(_ identifier: String) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityIdentifier58166(identifier: string): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3362215965302256, this, [identifier]); }
+  accessibilityIdentifier58166(identifier: string): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3362215965302256, this, [identifier]); }
   /**
    * nonisolated func accessibilityZoomAction(_ handler: @escaping (AccessibilityZoomGestureAction) -> Void) -> ModifiedContent<Content, Modifier>
    * @availability iOS 16.0+
    */
-  accessibilityZoomAction(handler: ((arg0: _SwiftUICore_AccessibilityZoomGestureAction) => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3613401079223006, this, [handler], [{"callback":{"out":[]}}]); }
+  accessibilityZoomAction(handler: ((arg0: _SwiftUICore_AccessibilityZoomGestureAction) => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3613401079223006, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * nonisolated func accessibilityDirectTouch(_ isDirectTouchArea: Bool = true, options: AccessibilityDirectTouchOptions = []) -> ModifiedContent<Content, Modifier>
    * @availability iOS 17.0+
    */
-  accessibilityDirectTouch(isDirectTouchArea?: boolean, options?: _SwiftUICore_AccessibilityDirectTouchOptions): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2845460881818504, this, [isDirectTouchArea, options]); }
+  accessibilityDirectTouch(isDirectTouchArea?: boolean, options?: _SwiftUICore_AccessibilityDirectTouchOptions): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2845460881818504, this, [isDirectTouchArea, options]); }
   /**
    * nonisolated func accessibilityInputLabels(_ inputLabelKeys: [LocalizedStringKey], isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityInputLabelsIsEnabled(inputLabelKeys: $SDK86, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2788491928148306, this, [inputLabelKeys, isEnabled]); }
+  accessibilityInputLabelsIsEnabled(inputLabelKeys: $SDK86, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2788491928148306, this, [inputLabelKeys, isEnabled]); }
   /**
    * nonisolated func accessibilityInputLabels(_ inputLabels: [Text], isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityInputLabelsIsEnabled99384(inputLabels: $SDK84, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3456875910012538, this, [inputLabels, isEnabled]); }
+  accessibilityInputLabelsIsEnabled99384(inputLabels: $SDK84, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3456875910012538, this, [inputLabels, isEnabled]); }
   /**
    * nonisolated func accessibilityInputLabels<S>(_ inputLabels: [S], isEnabled: Bool) -> ModifiedContent<Content, Modifier> where S : StringProtocol
    * @availability iOS 18.0+
    */
-  accessibilityInputLabelsIsEnabled17654(inputLabels: Array<string>, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3573007779355037, this, [inputLabels, isEnabled]); }
+  accessibilityInputLabelsIsEnabled17654(inputLabels: Array<string>, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3573007779355037, this, [inputLabels, isEnabled]); }
   /**
    * nonisolated func accessibilityInputLabels(_ inputLabelKeys: [LocalizedStringKey]) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityInputLabels46653(inputLabelKeys: $SDK86): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 178810178709860, this, [inputLabelKeys]); }
+  accessibilityInputLabels46653(inputLabelKeys: $SDK86): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 178810178709860, this, [inputLabelKeys]); }
   /**
    * nonisolated func accessibilityInputLabels(_ inputLabels: [Text]) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityInputLabels87838(inputLabels: $SDK84): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 4437681999837787, this, [inputLabels]); }
+  accessibilityInputLabels87838(inputLabels: $SDK84): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 4437681999837787, this, [inputLabels]); }
   /**
    * nonisolated func accessibilityInputLabels<S>(_ inputLabels: [S]) -> ModifiedContent<Content, Modifier> where S : StringProtocol
    * @availability iOS 14.0+
    */
-  accessibilityInputLabels50384(inputLabels: Array<string>): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1201727036068494, this, [inputLabels]); }
+  accessibilityInputLabels50384(inputLabels: Array<string>): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1201727036068494, this, [inputLabels]); }
   /**
    * nonisolated func accessibilityRemoveTraits(_ traits: AccessibilityTraits) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityRemoveTraits63225(traits: _SwiftUICore_AccessibilityTraits): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3491431004809604, this, [traits]); }
+  accessibilityRemoveTraits63225(traits: _SwiftUICore_AccessibilityTraits): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3491431004809604, this, [traits]); }
   /**
    * nonisolated func accessibilityScrollAction(_ handler: @escaping (Edge) -> Void) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    */
-  accessibilityScrollAction(handler: ((arg0: _SwiftUICore_Edge) => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3558735876411404, this, [handler], [{"callback":{"out":[]}}]); }
+  accessibilityScrollAction(handler: ((arg0: _SwiftUICore_Edge) => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3558735876411404, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) nonisolated func accessibilityScrollStatus(_ status: LocalizedStringResource, isEnabled: Bool = true) -> ModifiedContent<Content, Modifier>
    * @availability iOS 26.0+
    */
-  accessibilityScrollStatusIsEnabled(status: _Foundation_LocalizedStringResource, isEnabled?: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2894846016823098, this, [status, isEnabled]); }
+  accessibilityScrollStatusIsEnabled(status: _Foundation_LocalizedStringResource, isEnabled?: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2894846016823098, this, [status, isEnabled]); }
   /**
    * nonisolated func accessibilityScrollStatus(_ statusKey: LocalizedStringKey, isEnabled: Bool = true) -> ModifiedContent<Content, Modifier>
    * @availability iOS 26.0+
    */
-  accessibilityScrollStatusIsEnabled40666(statusKey: _SwiftUICore_LocalizedStringKey, isEnabled?: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1528990632553781, this, [statusKey, isEnabled]); }
+  accessibilityScrollStatusIsEnabled40666(statusKey: _SwiftUICore_LocalizedStringKey, isEnabled?: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1528990632553781, this, [statusKey, isEnabled]); }
   /**
    * nonisolated func accessibilityScrollStatus(_ status: Text, isEnabled: Bool = true) -> ModifiedContent<Content, Modifier>
    * @availability iOS 26.0+
    */
-  accessibilityScrollStatusIsEnabled2479(status: _SwiftUICore_Text, isEnabled?: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 4255654751874645, this, [status, isEnabled]); }
+  accessibilityScrollStatusIsEnabled2479(status: _SwiftUICore_Text, isEnabled?: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 4255654751874645, this, [status, isEnabled]); }
   /**
    * nonisolated func accessibilityScrollStatus(_ status: some StringProtocol, isEnabled: Bool = true) -> ModifiedContent<Content, Modifier>
    * @availability iOS 26.0+
    */
-  accessibilityScrollStatusIsEnabled58599(status: SDKHandle, isEnabled?: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2034771655011342, this, [status, isEnabled]); }
+  accessibilityScrollStatusIsEnabled58599(status: SDKHandle, isEnabled?: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2034771655011342, this, [status, isEnabled]); }
   /**
    * nonisolated func accessibilitySortPriority(_ sortPriority: Double) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilitySortPriority37866(sortPriority: number): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1033204255843261, this, [sortPriority]); }
+  accessibilitySortPriority37866(sortPriority: number): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1033204255843261, this, [sortPriority]); }
   /**
    * nonisolated func accessibilityActivationPoint(_ activationPoint: UnitPoint, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityActivationPointIsEnabled(activationPoint: _SwiftUICore_UnitPoint, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 904444049284641, this, [activationPoint, isEnabled]); }
+  accessibilityActivationPointIsEnabled(activationPoint: _SwiftUICore_UnitPoint, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 904444049284641, this, [activationPoint, isEnabled]); }
   /**
    * nonisolated func accessibilityActivationPoint(_ activationPoint: CGPoint, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityActivationPointIsEnabled45397(activationPoint: $SDK39, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 1866188340249403, this, [activationPoint, isEnabled]); }
+  accessibilityActivationPointIsEnabled45397(activationPoint: $SDK39, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 1866188340249403, this, [activationPoint, isEnabled]); }
   /**
    * nonisolated func accessibilityActivationPoint(_ activationPoint: UnitPoint) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityActivationPoint17328(activationPoint: _SwiftUICore_UnitPoint): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 3582208358348173, this, [activationPoint]); }
+  accessibilityActivationPoint17328(activationPoint: _SwiftUICore_UnitPoint): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 3582208358348173, this, [activationPoint]); }
   /**
    * nonisolated func accessibilityActivationPoint(_ activationPoint: CGPoint) -> ModifiedContent<Content, Modifier>
    * @availability iOS 14.0+
    */
-  accessibilityActivationPoint12063(activationPoint: $SDK39): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 2696816932612170, this, [activationPoint]); }
+  accessibilityActivationPoint12063(activationPoint: $SDK39): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 2696816932612170, this, [activationPoint]); }
   /**
    * nonisolated func accessibilityAdjustableAction(_ handler: @escaping (AccessibilityAdjustmentDirection) -> Void) -> ModifiedContent<Content, Modifier>
    * @availability iOS 13.0+
    */
-  accessibilityAdjustableAction(handler: ((arg0: _SwiftUICore_AccessibilityAdjustmentDirection) => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 4376733883760231, this, [handler], [{"callback":{"out":[]}}]); }
+  accessibilityAdjustableAction(handler: ((arg0: _SwiftUICore_AccessibilityAdjustmentDirection) => void)): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 4376733883760231, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * nonisolated func accessibilityRespondsToUserInteraction(_ respondsToUserInteraction: Bool, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
    * @availability iOS 18.0+
    */
-  accessibilityRespondsToUserInteractionIsEnabled(respondsToUserInteraction: boolean, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 360296696147704, this, [respondsToUserInteraction, isEnabled]); }
+  accessibilityRespondsToUserInteractionIsEnabled(respondsToUserInteraction: boolean, isEnabled: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 360296696147704, this, [respondsToUserInteraction, isEnabled]); }
   /**
    * nonisolated func accessibilityRespondsToUserInteraction(_ respondsToUserInteraction: Bool = true) -> ModifiedContent<Content, Modifier>
    * @availability iOS 15.0+
    */
-  accessibilityRespondsToUserInteraction(respondsToUserInteraction?: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_64b39a05e4a4cebd", 753802607421727, this, [respondsToUserInteraction]); }
+  accessibilityRespondsToUserInteraction(respondsToUserInteraction?: boolean): $SDK83 { return callSDK<$SDK83>("SwiftUI_bd41a4085ee86f99", 753802607421727, this, [respondsToUserInteraction]); }
   declare readonly $type: { "s:7SwiftUI15ModifiedContentV": true };
 }
 
@@ -7284,62 +7284,62 @@ export class MultiDatePicker<Label = unknown> extends SDKHandle {
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, selection: Binding<Set<DateComponents>>, in bounds: Range<Date>)
    * @availability iOS 16.0+
    */
-  static initSelectionIn(titleResource: _Foundation_LocalizedStringResource, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_64b39a05e4a4cebd", 2976645020045784, undefined, [titleResource, selection, bounds]); }
+  static initSelectionIn(titleResource: _Foundation_LocalizedStringResource, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_bd41a4085ee86f99", 2976645020045784, undefined, [titleResource, selection, bounds]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, selection: Binding<Set<DateComponents>>, in bounds: PartialRangeFrom<Date>)
    * @availability iOS 16.0+
    */
-  static initSelectionIn4675(titleResource: _Foundation_LocalizedStringResource, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_64b39a05e4a4cebd", 2152162671341883, undefined, [titleResource, selection, bounds]); }
+  static initSelectionIn4675(titleResource: _Foundation_LocalizedStringResource, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_bd41a4085ee86f99", 2152162671341883, undefined, [titleResource, selection, bounds]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, selection: Binding<Set<DateComponents>>, in bounds: PartialRangeUpTo<Date>)
    * @availability iOS 16.0+
    */
-  static initSelectionIn53103(titleResource: _Foundation_LocalizedStringResource, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_64b39a05e4a4cebd", 3103975035682026, undefined, [titleResource, selection, bounds]); }
+  static initSelectionIn53103(titleResource: _Foundation_LocalizedStringResource, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_bd41a4085ee86f99", 3103975035682026, undefined, [titleResource, selection, bounds]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<Set<DateComponents>>, in bounds: Range<Date>)
    * @availability iOS 16.0+
    */
-  static initSelectionIn50233(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_64b39a05e4a4cebd", 3210186707436650, undefined, [titleKey, selection, bounds]); }
+  static initSelectionIn50233(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_bd41a4085ee86f99", 3210186707436650, undefined, [titleKey, selection, bounds]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<Set<DateComponents>>, in bounds: PartialRangeFrom<Date>)
    * @availability iOS 16.0+
    */
-  static initSelectionIn26086(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_64b39a05e4a4cebd", 2899702367426515, undefined, [titleKey, selection, bounds]); }
+  static initSelectionIn26086(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_bd41a4085ee86f99", 2899702367426515, undefined, [titleKey, selection, bounds]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<Set<DateComponents>>, in bounds: PartialRangeUpTo<Date>)
    * @availability iOS 16.0+
    */
-  static initSelectionIn93242(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_64b39a05e4a4cebd", 25735493552758, undefined, [titleKey, selection, bounds]); }
+  static initSelectionIn93242(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_bd41a4085ee86f99", 25735493552758, undefined, [titleKey, selection, bounds]); }
   /**
    * nonisolated init<S>(_ title: S, selection: Binding<Set<DateComponents>>, in bounds: Range<Date>) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initSelectionIn56369(title: string, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_64b39a05e4a4cebd", 3040733364793536, undefined, [title, selection, bounds]); }
+  static initSelectionIn56369(title: string, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_bd41a4085ee86f99", 3040733364793536, undefined, [title, selection, bounds]); }
   /**
    * nonisolated init<S>(_ title: S, selection: Binding<Set<DateComponents>>, in bounds: PartialRangeFrom<Date>) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initSelectionIn73510(title: string, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_64b39a05e4a4cebd", 4128823325137366, undefined, [title, selection, bounds]); }
+  static initSelectionIn73510(title: string, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_bd41a4085ee86f99", 4128823325137366, undefined, [title, selection, bounds]); }
   /**
    * nonisolated init<S>(_ title: S, selection: Binding<Set<DateComponents>>, in bounds: PartialRangeUpTo<Date>) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initSelectionIn71402(title: string, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_64b39a05e4a4cebd", 1891497018593438, undefined, [title, selection, bounds]); }
+  static initSelectionIn71402(title: string, selection: $SDK90, bounds: SDKHandle): $SDK89 { return callSDK<$SDK89>("SwiftUI_bd41a4085ee86f99", 1891497018593438, undefined, [title, selection, bounds]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, selection: Binding<Set<DateComponents>>)
    * @availability iOS 16.0+
    */
-  static initSelection(titleResource: _Foundation_LocalizedStringResource, selection: $SDK90): $SDK89 { return callSDK<$SDK89>("SwiftUI_64b39a05e4a4cebd", 3280793174951995, undefined, [titleResource, selection]); }
+  static initSelection(titleResource: _Foundation_LocalizedStringResource, selection: $SDK90): $SDK89 { return callSDK<$SDK89>("SwiftUI_bd41a4085ee86f99", 3280793174951995, undefined, [titleResource, selection]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<Set<DateComponents>>)
    * @availability iOS 16.0+
    */
-  static initSelection20105(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK90): $SDK89 { return callSDK<$SDK89>("SwiftUI_64b39a05e4a4cebd", 881357070602292, undefined, [titleKey, selection]); }
+  static initSelection20105(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK90): $SDK89 { return callSDK<$SDK89>("SwiftUI_bd41a4085ee86f99", 881357070602292, undefined, [titleKey, selection]); }
   /**
    * nonisolated init<S>(_ title: S, selection: Binding<Set<DateComponents>>) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initSelection43777(title: string, selection: $SDK90): $SDK89 { return callSDK<$SDK89>("SwiftUI_64b39a05e4a4cebd", 1183845620154906, undefined, [title, selection]); }
+  static initSelection43777(title: string, selection: $SDK90): $SDK89 { return callSDK<$SDK89>("SwiftUI_bd41a4085ee86f99", 1183845620154906, undefined, [title, selection]); }
   declare readonly $type: { "s:7SwiftUI15MultiDatePickerV": true };
 }
 
@@ -7372,7 +7372,7 @@ export class NavigationControlGroupStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 15.0+
    */
-  static init(): NavigationControlGroupStyle { return callSDK<NavigationControlGroupStyle>("SwiftUI_64b39a05e4a4cebd", 4381277260089232, undefined, []); }
+  static init(): NavigationControlGroupStyle { return callSDK<NavigationControlGroupStyle>("SwiftUI_bd41a4085ee86f99", 4381277260089232, undefined, []); }
   declare readonly $type: { "s:7SwiftUI27NavigationControlGroupStyleV": true };
 }
 
@@ -7392,67 +7392,67 @@ export class NavigationLink<Label = unknown, Destination = unknown> extends SDKH
    * @availability iOS 13.0+
    * @deprecated iOS 16.0
    */
-  static initDestinationTagSelection(titleKey: _SwiftUICore_LocalizedStringKey, destination: SDKHandle, tag: number, selection: $SDK92): $SDK91 { return callSDK<$SDK91>("SwiftUI_64b39a05e4a4cebd", 2672740913885144, undefined, [titleKey, destination, tag, selection]); }
+  static initDestinationTagSelection(titleKey: _SwiftUICore_LocalizedStringKey, destination: SDKHandle, tag: number, selection: $SDK92): $SDK91 { return callSDK<$SDK91>("SwiftUI_bd41a4085ee86f99", 2672740913885144, undefined, [titleKey, destination, tag, selection]); }
   /**
    * nonisolated init<S, V>(_ title: S, destination: Destination, tag: V, selection: Binding<V?>) where S : StringProtocol, V : Hashable
    * @availability iOS 13.0+
    * @deprecated iOS 16.0
    */
-  static initDestinationTagSelection922(title: string, destination: SDKHandle, tag: number, selection: $SDK92): $SDK91 { return callSDK<$SDK91>("SwiftUI_64b39a05e4a4cebd", 1583963683742763, undefined, [title, destination, tag, selection]); }
+  static initDestinationTagSelection922(title: string, destination: SDKHandle, tag: number, selection: $SDK92): $SDK91 { return callSDK<$SDK91>("SwiftUI_bd41a4085ee86f99", 1583963683742763, undefined, [title, destination, tag, selection]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, destination: Destination, isActive: Binding<Bool>)
    * @availability iOS 13.0+
    * @deprecated iOS 16.0
    */
-  static initDestinationIsActive(titleKey: _SwiftUICore_LocalizedStringKey, destination: SDKHandle, isActive: $SDK36): $SDK91 { return callSDK<$SDK91>("SwiftUI_64b39a05e4a4cebd", 373511227227301, undefined, [titleKey, destination, isActive]); }
+  static initDestinationIsActive(titleKey: _SwiftUICore_LocalizedStringKey, destination: SDKHandle, isActive: $SDK36): $SDK91 { return callSDK<$SDK91>("SwiftUI_bd41a4085ee86f99", 373511227227301, undefined, [titleKey, destination, isActive]); }
   /**
    * nonisolated init<S>(_ title: S, destination: Destination, isActive: Binding<Bool>) where S : StringProtocol
    * @availability iOS 13.0+
    * @deprecated iOS 16.0
    */
-  static initDestinationIsActive30425(title: string, destination: SDKHandle, isActive: $SDK36): $SDK91 { return callSDK<$SDK91>("SwiftUI_64b39a05e4a4cebd", 1018513039081794, undefined, [title, destination, isActive]); }
+  static initDestinationIsActive30425(title: string, destination: SDKHandle, isActive: $SDK36): $SDK91 { return callSDK<$SDK91>("SwiftUI_bd41a4085ee86f99", 1018513039081794, undefined, [title, destination, isActive]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, destination: Destination)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initDestination(titleKey: _SwiftUICore_LocalizedStringKey, destination: SDKHandle): $SDK91 { return callSDK<$SDK91>("SwiftUI_64b39a05e4a4cebd", 1983462433822796, undefined, [titleKey, destination]); }
+  static initDestination(titleKey: _SwiftUICore_LocalizedStringKey, destination: SDKHandle): $SDK91 { return callSDK<$SDK91>("SwiftUI_bd41a4085ee86f99", 1983462433822796, undefined, [titleKey, destination]); }
   /**
    * nonisolated init<S>(_ title: S, destination: Destination) where S : StringProtocol
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initDestination15650(title: string, destination: SDKHandle): $SDK91 { return callSDK<$SDK91>("SwiftUI_64b39a05e4a4cebd", 4246190760412492, undefined, [title, destination]); }
+  static initDestination15650(title: string, destination: SDKHandle): $SDK91 { return callSDK<$SDK91>("SwiftUI_bd41a4085ee86f99", 4246190760412492, undefined, [title, destination]); }
   /**
    * @export(implementation) nonisolated init<P>(_ titleResource: LocalizedStringResource, value: P?) where Label == Text, P : Hashable
    * @availability iOS 16.0+
    */
-  static initValue(titleResource: _Foundation_LocalizedStringResource, value?: (number) | null): $SDK93 { return callSDK<$SDK93>("SwiftUI_64b39a05e4a4cebd", 3000339809178554, undefined, [titleResource, value]); }
+  static initValue(titleResource: _Foundation_LocalizedStringResource, value?: (number) | null): $SDK93 { return callSDK<$SDK93>("SwiftUI_bd41a4085ee86f99", 3000339809178554, undefined, [titleResource, value]); }
   /**
    * @export(implementation) nonisolated init<P>(_ titleResource: LocalizedStringResource, value: P?) where Label == Text, P : Decodable, P : Encodable, P : Hashable
    * @availability iOS 16.0+
    */
-  static initValue73146(titleResource: _Foundation_LocalizedStringResource, value?: (number) | null): $SDK93 { return callSDK<$SDK93>("SwiftUI_64b39a05e4a4cebd", 4177872325235796, undefined, [titleResource, value]); }
+  static initValue73146(titleResource: _Foundation_LocalizedStringResource, value?: (number) | null): $SDK93 { return callSDK<$SDK93>("SwiftUI_bd41a4085ee86f99", 4177872325235796, undefined, [titleResource, value]); }
   /**
    * nonisolated init<P>(_ titleKey: LocalizedStringKey, value: P?) where Label == Text, P : Hashable
    * @availability iOS 16.0+
    */
-  static initValue96595(titleKey: _SwiftUICore_LocalizedStringKey, value?: (number) | null): $SDK93 { return callSDK<$SDK93>("SwiftUI_64b39a05e4a4cebd", 3685749502828490, undefined, [titleKey, value]); }
+  static initValue96595(titleKey: _SwiftUICore_LocalizedStringKey, value?: (number) | null): $SDK93 { return callSDK<$SDK93>("SwiftUI_bd41a4085ee86f99", 3685749502828490, undefined, [titleKey, value]); }
   /**
    * nonisolated init<P>(_ titleKey: LocalizedStringKey, value: P?) where Label == Text, P : Decodable, P : Encodable, P : Hashable
    * @availability iOS 16.0+
    */
-  static initValue16899(titleKey: _SwiftUICore_LocalizedStringKey, value?: (number) | null): $SDK93 { return callSDK<$SDK93>("SwiftUI_64b39a05e4a4cebd", 1078546467732046, undefined, [titleKey, value]); }
+  static initValue16899(titleKey: _SwiftUICore_LocalizedStringKey, value?: (number) | null): $SDK93 { return callSDK<$SDK93>("SwiftUI_bd41a4085ee86f99", 1078546467732046, undefined, [titleKey, value]); }
   /**
    * nonisolated init<S, P>(_ title: S, value: P?) where Label == Text, S : StringProtocol, P : Hashable
    * @availability iOS 16.0+
    */
-  static initValue11019(title: string, value?: (number) | null): $SDK93 { return callSDK<$SDK93>("SwiftUI_64b39a05e4a4cebd", 323337550853442, undefined, [title, value]); }
+  static initValue11019(title: string, value?: (number) | null): $SDK93 { return callSDK<$SDK93>("SwiftUI_bd41a4085ee86f99", 323337550853442, undefined, [title, value]); }
   /**
    * nonisolated init<S, P>(_ title: S, value: P?) where Label == Text, S : StringProtocol, P : Decodable, P : Encodable, P : Hashable
    * @availability iOS 16.0+
    */
-  static initValue83067(title: string, value?: (number) | null): $SDK93 { return callSDK<$SDK93>("SwiftUI_64b39a05e4a4cebd", 3347980805070527, undefined, [title, value]); }
+  static initValue83067(title: string, value?: (number) | null): $SDK93 { return callSDK<$SDK93>("SwiftUI_bd41a4085ee86f99", 3347980805070527, undefined, [title, value]); }
   declare readonly $type: { "s:7SwiftUI14NavigationLinkV": true };
 }
 
@@ -7471,7 +7471,7 @@ export class NavigationLinkPickerStyle extends SDKHandle {
    * init()
    * @availability iOS 16.0+
    */
-  static init(): NavigationLinkPickerStyle { return callSDK<NavigationLinkPickerStyle>("SwiftUI_64b39a05e4a4cebd", 523098042626345, undefined, []); }
+  static init(): NavigationLinkPickerStyle { return callSDK<NavigationLinkPickerStyle>("SwiftUI_bd41a4085ee86f99", 523098042626345, undefined, []); }
   declare readonly $type: { "s:7SwiftUI25NavigationLinkPickerStyleV": true };
 }
 
@@ -7484,52 +7484,52 @@ export class NavigationPath extends SDKHandle {
    * mutating func removeLast(_ k: Int = 1)
    * @availability iOS 16.0+
    */
-  removeLast(k?: number): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 621579543634150, this, [k]); }
+  removeLast(k?: number): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 621579543634150, this, [k]); }
   /**
    * var count: Int { get }
    * @availability iOS 16.0+
    */
-  get count(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 2218311578665837, this, []); }
+  get count(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 2218311578665837, this, []); }
   /**
    * mutating func append<V>(_ value: V) where V : Hashable
    * @availability iOS 16.0+
    */
-  append(value: number): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2230855628940417, this, [value]); }
+  append(value: number): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 2230855628940417, this, [value]); }
   /**
    * mutating func append<V>(_ value: V) where V : Decodable, V : Encodable, V : Hashable
    * @availability iOS 16.0+
    */
-  append68641(value: number): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1373357742156168, this, [value]); }
+  append68641(value: number): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 1373357742156168, this, [value]); }
   /**
    * var codable: NavigationPath.CodableRepresentation? { get }
    * @availability iOS 16.0+
    */
-  get codable(): (NavigationPath_CodableRepresentation) | null { return callSDK<(NavigationPath_CodableRepresentation) | null>("SwiftUI_64b39a05e4a4cebd", 2329123361287812, this, []); }
+  get codable(): (NavigationPath_CodableRepresentation) | null { return callSDK<(NavigationPath_CodableRepresentation) | null>("SwiftUI_bd41a4085ee86f99", 2329123361287812, this, []); }
   /**
    * var isEmpty: Bool { get }
    * @availability iOS 16.0+
    */
-  get isEmpty(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 366417036458132, this, []); }
+  get isEmpty(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 366417036458132, this, []); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): NavigationPath { return callSDK<NavigationPath>("SwiftUI_64b39a05e4a4cebd", 3220345383453098, undefined, []); }
+  static init(): NavigationPath { return callSDK<NavigationPath>("SwiftUI_bd41a4085ee86f99", 3220345383453098, undefined, []); }
   /**
    * init(_ codable: NavigationPath.CodableRepresentation)
    * @availability iOS 16.0+
    */
-  static init69647(codable: NavigationPath_CodableRepresentation): NavigationPath { return callSDK<NavigationPath>("SwiftUI_64b39a05e4a4cebd", 4347290581989796, undefined, [codable]); }
+  static init69647(codable: NavigationPath_CodableRepresentation): NavigationPath { return callSDK<NavigationPath>("SwiftUI_bd41a4085ee86f99", 4347290581989796, undefined, [codable]); }
   /**
    * init<S>(_ elements: S) where S : Sequence, S.Element : Hashable
    * @availability iOS 16.0+
    */
-  static init63331(elements: Array<number>): NavigationPath { return callSDK<NavigationPath>("SwiftUI_64b39a05e4a4cebd", 934342699515412, undefined, [elements]); }
+  static init63331(elements: Array<number>): NavigationPath { return callSDK<NavigationPath>("SwiftUI_bd41a4085ee86f99", 934342699515412, undefined, [elements]); }
   /**
    * init<S>(_ elements: S) where S : Sequence, S.Element : Decodable, S.Element : Encodable, S.Element : Hashable
    * @availability iOS 16.0+
    */
-  static init39645(elements: Array<number>): NavigationPath { return callSDK<NavigationPath>("SwiftUI_64b39a05e4a4cebd", 2785373426532054, undefined, [elements]); }
+  static init39645(elements: Array<number>): NavigationPath { return callSDK<NavigationPath>("SwiftUI_bd41a4085ee86f99", 2785373426532054, undefined, [elements]); }
   declare readonly $type: { "s:7SwiftUI14NavigationPathV": true };
 }
 
@@ -7564,17 +7564,17 @@ export class NavigationSplitViewColumn extends SDKHandle {
    * static var detail: NavigationSplitViewColumn { get }
    * @availability iOS 17.0+
    */
-  static get detail(): NavigationSplitViewColumn { return callSDK<NavigationSplitViewColumn>("SwiftUI_64b39a05e4a4cebd", 323197736527319, undefined, []); }
+  static get detail(): NavigationSplitViewColumn { return callSDK<NavigationSplitViewColumn>("SwiftUI_bd41a4085ee86f99", 323197736527319, undefined, []); }
   /**
    * static var content: NavigationSplitViewColumn { get }
    * @availability iOS 17.0+
    */
-  static get content(): NavigationSplitViewColumn { return callSDK<NavigationSplitViewColumn>("SwiftUI_64b39a05e4a4cebd", 3436258698090020, undefined, []); }
+  static get content(): NavigationSplitViewColumn { return callSDK<NavigationSplitViewColumn>("SwiftUI_bd41a4085ee86f99", 3436258698090020, undefined, []); }
   /**
    * static var sidebar: NavigationSplitViewColumn { get }
    * @availability iOS 17.0+
    */
-  static get sidebar(): NavigationSplitViewColumn { return callSDK<NavigationSplitViewColumn>("SwiftUI_64b39a05e4a4cebd", 2621557804065287, undefined, []); }
+  static get sidebar(): NavigationSplitViewColumn { return callSDK<NavigationSplitViewColumn>("SwiftUI_bd41a4085ee86f99", 2621557804065287, undefined, []); }
   declare readonly $type: { "s:7SwiftUI25NavigationSplitViewColumnV": true };
 }
 
@@ -7613,22 +7613,22 @@ export class NavigationSplitViewVisibility extends SDKHandle {
    * static var detailOnly: NavigationSplitViewVisibility { get }
    * @availability iOS 16.0+
    */
-  static get detailOnly(): NavigationSplitViewVisibility { return callSDK<NavigationSplitViewVisibility>("SwiftUI_64b39a05e4a4cebd", 3173964830118190, undefined, []); }
+  static get detailOnly(): NavigationSplitViewVisibility { return callSDK<NavigationSplitViewVisibility>("SwiftUI_bd41a4085ee86f99", 3173964830118190, undefined, []); }
   /**
    * static var doubleColumn: NavigationSplitViewVisibility { get }
    * @availability iOS 16.0+
    */
-  static get doubleColumn(): NavigationSplitViewVisibility { return callSDK<NavigationSplitViewVisibility>("SwiftUI_64b39a05e4a4cebd", 2997790829635077, undefined, []); }
+  static get doubleColumn(): NavigationSplitViewVisibility { return callSDK<NavigationSplitViewVisibility>("SwiftUI_bd41a4085ee86f99", 2997790829635077, undefined, []); }
   /**
    * static var all: NavigationSplitViewVisibility { get }
    * @availability iOS 16.0+
    */
-  static get all(): NavigationSplitViewVisibility { return callSDK<NavigationSplitViewVisibility>("SwiftUI_64b39a05e4a4cebd", 3954168324094834, undefined, []); }
+  static get all(): NavigationSplitViewVisibility { return callSDK<NavigationSplitViewVisibility>("SwiftUI_bd41a4085ee86f99", 3954168324094834, undefined, []); }
   /**
    * static var automatic: NavigationSplitViewVisibility { get }
    * @availability iOS 16.0+
    */
-  static get automatic(): NavigationSplitViewVisibility { return callSDK<NavigationSplitViewVisibility>("SwiftUI_64b39a05e4a4cebd", 1447890356410169, undefined, []); }
+  static get automatic(): NavigationSplitViewVisibility { return callSDK<NavigationSplitViewVisibility>("SwiftUI_bd41a4085ee86f99", 1447890356410169, undefined, []); }
   declare readonly $type: { "s:7SwiftUI29NavigationSplitViewVisibilityV": true };
 }
 
@@ -7712,82 +7712,82 @@ export class NewDocumentButton<Label = unknown> extends SDKHandle {
    * @export(implementation) nonisolated init(_ title: LocalizedStringResource, contentType: UTType, prepareDocumentURL: @escaping () async throws -> URL? = { nil })
    * @availability iOS 18.0+
    */
-  static initContentTypePrepareDocumentURL(title: _Foundation_LocalizedStringResource, contentType: _UniformTypeIdentifiers_UTType, prepareDocumentURL?: $SDK96): Promise<$SDK95> { return callSDKAsync<$SDK95>("SwiftUI_64b39a05e4a4cebd", 2086759268688157, undefined, [title, contentType, prepareDocumentURL], [null,null,{"callback":{"out":[]}}]); }
+  static initContentTypePrepareDocumentURL(title: _Foundation_LocalizedStringResource, contentType: _UniformTypeIdentifiers_UTType, prepareDocumentURL?: $SDK96): Promise<$SDK95> { return callSDKAsync<$SDK95>("SwiftUI_bd41a4085ee86f99", 2086759268688157, undefined, [title, contentType, prepareDocumentURL], [null,null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated init(_ title: LocalizedStringKey, contentType: UTType, prepareDocumentURL: @escaping () async throws -> URL? = { nil })
    * @availability iOS 18.0+
    */
-  static initContentTypePrepareDocumentURL152(title: _SwiftUICore_LocalizedStringKey, contentType: _UniformTypeIdentifiers_UTType, prepareDocumentURL?: $SDK96): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 3927142492243977, undefined, [title, contentType, prepareDocumentURL], [null,null,{"callback":{"out":[]}}]); }
+  static initContentTypePrepareDocumentURL152(title: _SwiftUICore_LocalizedStringKey, contentType: _UniformTypeIdentifiers_UTType, prepareDocumentURL?: $SDK96): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 3927142492243977, undefined, [title, contentType, prepareDocumentURL], [null,null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated init(_ label: Text? = nil, contentType: UTType, prepareDocumentURL: @escaping () async throws -> URL? = { nil })
    * @availability iOS 18.0+
    */
-  static initContentTypePrepareDocumentURL26306(label: $SDK5, contentType: _UniformTypeIdentifiers_UTType, prepareDocumentURL?: $SDK96): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 2385485162343224, undefined, [label, contentType, prepareDocumentURL], [null,null,{"callback":{"out":[]}}]); }
+  static initContentTypePrepareDocumentURL26306(label: $SDK5, contentType: _UniformTypeIdentifiers_UTType, prepareDocumentURL?: $SDK96): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 2385485162343224, undefined, [label, contentType, prepareDocumentURL], [null,null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated init(_ title: some StringProtocol, contentType: UTType, prepareDocumentURL: @escaping () async throws -> URL? = { nil })
    * @availability iOS 18.0+
    */
-  static initContentTypePrepareDocumentURL75260(title: SDKHandle, contentType: _UniformTypeIdentifiers_UTType, prepareDocumentURL?: $SDK96): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 530706998071693, undefined, [title, contentType, prepareDocumentURL], [null,null,{"callback":{"out":[]}}]); }
+  static initContentTypePrepareDocumentURL75260(title: SDKHandle, contentType: _UniformTypeIdentifiers_UTType, prepareDocumentURL?: $SDK96): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 530706998071693, undefined, [title, contentType, prepareDocumentURL], [null,null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated init(_ title: LocalizedStringResource, contentType: UTType, source: DocumentCreationSource, prepareDocumentURL: @escaping () async throws -> URL? = { nil })
    * @availability iOS 27.0+
    */
-  static initContentTypeSourcePrepareDocumentURL(title: _Foundation_LocalizedStringResource, contentType: _UniformTypeIdentifiers_UTType, source: DocumentCreationSource, prepareDocumentURL?: $SDK96): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 2178124721480046, undefined, [title, contentType, source, prepareDocumentURL], [null,null,null,{"callback":{"out":[]}}]); }
+  static initContentTypeSourcePrepareDocumentURL(title: _Foundation_LocalizedStringResource, contentType: _UniformTypeIdentifiers_UTType, source: DocumentCreationSource, prepareDocumentURL?: $SDK96): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 2178124721480046, undefined, [title, contentType, source, prepareDocumentURL], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated init(_ title: LocalizedStringKey, contentType: UTType, source: DocumentCreationSource, prepareDocumentURL: @escaping () async throws -> URL? = { nil })
    * @availability iOS 27.0+
    */
-  static initContentTypeSourcePrepareDocumentURL47011(title: _SwiftUICore_LocalizedStringKey, contentType: _UniformTypeIdentifiers_UTType, source: DocumentCreationSource, prepareDocumentURL?: $SDK96): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 1446602517212930, undefined, [title, contentType, source, prepareDocumentURL], [null,null,null,{"callback":{"out":[]}}]); }
+  static initContentTypeSourcePrepareDocumentURL47011(title: _SwiftUICore_LocalizedStringKey, contentType: _UniformTypeIdentifiers_UTType, source: DocumentCreationSource, prepareDocumentURL?: $SDK96): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 1446602517212930, undefined, [title, contentType, source, prepareDocumentURL], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated init(_ title: some StringProtocol, contentType: UTType, source: DocumentCreationSource, prepareDocumentURL: @escaping () async throws -> URL? = { nil })
    * @availability iOS 27.0+
    */
-  static initContentTypeSourcePrepareDocumentURL26363(title: SDKHandle, contentType: _UniformTypeIdentifiers_UTType, source: DocumentCreationSource, prepareDocumentURL?: $SDK96): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 1833801753026803, undefined, [title, contentType, source, prepareDocumentURL], [null,null,null,{"callback":{"out":[]}}]); }
+  static initContentTypeSourcePrepareDocumentURL26363(title: SDKHandle, contentType: _UniformTypeIdentifiers_UTType, source: DocumentCreationSource, prepareDocumentURL?: $SDK96): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 1833801753026803, undefined, [title, contentType, source, prepareDocumentURL], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated init(_ title: LocalizedStringResource, contentType: UTType? = nil, source: DocumentCreationSource)
    * @availability iOS 27.0+
    */
-  static initContentTypeSource(title: _Foundation_LocalizedStringResource, contentType: $SDK97, source: DocumentCreationSource): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 3547175133805541, undefined, [title, contentType, source]); }
+  static initContentTypeSource(title: _Foundation_LocalizedStringResource, contentType: $SDK97, source: DocumentCreationSource): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 3547175133805541, undefined, [title, contentType, source]); }
   /**
    * nonisolated init(_ title: LocalizedStringKey, contentType: UTType? = nil, source: DocumentCreationSource)
    * @availability iOS 27.0+
    */
-  static initContentTypeSource10053(title: _SwiftUICore_LocalizedStringKey, contentType: $SDK97, source: DocumentCreationSource): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 484335957018908, undefined, [title, contentType, source]); }
+  static initContentTypeSource10053(title: _SwiftUICore_LocalizedStringKey, contentType: $SDK97, source: DocumentCreationSource): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 484335957018908, undefined, [title, contentType, source]); }
   /**
    * nonisolated init(_ label: Text? = nil, contentType: UTType? = nil, source: DocumentCreationSource)
    * @availability iOS 27.0+
    */
-  static initContentTypeSource86793(label: $SDK5, contentType: $SDK97, source: DocumentCreationSource): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 2738747291944060, undefined, [label, contentType, source]); }
+  static initContentTypeSource86793(label: $SDK5, contentType: $SDK97, source: DocumentCreationSource): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 2738747291944060, undefined, [label, contentType, source]); }
   /**
    * nonisolated init(_ title: some StringProtocol, contentType: UTType? = nil, source: DocumentCreationSource)
    * @availability iOS 27.0+
    */
-  static initContentTypeSource56971(title: SDKHandle, contentType: $SDK97, source: DocumentCreationSource): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 3002805230455476, undefined, [title, contentType, source]); }
+  static initContentTypeSource56971(title: SDKHandle, contentType: $SDK97, source: DocumentCreationSource): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 3002805230455476, undefined, [title, contentType, source]); }
   /**
    * nonisolated init(_ label: Text? = nil, contentType: UTType, source: DocumentCreationSource, _ prepareDocumentURL: @escaping () async throws -> URL? = { nil })
    * @availability iOS 27.0+
    */
-  static initContentTypeSource39347(label: $SDK5, contentType: _UniformTypeIdentifiers_UTType, source: DocumentCreationSource, prepareDocumentURL?: $SDK96): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 558435011216216, undefined, [label, contentType, source, prepareDocumentURL], [null,null,null,{"callback":{"out":[]}}]); }
+  static initContentTypeSource39347(label: $SDK5, contentType: _UniformTypeIdentifiers_UTType, source: DocumentCreationSource, prepareDocumentURL?: $SDK96): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 558435011216216, undefined, [label, contentType, source, prepareDocumentURL], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) nonisolated init(_ title: LocalizedStringResource, contentType: UTType? = nil)
    * @availability iOS 18.0+
    */
-  static initContentType(title: _Foundation_LocalizedStringResource, contentType?: $SDK97): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 809189271705219, undefined, [title, contentType]); }
+  static initContentType(title: _Foundation_LocalizedStringResource, contentType?: $SDK97): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 809189271705219, undefined, [title, contentType]); }
   /**
    * nonisolated init(_ title: LocalizedStringKey, contentType: UTType? = nil)
    * @availability iOS 18.0+
    */
-  static initContentType79411(title: _SwiftUICore_LocalizedStringKey, contentType?: $SDK97): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 145703107700998, undefined, [title, contentType]); }
+  static initContentType79411(title: _SwiftUICore_LocalizedStringKey, contentType?: $SDK97): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 145703107700998, undefined, [title, contentType]); }
   /**
    * nonisolated init(_ label: Text? = nil, contentType: UTType? = nil)
    * @availability iOS 18.0+
    */
-  static initContentType30773(label?: $SDK5, contentType?: $SDK97): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 846281316312292, undefined, [label, contentType]); }
+  static initContentType30773(label?: $SDK5, contentType?: $SDK97): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 846281316312292, undefined, [label, contentType]); }
   /**
    * nonisolated init(_ title: some StringProtocol, contentType: UTType? = nil)
    * @availability iOS 18.0+
    */
-  static initContentType91733(title: SDKHandle, contentType?: $SDK97): $SDK95 { return callSDK<$SDK95>("SwiftUI_64b39a05e4a4cebd", 2418566473584231, undefined, [title, contentType]); }
+  static initContentType91733(title: SDKHandle, contentType?: $SDK97): $SDK95 { return callSDK<$SDK95>("SwiftUI_bd41a4085ee86f99", 2418566473584231, undefined, [title, contentType]); }
   declare readonly $type: { "s:7SwiftUI17NewDocumentButtonV": true };
 }
 
@@ -7802,7 +7802,7 @@ export class NSDirectionalEdgeInsets extends SDKHandle {
    * init(_ edgeInsets: EdgeInsets)
    * @availability iOS 14.0+
    */
-  static init(edgeInsets: _SwiftUICore_EdgeInsets): $SDK43 { return callSDK<$SDK43>("SwiftUI_64b39a05e4a4cebd", 4409609199934090, undefined, [edgeInsets]); }
+  static init(edgeInsets: _SwiftUICore_EdgeInsets): $SDK43 { return callSDK<$SDK43>("SwiftUI_bd41a4085ee86f99", 4409609199934090, undefined, [edgeInsets]); }
   declare readonly $type: { "c:@S@NSDirectionalEdgeInsets": true };
 }
 
@@ -7813,7 +7813,7 @@ export const NSUnderlineStyle = {
    * init(_ lineStyle: Text.LineStyle)
    * @availability iOS 15.0+
    */
-  init(lineStyle: _SwiftUICore_Text_LineStyle): _UIKit_NSUnderlineStyle { return callSDK<_UIKit_NSUnderlineStyle>("SwiftUI_64b39a05e4a4cebd", 899344113485651, undefined, [lineStyle]); }
+  init(lineStyle: _SwiftUICore_Text_LineStyle): _UIKit_NSUnderlineStyle { return callSDK<_UIKit_NSUnderlineStyle>("SwiftUI_bd41a4085ee86f99", 899344113485651, undefined, [lineStyle]); }
 };
 
 export class NSUserActivity extends SDKHandle {
@@ -7821,12 +7821,12 @@ export class NSUserActivity extends SDKHandle {
    * func typedPayload<T>(_ type: T.Type) throws -> T where T : Decodable, T : Encodable
    * @availability iOS 14.0+
    */
-  typedPayload(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): unknown { return callSDK<unknown>("SwiftUI_64b39a05e4a4cebd", 408819105098374, this, [type]); }
+  typedPayload(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): unknown { return callSDK<unknown>("SwiftUI_bd41a4085ee86f99", 408819105098374, this, [type]); }
   /**
    * func setTypedPayload<T>(_ payload: T) throws where T : Decodable, T : Encodable
    * @availability iOS 14.0+
    */
-  setTypedPayload(payload: number): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2489987723999706, this, [payload]); }
+  setTypedPayload(payload: number): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 2489987723999706, this, [payload]); }
   declare readonly $type: { "c:objc(cs)NSUserActivity": true; "c:objc(cs)NSObject": true };
 }
 
@@ -7845,7 +7845,7 @@ export class OnInsertTableRowModifier extends SDKHandle {
    * @MainActor @preconcurrency var body: some _TableRowContentModifier { get }
    * @availability iOS 16.0+
    */
-  get body(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("SwiftUI_64b39a05e4a4cebd", 2890634681923075, this, []); }
+  get body(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("SwiftUI_bd41a4085ee86f99", 2890634681923075, this, []); }
   declare readonly $type: { "s:7SwiftUI24OnInsertTableRowModifierV": true };
 }
 
@@ -7864,17 +7864,17 @@ export class OpenWindowAction extends SDKHandle {
    * @MainActor @preconcurrency func callAsFunction<D>(id: String, value: D) where D : Decodable, D : Encodable, D : Hashable
    * @availability iOS 16.0+
    */
-  callAsFunctionIdValue(id: string, value: number): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 855406104256499, this, [id, value]); }
+  callAsFunctionIdValue(id: string, value: number): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 855406104256499, this, [id, value]); }
   /**
    * @MainActor @preconcurrency func callAsFunction(id: String)
    * @availability iOS 16.0+
    */
-  callAsFunctionId(id: string): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 4238896185518592, this, [id]); }
+  callAsFunctionId(id: string): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 4238896185518592, this, [id]); }
   /**
    * @MainActor @preconcurrency func callAsFunction<D>(value: D) where D : Decodable, D : Encodable, D : Hashable
    * @availability iOS 16.0+
    */
-  callAsFunctionValue(value: number): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 1595767331968954, this, [value]); }
+  callAsFunctionValue(value: number): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 1595767331968954, this, [value]); }
   declare readonly $type: { "s:7SwiftUI16OpenWindowActionV": true };
 }
 
@@ -7975,7 +7975,7 @@ export class PageIndexViewStyle extends SDKHandle {
    * init(backgroundDisplayMode: PageIndexViewStyle.BackgroundDisplayMode = .automatic)
    * @availability iOS 14.0+
    */
-  static init(backgroundDisplayMode?: PageIndexViewStyle_BackgroundDisplayMode): PageIndexViewStyle { return callSDK<PageIndexViewStyle>("SwiftUI_64b39a05e4a4cebd", 4350230506616067, undefined, [backgroundDisplayMode]); }
+  static init(backgroundDisplayMode?: PageIndexViewStyle_BackgroundDisplayMode): PageIndexViewStyle { return callSDK<PageIndexViewStyle>("SwiftUI_bd41a4085ee86f99", 4350230506616067, undefined, [backgroundDisplayMode]); }
   declare readonly $type: { "s:7SwiftUI18PageIndexViewStyleV": true };
 }
 
@@ -7988,22 +7988,22 @@ export class PageIndexViewStyle_BackgroundDisplayMode extends SDKHandle {
    * static let interactive: PageIndexViewStyle.BackgroundDisplayMode
    * @availability iOS 14.0+
    */
-  static get interactive(): PageIndexViewStyle_BackgroundDisplayMode { return callSDK<PageIndexViewStyle_BackgroundDisplayMode>("SwiftUI_64b39a05e4a4cebd", 2070790332053553, undefined, []); }
+  static get interactive(): PageIndexViewStyle_BackgroundDisplayMode { return callSDK<PageIndexViewStyle_BackgroundDisplayMode>("SwiftUI_bd41a4085ee86f99", 2070790332053553, undefined, []); }
   /**
    * static let never: PageIndexViewStyle.BackgroundDisplayMode
    * @availability iOS 14.0+
    */
-  static get never(): PageIndexViewStyle_BackgroundDisplayMode { return callSDK<PageIndexViewStyle_BackgroundDisplayMode>("SwiftUI_64b39a05e4a4cebd", 1857980185873876, undefined, []); }
+  static get never(): PageIndexViewStyle_BackgroundDisplayMode { return callSDK<PageIndexViewStyle_BackgroundDisplayMode>("SwiftUI_bd41a4085ee86f99", 1857980185873876, undefined, []); }
   /**
    * static let always: PageIndexViewStyle.BackgroundDisplayMode
    * @availability iOS 14.0+
    */
-  static get always(): PageIndexViewStyle_BackgroundDisplayMode { return callSDK<PageIndexViewStyle_BackgroundDisplayMode>("SwiftUI_64b39a05e4a4cebd", 2828056013886754, undefined, []); }
+  static get always(): PageIndexViewStyle_BackgroundDisplayMode { return callSDK<PageIndexViewStyle_BackgroundDisplayMode>("SwiftUI_bd41a4085ee86f99", 2828056013886754, undefined, []); }
   /**
    * static let automatic: PageIndexViewStyle.BackgroundDisplayMode
    * @availability iOS 14.0+
    */
-  static get automatic(): PageIndexViewStyle_BackgroundDisplayMode { return callSDK<PageIndexViewStyle_BackgroundDisplayMode>("SwiftUI_64b39a05e4a4cebd", 808729975127419, undefined, []); }
+  static get automatic(): PageIndexViewStyle_BackgroundDisplayMode { return callSDK<PageIndexViewStyle_BackgroundDisplayMode>("SwiftUI_bd41a4085ee86f99", 808729975127419, undefined, []); }
   declare readonly $type: { "s:7SwiftUI18PageIndexViewStyleV21BackgroundDisplayModeV": true };
 }
 
@@ -8016,7 +8016,7 @@ export class PagePresentationSizing extends SDKHandle {
    * func proposedSize(for root: PresentationSizingRoot, context: PresentationSizingContext) -> ProposedViewSize
    * @availability iOS 18.0+
    */
-  proposedSize(root: PresentationSizingRoot, context: PresentationSizingContext): _SwiftUICore_ProposedViewSize { return callSDK<_SwiftUICore_ProposedViewSize>("SwiftUI_64b39a05e4a4cebd", 3761526002478560, this, [root, context]); }
+  proposedSize(root: PresentationSizingRoot, context: PresentationSizingContext): _SwiftUICore_ProposedViewSize { return callSDK<_SwiftUICore_ProposedViewSize>("SwiftUI_bd41a4085ee86f99", 3761526002478560, this, [root, context]); }
   declare readonly $type: { "s:7SwiftUI22PagePresentationSizingV": true };
 }
 
@@ -8029,7 +8029,7 @@ export class PageTabViewStyle extends SDKHandle {
    * nonisolated init(indexDisplayMode: PageTabViewStyle.IndexDisplayMode = .automatic)
    * @availability iOS 14.0+
    */
-  static init(indexDisplayMode?: PageTabViewStyle_IndexDisplayMode): PageTabViewStyle { return callSDK<PageTabViewStyle>("SwiftUI_64b39a05e4a4cebd", 1567351979647018, undefined, [indexDisplayMode]); }
+  static init(indexDisplayMode?: PageTabViewStyle_IndexDisplayMode): PageTabViewStyle { return callSDK<PageTabViewStyle>("SwiftUI_bd41a4085ee86f99", 1567351979647018, undefined, [indexDisplayMode]); }
   declare readonly $type: { "s:7SwiftUI16PageTabViewStyleV": true };
 }
 
@@ -8042,17 +8042,17 @@ export class PageTabViewStyle_IndexDisplayMode extends SDKHandle {
    * static let never: PageTabViewStyle.IndexDisplayMode
    * @availability iOS 14.0+
    */
-  static get never(): PageTabViewStyle_IndexDisplayMode { return callSDK<PageTabViewStyle_IndexDisplayMode>("SwiftUI_64b39a05e4a4cebd", 1431806707455152, undefined, []); }
+  static get never(): PageTabViewStyle_IndexDisplayMode { return callSDK<PageTabViewStyle_IndexDisplayMode>("SwiftUI_bd41a4085ee86f99", 1431806707455152, undefined, []); }
   /**
    * static let always: PageTabViewStyle.IndexDisplayMode
    * @availability iOS 14.0+
    */
-  static get always(): PageTabViewStyle_IndexDisplayMode { return callSDK<PageTabViewStyle_IndexDisplayMode>("SwiftUI_64b39a05e4a4cebd", 4402004812426930, undefined, []); }
+  static get always(): PageTabViewStyle_IndexDisplayMode { return callSDK<PageTabViewStyle_IndexDisplayMode>("SwiftUI_bd41a4085ee86f99", 4402004812426930, undefined, []); }
   /**
    * static let automatic: PageTabViewStyle.IndexDisplayMode
    * @availability iOS 14.0+
    */
-  static get automatic(): PageTabViewStyle_IndexDisplayMode { return callSDK<PageTabViewStyle_IndexDisplayMode>("SwiftUI_64b39a05e4a4cebd", 3308141947627616, undefined, []); }
+  static get automatic(): PageTabViewStyle_IndexDisplayMode { return callSDK<PageTabViewStyle_IndexDisplayMode>("SwiftUI_bd41a4085ee86f99", 3308141947627616, undefined, []); }
   declare readonly $type: { "s:7SwiftUI16PageTabViewStyleV16IndexDisplayModeV": true };
 }
 
@@ -8065,17 +8065,17 @@ export class PagingScrollTargetBehavior extends SDKHandle {
    * func updateTarget(_ target: inout ScrollTarget, context: PagingScrollTargetBehavior.TargetContext)
    * @availability iOS 17.0+
    */
-  updateTarget(target: _SwiftUICore_ScrollTarget, context: ScrollTargetBehaviorContext): { $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } } { return callSDK<{ $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } }>("SwiftUI_64b39a05e4a4cebd", 2877849720728196, this, [target, context]); }
+  updateTarget(target: _SwiftUICore_ScrollTarget, context: ScrollTargetBehaviorContext): { $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } } { return callSDK<{ $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } }>("SwiftUI_bd41a4085ee86f99", 2877849720728196, this, [target, context]); }
   /**
    * func properties(context: PagingScrollTargetBehavior.PropertiesContext) -> PagingScrollTargetBehavior.Properties
    * @availability iOS 18.4+
    */
-  properties(context: ScrollTargetBehaviorPropertiesContext): ScrollTargetBehaviorProperties { return callSDK<ScrollTargetBehaviorProperties>("SwiftUI_64b39a05e4a4cebd", 2564785787889950, this, [context]); }
+  properties(context: ScrollTargetBehaviorPropertiesContext): ScrollTargetBehaviorProperties { return callSDK<ScrollTargetBehaviorProperties>("SwiftUI_bd41a4085ee86f99", 2564785787889950, this, [context]); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): PagingScrollTargetBehavior { return callSDK<PagingScrollTargetBehavior>("SwiftUI_64b39a05e4a4cebd", 2433608490285321, undefined, []); }
+  static init(): PagingScrollTargetBehavior { return callSDK<PagingScrollTargetBehavior>("SwiftUI_bd41a4085ee86f99", 2433608490285321, undefined, []); }
   declare readonly $type: { "s:7SwiftUI26PagingScrollTargetBehaviorV": true };
 }
 
@@ -8088,7 +8088,7 @@ export class PaletteControlGroupStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 17.0+
    */
-  static init(): PaletteControlGroupStyle { return callSDK<PaletteControlGroupStyle>("SwiftUI_64b39a05e4a4cebd", 1313038002605975, undefined, []); }
+  static init(): PaletteControlGroupStyle { return callSDK<PaletteControlGroupStyle>("SwiftUI_bd41a4085ee86f99", 1313038002605975, undefined, []); }
   declare readonly $type: { "s:7SwiftUI24PaletteControlGroupStyleV": true };
 }
 
@@ -8107,7 +8107,7 @@ export class PalettePickerStyle extends SDKHandle {
    * init()
    * @availability iOS 17.0+
    */
-  static init(): PalettePickerStyle { return callSDK<PalettePickerStyle>("SwiftUI_64b39a05e4a4cebd", 3195831755063866, undefined, []); }
+  static init(): PalettePickerStyle { return callSDK<PalettePickerStyle>("SwiftUI_bd41a4085ee86f99", 3195831755063866, undefined, []); }
   declare readonly $type: { "s:7SwiftUI18PalettePickerStyleV": true };
 }
 
@@ -8120,17 +8120,17 @@ export class PaletteSelectionEffect extends SDKHandle {
    * static func symbolVariant(_ variant: SymbolVariants) -> PaletteSelectionEffect
    * @availability iOS 17.0+
    */
-  static symbolVariant(variant: _SwiftUICore_SymbolVariants): PaletteSelectionEffect { return callSDK<PaletteSelectionEffect>("SwiftUI_64b39a05e4a4cebd", 2979670053059016, undefined, [variant]); }
+  static symbolVariant(variant: _SwiftUICore_SymbolVariants): PaletteSelectionEffect { return callSDK<PaletteSelectionEffect>("SwiftUI_bd41a4085ee86f99", 2979670053059016, undefined, [variant]); }
   /**
    * static let custom: PaletteSelectionEffect
    * @availability iOS 17.0+
    */
-  static get custom(): PaletteSelectionEffect { return callSDK<PaletteSelectionEffect>("SwiftUI_64b39a05e4a4cebd", 2908135761299325, undefined, []); }
+  static get custom(): PaletteSelectionEffect { return callSDK<PaletteSelectionEffect>("SwiftUI_bd41a4085ee86f99", 2908135761299325, undefined, []); }
   /**
    * static let automatic: PaletteSelectionEffect
    * @availability iOS 17.0+
    */
-  static get automatic(): PaletteSelectionEffect { return callSDK<PaletteSelectionEffect>("SwiftUI_64b39a05e4a4cebd", 4459702516373951, undefined, []); }
+  static get automatic(): PaletteSelectionEffect { return callSDK<PaletteSelectionEffect>("SwiftUI_bd41a4085ee86f99", 4459702516373951, undefined, []); }
   declare readonly $type: { "s:7SwiftUI22PaletteSelectionEffectV": true };
 }
 
@@ -8143,7 +8143,7 @@ export class PasteButton extends SDKHandle {
    * nonisolated init(supportedContentTypes: [UTType], payloadAction: @escaping ([NSItemProvider]) -> Void)
    * @availability iOS 16.0+
    */
-  static init(supportedContentTypes: $SDK41, payloadAction: ((arg0: Array<_Foundation_NSItemProvider>) => void)): PasteButton { return callSDK<PasteButton>("SwiftUI_64b39a05e4a4cebd", 239284936586995, undefined, [supportedContentTypes, payloadAction], [null,{"callback":{"out":[]}}]); }
+  static init(supportedContentTypes: $SDK41, payloadAction: ((arg0: Array<_Foundation_NSItemProvider>) => void)): PasteButton { return callSDK<PasteButton>("SwiftUI_bd41a4085ee86f99", 239284936586995, undefined, [supportedContentTypes, payloadAction], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7SwiftUI11PasteButtonV": true };
 }
 
@@ -8162,7 +8162,7 @@ export class PencilDoubleTapGestureValue extends SDKHandle {
    * let hoverPose: PencilHoverPose?
    * @availability iOS 17.5+
    */
-  get hoverPose(): (PencilHoverPose) | null { return callSDK<(PencilHoverPose) | null>("SwiftUI_64b39a05e4a4cebd", 2968622067774467, this, []); }
+  get hoverPose(): (PencilHoverPose) | null { return callSDK<(PencilHoverPose) | null>("SwiftUI_bd41a4085ee86f99", 2968622067774467, this, []); }
   declare readonly $type: { "s:7SwiftUI27PencilDoubleTapGestureValueV": true };
 }
 
@@ -8175,32 +8175,32 @@ export class PencilHoverPose extends SDKHandle {
    * let roll: Angle
    * @availability iOS 17.5+
    */
-  get roll(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_64b39a05e4a4cebd", 1225223003723657, this, []); }
+  get roll(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_bd41a4085ee86f99", 1225223003723657, this, []); }
   /**
    * let anchor: UnitPoint
    * @availability iOS 17.5+
    */
-  get anchor(): _SwiftUICore_UnitPoint { return callSDK<_SwiftUICore_UnitPoint>("SwiftUI_64b39a05e4a4cebd", 2637740049693373, this, []); }
+  get anchor(): _SwiftUICore_UnitPoint { return callSDK<_SwiftUICore_UnitPoint>("SwiftUI_bd41a4085ee86f99", 2637740049693373, this, []); }
   /**
    * let azimuth: Angle
    * @availability iOS 17.5+
    */
-  get azimuth(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_64b39a05e4a4cebd", 3770790545001286, this, []); }
+  get azimuth(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_bd41a4085ee86f99", 3770790545001286, this, []); }
   /**
    * let altitude: Angle
    * @availability iOS 17.5+
    */
-  get altitude(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_64b39a05e4a4cebd", 2859416823770097, this, []); }
+  get altitude(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_bd41a4085ee86f99", 2859416823770097, this, []); }
   /**
    * let location: CGPoint
    * @availability iOS 17.5+
    */
-  get location(): $SDK39 { return callSDK<$SDK39>("SwiftUI_64b39a05e4a4cebd", 770140932955258, this, []); }
+  get location(): $SDK39 { return callSDK<$SDK39>("SwiftUI_bd41a4085ee86f99", 770140932955258, this, []); }
   /**
    * let zDistance: CGFloat
    * @availability iOS 17.5+
    */
-  get zDistance(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 3707007733030404, this, []); }
+  get zDistance(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 3707007733030404, this, []); }
   declare readonly $type: { "s:7SwiftUI15PencilHoverPoseV": true };
 }
 
@@ -8213,37 +8213,37 @@ export class PencilPreferredAction extends SDKHandle {
    * static let switchEraser: PencilPreferredAction
    * @availability iOS 17.5+
    */
-  static get switchEraser(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_64b39a05e4a4cebd", 3915420706507929, undefined, []); }
+  static get switchEraser(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_bd41a4085ee86f99", 3915420706507929, undefined, []); }
   /**
    * static let switchPrevious: PencilPreferredAction
    * @availability iOS 17.5+
    */
-  static get switchPrevious(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_64b39a05e4a4cebd", 2710464738482343, undefined, []); }
+  static get switchPrevious(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_bd41a4085ee86f99", 2710464738482343, undefined, []); }
   /**
    * static let showColorPalette: PencilPreferredAction
    * @availability iOS 17.5+
    */
-  static get showColorPalette(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_64b39a05e4a4cebd", 536298487527193, undefined, []); }
+  static get showColorPalette(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_bd41a4085ee86f99", 536298487527193, undefined, []); }
   /**
    * static let runSystemShortcut: PencilPreferredAction
    * @availability iOS 17.5+
    */
-  static get runSystemShortcut(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_64b39a05e4a4cebd", 173375030337185, undefined, []); }
+  static get runSystemShortcut(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_bd41a4085ee86f99", 173375030337185, undefined, []); }
   /**
    * static let showInkAttributes: PencilPreferredAction
    * @availability iOS 17.5+
    */
-  static get showInkAttributes(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_64b39a05e4a4cebd", 2678627675628152, undefined, []); }
+  static get showInkAttributes(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_bd41a4085ee86f99", 2678627675628152, undefined, []); }
   /**
    * static let showContextualPalette: PencilPreferredAction
    * @availability iOS 17.5+
    */
-  static get showContextualPalette(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_64b39a05e4a4cebd", 4402435192201300, undefined, []); }
+  static get showContextualPalette(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_bd41a4085ee86f99", 4402435192201300, undefined, []); }
   /**
    * static let ignore: PencilPreferredAction
    * @availability iOS 17.5+
    */
-  static get ignore(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_64b39a05e4a4cebd", 185144554530754, undefined, []); }
+  static get ignore(): PencilPreferredAction { return callSDK<PencilPreferredAction>("SwiftUI_bd41a4085ee86f99", 185144554530754, undefined, []); }
   declare readonly $type: { "s:7SwiftUI21PencilPreferredActionV": true };
 }
 
@@ -8264,7 +8264,7 @@ export class PencilSqueezeGestureValue extends SDKHandle {
    * let hoverPose: PencilHoverPose?
    * @availability iOS 17.5+
    */
-  get hoverPose(): (PencilHoverPose) | null { return callSDK<(PencilHoverPose) | null>("SwiftUI_64b39a05e4a4cebd", 2715383652295092, this, []); }
+  get hoverPose(): (PencilHoverPose) | null { return callSDK<(PencilHoverPose) | null>("SwiftUI_bd41a4085ee86f99", 2715383652295092, this, []); }
   declare readonly $type: { "s:7SwiftUI25PencilSqueezeGestureValueV": true };
 }
 
@@ -8299,7 +8299,7 @@ export class PlaceholderTextShapeStyle extends SDKHandle {
    * @export(implementation) init()
    * @availability iOS 17.0+
    */
-  static init(): PlaceholderTextShapeStyle { return callSDK<PlaceholderTextShapeStyle>("SwiftUI_64b39a05e4a4cebd", 1421795173528763, undefined, []); }
+  static init(): PlaceholderTextShapeStyle { return callSDK<PlaceholderTextShapeStyle>("SwiftUI_bd41a4085ee86f99", 1421795173528763, undefined, []); }
   declare readonly $type: { "s:7SwiftUI25PlaceholderTextShapeStyleV": true };
 }
 
@@ -8318,7 +8318,7 @@ export class PlainButtonStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 13.0+
    */
-  static init(): PlainButtonStyle { return callSDK<PlainButtonStyle>("SwiftUI_64b39a05e4a4cebd", 2394079688171999, undefined, []); }
+  static init(): PlainButtonStyle { return callSDK<PlainButtonStyle>("SwiftUI_bd41a4085ee86f99", 2394079688171999, undefined, []); }
   declare readonly $type: { "s:7SwiftUI16PlainButtonStyleV": true };
 }
 
@@ -8337,7 +8337,7 @@ export class PlainListStyle extends SDKHandle {
    * init()
    * @availability iOS 13.0+
    */
-  static init(): PlainListStyle { return callSDK<PlainListStyle>("SwiftUI_64b39a05e4a4cebd", 4474676142549472, undefined, []); }
+  static init(): PlainListStyle { return callSDK<PlainListStyle>("SwiftUI_bd41a4085ee86f99", 4474676142549472, undefined, []); }
   declare readonly $type: { "s:7SwiftUI14PlainListStyleV": true };
 }
 
@@ -8350,7 +8350,7 @@ export class PlainTextEditorStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 17.0+
    */
-  static init(): PlainTextEditorStyle { return callSDK<PlainTextEditorStyle>("SwiftUI_64b39a05e4a4cebd", 2661682811065419, undefined, []); }
+  static init(): PlainTextEditorStyle { return callSDK<PlainTextEditorStyle>("SwiftUI_bd41a4085ee86f99", 2661682811065419, undefined, []); }
   declare readonly $type: { "s:7SwiftUI20PlainTextEditorStyleV": true };
 }
 
@@ -8369,7 +8369,7 @@ export class PlainTextFieldStyle extends SDKHandle {
    * init()
    * @availability iOS 13.0+
    */
-  static init(): PlainTextFieldStyle { return callSDK<PlainTextFieldStyle>("SwiftUI_64b39a05e4a4cebd", 1354319709840172, undefined, []); }
+  static init(): PlainTextFieldStyle { return callSDK<PlainTextFieldStyle>("SwiftUI_bd41a4085ee86f99", 1354319709840172, undefined, []); }
   declare readonly $type: { "s:7SwiftUI19PlainTextFieldStyleV": true };
 }
 
@@ -8390,27 +8390,27 @@ export class PresentationAdaptation extends SDKHandle {
    * static var fullScreenCover: PresentationAdaptation { get }
    * @availability iOS 16.4+
    */
-  static get fullScreenCover(): PresentationAdaptation { return callSDK<PresentationAdaptation>("SwiftUI_64b39a05e4a4cebd", 2241273290534704, undefined, []); }
+  static get fullScreenCover(): PresentationAdaptation { return callSDK<PresentationAdaptation>("SwiftUI_bd41a4085ee86f99", 2241273290534704, undefined, []); }
   /**
    * static var none: PresentationAdaptation { get }
    * @availability iOS 16.4+
    */
-  static get none(): PresentationAdaptation { return callSDK<PresentationAdaptation>("SwiftUI_64b39a05e4a4cebd", 2101190440383897, undefined, []); }
+  static get none(): PresentationAdaptation { return callSDK<PresentationAdaptation>("SwiftUI_bd41a4085ee86f99", 2101190440383897, undefined, []); }
   /**
    * static var sheet: PresentationAdaptation { get }
    * @availability iOS 16.4+
    */
-  static get sheet(): PresentationAdaptation { return callSDK<PresentationAdaptation>("SwiftUI_64b39a05e4a4cebd", 1728867116143757, undefined, []); }
+  static get sheet(): PresentationAdaptation { return callSDK<PresentationAdaptation>("SwiftUI_bd41a4085ee86f99", 1728867116143757, undefined, []); }
   /**
    * static var popover: PresentationAdaptation { get }
    * @availability iOS 16.4+
    */
-  static get popover(): PresentationAdaptation { return callSDK<PresentationAdaptation>("SwiftUI_64b39a05e4a4cebd", 2124129121468735, undefined, []); }
+  static get popover(): PresentationAdaptation { return callSDK<PresentationAdaptation>("SwiftUI_bd41a4085ee86f99", 2124129121468735, undefined, []); }
   /**
    * static var automatic: PresentationAdaptation { get }
    * @availability iOS 16.4+
    */
-  static get automatic(): PresentationAdaptation { return callSDK<PresentationAdaptation>("SwiftUI_64b39a05e4a4cebd", 3397247183972326, undefined, []); }
+  static get automatic(): PresentationAdaptation { return callSDK<PresentationAdaptation>("SwiftUI_bd41a4085ee86f99", 3397247183972326, undefined, []); }
   declare readonly $type: { "s:7SwiftUI22PresentationAdaptationV": true };
 }
 
@@ -8423,22 +8423,22 @@ export class PresentationBackgroundInteraction extends SDKHandle {
    * static func enabled(upThrough detent: PresentationDetent) -> PresentationBackgroundInteraction
    * @availability iOS 16.4+
    */
-  static enabledUpThrough(detent: PresentationDetent): PresentationBackgroundInteraction { return callSDK<PresentationBackgroundInteraction>("SwiftUI_64b39a05e4a4cebd", 113523522176354, undefined, [detent]); }
+  static enabledUpThrough(detent: PresentationDetent): PresentationBackgroundInteraction { return callSDK<PresentationBackgroundInteraction>("SwiftUI_bd41a4085ee86f99", 113523522176354, undefined, [detent]); }
   /**
    * static var enabled: PresentationBackgroundInteraction { get }
    * @availability iOS 16.4+
    */
-  static get enabled(): PresentationBackgroundInteraction { return callSDK<PresentationBackgroundInteraction>("SwiftUI_64b39a05e4a4cebd", 2220210105938910, undefined, []); }
+  static get enabled(): PresentationBackgroundInteraction { return callSDK<PresentationBackgroundInteraction>("SwiftUI_bd41a4085ee86f99", 2220210105938910, undefined, []); }
   /**
    * static var disabled: PresentationBackgroundInteraction { get }
    * @availability iOS 16.4+
    */
-  static get disabled(): PresentationBackgroundInteraction { return callSDK<PresentationBackgroundInteraction>("SwiftUI_64b39a05e4a4cebd", 526282967275611, undefined, []); }
+  static get disabled(): PresentationBackgroundInteraction { return callSDK<PresentationBackgroundInteraction>("SwiftUI_bd41a4085ee86f99", 526282967275611, undefined, []); }
   /**
    * static var automatic: PresentationBackgroundInteraction { get }
    * @availability iOS 16.4+
    */
-  static get automatic(): PresentationBackgroundInteraction { return callSDK<PresentationBackgroundInteraction>("SwiftUI_64b39a05e4a4cebd", 4341428217146845, undefined, []); }
+  static get automatic(): PresentationBackgroundInteraction { return callSDK<PresentationBackgroundInteraction>("SwiftUI_bd41a4085ee86f99", 4341428217146845, undefined, []); }
   declare readonly $type: { "s:7SwiftUI33PresentationBackgroundInteractionV": true };
 }
 
@@ -8451,17 +8451,17 @@ export class PresentationContentInteraction extends SDKHandle {
    * static var resizes: PresentationContentInteraction { get }
    * @availability iOS 16.4+
    */
-  static get resizes(): PresentationContentInteraction { return callSDK<PresentationContentInteraction>("SwiftUI_64b39a05e4a4cebd", 4351976040827551, undefined, []); }
+  static get resizes(): PresentationContentInteraction { return callSDK<PresentationContentInteraction>("SwiftUI_bd41a4085ee86f99", 4351976040827551, undefined, []); }
   /**
    * static var scrolls: PresentationContentInteraction { get }
    * @availability iOS 16.4+
    */
-  static get scrolls(): PresentationContentInteraction { return callSDK<PresentationContentInteraction>("SwiftUI_64b39a05e4a4cebd", 445573372619605, undefined, []); }
+  static get scrolls(): PresentationContentInteraction { return callSDK<PresentationContentInteraction>("SwiftUI_bd41a4085ee86f99", 445573372619605, undefined, []); }
   /**
    * static var automatic: PresentationContentInteraction { get }
    * @availability iOS 16.4+
    */
-  static get automatic(): PresentationContentInteraction { return callSDK<PresentationContentInteraction>("SwiftUI_64b39a05e4a4cebd", 1279906344423006, undefined, []); }
+  static get automatic(): PresentationContentInteraction { return callSDK<PresentationContentInteraction>("SwiftUI_bd41a4085ee86f99", 1279906344423006, undefined, []); }
   declare readonly $type: { "s:7SwiftUI30PresentationContentInteractionV": true };
 }
 
@@ -8474,22 +8474,22 @@ export class PresentationDetent extends SDKHandle {
    * static let large: PresentationDetent
    * @availability iOS 16.0+
    */
-  static get large(): PresentationDetent { return callSDK<PresentationDetent>("SwiftUI_64b39a05e4a4cebd", 2234994413202585, undefined, []); }
+  static get large(): PresentationDetent { return callSDK<PresentationDetent>("SwiftUI_bd41a4085ee86f99", 2234994413202585, undefined, []); }
   /**
    * static func height(_ height: CGFloat) -> PresentationDetent
    * @availability iOS 16.0+
    */
-  static height(height: number): PresentationDetent { return callSDK<PresentationDetent>("SwiftUI_64b39a05e4a4cebd", 2458829864506662, undefined, [height]); }
+  static height(height: number): PresentationDetent { return callSDK<PresentationDetent>("SwiftUI_bd41a4085ee86f99", 2458829864506662, undefined, [height]); }
   /**
    * static let medium: PresentationDetent
    * @availability iOS 16.0+
    */
-  static get medium(): PresentationDetent { return callSDK<PresentationDetent>("SwiftUI_64b39a05e4a4cebd", 4426735864123077, undefined, []); }
+  static get medium(): PresentationDetent { return callSDK<PresentationDetent>("SwiftUI_bd41a4085ee86f99", 4426735864123077, undefined, []); }
   /**
    * static func fraction(_ fraction: CGFloat) -> PresentationDetent
    * @availability iOS 16.0+
    */
-  static fraction(fraction: number): PresentationDetent { return callSDK<PresentationDetent>("SwiftUI_64b39a05e4a4cebd", 1141449155479512, undefined, [fraction]); }
+  static fraction(fraction: number): PresentationDetent { return callSDK<PresentationDetent>("SwiftUI_bd41a4085ee86f99", 1141449155479512, undefined, [fraction]); }
   declare readonly $type: { "s:7SwiftUI18PresentationDetentV": true };
 }
 
@@ -8502,12 +8502,12 @@ export class PresentationDetent_Context extends SDKHandle {
    * var maxDetentValue: CGFloat { get }
    * @availability iOS 16.0+
    */
-  get maxDetentValue(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 1826924196155519, this, []); }
+  get maxDetentValue(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 1826924196155519, this, []); }
   /**
    * subscript<T>(dynamicMember keyPath: KeyPath<EnvironmentValues, T>) -> T { get }
    * @availability iOS 16.0+
    */
-  subscript(keyPath: SDKHandle): unknown { return callSDK<unknown>("SwiftUI_64b39a05e4a4cebd", 767973807946760, this, [keyPath]); }
+  subscript(keyPath: SDKHandle): unknown { return callSDK<unknown>("SwiftUI_bd41a4085ee86f99", 767973807946760, this, [keyPath]); }
   declare readonly $type: { "s:7SwiftUI18PresentationDetentV7ContextV": true };
 }
 
@@ -8522,13 +8522,13 @@ export class PresentationMode extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get isPresented(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 2582066528558722, this, []); }
+  get isPresented(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 2582066528558722, this, []); }
   /**
    * mutating func dismiss()
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  dismiss(): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3764267019429992, this, []); }
+  dismiss(): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 3764267019429992, this, []); }
   declare readonly $type: { "s:7SwiftUI16PresentationModeV": true };
 }
 
@@ -8541,22 +8541,22 @@ export class PresentationPlacement extends SDKHandle {
    * static let center: PresentationPlacement
    * @availability iOS 27.0+
    */
-  static get center(): PresentationPlacement { return callSDK<PresentationPlacement>("SwiftUI_64b39a05e4a4cebd", 3765881223861774, undefined, []); }
+  static get center(): PresentationPlacement { return callSDK<PresentationPlacement>("SwiftUI_bd41a4085ee86f99", 3765881223861774, undefined, []); }
   /**
    * static let leading: PresentationPlacement
    * @availability iOS 27.0+
    */
-  static get leading(): PresentationPlacement { return callSDK<PresentationPlacement>("SwiftUI_64b39a05e4a4cebd", 4257544765968271, undefined, []); }
+  static get leading(): PresentationPlacement { return callSDK<PresentationPlacement>("SwiftUI_bd41a4085ee86f99", 4257544765968271, undefined, []); }
   /**
    * static let trailing: PresentationPlacement
    * @availability iOS 27.0+
    */
-  static get trailing(): PresentationPlacement { return callSDK<PresentationPlacement>("SwiftUI_64b39a05e4a4cebd", 65299891528990, undefined, []); }
+  static get trailing(): PresentationPlacement { return callSDK<PresentationPlacement>("SwiftUI_bd41a4085ee86f99", 65299891528990, undefined, []); }
   /**
    * static let automatic: PresentationPlacement
    * @availability iOS 27.0+
    */
-  static get automatic(): PresentationPlacement { return callSDK<PresentationPlacement>("SwiftUI_64b39a05e4a4cebd", 1185551469808596, undefined, []); }
+  static get automatic(): PresentationPlacement { return callSDK<PresentationPlacement>("SwiftUI_bd41a4085ee86f99", 1185551469808596, undefined, []); }
   declare readonly $type: { "s:7SwiftUI21PresentationPlacementV": true };
 }
 
@@ -8589,7 +8589,7 @@ export class PresentationSizingRoot extends SDKHandle {
    * func sizeThatFits(_ proposal: ProposedViewSize) -> CGSize
    * @availability iOS 18.0+
    */
-  sizeThatFits(proposal: _SwiftUICore_ProposedViewSize): $SDK38 { return callSDK<$SDK38>("SwiftUI_64b39a05e4a4cebd", 3730699123338990, this, [proposal]); }
+  sizeThatFits(proposal: _SwiftUICore_ProposedViewSize): $SDK38 { return callSDK<$SDK38>("SwiftUI_bd41a4085ee86f99", 3730699123338990, this, [proposal]); }
   declare readonly $type: { "s:7SwiftUI22PresentationSizingRootV": true };
 }
 
@@ -8643,19 +8643,19 @@ export const PreviewDevice = {
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  initStringLiteral(stringLiteral: string): PreviewDevice { return callSDK<PreviewDevice>("SwiftUI_64b39a05e4a4cebd", 1009782257862891, undefined, [stringLiteral]); },
+  initStringLiteral(stringLiteral: string): PreviewDevice { return callSDK<PreviewDevice>("SwiftUI_bd41a4085ee86f99", 1009782257862891, undefined, [stringLiteral]); },
   /**
    * init(rawValue: String)
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  initRawValue(rawValue: string): PreviewDevice { return callSDK<PreviewDevice>("SwiftUI_64b39a05e4a4cebd", 2103314807468050, undefined, [rawValue]); },
+  initRawValue(rawValue: string): PreviewDevice { return callSDK<PreviewDevice>("SwiftUI_bd41a4085ee86f99", 2103314807468050, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  getRawValue($self: PreviewDevice): string { return callSDK<string>("SwiftUI_64b39a05e4a4cebd", 2755563893442076, $self, []); }
+  getRawValue($self: PreviewDevice): string { return callSDK<string>("SwiftUI_bd41a4085ee86f99", 2755563893442076, $self, []); }
 };
 
 /**
@@ -8766,17 +8766,17 @@ export class PrimitiveButtonStyleConfiguration extends SDKHandle {
    * let role: ButtonRole?
    * @availability iOS 15.0+
    */
-  get role(): (ButtonRole) | null { return callSDK<(ButtonRole) | null>("SwiftUI_64b39a05e4a4cebd", 2708858959912680, this, []); }
+  get role(): (ButtonRole) | null { return callSDK<(ButtonRole) | null>("SwiftUI_bd41a4085ee86f99", 2708858959912680, this, []); }
   /**
    * let label: PrimitiveButtonStyleConfiguration.Label
    * @availability iOS 13.0+
    */
-  get label(): PrimitiveButtonStyleConfiguration_Label { return callSDK<PrimitiveButtonStyleConfiguration_Label>("SwiftUI_64b39a05e4a4cebd", 3071915525482516, this, []); }
+  get label(): PrimitiveButtonStyleConfiguration_Label { return callSDK<PrimitiveButtonStyleConfiguration_Label>("SwiftUI_bd41a4085ee86f99", 3071915525482516, this, []); }
   /**
    * func trigger()
    * @availability iOS 13.0+
    */
-  trigger(): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3430027591754253, this, []); }
+  trigger(): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 3430027591754253, this, []); }
   declare readonly $type: { "s:7SwiftUI33PrimitiveButtonStyleConfigurationV": true };
 }
 
@@ -8803,57 +8803,57 @@ export class ProgressView<Label = unknown, CurrentValueLabel = unknown> extends 
    * nonisolated init<V>(value: V?, total: V = 1.0) where Label == EmptyView, CurrentValueLabel == EmptyView, V : BinaryFloatingPoint
    * @availability iOS 14.0+
    */
-  static initValueTotal(value?: (number) | null, total?: number): $SDK101 { return callSDK<$SDK101>("SwiftUI_64b39a05e4a4cebd", 4035693225528992, undefined, [value, total]); }
+  static initValueTotal(value?: (number) | null, total?: number): $SDK101 { return callSDK<$SDK101>("SwiftUI_bd41a4085ee86f99", 4035693225528992, undefined, [value, total]); }
   /**
    * nonisolated init() where Label == EmptyView
    * @availability iOS 14.0+
    */
-  static init(): $SDK101 { return callSDK<$SDK101>("SwiftUI_64b39a05e4a4cebd", 2901442003378739, undefined, []); }
+  static init(): $SDK101 { return callSDK<$SDK101>("SwiftUI_bd41a4085ee86f99", 2901442003378739, undefined, []); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource) where Label == Text
    * @availability iOS 16.0+
    */
-  static init99443(titleResource: _Foundation_LocalizedStringResource): $SDK102 { return callSDK<$SDK102>("SwiftUI_64b39a05e4a4cebd", 2569769626620179, undefined, [titleResource]); }
+  static init99443(titleResource: _Foundation_LocalizedStringResource): $SDK102 { return callSDK<$SDK102>("SwiftUI_bd41a4085ee86f99", 2569769626620179, undefined, [titleResource]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey) where Label == Text
    * @availability iOS 14.0+
    */
-  static init68874(titleKey: _SwiftUICore_LocalizedStringKey): $SDK102 { return callSDK<$SDK102>("SwiftUI_64b39a05e4a4cebd", 108441685891535, undefined, [titleKey]); }
+  static init68874(titleKey: _SwiftUICore_LocalizedStringKey): $SDK102 { return callSDK<$SDK102>("SwiftUI_bd41a4085ee86f99", 108441685891535, undefined, [titleKey]); }
   /**
    * nonisolated init<S>(_ title: S) where Label == Text, S : StringProtocol
    * @availability iOS 14.0+
    */
-  static init37513(title: string): $SDK102 { return callSDK<$SDK102>("SwiftUI_64b39a05e4a4cebd", 3388494979612196, undefined, [title]); }
+  static init37513(title: string): $SDK102 { return callSDK<$SDK102>("SwiftUI_bd41a4085ee86f99", 3388494979612196, undefined, [title]); }
   /**
    * nonisolated init(timerInterval: ClosedRange<Date>, countsDown: Bool = true)
    * @availability iOS 16.0+
    */
-  static initTimerIntervalCountsDown(timerInterval: SDKHandle, countsDown?: boolean): ProgressView<_SwiftUICore_EmptyView, DefaultDateProgressLabel> { return callSDK<ProgressView<_SwiftUICore_EmptyView, DefaultDateProgressLabel>>("SwiftUI_64b39a05e4a4cebd", 3675468843965419, undefined, [timerInterval, countsDown]); }
+  static initTimerIntervalCountsDown(timerInterval: SDKHandle, countsDown?: boolean): ProgressView<_SwiftUICore_EmptyView, DefaultDateProgressLabel> { return callSDK<ProgressView<_SwiftUICore_EmptyView, DefaultDateProgressLabel>>("SwiftUI_bd41a4085ee86f99", 3675468843965419, undefined, [timerInterval, countsDown]); }
   /**
    * @export(implementation) nonisolated init<V>(_ titleResource: LocalizedStringResource, value: V?, total: V = 1.0) where Label == Text, CurrentValueLabel == EmptyView, V : BinaryFloatingPoint
    * @availability iOS 16.0+
    */
-  static initValueTotal15427(titleResource: _Foundation_LocalizedStringResource, value?: (number) | null, total?: number): $SDK102 { return callSDK<$SDK102>("SwiftUI_64b39a05e4a4cebd", 1889987812636875, undefined, [titleResource, value, total]); }
+  static initValueTotal15427(titleResource: _Foundation_LocalizedStringResource, value?: (number) | null, total?: number): $SDK102 { return callSDK<$SDK102>("SwiftUI_bd41a4085ee86f99", 1889987812636875, undefined, [titleResource, value, total]); }
   /**
    * nonisolated init<V>(_ titleKey: LocalizedStringKey, value: V?, total: V = 1.0) where Label == Text, CurrentValueLabel == EmptyView, V : BinaryFloatingPoint
    * @availability iOS 14.0+
    */
-  static initValueTotal54586(titleKey: _SwiftUICore_LocalizedStringKey, value?: (number) | null, total?: number): $SDK102 { return callSDK<$SDK102>("SwiftUI_64b39a05e4a4cebd", 3852268410490878, undefined, [titleKey, value, total]); }
+  static initValueTotal54586(titleKey: _SwiftUICore_LocalizedStringKey, value?: (number) | null, total?: number): $SDK102 { return callSDK<$SDK102>("SwiftUI_bd41a4085ee86f99", 3852268410490878, undefined, [titleKey, value, total]); }
   /**
    * nonisolated init<S, V>(_ title: S, value: V?, total: V = 1.0) where Label == Text, CurrentValueLabel == EmptyView, S : StringProtocol, V : BinaryFloatingPoint
    * @availability iOS 14.0+
    */
-  static initValueTotal49894(title: string, value?: (number) | null, total?: number): $SDK102 { return callSDK<$SDK102>("SwiftUI_64b39a05e4a4cebd", 2221391738946028, undefined, [title, value, total]); }
+  static initValueTotal49894(title: string, value?: (number) | null, total?: number): $SDK102 { return callSDK<$SDK102>("SwiftUI_bd41a4085ee86f99", 2221391738946028, undefined, [title, value, total]); }
   /**
    * nonisolated init(_ progress: Progress) where Label == EmptyView, CurrentValueLabel == EmptyView
    * @availability iOS 14.0+
    */
-  static init10522(progress: _Foundation_Progress): $SDK101 { return callSDK<$SDK101>("SwiftUI_64b39a05e4a4cebd", 2534571040896147, undefined, [progress]); }
+  static init10522(progress: _Foundation_Progress): $SDK101 { return callSDK<$SDK101>("SwiftUI_bd41a4085ee86f99", 2534571040896147, undefined, [progress]); }
   /**
    * nonisolated init(_ configuration: ProgressViewStyleConfiguration) where Label == ProgressViewStyleConfiguration.Label, CurrentValueLabel == ProgressViewStyleConfiguration.CurrentValueLabel
    * @availability iOS 14.0+
    */
-  static init65192(configuration: ProgressViewStyleConfiguration): ProgressView<ProgressViewStyleConfiguration_Label, ProgressViewStyleConfiguration_CurrentValueLabel> { return callSDK<ProgressView<ProgressViewStyleConfiguration_Label, ProgressViewStyleConfiguration_CurrentValueLabel>>("SwiftUI_64b39a05e4a4cebd", 2123381740672451, undefined, [configuration]); }
+  static init65192(configuration: ProgressViewStyleConfiguration): ProgressView<ProgressViewStyleConfiguration_Label, ProgressViewStyleConfiguration_CurrentValueLabel> { return callSDK<ProgressView<ProgressViewStyleConfiguration_Label, ProgressViewStyleConfiguration_CurrentValueLabel>>("SwiftUI_bd41a4085ee86f99", 2123381740672451, undefined, [configuration]); }
   declare readonly $type: { "s:7SwiftUI12ProgressViewV": true };
 }
 
@@ -8890,19 +8890,19 @@ export class ProgressViewStyleConfiguration extends SDKHandle {
    * var currentValueLabel: ProgressViewStyleConfiguration.CurrentValueLabel?
    * @availability iOS 14.0+
    */
-  get currentValueLabel(): $SDK105 { return callSDK<$SDK105>("SwiftUI_64b39a05e4a4cebd", 1925601722279344, this, []); }
-  set currentValueLabel(value: $SDK105) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1047983852924475, this, [value]); }
+  get currentValueLabel(): $SDK105 { return callSDK<$SDK105>("SwiftUI_bd41a4085ee86f99", 1925601722279344, this, []); }
+  set currentValueLabel(value: $SDK105) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1047983852924475, this, [value]); }
   /**
    * let fractionCompleted: Double?
    * @availability iOS 14.0+
    */
-  get fractionCompleted(): (number) | null { return callSDK<(number) | null>("SwiftUI_64b39a05e4a4cebd", 1928780519265776, this, []); }
+  get fractionCompleted(): (number) | null { return callSDK<(number) | null>("SwiftUI_bd41a4085ee86f99", 1928780519265776, this, []); }
   /**
    * var label: ProgressViewStyleConfiguration.Label?
    * @availability iOS 14.0+
    */
-  get label(): $SDK106 { return callSDK<$SDK106>("SwiftUI_64b39a05e4a4cebd", 662550302282745, this, []); }
-  set label(value: $SDK106) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3877537501291642, this, [value]); }
+  get label(): $SDK106 { return callSDK<$SDK106>("SwiftUI_bd41a4085ee86f99", 662550302282745, this, []); }
+  set label(value: $SDK106) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3877537501291642, this, [value]); }
   declare readonly $type: { "s:7SwiftUI30ProgressViewStyleConfigurationV": true };
 }
 
@@ -8943,7 +8943,7 @@ export class ProminentDetailNavigationSplitViewStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 16.0+
    */
-  static init(): Promise<ProminentDetailNavigationSplitViewStyle> { return callSDKAsync<ProminentDetailNavigationSplitViewStyle>("SwiftUI_64b39a05e4a4cebd", 3931838867135255, undefined, []); }
+  static init(): Promise<ProminentDetailNavigationSplitViewStyle> { return callSDKAsync<ProminentDetailNavigationSplitViewStyle>("SwiftUI_bd41a4085ee86f99", 3931838867135255, undefined, []); }
   declare readonly $type: { "s:7SwiftUI39ProminentDetailNavigationSplitViewStyleV": true };
 }
 
@@ -9034,7 +9034,7 @@ export class RefreshAction extends SDKHandle {
    * func callAsFunction() async
    * @availability iOS 15.0+
    */
-  callAsFunction(): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 2501801248378992, this, []); }
+  callAsFunction(): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 2501801248378992, this, []); }
   declare readonly $type: { "s:7SwiftUI13RefreshActionV": true };
 }
 
@@ -9047,7 +9047,7 @@ export class RenameAction extends SDKHandle {
    * func callAsFunction()
    * @availability iOS 16.0+
    */
-  callAsFunction(): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1922107894038807, this, []); }
+  callAsFunction(): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 1922107894038807, this, []); }
   declare readonly $type: { "s:7SwiftUI12RenameActionV": true };
 }
 
@@ -9082,14 +9082,14 @@ export class ReorderDifference<ItemID = unknown, CollectionID = unknown> extends
    * var destination: ReorderDifference<ItemID, CollectionID>.Destination
    * @availability iOS 27.0+
    */
-  get destination(): $SDK107 { return callSDK<$SDK107>("SwiftUI_64b39a05e4a4cebd", 582063581235466, this, []); }
-  set destination(value: $SDK107) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3512265538606936, this, [value]); }
+  get destination(): $SDK107 { return callSDK<$SDK107>("SwiftUI_bd41a4085ee86f99", 582063581235466, this, []); }
+  set destination(value: $SDK107) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3512265538606936, this, [value]); }
   /**
    * var sources: [ItemID]
    * @availability iOS 27.0+
    */
-  get sources(): Array<unknown> { return callSDK<Array<unknown>>("SwiftUI_64b39a05e4a4cebd", 2726854136740220, this, []); }
-  set sources(value: Array<unknown>) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1768445473857874, this, [value]); }
+  get sources(): Array<unknown> { return callSDK<Array<unknown>>("SwiftUI_bd41a4085ee86f99", 2726854136740220, this, []); }
+  set sources(value: Array<unknown>) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1768445473857874, this, [value]); }
   declare readonly $type: { "s:7SwiftUI17ReorderDifferenceV": true };
 }
 
@@ -9102,24 +9102,24 @@ export class ReorderDifference_Destination<ItemID = unknown, CollectionID = unkn
    * var collectionID: CollectionID
    * @availability iOS 27.0+
    */
-  get collectionID(): unknown { return callSDK<unknown>("SwiftUI_64b39a05e4a4cebd", 4390594023855900, this, []); }
-  set collectionID(value: unknown) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4426829868522293, this, [value]); }
+  get collectionID(): unknown { return callSDK<unknown>("SwiftUI_bd41a4085ee86f99", 4390594023855900, this, []); }
+  set collectionID(value: unknown) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 4426829868522293, this, [value]); }
   /**
    * init(position: ReorderDifference<ItemID, CollectionID>.Destination.Position, collectionID: CollectionID)
    * @availability iOS 27.0+
    */
-  static initPositionCollectionID(position: $SDK108, collectionID: unknown): $SDK107 { return callSDK<$SDK107>("SwiftUI_64b39a05e4a4cebd", 1842013224960446, undefined, [position, collectionID]); }
+  static initPositionCollectionID(position: $SDK108, collectionID: unknown): $SDK107 { return callSDK<$SDK107>("SwiftUI_bd41a4085ee86f99", 1842013224960446, undefined, [position, collectionID]); }
   /**
    * var position: ReorderDifference<ItemID, CollectionID>.Destination.Position
    * @availability iOS 27.0+
    */
-  get position(): $SDK108 { return callSDK<$SDK108>("SwiftUI_64b39a05e4a4cebd", 824109152778436, this, []); }
-  set position(value: $SDK108) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2123310903846400, this, [value]); }
+  get position(): $SDK108 { return callSDK<$SDK108>("SwiftUI_bd41a4085ee86f99", 824109152778436, this, []); }
+  set position(value: $SDK108) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2123310903846400, this, [value]); }
   /**
    * init(position: ReorderDifference<ItemID, CollectionID>.Destination.Position) where CollectionID == ReorderableSingleCollectionIdentifier
    * @availability iOS 27.0+
    */
-  static initPosition(position: ReorderDifference_Destination_Position<unknown, ReorderableSingleCollectionIdentifier>): ReorderDifference_Destination<unknown, ReorderableSingleCollectionIdentifier> { return callSDK<ReorderDifference_Destination<unknown, ReorderableSingleCollectionIdentifier>>("SwiftUI_64b39a05e4a4cebd", 3590808954738512, undefined, [position]); }
+  static initPosition(position: ReorderDifference_Destination_Position<unknown, ReorderableSingleCollectionIdentifier>): ReorderDifference_Destination<unknown, ReorderableSingleCollectionIdentifier> { return callSDK<ReorderDifference_Destination<unknown, ReorderableSingleCollectionIdentifier>>("SwiftUI_bd41a4085ee86f99", 3590808954738512, undefined, [position]); }
   declare readonly $type: { "s:7SwiftUI17ReorderDifferenceV11DestinationV": true };
 }
 
@@ -9140,18 +9140,18 @@ export class RotateGesture extends SDKHandle {
    * nonisolated init(minimumAngleDelta: Angle = .degrees(1), inputKinds: GestureInputKinds = .all)
    * @availability iOS 27.0+
    */
-  static initMinimumAngleDeltaInputKinds(minimumAngleDelta?: _SwiftUICore_Angle, inputKinds?: _SwiftUICore_GestureInputKinds): RotateGesture { return callSDK<RotateGesture>("SwiftUI_64b39a05e4a4cebd", 2447589695983463, undefined, [minimumAngleDelta, inputKinds]); }
+  static initMinimumAngleDeltaInputKinds(minimumAngleDelta?: _SwiftUICore_Angle, inputKinds?: _SwiftUICore_GestureInputKinds): RotateGesture { return callSDK<RotateGesture>("SwiftUI_bd41a4085ee86f99", 2447589695983463, undefined, [minimumAngleDelta, inputKinds]); }
   /**
    * var minimumAngleDelta: Angle
    * @availability iOS 17.0+
    */
-  get minimumAngleDelta(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_64b39a05e4a4cebd", 744866150433365, this, []); }
-  set minimumAngleDelta(value: _SwiftUICore_Angle) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 473349866438475, this, [value]); }
+  get minimumAngleDelta(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_bd41a4085ee86f99", 744866150433365, this, []); }
+  set minimumAngleDelta(value: _SwiftUICore_Angle) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 473349866438475, this, [value]); }
   /**
    * nonisolated init(minimumAngleDelta: Angle = .degrees(1))
    * @availability iOS 17.0+
    */
-  static initMinimumAngleDelta(minimumAngleDelta?: _SwiftUICore_Angle): RotateGesture { return callSDK<RotateGesture>("SwiftUI_64b39a05e4a4cebd", 3462655182772350, undefined, [minimumAngleDelta]); }
+  static initMinimumAngleDelta(minimumAngleDelta?: _SwiftUICore_Angle): RotateGesture { return callSDK<RotateGesture>("SwiftUI_bd41a4085ee86f99", 3462655182772350, undefined, [minimumAngleDelta]); }
   declare readonly $type: { "s:7SwiftUI13RotateGestureV": true };
 }
 
@@ -9170,32 +9170,32 @@ export class RotateGesture_Value extends SDKHandle {
    * var startAnchor: UnitPoint
    * @availability iOS 17.0+
    */
-  get startAnchor(): _SwiftUICore_UnitPoint { return callSDK<_SwiftUICore_UnitPoint>("SwiftUI_64b39a05e4a4cebd", 3791398698876814, this, []); }
-  set startAnchor(value: _SwiftUICore_UnitPoint) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1334563877855634, this, [value]); }
+  get startAnchor(): _SwiftUICore_UnitPoint { return callSDK<_SwiftUICore_UnitPoint>("SwiftUI_bd41a4085ee86f99", 3791398698876814, this, []); }
+  set startAnchor(value: _SwiftUICore_UnitPoint) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1334563877855634, this, [value]); }
   /**
    * var startLocation: CGPoint
    * @availability iOS 17.0+
    */
-  get startLocation(): $SDK39 { return callSDK<$SDK39>("SwiftUI_64b39a05e4a4cebd", 683232821289113, this, []); }
-  set startLocation(value: $SDK39) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3473313850581402, this, [value]); }
+  get startLocation(): $SDK39 { return callSDK<$SDK39>("SwiftUI_bd41a4085ee86f99", 683232821289113, this, []); }
+  set startLocation(value: $SDK39) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3473313850581402, this, [value]); }
   /**
    * var time: Date
    * @availability iOS 17.0+
    */
-  get time(): globalThis.Date { return callSDK<globalThis.Date>("SwiftUI_64b39a05e4a4cebd", 707349735906297, this, []); }
-  set time(value: globalThis.Date) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2440692390461155, this, [value]); }
+  get time(): globalThis.Date { return callSDK<globalThis.Date>("SwiftUI_bd41a4085ee86f99", 707349735906297, this, []); }
+  set time(value: globalThis.Date) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2440692390461155, this, [value]); }
   /**
    * var rotation: Angle
    * @availability iOS 17.0+
    */
-  get rotation(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_64b39a05e4a4cebd", 477515705581021, this, []); }
-  set rotation(value: _SwiftUICore_Angle) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4242435403656109, this, [value]); }
+  get rotation(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_bd41a4085ee86f99", 477515705581021, this, []); }
+  set rotation(value: _SwiftUICore_Angle) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 4242435403656109, this, [value]); }
   /**
    * var velocity: Angle
    * @availability iOS 17.0+
    */
-  get velocity(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_64b39a05e4a4cebd", 322071258333008, this, []); }
-  set velocity(value: _SwiftUICore_Angle) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4178025612005676, this, [value]); }
+  get velocity(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_bd41a4085ee86f99", 322071258333008, this, []); }
+  set velocity(value: _SwiftUICore_Angle) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 4178025612005676, this, [value]); }
   declare readonly $type: { "s:7SwiftUI13RotateGestureV5ValueV": true };
 }
 
@@ -9210,14 +9210,14 @@ export class RotationGesture extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get minimumAngleDelta(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_64b39a05e4a4cebd", 1611989815611624, this, []); }
-  set minimumAngleDelta(value: _SwiftUICore_Angle) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 510413083232711, this, [value]); }
+  get minimumAngleDelta(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_bd41a4085ee86f99", 1611989815611624, this, []); }
+  set minimumAngleDelta(value: _SwiftUICore_Angle) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 510413083232711, this, [value]); }
   /**
    * nonisolated init(minimumAngleDelta: Angle = .degrees(1))
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static init(minimumAngleDelta?: _SwiftUICore_Angle): RotationGesture { return callSDK<RotationGesture>("SwiftUI_64b39a05e4a4cebd", 390043996183001, undefined, [minimumAngleDelta]); }
+  static init(minimumAngleDelta?: _SwiftUICore_Angle): RotationGesture { return callSDK<RotationGesture>("SwiftUI_bd41a4085ee86f99", 390043996183001, undefined, [minimumAngleDelta]); }
   declare readonly $type: { "s:7SwiftUI15RotationGestureV": true };
 }
 
@@ -9246,7 +9246,7 @@ export class RoundedBorderTextFieldStyle extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static init(): RoundedBorderTextFieldStyle { return callSDK<RoundedBorderTextFieldStyle>("SwiftUI_64b39a05e4a4cebd", 3344778259926570, undefined, []); }
+  static init(): RoundedBorderTextFieldStyle { return callSDK<RoundedBorderTextFieldStyle>("SwiftUI_bd41a4085ee86f99", 3344778259926570, undefined, []); }
   declare readonly $type: { "s:7SwiftUI27RoundedBorderTextFieldStyleV": true };
 }
 
@@ -9283,7 +9283,7 @@ export class ScenePadding extends SDKHandle {
    * static let minimum: ScenePadding
    * @availability iOS 16.0+
    */
-  static get minimum(): ScenePadding { return callSDK<ScenePadding>("SwiftUI_64b39a05e4a4cebd", 1004080448222568, undefined, []); }
+  static get minimum(): ScenePadding { return callSDK<ScenePadding>("SwiftUI_bd41a4085ee86f99", 1004080448222568, undefined, []); }
   declare readonly $type: { "s:7SwiftUI12ScenePaddingV": true };
 }
 
@@ -9302,7 +9302,7 @@ export class SceneRestorationBehavior extends SDKHandle {
    * static let automatic: SceneRestorationBehavior
    * @availability iOS 18.0+
    */
-  static get automatic(): SceneRestorationBehavior { return callSDK<SceneRestorationBehavior>("SwiftUI_64b39a05e4a4cebd", 4070625886150040, undefined, []); }
+  static get automatic(): SceneRestorationBehavior { return callSDK<SceneRestorationBehavior>("SwiftUI_bd41a4085ee86f99", 4070625886150040, undefined, []); }
   declare readonly $type: { "s:7SwiftUI24SceneRestorationBehaviorV": true };
 }
 
@@ -9315,88 +9315,88 @@ export class SceneStorage<Value = unknown> extends SDKHandle {
    * init(wrappedValue: Value = TabViewCustomization(), _ key: String, store: UserDefaults? = nil) where Value == TabViewCustomization
    * @availability iOS 18.0+
    */
-  static initWrappedValueStore(wrappedValue: TabViewCustomization, key: string, store?: $SDK7): SceneStorage<TabViewCustomization> { return callSDK<SceneStorage<TabViewCustomization>>("SwiftUI_64b39a05e4a4cebd", 557784402844493, undefined, [wrappedValue, key, store]); }
+  static initWrappedValueStore(wrappedValue: TabViewCustomization, key: string, store?: $SDK7): SceneStorage<TabViewCustomization> { return callSDK<SceneStorage<TabViewCustomization>>("SwiftUI_bd41a4085ee86f99", 557784402844493, undefined, [wrappedValue, key, store]); }
   /**
    * init(wrappedValue: Value, _ key: String) where Value == URL
    * @availability iOS 14.0+
    */
-  static initWrappedValue(wrappedValue: string, key: string): SceneStorage<string> { return callSDK<SceneStorage<string>>("SwiftUI_64b39a05e4a4cebd", 2506893289903027, undefined, [wrappedValue, key]); }
+  static initWrappedValue(wrappedValue: string, key: string): SceneStorage<string> { return callSDK<SceneStorage<string>>("SwiftUI_bd41a4085ee86f99", 2506893289903027, undefined, [wrappedValue, key]); }
   /**
    * init(wrappedValue: Value, _ key: String) where Value == Data
    * @availability iOS 14.0+
    */
-  static initWrappedValue26719(wrappedValue: ArrayBuffer, key: string): SceneStorage<ArrayBuffer> { return callSDK<SceneStorage<ArrayBuffer>>("SwiftUI_64b39a05e4a4cebd", 1831905813167753, undefined, [wrappedValue, key]); }
+  static initWrappedValue26719(wrappedValue: ArrayBuffer, key: string): SceneStorage<ArrayBuffer> { return callSDK<SceneStorage<ArrayBuffer>>("SwiftUI_bd41a4085ee86f99", 1831905813167753, undefined, [wrappedValue, key]); }
   /**
    * init(wrappedValue: Value, _ key: String) where Value == Date
    * @availability iOS 18.0+
    */
-  static initWrappedValue76643(wrappedValue: globalThis.Date, key: string): SceneStorage<globalThis.Date> { return callSDK<SceneStorage<globalThis.Date>>("SwiftUI_64b39a05e4a4cebd", 4020265215224362, undefined, [wrappedValue, key]); }
+  static initWrappedValue76643(wrappedValue: globalThis.Date, key: string): SceneStorage<globalThis.Date> { return callSDK<SceneStorage<globalThis.Date>>("SwiftUI_bd41a4085ee86f99", 4020265215224362, undefined, [wrappedValue, key]); }
   /**
    * init(wrappedValue: Value, _ key: String) where Value == String
    * @availability iOS 14.0+
    */
-  static initWrappedValue34599(wrappedValue: string, key: string): SceneStorage<string> { return callSDK<SceneStorage<string>>("SwiftUI_64b39a05e4a4cebd", 2744241637742726, undefined, [wrappedValue, key]); }
+  static initWrappedValue34599(wrappedValue: string, key: string): SceneStorage<string> { return callSDK<SceneStorage<string>>("SwiftUI_bd41a4085ee86f99", 2744241637742726, undefined, [wrappedValue, key]); }
   /**
    * init(wrappedValue: Value, _ key: String) where Value == Bool
    * @availability iOS 14.0+
    */
-  static initWrappedValue3556(wrappedValue: boolean, key: string): SceneStorage<boolean> { return callSDK<SceneStorage<boolean>>("SwiftUI_64b39a05e4a4cebd", 2172083254898906, undefined, [wrappedValue, key]); }
+  static initWrappedValue3556(wrappedValue: boolean, key: string): SceneStorage<boolean> { return callSDK<SceneStorage<boolean>>("SwiftUI_bd41a4085ee86f99", 2172083254898906, undefined, [wrappedValue, key]); }
   /**
    * init(wrappedValue: Value, _ key: String) where Value == Double
    * @availability iOS 14.0+
    */
-  static initWrappedValue44130(wrappedValue: number, key: string): SceneStorage<number> { return callSDK<SceneStorage<number>>("SwiftUI_64b39a05e4a4cebd", 4346779912355040, undefined, [wrappedValue, key]); }
+  static initWrappedValue44130(wrappedValue: number, key: string): SceneStorage<number> { return callSDK<SceneStorage<number>>("SwiftUI_bd41a4085ee86f99", 4346779912355040, undefined, [wrappedValue, key]); }
   /**
    * init(wrappedValue: Value, _ key: String) where Value == Int
    * @availability iOS 14.0+
    */
-  static initWrappedValue90409(wrappedValue: number, key: string): SceneStorage<number> { return callSDK<SceneStorage<number>>("SwiftUI_64b39a05e4a4cebd", 3445731946587720, undefined, [wrappedValue, key]); }
+  static initWrappedValue90409(wrappedValue: number, key: string): SceneStorage<number> { return callSDK<SceneStorage<number>>("SwiftUI_bd41a4085ee86f99", 3445731946587720, undefined, [wrappedValue, key]); }
   /**
    * var wrappedValue: Value { get nonmutating set }
    * @availability iOS 14.0+
    */
-  get wrappedValue(): unknown { return callSDK<unknown>("SwiftUI_64b39a05e4a4cebd", 4478510777161684, this, []); }
-  set wrappedValue(value: unknown) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3763678352522948, this, [value]); }
+  get wrappedValue(): unknown { return callSDK<unknown>("SwiftUI_bd41a4085ee86f99", 4478510777161684, this, []); }
+  set wrappedValue(value: unknown) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3763678352522948, this, [value]); }
   /**
    * var projectedValue: Binding<Value> { get }
    * @availability iOS 14.0+
    */
-  get projectedValue(): $SDK11 { return callSDK<$SDK11>("SwiftUI_64b39a05e4a4cebd", 1849202174447217, this, []); }
+  get projectedValue(): $SDK11 { return callSDK<$SDK11>("SwiftUI_bd41a4085ee86f99", 1849202174447217, this, []); }
   /**
    * init(_ key: String) where Value == URL?
    * @availability iOS 14.0+
    */
-  static init(key: string): SceneStorage<(string) | null> { return callSDK<SceneStorage<(string) | null>>("SwiftUI_64b39a05e4a4cebd", 87477242745195, undefined, [key]); }
+  static init(key: string): SceneStorage<(string) | null> { return callSDK<SceneStorage<(string) | null>>("SwiftUI_bd41a4085ee86f99", 87477242745195, undefined, [key]); }
   /**
    * init(_ key: String) where Value == Data?
    * @availability iOS 14.0+
    */
-  static init25898(key: string): SceneStorage<(ArrayBuffer) | null> { return callSDK<SceneStorage<(ArrayBuffer) | null>>("SwiftUI_64b39a05e4a4cebd", 3736464036203691, undefined, [key]); }
+  static init25898(key: string): SceneStorage<(ArrayBuffer) | null> { return callSDK<SceneStorage<(ArrayBuffer) | null>>("SwiftUI_bd41a4085ee86f99", 3736464036203691, undefined, [key]); }
   /**
    * init(_ key: String) where Value == Date?
    * @availability iOS 18.0+
    */
-  static init68030(key: string): SceneStorage<(globalThis.Date) | null> { return callSDK<SceneStorage<(globalThis.Date) | null>>("SwiftUI_64b39a05e4a4cebd", 1260935123962018, undefined, [key]); }
+  static init68030(key: string): SceneStorage<(globalThis.Date) | null> { return callSDK<SceneStorage<(globalThis.Date) | null>>("SwiftUI_bd41a4085ee86f99", 1260935123962018, undefined, [key]); }
   /**
    * init(_ key: String) where Value == String?
    * @availability iOS 14.0+
    */
-  static init66157(key: string): SceneStorage<(string) | null> { return callSDK<SceneStorage<(string) | null>>("SwiftUI_64b39a05e4a4cebd", 1095091080986232, undefined, [key]); }
+  static init66157(key: string): SceneStorage<(string) | null> { return callSDK<SceneStorage<(string) | null>>("SwiftUI_bd41a4085ee86f99", 1095091080986232, undefined, [key]); }
   /**
    * init(_ key: String) where Value == Bool?
    * @availability iOS 14.0+
    */
-  static init13250(key: string): SceneStorage<(boolean) | null> { return callSDK<SceneStorage<(boolean) | null>>("SwiftUI_64b39a05e4a4cebd", 446975510715447, undefined, [key]); }
+  static init13250(key: string): SceneStorage<(boolean) | null> { return callSDK<SceneStorage<(boolean) | null>>("SwiftUI_bd41a4085ee86f99", 446975510715447, undefined, [key]); }
   /**
    * init(_ key: String) where Value == Double?
    * @availability iOS 14.0+
    */
-  static init27288(key: string): SceneStorage<(number) | null> { return callSDK<SceneStorage<(number) | null>>("SwiftUI_64b39a05e4a4cebd", 646506947090940, undefined, [key]); }
+  static init27288(key: string): SceneStorage<(number) | null> { return callSDK<SceneStorage<(number) | null>>("SwiftUI_bd41a4085ee86f99", 646506947090940, undefined, [key]); }
   /**
    * init(_ key: String) where Value == Int?
    * @availability iOS 14.0+
    */
-  static init52255(key: string): SceneStorage<(number) | null> { return callSDK<SceneStorage<(number) | null>>("SwiftUI_64b39a05e4a4cebd", 438083221282043, undefined, [key]); }
+  static init52255(key: string): SceneStorage<(number) | null> { return callSDK<SceneStorage<(number) | null>>("SwiftUI_bd41a4085ee86f99", 438083221282043, undefined, [key]); }
   declare readonly $type: { "s:7SwiftUI12SceneStorageV": true };
 }
 
@@ -9409,17 +9409,17 @@ export class ScrollAnchorRole extends SDKHandle {
    * static var sizeChanges: ScrollAnchorRole { get }
    * @availability iOS 18.0+
    */
-  static get sizeChanges(): ScrollAnchorRole { return callSDK<ScrollAnchorRole>("SwiftUI_64b39a05e4a4cebd", 3116707722185980, undefined, []); }
+  static get sizeChanges(): ScrollAnchorRole { return callSDK<ScrollAnchorRole>("SwiftUI_bd41a4085ee86f99", 3116707722185980, undefined, []); }
   /**
    * static var initialOffset: ScrollAnchorRole { get }
    * @availability iOS 18.0+
    */
-  static get initialOffset(): ScrollAnchorRole { return callSDK<ScrollAnchorRole>("SwiftUI_64b39a05e4a4cebd", 853310874279014, undefined, []); }
+  static get initialOffset(): ScrollAnchorRole { return callSDK<ScrollAnchorRole>("SwiftUI_bd41a4085ee86f99", 853310874279014, undefined, []); }
   /**
    * static var alignment: ScrollAnchorRole { get }
    * @availability iOS 18.0+
    */
-  static get alignment(): ScrollAnchorRole { return callSDK<ScrollAnchorRole>("SwiftUI_64b39a05e4a4cebd", 4214897192576021, undefined, []); }
+  static get alignment(): ScrollAnchorRole { return callSDK<ScrollAnchorRole>("SwiftUI_bd41a4085ee86f99", 4214897192576021, undefined, []); }
   declare readonly $type: { "s:7SwiftUI16ScrollAnchorRoleV": true };
 }
 
@@ -9432,17 +9432,17 @@ export class ScrollBounceBehavior extends SDKHandle {
    * static var basedOnSize: ScrollBounceBehavior { get }
    * @availability iOS 16.4+
    */
-  static get basedOnSize(): ScrollBounceBehavior { return callSDK<ScrollBounceBehavior>("SwiftUI_64b39a05e4a4cebd", 1357048978411014, undefined, []); }
+  static get basedOnSize(): ScrollBounceBehavior { return callSDK<ScrollBounceBehavior>("SwiftUI_bd41a4085ee86f99", 1357048978411014, undefined, []); }
   /**
    * static var always: ScrollBounceBehavior { get }
    * @availability iOS 16.4+
    */
-  static get always(): ScrollBounceBehavior { return callSDK<ScrollBounceBehavior>("SwiftUI_64b39a05e4a4cebd", 3513776527034568, undefined, []); }
+  static get always(): ScrollBounceBehavior { return callSDK<ScrollBounceBehavior>("SwiftUI_bd41a4085ee86f99", 3513776527034568, undefined, []); }
   /**
    * static var automatic: ScrollBounceBehavior { get }
    * @availability iOS 16.4+
    */
-  static get automatic(): ScrollBounceBehavior { return callSDK<ScrollBounceBehavior>("SwiftUI_64b39a05e4a4cebd", 4384849119248408, undefined, []); }
+  static get automatic(): ScrollBounceBehavior { return callSDK<ScrollBounceBehavior>("SwiftUI_bd41a4085ee86f99", 4384849119248408, undefined, []); }
   declare readonly $type: { "s:7SwiftUI20ScrollBounceBehaviorV": true };
 }
 
@@ -9455,22 +9455,22 @@ export class ScrollDismissesKeyboardMode extends SDKHandle {
    * static var immediately: ScrollDismissesKeyboardMode { get }
    * @availability iOS 16.0+
    */
-  static get immediately(): ScrollDismissesKeyboardMode { return callSDK<ScrollDismissesKeyboardMode>("SwiftUI_64b39a05e4a4cebd", 1780878595569723, undefined, []); }
+  static get immediately(): ScrollDismissesKeyboardMode { return callSDK<ScrollDismissesKeyboardMode>("SwiftUI_bd41a4085ee86f99", 1780878595569723, undefined, []); }
   /**
    * static var interactively: ScrollDismissesKeyboardMode { get }
    * @availability iOS 16.0+
    */
-  static get interactively(): ScrollDismissesKeyboardMode { return callSDK<ScrollDismissesKeyboardMode>("SwiftUI_64b39a05e4a4cebd", 2143813551109156, undefined, []); }
+  static get interactively(): ScrollDismissesKeyboardMode { return callSDK<ScrollDismissesKeyboardMode>("SwiftUI_bd41a4085ee86f99", 2143813551109156, undefined, []); }
   /**
    * static var never: ScrollDismissesKeyboardMode { get }
    * @availability iOS 16.0+
    */
-  static get never(): ScrollDismissesKeyboardMode { return callSDK<ScrollDismissesKeyboardMode>("SwiftUI_64b39a05e4a4cebd", 988438427817224, undefined, []); }
+  static get never(): ScrollDismissesKeyboardMode { return callSDK<ScrollDismissesKeyboardMode>("SwiftUI_bd41a4085ee86f99", 988438427817224, undefined, []); }
   /**
    * static var automatic: ScrollDismissesKeyboardMode { get }
    * @availability iOS 16.0+
    */
-  static get automatic(): ScrollDismissesKeyboardMode { return callSDK<ScrollDismissesKeyboardMode>("SwiftUI_64b39a05e4a4cebd", 2490885456077725, undefined, []); }
+  static get automatic(): ScrollDismissesKeyboardMode { return callSDK<ScrollDismissesKeyboardMode>("SwiftUI_bd41a4085ee86f99", 2490885456077725, undefined, []); }
   declare readonly $type: { "s:7SwiftUI27ScrollDismissesKeyboardModeV": true };
 }
 
@@ -9483,17 +9483,17 @@ export class ScrollEdgeEffectStyle extends SDKHandle {
    * static var hard: ScrollEdgeEffectStyle { get }
    * @availability iOS 26.0+
    */
-  static get hard(): ScrollEdgeEffectStyle { return callSDK<ScrollEdgeEffectStyle>("SwiftUI_64b39a05e4a4cebd", 1024868166121178, undefined, []); }
+  static get hard(): ScrollEdgeEffectStyle { return callSDK<ScrollEdgeEffectStyle>("SwiftUI_bd41a4085ee86f99", 1024868166121178, undefined, []); }
   /**
    * static var soft: ScrollEdgeEffectStyle { get }
    * @availability iOS 26.0+
    */
-  static get soft(): ScrollEdgeEffectStyle { return callSDK<ScrollEdgeEffectStyle>("SwiftUI_64b39a05e4a4cebd", 2217081268404016, undefined, []); }
+  static get soft(): ScrollEdgeEffectStyle { return callSDK<ScrollEdgeEffectStyle>("SwiftUI_bd41a4085ee86f99", 2217081268404016, undefined, []); }
   /**
    * static var automatic: ScrollEdgeEffectStyle { get }
    * @availability iOS 26.0+
    */
-  static get automatic(): ScrollEdgeEffectStyle { return callSDK<ScrollEdgeEffectStyle>("SwiftUI_64b39a05e4a4cebd", 8130130978910, undefined, []); }
+  static get automatic(): ScrollEdgeEffectStyle { return callSDK<ScrollEdgeEffectStyle>("SwiftUI_bd41a4085ee86f99", 8130130978910, undefined, []); }
   declare readonly $type: { "s:7SwiftUI21ScrollEdgeEffectStyleV": true };
 }
 
@@ -9506,22 +9506,22 @@ export class ScrollIndicatorVisibility extends SDKHandle {
    * static var never: ScrollIndicatorVisibility { get }
    * @availability iOS 16.0+
    */
-  static get never(): ScrollIndicatorVisibility { return callSDK<ScrollIndicatorVisibility>("SwiftUI_64b39a05e4a4cebd", 180256337857233, undefined, []); }
+  static get never(): ScrollIndicatorVisibility { return callSDK<ScrollIndicatorVisibility>("SwiftUI_bd41a4085ee86f99", 180256337857233, undefined, []); }
   /**
    * static var hidden: ScrollIndicatorVisibility { get }
    * @availability iOS 16.0+
    */
-  static get hidden(): ScrollIndicatorVisibility { return callSDK<ScrollIndicatorVisibility>("SwiftUI_64b39a05e4a4cebd", 2943532696057413, undefined, []); }
+  static get hidden(): ScrollIndicatorVisibility { return callSDK<ScrollIndicatorVisibility>("SwiftUI_bd41a4085ee86f99", 2943532696057413, undefined, []); }
   /**
    * static var visible: ScrollIndicatorVisibility { get }
    * @availability iOS 16.0+
    */
-  static get visible(): ScrollIndicatorVisibility { return callSDK<ScrollIndicatorVisibility>("SwiftUI_64b39a05e4a4cebd", 4142174373297504, undefined, []); }
+  static get visible(): ScrollIndicatorVisibility { return callSDK<ScrollIndicatorVisibility>("SwiftUI_bd41a4085ee86f99", 4142174373297504, undefined, []); }
   /**
    * static var automatic: ScrollIndicatorVisibility { get }
    * @availability iOS 16.0+
    */
-  static get automatic(): ScrollIndicatorVisibility { return callSDK<ScrollIndicatorVisibility>("SwiftUI_64b39a05e4a4cebd", 3168312090045308, undefined, []); }
+  static get automatic(): ScrollIndicatorVisibility { return callSDK<ScrollIndicatorVisibility>("SwiftUI_bd41a4085ee86f99", 3168312090045308, undefined, []); }
   declare readonly $type: { "s:7SwiftUI25ScrollIndicatorVisibilityV": true };
 }
 
@@ -9534,17 +9534,17 @@ export class ScrollInputBehavior extends SDKHandle {
    * static let enabled: ScrollInputBehavior
    * @availability iOS 18.0+
    */
-  static get enabled(): ScrollInputBehavior { return callSDK<ScrollInputBehavior>("SwiftUI_64b39a05e4a4cebd", 2319972901415963, undefined, []); }
+  static get enabled(): ScrollInputBehavior { return callSDK<ScrollInputBehavior>("SwiftUI_bd41a4085ee86f99", 2319972901415963, undefined, []); }
   /**
    * static let disabled: ScrollInputBehavior
    * @availability iOS 18.0+
    */
-  static get disabled(): ScrollInputBehavior { return callSDK<ScrollInputBehavior>("SwiftUI_64b39a05e4a4cebd", 619330615724431, undefined, []); }
+  static get disabled(): ScrollInputBehavior { return callSDK<ScrollInputBehavior>("SwiftUI_bd41a4085ee86f99", 619330615724431, undefined, []); }
   /**
    * static let automatic: ScrollInputBehavior
    * @availability iOS 18.0+
    */
-  static get automatic(): ScrollInputBehavior { return callSDK<ScrollInputBehavior>("SwiftUI_64b39a05e4a4cebd", 3697635009709270, undefined, []); }
+  static get automatic(): ScrollInputBehavior { return callSDK<ScrollInputBehavior>("SwiftUI_bd41a4085ee86f99", 3697635009709270, undefined, []); }
   declare readonly $type: { "s:7SwiftUI19ScrollInputBehaviorV": true };
 }
 
@@ -9565,12 +9565,12 @@ export class ScrollPhaseChangeContext extends SDKHandle {
    * var geometry: ScrollGeometry { get }
    * @availability iOS 18.0+
    */
-  get geometry(): _SwiftUICore_ScrollGeometry { return callSDK<_SwiftUICore_ScrollGeometry>("SwiftUI_64b39a05e4a4cebd", 3938644832190285, this, []); }
+  get geometry(): _SwiftUICore_ScrollGeometry { return callSDK<_SwiftUICore_ScrollGeometry>("SwiftUI_bd41a4085ee86f99", 3938644832190285, this, []); }
   /**
    * var velocity: CGVector? { get }
    * @availability iOS 18.0+
    */
-  get velocity(): ({ dx: number; dy: number }) | null { return callSDK<({ dx: number; dy: number }) | null>("SwiftUI_64b39a05e4a4cebd", 2264024042962380, this, []); }
+  get velocity(): ({ dx: number; dy: number }) | null { return callSDK<({ dx: number; dy: number }) | null>("SwiftUI_bd41a4085ee86f99", 2264024042962380, this, []); }
   declare readonly $type: { "s:7SwiftUI24ScrollPhaseChangeContextV": true };
 }
 
@@ -9618,32 +9618,32 @@ export class ScrollTargetBehaviorContext extends SDKHandle {
    * var originalTarget: ScrollTarget { get }
    * @availability iOS 17.0+
    */
-  get originalTarget(): _SwiftUICore_ScrollTarget { return callSDK<_SwiftUICore_ScrollTarget>("SwiftUI_64b39a05e4a4cebd", 703438359947184, this, []); }
+  get originalTarget(): _SwiftUICore_ScrollTarget { return callSDK<_SwiftUICore_ScrollTarget>("SwiftUI_bd41a4085ee86f99", 703438359947184, this, []); }
   /**
    * var contentSize: CGSize { get }
    * @availability iOS 17.0+
    */
-  get contentSize(): $SDK38 { return callSDK<$SDK38>("SwiftUI_64b39a05e4a4cebd", 4027409068656610, this, []); }
+  get contentSize(): $SDK38 { return callSDK<$SDK38>("SwiftUI_bd41a4085ee86f99", 4027409068656610, this, []); }
   /**
    * var containerSize: CGSize { get }
    * @availability iOS 17.0+
    */
-  get containerSize(): $SDK38 { return callSDK<$SDK38>("SwiftUI_64b39a05e4a4cebd", 2240547978587099, this, []); }
+  get containerSize(): $SDK38 { return callSDK<$SDK38>("SwiftUI_bd41a4085ee86f99", 2240547978587099, this, []); }
   /**
    * subscript<T>(dynamicMember keyPath: KeyPath<EnvironmentValues, T>) -> T { get }
    * @availability iOS 17.0+
    */
-  subscript(keyPath: SDKHandle): unknown { return callSDK<unknown>("SwiftUI_64b39a05e4a4cebd", 3215707401708555, this, [keyPath]); }
+  subscript(keyPath: SDKHandle): unknown { return callSDK<unknown>("SwiftUI_bd41a4085ee86f99", 3215707401708555, this, [keyPath]); }
   /**
    * var axes: Axis.Set { get }
    * @availability iOS 17.0+
    */
-  get axes(): _SwiftUICore_Axis_Set { return callSDK<_SwiftUICore_Axis_Set>("SwiftUI_64b39a05e4a4cebd", 542287574057160, this, []); }
+  get axes(): _SwiftUICore_Axis_Set { return callSDK<_SwiftUICore_Axis_Set>("SwiftUI_bd41a4085ee86f99", 542287574057160, this, []); }
   /**
    * var velocity: CGVector { get }
    * @availability iOS 17.0+
    */
-  get velocity(): { dx: number; dy: number } { return callSDK<{ dx: number; dy: number }>("SwiftUI_64b39a05e4a4cebd", 4212843476497477, this, []); }
+  get velocity(): { dx: number; dy: number } { return callSDK<{ dx: number; dy: number }>("SwiftUI_bd41a4085ee86f99", 4212843476497477, this, []); }
   declare readonly $type: { "s:7SwiftUI27ScrollTargetBehaviorContextV": true };
 }
 
@@ -9656,13 +9656,13 @@ export class ScrollTargetBehaviorProperties extends SDKHandle {
    * var limitsScrolls: Bool { get set }
    * @availability iOS 18.4+
    */
-  get limitsScrolls(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 3238202538749941, this, []); }
-  set limitsScrolls(value: boolean) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3461979973619120, this, [value]); }
+  get limitsScrolls(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 3238202538749941, this, []); }
+  set limitsScrolls(value: boolean) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3461979973619120, this, [value]); }
   /**
    * init()
    * @availability iOS 18.4+
    */
-  static init(): ScrollTargetBehaviorProperties { return callSDK<ScrollTargetBehaviorProperties>("SwiftUI_64b39a05e4a4cebd", 3640021085952022, undefined, []); }
+  static init(): ScrollTargetBehaviorProperties { return callSDK<ScrollTargetBehaviorProperties>("SwiftUI_bd41a4085ee86f99", 3640021085952022, undefined, []); }
   declare readonly $type: { "s:7SwiftUI30ScrollTargetBehaviorPropertiesV": true };
 }
 
@@ -9675,12 +9675,12 @@ export class ScrollTargetBehaviorPropertiesContext extends SDKHandle {
    * var environment: EnvironmentValues { get }
    * @availability iOS 18.4+
    */
-  get environment(): _SwiftUICore_EnvironmentValues { return callSDK<_SwiftUICore_EnvironmentValues>("SwiftUI_64b39a05e4a4cebd", 4487413744339268, this, []); }
+  get environment(): _SwiftUICore_EnvironmentValues { return callSDK<_SwiftUICore_EnvironmentValues>("SwiftUI_bd41a4085ee86f99", 4487413744339268, this, []); }
   /**
    * var axes: Axis.Set { get }
    * @availability iOS 18.4+
    */
-  get axes(): _SwiftUICore_Axis_Set { return callSDK<_SwiftUICore_Axis_Set>("SwiftUI_64b39a05e4a4cebd", 849710203592343, this, []); }
+  get axes(): _SwiftUICore_Axis_Set { return callSDK<_SwiftUICore_Axis_Set>("SwiftUI_bd41a4085ee86f99", 849710203592343, this, []); }
   declare readonly $type: { "s:7SwiftUI37ScrollTargetBehaviorPropertiesContextV": true };
 }
 
@@ -9693,37 +9693,37 @@ export class ScrollTransitionConfiguration extends SDKHandle {
    * static func interactive(timingCurve: UnitCurve = .easeInOut) -> ScrollTransitionConfiguration
    * @availability iOS 17.0+
    */
-  static interactiveTimingCurve(timingCurve?: _SwiftUICore_UnitCurve): ScrollTransitionConfiguration { return callSDK<ScrollTransitionConfiguration>("SwiftUI_64b39a05e4a4cebd", 1391059520530960, undefined, [timingCurve]); }
+  static interactiveTimingCurve(timingCurve?: _SwiftUICore_UnitCurve): ScrollTransitionConfiguration { return callSDK<ScrollTransitionConfiguration>("SwiftUI_bd41a4085ee86f99", 1391059520530960, undefined, [timingCurve]); }
   /**
    * static let interactive: ScrollTransitionConfiguration
    * @availability iOS 17.0+
    */
-  static get interactive(): ScrollTransitionConfiguration { return callSDK<ScrollTransitionConfiguration>("SwiftUI_64b39a05e4a4cebd", 67889480976569, undefined, []); }
+  static get interactive(): ScrollTransitionConfiguration { return callSDK<ScrollTransitionConfiguration>("SwiftUI_bd41a4085ee86f99", 67889480976569, undefined, []); }
   /**
    * static let animated: ScrollTransitionConfiguration
    * @availability iOS 17.0+
    */
-  static get animated(): ScrollTransitionConfiguration { return callSDK<ScrollTransitionConfiguration>("SwiftUI_64b39a05e4a4cebd", 1896165816575755, undefined, []); }
+  static get animated(): ScrollTransitionConfiguration { return callSDK<ScrollTransitionConfiguration>("SwiftUI_bd41a4085ee86f99", 1896165816575755, undefined, []); }
   /**
    * static func animated(_ animation: Animation = .default) -> ScrollTransitionConfiguration
    * @availability iOS 17.0+
    */
-  static animated74367(animation?: _SwiftUICore_Animation): ScrollTransitionConfiguration { return callSDK<ScrollTransitionConfiguration>("SwiftUI_64b39a05e4a4cebd", 611678980025239, undefined, [animation]); }
+  static animated74367(animation?: _SwiftUICore_Animation): ScrollTransitionConfiguration { return callSDK<ScrollTransitionConfiguration>("SwiftUI_bd41a4085ee86f99", 611678980025239, undefined, [animation]); }
   /**
    * static let identity: ScrollTransitionConfiguration
    * @availability iOS 17.0+
    */
-  static get identity(): ScrollTransitionConfiguration { return callSDK<ScrollTransitionConfiguration>("SwiftUI_64b39a05e4a4cebd", 624501523040589, undefined, []); }
+  static get identity(): ScrollTransitionConfiguration { return callSDK<ScrollTransitionConfiguration>("SwiftUI_bd41a4085ee86f99", 624501523040589, undefined, []); }
   /**
    * func animation(_ animation: Animation) -> ScrollTransitionConfiguration
    * @availability iOS 17.0+
    */
-  animation(animation: _SwiftUICore_Animation): ScrollTransitionConfiguration { return callSDK<ScrollTransitionConfiguration>("SwiftUI_64b39a05e4a4cebd", 3800514682831092, this, [animation]); }
+  animation(animation: _SwiftUICore_Animation): ScrollTransitionConfiguration { return callSDK<ScrollTransitionConfiguration>("SwiftUI_bd41a4085ee86f99", 3800514682831092, this, [animation]); }
   /**
    * func threshold(_ threshold: ScrollTransitionConfiguration.Threshold) -> ScrollTransitionConfiguration
    * @availability iOS 17.0+
    */
-  threshold(threshold: ScrollTransitionConfiguration_Threshold): ScrollTransitionConfiguration { return callSDK<ScrollTransitionConfiguration>("SwiftUI_64b39a05e4a4cebd", 794198446772494, this, [threshold]); }
+  threshold(threshold: ScrollTransitionConfiguration_Threshold): ScrollTransitionConfiguration { return callSDK<ScrollTransitionConfiguration>("SwiftUI_bd41a4085ee86f99", 794198446772494, this, [threshold]); }
   declare readonly $type: { "s:7SwiftUI29ScrollTransitionConfigurationV": true };
 }
 
@@ -9736,32 +9736,32 @@ export class ScrollTransitionConfiguration_Threshold extends SDKHandle {
    * func interpolated(towards other: ScrollTransitionConfiguration.Threshold, amount: Double) -> ScrollTransitionConfiguration.Threshold
    * @availability iOS 17.0+
    */
-  interpolated(other: ScrollTransitionConfiguration_Threshold, amount: number): ScrollTransitionConfiguration_Threshold { return callSDK<ScrollTransitionConfiguration_Threshold>("SwiftUI_64b39a05e4a4cebd", 2870799930980006, this, [other, amount]); }
+  interpolated(other: ScrollTransitionConfiguration_Threshold, amount: number): ScrollTransitionConfiguration_Threshold { return callSDK<ScrollTransitionConfiguration_Threshold>("SwiftUI_bd41a4085ee86f99", 2870799930980006, this, [other, amount]); }
   /**
    * func inset(by distance: Double) -> ScrollTransitionConfiguration.Threshold
    * @availability iOS 17.0+
    */
-  inset(distance: number): ScrollTransitionConfiguration_Threshold { return callSDK<ScrollTransitionConfiguration_Threshold>("SwiftUI_64b39a05e4a4cebd", 39055338562495, this, [distance]); }
+  inset(distance: number): ScrollTransitionConfiguration_Threshold { return callSDK<ScrollTransitionConfiguration_Threshold>("SwiftUI_bd41a4085ee86f99", 39055338562495, this, [distance]); }
   /**
    * static let hidden: ScrollTransitionConfiguration.Threshold
    * @availability iOS 17.0+
    */
-  static get hidden(): ScrollTransitionConfiguration_Threshold { return callSDK<ScrollTransitionConfiguration_Threshold>("SwiftUI_64b39a05e4a4cebd", 3937351435767994, undefined, []); }
+  static get hidden(): ScrollTransitionConfiguration_Threshold { return callSDK<ScrollTransitionConfiguration_Threshold>("SwiftUI_bd41a4085ee86f99", 3937351435767994, undefined, []); }
   /**
    * static let visible: ScrollTransitionConfiguration.Threshold
    * @availability iOS 17.0+
    */
-  static get visible(): ScrollTransitionConfiguration_Threshold { return callSDK<ScrollTransitionConfiguration_Threshold>("SwiftUI_64b39a05e4a4cebd", 1316644832805940, undefined, []); }
+  static get visible(): ScrollTransitionConfiguration_Threshold { return callSDK<ScrollTransitionConfiguration_Threshold>("SwiftUI_bd41a4085ee86f99", 1316644832805940, undefined, []); }
   /**
    * static func visible(_ amount: Double) -> ScrollTransitionConfiguration.Threshold
    * @availability iOS 17.0+
    */
-  static visible32136(amount: number): ScrollTransitionConfiguration_Threshold { return callSDK<ScrollTransitionConfiguration_Threshold>("SwiftUI_64b39a05e4a4cebd", 4478319548017604, undefined, [amount]); }
+  static visible32136(amount: number): ScrollTransitionConfiguration_Threshold { return callSDK<ScrollTransitionConfiguration_Threshold>("SwiftUI_bd41a4085ee86f99", 4478319548017604, undefined, [amount]); }
   /**
    * static var centered: ScrollTransitionConfiguration.Threshold { get }
    * @availability iOS 17.0+
    */
-  static get centered(): ScrollTransitionConfiguration_Threshold { return callSDK<ScrollTransitionConfiguration_Threshold>("SwiftUI_64b39a05e4a4cebd", 3489471572251480, undefined, []); }
+  static get centered(): ScrollTransitionConfiguration_Threshold { return callSDK<ScrollTransitionConfiguration_Threshold>("SwiftUI_bd41a4085ee86f99", 3489471572251480, undefined, []); }
   declare readonly $type: { "s:7SwiftUI29ScrollTransitionConfigurationV9ThresholdV": true };
 }
 
@@ -9776,12 +9776,12 @@ export const ScrollTransitionPhase = {
    * var isIdentity: Bool { get }
    * @availability iOS 17.0+
    */
-  getIsIdentity($self: ScrollTransitionPhase): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 3092841771745425, $self, []); },
+  getIsIdentity($self: ScrollTransitionPhase): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 3092841771745425, $self, []); },
   /**
    * var value: Double { get }
    * @availability iOS 17.0+
    */
-  getValue($self: ScrollTransitionPhase): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 4265308632215281, $self, []); }
+  getValue($self: ScrollTransitionPhase): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 4265308632215281, $self, []); }
 };
 
 /**
@@ -9793,20 +9793,20 @@ export class ScrollView<Content = unknown> extends SDKHandle {
    * nonisolated var showsIndicators: Bool { get set }
    * @availability iOS 13.0+
    */
-  get showsIndicators(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 3749376638709969, this, []); }
-  set showsIndicators(value: boolean) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2781766816005925, this, [value]); }
+  get showsIndicators(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 3749376638709969, this, []); }
+  set showsIndicators(value: boolean) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2781766816005925, this, [value]); }
   /**
    * nonisolated var axes: Axis.Set { get set }
    * @availability iOS 13.0+
    */
-  get axes(): _SwiftUICore_Axis_Set { return callSDK<_SwiftUICore_Axis_Set>("SwiftUI_64b39a05e4a4cebd", 3254080050815979, this, []); }
-  set axes(value: _SwiftUICore_Axis_Set) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1490623527086184, this, [value]); }
+  get axes(): _SwiftUICore_Axis_Set { return callSDK<_SwiftUICore_Axis_Set>("SwiftUI_bd41a4085ee86f99", 3254080050815979, this, []); }
+  set axes(value: _SwiftUICore_Axis_Set) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1490623527086184, this, [value]); }
   /**
    * var content: Content
    * @availability iOS 13.0+
    */
-  get content(): SDKHandle { return callSDK<SDKHandle>("SwiftUI_64b39a05e4a4cebd", 2533439263253132, this, []); }
-  set content(value: SDKHandle) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1741003977045758, this, [value]); }
+  get content(): SDKHandle { return callSDK<SDKHandle>("SwiftUI_bd41a4085ee86f99", 2533439263253132, this, []); }
+  set content(value: SDKHandle) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1741003977045758, this, [value]); }
   declare readonly $type: { "s:7SwiftUI10ScrollViewV": true };
 }
 
@@ -9825,7 +9825,7 @@ export class ScrollViewProxy extends SDKHandle {
    * func scrollTo<ID>(_ id: ID, anchor: UnitPoint? = nil) where ID : Hashable
    * @availability iOS 14.0+
    */
-  scrollTo(id: number, anchor?: $SDK121): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 190089454283217, this, [id, anchor]); }
+  scrollTo(id: number, anchor?: $SDK121): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 190089454283217, this, [id, anchor]); }
   declare readonly $type: { "s:7SwiftUI15ScrollViewProxyV": true };
 }
 
@@ -9838,7 +9838,7 @@ export class ScrollViewReader<Content = unknown> extends SDKHandle {
    * var content: (ScrollViewProxy) -> Content
    * @availability iOS 14.0+
    */
-  get content(): ((arg0: ScrollViewProxy) => Promise<SDKHandle>) { return callSDK<((arg0: ScrollViewProxy) => Promise<SDKHandle>)>("SwiftUI_64b39a05e4a4cebd", 2889083529721038, this, []); }
+  get content(): ((arg0: ScrollViewProxy) => Promise<SDKHandle>) { return callSDK<((arg0: ScrollViewProxy) => Promise<SDKHandle>)>("SwiftUI_bd41a4085ee86f99", 2889083529721038, this, []); }
   declare readonly $type: { "s:7SwiftUI16ScrollViewReaderV": true };
 }
 
@@ -9857,32 +9857,32 @@ export class SearchFieldPlacement extends SDKHandle {
    * static var toolbarPrincipal: SearchFieldPlacement { get }
    * @availability iOS 15.0+
    */
-  static get toolbarPrincipal(): SearchFieldPlacement { return callSDK<SearchFieldPlacement>("SwiftUI_64b39a05e4a4cebd", 1178525751330481, undefined, []); }
+  static get toolbarPrincipal(): SearchFieldPlacement { return callSDK<SearchFieldPlacement>("SwiftUI_bd41a4085ee86f99", 1178525751330481, undefined, []); }
   /**
    * static func navigationBarDrawer(displayMode: SearchFieldPlacement.NavigationBarDrawerDisplayMode) -> SearchFieldPlacement
    * @availability iOS 15.0+
    */
-  static navigationBarDrawerDisplayMode(displayMode: SearchFieldPlacement_NavigationBarDrawerDisplayMode): SearchFieldPlacement { return callSDK<SearchFieldPlacement>("SwiftUI_64b39a05e4a4cebd", 815350509303587, undefined, [displayMode]); }
+  static navigationBarDrawerDisplayMode(displayMode: SearchFieldPlacement_NavigationBarDrawerDisplayMode): SearchFieldPlacement { return callSDK<SearchFieldPlacement>("SwiftUI_bd41a4085ee86f99", 815350509303587, undefined, [displayMode]); }
   /**
    * static let navigationBarDrawer: SearchFieldPlacement
    * @availability iOS 15.0+
    */
-  static get navigationBarDrawer(): SearchFieldPlacement { return callSDK<SearchFieldPlacement>("SwiftUI_64b39a05e4a4cebd", 2245856604157425, undefined, []); }
+  static get navigationBarDrawer(): SearchFieldPlacement { return callSDK<SearchFieldPlacement>("SwiftUI_bd41a4085ee86f99", 2245856604157425, undefined, []); }
   /**
    * static var sidebar: SearchFieldPlacement { get }
    * @availability iOS 15.0+
    */
-  static get sidebar(): SearchFieldPlacement { return callSDK<SearchFieldPlacement>("SwiftUI_64b39a05e4a4cebd", 3055903102332124, undefined, []); }
+  static get sidebar(): SearchFieldPlacement { return callSDK<SearchFieldPlacement>("SwiftUI_bd41a4085ee86f99", 3055903102332124, undefined, []); }
   /**
    * static let toolbar: SearchFieldPlacement
    * @availability iOS 15.0+
    */
-  static get toolbar(): SearchFieldPlacement { return callSDK<SearchFieldPlacement>("SwiftUI_64b39a05e4a4cebd", 3732870556303233, undefined, []); }
+  static get toolbar(): SearchFieldPlacement { return callSDK<SearchFieldPlacement>("SwiftUI_bd41a4085ee86f99", 3732870556303233, undefined, []); }
   /**
    * static let automatic: SearchFieldPlacement
    * @availability iOS 15.0+
    */
-  static get automatic(): SearchFieldPlacement { return callSDK<SearchFieldPlacement>("SwiftUI_64b39a05e4a4cebd", 4377118444434704, undefined, []); }
+  static get automatic(): SearchFieldPlacement { return callSDK<SearchFieldPlacement>("SwiftUI_bd41a4085ee86f99", 4377118444434704, undefined, []); }
   declare readonly $type: { "s:7SwiftUI20SearchFieldPlacementV": true };
 }
 
@@ -9895,12 +9895,12 @@ export class SearchFieldPlacement_NavigationBarDrawerDisplayMode extends SDKHand
    * static let always: SearchFieldPlacement.NavigationBarDrawerDisplayMode
    * @availability iOS 15.0+
    */
-  static get always(): SearchFieldPlacement_NavigationBarDrawerDisplayMode { return callSDK<SearchFieldPlacement_NavigationBarDrawerDisplayMode>("SwiftUI_64b39a05e4a4cebd", 3647414365911181, undefined, []); }
+  static get always(): SearchFieldPlacement_NavigationBarDrawerDisplayMode { return callSDK<SearchFieldPlacement_NavigationBarDrawerDisplayMode>("SwiftUI_bd41a4085ee86f99", 3647414365911181, undefined, []); }
   /**
    * static let automatic: SearchFieldPlacement.NavigationBarDrawerDisplayMode
    * @availability iOS 15.0+
    */
-  static get automatic(): SearchFieldPlacement_NavigationBarDrawerDisplayMode { return callSDK<SearchFieldPlacement_NavigationBarDrawerDisplayMode>("SwiftUI_64b39a05e4a4cebd", 2031395689601762, undefined, []); }
+  static get automatic(): SearchFieldPlacement_NavigationBarDrawerDisplayMode { return callSDK<SearchFieldPlacement_NavigationBarDrawerDisplayMode>("SwiftUI_bd41a4085ee86f99", 2031395689601762, undefined, []); }
   declare readonly $type: { "s:7SwiftUI20SearchFieldPlacementV30NavigationBarDrawerDisplayModeV": true };
 }
 
@@ -9913,12 +9913,12 @@ export class SearchPresentationToolbarBehavior extends SDKHandle {
    * static var avoidHidingContent: SearchPresentationToolbarBehavior { get }
    * @availability iOS 17.1+
    */
-  static get avoidHidingContent(): SearchPresentationToolbarBehavior { return callSDK<SearchPresentationToolbarBehavior>("SwiftUI_64b39a05e4a4cebd", 108380827938250, undefined, []); }
+  static get avoidHidingContent(): SearchPresentationToolbarBehavior { return callSDK<SearchPresentationToolbarBehavior>("SwiftUI_bd41a4085ee86f99", 108380827938250, undefined, []); }
   /**
    * static var automatic: SearchPresentationToolbarBehavior { get }
    * @availability iOS 17.1+
    */
-  static get automatic(): SearchPresentationToolbarBehavior { return callSDK<SearchPresentationToolbarBehavior>("SwiftUI_64b39a05e4a4cebd", 2990978026408079, undefined, []); }
+  static get automatic(): SearchPresentationToolbarBehavior { return callSDK<SearchPresentationToolbarBehavior>("SwiftUI_bd41a4085ee86f99", 2990978026408079, undefined, []); }
   declare readonly $type: { "s:7SwiftUI33SearchPresentationToolbarBehaviorV": true };
 }
 
@@ -9931,17 +9931,17 @@ export class SearchScopeActivation extends SDKHandle {
    * static var onSearchPresentation: SearchScopeActivation { get }
    * @availability iOS 16.4+
    */
-  static get onSearchPresentation(): SearchScopeActivation { return callSDK<SearchScopeActivation>("SwiftUI_64b39a05e4a4cebd", 402838056962441, undefined, []); }
+  static get onSearchPresentation(): SearchScopeActivation { return callSDK<SearchScopeActivation>("SwiftUI_bd41a4085ee86f99", 402838056962441, undefined, []); }
   /**
    * static var onTextEntry: SearchScopeActivation { get }
    * @availability iOS 16.4+
    */
-  static get onTextEntry(): SearchScopeActivation { return callSDK<SearchScopeActivation>("SwiftUI_64b39a05e4a4cebd", 878512077743227, undefined, []); }
+  static get onTextEntry(): SearchScopeActivation { return callSDK<SearchScopeActivation>("SwiftUI_bd41a4085ee86f99", 878512077743227, undefined, []); }
   /**
    * static var automatic: SearchScopeActivation { get }
    * @availability iOS 16.4+
    */
-  static get automatic(): SearchScopeActivation { return callSDK<SearchScopeActivation>("SwiftUI_64b39a05e4a4cebd", 1493758829448120, undefined, []); }
+  static get automatic(): SearchScopeActivation { return callSDK<SearchScopeActivation>("SwiftUI_bd41a4085ee86f99", 1493758829448120, undefined, []); }
   declare readonly $type: { "s:7SwiftUI21SearchScopeActivationV": true };
 }
 
@@ -9954,17 +9954,17 @@ export class SearchSuggestionsPlacement extends SDKHandle {
    * static var menu: SearchSuggestionsPlacement { get }
    * @availability iOS 16.0+
    */
-  static get menu(): SearchSuggestionsPlacement { return callSDK<SearchSuggestionsPlacement>("SwiftUI_64b39a05e4a4cebd", 1312323023045462, undefined, []); }
+  static get menu(): SearchSuggestionsPlacement { return callSDK<SearchSuggestionsPlacement>("SwiftUI_bd41a4085ee86f99", 1312323023045462, undefined, []); }
   /**
    * static var content: SearchSuggestionsPlacement { get }
    * @availability iOS 16.0+
    */
-  static get content(): SearchSuggestionsPlacement { return callSDK<SearchSuggestionsPlacement>("SwiftUI_64b39a05e4a4cebd", 4269428851990092, undefined, []); }
+  static get content(): SearchSuggestionsPlacement { return callSDK<SearchSuggestionsPlacement>("SwiftUI_bd41a4085ee86f99", 4269428851990092, undefined, []); }
   /**
    * static var automatic: SearchSuggestionsPlacement { get }
    * @availability iOS 16.0+
    */
-  static get automatic(): SearchSuggestionsPlacement { return callSDK<SearchSuggestionsPlacement>("SwiftUI_64b39a05e4a4cebd", 4227763389618034, undefined, []); }
+  static get automatic(): SearchSuggestionsPlacement { return callSDK<SearchSuggestionsPlacement>("SwiftUI_bd41a4085ee86f99", 4227763389618034, undefined, []); }
   declare readonly $type: { "s:7SwiftUI26SearchSuggestionsPlacementV": true };
 }
 
@@ -9979,23 +9979,23 @@ export const SearchSuggestionsPlacement_Set = {
    * static var menu: SearchSuggestionsPlacement.Set { get }
    * @availability iOS 16.0+
    */
-  get menu(): SearchSuggestionsPlacement_Set { return callSDK<SearchSuggestionsPlacement_Set>("SwiftUI_64b39a05e4a4cebd", 4235077431151840, undefined, []); },
+  get menu(): SearchSuggestionsPlacement_Set { return callSDK<SearchSuggestionsPlacement_Set>("SwiftUI_bd41a4085ee86f99", 4235077431151840, undefined, []); },
   /**
    * static var content: SearchSuggestionsPlacement.Set { get }
    * @availability iOS 16.0+
    */
-  get content(): SearchSuggestionsPlacement_Set { return callSDK<SearchSuggestionsPlacement_Set>("SwiftUI_64b39a05e4a4cebd", 3050726543025424, undefined, []); },
+  get content(): SearchSuggestionsPlacement_Set { return callSDK<SearchSuggestionsPlacement_Set>("SwiftUI_bd41a4085ee86f99", 3050726543025424, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): SearchSuggestionsPlacement_Set { return callSDK<SearchSuggestionsPlacement_Set>("SwiftUI_64b39a05e4a4cebd", 2547884481745383, undefined, [rawValue]); },
+  init(rawValue: number): SearchSuggestionsPlacement_Set { return callSDK<SearchSuggestionsPlacement_Set>("SwiftUI_bd41a4085ee86f99", 2547884481745383, undefined, [rawValue]); },
   /**
    * var rawValue: Int
    * @availability iOS 16.0+
    */
-  getRawValue($self: SearchSuggestionsPlacement_Set): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 4368779446449278, $self, []); },
-  setRawValue($self: SearchSuggestionsPlacement_Set, value: number): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1257032984110358, $self, [value]); }
+  getRawValue($self: SearchSuggestionsPlacement_Set): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 4368779446449278, $self, []); },
+  setRawValue($self: SearchSuggestionsPlacement_Set, value: number): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 1257032984110358, $self, [value]); }
 };
 
 /**
@@ -10025,12 +10025,12 @@ export class SearchToolbarBehavior extends SDKHandle {
    * static var minimize: SearchToolbarBehavior { get }
    * @availability iOS 26.0+
    */
-  static get minimize(): SearchToolbarBehavior { return callSDK<SearchToolbarBehavior>("SwiftUI_64b39a05e4a4cebd", 1163738547964345, undefined, []); }
+  static get minimize(): SearchToolbarBehavior { return callSDK<SearchToolbarBehavior>("SwiftUI_bd41a4085ee86f99", 1163738547964345, undefined, []); }
   /**
    * static var automatic: SearchToolbarBehavior { get }
    * @availability iOS 26.0+
    */
-  static get automatic(): SearchToolbarBehavior { return callSDK<SearchToolbarBehavior>("SwiftUI_64b39a05e4a4cebd", 2750545901974942, undefined, []); }
+  static get automatic(): SearchToolbarBehavior { return callSDK<SearchToolbarBehavior>("SwiftUI_bd41a4085ee86f99", 2750545901974942, undefined, []); }
   declare readonly $type: { "s:7SwiftUI21SearchToolbarBehaviorV": true };
 }
 
@@ -10115,7 +10115,7 @@ export class SectionConfiguration extends SDKHandle {
    * var actions: SectionConfiguration.Actions { get }
    * @availability iOS 18.0+
    */
-  get actions(): SectionConfiguration_Actions { return callSDK<SectionConfiguration_Actions>("SwiftUI_64b39a05e4a4cebd", 2810266288903592, this, []); }
+  get actions(): SectionConfiguration_Actions { return callSDK<SectionConfiguration_Actions>("SwiftUI_bd41a4085ee86f99", 2810266288903592, this, []); }
   declare readonly $type: { "s:7SwiftUI20SectionConfigurationV": true };
 }
 
@@ -10142,12 +10142,12 @@ export class SectionedFetchRequest<SectionIdentifier = unknown, Result = unknown
    * @MainActor @preconcurrency init(sectionIdentifier: KeyPath<Result, SectionIdentifier>, sortDescriptors: [SortDescriptor<Result>], predicate: NSPredicate? = nil, animation: Animation? = nil)
    * @availability iOS 15.0+
    */
-  static initSectionIdentifierSortDescriptorsPredicateAnimation(sectionIdentifier: "faultingState" | SDKHandle, sortDescriptors: $SDK53, predicate?: $SDK55, animation?: $SDK56): Promise<$SDK123> { return callSDKAsync<$SDK123>("SwiftUI_64b39a05e4a4cebd", 872010540660246, undefined, [sectionIdentifier, sortDescriptors, predicate, animation]); }
+  static initSectionIdentifierSortDescriptorsPredicateAnimation(sectionIdentifier: "faultingState" | SDKHandle, sortDescriptors: $SDK53, predicate?: $SDK55, animation?: $SDK56): Promise<$SDK123> { return callSDKAsync<$SDK123>("SwiftUI_bd41a4085ee86f99", 872010540660246, undefined, [sectionIdentifier, sortDescriptors, predicate, animation]); }
   /**
    * @MainActor @preconcurrency init(sectionIdentifier: KeyPath<Result, SectionIdentifier>, sortDescriptors: [NSSortDescriptor], predicate: NSPredicate? = nil, animation: Animation? = nil)
    * @availability iOS 15.0+
    */
-  static initSectionIdentifierSortDescriptorsPredicateAnimation94113(sectionIdentifier: "faultingState" | SDKHandle, sortDescriptors: $SDK57, predicate?: $SDK55, animation?: $SDK56): Promise<$SDK123> { return callSDKAsync<$SDK123>("SwiftUI_64b39a05e4a4cebd", 3061880333735620, undefined, [sectionIdentifier, sortDescriptors, predicate, animation]); }
+  static initSectionIdentifierSortDescriptorsPredicateAnimation94113(sectionIdentifier: "faultingState" | SDKHandle, sortDescriptors: $SDK57, predicate?: $SDK55, animation?: $SDK56): Promise<$SDK123> { return callSDKAsync<$SDK123>("SwiftUI_bd41a4085ee86f99", 3061880333735620, undefined, [sectionIdentifier, sortDescriptors, predicate, animation]); }
   declare readonly $type: { "s:7SwiftUI21SectionedFetchRequestV": true };
 }
 
@@ -10160,8 +10160,8 @@ export class SectionedFetchRequest_Configuration<SectionIdentifier = unknown, Re
    * var sortDescriptors: [SortDescriptor<Result>] { get set }
    * @availability iOS 15.0+
    */
-  get sortDescriptors(): Promise<$SDK53> { return callSDKAsync<$SDK53>("SwiftUI_64b39a05e4a4cebd", 129916378324453, this, []); }
-  setSortDescriptors(value: $SDK53): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 2578928652910974, this, [value]); }
+  get sortDescriptors(): Promise<$SDK53> { return callSDKAsync<$SDK53>("SwiftUI_bd41a4085ee86f99", 129916378324453, this, []); }
+  setSortDescriptors(value: $SDK53): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 2578928652910974, this, [value]); }
   declare readonly $type: { "s:7SwiftUI21SectionedFetchRequestV13ConfigurationV": true };
 }
 
@@ -10174,8 +10174,8 @@ export class SectionedFetchResults<SectionIdentifier = unknown, Result = unknown
    * @MainActor @preconcurrency var sortDescriptors: [SortDescriptor<Result>] { get nonmutating set }
    * @availability iOS 15.0+
    */
-  get sortDescriptors(): Promise<$SDK53> { return callSDKAsync<$SDK53>("SwiftUI_64b39a05e4a4cebd", 770243119625763, this, []); }
-  setSortDescriptors(value: $SDK53): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 481564049021795, this, [value]); }
+  get sortDescriptors(): Promise<$SDK53> { return callSDKAsync<$SDK53>("SwiftUI_bd41a4085ee86f99", 770243119625763, this, []); }
+  setSortDescriptors(value: $SDK53): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 481564049021795, this, [value]); }
   declare readonly $type: { "s:7SwiftUI21SectionedFetchResultsV": true };
 }
 
@@ -10262,44 +10262,44 @@ export class SecureField<Label = unknown> extends SDKHandle {
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, text: Binding<String>, prompt: Text?)
    * @availability iOS 16.0+
    */
-  static initTextPrompt(titleResource: _Foundation_LocalizedStringResource, text: $SDK127, prompt?: $SDK5): $SDK126 { return callSDK<$SDK126>("SwiftUI_64b39a05e4a4cebd", 1050049646698473, undefined, [titleResource, text, prompt]); }
+  static initTextPrompt(titleResource: _Foundation_LocalizedStringResource, text: $SDK127, prompt?: $SDK5): $SDK126 { return callSDK<$SDK126>("SwiftUI_bd41a4085ee86f99", 1050049646698473, undefined, [titleResource, text, prompt]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, prompt: Text?)
    * @availability iOS 15.0+
    */
-  static initTextPrompt10433(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, prompt?: $SDK5): $SDK126 { return callSDK<$SDK126>("SwiftUI_64b39a05e4a4cebd", 3413762499405696, undefined, [titleKey, text, prompt]); }
+  static initTextPrompt10433(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, prompt?: $SDK5): $SDK126 { return callSDK<$SDK126>("SwiftUI_bd41a4085ee86f99", 3413762499405696, undefined, [titleKey, text, prompt]); }
   /**
    * nonisolated init<S>(_ title: S, text: Binding<String>, prompt: Text?) where S : StringProtocol
    * @availability iOS 15.0+
    */
-  static initTextPrompt45231(title: string, text: $SDK127, prompt?: $SDK5): $SDK126 { return callSDK<$SDK126>("SwiftUI_64b39a05e4a4cebd", 1711379021102563, undefined, [title, text, prompt]); }
+  static initTextPrompt45231(title: string, text: $SDK127, prompt?: $SDK5): $SDK126 { return callSDK<$SDK126>("SwiftUI_bd41a4085ee86f99", 1711379021102563, undefined, [title, text, prompt]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, onCommit: @escaping () -> Void)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initTextOnCommit(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, onCommit: (() => void)): $SDK126 { return callSDK<$SDK126>("SwiftUI_64b39a05e4a4cebd", 2182012310502844, undefined, [titleKey, text, onCommit], [null,null,{"callback":{"out":[]}}]); }
+  static initTextOnCommit(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, onCommit: (() => void)): $SDK126 { return callSDK<$SDK126>("SwiftUI_bd41a4085ee86f99", 2182012310502844, undefined, [titleKey, text, onCommit], [null,null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated init<S>(_ title: S, text: Binding<String>, onCommit: @escaping () -> Void) where S : StringProtocol
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initTextOnCommit45604(title: string, text: $SDK127, onCommit: (() => void)): $SDK126 { return callSDK<$SDK126>("SwiftUI_64b39a05e4a4cebd", 3286207735085088, undefined, [title, text, onCommit], [null,null,{"callback":{"out":[]}}]); }
+  static initTextOnCommit45604(title: string, text: $SDK127, onCommit: (() => void)): $SDK126 { return callSDK<$SDK126>("SwiftUI_bd41a4085ee86f99", 3286207735085088, undefined, [title, text, onCommit], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, text: Binding<String>)
    * @availability iOS 16.0+
    */
-  static initText(titleResource: _Foundation_LocalizedStringResource, text: $SDK127): $SDK126 { return callSDK<$SDK126>("SwiftUI_64b39a05e4a4cebd", 2841636185625733, undefined, [titleResource, text]); }
+  static initText(titleResource: _Foundation_LocalizedStringResource, text: $SDK127): $SDK126 { return callSDK<$SDK126>("SwiftUI_bd41a4085ee86f99", 2841636185625733, undefined, [titleResource, text]); }
   /**
    * @export(implementation) nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>)
    * @availability iOS 13.0+
    */
-  static initText18553(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127): $SDK126 { return callSDK<$SDK126>("SwiftUI_64b39a05e4a4cebd", 3888802928219918, undefined, [titleKey, text]); }
+  static initText18553(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127): $SDK126 { return callSDK<$SDK126>("SwiftUI_bd41a4085ee86f99", 3888802928219918, undefined, [titleKey, text]); }
   /**
    * @export(implementation) nonisolated init<S>(_ title: S, text: Binding<String>) where S : StringProtocol
    * @availability iOS 13.0+
    */
-  static initText16995(title: string, text: $SDK127): $SDK126 { return callSDK<$SDK126>("SwiftUI_64b39a05e4a4cebd", 406291602959816, undefined, [title, text]); }
+  static initText16995(title: string, text: $SDK127): $SDK126 { return callSDK<$SDK126>("SwiftUI_bd41a4085ee86f99", 406291602959816, undefined, [title, text]); }
   declare readonly $type: { "s:7SwiftUI11SecureFieldV": true };
 }
 
@@ -10318,7 +10318,7 @@ export class SegmentedPickerStyle extends SDKHandle {
    * init()
    * @availability iOS 13.0+
    */
-  static init(): SegmentedPickerStyle { return callSDK<SegmentedPickerStyle>("SwiftUI_64b39a05e4a4cebd", 1835173888086293, undefined, []); }
+  static init(): SegmentedPickerStyle { return callSDK<SegmentedPickerStyle>("SwiftUI_bd41a4085ee86f99", 1835173888086293, undefined, []); }
   declare readonly $type: { "s:7SwiftUI20SegmentedPickerStyleV": true };
 }
 
@@ -10331,7 +10331,7 @@ export class SelectionShapeStyle extends SDKHandle {
    * init()
    * @availability iOS 15.0+
    */
-  static init(): SelectionShapeStyle { return callSDK<SelectionShapeStyle>("SwiftUI_64b39a05e4a4cebd", 198154701204279, undefined, []); }
+  static init(): SelectionShapeStyle { return callSDK<SelectionShapeStyle>("SwiftUI_bd41a4085ee86f99", 198154701204279, undefined, []); }
   declare readonly $type: { "s:7SwiftUI19SelectionShapeStyleV": true };
 }
 
@@ -10350,87 +10350,87 @@ export class SensoryFeedback extends SDKHandle {
    * static let levelChange: SensoryFeedback
    * @availability iOS 17.0+
    */
-  static get levelChange(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 1277581351883960, undefined, []); }
+  static get levelChange(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 1277581351883960, undefined, []); }
   /**
    * static let pathComplete: SensoryFeedback
    * @availability iOS 17.5+
    */
-  static get pathComplete(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 2651287334688075, undefined, []); }
+  static get pathComplete(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 2651287334688075, undefined, []); }
   /**
    * static let stop: SensoryFeedback
    * @availability iOS 17.0+
    */
-  static get stop(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 3497721381030345, undefined, []); }
+  static get stop(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 3497721381030345, undefined, []); }
   /**
    * static let error: SensoryFeedback
    * @availability iOS 17.0+
    */
-  static get error(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 259701280253094, undefined, []); }
+  static get error(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 259701280253094, undefined, []); }
   /**
    * static func press(_ feedback: SensoryFeedback.PressFeedback) -> SensoryFeedback
    * @availability iOS 26.0+
    */
-  static press(feedback: SensoryFeedback_PressFeedback): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 2673804700200683, undefined, [feedback]); }
+  static press(feedback: SensoryFeedback_PressFeedback): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 2673804700200683, undefined, [feedback]); }
   /**
    * static let start: SensoryFeedback
    * @availability iOS 17.0+
    */
-  static get start(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 2625494874083783, undefined, []); }
+  static get start(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 2625494874083783, undefined, []); }
   /**
    * static func impact(flexibility: SensoryFeedback.Flexibility, intensity: Double = 1.0) -> SensoryFeedback
    * @availability iOS 17.0+
    */
-  static impactFlexibilityIntensity(flexibility: SensoryFeedback_Flexibility, intensity?: number): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 3014522289470122, undefined, [flexibility, intensity]); }
+  static impactFlexibilityIntensity(flexibility: SensoryFeedback_Flexibility, intensity?: number): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 3014522289470122, undefined, [flexibility, intensity]); }
   /**
    * static func impact(weight: SensoryFeedback.Weight = .medium, intensity: Double = 1.0) -> SensoryFeedback
    * @availability iOS 17.0+
    */
-  static impactWeightIntensity(weight?: SensoryFeedback_Weight, intensity?: number): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 3528914652344737, undefined, [weight, intensity]); }
+  static impactWeightIntensity(weight?: SensoryFeedback_Weight, intensity?: number): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 3528914652344737, undefined, [weight, intensity]); }
   /**
    * static let impact: SensoryFeedback
    * @availability iOS 17.0+
    */
-  static get impact(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 67160752636902, undefined, []); }
+  static get impact(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 67160752636902, undefined, []); }
   /**
    * static func release(_ feedback: SensoryFeedback.ReleaseFeedback) -> SensoryFeedback
    * @availability iOS 26.0+
    */
-  static release(feedback: SensoryFeedback_ReleaseFeedback): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 2363203868090107, undefined, [feedback]); }
+  static release(feedback: SensoryFeedback_ReleaseFeedback): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 2363203868090107, undefined, [feedback]); }
   /**
    * static let success: SensoryFeedback
    * @availability iOS 17.0+
    */
-  static get success(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 920681631754459, undefined, []); }
+  static get success(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 920681631754459, undefined, []); }
   /**
    * static let warning: SensoryFeedback
    * @availability iOS 17.0+
    */
-  static get warning(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 2174580086167764, undefined, []); }
+  static get warning(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 2174580086167764, undefined, []); }
   /**
    * static let decrease: SensoryFeedback
    * @availability iOS 17.0+
    */
-  static get decrease(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 2096564101986009, undefined, []); }
+  static get decrease(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 2096564101986009, undefined, []); }
   /**
    * static let increase: SensoryFeedback
    * @availability iOS 17.0+
    */
-  static get increase(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 1944072295606930, undefined, []); }
+  static get increase(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 1944072295606930, undefined, []); }
   /**
    * static let alignment: SensoryFeedback
    * @availability iOS 17.0+
    */
-  static get alignment(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 2875910539857720, undefined, []); }
+  static get alignment(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 2875910539857720, undefined, []); }
   /**
    * static let selection: SensoryFeedback
    * @availability iOS 17.0+
    */
-  static get selection(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 2054688551222120, undefined, []); }
+  static get selection(): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 2054688551222120, undefined, []); }
   /**
    * static func selection(_ feedback: SensoryFeedback.SelectionFeedback) -> SensoryFeedback
    * @availability iOS 26.0+
    */
-  static selection8389(feedback: SensoryFeedback_SelectionFeedback): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_64b39a05e4a4cebd", 4166888690790696, undefined, [feedback]); }
+  static selection8389(feedback: SensoryFeedback_SelectionFeedback): SensoryFeedback { return callSDK<SensoryFeedback>("SwiftUI_bd41a4085ee86f99", 4166888690790696, undefined, [feedback]); }
   declare readonly $type: { "s:7SwiftUI15SensoryFeedbackV": true };
 }
 
@@ -10443,17 +10443,17 @@ export class SensoryFeedback_Flexibility extends SDKHandle {
    * static let soft: SensoryFeedback.Flexibility
    * @availability iOS 17.0+
    */
-  static get soft(): SensoryFeedback_Flexibility { return callSDK<SensoryFeedback_Flexibility>("SwiftUI_64b39a05e4a4cebd", 343316769789422, undefined, []); }
+  static get soft(): SensoryFeedback_Flexibility { return callSDK<SensoryFeedback_Flexibility>("SwiftUI_bd41a4085ee86f99", 343316769789422, undefined, []); }
   /**
    * static let rigid: SensoryFeedback.Flexibility
    * @availability iOS 17.0+
    */
-  static get rigid(): SensoryFeedback_Flexibility { return callSDK<SensoryFeedback_Flexibility>("SwiftUI_64b39a05e4a4cebd", 1596255925401280, undefined, []); }
+  static get rigid(): SensoryFeedback_Flexibility { return callSDK<SensoryFeedback_Flexibility>("SwiftUI_bd41a4085ee86f99", 1596255925401280, undefined, []); }
   /**
    * static let solid: SensoryFeedback.Flexibility
    * @availability iOS 17.0+
    */
-  static get solid(): SensoryFeedback_Flexibility { return callSDK<SensoryFeedback_Flexibility>("SwiftUI_64b39a05e4a4cebd", 3873051123288770, undefined, []); }
+  static get solid(): SensoryFeedback_Flexibility { return callSDK<SensoryFeedback_Flexibility>("SwiftUI_bd41a4085ee86f99", 3873051123288770, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15SensoryFeedbackV11FlexibilityV": true };
 }
 
@@ -10466,27 +10466,27 @@ export class SensoryFeedback_PressFeedback extends SDKHandle {
    * static let buttonIconOnly: SensoryFeedback.PressFeedback
    * @availability iOS 26.0+
    */
-  static get buttonIconOnly(): SensoryFeedback_PressFeedback { return callSDK<SensoryFeedback_PressFeedback>("SwiftUI_64b39a05e4a4cebd", 3239744044053085, undefined, []); }
+  static get buttonIconOnly(): SensoryFeedback_PressFeedback { return callSDK<SensoryFeedback_PressFeedback>("SwiftUI_bd41a4085ee86f99", 3239744044053085, undefined, []); }
   /**
    * static let tab: SensoryFeedback.PressFeedback
    * @availability iOS 26.0+
    */
-  static get tab(): SensoryFeedback_PressFeedback { return callSDK<SensoryFeedback_PressFeedback>("SwiftUI_64b39a05e4a4cebd", 583132013927451, undefined, []); }
+  static get tab(): SensoryFeedback_PressFeedback { return callSDK<SensoryFeedback_PressFeedback>("SwiftUI_bd41a4085ee86f99", 583132013927451, undefined, []); }
   /**
    * static let button: SensoryFeedback.PressFeedback
    * @availability iOS 26.0+
    */
-  static get button(): SensoryFeedback_PressFeedback { return callSDK<SensoryFeedback_PressFeedback>("SwiftUI_64b39a05e4a4cebd", 35389229557100, undefined, []); }
+  static get button(): SensoryFeedback_PressFeedback { return callSDK<SensoryFeedback_PressFeedback>("SwiftUI_bd41a4085ee86f99", 35389229557100, undefined, []); }
   /**
    * static let slider: SensoryFeedback.PressFeedback
    * @availability iOS 26.0+
    */
-  static get slider(): SensoryFeedback_PressFeedback { return callSDK<SensoryFeedback_PressFeedback>("SwiftUI_64b39a05e4a4cebd", 1333761592305381, undefined, []); }
+  static get slider(): SensoryFeedback_PressFeedback { return callSDK<SensoryFeedback_PressFeedback>("SwiftUI_bd41a4085ee86f99", 1333761592305381, undefined, []); }
   /**
    * static let toggle: SensoryFeedback.PressFeedback
    * @availability iOS 26.0+
    */
-  static get toggle(): SensoryFeedback_PressFeedback { return callSDK<SensoryFeedback_PressFeedback>("SwiftUI_64b39a05e4a4cebd", 3530543389111387, undefined, []); }
+  static get toggle(): SensoryFeedback_PressFeedback { return callSDK<SensoryFeedback_PressFeedback>("SwiftUI_bd41a4085ee86f99", 3530543389111387, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15SensoryFeedbackV05PressD0V": true };
 }
 
@@ -10499,7 +10499,7 @@ export class SensoryFeedback_ReleaseFeedback extends SDKHandle {
    * static let slider: SensoryFeedback.ReleaseFeedback
    * @availability iOS 26.0+
    */
-  static get slider(): SensoryFeedback_ReleaseFeedback { return callSDK<SensoryFeedback_ReleaseFeedback>("SwiftUI_64b39a05e4a4cebd", 3191071554030673, undefined, []); }
+  static get slider(): SensoryFeedback_ReleaseFeedback { return callSDK<SensoryFeedback_ReleaseFeedback>("SwiftUI_bd41a4085ee86f99", 3191071554030673, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15SensoryFeedbackV07ReleaseD0V": true };
 }
 
@@ -10512,22 +10512,22 @@ export class SensoryFeedback_SelectionFeedback extends SDKHandle {
    * static let on: SensoryFeedback.SelectionFeedback
    * @availability iOS 26.0+
    */
-  static get on(): SensoryFeedback_SelectionFeedback { return callSDK<SensoryFeedback_SelectionFeedback>("SwiftUI_64b39a05e4a4cebd", 2366864532920026, undefined, []); }
+  static get on(): SensoryFeedback_SelectionFeedback { return callSDK<SensoryFeedback_SelectionFeedback>("SwiftUI_bd41a4085ee86f99", 2366864532920026, undefined, []); }
   /**
    * static let off: SensoryFeedback.SelectionFeedback
    * @availability iOS 26.0+
    */
-  static get off(): SensoryFeedback_SelectionFeedback { return callSDK<SensoryFeedback_SelectionFeedback>("SwiftUI_64b39a05e4a4cebd", 1059437418018950, undefined, []); }
+  static get off(): SensoryFeedback_SelectionFeedback { return callSDK<SensoryFeedback_SelectionFeedback>("SwiftUI_bd41a4085ee86f99", 1059437418018950, undefined, []); }
   /**
    * static let maximum: SensoryFeedback.SelectionFeedback
    * @availability iOS 26.0+
    */
-  static get maximum(): SensoryFeedback_SelectionFeedback { return callSDK<SensoryFeedback_SelectionFeedback>("SwiftUI_64b39a05e4a4cebd", 3522672017235593, undefined, []); }
+  static get maximum(): SensoryFeedback_SelectionFeedback { return callSDK<SensoryFeedback_SelectionFeedback>("SwiftUI_bd41a4085ee86f99", 3522672017235593, undefined, []); }
   /**
    * static let minimum: SensoryFeedback.SelectionFeedback
    * @availability iOS 26.0+
    */
-  static get minimum(): SensoryFeedback_SelectionFeedback { return callSDK<SensoryFeedback_SelectionFeedback>("SwiftUI_64b39a05e4a4cebd", 1725041492421751, undefined, []); }
+  static get minimum(): SensoryFeedback_SelectionFeedback { return callSDK<SensoryFeedback_SelectionFeedback>("SwiftUI_bd41a4085ee86f99", 1725041492421751, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15SensoryFeedbackV09SelectionD0V": true };
 }
 
@@ -10540,17 +10540,17 @@ export class SensoryFeedback_Weight extends SDKHandle {
    * static let heavy: SensoryFeedback.Weight
    * @availability iOS 17.0+
    */
-  static get heavy(): SensoryFeedback_Weight { return callSDK<SensoryFeedback_Weight>("SwiftUI_64b39a05e4a4cebd", 3220044254472683, undefined, []); }
+  static get heavy(): SensoryFeedback_Weight { return callSDK<SensoryFeedback_Weight>("SwiftUI_bd41a4085ee86f99", 3220044254472683, undefined, []); }
   /**
    * static let light: SensoryFeedback.Weight
    * @availability iOS 17.0+
    */
-  static get light(): SensoryFeedback_Weight { return callSDK<SensoryFeedback_Weight>("SwiftUI_64b39a05e4a4cebd", 3689228936491766, undefined, []); }
+  static get light(): SensoryFeedback_Weight { return callSDK<SensoryFeedback_Weight>("SwiftUI_bd41a4085ee86f99", 3689228936491766, undefined, []); }
   /**
    * static let medium: SensoryFeedback.Weight
    * @availability iOS 17.0+
    */
-  static get medium(): SensoryFeedback_Weight { return callSDK<SensoryFeedback_Weight>("SwiftUI_64b39a05e4a4cebd", 2822165211831318, undefined, []); }
+  static get medium(): SensoryFeedback_Weight { return callSDK<SensoryFeedback_Weight>("SwiftUI_bd41a4085ee86f99", 2822165211831318, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15SensoryFeedbackV6WeightV": true };
 }
 
@@ -10585,127 +10585,127 @@ export class ShareLink<Data = unknown, PreviewImage = unknown, PreviewIcon = unk
    * nonisolated init<I>(item: I, subject: Text? = nil, message: Text? = nil, preview: SharePreview<PreviewImage, PreviewIcon>) where Data == CollectionOfOne<I>, I : Transferable
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessagePreview(item: string, subject: $SDK5, message: $SDK5, preview: $SDK129): $SDK128 { return callSDK<$SDK128>("SwiftUI_64b39a05e4a4cebd", 4188347182187431, undefined, [item, subject, message, preview]); }
+  static initItemSubjectMessagePreview(item: string, subject: $SDK5, message: $SDK5, preview: $SDK129): $SDK128 { return callSDK<$SDK128>("SwiftUI_bd41a4085ee86f99", 4188347182187431, undefined, [item, subject, message, preview]); }
   /**
    * nonisolated init<S, I>(_ title: S, item: I, subject: Text? = nil, message: Text? = nil, preview: SharePreview<PreviewImage, PreviewIcon>) where Data == CollectionOfOne<I>, S : StringProtocol, I : Transferable
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessagePreview59523(title: string, item: string, subject: $SDK5, message: $SDK5, preview: $SDK129): $SDK128 { return callSDK<$SDK128>("SwiftUI_64b39a05e4a4cebd", 487597743549929, undefined, [title, item, subject, message, preview]); }
+  static initItemSubjectMessagePreview59523(title: string, item: string, subject: $SDK5, message: $SDK5, preview: $SDK129): $SDK128 { return callSDK<$SDK128>("SwiftUI_bd41a4085ee86f99", 487597743549929, undefined, [title, item, subject, message, preview]); }
   /**
    * @export(implementation) nonisolated init<I>(_ titleResource: LocalizedStringResource, item: I, subject: Text? = nil, message: Text? = nil, preview: SharePreview<PreviewImage, PreviewIcon>) where Data == CollectionOfOne<I>, I : Transferable
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessagePreview55389(titleResource: _Foundation_LocalizedStringResource, item: string, subject: $SDK5, message: $SDK5, preview: $SDK129): $SDK128 { return callSDK<$SDK128>("SwiftUI_64b39a05e4a4cebd", 3031087371267524, undefined, [titleResource, item, subject, message, preview]); }
+  static initItemSubjectMessagePreview55389(titleResource: _Foundation_LocalizedStringResource, item: string, subject: $SDK5, message: $SDK5, preview: $SDK129): $SDK128 { return callSDK<$SDK128>("SwiftUI_bd41a4085ee86f99", 3031087371267524, undefined, [titleResource, item, subject, message, preview]); }
   /**
    * nonisolated init<I>(_ titleKey: LocalizedStringKey, item: I, subject: Text? = nil, message: Text? = nil, preview: SharePreview<PreviewImage, PreviewIcon>) where Data == CollectionOfOne<I>, I : Transferable
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessagePreview47140(titleKey: _SwiftUICore_LocalizedStringKey, item: string, subject: $SDK5, message: $SDK5, preview: $SDK129): $SDK128 { return callSDK<$SDK128>("SwiftUI_64b39a05e4a4cebd", 4155350489265710, undefined, [titleKey, item, subject, message, preview]); }
+  static initItemSubjectMessagePreview47140(titleKey: _SwiftUICore_LocalizedStringKey, item: string, subject: $SDK5, message: $SDK5, preview: $SDK129): $SDK128 { return callSDK<$SDK128>("SwiftUI_bd41a4085ee86f99", 4155350489265710, undefined, [titleKey, item, subject, message, preview]); }
   /**
    * nonisolated init<I>(_ title: Text, item: I, subject: Text? = nil, message: Text? = nil, preview: SharePreview<PreviewImage, PreviewIcon>) where Data == CollectionOfOne<I>, I : Transferable
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessagePreview63925(title: _SwiftUICore_Text, item: string, subject: $SDK5, message: $SDK5, preview: $SDK129): $SDK128 { return callSDK<$SDK128>("SwiftUI_64b39a05e4a4cebd", 440341828361931, undefined, [title, item, subject, message, preview]); }
+  static initItemSubjectMessagePreview63925(title: _SwiftUICore_Text, item: string, subject: $SDK5, message: $SDK5, preview: $SDK129): $SDK128 { return callSDK<$SDK128>("SwiftUI_bd41a4085ee86f99", 440341828361931, undefined, [title, item, subject, message, preview]); }
   /**
    * nonisolated init(items: Data, subject: Text? = nil, message: Text? = nil)
    * @availability iOS 16.0+
    */
-  static initItemsSubjectMessage(items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_64b39a05e4a4cebd", 2086632449175977, undefined, [items, subject, message]); }
+  static initItemsSubjectMessage(items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_bd41a4085ee86f99", 2086632449175977, undefined, [items, subject, message]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, items: Data, subject: Text? = nil, message: Text? = nil)
    * @availability iOS 16.0+
    */
-  static initItemsSubjectMessage61034(titleKey: _SwiftUICore_LocalizedStringKey, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_64b39a05e4a4cebd", 4273138808155719, undefined, [titleKey, items, subject, message]); }
+  static initItemsSubjectMessage61034(titleKey: _SwiftUICore_LocalizedStringKey, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_bd41a4085ee86f99", 4273138808155719, undefined, [titleKey, items, subject, message]); }
   /**
    * nonisolated init(_ title: Text, items: Data, subject: Text? = nil, message: Text? = nil)
    * @availability iOS 16.0+
    */
-  static initItemsSubjectMessage1013(title: _SwiftUICore_Text, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_64b39a05e4a4cebd", 3045519042547604, undefined, [title, items, subject, message]); }
+  static initItemsSubjectMessage1013(title: _SwiftUICore_Text, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_bd41a4085ee86f99", 3045519042547604, undefined, [title, items, subject, message]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, items: Data, subject: Text? = nil, message: Text? = nil)
    * @availability iOS 16.0+
    */
-  static initItemsSubjectMessage95416(titleResource: _Foundation_LocalizedStringResource, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_64b39a05e4a4cebd", 3601017695472612, undefined, [titleResource, items, subject, message]); }
+  static initItemsSubjectMessage95416(titleResource: _Foundation_LocalizedStringResource, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_bd41a4085ee86f99", 3601017695472612, undefined, [titleResource, items, subject, message]); }
   /**
    * nonisolated init<S>(_ title: S, items: Data, subject: Text? = nil, message: Text? = nil) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initItemsSubjectMessage8002(title: string, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_64b39a05e4a4cebd", 2711433470706985, undefined, [title, items, subject, message]); }
+  static initItemsSubjectMessage8002(title: string, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_bd41a4085ee86f99", 2711433470706985, undefined, [title, items, subject, message]); }
   /**
    * nonisolated init(items: Data, subject: Text? = nil, message: Text? = nil)
    * @availability iOS 16.0+
    */
-  static initItemsSubjectMessage66560(items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_64b39a05e4a4cebd", 128785120650593, undefined, [items, subject, message]); }
+  static initItemsSubjectMessage66560(items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_bd41a4085ee86f99", 128785120650593, undefined, [items, subject, message]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, items: Data, subject: Text? = nil, message: Text? = nil)
    * @availability iOS 16.0+
    */
-  static initItemsSubjectMessage98901(titleResource: _Foundation_LocalizedStringResource, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_64b39a05e4a4cebd", 3790951805288527, undefined, [titleResource, items, subject, message]); }
+  static initItemsSubjectMessage98901(titleResource: _Foundation_LocalizedStringResource, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_bd41a4085ee86f99", 3790951805288527, undefined, [titleResource, items, subject, message]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, items: Data, subject: Text? = nil, message: Text? = nil)
    * @availability iOS 16.0+
    */
-  static initItemsSubjectMessage83489(titleKey: _SwiftUICore_LocalizedStringKey, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_64b39a05e4a4cebd", 3882035000897015, undefined, [titleKey, items, subject, message]); }
+  static initItemsSubjectMessage83489(titleKey: _SwiftUICore_LocalizedStringKey, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_bd41a4085ee86f99", 3882035000897015, undefined, [titleKey, items, subject, message]); }
   /**
    * nonisolated init(_ title: Text, items: Data, subject: Text? = nil, message: Text? = nil)
    * @availability iOS 16.0+
    */
-  static initItemsSubjectMessage14241(title: _SwiftUICore_Text, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_64b39a05e4a4cebd", 467275408097890, undefined, [title, items, subject, message]); }
+  static initItemsSubjectMessage14241(title: _SwiftUICore_Text, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_bd41a4085ee86f99", 467275408097890, undefined, [title, items, subject, message]); }
   /**
    * nonisolated init<S>(_ title: S, items: Data, subject: Text? = nil, message: Text? = nil) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initItemsSubjectMessage47445(title: string, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_64b39a05e4a4cebd", 354640780426130, undefined, [title, items, subject, message]); }
+  static initItemsSubjectMessage47445(title: string, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK130 { return callSDK<$SDK130>("SwiftUI_bd41a4085ee86f99", 354640780426130, undefined, [title, items, subject, message]); }
   /**
    * nonisolated init(item: URL, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<URL>
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessage(item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_64b39a05e4a4cebd", 598332145384297, undefined, [item, subject, message]); }
+  static initItemSubjectMessage(item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_bd41a4085ee86f99", 598332145384297, undefined, [item, subject, message]); }
   /**
    * nonisolated init(item: String, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<String>
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessage67790(item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_64b39a05e4a4cebd", 4264676982443703, undefined, [item, subject, message]); }
+  static initItemSubjectMessage67790(item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_bd41a4085ee86f99", 4264676982443703, undefined, [item, subject, message]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, item: URL, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<URL>
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessage41860(titleKey: _SwiftUICore_LocalizedStringKey, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_64b39a05e4a4cebd", 158926067037778, undefined, [titleKey, item, subject, message]); }
+  static initItemSubjectMessage41860(titleKey: _SwiftUICore_LocalizedStringKey, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_bd41a4085ee86f99", 158926067037778, undefined, [titleKey, item, subject, message]); }
   /**
    * nonisolated init(_ title: Text, item: URL, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<URL>
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessage60070(title: _SwiftUICore_Text, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_64b39a05e4a4cebd", 3379484679052213, undefined, [title, item, subject, message]); }
+  static initItemSubjectMessage60070(title: _SwiftUICore_Text, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_bd41a4085ee86f99", 3379484679052213, undefined, [title, item, subject, message]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, item: URL, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<URL>
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessage88991(titleResource: _Foundation_LocalizedStringResource, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_64b39a05e4a4cebd", 1853362022761568, undefined, [titleResource, item, subject, message]); }
+  static initItemSubjectMessage88991(titleResource: _Foundation_LocalizedStringResource, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_bd41a4085ee86f99", 1853362022761568, undefined, [titleResource, item, subject, message]); }
   /**
    * nonisolated init<S>(_ title: S, item: URL, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<URL>, S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessage85657(title: string, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_64b39a05e4a4cebd", 174967989558731, undefined, [title, item, subject, message]); }
+  static initItemSubjectMessage85657(title: string, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_bd41a4085ee86f99", 174967989558731, undefined, [title, item, subject, message]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, item: String, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<String>
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessage63559(titleResource: _Foundation_LocalizedStringResource, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_64b39a05e4a4cebd", 3245252092661617, undefined, [titleResource, item, subject, message]); }
+  static initItemSubjectMessage63559(titleResource: _Foundation_LocalizedStringResource, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_bd41a4085ee86f99", 3245252092661617, undefined, [titleResource, item, subject, message]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, item: String, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<String>
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessage66349(titleKey: _SwiftUICore_LocalizedStringKey, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_64b39a05e4a4cebd", 704541415719606, undefined, [titleKey, item, subject, message]); }
+  static initItemSubjectMessage66349(titleKey: _SwiftUICore_LocalizedStringKey, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_bd41a4085ee86f99", 704541415719606, undefined, [titleKey, item, subject, message]); }
   /**
    * nonisolated init(_ title: Text, item: String, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<String>
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessage12188(title: _SwiftUICore_Text, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_64b39a05e4a4cebd", 3714952664537776, undefined, [title, item, subject, message]); }
+  static initItemSubjectMessage12188(title: _SwiftUICore_Text, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_bd41a4085ee86f99", 3714952664537776, undefined, [title, item, subject, message]); }
   /**
    * nonisolated init<S>(_ title: S, item: String, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<String>, S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initItemSubjectMessage10880(title: string, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_64b39a05e4a4cebd", 1180874116271854, undefined, [title, item, subject, message]); }
+  static initItemSubjectMessage10880(title: string, item: string, subject?: $SDK5, message?: $SDK5): $SDK131 { return callSDK<$SDK131>("SwiftUI_bd41a4085ee86f99", 1180874116271854, undefined, [title, item, subject, message]); }
   declare readonly $type: { "s:7SwiftUI9ShareLinkV": true };
 }
 
@@ -10724,82 +10724,82 @@ export class SharePreview<Image = unknown, Icon = unknown> extends SDKHandle {
    * @export(implementation) init(_ titleResource: LocalizedStringResource, image: Image)
    * @availability iOS 16.0+
    */
-  static initImage(titleResource: _Foundation_LocalizedStringResource, image: string): $SDK132 { return callSDK<$SDK132>("SwiftUI_64b39a05e4a4cebd", 2642282852368860, undefined, [titleResource, image]); }
+  static initImage(titleResource: _Foundation_LocalizedStringResource, image: string): $SDK132 { return callSDK<$SDK132>("SwiftUI_bd41a4085ee86f99", 2642282852368860, undefined, [titleResource, image]); }
   /**
    * init(_ titleKey: LocalizedStringKey, image: Image)
    * @availability iOS 16.0+
    */
-  static initImage74208(titleKey: _SwiftUICore_LocalizedStringKey, image: string): $SDK132 { return callSDK<$SDK132>("SwiftUI_64b39a05e4a4cebd", 3049192705902259, undefined, [titleKey, image]); }
+  static initImage74208(titleKey: _SwiftUICore_LocalizedStringKey, image: string): $SDK132 { return callSDK<$SDK132>("SwiftUI_bd41a4085ee86f99", 3049192705902259, undefined, [titleKey, image]); }
   /**
    * init(_ title: Text, image: Image)
    * @availability iOS 16.0+
    */
-  static initImage70757(title: _SwiftUICore_Text, image: string): $SDK132 { return callSDK<$SDK132>("SwiftUI_64b39a05e4a4cebd", 2897186378730635, undefined, [title, image]); }
+  static initImage70757(title: _SwiftUICore_Text, image: string): $SDK132 { return callSDK<$SDK132>("SwiftUI_bd41a4085ee86f99", 2897186378730635, undefined, [title, image]); }
   /**
    * init<S>(_ title: S, image: Image) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initImage65148(title: string, image: string): $SDK132 { return callSDK<$SDK132>("SwiftUI_64b39a05e4a4cebd", 1803373052968592, undefined, [title, image]); }
+  static initImage65148(title: string, image: string): $SDK132 { return callSDK<$SDK132>("SwiftUI_bd41a4085ee86f99", 1803373052968592, undefined, [title, image]); }
   /**
    * @export(implementation) init(_ titleResource: LocalizedStringResource)
    * @availability iOS 16.0+
    */
-  static init(titleResource: _Foundation_LocalizedStringResource): $SDK133 { return callSDK<$SDK133>("SwiftUI_64b39a05e4a4cebd", 2046722886113660, undefined, [titleResource]); }
+  static init(titleResource: _Foundation_LocalizedStringResource): $SDK133 { return callSDK<$SDK133>("SwiftUI_bd41a4085ee86f99", 2046722886113660, undefined, [titleResource]); }
   /**
    * init(_ titleKey: LocalizedStringKey)
    * @availability iOS 16.0+
    */
-  static init91740(titleKey: _SwiftUICore_LocalizedStringKey): $SDK133 { return callSDK<$SDK133>("SwiftUI_64b39a05e4a4cebd", 3278915877824915, undefined, [titleKey]); }
+  static init91740(titleKey: _SwiftUICore_LocalizedStringKey): $SDK133 { return callSDK<$SDK133>("SwiftUI_bd41a4085ee86f99", 3278915877824915, undefined, [titleKey]); }
   /**
    * init(_ title: Text)
    * @availability iOS 16.0+
    */
-  static init3317(title: _SwiftUICore_Text): $SDK133 { return callSDK<$SDK133>("SwiftUI_64b39a05e4a4cebd", 431440032759109, undefined, [title]); }
+  static init3317(title: _SwiftUICore_Text): $SDK133 { return callSDK<$SDK133>("SwiftUI_bd41a4085ee86f99", 431440032759109, undefined, [title]); }
   /**
    * init<S>(_ title: S) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static init85892(title: string): $SDK133 { return callSDK<$SDK133>("SwiftUI_64b39a05e4a4cebd", 1117270879943348, undefined, [title]); }
+  static init85892(title: string): $SDK133 { return callSDK<$SDK133>("SwiftUI_bd41a4085ee86f99", 1117270879943348, undefined, [title]); }
   /**
    * @export(implementation) init(_ titleResource: LocalizedStringResource, icon: Icon)
    * @availability iOS 16.0+
    */
-  static initIcon(titleResource: _Foundation_LocalizedStringResource, icon: string): $SDK134 { return callSDK<$SDK134>("SwiftUI_64b39a05e4a4cebd", 89570579097223, undefined, [titleResource, icon]); }
+  static initIcon(titleResource: _Foundation_LocalizedStringResource, icon: string): $SDK134 { return callSDK<$SDK134>("SwiftUI_bd41a4085ee86f99", 89570579097223, undefined, [titleResource, icon]); }
   /**
    * init(_ titleKey: LocalizedStringKey, icon: Icon)
    * @availability iOS 16.0+
    */
-  static initIcon76522(titleKey: _SwiftUICore_LocalizedStringKey, icon: string): $SDK134 { return callSDK<$SDK134>("SwiftUI_64b39a05e4a4cebd", 1272232673450684, undefined, [titleKey, icon]); }
+  static initIcon76522(titleKey: _SwiftUICore_LocalizedStringKey, icon: string): $SDK134 { return callSDK<$SDK134>("SwiftUI_bd41a4085ee86f99", 1272232673450684, undefined, [titleKey, icon]); }
   /**
    * init(_ title: Text, icon: Icon)
    * @availability iOS 16.0+
    */
-  static initIcon23621(title: _SwiftUICore_Text, icon: string): $SDK134 { return callSDK<$SDK134>("SwiftUI_64b39a05e4a4cebd", 2973817507924642, undefined, [title, icon]); }
+  static initIcon23621(title: _SwiftUICore_Text, icon: string): $SDK134 { return callSDK<$SDK134>("SwiftUI_bd41a4085ee86f99", 2973817507924642, undefined, [title, icon]); }
   /**
    * init<S>(_ title: S, icon: Icon) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initIcon68432(title: string, icon: string): $SDK134 { return callSDK<$SDK134>("SwiftUI_64b39a05e4a4cebd", 3150084979749155, undefined, [title, icon]); }
+  static initIcon68432(title: string, icon: string): $SDK134 { return callSDK<$SDK134>("SwiftUI_bd41a4085ee86f99", 3150084979749155, undefined, [title, icon]); }
   /**
    * @export(implementation) init(_ titleResource: LocalizedStringResource, image: Image, icon: Icon)
    * @availability iOS 16.0+
    */
-  static initImageIcon(titleResource: _Foundation_LocalizedStringResource, image: string, icon: string): $SDK129 { return callSDK<$SDK129>("SwiftUI_64b39a05e4a4cebd", 3298089934455568, undefined, [titleResource, image, icon]); }
+  static initImageIcon(titleResource: _Foundation_LocalizedStringResource, image: string, icon: string): $SDK129 { return callSDK<$SDK129>("SwiftUI_bd41a4085ee86f99", 3298089934455568, undefined, [titleResource, image, icon]); }
   /**
    * init(_ titleKey: LocalizedStringKey, image: Image, icon: Icon)
    * @availability iOS 16.0+
    */
-  static initImageIcon22749(titleKey: _SwiftUICore_LocalizedStringKey, image: string, icon: string): $SDK129 { return callSDK<$SDK129>("SwiftUI_64b39a05e4a4cebd", 1915927971852867, undefined, [titleKey, image, icon]); }
+  static initImageIcon22749(titleKey: _SwiftUICore_LocalizedStringKey, image: string, icon: string): $SDK129 { return callSDK<$SDK129>("SwiftUI_bd41a4085ee86f99", 1915927971852867, undefined, [titleKey, image, icon]); }
   /**
    * init(_ title: Text, image: Image, icon: Icon)
    * @availability iOS 16.0+
    */
-  static initImageIcon30662(title: _SwiftUICore_Text, image: string, icon: string): $SDK129 { return callSDK<$SDK129>("SwiftUI_64b39a05e4a4cebd", 3043167502762415, undefined, [title, image, icon]); }
+  static initImageIcon30662(title: _SwiftUICore_Text, image: string, icon: string): $SDK129 { return callSDK<$SDK129>("SwiftUI_bd41a4085ee86f99", 3043167502762415, undefined, [title, image, icon]); }
   /**
    * init<S>(_ title: S, image: Image, icon: Icon) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initImageIcon4671(title: string, image: string, icon: string): $SDK129 { return callSDK<$SDK129>("SwiftUI_64b39a05e4a4cebd", 3871250116315815, undefined, [title, image, icon]); }
+  static initImageIcon4671(title: string, image: string, icon: string): $SDK129 { return callSDK<$SDK129>("SwiftUI_bd41a4085ee86f99", 3871250116315815, undefined, [title, image, icon]); }
   declare readonly $type: { "s:7SwiftUI12SharePreviewV": true };
 }
 
@@ -10812,7 +10812,7 @@ export class SidebarAdaptableTabViewStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 18.0+
    */
-  static init(): SidebarAdaptableTabViewStyle { return callSDK<SidebarAdaptableTabViewStyle>("SwiftUI_64b39a05e4a4cebd", 698638040800074, undefined, []); }
+  static init(): SidebarAdaptableTabViewStyle { return callSDK<SidebarAdaptableTabViewStyle>("SwiftUI_bd41a4085ee86f99", 698638040800074, undefined, []); }
   declare readonly $type: { "s:7SwiftUI28SidebarAdaptableTabViewStyleV": true };
 }
 
@@ -10825,7 +10825,7 @@ export class SidebarCommands extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): SidebarCommands { return callSDK<SidebarCommands>("SwiftUI_64b39a05e4a4cebd", 946454562593537, undefined, []); }
+  static init(): SidebarCommands { return callSDK<SidebarCommands>("SwiftUI_bd41a4085ee86f99", 946454562593537, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15SidebarCommandsV": true };
 }
 
@@ -10844,7 +10844,7 @@ export class SidebarListStyle extends SDKHandle {
    * init()
    * @availability iOS 14.0+
    */
-  static init(): SidebarListStyle { return callSDK<SidebarListStyle>("SwiftUI_64b39a05e4a4cebd", 1189852274466706, undefined, []); }
+  static init(): SidebarListStyle { return callSDK<SidebarListStyle>("SwiftUI_bd41a4085ee86f99", 1189852274466706, undefined, []); }
   declare readonly $type: { "s:7SwiftUI16SidebarListStyleV": true };
 }
 
@@ -10863,12 +10863,12 @@ export class Slider<Label = unknown, ValueLabel = unknown> extends SDKHandle {
    * nonisolated init<V>(value: Binding<V>, in bounds: ClosedRange<V> = 0...1, onEditingChanged: @escaping (Bool) -> Void = { _ in }) where V : BinaryFloatingPoint, V.Stride : BinaryFloatingPoint
    * @availability iOS 13.0+
    */
-  static initValueInOnEditingChanged(value: _SwiftUICore_Binding<number>, bounds?: SDKHandle, onEditingChanged?: $SDK137): $SDK135 { return callSDK<$SDK135>("SwiftUI_64b39a05e4a4cebd", 1493052090309224, undefined, [value, bounds, onEditingChanged], [null,null,{"callback":{"out":[]}}]); }
+  static initValueInOnEditingChanged(value: _SwiftUICore_Binding<number>, bounds?: SDKHandle, onEditingChanged?: $SDK137): $SDK135 { return callSDK<$SDK135>("SwiftUI_bd41a4085ee86f99", 1493052090309224, undefined, [value, bounds, onEditingChanged], [null,null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated init<V>(value: Binding<V>, in bounds: ClosedRange<V>, step: V.Stride = 1, onEditingChanged: @escaping (Bool) -> Void = { _ in }) where V : BinaryFloatingPoint, V.Stride : BinaryFloatingPoint
    * @availability iOS 13.0+
    */
-  static initValueInStepOnEditingChanged(value: _SwiftUICore_Binding<number>, bounds: SDKHandle, step?: number, onEditingChanged?: $SDK137): $SDK135 { return callSDK<$SDK135>("SwiftUI_64b39a05e4a4cebd", 4398294017599876, undefined, [value, bounds, step, onEditingChanged], [null,null,null,{"callback":{"out":[]}}]); }
+  static initValueInStepOnEditingChanged(value: _SwiftUICore_Binding<number>, bounds: SDKHandle, step?: number, onEditingChanged?: $SDK137): $SDK135 { return callSDK<$SDK135>("SwiftUI_bd41a4085ee86f99", 4398294017599876, undefined, [value, bounds, step, onEditingChanged], [null,null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7SwiftUI6SliderV": true };
 }
 
@@ -10887,32 +10887,32 @@ export class SliderTick<V = unknown> extends SDKHandle {
    * var id: SliderTick<V>.ID { get }
    * @availability iOS 26.0+
    */
-  get id(): SliderTick_ID<number> { return callSDK<SliderTick_ID<number>>("SwiftUI_64b39a05e4a4cebd", 2425636107035768, this, []); }
+  get id(): SliderTick_ID<number> { return callSDK<SliderTick_ID<number>>("SwiftUI_bd41a4085ee86f99", 2425636107035768, this, []); }
   /**
    * var body: SliderTick<V>.Body { get }
    * @availability iOS 26.0+
    */
-  get body(): Array<SliderTick<number>> { return callSDK<Array<SliderTick<number>>>("SwiftUI_64b39a05e4a4cebd", 182611114905281, this, []); }
+  get body(): Array<SliderTick<number>> { return callSDK<Array<SliderTick<number>>>("SwiftUI_bd41a4085ee86f99", 182611114905281, this, []); }
   /**
    * init(_ titleResource: LocalizedStringResource, _ value: V)
    * @availability iOS 26.0+
    */
-  static init(titleResource: _Foundation_LocalizedStringResource, value: number): SliderTick<number> { return callSDK<SliderTick<number>>("SwiftUI_64b39a05e4a4cebd", 1764065807326921, undefined, [titleResource, value]); }
+  static init(titleResource: _Foundation_LocalizedStringResource, value: number): SliderTick<number> { return callSDK<SliderTick<number>>("SwiftUI_bd41a4085ee86f99", 1764065807326921, undefined, [titleResource, value]); }
   /**
    * init(_ titleKey: LocalizedStringKey, _ value: V)
    * @availability iOS 26.0+
    */
-  static init5691(titleKey: _SwiftUICore_LocalizedStringKey, value: number): SliderTick<number> { return callSDK<SliderTick<number>>("SwiftUI_64b39a05e4a4cebd", 2346382120432411, undefined, [titleKey, value]); }
+  static init5691(titleKey: _SwiftUICore_LocalizedStringKey, value: number): SliderTick<number> { return callSDK<SliderTick<number>>("SwiftUI_bd41a4085ee86f99", 2346382120432411, undefined, [titleKey, value]); }
   /**
    * init<S>(_ title: S, _ value: V) where S : StringProtocol
    * @availability iOS 26.0+
    */
-  static init96709(title: string, value: number): SliderTick<number> { return callSDK<SliderTick<number>>("SwiftUI_64b39a05e4a4cebd", 1047662790944678, undefined, [title, value]); }
+  static init96709(title: string, value: number): SliderTick<number> { return callSDK<SliderTick<number>>("SwiftUI_bd41a4085ee86f99", 1047662790944678, undefined, [title, value]); }
   /**
    * init(_ value: V)
    * @availability iOS 26.0+
    */
-  static init99406(value: number): SliderTick<number> { return callSDK<SliderTick<number>>("SwiftUI_64b39a05e4a4cebd", 2737411568081437, undefined, [value]); }
+  static init99406(value: number): SliderTick<number> { return callSDK<SliderTick<number>>("SwiftUI_bd41a4085ee86f99", 2737411568081437, undefined, [value]); }
   declare readonly $type: { "s:7SwiftUI10SliderTickV": true };
 }
 
@@ -10961,7 +10961,7 @@ export class SliderTickContentForEach<Data = unknown, ID = unknown, Content = un
    * var body: [SliderTick<SliderTickContentForEach<Data, ID, Content>.Value>] { get }
    * @availability iOS 26.0+
    */
-  get body(): $SDK98 { return callSDK<$SDK98>("SwiftUI_64b39a05e4a4cebd", 1331662837077455, this, []); }
+  get body(): $SDK98 { return callSDK<$SDK98>("SwiftUI_bd41a4085ee86f99", 1331662837077455, this, []); }
   declare readonly $type: { "s:7SwiftUI24SliderTickContentForEachV": true };
 }
 
@@ -10986,12 +10986,12 @@ export class SpacerSizing extends SDKHandle {
    * static let fixed: SpacerSizing
    * @availability iOS 26.0+
    */
-  static get fixed(): SpacerSizing { return callSDK<SpacerSizing>("SwiftUI_64b39a05e4a4cebd", 2329022192487194, undefined, []); }
+  static get fixed(): SpacerSizing { return callSDK<SpacerSizing>("SwiftUI_bd41a4085ee86f99", 2329022192487194, undefined, []); }
   /**
    * static let flexible: SpacerSizing
    * @availability iOS 26.0+
    */
-  static get flexible(): SpacerSizing { return callSDK<SpacerSizing>("SwiftUI_64b39a05e4a4cebd", 1603541054808416, undefined, []); }
+  static get flexible(): SpacerSizing { return callSDK<SpacerSizing>("SwiftUI_bd41a4085ee86f99", 1603541054808416, undefined, []); }
   declare readonly $type: { "s:7SwiftUI12SpacerSizingV": true };
 }
 
@@ -11004,32 +11004,32 @@ export class SpatialEventCollection extends SDKHandle {
    * var startIndex: SpatialEventCollection.Index { get }
    * @availability iOS 18.0+
    */
-  get startIndex(): SpatialEventCollection_Index { return callSDK<SpatialEventCollection_Index>("SwiftUI_64b39a05e4a4cebd", 1339874651050213, this, []); }
+  get startIndex(): SpatialEventCollection_Index { return callSDK<SpatialEventCollection_Index>("SwiftUI_bd41a4085ee86f99", 1339874651050213, this, []); }
   /**
    * func makeIterator() -> SpatialEventCollection.Iterator
    * @availability iOS 18.0+
    */
-  makeIterator(): SpatialEventCollection_Iterator { return callSDK<SpatialEventCollection_Iterator>("SwiftUI_64b39a05e4a4cebd", 2282238506362699, this, []); }
+  makeIterator(): SpatialEventCollection_Iterator { return callSDK<SpatialEventCollection_Iterator>("SwiftUI_bd41a4085ee86f99", 2282238506362699, this, []); }
   /**
    * func index(after i: SpatialEventCollection.Index) -> SpatialEventCollection.Index
    * @availability iOS 18.0+
    */
-  index(i: SpatialEventCollection_Index): SpatialEventCollection_Index { return callSDK<SpatialEventCollection_Index>("SwiftUI_64b39a05e4a4cebd", 1553955707898348, this, [i]); }
+  index(i: SpatialEventCollection_Index): SpatialEventCollection_Index { return callSDK<SpatialEventCollection_Index>("SwiftUI_bd41a4085ee86f99", 1553955707898348, this, [i]); }
   /**
    * var endIndex: SpatialEventCollection.Index { get }
    * @availability iOS 18.0+
    */
-  get endIndex(): SpatialEventCollection_Index { return callSDK<SpatialEventCollection_Index>("SwiftUI_64b39a05e4a4cebd", 3695042855211554, this, []); }
+  get endIndex(): SpatialEventCollection_Index { return callSDK<SpatialEventCollection_Index>("SwiftUI_bd41a4085ee86f99", 3695042855211554, this, []); }
   /**
    * subscript(position: SpatialEventCollection.Index) -> SpatialEventCollection.Event { get }
    * @availability iOS 18.0+
    */
-  subscript(position: SpatialEventCollection_Index): SpatialEventCollection_Event { return callSDK<SpatialEventCollection_Event>("SwiftUI_64b39a05e4a4cebd", 3080725098359226, this, [position]); }
+  subscript(position: SpatialEventCollection_Index): SpatialEventCollection_Event { return callSDK<SpatialEventCollection_Event>("SwiftUI_bd41a4085ee86f99", 3080725098359226, this, [position]); }
   /**
    * subscript(index: SpatialEventCollection.Event.ID) -> SpatialEventCollection.Event? { get }
    * @availability iOS 18.0+
    */
-  subscript10166(index: SpatialEventCollection_Event_ID): $SDK140 { return callSDK<$SDK140>("SwiftUI_64b39a05e4a4cebd", 4443716748044226, this, [index]); }
+  subscript10166(index: SpatialEventCollection_Event_ID): $SDK140 { return callSDK<$SDK140>("SwiftUI_bd41a4085ee86f99", 4443716748044226, this, [index]); }
   declare readonly $type: { "s:7SwiftUI22SpatialEventCollectionV": true };
 }
 
@@ -11048,44 +11048,44 @@ export class SpatialEventCollection_Event extends SDKHandle {
    * var modifierKeys: EventModifiers
    * @availability iOS 18.0+
    */
-  get modifierKeys(): _SwiftUICore_EventModifiers { return callSDK<_SwiftUICore_EventModifiers>("SwiftUI_64b39a05e4a4cebd", 117986574273435, this, []); }
-  set modifierKeys(value: _SwiftUICore_EventModifiers) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1363871833655296, this, [value]); }
+  get modifierKeys(): _SwiftUICore_EventModifiers { return callSDK<_SwiftUICore_EventModifiers>("SwiftUI_bd41a4085ee86f99", 117986574273435, this, []); }
+  set modifierKeys(value: _SwiftUICore_EventModifiers) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1363871833655296, this, [value]); }
   /**
    * var inputDevicePose: SpatialEventCollection.Event.InputDevicePose? { get set }
    * @availability iOS 18.0+
    */
-  get inputDevicePose(): $SDK141 { return callSDK<$SDK141>("SwiftUI_64b39a05e4a4cebd", 49931551886746, this, []); }
-  set inputDevicePose(value: $SDK141) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3171560797760562, this, [value]); }
+  get inputDevicePose(): $SDK141 { return callSDK<$SDK141>("SwiftUI_bd41a4085ee86f99", 49931551886746, this, []); }
+  set inputDevicePose(value: $SDK141) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3171560797760562, this, [value]); }
   /**
    * var id: SpatialEventCollection.Event.ID
    * @availability iOS 18.0+
    */
-  get id(): SpatialEventCollection_Event_ID { return callSDK<SpatialEventCollection_Event_ID>("SwiftUI_64b39a05e4a4cebd", 3716221139443608, this, []); }
-  set id(value: SpatialEventCollection_Event_ID) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4122857178319629, this, [value]); }
+  get id(): SpatialEventCollection_Event_ID { return callSDK<SpatialEventCollection_Event_ID>("SwiftUI_bd41a4085ee86f99", 3716221139443608, this, []); }
+  set id(value: SpatialEventCollection_Event_ID) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 4122857178319629, this, [value]); }
   /**
    * var kind: SpatialEventCollection.Event.Kind
    * @availability iOS 18.0+
    */
-  get kind(): SpatialEventCollection_Event_Kind { return callSDK<SpatialEventCollection_Event_Kind>("SwiftUI_64b39a05e4a4cebd", 2197446217601123, this, []); }
-  set kind(value: SpatialEventCollection_Event_Kind) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4294856939970946, this, [value]); }
+  get kind(): SpatialEventCollection_Event_Kind { return callSDK<SpatialEventCollection_Event_Kind>("SwiftUI_bd41a4085ee86f99", 2197446217601123, this, []); }
+  set kind(value: SpatialEventCollection_Event_Kind) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 4294856939970946, this, [value]); }
   /**
    * var phase: SpatialEventCollection.Event.Phase
    * @availability iOS 18.0+
    */
-  get phase(): SpatialEventCollection_Event_Phase { return callSDK<SpatialEventCollection_Event_Phase>("SwiftUI_64b39a05e4a4cebd", 1802113403739472, this, []); }
-  set phase(value: SpatialEventCollection_Event_Phase) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3405749606044502, this, [value]); }
+  get phase(): SpatialEventCollection_Event_Phase { return callSDK<SpatialEventCollection_Event_Phase>("SwiftUI_bd41a4085ee86f99", 1802113403739472, this, []); }
+  set phase(value: SpatialEventCollection_Event_Phase) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3405749606044502, this, [value]); }
   /**
    * var location: CGPoint
    * @availability iOS 18.0+
    */
-  get location(): $SDK39 { return callSDK<$SDK39>("SwiftUI_64b39a05e4a4cebd", 3130362877254503, this, []); }
-  set location(value: $SDK39) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2964527093183660, this, [value]); }
+  get location(): $SDK39 { return callSDK<$SDK39>("SwiftUI_bd41a4085ee86f99", 3130362877254503, this, []); }
+  set location(value: $SDK39) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2964527093183660, this, [value]); }
   /**
    * var timestamp: TimeInterval
    * @availability iOS 18.0+
    */
-  get timestamp(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 2562565756791863, this, []); }
-  set timestamp(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 59828824248117, this, [value]); }
+  get timestamp(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 2562565756791863, this, []); }
+  set timestamp(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 59828824248117, this, [value]); }
   declare readonly $type: { "s:7SwiftUI22SpatialEventCollectionV0D0V": true };
 }
 
@@ -11106,14 +11106,14 @@ export class SpatialEventCollection_Event_InputDevicePose extends SDKHandle {
    * var azimuth: Angle
    * @availability iOS 18.0+
    */
-  get azimuth(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_64b39a05e4a4cebd", 4444756317547928, this, []); }
-  set azimuth(value: _SwiftUICore_Angle) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 392162833713559, this, [value]); }
+  get azimuth(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_bd41a4085ee86f99", 4444756317547928, this, []); }
+  set azimuth(value: _SwiftUICore_Angle) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 392162833713559, this, [value]); }
   /**
    * var altitude: Angle
    * @availability iOS 18.0+
    */
-  get altitude(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_64b39a05e4a4cebd", 1467372863319319, this, []); }
-  set altitude(value: _SwiftUICore_Angle) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2614626166247761, this, [value]); }
+  get altitude(): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("SwiftUI_bd41a4085ee86f99", 1467372863319319, this, []); }
+  set altitude(value: _SwiftUICore_Angle) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2614626166247761, this, [value]); }
   declare readonly $type: { "s:7SwiftUI22SpatialEventCollectionV0D0V15InputDevicePoseV": true };
 }
 
@@ -11152,7 +11152,7 @@ export class SpatialEventCollection_Iterator extends SDKHandle {
    * mutating func next() -> SpatialEventCollection.Event?
    * @availability iOS 18.0+
    */
-  next(): $SDK140 { return callSDK<$SDK140>("SwiftUI_64b39a05e4a4cebd", 4103890084689403, this, []); }
+  next(): $SDK140 { return callSDK<$SDK140>("SwiftUI_bd41a4085ee86f99", 4103890084689403, this, []); }
   declare readonly $type: { "s:7SwiftUI22SpatialEventCollectionV8IteratorV": true };
 }
 
@@ -11177,12 +11177,12 @@ export class SpatialEventGesture extends SDKHandle {
    * let coordinateSpace: CoordinateSpace
    * @availability iOS 18.0+
    */
-  get coordinateSpace(): _SwiftUICore_CoordinateSpace { return callSDK<_SwiftUICore_CoordinateSpace>("SwiftUI_64b39a05e4a4cebd", 716460815261582, this, []); }
+  get coordinateSpace(): _SwiftUICore_CoordinateSpace { return callSDK<_SwiftUICore_CoordinateSpace>("SwiftUI_bd41a4085ee86f99", 716460815261582, this, []); }
   /**
    * nonisolated init(coordinateSpace: any CoordinateSpaceProtocol = .local)
    * @availability iOS 18.0+
    */
-  static init(coordinateSpace?: SDKHandle): SpatialEventGesture { return callSDK<SpatialEventGesture>("SwiftUI_64b39a05e4a4cebd", 3213272195457535, undefined, [coordinateSpace]); }
+  static init(coordinateSpace?: SDKHandle): SpatialEventGesture { return callSDK<SpatialEventGesture>("SwiftUI_bd41a4085ee86f99", 3213272195457535, undefined, [coordinateSpace]); }
   declare readonly $type: { "s:7SwiftUI19SpatialEventGestureV": true };
 }
 
@@ -11207,20 +11207,20 @@ export class SpatialTapGesture extends SDKHandle {
    * var coordinateSpace: CoordinateSpace
    * @availability iOS 16.0+
    */
-  get coordinateSpace(): _SwiftUICore_CoordinateSpace { return callSDK<_SwiftUICore_CoordinateSpace>("SwiftUI_64b39a05e4a4cebd", 2365922830059954, this, []); }
-  set coordinateSpace(value: _SwiftUICore_CoordinateSpace) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1876546205497762, this, [value]); }
+  get coordinateSpace(): _SwiftUICore_CoordinateSpace { return callSDK<_SwiftUICore_CoordinateSpace>("SwiftUI_bd41a4085ee86f99", 2365922830059954, this, []); }
+  set coordinateSpace(value: _SwiftUICore_CoordinateSpace) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1876546205497762, this, [value]); }
   /**
    * nonisolated init(count: Int = 1, coordinateSpace: CoordinateSpace = .local)
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  static init(count?: number, coordinateSpace?: _SwiftUICore_CoordinateSpace): SpatialTapGesture { return callSDK<SpatialTapGesture>("SwiftUI_64b39a05e4a4cebd", 1185023447136612, undefined, [count, coordinateSpace]); }
+  static init(count?: number, coordinateSpace?: _SwiftUICore_CoordinateSpace): SpatialTapGesture { return callSDK<SpatialTapGesture>("SwiftUI_bd41a4085ee86f99", 1185023447136612, undefined, [count, coordinateSpace]); }
   /**
    * var count: Int
    * @availability iOS 16.0+
    */
-  get count(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 2280680111386722, this, []); }
-  set count(value: number) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2331723476547090, this, [value]); }
+  get count(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 2280680111386722, this, []); }
+  set count(value: number) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2331723476547090, this, [value]); }
   declare readonly $type: { "s:7SwiftUI17SpatialTapGestureV": true };
 }
 
@@ -11239,8 +11239,8 @@ export class SpatialTapGesture_Value extends SDKHandle {
    * var location: CGPoint
    * @availability iOS 16.0+
    */
-  get location(): $SDK39 { return callSDK<$SDK39>("SwiftUI_64b39a05e4a4cebd", 1693972660990234, this, []); }
-  set location(value: $SDK39) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 636536929868455, this, [value]); }
+  get location(): $SDK39 { return callSDK<$SDK39>("SwiftUI_bd41a4085ee86f99", 1693972660990234, this, []); }
+  set location(value: $SDK39) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 636536929868455, this, [value]); }
   declare readonly $type: { "s:7SwiftUI17SpatialTapGestureV5ValueV": true };
 }
 
@@ -11253,17 +11253,17 @@ export class SpringLoadingBehavior extends SDKHandle {
    * static let enabled: SpringLoadingBehavior
    * @availability iOS 17.0+
    */
-  static get enabled(): SpringLoadingBehavior { return callSDK<SpringLoadingBehavior>("SwiftUI_64b39a05e4a4cebd", 3138147739690421, undefined, []); }
+  static get enabled(): SpringLoadingBehavior { return callSDK<SpringLoadingBehavior>("SwiftUI_bd41a4085ee86f99", 3138147739690421, undefined, []); }
   /**
    * static let disabled: SpringLoadingBehavior
    * @availability iOS 17.0+
    */
-  static get disabled(): SpringLoadingBehavior { return callSDK<SpringLoadingBehavior>("SwiftUI_64b39a05e4a4cebd", 1642555415895355, undefined, []); }
+  static get disabled(): SpringLoadingBehavior { return callSDK<SpringLoadingBehavior>("SwiftUI_bd41a4085ee86f99", 1642555415895355, undefined, []); }
   /**
    * static let automatic: SpringLoadingBehavior
    * @availability iOS 17.0+
    */
-  static get automatic(): SpringLoadingBehavior { return callSDK<SpringLoadingBehavior>("SwiftUI_64b39a05e4a4cebd", 2798200137765148, undefined, []); }
+  static get automatic(): SpringLoadingBehavior { return callSDK<SpringLoadingBehavior>("SwiftUI_bd41a4085ee86f99", 2798200137765148, undefined, []); }
   declare readonly $type: { "s:7SwiftUI21SpringLoadingBehaviorV": true };
 }
 
@@ -11278,7 +11278,7 @@ export class StackNavigationViewStyle extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static init(): StackNavigationViewStyle { return callSDK<StackNavigationViewStyle>("SwiftUI_64b39a05e4a4cebd", 891429402862072, undefined, []); }
+  static init(): StackNavigationViewStyle { return callSDK<StackNavigationViewStyle>("SwiftUI_bd41a4085ee86f99", 891429402862072, undefined, []); }
   declare readonly $type: { "s:7SwiftUI24StackNavigationViewStyleV": true };
 }
 
@@ -11291,17 +11291,17 @@ export class Stepper<Label = unknown> extends SDKHandle {
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, onIncrement: (() -> Void)?, onDecrement: (() -> Void)?, onEditingChanged: @escaping (Bool) -> Void = { _ in })
    * @availability iOS 16.0+
    */
-  static initOnIncrementOnDecrementOnEditingChanged(titleResource: _Foundation_LocalizedStringResource, onIncrement?: ((() => void)) | null, onDecrement?: ((() => void)) | null, onEditingChanged?: $SDK137): $SDK142 { return callSDK<$SDK142>("SwiftUI_64b39a05e4a4cebd", 3800892653652964, undefined, [titleResource, onIncrement, onDecrement, onEditingChanged], [null,{"callback":{"out":[]}},{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static initOnIncrementOnDecrementOnEditingChanged(titleResource: _Foundation_LocalizedStringResource, onIncrement?: ((() => void)) | null, onDecrement?: ((() => void)) | null, onEditingChanged?: $SDK137): $SDK142 { return callSDK<$SDK142>("SwiftUI_bd41a4085ee86f99", 3800892653652964, undefined, [titleResource, onIncrement, onDecrement, onEditingChanged], [null,{"callback":{"out":[]}},{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, onIncrement: (() -> Void)?, onDecrement: (() -> Void)?, onEditingChanged: @escaping (Bool) -> Void = { _ in })
    * @availability iOS 13.0+
    */
-  static initOnIncrementOnDecrementOnEditingChanged14501(titleKey: _SwiftUICore_LocalizedStringKey, onIncrement?: ((() => void)) | null, onDecrement?: ((() => void)) | null, onEditingChanged?: $SDK137): $SDK142 { return callSDK<$SDK142>("SwiftUI_64b39a05e4a4cebd", 414298676524489, undefined, [titleKey, onIncrement, onDecrement, onEditingChanged], [null,{"callback":{"out":[]}},{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static initOnIncrementOnDecrementOnEditingChanged14501(titleKey: _SwiftUICore_LocalizedStringKey, onIncrement?: ((() => void)) | null, onDecrement?: ((() => void)) | null, onEditingChanged?: $SDK137): $SDK142 { return callSDK<$SDK142>("SwiftUI_bd41a4085ee86f99", 414298676524489, undefined, [titleKey, onIncrement, onDecrement, onEditingChanged], [null,{"callback":{"out":[]}},{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * nonisolated init<S>(_ title: S, onIncrement: (() -> Void)?, onDecrement: (() -> Void)?, onEditingChanged: @escaping (Bool) -> Void = { _ in }) where S : StringProtocol
    * @availability iOS 13.0+
    */
-  static initOnIncrementOnDecrementOnEditingChanged65471(title: string, onIncrement?: ((() => void)) | null, onDecrement?: ((() => void)) | null, onEditingChanged?: $SDK137): $SDK142 { return callSDK<$SDK142>("SwiftUI_64b39a05e4a4cebd", 427940708985226, undefined, [title, onIncrement, onDecrement, onEditingChanged], [null,{"callback":{"out":[]}},{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static initOnIncrementOnDecrementOnEditingChanged65471(title: string, onIncrement?: ((() => void)) | null, onDecrement?: ((() => void)) | null, onEditingChanged?: $SDK137): $SDK142 { return callSDK<$SDK142>("SwiftUI_bd41a4085ee86f99", 427940708985226, undefined, [title, onIncrement, onDecrement, onEditingChanged], [null,{"callback":{"out":[]}},{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7SwiftUI7StepperV": true };
 }
 
@@ -11320,47 +11320,47 @@ export class SubmitLabel extends SDKHandle {
    * static var go: SubmitLabel { get }
    * @availability iOS 15.0+
    */
-  static get go(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_64b39a05e4a4cebd", 1633897631541714, undefined, []); }
+  static get go(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_bd41a4085ee86f99", 1633897631541714, undefined, []); }
   /**
    * static var done: SubmitLabel { get }
    * @availability iOS 15.0+
    */
-  static get done(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_64b39a05e4a4cebd", 1304610344921431, undefined, []); }
+  static get done(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_bd41a4085ee86f99", 1304610344921431, undefined, []); }
   /**
    * static var join: SubmitLabel { get }
    * @availability iOS 15.0+
    */
-  static get join(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_64b39a05e4a4cebd", 585643059788473, undefined, []); }
+  static get join(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_bd41a4085ee86f99", 585643059788473, undefined, []); }
   /**
    * static var next: SubmitLabel { get }
    * @availability iOS 15.0+
    */
-  static get next(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_64b39a05e4a4cebd", 876415963769033, undefined, []); }
+  static get next(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_bd41a4085ee86f99", 876415963769033, undefined, []); }
   /**
    * static var send: SubmitLabel { get }
    * @availability iOS 15.0+
    */
-  static get send(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_64b39a05e4a4cebd", 2859641393562781, undefined, []); }
+  static get send(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_bd41a4085ee86f99", 2859641393562781, undefined, []); }
   /**
    * static var route: SubmitLabel { get }
    * @availability iOS 15.0+
    */
-  static get route(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_64b39a05e4a4cebd", 3880568595090568, undefined, []); }
+  static get route(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_bd41a4085ee86f99", 3880568595090568, undefined, []); }
   /**
    * static var `return`: SubmitLabel { get }
    * @availability iOS 15.0+
    */
-  static get return(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_64b39a05e4a4cebd", 779598118260446, undefined, []); }
+  static get return(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_bd41a4085ee86f99", 779598118260446, undefined, []); }
   /**
    * static var search: SubmitLabel { get }
    * @availability iOS 15.0+
    */
-  static get search(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_64b39a05e4a4cebd", 969062462170600, undefined, []); }
+  static get search(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_bd41a4085ee86f99", 969062462170600, undefined, []); }
   /**
    * static var `continue`: SubmitLabel { get }
    * @availability iOS 15.0+
    */
-  static get continue(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_64b39a05e4a4cebd", 4053152324364014, undefined, []); }
+  static get continue(): SubmitLabel { return callSDK<SubmitLabel>("SwiftUI_bd41a4085ee86f99", 4053152324364014, undefined, []); }
   declare readonly $type: { "s:7SwiftUI11SubmitLabelV": true };
 }
 
@@ -11375,22 +11375,22 @@ export const SubmitTriggers = {
    * static let text: SubmitTriggers
    * @availability iOS 15.0+
    */
-  get text(): SubmitTriggers { return callSDK<SubmitTriggers>("SwiftUI_64b39a05e4a4cebd", 2942905374362073, undefined, []); },
+  get text(): SubmitTriggers { return callSDK<SubmitTriggers>("SwiftUI_bd41a4085ee86f99", 2942905374362073, undefined, []); },
   /**
    * static let search: SubmitTriggers
    * @availability iOS 15.0+
    */
-  get search(): SubmitTriggers { return callSDK<SubmitTriggers>("SwiftUI_64b39a05e4a4cebd", 2771308939734103, undefined, []); },
+  get search(): SubmitTriggers { return callSDK<SubmitTriggers>("SwiftUI_bd41a4085ee86f99", 2771308939734103, undefined, []); },
   /**
    * init(rawValue: SubmitTriggers.RawValue)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): SubmitTriggers { return callSDK<SubmitTriggers>("SwiftUI_64b39a05e4a4cebd", 826477270364168, undefined, [rawValue]); },
+  init(rawValue: number): SubmitTriggers { return callSDK<SubmitTriggers>("SwiftUI_bd41a4085ee86f99", 826477270364168, undefined, [rawValue]); },
   /**
    * let rawValue: SubmitTriggers.RawValue
    * @availability iOS 15.0+
    */
-  getRawValue($self: SubmitTriggers): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 1041253747450782, $self, []); }
+  getRawValue($self: SubmitTriggers): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 1041253747450782, $self, []); }
 };
 
 /**
@@ -11420,8 +11420,8 @@ export class SubscriptionView<PublisherType = unknown, Content = unknown> extend
    * var content: Content
    * @availability iOS 13.0+
    */
-  get content(): SDKHandle { return callSDK<SDKHandle>("SwiftUI_64b39a05e4a4cebd", 3745875180394292, this, []); }
-  set content(value: SDKHandle) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2471009099304768, this, [value]); }
+  get content(): SDKHandle { return callSDK<SDKHandle>("SwiftUI_bd41a4085ee86f99", 3745875180394292, this, []); }
+  set content(value: SDKHandle) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2471009099304768, this, [value]); }
   declare readonly $type: { "s:7SwiftUI16SubscriptionViewV": true };
 }
 
@@ -11449,12 +11449,12 @@ export class SwitchToggleStyle extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  static initTint(tint: _SwiftUICore_Color): SwitchToggleStyle { return callSDK<SwitchToggleStyle>("SwiftUI_64b39a05e4a4cebd", 946064918147545, undefined, [tint]); }
+  static initTint(tint: _SwiftUICore_Color): SwitchToggleStyle { return callSDK<SwitchToggleStyle>("SwiftUI_bd41a4085ee86f99", 946064918147545, undefined, [tint]); }
   /**
    * nonisolated init()
    * @availability iOS 13.0+
    */
-  static init(): SwitchToggleStyle { return callSDK<SwitchToggleStyle>("SwiftUI_64b39a05e4a4cebd", 730927819754961, undefined, []); }
+  static init(): SwitchToggleStyle { return callSDK<SwitchToggleStyle>("SwiftUI_bd41a4085ee86f99", 730927819754961, undefined, []); }
   declare readonly $type: { "s:7SwiftUI17SwitchToggleStyleV": true };
 }
 
@@ -11473,7 +11473,7 @@ export class Tab<Value = unknown, Content = unknown, Label = unknown> extends SD
    * @MainActor @preconcurrency var body: Tab<Value, Content, Label> { get }
    * @availability iOS 18.0+
    */
-  get body(): Promise<Tab<number, SDKHandle, SDKHandle>> { return callSDKAsync<Tab<number, SDKHandle, SDKHandle>>("SwiftUI_64b39a05e4a4cebd", 1379857156080801, this, []); }
+  get body(): Promise<Tab<number, SDKHandle, SDKHandle>> { return callSDKAsync<Tab<number, SDKHandle, SDKHandle>>("SwiftUI_bd41a4085ee86f99", 1379857156080801, this, []); }
   declare readonly $type: { "s:7SwiftUI3TabV": true };
 }
 
@@ -11498,22 +11498,22 @@ export class TabBarMinimizeBehavior extends SDKHandle {
    * static let onScrollUp: TabBarMinimizeBehavior
    * @availability iOS 26.0+
    */
-  static get onScrollUp(): TabBarMinimizeBehavior { return callSDK<TabBarMinimizeBehavior>("SwiftUI_64b39a05e4a4cebd", 2132273640306330, undefined, []); }
+  static get onScrollUp(): TabBarMinimizeBehavior { return callSDK<TabBarMinimizeBehavior>("SwiftUI_bd41a4085ee86f99", 2132273640306330, undefined, []); }
   /**
    * static let onScrollDown: TabBarMinimizeBehavior
    * @availability iOS 26.0+
    */
-  static get onScrollDown(): TabBarMinimizeBehavior { return callSDK<TabBarMinimizeBehavior>("SwiftUI_64b39a05e4a4cebd", 62780385258386, undefined, []); }
+  static get onScrollDown(): TabBarMinimizeBehavior { return callSDK<TabBarMinimizeBehavior>("SwiftUI_bd41a4085ee86f99", 62780385258386, undefined, []); }
   /**
    * static let never: TabBarMinimizeBehavior
    * @availability iOS 26.0+
    */
-  static get never(): TabBarMinimizeBehavior { return callSDK<TabBarMinimizeBehavior>("SwiftUI_64b39a05e4a4cebd", 260159366867805, undefined, []); }
+  static get never(): TabBarMinimizeBehavior { return callSDK<TabBarMinimizeBehavior>("SwiftUI_bd41a4085ee86f99", 260159366867805, undefined, []); }
   /**
    * static let automatic: TabBarMinimizeBehavior
    * @availability iOS 26.0+
    */
-  static get automatic(): TabBarMinimizeBehavior { return callSDK<TabBarMinimizeBehavior>("SwiftUI_64b39a05e4a4cebd", 2732401934744378, undefined, []); }
+  static get automatic(): TabBarMinimizeBehavior { return callSDK<TabBarMinimizeBehavior>("SwiftUI_bd41a4085ee86f99", 2732401934744378, undefined, []); }
   declare readonly $type: { "s:7SwiftUI22TabBarMinimizeBehaviorV": true };
 }
 
@@ -11526,7 +11526,7 @@ export class TabBarOnlyTabViewStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 18.0+
    */
-  static init(): TabBarOnlyTabViewStyle { return callSDK<TabBarOnlyTabViewStyle>("SwiftUI_64b39a05e4a4cebd", 1299121181762167, undefined, []); }
+  static init(): TabBarOnlyTabViewStyle { return callSDK<TabBarOnlyTabViewStyle>("SwiftUI_bd41a4085ee86f99", 1299121181762167, undefined, []); }
   declare readonly $type: { "s:7SwiftUI010TabBarOnlyC9ViewStyleV": true };
 }
 
@@ -11539,27 +11539,27 @@ export class TabBarPlacement extends SDKHandle {
    * static let topBar: TabBarPlacement
    * @availability iOS 18.0+
    */
-  static get topBar(): TabBarPlacement { return callSDK<TabBarPlacement>("SwiftUI_64b39a05e4a4cebd", 832781282836267, undefined, []); }
+  static get topBar(): TabBarPlacement { return callSDK<TabBarPlacement>("SwiftUI_bd41a4085ee86f99", 832781282836267, undefined, []); }
   /**
    * static let bottomBar: TabBarPlacement
    * @availability iOS 18.0+
    */
-  static get bottomBar(): TabBarPlacement { return callSDK<TabBarPlacement>("SwiftUI_64b39a05e4a4cebd", 1960280421156486, undefined, []); }
+  static get bottomBar(): TabBarPlacement { return callSDK<TabBarPlacement>("SwiftUI_bd41a4085ee86f99", 1960280421156486, undefined, []); }
   /**
    * static let pageIndicator: TabBarPlacement
    * @availability iOS 18.0+
    */
-  static get pageIndicator(): TabBarPlacement { return callSDK<TabBarPlacement>("SwiftUI_64b39a05e4a4cebd", 3766164580967879, undefined, []); }
+  static get pageIndicator(): TabBarPlacement { return callSDK<TabBarPlacement>("SwiftUI_bd41a4085ee86f99", 3766164580967879, undefined, []); }
   /**
    * static let sidebar: TabBarPlacement
    * @availability iOS 18.0+
    */
-  static get sidebar(): TabBarPlacement { return callSDK<TabBarPlacement>("SwiftUI_64b39a05e4a4cebd", 3484820650608203, undefined, []); }
+  static get sidebar(): TabBarPlacement { return callSDK<TabBarPlacement>("SwiftUI_bd41a4085ee86f99", 3484820650608203, undefined, []); }
   /**
    * static let ornament: TabBarPlacement
    * @availability iOS 18.0+
    */
-  static get ornament(): TabBarPlacement { return callSDK<TabBarPlacement>("SwiftUI_64b39a05e4a4cebd", 1702716721020292, undefined, []); }
+  static get ornament(): TabBarPlacement { return callSDK<TabBarPlacement>("SwiftUI_bd41a4085ee86f99", 1702716721020292, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15TabBarPlacementV": true };
 }
 
@@ -11602,17 +11602,17 @@ export class TabCustomizationBehavior extends SDKHandle {
    * static var reorderable: TabCustomizationBehavior { get }
    * @availability iOS 18.0+
    */
-  static get reorderable(): TabCustomizationBehavior { return callSDK<TabCustomizationBehavior>("SwiftUI_64b39a05e4a4cebd", 514279979541878, undefined, []); }
+  static get reorderable(): TabCustomizationBehavior { return callSDK<TabCustomizationBehavior>("SwiftUI_bd41a4085ee86f99", 514279979541878, undefined, []); }
   /**
    * static var disabled: TabCustomizationBehavior { get }
    * @availability iOS 18.0+
    */
-  static get disabled(): TabCustomizationBehavior { return callSDK<TabCustomizationBehavior>("SwiftUI_64b39a05e4a4cebd", 303721634260802, undefined, []); }
+  static get disabled(): TabCustomizationBehavior { return callSDK<TabCustomizationBehavior>("SwiftUI_bd41a4085ee86f99", 303721634260802, undefined, []); }
   /**
    * static var automatic: TabCustomizationBehavior { get }
    * @availability iOS 18.0+
    */
-  static get automatic(): TabCustomizationBehavior { return callSDK<TabCustomizationBehavior>("SwiftUI_64b39a05e4a4cebd", 1886861239187187, undefined, []); }
+  static get automatic(): TabCustomizationBehavior { return callSDK<TabCustomizationBehavior>("SwiftUI_bd41a4085ee86f99", 1886861239187187, undefined, []); }
   declare readonly $type: { "s:7SwiftUI24TabCustomizationBehaviorV": true };
 }
 
@@ -11639,17 +11639,17 @@ export class TableColumn<RowValue = unknown, Sort = unknown, Content = unknown, 
    * nonisolated func width(min: CGFloat? = nil, ideal: CGFloat? = nil, max: CGFloat? = nil) -> TableColumn<RowValue, Sort, Content, Label>
    * @availability iOS 16.0+
    */
-  widthMinIdealMax(min?: (number) | null, ideal?: (number) | null, max?: (number) | null): $SDK145 { return callSDK<$SDK145>("SwiftUI_64b39a05e4a4cebd", 3417408775743366, this, [min, ideal, max]); }
+  widthMinIdealMax(min?: (number) | null, ideal?: (number) | null, max?: (number) | null): $SDK145 { return callSDK<$SDK145>("SwiftUI_bd41a4085ee86f99", 3417408775743366, this, [min, ideal, max]); }
   /**
    * @export(implementation) nonisolated func width() -> TableColumn<RowValue, Sort, Content, Label>
    * @availability iOS 16.0+
    */
-  width(): $SDK145 { return callSDK<$SDK145>("SwiftUI_64b39a05e4a4cebd", 2330834837693894, this, []); }
+  width(): $SDK145 { return callSDK<$SDK145>("SwiftUI_bd41a4085ee86f99", 2330834837693894, this, []); }
   /**
    * nonisolated func width(_ width: CGFloat? = nil) -> TableColumn<RowValue, Sort, Content, Label>
    * @availability iOS 16.0+
    */
-  width57743(width?: (number) | null): $SDK145 { return callSDK<$SDK145>("SwiftUI_64b39a05e4a4cebd", 1470380552918228, this, [width]); }
+  width57743(width?: (number) | null): $SDK145 { return callSDK<$SDK145>("SwiftUI_bd41a4085ee86f99", 1470380552918228, this, [width]); }
   declare readonly $type: { "s:7SwiftUI11TableColumnV": true };
 }
 
@@ -11680,32 +11680,32 @@ export class TableColumnAlignment extends SDKHandle {
    * static var center: TableColumnAlignment { get }
    * @availability iOS 17.0+
    */
-  static get center(): TableColumnAlignment { return callSDK<TableColumnAlignment>("SwiftUI_64b39a05e4a4cebd", 3039784829932377, undefined, []); }
+  static get center(): TableColumnAlignment { return callSDK<TableColumnAlignment>("SwiftUI_bd41a4085ee86f99", 3039784829932377, undefined, []); }
   /**
    * static var leading: TableColumnAlignment { get }
    * @availability iOS 17.0+
    */
-  static get leading(): TableColumnAlignment { return callSDK<TableColumnAlignment>("SwiftUI_64b39a05e4a4cebd", 3528953256650901, undefined, []); }
+  static get leading(): TableColumnAlignment { return callSDK<TableColumnAlignment>("SwiftUI_bd41a4085ee86f99", 3528953256650901, undefined, []); }
   /**
    * static var numeric: TableColumnAlignment { get }
    * @availability iOS 17.0+
    */
-  static get numeric(): TableColumnAlignment { return callSDK<TableColumnAlignment>("SwiftUI_64b39a05e4a4cebd", 606713242810747, undefined, []); }
+  static get numeric(): TableColumnAlignment { return callSDK<TableColumnAlignment>("SwiftUI_bd41a4085ee86f99", 606713242810747, undefined, []); }
   /**
    * static func numeric(_ numberingSystem: Locale.NumberingSystem) -> TableColumnAlignment
    * @availability iOS 17.0+
    */
-  static numeric12974(numberingSystem: _Foundation_Locale_NumberingSystem): TableColumnAlignment { return callSDK<TableColumnAlignment>("SwiftUI_64b39a05e4a4cebd", 557129901584570, undefined, [numberingSystem]); }
+  static numeric12974(numberingSystem: _Foundation_Locale_NumberingSystem): TableColumnAlignment { return callSDK<TableColumnAlignment>("SwiftUI_bd41a4085ee86f99", 557129901584570, undefined, [numberingSystem]); }
   /**
    * static var trailing: TableColumnAlignment { get }
    * @availability iOS 17.0+
    */
-  static get trailing(): TableColumnAlignment { return callSDK<TableColumnAlignment>("SwiftUI_64b39a05e4a4cebd", 485656065700475, undefined, []); }
+  static get trailing(): TableColumnAlignment { return callSDK<TableColumnAlignment>("SwiftUI_bd41a4085ee86f99", 485656065700475, undefined, []); }
   /**
    * static var automatic: TableColumnAlignment { get }
    * @availability iOS 17.0+
    */
-  static get automatic(): TableColumnAlignment { return callSDK<TableColumnAlignment>("SwiftUI_64b39a05e4a4cebd", 148915997201712, undefined, []); }
+  static get automatic(): TableColumnAlignment { return callSDK<TableColumnAlignment>("SwiftUI_bd41a4085ee86f99", 148915997201712, undefined, []); }
   declare readonly $type: { "s:7SwiftUI20TableColumnAlignmentV": true };
 }
 
@@ -11734,12 +11734,12 @@ export class TableColumnCustomization<RowValue = unknown> extends SDKHandle {
    * mutating func resetOrder()
    * @availability iOS 17.0+
    */
-  resetOrder(): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3378945776867198, this, []); }
+  resetOrder(): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 3378945776867198, this, []); }
   /**
    * subscript(visibility id: String) -> Visibility { get set }
    * @availability iOS 17.0+
    */
-  subscript(id: string): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("SwiftUI_64b39a05e4a4cebd", 4418111029546112, this, [id]); }
+  subscript(id: string): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("SwiftUI_bd41a4085ee86f99", 4418111029546112, this, [id]); }
   declare readonly $type: { "s:7SwiftUI24TableColumnCustomizationV": true };
 }
 
@@ -11752,77 +11752,77 @@ export class TableColumnCustomizationBehavior extends SDKHandle {
    * static let visibility: TableColumnCustomizationBehavior
    * @availability iOS 17.0+
    */
-  static get visibility(): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_64b39a05e4a4cebd", 2153973116113031, undefined, []); }
+  static get visibility(): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_bd41a4085ee86f99", 2153973116113031, undefined, []); }
   /**
    * func intersection(_ other: TableColumnCustomizationBehavior) -> TableColumnCustomizationBehavior
    * @availability iOS 17.0+
    */
-  intersection(other: TableColumnCustomizationBehavior): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_64b39a05e4a4cebd", 2222845862147259, this, [other]); }
+  intersection(other: TableColumnCustomizationBehavior): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_bd41a4085ee86f99", 2222845862147259, this, [other]); }
   /**
    * mutating func formIntersection(_ other: TableColumnCustomizationBehavior)
    * @availability iOS 17.0+
    */
-  formIntersection(other: TableColumnCustomizationBehavior): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 466987626204138, this, [other]); }
+  formIntersection(other: TableColumnCustomizationBehavior): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 466987626204138, this, [other]); }
   /**
    * func symmetricDifference(_ other: TableColumnCustomizationBehavior) -> TableColumnCustomizationBehavior
    * @availability iOS 17.0+
    */
-  symmetricDifference(other: TableColumnCustomizationBehavior): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_64b39a05e4a4cebd", 444760486051477, this, [other]); }
+  symmetricDifference(other: TableColumnCustomizationBehavior): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_bd41a4085ee86f99", 444760486051477, this, [other]); }
   /**
    * mutating func formSymmetricDifference(_ other: TableColumnCustomizationBehavior)
    * @availability iOS 17.0+
    */
-  formSymmetricDifference(other: TableColumnCustomizationBehavior): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3754032036138898, this, [other]); }
+  formSymmetricDifference(other: TableColumnCustomizationBehavior): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 3754032036138898, this, [other]); }
   /**
    * static var all: TableColumnCustomizationBehavior { get }
    * @availability iOS 17.0+
    */
-  static get all(): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_64b39a05e4a4cebd", 405348612017311, undefined, []); }
+  static get all(): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_bd41a4085ee86f99", 405348612017311, undefined, []); }
   /**
    * func union(_ other: TableColumnCustomizationBehavior) -> TableColumnCustomizationBehavior
    * @availability iOS 17.0+
    */
-  union(other: TableColumnCustomizationBehavior): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_64b39a05e4a4cebd", 1735459657232624, this, [other]); }
+  union(other: TableColumnCustomizationBehavior): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_bd41a4085ee86f99", 1735459657232624, this, [other]); }
   /**
    * mutating func insert(_ newMember: TableColumnCustomizationBehavior.Element) -> (inserted: Bool, memberAfterInsert: TableColumnCustomizationBehavior.Element)
    * @availability iOS 17.0+
    */
-  insert(newMember: TableColumnCustomizationBehavior): { "inserted": boolean; "memberAfterInsert": TableColumnCustomizationBehavior } { return callSDK<{ "inserted": boolean; "memberAfterInsert": TableColumnCustomizationBehavior }>("SwiftUI_64b39a05e4a4cebd", 2511559841161737, this, [newMember]); }
+  insert(newMember: TableColumnCustomizationBehavior): { "inserted": boolean; "memberAfterInsert": TableColumnCustomizationBehavior } { return callSDK<{ "inserted": boolean; "memberAfterInsert": TableColumnCustomizationBehavior }>("SwiftUI_bd41a4085ee86f99", 2511559841161737, this, [newMember]); }
   /**
    * mutating func remove(_ member: TableColumnCustomizationBehavior.Element) -> TableColumnCustomizationBehavior.Element?
    * @availability iOS 17.0+
    */
-  remove(member: TableColumnCustomizationBehavior): $SDK147 { return callSDK<$SDK147>("SwiftUI_64b39a05e4a4cebd", 2231779120034578, this, [member]); }
+  remove(member: TableColumnCustomizationBehavior): $SDK147 { return callSDK<$SDK147>("SwiftUI_bd41a4085ee86f99", 2231779120034578, this, [member]); }
   /**
    * static let resize: TableColumnCustomizationBehavior
    * @availability iOS 17.0+
    */
-  static get resize(): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_64b39a05e4a4cebd", 514434473839254, undefined, []); }
+  static get resize(): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_bd41a4085ee86f99", 514434473839254, undefined, []); }
   /**
    * mutating func update(with newMember: TableColumnCustomizationBehavior.Element) -> TableColumnCustomizationBehavior.Element?
    * @availability iOS 17.0+
    */
-  update(newMember: TableColumnCustomizationBehavior): $SDK147 { return callSDK<$SDK147>("SwiftUI_64b39a05e4a4cebd", 105302478859663, this, [newMember]); }
+  update(newMember: TableColumnCustomizationBehavior): $SDK147 { return callSDK<$SDK147>("SwiftUI_bd41a4085ee86f99", 105302478859663, this, [newMember]); }
   /**
    * static let reorder: TableColumnCustomizationBehavior
    * @availability iOS 17.0+
    */
-  static get reorder(): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_64b39a05e4a4cebd", 2215532556934511, undefined, []); }
+  static get reorder(): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_bd41a4085ee86f99", 2215532556934511, undefined, []); }
   /**
    * func contains(_ member: TableColumnCustomizationBehavior.Element) -> Bool
    * @availability iOS 17.0+
    */
-  contains(member: TableColumnCustomizationBehavior): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 1324907067171896, this, [member]); }
+  contains(member: TableColumnCustomizationBehavior): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 1324907067171896, this, [member]); }
   /**
    * mutating func formUnion(_ other: TableColumnCustomizationBehavior)
    * @availability iOS 17.0+
    */
-  formUnion(other: TableColumnCustomizationBehavior): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1839720628919760, this, [other]); }
+  formUnion(other: TableColumnCustomizationBehavior): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 1839720628919760, this, [other]); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_64b39a05e4a4cebd", 2550519512734021, undefined, []); }
+  static init(): TableColumnCustomizationBehavior { return callSDK<TableColumnCustomizationBehavior>("SwiftUI_bd41a4085ee86f99", 2550519512734021, undefined, []); }
   declare readonly $type: { "s:7SwiftUI32TableColumnCustomizationBehaviorV": true };
 }
 
@@ -11995,17 +11995,17 @@ export class TabPlacement extends SDKHandle {
    * static let sidebarOnly: TabPlacement
    * @availability iOS 18.0+
    */
-  static get sidebarOnly(): TabPlacement { return callSDK<TabPlacement>("SwiftUI_64b39a05e4a4cebd", 3743869498573412, undefined, []); }
+  static get sidebarOnly(): TabPlacement { return callSDK<TabPlacement>("SwiftUI_bd41a4085ee86f99", 3743869498573412, undefined, []); }
   /**
    * static let pinned: TabPlacement
    * @availability iOS 18.0+
    */
-  static get pinned(): TabPlacement { return callSDK<TabPlacement>("SwiftUI_64b39a05e4a4cebd", 636686139061728, undefined, []); }
+  static get pinned(): TabPlacement { return callSDK<TabPlacement>("SwiftUI_bd41a4085ee86f99", 636686139061728, undefined, []); }
   /**
    * static let automatic: TabPlacement
    * @availability iOS 18.0+
    */
-  static get automatic(): TabPlacement { return callSDK<TabPlacement>("SwiftUI_64b39a05e4a4cebd", 3228712202407753, undefined, []); }
+  static get automatic(): TabPlacement { return callSDK<TabPlacement>("SwiftUI_bd41a4085ee86f99", 3228712202407753, undefined, []); }
   declare readonly $type: { "s:7SwiftUI12TabPlacementV": true };
 }
 
@@ -12018,12 +12018,12 @@ export class TabRole extends SDKHandle {
    * static var search: TabRole { get }
    * @availability iOS 18.0+
    */
-  static get search(): TabRole { return callSDK<TabRole>("SwiftUI_64b39a05e4a4cebd", 3513685561953899, undefined, []); }
+  static get search(): TabRole { return callSDK<TabRole>("SwiftUI_bd41a4085ee86f99", 3513685561953899, undefined, []); }
   /**
    * static var prominent: TabRole { get }
    * @availability iOS 27.0+
    */
-  static get prominent(): TabRole { return callSDK<TabRole>("SwiftUI_64b39a05e4a4cebd", 4205559917251155, undefined, []); }
+  static get prominent(): TabRole { return callSDK<TabRole>("SwiftUI_bd41a4085ee86f99", 4205559917251155, undefined, []); }
   declare readonly $type: { "s:7SwiftUI7TabRoleV": true };
 }
 
@@ -12036,12 +12036,12 @@ export class TabSearchActivation extends SDKHandle {
    * static var searchTabSelection: TabSearchActivation { get }
    * @availability iOS 26.0+
    */
-  static get searchTabSelection(): TabSearchActivation { return callSDK<TabSearchActivation>("SwiftUI_64b39a05e4a4cebd", 1744137028762179, undefined, []); }
+  static get searchTabSelection(): TabSearchActivation { return callSDK<TabSearchActivation>("SwiftUI_bd41a4085ee86f99", 1744137028762179, undefined, []); }
   /**
    * static var automatic: TabSearchActivation { get }
    * @availability iOS 26.0+
    */
-  static get automatic(): TabSearchActivation { return callSDK<TabSearchActivation>("SwiftUI_64b39a05e4a4cebd", 943630973744673, undefined, []); }
+  static get automatic(): TabSearchActivation { return callSDK<TabSearchActivation>("SwiftUI_bd41a4085ee86f99", 943630973744673, undefined, []); }
   declare readonly $type: { "s:7SwiftUI19TabSearchActivationV": true };
 }
 
@@ -12074,17 +12074,17 @@ export class TabSectionExpansion extends SDKHandle {
    * static let expanded: TabSectionExpansion
    * @availability iOS 27.0+
    */
-  static get expanded(): TabSectionExpansion { return callSDK<TabSectionExpansion>("SwiftUI_64b39a05e4a4cebd", 4041907568763055, undefined, []); }
+  static get expanded(): TabSectionExpansion { return callSDK<TabSectionExpansion>("SwiftUI_bd41a4085ee86f99", 4041907568763055, undefined, []); }
   /**
    * static let automatic: TabSectionExpansion
    * @availability iOS 27.0+
    */
-  static get automatic(): TabSectionExpansion { return callSDK<TabSectionExpansion>("SwiftUI_64b39a05e4a4cebd", 4363650334348730, undefined, []); }
+  static get automatic(): TabSectionExpansion { return callSDK<TabSectionExpansion>("SwiftUI_bd41a4085ee86f99", 4363650334348730, undefined, []); }
   /**
    * static let collapsed: TabSectionExpansion
    * @availability iOS 27.0+
    */
-  static get collapsed(): TabSectionExpansion { return callSDK<TabSectionExpansion>("SwiftUI_64b39a05e4a4cebd", 1428281955093292, undefined, []); }
+  static get collapsed(): TabSectionExpansion { return callSDK<TabSectionExpansion>("SwiftUI_bd41a4085ee86f99", 1428281955093292, undefined, []); }
   declare readonly $type: { "s:7SwiftUI19TabSectionExpansionV": true };
 }
 
@@ -12097,7 +12097,7 @@ export class TabsPickerStyle extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): TabsPickerStyle { return callSDK<TabsPickerStyle>("SwiftUI_64b39a05e4a4cebd", 4112435393685790, undefined, []); }
+  static init(): TabsPickerStyle { return callSDK<TabsPickerStyle>("SwiftUI_bd41a4085ee86f99", 4112435393685790, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15TabsPickerStyleV": true };
 }
 
@@ -12130,45 +12130,45 @@ export class TabViewCustomization extends SDKHandle {
    * mutating func resetVisibility()
    * @availability iOS 18.0+
    */
-  resetVisibility(): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 794841405474857, this, []); }
+  resetVisibility(): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 794841405474857, this, []); }
   /**
    * mutating func resetSectionOrder(for sectionID: String)
    * @availability iOS 18.0+
    * @deprecated iOS 100000.0
    */
-  resetSectionOrderFor(sectionID: string): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3558353838954823, this, [sectionID]); }
+  resetSectionOrderFor(sectionID: string): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 3558353838954823, this, [sectionID]); }
   /**
    * mutating func resetSectionOrder()
    * @availability iOS 18.0+
    */
-  resetSectionOrder(): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1306633953169957, this, []); }
+  resetSectionOrder(): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 1306633953169957, this, []); }
   /**
    * subscript(sidebarVisibility id: String) -> Visibility { get set }
    * @availability iOS 18.0+
    * @deprecated iOS 100000.0
    */
-  subscriptSidebarVisibility(id: string): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("SwiftUI_64b39a05e4a4cebd", 70576248270573, this, [id]); }
+  subscriptSidebarVisibility(id: string): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("SwiftUI_bd41a4085ee86f99", 70576248270573, this, [id]); }
   /**
    * subscript(tab id: String) -> TabViewCustomization.TabCustomization { get set }
    * @availability iOS 18.4+
    */
-  subscriptTab(id: string): TabViewCustomization_TabCustomization { return callSDK<TabViewCustomization_TabCustomization>("SwiftUI_64b39a05e4a4cebd", 842573280557676, this, [id]); }
+  subscriptTab(id: string): TabViewCustomization_TabCustomization { return callSDK<TabViewCustomization_TabCustomization>("SwiftUI_bd41a4085ee86f99", 842573280557676, this, [id]); }
   /**
    * subscript(section id: String) -> TabViewCustomization.SectionCustomization { get set }
    * @availability iOS 18.4+
    */
-  subscriptSection(id: string): TabViewCustomization_SectionCustomization { return callSDK<TabViewCustomization_SectionCustomization>("SwiftUI_64b39a05e4a4cebd", 3841498066250986, this, [id]); }
+  subscriptSection(id: string): TabViewCustomization_SectionCustomization { return callSDK<TabViewCustomization_SectionCustomization>("SwiftUI_bd41a4085ee86f99", 3841498066250986, this, [id]); }
   /**
    * subscript(sectionID id: String) -> [String]? { get }
    * @availability iOS 18.0+
    * @deprecated iOS 100000.0
    */
-  subscriptSectionID(id: string): (Array<string>) | null { return callSDK<(Array<string>) | null>("SwiftUI_64b39a05e4a4cebd", 2973853301405717, this, [id]); }
+  subscriptSectionID(id: string): (Array<string>) | null { return callSDK<(Array<string>) | null>("SwiftUI_bd41a4085ee86f99", 2973853301405717, this, [id]); }
   /**
    * init()
    * @availability iOS 18.0+
    */
-  static init(): TabViewCustomization { return callSDK<TabViewCustomization>("SwiftUI_64b39a05e4a4cebd", 3334846415307476, undefined, []); }
+  static init(): TabViewCustomization { return callSDK<TabViewCustomization>("SwiftUI_bd41a4085ee86f99", 3334846415307476, undefined, []); }
   declare readonly $type: { "s:7SwiftUI20TabViewCustomizationV": true };
 }
 
@@ -12181,12 +12181,12 @@ export class TabViewCustomization_SectionCustomization extends SDKHandle {
    * mutating func resetTabOrder()
    * @availability iOS 18.4+
    */
-  resetTabOrder(): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1308848775589336, this, []); }
+  resetTabOrder(): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 1308848775589336, this, []); }
   /**
    * var tabOrder: [String]? { get }
    * @availability iOS 18.4+
    */
-  get tabOrder(): (Array<string>) | null { return callSDK<(Array<string>) | null>("SwiftUI_64b39a05e4a4cebd", 1882633965338001, this, []); }
+  get tabOrder(): (Array<string>) | null { return callSDK<(Array<string>) | null>("SwiftUI_bd41a4085ee86f99", 1882633965338001, this, []); }
   declare readonly $type: { "s:7SwiftUI20TabViewCustomizationV07SectionE0V": true };
 }
 
@@ -12199,13 +12199,13 @@ export class TabViewCustomization_TabCustomization extends SDKHandle {
    * var tabBarVisibility: Visibility { get }
    * @availability iOS 18.4+
    */
-  get tabBarVisibility(): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("SwiftUI_64b39a05e4a4cebd", 1697047285406245, this, []); }
+  get tabBarVisibility(): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("SwiftUI_bd41a4085ee86f99", 1697047285406245, this, []); }
   /**
    * var sidebarVisibility: Visibility { get set }
    * @availability iOS 18.4+
    */
-  get sidebarVisibility(): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("SwiftUI_64b39a05e4a4cebd", 3676991116131283, this, []); }
-  set sidebarVisibility(value: _SwiftUICore_Visibility) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 2134029519788577, this, [value]); }
+  get sidebarVisibility(): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("SwiftUI_bd41a4085ee86f99", 3676991116131283, this, []); }
+  set sidebarVisibility(value: _SwiftUICore_Visibility) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 2134029519788577, this, [value]); }
   declare readonly $type: { "s:7SwiftUI20TabViewCustomizationV0cE0V": true };
 }
 
@@ -12222,32 +12222,32 @@ export class Text extends SDKHandle {
    * nonisolated func accessibilityTextContentType(_ value: AccessibilityTextContentType) -> Text
    * @availability iOS 15.0+
    */
-  accessibilityTextContentType(value: _SwiftUICore_AccessibilityTextContentType): _SwiftUICore_Text { return callSDK<_SwiftUICore_Text>("SwiftUI_64b39a05e4a4cebd", 3904380446404220, this, [value]); }
+  accessibilityTextContentType(value: _SwiftUICore_AccessibilityTextContentType): _SwiftUICore_Text { return callSDK<_SwiftUICore_Text>("SwiftUI_bd41a4085ee86f99", 3904380446404220, this, [value]); }
   /**
    * nonisolated func accessibilityLabel(_ label: Text) -> Text
    * @availability iOS 15.0+
    */
-  accessibilityLabel(label: _SwiftUICore_Text): _SwiftUICore_Text { return callSDK<_SwiftUICore_Text>("SwiftUI_64b39a05e4a4cebd", 4361246830535463, this, [label]); }
+  accessibilityLabel(label: _SwiftUICore_Text): _SwiftUICore_Text { return callSDK<_SwiftUICore_Text>("SwiftUI_bd41a4085ee86f99", 4361246830535463, this, [label]); }
   /**
    * @export(implementation) nonisolated func accessibilityLabel(_ label: LocalizedStringResource) -> Text
    * @availability iOS 16.0+
    */
-  accessibilityLabel61829(label: _Foundation_LocalizedStringResource): _SwiftUICore_Text { return callSDK<_SwiftUICore_Text>("SwiftUI_64b39a05e4a4cebd", 4211920933923973, this, [label]); }
+  accessibilityLabel61829(label: _Foundation_LocalizedStringResource): _SwiftUICore_Text { return callSDK<_SwiftUICore_Text>("SwiftUI_bd41a4085ee86f99", 4211920933923973, this, [label]); }
   /**
    * nonisolated func accessibilityLabel<S>(_ label: S) -> Text where S : StringProtocol
    * @availability iOS 15.0+
    */
-  accessibilityLabel70866(label: string): _SwiftUICore_Text { return callSDK<_SwiftUICore_Text>("SwiftUI_64b39a05e4a4cebd", 568783251842998, this, [label]); }
+  accessibilityLabel70866(label: string): _SwiftUICore_Text { return callSDK<_SwiftUICore_Text>("SwiftUI_bd41a4085ee86f99", 568783251842998, this, [label]); }
   /**
    * nonisolated func accessibilityLabel(_ labelKey: LocalizedStringKey) -> Text
    * @availability iOS 15.0+
    */
-  accessibilityLabel60513(labelKey: _SwiftUICore_LocalizedStringKey): _SwiftUICore_Text { return callSDK<_SwiftUICore_Text>("SwiftUI_64b39a05e4a4cebd", 3460825451621843, this, [labelKey]); }
+  accessibilityLabel60513(labelKey: _SwiftUICore_LocalizedStringKey): _SwiftUICore_Text { return callSDK<_SwiftUICore_Text>("SwiftUI_bd41a4085ee86f99", 3460825451621843, this, [labelKey]); }
   /**
    * nonisolated func accessibilityHeading(_ level: AccessibilityHeadingLevel) -> Text
    * @availability iOS 15.0+
    */
-  accessibilityHeading(level: _SwiftUICore_AccessibilityHeadingLevel): _SwiftUICore_Text { return callSDK<_SwiftUICore_Text>("SwiftUI_64b39a05e4a4cebd", 3941078993117694, this, [level]); }
+  accessibilityHeading(level: _SwiftUICore_AccessibilityHeadingLevel): _SwiftUICore_Text { return callSDK<_SwiftUICore_Text>("SwiftUI_bd41a4085ee86f99", 3941078993117694, this, [level]); }
   declare readonly $type: { "s:7SwiftUI4TextV": true };
 }
 
@@ -12256,7 +12256,7 @@ export class Text_LineStyle extends SDKHandle {
    * init?(nsUnderlineStyle: NSUnderlineStyle)
    * @availability iOS 15.0+
    */
-  static init(nsUnderlineStyle: _UIKit_NSUnderlineStyle): (_SwiftUICore_Text_LineStyle) | null { return callSDK<(_SwiftUICore_Text_LineStyle) | null>("SwiftUI_64b39a05e4a4cebd", 2175551819475860, undefined, [nsUnderlineStyle]); }
+  static init(nsUnderlineStyle: _UIKit_NSUnderlineStyle): (_SwiftUICore_Text_LineStyle) | null { return callSDK<(_SwiftUICore_Text_LineStyle) | null>("SwiftUI_bd41a4085ee86f99", 2175551819475860, undefined, [nsUnderlineStyle]); }
   declare readonly $type: { "s:7SwiftUI4TextV9LineStyleV": true };
 }
 
@@ -12269,7 +12269,7 @@ export class TextEditingCommands extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): TextEditingCommands { return callSDK<TextEditingCommands>("SwiftUI_64b39a05e4a4cebd", 2508463208151111, undefined, []); }
+  static init(): TextEditingCommands { return callSDK<TextEditingCommands>("SwiftUI_bd41a4085ee86f99", 2508463208151111, undefined, []); }
   declare readonly $type: { "s:7SwiftUI19TextEditingCommandsV": true };
 }
 
@@ -12288,17 +12288,17 @@ export class TextEditor extends SDKHandle {
    * nonisolated init(text: Binding<AttributedString>, selection: Binding<AttributedTextSelection>? = nil)
    * @availability iOS 26.0+
    */
-  static initTextSelection(text: _SwiftUICore_Binding<_Foundation_AttributedString>, selection?: (_SwiftUICore_Binding<AttributedTextSelection>) | null): TextEditor { return callSDK<TextEditor>("SwiftUI_64b39a05e4a4cebd", 2344474843468946, undefined, [text, selection]); }
+  static initTextSelection(text: _SwiftUICore_Binding<_Foundation_AttributedString>, selection?: (_SwiftUICore_Binding<AttributedTextSelection>) | null): TextEditor { return callSDK<TextEditor>("SwiftUI_bd41a4085ee86f99", 2344474843468946, undefined, [text, selection]); }
   /**
    * nonisolated init(text: Binding<String>, selection: Binding<TextSelection?>)
    * @availability iOS 18.0+
    */
-  static initTextSelection74147(text: $SDK127, selection: $SDK151): TextEditor { return callSDK<TextEditor>("SwiftUI_64b39a05e4a4cebd", 2376749740972146, undefined, [text, selection]); }
+  static initTextSelection74147(text: $SDK127, selection: $SDK151): TextEditor { return callSDK<TextEditor>("SwiftUI_bd41a4085ee86f99", 2376749740972146, undefined, [text, selection]); }
   /**
    * nonisolated init(text: Binding<String>)
    * @availability iOS 14.0+
    */
-  static initText(text: $SDK127): TextEditor { return callSDK<TextEditor>("SwiftUI_64b39a05e4a4cebd", 3230196682038072, undefined, [text]); }
+  static initText(text: $SDK127): TextEditor { return callSDK<TextEditor>("SwiftUI_bd41a4085ee86f99", 3230196682038072, undefined, [text]); }
   declare readonly $type: { "s:7SwiftUI10TextEditorV": true };
 }
 
@@ -12344,178 +12344,178 @@ export class TextField<Label = unknown> extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initTextOnEditingChangedOnCommit(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, onEditingChanged: $SDK137, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 1008340742703359, undefined, [titleKey, text, onEditingChanged, onCommit], [null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static initTextOnEditingChangedOnCommit(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, onEditingChanged: $SDK137, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 1008340742703359, undefined, [titleKey, text, onEditingChanged, onCommit], [null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * nonisolated init<S>(_ title: S, text: Binding<String>, onEditingChanged: @escaping (Bool) -> Void, onCommit: @escaping () -> Void) where S : StringProtocol
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initTextOnEditingChangedOnCommit40469(title: string, text: $SDK127, onEditingChanged: $SDK137, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 3006671891921757, undefined, [title, text, onEditingChanged, onCommit], [null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static initTextOnEditingChangedOnCommit40469(title: string, text: $SDK127, onEditingChanged: $SDK137, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 3006671891921757, undefined, [title, text, onEditingChanged, onCommit], [null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, onEditingChanged: @escaping (Bool) -> Void)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initTextOnEditingChanged(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, onEditingChanged: $SDK137): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 1181216120283760, undefined, [titleKey, text, onEditingChanged], [null,null,{"callback":{"out":[]}}]); }
+  static initTextOnEditingChanged(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, onEditingChanged: $SDK137): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 1181216120283760, undefined, [titleKey, text, onEditingChanged], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) nonisolated init<S>(_ title: S, text: Binding<String>, onEditingChanged: @escaping (Bool) -> Void) where S : StringProtocol
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initTextOnEditingChanged42059(title: string, text: $SDK127, onEditingChanged: $SDK137): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 2776975451495386, undefined, [title, text, onEditingChanged], [null,null,{"callback":{"out":[]}}]); }
+  static initTextOnEditingChanged42059(title: string, text: $SDK127, onEditingChanged: $SDK137): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 2776975451495386, undefined, [title, text, onEditingChanged], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, text: Binding<String>, axis: Axis)
    * @availability iOS 16.0+
    */
-  static initTextAxis(titleResource: _Foundation_LocalizedStringResource, text: $SDK127, axis: _SwiftUICore_Axis): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 4057744724105365, undefined, [titleResource, text, axis]); }
+  static initTextAxis(titleResource: _Foundation_LocalizedStringResource, text: $SDK127, axis: _SwiftUICore_Axis): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 4057744724105365, undefined, [titleResource, text, axis]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, axis: Axis)
    * @availability iOS 16.0+
    */
-  static initTextAxis95543(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, axis: _SwiftUICore_Axis): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 2685335044855697, undefined, [titleKey, text, axis]); }
+  static initTextAxis95543(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, axis: _SwiftUICore_Axis): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 2685335044855697, undefined, [titleKey, text, axis]); }
   /**
    * nonisolated init<S>(_ title: S, text: Binding<String>, axis: Axis) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initTextAxis17837(title: string, text: $SDK127, axis: _SwiftUICore_Axis): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 3055389584302374, undefined, [title, text, axis]); }
+  static initTextAxis17837(title: string, text: $SDK127, axis: _SwiftUICore_Axis): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 3055389584302374, undefined, [title, text, axis]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, text: Binding<String>, prompt: Text?, axis: Axis)
    * @availability iOS 16.0+
    */
-  static initTextPromptAxis(titleResource: _Foundation_LocalizedStringResource, text: $SDK127, prompt: $SDK5, axis: _SwiftUICore_Axis): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 3818955203953968, undefined, [titleResource, text, prompt, axis]); }
+  static initTextPromptAxis(titleResource: _Foundation_LocalizedStringResource, text: $SDK127, prompt: $SDK5, axis: _SwiftUICore_Axis): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 3818955203953968, undefined, [titleResource, text, prompt, axis]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, prompt: Text?, axis: Axis)
    * @availability iOS 16.0+
    */
-  static initTextPromptAxis55789(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, prompt: $SDK5, axis: _SwiftUICore_Axis): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 3541641360797609, undefined, [titleKey, text, prompt, axis]); }
+  static initTextPromptAxis55789(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, prompt: $SDK5, axis: _SwiftUICore_Axis): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 3541641360797609, undefined, [titleKey, text, prompt, axis]); }
   /**
    * nonisolated init<S>(_ title: S, text: Binding<String>, prompt: Text?, axis: Axis) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initTextPromptAxis86183(title: string, text: $SDK127, prompt: $SDK5, axis: _SwiftUICore_Axis): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 4354157852879587, undefined, [title, text, prompt, axis]); }
+  static initTextPromptAxis86183(title: string, text: $SDK127, prompt: $SDK5, axis: _SwiftUICore_Axis): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 4354157852879587, undefined, [title, text, prompt, axis]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, text: Binding<String>, prompt: Text?)
    * @availability iOS 16.0+
    */
-  static initTextPrompt(titleResource: _Foundation_LocalizedStringResource, text: $SDK127, prompt?: $SDK5): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 152888385644801, undefined, [titleResource, text, prompt]); }
+  static initTextPrompt(titleResource: _Foundation_LocalizedStringResource, text: $SDK127, prompt?: $SDK5): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 152888385644801, undefined, [titleResource, text, prompt]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, prompt: Text?)
    * @availability iOS 15.0+
    */
-  static initTextPrompt18728(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, prompt?: $SDK5): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 3546231484936750, undefined, [titleKey, text, prompt]); }
+  static initTextPrompt18728(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, prompt?: $SDK5): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 3546231484936750, undefined, [titleKey, text, prompt]); }
   /**
    * nonisolated init<S>(_ title: S, text: Binding<String>, prompt: Text?) where S : StringProtocol
    * @availability iOS 15.0+
    */
-  static initTextPrompt212(title: string, text: $SDK127, prompt?: $SDK5): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 447907927731357, undefined, [title, text, prompt]); }
+  static initTextPrompt212(title: string, text: $SDK127, prompt?: $SDK5): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 447907927731357, undefined, [title, text, prompt]); }
   /**
    * @export(implementation) nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, onCommit: @escaping () -> Void)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initTextOnCommit(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 3544262126746202, undefined, [titleKey, text, onCommit], [null,null,{"callback":{"out":[]}}]); }
+  static initTextOnCommit(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 3544262126746202, undefined, [titleKey, text, onCommit], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) nonisolated init<S>(_ title: S, text: Binding<String>, onCommit: @escaping () -> Void) where S : StringProtocol
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initTextOnCommit94581(title: string, text: $SDK127, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 3477136592632686, undefined, [title, text, onCommit], [null,null,{"callback":{"out":[]}}]); }
+  static initTextOnCommit94581(title: string, text: $SDK127, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 3477136592632686, undefined, [title, text, onCommit], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, text: Binding<String>, selection: Binding<TextSelection?>, prompt: Text? = nil, axis: Axis? = nil)
    * @availability iOS 18.0+
    */
-  static initTextSelectionPromptAxis(titleResource: _Foundation_LocalizedStringResource, text: $SDK127, selection: $SDK151, prompt?: $SDK5, axis?: $SDK153): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 1545276475552934, undefined, [titleResource, text, selection, prompt, axis]); }
+  static initTextSelectionPromptAxis(titleResource: _Foundation_LocalizedStringResource, text: $SDK127, selection: $SDK151, prompt?: $SDK5, axis?: $SDK153): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 1545276475552934, undefined, [titleResource, text, selection, prompt, axis]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, selection: Binding<TextSelection?>, prompt: Text? = nil, axis: Axis? = nil)
    * @availability iOS 18.0+
    */
-  static initTextSelectionPromptAxis91809(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, selection: $SDK151, prompt?: $SDK5, axis?: $SDK153): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 1559620574845724, undefined, [titleKey, text, selection, prompt, axis]); }
+  static initTextSelectionPromptAxis91809(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127, selection: $SDK151, prompt?: $SDK5, axis?: $SDK153): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 1559620574845724, undefined, [titleKey, text, selection, prompt, axis]); }
   /**
    * nonisolated init<S>(_ title: S, text: Binding<String>, selection: Binding<TextSelection?>, prompt: Text? = nil, axis: Axis? = nil) where S : StringProtocol
    * @availability iOS 18.0+
    */
-  static initTextSelectionPromptAxis72533(title: string, text: $SDK127, selection: $SDK151, prompt?: $SDK5, axis?: $SDK153): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 3809368932500001, undefined, [title, text, selection, prompt, axis]); }
+  static initTextSelectionPromptAxis72533(title: string, text: $SDK127, selection: $SDK151, prompt?: $SDK5, axis?: $SDK153): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 3809368932500001, undefined, [title, text, selection, prompt, axis]); }
   /**
    * nonisolated init(_ titleResource: LocalizedStringResource, text: Binding<String>)
    * @availability iOS 26.0+
    */
-  static initText(titleResource: _Foundation_LocalizedStringResource, text: $SDK127): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 351278983891748, undefined, [titleResource, text]); }
+  static initText(titleResource: _Foundation_LocalizedStringResource, text: $SDK127): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 351278983891748, undefined, [titleResource, text]); }
   /**
    * @export(implementation) nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>)
    * @availability iOS 13.0+
    */
-  static initText72718(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 1879351204238682, undefined, [titleKey, text]); }
+  static initText72718(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK127): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 1879351204238682, undefined, [titleKey, text]); }
   /**
    * @export(implementation) nonisolated init<S>(_ title: S, text: Binding<String>) where S : StringProtocol
    * @availability iOS 13.0+
    */
-  static initText47582(title: string, text: $SDK127): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 3129117212198068, undefined, [title, text]); }
+  static initText47582(title: string, text: $SDK127): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 3129117212198068, undefined, [title, text]); }
   /**
    * nonisolated init<V>(_ titleKey: LocalizedStringKey, value: Binding<V>, formatter: Formatter, onEditingChanged: @escaping (Bool) -> Void, onCommit: @escaping () -> Void)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initValueFormatterOnEditingChangedOnCommit(titleKey: _SwiftUICore_LocalizedStringKey, value: $SDK11, formatter: _Foundation_Formatter, onEditingChanged: $SDK137, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 1425021688111562, undefined, [titleKey, value, formatter, onEditingChanged, onCommit], [null,null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static initValueFormatterOnEditingChangedOnCommit(titleKey: _SwiftUICore_LocalizedStringKey, value: $SDK11, formatter: _Foundation_Formatter, onEditingChanged: $SDK137, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 1425021688111562, undefined, [titleKey, value, formatter, onEditingChanged, onCommit], [null,null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * nonisolated init<S, V>(_ title: S, value: Binding<V>, formatter: Formatter, onEditingChanged: @escaping (Bool) -> Void, onCommit: @escaping () -> Void) where S : StringProtocol
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initValueFormatterOnEditingChangedOnCommit83406(title: string, value: $SDK11, formatter: _Foundation_Formatter, onEditingChanged: $SDK137, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 4458162505565680, undefined, [title, value, formatter, onEditingChanged, onCommit], [null,null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static initValueFormatterOnEditingChangedOnCommit83406(title: string, value: $SDK11, formatter: _Foundation_Formatter, onEditingChanged: $SDK137, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 4458162505565680, undefined, [title, value, formatter, onEditingChanged, onCommit], [null,null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) nonisolated init<V>(_ titleKey: LocalizedStringKey, value: Binding<V>, formatter: Formatter, onEditingChanged: @escaping (Bool) -> Void)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initValueFormatterOnEditingChanged(titleKey: _SwiftUICore_LocalizedStringKey, value: $SDK11, formatter: _Foundation_Formatter, onEditingChanged: $SDK137): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 6616260780865, undefined, [titleKey, value, formatter, onEditingChanged], [null,null,null,{"callback":{"out":[]}}]); }
+  static initValueFormatterOnEditingChanged(titleKey: _SwiftUICore_LocalizedStringKey, value: $SDK11, formatter: _Foundation_Formatter, onEditingChanged: $SDK137): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 6616260780865, undefined, [titleKey, value, formatter, onEditingChanged], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) nonisolated init<S, V>(_ title: S, value: Binding<V>, formatter: Formatter, onEditingChanged: @escaping (Bool) -> Void) where S : StringProtocol
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initValueFormatterOnEditingChanged87895(title: string, value: $SDK11, formatter: _Foundation_Formatter, onEditingChanged: $SDK137): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 908475210870191, undefined, [title, value, formatter, onEditingChanged], [null,null,null,{"callback":{"out":[]}}]); }
+  static initValueFormatterOnEditingChanged87895(title: string, value: $SDK11, formatter: _Foundation_Formatter, onEditingChanged: $SDK137): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 908475210870191, undefined, [title, value, formatter, onEditingChanged], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) nonisolated init<V>(_ titleResource: LocalizedStringResource, value: Binding<V>, formatter: Formatter, prompt: Text?)
    * @availability iOS 16.0+
    */
-  static initValueFormatterPrompt(titleResource: _Foundation_LocalizedStringResource, value: $SDK11, formatter: _Foundation_Formatter, prompt?: $SDK5): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 2797940262944403, undefined, [titleResource, value, formatter, prompt]); }
+  static initValueFormatterPrompt(titleResource: _Foundation_LocalizedStringResource, value: $SDK11, formatter: _Foundation_Formatter, prompt?: $SDK5): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 2797940262944403, undefined, [titleResource, value, formatter, prompt]); }
   /**
    * nonisolated init<V>(_ titleKey: LocalizedStringKey, value: Binding<V>, formatter: Formatter, prompt: Text?)
    * @availability iOS 15.0+
    */
-  static initValueFormatterPrompt91560(titleKey: _SwiftUICore_LocalizedStringKey, value: $SDK11, formatter: _Foundation_Formatter, prompt?: $SDK5): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 515171447794095, undefined, [titleKey, value, formatter, prompt]); }
+  static initValueFormatterPrompt91560(titleKey: _SwiftUICore_LocalizedStringKey, value: $SDK11, formatter: _Foundation_Formatter, prompt?: $SDK5): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 515171447794095, undefined, [titleKey, value, formatter, prompt]); }
   /**
    * nonisolated init<S, V>(_ title: S, value: Binding<V>, formatter: Formatter, prompt: Text?) where S : StringProtocol
    * @availability iOS 15.0+
    */
-  static initValueFormatterPrompt28586(title: string, value: $SDK11, formatter: _Foundation_Formatter, prompt?: $SDK5): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 272022839824414, undefined, [title, value, formatter, prompt]); }
+  static initValueFormatterPrompt28586(title: string, value: $SDK11, formatter: _Foundation_Formatter, prompt?: $SDK5): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 272022839824414, undefined, [title, value, formatter, prompt]); }
   /**
    * @export(implementation) nonisolated init<V>(_ titleKey: LocalizedStringKey, value: Binding<V>, formatter: Formatter, onCommit: @escaping () -> Void)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initValueFormatterOnCommit(titleKey: _SwiftUICore_LocalizedStringKey, value: $SDK11, formatter: _Foundation_Formatter, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 169778165915558, undefined, [titleKey, value, formatter, onCommit], [null,null,null,{"callback":{"out":[]}}]); }
+  static initValueFormatterOnCommit(titleKey: _SwiftUICore_LocalizedStringKey, value: $SDK11, formatter: _Foundation_Formatter, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 169778165915558, undefined, [titleKey, value, formatter, onCommit], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) nonisolated init<S, V>(_ title: S, value: Binding<V>, formatter: Formatter, onCommit: @escaping () -> Void) where S : StringProtocol
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initValueFormatterOnCommit42295(title: string, value: $SDK11, formatter: _Foundation_Formatter, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 3346990425489084, undefined, [title, value, formatter, onCommit], [null,null,null,{"callback":{"out":[]}}]); }
+  static initValueFormatterOnCommit42295(title: string, value: $SDK11, formatter: _Foundation_Formatter, onCommit: (() => void)): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 3346990425489084, undefined, [title, value, formatter, onCommit], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @export(implementation) nonisolated init<V>(_ titleResource: LocalizedStringResource, value: Binding<V>, formatter: Formatter)
    * @availability iOS 16.0+
    */
-  static initValueFormatter(titleResource: _Foundation_LocalizedStringResource, value: $SDK11, formatter: _Foundation_Formatter): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 4153413575448753, undefined, [titleResource, value, formatter]); }
+  static initValueFormatter(titleResource: _Foundation_LocalizedStringResource, value: $SDK11, formatter: _Foundation_Formatter): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 4153413575448753, undefined, [titleResource, value, formatter]); }
   /**
    * @export(implementation) nonisolated init<V>(_ titleKey: LocalizedStringKey, value: Binding<V>, formatter: Formatter)
    * @availability iOS 13.0+
    */
-  static initValueFormatter40230(titleKey: _SwiftUICore_LocalizedStringKey, value: $SDK11, formatter: _Foundation_Formatter): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 3228831309361637, undefined, [titleKey, value, formatter]); }
+  static initValueFormatter40230(titleKey: _SwiftUICore_LocalizedStringKey, value: $SDK11, formatter: _Foundation_Formatter): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 3228831309361637, undefined, [titleKey, value, formatter]); }
   /**
    * @export(implementation) nonisolated init<S, V>(_ title: S, value: Binding<V>, formatter: Formatter) where S : StringProtocol
    * @availability iOS 13.0+
    */
-  static initValueFormatter80476(title: string, value: $SDK11, formatter: _Foundation_Formatter): $SDK152 { return callSDK<$SDK152>("SwiftUI_64b39a05e4a4cebd", 1290706335088790, undefined, [title, value, formatter]); }
+  static initValueFormatter80476(title: string, value: $SDK11, formatter: _Foundation_Formatter): $SDK152 { return callSDK<$SDK152>("SwiftUI_bd41a4085ee86f99", 1290706335088790, undefined, [title, value, formatter]); }
   declare readonly $type: { "s:7SwiftUI9TextFieldV": true };
 }
 
@@ -12542,7 +12542,7 @@ export class TextFormattingCommands extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): TextFormattingCommands { return callSDK<TextFormattingCommands>("SwiftUI_64b39a05e4a4cebd", 2674713017433079, undefined, []); }
+  static init(): TextFormattingCommands { return callSDK<TextFormattingCommands>("SwiftUI_bd41a4085ee86f99", 2674713017433079, undefined, []); }
   declare readonly $type: { "s:7SwiftUI22TextFormattingCommandsV": true };
 }
 
@@ -12561,27 +12561,27 @@ export class TextInputAutocapitalization extends SDKHandle {
    * static var characters: TextInputAutocapitalization { get }
    * @availability iOS 15.0+
    */
-  static get characters(): TextInputAutocapitalization { return callSDK<TextInputAutocapitalization>("SwiftUI_64b39a05e4a4cebd", 3281026713865035, undefined, []); }
+  static get characters(): TextInputAutocapitalization { return callSDK<TextInputAutocapitalization>("SwiftUI_bd41a4085ee86f99", 3281026713865035, undefined, []); }
   /**
    * static var never: TextInputAutocapitalization { get }
    * @availability iOS 15.0+
    */
-  static get never(): TextInputAutocapitalization { return callSDK<TextInputAutocapitalization>("SwiftUI_64b39a05e4a4cebd", 1700083782967816, undefined, []); }
+  static get never(): TextInputAutocapitalization { return callSDK<TextInputAutocapitalization>("SwiftUI_bd41a4085ee86f99", 1700083782967816, undefined, []); }
   /**
    * static var words: TextInputAutocapitalization { get }
    * @availability iOS 15.0+
    */
-  static get words(): TextInputAutocapitalization { return callSDK<TextInputAutocapitalization>("SwiftUI_64b39a05e4a4cebd", 3634531307589712, undefined, []); }
+  static get words(): TextInputAutocapitalization { return callSDK<TextInputAutocapitalization>("SwiftUI_bd41a4085ee86f99", 3634531307589712, undefined, []); }
   /**
    * static var sentences: TextInputAutocapitalization { get }
    * @availability iOS 15.0+
    */
-  static get sentences(): TextInputAutocapitalization { return callSDK<TextInputAutocapitalization>("SwiftUI_64b39a05e4a4cebd", 3575338428490001, undefined, []); }
+  static get sentences(): TextInputAutocapitalization { return callSDK<TextInputAutocapitalization>("SwiftUI_bd41a4085ee86f99", 3575338428490001, undefined, []); }
   /**
    * init?(_ type: UITextAutocapitalizationType)
    * @availability iOS 15.0+
    */
-  static init(type: _UIKit_UITextAutocapitalizationType): (TextInputAutocapitalization) | null { return callSDK<(TextInputAutocapitalization) | null>("SwiftUI_64b39a05e4a4cebd", 1106532675287354, undefined, [type]); }
+  static init(type: _UIKit_UITextAutocapitalizationType): (TextInputAutocapitalization) | null { return callSDK<(TextInputAutocapitalization) | null>("SwiftUI_bd41a4085ee86f99", 1106532675287354, undefined, [type]); }
   declare readonly $type: { "s:7SwiftUI27TextInputAutocapitalizationV": true };
 }
 
@@ -12594,12 +12594,12 @@ export class TextInputDictationActivation extends SDKHandle {
    * static let onLook: TextInputDictationActivation
    * @availability iOS 17.0+
    */
-  static get onLook(): TextInputDictationActivation { return callSDK<TextInputDictationActivation>("SwiftUI_64b39a05e4a4cebd", 2568320960227793, undefined, []); }
+  static get onLook(): TextInputDictationActivation { return callSDK<TextInputDictationActivation>("SwiftUI_bd41a4085ee86f99", 2568320960227793, undefined, []); }
   /**
    * static let onSelect: TextInputDictationActivation
    * @availability iOS 17.0+
    */
-  static get onSelect(): TextInputDictationActivation { return callSDK<TextInputDictationActivation>("SwiftUI_64b39a05e4a4cebd", 3908911868196807, undefined, []); }
+  static get onSelect(): TextInputDictationActivation { return callSDK<TextInputDictationActivation>("SwiftUI_bd41a4085ee86f99", 3908911868196807, undefined, []); }
   declare readonly $type: { "s:7SwiftUI28TextInputDictationActivationV": true };
 }
 
@@ -12612,12 +12612,12 @@ export class TextInputDictationBehavior extends SDKHandle {
    * static func inline(activation: TextInputDictationActivation) -> TextInputDictationBehavior
    * @availability iOS 17.0+
    */
-  static inline(activation: TextInputDictationActivation): TextInputDictationBehavior { return callSDK<TextInputDictationBehavior>("SwiftUI_64b39a05e4a4cebd", 1329810475067995, undefined, [activation]); }
+  static inline(activation: TextInputDictationActivation): TextInputDictationBehavior { return callSDK<TextInputDictationBehavior>("SwiftUI_bd41a4085ee86f99", 1329810475067995, undefined, [activation]); }
   /**
    * static let automatic: TextInputDictationBehavior
    * @availability iOS 17.0+
    */
-  static get automatic(): TextInputDictationBehavior { return callSDK<TextInputDictationBehavior>("SwiftUI_64b39a05e4a4cebd", 1623821069464688, undefined, []); }
+  static get automatic(): TextInputDictationBehavior { return callSDK<TextInputDictationBehavior>("SwiftUI_bd41a4085ee86f99", 1623821069464688, undefined, []); }
   declare readonly $type: { "s:7SwiftUI26TextInputDictationBehaviorV": true };
 }
 
@@ -12640,32 +12640,32 @@ export const TextInputFormattingControlPlacement_Set = {
    * static let contextMenu: TextInputFormattingControlPlacement.Set
    * @availability iOS 26.0+
    */
-  get contextMenu(): TextInputFormattingControlPlacement_Set { return callSDK<TextInputFormattingControlPlacement_Set>("SwiftUI_64b39a05e4a4cebd", 1605494781526, undefined, []); },
+  get contextMenu(): TextInputFormattingControlPlacement_Set { return callSDK<TextInputFormattingControlPlacement_Set>("SwiftUI_bd41a4085ee86f99", 1605494781526, undefined, []); },
   /**
    * static let inputAssistant: TextInputFormattingControlPlacement.Set
    * @availability iOS 26.0+
    */
-  get inputAssistant(): TextInputFormattingControlPlacement_Set { return callSDK<TextInputFormattingControlPlacement_Set>("SwiftUI_64b39a05e4a4cebd", 2637874816953924, undefined, []); },
+  get inputAssistant(): TextInputFormattingControlPlacement_Set { return callSDK<TextInputFormattingControlPlacement_Set>("SwiftUI_bd41a4085ee86f99", 2637874816953924, undefined, []); },
   /**
    * static let all: TextInputFormattingControlPlacement.Set
    * @availability iOS 26.0+
    */
-  get all(): TextInputFormattingControlPlacement_Set { return callSDK<TextInputFormattingControlPlacement_Set>("SwiftUI_64b39a05e4a4cebd", 1841789009526136, undefined, []); },
+  get all(): TextInputFormattingControlPlacement_Set { return callSDK<TextInputFormattingControlPlacement_Set>("SwiftUI_bd41a4085ee86f99", 1841789009526136, undefined, []); },
   /**
    * static let `default`: TextInputFormattingControlPlacement.Set
    * @availability iOS 26.0+
    */
-  get default(): TextInputFormattingControlPlacement_Set { return callSDK<TextInputFormattingControlPlacement_Set>("SwiftUI_64b39a05e4a4cebd", 1006038791697268, undefined, []); },
+  get default(): TextInputFormattingControlPlacement_Set { return callSDK<TextInputFormattingControlPlacement_Set>("SwiftUI_bd41a4085ee86f99", 1006038791697268, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): TextInputFormattingControlPlacement_Set { return callSDK<TextInputFormattingControlPlacement_Set>("SwiftUI_64b39a05e4a4cebd", 2851441228564710, undefined, [rawValue]); },
+  init(rawValue: number): TextInputFormattingControlPlacement_Set { return callSDK<TextInputFormattingControlPlacement_Set>("SwiftUI_bd41a4085ee86f99", 2851441228564710, undefined, [rawValue]); },
   /**
    * let rawValue: UInt
    * @availability iOS 26.0+
    */
-  getRawValue($self: TextInputFormattingControlPlacement_Set): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 4413137827303055, $self, []); }
+  getRawValue($self: TextInputFormattingControlPlacement_Set): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 4413137827303055, $self, []); }
 };
 
 /**
@@ -12695,33 +12695,33 @@ export class TextSelection extends SDKHandle {
    * var isInsertion: Bool { get }
    * @availability iOS 18.0+
    */
-  get isInsertion(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 1062397444789628, this, []); }
+  get isInsertion(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 1062397444789628, this, []); }
   /**
    * init(insertionPoint: String.Index)
    * @availability iOS 18.0+
    */
-  static initInsertionPoint(insertionPoint: SDKHandle): TextSelection { return callSDK<TextSelection>("SwiftUI_64b39a05e4a4cebd", 131337605242639, undefined, [insertionPoint]); }
+  static initInsertionPoint(insertionPoint: SDKHandle): TextSelection { return callSDK<TextSelection>("SwiftUI_bd41a4085ee86f99", 131337605242639, undefined, [insertionPoint]); }
   /**
    * init(range: Range<String.Index>)
    * @availability iOS 18.0+
    */
-  static initRange(range: SDKHandle): TextSelection { return callSDK<TextSelection>("SwiftUI_64b39a05e4a4cebd", 4477507765138948, undefined, [range]); }
+  static initRange(range: SDKHandle): TextSelection { return callSDK<TextSelection>("SwiftUI_bd41a4085ee86f99", 4477507765138948, undefined, [range]); }
   /**
    * init(ranges: RangeSet<String.Index>)
    * @availability iOS 18.0+
    */
-  static initRanges(ranges: SDKHandle): TextSelection { return callSDK<TextSelection>("SwiftUI_64b39a05e4a4cebd", 2164113853915500, undefined, [ranges]); }
+  static initRanges(ranges: SDKHandle): TextSelection { return callSDK<TextSelection>("SwiftUI_bd41a4085ee86f99", 2164113853915500, undefined, [ranges]); }
   /**
    * var indices: TextSelection.Indices
    * @availability iOS 18.0+
    */
-  get indices(): TextSelection_Indices { return callSDK<TextSelection_Indices>("SwiftUI_64b39a05e4a4cebd", 117366198289755, this, []); }
-  set indices(value: TextSelection_Indices) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3746098194936522, this, [value]); }
+  get indices(): TextSelection_Indices { return callSDK<TextSelection_Indices>("SwiftUI_bd41a4085ee86f99", 117366198289755, this, []); }
+  set indices(value: TextSelection_Indices) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3746098194936522, this, [value]); }
   /**
    * var affinity: TextSelectionAffinity { get }
    * @availability iOS 18.0+
    */
-  get affinity(): TextSelectionAffinity { return callSDK<TextSelectionAffinity>("SwiftUI_64b39a05e4a4cebd", 2713733745008424, this, []); }
+  get affinity(): TextSelectionAffinity { return callSDK<TextSelectionAffinity>("SwiftUI_bd41a4085ee86f99", 2713733745008424, this, []); }
   declare readonly $type: { "s:7SwiftUI13TextSelectionV": true };
 }
 
@@ -12762,17 +12762,17 @@ export class TimelineView_Context<Schedule = unknown, Content = unknown> extends
    * func invalidateTimelineContent()
    * @availability iOS 16.0+
    */
-  invalidateTimelineContent(): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 436739695483487, this, []); }
+  invalidateTimelineContent(): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 436739695483487, this, []); }
   /**
    * let date: Date
    * @availability iOS 15.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("SwiftUI_64b39a05e4a4cebd", 704942604477628, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("SwiftUI_bd41a4085ee86f99", 704942604477628, this, []); }
   /**
    * let cadence: TimelineView<Schedule, Content>.Context.Cadence
    * @availability iOS 15.0+
    */
-  get cadence(): TimelineView_Context_Cadence<SDKHandle, unknown> { return callSDK<TimelineView_Context_Cadence<SDKHandle, unknown>>("SwiftUI_64b39a05e4a4cebd", 4221049794884263, this, []); }
+  get cadence(): TimelineView_Context_Cadence<SDKHandle, unknown> { return callSDK<TimelineView_Context_Cadence<SDKHandle, unknown>>("SwiftUI_bd41a4085ee86f99", 4221049794884263, this, []); }
   declare readonly $type: { "s:7SwiftUI12TimelineViewV7ContextV": true };
 }
 
@@ -12797,7 +12797,7 @@ export class TitleAndIconLabelStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.5+
    */
-  static init(): TitleAndIconLabelStyle { return callSDK<TitleAndIconLabelStyle>("SwiftUI_64b39a05e4a4cebd", 2448671273155348, undefined, []); }
+  static init(): TitleAndIconLabelStyle { return callSDK<TitleAndIconLabelStyle>("SwiftUI_bd41a4085ee86f99", 2448671273155348, undefined, []); }
   declare readonly $type: { "s:7SwiftUI22TitleAndIconLabelStyleV": true };
 }
 
@@ -12816,7 +12816,7 @@ export class TitleOnlyLabelStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): TitleOnlyLabelStyle { return callSDK<TitleOnlyLabelStyle>("SwiftUI_64b39a05e4a4cebd", 3715279071742910, undefined, []); }
+  static init(): TitleOnlyLabelStyle { return callSDK<TitleOnlyLabelStyle>("SwiftUI_bd41a4085ee86f99", 3715279071742910, undefined, []); }
   declare readonly $type: { "s:7SwiftUI19TitleOnlyLabelStyleV": true };
 }
 
@@ -12835,22 +12835,22 @@ export class Toggle<Label = unknown> extends SDKHandle {
    * nonisolated init(_ configuration: ToggleStyleConfiguration)
    * @availability iOS 13.0+
    */
-  static init(configuration: ToggleStyleConfiguration): Toggle<ToggleStyleConfiguration_Label> { return callSDK<Toggle<ToggleStyleConfiguration_Label>>("SwiftUI_64b39a05e4a4cebd", 933367491956674, undefined, [configuration]); }
+  static init(configuration: ToggleStyleConfiguration): Toggle<ToggleStyleConfiguration_Label> { return callSDK<Toggle<ToggleStyleConfiguration_Label>>("SwiftUI_bd41a4085ee86f99", 933367491956674, undefined, [configuration]); }
   /**
    * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, isOn: Binding<Bool>)
    * @availability iOS 16.0+
    */
-  static initIsOn(titleResource: _Foundation_LocalizedStringResource, isOn: $SDK36): $SDK157 { return callSDK<$SDK157>("SwiftUI_64b39a05e4a4cebd", 1391149128182261, undefined, [titleResource, isOn]); }
+  static initIsOn(titleResource: _Foundation_LocalizedStringResource, isOn: $SDK36): $SDK157 { return callSDK<$SDK157>("SwiftUI_bd41a4085ee86f99", 1391149128182261, undefined, [titleResource, isOn]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, isOn: Binding<Bool>)
    * @availability iOS 13.0+
    */
-  static initIsOn40719(titleKey: _SwiftUICore_LocalizedStringKey, isOn: $SDK36): $SDK157 { return callSDK<$SDK157>("SwiftUI_64b39a05e4a4cebd", 1122042118649189, undefined, [titleKey, isOn]); }
+  static initIsOn40719(titleKey: _SwiftUICore_LocalizedStringKey, isOn: $SDK36): $SDK157 { return callSDK<$SDK157>("SwiftUI_bd41a4085ee86f99", 1122042118649189, undefined, [titleKey, isOn]); }
   /**
    * nonisolated init<S>(_ title: S, isOn: Binding<Bool>) where S : StringProtocol
    * @availability iOS 13.0+
    */
-  static initIsOn19415(title: string, isOn: $SDK36): $SDK157 { return callSDK<$SDK157>("SwiftUI_64b39a05e4a4cebd", 3231721845729201, undefined, [title, isOn]); }
+  static initIsOn19415(title: string, isOn: $SDK36): $SDK157 { return callSDK<$SDK157>("SwiftUI_bd41a4085ee86f99", 3231721845729201, undefined, [title, isOn]); }
   declare readonly $type: { "s:7SwiftUI6ToggleV": true };
 }
 
@@ -12887,24 +12887,24 @@ export class ToggleStyleConfiguration extends SDKHandle {
    * @Binding var isOn: Bool { get nonmutating set }
    * @availability iOS 13.0+
    */
-  get isOn(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 2756211422093208, this, []); }
-  set isOn(value: boolean) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3283598665013463, this, [value]); }
+  get isOn(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 2756211422093208, this, []); }
+  set isOn(value: boolean) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3283598665013463, this, [value]); }
   /**
    * var $isOn: Binding<Bool> { get }
    * @availability iOS 13.0+
    */
-  get $isOn(): $SDK36 { return callSDK<$SDK36>("SwiftUI_64b39a05e4a4cebd", 716074195229110, this, []); }
+  get $isOn(): $SDK36 { return callSDK<$SDK36>("SwiftUI_bd41a4085ee86f99", 716074195229110, this, []); }
   /**
    * let label: ToggleStyleConfiguration.Label
    * @availability iOS 13.0+
    */
-  get label(): ToggleStyleConfiguration_Label { return callSDK<ToggleStyleConfiguration_Label>("SwiftUI_64b39a05e4a4cebd", 1364370639690846, this, []); }
+  get label(): ToggleStyleConfiguration_Label { return callSDK<ToggleStyleConfiguration_Label>("SwiftUI_bd41a4085ee86f99", 1364370639690846, this, []); }
   /**
    * var isMixed: Bool
    * @availability iOS 16.0+
    */
-  get isMixed(): boolean { return callSDK<boolean>("SwiftUI_64b39a05e4a4cebd", 4063606723131276, this, []); }
-  set isMixed(value: boolean) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3195195462887879, this, [value]); }
+  get isMixed(): boolean { return callSDK<boolean>("SwiftUI_bd41a4085ee86f99", 4063606723131276, this, []); }
+  set isMixed(value: boolean) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3195195462887879, this, [value]); }
   declare readonly $type: { "s:7SwiftUI24ToggleStyleConfigurationV": true };
 }
 
@@ -12931,7 +12931,7 @@ export class ToolbarCommands extends SDKHandle {
    * nonisolated init()
    * @availability iOS 14.0+
    */
-  static init(): ToolbarCommands { return callSDK<ToolbarCommands>("SwiftUI_64b39a05e4a4cebd", 3145830937088158, undefined, []); }
+  static init(): ToolbarCommands { return callSDK<ToolbarCommands>("SwiftUI_bd41a4085ee86f99", 3145830937088158, undefined, []); }
   declare readonly $type: { "s:7SwiftUI15ToolbarCommandsV": true };
 }
 
@@ -12959,7 +12959,7 @@ export class ToolbarContentBuilder extends SDKHandle {
   
    * @availability iOS 17.5+
    */
-  static buildLimitedAvailability(content: SDKHandle): SDKHandle { return callSDK<SDKHandle>("SwiftUI_64b39a05e4a4cebd", 3010881636014004, undefined, [content]); }
+  static buildLimitedAvailability(content: SDKHandle): SDKHandle { return callSDK<SDKHandle>("SwiftUI_bd41a4085ee86f99", 3010881636014004, undefined, [content]); }
   declare readonly $type: { "s:7SwiftUI21ToolbarContentBuilderV": true };
 }
 
@@ -12972,17 +12972,17 @@ export class ToolbarCustomizationBehavior extends SDKHandle {
    * static var reorderable: ToolbarCustomizationBehavior { get }
    * @availability iOS 16.0+
    */
-  static get reorderable(): ToolbarCustomizationBehavior { return callSDK<ToolbarCustomizationBehavior>("SwiftUI_64b39a05e4a4cebd", 3431254366984462, undefined, []); }
+  static get reorderable(): ToolbarCustomizationBehavior { return callSDK<ToolbarCustomizationBehavior>("SwiftUI_bd41a4085ee86f99", 3431254366984462, undefined, []); }
   /**
    * static var `default`: ToolbarCustomizationBehavior { get }
    * @availability iOS 16.0+
    */
-  static get default(): ToolbarCustomizationBehavior { return callSDK<ToolbarCustomizationBehavior>("SwiftUI_64b39a05e4a4cebd", 892790523915886, undefined, []); }
+  static get default(): ToolbarCustomizationBehavior { return callSDK<ToolbarCustomizationBehavior>("SwiftUI_bd41a4085ee86f99", 892790523915886, undefined, []); }
   /**
    * static var disabled: ToolbarCustomizationBehavior { get }
    * @availability iOS 16.0+
    */
-  static get disabled(): ToolbarCustomizationBehavior { return callSDK<ToolbarCustomizationBehavior>("SwiftUI_64b39a05e4a4cebd", 420003808594244, undefined, []); }
+  static get disabled(): ToolbarCustomizationBehavior { return callSDK<ToolbarCustomizationBehavior>("SwiftUI_bd41a4085ee86f99", 420003808594244, undefined, []); }
   declare readonly $type: { "s:7SwiftUI28ToolbarCustomizationBehaviorV": true };
 }
 
@@ -12997,18 +12997,18 @@ export const ToolbarCustomizationOptions = {
    * static var alwaysAvailable: ToolbarCustomizationOptions { get }
    * @availability iOS 16.0+
    */
-  get alwaysAvailable(): ToolbarCustomizationOptions { return callSDK<ToolbarCustomizationOptions>("SwiftUI_64b39a05e4a4cebd", 2902268056481346, undefined, []); },
+  get alwaysAvailable(): ToolbarCustomizationOptions { return callSDK<ToolbarCustomizationOptions>("SwiftUI_bd41a4085ee86f99", 2902268056481346, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): ToolbarCustomizationOptions { return callSDK<ToolbarCustomizationOptions>("SwiftUI_64b39a05e4a4cebd", 995406695294269, undefined, [rawValue]); },
+  init(rawValue: number): ToolbarCustomizationOptions { return callSDK<ToolbarCustomizationOptions>("SwiftUI_bd41a4085ee86f99", 995406695294269, undefined, [rawValue]); },
   /**
    * var rawValue: Int
    * @availability iOS 16.0+
    */
-  getRawValue($self: ToolbarCustomizationOptions): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 34180109514961, $self, []); },
-  setRawValue($self: ToolbarCustomizationOptions, value: number): void { return callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1420244541726671, $self, [value]); }
+  getRawValue($self: ToolbarCustomizationOptions): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 34180109514961, $self, []); },
+  setRawValue($self: ToolbarCustomizationOptions, value: number): void { return callSDK<void>("SwiftUI_bd41a4085ee86f99", 1420244541726671, $self, [value]); }
 };
 
 /**
@@ -13038,17 +13038,17 @@ export class ToolbarDefaultItemKind extends SDKHandle {
    * static let sidebarToggle: ToolbarDefaultItemKind
    * @availability iOS 17.0+
    */
-  static get sidebarToggle(): ToolbarDefaultItemKind { return callSDK<ToolbarDefaultItemKind>("SwiftUI_64b39a05e4a4cebd", 1945649948465033, undefined, []); }
+  static get sidebarToggle(): ToolbarDefaultItemKind { return callSDK<ToolbarDefaultItemKind>("SwiftUI_bd41a4085ee86f99", 1945649948465033, undefined, []); }
   /**
    * static let title: ToolbarDefaultItemKind
    * @availability iOS 18.0+
    */
-  static get title(): ToolbarDefaultItemKind { return callSDK<ToolbarDefaultItemKind>("SwiftUI_64b39a05e4a4cebd", 1999084322683645, undefined, []); }
+  static get title(): ToolbarDefaultItemKind { return callSDK<ToolbarDefaultItemKind>("SwiftUI_bd41a4085ee86f99", 1999084322683645, undefined, []); }
   /**
    * static let search: ToolbarDefaultItemKind
    * @availability iOS 26.0+
    */
-  static get search(): ToolbarDefaultItemKind { return callSDK<ToolbarDefaultItemKind>("SwiftUI_64b39a05e4a4cebd", 2638488986747479, undefined, []); }
+  static get search(): ToolbarDefaultItemKind { return callSDK<ToolbarDefaultItemKind>("SwiftUI_bd41a4085ee86f99", 2638488986747479, undefined, []); }
   declare readonly $type: { "s:7SwiftUI22ToolbarDefaultItemKindV": true };
 }
 
@@ -13061,7 +13061,7 @@ export class ToolbarItem<ID = unknown, Content = unknown> extends SDKHandle {
    * nonisolated var id: ID { get }
    * @availability iOS 14.0+
    */
-  get id(): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 2079688396488678, this, []); }
+  get id(): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 2079688396488678, this, []); }
   declare readonly $type: { "s:7SwiftUI11ToolbarItemV": true };
 }
 
@@ -13080,17 +13080,17 @@ export class ToolbarItemAxisBehavior extends SDKHandle {
    * static let horizontalOnly: ToolbarItemAxisBehavior
    * @availability iOS 27.1+
    */
-  static get horizontalOnly(): ToolbarItemAxisBehavior { return callSDK<ToolbarItemAxisBehavior>("SwiftUI_64b39a05e4a4cebd", 4388287306323220, undefined, []); }
+  static get horizontalOnly(): ToolbarItemAxisBehavior { return callSDK<ToolbarItemAxisBehavior>("SwiftUI_bd41a4085ee86f99", 4388287306323220, undefined, []); }
   /**
    * static let verticalPreferred: ToolbarItemAxisBehavior
    * @availability iOS 27.1+
    */
-  static get verticalPreferred(): ToolbarItemAxisBehavior { return callSDK<ToolbarItemAxisBehavior>("SwiftUI_64b39a05e4a4cebd", 2713244934591076, undefined, []); }
+  static get verticalPreferred(): ToolbarItemAxisBehavior { return callSDK<ToolbarItemAxisBehavior>("SwiftUI_bd41a4085ee86f99", 2713244934591076, undefined, []); }
   /**
    * static let automatic: ToolbarItemAxisBehavior
    * @availability iOS 27.1+
    */
-  static get automatic(): ToolbarItemAxisBehavior { return callSDK<ToolbarItemAxisBehavior>("SwiftUI_64b39a05e4a4cebd", 3874786973634524, undefined, []); }
+  static get automatic(): ToolbarItemAxisBehavior { return callSDK<ToolbarItemAxisBehavior>("SwiftUI_bd41a4085ee86f99", 3874786973634524, undefined, []); }
   declare readonly $type: { "s:7SwiftUI23ToolbarItemAxisBehaviorV": true };
 }
 
@@ -13117,106 +13117,106 @@ export class ToolbarItemPlacement extends SDKHandle {
    * static let largeTitle: ToolbarItemPlacement
    * @availability iOS 26.0+
    */
-  static get largeTitle(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 2246679000363500, undefined, []); }
+  static get largeTitle(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 2246679000363500, undefined, []); }
   /**
    * static let navigation: ToolbarItemPlacement
    * @availability iOS 14.0+
    */
-  static get navigation(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 2846342631319647, undefined, []); }
+  static get navigation(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 2846342631319647, undefined, []); }
   /**
    * static let largeSubtitle: ToolbarItemPlacement
    * @availability iOS 26.0+
    */
-  static get largeSubtitle(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 1173908674309565, undefined, []); }
+  static get largeSubtitle(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 1173908674309565, undefined, []); }
   /**
    * static let primaryAction: ToolbarItemPlacement
    * @availability iOS 14.0+
    */
-  static get primaryAction(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 2240254980636266, undefined, []); }
+  static get primaryAction(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 2240254980636266, undefined, []); }
   /**
    * @backDeployed(before: iOS 17.0, tvOS 17.0)
   static var topBarLeading: ToolbarItemPlacement { get }
    * @availability iOS 14.0+
    */
-  static get topBarLeading(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 1913816839115579, undefined, []); }
+  static get topBarLeading(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 1913816839115579, undefined, []); }
   /**
    * @backDeployed(before: iOS 17.0, tvOS 17.0)
   static var topBarTrailing: ToolbarItemPlacement { get }
    * @availability iOS 14.0+
    */
-  static get topBarTrailing(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 2951506460938160, undefined, []); }
+  static get topBarTrailing(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 2951506460938160, undefined, []); }
   /**
    * static let secondaryAction: ToolbarItemPlacement
    * @availability iOS 16.0+
    */
-  static get secondaryAction(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 1119756797805180, undefined, []); }
+  static get secondaryAction(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 1119756797805180, undefined, []); }
   /**
    * static let destructiveAction: ToolbarItemPlacement
    * @availability iOS 14.0+
    */
-  static get destructiveAction(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 2080477278116384, undefined, []); }
+  static get destructiveAction(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 2080477278116384, undefined, []); }
   /**
    * static let cancellationAction: ToolbarItemPlacement
    * @availability iOS 14.0+
    */
-  static get cancellationAction(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 4481642254591747, undefined, []); }
+  static get cancellationAction(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 4481642254591747, undefined, []); }
   /**
    * static let confirmationAction: ToolbarItemPlacement
    * @availability iOS 14.0+
    */
-  static get confirmationAction(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 4371296657811818, undefined, []); }
+  static get confirmationAction(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 4371296657811818, undefined, []); }
   /**
    * static let navigationBarLeading: ToolbarItemPlacement
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  static get navigationBarLeading(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 3831981991398883, undefined, []); }
+  static get navigationBarLeading(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 3831981991398883, undefined, []); }
   /**
    * static let topBarPinnedTrailing: ToolbarItemPlacement
    * @availability iOS 27.0+
    */
-  static get topBarPinnedTrailing(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 1700575636674094, undefined, []); }
+  static get topBarPinnedTrailing(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 1700575636674094, undefined, []); }
   /**
    * static let navigationBarTrailing: ToolbarItemPlacement
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  static get navigationBarTrailing(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 1682158717556013, undefined, []); }
+  static get navigationBarTrailing(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 1682158717556013, undefined, []); }
   /**
    * @export(implementation) static var title: ToolbarItemPlacement { get }
    * @availability iOS 14.0+
    */
-  static get title(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 2460771224303167, undefined, []); }
+  static get title(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 2460771224303167, undefined, []); }
   /**
    * static let status: ToolbarItemPlacement
    * @availability iOS 14.0+
    */
-  static get status(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 1860659228287665, undefined, []); }
+  static get status(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 1860659228287665, undefined, []); }
   /**
    * static let keyboard: ToolbarItemPlacement
    * @availability iOS 15.0+
    */
-  static get keyboard(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 3243434909133903, undefined, []); }
+  static get keyboard(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 3243434909133903, undefined, []); }
   /**
    * static let subtitle: ToolbarItemPlacement
    * @availability iOS 26.0+
    */
-  static get subtitle(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 1017581775214373, undefined, []); }
+  static get subtitle(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 1017581775214373, undefined, []); }
   /**
    * static let automatic: ToolbarItemPlacement
    * @availability iOS 14.0+
    */
-  static get automatic(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 290683734236697, undefined, []); }
+  static get automatic(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 290683734236697, undefined, []); }
   /**
    * static let bottomBar: ToolbarItemPlacement
    * @availability iOS 14.0+
    */
-  static get bottomBar(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 575805028787439, undefined, []); }
+  static get bottomBar(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 575805028787439, undefined, []); }
   /**
    * static let principal: ToolbarItemPlacement
    * @availability iOS 14.0+
    */
-  static get principal(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_64b39a05e4a4cebd", 1407777306281414, undefined, []); }
+  static get principal(): ToolbarItemPlacement { return callSDK<ToolbarItemPlacement>("SwiftUI_bd41a4085ee86f99", 1407777306281414, undefined, []); }
   declare readonly $type: { "s:7SwiftUI20ToolbarItemPlacementV": true };
 }
 
@@ -13229,27 +13229,27 @@ export class ToolbarItemVisibilityPriority extends SDKHandle {
    * init(higherThan other: ToolbarItemVisibilityPriority)
    * @availability iOS 27.0+
    */
-  static initHigherThan(other: ToolbarItemVisibilityPriority): ToolbarItemVisibilityPriority { return callSDK<ToolbarItemVisibilityPriority>("SwiftUI_64b39a05e4a4cebd", 1927118861467121, undefined, [other]); }
+  static initHigherThan(other: ToolbarItemVisibilityPriority): ToolbarItemVisibilityPriority { return callSDK<ToolbarItemVisibilityPriority>("SwiftUI_bd41a4085ee86f99", 1927118861467121, undefined, [other]); }
   /**
    * static let low: ToolbarItemVisibilityPriority
    * @availability iOS 27.0+
    */
-  static get low(): ToolbarItemVisibilityPriority { return callSDK<ToolbarItemVisibilityPriority>("SwiftUI_64b39a05e4a4cebd", 4212285507216981, undefined, []); }
+  static get low(): ToolbarItemVisibilityPriority { return callSDK<ToolbarItemVisibilityPriority>("SwiftUI_bd41a4085ee86f99", 4212285507216981, undefined, []); }
   /**
    * static let high: ToolbarItemVisibilityPriority
    * @availability iOS 27.0+
    */
-  static get high(): ToolbarItemVisibilityPriority { return callSDK<ToolbarItemVisibilityPriority>("SwiftUI_64b39a05e4a4cebd", 777715657616373, undefined, []); }
+  static get high(): ToolbarItemVisibilityPriority { return callSDK<ToolbarItemVisibilityPriority>("SwiftUI_bd41a4085ee86f99", 777715657616373, undefined, []); }
   /**
    * static let automatic: ToolbarItemVisibilityPriority
    * @availability iOS 27.0+
    */
-  static get automatic(): ToolbarItemVisibilityPriority { return callSDK<ToolbarItemVisibilityPriority>("SwiftUI_64b39a05e4a4cebd", 581655093260306, undefined, []); }
+  static get automatic(): ToolbarItemVisibilityPriority { return callSDK<ToolbarItemVisibilityPriority>("SwiftUI_bd41a4085ee86f99", 581655093260306, undefined, []); }
   /**
    * init(lowerThan other: ToolbarItemVisibilityPriority)
    * @availability iOS 27.0+
    */
-  static initLowerThan(other: ToolbarItemVisibilityPriority): ToolbarItemVisibilityPriority { return callSDK<ToolbarItemVisibilityPriority>("SwiftUI_64b39a05e4a4cebd", 1810699689252990, undefined, [other]); }
+  static initLowerThan(other: ToolbarItemVisibilityPriority): ToolbarItemVisibilityPriority { return callSDK<ToolbarItemVisibilityPriority>("SwiftUI_bd41a4085ee86f99", 1810699689252990, undefined, [other]); }
   declare readonly $type: { "s:7SwiftUI29ToolbarItemVisibilityPriorityV": true };
 }
 
@@ -13262,7 +13262,7 @@ export class ToolbarLabelStyle extends SDKHandle {
    * static var automatic: ToolbarLabelStyle { get }
    * @availability iOS 18.0+
    */
-  static get automatic(): ToolbarLabelStyle { return callSDK<ToolbarLabelStyle>("SwiftUI_64b39a05e4a4cebd", 3432603453955349, undefined, []); }
+  static get automatic(): ToolbarLabelStyle { return callSDK<ToolbarLabelStyle>("SwiftUI_bd41a4085ee86f99", 3432603453955349, undefined, []); }
   declare readonly $type: { "s:7SwiftUI17ToolbarLabelStyleV": true };
 }
 
@@ -13275,22 +13275,22 @@ export class ToolbarMinimizationBehavior extends SDKHandle {
    * static let onScrollUp: ToolbarMinimizationBehavior
    * @availability iOS 27.0+
    */
-  static get onScrollUp(): ToolbarMinimizationBehavior { return callSDK<ToolbarMinimizationBehavior>("SwiftUI_64b39a05e4a4cebd", 2636679298532610, undefined, []); }
+  static get onScrollUp(): ToolbarMinimizationBehavior { return callSDK<ToolbarMinimizationBehavior>("SwiftUI_bd41a4085ee86f99", 2636679298532610, undefined, []); }
   /**
    * static let onScrollDown: ToolbarMinimizationBehavior
    * @availability iOS 27.0+
    */
-  static get onScrollDown(): ToolbarMinimizationBehavior { return callSDK<ToolbarMinimizationBehavior>("SwiftUI_64b39a05e4a4cebd", 3045846301244357, undefined, []); }
+  static get onScrollDown(): ToolbarMinimizationBehavior { return callSDK<ToolbarMinimizationBehavior>("SwiftUI_bd41a4085ee86f99", 3045846301244357, undefined, []); }
   /**
    * static let never: ToolbarMinimizationBehavior
    * @availability iOS 27.0+
    */
-  static get never(): ToolbarMinimizationBehavior { return callSDK<ToolbarMinimizationBehavior>("SwiftUI_64b39a05e4a4cebd", 2190845951196345, undefined, []); }
+  static get never(): ToolbarMinimizationBehavior { return callSDK<ToolbarMinimizationBehavior>("SwiftUI_bd41a4085ee86f99", 2190845951196345, undefined, []); }
   /**
    * static var automatic: ToolbarMinimizationBehavior { get }
    * @availability iOS 27.0+
    */
-  static get automatic(): ToolbarMinimizationBehavior { return callSDK<ToolbarMinimizationBehavior>("SwiftUI_64b39a05e4a4cebd", 4011092644427890, undefined, []); }
+  static get automatic(): ToolbarMinimizationBehavior { return callSDK<ToolbarMinimizationBehavior>("SwiftUI_bd41a4085ee86f99", 4011092644427890, undefined, []); }
   declare readonly $type: { "s:7SwiftUI27ToolbarMinimizationBehaviorV": true };
 }
 
@@ -13303,12 +13303,12 @@ export class ToolbarMinimizationRestoration extends SDKHandle {
    * static let atScrollEdge: ToolbarMinimizationRestoration
    * @availability iOS 27.0+
    */
-  static get atScrollEdge(): ToolbarMinimizationRestoration { return callSDK<ToolbarMinimizationRestoration>("SwiftUI_64b39a05e4a4cebd", 3582389122764317, undefined, []); }
+  static get atScrollEdge(): ToolbarMinimizationRestoration { return callSDK<ToolbarMinimizationRestoration>("SwiftUI_bd41a4085ee86f99", 3582389122764317, undefined, []); }
   /**
    * static let automatic: ToolbarMinimizationRestoration
    * @availability iOS 27.0+
    */
-  static get automatic(): ToolbarMinimizationRestoration { return callSDK<ToolbarMinimizationRestoration>("SwiftUI_64b39a05e4a4cebd", 2117854715214824, undefined, []); }
+  static get automatic(): ToolbarMinimizationRestoration { return callSDK<ToolbarMinimizationRestoration>("SwiftUI_bd41a4085ee86f99", 2117854715214824, undefined, []); }
   declare readonly $type: { "s:7SwiftUI30ToolbarMinimizationRestorationV": true };
 }
 
@@ -13321,17 +13321,17 @@ export class ToolbarMinimizationSafeAreaAdjustment extends SDKHandle {
    * static let enabled: ToolbarMinimizationSafeAreaAdjustment
    * @availability iOS 27.0+
    */
-  static get enabled(): ToolbarMinimizationSafeAreaAdjustment { return callSDK<ToolbarMinimizationSafeAreaAdjustment>("SwiftUI_64b39a05e4a4cebd", 376542854485205, undefined, []); }
+  static get enabled(): ToolbarMinimizationSafeAreaAdjustment { return callSDK<ToolbarMinimizationSafeAreaAdjustment>("SwiftUI_bd41a4085ee86f99", 376542854485205, undefined, []); }
   /**
    * static let disabled: ToolbarMinimizationSafeAreaAdjustment
    * @availability iOS 27.0+
    */
-  static get disabled(): ToolbarMinimizationSafeAreaAdjustment { return callSDK<ToolbarMinimizationSafeAreaAdjustment>("SwiftUI_64b39a05e4a4cebd", 3929830379920056, undefined, []); }
+  static get disabled(): ToolbarMinimizationSafeAreaAdjustment { return callSDK<ToolbarMinimizationSafeAreaAdjustment>("SwiftUI_bd41a4085ee86f99", 3929830379920056, undefined, []); }
   /**
    * static let automatic: ToolbarMinimizationSafeAreaAdjustment
    * @availability iOS 27.0+
    */
-  static get automatic(): ToolbarMinimizationSafeAreaAdjustment { return callSDK<ToolbarMinimizationSafeAreaAdjustment>("SwiftUI_64b39a05e4a4cebd", 3102289740175278, undefined, []); }
+  static get automatic(): ToolbarMinimizationSafeAreaAdjustment { return callSDK<ToolbarMinimizationSafeAreaAdjustment>("SwiftUI_bd41a4085ee86f99", 3102289740175278, undefined, []); }
   declare readonly $type: { "s:7SwiftUI37ToolbarMinimizationSafeAreaAdjustmentV": true };
 }
 
@@ -13358,27 +13358,27 @@ export class ToolbarPlacement extends SDKHandle {
    * static var navigationBar: ToolbarPlacement { get }
    * @availability iOS 16.0+
    */
-  static get navigationBar(): ToolbarPlacement { return callSDK<ToolbarPlacement>("SwiftUI_64b39a05e4a4cebd", 2616980745619276, undefined, []); }
+  static get navigationBar(): ToolbarPlacement { return callSDK<ToolbarPlacement>("SwiftUI_bd41a4085ee86f99", 2616980745619276, undefined, []); }
   /**
    * static var tabBar: ToolbarPlacement { get }
    * @availability iOS 16.0+
    */
-  static get tabBar(): ToolbarPlacement { return callSDK<ToolbarPlacement>("SwiftUI_64b39a05e4a4cebd", 285840899750539, undefined, []); }
+  static get tabBar(): ToolbarPlacement { return callSDK<ToolbarPlacement>("SwiftUI_bd41a4085ee86f99", 285840899750539, undefined, []); }
   /**
    * static var automatic: ToolbarPlacement { get }
    * @availability iOS 16.0+
    */
-  static get automatic(): ToolbarPlacement { return callSDK<ToolbarPlacement>("SwiftUI_64b39a05e4a4cebd", 2937343317649331, undefined, []); }
+  static get automatic(): ToolbarPlacement { return callSDK<ToolbarPlacement>("SwiftUI_bd41a4085ee86f99", 2937343317649331, undefined, []); }
   /**
    * static var bottomBar: ToolbarPlacement { get }
    * @availability iOS 16.0+
    */
-  static get bottomBar(): ToolbarPlacement { return callSDK<ToolbarPlacement>("SwiftUI_64b39a05e4a4cebd", 1677606498565937, undefined, []); }
+  static get bottomBar(): ToolbarPlacement { return callSDK<ToolbarPlacement>("SwiftUI_bd41a4085ee86f99", 1677606498565937, undefined, []); }
   /**
    * static var statusBar: ToolbarPlacement { get }
    * @availability iOS 27.0+
    */
-  static get statusBar(): ToolbarPlacement { return callSDK<ToolbarPlacement>("SwiftUI_64b39a05e4a4cebd", 2706491082192719, undefined, []); }
+  static get statusBar(): ToolbarPlacement { return callSDK<ToolbarPlacement>("SwiftUI_bd41a4085ee86f99", 2706491082192719, undefined, []); }
   declare readonly $type: { "s:7SwiftUI16ToolbarPlacementV": true };
 }
 
@@ -13391,22 +13391,22 @@ export class ToolbarRole extends SDKHandle {
    * static var navigationStack: ToolbarRole { get }
    * @availability iOS 16.0+
    */
-  static get navigationStack(): ToolbarRole { return callSDK<ToolbarRole>("SwiftUI_64b39a05e4a4cebd", 1858125083862528, undefined, []); }
+  static get navigationStack(): ToolbarRole { return callSDK<ToolbarRole>("SwiftUI_bd41a4085ee86f99", 1858125083862528, undefined, []); }
   /**
    * static var editor: ToolbarRole { get }
    * @availability iOS 16.0+
    */
-  static get editor(): ToolbarRole { return callSDK<ToolbarRole>("SwiftUI_64b39a05e4a4cebd", 536639799163296, undefined, []); }
+  static get editor(): ToolbarRole { return callSDK<ToolbarRole>("SwiftUI_bd41a4085ee86f99", 536639799163296, undefined, []); }
   /**
    * static var browser: ToolbarRole { get }
    * @availability iOS 16.0+
    */
-  static get browser(): ToolbarRole { return callSDK<ToolbarRole>("SwiftUI_64b39a05e4a4cebd", 4280912848514682, undefined, []); }
+  static get browser(): ToolbarRole { return callSDK<ToolbarRole>("SwiftUI_bd41a4085ee86f99", 4280912848514682, undefined, []); }
   /**
    * static var automatic: ToolbarRole { get }
    * @availability iOS 16.0+
    */
-  static get automatic(): ToolbarRole { return callSDK<ToolbarRole>("SwiftUI_64b39a05e4a4cebd", 3537763236369520, undefined, []); }
+  static get automatic(): ToolbarRole { return callSDK<ToolbarRole>("SwiftUI_bd41a4085ee86f99", 3537763236369520, undefined, []); }
   declare readonly $type: { "s:7SwiftUI11ToolbarRoleV": true };
 }
 
@@ -13419,7 +13419,7 @@ export class ToolbarSpacer extends SDKHandle {
    * nonisolated init(_ sizing: SpacerSizing = .flexible, placement: ToolbarItemPlacement = .automatic)
    * @availability iOS 26.0+
    */
-  static init(sizing?: SpacerSizing, placement?: ToolbarItemPlacement): ToolbarSpacer { return callSDK<ToolbarSpacer>("SwiftUI_64b39a05e4a4cebd", 3018233025503441, undefined, [sizing, placement]); }
+  static init(sizing?: SpacerSizing, placement?: ToolbarItemPlacement): ToolbarSpacer { return callSDK<ToolbarSpacer>("SwiftUI_bd41a4085ee86f99", 3018233025503441, undefined, [sizing, placement]); }
   declare readonly $type: { "s:7SwiftUI13ToolbarSpacerV": true };
 }
 
@@ -13438,22 +13438,22 @@ export class ToolbarTitleDisplayMode extends SDKHandle {
    * static var inlineLarge: ToolbarTitleDisplayMode { get }
    * @availability iOS 17.0+
    */
-  static get inlineLarge(): ToolbarTitleDisplayMode { return callSDK<ToolbarTitleDisplayMode>("SwiftUI_64b39a05e4a4cebd", 2095019798566524, undefined, []); }
+  static get inlineLarge(): ToolbarTitleDisplayMode { return callSDK<ToolbarTitleDisplayMode>("SwiftUI_bd41a4085ee86f99", 2095019798566524, undefined, []); }
   /**
    * static var large: ToolbarTitleDisplayMode { get }
    * @availability iOS 17.0+
    */
-  static get large(): ToolbarTitleDisplayMode { return callSDK<ToolbarTitleDisplayMode>("SwiftUI_64b39a05e4a4cebd", 4469540351538278, undefined, []); }
+  static get large(): ToolbarTitleDisplayMode { return callSDK<ToolbarTitleDisplayMode>("SwiftUI_bd41a4085ee86f99", 4469540351538278, undefined, []); }
   /**
    * static var inline: ToolbarTitleDisplayMode { get }
    * @availability iOS 17.0+
    */
-  static get inline(): ToolbarTitleDisplayMode { return callSDK<ToolbarTitleDisplayMode>("SwiftUI_64b39a05e4a4cebd", 386844050925751, undefined, []); }
+  static get inline(): ToolbarTitleDisplayMode { return callSDK<ToolbarTitleDisplayMode>("SwiftUI_bd41a4085ee86f99", 386844050925751, undefined, []); }
   /**
    * static var automatic: ToolbarTitleDisplayMode { get }
    * @availability iOS 17.0+
    */
-  static get automatic(): ToolbarTitleDisplayMode { return callSDK<ToolbarTitleDisplayMode>("SwiftUI_64b39a05e4a4cebd", 3301550055793816, undefined, []); }
+  static get automatic(): ToolbarTitleDisplayMode { return callSDK<ToolbarTitleDisplayMode>("SwiftUI_bd41a4085ee86f99", 3301550055793816, undefined, []); }
   declare readonly $type: { "s:7SwiftUI23ToolbarTitleDisplayModeV": true };
 }
 
@@ -13466,7 +13466,7 @@ export class ToolbarTitleMenu<Content = unknown> extends SDKHandle {
    * nonisolated init() where Content == EmptyView
    * @availability iOS 16.0+
    */
-  static init(): ToolbarTitleMenu<_SwiftUICore_EmptyView> { return callSDK<ToolbarTitleMenu<_SwiftUICore_EmptyView>>("SwiftUI_64b39a05e4a4cebd", 3674418119417778, undefined, []); }
+  static init(): ToolbarTitleMenu<_SwiftUICore_EmptyView> { return callSDK<ToolbarTitleMenu<_SwiftUICore_EmptyView>>("SwiftUI_bd41a4085ee86f99", 3674418119417778, undefined, []); }
   declare readonly $type: { "s:7SwiftUI16ToolbarTitleMenuV": true };
 }
 
@@ -13485,12 +13485,12 @@ export class ToolbarVerticalBehavior extends SDKHandle {
    * static let disabled: ToolbarVerticalBehavior
    * @availability iOS 27.1+
    */
-  static get disabled(): ToolbarVerticalBehavior { return callSDK<ToolbarVerticalBehavior>("SwiftUI_64b39a05e4a4cebd", 4271045634260082, undefined, []); }
+  static get disabled(): ToolbarVerticalBehavior { return callSDK<ToolbarVerticalBehavior>("SwiftUI_bd41a4085ee86f99", 4271045634260082, undefined, []); }
   /**
    * static let automatic: ToolbarVerticalBehavior
    * @availability iOS 27.1+
    */
-  static get automatic(): ToolbarVerticalBehavior { return callSDK<ToolbarVerticalBehavior>("SwiftUI_64b39a05e4a4cebd", 592581167281166, undefined, []); }
+  static get automatic(): ToolbarVerticalBehavior { return callSDK<ToolbarVerticalBehavior>("SwiftUI_bd41a4085ee86f99", 592581167281166, undefined, []); }
   declare readonly $type: { "s:7SwiftUI23ToolbarVerticalBehaviorV": true };
 }
 
@@ -13503,17 +13503,17 @@ export class ToolbarVerticalCompressionBehavior extends SDKHandle {
    * static let prefersToolbarItems: ToolbarVerticalCompressionBehavior
    * @availability iOS 27.1+
    */
-  static get prefersToolbarItems(): ToolbarVerticalCompressionBehavior { return callSDK<ToolbarVerticalCompressionBehavior>("SwiftUI_64b39a05e4a4cebd", 63174421611925, undefined, []); }
+  static get prefersToolbarItems(): ToolbarVerticalCompressionBehavior { return callSDK<ToolbarVerticalCompressionBehavior>("SwiftUI_bd41a4085ee86f99", 63174421611925, undefined, []); }
   /**
    * static let prefersTabBar: ToolbarVerticalCompressionBehavior
    * @availability iOS 27.1+
    */
-  static get prefersTabBar(): ToolbarVerticalCompressionBehavior { return callSDK<ToolbarVerticalCompressionBehavior>("SwiftUI_64b39a05e4a4cebd", 2770380782305552, undefined, []); }
+  static get prefersTabBar(): ToolbarVerticalCompressionBehavior { return callSDK<ToolbarVerticalCompressionBehavior>("SwiftUI_bd41a4085ee86f99", 2770380782305552, undefined, []); }
   /**
    * static let automatic: ToolbarVerticalCompressionBehavior
    * @availability iOS 27.1+
    */
-  static get automatic(): ToolbarVerticalCompressionBehavior { return callSDK<ToolbarVerticalCompressionBehavior>("SwiftUI_64b39a05e4a4cebd", 814939083988274, undefined, []); }
+  static get automatic(): ToolbarVerticalCompressionBehavior { return callSDK<ToolbarVerticalCompressionBehavior>("SwiftUI_bd41a4085ee86f99", 814939083988274, undefined, []); }
   declare readonly $type: { "s:7SwiftUI34ToolbarVerticalCompressionBehaviorV": true };
 }
 
@@ -13522,8 +13522,8 @@ export class Transaction extends SDKHandle {
    * var dismissBehavior: DismissBehavior { get set }
    * @availability iOS 17.0+
    */
-  get dismissBehavior(): DismissBehavior { return callSDK<DismissBehavior>("SwiftUI_64b39a05e4a4cebd", 1422554384387806, this, []); }
-  set dismissBehavior(value: DismissBehavior) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4350078250065181, this, [value]); }
+  get dismissBehavior(): DismissBehavior { return callSDK<DismissBehavior>("SwiftUI_bd41a4085ee86f99", 1422554384387806, this, []); }
+  set dismissBehavior(value: DismissBehavior) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 4350078250065181, this, [value]); }
   declare readonly $type: { "s:7SwiftUI11TransactionV": true };
 }
 
@@ -13542,13 +13542,13 @@ export class TupleSliderTickContent<V = unknown, T = unknown> extends SDKHandle 
    * var body: [SliderTick<V>] { get }
    * @availability iOS 26.0+
    */
-  get body(): Array<SliderTick<number>> { return callSDK<Array<SliderTick<number>>>("SwiftUI_64b39a05e4a4cebd", 2376284301358873, this, []); }
+  get body(): Array<SliderTick<number>> { return callSDK<Array<SliderTick<number>>>("SwiftUI_bd41a4085ee86f99", 2376284301358873, this, []); }
   /**
    * var value: T
    * @availability iOS 26.0+
    */
-  get value(): unknown { return callSDK<unknown>("SwiftUI_64b39a05e4a4cebd", 4219194718823399, this, []); }
-  set value(value: unknown) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1506135177328641, this, [value]); }
+  get value(): unknown { return callSDK<unknown>("SwiftUI_bd41a4085ee86f99", 4219194718823399, this, []); }
+  set value(value: unknown) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1506135177328641, this, [value]); }
   declare readonly $type: { "s:7SwiftUI22TupleSliderTickContentV": true };
 }
 
@@ -13579,8 +13579,8 @@ export class TupleTableColumnContent<RowValue = unknown, Sort = unknown, T = unk
    * var value: T
    * @availability iOS 16.0+
    */
-  get value(): unknown { return callSDK<unknown>("SwiftUI_64b39a05e4a4cebd", 1835787303083450, this, []); }
-  set value(value: unknown) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4218785895284051, this, [value]); }
+  get value(): unknown { return callSDK<unknown>("SwiftUI_bd41a4085ee86f99", 1835787303083450, this, []); }
+  set value(value: unknown) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 4218785895284051, this, [value]); }
   declare readonly $type: { "s:7SwiftUI23TupleTableColumnContentV": true };
 }
 
@@ -13611,8 +13611,8 @@ export class TupleTableRowContent<Value = unknown, T = unknown> extends SDKHandl
    * var value: T
    * @availability iOS 16.0+
    */
-  get value(): unknown { return callSDK<unknown>("SwiftUI_64b39a05e4a4cebd", 2155884213584205, this, []); }
-  set value(value: unknown) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 467285459664238, this, [value]); }
+  get value(): unknown { return callSDK<unknown>("SwiftUI_bd41a4085ee86f99", 2155884213584205, this, []); }
+  set value(value: unknown) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 467285459664238, this, [value]); }
   declare readonly $type: { "s:7SwiftUI20TupleTableRowContentV": true };
 }
 
@@ -13635,7 +13635,7 @@ export const UIAccessibilityContrast = {
    * init(_ colorSchemeContrast: ColorSchemeContrast?)
    * @availability iOS 14.0+
    */
-  init(colorSchemeContrast?: (_SwiftUICore_ColorSchemeContrast) | null): _UIKit_UIAccessibilityContrast { return callSDK<_UIKit_UIAccessibilityContrast>("SwiftUI_64b39a05e4a4cebd", 3825304037599684, undefined, [colorSchemeContrast]); }
+  init(colorSchemeContrast?: (_SwiftUICore_ColorSchemeContrast) | null): _UIKit_UIAccessibilityContrast { return callSDK<_UIKit_UIAccessibilityContrast>("SwiftUI_bd41a4085ee86f99", 3825304037599684, undefined, [colorSchemeContrast]); }
 };
 
 /**
@@ -13651,7 +13651,7 @@ export class UIColor extends SDKHandle {
    * convenience init(_ color: Color)
    * @availability iOS 14.0+
    */
-  static init(color: _SwiftUICore_Color): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SwiftUI_64b39a05e4a4cebd", 2305033192791020, undefined, [color]); }
+  static init(color: _SwiftUICore_Color): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SwiftUI_bd41a4085ee86f99", 2305033192791020, undefined, [color]); }
   declare readonly $type: { "c:objc(cs)UIColor": true; "c:objc(cs)NSObject": true };
 }
 
@@ -13662,12 +13662,12 @@ export const UIContentSizeCategory = {
    * init(_ dynamicTypeSize: DynamicTypeSize?)
    * @availability iOS 15.0+
    */
-  init(dynamicTypeSize?: (_SwiftUICore_DynamicTypeSize) | null): _UIKit_UIContentSizeCategory { return callSDK<_UIKit_UIContentSizeCategory>("SwiftUI_64b39a05e4a4cebd", 753206525710212, undefined, [dynamicTypeSize]); },
+  init(dynamicTypeSize?: (_SwiftUICore_DynamicTypeSize) | null): _UIKit_UIContentSizeCategory { return callSDK<_UIKit_UIContentSizeCategory>("SwiftUI_bd41a4085ee86f99", 753206525710212, undefined, [dynamicTypeSize]); },
   /**
    * init(_ sizeCategory: ContentSizeCategory?)
    * @availability iOS 14.0+
    */
-  init4490(sizeCategory?: (_SwiftUICore_ContentSizeCategory) | null): _UIKit_UIContentSizeCategory { return callSDK<_UIKit_UIContentSizeCategory>("SwiftUI_64b39a05e4a4cebd", 101310990859117, undefined, [sizeCategory]); }
+  init4490(sizeCategory?: (_SwiftUICore_ContentSizeCategory) | null): _UIKit_UIContentSizeCategory { return callSDK<_UIKit_UIContentSizeCategory>("SwiftUI_bd41a4085ee86f99", 101310990859117, undefined, [sizeCategory]); }
 };
 
 /**
@@ -13718,7 +13718,7 @@ export class UIGestureRecognizerRepresentableContext<Representable = unknown> ex
    * let converter: UIGestureRecognizerRepresentableCoordinateSpaceConverter
    * @availability iOS 18.0+
    */
-  get converter(): UIGestureRecognizerRepresentableCoordinateSpaceConverter { return callSDK<UIGestureRecognizerRepresentableCoordinateSpaceConverter>("SwiftUI_64b39a05e4a4cebd", 736969111530344, this, []); }
+  get converter(): UIGestureRecognizerRepresentableCoordinateSpaceConverter { return callSDK<UIGestureRecognizerRepresentableCoordinateSpaceConverter>("SwiftUI_bd41a4085ee86f99", 736969111530344, this, []); }
   declare readonly $type: { "s:7SwiftUI39UIGestureRecognizerRepresentableContextV": true };
 }
 
@@ -13731,17 +13731,17 @@ export class UIGestureRecognizerRepresentableCoordinateSpaceConverter extends SD
    * @export(implementation) var localLocation: CGPoint { get }
    * @availability iOS 18.0+
    */
-  get localLocation(): $SDK39 { return callSDK<$SDK39>("SwiftUI_64b39a05e4a4cebd", 4082569485720108, this, []); }
+  get localLocation(): $SDK39 { return callSDK<$SDK39>("SwiftUI_bd41a4085ee86f99", 4082569485720108, this, []); }
   /**
    * @export(implementation) var localVelocity: CGPoint? { get }
    * @availability iOS 18.0+
    */
-  get localVelocity(): $SDK163 { return callSDK<$SDK163>("SwiftUI_64b39a05e4a4cebd", 2883539081357059, this, []); }
+  get localVelocity(): $SDK163 { return callSDK<$SDK163>("SwiftUI_bd41a4085ee86f99", 2883539081357059, this, []); }
   /**
    * @export(implementation) var localTranslation: CGPoint? { get }
    * @availability iOS 18.0+
    */
-  get localTranslation(): $SDK163 { return callSDK<$SDK163>("SwiftUI_64b39a05e4a4cebd", 291353414023381, this, []); }
+  get localTranslation(): $SDK163 { return callSDK<$SDK163>("SwiftUI_bd41a4085ee86f99", 291353414023381, this, []); }
   declare readonly $type: { "s:7SwiftUI56UIGestureRecognizerRepresentableCoordinateSpaceConverterV": true };
 }
 
@@ -13754,37 +13754,37 @@ export class UIHostingConfiguration<Content = unknown, Background = unknown> ext
    * func background<S>(_ style: S) -> UIHostingConfiguration<Content, _UIHostingConfigurationBackgroundView<S>> where S : ShapeStyle
    * @availability iOS 16.0+
    */
-  background(style: SDKHandle): $SDK164 { return callSDK<$SDK164>("SwiftUI_64b39a05e4a4cebd", 3709705116806846, this, [style]); }
+  background(style: SDKHandle): $SDK164 { return callSDK<$SDK164>("SwiftUI_bd41a4085ee86f99", 3709705116806846, this, [style]); }
   /**
    * @MainActor func makeContentView() -> any UIView & UIContentView
    * @availability iOS 16.0+
    */
-  makeContentView(): Promise<(_UIKit_UIView) & (SDKHandle)> { return callSDKAsync<(_UIKit_UIView) & (SDKHandle)>("SwiftUI_64b39a05e4a4cebd", 4068821617979396, this, []); }
+  makeContentView(): Promise<(_UIKit_UIView) & (SDKHandle)> { return callSDKAsync<(_UIKit_UIView) & (SDKHandle)>("SwiftUI_bd41a4085ee86f99", 4068821617979396, this, []); }
   /**
    * func margins(_ edges: Edge.Set = .all, _ length: CGFloat) -> UIHostingConfiguration<Content, Background>
    * @availability iOS 16.0+
    */
-  margins(edges: _SwiftUICore_Edge_Set, length: number): $SDK164 { return callSDK<$SDK164>("SwiftUI_64b39a05e4a4cebd", 2143171025361293, this, [edges, length]); }
+  margins(edges: _SwiftUICore_Edge_Set, length: number): $SDK164 { return callSDK<$SDK164>("SwiftUI_bd41a4085ee86f99", 2143171025361293, this, [edges, length]); }
   /**
    * func margins(_ edges: Edge.Set = .all, _ insets: EdgeInsets) -> UIHostingConfiguration<Content, Background>
    * @availability iOS 16.0+
    */
-  margins14625(edges: _SwiftUICore_Edge_Set, insets: _SwiftUICore_EdgeInsets): $SDK164 { return callSDK<$SDK164>("SwiftUI_64b39a05e4a4cebd", 2347670578798565, this, [edges, insets]); }
+  margins14625(edges: _SwiftUICore_Edge_Set, insets: _SwiftUICore_EdgeInsets): $SDK164 { return callSDK<$SDK164>("SwiftUI_bd41a4085ee86f99", 2347670578798565, this, [edges, insets]); }
   /**
    * func minSize(width: CGFloat? = nil, height: CGFloat? = nil) -> UIHostingConfiguration<Content, Background>
    * @availability iOS 16.0+
    */
-  minSizeWidthHeight(width?: (number) | null, height?: (number) | null): $SDK164 { return callSDK<$SDK164>("SwiftUI_64b39a05e4a4cebd", 2119853021228875, this, [width, height]); }
+  minSizeWidthHeight(width?: (number) | null, height?: (number) | null): $SDK164 { return callSDK<$SDK164>("SwiftUI_bd41a4085ee86f99", 2119853021228875, this, [width, height]); }
   /**
    * @export(implementation) func minSize() -> UIHostingConfiguration<Content, Background>
    * @availability iOS 16.0+
    */
-  minSize(): $SDK164 { return callSDK<$SDK164>("SwiftUI_64b39a05e4a4cebd", 982944959200095, this, []); }
+  minSize(): $SDK164 { return callSDK<$SDK164>("SwiftUI_bd41a4085ee86f99", 982944959200095, this, []); }
   /**
    * func updated(for state: any UIConfigurationState) -> UIHostingConfiguration<Content, Background>
    * @availability iOS 16.0+
    */
-  updated(state: SDKHandle): $SDK164 { return callSDK<$SDK164>("SwiftUI_64b39a05e4a4cebd", 4364375722018520, this, [state]); }
+  updated(state: SDKHandle): $SDK164 { return callSDK<$SDK164>("SwiftUI_bd41a4085ee86f99", 4364375722018520, this, [state]); }
   declare readonly $type: { "s:7SwiftUI22UIHostingConfigurationV": true };
 }
 
@@ -13797,151 +13797,151 @@ export class UIHostingController<Content = unknown> extends SDKHandle {
    * @MainActor @preconcurrency override dynamic var keyCommands: [UIKeyCommand]? { get }
    * @availability iOS 13.0+
    */
-  get keyCommands(): Promise<(Array<_UIKit_UIKeyCommand>) | null> { return callSDKAsync<(Array<_UIKit_UIKeyCommand>) | null>("SwiftUI_64b39a05e4a4cebd", 2513498980254114, this, []); }
+  get keyCommands(): Promise<(Array<_UIKit_UIKeyCommand>) | null> { return callSDKAsync<(Array<_UIKit_UIKeyCommand>) | null>("SwiftUI_bd41a4085ee86f99", 2513498980254114, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic var undoManager: UndoManager? { get }
    * @availability iOS 13.0+
    */
-  get undoManager(): Promise<$SDK44> { return callSDKAsync<$SDK44>("SwiftUI_64b39a05e4a4cebd", 2216530346696947, this, []); }
+  get undoManager(): Promise<$SDK44> { return callSDKAsync<$SDK44>("SwiftUI_bd41a4085ee86f99", 2216530346696947, this, []); }
   /**
    * @MainActor @preconcurrency func sizeThatFits(in size: CGSize) -> CGSize
    * @availability iOS 13.0+
    */
-  sizeThatFits(size: $SDK38): Promise<$SDK38> { return callSDKAsync<$SDK38>("SwiftUI_64b39a05e4a4cebd", 2311925772827278, this, [size]); }
+  sizeThatFits(size: $SDK38): Promise<$SDK38> { return callSDKAsync<$SDK38>("SwiftUI_bd41a4085ee86f99", 2311925772827278, this, [size]); }
   /**
    * @MainActor @preconcurrency var sizingOptions: UIHostingControllerSizingOptions { get set }
    * @availability iOS 16.0+
    */
-  get sizingOptions(): Promise<UIHostingControllerSizingOptions> { return callSDKAsync<UIHostingControllerSizingOptions>("SwiftUI_64b39a05e4a4cebd", 2307397257331780, this, []); }
-  setSizingOptions(value: UIHostingControllerSizingOptions): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 216861508680666, this, [value]); }
+  get sizingOptions(): Promise<UIHostingControllerSizingOptions> { return callSDKAsync<UIHostingControllerSizingOptions>("SwiftUI_bd41a4085ee86f99", 2307397257331780, this, []); }
+  setSizingOptions(value: UIHostingControllerSizingOptions): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 216861508680666, this, [value]); }
   /**
    * @MainActor @preconcurrency override dynamic func viewDidAppear(_ animated: Bool)
    * @availability iOS 13.0+
    */
-  viewDidAppear(animated: boolean): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 2523969889785431, this, [animated]); }
+  viewDidAppear(animated: boolean): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 2523969889785431, this, [animated]); }
   /**
    * @MainActor @preconcurrency override dynamic func viewWillAppear(_ animated: Bool)
    * @availability iOS 13.0+
    */
-  viewWillAppear(animated: boolean): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 1921135501811733, this, [animated]); }
+  viewWillAppear(animated: boolean): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 1921135501811733, this, [animated]); }
   /**
    * @MainActor @preconcurrency var safeAreaRegions: SafeAreaRegions { get set }
    * @availability iOS 16.4+
    */
-  get safeAreaRegions(): Promise<_SwiftUICore_SafeAreaRegions> { return callSDKAsync<_SwiftUICore_SafeAreaRegions>("SwiftUI_64b39a05e4a4cebd", 2962874685142922, this, []); }
-  setSafeAreaRegions(value: _SwiftUICore_SafeAreaRegions): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 3057643098240663, this, [value]); }
+  get safeAreaRegions(): Promise<_SwiftUICore_SafeAreaRegions> { return callSDKAsync<_SwiftUICore_SafeAreaRegions>("SwiftUI_bd41a4085ee86f99", 2962874685142922, this, []); }
+  setSafeAreaRegions(value: _SwiftUICore_SafeAreaRegions): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 3057643098240663, this, [value]); }
   /**
    * @MainActor @preconcurrency override dynamic func viewDidDisappear(_ animated: Bool)
    * @availability iOS 13.0+
    */
-  viewDidDisappear(animated: boolean): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 2184803789784563, this, [animated]); }
+  viewDidDisappear(animated: boolean): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 2184803789784563, this, [animated]); }
   /**
    * @MainActor @preconcurrency override dynamic func viewWillDisappear(_ animated: Bool)
    * @availability iOS 13.0+
    */
-  viewWillDisappear(animated: boolean): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 374810600041398, this, [animated]); }
+  viewWillDisappear(animated: boolean): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 374810600041398, this, [animated]); }
   /**
    * @MainActor @preconcurrency override dynamic func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator)
    * @availability iOS 13.0+
    */
-  viewWillTransition(size: $SDK38, coordinator: SDKHandle): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 3507213288113866, this, [size, coordinator]); }
+  viewWillTransition(size: $SDK38, coordinator: SDKHandle): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 3507213288113866, this, [size, coordinator]); }
   /**
    * @MainActor @preconcurrency override dynamic var isModalInPresentation: Bool { get set }
    * @availability iOS 13.0+
    */
-  get isModalInPresentation(): Promise<boolean> { return callSDKAsync<boolean>("SwiftUI_64b39a05e4a4cebd", 2379059811901667, this, []); }
-  setIsModalInPresentation(value: boolean): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 973737009749764, this, [value]); }
+  get isModalInPresentation(): Promise<boolean> { return callSDKAsync<boolean>("SwiftUI_bd41a4085ee86f99", 2379059811901667, this, []); }
+  setIsModalInPresentation(value: boolean): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 973737009749764, this, [value]); }
   /**
    * @MainActor @preconcurrency override dynamic var childForStatusBarStyle: UIViewController? { get }
    * @availability iOS 13.0+
    */
-  get childForStatusBarStyle(): Promise<$SDK167> { return callSDKAsync<$SDK167>("SwiftUI_64b39a05e4a4cebd", 1289811161332440, this, []); }
+  get childForStatusBarStyle(): Promise<$SDK167> { return callSDKAsync<$SDK167>("SwiftUI_bd41a4085ee86f99", 1289811161332440, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic var prefersStatusBarHidden: Bool { get }
    * @availability iOS 13.0+
    */
-  get prefersStatusBarHidden(): Promise<boolean> { return callSDKAsync<boolean>("SwiftUI_64b39a05e4a4cebd", 4247237388295879, this, []); }
+  get prefersStatusBarHidden(): Promise<boolean> { return callSDKAsync<boolean>("SwiftUI_bd41a4085ee86f99", 4247237388295879, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic func viewWillLayoutSubviews()
    * @availability iOS 13.0+
    */
-  viewWillLayoutSubviews(): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 2486027930890266, this, []); }
+  viewWillLayoutSubviews(): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 2486027930890266, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic var childForStatusBarHidden: UIViewController? { get }
    * @availability iOS 13.0+
    */
-  get childForStatusBarHidden(): Promise<$SDK167> { return callSDKAsync<$SDK167>("SwiftUI_64b39a05e4a4cebd", 1702730441899630, this, []); }
+  get childForStatusBarHidden(): Promise<$SDK167> { return callSDKAsync<$SDK167>("SwiftUI_bd41a4085ee86f99", 1702730441899630, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic var preferredStatusBarStyle: UIStatusBarStyle { get }
    * @availability iOS 13.0+
    */
-  get preferredStatusBarStyle(): Promise<_UIKit_UIStatusBarStyle> { return callSDKAsync<_UIKit_UIStatusBarStyle>("SwiftUI_64b39a05e4a4cebd", 217228936116269, this, []); }
+  get preferredStatusBarStyle(): Promise<_UIKit_UIStatusBarStyle> { return callSDKAsync<_UIKit_UIStatusBarStyle>("SwiftUI_bd41a4085ee86f99", 217228936116269, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic func preferredContentSizeDidChange(forChildContentContainer container: any UIContentContainer)
    * @availability iOS 13.0+
    */
-  preferredContentSizeDidChange(container: SDKHandle): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 4202066254683921, this, [container]); }
+  preferredContentSizeDidChange(container: SDKHandle): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 4202066254683921, this, [container]); }
   /**
    * @MainActor @preconcurrency override dynamic var prefersHomeIndicatorAutoHidden: Bool { get }
    * @availability iOS 13.0+
    */
-  get prefersHomeIndicatorAutoHidden(): Promise<boolean> { return callSDKAsync<boolean>("SwiftUI_64b39a05e4a4cebd", 434323801698998, this, []); }
+  get prefersHomeIndicatorAutoHidden(): Promise<boolean> { return callSDKAsync<boolean>("SwiftUI_bd41a4085ee86f99", 434323801698998, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic var childForHomeIndicatorAutoHidden: UIViewController? { get }
    * @availability iOS 13.0+
    */
-  get childForHomeIndicatorAutoHidden(): Promise<$SDK167> { return callSDKAsync<$SDK167>("SwiftUI_64b39a05e4a4cebd", 2559712526561185, this, []); }
+  get childForHomeIndicatorAutoHidden(): Promise<$SDK167> { return callSDKAsync<$SDK167>("SwiftUI_bd41a4085ee86f99", 2559712526561185, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { get }
    * @availability iOS 13.0+
    */
-  get preferredStatusBarUpdateAnimation(): Promise<_UIKit_UIStatusBarAnimation> { return callSDKAsync<_UIKit_UIStatusBarAnimation>("SwiftUI_64b39a05e4a4cebd", 606691798757715, this, []); }
+  get preferredStatusBarUpdateAnimation(): Promise<_UIKit_UIStatusBarAnimation> { return callSDKAsync<_UIKit_UIStatusBarAnimation>("SwiftUI_bd41a4085ee86f99", 606691798757715, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic var childForScreenEdgesDeferringSystemGestures: UIViewController? { get }
    * @availability iOS 13.0+
    */
-  get childForScreenEdgesDeferringSystemGestures(): Promise<$SDK167> { return callSDKAsync<$SDK167>("SwiftUI_64b39a05e4a4cebd", 3359990778367193, this, []); }
+  get childForScreenEdgesDeferringSystemGestures(): Promise<$SDK167> { return callSDKAsync<$SDK167>("SwiftUI_bd41a4085ee86f99", 3359990778367193, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic var preferredScreenEdgesDeferringSystemGestures: UIRectEdge { get }
    * @availability iOS 13.0+
    */
-  get preferredScreenEdgesDeferringSystemGestures(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("SwiftUI_64b39a05e4a4cebd", 1767755351335958, this, []); }
+  get preferredScreenEdgesDeferringSystemGestures(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("SwiftUI_bd41a4085ee86f99", 1767755351335958, this, []); }
   /**
    * @MainActor @preconcurrency init?(coder aDecoder: NSCoder, rootView: Content)
    * @availability iOS 13.0+
    */
-  static initCoderRootView(aDecoder: _Foundation_NSCoder, rootView: SDKHandle): Promise<($SDK168) | null> { return callSDKAsync<($SDK168) | null>("SwiftUI_64b39a05e4a4cebd", 1929032991935533, undefined, [aDecoder, rootView]); }
+  static initCoderRootView(aDecoder: _Foundation_NSCoder, rootView: SDKHandle): Promise<($SDK168) | null> { return callSDKAsync<($SDK168) | null>("SwiftUI_bd41a4085ee86f99", 1929032991935533, undefined, [aDecoder, rootView]); }
   /**
    * @MainActor @preconcurrency required dynamic init?(coder aDecoder: NSCoder)
    * @availability iOS 13.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): Promise<($SDK168) | null> { return callSDKAsync<($SDK168) | null>("SwiftUI_64b39a05e4a4cebd", 3174958670275390, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): Promise<($SDK168) | null> { return callSDKAsync<($SDK168) | null>("SwiftUI_bd41a4085ee86f99", 3174958670275390, undefined, [aDecoder]); }
   /**
    * @MainActor @preconcurrency override dynamic func didMove(toParent parent: UIViewController?)
    * @availability iOS 13.0+
    */
-  didMove(parent?: $SDK167): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 3545194530930063, this, [parent]); }
+  didMove(parent?: $SDK167): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 3545194530930063, this, [parent]); }
   /**
    * @MainActor @preconcurrency override dynamic func loadView()
    * @availability iOS 13.0+
    */
-  loadView(): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 159072632959183, this, []); }
+  loadView(): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 159072632959183, this, []); }
   /**
    * @MainActor @preconcurrency init(rootView: Content)
    * @availability iOS 13.0+
    */
-  static initRootView(rootView: SDKHandle): Promise<$SDK168> { return callSDKAsync<$SDK168>("SwiftUI_64b39a05e4a4cebd", 4289118101681196, undefined, [rootView]); }
+  static initRootView(rootView: SDKHandle): Promise<$SDK168> { return callSDKAsync<$SDK168>("SwiftUI_bd41a4085ee86f99", 4289118101681196, undefined, [rootView]); }
   /**
    * @MainActor @preconcurrency var rootView: Content { get set }
    * @availability iOS 13.0+
    */
-  get rootView(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("SwiftUI_64b39a05e4a4cebd", 4340616781761058, this, []); }
-  setRootView(value: SDKHandle): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 3167637437006937, this, [value]); }
+  get rootView(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("SwiftUI_bd41a4085ee86f99", 4340616781761058, this, []); }
+  setRootView(value: SDKHandle): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 3167637437006937, this, [value]); }
   /**
    * @MainActor @preconcurrency override dynamic func willMove(toParent parent: UIViewController?)
    * @availability iOS 13.0+
    */
-  willMove(parent?: $SDK167): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 770722615456396, this, [parent]); }
+  willMove(parent?: $SDK167): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 770722615456396, this, [parent]); }
   declare readonly $type: { "s:7SwiftUI19UIHostingControllerC": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -13956,22 +13956,22 @@ export const UIHostingControllerSizingOptions = {
    * static let intrinsicContentSize: UIHostingControllerSizingOptions
    * @availability iOS 16.0+
    */
-  get intrinsicContentSize(): UIHostingControllerSizingOptions { return callSDK<UIHostingControllerSizingOptions>("SwiftUI_64b39a05e4a4cebd", 877202678543447, undefined, []); },
+  get intrinsicContentSize(): UIHostingControllerSizingOptions { return callSDK<UIHostingControllerSizingOptions>("SwiftUI_bd41a4085ee86f99", 877202678543447, undefined, []); },
   /**
    * static let preferredContentSize: UIHostingControllerSizingOptions
    * @availability iOS 16.0+
    */
-  get preferredContentSize(): UIHostingControllerSizingOptions { return callSDK<UIHostingControllerSizingOptions>("SwiftUI_64b39a05e4a4cebd", 2955150590704686, undefined, []); },
+  get preferredContentSize(): UIHostingControllerSizingOptions { return callSDK<UIHostingControllerSizingOptions>("SwiftUI_bd41a4085ee86f99", 2955150590704686, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): UIHostingControllerSizingOptions { return callSDK<UIHostingControllerSizingOptions>("SwiftUI_64b39a05e4a4cebd", 869073500756358, undefined, [rawValue]); },
+  init(rawValue: number): UIHostingControllerSizingOptions { return callSDK<UIHostingControllerSizingOptions>("SwiftUI_bd41a4085ee86f99", 869073500756358, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 16.0+
    */
-  getRawValue($self: UIHostingControllerSizingOptions): number { return callSDK<number>("SwiftUI_64b39a05e4a4cebd", 4041243112617469, $self, []); }
+  getRawValue($self: UIHostingControllerSizingOptions): number { return callSDK<number>("SwiftUI_bd41a4085ee86f99", 4041243112617469, $self, []); }
 };
 
 /**
@@ -14019,7 +14019,7 @@ export const UILegibilityWeight = {
    * init(_ legibilityWeight: LegibilityWeight?)
    * @availability iOS 14.0+
    */
-  init(legibilityWeight?: (_SwiftUICore_LegibilityWeight) | null): _UIKit_UILegibilityWeight { return callSDK<_UIKit_UILegibilityWeight>("SwiftUI_64b39a05e4a4cebd", 3467992410853002, undefined, [legibilityWeight]); }
+  init(legibilityWeight?: (_SwiftUICore_LegibilityWeight) | null): _UIKit_UILegibilityWeight { return callSDK<_UIKit_UILegibilityWeight>("SwiftUI_bd41a4085ee86f99", 3467992410853002, undefined, [legibilityWeight]); }
 };
 
 /**
@@ -14035,7 +14035,7 @@ export const UITraitEnvironmentLayoutDirection = {
    * init(_ layoutDirection: LayoutDirection)
    * @availability iOS 14.0+
    */
-  init(layoutDirection: _SwiftUICore_LayoutDirection): _UIKit_UITraitEnvironmentLayoutDirection { return callSDK<_UIKit_UITraitEnvironmentLayoutDirection>("SwiftUI_64b39a05e4a4cebd", 883414958012212, undefined, [layoutDirection]); }
+  init(layoutDirection: _SwiftUICore_LayoutDirection): _UIKit_UITraitEnvironmentLayoutDirection { return callSDK<_UIKit_UITraitEnvironmentLayoutDirection>("SwiftUI_bd41a4085ee86f99", 883414958012212, undefined, [layoutDirection]); }
 };
 
 export type UIUserInterfaceSizeClass = "unspecified" | "compact" | "regular";
@@ -14045,7 +14045,7 @@ export const UIUserInterfaceSizeClass = {
    * init(_ sizeClass: UserInterfaceSizeClass?)
    * @availability iOS 14.0+
    */
-  init(sizeClass?: (_SwiftUICore_UserInterfaceSizeClass) | null): _UIKit_UIUserInterfaceSizeClass { return callSDK<_UIKit_UIUserInterfaceSizeClass>("SwiftUI_64b39a05e4a4cebd", 942881331111302, undefined, [sizeClass]); }
+  init(sizeClass?: (_SwiftUICore_UserInterfaceSizeClass) | null): _UIKit_UIUserInterfaceSizeClass { return callSDK<_UIKit_UIUserInterfaceSizeClass>("SwiftUI_bd41a4085ee86f99", 942881331111302, undefined, [sizeClass]); }
 };
 
 export type UIUserInterfaceStyle = "unspecified" | "light" | "dark";
@@ -14055,7 +14055,7 @@ export const UIUserInterfaceStyle = {
    * init(_ colorScheme: ColorScheme?)
    * @availability iOS 14.0+
    */
-  init(colorScheme?: (_SwiftUICore_ColorScheme) | null): _UIKit_UIUserInterfaceStyle { return callSDK<_UIKit_UIUserInterfaceStyle>("SwiftUI_64b39a05e4a4cebd", 359029309886419, undefined, [colorScheme]); }
+  init(colorScheme?: (_SwiftUICore_ColorScheme) | null): _UIKit_UIUserInterfaceStyle { return callSDK<_UIKit_UIUserInterfaceStyle>("SwiftUI_bd41a4085ee86f99", 359029309886419, undefined, [colorScheme]); }
 };
 
 export class UIView extends SDKHandle {
@@ -14063,7 +14063,7 @@ export class UIView extends SDKHandle {
    * @MainActor @preconcurrency static func animate(_ animation: Animation, changes: () -> Void, completion: (() -> Void)? = nil)
    * @availability iOS 18.0+
    */
-  static animate(animation: _SwiftUICore_Animation, changes: (() => void), completion?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 1972883022110837, undefined, [animation, changes, completion], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static animate(animation: _SwiftUICore_Animation, changes: (() => void), completion?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 1972883022110837, undefined, [animation, changes, completion], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -14180,29 +14180,29 @@ export class URLDocumentConfiguration extends SDKHandle {
    * nonisolated final var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): Promise<string> { return callSDKAsync<string>("SwiftUI_64b39a05e4a4cebd", 2305910568510180, this, []); }
+  get description(): Promise<string> { return callSDKAsync<string>("SwiftUI_bd41a4085ee86f99", 2305910568510180, this, []); }
   /**
    * @MainActor final var creationSource: DocumentCreationSource? { get }
    * @availability iOS 27.0+
    */
-  get creationSource(): Promise<$SDK37> { return callSDKAsync<$SDK37>("SwiftUI_64b39a05e4a4cebd", 4138984380863054, this, []); }
+  get creationSource(): Promise<$SDK37> { return callSDKAsync<$SDK37>("SwiftUI_bd41a4085ee86f99", 4138984380863054, this, []); }
   /**
    * @MainActor final func makeFileCoordinator() -> sending NSFileCoordinator
    * @availability iOS 27.0+
    */
-  makeFileCoordinator(): Promise<_Foundation_NSFileCoordinator> { return callSDKAsync<_Foundation_NSFileCoordinator>("SwiftUI_64b39a05e4a4cebd", 3645623788388632, this, []); }
+  makeFileCoordinator(): Promise<_Foundation_NSFileCoordinator> { return callSDKAsync<_Foundation_NSFileCoordinator>("SwiftUI_bd41a4085ee86f99", 3645623788388632, this, []); }
   /**
    * @MainActor final var lastContentModificationDate: Date? { get set }
    * @availability iOS 27.0+
    */
-  get lastContentModificationDate(): Promise<$SDK6> { return callSDKAsync<$SDK6>("SwiftUI_64b39a05e4a4cebd", 3964350656929404, this, []); }
-  setLastContentModificationDate(value?: $SDK6): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 4446874851457010, this, [value]); }
+  get lastContentModificationDate(): Promise<$SDK6> { return callSDKAsync<$SDK6>("SwiftUI_bd41a4085ee86f99", 3964350656929404, this, []); }
+  setLastContentModificationDate(value?: $SDK6): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 4446874851457010, this, [value]); }
   /**
    * @MainActor final var fileURL: URL? { get set }
    * @availability iOS 27.0+
    */
-  get fileURL(): Promise<(string) | null> { return callSDKAsync<(string) | null>("SwiftUI_64b39a05e4a4cebd", 3429218160888796, this, []); }
-  setFileURL(value?: (string) | null): Promise<void> { return callSDKAsync<void>("SwiftUI_64b39a05e4a4cebd", 4281041009426712, this, [value]); }
+  get fileURL(): Promise<(string) | null> { return callSDKAsync<(string) | null>("SwiftUI_bd41a4085ee86f99", 3429218160888796, this, []); }
+  setFileURL(value?: (string) | null): Promise<void> { return callSDKAsync<void>("SwiftUI_bd41a4085ee86f99", 4281041009426712, this, [value]); }
   declare readonly $type: { "s:7SwiftUI24URLDocumentConfigurationC": true };
   declare readonly $observable: { "description": true; "creationSource": true; "lastContentModificationDate": true; "fileURL": true };
 }
@@ -14214,7 +14214,7 @@ export const UserInterfaceSizeClass = {
    * init?(_ uiUserInterfaceSizeClass: UIUserInterfaceSizeClass)
    * @availability iOS 14.0+
    */
-  init(uiUserInterfaceSizeClass: _UIKit_UIUserInterfaceSizeClass): (_SwiftUICore_UserInterfaceSizeClass) | null { return callSDK<(_SwiftUICore_UserInterfaceSizeClass) | null>("SwiftUI_64b39a05e4a4cebd", 991300127875553, undefined, [uiUserInterfaceSizeClass]); }
+  init(uiUserInterfaceSizeClass: _UIKit_UIUserInterfaceSizeClass): (_SwiftUICore_UserInterfaceSizeClass) | null { return callSDK<(_SwiftUICore_UserInterfaceSizeClass) | null>("SwiftUI_bd41a4085ee86f99", 991300127875553, undefined, [uiUserInterfaceSizeClass]); }
 };
 
 /**
@@ -14226,27 +14226,27 @@ export class ViewAlignedScrollTargetBehavior extends SDKHandle {
    * init(limitBehavior: ViewAlignedScrollTargetBehavior.LimitBehavior, anchor: UnitPoint?)
    * @availability iOS 26.0+
    */
-  static initLimitBehaviorAnchor(limitBehavior: ViewAlignedScrollTargetBehavior_LimitBehavior, anchor?: $SDK121): ViewAlignedScrollTargetBehavior { return callSDK<ViewAlignedScrollTargetBehavior>("SwiftUI_64b39a05e4a4cebd", 606431046865332, undefined, [limitBehavior, anchor]); }
+  static initLimitBehaviorAnchor(limitBehavior: ViewAlignedScrollTargetBehavior_LimitBehavior, anchor?: $SDK121): ViewAlignedScrollTargetBehavior { return callSDK<ViewAlignedScrollTargetBehavior>("SwiftUI_bd41a4085ee86f99", 606431046865332, undefined, [limitBehavior, anchor]); }
   /**
    * init(limitBehavior: ViewAlignedScrollTargetBehavior.LimitBehavior = .automatic)
    * @availability iOS 17.0+
    */
-  static initLimitBehavior(limitBehavior?: ViewAlignedScrollTargetBehavior_LimitBehavior): ViewAlignedScrollTargetBehavior { return callSDK<ViewAlignedScrollTargetBehavior>("SwiftUI_64b39a05e4a4cebd", 3790198241362004, undefined, [limitBehavior]); }
+  static initLimitBehavior(limitBehavior?: ViewAlignedScrollTargetBehavior_LimitBehavior): ViewAlignedScrollTargetBehavior { return callSDK<ViewAlignedScrollTargetBehavior>("SwiftUI_bd41a4085ee86f99", 3790198241362004, undefined, [limitBehavior]); }
   /**
    * func updateTarget(_ target: inout ScrollTarget, context: ViewAlignedScrollTargetBehavior.TargetContext)
    * @availability iOS 17.0+
    */
-  updateTarget(target: _SwiftUICore_ScrollTarget, context: ScrollTargetBehaviorContext): { $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } } { return callSDK<{ $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } }>("SwiftUI_64b39a05e4a4cebd", 1649500452894912, this, [target, context]); }
+  updateTarget(target: _SwiftUICore_ScrollTarget, context: ScrollTargetBehaviorContext): { $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } } { return callSDK<{ $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } }>("SwiftUI_bd41a4085ee86f99", 1649500452894912, this, [target, context]); }
   /**
    * func properties(context: ViewAlignedScrollTargetBehavior.PropertiesContext) -> ViewAlignedScrollTargetBehavior.Properties
    * @availability iOS 18.4+
    */
-  properties(context: ScrollTargetBehaviorPropertiesContext): ScrollTargetBehaviorProperties { return callSDK<ScrollTargetBehaviorProperties>("SwiftUI_64b39a05e4a4cebd", 2004517428588827, this, [context]); }
+  properties(context: ScrollTargetBehaviorPropertiesContext): ScrollTargetBehaviorProperties { return callSDK<ScrollTargetBehaviorProperties>("SwiftUI_bd41a4085ee86f99", 2004517428588827, this, [context]); }
   /**
    * init(anchor: UnitPoint?)
    * @availability iOS 26.0+
    */
-  static initAnchor(anchor?: $SDK121): ViewAlignedScrollTargetBehavior { return callSDK<ViewAlignedScrollTargetBehavior>("SwiftUI_64b39a05e4a4cebd", 622175513494623, undefined, [anchor]); }
+  static initAnchor(anchor?: $SDK121): ViewAlignedScrollTargetBehavior { return callSDK<ViewAlignedScrollTargetBehavior>("SwiftUI_bd41a4085ee86f99", 622175513494623, undefined, [anchor]); }
   declare readonly $type: { "s:7SwiftUI31ViewAlignedScrollTargetBehaviorV": true };
 }
 
@@ -14259,27 +14259,27 @@ export class ViewAlignedScrollTargetBehavior_LimitBehavior extends SDKHandle {
    * static var alwaysByFew: ViewAlignedScrollTargetBehavior.LimitBehavior { get }
    * @availability iOS 18.0+
    */
-  static get alwaysByFew(): ViewAlignedScrollTargetBehavior_LimitBehavior { return callSDK<ViewAlignedScrollTargetBehavior_LimitBehavior>("SwiftUI_64b39a05e4a4cebd", 2068117082044327, undefined, []); }
+  static get alwaysByFew(): ViewAlignedScrollTargetBehavior_LimitBehavior { return callSDK<ViewAlignedScrollTargetBehavior_LimitBehavior>("SwiftUI_bd41a4085ee86f99", 2068117082044327, undefined, []); }
   /**
    * static var alwaysByOne: ViewAlignedScrollTargetBehavior.LimitBehavior { get }
    * @availability iOS 18.0+
    */
-  static get alwaysByOne(): ViewAlignedScrollTargetBehavior_LimitBehavior { return callSDK<ViewAlignedScrollTargetBehavior_LimitBehavior>("SwiftUI_64b39a05e4a4cebd", 764358876593025, undefined, []); }
+  static get alwaysByOne(): ViewAlignedScrollTargetBehavior_LimitBehavior { return callSDK<ViewAlignedScrollTargetBehavior_LimitBehavior>("SwiftUI_bd41a4085ee86f99", 764358876593025, undefined, []); }
   /**
    * static var never: ViewAlignedScrollTargetBehavior.LimitBehavior { get }
    * @availability iOS 17.0+
    */
-  static get never(): ViewAlignedScrollTargetBehavior_LimitBehavior { return callSDK<ViewAlignedScrollTargetBehavior_LimitBehavior>("SwiftUI_64b39a05e4a4cebd", 2487437655855341, undefined, []); }
+  static get never(): ViewAlignedScrollTargetBehavior_LimitBehavior { return callSDK<ViewAlignedScrollTargetBehavior_LimitBehavior>("SwiftUI_bd41a4085ee86f99", 2487437655855341, undefined, []); }
   /**
    * static var always: ViewAlignedScrollTargetBehavior.LimitBehavior { get }
    * @availability iOS 17.0+
    */
-  static get always(): ViewAlignedScrollTargetBehavior_LimitBehavior { return callSDK<ViewAlignedScrollTargetBehavior_LimitBehavior>("SwiftUI_64b39a05e4a4cebd", 3671767964546809, undefined, []); }
+  static get always(): ViewAlignedScrollTargetBehavior_LimitBehavior { return callSDK<ViewAlignedScrollTargetBehavior_LimitBehavior>("SwiftUI_bd41a4085ee86f99", 3671767964546809, undefined, []); }
   /**
    * static var automatic: ViewAlignedScrollTargetBehavior.LimitBehavior { get }
    * @availability iOS 17.0+
    */
-  static get automatic(): ViewAlignedScrollTargetBehavior_LimitBehavior { return callSDK<ViewAlignedScrollTargetBehavior_LimitBehavior>("SwiftUI_64b39a05e4a4cebd", 595757581971040, undefined, []); }
+  static get automatic(): ViewAlignedScrollTargetBehavior_LimitBehavior { return callSDK<ViewAlignedScrollTargetBehavior_LimitBehavior>("SwiftUI_bd41a4085ee86f99", 595757581971040, undefined, []); }
   declare readonly $type: { "s:7SwiftUI31ViewAlignedScrollTargetBehaviorV05LimitG0V": true };
 }
 
@@ -14289,7 +14289,7 @@ export class ViewBuilder extends SDKHandle {
   
    * @availability iOS 17.5+
    */
-  static buildLimitedAvailability(content: SDKHandle): SDKHandle { return callSDK<SDKHandle>("SwiftUI_64b39a05e4a4cebd", 3309836370347295, undefined, [content]); }
+  static buildLimitedAvailability(content: SDKHandle): SDKHandle { return callSDK<SDKHandle>("SwiftUI_bd41a4085ee86f99", 3309836370347295, undefined, [content]); }
   declare readonly $type: { "s:7SwiftUI11ViewBuilderV": true };
 }
 
@@ -14316,7 +14316,7 @@ export class WheelDatePickerStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 13.0+
    */
-  static init(): Promise<WheelDatePickerStyle> { return callSDKAsync<WheelDatePickerStyle>("SwiftUI_64b39a05e4a4cebd", 932463593318756, undefined, []); }
+  static init(): Promise<WheelDatePickerStyle> { return callSDKAsync<WheelDatePickerStyle>("SwiftUI_bd41a4085ee86f99", 932463593318756, undefined, []); }
   declare readonly $type: { "s:7SwiftUI20WheelDatePickerStyleV": true };
 }
 
@@ -14335,7 +14335,7 @@ export class WheelPickerStyle extends SDKHandle {
    * init()
    * @availability iOS 13.0+
    */
-  static init(): WheelPickerStyle { return callSDK<WheelPickerStyle>("SwiftUI_64b39a05e4a4cebd", 4486903070971134, undefined, []); }
+  static init(): WheelPickerStyle { return callSDK<WheelPickerStyle>("SwiftUI_bd41a4085ee86f99", 4486903070971134, undefined, []); }
   declare readonly $type: { "s:7SwiftUI16WheelPickerStyleV": true };
 }
 
@@ -14388,7 +14388,7 @@ export class WindowBackgroundShapeStyle extends SDKHandle {
    * init()
    * @availability iOS 17.0+
    */
-  static init(): WindowBackgroundShapeStyle { return callSDK<WindowBackgroundShapeStyle>("SwiftUI_64b39a05e4a4cebd", 3334985307580270, undefined, []); }
+  static init(): WindowBackgroundShapeStyle { return callSDK<WindowBackgroundShapeStyle>("SwiftUI_bd41a4085ee86f99", 3334985307580270, undefined, []); }
   declare readonly $type: { "s:7SwiftUI26WindowBackgroundShapeStyleV": true };
 }
 
@@ -14421,7 +14421,7 @@ export class WindowManagerRole extends SDKHandle {
    * static let automatic: WindowManagerRole
    * @availability iOS 18.0+
    */
-  static get automatic(): WindowManagerRole { return callSDK<WindowManagerRole>("SwiftUI_64b39a05e4a4cebd", 2331647762233879, undefined, []); }
+  static get automatic(): WindowManagerRole { return callSDK<WindowManagerRole>("SwiftUI_bd41a4085ee86f99", 2331647762233879, undefined, []); }
   declare readonly $type: { "s:7SwiftUI17WindowManagerRoleV": true };
 }
 
@@ -14434,20 +14434,20 @@ export class WindowResizability extends SDKHandle {
    * static var contentSize: WindowResizability { get set }
    * @availability iOS 17.0+
    */
-  static get contentSize(): WindowResizability { return callSDK<WindowResizability>("SwiftUI_64b39a05e4a4cebd", 2432601856440782, undefined, []); }
-  static set contentSize(value: WindowResizability) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 1948044558775186, undefined, [value]); }
+  static get contentSize(): WindowResizability { return callSDK<WindowResizability>("SwiftUI_bd41a4085ee86f99", 2432601856440782, undefined, []); }
+  static set contentSize(value: WindowResizability) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 1948044558775186, undefined, [value]); }
   /**
    * static var contentMinSize: WindowResizability { get set }
    * @availability iOS 17.0+
    */
-  static get contentMinSize(): WindowResizability { return callSDK<WindowResizability>("SwiftUI_64b39a05e4a4cebd", 1462618140358480, undefined, []); }
-  static set contentMinSize(value: WindowResizability) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 3862853788233828, undefined, [value]); }
+  static get contentMinSize(): WindowResizability { return callSDK<WindowResizability>("SwiftUI_bd41a4085ee86f99", 1462618140358480, undefined, []); }
+  static set contentMinSize(value: WindowResizability) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 3862853788233828, undefined, [value]); }
   /**
    * static var automatic: WindowResizability { get set }
    * @availability iOS 17.0+
    */
-  static get automatic(): WindowResizability { return callSDK<WindowResizability>("SwiftUI_64b39a05e4a4cebd", 1801329564208556, undefined, []); }
-  static set automatic(value: WindowResizability) { callSDK<void>("SwiftUI_64b39a05e4a4cebd", 4324267311313364, undefined, [value]); }
+  static get automatic(): WindowResizability { return callSDK<WindowResizability>("SwiftUI_bd41a4085ee86f99", 1801329564208556, undefined, []); }
+  static set automatic(value: WindowResizability) { callSDK<void>("SwiftUI_bd41a4085ee86f99", 4324267311313364, undefined, [value]); }
   declare readonly $type: { "s:7SwiftUI18WindowResizabilityV": true };
 }
 
@@ -14460,7 +14460,7 @@ export class WindowToolbarFullScreenVisibility extends SDKHandle {
    * static let automatic: WindowToolbarFullScreenVisibility
    * @availability iOS 18.0+
    */
-  static get automatic(): WindowToolbarFullScreenVisibility { return callSDK<WindowToolbarFullScreenVisibility>("SwiftUI_64b39a05e4a4cebd", 1935130170131139, undefined, []); }
+  static get automatic(): WindowToolbarFullScreenVisibility { return callSDK<WindowToolbarFullScreenVisibility>("SwiftUI_bd41a4085ee86f99", 1935130170131139, undefined, []); }
   declare readonly $type: { "s:7SwiftUI33WindowToolbarFullScreenVisibilityV": true };
 }
 
@@ -14496,22 +14496,22 @@ export class WritingToolsBehavior extends SDKHandle {
    * static let limited: WritingToolsBehavior
    * @availability iOS 18.0+
    */
-  static get limited(): WritingToolsBehavior { return callSDK<WritingToolsBehavior>("SwiftUI_64b39a05e4a4cebd", 4394922783150294, undefined, []); }
+  static get limited(): WritingToolsBehavior { return callSDK<WritingToolsBehavior>("SwiftUI_bd41a4085ee86f99", 4394922783150294, undefined, []); }
   /**
    * static let complete: WritingToolsBehavior
    * @availability iOS 18.0+
    */
-  static get complete(): WritingToolsBehavior { return callSDK<WritingToolsBehavior>("SwiftUI_64b39a05e4a4cebd", 1054152519699487, undefined, []); }
+  static get complete(): WritingToolsBehavior { return callSDK<WritingToolsBehavior>("SwiftUI_bd41a4085ee86f99", 1054152519699487, undefined, []); }
   /**
    * static let disabled: WritingToolsBehavior
    * @availability iOS 18.0+
    */
-  static get disabled(): WritingToolsBehavior { return callSDK<WritingToolsBehavior>("SwiftUI_64b39a05e4a4cebd", 4496085429037257, undefined, []); }
+  static get disabled(): WritingToolsBehavior { return callSDK<WritingToolsBehavior>("SwiftUI_bd41a4085ee86f99", 4496085429037257, undefined, []); }
   /**
    * static let automatic: WritingToolsBehavior
    * @availability iOS 18.0+
    */
-  static get automatic(): WritingToolsBehavior { return callSDK<WritingToolsBehavior>("SwiftUI_64b39a05e4a4cebd", 3995105516614283, undefined, []); }
+  static get automatic(): WritingToolsBehavior { return callSDK<WritingToolsBehavior>("SwiftUI_bd41a4085ee86f99", 3995105516614283, undefined, []); }
   declare readonly $type: { "s:7SwiftUI20WritingToolsBehaviorV": true };
 }
 
@@ -14523,561 +14523,561 @@ export class ZoomNavigationTransition extends SDKHandle {
   declare readonly $type: { "s:7SwiftUI24ZoomNavigationTransitionV": true };
 }
 
-registerSDKClass("SwiftUI.AccessibilityAttachmentModifier", AccessibilityAttachmentModifier, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AccessibilityChildBehavior", AccessibilityChildBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AccessibilityFocusState", AccessibilityFocusState, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AccessibilityFocusState.Binding", AccessibilityFocusState_Binding, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.AccessibilityAttachmentModifier", AccessibilityAttachmentModifier, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AccessibilityChildBehavior", AccessibilityChildBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AccessibilityFocusState", AccessibilityFocusState, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AccessibilityFocusState.Binding", AccessibilityFocusState_Binding, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI25AccessibilityRotorContentP", {});
-registerSDKClass("SwiftUI.AccessibilityRotorContentBuilder", AccessibilityRotorContentBuilder, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AccessibilityRotorEntry", AccessibilityRotorEntry, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AccessibilitySystemRotor", AccessibilitySystemRotor, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AccessoryCircularCapacityGaugeStyle", AccessoryCircularCapacityGaugeStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AccessoryCircularGaugeStyle", AccessoryCircularGaugeStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AccessoryLinearCapacityGaugeStyle", AccessoryLinearCapacityGaugeStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AccessoryLinearGaugeStyle", AccessoryLinearGaugeStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ActionSheet", ActionSheet, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AdaptableTabBarPlacement", AdaptableTabBarPlacement, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Alert", Alert, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Alert.Button", Alert_Button, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.AccessibilityRotorContentBuilder", AccessibilityRotorContentBuilder, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AccessibilityRotorEntry", AccessibilityRotorEntry, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AccessibilitySystemRotor", AccessibilitySystemRotor, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AccessoryCircularCapacityGaugeStyle", AccessoryCircularCapacityGaugeStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AccessoryCircularGaugeStyle", AccessoryCircularGaugeStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AccessoryLinearCapacityGaugeStyle", AccessoryLinearCapacityGaugeStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AccessoryLinearGaugeStyle", AccessoryLinearGaugeStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ActionSheet", ActionSheet, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AdaptableTabBarPlacement", AdaptableTabBarPlacement, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Alert", Alert, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Alert.Button", Alert_Button, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI18AnimatableModifierP", {"bodyContent":"body(content:)"});
-registerSDKClass("SwiftUI.AnimationTimelineSchedule", AnimationTimelineSchedule, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"entries":{"id":3231733896121084}} });
-registerSDKClass("SwiftUI.AnimationTimelineSchedule.Entries", AnimationTimelineSchedule_Entries, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"next":{"id":2677758567830822}} });
-registerSDKClass("SwiftUI.AnyNavigationTransition", AnyNavigationTransition, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AnyScrollTargetBehavior", AnyScrollTargetBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"updateTarget":{"id":2507752049873633},"properties":{"id":4360117217142973}} });
-registerSDKClass("SwiftUI.AnyTabContent", AnyTabContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.AnimationTimelineSchedule", AnimationTimelineSchedule, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"entries":{"id":3231733896121084}} });
+registerSDKClass("SwiftUI.AnimationTimelineSchedule.Entries", AnimationTimelineSchedule_Entries, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"next":{"id":2677758567830822}} });
+registerSDKClass("SwiftUI.AnyNavigationTransition", AnyNavigationTransition, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AnyScrollTargetBehavior", AnyScrollTargetBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"updateTarget":{"id":2507752049873633},"properties":{"id":4360117217142973}} });
+registerSDKClass("SwiftUI.AnyTabContent", AnyTabContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI3AppP", {"init":"init()"});
-registerSDKClass("SwiftUI.AppStorage", AppStorage, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AssistiveAccess", AssistiveAccess, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AsyncImage", AsyncImage, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AsyncImagePhase", AsyncImagePhase, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("Foundation.AttributedString", AttributedString, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"subscript":{"id":1290311629928749}} }, true);
-registerSDKClass("SwiftUI.AttributedTextFormatting.Transferable", AttributedTextFormatting_Transferable, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AttributedTextSelection", AttributedTextSelection, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"attributes":{"id":4167817570471293},"typingAttributes":{"id":3118129844055111},"indices":{"id":3582445374051415},"affinity":{"id":1524148341693192}} });
-registerSDKClass("SwiftUI.AttributedTextSelection.Attributes", AttributedTextSelection_Attributes, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AttributedTextSelection.Indices", AttributedTextSelection_Indices, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AutomaticControlGroupStyle", AutomaticControlGroupStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AutomaticDisclosureGroupStyle", AutomaticDisclosureGroupStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AutomaticFormStyle", AutomaticFormStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AutomaticLabeledContentStyle", AutomaticLabeledContentStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AutomaticNavigationSplitViewStyle", AutomaticNavigationSplitViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AutomaticNavigationTransition", AutomaticNavigationTransition, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AutomaticPresentationSizing", AutomaticPresentationSizing, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"proposedSize":{"id":810384492707840}} });
-registerSDKClass("SwiftUI.AutomaticTableStyle", AutomaticTableStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.AutomaticTextEditorStyle", AutomaticTextEditorStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"makeBody":{"id":3645621634824657}} });
-registerSDKClass("SwiftUI.AutomaticTextEditorStyle.Body", AutomaticTextEditorStyle_Body, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.BackgroundTask", BackgroundTask, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.BadgeProminence", BadgeProminence, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.BalancedNavigationSplitViewStyle", BalancedNavigationSplitViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.BorderedButtonStyle", BorderedButtonStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.BorderedProminentButtonStyle", BorderedProminentButtonStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.BorderedTextFieldStyle", BorderedTextFieldStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.BorderlessButtonMenuStyle", BorderlessButtonMenuStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.BorderlessButtonStyle", BorderlessButtonStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Button", Button, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ButtonBorderShape", ButtonBorderShape, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"path":{"id":3551836234636063}} });
-registerSDKClass("SwiftUI.ButtonMenuStyle", ButtonMenuStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ButtonRepeatBehavior", ButtonRepeatBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ButtonRole", ButtonRole, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.AppStorage", AppStorage, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AssistiveAccess", AssistiveAccess, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AsyncImage", AsyncImage, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AsyncImagePhase", AsyncImagePhase, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("Foundation.AttributedString", AttributedString, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"subscript":{"id":1290311629928749}} }, true);
+registerSDKClass("SwiftUI.AttributedTextFormatting.Transferable", AttributedTextFormatting_Transferable, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AttributedTextSelection", AttributedTextSelection, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"attributes":{"id":4167817570471293},"typingAttributes":{"id":3118129844055111},"indices":{"id":3582445374051415},"affinity":{"id":1524148341693192}} });
+registerSDKClass("SwiftUI.AttributedTextSelection.Attributes", AttributedTextSelection_Attributes, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AttributedTextSelection.Indices", AttributedTextSelection_Indices, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AutomaticControlGroupStyle", AutomaticControlGroupStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AutomaticDisclosureGroupStyle", AutomaticDisclosureGroupStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AutomaticFormStyle", AutomaticFormStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AutomaticLabeledContentStyle", AutomaticLabeledContentStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AutomaticNavigationSplitViewStyle", AutomaticNavigationSplitViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AutomaticNavigationTransition", AutomaticNavigationTransition, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AutomaticPresentationSizing", AutomaticPresentationSizing, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"proposedSize":{"id":810384492707840}} });
+registerSDKClass("SwiftUI.AutomaticTableStyle", AutomaticTableStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.AutomaticTextEditorStyle", AutomaticTextEditorStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"makeBody":{"id":3645621634824657}} });
+registerSDKClass("SwiftUI.AutomaticTextEditorStyle.Body", AutomaticTextEditorStyle_Body, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.BackgroundTask", BackgroundTask, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.BadgeProminence", BadgeProminence, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.BalancedNavigationSplitViewStyle", BalancedNavigationSplitViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.BorderedButtonStyle", BorderedButtonStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.BorderedProminentButtonStyle", BorderedProminentButtonStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.BorderedTextFieldStyle", BorderedTextFieldStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.BorderlessButtonMenuStyle", BorderlessButtonMenuStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.BorderlessButtonStyle", BorderlessButtonStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Button", Button, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ButtonBorderShape", ButtonBorderShape, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"path":{"id":3551836234636063}} });
+registerSDKClass("SwiftUI.ButtonMenuStyle", ButtonMenuStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ButtonRepeatBehavior", ButtonRepeatBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ButtonRole", ButtonRole, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI11ButtonStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.ButtonStyleConfiguration", ButtonStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ButtonStyleConfiguration.Label", ButtonStyleConfiguration_Label, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ButtonToggleStyle", ButtonToggleStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.CameraCaptureAccessory", CameraCaptureAccessory, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.CircularProgressViewStyle", CircularProgressViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUICore.Color", Color, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} }, true);
-registerSDKClass("SwiftUI.ColorPicker", ColorPicker, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ColumnNavigationViewStyle", ColumnNavigationViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ColumnsFormStyle", ColumnsFormStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.CommandGroup", CommandGroup, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.CommandGroupPlacement", CommandGroupPlacement, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.CommandMenu", CommandMenu, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.ButtonStyleConfiguration", ButtonStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ButtonStyleConfiguration.Label", ButtonStyleConfiguration_Label, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ButtonToggleStyle", ButtonToggleStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.CameraCaptureAccessory", CameraCaptureAccessory, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.CircularProgressViewStyle", CircularProgressViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUICore.Color", Color, { module: "SwiftUI_bd41a4085ee86f99", properties: {} }, true);
+registerSDKClass("SwiftUI.ColorPicker", ColorPicker, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ColumnNavigationViewStyle", ColumnNavigationViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ColumnsFormStyle", ColumnsFormStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.CommandGroup", CommandGroup, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.CommandGroupPlacement", CommandGroupPlacement, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.CommandMenu", CommandMenu, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI8CommandsP", {});
-registerSDKClass("SwiftUI.CommandsBuilder", CommandsBuilder, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.CompactDatePickerStyle", CompactDatePickerStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.CompactMenuControlGroupStyle", CompactMenuControlGroupStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ContainerBackgroundPlacement", ContainerBackgroundPlacement, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ContentMarginPlacement", ContentMarginPlacement, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ContentToolbarPlacement", ContentToolbarPlacement, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ContentUnavailableView", ContentUnavailableView, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ContextMenu", ContextMenu, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ControlGroup", ControlGroup, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.CommandsBuilder", CommandsBuilder, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.CompactDatePickerStyle", CompactDatePickerStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.CompactMenuControlGroupStyle", CompactMenuControlGroupStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ContainerBackgroundPlacement", ContainerBackgroundPlacement, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ContentMarginPlacement", ContentMarginPlacement, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ContentToolbarPlacement", ContentToolbarPlacement, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ContentUnavailableView", ContentUnavailableView, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ContextMenu", ContextMenu, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ControlGroup", ControlGroup, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI17ControlGroupStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.ControlGroupStyleConfiguration", ControlGroupStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ControlGroupStyleConfiguration.Content", ControlGroupStyleConfiguration_Content, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ControlGroupStyleConfiguration.Label", ControlGroupStyleConfiguration_Label, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.ControlGroupStyleConfiguration", ControlGroupStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ControlGroupStyleConfiguration.Content", ControlGroupStyleConfiguration_Content, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ControlGroupStyleConfiguration.Label", ControlGroupStyleConfiguration_Label, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI13ControlWidgetP", {"init":"init()"});
 registerSDKProtocol("s:7SwiftUI26ControlWidgetConfigurationP", {});
-registerSDKClass("SwiftUI.ControlWidgetConfigurationBuilder", ControlWidgetConfigurationBuilder, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.ControlWidgetConfigurationBuilder", ControlWidgetConfigurationBuilder, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI21ControlWidgetTemplateP", {});
-registerSDKClass("SwiftUI.ControlWidgetTemplateBuilder", ControlWidgetTemplateBuilder, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.CrossFadeNavigationTransition", CrossFadeNavigationTransition, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.ControlWidgetTemplateBuilder", ControlWidgetTemplateBuilder, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.CrossFadeNavigationTransition", CrossFadeNavigationTransition, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI26CustomizableToolbarContentP", {});
 registerSDKProtocol("s:7SwiftUI24CustomPresentationDetentP", {"heightIn":"height(in:)"});
-registerSDKClass("SwiftUI.DatePicker", DatePicker, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.DatePicker", DatePicker, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI15DatePickerStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.DatePickerStyleConfiguration", DatePickerStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DatePickerStyleConfiguration.Label", DatePickerStyleConfiguration_Label, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultButtonLabel", DefaultButtonLabel, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultButtonStyle", DefaultButtonStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultDatePickerStyle", DefaultDatePickerStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultDateProgressLabel", DefaultDateProgressLabel, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultDocumentGroupLaunchActions", DefaultDocumentGroupLaunchActions, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultFocusEvaluationPriority", DefaultFocusEvaluationPriority, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultGaugeStyle", DefaultGaugeStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultGroupBoxStyle", DefaultGroupBoxStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultLabelStyle", DefaultLabelStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultListStyle", DefaultListStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultMenuStyle", DefaultMenuStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultNavigationViewStyle", DefaultNavigationViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultNewDocumentButtonLabel", DefaultNewDocumentButtonLabel, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultPickerStyle", DefaultPickerStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultProgressViewStyle", DefaultProgressViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultShareLinkLabel", DefaultShareLinkLabel, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultTabLabel", DefaultTabLabel, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultTabViewStyle", DefaultTabViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultTextFieldStyle", DefaultTextFieldStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultToggleStyle", DefaultToggleStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DefaultToolbarItem", DefaultToolbarItem, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DialogSeverity", DialogSeverity, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DisclosureGroup", DisclosureGroup, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.DatePickerStyleConfiguration", DatePickerStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DatePickerStyleConfiguration.Label", DatePickerStyleConfiguration_Label, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultButtonLabel", DefaultButtonLabel, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultButtonStyle", DefaultButtonStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultDatePickerStyle", DefaultDatePickerStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultDateProgressLabel", DefaultDateProgressLabel, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultDocumentGroupLaunchActions", DefaultDocumentGroupLaunchActions, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultFocusEvaluationPriority", DefaultFocusEvaluationPriority, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultGaugeStyle", DefaultGaugeStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultGroupBoxStyle", DefaultGroupBoxStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultLabelStyle", DefaultLabelStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultListStyle", DefaultListStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultMenuStyle", DefaultMenuStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultNavigationViewStyle", DefaultNavigationViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultNewDocumentButtonLabel", DefaultNewDocumentButtonLabel, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultPickerStyle", DefaultPickerStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultProgressViewStyle", DefaultProgressViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultShareLinkLabel", DefaultShareLinkLabel, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultTabLabel", DefaultTabLabel, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultTabViewStyle", DefaultTabViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultTextFieldStyle", DefaultTextFieldStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultToggleStyle", DefaultToggleStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DefaultToolbarItem", DefaultToolbarItem, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DialogSeverity", DialogSeverity, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DisclosureGroup", DisclosureGroup, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI20DisclosureGroupStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.DisclosureGroupStyleConfiguration", DisclosureGroupStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DisclosureGroupStyleConfiguration.Content", DisclosureGroupStyleConfiguration_Content, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DisclosureGroupStyleConfiguration.Label", DisclosureGroupStyleConfiguration_Label, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DisclosureTableRow", DisclosureTableRow, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DismissAction", DismissAction, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"callAsFunction":{"id":2681340548445208}} });
-registerSDKClass("SwiftUI.DismissBehavior", DismissBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DismissSearchAction", DismissSearchAction, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"callAsFunction":{"id":2822906993247715}} });
-registerSDKClass("SwiftUI.DismissWindowAction", DismissWindowAction, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"callAsFunctionIdValue":{"id":4270580368897174},"callAsFunctionId":{"id":3721606626882972},"callAsFunctionValue":{"id":2056243990728056},"callAsFunction":{"id":1048015263666443}} });
-registerSDKClass("SwiftUI.Divider", Divider, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.DisclosureGroupStyleConfiguration", DisclosureGroupStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DisclosureGroupStyleConfiguration.Content", DisclosureGroupStyleConfiguration_Content, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DisclosureGroupStyleConfiguration.Label", DisclosureGroupStyleConfiguration_Label, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DisclosureTableRow", DisclosureTableRow, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DismissAction", DismissAction, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"callAsFunction":{"id":2681340548445208}} });
+registerSDKClass("SwiftUI.DismissBehavior", DismissBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DismissSearchAction", DismissSearchAction, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"callAsFunction":{"id":2822906993247715}} });
+registerSDKClass("SwiftUI.DismissWindowAction", DismissWindowAction, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"callAsFunctionIdValue":{"id":4270580368897174},"callAsFunctionId":{"id":3721606626882972},"callAsFunctionValue":{"id":2056243990728056},"callAsFunction":{"id":1048015263666443}} });
+registerSDKClass("SwiftUI.Divider", Divider, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI8DocumentP", {"writerConfiguration":"writer(configuration:)","snapshotContentType":"snapshot(contentType:)","readerConfiguration":"reader(configuration:)","applySnapshotPrevious":"apply(snapshot:previous:)"});
 registerSDKProtocol("s:7SwiftUI15DocumentBaseBoxP", {});
-registerSDKClass("SwiftUI.DocumentConfiguration", DocumentConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DocumentCreationContext", DocumentCreationContext, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DocumentCreationSource", DocumentCreationSource, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DocumentGroup", DocumentGroup, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DocumentGroupLaunchScene", DocumentGroupLaunchScene, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DocumentLaunchGeometryProxy", DocumentLaunchGeometryProxy, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DocumentLaunchView", DocumentLaunchView, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DocumentReadConfiguration", DocumentReadConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.DocumentConfiguration", DocumentConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DocumentCreationContext", DocumentCreationContext, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DocumentCreationSource", DocumentCreationSource, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DocumentGroup", DocumentGroup, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DocumentGroupLaunchScene", DocumentGroupLaunchScene, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DocumentLaunchGeometryProxy", DocumentLaunchGeometryProxy, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DocumentLaunchView", DocumentLaunchView, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DocumentReadConfiguration", DocumentReadConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI14DocumentReaderP", {"readFromProgress":"read(from:progress:)"});
-registerSDKClass("SwiftUI.DocumentWriteConfiguration", DocumentWriteConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.DocumentWriteConfiguration", DocumentWriteConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI14DocumentWriterP", {"writeSnapshotToPreviousProgress":"write(snapshot:to:previous:progress:)"});
-registerSDKClass("SwiftUI.DoubleColumnNavigationViewStyle", DoubleColumnNavigationViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DragConfiguration", DragConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DragConfiguration.OperationsOutsideApp", DragConfiguration_OperationsOutsideApp, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DragConfiguration.OperationsWithinApp", DragConfiguration_OperationsWithinApp, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DragGesture", DragGesture, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DragGesture.Value", DragGesture_Value, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DragSession", DragSession, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"draggedItemIDs":{"id":2808160344507022}} });
-registerSDKClass("SwiftUI.DragSession.ID", DragSession_ID, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"matches":{"id":2133287957377209}} });
-registerSDKClass("SwiftUI.DragSession.Phase", DragSession_Phase, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DropConfiguration", DropConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.DoubleColumnNavigationViewStyle", DoubleColumnNavigationViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DragConfiguration", DragConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DragConfiguration.OperationsOutsideApp", DragConfiguration_OperationsOutsideApp, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DragConfiguration.OperationsWithinApp", DragConfiguration_OperationsWithinApp, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DragGesture", DragGesture, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DragGesture.Value", DragGesture_Value, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DragSession", DragSession, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"draggedItemIDs":{"id":2808160344507022}} });
+registerSDKClass("SwiftUI.DragSession.ID", DragSession_ID, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"matches":{"id":2133287957377209}} });
+registerSDKClass("SwiftUI.DragSession.Phase", DragSession_Phase, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DropConfiguration", DropConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI12DropDelegateP", {"validateDropInfo":"validateDrop(info:)","performDropInfo":"performDrop(info:)","dropEnteredInfo":"dropEntered(info:)","dropUpdatedInfo":"dropUpdated(info:)","dropExitedInfo":"dropExited(info:)"});
-registerSDKClass("SwiftUI.DropInfo", DropInfo, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"itemProvidersFor":{"id":2009223509183017},"itemProvidersFor92542":{"id":915283616149666},"hasItemsConformingTo":{"id":4044350647754887},"hasItemsConformingTo4243":{"id":2583188463398385}} });
-registerSDKClass("SwiftUI.DropProposal", DropProposal, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DropSession", DropSession, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.DropSession.ID", DropSession_ID, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"matches":{"id":916693553465104}} });
-registerSDKClass("SwiftUI.DropSession.LocalSession", DropSession_LocalSession, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"draggedItemIDs":{"id":226614065282517}} });
-registerSDKClass("SwiftUI.DropSession.Phase", DropSession_Phase, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.DropInfo", DropInfo, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"itemProvidersFor":{"id":2009223509183017},"itemProvidersFor92542":{"id":915283616149666},"hasItemsConformingTo":{"id":4044350647754887},"hasItemsConformingTo4243":{"id":2583188463398385}} });
+registerSDKClass("SwiftUI.DropProposal", DropProposal, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DropSession", DropSession, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.DropSession.ID", DropSession_ID, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"matches":{"id":916693553465104}} });
+registerSDKClass("SwiftUI.DropSession.LocalSession", DropSession_LocalSession, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"draggedItemIDs":{"id":226614065282517}} });
+registerSDKClass("SwiftUI.DropSession.Phase", DropSession_Phase, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI22DynamicTableRowContentP", {});
-registerSDKClass("SwiftUICore.EdgeInsets", EdgeInsets, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} }, true);
-registerSDKClass("SwiftUI.EditableCollectionContent", EditableCollectionContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.EditButton", EditButton, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.EmptyCommands", EmptyCommands, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.EmptyControlWidgetConfiguration", EmptyControlWidgetConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.EmptyControlWidgetTemplate", EmptyControlWidgetTemplate, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.EmptyMatchedTransitionSourceConfiguration", EmptyMatchedTransitionSourceConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.EmptyTableRowContent", EmptyTableRowContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.EmptyWidgetConfiguration", EmptyWidgetConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUICore.EnvironmentValues", EnvironmentValues, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} }, true);
-registerSDKClass("SwiftUI.EquatableView", EquatableView, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ExternalNonInteractiveAccessory", ExternalNonInteractiveAccessory, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FetchedResults", FetchedResults, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FetchRequest", FetchRequest, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FetchRequest.Configuration", FetchRequest_Configuration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUICore.EdgeInsets", EdgeInsets, { module: "SwiftUI_bd41a4085ee86f99", properties: {} }, true);
+registerSDKClass("SwiftUI.EditableCollectionContent", EditableCollectionContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.EditButton", EditButton, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.EmptyCommands", EmptyCommands, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.EmptyControlWidgetConfiguration", EmptyControlWidgetConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.EmptyControlWidgetTemplate", EmptyControlWidgetTemplate, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.EmptyMatchedTransitionSourceConfiguration", EmptyMatchedTransitionSourceConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.EmptyTableRowContent", EmptyTableRowContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.EmptyWidgetConfiguration", EmptyWidgetConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUICore.EnvironmentValues", EnvironmentValues, { module: "SwiftUI_bd41a4085ee86f99", properties: {} }, true);
+registerSDKClass("SwiftUI.EquatableView", EquatableView, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ExternalNonInteractiveAccessory", ExternalNonInteractiveAccessory, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FetchedResults", FetchedResults, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FetchRequest", FetchRequest, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FetchRequest.Configuration", FetchRequest_Configuration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI12FileDocumentP", {"initConfiguration":"init(configuration:)","fileWrapperConfiguration":"fileWrapper(configuration:)"});
-registerSDKClass("SwiftUI.FileDocumentConfiguration", FileDocumentConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FileDocumentReadConfiguration", FileDocumentReadConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FileDocumentWriteConfiguration", FileDocumentWriteConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FileWrapperDocumentReader", FileWrapperDocumentReader, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FileWrapperDocumentWriter", FileWrapperDocumentWriter, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FindContext", FindContext, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FittedPresentationSizing", FittedPresentationSizing, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"proposedSize":{"id":3281887656599374}} });
-registerSDKClass("SwiftUI.FocusedBinding", FocusedBinding, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FocusedObject", FocusedObject, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FocusedObject.Wrapper", FocusedObject_Wrapper, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FocusedValue", FocusedValue, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.FileDocumentConfiguration", FileDocumentConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FileDocumentReadConfiguration", FileDocumentReadConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FileDocumentWriteConfiguration", FileDocumentWriteConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FileWrapperDocumentReader", FileWrapperDocumentReader, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FileWrapperDocumentWriter", FileWrapperDocumentWriter, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FindContext", FindContext, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FittedPresentationSizing", FittedPresentationSizing, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"proposedSize":{"id":3281887656599374}} });
+registerSDKClass("SwiftUI.FocusedBinding", FocusedBinding, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FocusedObject", FocusedObject, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FocusedObject.Wrapper", FocusedObject_Wrapper, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FocusedValue", FocusedValue, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI15FocusedValueKeyP", {});
-registerSDKClass("SwiftUI.FocusedValues", FocusedValues, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FocusState", FocusState, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FocusState.Binding", FocusState_Binding, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Form", Form, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FormPresentationSizing", FormPresentationSizing, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"proposedSize":{"id":4471489481444279}} });
+registerSDKClass("SwiftUI.FocusedValues", FocusedValues, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FocusState", FocusState, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FocusState.Binding", FocusState_Binding, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Form", Form, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FormPresentationSizing", FormPresentationSizing, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"proposedSize":{"id":4471489481444279}} });
 registerSDKProtocol("s:7SwiftUI9FormStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.FormStyleConfiguration", FormStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.FormStyleConfiguration.Content", FormStyleConfiguration_Content, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Gauge", Gauge, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.FormStyleConfiguration", FormStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.FormStyleConfiguration.Content", FormStyleConfiguration_Content, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Gauge", Gauge, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI10GaugeStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.GaugeStyleConfiguration", GaugeStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GaugeStyleConfiguration.CurrentValueLabel", GaugeStyleConfiguration_CurrentValueLabel, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GaugeStyleConfiguration.Label", GaugeStyleConfiguration_Label, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GaugeStyleConfiguration.MarkedValueLabel", GaugeStyleConfiguration_MarkedValueLabel, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GaugeStyleConfiguration.MaximumValueLabel", GaugeStyleConfiguration_MaximumValueLabel, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GaugeStyleConfiguration.MinimumValueLabel", GaugeStyleConfiguration_MinimumValueLabel, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GestureState", GestureState, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GestureStateGesture", GestureStateGesture, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GlassButtonStyle", GlassButtonStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GlassProminentButtonStyle", GlassProminentButtonStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GraphicalDatePickerStyle", GraphicalDatePickerStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Grid", Grid, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GridItem", GridItem, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GridItem.Size", GridItem_Size, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GridLayout", GridLayout, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"updateCache":{"id":3362150856304118},"sizeThatFits":{"id":2070166168416593},"placeSubviews":{"id":2562501920025854},"explicitAlignmentOfInProposalSubviewsCache":{"id":4033483349795722},"explicitAlignmentOfInProposalSubviewsCache85184":{"id":3186232866301665},"spacing":{"id":815747752848758},"makeCache":{"id":3531254493987057}} });
-registerSDKClass("SwiftUI.GridLayout.Cache", GridLayout_Cache, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GridRow", GridRow, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GroupBox", GroupBox, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.GaugeStyleConfiguration", GaugeStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GaugeStyleConfiguration.CurrentValueLabel", GaugeStyleConfiguration_CurrentValueLabel, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GaugeStyleConfiguration.Label", GaugeStyleConfiguration_Label, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GaugeStyleConfiguration.MarkedValueLabel", GaugeStyleConfiguration_MarkedValueLabel, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GaugeStyleConfiguration.MaximumValueLabel", GaugeStyleConfiguration_MaximumValueLabel, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GaugeStyleConfiguration.MinimumValueLabel", GaugeStyleConfiguration_MinimumValueLabel, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GestureState", GestureState, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GestureStateGesture", GestureStateGesture, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GlassButtonStyle", GlassButtonStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GlassProminentButtonStyle", GlassProminentButtonStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GraphicalDatePickerStyle", GraphicalDatePickerStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Grid", Grid, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GridItem", GridItem, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GridItem.Size", GridItem_Size, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GridLayout", GridLayout, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"updateCache":{"id":3362150856304118},"sizeThatFits":{"id":2070166168416593},"placeSubviews":{"id":2562501920025854},"explicitAlignmentOfInProposalSubviewsCache":{"id":4033483349795722},"explicitAlignmentOfInProposalSubviewsCache85184":{"id":3186232866301665},"spacing":{"id":815747752848758},"makeCache":{"id":3531254493987057}} });
+registerSDKClass("SwiftUI.GridLayout.Cache", GridLayout_Cache, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GridRow", GridRow, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GroupBox", GroupBox, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI13GroupBoxStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.GroupBoxStyleConfiguration", GroupBoxStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GroupBoxStyleConfiguration.Content", GroupBoxStyleConfiguration_Content, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GroupBoxStyleConfiguration.Label", GroupBoxStyleConfiguration_Label, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GroupedFormStyle", GroupedFormStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.GroupedListStyle", GroupedListStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.HandGestureShortcut", HandGestureShortcut, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.HoverPhase", HoverPhase, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.IconOnlyLabelStyle", IconOnlyLabelStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUICore.Image", Image, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} }, true);
-registerSDKClass("SwiftUICore.ImageRenderer", ImageRenderer, { module: "SwiftUI_64b39a05e4a4cebd", properties: {"uiImage":1345718728054183} }, true);
-registerSDKClass("SwiftUI.IndexedIdentifierCollection", IndexedIdentifierCollection, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"index":{"id":308739038916296},"subscript":{"id":2159989002461527}} });
-registerSDKClass("SwiftUI.IndexedIdentifierCollection.Element", IndexedIdentifierCollection_Element, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.GroupBoxStyleConfiguration", GroupBoxStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GroupBoxStyleConfiguration.Content", GroupBoxStyleConfiguration_Content, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GroupBoxStyleConfiguration.Label", GroupBoxStyleConfiguration_Label, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GroupedFormStyle", GroupedFormStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.GroupedListStyle", GroupedListStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.HandGestureShortcut", HandGestureShortcut, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.HoverPhase", HoverPhase, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.IconOnlyLabelStyle", IconOnlyLabelStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUICore.Image", Image, { module: "SwiftUI_bd41a4085ee86f99", properties: {} }, true);
+registerSDKClass("SwiftUICore.ImageRenderer", ImageRenderer, { module: "SwiftUI_bd41a4085ee86f99", properties: {"uiImage":1345718728054183} }, true);
+registerSDKClass("SwiftUI.IndexedIdentifierCollection", IndexedIdentifierCollection, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"index":{"id":308739038916296},"subscript":{"id":2159989002461527}} });
+registerSDKClass("SwiftUI.IndexedIdentifierCollection.Element", IndexedIdentifierCollection_Element, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI14IndexViewStyleP", {});
-registerSDKClass("SwiftUI.InlinePickerStyle", InlinePickerStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.InsetGroupedListStyle", InsetGroupedListStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.InsetListStyle", InsetListStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.InsetTableStyle", InsetTableStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.InspectorCommands", InspectorCommands, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.InterfaceOrientation", InterfaceOrientation, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ItemProviderTableRowModifier", ItemProviderTableRowModifier, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.KeyboardShortcut", KeyboardShortcut, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.KeyboardShortcut.Localization", KeyboardShortcut_Localization, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.KeyEquivalent", KeyEquivalent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.KeyPress", KeyPress, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Label", Label, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.LabeledContent", LabeledContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.InlinePickerStyle", InlinePickerStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.InsetGroupedListStyle", InsetGroupedListStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.InsetListStyle", InsetListStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.InsetTableStyle", InsetTableStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.InspectorCommands", InspectorCommands, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.InterfaceOrientation", InterfaceOrientation, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ItemProviderTableRowModifier", ItemProviderTableRowModifier, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.KeyboardShortcut", KeyboardShortcut, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.KeyboardShortcut.Localization", KeyboardShortcut_Localization, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.KeyEquivalent", KeyEquivalent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.KeyPress", KeyPress, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Label", Label, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.LabeledContent", LabeledContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI19LabeledContentStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.LabeledContentStyleConfiguration", LabeledContentStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.LabeledContentStyleConfiguration.Content", LabeledContentStyleConfiguration_Content, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.LabeledContentStyleConfiguration.Label", LabeledContentStyleConfiguration_Label, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.LabeledControlGroupContent", LabeledControlGroupContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.LabeledToolbarItemGroupContent", LabeledToolbarItemGroupContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.LabeledContentStyleConfiguration", LabeledContentStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.LabeledContentStyleConfiguration.Content", LabeledContentStyleConfiguration_Content, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.LabeledContentStyleConfiguration.Label", LabeledContentStyleConfiguration_Label, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.LabeledControlGroupContent", LabeledControlGroupContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.LabeledToolbarItemGroupContent", LabeledToolbarItemGroupContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI10LabelStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.LabelStyleConfiguration", LabelStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.LabelStyleConfiguration.Icon", LabelStyleConfiguration_Icon, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.LabelStyleConfiguration.Title", LabelStyleConfiguration_Title, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUICore.LayoutSubview", LayoutSubview, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} }, true);
-registerSDKClass("SwiftUI.LazyHGrid", LazyHGrid, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.LazyVGrid", LazyVGrid, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.LimitedAvailabilityConfiguration", LimitedAvailabilityConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.LinearCapacityGaugeStyle", LinearCapacityGaugeStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.LinearProgressViewStyle", LinearProgressViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Link", Link, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.LinkShapeStyle", LinkShapeStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.List", List, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ListItemTint", ListItemTint, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ListSectionSpacing", ListSectionSpacing, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.LabelStyleConfiguration", LabelStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.LabelStyleConfiguration.Icon", LabelStyleConfiguration_Icon, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.LabelStyleConfiguration.Title", LabelStyleConfiguration_Title, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUICore.LayoutSubview", LayoutSubview, { module: "SwiftUI_bd41a4085ee86f99", properties: {} }, true);
+registerSDKClass("SwiftUI.LazyHGrid", LazyHGrid, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.LazyVGrid", LazyVGrid, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.LimitedAvailabilityConfiguration", LimitedAvailabilityConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.LinearCapacityGaugeStyle", LinearCapacityGaugeStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.LinearProgressViewStyle", LinearProgressViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Link", Link, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.LinkShapeStyle", LinkShapeStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.List", List, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ListItemTint", ListItemTint, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ListSectionSpacing", ListSectionSpacing, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI9ListStyleP", {});
-registerSDKClass("SwiftUI.LongPressGesture", LongPressGesture, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.MagnificationGesture", MagnificationGesture, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.MagnifyGesture", MagnifyGesture, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.MagnifyGesture.Value", MagnifyGesture_Value, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.LongPressGesture", LongPressGesture, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.MagnificationGesture", MagnificationGesture, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.MagnifyGesture", MagnifyGesture, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.MagnifyGesture.Value", MagnifyGesture_Value, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI36MatchedTransitionSourceConfigurationP", {});
-registerSDKClass("SwiftUI.Menu", Menu, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.MenuActionDismissBehavior", MenuActionDismissBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.MenuControlGroupStyle", MenuControlGroupStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.MenuOrder", MenuOrder, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.MenuPickerStyle", MenuPickerStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.Menu", Menu, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.MenuActionDismissBehavior", MenuActionDismissBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.MenuControlGroupStyle", MenuControlGroupStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.MenuOrder", MenuOrder, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.MenuPickerStyle", MenuPickerStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI9MenuStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.MenuStyleConfiguration", MenuStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.MenuStyleConfiguration.Content", MenuStyleConfiguration_Content, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.MenuStyleConfiguration.Label", MenuStyleConfiguration_Label, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUICore.ModifiedContent", ModifiedContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"accessibilityTextContentType":{"id":1683030707641488},"accessibilityCustomContentImportance":{"id":604697785659809},"accessibilityCustomContentImportance10348":{"id":244522415114084},"accessibilityCustomContentImportance46334":{"id":796623160790766},"accessibilityCustomContentImportance12196":{"id":2052286341513521},"accessibilityCustomContentImportance91880":{"id":3903470322323432},"accessibilityCustomContentImportance44464":{"id":950744326489132},"accessibilityCustomContentImportance34294":{"id":2510660822045237},"accessibilityCustomContentImportance87932":{"id":2628122264549826},"accessibilityCustomContentImportance10724":{"id":1101945441505425},"accessibilityCustomContentImportance47391":{"id":2036952055392985},"accessibilityIdentifier":{"id":4387366716421292},"accessibilityInputLabels":{"id":3661540608052944},"accessibilityRemoveTraits":{"id":175537454180945},"accessibilitySortPriority":{"id":680541596320445},"accessibilityActivationPoint":{"id":1573798411522781},"accessibilityActivationPoint50753":{"id":2414300813754319},"accessibilitySelectionIdentifier":{"id":1134430140495144},"accessibilityHint":{"id":2134100210354418},"accessibilityLabel":{"id":4503478560951937},"accessibilityValue":{"id":821495169019637},"accessibilityHidden":{"id":285772550700998},"accessibilityAddTraits":{"id":2050703988571520},"accessibilityHintIsEnabled":{"id":3850618393191115},"accessibilityHintIsEnabled33751":{"id":406943486891111},"accessibilityHintIsEnabled90268":{"id":3806318737888397},"accessibilityHintIsEnabled7070":{"id":4500085675024518},"accessibilityHint6706":{"id":685148104333484},"accessibilityHint79825":{"id":454245052364945},"accessibilityHint49722":{"id":1558261832356149},"accessibilityHint1752":{"id":2533881557721832},"accessibilityLabelIsEnabled":{"id":1144077197383755},"accessibilityLabelIsEnabled24399":{"id":3221744963436690},"accessibilityLabelIsEnabled83668":{"id":3737523400271685},"accessibilityLabelIsEnabled59766":{"id":798420597887300},"accessibilityLabel51354":{"id":1554155233930379},"accessibilityLabel23513":{"id":3310891042574754},"accessibilityLabel76226":{"id":2570784948749524},"accessibilityLabel39648":{"id":1190418882138061},"accessibilityValueIsEnabled":{"id":212729334905079},"accessibilityValueIsEnabled11436":{"id":209658969615222},"accessibilityValueIsEnabled88301":{"id":2621858579497452},"accessibilityValueIsEnabled67781":{"id":603570680475521},"accessibilityValue82539":{"id":3515918931030946},"accessibilityValue26398":{"id":2591748145416482},"accessibilityValue78983":{"id":323725527831210},"accessibilityValue55499":{"id":3197056298963282},"accessibilityActionNamed":{"id":2546863830672134,"hints":[null,{"callback":{"out":[]}}]},"accessibilityActionNamed23798":{"id":3001934721264352,"hints":[null,{"callback":{"out":[]}}]},"accessibilityActionNamed39113":{"id":141890860655235,"hints":[null,{"callback":{"out":[]}}]},"accessibilityActionNamed2533":{"id":1712706640027572,"hints":[null,{"callback":{"out":[]}}]},"accessibilityAction":{"id":1036473926604437,"hints":[null,{"callback":{"out":[]}}]},"accessibilityHiddenIsEnabled":{"id":3625688184205996},"accessibilityHidden39175":{"id":3237396487777321},"accessibilityHeading":{"id":2251167504096687},"accessibilityAddTraits763":{"id":1183399821877042},"accessibilityDragPointDescriptionIsEnabled":{"id":105131495720403},"accessibilityDragPointDescriptionIsEnabled94838":{"id":1929614452316574},"accessibilityDragPointDescriptionIsEnabled84627":{"id":1888682407111400},"accessibilityDragPointDescriptionIsEnabled38855":{"id":1229066947382377},"accessibilityDragPointDescription":{"id":2636006749277939},"accessibilityDragPointDescription48707":{"id":2523466917011835},"accessibilityDragPointDescription75042":{"id":2947608110916547},"accessibilityDragPointDescription60812":{"id":3757785020678787},"accessibilityDropPointDescriptionIsEnabled":{"id":783520377520976},"accessibilityDropPointDescriptionIsEnabled12507":{"id":977717020724703},"accessibilityDropPointDescriptionIsEnabled53484":{"id":1784800401363765},"accessibilityDropPointDescriptionIsEnabled11398":{"id":2665218501525732},"accessibilityDropPointDescription":{"id":3933480408606581},"accessibilityDropPointDescription92014":{"id":338780959226664},"accessibilityDropPointDescription15621":{"id":3498836315469792},"accessibilityDropPointDescription58425":{"id":3291440412207767},"accessibilityIdentifierIsEnabled":{"id":3980406509235598},"accessibilityIdentifier58166":{"id":3362215965302256},"accessibilityZoomAction":{"id":3613401079223006,"hints":[{"callback":{"out":[]}}]},"accessibilityDirectTouch":{"id":2845460881818504},"accessibilityInputLabelsIsEnabled":{"id":2788491928148306},"accessibilityInputLabelsIsEnabled99384":{"id":3456875910012538},"accessibilityInputLabelsIsEnabled17654":{"id":3573007779355037},"accessibilityInputLabels46653":{"id":178810178709860},"accessibilityInputLabels87838":{"id":4437681999837787},"accessibilityInputLabels50384":{"id":1201727036068494},"accessibilityRemoveTraits63225":{"id":3491431004809604},"accessibilityScrollAction":{"id":3558735876411404,"hints":[{"callback":{"out":[]}}]},"accessibilityScrollStatusIsEnabled":{"id":2894846016823098},"accessibilityScrollStatusIsEnabled40666":{"id":1528990632553781},"accessibilityScrollStatusIsEnabled2479":{"id":4255654751874645},"accessibilityScrollStatusIsEnabled58599":{"id":2034771655011342},"accessibilitySortPriority37866":{"id":1033204255843261},"accessibilityActivationPointIsEnabled":{"id":904444049284641},"accessibilityActivationPointIsEnabled45397":{"id":1866188340249403},"accessibilityActivationPoint17328":{"id":3582208358348173},"accessibilityActivationPoint12063":{"id":2696816932612170},"accessibilityAdjustableAction":{"id":4376733883760231,"hints":[{"callback":{"out":[]}}]},"accessibilityRespondsToUserInteractionIsEnabled":{"id":360296696147704},"accessibilityRespondsToUserInteraction":{"id":753802607421727}} }, true);
-registerSDKClass("SwiftUI.MultiDatePicker", MultiDatePicker, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.NavigationBarItem", NavigationBarItem, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.NavigationControlGroupStyle", NavigationControlGroupStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.NavigationLink", NavigationLink, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.NavigationLinkPickerStyle", NavigationLinkPickerStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.NavigationPath", NavigationPath, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"removeLast":{"id":621579543634150},"append":{"id":2230855628940417},"append68641":{"id":1373357742156168}} });
-registerSDKClass("SwiftUI.NavigationPath.CodableRepresentation", NavigationPath_CodableRepresentation, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.NavigationSplitView", NavigationSplitView, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.NavigationSplitViewColumn", NavigationSplitViewColumn, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.MenuStyleConfiguration", MenuStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.MenuStyleConfiguration.Content", MenuStyleConfiguration_Content, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.MenuStyleConfiguration.Label", MenuStyleConfiguration_Label, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUICore.ModifiedContent", ModifiedContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"accessibilityTextContentType":{"id":1683030707641488},"accessibilityCustomContentImportance":{"id":604697785659809},"accessibilityCustomContentImportance10348":{"id":244522415114084},"accessibilityCustomContentImportance46334":{"id":796623160790766},"accessibilityCustomContentImportance12196":{"id":2052286341513521},"accessibilityCustomContentImportance91880":{"id":3903470322323432},"accessibilityCustomContentImportance44464":{"id":950744326489132},"accessibilityCustomContentImportance34294":{"id":2510660822045237},"accessibilityCustomContentImportance87932":{"id":2628122264549826},"accessibilityCustomContentImportance10724":{"id":1101945441505425},"accessibilityCustomContentImportance47391":{"id":2036952055392985},"accessibilityIdentifier":{"id":4387366716421292},"accessibilityInputLabels":{"id":3661540608052944},"accessibilityRemoveTraits":{"id":175537454180945},"accessibilitySortPriority":{"id":680541596320445},"accessibilityActivationPoint":{"id":1573798411522781},"accessibilityActivationPoint50753":{"id":2414300813754319},"accessibilitySelectionIdentifier":{"id":1134430140495144},"accessibilityHint":{"id":2134100210354418},"accessibilityLabel":{"id":4503478560951937},"accessibilityValue":{"id":821495169019637},"accessibilityHidden":{"id":285772550700998},"accessibilityAddTraits":{"id":2050703988571520},"accessibilityHintIsEnabled":{"id":3850618393191115},"accessibilityHintIsEnabled33751":{"id":406943486891111},"accessibilityHintIsEnabled90268":{"id":3806318737888397},"accessibilityHintIsEnabled7070":{"id":4500085675024518},"accessibilityHint6706":{"id":685148104333484},"accessibilityHint79825":{"id":454245052364945},"accessibilityHint49722":{"id":1558261832356149},"accessibilityHint1752":{"id":2533881557721832},"accessibilityLabelIsEnabled":{"id":1144077197383755},"accessibilityLabelIsEnabled24399":{"id":3221744963436690},"accessibilityLabelIsEnabled83668":{"id":3737523400271685},"accessibilityLabelIsEnabled59766":{"id":798420597887300},"accessibilityLabel51354":{"id":1554155233930379},"accessibilityLabel23513":{"id":3310891042574754},"accessibilityLabel76226":{"id":2570784948749524},"accessibilityLabel39648":{"id":1190418882138061},"accessibilityValueIsEnabled":{"id":212729334905079},"accessibilityValueIsEnabled11436":{"id":209658969615222},"accessibilityValueIsEnabled88301":{"id":2621858579497452},"accessibilityValueIsEnabled67781":{"id":603570680475521},"accessibilityValue82539":{"id":3515918931030946},"accessibilityValue26398":{"id":2591748145416482},"accessibilityValue78983":{"id":323725527831210},"accessibilityValue55499":{"id":3197056298963282},"accessibilityActionNamed":{"id":2546863830672134,"hints":[null,{"callback":{"out":[]}}]},"accessibilityActionNamed23798":{"id":3001934721264352,"hints":[null,{"callback":{"out":[]}}]},"accessibilityActionNamed39113":{"id":141890860655235,"hints":[null,{"callback":{"out":[]}}]},"accessibilityActionNamed2533":{"id":1712706640027572,"hints":[null,{"callback":{"out":[]}}]},"accessibilityAction":{"id":1036473926604437,"hints":[null,{"callback":{"out":[]}}]},"accessibilityHiddenIsEnabled":{"id":3625688184205996},"accessibilityHidden39175":{"id":3237396487777321},"accessibilityHeading":{"id":2251167504096687},"accessibilityAddTraits763":{"id":1183399821877042},"accessibilityDragPointDescriptionIsEnabled":{"id":105131495720403},"accessibilityDragPointDescriptionIsEnabled94838":{"id":1929614452316574},"accessibilityDragPointDescriptionIsEnabled84627":{"id":1888682407111400},"accessibilityDragPointDescriptionIsEnabled38855":{"id":1229066947382377},"accessibilityDragPointDescription":{"id":2636006749277939},"accessibilityDragPointDescription48707":{"id":2523466917011835},"accessibilityDragPointDescription75042":{"id":2947608110916547},"accessibilityDragPointDescription60812":{"id":3757785020678787},"accessibilityDropPointDescriptionIsEnabled":{"id":783520377520976},"accessibilityDropPointDescriptionIsEnabled12507":{"id":977717020724703},"accessibilityDropPointDescriptionIsEnabled53484":{"id":1784800401363765},"accessibilityDropPointDescriptionIsEnabled11398":{"id":2665218501525732},"accessibilityDropPointDescription":{"id":3933480408606581},"accessibilityDropPointDescription92014":{"id":338780959226664},"accessibilityDropPointDescription15621":{"id":3498836315469792},"accessibilityDropPointDescription58425":{"id":3291440412207767},"accessibilityIdentifierIsEnabled":{"id":3980406509235598},"accessibilityIdentifier58166":{"id":3362215965302256},"accessibilityZoomAction":{"id":3613401079223006,"hints":[{"callback":{"out":[]}}]},"accessibilityDirectTouch":{"id":2845460881818504},"accessibilityInputLabelsIsEnabled":{"id":2788491928148306},"accessibilityInputLabelsIsEnabled99384":{"id":3456875910012538},"accessibilityInputLabelsIsEnabled17654":{"id":3573007779355037},"accessibilityInputLabels46653":{"id":178810178709860},"accessibilityInputLabels87838":{"id":4437681999837787},"accessibilityInputLabels50384":{"id":1201727036068494},"accessibilityRemoveTraits63225":{"id":3491431004809604},"accessibilityScrollAction":{"id":3558735876411404,"hints":[{"callback":{"out":[]}}]},"accessibilityScrollStatusIsEnabled":{"id":2894846016823098},"accessibilityScrollStatusIsEnabled40666":{"id":1528990632553781},"accessibilityScrollStatusIsEnabled2479":{"id":4255654751874645},"accessibilityScrollStatusIsEnabled58599":{"id":2034771655011342},"accessibilitySortPriority37866":{"id":1033204255843261},"accessibilityActivationPointIsEnabled":{"id":904444049284641},"accessibilityActivationPointIsEnabled45397":{"id":1866188340249403},"accessibilityActivationPoint17328":{"id":3582208358348173},"accessibilityActivationPoint12063":{"id":2696816932612170},"accessibilityAdjustableAction":{"id":4376733883760231,"hints":[{"callback":{"out":[]}}]},"accessibilityRespondsToUserInteractionIsEnabled":{"id":360296696147704},"accessibilityRespondsToUserInteraction":{"id":753802607421727}} }, true);
+registerSDKClass("SwiftUI.MultiDatePicker", MultiDatePicker, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.NavigationBarItem", NavigationBarItem, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.NavigationControlGroupStyle", NavigationControlGroupStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.NavigationLink", NavigationLink, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.NavigationLinkPickerStyle", NavigationLinkPickerStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.NavigationPath", NavigationPath, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"removeLast":{"id":621579543634150},"append":{"id":2230855628940417},"append68641":{"id":1373357742156168}} });
+registerSDKClass("SwiftUI.NavigationPath.CodableRepresentation", NavigationPath_CodableRepresentation, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.NavigationSplitView", NavigationSplitView, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.NavigationSplitViewColumn", NavigationSplitViewColumn, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI24NavigationSplitViewStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.NavigationSplitViewStyleConfiguration", NavigationSplitViewStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.NavigationSplitViewVisibility", NavigationSplitViewVisibility, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.NavigationStack", NavigationStack, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.NavigationSplitViewStyleConfiguration", NavigationSplitViewStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.NavigationSplitViewVisibility", NavigationSplitViewVisibility, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.NavigationStack", NavigationStack, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI20NavigationTransitionP", {});
-registerSDKClass("SwiftUI.NavigationView", NavigationView, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.NavigationView", NavigationView, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI19NavigationViewStyleP", {});
-registerSDKClass("SwiftUI.NewDocumentButton", NewDocumentButton, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("UIKit.NSDirectionalEdgeInsets", NSDirectionalEdgeInsets, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} }, true);
-registerSDKClass("NSUserActivity", NSUserActivity, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"typedPayload":{"id":408819105098374},"setTypedPayload":{"id":2489987723999706}} }, true);
-registerSDKClass("SwiftUI.OnInsertTableRowModifier", OnInsertTableRowModifier, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.OpenWindowAction", OpenWindowAction, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"callAsFunctionIdValue":{"id":855406104256499},"callAsFunctionId":{"id":4238896185518592},"callAsFunctionValue":{"id":1595767331968954}} });
-registerSDKClass("SwiftUI.OutlineGroup", OutlineGroup, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.OutlineSubgroupChildren", OutlineSubgroupChildren, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PageIndexViewStyle", PageIndexViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PageIndexViewStyle.BackgroundDisplayMode", PageIndexViewStyle_BackgroundDisplayMode, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PagePresentationSizing", PagePresentationSizing, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"proposedSize":{"id":3761526002478560}} });
-registerSDKClass("SwiftUI.PageTabViewStyle", PageTabViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PageTabViewStyle.IndexDisplayMode", PageTabViewStyle_IndexDisplayMode, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PagingScrollTargetBehavior", PagingScrollTargetBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"updateTarget":{"id":2877849720728196},"properties":{"id":2564785787889950}} });
-registerSDKClass("SwiftUI.PaletteControlGroupStyle", PaletteControlGroupStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PalettePickerStyle", PalettePickerStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PaletteSelectionEffect", PaletteSelectionEffect, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PasteButton", PasteButton, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PencilDoubleTapGestureValue", PencilDoubleTapGestureValue, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PencilHoverPose", PencilHoverPose, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PencilPreferredAction", PencilPreferredAction, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PencilSqueezeGesturePhase", PencilSqueezeGesturePhase, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PencilSqueezeGestureValue", PencilSqueezeGestureValue, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Picker", Picker, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.NewDocumentButton", NewDocumentButton, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("UIKit.NSDirectionalEdgeInsets", NSDirectionalEdgeInsets, { module: "SwiftUI_bd41a4085ee86f99", properties: {} }, true);
+registerSDKClass("NSUserActivity", NSUserActivity, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"typedPayload":{"id":408819105098374},"setTypedPayload":{"id":2489987723999706}} }, true);
+registerSDKClass("SwiftUI.OnInsertTableRowModifier", OnInsertTableRowModifier, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.OpenWindowAction", OpenWindowAction, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"callAsFunctionIdValue":{"id":855406104256499},"callAsFunctionId":{"id":4238896185518592},"callAsFunctionValue":{"id":1595767331968954}} });
+registerSDKClass("SwiftUI.OutlineGroup", OutlineGroup, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.OutlineSubgroupChildren", OutlineSubgroupChildren, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PageIndexViewStyle", PageIndexViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PageIndexViewStyle.BackgroundDisplayMode", PageIndexViewStyle_BackgroundDisplayMode, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PagePresentationSizing", PagePresentationSizing, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"proposedSize":{"id":3761526002478560}} });
+registerSDKClass("SwiftUI.PageTabViewStyle", PageTabViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PageTabViewStyle.IndexDisplayMode", PageTabViewStyle_IndexDisplayMode, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PagingScrollTargetBehavior", PagingScrollTargetBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"updateTarget":{"id":2877849720728196},"properties":{"id":2564785787889950}} });
+registerSDKClass("SwiftUI.PaletteControlGroupStyle", PaletteControlGroupStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PalettePickerStyle", PalettePickerStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PaletteSelectionEffect", PaletteSelectionEffect, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PasteButton", PasteButton, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PencilDoubleTapGestureValue", PencilDoubleTapGestureValue, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PencilHoverPose", PencilHoverPose, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PencilPreferredAction", PencilPreferredAction, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PencilSqueezeGesturePhase", PencilSqueezeGesturePhase, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PencilSqueezeGestureValue", PencilSqueezeGestureValue, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Picker", Picker, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI11PickerStyleP", {});
-registerSDKClass("SwiftUI.PlaceholderTextShapeStyle", PlaceholderTextShapeStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PlainButtonStyle", PlainButtonStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PlainListStyle", PlainListStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PlainTextEditorStyle", PlainTextEditorStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PlainTextFieldStyle", PlainTextFieldStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PopoverAttachmentAnchor", PopoverAttachmentAnchor, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PresentationAdaptation", PresentationAdaptation, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PresentationBackgroundInteraction", PresentationBackgroundInteraction, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PresentationContentInteraction", PresentationContentInteraction, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PresentationDetent", PresentationDetent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PresentationDetent.Context", PresentationDetent_Context, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"subscript":{"id":767973807946760}} });
-registerSDKClass("SwiftUI.PresentationMode", PresentationMode, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"dismiss":{"id":3764267019429992}} });
-registerSDKClass("SwiftUI.PresentationPlacement", PresentationPlacement, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.PlaceholderTextShapeStyle", PlaceholderTextShapeStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PlainButtonStyle", PlainButtonStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PlainListStyle", PlainListStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PlainTextEditorStyle", PlainTextEditorStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PlainTextFieldStyle", PlainTextFieldStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PopoverAttachmentAnchor", PopoverAttachmentAnchor, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PresentationAdaptation", PresentationAdaptation, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PresentationBackgroundInteraction", PresentationBackgroundInteraction, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PresentationContentInteraction", PresentationContentInteraction, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PresentationDetent", PresentationDetent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PresentationDetent.Context", PresentationDetent_Context, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"subscript":{"id":767973807946760}} });
+registerSDKClass("SwiftUI.PresentationMode", PresentationMode, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"dismiss":{"id":3764267019429992}} });
+registerSDKClass("SwiftUI.PresentationPlacement", PresentationPlacement, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI18PresentationSizingP", {"proposedSizeForContext":"proposedSize(for:context:)"});
-registerSDKClass("SwiftUI.PresentationSizingContext", PresentationSizingContext, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.PresentationSizingRoot", PresentationSizingRoot, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"sizeThatFits":{"id":3730699123338990}} });
-registerSDKClass("SwiftUI.PresentedWindowContent", PresentedWindowContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.PresentationSizingContext", PresentationSizingContext, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.PresentationSizingRoot", PresentationSizingRoot, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"sizeThatFits":{"id":3730699123338990}} });
+registerSDKClass("SwiftUI.PresentedWindowContent", PresentedWindowContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI14PreviewContextP", {"subscript":"subscript(_:)"});
 registerSDKProtocol("s:7SwiftUI17PreviewContextKeyP", {});
 registerSDKProtocol("s:7SwiftUI15PreviewModifierP", {"makeSharedContext":"makeSharedContext()","bodyContentContext":"body(content:context:)"});
-registerSDKClass("SwiftUI.PreviewModifierContent", PreviewModifierContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.PreviewModifierContent", PreviewModifierContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI15PreviewProviderP", {});
 registerSDKProtocol("s:7SwiftUI20PrimitiveButtonStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.PrimitiveButtonStyleConfiguration", PrimitiveButtonStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"trigger":{"id":3430027591754253}} });
-registerSDKClass("SwiftUI.PrimitiveButtonStyleConfiguration.Label", PrimitiveButtonStyleConfiguration_Label, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ProgressView", ProgressView, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.PrimitiveButtonStyleConfiguration", PrimitiveButtonStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"trigger":{"id":3430027591754253}} });
+registerSDKClass("SwiftUI.PrimitiveButtonStyleConfiguration.Label", PrimitiveButtonStyleConfiguration_Label, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ProgressView", ProgressView, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI17ProgressViewStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.ProgressViewStyleConfiguration", ProgressViewStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ProgressViewStyleConfiguration.CurrentValueLabel", ProgressViewStyleConfiguration_CurrentValueLabel, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ProgressViewStyleConfiguration.Label", ProgressViewStyleConfiguration_Label, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ProminentDetailNavigationSplitViewStyle", ProminentDetailNavigationSplitViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.ProgressViewStyleConfiguration", ProgressViewStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ProgressViewStyleConfiguration.CurrentValueLabel", ProgressViewStyleConfiguration_CurrentValueLabel, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ProgressViewStyleConfiguration.Label", ProgressViewStyleConfiguration_Label, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ProminentDetailNavigationSplitViewStyle", ProminentDetailNavigationSplitViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI16ReadableDocumentP", {"readerConfiguration":"reader(configuration:)","applySnapshotPrevious":"apply(snapshot:previous:)"});
 registerSDKProtocol("s:7SwiftUI21ReferenceFileDocumentP", {"initConfiguration":"init(configuration:)","snapshotContentType":"snapshot(contentType:)","fileWrapperSnapshotConfiguration":"fileWrapper(snapshot:configuration:)"});
-registerSDKClass("SwiftUI.ReferenceFileDocumentConfiguration", ReferenceFileDocumentConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.RefreshAction", RefreshAction, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"callAsFunction":{"id":2501801248378992}} });
-registerSDKClass("SwiftUI.RenameAction", RenameAction, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"callAsFunction":{"id":1922107894038807}} });
-registerSDKClass("SwiftUI.RenameButton", RenameButton, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ReorderableSingleCollectionIdentifier", ReorderableSingleCollectionIdentifier, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ReorderDifference", ReorderDifference, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ReorderDifference.Destination", ReorderDifference_Destination, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ReorderDifference.Destination.Position", ReorderDifference_Destination_Position, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.RotateGesture", RotateGesture, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.RotateGesture.Value", RotateGesture_Value, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.RotationGesture", RotationGesture, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.RoundedBorderTextFieldStyle", RoundedBorderTextFieldStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.ReferenceFileDocumentConfiguration", ReferenceFileDocumentConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.RefreshAction", RefreshAction, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"callAsFunction":{"id":2501801248378992}} });
+registerSDKClass("SwiftUI.RenameAction", RenameAction, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"callAsFunction":{"id":1922107894038807}} });
+registerSDKClass("SwiftUI.RenameButton", RenameButton, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ReorderableSingleCollectionIdentifier", ReorderableSingleCollectionIdentifier, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ReorderDifference", ReorderDifference, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ReorderDifference.Destination", ReorderDifference_Destination, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ReorderDifference.Destination.Position", ReorderDifference_Destination_Position, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.RotateGesture", RotateGesture, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.RotateGesture.Value", RotateGesture_Value, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.RotationGesture", RotationGesture, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.RoundedBorderTextFieldStyle", RoundedBorderTextFieldStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI5SceneP", {});
 registerSDKProtocol("s:7SwiftUI21SceneAccessoryContentP", {});
-registerSDKClass("SwiftUI.SceneBuilder", SceneBuilder, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ScenePadding", ScenePadding, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SceneRestorationBehavior", SceneRestorationBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SceneStorage", SceneStorage, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ScrollAnchorRole", ScrollAnchorRole, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ScrollBounceBehavior", ScrollBounceBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ScrollDismissesKeyboardMode", ScrollDismissesKeyboardMode, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ScrollEdgeEffectStyle", ScrollEdgeEffectStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ScrollIndicatorVisibility", ScrollIndicatorVisibility, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ScrollInputBehavior", ScrollInputBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ScrollInputKind", ScrollInputKind, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ScrollPhaseChangeContext", ScrollPhaseChangeContext, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.SceneBuilder", SceneBuilder, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ScenePadding", ScenePadding, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SceneRestorationBehavior", SceneRestorationBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SceneStorage", SceneStorage, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ScrollAnchorRole", ScrollAnchorRole, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ScrollBounceBehavior", ScrollBounceBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ScrollDismissesKeyboardMode", ScrollDismissesKeyboardMode, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ScrollEdgeEffectStyle", ScrollEdgeEffectStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ScrollIndicatorVisibility", ScrollIndicatorVisibility, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ScrollInputBehavior", ScrollInputBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ScrollInputKind", ScrollInputKind, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ScrollPhaseChangeContext", ScrollPhaseChangeContext, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI20ScrollTargetBehaviorP", {"updateTargetContext":"updateTarget(_:context:)","propertiesContext":"properties(context:)"});
-registerSDKClass("SwiftUI.ScrollTargetBehaviorContext", ScrollTargetBehaviorContext, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"subscript":{"id":3215707401708555}} });
-registerSDKClass("SwiftUI.ScrollTargetBehaviorProperties", ScrollTargetBehaviorProperties, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ScrollTargetBehaviorPropertiesContext", ScrollTargetBehaviorPropertiesContext, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ScrollTransitionConfiguration", ScrollTransitionConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"animation":{"id":3800514682831092},"threshold":{"id":794198446772494}} });
-registerSDKClass("SwiftUI.ScrollTransitionConfiguration.Threshold", ScrollTransitionConfiguration_Threshold, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"interpolated":{"id":2870799930980006},"inset":{"id":39055338562495}} });
-registerSDKClass("SwiftUI.ScrollView", ScrollView, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ScrollViewProxy", ScrollViewProxy, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"scrollTo":{"id":190089454283217}} });
-registerSDKClass("SwiftUI.ScrollViewReader", ScrollViewReader, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SearchFieldPlacement", SearchFieldPlacement, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SearchFieldPlacement.NavigationBarDrawerDisplayMode", SearchFieldPlacement_NavigationBarDrawerDisplayMode, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SearchPresentationToolbarBehavior", SearchPresentationToolbarBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SearchScopeActivation", SearchScopeActivation, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SearchSuggestionsPlacement", SearchSuggestionsPlacement, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SearchToolbarBehavior", SearchToolbarBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SearchUnavailableContent", SearchUnavailableContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SearchUnavailableContent.Actions", SearchUnavailableContent_Actions, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SearchUnavailableContent.Description", SearchUnavailableContent_Description, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SearchUnavailableContent.Label", SearchUnavailableContent_Label, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Section", Section, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUICore.SectionConfiguration", SectionConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} }, true);
-registerSDKClass("SwiftUI.SectionConfiguration.Actions", SectionConfiguration_Actions, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SectionedFetchRequest", SectionedFetchRequest, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SectionedFetchRequest.Configuration", SectionedFetchRequest_Configuration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SectionedFetchResults", SectionedFetchResults, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SectionedFetchResults.Section", SectionedFetchResults_Section, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SecureField", SecureField, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SegmentedPickerStyle", SegmentedPickerStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SelectionShapeStyle", SelectionShapeStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SensoryFeedback", SensoryFeedback, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SensoryFeedback.Flexibility", SensoryFeedback_Flexibility, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SensoryFeedback.PressFeedback", SensoryFeedback_PressFeedback, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SensoryFeedback.ReleaseFeedback", SensoryFeedback_ReleaseFeedback, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SensoryFeedback.SelectionFeedback", SensoryFeedback_SelectionFeedback, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SensoryFeedback.Weight", SensoryFeedback_Weight, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SequenceGesture", SequenceGesture, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SequenceGesture.Value", SequenceGesture_Value, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ShareLink", ShareLink, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SharePreview", SharePreview, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SidebarAdaptableTabViewStyle", SidebarAdaptableTabViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SidebarCommands", SidebarCommands, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SidebarListStyle", SidebarListStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Slider", Slider, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SliderTick", SliderTick, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SliderTick.ID", SliderTick_ID, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SliderTickBuilder", SliderTickBuilder, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.ScrollTargetBehaviorContext", ScrollTargetBehaviorContext, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"subscript":{"id":3215707401708555}} });
+registerSDKClass("SwiftUI.ScrollTargetBehaviorProperties", ScrollTargetBehaviorProperties, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ScrollTargetBehaviorPropertiesContext", ScrollTargetBehaviorPropertiesContext, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ScrollTransitionConfiguration", ScrollTransitionConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"animation":{"id":3800514682831092},"threshold":{"id":794198446772494}} });
+registerSDKClass("SwiftUI.ScrollTransitionConfiguration.Threshold", ScrollTransitionConfiguration_Threshold, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"interpolated":{"id":2870799930980006},"inset":{"id":39055338562495}} });
+registerSDKClass("SwiftUI.ScrollView", ScrollView, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ScrollViewProxy", ScrollViewProxy, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"scrollTo":{"id":190089454283217}} });
+registerSDKClass("SwiftUI.ScrollViewReader", ScrollViewReader, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SearchFieldPlacement", SearchFieldPlacement, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SearchFieldPlacement.NavigationBarDrawerDisplayMode", SearchFieldPlacement_NavigationBarDrawerDisplayMode, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SearchPresentationToolbarBehavior", SearchPresentationToolbarBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SearchScopeActivation", SearchScopeActivation, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SearchSuggestionsPlacement", SearchSuggestionsPlacement, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SearchToolbarBehavior", SearchToolbarBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SearchUnavailableContent", SearchUnavailableContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SearchUnavailableContent.Actions", SearchUnavailableContent_Actions, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SearchUnavailableContent.Description", SearchUnavailableContent_Description, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SearchUnavailableContent.Label", SearchUnavailableContent_Label, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Section", Section, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUICore.SectionConfiguration", SectionConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} }, true);
+registerSDKClass("SwiftUI.SectionConfiguration.Actions", SectionConfiguration_Actions, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SectionedFetchRequest", SectionedFetchRequest, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SectionedFetchRequest.Configuration", SectionedFetchRequest_Configuration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SectionedFetchResults", SectionedFetchResults, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SectionedFetchResults.Section", SectionedFetchResults_Section, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SecureField", SecureField, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SegmentedPickerStyle", SegmentedPickerStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SelectionShapeStyle", SelectionShapeStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SensoryFeedback", SensoryFeedback, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SensoryFeedback.Flexibility", SensoryFeedback_Flexibility, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SensoryFeedback.PressFeedback", SensoryFeedback_PressFeedback, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SensoryFeedback.ReleaseFeedback", SensoryFeedback_ReleaseFeedback, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SensoryFeedback.SelectionFeedback", SensoryFeedback_SelectionFeedback, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SensoryFeedback.Weight", SensoryFeedback_Weight, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SequenceGesture", SequenceGesture, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SequenceGesture.Value", SequenceGesture_Value, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ShareLink", ShareLink, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SharePreview", SharePreview, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SidebarAdaptableTabViewStyle", SidebarAdaptableTabViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SidebarCommands", SidebarCommands, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SidebarListStyle", SidebarListStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Slider", Slider, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SliderTick", SliderTick, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SliderTick.ID", SliderTick_ID, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SliderTickBuilder", SliderTickBuilder, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI17SliderTickContentP", {});
-registerSDKClass("SwiftUI.SliderTickContentForEach", SliderTickContentForEach, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SpacerSizing", SpacerSizing, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SpatialEventCollection", SpatialEventCollection, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"makeIterator":{"id":2282238506362699},"index":{"id":1553955707898348},"subscript":{"id":3080725098359226},"subscript10166":{"id":4443716748044226}} });
-registerSDKClass("SwiftUI.SpatialEventCollection.Event", SpatialEventCollection_Event, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SpatialEventCollection.Event.ID", SpatialEventCollection_Event_ID, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SpatialEventCollection.Event.InputDevicePose", SpatialEventCollection_Event_InputDevicePose, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SpatialEventCollection.Index", SpatialEventCollection_Index, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SpatialEventCollection.Iterator", SpatialEventCollection_Iterator, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"next":{"id":4103890084689403}} });
-registerSDKClass("SwiftUI.SpatialEventGesture", SpatialEventGesture, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SpatialTapGesture", SpatialTapGesture, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SpatialTapGesture.Value", SpatialTapGesture_Value, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SpringLoadingBehavior", SpringLoadingBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.StackNavigationViewStyle", StackNavigationViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Stepper", Stepper, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SubmitLabel", SubmitLabel, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SubscriptionView", SubscriptionView, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Subview.ContainerSizingOptions", Subview_ContainerSizingOptions, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.SwitchToggleStyle", SwitchToggleStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Tab", Tab, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TabBarMinimizeBehavior", TabBarMinimizeBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TabBarOnlyTabViewStyle", TabBarOnlyTabViewStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TabBarPlacement", TabBarPlacement, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.SliderTickContentForEach", SliderTickContentForEach, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SpacerSizing", SpacerSizing, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SpatialEventCollection", SpatialEventCollection, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"makeIterator":{"id":2282238506362699},"index":{"id":1553955707898348},"subscript":{"id":3080725098359226},"subscript10166":{"id":4443716748044226}} });
+registerSDKClass("SwiftUI.SpatialEventCollection.Event", SpatialEventCollection_Event, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SpatialEventCollection.Event.ID", SpatialEventCollection_Event_ID, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SpatialEventCollection.Event.InputDevicePose", SpatialEventCollection_Event_InputDevicePose, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SpatialEventCollection.Index", SpatialEventCollection_Index, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SpatialEventCollection.Iterator", SpatialEventCollection_Iterator, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"next":{"id":4103890084689403}} });
+registerSDKClass("SwiftUI.SpatialEventGesture", SpatialEventGesture, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SpatialTapGesture", SpatialTapGesture, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SpatialTapGesture.Value", SpatialTapGesture_Value, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SpringLoadingBehavior", SpringLoadingBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.StackNavigationViewStyle", StackNavigationViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Stepper", Stepper, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SubmitLabel", SubmitLabel, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SubscriptionView", SubscriptionView, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Subview.ContainerSizingOptions", Subview_ContainerSizingOptions, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.SwitchToggleStyle", SwitchToggleStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Tab", Tab, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TabBarMinimizeBehavior", TabBarMinimizeBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TabBarOnlyTabViewStyle", TabBarOnlyTabViewStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TabBarPlacement", TabBarPlacement, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI10TabContentP", {});
-registerSDKClass("SwiftUI.TabContentBuilder", TabContentBuilder, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TabContentBuilder.Content", TabContentBuilder_Content, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TabCustomizationBehavior", TabCustomizationBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Table", Table, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TableColumn", TableColumn, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"widthMinIdealMax":{"id":3417408775743366},"width":{"id":2330834837693894},"width57743":{"id":1470380552918228}} });
-registerSDKClass("SwiftUI.TableColumnAlignment", TableColumnAlignment, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TableColumnBuilder", TableColumnBuilder, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.TabContentBuilder", TabContentBuilder, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TabContentBuilder.Content", TabContentBuilder_Content, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TabCustomizationBehavior", TabCustomizationBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Table", Table, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TableColumn", TableColumn, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"widthMinIdealMax":{"id":3417408775743366},"width":{"id":2330834837693894},"width57743":{"id":1470380552918228}} });
+registerSDKClass("SwiftUI.TableColumnAlignment", TableColumnAlignment, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TableColumnBuilder", TableColumnBuilder, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI18TableColumnContentP", {});
-registerSDKClass("SwiftUI.TableColumnCustomization", TableColumnCustomization, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"resetOrder":{"id":3378945776867198},"subscript":{"id":4418111029546112}} });
-registerSDKClass("SwiftUI.TableColumnCustomizationBehavior", TableColumnCustomizationBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"intersection":{"id":2222845862147259},"formIntersection":{"id":466987626204138},"symmetricDifference":{"id":444760486051477},"formSymmetricDifference":{"id":3754032036138898},"union":{"id":1735459657232624},"insert":{"id":2511559841161737},"remove":{"id":2231779120034578},"update":{"id":105302478859663},"contains":{"id":1324907067171896},"formUnion":{"id":1839720628919760}} });
-registerSDKClass("SwiftUI.TableColumnForEach", TableColumnForEach, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TableForEachContent", TableForEachContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TableHeaderRowContent", TableHeaderRowContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TableOutlineGroupContent", TableOutlineGroupContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TableRow", TableRow, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TableRowBuilder", TableRowBuilder, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.TableColumnCustomization", TableColumnCustomization, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"resetOrder":{"id":3378945776867198},"subscript":{"id":4418111029546112}} });
+registerSDKClass("SwiftUI.TableColumnCustomizationBehavior", TableColumnCustomizationBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"intersection":{"id":2222845862147259},"formIntersection":{"id":466987626204138},"symmetricDifference":{"id":444760486051477},"formSymmetricDifference":{"id":3754032036138898},"union":{"id":1735459657232624},"insert":{"id":2511559841161737},"remove":{"id":2231779120034578},"update":{"id":105302478859663},"contains":{"id":1324907067171896},"formUnion":{"id":1839720628919760}} });
+registerSDKClass("SwiftUI.TableColumnForEach", TableColumnForEach, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TableForEachContent", TableForEachContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TableHeaderRowContent", TableHeaderRowContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TableOutlineGroupContent", TableOutlineGroupContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TableRow", TableRow, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TableRowBuilder", TableRowBuilder, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI15TableRowContentP", {});
 registerSDKProtocol("s:7SwiftUI10TableStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.TableStyleConfiguration", TableStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TabPlacement", TabPlacement, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TabRole", TabRole, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TabSearchActivation", TabSearchActivation, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TabSection", TabSection, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TabSectionExpansion", TabSectionExpansion, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TabsPickerStyle", TabsPickerStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TabView", TabView, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TabViewCustomization", TabViewCustomization, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"resetVisibility":{"id":794841405474857},"resetSectionOrderFor":{"id":3558353838954823},"resetSectionOrder":{"id":1306633953169957},"subscriptSidebarVisibility":{"id":70576248270573},"subscriptTab":{"id":842573280557676},"subscriptSection":{"id":3841498066250986},"subscriptSectionID":{"id":2973853301405717}} });
-registerSDKClass("SwiftUI.TabViewCustomization.SectionCustomization", TabViewCustomization_SectionCustomization, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"resetTabOrder":{"id":1308848775589336}} });
-registerSDKClass("SwiftUI.TabViewCustomization.TabCustomization", TabViewCustomization_TabCustomization, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.TableStyleConfiguration", TableStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TabPlacement", TabPlacement, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TabRole", TabRole, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TabSearchActivation", TabSearchActivation, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TabSection", TabSection, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TabSectionExpansion", TabSectionExpansion, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TabsPickerStyle", TabsPickerStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TabView", TabView, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TabViewCustomization", TabViewCustomization, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"resetVisibility":{"id":794841405474857},"resetSectionOrderFor":{"id":3558353838954823},"resetSectionOrder":{"id":1306633953169957},"subscriptSidebarVisibility":{"id":70576248270573},"subscriptTab":{"id":842573280557676},"subscriptSection":{"id":3841498066250986},"subscriptSectionID":{"id":2973853301405717}} });
+registerSDKClass("SwiftUI.TabViewCustomization.SectionCustomization", TabViewCustomization_SectionCustomization, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"resetTabOrder":{"id":1308848775589336}} });
+registerSDKClass("SwiftUI.TabViewCustomization.TabCustomization", TabViewCustomization_TabCustomization, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI12TabViewStyleP", {});
-registerSDKClass("SwiftUICore.Text", Text, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"accessibilityTextContentType":{"id":3904380446404220},"accessibilityLabel":{"id":4361246830535463},"accessibilityLabel61829":{"id":4211920933923973},"accessibilityLabel70866":{"id":568783251842998},"accessibilityLabel60513":{"id":3460825451621843},"accessibilityHeading":{"id":3941078993117694}} }, true);
-registerSDKClass("SwiftUICore.Text.LineStyle", Text_LineStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} }, true);
-registerSDKClass("SwiftUI.TextEditingCommands", TextEditingCommands, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TextEditor", TextEditor, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUICore.Text", Text, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"accessibilityTextContentType":{"id":3904380446404220},"accessibilityLabel":{"id":4361246830535463},"accessibilityLabel61829":{"id":4211920933923973},"accessibilityLabel70866":{"id":568783251842998},"accessibilityLabel60513":{"id":3460825451621843},"accessibilityHeading":{"id":3941078993117694}} }, true);
+registerSDKClass("SwiftUICore.Text.LineStyle", Text_LineStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} }, true);
+registerSDKClass("SwiftUI.TextEditingCommands", TextEditingCommands, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TextEditor", TextEditor, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI15TextEditorStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.TextEditorStyleConfiguration", TextEditorStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TextField", TextField, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.TextEditorStyleConfiguration", TextEditorStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TextField", TextField, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI14TextFieldStyleP", {});
-registerSDKClass("SwiftUI.TextFormattingCommands", TextFormattingCommands, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TextInputAutocapitalization", TextInputAutocapitalization, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TextInputDictationActivation", TextInputDictationActivation, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TextInputDictationBehavior", TextInputDictationBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TextInputFormattingControlPlacement", TextInputFormattingControlPlacement, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TextSelection", TextSelection, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TextSelection.Indices", TextSelection_Indices, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TimelineView", TimelineView, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TimelineView.Context", TimelineView_Context, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"invalidateTimelineContent":{"id":436739695483487}} });
-registerSDKClass("SwiftUI.TitleAndIconLabelStyle", TitleAndIconLabelStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TitleOnlyLabelStyle", TitleOnlyLabelStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.Toggle", Toggle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.TextFormattingCommands", TextFormattingCommands, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TextInputAutocapitalization", TextInputAutocapitalization, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TextInputDictationActivation", TextInputDictationActivation, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TextInputDictationBehavior", TextInputDictationBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TextInputFormattingControlPlacement", TextInputFormattingControlPlacement, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TextSelection", TextSelection, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TextSelection.Indices", TextSelection_Indices, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TimelineView", TimelineView, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TimelineView.Context", TimelineView_Context, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"invalidateTimelineContent":{"id":436739695483487}} });
+registerSDKClass("SwiftUI.TitleAndIconLabelStyle", TitleAndIconLabelStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TitleOnlyLabelStyle", TitleOnlyLabelStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.Toggle", Toggle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI11ToggleStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("SwiftUI.ToggleStyleConfiguration", ToggleStyleConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToggleStyleConfiguration.Label", ToggleStyleConfiguration_Label, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarCommands", ToolbarCommands, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.ToggleStyleConfiguration", ToggleStyleConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToggleStyleConfiguration.Label", ToggleStyleConfiguration_Label, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarCommands", ToolbarCommands, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI14ToolbarContentP", {});
-registerSDKClass("SwiftUI.ToolbarContentBuilder", ToolbarContentBuilder, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarCustomizationBehavior", ToolbarCustomizationBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarDefaultItemKind", ToolbarDefaultItemKind, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarItem", ToolbarItem, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarItemAxisBehavior", ToolbarItemAxisBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarItemGroup", ToolbarItemGroup, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarItemPlacement", ToolbarItemPlacement, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarItemVisibilityPriority", ToolbarItemVisibilityPriority, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarLabelStyle", ToolbarLabelStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarMinimizationBehavior", ToolbarMinimizationBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarMinimizationRestoration", ToolbarMinimizationRestoration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarMinimizationSafeAreaAdjustment", ToolbarMinimizationSafeAreaAdjustment, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarOverflowMenu", ToolbarOverflowMenu, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarPlacement", ToolbarPlacement, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarRole", ToolbarRole, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarSpacer", ToolbarSpacer, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarTitleDisplayMode", ToolbarTitleDisplayMode, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarTitleMenu", ToolbarTitleMenu, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarVerticalBehavior", ToolbarVerticalBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ToolbarVerticalCompressionBehavior", ToolbarVerticalCompressionBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUICore.Transaction", Transaction, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} }, true);
-registerSDKClass("SwiftUI.TupleSliderTickContent", TupleSliderTickContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TupleTableColumnContent", TupleTableColumnContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.TupleTableRowContent", TupleTableRowContent, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.UIApplicationDelegateAdaptor", UIApplicationDelegateAdaptor, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("UIColor", UIColor, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} }, true);
+registerSDKClass("SwiftUI.ToolbarContentBuilder", ToolbarContentBuilder, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarCustomizationBehavior", ToolbarCustomizationBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarDefaultItemKind", ToolbarDefaultItemKind, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarItem", ToolbarItem, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarItemAxisBehavior", ToolbarItemAxisBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarItemGroup", ToolbarItemGroup, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarItemPlacement", ToolbarItemPlacement, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarItemVisibilityPriority", ToolbarItemVisibilityPriority, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarLabelStyle", ToolbarLabelStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarMinimizationBehavior", ToolbarMinimizationBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarMinimizationRestoration", ToolbarMinimizationRestoration, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarMinimizationSafeAreaAdjustment", ToolbarMinimizationSafeAreaAdjustment, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarOverflowMenu", ToolbarOverflowMenu, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarPlacement", ToolbarPlacement, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarRole", ToolbarRole, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarSpacer", ToolbarSpacer, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarTitleDisplayMode", ToolbarTitleDisplayMode, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarTitleMenu", ToolbarTitleMenu, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarVerticalBehavior", ToolbarVerticalBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ToolbarVerticalCompressionBehavior", ToolbarVerticalCompressionBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUICore.Transaction", Transaction, { module: "SwiftUI_bd41a4085ee86f99", properties: {} }, true);
+registerSDKClass("SwiftUI.TupleSliderTickContent", TupleSliderTickContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TupleTableColumnContent", TupleTableColumnContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.TupleTableRowContent", TupleTableRowContent, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.UIApplicationDelegateAdaptor", UIApplicationDelegateAdaptor, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("UIColor", UIColor, { module: "SwiftUI_bd41a4085ee86f99", properties: {} }, true);
 registerSDKProtocol("s:7SwiftUI32UIGestureRecognizerRepresentableP", {"makeCoordinatorConverter":"makeCoordinator(converter:)","makeUIGestureRecognizerContext":"makeUIGestureRecognizer(context:)","updateUIGestureRecognizerContext":"updateUIGestureRecognizer(_:context:)","handleUIGestureRecognizerActionContext":"handleUIGestureRecognizerAction(_:context:)"});
-registerSDKClass("SwiftUI.UIGestureRecognizerRepresentableContext", UIGestureRecognizerRepresentableContext, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.UIGestureRecognizerRepresentableCoordinateSpaceConverter", UIGestureRecognizerRepresentableCoordinateSpaceConverter, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.UIHostingConfiguration", UIHostingConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"background":{"id":3709705116806846},"makeContentView":{"id":4068821617979396},"margins":{"id":2143171025361293},"margins14625":{"id":2347670578798565},"minSizeWidthHeight":{"id":2119853021228875},"minSize":{"id":982944959200095},"updated":{"id":4364375722018520}} });
-registerSDKClass("SwiftUI.UIHostingController", UIHostingController, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"sizeThatFits":{"id":2311925772827278},"viewDidAppear":{"id":2523969889785431},"viewWillAppear":{"id":1921135501811733},"viewDidDisappear":{"id":2184803789784563},"viewWillDisappear":{"id":374810600041398},"viewWillTransition":{"id":3507213288113866},"viewWillLayoutSubviews":{"id":2486027930890266},"preferredContentSizeDidChange":{"id":4202066254683921},"didMove":{"id":3545194530930063},"loadView":{"id":159072632959183},"willMove":{"id":770722615456396}} });
+registerSDKClass("SwiftUI.UIGestureRecognizerRepresentableContext", UIGestureRecognizerRepresentableContext, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.UIGestureRecognizerRepresentableCoordinateSpaceConverter", UIGestureRecognizerRepresentableCoordinateSpaceConverter, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.UIHostingConfiguration", UIHostingConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"background":{"id":3709705116806846},"makeContentView":{"id":4068821617979396},"margins":{"id":2143171025361293},"margins14625":{"id":2347670578798565},"minSizeWidthHeight":{"id":2119853021228875},"minSize":{"id":982944959200095},"updated":{"id":4364375722018520}} });
+registerSDKClass("SwiftUI.UIHostingController", UIHostingController, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"sizeThatFits":{"id":2311925772827278},"viewDidAppear":{"id":2523969889785431},"viewWillAppear":{"id":1921135501811733},"viewDidDisappear":{"id":2184803789784563},"viewWillDisappear":{"id":374810600041398},"viewWillTransition":{"id":3507213288113866},"viewWillLayoutSubviews":{"id":2486027930890266},"preferredContentSizeDidChange":{"id":4202066254683921},"didMove":{"id":3545194530930063},"loadView":{"id":159072632959183},"willMove":{"id":770722615456396}} });
 registerSDKProtocol("s:7SwiftUI22UIHostingSceneDelegateP", {"sceneWillConnectToOptions":"scene(_:willConnectTo:options:)","sceneDidDisconnect":"sceneDidDisconnect(_:)","sceneDidBecomeActive":"sceneDidBecomeActive(_:)","sceneWillResignActive":"sceneWillResignActive(_:)","sceneWillEnterForeground":"sceneWillEnterForeground(_:)","sceneDidEnterBackground":"sceneDidEnterBackground(_:)","sceneOpenURLContexts":"scene(_:openURLContexts:)","stateRestorationActivityFor":"stateRestorationActivity(for:)","sceneRestoreInteractionStateWith":"scene(_:restoreInteractionStateWith:)","sceneWillContinueUserActivityWithType":"scene(_:willContinueUserActivityWithType:)","sceneContinue":"scene(_:continue:)","sceneDidFailToContinueUserActivityWithTypeError":"scene(_:didFailToContinueUserActivityWithType:error:)","sceneDidUpdate":"scene(_:didUpdate:)"});
-registerSDKClass("UIView", UIView, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} }, true);
+registerSDKClass("UIView", UIView, { module: "SwiftUI_bd41a4085ee86f99", properties: {} }, true);
 registerSDKProtocol("s:7SwiftUI29UIViewControllerRepresentableP", {"makeUIViewControllerContext":"makeUIViewController(context:)","updateUIViewControllerContext":"updateUIViewController(_:context:)","dismantleUIViewControllerCoordinator":"dismantleUIViewController(_:coordinator:)","makeCoordinator":"makeCoordinator()","sizeThatFitsUiViewControllerContext":"sizeThatFits(_:uiViewController:context:)"});
-registerSDKClass("SwiftUI.UIViewControllerRepresentableContext", UIViewControllerRepresentableContext, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.UIViewControllerRepresentableContext", UIViewControllerRepresentableContext, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI19UIViewRepresentableP", {"makeUIViewContext":"makeUIView(context:)","updateUIViewContext":"updateUIView(_:context:)","dismantleUIViewCoordinator":"dismantleUIView(_:coordinator:)","makeCoordinator":"makeCoordinator()","sizeThatFitsUiViewContext":"sizeThatFits(_:uiView:context:)"});
-registerSDKClass("SwiftUI.UIViewRepresentableContext", UIViewRepresentableContext, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.URLDocumentConfiguration", URLDocumentConfiguration, { module: "SwiftUI_64b39a05e4a4cebd", properties: {"description":2305910568510180,"creationSource":4138984380863054,"lastContentModificationDate":3964350656929404,"fileURL":3429218160888796}, methods: {"makeFileCoordinator":{"id":3645623788388632}} });
-registerSDKClass("SwiftUI.ViewAlignedScrollTargetBehavior", ViewAlignedScrollTargetBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {}, methods: {"updateTarget":{"id":1649500452894912},"properties":{"id":2004517428588827}} });
-registerSDKClass("SwiftUI.ViewAlignedScrollTargetBehavior.LimitBehavior", ViewAlignedScrollTargetBehavior_LimitBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUICore.ViewBuilder", ViewBuilder, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} }, true);
-registerSDKClass("SwiftUI.ViewThatFits", ViewThatFits, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.WheelDatePickerStyle", WheelDatePickerStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.WheelPickerStyle", WheelPickerStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.UIViewRepresentableContext", UIViewRepresentableContext, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.URLDocumentConfiguration", URLDocumentConfiguration, { module: "SwiftUI_bd41a4085ee86f99", properties: {"description":2305910568510180,"creationSource":4138984380863054,"lastContentModificationDate":3964350656929404,"fileURL":3429218160888796}, methods: {"makeFileCoordinator":{"id":3645623788388632}} });
+registerSDKClass("SwiftUI.ViewAlignedScrollTargetBehavior", ViewAlignedScrollTargetBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {}, methods: {"updateTarget":{"id":1649500452894912},"properties":{"id":2004517428588827}} });
+registerSDKClass("SwiftUI.ViewAlignedScrollTargetBehavior.LimitBehavior", ViewAlignedScrollTargetBehavior_LimitBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUICore.ViewBuilder", ViewBuilder, { module: "SwiftUI_bd41a4085ee86f99", properties: {} }, true);
+registerSDKClass("SwiftUI.ViewThatFits", ViewThatFits, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.WheelDatePickerStyle", WheelDatePickerStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.WheelPickerStyle", WheelPickerStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI6WidgetP", {"init":"init()"});
 registerSDKProtocol("s:7SwiftUI12WidgetBundleP", {"init":"init()"});
-registerSDKClass("SwiftUI.WidgetBundleBuilder", WidgetBundleBuilder, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.WidgetBundleBuilder", WidgetBundleBuilder, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI19WidgetConfigurationP", {});
-registerSDKClass("SwiftUI.WindowBackgroundShapeStyle", WindowBackgroundShapeStyle, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.WindowGroup", WindowGroup, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.WindowManagerRole", WindowManagerRole, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.WindowResizability", WindowResizability, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.WindowToolbarFullScreenVisibility", WindowToolbarFullScreenVisibility, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.WindowBackgroundShapeStyle", WindowBackgroundShapeStyle, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.WindowGroup", WindowGroup, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.WindowManagerRole", WindowManagerRole, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.WindowResizability", WindowResizability, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.WindowToolbarFullScreenVisibility", WindowToolbarFullScreenVisibility, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
 registerSDKProtocol("s:7SwiftUI16WritableDocumentP", {"writerConfiguration":"writer(configuration:)","snapshotContentType":"snapshot(contentType:)"});
-registerSDKClass("SwiftUI.WritingToolsBehavior", WritingToolsBehavior, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
-registerSDKClass("SwiftUI.ZoomNavigationTransition", ZoomNavigationTransition, { module: "SwiftUI_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("SwiftUI.WritingToolsBehavior", WritingToolsBehavior, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
+registerSDKClass("SwiftUI.ZoomNavigationTransition", ZoomNavigationTransition, { module: "SwiftUI_bd41a4085ee86f99", properties: {} });
