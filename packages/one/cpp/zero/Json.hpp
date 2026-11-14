@@ -14,7 +14,11 @@ namespace one::zero {
 struct Json {
   using Array = std::vector<Json>;
   using Object = std::map<std::string, Json>;
-  std::variant<std::nullptr_t, bool, double, std::string, Array, Object> value = nullptr;
+  struct Serialized {
+    std::string text;
+    bool operator==(const Serialized&) const = default;
+  };
+  std::variant<std::nullptr_t, bool, double, std::string, Array, Object, Serialized> value = nullptr;
   Json() = default;
   Json(std::nullptr_t) {}
   Json(bool v) : value(v) {}
@@ -24,6 +28,7 @@ struct Json {
   Json(const char* v) : value(std::string(v)) {}
   Json(Array v) : value(std::move(v)) {}
   Json(Object v) : value(std::move(v)) {}
+  Json(Serialized v) : value(std::move(v)) {}
   bool null() const { return std::holds_alternative<std::nullptr_t>(value); }
   bool object() const { return std::holds_alternative<Object>(value); }
   bool array() const { return std::holds_alternative<Array>(value); }
@@ -99,6 +104,8 @@ struct Json {
       }
     } else if (const auto* s = std::get_if<std::string>(&value))
       quote(out, *s);
+    else if (const auto* serialized = std::get_if<Serialized>(&value))
+      out += serialized->text;
     else if (const auto* a = std::get_if<Array>(&value)) {
       out += '[';
       for (size_t i = 0; i < a->size(); ++i) {

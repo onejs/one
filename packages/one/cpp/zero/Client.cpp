@@ -603,7 +603,9 @@ struct Client::Impl {
       statement.bind(static_cast<int>(i + 1), compiled.args[i]);
     Json::Array rows;
     while (statement.step()) {
-      Json row = parse(db, statement.text(0));
+      // stored rows already passed JSON validation; only parents need field access.
+      Json row = ast.has("related") ? parse(db, statement.text(0))
+                                    : Json(Json::Serialized{statement.text(0)});
       if (ast.has("related")) {
         for (const Json& related : ast.at("related").items()) {
           if (related.flag("hidden"))
