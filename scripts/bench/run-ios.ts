@@ -22,7 +22,12 @@ export function captureConsole(
   log: string,
   timeout: number,
   stopOnDone: boolean,
-  options: { env?: NodeJS.ProcessEnv; onPhase?: (phase: Phase) => Promise<Sample> } = {}
+  options: {
+    env?: NodeJS.ProcessEnv
+    onPhase?: (phase: Phase) => Promise<Sample>
+    onReady?: () => Promise<void>
+    readyText?: string
+  } = {}
 ): Promise<number> {
   return new Promise((resolveCapture, reject) => {
     const fd = openSync(log, 'w')
@@ -33,6 +38,8 @@ export function captureConsole(
     let terminal: 'DONE' | 'ERROR' | undefined
     let failure: Error | undefined
     let recent = ''
+    let ready = false
+    let readyWork = Promise.resolve()
     let currentPhase: Phase | undefined
     let phaseWork = Promise.resolve()
     let cleanupTimer: ReturnType<typeof setTimeout> | undefined
@@ -48,6 +55,13 @@ export function captureConsole(
     function line(value: string) {
       writeSync(fd, value)
       recent = (recent + value).slice(-8192)
+      if (!ready && options.onReady && value.includes(options.readyText!)) {
+        ready = true
+        readyWork = options.onReady().catch((error) => {
+          failure = error
+          stop()
+        })
+      }
       if (recent.includes('FBSOpenApplicationErrorDomain') && /\bLocked\b/.test(recent)) {
         failure = new Error(`iOS refused launch because the device is locked; see ${log}`)
         stop()
@@ -103,6 +117,7 @@ export function captureConsole(
     process.on('close', async (code) => {
       for (const pending of Object.values(buffers)) if (pending) line(pending)
       await phaseWork
+      await readyWork
       clearTimeout(timer)
       if (cleanupTimer) clearTimeout(cleanupTimer)
       closeSync(fd)
@@ -194,6 +209,8 @@ if (import.meta.main) {
       out: { type: 'string' },
       lock: { type: 'string' },
       'stop-on-done': { type: 'boolean', default: false },
+      'simulator-log-process': { type: 'string' },
+      'reset-data': { type: 'boolean', default: false },
       'engine-env': { type: 'string', multiple: true, default: [] },
       'launch-arg': { type: 'string', multiple: true, default: [] },
     },
@@ -209,6 +226,8 @@ if (import.meta.main) {
     throw new Error(
       'require exactly one --device or --simulator, plus --device-name, --os, --commit, --out and --app engine=/path/App.app'
     )
+  if (!args.simulator && (args['simulator-log-process'] || args['reset-data']))
+    throw new Error('--simulator-log-process and --reset-data require --simulator')
   const runs = Number(args.runs),
     timeout = Number(args.timeout),
     cooldown = Number(args.cooldown)
@@ -268,6 +287,8 @@ if (import.meta.main) {
     order: args.order,
     cooldownSeconds: cooldown,
     launchEnvironment,
+    simulatorLogProcess: args['simulator-log-process'] ?? null,
+    resetData: args['reset-data'],
     os: args.os,
     commit: args.commit,
     runs,
@@ -303,6 +324,20 @@ if (import.meta.main) {
     const order =
       args.order === 'alternating' || run % 2 === 0 ? apps : [...apps].reverse()
     for (const { engine, app, bundle } of order) {
+      if (args['reset-data']) {
+        const removal = spawnSync(
+          'xcrun',
+          ['simctl', 'uninstall', args.simulator!, bundle],
+          { encoding: 'utf8' }
+        )
+        if (removal.error) throw removal.error
+        if (
+          removal.status &&
+          !/not installed|No such file or directory/i.test(removal.stderr)
+        )
+          throw new Error(`simulator uninstall failed: ${removal.stderr}`)
+        installed.delete(bundle)
+      }
       if (installed.get(bundle) !== engine) {
         const receipt = command(
           args.simulator
@@ -356,23 +391,64 @@ if (import.meta.main) {
       const env = { ...process.env }
       for (const [key, value] of Object.entries(launchEnvironment[engine] ?? {}))
         env[`${args.simulator ? 'SIMCTL_CHILD_' : 'DEVICECTL_CHILD_'}${key}`] = value
-      const returncode = await captureConsole(argv, log, timeout, args['stop-on-done']!, {
-        env,
-        onPhase: args.simulator
-          ? (phase) =>
-              hostFootprint(
-                args.simulator!,
-                bundle,
-                app,
-                engine,
-                phase,
-                log.replace(
-                  /\.log$/,
-                  `-${phase.case.replace(/[^a-zA-Z0-9_-]/g, '_')}-vmmap.log`
+      const logProcess = args['simulator-log-process']
+      const logger = logProcess
+        ? [
+            'xcrun',
+            'simctl',
+            'spawn',
+            args.simulator!,
+            'log',
+            'stream',
+            '--style',
+            'compact',
+            '--level',
+            'debug',
+            '--predicate',
+            `process == ${JSON.stringify(logProcess)} AND eventMessage CONTAINS "BENCH"`,
+          ]
+        : argv
+      const returncode = await captureConsole(
+        logger,
+        log,
+        timeout,
+        Boolean(logProcess) || args['stop-on-done']!,
+        {
+          env,
+          readyText: logProcess ? 'Filtering the log data' : undefined,
+          onReady: logProcess
+            ? async () => {
+                const { stdout } = await promisify(execFile)(
+                  'xcrun',
+                  [
+                    'simctl',
+                    'launch',
+                    '--terminate-running-process',
+                    args.simulator!,
+                    bundle,
+                    ...launchArgs,
+                  ],
+                  { env, encoding: 'utf8', timeout: timeout * 1000 }
                 )
-              )
-          : undefined,
-      })
+                writeFileSync(log.replace(/\.log$/, '-launch.log'), stdout)
+              }
+            : undefined,
+          onPhase: args.simulator
+            ? (phase) =>
+                hostFootprint(
+                  args.simulator!,
+                  bundle,
+                  app,
+                  engine,
+                  phase,
+                  log.replace(
+                    /\.log$/,
+                    `-${phase.case.replace(/[^a-zA-Z0-9_-]/g, '_')}-vmmap.log`
+                  )
+                )
+            : undefined,
+        }
+      )
       const text = readFileSync(log, 'utf8')
       if (returncode || !text.includes('BENCH_DONE') || text.includes('BENCH_ERROR'))
         throw new Error(`incomplete run: ${log} (exit ${returncode})`)
