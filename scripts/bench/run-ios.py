@@ -45,6 +45,7 @@ def main():
                     apps=[dict(engine=e, path=str(p), bundle=b) for e, p, b in apps])
     (args.out / 'manifest.json').write_text(json.dumps(metadata, indent=2))
     rows = []
+    environments = []
     with args.lock.open('a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
         installed = {}
@@ -64,6 +65,13 @@ def main():
                 text = log.read_text()
                 if result.returncode or 'BENCH_DONE' not in text or 'BENCH_ERROR' in text:
                     raise RuntimeError(f'incomplete run: {log} (exit {result.returncode})')
+                for line in text.splitlines():
+                    if 'BENCH_META ' in line:
+                        environment = json.loads(line.split('BENCH_META ', 1)[1])
+                        environments.append(dict(engine=engine, run=run, **environment))
+                        if environment.get('os') != args.os:
+                            raise ValueError(f'OS label mismatch: {environment}')
+                metadata['environments'] = environments
                 samples = parse_lines(text)
                 if not samples or any(row['engine'] != engine or str(row['run']) != str(run) for row in samples):
                     raise ValueError(f'engine/run mismatch or empty run: {log}')
