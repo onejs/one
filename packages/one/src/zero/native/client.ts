@@ -6,6 +6,9 @@ import type {
   JSONValue,
   MaterializedView,
   Mutation,
+  MutationPromise,
+  MutationResultDetails,
+  NativeMutate,
   Mutator,
   Mutators,
   PullResponse,
@@ -22,10 +25,10 @@ import type {
 import { NativeView, queryTTL } from './view'
 import { NativeSync, type SyncOptions } from './sync'
 
-export type NativeZeroOptions = {
+export type NativeZeroOptions<M extends Mutators = Mutators> = {
   engine: Engine
   schema: Schema
-  mutators: Mutators
+  mutators: M
   transport?: Transport
   onError?: (error: unknown) => void
   context?: unknown
@@ -66,7 +69,7 @@ function queryResult(value: JSONValue, format?: Format): unknown {
   return value
 }
 
-export class NativeZero {
+export class NativeZero<M extends Mutators = Mutators> {
   private tail: Promise<unknown> = Promise.resolve()
   private syncTail: Promise<unknown> = Promise.resolve()
   private closed = false
@@ -89,19 +92,28 @@ export class NativeZero {
   private managesQueries = false
   private queryRefreshQueued = false
   private sync?: NativeSync
+  private serverResults = new Map<number, (result: MutationResultDetails) => void>()
+  readonly mutate: NativeMutate<M>
 
-  constructor(private options: NativeZeroOptions) {
-    const register = (mutators: Mutators, prefix: string) => {
+  constructor(private options: NativeZeroOptions<M>) {
+    const register = (mutators: Mutators, prefix: string): object => {
+      const functions = Object.create(null)
       for (const [name, value] of Object.entries(mutators)) {
         const key = prefix + name
         if (typeof value === 'function') {
           if (this.mutators.has(key))
             throw new Error(`Duplicate native Zero mutator: ${key}`)
           this.mutators.set(key, value)
-        } else register(value, key + '.')
+          functions[name] = (args?: JSONValue) => this.issueMutation(key, args)
+        } else functions[name] = register(value, key + '.')
       }
+      return functions
     }
-    register(options.mutators, '')
+    const functions = register(options.mutators, '')
+    const mutate = (name: string, args?: JSONValue) => this.issueMutation(name, args)
+    for (const [name, value] of Object.entries(functions))
+      Object.defineProperty(mutate, name, { value, enumerable: true })
+    this.mutate = mutate as NativeMutate<M>
   }
 
   private enqueue<T>(operation: () => Promise<T>): Promise<T> {
@@ -273,7 +285,41 @@ export class NativeZero {
     }
   }
 
-  async mutate(name: string, args: JSONValue = null): Promise<unknown> {
+  private issueMutation(name: string, args?: JSONValue): MutationPromise {
+    let settle!: (result: MutationResultDetails) => void
+    const server = new Promise<MutationResultDetails>((resolve) => {
+      settle = resolve
+    })
+    const operation = this.executeMutation(name, args, (mutation) => {
+      if (this.closed)
+        settle({
+          type: 'error',
+          error: { type: 'zero', message: 'Native Zero client is closed' },
+        })
+      else this.serverResults.set(mutation.id, settle)
+    })
+    const client = operation.then<MutationResultDetails, MutationResultDetails>(
+      () => ({ type: 'success' }),
+      (error) => {
+        const result: MutationResultDetails = {
+          type: 'error',
+          error: {
+            type: 'app',
+            message: error instanceof Error ? error.message : String(error),
+          },
+        }
+        settle(result)
+        return result
+      }
+    )
+    return Object.assign(operation, { client, server })
+  }
+
+  private async executeMutation(
+    name: string,
+    args: JSONValue = null,
+    committed: (mutation: Mutation) => void
+  ): Promise<unknown> {
     const request = serialize({ op: 'beginMutation', name, args, timestamp: Date.now() })
     return this.enqueue(async () => {
       if (!this.mutators.has(name))
@@ -290,6 +336,7 @@ export class NativeZero {
         await this.request({ op: 'rollback', transaction })
         throw error
       }
+      committed(mutation)
       await this.publish()
       this.sync?.request()
       return result
@@ -313,6 +360,15 @@ export class NativeZero {
     } catch (error) {
       await this.request({ op: 'rollback', transaction })
       throw error
+    }
+    const acknowledged = response.lastMutationIDChanges?.[state.clientID]
+    if (acknowledged !== undefined) {
+      for (const [id, settle] of this.serverResults) {
+        if (id <= acknowledged) {
+          settle({ type: 'success' })
+          this.serverResults.delete(id)
+        }
+      }
     }
     if (changed) await this.publish()
   }
@@ -364,8 +420,20 @@ export class NativeZero {
       }))
       if (state.recoveryRequired !== null)
         throw new Error('CLIENT_STATE_NOT_FOUND: pending writes require reconciliation')
-      if (pending.length)
-        await this.withSignal(signal, (linked) => transport.push(state, pending, linked))
+      if (pending.length) {
+        const outcomes = await this.withSignal(signal, (linked) =>
+          transport.push(state, pending, linked)
+        )
+        if (outcomes) {
+          for (const outcome of outcomes) {
+            this.serverResults.get(outcome.id)?.(outcome.result)
+            this.serverResults.delete(outcome.id)
+          }
+          const failed = outcomes.find((outcome) => outcome.result.type === 'error')
+          if (failed?.result.type === 'error')
+            throw new Error(`Orez mutation failed: ${failed.result.error.message}`)
+        }
+      }
     })
   }
 
@@ -508,6 +576,12 @@ export class NativeZero {
   close(): Promise<void> {
     if (this.closing) return this.closing
     this.closed = true
+    for (const settle of this.serverResults.values())
+      settle({
+        type: 'error',
+        error: { type: 'zero', message: 'Native Zero client is closed' },
+      })
+    this.serverResults.clear()
     this.sync?.stop()
     this.abort.abort()
     for (const view of [...this.views]) view.destroy()

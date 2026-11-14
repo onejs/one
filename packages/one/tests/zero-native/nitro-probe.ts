@@ -210,7 +210,11 @@ async function run() {
     'Hermes timer retries durable outbox and native pull acknowledges it'
   )
   sync.setActive(false)
-  await client.mutate('send')
+  const backgroundMutation = client.mutate.send()
+  check(
+    (await backgroundMutation.client).type === 'success',
+    'named native mutation exposes its local phase in Hermes'
+  )
   awake()
   check(
     attempts === 2 && (await client.pending()).length === 1,
@@ -221,6 +225,10 @@ async function run() {
   })
   sync.setActive(true)
   await connection
+  check(
+    (await backgroundMutation.server).type === 'success',
+    'named native mutation server phase settles after acknowledgement'
+  )
   check(
     (await client.pending()).length === 0 && attempts === 3,
     'simulator foreground resumes native push and acknowledgement'

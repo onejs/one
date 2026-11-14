@@ -1,14 +1,14 @@
-import type { ClientState, DesiredQuery, Engine, JSONValue, MaterializedView, Mutation, Mutators, Query, Schema, Transport, TTL } from './types';
+import type { ClientState, DesiredQuery, Engine, MaterializedView, Mutation, NativeMutate, Mutators, Query, Schema, Transport, TTL } from './types';
 import { NativeSync, type SyncOptions } from './sync';
-export type NativeZeroOptions = {
+export type NativeZeroOptions<M extends Mutators = Mutators> = {
     engine: Engine;
     schema: Schema;
-    mutators: Mutators;
+    mutators: M;
     transport?: Transport;
     onError?: (error: unknown) => void;
     context?: unknown;
 };
-export declare class NativeZero {
+export declare class NativeZero<M extends Mutators = Mutators> {
     private options;
     private tail;
     private syncTail;
@@ -24,7 +24,9 @@ export declare class NativeZero {
     private managesQueries;
     private queryRefreshQueued;
     private sync?;
-    constructor(options: NativeZeroOptions);
+    private serverResults;
+    readonly mutate: NativeMutate<M>;
+    constructor(options: NativeZeroOptions<M>);
     private enqueue;
     private synchronize;
     private request;
@@ -39,7 +41,8 @@ export declare class NativeZero {
     startSync(options?: SyncOptions): NativeSync;
     private withSignal;
     private invoke;
-    mutate(name: string, args?: JSONValue): Promise<unknown>;
+    private issueMutation;
+    private executeMutation;
     private applyPull;
     pull(queries?: readonly DesiredQuery[], signal?: AbortSignal): Promise<void>;
     push(signal?: AbortSignal): Promise<void>;

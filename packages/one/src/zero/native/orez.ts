@@ -2,6 +2,8 @@ import type {
   ClientState,
   DesiredQuery,
   Mutation,
+  MutationOutcome,
+  JSONValue,
   PullResponse,
   Transport,
 } from './types'
@@ -109,6 +111,8 @@ export function createOrezTransport(options: OrezTransportOptions): Transport {
         !Array.isArray(response.mutations)
       )
         throw new Error('Orez push returned an invalid mutation response')
+      const expected = new Set(mutations.map((mutation) => mutation.id))
+      const outcomes: MutationOutcome[] = []
       for (const mutation of response.mutations) {
         if (
           !mutation ||
@@ -117,18 +121,43 @@ export function createOrezTransport(options: OrezTransportOptions): Transport {
           !mutation.id ||
           typeof mutation.id !== 'object' ||
           !('clientID' in mutation.id) ||
-          mutation.id.clientID !== state.clientID
+          mutation.id.clientID !== state.clientID ||
+          !('id' in mutation.id) ||
+          typeof mutation.id.id !== 'number' ||
+          !expected.delete(mutation.id.id)
         )
-          throw new Error('Orez push returned a mutation for another client')
+          throw new Error('Orez push returned an unexpected mutation identity')
         if (
-          mutation.result &&
-          typeof mutation.result === 'object' &&
-          'error' in mutation.result &&
-          mutation.result.error !== 'alreadyProcessed'
-        ) {
-          throw new Error(`Orez mutation failed: ${JSON.stringify(mutation)}`)
-        }
+          !mutation.result ||
+          typeof mutation.result !== 'object' ||
+          Array.isArray(mutation.result)
+        )
+          throw new Error('Orez push returned an invalid mutation result')
+        const result = mutation.result as Record<string, JSONValue>
+        if ('error' in result && typeof result.error !== 'string')
+          throw new Error('Orez push returned an invalid mutation error')
+        if (result.error === 'app' && typeof result.message !== 'string')
+          throw new Error('Orez push returned an invalid application error')
+        if (result.error === 'alreadyProcessed') continue
+        outcomes.push({
+          id: mutation.id.id,
+          result: result.error
+            ? {
+                type: 'error',
+                error: {
+                  type: result.error === 'app' ? 'app' : 'zero',
+                  message:
+                    typeof result.message === 'string'
+                      ? result.message
+                      : JSON.stringify(result),
+                  details: result.details,
+                },
+              }
+            : { type: 'success' },
+        })
       }
+      if (expected.size) throw new Error('Orez push omitted mutation results')
+      return outcomes
     },
   }
 }

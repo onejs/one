@@ -71,6 +71,20 @@ Queries accept the pinned Zero builder's `ast` and `format`. Mutators receive
 is asynchronous. `state()` and `pending()` expose durable sync state. Push success
 alone never removes pending writes; a subsequent pull must acknowledge them.
 
+Registered mutations also support `client.mutate.message.send(args)`. Both this
+form and `client.mutate('message.send', args)` return an awaitable promise with
+`client` and `server` phase promises. `client` resolves after the optimistic local
+commit; `server` resolves on an explicit push result or a committed pull
+acknowledgement. Each phase returns `{ type: 'success' }` or
+`{ type: 'error', error: { type, message, details? } }`. Awaiting the returned
+promise directly preserves the mutator's local return value and rejection.
+An application rejection from Orez settles the server phase as an error;
+`push()` also rejects, and managed sync pulls to remove the rejected optimistic
+write. Pending server phases stay open during transient disconnects and settle
+with a client-closed error on close. Process reopen preserves the journal, not
+JavaScript promises. Callable registered mutation requests and default table
+CRUD mutation properties are not implemented.
+
 `startSync()` sends the durable outbox on startup, requests a pull after local
 mutations and registration changes, and retries failures with capped exponential
 backoff. It still pulls after a push error so a server acknowledgement can settle

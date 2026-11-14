@@ -80,6 +80,30 @@ export type Transaction = {
 }
 export type Mutator = (tx: Transaction, args: JSONValue) => Promise<unknown> | unknown
 export type Mutators = { [name: string]: Mutator | Mutators }
+export type MutationResultDetails =
+  | { type: 'success' }
+  | {
+      type: 'error'
+      error: { type: 'app' | 'zero'; message: string; details?: JSONValue }
+    }
+export type MutationResult = {
+  client: Promise<MutationResultDetails>
+  server: Promise<MutationResultDetails>
+}
+export type MutationPromise = Promise<unknown> & MutationResult
+export type MutationFunctions<M extends Mutators> = {
+  readonly [K in keyof M]: M[K] extends Mutator
+    ? (args?: JSONValue) => MutationPromise
+    : M[K] extends Mutators
+      ? MutationFunctions<M[K]>
+      : never
+}
+export type NativeMutate<M extends Mutators> = ((
+  name: string,
+  args?: JSONValue
+) => MutationPromise) &
+  MutationFunctions<M>
+export type MutationOutcome = { id: number; result: MutationResultDetails }
 export type DesiredQuery =
   | { hash: string; ast: unknown }
   | { hash: string; name: string; args: readonly JSONValue[] }
@@ -93,5 +117,5 @@ export interface Transport {
     state: ClientState,
     mutations: readonly Mutation[],
     signal: AbortSignal
-  ): Promise<void>
+  ): Promise<void | readonly MutationOutcome[]>
 }

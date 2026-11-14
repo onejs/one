@@ -1,7 +1,8 @@
 import { NativeZero } from './client';
 import type { NativeZeroOptions } from './client';
-export declare function createNativeZero(options: Omit<NativeZeroOptions, 'engine'> & {
+import type { Mutators } from './types';
+export declare function createNativeZero<M extends Mutators>(options: Omit<NativeZeroOptions<M>, 'engine'> & {
     name: string;
     clientID?: string;
-}): Promise<NativeZero>;
+}): Promise<NativeZero<M>>;
 //# sourceMappingURL=nitro.d.ts.map

@@ -759,6 +759,79 @@ console.log(
   'managed sync passed: durable startup outbox, retry, pull after push error, offline/background edits, wake coalescing, cancellation, stale response fencing and close cleanup'
 )
 
+const resultEngine = new ProcessEngine(join(folder, 'mutation-results.sqlite'))
+await resultEngine.ready
+let resultAck = 0
+let rejectResult = false
+const resultClient = new NativeZero({
+  engine: resultEngine,
+  schema,
+  mutators: { message: { send: mutators.send, failure: mutators.failure } },
+  transport: {
+    async pull() {
+      return {
+        cookie: resultAck,
+        rowsPatch: [{ op: 'clear' }],
+        lastMutationIDChanges: { 'integration-client': resultAck },
+      }
+    },
+    async push(_state, pending) {
+      resultAck = pending[pending.length - 1].id
+      return pending.map((mutation) => ({
+        id: mutation.id,
+        result: rejectResult
+          ? { type: 'error' as const, error: { type: 'app' as const, message: 'denied' } }
+          : { type: 'success' as const },
+      }))
+    },
+  },
+})
+const accepted = resultClient.mutate.message.send({
+  id: 'accepted',
+  text: 'local result',
+})
+assert.deepEqual(await accepted.client, { type: 'success' })
+let acceptedSettled = false
+void accepted.server.then(() => {
+  acceptedSettled = true
+})
+assert.equal((await resultClient.pending()).length, 1)
+assert.ok(!acceptedSettled)
+await resultClient.push()
+assert.deepEqual(await accepted.server, { type: 'success' })
+assert.equal((await resultClient.pending()).length, 1)
+await resultClient.pull()
+assert.deepEqual(await resultClient.pending(), [])
+rejectResult = true
+const denied = resultClient.mutate.message.send({ id: 'denied', text: 'rejected result' })
+assert.deepEqual(await denied.client, { type: 'success' })
+await assert.rejects(resultClient.push(), /mutation failed: denied/)
+assert.deepEqual(await denied.server, {
+  type: 'error',
+  error: { type: 'app', message: 'denied' },
+})
+assert.equal((await resultClient.run<Row[]>(messages))[0].id, 'denied')
+await resultClient.pull()
+assert.deepEqual(await resultClient.run(messages), [])
+const failed = resultClient.mutate.message.failure()
+await assert.rejects(failed, /mutator deliberately failed/)
+assert.equal((await failed.client).type, 'error')
+assert.deepEqual(await failed.server, await failed.client)
+assert.deepEqual(await resultClient.pending(), [])
+const pendingClose = resultClient.mutate.message.send({
+  id: 'close',
+  text: 'pending at close',
+})
+await pendingClose.client
+await resultClient.close()
+assert.deepEqual(await pendingClose.server, {
+  type: 'error',
+  error: { type: 'zero', message: 'Native Zero client is closed' },
+})
+console.log(
+  'nested mutation results passed: local/server phases, accepted push retains journal, application denial, failed local rollback and close settlement'
+)
+
 const requests: { version: number; patch: unknown[] }[] = []
 let acknowledgement = 0
 let rejectPush = false
@@ -825,9 +898,14 @@ try {
   })
   await client.pull([{ hash: 'messages', ast: messages.ast }])
   assert.deepEqual((await client.state()).completedQueries, ['messages'])
-  await client.mutate('send', { id: 'http-local', text: 'HTTP mutation' })
+  const httpMutation = client.mutate('send', { id: 'http-local', text: 'HTTP mutation' })
+  assert.deepEqual(await httpMutation.client, { type: 'success' })
   rejectPush = true
   await assert.rejects(client.push(), /Orez mutation failed/)
+  assert.deepEqual(await httpMutation.server, {
+    type: 'error',
+    error: { type: 'app', message: 'denied', details: undefined },
+  })
   assert.equal((await client.pending()).length, 1)
   rejectPush = false
   await client.push()
