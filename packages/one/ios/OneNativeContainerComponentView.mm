@@ -25,11 +25,29 @@
 }
 
 - (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  if ([child isKindOfClass:OneNativeContainerComponentView.class])
+    ((OneNativeContainerComponentView *)child).compositionParent = self;
+  else if ([child isKindOfClass:OneNativeContainerSlotComponentView.class])
+    ((OneNativeContainerSlotComponentView *)child).compositionParent = self;
   [_container insertChild:[self composableFor:child] at:index];
 }
 
 - (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
   [_container removeChild:[self composableFor:child]];
+  if ([child isKindOfClass:OneNativeContainerComponentView.class])
+    ((OneNativeContainerComponentView *)child).compositionParent = nil;
+  else if ([child isKindOfClass:OneNativeContainerSlotComponentView.class])
+    ((OneNativeContainerSlotComponentView *)child).compositionParent = nil;
+}
+
+- (facebook::react::Point)compositionLayoutOrigin {
+  if (!_compositionParent) return {};
+  return [_compositionParent compositionLayoutOrigin] + _layoutMetrics.frame.origin;
+}
+
+- (void)updateLayoutMetrics:(facebook::react::LayoutMetrics const &)layoutMetrics oldLayoutMetrics:(facebook::react::LayoutMetrics const &)oldLayoutMetrics {
+  [super updateLayoutMetrics:layoutMetrics oldLayoutMetrics:oldLayoutMetrics];
+  if (layoutMetrics.frame.origin != oldLayoutMetrics.frame.origin) [_container refreshSlotLayout];
 }
 
 - (std::shared_ptr<const facebook::react::ViewEventEmitter>)currentEventEmitter {
@@ -38,6 +56,7 @@
 
 - (void)prepareForRecycle {
   [super prepareForRecycle];
+  _compositionParent = nil;
   [_container reset];
 }
 

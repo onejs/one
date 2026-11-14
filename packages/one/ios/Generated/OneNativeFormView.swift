@@ -19,6 +19,7 @@ private struct FormContent: View {
     OneNativeEnvironment(model: environment, content: Form(content: {
       ForEach(children.items) { child in child.content }
     })
+    .oneNativeSlotScrollTracking()
     .oneNativeContainerStyle(style))
     .oneNativeMeasured(standalone && model.sizing == "content", model.onHeight)
   }

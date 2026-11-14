@@ -20,6 +20,7 @@ private struct ScrollViewContent: View {
       ForEach(children.items) { child in child.content }
         .scrollTargetLayout()
     })
+    .oneNativeSlotScrollTracking()
     .oneNativeContainerStyle(style)
     .oneNativeScheme(standalone, bridge.scheme)
   }
