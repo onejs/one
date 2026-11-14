@@ -137,6 +137,23 @@ function command(argv: string[], timeout = 120_000): string {
 
 let footprintHelper: string | undefined
 
+async function prepareFootprint(directory: string): Promise<string> {
+  if (!footprintHelper) {
+    const source = new URL('./native-footprint.c', import.meta.url)
+    const hash = createHash('sha256')
+      .update(readFileSync(source))
+      .digest('hex')
+      .slice(0, 16)
+    footprintHelper = join(directory, `host-footprint-${hash}`)
+    await promisify(execFile)(
+      'xcrun',
+      ['clang', '-O2', '-Wall', '-Wextra', fileURLToPath(source), '-o', footprintHelper],
+      { timeout: 10000 }
+    )
+  }
+  return footprintHelper
+}
+
 export async function hostFootprint(
   simulator: string,
   bundle: string,
@@ -170,20 +187,8 @@ export async function hostFootprint(
     throw new Error(
       `expected one live simulator app at ${executable}; found ${pids.length}`
     )
-  if (!footprintHelper) {
-    const source = new URL('./native-footprint.c', import.meta.url)
-    const hash = createHash('sha256')
-      .update(readFileSync(source))
-      .digest('hex')
-      .slice(0, 16)
-    footprintHelper = join(dirname(rawPath), `host-footprint-${hash}`)
-    await promisify(execFile)(
-      'xcrun',
-      ['clang', '-O2', '-Wall', '-Wextra', fileURLToPath(source), '-o', footprintHelper],
-      { timeout: 10000 }
-    )
-  }
-  const { stdout } = await promisify(execFile)(footprintHelper, [pids[0]], {
+  const helper = await prepareFootprint(dirname(rawPath))
+  const { stdout } = await promisify(execFile)(helper, [pids[0]], {
     encoding: 'utf8',
     timeout: 5000,
   })
@@ -313,6 +318,9 @@ if (import.meta.main) {
     apps,
     runnerSha256: sourceHash(new URL(import.meta.url)),
     reportSha256: sourceHash(new URL('./report.ts', import.meta.url)),
+    footprintHelperSha256: args.simulator
+      ? sourceHash(new URL('./native-footprint.c', import.meta.url))
+      : null,
     environments: [] as Record<string, unknown>[],
   }
   if (args.device && process.env.BENCH_LOCK_HELD !== '1') {
@@ -330,6 +338,7 @@ if (import.meta.main) {
   mkdirSync(dirname(args.out), { recursive: true })
   mkdirSync(args.out, { recursive: false })
   writeFileSync(join(args.out, 'manifest.json'), JSON.stringify(metadata, null, 2))
+  if (args.simulator) await prepareFootprint(args.out)
   const rows: Sample[] = []
   const installed = new Map<string, string>()
   for (let run = 0; run < runs; run++) {
