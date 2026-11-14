@@ -1,4 +1,4 @@
-import type { ClientState } from './types';
+import type { ClientState } from './types.js';
 export type OrezWakeOptions = {
     auth?: () => string | undefined;
     getToken?: () => Promise<string>;

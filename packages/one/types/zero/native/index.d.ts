@@ -1,10 +1,10 @@
-export { NativeZero } from './client';
-export type { NativeZeroOptions } from './client';
-export { createNativeZero } from './nitro';
-export { createOrezTransport } from './orez';
-export type { OrezTransportOptions, OrezTransport } from './orez';
-export type { OrezWakeOptions } from './orez-wake';
-export { NativeSync } from './sync';
-export type { SyncOptions, SyncState } from './sync';
-export type * from './types';
+export { NativeZero } from './client.js';
+export type { NativeZeroOptions } from './client.js';
+export { createNativeZero } from './nitro.js';
+export { createOrezTransport } from './orez.js';
+export type { OrezTransportOptions, OrezTransport } from './orez.js';
+export type { OrezWakeOptions } from './orez-wake.js';
+export { NativeSync } from './sync.js';
+export type { SyncOptions, SyncState } from './sync.js';
+export type * from './types.js';
 //# sourceMappingURL=index.d.ts.map

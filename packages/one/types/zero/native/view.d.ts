@@ -1,4 +1,4 @@
-import type { MaterializedView, QueryError, QueryResultType, TTL, ViewListener } from './types';
+import type { MaterializedView, QueryError, QueryResultType, TTL, ViewListener } from './types.js';
 export declare function queryTTL(ttl?: TTL): number;
 export declare class NativeView<T> implements MaterializedView<T> {
     data: T;

@@ -258,7 +258,7 @@
     "ios-link-set.json"
   ],
   "scripts": {
-    "build": "tamagui-build && bun codegen/staticSpecs.ts && bun codegen/sdk/build.ts",
+    "build": "bun codegen/sdk/build.ts && tamagui-build && bun codegen/staticSpecs.ts && bun codegen/sdk/build.ts",
     "check": "depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",

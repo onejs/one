@@ -1,5 +1,5 @@
-import { type OrezWakeOptions } from './orez-wake';
-import type { ClientState, Transport } from './types';
+import { type OrezWakeOptions } from './orez-wake.js';
+import type { ClientState, Transport } from './types.js';
 export type OrezTransportOptions = {
     server: string;
     appID: string;

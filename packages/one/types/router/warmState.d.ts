@@ -1,9 +1,9 @@
-import type { OneRouter } from '../interfaces/router';
-import type { One } from '../vite/types';
-import type { OneLinkingOptions } from './getLinkingConfig';
-import type { RouteNode } from './Route';
-import { type WarmStartOptions, type WarmStateEnvelope, type WarmStateStorage } from './warmStateShared';
-export type { WarmNavigationSnapshot, WarmRouteSnapshot, WarmStartOptions, WarmStateEnvelope, WarmStateStorage, } from './warmStateShared';
+import type { OneRouter } from '../interfaces/router.js';
+import type { One } from '../vite/types.js';
+import type { OneLinkingOptions } from './getLinkingConfig.js';
+import type { RouteNode } from './Route.js';
+import { type WarmStartOptions, type WarmStateEnvelope, type WarmStateStorage } from './warmStateShared.js';
+export type { WarmNavigationSnapshot, WarmRouteSnapshot, WarmStartOptions, WarmStateEnvelope, WarmStateStorage, } from './warmStateShared.js';
 export type WarmStateSource<T = unknown> = {
     getSnapshot: () => T;
     hydrate: (value: T) => void;
