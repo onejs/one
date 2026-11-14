@@ -1,6 +1,7 @@
 #import "OneBunEngine.h"
 
 #import <Foundation/Foundation.h>
+#import <objc/runtime.h>
 
 #import <cxxreact/MessageQueueThread.h>
 #import <react/runtime/JSRuntimeFactory.h>
@@ -35,7 +36,29 @@ bool one_bun_engine_has_compiled_program(void)
       memcmp(head.bytes, facebook::bun::kCompiledEntryMarker, head.length) == 0;
 }
 
+// javascriptcore runs javascript frames on the native stack, and a release
+// RCTJSThreadManager starts its thread with NSThread's 512 KB default (hermes
+// keeps its frames on the heap). start that thread with a main-thread-sized stack.
+static void startJSThreadWithLargeStack(id self, SEL)
+{
+  NSThread *thread = [[NSThread alloc] initWithTarget:[self class] selector:NSSelectorFromString(@"runRunLoop") object:nil];
+  thread.name = @"com.facebook.react.runtime.JavaScript";
+  thread.qualityOfService = NSQualityOfServiceUserInteractive;
+  thread.stackSize = 8 << 20;
+  [self setValue:thread forKey:@"_jsThread"];
+  [thread start];
+}
+
 void *jsrt_create_bun_factory(void)
 {
+  // the factory exists before RCTInstance creates its thread manager
+  static dispatch_once_t once;
+  dispatch_once(&once, ^{
+    Method start = class_getInstanceMethod(NSClassFromString(@"RCTJSThreadManager"), NSSelectorFromString(@"startJSThread"));
+    if (!start) {
+      abort();
+    }
+    method_setImplementation(start, (IMP)startJSThreadWithLargeStack);
+  });
   return new facebook::react::RCTBunInstance();
 }
