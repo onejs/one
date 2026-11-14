@@ -13,11 +13,15 @@ export const mediaControls: Control[] = [
     fields: {
       url: { type: 'string', default: '' },
       autoplay: { type: 'boolean', default: false },
+      contentFit: { type: 'string', default: 'native', publicType: "'contain' | 'cover'" },
       command: { type: 'string', default: '', publicType: "'play' | 'pause' | 'seek'" },
       commandRevision: { type: 'Double', default: 0 },
       seekToMs: { type: 'Double', default: 0 },
     },
     actions: [
+      { prop: 'onVideoReady', event: 'VideoReady', payload: { width: 'Double', height: 'Double' } },
+      { prop: 'onVideoError', event: 'VideoError', payload: { message: 'string' } },
+      { prop: 'onFirstFrame', event: 'FirstFrame' },
       {
         prop: 'onPlaybackStatus',
         event: 'PlaybackStatus',
@@ -37,10 +41,15 @@ export const mediaControls: Control[] = [
   private var timeObserver: Any?
   private var controlObservation: NSKeyValueObservation?
   private var itemObservation: NSKeyValueObservation?
+  private var sizeObservation: NSKeyValueObservation?
+  private var reportedSize: CGSize?
+  private var reportedError: String?
   private var endObserver: NSObjectProtocol?
   private var ended = false
   private var appliedRevision: Double = 0
   var report: ((String, Double, Double) -> Void)?
+  var reportReady: ((Double, Double) -> Void)?
+  var reportError: ((String) -> Void)?
 
   deinit { clear() }
 
@@ -56,8 +65,11 @@ export const mediaControls: Control[] = [
       DispatchQueue.main.async { self?.emit() }
     }
     if let item = next.currentItem {
-      itemObservation = item.observe(\\.status, options: [.new]) { [weak self] _, _ in
-        DispatchQueue.main.async { self?.emit() }
+      itemObservation = item.observe(\\.status, options: [.initial, .new]) { [weak self] item, _ in
+        DispatchQueue.main.async { self?.reportItem(item); self?.emit() }
+      }
+      sizeObservation = item.observe(\\.presentationSize, options: [.new]) { [weak self] item, _ in
+        DispatchQueue.main.async { self?.reportItem(item) }
       }
       endObserver = NotificationCenter.default.addObserver(
         forName: .AVPlayerItemDidPlayToEndTime, object: item, queue: .main
@@ -112,9 +124,26 @@ export const mediaControls: Control[] = [
             duration.isFinite ? max(0, duration * 1000) : 0)
   }
 
+  private func reportItem(_ item: AVPlayerItem) {
+    guard player?.currentItem === item else { return }
+    if item.status == .readyToPlay {
+      let size = item.presentationSize
+      if reportedSize != size {
+        reportedSize = size
+        reportReady?(Double(size.width), Double(size.height))
+      }
+    } else if item.status == .failed {
+      let message = item.error?.localizedDescription ?? "Video playback failed."
+      if reportedError != message { reportedError = message; reportError?(message) }
+    }
+  }
+
   private func clear() {
     controlObservation = nil
     itemObservation = nil
+    sizeObservation = nil
+    reportedSize = nil
+    reportedError = nil
     if let endObserver { NotificationCenter.default.removeObserver(endObserver) }
     endObserver = nil
     if let player, let timeObserver { player.removeTimeObserver(timeObserver) }
@@ -129,11 +158,16 @@ private struct VideoPlayerSurface: View {
   @ObservedObject var model: VideoPlayerModel
   @StateObject private var session = OneNativeVideoSession()
   var body: some View {
-    VideoPlayer(player: session.player)
+    Group {
+      if model.contentFit == "native" { VideoPlayer(player: session.player) }
+      else { OneVideoController(player: session.player, contentFit: model.contentFit) { model.firstFrame() } }
+    }
       .onAppear {
         session.report = { [weak model = model] state, position, duration in
           model?.playbackStatus(state, position, duration)
         }
+        session.reportReady = { [weak model = model] width, height in model?.videoReady(width, height) }
+        session.reportError = { [weak model = model] message in model?.videoError(message) }
         session.load(model.url, autoplay: model.autoplay)
         if model.commandRevision > 0 {
           session.apply(model.command, revision: model.commandRevision, seekToMs: model.seekToMs)
@@ -147,8 +181,38 @@ private struct VideoPlayerSurface: View {
       }
   }
 }
+
+private struct OneVideoController: UIViewControllerRepresentable {
+  let player: AVPlayer?
+  let contentFit: String
+  let onFirstFrame: () -> Void
+
+  final class Coordinator {
+    var observation: NSKeyValueObservation?
+    weak var reportedPlayer: AVPlayer?
+  }
+
+  func makeCoordinator() -> Coordinator { Coordinator() }
+  func makeUIViewController(context: Context) -> AVPlayerViewController {
+    let controller = AVPlayerViewController()
+    context.coordinator.observation = controller.observe(\\.isReadyForDisplay, options: [.new]) { controller, _ in
+      DispatchQueue.main.async {
+        guard controller.isReadyForDisplay, let player = controller.player,
+              context.coordinator.reportedPlayer !== player else { return }
+        context.coordinator.reportedPlayer = player
+        onFirstFrame()
+      }
+    }
+    return controller
+  }
+  func updateUIViewController(_ controller: AVPlayerViewController, context: Context) {
+    controller.player = player
+    controller.videoGravity = contentFit == "cover" ? .resizeAspectFill : .resizeAspect
+  }
+}
 `,
     validate: `  if (typeof url !== 'string' || !url) throw new Error('VideoPlayer url must be a non-empty string')
+  if (!['native', 'contain', 'cover'].includes(contentFit)) throw new Error('Unknown VideoPlayer contentFit: ' + contentFit)
   if (!['', 'play', 'pause', 'seek'].includes(command)) throw new Error('Unknown VideoPlayer command: ' + command)
   if (!Number.isSafeInteger(commandRevision) || commandRevision < 0) throw new Error('VideoPlayer commandRevision must be a nonnegative safe integer')
   if (command && commandRevision === 0) throw new Error('VideoPlayer command requires a positive commandRevision')
