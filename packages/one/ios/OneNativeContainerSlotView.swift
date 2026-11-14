@@ -13,15 +13,15 @@ private final class SlotModel: ObservableObject {
 }
 
 private struct SlotContent: View {
+  @Environment(\.oneNativeSlotLayoutHost) private var layoutHost
+  @Environment(\.oneNativeSlotScrolling) private var scrolling
   @ObservedObject var model: SlotModel
   @ObservedObject var style: OneNativeContainerStyle
 
   var body: some View {
     if let content = model.content {
-      // the origin is local, as it is for presented sheet content: SwiftUI places the
-      // slot, and a composed container has no view in the window to measure against.
       let slot = OneNativeSlot(
-        content: content, mode: .presented, layoutHost: nil,
+        content: content, mode: .fill, layoutHost: layoutHost?.view,
         onLayout: { frame in model.onLayout?(frame) }
       )
       Group {
@@ -32,6 +32,11 @@ private struct SlotContent: View {
         }
       }
       .oneNativeContainerStyle(style)
+      .onGeometryChange(for: CGRect.self) { geometry in
+        scrolling ? .zero : geometry.frame(in: .global)
+      } action: { _ in
+        content.superview?.setNeedsLayout()
+      }
     }
   }
 }

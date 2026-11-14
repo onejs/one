@@ -1,7 +1,56 @@
 import SwiftUI
 import UIKit
 
+final class OneNativeSlotLayoutHost {
+  weak var view: UIView?
+}
+
+private struct OneNativeSlotLayoutHostKey: EnvironmentKey {
+  static let defaultValue: OneNativeSlotLayoutHost? = nil
+}
+
+private struct OneNativeSlotScrollingKey: EnvironmentKey {
+  static let defaultValue = false
+}
+
+extension EnvironmentValues {
+  var oneNativeSlotLayoutHost: OneNativeSlotLayoutHost? {
+    get { self[OneNativeSlotLayoutHostKey.self] }
+    set { self[OneNativeSlotLayoutHostKey.self] = newValue }
+  }
+
+  var oneNativeSlotScrolling: Bool {
+    get { self[OneNativeSlotScrollingKey.self] }
+    set { self[OneNativeSlotScrollingKey.self] = newValue }
+  }
+}
+
+@available(iOS 18, *)
+private struct OneNativeSlotScrollTracking: ViewModifier {
+  @Environment(\.oneNativeSlotScrolling) private var ancestorScrolling
+  @State private var scrolling = false
+
+  func body(content: Content) -> some View {
+    content
+      .environment(\.oneNativeSlotScrolling, ancestorScrolling || scrolling)
+      .onScrollPhaseChange { _, phase in
+        scrolling = phase != .idle
+      }
+  }
+}
+
+extension View {
+  @ViewBuilder func oneNativeSlotScrollTracking() -> some View {
+    if #available(iOS 18, *) {
+      modifier(OneNativeSlotScrollTracking())
+    } else {
+      self
+    }
+  }
+}
+
 struct OneNativeSlot: UIViewRepresentable {
+  @Environment(\.oneNativeSlotScrolling) private var scrolling
   enum Mode { case fill, passive, presented }
   let content: UIView
   let mode: Mode
@@ -26,6 +75,7 @@ struct OneNativeSlot: UIViewRepresentable {
     view.layoutHost = layoutHost
     view.onLayout = onLayout
     view.onWindowChange = onWindowChange
+    view.scrolling = scrolling
     view.isUserInteractionEnabled = mode != .passive
     view.accessibilityElementsHidden = mode == .passive
     view.claimContent()
@@ -43,11 +93,15 @@ struct OneNativeSlot: UIViewRepresentable {
   }
 
   final class Container: UIView {
-    var content: UIView
+    var content: UIView {
+      didSet { reportedFrame = nil }
+    }
     var mode = Mode.passive
     weak var layoutHost: UIView?
     var onLayout: ((CGRect) -> Void)?
     var onWindowChange: ((ObjectIdentifier, Bool) -> Void)?
+    var scrolling = false
+    private var reportedFrame: CGRect?
     private var hasWindow = false
     init(content: UIView) {
       self.content = content
@@ -88,6 +142,10 @@ struct OneNativeSlot: UIViewRepresentable {
     override func layoutSubviews() {
       super.layoutSubviews()
       guard mode != .passive, window != nil, bounds.width > 0, bounds.height > 0 else { return }
+      content.frame = bounds
+      // scrolling moves existing rows without changing their bounds. publish their
+      // new origins once idle, but still size newly materialized lazy rows.
+      if scrolling, reportedFrame?.size == bounds.size { return }
       if mode == .presented { onLayout?(CGRect(origin: .zero, size: bounds.size)) }
       else if let layoutHost, let hostWindow = layoutHost.window, let myWindow = window {
         let frame: CGRect
@@ -98,9 +156,9 @@ struct OneNativeSlot: UIViewRepresentable {
           let inHostWindow = myWindow.convert(inMyWindow, to: hostWindow)
           frame = layoutHost.convert(inHostWindow, from: hostWindow)
         }
+        reportedFrame = frame
         onLayout?(frame)
       }
-      content.frame = bounds
     }
   }
 }
