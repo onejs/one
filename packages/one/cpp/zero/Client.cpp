@@ -203,6 +203,7 @@ struct Client::Impl {
   std::string clientID;
   std::string transaction;
   std::string transactionKind;
+  bool deleted = false;
 
   Impl(const std::string& path, const std::string& schemaText, const std::string& identity)
       : clientID(identity) {
@@ -669,7 +670,7 @@ struct Client::Impl {
     transactionKind.clear();
   }
   Json execute(const Json& request) {
-    if (!db) throw std::runtime_error("native Zero client is closed");
+    if (!db || deleted) throw std::runtime_error("native Zero client is closed");
     std::string op = request.at("op").string();
     if (op == "beginMutation") {
       if (!meta("recoveryRequired").null())
@@ -835,6 +836,25 @@ struct Client::Impl {
       }
     }
     guard(request);
+    if (op == "delete") {
+      begin("delete");
+      try {
+        {
+          Statement pending(db, "SELECT 1 FROM one_zero_mutations LIMIT 1");
+          if (pending.step())
+            throw std::runtime_error("native Zero cannot delete a store with pending mutations");
+        }
+        sql(db, "DELETE FROM one_zero_base");
+        sql(db, "DELETE FROM one_zero_view");
+        sql(db, "DELETE FROM one_zero_meta");
+        commit();
+        deleted = true;
+        return Json();
+      } catch (...) {
+        rollback();
+        throw;
+      }
+    }
     if (op == "setQueries") {
       if (request.has("queries")) {
         std::set<std::string> hashes;

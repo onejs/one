@@ -74,6 +74,7 @@ export class NativeZero<M extends Mutators = Mutators> {
   private syncTail: Promise<unknown> = Promise.resolve()
   private closed = false
   private closing?: Promise<void>
+  private deleting?: Promise<void>
   private abort = new AbortController()
   private subscriptions = new Set<Subscription>()
   private mutators = new Map<string, Mutator>()
@@ -574,6 +575,17 @@ export class NativeZero<M extends Mutators = Mutators> {
   }
 
   close(): Promise<void> {
+    return this.shutdown(false)
+  }
+
+  delete(): Promise<void> {
+    if (this.deleting) return this.deleting
+    if (this.closed)
+      return Promise.reject(new Error('Native Zero client is already closed'))
+    return this.shutdown(true)
+  }
+
+  private shutdown(remove: boolean): Promise<void> {
     if (this.closing) return this.closing
     this.closed = true
     for (const settle of this.serverResults.values())
@@ -590,7 +602,21 @@ export class NativeZero<M extends Mutators = Mutators> {
     }
     this.desiredViews.clear()
     this.subscriptions.clear()
-    this.closing = this.tail.then(() => this.options.engine.close())
-    return this.closing
+    const operation = this.tail.then(async () => {
+      if (remove) await this.request({ op: 'delete' })
+    })
+    const close = () => this.options.engine.close()
+    this.closing = operation.then(close, close)
+    if (!remove) return this.closing
+    this.deleting = operation.then(
+      async () => {
+        await this.closing
+      },
+      async (error) => {
+        await this.closing
+        throw error
+      }
+    )
+    return this.deleting
   }
 }

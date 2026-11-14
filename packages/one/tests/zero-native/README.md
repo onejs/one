@@ -114,6 +114,10 @@ no-backup storage. A server acknowledgement beyond the local journal sets
 the journal for reconciliation. It does not automatically assign a new identity
 and resend commands that the server may already have executed.
 
+`delete()` closes the client and clears a fully acknowledged store so reopening
+generates a new identity. It refuses deletion while the journal contains pending
+mutations, closes the connection, and leaves the store available for reconciliation.
+
 It uses a separate SQLite file and does not migrate existing Replicache stores.
 Do not switch an account with pending mutations to the experiment until the
 adoption path settles or preserves those mutations.

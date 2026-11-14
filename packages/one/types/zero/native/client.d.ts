@@ -14,6 +14,7 @@ export declare class NativeZero<M extends Mutators = Mutators> {
     private syncTail;
     private closed;
     private closing?;
+    private deleting?;
     private abort;
     private subscriptions;
     private mutators;
@@ -55,5 +56,7 @@ export declare class NativeZero<M extends Mutators = Mutators> {
     private report;
     private publish;
     close(): Promise<void>;
+    delete(): Promise<void>;
+    private shutdown;
 }
 //# sourceMappingURL=client.d.ts.map

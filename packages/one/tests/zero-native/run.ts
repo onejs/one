@@ -932,6 +932,36 @@ console.log(
   'Orez HTTP push/pull, wrapped mutation errors and durable desired-query versions passed'
 )
 
+const deletionPath = join(folder, 'delete.sqlite')
+const openDeletionClient = async () => {
+  const engine = new DriverEngine(driver, deletionPath, schemaFile, '')
+  await engine.ready
+  return new NativeZero({ engine, schema, mutators, transport }).ready()
+}
+let deletionClient = await openDeletionClient()
+const deletedIdentity = deletionClient.clientID
+await deletionClient.mutate('send', { id: 'retain-on-delete', text: 'durable command' })
+await assert.rejects(deletionClient.delete(), /pending mutations/)
+await deletionClient.close()
+deletionClient = await openDeletionClient()
+assert.equal(deletionClient.clientID, deletedIdentity)
+assert.equal((await deletionClient.pending()).length, 1)
+assert.equal((await deletionClient.run<Row[]>(messages))[0].id, 'retain-on-delete')
+response = { cookie: 1, lastMutationIDChanges: { [deletedIdentity]: 1 } }
+await deletionClient.pull()
+await deletionClient.delete()
+deletionClient = await openDeletionClient()
+assert.notEqual(deletionClient.clientID, deletedIdentity)
+assert.equal((await deletionClient.state()).cookie, null)
+assert.equal((await deletionClient.state()).nextMutationID, 1)
+assert.deepEqual(await deletionClient.pending(), [])
+assert.deepEqual(await deletionClient.run(messages), [])
+await deletionClient.close()
+await assert.rejects(deletionClient.delete(), /already closed/)
+console.log(
+  'store deletion preserved pending commands and reset an acknowledged store identity'
+)
+
 const referencePath = process.env.ONE_ZERO_REFERENCE
 if (!referencePath)
   throw new Error(
