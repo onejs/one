@@ -190,23 +190,29 @@ private struct OneVideoController: UIViewControllerRepresentable {
   final class Coordinator {
     var observation: NSKeyValueObservation?
     weak var reportedPlayer: AVPlayer?
+    var onFirstFrame: (() -> Void)?
   }
 
   func makeCoordinator() -> Coordinator { Coordinator() }
   func makeUIViewController(context: Context) -> AVPlayerViewController {
-    let controller = AVPlayerViewController()
-    context.coordinator.observation = controller.observe(\\.isReadyForDisplay, options: [.new]) { controller, _ in
-      DispatchQueue.main.async {
-        guard controller.isReadyForDisplay, let player = controller.player,
-              context.coordinator.reportedPlayer !== player else { return }
-        context.coordinator.reportedPlayer = player
-        onFirstFrame()
-      }
-    }
-    return controller
+    AVPlayerViewController()
   }
   func updateUIViewController(_ controller: AVPlayerViewController, context: Context) {
-    controller.player = player
+    let coordinator = context.coordinator
+    coordinator.onFirstFrame = onFirstFrame
+    if controller.player !== player {
+      coordinator.observation = nil
+      coordinator.reportedPlayer = nil
+      controller.player = player
+      coordinator.observation = controller.observe(\\.isReadyForDisplay, options: [.initial, .new]) { [weak coordinator] controller, _ in
+        DispatchQueue.main.async {
+          guard let coordinator, controller.isReadyForDisplay, let player = controller.player,
+                coordinator.reportedPlayer !== player else { return }
+          coordinator.reportedPlayer = player
+          coordinator.onFirstFrame?()
+        }
+      }
+    }
     controller.videoGravity = contentFit == "cover" ? .resizeAspectFill : .resizeAspect
   }
 }
