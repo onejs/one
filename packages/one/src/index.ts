@@ -9,6 +9,9 @@ export type {
 } from './devtools'
 export { One } from './one'
 export { AESEncryptionKey, AESSealedData } from './platform/crypto/index'
+// One.UI.EdgeFade by name, so a web import does not hold the whole One namespace.
+export { EdgeFade } from './platform/effects/EdgeFade'
+export type { EdgeFadeProps } from './platform/effects/types'
 // native hooks and adaptive reads are named exports for react-hooks lint.
 export { useFonts } from './platform/fonts'
 export { useKeepAwake } from './platform/keep-awake/index'
