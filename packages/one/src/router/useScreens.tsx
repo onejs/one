@@ -123,28 +123,36 @@ const SSR_SAFE_METRICS = {
 
 // a classic script that blocks the parser waits for every stylesheet before it,
 // so the ones a layout puts in <head> run ahead of the css links instead of
-// after the whole stylesheet downloads. async, defer and module scripts never
-// wait on a stylesheet and keep their place.
+// after the whole stylesheet downloads. meta tags stay ahead of those scripts
+// so charset and viewport keep their place. async, defer and module scripts
+// never wait on a stylesheet and keep their place.
 function splitBlockingHeadScripts(headChildren: React.ReactNode): {
+  metas: React.ReactNode[]
   scripts: React.ReactNode[]
   rest: React.ReactNode[]
 } {
+  const metas: React.ReactNode[] = []
   const scripts: React.ReactNode[] = []
   const rest: React.ReactNode[] = []
   for (const child of React.Children.toArray(headChildren)) {
-    if (
-      React.isValidElement<{ async?: boolean; defer?: boolean; type?: string }>(child) &&
-      child.type === 'script' &&
-      !child.props.async &&
-      !child.props.defer &&
-      child.props.type !== 'module'
-    ) {
-      scripts.push(child)
-    } else {
-      rest.push(child)
+    if (React.isValidElement<{ async?: boolean; defer?: boolean; type?: string }>(child)) {
+      if (child.type === 'meta') {
+        metas.push(child)
+        continue
+      }
+      if (
+        child.type === 'script' &&
+        !child.props.async &&
+        !child.props.defer &&
+        child.props.type !== 'module'
+      ) {
+        scripts.push(child)
+        continue
+      }
     }
+    rest.push(child)
   }
-  return { scripts, rest }
+  return { metas, scripts, rest }
 }
 
 /**
@@ -209,6 +217,8 @@ function RootLayoutRenderer({
     <>
       <head key="head" {...headProps}>
         <DevHead />
+        <ServerContextScript />
+        {headScripts.metas}
         {headScripts.scripts}
         {serverContext?.cssContents?.length || serverContext?.cssInlineCount
           ? // inline/mixed CSS: render each entry as <style> (if content) or <link>
@@ -232,7 +242,6 @@ function RootLayoutRenderer({
           : serverContext?.css?.map((file) => (
               <link key={file} rel="stylesheet" href={file} />
             ))}
-        <ServerContextScript />
         {headScripts.rest}
       </head>
       <body key="body" suppressHydrationWarning {...bodyProps}>

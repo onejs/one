@@ -147,6 +147,8 @@ export default function Layout() {
 
 Note - you should have both a `lang` property on your `html` tag, and a `<meta charSet />` tag in your `head`. Otherwise, React can have hydration re-rendering issues.
 
+Blocking scripts in the root layout's `<head>` (no `async`, `defer` or `type="module"`) are rendered before the stylesheet links, after the `<meta>` tags, so they run as soon as the HTML parses instead of waiting for the stylesheets to download. A script that reads layout from a stylesheet, such as `getComputedStyle` or `offsetWidth`, no longer sees it loaded: wait for the `load` event or use a `defer` script for that.
+
 ### Layout Render Modes
 
 Layouts support render mode suffixes just like pages. This is especially useful for the root layout:
