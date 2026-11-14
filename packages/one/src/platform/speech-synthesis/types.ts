@@ -23,6 +23,8 @@ export interface SpeechSynthesisOptions {
   voice?: string
   // a number between 0 (muted) and 1 (max volume); defaults to 1
   volume?: number
+  // ios only: whether speech uses the app audio session; defaults to true
+  useApplicationAudioSession?: boolean
   // invoked when the utterance starts speaking
   onStart?: () => void
   // invoked when the utterance finishes speaking
