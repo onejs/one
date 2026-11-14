@@ -13,6 +13,7 @@ import { hostname, homedir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { setTimeout as sleep } from 'node:timers/promises'
 import { parseArgs, promisify } from 'node:util'
+import { fileURLToPath } from 'node:url'
 import { parseLines, report, type Sample } from './report'
 
 export type Phase = { app: string; case: string; run: string | number }
@@ -134,6 +135,8 @@ function command(argv: string[], timeout = 120_000): string {
   return execFileSync(argv[0], argv.slice(1), { encoding: 'utf8', timeout })
 }
 
+let footprintHelper: string | undefined
+
 export async function hostFootprint(
   simulator: string,
   bundle: string,
@@ -167,27 +170,36 @@ export async function hostFootprint(
     throw new Error(
       `expected one live simulator app at ${executable}; found ${pids.length}`
     )
-  const { stdout } = await promisify(execFile)('/usr/bin/vmmap', ['-summary', pids[0]], {
+  if (!footprintHelper) {
+    const source = new URL('./native-footprint.c', import.meta.url)
+    const hash = createHash('sha256')
+      .update(readFileSync(source))
+      .digest('hex')
+      .slice(0, 16)
+    footprintHelper = join(dirname(rawPath), `host-footprint-${hash}`)
+    await promisify(execFile)(
+      'xcrun',
+      ['clang', '-O2', '-Wall', '-Wextra', fileURLToPath(source), '-o', footprintHelper],
+      { timeout: 10000 }
+    )
+  }
+  const { stdout } = await promisify(execFile)(footprintHelper, [pids[0]], {
     encoding: 'utf8',
     timeout: 5000,
-    maxBuffer: 16 * 1024 * 1024,
   })
   writeFileSync(rawPath, stdout)
-  const match = stdout.match(/^Physical footprint:\s+([\d.]+)\s*([BKMGT]?)/m)
-  if (!match) throw new Error(`no physical footprint in ${rawPath}`)
-  const scale = {
-    '': 1 / 1048576,
-    B: 1 / 1048576,
-    K: 1 / 1024,
-    M: 1,
-    G: 1024,
-    T: 1048576,
-  }[match[2]]!
+  const usage = JSON.parse(stdout)
+  if (
+    usage.pid !== Number(pids[0]) ||
+    !Number.isFinite(usage.physicalFootprintBytes) ||
+    usage.physicalFootprintBytes < 0
+  )
+    throw new Error(`invalid physical footprint in ${rawPath}`)
   return {
     ...phase,
     engine,
     metric: 'host-physical-footprint',
-    value: Number(match[1]) * scale,
+    value: usage.physicalFootprintBytes / 1048576,
     unit: 'MiB',
   }
 }
@@ -443,7 +455,7 @@ if (import.meta.main) {
                   phase,
                   log.replace(
                     /\.log$/,
-                    `-${phase.case.replace(/[^a-zA-Z0-9_-]/g, '_')}-vmmap.log`
+                    `-${phase.case.replace(/[^a-zA-Z0-9_-]/g, '_')}-footprint.json`
                   )
                 )
             : undefined,
