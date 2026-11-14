@@ -1,4 +1,4 @@
-import type { FullScreenCoverProps, SheetProps } from './generated/sheetTypes';
+import type { FullScreenCoverProps, SheetProps } from './generated/sheetTypes.js';
 export declare const SheetAppearanceContext: import("react").Context<"dark" | "light" | undefined>;
 export declare function Sheet({ isPresented, onIsPresentedChange, onDismiss, revision, presentationDetents, selectedDetent, onSelectedDetentChange, detentRevision, presentationDragIndicator, interactiveDismissDisabled, presentationBackground, presentationBackgroundInteraction, presentationContentInteraction, presentationSizing, children, style, ...props }: SheetProps): import("react").JSX.Element;
 export declare function FullScreenCover({ isPresented, onIsPresentedChange, onDismiss, revision, children, style, ...props }: FullScreenCoverProps): import("react").JSX.Element;

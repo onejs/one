@@ -1,5 +1,5 @@
 import * as net from 'node:net';
-import type { IPCMessage, IPCResponse, DaemonState } from './types';
+import type { IPCMessage, IPCResponse, DaemonState } from './types.js';
 export declare function getSocketPath(): string;
 export declare function getServersFilePath(): string;
 export declare function ensureSocketDir(): void;

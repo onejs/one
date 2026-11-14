@@ -1,5 +1,5 @@
 import type { ColorValue, ViewProps } from 'react-native';
-import type { SFSymbolName } from '../generated/sfSymbolNames';
+import type { SFSymbolName } from '../generated/sfSymbolNames.js';
 export type ImageProps = Omit<ViewProps, 'children'> & {
     systemName: SFSymbolName;
     /** symbol point size, centered in a default square layout. defaults to 16. */

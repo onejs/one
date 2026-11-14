@@ -1,5 +1,5 @@
 import type { NavigationState } from '@react-navigation/core';
-import type { OneRouter } from '../../interfaces/router';
+import type { OneRouter } from '../../interfaces/router.js';
 /**
  * Generates a navigation action to transition from the current state to the desired state.
  */

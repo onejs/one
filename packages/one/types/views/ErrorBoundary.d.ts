@@ -1,5 +1,5 @@
 import React from 'react';
-import type { ErrorBoundaryProps } from './Try';
+import type { ErrorBoundaryProps } from './Try.js';
 /**
  * Default error boundary component for native platforms.
  * Shows a user-friendly error message with retry capability.

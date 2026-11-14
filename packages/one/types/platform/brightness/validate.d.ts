@@ -1,4 +1,4 @@
-import type { BrightnessEvent, BrightnessMode } from './types';
+import type { BrightnessEvent, BrightnessMode } from './types.js';
 export declare function assertBrightnessValue(value: unknown, verb: string): asserts value is number;
 export declare function assertSystemMode(mode: unknown): asserts mode is BrightnessMode;
 export declare function assertBrightnessListener(listener: unknown): asserts listener is (event: BrightnessEvent) => void;

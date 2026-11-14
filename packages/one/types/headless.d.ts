@@ -1,7 +1,7 @@
-import './setup';
-import type { OneLinkingConfig } from './link/getLinking';
-import { Root } from './Root';
-import type { One } from './vite/types';
+import './setup.js';
+import type { OneLinkingConfig } from './link/getLinking.js';
+import { Root } from './Root.js';
+import type { One } from './vite/types.js';
 export { Root };
 export type CreateHeadlessAppProps = {
     routes: Record<string, () => Promise<unknown>>;

@@ -1,5 +1,5 @@
 import type { InlineConfig } from 'vite';
-import type { VXRNOptionsFilled } from './getOptionsFilled';
+import type { VXRNOptionsFilled } from './getOptionsFilled.js';
 export declare const dedupe: string[];
 /**
  * Returns fundamental Vite configs.

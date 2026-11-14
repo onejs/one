@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { BarometerMeasurement } from '../barometer/types';
+import type { BarometerMeasurement } from '../barometer/types.js';
 export interface OneBarometer extends HybridObject<{
     ios: 'swift';
     android: 'kotlin';

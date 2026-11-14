@@ -1,4 +1,4 @@
-import type { RouteNode } from './router/Route';
+import type { RouteNode } from './router/Route.js';
 export type Screen = string | {
     path: string;
     screens: Record<string, Screen>;

@@ -1,4 +1,4 @@
-import type { One } from './types';
+import type { One } from './types.js';
 declare const _ctxKey: unique symbol;
 /** shape of the object stored as the ALS context id */
 export interface ALSId {

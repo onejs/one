@@ -1,4 +1,4 @@
-import type { Edge, EdgeInsets, EdgeMode, Edges, Metrics, NativeInsetsChangePayload } from './types';
+import type { Edge, EdgeInsets, EdgeMode, Edges, Metrics, NativeInsetsChangePayload } from './types.js';
 export declare function resolveSafeAreaEdgeModes(edges?: Edges | null): Record<Edge, EdgeMode>;
 export declare function buildSafeAreaInsetStyle(options: {
     insets: EdgeInsets;

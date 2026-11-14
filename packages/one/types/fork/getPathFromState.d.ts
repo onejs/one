@@ -5,7 +5,7 @@
  * Please refrain from making changes to this file, as it will make merging updates from the upstream harder.
  * All modifications except formatting should be marked with `// @modified` comment.
  */
-import { type AdditionalOptions } from './getPathFromState-mods';
+import { type AdditionalOptions } from './getPathFromState-mods.js';
 import type { NavigationState, PartialState } from '@react-navigation/routers';
 import type { PathConfigMap } from '@react-navigation/core';
 type Options<ParamList extends {}> = {

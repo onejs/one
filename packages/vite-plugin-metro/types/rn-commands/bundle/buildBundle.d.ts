@@ -1,6 +1,6 @@
 import type { ResolvedConfig } from 'vite';
-import type { MetroPluginOptions } from '../../plugins/metroPlugin';
-import type { BundleCommandArgs } from './types';
+import type { MetroPluginOptions } from '../../plugins/metroPlugin.js';
+import type { BundleCommandArgs } from './types.js';
 export declare function buildBundle(this: {
     viteConfig: ResolvedConfig;
     metroPluginOptions: MetroPluginOptions;

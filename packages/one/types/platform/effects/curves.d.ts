@@ -1,4 +1,4 @@
-import type { EdgeFadeCurve } from './types';
+import type { EdgeFadeCurve } from './types.js';
 /**
  * sample any curve to inner-to-outer alpha values. presets evaluate
  * analytically at 32 stops (the native table density); bezier and stops

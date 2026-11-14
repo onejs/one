@@ -1,4 +1,4 @@
-import type { ScreenOrientationLock, ScreenOrientationValue } from '../specs/OneScreenOrientation.nitro';
+import type { ScreenOrientationLock, ScreenOrientationValue } from '../specs/OneScreenOrientation.nitro.js';
 export type { ScreenOrientationLock, ScreenOrientationValue };
 export declare const ScreenOrientation: Readonly<{
     getOrientation: () => Promise<ScreenOrientationValue>;

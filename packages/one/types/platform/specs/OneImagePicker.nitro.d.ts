@@ -1,6 +1,6 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { ResolvedImagePickerOptions } from '../image-picker/options';
-import type { ImagePickerAsset } from '../image-picker/types';
+import type { ResolvedImagePickerOptions } from '../image-picker/options.js';
+import type { ImagePickerAsset } from '../image-picker/types.js';
 export interface ImagePickerNativeResult {
     canceled: boolean;
     assets?: ImagePickerAsset[];

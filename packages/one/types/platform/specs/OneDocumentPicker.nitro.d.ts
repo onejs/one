@@ -1,6 +1,6 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { ResolvedDocumentPickerOptions } from '../document-picker/options';
-import type { DocumentPickerAsset } from '../document-picker/types';
+import type { ResolvedDocumentPickerOptions } from '../document-picker/options.js';
+import type { DocumentPickerAsset } from '../document-picker/types.js';
 export interface DocumentPickerNativeResult {
     canceled: boolean;
     assets?: DocumentPickerAsset[];

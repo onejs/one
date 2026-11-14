@@ -33,11 +33,11 @@ export interface Crypto {
     digest(algorithm: DigestAlgorithm, data: BufferSource): Promise<ArrayBuffer>;
     /** digest of a utf-8 string, hex by default */
     digestString(algorithm: DigestAlgorithm, data: string, options?: DigestStringOptions): Promise<string>;
-    aesEncrypt(plaintext: BinaryInput, key: import('./aes').AESEncryptionKey, options?: AESEncryptOptions): Promise<import('./aes').AESSealedData>;
-    aesDecrypt(sealedData: import('./aes').AESSealedData, key: import('./aes').AESEncryptionKey, options: AESDecryptOptions & {
+    aesEncrypt(plaintext: BinaryInput, key: import('./aes.js').AESEncryptionKey, options?: AESEncryptOptions): Promise<import('./aes.js').AESSealedData>;
+    aesDecrypt(sealedData: import('./aes.js').AESSealedData, key: import('./aes.js').AESEncryptionKey, options: AESDecryptOptions & {
         output: 'base64';
     }): Promise<string>;
-    aesDecrypt(sealedData: import('./aes').AESSealedData, key: import('./aes').AESEncryptionKey, options?: AESDecryptOptions): Promise<Uint8Array<ArrayBuffer>>;
+    aesDecrypt(sealedData: import('./aes.js').AESSealedData, key: import('./aes.js').AESEncryptionKey, options?: AESDecryptOptions): Promise<Uint8Array<ArrayBuffer>>;
 }
 export type CryptoApi = Crypto;
 //# sourceMappingURL=types.d.ts.map

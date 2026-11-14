@@ -1,4 +1,4 @@
-import type { Frontmatter, UnifiedPlugin } from './types';
+import type { Frontmatter, UnifiedPlugin } from './types.js';
 export type GetMDXOptions = {
     extraPlugins?: UnifiedPlugin;
     /** Public directory for resolving image paths starting with / (default: ./public) */

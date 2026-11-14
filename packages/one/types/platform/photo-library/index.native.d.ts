@@ -1,4 +1,4 @@
-import type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryAlbum, PhotoLibraryAlbumPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus } from '../specs/OnePhotoLibrary.nitro';
+import type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryAlbum, PhotoLibraryAlbumPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus } from '../specs/OnePhotoLibrary.nitro.js';
 export type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryAlbum, PhotoLibraryAlbumPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus };
 declare function getAddPermissionStatus(): PhotoLibraryPermissionStatus;
 declare function requestAddPermission(): Promise<PhotoLibraryPermissionStatus>;

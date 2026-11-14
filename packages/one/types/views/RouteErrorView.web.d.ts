@@ -1,3 +1,3 @@
-import type { RouteErrorViewProps } from './RouteErrorView';
+import type { RouteErrorViewProps } from './RouteErrorView.js';
 export declare function RouteErrorView({ routeName, error, errorInfo, onRetry, }: RouteErrorViewProps): import("react").JSX.Element;
 //# sourceMappingURL=RouteErrorView.web.d.ts.map
