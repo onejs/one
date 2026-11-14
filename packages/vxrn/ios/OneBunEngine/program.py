@@ -1,10 +1,10 @@
 # bun compile writes a program only into an executable, behind the runtime's
-# own segments. `template` copies the runtime dylib with its LC_ID_DYLIB shown as
-# a load command so bun compile takes it; `extract` writes the compiled
-# program, the __BUN,__bun section, to a file.
+# own segments. `template` copies the runtime dylib for it, with its LC_ID_DYLIB
+# shown as a load command and without the LC_ENCRYPTION_INFO_64 it cannot move;
+# `extract` writes the compiled program, the __BUN,__bun section, to a file.
 import struct, sys
 
-LC_SEGMENT_64, LC_ID_DYLIB, LC_LOAD_DYLIB = 0x19, 0xd, 0xc
+LC_SEGMENT_64, LC_ID_DYLIB, LC_LOAD_DYLIB, LC_ENCRYPTION_INFO_64 = 0x19, 0xd, 0xc, 0x2c
 ID = b'@rpath/Bun.framework/Bun'
 action, source, target = sys.argv[1:4]
 b = bytearray(open(source, 'rb').read())
@@ -29,6 +29,13 @@ if action == 'template':
             break
     else:
         sys.exit(f'[one] bun engine: {source} is not {ID.decode()}')
+    for command, offset in commands():
+        if command == LC_ENCRYPTION_INFO_64:
+            count, size = struct.unpack_from('<II', b, 16)
+            end = 32 + size
+            b[offset:end] = b[offset + 24:end] + bytes(24)
+            struct.pack_into('<II', b, 16, count - 1, size - 24)
+            break
     open(target, 'wb').write(b)
 elif action == 'extract':
     for command, offset in commands():
