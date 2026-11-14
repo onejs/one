@@ -78,6 +78,9 @@ if (import.meta.main) {
   const { path, fingerprint } = await buildSdkApp(outdir)
   console.log(`sdk app: ${path} ${fingerprint.slice(0, 16)}`)
   if (outdir === undefined) {
+    const manifest = JSON.parse(readFileSync(join(dir, '../../ios-bindings/manifest.json'), 'utf8'))
+    if (manifest.generation !== fingerprint.slice(0, 16))
+      throw new Error(`ios-bindings generation ${manifest.generation} does not match the sdk generator ${fingerprint.slice(0, 16)}; regenerate the facades before building`)
     console.log(`ios facades: ${await buildIosFacades()} compiled`)
   }
 }
