@@ -445,6 +445,7 @@ function getNativePlugins(
     // rolldown-runtime WebSocket); RN's client otherwise opens a /hot socket and
     // red-boxes "unknown-message [object Object]" on every edit (new arch)
     hmrClientNoopPlugin(),
+    ...(dev ? [] : [nativePromisePlugin()]),
     nativeIdentityAliasPlugin(platform),
     nativeAssetRegistryPlugin(root),
     // route every `react-native/*` import through the app's react native copy.
@@ -1872,6 +1873,35 @@ export function hmrClientNoopPlugin(): Plugin {
           code: `const HMRClient = { setup() {}, enable() {}, disable() {}, registerBundle() {}, log() {}, isEnabled() { return false } }\nexport default HMRClient`,
           moduleType: 'js',
         }
+      }
+    },
+  }
+}
+
+/**
+ * keep the engine's own Promise in production bundles. react native keeps it only
+ * when hermes reports one and otherwise installs the `promise` library, whose
+ * every reaction hops through setImmediate and a native microtask call. bun's
+ * Promise is compiled ahead of time and queues reactions in JSC, and dev builds
+ * run hermes, where react native's module is left alone for its rejection
+ * tracking.
+ */
+function nativePromisePlugin(): Plugin {
+  const RN_POLYFILL_PROMISE_RE = /(^|[\\/])Core[\\/]polyfillPromise(\.js)?$/
+  return {
+    name: 'vxrn:native-promise',
+    resolveId(source, importer) {
+      if (
+        importer != null &&
+        /(^|[\\/])react-native[\\/]/.test(importer) &&
+        RN_POLYFILL_PROMISE_RE.test(source)
+      ) {
+        return { id: '\0vxrn-native-promise', external: false }
+      }
+    },
+    load(id) {
+      if (id === '\0vxrn-native-promise') {
+        return { code: 'export {}', moduleType: 'js' }
       }
     },
   }
