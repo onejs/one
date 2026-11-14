@@ -44,6 +44,15 @@ files = sorted(p for p in (folder / 'OneBench.app').rglob('*') if p.is_file())
 metadata = dict(engine=engine, target=target, commit=(folder / 'commit.txt').read_text().strip(),
                 xcode=subprocess.check_output(['xcodebuild', '-version'], text=True).strip(),
                 appBytes=sum(p.stat().st_size for p in files))
-metadata['bundleSha256'] = hashlib.sha256((folder / 'OneBench.app/main.jsbundle').read_bytes()).hexdigest()
+bundle = (folder / 'OneBench.app/main.jsbundle').read_bytes()
+if engine == 'hermes' and bundle[:8] != bytes.fromhex('c61fbc03c103191f'):
+    raise RuntimeError('Hermes build does not contain shipped Hermes bytecode')
+if engine == 'bun':
+    if bundle != b'/*bun-compiled-entry*/':
+        raise RuntimeError('Bun build has no compiled entry marker')
+    for framework in ['Bun', 'BunCompat']:
+        binary = folder / f'OneBench.app/Frameworks/{framework}.framework/{framework}'
+        metadata[f'{framework}Sha256'] = hashlib.sha256(binary.read_bytes()).hexdigest()
+metadata['bundleSha256'] = hashlib.sha256(bundle).hexdigest()
 (folder / 'build.json').write_text(json.dumps(metadata, indent=2) + '\n')
 PYMETA

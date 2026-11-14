@@ -45,6 +45,7 @@ export default function Benchmark() {
     async function run() {
       const args = await Bench.arguments()
       if (!args.includes('--bench')) return
+      if (__DEV__) throw new Error('Release build required')
       const runIndex = args.indexOf('--bench-run')
       setRun(runIndex >= 0 ? args[runIndex + 1] : '0')
       await Bench.log(`BENCH_META ${JSON.stringify(await Bench.environment())}`)
