@@ -108,6 +108,9 @@ app that uses Face ID; for an existing native project, provide
 From Expo, rename `setItemAsync(key, value, options)`
 to `setItem` and replace each numeric accessibility constant with its string:
 `SecureStore.WHEN_UNLOCKED` is `'whenUnlocked'`.
+On iOS, a read of an existing Expo item migrates it to One's keychain format,
+preserving its accessibility and biometric protection. Use the same
+`keychainService` and `accessGroup` that were used to write it.
 
 ## Platform differences
 
