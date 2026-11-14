@@ -61,6 +61,7 @@
     "run.mjs",
     "expo-plugin.cjs",
     "native-project-patches.cjs",
+    "ios",
     "react-native-commands.cjs"
   ],
   "scripts": {
