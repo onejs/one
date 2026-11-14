@@ -1,10 +1,37 @@
-# the bun runtime and compiler are not in this package: ONE_BUN_ENGINE_DIR names
-# a directory with bun (the macOS compiler) and ios/<platform>/{Bun,BunCompat}.framework
-engine_dir = ENV['ONE_BUN_ENGINE_DIR']
-if engine_dir.nil? || !File.directory?(File.join(engine_dir, 'ios'))
-  raise "[one] the bun engine needs ONE_BUN_ENGINE_DIR set to its runtime directory during pod install"
+require 'digest'
+require 'fileutils'
+require 'tmpdir'
+
+# the bun runtime and compiler come from an onejs/bun-engine release: the bun
+# compiler (macOS) and ios/<platform>/{Bun,BunCompat}.framework. a compiled
+# program only loads in the runtime it was compiled against, so the release is
+# pinned. ONE_BUN_ENGINE_DIR points at a local engine build instead.
+ENGINE_VERSION = '0.1.0'
+ENGINE_SHA256 = '81d0a29de3c3b8f5cdf6006ff1582fdf873825cc09054ede0c5a162fdc058b67'
+
+def one_bun_engine_dir
+  dir = ENV['ONE_BUN_ENGINE_DIR']
+  unless dir.nil? || dir.empty?
+    raise "[one] ONE_BUN_ENGINE_DIR has no ios folder: #{dir}" unless File.directory?(File.join(dir, 'ios'))
+    return File.expand_path(dir)
+  end
+  cache = File.join(Dir.home, 'Library/Caches/one/bun-engine', ENGINE_VERSION)
+  dir = File.join(cache, 'bun-engine')
+  return dir if File.directory?(File.join(dir, 'ios'))
+  FileUtils.mkdir_p(cache)
+  url = "https://github.com/onejs/bun-engine/releases/download/v#{ENGINE_VERSION}/bun-engine-#{ENGINE_VERSION}-ios.tar.gz"
+  Dir.mktmpdir('download', cache) do |tmp|
+    tarball = File.join(tmp, 'engine.tar.gz')
+    Pod::UI.puts "[one] downloading the bun engine #{ENGINE_VERSION}"
+    system('curl', '-fsSL', '--retry', '3', '-o', tarball, url) or raise "[one] could not download the bun engine from #{url}"
+    raise "[one] the bun engine download from #{url} does not match its checksum" unless Digest::SHA256.file(tarball).hexdigest == ENGINE_SHA256
+    system('tar', '-xzf', tarball, '-C', tmp) or raise "[one] could not unpack the bun engine"
+    File.rename(File.join(tmp, 'bun-engine'), dir)
+  end
+  dir
 end
-engine_dir = File.expand_path(engine_dir)
+
+engine_dir = one_bun_engine_dir
 
 Pod::Spec.new do |s|
   s.name = 'OneBunEngine'

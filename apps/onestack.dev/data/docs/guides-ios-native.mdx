@@ -129,14 +129,14 @@ one({
 
 Apps on `expo prebuild` pass the same option to the plugin: `['vxrn/expo-plugin', { engine: 'bun' }]`.
 
-`pod install` needs `ONE_BUN_ENGINE_DIR` pointing at the Bun runtime directory, which holds the macOS `bun` compiler and `ios/iphoneos` and `ios/iphonesimulator` folders with `Bun.framework` and `BunCompat.framework`. The bundle phase then compiles `main.jsbundle` on every Release build and links the program into `BunCompat.framework`, since an App Store binary may have only one executable segment.
+`pod install` downloads the engine from a pinned [onejs/bun-engine](https://github.com/onejs/bun-engine) release into `~/Library/Caches/one/bun-engine`, checks its checksum, and reuses it after that. Set `ONE_BUN_ENGINE_DIR` to use a local engine build instead. The bundle phase compiles `main.jsbundle` on every Release build and links the program into `BunCompat.framework`, since an App Store binary may have only one executable segment.
 
 Limits:
 
 * iOS only for now. Android stays on Hermes.
 * Code that is only known at run time, such as `new Function`, `eval` and over-the-air update bundles, runs in the interpreter without the speedup. Leave OTA updates off for Bun builds.
 * Reanimated and worklets runtimes stay on Hermes.
-* The engine adds about 140 MB to the app today.
+* The engine adds about 170 MB to the app today.
 
 Remove `engine: 'bun'` and prebuild again to go back to Hermes.
 

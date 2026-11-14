@@ -222,8 +222,8 @@ export interface NativeAppManifest {
     useFrameworks?: 'static' | 'dynamic'
     ccache?: boolean
     // 'bun' runs release builds on bun's ahead-of-time compiled javascript
-    // instead of hermes; debug builds stay on hermes. pod install reads the
-    // bun runtime from ONE_BUN_ENGINE_DIR.
+    // instead of hermes; debug builds stay on hermes. pod install downloads
+    // the engine from an onejs/bun-engine release.
     engine?: 'hermes' | 'bun'
     usesNonExemptEncryption?: boolean
     // the tint the system gives the app's controls, tab selection and text
