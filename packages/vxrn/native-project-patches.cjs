@@ -872,7 +872,67 @@ function holdLaunchScreenInMainActivity(mainActivity) {
     )
 }
 
+// the bun engine (engine: 'bun'): a release build compiles its bundle ahead of
+// time into Bun.framework and runs it instead of hermes. debug builds stay on
+// hermes and ship no bun. the pod lives in vxrn/ios/OneBunEngine.
+const ONE_BUN_ENGINE = {
+  marker: '# [vxrn/one] bun engine',
+  bridgingHeaderImport: '#import <OneBunEngine/OneBunEngine.h>',
+}
+
+function injectBunEngineIntoPodfile(podfile) {
+  if (podfile.includes(ONE_BUN_ENGINE.marker)) return podfile
+  const anchor = /^(\s*)config = use_native_modules!.*$/m
+  const match = podfile.match(anchor)
+  if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
+  const indent = match[1]
+  const lines = [
+    ONE_BUN_ENGINE.marker,
+    `pod 'OneBunEngine', :path => File.join(File.dirname(\`node --print "require.resolve('vxrn/package.json')"\`.strip), 'ios', 'OneBunEngine')`,
+  ].map((line) => indent + line)
+  const insertAt = match.index + match[0].length
+  return podfile.slice(0, insertAt) + '\n' + lines.join('\n') + podfile.slice(insertAt)
+}
+
+function addBunEngineToBundleReactNativeShellScript(input) {
+  if (input.includes(ONE_BUN_ENGINE.marker)) return input
+  const release = 'case "$CONFIGURATION" in *Debug*) ;; *)'
+  const withPlainBundle = insertBeforeBundlePhaseRunner(
+    input,
+    `${ONE_BUN_ENGINE.marker}: release bundles stay plain javascript for bun compile
+${release} export USE_HERMES=false ;; esac`
+  )
+  return insertAfterBundlePhaseRunner(
+    withPlainBundle,
+    `${ONE_BUN_ENGINE.marker}: compile the release bundle into the app's Bun.framework
+${release} /bin/bash "$ONE_BUN_ENGINE_SCRIPT" ;; esac`
+  )
+}
+
+function runBunEngineInAppDelegate(appDelegate) {
+  if (appDelegate.includes('jsrt_create_bun_factory()')) return appDelegate
+  const match = appDelegate.match(REACT_NATIVE_DELEGATE_CLASS)
+  if (!match) {
+    throw new Error(
+      '[vxrn] AppDelegate.swift changed shape: cannot run the bun engine from the react native delegate'
+    )
+  }
+  return appDelegate.replace(
+    match[0],
+    `${match[0]}  // [vxrn/one] a release build compiled for the bun engine runs on it
+  override func createJSRuntimeFactory() -> JSRuntimeFactoryRef {
+    one_bun_engine_has_compiled_program() ? jsrt_create_bun_factory() : super.createJSRuntimeFactory()
+  }
+
+`
+  )
+}
+
 module.exports = {
+  ONE_BUN_ENGINE,
+  injectBunEngineIntoPodfile,
+  addBunEngineToBundleReactNativeShellScript,
+  runBunEngineInAppDelegate,
   injectSkiaDawnVendoringIntoPodfile,
   injectWebGPUHeaderPathsIntoPodfile,
   holdLaunchScreenInMainActivity,
