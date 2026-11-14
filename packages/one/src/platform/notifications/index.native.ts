@@ -427,6 +427,14 @@ function clearLastResponse(): void {
   native().clearLastNotificationResponse()
 }
 
+function getPendingResponses(): NotificationResponse[] {
+  return native().getPendingNotificationResponses().map(mapResponse)
+}
+
+function acknowledgeResponse(identifier: string): void {
+  native().acknowledgeNotificationResponse(identifier)
+}
+
 // schedule a local notification. trigger null delivers immediately,
 // a timeInterval waits seconds, a date fires at the timestamp. a past date
 // delivers immediately on both platforms.
@@ -500,6 +508,8 @@ export const Notifications = Object.freeze({
   setHandler,
   getLastResponse,
   clearLastResponse,
+  getPendingResponses,
+  acknowledgeResponse,
   schedule,
   cancelScheduled,
   cancelAllScheduled,
