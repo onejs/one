@@ -1939,7 +1939,7 @@ Android.
 
 ```ts
 const { granted } = await One.Speech.requestPermissions()
-const session = One.Speech.start({ lang: 'en-US' }, (event) => {
+const session = One.Speech.start({ lang: 'en-US', contextualStrings: ['Tamagui'] }, (event) => {
   // event.transcript is always everything heard so far
   if (event.type === 'end') send(event.transcript)
   if (event.type === 'error') show(event.error, event.message)
