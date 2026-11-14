@@ -1,3 +1,7 @@
+ignore-patterns:
+  # bundled against the consumer's dependencies and schema by run-contrast.ts
+  - "tests/zero-native/contrast-probe.ts"
+
 ignores:
   # build artifact from node:url -> url.native.js transformation
   - "url.native.js"
