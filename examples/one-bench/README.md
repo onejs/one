@@ -36,3 +36,9 @@ python3 scripts/bench/report.py <console.log> ... --out <charts-dir> \
 ```
 
 Raw JSON preserves every sample. Summary JSON reports count, median, quartiles and min/max; SVG bars show median, middle 50% and full observed range, with device, OS and commit. There is no outlier removal. The reporter rejects unequal checksums across engines and runs. Keep rich-app results and microbenchmarks separately labeled. Host-side runtime timings or simulator timings are not device performance evidence.
+
+## Simulator comparisons
+
+For back-to-back simulator comparisons, build both Release engines with `scripts/bench/build-ios.sh hermes simulator` and `scripts/bench/build-ios.sh bun simulator`. The simulator runtime and compiler must match. Each engine gets a distinct bundle ID on simulator as well as device.
+
+Run the same collector with `--simulator <claimed-booted-UDID>` instead of `--device`, `--host <machine-name>`, `--device-name 'iPhone 17 Pro'`, `--os <simulator-version>` and `--cooldown 0`. Keep the two `--app` paths and source commit as above. It installs each app once, runs AB then BA until there are ten samples per engine, and produces the same raw JSON, summary and SVGs. The chart labels include simulator and host. Simulator results describe the simulator on that Mac and are not evidence of iPhone device performance.

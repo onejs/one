@@ -21,9 +21,9 @@ case "${3:-}" in
   --no-prebuild) ;;
   *) exit 2 ;;
 esac
-args=(-workspace ios/OneBench.xcworkspace -scheme OneBench -configuration Release -derivedDataPath "$derived" -jobs "${BENCH_BUILD_JOBS:-4}" -packageAuthorizationProvider netrc)
+args=(-workspace ios/OneBench.xcworkspace -scheme OneBench -configuration Release -derivedDataPath "$derived" -jobs "${BENCH_BUILD_JOBS:-4}" -packageAuthorizationProvider netrc "PRODUCT_BUNDLE_IDENTIFIER=dev.onestack.bench.$engine")
 if [ "$target" = device ]; then
-  args+=(-destination generic/platform=iOS -allowProvisioningUpdates -authenticationKeyPath "$HOME/.appstoreconnect/private_keys/AuthKey_JY56N857ZK.p8" -authenticationKeyID JY56N857ZK -authenticationKeyIssuerID 69a6de72-dd97-47e3-e053-5b8c7c11a4d1 CODE_SIGN_STYLE=Automatic DEVELOPMENT_TEAM=399WY8X9HY "PRODUCT_BUNDLE_IDENTIFIER=dev.onestack.bench.$engine")
+  args+=(-destination generic/platform=iOS -allowProvisioningUpdates -authenticationKeyPath "$HOME/.appstoreconnect/private_keys/AuthKey_JY56N857ZK.p8" -authenticationKeyID JY56N857ZK -authenticationKeyIssuerID 69a6de72-dd97-47e3-e053-5b8c7c11a4d1 CODE_SIGN_STYLE=Automatic DEVELOPMENT_TEAM=399WY8X9HY)
   platform=iphoneos
 else
   args+=(-destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO ARCHS=arm64 ONLY_ACTIVE_ARCH=YES)

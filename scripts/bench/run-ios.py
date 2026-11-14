@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Run alternating, process-cold Release apps on one exclusively locked iPhone."""
+"""Run alternating, process-cold Release apps on an exclusively locked iPhone or iOS simulator."""
 import argparse
 import fcntl
 import json
 import os
 import re
 import selectors
+import socket
 from pathlib import Path
 import subprocess
 import time
@@ -56,7 +57,10 @@ def capture_console(argv, log, timeout, stop_on_done):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--device', required=True, help='devicectl UDID')
+    target = parser.add_mutually_exclusive_group(required=True)
+    target.add_argument('--device', help='physical devicectl UDID')
+    target.add_argument('--simulator', help='claimed, booted simctl UDID')
+    parser.add_argument('--host', default=socket.gethostname())
     parser.add_argument('--device-name', required=True)
     parser.add_argument('--os', required=True)
     parser.add_argument('--commit', required=True)
@@ -65,10 +69,12 @@ def main():
     parser.add_argument('--timeout', type=int, default=180)
     parser.add_argument('--cooldown', type=float, default=10)
     parser.add_argument('--out', type=Path, required=True)
-    parser.add_argument('--lock', type=Path, default=Path.home() / 'builders/.scratch/bun-aot-rn/iphone.lock')
+    parser.add_argument('--lock', type=Path, default=None)
     parser.add_argument('--stop-on-done', action='store_true', help='stop console capture on BENCH_DONE or BENCH_ERROR; the next launch terminates any remaining app')
     parser.add_argument('--launch-arg', action='append', default=[], help='additional app argument; use = for flags')
     args = parser.parse_args()
+    if args.lock is None:
+        args.lock = Path.home() / (f'builders/.scratch/bun-bench/simulator-{args.simulator}.lock' if args.simulator else 'builders/.scratch/bun-aot-rn/iphone.lock')
     apps = []
     for spec in args.app:
         engine, app = spec.split('=', 1)
@@ -82,7 +88,7 @@ def main():
         parser.error('positive run count and distinct engines required')
     args.out.mkdir(parents=True, exist_ok=False)
     args.lock.parent.mkdir(parents=True, exist_ok=True)
-    metadata = dict(device=args.device_name, udid=args.device, os=args.os, commit=args.commit, runs=args.runs,
+    metadata = dict(device=f'{args.device_name} simulator ({args.host})' if args.simulator else args.device_name, udid=args.device or args.simulator, target='simulator' if args.simulator else 'device', host=args.host, cooldownSeconds=args.cooldown, os=args.os, commit=args.commit, runs=args.runs,
                     method='Release · alternating engines · process-cold launches · warm OS caches · no debugger',
                     apps=[dict(engine=e, path=str(p), bundle=b) for e, p, b in apps])
     (args.out / 'manifest.json').write_text(json.dumps(metadata, indent=2))
@@ -95,12 +101,14 @@ def main():
             order = apps if run % 2 == 0 else list(reversed(apps))
             for engine, app, bundle in order:
                 if installed.get(bundle) != engine:
-                    receipt = command(['xcrun', 'devicectl', 'device', 'install', 'app', '--device', args.device, str(app)], timeout=300)
+                    receipt = command(['xcrun', 'simctl', 'install', args.simulator, str(app)] if args.simulator else ['xcrun', 'devicectl', 'device', 'install', 'app', '--device', args.device, str(app)], timeout=300)
                     (args.out / f'{run:02d}-{engine}-install.log').write_text(receipt)
                     installed[bundle] = engine
                 time.sleep(args.cooldown)
                 argv = ['xcrun', 'devicectl', 'device', 'process', 'launch', '--device', args.device,
                         '--terminate-existing', '--console', bundle, '--', '--bench', '--bench-run', str(run), *args.launch_arg]
+                if args.simulator:
+                    argv = ['xcrun', 'simctl', 'launch', '--terminate-running-process', '--console-pty', args.simulator, bundle, '--bench', '--bench-run', str(run), *args.launch_arg]
                 log = args.out / f'{run:02d}-{engine}.log'
                 returncode = capture_console(argv, log, args.timeout, args.stop_on_done)
                 text = log.read_text()
