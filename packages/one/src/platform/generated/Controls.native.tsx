@@ -1070,9 +1070,13 @@ export function MeshGradient({
 }
 import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
 export function VideoPlayer({
+  onVideoReady,
+  onVideoError,
+  onFirstFrame,
   onPlaybackStatus,
   url = '',
   autoplay = false,
+  contentFit = 'native',
   command = '',
   commandRevision = 0,
   seekToMs = 0,
@@ -1082,6 +1086,8 @@ export function VideoPlayer({
 }: Types.VideoPlayerProps) {
   if (typeof url !== 'string' || !url)
     throw new Error('VideoPlayer url must be a non-empty string')
+  if (!['native', 'contain', 'cover'].includes(contentFit))
+    throw new Error('Unknown VideoPlayer contentFit: ' + contentFit)
   if (!['', 'play', 'pause', 'seek'].includes(command))
     throw new Error('Unknown VideoPlayer command: ' + command)
   if (!Number.isSafeInteger(commandRevision) || commandRevision < 0)
@@ -1103,9 +1109,17 @@ export function VideoPlayer({
       }
       url={url}
       autoplay={autoplay}
+      contentFit={contentFit}
       command={command}
       commandRevision={commandRevision}
       seekToMs={seekToMs}
+      onNativeVideoPlayerVideoReady={({ nativeEvent }) =>
+        onVideoReady?.(nativeEvent.width, nativeEvent.height)
+      }
+      onNativeVideoPlayerVideoError={({ nativeEvent }) =>
+        onVideoError?.(nativeEvent.message)
+      }
+      onNativeVideoPlayerFirstFrame={({ nativeEvent }) => onFirstFrame?.()}
       onNativeVideoPlayerPlaybackStatus={({ nativeEvent }) =>
         onPlaybackStatus?.(
           nativeEvent.state,

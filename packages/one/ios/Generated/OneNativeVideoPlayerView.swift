@@ -8,6 +8,7 @@ import AVKit
 private final class VideoPlayerModel: ObservableObject {
   @Published var url: String = ""
   @Published var autoplay: Bool = false
+  @Published var contentFit: String = "native"
   @Published var command: String = ""
   @Published var commandRevision: Double = 0
   @Published var seekToMs: Double = 0
@@ -17,6 +18,27 @@ private final class VideoPlayerModel: ObservableObject {
   var onSDKEvent: ((String, String) -> Void)?
   func emitSDKEvent(_ name: String, _ value: String) { if active { onSDKEvent?(name, value) } }
 
+  var onVideoReady: ((Double, Double, Int) -> Void)?
+  private var videoReadyCount = 0
+  func videoReady(_ width: Double, _ height: Double) {
+    guard active else { return }
+    videoReadyCount += 1
+    onVideoReady?(width, height, videoReadyCount)
+  }
+  var onVideoError: ((String, Int) -> Void)?
+  private var videoErrorCount = 0
+  func videoError(_ message: String) {
+    guard active else { return }
+    videoErrorCount += 1
+    onVideoError?(message, videoErrorCount)
+  }
+  var onFirstFrame: ((Int) -> Void)?
+  private var firstFrameCount = 0
+  func firstFrame() {
+    guard active else { return }
+    firstFrameCount += 1
+    onFirstFrame?(firstFrameCount)
+  }
   var onPlaybackStatus: ((String, Double, Double, Int) -> Void)?
   private var playbackStatusCount = 0
   func playbackStatus(_ state: String, _ positionMs: Double, _ durationMs: Double) {
@@ -28,6 +50,9 @@ private final class VideoPlayerModel: ObservableObject {
 @objcMembers public final class OneNativeVideoPlayerView: UIView, OneNativeComposable {
   public var onSDKEvent: ((String, String) -> Void)?
 
+  public var onVideoReady: ((Double, Double, Int) -> Void)?
+  public var onVideoError: ((String, Int) -> Void)?
+  public var onFirstFrame: ((Int) -> Void)?
   public var onPlaybackStatus: ((String, Double, Double, Int) -> Void)?
   private var model = VideoPlayerModel()
   private var controller: OneNativeHostingController<OneNativeStandalone<VideoPlayerContent>>?
@@ -46,9 +71,10 @@ private final class VideoPlayerModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ url: String, autoplay: Bool, command: String, commandRevision: Double, seekToMs: Double) {
+  public func configure(_ url: String, autoplay: Bool, contentFit: String, command: String, commandRevision: Double, seekToMs: Double) {
     if model.url != url { model.url = url }
     if model.autoplay != autoplay { model.autoplay = autoplay }
+    if model.contentFit != contentFit { model.contentFit = contentFit }
     if model.command != command { model.command = command }
     if model.commandRevision != commandRevision { model.commandRevision = commandRevision }
     if model.seekToMs != seekToMs { model.seekToMs = seekToMs }
@@ -72,6 +98,9 @@ private final class VideoPlayerModel: ObservableObject {
   private func bindCallbacks() {
     model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
 
+    model.onVideoReady = { [weak self] width, height, videoReadyCount in self?.onVideoReady?(width, height, videoReadyCount) }
+    model.onVideoError = { [weak self] message, videoErrorCount in self?.onVideoError?(message, videoErrorCount) }
+    model.onFirstFrame = { [weak self] firstFrameCount in self?.onFirstFrame?(firstFrameCount) }
     model.onPlaybackStatus = { [weak self] state, positionMs, durationMs, playbackStatusCount in self?.onPlaybackStatus?(state, positionMs, durationMs, playbackStatusCount) }
   }
   private func updateHost() {
@@ -87,7 +116,7 @@ private final class VideoPlayerModel: ObservableObject {
   }
   public func reset() {
     compositionParent = nil
-    model.active = false; model.onSDKEvent = nil; model.onPlaybackStatus = nil
+    model.active = false; model.onSDKEvent = nil; model.onVideoReady = nil; model.onVideoError = nil; model.onFirstFrame = nil; model.onPlaybackStatus = nil
     controller?.detach(); controller = nil; model = VideoPlayerModel()
   }
 }
@@ -105,10 +134,15 @@ private final class OneNativeVideoSession: ObservableObject {
   private var timeObserver: Any?
   private var controlObservation: NSKeyValueObservation?
   private var itemObservation: NSKeyValueObservation?
+  private var sizeObservation: NSKeyValueObservation?
+  private var reportedSize: CGSize?
+  private var reportedError: String?
   private var endObserver: NSObjectProtocol?
   private var ended = false
   private var appliedRevision: Double = 0
   var report: ((String, Double, Double) -> Void)?
+  var reportReady: ((Double, Double) -> Void)?
+  var reportError: ((String) -> Void)?
 
   deinit { clear() }
 
@@ -124,8 +158,11 @@ private final class OneNativeVideoSession: ObservableObject {
       DispatchQueue.main.async { self?.emit() }
     }
     if let item = next.currentItem {
-      itemObservation = item.observe(\.status, options: [.new]) { [weak self] _, _ in
-        DispatchQueue.main.async { self?.emit() }
+      itemObservation = item.observe(\.status, options: [.initial, .new]) { [weak self] item, _ in
+        DispatchQueue.main.async { self?.reportItem(item); self?.emit() }
+      }
+      sizeObservation = item.observe(\.presentationSize, options: [.new]) { [weak self] item, _ in
+        DispatchQueue.main.async { self?.reportItem(item) }
       }
       endObserver = NotificationCenter.default.addObserver(
         forName: .AVPlayerItemDidPlayToEndTime, object: item, queue: .main
@@ -180,9 +217,26 @@ private final class OneNativeVideoSession: ObservableObject {
             duration.isFinite ? max(0, duration * 1000) : 0)
   }
 
+  private func reportItem(_ item: AVPlayerItem) {
+    guard player?.currentItem === item else { return }
+    if item.status == .readyToPlay {
+      let size = item.presentationSize
+      if reportedSize != size {
+        reportedSize = size
+        reportReady?(Double(size.width), Double(size.height))
+      }
+    } else if item.status == .failed {
+      let message = item.error?.localizedDescription ?? "Video playback failed."
+      if reportedError != message { reportedError = message; reportError?(message) }
+    }
+  }
+
   private func clear() {
     controlObservation = nil
     itemObservation = nil
+    sizeObservation = nil
+    reportedSize = nil
+    reportedError = nil
     if let endObserver { NotificationCenter.default.removeObserver(endObserver) }
     endObserver = nil
     if let player, let timeObserver { player.removeTimeObserver(timeObserver) }
@@ -197,11 +251,16 @@ private struct VideoPlayerSurface: View {
   @ObservedObject var model: VideoPlayerModel
   @StateObject private var session = OneNativeVideoSession()
   var body: some View {
-    VideoPlayer(player: session.player)
+    Group {
+      if model.contentFit == "native" { VideoPlayer(player: session.player) }
+      else { OneVideoController(player: session.player, contentFit: model.contentFit) { model.firstFrame() } }
+    }
       .onAppear {
         session.report = { [weak model = model] state, position, duration in
           model?.playbackStatus(state, position, duration)
         }
+        session.reportReady = { [weak model = model] width, height in model?.videoReady(width, height) }
+        session.reportError = { [weak model = model] message in model?.videoError(message) }
         session.load(model.url, autoplay: model.autoplay)
         if model.commandRevision > 0 {
           session.apply(model.command, revision: model.commandRevision, seekToMs: model.seekToMs)
@@ -213,6 +272,35 @@ private struct VideoPlayerSurface: View {
           session.apply(model.command, revision: model.commandRevision, seekToMs: model.seekToMs)
         }
       }
+  }
+}
+
+private struct OneVideoController: UIViewControllerRepresentable {
+  let player: AVPlayer?
+  let contentFit: String
+  let onFirstFrame: () -> Void
+
+  final class Coordinator {
+    var observation: NSKeyValueObservation?
+    weak var reportedPlayer: AVPlayer?
+  }
+
+  func makeCoordinator() -> Coordinator { Coordinator() }
+  func makeUIViewController(context: Context) -> AVPlayerViewController {
+    let controller = AVPlayerViewController()
+    context.coordinator.observation = controller.observe(\.isReadyForDisplay, options: [.new]) { controller, _ in
+      DispatchQueue.main.async {
+        guard controller.isReadyForDisplay, let player = controller.player,
+              context.coordinator.reportedPlayer !== player else { return }
+        context.coordinator.reportedPlayer = player
+        onFirstFrame()
+      }
+    }
+    return controller
+  }
+  func updateUIViewController(_ controller: AVPlayerViewController, context: Context) {
+    controller.player = player
+    controller.videoGravity = contentFit == "cover" ? .resizeAspectFill : .resizeAspect
   }
 }
 
