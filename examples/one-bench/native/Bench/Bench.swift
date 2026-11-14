@@ -14,7 +14,9 @@ import UIKit
     let model = withUnsafeBytes(of: &system.machine) { bytes in
       String(decoding: bytes.prefix(while: { $0 != 0 }), as: UTF8.self)
     }
-    return ["device": model, "os": UIDevice.current.systemVersion]
+    return ["device": model, "os": UIDevice.current.systemVersion,
+      "lowPowerMode": String(ProcessInfo.processInfo.isLowPowerModeEnabled),
+      "thermalState": String(ProcessInfo.processInfo.thermalState.rawValue)]
   }
 
   func processElapsed() throws -> Double {
@@ -55,6 +57,10 @@ import UIKit
     displayLink = nil
     frameContinuation?.resume(returning: ProcessInfo.processInfo.systemUptime * 1000)
     frameContinuation = nil
+  }
+
+  func log(_ line: String) {
+    FileHandle.standardOutput.write(Data((line + "\n").utf8))
   }
 
   func finish() { exit(0) }

@@ -1,5 +1,10 @@
 let ready: (() => void) | undefined
 export function waitForNavigation() {
-  return new Promise<void>(resolve => { ready = resolve })
+  return new Promise<void>((resolve) => {
+    ready = resolve
+  })
 }
-export function navigationReady() { ready?.(); ready = undefined }
+export function navigationReady() {
+  ready?.()
+  ready = undefined
+}

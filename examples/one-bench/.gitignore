@@ -2,3 +2,4 @@ ios/
 android/
 .one/
 dist/
+native/**/.one-native-source.*

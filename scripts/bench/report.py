@@ -62,7 +62,7 @@ def report(rows, output, metadata):
     (output / 'summary.json').write_text(json.dumps({'metadata': metadata, 'summary': summary}, indent=2) + '\n')
     panels = defaultdict(list)
     for row in summary:
-        if row['metric'] != 'checksum':
+        if row['metric'] != 'checksum' and row['unit'] != 'timestamp-ms':
             panels[(row['app'], row['case'], row['metric'], row['unit'])].append(row)
     charts = []
     for index, (key, entries) in enumerate(sorted(panels.items())):
