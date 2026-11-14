@@ -15,19 +15,19 @@ export class ARQuickLookPreviewItem extends SDKHandle {
    * init(fileAt url: URL)
    * @availability iOS 13.0+
    */
-  static init(url: string): ARQuickLookPreviewItem { return callSDK<ARQuickLookPreviewItem>("QuickLook_1f27952b3c5b81e6", 2901498049794138, undefined, [url]); }
+  static init(url: string): ARQuickLookPreviewItem { return callSDK<ARQuickLookPreviewItem>("QuickLook_64b39a05e4a4cebd", 2901498049794138, undefined, [url]); }
   /**
    * var allowsContentScaling: Bool { get set }
    * @availability iOS 13.0+
    */
-  get allowsContentScaling(): boolean { return callSDK<boolean>("QuickLook_1f27952b3c5b81e6", 1186066548784893, this, []); }
-  set allowsContentScaling(value: boolean) { callSDK<void>("QuickLook_1f27952b3c5b81e6", 1173940297214790, this, [value]); }
+  get allowsContentScaling(): boolean { return callSDK<boolean>("QuickLook_64b39a05e4a4cebd", 1186066548784893, this, []); }
+  set allowsContentScaling(value: boolean) { callSDK<void>("QuickLook_64b39a05e4a4cebd", 1173940297214790, this, [value]); }
   /**
    * var canonicalWebPageURL: URL? { get set }
    * @availability iOS 13.0+
    */
-  get canonicalWebPageURL(): (string) | null { return callSDK<(string) | null>("QuickLook_1f27952b3c5b81e6", 1810269332247320, this, []); }
-  set canonicalWebPageURL(value: (string) | null) { callSDK<void>("QuickLook_1f27952b3c5b81e6", 1843141550850050, this, [value]); }
+  get canonicalWebPageURL(): (string) | null { return callSDK<(string) | null>("QuickLook_64b39a05e4a4cebd", 1810269332247320, this, []); }
+  set canonicalWebPageURL(value: (string) | null) { callSDK<void>("QuickLook_64b39a05e4a4cebd", 1843141550850050, this, [value]); }
   declare readonly $type: { "c:objc(cs)ARQuickLookPreviewItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsContentScaling": true; "canonicalWebPageURL": true };
 }
@@ -38,12 +38,12 @@ export class ARQuickLookPreviewItem extends SDKHandle {
  */
 export class QLFilePreviewRequest extends SDKHandle {
   /** init() */
-  static init(): QLFilePreviewRequest { return callSDK<QLFilePreviewRequest>("QuickLook_1f27952b3c5b81e6", 255249201949488, undefined, []); }
+  static init(): QLFilePreviewRequest { return callSDK<QLFilePreviewRequest>("QuickLook_64b39a05e4a4cebd", 255249201949488, undefined, []); }
   /**
    * var fileURL: URL { get }
    * @availability iOS 15.0+
    */
-  get fileURL(): string { return callSDK<string>("QuickLook_1f27952b3c5b81e6", 2822122445070896, this, []); }
+  get fileURL(): string { return callSDK<string>("QuickLook_64b39a05e4a4cebd", 2822122445070896, this, []); }
   declare readonly $type: { "c:objc(cs)QLFilePreviewRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fileURL": true };
 }
@@ -57,42 +57,42 @@ export class QLPreviewController extends SDKHandle {
    * class func canPreview(_ item: any QLPreviewItem) -> Bool
    * @availability iOS 4.0+
    */
-  static canPreview(item: SDKHandle): Promise<boolean> { return callSDKAsync<boolean>("QuickLook_1f27952b3c5b81e6", 2867335086385924, undefined, [item]); }
+  static canPreview(item: SDKHandle): Promise<boolean> { return callSDKAsync<boolean>("QuickLook_64b39a05e4a4cebd", 2867335086385924, undefined, [item]); }
   /** init() */
-  static init(): Promise<QLPreviewController> { return callSDKAsync<QLPreviewController>("QuickLook_1f27952b3c5b81e6", 3365700199959327, undefined, []); }
+  static init(): Promise<QLPreviewController> { return callSDKAsync<QLPreviewController>("QuickLook_64b39a05e4a4cebd", 3365700199959327, undefined, []); }
   /**
    * func refreshCurrentPreviewItem()
    * @availability iOS 4.0+
    */
-  refreshCurrentPreviewItem(): Promise<void> { return callSDKAsync<void>("QuickLook_1f27952b3c5b81e6", 1883907145875244, this, []); }
+  refreshCurrentPreviewItem(): Promise<void> { return callSDKAsync<void>("QuickLook_64b39a05e4a4cebd", 1883907145875244, this, []); }
   /**
    * func reloadData()
    * @availability iOS 4.0+
    */
-  reloadData(): Promise<void> { return callSDKAsync<void>("QuickLook_1f27952b3c5b81e6", 1623293241894913, this, []); }
+  reloadData(): Promise<void> { return callSDKAsync<void>("QuickLook_64b39a05e4a4cebd", 1623293241894913, this, []); }
   /**
    * var currentPreviewItem: (any QLPreviewItem)? { get }
    * @availability iOS 4.0+
    */
-  get currentPreviewItem(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("QuickLook_1f27952b3c5b81e6", 2831013492893109, this, []); }
+  get currentPreviewItem(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("QuickLook_64b39a05e4a4cebd", 2831013492893109, this, []); }
   /**
    * var currentPreviewItemIndex: Int { get set }
    * @availability iOS 4.0+
    */
-  get currentPreviewItemIndex(): Promise<number> { return callSDKAsync<number>("QuickLook_1f27952b3c5b81e6", 1376689498331102, this, []); }
-  setCurrentPreviewItemIndex(value: number): Promise<void> { return callSDKAsync<void>("QuickLook_1f27952b3c5b81e6", 628525656082357, this, [value]); }
+  get currentPreviewItemIndex(): Promise<number> { return callSDKAsync<number>("QuickLook_64b39a05e4a4cebd", 1376689498331102, this, []); }
+  setCurrentPreviewItemIndex(value: number): Promise<void> { return callSDKAsync<void>("QuickLook_64b39a05e4a4cebd", 628525656082357, this, [value]); }
   /**
    * weak var dataSource: (any QLPreviewControllerDataSource)? { get set }
    * @availability iOS 4.0+
    */
-  get dataSource(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("QuickLook_1f27952b3c5b81e6", 1751484235703057, this, []); }
-  setDataSource(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("QuickLook_1f27952b3c5b81e6", 92692413161052, this, [value]); }
+  get dataSource(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("QuickLook_64b39a05e4a4cebd", 1751484235703057, this, []); }
+  setDataSource(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("QuickLook_64b39a05e4a4cebd", 92692413161052, this, [value]); }
   /**
    * weak var delegate: (any QLPreviewControllerDelegate)? { get set }
    * @availability iOS 4.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("QuickLook_1f27952b3c5b81e6", 1763249759466937, this, []); }
-  setDelegate(value?: (Implements<QLPreviewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("QuickLook_1f27952b3c5b81e6", 2276732600591148, this, [value], [{"protocol":"c:objc(pl)QLPreviewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("QuickLook_64b39a05e4a4cebd", 1763249759466937, this, []); }
+  setDelegate(value?: (Implements<QLPreviewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("QuickLook_64b39a05e4a4cebd", 2276732600591148, this, [value], [{"protocol":"c:objc(pl)QLPreviewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)QLPreviewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "currentPreviewItem": true; "currentPreviewItemIndex": true; "dataSource": true; "delegate": true };
 }
@@ -167,7 +167,7 @@ export const QLPreviewItemEditingMode = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (QLPreviewItemEditingMode) | null { return callSDK<(QLPreviewItemEditingMode) | null>("QuickLook_1f27952b3c5b81e6", 4016841407718323, undefined, [rawValue]); }
+  init(rawValue: number): (QLPreviewItemEditingMode) | null { return callSDK<(QLPreviewItemEditingMode) | null>("QuickLook_64b39a05e4a4cebd", 4016841407718323, undefined, [rawValue]); }
 };
 
 /**
@@ -176,7 +176,7 @@ export const QLPreviewItemEditingMode = {
  */
 export class QLPreviewProvider extends SDKHandle {
   /** init() */
-  static init(): QLPreviewProvider { return callSDK<QLPreviewProvider>("QuickLook_1f27952b3c5b81e6", 603471636159900, undefined, []); }
+  static init(): QLPreviewProvider { return callSDK<QLPreviewProvider>("QuickLook_64b39a05e4a4cebd", 603471636159900, undefined, []); }
   declare readonly $type: { "c:objc(cs)QLPreviewProvider": true; "c:objc(cs)NSObject": true };
 }
 
@@ -189,30 +189,30 @@ export class QLPreviewReply extends SDKHandle {
    * init(fileURL: URL)
    * @availability iOS 15.0+
    */
-  static initFileURL(fileURL: string): QLPreviewReply { return callSDK<QLPreviewReply>("QuickLook_1f27952b3c5b81e6", 4179608923838346, undefined, [fileURL]); }
+  static initFileURL(fileURL: string): QLPreviewReply { return callSDK<QLPreviewReply>("QuickLook_64b39a05e4a4cebd", 4179608923838346, undefined, [fileURL]); }
   /**
    * var attachments: [String : QLPreviewReplyAttachment] { get set }
    * @availability iOS 15.0+
    */
-  get attachments(): $SDK1 { return callSDK<$SDK1>("QuickLook_1f27952b3c5b81e6", 3442553539035301, this, []); }
-  set attachments(value: $SDK1) { callSDK<void>("QuickLook_1f27952b3c5b81e6", 2116121976278122, this, [value]); }
+  get attachments(): $SDK1 { return callSDK<$SDK1>("QuickLook_64b39a05e4a4cebd", 3442553539035301, this, []); }
+  set attachments(value: $SDK1) { callSDK<void>("QuickLook_64b39a05e4a4cebd", 2116121976278122, this, [value]); }
   /**
    * var title: String { get set }
    * @availability iOS 15.0+
    */
-  get title(): string { return callSDK<string>("QuickLook_1f27952b3c5b81e6", 251882235793821, this, []); }
-  set title(value: string) { callSDK<void>("QuickLook_1f27952b3c5b81e6", 4001812458594977, this, [value]); }
+  get title(): string { return callSDK<string>("QuickLook_64b39a05e4a4cebd", 251882235793821, this, []); }
+  set title(value: string) { callSDK<void>("QuickLook_64b39a05e4a4cebd", 4001812458594977, this, [value]); }
   /**
    * convenience init(contextSize: CGSize, isBitmap: Bool, drawUsing closure: @escaping (CGContext, QLPreviewReply) throws -> Void)
    * @availability iOS 15.0+
    */
-  static initContextSizeIsBitmapDrawUsing(contextSize: { width: number; height: number }, isBitmap: boolean, closure: ((arg0: _CoreGraphics_CGContext, arg1: QLPreviewReply) => void)): QLPreviewReply { return callSDK<QLPreviewReply>("QuickLook_1f27952b3c5b81e6", 362670397322358, undefined, [contextSize, isBitmap, closure], [null,null,{"callback":{"out":[]}}]); }
+  static initContextSizeIsBitmapDrawUsing(contextSize: { width: number; height: number }, isBitmap: boolean, closure: ((arg0: _CoreGraphics_CGContext, arg1: QLPreviewReply) => void)): QLPreviewReply { return callSDK<QLPreviewReply>("QuickLook_64b39a05e4a4cebd", 362670397322358, undefined, [contextSize, isBitmap, closure], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var stringEncoding: String.Encoding { get set }
    * @availability iOS 15.0+
    */
-  get stringEncoding(): _Foundation_String_Encoding { return callSDK<_Foundation_String_Encoding>("QuickLook_1f27952b3c5b81e6", 593005040583097, this, []); }
-  set stringEncoding(value: _Foundation_String_Encoding) { callSDK<void>("QuickLook_1f27952b3c5b81e6", 4073203504998, this, [value]); }
+  get stringEncoding(): _Foundation_String_Encoding { return callSDK<_Foundation_String_Encoding>("QuickLook_64b39a05e4a4cebd", 593005040583097, this, []); }
+  set stringEncoding(value: _Foundation_String_Encoding) { callSDK<void>("QuickLook_64b39a05e4a4cebd", 4073203504998, this, [value]); }
   declare readonly $type: { "c:objc(cs)QLPreviewReply": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attachments": true; "title": true };
 }
@@ -226,17 +226,17 @@ export class QLPreviewReplyAttachment extends SDKHandle {
    * init(data: Data, contentType: UTType)
    * @availability iOS 15.0+
    */
-  static init(data: ArrayBuffer, contentType: _UniformTypeIdentifiers_UTType): QLPreviewReplyAttachment { return callSDK<QLPreviewReplyAttachment>("QuickLook_1f27952b3c5b81e6", 283175216411141, undefined, [data, contentType]); }
+  static init(data: ArrayBuffer, contentType: _UniformTypeIdentifiers_UTType): QLPreviewReplyAttachment { return callSDK<QLPreviewReplyAttachment>("QuickLook_64b39a05e4a4cebd", 283175216411141, undefined, [data, contentType]); }
   /**
    * var contentType: UTType { get }
    * @availability iOS 15.0+
    */
-  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("QuickLook_1f27952b3c5b81e6", 552620015947779, this, []); }
+  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("QuickLook_64b39a05e4a4cebd", 552620015947779, this, []); }
   /**
    * var data: Data { get }
    * @availability iOS 15.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("QuickLook_1f27952b3c5b81e6", 1981149952857479, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("QuickLook_64b39a05e4a4cebd", 1981149952857479, this, []); }
   declare readonly $type: { "c:objc(cs)QLPreviewReplyAttachment": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contentType": true; "data": true };
 }
@@ -250,7 +250,7 @@ export class QLPreviewSceneActivationConfiguration extends SDKHandle {
    * init(itemsAt urls: [URL], options: QLPreviewSceneActivationConfiguration.Options?)
    * @availability iOS 15.0+
    */
-  static init(urls: Array<string>, options?: (QLPreviewSceneActivationConfiguration_Options) | null): QLPreviewSceneActivationConfiguration { return callSDK<QLPreviewSceneActivationConfiguration>("QuickLook_1f27952b3c5b81e6", 2289038227399408, undefined, [urls, options]); }
+  static init(urls: Array<string>, options?: (QLPreviewSceneActivationConfiguration_Options) | null): QLPreviewSceneActivationConfiguration { return callSDK<QLPreviewSceneActivationConfiguration>("QuickLook_64b39a05e4a4cebd", 2289038227399408, undefined, [urls, options]); }
   declare readonly $type: { "c:objc(cs)QLPreviewSceneActivationConfiguration": true; "c:objc(cs)UIWindowSceneActivationConfiguration": true; "c:objc(cs)NSObject": true };
 }
 
@@ -260,26 +260,26 @@ export class QLPreviewSceneActivationConfiguration extends SDKHandle {
  */
 export class QLPreviewSceneActivationConfiguration_Options extends SDKHandle {
   /** init() */
-  static init(): QLPreviewSceneActivationConfiguration_Options { return callSDK<QLPreviewSceneActivationConfiguration_Options>("QuickLook_1f27952b3c5b81e6", 4336566858830628, undefined, []); }
+  static init(): QLPreviewSceneActivationConfiguration_Options { return callSDK<QLPreviewSceneActivationConfiguration_Options>("QuickLook_64b39a05e4a4cebd", 4336566858830628, undefined, []); }
   /**
    * var initialPreviewIndex: Int { get set }
    * @availability iOS 15.0+
    */
-  get initialPreviewIndex(): number { return callSDK<number>("QuickLook_1f27952b3c5b81e6", 2538881883022554, this, []); }
-  set initialPreviewIndex(value: number) { callSDK<void>("QuickLook_1f27952b3c5b81e6", 83367937962418, this, [value]); }
+  get initialPreviewIndex(): number { return callSDK<number>("QuickLook_64b39a05e4a4cebd", 2538881883022554, this, []); }
+  set initialPreviewIndex(value: number) { callSDK<void>("QuickLook_64b39a05e4a4cebd", 83367937962418, this, [value]); }
   declare readonly $type: { "c:objc(cs)QLPreviewSceneOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "initialPreviewIndex": true };
 }
 
-registerSDKClass("ARQuickLookPreviewItem", ARQuickLookPreviewItem, { module: "QuickLook_1f27952b3c5b81e6", properties: {"allowsContentScaling":1186066548784893,"canonicalWebPageURL":1810269332247320} });
-registerSDKClass("QLFilePreviewRequest", QLFilePreviewRequest, { module: "QuickLook_1f27952b3c5b81e6", properties: {"fileURL":2822122445070896} });
-registerSDKClass("QLPreviewController", QLPreviewController, { module: "QuickLook_1f27952b3c5b81e6", properties: {"currentPreviewItem":2831013492893109,"currentPreviewItemIndex":1376689498331102,"dataSource":1751484235703057,"delegate":1763249759466937}, methods: {"refreshCurrentPreviewItem":{"id":1883907145875244},"reloadData":{"id":1623293241894913}} });
+registerSDKClass("ARQuickLookPreviewItem", ARQuickLookPreviewItem, { module: "QuickLook_64b39a05e4a4cebd", properties: {"allowsContentScaling":1186066548784893,"canonicalWebPageURL":1810269332247320} });
+registerSDKClass("QLFilePreviewRequest", QLFilePreviewRequest, { module: "QuickLook_64b39a05e4a4cebd", properties: {"fileURL":2822122445070896} });
+registerSDKClass("QLPreviewController", QLPreviewController, { module: "QuickLook_64b39a05e4a4cebd", properties: {"currentPreviewItem":2831013492893109,"currentPreviewItemIndex":1376689498331102,"dataSource":1751484235703057,"delegate":1763249759466937}, methods: {"refreshCurrentPreviewItem":{"id":1883907145875244},"reloadData":{"id":1623293241894913}} });
 registerSDKProtocol("c:objc(pl)QLPreviewControllerDataSource", {"numberOfPreviewItemsIn":"numberOfPreviewItems(in:)","previewControllerPreviewItemAt":"previewController(_:previewItemAt:)"});
 registerSDKProtocol("c:objc(pl)QLPreviewControllerDelegate", {"previewControllerWillDismiss":"previewControllerWillDismiss(_:)","previewControllerDidDismiss":"previewControllerDidDismiss(_:)","previewControllerDidUpdateContentsOf":"previewController(_:didUpdateContentsOf:)","previewControllerDidSaveEditedCopyOfAt":"previewController(_:didSaveEditedCopyOf:at:)"});
 registerSDKProtocol("c:objc(pl)QLPreviewingController", {"preparePreviewOfSearchableItemIdentifierQueryString":"preparePreviewOfSearchableItem(identifier:queryString:)","preparePreviewOfFileAt":"preparePreviewOfFile(at:)","providePreviewFor":"providePreview(for:)"});
 registerSDKProtocol("c:objc(pl)QLPreviewItem", {});
-registerSDKClass("QLPreviewProvider", QLPreviewProvider, { module: "QuickLook_1f27952b3c5b81e6", properties: {} });
-registerSDKClass("QLPreviewReply", QLPreviewReply, { module: "QuickLook_1f27952b3c5b81e6", properties: {"attachments":3442553539035301,"title":251882235793821} });
-registerSDKClass("QLPreviewReplyAttachment", QLPreviewReplyAttachment, { module: "QuickLook_1f27952b3c5b81e6", properties: {"contentType":552620015947779,"data":1981149952857479} });
-registerSDKClass("QLPreviewSceneActivationConfiguration", QLPreviewSceneActivationConfiguration, { module: "QuickLook_1f27952b3c5b81e6", properties: {} });
-registerSDKClass("QLPreviewSceneOptions", QLPreviewSceneActivationConfiguration_Options, { module: "QuickLook_1f27952b3c5b81e6", properties: {"initialPreviewIndex":2538881883022554} });
+registerSDKClass("QLPreviewProvider", QLPreviewProvider, { module: "QuickLook_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("QLPreviewReply", QLPreviewReply, { module: "QuickLook_64b39a05e4a4cebd", properties: {"attachments":3442553539035301,"title":251882235793821} });
+registerSDKClass("QLPreviewReplyAttachment", QLPreviewReplyAttachment, { module: "QuickLook_64b39a05e4a4cebd", properties: {"contentType":552620015947779,"data":1981149952857479} });
+registerSDKClass("QLPreviewSceneActivationConfiguration", QLPreviewSceneActivationConfiguration, { module: "QuickLook_64b39a05e4a4cebd", properties: {} });
+registerSDKClass("QLPreviewSceneOptions", QLPreviewSceneActivationConfiguration_Options, { module: "QuickLook_64b39a05e4a4cebd", properties: {"initialPreviewIndex":2538881883022554} });
