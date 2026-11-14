@@ -29,17 +29,7 @@ else
   args+=(-destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO ARCHS=arm64 ONLY_ACTIVE_ARCH=YES)
   platform=iphonesimulator
 fi
-python3 - "$derived/Build/Products/Release-$platform/OneBench.app" "$output/apps/$engine/OneBench.app" <<'PYCLEAN'
-from pathlib import Path
-import shutil
-import sys
-for value in sys.argv[1:]:
-    app = Path(value)
-    if app.exists():
-        if app.name != 'OneBench.app' or app.is_symlink():
-            raise RuntimeError(f'unexpected app product: {app}')
-        shutil.rmtree(app)
-PYCLEAN
+bun "$root/scripts/bench/artifacts.ts" clean "$derived/Build/Products/Release-$platform/OneBench.app" "$output/apps/$engine/OneBench.app"
 nice -n 10 xcodebuild "${args[@]}" build > "$output/build-$engine-$target.log" 2>&1
 if [ "$(git rev-parse HEAD)" != "$source_commit" ] || ! git diff --quiet HEAD -- examples/one-bench packages; then
   echo "source changed during build; discard this result" >&2
@@ -48,26 +38,4 @@ fi
 mkdir -p "$output/apps/$engine"
 ditto "$derived/Build/Products/Release-$platform/OneBench.app" "$output/apps/$engine/OneBench.app"
 printf "%s\n" "$source_commit" > "$output/apps/$engine/commit.txt"
-python3 - "$output/apps/$engine" "$engine" "$target" <<'PYMETA'
-import hashlib
-import json
-from pathlib import Path
-import subprocess
-import sys
-folder, engine, target = Path(sys.argv[1]), sys.argv[2], sys.argv[3]
-files = sorted(p for p in (folder / 'OneBench.app').rglob('*') if p.is_file())
-metadata = dict(engine=engine, target=target, commit=(folder / 'commit.txt').read_text().strip(),
-                xcode=subprocess.check_output(['xcodebuild', '-version'], text=True).strip(),
-                appBytes=sum(p.stat().st_size for p in files))
-bundle = (folder / 'OneBench.app/main.jsbundle').read_bytes()
-if engine == 'hermes' and bundle[:8] != bytes.fromhex('c61fbc03c103191f'):
-    raise RuntimeError('Hermes build does not contain shipped Hermes bytecode')
-if engine == 'bun':
-    if bundle != b'/*bun-compiled-entry*/':
-        raise RuntimeError('Bun build has no compiled entry marker')
-    for framework in ['Bun', 'BunCompat']:
-        binary = folder / f'OneBench.app/Frameworks/{framework}.framework/{framework}'
-        metadata[f'{framework}Sha256'] = hashlib.sha256(binary.read_bytes()).hexdigest()
-metadata['bundleSha256'] = hashlib.sha256(bundle).hexdigest()
-(folder / 'build.json').write_text(json.dumps(metadata, indent=2) + '\n')
-PYMETA
+bun "$root/scripts/bench/artifacts.ts" manifest "$output/apps/$engine" "$engine" "$target"

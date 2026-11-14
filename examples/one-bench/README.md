@@ -16,7 +16,7 @@ The suite measures:
 On the signing Mac:
 
 ```sh
-python3 scripts/bench/run-ios.py \
+bun scripts/bench/run-ios.ts \
   --device 00008150-001808862187801C --device-name 'iPhone Air' --os '<actual version>' \
   --commit "$(git rev-parse HEAD)" \
   --app hermes="$HOME/builders/.scratch/bun-bench/apps/hermes/OneBench.app" \
@@ -26,12 +26,12 @@ python3 scripts/bench/run-ios.py \
 
 The runner holds the shared phone lock throughout, installs each build as needed, uses `--terminate-existing`, and alternates AB for ten launches per engine (`--order balanced` selects AB then BA). These are process-cold launches with warm OS caches, not reboot-cold launches. Each console log is retained. Incomplete launches and coverage changes fail rather than silently dropping samples. Keep the phone unlocked, at a stable temperature and without other foreground workloads. Power mode and thermal state are captured at launch. Record OS version, battery and thermal conditions alongside the run. The runner installs each distinct bundle ID once. If external apps reuse one ID across engines, it reinstalls on each switch; disclose that in published comparisons. The 10-second cooldown and retained OS caches are part of the measurement conditions.
 
-Apps that remain open after their benchmark, such as Team Machine, can use `run-ios.py --stop-on-done`. The runner streams console output to disk, stops capture on `BENCH_DONE` or `BENCH_ERROR`, and treats an error marker as a failed run. It terminates its own devicectl process; the next launch uses `--terminate-existing` before starting the next process-cold run. A `BENCH_ERROR` marker or an iOS locked-device launch refusal always stops capture immediately, including without `--stop-on-done`. The app must send BENCH lines to the console that devicectl captures. BENCH_META may include `app` and `engine` alongside `os`.
+Apps that remain open after their benchmark, such as Team Machine, can use `run-ios.ts --stop-on-done`. The runner streams console output to disk, stops capture on `BENCH_DONE` or `BENCH_ERROR`, and treats an error marker as a failed run. It terminates its own devicectl process; the next launch uses `--terminate-existing` before starting the next process-cold run. A `BENCH_ERROR` marker or an iOS locked-device launch refusal always stops capture immediately, including without `--stop-on-done`. The app must send BENCH lines to the console that devicectl captures. BENCH_META may include `app` and `engine` alongside `os`.
 
 The generic report command accepts any app's BENCH lines:
 
 ```sh
-python3 scripts/bench/report.py <console.log> ... --out <charts-dir> \
+bun scripts/bench/report.ts <console.log> ... --out <charts-dir> \
   --device 'iPhone Air' --os '<actual version>' --commit '<source commit>'
 ```
 
@@ -42,3 +42,9 @@ Raw JSON preserves every sample. Summary JSON reports count, median, quartiles a
 For back-to-back simulator comparisons, build both Release engines with `scripts/bench/build-ios.sh hermes simulator` and `scripts/bench/build-ios.sh bun simulator`. The simulator runtime and compiler must match. Each engine gets a distinct bundle ID on simulator as well as device.
 
 Run the same collector with `--simulator <claimed-booted-UDID>` instead of `--device`, `--host <machine-name>`, `--device-name 'iPhone 17 Pro'`, `--os <simulator-version>` and `--cooldown 0`. Keep the two `--app` paths and source commit as above. It installs each app once, alternates AB until there are ten samples per engine, and produces the same raw JSON, summary and SVGs. The chart labels include simulator and host. Simulator results describe the simulator on that Mac and are not evidence of iPhone device performance.
+
+Simulator Bun defaults to allowing JIT. For an AoT comparison, pass `--engine-env bun:BUN_JSC_useJIT=false --engine-env bun:BUN_JSC_useWasm=false`. The collector prefixes these with `SIMCTL_CHILD_` for Bun's launch only; Hermes is unchanged. Raw metadata records the per-engine environment and the chart method labels JIT/Wasm off. This still measures a Mac simulator, not an iPhone. Start with one launch per engine before the ten-run series.
+
+Apps that need host memory samples can emit `BENCH_PHASE {"app":"team-machine","case":"frozen-fleet-startup","run":0}`. On simulator, the collector finds that installed app's live executable and records `vmmap -summary` physical footprint as `host-physical-footprint` in MiB for the named case. It also samples `case: "complete"` on `BENCH_DONE`, before stopping console capture. The app must remain running until capture stops. Raw vmmap output is retained with the console log. Emit another named phase after open-chat if that stage needs its own label. The micro app uses its native footprint samples and emits no phase markers, so host sampling adds no work to its timed cases.
+
+The tools use TypeScript and Node APIs, with Bun as the script runner. Simulator ownership comes from sim-claim. Physical-device runs use the system `flock` executable around the whole collector; no JavaScript FFI or library dependency is needed.
