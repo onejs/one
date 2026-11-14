@@ -1,10 +1,8 @@
-import {
-  NotificationCenter,
-  NSNotification_Name,
-  OperationQueue,
-  ProcessInfo,
-} from 'one/ios/Foundation'
-import { UIDevice } from 'one/ios/UIKit'
+import { NotificationCenter } from 'one/ios/Foundation/NotificationCenter'
+import { NSNotification_Name } from 'one/ios/Foundation/NSNotification'
+import { OperationQueue } from 'one/ios/Foundation/OperationQueue'
+import { ProcessInfo } from 'one/ios/Foundation/ProcessInfo'
+import { UIDevice } from 'one/ios/UIKit/UIDevice'
 import type { SDKHandle } from 'one/ios-runtime'
 import type { HybridObject } from 'react-native-nitro-modules'
 import { isSimulatorEnvironment } from '../device/map'
@@ -115,8 +113,11 @@ async function startIfNeeded(): Promise<void> {
   observers = [
     center.addObserver(levelName, null, queue, () => levelChanged()),
     center.addObserver(stateName, null, queue, () => stateChanged()),
-    center.addObserver(NSNotification_Name.NSProcessInfoPowerStateDidChange, null, queue, () =>
-      lowPowerChanged()
+    center.addObserver(
+      NSNotification_Name.NSProcessInfoPowerStateDidChange,
+      null,
+      queue,
+      () => lowPowerChanged()
     ),
   ]
   lastLevel = await device.batteryLevel

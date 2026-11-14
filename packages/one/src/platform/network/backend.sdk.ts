@@ -1,14 +1,19 @@
-import { NWPathMonitor, type NWPath } from 'one/ios/Network'
-import { DispatchQueue } from 'one/ios/Dispatch'
+import { NWPathMonitor } from 'one/ios/Network/NWPathMonitor'
+import type { NWPath } from 'one/ios/Network'
+import { DispatchQueue } from 'one/ios/Dispatch/DispatchQueue'
 import type { NetworkState, NetworkStateType } from './types'
 
 function state(path: NWPath): NetworkState {
   if (path.status !== 'satisfied') {
     return { type: 'none', isConnected: false, isInternetReachable: false }
   }
-  const type: NetworkStateType = path.usesInterfaceType('cellular') ? 'cellular'
-    : path.usesInterfaceType('wifi') ? 'wifi'
-    : path.usesInterfaceType('wiredEthernet') ? 'ethernet' : 'unknown'
+  const type: NetworkStateType = path.usesInterfaceType('cellular')
+    ? 'cellular'
+    : path.usesInterfaceType('wifi')
+      ? 'wifi'
+      : path.usesInterfaceType('wiredEthernet')
+        ? 'ethernet'
+        : 'unknown'
   return { type, isConnected: true, isInternetReachable: true }
 }
 
@@ -20,9 +25,14 @@ function getState(): Promise<NetworkState> {
       if (settled) return
       settled = true
       monitor.cancel()
-      reject(Object.assign(new Error('Network.getState: timed out waiting for the network path.'), {
-        code: 'E_NETWORK_TIMEOUT',
-      }))
+      reject(
+        Object.assign(
+          new Error('Network.getState: timed out waiting for the network path.'),
+          {
+            code: 'E_NETWORK_TIMEOUT',
+          }
+        )
+      )
     }, 5000)
     monitor.pathUpdateHandler = (path) => {
       if (settled) return

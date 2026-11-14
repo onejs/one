@@ -1,18 +1,14 @@
-import {
-  Bundle,
-  Calendar as NativeCalendar,
-  CharacterSet,
-  NSError,
-  NSString,
-} from 'one/ios/Foundation'
-import {
-  EKEvent,
-  EKEventStore,
-  EKRecurrenceEnd,
-  EKRecurrenceRule,
-  EKReminder,
-  type EKCalendarItem,
-} from 'one/ios/EventKit'
+import { Bundle } from 'one/ios/Foundation/Bundle'
+import { Calendar as NativeCalendar } from 'one/ios/Foundation/Calendar'
+import { CharacterSet } from 'one/ios/Foundation/CharacterSet'
+import { NSError } from 'one/ios/Foundation/NSError'
+import { NSString } from 'one/ios/Foundation/NSString'
+import { EKEvent } from 'one/ios/EventKit/EKEvent'
+import { EKEventStore } from 'one/ios/EventKit/EKEventStore'
+import { EKRecurrenceEnd } from 'one/ios/EventKit/EKRecurrenceEnd'
+import { EKRecurrenceRule } from 'one/ios/EventKit/EKRecurrenceRule'
+import { EKReminder } from 'one/ios/EventKit/EKReminder'
+import type { EKCalendarItem } from 'one/ios/EventKit'
 import type {
   CalendarEvent,
   CalendarEventChanges,
@@ -103,9 +99,7 @@ function request(reminders: boolean): Promise<CalendarPermissionStatus> {
         _granted: boolean,
         error: { $handle: NSError['$handle'] } | null
       ) => {
-        const status = reminders
-          ? getRemindersPermissionStatus()
-          : getPermissionStatus()
+        const status = reminders ? getRemindersPermissionStatus() : getPermissionStatus()
         if (status === 'notDetermined' && error) {
           reject(
             failure(
@@ -250,11 +244,7 @@ async function create(input: CalendarEventInput): Promise<string> {
       )
     const calendar = store().defaultCalendarForNewEvents
     if (!calendar)
-      throw failure(
-        'CALENDAR_UNAVAILABLE',
-        'create',
-        'no writable calendar is available'
-      )
+      throw failure('CALENDAR_UNAVAILABLE', 'create', 'no writable calendar is available')
     const event = EKEvent.init(store())
     event.calendar = calendar
     event.title = title
@@ -300,19 +290,11 @@ async function update(
     }
     const event = await occurrence(identifier, originalStartMs)
     if (!event)
-      throw failure(
-        'CALENDAR_NOT_FOUND',
-        'update',
-        'event occurrence was not found'
-      )
+      throw failure('CALENDAR_NOT_FOUND', 'update', 'event occurrence was not found')
     const startMs = changes.startMs ?? event.startDate!.getTime()
     const endMs = changes.endMs ?? event.endDate!.getTime()
     if (!finiteTime(startMs) || !finiteTime(endMs) || endMs <= startMs) {
-      throw failure(
-        'CALENDAR_INPUT',
-        'update',
-        'increasing finite times are required'
-      )
+      throw failure('CALENDAR_INPUT', 'update', 'increasing finite times are required')
     }
     if (changes.title !== undefined) {
       const title = trim(changes.title)
@@ -329,8 +311,7 @@ async function update(
       throw failure('CALENDAR_SAVE', 'update', detail(error))
     }
     const result = info(event)
-    if (!result)
-      throw failure('CALENDAR_SAVE', 'update', 'saved event has no identifier')
+    if (!result) throw failure('CALENDAR_SAVE', 'update', 'saved event has no identifier')
     return result
   })
 }
@@ -346,11 +327,7 @@ async function remove(identifier: string, startMs: number): Promise<void> {
       )
     const event = await occurrence(identifier, startMs)
     if (!event)
-      throw failure(
-        'CALENDAR_NOT_FOUND',
-        'delete',
-        'event occurrence was not found'
-      )
+      throw failure('CALENDAR_NOT_FOUND', 'delete', 'event occurrence was not found')
     try {
       await callSDKMethodAsync(store(), 'removeSpanCommit', event, 'thisEvent', true)
     } catch (error) {
@@ -415,9 +392,7 @@ async function listReminders(
           ? 0
           : 1
     })
-    return dated
-      .slice(0, limit)
-      .map(({ reminder, date }) => reminderInfo(reminder, date))
+    return dated.slice(0, limit).map(({ reminder, date }) => reminderInfo(reminder, date))
   })
 }
 
@@ -467,10 +442,7 @@ async function createReminder(input: ReminderInput): Promise<string> {
   })
 }
 
-async function findReminder(
-  identifier: string,
-  operation: string
-): Promise<EKReminder> {
+async function findReminder(identifier: string, operation: string): Promise<EKReminder> {
   access(operation, true)
   if (!trim(identifier))
     throw failure('REMINDERS_INPUT', operation, 'identifier is required')

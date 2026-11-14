@@ -1,4 +1,4 @@
-import { UIApplication } from 'one/ios/UIKit'
+import { UIApplication } from 'one/ios/UIKit/UIApplication'
 import { keepAwakeDefaultTag } from './validate'
 
 let tags = new Set<string>()
@@ -14,7 +14,10 @@ function update(tag: string, enabled: boolean): Promise<void> {
     await (await UIApplication.shared).setIsIdleTimerDisabled(next.size > 0)
     tags = next
   })
-  pending = operation.then(() => {}, () => {})
+  pending = operation.then(
+    () => {},
+    () => {}
+  )
   return operation
 }
 

@@ -1,5 +1,6 @@
-import { Bundle, NSError } from 'one/ios/Foundation'
-import { UIApplication } from 'one/ios/UIKit'
+import { Bundle } from 'one/ios/Foundation/Bundle'
+import { NSError } from 'one/ios/Foundation/NSError'
+import { UIApplication } from 'one/ios/UIKit/UIApplication'
 
 let changing = false
 
@@ -35,10 +36,18 @@ const backend = {
     try {
       if ((await app.alternateIconName) === (name ?? null)) return
       await new Promise<void>((resolve, reject) => {
-        app.setAlternateIconName(name, (error) => {
-          if (error) reject(failure('E_APP_ICON_CHANGE', new NSError(error.$handle).localizedDescription))
-          else resolve()
-        }).catch(reject)
+        app
+          .setAlternateIconName(name, (error) => {
+            if (error)
+              reject(
+                failure(
+                  'E_APP_ICON_CHANGE',
+                  new NSError(error.$handle).localizedDescription
+                )
+              )
+            else resolve()
+          })
+          .catch(reject)
       })
     } finally {
       changing = false
