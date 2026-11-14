@@ -24,6 +24,7 @@ type PublishArgs = {
   metadata?: string | string[]
   intermediatesOut?: string | string[]
   runtimeVersion?: string | string[]
+  engine?: string | string[]
 }
 
 function lastValue(value: string | string[] | undefined): string | undefined {
@@ -115,14 +116,18 @@ function resolveHermesc(root: string, platform: string): string {
   return npm
 }
 
-// one prebuild reads the runtime version from native.app.updates. an app
-// whose native project comes from expo prebuild configures One.Updates
-// through vxrn/expo-plugin instead and has no native.app, so it names the
-// runtime version it built with on the command line.
-async function resolveRuntimeVersion(
+// one prebuild reads the runtime version from native.app.updates and the
+// engine from native.app.ios. an app whose native project comes from expo
+// prebuild configures them through vxrn/expo-plugin instead and has no
+// native.app, so it names what it built with on the command line.
+async function resolveNativeBuild(
   platform: 'ios' | 'android',
-  flag: string | undefined
-): Promise<string> {
+  flag: string | undefined,
+  engineFlag: string | undefined
+): Promise<{ runtimeVersion: string; engine: 'hermes' | 'bun' }> {
+  if (engineFlag !== undefined && engineFlag !== 'hermes' && engineFlag !== 'bun') {
+    throw new Error('[one] --engine must be hermes or bun')
+  }
   const { oneOptions } = await loadUserOneOptions('build', true)
   const native = oneOptions?.native
   const app = typeof native === 'object' ? native.app : undefined
@@ -132,7 +137,7 @@ async function resolveRuntimeVersion(
         '[one] one updates publish needs native.app.updates.runtimeVersion, or --runtime-version for an app built with expo prebuild: the binary only takes updates published for its own runtime version'
       )
     }
-    return flag
+    return { runtimeVersion: flag, engine: platform === 'ios' && engineFlag === 'bun' ? 'bun' : 'hermes' }
   }
   validateNativeApp(app, platform)
   const runtimeVersion = app.updates?.runtimeVersion
@@ -146,7 +151,11 @@ async function resolveRuntimeVersion(
       `[one] --runtime-version ${flag} differs from native.app.updates.runtimeVersion ${runtimeVersion}`
     )
   }
-  return runtimeVersion
+  const engine = platform === 'ios' && app.ios?.engine === 'bun' ? 'bun' : 'hermes'
+  if (engineFlag !== undefined && engineFlag !== engine) {
+    throw new Error(`[one] --engine ${engineFlag} differs from the ${engine} engine native.app builds`)
+  }
+  return { runtimeVersion, engine }
 }
 
 export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
@@ -174,9 +183,12 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
     }
   }
   const root = process.cwd()
-  const runtimeVersion = await resolveRuntimeVersion(
+  // citty parses a numeric flag such as 81 as a number; the manifest needs a string
+  const runtimeVersionFlag = lastValue(args.runtimeVersion)
+  const { runtimeVersion, engine } = await resolveNativeBuild(
     platform,
-    lastValue(args.runtimeVersion)
+    runtimeVersionFlag === undefined ? undefined : String(runtimeVersionFlag),
+    lastValue(args.engine)
   )
   if (existsSync(out) && readdirSync(out).length > 0) {
     throw new Error(
@@ -204,8 +216,11 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
   const bundleJs = join(work, 'bundle.js')
   const packagerMap = join(work, 'bundle.js.map')
   const assetsDir = join(work, 'assets')
-  const bytecode = join(work, 'main.jsbundle')
+  const hermesBytecode = join(work, 'main.jsbundle')
   const composedMap = join(work, 'main.jsbundle.map')
+  // the bun engine's native code is signed into the binary, so an update
+  // ships the plain bundle, which bun's interpreter runs
+  const launchFile = engine === 'bun' ? bundleJs : hermesBytecode
   try {
     // the same bundle command the embedded builders run, through the same
     // react-native config override, so the bundler and entry match the
@@ -235,46 +250,50 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
       ],
       { cwd: root, stdio: 'inherit' }
     )
-    // the same compiler and flags as the embedded builders: -O bytecode,
-    // warnings off on android like the gradle task. generating a hermes map
-    // changes the bytecode, so keep the map paired with this exact output.
-    const hermesc = resolveHermesc(root, platform)
-    const hermescArgs = ['-emit-binary', '-max-diagnostic-width=80']
-    if (platform === 'android') hermescArgs.push('-w')
-    hermescArgs.push('-O')
-    if (intermediatesOut) hermescArgs.push('-output-source-map')
-    hermescArgs.push('-out', bytecode, bundleJs)
-    try {
-      execFileSync(hermesc, hermescArgs, { cwd: root, stdio: 'inherit' })
-    } catch (error) {
-      throw new Error(
-        `[one] hermesc failed to compile the ${platform} update bundle${error instanceof Error ? `: ${error.message}` : ''}`
-      )
+    if (engine === 'hermes') {
+      // the same compiler and flags as the embedded builders: -O bytecode,
+      // warnings off on android like the gradle task. generating a hermes map
+      // changes the bytecode, so keep the map paired with this exact output.
+      const hermesc = resolveHermesc(root, platform)
+      const hermescArgs = ['-emit-binary', '-max-diagnostic-width=80']
+      if (platform === 'android') hermescArgs.push('-w')
+      hermescArgs.push('-O')
+      if (intermediatesOut) hermescArgs.push('-output-source-map')
+      hermescArgs.push('-out', hermesBytecode, bundleJs)
+      try {
+        execFileSync(hermesc, hermescArgs, { cwd: root, stdio: 'inherit' })
+      } catch (error) {
+        throw new Error(
+          `[one] hermesc failed to compile the ${platform} update bundle${error instanceof Error ? `: ${error.message}` : ''}`
+        )
+      }
+      if (intermediatesOut) {
+        const require = createRequire(join(root, 'package.json'))
+        const reactNativeJson = require.resolve('react-native/package.json')
+        const composeSourceMaps = join(
+          reactNativeJson.slice(0, -'package.json'.length),
+          'scripts',
+          'compose-source-maps.js'
+        )
+        execFileSync(
+          process.execPath,
+          [composeSourceMaps, packagerMap, `${hermesBytecode}.map`, '-o', composedMap],
+          { cwd: root, stdio: 'inherit' }
+        )
+      }
     }
     if (intermediatesOut) {
-      const require = createRequire(join(root, 'package.json'))
-      const reactNativeJson = require.resolve('react-native/package.json')
-      const composeSourceMaps = join(
-        reactNativeJson.slice(0, -'package.json'.length),
-        'scripts',
-        'compose-source-maps.js'
-      )
-      execFileSync(
-        process.execPath,
-        [composeSourceMaps, packagerMap, `${bytecode}.map`, '-o', composedMap],
-        { cwd: root, stdio: 'inherit' }
-      )
       writeFileSync(join(intermediatesOut, 'bundle.js'), readFileSync(bundleJs))
       writeFileSync(
         join(intermediatesOut, 'main.jsbundle.map'),
-        readFileSync(composedMap)
+        readFileSync(engine === 'bun' ? packagerMap : composedMap)
       )
     }
 
     // asset paths install next to the selected bundle loaded from a file url.
     // every served file is content-named.
-    const bundleHash = sha256Base64Url(bytecode)
-    writeFileSync(join(assetsOut, bundleHash), readFileSync(bytecode))
+    const bundleHash = sha256Base64Url(launchFile)
+    writeFileSync(join(assetsOut, bundleHash), readFileSync(launchFile))
     const assets: Array<{ hash: string; url: string; path: string }> = []
     const assetFiles = collectFiles(assetsDir).map((file) => ({
       file,
