@@ -700,6 +700,14 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
     } catch (error) {
       throw new Error(`[vxrn/expo-plugin] cannot resolve the one package: ${error.message}`)
     }
+    // a linux or windows host still generates the project; it has no iOS SDK to
+    // build the bindings pod, which only a mac compiles.
+    if (process.platform !== 'darwin') {
+      console.warn(
+        `[vxrn/expo-plugin] iOS SDK generation was skipped on ${process.platform}; the bindings pod is generated on macOS`
+      )
+      return []
+    }
     const { writeAppSdkPod } = await import(pathToFileURL(appModule).href)
     return writeAppSdkPod(projectRoot)
   }
