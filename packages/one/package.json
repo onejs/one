@@ -266,6 +266,7 @@
     "test": "bun run vitest --run",
     "test:zero-native": "bun tests/zero-native/run.ts",
     "test:zero-nitro": "bun tests/zero-native/run-nitro.ts",
+    "test:zero-contrast": "bun tests/zero-native/run-contrast.ts",
     "typecheck": "tsc --noEmit",
     "watch": "tamagui-build --watch",
     "generate": "bun codegen/generate.ts",

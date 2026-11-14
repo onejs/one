@@ -156,6 +156,23 @@ ONE_ZERO_HERMES_ROOT=/path/to/extracted-hermes-distribution \
 bun run test:zero-nitro
 ```
 
+With Contrast's generated data layout and installed dependencies available:
+
+```sh
+ONE_ZERO_CONTRAST_ROOT=/path/to/contrast \
+ONE_ZERO_TEST_DIR=/path/to/task-scratch \
+ONE_ZERO_DRIVER=/path/to/task-scratch/build/one-zero-driver \
+bun run test:zero-contrast
+```
+
+This consumer integration compares the real mobile sync manifest and repository
+queries with Contrast's installed Zero client. It opens independent user,
+project and repository replicas, seeds synthetic rows under the actual schema,
+and compares complete ordered/nested results. It uses client query semantics;
+server authorization and the running Contrast UI are outside this check.
+The current trace compares 26 mobile registrations and eight repository query
+variants under a 63-table schema, with 15 mobile queries returning fixture rows.
+
 The first command builds the pure engine and runs durable optimistic/replay,
 rollback, acknowledgement, subscription, abrupt process-exit and HTTP transport
 scenarios. It also compares ordered and nested results with the executable Zero
@@ -217,6 +234,7 @@ adoption decisions and additional compatibility work.
 | Android native Zero runtime and complete cloud app integration                 | Pending                                                 |
 | Pinned upstream WebSocket protocol, storage recovery and full upstream suite                                 | Pending                                                 |
 | Desktop engine comparison with the pinned in-memory client                                                   | Isolated alternating runs; matching query results and observed mutations |
+| Contrast mobile manifest and repository query results | 34 comparisons against the installed client over synthetic fixtures; actual app adoption pending |
 | Production mobile performance and binary-size comparison                                                     | Pending                                                 |
 
 The generic runtime probe exercises the generated bridge, generated identity
