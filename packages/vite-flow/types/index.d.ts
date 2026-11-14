@@ -1,5 +1,5 @@
 import type { FilterPattern, PluginOption } from 'vite';
-export { transformFlow, transformFlowBabel } from './transformFlowBabel';
+export { transformFlow, transformFlowBabel } from './transformFlowBabel.js';
 export type Options = {
     include?: FilterPattern;
     exclude?: FilterPattern;

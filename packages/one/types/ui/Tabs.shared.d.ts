@@ -1,7 +1,7 @@
 import { type DefaultNavigatorOptions, type ParamListBase, type TabNavigationState, type TabRouterOptions } from '@react-navigation/native';
 import { type HTMLAttributes, type PropsWithChildren } from 'react';
-import { type ScreenTrigger } from './common';
-import { type ExpoTabsScreenOptions, type TabNavigationEventMap, type TabsContextValue } from './TabContext';
+import { type ScreenTrigger } from './common.js';
+import { type ExpoTabsScreenOptions, type TabNavigationEventMap, type TabsContextValue } from './TabContext.js';
 export type UseTabsOptions = Omit<DefaultNavigatorOptions<ParamListBase, TabNavigationState<any>, ExpoTabsScreenOptions, TabNavigationEventMap, any>, 'children'> & {
     backBehavior?: TabRouterOptions['backBehavior'];
 };

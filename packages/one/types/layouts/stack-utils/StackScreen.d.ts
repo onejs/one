@@ -1,7 +1,7 @@
 import type { ParamListBase, StackNavigationState } from '@react-navigation/native';
 import type { NativeStackNavigationEventMap, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { type PropsWithChildren } from 'react';
-import type { ScreenProps } from '../../router/useScreens';
+import type { ScreenProps } from '../../router/useScreens.js';
 export type StackScreenOptions = Omit<NativeStackNavigationOptions, 'presentation'> & {
     presentation?: NativeStackNavigationOptions['presentation'] | 'sheet' | (string & {});
     /**

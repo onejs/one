@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { MapProps } from './generated/controlTypes';
+import type { MapProps } from './generated/controlTypes.js';
 export interface MapControlsSlot {
     children?: ReactNode;
 }

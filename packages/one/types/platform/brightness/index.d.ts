@@ -1,5 +1,5 @@
-import type { BrightnessMode, BrightnessPermissionResponse, BrightnessSubscription } from './types';
-export type { BrightnessEvent, BrightnessMode, BrightnessPermissionResponse, BrightnessPermissionStatus, BrightnessSubscription, } from './types';
+import type { BrightnessMode, BrightnessPermissionResponse, BrightnessSubscription } from './types.js';
+export type { BrightnessEvent, BrightnessMode, BrightnessPermissionResponse, BrightnessPermissionStatus, BrightnessSubscription, } from './types.js';
 declare function get(): Promise<number>;
 declare function set(value: number): Promise<void>;
 declare function getSystem(): Promise<number>;

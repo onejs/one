@@ -1,4 +1,4 @@
-import type { MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeController, MFMessageComposeController } from './types';
+import type { MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeController, MFMessageComposeController } from './types.js';
 export declare class MFMailComposeViewController implements MFMailComposeController {
     static canSendMail(): boolean;
     mailComposeDelegate: MFMailComposeViewControllerDelegate<MFMailComposeViewController> | null;
@@ -21,7 +21,7 @@ export declare class MFMessageComposeViewController implements MFMessageComposeC
     recipients: string[] | undefined;
     body: string | undefined;
     subject: string | undefined;
-    get attachments(): import('./types').MessageAttachment[];
+    get attachments(): import('./types.js').MessageAttachment[];
     disableUserAttachments(): void;
     addAttachmentData(_attachment: ArrayBuffer, _typeIdentifier: string, _filename: string): boolean;
     addAttachmentURL(_attachmentURL: string, _withAlternateFilename?: string): boolean;

@@ -1,7 +1,7 @@
-import type { OneRouter } from '../interfaces/router';
-import type { OneLinkingConfig } from '../link/getLinking';
-import { type OneLinkingOptions } from './getLinkingConfig';
-import type { RouteNode } from './Route';
+import type { OneRouter } from '../interfaces/router.js';
+import type { OneLinkingConfig } from '../link/getLinking.js';
+import { type OneLinkingOptions } from './getLinkingConfig.js';
+import type { RouteNode } from './Route.js';
 export declare function getResolvedLinking(): OneLinkingOptions | undefined;
 export declare function setLinking(_: OneLinkingOptions): void;
 export declare function resetLinking(): void;

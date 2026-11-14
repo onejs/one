@@ -1,4 +1,4 @@
-import { type SyncState } from './syncStore';
+import { type SyncState } from './syncStore.js';
 export type NativeState<T> = SyncState<T>;
 export declare function useNativeState<T>(initial: T): NativeState<T>;
 export declare function syncHandleOf<T>(value: T | SyncState<T>): SyncState<T> | null;

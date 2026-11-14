@@ -1,4 +1,4 @@
-import type { One } from './vite/types';
+import type { One } from './vite/types.js';
 export declare const isWebClient: boolean;
 export declare const isWebServer: boolean;
 export declare const isNative: boolean;

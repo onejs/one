@@ -1,7 +1,7 @@
 import { type BottomTabNavigationEventMap, type BottomTabNavigationOptions, type BottomTabNavigatorProps } from '@react-navigation/bottom-tabs';
 import type { ParamListBase, TabNavigationState } from '@react-navigation/native';
-import { Protected } from '../views/Protected';
-import { type LayoutNavigator, type LayoutScreen } from './withLayoutContext';
+import { Protected } from '../views/Protected.js';
+import { type LayoutNavigator, type LayoutScreen } from './withLayoutContext.js';
 export type TabsScreenOptions = BottomTabNavigationOptions & {
     /** Web only: the tab's link target. Native layouts reject it. */
     href?: string | null;

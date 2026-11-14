@@ -1,4 +1,4 @@
-import type { BatteryLevelEvent, BatteryPowerModeEvent, BatteryPowerState, BatteryState, BatteryStateEvent } from './types';
+import type { BatteryLevelEvent, BatteryPowerModeEvent, BatteryPowerState, BatteryState, BatteryStateEvent } from './types.js';
 declare function getLevel(): Promise<number>;
 declare function getState(): Promise<BatteryState>;
 declare function getPowerState(): Promise<BatteryPowerState>;

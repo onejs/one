@@ -1,4 +1,4 @@
-import type { AndroidHaptic, HapticImpact, HapticNotification } from './types';
+import type { AndroidHaptic, HapticImpact, HapticNotification } from './types.js';
 export declare const IMPACT_STYLES: readonly HapticImpact[];
 export declare const NOTIFICATION_TYPES: readonly HapticNotification[];
 export declare const ANDROID_HAPTICS: readonly AndroidHaptic[];

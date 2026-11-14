@@ -7,7 +7,7 @@
  * own `one` install instead. Everything re-exported here must stay free of
  * vite: the worker runs in a bare node process.
  */
-export { transformTreeShakeClient } from './vite/plugins/clientTreeShakePlugin';
+export { transformTreeShakeClient } from './vite/plugins/clientTreeShakePlugin.js';
 export declare function renderNativeSourceModule(id: string, platform: string, root: string): {
     code: string;
     watchFiles: string[];

@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite';
-import type { RouteIndex } from '../../utils/routeIndex';
-import type { One } from '../types';
+import type { RouteIndex } from '../../utils/routeIndex.js';
+import type { One } from '../types.js';
 /**
  * Hands the search schemas that components pass to `useSearchParams(schema)` to the
  * loader of the route they render under, so the server validates the query before

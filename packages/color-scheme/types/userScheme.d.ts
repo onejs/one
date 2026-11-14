@@ -1,4 +1,4 @@
-import { type Scheme } from './systemScheme';
+import { type Scheme } from './systemScheme.js';
 export type SchemeSetting = 'system' | 'light' | 'dark';
 export type UserScheme = {
     /** The user's preference: 'system', 'light', or 'dark' */

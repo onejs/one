@@ -1,2 +1,2 @@
-export * from './one-shared';
+export * from './one-shared.js';
 //# sourceMappingURL=one.d.ts.map

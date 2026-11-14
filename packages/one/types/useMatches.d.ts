@@ -1,4 +1,4 @@
-import type { One } from './vite/types';
+import type { One } from './vite/types.js';
 /**
  * Re-export for convenience
  */

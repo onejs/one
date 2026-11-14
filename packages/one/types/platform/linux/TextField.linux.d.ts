@@ -1,4 +1,4 @@
-import type { ControlledControlProps } from '../controlTypes';
+import type { ControlledControlProps } from '../controlTypes.js';
 export type TextFieldProps = ControlledControlProps & {
     text: string;
     label?: string;

@@ -1,4 +1,4 @@
-import type { ControlViewProps } from '../controlTypes';
+import type { ControlViewProps } from '../controlTypes.js';
 export type ProgressBarProps = ControlViewProps & {
     value?: number;
     indeterminate?: boolean;

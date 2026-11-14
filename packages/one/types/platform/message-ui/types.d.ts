@@ -1,5 +1,5 @@
-import type { DocumentCameraError } from '../specs/OneDocumentCamera.nitro';
-import type { MailComposeResult, MessageComposeResult, MessageAttachment } from '../specs/OneMessageUI.nitro';
+import type { DocumentCameraError } from '../specs/OneDocumentCamera.nitro.js';
+import type { MailComposeResult, MessageComposeResult, MessageAttachment } from '../specs/OneMessageUI.nitro.js';
 export type { MailComposeResult as MFMailComposeResult, MessageComposeResult, MessageAttachment, };
 export type MessageUIError = DocumentCameraError;
 export interface MFMailComposeViewControllerDelegate<Controller = unknown> {

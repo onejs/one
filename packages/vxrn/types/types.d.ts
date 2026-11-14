@@ -2,7 +2,7 @@ import type { Hono } from 'hono';
 import type { ServerOptions as HttpsServerOptions } from 'node:https';
 import type { OutputAsset, OutputChunk, TreeshakingOptions } from 'rolldown';
 import type { FilterPattern, InlineConfig, UserConfig } from 'vite';
-import type { UserDepPatches } from './utils/patches';
+import type { UserDepPatches } from './utils/patches.js';
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]];
 export type Mode = 'dev' | 'prod';
 export type BuildArgs = {

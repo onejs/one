@@ -1,5 +1,5 @@
 import { type ComponentType } from 'react';
-import { type DOMTransport } from './browserBridge';
+import { type DOMTransport } from './browserBridge.js';
 declare global {
     var __oneDOM: DOMTransport | undefined;
 }

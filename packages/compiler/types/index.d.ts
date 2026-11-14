@@ -4,20 +4,20 @@
  * react native CSS-to-JS conversion.
  */
 import type { PluginOption } from 'vite';
-import type { Options } from './types';
-export * from './configure';
-export * from './transformBabel';
-export * from './transformFlow';
-export * from './transformSWC';
-export * from './transformWorklets';
-export * from './reactNativeCodegen';
-export * from './transformHermesLoops';
-export * from './transformHermesAsync';
-export * from './transformHermesClasses';
-export { clearTransformCache } from './cache';
-export { JS_GLOBALS } from './worklets/globals';
-export { getClosureVariables } from './worklets/scope';
-export type { GetTransform } from './types';
+import type { Options } from './types.js';
+export * from './configure.js';
+export * from './transformBabel.js';
+export * from './transformFlow.js';
+export * from './transformSWC.js';
+export * from './transformWorklets.js';
+export * from './reactNativeCodegen.js';
+export * from './transformHermesLoops.js';
+export * from './transformHermesAsync.js';
+export * from './transformHermesClasses.js';
+export { clearTransformCache } from './cache.js';
+export { JS_GLOBALS } from './worklets/globals.js';
+export { getClosureVariables } from './worklets/scope.js';
+export type { GetTransform } from './types.js';
 export declare function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): Promise<PluginOption[]>;
-export * from './transformMixedNativeModule';
+export * from './transformMixedNativeModule.js';
 //# sourceMappingURL=index.d.ts.map

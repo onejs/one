@@ -1,5 +1,5 @@
-import type { GlobbedRouteImports } from '../types';
-import type { One } from '../vite/types';
+import type { GlobbedRouteImports } from '../types.js';
+import type { One } from '../vite/types.js';
 export declare function useViteRoutes(routes: GlobbedRouteImports, routerRoot: string, options?: One.RouteOptions, version?: number): any;
 export declare function registerPreloadedRoute(key: string, module: any): void;
 export declare function getPreloadedModule(key: string): any;

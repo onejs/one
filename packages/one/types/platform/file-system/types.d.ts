@@ -1,4 +1,4 @@
-import type { FileEncoding } from '../specs/OneFileSystem.nitro';
+import type { FileEncoding } from '../specs/OneFileSystem.nitro.js';
 export declare const FileMode: Readonly<{
     readonly ReadWrite: 'rw';
     readonly ReadOnly: 'r';

@@ -1,5 +1,5 @@
 import { type ProcessedColorValue } from 'react-native';
-import type { OneNativeStyle, SDKAnimationValue } from './controlTypes';
+import type { OneNativeStyle, SDKAnimationValue } from './controlTypes.js';
 export type OneNativeStyleNative = Readonly<{
     fontSize?: number;
     fontWeight?: string;

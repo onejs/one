@@ -1,5 +1,5 @@
-import type { ScreenCaptureResult, ScreenCaptureState } from '../specs/OneScreenCapture.nitro';
-export type { ScreenCaptureResult, ScreenCaptureState, } from '../specs/OneScreenCapture.nitro';
+import type { ScreenCaptureResult, ScreenCaptureState } from '../specs/OneScreenCapture.nitro.js';
+export type { ScreenCaptureResult, ScreenCaptureState, } from '../specs/OneScreenCapture.nitro.js';
 export declare const ScreenCapture: Readonly<{
     getState: () => Promise<ScreenCaptureState>;
     captureWindow: () => Promise<ScreenCaptureResult>;

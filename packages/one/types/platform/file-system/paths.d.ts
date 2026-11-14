@@ -1,4 +1,4 @@
-import type { ParsedPath } from './types';
+import type { ParsedPath } from './types.js';
 type UriObject = string | {
     uri: string;
 };

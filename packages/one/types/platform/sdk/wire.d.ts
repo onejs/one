@@ -1,5 +1,5 @@
-import type { OneSDK, OneSDKHandle, OneSDKValue } from '../specs/OneSDK.nitro';
-export type { OneSDKHandle, OneSDKPoint, OneSDKRect, OneSDKResult, OneSDKValue } from '../specs/OneSDK.nitro';
+import type { OneSDK, OneSDKHandle, OneSDKValue } from '../specs/OneSDK.nitro.js';
+export type { OneSDKHandle, OneSDKPoint, OneSDKRect, OneSDKResult, OneSDKValue } from '../specs/OneSDK.nitro.js';
 export type SDKNative = Pick<OneSDK, 'call' | 'callSync' | 'callAsync' | 'callFunction' | 'observe' | 'subscribe'>;
 export type Implements<P> = Partial<P>;
 export type NativeOut<T> = {
@@ -54,6 +54,6 @@ export declare function callSDKMethodAsync<T extends SDKHandle, K extends Method
 export declare function callSDKAsync<T>(module: string, id: number, receiver: unknown, args: unknown[], hints?: (WireHint | null)[]): Promise<T>;
 export declare function observeSDKProperty<T>(object: SDKHandle, property: string, value: (value: T) => void, error: (error: Error) => void): () => void;
 export declare function subscribeSDK<T>(object: SDKHandle, value: (value: T) => void, error: (error: Error) => void): () => void;
-export { useSDKProperty, useSDKSequence } from './react';
-export type { SDKState, SDKObservableKey, SDKElement } from './react';
+export { useSDKProperty, useSDKSequence } from './react.js';
+export type { SDKState, SDKObservableKey, SDKElement } from './react.js';
 //# sourceMappingURL=wire.d.ts.map

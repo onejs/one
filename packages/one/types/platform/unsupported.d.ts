@@ -1,6 +1,6 @@
-import { Angle, Gradient, Path, type CanvasProps } from './canvas';
+import { Angle, Gradient, Path, type CanvasProps } from './canvas.js';
 import type { UICollectionView, UICollectionViewDiffableDataSource, UITableView, UITableViewDiffableDataSource } from 'one/ios/UIKit';
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, UIKitViewProps, UIKitContentProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GeometryReaderProps, TimelineViewProps, OutlineGroupProps, TableProps, GroupProps, GroupBoxProps, ViewThatFitsProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, ScrollViewReaderProps, SectionProps, SheetProps, SlotProps, SpacerProps, HStackProps, VStackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabViewProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, DefaultToolbarItemProps, ZStackProps, SDKAnimationValue, WithAnimationCompletionCriteria } from './types';
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, UIKitViewProps, UIKitContentProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GeometryReaderProps, TimelineViewProps, OutlineGroupProps, TableProps, GroupProps, GroupBoxProps, ViewThatFitsProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, ScrollViewReaderProps, SectionProps, SheetProps, SlotProps, SpacerProps, HStackProps, VStackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabViewProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, DefaultToolbarItemProps, ZStackProps, SDKAnimationValue, WithAnimationCompletionCriteria } from './types.js';
 declare function TabView(_props: TabViewProps): never;
 declare function Tab(_props: TabProps): never;
 declare function TabSection(_props: TabSectionProps): never;
@@ -65,73 +65,73 @@ declare function ToolbarItem(_props: ToolbarItemProps): never;
 declare function ToolbarItemGroup(_props: ToolbarItemGroupProps): never;
 declare function ToolbarSpacer(_props: ToolbarSpacerProps): never;
 declare function DefaultToolbarItem(_props: DefaultToolbarItemProps): never;
-import type { KeyframeAnimatorProps, KeyframeValue, PhaseAnimatorProps } from './animatorTypes';
-import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes';
-import type { MapWithControlsProps } from './mapControls';
-import type { PickerWithChildrenProps } from './pickerChildren';
+import type { KeyframeAnimatorProps, KeyframeValue, PhaseAnimatorProps } from './animatorTypes.js';
+import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes.js';
+import type { MapWithControlsProps } from './mapControls.js';
+import type { PickerWithChildrenProps } from './pickerChildren.js';
 declare function MapWithControlsStub(_props: MapWithControlsProps): never;
 declare function PickerWithChildrenStub(_props: PickerWithChildrenProps): never;
 declare function PhaseAnimator<Phase>(_props: PhaseAnimatorProps<Phase>): never;
 declare function KeyframeAnimator<Value extends KeyframeValue>(_props: KeyframeAnimatorProps<Value>): never;
 export declare const Swift: {
-    DatePicker: (_props: import("./types").DatePickerProps) => never;
-    ColorPicker: (_props: import("./types").ColorPickerProps) => never;
-    MultiDatePicker: (_props: import("./types").MultiDatePickerProps) => never;
-    Toggle: (_props: import("./types").ToggleProps) => never;
-    Slider: (_props: import("./types").SliderProps) => never;
-    Stepper: (_props: import("./types").StepperProps) => never;
-    PasteButton: (_props: import("./types").PasteButtonProps) => never;
-    Text: (_props: import("./types").TextProps) => never;
-    Label: (_props: import("./types").LabelProps) => never;
-    ProgressView: (_props: import("./types").ProgressViewProps) => never;
-    Gauge: (_props: import("./types").GaugeProps) => never;
-    Image: (_props: import("./types").ImageProps) => never;
-    ShareLink: (_props: import("./types").ShareLinkProps) => never;
-    ContentUnavailableView: (_props: import("./types").ContentUnavailableViewProps) => never;
-    Circle: (_props: import("./types").CircleProps) => never;
-    Capsule: (_props: import("./types").CapsuleProps) => never;
-    Rectangle: (_props: import("./types").RectangleProps) => never;
-    RoundedRectangle: (_props: import("./types").RoundedRectangleProps) => never;
-    Ellipse: (_props: import("./types").EllipseProps) => never;
-    UnevenRoundedRectangle: (_props: import("./types").UnevenRoundedRectangleProps) => never;
-    ConcentricRectangle: (_props: import("./types").ConcentricRectangleProps) => never;
-    LinearGradient: (_props: import("./types").LinearGradientProps) => never;
-    RadialGradient: (_props: import("./types").RadialGradientProps) => never;
-    EllipticalGradient: (_props: import("./types").EllipticalGradientProps) => never;
-    AngularGradient: (_props: import("./types").AngularGradientProps) => never;
-    MeshGradient: (_props: import("./types").MeshGradientProps) => never;
-    VideoPlayer: (_props: import("./types").VideoPlayerProps) => never;
-    LivePhotoView: (_props: import("./types").LivePhotoViewProps) => never;
-    PhotosPicker: (_props: import("./types").PhotosPickerProps) => never;
-    WebView: (_props: import("./types").WebViewProps) => never;
-    SignInWithAppleButton: (_props: import("./types").SignInWithAppleButtonProps) => never;
-    PayWithApplePayButton: (_props: import("./types").PayWithApplePayButtonProps) => never;
-    AddPassToWalletButton: (_props: import("./types").AddPassToWalletButtonProps) => never;
-    MapCompass: (_props: import("./types").MapCompassProps) => never;
-    MapPitchToggle: (_props: import("./types").MapPitchToggleProps) => never;
-    MapUserLocationButton: (_props: import("./types").MapUserLocationButtonProps) => never;
-    TextField: (_props: import("./types").TextFieldProps) => never;
-    SecureField: (_props: import("./types").SecureFieldProps) => never;
-    TextEditor: (_props: import("./types").TextEditorProps) => never;
-    Alert: (_props: import("./types").AlertProps) => never;
-    ConfirmationDialog: (_props: import("./types").ConfirmationDialogProps) => never;
-    QuickLook: (_props: import("./types").QuickLookProps) => never;
-    FileImporter: (_props: import("./types").FileImporterProps) => never;
-    Chart: (_props: import("./types").ChartProps) => never;
-    AsyncImage: (_props: import("./types").AsyncImageProps) => never;
-    EditButton: (_props: import("./types").EditButtonProps) => never;
-    EmptyView: (_props: import("./types").EmptyViewProps) => never;
-    LocationButton: (_props: import("./types").LocationButtonProps) => never;
-    ProductView: (_props: import("./types").ProductViewProps) => never;
-    RenameButton: (_props: import("./types").RenameButtonProps) => never;
-    ShortcutsLink: (_props: import("./types").ShortcutsLinkProps) => never;
-    StoreView: (_props: import("./types").StoreViewProps) => never;
-    SubscriptionStoreView: (_props: import("./types").SubscriptionStoreViewProps) => never;
-    ArrangementView: typeof import("./ArrangementView").ArrangementViewComponent & {
-        Primary: typeof import("./ArrangementView").ArrangementPrimary;
-        Secondary: typeof import("./ArrangementView").ArrangementSecondary;
-        Leading: typeof import("./ArrangementView").ArrangementPrimary;
-        Detail: typeof import("./ArrangementView").ArrangementSecondary;
+    DatePicker: (_props: import("./types.js").DatePickerProps) => never;
+    ColorPicker: (_props: import("./types.js").ColorPickerProps) => never;
+    MultiDatePicker: (_props: import("./types.js").MultiDatePickerProps) => never;
+    Toggle: (_props: import("./types.js").ToggleProps) => never;
+    Slider: (_props: import("./types.js").SliderProps) => never;
+    Stepper: (_props: import("./types.js").StepperProps) => never;
+    PasteButton: (_props: import("./types.js").PasteButtonProps) => never;
+    Text: (_props: import("./types.js").TextProps) => never;
+    Label: (_props: import("./types.js").LabelProps) => never;
+    ProgressView: (_props: import("./types.js").ProgressViewProps) => never;
+    Gauge: (_props: import("./types.js").GaugeProps) => never;
+    Image: (_props: import("./types.js").ImageProps) => never;
+    ShareLink: (_props: import("./types.js").ShareLinkProps) => never;
+    ContentUnavailableView: (_props: import("./types.js").ContentUnavailableViewProps) => never;
+    Circle: (_props: import("./types.js").CircleProps) => never;
+    Capsule: (_props: import("./types.js").CapsuleProps) => never;
+    Rectangle: (_props: import("./types.js").RectangleProps) => never;
+    RoundedRectangle: (_props: import("./types.js").RoundedRectangleProps) => never;
+    Ellipse: (_props: import("./types.js").EllipseProps) => never;
+    UnevenRoundedRectangle: (_props: import("./types.js").UnevenRoundedRectangleProps) => never;
+    ConcentricRectangle: (_props: import("./types.js").ConcentricRectangleProps) => never;
+    LinearGradient: (_props: import("./types.js").LinearGradientProps) => never;
+    RadialGradient: (_props: import("./types.js").RadialGradientProps) => never;
+    EllipticalGradient: (_props: import("./types.js").EllipticalGradientProps) => never;
+    AngularGradient: (_props: import("./types.js").AngularGradientProps) => never;
+    MeshGradient: (_props: import("./types.js").MeshGradientProps) => never;
+    VideoPlayer: (_props: import("./types.js").VideoPlayerProps) => never;
+    LivePhotoView: (_props: import("./types.js").LivePhotoViewProps) => never;
+    PhotosPicker: (_props: import("./types.js").PhotosPickerProps) => never;
+    WebView: (_props: import("./types.js").WebViewProps) => never;
+    SignInWithAppleButton: (_props: import("./types.js").SignInWithAppleButtonProps) => never;
+    PayWithApplePayButton: (_props: import("./types.js").PayWithApplePayButtonProps) => never;
+    AddPassToWalletButton: (_props: import("./types.js").AddPassToWalletButtonProps) => never;
+    MapCompass: (_props: import("./types.js").MapCompassProps) => never;
+    MapPitchToggle: (_props: import("./types.js").MapPitchToggleProps) => never;
+    MapUserLocationButton: (_props: import("./types.js").MapUserLocationButtonProps) => never;
+    TextField: (_props: import("./types.js").TextFieldProps) => never;
+    SecureField: (_props: import("./types.js").SecureFieldProps) => never;
+    TextEditor: (_props: import("./types.js").TextEditorProps) => never;
+    Alert: (_props: import("./types.js").AlertProps) => never;
+    ConfirmationDialog: (_props: import("./types.js").ConfirmationDialogProps) => never;
+    QuickLook: (_props: import("./types.js").QuickLookProps) => never;
+    FileImporter: (_props: import("./types.js").FileImporterProps) => never;
+    Chart: (_props: import("./types.js").ChartProps) => never;
+    AsyncImage: (_props: import("./types.js").AsyncImageProps) => never;
+    EditButton: (_props: import("./types.js").EditButtonProps) => never;
+    EmptyView: (_props: import("./types.js").EmptyViewProps) => never;
+    LocationButton: (_props: import("./types.js").LocationButtonProps) => never;
+    ProductView: (_props: import("./types.js").ProductViewProps) => never;
+    RenameButton: (_props: import("./types.js").RenameButtonProps) => never;
+    ShortcutsLink: (_props: import("./types.js").ShortcutsLinkProps) => never;
+    StoreView: (_props: import("./types.js").StoreViewProps) => never;
+    SubscriptionStoreView: (_props: import("./types.js").SubscriptionStoreViewProps) => never;
+    ArrangementView: typeof import("./ArrangementView.js").ArrangementViewComponent & {
+        Primary: typeof import("./ArrangementView.js").ArrangementPrimary;
+        Secondary: typeof import("./ArrangementView.js").ArrangementSecondary;
+        Leading: typeof import("./ArrangementView.js").ArrangementPrimary;
+        Detail: typeof import("./ArrangementView.js").ArrangementSecondary;
     };
     TabView: typeof TabView;
     Tab: typeof Tab;
@@ -164,78 +164,78 @@ export declare const Swift: {
         } | {
             kind: 'linearGradient';
             gradient: Gradient;
-            startPoint: import("./canvas").CanvasPoint;
-            endPoint: import("./canvas").CanvasPoint;
+            startPoint: import("./canvas.js").CanvasPoint;
+            endPoint: import("./canvas.js").CanvasPoint;
         } | {
             kind: 'radialGradient';
             gradient: Gradient;
-            center: import("./canvas").CanvasPoint;
+            center: import("./canvas.js").CanvasPoint;
             startRadius: number;
             endRadius: number;
         } | {
             kind: 'conicGradient';
             gradient: Gradient;
-            center: import("./canvas").CanvasPoint;
+            center: import("./canvas.js").CanvasPoint;
             angle: Angle;
         };
-        linearGradient(gradient: Gradient, startPoint: import("./canvas").CanvasPoint, endPoint: import("./canvas").CanvasPoint): {
+        linearGradient(gradient: Gradient, startPoint: import("./canvas.js").CanvasPoint, endPoint: import("./canvas.js").CanvasPoint): {
             kind: 'color';
             color: import("react-native").ColorValue;
         } | {
             kind: 'linearGradient';
             gradient: Gradient;
-            startPoint: import("./canvas").CanvasPoint;
-            endPoint: import("./canvas").CanvasPoint;
+            startPoint: import("./canvas.js").CanvasPoint;
+            endPoint: import("./canvas.js").CanvasPoint;
         } | {
             kind: 'radialGradient';
             gradient: Gradient;
-            center: import("./canvas").CanvasPoint;
+            center: import("./canvas.js").CanvasPoint;
             startRadius: number;
             endRadius: number;
         } | {
             kind: 'conicGradient';
             gradient: Gradient;
-            center: import("./canvas").CanvasPoint;
+            center: import("./canvas.js").CanvasPoint;
             angle: Angle;
         };
-        radialGradient(gradient: Gradient, center: import("./canvas").CanvasPoint, startRadius: number, endRadius: number): {
+        radialGradient(gradient: Gradient, center: import("./canvas.js").CanvasPoint, startRadius: number, endRadius: number): {
             kind: 'color';
             color: import("react-native").ColorValue;
         } | {
             kind: 'linearGradient';
             gradient: Gradient;
-            startPoint: import("./canvas").CanvasPoint;
-            endPoint: import("./canvas").CanvasPoint;
+            startPoint: import("./canvas.js").CanvasPoint;
+            endPoint: import("./canvas.js").CanvasPoint;
         } | {
             kind: 'radialGradient';
             gradient: Gradient;
-            center: import("./canvas").CanvasPoint;
+            center: import("./canvas.js").CanvasPoint;
             startRadius: number;
             endRadius: number;
         } | {
             kind: 'conicGradient';
             gradient: Gradient;
-            center: import("./canvas").CanvasPoint;
+            center: import("./canvas.js").CanvasPoint;
             angle: Angle;
         };
-        conicGradient(gradient: Gradient, center: import("./canvas").CanvasPoint, angle_?: Angle): {
+        conicGradient(gradient: Gradient, center: import("./canvas.js").CanvasPoint, angle_?: Angle): {
             kind: 'color';
             color: import("react-native").ColorValue;
         } | {
             kind: 'linearGradient';
             gradient: Gradient;
-            startPoint: import("./canvas").CanvasPoint;
-            endPoint: import("./canvas").CanvasPoint;
+            startPoint: import("./canvas.js").CanvasPoint;
+            endPoint: import("./canvas.js").CanvasPoint;
         } | {
             kind: 'radialGradient';
             gradient: Gradient;
-            center: import("./canvas").CanvasPoint;
+            center: import("./canvas.js").CanvasPoint;
             startRadius: number;
             endRadius: number;
         } | {
             kind: 'conicGradient';
             gradient: Gradient;
-            center: import("./canvas").CanvasPoint;
+            center: import("./canvas.js").CanvasPoint;
             angle: Angle;
         };
     };
@@ -299,5 +299,5 @@ export declare const Swift: {
     Map: typeof MapWithControlsStub;
     Picker: typeof PickerWithChildrenStub;
 };
-export type * from './types';
+export type * from './types.js';
 //# sourceMappingURL=unsupported.d.ts.map

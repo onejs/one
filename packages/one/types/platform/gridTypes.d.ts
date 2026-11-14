@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
-import type { OneNativeStyle } from './generated/controlTypes';
+import type { OneNativeStyle } from './generated/controlTypes.js';
 export declare const gridAlignments: readonly ['topLeading', 'top', 'topTrailing', 'leading', 'center', 'trailing', 'bottomLeading', 'bottom', 'bottomTrailing'];
 export declare const gridHorizontalAlignments: readonly ['leading', 'center', 'trailing'];
 export declare const gridVerticalAlignments: readonly ['top', 'center', 'bottom', 'firstTextBaseline', 'lastTextBaseline'];

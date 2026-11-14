@@ -1,5 +1,5 @@
-import type { NetworkState, NetworkStateSubscription } from './types';
-export type { NetworkState, NetworkStateSubscription, NetworkStateType } from './types';
+import type { NetworkState, NetworkStateSubscription } from './types.js';
+export type { NetworkState, NetworkStateSubscription, NetworkStateType } from './types.js';
 declare function getState(): Promise<NetworkState>;
 declare function addStateListener(listener: (state: NetworkState) => void): NetworkStateSubscription;
 declare function useNetworkState(): NetworkState;

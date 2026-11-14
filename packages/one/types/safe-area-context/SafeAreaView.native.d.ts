@@ -1,4 +1,4 @@
 import * as React from 'react';
-import type { NativeSafeAreaViewProps } from './SafeArea-types';
+import type { NativeSafeAreaViewProps } from './SafeArea-types.js';
 export declare const SafeAreaView: React.ForwardRefExoticComponent<NativeSafeAreaViewProps & React.RefAttributes<any>>;
 //# sourceMappingURL=SafeAreaView.native.d.ts.map

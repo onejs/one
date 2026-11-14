@@ -1,4 +1,4 @@
-import type { RouteNode } from './Route';
+import type { RouteNode } from './Route.js';
 /**
  * Find a RouteNode from the route tree based on the navigation state.
  * Walks through the state's routes recursively to find the deepest matching route.

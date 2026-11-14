@@ -1,4 +1,4 @@
-import type { ErrorPayload, FullReloadPayload, PrunePayload, UpdatePayload } from './hmrPayload';
+import type { ErrorPayload, FullReloadPayload, PrunePayload, UpdatePayload } from './hmrPayload.js';
 export interface CustomEventMap {
     'vite:beforeUpdate': UpdatePayload;
     'vite:afterUpdate': UpdatePayload;

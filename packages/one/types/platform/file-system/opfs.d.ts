@@ -1,4 +1,4 @@
-import type { FileDirectories, FileEncoding, FileEntry, FileInfo } from '../specs/OneFileSystem.nitro';
+import type { FileDirectories, FileEncoding, FileEntry, FileInfo } from '../specs/OneFileSystem.nitro.js';
 export type { FileDirectories, FileEncoding, FileEntry, FileInfo };
 export declare const folders: readonly ['documents', 'cache', 'applicationSupport', 'temporary'];
 export declare const directories: FileDirectories;

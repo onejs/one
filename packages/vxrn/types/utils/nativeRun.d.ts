@@ -1,4 +1,4 @@
-import type { UserDepPatches } from './patches';
+import type { UserDepPatches } from './patches.js';
 export declare function buildNativeRunCommand(args: {
     platform: 'ios' | 'android';
     port?: number;

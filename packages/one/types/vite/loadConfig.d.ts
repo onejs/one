@@ -1,4 +1,4 @@
-import type { One } from './types';
+import type { One } from './types.js';
 export declare function setOneOptions(next: One.PluginOptions): void;
 export declare function loadUserOneOptions(command: 'serve' | 'build', silent?: boolean): Promise<{
     config: {

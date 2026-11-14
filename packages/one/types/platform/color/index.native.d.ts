@@ -1,10 +1,10 @@
 import { type ColorValue } from 'react-native';
-import type { AndroidDynamicMaterialColorType } from './android.dynamic.types';
-import type { AndroidStaticMaterialColorType } from './android.material.types';
-import type { IOSBaseColor } from './ios.types';
-export * from './android.dynamic.types';
-export * from './android.material.types';
-export * from './ios.types';
+import type { AndroidDynamicMaterialColorType } from './android.dynamic.types.js';
+import type { AndroidStaticMaterialColorType } from './android.material.types.js';
+import type { IOSBaseColor } from './ios.types.js';
+export * from './android.dynamic.types.js';
+export * from './android.material.types.js';
+export * from './ios.types.js';
 export type AndroidMaterialColor = AndroidStaticMaterialColorType & {
     [key: string]: ColorValue;
 };

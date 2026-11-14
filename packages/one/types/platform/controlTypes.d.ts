@@ -1,5 +1,5 @@
 import type { ViewProps } from 'react-native';
-import type { ControlledEvent } from './controlled';
+import type { ControlledEvent } from './controlled.js';
 export type ControlViewProps = Omit<ViewProps, 'children'>;
 export type ControlledControlProps = ControlViewProps & {
     disabled?: boolean;

@@ -1,8 +1,8 @@
 import type { ColorValue, ViewProps } from 'react-native';
-import type * as Styles from './swiftui';
-import type { SFSymbolName } from './sfSymbolNames';
-import type { AreaChartStyle, BarChartStyle, ChartDataPoint, ChartType, LineChartStyle, PieChartStyle, PointChartStyle, RectangleChartStyle, RuleChartStyle } from '../chartTypes';
-import type { NativeState } from '../syncNativeState';
+import type * as Styles from './swiftui.js';
+import type { SFSymbolName } from './sfSymbolNames.js';
+import type { AreaChartStyle, BarChartStyle, ChartDataPoint, ChartType, LineChartStyle, PieChartStyle, PointChartStyle, RectangleChartStyle, RuleChartStyle } from '../chartTypes.js';
+import type { NativeState } from '../syncNativeState.js';
 export declare const glassEffects: readonly ['regular', 'clear', 'identity'];
 export type GlassEffect = (typeof glassEffects)[number];
 export declare const glassEffectShapes: readonly ['capsule', 'circle', 'containerRelativeShape', 'ellipse', 'rectangle', 'roundedRectangle'];

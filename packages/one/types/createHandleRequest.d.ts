@@ -1,7 +1,7 @@
-import type { RouteNode } from './router/Route';
-import type { RouteInfoCompiled } from './server/createRoutesManifest';
-import type { LoaderProps } from './types';
-import type { RouteInfo } from './vite/types';
+import type { RouteNode } from './router/Route.js';
+import type { RouteInfoCompiled } from './server/createRoutesManifest.js';
+import type { LoaderProps } from './types.js';
+import type { RouteInfo } from './vite/types.js';
 export type RequestHandlers = {
     handlePage?: (props: RequestHandlerProps) => Promise<any>;
     handleLoader?: (props: RequestHandlerProps) => Promise<any>;

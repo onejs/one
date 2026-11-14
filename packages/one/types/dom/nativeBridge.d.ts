@@ -1,5 +1,5 @@
-import { type DOMMessage } from './protocol';
-import { type DOMState, serializeProps } from './serialize';
+import { type DOMMessage } from './protocol.js';
+import { type DOMState, serializeProps } from './serialize.js';
 type Prepared = ReturnType<typeof serializeProps> & {
     state: DOMState;
 };

@@ -1,4 +1,4 @@
-import type { DocumentPickerOptions } from './types';
+import type { DocumentPickerOptions } from './types.js';
 export interface ResolvedDocumentPickerOptions {
     types: string[];
     multiple: boolean;

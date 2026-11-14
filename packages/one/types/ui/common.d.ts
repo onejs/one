@@ -1,9 +1,9 @@
 import type { LinkingOptions, ParamListBase, PartialRoute, Route } from '@react-navigation/native';
-import type { OneRouter } from '../interfaces/router';
-import type { UrlObject } from '../router/getNormalizedStatePath';
-import type { RouteNode } from '../router/Route';
-import { Slot } from './Slot';
-import type { ExpoTabActionType } from './TabRouter';
+import type { OneRouter } from '../interfaces/router.js';
+import type { UrlObject } from '../router/getNormalizedStatePath.js';
+import type { RouteNode } from '../router/Route.js';
+import { Slot } from './Slot.js';
+import type { ExpoTabActionType } from './TabRouter.js';
 export declare const ViewSlot: Slot<import("react").HTMLAttributes<HTMLElement>, HTMLElement>;
 export type ScreenTrigger = {
     type: 'internal';

@@ -1,6 +1,6 @@
 import { type ResolvedConfig } from 'vite';
-import type { MetroPluginOptions } from '../plugins/metroPlugin';
-import type { ExtraConfig, MetroConfigExtended } from './types';
+import type { MetroPluginOptions } from '../plugins/metroPlugin.js';
+import type { ExtraConfig, MetroConfigExtended } from './types.js';
 /**
  * Build the Metro config input WITHOUT calling Metro's `loadConfig`. Returns
  * the same shape Metro `loadConfig` expects as its second argument. Use this

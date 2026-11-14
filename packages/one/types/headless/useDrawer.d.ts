@@ -1,6 +1,6 @@
 import { type DrawerActionHelpers, type DrawerNavigationState, type ParamListBase } from '@react-navigation/routers';
 import { type PropsWithChildren, type ReactElement } from 'react';
-import type { UseDrawerResult } from './types';
+import type { UseDrawerResult } from './types.js';
 export type HeadlessDrawerDescriptors = Record<string, {
     options: Record<string, any>;
     render: () => ReactElement;

@@ -1,13 +1,13 @@
-import type { DataScannerOptions, DataScannerViewControllerDelegate } from './types';
-import type { DataScannerRect } from '../specs/OneDataScanner.nitro';
-export type * from './types';
+import type { DataScannerOptions, DataScannerViewControllerDelegate } from './types.js';
+import type { DataScannerRect } from '../specs/OneDataScanner.nitro.js';
+export type * from './types.js';
 export declare class DataScannerViewController {
     static readonly isSupported = false;
     static readonly isAvailable = false;
     static readonly supportedTextRecognitionLanguages: string[];
     static readonly RecognizedDataType: {
-        text(languages?: string[], textContentType?: import("./types").DataScannerTextContentType): import("./types").DataScannerRecognizedDataType;
-        barcode(symbologies?: string[]): import("./types").DataScannerRecognizedDataType;
+        text(languages?: string[], textContentType?: import("./types.js").DataScannerTextContentType): import("./types.js").DataScannerRecognizedDataType;
+        barcode(symbologies?: string[]): import("./types.js").DataScannerRecognizedDataType;
     };
     private readonly configuration;
     delegate: DataScannerViewControllerDelegate<DataScannerViewController> | null;
@@ -26,11 +26,11 @@ export declare class DataScannerViewController {
     get maxZoomFactor(): number;
     get zoomFactor(): number;
     set zoomFactor(_value: number);
-    get recognizedItems(): AsyncIterable<import('./types').RecognizedItem[]>;
+    get recognizedItems(): AsyncIterable<import('./types.js').RecognizedItem[]>;
     present(_animated?: boolean): Promise<void>;
     dismiss(_animated?: boolean): Promise<void>;
     startScanning(): void;
     stopScanning(): void;
-    capturePhoto(): Promise<import('../vision-kit/types').UIImage>;
+    capturePhoto(): Promise<import('../vision-kit/types.js').UIImage>;
 }
 //# sourceMappingURL=index.d.ts.map

@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
-import type { SDKHandle } from './sdk/wire';
-import type { ZStackAlignment } from './generated/containerTypes';
-import type { SFSymbolName } from './generated/sfSymbolNames';
-import type { ControlGroupStyle } from './generated/swiftui';
-import type { OneNativeStyle, SDKPageTabViewStyleIndexDisplayModeValue } from './generated/controlTypes';
-import type { ViewSlotConfiguration } from './generated/viewSlots';
+import type { SDKHandle } from './sdk/wire.js';
+import type { ZStackAlignment } from './generated/containerTypes.js';
+import type { SFSymbolName } from './generated/sfSymbolNames.js';
+import type { ControlGroupStyle } from './generated/swiftui.js';
+import type { OneNativeStyle, SDKPageTabViewStyleIndexDisplayModeValue } from './generated/controlTypes.js';
+import type { ViewSlotConfiguration } from './generated/viewSlots.js';
 import type { UICollectionViewDiffableDataSource, UITableViewDiffableDataSource, UIView } from 'one/ios/UIKit';
 export declare const swipeActionsEdges: readonly ['leading', 'trailing'];
 export type SwipeActionsEdge = (typeof swipeActionsEdges)[number];

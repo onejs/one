@@ -1,5 +1,5 @@
 import type { StyleProp, ViewStyle } from 'react-native';
-import type { NativeSourceViewWires } from '../native-source/wire.native';
+import type { NativeSourceViewWires } from '../native-source/wire.native.js';
 export interface SwiftPackageViewProps {
     packageName: string;
     view: string;

@@ -1,4 +1,4 @@
-import { type DesktopButtonProps } from '../desktop/createControls';
+import { type DesktopButtonProps } from '../desktop/createControls.js';
 export type ButtonProps = Omit<DesktopButtonProps, 'revision'> & {
     /** fills the bezel with the accent color, for the button that confirms a dialog. */
     prominent?: boolean;

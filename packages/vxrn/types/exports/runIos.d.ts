@@ -1,4 +1,4 @@
-import type { UserDepPatches } from '../utils/patches';
+import type { UserDepPatches } from '../utils/patches.js';
 export declare const runIos: ({ root, port, simulator, udid, patches, }: {
     root: string;
     port?: number;

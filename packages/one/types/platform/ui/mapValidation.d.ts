@@ -1,4 +1,4 @@
-import type { CameraPosition, MapCircle, MapMarker, MapPolygon, MapPolyline } from './mapTypes';
+import type { CameraPosition, MapCircle, MapMarker, MapPolygon, MapPolyline } from './mapTypes.js';
 export type NativeMapModel = {
     latitude: number;
     longitude: number;

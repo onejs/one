@@ -1,4 +1,4 @@
-import type { Mode, VXRNOptions } from '../types';
+import type { Mode, VXRNOptions } from '../types.js';
 /**
  * **NOTES**
  *
@@ -39,9 +39,9 @@ export declare function fillOptions(options: VXRNOptions, { mode }?: {
     mode?: Mode;
 }): Promise<{
     readonly skipEnv?: boolean;
-    readonly patches?: import("..").UserDepPatches;
+    readonly patches?: import("../index.js").UserDepPatches;
     readonly build?: {
-        server?: boolean | import("..").VXRNBuildOptions;
+        server?: boolean | import("../index.js").VXRNBuildOptions;
         analyze?: boolean;
     };
     readonly debugBundle?: string;
@@ -53,7 +53,7 @@ export declare function fillOptions(options: VXRNOptions, { mode }?: {
     readonly mode: "development" | "production";
     readonly clean: "vite" | false;
     readonly root: string;
-    readonly server: import("..").VXRNServeOptionsFilled;
+    readonly server: import("../index.js").VXRNServeOptionsFilled;
     readonly entries: {
         readonly web?: string;
         native: string;
@@ -73,9 +73,9 @@ export declare function fillOptions(options: VXRNOptions, { mode }?: {
 }>;
 export declare function getOptionsFilled(): {
     readonly skipEnv?: boolean;
-    readonly patches?: import("..").UserDepPatches;
+    readonly patches?: import("../index.js").UserDepPatches;
     readonly build?: {
-        server?: boolean | import("..").VXRNBuildOptions;
+        server?: boolean | import("../index.js").VXRNBuildOptions;
         analyze?: boolean;
     };
     readonly debugBundle?: string;
@@ -87,7 +87,7 @@ export declare function getOptionsFilled(): {
     readonly mode: "development" | "production";
     readonly clean: "vite" | false;
     readonly root: string;
-    readonly server: import("..").VXRNServeOptionsFilled;
+    readonly server: import("../index.js").VXRNServeOptionsFilled;
     readonly entries: {
         readonly web?: string;
         native: string;

@@ -1,24 +1,24 @@
-import type { Crypto as CryptoApi } from './types';
-export type { AESDecryptOptions, AESEncryptOptions, AESKeySize, AESSealedDataConfig, BinaryInput, CryptoApi, DigestAlgorithm, DigestEncoding, DigestStringOptions, GCMNonceParam, } from './types';
-export type { AESEncryptionKey as AESEncryptionKeyType, AESSealedData as AESSealedDataType } from './aes';
+import type { Crypto as CryptoApi } from './types.js';
+export type { AESDecryptOptions, AESEncryptOptions, AESKeySize, AESSealedDataConfig, BinaryInput, CryptoApi, DigestAlgorithm, DigestEncoding, DigestStringOptions, GCMNonceParam, } from './types.js';
+export type { AESEncryptionKey as AESEncryptionKeyType, AESSealedData as AESSealedDataType } from './aes.js';
 export declare const AESEncryptionKey: {
     new (bytes: Uint8Array<ArrayBuffer>): {
-        readonly size: import("./types").AESKeySize;
+        readonly size: import("./types.js").AESKeySize;
         bytes(): Promise<Uint8Array<ArrayBuffer>>;
         encoded(encoding: 'hex' | 'base64'): Promise<string>;
     };
-    generate(size?: import("./types").AESKeySize): Promise<{
-        readonly size: import("./types").AESKeySize;
+    generate(size?: import("./types.js").AESKeySize): Promise<{
+        readonly size: import("./types.js").AESKeySize;
         bytes(): Promise<Uint8Array<ArrayBuffer>>;
         encoded(encoding: 'hex' | 'base64'): Promise<string>;
     }>;
     import(bytes: Uint8Array): Promise<{
-        readonly size: import("./types").AESKeySize;
+        readonly size: import("./types.js").AESKeySize;
         bytes(): Promise<Uint8Array<ArrayBuffer>>;
         encoded(encoding: 'hex' | 'base64'): Promise<string>;
     }>;
     import(encoded: string, encoding: 'hex' | 'base64'): Promise<{
-        readonly size: import("./types").AESKeySize;
+        readonly size: import("./types.js").AESKeySize;
         bytes(): Promise<Uint8Array<ArrayBuffer>>;
         encoded(encoding: 'hex' | 'base64'): Promise<string>;
     }>;
@@ -47,7 +47,7 @@ export declare const AESSealedData: {
         combined(encoding: 'base64'): Promise<string>;
         combined(encoding?: 'bytes'): Promise<Uint8Array<ArrayBuffer>>;
     };
-    fromCombined(combined: import("./types").BinaryInput, config?: import("./types").AESSealedDataConfig): {
+    fromCombined(combined: import("./types.js").BinaryInput, config?: import("./types.js").AESSealedDataConfig): {
         get ivSize(): number;
         get tagSize(): number;
         get combinedSize(): number;
@@ -66,7 +66,7 @@ export declare const AESSealedData: {
         combined(encoding: 'base64'): Promise<string>;
         combined(encoding?: 'bytes'): Promise<Uint8Array<ArrayBuffer>>;
     };
-    fromParts(iv: import("./types").BinaryInput, ciphertext: import("./types").BinaryInput, tag: import("./types").BinaryInput): {
+    fromParts(iv: import("./types.js").BinaryInput, ciphertext: import("./types.js").BinaryInput, tag: import("./types.js").BinaryInput): {
         get ivSize(): number;
         get tagSize(): number;
         get combinedSize(): number;
@@ -85,7 +85,7 @@ export declare const AESSealedData: {
         combined(encoding: 'base64'): Promise<string>;
         combined(encoding?: 'bytes'): Promise<Uint8Array<ArrayBuffer>>;
     };
-    fromParts(iv: import("./types").BinaryInput, ciphertextWithTag: import("./types").BinaryInput, tagLength?: number): {
+    fromParts(iv: import("./types.js").BinaryInput, ciphertextWithTag: import("./types.js").BinaryInput, tagLength?: number): {
         get ivSize(): number;
         get tagSize(): number;
         get combinedSize(): number;

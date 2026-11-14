@@ -1,4 +1,4 @@
-import type { EdgeInsets, Metrics } from './SafeArea-types';
+import type { EdgeInsets, Metrics } from './SafeArea-types.js';
 export declare const initialWindowMetrics: Metrics | null;
 /**
  * @deprecated

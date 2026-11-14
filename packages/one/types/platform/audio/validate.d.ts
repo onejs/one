@@ -1,5 +1,5 @@
-import type { PitchCorrectionQuality } from '../specs/OneAudio.nitro';
-import type { AudioPlayerOptions, AudioSource } from './types';
+import type { PitchCorrectionQuality } from '../specs/OneAudio.nitro.js';
+import type { AudioPlayerOptions, AudioSource } from './types.js';
 export type NormalizedSource = {
     uri?: string;
     headers?: Record<string, string>;

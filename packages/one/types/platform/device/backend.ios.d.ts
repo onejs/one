@@ -1,4 +1,4 @@
-import type { CalendarInfo, DeviceInfo, LocalizationInfo, LocaleInfo } from '../specs/OneDevice.nitro';
+import type { CalendarInfo, DeviceInfo, LocalizationInfo, LocaleInfo } from '../specs/OneDevice.nitro.js';
 declare function getLocales(): LocaleInfo[];
 declare function getCalendars(): CalendarInfo[];
 declare function addLocalizationListener(listener: () => void): () => void;

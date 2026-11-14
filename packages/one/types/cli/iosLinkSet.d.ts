@@ -1,4 +1,4 @@
-import type { LinkSetCatalog } from './iosLinkSetAnalysis';
+import type { LinkSetCatalog } from './iosLinkSetAnalysis.js';
 export declare const IOS_LINK_SET_FILE = "ios/one-link-set.json";
 export declare const IOS_LINK_SET_REPORT_ENV = "ONE_IOS_LINK_SET_REPORT";
 export declare function readCatalog(): LinkSetCatalog;

@@ -1,7 +1,7 @@
 import type { ComponentProps, ReactElement } from 'react';
-import { type TabTriggerProps as SharedTabTriggerProps } from './useTabTrigger';
-export type { SwitchToOptions, TabTriggerOptions, TabTriggerSlotProps, Trigger, TriggerProps, UseTabTriggerResult, } from './useTabTrigger';
-export { useTabTrigger } from './useTabTrigger';
+import { type TabTriggerProps as SharedTabTriggerProps } from './useTabTrigger.js';
+export type { SwitchToOptions, TabTriggerOptions, TabTriggerSlotProps, Trigger, TriggerProps, UseTabTriggerResult, } from './useTabTrigger.js';
+export { useTabTrigger } from './useTabTrigger.js';
 export type TabTriggerProps = Omit<SharedTabTriggerProps, 'style'>;
 /**
  * Creates a trigger to navigate to a tab. When used as child of `TabList`, its

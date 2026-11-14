@@ -1,4 +1,4 @@
-import type { ProtectedStorePolicy } from '../specs/OneProtectedStore.nitro';
+import type { ProtectedStorePolicy } from '../specs/OneProtectedStore.nitro.js';
 export type { ProtectedStorePolicy };
 declare function createItem(key: string, value: string, policy: ProtectedStorePolicy): Promise<void>;
 declare function getItem(key: string, reason: string, policy: ProtectedStorePolicy): Promise<string | null>;

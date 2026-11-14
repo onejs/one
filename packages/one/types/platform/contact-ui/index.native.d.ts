@@ -1,6 +1,6 @@
-import type { NativeCNContact } from '../specs/OneContactUI.nitro';
-import type { CNContactValue, CNContactStoreValue, CNContactViewControllerOptions, CNContactViewControllerDelegate, CNKeyDescriptor } from './types';
-export type * from './types';
+import type { NativeCNContact } from '../specs/OneContactUI.nitro.js';
+import type { CNContactValue, CNContactStoreValue, CNContactViewControllerOptions, CNContactViewControllerDelegate, CNKeyDescriptor } from './types.js';
+export type * from './types.js';
 declare class CNContact implements CNContactValue {
     protected native: NativeCNContact;
     constructor(native: NativeCNContact);
@@ -44,7 +44,7 @@ export declare class CNContactStore implements CNContactStoreValue {
     }): Promise<CNContact>;
 }
 export declare class CNContactViewController {
-    static descriptorForRequiredKeys(): import("../specs/OneContactUI.nitro").NativeCNKeyDescriptor;
+    static descriptorForRequiredKeys(): import("../specs/OneContactUI.nitro.js").NativeCNKeyDescriptor;
     private readonly native;
     delegate: CNContactViewControllerDelegate<CNContactViewController> | null;
     constructor(options: CNContactViewControllerOptions);

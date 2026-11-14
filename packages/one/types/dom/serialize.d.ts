@@ -1,4 +1,4 @@
-import type { DOMError, DOMValue } from './types';
+import type { DOMError, DOMValue } from './types.js';
 export declare class DOMBridgeError extends Error {
     code: string;
     constructor(message: string, code?: string);

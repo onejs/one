@@ -1,4 +1,4 @@
-import type { LocalAuthenticationStatus } from '../specs/OneLocalAuthentication.nitro';
+import type { LocalAuthenticationStatus } from '../specs/OneLocalAuthentication.nitro.js';
 export type { LocalAuthenticationStatus };
 export declare const LocalAuthentication: Readonly<{
     canEvaluatePolicy: () => LocalAuthenticationStatus;

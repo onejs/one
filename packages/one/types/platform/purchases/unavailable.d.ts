@@ -1,5 +1,5 @@
-import type { PurchaseProduct, PurchaseResult, PurchaseTransaction, PurchaseUpdate } from '../specs/OnePurchases.nitro';
-export type { PurchaseProduct, PurchaseProductType, PurchaseResult, PurchaseStatus, PurchaseTransaction, PurchaseUpdate, PurchaseUpdateStatus, } from '../specs/OnePurchases.nitro';
+import type { PurchaseProduct, PurchaseResult, PurchaseTransaction, PurchaseUpdate } from '../specs/OnePurchases.nitro.js';
+export type { PurchaseProduct, PurchaseProductType, PurchaseResult, PurchaseStatus, PurchaseTransaction, PurchaseUpdate, PurchaseUpdateStatus, } from '../specs/OnePurchases.nitro.js';
 export declare const Purchases: Readonly<{
     getProducts: (_productIds: string[]) => Promise<PurchaseProduct[]>;
     purchase: (_productId: string, _appAccountToken?: string) => Promise<PurchaseResult>;

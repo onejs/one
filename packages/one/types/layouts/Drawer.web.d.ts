@@ -1,6 +1,6 @@
 import type { DrawerNavigationEventMap, DrawerNavigationOptions } from '@react-navigation/drawer';
 import { type DrawerNavigationState, type ParamListBase } from '@react-navigation/routers';
-export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit<import("../types").PickPartial<Omit<any, "children" | "initialRouteName" | "layout" | "routeNamesChangeBehavior" | "router" | "screenLayout" | "screenListeners" | "screenOptions"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
+export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit<import("../types.js").PickPartial<Omit<any, "children" | "initialRouteName" | "layout" | "routeNamesChangeBehavior" | "router" | "screenLayout" | "screenListeners" | "screenOptions"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
     children: React.ReactNode;
     layout?: ((props: {
         state: Readonly<{
@@ -189,7 +189,7 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
     }>, Action>>) | undefined;
     routeNamesChangeBehavior?: ('firstMatch' | 'lastUnhandled') | undefined;
 }, "children">, "ref"> & import("react").RefAttributes<unknown>, "ref"> & import("react").RefAttributes<unknown>> & {
-    Screen: import("./withLayoutContext").LayoutScreen<DrawerNavigationOptions, DrawerNavigationState<ParamListBase>, DrawerNavigationEventMap>;
+    Screen: import("./withLayoutContext.js").LayoutScreen<DrawerNavigationOptions, DrawerNavigationState<ParamListBase>, DrawerNavigationEventMap>;
 };
 export default Drawer;
 //# sourceMappingURL=Drawer.web.d.ts.map

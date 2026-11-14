@@ -1,3 +1,3 @@
-import type { ImageProps } from './Image.native';
+import type { ImageProps } from './Image.native.js';
 export declare function Image({ source, resizeMode, onLoadStart, onLoad, onError, onLoadEnd, style, testID, nativeID, accessibilityLabel, alt, }: ImageProps): import("react").JSX.Element;
 //# sourceMappingURL=Image.d.ts.map

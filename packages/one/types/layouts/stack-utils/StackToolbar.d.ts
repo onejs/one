@@ -1,6 +1,6 @@
-import { isToolbarKind, type StackToolbarBadgeProps, type StackToolbarButtonProps, type StackToolbarIconProps, type StackToolbarLabelProps, type StackToolbarMenuActionProps, type StackToolbarMenuProps, type StackToolbarProps, type StackToolbarSearchBarSlotProps, type StackToolbarSpacerProps } from './stackToolbarDescriptors';
-export type { BottomToolbarButtonData, BottomToolbarData, BottomToolbarMenuActionData, BottomToolbarMenuData, BottomToolbarSearchBarSlotData, BottomToolbarSpacerData, BottomToolbarSubmenuData, StackToolbarBadgeProps, StackToolbarButtonProps, StackToolbarIconProps, StackToolbarLabelProps, StackToolbarMenuActionProps, StackToolbarMenuProps, StackToolbarPlacement, StackToolbarProps, StackToolbarSearchBarSlotProps, StackToolbarSpacerProps, StackToolbarVariant, } from './stackToolbarDescriptors';
-export { appendStackToolbarPropsToOptions } from './stackToolbarDescriptors';
+import { isToolbarKind, type StackToolbarBadgeProps, type StackToolbarButtonProps, type StackToolbarIconProps, type StackToolbarLabelProps, type StackToolbarMenuActionProps, type StackToolbarMenuProps, type StackToolbarProps, type StackToolbarSearchBarSlotProps, type StackToolbarSpacerProps } from './stackToolbarDescriptors.js';
+export type { BottomToolbarButtonData, BottomToolbarData, BottomToolbarMenuActionData, BottomToolbarMenuData, BottomToolbarSearchBarSlotData, BottomToolbarSpacerData, BottomToolbarSubmenuData, StackToolbarBadgeProps, StackToolbarButtonProps, StackToolbarIconProps, StackToolbarLabelProps, StackToolbarMenuActionProps, StackToolbarMenuProps, StackToolbarPlacement, StackToolbarProps, StackToolbarSearchBarSlotProps, StackToolbarSpacerProps, StackToolbarVariant, } from './stackToolbarDescriptors.js';
+export { appendStackToolbarPropsToOptions } from './stackToolbarDescriptors.js';
 /**
  * Declarative toolbar. Bottom (the default) renders the navigation-controller
  * toolbar in place and must mount in screen content; left/right set header

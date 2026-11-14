@@ -1,5 +1,5 @@
-import type { DevicePushToken, Notification, NotificationAction, NotificationCategory, NotificationCategoryOptions, NotificationChannel, NotificationChannelInput, NotificationHandlerInput, NotificationPermissionRequest, NotificationPermissionResponse, NotificationResponse, NotificationScheduleInput, NotificationSubscription, ScheduledNotification } from './types';
-export type * from './types';
+import type { DevicePushToken, Notification, NotificationAction, NotificationCategory, NotificationCategoryOptions, NotificationChannel, NotificationChannelInput, NotificationHandlerInput, NotificationPermissionRequest, NotificationPermissionResponse, NotificationResponse, NotificationScheduleInput, NotificationSubscription, ScheduledNotification } from './types.js';
+export type * from './types.js';
 declare function getPermissions(): Promise<NotificationPermissionResponse>;
 declare function requestPermissions(_options?: NotificationPermissionRequest): Promise<NotificationPermissionResponse>;
 declare function setCategory(identifier: string, actions: NotificationAction[], options?: NotificationCategoryOptions): Promise<NotificationCategory>;

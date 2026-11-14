@@ -1,4 +1,4 @@
-import type { CalendarEvent, CalendarEventChanges, CalendarEventInput, CalendarPermissionStatus, ReminderInfo, ReminderInput } from '../specs/OneCalendar.nitro';
+import type { CalendarEvent, CalendarEventChanges, CalendarEventInput, CalendarPermissionStatus, ReminderInfo, ReminderInput } from '../specs/OneCalendar.nitro.js';
 declare function getPermissionStatus(): CalendarPermissionStatus;
 declare function getRemindersPermissionStatus(): CalendarPermissionStatus;
 declare function list(startMs: number, endMs: number, limit: number): Promise<CalendarEvent[]>;

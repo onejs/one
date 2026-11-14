@@ -1,5 +1,5 @@
 import type { InlineConfig } from 'vite';
-import { getBaseViteConfig } from './getBaseViteConfigOnly';
+import { getBaseViteConfig } from './getBaseViteConfigOnly.js';
 /**
  * Consider using `getBaseViteConfig` and `getBaseVitePlugins` separately to
  * avoid unnecessary plugin nesting and duplication.

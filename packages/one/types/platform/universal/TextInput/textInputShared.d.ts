@@ -1,6 +1,6 @@
 import type { KeyboardTypeOptions, ReturnKeyTypeOptions } from 'react-native';
-import type { SDKKeyboardType, SDKSubmitLabel, SDKTextContentType } from '../../generated/controlTypes';
-import type { TextInputProps } from './textInputTypes';
+import type { SDKKeyboardType, SDKSubmitLabel, SDKTextContentType } from '../../generated/controlTypes.js';
+import type { TextInputProps } from './textInputTypes.js';
 export declare function resolveEditable(editable: boolean | undefined, readOnly: boolean | undefined): boolean;
 export declare function inputModeToKeyboardType(inputMode: TextInputProps['inputMode']): KeyboardTypeOptions | undefined;
 export declare function enterKeyHintToReturnKeyType(enterKeyHint: TextInputProps['enterKeyHint']): ReturnKeyTypeOptions | undefined;

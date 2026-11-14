@@ -1,4 +1,4 @@
-import type { TabProps, TabSectionProps, TabViewProps, TabViewBottomAccessoryProps, TabViewSlotProps } from './types';
+import type { TabProps, TabSectionProps, TabViewProps, TabViewBottomAccessoryProps, TabViewSlotProps } from './types.js';
 export declare function TabViewBottomAccessory(_props: TabViewBottomAccessoryProps): never;
 export declare function TabViewSlot(_props: TabViewSlotProps): never;
 export declare function TabSection(_props: TabSectionProps): never;

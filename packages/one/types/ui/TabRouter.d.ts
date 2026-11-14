@@ -1,5 +1,5 @@
 import { type CommonNavigationAction, type ParamListBase, type TabActionType as RNTabActionType, type TabRouterOptions as RNTabRouterOptions, type Router, type TabNavigationState } from '@react-navigation/native';
-import type { TriggerMap } from './common';
+import type { TriggerMap } from './common.js';
 export type ExpoTabRouterOptions = RNTabRouterOptions & {
     triggerMap: TriggerMap;
 };

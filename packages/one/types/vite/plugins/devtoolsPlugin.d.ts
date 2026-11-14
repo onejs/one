@@ -1,5 +1,5 @@
 import type { Plugin } from 'vite';
-import { type RozeniteHostOptions } from '../../devtools/rozeniteHost';
+import { type RozeniteHostOptions } from '../../devtools/rozeniteHost.js';
 declare const DEVTOOLS_VIRTUAL_ID = "/@one/dev.js";
 export type DevtoolsPluginOptions = {
     /** include devtools UI (overlay, inspector) - default true */

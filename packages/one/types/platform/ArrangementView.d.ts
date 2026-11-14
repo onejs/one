@@ -1,4 +1,4 @@
-import type { ArrangementPaneProps, ArrangementViewProps } from './ArrangementView.native';
+import type { ArrangementPaneProps, ArrangementViewProps } from './ArrangementView.native.js';
 export declare function ArrangementPrimary(_props: ArrangementPaneProps): never;
 export declare function ArrangementSecondary(_props: ArrangementPaneProps): never;
 export declare function ArrangementViewComponent({ children, primary, secondary, leading, detail, style, testID, }: ArrangementViewProps): import("react").JSX.Element;

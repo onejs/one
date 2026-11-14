@@ -1,5 +1,5 @@
-import type { ImagePickerOptions, ImagePickerPermissionResponse, ImagePickerResult } from './types';
-export type * from './types';
+import type { ImagePickerOptions, ImagePickerPermissionResponse, ImagePickerResult } from './types.js';
+export type * from './types.js';
 declare function launchLibrary(options?: ImagePickerOptions): Promise<ImagePickerResult>;
 declare function launchCamera(options?: ImagePickerOptions): Promise<ImagePickerResult>;
 declare function getCameraPermissions(): Promise<ImagePickerPermissionResponse>;

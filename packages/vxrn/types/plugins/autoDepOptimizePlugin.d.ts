@@ -1,6 +1,6 @@
 import { type Plugin } from 'vite';
-import type { AutoDepOptimizationOptions } from '../types';
-import { type ScanDepsResult } from '../utils/scanDepsToOptimize';
+import type { AutoDepOptimizationOptions } from '../types.js';
+import { type ScanDepsResult } from '../utils/scanDepsToOptimize.js';
 type FindDepsOptions = AutoDepOptimizationOptions & {
     root: string;
     onScannedDeps?: (result: ScanDepsResult) => void;

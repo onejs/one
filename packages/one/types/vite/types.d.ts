@@ -2,10 +2,10 @@ import type { GetTransform } from '@vxrn/compiler';
 import type { metroPlugin } from '@vxrn/vite-plugin-metro';
 import type { Plugin as RolldownPlugin } from 'rolldown';
 import type { AutoDepOptimizationOptions, UserDepPatches, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
-import type { One as OneShared } from '../interfaces/router';
-import type { RouteNode } from '../router/Route';
-import type { NativeAppManifest } from '../native/appManifest';
-import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin';
+import type { One as OneShared } from '../interfaces/router.js';
+import type { RouteNode } from '../router/Route.js';
+import type { NativeAppManifest } from '../native/appManifest.js';
+import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin.js';
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0];
 export type DeployTarget = 'node' | 'vercel' | 'cloudflare';
 export type DeployConfig = {

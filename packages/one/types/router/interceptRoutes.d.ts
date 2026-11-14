@@ -1,4 +1,4 @@
-import type { RouteNode } from './Route';
+import type { RouteNode } from './Route.js';
 export declare function setNavigationType(type: 'soft' | 'hard'): void;
 export declare function getNavigationType(): 'soft' | 'hard';
 export declare function isHardNavigation(): boolean;

@@ -1,4 +1,4 @@
-import type { AudioNowPlayingInfo, AudioRemoteCommandEvent } from '../specs/OneAudio.nitro';
+import type { AudioNowPlayingInfo, AudioRemoteCommandEvent } from '../specs/OneAudio.nitro.js';
 export type NowPlayingOwner = {
     key: string;
     element: HTMLAudioElement;

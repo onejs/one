@@ -1,5 +1,5 @@
-import type { SecureStoreOptions } from './types';
-export type { SecureStoreAccessibility, SecureStoreOptions } from './types';
+import type { SecureStoreOptions } from './types.js';
+export type { SecureStoreAccessibility, SecureStoreOptions } from './types.js';
 declare function getItem(key: string, options?: SecureStoreOptions): Promise<string | null>;
 declare function setItem(key: string, value: string, options?: SecureStoreOptions): Promise<void>;
 declare function deleteItem(key: string, options?: SecureStoreOptions): Promise<void>;

@@ -1,5 +1,5 @@
 import type { StyleProp, ViewStyle } from 'react-native';
-import type { NativeSourceViewWires } from './wire.native';
+import type { NativeSourceViewWires } from './wire.native.js';
 export interface KotlinSourceViewProps {
     source: string;
     view: string;

@@ -1,7 +1,7 @@
-import type { FileDirectories, FileEncoding, FileEntry, FileInfo } from '../specs/OneFileSystem.nitro';
-import { Directory, File, FileHandle, Paths } from './classes.native';
+import type { FileDirectories, FileEncoding, FileEntry, FileInfo } from '../specs/OneFileSystem.nitro.js';
+import { Directory, File, FileHandle, Paths } from './classes.native.js';
 export type { FileDirectories, FileEncoding, FileEntry, FileInfo };
-export type * from './types';
+export type * from './types.js';
 declare function getDirectories(): FileDirectories;
 declare function getInfo(uri: string): Promise<FileInfo>;
 declare function readDirectory(uri: string): Promise<FileEntry[]>;

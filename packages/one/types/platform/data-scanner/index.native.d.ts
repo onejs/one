@@ -1,12 +1,12 @@
-import type { DataScannerOptions, DataScannerViewControllerDelegate } from './types';
-export type * from './types';
+import type { DataScannerOptions, DataScannerViewControllerDelegate } from './types.js';
+export type * from './types.js';
 export declare class DataScannerViewController {
     static get isSupported(): boolean;
     static get isAvailable(): boolean;
     static get supportedTextRecognitionLanguages(): string[];
     static readonly RecognizedDataType: {
-        text(languages?: string[], textContentType?: import("./types").DataScannerTextContentType): import("./types").DataScannerRecognizedDataType;
-        barcode(symbologies?: string[]): import("./types").DataScannerRecognizedDataType;
+        text(languages?: string[], textContentType?: import("./types.js").DataScannerTextContentType): import("./types.js").DataScannerRecognizedDataType;
+        barcode(symbologies?: string[]): import("./types.js").DataScannerRecognizedDataType;
     };
     private readonly native;
     private readonly configuration;
@@ -19,18 +19,18 @@ export declare class DataScannerViewController {
     get isPinchToZoomEnabled(): any;
     get isGuidanceEnabled(): any;
     get isHighlightingEnabled(): any;
-    get regionOfInterest(): import("../specs/OneDataScanner.nitro").DataScannerRect | undefined;
-    set regionOfInterest(value: import("../specs/OneDataScanner.nitro").DataScannerRect | undefined);
+    get regionOfInterest(): import("../specs/OneDataScanner.nitro.js").DataScannerRect | undefined;
+    set regionOfInterest(value: import("../specs/OneDataScanner.nitro.js").DataScannerRect | undefined);
     get isScanning(): boolean;
     get minZoomFactor(): number;
     get maxZoomFactor(): number;
     get zoomFactor(): number;
     set zoomFactor(value: number);
-    get recognizedItems(): AsyncIterable<import("../specs/OneDataScanner.nitro").DataScannerRecognizedItem[]>;
+    get recognizedItems(): AsyncIterable<import("../specs/OneDataScanner.nitro.js").DataScannerRecognizedItem[]>;
     present(animated?: boolean): Promise<void>;
     dismiss(animated?: boolean): Promise<void>;
     startScanning(): void;
     stopScanning(): void;
-    capturePhoto(): Promise<import("../specs/OneDocumentCamera.nitro").DocumentCameraImage>;
+    capturePhoto(): Promise<import("../specs/OneDocumentCamera.nitro.js").DocumentCameraImage>;
 }
 //# sourceMappingURL=index.native.d.ts.map

@@ -1,4 +1,4 @@
-import type { ClipboardGetImageOptions, ClipboardGetStringOptions, ClipboardSetStringOptions } from './types';
+import type { ClipboardGetImageOptions, ClipboardGetStringOptions, ClipboardSetStringOptions } from './types.js';
 export declare function assertSetStringText(text: unknown): asserts text is string;
 export declare function assertSetStringOptions(options: ClipboardSetStringOptions | undefined, verb: string): void;
 export declare function assertGetStringOptions(options: ClipboardGetStringOptions | undefined, verb: string): void;

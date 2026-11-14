@@ -6,7 +6,7 @@
  * All modifications except formatting should be marked with `// @modified` comment.
  */
 import { type NavigationContainerRef, type ParamListBase } from '@react-navigation/core';
-import { getStateFromPath as getStateFromPathDefault } from './getStateFromPath';
+import { getStateFromPath as getStateFromPathDefault } from './getStateFromPath.js';
 import type { LinkingOptions } from '@react-navigation/native';
 import * as React from 'react';
 type ResultState = ReturnType<typeof getStateFromPathDefault>;

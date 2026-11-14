@@ -1,5 +1,5 @@
-import type { OneRouter } from '../interfaces/router';
-import type { RouteNode } from './Route';
+import type { OneRouter } from '../interfaces/router.js';
+import type { RouteNode } from './Route.js';
 export type SitemapType = {
     contextKey: string;
     filename: string;

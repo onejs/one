@@ -1,3 +1,3 @@
-export type * from './types';
-export { MFMailComposeViewController, MFMessageComposeViewController, } from './unavailable';
+export type * from './types.js';
+export { MFMailComposeViewController, MFMessageComposeViewController, } from './unavailable.js';
 //# sourceMappingURL=index.d.ts.map

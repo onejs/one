@@ -1,6 +1,6 @@
 import type { PluginOption } from 'vite';
 import type { loadConfig as loadConfigT } from 'metro';
-import type { TransformOptions } from '../transformer/babel-core';
+import type { TransformOptions } from '../transformer/babel-core.js';
 type MetroYargArguments = Parameters<typeof loadConfigT>[0];
 type MetroInputConfig = Parameters<typeof loadConfigT>[1];
 export type MetroPluginOptions = {

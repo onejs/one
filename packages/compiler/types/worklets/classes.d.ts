@@ -1,4 +1,4 @@
-import type { WorkletClassCandidate } from './types';
+import type { WorkletClassCandidate } from './types.js';
 export declare const WORKLET_CLASS_MARKER = "__workletClass";
 export declare const WORKLET_CLASS_FACTORY_SUFFIX = "__classFactory";
 export declare function findWorkletClasses(program: any): WorkletClassCandidate[];

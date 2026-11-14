@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { PedometerPermissionResponse, PedometerResult } from '../pedometer/types';
+import type { PedometerPermissionResponse, PedometerResult } from '../pedometer/types.js';
 export interface OnePedometer extends HybridObject<{
     ios: 'swift';
     android: 'kotlin';

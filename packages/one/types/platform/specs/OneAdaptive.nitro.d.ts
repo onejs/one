@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { HingeState, SizeClass } from '../adaptive/types';
+import type { HingeState, SizeClass } from '../adaptive/types.js';
 export interface OneAdaptive extends HybridObject<{
     ios: 'swift';
     android: 'kotlin';
