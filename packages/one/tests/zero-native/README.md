@@ -193,7 +193,7 @@ adoption decisions and additional compatibility work.
 | Local work during a stalled pull, duplicate insert, partial upsert, server drift, schema change and recovery fencing | Native driver integration |
 | Wrapped Orez application errors and durable desired queries                                                  | Local HTTP integration                                  |
 | Materialized cached/optimistic data, query registration/refcounts, completion, query errors, rollback and disposal | Native driver integration and real HTTP got-query normalization |
-| Filters, UTF-8 ordering, limits, cursors, null/JSON, singular results, related queries and correlated EXISTS | 18 cases compared with the pinned Zero executable       |
+| Filters, UTF-8 ordering, limits, cursors, null/JSON, singular results, one/two-hop related queries and correlated EXISTS | 27 cases, junction unlink subscriptions and singular cardinality compared with the pinned Zero executable       |
 | Team Machine schema, session/message queries, original message.send replay, session.stop and durable reopen                  | Consumer-source probe through Nitro/Hermes on iOS, recorded with the experiment task |
 | Pinned Zero React provider/useQuery, context-bound queries, query errors and TTL updates                       | React renderer with native driver                        |
 | Managed startup outbox, retry, offline/background edits, wake coalescing and stale cancelled responses          | Native driver integration; startup retry and background/foreground through Hermes/Nitro on iOS |
@@ -211,12 +211,16 @@ This harness embeds the generated bridge directly. The separate Team Machine
 DEV simulator check built the complete CocoaPods application and exercised the
 live session list, conversation history and composer. A queued send survived an
 offline app restart and reached the daemon after reconnecting, with its native
-journal acknowledged. That integration remains opt-in on its app branch until
-published package pins and their matching native SDK build are validated.
+journal acknowledged. That integration is landed behind a developer flag in Team Machine with exact
+published package pins and a validated native SDK build. The matching runtime
+TestFlight build has been requested; its delivery is tracked with the experiment task.
 `ONE_ZERO_PROBE=/path/to/consumer-probe.ts` selects a consumer-specific entry
 while retaining the same native engine and bridge.
 
-Unsupported Unicode ILIKE and hidden relationship flattening throw explicitly.
+Unsupported Unicode ILIKE and hidden paths beyond the pinned two-hop junction shape throw explicitly.
+Junction queries select visible targets through an existential join, so duplicate links
+produce one target row and unlinking one duplicate preserves that row. The pinned
+builder itself rejects ordering and limits inside junction callbacks.
 The on-zero provider requires its external-instance support. Managed sync requires consumer wiring
 for lifecycle, network and wake events. The materialization interface lacks custom view factories and the full
 server TTL protocol. The pinned Zero React provider/useQuery path is exercised

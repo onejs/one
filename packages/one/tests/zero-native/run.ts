@@ -54,6 +54,20 @@ const schema: Schema = {
         extra: { type: 'json', optional: true },
       },
     },
+    tag: {
+      name: 'tag',
+      primaryKey: ['id'],
+      columns: { id: { type: 'string' }, label: { type: 'string' } },
+    },
+    sessionTag: {
+      name: 'sessionTag',
+      primaryKey: ['id'],
+      columns: {
+        id: { type: 'string' },
+        session: { type: 'string' },
+        tag: { type: 'string' },
+      },
+    },
     session: {
       name: 'session',
       primaryKey: ['id'],
@@ -1052,8 +1066,20 @@ const refSession = reference
     state: reference.string(),
   })
   .primaryKey('id')
+const refTag = reference
+  .table('tag')
+  .columns({ id: reference.string(), label: reference.string() })
+  .primaryKey('id')
+const refSessionTag = reference
+  .table('sessionTag')
+  .columns({
+    id: reference.string(),
+    session: reference.string(),
+    tag: reference.string(),
+  })
+  .primaryKey('id')
 const refSchema = reference.createSchema({
-  tables: [refMessage, refSession],
+  tables: [refMessage, refSession, refTag, refSessionTag],
   relationships: [
     reference.relationships(refMessage, ({ one }: any) => ({
       sessionRow: one({
@@ -1062,7 +1088,17 @@ const refSchema = reference.createSchema({
         destSchema: refSession,
       }),
     })),
+    reference.relationships(refTag, ({ many }: any) => ({
+      sessions: many(
+        { sourceField: ['id'], destField: ['tag'], destSchema: refSessionTag },
+        { sourceField: ['session'], destField: ['id'], destSchema: refSession }
+      ),
+    })),
     reference.relationships(refSession, ({ many }: any) => ({
+      tags: many(
+        { sourceField: ['id'], destField: ['session'], destSchema: refSessionTag },
+        { sourceField: ['tag'], destField: ['id'], destSchema: refTag }
+      ),
       messages: many({
         sourceField: ['id'],
         destField: ['session'],
@@ -1072,6 +1108,12 @@ const refSchema = reference.createSchema({
   ],
 })
 const registry = reference.defineMutators({
+  seedTag: reference.defineMutator(async ({ tx, args }: any) => {
+    await tx.mutate.tag.upsert(args)
+  }),
+  seedSessionTag: reference.defineMutator(async ({ tx, args }: any) => {
+    await tx.mutate.sessionTag.upsert(args)
+  }),
   seed: reference.defineMutator(
     async ({
       tx,
@@ -1116,17 +1158,58 @@ const rows = [
   message('g', 7, 'a%b'),
 ]
 const refSessionRow = { id: 's1', title: 'joined session', state: 'idle' }
+const extraSessions = [
+  { id: 's2', title: 'empty session', state: 'idle' },
+  { id: 's3', title: 'other session', state: 'idle' },
+]
+const tags = [
+  { id: 'z', label: 'alpha' },
+  { id: 'a', label: 'beta' },
+  { id: 'unused', label: 'unlinked' },
+]
+const links = [
+  { id: '1', session: 's1', tag: 'z' },
+  { id: '2', session: 's1', tag: 'a' },
+  { id: '3', session: 's1', tag: 'z' },
+  { id: '4', session: 's3', tag: 'a' },
+  { id: '5', session: 's1', tag: 'missing' },
+]
 const seed = await engine.raw({
   op: 'beginPull',
   response: {
     cookie: 1,
-    rowsPatch: [put('session', refSessionRow), ...rows.map((row) => put('message', row))],
+    rowsPatch: [
+      put('session', refSessionRow),
+      ...rows.map((row) => put('message', row)),
+      ...extraSessions.map((row) => put('session', row)),
+      ...tags.map((row) => put('tag', row)),
+      ...links.map((row) => put('sessionTag', row)),
+    ],
   },
 })
 await engine.raw({ op: 'commitPull', transaction: seed.transaction })
 for (const row of rows) await zero.mutate(registry.seed(row)).client
 await zero.mutate(registry.seedSession(refSessionRow)).client
-client = new NativeZero({ engine, schema, mutators: {} })
+for (const row of extraSessions) await zero.mutate(registry.seedSession(row)).client
+for (const row of tags) await zero.mutate(registry.seedTag(row)).client
+for (const row of links) await zero.mutate(registry.seedSessionTag(row)).client
+client = new NativeZero({
+  engine,
+  schema,
+  mutators: {
+    async seedSessionTag(tx, args) {
+      await tx.mutate.sessionTag.upsert(args as Row)
+    },
+  },
+})
+function observable(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(observable)
+  if (value && typeof value === 'object')
+    return Object.fromEntries(
+      Object.entries(value).map(([key, nested]) => [key, observable(nested)])
+    )
+  return value
+}
 const cases = [
   builder.message.orderBy('seq', 'asc'),
   builder.message.orderBy('seq', 'desc').limit(3),
@@ -1148,16 +1231,49 @@ const cases = [
   builder.message.related('sessionRow'),
   builder.session.related('messages', (q: any) => q.orderBy('seq', 'desc').limit(2)),
   builder.session.whereExists('messages', (q: any) => q.where('body', 'alpha')),
+  builder.session.related('tags'),
+  builder.session.related('tags', (q: any) => q.where('label', 'alpha')),
+  builder.session.related('tags', (q: any) => q.where('id', 'missing')),
+  builder.session.related('tags', (q: any) => q.where('id', 'missing').one()),
+  builder.session.where('id', 's1').related('tags', (q: any) => q.where('id', 'z').one()),
+  builder.session.whereExists('tags', (q: any) => q.where('label', 'beta')),
+  builder.message.related('sessionRow', (q: any) => q.related('tags')),
+  builder.tag.related('sessions'),
+  builder.session.related('tags', (q: any) =>
+    q.related('sessions', (q: any) =>
+      q.related('messages', (q: any) => q.orderBy('seq', 'desc').limit(2))
+    )
+  ),
 ]
 for (const query of cases) {
   const expected = await zero.run(query)
   const actual = await client.run(query)
-  assert.deepEqual(
-    actual,
-    expected === undefined ? undefined : JSON.parse(JSON.stringify(expected)),
-    JSON.stringify(query.ast)
-  )
+  assert.deepEqual(actual, observable(expected), JSON.stringify(query.ast))
 }
+const junctionQuery = builder.session.related('tags')
+const junctionPublications: unknown[] = []
+const stopJunction = client.subscribe(junctionQuery, (rows) =>
+  junctionPublications.push(rows)
+)
+await client.state()
+for (const id of ['1', '3']) {
+  const moved = { id, session: 's2', tag: 'z' }
+  await zero.mutate(registry.seedSessionTag(moved)).client
+  await client.mutate('seedSessionTag', moved)
+  assert.deepEqual(
+    await client.run(junctionQuery),
+    observable(await zero.run(junctionQuery))
+  )
+  assert.deepEqual(junctionPublications.at(-1), await client.run(junctionQuery))
+}
+stopJunction()
+const invalidSingular = builder.tag
+  .where('id', 'a')
+  .related('sessions', (q: any) => q.one())
+await assert.rejects(zero.run(invalidSingular), /Singular relationship/)
+await assert.rejects(client.run(invalidSingular), /singular relationship/i)
 await zero.close()
 await client.close()
-console.log(`native query differential passed ${cases.length} actual Zero query cases`)
+console.log(
+  `native query differential passed ${cases.length} actual Zero query cases and duplicate junction unlink subscriptions`
+)

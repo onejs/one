@@ -594,6 +594,61 @@ struct Client::Impl {
     return out;
   }
 
+  Json queryRelationship(const Json& related, const Json& childFormat, const Json& parent,
+                         unsigned depth) {
+    const Json& child = related.at("subquery");
+    if (!related.flag("hidden"))
+      return query(child, childFormat, &related.at("correlation"), &parent, depth);
+    std::string name = child.has("alias") ? child.at("alias").string() : child.at("table").string();
+    Json nested;
+    const auto& links = child.at("related").items();
+    if (links.size() != 1 || links.front().flag("hidden"))
+      throw std::runtime_error("expected a two-hop junction relationship");
+    const Json& link = links.front();
+    Json junction = child;
+    auto& junctionFields = std::get<Json::Object>(junction.value);
+    junctionFields.erase("related");
+    Json::Array predicates;
+    if (junction.has("where")) predicates.push_back(junction.at("where"));
+    const auto& parentFields = related.at("correlation").at("parentField").items();
+    const auto& junctionKeys = related.at("correlation").at("childField").items();
+    if (parentFields.empty() || parentFields.size() != junctionKeys.size())
+      throw std::runtime_error("invalid relationship correlation");
+    for (size_t i = 0; i < parentFields.size(); ++i)
+      predicates.emplace_back(Json::Object{
+          {"type", "simple"}, {"op", "="},
+          {"left", Json::Object{{"type", "column"}, {"name", junctionKeys[i]}}},
+          {"right", Json::Object{{"type", "literal"},
+                                 {"value", parent.at(parentFields[i].string())}}}});
+    junctionFields.insert_or_assign(
+        "where", Json::Object{{"type", "and"}, {"conditions", std::move(predicates)}});
+    Json target = link.at("subquery");
+    Json exists = Json::Object{
+        {"type", "correlatedSubquery"}, {"op", "EXISTS"},
+        {"related", Json::Object{
+             {"correlation", Json::Object{
+                  {"parentField", link.at("correlation").at("childField")},
+                  {"childField", link.at("correlation").at("parentField")}}},
+             {"subquery", std::move(junction)}}}};
+    if (target.has("where"))
+      exists = Json::Object{{"type", "and"},
+                            {"conditions", Json::Array{target.at("where"), std::move(exists)}}};
+    std::get<Json::Object>(target.value).insert_or_assign("where", std::move(exists));
+    Json targetFormat = childFormat;
+    if (childFormat.flag("singular")) {
+      std::get<Json::Object>(target.value).insert_or_assign("limit", 2);
+      std::get<Json::Object>(targetFormat.value).insert_or_assign("singular", false);
+    }
+    nested = query(target, targetFormat, nullptr, nullptr, depth);
+    if (childFormat.flag("singular")) {
+      auto& matches = std::get<Json::Array>(nested.value);
+      if (matches.size() > 1)
+        throw std::runtime_error("singular relationship has multiple rows: " + name);
+      nested = matches.empty() ? Json() : Json(matches.front());
+    }
+    return nested;
+  }
+
   Json query(const Json& ast, const Json& format, const Json* correlation = nullptr,
              const Json* parent = nullptr, unsigned depth = 0) {
     if (depth > 32) throw std::runtime_error("relationship nesting exceeds 32 levels");
@@ -608,13 +663,11 @@ struct Client::Impl {
                                     : Json(Json::Serialized{statement.text(0)});
       if (ast.has("related")) {
         for (const Json& related : ast.at("related").items()) {
-          if (related.flag("hidden"))
-            throw std::runtime_error("hidden relationships are not yet supported");
           const Json& child = related.at("subquery");
           std::string name =
               child.has("alias") ? child.at("alias").string() : child.at("table").string();
           const Json& childFormat = format.get("relationships").get(name);
-          Json nested = query(child, childFormat, &related.at("correlation"), &row, depth + 1);
+          Json nested = queryRelationship(related, childFormat, row, depth + 1);
           std::get<Json::Object>(row.value).insert_or_assign(name, std::move(nested));
         }
       }
