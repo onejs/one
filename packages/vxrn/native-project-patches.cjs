@@ -878,6 +878,9 @@ function holdLaunchScreenInMainActivity(mainActivity) {
 const ONE_BUN_ENGINE = {
   marker: '# [vxrn/one] bun engine',
   bridgingHeaderImport: '#import <OneBunEngine/OneBunEngine.h>',
+  // bun's allocator reserves about 32 GB of address space, half of what iOS gives an
+  // app by default, so a long session ran out and malloc failed
+  entitlement: 'com.apple.developer.kernel.extended-virtual-addressing',
 }
 
 function injectBunEngineIntoPodfile(podfile) {

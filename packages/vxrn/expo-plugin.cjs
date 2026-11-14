@@ -866,6 +866,13 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
           },
         ],
         importIntoBridgingHeader('engine', nativeProjectPatches.ONE_BUN_ENGINE.bridgingHeaderImport),
+        [
+          withEntitlementsPlist,
+          (nextConfig) => {
+            nextConfig.modResults[nativeProjectPatches.ONE_BUN_ENGINE.entitlement] = true
+            return nextConfig
+          },
+        ],
       ]
 
   return withPlugins(config, [
