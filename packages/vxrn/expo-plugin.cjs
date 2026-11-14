@@ -1,7 +1,6 @@
 const fs = require('node:fs')
 const { createRequire } = require('node:module')
 const path = require('node:path')
-const { execFileSync } = require('node:child_process')
 const { pathToFileURL } = require('node:url')
 const nativeProjectPatches = require('./native-project-patches.cjs')
 
@@ -701,15 +700,11 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
     } catch (error) {
       throw new Error(`[vxrn/expo-plugin] cannot resolve the one package: ${error.message}`)
     }
-    // as in one prebuild: a host without the iOS SDK (linux, windows) still
-    // generates the project, without the bindings pod it cannot compile.
-    try {
-      execFileSync('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-path'], {
-        stdio: 'ignore',
-      })
-    } catch {
+    // a linux or windows host still generates the project; it has no iOS SDK to
+    // build the bindings pod, which only a mac compiles.
+    if (process.platform !== 'darwin') {
       console.warn(
-        '[vxrn/expo-plugin] the iOS SDK is not available (xcrun found no iphonesimulator SDK), so iOS SDK generation was skipped'
+        `[vxrn/expo-plugin] iOS SDK generation was skipped on ${process.platform}; the bindings pod is generated on macOS`
       )
       return []
     }
