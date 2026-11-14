@@ -9,5 +9,6 @@ export async function createNativeZero(
   const engine = NitroModules.createHybridObject<OneZero>('OneZero')
   const client = new NativeZero({ ...options, engine })
   await engine.open(options.name, JSON.stringify(options.schema), options.clientID ?? '')
+  await client.ready()
   return client
 }

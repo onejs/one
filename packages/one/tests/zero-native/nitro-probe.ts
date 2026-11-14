@@ -72,6 +72,10 @@ async function run() {
   }
   let client = await createNativeZero(options)
   const identity = (await client.state()).clientID
+  check(
+    client.clientID === identity,
+    'native factory exposes durable identity before returning'
+  )
   await client.pull()
   check((await client.run<Row[]>(query)).length === 1, 'Nitro async native query')
   await client.mutate('send')
@@ -127,7 +131,7 @@ async function run() {
     'caught native write failure can recover in Hermes'
   )
   response = { cookie: 4, gotQueriesPatch: [{ op: 'put', hash: 'nitro-live' }] }
-  const view = client.materialize<Row[]>(query, { hash: 'nitro-live' })
+  const view = client.materialize<Row[]>(query, { hash: 'nitro-live', ttl: 'none' })
   let complete!: () => void
   const completed = new Promise<void>((resolve) => {
     complete = resolve

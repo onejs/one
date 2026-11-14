@@ -468,7 +468,7 @@ client = new NativeZero({
     async push() {},
   },
 })
-const view = client.materialize<Row[]>(messages, { hash: 'live-messages' })
+const view = client.materialize<Row[]>(messages, { hash: 'live-messages', ttl: 'none' })
 assert.deepEqual(view.data, [])
 const viewEvents: { data: Row[]; type: string; message?: string }[] = []
 let viewReady!: () => void
@@ -482,7 +482,10 @@ view.addListener((data, type, error) => {
 await viewComplete
 assert.equal(viewEvents[0].type, 'unknown')
 assert.equal(view.data[0].body, 'view snapshot')
-const sharedView = client.materialize<Row[]>({ ...messages, hash: () => 'live-messages' })
+const sharedView = client.materialize<Row[]>(
+  { ...messages, hash: () => 'live-messages' },
+  { ttl: 0 }
+)
 assert.throws(
   () => client.materialize({ ast: { table: 'session' } }, { hash: 'live-messages' }),
   /different queries/
@@ -559,6 +562,60 @@ await client.close()
 assert.throws(() => reopenedView.addListener(() => {}), /destroyed/)
 console.log(
   'materialized views passed: query registration/refcounts, optimistic data, completion/error-only pulls, rollback, disposal and durable reopen'
+)
+
+engine = new ProcessEngine(join(folder, 'ttl.sqlite'))
+await engine.ready
+let ttlQueries: readonly import('../../src/zero/native/types').DesiredQuery[] = []
+let expiresSeen = false
+let retired!: () => void
+const expired = new Promise<void>((resolve) => {
+  retired = resolve
+})
+let ttlCookie = 0
+client = new NativeZero({
+  engine,
+  schema,
+  mutators,
+  context: { user: 'alice' },
+  transport: {
+    async pull(_state, queries) {
+      ttlQueries = queries
+      if (queries.some((query) => query.hash === 'expires')) expiresSeen = true
+      else if (expiresSeen) retired()
+      return { cookie: ++ttlCookie }
+    },
+    async push() {},
+  },
+})
+assert.throws(() => client.clientID, /ready/)
+await client.ready()
+assert.equal(client.clientID, 'integration-client')
+assert.deepEqual(client.context, { user: 'alice' })
+const retainedView = client.materialize(messages, { hash: 'retained', ttl: 'forever' })
+await client.pull()
+retainedView.destroy()
+await client.pull()
+assert.deepEqual(
+  ttlQueries.map((query) => query.hash),
+  ['retained']
+)
+const reclaimedView = client.materialize(messages, { hash: 'retained', ttl: 'none' })
+await client.state()
+reclaimedView.destroy()
+await client.pull()
+assert.deepEqual(ttlQueries, [])
+const expiringView = client.materialize(messages, { hash: 'expires', ttl: 'none' })
+await client.pull()
+expiringView.updateTTL(1)
+expiringView.destroy()
+await expired
+await client.pull()
+assert.deepEqual(ttlQueries, [])
+client.materialize(messages, { hash: 'close-cleans-timers', ttl: 'forever' }).destroy()
+await client.close()
+console.log(
+  'query retention passed: shared registration, reclaim, TTL update/expiry, close cleanup and ready identity/context'
 )
 
 const requests: { version: number; patch: unknown[] }[] = []

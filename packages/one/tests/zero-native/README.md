@@ -47,18 +47,25 @@ await client.close()
 ```
 
 `materialize(query, { hash })` returns a view with `data`, `addListener` and
-`destroy`. A pinned Zero builder supplies its own hash, so `{ hash }` is optional
+`destroy` and `updateTTL`. A pinned Zero builder supplies its own hash, so `{ hash }` is optional
 for those queries. Active views share desired-query registrations by hash;
-destroying the last view removes its registration on the next pull. Registration
+destroying the last view retains its registration for the view's TTL, then removes
+it on the next pull. The default is five minutes, clamped to ten minutes, including
+`forever`, matching the pinned client's limits. `{ ttl: 'none' }` or `{ ttl: 0 }`
+releases immediately. Duration strings support `s`, `m`, `h`, `d` and `y`.
+Retention runs locally in this slice; closing cancels timers, and cache retention
+across process death does not follow the full Zero TTL protocol. Registration
 changes schedule a pull when a transport is configured. Explicit desired queries
 passed to `pull(queries)` remain registered independently of active views.
 
 Listeners receive `(data, resultType, error?)`. Cached data starts as `unknown`;
 only the server's got-query acknowledgement marks it `complete`. Query errors
 and acknowledgements persist atomically with the rows and cursor, including
-responses with no row changes. This is the first materialization interface, not
-yet a drop-in Zero view: TTL retention, custom view factories and named-query
-resolution through an application context remain unimplemented.
+responses with no row changes. `context` is passed to the pinned Zero React hook
+to resolve context-bound registered queries before native materialization. The
+async factory returns with `clientID` ready for those hooks; injected engines
+should call `await client.ready()` before mounting a provider. Custom view
+factories and imperative execution of named query requests remain unimplemented.
 
 Queries accept the pinned Zero builder's `ast` and `format`. Mutators receive
 `tx.run(query)` and `tx.mutate[table].insert/upsert/update/delete(row)`. The factory
@@ -149,7 +156,8 @@ adoption decisions and additional compatibility work.
 | Materialized cached/optimistic data, query registration/refcounts, completion, query errors, rollback and disposal | Native driver integration and real HTTP got-query normalization |
 | Filters, UTF-8 ordering, limits, cursors, null/JSON, singular results, related queries and correlated EXISTS | 18 cases compared with the pinned Zero executable       |
 | Team Machine schema, session/message queries, original message.send replay, session.stop and durable reopen                  | Consumer-source probe through Nitro/Hermes on iOS, recorded with the experiment task |
-| Existing React provider and hooks, live reconnect and mobile screens                                         | Pending                                                 |
+| Pinned Zero React provider/useQuery, context-bound queries, query errors and TTL updates                       | React renderer with native driver                        |
+| Team Machine on-zero provider, live reconnect and mobile screens                                             | Pending                                                 |
 | One Android consumer native compilation and APK packaging                                                    | Android Native Build CI                                  |
 | Android native Zero runtime, cloud encrypted transport and multiple identity/client adoption                 | Pending                                                 |
 | Pinned upstream WebSocket protocol, storage recovery and full upstream suite                                 | Pending                                                 |
@@ -165,7 +173,10 @@ while retaining the same native engine and bridge.
 
 Unsupported Unicode ILIKE and hidden relationship flattening throw explicitly.
 There is no automatic wake/reconnect scheduling or drop-in `on-zero` provider
-yet. The materialization interface lacks TTL retention and custom view factories.
+yet. The materialization interface lacks custom view factories and the full
+server TTL protocol. The pinned Zero React provider/useQuery path is exercised
+against the native driver, including context-bound queries and error repair;
+this does not exercise Team Machine's complete on-zero provider.
 Subscriptions requery after commits; this slice
 has expression indexes for primary keys and relationship destination fields,
 but no incremental view maintenance. Unchanged pulls skip rebuilding the view;

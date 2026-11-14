@@ -1,10 +1,11 @@
-import type { ClientState, DesiredQuery, Engine, JSONValue, MaterializedView, Mutation, Mutators, Query, Schema, Transport } from './types';
+import type { ClientState, DesiredQuery, Engine, JSONValue, MaterializedView, Mutation, Mutators, Query, Schema, Transport, TTL } from './types';
 export type NativeZeroOptions = {
     engine: Engine;
     schema: Schema;
     mutators: Mutators;
     transport?: Transport;
     onError?: (error: unknown) => void;
+    context?: unknown;
 };
 export declare class NativeZero {
     private options;
@@ -16,6 +17,7 @@ export declare class NativeZero {
     private subscriptions;
     private mutators;
     private views;
+    private identity?;
     private desiredViews;
     private manualQueries?;
     private managesQueries;
@@ -27,6 +29,9 @@ export declare class NativeZero {
     private dispatch;
     private query;
     run<T = unknown>(query: Query): Promise<T>;
+    get clientID(): string;
+    get context(): unknown;
+    ready(): Promise<this>;
     state(): Promise<ClientState>;
     pending(): Promise<Mutation[]>;
     private invoke;
@@ -37,6 +42,7 @@ export declare class NativeZero {
     subscribe(query: Query, listener: (value: unknown) => void): () => void;
     materialize<T = unknown>(query: Query, options?: {
         hash?: string;
+        ttl?: TTL;
     }): MaterializedView<T>;
     private refreshQueries;
     private report;

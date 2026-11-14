@@ -16,9 +16,10 @@ import type {
   TableMutations,
   Transaction,
   Transport,
+  TTL,
   WriteKind,
 } from './types'
-import { NativeView } from './view'
+import { NativeView, queryTTL } from './view'
 
 export type NativeZeroOptions = {
   engine: Engine
@@ -26,6 +27,7 @@ export type NativeZeroOptions = {
   mutators: Mutators
   transport?: Transport
   onError?: (error: unknown) => void
+  context?: unknown
 }
 
 type Subscription = {
@@ -72,7 +74,16 @@ export class NativeZero {
   private subscriptions = new Set<Subscription>()
   private mutators = new Map<string, Mutator>()
   private views = new Set<NativeView<unknown>>()
-  private desiredViews = new Map<string, { desired: DesiredQuery; count: number }>()
+  private identity?: string
+  private desiredViews = new Map<
+    string,
+    {
+      desired: DesiredQuery
+      count: number
+      ttl: number
+      timer?: ReturnType<typeof setTimeout>
+    }
+  >()
   private manualQueries?: readonly DesiredQuery[]
   private managesQueries = false
   private queryRefreshQueued = false
@@ -129,8 +140,27 @@ export class NativeZero {
     return this.enqueue(() => this.query<T>(query))
   }
 
+  get clientID(): string {
+    if (!this.identity)
+      throw new Error('Await NativeZero.ready() before reading clientID')
+    return this.identity
+  }
+
+  get context(): unknown {
+    return this.options.context
+  }
+
+  async ready(): Promise<this> {
+    await this.state()
+    return this
+  }
+
   state(): Promise<ClientState> {
-    return this.enqueue(() => this.request({ op: 'state' }))
+    return this.enqueue(async () => {
+      const state = await this.request<ClientState>({ op: 'state' })
+      this.identity = state.clientID
+      return state
+    })
   }
 
   pending(): Promise<Mutation[]> {
@@ -310,11 +340,12 @@ export class NativeZero {
 
   materialize<T = unknown>(
     query: Query,
-    options: { hash?: string } = {}
+    options: { hash?: string; ttl?: TTL } = {}
   ): MaterializedView<T> {
     if (this.closed) throw new Error('Native Zero client is closed')
     const hash = options.hash ?? query.hash?.()
     if (!hash) throw new Error('Native Zero materialization requires a query hash')
+    let ttl = queryTTL(options.ttl)
     const captured = JSON.parse(
       serialize({ ast: query.ast, format: query.format })
     ) as Query
@@ -323,7 +354,12 @@ export class NativeZero {
     if (existing && serialize(existing.desired) !== serialize(desired))
       throw new Error('Native Zero query hash refers to different queries')
     this.managesQueries = true
-    this.desiredViews.set(hash, { desired, count: (existing?.count ?? 0) + 1 })
+    if (existing?.timer !== undefined) clearTimeout(existing.timer)
+    this.desiredViews.set(hash, {
+      desired,
+      count: (existing?.count ?? 0) + 1,
+      ttl: existing && existing.count > 0 ? existing.ttl : 0,
+    })
     const subscription: Subscription = {
       query: captured,
       hash,
@@ -338,17 +374,30 @@ export class NativeZero {
         this.subscriptions.delete(subscription)
         this.views.delete(view as NativeView<unknown>)
         const registered = this.desiredViews.get(hash)!
-        if (--registered.count === 0) this.desiredViews.delete(hash)
-        this.refreshQueries()
+        registered.ttl = Math.max(registered.ttl, ttl)
+        if (--registered.count === 0) {
+          if (!this.closed && registered.ttl > 0) {
+            registered.timer = setTimeout(() => {
+              this.desiredViews.delete(hash)
+              this.refreshQueries()
+            }, registered.ttl)
+          } else {
+            this.desiredViews.delete(hash)
+            this.refreshQueries()
+          }
+        }
       },
-      (error) => this.report(error)
+      (error) => this.report(error),
+      (value) => {
+        ttl = queryTTL(value)
+      }
     )
     this.views.add(view as NativeView<unknown>)
     this.subscriptions.add(subscription)
     void this.enqueue(() => this.publish([subscription])).catch((error) =>
       this.report(error)
     )
-    this.refreshQueries()
+    if (!existing) this.refreshQueries()
     return view
   }
 
@@ -413,6 +462,10 @@ export class NativeZero {
     this.closed = true
     this.abort.abort()
     for (const view of [...this.views]) view.destroy()
+    for (const registration of this.desiredViews.values()) {
+      if (registration.timer !== undefined) clearTimeout(registration.timer)
+    }
+    this.desiredViews.clear()
     this.subscriptions.clear()
     this.closing = this.tail.then(() => this.options.engine.close())
     return this.closing

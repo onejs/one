@@ -12,6 +12,7 @@ export type Query = {
     hash?: () => string;
 };
 export type QueryResultType = 'unknown' | 'complete' | 'error';
+export type TTL = number | 'none' | 'forever' | `${number}${'s' | 'm' | 'h' | 'd' | 'y'}`;
 export type QueryError = {
     error: 'app';
     message: string;
@@ -21,6 +22,7 @@ export interface MaterializedView<T> {
     readonly data: T;
     addListener(listener: ViewListener<T>): () => void;
     destroy(): void;
+    updateTTL(ttl: TTL): void;
 }
 export type Mutation = {
     id: number;
