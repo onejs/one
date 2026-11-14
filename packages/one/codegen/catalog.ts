@@ -1738,6 +1738,29 @@ export const components = [
     interfaceOnly: false,
   },
   {
+    // a Yoga container that plays a haptic when a tap inside it ends (HapticTap).
+    // the tap is recognized on the UI thread beside react native's own touch
+    // handling, so the feedback never waits on JavaScript. a scroll, a long
+    // press or a tap that stops a fling plays nothing. feedback is 'selection'
+    // or an impact style, validated in JS.
+    name: 'OneNativeHapticTap',
+    publicName: 'HapticTap',
+    props: {
+      feedback: 'string',
+    },
+    events: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'children',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'yoga',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
     // owned edge-fade primitive (UI.EdgeFade mask and blur modes). a Yoga
     // container that alpha-fades its children toward any edge (mask) or
     // progressively blurs them toward the edge (blur). sizes are dp (0 =
