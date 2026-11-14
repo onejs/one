@@ -60,6 +60,13 @@ import { getRoutes } from './getRoutes'
 import { setLastAction } from './lastAction'
 import { getResolvedLinking, resetLinking, setupLinking } from './linkingConfig'
 import {
+  consumeWarmInitialNavigationState,
+  isWarmStateEnabled,
+  isWarmWebRestoreEligible,
+  shouldAttemptWarmRouteRestore,
+  scheduleWarmStatePersist,
+} from './warmState'
+import {
   getSafeWindowPath,
   getSafeWindowPathname,
   normalizeRoutePathname,
@@ -359,9 +366,26 @@ function setupLinkingAndRouteInfo(initialLocation?: URL, linking?: OneLinkingCon
   // capture the original pathname before React Navigation's linking can modify it
   initialPathname = initialLocation?.pathname ?? getSafeWindowPathname()
 
+  if (!initialState && shouldAttemptWarmRouteRestore(initialLocation)) {
+    initialState = consumeWarmInitialNavigationState(routeNode, getResolvedLinking())
+  }
+
   if (initialState) {
     rootState = initialState
     routeInfo = getRouteInfo(initialState)
+    if (!initialLocation) {
+      initialPathname = routeInfo.pathname
+    } else if (
+      routeInfo.pathname &&
+      routeInfo.pathname !== initialLocation.pathname &&
+      isWarmWebRestoreEligible(initialLocation)
+    ) {
+      window.history.replaceState(
+        window.history.state,
+        '',
+        routeInfo.unstable_globalHref || routeInfo.pathname
+      )
+    }
   } else {
     routeInfo = {
       unstable_globalHref: '',
@@ -416,6 +440,9 @@ export function handleNavigationContainerStateChange(
   if (state && state !== rootState) {
     updateState(state, undefined)
     shouldUpdateSubscribers = true
+    if (isWarmStateEnabled()) {
+      scheduleWarmStatePersist(state, routeInfo?.pathname)
+    }
   }
 
   if (shouldUpdateSubscribers) {

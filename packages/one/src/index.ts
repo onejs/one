@@ -251,6 +251,21 @@ export { router } from './router/imperative-api'
 export * as routerStore from './router/router'
 export { useNavigation } from './router/useNavigation'
 export { registerPreloadedRoute } from './router/useViteRoutes'
+export {
+  clearWarmState,
+  configureWarmState,
+  flushWarmState,
+  getHydratedWarmState,
+  hydrateWarmInitialLoad,
+  registerWarmStateSource,
+  scheduleWarmStatePersist,
+  type WarmNavigationSnapshot,
+  type WarmRouteSnapshot,
+  type WarmStartOptions,
+  type WarmStateEnvelope,
+  type WarmStateSource,
+  type WarmStateStorage,
+} from './router/warmState'
 export type { Endpoint, LoaderProps } from './types'
 // navigation blocking
 export {
