@@ -59,6 +59,7 @@ function queryResult(value: JSONValue, format?: Format): unknown {
 
 export class NativeZero {
   private tail: Promise<unknown> = Promise.resolve()
+  private syncTail: Promise<unknown> = Promise.resolve()
   private closed = false
   private closing?: Promise<void>
   private abort = new AbortController()
@@ -86,6 +87,13 @@ export class NativeZero {
     return result
   }
 
+  private synchronize(operation: () => Promise<void>): Promise<void> {
+    if (this.closed) return Promise.reject(new Error('Native Zero client is closed'))
+    const result = this.syncTail.then(operation)
+    this.syncTail = result.catch(() => {})
+    return result
+  }
+
   private async request<T>(request: object): Promise<T> {
     return this.dispatch(serialize(request))
   }
@@ -94,18 +102,20 @@ export class NativeZero {
     return JSON.parse(await this.options.engine.execute(request)) as T
   }
 
+  private async query<T>(query: Query, transaction?: string): Promise<T> {
+    return queryResult(
+      await this.request<JSONValue>({
+        op: 'query',
+        ast: query.ast,
+        format: query.format,
+        transaction,
+      }),
+      query.format
+    ) as T
+  }
+
   run<T = unknown>(query: Query): Promise<T> {
-    return this.enqueue(
-      async () =>
-        queryResult(
-          await this.request<JSONValue>({
-            op: 'query',
-            ast: query.ast,
-            format: query.format,
-          }),
-          query.format
-        ) as T
-    )
+    return this.enqueue(() => this.query<T>(query))
   }
 
   state(): Promise<ClientState> {
@@ -125,35 +135,38 @@ export class NativeZero {
     if (!mutator) throw new Error(`Unknown native Zero mutator: ${mutation.name}`)
     let active = true
     let operations: Promise<unknown> = Promise.resolve()
-    let failure: unknown
-    let failed = false
+    const failures: { observed: boolean; failed: boolean; error?: unknown }[] = []
     const schedule = <T>(operation: () => Promise<T>): Promise<T> => {
       if (!active) return Promise.reject(new Error('Native Zero transaction is closed'))
       const result = operations.then(operation)
+      const status = { observed: false, failed: false, error: undefined as unknown }
+      failures.push(status)
       operations = result.catch((error) => {
-        failed = true
-        failure = error
+        status.failed = true
+        status.error = error
       })
-      return result
+      return {
+        [Symbol.toStringTag]: 'Promise',
+        then(onfulfilled, onrejected) {
+          status.observed = true
+          return result.then(onfulfilled, onrejected)
+        },
+        catch(onrejected) {
+          status.observed = true
+          return result.catch(onrejected)
+        },
+        finally(onfinally) {
+          status.observed = true
+          return result.finally(onfinally)
+        },
+      }
     }
     const tx: Transaction = {
       clientID: mutation.clientID,
       mutationID: mutation.id,
       location: 'client',
       reason,
-      run: <T>(query: Query) =>
-        schedule(
-          async () =>
-            queryResult(
-              await this.request<JSONValue>({
-                op: 'query',
-                ast: query.ast,
-                format: query.format,
-                transaction,
-              }),
-              query.format
-            ) as T
-        ),
+      run: <T>(query: Query) => schedule(() => this.query<T>(query, transaction)),
       mutate: Object.fromEntries(
         Object.keys(this.options.schema.tables).map((table) => [
           table,
@@ -173,7 +186,8 @@ export class NativeZero {
       const result = await mutator(tx, mutation.args)
       active = false
       await operations
-      if (failed) throw failure
+      const unobserved = failures.find((status) => status.failed && !status.observed)
+      if (unobserved) throw unobserved.error
       return result
     } finally {
       active = false
@@ -203,11 +217,17 @@ export class NativeZero {
     })
   }
 
-  private async applyPull(response: PullResponse) {
-    const { transaction, pending } = await this.request<{
+  private async applyPull(response: PullResponse, state: ClientState) {
+    const { transaction, pending, changed } = await this.request<{
       transaction: string
       pending: Mutation[]
-    }>({ op: 'beginPull', response })
+      changed: boolean
+    }>({
+      op: 'beginPull',
+      response,
+      baseCookie: state.cookie,
+      queryVersion: state.queryVersion,
+    })
     try {
       for (const mutation of pending) await this.invoke(mutation, transaction, 'rebase')
       await this.request({ op: 'commitPull', transaction })
@@ -215,25 +235,31 @@ export class NativeZero {
       await this.request({ op: 'rollback', transaction })
       throw error
     }
-    await this.publish()
+    if (changed) await this.publish()
   }
 
   pull(queries?: readonly DesiredQuery[]): Promise<void> {
-    return this.enqueue(async () => {
+    return this.synchronize(async () => {
       const transport = this.options.transport
       if (!transport) throw new Error('Native Zero transport is not configured')
-      const state = await this.request<ClientState>({ op: 'setQueries', queries })
+      const state = await this.enqueue(() =>
+        this.request<ClientState>({ op: 'setQueries', queries })
+      )
       const response = await transport.pull(state, state.queries, this.abort.signal)
-      await this.applyPull(response)
+      await this.enqueue(() => this.applyPull(response, state))
     })
   }
 
   push(): Promise<void> {
-    return this.enqueue(async () => {
+    return this.synchronize(async () => {
       const transport = this.options.transport
       if (!transport) throw new Error('Native Zero transport is not configured')
-      const state = await this.request<ClientState>({ op: 'state' })
-      const pending = await this.request<Mutation[]>({ op: 'pending' })
+      const { state, pending } = await this.enqueue(async () => ({
+        state: await this.request<ClientState>({ op: 'state' }),
+        pending: await this.request<Mutation[]>({ op: 'pending' }),
+      }))
+      if (state.recoveryRequired !== null)
+        throw new Error('CLIENT_STATE_NOT_FOUND: pending writes require reconciliation')
       if (pending.length) await transport.push(state, pending, this.abort.signal)
     })
   }
@@ -262,14 +288,7 @@ export class NativeZero {
     for (const subscription of subscriptions) {
       if (!subscription.active || this.closed) continue
       try {
-        const value = queryResult(
-          await this.request<JSONValue>({
-            op: 'query',
-            ast: subscription.query.ast,
-            format: subscription.query.format,
-          }),
-          subscription.query.format
-        )
+        const value = await this.query(subscription.query)
         const serialized = JSON.stringify(value)
         if (
           !subscription.active ||

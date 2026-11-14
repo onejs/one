@@ -4,10 +4,10 @@ import { NativeZero } from './client'
 import type { NativeZeroOptions } from './client'
 
 export async function createNativeZero(
-  options: Omit<NativeZeroOptions, 'engine'> & { name: string; clientID: string }
+  options: Omit<NativeZeroOptions, 'engine'> & { name: string; clientID?: string }
 ): Promise<NativeZero> {
   const engine = NitroModules.createHybridObject<OneZero>('OneZero')
   const client = new NativeZero({ ...options, engine })
-  await engine.open(options.name, JSON.stringify(options.schema), options.clientID)
+  await engine.open(options.name, JSON.stringify(options.schema), options.clientID ?? '')
   return client
 }

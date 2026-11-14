@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
 import { mkdtempSync, writeFileSync } from 'node:fs'
 import { homedir } from 'node:os'
-import { dirname, join, resolve } from 'node:path'
+import { dirname, join } from 'node:path'
 import { DriverEngine } from './engine'
 import { fileURLToPath } from 'node:url'
 import { NativeZero } from '../../src/zero/native/client'
@@ -29,7 +29,7 @@ if (!process.env.ONE_ZERO_DRIVER) {
   command([
     'cmake',
     '-S',
-    resolve(here, '../../cpp/zero'),
+    here,
     '-B',
     build,
     '-DCMAKE_BUILD_TYPE=Debug',
@@ -264,6 +264,183 @@ assert.deepEqual(await client.pending(), [journal[1]])
 await client.close()
 console.log(
   'ordered replay preserves mutation metadata and rejects regressing acknowledgements'
+)
+
+let releasePull!: (value: PullResponse) => void
+let pullStarted!: () => void
+const pulling = new Promise<void>((resolve) => {
+  pullStarted = resolve
+})
+let localWriteStarted = false
+let releasedEarly = false
+engine = new ProcessEngine(join(folder, 'network.sqlite'))
+await engine.ready
+const networkEngine = engine
+client = new NativeZero({
+  engine: {
+    execute(request) {
+      if (JSON.parse(request).op === 'beginMutation') localWriteStarted = true
+      return networkEngine.execute(request)
+    },
+    close: () => networkEngine.close(),
+  },
+  schema,
+  mutators,
+  transport: {
+    async pull() {
+      pullStarted()
+      return new Promise<PullResponse>((resolve) => {
+        releasePull = resolve
+      })
+    },
+    async push() {},
+  },
+})
+const networkPull = client.pull()
+await pulling
+const duringPull = client.mutate('send', {
+  id: 'during-pull',
+  text: 'local remains usable',
+})
+await new Promise<void>((resolve) =>
+  setImmediate(() => {
+    if (!localWriteStarted) {
+      releasedEarly = true
+      releasePull({ cookie: 1 })
+    }
+    resolve()
+  })
+)
+await duringPull
+assert.equal(
+  releasedEarly,
+  false,
+  'local mutation must reach native storage before network returns'
+)
+assert.equal((await client.run<Row[]>(messages))[0].body, 'local remains usable')
+releasePull({ cookie: 1 })
+await networkPull
+assert.equal((await client.pending()).length, 1)
+await client.close()
+
+let replayCount = 0
+const reviewMutators = {
+  async write(
+    tx: Parameters<import('../../src/zero/native/types').Mutator>[0],
+    args: JSONValue
+  ) {
+    if (tx.reason === 'rebase') replayCount++
+    await tx.mutate.message.upsert(args as Row)
+  },
+  async insert(
+    tx: Parameters<import('../../src/zero/native/types').Mutator>[0],
+    args: JSONValue
+  ) {
+    await tx.mutate.message.insert(args as Row)
+  },
+  async caught(tx: Parameters<import('../../src/zero/native/types').Mutator>[0]) {
+    try {
+      await tx.mutate.message.update({ id: 'server', body: 42 })
+    } catch {}
+    await tx.mutate.message.update({ id: 'server', body: 'recovered' })
+  },
+  ignored(tx: Parameters<import('../../src/zero/native/types').Mutator>[0]) {
+    void tx.mutate.message.update({ id: 'server', body: 42 })
+  },
+}
+engine = new ProcessEngine(join(folder, 'review.sqlite'))
+await engine.ready
+client = new NativeZero({ engine, schema, mutators: reviewMutators, transport })
+response = {
+  cookie: 1,
+  rowsPatch: [
+    put('message', {
+      ...message('server', 1, 'base', { keep: true }),
+      status: null,
+      added: 'server extension',
+    }),
+    { op: 'put', tableName: 'future_table', value: { id: 'ignored' } },
+  ],
+}
+await client.pull()
+await client.mutate('insert', message('server', 99, 'must not replace'))
+assert.equal((await client.run<Row[]>(messages))[0].body, 'base')
+await client.mutate('write', { id: 'server', body: 'merged' })
+assert.deepEqual((await client.run<Row[]>(messages))[0], {
+  ...message('server', 1, 'merged', { keep: true }),
+  status: null,
+  added: 'server extension',
+})
+await client.mutate('caught')
+assert.equal((await client.run<Row[]>(messages))[0].body, 'recovered')
+const beforeIgnored = await client.pending()
+await assert.rejects(client.mutate('ignored'), /invalid column type/)
+assert.deepEqual(await client.pending(), beforeIgnored)
+response = { cookie: 2 }
+await client.pull()
+assert.equal(replayCount, 0, 'unchanged pulls must retain the current optimistic view')
+assert.equal((await client.run<Row[]>(messages))[0].body, 'recovered')
+await assert.rejects(
+  engine.raw({ op: 'beginPull', baseCookie: 'stale', response: { cookie: 3 } }),
+  /base cookie/
+)
+await assert.rejects(
+  engine.raw({ op: 'beginPull', queryVersion: 999, response: { cookie: 3 } }),
+  /query version/
+)
+await client.close()
+
+const upgradedSchema = structuredClone(schema)
+upgradedSchema.tables.message.columns.newField = { type: 'string', optional: true }
+const upgradedSchemaFile = join(folder, 'upgraded-schema.json')
+writeFileSync(upgradedSchemaFile, JSON.stringify(upgradedSchema))
+const upgradedEngine = new DriverEngine(
+  driver,
+  join(folder, 'review.sqlite'),
+  upgradedSchemaFile,
+  'integration-client'
+)
+await upgradedEngine.ready
+client = new NativeZero({
+  engine: upgradedEngine,
+  schema: upgradedSchema,
+  mutators: reviewMutators,
+  transport,
+})
+assert.equal((await client.state()).cookie, null)
+assert.deepEqual(await client.pending(), beforeIgnored)
+response = {
+  cookie: 3,
+  rowsPatch: [put('message', message('server', 1, 'fresh snapshot'))],
+}
+await client.pull([{ hash: 'new-schema', ast: messages.ast }])
+assert.equal((await client.run<Row[]>(messages))[0].body, 'recovered')
+assert.equal(replayCount, 1)
+assert.deepEqual(await client.pending(), beforeIgnored)
+response = { cookie: 4, lastMutationIDChanges: { 'integration-client': 999 } }
+await assert.rejects(client.pull(), /CLIENT_STATE_NOT_FOUND/)
+assert.equal((await client.state()).cookie, 3)
+assert.equal((await client.state()).recoveryRequired, 999)
+assert.deepEqual(await client.pending(), beforeIgnored)
+await assert.rejects(
+  client.mutate('write', { id: 'server', body: 'must stay fenced' }),
+  /CLIENT_STATE_NOT_FOUND/
+)
+await assert.rejects(client.push(), /CLIENT_STATE_NOT_FOUND/)
+await client.close()
+
+const identityPath = join(folder, 'identity.sqlite')
+let generatedEngine = new DriverEngine(driver, identityPath, schemaFile, '')
+await generatedEngine.ready
+const generatedID = (await generatedEngine.raw({ op: 'state' })).clientID
+assert.match(generatedID, /^[a-f0-9]{32}$/)
+await generatedEngine.close()
+generatedEngine = new DriverEngine(driver, identityPath, schemaFile, '')
+await generatedEngine.ready
+assert.equal((await generatedEngine.raw({ op: 'state' })).clientID, generatedID)
+await generatedEngine.close()
+console.log(
+  'review regressions passed: nonblocking sync, CRUD merge/no-op, server drift, schema rebase, error handling and recovery fencing'
 )
 
 const requests: { version: number; patch: unknown[] }[] = []

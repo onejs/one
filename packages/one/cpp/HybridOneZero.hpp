@@ -1,7 +1,12 @@
 #pragma once
 
 #include "HybridOneZeroSpec.hpp"
+#ifndef ONE_ZERO_SQLITE
+#define ONE_ZERO_SQLITE 1
+#endif
+#if ONE_ZERO_SQLITE
 #include "zero/Client.hpp"
+#endif
 #include <memory>
 #include <mutex>
 
@@ -18,9 +23,11 @@ class HybridOneZero : public HybridOneZeroSpec {
  private:
   struct State {
     std::mutex mutex;
+#if ONE_ZERO_SQLITE
     std::unique_ptr<::one::zero::Client> client;
+#endif
   };
   std::shared_ptr<State> state_;
 };
 
-}
+}  // namespace margelo::nitro::one

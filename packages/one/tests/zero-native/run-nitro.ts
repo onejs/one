@@ -2,7 +2,7 @@ import { spawnSync } from 'node:child_process'
 import { cpSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { homedir } from 'node:os'
-import { dirname, join, resolve } from 'node:path'
+import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const here = dirname(fileURLToPath(import.meta.url))
@@ -11,6 +11,7 @@ const scratch =
 const dependencies = process.env.ONE_ZERO_DEPENDENCIES
 const hermes = process.env.ONE_ZERO_HERMES_ROOT
 const simulator = process.env.ONE_ZERO_SIMULATOR
+const sqliteEnabled = process.env.ONE_ZERO_SQLITE !== '0'
 if (!dependencies || !hermes)
   throw new Error(
     'Set ONE_ZERO_DEPENDENCIES to an installed app and ONE_ZERO_HERMES_ROOT to its Hermes distribution'
@@ -19,7 +20,10 @@ const require = createRequire(join(dependencies, 'package.json'))
 const nitro = dirname(require.resolve('react-native-nitro-modules/package.json'))
 const reactNative = dirname(require.resolve('react-native/package.json'))
 const sqlite = dirname(require.resolve('@op-engineering/op-sqlite/package.json'))
-const build = join(scratch, simulator ? 'build-ios' : 'build')
+const build = join(
+  scratch,
+  (simulator ? 'build-ios' : 'build') + (sqliteEnabled ? '' : '-without-sqlite')
+)
 mkdirSync(scratch, { recursive: true })
 const run = mkdtempSync(join(scratch, 'nitro-'))
 function command(args: string[]) {
@@ -30,7 +34,7 @@ function command(args: string[]) {
 command([
   'cmake',
   '-S',
-  resolve(here, '../../cpp/zero'),
+  here,
   '-B',
   build,
   '-DCMAKE_BUILD_TYPE=Debug',
@@ -38,6 +42,7 @@ command([
   `-DNITRO_ROOT=${nitro}`,
   `-DRN_ROOT=${reactNative}`,
   `-DHERMES_ROOT=${hermes}`,
+  `-DONE_ZERO_SQLITE=${sqliteEnabled ? 'ON' : 'OFF'}`,
   ...(simulator
     ? [
         '-DCMAKE_SYSTEM_NAME=iOS',
@@ -51,7 +56,10 @@ command([
 command(['cmake', '--build', build, '--target', 'one-zero-nitro', '-j', '4'])
 const esbuild = require('esbuild') as typeof import('esbuild')
 const bundled = await esbuild.build({
-  entryPoints: [process.env.ONE_ZERO_PROBE ?? join(here, 'nitro-probe.ts')],
+  entryPoints: [
+    process.env.ONE_ZERO_PROBE ??
+      join(here, sqliteEnabled ? 'nitro-probe.ts' : 'backend-probe.ts'),
+  ],
   write: false,
   bundle: true,
   format: 'iife',

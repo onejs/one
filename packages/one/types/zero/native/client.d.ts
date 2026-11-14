@@ -9,6 +9,7 @@ export type NativeZeroOptions = {
 export declare class NativeZero {
     private options;
     private tail;
+    private syncTail;
     private closed;
     private closing?;
     private abort;
@@ -16,8 +17,10 @@ export declare class NativeZero {
     private mutators;
     constructor(options: NativeZeroOptions);
     private enqueue;
+    private synchronize;
     private request;
     private dispatch;
+    private query;
     run<T = unknown>(query: Query): Promise<T>;
     state(): Promise<ClientState>;
     pending(): Promise<Mutation[]>;

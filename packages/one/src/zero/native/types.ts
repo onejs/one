@@ -29,6 +29,7 @@ export type ClientState = {
   lastMutationID: number
   queryVersion: number
   queries: readonly DesiredQuery[]
+  recoveryRequired: number | null
 }
 export type PullResponse = {
   cookie: JSONValue

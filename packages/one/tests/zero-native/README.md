@@ -8,9 +8,10 @@ React Native, Nitro or JSI dependency and can be extracted separately.
 SQLite owns the server snapshot, optimistic view, mutation journal, client
 identity, cursor and desired-query sequence. A pull, acknowledgement and replay
 commit together. Application mutators remain JavaScript callbacks and use an
-asynchronous native transaction. The TypeScript facade serializes calls and
+asynchronous native transaction. The TypeScript facade serializes local calls and
 publishes subscriptions after commits. The transport currently uses explicit
-Orez HTTP pull/push calls.
+Orez HTTP pull/push calls outside the local transaction queue, so a stalled fetch
+does not block local reads or writes.
 
 ## Using the slice
 
@@ -19,7 +20,6 @@ import { createNativeZero, createOrezTransport } from 'one/zero/native'
 
 const client = await createNativeZero({
   name: storeName,
-  clientID: persistedClientID,
   schema,
   mutators: {
     message: {
@@ -51,9 +51,17 @@ Queries accept the pinned Zero builder's `ast` and `format`. Mutators receive
 is asynchronous. `state()` and `pending()` expose durable sync state. Push success
 alone never removes pending writes; a subsequent pull must acknowledge them.
 
-Use a stable store name and client ID scoped to server, authenticated identity
-and logical client. A store rejects a different schema or client ID. The first
-slice uses one durable client per group, so `clientGroupID` equals `clientID`.
+Use a stable store name scoped to server, authenticated identity and logical
+client. The store generates and persists its client ID; an optional `clientID`
+override must match an existing store. A schema change clears the server snapshot
+and cursor while preserving pending mutations for replay after a fresh pull.
+The first slice uses one durable client per group, so `clientGroupID` equals
+`clientID`. The native directory is excluded from iOS backup and uses Android's
+no-backup storage. A server acknowledgement beyond the local journal sets
+`state().recoveryRequired` and blocks further mutations and pushes, preserving
+the journal for reconciliation. It does not automatically assign a new identity
+and resend commands that the server may already have executed.
+
 It uses a separate SQLite file and does not migrate existing Replicache stores.
 Do not switch an account with pending mutations to the experiment until the
 adoption path settles or preserves those mutations.
@@ -87,6 +95,9 @@ abort-controller dependencies. Hermes is supplied separately as the matching
 React Native framework distribution. No downloaded runtime is committed.
 `ONE_ZERO_SIMULATOR=<claimed-udid>` builds and runs the same probe for an arm64
 iOS simulator instead of macOS. Claim and boot the simulator before running it.
+`ONE_ZERO_SQLITE=0` builds the bridge without the SQLite engine and checks its
+explicit unavailable-backend error. One selects this configuration automatically
+for OP-SQLite's libsql and turso modes; native Zero currently requires SQLite.
 
 The initial reference is `@natew/zero-client@1.9.0-orez.2-client.1`, installed
 under the `@rocicorp/zero` alias by Team Machine. The runtime probe uses Nitro
@@ -105,7 +116,9 @@ and does not run the original upstream test files unchanged.
 `packages/zero-client/src/client/zero-poke-handler.test.ts` supplies the next
 protocol cases: multipart assembly, renamed tables/columns, base-cookie
 matching and server columns absent from the client schema. Only complete pull
-responses, name mapping and base-cookie checks are implemented here. Unlike
+responses, name mapping, server schema drift and base-cookie checks are
+implemented here. Unknown server tables are skipped and additional server
+columns are retained, matching the pinned client. Unlike
 upstream's missing-mutator rebase case, this slice rejects a missing callback
 and preserves the prior state and journal. These differences require explicit
 adoption decisions and additional compatibility work.
@@ -117,6 +130,7 @@ adoption decisions and additional compatibility work.
 | Optimistic writes, callback replay, rollback and acknowledgement                                             | Native driver integration and Hermes/Nitro runtime      |
 | Pending writes, complete view and cursor survive reopen                                                      | Native driver integration and Hermes/Nitro runtime      |
 | Process exits during an uncommitted write                                                                    | Native driver integration                               |
+| Local work during a stalled pull, duplicate insert, partial upsert, server drift, schema change and recovery fencing | Native driver integration |
 | Wrapped Orez application errors and durable desired queries                                                  | Local HTTP integration                                  |
 | Filters, UTF-8 ordering, limits, cursors, null/JSON, singular results, related queries and correlated EXISTS | 18 cases compared with the pinned Zero executable       |
 | Team Machine schema, session/message queries, original message.send replay, session.stop and durable reopen                  | Consumer-source probe through Nitro/Hermes on iOS, recorded with the experiment task |
@@ -125,8 +139,9 @@ adoption decisions and additional compatibility work.
 | Pinned upstream WebSocket protocol, storage recovery and full upstream suite                                 | Pending                                                 |
 | Production device performance and binary-size comparison                                                     | Pending                                                 |
 
-The eight-check generic runtime probe passes on macOS and an iPhone 17 Pro
-simulator running iOS 27. The iOS target compiles at One's minimum iOS 17.
+The generic runtime probe exercises the generated bridge, generated identity
+across reopen, caught write errors and the native backup exclusion. The iOS
+target compiles at One's minimum iOS 17.
 This harness embeds the generated bridge directly; it does not establish that
 the complete One CocoaPods target or the consumer application's UI builds.
 `ONE_ZERO_PROBE=/path/to/consumer-probe.ts` selects a consumer-specific entry
@@ -135,7 +150,10 @@ while retaining the same native engine and bridge.
 Unsupported Unicode ILIKE and hidden relationship flattening throw explicitly.
 There is no automatic wake/reconnect scheduling, query materialization API or
 drop-in `on-zero` provider yet. Subscriptions requery after commits; this slice
-has neither incremental view maintenance nor field indexes. The generic HTTP
+has expression indexes for primary keys and relationship destination fields,
+but no incremental view maintenance. Unchanged pulls skip rebuilding the view;
+changed pulls still copy the full server snapshot and replay pending callbacks.
+The JSON parser still uses SQLite's JSON functions. The generic HTTP
 adapter does not implement Team Machine cloud encryption. No performance win
 or full Zero compatibility is established by these checks. Keep the installed
 applications on their existing client until their integration and recovery

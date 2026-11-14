@@ -1,10 +1,10 @@
+#include "HybridOneZero.hpp"
 #import <Foundation/Foundation.h>
-#include <hermes/hermes.h>
-#include <NitroModules/InstallNitro.hpp>
 #include <NitroModules/Dispatcher.hpp>
 #include <NitroModules/HybridObjectRegistry.hpp>
-#include "HybridOneZero.hpp"
+#include <NitroModules/InstallNitro.hpp>
 #include <fstream>
+#include <hermes/hermes.h>
 #include <iostream>
 #include <iterator>
 
@@ -14,18 +14,18 @@ static std::unique_ptr<facebook::hermes::HermesRuntime> runtime;
 static std::string directory;
 namespace margelo::nitro::one {
 std::string storageDirectory() { return directory; }
-}
+}  // namespace margelo::nitro::one
 
 class MainDispatcher : public Dispatcher {
  public:
-  void runSync(std::function<void()>&& fn) override { fn(); }
-  void runAsync(std::function<void()>&& fn) override {
+  void runSync(std::function<void()> &&fn) override { fn(); }
+  void runAsync(std::function<void()> &&fn) override {
     auto task = std::make_shared<std::function<void()>>(std::move(fn));
     dispatch_async(dispatch_get_main_queue(), ^{
       try {
         (*task)();
         runtime->drainMicrotasks();
-      } catch (const std::exception& error) {
+      } catch (const std::exception &error) {
         std::cerr << error.what() << std::endl;
         std::_Exit(1);
       }
@@ -33,7 +33,7 @@ class MainDispatcher : public Dispatcher {
   }
 };
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
   @autoreleasepool {
     if (argc != 3) return 2;
     directory = argv[2];
@@ -47,7 +47,24 @@ int main(int argc, char** argv) {
         *runtime, "report",
         jsi::Function::createFromHostFunction(
             *runtime, jsi::PropNameID::forAscii(*runtime, "report"), 2,
-            [](jsi::Runtime& rt, const jsi::Value&, const jsi::Value* args, size_t count) {
+            [](jsi::Runtime &rt, const jsi::Value &, const jsi::Value *args, size_t count) {
+#if ONE_ZERO_SQLITE
+              if (!(count > 1 && args[1].getBool())) {
+                NSURL *url =
+                    [NSURL fileURLWithFileSystemRepresentation:(directory + "/zero").c_str()
+                                                   isDirectory:YES
+                                                 relativeToURL:nil];
+                NSNumber *excluded = nil;
+                NSError *error = nil;
+                if (![url getResourceValue:&excluded
+                                    forKey:NSURLIsExcludedFromBackupKey
+                                     error:&error] ||
+                    !excluded.boolValue) {
+                  std::cerr << "native Zero directory must be excluded from backup" << std::endl;
+                  std::_Exit(1);
+                }
+              }
+#endif
               std::cout << args[0].asString(rt).utf8(rt) << std::endl;
               std::_Exit(count > 1 && args[1].getBool() ? 1 : 0);
               return jsi::Value::undefined();
@@ -61,7 +78,7 @@ int main(int argc, char** argv) {
     try {
       runtime->evaluateJavaScript(std::make_shared<jsi::StringBuffer>(source), "zero-probe.js");
       runtime->drainMicrotasks();
-    } catch (const std::exception& error) {
+    } catch (const std::exception &error) {
       std::cerr << error.what() << std::endl;
       return 1;
     }

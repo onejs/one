@@ -193,7 +193,7 @@ struct Compiled {
   std::vector<Json> args;
 };
 
-}
+}  // namespace
 
 struct Client::Impl {
   sqlite3* db = nullptr;
@@ -206,8 +206,8 @@ struct Client::Impl {
 
   Impl(const std::string& path, const std::string& schemaText, const std::string& identity)
       : clientID(identity) {
-    if (path.empty() || path.find('\0') != std::string::npos || identity.empty())
-      throw std::runtime_error("database path and client identity are required");
+    if (path.empty() || path.find('\0') != std::string::npos)
+      throw std::runtime_error("database path is required");
     if (sqlite3_open_v2(path.c_str(), &db,
                         SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_FULLMUTEX,
                         nullptr) != SQLITE_OK) {
@@ -253,24 +253,67 @@ struct Client::Impl {
       sql(db, "PRAGMA journal_mode=WAL");
       sql(db, "PRAGMA synchronous=FULL");
       sql(db, "BEGIN IMMEDIATE");
-      sql(db, "CREATE TABLE IF NOT EXISTS one_zero_meta(key TEXT PRIMARY KEY,value TEXT NOT NULL)");
       sql(db,
-          "CREATE TABLE IF NOT EXISTS one_zero_base(table_name TEXT NOT NULL,key TEXT NOT "
+          "CREATE TABLE IF NOT EXISTS one_zero_meta(key TEXT PRIMARY "
+          "KEY,value TEXT NOT NULL)");
+      sql(db,
+          "CREATE TABLE IF NOT EXISTS one_zero_base(table_name TEXT NOT "
+          "NULL,key TEXT NOT "
           "NULL,value TEXT NOT NULL,PRIMARY KEY(table_name,key))");
       sql(db,
-          "CREATE TABLE IF NOT EXISTS one_zero_view(table_name TEXT NOT NULL,key TEXT NOT "
+          "CREATE TABLE IF NOT EXISTS one_zero_view(table_name TEXT NOT "
+          "NULL,key TEXT NOT "
           "NULL,value TEXT NOT NULL,PRIMARY KEY(table_name,key))");
       sql(db,
-          "CREATE TABLE IF NOT EXISTS one_zero_mutations(id INTEGER PRIMARY KEY,name TEXT NOT "
+          "CREATE TABLE IF NOT EXISTS one_zero_mutations(id INTEGER "
+          "PRIMARY KEY,name TEXT NOT "
           "NULL,args TEXT NOT NULL,timestamp REAL NOT NULL)");
       std::string canonical = schema.dump();
       if (!meta("formatVersion").null() && meta("formatVersion") != Json(1))
         throw std::runtime_error("unsupported native Zero store format");
       auto existing = meta("schema");
-      if (!existing.null() && existing != Json(canonical))
-        throw std::runtime_error("native Zero schema differs from the persisted store");
+      if (clientID.empty()) {
+        if (!meta("clientID").null())
+          clientID = meta("clientID").string();
+        else {
+          Statement random(db, "SELECT lower(hex(randomblob(16)))");
+          random.step();
+          clientID = random.text(0);
+        }
+      }
       if (!meta("clientID").null() && meta("clientID") != Json(clientID))
         throw std::runtime_error("native Zero client identity differs from the persisted store");
+      if (!existing.null() && existing != Json(canonical)) {
+        sql(db, "DELETE FROM one_zero_base");
+        sql(db, "DELETE FROM one_zero_view");
+        setMeta("cookie", Json());
+        setMeta("queries", Json::Array{});
+        setMeta("needsRebase", true);
+      }
+      std::set<std::string> indexExpressions;
+      const auto indexFields = [&](const std::string& name, const Json::Array& fields) {
+        std::string expressions;
+        for (const auto& field : fields) {
+          if (!table(name).columns.contains(field.string()))
+            throw std::runtime_error("unknown relationship index column");
+          expressions += ",json_extract(value," + quoted("$." + Json(field.string()).dump()) +
+                         ") COLLATE BINARY";
+        }
+        if (!expressions.empty()) indexExpressions.insert(expressions);
+      };
+      for (const auto& [name, definition] : tables) {
+        Json::Array fields;
+        for (const auto& field : definition.primaryKey) fields.emplace_back(field);
+        indexFields(name, fields);
+      }
+      if (schema.has("relationships"))
+        for (const auto& [unusedTable, relationships] : schema.at("relationships").fields())
+          for (const auto& [unusedName, chain] : relationships.fields())
+            for (const auto& part : chain.items())
+              indexFields(part.at("destSchema").string(), part.at("destField").items());
+      for (const auto& expressions : indexExpressions)
+        sql(db, "CREATE INDEX IF NOT EXISTS " + quoted("one_zero_index" + expressions) +
+                    " ON one_zero_view(table_name" + expressions + ")");
       setMeta("schema", canonical);
       setMeta("formatVersion", 1);
       setMeta("clientID", clientID);
@@ -297,7 +340,8 @@ struct Client::Impl {
   }
   void setMeta(const std::string& name, const Json& value) {
     sql(db,
-        "INSERT INTO one_zero_meta VALUES(?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value",
+        "INSERT INTO one_zero_meta VALUES(?,?) ON CONFLICT(key) DO UPDATE SET "
+        "value=excluded.value",
         {name, value.dump()});
   }
   const Table& table(const std::string& name) const {
@@ -315,7 +359,7 @@ struct Client::Impl {
     }
     return Json(std::move(parts)).dump();
   }
-  void validate(const std::string& name, Json& row) const {
+  void validate(const std::string& name, Json& row, bool complete) const {
     const auto& definition = table(name);
     for (const auto& [column, value] : row.fields())
       if (!definition.columns.contains(column))
@@ -324,6 +368,7 @@ struct Client::Impl {
     for (const auto& [column, type] : definition.columns) {
       auto found = fields.find(column);
       if (found == fields.end()) {
+        if (!complete) continue;
         if (!definition.optional.contains(column))
           throw std::runtime_error("missing required column: " + column);
         found = fields.emplace(column, Json()).first;
@@ -337,7 +382,14 @@ struct Client::Impl {
                  (type == "boolean" && !std::holds_alternative<bool>(value.value)))
         throw std::runtime_error("invalid column type: " + column);
     }
-    key(name, row);
+  }
+  void store(const std::string& target, const std::string& name, const std::string& rowKey,
+             const Json& row) {
+    sql(db,
+        "INSERT INTO " + target +
+            " VALUES(?,?,?) ON CONFLICT(table_name,key) DO UPDATE SET "
+            "value=excluded.value",
+        {name, rowKey, row.dump()});
   }
   void write(const std::string& target, const std::string& kind, const std::string& name,
              Json value) {
@@ -346,23 +398,25 @@ struct Client::Impl {
       sql(db, "DELETE FROM " + target + " WHERE table_name=? AND key=?", {name, rowKey});
       return;
     }
-    if (kind == "update") {
+    if (kind != "insert" && kind != "upsert" && kind != "update")
+      throw std::runtime_error("unsupported write kind: " + kind);
+    {
       Statement existing(db, "SELECT value FROM " + target + " WHERE table_name=? AND key=?");
       existing.bind(1, name);
       existing.bind(2, rowKey);
-      if (!existing.step()) return;
-      Json old = parse(db, existing.text(0));
-      for (const auto& [column, field] : value.fields())
-        std::get<Json::Object>(old.value).insert_or_assign(column, field);
-      value = std::move(old);
+      if (existing.step()) {
+        if (kind == "insert") return;
+        validate(name, value, false);
+        Json old = parse(db, existing.text(0));
+        for (const auto& [column, field] : value.fields())
+          std::get<Json::Object>(old.value).insert_or_assign(column, field);
+        value = std::move(old);
+      } else {
+        if (kind == "update") return;
+        validate(name, value, true);
+      }
     }
-    validate(name, value);
-    std::string suffix;
-    if (kind == "upsert" || kind == "update")
-      suffix = " ON CONFLICT(table_name,key) DO UPDATE SET value=excluded.value";
-    else if (kind != "insert")
-      throw std::runtime_error("unsupported write kind: " + kind);
-    sql(db, "INSERT INTO " + target + " VALUES(?,?,?)" + suffix, {name, rowKey, value.dump()});
+    store(target, name, rowKey, value);
   }
   std::pair<std::string, Json> mapServerRow(const std::string& serverName, const Json& row) {
     auto found = serverTables.find(serverName);
@@ -372,9 +426,7 @@ struct Client::Impl {
     Json::Object mapped;
     for (const auto& [column, value] : row.fields()) {
       auto local = table(name).serverColumns.find(column);
-      if (local == table(name).serverColumns.end())
-        throw std::runtime_error("unknown server column: " + column);
-      mapped.emplace(local->second, value);
+      mapped.emplace(local == table(name).serverColumns.end() ? column : local->second, value);
     }
     return {name, mapped};
   }
@@ -585,7 +637,8 @@ struct Client::Impl {
                         {"nextMutationID", meta("nextMutationID")},
                         {"lastMutationID", meta("lastMutationID")},
                         {"queryVersion", meta("queryVersion")},
-                        {"queries", meta("queries")}};
+                        {"queries", meta("queries")},
+                        {"recoveryRequired", meta("recoveryRequired")}};
   }
   void begin(const std::string& kind) {
     if (!transaction.empty()) throw std::runtime_error("a native transaction is already active");
@@ -600,8 +653,12 @@ struct Client::Impl {
       throw std::runtime_error("native transaction does not belong to this operation");
   }
   void rollback() {
-    if (transaction.empty()) return;
-    sql(db, "ROLLBACK");
+    transaction.clear();
+    transactionKind.clear();
+    if (!sqlite3_get_autocommit(db)) sql(db, "ROLLBACK");
+  }
+  void commit() {
+    sql(db, "COMMIT");
     transaction.clear();
     transactionKind.clear();
   }
@@ -609,6 +666,8 @@ struct Client::Impl {
     if (!db) throw std::runtime_error("native Zero client is closed");
     std::string op = request.at("op").string();
     if (op == "beginMutation") {
+      if (!meta("recoveryRequired").null())
+        throw std::runtime_error("CLIENT_STATE_NOT_FOUND: pending writes require reconciliation");
       std::string name = request.at("name").string();
       if (name.empty()) throw std::runtime_error("mutation name is required");
       double timestamp = request.at("timestamp").number();
@@ -635,11 +694,26 @@ struct Client::Impl {
       if (response.has("error"))
         throw std::runtime_error("server rejected pull: " + response.at("error").dump());
       const Json& cookie = response.at("cookie");
+      if (request.has("baseCookie") && request.at("baseCookie") != meta("cookie"))
+        throw std::runtime_error("pull base cookie does not match persisted state");
+      if (request.has("queryVersion") && request.at("queryVersion") != meta("queryVersion"))
+        throw std::runtime_error("pull query version does not match persisted state");
       if (response.has("baseCookie") && response.at("baseCookie") != meta("cookie"))
         throw std::runtime_error("pull base cookie does not match persisted state");
+      if (response.get("lastMutationIDChanges").has(clientID) &&
+          integer(response.at("lastMutationIDChanges").at(clientID), "mutation acknowledgement") >=
+              integer(meta("nextMutationID"), "next mutation id")) {
+        setMeta("recoveryRequired", response.at("lastMutationIDChanges").at(clientID));
+        throw std::runtime_error(
+            "CLIENT_STATE_NOT_FOUND: server "
+            "acknowledgement exceeds local journal");
+      }
+      if (!meta("recoveryRequired").null())
+        throw std::runtime_error("CLIENT_STATE_NOT_FOUND: pending writes require reconciliation");
       begin("pull");
       try {
-        int64_t ack = integer(meta("lastMutationID"), "mutation acknowledgement");
+        int64_t previousAck = integer(meta("lastMutationID"), "mutation acknowledgement");
+        int64_t ack = previousAck;
         if (response.get("lastMutationIDChanges").has(clientID)) {
           int64_t incoming = integer(response.at("lastMutationIDChanges").at(clientID),
                                      "mutation acknowledgement");
@@ -648,19 +722,29 @@ struct Client::Impl {
           ack = incoming;
         }
         sql(db, "DELETE FROM one_zero_mutations WHERE id<=?", {static_cast<double>(ack)});
+        bool changed = ack != previousAck ||
+                       (response.has("rowsPatch") && !response.at("rowsPatch").items().empty()) ||
+                       meta("needsRebase") == Json(true);
         if (response.has("rowsPatch")) {
           for (const Json& patch : response.at("rowsPatch").items()) {
             std::string kind = patch.at("op").string();
             if (kind == "clear")
               sql(db, "DELETE FROM one_zero_base");
             else if (kind == "put" || kind == "del") {
+              if (!serverTables.contains(patch.at("tableName").string())) continue;
               auto [name, row] = mapServerRow(patch.at("tableName").string(),
                                               patch.at(kind == "put" ? "value" : "id"));
-              write("one_zero_base", kind == "put" ? "upsert" : "delete", name, row);
+              const std::string rowKey = key(name, row);
+              if (kind == "del")
+                sql(db, "DELETE FROM one_zero_base WHERE table_name=? AND key=?", {name, rowKey});
+              else
+                store("one_zero_base", name, rowKey, row);
             } else if (kind == "update") {
+              if (!serverTables.contains(patch.at("tableName").string())) continue;
               auto [name, id] = mapServerRow(patch.at("tableName").string(), patch.at("id"));
               Statement existing(db,
-                                 "SELECT value FROM one_zero_base WHERE table_name=? AND key=?");
+                                 "SELECT value FROM one_zero_base WHERE "
+                                 "table_name=? AND key=?");
               existing.bind(1, name);
               existing.bind(2, key(name, id));
               if (!existing.step()) throw std::runtime_error("row patch updates an absent row");
@@ -675,9 +759,8 @@ struct Client::Impl {
                 std::set<std::string> keep;
                 for (const auto& field : patch.at("constrain").items()) {
                   auto mapped = table(name).serverColumns.find(field.string());
-                  if (mapped == table(name).serverColumns.end())
-                    throw std::runtime_error("unknown constrained column");
-                  keep.insert(mapped->second);
+                  keep.insert(mapped == table(name).serverColumns.end() ? field.string()
+                                                                        : mapped->second);
                 }
                 auto& fields = std::get<Json::Object>(row.value);
                 for (auto it = fields.begin(); it != fields.end();) {
@@ -687,16 +770,22 @@ struct Client::Impl {
                     ++it;
                 }
               }
-              write("one_zero_base", "upsert", name, row);
+              const std::string rowKey = key(name, row);
+              store("one_zero_base", name, rowKey, row);
             } else
               throw std::runtime_error("unsupported row patch: " + kind);
           }
         }
-        sql(db, "DELETE FROM one_zero_view");
-        sql(db, "INSERT INTO one_zero_view SELECT * FROM one_zero_base");
+        if (changed) {
+          sql(db, "DELETE FROM one_zero_view");
+          sql(db, "INSERT INTO one_zero_view SELECT * FROM one_zero_base");
+        }
         setMeta("cookie", cookie);
         setMeta("lastMutationID", static_cast<double>(ack));
-        return Json::Object{{"transaction", transaction}, {"pending", pending()}};
+        setMeta("needsRebase", false);
+        return Json::Object{{"transaction", transaction},
+                            {"pending", changed ? pending() : Json(Json::Array{})},
+                            {"changed", changed}};
       } catch (...) {
         rollback();
         throw;
@@ -726,9 +815,7 @@ struct Client::Impl {
           throw std::runtime_error("desired query version exhausted");
         setMeta("queryVersion", static_cast<double>(version + 1));
         if (request.has("queries")) setMeta("queries", request.at("queries"));
-        sql(db, "COMMIT");
-        transaction.clear();
-        transactionKind.clear();
+        commit();
         return state();
       } catch (...) {
         rollback();
@@ -752,9 +839,7 @@ struct Client::Impl {
     if (op == "commitMutation" || op == "commitPull") {
       if (transaction.empty() || transactionKind != (op == "commitMutation" ? "mutation" : "pull"))
         throw std::runtime_error("wrong native transaction kind");
-      sql(db, "COMMIT");
-      transaction.clear();
-      transactionKind.clear();
+      commit();
       return state();
     }
     throw std::runtime_error("unsupported native Zero operation: " + op);
@@ -778,4 +863,4 @@ void Client::close() {
   impl_->db = nullptr;
 }
 
-}
+}  // namespace one::zero

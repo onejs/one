@@ -43,7 +43,6 @@ async function run() {
   }
   const options = {
     name: 'nitro-proof',
-    clientID: 'nitro-client',
     schema,
     mutators: {
       async send(tx: import('../../src/zero/native/types').Transaction) {
@@ -57,6 +56,12 @@ async function run() {
           seq: Number(latest?.seq ?? 0) + 1,
         })
       },
+      async recover(tx: import('../../src/zero/native/types').Transaction) {
+        try {
+          await tx.mutate.message.update({ id: 'local', body: 42 })
+        } catch {}
+        await tx.mutate.message.update({ id: 'local', body: 'recovered' })
+      },
     },
     transport: {
       async pull() {
@@ -66,6 +71,7 @@ async function run() {
     },
   }
   let client = await createNativeZero(options)
+  const identity = (await client.state()).clientID
   await client.pull()
   check((await client.run<Row[]>(query)).length === 1, 'Nitro async native query')
   await client.mutate('send')
@@ -90,6 +96,10 @@ async function run() {
   )
   await client.close()
   client = await createNativeZero(options)
+  check(
+    (await client.state()).clientID === identity,
+    'native store owns a durable generated client identity'
+  )
   check((await client.pending()).length === 1, 'pending mutation survives native reopen')
   check(
     (await client.run<Row[]>(query))[2].seq === 3,
@@ -97,7 +107,7 @@ async function run() {
   )
   response = {
     cookie: 3,
-    lastMutationIDChanges: { 'nitro-client': 1 },
+    lastMutationIDChanges: { [identity]: 1 },
     rowsPatch: [
       {
         op: 'put',
@@ -110,6 +120,11 @@ async function run() {
   check(
     (await client.pending()).length === 0 && (await client.state()).cookie === 3,
     'native acknowledgement and cursor commit together'
+  )
+  await client.mutate('recover')
+  check(
+    (await client.run<Row[]>(query))[2].body === 'recovered',
+    'caught native write failure can recover in Hermes'
   )
   await client.close()
   let closed = false
