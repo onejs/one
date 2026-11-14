@@ -40,7 +40,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Localization` | device | device | OneNativeBehavioralLibraryCase |  |
 | `One.Motion` | motion, native-modules | native-modules | missing | iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run |
 | `One.BackgroundTasks` | background-tasks | native-modules:unavailable | missing | iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; Android 37 emulator WorkManager schedule round trip, injected handler delivery and expiration proven; OS scheduling and cold launch need a physical device |
-| `One.AppIntents` | app-intents | native-modules:unavailable | missing | no Peach library case yet; App Intents / Siri integration has no simulator runtime surface |
+| `One.AppIntents` | app-intents | native-modules:unavailable | missing | no Peach library case yet |
 | `One.DeviceAttestation` | device-attestation | native-modules:unavailable | OneNativeSystemModulesLibraryCase | iOS 27 simulator availability, input, and unavailable errors proven; successful App Attest and DeviceCheck operations need a registered physical device |
 | `One.Contacts` | contacts, e2e:one-native-contact-ui | native-modules:unavailable | OneNativeBehavioralLibraryCase |  |
 | `One.Calendar` | calendar | native-modules:unavailable | ExpoCalendarLibraryCase, OneNativeBehavioralLibraryCase, OneNativeSystemModulesLibraryCase |  |
@@ -178,7 +178,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.MFMailComposeViewController` | e2e:one-native-message-ui | n/a | missing | production Swift simulator unavailability and injected completion/error mapping checked with transport shims; generated ABI and supported device compose/attachments/send/save/cancel unproven |
 | `One.iOS.MFMessageComposeViewController` | e2e:one-native-message-ui | n/a | missing | production Swift simulator unavailability, draft set/clear and attachment URL negative checked with transport shims; generated ABI and supported device compose/attachments/send/cancel unproven |
 | `One.iOS.WidgetUI` | realapps:widgets | n/a | missing | bounded Home JSX, cover-sheet JSX and expanded JSX Island fixture; compact/minimal and hardware-lock unproven; root/aggregate unaccepted |
-| `One.iOS.CameraView` | camera-preview, e2e:one-native-camera | n/a | missing | verified-map has camera-view-fixture-contract guard, but no Peach library conformance case yet |
+| `One.iOS.CameraView` | camera-preview, e2e:one-native-camera | n/a | missing | no Peach library case yet |
 | `One.iOS.Color` | e2e:color-test, e2e:toolbar-test, e2e:menu-test | n/a | VerifiedOneColorCase |  |
 | `One.iOS.MenuAction` | e2e:menu-test | n/a | NativeStackToolbarLibraryCase |  |
 | `One.iOS.SplitView` | e2e:split-view-test | n/a | VerifiedOneSplitCase |  |

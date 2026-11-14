@@ -129,7 +129,7 @@ const partialGaps: Record<string, string> = {
   'iOS.ViewSlot':
     'background, mask, list row background, top/bottom and leading/trailing safe-area bars, bottom vertical inset, and leading/trailing horizontal insets in bounded hosts proven; scroll content and other named slots unproven',
   AppIntents:
-    'no Peach library case yet; App Intents / Siri integration has no simulator runtime surface',
+    'no Peach library case yet',
   'iOS.LivePhotoView':
     'no Peach One.iOS.LivePhotoView library case yet (ExpoLivePhotoSmokeCase covers expo-live-photo)',
   'iOS.ProductView':
@@ -139,7 +139,7 @@ const partialGaps: Record<string, string> = {
   'iOS.SubscriptionStoreView':
     'needs an Apple StoreKit configuration / service Peach does not run',
   'iOS.CameraView':
-    'verified-map has camera-view-fixture-contract guard, but no Peach library conformance case yet',
+    'no Peach library case yet',
   'UI.sampleCurve':
     'no Peach library case yet; pure curve helper exercised in One ui-effects suite',
   'UI.serializeCurve':
