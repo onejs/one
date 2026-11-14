@@ -34,13 +34,19 @@ The declarations are committed because package release builds run on Ubuntu.
 Applications resolve `one/ios/<Framework>` through One's package exports without
 prebuilds or tsconfig paths. TypeScript selects `ios-types` declarations, including
 when the consumer enables the `react-native` condition. Native bundlers select
-`dist/esm/ios/<Framework>.native.js` through that condition: the package build
+`dist/esm/ios/<Framework>.mjs` through that condition: the package build
 (`codegen/sdk/build.ts`) compiles each `ios-bindings` facade to JavaScript, so
 dependency builds need neither One's Vite or Metro resolver hooks nor a
 TypeScript transform for `declare` fields. There is no browser or default
 runtime export. One's integrations still reject framework imports outside iOS
 and resolve the same compiled native facades for iOS. Native prebuild generates the matching
 framework tables; package resolution does not require an installed Apple SDK.
+
+The package build also emits one/ios/<Framework>/<Class> modules as
+dist/esm/ios/<Framework>/<Class>.mjs, grouping nested declarations with their
+class. The framework barrel still registers all classes and protocols. One uses
+per-class imports internally so unrelated registrations stay out of app bundles.
+Generated declaration reexports in dist/ios-types follow the same paths.
 
 Running `bun codegen/sdk/build.ts /path/to/output` builds only the standalone
 SDK app bundle in that directory. Omitting the output argument builds the
@@ -136,3 +142,5 @@ documentation stays in `ios-types`. Both native package exports and One's
 Metro/Vite resolvers load these same compiled files. Native output remains ESM,
 letting Metro and the browser compiler emit ordinary CommonJS data exports
 without an extra export-getter layer.
+
+Per-class consumers must also import wrapper modules for returned handles whose members they use. For example, UIApplication.keyWindow needs the UIWindow wrapper before accessing rootViewController. Side-effect imports register these wrappers; generated SDK modules are marked as side effects so bundlers retain registration.

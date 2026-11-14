@@ -4,11 +4,19 @@
 // identically without reading generator sources at runtime. the package build
 // (no output argument) also compiles committed ios-bindings facades to
 // dist/esm/ios, the javascript native consumers resolve for one/ios/<Framework>.
-import { mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from 'node:fs'
-import { dirname, join } from 'node:path'
+import {
+  mkdirSync,
+  rmSync,
+  readFileSync,
+  readdirSync,
+  renameSync,
+  writeFileSync,
+} from 'node:fs'
+import { dirname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { transform } from 'esbuild'
 import { compactFacade } from './compact'
+import { splitFacade } from './split-facade'
 
 const dir = dirname(fileURLToPath(import.meta.url))
 const fingerprintPath = join(dir, 'fingerprint.ts')
@@ -45,14 +53,17 @@ export async function buildSdkApp(
   return { path, fingerprint }
 }
 
-// per file, imports untouched: facades import one/ios-runtime and each other
-// through package exports, so every framework stays one module per specifier.
+// preserve the full framework registry while letting internal imports select classes.
 export async function buildIosFacades(
   outdir = join(dir, '../../dist/esm/ios')
 ): Promise<number> {
   const bindings = join(dir, '../../ios-bindings')
   const facades = readdirSync(bindings).filter((name) => name.endsWith('.ts'))
+  rmSync(outdir, { recursive: true, force: true })
   mkdirSync(outdir, { recursive: true })
+  const types = join(dir, '../../dist/ios-types')
+  rmSync(types, { recursive: true, force: true })
+  mkdirSync(types, { recursive: true })
   await Promise.all(
     facades.map(async (name) => {
       const { code } = await transform(
@@ -62,12 +73,40 @@ export async function buildIosFacades(
           format: 'esm',
           target: 'es2020',
           minifyWhitespace: true,
-          minifySyntax: true,
+          minifySyntax: false,
           minifyIdentifiers: false,
           legalComments: 'none',
         }
       )
-      writeFileSync(join(outdir, `${name.slice(0, -3)}.native.js`), code)
+      const framework = name.slice(0, -3)
+      const modules = splitFacade(code)
+      const directory = join(outdir, framework)
+      mkdirSync(directory, { recursive: true })
+      const typeDirectory = join(types, framework)
+      mkdirSync(typeDirectory, { recursive: true })
+      const declaration = join(dir, '../../ios-types', framework)
+      writeFileSync(
+        join(types, framework + '.d.ts'),
+        'export * from ' + JSON.stringify(relative(types, declaration)) + ';\n'
+      )
+      for (const [name, source] of modules) {
+        writeFileSync(join(directory, name + '.mjs'), source)
+        if (name === '_calls' || name === '_protocols' || name === 'index') continue
+        const names = source.match(/export \{ ([^}]+) \};\n$/)?.[1]
+        if (names)
+          writeFileSync(
+            join(typeDirectory, name + '.d.ts'),
+            'export { ' +
+              names +
+              ' } from ' +
+              JSON.stringify(relative(typeDirectory, declaration)) +
+              ';\n'
+          )
+      }
+      writeFileSync(
+        join(outdir, framework + '.mjs'),
+        'export * from "./' + framework + '/index.mjs";\n'
+      )
     })
   )
   return facades.length
@@ -78,9 +117,13 @@ if (import.meta.main) {
   const { path, fingerprint } = await buildSdkApp(outdir)
   console.log(`sdk app: ${path} ${fingerprint.slice(0, 16)}`)
   if (outdir === undefined) {
-    const manifest = JSON.parse(readFileSync(join(dir, '../../ios-bindings/manifest.json'), 'utf8'))
+    const manifest = JSON.parse(
+      readFileSync(join(dir, '../../ios-bindings/manifest.json'), 'utf8')
+    )
     if (manifest.generation !== fingerprint.slice(0, 16))
-      throw new Error(`ios-bindings generation ${manifest.generation} does not match the sdk generator ${fingerprint.slice(0, 16)}; regenerate the facades before building`)
+      throw new Error(
+        `ios-bindings generation ${manifest.generation} does not match the sdk generator ${fingerprint.slice(0, 16)}; regenerate the facades before building`
+      )
     console.log(`ios facades: ${await buildIosFacades()} compiled`)
   }
 }

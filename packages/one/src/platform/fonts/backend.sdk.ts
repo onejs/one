@@ -1,23 +1,20 @@
-import {
-  CTFontDescriptor,
-  CTFontDescriptorCopyAttribute,
-  CTFontManagerCopyAvailableFontFamilyNames,
-  CTFontManagerCopyAvailablePostScriptNames,
-  CTFontManagerCreateFontDescriptorsFromURL,
-  CTFontManagerError,
-  CTFontManagerRegisterFontsForURL,
-  kCTFontNameAttribute,
-} from 'one/ios/CoreText'
-import { CFErrorGetCode, CFURL } from 'one/ios/CoreFoundation'
-import {
-  NSArray,
-  FileManager,
-  HTTPURLResponse,
-  NSData,
-  NSString,
-  NSURL,
-  URLSession,
-} from 'one/ios/Foundation'
+import { CTFontDescriptor } from 'one/ios/CoreText/CTFontDescriptor'
+import { CTFontDescriptorCopyAttribute } from 'one/ios/CoreText/CTFontDescriptorCopyAttribute'
+import { CTFontManagerCopyAvailableFontFamilyNames } from 'one/ios/CoreText/CTFontManagerCopyAvailableFontFamilyNames'
+import { CTFontManagerCopyAvailablePostScriptNames } from 'one/ios/CoreText/CTFontManagerCopyAvailablePostScriptNames'
+import { CTFontManagerCreateFontDescriptorsFromURL } from 'one/ios/CoreText/CTFontManagerCreateFontDescriptorsFromURL'
+import { CTFontManagerError } from 'one/ios/CoreText/CTFontManagerError'
+import { CTFontManagerRegisterFontsForURL } from 'one/ios/CoreText/CTFontManagerRegisterFontsForURL'
+import { kCTFontNameAttribute } from 'one/ios/CoreText/kCTFontNameAttribute'
+import { CFErrorGetCode } from 'one/ios/CoreFoundation/CFErrorGetCode'
+import { CFURL } from 'one/ios/CoreFoundation/CFURL'
+import { NSArray } from 'one/ios/Foundation/NSArray'
+import { FileManager } from 'one/ios/Foundation/FileManager'
+import { HTTPURLResponse } from 'one/ios/Foundation/HTTPURLResponse'
+import { NSData } from 'one/ios/Foundation/NSData'
+import { NSString } from 'one/ios/Foundation/NSString'
+import { NSURL } from 'one/ios/Foundation/NSURL'
+import { URLSession } from 'one/ios/Foundation/URLSession'
 import { SDKHandle } from 'one/ios-runtime'
 import type { HybridObject } from 'react-native-nitro-modules'
 import { Crypto } from '../crypto/index.native'

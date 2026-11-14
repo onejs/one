@@ -103,7 +103,7 @@
     "hono": "^4.13.11",
     "perfect-debounce": "^1.0.0",
     "picocolors": "^1.0.0",
-    "rolldown": "^1.2.8",
+    "rolldown": "^1.3.2",
     "semver": "^7.6.3",
     "sharp": "^0.35.5",
     "vite": "^8.2.2",

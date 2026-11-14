@@ -1,7 +1,11 @@
-import { NotificationCenter } from 'one/ios/Foundation'
-import { UIScreen } from 'one/ios/UIKit'
+import { NotificationCenter } from 'one/ios/Foundation/NotificationCenter'
+import { UIScreen } from 'one/ios/UIKit/UIScreen'
 import type { SDKHandle } from 'one/ios-runtime'
-import type { BrightnessEvent, BrightnessMode, BrightnessPermissionResponse } from './types'
+import type {
+  BrightnessEvent,
+  BrightnessMode,
+  BrightnessPermissionResponse,
+} from './types'
 
 const listeners = new Map<number, (event: BrightnessEvent) => void>()
 let nextId = 0
@@ -13,7 +17,10 @@ let pending = Promise.resolve()
 // addListener cannot overtake the asynchronous main-actor setup.
 function ordered<T>(operation: () => Promise<T>): Promise<T> {
   const result = pending.then(operation)
-  pending = result.then(() => {}, () => {})
+  pending = result.then(
+    () => {},
+    () => {}
+  )
   return result
 }
 
@@ -34,7 +41,9 @@ function addListener(listener: (event: BrightnessEvent) => void): () => void {
     lastBrightness = await (await UIScreen.main).brightness
     const name = await UIScreen.brightnessDidChangeNotification
     if (!listeners.size) return
-    observer = NotificationCenter.default.addObserver(name, null, null, () => { void changed() })
+    observer = NotificationCenter.default.addObserver(name, null, null, () => {
+      void changed()
+    })
   })
   return () => {
     listeners.delete(id)
@@ -48,7 +57,9 @@ function addListener(listener: (event: BrightnessEvent) => void): () => void {
 }
 
 const granted = (): BrightnessPermissionResponse => ({
-  status: 'granted', granted: true, canAskAgain: false,
+  status: 'granted',
+  granted: true,
+  canAskAgain: false,
 })
 
 const backend = {
@@ -62,13 +73,23 @@ const backend = {
     return backend.get()
   },
   async setSystem(_value: number): Promise<void> {},
-  async getSystemMode(): Promise<BrightnessMode> { return 'unknown' },
+  async getSystemMode(): Promise<BrightnessMode> {
+    return 'unknown'
+  },
   async setSystemMode(_mode: BrightnessMode): Promise<void> {},
-  async isUsingSystem() { return true },
+  async isUsingSystem() {
+    return true
+  },
   async restoreSystem(): Promise<void> {},
-  async getPermissions() { return granted() },
-  async requestPermissions() { return granted() },
-  isAvailable() { return true },
+  async getPermissions() {
+    return granted()
+  },
+  async requestPermissions() {
+    return granted()
+  },
+  isAvailable() {
+    return true
+  },
   addListener,
 }
 

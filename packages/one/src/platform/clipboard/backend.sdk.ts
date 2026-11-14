@@ -1,6 +1,12 @@
-import { Data, NSData, NSString, NSUTF8StringEncoding, NotificationCenter, URL } from 'one/ios/Foundation'
-import { UIImage, UIPasteboard } from 'one/ios/UIKit'
-import { CGImage } from 'one/ios/CoreGraphics'
+import { Data } from 'one/ios/Foundation/Data'
+import { NSData } from 'one/ios/Foundation/NSData'
+import { NSString } from 'one/ios/Foundation/NSString'
+import { NSUTF8StringEncoding } from 'one/ios/Foundation/NSUTF8StringEncoding'
+import { NotificationCenter } from 'one/ios/Foundation/NotificationCenter'
+import { URL } from 'one/ios/Foundation/URL'
+import { UIImage } from 'one/ios/UIKit/UIImage'
+import { UIPasteboard } from 'one/ios/UIKit/UIPasteboard'
+import { CGImage } from 'one/ios/CoreGraphics/CGImage'
 import type { SDKHandle } from 'one/ios-runtime'
 import type { HybridObject } from 'react-native-nitro-modules'
 import type { OneClipboard } from '../specs/OneClipboard.nitro'
@@ -39,16 +45,22 @@ const backend = {
   },
   async setString(text, options) {
     const board = UIPasteboard.general
-    const data = options.inputFormat === 'html'
-      ? NSString.initString(text).dataUsing(NSUTF8StringEncoding) : null
+    const data =
+      options.inputFormat === 'html'
+        ? NSString.initString(text).dataUsing(NSUTF8StringEncoding)
+        : null
     if (data) {
-      board.items = [{ [htmlType]: NSData.initData(data), 'public.utf8-plain-text': text }]
+      board.items = [
+        { [htmlType]: NSData.initData(data), 'public.utf8-plain-text': text },
+      ]
     } else {
       board.string = text
     }
     return true
   },
-  async hasString() { return UIPasteboard.general.hasStrings },
+  async hasString() {
+    return UIPasteboard.general.hasStrings
+  },
   async getImage(options) {
     const image = UIPasteboard.general.image
     if (!image) return undefined
@@ -61,15 +73,20 @@ const backend = {
     if (!data) return undefined
     return {
       data: `data:image/${jpeg ? 'jpeg' : 'png'};base64,${NSData.initData(data).base64EncodedString()}`,
-      width, height,
+      width,
+      height,
     }
   },
   async setImage(base64Image) {
     const comma = base64Image.indexOf(',')
-    const payload = base64Image.startsWith('data:') && comma !== -1
-      ? base64Image.slice(comma + 1) : base64Image
+    const payload =
+      base64Image.startsWith('data:') && comma !== -1
+        ? base64Image.slice(comma + 1)
+        : base64Image
     const encoded = NSString.initString(payload).dataUsing(NSUTF8StringEncoding)
-    const data = encoded ? Data.initBase64EncodedOptions(encoded, ['ignoreUnknownCharacters']) : null
+    const data = encoded
+      ? Data.initBase64EncodedOptions(encoded, ['ignoreUnknownCharacters'])
+      : null
     const image = data ? UIImage.initData(data) : null
     if (!image) {
       throw Object.assign(new Error('Clipboard.setImage: not decodable image data'), {
@@ -78,19 +95,28 @@ const backend = {
     }
     UIPasteboard.general.image = image
   },
-  async hasImage() { return UIPasteboard.general.hasImages },
-  async getUrl() { return UIPasteboard.general.url ?? undefined },
+  async hasImage() {
+    return UIPasteboard.general.hasImages
+  },
+  async getUrl() {
+    return UIPasteboard.general.url ?? undefined
+  },
   async setUrl(url) {
     const parsed = URL.initString(url)
     if (parsed) UIPasteboard.general.url = parsed
     else UIPasteboard.general.string = url
   },
-  async hasUrl() { return UIPasteboard.general.hasURLs },
+  async hasUrl() {
+    return UIPasteboard.general.hasURLs
+  },
   setClipboardListener(next) {
     clearClipboardListener()
     listener = next
     observer = NotificationCenter.default.addObserver(
-      UIPasteboard.changedNotification, null, null, () => listener?.(contentTypes())
+      UIPasteboard.changedNotification,
+      null,
+      null,
+      () => listener?.(contentTypes())
     )
   },
   clearClipboardListener,
