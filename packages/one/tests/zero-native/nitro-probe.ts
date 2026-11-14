@@ -238,6 +238,63 @@ async function run() {
     sync.state.name === 'closed' && unsubscribed,
     'native client close stops timers and releases wake listener'
   )
+  const scopes = ['user:one', 'project:one', 'repo:one']
+  const openScoped = (scope: string) =>
+    createNativeZero({
+      name: `contrast-${scope.replace(':', '-')}`,
+      schema,
+      mutators: {
+        async edit(tx: import('../../src/zero/native/types').Transaction) {
+          await tx.mutate.message.upsert({ id: 'same-row', seq: 1, body: scope })
+        },
+      },
+    })
+  const scoped = await Promise.all(scopes.map(openScoped))
+  const identities = await Promise.all(
+    scoped.map((value) => value.state().then((state) => state.clientID))
+  )
+  check(
+    new Set(identities).size === 3,
+    'simultaneous user/project/repo clients own distinct durable identities'
+  )
+  await Promise.all(scoped.map((value) => value.mutate('edit')))
+  const scopedRows = await Promise.all(scoped.map((value) => value.run<Row[]>(query)))
+  check(
+    scopedRows.every(
+      (rows, index) => rows.length === 1 && rows[0].body === scopes[index]
+    ),
+    'concurrent Nitro transactions isolate the same row key across client stores'
+  )
+  const journals = await Promise.all(scoped.map((value) => value.pending()))
+  check(
+    journals.every(
+      (pending, index) =>
+        pending.length === 1 &&
+        pending[0].id === 1 &&
+        pending[0].clientID === identities[index]
+    ),
+    'simultaneous native clients keep independent mutation sequences and journals'
+  )
+  await scoped[1].close()
+  const reopened = await openScoped(scopes[1])
+  check(
+    (await reopened.state()).clientID === identities[1] &&
+      (await reopened.pending()).length === 1,
+    'project reopen restores its identity and outbox while other clients remain open'
+  )
+  const switched = await openScoped('user:two')
+  check(
+    (await switched.run<Row[]>(query)).length === 0 &&
+      (await switched.state()).clientID !== identities[0],
+    'another user starts with separate native rows and identity'
+  )
+  check(
+    (await scoped[0].run<Row[]>(query))[0].body === scopes[0],
+    'identity switching does not close or overwrite the previous client'
+  )
+  await Promise.all(
+    [scoped[0], scoped[2], reopened, switched].map((value) => value.close())
+  )
   report(JSON.stringify({ passed: checks.length, checks }))
 }
 run().catch((error) =>

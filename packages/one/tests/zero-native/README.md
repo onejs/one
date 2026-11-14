@@ -213,7 +213,8 @@ adoption decisions and additional compatibility work.
 | Managed startup outbox, retry, offline/background edits, wake coalescing and stale cancelled responses          | Native driver integration; startup retry and background/foreground through Hermes/Nitro on iOS |
 | Team Machine on-zero provider, live daemon screens, composer send and offline restart delivery                 | Actual iOS 27 DEV simulator, with the external-instance provider and app adapter |
 | One Android consumer native compilation and APK packaging                                                    | Android Native Build CI                                  |
-| Android native Zero runtime, cloud encrypted transport and multiple identity/client adoption                 | Pending                                                 |
+| Simultaneous user/project/repo store identities, concurrent Nitro transactions, independent journals, reopen and user switch | Hermes/Nitro runtime on macOS; actual Contrast adoption pending |
+| Android native Zero runtime and complete cloud app integration                 | Pending                                                 |
 | Pinned upstream WebSocket protocol, storage recovery and full upstream suite                                 | Pending                                                 |
 | Desktop engine comparison with the pinned in-memory client                                                   | Isolated alternating runs; matching query results and observed mutations |
 | Production mobile performance and binary-size comparison                                                     | Pending                                                 |
