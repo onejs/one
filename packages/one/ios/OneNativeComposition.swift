@@ -240,9 +240,11 @@ final class OneNativeHostInsets: ObservableObject {
 private struct OneNativeHostRoot: View {
   @ObservedObject var insets: OneNativeHostInsets
   let content: AnyView
+  let layoutHost: OneNativeSlotLayoutHost
 
   var body: some View {
     content.contentMargins(.bottom, insets.bottom > 0 ? insets.bottom : nil, for: .scrollContent)
+      .environment(\.oneNativeSlotLayoutHost, layoutHost)
   }
 }
 
@@ -262,6 +264,7 @@ private struct OneNativeHostRoot: View {
   private weak var compositionParent: OneNativeCompositionParent?
   private var active = false
   private let hostInsets = OneNativeHostInsets()
+  private let slotLayoutHost = OneNativeSlotLayoutHost()
 
   public var compositionActive: Bool { active }
 
@@ -379,6 +382,16 @@ private struct OneNativeHostRoot: View {
     published.items.removeAll { $0.sourceID == id }
   }
 
+  public func refreshSlotLayout() {
+    for child in childViews {
+      if let slot = child as? OneNativeContainerSlotView {
+        slot.content?.superview?.setNeedsLayout()
+      } else if let container = child as? OneNativeContainerView {
+        container.refreshSlotLayout()
+      }
+    }
+  }
+
   public func compositionContent() -> AnyView { wrap(published, false) }
 
   public func composeInto(_ parent: OneNativeCompositionParent) {
@@ -431,8 +444,9 @@ private struct OneNativeHostRoot: View {
     let overlap = presentedSheetBottomOverlap()
     if hostInsets.bottom != overlap { hostInsets.bottom = overlap }
     if controller == nil {
+      slotLayoutHost.view = self
       controller = OneNativeHostingController(
-        rootView: AnyView(OneNativeHostRoot(insets: hostInsets, content: wrap(published, true))),
+        rootView: AnyView(OneNativeHostRoot(insets: hostInsets, content: wrap(published, true), layoutHost: slotLayoutHost)),
         screenInsets: hostingScreenInsets
       )
     }
