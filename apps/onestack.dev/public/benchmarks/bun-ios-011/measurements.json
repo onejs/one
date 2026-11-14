@@ -1,0 +1,6681 @@
+{
+  "date": "2026-11-14",
+  "device": "iPhone 17 Pro simulator (air-24)",
+  "host": {
+    "chip": "Apple M2",
+    "model": "Mac14,2",
+    "memoryBytes": 25769803776
+  },
+  "os": "27.0",
+  "sourceCommit": "ededeef9aac660b9aafd6bdf088522a70b7d396b",
+  "engineVersion": "0.1.1",
+  "launchEnvironment": {
+    "bun": {
+      "BUN_JSC_useJIT": "false",
+      "BUN_JSC_useWasm": "false"
+    }
+  },
+  "method": "Release · alternating engines · process-cold launches · warm OS caches · Bun JIT/Wasm off",
+  "samples": [
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 498.1748585205078,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 24.18587500602007,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 24.188875004649162,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 517.1999458770752,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 29.252220153808594,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 43.37645799666643,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 16.22300000488758,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 36.43974304199219,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8266.177250005305,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4478.341958150268,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 42.767913818359375,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 14.215124994516373,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.3224169984459877,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 43.330413818359375,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 314.2396660000086,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 93.15974999964237,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 190.45557403564453,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 218.50154200196266,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 124.83059692382812,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 33.904334001243114,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 121.50247192382812,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 242.71604200452566,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 112.89309692382812,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 354.29604199528694,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 49.877471923828125,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 230.79558300226927,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 49.877471923828125,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 16.630457997322083,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 49.955596923828125,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 130.54079200327396,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 49.971221923828125,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 498.119944519043,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 22.77179166674614,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 22.774999998509884,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 531.4708890380859,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.59638214111328,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 41.019584000110626,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 12.639166995882988,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 44.44013214111328,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5118.247542001307,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3210.3334990143776,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 66.17459869384766,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 13.739207997918129,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.01791699975729,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 66.56522369384766,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 319.06099999696016,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 95.65704200416803,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 213.4716339111328,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 235.2622499987483,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 197.2841796875,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 7.98870799690485,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 143.7685546875,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 8.7657909989357,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 148.1123046875,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 2.7672920003533363,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 151.5810546875,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 25.355333000421524,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 148.9248046875,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 11.632458001375198,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 150.5654525756836,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 36.22087500244379,
+      "unit": "ms",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 152.7217025756836,
+      "unit": "MiB",
+      "run": "0"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 480.80709991455075,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 23.112833343446255,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 23.11670833826065,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 514.1339641571044,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 29.205368041992188,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 42.113665997982025,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.577458001673222,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 36.25224304199219,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8104.689249999821,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4404.610005035996,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 42.78356170654297,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 10.287082999944687,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.2287079989910126,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 43.31481170654297,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 316.7732499986887,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 92.29591599851847,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 190.33057403564453,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 229.18904100358486,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 148.64309692382812,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 35.705958001315594,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 119.65872192382812,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 247.3762499988079,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 116.58059692382812,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 357.79716700315475,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 53.564971923828125,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 223.31758300215006,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 49.564971923828125,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 15.973041996359825,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 49.627471923828125,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 125.43404100090265,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 49.627471923828125,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 497.87611758422855,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 21.090291671454906,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 21.093208335340023,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 531.0680369110108,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.72138214111328,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 39.894834004342556,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 12.635917000472546,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 44.61200714111328,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5001.51770799607,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3134.0326590389013,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 81.98709869384766,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 11.35733299702406,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.2814579978585243,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 82.36209869384766,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 316.5304170027375,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 95.57299999892712,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 230.0185089111328,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 241.95795799791813,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 205.1279296875,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.029999993741512,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 154.0966796875,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 8.887665994465351,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 159.5185546875,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 3.0072079971432686,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 163.0498046875,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 26.934917002916336,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 164.1435546875,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 11.928959004580975,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 165.8310775756836,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 36.44224999845028,
+      "unit": "ms",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 166.5967025756836,
+      "unit": "MiB",
+      "run": "1"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 503.4349937438964,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 22.89958333224058,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 22.90529166907072,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 536.7740173339844,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 29.424118041992188,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 42.28754200041294,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.80791600048542,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 36.58036804199219,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8387.665750004351,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4461.870955042541,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 43.01793670654297,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 11.494833000004292,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.1646250039339066,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 43.53356170654297,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 313.1001249998808,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 92.07400000095367,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 189.93994903564453,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 222.03662499785423,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 122.40872192382812,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 33.87154199928045,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 119.36184692382812,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 241.53645800054073,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 117.42434692382812,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 354.4721670001745,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 54.408721923828125,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 221.4287910014391,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 50.424346923828125,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 16.355416998267174,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 50.518096923828125,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 125.86625000089407,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 50.518096923828125,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 519.9549935760498,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 22.30612500011921,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 22.309041671454906,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 539.601876586914,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.42448425292969,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 40.59958400577307,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 13.075125001370907,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 44.53388214111328,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5001.584207996726,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3105.584787964821,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 64.67457580566406,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 14.437458999454975,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 1.9525830000638962,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 65.12770080566406,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 317.1478750035167,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 95.00316700339317,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 212.75286102294922,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 222.91187499463558,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 237.6122817993164,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.743416994810104,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 153.4716567993164,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 9.521167002618313,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 158.9716567993164,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 2.9680830016732216,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 162.8466567993164,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 26.120209001004696,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 164.9560317993164,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 11.853333003818989,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 166.7060546875,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 36.41075000166893,
+      "unit": "ms",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 168.2685546875,
+      "unit": "MiB",
+      "run": "2"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 497.59311730957035,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 23.021583326160908,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 23.026916660368443,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 530.8839803466797,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 29.580368041992188,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 42.150083005428314,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.67645899951458,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 36.68974304199219,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8068.357415996492,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4365.162583120167,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 43.08043670654297,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 13.11404199898243,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.24091699719429,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 43.62731170654297,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 315.949249997735,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 92.43591599911451,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 190.50244903564453,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 210.45079100131989,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 124.90872192382812,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 34.084541000425816,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 121.68997192382812,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 243.21508300304413,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 113.11184692382812,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 354.57837499678135,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 50.096221923828125,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 221.23674999922514,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 50.096221923828125,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 15.687791995704174,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 50.174346923828125,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 125.46070899814367,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 50.174346923828125,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 497.8620910644531,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 21.261083334684372,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 21.264333337545395,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 530.6370162963867,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.78385925292969,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 38.53820800036192,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 12.257500000298023,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 44.64323425292969,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5001.600042000413,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3124.2934190407395,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 69.37772369384766,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 14.644249998033047,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 1.9363330006599426,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 69.83084869384766,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 319.9753750041127,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 97.32945899665356,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 217.1591567993164,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 225.46754200011492,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 197.5966796875,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.724082998931408,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 155.0498046875,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 9.224500000476837,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 160.1904296875,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 3.0600420013070107,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 162.5498046875,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 26.748999997973442,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 166.1748046875,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 11.585583001375198,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 167.8779525756836,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 36.9923750013113,
+      "unit": "ms",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 174.2373275756836,
+      "unit": "MiB",
+      "run": "3"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 495.57403938293453,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 23.30229166895151,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 23.305791668593884,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 528.9371432495117,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 29.314720153808594,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 41.906208001077175,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.534125000238419,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 36.36161804199219,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8004.95937500149,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4378.9422420710325,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 42.830413818359375,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 9.436958000063896,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.2457500025629997,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 43.361663818359375,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 314.52141600102186,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 92.33025000244379,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 190.34617614746094,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 215.48912499845028,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 129.42434692382812,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 33.8947089985013,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 119.28372192382812,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 241.13766700029373,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 116.40872192382812,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 352.5819170027971,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 53.393096923828125,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 221.08600000292063,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 49.393096923828125,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 16.04516699910164,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 49.471221923828125,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 125.46745900064707,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 49.471221923828125,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 509.59900044250486,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 21.761666670441628,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 21.76470833271742,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 543.0050196533202,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.580711364746094,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 38.57908300310373,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 12.365042001008987,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 44.44010925292969,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5001.557540997863,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3129.684001915157,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 69.11207580566406,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 13.922749996185303,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 1.886082999408245,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 69.56520080566406,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 322.25754100084305,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 96.41354199498892,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 217.6747589111328,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 223.6816670000553,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 199.4560546875,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.392958000302315,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 152.0810775756836,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 9.056000001728535,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 157.1123275756836,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 3.024957999587059,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 160.6123275756836,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 27.70024999976158,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 163.0654525756836,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 11.978165999054909,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 165.5029754638672,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 38.87795900553465,
+      "unit": "ms",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 171.0342254638672,
+      "unit": "MiB",
+      "run": "4"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 510.22901557922364,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 23.38279166817665,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 23.38587499409914,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 529.2409899139404,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 29.314720153808594,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 41.82929100096226,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.14479099959135,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 36.64286804199219,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8188.1284170001745,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4403.565504975617,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 43.033538818359375,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 10.58533300459385,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.1641670018434525,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 43.564788818359375,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 315.11458399891853,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 92.57433300465345,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 190.89307403564453,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 212.13908299803734,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 124.68997192382812,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 33.631333000957966,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 119.79934692382812,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 242.30570799857378,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 117.25247192382812,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 364.75612499564886,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 54.236846923828125,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 221.0254170000553,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 50.236846923828125,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 15.735208995640278,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 50.330596923828125,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 125.3126659989357,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 50.330596923828125,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 503.29795811462395,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 21.083708323538303,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 21.08683332800865,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 535.3089902191161,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.72138214111328,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 38.794041998684406,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 12.369374997913837,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 44.69013214111328,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5018.240125000477,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3126.333840034902,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 65.73709869384766,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 14.408249996602535,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 1.9505000039935112,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 66.17459869384766,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 315.3107089996338,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 93.61833299696445,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 213.7372589111328,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 214.41429100185633,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 239.6279296875,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.675124995410442,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 153.7060546875,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 8.968457996845245,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 159.2529296875,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 3.0949160009622574,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 163.1279296875,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 26.494249999523163,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 165.0185546875,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 12.057041995227337,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 166.5341796875,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 36.81862500309944,
+      "unit": "ms",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 173.1904525756836,
+      "unit": "MiB",
+      "run": "5"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 476.5499761352539,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 23.216958329081535,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 23.220541670918465,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 496.0290124664307,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 29.330368041992188,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 41.91841699928045,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.047458000481129,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 36.39289093017578,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8468.42108400166,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4489.0834299474955,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 42.90856170654297,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 7.271958000957966,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.4910829961299896,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 43.48668670654297,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 339.8141250014305,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 96.5976670011878,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 190.84619903564453,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 231.28225000202656,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 157.17436981201172,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 34.81904199719429,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 119.89311981201172,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 257.27604100108147,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 117.98686981201172,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 381.77974999696016,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 54.97124481201172,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 231.21387500315905,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 50.98686981201172,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 16.22162500023842,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 51.06499481201172,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 131.4250419959426,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 51.06499481201172,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 505.8888807067872,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 22.061375007033348,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 22.06441666930914,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 524.9480619201661,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.33075714111328,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 38.42679199576378,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 11.87762500345707,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 44.393280029296875,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5001.464542001486,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3107.0844979807734,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 67.03397369384766,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 13.890666998922825,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 1.9459579959511757,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 67.48709869384766,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 315.4571660012007,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 93.96920799463987,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 215.7060089111328,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 219.59849999845028,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 212.3623046875,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.261666998267174,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 149.6279525756836,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 9.104749999940395,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 155.6279525756836,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 2.931666001677513,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 159.1435775756836,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 25.62449999898672,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 161.0967025756836,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 11.697541996836662,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 157.5029525756836,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 36.31187500059605,
+      "unit": "ms",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 162.5967025756836,
+      "unit": "MiB",
+      "run": "6"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 509.37494096374513,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 23.440750002861023,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 23.444208331406116,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 528.3051377258301,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 29.267845153808594,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 41.8316669985652,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.300042003393173,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 36.45536804199219,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8171.092624999583,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4403.220958068967,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 42.814788818359375,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 11.051667004823685,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.3191669955849648,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 43.346038818359375,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 315.85754200071096,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 92.95937500149012,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 189.84619903564453,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 222.02091600000858,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 136.42434692382812,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 33.806500002741814,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 119.29934692382812,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 241.74762500077486,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 116.59622192382812,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 353.7580000013113,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 53.580596923828125,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 222.17000000178814,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 49.580596923828125,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 15.865125000476837,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 49.643096923828125,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 125.27104199677706,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 49.643096923828125,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 526.898050201416,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 21.976708330214024,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 21.979541674256325,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 560.1078509216309,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.73698425292969,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 38.847958005964756,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 12.29500000178814,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 44.73700714111328,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5001.542334005237,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3071.7490908950567,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 65.90895080566406,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 13.06487499922514,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 1.8594160005450249,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 66.37770080566406,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 318.7661669999361,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 95.3855000063777,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 214.23723602294922,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 235.20362500101328,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 196.6591567993164,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.20525000244379,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 150.0810546875,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 9.147124998271465,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 157.3466796875,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 2.9134169965982437,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 160.9560546875,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 26.572666004300117,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 163.9404296875,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 11.861457996070385,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 166.3935775756836,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 37.35029199719429,
+      "unit": "ms",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 175.6279525756836,
+      "unit": "MiB",
+      "run": "7"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 507.8659476928711,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 23.511666662991047,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 23.51537500321865,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 526.984018295288,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 29.502243041992188,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 41.53004200011492,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.234167002141476,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 36.68976593017578,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8901.728167004883,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4561.19015404582,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 43.08043670654297,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 12.184374995529652,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.226332999765873,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 43.65856170654297,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 323.37312500178814,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 94.49729200452566,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 190.48682403564453,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 224.85908299684525,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 141.11186981201172,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 33.69020900130272,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 119.86186981201172,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 242.94362500309944,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 117.78374481201172,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 359.14625000208616,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 54.79936981201172,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 220.81254199892282,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 50.79936981201172,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 15.986875005066395,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 50.89311981201172,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 125.78158300369978,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 50.87749481201172,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 522.4210161895753,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 22.726041667163372,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 22.728583328425884,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 555.6470293731691,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.54948425292969,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 40.642124995589256,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 12.690040998160839,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 44.47135925292969,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5585.880541995168,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3392.160817041993,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 70.44020080566406,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 9.984958998858929,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.1429580003023148,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 70.89332580566406,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 335.1052500009537,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 96.95262499898672,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 218.86223602294922,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 246.1813330054283,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 187.8779067993164,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.104083999991417,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 151.2372817993164,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 8.699625000357628,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 158.1279067993164,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 3.1869160011410713,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 161.1904067993164,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 26.307166002690792,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 163.1122817993164,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 11.742082998156548,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 165.0185546875,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 36.83799999952316,
+      "unit": "ms",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 166.6279296875,
+      "unit": "MiB",
+      "run": "8"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 505.8099692077637,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 23.661166667938232,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 23.666541665792465,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 539.0719835968017,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 29.486595153808594,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 42.44991600513458,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.985083997249603,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 36.53349304199219,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8021.066834002733,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4374.473035000265,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 42.892913818359375,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 11.83704199641943,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.1564589962363243,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 43.424163818359375,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 312.53024999797344,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 91.6804170012474,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 190.97117614746094,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 217.4615000039339,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 123.12747192382812,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 34.15262500196695,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 120.03372192382812,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 245.63908299803734,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 118.17434692382812,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 352.43579100072384,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 55.174346923828125,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 221.7842499986291,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 51.174346923828125,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 15.918666996061802,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 51.221221923828125,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 125.72629199922085,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 51.221221923828125,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 511.65299246215824,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 21.949708327651024,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 21.952458329498768,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 544.487045501709,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.47135925292969,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 39.12925000488758,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 12.353791996836662,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 44.48698425292969,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5018.239041000605,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3117.5045549347997,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 65.90892791748047,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 13.881750002503395,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.0190420001745224,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 66.34642791748047,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 103.08716700226068,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 94.11529199779034,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 72.78399658203125,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 214.64500000327826,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 148.33094024658203,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.474166996777058,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 151.89344024658203,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 9.626457996666431,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 157.00281524658203,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 3.001209005713463,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 160.92469024658203,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 27.22154200077057,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 162.86219024658203,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 11.753624998033047,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 164.26844024658203,
+      "unit": "MiB",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 38.02037499845028,
+      "unit": "ms",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": "9"
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 166.03408813476562,
+      "unit": "MiB",
+      "run": "9"
+    }
+  ]
+}

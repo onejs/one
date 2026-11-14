@@ -165,3 +165,8 @@ lane and CI owner. No stable release is authorized.
 
 Option b is excluded. The exploratory root-edge pruning estimate is 7,504,327
 bytes with 347 modules removed. The class route retains One's root public API.
+
+
+# Bun engine benchmarks
+
+Document the Bun and Hermes runtime, rendering, startup and process-memory comparisons with reproducible workloads, source identifiers, sample counts and distributions. Keep simulator measurements distinct from device measurements, and make the individual measurements and SVG charts available beside the method.

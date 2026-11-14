@@ -1,0 +1,91 @@
+---
+title: Bun and Hermes on iOS
+description: Runtime, rendering and memory measurements from alternating Release builds.
+---
+
+Bun completed 300 updates of 1,000 native views in 5.00 seconds, compared with
+8.18 seconds for Hermes. JavaScript compute workloads were faster on Bun.
+Navigation and the long text list were close, and Bun used more memory.
+
+These measurements are from an iOS simulator on an Apple M2 MacBook Air with
+24 GB of memory. They do not establish iPhone performance.
+
+## Runtime
+
+Ten samples per engine. Times are medians in milliseconds; brackets contain
+the 25th and 75th percentiles. Lower is better.
+
+| Workload | Hermes | Bun |
+| --- | ---: | ---: |
+| Mount 1,000 views | 42.02 [41.85, 42.25] | 38.99 [38.63, 40.42] |
+| 300 updates of 1,000 views | 8,179.61 [8,077.44, 8,357.29] | 5,001.59 [5,001.55, 5,018.24] |
+| Tree, 100 levels | 11.27 [10.36, 12.10] | 13.89 [13.23, 14.29] |
+| Long text list, 300 rows | 315.49 [314.31, 316.57] | 317.96 [315.73, 319.75] |
+| Navigate to a heavy route | 220.26 [215.98, 224.15] | 224.57 [220.43, 235.25] |
+| JSON | 33.90 [33.82, 34.14] | 8.33 [8.13, 8.62] |
+| Regular expressions | 242.83 [241.89, 245.03] | 9.08 [8.91, 9.21] |
+| Sort | 354.53 [353.89, 358.81] | 3.00 [2.94, 3.05] |
+| Object creation | 221.61 [221.12, 223.03] | 26.53 [26.17, 26.89] |
+| Intl | 15.98 [15.88, 16.18] | 11.80 [11.71, 11.91] |
+| String building | 125.60 [125.44, 125.85] | 36.83 [36.42, 37.26] |
+
+The update workload waits for a native display frame after each revision.
+Its elapsed time includes frame pacing. The separately measured React commit
+time totals 4,404.09 ms for Hermes and 3,125.31 ms for Bun across the 300 updates.
+
+![Repeated native view updates: median, quartiles and range](/benchmarks/bun-ios-011/28-one-bench-updates-300-duration.svg)
+
+![JSON workload: median, quartiles and range](/benchmarks/bun-ios-011/05-one-bench-json-duration.svg)
+
+## Memory
+
+Physical process footprint, measured immediately after each workload.
+These values include native allocations and are not JavaScript heap sizes.
+No garbage collection was forced between cases.
+
+| Point in the suite | Hermes, MiB | Bun, MiB |
+| --- | ---: | ---: |
+| Startup | 29.32 | 35.59 |
+| After 300 view updates | 42.90 | 66.60 |
+| After long text list | 190.47 | 214.97 |
+| After string building | 50.25 | 167.45 |
+
+![Process memory after string building: median, quartiles and range](/benchmarks/bun-ios-011/27-one-bench-strings-physical-footprint.svg)
+
+The memory measurements follow the same fixed workload order on both engines.
+They describe that point in the suite, rather than a steady state after an
+idle period or a collection.
+
+## Startup
+
+Process to content ready was 528.62 ms on Hermes and 537.46 ms on Bun.
+The first-frame proxy was 500.80 ms and 507.74 ms respectively. The proxy
+uses a native display callback; it does not measure pixels appearing on screen.
+
+## Method
+
+Measured on 14 November 2026.
+
+- iPhone 17 Pro simulator, iOS 27.0, on an Apple M2 MacBook Air with 24 GB RAM.
+- Release builds, optimized Hermes bytecode and Bun ahead-of-time compilation.
+- Bun engine 0.1.1, with both JIT and WebAssembly disabled at simulator launch.
+  Device builds disable those features in the runtime.
+- One successful smoke per engine preceded ten strict alternating pairs:
+  Hermes, Bun, Hermes, Bun. Each launch starts a new process; OS caches remain warm.
+- The same application source, native UI, inputs and workload order on both engines.
+  The Bun compiler and runtime came from the same engine build.
+- A quiet host admission covered the series. All 20 launches reported nominal
+  thermal state and low power mode off.
+- Compute checksums matched across engines and every launch reached completion.
+- Bars show medians, thick lines show the middle 50% of samples, and whiskers
+  show the observed minimum and maximum. They are not confidence intervals.
+
+Application source:
+[ededeef9aac660b9aafd6bdf088522a70b7d396b](https://github.com/onejs/one/tree/ededeef9aac660b9aafd6bdf088522a70b7d396b/examples/one-bench).
+The source includes the
+[rendering workloads](https://github.com/onejs/one/blob/ededeef9aac660b9aafd6bdf088522a70b7d396b/examples/one-bench/app/index.tsx)
+and
+[compute workloads](https://github.com/onejs/one/blob/ededeef9aac660b9aafd6bdf088522a70b7d396b/examples/one-bench/bench/cases.ts).
+
+[All charts as SVG](/benchmarks/bun-ios-011/index.html) ·
+[Individual measurements](/benchmarks/bun-ios-011/measurements.json)
