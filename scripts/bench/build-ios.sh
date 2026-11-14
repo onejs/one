@@ -6,6 +6,7 @@ case "$engine" in hermes|bun) ;; *) exit 2;; esac
 case "$target" in device|simulator) ;; *) exit 2;; esac
 root=$(git rev-parse --show-toplevel)
 output=${BENCH_OUTPUT_DIR:-$HOME/builders/.scratch/bun-bench}
+derived=${BENCH_DERIVED_DATA:-$output/derived-$target}
 export BENCH_ENGINE=$engine
 export ONE_BUN_ENGINE_DIR=${ONE_BUN_ENGINE_DIR:-$HOME/builders/.scratch/bun-aot-rn/engine}
 mkdir -p "$output"
@@ -15,7 +16,7 @@ if ! git -C "$root" diff --quiet HEAD -- examples/one-bench packages; then
 fi
 cd "$root/examples/one-bench"
 bun run prebuild:native --platform ios > "$output/prebuild-$engine-$target.log" 2>&1
-args=(-workspace ios/OneBench.xcworkspace -scheme OneBench -configuration Release -derivedDataPath "$output/derived-$target" -jobs "${BENCH_BUILD_JOBS:-4}" -packageAuthorizationProvider netrc)
+args=(-workspace ios/OneBench.xcworkspace -scheme OneBench -configuration Release -derivedDataPath "$derived" -jobs "${BENCH_BUILD_JOBS:-4}" -packageAuthorizationProvider netrc)
 if [ "$target" = device ]; then
   args+=(-destination generic/platform=iOS -allowProvisioningUpdates -authenticationKeyPath "$HOME/.appstoreconnect/private_keys/AuthKey_JY56N857ZK.p8" -authenticationKeyID JY56N857ZK -authenticationKeyIssuerID 69a6de72-dd97-47e3-e053-5b8c7c11a4d1 CODE_SIGN_STYLE=Automatic DEVELOPMENT_TEAM=399WY8X9HY)
   platform=iphoneos
@@ -25,7 +26,7 @@ else
 fi
 nice -n 10 xcodebuild "${args[@]}" build > "$output/build-$engine-$target.log" 2>&1
 mkdir -p "$output/apps/$engine"
-ditto "$output/derived-$target/Build/Products/Release-$platform/OneBench.app" "$output/apps/$engine/OneBench.app"
+ditto "$derived/Build/Products/Release-$platform/OneBench.app" "$output/apps/$engine/OneBench.app"
 git rev-parse HEAD > "$output/apps/$engine/commit.txt"
 python3 - "$output/apps/$engine" "$engine" "$target" <<'PYMETA'
 import hashlib

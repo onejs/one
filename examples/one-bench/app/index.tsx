@@ -54,7 +54,7 @@ export default function Benchmark() {
         for (const key of [
           'initializeRuntimeStart',
           'executeJavaScriptBundleEntryPointStart',
-          'executeJavaScriptBundleEntryPointEnd',
+          'endTime',
         ]) {
           if (Number.isFinite(timing[key]) && timing[key] >= 0)
             await emit('startup', key, timing[key], 'timestamp-ms')
@@ -70,14 +70,13 @@ export default function Benchmark() {
           )
         }
         if (
-          Number.isFinite(timing.executeJavaScriptBundleEntryPointEnd) &&
+          Number.isFinite(timing.endTime) &&
           Number.isFinite(timing.executeJavaScriptBundleEntryPointStart)
         ) {
           await emit(
             'startup',
-            'bundle-execution',
-            timing.executeJavaScriptBundleEntryPointEnd -
-              timing.executeJavaScriptBundleEntryPointStart
+            'bundle-to-startup-end',
+            timing.endTime - timing.executeJavaScriptBundleEntryPointStart
           )
         }
       }
