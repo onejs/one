@@ -103,6 +103,11 @@
       "import": "./dist/esm/zero.mjs",
       "require": "./dist/cjs/zero.cjs"
     },
+    "./zero/native": {
+      "types": "./types/zero/native/index.d.ts",
+      "import": "./dist/esm/zero/native/index.mjs",
+      "require": "./dist/cjs/zero/native/index.cjs"
+    },
     "./react-18": {
       "require": "./vendor/react/cjs/react.development.js",
       "import": "./vendor/react/cjs/react.development.js"
@@ -259,6 +264,8 @@
     "lint": "oxlint src",
     "lint:fix": "oxlint --fix --fix-suggestions src",
     "test": "bun run vitest --run",
+    "test:zero-native": "bun tests/zero-native/run.ts",
+    "test:zero-nitro": "bun tests/zero-native/run-nitro.ts",
     "typecheck": "tsc --noEmit",
     "watch": "tamagui-build --watch",
     "generate": "bun codegen/generate.ts",

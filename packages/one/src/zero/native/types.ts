@@ -6,9 +6,13 @@ export type JSONValue =
   | readonly JSONValue[]
   | { readonly [key: string]: JSONValue }
 export type Row = Record<string, JSONValue>
+export type Format = {
+  singular?: boolean
+  relationships?: Record<string, Format>
+}
 export type Query = {
   ast: unknown
-  format?: { singular?: boolean; relationships?: Record<string, unknown> }
+  format?: Format
 }
 export type Mutation = {
   id: number
@@ -21,7 +25,10 @@ export type ClientState = {
   clientID: string
   clientGroupID: string
   cookie: JSONValue
+  nextMutationID: number
   lastMutationID: number
+  queryVersion: number
+  queries: readonly DesiredQuery[]
 }
 export type PullResponse = {
   cookie: JSONValue

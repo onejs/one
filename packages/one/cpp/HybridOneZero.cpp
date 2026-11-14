@@ -4,9 +4,14 @@
 
 namespace margelo::nitro::one {
 
-std::shared_ptr<Promise<void>> HybridOneZero::open(const std::string& name, const std::string& schemaJson, const std::string& clientID) {
-  if (name.empty() || name.size() > 128 || name.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_") != std::string::npos) {
-    throw std::invalid_argument("native Zero name must contain 1-128 letters, digits, hyphens or underscores");
+std::shared_ptr<Promise<void>> HybridOneZero::open(const std::string& name,
+                                                   const std::string& schemaJson,
+                                                   const std::string& clientID) {
+  if (name.empty() || name.size() > 128 ||
+      name.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_") !=
+          std::string::npos) {
+    throw std::invalid_argument(
+        "native Zero name must contain 1-128 letters, digits, hyphens or underscores");
   }
   std::string path = storageDirectory() + "/zero-" + name + ".sqlite";
   return Promise<void>::async([state = state_, path, schemaJson, clientID]() {

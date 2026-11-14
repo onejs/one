@@ -1,7 +1,6 @@
 import type {
   ClientState,
   DesiredQuery,
-  JSONValue,
   Mutation,
   PullResponse,
   Transport,
@@ -19,7 +18,6 @@ export type OrezTransportOptions = {
 export function createOrezTransport(options: OrezTransportOptions): Transport {
   const server = options.server.replace(/\/$/, '')
   const request = options.fetch ?? globalThis.fetch.bind(globalThis)
-  let queryVersion = 0
 
   const post = async (
     path: 'pull' | 'push',
@@ -58,7 +56,7 @@ export function createOrezTransport(options: OrezTransportOptions): Transport {
           clientGroupID: state.clientGroupID,
           cookie: state.cookie,
           queries: {
-            version: ++queryVersion,
+            version: state.queryVersion,
             patch: [
               { op: 'clear' },
               ...queries.map((query) => ({ op: 'put', ...query })),
@@ -73,7 +71,7 @@ export function createOrezTransport(options: OrezTransportOptions): Transport {
       return response as PullResponse
     },
     async push(state: ClientState, mutations: readonly Mutation[], signal: AbortSignal) {
-      const response = (await post(
+      const received = await post(
         'push',
         {
           clientGroupID: state.clientGroupID,
@@ -87,8 +85,28 @@ export function createOrezTransport(options: OrezTransportOptions): Transport {
           })),
         },
         signal
-      )) as { mutations?: { id: { clientID: string; id: number }; result: JSONValue }[] }
-      for (const mutation of response.mutations ?? []) {
+      )
+      if (!received || typeof received !== 'object')
+        throw new Error('Orez push returned an invalid response')
+      const response = 'pushResponse' in received ? received.pushResponse : received
+      if (
+        !response ||
+        typeof response !== 'object' ||
+        !('mutations' in response) ||
+        !Array.isArray(response.mutations)
+      )
+        throw new Error('Orez push returned an invalid mutation response')
+      for (const mutation of response.mutations) {
+        if (
+          !mutation ||
+          typeof mutation !== 'object' ||
+          !('id' in mutation) ||
+          !mutation.id ||
+          typeof mutation.id !== 'object' ||
+          !('clientID' in mutation.id) ||
+          mutation.id.clientID !== state.clientID
+        )
+          throw new Error('Orez push returned a mutation for another client')
         if (
           mutation.result &&
           typeof mutation.result === 'object' &&

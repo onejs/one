@@ -2,6 +2,7 @@ import type {
   ClientState,
   DesiredQuery,
   Engine,
+  Format,
   JSONValue,
   Mutation,
   Mutator,
@@ -27,7 +28,33 @@ type Subscription = {
   query: Query
   listener: (value: unknown) => void
   previous?: string
+  published?: boolean
   active: boolean
+}
+
+function serialize(request: object): string {
+  return JSON.stringify(request, (_key, value) => {
+    if (typeof value === 'number' && !Number.isFinite(value))
+      throw new TypeError('Native Zero values must contain finite numbers')
+    return value
+  })
+}
+
+function queryResult(value: JSONValue, format?: Format): unknown {
+  if (format?.singular && value === null) return undefined
+  if (Array.isArray(value))
+    return value.map((row) => queryResult(row, { relationships: format?.relationships }))
+  if (value && typeof value === 'object' && format?.relationships) {
+    return Object.fromEntries(
+      Object.entries(value).map(([name, nested]) => [
+        name,
+        format.relationships?.[name]
+          ? queryResult(nested, format.relationships[name])
+          : nested,
+      ])
+    )
+  }
+  return value
 }
 
 export class NativeZero {
@@ -60,12 +87,24 @@ export class NativeZero {
   }
 
   private async request<T>(request: object): Promise<T> {
-    return JSON.parse(await this.options.engine.execute(JSON.stringify(request))) as T
+    return this.dispatch(serialize(request))
+  }
+
+  private async dispatch<T>(request: string): Promise<T> {
+    return JSON.parse(await this.options.engine.execute(request)) as T
   }
 
   run<T = unknown>(query: Query): Promise<T> {
-    return this.enqueue(() =>
-      this.request({ op: 'query', ast: query.ast, format: query.format })
+    return this.enqueue(
+      async () =>
+        queryResult(
+          await this.request<JSONValue>({
+            op: 'query',
+            ast: query.ast,
+            format: query.format,
+          }),
+          query.format
+        ) as T
     )
   }
 
@@ -103,13 +142,17 @@ export class NativeZero {
       location: 'client',
       reason,
       run: <T>(query: Query) =>
-        schedule(() =>
-          this.request<T>({
-            op: 'query',
-            ast: query.ast,
-            format: query.format,
-            transaction,
-          })
+        schedule(
+          async () =>
+            queryResult(
+              await this.request<JSONValue>({
+                op: 'query',
+                ast: query.ast,
+                format: query.format,
+                transaction,
+              }),
+              query.format
+            ) as T
         ),
       mutate: Object.fromEntries(
         Object.keys(this.options.schema.tables).map((table) => [
@@ -138,14 +181,15 @@ export class NativeZero {
     }
   }
 
-  mutate(name: string, args: JSONValue = null): Promise<unknown> {
+  async mutate(name: string, args: JSONValue = null): Promise<unknown> {
+    const request = serialize({ op: 'beginMutation', name, args, timestamp: Date.now() })
     return this.enqueue(async () => {
       if (!this.mutators.has(name))
         throw new Error(`Unknown native Zero mutator: ${name}`)
-      const { transaction, mutation } = await this.request<{
+      const { transaction, mutation } = await this.dispatch<{
         transaction: string
         mutation: Mutation
-      }>({ op: 'beginMutation', name, args, timestamp: Date.now() })
+      }>(request)
       let result: unknown
       try {
         result = await this.invoke(mutation, transaction, 'optimistic')
@@ -174,12 +218,12 @@ export class NativeZero {
     await this.publish()
   }
 
-  pull(queries: readonly DesiredQuery[] = []): Promise<void> {
+  pull(queries?: readonly DesiredQuery[]): Promise<void> {
     return this.enqueue(async () => {
       const transport = this.options.transport
       if (!transport) throw new Error('Native Zero transport is not configured')
-      const state = await this.request<ClientState>({ op: 'state' })
-      const response = await transport.pull(state, queries, this.abort.signal)
+      const state = await this.request<ClientState>({ op: 'setQueries', queries })
+      const response = await transport.pull(state, state.queries, this.abort.signal)
       await this.applyPull(response)
     })
   }
@@ -218,15 +262,23 @@ export class NativeZero {
     for (const subscription of subscriptions) {
       if (!subscription.active || this.closed) continue
       try {
-        const value = await this.request({
-          op: 'query',
-          ast: subscription.query.ast,
-          format: subscription.query.format,
-        })
+        const value = queryResult(
+          await this.request<JSONValue>({
+            op: 'query',
+            ast: subscription.query.ast,
+            format: subscription.query.format,
+          }),
+          subscription.query.format
+        )
         const serialized = JSON.stringify(value)
-        if (!subscription.active || this.closed || serialized === subscription.previous)
+        if (
+          !subscription.active ||
+          this.closed ||
+          (subscription.published && serialized === subscription.previous)
+        )
           continue
         subscription.previous = serialized
+        subscription.published = true
         subscription.listener(value)
       } catch (error) {
         this.report(error)
