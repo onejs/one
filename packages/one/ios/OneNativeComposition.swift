@@ -268,8 +268,26 @@ private struct OneNativeHostRoot: View {
 
   public var compositionActive: Bool { active }
 
-  // a full-screen swift app keeps the screen insets; embedded controls use their box.
-  @nonobjc var hostingScreenInsets: Bool { false }
+  // a list whose box is its screen's whole view is that screen's content, as a list in a
+  // hosting controller pushed on a navigation controller is: it keeps the screen insets, so
+  // its rows start below the bars and scroll beneath them, and the bars follow it. other
+  // containers, and a list in a smaller box, lay out in their box and inset themselves.
+  @nonobjc var hostingScreenInsets: Bool { showsList && fillsScreen }
+
+  // a list, or a container decorating one (an overlay wrapping it in a view slot).
+  @nonobjc private var showsList: Bool {
+    self is OneNativeListView || (childViews.first as? OneNativeContainerView)?.showsList == true
+  }
+
+  @nonobjc private var fillsScreen: Bool {
+    var responder: UIResponder? = next
+    while responder != nil && !(responder is UIViewController) { responder = responder?.next }
+    guard let window, let screen = (responder as? UIViewController)?.view else { return false }
+    let box = convert(bounds, to: window)
+    let whole = screen.convert(screen.bounds, to: window)
+    return abs(box.minY - whole.minY) < 1 && abs(box.maxY - whole.maxY) < 1
+      && abs(box.minX - whole.minX) < 1 && abs(box.maxX - whole.maxX) < 1
+  }
 
   @nonobjc var containsComposedFocus: Bool {
     childViews.contains { ($0 as? OneNativeFocusedContent)?.containsComposedFocus == true }

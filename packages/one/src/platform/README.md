@@ -1372,6 +1372,12 @@ proof.
 
 Like a form, a list is greedy: it fills its box rather than reporting an ideal
 height, so it cannot be a child of a `One.iOS.VStack` or `One.iOS.ZStack` either.
+A list whose box is the whole view of its screen (a tab's page that ignores the safe
+area, a pushed screen), alone or wrapped in a `One.iOS.ViewSlot`, is that screen's
+content: it keeps the screen's insets, so its rows start below the bars and scroll
+beneath them, and the navigation bar folds its large title and blurs its edge as the
+list scrolls. A list in a smaller box, and every other container, ignores the insets
+and lays out in its box.
 Wrap one row in `One.iOS.ViewSlot name="listRowBackground"` and put a native
 background view in `One.iOS.ViewSlot.Content` to use SwiftUI's row background.
 The background child can change with React state.
