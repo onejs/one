@@ -18,10 +18,22 @@ public extension SpeechStartOptions {
   /**
    * Create a new instance of `SpeechStartOptions`.
    */
-  init(lang: String?) {
+  init(lang: String?, contextualStrings: [String]?) {
     self.init({ () -> bridge.std__optional_std__string_ in
       if let __unwrappedValue = lang {
         return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_std__vector_std__string__ in
+      if let __unwrappedValue = contextualStrings {
+        return bridge.create_std__optional_std__vector_std__string__({ () -> bridge.std__vector_std__string_ in
+          var __vector = bridge.create_std__vector_std__string_(__unwrappedValue.count)
+          for __item in __unwrappedValue {
+            __vector.push_back(std.string(__item))
+          }
+          return __vector
+        }())
       } else {
         return .init()
       }
@@ -34,6 +46,18 @@ public extension SpeechStartOptions {
       if bridge.has_value_std__optional_std__string_(self.__lang) {
         let __unwrapped = bridge.get_std__optional_std__string_(self.__lang)
         return String(__unwrapped)
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var contextualStrings: [String]? {
+    return { () -> [String]? in
+      if bridge.has_value_std__optional_std__vector_std__string__(self.__contextualStrings) {
+        let __unwrapped = bridge.get_std__optional_std__vector_std__string__(self.__contextualStrings)
+        return __unwrapped.map({ __item in String(__item) })
       } else {
         return nil
       }
