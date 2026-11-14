@@ -63,12 +63,12 @@ export default function Benchmark() {
         }
         if (
           Number.isFinite(timing.initializeRuntimeStart) &&
-          Number.isFinite(timing.executeJavaScriptBundleEntryPointStart)
+          Number.isFinite(timing.endTime)
         ) {
           await emit(
             'startup',
-            'runtime-init-to-bundle',
-            timing.executeJavaScriptBundleEntryPointStart - timing.initializeRuntimeStart
+            'runtime-to-startup-end',
+            timing.endTime - timing.initializeRuntimeStart
           )
         }
         if (
