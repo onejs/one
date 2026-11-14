@@ -171,7 +171,7 @@ project and repository replicas, seeds synthetic rows under the actual schema,
 and compares complete ordered/nested results. It uses client query semantics;
 server authorization and the running Contrast UI are outside this check.
 The current trace compares 26 mobile registrations and eight repository query
-variants under a 63-table schema, with 15 mobile queries returning fixture rows.
+variants under a 63-table schema, with 15 mobile queries and all eight repository variants returning fixture rows.
 
 The first command builds the pure engine and runs durable optimistic/replay,
 rollback, acknowledgement, subscription, abrupt process-exit and HTTP transport

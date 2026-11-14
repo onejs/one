@@ -75,7 +75,7 @@ for (const [table, definition] of Object.entries(schema.tables) as any) {
       if (
         typeof row[key] === 'string' &&
         key !== 'id' &&
-        !['userId', 'projectId', 'threadId'].includes(key)
+        !['userId', 'projectId', 'threadId', 'repoResourceId'].includes(key)
       )
         row[key] += '-' + index
     return row
@@ -178,16 +178,21 @@ try {
     ],
     ['sootScreenshotDeck', 'screenshotDecksByRepo', { repoResourceId: 'native-repo' }],
   ] as const
+  let populatedRepoQueries = 0
   for (const [namespace, name, args] of repoCases) {
     const query = (groupedQueries as any)[namespace][name](args)
+    const actual = await natives.repo.run(query)
     assert.deepEqual(
-      await natives.repo.run(query),
+      actual,
       observable(await references.repo.run(query)),
       namespace + '.' + name
     )
     matches++
     queryCounts.repo++
+    if (Array.isArray(actual) ? actual.length : actual !== undefined)
+      populatedRepoQueries++
   }
+  assert.equal(populatedRepoQueries, repoCases.length)
   assert.ok(
     nonempty >= 10,
     `at least ten real mobile queries must return populated fixtures, got ${nonempty}`
@@ -196,6 +201,7 @@ try {
     JSON.stringify({
       matched: matches,
       populatedMobileQueries: nonempty,
+      populatedRepoQueries,
       tables: Object.keys(schema.tables).length,
       queryCounts,
       mobileQueries: MOBILE_SYNC_QUERIES.length,
