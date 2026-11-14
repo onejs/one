@@ -20,10 +20,11 @@ def capture_console(argv, log, timeout, stop_on_done):
     deadline = time.monotonic() + timeout
     terminal = None
     pending = b''
+    recent = b''
     with subprocess.Popen(argv, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) as process, selectors.DefaultSelector() as events, log.open('wb') as stream:
         events.register(process.stdout, selectors.EVENT_READ)
         try:
-            while terminal is None or not stop_on_done:
+            while terminal != b'ERROR' and (terminal is None or not stop_on_done):
                 remaining = deadline - time.monotonic()
                 if remaining <= 0 or not events.select(remaining):
                     raise subprocess.TimeoutExpired(argv, timeout)
@@ -32,6 +33,9 @@ def capture_console(argv, log, timeout, stop_on_done):
                     return process.wait(timeout=max(.01, deadline - time.monotonic()))
                 stream.write(chunk)
                 stream.flush()
+                recent = (recent + chunk)[-8192:]
+                if b'FBSOpenApplicationErrorDomain' in recent and re.search(rb'\bLocked\b', recent):
+                    raise RuntimeError(f'iOS refused launch because the device is locked; see {log}')
                 pending += chunk
                 lines = pending.split(b'\n')
                 pending = lines.pop()
