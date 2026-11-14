@@ -712,7 +712,13 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
       return []
     }
     const { writeAppSdkPod } = await import(pathToFileURL(appModule).href)
-    return writeAppSdkPod(projectRoot)
+    // the release bundle reaches frameworks through one's own modules, which the
+    // app's imports do not name. bundle it once, as one prebuild does, so the
+    // release bindings and link set cover them.
+    const { writeIosLinkSet } = await import(
+      pathToFileURL(path.join(path.dirname(appModule), '..', 'esm', 'cli', 'iosLinkSet.mjs')).href
+    )
+    return writeAppSdkPod(projectRoot, console.info, writeIosLinkSet(projectRoot).frameworks)
   }
 
   // expo's default ios deployment target sits below the one the One pod
