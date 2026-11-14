@@ -6,32 +6,33 @@ require 'tmpdir'
 # compiler (macOS) and ios/<platform>/{Bun,BunCompat}.framework. a compiled
 # program only loads in the runtime it was compiled against, so the release is
 # pinned. ONE_BUN_ENGINE_DIR points at a local engine build instead.
-ENGINE_VERSION = '0.1.0'
-ENGINE_SHA256 = '81d0a29de3c3b8f5cdf6006ff1582fdf873825cc09054ede0c5a162fdc058b67'
+engine_version = '0.1.0'
+engine_sha256 = '81d0a29de3c3b8f5cdf6006ff1582fdf873825cc09054ede0c5a162fdc058b67'
 
-def one_bun_engine_dir
+# a lambda, since cocoapods evaluates podspecs where top-level methods are not reachable
+one_bun_engine_dir = lambda do
   dir = ENV['ONE_BUN_ENGINE_DIR']
   unless dir.nil? || dir.empty?
     raise "[one] ONE_BUN_ENGINE_DIR has no ios folder: #{dir}" unless File.directory?(File.join(dir, 'ios'))
     return File.expand_path(dir)
   end
-  cache = File.join(Dir.home, 'Library/Caches/one/bun-engine', ENGINE_VERSION)
+  cache = File.join(Dir.home, 'Library/Caches/one/bun-engine', engine_version)
   dir = File.join(cache, 'bun-engine')
   return dir if File.directory?(File.join(dir, 'ios'))
   FileUtils.mkdir_p(cache)
-  url = "https://github.com/onejs/bun-engine/releases/download/v#{ENGINE_VERSION}/bun-engine-#{ENGINE_VERSION}-ios.tar.gz"
+  url = "https://github.com/onejs/bun-engine/releases/download/v#{engine_version}/bun-engine-#{engine_version}-ios.tar.gz"
   Dir.mktmpdir('download', cache) do |tmp|
     tarball = File.join(tmp, 'engine.tar.gz')
-    Pod::UI.puts "[one] downloading the bun engine #{ENGINE_VERSION}"
+    Pod::UI.puts "[one] downloading the bun engine #{engine_version}"
     system('curl', '-fsSL', '--retry', '3', '-o', tarball, url) or raise "[one] could not download the bun engine from #{url}"
-    raise "[one] the bun engine download from #{url} does not match its checksum" unless Digest::SHA256.file(tarball).hexdigest == ENGINE_SHA256
+    raise "[one] the bun engine download from #{url} does not match its checksum" unless Digest::SHA256.file(tarball).hexdigest == engine_sha256
     system('tar', '-xzf', tarball, '-C', tmp) or raise "[one] could not unpack the bun engine"
     File.rename(File.join(tmp, 'bun-engine'), dir)
   end
   dir
 end
 
-engine_dir = one_bun_engine_dir
+engine_dir = one_bun_engine_dir.call
 
 Pod::Spec.new do |s|
   s.name = 'OneBunEngine'
