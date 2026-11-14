@@ -46,10 +46,11 @@ namespace margelo::nitro::one {
     std::optional<double> rate     SWIFT_PRIVATE;
     std::optional<std::string> voice     SWIFT_PRIVATE;
     std::optional<double> volume     SWIFT_PRIVATE;
+    std::optional<bool> useApplicationAudioSession     SWIFT_PRIVATE;
 
   public:
     SpeechSynthesisUtterance() = default;
-    explicit SpeechSynthesisUtterance(std::string text, std::optional<std::string> language, std::optional<double> pitch, std::optional<double> rate, std::optional<std::string> voice, std::optional<double> volume): text(text), language(language), pitch(pitch), rate(rate), voice(voice), volume(volume) {}
+    explicit SpeechSynthesisUtterance(std::string text, std::optional<std::string> language, std::optional<double> pitch, std::optional<double> rate, std::optional<std::string> voice, std::optional<double> volume, std::optional<bool> useApplicationAudioSession): text(text), language(language), pitch(pitch), rate(rate), voice(voice), volume(volume), useApplicationAudioSession(useApplicationAudioSession) {}
 
   public:
     friend bool operator==(const SpeechSynthesisUtterance& lhs, const SpeechSynthesisUtterance& rhs) = default;
@@ -70,7 +71,8 @@ namespace margelo::nitro {
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "pitch"))),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "rate"))),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "voice"))),
-        JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "volume")))
+        JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "volume"))),
+        JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "useApplicationAudioSession")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::SpeechSynthesisUtterance& arg) {
@@ -81,6 +83,7 @@ namespace margelo::nitro {
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "rate"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.rate));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "voice"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.voice));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "volume"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.volume));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "useApplicationAudioSession"), JSIConverter<std::optional<bool>>::toJSI(runtime, arg.useApplicationAudioSession));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -97,6 +100,7 @@ namespace margelo::nitro {
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "rate")))) return false;
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "voice")))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "volume")))) return false;
+      if (!JSIConverter<std::optional<bool>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "useApplicationAudioSession")))) return false;
       return true;
     }
   };
