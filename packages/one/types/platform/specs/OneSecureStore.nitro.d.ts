@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { SecureStoreOptions } from '../secure-store/types';
+import type { SecureStoreOptions } from '../secure-store/types.js';
 export type { SecureStoreOptions };
 export interface OneSecureStore extends HybridObject<{
     ios: 'swift';

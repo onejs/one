@@ -1,5 +1,5 @@
 import type React from 'react';
-import type { UrlObject } from './getNormalizedStatePath';
+import type { UrlObject } from './getNormalizedStatePath.js';
 export declare const RouteInfoContext: React.Context<UrlObject | undefined>;
 /**
  * Provides the route info (a `UrlObject`) through a context for child page.

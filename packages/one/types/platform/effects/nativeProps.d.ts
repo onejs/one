@@ -1,5 +1,5 @@
 import { type ColorValue } from 'react-native';
-import { type ResolvedEdgeFade } from './normalize';
+import { type ResolvedEdgeFade } from './normalize.js';
 export interface NativeEdgeFadeProps {
     fadeTop: number;
     fadeBottom: number;

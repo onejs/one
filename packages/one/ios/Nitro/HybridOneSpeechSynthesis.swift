@@ -44,6 +44,9 @@ final class HybridOneSpeechSynthesis: HybridOneSpeechSynthesisSpec {
     onEvent: @escaping (SpeechSynthesisEvent) -> Void
   ) throws {
     DispatchQueue.main.async {
+      if let useApplicationAudioSession = utterance.useApplicationAudioSession {
+        self.synthesizer.usesApplicationAudioSession = useApplicationAudioSession
+      }
       let avUtterance = AVSpeechUtterance(string: utterance.text)
       if let language = utterance.language {
         avUtterance.voice =

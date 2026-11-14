@@ -1,7 +1,7 @@
 import type { ParamListBase } from '@react-navigation/core';
 import type { StackNavigationState } from '@react-navigation/routers';
 import { type PropsWithChildren, type ReactElement } from 'react';
-import type { UseStackResult } from './types';
+import type { UseStackResult } from './types.js';
 export type HeadlessStackDescriptors = Record<string, {
     options: Record<string, any>;
     render: () => ReactElement;

@@ -1,4 +1,4 @@
-import type { One } from '../vite/types';
+import type { One } from '../vite/types.js';
 export type TypedRoutesOptions = {
     /**
      * Type expressions (`typeof import(...)[name]`) for the search param schemas used

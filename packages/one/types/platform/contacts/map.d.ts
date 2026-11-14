@@ -1,4 +1,4 @@
-import type { ContactPostalAddressInput, ContactsPermissionStatus } from '../specs/OneContacts.nitro';
+import type { ContactPostalAddressInput, ContactsPermissionStatus } from '../specs/OneContacts.nitro.js';
 export declare function hasBlank(values: string[]): boolean;
 export declare function validSearch(name: string, limit: number): boolean;
 export declare function validPostalAddresses(values: ContactPostalAddressInput[]): boolean;

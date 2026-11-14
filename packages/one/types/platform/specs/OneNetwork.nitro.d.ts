@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { NetworkState } from '../network/types';
+import type { NetworkState } from '../network/types.js';
 export interface OneNetwork extends HybridObject<{
     android: 'kotlin';
 }> {

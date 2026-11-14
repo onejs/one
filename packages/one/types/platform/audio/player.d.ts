@@ -1,6 +1,6 @@
-import type { AudioNowPlayingInfo, PitchCorrectionQuality } from '../specs/OneAudio.nitro';
-import type { AudioPlayer as AudioPlayerShape, AudioPlayerOptions, AudioSource, AudioStatus } from './types';
-export type * from './types';
+import type { AudioNowPlayingInfo, PitchCorrectionQuality } from '../specs/OneAudio.nitro.js';
+import type { AudioPlayer as AudioPlayerShape, AudioPlayerOptions, AudioSource, AudioStatus } from './types.js';
+export type * from './types.js';
 export declare class AudioPlayer implements AudioPlayerShape {
     private element;
     private playerId;

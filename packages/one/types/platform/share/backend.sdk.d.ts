@@ -1,4 +1,4 @@
-import type { ShareItem, ShareResult } from '../specs/OneShare.nitro';
+import type { ShareItem, ShareResult } from '../specs/OneShare.nitro.js';
 declare function share(items: ShareItem[]): Promise<ShareResult>;
 export declare function shareNative(): {
     share: typeof share;

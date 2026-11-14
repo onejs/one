@@ -1,5 +1,5 @@
-import { type DOMMessage } from './protocol';
-import type { DOMValue } from './types';
+import { type DOMMessage } from './protocol.js';
+import type { DOMValue } from './types.js';
 type Handler = (...args: DOMValue[]) => unknown;
 /** one peer and one pending map belong to exactly one host document. */
 export declare class DOMPeer {

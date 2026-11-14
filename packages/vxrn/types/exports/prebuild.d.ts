@@ -1,5 +1,5 @@
-import { type UserDepPatches } from '../utils/patches';
-import { type PrebuildAppConfig } from './prebuildWithoutExpo';
+import { type UserDepPatches } from '../utils/patches.js';
+import { type PrebuildAppConfig } from './prebuildWithoutExpo.js';
 export declare const prebuild: ({ root, platform, 'no-install': noInstall, app, beforeInstall, patches, }: {
     root: string;
     platform?: 'ios' | 'android' | string;

@@ -1,4 +1,4 @@
-import type { OneNativeStyle } from './generated/controlTypes';
+import type { OneNativeStyle } from './generated/controlTypes.js';
 export type AnimatorStyle = {
     id: number;
     kind: 'phase';

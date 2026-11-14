@@ -1,5 +1,5 @@
-import type { MapCoordinate, MapPlace, MapRoute, MapSuggestion, MapTransport } from '../specs/OneMapServices.nitro';
-export type { MapCoordinate, MapPlace, MapRoute, MapRouteStep, MapSuggestion, MapTransport } from '../specs/OneMapServices.nitro';
+import type { MapCoordinate, MapPlace, MapRoute, MapSuggestion, MapTransport } from '../specs/OneMapServices.nitro.js';
+export type { MapCoordinate, MapPlace, MapRoute, MapRouteStep, MapSuggestion, MapTransport } from '../specs/OneMapServices.nitro.js';
 declare function search(query: string, center: MapCoordinate, radiusMeters?: number): Promise<MapPlace[]>;
 declare function autocomplete(query: string, center: MapCoordinate, radiusMeters?: number): Promise<MapSuggestion[]>;
 declare function resolveSuggestion(id: string): Promise<MapPlace>;

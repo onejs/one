@@ -1,5 +1,5 @@
 import type { OutputAsset, OutputChunk } from 'rolldown';
-import type { BuildArgs, VXRNOptions } from '../types';
+import type { BuildArgs, VXRNOptions } from '../types.js';
 export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => Promise<void | {
     outDir: string;
     processEnvDefines: {
@@ -7,9 +7,9 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
     };
     options: {
         readonly skipEnv?: boolean;
-        readonly patches?: import("..").UserDepPatches;
+        readonly patches?: import("../index.js").UserDepPatches;
         readonly build?: {
-            server?: boolean | import("..").VXRNBuildOptions;
+            server?: boolean | import("../index.js").VXRNBuildOptions;
             analyze?: boolean;
         };
         readonly debugBundle?: string;
@@ -21,13 +21,13 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
         readonly mode: "development" | "production";
         readonly clean: "vite" | false;
         readonly root: string;
-        readonly server: import("..").VXRNServeOptionsFilled;
+        readonly server: import("../index.js").VXRNServeOptionsFilled;
         readonly entries: {
             readonly web?: string;
             native: string;
             readonly server: './src/entry-server.tsx';
         };
-        readonly packageJSON: import("../config/getOptionsFilled").PackageJSON;
+        readonly packageJSON: import("../config/getOptionsFilled.js").PackageJSON;
         readonly packageVersions: {
             react: string;
             reactNative: string;

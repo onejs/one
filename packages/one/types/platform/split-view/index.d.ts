@@ -1,3 +1,3 @@
-export { SplitView } from './split-view';
-export type { SplitViewProps, SplitViewColumnProps } from './split-view';
+export { SplitView } from './split-view.js';
+export type { SplitViewProps, SplitViewColumnProps } from './split-view.js';
 //# sourceMappingURL=index.d.ts.map

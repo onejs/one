@@ -1,4 +1,4 @@
-import type { DocumentCameraError, DocumentCameraImage, DocumentCameraScan } from '../specs/OneDocumentCamera.nitro';
+import type { DocumentCameraError, DocumentCameraImage, DocumentCameraScan } from '../specs/OneDocumentCamera.nitro.js';
 export type VNDocumentCameraScan = DocumentCameraScan;
 export type UIImage = DocumentCameraImage;
 export type VNDocumentCameraError = DocumentCameraError;

@@ -1,4 +1,4 @@
-import type { ServerRegistration } from './types';
+import type { ServerRegistration } from './types.js';
 interface PickerContext {
     bundleId: string;
     servers: ServerRegistration[];

@@ -1,5 +1,5 @@
 import type * as babel from '@babel/core';
-import type { GetTransformProps, GetTransformResponse } from './types';
+import type { GetTransformProps, GetTransformResponse } from './types.js';
 type Props = GetTransformProps & {
     userSetting?: GetTransformResponse;
 };

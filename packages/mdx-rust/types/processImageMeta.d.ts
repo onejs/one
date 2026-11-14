@@ -1,4 +1,4 @@
-import type { ImageMeta } from './types';
+import type { ImageMeta } from './types.js';
 /** Read an image's dimensions and a tiny blur placeholder. Null if sharp is
  *  not installed or the file is missing. */
 export declare function processImageMeta(imagePath: string, opts?: {

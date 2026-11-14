@@ -1,4 +1,4 @@
-import type { ImagePickerMediaType, ImagePickerOptions } from './types';
+import type { ImagePickerMediaType, ImagePickerOptions } from './types.js';
 export interface ImagePickerCropAspect {
     x: number;
     y: number;

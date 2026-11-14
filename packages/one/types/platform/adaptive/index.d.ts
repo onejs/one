@@ -1,6 +1,6 @@
-import * as ReservedRegions from './ReservedRegions';
-export type * from './types';
+import * as ReservedRegions from './ReservedRegions.js';
+export type * from './types.js';
 export { ReservedRegions };
-export { useRegions as useReservedRegions, useReady as useReservedRegionsReady, useSegments as useWindowSegments, useSpanning, } from './reservedRegionsContext';
-export * from './fixed';
+export { useRegions as useReservedRegions, useReady as useReservedRegionsReady, useSegments as useWindowSegments, useSpanning, } from './reservedRegionsContext.js';
+export * from './fixed.js';
 //# sourceMappingURL=index.d.ts.map

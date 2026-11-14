@@ -1,4 +1,4 @@
-import type { Environment } from './types';
+import type { Environment } from './types.js';
 type CompilerFilter = boolean | RegExp | ((id: string, environment: Environment) => boolean);
 type CompilerConfig = boolean | Environment[] | RegExp | ((id: string, environment: Environment) => boolean) | {
     web?: CompilerFilter;

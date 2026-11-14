@@ -1,9 +1,9 @@
 declare function clearClipboardListener(): void;
 export declare function clipboardNative(): {
-    getString(options: import("../specs/OneClipboard.nitro").ClipboardGetStringOptions): Promise<string>;
-    setString(text: string, options: import("../specs/OneClipboard.nitro").ClipboardSetStringOptions): Promise<true>;
+    getString(options: import("../specs/OneClipboard.nitro.js").ClipboardGetStringOptions): Promise<string>;
+    setString(text: string, options: import("../specs/OneClipboard.nitro.js").ClipboardSetStringOptions): Promise<true>;
     hasString(): Promise<boolean>;
-    getImage(options: import("../specs/OneClipboard.nitro").ClipboardGetImageOptions): Promise<{
+    getImage(options: import("../specs/OneClipboard.nitro.js").ClipboardGetImageOptions): Promise<{
         data: string;
         width: number;
         height: number;
