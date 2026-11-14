@@ -127,6 +127,27 @@
         "vite": "^8.2.2",
       },
     },
+    "examples/one-bench": {
+      "name": "example-bench",
+      "version": "2.14.0",
+      "dependencies": {
+        "one": "workspace:*",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "react-native": "0.88.0",
+        "react-native-gesture-handler": "~3.4.0",
+        "react-native-reanimated": "~4.7.1",
+        "react-native-screens": "~4.30.0",
+        "react-native-web": "^0.21.2",
+        "react-native-worklets": "~0.13.0",
+      },
+      "devDependencies": {
+        "@react-native-community/template": "^0.88.0",
+        "@types/react": "^19.3.0",
+        "typescript": "7.0.2",
+        "vite": "^8.2.2",
+      },
+    },
     "examples/testflight": {
       "name": "example-testflight",
       "version": "2.14.0",
@@ -3700,6 +3721,8 @@
     "example-bare": ["example-bare@workspace:examples/bare"],
 
     "example-basic": ["example-basic@workspace:examples/one-basic"],
+
+    "example-bench": ["example-bench@workspace:examples/one-bench"],
 
     "example-testflight": ["example-testflight@workspace:examples/testflight"],
 

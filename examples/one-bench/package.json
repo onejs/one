@@ -1,0 +1,29 @@
+{
+  "name": "example-bench",
+  "version": "2.14.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "one dev",
+    "prebuild:native": "one prebuild",
+    "ios": "one run:ios",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "one": "workspace:*",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.0",
+    "react-native-gesture-handler": "~3.4.0",
+    "react-native-reanimated": "~4.7.1",
+    "react-native-screens": "~4.30.0",
+    "react-native-web": "^0.21.2",
+    "react-native-worklets": "~0.13.0"
+  },
+  "devDependencies": {
+    "@react-native-community/template": "^0.88.0",
+    "@types/react": "^19.3.0",
+    "typescript": "7.0.2",
+    "vite": "^8.2.2"
+  }
+}
