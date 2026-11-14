@@ -82,8 +82,19 @@ An application rejection from Orez settles the server phase as an error;
 `push()` also rejects, and managed sync pulls to remove the rejected optimistic
 write. Pending server phases stay open during transient disconnects and settle
 with a client-closed error on close. Process reopen preserves the journal, not
-JavaScript promises. Callable registered mutation requests and default table
-CRUD mutation properties are not implemented.
+JavaScript promises.
+
+Zero 1.9 `defineMutators` registries support both
+`client.mutate(registry.message.send(args))` and
+`client.mutate.message.send(args)`. Native execution calls the registered
+validated `fn({ tx, ctx, args })` with the configured context. Requests resolve
+by canonical name and always execute the local registered recipe. The journal
+retains raw JSON input so validators and transforms run again during rebase.
+Omitted arguments remain distinct from explicit null through close and reopen;
+the existing journal's text column uses empty text for omission and JSON text
+for supplied values. Legacy callback maps, including a callable `~` key, remain
+supported. Only branches tagged `~: 'MutatorRegistry'` omit that metadata.
+Default table CRUD mutation properties are not implemented.
 
 `startSync()` sends the durable outbox on startup, requests a pull after local
 mutations and registration changes, and retries failures with capped exponential

@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict'
+import { z } from 'zod'
 import { spawnSync } from 'node:child_process'
 import { mkdtempSync, writeFileSync } from 'node:fs'
 import { homedir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { DriverEngine } from './engine'
 import { fileURLToPath } from 'node:url'
+import { createRequire } from 'node:module'
 import { NativeZero } from '../../src/zero/native/client'
 import { createOrezTransport } from '../../src/zero/native/orez'
 import { createServer } from 'node:http'
@@ -1217,7 +1219,234 @@ if (!referencePath)
   throw new Error(
     'ONE_ZERO_REFERENCE must name the installed Zero reference entry for differential coverage'
   )
+const typeConfig = join(folder, 'registry-types.json')
+writeFileSync(
+  typeConfig,
+  JSON.stringify({
+    compilerOptions: {
+      target: 'ES2023',
+      module: 'ESNext',
+      moduleResolution: 'Bundler',
+      strict: true,
+      skipLibCheck: true,
+      noEmit: true,
+      allowImportingTsExtensions: true,
+      paths: { '@rocicorp/zero': [referencePath.replace(/\.js$/, '.d.ts')] },
+    },
+    files: [join(here, 'registry-types.ts')],
+  })
+)
+command([
+  process.execPath,
+  join(
+    dirname(createRequire(import.meta.url).resolve('typescript/package.json')),
+    'bin/tsc'
+  ),
+  '-p',
+  typeConfig,
+])
+console.log('public registry and factory declarations preserve pinned Zero input types')
 const reference = await import(referencePath)
+
+{
+  let validated = 0
+  let rejectRecipe = false
+  let rejectValidation = false
+  const calls: { reason: string; args: unknown; ctx: unknown }[] = []
+  const ctx = { user: 'registry-user' }
+  const registered = reference.defineMutators({
+    message: {
+      send: reference.defineMutator(
+        z.object({ id: z.string(), text: z.string() }).transform((raw, issue) => {
+          validated++
+          if (rejectValidation) {
+            issue.addIssue({ code: 'custom', message: 'replay validator rejected' })
+            return z.NEVER
+          }
+          return { ...raw, text: raw.text.trim() + '!' }
+        }),
+        async ({ tx, args, ctx }: any) => {
+          calls.push({ reason: tx.reason, args, ctx })
+          const current = await tx.run(messages)
+          await tx.mutate.message.upsert(
+            message(args.id, current.length + 1, ctx.user + ':' + args.text)
+          )
+          if (rejectRecipe) throw new Error('registry recipe rejected')
+        }
+      ),
+      optional: reference.defineMutator(
+        z.union([z.null(), z.undefined()]),
+        async ({ tx, args, ctx }: any) => {
+          calls.push({ reason: tx.reason, args, ctx })
+          await tx.mutate.message.upsert(
+            message(args === null ? 'null' : 'omitted', 20, String(args))
+          )
+        }
+      ),
+    },
+  })
+  let pullResponse: PullResponse = { cookie: 1, rowsPatch: [] }
+  const registryPath = join(folder, 'registry.sqlite')
+  const create = () =>
+    new NativeZero({
+      engine: new ProcessEngine(registryPath),
+      schema,
+      mutators: registered,
+      context: ctx,
+      transport: {
+        async pull() {
+          return pullResponse
+        },
+        async push() {},
+      },
+    })
+  let native = create()
+  assert.deepEqual(Object.keys(native.mutate), ['message'])
+  assert.deepEqual(Object.keys(native.mutate.message), ['send', 'optional'])
+  const raw = { id: 'registry', text: ' hello ' }
+  const optimistic = native.mutate(registered.message.send(raw))
+  raw.text = 'changed after dispatch'
+  await optimistic
+  assert.deepEqual(await optimistic.client, { type: 'success' })
+  assert.equal(validated, 1)
+  assert.equal(calls[0].ctx, ctx)
+  assert.equal((await native.run<Row[]>(messages))[0].body, 'registry-user:hello!')
+  assert.deepEqual((await native.pending())[0].args, { id: 'registry', text: ' hello ' })
+  await native.mutate.message.optional()
+  await native.mutate(registered.message.optional(null))
+  const pending = await native.pending()
+  assert.equal(Object.hasOwn(pending[1], 'args'), false)
+  assert.equal(pending[2].args, null)
+  let wire: { mutations: { args: unknown[] }[] } | undefined
+  const wireTransport = createOrezTransport({
+    server: 'http://localhost',
+    appID: 'registry',
+    schemaVersion: '1',
+    fetch: async (_url, init) => {
+      wire = JSON.parse(String(init?.body))
+      return new Response(
+        JSON.stringify({
+          mutations: pending.map((mutation) => ({
+            id: { clientID: mutation.clientID, id: mutation.id },
+            result: {},
+          })),
+        })
+      )
+    },
+  })
+  await wireTransport.push(await native.state(), pending, new AbortController().signal)
+  assert.deepEqual(
+    wire!.mutations.map((mutation) => mutation.args),
+    [[{ id: 'registry', text: ' hello ' }], [], [null]]
+  )
+  const before = await native.run(messages)
+  const stateBefore = await native.state()
+  const invalid = native.mutate('message.send', { id: 'invalid', text: 9 })
+  await assert.rejects(invalid, /validation/i)
+  assert.equal((await invalid.client).type, 'error')
+  assert.equal((await invalid.server).type, 'error')
+  rejectRecipe = true
+  await assert.rejects(
+    native.mutate.message.send({ id: 'rejected', text: 'x' }),
+    /recipe rejected/
+  )
+  rejectRecipe = false
+  assert.deepEqual(await native.run(messages), before)
+  assert.deepEqual(await native.state(), stateBefore)
+  assert.deepEqual(await native.pending(), pending)
+  let suppliedRan = false
+  const alternate = reference.defineMutators({
+    message: {
+      send: reference.defineMutator(async () => {
+        suppliedRan = true
+      }),
+    },
+    unregistered: reference.defineMutator(async () => {
+      suppliedRan = true
+    }),
+  })
+  await native.mutate(alternate.message.send({ id: 'canonical', text: ' canonical ' }))
+  assert.equal(suppliedRan, false)
+  await assert.rejects(
+    native.mutate(alternate.unregistered()),
+    /Unknown native Zero mutator/
+  )
+  assert.equal(suppliedRan, false)
+  await native.close()
+  native = create()
+  assert.deepEqual((await native.pending()).slice(0, 3), pending)
+  calls.length = 0
+  const countBeforeRebase = validated
+  pullResponse = { cookie: 2, rowsPatch: [put('message', message('remote', 1, 'base'))] }
+  await native.pull()
+  assert.equal(validated, countBeforeRebase + 2)
+  assert.deepEqual(
+    calls.map((call) => call.reason),
+    ['rebase', 'rebase', 'rebase', 'rebase']
+  )
+  assert.ok(calls.every((call) => call.ctx === ctx))
+  assert.deepEqual(
+    calls.map((call) => call.args),
+    [
+      { id: 'registry', text: 'hello!' },
+      undefined,
+      null,
+      { id: 'canonical', text: 'canonical!' },
+    ]
+  )
+  assert.equal(
+    (await native.run<Row[]>(messages)).find((row) => row.id === 'registry')?.seq,
+    2
+  )
+  const replayRows = await native.run(messages)
+  const replayState = await native.state()
+  const replayPending = await native.pending()
+  rejectValidation = true
+  pullResponse = {
+    cookie: 3,
+    rowsPatch: [put('message', message('bad-pull', 2, 'rollback'))],
+  }
+  await assert.rejects(native.pull(), /replay validator rejected/)
+  rejectValidation = false
+  assert.deepEqual(await native.run(messages), replayRows)
+  assert.deepEqual(await native.state(), {
+    ...replayState,
+    queryVersion: replayState.queryVersion + 1,
+  })
+  assert.deepEqual(await native.pending(), replayPending)
+  rejectRecipe = true
+  await assert.rejects(native.pull(), /registry recipe rejected/)
+  rejectRecipe = false
+  assert.deepEqual(await native.run(messages), replayRows)
+  assert.deepEqual(await native.state(), {
+    ...replayState,
+    queryVersion: replayState.queryVersion + 2,
+  })
+  assert.deepEqual(await native.pending(), replayPending)
+  await native.close()
+  native = create()
+  assert.deepEqual(await native.run(messages), replayRows)
+  assert.deepEqual(await native.pending(), replayPending)
+  pullResponse = {
+    cookie: 4,
+    lastMutationIDChanges: { 'integration-client': replayPending.at(-1)!.id },
+  }
+  await native.pull()
+  assert.deepEqual(await native.pending(), [])
+  await native.close()
+
+  const legacy = new NativeZero({
+    engine: new ProcessEngine(join(folder, 'legacy-tilde.sqlite')),
+    schema,
+    mutators: { '~': async () => 'legacy tilde' },
+  })
+  assert.equal(await legacy.mutate['~'](), 'legacy tilde')
+  await legacy.close()
+  console.log(
+    'callable Zero 1.9 registry: validation, context, rollback, raw replay, omitted/null and reopen passed'
+  )
+}
+
 const refMessage = reference
   .table('message')
   .columns({

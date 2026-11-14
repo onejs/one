@@ -433,6 +433,7 @@
         "typescript": "7.0.2",
         "vitest": "^4.1.0",
         "yoga-layout": "^3.2.1",
+        "zod": "4.6.6",
       },
       "peerDependencies": {
         "@babel/core": "^7.28.5",

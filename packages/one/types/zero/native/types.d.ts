@@ -28,7 +28,7 @@ export type Mutation = {
     id: number;
     clientID: string;
     name: string;
-    args: JSONValue;
+    args?: JSONValue;
     timestamp: number;
 };
 export type ClientState = {
@@ -77,9 +77,19 @@ export type Transaction = {
     run<T = unknown>(query: Query): Promise<T>;
     mutate: Record<string, TableMutations>;
 };
-export type Mutator = (tx: Transaction, args: JSONValue) => Promise<unknown> | unknown;
+export type Mutator = (tx: Transaction, args: JSONValue | undefined) => Promise<unknown> | unknown;
+export type MutatorRequestCreator = ((...args: never[]) => unknown) & {
+    readonly mutatorName: string;
+    readonly fn: (...args: never[]) => unknown;
+};
+export type MutateRequest = {
+    readonly mutator: {
+        readonly mutatorName: string;
+    };
+    readonly args?: JSONValue;
+};
 export type Mutators = {
-    [name: string]: Mutator | Mutators;
+    [name: string]: ((...args: never[]) => unknown) | Mutators | 'MutatorRegistry';
 };
 export type MutationResultDetails = {
     type: 'success';
@@ -97,9 +107,14 @@ export type MutationResult = {
 };
 export type MutationPromise = Promise<unknown> & MutationResult;
 export type MutationFunctions<M extends Mutators> = {
-    readonly [K in keyof M]: M[K] extends Mutator ? (args?: JSONValue) => MutationPromise : M[K] extends Mutators ? MutationFunctions<M[K]> : never;
+    readonly [K in keyof M as K extends '~' ? M extends {
+        readonly '~': 'MutatorRegistry';
+    } ? never : K : K]: M[K] extends MutatorRequestCreator ? (...args: Parameters<M[K]>) => MutationPromise : M[K] extends (...args: never[]) => unknown ? (args?: JSONValue) => MutationPromise : M[K] extends Mutators ? MutationFunctions<M[K]> : never;
 };
-export type NativeMutate<M extends Mutators> = ((name: string, args?: JSONValue) => MutationPromise) & MutationFunctions<M>;
+export type NativeMutate<M extends Mutators> = {
+    (name: string, args?: JSONValue): MutationPromise;
+    (request: MutateRequest): MutationPromise;
+} & MutationFunctions<M>;
 export type MutationOutcome = {
     id: number;
     result: MutationResultDetails;
