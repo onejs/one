@@ -273,6 +273,7 @@ class JSCRuntime : public jsi::Runtime {
  private:
   // Basically convenience casts
   static JSValueRef symbolRef(const jsi::Symbol& str);
+  static JSValueRef bigintRef(const jsi::BigInt& b);
   static JSStringRef stringRef(const jsi::String& str);
   static JSStringRef stringRef(const jsi::PropNameID& sym);
   static JSObjectRef objectRef(const jsi::Object& obj);
@@ -286,6 +287,7 @@ class JSCRuntime : public jsi::Runtime {
 
   // Used by factory methods and clone methods
   jsi::Runtime::PointerValue* makeSymbolValue(JSValueRef sym) const;
+  jsi::BigInt createBigIntFromDecimal(const std::string& digits);
   jsi::Runtime::PointerValue* makeStringValue(JSStringRef str) const;
   jsi::Runtime::PointerValue* makeObjectValue(JSObjectRef obj) const;
 
@@ -643,9 +645,13 @@ jsi::Runtime::PointerValue* JSCRuntime::cloneSymbol(
   return makeSymbolValue(symbol->sym_);
 }
 
+// a BigInt is held like a Symbol: a protected JSValueRef
 jsi::Runtime::PointerValue* JSCRuntime::cloneBigInt(
-    const Runtime::PointerValue* /*pv*/) {
-  throw std::logic_error("Not implemented");
+    const Runtime::PointerValue* pv) {
+  if (pv == nullptr) {
+    return nullptr;
+  }
+  return makeSymbolValue(static_cast<const JSCSymbolValue*>(pv)->sym_);
 }
 
 jsi::Runtime::PointerValue* JSCRuntime::cloneString(
@@ -722,30 +728,81 @@ std::string JSCRuntime::symbolToString(const jsi::Symbol& sym) {
   return jsi::Value(*this, sym).toString(*this).utf8(*this);
 }
 
-jsi::BigInt JSCRuntime::createBigIntFromInt64(int64_t /*unused*/) {
-  throw std::logic_error("Not implemented");
+// bun exports the BigInt readers but not JSBigIntCreate*, so BigInts are made
+// by the global BigInt function and printed by BigInt.prototype.toString.
+// bun.framework provides these symbols whatever the ios version.
+#pragma clang diagnostic ignored "-Wunguarded-availability-new"
+JSValueRef JSCRuntime::bigintRef(const jsi::BigInt& b) {
+  return static_cast<const JSCSymbolValue*>(getPointerValue(b))->sym_;
 }
 
-jsi::BigInt JSCRuntime::createBigIntFromUint64(uint64_t /*unused*/) {
-  throw std::logic_error("Not implemented");
+jsi::BigInt JSCRuntime::createBigIntFromDecimal(const std::string& digits) {
+  JSValueRef exc = nullptr;
+  JSStringRef name = JSStringCreateWithUTF8CString("BigInt");
+  JSValueRef bigint =
+      JSObjectGetProperty(ctx_, JSContextGetGlobalObject(ctx_), name, &exc);
+  JSStringRelease(name);
+  checkException(exc);
+  JSStringRef text = JSStringCreateWithUTF8CString(digits.c_str());
+  JSValueRef arg = JSValueMakeString(ctx_, text);
+  JSStringRelease(text);
+  JSValueRef result = JSObjectCallAsFunction(
+      ctx_, JSValueToObject(ctx_, bigint, &exc), nullptr, 1, &arg, &exc);
+  checkException(exc);
+  return make<jsi::BigInt>(makeSymbolValue(result));
 }
 
-bool JSCRuntime::bigintIsInt64(const jsi::BigInt& /*unused*/) {
-  throw std::logic_error("Not implemented");
+jsi::BigInt JSCRuntime::createBigIntFromInt64(int64_t value) {
+  return createBigIntFromDecimal(std::to_string(value));
 }
 
-bool JSCRuntime::bigintIsUint64(const jsi::BigInt& /*unused*/) {
-  throw std::logic_error("Not implemented");
+jsi::BigInt JSCRuntime::createBigIntFromUint64(uint64_t value) {
+  return createBigIntFromDecimal(std::to_string(value));
 }
 
-uint64_t JSCRuntime::truncate(const jsi::BigInt& /*unused*/) {
-  throw std::logic_error("Not implemented");
+bool JSCRuntime::bigintIsInt64(const jsi::BigInt& b) {
+  JSValueRef value = bigintRef(b);
+  JSValueRef exc = nullptr;
+  int64_t truncated = JSValueToInt64(ctx_, value, &exc);
+  checkException(exc);
+  bool equal = JSValueCompareInt64(ctx_, value, truncated, &exc) ==
+      kJSRelationConditionEqual;
+  checkException(exc);
+  return equal;
 }
 
-jsi::String JSCRuntime::bigintToString(
-    const jsi::BigInt& /*unused*/,
-    int /*unused*/) {
-  throw std::logic_error("Not implemented");
+bool JSCRuntime::bigintIsUint64(const jsi::BigInt& b) {
+  JSValueRef value = bigintRef(b);
+  JSValueRef exc = nullptr;
+  uint64_t truncated = JSValueToUInt64(ctx_, value, &exc);
+  checkException(exc);
+  bool equal = JSValueCompareUInt64(ctx_, value, truncated, &exc) ==
+      kJSRelationConditionEqual;
+  checkException(exc);
+  return equal;
+}
+
+uint64_t JSCRuntime::truncate(const jsi::BigInt& b) {
+  JSValueRef exc = nullptr;
+  uint64_t truncated =
+      JSValueToUInt64(ctx_, bigintRef(b), &exc);
+  checkException(exc);
+  return truncated;
+}
+
+jsi::String JSCRuntime::bigintToString(const jsi::BigInt& b, int radix) {
+  JSValueRef exc = nullptr;
+  JSObjectRef boxed = JSValueToObject(ctx_, bigintRef(b), &exc);
+  checkException(exc);
+  JSStringRef name = JSStringCreateWithUTF8CString("toString");
+  JSValueRef toString = JSObjectGetProperty(ctx_, boxed, name, &exc);
+  JSStringRelease(name);
+  checkException(exc);
+  JSValueRef arg = JSValueMakeNumber(ctx_, radix);
+  JSValueRef result = JSObjectCallAsFunction(
+      ctx_, JSValueToObject(ctx_, toString, &exc), boxed, 1, &arg, &exc);
+  checkException(exc);
+  return createValue(result).getString(*this);
 }
 
 jsi::String JSCRuntime::createStringFromAscii(const char* str, size_t length) {
@@ -1169,7 +1226,23 @@ jsi::Array JSCRuntime::createArray(size_t length) {
 
 jsi::ArrayBuffer JSCRuntime::createArrayBuffer(
     std::shared_ptr<jsi::MutableBuffer> buffer) {
-  throw std::logic_error("Not implemented");
+  // the ArrayBuffer keeps the MutableBuffer alive until it is collected
+  auto* owner = new std::shared_ptr<jsi::MutableBuffer>(std::move(buffer));
+  JSValueRef exc = nullptr;
+  JSObjectRef obj = JSObjectMakeArrayBufferWithBytesNoCopy(
+      ctx_,
+      (*owner)->data(),
+      (*owner)->size(),
+      [](void*, void* context) {
+        delete static_cast<std::shared_ptr<jsi::MutableBuffer>*>(context);
+      },
+      owner,
+      &exc);
+  if (obj == nullptr) {
+    delete owner;
+  }
+  checkException(exc);
+  return createObject(obj).getArrayBuffer(*this);
 }
 
 size_t JSCRuntime::size(const jsi::Array& arr) {
@@ -1450,7 +1523,8 @@ bool JSCRuntime::strictEquals(const jsi::Symbol& a, const jsi::Symbol& b)
 
 bool JSCRuntime::strictEquals(const jsi::BigInt& a, const jsi::BigInt& b)
     const {
-  throw std::logic_error("Not implemented");
+  return JSValueIsStrictEqual(
+      ctx_, bigintRef(a), bigintRef(b));
 }
 
 bool JSCRuntime::strictEquals(const jsi::String& a, const jsi::String& b)
@@ -1556,6 +1630,7 @@ jsi::Value JSCRuntime::createValue(JSValueRef value) const {
     case kJSTypeSymbol:
       return jsi::Value(createSymbol(value));
     case kJSTypeBigInt:
+      return jsi::Value(make<jsi::BigInt>(makeSymbolValue(value)));
     default:
       // WHAT ARE YOU
       abort();
@@ -1578,6 +1653,8 @@ JSValueRef JSCRuntime::valueRef(const jsi::Value& value) {
     return JSValueMakeString(ctx_, stringRef(value.getString(*this)));
   } else if (value.isObject()) {
     return objectRef(value.getObject(*this));
+  } else if (value.isBigInt()) {
+    return bigintRef(value.getBigInt(*this));
   } else {
     // What are you?
     abort();
