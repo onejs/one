@@ -23,7 +23,7 @@ import { handleNavigationContainerStateChange } from './router/router'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { LaunchScreenRelease } from './router/LaunchScreenRelease'
 import { useInitializeOneRouter } from './router/useInitializeOneRouter'
-import { useViteRoutes } from './router/useViteRoutes'
+import { getRouteLoadError, useViteRoutes } from './router/useViteRoutes'
 import type { GlobbedRouteImports } from './types'
 import { evictOldest } from './utils/evictOldest'
 import { ServerRenderID } from './useServerHeadInsertion'
@@ -130,6 +130,14 @@ export function Root(props: RootProps) {
   const id = useId()
 
   onRenderId?.(id)
+
+  // One.Updates counts a launch as good once react native shows its first
+  // native view, which is the shell below. load the root layout before it, so
+  // an update whose root layout cannot load fails first and rolls back.
+  if (isNative && process.env.NODE_ENV === 'production' && store.routeNode) {
+    const loadError = getRouteLoadError(store.routeNode.loadRoute())
+    if (loadError) throw loadError
+  }
 
   // Use Vercel's global ID if available, otherwise use AsyncLocalStorage
   const value = process.env.VERCEL
