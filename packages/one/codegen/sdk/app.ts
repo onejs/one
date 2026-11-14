@@ -36,8 +36,8 @@ const IMPORT = /['"]one\/ios\/([A-Za-z_][A-Za-z0-9_]*)['"]/g
 const ONE_IMPORT = /(?:\bfrom\s*|\bimport\s*\(?\s*|\brequire\s*\(\s*)['"]one['"]/
 
 // the native root barrel loads the unified modules together. their ios
-// implementations contribute framework imports too, even when an app never
-// names one/ios itself. derive these dependencies from the shipped sources
+// implementations and the sdk backends those load on first use contribute
+// framework imports too, even when an app never names one/ios itself. derive these dependencies from the shipped sources
 // rather than maintaining a second list beside the implementations.
 export function importedFrameworks(
   root: string,
@@ -50,7 +50,7 @@ export function importedFrameworks(
       if (entry.name.startsWith('.') || SKIP.has(entry.name)) continue
       const full = join(dir, entry.name)
       if (entry.isDirectory()) walk(full, unified)
-      else if (SOURCE.test(entry.name) && (!unified || /\.ios\.[jt]sx?$/.test(entry.name))) {
+      else if (SOURCE.test(entry.name) && (!unified || /\.(?:ios|sdk)\.[jt]sx?$/.test(entry.name))) {
         const source = readFileSync(full, 'utf8')
         for (const match of source.matchAll(IMPORT)) found.add(match[1])
         if (!unified && ONE_IMPORT.test(source)) usesOne = true
