@@ -33,6 +33,7 @@ void bun_embed_grab_locks(void* dropper);
 #include <array>
 #include <atomic>
 #include <condition_variable>
+#include <algorithm>
 #include <cmath>
 #include <cstdint>
 #include <cstdlib>
@@ -94,6 +95,9 @@ inline JSValueRef number(double d) {
   uint64_t raw;
   std::memcpy(&raw, &d, sizeof raw);
   return ref(raw + kDoubleOffset);
+}
+inline bool isObjectCell(JSValueRef v) {
+  return isCell(bits(v)) && cellType(bits(v)) > kSymbolType;
 }
 inline JSObjectRef object(JSValueRef v) {
   return reinterpret_cast<JSObjectRef>(const_cast<OpaqueJSValue*>(v));
@@ -770,27 +774,12 @@ JSStringRef createJSStringFromUtf8(const char* str, size_t length) {
   return JSStringCreateWithUTF8CString(tmp.c_str());
 }
 
-JSStringRef createJSStringFromAscii(const char* str, size_t length) {
-  JSChar stack[256];
-  if (length > sizeof(stack) / sizeof(JSChar)) {
-    return createJSStringFromUtf8(str, length);
-  }
-  for (size_t i = 0; i < length; i++) {
-    unsigned char c = static_cast<unsigned char>(str[i]);
-    // callers have passed utf-8 as ascii before, and a nul ends a c string
-    if (c == 0 || c > 0x7f) {
-      return createJSStringFromUtf8(str, length);
-    }
-    stack[i] = c;
-  }
-  return JSStringCreateWithCharacters(stack, length);
-}
 } // namespace
 
 jsi::PropNameID JSCRuntime::createPropNameIDFromAscii(
     const char* str,
     size_t length) {
-  JSStringRef strRef = createJSStringFromAscii(str, length);
+  JSStringRef strRef = createJSStringFromUtf8(str, length);
   auto res = createPropNameID(strRef);
   JSStringRelease(strRef);
   return res;
@@ -920,7 +909,7 @@ jsi::String JSCRuntime::bigintToString(const jsi::BigInt& b, int radix) {
 }
 
 jsi::String JSCRuntime::createStringFromAscii(const char* str, size_t length) {
-  JSStringRef stringRef = createJSStringFromAscii(str, length);
+  JSStringRef stringRef = createJSStringFromUtf8(str, length);
   auto result = createString(stringRef);
   JSStringRelease(stringRef);
   return result;
@@ -1177,11 +1166,12 @@ std::shared_ptr<jsi::NativeState> JSCRuntime::getNativeState(
   JSValueRef state = JSObjectGetPropertyForKey(
       ctx_, objectRef(obj), getNativeStateSymbol(), &exc);
   checkException(exc);
-
+  if (!jscvalue::isObjectCell(state)) {
+    return nullptr;
+  }
   auto container = static_cast<NativeStateContainer*>(
       JSObjectGetPrivate(jscvalue::object(state)));
-  assert(container);
-  return container->nativeState;
+  return container ? container->nativeState : nullptr;
 }
 
 void JSCRuntime::setNativeState(
@@ -1208,9 +1198,13 @@ void JSCRuntime::setNativeState(
         &exc);
     checkException(exc);
   } else {
-    auto container = static_cast<NativeStateContainer*>(
-        JSObjectGetPrivate(jscvalue::object(state)));
-    assert(container);
+    auto container = jscvalue::isObjectCell(state)
+        ? static_cast<NativeStateContainer*>(
+              JSObjectGetPrivate(jscvalue::object(state)))
+        : nullptr;
+    if (!container) {
+      throw jsi::JSError(*this, "object's native state slot holds a foreign value");
+    }
     container->nativeState = std::move(nativeState);
   }
 }
@@ -1291,13 +1285,16 @@ bool JSCRuntime::isArray(const jsi::Object& obj) const {
         ctx_, JSContextGetGlobalObject(ctx_), name, &exc);
     JSStringRelease(name);
     self->checkException(exc);
+    JSObjectRef arrayObj = JSValueToObject(ctx_, array, &exc);
+    self->checkException(exc);
     name = JSStringCreateWithUTF8CString("isArray");
-    JSValueRef fn =
-        JSObjectGetProperty(ctx_, JSValueToObject(ctx_, array, &exc), name, &exc);
+    JSValueRef fn = JSObjectGetProperty(ctx_, arrayObj, name, &exc);
     JSStringRelease(name);
     self->checkException(exc);
-    JSValueProtect(ctx_, fn);
-    self->arrayIsArray_ = JSValueToObject(ctx_, fn, &exc);
+    JSObjectRef fnObj = JSValueToObject(ctx_, fn, &exc);
+    self->checkException(exc);
+    JSValueProtect(ctx_, fnObj);
+    self->arrayIsArray_ = fnObj;
   }
   JSValueRef arg = object;
   JSValueRef res =
@@ -1333,18 +1330,23 @@ jsi::Array JSCRuntime::getPropertyNames(const jsi::Object& obj) {
   JSPropertyNameArrayRef names =
       JSObjectCopyPropertyNames(ctx_, objectRef(obj));
   size_t len = JSPropertyNameArrayGetCount(names);
-  JSValueRef stackItems[32];
-  std::unique_ptr<JSValueRef[]> heapItems;
-  JSValueRef* items = stackItems;
-  if (len > 32) {
-    heapItems = std::make_unique<JSValueRef[]>(len);
-    items = heapItems.get();
-  }
-  for (size_t i = 0; i < len; i++) {
+  // the gc finds fresh strings only through the stack, so names past this
+  // batch go into the array as they are made
+  JSValueRef items[32];
+  size_t head = std::min<size_t>(len, 32);
+  for (size_t i = 0; i < head; i++) {
     items[i] = JSValueMakeString(ctx_, JSPropertyNameArrayGetNameAtIndex(names, i));
   }
   JSValueRef exc = nullptr;
-  JSObjectRef result = JSObjectMakeArray(ctx_, len, items, &exc);
+  JSObjectRef result = JSObjectMakeArray(ctx_, head, items, &exc);
+  for (size_t i = head; i < len && !exc; i++) {
+    JSObjectSetPropertyAtIndex(
+        ctx_,
+        result,
+        static_cast<unsigned>(i),
+        JSValueMakeString(ctx_, JSPropertyNameArrayGetNameAtIndex(names, i)),
+        &exc);
+  }
   JSPropertyNameArrayRelease(names);
   checkException(exc);
   return createObject(result).getArray(*this);
@@ -1403,7 +1405,11 @@ size_t JSCRuntime::size(const jsi::Array& arr) {
   JSValueRef length =
       JSObjectGetProperty(ctx_, objectRef(arr), getLengthString(), &exc);
   checkException(exc);
-  return static_cast<size_t>(jscvalue::toDouble(jscvalue::bits(length)));
+  double n = jscvalue::isNumber(jscvalue::bits(length))
+      ? jscvalue::toDouble(jscvalue::bits(length))
+      : JSValueToNumber(ctx_, length, &exc);
+  checkException(exc);
+  return n > 0 ? static_cast<size_t>(n) : 0;
 }
 
 jsi::Value JSCRuntime::getValueAtIndex(const jsi::Array& arr, size_t i) {
@@ -1797,9 +1803,12 @@ jsi::Value JSCRuntime::createValue(JSValueRef value) const {
       return jsi::Value(true);
     case kFalse:
       return jsi::Value(false);
-    default:
-      abort();
   }
+  // an engine built with small bigints encodes them outside the cell space
+  if (JSValueGetType(ctx_, value) == kJSTypeBigInt) {
+    return jsi::Value(make<jsi::BigInt>(makeSymbolValue(value)));
+  }
+  abort();
 }
 
 JSValueRef JSCRuntime::valueRef(const jsi::Value& value) {
@@ -1892,6 +1901,9 @@ std::unique_ptr<jsi::Runtime> makeBunRuntime() {
     JSValueRef str = JSValueMakeString(ctx, probe);
     JSStringRelease(probe);
     JSValueRef obj = JSObjectMake(ctx, nullptr, nullptr);
+    probe = JSStringCreateWithUTF8CString("encoding");
+    JSValueRef sym = JSValueMakeSymbol(ctx, probe);
+    JSStringRelease(probe);
     bool same = bits(JSValueMakeUndefined(ctx)) == kUndefined &&
         bits(JSValueMakeNull(ctx)) == kNull &&
         bits(JSValueMakeBoolean(ctx, true)) == kTrue &&
@@ -1901,7 +1913,9 @@ std::unique_ptr<jsi::Runtime> makeBunRuntime() {
         JSValueMakeNumber(ctx, -0.0) == number(-0.0) &&
         toDouble(bits(JSValueMakeNumber(ctx, 1e300))) == 1e300 &&
         isCell(bits(str)) && cellType(bits(str)) == kStringType &&
-        isCell(bits(obj)) && cellType(bits(obj)) > kSymbolType;
+        JSValueMakeNumber(ctx, std::nan("")) == number(std::nan("")) &&
+        isCell(bits(sym)) && cellType(bits(sym)) == kSymbolType &&
+        isObjectCell(obj);
     if (!same) {
       os_log_fault(OS_LOG_DEFAULT, "[OneBunEngine] this bun engine encodes values differently than BunRuntime reads them");
       abort();

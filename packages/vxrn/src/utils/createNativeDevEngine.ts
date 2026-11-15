@@ -946,7 +946,8 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
 // enough; __reExport adds keys during init, so it drops the cached copy
 function memoizeToCommonJS(code: string): string {
   const caches = new Set<string>()
-  return code
+  let reExports = 0
+  const memoized = code
     .replace(
       /^([^\S\n]*)var (__toCommonJS[\w$]*) = \(mod\) => (__hasOwnProp[\w$]*)\.call\(mod, "module\.exports"\) \? mod\["module\.exports"\] : (__copyProps[\w$]*)\((__defProp[\w$]*)\(\{\}, "__esModule", \{ value: true \}\), mod\);$/gm,
       (_, indent, name, has, copy, def) => {
@@ -956,11 +957,16 @@ function memoizeToCommonJS(code: string): string {
     )
     .replace(
       /^([^\S\n]*)var (__reExport[\w$]*) = \(target, mod, secondTarget\) => \((__copyProps[\w$]*)\(target, mod, "default"\), secondTarget && \3\(secondTarget, mod, "default"\)\);$/gm,
-      (line, indent, name, copy) =>
-        caches.has(copy)
-          ? `${indent}var ${name} = (target, mod, secondTarget) => (${copy}$cjs.delete(target), ${copy}(target, mod, "default"), secondTarget && ${copy}(secondTarget, mod, "default"));`
-          : line
+      (line, indent, name, copy) => {
+        if (!caches.has(copy)) return line
+        reExports++
+        return `${indent}var ${name} = (target, mod, secondTarget) => (${copy}$cjs.delete(target), ${copy}(target, mod, "default"), secondTarget && ${copy}(secondTarget, mod, "default"));`
+      }
     )
+  // a cached view must drop keys that __reExport adds later, so an unrecognized
+  // __reExport leaves the bundle as rolldown wrote it
+  const declared = code.match(/^[^\S\n]*var __reExport[\w$]* = /gm)?.length ?? 0
+  return caches.size && reExports === declared ? memoized : code
 }
 
 /**
