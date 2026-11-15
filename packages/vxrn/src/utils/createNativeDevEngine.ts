@@ -413,7 +413,8 @@ function getNativePlugins(
   sourceMaps = false,
   userPlugins: Plugin[] = [],
   minify = false,
-  command: 'serve' | 'build' = 'serve'
+  command: 'serve' | 'build' = 'serve',
+  hermes = true
 ): Plugin[] {
   const context: NativePluginContext = { root, platform, dev, command, assetsDest }
   const desktopPlugins =
@@ -474,10 +475,10 @@ function getNativePlugins(
     // handle asset imports (.png, .jpg, .ttf, etc.)
     assetPlugin({ root, platform, assetsDest, onAsset }),
     // hermes compat: transform class properties and private fields
-    hermesCompatSWCPlugin(dev, sourceMaps, !minify),
+    ...(hermes ? [hermesCompatSWCPlugin(dev, sourceMaps, !minify)] : []),
     // hermes compat: per-iteration loop bindings. runs last so it also covers
     // loops the earlier lowering steps emit.
-    hermesLoopsPlugin(sourceMaps),
+    ...(hermes ? [hermesLoopsPlugin(sourceMaps)] : []),
     ...userPlugins,
     nativeExportsPrecedencePlugin(root, platform),
     nativeDeclarationAliasPlugin(root, platform),
@@ -1386,6 +1387,8 @@ interface NativeBuildOptions {
    * bundle: on unless the build is a dev build.
    */
   minify?: boolean
+  /** lower classes, async and loop bindings for hermes. off for a bundle bun compiles */
+  hermes?: boolean
 }
 
 export async function buildNativeBundle(
@@ -1401,6 +1404,7 @@ export async function buildNativeBundle(
     plugins: userPlugins = [],
     sourcemap = false,
     minify = !dev,
+    hermes = true,
   } = options
 
   const { build } = await import('rolldown')
@@ -1454,7 +1458,8 @@ export async function buildNativeBundle(
         sourcemap,
         userPlugins,
         minify,
-        'build'
+        'build',
+        hermes
       ),
       // last, so it sees what every other plugin produced
       nativeBundlePostProcessPlugin(),

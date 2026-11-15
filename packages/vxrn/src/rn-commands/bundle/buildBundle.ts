@@ -37,8 +37,8 @@ export async function buildBundle(
     // from source in-process. React Native's own bundle command ignores
     // `--read-global-cache` too.
     // `--unstable-transform-profile` picks a JS engine to target. This pipeline
-    // always downlevels for Hermes, which is what every profile it accepts
-    // ('default', 'hermes', 'hermes-canary') can run.
+    // downlevels for Hermes unless USE_HERMES=false, which the bun engine's
+    // release bundle phase sets.
     // `--sourcemap-use-absolute-path`, `--sourcemap-sources-root`,
     // `--asset-catalog-dest` and `--indexed-ram-bundle` are not implemented.
   } = args
@@ -91,6 +91,7 @@ export async function buildBundle(
     assetsDest,
     sourcemap: !!args.sourcemapOutput,
     minify,
+    hermes: process.env.USE_HERMES !== 'false',
   })
   const builtBundle = result.code
 
