@@ -238,7 +238,8 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
         '--minify',
         platform === 'ios' ? 'true' : 'false',
       ],
-      { cwd: root, stdio: 'inherit' }
+      // OTA updates run on Hermes even for Bun-engine apps, so keep RN Promise polyfill
+      { cwd: root, stdio: 'inherit', env: { ...process.env, ONE_BUN_ENGINE: '0' } }
     )
     // the same compiler and flags as the embedded builders: -O bytecode,
     // warnings off on android like the gradle task. generating a hermes map

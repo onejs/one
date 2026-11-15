@@ -4190,3 +4190,86 @@ it('composes TypeScript runtime declaration maps to the original source', async 
     })
   ).toMatchObject({ source: 'probe.ts', line: 2 })
 })
+
+describe('bun ios promise polyfill gating', () => {
+  async function writePromiseFixture() {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-bun-promise-'))
+    const rnCoreDir = join(root, 'node_modules', 'react-native', 'Libraries', 'Core')
+    const rnPromiseDir = join(root, 'node_modules', 'react-native', 'Libraries', 'Promise')
+    await mkdir(rnCoreDir, { recursive: true })
+    await mkdir(rnPromiseDir, { recursive: true })
+    await writeFile(
+      join(root, 'node_modules', 'react-native', 'package.json'),
+      JSON.stringify({ name: 'react-native', main: 'index.js' })
+    )
+    await writeFile(
+      join(rnPromiseDir, 'polyfillPromise.js'),
+      'globalThis.__RN_PROMISE_POLYFILL_LOADED__ = true; export {}'
+    )
+    await writeFile(
+      join(rnCoreDir, 'InitializeCore.js'),
+      `import '../Promise/polyfillPromise'`
+    )
+    await writeFile(
+      join(root, 'entry.js'),
+      `import 'react-native/Libraries/Core/InitializeCore'`
+    )
+    return root
+  }
+
+  it('keeps react-native polyfillPromise by default on ios and android production builds', async () => {
+    const prev = process.env.ONE_BUN_ENGINE
+    delete process.env.ONE_BUN_ENGINE
+    const root = await writePromiseFixture()
+    try {
+      const [iosOut, androidOut] = await Promise.all([
+        buildNativeBundle({ root, platform: 'ios', entryFile: 'entry.js', minify: false }),
+        buildNativeBundle({ root, platform: 'android', entryFile: 'entry.js', minify: false }),
+      ])
+      expect(iosOut.code).toContain('__RN_PROMISE_POLYFILL_LOADED__')
+      expect(androidOut.code).toContain('__RN_PROMISE_POLYFILL_LOADED__')
+    } finally {
+      if (prev === undefined) delete process.env.ONE_BUN_ENGINE
+      else process.env.ONE_BUN_ENGINE = prev
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('stubs polyfillPromise only for bun ios builds and respects ONE_BUN_ENGINE=0', async () => {
+    const prev = process.env.ONE_BUN_ENGINE
+    const root = await writePromiseFixture()
+    try {
+      await mkdir(join(root, 'ios'), { recursive: true })
+      await writeFile(join(root, 'ios', 'Podfile'), '# [vxrn/one] bun engine\n')
+
+      delete process.env.ONE_BUN_ENGINE
+      const iosBun = await buildNativeBundle({
+        root,
+        platform: 'ios',
+        entryFile: 'entry.js',
+        minify: false,
+      })
+      const androidBun = await buildNativeBundle({
+        root,
+        platform: 'android',
+        entryFile: 'entry.js',
+        minify: false,
+      })
+      expect(iosBun.code).not.toContain('__RN_PROMISE_POLYFILL_LOADED__')
+      expect(androidBun.code).toContain('__RN_PROMISE_POLYFILL_LOADED__')
+
+      process.env.ONE_BUN_ENGINE = '0'
+      const iosOta = await buildNativeBundle({
+        root,
+        platform: 'ios',
+        entryFile: 'entry.js',
+        minify: false,
+      })
+      expect(iosOta.code).toContain('__RN_PROMISE_POLYFILL_LOADED__')
+    } finally {
+      if (prev === undefined) delete process.env.ONE_BUN_ENGINE
+      else process.env.ONE_BUN_ENGINE = prev
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+})

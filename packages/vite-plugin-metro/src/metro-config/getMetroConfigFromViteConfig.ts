@@ -12,6 +12,7 @@ import { getDefaultConfig } from '@react-native/metro-config'
 import type { loadConfig as loadConfigT } from 'metro'
 
 import { findUserBabelConfig } from '@vxrn/compiler'
+import { isBunIosEngine } from '@vxrn/utils'
 import {
   desktopReactNativeFile,
   requireOnePackageRoot,
@@ -196,10 +197,13 @@ function isMainModuleBundleRequest(url: string) {
 // bun engine that is most of the js thread's microtask work. dev runs hermes.
 function isReactNativePromisePolyfill(
   context: { dev: boolean; originModulePath: string },
-  moduleName: string
+  moduleName: string,
+  projectRoot: string,
+  platform: string | null
 ) {
   return (
     !context.dev &&
+    isBunIosEngine(projectRoot, platform) &&
     /(^|[\\/])polyfillPromise(\.js)?$/.test(moduleName) &&
     /(^|[\\/])react-native[\\/]/.test(context.originModulePath)
   )
@@ -424,7 +428,7 @@ export async function buildMetroConfigInputFromViteConfig(
         ...new Set([...(_defaultConfig?.resolver?.platforms ?? []), 'macos', 'linux']),
       ],
       resolveRequest: (context, moduleName, platform) => {
-        if (isReactNativePromisePolyfill(context, moduleName)) return { type: 'empty' }
+        if (isReactNativePromisePolyfill(context, moduleName, projectRoot, platform)) return { type: 'empty' }
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
 
@@ -579,7 +583,7 @@ export async function getMetroConfigFromViteConfig(
         ...new Set([...(_defaultConfig?.resolver?.platforms ?? []), 'macos', 'linux']),
       ],
       resolveRequest: (context, moduleName, platform) => {
-        if (isReactNativePromisePolyfill(context, moduleName)) return { type: 'empty' }
+        if (isReactNativePromisePolyfill(context, moduleName, projectRoot, platform)) return { type: 'empty' }
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
 

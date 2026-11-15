@@ -892,7 +892,7 @@ function addBunEngineToBundleReactNativeShellScript(input) {
   const withPlainBundle = insertBeforeBundlePhaseRunner(
     input,
     `${ONE_BUN_ENGINE.marker}: release bundles stay plain javascript for bun compile
-${release} export USE_HERMES=false ;; esac`
+${release} export USE_HERMES=false ONE_BUN_ENGINE=1 ;; esac`
   )
   return insertAfterBundlePhaseRunner(
     withPlainBundle,

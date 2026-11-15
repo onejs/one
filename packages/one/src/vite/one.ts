@@ -962,6 +962,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   }
 
   // TODO move this handoff off globalThis, like the other one -> vxrn options
+  ;(globalThis as any).__vxrnNativeIosEngine = !nativeDisabled
+    ? { root: path.resolve(root), engine: nativeApp?.ios?.engine }
+    : undefined
+
   if (!nativeDisabled) {
     // the native bundler is its own rolldown instance rather than a vite
     // environment, so of `config.plugins` only the ones with a native form
