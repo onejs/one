@@ -3,3 +3,5 @@
 {"id":"00000001794733532944:471c34ef032aad729ebe3681474fee2f","text":"Landed on branch tm/one-2-18-video, commit 8bd83ce1554 (pushed). Draft: /Users/n8/.scratch/one-2-18-video/one-2.18-draft.mp4 (h264 1920x1080 60fps 43.07s 13.66MB faststart). Worktree kept at /Users/n8/.worktrees/contrast-one-2-18-video for 2.18.1 numbers."}
 
 {"id":"00000001794733731462:9219fb7c7b5ae6ef49facecb51f05266","text":"Draft complete; inspecting stills & draft MP4 while waiting for 2.18.1 final benchmarks before final render and landing."}
+
+{"id":"00000001794734174256:4ae0c679280be36f3fc5c2e36adad233","text":"Owner reviewed f575 first draft (tm/one-2-18-video 8bd83ce1554, share-file-f575-f6f05211694e6d06-1a1de743d09-eda63633792812dd): wants a slower, clearer redo after a few more items land (b67657 Bun AoT/JSI 2.18.1 perf push, plus check any remaining 2.18.1 items). Holding task open; on redo, slow typing, chart row stagger/roll, and post-settle holds, tighten 6-card captions, update to 2.18.1 numbers, and remind owner."}
