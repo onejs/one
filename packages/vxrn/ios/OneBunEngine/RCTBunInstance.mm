@@ -26,10 +26,9 @@ class RCTBunInstance : public JSRuntimeFactory {
 
 } // namespace facebook::react
 
-bool one_bun_engine_has_compiled_program(void)
+BOOL one_bun_engine_runs_bundle(NSURL *_Nullable bundleURL)
 {
-  NSString *path = [NSBundle.mainBundle pathForResource:@"main" ofType:@"jsbundle"];
-  NSFileHandle *file = path ? [NSFileHandle fileHandleForReadingAtPath:path] : nil;
+  NSFileHandle *file = bundleURL.isFileURL ? [NSFileHandle fileHandleForReadingFromURL:bundleURL error:nil] : nil;
   NSData *head = [file readDataOfLength:sizeof(facebook::bun::kCompiledEntryMarker) - 1];
   [file closeFile];
   return head.length == sizeof(facebook::bun::kCompiledEntryMarker) - 1 &&

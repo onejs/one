@@ -88,6 +88,7 @@ struct OneUpdatesStateFile: Codable {
   private static var runningId: String?
   private static var runningEmbedded = true
   private static var contentAppeared = false
+  private static var launchingBundleURL: URL?
   // the just-failed update the next selection skips once, so an in-session
   // rollback lands on the next candidate instead of reselecting a proven
   // update that stays a candidate.
@@ -357,8 +358,20 @@ struct OneUpdatesStateFile: Codable {
   // embedded bundle launches and the launcher never touches state.
   @objc public static func bundleURL() -> URL? {
     ensureInstalled()
-    guard isEnabled else { return embeddedBundleURL() }
-    return select()
+    let url = isEnabled ? select() : embeddedBundleURL()
+    lock.lock()
+    launchingBundleURL = url
+    lock.unlock()
+    return url
+  }
+
+  // the url bundleURL last answered, without selecting again. react native reads
+  // the bundle url before it creates the js engine, so an engine choice that
+  // depends on the bundle (the bun engine runs only its compiled program) reads it here.
+  @objc public static func launchingURL() -> URL? {
+    lock.lock()
+    defer { lock.unlock() }
+    return launchingBundleURL
   }
 
   static func ensureInstalled() {
