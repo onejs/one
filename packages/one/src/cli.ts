@@ -463,10 +463,6 @@ const updatesPublish = defineCommand({
       type: 'string',
       description: 'Runtime version for an app built with expo prebuild, which has no native.app',
     },
-    engine: {
-      type: 'string',
-      description: 'Engine for an app built with expo prebuild: hermes (default) or bun',
-    },
   },
   async run({ args }) {
     const { runUpdatesPublish } = await import('./cli/updatesPublish')
