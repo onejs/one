@@ -41,9 +41,7 @@ export function appIconPreviewResources(name: string | undefined): {
 // build-time defines the native bundle reads: what One.LaunchScreen.Cover needs
 // beyond the bundled launch resources, and the icon previews One.AppIcon.list
 // pairs with prebuild's resources. each value is a JSON string literal.
-export function nativeAppDefines(
-  app: NativeAppManifest | undefined
-): Record<string, string> {
+export function nativeAppDefines(app: NativeAppManifest | undefined): Record<string, string> {
   const defines: Record<string, string> = {}
   if (app?.splash) {
     defines['process.env.ONE_LAUNCH_SCREEN'] = JSON.stringify(
@@ -393,24 +391,15 @@ export function validateNativeApp(
   if (manifest.ios?.resources !== undefined) {
     if (!Array.isArray(manifest.ios.resources)) fail('ios.resources must be an array')
     const names = new Set([
-      'info.plist',
-      'launchscreen.storyboard',
-      'one-bridging-header.h',
-      'appdelegate.swift',
-      'scenedelegate.swift',
-      'oneappintents.swift',
-      'privacyinfo.xcprivacy',
-      `${manifest.name.toLowerCase()}.entitlements`,
+      'info.plist', 'launchscreen.storyboard', 'one-bridging-header.h',
+      'appdelegate.swift', 'scenedelegate.swift', 'oneappintents.swift',
+      'privacyinfo.xcprivacy', `${manifest.name.toLowerCase()}.entitlements`,
+      'oneappwidgets.entitlements',
       ...(manifest.fonts ?? []).map((file) => file.split('/').pop()!.toLowerCase()),
       ...(manifest.ios.googleServicesFile ? ['googleservice-info.plist'] : []),
     ])
     for (const file of manifest.ios.resources) {
-      if (
-        typeof file !== 'string' ||
-        !file ||
-        file.startsWith('/') ||
-        file.split('/').includes('..')
-      ) {
+      if (typeof file !== 'string' || !file || file.startsWith('/') || file.split('/').includes('..')) {
         fail('ios.resources entries must be project-relative file paths')
       }
       const name = file.split('/').pop()!
@@ -429,10 +418,7 @@ export function validateNativeApp(
   ) {
     fail('icon requires source and a six-digit hex backgroundColor')
   }
-  if (
-    (manifest.ios as { alternateIcons?: unknown } | undefined)?.alternateIcons !==
-    undefined
-  ) {
+  if ((manifest.ios as { alternateIcons?: unknown } | undefined)?.alternateIcons !== undefined) {
     fail('ios.alternateIcons moved to alternateIcons, which android uses too')
   }
   const alternates = Object.entries(manifest.alternateIcons ?? {})
@@ -442,9 +428,7 @@ export function validateNativeApp(
     const lowered = new Set<string>()
     for (const [name, icon] of alternates) {
       if (name === 'AppIcon' || name === 'Primary' || !TARGET_NAME.test(name)) {
-        fail(
-          `alternateIcons name "${name}" must be an identifier other than AppIcon or Primary`
-        )
+        fail(`alternateIcons name "${name}" must be an identifier other than AppIcon or Primary`)
       }
       if (lowered.has(name.toLowerCase())) {
         fail(`alternateIcons name "${name}" repeats another name apart from its case`)
@@ -457,9 +441,7 @@ export function validateNativeApp(
   }
   const icons: Array<readonly [string, NativeAppIcon | undefined]> = [
     ['icon', manifest.icon],
-    ...alternates.map(
-      ([name, alternate]) => [`alternateIcons.${name}`, alternate] as const
-    ),
+    ...alternates.map(([name, alternate]) => [`alternateIcons.${name}`, alternate] as const),
   ]
   for (const [label, icon] of icons) {
     for (const appearance of ['dark', 'tinted'] as const) {
@@ -469,12 +451,9 @@ export function validateNativeApp(
         typeof variant !== 'object' ||
         variant === null ||
         (variant.source !== undefined && !variant.source) ||
-        (variant.backgroundColor !== undefined &&
-          !HEX_COLOR.test(variant.backgroundColor))
+        (variant.backgroundColor !== undefined && !HEX_COLOR.test(variant.backgroundColor))
       ) {
-        fail(
-          `${label}.${appearance} takes an optional source and six-digit hex backgroundColor`
-        )
+        fail(`${label}.${appearance} takes an optional source and six-digit hex backgroundColor`)
       }
     }
   }
@@ -919,10 +898,7 @@ export function iosUsageDescriptions(app: NativeAppManifest): Map<string, string
   if (app.location !== undefined) {
     usage.set('NSLocationWhenInUseUsageDescription', app.location.whenInUse)
     if (app.location.alwaysAndWhenInUse !== undefined) {
-      usage.set(
-        'NSLocationAlwaysAndWhenInUseUsageDescription',
-        app.location.alwaysAndWhenInUse
-      )
+      usage.set('NSLocationAlwaysAndWhenInUseUsageDescription', app.location.alwaysAndWhenInUse)
     }
   }
   if (app.pedometer !== undefined) {
@@ -948,9 +924,7 @@ export const androidNotificationPermissions = [
   'android.permission.RECEIVE_BOOT_COMPLETED',
 ]
 
-export function androidAppPermissions(
-  app: NativeAppManifest
-): Map<string, number | undefined> {
+export function androidAppPermissions(app: NativeAppManifest): Map<string, number | undefined> {
   const permissions = new Map<string, number | undefined>()
   const add = (name: string, maxSdkVersion?: number) => {
     const fullName = name.includes('.') ? name : `android.permission.${name}`
@@ -1029,10 +1003,7 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
       googleServicesFile: app.ios.googleServicesFile,
       // a live preview has no Info.plist, so the purpose strings the built
       // app carries ride in the manifest's infoPlist
-      infoPlist: {
-        ...app.ios.infoPlist,
-        ...Object.fromEntries(iosUsageDescriptions(app)),
-      },
+      infoPlist: { ...app.ios.infoPlist, ...Object.fromEntries(iosUsageDescriptions(app)) },
       entitlements: app.ios.entitlements,
     },
     android: app.android && {
@@ -1041,14 +1012,11 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
       // expo's string list cannot express maxSdkVersion, so only declarations
       // valid on every SDK can be represented without overstating access.
       permissions: [...androidAppPermissions(app)]
-        .filter(
-          ([name, maxSdk]) =>
-            maxSdk === undefined &&
-            !(app.android?.blockedPermissions ?? []).some(
-              (blocked) =>
-                (blocked.includes('.') ? blocked : `android.permission.${blocked}`) ===
-                name
-            )
+        .filter(([name, maxSdk]) =>
+          maxSdk === undefined &&
+          !(app.android?.blockedPermissions ?? []).some((blocked) =>
+            (blocked.includes('.') ? blocked : `android.permission.${blocked}`) === name
+          )
         )
         .map(([name]) => name),
       blockedPermissions: app.android.blockedPermissions,
