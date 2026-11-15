@@ -1,5 +1,5 @@
-import type { LightSensorMeasurement, LightSensorSubscription } from './types';
-export type { LightSensorMeasurement, LightSensorSubscription } from './types';
+import type { LightSensorMeasurement, LightSensorSubscription } from './types.js';
+export type { LightSensorMeasurement, LightSensorSubscription } from './types.js';
 declare function isAvailable(): boolean;
 declare function setUpdateInterval(intervalMs: number): void;
 declare function addListener(listener: (event: LightSensorMeasurement) => void): LightSensorSubscription;

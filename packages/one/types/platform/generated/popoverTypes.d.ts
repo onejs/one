@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
-import type { OneNativeStyle } from './controlTypes';
-import type { Edge, PresentationAdaptation } from './swiftui';
+import type { OneNativeStyle } from './controlTypes.js';
+import type { Edge, PresentationAdaptation } from './swiftui.js';
 export interface PopoverProps extends ViewProps {
     swiftStyle?: OneNativeStyle;
     isPresented: boolean;

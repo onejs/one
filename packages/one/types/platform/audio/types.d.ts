@@ -1,4 +1,4 @@
-import type { AudioNowPlayingInfo, PitchCorrectionQuality } from '../specs/OneAudio.nitro';
+import type { AudioNowPlayingInfo, PitchCorrectionQuality } from '../specs/OneAudio.nitro.js';
 export type AudioSourceObject = {
     uri?: string;
     headers?: Record<string, string>;

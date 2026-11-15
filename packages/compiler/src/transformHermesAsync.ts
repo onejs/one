@@ -13,9 +13,9 @@ export async function transformHermesAsync(
 ): Promise<{ code: string; map?: any } | undefined> {
   if (!format && !code.includes('async')) return
 
-  const { transformSync } = await import('esbuild')
+  const { transform } = await import('esbuild')
   const cleanId = filename.split('?')[0]
-  const result = transformSync(code, {
+  const result = await transform(code, {
     loader: /\.[cm]?ts$/.test(cleanId) ? 'ts' : cleanId.endsWith('.tsx') ? 'tsx' : 'jsx',
     jsx: 'preserve',
     format,

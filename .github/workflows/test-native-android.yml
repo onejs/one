@@ -42,7 +42,7 @@ concurrency:
 jobs:
   build-android-native:
     name: Compile One Native Android consumer
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     env:
       # the app and One use the root's 27.1 pin; webgpu uses AGP's 28.2 default.
@@ -108,7 +108,7 @@ jobs:
   android-native-fixtures:
     name: One Native Android fixtures (${{ matrix.shard }})
     needs: build-android-native
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     strategy:
       fail-fast: false

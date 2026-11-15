@@ -8,6 +8,13 @@ import { Root } from './Root'
 import { render } from './render'
 import { initClientMatches } from './router/router'
 import { registerPreloadedRoute } from './router/useViteRoutes'
+import {
+  hydrateWarmInitialLoad,
+  isWarmRoutePreloadPending,
+  isWarmStateEnabled,
+  isWarmWebRestoreEligible,
+  waitForWarmRoutePreload,
+} from './router/warmState'
 import { setupSkewProtection } from './skewProtection'
 import { handleSkewError, isChunkLoadError } from './utils/dynamicImport'
 import { readLoaderSearch } from './utils/cleanUrl'
@@ -214,6 +221,14 @@ export function createApp(options: CreateAppProps) {
   // skew protection: proactive version polling
   setupSkewProtection()
 
+  if (
+    options.flags?.warmStart ||
+    isWarmStateEnabled() ||
+    (typeof window !== 'undefined' && (window as any).__oneWarmStartOptions)
+  ) {
+    hydrateWarmInitialLoad({ routes: options.routes, flags: options.flags })
+  }
+
   const serverContext = getServerContext() || {}
   const routePreloads = serverContext.routePreloads
 
@@ -280,7 +295,17 @@ export function createApp(options: CreateAppProps) {
     .then(() => {
       return resolveClientLoader(serverContext)
     })
-    .then(() => {
+    .then(async () => {
+      if (typeof window !== 'undefined' && window.location) {
+        try {
+          const currentUrl = new URL(window.location.href)
+          if (isWarmWebRestoreEligible(currentUrl) && isWarmRoutePreloadPending()) {
+            await waitForWarmRoutePreload(200)
+          }
+        } catch {
+          // ignore url parse failure
+        }
+      }
       render(
         <Root
           isClient

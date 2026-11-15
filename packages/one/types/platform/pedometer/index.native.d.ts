@@ -1,5 +1,5 @@
-import type { PedometerPermissionResponse, PedometerResult, PedometerSubscription } from './types';
-export type { PedometerPermissionResponse, PedometerPermissionStatus, PedometerResult, PedometerSubscription, } from './types';
+import type { PedometerPermissionResponse, PedometerResult, PedometerSubscription } from './types.js';
+export type { PedometerPermissionResponse, PedometerPermissionStatus, PedometerResult, PedometerSubscription, } from './types.js';
 declare function isAvailable(): boolean;
 declare function watchStepCount(listener: (result: PedometerResult) => void): PedometerSubscription;
 declare function getStepCount(start: Date, end: Date): Promise<PedometerResult>;

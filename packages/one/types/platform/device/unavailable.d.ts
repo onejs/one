@@ -1,4 +1,4 @@
-import type { DeviceInfo, LocalizationInfo } from '../specs/OneDevice.nitro';
+import type { DeviceInfo, LocalizationInfo } from '../specs/OneDevice.nitro.js';
 export type { DeviceInfo, LocalizationInfo };
 export declare const Device: Readonly<{
     getInfo: () => Promise<DeviceInfo>;

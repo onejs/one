@@ -1,4 +1,4 @@
-import type { OneRouter } from './interfaces/router';
+import type { OneRouter } from './interfaces/router.js';
 type MaybePromise<T> = T | Promise<T>;
 /**
  * Minimal shape of the Cloudflare Workers `ExecutionContext`.

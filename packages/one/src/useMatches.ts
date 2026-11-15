@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from 'react'
+import { reviveLoaderData } from './loaderJSX'
 import { useServerContext } from './vite/one-server-only'
 import type { One } from './vite/types'
 
@@ -48,6 +49,26 @@ export function updateMatchLoaderData(routeId: string, loaderData: unknown) {
   }
 }
 
+const revivedMatches = new WeakMap<object, RouteMatch>()
+const revivedMatchLists = new WeakMap<object, RouteMatch[]>()
+
+function reviveMatches(matches: RouteMatch[]): RouteMatch[] {
+  let list = revivedMatchLists.get(matches)
+  if (!list) {
+    list = matches.map((match) => {
+      let revived = revivedMatches.get(match)
+      if (!revived) {
+        const loaderData = reviveLoaderData(match.loaderData)
+        revived = loaderData === match.loaderData ? match : { ...match, loaderData }
+        revivedMatches.set(match, revived)
+      }
+      return revived
+    })
+    revivedMatchLists.set(matches, list)
+  }
+  return list
+}
+
 /**
  * Returns an array of all matched routes from root to the current page.
  * Each match contains the route's loader data, params, and route ID.
@@ -91,6 +112,10 @@ export function updateMatchLoaderData(routeId: string, loaderData: unknown) {
  * ```
  */
 export function useMatches(): RouteMatch[] {
+  return reviveMatches(useRawMatches())
+}
+
+function useRawMatches(): RouteMatch[] {
   const serverContext = useServerContext()
 
   // on server, return from context directly

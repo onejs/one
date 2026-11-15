@@ -1,4 +1,4 @@
-import type { ControlledControlProps, ControlChange } from '../controlTypes';
+import type { ControlledControlProps, ControlChange } from '../controlTypes.js';
 export type SwitchProps = ControlledControlProps & {
     isOn: boolean;
     onIsOnChange?: (event: ControlChange<{

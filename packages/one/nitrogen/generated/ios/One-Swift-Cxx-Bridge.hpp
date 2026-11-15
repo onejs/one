@@ -1313,6 +1313,21 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_AudioPlaybackStatus_Wrapper(std::move(value));
   }
   
+  // pragma MARK: std::optional<bool>
+  /**
+   * Specialized version of `std::optional<bool>`.
+   */
+  using std__optional_bool_ = std::optional<bool>;
+  inline std::optional<bool> create_std__optional_bool_(const bool& value) noexcept {
+    return std::optional<bool>(value);
+  }
+  inline bool has_value_std__optional_bool_(const std::optional<bool>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline bool get_std__optional_bool_(const std::optional<bool>& optional) noexcept {
+    return optional.value();
+  }
+
   // pragma MARK: std::shared_ptr<Promise<void>>
   /**
    * Specialized version of `std::shared_ptr<Promise<void>>`.
@@ -1565,21 +1580,6 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_AudioPlayerStatus_ create_Result_AudioPlayerStatus_(const std::exception_ptr& error) noexcept {
     return Result<AudioPlayerStatus>::withError(error);
-  }
-  
-  // pragma MARK: std::optional<bool>
-  /**
-   * Specialized version of `std::optional<bool>`.
-   */
-  using std__optional_bool_ = std::optional<bool>;
-  inline std::optional<bool> create_std__optional_bool_(const bool& value) noexcept {
-    return std::optional<bool>(value);
-  }
-  inline bool has_value_std__optional_bool_(const std::optional<bool>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline bool get_std__optional_bool_(const std::optional<bool>& optional) noexcept {
-    return optional.value();
   }
   
   // pragma MARK: std::vector<PendingBackgroundTask>
@@ -4888,6 +4888,17 @@ namespace margelo::nitro::one::bridge::swift {
     return optional.value();
   }
   
+  // pragma MARK: std::vector<NativeNotificationResponse>
+  /**
+   * Specialized version of `std::vector<NativeNotificationResponse>`.
+   */
+  using std__vector_NativeNotificationResponse_ = std::vector<NativeNotificationResponse>;
+  inline std::vector<NativeNotificationResponse> create_std__vector_NativeNotificationResponse_(size_t size) noexcept {
+    std::vector<NativeNotificationResponse> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneNotificationsSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneNotificationsSpec>`.
@@ -4981,6 +4992,15 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::optional<NativeNotificationResponse>>::withError(error);
   }
   
+  // pragma MARK: Result<std::vector<NativeNotificationResponse>>
+  using Result_std__vector_NativeNotificationResponse__ = Result<std::vector<NativeNotificationResponse>>;
+  inline Result_std__vector_NativeNotificationResponse__ create_Result_std__vector_NativeNotificationResponse__(const std::vector<NativeNotificationResponse>& value) noexcept {
+    return Result<std::vector<NativeNotificationResponse>>::withValue(value);
+  }
+  inline Result_std__vector_NativeNotificationResponse__ create_Result_std__vector_NativeNotificationResponse__(const std::exception_ptr& error) noexcept {
+    return Result<std::vector<NativeNotificationResponse>>::withError(error);
+  }
+
   // pragma MARK: std::function<void(const PedometerResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const PedometerResult&)>`.

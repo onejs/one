@@ -4,7 +4,7 @@
  * Provides type-safe search param parsing and validation with support for
  * Zod, Valibot, and custom validation functions.
  */
-import { type StandardSchemaV1 } from './standardSchema';
+import { type StandardSchemaV1 } from './standardSchema.js';
 /**
  * Standard Schema interface (from standardschema.dev), used by Zod, Valibot,
  * ArkType and others for interop.

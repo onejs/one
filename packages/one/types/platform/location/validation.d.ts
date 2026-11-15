@@ -1,4 +1,4 @@
-import type { LocationRegion } from '../specs/OneLocation.nitro';
+import type { LocationRegion } from '../specs/OneLocation.nitro.js';
 export declare function assertRegion(region: unknown, verb: string): asserts region is LocationRegion;
 export declare function assertIdentifier(identifier: unknown, verb: string): asserts identifier is string;
 export declare function assertRegionListener(listener: unknown, verb: string): asserts listener is (region: LocationRegion) => void;

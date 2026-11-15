@@ -1,7 +1,56 @@
 import SwiftUI
 import UIKit
 
+final class OneNativeSlotLayoutHost {
+  weak var view: UIView?
+}
+
+private struct OneNativeSlotLayoutHostKey: EnvironmentKey {
+  static let defaultValue: OneNativeSlotLayoutHost? = nil
+}
+
+private struct OneNativeSlotScrollingKey: EnvironmentKey {
+  static let defaultValue = false
+}
+
+extension EnvironmentValues {
+  var oneNativeSlotLayoutHost: OneNativeSlotLayoutHost? {
+    get { self[OneNativeSlotLayoutHostKey.self] }
+    set { self[OneNativeSlotLayoutHostKey.self] = newValue }
+  }
+
+  var oneNativeSlotScrolling: Bool {
+    get { self[OneNativeSlotScrollingKey.self] }
+    set { self[OneNativeSlotScrollingKey.self] = newValue }
+  }
+}
+
+@available(iOS 18, *)
+private struct OneNativeSlotScrollTracking: ViewModifier {
+  @Environment(\.oneNativeSlotScrolling) private var ancestorScrolling
+  @State private var scrolling = false
+
+  func body(content: Content) -> some View {
+    content
+      .environment(\.oneNativeSlotScrolling, ancestorScrolling || scrolling)
+      .onScrollPhaseChange { _, phase in
+        scrolling = phase != .idle
+      }
+  }
+}
+
+extension View {
+  @ViewBuilder func oneNativeSlotScrollTracking() -> some View {
+    if #available(iOS 18, *) {
+      modifier(OneNativeSlotScrollTracking())
+    } else {
+      self
+    }
+  }
+}
+
 struct OneNativeSlot: UIViewRepresentable {
+  @Environment(\.oneNativeSlotScrolling) private var scrolling
   enum Mode { case fill, passive, presented }
   let content: UIView
   let mode: Mode
@@ -18,14 +67,20 @@ struct OneNativeSlot: UIViewRepresentable {
   func updateUIView(_ view: Container, context: Context) {
     if view.content !== content {
       // a recycled react view can already sit in another slot, so only release
-      // the previous content while this slot still holds it.
-      if view.content.superview === view { view.content.removeFromSuperview() }
+      // the previous content while this slot still holds it. a live slot still
+      // referencing it takes it over, so the release cannot strand its row blank.
+      if view.content.superview === view {
+        let previous = view.content
+        previous.removeFromSuperview()
+        Container.rehomeContent(previous, excluding: view)
+      }
       view.content = content
     }
     view.mode = mode
     view.layoutHost = layoutHost
     view.onLayout = onLayout
     view.onWindowChange = onWindowChange
+    view.scrolling = scrolling
     view.isUserInteractionEnabled = mode != .passive
     view.accessibilityElementsHidden = mode == .passive
     view.claimContent()
@@ -39,21 +94,84 @@ struct OneNativeSlot: UIViewRepresentable {
   }
   static func dismantleUIView(_ view: Container, coordinator: ()) {
     view.onLayout = nil
-    if view.content.superview === view { view.content.removeFromSuperview() }
+    // swiftui can update this slot after its replacement mounted, handing the
+    // content back here; hand it to a live slot on the way out instead of
+    // orphaning the replacement's row.
+    if view.content.superview === view {
+      view.content.removeFromSuperview()
+      Container.rehomeContent(view.content, excluding: view)
+    }
   }
 
   final class Container: UIView {
-    var content: UIView
+    // containers still referencing each content view, so a release can hand
+    // content to a live container instead of orphaning it. entries hold weak
+    // references and compact on access.
+    private final class WeakContainer {
+      weak var container: Container?
+      init(_ container: Container) { self.container = container }
+    }
+    private static var containersByContent = [ObjectIdentifier: [WeakContainer]]()
+
+    private static func track(_ container: Container, content: UIView) {
+      let key = ObjectIdentifier(content)
+      var boxes = (containersByContent[key] ?? []).filter { $0.container != nil }
+      if !boxes.contains(where: { $0.container === container }) {
+        boxes.append(WeakContainer(container))
+      }
+      containersByContent[key] = boxes
+    }
+
+    private static func untrack(_ container: Container, content: UIView) {
+      let key = ObjectIdentifier(content)
+      guard let boxes = containersByContent[key] else { return }
+      let kept = boxes.filter { $0.container != nil && $0.container !== container }
+      if kept.isEmpty { containersByContent.removeValue(forKey: key) }
+      else { containersByContent[key] = kept }
+    }
+
+    // mount parentless content in another live on-window container referencing
+    // it, so a teardown releasing content cannot strand the replacement blank.
+    // only swiftui-side releases rehome: fabric recycles unmounted views in the
+    // same transaction and asserts they have no superview, so composition
+    // teardown leaves content parentless.
+    static func rehomeContent(_ content: UIView, excluding: Container) {
+      guard content.superview == nil else { return }
+      let key = ObjectIdentifier(content)
+      guard let boxes = containersByContent[key] else { return }
+      containersByContent[key] = boxes.filter { $0.container != nil }
+      for box in boxes {
+        guard let other = box.container, other !== excluding else { continue }
+        guard other.content === content, other.window != nil else { continue }
+        other.claimContent()
+        other.setNeedsLayout()
+        return
+      }
+    }
+
+    var content: UIView {
+      didSet {
+        reportedFrame = nil
+        if oldValue !== content {
+          Self.untrack(self, content: oldValue)
+          Self.track(self, content: content)
+        }
+      }
+    }
     var mode = Mode.passive
     weak var layoutHost: UIView?
     var onLayout: ((CGRect) -> Void)?
     var onWindowChange: ((ObjectIdentifier, Bool) -> Void)?
+    var scrolling = false
+    private var reportedFrame: CGRect?
     private var hasWindow = false
     init(content: UIView) {
       self.content = content
       super.init(frame: .zero)
+      Self.track(self, content: content)
       claimContent()
     }
+    deinit { Self.untrack(self, content: content) }
     required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
     // swiftUI can update a slot it is about to tear down after its replacement
@@ -88,6 +206,10 @@ struct OneNativeSlot: UIViewRepresentable {
     override func layoutSubviews() {
       super.layoutSubviews()
       guard mode != .passive, window != nil, bounds.width > 0, bounds.height > 0 else { return }
+      content.frame = bounds
+      // scrolling moves existing rows without changing their bounds. publish their
+      // new origins once idle, but still size newly materialized lazy rows.
+      if scrolling, reportedFrame?.size == bounds.size { return }
       if mode == .presented { onLayout?(CGRect(origin: .zero, size: bounds.size)) }
       else if let layoutHost, let hostWindow = layoutHost.window, let myWindow = window {
         let frame: CGRect
@@ -98,9 +220,9 @@ struct OneNativeSlot: UIViewRepresentable {
           let inHostWindow = myWindow.convert(inMyWindow, to: hostWindow)
           frame = layoutHost.convert(inHostWindow, from: hostWindow)
         }
+        reportedFrame = frame
         onLayout?(frame)
       }
-      content.frame = bounds
     }
   }
 }

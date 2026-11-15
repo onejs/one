@@ -18,7 +18,7 @@ public extension NativeContentInput {
   /**
    * Create a new instance of `NativeContentInput`.
    */
-  init(title: String?, subtitle: String?, body: String?, data: AnyMap?, sound: Bool?, badge: Double?, categoryIdentifier: String?) {
+  init(title: String?, subtitle: String?, body: String?, data: AnyMap?, sound: Bool?, soundName: String?, badge: Double?, categoryIdentifier: String?) {
     self.init({ () -> bridge.std__optional_std__string_ in
       if let __unwrappedValue = title {
         return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
@@ -46,6 +46,12 @@ public extension NativeContentInput {
     }(), { () -> bridge.std__optional_bool_ in
       if let __unwrappedValue = sound {
         return bridge.create_std__optional_bool_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_std__string_ in
+      if let __unwrappedValue = soundName {
+        return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
       } else {
         return .init()
       }
@@ -124,6 +130,18 @@ public extension NativeContentInput {
     }()
   }
   
+  @inline(__always)
+  var soundName: String? {
+    return { () -> String? in
+      if bridge.has_value_std__optional_std__string_(self.__soundName) {
+        let __unwrapped = bridge.get_std__optional_std__string_(self.__soundName)
+        return String(__unwrapped)
+      } else {
+        return nil
+      }
+    }()
+  }
+
   @inline(__always)
   var badge: Double? {
     return { () -> Double? in

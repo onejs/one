@@ -1,6 +1,6 @@
 import { type ColorValue, type ViewProps } from 'react-native';
-import type { OneNativeStyle } from './generated/controlTypes';
-import { type UnitPoint } from './listTypes';
+import type { OneNativeStyle } from './generated/controlTypes.js';
+import { type UnitPoint } from './listTypes.js';
 export interface CanvasPoint {
     x: number;
     y: number;

@@ -35,7 +35,10 @@ data class SpeechSynthesisUtterance(
   val voice: String?,
   @DoNotStrip
   @Keep
-  val volume: Double?
+  val volume: Double?,
+  @DoNotStrip
+  @Keep
+  val useApplicationAudioSession: Boolean?
 ) {
   /* primary constructor */
 
@@ -48,6 +51,7 @@ data class SpeechSynthesisUtterance(
       && Objects.deepEquals(this.rate, other.rate)
       && Objects.deepEquals(this.voice, other.voice)
       && Objects.deepEquals(this.volume, other.volume)
+      && Objects.deepEquals(this.useApplicationAudioSession, other.useApplicationAudioSession)
   }
 
   override fun hashCode(): Int {
@@ -57,7 +61,8 @@ data class SpeechSynthesisUtterance(
       pitch,
       rate,
       voice,
-      volume
+      volume,
+      useApplicationAudioSession
     ).contentDeepHashCode()
   }
 
@@ -69,8 +74,8 @@ data class SpeechSynthesisUtterance(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(text: String, language: String?, pitch: Double?, rate: Double?, voice: String?, volume: Double?): SpeechSynthesisUtterance {
-      return SpeechSynthesisUtterance(text, language, pitch, rate, voice, volume)
+    private fun fromCpp(text: String, language: String?, pitch: Double?, rate: Double?, voice: String?, volume: Double?, useApplicationAudioSession: Boolean?): SpeechSynthesisUtterance {
+      return SpeechSynthesisUtterance(text, language, pitch, rate, voice, volume, useApplicationAudioSession)
     }
   }
 }

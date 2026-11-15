@@ -1,3 +1,4 @@
+#if ONE_GROUP_MEDIA
 import AVFoundation
 import Foundation
 import MediaPlayer
@@ -1056,3 +1057,5 @@ final class HybridOneAudio: HybridOneAudioSpec {
     return promise
   }
 }
+
+#endif

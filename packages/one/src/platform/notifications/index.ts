@@ -130,6 +130,10 @@ function getLastResponse(): NotificationResponse | null {
 
 function clearLastResponse(): void {}
 
+function getPendingResponses(): NotificationResponse[] { return [] }
+
+function acknowledgeResponse(_identifier: string): void {}
+
 async function schedule(_request: NotificationScheduleInput): Promise<string> {
   throw new Error('Notifications.schedule needs an iOS or Android build')
 }
@@ -169,6 +173,8 @@ export const Notifications = Object.freeze({
   setHandler,
   getLastResponse,
   clearLastResponse,
+  getPendingResponses,
+  acknowledgeResponse,
   schedule,
   cancelScheduled,
   cancelAllScheduled,

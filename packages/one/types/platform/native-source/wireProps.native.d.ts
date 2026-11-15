@@ -1,4 +1,4 @@
-import { type NativeSourceViewWires } from './wire.native';
+import { type NativeSourceViewWires } from './wire.native.js';
 export declare const RESYNC_EVENT = "$resync";
 interface Sent {
     seq: number;

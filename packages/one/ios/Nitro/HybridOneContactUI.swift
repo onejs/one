@@ -1,3 +1,4 @@
+#if ONE_GROUP_CONTACTS
 import Contacts
 import ContactsUI
 import NitroModules
@@ -205,3 +206,5 @@ final class OneContactUIDelegate: NSObject, CNContactViewControllerDelegate {
   weak var owner: HybridOneContactUI?
   func contactViewController(_ viewController: CNContactViewController, didCompleteWith contact: CNContact?) { owner?.finish(contact) }
 }
+
+#endif

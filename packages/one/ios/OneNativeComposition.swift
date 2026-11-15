@@ -240,9 +240,11 @@ final class OneNativeHostInsets: ObservableObject {
 private struct OneNativeHostRoot: View {
   @ObservedObject var insets: OneNativeHostInsets
   let content: AnyView
+  let layoutHost: OneNativeSlotLayoutHost
 
   var body: some View {
     content.contentMargins(.bottom, insets.bottom > 0 ? insets.bottom : nil, for: .scrollContent)
+      .environment(\.oneNativeSlotLayoutHost, layoutHost)
   }
 }
 
@@ -262,11 +264,30 @@ private struct OneNativeHostRoot: View {
   private weak var compositionParent: OneNativeCompositionParent?
   private var active = false
   private let hostInsets = OneNativeHostInsets()
+  private let slotLayoutHost = OneNativeSlotLayoutHost()
 
   public var compositionActive: Bool { active }
 
-  // a full-screen swift app keeps the screen insets; embedded controls use their box.
-  @nonobjc var hostingScreenInsets: Bool { false }
+  // a list whose box is its screen's whole view is that screen's content, as a list in a
+  // hosting controller pushed on a navigation controller is: it keeps the screen insets, so
+  // its rows start below the bars and scroll beneath them, and the bars follow it. other
+  // containers, and a list in a smaller box, lay out in their box and inset themselves.
+  @nonobjc var hostingScreenInsets: Bool { showsList && fillsScreen }
+
+  // a list, or a container decorating one (an overlay wrapping it in a view slot).
+  @nonobjc private var showsList: Bool {
+    self is OneNativeListView || (childViews.first as? OneNativeContainerView)?.showsList == true
+  }
+
+  @nonobjc private var fillsScreen: Bool {
+    var responder: UIResponder? = next
+    while responder != nil && !(responder is UIViewController) { responder = responder?.next }
+    guard let window, let screen = (responder as? UIViewController)?.view else { return false }
+    let box = convert(bounds, to: window)
+    let whole = screen.convert(screen.bounds, to: window)
+    return abs(box.minY - whole.minY) < 1 && abs(box.maxY - whole.maxY) < 1
+      && abs(box.minX - whole.minX) < 1 && abs(box.maxX - whole.maxX) < 1
+  }
 
   @nonobjc var containsComposedFocus: Bool {
     childViews.contains { ($0 as? OneNativeFocusedContent)?.containsComposedFocus == true }
@@ -379,6 +400,16 @@ private struct OneNativeHostRoot: View {
     published.items.removeAll { $0.sourceID == id }
   }
 
+  public func refreshSlotLayout() {
+    for child in childViews {
+      if let slot = child as? OneNativeContainerSlotView {
+        slot.content?.superview?.setNeedsLayout()
+      } else if let container = child as? OneNativeContainerView {
+        container.refreshSlotLayout()
+      }
+    }
+  }
+
   public func compositionContent() -> AnyView { wrap(published, false) }
 
   public func composeInto(_ parent: OneNativeCompositionParent) {
@@ -431,8 +462,9 @@ private struct OneNativeHostRoot: View {
     let overlap = presentedSheetBottomOverlap()
     if hostInsets.bottom != overlap { hostInsets.bottom = overlap }
     if controller == nil {
+      slotLayoutHost.view = self
       controller = OneNativeHostingController(
-        rootView: AnyView(OneNativeHostRoot(insets: hostInsets, content: wrap(published, true))),
+        rootView: AnyView(OneNativeHostRoot(insets: hostInsets, content: wrap(published, true), layoutHost: slotLayoutHost)),
         screenInsets: hostingScreenInsets
       )
     }
@@ -455,6 +487,43 @@ private struct OneNativeHostRoot: View {
     controller?.presentedViewController?.dismiss(animated: false)
     controller?.detach()
     controller = nil
+  }
+}
+
+// a destination can stay visible after swiftui removes its presenting root from the window.
+@objcMembers public class OneNativeMarkerView: OneNativeContainerView {
+  private var appearances = 0
+  private var lifetime = 0
+
+  public override func propagateActive(_ active: Bool) {}
+
+  private func changeAppearances(_ delta: Int, lifetime: Int) {
+    guard lifetime == self.lifetime else { return }
+    appearances = max(0, appearances + delta)
+    super.propagateActive(appearances > 0)
+  }
+
+  private func clearVisibility() {
+    lifetime += 1
+    appearances = 0
+    super.propagateActive(false)
+  }
+
+  public override func compositionContent() -> AnyView {
+    let lifetime = self.lifetime
+    return AnyView(super.compositionContent()
+      .onAppear { [weak self] in self?.changeAppearances(1, lifetime: lifetime) }
+      .onDisappear { [weak self] in self?.changeAppearances(-1, lifetime: lifetime) })
+  }
+
+  public override func decompose() {
+    clearVisibility()
+    super.decompose()
+  }
+
+  public override func reset() {
+    clearVisibility()
+    super.reset()
   }
 }
 

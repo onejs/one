@@ -16,4 +16,13 @@ object OneStorageDirectory {
         directory.mkdirs()
         return directory.absolutePath
     }
+
+    @JvmStatic
+    @DoNotStrip
+    fun zeroPath(): String? {
+        val context = NitroModules.applicationContext ?: return null
+        val directory = File(context.noBackupFilesDir, "one-zero")
+        check(directory.isDirectory || directory.mkdirs()) { "Native Zero directory could not be created" }
+        return directory.absolutePath
+    }
 }

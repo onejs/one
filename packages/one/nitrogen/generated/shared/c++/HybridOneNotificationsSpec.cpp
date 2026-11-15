@@ -37,6 +37,8 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("presentNotification", &HybridOneNotificationsSpec::presentNotification);
       prototype.registerHybridMethod("getLastNotificationResponse", &HybridOneNotificationsSpec::getLastNotificationResponse);
       prototype.registerHybridMethod("clearLastNotificationResponse", &HybridOneNotificationsSpec::clearLastNotificationResponse);
+      prototype.registerHybridMethod("getPendingNotificationResponses", &HybridOneNotificationsSpec::getPendingNotificationResponses);
+      prototype.registerHybridMethod("acknowledgeNotificationResponse", &HybridOneNotificationsSpec::acknowledgeNotificationResponse);
     });
   }
 

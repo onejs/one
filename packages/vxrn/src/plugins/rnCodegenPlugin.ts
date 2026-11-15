@@ -11,8 +11,12 @@ export function rnCodegenPlugin(options?: { projectRoot?: string }): Plugin {
     enforce: 'pre',
     transform: {
       order: 'pre',
+      filter: {
+        id: /\.[cm]?[jt]sx?$/,
+        code: /codegenNativeComponent|TurboModuleRegistry/,
+      },
       handler(code: string, id: string) {
-        return transformReactNativeCodegen(code, id, options?.projectRoot)
+        return transformReactNativeCodegen(code, id)
       },
     },
   } as Plugin

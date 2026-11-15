@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { dirname, join } from 'node:path'
 import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises'
 import { readJSON } from './fs'
 import { tmpdir } from 'node:os'
@@ -11,9 +11,10 @@ vi.mock('@vxrn/compiler', () => ({ transformSWC: vi.fn() }))
 vi.mock('@vxrn/vite-flow', () => ({ transformFlowBabel: vi.fn() }))
 
 import { transformSWC } from '@vxrn/compiler'
-import { builtInDepPatches } from '../patches/builtInDepPatches'
 import {
   type DepPatch,
+  type UserDepPatches,
+  applyBuiltInPatches,
   applyDependencyPatches,
   moduleToPnpmStorePattern,
 } from './patches'
@@ -339,35 +340,35 @@ describe('applyDependencyPatches', () => {
     warn.mockRestore()
   })
 
-  it('logs a throwing void TurboModule on both the old and 0.88 catch blocks', () => {
+  it('logs a throwing void TurboModule unless the app opts out of built-in patches', async () => {
     const path =
       'ReactCommon/react/nativemodule/core/platform/ios/ReactCommon/RCTTurboModule.mm'
     const logged =
       'RCTLogError(@"Exception in %s.%s: %@", moduleName, methodNameStr.c_str(), exception.reason);'
-    const older = `    @try {
+    const source = `    @try {
       [inv invokeWithTarget:strongModule];
     } @catch (NSException *exception) {
       // Void methods are always async, re-throw instead of converting to
       // JSError, same as the async branch in performMethodInvocation.
-      @throw exception;
+      @throw addModuleIdentityToException(exception, std::string{moduleName}, methodNameStr);
     } @finally {`
-    const current = older.replace(
-      '@throw exception;',
-      '@throw addModuleIdentityToException(exception, std::string{moduleName}, methodNameStr);'
-    )
-    const apply = (version: string, source: string) => {
-      const patch = builtInDepPatches.find(
-        (entry) => entry.module === 'react-native' && entry.patchFiles.version === version
-      )
-      const transform = patch?.patchFiles[path]
-      if (typeof transform !== 'function') throw new Error(version)
-      return transform(source)
+
+    const run = async (patches?: UserDepPatches) => {
+      const root = await mkdtemp(join(tmpDir, 'app-'))
+      const pkgDir = join(root, 'node_modules', 'react-native')
+      await mkdir(join(pkgDir, dirname(path)), { recursive: true })
+      await writeFile(join(pkgDir, 'package.json'), makePkg('react-native', '0.88.0'))
+      await writeFile(join(pkgDir, path), source)
+      await applyBuiltInPatches({ root, patches })
+      return readFile(join(pkgDir, path), 'utf8')
     }
 
-    expect(apply('>=0.86.0 <0.88.0', older)).toContain(logged)
-    expect(apply('>=0.86.0 <0.88.0', older)).not.toContain('@throw exception;')
-    expect(apply('>=0.88.0', current)).toContain(logged)
-    expect(apply('>=0.88.0', current)).not.toContain('@throw addModuleIdentityToException')
+    const patched = await run()
+    expect(patched).toContain(logged)
+    expect(patched).not.toContain('@throw addModuleIdentityToException')
+    expect(await run(false)).toBe(source)
+    expect(await run({ 'react-native': false })).toBe(source)
+    expect(await run({ 'react-native': { 'package.json': () => {} } })).toContain(logged)
   })
 
   // a patch is written to node_modules once and then read by every later build,

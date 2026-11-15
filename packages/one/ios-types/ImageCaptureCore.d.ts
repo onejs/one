@@ -410,11 +410,6 @@ export interface ICCameraDeviceDelegate {
 /** protocol ICCameraDeviceDownloadDelegate : NSObjectProtocol */
 export interface ICCameraDeviceDownloadDelegate {
     /**
-     * optional func didDownloadFile(_ file: ICCameraFile, error: (any Error)?, options: [String : Any] = [:], contextInfo: UnsafeMutableRawPointer?)
-     * @availability iOS 13.0+
-     */
-    "didDownloadFileErrorOptionsContextInfo"?: (arg0: ICCameraFile, arg1: (NativeError) | null, arg2: Record<string, unknown>, arg3: (SDKHandle) | null) => void;
-    /**
      * optional func didReceiveDownloadProgress(for file: ICCameraFile, downloadedBytes: off_t, maxBytes: off_t)
      * @availability iOS 13.0+
      */

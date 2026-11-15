@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import type { NavigationStackProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, DefaultToolbarItemProps } from './generated/containerTypes';
+import type { NavigationStackProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, DefaultToolbarItemProps } from './generated/containerTypes.js';
 declare function ToolbarMarker(_props: ToolbarProps): never;
 export declare function ToolbarContent(_props: ToolbarContentProps): never;
 export declare const Toolbar: typeof ToolbarMarker & {

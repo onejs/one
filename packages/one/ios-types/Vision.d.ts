@@ -9588,7 +9588,7 @@ export declare class VNRecognizedPoint extends VNDetectedPoint {
     };
 }
 /** struct VNRecognizedPointGroupKey */
-export type VNRecognizedPointGroupKey = "all" | "point3DGroupKeyAll" | "bodyLandmarkRegionKeyFace" | "bodyLandmarkRegionKeyTorso" | "bodyLandmarkRegionKeyLeftArm" | "bodyLandmarkRegionKeyRightArm" | "bodyLandmarkRegionKeyLeftLeg" | "bodyLandmarkRegionKeyRightLeg" | (string & {});
+export type VNRecognizedPointGroupKey = "bodyLandmarkRegionKeyFace" | "bodyLandmarkRegionKeyTorso" | "bodyLandmarkRegionKeyLeftArm" | "bodyLandmarkRegionKeyRightArm" | "bodyLandmarkRegionKeyLeftLeg" | "bodyLandmarkRegionKeyRightLeg" | "all" | "point3DGroupKeyAll" | (string & {});
 export declare const VNRecognizedPointGroupKey: {
     /**
      * static let bodyLandmarkRegionKeyFace: VNRecognizedPointGroupKey

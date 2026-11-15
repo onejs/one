@@ -3,6 +3,8 @@
 // release invalidation). loaded as a vitest setup file so every suite
 // starts with a fresh global; the installer is re-exported so tests can
 // restore it after removal.
+import Module, { createRequire } from 'node:module'
+import * as worklets from '../src/__mocks__/react-native-worklets'
 import { createMemorySyncFactory } from '../src/platform/syncMemoryHost'
 import type { NativeSyncHost } from '../src/platform/syncNative'
 
@@ -14,6 +16,14 @@ export function installMockNativeSync(): void {
 }
 
 installMockNativeSync()
+
+// compose requires its optional worklets peer, which a vitest alias cannot reach
+const require = createRequire(import.meta.url)
+const workletsPath = require.resolve('react-native-worklets')
+const workletsModule = new Module(workletsPath)
+workletsModule.exports = worklets
+workletsModule.loaded = true
+require.cache[workletsPath] = workletsModule
 
 // creates a handle whose native entry the test can write the way a native edit
 // does: the entry changes before the view's event reaches JS, and only the

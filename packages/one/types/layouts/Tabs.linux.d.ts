@@ -1,4 +1,4 @@
-export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<import("../types").PickPartial<Omit<any, "children" | "initialRouteName" | "layout" | "routeNamesChangeBehavior" | "router" | "screenLayout" | "screenListeners" | "screenOptions"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
+export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<import("../types.js").PickPartial<Omit<any, "children" | "initialRouteName" | "layout" | "routeNamesChangeBehavior" | "router" | "screenLayout" | "screenListeners" | "screenOptions"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
     children: React.ReactNode;
     layout?: ((props: {
         state: Readonly<{
@@ -187,7 +187,7 @@ export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<import
     }>, Action>>) | undefined;
     routeNamesChangeBehavior?: ('firstMatch' | 'lastUnhandled') | undefined;
 }, "children">, "ref"> & import("react").RefAttributes<unknown>> & {
-    Screen: import("react").ComponentType<import("../router/useScreens").ScreenProps<object, Readonly<{
+    Screen: import("./withLayoutContext.js").LayoutScreen<object, Readonly<{
         key: string;
         index: number;
         routeNames: string[];
@@ -195,10 +195,10 @@ export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<import
         routes: import("@react-navigation/routers").NavigationRoute<import("@react-navigation/routers").ParamListBase, string>[];
         type: string;
         stale: false;
-    }>, import("@react-navigation/core").EventMapBase>>;
+    }>, import("@react-navigation/core").EventMapBase>;
 } & {
-    Protected: import("react").FunctionComponent<import("..").ProtectedProps>;
-    Screen: import("react").ComponentType<import("../router/useScreens").ScreenProps<object, Readonly<{
+    Protected: import("react").FunctionComponent<import("../index.js").ProtectedProps>;
+    Screen: import("./withLayoutContext.js").LayoutScreen<object, Readonly<{
         key: string;
         index: number;
         routeNames: string[];
@@ -206,7 +206,7 @@ export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<import
         routes: import("@react-navigation/routers").NavigationRoute<import("@react-navigation/routers").ParamListBase, string>[];
         type: string;
         stale: false;
-    }>, import("@react-navigation/core").EventMapBase>>;
+    }>, import("@react-navigation/core").EventMapBase>;
 };
 export default Tabs;
 //# sourceMappingURL=Tabs.linux.d.ts.map

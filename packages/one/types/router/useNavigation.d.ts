@@ -1,5 +1,5 @@
 import { type NavigationProp, type ParamListBase } from '@react-navigation/native';
-import { type RouteNode } from './Route';
+import { type RouteNode } from './Route.js';
 /**
  * Returns the React Navigation navigation object for the current route.
  * Provides low-level access to navigation actions, events, and screen options.

@@ -1,4 +1,4 @@
-import type { AppIconEntry } from './types';
+import type { AppIconEntry } from './types.js';
 export type { AppIconEntry };
 declare function isSupported(): Promise<boolean>;
 declare function getCurrentName(): Promise<string | undefined>;

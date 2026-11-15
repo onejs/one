@@ -54,7 +54,7 @@ export const modifiers = [
     swiftType: 'WebView.ElementFullscreenBehavior',
     module: '_WebKit_SwiftUI',
   },
-  { name: 'webViewContentBackground', type: 'Visibility', module: 'SwiftUICore' },
+  { name: 'webViewContentBackground', type: 'Visibility', module: 'SwiftUICore', framework: 'WebKit' },
 ] as const
 
 // sdk modifiers one carries past swiftui, chained after the sdk call with its first
@@ -1103,7 +1103,7 @@ export const components = [
       types: { selection: 'Set<' },
       children: 'content',
       initial: { listStyle: '"automatic"' },
-      modifiers: ['.oneNativeListStyle(@listStyle)'],
+      modifiers: ['.oneNativeListStyle(@listStyle)', '.oneNativeSlotScrollTracking()'],
       layout: 'container',
       scheme: true,
     },
@@ -1138,6 +1138,7 @@ export const components = [
       aliases: { axes: { both: '[.horizontal, .vertical]' } },
       children: 'content',
       childModifier: '.scrollTargetLayout()',
+      modifiers: ['.oneNativeSlotScrollTracking()'],
       layout: 'container',
       scheme: true,
     },
@@ -1725,6 +1726,29 @@ export const components = [
           '{ id: string; kind: string; x: Double; y: Double; width: Double; height: Double; marginTop: Double; marginLeft: Double; marginBottom: Double; marginRight: Double; isActive: boolean }[]',
       },
     },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'children',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'yoga',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    // a Yoga container that plays a haptic when a tap inside it ends (HapticTap).
+    // the tap is recognized on the UI thread beside react native's own touch
+    // handling, so the feedback never waits on JavaScript. a scroll, a long
+    // press or a tap that stops a fling plays nothing. feedback is 'selection'
+    // or an impact style, validated in JS.
+    name: 'OneNativeHapticTap',
+    publicName: 'HapticTap',
+    props: {
+      feedback: 'string',
+    },
+    events: {},
     layout: { kind: 'container' },
     slots: [
       {

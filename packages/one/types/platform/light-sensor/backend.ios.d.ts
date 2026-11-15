@@ -1,4 +1,4 @@
-import type { LightSensorMeasurement } from './types';
+import type { LightSensorMeasurement } from './types.js';
 declare function isAvailable(): boolean;
 declare function setUpdateInterval(_intervalMs: number): void;
 declare function addListener(_listener: (event: LightSensorMeasurement) => void): () => void;

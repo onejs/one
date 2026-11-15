@@ -20,7 +20,10 @@ import java.util.Objects
 data class SpeechStartOptions(
   @DoNotStrip
   @Keep
-  val lang: String?
+  val lang: String?,
+  @DoNotStrip
+  @Keep
+  val contextualStrings: Array<String>?
 ) {
   /* primary constructor */
 
@@ -28,11 +31,13 @@ data class SpeechStartOptions(
     if (this === other) return true
     if (other !is SpeechStartOptions) return false
     return Objects.deepEquals(this.lang, other.lang)
+      && Objects.deepEquals(this.contextualStrings, other.contextualStrings)
   }
 
   override fun hashCode(): Int {
     return arrayOf<Any?>(
-      lang
+      lang,
+      contextualStrings
     ).contentDeepHashCode()
   }
 
@@ -44,8 +49,8 @@ data class SpeechStartOptions(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(lang: String?): SpeechStartOptions {
-      return SpeechStartOptions(lang)
+    private fun fromCpp(lang: String?, contextualStrings: Array<String>?): SpeechStartOptions {
+      return SpeechStartOptions(lang, contextualStrings)
     }
   }
 }

@@ -1,4 +1,4 @@
-import type { NativeCNKeyDescriptor } from '../specs/OneContactUI.nitro';
+import type { NativeCNKeyDescriptor } from '../specs/OneContactUI.nitro.js';
 export type CNKeyDescriptor = NativeCNKeyDescriptor;
 export interface CNContactValue {
     readonly identifier: string;

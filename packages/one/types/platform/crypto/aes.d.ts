@@ -1,4 +1,4 @@
-import type { AESDecryptOptions, AESEncryptOptions, AESKeySize, AESSealedDataConfig, BinaryInput } from './types';
+import type { AESDecryptOptions, AESEncryptOptions, AESKeySize, AESSealedDataConfig, BinaryInput } from './types.js';
 export type { AESDecryptOptions, AESEncryptOptions, AESKeySize, AESSealedDataConfig, BinaryInput };
 export interface AesEngine {
     seal(key: Uint8Array<ArrayBuffer>, iv: Uint8Array<ArrayBuffer>, plaintext: Uint8Array<ArrayBuffer>, additionalData: Uint8Array<ArrayBuffer> | undefined, tagLength: number): Promise<Uint8Array<ArrayBuffer>>;

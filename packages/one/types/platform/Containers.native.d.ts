@@ -1,10 +1,10 @@
-import { type CanvasProps } from './canvas';
-import { type LazyHStackProps, type LazyVStackProps, type ListProps, type OutlineGroupProps, type TableProps, type ScrollViewProps, type ScrollViewReaderProps } from './listTypes';
-import { type ControlGroupProps, type DisclosureGroupProps, type DividerProps, type GroupProps, type GroupBoxProps, type ViewThatFitsProps, type GlassEffectContainerProps, type GeometryReaderProps, type TimelineViewProps, type LinkProps, type OverlayContentProps, type OverlayProps, type ViewSlotProps, type SwipeActionsActionsProps, type SwipeActionsProps } from './groupTypes';
-import { type ButtonProps, type FormProps, type GlassProps, type HStackProps, type LabeledContentProps, type SectionProps, type SlotProps, type SpacerProps, type VStackProps, type ZStackProps } from './generated/containerTypes';
-import { type OneNativeStyle } from './generated/controlTypes';
-import { InsideContainer, assertOneNativeChildren } from './containerChildren';
-import { type GridProps, type GridRowProps, type LazyHGridProps, type LazyVGridProps } from './gridTypes';
+import { type CanvasProps } from './canvas.js';
+import { type LazyHStackProps, type LazyVStackProps, type ListProps, type OutlineGroupProps, type TableProps, type ScrollViewProps, type ScrollViewReaderProps } from './listTypes.js';
+import { type ControlGroupProps, type DisclosureGroupProps, type DividerProps, type GroupProps, type GroupBoxProps, type ViewThatFitsProps, type GlassEffectContainerProps, type GeometryReaderProps, type TimelineViewProps, type LinkProps, type OverlayContentProps, type OverlayProps, type ViewSlotProps, type SwipeActionsActionsProps, type SwipeActionsProps } from './groupTypes.js';
+import { type ButtonProps, type FormProps, type GlassProps, type HStackProps, type LabeledContentProps, type SectionProps, type SlotProps, type SpacerProps, type VStackProps, type ZStackProps } from './generated/containerTypes.js';
+import { type OneNativeStyle } from './generated/controlTypes.js';
+import { InsideContainer, assertOneNativeChildren } from './containerChildren.js';
+import { type GridProps, type GridRowProps, type LazyHGridProps, type LazyVGridProps } from './gridTypes.js';
 export { InsideContainer, assertOneNativeChildren };
 export declare function swiftStyleProps(swiftStyle: OneNativeStyle | undefined): {
     swiftStyle: Readonly<{

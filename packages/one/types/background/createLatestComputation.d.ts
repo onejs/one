@@ -1,4 +1,4 @@
-import type { BackgroundComputation, BackgroundResult, BackgroundState } from './backgroundContract';
+import type { BackgroundComputation, BackgroundResult, BackgroundState } from './backgroundContract.js';
 export declare function createLatestComputation<Input, Output>(definition: BackgroundComputation<Input, Output>, changed: (state: BackgroundState<Output>) => void): {
     update(input: Input): void;
     getCurrent: () => BackgroundResult<Output> | null;

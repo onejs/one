@@ -1,6 +1,9 @@
 import { searchForWorkspaceRoot, type ResolvedConfig } from 'vite'
 import { spawn } from 'node:child_process'
-import { resolve } from 'node:path'
+import { existsSync, readFileSync } from 'node:fs'
+import { dirname, join, posix, resolve } from 'node:path'
+import workspace from 'resolve-workspace-root'
+import { globSync as globPackagesSync } from 'tinyglobby'
 import micromatch from 'micromatch'
 import { getDefaultConfig } from '@react-native/metro-config'
 
@@ -9,6 +12,7 @@ import { getDefaultConfig } from '@react-native/metro-config'
 import type { loadConfig as loadConfigT } from 'metro'
 
 import { findUserBabelConfig } from '@vxrn/compiler'
+import { isBunIosEngine } from '@vxrn/utils'
 import {
   desktopReactNativeFile,
   requireOnePackageRoot,
@@ -27,7 +31,8 @@ const expoEnvAdditionalExts = ['env', 'local', 'development']
 const metroSourceExts = ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs', 'swift', 'kt']
 const watchmanResponsivePromises = new Map<string, Promise<boolean>>()
 let didWarnAboutWatchmanFallback = false
-const rootIndexBundleRequestPattern = /^(https?:\/\/[^/]+)?\/index\.bundle(?=$|[?#])/
+// the index bundle, its source map and its asset graph name the same entry.
+const rootIndexBundleRequestPattern = /^(https?:\/\/[^/]+)?\/index\.(bundle|map|assets)(?=$|[?#])/
 // expo prebuild writes an AppDelegate (ios) and MainApplication (android) whose
 // debug bundle url is `.expo/.virtual-metro-entry`. expo maps it to the main
 // entry through server.rewriteRequestUrl (see @expo/metro-config
@@ -55,9 +60,41 @@ function enforceWorkspaceVisibility(
   const workspaceRoot = searchForWorkspaceRoot(projectRoot)
   if (workspaceRoot === projectRoot) return config
 
+  let packages: string[] = []
+  // match expo/metro-config's getWatchFolders discovery and invalid-manifest handling.
+  try {
+    packages = (workspace.getWorkspaceGlobs(workspaceRoot) ?? [])
+      .flatMap((pattern) =>
+        globPackagesSync(posix.join(pattern, 'package.json'), {
+          cwd: workspaceRoot,
+          absolute: true,
+          expandDirectories: false,
+          caseSensitiveMatch:
+            process.platform !== 'darwin' && process.platform !== 'win32',
+          ignore: ['**/@(Carthage|Pods|node_modules)/**'],
+        })
+      )
+      .filter((manifest) => {
+        try {
+          JSON.parse(readFileSync(manifest, 'utf8'))
+          return true
+        } catch {
+          return false
+        }
+      })
+      .map((manifest) => dirname(manifest))
+  } catch {
+    packages = []
+  }
+
   return {
     ...config,
-    watchFolders: [...new Set([...(config.watchFolders ?? []), workspaceRoot])],
+    watchFolders: [
+      ...new Set([
+        ...(config.watchFolders ?? []),
+        ...(packages.length ? [resolve(workspaceRoot, 'node_modules'), ...packages] : []),
+      ]),
+    ],
     resolver: {
       ...config.resolver,
       nodeModulesPaths: [
@@ -115,7 +152,12 @@ function oneRootFor(projectRoot: string, platform: DesktopPlatform) {
 
 function getPlatformFromBundleUrl(url: string): 'ios' | 'android' | 'macos' | 'linux' {
   const platform = url.match(/[?&]platform=(ios|android|macos|linux)(?:&|$)/)?.[1]
-  if (platform === 'ios' || platform === 'android' || platform === 'macos' || platform === 'linux')
+  if (
+    platform === 'ios' ||
+    platform === 'android' ||
+    platform === 'macos' ||
+    platform === 'linux'
+  )
     return platform
   return 'ios'
 }
@@ -133,7 +175,7 @@ function rewriteMainModuleBundleUrl(
   if (rootIndexBundleRequestPattern.test(url)) {
     return url.replace(
       rootIndexBundleRequestPattern,
-      `$1/${resolvedMainModulePath}.bundle`
+      `$1/${resolvedMainModulePath}.$2`
     )
   }
   return url.replace(
@@ -149,8 +191,51 @@ function isMainModuleBundleRequest(url: string) {
   )
 }
 
+// production bundles keep the engine's own Promise. react native keeps it only
+// when hermes reports one and otherwise installs the `promise` library, whose
+// every reaction hops through setImmediate and a native microtask call; on the
+// bun engine that is most of the js thread's microtask work. dev runs hermes.
+function isReactNativePromisePolyfill(
+  context: { dev: boolean; originModulePath: string },
+  moduleName: string,
+  projectRoot: string,
+  platform: string | null
+) {
+  return (
+    !context.dev &&
+    isBunIosEngine(projectRoot, platform) &&
+    /(^|[\\/])polyfillPromise(\.js)?$/.test(moduleName) &&
+    /(^|[\\/])react-native[\\/]/.test(context.originModulePath)
+  )
+}
+
 function isBareSpecifier(name: string) {
   return name !== '' && !name.startsWith('.') && !name.startsWith('/')
+}
+
+// metro reports a missing module as UnableToResolveError, or as
+// metro-resolver's FailedToResolveNameError whose dirPaths/extraPaths
+// pair identifies it. duck-type both because metro itself loads from
+// the app and stays unimported here.
+function isUnresolvableModule(error: unknown) {
+  if (!error || typeof error !== 'object') return false
+  if ((error as { type?: unknown }).type === 'UnableToResolveError') return true
+  const message = (error as { message?: unknown }).message
+  if (typeof message === 'string' && message.startsWith('Unable to resolve module')) return true
+  const { dirPaths, extraPaths } = error as { dirPaths?: unknown; extraPaths?: unknown }
+  return Array.isArray(dirPaths) && Array.isArray(extraPaths)
+}
+
+// whether node-style lookup from the app root finds the package at all,
+// following the same upward node_modules walk a missing copy needs.
+function rootHasPackage(projectRoot: string, packageName: string) {
+  let directory = projectRoot
+  while (true) {
+    if (existsSync(join(directory, 'node_modules', packageName, 'package.json'))) return true
+    const parent = dirname(directory)
+    if (parent === directory) return false
+    directory = parent
+  }
 }
 
 // metro parses `/one/metro-entry.bundle` to the entry `./one/metro-entry`
@@ -191,12 +276,22 @@ function enforcePackageResolution(
           request.startsWith('@') ? request.indexOf('/') + 1 : 0
         )
         const packageName = packageEnd === -1 ? request : request.slice(0, packageEnd)
-        const resolutionContext =
-          isBareSpecifier(request) && dedupedPackages.has(packageName)
-            ? { ...context, originModulePath: rootOrigin }
-            : context
         const resolveRequest = innerResolveRequest || context.resolveRequest
-        return resolveRequest(resolutionContext, request, platform)
+        if (!isBareSpecifier(request) || !dedupedPackages.has(packageName)) {
+          return resolveRequest(context, request, platform)
+        }
+        try {
+          return resolveRequest({ ...context, originModulePath: rootOrigin }, request, platform)
+        } catch (error) {
+          // under an isolated install the app may not list a package one
+          // depends on; the copy beside the importing package then wins over
+          // failing the bundle. an app that lists the package keeps that
+          // single copy even when one subpath fails, so no second copy
+          // splits the deduped registration.
+          if (!isUnresolvableModule(error)) throw error
+          if (rootHasPackage(projectRoot, packageName)) throw error
+          return resolveRequest(context, request, platform)
+        }
       },
     },
   }
@@ -365,23 +460,16 @@ export async function buildMetroConfigInputFromViteConfig(
       blockList,
       sourceExts: metroSourceExts,
       platforms: [
-        ...new Set([
-          ...(_defaultConfig?.resolver?.platforms ?? []),
-          'macos',
-          'linux',
-        ]),
+        ...new Set([...(_defaultConfig?.resolver?.platforms ?? []), 'macos', 'linux']),
       ],
       resolveRequest: (context, moduleName, platform) => {
+        if (isReactNativePromisePolyfill(context, moduleName, projectRoot, platform)) return { type: 'empty' }
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
 
         if (excludeModules && excludeModules.length > 0) {
           if (micromatch.isMatch(moduleName, excludeModules)) {
-            return origResolveRequestFn(
-              context,
-              '@vxrn/utils/empty',
-              platform
-            )
+            return origResolveRequestFn(context, '@vxrn/utils/empty', platform)
           }
         }
 
@@ -527,24 +615,17 @@ export async function getMetroConfigFromViteConfig(
       blockList,
       sourceExts: metroSourceExts,
       platforms: [
-        ...new Set([
-          ...(_defaultConfig?.resolver?.platforms ?? []),
-          'macos',
-          'linux',
-        ]),
+        ...new Set([...(_defaultConfig?.resolver?.platforms ?? []), 'macos', 'linux']),
       ],
       resolveRequest: (context, moduleName, platform) => {
+        if (isReactNativePromisePolyfill(context, moduleName, projectRoot, platform)) return { type: 'empty' }
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
 
         // Handle excludeModules - resolve excluded modules to empty module using glob patterns
         if (excludeModules && excludeModules.length > 0) {
           if (micromatch.isMatch(moduleName, excludeModules)) {
-            return origResolveRequestFn(
-              context,
-              '@vxrn/utils/empty',
-              platform
-            )
+            return origResolveRequestFn(context, '@vxrn/utils/empty', platform)
           }
         }
 

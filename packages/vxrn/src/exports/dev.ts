@@ -37,7 +37,8 @@ function setupOrphanDetection() {
 
   const initialPpid = process.ppid
   const launcherPid = readParentPid(initialPpid)
-  const watchedLauncher = launcherPid !== undefined && launcherPid > 1 ? launcherPid : undefined
+  const watchedLauncher =
+    launcherPid !== undefined && launcherPid > 1 ? launcherPid : undefined
 
   const interval = setInterval(() => {
     if (
@@ -152,12 +153,15 @@ export default defineConfig({
 
   // use one server config as defaults
   // this is a bit hacky for now passing it in like this
-  const oneServerConfig = config?.plugins?.find(
+  const oneConfig = config?.plugins?.find(
     (x) => Array.isArray(x) && x[0]?.['name'] === 'one:config'
-  )?.[0]?.['__get']?.server
+  )?.[0]?.['__get']
+  const oneServerConfig = oneConfig?.server
   const viteServerConfig = config.server
 
   const options = await fillOptions({
+    // one stores its options when the config first loads, before it returns any plugins
+    patches: globalThis.__oneOptions?.patches,
     ...optionsIn,
     server: {
       ...oneServerConfig,

@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 import type { ColorValue, ViewProps } from 'react-native';
-import type { GlassEffect, GlassEffectShape, Material, OneNativeStyle, OneNativeViewProps } from './controlTypes';
-import type * as Styles from './swiftui';
-import type { ColorScheme, ControlSize, DynamicTypeSize, SpacerSizing, ToolbarDefaultItemKind, ToolbarItemPlacement } from './swiftui';
-import type { SFSymbolName } from './sfSymbolNames';
+import type { GlassEffect, GlassEffectShape, Material, OneNativeStyle, OneNativeViewProps } from './controlTypes.js';
+import type * as Styles from './swiftui.js';
+import type { ColorScheme, ControlSize, DynamicTypeSize, SpacerSizing, ToolbarDefaultItemKind, ToolbarItemPlacement } from './swiftui.js';
+import type { SFSymbolName } from './sfSymbolNames.js';
 export type HStackAlignment = 'top' | 'center' | 'bottom' | 'firstTextBaseline' | 'lastTextBaseline';
 export type VStackAlignment = 'leading' | 'center' | 'trailing' | 'listRowSeparatorLeading' | 'listRowSeparatorTrailing';
 export type ZStackAlignment = 'topLeading' | 'top' | 'topTrailing' | 'leading' | 'center' | 'trailing' | 'bottomLeading' | 'bottom' | 'bottomTrailing';

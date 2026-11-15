@@ -1,3 +1,4 @@
+import { currentPlatform } from './one-platform'
 // public One namespaces. platform-specific entries keep the names and prop
 // contracts of their native frameworks; shared components live under UI.
 
@@ -248,13 +249,6 @@ export type OneMacAPI = OneAPI & {
 export type OneLinuxAPI = OneAPI & {
   readonly platform: 'linux'
   readonly linux: Readonly<OneLinux>
-}
-
-function currentPlatform(): OnePlatform {
-  const defined =
-    Reflect.get(globalThis, '__ONE_PLATFORM__') ??
-    (typeof process !== 'undefined' ? process.env.ONE_PLATFORM : undefined)
-  return defined === 'ios' || defined === 'android' ? defined : 'web'
 }
 
 const iOS: Readonly<OneIOS> = Object.freeze({

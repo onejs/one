@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { ColorValue, ViewProps } from 'react-native';
-import type { PresentationContentInteraction, Visibility } from './swiftui';
+import type { PresentationContentInteraction, Visibility } from './swiftui.js';
 export type PresentationDetent = 'medium' | 'large' | {
     fraction: number;
 } | {

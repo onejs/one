@@ -1,5 +1,5 @@
-import type { DeviceAttestationAvailability } from '../specs/OneDeviceAttestation.nitro';
-export type { DeviceAttestationAvailability } from '../specs/OneDeviceAttestation.nitro';
+import type { DeviceAttestationAvailability } from '../specs/OneDeviceAttestation.nitro.js';
+export type { DeviceAttestationAvailability } from '../specs/OneDeviceAttestation.nitro.js';
 export declare const DeviceAttestation: Readonly<{
     getAvailability: () => DeviceAttestationAvailability;
     generateKey: () => Promise<string>;

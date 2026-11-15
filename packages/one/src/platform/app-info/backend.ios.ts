@@ -1,15 +1,4 @@
-import { Bundle } from 'one/ios/Foundation'
-import type { AppInfo } from './types'
+import type { readAppInfo as Sdk } from './backend.sdk'
 
-export function readAppInfo(): AppInfo {
-  const bundle = Bundle.main
-  const string = (key: string) => {
-    const value = bundle.object(key)
-    return typeof value === 'string' ? value : null
-  }
-  return {
-    version: string('CFBundleShortVersionString'),
-    build: string('CFBundleVersion'),
-    applicationId: string('CFBundleIdentifier'),
-  }
-}
+// the sdk backend evaluates its framework bindings on load, so it loads on first use
+export const readAppInfo: typeof Sdk = () => require('./backend.sdk').readAppInfo()

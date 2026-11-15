@@ -9,14 +9,14 @@ type $SDK2 = {
     x: number;
     y: number;
 };
-type $SDK3 = "animatableData" | SDKHandle;
-type $SDK4 = (_UIKit_UIBezierPath) | null;
-type $SDK5 = {
+type $SDK3 = (_UIKit_UIBezierPath) | null;
+type $SDK4 = {
     x: number;
     y: number;
     width: number;
     height: number;
 };
+type $SDK5 = "animatableData" | SDKHandle;
 type $SDK6 = (PKToolPickerVisibility) | null;
 type $SDK7 = (PKStroke_RenderState) | null;
 type $SDK9 = ({
@@ -125,7 +125,6 @@ export interface PKCanvasViewDelegate {
     "scrollViewDidScroll"?: (arg0: _UIKit_UIScrollView) => void;
     "scrollViewDidZoom"?: (arg0: _UIKit_UIScrollView) => void;
     "scrollViewWillBeginDragging"?: (arg0: _UIKit_UIScrollView) => void;
-    "scrollViewWillEndDraggingWithVelocityTargetContentOffset"?: (arg0: _UIKit_UIScrollView, arg1: $SDK2, arg2: $SDK3) => void;
     "scrollViewDidEndDraggingWillDecelerate"?: (arg0: _UIKit_UIScrollView, arg1: boolean) => void;
     "scrollViewWillBeginDecelerating"?: (arg0: _UIKit_UIScrollView) => void;
     "scrollViewDidEndDecelerating"?: (arg0: _UIKit_UIScrollView) => void;
@@ -228,7 +227,7 @@ export declare class PKDrawing extends SDKHandle {
      * func erasingPath(_ eraserPath: PKStrokePath, mask: UIBezierPath? = nil, transform: CGAffineTransform = .identity) -> PKDrawing
      * @availability iOS 27.0+
      */
-    erasingPath(eraserPath: PKStrokePath, mask?: $SDK4, transform?: _CoreFoundation_CGAffineTransform): PKDrawing;
+    erasingPath(eraserPath: PKStrokePath, mask?: $SDK3, transform?: _CoreFoundation_CGAffineTransform): PKDrawing;
     /**
      * func transformed(using transform: CGAffineTransform) -> PKDrawing
      * @availability iOS 13.0+
@@ -253,12 +252,12 @@ export declare class PKDrawing extends SDKHandle {
      * nonisolated(nonsending) func draw(in cgContext: CGContext, frame: CGRect, from sourceRect: CGRect, darkUserInterfaceStyle: Bool = false) async
      * @availability iOS 26.0+
      */
-    draw(cgContext: _CoreGraphics_CGContext, frame: $SDK5, sourceRect: $SDK5, darkUserInterfaceStyle?: boolean): Promise<void>;
+    draw(cgContext: _CoreGraphics_CGContext, frame: $SDK4, sourceRect: $SDK4, darkUserInterfaceStyle?: boolean): Promise<void>;
     /**
      * func image(from rect: CGRect, scale: CGFloat) -> UIImage
      * @availability iOS 13.0+
      */
-    image(rect: $SDK5, scale: number): _UIKit_UIImage;
+    image(rect: $SDK4, scale: number): _UIKit_UIImage;
     /**
      * mutating func append(_ toAppend: PKDrawing)
      * @availability iOS 13.0+
@@ -268,7 +267,7 @@ export declare class PKDrawing extends SDKHandle {
      * var bounds: CGRect { get }
      * @availability iOS 13.0+
      */
-    get bounds(): $SDK5;
+    get bounds(): $SDK4;
     /**
      * init<S>(strokes: S) where S : Sequence, S.Element == PKStroke
      * @availability iOS 14.0+
@@ -289,7 +288,7 @@ export declare class PKDrawing extends SDKHandle {
      * mutating func erasePath(_ eraserPath: PKStrokePath, mask: UIBezierPath? = nil, transform: CGAffineTransform = .identity)
      * @availability iOS 27.0+
      */
-    erasePath(eraserPath: PKStrokePath, mask?: $SDK4, transform?: _CoreFoundation_CGAffineTransform): void;
+    erasePath(eraserPath: PKStrokePath, mask?: $SDK3, transform?: _CoreFoundation_CGAffineTransform): void;
     /**
      * mutating func transform(using transform: CGAffineTransform)
      * @availability iOS 13.0+
@@ -333,12 +332,12 @@ export declare class PKDrawingReference extends SDKHandle {
      * func erasingStrokePath(_ eraserPath: PKStrokePath, mask: UIBezierPath?, transform: CGAffineTransform) -> PKDrawing
      * @availability iOS 27.0+
      */
-    erasingStrokePath(eraserPath: PKStrokePath, mask: $SDK4, transform: _CoreFoundation_CGAffineTransform): PKDrawing;
+    erasingStrokePath(eraserPath: PKStrokePath, mask: $SDK3, transform: _CoreFoundation_CGAffineTransform): PKDrawing;
     /**
      * func image(from rect: CGRect, scale: CGFloat) -> UIImage
      * @availability iOS 13.0+
      */
-    image(rect: $SDK5, scale: number): _UIKit_UIImage;
+    image(rect: $SDK4, scale: number): _UIKit_UIImage;
     /**
      * init()
      * @availability iOS 13.0+
@@ -358,7 +357,7 @@ export declare class PKDrawingReference extends SDKHandle {
      * var bounds: CGRect { get }
      * @availability iOS 13.0+
      */
-    get bounds(): $SDK5;
+    get bounds(): $SDK4;
     /**
      * var requiredContentVersion: PKContentVersion { get }
      * @availability iOS 17.0+
@@ -425,7 +424,7 @@ export declare const PKEraserTool_EraserType: {
      * var validWidthRange: ClosedRange<CGFloat> { get }
      * @availability iOS 16.4+
      */
-    getValidWidthRange($self: PKEraserTool_EraserType): $SDK3;
+    getValidWidthRange($self: PKEraserTool_EraserType): $SDK5;
 };
 /**
  * class PKEraserToolReference
@@ -589,7 +588,7 @@ export declare const PKInkingTool_InkType: {
      * var validWidthRange: ClosedRange<CGFloat> { get }
      * @availability iOS 13.0+
      */
-    getValidWidthRange($self: PKInkingTool_InkType): $SDK3;
+    getValidWidthRange($self: PKInkingTool_InkType): $SDK5;
     /**
      * var requiredContentVersion: PKContentVersion { get }
      * @availability iOS 17.0+
@@ -809,7 +808,7 @@ export declare class PKStroke extends SDKHandle {
      * var renderBounds: CGRect { get }
      * @availability iOS 14.0+
      */
-    get renderBounds(): $SDK5;
+    get renderBounds(): $SDK4;
     /**
      * var renderGroupID: UUID? { get set }
      * @availability iOS 27.0+
@@ -836,17 +835,17 @@ export declare class PKStroke extends SDKHandle {
      * init(ink: PKInk, path: PKStrokePath, transform: CGAffineTransform = .identity, mask: UIBezierPath? = nil, randomSeed: UInt32 = UInt32.random(in: 0...UInt32.max), id: UUID = UUID(), renderGroupID: UUID? = nil, renderState: PKStroke.RenderState? = nil)
      * @availability iOS 27.0+
      */
-    static initInkPathTransformMaskRandomSeedIdRenderGroupIDRenderState(ink: PKInk, path: PKStrokePath, transform?: _CoreFoundation_CGAffineTransform, mask?: $SDK4, randomSeed?: number, id?: string, renderGroupID?: (string) | null, renderState?: $SDK7): PKStroke;
+    static initInkPathTransformMaskRandomSeedIdRenderGroupIDRenderState(ink: PKInk, path: PKStrokePath, transform?: _CoreFoundation_CGAffineTransform, mask?: $SDK3, randomSeed?: number, id?: string, renderGroupID?: (string) | null, renderState?: $SDK7): PKStroke;
     /**
      * init(ink: PKInk, path: PKStrokePath, transform: CGAffineTransform = .identity, mask: UIBezierPath? = nil, randomSeed: UInt32)
      * @availability iOS 16.0+
      */
-    static initInkPathTransformMaskRandomSeed(ink: PKInk, path: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask: $SDK4, randomSeed: number): PKStroke;
+    static initInkPathTransformMaskRandomSeed(ink: PKInk, path: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask: $SDK3, randomSeed: number): PKStroke;
     /**
      * init(ink: PKInk, path: PKStrokePath, transform: CGAffineTransform = .identity, mask: UIBezierPath? = nil)
      * @availability iOS 14.0+
      */
-    static initInkPathTransformMask(ink: PKInk, path: PKStrokePath, transform?: _CoreFoundation_CGAffineTransform, mask?: $SDK4): PKStroke;
+    static initInkPathTransformMask(ink: PKInk, path: PKStrokePath, transform?: _CoreFoundation_CGAffineTransform, mask?: $SDK3): PKStroke;
     /**
      * var ink: PKInk { get set }
      * @availability iOS 14.0+
@@ -857,8 +856,8 @@ export declare class PKStroke extends SDKHandle {
      * var mask: UIBezierPath? { get set }
      * @availability iOS 14.0+
      */
-    get mask(): $SDK4;
-    set mask(value: $SDK4);
+    get mask(): $SDK3;
+    set mask(value: $SDK3);
     /**
      * var path: PKStrokePath { get set }
      * @availability iOS 14.0+
@@ -869,7 +868,7 @@ export declare class PKStroke extends SDKHandle {
      * func substroke(range: ClosedRange<CGFloat>) -> PKStroke
      * @availability iOS 27.0+
      */
-    substroke(range: $SDK3): PKStroke;
+    substroke(range: $SDK5): PKStroke;
     /**
      * var transform: CGAffineTransform { get set }
      * @availability iOS 14.0+
@@ -984,7 +983,7 @@ export declare class PKStrokePath extends SDKHandle {
      * subscript(range: ClosedRange<CGFloat>) -> PKStrokePath { get }
      * @availability iOS 27.0+
      */
-    subscript52479(range: $SDK3): PKStrokePath;
+    subscript52479(range: $SDK5): PKStrokePath;
     readonly $type: {
         "s:9PencilKit12PKStrokePathV": true;
     };
@@ -1391,7 +1390,7 @@ export declare class PKStrokeRecognizer_SearchResult extends SDKHandle {
      * let bounds: CGRect
      * @availability iOS 27.0+
      */
-    get bounds(): $SDK5;
+    get bounds(): $SDK4;
     /**
      * let strokes: Set<UUID>
      * @availability iOS 27.0+
@@ -1410,17 +1409,17 @@ export declare class PKStrokeReference extends SDKHandle {
      * init(ink: PKInk, strokePath: PKStrokePath, transform: CGAffineTransform, mask: UIBezierPath?)
      * @availability iOS 14.0+
      */
-    static initInkStrokePathTransformMask(ink: PKInk, strokePath: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask?: $SDK4): PKStrokeReference;
+    static initInkStrokePathTransformMask(ink: PKInk, strokePath: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask?: $SDK3): PKStrokeReference;
     /**
      * init(ink: PKInk, strokePath: PKStrokePath, transform: CGAffineTransform, mask: UIBezierPath?, randomSeed: UInt32)
      * @availability iOS 16.0+
      */
-    static initInkStrokePathTransformMaskRandomSeed(ink: PKInk, strokePath: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask: $SDK4, randomSeed: number): PKStrokeReference;
+    static initInkStrokePathTransformMaskRandomSeed(ink: PKInk, strokePath: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask: $SDK3, randomSeed: number): PKStrokeReference;
     /**
      * init(ink: PKInk, strokePath: PKStrokePath, transform: CGAffineTransform, mask: UIBezierPath?, randomSeed: UInt32, strokeID: UUID, renderGroupID: UUID?, renderState: PKStrokeRenderStateReference?)
      * @availability iOS 27.0+
      */
-    static initInkStrokePathTransformMaskRandomSeedStrokeIDRenderGroupIDRenderState(ink: PKInk, strokePath: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask: $SDK4, randomSeed: number, strokeID: string, renderGroupID?: (string) | null, renderState?: $SDK15): PKStrokeReference;
+    static initInkStrokePathTransformMaskRandomSeedStrokeIDRenderGroupIDRenderState(ink: PKInk, strokePath: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask: $SDK3, randomSeed: number, strokeID: string, renderGroupID?: (string) | null, renderState?: $SDK15): PKStrokeReference;
     /**
      * func substroke(with range: __PKFloatRange) -> PKStroke
      * @availability iOS 27.0+
@@ -1435,7 +1434,7 @@ export declare class PKStrokeReference extends SDKHandle {
      * var mask: UIBezierPath? { get }
      * @availability iOS 14.0+
      */
-    get mask(): $SDK4;
+    get mask(): $SDK3;
     /**
      * var maskedPathRanges: [__PKFloatRange] { get }
      * @availability iOS 14.0+
@@ -1455,7 +1454,7 @@ export declare class PKStrokeReference extends SDKHandle {
      * var renderBounds: CGRect { get }
      * @availability iOS 14.0+
      */
-    get renderBounds(): $SDK5;
+    get renderBounds(): $SDK4;
     /**
      * var renderGroupID: UUID? { get }
      * @availability iOS 27.0+
@@ -1554,7 +1553,7 @@ export declare class PKToolPicker extends SDKHandle {
      * func frameObscured(in view: UIView) -> CGRect
      * @availability iOS 13.0+
      */
-    frameObscured(view: _UIKit_UIView): $SDK5;
+    frameObscured(view: _UIKit_UIView): $SDK4;
     /**
      * init()
      * @availability iOS 14.0+

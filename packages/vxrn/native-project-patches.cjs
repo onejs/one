@@ -13,46 +13,28 @@ function hasNitroWebImage(root) {
   }
 }
 
-const NITRO_WEB_IMAGE_MARKER = '# [vxrn/one] nitro web image modular header'
-const WEBP_CODER_MARKER = '# [vxrn/one] webp coder modular header'
-
-function injectNitroWebImageModularHeaderIntoPodfile(podfile) {
-  if (
-    !podfile.includes(NITRO_WEB_IMAGE_MARKER) &&
-    !/pod ['"]SDWebImage['"][^\n]*:modular_headers\s*=>\s*true/.test(podfile)
-  ) {
-    const anchor = /^(\s*)config = use_native_modules!.*$/m
-    const match = podfile.match(anchor)
+function injectModularHeadersIntoPodfile(podfile) {
+  const pods = [
+    ['nitro web image', 'SDWebImage'],
+    ['webp coder', 'SDWebImageWebPCoder'],
+    [
+      'native Zero sqlite',
+      'op-sqlite',
+      ', :path => Pathname.new(File.dirname(`node --print "require.resolve(\'@op-engineering/op-sqlite/package.json\')"`.strip)).relative_path_from(Pathname.new(__dir__)).to_s',
+    ],
+  ]
+  for (const [label, name, source = ''] of pods) {
+    const marker = `# [vxrn/one] ${label} modular header`
+    const declaration = new RegExp(
+      `pod ['"]${name}['"][^\\n]*:modular_headers\\s*=>\\s*true`
+    )
+    if (podfile.includes(marker) || declaration.test(podfile)) continue
+    const match = podfile.match(/^(\s*)config = use_native_modules!.*$/m)
     if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
     const insertAt = match.index + match[0].length
     podfile =
       podfile.slice(0, insertAt) +
-      '\n' +
-      match[1] +
-      NITRO_WEB_IMAGE_MARKER +
-      '\n' +
-      match[1] +
-      "pod 'SDWebImage', :modular_headers => true" +
-      podfile.slice(insertAt)
-  }
-  // One.ImageManipulator encodes webp through SDWebImageWebPCoder, which
-  // defines no modules, so static frameworks need its modular headers too.
-  if (
-    !podfile.includes(WEBP_CODER_MARKER) &&
-    !/pod ['"]SDWebImageWebPCoder['"][^\n]*:modular_headers\s*=>\s*true/.test(podfile)
-  ) {
-    const anchor = /^(\s*)config = use_native_modules!.*$/m
-    const match = podfile.match(anchor)
-    if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
-    const insertAt = match.index + match[0].length
-    podfile =
-      podfile.slice(0, insertAt) +
-      '\n' +
-      match[1] +
-      WEBP_CODER_MARKER +
-      '\n' +
-      match[1] +
-      "pod 'SDWebImageWebPCoder', :modular_headers => true" +
+      `\n${match[1]}${marker}\n${match[1]}pod '${name}'${source}, :modular_headers => true` +
       podfile.slice(insertAt)
   }
   return podfile
@@ -803,7 +785,14 @@ const ONE_UPDATES = {
 const RELEASE_BUNDLE_URL =
   /(#else\n\s*)(return )?Bundle\.main\.url\(forResource: "main", withExtension: "jsbundle"\)(\n#endif)/
 
+// the bun engine picks its engine from the bundle react native boots, which is
+// the launcher's choice once One.Updates owns the bundle url, in either patch order
+const BUN_ENGINE_EMBEDDED_CHECK =
+  'one_bun_engine_runs_bundle(Bundle.main.url(forResource: "main", withExtension: "jsbundle"))'
+const BUN_ENGINE_UPDATES_CHECK = 'one_bun_engine_runs_bundle(OneUpdatesLaunchingBundleURL())'
+
 function pointReleaseBundleURLAtOneUpdates(appDelegate) {
+  appDelegate = appDelegate.replace(BUN_ENGINE_EMBEDDED_CHECK, BUN_ENGINE_UPDATES_CHECK)
   if (appDelegate.includes('OneUpdatesBundleURL()')) {
     return appDelegate
   }
@@ -872,7 +861,75 @@ function holdLaunchScreenInMainActivity(mainActivity) {
     )
 }
 
+// the bun engine (engine: 'bun'): a release build compiles its bundle ahead of
+// time into Bun.framework and runs it instead of hermes. debug builds stay on
+// hermes and ship no bun. the pod lives in vxrn/ios/OneBunEngine.
+const ONE_BUN_ENGINE = {
+  marker: '# [vxrn/one] bun engine',
+  bridgingHeaderImport: '#import <OneBunEngine/OneBunEngine.h>',
+  // bun's allocator reserves about 32 GB of address space, half of what iOS gives an
+  // app by default, so a long session ran out and malloc failed
+  entitlement: 'com.apple.developer.kernel.extended-virtual-addressing',
+}
+
+function injectBunEngineIntoPodfile(podfile) {
+  if (podfile.includes(ONE_BUN_ENGINE.marker)) return podfile
+  const anchor = /^(\s*)config = use_native_modules!.*$/m
+  const match = podfile.match(anchor)
+  if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
+  const indent = match[1]
+  const lines = [
+    ONE_BUN_ENGINE.marker,
+    `pod 'OneBunEngine', :path => File.join(File.dirname(\`node --print "require.resolve('vxrn/package.json')"\`.strip), 'ios', 'OneBunEngine')`,
+  ].map((line) => indent + line)
+  const insertAt = match.index + match[0].length
+  return podfile.slice(0, insertAt) + '\n' + lines.join('\n') + podfile.slice(insertAt)
+}
+
+function addBunEngineToBundleReactNativeShellScript(input) {
+  if (input.includes(ONE_BUN_ENGINE.marker)) return input
+  const release = 'case "$CONFIGURATION" in *Debug*) ;; *)'
+  const withPlainBundle = insertBeforeBundlePhaseRunner(
+    input,
+    `${ONE_BUN_ENGINE.marker}: release bundles stay plain javascript for bun compile
+${release} export USE_HERMES=false ONE_BUN_ENGINE=1 ;; esac`
+  )
+  return insertAfterBundlePhaseRunner(
+    withPlainBundle,
+    `${ONE_BUN_ENGINE.marker}: compile the release bundle into the app's Bun.framework
+${release} /bin/bash "$ONE_BUN_ENGINE_SCRIPT" || exit 1 ;; esac`
+  )
+}
+
+function runBunEngineInAppDelegate(appDelegate) {
+  if (appDelegate.includes('jsrt_create_bun_factory()')) return appDelegate
+  const match = appDelegate.match(REACT_NATIVE_DELEGATE_CLASS)
+  if (!match) {
+    throw new Error(
+      '[vxrn] AppDelegate.swift changed shape: cannot run the bun engine from the react native delegate'
+    )
+  }
+  // react native reads the bundle url before it creates the engine; an update
+  // launched by One.Updates is hermes bytecode and runs on hermes
+  const check = appDelegate.includes('OneUpdatesBundleURL()')
+    ? BUN_ENGINE_UPDATES_CHECK
+    : BUN_ENGINE_EMBEDDED_CHECK
+  return appDelegate.replace(
+    match[0],
+    `${match[0]}  // [vxrn/one] a release build compiled for the bun engine runs on it
+  override func createJSRuntimeFactory() -> JSRuntimeFactoryRef {
+    ${check} ? jsrt_create_bun_factory() : super.createJSRuntimeFactory()
+  }
+
+`
+  )
+}
+
 module.exports = {
+  ONE_BUN_ENGINE,
+  injectBunEngineIntoPodfile,
+  addBunEngineToBundleReactNativeShellScript,
+  runBunEngineInAppDelegate,
   injectSkiaDawnVendoringIntoPodfile,
   injectWebGPUHeaderPathsIntoPodfile,
   holdLaunchScreenInMainActivity,
@@ -882,7 +939,7 @@ module.exports = {
   ONE_LAUNCH_SCREEN,
   holdLaunchScreenOverRootView,
   hasNitroWebImage,
-  injectNitroWebImageModularHeaderIntoPodfile,
+  injectModularHeadersIntoPodfile,
   injectOneSwiftPackagesIntoPodfile,
   addSetCliPathToBundleReactNativeShellScript,
   addPodHermescToBundleReactNativeShellScript,

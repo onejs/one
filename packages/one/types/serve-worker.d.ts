@@ -1,6 +1,6 @@
-import { type LazyRoutes } from './server/workerHandler';
-import type { One } from './vite/types';
-export { withRange } from './server/assetRange';
+import { type LazyRoutes } from './server/workerHandler.js';
+import type { One } from './vite/types.js';
+export { withRange } from './server/assetRange.js';
 export type { LazyRoutes };
 /**
  * Creates a fetch handler for edge/worker environments (Cloudflare Workers, service workers, etc.)

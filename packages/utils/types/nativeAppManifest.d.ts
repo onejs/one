@@ -98,16 +98,20 @@ export interface NativeAppManifest {
         screensGamma?: boolean;
         useFrameworks?: 'static' | 'dynamic';
         ccache?: boolean;
+        engine?: 'hermes' | 'bun';
         usesNonExemptEncryption?: boolean;
+        appTransportSecurity?: Record<string, PlistValue>;
         accentColor?: {
             light: string;
             dark?: string;
         };
+        assetCatalog?: string;
         faceIdUsageDescription?: string;
         fileSharing?: boolean;
         associatedDomains?: string[];
         usesAppleSignIn?: boolean;
         googleServicesFile?: string;
+        resources?: string[];
         infoPlist?: Record<string, PlistValue>;
         entitlements?: Record<string, PlistValue>;
         widgets?: {

@@ -1,3 +1,4 @@
+#if ONE_GROUP_WEB
 #import "OneDOMHostComponentView.h"
 #import <React/RCTConversions.h>
 #import "One-Swift.h"
@@ -83,3 +84,11 @@ using namespace facebook::react;
 }
 
 @end
+#else
+#import "OneDOMHostComponentView.h"
+#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+using namespace facebook::react;
+@implementation OneDOMHostComponentView
++ (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneDOMHostComponentDescriptor>(); }
+@end
+#endif

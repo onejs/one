@@ -18,6 +18,13 @@ export function workletImportsPlugin(imports: Record<string, readonly string[]>)
     Object.entries(imports).map(([source, names]) => [source, [...new Set(names)]])
   )
 
+  const selectedSourceFilter = new RegExp(
+    '^(?:' +
+      [...selections.keys()]
+        .map((name) => name.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&'))
+        .join('|') +
+      ')$|\\?one-background='
+  )
   const rejectRuntimeDependency = (source: string) => {
     const normalized = source.replace(/\\/g, '/')
     if (
@@ -40,44 +47,47 @@ export function workletImportsPlugin(imports: Record<string, readonly string[]>)
       const modules = new Map<string, { entry: string; names: string[]; key: string }>()
       const instance: Plugin = {
         name: 'vxrn:worklet-imports:bundle',
-        async resolveId(source, importer, options) {
-          const marker = '?one-background='
-          const selected = source.indexOf(marker)
-          const names =
-            selected < 0
-              ? selections.get(source)
-              : [decodeURIComponent(source.slice(selected + marker.length))]
-          if (!names) return
-          if (!names.length)
-            throw new Error(`[worklet imports] no exports selected for ${source}`)
-          if (options.kind !== 'import-statement') {
-            throw new Error(`[worklet imports] ${source} requires a static ESM import`)
-          }
-          rejectRuntimeDependency(source)
-          const resolved = await this.resolve(
-            selected < 0 ? source : source.slice(0, selected),
-            importer,
-            { skipSelf: true }
-          )
-          if (
-            !resolved ||
-            resolved.external ||
-            !isAbsolute(resolved.id) ||
-            !statSync(resolved.id, { throwIfNoEntry: false })?.isFile()
-          ) {
-            throw new Error(
-              `[worklet imports] ${source} must resolve to a JavaScript file`
+        resolveId: {
+          filter: { id: selectedSourceFilter },
+          async handler(source, importer, options) {
+            const marker = '?one-background='
+            const selected = source.indexOf(marker)
+            const names =
+              selected < 0
+                ? selections.get(source)
+                : [decodeURIComponent(source.slice(selected + marker.length))]
+            if (!names) return
+            if (!names.length)
+              throw new Error(`[worklet imports] no exports selected for ${source}`)
+            if (options.kind !== 'import-statement') {
+              throw new Error(`[worklet imports] ${source} requires a static ESM import`)
+            }
+            rejectRuntimeDependency(source)
+            const resolved = await this.resolve(
+              selected < 0 ? source : source.slice(0, selected),
+              importer,
+              { skipSelf: true }
             )
-          }
-          rejectRuntimeDependency(resolved.id)
-          const key = createHash('sha256')
-            .update(JSON.stringify([resolved.id, names]))
-            .digest('hex')
-            .slice(0, 16)
-          // a file-shaped id lets the existing native compiler process the directives.
-          const id = join(dirname(resolved.id), `__one_worklet_imports_${key}.js`)
-          modules.set(id, { entry: resolved.id, names, key })
-          return id
+            if (
+              !resolved ||
+              resolved.external ||
+              !isAbsolute(resolved.id) ||
+              !statSync(resolved.id, { throwIfNoEntry: false })?.isFile()
+            ) {
+              throw new Error(
+                `[worklet imports] ${source} must resolve to a JavaScript file`
+              )
+            }
+            rejectRuntimeDependency(resolved.id)
+            const key = createHash('sha256')
+              .update(JSON.stringify([resolved.id, names]))
+              .digest('hex')
+              .slice(0, 16)
+            // a file-shaped id lets the existing native compiler process the directives.
+            const id = join(dirname(resolved.id), `__one_worklet_imports_${key}.js`)
+            modules.set(id, { entry: resolved.id, names, key })
+            return id
+          },
         },
         moduleParsed(info) {
           if (

@@ -4618,6 +4618,7 @@ export interface ConcentricRectangleProps extends OneNativeViewProps {
 }
 export interface LinearGradientProps extends OneNativeViewProps {
   colors: readonly string[]
+  locations?: readonly number[]
   startPoint?: Readonly<{ x: number; y: number }>
   endPoint?: Readonly<{ x: number; y: number }>
 }
@@ -4648,9 +4649,13 @@ export interface MeshGradientProps extends OneNativeViewProps {
   colorSpace?: 'device' | 'perceptual'
 }
 export interface VideoPlayerProps extends OneNativeViewProps {
+  onVideoReady?: (width: number, height: number) => void
+  onVideoError?: (message: string) => void
+  onFirstFrame?: () => void
   onPlaybackStatus?: (state: string, positionMs: number, durationMs: number) => void
   url?: string
   autoplay?: boolean
+  contentFit?: 'native' | 'contain' | 'cover'
   command?: 'play' | 'pause' | 'seek' | ''
   commandRevision?: number
   seekToMs?: number

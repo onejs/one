@@ -6,7 +6,7 @@ import { dirname, join } from 'node:path'
 // on the Mac builder; bundling javascript does not need that builder's SDK.
 export const IOS_FACADES = 'dist/esm/ios'
 
-const IMPORT = /^one\/ios\/([A-Za-z_][A-Za-z0-9_]*)$/
+const IMPORT = /^one\/ios\/([A-Za-z_][A-Za-z0-9_]*)(?:\/([A-Za-z_$][A-Za-z0-9_$]*))?$/
 
 // the file `one/ios/<Framework>` resolves to; undefined for any other import
 export function resolveIosSdkImport(
@@ -25,7 +25,11 @@ export function resolveIosSdkImport(
   const packageRoot = dirname(
     createRequire(join(root, 'package.json')).resolve('one/package.json')
   )
-  const file = join(packageRoot, IOS_FACADES, `${match[1]}.native.js`)
+  const file = join(
+    packageRoot,
+    IOS_FACADES,
+    match[1] + (match[2] ? '/' + match[2] : '') + '.mjs'
+  )
   if (!existsSync(file)) {
     throw new Error(
       `[one] ${source} is not included in the installed One SDK bindings (imported by ${importer ?? 'an entry'})`

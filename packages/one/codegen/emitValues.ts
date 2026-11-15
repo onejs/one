@@ -1,5 +1,6 @@
 import type { DerivedFactory, DerivedFactoryParameter, DerivedModifier, DerivedValue } from './deriveSDK'
 import { sdkGuard } from './sdkGuard'
+import { frameworkGroups, gate, textGroups } from './linkSet'
 
 // SDK values JavaScript spells as a case name or as a record: { kind, ...parameters }
 // names a case or a static factory, and any chained instance method rides along by name,
@@ -170,14 +171,14 @@ export function emitValueDecoders(values: readonly [string, DerivedValue][]) {
 ${body}
   }()
 ${chained.length ? `${chained.join('\n')}\n  return result\n` : ''}}`
-    return version > 17 ? sdkGuard(version, decoder, '') : decoder
+    return gate(textGroups(JSON.stringify(value)), version > 17 ? sdkGuard(version, decoder, '') : decoder)
   })
   // an overlay module such as _MapKit_SwiftUI loads with its framework beside SwiftUI.
   const imports = [...new Set(values.map(([, value]) => value.type.split('.')[0])
     .map((module) => /^_(\w+)_SwiftUI$/.exec(module)?.[1] ?? module)
     .filter((module) => module !== 'SwiftUI' && module !== 'SwiftUICore'))].sort()
   return `import SwiftUI
-${imports.map((module) => `import ${module}\n`).join('')}
+${imports.map((module) => `${gate(frameworkGroups(module), `import ${module}`)}\n`).join('')}
 // an SDK value from JavaScript: a bare case name, or a JSON record naming a case or
 // factory in kind with parameters and chained methods by label.
 struct OneNativeSDKRecord {

@@ -73,6 +73,7 @@ report empty, and callbacks never fire.
     { name: 'rate', type: 'number', description: 'Rate multiplier. Default 1.' },
     { name: 'voice', type: 'string', description: 'A voice id. Defaults to the system voice.' },
     { name: 'volume', type: 'number', description: '0 muted to 1 max. Default 1.' },
+    { name: 'useApplicationAudioSession', type: 'boolean', description: 'iOS: use the app audio session. Initially true; the setting persists.' },
     { name: 'onStart', type: '() => void', description: 'The utterance started speaking.' },
     { name: 'onDone', type: '() => void', description: 'The utterance finished speaking.' },
     { name: 'onStopped', type: '() => void', description: 'The utterance was stopped.' },

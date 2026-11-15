@@ -1,28 +1,35 @@
+import 'one/ios/UIKit/UIWindow'
+import 'one/ios/UIKit/UIView'
+import 'one/ios/UIKit/UIPresentationController'
+import 'one/ios/Contacts/CNPostalAddress'
+import 'one/ios/Foundation/NSString'
 import type { HybridObject } from 'react-native-nitro-modules'
-import {
-  CNContact,
-  CNContactEmailAddressesKey,
-  CNContactFamilyNameKey,
-  CNContactFetchRequest,
-  CNContactGivenNameKey,
-  CNContactIdentifierKey,
-  CNContactPhoneNumbersKey,
-  CNContactPostalAddressesKey,
-  CNContactStore,
-  CNErrorDomain,
-  CNLabelHome,
-  CNLabelPhoneNumberMain,
-  CNLabeledValue,
-  CNMutableContact,
-  CNMutablePostalAddress,
-  CNPhoneNumber,
-  CNSaveRequest,
-  type CNPostalAddress,
-} from 'one/ios/Contacts'
-import { CNContactPickerViewController } from 'one/ios/ContactsUI'
-import { Bundle, NSError, NSPredicate, type NSString } from 'one/ios/Foundation'
-import { NSObject } from 'one/ios/ObjectiveC'
-import { UIApplication, UIViewController } from 'one/ios/UIKit'
+import { CNContact } from 'one/ios/Contacts/CNContact'
+import { CNContactEmailAddressesKey } from 'one/ios/Contacts/CNContactEmailAddressesKey'
+import { CNContactFamilyNameKey } from 'one/ios/Contacts/CNContactFamilyNameKey'
+import { CNContactFetchRequest } from 'one/ios/Contacts/CNContactFetchRequest'
+import { CNContactGivenNameKey } from 'one/ios/Contacts/CNContactGivenNameKey'
+import { CNContactIdentifierKey } from 'one/ios/Contacts/CNContactIdentifierKey'
+import { CNContactPhoneNumbersKey } from 'one/ios/Contacts/CNContactPhoneNumbersKey'
+import { CNContactPostalAddressesKey } from 'one/ios/Contacts/CNContactPostalAddressesKey'
+import { CNContactStore } from 'one/ios/Contacts/CNContactStore'
+import { CNErrorDomain } from 'one/ios/Contacts/CNErrorDomain'
+import { CNLabelHome } from 'one/ios/Contacts/CNLabelHome'
+import { CNLabelPhoneNumberMain } from 'one/ios/Contacts/CNLabelPhoneNumberMain'
+import { CNLabeledValue } from 'one/ios/Contacts/CNLabeledValue'
+import { CNMutableContact } from 'one/ios/Contacts/CNMutableContact'
+import { CNMutablePostalAddress } from 'one/ios/Contacts/CNMutablePostalAddress'
+import { CNPhoneNumber } from 'one/ios/Contacts/CNPhoneNumber'
+import { CNSaveRequest } from 'one/ios/Contacts/CNSaveRequest'
+import type { CNPostalAddress } from 'one/ios/Contacts'
+import { CNContactPickerViewController } from 'one/ios/ContactsUI/CNContactPickerViewController'
+import { Bundle } from 'one/ios/Foundation/Bundle'
+import { NSError } from 'one/ios/Foundation/NSError'
+import { NSPredicate } from 'one/ios/Foundation/NSPredicate'
+import type { NSString } from 'one/ios/Foundation'
+import { NSObject } from 'one/ios/ObjectiveC/NSObject'
+import { UIApplication } from 'one/ios/UIKit/UIApplication'
+import { UIViewController } from 'one/ios/UIKit/UIViewController'
 import type { SDKHandle } from 'one/ios-runtime'
 import type {
   ContactChanges,
@@ -32,12 +39,7 @@ import type {
   ContactsPermissionStatus,
   OneContacts,
 } from '../specs/OneContacts.nitro'
-import {
-  hasBlank,
-  mapPermissionStatus,
-  validPostalAddresses,
-  validSearch,
-} from './map'
+import { hasBlank, mapPermissionStatus, validPostalAddresses, validSearch } from './map'
 
 // keysToFetch crosses as plain strings; the native table casts them to
 // CNKeyDescriptor directly (lead native proof, no conversion needed).
@@ -184,9 +186,7 @@ function buildAddresses(
     const index = remaining.findIndex(
       (item) =>
         sameAddress(item.value, address) &&
-        (value.label === undefined ||
-          value.label === null ||
-          item.label === value.label)
+        (value.label === undefined || value.label === null || item.label === value.label)
     )
     if (index >= 0) return remaining.splice(index, 1)[0]
     return CNLabeledValue.init(value.label ?? CNLabelHome, address)
@@ -216,7 +216,11 @@ function saveFailure(
   cause: unknown
 ): Error {
   if (isRecordGone(cause)) {
-    return failure(verb, 'E_CONTACTS_NOT_FOUND', detail(cause, 'the contact no longer exists'))
+    return failure(
+      verb,
+      'E_CONTACTS_NOT_FOUND',
+      detail(cause, 'the contact no longer exists')
+    )
   }
   return failure(verb, code, detail(cause, 'could not save the contact'))
 }
@@ -299,27 +303,28 @@ async function pickContact(): Promise<ContactInfo | undefined> {
       }
       // single-selection mode only delivers one contact; the array form of the
       // union cannot fire without multiple selection so it settles empty.
-      void picker.setDelegate({
-        contactPickerDidSelect: (_picker, selected) => {
-          finish(
-            Array.isArray(selected) ? null : (selected as unknown as CNContact)
-          )
-        },
-        contactPickerDidCancel: () => {
-          finish(null)
-        },
-      })
-        .then(() => presenter.present(presented, true, () => {
-          void presented.presentationController
-            .then((controller) =>
-              controller?.setDelegate({
-                presentationControllerDidDismiss: () => {
-                  swipe()
-                },
-              })
-            )
-            .catch(reject)
-        }))
+      void picker
+        .setDelegate({
+          contactPickerDidSelect: (_picker, selected) => {
+            finish(Array.isArray(selected) ? null : (selected as unknown as CNContact))
+          },
+          contactPickerDidCancel: () => {
+            finish(null)
+          },
+        })
+        .then(() =>
+          presenter.present(presented, true, () => {
+            void presented.presentationController
+              .then((controller) =>
+                controller?.setDelegate({
+                  presentationControllerDidDismiss: () => {
+                    swipe()
+                  },
+                })
+              )
+              .catch(reject)
+          })
+        )
         .catch(reject)
     })
   } catch (error) {
@@ -355,7 +360,11 @@ async function search(name: string, limit: number): Promise<ContactInfo[]> {
       if (found.length >= limit) stop.value = true
     })
   } catch (error) {
-    throw failure('search', 'E_CONTACTS_FETCH', detail(error, 'could not search contacts'))
+    throw failure(
+      'search',
+      'E_CONTACTS_FETCH',
+      detail(error, 'could not search contacts')
+    )
   }
   return found
 }
@@ -390,7 +399,11 @@ async function create(input: ContactInput): Promise<string> {
   try {
     CNContactStore.init().execute(request)
   } catch (error) {
-    throw failure('create', 'E_CONTACTS_SAVE', detail(error, 'could not save the contact'))
+    throw failure(
+      'create',
+      'E_CONTACTS_SAVE',
+      detail(error, 'could not save the contact')
+    )
   }
   return contact.identifier
 }

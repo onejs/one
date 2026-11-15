@@ -1,4 +1,4 @@
-import type { NavigationSplitViewColumnProps, NavigationSplitViewProps } from './generated/containerTypes';
+import type { NavigationSplitViewColumnProps, NavigationSplitViewProps } from './generated/containerTypes.js';
 type SplitMarker = (props: NavigationSplitViewColumnProps) => never;
 export declare const Sidebar: SplitMarker;
 export declare const Content: SplitMarker;

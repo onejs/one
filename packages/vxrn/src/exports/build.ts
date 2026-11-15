@@ -1,3 +1,4 @@
+import { bundleAnalysisPlugins } from '../utils/bundleAnalysis'
 import { readFile, rm, writeFile } from 'node:fs/promises'
 import { sep } from 'node:path'
 import { readJSON } from '../utils/fs'
@@ -205,7 +206,10 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
   if (buildArgs.step !== 'generate') {
     let clientBuildConfig = mergeConfig(webBuildConfig, {
-      plugins: [excludeAPIAndMiddlewareRoutesPlugin],
+      plugins: [
+        excludeAPIAndMiddlewareRoutesPlugin,
+        ...(await bundleAnalysisPlugins(options.root, 'client')),
+      ],
 
       define: {
         'process.env.VITE_ENVIRONMENT': '"client"',
@@ -257,7 +261,11 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     serverOptions.unified === true
 
   let serverBuildConfig = mergeConfig(webBuildConfig, {
-    plugins: [excludeAPIAndMiddlewareRoutesPlugin, ...globalThis.__vxrnAddWebPluginsProd],
+    plugins: [
+      excludeAPIAndMiddlewareRoutesPlugin,
+      ...globalThis.__vxrnAddWebPluginsProd,
+      ...(await bundleAnalysisPlugins(options.root, 'server')),
+    ],
 
     define: {
       'process.env.TAMAGUI_IS_SERVER': '"1"',

@@ -1,5 +1,5 @@
-import type { DevicePushToken, Notification, NotificationAction, NotificationCategory, NotificationCategoryOptions, NotificationChannel, NotificationChannelInput, NotificationHandlerInput, NotificationPermissionRequest, NotificationPermissionResponse, NotificationResponse, NotificationScheduleInput, NotificationSubscription, ScheduledNotification } from './types';
-export type * from './types';
+import type { DevicePushToken, Notification, NotificationAction, NotificationCategory, NotificationCategoryOptions, NotificationChannel, NotificationChannelInput, NotificationHandlerInput, NotificationPermissionRequest, NotificationPermissionResponse, NotificationResponse, NotificationScheduleInput, NotificationSubscription, ScheduledNotification } from './types.js';
+export type * from './types.js';
 declare function getPermissions(): Promise<NotificationPermissionResponse>;
 declare function requestPermissions(options?: NotificationPermissionRequest): Promise<NotificationPermissionResponse>;
 declare function getBadgeCount(): Promise<number>;
@@ -18,6 +18,8 @@ declare function addPushTokenListener(listener: (token: DevicePushToken) => void
 declare function setHandler(handler: NotificationHandlerInput | null): void;
 declare function getLastResponse(): NotificationResponse | null;
 declare function clearLastResponse(): void;
+declare function getPendingResponses(): NotificationResponse[];
+declare function acknowledgeResponse(identifier: string): void;
 declare function schedule(request: NotificationScheduleInput): Promise<string>;
 declare function cancelScheduled(identifier: string): Promise<void>;
 declare function cancelAllScheduled(): Promise<void>;
@@ -44,6 +46,8 @@ export declare const Notifications: Readonly<{
     setHandler: typeof setHandler;
     getLastResponse: typeof getLastResponse;
     clearLastResponse: typeof clearLastResponse;
+    getPendingResponses: typeof getPendingResponses;
+    acknowledgeResponse: typeof acknowledgeResponse;
     schedule: typeof schedule;
     cancelScheduled: typeof cancelScheduled;
     cancelAllScheduled: typeof cancelAllScheduled;

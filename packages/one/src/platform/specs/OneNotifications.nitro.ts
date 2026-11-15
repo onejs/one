@@ -45,6 +45,7 @@ export interface NativeContentInput {
   body?: string
   data?: AnyMap
   sound?: boolean
+  soundName?: string
   badge?: number
   categoryIdentifier?: string
 }
@@ -184,4 +185,6 @@ export interface OneNotifications
   presentNotification(requestId: string, behavior: NotificationBehavior): void
   getLastNotificationResponse(): NativeNotificationResponse | undefined
   clearLastNotificationResponse(): void
+  getPendingNotificationResponses(): NativeNotificationResponse[]
+  acknowledgeNotificationResponse(identifier: string): void
 }

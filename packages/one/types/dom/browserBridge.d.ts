@@ -1,5 +1,5 @@
-import { parseBootstrap } from './protocol';
-import type { DOMImperativeHandle } from './types';
+import { parseBootstrap } from './protocol.js';
+import type { DOMImperativeHandle } from './types.js';
 /** native installs this shim before application script and queues transport writes until ready. */
 export type DOMTransport = {
     bootstrap: unknown;

@@ -1,3 +1,4 @@
+import type { ViewProps } from 'react-native';
 export type HapticImpact = 'light' | 'medium' | 'heavy' | 'soft' | 'rigid';
 export type HapticNotification = 'success' | 'warning' | 'error';
 export type AndroidHaptic = 'clock-tick' | 'confirm' | 'context-click' | 'drag-start' | 'gesture-end' | 'gesture-start' | 'keyboard-press' | 'keyboard-release' | 'keyboard-tap' | 'long-press' | 'no-haptics' | 'reject' | 'segment-frequent-tick' | 'segment-tick' | 'text-handle-move' | 'toggle-off' | 'toggle-on' | 'virtual-key' | 'virtual-key-release';
@@ -10,5 +11,10 @@ export interface Haptics {
     notification(type: HapticNotification): void;
     /** android HapticFeedbackConstants feedback; no-op on ios and web */
     performAndroidHaptics(type: AndroidHaptic): void;
+}
+export type HapticTapFeedback = 'selection' | HapticImpact;
+export interface HapticTapProps extends ViewProps {
+    /** what a tap inside plays, on the UI thread when the tap ends. default 'selection' */
+    feedback?: HapticTapFeedback;
 }
 //# sourceMappingURL=types.d.ts.map

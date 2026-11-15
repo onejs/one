@@ -1,5 +1,5 @@
-import type { DeviceAttestationAvailability } from '../specs/OneDeviceAttestation.nitro';
-export type { DeviceAttestationAvailability } from '../specs/OneDeviceAttestation.nitro';
+import type { DeviceAttestationAvailability } from '../specs/OneDeviceAttestation.nitro.js';
+export type { DeviceAttestationAvailability } from '../specs/OneDeviceAttestation.nitro.js';
 declare function getAvailability(): DeviceAttestationAvailability;
 declare function generateKey(): Promise<string>;
 declare function attestKey(keyId: string, clientDataHashBase64: string): Promise<string>;

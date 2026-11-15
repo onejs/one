@@ -1,4 +1,4 @@
-import type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationRegion, RegionCenter, RegionState } from '../specs/OneLocation.nitro';
+import type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationRegion, RegionCenter, RegionState } from '../specs/OneLocation.nitro.js';
 export type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationRegion, RegionCenter, RegionState, };
 export type LocationWatchError = Error & {
     code: string;

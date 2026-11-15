@@ -146,3 +146,66 @@ it('starts the native multipart response before bundling finishes', async () => 
     await rm(root, { recursive: true, force: true })
   }
 })
+
+it('serves an asset outside the app root for a platform without its own engine', async () => {
+  const workspace = await mkdtemp(join(tmpdir(), 'native-asset-http-'))
+  const root = join(workspace, 'app')
+  const rnRoot = join(root, 'node_modules/react-native')
+  await mkdir(join(rnRoot, 'src'), { recursive: true })
+  await mkdir(join(workspace, 'assets'))
+  await mkdir(join(root, 'node_modules/one'))
+  await writeFile(join(root, 'node_modules/one/package.json'), '{"name":"one"}')
+  await writeFile(
+    join(rnRoot, 'package.json'),
+    JSON.stringify({
+      name: 'react-native',
+      exports: { './asset-registry': './src/asset-registry.js' },
+    })
+  )
+  await writeFile(
+    join(rnRoot, 'src/asset-registry.js'),
+    'const assets = []; export function registerAsset(asset) { return assets.push(asset) }; export function getAssetByID(id) { return assets[id - 1] }'
+  )
+  await writeFile(join(workspace, 'assets/logo.png'), 'logo')
+  await writeFile(
+    join(root, 'entry.js'),
+    "import logo from '../assets/logo.png'; import { getAssetByID } from 'react-native/asset-registry'; globalThis.logo = getAssetByID(logo)"
+  )
+  const previousPlugins = globalThis.__vxrnAddNativePlugins
+  globalThis.__vxrnAddNativePlugins = () => [
+    {
+      name: 'asset-fixture-entry',
+      transform(_code, id) {
+        if (id.endsWith('/__virtual-native-entry.tsx')) return "import './entry.js'"
+      },
+    },
+  ]
+  const server = await createServer({
+    root,
+    configFile: false,
+    plugins: [createReactNativeDevServerPlugin()],
+    server: { host: '127.0.0.1', port: 0 },
+  })
+  try {
+    await server.listen()
+    const { port } = server.httpServer!.address() as { port: number }
+    const origin = `http://127.0.0.1:${port}`
+    const bundle = await fetch(`${origin}/index.bundle?platform=macos`)
+    const code = await bundle.text()
+    expect(bundle.status, code.slice(0, 800)).toBe(200)
+    const hash = code.match(/hash["']?\s*:\s*["']([0-9a-f]{32})["']/)![1]
+    const location = code.match(/httpServerLocation["']?\s*:\s*["']([^"']+)["']/)![1]
+    // react-native internals resolve to Platform.ios.js on macOS, so the
+    // asset URL carries platform=ios although only a macos engine exists
+    const url = `${origin}${location}/logo.png?platform=ios`
+    expect(location).toBe('/assets/_/assets')
+    const served = await fetch(`${url}&hash=${hash}`)
+    expect(served.status).toBe(200)
+    expect(await served.text()).toBe('logo')
+    expect((await fetch(`${url}&hash=stale`)).status).toBe(404)
+  } finally {
+    await server.close()
+    globalThis.__vxrnAddNativePlugins = previousPlugins
+    await rm(workspace, { recursive: true, force: true })
+  }
+})

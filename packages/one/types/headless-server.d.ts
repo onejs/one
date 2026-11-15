@@ -30,12 +30,12 @@
  *   // pass a request-scoped static HTML reader as the fourth argument for SPA or SSG
  *   server.updateRoutes(newManifest, newRoutes)
  */
-export { createWorkerHandler, type LazyRoutes } from './server/workerHandler';
-export { compileManifest } from './createHandleRequest';
-export type { RequestHandlers } from './createHandleRequest';
-export type { One } from './vite/types';
-import { type LazyRoutes } from './server/workerHandler';
-import type { One } from './vite/types';
+export { createWorkerHandler, type LazyRoutes } from './server/workerHandler.js';
+export { compileManifest } from './createHandleRequest.js';
+export type { RequestHandlers } from './createHandleRequest.js';
+export type { One } from './vite/types.js';
+import { type LazyRoutes } from './server/workerHandler.js';
+import type { One } from './vite/types.js';
 export type HeadlessServerOptions = {
     /** One plugin options (at minimum: web.defaultRenderMode) */
     oneOptions: One.PluginOptions;

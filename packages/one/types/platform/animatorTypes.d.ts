@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
-import type { SDKAnimationValue } from './generated/controlTypes';
+import type { SDKAnimationValue } from './generated/controlTypes.js';
 export interface PhaseAnimatorProps<Phase> extends Omit<ViewProps, 'children'> {
     phases: Iterable<Phase>;
     trigger?: unknown;

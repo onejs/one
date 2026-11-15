@@ -220,12 +220,14 @@ export function executeWorkletTransform(
   // 3. Iterative bottom-up transformation
   // In each pass, we transform all innermost candidates (candidates that contain NO other candidates in their body).
   // All innermost candidates are disjoint, so they can be rewritten simultaneously in a single MagicString.
+  let parsedCode = code
+  let parseResult = initialParse
   let remainingPassBudget = 100
   while (remainingPassBudget-- > 0) {
-    const parseResult = parseSync(cleanId, currentCode, {
-      sourceType: 'module',
-      lang,
-    })
+    if (currentCode !== parsedCode) {
+      parseResult = parseSync(cleanId, currentCode, { sourceType: 'module', lang })
+      parsedCode = currentCode
+    }
 
     if (parseResult.errors && parseResult.errors.length > 0) {
       const err = parseResult.errors[0]
@@ -395,7 +397,10 @@ export function executeWorkletTransform(
   }
 
   // Check if any candidates remain untransformed after budget
-  const finalCheck = parseSync(cleanId, currentCode, { sourceType: 'module', lang })
+  const finalCheck =
+    currentCode === parsedCode
+      ? parseResult
+      : parseSync(cleanId, currentCode, { sourceType: 'module', lang })
   const remaining = findWorkletCandidates(finalCheck.program)
   if (remaining.length > 0) {
     throw new Error(

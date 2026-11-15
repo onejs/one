@@ -1,4 +1,4 @@
-import type { AppIconEntry } from './types';
+import type { AppIconEntry } from './types.js';
 export type { AppIconEntry };
 export declare const AppIcon: Readonly<{
     isSupported: () => Promise<boolean>;

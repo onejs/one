@@ -1,3 +1,3 @@
-import type { ImageProps } from './Image.native';
+import type { ImageProps } from './Image.native.js';
 export declare function Image({ source, resizeMode, recyclingKey: _recyclingKey, ...props }: ImageProps): import("react").JSX.Element;
 //# sourceMappingURL=Image.macos.d.ts.map

@@ -1,4 +1,4 @@
-import type { ControlledControlProps, ControlChange } from '../controlTypes';
+import type { ControlledControlProps, ControlChange } from '../controlTypes.js';
 export type SliderProps = ControlledControlProps & {
     value: number;
     minimumValue?: number;

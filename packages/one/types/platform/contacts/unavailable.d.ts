@@ -1,4 +1,4 @@
-import type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus } from '../specs/OneContacts.nitro';
+import type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus } from '../specs/OneContacts.nitro.js';
 export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus, };
 export declare const Contacts: Readonly<{
     getPermissionStatus: () => ContactsPermissionStatus;

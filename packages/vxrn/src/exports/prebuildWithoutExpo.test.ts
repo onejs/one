@@ -1,6 +1,7 @@
 import { execFileSync } from 'node:child_process'
 import { createRequire } from 'node:module'
 import {
+  chmodSync,
   mkdtempSync,
   mkdirSync,
   readdirSync,
@@ -23,6 +24,7 @@ import {
   generateForPlatform,
   generateKotlinSources,
   getNativeDependencyInventory,
+  installNativeDependencies,
   renderIosAppIntentsSwift,
   renderPrebuildFile,
   renderSceneDelegateSwift,
@@ -1620,6 +1622,95 @@ describe('native dependency patches', () => {
   })
 })
 
+describe('installNativeDependencies without cocoapods', () => {
+  const withPath = (value: string, run: () => void) => {
+    const previous = process.env.PATH
+    process.env.PATH = value
+    try {
+      run()
+    } finally {
+      process.env.PATH = previous
+    }
+  }
+  const withWarned = (run: (warnings: string[]) => void) => {
+    const warnings: string[] = []
+    const previous = console.warn
+    console.warn = (...args: unknown[]) => {
+      warnings.push(args.map(String).join(' '))
+    }
+    try {
+      run(warnings)
+    } finally {
+      console.warn = previous
+    }
+  }
+  const writeFakePod = (directory: string, body: string) => {
+    const pod = join(directory, 'pod')
+    writeFileSync(pod, `#!/bin/sh\n${body}\n`)
+    chmodSync(pod, 0o755)
+  }
+
+  it('skips pod install without --platform when pod is missing', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-no-pod-'))
+    const empty = mkdtempSync(join(tmpdir(), 'vxrn-empty-path-'))
+    withWarned((warnings) => {
+      withPath(empty, () => {
+        expect(installNativeDependencies({ root })).toBe(false)
+      })
+      expect(warnings).toEqual(['[vxrn] `pod` is not available, so `pod install` was skipped'])
+    })
+  })
+
+  it('still fails an explicit ios prebuild when pod is missing', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-no-pod-'))
+    const empty = mkdtempSync(join(tmpdir(), 'vxrn-empty-path-'))
+    withWarned((warnings) => {
+      withPath(empty, () => {
+        expect(() => installNativeDependencies({ root, platform: 'ios' })).toThrow(
+          expect.objectContaining({ code: 'ENOENT' })
+        )
+      })
+      expect(warnings).toEqual([])
+    })
+  })
+
+  it('never shells pod for an android prebuild', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-no-pod-'))
+    const empty = mkdtempSync(join(tmpdir(), 'vxrn-empty-path-'))
+    withWarned((warnings) => {
+      withPath(empty, () => {
+        expect(() => installNativeDependencies({ root, platform: 'android' })).not.toThrow()
+      })
+      expect(warnings).toEqual([])
+    })
+  })
+
+  it('reraises a failing pod install instead of reporting a skip', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-no-pod-'))
+    const bin = mkdtempSync(join(tmpdir(), 'vxrn-fake-pod-'))
+    writeFakePod(bin, 'exit 1')
+    withWarned((warnings) => {
+      withPath(bin, () => {
+        expect(() => installNativeDependencies({ root })).toThrow()
+      })
+      expect(warnings).toEqual([])
+    })
+  })
+
+  it('runs pod install when pod exists', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-no-pod-'))
+    const bin = mkdtempSync(join(tmpdir(), 'vxrn-fake-pod-'))
+    writeFakePod(bin, 'echo "$@" > "$0.args"')
+    withWarned((warnings) => {
+      withPath(bin, () => {
+        expect(() => installNativeDependencies({ root })).not.toThrow()
+      })
+      expect(warnings).toEqual([])
+      expect(readFileSync(join(bin, 'pod.args'), 'utf8')).toContain('--project-directory=')
+    })
+  })
+})
+
 describe('generateForPlatform determinism', () => {
   it('generates complete native launch assets', async () => {
     const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
@@ -2025,6 +2116,29 @@ describe('generateForPlatform determinism', () => {
     expect(colorset.colors[1].appearances).toEqual([{ appearance: 'luminosity', value: 'dark' }])
     const plist = readFileSync(join(output, 'ios', 'MyApp', 'Info.plist'), 'utf8')
     expect(plist).toContain('<key>NSAccentColorName</key>\n\t<string>AccentColor</string>')
+  }, 180000)
+
+  it('merges the declared asset catalog and refuses a generated name', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-catalog-'))
+    const catalog = join(output, 'app.xcassets')
+    mkdirSync(join(catalog, 'tab-chat.imageset'), { recursive: true })
+    writeFileSync(join(catalog, 'Contents.json'), '{"info":{"author":"xcode","version":1}}')
+    writeFileSync(join(catalog, 'tab-chat.imageset', 'Contents.json'), '{"images":[]}')
+    writeFileSync(join(catalog, 'tab-chat.imageset', 'tab-chat.png'), 'png')
+    const declared = {
+      ...app,
+      ios: { ...app.ios, accentColor: { light: '#867286' }, assetCatalog: catalog },
+    }
+    await generateForPlatform(workspaceRoot, 'ios', declared, join(output, 'ios'))
+    const merged = join(output, 'ios', 'MyApp', 'Images.xcassets')
+    expect(readFileSync(join(merged, 'tab-chat.imageset', 'tab-chat.png'), 'utf8')).toBe('png')
+    expect(existsSync(join(merged, 'AccentColor.colorset', 'Contents.json'))).toBe(true)
+
+    mkdirSync(join(catalog, 'AccentColor.colorset'))
+    await expect(
+      generateForPlatform(workspaceRoot, 'ios', declared, join(output, 'ios'))
+    ).rejects.toThrow('AccentColor.colorset collides')
   }, 180000)
 
   it('regenerates byte-identical projects from the same manifest', async () => {

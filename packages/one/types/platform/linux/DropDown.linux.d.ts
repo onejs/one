@@ -1,4 +1,4 @@
-import type { ControlledControlProps, ControlChange } from '../controlTypes';
+import type { ControlledControlProps, ControlChange } from '../controlTypes.js';
 export type DropDownItem = Readonly<{
     label: string;
     value: string;

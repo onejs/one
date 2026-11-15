@@ -370,6 +370,7 @@
       "name": "webViewContentBackground",
       "type": "Visibility",
       "module": "SwiftUICore",
+      "framework": "WebKit",
       "ios": 26,
       "parameters": [
         {

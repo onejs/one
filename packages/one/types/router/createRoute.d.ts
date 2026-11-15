@@ -1,4 +1,4 @@
-import type { OneRouter } from '../interfaces/router';
+import type { OneRouter } from '../interfaces/router.js';
 export declare function createRoute<Path extends string = string>(): {
     useParams: () => Partial<OneRouter.RouteType<Path>["Params"]>;
     useActiveParams: () => Partial<OneRouter.RouteType<Path>["Params"]>;

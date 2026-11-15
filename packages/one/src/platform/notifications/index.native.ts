@@ -427,11 +427,22 @@ function clearLastResponse(): void {
   native().clearLastNotificationResponse()
 }
 
+function getPendingResponses(): NotificationResponse[] {
+  return native().getPendingNotificationResponses().map(mapResponse)
+}
+
+function acknowledgeResponse(identifier: string): void {
+  native().acknowledgeNotificationResponse(identifier)
+}
+
 // schedule a local notification. trigger null delivers immediately,
 // a timeInterval waits seconds, a date fires at the timestamp. a past date
 // delivers immediately on both platforms.
 async function schedule(request: NotificationScheduleInput): Promise<string> {
   const { content, trigger } = request
+  if (content.soundName !== undefined && (typeof content.soundName !== 'string' || !content.soundName.trim())) {
+    throw new TypeError('Notifications.schedule: soundName must be a non-empty string')
+  }
   return native()
     .scheduleNotification({
       identifier: request.identifier,
@@ -500,6 +511,8 @@ export const Notifications = Object.freeze({
   setHandler,
   getLastResponse,
   clearLastResponse,
+  getPendingResponses,
+  acknowledgeResponse,
   schedule,
   cancelScheduled,
   cancelAllScheduled,

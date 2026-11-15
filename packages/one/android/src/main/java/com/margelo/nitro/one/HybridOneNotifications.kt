@@ -87,6 +87,7 @@ class HybridOneNotifications :
         NitroModules.applicationContext?.let {
             it.addActivityEventListener(activityListener)
             it.addLifecycleEventListener(this)
+            restoreAlarms(it)
         }
         instance = this
     }
@@ -603,7 +604,7 @@ class HybridOneNotifications :
         // consumed at once: onNewIntent and onHostResume both report a tap.
         intent.removeExtra(EXTRA_TAP)
         val response = tapResponse(intent, intent.getStringExtra(EXTRA_USER_TEXT)) ?: return
-        lastResponse = response
+        recordResponse(response)
         currentListeners()?.onResponse?.invoke(responsePayload(response))
     }
 
@@ -618,7 +619,7 @@ class HybridOneNotifications :
                 results?.getCharSequence(EXTRA_USER_TEXT)?.toString()
                     ?: intent.getStringExtra(EXTRA_USER_TEXT)
             ) ?: return
-        lastResponse = response
+        recordResponse(response)
         currentListeners()?.onResponse?.invoke(responsePayload(response))
         if (intent.getBooleanExtra(EXTRA_FOREGROUND, true)) {
             foregroundWithResponse(context, response, null)
@@ -655,6 +656,15 @@ class HybridOneNotifications :
         lastResponse = null
     }
 
+    override fun getPendingNotificationResponses(): Array<NativeNotificationResponse> {
+        harvestTap(context.currentActivity?.intent)
+        return synchronized(responseLock) { pendingResponses.map { responsePayload(it) }.toTypedArray() }
+    }
+
+    override fun acknowledgeNotificationResponse(identifier: String) {
+        synchronized(responseLock) { pendingResponses.removeAll { it.identifier == identifier } }
+    }
+
     companion object {
         const val ACTION_ALARM = "dev.onejs.onenative.NOTIFICATION_ALARM"
         const val ACTION_RESPONSE = "dev.onejs.onenative.NOTIFICATION_RESPONSE"
@@ -673,6 +683,17 @@ class HybridOneNotifications :
         // js creates the hybrid.
         @Volatile
         private var lastResponse: TapResponse? = null
+        private val responseLock = Any()
+        private val pendingResponses = mutableListOf<TapResponse>()
+
+        private fun recordResponse(response: TapResponse) {
+            synchronized(responseLock) {
+                lastResponse = response
+                if (pendingResponses.none { it.identifier == response.identifier }) {
+                    pendingResponses.add(response)
+                }
+            }
+        }
         private const val PREFS = "one_native_notifications"
         private const val PREFS_SCHEDULES = "one_native_notifications_schedules"
         private const val PREFS_CATEGORIES = "one_native_notification_categories"
@@ -1011,16 +1032,17 @@ class HybridOneNotifications :
             )
         }
 
-        // inexact by design: exact alarms need schedule_exact_alarm, and a
-        // single doze-deferrable path is simpler. a late delivery under doze
-        // is documented, not a bug.
+        // exact needs schedule_exact_alarm from android 12, so there it stays
+        // inexact (bounded to an hour); before 12 an exact alarm needs no
+        // permission and inexact would defer a day-ahead alarm by hours.
         private fun setAlarm(context: Context, identifier: String, fireAtMs: Long) {
             val manager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            manager.setAndAllowWhileIdle(
-                AlarmManager.RTC_WAKEUP,
-                fireAtMs,
-                alarmIntent(context, identifier)
-            )
+            val intent = alarmIntent(context, identifier)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+                manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, fireAtMs, intent)
+            } else {
+                manager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, fireAtMs, intent)
+            }
         }
 
         private fun cancelAlarm(context: Context, identifier: String) {
@@ -1194,7 +1216,7 @@ class HybridOneNotifications :
         // recorded on the process here and the app opens without it.
         fun handleTap(context: Context, intent: Intent) {
             val response = tapResponse(intent, null) ?: return
-            lastResponse = response
+            recordResponse(response)
             instance?.let { live ->
                 live.currentListeners()?.onResponse?.invoke(live.responsePayload(response))
             }
@@ -1222,7 +1244,7 @@ class HybridOneNotifications :
             val response =
                 tapResponse(intent, results?.getCharSequence(EXTRA_USER_TEXT)?.toString())
                     ?: return
-            lastResponse = response
+            recordResponse(response)
             if (intent.getBooleanExtra(EXTRA_FOREGROUND, true)) {
                 foregroundWithResponse(context, response, results)
             }
@@ -1304,6 +1326,24 @@ class HybridOneNotifications :
         // next getDevicePushToken reads the rotated token instead.
         fun onPushTokenRefresh(token: String) {
             instance?.currentListeners()?.onPushToken?.invoke(NativePushToken("android", token))
+        }
+
+        // a force stop cancels the app's alarms; opening the app sets the
+        // stored future ones again at their saved dates, restarts repeats that
+        // missed their fire from now, and drops expired one-shots.
+        private fun restoreAlarms(context: Context) {
+            val now = System.currentTimeMillis()
+            for (schedule in loadSchedules(context)) {
+                if (schedule.fireAtMs > now) {
+                    setAlarm(context, schedule.identifier, schedule.fireAtMs)
+                } else if (schedule.repeats) {
+                    val rearmed = schedule.copy(fireAtMs = now + (schedule.seconds * 1000).toLong())
+                    saveSchedule(context, rearmed)
+                    setAlarm(context, schedule.identifier, rearmed.fireAtMs)
+                } else {
+                    removeSchedule(context, schedule.identifier)
+                }
+            }
         }
 
         // boot entry: future schedules re-arm, repeats restart from now, and

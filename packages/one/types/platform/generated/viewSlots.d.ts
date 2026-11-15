@@ -1,4 +1,4 @@
-import type { SDKEventValueShape } from './swiftStyleNative';
+import type { SDKEventValueShape } from './swiftStyleNative.js';
 export declare const viewSlotAvailability: {
     readonly accessibilityActions: 16;
     readonly accessibilityActionsWithAccessibilityActionCategory: 18;

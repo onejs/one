@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/mdx",
-  "version": "2.14.0",
+  "version": "2.18.0",
   "type": "commonjs",
   "exports": {
     "./package.json": "./package.json",
@@ -59,7 +59,7 @@
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
-    "@tamagui/build": "3.3.1",
+    "@tamagui/build": "3.3.3",
     "vitest": "^4.1.0"
   },
   "publishConfig": {

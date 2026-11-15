@@ -1,5 +1,5 @@
-import { type DOMState } from './serialize';
-import type { DOMError, DOMValue } from './types';
+import { type DOMState } from './serialize.js';
+import type { DOMError, DOMValue } from './types.js';
 export declare const DOM_PROTOCOL_VERSION: 1;
 export type DOMBootstrap = DOMState & {
     version: typeof DOM_PROTOCOL_VERSION;

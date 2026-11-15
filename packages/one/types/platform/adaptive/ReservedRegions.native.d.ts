@@ -1,4 +1,4 @@
-import type { ReservedRegionsProviderProps } from './types';
+import type { ReservedRegionsProviderProps } from './types.js';
 /**
  * A view that reports the regions reserved inside its own bounds (iOS 27.1
  * UIView reservedRegions, Android folding features and display cutouts) to

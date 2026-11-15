@@ -1,4 +1,6 @@
 ignores:
+  # reads its own version for transform cache identity
+  - "@vxrn/compiler"
   - "babel-plugin-react-compiler"
   - "@babel/plugin-transform-destructuring"
   - "@babel/plugin-transform-flow-strip-types"

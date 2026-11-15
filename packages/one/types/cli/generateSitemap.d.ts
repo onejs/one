@@ -1,4 +1,4 @@
-import type { One } from '../vite/types';
+import type { One } from '../vite/types.js';
 export type SitemapEntry = {
     path: string;
     priority?: number;

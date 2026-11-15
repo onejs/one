@@ -3,7 +3,7 @@ import type { metroPlugin } from '@vxrn/vite-plugin-metro'
 import type { Plugin as RolldownPlugin } from 'rolldown'
 import type {
   AutoDepOptimizationOptions,
-  DepPatch,
+  UserDepPatches,
   AfterBuildProps as VXRNAfterBuildProps,
   VXRNBuildOptions,
   VXRNOptions,
@@ -11,6 +11,7 @@ import type {
 import type { One as OneShared } from '../interfaces/router'
 import type { RouteNode } from '../router/Route'
 import type { NativeAppManifest } from '../native/appManifest'
+import type { WarmStartOptions } from '../router/warmStateShared'
 import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin'
 
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0]
@@ -55,10 +56,8 @@ export namespace One {
     routeModes?: Record<string, RouteRenderMode>
   }
 
-  // todo move into vxrn
-  export type FixDependencies = {
-    [key: string]: DepPatch['patchFiles']
-  }
+  // false skips every built-in patch; a module set to false skips its built-in patch
+  export type FixDependencies = UserDepPatches
 
   type PluginPlatformTarget = 'native' | 'web'
 
@@ -538,7 +537,8 @@ export namespace One {
        *
        * - `'after-lcp-aggressive'`: Only modulepreloads critical scripts (entry, layouts).
        *   Non-critical scripts have no modulepreload hints, reducing network saturation.
-       *   Best for pages with many chunks or slow networks.
+       *   Best for pages with many chunks or slow networks. A spa-shell page still preloads its
+       *   non-critical scripts at normal priority, since it paints nothing until they run.
        *
        * @default undefined (all scripts load with async)
        */
@@ -938,7 +938,9 @@ export namespace One {
     matches?: RouteMatch[]
   }
 
-  export type Flags = {}
+  export type Flags = {
+    warmStart?: boolean | WarmStartOptions
+  }
 
   // Re-export from shared types so they're available from both 'one' and 'one/vite'
   export type SitemapChangefreq = OneShared.SitemapChangefreq

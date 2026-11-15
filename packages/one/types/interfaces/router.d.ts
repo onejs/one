@@ -1,8 +1,8 @@
 import type { NavigationContainerRefWithCurrent, NavigationState, ParamListBase, PartialState } from '@react-navigation/core';
 import type { JSX, ReactNode } from 'react';
 import type { GestureResponderEvent, PressableProps, TextProps } from 'react-native';
-import type { SearchParamsUpdate, SearchValue } from '../searchParams';
-import type { StandardSchemaV1 } from '../standardSchema';
+import type { SearchParamsUpdate, SearchValue } from '../searchParams.js';
+import type { StandardSchemaV1 } from '../standardSchema.js';
 export declare namespace OneRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
     }
@@ -29,7 +29,7 @@ export declare namespace OneRouter {
      */
     export type RouteType<Path extends string> = Path extends keyof __routes['RouteTypes'] ? __routes['RouteTypes'][Path] : {
         Params: InputRouteParams<Path>;
-        LoaderProps: import('../types').LoaderProps<InputRouteParams<Path>, LoaderSearchParams<Path>>;
+        LoaderProps: import('../types.js').LoaderProps<InputRouteParams<Path>, LoaderSearchParams<Path>>;
     };
     type StaticRoutes = __routes extends {
         StaticRoutes: string;

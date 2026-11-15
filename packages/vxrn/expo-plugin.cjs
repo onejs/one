@@ -32,6 +32,9 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // android/app/src/main/java/one/source. Swift and Kotlin imports then bundle
 // the same host modules; without this the bundler keeps failing fast with
 // the one-prebuild error.
+// options: { engine: 'bun' } runs ios release builds on bun's ahead-of-time
+// compiled javascript instead of hermes. pod install needs ONE_BUN_ENGINE_DIR
+// naming the bun runtime directory (see vxrn/ios/OneBunEngine).
 module.exports = function withVxrn(config, options = {}) {
   const projectRoot = config?._internal?.projectRoot
   if (!projectRoot) {
@@ -700,8 +703,25 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
     } catch (error) {
       throw new Error(`[vxrn/expo-plugin] cannot resolve the one package: ${error.message}`)
     }
+    // a linux or windows host still generates the project; it has no iOS SDK to
+    // build the bindings pod, which only a mac compiles.
+    if (process.platform !== 'darwin') {
+      console.warn(
+        `[vxrn/expo-plugin] iOS SDK generation was skipped on ${process.platform}; the bindings pod is generated on macOS`
+      )
+      return []
+    }
     const { writeAppSdkPod } = await import(pathToFileURL(appModule).href)
-    return writeAppSdkPod(projectRoot)
+    // the release bundle reaches frameworks through one's own modules, which the
+    // app's imports do not name. bundle it once, as one prebuild does, so the
+    // release bindings and link set cover them.
+    const { writeIosLinkSet } = await import(
+      pathToFileURL(path.join(path.dirname(appModule), '..', 'esm', 'cli', 'iosLinkSet.mjs')).href
+    )
+    const expoRequire = createRequire(projectRequire.resolve('expo/package.json'))
+    const { resolveEntryPoint } = expoRequire('@expo/config/paths')
+    const entry = resolveEntryPoint(projectRoot, { platform: 'ios' })
+    return writeAppSdkPod(projectRoot, console.info, writeIosLinkSet(projectRoot, entry).frameworks)
   }
 
   // expo's default ios deployment target sits below the one the One pod
@@ -832,6 +852,32 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
         ),
       ]
 
+  if (options.engine !== undefined && options.engine !== 'bun' && options.engine !== 'hermes') {
+    throw new Error(`[vxrn/expo-plugin] engine must be 'bun' or 'hermes', got ${options.engine}`)
+  }
+  const bunEngine = options.engine === 'bun'
+  const bunEnginePlugins = !bunEngine
+    ? []
+    : [
+        [
+          withAppDelegate,
+          (nextConfig) => {
+            nextConfig.modResults.contents = nativeProjectPatches.runBunEngineInAppDelegate(
+              nextConfig.modResults.contents
+            )
+            return nextConfig
+          },
+        ],
+        importIntoBridgingHeader('engine', nativeProjectPatches.ONE_BUN_ENGINE.bridgingHeaderImport),
+        [
+          withEntitlementsPlist,
+          (nextConfig) => {
+            nextConfig.modResults[nativeProjectPatches.ONE_BUN_ENGINE.entitlement] = true
+            return nextConfig
+          },
+        ],
+      ]
+
   return withPlugins(config, [
     ...locationPlugins,
     ...audioPlugins,
@@ -842,6 +888,7 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
     ...notificationPlugins,
     ...updatesPlugins,
     ...launchScreenPlugins,
+    ...bunEnginePlugins,
     ...deploymentTargetPlugins,
     ...sdkBindingsPlugins,
     ...nativeSourcePlugins,
@@ -865,6 +912,9 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
             script,
             updates.runtimeVersion
           )
+        }
+        if (bunEngine) {
+          script = nativeProjectPatches.addBunEngineToBundleReactNativeShellScript(script)
         }
         phase.shellScript = JSON.stringify(script)
         return nextConfig
@@ -940,8 +990,9 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
           podfile = nativeProjectPatches.injectSkiaDawnVendoringIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectReactNativeScreensGammaIntoPodfile(podfile)
+          if (bunEngine) podfile = nativeProjectPatches.injectBunEngineIntoPodfile(podfile)
           if (nativeProjectPatches.hasNitroWebImage(projectRoot)) {
-            podfile = nativeProjectPatches.injectNitroWebImageModularHeaderIntoPodfile(podfile)
+            podfile = nativeProjectPatches.injectModularHeadersIntoPodfile(podfile)
           }
           fs.writeFileSync(podfilePath, podfile, 'utf8')
           return nextConfig

@@ -6,7 +6,7 @@
 // their ABI and signature-based ids match tables built from another SDK. output
 // is cached per sdk and generator, so a second prebuild only copies files.
 import { createHash } from 'node:crypto'
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
 import { homedir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -32,29 +32,33 @@ export function writeSdkNativeSupport(dir: string, sdkRoot = sdkPath()) {
 
 const SKIP = new Set(['node_modules', 'ios', 'android', 'dist', 'build', 'types'])
 const SOURCE = /\.(?:[cm]?[jt]sx?)$/
-const IMPORT = /['"]one\/ios\/([A-Za-z_][A-Za-z0-9_]*)['"]/g
+const IMPORT = /['"]one\/ios\/([A-Za-z_][A-Za-z0-9_]*)(?:\/[A-Za-z_$][A-Za-z0-9_$]*)?['"]/g
 const ONE_IMPORT = /(?:\bfrom\s*|\bimport\s*\(?\s*|\brequire\s*\(\s*)['"]one['"]/
+const SDK_BACKEND = /\brequire\(\s*['"](\.\/[\w.-]+\.sdk)['"]\s*\)/g
 
 // the native root barrel loads the unified modules together. their ios
-// implementations contribute framework imports too, even when an app never
-// names one/ios itself. derive these dependencies from the shipped sources
-// rather than maintaining a second list beside the implementations.
+// implementations, and the sdk backends those load on first use, contribute
+// framework imports too, even when an app never names one/ios itself. derive
+// these dependencies from the shipped sources rather than maintaining a second
+// list beside the implementations.
 export function importedFrameworks(
   root: string,
   platformRoot = join(dirname(fileURLToPath(import.meta.url)), '../../src/platform')
 ): string[] {
   const found = new Set<string>()
   let usesOne = false
+  const scan = (file: string, unified: boolean) => {
+    const source = readFileSync(file, 'utf8')
+    for (const match of source.matchAll(IMPORT)) found.add(match[1])
+    if (!unified && ONE_IMPORT.test(source)) usesOne = true
+    if (unified) for (const match of source.matchAll(SDK_BACKEND)) scan(join(dirname(file), `${match[1]}.ts`), true)
+  }
   const walk = (dir: string, unified = false) => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       if (entry.name.startsWith('.') || SKIP.has(entry.name)) continue
       const full = join(dir, entry.name)
       if (entry.isDirectory()) walk(full, unified)
-      else if (SOURCE.test(entry.name) && (!unified || /\.ios\.[jt]sx?$/.test(entry.name))) {
-        const source = readFileSync(full, 'utf8')
-        for (const match of source.matchAll(IMPORT)) found.add(match[1])
-        if (!unified && ONE_IMPORT.test(source)) usesOne = true
-      }
+      else if (SOURCE.test(entry.name) && (!unified || /\.ios\.[jt]sx?$/.test(entry.name))) scan(full, unified)
     }
   }
   walk(root)
@@ -193,9 +197,9 @@ export async function generateAppSdk(frameworks: string[], log = console.info) {
 
 // writes ios/OneSwiftPackages/OneSDKBindings, which the podfile picks up with
 // the app's other local swift pods. an app importing no framework gets no pod.
-export async function writeAppSdkPod(root: string, log = console.info) {
+export async function writeAppSdkPod(root: string, log = console.info, releaseFrameworks?: string[]) {
   const podDir = join(root, 'ios', 'OneSwiftPackages', SDK_POD)
-  const frameworks = importedFrameworks(root)
+  const frameworks = [...new Set([...importedFrameworks(root), ...releaseFrameworks ?? []])].sort()
   if (!frameworks.length) {
     rmSync(podDir, { recursive: true, force: true })
     return []
@@ -204,12 +208,18 @@ export async function writeAppSdkPod(root: string, log = console.info) {
   if (manifest.generation !== generatorFingerprint().slice(0, 16)) {
     throw new Error('[one] installed iOS facades do not match the SDK generator; regenerate One SDK bindings before building')
   }
-  const { files } = await generateAppSdk(frameworks, log)
+  const debug = await generateAppSdk(frameworks, log)
+  const release = releaseFrameworks === undefined ? debug : await generateAppSdk(releaseFrameworks, log)
   const sdkRoots = SDKS.map((target) => ({ name: target.sdk, root: sdkPath(target.sdk) }))
   // keep the previous coherent pod if validation or generation fails.
   rmSync(podDir, { recursive: true, force: true })
-  mkdirSync(join(podDir, 'Sources'), { recursive: true })
-  for (const [name, from] of files) copyFileSync(from, join(podDir, 'Sources', name))
+  for (const [configuration, generated] of [['Debug', debug], ['Release', release]] as const) {
+    const dir = join(podDir, 'Sources', configuration)
+    mkdirSync(dir, { recursive: true })
+    for (const [name, from] of generated.files) {
+      writeFileSync(join(dir, `${configuration}_${name}`), `#if ${configuration === 'Debug' ? '' : '!'}ONE_SDK_DEBUG\n${readFileSync(from, 'utf8')}\n#endif\n`)
+    }
+  }
   for (const sdk of sdkRoots) {
     writeCLinkageModules(join(podDir, 'CLinkage', sdk.name), sdk.root)
   }
@@ -223,17 +233,19 @@ export async function writeAppSdkPod(root: string, log = console.info) {
   s.source = { :path => '.' }
   s.platform = :ios, '${minimumVersion}.0'
   s.swift_version = '5.0'
-  s.source_files = 'Sources/*.swift'
+  s.source_files = 'Sources/**/*.swift'
   s.preserve_paths = 'CLinkage/**/*'
   s.dependency 'One'
   # the tables import One with c++ interop, which reaches react's headers, so
   # they need One's module policy
   s.pod_target_xcconfig = {
+    'ONE_IOS_SDK_FRAMEWORKS' => '${(releaseFrameworks ?? frameworks).join(' ')}',
+    'SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug]' => '$(inherited) ONE_SDK_DEBUG',
     'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
     'OTHER_SWIFT_FLAGS' => '$(inherited) ${CXX_INTEROP.join(' ')} ${cLinkageSwiftFlags('$(PODS_TARGET_SRCROOT)/CLinkage/$(PLATFORM_NAME)/module.modulemap', '$(SDKROOT)').map((flag) => `"${flag}"`).join(' ')} -Xcc -Wno-non-modular-include-in-framework-module',
   }
 end
 `)
-  log(`[one] iOS bindings: ${frameworks.join(', ')} (${files.size} files)`)
+  log(`[one] iOS bindings: Debug ${frameworks.join(', ')}; Release ${(releaseFrameworks ?? frameworks).join(', ') || 'none'} (${release.files.size} files)`)
   return frameworks
 }

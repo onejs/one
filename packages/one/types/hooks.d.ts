@@ -1,7 +1,7 @@
 import React from 'react';
-import type { OneRouter } from './interfaces/router';
-import { type SearchParamsOptions, type UseSearchParamsSchemaResult } from './searchParams';
-import { type StandardSchemaV1 } from './standardSchema';
+import type { OneRouter } from './interfaces/router.js';
+import { type SearchParamsOptions, type UseSearchParamsSchemaResult } from './searchParams.js';
+import { type StandardSchemaV1 } from './standardSchema.js';
 type SearchParams = OneRouter.SearchParams;
 /**
  * Returns the root navigation state from the NavigationContainer.
@@ -17,7 +17,7 @@ export declare function useRootNavigationState(): OneRouter.ResultState;
  * @returns Route info object with pathname, params, segments, and more
  * @link https://onestack.dev/docs/api/hooks/useRouteInfo
  */
-export declare function useRouteInfo(): import("./router/getNormalizedStatePath").UrlObject;
+export declare function useRouteInfo(): import("./router/getNormalizedStatePath.js").UrlObject;
 /** @return the root `<NavigationContainer />` ref for the app. The `ref.current` may be `null` if the `<NavigationContainer />` hasn't mounted yet. */
 export declare function useNavigationContainerRef(): OneRouter.NavigationRef;
 export declare const FrozeContext: React.Context<boolean>;

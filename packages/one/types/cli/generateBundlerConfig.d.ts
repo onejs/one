@@ -1,4 +1,4 @@
-import type { One } from '../vite/types';
+import type { One } from '../vite/types.js';
 /**
  * Marker that identifies a bundler config as One-generated. If the file
  * still contains this marker we can safely regenerate it; if the user

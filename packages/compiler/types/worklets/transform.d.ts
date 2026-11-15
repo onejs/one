@@ -1,4 +1,4 @@
-import type { TransformWorkletsOptions } from './types';
+import type { TransformWorkletsOptions } from './types.js';
 export declare function prepareWorkletsForReactCompiler(id: string, code: string, sourceMaps?: boolean): {
     code: string;
     map?: any;

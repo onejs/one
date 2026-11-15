@@ -7,7 +7,7 @@
  */
 import type { NavigationState, PartialState } from '@react-navigation/routers';
 import type { PathConfigMap } from '@react-navigation/core';
-import { type AdditionalRouteConfig } from './getStateFromPath-mods';
+import { type AdditionalRouteConfig } from './getStateFromPath-mods.js';
 type Options<ParamList extends {}> = {
     path?: string;
     initialRouteName?: string;

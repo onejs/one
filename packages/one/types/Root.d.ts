@@ -1,8 +1,8 @@
 import type { NavigationContainerProps } from '@react-navigation/native';
 import { type FunctionComponent, type ReactNode } from 'react';
-import type { OneLinkingConfig } from './link/getLinking';
-import type { GlobbedRouteImports } from './types';
-import type { One } from './vite/types';
+import type { OneLinkingConfig } from './link/getLinking.js';
+import type { GlobbedRouteImports } from './types.js';
+import type { One } from './vite/types.js';
 type RootProps = Omit<InnerProps, 'context'> & {
     onRenderId?: (id: string) => void;
     path: string;

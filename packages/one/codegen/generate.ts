@@ -761,7 +761,7 @@ const swiftTypeNames: Record<string, string> = {
 }
 // enum parsers for types that only a feature group's framework declares
 const typeGroups = (type: string) =>
-  /^PhotosPicker/.test(type) ? ['photos'] : /^(PayWithApplePay|AddPassToWallet|PK)/.test(type) ? ['wallet'] : []
+  /^PhotosPicker/.test(type) ? ['photos'] : /^WebView\./.test(type) ? ['web'] : /^(PayWithApplePay|AddPassToWallet|PK)/.test(type) ? ['wallet'] : []
 for (const [type, cases] of Object.entries(enums)) {
   if (type.endsWith('Style')) continue
   const swiftReturnType = swiftTypeNames[type] ?? type
@@ -785,6 +785,8 @@ for (const [type, cases] of Object.entries(enums)) {
 }
 swift += '}\n\nextension View {\n'
 for (const method of methods) {
+  const groups = frameworkGroups('framework' in method ? method.framework : 'module' in method ? method.module : 'SwiftUI')
+  if (groups.length) swift += `#if ${groups.map(linkSetCondition).join(' && ')}\n`
   if (method.type.endsWith('Style')) {
     swift += `  @ViewBuilder func oneNative${method.name[0].toUpperCase() + method.name.slice(1)}(_ value: String) -> some View {\n    switch value {\n`
     for (const [name, version] of Object.entries(enums[method.type])) {
@@ -795,6 +797,7 @@ for (const method of methods) {
           : `      self.${method.name}(.${name})\n`
     }
     swift += `    default: let _ = preconditionFailure("invalid ${method.type}: \\(value)"); self\n    }\n  }\n`
+    if (groups.length) swift += '#endif\n'
     continue
   }
   const apply = `self.${method.name}(OneNativeGenerated.${method.type[0].toLowerCase() + method.type.slice(1)}(value))`
@@ -803,6 +806,7 @@ for (const method of methods) {
     swift += `${sdkGuard(method.ios, `    if #available(iOS ${method.ios}, *) {\n      if value.isEmpty { self } else { ${apply} }\n    } else {\n      let _ = precondition(value.isEmpty, "${method.name} requires iOS ${method.ios}")\n      self\n    }`, `    let _ = precondition(value.isEmpty, "${method.name} requires iOS ${method.ios}")\n    self`)}\n`
   } else swift += `    if value.isEmpty { self } else { ${apply} }\n`
   swift += '  }\n'
+  if (groups.length) swift += '#endif\n'
 }
 swift += '}\n'
 outputs.set('ios/Generated/OneNativeSwiftUI.swift', swift)

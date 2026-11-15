@@ -1,5 +1,5 @@
-import type { PurchaseProduct, PurchaseResult, PurchaseTransaction, PurchaseUpdate } from '../specs/OnePurchases.nitro';
-export type { PurchaseProduct, PurchaseProductType, PurchaseResult, PurchaseStatus, PurchaseTransaction, PurchaseUpdate, PurchaseUpdateStatus, } from '../specs/OnePurchases.nitro';
+import type { PurchaseProduct, PurchaseResult, PurchaseTransaction, PurchaseUpdate } from '../specs/OnePurchases.nitro.js';
+export type { PurchaseProduct, PurchaseProductType, PurchaseResult, PurchaseStatus, PurchaseTransaction, PurchaseUpdate, PurchaseUpdateStatus, } from '../specs/OnePurchases.nitro.js';
 declare function getProducts(productIds: string[]): Promise<PurchaseProduct[]>;
 declare function purchase(productId: string, appAccountToken?: string): Promise<PurchaseResult>;
 declare function getCurrentEntitlements(): Promise<PurchaseTransaction[]>;

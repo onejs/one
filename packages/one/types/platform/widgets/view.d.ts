@@ -1,5 +1,5 @@
 import { type ComponentType, type ReactNode } from 'react';
-import type { SFSymbolName } from '../generated/sfSymbolNames';
+import type { SFSymbolName } from '../generated/sfSymbolNames.js';
 export type WidgetStyle = {
     color?: string;
     backgroundColor?: string;

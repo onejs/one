@@ -1,3 +1,4 @@
+#if ONE_GROUP_WEB
 import UIKit
 import WebKit
 
@@ -387,3 +388,4 @@ private final class OneDOMMessageProxy: NSObject, WKScriptMessageHandler {
     host?.receive(message)
   }
 }
+#endif

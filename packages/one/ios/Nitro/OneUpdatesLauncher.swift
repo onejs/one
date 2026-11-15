@@ -11,7 +11,7 @@ import React
 //
 // layout under application support:
 //   one-updates/state.json          every downloaded update plus launching
-//   one-updates/<id>/main.jsbundle  the hermes bundle react native loads
+//   one-updates/<id>/main.jsbundle  the bundle react native loads
 //   one-updates/<id>/<path>         each asset where the resolver looks
 //   one-updates/.tmp-<id>/          a fetch in progress, renamed on success
 
@@ -88,6 +88,7 @@ struct OneUpdatesStateFile: Codable {
   private static var runningId: String?
   private static var runningEmbedded = true
   private static var contentAppeared = false
+  private static var launchingBundleURL: URL?
   // the just-failed update the next selection skips once, so an in-session
   // rollback lands on the next candidate instead of reselecting a proven
   // update that stays a candidate.
@@ -99,8 +100,6 @@ struct OneUpdatesStateFile: Codable {
   private static var pendingReload: Promise<Void>?
   private static var stagedListeners: [Int: (String?) -> Void] = [:]
   private static var nextListenerId = 0
-  private static var previousFatalHandler: RCTFatalHandler?
-  private static var previousFatalExceptionHandler: RCTFatalExceptionHandler?
   private static var session: URLSession?
 
   // MARK: - config and paths
@@ -113,7 +112,7 @@ struct OneUpdatesStateFile: Codable {
     Bundle.main.object(forInfoDictionaryKey: "OneUpdatesRuntimeVersion") as? String
   }
 
-  static var isEnabled: Bool {
+  @objc public static var isEnabled: Bool {
     #if DEBUG
     return false
     #else
@@ -359,8 +358,20 @@ struct OneUpdatesStateFile: Codable {
   // embedded bundle launches and the launcher never touches state.
   @objc public static func bundleURL() -> URL? {
     ensureInstalled()
-    guard isEnabled else { return embeddedBundleURL() }
-    return select()
+    let url = isEnabled ? select() : embeddedBundleURL()
+    lock.lock()
+    launchingBundleURL = url
+    lock.unlock()
+    return url
+  }
+
+  // the url bundleURL last answered, without selecting again. react native reads
+  // the bundle url before it creates the js engine, so an engine choice that
+  // depends on the bundle (the bun engine runs only its compiled program) reads it here.
+  @objc public static func launchingURL() -> URL? {
+    lock.lock()
+    defer { lock.unlock() }
+    return launchingBundleURL
   }
 
   static func ensureInstalled() {
@@ -372,18 +383,6 @@ struct OneUpdatesStateFile: Codable {
     if installed { return }
     installed = true
     guard isEnabled else { return }
-    previousFatalHandler = RCTGetFatalHandler()
-    previousFatalExceptionHandler = RCTGetFatalExceptionHandler()
-    RCTSetFatalHandler { error in
-      if let error {
-        OneUpdatesLauncher.handleFatal(error: error as NSError)
-      }
-    }
-    RCTSetFatalExceptionHandler { exception in
-      if let exception {
-        OneUpdatesLauncher.handleFatalException(exception: exception)
-      }
-    }
     NotificationCenter.default.addObserver(
       forName: NSNotification.Name.RCTContentDidAppear,
       object: nil,
@@ -412,42 +411,17 @@ struct OneUpdatesStateFile: Codable {
     pending?.resolve()
   }
 
-  static func handleFatal(error: NSError) {
+  @objc(rollBackIfArmedWithReason:)
+  public static func rollBackIfArmed(reason: String) -> Bool {
     lock.lock()
     let armed = !contentAppeared
     let launching = loadState().launching
     guard armed, let launching else {
-      let previous = previousFatalHandler
       lock.unlock()
-      if let previous {
-        previous(error)
-      } else {
-        NSException(
-          name: NSExceptionName("RCTFatalException: \(error.localizedDescription)"),
-          reason: error.localizedDescription,
-          userInfo: error.userInfo
-        ).raise()
-      }
-      return
+      return false
     }
-    rollBack(launching: launching, reason: error.localizedDescription)
-  }
-
-  static func handleFatalException(exception: NSException) {
-    lock.lock()
-    let armed = !contentAppeared
-    let launching = loadState().launching
-    guard armed, let launching else {
-      let previous = previousFatalExceptionHandler
-      lock.unlock()
-      if let previous {
-        previous(exception)
-      } else {
-        exception.raise()
-      }
-      return
-    }
-    rollBack(launching: launching, reason: exception.reason ?? exception.name.rawValue)
+    rollBack(launching: launching, reason: reason)
+    return true
   }
 
   // takes the held lock and releases it: marks the booted update failed and

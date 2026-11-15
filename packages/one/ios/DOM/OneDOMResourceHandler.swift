@@ -1,3 +1,4 @@
+#if ONE_GROUP_WEB
 import Foundation
 import WebKit
 
@@ -145,3 +146,4 @@ final class OneDOMResourceHandler: NSObject, WKURLSchemeHandler {
     }
   }
 }
+#endif

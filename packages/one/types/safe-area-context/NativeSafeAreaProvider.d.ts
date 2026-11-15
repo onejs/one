@@ -1,4 +1,4 @@
 import * as React from 'react';
-import type { NativeSafeAreaProviderProps } from './SafeArea-types';
+import type { NativeSafeAreaProviderProps } from './SafeArea-types.js';
 export declare function NativeSafeAreaProvider({ children, style, onInsetsChange, }: NativeSafeAreaProviderProps): string | number | bigint | boolean | React.JSX.Element | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | Iterable<React.ReactNode> | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | React.ReactPortal | null | undefined> | null | undefined;
 //# sourceMappingURL=NativeSafeAreaProvider.d.ts.map

@@ -1,3 +1,5 @@
+import groovy.json.JsonSlurper
+
 buildscript {
     def composeKotlinVersion =
         rootProject.ext.has("kotlinVersion") ? rootProject.ext.get("kotlinVersion") : "2.1.20"
@@ -42,6 +44,20 @@ def oneNativePushEnabled() {
     return value != null && value.toString() == "true"
 }
 
+def oneZeroSqliteEnabled() {
+    File manifest = new File(rootDir, "../package.json")
+    if (rootDir.absolutePath.contains("node_modules")) {
+        File directory = new File(rootDir, "../").canonicalFile
+        while (!new File(directory, "package.json").isFile()) {
+            if (directory.parentFile == null) throw new GradleException("op-sqlite application package.json not found")
+            directory = directory.parentFile
+        }
+        manifest = new File(directory, "package.json")
+    }
+    def config = new JsonSlurper().parse(manifest)["op-sqlite"] ?: [:]
+    return config.libsql != true && config.turso != true
+}
+
 android {
     namespace "dev.onejs.one"
     compileSdkVersion safeExtGet("compileSdkVersion", 35)
@@ -63,7 +79,7 @@ android {
         }
         externalNativeBuild {
             cmake {
-                arguments "-DANDROID_STL=c++_shared",
+                arguments "-DANDROID_STL=c++_shared", "-DONE_ZERO_SQLITE=${oneZeroSqliteEnabled() ? 1 : 0}",
                     // 16 kb page sizes (play requires them past targetSdk 34):
                     // the pinned ndk 27 defaults to 4 kb, and react native's
                     // gradle plugin injects this flag into app modules only,
@@ -172,6 +188,7 @@ dependencies {
         implementation "com.google.maps.android:maps-compose:6.10.0"
         implementation "androidx.lifecycle:lifecycle-runtime:2.9.3"
     }
+    implementation project(":op-engineering_op-sqlite")
     implementation project(":react-native-nitro-modules")
     // firebase messaging only when the app opted into push via the manifest
     // flag; without it nothing here references it, which is what keeps it

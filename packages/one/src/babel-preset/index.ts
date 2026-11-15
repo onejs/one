@@ -168,9 +168,7 @@ export function buildOneBabelPlugins({
   includeImportMetaEnv = true,
 }: BuildOneBabelPluginsOptions): PluginItem[] {
   const tsconfig = tsconfigPaths.loadConfig(projectRoot)
-  if (tsconfig.resultType === 'failed') {
-    throw new Error('[one/babel-preset] tsconfig.json paths could not be loaded')
-  }
+  const tsconfigAliases = tsconfig.resultType === 'success' ? tsconfig.paths : {}
 
   const require = createRequire(projectRoot + '/')
   const metroEntryPath = require.resolve('one/metro-entry', {
@@ -212,7 +210,7 @@ export function buildOneBabelPlugins({
       // "vite-tsconfig-paths" for Metro
       {
         alias: Object.fromEntries(
-          Object.entries(tsconfig.paths).map(([k, v]) => {
+          Object.entries(tsconfigAliases).map(([k, v]) => {
             // exact-match aliases need a trailing `$`, prefix aliases drop `/*`
             const key = k.endsWith('/*') ? k.replace(/\/\*$/, '') : `${k}$`
             let value = v[0].replace(/\/\*$/, '')

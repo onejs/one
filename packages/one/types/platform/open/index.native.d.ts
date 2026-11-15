@@ -1,5 +1,5 @@
-import type { OpenShareContent } from './types';
-export type { OpenShareContent } from './types';
+import type { OpenShareContent } from './types.js';
+export type { OpenShareContent } from './types.js';
 declare function openURL(url: string): Promise<void>;
 declare function openShare({ title, message, url }: OpenShareContent): Promise<void>;
 declare function openSettings(): Promise<void>;

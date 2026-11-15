@@ -1,4 +1,3 @@
-import { runOnUISync, isWorkletFunction } from 'react-native-worklets'
 import { composeRangeDay, validateComposeFamily } from './composeFamilyValidation'
 import { Children, createContext, forwardRef, useContext, useEffect, useImperativeHandle, useRef, useState, type ReactNode } from 'react'
 import { Image as ReactNativeImage, StyleSheet, type ColorValue } from 'react-native'
@@ -2251,6 +2250,12 @@ const Shape = {
   Polygon: shape('polygon'),
   RoundedCorner: shape('roundedCorner'),
 }
+// worklets is an optional peer, needed only for SyncSwitch's onCheckedChangeSync
+let worklets: typeof import('react-native-worklets') | undefined
+try {
+  worklets = require('react-native-worklets')
+} catch {}
+
 let nextSyncCallback = 1
 function SyncSwitch({
   isOn,
@@ -2259,10 +2264,15 @@ function SyncSwitch({
   ...props
 }: ComposeSyncSwitchProps) {
   validateComposeFamily('syncswitch', { isOn, enabled })
-  if (onCheckedChangeSync !== undefined && !isWorkletFunction(onCheckedChangeSync))
-    throw new Error('SyncSwitch onCheckedChangeSync must be a worklet')
+  if (onCheckedChangeSync !== undefined) {
+    if (!worklets) throw new Error('SyncSwitch onCheckedChangeSync requires react-native-worklets')
+    if (!worklets.isWorkletFunction(onCheckedChangeSync))
+      throw new Error('SyncSwitch onCheckedChangeSync must be a worklet')
+  }
   const [callbackId] = useState(() => nextSyncCallback++)
   useEffect(() => {
+    if (!worklets) return
+    const { runOnUISync } = worklets
     runOnUISync(() => {
       'worklet'
       const globals = globalThis as unknown as {

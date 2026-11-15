@@ -1,7 +1,7 @@
-import type { LiveActivityState, PushTokenEvent, WidgetActionEvent, WidgetData } from './index.native';
+import type { LiveActivityState, PushTokenEvent, WidgetActionEvent, WidgetData } from './index.native.js';
 import type { ReactNode } from 'react';
-import type { ActivityView } from './view';
-export { WidgetUI, type WidgetStyle, type ActivityView } from './view';
+import type { ActivityView } from './view.js';
+export { WidgetUI, type WidgetStyle, type ActivityView } from './view.js';
 export type { LiveActivityState, PushTokenEvent, WidgetActionEvent, WidgetData };
 export declare const Widgets: Readonly<{
     write(_data: WidgetData): Promise<void>;

@@ -1,4 +1,4 @@
-import type { SFSymbolName } from '../generated/sfSymbolNames';
+import type { SFSymbolName } from '../generated/sfSymbolNames.js';
 export type AppCommandBinding = {
     id: string;
     /** a gpui keystroke such as cmd-shift-[, ctrl-tab or up. */

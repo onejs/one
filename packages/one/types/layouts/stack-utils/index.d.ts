@@ -1,9 +1,9 @@
-import { StackHeaderBackButton, type StackHeaderBackButtonProps } from './StackHeaderBackButton';
-import { StackHeaderComponent, type StackHeaderProps } from './StackHeaderComponent';
-import { StackHeaderLeft, type StackHeaderLeftProps } from './StackHeaderLeft';
-import { StackHeaderRight, type StackHeaderRightProps } from './StackHeaderRight';
-import { StackHeaderSearchBar, type StackHeaderSearchBarProps } from './StackHeaderSearchBar';
-import { StackHeaderTitle, type StackHeaderTitleProps } from './StackHeaderTitle';
+import { StackHeaderBackButton, type StackHeaderBackButtonProps } from './StackHeaderBackButton.js';
+import { StackHeaderComponent, type StackHeaderProps } from './StackHeaderComponent.js';
+import { StackHeaderLeft, type StackHeaderLeftProps } from './StackHeaderLeft.js';
+import { StackHeaderRight, type StackHeaderRightProps } from './StackHeaderRight.js';
+import { StackHeaderSearchBar, type StackHeaderSearchBarProps } from './StackHeaderSearchBar.js';
+import { StackHeaderTitle, type StackHeaderTitleProps } from './StackHeaderTitle.js';
 /**
  * Compound component for configuring stack headers.
  * Attach to Stack as `Stack.Header`.
@@ -17,7 +17,7 @@ export declare const StackHeader: typeof StackHeaderComponent & {
     SearchBar: typeof StackHeaderSearchBar;
 };
 export { StackHeaderBackButton, type StackHeaderBackButtonProps, StackHeaderComponent, type StackHeaderProps, StackHeaderLeft, type StackHeaderLeftProps, StackHeaderRight, type StackHeaderRightProps, StackHeaderSearchBar, type StackHeaderSearchBarProps, StackHeaderTitle, type StackHeaderTitleProps, };
-export { StackScreen, appendScreenStackPropsToOptions, validateStackPresentation, type StackScreenProps, type StackScreenOptions, } from './StackScreen';
-export { BottomToolbarHost, type BottomToolbarHostProps, } from './StackToolbarBottomHost';
-export { StackToolbarBadge, StackToolbarButton, StackToolbarComponent, StackToolbarIcon, StackToolbarLabel, StackToolbarMenu, StackToolbarMenuAction, StackToolbarSearchBarSlot, StackToolbarSpacer, appendStackToolbarPropsToOptions, type BottomToolbarButtonData, type BottomToolbarData, type BottomToolbarMenuActionData, type BottomToolbarMenuData, type BottomToolbarSearchBarSlotData, type BottomToolbarSpacerData, type BottomToolbarSubmenuData, type StackToolbarBadgeProps, type StackToolbarButtonProps, type StackToolbarIconProps, type StackToolbarLabelProps, type StackToolbarMenuActionProps, type StackToolbarMenuProps, type StackToolbarPlacement, type StackToolbarProps, type StackToolbarSearchBarSlotProps, type StackToolbarSpacerProps, type StackToolbarVariant, } from './StackToolbar';
+export { StackScreen, appendScreenStackPropsToOptions, validateStackPresentation, type StackScreenProps, type StackScreenOptions, } from './StackScreen.js';
+export { BottomToolbarHost, type BottomToolbarHostProps, } from './StackToolbarBottomHost.js';
+export { StackToolbarBadge, StackToolbarButton, StackToolbarComponent, StackToolbarIcon, StackToolbarLabel, StackToolbarMenu, StackToolbarMenuAction, StackToolbarSearchBarSlot, StackToolbarSpacer, appendStackToolbarPropsToOptions, type BottomToolbarButtonData, type BottomToolbarData, type BottomToolbarMenuActionData, type BottomToolbarMenuData, type BottomToolbarSearchBarSlotData, type BottomToolbarSpacerData, type BottomToolbarSubmenuData, type StackToolbarBadgeProps, type StackToolbarButtonProps, type StackToolbarIconProps, type StackToolbarLabelProps, type StackToolbarMenuActionProps, type StackToolbarMenuProps, type StackToolbarPlacement, type StackToolbarProps, type StackToolbarSearchBarSlotProps, type StackToolbarSpacerProps, type StackToolbarVariant, } from './StackToolbar.js';
 //# sourceMappingURL=index.d.ts.map

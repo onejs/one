@@ -412,7 +412,7 @@ Wrap each route screen in a React Suspense boundary on native. On native the JS 
 
 ### native.css
 
-Turns on [react-native-css-interop](https://github.com/marklawlor/nativewind) support when importing CSS on native. This allows you to use CSS imports in your React Native code.
+Turns on [react-native-css-interop](https://github.com/marklawlor/nativewind) support when importing CSS on native. This allows you to use CSS imports in your React Native code. Add `react-native-css-interop` to your app's dependencies to use it.
 
 ```tsx fileName=vite.config.ts
 export default {
@@ -996,6 +996,16 @@ export default {
 ```
 
 Any transforms that are applied to specific files in node_modules will only be applied once. The original files will be stored alongside the transformed ones.
+
+One also applies a few built-in patches to React Native packages. Set `patches: false` to skip all of them, or set a package to `false` to skip only its built-in patch:
+
+```tsx fileName=vite.config.ts
+one({
+  patches: {
+    'react-native': false,
+  },
+})
+```
 
 ## router
 

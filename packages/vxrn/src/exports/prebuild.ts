@@ -3,7 +3,8 @@ import { existsSync, lstatSync, readdirSync, readFileSync, renameSync, rmSync } 
 import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fillOptions } from '../config/getOptionsFilled'
-import { applyBuiltInPatches } from '../utils/patches'
+import { applyBuiltInPatches, type UserDepPatches } from '../utils/patches'
+import { PREVIOUS_IOS_DIR } from '../utils/swiftPackageId'
 import {
   applyAndroidDependencyPatches,
   generateForPlatform,
@@ -22,6 +23,7 @@ export const prebuild = async ({
   'no-install': noInstall = false,
   app,
   beforeInstall,
+  patches,
 }: {
   root: string
   platform?: 'ios' | 'android' | string
@@ -30,12 +32,13 @@ export const prebuild = async ({
   // runs once the native projects exist and before discovery and install, so
   // a caller can add local pods the podfile picks up
   beforeInstall?: () => Promise<void>
+  patches?: UserDepPatches
 }) => {
   validatePrebuildApp(app, platform)
 
   const options = await fillOptions({ root })
 
-  await applyBuiltInPatches(options)
+  await applyBuiltInPatches({ root: options.root, patches })
 
   try {
     const packageJsonPath = path.join(root, 'package.json')
@@ -66,7 +69,7 @@ export const prebuild = async ({
   }
 
   const ios = path.join(root, 'ios')
-  const previousIos = `${ios}.previous`
+  const previousIos = path.join(root, PREVIOUS_IOS_DIR)
   rmSync(previousIos, { recursive: true, force: true })
   const reusesIos = (platform == 'ios' || !platform) && existsSync(ios)
   if (reusesIos) renameSync(ios, previousIos)
@@ -93,15 +96,16 @@ export const prebuild = async ({
     applyAndroidDependencyPatches({ root, app, inventory })
   }
 
+  let podInstallSkipped = false
   if (!noInstall) {
-    installNativeDependencies({ root, platform })
+    podInstallSkipped = !installNativeDependencies({ root, platform })
   } else if (!platform || platform === 'ios') {
     console.info(`Run cd ios && pod install`)
     console.info(
       'Then run `open *.xcworkspace` in your terminal to open the prebuilt iOS project, then you can either run it via Xcode or archive it for distribution.'
     )
   }
-  if (!platform || platform === 'ios') {
+  if ((!platform || platform === 'ios') && !podInstallSkipped) {
     console.info(
       `
 iOS:

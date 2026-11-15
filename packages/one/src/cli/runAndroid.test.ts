@@ -37,6 +37,7 @@ describe('one run:android', () => {
     prebuildRunMock.mockReset()
     loadUserOneOptionsMock.mockResolvedValue({
       config: { config: { server: { port: 4300 } } },
+      oneOptions: {},
     })
   })
 

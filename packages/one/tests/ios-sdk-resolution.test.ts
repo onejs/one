@@ -14,23 +14,27 @@ function installedApp() {
   const root = realpathSync(mkdtempSync(join(tmpdir(), 'one-sdk-resolution-')))
   roots.push(root)
   const pkg = join(root, 'node_modules/one')
-  mkdirSync(join(pkg, 'dist/esm/ios'), { recursive: true })
+  mkdirSync(join(pkg, 'dist/esm/ios/Foundation'), { recursive: true })
   writeFileSync(join(root, 'package.json'), '{"name":"eas-only-app"}')
   writeFileSync(join(pkg, 'package.json'), JSON.stringify({
     name: 'one', exports: { './package.json': './package.json' },
   }))
-  const facade = join(pkg, 'dist/esm/ios/Foundation.native.js')
-  writeFileSync(facade, 'export const linkedFramework = "Foundation"\n')
-  return { root, facade }
+  const facade = join(pkg, 'dist/esm/ios/Foundation.mjs')
+  const classFacade = join(pkg, 'dist/esm/ios/Foundation/Bundle.mjs')
+  writeFileSync(facade, 'export * from "./Foundation/index.mjs";\n')
+  writeFileSync(classFacade, 'export class Bundle {}\n')
+  return { root, facade, classFacade }
 }
 
 describe('installed iOS SDK resolution', () => {
   it('resolves from the installed package without an iOS project or local prebuild', () => {
-    const { root, facade } = installedApp()
+    const { root, facade, classFacade } = installedApp()
     expect(resolveIosSdkImport(root, 'one/ios/Foundation', 'ios', 'app.ios.ts')).toBe(facade)
+    expect(resolveIosSdkImport(root, 'one/ios/Foundation/Bundle', 'ios', 'app.ios.ts')).toBe(classFacade)
     const plugin = iosSdkPlugin('ios', root)
     const resolve = plugin.resolveId as { handler: (source: string, importer: string) => string }
     expect(resolve.handler('one/ios/Foundation', 'app.ios.ts')).toBe(facade)
+    expect(resolve.handler('one/ios/Foundation/Bundle', 'app.ios.ts')).toBe(classFacade)
   })
 
   it('keeps the platform boundary and rejects a framework absent from the package', () => {

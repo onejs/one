@@ -133,7 +133,7 @@ test.each(['serve', 'build'] as const)(
     const compiler = nativeForm('compiler')
     // also listed for native by the app, which wins over the vite config
     const shadowed = nativeForm('listed')
-    const listed: Plugin = { name: 'listed' }
+    const listed = { name: 'listed' }
     const webOnly: Plugin = { name: 'web-only' }
     try {
       process.chdir(fixture)
