@@ -108,6 +108,21 @@ describe('one native integration tests', () => {
     })
   })
 
+  describe('ShareTarget drafts', () => {
+    test('rejects reads and discards without an app group container', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-share-target')
+      await waitForElement(driver, 'share-target-screen')
+      expect(await (await waitForElement(driver, 'share-target-drafts')).getText()).toBe('Drafts: -1')
+      await (await waitForElement(driver, 'share-target-load')).click()
+      await waitForElement(driver, 'Error: E_SHARE_TARGET_READ')
+      expect(await (await waitForElement(driver, 'share-target-state')).getText()).toBe('State: rejected')
+      await (await waitForElement(driver, 'share-target-discard')).click()
+      await waitForElement(driver, 'Error: E_SHARE_TARGET_DISCARD')
+      expect(await (await waitForElement(driver, 'share-target-state')).getText()).toBe('State: rejected')
+      await captureScreenshot(driver, 'share-target-unavailable')
+    })
+  })
+
   describe('CameraView capture', () => {
     test('rejects a picture without a running camera and keeps zoom and torch inert', sharedTestOptions, async () => {
       await navigateTo(driver, '/one-native-camera')

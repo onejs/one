@@ -304,6 +304,11 @@ const testScreens = [
     testID: 'nav-one-native-share',
   },
   {
+    href: '/one-native-share-target',
+    label: 'One Native Share Target',
+    testID: 'nav-one-native-share-target',
+  },
+  {
     href: '/one-native-open',
     label: 'One Native Open APIs',
     testID: 'nav-one-native-open',
