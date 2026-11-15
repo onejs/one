@@ -204,15 +204,12 @@ export function readManifest(value: unknown, expected: Identity): Manifest {
   }
 }
 
-async function response(url: string): Promise<Response> {
-  return fetch(url, { signal: AbortSignal.timeout(120_000) })
-}
-
 export async function publishedManifest(
   expected: Identity
 ): Promise<Manifest | undefined> {
-  const result = await response(
-    `${repository}/one-ios-${artifactKey(expected)}/manifest.json`
+  const result = await fetch(
+    `${repository}/one-ios-${artifactKey(expected)}/manifest.json`,
+    { signal: AbortSignal.timeout(120_000) }
   )
   if (result.status === 404) return undefined
   assert(result.ok, `One iOS binary manifest download failed: HTTP ${result.status}`)
@@ -224,7 +221,9 @@ export async function downloadArchive(
   entry: Archive,
   destination: string
 ): Promise<void> {
-  const download = await response(`${repository}/one-ios-${key}/${entry.file}`)
+  // no total deadline: archives are hundreds of megabytes, and undici's idle
+  // timeouts still end a stalled transfer.
+  const download = await fetch(`${repository}/one-ios-${key}/${entry.file}`)
   assert(
     download.ok && download.body,
     `One iOS archive download failed: HTTP ${download.status}`
@@ -419,7 +418,16 @@ if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.me
         'One binaries require precompiled React Native core and dependencies'
       )
       console.log(JSON.stringify({ reason: 'React Native is building from source' }))
-    } else console.log(JSON.stringify(await install(resolve(argument))))
+    } else {
+      // auto mode never fails pod install over the binary: offline machines,
+      // blocked hosts or a failed download keep the source build.
+      const result = await install(resolve(argument)).catch((error: unknown) => {
+        if (process.env.ONE_PREBUILT_IOS === '1') throw error
+        const message = error instanceof Error ? error.message : String(error)
+        return { reason: `binary unavailable (${message.split('\n')[0]})` }
+      })
+      console.log(JSON.stringify(result))
+    }
   } else if (command === 'import') {
     assert(process.argv[4], 'expected an artifact directory')
     console.log(
