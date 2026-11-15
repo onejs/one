@@ -142,8 +142,9 @@ Selection:
 - Before starting a downloaded update, whether at cold launch or through `reload()`,
   the launcher records `launching: <id>`. The embedded update is never recorded and
   never marked failed.
-- The launch succeeds when the router's root layout commits: `RootErrorBoundary`
-  mounts without having caught and calls `OneUpdates.markLaunchSuccessful()`.
+- The launch succeeds when the router's root layout commits: a marker rendered
+  beside it inside its route Suspense boundary calls
+  `OneUpdates.markLaunchSuccessful()`, so a suspended root layout stays unproven.
   React Native's first content (`RCTContentDidAppearNotification`, `CONTENT_APPEARED`)
   is the router's provider shell, which appears before the root layout renders, so it
   cannot prove an update.

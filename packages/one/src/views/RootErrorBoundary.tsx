@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import { launchCanRollBack, markLaunchSuccessful } from '../platform/updates/launchProof'
+import { launchCanRollBack } from '../platform/updates/launchProof'
 
 type RootErrorBoundaryState = {
   hasError: boolean
@@ -20,10 +20,6 @@ export class RootErrorBoundary extends React.Component<
 
   static getDerivedStateFromError(error: Error) {
     return { hasError: true, error }
-  }
-
-  componentDidMount() {
-    if (!this.state.hasError) markLaunchSuccessful()
   }
 
   componentDidCatch(error: Error, info: React.ErrorInfo) {
