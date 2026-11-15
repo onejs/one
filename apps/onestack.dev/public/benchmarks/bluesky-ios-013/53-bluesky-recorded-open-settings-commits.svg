@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="318" viewBox="0 0 960 318">
+<rect width="100%" height="100%" fill="#fff"/>
+<g font-family="system-ui, sans-serif" fill="#172033">
+<text x="28" y="35" font-size="23">bluesky · recorded-open-settings · commits</text>
+<text x="28" y="65" font-size="15">iPhone 17 Pro simulator on Apple M2 · iOS 27.0 · f3faaa90c74395517538234ce1b6bcb14b864e66</text>
+<text x="28" y="121" font-size="18">bun</text>
+<rect x="170" y="100" width="530" height="30" fill="#2764d9"/>
+<path d="M700,115 H700 M700,108 V122 M700,108 V122" stroke="#111" fill="none"/>
+<path d="M700,115 H700" stroke="#111" stroke-width="5"/>
+<text x="725" y="121" font-size="17">5.00 count · n=5</text>
+<text x="28" y="185" font-size="18">hermes</text>
+<rect x="170" y="164" width="530" height="30" fill="#868e9c"/>
+<path d="M700,179 H700 M700,172 V186 M700,172 V186" stroke="#111" fill="none"/>
+<path d="M700,179 H700" stroke="#111" stroke-width="5"/>
+<text x="725" y="185" font-size="17">5.00 count · n=5</text>
+<text x="28" y="278" font-size="14">Bar: median · thick line: middle 50% · whiskers: minimum–maximum</text>
+<text x="28" y="300" font-size="13">Exploratory Release samples; no CPU cap; n=5; variable host activity</text>
+</g></svg>

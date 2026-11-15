@@ -6,6 +6,8 @@ description: Runtime, rendering and memory measurements from alternating Release
 Bun completed 300 updates of 1,000 native views in 5.00 seconds, compared with
 8.18 seconds for Hermes. JavaScript compute workloads were faster on Bun.
 Navigation and the long text list were close, and Bun used more memory.
+Bluesky also showed tradeoffs: Bun reached the recorded thread commit sooner,
+while Hermes returned to the home feed sooner and used less memory.
 
 These measurements are from an iOS simulator on an Apple M2 MacBook Air with
 24 GB of memory. They do not establish iPhone performance.
@@ -61,6 +63,95 @@ idle period or a collection.
 Process to content ready was 528.62 ms on Hermes and 537.46 ms on Bun.
 The first-frame proxy was 500.80 ms and 507.74 ms respectively. The proxy
 uses a native display callback; it does not measure pixels appearing on screen.
+
+## Bluesky: exploratory simulator samples
+
+Bun reached the recorded thread's final React commit sooner, while Hermes
+returned from settings to the home feed sooner and used less memory.
+Startup to the first React commit was close. These five pairs ran without a
+CPU cap on the same M2 MacBook Air as the microbenchmarks.
+
+Background CPU activity persisted despite quiet admission, with a substantial
+load spike during the last pair. All samples are retained. Treat these as
+exploratory results pending a controlled repeat and an iPhone comparison.
+
+### Twenty actions
+
+Five samples per engine. Times are medians in milliseconds, with the 25th and
+75th percentiles in brackets. Each action invokes the actual rendered callback.
+The metric ends at the last observed React commit after the action; it does
+not measure when the pixels finish drawing.
+
+| Action | Hermes | Bun |
+| --- | ---: | ---: |
+| Open settings | 84.90 [77.24, 88.23] | 70.49 [69.24, 70.67] |
+| Open appearance | 59.21 [56.24, 63.85] | 63.02 [43.90, 63.08] |
+| Back from appearance | 13.78 [9.11, 15.96] | 9.09 [8.73, 12.12] |
+| Open accessibility | 59.52 [50.78, 61.42] | 44.59 [44.42, 47.63] |
+| Back from accessibility | 16.63 [13.82, 19.12] | 8.93 [6.86, 9.41] |
+| Languages | 54.14 [52.60, 65.52] | 60.94 [45.62, 64.74] |
+| Thread preferences | 63.24 [46.66, 63.38] | 60.54 [47.49, 61.34] |
+| Following preferences | 50.51 [49.58, 64.85] | 61.21 [59.61, 61.67] |
+| External media | 63.74 [49.32, 65.29] | 60.30 [42.99, 61.92] |
+| Content and media | 63.91 [62.34, 64.97] | 46.04 [45.35, 59.95] |
+| Privacy and security | 81.73 [81.54, 82.69] | 69.75 [65.02, 85.09] |
+| Home from settings | 669.81 [615.40, 807.15] | 1103.32 [1071.21, 1121.13] |
+| Scroll feed down | 269.85 [253.44, 296.98] | 231.77 [216.65, 231.88] |
+| Scroll feed middle | 246.34 [242.32, 288.65] | 181.61 [165.07, 230.84] |
+| Scroll feed end | 236.04 [229.74, 237.54] | 163.92 [163.67, 178.65] |
+| Scroll feed top | 228.84 [220.81, 230.06] | 197.81 [196.96, 197.83] |
+| Open recorded thread | 855.08 [849.43, 872.77] | 497.12 [481.68, 497.79] |
+| Recorded search | 102.18 [98.42, 104.81] | 89.93 [89.22, 91.75] |
+| Open profile | 314.55 [304.87, 314.87] | 211.22 [208.08, 214.38] |
+| Return home from profile | 25.96 [23.19, 26.75] | 25.17 [24.04, 28.91] |
+
+![Bluesky recorded thread: median, quartiles and range](/benchmarks/bluesky-ios-013/47-bluesky-recorded-open-recorded-thread-action-to-settled.svg)
+
+![Bluesky home from settings: median, quartiles and range](/benchmarks/bluesky-ios-013/27-bluesky-recorded-home-action-to-settled.svg)
+
+### Startup and memory
+
+| Measurement | Hermes | Bun |
+| --- | ---: | ---: |
+| Bundle start to first React commit, ms | 1206.50 [1180.63, 1228.22] | 1242.14 [1183.80, 1285.75] |
+| Startup physical footprint, MiB | 109.86 [109.64, 110.39] | 147.24 [146.44, 147.52] |
+| After all actions, MiB | 222.22 [221.80, 222.69] | 297.86 [294.91, 298.86] |
+
+The footprint includes native allocations. No garbage collection was forced.
+The startup metric begins inside the JavaScript bundle, so it excludes native
+process launch and runtime initialization and does not measure first pixels.
+
+The long pauses in the original comparison video came partly from the probe:
+it waited four seconds without a new startup commit, then two seconds before
+an action. Later cases waited 2.5 seconds without a commit, then two seconds
+between actions. Those waits are excluded from the reported commit durations.
+Both apps were Release builds.
+
+![Bluesky memory after all actions: median, quartiles and range](/benchmarks/bluesky-ios-013/00-bluesky-complete-host-physical-footprint.svg)
+
+### Bluesky method
+
+Measured on 14 November 2026 using RN 0.81.5 / Expo 54 with the new architecture.
+Bun engine 0.1.3 used ahead-of-time compilation with JIT and WebAssembly disabled;
+Hermes used optimized bytecode from the same prepared JavaScript bundle.
+The native app and dependency changes were shared by both variants.
+
+Five alternating Hermes/Bun pairs ran in three batches of two, two and one.
+Each launch started a new process. The simulator, OS caches and signed-in app
+data stayed warm, and app data was reused between engines. Native permission
+prompts were dismissed before the series. Every launch completed all twenty
+actions. Stored responses and images replaced live network responses.
+Retained replay logs cover the final launch of each batch for each engine;
+all six contain zero misses. Earlier replay logs were overwritten.
+
+The upstream [Bluesky source](https://github.com/bluesky-social/social-app/tree/f3faaa90c74395517538234ce1b6bcb14b864e66)
+required the same dependency ports on both engines: MMKV 3.3.3, paste input
+2.0.1, UITextView 2.7.1 and a Fabric sheet touch handler. The native Bun adapter
+included [the global-pruning fix](https://github.com/onejs/one/commit/ffa53547e).
+The downloadable measurements record the prepared bundle and tool hashes.
+
+[All Bluesky charts](/benchmarks/bluesky-ios-013/index.html) ·
+[Individual Bluesky measurements](/benchmarks/bluesky-ios-013/raw.json)
 
 ## Bluesky with a CPU limit
 
