@@ -1,1 +1,3 @@
 {"id":"00000001794727053545:f26b56c32502c523ad099d864a2722ed","text":"s254968 pass done: slot blank rows fixed in PR 1233 (review s254992 running, merge needs large approval); 1229 merged e7bcf4e80e (contrast canary bump outstanding, task released); 1170 done (merged e16b55a05a); 2.17.2 tarballs done. Group released."}
+
+{"id":"00000001794731483243:354ec80262ec9ed913cef298abf46955","text":"s254968 + s254992 finished; PR #1233 merged to main as 80c78b8030; t-mwe98z06-94u0 Mac xcodebuild validated and closed; b67657 debugging typed Bun AoT Rolldown treeshake; s255078 building precompiled iOS binaries (t-mw3ogfqh-vkr0)."}
