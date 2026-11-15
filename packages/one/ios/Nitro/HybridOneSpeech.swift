@@ -1,3 +1,4 @@
+#if ONE_GROUP_SPEECH
 import AVFoundation
 import NitroModules
 import Speech
@@ -154,6 +155,7 @@ final class HybridOneSpeech: HybridOneSpeechSpec {
     session.request.shouldReportPartialResults = true
     session.request.taskHint = .dictation
     session.request.addsPunctuation = true
+    session.request.contextualStrings = options.contextualStrings ?? []
 
     do {
       let audio = AVAudioSession.sharedInstance()
@@ -273,3 +275,4 @@ final class HybridOneSpeech: HybridOneSpeechSpec {
     }
   }
 }
+#endif

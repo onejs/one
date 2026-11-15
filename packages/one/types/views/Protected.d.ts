@@ -1,5 +1,5 @@
 import { type FunctionComponent, type ReactElement, type ReactNode } from 'react';
-import type { OneRouter } from '../interfaces/router';
+import type { OneRouter } from '../interfaces/router.js';
 declare const Group: import("react").ComponentType<import("@react-navigation/core").RouteGroupConfig<import("@react-navigation/routers").ParamListBase, {}, import("@react-navigation/core").NavigationProp<import("@react-navigation/routers").ParamListBase, string, Readonly<{
     key: string;
     index: number;

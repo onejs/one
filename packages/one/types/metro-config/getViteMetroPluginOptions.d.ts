@@ -10,5 +10,5 @@ export declare function getViteMetroPluginOptions({ projectRoot, relativeRouterR
         ios?: string;
         android?: string;
     };
-}): Parameters<typeof metroPlugin>[0];
+}): NonNullable<Parameters<typeof metroPlugin>[0]>;
 //# sourceMappingURL=getViteMetroPluginOptions.d.ts.map

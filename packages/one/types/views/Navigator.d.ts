@@ -1,8 +1,8 @@
 import { type RouterFactory, useNavigationBuilder } from '@react-navigation/native';
 import * as React from 'react';
-import { Screen } from './Screen';
+import { Screen } from './Screen.js';
 type NavigatorTypes = ReturnType<typeof useNavigationBuilder>;
-import type { RouteNode } from '../router/Route';
+import type { RouteNode } from '../router/Route.js';
 export interface SlotState {
     /** The route key currently being rendered in this slot (null = show default) */
     activeRouteKey: string | null;

@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneStoreReviewSpec``
 public protocol HybridOneStoreReviewSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func requestReview() throws -> Promise<Void>

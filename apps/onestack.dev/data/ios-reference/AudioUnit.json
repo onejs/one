@@ -1,0 +1,1 @@
+{"name":"AudioUnit","group":"Media","summary":"Add sophisticated audio manipulation and processing capabilities to your app.","sdk":"27.1","types":0,"entries":0,"skipped":1,"declarations":[],"globals":[],"omissions":[{"name":"AUDIO_UNIT_VERSION","reason":"The iOS SDK compiler rejected this binding: type 'AudioUnit' (aka 'OpaquePointer') has no member 'AUDIO_UNIT_VERSION'"}]}

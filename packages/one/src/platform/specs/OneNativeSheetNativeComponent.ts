@@ -12,9 +12,7 @@ interface NativeProps extends ViewProps {
   isPresented: boolean
   acknowledgedEvent: Int32
   revision: Int32
-  presentationId: Int32
   detents: ReadonlyArray<NativeSheetDetent>
-  fitToContents: boolean
   selectedDetentType: string
   selectedDetentValue: Double
   acknowledgedDetentEvent: Int32
@@ -33,9 +31,6 @@ interface NativeProps extends ViewProps {
     Readonly<{ isPresented: boolean; eventCount: Int32; revision: Int32 }>
   >
   onNativeSheetDismiss?: DirectEventHandler<Readonly<{ revision: Int32 }>>
-  onNativeSheetDidDismiss?: DirectEventHandler<
-    Readonly<{ revision: Int32; presentationId: Int32 }>
-  >
   onNativeSheetDetentChange?: DirectEventHandler<
     Readonly<{ type: string; value: Double; eventCount: Int32; revision: Int32 }>
   >

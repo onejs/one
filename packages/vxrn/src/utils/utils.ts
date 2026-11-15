@@ -1,12 +1,12 @@
-import type fs from 'node:fs'
-import FSExtra from 'fs-extra'
+import { type Stats, statSync } from 'node:fs'
+import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { createHash } from 'node:crypto'
 
-export function tryStatSync(file: string): fs.Stats | undefined {
+export function tryStatSync(file: string): Stats | undefined {
   try {
     // The "throwIfNoEntry" is a performance optimization for cases where the file does not exist
-    return FSExtra.statSync(file, { throwIfNoEntry: false })
+    return statSync(file, { throwIfNoEntry: false })
   } catch {}
 }
 
@@ -36,6 +36,6 @@ export function getHash(text: Buffer | string, length = 8): string {
 }
 
 export async function getFileHash(path: string) {
-  const content = await FSExtra.readFile(path, 'utf-8')
+  const content = await readFile(path, 'utf-8')
   return getHash(content)
 }

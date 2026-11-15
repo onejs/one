@@ -21,9 +21,14 @@ import { toAbsoluteUrl } from '../utils/toAbsolute'
 import { toServerOutputPath } from '../utils/toServerOutputPath'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
+import {
+  getLoaderSearchSchemas,
+  withLoaderSearchParams,
+  type LoaderSearchSchemas,
+} from '../loaderSearchParams'
+import { requestAtUrl } from './requestAtUrl'
 import { getRouteExportsFromEntry } from './routeExportsFromEntry'
 import { setSSRLoaderData } from './ssrLoaderData'
-import { getFetchStaticHtml } from './staticHtmlFetcher'
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 
@@ -59,11 +64,6 @@ function forwardHeaders(response: Response, context: { header: Function }) {
 }
 
 async function readStaticHtml(htmlPath: string, outDir = 'dist'): Promise<string | null> {
-  const fetchStaticHtml = getFetchStaticHtml()
-  if (fetchStaticHtml) {
-    const html = await fetchStaticHtml(htmlPath)
-    if (html) return html
-  }
   try {
     return await readFile(join(`${outDir}/client`, htmlPath), 'utf-8')
   } catch {
@@ -167,6 +167,8 @@ export async function oneServe(
   // loader coalescing via static loaderCache export
   // when a route exports loaderCache, concurrent requests with the same key share one execution
   const loaderCacheFnMap = new Map<string, Function | null>()
+  // search schemas the build found for a route's loader, null when it has none
+  const loaderSearchSchemaMap = new Map<string, LoaderSearchSchemas | null>()
   const pendingLoaderResults = new Map<
     string,
     { promise: Promise<any>; expires: number }
@@ -216,6 +218,12 @@ export async function oneServe(
       // also cache loaderCache export for coalescing
       const loaderCacheFn = routeExported?.loaderCache ?? null
       setBounded(loaderCacheFnMap, cacheKey, loaderCacheFn, MODULE_CACHE_MAX)
+      setBounded(
+        loaderSearchSchemaMap,
+        cacheKey,
+        getLoaderSearchSchemas(routeExported),
+        MODULE_CACHE_MAX
+      )
       return loader
     })()
   }
@@ -225,7 +233,9 @@ export async function oneServe(
     routeId: string,
     serverPath: string | undefined,
     lazyKey: string | undefined,
-    loaderProps: any
+    requestLoaderProps: any,
+    // only document requests of ssr routes carry the query a loader can validate
+    withSearchParams = false
   ): Promise<{ loaderData: unknown; routeId: string; isEnoent?: boolean }> {
     if (!serverPath && !lazyKey) {
       return { loaderData: undefined, routeId }
@@ -233,6 +243,13 @@ export async function oneServe(
 
     // check loaderCache BEFORE resolving the loader (fast path for coalesced requests)
     const cacheMapKey = lazyKey || serverPath || ''
+    // validate before any cached result is reused, a cold route is validated once loaded
+    let loaderProps = requestLoaderProps
+    const validateSearch = () => {
+      const schemas = withSearchParams && loaderSearchSchemaMap.get(cacheMapKey)
+      if (schemas) loaderProps = withLoaderSearchParams(schemas, requestLoaderProps)
+    }
+    validateSearch()
     const loaderCacheFn = loaderCacheFnMap.get(cacheMapKey)
     let coalFullKey: string | undefined
     let coalTtl = 0
@@ -261,6 +278,7 @@ export async function oneServe(
       if (!loader) {
         return { loaderData: undefined, routeId }
       }
+      if (loaderProps === requestLoaderProps) validateSearch()
 
       // first caller with loaderCache: execute and register for coalescing
       if (coalFullKey) {
@@ -385,6 +403,11 @@ export async function oneServe(
         return null
       }
 
+      // a client navigation to an ssr route validates its query like the document request
+      const searchSchemas =
+        route.type === 'ssr' && loaderSearchSchemaMap.get(routeFile || serverPath)
+      if (searchSchemas) loaderProps = withLoaderSearchParams(searchSchemas, loaderProps)
+
       let json
       try {
         json = await loader(loaderProps)
@@ -444,7 +467,8 @@ export async function oneServe(
                   layout.contextKey,
                   serverPath,
                   layout.contextKey,
-                  loaderProps
+                  loaderProps,
+                  true
                 )
               )
             }
@@ -455,7 +479,8 @@ export async function oneServe(
             route.file,
             buildInfo.serverJsPath,
             route.file,
-            loaderProps
+            loaderProps,
+            true
           )
 
           // wait for all loaders in parallel
@@ -858,7 +883,7 @@ url: ${url}`)
             const finalUrl = new URL(originalUrl, url.origin)
             // preserve query params (platform=ios, etc.) for native CJS conversion
             finalUrl.search = url.search
-            const cleanedRequest = new Request(finalUrl, request)
+            const cleanedRequest = requestAtUrl(finalUrl, request)
             return resolveLoaderRoute(requestHandlers, cleanedRequest, finalUrl, route)
           }
 
@@ -1035,7 +1060,7 @@ url: ${url}`)
         const finalUrl = new URL(originalUrl, url.origin)
         // preserve query params (platform=ios, etc.) for native CJS conversion
         finalUrl.search = url.search
-        const cleanedRequest = new Request(finalUrl, request)
+        const cleanedRequest = requestAtUrl(finalUrl, request)
 
         try {
           const resolved = await resolveLoaderRoute(

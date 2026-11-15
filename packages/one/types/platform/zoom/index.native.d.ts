@@ -1,5 +1,5 @@
-import type { ZoomTransitionSourceProps, ZoomTransitionEnablerProps, ZoomTransitionAlignmentRectDetectorProps } from './types';
-export type { ZoomTransitionSourceProps, ZoomTransitionEnablerProps, ZoomTransitionAlignmentRectDetectorProps, DismissalBoundsRect, SourceAlignmentRect, } from './types';
+import type { ZoomTransitionSourceProps, ZoomTransitionEnablerProps, ZoomTransitionAlignmentRectDetectorProps } from './types.js';
+export type { ZoomTransitionSourceProps, ZoomTransitionEnablerProps, ZoomTransitionAlignmentRectDetectorProps, DismissalBoundsRect, SourceAlignmentRect, } from './types.js';
 export declare function ZoomTransitionEnabler(props: ZoomTransitionEnablerProps): import("react").JSX.Element | null;
 export declare function ZoomTransitionSource(props: ZoomTransitionSourceProps): import("react").JSX.Element | null;
 export declare function ZoomTransitionAlignmentRectDetector(props: ZoomTransitionAlignmentRectDetectorProps): import("react").JSX.Element | null;

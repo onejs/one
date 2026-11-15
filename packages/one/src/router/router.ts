@@ -27,7 +27,14 @@ import { openExternalURL } from '../link/openExternalURL'
 import { resolve } from '../link/path'
 import { checkBlocker } from '../useBlocker'
 import { assertIsReady } from '../utils/assertIsReady'
-import { getLoaderPath, getPreloadCSSPath, getPreloadPath } from '../utils/cleanUrl'
+import {
+  getLoaderPath,
+  getPreloadCSSPath,
+  getPreloadPath,
+  isLoaderBadRequest,
+  splitLoaderKey,
+  toLoaderKey,
+} from '../utils/cleanUrl'
 import { dynamicImport, isChunkLoadError } from '../utils/dynamicImport'
 import { PLATFORM } from '../utils/platform'
 import { isVersionStale } from '../skewProtection'
@@ -53,6 +60,13 @@ import { getRoutes } from './getRoutes'
 import { setLastAction } from './lastAction'
 import { getResolvedLinking, resetLinking, setupLinking } from './linkingConfig'
 import {
+  consumeWarmInitialNavigationState,
+  isWarmStateEnabled,
+  isWarmWebRestoreEligible,
+  shouldAttemptWarmRouteRestore,
+  scheduleWarmStatePersist,
+} from './warmState'
+import {
   getSafeWindowPath,
   getSafeWindowPathname,
   normalizeRoutePathname,
@@ -63,6 +77,7 @@ import { sortRoutes } from './sortRoutes'
 import { getQualifiedRouteComponent } from './useScreens'
 import { preloadRouteModules } from './useViteRoutes'
 import { getNavigateAction } from './utils/getNavigateAction'
+import { getNativeStackReplaceAction } from './utils/getNativeStackReplaceAction'
 import { setClientMatches } from '../useMatches'
 import type { RouteMatch } from '../useMatches'
 import {
@@ -351,9 +366,29 @@ function setupLinkingAndRouteInfo(initialLocation?: URL, linking?: OneLinkingCon
   // capture the original pathname before React Navigation's linking can modify it
   initialPathname = initialLocation?.pathname ?? getSafeWindowPathname()
 
+  if (shouldAttemptWarmRouteRestore(initialLocation)) {
+    const warmState = consumeWarmInitialNavigationState(routeNode, getResolvedLinking())
+    if (warmState) {
+      initialState = warmState
+    }
+  }
+
   if (initialState) {
     rootState = initialState
     routeInfo = getRouteInfo(initialState)
+    if (!initialLocation) {
+      initialPathname = routeInfo.pathname
+    } else if (
+      routeInfo.pathname &&
+      routeInfo.pathname !== initialLocation.pathname &&
+      isWarmWebRestoreEligible(initialLocation)
+    ) {
+      window.history.replaceState(
+        window.history.state,
+        '',
+        routeInfo.unstable_globalHref || routeInfo.pathname
+      )
+    }
   } else {
     routeInfo = {
       unstable_globalHref: '',
@@ -408,6 +443,9 @@ export function handleNavigationContainerStateChange(
   if (state && state !== rootState) {
     updateState(state, undefined)
     shouldUpdateSubscribers = true
+    if (isWarmStateEnabled()) {
+      scheduleWarmStatePersist(state, routeInfo?.pathname)
+    }
   }
 
   if (shouldUpdateSubscribers) {
@@ -547,14 +585,14 @@ export function updateState(state: OneRouter.ResultState, nextStateParam = state
   // Expose devtools API in development
   if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
     // Use registry to avoid circular deps - useLoader registers its function there
-    ;(window as any).__oneDevtools = {
+    ;(window as any).__oneDevtools = Object.assign((window as any).__oneDevtools || {}, {
       routeInfo: nextRouteInfo,
       rootState: state,
       routeNode,
       getRoutes: () => routeNode?.children || [],
       getLoaderTimingHistory: () => devtoolsRegistry.getLoaderTimingHistory?.() ?? [],
       getPreloadHistory,
-    }
+    })
     // Dispatch event for devtools panels to listen
     if (process.env.TAMAGUI_TARGET !== 'native') {
       window.dispatchEvent(new CustomEvent('one-route-change', { detail: nextRouteInfo }))
@@ -786,7 +824,12 @@ async function doPreloadDev(href: string): Promise<any> {
     }
 
     try {
-      const loaderJSUrl = getLoaderPath(href, true)
+      const loaderJSUrl = getLoaderPath(
+        href,
+        true,
+        undefined,
+        splitLoaderKey(normalizedPath)[1]
+      )
 
       const moduleLoadStart = performance.now()
       const modulePromise = dynamicImport(loaderJSUrl, false)
@@ -850,7 +893,12 @@ async function doPreload(href: string) {
 
   const artifactPaths = getRouteArtifactPaths(href, getResolvedLinking(), routeNode)
   const preloadPath = getPreloadPath(artifactPaths.preload)
-  const loaderPath = getLoaderPath(artifactPaths.loader)
+  const loaderPath = getLoaderPath(
+    artifactPaths.loader,
+    undefined,
+    undefined,
+    splitLoaderKey(normalizeLoaderPath(href))[1]
+  )
   const cssPreloadPath = getPreloadCSSPath(artifactPaths.preload)
 
   recordPreloadStart(href)
@@ -999,6 +1047,11 @@ export function preloadRoute(href: string, injectCSS = false): Promise<any> | un
           preloadingLoader,
           normalizedHref,
           doPreloadDev(href).then((data) => {
+            // a rejected request is never kept, so a later visit asks the server again
+            if (isLoaderBadRequest(data)) {
+              delete preloadingLoader[normalizedHref]
+              return data
+            }
             setBoundedPreloadRecord(preloadedLoaderData, normalizedHref, data)
             return data
           })
@@ -1007,24 +1060,32 @@ export function preloadRoute(href: string, injectCSS = false): Promise<any> | un
       return preloadingLoader[normalizedHref]
     }
 
-    if (!preloadingLoader[href]) {
+    // an ssr route's data depends on its query, so it is keyed the way useLoader keys it
+    const preloadKey = splitLoaderKey(normalizeLoaderPath(href))[1]
+      ? normalizeLoaderPath(href)
+      : href
+    if (!preloadingLoader[preloadKey]) {
       setBoundedPreloadRecord(
         preloadingLoader,
-        href,
+        preloadKey,
         doPreload(href)
           .then((data) => {
             // store only successful preloads so navigation retries a failed hover.
-            setBoundedPreloadRecord(preloadedLoaderData, href, data)
+            if (isLoaderBadRequest(data)) {
+              delete preloadingLoader[preloadKey]
+              return data
+            }
+            setBoundedPreloadRecord(preloadedLoaderData, preloadKey, data)
             return data
           })
           .catch((err) => {
-            delete preloadingLoader[href]
+            delete preloadingLoader[preloadKey]
             throw err
           })
       )
     }
 
-    return preloadingLoader[href]?.then(
+    return preloadingLoader[preloadKey]?.then(
       async (data) => {
         if (injectCSS) {
           // wait for CSS on navigation (max 800ms).
@@ -1054,11 +1115,22 @@ export function preloadRoute(href: string, injectCSS = false): Promise<any> | un
   }
 }
 
-// normalize path to match what useLoader uses for currentPath
-function normalizeLoaderPath(href: string): string {
-  // remove search params and hash, normalize trailing slashes and /index
+function isSsrHref(href: string): boolean {
+  const linking = getResolvedLinking()
+  if (!linking?.getStateFromPath || !routeNode) return false
+  const state = linking.getStateFromPath(href, linking.config)
+  return findRouteNodeFromState(state, routeNode)?.type === 'ssr'
+}
+
+/**
+ * The key loader data is stored under, as useLoader keys it: the pathname with
+ * trailing slash and /index removed. An ssr route's loader reads the query, so its
+ * key keeps the query (hash removed). Other routes drop it.
+ */
+export function normalizeLoaderPath(href: string): string {
   const url = new URL(href, 'http://example.com')
-  return url.pathname.replace(/\/index$/, '').replace(/\/$/, '') || '/'
+  const path = url.pathname.replace(/\/index$/, '').replace(/\/$/, '') || '/'
+  return url.search && isSsrHref(href) ? toLoaderKey(path, url.search) : path
 }
 
 /**
@@ -1134,9 +1206,6 @@ export async function linkTo(
   // This enables intercepting routes to activate
   setNavigationType('soft')
 
-  // clear any active not-found state on new navigation
-  clearNotFoundState()
-
   if (href[0] === '#') {
     // this is just linking to a section of the current page on web
     return
@@ -1192,6 +1261,9 @@ export async function linkTo(
     // Update URL to show the target path (not the intercept route path)
     updateURLWithoutNavigation(href)
 
+    // the navigation is committed: leave the not-found page
+    clearNotFoundState()
+
     // Activate the slot to render the intercept route (using scoped key)
     setSlotState(scopedSlotKey, {
       activeRouteKey: interceptRoute.contextKey,
@@ -1221,6 +1293,7 @@ export async function linkTo(
   setLastAction()
 
   if (href === '..' || href === '../') {
+    clearNotFoundState()
     current.goBack()
     return
   }
@@ -1271,7 +1344,14 @@ export async function linkTo(
   // sync fast path: skip async preload when data is already cached
   // (e.g., from hover/viewport/intent prefetching via PreloadLinks)
   if (!(normalizedPreloadPath in preloadedLoaderData) && !(href in preloadedLoaderData)) {
-    await preloadRoute(href, true)
+    const preloaded = await preloadRoute(href, true)
+    // the server rejected this url (a query a search schema rejects) without running
+    // the loader. load it as a document so the server's own response shows.
+    if (isLoaderBadRequest(preloaded)) {
+      setLoadingState('loaded')
+      window.location.assign(href)
+      return
+    }
   } else if (process.env.NODE_ENV !== 'development') {
     // cached data in prod: still inject CSS (non-blocking so we don't delay nav)
     const inject = cssInjectFunctions[href]
@@ -1317,6 +1397,7 @@ export async function linkTo(
 
   // Run async route validation before navigation
   const matchingRouteNode = findRouteNodeFromState(state, routeNode)
+  let isColdRoute = false
   if (matchingRouteNode?.loadRoute) {
     setValidationState({ status: 'validating', lastValidatedHref: href })
 
@@ -1355,6 +1436,7 @@ export async function linkTo(
     } catch (error) {
       // Handle Suspense promises thrown by loadRoute in dev mode
       if (error && typeof (error as any).then === 'function') {
+        isColdRoute = true
         // native dev screens own module suspension. dispatch now so a cold
         // route does not hold navigation on the redirect screen while it loads.
         const routeLoading = (error as Promise<any>).catch(() => {})
@@ -1411,6 +1493,13 @@ export async function linkTo(
     hashes[currentRootState.key] = href.slice(hash)
   }
 
+  // the navigation is committed: only now leave the not-found page. clearing at
+  // the start of linkTo re-mounted the 404ed route while the preload was still
+  // in flight. observed: the page froze in that render. inferred, not observed at
+  // the throw site: the remounted route re-suspended on the settled loader
+  // promise a 404 leaves behind
+  clearNotFoundState()
+
   // a bit hacky until can figure out a reliable way to tie it to the state
   nextOptions = options ?? null
   pendingNavigationPathname = stripTrailingSlash(extractPathnameFromHref(href))
@@ -1435,7 +1524,11 @@ export async function linkTo(
   // navigation. the action is built first, so a target it cannot reach
   // publishes nothing.
   const action =
-    event === 'REPLACE' ? null : getNavigateAction(state, freshRootState, event)
+    event === 'REPLACE'
+      ? process.env.TAMAGUI_TARGET === 'native' && !isColdRoute
+        ? getNativeStackReplaceAction(state, freshRootState)
+        : null
+      : getNavigateAction(state, freshRootState, event)
   startTransition(() => {
     updateState(optimisticState)
     pendingNavigationPathname = targetPathname
@@ -1457,7 +1550,7 @@ export async function linkTo(
       const currentFocusedRoute = freshRootState.routes[freshRootState.index]
       const currentFocusedName = currentFocusedRoute?.name
 
-      if (isRootTarget && isGroupTarget && hasFreshRootState) {
+      if (event !== 'REPLACE' && isRootTarget && isGroupTarget && hasFreshRootState) {
         const targetRoute = state.routes[state.index ?? state.routes.length - 1]
         const targetRootName = targetRoute.name
 

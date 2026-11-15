@@ -1,4 +1,4 @@
-import type { VXRNOptionsFilled } from '../config/getOptionsFilled';
+import type { VXRNOptionsFilled } from '../config/getOptionsFilled.js';
 type ServerOptions = Pick<VXRNOptionsFilled, 'build' | 'root'>;
 export declare const getServerCJSSetting: (options: ServerOptions) => boolean;
 export declare const getServerEntry: (options: ServerOptions, outDir?: string) => string;

@@ -36,6 +36,8 @@ export interface SpeechEvent {
 export interface SpeechStartOptions {
   // a BCP-47 tag such as `en-US`; defaults to the device language
   lang?: string
+  // ios: words and phrases to help the recognizer with domain vocabulary
+  contextualStrings?: string[]
 }
 
 export interface SpeechSession {

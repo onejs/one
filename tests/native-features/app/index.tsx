@@ -194,6 +194,11 @@ const testScreens = [
     testID: 'nav-one-native-navigation',
   },
   {
+    href: '/one-native-navigation-zoom',
+    label: 'One Native Navigation Zoom',
+    testID: 'nav-one-native-navigation-zoom',
+  },
+  {
     href: '/one-native-leaves',
     label: 'One Native Leaves',
     testID: 'nav-one-native-leaves',
@@ -207,6 +212,21 @@ const testScreens = [
     href: '/one-native-host',
     label: 'One Native Host',
     testID: 'nav-one-native-host',
+  },
+  {
+    href: '/one-native-generated-options',
+    label: 'One Native Generated Options',
+    testID: 'nav-one-native-generated-options',
+  },
+  {
+    href: '/one-native-swift-gestures',
+    label: 'One Native Swift Gestures',
+    testID: 'nav-one-native-swift-gestures',
+  },
+  {
+    href: '/one-native-drag-binding',
+    label: 'One Native Drag Binding',
+    testID: 'nav-one-native-drag-binding',
   },
   {
     href: '/one-native-control-size',
@@ -282,6 +302,11 @@ const testScreens = [
     href: '/one-native-share',
     label: 'One Native Share',
     testID: 'nav-one-native-share',
+  },
+  {
+    href: '/one-native-share-target',
+    label: 'One Native Share Target',
+    testID: 'nav-one-native-share-target',
   },
   {
     href: '/one-native-open',
@@ -382,6 +407,16 @@ const testScreens = [
     href: '/one-native-groups',
     label: 'One Native Groups',
     testID: 'nav-one-native-groups',
+  },
+  {
+    href: '/one-native-uikit-view',
+    label: 'One Native UIKit View',
+    testID: 'nav-one-native-uikit-view',
+  },
+  {
+    href: '/one-native-uikit-content',
+    label: 'One Native UIKit Content',
+    testID: 'nav-one-native-uikit-content',
   },
   {
     href: '/one-native-state',

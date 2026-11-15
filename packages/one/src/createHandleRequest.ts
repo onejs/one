@@ -1,8 +1,10 @@
 import { LOADER_JS_POSTFIX_UNCACHED } from './constants'
+import { loaderResponseToModule } from './loaderResponseToModule'
 import type { Middleware, MiddlewareContext } from './createMiddleware'
 import type { RouteNode } from './router/Route'
 import type { RouteInfoCompiled } from './server/createRoutesManifest'
 import type { LoaderProps } from './types'
+import { readLoaderSearch } from './utils/cleanUrl'
 import { isResponse } from './utils/isResponse'
 import { resolveAPIEndpoint, resolveResponse } from './vite/resolveResponse'
 import type { RouteInfo } from './vite/types'
@@ -209,7 +211,9 @@ export async function resolveLoaderRoute(
           url,
           loaderProps: {
             path: url.pathname,
-            search: url.search,
+            // an ssr route's loader gets the query of the page, which the client
+            // sends under a reserved key apart from the loader request's own
+            search: route.type === 'ssr' ? readLoaderSearch(url) : url.search,
             subdomain: getSubdomain(url),
             request: route.type === 'ssr' ? request : undefined,
             params: getLoaderParams(url, route),
@@ -238,37 +242,7 @@ export async function resolveLoaderRoute(
     })
   })
 
-  // transform redirect responses into js modules so the client can detect
-  // and handle them during client-side navigation (instead of the browser
-  // silently following the 302 and trying to parse HTML as javascript)
-  if (response.status >= 300 && response.status < 400) {
-    const location = response.headers.get('location')
-    if (location) {
-      const redirectUrl = new URL(location, url.origin)
-      const redirectPath = redirectUrl.pathname + redirectUrl.search + redirectUrl.hash
-      const data = `{__oneRedirect:${JSON.stringify(redirectPath)},__oneRedirectStatus:${response.status}}`
-      const body = isNativeRequest
-        ? `exports.loader=function(){return ${data}}`
-        : `export function loader(){return${data}}`
-      return new Response(body, {
-        headers: { 'Content-Type': 'text/javascript' },
-      })
-    }
-  }
-
-  // transform auth error responses (401/403) into js modules so the client
-  // gets a clean error signal instead of a parse failure
-  if (response.status === 401 || response.status === 403) {
-    const data = `{__oneError:${response.status},__oneErrorMessage:${JSON.stringify(response.statusText || 'Unauthorized')}}`
-    const body = isNativeRequest
-      ? `exports.loader=function(){return ${data}}`
-      : `export function loader(){return${data}}`
-    return new Response(body, {
-      headers: { 'Content-Type': 'text/javascript' },
-    })
-  }
-
-  return response
+  return loaderResponseToModule(response, url, isNativeRequest)
 }
 
 /**

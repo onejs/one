@@ -89,7 +89,9 @@ phase's `swiftStyle` to the next. Colors that change by phase must be plain
 colors; a platform color throws. `animation` returns one of the named
 animations: `default`, `interpolatingSpring`, `spring`, `interactiveSpring`,
 `smooth`, `snappy`, `bouncy`, `easeInOut`, `easeIn`, `easeOut`, or `linear`,
-or null to change without animation. Unset, every phase uses `default`.
+or a configured value such as `{ kind: 'easeOut', duration: 0.5 }` or
+`{ kind: 'spring', response: 0.35, dampingFraction: 0.8 }`. Use null to change
+without animation. Durations are in seconds. Unset, every phase uses `default`.
 
 <PropsTable
   title="Props"
@@ -97,7 +99,7 @@ or null to change without animation. Unset, every phase uses `default`.
   data={[
     { name: 'phases', required: true, type: 'Iterable<Phase>', description: 'The phases, in order. Must not be empty.' },
     { name: 'trigger', type: 'unknown', description: 'Runs the phases once each time it changes. Omit it to cycle.' },
-    { name: 'animation', type: '(phase: Phase) => SDKAnimation | null', default: "'default'", description: 'The animation into a phase, or null to change without one.' },
+    { name: 'animation', type: '(phase: Phase) => SDKAnimationValue | null', default: "'default'", description: 'A named or configured SDK animation into a phase, or null to change without one.' },
     { name: 'children', required: true, type: '(phase: Phase) => ReactNode', description: 'The content closure.' },
   ]}
 />

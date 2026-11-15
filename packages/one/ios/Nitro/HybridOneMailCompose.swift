@@ -1,3 +1,4 @@
+#if ONE_GROUP_MESSAGING
 import MessageUI
 import NitroModules
 import UIKit
@@ -83,3 +84,4 @@ final class OneMailComposeDelegate: NSObject, MFMailComposeViewControllerDelegat
     owner?.finish(value, error)
   }
 }
+#endif

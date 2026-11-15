@@ -26,9 +26,12 @@ export function generateFileSystemRouteTypesPlugin(
       const typedRoutesGeneration =
         options.router?.experimental?.typedRoutesGeneration || undefined
 
+      // files read to find component search schemas, a change to one can change the types
+      let searchSchemaFiles = new Set<string>()
+
       // on change ./app stuff lets reload this to pick up any route changes
       const generateRouteTypesDebounced = debounce(async () => {
-        await generateRouteTypes(
+        searchSchemaFiles = await generateRouteTypes(
           outFile,
           routerRoot,
           options.router?.ignoredRouteFiles,
@@ -48,6 +51,9 @@ export function generateFileSystemRouteTypesPlugin(
           routeIndex.update(type, path)
           return generateRouteTypesDebounced()
         }
+        if (searchSchemaFiles.has(resolve(path))) {
+          return generateRouteTypesDebounced()
+        }
       }
 
       server.watcher.addListener('all', fileWatcherChangeListener)
@@ -61,7 +67,9 @@ export function generateFileSystemRouteTypesPlugin(
           options.router?.ignoredRouteFiles,
           typedRoutesGeneration,
           routeIndex.getPaths()
-        )
+        ).then((files) => {
+          searchSchemaFiles = files
+        })
       }
     },
   } satisfies Plugin

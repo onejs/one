@@ -1,0 +1,31 @@
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-keep-awake
+- tapOn:
+    text: 'Open'
+    optional: true
+- extendedWaitUntil:
+    visible: 'Run keep-awake checks'
+    timeout: 30000
+- tapOn:
+    id: one-native-keep-awake-run
+- extendedWaitUntil:
+    visible: 'Status: done'
+    timeout: 30000
+- assertVisible: 'Enabled: true'
+- assertVisible: 'Disabled: false'
+- assertVisible: 'NativeEnabled: true'
+- assertVisible: 'NativeDisabled: false'
+- assertVisible: 'ConcurrentHeld: true'
+- assertVisible: 'ConcurrentReleased: false'
+- assertVisible: 'NativeReleased: false'
+- assertVisible: 'HookHeld: true'
+- assertVisible: 'HookReleased: true'
+- assertVisible: 'Restored: false'

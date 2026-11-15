@@ -253,8 +253,7 @@ describe('greedy containers', () => {
       [list, 'Swift.List'],
       [scroll, 'Swift.ScrollView'],
     ] as const) {
-      const host = render(Containers.HStack, { children: child })
-      expect(() => host.type(host.props)).toThrow(
+      expect(() => render(Containers.HStack, { children: child })).toThrow(
         `${name} cannot be a child of Swift.HStack`
       )
       expect(() => render(Containers.ZStack, { children: child })).toThrow(

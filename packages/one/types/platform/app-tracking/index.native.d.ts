@@ -1,5 +1,5 @@
-import type { AppTrackingPermissionStatus } from '../specs/OneAppTracking.nitro';
-export type { AppTrackingPermissionStatus } from '../specs/OneAppTracking.nitro';
+import type { AppTrackingPermissionStatus } from '../specs/OneAppTracking.nitro.js';
+export type { AppTrackingPermissionStatus } from '../specs/OneAppTracking.nitro.js';
 declare function getPermissionStatus(): AppTrackingPermissionStatus;
 declare function requestPermission(): Promise<AppTrackingPermissionStatus>;
 declare const nativeAppTracking: Readonly<{

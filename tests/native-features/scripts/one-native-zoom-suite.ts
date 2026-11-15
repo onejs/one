@@ -1,6 +1,7 @@
 import { streamZoomCallbacks } from './one-native-zoom-log'
 import fs from 'node:fs'
 import path from 'node:path'
+import { setImmediate } from 'node:timers/promises'
 
 type Node = {
   AXUniqueId?: string
@@ -29,13 +30,17 @@ export async function runZoomSuite(options: {
   const { simulatorId, artifactDir, tap, wait, screenshot, pass } = options
   fs.mkdirSync(artifactDir, { recursive: true })
   const eventFile = path.join(artifactDir, 'zoom-native-events.jsonl')
-  const events = (): Event[] =>
-    fs
+  // sync tap/snapshot calls never yield the event loop, so stream output
+  // waits in the pipe until one i/o turn drains it into this file.
+  const events = async (): Promise<Event[]> => {
+    await setImmediate()
+    return fs
       .readFileSync(eventFile, 'utf8')
       .trim()
       .split('\n')
       .filter(Boolean)
       .map((line) => JSON.parse(line))
+  }
   const find = (nodes: Node[], id: string) => nodes.find((n) => n.AXUniqueId === id)
   const nodes = await wait('zoom source has native geometry', (n) =>
     Boolean(find(n, 'zoom-source-item-1')?.frame?.height)
@@ -61,7 +66,7 @@ export async function runZoomSuite(options: {
         Boolean(find(n, 'zoom-source-identity')?.AXLabel?.endsWith(`mode:${mode}`))
       )
       const identity = find(before, 'zoom-source-identity')!.AXLabel
-      const start = events().length
+      const start = (await events()).length
       await tap({ id: 'zoom-source-item-1' })
       const detail = await wait(`zoom ${mode} detail has native geometry`, (n) =>
         Boolean(find(n, 'zoom-detail-card')?.frame?.height && find(n, 'zoom-back-button'))
@@ -69,8 +74,8 @@ export async function runZoomSuite(options: {
       const frame = find(detail, 'zoom-detail-card')!.frame!
       const detailIdentity = find(detail, 'zoom-detail-identity')?.AXLabel
       await screenshot(`zoom-${measurements.length}-${mode}-detail.png`)
-      const push = events().slice(start)
-      const popStart = events().length
+      const push = (await events()).slice(start)
+      const popStart = (await events()).length
       await tap({ id: 'zoom-back-button' })
       const after = await wait(
         `zoom ${mode} returns to mounted source`,
@@ -79,7 +84,7 @@ export async function runZoomSuite(options: {
           Boolean(find(n, 'zoom-source-item-1')?.frame)
       )
       await screenshot(`zoom-${measurements.length}-${mode}-source.png`)
-      const pop = events().slice(popStart)
+      const pop = (await events()).slice(popStart)
       measurements.push({
         mode,
         sourceIdentity: identity,

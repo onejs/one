@@ -1,4 +1,4 @@
-import type { One } from '../vite/types';
+import type { One } from '../vite/types.js';
 export type LazyRoutes = {
     pages?: Record<string, () => Promise<any>>;
     serverEntry: () => Promise<{
@@ -18,7 +18,7 @@ type WorkerHandlerOptions = {
     disableModuleCache?: boolean;
 };
 export declare function createWorkerHandler(options: WorkerHandlerOptions): {
-    handleRequest: (request: Request, env?: unknown, executionCtx?: unknown) => Promise<Response | null>;
+    handleRequest: (request: Request, env?: unknown, executionCtx?: unknown, fetchStaticHtml?: (path: string) => Promise<string | null>) => Promise<Response | null>;
     updateRoutes: (newBuildInfo: ServedBuildInfo, newLazyRoutes?: LazyRoutes) => void;
 };
 export {};

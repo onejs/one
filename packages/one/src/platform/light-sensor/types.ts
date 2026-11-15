@@ -11,3 +11,11 @@ export interface LightSensorMeasurement {
 export interface LightSensorSubscription {
   remove(): void
 }
+
+// narrow native contract behind the platform backends: the three sensor
+// methods, without any hybrid object surface.
+export interface LightSensorBackend {
+  isAvailable(): boolean
+  setUpdateInterval(intervalMs: number): void
+  addListener(listener: (event: LightSensorMeasurement) => void): () => void
+}

@@ -14,16 +14,16 @@ export default function Index() {
       }}
     >
       <Text>Hello world, from One</Text>
-      <Link href="/test">
+      <Link href="/test" asChild>
         <Text style={link}>Go to Test</Text>
       </Link>
-      <Link href="/tabs">
+      <Link href="/tabs" asChild>
         <Text style={link}>Tabs demo</Text>
       </Link>
-      <Link href="/widget-demo">
+      <Link href="/widget-demo" asChild>
         <Text style={link}>Widget and Live Activity demo</Text>
       </Link>
-      <Link href="/native">
+      <Link href="/native" asChild>
         <Text style={link}>Swift and Kotlin demo</Text>
       </Link>
     </View>

@@ -42,14 +42,12 @@ type OneNativeStyleNative = Readonly<{
 }>
 interface NativeProps extends ViewProps {
   label: string
-  disabled: boolean
   value: Double
   minimumValue: Double
   maximumValue: Double
   currentValueLabel: string
   minimumValueLabel: string
   maximumValueLabel: string
-  gaugeStyle: string
   swiftStyle?: OneNativeStyleNative
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
 }

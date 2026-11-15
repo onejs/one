@@ -218,7 +218,9 @@ describe('scroll view reader schema', () => {
     const reader = component('ScrollViewReader')
     expect(reader.name).toBe('OneNativeScrollViewReader')
     expect(reader.props).toEqual({})
-    expect(reader.events).toEqual({})
+    expect(reader.events).toEqual({
+      onNativeSDKEvent: { name: { type: 'string' }, value: { type: 'string' } },
+    })
     expect(reader.commands).toEqual({
       scrollTo: {
         scrollID: { type: 'string' },

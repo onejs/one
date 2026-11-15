@@ -43,8 +43,6 @@ type OneNativeStyleNative = Readonly<{
 }>
 interface NativeProps extends ViewProps {
   label: string
-  payWithApplePayButtonStyle: string
-  disabled: boolean
   swiftStyle?: OneNativeStyleNative
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativePayWithApplePayButtonPress?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>

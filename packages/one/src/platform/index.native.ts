@@ -1,5 +1,6 @@
 import { Platform } from 'react-native'
 import { Swift as UnsupportedSwift } from './unsupported'
+import { Angle, Gradient, Path, Shading } from './canvas'
 import {
   Button,
   ControlGroup,
@@ -9,11 +10,14 @@ import {
   Glass,
   GlassEffectContainer,
   GeometryReader,
+  TimelineView,
+  OutlineGroup,
+  Table,
+  Canvas,
   Group,
   GroupBox,
   ViewThatFits,
   HStack,
-  Host,
   LabeledContent,
   LazyHStack,
   LazyVStack,
@@ -37,6 +41,8 @@ import {
 import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './AndroidMenu'
 import { ContextMenu as IOSContextMenu, Menu as IOSMenu } from './Menu.native'
 import { Page, Pager } from './Pager.native'
+import { UIKitView } from './UIKitView.native'
+import { collectionCellSource, tableCellSource, UIKitContent } from './UIKitContent.native'
 import { Popover } from './Popover.native'
 import {
   NavigationStack,
@@ -44,6 +50,7 @@ import {
   ToolbarItem,
   ToolbarItemGroup,
   ToolbarSpacer,
+  DefaultToolbarItem,
 } from './NavigationStack.native'
 import { NavigationSplitView } from './NavigationSplitView.native'
 import { FullScreenCover, Sheet } from './Sheet.native'
@@ -53,10 +60,11 @@ import { KeyframeAnimator, PhaseAnimator } from './Animators.native'
 import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes'
 import * as Controls from './generated/Controls.native'
 import { Map as MapWithControls } from './mapControls.native'
-import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native'
+import { Picker as PickerWithChildren } from './pickerChildren.native'
+import { Tab, TabView, TabSection, TabViewBottomAccessory, TabViewSlot } from './TabView.native'
 import { Compose } from './compose'
 import * as UI from './effects'
-import { Widgets, LiveActivities, WidgetUI } from './widgets/index'
+import { Widgets, LiveActivities, WidgetUI, type WidgetActionEvent } from './widgets/index'
 
 export * from './extras'
 export { Storage } from './storage/index.native'
@@ -109,7 +117,7 @@ export const Swift =
   Platform.OS === 'ios'
     ? {
         ArrangementView,
-        Tabs,
+        TabView,
         Tab,
         TabSection,
         TabViewBottomAccessory,
@@ -119,7 +127,6 @@ export const Swift =
         Sheet,
         FullScreenCover,
         Popover,
-        Host,
         HStack,
         VStack,
         ZStack,
@@ -128,6 +135,14 @@ export const Swift =
         Glass,
         GlassEffectContainer,
         GeometryReader,
+        TimelineView,
+        OutlineGroup,
+        Table,
+        Canvas,
+        Angle,
+        Path,
+        Shading,
+        Gradient,
         LabeledContent,
         Button,
         List,
@@ -142,6 +157,10 @@ export const Swift =
         ControlGroup,
         DisclosureGroup,
         Divider,
+        UIKitView,
+        UIKitContent,
+        collectionCellSource,
+        tableCellSource,
         Link,
         Group,
         GroupBox,
@@ -157,6 +176,7 @@ export const Swift =
         ToolbarItem,
         ToolbarItemGroup,
         ToolbarSpacer,
+        DefaultToolbarItem,
         Spacer,
         Slot,
         withAnimation,
@@ -171,11 +191,14 @@ export const Swift =
         // the generated map takes no children; the wrapper validates and names
         // the map-controls slot while the native view composes it.
         Map: MapWithControls,
+        // the generated picker takes no children; the wrapper validates the
+        // tagged text options while the native view composes them.
+        Picker: PickerWithChildren,
       }
     : UnsupportedSwift
 export { Compose }
 export { Notifications } from './notifications'
-export { Widgets, LiveActivities, WidgetUI }
+export { Widgets, LiveActivities, WidgetUI, type WidgetActionEvent }
 export { Menu, ContextMenu }
 export { useNativeState, type NativeState } from './nativeState'
 export { TextInput } from './universal/TextInput/index'
@@ -227,6 +250,7 @@ export type {
 export type {
   AudioPlaybackState,
   AudioPlaybackStatus,
+  AudioPlayOptions,
   AudioPlayer,
   AudioPlayerOptions,
   AudioPlayerSubscription,
@@ -240,6 +264,12 @@ export type {
   PitchCorrectionQuality,
 } from './audio/index'
 export { Share } from './share/index'
+export { ShareTarget } from './share-target/index.native'
+export type {
+  ShareTargetDraft,
+  ShareTargetItem,
+  ShareTargetSharedFile,
+} from './share-target/index.native'
 export { Open } from './open/index.native'
 export type { OpenShareContent } from './open/index.native'
 export type { ShareItem, ShareItemType, ShareResult } from './share/index'

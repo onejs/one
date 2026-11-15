@@ -6,6 +6,8 @@ This component should only be rendered inside a `_layout.tsx` file, where it wil
 
 Stack is simply a [React Navigation Native Stack view](https://reactnavigation.org/docs/native-stack-navigator) and accepts the same props as React Navigation.
 
+On iOS and Android, that navigator uses `react-native-screens` for native screen containers, navigation headers, and transitions. Configure these through One's `Stack` and `Stack.Screen` options; their availability and appearance depend on the platform.
+
 ```tsx
 import { Stack } from 'one'
 import { Button } from 'react-native'
@@ -59,6 +61,33 @@ This is a convenient way to configure settings for each page up front, but you c
 
 The `options` property passes to the React Navigation NativeStack, and so [takes the same options](https://reactnavigation.org/docs/native-stack-navigator#options).
 
+### Android Top App Bar
+
+One's native Android header provides a top app bar with a title, a back button when there is a previous screen, and your `headerLeft` and `headerRight` views. `react-native-screens` renders it using an Android toolbar inside Material's `AppBarLayout`.
+
+```tsx
+import { Stack } from 'one'
+import { Button } from 'react-native'
+
+export default function Layout() {
+  return (
+    <Stack screenOptions={{ headerShown: true, headerTitleAlign: 'center' }}>
+      <Stack.Screen
+        name="index"
+        options={{
+          title: 'Inbox',
+          headerRight: () => <Button title="Edit" onPress={() => {}} />,
+        }}
+      />
+    </Stack>
+  )
+}
+```
+
+Android titles align left by default; `headerTitleAlign: 'center'` centers them. Use `headerStyle`, `headerTintColor`, and `headerShadowVisible` to customize the header. Native search is available through `headerSearchBarOptions` or `Stack.Header.SearchBar`.
+
+This header does not collapse on scroll. One's native stack does not expose the medium, large, or collapsing [Material top app bar variants](https://m3.material.io/components/app-bars/overview). Large titles, header blur, and back button titles are iOS-only options.
+
 ### Header Composition API
 
 <New />
@@ -99,7 +128,7 @@ The container for header configuration. Props:
 - `blurEffect` - iOS blur effect (`'regular'`, `'prominent'`, `'systemMaterial'`, etc.)
 - `asChild` - Render a completely custom header component
 - `style` - Style with `backgroundColor`, `shadowColor` (set to `'transparent'` to hide)
-- `largeStyle` - Style for large title mode
+- `largeStyle` - iOS style for large title mode
 
 #### Stack.Header.Title
 
@@ -152,7 +181,7 @@ Props:
 
 #### Stack.Header.SearchBar
 
-Add an iOS-style search bar:
+Add a native search bar on iOS or Android:
 
 ```tsx
 <Stack.Header.SearchBar
@@ -165,9 +194,9 @@ Add an iOS-style search bar:
 Props:
 - `placeholder` - Placeholder text
 - `autoCapitalize` - `'systemDefault'`, `'none'`, `'words'`, `'sentences'`, `'characters'`
-- `placement` - `'automatic'`, `'inline'`, `'stacked'`, `'integrated'`, `'integratedButton'`, `'integratedCentered'`
-- `hideWhenScrolling` - Hide when scrolling
-- `obscureBackground` - Obscure background when active
+- `placement` - iOS only: `'automatic'`, `'inline'`, `'stacked'`, `'integrated'`, `'integratedButton'`, `'integratedCentered'`
+- `hideWhenScrolling` - iOS only: hide when scrolling
+- `obscureBackground` - iOS only: obscure background when active
 
 #### Default Header for All Screens
 

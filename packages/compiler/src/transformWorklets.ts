@@ -13,6 +13,10 @@ import {
 // untransformed.
 export const REANIMATED_AUTOWORKLETIZATION_KEYWORDS = [
   'worklet',
+  // a marked class in its own file carries no worklet keyword, but importing
+  // files reconstruct it from its factory, so the defining file must reach
+  // the transform too.
+  '__workletClass',
   'useAnimatedGestureHandler',
   'useAnimatedScrollHandler',
   'useFrameCallback',
@@ -150,6 +154,10 @@ export type TransformWorkletsOptions = {
   pluginVersion?: string
 }
 
+import remapping from '@jridgewell/remapping'
+import { isReactNativeCodegenSpec } from './reactNativeCodegen'
+import { stripFlowTypes } from './transformFlow'
+import { shouldStripFlow } from './transformSWC'
 import { executeWorkletTransform } from './worklets/transform'
 export { prepareWorkletsForReactCompiler } from './worklets/transform'
 
@@ -159,5 +167,24 @@ export async function transformWorklets(
   sourceMaps = false,
   options?: TransformWorkletsOptions
 ): Promise<{ code: string; map?: any }> {
+  // published Flow packages reach this before the pipeline's Flow strip, and the
+  // worklet parser has no Flow support. a codegen spec keeps its types for the
+  // codegen pass after this one and never holds worklets.
+  if (shouldStripFlow(id, code)) {
+    if (isReactNativeCodegenSpec(id, code)) return { code }
+    const stripped = await stripFlowTypes(id, code, sourceMaps)
+    const result = executeWorkletTransform(
+      id,
+      stripped.code,
+      sourceMaps,
+      options,
+      getWorkletsVersion
+    )
+    if (!sourceMaps || !stripped.map) return result
+    return {
+      code: result.code,
+      map: result.map ? remapping([result.map, stripped.map], () => null) : stripped.map,
+    }
+  }
   return executeWorkletTransform(id, code, sourceMaps, options, getWorkletsVersion)
 }

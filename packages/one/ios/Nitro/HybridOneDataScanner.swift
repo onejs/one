@@ -1,3 +1,4 @@
+#if ONE_GROUP_VISION
 import NitroModules
 import UIKit
 import Vision
@@ -171,3 +172,5 @@ final class OneDataScannerDelegate: NSObject, DataScannerViewControllerDelegate 
     switch error { case .unsupported: owner?.becameUnavailable?(.unsupported); case .cameraRestricted: owner?.becameUnavailable?(.camerarestricted); @unknown default: break }
   }
 }
+
+#endif

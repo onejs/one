@@ -4,6 +4,7 @@ import type { PageProps, PagerProps } from './groupTypes'
 import NativeTab from './specs/OneNativeTabNativeComponent'
 import NativePager from './specs/OneNativeSwiftPagerNativeComponent'
 import { viewportStyle } from './viewportStyle'
+import { sdkValueText } from './generated/swiftStyleNative'
 
 const PAGE_STYLE = {
   position: 'absolute',
@@ -24,10 +25,16 @@ export function Pager({
   children,
   selection,
   onSelectionChange,
+  indexDisplayMode = 'automatic',
   revision = 0,
   style,
   ...props
 }: PagerProps) {
+  const nativeIndexDisplayMode = sdkValueText(
+    indexDisplayMode,
+    'PageTabViewStyleIndexDisplayMode',
+    'Swift.Pager.indexDisplayMode'
+  )
   const controlled = useControlled<{
     selection: string
     eventCount: number
@@ -59,6 +66,7 @@ export function Pager({
       {...props}
       style={viewportStyle(style)}
       selection={selection}
+      indexDisplayMode={nativeIndexDisplayMode}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
       onNativePagerSelectionChange={({ nativeEvent }) =>

@@ -5,7 +5,7 @@
  * connects to dev server WebSocket, handles HMR messages,
  * and integrates with React Native's DevLoadingView and LogBox.
  */
-import type { HMRClientLogLevel } from './hmr-types';
+import type { HMRClientLogLevel } from './hmr-types.js';
 interface HMRClientNativeInterface {
     enable(): void;
     disable(): void;

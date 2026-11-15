@@ -35,17 +35,16 @@ export function TripForm() {
           label="Seat"
           selection={seat}
           onSelectionChange={setSeat}
-          pickerStyle="segmented"
-          options={[
-            { value: 'window', label: 'Window' },
-            { value: 'aisle', label: 'Aisle' },
-          ]}
-        />
+          swiftStyle={{ pickerStyle: 'segmented' }}
+        >
+          <One.iOS.Text text="Window" swiftStyle={{ tag: 'window' }} />
+          <One.iOS.Text text="Aisle" swiftStyle={{ tag: 'aisle' }} />
+        </One.iOS.Picker>
         <One.iOS.DatePicker
           label="Departure"
           selection={date}
           onSelectionChange={setDate}
-          minimumDate={new Date()}
+          in={[new Date(), new Date(4001, 0, 1)]}
         />
       </One.iOS.Section>
     </One.iOS.Form>
@@ -65,9 +64,9 @@ Every picker also accepts `accessibilityLabel`, `accessibilityHint`,
 Value pickers keep their selection in a native model with an event count and a
 revision. A native pick bumps the count and reports the new value; JavaScript
 calls the change handler and acknowledges the event. Raising `revision` with a
-new selection resets the picker from the outside. Options, bounds, and formats
-are validated in JavaScript before anything reaches native, so a bad value
-throws during render with a JavaScript stack.
+new selection resets the picker from the outside. Option tags, bounds, and
+formats are validated in JavaScript before anything reaches native, so a bad
+value throws during render with a JavaScript stack.
 
 Dates cross the bridge as timestamps. `DatePicker` keeps full precision, while
 `MultiDatePicker` reduces each date to day components in the device calendar,
@@ -77,8 +76,11 @@ iOS version.
 
 ## Picker
 
-`Picker` picks one string from `options`. The options must be non-empty with
-unique string values and labels, and the selection must match one value.
+`Picker` picks one string from its option children. Each option is a `Text`
+view whose `swiftStyle.tag` is its value, as in SwiftUI's `Picker`
+content builder. Tags must be unique and the selection must match one tag.
+Options must be direct `Text` children; `Text` nested in Fragments or custom
+wrapper components is rejected, so map option data to `Text` directly.
 
 ```tsx
 import { useState } from 'react'
@@ -92,12 +94,11 @@ function SeatPicker() {
       label="Seat"
       selection={seat}
       onSelectionChange={setSeat}
-      pickerStyle="segmented"
-      options={[
-        { value: 'window', label: 'Window' },
-        { value: 'aisle', label: 'Aisle' },
-      ]}
-    />
+      swiftStyle={{ pickerStyle: 'segmented', maxWidth: Infinity }}
+    >
+      <One.iOS.Text text="Window" swiftStyle={{ tag: 'window' }} />
+      <One.iOS.Text text="Aisle" swiftStyle={{ tag: 'aisle' }} />
+    </One.iOS.Picker>
   )
 }
 ```
@@ -106,24 +107,27 @@ function SeatPicker() {
   title="Props"
   source="generated/controlTypes.ts#PickerProps"
   data={[
-    { name: 'selection', required: true, type: 'string', description: 'The selected option value.' },
+    { name: 'selection', required: true, type: 'string', description: 'The selected option tag.' },
     { name: 'onSelectionChange', required: true, type: '(value: string) => void', description: 'A native pick, with the new value.' },
-    { name: 'options', required: true, type: 'readonly PickerOption[]', description: 'Each { value, label }, in order.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
     { name: 'label', type: 'string', default: '""', description: 'The row title.' },
-    { name: 'pickerStyle', type: 'PickerStyle', default: '"automatic"', description: 'automatic, menu, segmented, inline, wheel, palette, tabs, or navigationLink.' },
-    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the picker and ignores taps.' },
   ]}
 />
 
-`navigationLink` throws: it needs a native navigation context that One Native
-does not provide yet.
+`pickerStyle` and `disabled` are SwiftUI modifiers set through `swiftStyle`.
+`pickerStyle` is `automatic`, `menu`, `segmented`, `inline`, `wheel`, `palette`,
+`tabs`, or `navigationLink`.
+
+Outside a Form, a segmented picker keeps its natural width. Pass
+`swiftStyle={{ pickerStyle: 'segmented', maxWidth: Infinity }}` to fill the row,
+which is SwiftUI's `.frame(maxWidth: .infinity)`. Inside a Form row it fills on
+its own.
 
 ## DatePicker
 
-`DatePicker` picks a `Date`. The selection must lie within the bounds, and
-`minimumDate` must not be after `maximumDate`, or the picker throws. Unset
-bounds default to the start of year 1 and the start of year 4001.
+`DatePicker` picks a `Date`. The selection must lie within `in`, and the
+lower bound must not be after the upper bound, or the picker throws. An
+unset `in` defaults to the start of year 1 through the start of year 4001.
 
 ```tsx
 import { useState } from 'react'
@@ -137,8 +141,9 @@ function Departure() {
       label="Departure"
       selection={date}
       onSelectionChange={setDate}
-      minimumDate={new Date()}
+      in={[new Date(), new Date(4001, 0, 1)]}
       displayedComponents="date"
+      swiftStyle={{ datePickerStyle: 'compact' }}
     />
   )
 }
@@ -152,13 +157,14 @@ function Departure() {
     { name: 'onSelectionChange', required: true, type: '(value: Date) => void', description: 'A native pick, with the new date.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
     { name: 'label', type: 'string', default: '""', description: 'The row title.' },
-    { name: 'minimumDate', type: 'Date', description: 'The earliest date. Unbounded when unset.' },
-    { name: 'maximumDate', type: 'Date', description: 'The latest date. Unbounded when unset.' },
+    { name: 'in', type: 'readonly [Date, Date]', description: 'The allowed range as [lower, upper]. Year 1 through 4001 when unset.' },
     { name: 'displayedComponents', type: '"date" | "hourAndMinute" | "dateAndTime"', default: '"dateAndTime"', description: 'Which parts people pick.' },
-    { name: 'datePickerStyle', type: 'DatePickerStyle', default: '"automatic"', description: 'automatic, compact, graphical, or wheel.' },
-    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the picker and ignores taps.' },
   ]}
 />
+
+`datePickerStyle` and `disabled` are SwiftUI modifiers set through
+`swiftStyle`. `datePickerStyle` is `automatic`, `compact`, `graphical`, or
+`wheel`.
 
 ## MultiDatePicker
 
@@ -178,8 +184,7 @@ function TripDays() {
       label="Trip days"
       selection={days}
       onSelectionChange={(picked) => setDays([...picked])}
-      minimumDate={new Date(2026, 9, 1)}
-      maximumDate={new Date(2026, 9, 31)}
+      in={[new Date(2026, 9, 1), new Date(2026, 9, 31)]}
     />
   )
 }
@@ -193,14 +198,14 @@ function TripDays() {
     { name: 'onSelectionChange', required: true, type: '(value: readonly Date[]) => void', description: 'A native pick, with the new days.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
     { name: 'label', type: 'string', default: '""', description: 'The row title.' },
-    { name: 'minimumDate', type: 'Date', description: 'The earliest date. Unbounded when unset.' },
-    { name: 'maximumDate', type: 'Date', description: 'The latest date. Unbounded when unset.' },
-    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the picker and ignores taps.' },
+    { name: 'in', type: 'readonly [Date, Date]', description: 'The allowed range as [lower, upper]. Year 1 through 4001 when unset.' },
   ]}
 />
 
-Every date must be valid and lie within the bounds, and `minimumDate` must not
-be after `maximumDate`, or the picker throws.
+`disabled` is a SwiftUI modifier set through `swiftStyle`.
+
+Every date must be valid and lie within `in`, and the lower bound must not
+be after the upper bound, or the picker throws.
 
 ## ColorPicker
 
@@ -234,9 +239,10 @@ function Accent() {
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
     { name: 'label', type: 'string', default: '""', description: 'The row title.' },
     { name: 'supportsOpacity', type: 'boolean', default: 'true', description: 'Shows the opacity slider.' },
-    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the picker and ignores taps.' },
   ]}
 />
+
+`disabled` is a SwiftUI modifier set through `swiftStyle`.
 
 ## PhotosPicker
 
@@ -282,9 +288,10 @@ instead.
     { name: 'selectionBehavior', type: 'PhotosPickerSelectionBehavior', default: '"default"', description: 'default, ordered, continuous, or continuousAndOrdered.' },
     { name: 'filter', type: '"any" | "images" | "videos" | "livePhotos" | "screenshots" | "screenRecordings" | "slomoVideos" | "timelapseVideos" | "cinematicVideos" | "depthEffectPhotos" | "bursts" | "panoramas"', default: '"any"', description: 'Which assets the library shows.' },
     { name: 'preferredItemEncoding', type: 'EncodingDisambiguationPolicy', default: '"automatic"', description: 'automatic, current, or compatible file encoding.' },
-    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the button and ignores taps.' },
   ]}
 />
+
+`disabled` is a SwiftUI modifier set through `swiftStyle`.
 
 ## FileImporter
 
@@ -340,10 +347,10 @@ selection, `onCompletion` fires once per file.
 
 ## Limits and gotchas
 
-- **Invalid values throw at render.** Option lists, date bounds, and the color
+- **Invalid values throw at render.** Option tags, date bounds, and the color
   hex format are checked in JavaScript before anything reaches native.
-- **`navigationLink` style throws.** It needs a native navigation context that
-  One Native does not provide yet.
+- **`navigationLink` style needs a NavigationStack.** Its choices push onto the
+  enclosing stack.
 - **Multi-date picks lose the time.** The selection reduces to day components
   in the device calendar, collapsing same-day duplicates.
 - **The photo button needs a label.** An empty `PhotosPicker` label throws.

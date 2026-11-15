@@ -1,5 +1,5 @@
-import type { ClipboardEvent, ClipboardGetImageOptions, ClipboardGetStringOptions, ClipboardImage, ClipboardSetStringOptions, ClipboardSubscription } from './types';
-export type * from './types';
+import type { ClipboardEvent, ClipboardGetImageOptions, ClipboardGetStringOptions, ClipboardImage, ClipboardSetStringOptions, ClipboardSubscription } from './types.js';
+export type * from './types.js';
 declare function getString(options?: ClipboardGetStringOptions): Promise<string>;
 declare function setString(text: string, options?: ClipboardSetStringOptions): Promise<boolean>;
 declare function hasString(): Promise<boolean>;

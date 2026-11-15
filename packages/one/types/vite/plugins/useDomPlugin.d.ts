@@ -22,5 +22,12 @@
  * THE SOFTWARE.
  **/
 import type { Plugin } from 'vite';
-export declare function useDOMPlugin(): Plugin;
+export interface UseDOMOptions {
+    root: string;
+    routerRoot: string;
+    ignoredRouteFiles?: string[];
+    metro?: boolean;
+    browserPlugins?: Plugin[];
+}
+export declare function useDOMPlugin(options: UseDOMOptions): Plugin;
 //# sourceMappingURL=useDomPlugin.d.ts.map

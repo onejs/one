@@ -44,7 +44,21 @@ iOS. Every transport call resolves with the playback status: the state
 the duration when finite, and the error when failed. A remote source can
 report loading until enough data arrives; `seek` needs a ready item and
 rejects while loading or failed. `resume` restarts an ended item from the
-beginning. Starting playback replaces the previous player; stop a paused
+beginning.
+
+Pass `{ positionMs, paused }` to `play` to load a track at a position
+without hearing its opening. With either option set, `play` prepares the
+item, seeks exactly to the position, and resolves only after the seek
+lands: paused when `paused` is true, otherwise started from the position.
+The status reports loading until then, and on iOS can read loading for a
+moment after a started load resolves while the player begins. A `pause` or `resume` during the
+load changes whether it starts, `seek` rejects with `E_AUDIO_STATE`, and a
+new `play` or `stop` rejects the pending load with `E_AUDIO_STATE`. A
+position past the end loads at the end, where the status can read ended
+and `resume` restarts from the beginning. A load error rejects and leaves
+the status failed; on web a source that cannot seek, such as a server
+without range requests, fails the same way rather than starting at 0.
+Without options `play` behaves as before. Starting playback replaces the previous player; stop a paused
 player before recording. All native work runs through the main thread on
 both platforms, and every failure rejects with an `Error` whose `code`
 holds the stable `E_AUDIO_*` value.
@@ -69,6 +83,26 @@ with `setNowPlayingInfo`. Artwork must be an existing local `file://`
 image, so download remote art to cache first. `stop` or a new `play`
 clears the metadata and handlers; `clearNowPlayingInfo` removes them while
 the player keeps playing.
+
+The system controls belong to one owner at a time: the singleton or one
+player instance. `player.setNowPlayingInfo(info)` makes that player the
+owner with the given metadata, taking over from the singleton or another
+player without clearing the controls in between. Remote play, pause, and
+seek then drive only the owner, and `watchRemoteCommands` events carry
+its `playerId`; events from the singleton have none. Each owner releases
+only its own claim: `player.clearNowPlayingInfo()`, `player.remove()`, and
+a hook unmount release a player's claim, while `Audio.clearNowPlayingInfo`,
+`stop`, and a new `play` release only the singleton's. Once ownership has
+moved, the old owner's cleanup leaves the new owner alone, and nothing
+falls back to the singleton when a player releases. `player.replace` keeps
+the claim and its metadata, so set new metadata when the track changes.
+Interruptions pause every player as before and the controls show the
+owner paused. One fades nothing for you: to crossfade, start the next
+player, ramp both volumes, move the controls to the next player, and
+remove the old one. On Android the background service follows the owner,
+so an owning player keeps playing in the background like the singleton.
+On web a newer claim or release wins over a slower one still decoding its
+artwork, which then rejects.
 
 For playback with another app in front, set
 `native.app.audio.background: true` and rerun prebuild. On iOS this adds
@@ -104,7 +138,7 @@ an inert remover there.
   data={[
     { name: 'getRecordingPermissionStatus', type: '() => Promise<AudioRecordingPermission>', description: 'Undetermined, granted, or denied, without prompting.' },
     { name: 'requestRecordingPermission', type: '() => Promise<AudioRecordingPermission>', description: 'Ask for microphone access for recording.' },
-    { name: 'play', type: '(uri: string) => Promise<AudioPlaybackStatus>', description: 'Play one URI on the singleton, replacing any current track.' },
+    { name: 'play', type: '(uri: string, options?: AudioPlayOptions) => Promise<AudioPlaybackStatus>', description: 'Play one URI on the singleton, replacing any current track. Options load at a position, optionally paused.' },
     { name: 'getPlaybackStatus', type: '() => Promise<AudioPlaybackStatus>', description: 'The singleton state, URI, position, and duration.' },
     { name: 'pause', type: '() => Promise<AudioPlaybackStatus>', description: 'Pause the singleton and report its status.' },
     { name: 'resume', type: '() => Promise<AudioPlaybackStatus>', description: 'Resume the singleton, or restart an ended item.' },
@@ -116,8 +150,8 @@ an inert remover there.
     { name: 'resumeRecording', type: '() => Promise<AudioRecordingStatus>', description: 'Resume a paused recorder.' },
     { name: 'stopRecording', type: '() => Promise<AudioRecordingResult>', description: 'End the recording and report its file.' },
     { name: 'watchInterruptions', type: '(onEvent: (event: AudioInterruptionEvent) => void) => () => void', description: 'Hear began and ended. Returns a stop function.' },
-    { name: 'setNowPlayingInfo', type: '(info: AudioNowPlayingInfo) => Promise<void>', description: 'Register the singleton for system media controls.' },
-    { name: 'clearNowPlayingInfo', type: '() => Promise<void>', description: 'Remove the metadata and handlers, keep playing.' },
+    { name: 'setNowPlayingInfo', type: '(info: AudioNowPlayingInfo) => Promise<void>', description: 'Make the singleton the owner of the system media controls.' },
+    { name: 'clearNowPlayingInfo', type: '() => Promise<void>', description: 'Release the controls if the singleton owns them, keep playing.' },
     { name: 'watchRemoteCommands', type: '(onEvent: (event: AudioRemoteCommandEvent) => void) => () => void', description: 'Hear play, pause, and seek. Returns a stop function.' },
     { name: 'createPlayer', type: '(source: AudioSource, options: AudioPlayerOptions) => AudioPlayer', description: 'An independent player. Both arguments default; remove it by hand.' },
   ]}
@@ -144,7 +178,9 @@ an inert remover there.
     { name: 'pause', type: '() => void', description: 'Pause this player.' },
     { name: 'seekTo', type: '( seconds: number, toleranceMillisBefore?: number, toleranceMillisAfter?: number ) => Promise<void>', description: 'Seek in seconds. Tolerances are iOS only.' },
     { name: 'replace', type: '(source: AudioSource) => void', description: 'Swap the media, clearing any error.' },
-    { name: 'remove', type: '() => void', description: 'Release the player. Idempotent.' },
+    { name: 'setNowPlayingInfo', type: '(info: AudioNowPlayingInfo) => Promise<void>', description: 'Make this player the owner of the system media controls.' },
+    { name: 'clearNowPlayingInfo', type: '() => Promise<void>', description: 'Release the controls if this player owns them.' },
+    { name: 'remove', type: '() => void', description: 'Release the player and its controls claim. Idempotent.' },
     { name: 'getStatus', type: '() => AudioStatus', description: 'Read the status synchronously.' },
     { name: 'setPlaybackRate', type: '(rate: number, pitchCorrectionQuality?: PitchCorrectionQuality) => void', description: 'Set the speed without reloading.' },
     { name: 'addListener', type: '( event: "playbackStatusUpdate", listener: (status: AudioStatus) => void ) => AudioPlayerSubscription', description: 'Status on the update interval, plus one initial emit.' },
@@ -187,6 +223,15 @@ an inert remover there.
   data={[
     { name: 'updateInterval', type: 'number', description: 'Status poll interval in milliseconds. Default 500.' },
     { name: 'crossOrigin', type: '"anonymous" | "use-credentials"', description: 'The CORS mode. Web only.' },
+  ]}
+/>
+
+<PropsTable
+  title="Play options"
+  source="specs/OneAudio.nitro.ts#AudioPlayOptions"
+  data={[
+    { name: 'positionMs', type: 'number', description: 'Start here, in milliseconds. Default 0.' },
+    { name: 'paused', type: 'boolean', description: 'Stay paused at the position until resume.' },
   ]}
 />
 
@@ -248,6 +293,7 @@ an inert remover there.
   data={[
     { name: 'type', type: 'AudioRemoteCommandType', description: 'Play, pause, or seek.' },
     { name: 'positionMs', type: 'number', description: 'The target on seek.' },
+    { name: 'playerId', type: 'string', description: 'The owning player, absent for the singleton.' },
   ]}
 />
 
@@ -283,6 +329,9 @@ an inert remover there.
   The hooks remove on unmount; hand-created players need one `remove` call.
 - **Web playback needs a gesture.** Autoplay policy can reject `play`
   called outside a user action.
+- **One owner holds the controls.** A player's claim replaces the
+  singleton's and the other way round. Remote commands reach only the
+  owner, so pause the other player of a crossfade yourself.
 - **Resume restarts an ended singleton.** There is no stay-at-end state;
   seeking back first gives the same result explicitly.
 
@@ -387,3 +436,45 @@ function useNowPlaying(trackUri: string, title: string, artist: string) {
 Metadata goes up after playback starts, since the controls attach to the
 current player. The remote listener only observes; the handlers already
 drove the player, so the screen just syncs its own state.
+
+### Swap recordings at the same position
+
+```tsx
+import { One } from 'one'
+
+async function switchRecording(uri: string) {
+  const { positionMs } = await One.Audio.getPlaybackStatus()
+  await One.Audio.play(uri, { positionMs, paused: true })
+  await One.Audio.resume()
+}
+```
+
+The new recording is ready at the old position before it makes a sound, so
+the opening never plays. A second switch before the first finishes
+rejects the first with `E_AUDIO_STATE`.
+
+### Crossfade with lock screen controls
+
+```tsx
+import { One, type AudioPlayer } from 'one'
+
+async function crossfade(from: AudioPlayer, uri: string, title: string) {
+  const to = One.Audio.createPlayer(uri)
+  to.volume = 0
+  await to.seekTo(from.currentTime).catch(() => {})
+  to.play()
+  await to.setNowPlayingInfo({ title })
+  for (let step = 1; step <= 20; step++) {
+    await new Promise((resolve) => setTimeout(resolve, 100))
+    to.volume = step / 20
+    from.volume = 1 - step / 20
+  }
+  from.remove()
+  return to
+}
+```
+
+Moving the controls before the fade keeps the lock screen card up the
+whole time, and removing the old player afterwards leaves the new owner in
+place. `seekTo` needs a loaded player, so production code waits for
+`isLoaded` before seeking.

@@ -5,7 +5,7 @@ import type { NetworkState } from '../network/types'
 // read plus a change listener. the first listener starts the platform
 // monitor and the last removal stops it, so the first event can never race
 // the subscription. addStateListener returns its remover.
-export interface OneNetwork extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
+export interface OneNetwork extends HybridObject<{ android: 'kotlin' }> {
   getState(): Promise<NetworkState>
   addStateListener(listener: (state: NetworkState) => void): () => void
 }

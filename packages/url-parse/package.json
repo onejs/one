@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/url-parse",
-  "version": "2.8.0",
+  "version": "2.18.0",
   "sideEffects": false,
   "type": "module",
   "types": "./src/index.tsx",
@@ -29,10 +29,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "url-parse": "^1.5.10"
+    "query-string": "^9.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "3.0.18"
+    "@tamagui/build": "3.3.3"
   },
   "publishConfig": {
     "access": "public"

@@ -1,30 +1,12 @@
-import { NitroModules } from 'react-native-nitro-modules'
+import { documentPickerNative as native } from './backend'
 import type {
   DocumentPickerNativeResult,
-  OneDocumentPicker,
 } from '../specs/OneDocumentPicker.nitro'
 import { rethrowNativeError } from '../nativeError'
 import { resolveDocumentPickerOptions } from './options'
 import type { DocumentPickerOptions, DocumentPickerResult } from './types'
 
 export type * from './types'
-
-// the OneDocumentPicker nitro hybrid object is created once and lazily. null
-// outside a native build, exactly like the other native modules in
-// this package.
-let hybrid: OneDocumentPicker | null | undefined
-
-function native(verb: string): OneDocumentPicker {
-  if (hybrid === undefined) {
-    hybrid = NitroModules.hasHybridObject('OneDocumentPicker')
-      ? NitroModules.createHybridObject<OneDocumentPicker>('OneDocumentPicker')
-      : null
-  }
-  if (!hybrid) {
-    throw new Error(`DocumentPicker.${verb} needs a native build`)
-  }
-  return hybrid
-}
 
 // native settles one flat result; assets are set only when not canceled.
 function toResult(result: DocumentPickerNativeResult): DocumentPickerResult {

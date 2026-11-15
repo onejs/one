@@ -3,6 +3,7 @@
 // exit 1: any run failed, was cancelled, or timed out.
 // usage: bun scripts/ops/watch-ci.ts (--sha <sha> | --branch <branch>) [--repo onejs/one] [--workflow "Checks and Tests" ...]
 // every named workflow must start and pass. branch mode follows superseding pushes.
+// --workflow matches the workflow name, not a custom run-name title.
 //
 // polls the api once a minute inside this process so the caller can sleep
 // through it with `tm wait --exec` instead of burning turns.
@@ -106,7 +107,7 @@ while (true) {
       '--limit',
       '30',
       '--json',
-      'name,status,conclusion,databaseId,event',
+      'workflowName,status,conclusion,databaseId,event',
     ],
     { env }
   )
@@ -117,7 +118,7 @@ while (true) {
   }
   consecutiveFetchFailures = 0
   const runs: {
-    name: string
+    workflowName: string
     status: string
     conclusion: string | null
     databaseId: number
@@ -131,23 +132,30 @@ while (true) {
       (run.event === 'push' ||
         run.event === 'workflow_dispatch' ||
         run.event === 'pull_request') &&
-      (workflows.length === 0 || workflows.includes(run.name))
+      (workflows.length === 0 || workflows.includes(run.workflowName))
   )
   // duplicate push runs can be allocated ids out of order. a cancelled duplicate
   // has no verdict while another run for this exact workflow and sha still does.
   const candidates = direct.filter(
     (run) =>
       run.conclusion !== 'cancelled' ||
-      !direct.some((other) => other.name === run.name && other.conclusion !== 'cancelled')
+      !direct.some(
+        (other) =>
+          other.workflowName === run.workflowName && other.conclusion !== 'cancelled'
+      )
   )
   const latest = [
     ...new Map(
-      candidates.sort((a, b) => a.databaseId - b.databaseId).map((run) => [run.name, run])
+      candidates
+        .sort((a, b) => a.databaseId - b.databaseId)
+        .map((run) => [run.workflowName, run])
     ).values(),
   ]
   const failed = latest.filter((run) => run.conclusion && bad.has(run.conclusion))
   const pending = latest.filter((run) => run.status !== 'completed')
-  const missing = workflows.filter((name) => !latest.some((run) => run.name === name))
+  const missing = workflows.filter(
+    (name) => !latest.some((run) => run.workflowName === name)
+  )
   const complete = latest.length > 0 && pending.length === 0 && missing.length === 0
   // a push can supersede these runs between the head query and their verdict.
   if (branch && (failed.length > 0 || complete)) {
@@ -160,7 +168,9 @@ while (true) {
   }
   if (failed.length > 0) {
     for (const run of failed) {
-      console.error(`failed: ${run.name} (${run.conclusion}) run ${run.databaseId}`)
+      console.error(
+        `failed: ${run.workflowName} (${run.conclusion}) run ${run.databaseId}`
+      )
     }
     process.exit(1)
   }
@@ -168,12 +178,14 @@ while (true) {
     const unproven = latest.filter((run) => !ok.has(run.conclusion ?? ''))
     if (unproven.length > 0) {
       for (const run of unproven) {
-        console.error(`unproven: ${run.name} (${run.conclusion}) run ${run.databaseId}`)
+        console.error(
+          `unproven: ${run.workflowName} (${run.conclusion}) run ${run.databaseId}`
+        )
       }
       process.exit(1)
     }
     console.log(`verified source: ${sha}`)
-    for (const run of latest) console.log(`ok: ${run.name} (${run.conclusion})`)
+    for (const run of latest) console.log(`ok: ${run.workflowName} (${run.conclusion})`)
     process.exit(0)
   }
   console.log(

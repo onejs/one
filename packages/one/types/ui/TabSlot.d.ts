@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react';
-import { type TabsDescriptor } from './TabContext';
-import type { TabListProps } from './TabList';
+import { type TabsDescriptor } from './TabContext.js';
+import type { TabListProps } from './TabList.js';
 export type TabSlotProps = {
     /** Remove inactive screens from the visible DOM tree. */
     detachInactiveScreens?: boolean;

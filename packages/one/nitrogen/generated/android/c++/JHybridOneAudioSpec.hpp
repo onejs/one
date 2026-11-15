@@ -56,7 +56,7 @@ namespace margelo::nitro::one {
     // Methods
     std::shared_ptr<Promise<AudioRecordingPermission>> getRecordingPermissionStatus() override;
     std::shared_ptr<Promise<AudioRecordingPermission>> requestRecordingPermission() override;
-    std::shared_ptr<Promise<AudioPlaybackStatus>> play(const std::string& uri) override;
+    std::shared_ptr<Promise<AudioPlaybackStatus>> play(const std::string& uri, const AudioPlayOptions& options) override;
     std::shared_ptr<Promise<AudioPlaybackStatus>> getPlaybackStatus() override;
     std::shared_ptr<Promise<AudioPlaybackStatus>> pause() override;
     std::shared_ptr<Promise<AudioPlaybackStatus>> resume() override;
@@ -77,6 +77,8 @@ namespace margelo::nitro::one {
     std::shared_ptr<Promise<void>> playerSeek(const std::string& playerId, double seconds, std::optional<double> toleranceBeforeMs, std::optional<double> toleranceAfterMs) override;
     void playerReplace(const std::string& playerId, const std::optional<std::string>& sourceUri, const std::optional<std::unordered_map<std::string, std::string>>& headers) override;
     void removePlayer(const std::string& playerId) override;
+    std::shared_ptr<Promise<void>> setPlayerNowPlayingInfo(const std::string& playerId, const AudioNowPlayingInfo& info) override;
+    std::shared_ptr<Promise<void>> clearPlayerNowPlayingInfo(const std::string& playerId) override;
     AudioPlayerStatus getPlayerStatus(const std::string& playerId) override;
     void setPlayerRate(const std::string& playerId, double rate, std::optional<PitchCorrectionQuality> pitchQuality) override;
     void setPlayerVolume(const std::string& playerId, double volume) override;

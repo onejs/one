@@ -1,4 +1,4 @@
-import type { RouteNode } from './router/Route';
+import type { RouteNode } from './router/Route.js';
 export interface NotFoundState {
     notFoundPath: string;
     notFoundRouteNode?: RouteNode;

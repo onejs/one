@@ -21,9 +21,22 @@ public struct OneNativeAccessibility: Equatable {
 extension View {
   @ViewBuilder public func oneNativeAccessibility(
     _ accessibility: OneNativeAccessibility,
-    decorativeWhenUnlabeled: Bool = false
+    decorativeWhenUnlabeled: Bool = false,
+    containsChildren: Bool = false
   ) -> some View {
-    if decorativeWhenUnlabeled {
+    if containsChildren {
+      // a stack is no element of its own, so its identifier would land on every child.
+      // containing them makes the stack one element and keeps each child's own props.
+      // swiftui reuses a lone child container as this element, so a stack whose only child
+      // is another identified stack shares one element with it and the outer props win.
+      if accessibility == OneNativeAccessibility() {
+        self
+      } else {
+        self
+          .accessibilityElement(children: .contain)
+          .oneNativeAccessibilityFields(accessibility)
+      }
+    } else if decorativeWhenUnlabeled {
       self
         .accessibilityElement(children: .ignore)
         .oneNativeAccessibilityFields(accessibility)

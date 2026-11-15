@@ -1,3 +1,5 @@
+import type { StyleField } from './catalog'
+
 // a popover is both halves at once: the trigger is inline content that lays out with
 // the React Native tree, and the body is presented outside the surface like a sheet's.
 export const popoverMethods = [
@@ -22,8 +24,6 @@ export const popoverComponents = [
       revision: 'Int32',
       arrowEdge: 'string',
       presentationCompactAdaptation: 'string',
-      contentWidth: 'Double',
-      contentHeight: 'Double',
     },
     events: {
       onNativePopoverIsPresentedChange: {
@@ -31,7 +31,10 @@ export const popoverComponents = [
         eventCount: 'Int32',
         revision: 'Int32',
       },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
     },
+    // the trigger stack takes every scalar modifier the way any other view does.
+    swiftStyle: true,
     enumProps: {
       arrowEdge: 'Edge',
       presentationCompactAdaptation: 'PresentationAdaptation',
@@ -47,9 +50,25 @@ export const popoverComponents = [
         layout: 'presented',
       },
     ],
-    // the trigger reports the height SwiftUI measured, which needs a hand-written
-    // shadow node, state and descriptor.
+    // the trigger reports the height SwiftUI measured through its generated shadow node
     interfaceOnly: true,
+    host: {
+      modifier: 'popover',
+      // the popover anchors to the trigger's own bounds, so the stack hugs it
+      childStack: 'VStack(alignment: .leading, spacing: 0)',
+      binding: { label: 'isPresented', prop: 'isPresented', event: 'onNativePopoverIsPresentedChange' },
+      arguments: { arrowEdge: 'arrowEdge' },
+      presented: {
+        label: 'content',
+        slot: 'OneNativePopoverContent',
+        // SwiftUI sizes a popover from its content, whose measured size the
+        // bridge reports back as the slot's ideal size
+        modifiers: ['.oneNativePresentationCompactAdaptation(@presentationCompactAdaptation)'],
+      },
+      // the trigger sits at the leading edge, as a host's content does
+      modifiers: ['.frame(maxWidth: .infinity, alignment: .leading)'],
+      layout: 'measured',
+    },
   },
   {
     name: 'OneNativePopoverContent',
@@ -68,21 +87,27 @@ export const popoverComponents = [
       },
     ],
     interfaceOnly: true,
+    host: { slot: 'presented' },
   },
 ] as const
 
-export function emitPopover(header: string, outputs: Map<string, string>) {
+export function emitPopover(
+  header: string,
+  outputs: Map<string, string>,
+  styleFields: readonly StyleField[]
+) {
   for (const component of popoverComponents) {
     const props = Object.entries(component.props)
+    const styled = 'swiftStyle' in component && component.swiftStyle === true
     outputs.set(
       `src/platform/specs/${component.name}NativeComponent.ts`,
       header +
-        `import type { ViewProps } from 'react-native'
-import type { DirectEventHandler, Int32, Double } from 'react-native/Libraries/Types/CodegenTypes'
+        `import type { ${styled ? 'ProcessedColorValue, ' : ''}ViewProps } from 'react-native'
+import type { DirectEventHandler, Int32, Double${styled ? ', WithDefault' : ''} } from 'react-native/Libraries/Types/CodegenTypes'
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
-interface NativeProps extends ViewProps {
+${styled ? `type OneNativeStyleNative = Readonly<{\n${styleFields.map((field) => `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'boolean' ? 'boolean' : field.kind === 'color' ? 'ProcessedColorValue' : 'string'}`).join('\n')}\n  sdkModifiers?: string\n}>\n` : ''}interface NativeProps extends ViewProps {
 ${props.map(([key, type]) => `  ${key}: ${type}`).join('\n')}
-${Object.entries(component.events)
+${styled ? '  swiftStyle?: OneNativeStyleNative\n' : ''}${Object.entries(component.events)
   .map(
     ([key, fields]) =>
       `  ${key}?: DirectEventHandler<Readonly<{ ${Object.entries(fields)
@@ -100,57 +125,17 @@ export default codegenNativeComponent<NativeProps>('${component.name}'${componen
     header +
       `import type { ReactNode } from 'react'
 import type { ViewProps } from 'react-native'
+import type { OneNativeStyle } from './controlTypes'
 import type { Edge, PresentationAdaptation } from './swiftui'
 export interface PopoverProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   isPresented: boolean
   onIsPresentedChange: (value: boolean) => void
   revision?: number
   arrowEdge?: Edge
   presentationCompactAdaptation?: PresentationAdaptation
-  contentWidth: number
-  contentHeight: number
   content: ReactNode
   children: ReactNode
-}
-`
-  )
-  outputs.set(
-    'ios/Generated/OneNativePopoverContent.swift',
-    header +
-      `import SwiftUI
-
-struct OneNativePopoverRoot: View {
-  @ObservedObject var model: OneNativePopoverModel
-  @ObservedObject var children: OneNativeChildren
-  // composed, the parent lays the trigger out and measures it; only a standalone
-  // popover answers to Yoga.
-  let standalone: Bool
-  var body: some View {
-    VStack(alignment: .leading, spacing: 0) {
-      ForEach(children.items) { child in child.content }
-    }
-    .popover(
-      isPresented: Binding(
-        get: { model.controlled.value && model.content != nil },
-        set: { value in model.change(value) }
-      ),
-      arrowEdge: OneNativeGenerated.edge(model.arrowEdge)
-    ) {
-      if let content = model.content {
-        // SwiftUI sizes a popover from its content and a React Native subtree has no
-        // ideal size, so the box is explicit.
-        OneNativeSlot(content: content, mode: .presented, onLayout: { frame in
-          if model.active && model.controlled.value { model.onLayout?(frame) }
-        })
-        .frame(width: model.contentWidth, height: model.contentHeight)
-        .oneNativePresentationCompactAdaptation(model.presentationCompactAdaptation)
-      }
-    }
-    // the popover anchors to the trigger's own bounds, so the stack hugs it and this
-    // outer frame is what puts the trigger at the leading edge, as a host does.
-    .frame(maxWidth: .infinity, alignment: .leading)
-    .oneNativeMeasured(standalone, model.onHeight)
-  }
 }
 `
   )

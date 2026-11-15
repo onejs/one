@@ -18,7 +18,7 @@ export default function OneNativeShareEmpty() {
         <Text>Toggle share disabled</Text>
       </Pressable>
       <One.iOS.ShareLink
-        disabled={shareDisabled}
+        swiftStyle={{ disabled: shareDisabled }}
         item={shareMode === 'text' ? 'shared from one-native' : 'https://onestack.dev'}
         itemType={shareMode === 'url' ? 'url' : 'text'}
         label="Share"

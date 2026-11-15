@@ -11,6 +11,7 @@ import type {
 export type { LaunchScreenApi, LaunchScreenCoverProps, LaunchScreenHideOptions }
 
 let hybrid: OneLaunchScreen | undefined
+let appHolds = false
 
 function native(): OneLaunchScreen {
   hybrid ??= NitroModules.createHybridObject<OneLaunchScreen>('OneLaunchScreen')
@@ -19,6 +20,7 @@ function native(): OneLaunchScreen {
 
 export const LaunchScreen: LaunchScreenApi = Object.freeze({
   preventAutoHide() {
+    appHolds = true
     native().preventAutoHide()
   },
 
@@ -29,3 +31,14 @@ export const LaunchScreen: LaunchScreenApi = Object.freeze({
   Cover,
   artworkWidth: readLaunchScreenConfig()?.width ?? null,
 })
+
+// an app built without one's native module has no launch screen to hold.
+export function holdLaunchScreenForRouter(): boolean {
+  if (!NitroModules.hasHybridObject('OneLaunchScreen')) return false
+  native().preventAutoHide()
+  return true
+}
+
+export function releaseLaunchScreenForRouter() {
+  if (!appHolds) native().hide(false)
+}

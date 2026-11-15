@@ -280,6 +280,8 @@ export interface NotificationContentInput {
   body?: string
   data?: Record<string, unknown>
   sound?: boolean
+  // ios sound resource bundled in the app; android uses its channel sound.
+  soundName?: string
   badge?: number
   // interactive category identifier, registered with setCategory first.
   categoryIdentifier?: string

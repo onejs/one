@@ -2,10 +2,14 @@ import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, expect, it } from 'vitest'
-import { BuildWorkerPool } from '../../dist/esm/cli/workerPool.mjs'
+import type { BuildWorkerPool as Pool } from './workerPool'
+
+const { BuildWorkerPool }: typeof import('./workerPool') = await import(
+  new URL('../../dist/esm/cli/workerPool.mjs', import.meta.url).href
+)
 
 let root: string | undefined
-let pool: BuildWorkerPool | undefined
+let pool: Pool | undefined
 
 afterEach(async () => {
   await pool?.terminate()
@@ -47,7 +51,7 @@ it('keeps serialized loader data in page artifacts and reuses the parent CSS', a
       preloads: [],
       allCSS: ['/assets/probe.css'],
       layoutCSS: [],
-      routePreloads: {},
+      routePreloads: [],
       allCSSContents: cssContents,
     })
     expect(result.cssContents).toBe(cssContents)

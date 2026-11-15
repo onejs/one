@@ -1,0 +1,106 @@
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-clipboard
+- tapOn:
+    text: 'Open'
+    optional: true
+- extendedWaitUntil:
+    visible: 'Written: none'
+    timeout: 30000
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      id: one-native-clipboard-subscribe
+    direction: DOWN
+- tapOn:
+    id: one-native-clipboard-subscribe
+- assertVisible: 'Subscribed: yes'
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      id: one-native-clipboard-set
+    direction: UP
+- tapOn:
+    id: one-native-clipboard-set
+- assertVisible: 'Written: true'
+- extendedWaitUntil:
+    visible: 'Event: fired:plain-text'
+    timeout: 30000
+- tapOn:
+    id: one-native-clipboard-get
+- assertVisible: 'Read: one-native-clipboard-probe'
+- tapOn:
+    id: one-native-clipboard-has
+- assertVisible: 'Has: true'
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      id: one-native-clipboard-set-image
+    direction: DOWN
+- tapOn:
+    id: one-native-clipboard-set-image
+- assertVisible: 'Image: set'
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      id: one-native-clipboard-get-image
+    direction: DOWN
+- tapOn:
+    id: one-native-clipboard-get-image
+- assertVisible: 'Image: data:data:image/png;base64,:1x1'
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      id: one-native-clipboard-has-image
+    direction: DOWN
+- tapOn:
+    id: one-native-clipboard-has-image
+- assertVisible: 'HasImage: true'
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      id: one-native-clipboard-set-url
+    direction: DOWN
+- tapOn:
+    id: one-native-clipboard-set-url
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      id: one-native-clipboard-get-url
+    direction: DOWN
+- tapOn:
+    id: one-native-clipboard-get-url
+- assertVisible: 'Url: https://onestack.dev/clipboard-probe'
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      id: one-native-clipboard-has-url
+    direction: DOWN
+- tapOn:
+    id: one-native-clipboard-has-url
+- assertVisible: 'HasUrl: true'
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      id: one-native-clipboard-set-html
+    direction: DOWN
+- tapOn:
+    id: one-native-clipboard-set-html
+- scrollUntilVisible:
+    centerElement: true
+    element:
+      id: one-native-clipboard-get-html
+    direction: DOWN
+- tapOn:
+    id: one-native-clipboard-get-html
+- assertVisible: 'Html: <b>one-native-clipboard-html</b>'
+- extendedWaitUntil:
+    visible: 'Event: fired:html,plain-text'
+    timeout: 30000

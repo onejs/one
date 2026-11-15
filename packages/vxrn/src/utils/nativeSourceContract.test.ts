@@ -132,13 +132,60 @@ fun helper(x: Int) = x`
     ])
     const glue = renderKotlinSourceGlue('K_counter', contract).source
     expect(glue).toContain('class OneNativeSourceViews_K_counter: OneNativeSourceViewDispatch')
-    expect(glue).toContain('onPick = if (props.optBoolean("onPick")) ({ a0 -> emit("onPick"')
+    expect(glue).toContain('val reader = OneJsonReader_K_counter(propsJson)')
+    expect(glue).not.toContain('JSONObject(propsJson)')
+    expect(glue).toContain('onPick = if (h.hasOnPick) ({ a0 -> emit("onPick"')
     expect(() =>
       nativeSourceContract('/app/native/Bad.kt', '@Composable\nfun Bad(count: Int = 1) {}')
     ).toThrow(/Bad\.kt:2:.*may only default to null/)
     expect(() =>
       nativeSourceContract('/app/native/Bad.kt', '@Composable\nfun Bad(onTap: () -> Int) {}')
     ).toThrow(/must return Unit/)
+  })
+
+  it('decodes keyed change documents into held view state', () => {
+    const contract = nativeSourceContract(
+      '/app/native/Counter.kt',
+      `package app.counter
+data class Row(val id: Int, val title: String)
+@Composable
+fun Counter(rows: List<Row>, tick: Int, note: String? = null, onTap: () -> Unit, onPick: ((Int) -> Unit)? = null, modifier: Modifier = Modifier) {
+  Text("x")
+}`
+    )
+    const glue = renderKotlinSourceGlue('K_counter', contract).source
+    // decode runs at prop commit, render reads the held props: a change whose
+    // base the host no longer holds refuses (false) instead of rendering stale
+    expect(glue).toContain('fun apply(view: String, propsJson: String, state: OneNativeSourceKeyedState): Boolean')
+    expect(glue).toContain('fun Content(view: String, state: OneNativeSourceKeyedState, emit: (String, String) -> Unit)')
+    expect(glue).toContain('private class HeldCounter_K_counter {')
+    expect(glue).toContain('var rows: List<app.counter.Row>? = null')
+    expect(glue).toContain('var tick: Int = 0')
+    expect(glue).toContain('var hasOnPick: Boolean = false')
+    expect(glue).toContain('reader.selectName("\\$seq", "\\$base", "\\$lists", "rows", "tick", "note", "onTap", "onPick")')
+    expect(glue).toContain('if (hasBase && !hasSeq) error("seq: required")')
+    expect(glue).toContain('if (sawLists && !hasBase) error("lists: needs a change document")')
+    expect(glue).toContain('state.views["Counter"]')
+    expect(glue).toContain('state.seq = seq')
+    expect(glue).toContain('if (seq == state.seq) return true')
+    expect(glue).toContain('return false')
+    expect(glue).toContain('state.revision++')
+    expect(glue).toContain('val revision = state.revision')
+    expect(glue).toContain('private fun mergeListsCounterRows(reader: OneJsonReader_K_counter, old: List<app.counter.Row>?, prop: String): List<app.counter.Row>? {')
+    expect(glue).toContain('val current = old ?: return null')
+    expect(glue).toContain('var rowsMergeFailed = false')
+    expect(glue).toContain('if (mergedRows == null) rowsMergeFailed = true else rows = mergedRows')
+    expect(glue).toContain('if (rowsMergeFailed) error("lists.rows: cannot merge")')
+    expect(glue).toContain('lists.$prop: needs length')
+    expect(glue).toContain('lists.$prop: set out of order')
+    expect(glue).not.toContain('no held list')
+    expect(glue).not.toContain('missing index')
+    expect(glue).toContain('val si = readInt(itemReader, itemPath); if (!itemReader.hasNext()) error("$itemPath: expected element")')
+    expect(glue).toContain('rows = h.rows!!')
+    // apply owns the one reader and closes the document it decoded; a second
+    // close throws on device (expected '}' at end of document).
+    expect(glue.match(/val reader = OneJsonReader_K_counter\(propsJson\)/g)).toHaveLength(1)
+    expect(glue.match(/reader\.endDocument\(\)/g)).toHaveLength(1)
   })
 
   it('omits the events import and date/data helpers a contract never uses', () => {
@@ -167,6 +214,7 @@ fun Resources(title: String, onStep: ((Int) -> Unit)? = null) {
       expect(glue).not.toContain(symbol)
     }
     expect(glue).toContain('import androidx.compose.runtime.Composable')
+    expect(glue).toContain('import dev.onejs.one.OneNativeSourceKeyedState')
     expect(glue).toContain('import dev.onejs.one.OneNativeSourceDispatch')
     expect(glue).toContain('title = readString(')
     const dated = nativeSourceContract(
@@ -213,8 +261,12 @@ struct Helper: View {
     ])
     const glue = renderSwiftSourceGlue('rn_host_app', [contract]).source
     expect(glue).toContain('@objc(OneNativeSourceViews_rn_host_app) @MainActor public final class OneNativeSourceViews_rn_host_app: NSObject, OneNativeSourceViewDispatch')
-    expect(glue).toContain('value: try decode(props["value"] ?? missing("props.value"), as: Double.self),')
-    expect(glue).toContain('onReset: (props["onReset"] as? Bool) == true ? { () -> Void in emit("onReset", args([])) } : nil')
+    expect(glue).toContain('var `value`: Double')
+    expect(glue).toContain('private struct Doc_Level: Decodable')
+    expect(glue).toContain('guard let props = held as? Held_Level else')
+    expect(glue).toContain('public func updateView(_ held: AnyObject?, _ name: String, _ document: String) throws -> AnyObject?')
+    expect(glue).toContain('value: props.`value`,')
+    expect(glue).toContain('onReset: props.`onReset` == true ? { () -> Void in emit("onReset", args([])) } : nil')
 
     const temp = mkdtempSync(join(tmpdir(), 'one-native-source-views-'))
     writeFileSync(join(temp, 'Level.d.swift.ts'), contract.declaration)
@@ -222,10 +274,10 @@ struct Helper: View {
       compilerOptions: { strict: true, noEmit: true, allowArbitraryExtensions: true, module: 'esnext', moduleResolution: 'bundler', types: [] },
       include: ['use.ts'],
     }))
-    writeFileSync(join(temp, 'react.d.ts'), "declare module 'react' { export interface ReactElement {} }")
+    writeFileSync(join(temp, 'react.d.ts'), "declare module 'react' { export interface ReactElement {} }\ndeclare module 'react-native' { export type ViewStyle = { flex?: number }; export type StyleProp<T> = T | null | undefined }")
     writeFileSync(join(temp, 'use.ts'), `/// <reference path="./react.d.ts" />
 import { Level } from './Level.swift'
-Level({ value: 1, onChange: (next: number) => void next, onReset: null })
+Level({ value: 1, onChange: (next: number) => void next, onReset: null, style: { flex: 1 } })
 Level({ value: 'wrong', onChange: () => {} })
 `)
     // one compilation must accept the valid element and reject only the wrong prop.
@@ -511,7 +563,18 @@ object Atlas : OneModule {
       'object Atlas : OneModule {\n    fun at(moment: java.util.Date): java.util.Date = moment\n}'
     )
     expect(kotlin.modules[0].methods[0].parameters[0].type).toBe('Date')
-    expect(renderKotlinSourceGlue('K_atlas', kotlin).source).toContain('readDate(args.get(0), "args[0]")')
+    expect(renderKotlinSourceGlue('K_atlas', kotlin).source).toContain('readDate(reader, "args[0]")')
+  })
+
+  it('eats commas between positional module args', () => {
+    const kotlin = nativeSourceContract(
+      '/app/native/Atlas.kt',
+      'object Atlas : OneModule {\n    fun combine(first: Int, second: String): String = second\n}'
+    )
+    const glue = renderKotlinSourceGlue('K_atlas', kotlin).source
+    expect(glue).toContain('val arg0 = readInt(reader, "args[0]")')
+    expect(glue).toContain('require(reader.hasNext()) { "K_atlas.Atlas.combine expects 2 arguments" }')
+    expect(glue).toContain('val arg1 = readString(reader, "args[1]")')
   })
 
   it('rejects unusable named types at their use site', () => {
@@ -573,10 +636,12 @@ public struct Level: View {
 
     const kotlin = nativeSourceContract('/app/native/Atlas.kt', kotlinSource)
     const kotlinGlue = renderKotlinSourceGlue('K_atlas', kotlin).source
-    expect(kotlinGlue).toContain('private fun readPoint(value: Any, path: String): app.atlas.Point {')
+    expect(kotlinGlue).toContain('private class OneJsonReader_K_atlas(private val text: String) {')
+    expect(kotlinGlue).toContain('private fun readPoint(reader: OneJsonReader_K_atlas, path: String): app.atlas.Point {')
     expect(kotlinGlue).toContain('private fun encodePoint(value: app.atlas.Point): JSONObject {')
-    expect(kotlinGlue).toContain('private fun readDate(value: Any, path: String): java.util.Date {')
-    expect(kotlinGlue).toContain('readPoint(args.get(0), "args[0]")')
+    expect(kotlinGlue).toContain('private fun readDate(reader: OneJsonReader_K_atlas, path: String): java.util.Date {')
+    expect(kotlinGlue).toContain('readPoint(reader, "args[0]")')
+    expect(kotlinGlue).not.toContain('JSONArray(argsJson)')
     expect(kotlinGlue).toContain('JSONArray().put(dateToString(result))')
   })
 

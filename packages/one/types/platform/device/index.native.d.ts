@@ -1,4 +1,4 @@
-import type { DeviceInfo, LocalizationInfo } from '../specs/OneDevice.nitro';
+import type { DeviceInfo, LocalizationInfo } from '../specs/OneDevice.nitro.js';
 export type { DeviceInfo, LocalizationInfo };
 declare function getInfo(): Promise<DeviceInfo>;
 declare function getLocalizationInfo(): Promise<LocalizationInfo>;

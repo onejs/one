@@ -1,0 +1,109 @@
+---
+title: Native macOS and Linux
+description: Try One's native desktop hosts and understand the current setup and limitations
+---
+
+One 2.11 includes native desktop hosts for macOS and Linux. They run React
+Native views in native windows, with One's router and platform-specific files.
+The macOS host uses AppKit; the Linux host uses GTK. This guide starts with
+the macOS example in the One repository, then points to the Linux example.
+
+<Notice>
+  Desktop support is still developing. The repository examples are the
+  current starting point for experimenting with these hosts. `one prebuild`
+  generates iOS and Android projects; there is no `one run:macos` or
+  `one run:linux` command in One 2.11. Creating and distributing your own
+  desktop app requires native project and packaging work.
+</Notice>
+
+## Try the macOS example
+
+The example is a native application, so you need an Apple silicon Mac running
+macOS 14 or later, Xcode and its command line tools, Node.js, Bun, CMake,
+Ninja, and [XcodeGen](https://github.com/yonaskolb/XcodeGen). The first native
+build downloads React Native dependencies and Hermes. It takes longer than
+subsequent builds.
+
+Clone the [One repository](https://github.com/onejs/one) at `v2.11.0`, then
+install and build the workspace using its root scripts:
+
+```bash
+git clone --branch v2.11.0 https://github.com/onejs/one.git
+cd one
+bun install
+bun run build
+```
+
+Start the example's development server from the repository root:
+
+```bash
+cd tests/macos-basic
+bun run dev --port 8081
+```
+
+Leave the server running. In another terminal, from the repository root,
+generate the example's Xcode project and build the app:
+
+```bash
+cd tests/macos-basic/macos
+xcodegen generate
+xcodebuild -project MacosBasic.xcodeproj -scheme MacosBasic \
+  -configuration Debug -derivedDataPath build build
+open build/Build/Products/Debug/MacosBasic.app
+```
+
+The window loads the example route from the development server at
+`http://localhost:8081`. Try its controls and edit
+`tests/macos-basic/app/index.tsx` to explore the app. Use the fixture's
+**Reload host** control to reload JavaScript from the server. Native code and
+project changes require a native rebuild. If the window cannot load its
+bundle, check that the server is running on port 8081 and inspect the Xcode
+console or the macOS unified log for `[one-macos]` errors.
+
+The example project is configured for Apple silicon and macOS 14. Its XcodeGen
+file, `tests/macos-basic/macos/project.yml`, shows how the host, React Native
+core, Hermes, and build scripts are connected. It is a fixture in the One
+repository, with paths into that workspace, rather than a generated project
+for an arbitrary app.
+
+## Write desktop-specific UI
+
+Use a `.macos.tsx` file for a Mac-specific implementation and a `.linux.tsx`
+file for Linux. Shared `.native.tsx` and ordinary files can serve other
+platforms. Keep desktop-only native controls in the matching platform file.
+For example, this Mac component renders an AppKit button:
+
+```tsx fileName=NewWindowButton.macos.tsx
+import { One } from 'one'
+
+export function NewWindowButton({ onPress }: { onPress: () => void }) {
+  return <One.macOS.Button title="New window" onPress={onPress} />
+}
+```
+
+`One.macOS` also includes controls such as `Toggle` and
+`SegmentedControl`, and `AppCommands` for menus and keyboard shortcuts. The
+[macOS host README](https://github.com/onejs/one/blob/v2.11.0/packages/one/macos/README.md)
+explains the available controls and bundle behavior. React Native and One
+APIs do not all have desktop implementations, so verify each dependency and
+feature on the target platform before relying on it.
+
+## Linux
+
+One 2.11 also contains a native GTK host and a
+[Linux example](https://github.com/onejs/one/tree/v2.11.0/tests/linux-basic).
+The host has been built and shown in Linux CI on both arm64 and x86_64; the
+available interactions and platform APIs are still narrower than on mobile.
+For example, secondary mouse buttons and touch sequences are not yet
+implemented. The [Linux implementation notes](https://github.com/onejs/one/blob/v2.11.0/plans/one-linux-native.md)
+record the tested behavior and remaining gaps.
+
+For an app's JavaScript bundle, `one build --platform macos` and
+`one build --platform linux` select the respective desktop platform. These
+commands build JavaScript; they do not create or launch a native application.
+The Linux host also has [packaging scripts](https://github.com/onejs/one/tree/v2.11.0/packages/one/linux/scripts)
+for `.deb` and Flatpak experiments. Review their prerequisites and the host's
+limitations before using them to distribute an app.
+
+For iOS and Android project generation, use [Native Setup](/docs/native-setup).
+For desktop-specific routing and shared routes, see [Routing](/docs/routing).

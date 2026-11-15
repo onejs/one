@@ -65,6 +65,28 @@ export function nativeAppDefines(app: NativeAppManifest | undefined): Record<str
   return defines
 }
 
+// a library's edit to one generated native file, run at the end of prebuild.
+// file is a path suffix inside ios/ or android/ ("AppDelegate.swift",
+// "MyApp/Info.plist") and must match exactly one generated file. patch returns the new contents; it
+// must return its input unchanged when the edit is already there, and throw
+// when its anchor text is missing so a template change fails the prebuild.
+export interface NativeAppPatch {
+  platform: 'ios' | 'android'
+  file: string
+  patch: (content: string) => string
+}
+
+export const IOS_WIDGET_FAMILIES = [
+  'systemSmall',
+  'systemMedium',
+  'systemLarge',
+  'accessoryCircular',
+  'accessoryRectangular',
+  'accessoryInline',
+] as const
+
+export type IosWidgetFamily = (typeof IOS_WIDGET_FAMILIES)[number]
+
 export interface NativeAppManifest {
   name: string
   displayName?: string
@@ -186,6 +208,7 @@ export interface NativeAppManifest {
   // the launcher, stamps the url and runtime version into the binary, and
   // writes the embedded manifest beside the release bundle. without url the
   // build launches its embedded bundle with updates disabled.
+  patches?: NativeAppPatch[]
   updates?: {
     url?: string
     runtimeVersion: string
@@ -198,13 +221,22 @@ export interface NativeAppManifest {
     screensGamma?: boolean
     useFrameworks?: 'static' | 'dynamic'
     ccache?: boolean
+    // 'bun' runs release builds on bun's ahead-of-time compiled javascript
+    // instead of hermes; debug builds stay on hermes. pod install downloads
+    // the engine from an onejs/bun-engine release.
+    engine?: 'hermes' | 'bun'
     usesNonExemptEncryption?: boolean
+    appTransportSecurity?: Record<string, PlistValue>
     // the tint the system gives the app's controls, tab selection and text
     // cursor, as xcode's AccentColor asset; js reads PlatformColor('AccentColor').
     accentColor?: {
       light: string
       dark?: string
     }
+    // a checked-in folder in xcode's asset catalog format (imagesets,
+    // colorsets, symbolsets with their Contents.json) whose entries prebuild
+    // merges into the generated Images.xcassets, as UIImage(named:) finds them.
+    assetCatalog?: string
     // system prompt text for Face ID through One.LocalAuthentication.
     faceIdUsageDescription?: string
     // exposes the app's Documents in the Files app and document pickers.
@@ -217,6 +249,8 @@ export interface NativeAppManifest {
     // a firebase GoogleService-Info.plist, bundled into the app as expo's
     // ios.googleServicesFile does.
     googleServicesFile?: string
+    // project-relative files copied into the main bundle, such as named notification sounds.
+    resources?: string[]
     // Info.plist and entitlement keys native.app does not model (a tracking
     // prompt, an sdk's key). a key native.app or the template already writes
     // is rejected: set it through its field instead.
@@ -228,6 +262,7 @@ export interface NativeAppManifest {
       displayName: string
       description: string
       pushNotifications?: boolean
+      families?: IosWidgetFamily[]
     }
     // launch handlers for One.BackgroundTasks. define the matching JS
     // handlers in the native setupFile so a background-only launch can run.
@@ -241,8 +276,12 @@ export interface NativeAppManifest {
       actions: Array<{
         id: string
         title: string
+        description?: string
         textParameterTitle?: string
         shortcutPhrase: string
+        shortcutPhrases?: string[]
+        systemImageName?: string
+        openAppWhenRun?: boolean
       }>
     }
   }
@@ -349,6 +388,27 @@ export function validateNativeApp(
       names.add(name)
     }
   }
+  if (manifest.ios?.resources !== undefined) {
+    if (!Array.isArray(manifest.ios.resources)) fail('ios.resources must be an array')
+    const names = new Set([
+      'info.plist', 'launchscreen.storyboard', 'one-bridging-header.h',
+      'appdelegate.swift', 'scenedelegate.swift', 'oneappintents.swift',
+      'privacyinfo.xcprivacy', `${manifest.name.toLowerCase()}.entitlements`,
+      'oneappwidgets.entitlements',
+      ...(manifest.fonts ?? []).map((file) => file.split('/').pop()!.toLowerCase()),
+      ...(manifest.ios.googleServicesFile ? ['googleservice-info.plist'] : []),
+    ])
+    for (const file of manifest.ios.resources) {
+      if (typeof file !== 'string' || !file || file.startsWith('/') || file.split('/').includes('..')) {
+        fail('ios.resources entries must be project-relative file paths')
+      }
+      const name = file.split('/').pop()!
+      if (!/^[a-z0-9][a-z0-9._-]*$/i.test(name) || names.has(name.toLowerCase())) {
+        fail(`ios.resources has an invalid or duplicate bundle filename: ${name}`)
+      }
+      names.add(name.toLowerCase())
+    }
+  }
   if (manifest.version !== undefined && !VERSION.test(manifest.version)) {
     fail(`version "${manifest.version}" must start with major.minor.patch`)
   }
@@ -423,6 +483,10 @@ export function validateNativeApp(
     if (!Array.isArray(actions) || actions.length === 0) {
       fail('ios.appIntents.actions must be a non-empty array')
     }
+    const isValidShortcutPhrase = (phrase: unknown): phrase is string =>
+      typeof phrase === 'string' &&
+      phrase.split('{app}').length === 2 &&
+      Boolean(phrase.replace('{app}', '').trim())
     const ids = new Set<string>()
     for (const action of actions) {
       if (
@@ -432,15 +496,24 @@ export function validateNativeApp(
         !action.id.trim() ||
         typeof action.title !== 'string' ||
         !action.title.trim() ||
+        (action.description !== undefined &&
+          (typeof action.description !== 'string' || !action.description.trim())) ||
         (action.textParameterTitle !== undefined &&
           (typeof action.textParameterTitle !== 'string' ||
             !action.textParameterTitle.trim())) ||
-        typeof action.shortcutPhrase !== 'string' ||
-        action.shortcutPhrase.split('{app}').length !== 2 ||
-        !action.shortcutPhrase.replace('{app}', '').trim()
+        (action.systemImageName !== undefined &&
+          (typeof action.systemImageName !== 'string' ||
+            !action.systemImageName.trim())) ||
+        (action.openAppWhenRun !== undefined &&
+          typeof action.openAppWhenRun !== 'boolean') ||
+        !isValidShortcutPhrase(action.shortcutPhrase) ||
+        (action.shortcutPhrases !== undefined &&
+          (!Array.isArray(action.shortcutPhrases) ||
+            action.shortcutPhrases.length === 0 ||
+            !action.shortcutPhrases.every(isValidShortcutPhrase)))
       ) {
         fail(
-          'ios.appIntents actions need unique non-empty id/title, optional textParameterTitle, and a shortcutPhrase with one {app}'
+          'ios.appIntents actions need unique non-empty id/title, optional description/textParameterTitle/systemImageName/openAppWhenRun, and shortcutPhrase(s) each with one {app}'
         )
       }
       if (ids.has(action.id)) fail(`ios.appIntents action "${action.id}" is duplicated`)
@@ -638,11 +711,25 @@ export function validateNativeApp(
   ) {
     fail('ios.accentColor light and dark must be six-digit hex colors')
   }
+  const assetCatalog = manifest.ios?.assetCatalog
+  if (
+    assetCatalog !== undefined &&
+    (typeof assetCatalog !== 'string' || !assetCatalog.endsWith('.xcassets'))
+  ) {
+    fail('ios.assetCatalog must name a folder ending in .xcassets')
+  }
   if (
     manifest.pictureInPicture !== undefined &&
     typeof manifest.pictureInPicture !== 'boolean'
   ) {
     fail('pictureInPicture must be a boolean')
+  }
+  if (
+    manifest.ios?.engine !== undefined &&
+    manifest.ios.engine !== 'hermes' &&
+    manifest.ios.engine !== 'bun'
+  ) {
+    fail(`ios.engine must be 'hermes' or 'bun'`)
   }
   if (manifest.updates !== undefined) {
     if (
@@ -700,6 +787,18 @@ export function validateNativeApp(
       ) {
         fail('ios.widgets.pushNotifications must be a boolean')
       }
+      if (widgets.families !== undefined) {
+        if (
+          !Array.isArray(widgets.families) ||
+          widgets.families.length === 0 ||
+          new Set(widgets.families).size !== widgets.families.length ||
+          widgets.families.some((family) => !IOS_WIDGET_FAMILIES.includes(family))
+        ) {
+          fail(
+            `ios.widgets.families must be a non-empty list of unique families from ${IOS_WIDGET_FAMILIES.join(', ')}`
+          )
+        }
+      }
     }
   }
   if (!platform || platform === 'android') {
@@ -730,8 +829,9 @@ export function validateNativeApp(
     }
     for (const key of ['targetSdk', 'compileSdk'] as const) {
       const value = manifest.android[key]
-      if (value !== undefined && (!Number.isInteger(value) || value < 21)) {
-        fail(`android.${key} "${value}" must be an api level integer`)
+      const floor = key === 'compileSdk' ? 36 : 21
+      if (value !== undefined && (!Number.isInteger(value) || value < floor)) {
+        fail(`android.${key} "${value}" must be an api level integer of at least ${floor}`)
       }
     }
     if (manifest.android.shrinkResources && !manifest.android.minify) {
@@ -765,6 +865,110 @@ export function validateNativeApp(
     }
   }
   return manifest
+}
+
+// the purpose strings the native fields stamp into the ios Info.plist, shared by
+// prebuild and the manifest so a built app and its dev preview state the same keys.
+export function iosUsageDescriptions(app: NativeAppManifest): Map<string, string> {
+  const usage = new Map<string, string>()
+  if (app.imagePicker?.camera !== undefined) {
+    usage.set('NSCameraUsageDescription', app.imagePicker.camera)
+  }
+  if (app.imagePicker?.microphone !== undefined) {
+    usage.set('NSMicrophoneUsageDescription', app.imagePicker.microphone)
+  }
+  if (app.photoLibrary !== undefined) {
+    if (app.photoLibrary.addOnly !== undefined) {
+      usage.set('NSPhotoLibraryAddUsageDescription', app.photoLibrary.addOnly)
+    }
+    if (app.photoLibrary.readWrite !== undefined) {
+      usage.set('NSPhotoLibraryUsageDescription', app.photoLibrary.readWrite)
+    }
+  }
+  if (app.contacts !== undefined) {
+    usage.set('NSContactsUsageDescription', app.contacts.usage)
+  }
+  if (app.calendar !== undefined) {
+    if (app.calendar.usage !== undefined) {
+      usage.set('NSCalendarsFullAccessUsageDescription', app.calendar.usage)
+    }
+    if (app.calendar.remindersUsage !== undefined) {
+      usage.set('NSRemindersFullAccessUsageDescription', app.calendar.remindersUsage)
+    }
+  }
+  if (app.location !== undefined) {
+    usage.set('NSLocationWhenInUseUsageDescription', app.location.whenInUse)
+    if (app.location.alwaysAndWhenInUse !== undefined) {
+      usage.set('NSLocationAlwaysAndWhenInUseUsageDescription', app.location.alwaysAndWhenInUse)
+    }
+  }
+  if (app.pedometer !== undefined) {
+    usage.set('NSMotionUsageDescription', app.pedometer.usage)
+  }
+  if (app.ios?.faceIdUsageDescription !== undefined) {
+    usage.set('NSFaceIDUsageDescription', app.ios.faceIdUsageDescription)
+  }
+  if (app.speech !== undefined) {
+    usage.set('NSSpeechRecognitionUsageDescription', app.speech.recognition)
+    usage.set('NSMicrophoneUsageDescription', app.speech.microphone)
+  }
+  if (app.audio?.microphone !== undefined) {
+    usage.set('NSMicrophoneUsageDescription', app.audio.microphone)
+  }
+  return usage
+}
+
+// android declarations authored by native.app, before library manifest merging.
+// prebuild uses the same entries so capped permissions retain their SDK bounds.
+export const androidNotificationPermissions = [
+  'android.permission.POST_NOTIFICATIONS',
+  'android.permission.RECEIVE_BOOT_COMPLETED',
+]
+
+export function androidAppPermissions(app: NativeAppManifest): Map<string, number | undefined> {
+  const permissions = new Map<string, number | undefined>()
+  const add = (name: string, maxSdkVersion?: number) => {
+    const fullName = name.includes('.') ? name : `android.permission.${name}`
+    if (!permissions.has(fullName) || maxSdkVersion === undefined) {
+      permissions.set(fullName, maxSdkVersion)
+    }
+  }
+  if (app.imagePicker?.camera !== undefined) add('CAMERA')
+  if (app.speech !== undefined || app.audio?.microphone !== undefined) add('RECORD_AUDIO')
+  if (app.location !== undefined) {
+    add('ACCESS_COARSE_LOCATION')
+    add('ACCESS_FINE_LOCATION')
+    if (app.location.background) {
+      add('ACCESS_BACKGROUND_LOCATION')
+      add('FOREGROUND_SERVICE')
+      add('FOREGROUND_SERVICE_LOCATION')
+    }
+  }
+  if (app.pedometer !== undefined) add('ACTIVITY_RECOGNITION')
+  if (app.brightness === true) add('WRITE_SETTINGS')
+  if (app.notifications !== undefined || app.calendar?.remindersUsage !== undefined) {
+    for (const name of androidNotificationPermissions) add(name)
+  }
+  if (app.photoLibrary?.readWrite !== undefined) {
+    add('READ_MEDIA_IMAGES')
+    add('READ_MEDIA_VIDEO')
+    add('READ_EXTERNAL_STORAGE', 32)
+  }
+  if (app.photoLibrary?.addOnly !== undefined) add('WRITE_EXTERNAL_STORAGE', 28)
+  if (app.contacts !== undefined) {
+    add('READ_CONTACTS')
+    add('WRITE_CONTACTS')
+  }
+  if (app.calendar?.usage !== undefined) {
+    add('READ_CALENDAR')
+    add('WRITE_CALENDAR')
+  }
+  if (app.audio?.background === true) {
+    add('FOREGROUND_SERVICE')
+    add('FOREGROUND_SERVICE_MEDIA_PLAYBACK')
+  }
+  for (const name of app.android?.permissions ?? []) add(name)
+  return permissions
 }
 
 // the expo config shape the dev server's manifest carries (`extra.expoClient`)
@@ -802,13 +1006,24 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
       associatedDomains: app.ios.associatedDomains,
       usesAppleSignIn: app.ios.usesAppleSignIn,
       googleServicesFile: app.ios.googleServicesFile,
-      infoPlist: app.ios.infoPlist,
+      // a live preview has no Info.plist, so the purpose strings the built
+      // app carries ride in the manifest's infoPlist
+      infoPlist: { ...app.ios.infoPlist, ...Object.fromEntries(iosUsageDescriptions(app)) },
       entitlements: app.ios.entitlements,
     },
     android: app.android && {
       package: app.android.applicationId,
       versionCode: app.android.versionCode,
-      permissions: app.android.permissions,
+      // expo's string list cannot express maxSdkVersion, so only declarations
+      // valid on every SDK can be represented without overstating access.
+      permissions: [...androidAppPermissions(app)]
+        .filter(([name, maxSdk]) =>
+          maxSdk === undefined &&
+          !(app.android?.blockedPermissions ?? []).some((blocked) =>
+            (blocked.includes('.') ? blocked : `android.permission.${blocked}`) === name
+          )
+        )
+        .map(([name]) => name),
       blockedPermissions: app.android.blockedPermissions,
       googleServicesFile: app.android.googleServicesFile,
       adaptiveIcon: app.android.adaptiveIcon && {

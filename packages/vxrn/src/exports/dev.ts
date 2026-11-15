@@ -1,11 +1,11 @@
 import { execFileSync } from 'node:child_process'
-import FSExtra from 'fs-extra'
+import { mkdir } from 'node:fs/promises'
 import colors from 'picocolors'
 import { debounce } from 'perfect-debounce'
 import { normalizePath, type PluginOption, type ViteDevServer } from 'vite'
 import type { VXRNOptions } from '../types'
 
-const { ensureDir } = FSExtra
+const ensureDir = (dir: string) => mkdir(dir, { recursive: true })
 
 function readParentPid(pid: number): number | undefined {
   try {
@@ -31,19 +31,19 @@ function processExists(pid: number): boolean {
 
 // Exit if we become orphaned (parent dies). `bun run` stays between One and
 // its launcher, so monitor the launcher's PID too instead of only Bun's PID.
+// PID 1 is a live container or machine init, not a dead parent.
 function setupOrphanDetection() {
   if (process.platform === 'win32') return
 
   const initialPpid = process.ppid
   const launcherPid = readParentPid(initialPpid)
-  if (initialPpid === 1 || launcherPid === 1) {
-    process.exit(0)
-  }
+  const watchedLauncher =
+    launcherPid !== undefined && launcherPid > 1 ? launcherPid : undefined
 
   const interval = setInterval(() => {
     if (
       process.ppid !== initialPpid ||
-      (launcherPid !== undefined && !processExists(launcherPid))
+      (watchedLauncher !== undefined && !processExists(watchedLauncher))
     ) {
       process.exit(0)
     }
@@ -153,12 +153,15 @@ export default defineConfig({
 
   // use one server config as defaults
   // this is a bit hacky for now passing it in like this
-  const oneServerConfig = config?.plugins?.find(
+  const oneConfig = config?.plugins?.find(
     (x) => Array.isArray(x) && x[0]?.['name'] === 'one:config'
-  )?.[0]?.['__get']?.server
+  )?.[0]?.['__get']
+  const oneServerConfig = oneConfig?.server
   const viteServerConfig = config.server
 
   const options = await fillOptions({
+    // one stores its options when the config first loads, before it returns any plugins
+    patches: globalThis.__oneOptions?.patches,
     ...optionsIn,
     server: {
       ...oneServerConfig,

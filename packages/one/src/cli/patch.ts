@@ -1,4 +1,4 @@
-import type { SimpleDepPatchObject, PatchOptions } from 'vxrn'
+import type { PatchOptions } from 'vxrn'
 import { loadUserOneOptions } from '../vite/loadConfig'
 
 function isMissingViteConfigError(error: unknown) {
@@ -26,15 +26,15 @@ export async function run(args: { force?: boolean }) {
 
   const options = await loadUserOptions()
 
-  const patches = options?.oneOptions.patches as SimpleDepPatchObject | undefined
+  const patches = options?.oneOptions.patches
 
   if (process.env.DEBUG) {
-    console.info('User patches:', Object.keys(patches || {}))
+    console.info('User patches:', patches === false ? false : Object.keys(patches || {}))
   }
 
   await patch({
     root: process.cwd(),
-    deps: patches,
+    patches,
     force: args.force,
   } satisfies PatchOptions)
 }

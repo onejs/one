@@ -1,6 +1,7 @@
 import module from 'node:module'
 import path from 'node:path'
 import { absorbedPackageAliases } from '../utils/absorbedPackages'
+import { resolveIosSdkImport } from '../utils/iosSdkFacade'
 
 export type BuildOneMetroResolverOverridesOptions = {
   projectRoot: string
@@ -26,10 +27,11 @@ export function buildOneMetroResolverOverrides({
 }: BuildOneMetroResolverOverridesOptions): <T extends MetroConfigLike>(
   defaultConfig: T
 ) => T {
-  const require = module.createRequire(projectRoot + '/')
-  const emptyPath = require.resolve('@vxrn/utils/empty', {
-    paths: [projectRoot],
-  })
+  // one's own dependencies resolve from one, which isolated installs keep out of the app's reach
+  const requireFromOne = module.createRequire(
+    module.createRequire(projectRoot + '/').resolve('one/package.json')
+  )
+  const emptyPath = requireFromOne.resolve('@vxrn/utils/empty')
   const projectPackagePath = path.join(projectRoot, 'package.json')
   const absorbed = absorbedPackageAliases(projectRoot, 'native')
 
@@ -55,6 +57,16 @@ export function buildOneMetroResolverOverrides({
             moduleName,
             platform
           )
+        }
+
+        const sdkFacade = resolveIosSdkImport(
+          projectRoot,
+          moduleName,
+          platform,
+          context.originModulePath
+        )
+        if (sdkFacade) {
+          return { type: 'sourceFile', filePath: sdkFacade }
         }
 
         // packages one absorbs resolve to one's copy

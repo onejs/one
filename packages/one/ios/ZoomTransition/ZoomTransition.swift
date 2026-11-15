@@ -19,120 +19,6 @@ private func zoomCallbackJSON(_ event: [String: Any]) -> String {
   return String(decoding: data, as: UTF8.self)
 }
 
-// MARK: - singleton manager for zoom transition repositories
-
-class OneZoomManager {
-  static let shared = OneZoomManager()
-  let sourceRepository = ZoomTransitionsSourceRepository()
-  let alignmentViewRepository = ZoomTransitionsAlignmentViewRepository()
-  private init() {}
-}
-
-// MARK: - source info
-
-class SourceInfo {
-  var alignment: CGRect?
-  var animateAspectRatioChange: Bool
-  weak var view: UIView?
-
-  init(view: UIView, alignment: CGRect?, animateAspectRatioChange: Bool) {
-    self.view = view
-    self.alignment = alignment
-    self.animateAspectRatioChange = animateAspectRatioChange
-  }
-}
-
-// MARK: - repositories
-
-class ZoomTransitionsSourceRepository {
-  private var sources: [String: SourceInfo] = [:]
-  private let lock = NSLock()
-
-  func registerSource(identifier: String, source: SourceInfo) {
-    lock.lock()
-    defer { lock.unlock() }
-    if sources[identifier] != nil {
-      NSLog("[one] ZoomSource with identifier %@ is already registered.", identifier)
-    }
-    if !identifier.isEmpty {
-      sources[identifier] = source
-    }
-  }
-
-  func unregisterSource(identifier: String) {
-    lock.lock()
-    defer { lock.unlock() }
-    sources.removeValue(forKey: identifier)
-  }
-
-  func getSource(identifier: String) -> SourceInfo? {
-    lock.lock()
-    defer { lock.unlock() }
-    return sources[identifier]
-  }
-
-  func updateIdentifier(oldIdentifier: String, newIdentifier: String) {
-    lock.lock()
-    defer { lock.unlock() }
-    if let source = sources[oldIdentifier] {
-      if !newIdentifier.isEmpty {
-        sources[newIdentifier] = source
-      }
-      sources.removeValue(forKey: oldIdentifier)
-    }
-  }
-
-  func updateAlignment(identifier: String, alignment: CGRect?) {
-    lock.lock()
-    defer { lock.unlock() }
-    if let source = sources[identifier], !identifier.isEmpty {
-      source.alignment = alignment
-    }
-  }
-
-  func updateAnimateAspectRatioChange(identifier: String, animateAspectRatioChange: Bool) {
-    lock.lock()
-    defer { lock.unlock() }
-    if let source: SourceInfo = sources[identifier], !identifier.isEmpty {
-      source.animateAspectRatioChange = animateAspectRatioChange
-    }
-  }
-}
-
-class ZoomTransitionsAlignmentViewRepository {
-  private var alignmentViews: [String: WeakUIView] = [:]
-  private let lock = NSLock()
-
-  func addIfNotExists(identifier: String, alignmentView: UIView) {
-    lock.lock()
-    defer { lock.unlock() }
-    if alignmentViews[identifier] == nil && !identifier.isEmpty {
-      alignmentViews[identifier] = WeakUIView(view: alignmentView)
-    }
-  }
-
-  func removeIfSame(identifier: String, alignmentView: UIView) {
-    lock.lock()
-    defer { lock.unlock() }
-    if let existing = alignmentViews[identifier], existing.view === alignmentView {
-      alignmentViews.removeValue(forKey: identifier)
-    }
-  }
-
-  func get(identifier: String) -> UIView? {
-    lock.lock()
-    defer { lock.unlock() }
-    return alignmentViews[identifier]?.view
-  }
-
-  private class WeakUIView {
-    weak var view: UIView?
-    init(view: UIView) {
-      self.view = view
-    }
-  }
-}
-
 // MARK: - dismissal bounds rect (plain struct, no Expo Record)
 
 struct DismissalBoundsRect {
@@ -305,6 +191,33 @@ class ZoomTransitionEnablerView: RCTView {
     }
   }
 
+  // uikit hides a view source while its zoomed screen exists; a swiftui source's
+  // marker is empty, so the swiftui view hides itself instead, until a pop leaves
+  // the zoomed screen out of its stack or the screen goes without one.
+  private var hiddenSwiftUISource: String?
+
+  private func hideSwiftUISource(_ zoomed: UIViewController) {
+    if hiddenSwiftUISource == nil {
+      hiddenSwiftUISource = _zoomTransitionSourceIdentifier
+      OneZoomHiddenSources.shared.hide(_zoomTransitionSourceIdentifier)
+    }
+    zoomed.transitionCoordinator?.animate(alongsideTransition: nil) { [weak self, weak zoomed] context in
+      guard !context.isCancelled, zoomed?.parent == nil else { return }
+      self?.showSwiftUISource()
+    }
+  }
+
+  private func showSwiftUISource() {
+    guard let hidden = hiddenSwiftUISource else { return }
+    hiddenSwiftUISource = nil
+    OneZoomHiddenSources.shared.show(hidden)
+  }
+
+  deinit {
+    guard let hidden = hiddenSwiftUISource else { return }
+    DispatchQueue.main.async { OneZoomHiddenSources.shared.show(hidden) }
+  }
+
   private func setupZoomTransition() {
     if _zoomTransitionSourceIdentifier.isEmpty {
       NSLog("[one] No zoomTransitionSourceIdentifier passed to ZoomTransitionEnabler.")
@@ -354,7 +267,8 @@ class ZoomTransitionEnablerView: RCTView {
           }
         }
 
-        controller.preferredTransition = .zoom(options: options) { _ in
+        controller.preferredTransition = .zoom(options: options) { context in
+          self.hideSwiftUISource(context.zoomedViewController)
           let sourceInfo = self.sourceRepository.getSource(
             identifier: self._zoomTransitionSourceIdentifier)
           logZoomCallback(self.sourceCallbackEvent(sourceInfo?.view))

@@ -13,11 +13,15 @@ export const mediaControls: Control[] = [
     fields: {
       url: { type: 'string', default: '' },
       autoplay: { type: 'boolean', default: false },
+      contentFit: { type: 'string', default: 'native', publicType: "'native' | 'contain' | 'cover'" },
       command: { type: 'string', default: '', publicType: "'play' | 'pause' | 'seek'" },
       commandRevision: { type: 'Double', default: 0 },
       seekToMs: { type: 'Double', default: 0 },
     },
     actions: [
+      { prop: 'onVideoReady', event: 'VideoReady', payload: { width: 'Double', height: 'Double' } },
+      { prop: 'onVideoError', event: 'VideoError', payload: { message: 'string' } },
+      { prop: 'onFirstFrame', event: 'FirstFrame' },
       {
         prop: 'onPlaybackStatus',
         event: 'PlaybackStatus',
@@ -37,10 +41,15 @@ export const mediaControls: Control[] = [
   private var timeObserver: Any?
   private var controlObservation: NSKeyValueObservation?
   private var itemObservation: NSKeyValueObservation?
+  private var sizeObservation: NSKeyValueObservation?
+  private var reportedSize: CGSize?
+  private var reportedError: String?
   private var endObserver: NSObjectProtocol?
   private var ended = false
   private var appliedRevision: Double = 0
   var report: ((String, Double, Double) -> Void)?
+  var reportReady: ((Double, Double) -> Void)?
+  var reportError: ((String) -> Void)?
 
   deinit { clear() }
 
@@ -56,8 +65,11 @@ export const mediaControls: Control[] = [
       DispatchQueue.main.async { self?.emit() }
     }
     if let item = next.currentItem {
-      itemObservation = item.observe(\\.status, options: [.new]) { [weak self] _, _ in
-        DispatchQueue.main.async { self?.emit() }
+      itemObservation = item.observe(\\.status, options: [.initial, .new]) { [weak self] item, _ in
+        DispatchQueue.main.async { self?.reportItem(item); self?.emit() }
+      }
+      sizeObservation = item.observe(\\.presentationSize, options: [.new]) { [weak self] item, _ in
+        DispatchQueue.main.async { self?.reportItem(item) }
       }
       endObserver = NotificationCenter.default.addObserver(
         forName: .AVPlayerItemDidPlayToEndTime, object: item, queue: .main
@@ -112,9 +124,26 @@ export const mediaControls: Control[] = [
             duration.isFinite ? max(0, duration * 1000) : 0)
   }
 
+  private func reportItem(_ item: AVPlayerItem) {
+    guard player?.currentItem === item else { return }
+    if item.status == .readyToPlay {
+      let size = item.presentationSize
+      if reportedSize != size {
+        reportedSize = size
+        reportReady?(Double(size.width), Double(size.height))
+      }
+    } else if item.status == .failed {
+      let message = item.error?.localizedDescription ?? "Video playback failed."
+      if reportedError != message { reportedError = message; reportError?(message) }
+    }
+  }
+
   private func clear() {
     controlObservation = nil
     itemObservation = nil
+    sizeObservation = nil
+    reportedSize = nil
+    reportedError = nil
     if let endObserver { NotificationCenter.default.removeObserver(endObserver) }
     endObserver = nil
     if let player, let timeObserver { player.removeTimeObserver(timeObserver) }
@@ -129,11 +158,16 @@ private struct VideoPlayerSurface: View {
   @ObservedObject var model: VideoPlayerModel
   @StateObject private var session = OneNativeVideoSession()
   var body: some View {
-    VideoPlayer(player: session.player)
+    Group {
+      if model.contentFit == "native" { VideoPlayer(player: session.player) }
+      else { OneVideoController(player: session.player, contentFit: model.contentFit) { model.firstFrame() } }
+    }
       .onAppear {
         session.report = { [weak model = model] state, position, duration in
           model?.playbackStatus(state, position, duration)
         }
+        session.reportReady = { [weak model = model] width, height in model?.videoReady(width, height) }
+        session.reportError = { [weak model = model] message in model?.videoError(message) }
         session.load(model.url, autoplay: model.autoplay)
         if model.commandRevision > 0 {
           session.apply(model.command, revision: model.commandRevision, seekToMs: model.seekToMs)
@@ -147,8 +181,44 @@ private struct VideoPlayerSurface: View {
       }
   }
 }
+
+private struct OneVideoController: UIViewControllerRepresentable {
+  let player: AVPlayer?
+  let contentFit: String
+  let onFirstFrame: () -> Void
+
+  final class Coordinator {
+    var observation: NSKeyValueObservation?
+    weak var reportedPlayer: AVPlayer?
+    var onFirstFrame: (() -> Void)?
+  }
+
+  func makeCoordinator() -> Coordinator { Coordinator() }
+  func makeUIViewController(context: Context) -> AVPlayerViewController {
+    AVPlayerViewController()
+  }
+  func updateUIViewController(_ controller: AVPlayerViewController, context: Context) {
+    let coordinator = context.coordinator
+    coordinator.onFirstFrame = onFirstFrame
+    if controller.player !== player {
+      coordinator.observation = nil
+      coordinator.reportedPlayer = nil
+      controller.player = player
+      coordinator.observation = controller.observe(\\.isReadyForDisplay, options: [.initial, .new]) { [weak coordinator] controller, _ in
+        DispatchQueue.main.async {
+          guard let coordinator, controller.isReadyForDisplay, let player = controller.player,
+                coordinator.reportedPlayer !== player else { return }
+          coordinator.reportedPlayer = player
+          coordinator.onFirstFrame?()
+        }
+      }
+    }
+    controller.videoGravity = contentFit == "cover" ? .resizeAspectFill : .resizeAspect
+  }
+}
 `,
     validate: `  if (typeof url !== 'string' || !url) throw new Error('VideoPlayer url must be a non-empty string')
+  if (!['native', 'contain', 'cover'].includes(contentFit)) throw new Error('Unknown VideoPlayer contentFit: ' + contentFit)
   if (!['', 'play', 'pause', 'seek'].includes(command)) throw new Error('Unknown VideoPlayer command: ' + command)
   if (!Number.isSafeInteger(commandRevision) || commandRevision < 0) throw new Error('VideoPlayer commandRevision must be a nonnegative safe integer')
   if (command && commandRevision === 0) throw new Error('VideoPlayer command requires a positive commandRevision')
@@ -1056,10 +1126,9 @@ private struct SignInWithAppleButtonSurface: View {
   if (label !== 'signIn' && label !== 'continue' && label !== 'signUp') throw new Error("SignInWithAppleButton label must be 'signIn', 'continue' or 'signUp'")`,
   },
   {
-    // the tap-action Apple Pay button: the label enum picks the artwork's verb and the
-    // style struct picks its color, both mapped by hand because the SDK takes them as
-    // concrete parameters rather than through a generic Style protocol. the request
-    // initializers stay out: a PKPaymentRequest is an object the bridge cannot pass.
+    // the tap-action Apple Pay button: the label enum picks the artwork's verb, and
+    // swiftStyle.payWithApplePayButtonStyle picks its color. the request initializers
+    // stay out: a PKPaymentRequest is an object the bridge cannot pass.
     name: 'PayWithApplePayButton',
     imports: ['PassKit'],
     actions: [{ prop: 'onPress', event: 'Press' }],
@@ -1069,8 +1138,6 @@ private struct SignInWithAppleButtonSurface: View {
         default: 'plain',
         enum: 'PayWithApplePayButtonLabel',
       },
-      payWithApplePayButtonStyle: { type: 'string', default: 'black', enum: 'PayWithApplePayButtonStyle' },
-      disabled: { type: 'boolean', default: false },
     },
     constructors: [
       {
@@ -1081,70 +1148,27 @@ private struct SignInWithAppleButtonSurface: View {
         ],
       },
     ],
-    methods: [
-      {
-        name: 'payWithApplePayButtonStyle',
-        parameters: [{ label: '_', type: '_PassKit_SwiftUI.PayWithApplePayButtonStyle' }],
-        requirements: [],
-      },
-    ],
     swift: `PayWithApplePayButton(OneNativeGenerated.payWithApplePayButtonLabel(model.label)) {
         model.press()
-      }
-      .oneNativePayButtonStyle(model.payWithApplePayButtonStyle)`,
-    extraSwift: `// the style structs carry their cases as static lets on a concrete parameter, so the
-// generic style helper cannot select them and the recipe maps them instead. swiftc
-// -typecheck against the SDK is what proves each case still exists.
-private extension View {
-  @ViewBuilder func oneNativePayButtonStyle(_ value: String) -> some View {
-    switch value {
-    case "white": self.payWithApplePayButtonStyle(.white)
-    case "whiteOutline": self.payWithApplePayButtonStyle(.whiteOutline)
-    case "black": self.payWithApplePayButtonStyle(.black)
-    case "automatic": self.payWithApplePayButtonStyle(.automatic)
-    default: let _ = preconditionFailure("invalid PayWithApplePayButtonStyle: \\(value)"); self
-    }
-  }
-}`,
+      }`,
     validate: `  if (typeof label !== 'string') throw new Error('PayWithApplePayButton label must be a string')`,
   },
   {
-    // the tap-action add-to-wallet button: artwork has no label variant, only the two
-    // black styles. the passes initializers stay out: PKPass objects cannot cross the
+    // the tap-action add-to-wallet button: artwork has no label variant, and
+    // swiftStyle.addPassToWalletButtonStyle picks one of the two black styles. the passes initializers stay out: PKPass objects cannot cross the
     // bridge, so the button reports the tap and the app adds passes natively.
     name: 'AddPassToWalletButton',
     imports: ['PassKit'],
     actions: [{ prop: 'onPress', event: 'Press' }],
-    fields: {
-      addPassToWalletButtonStyle: { type: 'string', default: 'black', enum: 'AddPassToWalletButtonStyle' },
-      disabled: { type: 'boolean', default: false },
-    },
+    fields: {},
     constructors: [
       {
         type: 'AddPassToWalletButton',
         parameters: [{ label: 'action', type: '@escaping () -> Swift.Void' }],
       },
     ],
-    methods: [
-      {
-        name: 'addPassToWalletButtonStyle',
-        parameters: [{ label: '_', type: '_PassKit_SwiftUI.AddPassToWalletButtonStyle' }],
-        requirements: [],
-      },
-    ],
     swift: `AddPassToWalletButton {
         model.press()
-      }
-      .oneNativeWalletButtonStyle(model.addPassToWalletButtonStyle)`,
-    extraSwift: `private extension View {
-  @ViewBuilder func oneNativeWalletButtonStyle(_ value: String) -> some View {
-    switch value {
-    case "black": self.addPassToWalletButtonStyle(.black)
-    case "blackOutline": self.addPassToWalletButtonStyle(.blackOutline)
-    default: let _ = preconditionFailure("invalid AddPassToWalletButtonStyle: \\(value)"); self
-    }
-  }
-}`,
-    validate: `  if (typeof disabled !== 'boolean') throw new Error('AddPassToWalletButton disabled must be a boolean')`,
+      }`,
   },
 ]

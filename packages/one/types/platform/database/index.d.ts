@@ -1,5 +1,5 @@
 import type { open, openAsync } from '@op-engineering/op-sqlite';
-import { openKeyValue } from './keyValue';
+import { openKeyValue } from './keyValue.js';
 export declare const Database: Readonly<{
     open: typeof open;
     openAsync: typeof openAsync;

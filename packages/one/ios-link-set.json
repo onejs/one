@@ -1,0 +1,483 @@
+{
+  "groups": {
+    "wallet": {
+      "frameworks": [
+        "PassKit"
+      ],
+      "components": [
+        "OneNativePayWithApplePayButton",
+        "OneNativeAddPassToWalletButton"
+      ],
+      "hybrids": [],
+      "modifiers": [
+        "addPassToWalletButtonStyle",
+        "onApplePayCouponCodeChange",
+        "onApplePayPaymentMethodChange",
+        "onApplePayShippingContactChange",
+        "onApplePayShippingMethodChange",
+        "payLaterViewAction",
+        "payLaterViewDisplayStyle",
+        "payWithApplePayButtonDisableCardArt",
+        "payWithApplePayButtonStyle",
+        "verifyIdentityWithWalletButtonStyle"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "store": {
+      "frameworks": [
+        "StoreKit"
+      ],
+      "components": [
+        "OneNativeProductView",
+        "OneNativeStoreView",
+        "OneNativeSubscriptionStoreView"
+      ],
+      "hybrids": [
+        "OnePurchases",
+        "OneStoreReview"
+      ],
+      "uses": [
+        "Purchases",
+        "StoreReview"
+      ],
+      "modifiers": [
+        "appStoreMerchandising",
+        "appStoreOverlayWithAppClipConfiguration",
+        "appStoreOverlayWithAppConfiguration",
+        "currentEntitlementTask",
+        "inAppPurchaseOptions",
+        "manageSubscriptionsSheet",
+        "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID",
+        "offerCodeRedemption",
+        "onInAppPurchaseCompletion",
+        "onInAppPurchaseStart",
+        "preferredSubscriptionOffer",
+        "preferredSubscriptionPricingTerms",
+        "productDescription",
+        "productIconBorder",
+        "productViewStyle",
+        "refundRequestSheet",
+        "storeButton",
+        "storeProductTask",
+        "storeProductsTask",
+        "subscriptionIntroductoryOffer",
+        "subscriptionOfferViewButtonVisibility",
+        "subscriptionOfferViewDetailAction",
+        "subscriptionOfferViewStyle",
+        "subscriptionPromotionalOffer",
+        "subscriptionStatusTask",
+        "subscriptionStoreButtonLabel",
+        "subscriptionStoreControlBackground",
+        "subscriptionStoreControlStyle",
+        "subscriptionStoreOptionGroupStyle",
+        "subscriptionStorePickerItemBackground",
+        "subscriptionStorePolicyDestination",
+        "subscriptionStorePolicyForegroundStyle",
+        "subscriptionStoreSignInAction"
+      ],
+      "slots": [
+        "subscriptionStoreControlIcon",
+        "subscriptionStorePolicyDestination"
+      ],
+      "values": [
+        "subscriptionStore",
+        "subscriptionStoreFullHeight",
+        "subscriptionStoreHeader"
+      ]
+    },
+    "account": {
+      "frameworks": [
+        "AuthenticationServices",
+        "SafariServices"
+      ],
+      "components": [
+        "OneNativeSignInWithAppleButton"
+      ],
+      "hybrids": [
+        "OneAppleAuth",
+        "OneBrowser"
+      ],
+      "uses": [
+        "Auth",
+        "Browser"
+      ],
+      "modifiers": [
+        "signInWithAppleButtonStyle"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "messaging": {
+      "frameworks": [
+        "MessageUI"
+      ],
+      "components": [],
+      "hybrids": [
+        "OneMailCompose",
+        "OneMessageCompose"
+      ],
+      "uses": [
+        "MFMailComposeViewController",
+        "MFMessageComposeViewController"
+      ],
+      "modifiers": [],
+      "slots": [],
+      "values": []
+    },
+    "photos": {
+      "frameworks": [
+        "PhotosUI",
+        "Photos"
+      ],
+      "components": [
+        "OneNativePhotosPicker",
+        "OneNativeLivePhotoView"
+      ],
+      "hybrids": [
+        "OneImagePicker",
+        "OnePhotoLibrary"
+      ],
+      "uses": [
+        "ImagePicker",
+        "PhotoLibrary",
+        "presentLimitedLibraryPicker"
+      ],
+      "modifiers": [
+        "photosPicker",
+        "photosPickerAccessoryVisibility",
+        "photosPickerDisabledCapabilities",
+        "photosPickerMetadataOptions",
+        "photosPickerSearchText",
+        "photosPickerStyle",
+        "photosReferenceImageViewer",
+        "photosSharedAlbumCreationSheet",
+        "photosSharedAlbumCustomizationSheet",
+        "photosSharedAlbumPostingSheet",
+        "postToPhotosSharedAlbumSheet"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "charts": {
+      "frameworks": [
+        "Charts"
+      ],
+      "components": [
+        "OneNativeChart"
+      ],
+      "hybrids": [],
+      "modifiers": [],
+      "slots": [],
+      "values": []
+    },
+    "preview3d": {
+      "frameworks": [
+        "QuickLook",
+        "RealityKit",
+        "RealityFoundation",
+        "MusicKit"
+      ],
+      "components": [
+        "OneNativeQuickLook"
+      ],
+      "hybrids": [],
+      "modifiers": [
+        "environmentRealityViewCameraControls",
+        "musicPickerWithMusicVideo",
+        "musicPickerWithSong",
+        "musicPickerWithTrack",
+        "musicSubscriptionOffer",
+        "quickLookPreview",
+        "realityViewCameraControls",
+        "realityViewLayoutBehavior"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "speech": {
+      "frameworks": [
+        "Speech"
+      ],
+      "components": [],
+      "hybrids": [
+        "OneSpeech"
+      ],
+      "uses": [
+        "Speech"
+      ],
+      "modifiers": [],
+      "slots": [],
+      "values": []
+    },
+    "maps": {
+      "frameworks": [
+        "MapKit",
+        "CoreLocation",
+        "CoreLocationUI"
+      ],
+      "components": [
+        "OneNativeMap",
+        "OneNativeMapUserLocationButton",
+        "OneNativeMapPitchToggle",
+        "OneNativeMapCompass",
+        "OneNativeUiMap",
+        "OneNativeLocationButton"
+      ],
+      "hybrids": [
+        "OneMapServices",
+        "OneLocation"
+      ],
+      "uses": [
+        "MapServices",
+        "Map",
+        "Location",
+        "LocationButton"
+      ],
+      "modifiers": [
+        "lookAroundViewer",
+        "mapCameraKeyframeAnimator",
+        "mapControlVisibility",
+        "mapFeatureSelectionAccessory",
+        "mapFeatureSelectionContent",
+        "mapFeatureSelectionDisabled",
+        "mapItemDetailPopoverWithCurrentLocation",
+        "mapItemDetailPopoverWithCurrentLocationAndArrowEdge",
+        "mapItemDetailSheetWithCurrentLocation",
+        "mapScope",
+        "mapStyle",
+        "onMapCameraChange",
+        "onMapCameraChangeWithEventStruct"
+      ],
+      "slots": [
+        "mapControls"
+      ],
+      "values": []
+    },
+    "video": {
+      "frameworks": [
+        "AVKit"
+      ],
+      "components": [
+        "OneNativeVideoPlayer",
+        "OneNativePictureInPicture"
+      ],
+      "hybrids": [],
+      "uses": [
+        "PictureInPicture",
+        "VideoPlayer"
+      ],
+      "modifiers": [
+        "onCameraCaptureEvent",
+        "onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction",
+        "onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "contacts": {
+      "frameworks": [
+        "ContactsUI"
+      ],
+      "components": [],
+      "hybrids": [
+        "OneContacts",
+        "OneContactUI",
+        "NativeCNContact",
+        "NativeCNContactStore"
+      ],
+      "uses": [
+        "Contacts",
+        "CNContactViewController",
+        "CNMutableContact",
+        "CNContactStore"
+      ],
+      "modifiers": [],
+      "slots": [],
+      "values": []
+    },
+    "vision": {
+      "frameworks": [
+        "VisionKit"
+      ],
+      "components": [],
+      "hybrids": [
+        "OneDataScanner",
+        "OneDocumentCamera"
+      ],
+      "uses": [
+        "DataScannerViewController",
+        "VNDocumentCameraViewController"
+      ],
+      "modifiers": [],
+      "slots": [],
+      "values": []
+    },
+    "swiftdata": {
+      "frameworks": [
+        "SwiftData"
+      ],
+      "components": [],
+      "hybrids": [],
+      "modifiers": [
+        "modelContainer",
+        "modelContext"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "translation": {
+      "frameworks": [
+        "Translation"
+      ],
+      "components": [],
+      "hybrids": [],
+      "modifiers": [
+        "translationPresentation",
+        "translationTask"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "workout": {
+      "frameworks": [
+        "WorkoutKit"
+      ],
+      "components": [],
+      "hybrids": [],
+      "modifiers": [
+        "workoutPreview"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "web": {
+      "frameworks": [
+        "WebKit"
+      ],
+      "components": [
+        "OneNativeWebView",
+        "OneDOMHost"
+      ],
+      "hybrids": [],
+      "uses": [
+        "WebView",
+        "createDOMComponent"
+      ],
+      "modifiers": [
+        "webViewBackForwardNavigationGestures",
+        "webViewContentBackground",
+        "webViewElementFullscreenBehavior",
+        "webViewLinkPreviews",
+        "webViewMagnificationGestures",
+        "webViewOnScrollGeometryChangeWithContainerSize",
+        "webViewOnScrollGeometryChangeWithContentOffset",
+        "webViewOnScrollGeometryChangeWithContentSize",
+        "webViewScrollPosition",
+        "webViewTextSelection"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "intents": {
+      "frameworks": [
+        "AppIntents"
+      ],
+      "components": [
+        "OneNativeShortcutsLink"
+      ],
+      "hybrids": [],
+      "uses": [
+        "ShortcutsLink"
+      ],
+      "modifiers": [
+        "accessibilityAction",
+        "accessibilityActionWithAppIntent",
+        "appEntityIdentifier",
+        "appEntityUIElements",
+        "onAppIntentExecution",
+        "shortcutsLinkStyle",
+        "siriTipViewStyle"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "widgets": {
+      "frameworks": [
+        "WidgetKit"
+      ],
+      "components": [],
+      "hybrids": [],
+      "uses": [],
+      "modifiers": [
+        "previewContext"
+      ],
+      "slots": [],
+      "values": [
+        "widget"
+      ]
+    },
+    "controllers": {
+      "frameworks": [
+        "GameController"
+      ],
+      "components": [],
+      "hybrids": [],
+      "uses": [],
+      "modifiers": [
+        "handlesGameControllerEvents"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "credentials": {
+      "frameworks": [
+        "SecureElementCredential"
+      ],
+      "components": [],
+      "hybrids": [],
+      "uses": [],
+      "modifiers": [
+        "transactionTask"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "detection": {
+      "frameworks": [
+        "DataDetection"
+      ],
+      "components": [],
+      "hybrids": [],
+      "uses": [],
+      "modifiers": [
+        "dataDetection"
+      ],
+      "slots": [],
+      "values": []
+    },
+    "media": {
+      "frameworks": [
+        "MediaPlayer"
+      ],
+      "components": [
+        "OneNativeCamera"
+      ],
+      "hybrids": [
+        "OneAudio",
+        "OneSpeechSynthesis"
+      ],
+      "uses": [
+        "Audio",
+        "Camera",
+        "SpeechSynthesis",
+        "CameraView",
+        "useAudioPlayer",
+        "useAudioPlayerStatus"
+      ],
+      "modifiers": [],
+      "slots": [],
+      "values": []
+    }
+  }
+}

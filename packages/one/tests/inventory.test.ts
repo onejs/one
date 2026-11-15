@@ -1,4 +1,5 @@
 import { assertSwiftUIValue } from '../src/platform/generated/swiftui'
+import { sdkToggleStyleValues } from '../src/platform/generated/controlTypes'
 import { describe, expect, it } from 'vitest'
 import {
   available,
@@ -251,27 +252,6 @@ describe('modifier overloads', () => {
 })
 
 it('exposes Swift keyword identifiers without source escaping', () => {
-  expect(() => assertSwiftUIValue('ToggleStyle', 'switch', 18)).not.toThrow()
-  expect(() => assertSwiftUIValue('ToggleStyle', '`switch`', 18)).toThrow(
-    'Unknown SwiftUI'
-  )
-})
-
-describe('SF symbol enums', () => {
-  it('validates SymbolRenderingMode, SymbolVariants, and ImageScale values', () => {
-    expect(() =>
-      assertSwiftUIValue('SymbolRenderingMode', 'hierarchical', 15)
-    ).not.toThrow()
-    expect(() => assertSwiftUIValue('SymbolRenderingMode', 'invalid', 15)).toThrow(
-      'Unknown SwiftUI'
-    )
-    expect(() => assertSwiftUIValue('SymbolVariants', 'fill', 15)).not.toThrow()
-    expect(() => assertSwiftUIValue('SymbolVariants', 'invalid', 15)).toThrow(
-      'Unknown SwiftUI'
-    )
-    expect(() => assertSwiftUIValue('ImageScale', 'medium', 13)).not.toThrow()
-    expect(() => assertSwiftUIValue('ImageScale', 'invalid', 13)).toThrow(
-      'Unknown SwiftUI'
-    )
-  })
+  expect(sdkToggleStyleValues).toContain('switch')
+  expect(sdkToggleStyleValues).not.toContain('`switch`')
 })

@@ -1,5 +1,5 @@
-import type { SpeechSynthesisOptions, SpeechSynthesisVoice } from './types';
-export type { SpeechSynthesisEvent, SpeechSynthesisEventType, SpeechSynthesisOptions, SpeechSynthesisVoice, SpeechSynthesisVoiceQuality, } from './types';
+import type { SpeechSynthesisOptions, SpeechSynthesisVoice } from './types.js';
+export type { SpeechSynthesisEvent, SpeechSynthesisEventType, SpeechSynthesisOptions, SpeechSynthesisVoice, SpeechSynthesisVoiceQuality, } from './types.js';
 declare function speak(text: string, options?: SpeechSynthesisOptions): void;
 declare function stop(): Promise<void>;
 declare function pause(): Promise<void>;

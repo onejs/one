@@ -7,6 +7,20 @@ export function swiftPackageId(packageDir: string) {
   return basename(packageDir).replace(/[^A-Za-z0-9_]/g, '_').replace(/^(\d)/, '_$1')
 }
 
+// prebuild moves an existing ios project here while it regenerates, so a walk
+// for app sources must skip it like the live project or it links pod sources
+// from a directory that is deleted before pod install.
+export const PREVIOUS_IOS_DIR = 'ios.previous'
+export const NON_SOURCE_DIRS: ReadonlySet<string> = new Set([
+  'node_modules',
+  'ios',
+  PREVIOUS_IOS_DIR,
+  'android',
+  'dist',
+  'types',
+  'build',
+])
+
 export function swiftPackageDirOf(file: string): string | undefined {
   for (let dir = dirname(file); dirname(dir) !== dir; dir = dirname(dir)) {
     if (existsSync(join(dir, 'Package.swift'))) return dir
@@ -18,7 +32,6 @@ export function swiftPackageDirOf(file: string): string | undefined {
 // this app; any other nested package.json marks another javascript package
 // (vendored or a fixture) whose inner swift belongs to it, not this app.
 export function swiftPackageDirectories(root: string): Map<string, string> {
-  const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build'])
   const packages = new Map<string, string>()
   const walk = (dir: string) => {
     const entries = readdirSync(dir, { withFileTypes: true })
@@ -34,7 +47,7 @@ export function swiftPackageDirectories(root: string): Map<string, string> {
     }
     if (dir !== root && has('package.json')) return
     for (const entry of entries) {
-      if (!entry.isDirectory() || entry.name.startsWith('.') || skip.has(entry.name)) continue
+      if (!entry.isDirectory() || entry.name.startsWith('.') || NON_SOURCE_DIRS.has(entry.name)) continue
       walk(join(dir, entry.name))
     }
   }

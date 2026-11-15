@@ -1,7 +1,7 @@
 import type { InlineConfig } from 'vite'
 import { resolvePath } from '@vxrn/resolve'
-import FSExtra from 'fs-extra'
 import { join } from 'node:path'
+import { pathExists, readJSON } from '../utils/fs'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 
 // essentially base web config not base everything
@@ -52,7 +52,7 @@ export async function getBaseViteConfig(
   const postCSSConfigPath = (
     await Promise.all(
       postCSSPaths.map(async (x) => {
-        if (await FSExtra.pathExists(x)) {
+        if (await pathExists(x)) {
           return x
         }
       })
@@ -60,7 +60,7 @@ export async function getBaseViteConfig(
   ).find((x) => typeof x === 'string')
 
   const reactNativePackageJsonPath = resolvePath('react-native/package.json', root)
-  const { version } = await FSExtra.readJSON(reactNativePackageJsonPath)
+  const { version } = await readJSON(reactNativePackageJsonPath)
 
   return {
     mode,
@@ -116,14 +116,21 @@ export async function getBaseViteConfig(
           find: 'react-native',
           replacement: 'react-native-web',
         },
+        // react-native-gesture-handler 3 probes reanimated's source with a
+        // guarded require; the optimizer leaves the .tsx external, so it must
+        // map to the built web files or the whole client fails to load
+        {
+          find: /^react-native-reanimated\/src\//,
+          replacement: 'react-native-reanimated/lib/module/',
+        },
         // bundle size optimizations
         {
           find: 'query-string',
-          replacement: resolvePath('@vxrn/query-string', root),
+          replacement: resolvePath('@vxrn/query-string', import.meta.dirname),
         },
         {
           find: 'url-parse',
-          replacement: resolvePath('@vxrn/url-parse', root),
+          replacement: resolvePath('@vxrn/url-parse', import.meta.dirname),
         },
       ],
 

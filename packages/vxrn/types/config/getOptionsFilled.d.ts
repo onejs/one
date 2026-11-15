@@ -1,4 +1,4 @@
-import type { Mode, VXRNOptions } from '../types';
+import type { Mode, VXRNOptions } from '../types.js';
 /**
  * **NOTES**
  *
@@ -27,13 +27,21 @@ import type { Mode, VXRNOptions } from '../types';
  *   * Over time, we can progressively eliminate dependencies on
  *     `VXRNOptionsFilled` across the codebase.
  */
+export type PackageJSON = {
+    name?: string;
+    version?: string;
+    dependencies?: Record<string, string>;
+    devDependencies?: Record<string, string>;
+    [key: string]: any;
+};
 export type VXRNOptionsFilled = Awaited<ReturnType<typeof fillOptions>>;
 export declare function fillOptions(options: VXRNOptions, { mode }?: {
     mode?: Mode;
 }): Promise<{
     readonly skipEnv?: boolean;
+    readonly patches?: import("../index.js").UserDepPatches;
     readonly build?: {
-        server?: boolean | import("..").VXRNBuildOptions;
+        server?: boolean | import("../index.js").VXRNBuildOptions;
         analyze?: boolean;
     };
     readonly debugBundle?: string;
@@ -45,13 +53,13 @@ export declare function fillOptions(options: VXRNOptions, { mode }?: {
     readonly mode: "development" | "production";
     readonly clean: "vite" | false;
     readonly root: string;
-    readonly server: import("..").VXRNServeOptionsFilled;
+    readonly server: import("../index.js").VXRNServeOptionsFilled;
     readonly entries: {
         readonly web?: string;
         native: string;
         readonly server: './src/entry-server.tsx';
     };
-    readonly packageJSON: import("pkg-types").PackageJson;
+    readonly packageJSON: PackageJSON;
     readonly packageVersions: {
         react: string;
         reactNative: string;
@@ -65,8 +73,9 @@ export declare function fillOptions(options: VXRNOptions, { mode }?: {
 }>;
 export declare function getOptionsFilled(): {
     readonly skipEnv?: boolean;
+    readonly patches?: import("../index.js").UserDepPatches;
     readonly build?: {
-        server?: boolean | import("..").VXRNBuildOptions;
+        server?: boolean | import("../index.js").VXRNBuildOptions;
         analyze?: boolean;
     };
     readonly debugBundle?: string;
@@ -78,13 +87,13 @@ export declare function getOptionsFilled(): {
     readonly mode: "development" | "production";
     readonly clean: "vite" | false;
     readonly root: string;
-    readonly server: import("..").VXRNServeOptionsFilled;
+    readonly server: import("../index.js").VXRNServeOptionsFilled;
     readonly entries: {
         readonly web?: string;
         native: string;
         readonly server: './src/entry-server.tsx';
     };
-    readonly packageJSON: import("pkg-types").PackageJson;
+    readonly packageJSON: PackageJSON;
     readonly packageVersions: {
         react: string;
         reactNative: string;

@@ -106,6 +106,13 @@ declare module 'one' {
         | `/rn-features/platform-specific-extensions/test-route-1`
         | `/rn-features/platform-specific-extensions/test-route-2`
         | `/router/ignoredRouteFiles/route.normal`
+        | `/search-params`
+        | `/search-params/docs`
+        | `/search-params/item`
+        | `/search-params/loader`
+        | `/search-params/tabs`
+        | `/search-params/tabs/one`
+        | `/search-params/tabs/two`
         | `/server-data`
         | `/setup-file-test`
         | `/shared-cache`
@@ -150,6 +157,9 @@ declare module 'one' {
         | `/project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/router/ignoredRouteFiles/+not-found`
         | `/routes/subpath/${string}`
+        | `/search-params/docs/${string}`
+        | `/search-params/item/${OneRouter.SingleRoutePart<T>}`
+        | `/search-params/tabs/three/${OneRouter.SingleRoutePart<T>}`
         | `/segments-stable-ids/${string}`
         | `/servers/${OneRouter.SingleRoutePart<T>}`
         | `/spa/${OneRouter.SingleRoutePart<T>}`
@@ -176,6 +186,9 @@ declare module 'one' {
         | `/project/[projectId]/[sessionId]`
         | `/router/ignoredRouteFiles/+not-found`
         | `/routes/subpath/[...subpath]`
+        | `/search-params/docs/[...slug]`
+        | `/search-params/item/[id]`
+        | `/search-params/tabs/three/[id]`
         | `/segments-stable-ids/[...segments]`
         | `/servers/[serverId]`
         | `/spa/[spaparams]`
@@ -185,32 +198,53 @@ declare module 'one' {
         | `/ssr/[id]/request-test`
         | `/ssr/[param]`
       IsTyped: true
+      SearchParamTypes: {
+        '/search-params': OneRouter.SearchParamsOf<typeof import('../features/search-params/DashboardChart')['chartParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/DashboardTable')['tableParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/StrictSort')['sortParams']>
+        '/search-params/docs/[...slug]': OneRouter.SearchParamsOf<typeof import('../features/search-params/GlobalReader')['globalParams']>
+        '/search-params/item/[id]': OneRouter.SearchParamsOf<typeof import('../features/search-params/DashboardTable')['tableParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/GlobalReader')['globalParams']>
+        '/search-params/loader': OneRouter.SearchParamsOf<typeof import('../features/search-params/DashboardChart')['chartParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/DashboardTable')['tableParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/StrictSort')['sortParams']>
+        '/search-params/tabs/one': OneRouter.SearchParamsOf<typeof import('../features/search-params/GlobalReader')['globalParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabOneParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabThreeParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabTwoParams']>
+        '/search-params/tabs/three/[id]': OneRouter.SearchParamsOf<typeof import('../features/search-params/GlobalReader')['globalParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabOneParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabThreeParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabTwoParams']>
+        '/search-params/tabs/two': OneRouter.SearchParamsOf<typeof import('../features/search-params/GlobalReader')['globalParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabOneParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabThreeParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabTwoParams']>
+      }
+      SearchParamOutputs: {
+        '/search-params': OneRouter.SearchOutputOf<typeof import('../features/search-params/DashboardChart')['chartParams']> & OneRouter.SearchOutputOf<typeof import('../features/search-params/DashboardTable')['tableParams']> & OneRouter.SearchOutputOf<typeof import('../features/search-params/StrictSort')['sortParams']>
+        '/search-params/docs/[...slug]': OneRouter.SearchOutputOf<typeof import('../features/search-params/GlobalReader')['globalParams']>
+        '/search-params/item/[id]': OneRouter.SearchOutputOf<typeof import('../features/search-params/DashboardTable')['tableParams']> & OneRouter.SearchOutputOf<typeof import('../features/search-params/GlobalReader')['globalParams']>
+        '/search-params/loader': OneRouter.SearchOutputOf<typeof import('../features/search-params/DashboardChart')['chartParams']> & OneRouter.SearchOutputOf<typeof import('../features/search-params/DashboardTable')['tableParams']> & OneRouter.SearchOutputOf<typeof import('../features/search-params/StrictSort')['sortParams']>
+        '/search-params/tabs/one': OneRouter.SearchOutputOf<typeof import('../features/search-params/GlobalReader')['globalParams']> & OneRouter.SearchOutputOf<typeof import('../features/search-params/TabPanels')['tabOneParams']> & OneRouter.SearchOutputOf<typeof import('../features/search-params/TabPanels')['tabThreeParams']> & OneRouter.SearchOutputOf<typeof import('../features/search-params/TabPanels')['tabTwoParams']>
+        '/search-params/tabs/three/[id]': OneRouter.SearchOutputOf<typeof import('../features/search-params/GlobalReader')['globalParams']> & OneRouter.SearchOutputOf<typeof import('../features/search-params/TabPanels')['tabOneParams']> & OneRouter.SearchOutputOf<typeof import('../features/search-params/TabPanels')['tabThreeParams']> & OneRouter.SearchOutputOf<typeof import('../features/search-params/TabPanels')['tabTwoParams']>
+        '/search-params/tabs/two': OneRouter.SearchOutputOf<typeof import('../features/search-params/GlobalReader')['globalParams']> & OneRouter.SearchOutputOf<typeof import('../features/search-params/TabPanels')['tabOneParams']> & OneRouter.SearchOutputOf<typeof import('../features/search-params/TabPanels')['tabThreeParams']> & OneRouter.SearchOutputOf<typeof import('../features/search-params/TabPanels')['tabTwoParams']>
+      }
       RouteTypes: {
-        '/(app)/dashboard/(tabs)/feed/post/[postId]': RouteInfo<{ postId: string }>
-        '/(app)/dashboard/feed/post/[postId]': RouteInfo<{ postId: string }>
-        '/(app)/project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
-        '/[atHandle]': RouteInfo<{ atHandle: string }>
-        '/dashboard/(tabs)/feed/post/[postId]': RouteInfo<{ postId: string }>
-        '/dashboard/feed/post/[postId]': RouteInfo<{ postId: string }>
-        '/dynamic-folder-routes/[serverId]/[channelId]': RouteInfo<{ serverId: string; channelId: string }>
-        '/hooks/contents/with-nested-slug/[folderSlug]': RouteInfo<{ folderSlug: string }>
-        '/hooks/contents/with-nested-slug/[folderSlug]/[fileSlug]': RouteInfo<{ folderSlug: string; fileSlug: string }>
-        '/hooks/contents/with-slug/[slug]': RouteInfo<{ slug: string }>
-        '/intercept-test/items/[id]': RouteInfo<{ id: string }>
-        '/layouts/nested-layout/with-slug-layout-folder/[layoutSlug]': RouteInfo<{ layoutSlug: string }>
-        '/not-found/+not-found': RouteInfo<{}>
-        '/not-found/deep/+not-found': RouteInfo<{}>
-        '/project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
-        '/router/ignoredRouteFiles/+not-found': RouteInfo<{}>
-        '/routes/subpath/[...subpath]': RouteInfo<{ subpath: string[] }>
-        '/segments-stable-ids/[...segments]': RouteInfo<{ segments: string[] }>
-        '/servers/[serverId]': RouteInfo<{ serverId: string }>
-        '/spa/[spaparams]': RouteInfo<{ spaparams: string }>
-        '/ssg-not-found/+not-found': RouteInfo<{}>
-        '/ssg-not-found/[slug]': RouteInfo<{ slug: string }>
-        '/ssr/[...rest]': RouteInfo<{ rest: string[] }>
-        '/ssr/[id]/request-test': RouteInfo<{ id: string }>
-        '/ssr/[param]': RouteInfo<{ param: string }>
+        '/(app)/dashboard/(tabs)/feed/post/[postId]': RouteInfo<{ postId: string }, '/(app)/dashboard/(tabs)/feed/post/[postId]'>
+        '/(app)/dashboard/feed/post/[postId]': RouteInfo<{ postId: string }, '/(app)/dashboard/feed/post/[postId]'>
+        '/(app)/project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }, '/(app)/project/[projectId]/[sessionId]'>
+        '/[atHandle]': RouteInfo<{ atHandle: string }, '/[atHandle]'>
+        '/dashboard/(tabs)/feed/post/[postId]': RouteInfo<{ postId: string }, '/dashboard/(tabs)/feed/post/[postId]'>
+        '/dashboard/feed/post/[postId]': RouteInfo<{ postId: string }, '/dashboard/feed/post/[postId]'>
+        '/dynamic-folder-routes/[serverId]/[channelId]': RouteInfo<{ serverId: string; channelId: string }, '/dynamic-folder-routes/[serverId]/[channelId]'>
+        '/hooks/contents/with-nested-slug/[folderSlug]': RouteInfo<{ folderSlug: string }, '/hooks/contents/with-nested-slug/[folderSlug]'>
+        '/hooks/contents/with-nested-slug/[folderSlug]/[fileSlug]': RouteInfo<{ folderSlug: string; fileSlug: string }, '/hooks/contents/with-nested-slug/[folderSlug]/[fileSlug]'>
+        '/hooks/contents/with-slug/[slug]': RouteInfo<{ slug: string }, '/hooks/contents/with-slug/[slug]'>
+        '/intercept-test/items/[id]': RouteInfo<{ id: string }, '/intercept-test/items/[id]'>
+        '/layouts/nested-layout/with-slug-layout-folder/[layoutSlug]': RouteInfo<{ layoutSlug: string }, '/layouts/nested-layout/with-slug-layout-folder/[layoutSlug]'>
+        '/not-found/+not-found': RouteInfo<{}, '/not-found/+not-found'>
+        '/not-found/deep/+not-found': RouteInfo<{}, '/not-found/deep/+not-found'>
+        '/project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }, '/project/[projectId]/[sessionId]'>
+        '/router/ignoredRouteFiles/+not-found': RouteInfo<{}, '/router/ignoredRouteFiles/+not-found'>
+        '/routes/subpath/[...subpath]': RouteInfo<{ subpath: string[] }, '/routes/subpath/[...subpath]'>
+        '/search-params/docs/[...slug]': RouteInfo<{ slug: string[] }, '/search-params/docs/[...slug]'>
+        '/search-params/item/[id]': RouteInfo<{ id: string }, '/search-params/item/[id]'>
+        '/search-params/tabs/three/[id]': RouteInfo<{ id: string }, '/search-params/tabs/three/[id]'>
+        '/segments-stable-ids/[...segments]': RouteInfo<{ segments: string[] }, '/segments-stable-ids/[...segments]'>
+        '/servers/[serverId]': RouteInfo<{ serverId: string }, '/servers/[serverId]'>
+        '/spa/[spaparams]': RouteInfo<{ spaparams: string }, '/spa/[spaparams]'>
+        '/ssg-not-found/+not-found': RouteInfo<{}, '/ssg-not-found/+not-found'>
+        '/ssg-not-found/[slug]': RouteInfo<{ slug: string }, '/ssg-not-found/[slug]'>
+        '/ssr/[...rest]': RouteInfo<{ rest: string[] }, '/ssr/[...rest]'>
+        '/ssr/[id]/request-test': RouteInfo<{ id: string }, '/ssr/[id]/request-test'>
+        '/ssr/[param]': RouteInfo<{ param: string }, '/ssr/[param]'>
       }
     }
   }
@@ -219,7 +253,7 @@ declare module 'one' {
 /**
  * Helper type for route information
  */
-type RouteInfo<Params = Record<string, never>> = {
+type RouteInfo<Params = Record<string, never>, Path extends string = string> = {
   Params: Params
-  LoaderProps: { path: string; search?: string; subdomain?: string; params: Params; request?: Request }
+  LoaderProps: import('one').LoaderProps<Params, OneRouter.LoaderSearchParams<Path>>
 }

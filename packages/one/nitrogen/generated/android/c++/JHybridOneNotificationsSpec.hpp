@@ -77,6 +77,8 @@ namespace margelo::nitro::one {
     void presentNotification(const std::string& requestId, const NotificationBehavior& behavior) override;
     std::optional<NativeNotificationResponse> getLastNotificationResponse() override;
     void clearLastNotificationResponse() override;
+    std::vector<NativeNotificationResponse> getPendingNotificationResponses() override;
+    void acknowledgeNotificationResponse(const std::string& identifier) override;
 
   private:
     jni::global_ref<JHybridOneNotificationsSpec::JavaPart> _javaPart;

@@ -4,30 +4,72 @@ import SwiftUI
 import UIKit
 import Combine
 import Observation
+#if ONE_GROUP_INTENTS
 import AppIntents
+#endif
 import Accessibility
+#if ONE_GROUP_WALLET
 import PassKit
+#endif
+#if ONE_GROUP_STORE
 import StoreKit
+#endif
+#if ONE_GROUP_DETECTION
 import DataDetection
+#endif
+#if ONE_GROUP_PREVIEW3D
 import RealityKit
+#endif
 import UniformTypeIdentifiers
+#if ONE_GROUP_CONTROLLERS
 import GameController
+#endif
+#if ONE_GROUP_MAPS
 import MapKit
+#endif
+#if ONE_GROUP_MAPS
 import CoreLocation
+#endif
+#if ONE_GROUP_SWIFTDATA
 import SwiftData
+#endif
+#if ONE_GROUP_PREVIEW3D
 import MusicKit
+#endif
+#if ONE_GROUP_VIDEO
 import AVKit
+#endif
+#if ONE_GROUP_PHOTOS
 import PhotosUI
+#endif
+#if ONE_GROUP_PHOTOS
 import Photos
+#endif
+#if ONE_GROUP_WIDGETS
 import WidgetKit
+#endif
+#if ONE_GROUP_PREVIEW3D
 import QuickLook
+#endif
+#if ONE_GROUP_ACCOUNT
 import AuthenticationServices
+#endif
 import Symbols
+#if ONE_GROUP_CREDENTIALS
 import SecureElementCredential
+#endif
+#if ONE_GROUP_TRANSLATION
 import Translation
+#endif
+#if ONE_GROUP_WEB
 import WebKit
+#endif
+#if ONE_GROUP_WORKOUT
 import WorkoutKit
+#endif
+#if ONE_GROUP_WALLET
 @_weakLinked import _PassKit_SwiftUI
+#endif
 
 @MainActor public enum OneNativeRegisteredValue {
   private static var values: [String: Any] = [:]
@@ -38,7 +80,24 @@ import WorkoutKit
 }
 
 @MainActor public struct OneNativeRegisteredModifier {
-  enum Kind { case layoutValue, containerValue, accessibilityAction, onAppIntentExecution, reorderContainer, mapFeatureSelectionContent, transactionTask, appEntityUIElements, onApplePayCouponCodeChange, onApplePayPaymentMethodChange, onApplePayShippingContactChange, onApplePayShippingMethodChange }
+  enum Kind {
+    case layoutValue, containerValue, accessibilityAction, onAppIntentExecution, reorderContainer, mapFeatureSelectionContent, transactionTask
+#if ONE_GROUP_INTENTS
+    case appEntityUIElements
+#endif
+#if ONE_GROUP_WALLET
+    case onApplePayCouponCodeChange
+#endif
+#if ONE_GROUP_WALLET
+    case onApplePayPaymentMethodChange
+#endif
+#if ONE_GROUP_WALLET
+    case onApplePayShippingContactChange
+#endif
+#if ONE_GROUP_WALLET
+    case onApplePayShippingMethodChange
+#endif
+  }
   let kind: Kind
   let apply: (AnyView) -> AnyView
 
@@ -52,6 +111,7 @@ import WorkoutKit
     Self(kind: .containerValue) { AnyView($0.containerValue(keyPath, value)) }
   }
 
+  #if ONE_GROUP_INTENTS
   @available(iOS 18, *)
   public static func accessibilityAction<I: AppIntent>(named label: String, intent: I) -> Self {
     Self(kind: .accessibilityAction) { AnyView($0.accessibilityAction(named: Text(label), intent: intent)) }
@@ -64,6 +124,10 @@ import WorkoutKit
     Self(kind: .onAppIntentExecution) { AnyView($0.onAppIntentExecution(intent, perform: action)) }
   }
 
+  #endif
+
+
+#if ONE_IOS_27_SDK
   @available(iOS 27, *)
   public static func reorderContainer<Item: Identifiable>(
     for item: Item.Type, isEnabled: Bool = true,
@@ -71,14 +135,19 @@ import WorkoutKit
   ) -> Self where Item.ID: Sendable {
     Self(kind: .reorderContainer) { AnyView($0.reorderContainer(for: item, isEnabled: isEnabled, move: move)) }
   }
+#endif
 
+
+  #if ONE_GROUP_MAPS
   @available(iOS 17, *)
   public static func mapFeatureSelectionContent<Content: MapContent>(
     @MapContentBuilder content: @escaping (MapFeature) -> Content
   ) -> Self {
     Self(kind: .mapFeatureSelectionContent) { AnyView($0.mapFeatureSelectionContent(content: content)) }
   }
+  #endif
 
+  #if ONE_GROUP_CREDENTIALS
   @available(iOS 18.1, *)
   public static func transactionTask(
     _ configuration: CredentialTransaction.Configuration?,
@@ -86,31 +155,46 @@ import WorkoutKit
   ) -> Self {
     Self(kind: .transactionTask) { AnyView($0.transactionTask(configuration, action: action)) }
   }
+  #endif
+#if ONE_GROUP_INTENTS
+
+#if ONE_IOS_27_SDK
 
   @available(iOS 18.4, *)
   public static func appEntityUIElements(_ action: @escaping @MainActor (AppIntents.AppEntityUIElementsContext) -> [AppIntents.AppEntityUIElement]) -> Self {
     Self(kind: .appEntityUIElements) { AnyView($0.appEntityUIElements(action)) }
   }
+#endif
+
+#endif
+#if ONE_GROUP_WALLET
 
   @available(iOS 15.5, *)
   public static func onApplePayCouponCodeChange(_ action: @escaping (Swift.String) async -> PassKit.PKPaymentRequestCouponCodeUpdate) -> Self {
     Self(kind: .onApplePayCouponCodeChange) { AnyView($0.onApplePayCouponCodeChange(perform: action)) }
   }
+#endif
+#if ONE_GROUP_WALLET
 
   @available(iOS 15.5, *)
   public static func onApplePayPaymentMethodChange(_ action: @escaping (PassKit.PKPaymentMethod) async -> PassKit.PKPaymentRequestPaymentMethodUpdate) -> Self {
     Self(kind: .onApplePayPaymentMethodChange) { AnyView($0.onApplePayPaymentMethodChange(perform: action)) }
   }
+#endif
+#if ONE_GROUP_WALLET
 
   @available(iOS 15.5, *)
   public static func onApplePayShippingContactChange(_ action: @escaping (PassKit.PKContact) async -> PassKit.PKPaymentRequestShippingContactUpdate) -> Self {
     Self(kind: .onApplePayShippingContactChange) { AnyView($0.onApplePayShippingContactChange(perform: action)) }
   }
+#endif
+#if ONE_GROUP_WALLET
 
   @available(iOS 15.5, *)
   public static func onApplePayShippingMethodChange(_ action: @escaping (PassKit.PKShippingMethod) async -> PassKit.PKPaymentRequestShippingMethodUpdate) -> Self {
     Self(kind: .onApplePayShippingMethodChange) { AnyView($0.onApplePayShippingMethodChange(perform: action)) }
   }
+#endif
 }
 
 private enum OneNativeNamespace { static let id = Namespace().wrappedValue }
@@ -219,6 +303,7 @@ private struct OneNativeSDKChartDescriptor: Codable, AXChartDescriptorRepresenta
   }
 }
 
+#if ONE_GROUP_PREVIEW3D
 
 #if ONE_IOS_27_SDK
 @available(iOS 27, *)
@@ -242,6 +327,8 @@ private struct OneNativeSDKMusicPickerWithMusicVideoPicker: ViewModifier {
 }
 #endif
 
+#endif
+#if ONE_GROUP_PREVIEW3D
 
 #if ONE_IOS_27_SDK
 @available(iOS 27, *)
@@ -265,6 +352,8 @@ private struct OneNativeSDKMusicPickerWithSongPicker: ViewModifier {
 }
 #endif
 
+#endif
+#if ONE_GROUP_PREVIEW3D
 
 #if ONE_IOS_27_SDK
 @available(iOS 27, *)
@@ -288,6 +377,8 @@ private struct OneNativeSDKMusicPickerWithTrackPicker: ViewModifier {
 }
 #endif
 
+#endif
+#if ONE_GROUP_PHOTOS
 @available(iOS 16, *)
 private struct OneNativeSDKPhotosPickerTransfer: ViewModifier {
   let presented: Bool
@@ -319,6 +410,8 @@ private struct OneNativeSDKPhotosPickerTransfer: ViewModifier {
     }
   }
 }
+#endif
+#if ONE_GROUP_MAPS
 @available(iOS 17, *)
 @MainActor private struct OneNativeSDKLookAroundViewerRequest: ViewModifier {
   let latitude: Double
@@ -349,32 +442,101 @@ private struct OneNativeSDKPhotosPickerTransfer: ViewModifier {
       ), initialScene: object)
   }
 }
+#endif
 
 public struct OneNativeStyle: Equatable {
-  public var fontSize: CGFloat?
+  public var fontSize: CGFloat? {
+    get { fontSizeSource.map { CGFloat(oneNativeStyleFieldNumber($0, "fontSize")) } }
+    set { fontSizeSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var fontSizeSource: OneNativeStyleNumber?
   public var fontWeight: String?
   public var fontDesign: String?
   public var textStyle: String?
   public var foregroundStyle: UIColor?
   public var tint: UIColor?
   public var background: UIColor?
-  public var padding: CGFloat?
-  public var paddingTop: CGFloat?
-  public var paddingLeading: CGFloat?
-  public var paddingBottom: CGFloat?
-  public var paddingTrailing: CGFloat?
-  public var width: CGFloat?
-  public var height: CGFloat?
-  public var minWidth: CGFloat?
-  public var idealWidth: CGFloat?
-  public var maxWidth: CGFloat?
-  public var minHeight: CGFloat?
-  public var idealHeight: CGFloat?
-  public var maxHeight: CGFloat?
-  public var cornerRadius: CGFloat?
-  public var opacity: CGFloat?
+  public var padding: CGFloat? {
+    get { paddingSource.map { CGFloat(oneNativeStyleFieldNumber($0, "padding")) } }
+    set { paddingSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var paddingSource: OneNativeStyleNumber?
+  public var paddingTop: CGFloat? {
+    get { paddingTopSource.map { CGFloat(oneNativeStyleFieldNumber($0, "paddingTop")) } }
+    set { paddingTopSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var paddingTopSource: OneNativeStyleNumber?
+  public var paddingLeading: CGFloat? {
+    get { paddingLeadingSource.map { CGFloat(oneNativeStyleFieldNumber($0, "paddingLeading")) } }
+    set { paddingLeadingSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var paddingLeadingSource: OneNativeStyleNumber?
+  public var paddingBottom: CGFloat? {
+    get { paddingBottomSource.map { CGFloat(oneNativeStyleFieldNumber($0, "paddingBottom")) } }
+    set { paddingBottomSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var paddingBottomSource: OneNativeStyleNumber?
+  public var paddingTrailing: CGFloat? {
+    get { paddingTrailingSource.map { CGFloat(oneNativeStyleFieldNumber($0, "paddingTrailing")) } }
+    set { paddingTrailingSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var paddingTrailingSource: OneNativeStyleNumber?
+  public var width: CGFloat? {
+    get { widthSource.map { CGFloat(oneNativeStyleFieldNumber($0, "width")) } }
+    set { widthSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var widthSource: OneNativeStyleNumber?
+  public var height: CGFloat? {
+    get { heightSource.map { CGFloat(oneNativeStyleFieldNumber($0, "height")) } }
+    set { heightSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var heightSource: OneNativeStyleNumber?
+  public var minWidth: CGFloat? {
+    get { minWidthSource.map { CGFloat(oneNativeStyleFieldNumber($0, "minWidth")) } }
+    set { minWidthSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var minWidthSource: OneNativeStyleNumber?
+  public var idealWidth: CGFloat? {
+    get { idealWidthSource.map { CGFloat(oneNativeStyleFieldNumber($0, "idealWidth")) } }
+    set { idealWidthSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var idealWidthSource: OneNativeStyleNumber?
+  public var maxWidth: CGFloat? {
+    get { maxWidthSource.map { CGFloat(oneNativeStyleFieldNumber($0, "maxWidth")) } }
+    set { maxWidthSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var maxWidthSource: OneNativeStyleNumber?
+  public var minHeight: CGFloat? {
+    get { minHeightSource.map { CGFloat(oneNativeStyleFieldNumber($0, "minHeight")) } }
+    set { minHeightSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var minHeightSource: OneNativeStyleNumber?
+  public var idealHeight: CGFloat? {
+    get { idealHeightSource.map { CGFloat(oneNativeStyleFieldNumber($0, "idealHeight")) } }
+    set { idealHeightSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var idealHeightSource: OneNativeStyleNumber?
+  public var maxHeight: CGFloat? {
+    get { maxHeightSource.map { CGFloat(oneNativeStyleFieldNumber($0, "maxHeight")) } }
+    set { maxHeightSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var maxHeightSource: OneNativeStyleNumber?
+  public var cornerRadius: CGFloat? {
+    get { cornerRadiusSource.map { CGFloat(oneNativeStyleFieldNumber($0, "cornerRadius")) } }
+    set { cornerRadiusSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var cornerRadiusSource: OneNativeStyleNumber?
+  public var opacity: CGFloat? {
+    get { opacitySource.map { CGFloat(oneNativeStyleFieldNumber($0, "opacity")) } }
+    set { opacitySource = newValue.map { .literal(Double($0)) } }
+  }
+  private var opacitySource: OneNativeStyleNumber?
   public var borderColor: UIColor?
-  public var borderWidth: CGFloat?
+  public var borderWidth: CGFloat? {
+    get { borderWidthSource.map { CGFloat(oneNativeStyleFieldNumber($0, "borderWidth")) } }
+    set { borderWidthSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var borderWidthSource: OneNativeStyleNumber?
   public var glassEffect: String?
   public var glassEffectInteractive: Bool?
   public var glassEffectTint: UIColor?
@@ -386,30 +548,30 @@ public struct OneNativeStyle: Equatable {
   public init() {}
 
   public init(dictionary: [String: Any]) {
-    if let v = dictionary["fontSize"] as? Double { self.fontSize = CGFloat(v) }
+    if let v = dictionary["fontSize"] as? Double { self.fontSizeSource = .literal(v) }
     if let v = dictionary["fontWeight"] as? String, !v.isEmpty { self.fontWeight = v }
     if let v = dictionary["fontDesign"] as? String, !v.isEmpty { self.fontDesign = v }
     if let v = dictionary["textStyle"] as? String, !v.isEmpty { self.textStyle = v }
     if let v = dictionary["foregroundStyle"] as? UIColor { self.foregroundStyle = v }
     if let v = dictionary["tint"] as? UIColor { self.tint = v }
     if let v = dictionary["background"] as? UIColor { self.background = v }
-    if let v = dictionary["padding"] as? Double { self.padding = CGFloat(v) }
-    if let v = dictionary["paddingTop"] as? Double { self.paddingTop = CGFloat(v) }
-    if let v = dictionary["paddingLeading"] as? Double { self.paddingLeading = CGFloat(v) }
-    if let v = dictionary["paddingBottom"] as? Double { self.paddingBottom = CGFloat(v) }
-    if let v = dictionary["paddingTrailing"] as? Double { self.paddingTrailing = CGFloat(v) }
-    if let v = dictionary["width"] as? Double { self.width = CGFloat(v) }
-    if let v = dictionary["height"] as? Double { self.height = CGFloat(v) }
-    if let v = dictionary["minWidth"] as? Double { self.minWidth = CGFloat(v) }
-    if let v = dictionary["idealWidth"] as? Double { self.idealWidth = CGFloat(v) }
-    if let v = dictionary["maxWidth"] as? Double { self.maxWidth = CGFloat(v) }
-    if let v = dictionary["minHeight"] as? Double { self.minHeight = CGFloat(v) }
-    if let v = dictionary["idealHeight"] as? Double { self.idealHeight = CGFloat(v) }
-    if let v = dictionary["maxHeight"] as? Double { self.maxHeight = CGFloat(v) }
-    if let v = dictionary["cornerRadius"] as? Double { self.cornerRadius = CGFloat(v) }
-    if let v = dictionary["opacity"] as? Double { self.opacity = CGFloat(v) }
+    if let v = dictionary["padding"] as? Double { self.paddingSource = .literal(v) }
+    if let v = dictionary["paddingTop"] as? Double { self.paddingTopSource = .literal(v) }
+    if let v = dictionary["paddingLeading"] as? Double { self.paddingLeadingSource = .literal(v) }
+    if let v = dictionary["paddingBottom"] as? Double { self.paddingBottomSource = .literal(v) }
+    if let v = dictionary["paddingTrailing"] as? Double { self.paddingTrailingSource = .literal(v) }
+    if let v = dictionary["width"] as? Double { self.widthSource = .literal(v) }
+    if let v = dictionary["height"] as? Double { self.heightSource = .literal(v) }
+    if let v = dictionary["minWidth"] as? Double { self.minWidthSource = .literal(v) }
+    if let v = dictionary["idealWidth"] as? Double { self.idealWidthSource = .literal(v) }
+    if let v = dictionary["maxWidth"] as? Double { self.maxWidthSource = .literal(v) }
+    if let v = dictionary["minHeight"] as? Double { self.minHeightSource = .literal(v) }
+    if let v = dictionary["idealHeight"] as? Double { self.idealHeightSource = .literal(v) }
+    if let v = dictionary["maxHeight"] as? Double { self.maxHeightSource = .literal(v) }
+    if let v = dictionary["cornerRadius"] as? Double { self.cornerRadiusSource = .literal(v) }
+    if let v = dictionary["opacity"] as? Double { self.opacitySource = .literal(v) }
     if let v = dictionary["borderColor"] as? UIColor { self.borderColor = v }
-    if let v = dictionary["borderWidth"] as? Double { self.borderWidth = CGFloat(v) }
+    if let v = dictionary["borderWidth"] as? Double { self.borderWidthSource = .literal(v) }
     if let v = dictionary["glassEffect"] as? String, !v.isEmpty { self.glassEffect = v }
     if let v = dictionary["glassEffectInteractive"] as? Bool { self.glassEffectInteractive = v }
     if let v = dictionary["glassEffectTint"] as? UIColor { self.glassEffectTint = v }
@@ -420,6 +582,35 @@ public struct OneNativeStyle: Equatable {
         let pairs = try? JSONDecoder().decode([[String]].self, from: data),
         pairs.allSatisfy({ $0.count == 2 }) else {
         preconditionFailure("invalid sdk modifiers")
+      }
+      // number fields fed by native state ride one private pair of field to entry id.
+      if let states = pairs.first(where: { $0[0] == "oneNativeState" }) {
+        guard let data = states[1].data(using: .utf8),
+          let ids = try? JSONDecoder().decode([String: Int32].self, from: data) else {
+          preconditionFailure("invalid native state style fields")
+        }
+        for (field, id) in ids {
+          switch field {
+          case "fontSize": fontSizeSource = .state(id)
+          case "padding": paddingSource = .state(id)
+          case "paddingTop": paddingTopSource = .state(id)
+          case "paddingLeading": paddingLeadingSource = .state(id)
+          case "paddingBottom": paddingBottomSource = .state(id)
+          case "paddingTrailing": paddingTrailingSource = .state(id)
+          case "width": widthSource = .state(id)
+          case "height": heightSource = .state(id)
+          case "minWidth": minWidthSource = .state(id)
+          case "idealWidth": idealWidthSource = .state(id)
+          case "maxWidth": maxWidthSource = .state(id)
+          case "minHeight": minHeightSource = .state(id)
+          case "idealHeight": idealHeightSource = .state(id)
+          case "maxHeight": maxHeightSource = .state(id)
+          case "cornerRadius": cornerRadiusSource = .state(id)
+          case "opacity": opacitySource = .state(id)
+          case "borderWidth": borderWidthSource = .state(id)
+          default: preconditionFailure("invalid native state style field: \(field)")
+          }
+        }
       }
       // a PhaseAnimator or KeyframeAnimator child's styles ride one private pair.
       if let index = pairs.firstIndex(where: { $0[0] == "oneNativeAnimator" }) {
@@ -432,9 +623,9 @@ public struct OneNativeStyle: Equatable {
           base["sdkModifiers"] = String(decoding: try! JSONEncoder().encode(rest), as: UTF8.self)
         }
         animator = OneNativeAnimatorStyle(json: payload, base: base)
-        sdkModifiers = rest
+        sdkModifiers = rest.filter { $0[0] != "oneNativeState" }
       } else {
-        sdkModifiers = pairs
+        sdkModifiers = pairs.filter { $0[0] != "oneNativeState" }
       }
     }
   }
@@ -461,8 +652,16 @@ extension View {
       let value = pair[1]
       switch name {
       case "accentColor": view = AnyView(view.oneNativeSDKAccentColor(value, emit: emit))
+#if ONE_GROUP_INTENTS
       case "accessibilityAction": view = AnyView(view.oneNativeSDKAccessibilityAction(value, emit: emit))
+#else
+      case "accessibilityAction": preconditionFailure("modifier accessibilityAction needs the intents feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_INTENTS
       case "accessibilityActionWithAppIntent": view = AnyView(view.oneNativeSDKAccessibilityActionWithAppIntent(value, emit: emit))
+#else
+      case "accessibilityActionWithAppIntent": preconditionFailure("modifier accessibilityActionWithAppIntent needs the intents feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "accessibilityActivationPointWithActivationPointAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityActivationPointWithActivationPointAndIsEnabled(value, emit: emit))
       case "accessibilityActivationPointWithUnitPoint": view = AnyView(view.oneNativeSDKAccessibilityActivationPointWithUnitPoint(value, emit: emit))
       case "accessibilityAddTraits": view = AnyView(view.oneNativeSDKAccessibilityAddTraits(value, emit: emit))
@@ -513,7 +712,11 @@ extension View {
       case "accessibilityWithValue": view = AnyView(view.oneNativeSDKAccessibilityWithValue(value, emit: emit))
       case "accessibilityZoomAction": view = AnyView(view.oneNativeSDKAccessibilityZoomAction(value, emit: emit))
       case "actionSheet": view = AnyView(view.oneNativeSDKActionSheet(value, emit: emit))
+#if ONE_GROUP_WALLET
       case "addPassToWalletButtonStyle": view = AnyView(view.oneNativeSDKAddPassToWalletButtonStyle(value, emit: emit))
+#else
+      case "addPassToWalletButtonStyle": preconditionFailure("modifier addPassToWalletButtonStyle needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "alert": view = AnyView(view.oneNativeSDKAlert(value, emit: emit))
       case "alignmentGuideWithHorizontalAlignment": view = AnyView(view.oneNativeSDKAlignmentGuideWithHorizontalAlignment(value, emit: emit))
       case "alignmentGuideWithVerticalAlignment": view = AnyView(view.oneNativeSDKAlignmentGuideWithVerticalAlignment(value, emit: emit))
@@ -524,11 +727,31 @@ extension View {
       case "allowsWindowActivationEventsWithOptionalBool": view = AnyView(view.oneNativeSDKAllowsWindowActivationEventsWithOptionalBool(value, emit: emit))
       case "anchorPreference": view = AnyView(view.oneNativeSDKAnchorPreference(value, emit: emit))
       case "animation": view = AnyView(view.oneNativeSDKAnimation(value, emit: emit))
+#if ONE_GROUP_INTENTS
       case "appEntityIdentifier": view = AnyView(view.oneNativeSDKAppEntityIdentifier(value, emit: emit))
+#else
+      case "appEntityIdentifier": preconditionFailure("modifier appEntityIdentifier needs the intents feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_INTENTS
       case "appEntityUIElements": view = AnyView(view.oneNativeSDKAppEntityUIElements(value, emit: emit))
+#else
+      case "appEntityUIElements": preconditionFailure("modifier appEntityUIElements needs the intents feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "appStoreMerchandising": view = AnyView(view.oneNativeSDKAppStoreMerchandising(value, emit: emit))
+#else
+      case "appStoreMerchandising": preconditionFailure("modifier appStoreMerchandising needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "appStoreOverlayWithAppClipConfiguration": view = AnyView(view.oneNativeSDKAppStoreOverlayWithAppClipConfiguration(value, emit: emit))
+#else
+      case "appStoreOverlayWithAppClipConfiguration": preconditionFailure("modifier appStoreOverlayWithAppClipConfiguration needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "appStoreOverlayWithAppConfiguration": view = AnyView(view.oneNativeSDKAppStoreOverlayWithAppConfiguration(value, emit: emit))
+#else
+      case "appStoreOverlayWithAppConfiguration": preconditionFailure("modifier appStoreOverlayWithAppConfiguration needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "aspectRatio": view = AnyView(view.oneNativeSDKAspectRatio(value, emit: emit))
       case "assistiveAccessNavigationIconWithImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithImage(value, emit: emit))
       case "assistiveAccessNavigationIconWithSystemImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithSystemImage(value, emit: emit))
@@ -573,9 +796,17 @@ extension View {
       case "coordinateSpace": view = AnyView(view.oneNativeSDKCoordinateSpace(value, emit: emit))
       case "copyable": view = AnyView(view.oneNativeSDKCopyable(value, emit: emit))
       case "cornerRadiusWithRadiusAndAntialiased": view = AnyView(view.oneNativeSDKCornerRadiusWithRadiusAndAntialiased(value, emit: emit))
+#if ONE_GROUP_STORE
       case "currentEntitlementTask": view = AnyView(view.oneNativeSDKCurrentEntitlementTask(value, emit: emit))
+#else
+      case "currentEntitlementTask": preconditionFailure("modifier currentEntitlementTask needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "cuttable": view = AnyView(view.oneNativeSDKCuttable(value, emit: emit))
+#if ONE_GROUP_DETECTION
       case "dataDetection": view = AnyView(view.oneNativeSDKDataDetection(value, emit: emit))
+#else
+      case "dataDetection": preconditionFailure("modifier dataDetection needs the detection feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "datePickerStyle": view = AnyView(view.oneNativeSDKDatePickerStyle(value, emit: emit))
       case "defaultAdaptableTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultAdaptableTabBarPlacement(value, emit: emit))
       case "defaultAppStorage": view = AnyView(view.oneNativeSDKDefaultAppStorage(value, emit: emit))
@@ -650,7 +881,11 @@ extension View {
       case "environmentMinimumScaleFactor": view = AnyView(view.oneNativeSDKEnvironmentMinimumScaleFactor(value, emit: emit))
       case "environmentMultilineTextAlignment": view = AnyView(view.oneNativeSDKEnvironmentMultilineTextAlignment(value, emit: emit))
       case "environmentObject": view = AnyView(view.oneNativeSDKEnvironmentObject(value, emit: emit))
+#if ONE_GROUP_PREVIEW3D
       case "environmentRealityViewCameraControls": view = AnyView(view.oneNativeSDKEnvironmentRealityViewCameraControls(value, emit: emit))
+#else
+      case "environmentRealityViewCameraControls": preconditionFailure("modifier environmentRealityViewCameraControls needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "environmentRedactionReasons": view = AnyView(view.oneNativeSDKEnvironmentRedactionReasons(value, emit: emit))
       case "environmentScenePhase": view = AnyView(view.oneNativeSDKEnvironmentScenePhase(value, emit: emit))
       case "environmentScrollDismissesKeyboardMode": view = AnyView(view.oneNativeSDKEnvironmentScrollDismissesKeyboardMode(value, emit: emit))
@@ -719,7 +954,11 @@ extension View {
       case "groupBoxStyle": view = AnyView(view.oneNativeSDKGroupBoxStyle(value, emit: emit))
       case "handGestureShortcut": view = AnyView(view.oneNativeSDKHandGestureShortcut(value, emit: emit))
       case "handlesExternalEvents": view = AnyView(view.oneNativeSDKHandlesExternalEvents(value, emit: emit))
+#if ONE_GROUP_CONTROLLERS
       case "handlesGameControllerEvents": view = AnyView(view.oneNativeSDKHandlesGameControllerEvents(value, emit: emit))
+#else
+      case "handlesGameControllerEvents": preconditionFailure("modifier handlesGameControllerEvents needs the controllers feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "headerProminence": view = AnyView(view.oneNativeSDKHeaderProminence(value, emit: emit))
       case "help": view = AnyView(view.oneNativeSDKHelp(value, emit: emit))
       case "hidden": view = AnyView(view.oneNativeSDKHidden(value, emit: emit))
@@ -732,7 +971,11 @@ extension View {
       case "ignoresSafeAreaWithRegionsAndEdgesAndAlignment": view = AnyView(view.oneNativeSDKIgnoresSafeAreaWithRegionsAndEdgesAndAlignment(value, emit: emit))
       case "ignoresSafeAreaWithSafeAreaRegions": view = AnyView(view.oneNativeSDKIgnoresSafeAreaWithSafeAreaRegions(value, emit: emit))
       case "imageScale": view = AnyView(view.oneNativeSDKImageScale(value, emit: emit))
+#if ONE_GROUP_STORE
       case "inAppPurchaseOptions": view = AnyView(view.oneNativeSDKInAppPurchaseOptions(value, emit: emit))
+#else
+      case "inAppPurchaseOptions": preconditionFailure("modifier inAppPurchaseOptions needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "indexViewStyle": view = AnyView(view.oneNativeSDKIndexViewStyle(value, emit: emit))
       case "inspectorColumnWidthWithCGFloat": view = AnyView(view.oneNativeSDKInspectorColumnWidthWithCGFloat(value, emit: emit))
       case "inspectorColumnWidthWithMinAndIdealAndMax": view = AnyView(view.oneNativeSDKInspectorColumnWidthWithMinAndIdealAndMax(value, emit: emit))
@@ -759,8 +1002,11 @@ extension View {
       case "layoutPriority": view = AnyView(view.oneNativeSDKLayoutPriority(value, emit: emit))
       case "layoutValue": view = AnyView(view.oneNativeSDKLayoutValue(value, emit: emit))
       case "lineHeight": view = AnyView(view.oneNativeSDKLineHeight(value, emit: emit))
+      case "lineLimitWithClosedRange": view = AnyView(view.oneNativeSDKLineLimitWithClosedRange(value, emit: emit))
       case "lineLimitWithLimitAndReservesSpace": view = AnyView(view.oneNativeSDKLineLimitWithLimitAndReservesSpace(value, emit: emit))
       case "lineLimitWithOptionalInt": view = AnyView(view.oneNativeSDKLineLimitWithOptionalInt(value, emit: emit))
+      case "lineLimitWithPartialRangeFrom": view = AnyView(view.oneNativeSDKLineLimitWithPartialRangeFrom(value, emit: emit))
+      case "lineLimitWithPartialRangeThrough": view = AnyView(view.oneNativeSDKLineLimitWithPartialRangeThrough(value, emit: emit))
       case "lineSpacing": view = AnyView(view.oneNativeSDKLineSpacing(value, emit: emit))
       case "listItemTintWithOptionalColor": view = AnyView(view.oneNativeSDKListItemTintWithOptionalColor(value, emit: emit))
       case "listItemTintWithOptionalListItemTint": view = AnyView(view.oneNativeSDKListItemTintWithOptionalListItemTint(value, emit: emit))
@@ -775,20 +1021,72 @@ extension View {
       case "listSectionSpacingWithCGFloat": view = AnyView(view.oneNativeSDKListSectionSpacingWithCGFloat(value, emit: emit))
       case "listSectionSpacingWithListSectionSpacing": view = AnyView(view.oneNativeSDKListSectionSpacingWithListSectionSpacing(value, emit: emit))
       case "listStyle": view = AnyView(view.oneNativeSDKListStyle(value, emit: emit))
+#if ONE_GROUP_MAPS
       case "lookAroundViewer": view = AnyView(view.oneNativeSDKLookAroundViewer(value, emit: emit))
+#else
+      case "lookAroundViewer": preconditionFailure("modifier lookAroundViewer needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "luminanceToAlpha": view = AnyView(view.oneNativeSDKLuminanceToAlpha(value, emit: emit))
+#if ONE_GROUP_STORE
       case "manageSubscriptionsSheet": view = AnyView(view.oneNativeSDKManageSubscriptionsSheet(value, emit: emit))
+#else
+      case "manageSubscriptionsSheet": preconditionFailure("modifier manageSubscriptionsSheet needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID": view = AnyView(view.oneNativeSDKManageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID(value, emit: emit))
+#else
+      case "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID": preconditionFailure("modifier manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapCameraKeyframeAnimator": view = AnyView(view.oneNativeSDKMapCameraKeyframeAnimator(value, emit: emit))
+#else
+      case "mapCameraKeyframeAnimator": preconditionFailure("modifier mapCameraKeyframeAnimator needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapControlVisibility": view = AnyView(view.oneNativeSDKMapControlVisibility(value, emit: emit))
+#else
+      case "mapControlVisibility": preconditionFailure("modifier mapControlVisibility needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapFeatureSelectionAccessory": view = AnyView(view.oneNativeSDKMapFeatureSelectionAccessory(value, emit: emit))
+#else
+      case "mapFeatureSelectionAccessory": preconditionFailure("modifier mapFeatureSelectionAccessory needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapFeatureSelectionContent": view = AnyView(view.oneNativeSDKMapFeatureSelectionContent(value, emit: emit))
+#else
+      case "mapFeatureSelectionContent": preconditionFailure("modifier mapFeatureSelectionContent needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapFeatureSelectionDisabled": view = AnyView(view.oneNativeSDKMapFeatureSelectionDisabled(value, emit: emit))
+#else
+      case "mapFeatureSelectionDisabled": preconditionFailure("modifier mapFeatureSelectionDisabled needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapItemDetailPopoverWithCurrentLocation": view = AnyView(view.oneNativeSDKMapItemDetailPopoverWithCurrentLocation(value, emit: emit))
+#else
+      case "mapItemDetailPopoverWithCurrentLocation": preconditionFailure("modifier mapItemDetailPopoverWithCurrentLocation needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapItemDetailPopoverWithCurrentLocationAndArrowEdge": view = AnyView(view.oneNativeSDKMapItemDetailPopoverWithCurrentLocationAndArrowEdge(value, emit: emit))
+#else
+      case "mapItemDetailPopoverWithCurrentLocationAndArrowEdge": preconditionFailure("modifier mapItemDetailPopoverWithCurrentLocationAndArrowEdge needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapItemDetailSheetWithCurrentLocation": view = AnyView(view.oneNativeSDKMapItemDetailSheetWithCurrentLocation(value, emit: emit))
+#else
+      case "mapItemDetailSheetWithCurrentLocation": preconditionFailure("modifier mapItemDetailSheetWithCurrentLocation needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapScope": view = AnyView(view.oneNativeSDKMapScope(value, emit: emit))
+#else
+      case "mapScope": preconditionFailure("modifier mapScope needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "mapStyle": view = AnyView(view.oneNativeSDKMapStyle(value, emit: emit))
+#else
+      case "mapStyle": preconditionFailure("modifier mapStyle needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "matchedGeometryEffect": view = AnyView(view.oneNativeSDKMatchedGeometryEffect(value, emit: emit))
       case "matchedTransitionSource": view = AnyView(view.oneNativeSDKMatchedTransitionSource(value, emit: emit))
       case "materialActiveAppearance": view = AnyView(view.oneNativeSDKMaterialActiveAppearance(value, emit: emit))
@@ -797,18 +1095,42 @@ extension View {
       case "menuOrder": view = AnyView(view.oneNativeSDKMenuOrder(value, emit: emit))
       case "menuStyle": view = AnyView(view.oneNativeSDKMenuStyle(value, emit: emit))
       case "minimumScaleFactor": view = AnyView(view.oneNativeSDKMinimumScaleFactor(value, emit: emit))
+#if ONE_GROUP_SWIFTDATA
       case "modelContainer": view = AnyView(view.oneNativeSDKModelContainer(value, emit: emit))
+#else
+      case "modelContainer": preconditionFailure("modifier modelContainer needs the swiftdata feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_SWIFTDATA
       case "modelContext": view = AnyView(view.oneNativeSDKModelContext(value, emit: emit))
+#else
+      case "modelContext": preconditionFailure("modifier modelContext needs the swiftdata feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "modifier": view = AnyView(view.oneNativeSDKModifier(value, emit: emit))
       case "monospaced": view = AnyView(view.oneNativeSDKMonospaced(value, emit: emit))
       case "monospacedDigit": view = AnyView(view.oneNativeSDKMonospacedDigit(value, emit: emit))
       case "moveDisabled": view = AnyView(view.oneNativeSDKMoveDisabled(value, emit: emit))
       case "multilineTextAlignmentWithStrategy": view = AnyView(view.oneNativeSDKMultilineTextAlignmentWithStrategy(value, emit: emit))
       case "multilineTextAlignmentWithTextAlignment": view = AnyView(view.oneNativeSDKMultilineTextAlignmentWithTextAlignment(value, emit: emit))
+#if ONE_GROUP_PREVIEW3D
       case "musicPickerWithMusicVideo": view = AnyView(view.oneNativeSDKMusicPickerWithMusicVideo(value, emit: emit))
+#else
+      case "musicPickerWithMusicVideo": preconditionFailure("modifier musicPickerWithMusicVideo needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_PREVIEW3D
       case "musicPickerWithSong": view = AnyView(view.oneNativeSDKMusicPickerWithSong(value, emit: emit))
+#else
+      case "musicPickerWithSong": preconditionFailure("modifier musicPickerWithSong needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_PREVIEW3D
       case "musicPickerWithTrack": view = AnyView(view.oneNativeSDKMusicPickerWithTrack(value, emit: emit))
+#else
+      case "musicPickerWithTrack": preconditionFailure("modifier musicPickerWithTrack needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_PREVIEW3D
       case "musicSubscriptionOffer": view = AnyView(view.oneNativeSDKMusicSubscriptionOffer(value, emit: emit))
+#else
+      case "musicSubscriptionOffer": preconditionFailure("modifier musicSubscriptionOffer needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "navigationBarBackButtonHidden": view = AnyView(view.oneNativeSDKNavigationBarBackButtonHidden(value, emit: emit))
       case "navigationBarHidden": view = AnyView(view.oneNativeSDKNavigationBarHidden(value, emit: emit))
       case "navigationBarTitleDisplayMode": view = AnyView(view.oneNativeSDKNavigationBarTitleDisplayMode(value, emit: emit))
@@ -824,17 +1146,53 @@ extension View {
       case "navigationTitleWithText": view = AnyView(view.oneNativeSDKNavigationTitleWithText(value, emit: emit))
       case "navigationTransition": view = AnyView(view.oneNativeSDKNavigationTransition(value, emit: emit))
       case "navigationViewStyle": view = AnyView(view.oneNativeSDKNavigationViewStyle(value, emit: emit))
+#if ONE_GROUP_STORE
       case "offerCodeRedemption": view = AnyView(view.oneNativeSDKOfferCodeRedemption(value, emit: emit))
+#else
+      case "offerCodeRedemption": preconditionFailure("modifier offerCodeRedemption needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "offset": view = AnyView(view.oneNativeSDKOffset(value, emit: emit))
       case "onAppear": view = AnyView(view.oneNativeSDKOnAppear(value, emit: emit))
+#if ONE_GROUP_INTENTS
       case "onAppIntentExecution": view = AnyView(view.oneNativeSDKOnAppIntentExecution(value, emit: emit))
+#else
+      case "onAppIntentExecution": preconditionFailure("modifier onAppIntentExecution needs the intents feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WALLET
       case "onApplePayCouponCodeChange": view = AnyView(view.oneNativeSDKOnApplePayCouponCodeChange(value, emit: emit))
+#else
+      case "onApplePayCouponCodeChange": preconditionFailure("modifier onApplePayCouponCodeChange needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WALLET
       case "onApplePayPaymentMethodChange": view = AnyView(view.oneNativeSDKOnApplePayPaymentMethodChange(value, emit: emit))
+#else
+      case "onApplePayPaymentMethodChange": preconditionFailure("modifier onApplePayPaymentMethodChange needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WALLET
       case "onApplePayShippingContactChange": view = AnyView(view.oneNativeSDKOnApplePayShippingContactChange(value, emit: emit))
+#else
+      case "onApplePayShippingContactChange": preconditionFailure("modifier onApplePayShippingContactChange needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WALLET
       case "onApplePayShippingMethodChange": view = AnyView(view.oneNativeSDKOnApplePayShippingMethodChange(value, emit: emit))
+#else
+      case "onApplePayShippingMethodChange": preconditionFailure("modifier onApplePayShippingMethodChange needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_VIDEO
       case "onCameraCaptureEvent": view = AnyView(view.oneNativeSDKOnCameraCaptureEvent(value, emit: emit))
+#else
+      case "onCameraCaptureEvent": preconditionFailure("modifier onCameraCaptureEvent needs the video feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_VIDEO
       case "onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction": view = AnyView(view.oneNativeSDKOnCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction(value, emit: emit))
+#else
+      case "onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction": preconditionFailure("modifier onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction needs the video feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_VIDEO
       case "onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction": view = AnyView(view.oneNativeSDKOnCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction(value, emit: emit))
+#else
+      case "onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction": preconditionFailure("modifier onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction needs the video feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "onChange": view = AnyView(view.oneNativeSDKOnChange(value, emit: emit))
       case "onContinueUserActivity": view = AnyView(view.oneNativeSDKOnContinueUserActivity(value, emit: emit))
       case "onContinuousHover": view = AnyView(view.oneNativeSDKOnContinuousHover(value, emit: emit))
@@ -845,13 +1203,29 @@ extension View {
       case "onDropSessionUpdated": view = AnyView(view.oneNativeSDKOnDropSessionUpdated(value, emit: emit))
       case "onGeometryChangeWithSize": view = AnyView(view.oneNativeSDKOnGeometryChangeWithSize(value, emit: emit))
       case "onHover": view = AnyView(view.oneNativeSDKOnHover(value, emit: emit))
+#if ONE_GROUP_STORE
       case "onInAppPurchaseCompletion": view = AnyView(view.oneNativeSDKOnInAppPurchaseCompletion(value, emit: emit))
+#else
+      case "onInAppPurchaseCompletion": preconditionFailure("modifier onInAppPurchaseCompletion needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "onInAppPurchaseStart": view = AnyView(view.oneNativeSDKOnInAppPurchaseStart(value, emit: emit))
+#else
+      case "onInAppPurchaseStart": preconditionFailure("modifier onInAppPurchaseStart needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "onInteractiveResizeChange": view = AnyView(view.oneNativeSDKOnInteractiveResizeChange(value, emit: emit))
       case "onKeyPress": view = AnyView(view.oneNativeSDKOnKeyPress(value, emit: emit))
       case "onLongPressGesture": view = AnyView(view.oneNativeSDKOnLongPressGesture(value, emit: emit))
+#if ONE_GROUP_MAPS
       case "onMapCameraChange": view = AnyView(view.oneNativeSDKOnMapCameraChange(value, emit: emit))
+#else
+      case "onMapCameraChange": preconditionFailure("modifier onMapCameraChange needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_MAPS
       case "onMapCameraChangeWithEventStruct": view = AnyView(view.oneNativeSDKOnMapCameraChangeWithEventStruct(value, emit: emit))
+#else
+      case "onMapCameraChangeWithEventStruct": preconditionFailure("modifier onMapCameraChangeWithEventStruct needs the maps feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "onOpenURLWithPerform": view = AnyView(view.oneNativeSDKOnOpenURLWithPerform(value, emit: emit))
       case "onOpenURLWithPrefersInApp": view = AnyView(view.oneNativeSDKOnOpenURLWithPrefersInApp(value, emit: emit))
       case "onPencilDoubleTap": view = AnyView(view.oneNativeSDKOnPencilDoubleTap(value, emit: emit))
@@ -870,33 +1244,101 @@ extension View {
       case "paddingWithSet": view = AnyView(view.oneNativeSDKPaddingWithSet(value, emit: emit))
       case "paletteSelectionEffect": view = AnyView(view.oneNativeSDKPaletteSelectionEffect(value, emit: emit))
       case "pasteDestination": view = AnyView(view.oneNativeSDKPasteDestination(value, emit: emit))
+#if ONE_GROUP_WALLET
       case "payLaterViewAction":
         precondition(!ProcessInfo.processInfo.isiOSAppOnMac, "payLaterViewAction is unavailable on macOS")
         view = AnyView(view.oneNativeSDKPayLaterViewAction(value, emit: emit))
+#else
+      case "payLaterViewAction": preconditionFailure("modifier payLaterViewAction needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WALLET
       case "payLaterViewDisplayStyle":
         precondition(!ProcessInfo.processInfo.isiOSAppOnMac, "payLaterViewDisplayStyle is unavailable on macOS")
         view = AnyView(view.oneNativeSDKPayLaterViewDisplayStyle(value, emit: emit))
+#else
+      case "payLaterViewDisplayStyle": preconditionFailure("modifier payLaterViewDisplayStyle needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WALLET
       case "payWithApplePayButtonDisableCardArt": view = AnyView(view.oneNativeSDKPayWithApplePayButtonDisableCardArt(value, emit: emit))
+#else
+      case "payWithApplePayButtonDisableCardArt": preconditionFailure("modifier payWithApplePayButtonDisableCardArt needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WALLET
       case "payWithApplePayButtonStyle": view = AnyView(view.oneNativeSDKPayWithApplePayButtonStyle(value, emit: emit))
+#else
+      case "payWithApplePayButtonStyle": preconditionFailure("modifier payWithApplePayButtonStyle needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "persistentSystemOverlays": view = AnyView(view.oneNativeSDKPersistentSystemOverlays(value, emit: emit))
       case "phaseAnimator": view = AnyView(view.oneNativeSDKPhaseAnimator(value, emit: emit))
+#if ONE_GROUP_PHOTOS
       case "photosPicker": view = AnyView(view.oneNativeSDKPhotosPicker(value, emit: emit))
+#else
+      case "photosPicker": preconditionFailure("modifier photosPicker needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_PHOTOS
       case "photosPickerAccessoryVisibility": view = AnyView(view.oneNativeSDKPhotosPickerAccessoryVisibility(value, emit: emit))
+#else
+      case "photosPickerAccessoryVisibility": preconditionFailure("modifier photosPickerAccessoryVisibility needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_PHOTOS
       case "photosPickerDisabledCapabilities": view = AnyView(view.oneNativeSDKPhotosPickerDisabledCapabilities(value, emit: emit))
+#else
+      case "photosPickerDisabledCapabilities": preconditionFailure("modifier photosPickerDisabledCapabilities needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_PHOTOS
       case "photosPickerMetadataOptions": view = AnyView(view.oneNativeSDKPhotosPickerMetadataOptions(value, emit: emit))
+#else
+      case "photosPickerMetadataOptions": preconditionFailure("modifier photosPickerMetadataOptions needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_PHOTOS
       case "photosPickerSearchText": view = AnyView(view.oneNativeSDKPhotosPickerSearchText(value, emit: emit))
+#else
+      case "photosPickerSearchText": preconditionFailure("modifier photosPickerSearchText needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_PHOTOS
       case "photosPickerStyle": view = AnyView(view.oneNativeSDKPhotosPickerStyle(value, emit: emit))
+#else
+      case "photosPickerStyle": preconditionFailure("modifier photosPickerStyle needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_PHOTOS
       case "photosReferenceImageViewer": view = AnyView(view.oneNativeSDKPhotosReferenceImageViewer(value, emit: emit))
+#else
+      case "photosReferenceImageViewer": preconditionFailure("modifier photosReferenceImageViewer needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_PHOTOS
       case "photosSharedAlbumCreationSheet": view = AnyView(view.oneNativeSDKPhotosSharedAlbumCreationSheet(value, emit: emit))
+#else
+      case "photosSharedAlbumCreationSheet": preconditionFailure("modifier photosSharedAlbumCreationSheet needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_PHOTOS
       case "photosSharedAlbumCustomizationSheet": view = AnyView(view.oneNativeSDKPhotosSharedAlbumCustomizationSheet(value, emit: emit))
+#else
+      case "photosSharedAlbumCustomizationSheet": preconditionFailure("modifier photosSharedAlbumCustomizationSheet needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_PHOTOS
       case "photosSharedAlbumPostingSheet": view = AnyView(view.oneNativeSDKPhotosSharedAlbumPostingSheet(value, emit: emit))
+#else
+      case "photosSharedAlbumPostingSheet": preconditionFailure("modifier photosSharedAlbumPostingSheet needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "pickerStyle": view = AnyView(view.oneNativeSDKPickerStyle(value, emit: emit))
       case "position": view = AnyView(view.oneNativeSDKPosition(value, emit: emit))
+#if ONE_GROUP_PHOTOS
       case "postToPhotosSharedAlbumSheet": view = AnyView(view.oneNativeSDKPostToPhotosSharedAlbumSheet(value, emit: emit))
+#else
+      case "postToPhotosSharedAlbumSheet": preconditionFailure("modifier postToPhotosSharedAlbumSheet needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "preferencePreferredColorScheme": view = AnyView(view.oneNativeSDKPreferencePreferredColorScheme(value, emit: emit))
       case "preferredColorScheme": view = AnyView(view.oneNativeSDKPreferredColorScheme(value, emit: emit))
+#if ONE_GROUP_STORE
       case "preferredSubscriptionOffer": view = AnyView(view.oneNativeSDKPreferredSubscriptionOffer(value, emit: emit))
+#else
+      case "preferredSubscriptionOffer": preconditionFailure("modifier preferredSubscriptionOffer needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "preferredSubscriptionPricingTerms": view = AnyView(view.oneNativeSDKPreferredSubscriptionPricingTerms(value, emit: emit))
+#else
+      case "preferredSubscriptionPricingTerms": preconditionFailure("modifier preferredSubscriptionPricingTerms needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "presentationBackground": view = AnyView(view.oneNativeSDKPresentationBackground(value, emit: emit))
       case "presentationBackgroundInteraction": view = AnyView(view.oneNativeSDKPresentationBackgroundInteraction(value, emit: emit))
       case "presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation": view = AnyView(view.oneNativeSDKPresentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation(value, emit: emit))
@@ -907,23 +1349,55 @@ extension View {
       case "presentationDragIndicator": view = AnyView(view.oneNativeSDKPresentationDragIndicator(value, emit: emit))
       case "presentationPlacement": view = AnyView(view.oneNativeSDKPresentationPlacement(value, emit: emit))
       case "presentationSizing": view = AnyView(view.oneNativeSDKPresentationSizing(value, emit: emit))
+#if ONE_GROUP_WIDGETS
       case "previewContext": view = AnyView(view.oneNativeSDKPreviewContext(value, emit: emit))
+#else
+      case "previewContext": preconditionFailure("modifier previewContext needs the widgets feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "previewDevice": view = AnyView(view.oneNativeSDKPreviewDevice(value, emit: emit))
       case "previewDisplayName": view = AnyView(view.oneNativeSDKPreviewDisplayName(value, emit: emit))
       case "previewInterfaceOrientation": view = AnyView(view.oneNativeSDKPreviewInterfaceOrientation(value, emit: emit))
       case "previewLayout": view = AnyView(view.oneNativeSDKPreviewLayout(value, emit: emit))
       case "privacySensitive": view = AnyView(view.oneNativeSDKPrivacySensitive(value, emit: emit))
+#if ONE_GROUP_STORE
       case "productDescription": view = AnyView(view.oneNativeSDKProductDescription(value, emit: emit))
+#else
+      case "productDescription": preconditionFailure("modifier productDescription needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "productIconBorder": view = AnyView(view.oneNativeSDKProductIconBorder(value, emit: emit))
+#else
+      case "productIconBorder": preconditionFailure("modifier productIconBorder needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "productViewStyle": view = AnyView(view.oneNativeSDKProductViewStyle(value, emit: emit))
+#else
+      case "productViewStyle": preconditionFailure("modifier productViewStyle needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "progressViewStyle": view = AnyView(view.oneNativeSDKProgressViewStyle(value, emit: emit))
       case "projectionEffect": view = AnyView(view.oneNativeSDKProjectionEffect(value, emit: emit))
+#if ONE_GROUP_PREVIEW3D
       case "quickLookPreview": view = AnyView(view.oneNativeSDKQuickLookPreview(value, emit: emit))
+#else
+      case "quickLookPreview": preconditionFailure("modifier quickLookPreview needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_PREVIEW3D
       case "realityViewCameraControls": view = AnyView(view.oneNativeSDKRealityViewCameraControls(value, emit: emit))
+#else
+      case "realityViewCameraControls": preconditionFailure("modifier realityViewCameraControls needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_PREVIEW3D
       case "realityViewLayoutBehavior": view = AnyView(view.oneNativeSDKRealityViewLayoutBehavior(value, emit: emit))
+#else
+      case "realityViewLayoutBehavior": preconditionFailure("modifier realityViewLayoutBehavior needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "redacted": view = AnyView(view.oneNativeSDKRedacted(value, emit: emit))
       case "refreshable": view = AnyView(view.oneNativeSDKRefreshable(value, emit: emit))
+#if ONE_GROUP_STORE
       case "refundRequestSheet": view = AnyView(view.oneNativeSDKRefundRequestSheet(value, emit: emit))
+#else
+      case "refundRequestSheet": preconditionFailure("modifier refundRequestSheet needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "renameAction": view = AnyView(view.oneNativeSDKRenameAction(value, emit: emit))
       case "reorderContainer": view = AnyView(view.oneNativeSDKReorderContainer(value, emit: emit))
       case "replaceDisabled": view = AnyView(view.oneNativeSDKReplaceDisabled(value, emit: emit))
@@ -964,10 +1438,22 @@ extension View {
       case "selectionDisabled": view = AnyView(view.oneNativeSDKSelectionDisabled(value, emit: emit))
       case "sensoryFeedback": view = AnyView(view.oneNativeSDKSensoryFeedback(value, emit: emit))
       case "shadow": view = AnyView(view.oneNativeSDKShadow(value, emit: emit))
+#if ONE_GROUP_INTENTS
       case "shortcutsLinkStyle": view = AnyView(view.oneNativeSDKShortcutsLinkStyle(value, emit: emit))
+#else
+      case "shortcutsLinkStyle": preconditionFailure("modifier shortcutsLinkStyle needs the intents feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_ACCOUNT
       case "signInWithAppleButtonStyle": view = AnyView(view.oneNativeSDKSignInWithAppleButtonStyle(value, emit: emit))
+#else
+      case "signInWithAppleButtonStyle": preconditionFailure("modifier signInWithAppleButtonStyle needs the account feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "simultaneousGesture": view = AnyView(view.oneNativeSDKSimultaneousGesture(value, emit: emit))
+#if ONE_GROUP_INTENTS
       case "siriTipViewStyle": view = AnyView(view.oneNativeSDKSiriTipViewStyle(value, emit: emit))
+#else
+      case "siriTipViewStyle": preconditionFailure("modifier siriTipViewStyle needs the intents feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "sliderThumbVisibility": view = AnyView(view.oneNativeSDKSliderThumbVisibility(value, emit: emit))
       case "speechAdjustedPitch": view = AnyView(view.oneNativeSDKSpeechAdjustedPitch(value, emit: emit))
       case "speechAlwaysIncludesPunctuation": view = AnyView(view.oneNativeSDKSpeechAlwaysIncludesPunctuation(value, emit: emit))
@@ -976,26 +1462,94 @@ extension View {
       case "springLoadingBehavior": view = AnyView(view.oneNativeSDKSpringLoadingBehavior(value, emit: emit))
       case "statusBar": view = AnyView(view.oneNativeSDKStatusBar(value, emit: emit))
       case "statusBarHidden": view = AnyView(view.oneNativeSDKStatusBarHidden(value, emit: emit))
+#if ONE_GROUP_STORE
       case "storeButton": view = AnyView(view.oneNativeSDKStoreButton(value, emit: emit))
+#else
+      case "storeButton": preconditionFailure("modifier storeButton needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "storeProductsTask": view = AnyView(view.oneNativeSDKStoreProductsTask(value, emit: emit))
+#else
+      case "storeProductsTask": preconditionFailure("modifier storeProductsTask needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "storeProductTask": view = AnyView(view.oneNativeSDKStoreProductTask(value, emit: emit))
+#else
+      case "storeProductTask": preconditionFailure("modifier storeProductTask needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "strikethrough": view = AnyView(view.oneNativeSDKStrikethrough(value, emit: emit))
       case "submitLabel": view = AnyView(view.oneNativeSDKSubmitLabel(value, emit: emit))
       case "submitScope": view = AnyView(view.oneNativeSDKSubmitScope(value, emit: emit))
+#if ONE_GROUP_STORE
       case "subscriptionIntroductoryOffer": view = AnyView(view.oneNativeSDKSubscriptionIntroductoryOffer(value, emit: emit))
+#else
+      case "subscriptionIntroductoryOffer": preconditionFailure("modifier subscriptionIntroductoryOffer needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "subscriptionOfferViewButtonVisibility": view = AnyView(view.oneNativeSDKSubscriptionOfferViewButtonVisibility(value, emit: emit))
+#else
+      case "subscriptionOfferViewButtonVisibility": preconditionFailure("modifier subscriptionOfferViewButtonVisibility needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "subscriptionOfferViewDetailAction": view = AnyView(view.oneNativeSDKSubscriptionOfferViewDetailAction(value, emit: emit))
+#else
+      case "subscriptionOfferViewDetailAction": preconditionFailure("modifier subscriptionOfferViewDetailAction needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "subscriptionOfferViewStyle": view = AnyView(view.oneNativeSDKSubscriptionOfferViewStyle(value, emit: emit))
+#else
+      case "subscriptionOfferViewStyle": preconditionFailure("modifier subscriptionOfferViewStyle needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "subscriptionPromotionalOffer": view = AnyView(view.oneNativeSDKSubscriptionPromotionalOffer(value, emit: emit))
+#else
+      case "subscriptionPromotionalOffer": preconditionFailure("modifier subscriptionPromotionalOffer needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "subscriptionStatusTask": view = AnyView(view.oneNativeSDKSubscriptionStatusTask(value, emit: emit))
+#else
+      case "subscriptionStatusTask": preconditionFailure("modifier subscriptionStatusTask needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "subscriptionStoreButtonLabel": view = AnyView(view.oneNativeSDKSubscriptionStoreButtonLabel(value, emit: emit))
+#else
+      case "subscriptionStoreButtonLabel": preconditionFailure("modifier subscriptionStoreButtonLabel needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "subscriptionStoreControlBackground": view = AnyView(view.oneNativeSDKSubscriptionStoreControlBackground(value, emit: emit))
+#else
+      case "subscriptionStoreControlBackground": preconditionFailure("modifier subscriptionStoreControlBackground needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "subscriptionStoreControlStyle": view = AnyView(view.oneNativeSDKSubscriptionStoreControlStyle(value, emit: emit))
+#else
+      case "subscriptionStoreControlStyle": preconditionFailure("modifier subscriptionStoreControlStyle needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "subscriptionStoreOptionGroupStyle": view = AnyView(view.oneNativeSDKSubscriptionStoreOptionGroupStyle(value, emit: emit))
+#else
+      case "subscriptionStoreOptionGroupStyle": preconditionFailure("modifier subscriptionStoreOptionGroupStyle needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "subscriptionStorePickerItemBackground": view = AnyView(view.oneNativeSDKSubscriptionStorePickerItemBackground(value, emit: emit))
+#else
+      case "subscriptionStorePickerItemBackground": preconditionFailure("modifier subscriptionStorePickerItemBackground needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "subscriptionStorePolicyDestination": view = AnyView(view.oneNativeSDKSubscriptionStorePolicyDestination(value, emit: emit))
+#else
+      case "subscriptionStorePolicyDestination": preconditionFailure("modifier subscriptionStorePolicyDestination needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "subscriptionStorePolicyForegroundStyle": view = AnyView(view.oneNativeSDKSubscriptionStorePolicyForegroundStyle(value, emit: emit))
+#else
+      case "subscriptionStorePolicyForegroundStyle": preconditionFailure("modifier subscriptionStorePolicyForegroundStyle needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_STORE
       case "subscriptionStoreSignInAction": view = AnyView(view.oneNativeSDKSubscriptionStoreSignInAction(value, emit: emit))
+#else
+      case "subscriptionStoreSignInAction": preconditionFailure("modifier subscriptionStoreSignInAction needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "swipeActionsContainer": view = AnyView(view.oneNativeSDKSwipeActionsContainer(value, emit: emit))
       case "symbolColorRenderingMode": view = AnyView(view.oneNativeSDKSymbolColorRenderingMode(value, emit: emit))
       case "symbolEffect": view = AnyView(view.oneNativeSDKSymbolEffect(value, emit: emit))
@@ -1037,7 +1591,11 @@ extension View {
       case "toolbarWithVisibilityAndBars": view = AnyView(view.oneNativeSDKToolbarWithVisibilityAndBars(value, emit: emit))
       case "tracking": view = AnyView(view.oneNativeSDKTracking(value, emit: emit))
       case "transaction": view = AnyView(view.oneNativeSDKTransaction(value, emit: emit))
+#if ONE_GROUP_CREDENTIALS
       case "transactionTask": view = AnyView(view.oneNativeSDKTransactionTask(value, emit: emit))
+#else
+      case "transactionTask": preconditionFailure("modifier transactionTask needs the credentials feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "transformAnchorPreference": view = AnyView(view.oneNativeSDKTransformAnchorPreference(value, emit: emit))
       case "transformEffect": view = AnyView(view.oneNativeSDKTransformEffect(value, emit: emit))
       case "transformEnvironmentAccessibilityEnabled": view = AnyView(view.oneNativeSDKTransformEnvironmentAccessibilityEnabled(value, emit: emit))
@@ -1059,28 +1617,84 @@ extension View {
       case "transformEnvironmentSystemPrefersReducedResourceUsage": view = AnyView(view.oneNativeSDKTransformEnvironmentSystemPrefersReducedResourceUsage(value, emit: emit))
       case "transformPreferencePreferredColorScheme": view = AnyView(view.oneNativeSDKTransformPreferencePreferredColorScheme(value, emit: emit))
       case "transition": view = AnyView(view.oneNativeSDKTransition(value, emit: emit))
+#if ONE_GROUP_TRANSLATION
       case "translationPresentation": view = AnyView(view.oneNativeSDKTranslationPresentation(value, emit: emit))
+#else
+      case "translationPresentation": preconditionFailure("modifier translationPresentation needs the translation feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_TRANSLATION
       case "translationTask": view = AnyView(view.oneNativeSDKTranslationTask(value, emit: emit))
+#else
+      case "translationTask": preconditionFailure("modifier translationTask needs the translation feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "truncationMode": view = AnyView(view.oneNativeSDKTruncationMode(value, emit: emit))
       case "typeSelectEquivalent": view = AnyView(view.oneNativeSDKTypeSelectEquivalent(value, emit: emit))
       case "typesettingLanguage": view = AnyView(view.oneNativeSDKTypesettingLanguage(value, emit: emit))
       case "underline": view = AnyView(view.oneNativeSDKUnderline(value, emit: emit))
       case "unredacted": view = AnyView(view.oneNativeSDKUnredacted(value, emit: emit))
       case "userActivity": view = AnyView(view.oneNativeSDKUserActivity(value, emit: emit))
+#if ONE_GROUP_WALLET
       case "verifyIdentityWithWalletButtonStyle": view = AnyView(view.oneNativeSDKVerifyIdentityWithWalletButtonStyle(value, emit: emit))
+#else
+      case "verifyIdentityWithWalletButtonStyle": preconditionFailure("modifier verifyIdentityWithWalletButtonStyle needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "visualEffect": view = AnyView(view.oneNativeSDKVisualEffect(value, emit: emit))
+#if ONE_GROUP_WEB
       case "webViewBackForwardNavigationGestures": view = AnyView(view.oneNativeSDKWebViewBackForwardNavigationGestures(value, emit: emit))
+#else
+      case "webViewBackForwardNavigationGestures": preconditionFailure("modifier webViewBackForwardNavigationGestures needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewContentBackground": view = AnyView(view.oneNativeSDKWebViewContentBackground(value, emit: emit))
+#else
+      case "webViewContentBackground": preconditionFailure("modifier webViewContentBackground needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewElementFullscreenBehavior": view = AnyView(view.oneNativeSDKWebViewElementFullscreenBehavior(value, emit: emit))
+#else
+      case "webViewElementFullscreenBehavior": preconditionFailure("modifier webViewElementFullscreenBehavior needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewLinkPreviews": view = AnyView(view.oneNativeSDKWebViewLinkPreviews(value, emit: emit))
+#else
+      case "webViewLinkPreviews": preconditionFailure("modifier webViewLinkPreviews needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewMagnificationGestures": view = AnyView(view.oneNativeSDKWebViewMagnificationGestures(value, emit: emit))
+#else
+      case "webViewMagnificationGestures": preconditionFailure("modifier webViewMagnificationGestures needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewOnScrollGeometryChangeWithContainerSize": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContainerSize(value, emit: emit))
+#else
+      case "webViewOnScrollGeometryChangeWithContainerSize": preconditionFailure("modifier webViewOnScrollGeometryChangeWithContainerSize needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewOnScrollGeometryChangeWithContentOffset": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContentOffset(value, emit: emit))
+#else
+      case "webViewOnScrollGeometryChangeWithContentOffset": preconditionFailure("modifier webViewOnScrollGeometryChangeWithContentOffset needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewOnScrollGeometryChangeWithContentSize": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContentSize(value, emit: emit))
+#else
+      case "webViewOnScrollGeometryChangeWithContentSize": preconditionFailure("modifier webViewOnScrollGeometryChangeWithContentSize needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewScrollPosition": view = AnyView(view.oneNativeSDKWebViewScrollPosition(value, emit: emit))
+#else
+      case "webViewScrollPosition": preconditionFailure("modifier webViewScrollPosition needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
+#if ONE_GROUP_WEB
       case "webViewTextSelection": view = AnyView(view.oneNativeSDKWebViewTextSelection(value, emit: emit))
+#else
+      case "webViewTextSelection": preconditionFailure("modifier webViewTextSelection needs the web feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "windowToolbarFullScreenVisibility": view = AnyView(view.oneNativeSDKWindowToolbarFullScreenVisibility(value, emit: emit))
+#if ONE_GROUP_WORKOUT
       case "workoutPreview": view = AnyView(view.oneNativeSDKWorkoutPreview(value, emit: emit))
+#else
+      case "workoutPreview": preconditionFailure("modifier workoutPreview needs the workout feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
+#endif
       case "writingDirection": view = AnyView(view.oneNativeSDKWritingDirection(value, emit: emit))
       case "writingToolsAffordanceVisibility": view = AnyView(view.oneNativeSDKWritingToolsAffordanceVisibility(value, emit: emit))
       case "writingToolsBehavior": view = AnyView(view.oneNativeSDKWritingToolsBehavior(value, emit: emit))
@@ -1299,14 +1913,17 @@ extension View {
       case "clear": self.accentColor(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.accentColor(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.accentColor(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: let _ = preconditionFailure("invalid accentColor: \(value)")
+    default: self.accentColor(oneNativeSDKValueColor(value, "accentColor") as SwiftUI.Color?)
     }
   }
 
+#if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.accessibilityAction(.default, { emit("accessibilityAction", "") })
   }
+#endif
 
+#if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityActionWithAppIntent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) {
       let registered: OneNativeRegisteredModifier = {
@@ -1319,6 +1936,7 @@ extension View {
       registered.apply(AnyView(self))
     } else { self }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityActivationPointWithActivationPointAndIsEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) {
@@ -1390,7 +2008,7 @@ extension View {
       case "isModal": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isTabBar)
-    default: let _ = preconditionFailure("invalid accessibilityAddTraits: \(value)")
+    default: self.accessibilityAddTraits(oneNativeSDKValueAccessibilityTraits(value, "accessibilityAddTraits"))
     }
   }
 
@@ -1805,7 +2423,7 @@ extension View {
       case "isModal": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isTabBar)
-    default: let _ = preconditionFailure("invalid accessibilityRemoveTraits: \(value)")
+    default: self.accessibilityRemoveTraits(oneNativeSDKValueAccessibilityTraits(value, "accessibilityRemoveTraits"))
     }
   }
 
@@ -1900,7 +2518,7 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilitySortPriority(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.accessibilitySortPriority(number)
       } else { preconditionFailure("invalid accessibilitySortPriority: \(value)") }
   }
@@ -1982,7 +2600,7 @@ extension View {
       case "isModal": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isTabBar)
-    default: let _ = preconditionFailure("invalid accessibilityWithAddTraits: \(value)")
+    default: self.accessibility(addTraits: oneNativeSDKValueAccessibilityTraits(value, "accessibilityWithAddTraits"))
     }
   }
 
@@ -2023,12 +2641,12 @@ extension View {
       case "isModal": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isTabBar)
-    default: let _ = preconditionFailure("invalid accessibilityWithRemoveTraits: \(value)")
+    default: self.accessibility(removeTraits: oneNativeSDKValueAccessibilityTraits(value, "accessibilityWithRemoveTraits"))
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityWithSortPriority(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.accessibility(sortPriority: number)
       } else { preconditionFailure("invalid accessibilityWithSortPriority: \(value)") }
   }
@@ -2064,6 +2682,7 @@ extension View {
     self.actionSheet(isPresented: argument0, content: { SwiftUI.ActionSheet(title: argument1) })
   }
 
+#if ONE_GROUP_WALLET
   @ViewBuilder fileprivate func oneNativeSDKAddPassToWalletButtonStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -2072,6 +2691,7 @@ extension View {
     default: let _ = preconditionFailure("invalid addPassToWalletButtonStyle: \(value)")
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKAlert(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
@@ -2111,7 +2731,7 @@ extension View {
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing alignmentGuideWithHorizontalAlignment.computeValue") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid alignmentGuideWithHorizontalAlignment.computeValue: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid alignmentGuideWithHorizontalAlignment.computeValue: \(raw)") }
       return CGFloat(number)
     }()
     self.alignmentGuide(argument0, computeValue: { (_: SwiftUI.ViewDimensions) in argument1 })
@@ -2137,7 +2757,7 @@ extension View {
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing alignmentGuideWithVerticalAlignment.computeValue") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid alignmentGuideWithVerticalAlignment.computeValue: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid alignmentGuideWithVerticalAlignment.computeValue: \(raw)") }
       return CGFloat(number)
     }()
     self.alignmentGuide(argument0, computeValue: { (_: SwiftUI.ViewDimensions) in argument1 })
@@ -2204,16 +2824,19 @@ extension View {
       case "easeIn": self.animation(SwiftUI.Animation.easeIn as SwiftUI.Animation?)
       case "easeOut": self.animation(SwiftUI.Animation.easeOut as SwiftUI.Animation?)
       case "linear": self.animation(SwiftUI.Animation.linear as SwiftUI.Animation?)
-    default: let _ = preconditionFailure("invalid animation: \(value)")
+    default: self.animation(oneNativeSDKValueAnimation(value, "animation") as SwiftUI.Animation?)
     }
   }
 
+#if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKAppEntityIdentifier(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if value == "null" { if #available(iOS 18.4, *) { self.appEntityIdentifier(nil as AppIntents.EntityIdentifier?) } else { self } } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       if #available(iOS 18.4, *) { self.appEntityIdentifier((AppIntents.EntityIdentifier(activityIdentifier: decoded) ?? { () -> AppIntents.EntityIdentifier in preconditionFailure("invalid appEntityIdentifier") }())) } else { self }
     } else { preconditionFailure("invalid appEntityIdentifier: \(value)") } }
   }
+#endif
 
+#if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKAppEntityUIElements(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18.4, *) {
       let registered: OneNativeRegisteredModifier = {
@@ -2226,7 +2849,9 @@ extension View {
       registered.apply(AnyView(self))
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKAppStoreMerchandising(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) {
       let values: [String?] = {
@@ -2246,7 +2871,9 @@ extension View {
     self.appStoreMerchandising(isPresented: argument0, kind: argument1)
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKAppStoreOverlayWithAppClipConfiguration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -2268,7 +2895,9 @@ extension View {
     }()
     self.appStoreOverlay(isPresented: argument0, configuration: { StoreKit.SKOverlay.AppClipConfiguration(position: argument1) })
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKAppStoreOverlayWithAppConfiguration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -2294,6 +2923,7 @@ extension View {
     }()
     self.appStoreOverlay(isPresented: argument0, configuration: { StoreKit.SKOverlay.AppConfiguration(appIdentifier: argument1, position: argument2) })
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKAspectRatio(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
@@ -2304,7 +2934,7 @@ extension View {
     }()
     let argument0: CoreFoundation.CGFloat? = {
       guard let raw = values[0] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid aspectRatio.aspectRatio: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid aspectRatio.aspectRatio: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: SwiftUI.ContentMode = {
@@ -2449,7 +3079,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKBaselineOffset(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.baselineOffset(CGFloat(number))
       } else { preconditionFailure("invalid baselineOffset: \(value)") }
   }
@@ -2491,7 +3121,7 @@ self
     }()
     let argument0: CoreFoundation.CGFloat = {
       guard let raw = values[0] else { preconditionFailure("missing blur.radius") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid blur.radius: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid blur.radius: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: Swift.Bool = {
@@ -2508,7 +3138,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKBrightness(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.brightness(number)
       } else { preconditionFailure("invalid brightness: \(value)") }
   }
@@ -2520,7 +3150,7 @@ self
       case "capsule": self.buttonBorderShape(SwiftUI.ButtonBorderShape.capsule)
       case "roundedRectangle": self.buttonBorderShape(SwiftUI.ButtonBorderShape.roundedRectangle)
       case "circle": self.buttonBorderShape(SwiftUI.ButtonBorderShape.circle)
-    default: let _ = preconditionFailure("invalid buttonBorderShape: \(value)")
+    default: self.buttonBorderShape(oneNativeSDKValueButtonBorderShape(value, "buttonBorderShape"))
     }
   }
 
@@ -2629,7 +3259,7 @@ self
       case "clear": self.colorMultiply(SwiftUI.Color.clear)
       case "primary": self.colorMultiply(SwiftUI.Color.primary)
       case "secondary": self.colorMultiply(SwiftUI.Color.secondary)
-    default: let _ = preconditionFailure("invalid colorMultiply: \(value)")
+    default: self.colorMultiply(oneNativeSDKValueColor(value, "colorMultiply"))
     }
   }
 
@@ -2743,7 +3373,7 @@ self
     }()
     let argument3: CoreFoundation.CGFloat = {
       guard let raw = values[3] else { preconditionFailure("missing containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment.spacing") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment.spacing: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment.spacing: \(raw)") }
       return CGFloat(number)
     }()
     let argument4: SwiftUI.Alignment = {
@@ -2825,7 +3455,7 @@ self
     }()
     let argument1: CoreFoundation.CGFloat? = {
       guard let raw = values[1] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid contentMarginsWithEdgesAndLengthAndPlacement.length: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid contentMarginsWithEdgesAndLengthAndPlacement.length: \(raw)") }
       return CGFloat(number)
     }()
     let argument2: SwiftUI.ContentMarginPlacement = {
@@ -2849,7 +3479,7 @@ self
     }()
     let argument0: CoreFoundation.CGFloat = {
       guard let raw = values[0] else { preconditionFailure("missing contentMarginsWithLengthAndPlacement.length") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid contentMarginsWithLengthAndPlacement.length: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid contentMarginsWithLengthAndPlacement.length: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: SwiftUI.ContentMarginPlacement = {
@@ -2891,12 +3521,12 @@ self
       case "identity": self.contentTransition(SwiftUI.ContentTransition.identity)
       case "opacity": self.contentTransition(SwiftUI.ContentTransition.opacity)
       case "interpolate": self.contentTransition(SwiftUI.ContentTransition.interpolate)
-    default: let _ = preconditionFailure("invalid contentTransition: \(value)")
+    default: self.contentTransition(oneNativeSDKValueContentTransition(value, "contentTransition"))
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKContrast(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.contrast(number)
       } else { preconditionFailure("invalid contrast: \(value)") }
   }
@@ -2961,7 +3591,7 @@ self
     }()
     let argument0: CoreFoundation.CGFloat = {
       guard let raw = values[0] else { preconditionFailure("missing cornerRadiusWithRadiusAndAntialiased.radius") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid cornerRadiusWithRadiusAndAntialiased.radius: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid cornerRadiusWithRadiusAndAntialiased.radius: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: Swift.Bool = {
@@ -2972,6 +3602,7 @@ self
     self.cornerRadius(argument0, antialiased: argument1)
   }
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKCurrentEntitlementTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let decoded: [String] = {
       guard let data = value.data(using: .utf8),
@@ -2999,6 +3630,7 @@ self
       await OneNativeAsyncAction.wait(name: "currentEntitlementTask", value: encoded, emit: emit)
     })
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKCuttable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     
@@ -3021,6 +3653,7 @@ self
 
   }
 
+#if ONE_GROUP_DETECTION
   @ViewBuilder fileprivate func oneNativeSDKDataDetection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid dataDetection: \(value)")
     if value == "true" { 
@@ -3031,6 +3664,7 @@ self
 #endif
  } else { self }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKDatePickerStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -3496,7 +4130,7 @@ self
       case "ultraThin": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThin as SwiftUI.Material?)
       case "ultraThick": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThick as SwiftUI.Material?)
       case "bar": self.environment(\.backgroundMaterial, SwiftUI.Material.bar as SwiftUI.Material?)
-    default: let _ = preconditionFailure("invalid environmentBackgroundMaterial: \(value)")
+    default: self.environment(\.backgroundMaterial, oneNativeSDKValueMaterial(value, "environmentBackgroundMaterial") as SwiftUI.Material?)
     }
   }
 
@@ -3544,7 +4178,7 @@ self
       case "identity": self.environment(\.contentTransition, SwiftUI.ContentTransition.identity)
       case "opacity": self.environment(\.contentTransition, SwiftUI.ContentTransition.opacity)
       case "interpolate": self.environment(\.contentTransition, SwiftUI.ContentTransition.interpolate)
-    default: let _ = preconditionFailure("invalid environmentContentTransition: \(value)")
+    default: self.environment(\.contentTransition, oneNativeSDKValueContentTransition(value, "environmentContentTransition"))
     }
   }
 
@@ -3566,13 +4200,13 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentDefaultMinListHeaderHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { self.environment(\.defaultMinListHeaderHeight, nil as CoreFoundation.CGFloat?) } else { if let number = Double(value), number.isFinite {
+    if value == "null" { self.environment(\.defaultMinListHeaderHeight, nil as CoreFoundation.CGFloat?) } else { if let number = oneNativeStyleNumber(value), number.isFinite {
       self.environment(\.defaultMinListHeaderHeight, CGFloat(number))
     } else { preconditionFailure("invalid environmentDefaultMinListHeaderHeight: \(value)") } }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentDefaultMinListRowHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.environment(\.defaultMinListRowHeight, CGFloat(number))
       } else { preconditionFailure("invalid environmentDefaultMinListRowHeight: \(value)") }
   }
@@ -3582,7 +4216,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentDisplayScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.environment(\.displayScale, CGFloat(number))
       } else { preconditionFailure("invalid environmentDisplayScale: \(value)") }
   }
@@ -3621,7 +4255,7 @@ self
       case "caption": self.environment(\.font, SwiftUI.Font.caption as SwiftUI.Font?)
       case "caption2": self.environment(\.font, SwiftUI.Font.caption2 as SwiftUI.Font?)
       case "default": if #available(iOS 26, *) { self.environment(\.font, SwiftUI.Font.default as SwiftUI.Font?) } else { self }
-    default: let _ = preconditionFailure("invalid environmentFont: \(value)")
+    default: self.environment(\.font, oneNativeSDKValueFont(value, "environmentFont") as SwiftUI.Font?)
     }
   }
 
@@ -3739,7 +4373,7 @@ self
       case "normal": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.normal as Foundation.AttributedString.LineHeight?) } else { self }
       case "tight": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.tight as Foundation.AttributedString.LineHeight?) } else { self }
       case "loose": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.loose as Foundation.AttributedString.LineHeight?) } else { self }
-    default: let _ = preconditionFailure("invalid environmentLineHeight: \(value)")
+    default: if #available(iOS 26, *) { self.environment(\.lineHeight, oneNativeSDKValueAttributedStringLineHeight(value, "environmentLineHeight") as Foundation.AttributedString.LineHeight?) } else { self }
     }
   }
 
@@ -3750,7 +4384,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentLineSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.environment(\.lineSpacing, CGFloat(number))
       } else { preconditionFailure("invalid environmentLineSpacing: \(value)") }
   }
@@ -3795,7 +4429,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentMinimumScaleFactor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.environment(\.minimumScaleFactor, CGFloat(number))
       } else { preconditionFailure("invalid environmentMinimumScaleFactor: \(value)") }
   }
@@ -3827,6 +4461,7 @@ self
     } else { self }
   }
 
+#if ONE_GROUP_PREVIEW3D
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentRealityViewCameraControls(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -3838,6 +4473,7 @@ self
     default: let _ = preconditionFailure("invalid environmentRealityViewCameraControls: \(value)")
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentRedactionReasons(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -4381,7 +5017,7 @@ if #available(iOS 13, *) {
       case "caption": self.font(SwiftUI.Font.caption as SwiftUI.Font?)
       case "caption2": self.font(SwiftUI.Font.caption2 as SwiftUI.Font?)
       case "default": if #available(iOS 26, *) { self.font(SwiftUI.Font.default as SwiftUI.Font?) } else { self }
-    default: let _ = preconditionFailure("invalid font: \(value)")
+    default: self.font(oneNativeSDKValueFont(value, "font") as SwiftUI.Font?)
     }
   }
 
@@ -4445,7 +5081,7 @@ if #available(iOS 13, *) {
       case "clear": self.foregroundColor(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.foregroundColor(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.foregroundColor(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: let _ = preconditionFailure("invalid foregroundColor: \(value)")
+    default: self.foregroundColor(oneNativeSDKValueColor(value, "foregroundColor") as SwiftUI.Color?)
     }
   }
 
@@ -4468,32 +5104,32 @@ if #available(iOS 13, *) {
     }()
     let argument0: CoreFoundation.CGFloat? = {
       guard let raw = values[0] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.minWidth: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.minWidth: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: CoreFoundation.CGFloat? = {
       guard let raw = values[1] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.idealWidth: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.idealWidth: \(raw)") }
       return CGFloat(number)
     }()
     let argument2: CoreFoundation.CGFloat? = {
       guard let raw = values[2] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxWidth: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite || number == .infinity else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxWidth: \(raw)") }
       return CGFloat(number)
     }()
     let argument3: CoreFoundation.CGFloat? = {
       guard let raw = values[3] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.minHeight: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.minHeight: \(raw)") }
       return CGFloat(number)
     }()
     let argument4: CoreFoundation.CGFloat? = {
       guard let raw = values[4] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.idealHeight: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.idealHeight: \(raw)") }
       return CGFloat(number)
     }()
     let argument5: CoreFoundation.CGFloat? = {
       guard let raw = values[5] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxHeight: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite || number == .infinity else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxHeight: \(raw)") }
       return CGFloat(number)
     }()
     let argument6: SwiftUI.Alignment = {
@@ -4534,12 +5170,12 @@ if #available(iOS 13, *) {
     }()
     let argument0: CoreFoundation.CGFloat? = {
       guard let raw = values[0] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.width: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.width: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: CoreFoundation.CGFloat? = {
       guard let raw = values[1] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.height: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.height: \(raw)") }
       return CGFloat(number)
     }()
     let argument2: SwiftUI.Alignment = {
@@ -4585,44 +5221,118 @@ if #available(iOS 13, *) {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    switch value {
+    let record = OneNativeSDKRecord(value, "gesture")
+    switch record.kind {
     case "drag":
-      self.gesture(SwiftUI.DragGesture().onEnded({ item in
-        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+      let binding = OneNativeDragBinding(record)
+      let changed = record.boolean("onChanged") == true
+      if changed || binding != nil {
+        self.modifier(OneNativeDragHost(attachment: .gesture, gesture: SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "gesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)), binding: binding, changed: changed ? { item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.drag event") }
+        emit("gesture.onChanged", encoded)
+      } : nil, ended: { item, snapTarget in
+        var payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        if let snapTarget { payload["snapTarget"] = snapTarget }
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.drag event") }
         emit("gesture", encoded)
       }))
+      } else {
+        self.gesture(SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "gesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.drag event") }
+        emit("gesture", encoded)
+      }))
+      }
     case "longPress":
-      self.gesture(SwiftUI.LongPressGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.gesture(SwiftUI.LongPressGesture(minimumDuration: (record.number("minimumDuration") ?? 0.5), maximumDistance: (record.number("maximumDistance").map { CoreFoundation.CGFloat($0) } ?? 10)).onChanged({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.longPress event") }
+        emit("gesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = item
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.longPress event") }
         emit("gesture", encoded)
       }))
+      } else {
+        self.gesture(SwiftUI.LongPressGesture(minimumDuration: (record.number("minimumDuration") ?? 0.5), maximumDistance: (record.number("maximumDistance").map { CoreFoundation.CGFloat($0) } ?? 10)).onEnded({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.longPress event") }
+        emit("gesture", encoded)
+      }))
+      }
     case "magnify":
-      self.gesture(SwiftUI.MagnifyGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.gesture(SwiftUI.MagnifyGesture(minimumScaleDelta: (record.number("minimumScaleDelta").map { CoreFoundation.CGFloat($0) } ?? 0.01)).onChanged({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.magnify event") }
+        emit("gesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.magnify event") }
         emit("gesture", encoded)
       }))
+      } else {
+        self.gesture(SwiftUI.MagnifyGesture(minimumScaleDelta: (record.number("minimumScaleDelta").map { CoreFoundation.CGFloat($0) } ?? 0.01)).onEnded({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.magnify event") }
+        emit("gesture", encoded)
+      }))
+      }
     case "rotate":
-      self.gesture(SwiftUI.RotateGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.gesture(SwiftUI.RotateGesture().onChanged({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.rotate event") }
+        emit("gesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.rotate event") }
         emit("gesture", encoded)
       }))
+      } else {
+        self.gesture(SwiftUI.RotateGesture().onEnded({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.rotate event") }
+        emit("gesture", encoded)
+      }))
+      }
     case "spatialTap":
-      self.gesture(SwiftUI.SpatialTapGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.gesture(SwiftUI.SpatialTapGesture(count: (record.integer("count") ?? 1), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "gesture.spatialTap" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onChanged({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.spatialTap event") }
+        emit("gesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.spatialTap event") }
         emit("gesture", encoded)
       }))
+      } else {
+        self.gesture(SwiftUI.SpatialTapGesture(count: (record.integer("count") ?? 1), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "gesture.spatialTap" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.spatialTap event") }
+        emit("gesture", encoded)
+      }))
+      }
     case "tap":
-      self.gesture(SwiftUI.TapGesture().onEnded({ _ in emit("gesture", "") }))
+      self.gesture(SwiftUI.TapGesture(count: (record.integer("count") ?? 1)).onEnded({ _ in emit("gesture", "") }))
     default: let _ = preconditionFailure("invalid gesture: \(value)")
     }
   }
@@ -4679,12 +5389,12 @@ if #available(iOS 13, *) {
       case "regular": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.regular) } else { self }
       case "clear": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.clear) } else { self }
       case "identity": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.identity) } else { self }
-    default: let _ = preconditionFailure("invalid glassEffectWithGlass: \(value)")
+    default: if #available(iOS 26, *) { self.glassEffect(oneNativeSDKValueGlass(value, "glassEffectWithGlass")) } else { self }
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKGrayscale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.grayscale(number)
       } else { preconditionFailure("invalid grayscale: \(value)") }
   }
@@ -4787,6 +5497,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
     self.handlesExternalEvents(preferring: argument0, allowing: argument1)
   }
 
+#if ONE_GROUP_CONTROLLERS
   @ViewBuilder fileprivate func oneNativeSDKHandlesGameControllerEvents(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -4794,6 +5505,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
     default: let _ = preconditionFailure("invalid handlesGameControllerEvents: \(value)")
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKHeaderProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -4814,44 +5526,118 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKHighPriorityGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    switch value {
+    let record = OneNativeSDKRecord(value, "highPriorityGesture")
+    switch record.kind {
     case "drag":
-      self.highPriorityGesture(SwiftUI.DragGesture().onEnded({ item in
-        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+      let binding = OneNativeDragBinding(record)
+      let changed = record.boolean("onChanged") == true
+      if changed || binding != nil {
+        self.modifier(OneNativeDragHost(attachment: .highPriorityGesture, gesture: SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "highPriorityGesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)), binding: binding, changed: changed ? { item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.drag event") }
+        emit("highPriorityGesture.onChanged", encoded)
+      } : nil, ended: { item, snapTarget in
+        var payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        if let snapTarget { payload["snapTarget"] = snapTarget }
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.drag event") }
         emit("highPriorityGesture", encoded)
       }))
+      } else {
+        self.highPriorityGesture(SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "highPriorityGesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.drag event") }
+        emit("highPriorityGesture", encoded)
+      }))
+      }
     case "longPress":
-      self.highPriorityGesture(SwiftUI.LongPressGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.highPriorityGesture(SwiftUI.LongPressGesture(minimumDuration: (record.number("minimumDuration") ?? 0.5), maximumDistance: (record.number("maximumDistance").map { CoreFoundation.CGFloat($0) } ?? 10)).onChanged({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.longPress event") }
+        emit("highPriorityGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = item
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.longPress event") }
         emit("highPriorityGesture", encoded)
       }))
+      } else {
+        self.highPriorityGesture(SwiftUI.LongPressGesture(minimumDuration: (record.number("minimumDuration") ?? 0.5), maximumDistance: (record.number("maximumDistance").map { CoreFoundation.CGFloat($0) } ?? 10)).onEnded({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.longPress event") }
+        emit("highPriorityGesture", encoded)
+      }))
+      }
     case "magnify":
-      self.highPriorityGesture(SwiftUI.MagnifyGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.highPriorityGesture(SwiftUI.MagnifyGesture(minimumScaleDelta: (record.number("minimumScaleDelta").map { CoreFoundation.CGFloat($0) } ?? 0.01)).onChanged({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.magnify event") }
+        emit("highPriorityGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.magnify event") }
         emit("highPriorityGesture", encoded)
       }))
+      } else {
+        self.highPriorityGesture(SwiftUI.MagnifyGesture(minimumScaleDelta: (record.number("minimumScaleDelta").map { CoreFoundation.CGFloat($0) } ?? 0.01)).onEnded({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.magnify event") }
+        emit("highPriorityGesture", encoded)
+      }))
+      }
     case "rotate":
-      self.highPriorityGesture(SwiftUI.RotateGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.highPriorityGesture(SwiftUI.RotateGesture().onChanged({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.rotate event") }
+        emit("highPriorityGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.rotate event") }
         emit("highPriorityGesture", encoded)
       }))
+      } else {
+        self.highPriorityGesture(SwiftUI.RotateGesture().onEnded({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.rotate event") }
+        emit("highPriorityGesture", encoded)
+      }))
+      }
     case "spatialTap":
-      self.highPriorityGesture(SwiftUI.SpatialTapGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.highPriorityGesture(SwiftUI.SpatialTapGesture(count: (record.integer("count") ?? 1), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "highPriorityGesture.spatialTap" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onChanged({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.spatialTap event") }
+        emit("highPriorityGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.spatialTap event") }
         emit("highPriorityGesture", encoded)
       }))
+      } else {
+        self.highPriorityGesture(SwiftUI.SpatialTapGesture(count: (record.integer("count") ?? 1), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "highPriorityGesture.spatialTap" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.spatialTap event") }
+        emit("highPriorityGesture", encoded)
+      }))
+      }
     case "tap":
-      self.highPriorityGesture(SwiftUI.TapGesture().onEnded({ _ in emit("highPriorityGesture", "") }))
+      self.highPriorityGesture(SwiftUI.TapGesture(count: (record.integer("count") ?? 1)).onEnded({ _ in emit("highPriorityGesture", "") }))
     default: let _ = preconditionFailure("invalid highPriorityGesture: \(value)")
     }
   }
@@ -4885,7 +5671,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
     switch value {
 
       case "zero": self.hueRotation(SwiftUI.Angle.zero)
-    default: let _ = preconditionFailure("invalid hueRotation: \(value)")
+    default: self.hueRotation(oneNativeSDKValueAngle(value, "hueRotation"))
     }
   }
 
@@ -4974,6 +5760,7 @@ self
     }
   }
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKInAppPurchaseOptions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let decoded: [String: String] = {
       guard let data = value.data(using: .utf8),
@@ -4998,17 +5785,28 @@ self
     }()
     self.inAppPurchaseOptions({ _ in Set(options) })
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKIndexViewStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
       case "page": self.indexViewStyle(.page)
-    default: let _ = preconditionFailure("invalid indexViewStyle: \(value)")
+    default:
+      let record = OneNativeSDKRecord(value, "indexViewStyle")
+      switch record.kind {
+      case "page":
+        switch record.overload([(labels: [], required: []), (labels: ["backgroundDisplayMode"], required: ["backgroundDisplayMode"])], chain: []) {
+        case 0: self.indexViewStyle(.page)
+        case 1: self.indexViewStyle(.page(backgroundDisplayMode: record.fields["backgroundDisplayMode"].map { oneNativeSDKValuePageIndexViewStyleBackgroundDisplayMode($0, record.context + ".backgroundDisplayMode") }!))
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+      }
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKInspectorColumnWidthWithCGFloat(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.inspectorColumnWidth(CGFloat(number))
       } else { preconditionFailure("invalid inspectorColumnWidthWithCGFloat: \(value)") }
   }
@@ -5022,17 +5820,17 @@ self
     }()
     let argument0: CoreFoundation.CGFloat? = {
       guard let raw = values[0] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid inspectorColumnWidthWithMinAndIdealAndMax.min: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid inspectorColumnWidthWithMinAndIdealAndMax.min: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing inspectorColumnWidthWithMinAndIdealAndMax.ideal") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid inspectorColumnWidthWithMinAndIdealAndMax.ideal: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid inspectorColumnWidthWithMinAndIdealAndMax.ideal: \(raw)") }
       return CGFloat(number)
     }()
     let argument2: CoreFoundation.CGFloat? = {
       guard let raw = values[2] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid inspectorColumnWidthWithMinAndIdealAndMax.max: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid inspectorColumnWidthWithMinAndIdealAndMax.max: \(raw)") }
       return CGFloat(number)
     }()
     self.inspectorColumnWidth(min: argument0, ideal: argument1, max: argument2)
@@ -5062,7 +5860,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKKerning(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.kerning(CGFloat(number))
       } else { preconditionFailure("invalid kerning: \(value)") }
   }
@@ -5236,13 +6034,13 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKLabelIconToTitleSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         if #available(iOS 26, *) { self.labelIconToTitleSpacing(CGFloat(number)) } else { self }
       } else { preconditionFailure("invalid labelIconToTitleSpacing: \(value)") }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKLabelReservedIconWidth(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         if #available(iOS 26, *) { self.labelReservedIconWidth(CGFloat(number)) } else { self }
       } else { preconditionFailure("invalid labelReservedIconWidth: \(value)") }
   }
@@ -5310,7 +6108,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKLayoutPriority(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.layoutPriority(number)
       } else { preconditionFailure("invalid layoutPriority: \(value)") }
   }
@@ -5335,8 +6133,27 @@ self
       case "normal": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.normal as Foundation.AttributedString.LineHeight?) } else { self }
       case "tight": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.tight as Foundation.AttributedString.LineHeight?) } else { self }
       case "loose": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.loose as Foundation.AttributedString.LineHeight?) } else { self }
-    default: let _ = preconditionFailure("invalid lineHeight: \(value)")
+    default: if #available(iOS 26, *) { self.lineHeight(oneNativeSDKValueAttributedStringLineHeight(value, "lineHeight") as Foundation.AttributedString.LineHeight?) } else { self }
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKLineLimitWithClosedRange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid lineLimitWithClosedRange: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.ClosedRange<Swift.Int> = {
+      guard let raw = values[0] else { preconditionFailure("missing lineLimitWithClosedRange.limit") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["lower"], field0.isFinite, Int(exactly: field0) != nil,
+        let field1 = decoded["upper"], field1.isFinite, Int(exactly: field1) != nil,
+        field0 <= field1 else { preconditionFailure("invalid lineLimitWithClosedRange.limit: \(raw)") }
+      return Int(field0)...Int(field1)
+    }()
+    self.lineLimit(argument0)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKLineLimitWithLimitAndReservesSpace(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -5365,8 +6182,42 @@ self
     } else { preconditionFailure("invalid lineLimitWithOptionalInt: \(value)") } }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKLineLimitWithPartialRangeFrom(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid lineLimitWithPartialRangeFrom: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.PartialRangeFrom<Swift.Int> = {
+      guard let raw = values[0] else { preconditionFailure("missing lineLimitWithPartialRangeFrom.limit") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["lower"], field0.isFinite, Int(exactly: field0) != nil else { preconditionFailure("invalid lineLimitWithPartialRangeFrom.limit: \(raw)") }
+      return Int(field0)...
+    }()
+    self.lineLimit(argument0)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKLineLimitWithPartialRangeThrough(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid lineLimitWithPartialRangeThrough: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.PartialRangeThrough<Swift.Int> = {
+      guard let raw = values[0] else { preconditionFailure("missing lineLimitWithPartialRangeThrough.limit") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["upper"], field0.isFinite, Int(exactly: field0) != nil else { preconditionFailure("invalid lineLimitWithPartialRangeThrough.limit: \(raw)") }
+      return ...Int(field0)
+    }()
+    self.lineLimit(argument0)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKLineSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.lineSpacing(CGFloat(number))
       } else { preconditionFailure("invalid lineSpacing: \(value)") }
   }
@@ -5393,7 +6244,7 @@ self
       case "clear": self.listItemTint(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.listItemTint(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.listItemTint(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: let _ = preconditionFailure("invalid listItemTintWithOptionalColor: \(value)")
+    default: self.listItemTint(oneNativeSDKValueColor(value, "listItemTintWithOptionalColor") as SwiftUI.Color?)
     }
   }
 
@@ -5401,7 +6252,7 @@ self
     switch value {
       case "null": self.listItemTint(nil as SwiftUI.ListItemTint?)
       case "monochrome": self.listItemTint(SwiftUI.ListItemTint.monochrome as SwiftUI.ListItemTint?)
-    default: let _ = preconditionFailure("invalid listItemTintWithOptionalListItemTint: \(value)")
+    default: self.listItemTint(oneNativeSDKValueListItemTint(value, "listItemTintWithOptionalListItemTint") as SwiftUI.ListItemTint?)
     }
   }
 
@@ -5428,7 +6279,7 @@ self
     }()
     let argument1: CoreFoundation.CGFloat? = {
       guard let raw = values[1] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid listRowInsets.length: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid listRowInsets.length: \(raw)") }
       return CGFloat(number)
     }()
     self.listRowInsets(argument0, argument1)
@@ -5492,7 +6343,7 @@ self
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid listRowSeparatorTint.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "listRowSeparatorTint.color")
       }
     }()
     let argument1: SwiftUI.VerticalEdge.Set = {
@@ -5508,7 +6359,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKListRowSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { self.listRowSpacing(nil as CoreFoundation.CGFloat?) } else { if let number = Double(value), number.isFinite {
+    if value == "null" { self.listRowSpacing(nil as CoreFoundation.CGFloat?) } else { if let number = oneNativeStyleNumber(value), number.isFinite {
       self.listRowSpacing(CGFloat(number))
     } else { preconditionFailure("invalid listRowSpacing: \(value)") } }
   }
@@ -5546,7 +6397,7 @@ self
     }()
     let argument1: CoreFoundation.CGFloat? = {
       guard let raw = values[1] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid listSectionMargins.length: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid listSectionMargins.length: \(raw)") }
       return CGFloat(number)
     }()
     self.listSectionMargins(argument0, argument1)
@@ -5610,7 +6461,7 @@ self
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid listSectionSeparatorTint.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "listSectionSeparatorTint.color")
       }
     }()
     let argument1: SwiftUI.VerticalEdge.Set = {
@@ -5626,7 +6477,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKListSectionSpacingWithCGFloat(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.listSectionSpacing(CGFloat(number))
       } else { preconditionFailure("invalid listSectionSpacingWithCGFloat: \(value)") }
   }
@@ -5636,7 +6487,7 @@ self
 
       case "default": self.listSectionSpacing(SwiftUI.ListSectionSpacing.default)
       case "compact": self.listSectionSpacing(SwiftUI.ListSectionSpacing.compact)
-    default: let _ = preconditionFailure("invalid listSectionSpacingWithListSectionSpacing: \(value)")
+    default: self.listSectionSpacing(oneNativeSDKValueListSectionSpacing(value, "listSectionSpacingWithListSectionSpacing"))
     }
   }
 
@@ -5653,6 +6504,7 @@ self
     }
   }
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKLookAroundViewer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let config: (Bool, Double, Double) = {
       guard let data = value.data(using: .utf8),
@@ -5666,17 +6518,21 @@ self
     }()
     self.modifier(OneNativeSDKLookAroundViewerRequest(latitude: config.1, longitude: config.2, presented: config.0, emit: emit))
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKLuminanceToAlpha(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid luminanceToAlpha: \(value)")
     if value == "true" { self.luminanceToAlpha() } else { self }
   }
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKManageSubscriptionsSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid manageSubscriptionsSheet: \(value)")
     self.manageSubscriptionsSheet(isPresented: Binding(get: { value == "true" }, set: { emit("manageSubscriptionsSheet", String($0)) }))
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKManageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -5694,7 +6550,9 @@ self
     }()
     self.manageSubscriptionsSheet(isPresented: argument0, subscriptionGroupID: argument1)
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapCameraKeyframeAnimator(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let config: OneNativeSDKSeedKeyframeAnimation = {
       guard let data = value.data(using: .utf8),
@@ -5733,7 +6591,9 @@ self
     default: let _ = preconditionFailure("invalid mapCameraKeyframeAnimator property")
     }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapControlVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -5743,7 +6603,9 @@ self
     default: let _ = preconditionFailure("invalid mapControlVisibility: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapFeatureSelectionAccessory(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(nil as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
@@ -5751,10 +6613,12 @@ self
       case "callout": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.callout as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
       case "sheet": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.sheet as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
       case "caption": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.caption as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
-    default: let _ = preconditionFailure("invalid mapFeatureSelectionAccessory: \(value)")
+    default: if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(oneNativeSDKValueMapItemDetailSelectionAccessoryStyle(value, "mapFeatureSelectionAccessory") as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
     }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapFeatureSelectionContent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 17, *) {
       let registered: OneNativeRegisteredModifier = {
@@ -5767,12 +6631,16 @@ self
       registered.apply(AnyView(self))
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapFeatureSelectionDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid mapFeatureSelectionDisabled: \(value)")
       self.mapFeatureSelectionDisabled({ (_: _MapKit_SwiftUI.MapFeature) in value == "true" })
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapItemDetailPopoverWithCurrentLocation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) {
       let values: [String?] = {
@@ -5788,7 +6656,9 @@ self
     self.mapItemDetailPopover(isPresented: argument0, item: MapKit.MKMapItem.forCurrentLocation())
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapItemDetailPopoverWithCurrentLocationAndArrowEdge(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) {
       let values: [String?] = {
@@ -5814,7 +6684,9 @@ self
     self.mapItemDetailPopover(isPresented: argument0, item: MapKit.MKMapItem.forCurrentLocation(), arrowEdge: argument1)
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapItemDetailSheetWithCurrentLocation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) {
       let values: [String?] = {
@@ -5830,21 +6702,26 @@ self
     self.mapItemDetailSheet(isPresented: argument0, item: MapKit.MKMapItem.forCurrentLocation())
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapScope(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid mapScope: \(value)")
     if value == "true" { self.mapScope(OneNativeNamespace.id) } else { self }
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKMapStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
       case "standard": self.mapStyle(_MapKit_SwiftUI.MapStyle.standard)
       case "imagery": self.mapStyle(_MapKit_SwiftUI.MapStyle.imagery)
       case "hybrid": self.mapStyle(_MapKit_SwiftUI.MapStyle.hybrid)
-    default: let _ = preconditionFailure("invalid mapStyle: \(value)")
+    default: self.mapStyle(oneNativeSDKValueMapStyle(value, "mapStyle"))
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKMatchedGeometryEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
@@ -5873,6 +6750,7 @@ self
       return raw
     }()
     self.matchedTransitionSource(id: argument0, in: OneNativeNamespace.id)
+      .oneNativeRouterZoomSource(argument0)
     } else { self }
   }
 
@@ -5927,11 +6805,12 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKMinimumScaleFactor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.minimumScaleFactor(CGFloat(number))
       } else { preconditionFailure("invalid minimumScaleFactor: \(value)") }
   }
 
+#if ONE_GROUP_SWIFTDATA
   @ViewBuilder fileprivate func oneNativeSDKModelContainer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 17, *) {
       let registered: SwiftData.ModelContainer = {
@@ -5943,7 +6822,9 @@ self
       AnyView(self.modelContainer(registered))
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_SWIFTDATA
   @ViewBuilder fileprivate func oneNativeSDKModelContext(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 17, *) {
       let registered: SwiftData.ModelContext = {
@@ -5955,6 +6836,7 @@ self
       AnyView(self.modelContext(registered))
     } else { self }
   }
+#endif
 
   @available(iOS 13, *)
   fileprivate func oneNativeSDKModifierRegistered<T: SwiftUI.ViewModifier>(_ registered: T) -> some View {
@@ -6008,6 +6890,7 @@ self
     }
   }
 
+#if ONE_GROUP_PREVIEW3D
   @ViewBuilder fileprivate func oneNativeSDKMusicPickerWithMusicVideo(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let (presented, title): (Bool, String?) = {
       guard let data = value.data(using: .utf8),
@@ -6027,7 +6910,9 @@ self
 #endif
 
   }
+#endif
 
+#if ONE_GROUP_PREVIEW3D
   @ViewBuilder fileprivate func oneNativeSDKMusicPickerWithSong(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let (presented, title): (Bool, String?) = {
       guard let data = value.data(using: .utf8),
@@ -6047,7 +6932,9 @@ self
 #endif
 
   }
+#endif
 
+#if ONE_GROUP_PREVIEW3D
   @ViewBuilder fileprivate func oneNativeSDKMusicPickerWithTrack(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let (presented, title): (Bool, String?) = {
       guard let data = value.data(using: .utf8),
@@ -6067,11 +6954,14 @@ self
 #endif
 
   }
+#endif
 
+#if ONE_GROUP_PREVIEW3D
   @ViewBuilder fileprivate func oneNativeSDKMusicSubscriptionOffer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid musicSubscriptionOffer: \(value)")
     self.musicSubscriptionOffer(isPresented: Binding(get: { value == "true" }, set: { emit("musicSubscriptionOffer", String($0)) }), options: .default, onLoadCompletion: { _ in })
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKNavigationBarBackButtonHidden(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid navigationBarBackButtonHidden: \(value)")
@@ -6135,7 +7025,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKNavigationSplitViewColumnWidthWithCGFloat(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.navigationSplitViewColumnWidth(CGFloat(number))
       } else { preconditionFailure("invalid navigationSplitViewColumnWidthWithCGFloat: \(value)") }
   }
@@ -6149,17 +7039,17 @@ self
     }()
     let argument0: CoreFoundation.CGFloat? = {
       guard let raw = values[0] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid navigationSplitViewColumnWidthWithMinAndIdealAndMax.min: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid navigationSplitViewColumnWidthWithMinAndIdealAndMax.min: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing navigationSplitViewColumnWidthWithMinAndIdealAndMax.ideal") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid navigationSplitViewColumnWidthWithMinAndIdealAndMax.ideal: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid navigationSplitViewColumnWidthWithMinAndIdealAndMax.ideal: \(raw)") }
       return CGFloat(number)
     }()
     let argument2: CoreFoundation.CGFloat? = {
       guard let raw = values[2] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid navigationSplitViewColumnWidthWithMinAndIdealAndMax.max: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid navigationSplitViewColumnWidthWithMinAndIdealAndMax.max: \(raw)") }
       return CGFloat(number)
     }()
     self.navigationSplitViewColumnWidth(min: argument0, ideal: argument1, max: argument2)
@@ -6198,7 +7088,32 @@ if #available(iOS 27, *) { self.navigationTransition(.crossFade) } else { self }
 self
 #endif
 
-    default: let _ = preconditionFailure("invalid navigationTransition: \(value)")
+    default:
+      let record = OneNativeSDKRecord(value, "navigationTransition")
+      switch record.kind {
+      case "automatic":
+        switch record.overload([(labels: [], required: [])], chain: []) {
+        case 0: if #available(iOS 18, *) { self.navigationTransition(.automatic) } else { self }
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      case "crossFade":
+        switch record.overload([(labels: [], required: [])], chain: []) {
+        case 0:
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.navigationTransition(.crossFade) } else { self }
+#else
+self
+#endif
+
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      case "zoom":
+        switch record.overload([(labels: ["sourceID"], required: ["sourceID"])], chain: []) {
+        case 0: if #available(iOS 18, *) { self.navigationTransition(.zoom(sourceID: record.string("sourceID")!, in: OneNativeNamespace.id)) } else { self }
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+      }
     }
   }
 
@@ -6212,10 +7127,12 @@ self
     }
   }
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKOfferCodeRedemption(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid offerCodeRedemption: \(value)")
     self.offerCodeRedemption(isPresented: Binding(get: { value == "true" }, set: { emit("offerCodeRedemption", String($0)) }), onCompletion: { _ in })
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKOffset(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
@@ -6226,12 +7143,12 @@ self
     }()
     let argument0: CoreFoundation.CGFloat = {
       guard let raw = values[0] else { preconditionFailure("missing offset.x") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid offset.x: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid offset.x: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing offset.y") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid offset.y: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid offset.y: \(raw)") }
       return CGFloat(number)
     }()
     self.offset(x: argument0, y: argument1)
@@ -6241,6 +7158,7 @@ self
     self.onAppear(perform: { emit("onAppear", "") })
   }
 
+#if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKOnAppIntentExecution(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) {
       let registered: OneNativeRegisteredModifier = {
@@ -6253,7 +7171,9 @@ self
       registered.apply(AnyView(self))
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_WALLET
   @ViewBuilder fileprivate func oneNativeSDKOnApplePayCouponCodeChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 15.5, *) {
       let registered: OneNativeRegisteredModifier = {
@@ -6266,7 +7186,9 @@ self
       registered.apply(AnyView(self))
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_WALLET
   @ViewBuilder fileprivate func oneNativeSDKOnApplePayPaymentMethodChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 15.5, *) {
       let registered: OneNativeRegisteredModifier = {
@@ -6279,7 +7201,9 @@ self
       registered.apply(AnyView(self))
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_WALLET
   @ViewBuilder fileprivate func oneNativeSDKOnApplePayShippingContactChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 15.5, *) {
       let registered: OneNativeRegisteredModifier = {
@@ -6292,7 +7216,9 @@ self
       registered.apply(AnyView(self))
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_WALLET
   @ViewBuilder fileprivate func oneNativeSDKOnApplePayShippingMethodChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 15.5, *) {
       let registered: OneNativeRegisteredModifier = {
@@ -6305,7 +7231,9 @@ self
       registered.apply(AnyView(self))
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_VIDEO
   @ViewBuilder fileprivate func oneNativeSDKOnCameraCaptureEvent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) { self.onCameraCaptureEvent(isEnabled: true, action: { item in
       let payload = (["phase": ({ () -> String in switch item.phase { case .began: return "began" case .cancelled: return "cancelled" case .ended: return "ended" @unknown default: return "unknown" } })()] as [String: Any])
@@ -6314,7 +7242,9 @@ self
       emit("onCameraCaptureEvent", encoded)
     }) } else { self }
   }
+#endif
 
+#if ONE_GROUP_VIDEO
   @ViewBuilder fileprivate func oneNativeSDKOnCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) {
       let values: [String?] = {
@@ -6348,7 +7278,9 @@ self
     self.onCameraCaptureEvent(isEnabled: argument0, defaultSoundDisabled: argument1, primaryAction: argument2, secondaryAction: argument3)
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_VIDEO
   @ViewBuilder fileprivate func oneNativeSDKOnCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) {
       let values: [String?] = {
@@ -6377,6 +7309,7 @@ self
     self.onCameraCaptureEvent(isEnabled: argument0, primaryAction: argument1, secondaryAction: argument2)
     } else { self }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKOnChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onChange(of: value, perform: { changed in emit("onChange", changed) })
@@ -6491,6 +7424,7 @@ self
     self.onHover(perform: { value in emit("onHover", String(value)) })
   }
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKOnInAppPurchaseCompletion(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onInAppPurchaseCompletion(perform: { first, result in
       let payload = (["value": (["id": first.id, "type": (["rawValue": first.type.rawValue] as [String: Any]), "displayName": first.displayName, "description": first.description, "displayPrice": first.displayPrice, "isFamilyShareable": first.isFamilyShareable] as [String: Any]), "result": ({ () -> [String: Any] in
@@ -6516,7 +7450,9 @@ self
       await OneNativeAsyncAction.wait(name: "onInAppPurchaseCompletion", value: encoded, emit: emit)
     })
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKOnInAppPurchaseStart(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onInAppPurchaseStart(perform: { item in
       let payload = (["id": item.id, "type": (["rawValue": item.type.rawValue] as [String: Any]), "displayName": item.displayName, "description": item.description, "displayPrice": item.displayPrice, "isFamilyShareable": item.isFamilyShareable] as [String: Any])
@@ -6525,6 +7461,7 @@ self
       await OneNativeAsyncAction.wait(name: "onInAppPurchaseStart", value: encoded, emit: emit)
     })
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKOnInteractiveResizeChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) { self.onInteractiveResizeChange({ value in emit("onInteractiveResizeChange", String(value)) }) } else { self }
@@ -6552,10 +7489,13 @@ self
     self.onLongPressGesture(minimumDuration: 0.5, maximumDistance: 10, perform: { emit("onLongPressGesture", "") }, onPressingChanged: nil)
   }
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKOnMapCameraChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onMapCameraChange(frequency: .onEnd, { emit("onMapCameraChange", "") })
   }
+#endif
 
+#if ONE_GROUP_MAPS
   @ViewBuilder fileprivate func oneNativeSDKOnMapCameraChangeWithEventStruct(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onMapCameraChange(frequency: .onEnd, { item in
       let payload = (["camera": (["distance": Double(item.camera.distance), "heading": Double(item.camera.heading), "pitch": Double(item.camera.pitch)] as [String: Any])] as [String: Any])
@@ -6564,6 +7504,7 @@ self
       emit("onMapCameraChangeWithEventStruct", encoded)
     })
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKOnOpenURLWithPerform(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onOpenURL(perform: { value in emit("onOpenURLWithPerform", value.absoluteString) })
@@ -6696,7 +7637,7 @@ self
 
       case "automatic": self.paletteSelectionEffect(SwiftUI.PaletteSelectionEffect.automatic)
       case "custom": self.paletteSelectionEffect(SwiftUI.PaletteSelectionEffect.custom)
-    default: let _ = preconditionFailure("invalid paletteSelectionEffect: \(value)")
+    default: self.paletteSelectionEffect(oneNativeSDKValuePaletteSelectionEffect(value, "paletteSelectionEffect"))
     }
   }
 
@@ -6715,6 +7656,7 @@ self
 
   }
 
+#if ONE_GROUP_WALLET
   @ViewBuilder fileprivate func oneNativeSDKPayLaterViewAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -6723,7 +7665,9 @@ self
     default: let _ = preconditionFailure("invalid payLaterViewAction: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_WALLET
   @ViewBuilder fileprivate func oneNativeSDKPayLaterViewDisplayStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -6734,12 +7678,16 @@ self
     default: let _ = preconditionFailure("invalid payLaterViewDisplayStyle: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_WALLET
   @ViewBuilder fileprivate func oneNativeSDKPayWithApplePayButtonDisableCardArt(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid payWithApplePayButtonDisableCardArt: \(value)")
     if value == "true" { if #available(iOS 26, *) { self.payWithApplePayButtonDisableCardArt() } else { self } } else { self }
   }
+#endif
 
+#if ONE_GROUP_WALLET
   @ViewBuilder fileprivate func oneNativeSDKPayWithApplePayButtonStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -6750,6 +7698,7 @@ self
     default: let _ = preconditionFailure("invalid payWithApplePayButtonStyle: \(value)")
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKPersistentSystemOverlays(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -6776,6 +7725,7 @@ self
     } animation: { _ in .easeInOut(duration: config.duration) }
   }
 
+#if ONE_GROUP_PHOTOS
   @ViewBuilder fileprivate func oneNativeSDKPhotosPicker(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid photosPicker presentation")
 if #available(iOS 16, *) {
@@ -6783,7 +7733,9 @@ if #available(iOS 16, *) {
         presented: value == "true", emit: emit))
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_PHOTOS
   @ViewBuilder fileprivate func oneNativeSDKPhotosPickerAccessoryVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -6815,7 +7767,9 @@ if #available(iOS 16, *) {
     }()
     self.photosPickerAccessoryVisibility(argument0, edges: argument1)
   }
+#endif
 
+#if ONE_GROUP_PHOTOS
   @ViewBuilder fileprivate func oneNativeSDKPhotosPickerDisabledCapabilities(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -6827,7 +7781,9 @@ if #available(iOS 16, *) {
     default: let _ = preconditionFailure("invalid photosPickerDisabledCapabilities: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_PHOTOS
   @ViewBuilder fileprivate func oneNativeSDKPhotosPickerMetadataOptions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -6848,7 +7804,9 @@ self
     default: let _ = preconditionFailure("invalid photosPickerMetadataOptions: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_PHOTOS
   @ViewBuilder fileprivate func oneNativeSDKPhotosPickerSearchText(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if value == "null" { 
 #if ONE_IOS_27_SDK
@@ -6866,7 +7824,9 @@ self
 
     } else { preconditionFailure("invalid photosPickerSearchText: \(value)") } }
   }
+#endif
 
+#if ONE_GROUP_PHOTOS
   @ViewBuilder fileprivate func oneNativeSDKPhotosPickerStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -6876,7 +7836,9 @@ self
     default: let _ = preconditionFailure("invalid photosPickerStyle: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_PHOTOS
   @ViewBuilder fileprivate func oneNativeSDKPhotosReferenceImageViewer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     
 #if ONE_IOS_27_SDK
@@ -6919,7 +7881,9 @@ self
 #endif
 
   }
+#endif
 
+#if ONE_GROUP_PHOTOS
   @ViewBuilder fileprivate func oneNativeSDKPhotosSharedAlbumCreationSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
 
 #if ONE_IOS_27_SDK
@@ -6941,7 +7905,9 @@ self
 #endif
 
   }
+#endif
 
+#if ONE_GROUP_PHOTOS
   @ViewBuilder fileprivate func oneNativeSDKPhotosSharedAlbumCustomizationSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
 
 #if ONE_IOS_27_SDK
@@ -6967,7 +7933,9 @@ self
 #endif
 
   }
+#endif
 
+#if ONE_GROUP_PHOTOS
   @ViewBuilder fileprivate func oneNativeSDKPhotosSharedAlbumPostingSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
 
 #if ONE_IOS_27_SDK
@@ -6994,6 +7962,7 @@ self
 #endif
 
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKPickerStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -7025,17 +7994,18 @@ self
     }()
     let argument0: CoreFoundation.CGFloat = {
       guard let raw = values[0] else { preconditionFailure("missing position.x") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid position.x: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid position.x: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing position.y") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid position.y: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid position.y: \(raw)") }
       return CGFloat(number)
     }()
     self.position(x: argument0, y: argument1)
   }
 
+#if ONE_GROUP_PHOTOS
   @ViewBuilder fileprivate func oneNativeSDKPostToPhotosSharedAlbumSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) {
       let values: [String?] = {
@@ -7056,6 +8026,7 @@ self
     self.postToPhotosSharedAlbumSheet(isPresented: argument0, items: argument1, photoLibrary: Photos.PHPhotoLibrary.shared())
     } else { self }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKPreferencePreferredColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -7075,10 +8046,13 @@ self
     }
   }
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKPreferredSubscriptionOffer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) { self.preferredSubscriptionOffer({ _, _, eligible in eligible.first { $0.id == value } }) } else { self }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKPreferredSubscriptionPricingTerms(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let selected: Int = {
       guard let index = Int(value), index >= 0 else { preconditionFailure("invalid preferredSubscriptionPricingTerms: \(value)") }
@@ -7086,6 +8060,7 @@ self
     }()
     if #available(iOS 26.4, *) { self.preferredSubscriptionPricingTerms({ _, input in input.pricingTerms.indices.contains(selected) ? input.pricingTerms[selected] : nil }) } else { self }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKPresentationBackground(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -7136,7 +8111,7 @@ self
       case "automatic": self.presentationBackgroundInteraction(SwiftUI.PresentationBackgroundInteraction.automatic)
       case "enabled": self.presentationBackgroundInteraction(SwiftUI.PresentationBackgroundInteraction.enabled)
       case "disabled": self.presentationBackgroundInteraction(SwiftUI.PresentationBackgroundInteraction.disabled)
-    default: let _ = preconditionFailure("invalid presentationBackgroundInteraction: \(value)")
+    default: self.presentationBackgroundInteraction(oneNativeSDKValuePresentationBackgroundInteraction(value, "presentationBackgroundInteraction"))
     }
   }
 
@@ -7195,7 +8170,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPresentationCornerRadius(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { self.presentationCornerRadius(nil as CoreFoundation.CGFloat?) } else { if let number = Double(value), number.isFinite {
+    if value == "null" { self.presentationCornerRadius(nil as CoreFoundation.CGFloat?) } else { if let number = oneNativeStyleNumber(value), number.isFinite {
       self.presentationCornerRadius(CGFloat(number))
     } else { preconditionFailure("invalid presentationCornerRadius: \(value)") } }
   }
@@ -7271,6 +8246,7 @@ self
     }
   }
 
+#if ONE_GROUP_WIDGETS
   @ViewBuilder fileprivate func oneNativeSDKPreviewContext(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -7300,6 +8276,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     }()
     self.previewContext(WidgetKit.WidgetPreviewContext(family: argument0))
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKPreviewDevice(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if value == "null" { self.previewDevice(nil as SwiftUI.PreviewDevice?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
@@ -7338,6 +8315,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       self.privacySensitive(value == "true")
   }
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKProductDescription(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -7347,12 +8325,16 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     default: let _ = preconditionFailure("invalid productDescription: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKProductIconBorder(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid productIconBorder: \(value)")
     if value == "true" { self.productIconBorder() } else { self }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKProductViewStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -7363,6 +8345,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     default: let _ = preconditionFailure("invalid productViewStyle: \(value)")
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKProgressViewStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -7396,6 +8379,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     self.projectionEffect(argument0)
   }
 
+#if ONE_GROUP_PREVIEW3D
   @ViewBuilder fileprivate func oneNativeSDKQuickLookPreview(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.quickLookPreview(Binding<Foundation.URL?>(get: {
       guard let data = value.data(using: .utf8),
@@ -7411,7 +8395,9 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       emit("quickLookPreview", encoded)
     }))
   }
+#endif
 
+#if ONE_GROUP_PREVIEW3D
   @ViewBuilder fileprivate func oneNativeSDKRealityViewCameraControls(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -7423,7 +8409,9 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     default: let _ = preconditionFailure("invalid realityViewCameraControls: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_PREVIEW3D
   @ViewBuilder fileprivate func oneNativeSDKRealityViewLayoutBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -7433,6 +8421,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     default: let _ = preconditionFailure("invalid realityViewLayoutBehavior: \(value)")
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKRedacted(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -7448,6 +8437,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     self.refreshable(action: { await OneNativeAsyncAction.wait(name: "refreshable", emit: emit) })
   }
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKRefundRequestSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -7465,6 +8455,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     }()
     self.refundRequestSheet(for: argument0, isPresented: argument1)
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKRenameAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.renameAction({ emit("renameAction", "") })
@@ -7529,12 +8520,12 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     }()
     let argument3: CoreFoundation.CGFloat = {
       guard let raw = values[3] else { preconditionFailure("missing rotation3DEffect.anchorZ") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid rotation3DEffect.anchorZ: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid rotation3DEffect.anchorZ: \(raw)") }
       return CGFloat(number)
     }()
     let argument4: CoreFoundation.CGFloat = {
       guard let raw = values[4] else { preconditionFailure("missing rotation3DEffect.perspective") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid rotation3DEffect.perspective: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid rotation3DEffect.perspective: \(raw)") }
       return CGFloat(number)
     }()
     self.rotation3DEffect(argument0, axis: argument1, anchor: argument2, anchorZ: argument3, perspective: argument4)
@@ -7551,7 +8542,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       guard let raw = values[0] else { preconditionFailure("missing rotationEffect.angle") }
       switch raw {
       case "zero": return SwiftUI.Angle.zero
-      default: preconditionFailure("invalid rotationEffect.angle: \(raw)")
+      default: return oneNativeSDKValueAngle(raw, "rotationEffect.angle")
       }
     }()
     let argument1: SwiftUI.UnitPoint = {
@@ -7574,7 +8565,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSafeAreaPaddingWithCGFloat(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.safeAreaPadding(CGFloat(number))
       } else { preconditionFailure("invalid safeAreaPaddingWithCGFloat: \(value)") }
   }
@@ -7594,7 +8585,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSaturation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.saturation(number)
       } else { preconditionFailure("invalid saturation: \(value)") }
   }
@@ -7618,7 +8609,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     }()
     let argument0: CoreFoundation.CGFloat = {
       guard let raw = values[0] else { preconditionFailure("missing scaleEffectWithSAndAnchor.s") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid scaleEffectWithSAndAnchor.s: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid scaleEffectWithSAndAnchor.s: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: SwiftUI.UnitPoint = {
@@ -7649,12 +8640,12 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     }()
     let argument0: CoreFoundation.CGFloat = {
       guard let raw = values[0] else { preconditionFailure("missing scaleEffectWithXAndYAndAnchor.x") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid scaleEffectWithXAndYAndAnchor.x: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid scaleEffectWithXAndYAndAnchor.x: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing scaleEffectWithXAndYAndAnchor.y") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid scaleEffectWithXAndYAndAnchor.y: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid scaleEffectWithXAndYAndAnchor.y: \(raw)") }
       return CGFloat(number)
     }()
     let argument2: SwiftUI.UnitPoint = {
@@ -7959,7 +8950,7 @@ if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.soft }
     switch value {
 
       case "automatic": self.searchDictationBehavior(SwiftUI.TextInputDictationBehavior.automatic)
-    default: let _ = preconditionFailure("invalid searchDictationBehavior: \(value)")
+    default: self.searchDictationBehavior(oneNativeSDKValueTextInputDictationBehavior(value, "searchDictationBehavior"))
     }
   }
 
@@ -8105,7 +9096,7 @@ if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.soft }
 if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
         preconditionFailure("unavailable sensoryFeedback.feedback: \(raw)")
       case "impact": return SwiftUI.SensoryFeedback.impact
-      default: preconditionFailure("invalid sensoryFeedback.feedback: \(raw)")
+      default: return oneNativeSDKValueSensoryFeedback(raw, "sensoryFeedback.feedback")
       }
     }()
     let argument1: Swift.String = {
@@ -8144,27 +9135,28 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid shadow.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "shadow.color")
       }
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing shadow.radius") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid shadow.radius: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid shadow.radius: \(raw)") }
       return CGFloat(number)
     }()
     let argument2: CoreFoundation.CGFloat = {
       guard let raw = values[2] else { preconditionFailure("missing shadow.x") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid shadow.x: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid shadow.x: \(raw)") }
       return CGFloat(number)
     }()
     let argument3: CoreFoundation.CGFloat = {
       guard let raw = values[3] else { preconditionFailure("missing shadow.y") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid shadow.y: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid shadow.y: \(raw)") }
       return CGFloat(number)
     }()
     self.shadow(color: argument0, radius: argument1, x: argument2, y: argument3)
   }
 
+#if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKShortcutsLinkStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -8177,7 +9169,9 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
     default: let _ = preconditionFailure("invalid shortcutsLinkStyle: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_ACCOUNT
   @ViewBuilder fileprivate func oneNativeSDKSignInWithAppleButtonStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -8187,50 +9181,126 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
     default: let _ = preconditionFailure("invalid signInWithAppleButtonStyle: \(value)")
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKSimultaneousGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    switch value {
+    let record = OneNativeSDKRecord(value, "simultaneousGesture")
+    switch record.kind {
     case "drag":
-      self.simultaneousGesture(SwiftUI.DragGesture().onEnded({ item in
-        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+      let binding = OneNativeDragBinding(record)
+      let changed = record.boolean("onChanged") == true
+      if changed || binding != nil {
+        self.modifier(OneNativeDragHost(attachment: .simultaneousGesture, gesture: SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "simultaneousGesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)), binding: binding, changed: changed ? { item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.drag event") }
+        emit("simultaneousGesture.onChanged", encoded)
+      } : nil, ended: { item, snapTarget in
+        var payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        if let snapTarget { payload["snapTarget"] = snapTarget }
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.drag event") }
         emit("simultaneousGesture", encoded)
       }))
+      } else {
+        self.simultaneousGesture(SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "simultaneousGesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.drag event") }
+        emit("simultaneousGesture", encoded)
+      }))
+      }
     case "longPress":
-      self.simultaneousGesture(SwiftUI.LongPressGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.simultaneousGesture(SwiftUI.LongPressGesture(minimumDuration: (record.number("minimumDuration") ?? 0.5), maximumDistance: (record.number("maximumDistance").map { CoreFoundation.CGFloat($0) } ?? 10)).onChanged({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.longPress event") }
+        emit("simultaneousGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = item
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.longPress event") }
         emit("simultaneousGesture", encoded)
       }))
+      } else {
+        self.simultaneousGesture(SwiftUI.LongPressGesture(minimumDuration: (record.number("minimumDuration") ?? 0.5), maximumDistance: (record.number("maximumDistance").map { CoreFoundation.CGFloat($0) } ?? 10)).onEnded({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.longPress event") }
+        emit("simultaneousGesture", encoded)
+      }))
+      }
     case "magnify":
-      self.simultaneousGesture(SwiftUI.MagnifyGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.simultaneousGesture(SwiftUI.MagnifyGesture(minimumScaleDelta: (record.number("minimumScaleDelta").map { CoreFoundation.CGFloat($0) } ?? 0.01)).onChanged({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.magnify event") }
+        emit("simultaneousGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.magnify event") }
         emit("simultaneousGesture", encoded)
       }))
+      } else {
+        self.simultaneousGesture(SwiftUI.MagnifyGesture(minimumScaleDelta: (record.number("minimumScaleDelta").map { CoreFoundation.CGFloat($0) } ?? 0.01)).onEnded({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.magnify event") }
+        emit("simultaneousGesture", encoded)
+      }))
+      }
     case "rotate":
-      self.simultaneousGesture(SwiftUI.RotateGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.simultaneousGesture(SwiftUI.RotateGesture().onChanged({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.rotate event") }
+        emit("simultaneousGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.rotate event") }
         emit("simultaneousGesture", encoded)
       }))
+      } else {
+        self.simultaneousGesture(SwiftUI.RotateGesture().onEnded({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.rotate event") }
+        emit("simultaneousGesture", encoded)
+      }))
+      }
     case "spatialTap":
-      self.simultaneousGesture(SwiftUI.SpatialTapGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.simultaneousGesture(SwiftUI.SpatialTapGesture(count: (record.integer("count") ?? 1), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "simultaneousGesture.spatialTap" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onChanged({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.spatialTap event") }
+        emit("simultaneousGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.spatialTap event") }
         emit("simultaneousGesture", encoded)
       }))
+      } else {
+        self.simultaneousGesture(SwiftUI.SpatialTapGesture(count: (record.integer("count") ?? 1), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "simultaneousGesture.spatialTap" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.spatialTap event") }
+        emit("simultaneousGesture", encoded)
+      }))
+      }
     case "tap":
-      self.simultaneousGesture(SwiftUI.TapGesture().onEnded({ _ in emit("simultaneousGesture", "") }))
+      self.simultaneousGesture(SwiftUI.TapGesture(count: (record.integer("count") ?? 1)).onEnded({ _ in emit("simultaneousGesture", "") }))
     default: let _ = preconditionFailure("invalid simultaneousGesture: \(value)")
     }
   }
 
+#if ONE_GROUP_INTENTS
   @ViewBuilder fileprivate func oneNativeSDKSiriTipViewStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -8240,6 +9310,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
     default: let _ = preconditionFailure("invalid siriTipViewStyle: \(value)")
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKSliderThumbVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -8252,7 +9323,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSpeechAdjustedPitch(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.speechAdjustedPitch(number)
       } else { preconditionFailure("invalid speechAdjustedPitch: \(value)") }
   }
@@ -8292,6 +9363,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       self.statusBarHidden(value == "true")
   }
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKStoreButton(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -8321,7 +9393,9 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
     }()
     self.storeButton(argument0, for: argument1)
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKStoreProductsTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let decoded: [String] = {
       guard let data = value.data(using: .utf8),
@@ -8348,7 +9422,9 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       await OneNativeAsyncAction.wait(name: "storeProductsTask", value: encoded, emit: emit)
     })
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKStoreProductTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let decoded: [String] = {
       guard let data = value.data(using: .utf8),
@@ -8372,6 +9448,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       await OneNativeAsyncAction.wait(name: "storeProductTask", value: encoded, emit: emit)
     })
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKStrikethrough(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
@@ -8418,7 +9495,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid strikethrough.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "strikethrough.color")
       }
     }()
     self.strikethrough(argument0, pattern: argument1, color: argument2)
@@ -8445,6 +9522,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       self.submitScope(value == "true")
   }
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionIntroductoryOffer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let enabled: Bool = {
       guard value == "true" || value == "false" else { preconditionFailure("invalid subscriptionIntroductoryOffer: \(value)") }
@@ -8457,7 +9535,9 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       return try await OneNativeAsyncAction.waitForString(name: "subscriptionIntroductoryOffer", value: encoded, emit: emit)
     }) } else { self }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionOfferViewButtonVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) {
       let values: [String?] = {
@@ -8487,11 +9567,15 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
     self.subscriptionOfferViewButtonVisibility(argument0, for: argument1)
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionOfferViewDetailAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) { self.subscriptionOfferViewDetailAction({ emit("subscriptionOfferViewDetailAction", "") }) } else { self }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionOfferViewStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -8500,7 +9584,9 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
     default: let _ = preconditionFailure("invalid subscriptionOfferViewStyle: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionPromotionalOffer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let selected = value
     if #available(iOS 26, *) { self.subscriptionPromotionalOffer(offer: { product, subscriptionInfo in subscriptionInfo.promotionalOffers.first { $0.id == selected } }, compactJWS: { product, subscriptionInfo, promotionalOffer in
@@ -8510,7 +9596,9 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
       return try await OneNativeAsyncAction.waitForString(name: "subscriptionPromotionalOffer", value: encoded, emit: emit)
     }) } else { self }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStatusTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let decoded: [String] = {
       guard let data = value.data(using: .utf8),
@@ -8543,7 +9631,9 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
       await OneNativeAsyncAction.wait(name: "subscriptionStatusTask", value: encoded, emit: emit)
     })
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStoreButtonLabel(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -8556,7 +9646,9 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
     default: let _ = preconditionFailure("invalid subscriptionStoreButtonLabel: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStoreControlBackground(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -8566,7 +9658,9 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
     default: let _ = preconditionFailure("invalid subscriptionStoreControlBackground: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStoreControlStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -8580,7 +9674,9 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
     default: let _ = preconditionFailure("invalid subscriptionStoreControlStyle: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStoreOptionGroupStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -8590,7 +9686,9 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
     default: let _ = preconditionFailure("invalid subscriptionStoreOptionGroupStyle: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStorePickerItemBackground(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -8633,7 +9731,9 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
     default: let _ = preconditionFailure("invalid subscriptionStorePickerItemBackground: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStorePolicyDestination(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -8656,7 +9756,9 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
     }()
     self.subscriptionStorePolicyDestination(url: argument0, for: argument1)
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStorePolicyForegroundStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -8699,10 +9801,13 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
     default: let _ = preconditionFailure("invalid subscriptionStorePolicyForegroundStyle: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_STORE
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStoreSignInAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.subscriptionStoreSignInAction({ emit("subscriptionStoreSignInAction", "") })
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKSwipeActionsContainer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid swipeActionsContainer: \(value)")
@@ -8841,7 +9946,32 @@ self
       case "page": self.tabViewStyle(.page)
       case "tabBarOnly": if #available(iOS 18, *) { self.tabViewStyle(.tabBarOnly) } else { self }
       case "automatic": self.tabViewStyle(.automatic)
-    default: let _ = preconditionFailure("invalid tabViewStyle: \(value)")
+    default:
+      let record = OneNativeSDKRecord(value, "tabViewStyle")
+      switch record.kind {
+      case "sidebarAdaptable":
+        switch record.overload([(labels: [], required: [])], chain: []) {
+        case 0: if #available(iOS 18, *) { self.tabViewStyle(.sidebarAdaptable) } else { self }
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      case "page":
+        switch record.overload([(labels: [], required: []), (labels: ["indexDisplayMode"], required: ["indexDisplayMode"])], chain: []) {
+        case 0: self.tabViewStyle(.page)
+        case 1: self.tabViewStyle(.page(indexDisplayMode: record.fields["indexDisplayMode"].map { oneNativeSDKValuePageTabViewStyleIndexDisplayMode($0, record.context + ".indexDisplayMode") }!))
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      case "tabBarOnly":
+        switch record.overload([(labels: [], required: [])], chain: []) {
+        case 0: if #available(iOS 18, *) { self.tabViewStyle(.tabBarOnly) } else { self }
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      case "automatic":
+        switch record.overload([(labels: [], required: [])], chain: []) {
+        case 0: self.tabViewStyle(.automatic)
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+      }
     }
   }
 
@@ -9120,7 +10250,7 @@ if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Se
       case "clear": self.tint(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.tint(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.tint(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: let _ = preconditionFailure("invalid tintWithOptionalColor: \(value)")
+    default: self.tint(oneNativeSDKValueColor(value, "tintWithOptionalColor") as SwiftUI.Color?)
     }
   }
 
@@ -9536,7 +10666,7 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTracking(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.tracking(CGFloat(number))
       } else { preconditionFailure("invalid tracking: \(value)") }
   }
@@ -9578,6 +10708,7 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
     self.transaction(argument0)
   }
 
+#if ONE_GROUP_CREDENTIALS
   @ViewBuilder fileprivate func oneNativeSDKTransactionTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18.1, *) {
       let registered: OneNativeRegisteredModifier = {
@@ -9590,6 +10721,7 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
       registered.apply(AnyView(self))
     } else { self }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKTransformAnchorPreference(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.transformAnchorPreference(key: OneNativeSDKRectAnchorKey.self, value: .bounds) { current, anchor in current = anchor }
@@ -9662,13 +10794,13 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentDefaultMinListRowHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.transformEnvironment(\.defaultMinListRowHeight, transform: { environmentValue in environmentValue += CGFloat(number) })
       } else { preconditionFailure("invalid transformEnvironmentDefaultMinListRowHeight: \(value)") }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentDisplayScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.transformEnvironment(\.displayScale, transform: { environmentValue in environmentValue += CGFloat(number) })
       } else { preconditionFailure("invalid transformEnvironmentDisplayScale: \(value)") }
   }
@@ -9704,13 +10836,13 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentLineSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.transformEnvironment(\.lineSpacing, transform: { environmentValue in environmentValue += CGFloat(number) })
       } else { preconditionFailure("invalid transformEnvironmentLineSpacing: \(value)") }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentMinimumScaleFactor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.transformEnvironment(\.minimumScaleFactor, transform: { environmentValue in environmentValue += CGFloat(number) })
       } else { preconditionFailure("invalid transformEnvironmentMinimumScaleFactor: \(value)") }
   }
@@ -9742,10 +10874,11 @@ self
       case "slide": self.transition(SwiftUI.AnyTransition.slide)
       case "identity": self.transition(SwiftUI.AnyTransition.identity)
       case "scale": self.transition(SwiftUI.AnyTransition.scale)
-    default: let _ = preconditionFailure("invalid transition: \(value)")
+    default: self.transition(oneNativeSDKValueAnyTransition(value, "transition"))
     }
   }
 
+#if ONE_GROUP_TRANSLATION
   @ViewBuilder fileprivate func oneNativeSDKTranslationPresentation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 17.4, *) {
       let values: [String?] = {
@@ -9765,7 +10898,9 @@ self
     self.translationPresentation(isPresented: argument0, text: argument1)
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_TRANSLATION
   @ViewBuilder fileprivate func oneNativeSDKTranslationTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) { self.translationTask(source: nil, target: nil, action: { session in
       let payload: [String: Any]
@@ -9780,6 +10915,7 @@ self
       emit("translationTask", encoded)
     }) } else { self }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKTruncationMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -9864,7 +11000,7 @@ self
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid underline.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "underline.color")
       }
     }()
     self.underline(argument0, pattern: argument1, color: argument2)
@@ -9935,6 +11071,7 @@ self
     self.userActivity(argument0, isActive: argument1, argument2)
   }
 
+#if ONE_GROUP_WALLET
   @ViewBuilder fileprivate func oneNativeSDKVerifyIdentityWithWalletButtonStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -9943,6 +11080,7 @@ self
     default: let _ = preconditionFailure("invalid verifyIdentityWithWalletButtonStyle: \(value)")
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKVisualEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let decoded: [String] = {
@@ -9962,6 +11100,7 @@ self
     }
   }
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewBackForwardNavigationGestures(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -9971,7 +11110,9 @@ self
     default: let _ = preconditionFailure("invalid webViewBackForwardNavigationGestures: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewContentBackground(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -9981,7 +11122,9 @@ self
     default: let _ = preconditionFailure("invalid webViewContentBackground: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewElementFullscreenBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -9991,7 +11134,9 @@ self
     default: let _ = preconditionFailure("invalid webViewElementFullscreenBehavior: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewLinkPreviews(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -10001,7 +11146,9 @@ self
     default: let _ = preconditionFailure("invalid webViewLinkPreviews: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewMagnificationGestures(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -10011,7 +11158,9 @@ self
     default: let _ = preconditionFailure("invalid webViewMagnificationGestures: \(value)")
     }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewOnScrollGeometryChangeWithContainerSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) { self.webViewOnScrollGeometryChange(for: CoreFoundation.CGSize.self, of: { $0.containerSize }, action: { oldValue, newValue in
       let payload = (["oldValue": (["width": Double(oldValue.width), "height": Double(oldValue.height)] as [String: Any]), "newValue": (["width": Double(newValue.width), "height": Double(newValue.height)] as [String: Any])] as [String: Any])
@@ -10020,7 +11169,9 @@ self
       emit("webViewOnScrollGeometryChangeWithContainerSize", encoded)
     }) } else { self }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewOnScrollGeometryChangeWithContentOffset(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) { self.webViewOnScrollGeometryChange(for: CoreFoundation.CGPoint.self, of: { $0.contentOffset }, action: { oldValue, newValue in
       let payload = (["oldValue": (["x": Double(oldValue.x), "y": Double(oldValue.y)] as [String: Any]), "newValue": (["x": Double(newValue.x), "y": Double(newValue.y)] as [String: Any])] as [String: Any])
@@ -10029,7 +11180,9 @@ self
       emit("webViewOnScrollGeometryChangeWithContentOffset", encoded)
     }) } else { self }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewOnScrollGeometryChangeWithContentSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) { self.webViewOnScrollGeometryChange(for: CoreFoundation.CGSize.self, of: { $0.contentSize }, action: { oldValue, newValue in
       let payload = (["oldValue": (["width": Double(oldValue.width), "height": Double(oldValue.height)] as [String: Any]), "newValue": (["width": Double(newValue.width), "height": Double(newValue.height)] as [String: Any])] as [String: Any])
@@ -10038,7 +11191,9 @@ self
       emit("webViewOnScrollGeometryChangeWithContentSize", encoded)
     }) } else { self }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewScrollPosition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) {
       let point: CGPoint? = {
@@ -10060,7 +11215,9 @@ self
       }))
     } else { self }
   }
+#endif
 
+#if ONE_GROUP_WEB
   @ViewBuilder fileprivate func oneNativeSDKWebViewTextSelection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -10069,6 +11226,7 @@ self
     default: let _ = preconditionFailure("invalid webViewTextSelection: \(value)")
     }
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKWindowToolbarFullScreenVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -10078,6 +11236,7 @@ self
     }
   }
 
+#if ONE_GROUP_WORKOUT
   @ViewBuilder fileprivate func oneNativeSDKWorkoutPreview(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -10095,6 +11254,7 @@ self
     }()
     self.workoutPreview(argument0, isPresented: argument1)
   }
+#endif
 
   @ViewBuilder fileprivate func oneNativeSDKWritingDirection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -10128,7 +11288,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKZIndex(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.zIndex(number)
       } else { preconditionFailure("invalid zIndex: \(value)") }
   }

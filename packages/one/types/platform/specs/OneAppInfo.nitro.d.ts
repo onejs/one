@@ -1,6 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules';
 export interface OneAppInfo extends HybridObject<{
-    ios: 'swift';
     android: 'kotlin';
 }> {
     readonly version: string | undefined;

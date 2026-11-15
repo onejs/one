@@ -22,10 +22,11 @@ function lastValue<T>(arg: T | T[]): T | undefined {
   return arg
 }
 
-if (typeof import.meta.dirname !== 'string') {
-  console.error(
-    `One uses "import.meta.dirname", for Node this is version 20.11.0 or greater`
-  )
+const [nodeMajor, nodeMinor] = process.versions.node.split('.').map((part) => Number(part))
+if (
+  !((nodeMajor === 20 && nodeMinor >= 19) || (nodeMajor === 22 && nodeMinor >= 12) || nodeMajor > 22)
+) {
+  console.error('One requires Node ^20.19.0 || >=22.12.0')
   process.exit(1)
 }
 

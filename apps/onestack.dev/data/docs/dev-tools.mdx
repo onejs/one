@@ -2,11 +2,16 @@
 title: Dev Tools
 ---
 
-One includes a unified development tools panel to help you debug and optimize your app. Open it with **Alt+Space** (Option+Space on Mac) to see a spotlight-style picker.
+One has two development tool surfaces:
+
+- A browser panel for web apps, with SEO, route, loader, error, and source inspection panels.
+- React Native DevTools for iOS and Android apps, where One serves the stock debugger and can host Rozenite plugins.
+
+Both work in development with no setup. You can add your own panels to the web overlay, and Rozenite plugin packages automatically appear in React Native DevTools.
 
 ## Opening Dev Tools
 
-Press **Alt+Space** to open the spotlight menu, then select a tool. You can also use keyboard shortcuts to jump directly to a specific panel:
+For the web overlay, press **Alt+Space** (Option+Space on Mac) to open the spotlight menu, then select a tool. You can also use keyboard shortcuts to jump directly to a specific panel:
 
 - **Alt+S** - SEO Preview
 - **Alt+R** - Route Info
@@ -14,6 +19,10 @@ Press **Alt+Space** to open the spotlight menu, then select a tool. You can also
 - **Alt+E** - Errors
 
 Press **Escape** to close any panel.
+
+For React Native, press **j** or **dt** in the `one dev` terminal. That opens React Native DevTools for the connected Hermes app, with React DevTools, the JavaScript console, sources, network, and memory panels.
+
+React Native DevTools attaches to one app at a time. If another debugger or a CDP client is attached, close it before opening DevTools again.
 
 ## SEO Preview
 
@@ -119,6 +128,104 @@ The dev tools panel is:
 - **Edge Snapping** - Snaps to screen edges with 10px padding
 - **Resizable** - Tracks window resize when snapped to edges
 
+## Extending the web panel
+
+A plugin is a module that default exports a `OneDevtoolsPlugin`. Use the `defineDevtoolsPlugin` helper so the editor checks the shape:
+
+```ts
+// devtools/runtime-inspector.ts
+import { defineDevtoolsPlugin } from 'one/devtools'
+
+export default defineDevtoolsPlugin({
+  name: 'runtime-inspector',
+  title: 'Runtime Inspector',
+  category: 'Tuning',
+  // An iframe keeps a devtool that already runs its own UI and server as-is.
+  panel: {
+    url: 'http://localhost:4577',
+  },
+  actions: [
+    {
+      id: 'open-web-panel',
+      title: 'Open Runtime Inspector',
+      run() {
+        window.open('http://localhost:4577', '_blank')
+      },
+    },
+  ],
+})
+```
+
+Register it in `vite.config.ts`:
+
+```ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      devtools: {
+        plugins: ['./devtools/runtime-inspector.ts'],
+      },
+    }),
+  ],
+}
+```
+
+Plugin modules run in the browser. They can add a panel, actions, or both:
+
+- **`panel.url`** loads an existing devtools page in an iframe. Use this for tools that already run their own frontend and server.
+- **`panel.mount(root, context)`** renders a panel directly into the overlay. Return a cleanup function to remove listeners when the panel closes.
+- **`actions`** appear in the Alt+Space spotlight and receive the same context as panels.
+
+The context exposes `project`, `url`, `openPanel`, and `closePanel`. Panel ids are namespaced as `plugin:<name>`. Two plugins cannot claim the same name.
+
+Plugins are loaded only in development. The module is resolved through Vite, so local TypeScript and JSX files work without a build step.
+
+## Rozenite plugins in React Native DevTools
+
+One hosts the [Rozenite](https://github.com/callstackincubator/rozenite) plugin convention for React Native. If a Rozenite plugin package is installed in your app, One mounts its plugin host on the native dev server and React Native DevTools shows the panels. Existing Rozenite plugins work without a Metro wrapper or a separate `withRozenite` config.
+
+```sh
+bun add -d @rozenite/storage-plugin
+```
+
+On the next `one dev`, pressing **j** or **dt** opens DevTools with the Storage panel. One logs the plugin names it found:
+
+```text
+[one] React Native DevTools plugins: @rozenite/storage-plugin (open with dt or j)
+```
+
+Discovery checks direct dependencies for a Rozenite manifest (`dist/rozenite.json`), the same convention Rozenite's Metro integration uses. To pin the list or exclude a plugin:
+
+```ts
+one({
+  devtools: {
+    rozenite: {
+      include: ['@rozenite/storage-plugin'],
+      exclude: ['@rozenite/network-activity-plugin'],
+      pluginDisplay: 'sidebar', // or 'tabs'
+    },
+  },
+})
+```
+
+Set `rozenite: false` to keep the stock React Native DevTools without the Rozenite host. When no Rozenite plugin is installed, One leaves the debugger frontend untouched.
+
+One hosts Rozenite when One's Vite bundler serves the native app, which is the default. If you set `native.bundler: 'metro'`, keep using Rozenite's own `withRozenite` Metro wrapper instead.
+
+The device half of a Rozenite plugin still lives in your app. Follow the plugin's install instructions and import it once from your app entry when it asks you to.
+
+### Runtime Inspector
+
+[Runtime Inspector](https://github.com/AmatoGiulio/runtime-inspector) is the reference adapter for this API. It already ships its semantics and layouts as a protocol-first package with a Rozenite panel. In a One app:
+
+1. Add `@runtime-inspector/react-native` and `@runtime-inspector/panel-rozenite` to the app.
+2. Import the panel once from the app entry: `import '@runtime-inspector/panel-rozenite'`.
+3. Press **j** or **dt**. Runtime Inspector appears in React Native DevTools through Rozenite.
+
+Its web panel already runs as its own server, so the web adapter is a plugin with `panel: { url }` like the example above. No Runtime Inspector protocol change is needed for either host.
+
 ## Configuration
 
 Dev tools are enabled by default in development mode. To disable them, set:
@@ -130,8 +237,26 @@ import { one } from 'one/vite'
 export default {
   plugins: [
     one({
-      devtools: false
-    })
-  ]
+      devtools: false,
+    }),
+  ],
 }
+```
+
+To keep the web tools but change individual features:
+
+```ts
+one({
+  devtools: {
+    inspector: true,
+    editor: 'cursor',
+    seoPreview: true,
+    // browser plugin modules for the One overlay
+    plugins: ['./devtools/my-panel.ts'],
+    // Rozenite host for React Native DevTools
+    rozenite: {
+      pluginDisplay: 'tabs',
+    },
+  },
+})
 ```

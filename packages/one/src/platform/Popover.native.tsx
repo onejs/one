@@ -1,5 +1,5 @@
 import { Platform } from 'react-native'
-import { InsideContainer, assertOneNativeChildren } from './Containers.native'
+import { InsideContainer, assertOneNativeChildren, swiftStyleProps } from './Containers.native'
 import { useControlled } from './controlled'
 import { assertSwiftUIValue } from './generated/swiftui'
 import type { PopoverProps } from './generated/popoverTypes'
@@ -14,21 +14,17 @@ export function Popover({
   revision = 0,
   arrowEdge,
   presentationCompactAdaptation = 'automatic',
-  contentWidth,
-  contentHeight,
   content,
   children,
   style,
+  swiftStyle,
   ...props
 }: PopoverProps) {
   if (typeof isPresented !== 'boolean')
     throw new Error('Swift.Popover isPresented must be a boolean')
-  // SwiftUI sizes a popover from its content, and a React Native subtree has no ideal
-  // size, so the box is given rather than measured.
-  if (!Number.isFinite(contentWidth) || contentWidth <= 0)
-    throw new Error('Swift.Popover contentWidth must be a positive number')
-  if (!Number.isFinite(contentHeight) || contentHeight <= 0)
-    throw new Error('Swift.Popover contentHeight must be a positive number')
+  // SwiftUI sizes a popover from its content, whose laid-out size the bridge
+  // measures back as the ideal size. give the content a fixed size; a flexible
+  // child fills the provisional popover and has no smaller size to fit.
   const iosVersion = Number.parseFloat(String(Platform.Version))
   if (arrowEdge !== undefined) assertSwiftUIValue('Edge', arrowEdge, iosVersion)
   assertSwiftUIValue('PresentationAdaptation', presentationCompactAdaptation, iosVersion)
@@ -43,14 +39,13 @@ export function Popover({
   return (
     <NativePopover
       {...props}
+      {...swiftStyleProps(swiftStyle)}
       style={[{ alignSelf: 'stretch' }, style]}
       isPresented={isPresented}
       revision={revision}
       acknowledgedEvent={controlled.acknowledgedEvent}
       arrowEdge={arrowEdge ?? ''}
       presentationCompactAdaptation={presentationCompactAdaptation}
-      contentWidth={contentWidth}
-      contentHeight={contentHeight}
       onNativePopoverIsPresentedChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }

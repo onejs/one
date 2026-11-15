@@ -11,6 +11,6 @@ export interface DocumentPickerNativeResult {
   assets?: DocumentPickerAsset[]
 }
 
-export interface OneDocumentPicker extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
+export interface OneDocumentPicker extends HybridObject<{ android: 'kotlin' }> {
   getDocument(options: ResolvedDocumentPickerOptions): Promise<DocumentPickerNativeResult>
 }

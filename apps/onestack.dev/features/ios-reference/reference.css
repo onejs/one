@@ -1,0 +1,39 @@
+.ios-reference-shell { max-width: 1250px; margin: 0 auto; }
+.ios-reference-sidebar { position: fixed; top: 0; bottom: 0; width: 245px; padding: 28px 20px 40px; overflow-y: auto; z-index: 100; }
+.ios-reference-logo { height: 110px; }
+.ios-reference-main { margin-left: 270px; padding: 75px 28px 100px; min-width: 0; }
+.ios-reference-main h2, .ios-reference-main h3, .ios-reference-main p { display: block; }
+.ios-reference-title { font: 650 clamp(28px, 4vw, 44px)/1.15 var(--font-heading, system-ui); letter-spacing: -1px; overflow-wrap: anywhere; margin: 0; }
+.ios-reference-shell a { color: inherit; text-decoration: none; }
+.ios-reference-shell a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.ios-framework-toggle { display: none; }
+.ios-framework-navigation > nav { display: block; }
+.ios-framework-navigation details { margin: 12px 0; font-size: 14px; }
+.ios-reference-shell summary { cursor: pointer; padding: 8px 0; }
+.ios-reference-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 40px; }
+.ios-reference-card { min-width: 0; }
+.ios-reference-code { margin: 8px 0; padding: 16px; border: 1px solid var(--color5); background: var(--color2); border-radius: 10px; font: 13px/1.65 monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+.ios-reference-comment { white-space: pre-wrap; overflow-wrap: anywhere; }
+.ios-reference-member { border-bottom: 1px solid var(--color5); padding: 24px 0; scroll-margin-top: 28px; }
+.ios-reference-member h3 { overflow-wrap: anywhere; display: block; margin: 8px 0 14px; font-size: 20px; line-height: 1.4; }
+.ios-reference-member > span { display: block; }
+.ios-reference-shell input { box-sizing: border-box; width: 100%; min-width: 0; height: 42px; border: 1px solid var(--color6); border-radius: 8px; background: var(--color2); color: var(--color12); padding: 10px 12px; font-family: inherit; font-size: 14px; line-height: 1.4; }
+.ios-reference-shell input:focus { outline: 2px solid var(--color9); outline-offset: 2px; }
+.ios-search-name { display: block; overflow-wrap: anywhere; font-size: 14px; }
+.ios-search-framework { opacity: .65; }
+.ios-reference-breadcrumbs { font-size: 14px; margin-bottom: 28px; overflow-wrap: anywhere; }
+.ios-reference-types { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 20px 0 40px; }
+.ios-reference-types a { overflow-wrap: anywhere; }
+.ios-reference-skipped { padding: 14px 0; border-bottom: 1px solid var(--color5); overflow-wrap: anywhere; }
+@media (max-width: 1050px) {
+  .ios-reference-sidebar { position: relative; width: auto; padding: 50px 24px 0; }
+  .ios-reference-logo { display: none; }
+  .ios-reference-snapshot { display: none; }
+  .ios-reference-main { margin-left: 0; padding: 32px 24px 70px; }
+  .ios-framework-toggle { display: flex; width: 100%; }
+  .ios-framework-navigation > nav:not(.is-expanded) { display: none; }
+}
+@media (min-width: 1051px) { .ios-framework-navigation > nav { display: block !important; } }
+@media (max-width: 600px) {
+  .ios-reference-grid, .ios-reference-types { grid-template-columns: minmax(0, 1fr); }
+}

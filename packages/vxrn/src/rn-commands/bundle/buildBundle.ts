@@ -1,7 +1,9 @@
-import FSExtra from 'fs-extra'
 import { clearTransformCache } from '@vxrn/compiler'
 import type { BundleCommandArgs } from '@vxrn/vite-plugin-metro/rn-commands'
+import { cpSync, existsSync, mkdirSync, renameSync, rmSync } from 'node:fs'
 import { resolveConfig } from 'vite'
+import { dirname, join, resolve } from 'node:path'
+import { outputFileSync } from '../../utils/fs'
 import { loadEnv } from '../../exports/loadEnv'
 import { buildNativeBundle } from '../../utils/createNativeDevEngine'
 
@@ -14,7 +16,7 @@ export async function buildBundle(
   bundleImpl: any = null
 ): Promise<void> {
   const {
-    platform, // Android is not supported yet.
+    platform,
     dev,
     bundleOutput,
     // React Native's `--bundle-encoding` names a Node Buffer encoding.
@@ -46,7 +48,7 @@ export async function buildBundle(
     throw new Error(`Expected ctx.root to be a string, but got ${typeof root}`)
   }
 
-  const viteConfig = await resolveConfig({}, 'build', 'production')
+  const viteConfig = await resolveConfig({}, 'build', dev ? 'development' : 'production')
 
   // resolving the config runs the metro plugin only in metro mode, and metro is
   // an optional peer, so only that mode loads it
@@ -62,7 +64,7 @@ export async function buildBundle(
   }
 
   process.env.IS_VXRN_CLI = 'true'
-  loadEnv(dev ? 'development' : 'production', root)
+  await loadEnv(dev ? 'development' : 'production', root)
 
   if (!dev) {
     process.env.NODE_ENV = 'production'
@@ -92,13 +94,33 @@ export async function buildBundle(
   })
   const builtBundle = result.code
 
+  // gradle sends drawable resources to assetsDest but packages arbitrary files
+  // from the bundle directory. DOM pages must share that assets root with JS.
+  if (platform === 'android' && assetsDest) {
+    const source = join(assetsDest, 'one-dom')
+    const destination = join(dirname(bundleOutput), 'one-dom')
+    if (resolve(source) !== resolve(destination)) {
+      rmSync(destination, { recursive: true, force: true })
+      if (existsSync(source)) {
+        mkdirSync(dirname(destination), { recursive: true })
+        try {
+          renameSync(source, destination)
+        } catch (error) {
+          if ((error as NodeJS.ErrnoException).code !== 'EXDEV') throw error
+          cpSync(source, destination, { recursive: true })
+          rmSync(source, { recursive: true })
+        }
+      }
+    }
+  }
+
   // write sourcemap if available and requested
   if (result.map && args.sourcemapOutput) {
-    FSExtra.outputFileSync(args.sourcemapOutput, result.map, { encoding: 'utf8' })
+    outputFileSync(args.sourcemapOutput, result.map, { encoding: 'utf8' })
   }
 
   console.info(`Writing bundle to ${bundleOutput}...`)
-  FSExtra.outputFileSync(bundleOutput, builtBundle, { encoding: bundleEncoding })
+  outputFileSync(bundleOutput, builtBundle, { encoding: bundleEncoding })
   console.info('Done.')
 
   // Prevent the process not getting exited for some unknown reason.

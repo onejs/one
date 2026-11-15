@@ -360,6 +360,11 @@ takes under `one prebuild`:
 | `holdLaunchScreen: true` | keeps the launch screen up until first content, as `one prebuild` does |
 | `nativeSource: true` | imports the app's Swift and Kotlin files, as `one prebuild` does |
 
+Expo prebuild also generates the iOS SDK bindings that `one prebuild`
+generates: the `OneSDKBindings` pod for each `one/ios/<Framework>` the app
+imports, and their TypeScript facades. It raises the iOS deployment target to
+the minimum One requires.
+
 Other Info.plist keys, such as `NSUserTrackingUsageDescription` for App
 Tracking, go in the Expo config's `ios.infoPlist`. Alternate app icons need
 their icon sets in the Xcode asset catalog and the Alternate App Icon Sets

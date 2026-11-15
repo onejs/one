@@ -1,19 +1,30 @@
+import { Angle, Gradient, Path, Shading, type CanvasProps } from './canvas'
 import { unsupportedControls } from './generated/unsupportedControls'
+import type {
+  UICollectionView,
+  UICollectionViewDiffableDataSource,
+  UITableView,
+  UITableViewDiffableDataSource,
+} from 'one/ios/UIKit'
 import type {
   ButtonProps,
   ContextMenuProps,
   ControlGroupProps,
   DisclosureGroupProps,
   DividerProps,
+  UIKitViewProps,
+  UIKitContentProps,
   FormProps,
   FullScreenCoverProps,
   GlassProps,
   GlassEffectContainerProps,
   GeometryReaderProps,
+  TimelineViewProps,
+  OutlineGroupProps,
+  TableProps,
   GroupProps,
   GroupBoxProps,
   ViewThatFitsProps,
-  HostProps,
   LabeledContentProps,
   LazyHStackProps,
   LazyVStackProps,
@@ -39,12 +50,13 @@ import type {
   SheetProps,
   SlotProps,
   SpacerProps,
-  StackProps,
+  HStackProps,
+  VStackProps,
   SwipeActionsActionsProps,
   SwipeActionsProps,
   TabProps,
   TabSectionProps,
-  TabsProps,
+  TabViewProps,
   TabViewBottomAccessoryProps,
   TabViewSlotProps,
   ToolbarItemGroupProps,
@@ -52,13 +64,14 @@ import type {
   ToolbarProps,
   ToolbarContentProps,
   ToolbarSpacerProps,
+  DefaultToolbarItemProps,
   ZStackProps,
-  SDKAnimation,
+  SDKAnimationValue,
   WithAnimationCompletionCriteria,
 } from './types'
 
-function Tabs(_props: TabsProps): never {
-  throw new Error('Swift.Tabs requires an iOS native build')
+function TabView(_props: TabViewProps): never {
+  throw new Error('Swift.TabView requires an iOS native build')
 }
 function Tab(_props: TabProps): never {
   throw new Error('Swift.Tab requires an iOS native build')
@@ -91,13 +104,10 @@ function FullScreenCover(_props: FullScreenCoverProps): never {
 function Popover(_props: PopoverProps): never {
   throw new Error('Swift.Popover requires an iOS native build')
 }
-function Host(_props: HostProps): never {
-  throw new Error('Swift.Host requires an iOS native build')
-}
-function HStack(_props: StackProps): never {
+function HStack(_props: HStackProps): never {
   throw new Error('Swift.HStack requires an iOS native build')
 }
-function VStack(_props: StackProps): never {
+function VStack(_props: VStackProps): never {
   throw new Error('Swift.VStack requires an iOS native build')
 }
 function ZStack(_props: ZStackProps): never {
@@ -136,6 +146,18 @@ function GeometryReader(_props: GeometryReaderProps): never {
   throw new Error(
     'Swift.GeometryReader requires an iOS native build'
   )
+}
+function TimelineView(_props: TimelineViewProps): never {
+  throw new Error('Swift.TimelineView requires an iOS native build')
+}
+function OutlineGroup<Item extends object>(_props: OutlineGroupProps<Item>): never {
+  throw new Error('Swift.OutlineGroup requires an iOS native build')
+}
+function Table<Item extends object>(_props: TableProps<Item>): never {
+  throw new Error('Swift.Table requires an iOS native build')
+}
+function Canvas(_props: CanvasProps): never {
+  throw new Error('Swift.Canvas requires an iOS native build')
 }
 function Slot(_props: SlotProps): never {
   throw new Error('Swift.Slot requires an iOS native build')
@@ -185,6 +207,22 @@ function DisclosureGroup(_props: DisclosureGroupProps): never {
 }
 function Divider(_props: DividerProps): never {
   throw new Error('Swift.Divider requires an iOS native build')
+}
+function UIKitView(_props: UIKitViewProps): never {
+  throw new Error('Swift.UIKitView requires an iOS native build')
+}
+function UIKitContent(_props: UIKitContentProps): never {
+  throw new Error('Swift.UIKitContent requires an iOS native build')
+}
+function collectionCellSource(
+  _view: UICollectionView
+): Promise<UICollectionViewDiffableDataSource<number, number>> {
+  return Promise.reject(new Error('Swift.collectionCellSource requires an iOS native build'))
+}
+function tableCellSource(
+  _view: UITableView
+): Promise<UITableViewDiffableDataSource<number, number>> {
+  return Promise.reject(new Error('Swift.tableCellSource requires an iOS native build'))
 }
 function Link(_props: LinkProps): never {
   throw new Error('Swift.Link requires an iOS native build')
@@ -266,14 +304,25 @@ function ToolbarSpacer(_props: ToolbarSpacerProps): never {
     'Swift.ToolbarSpacer requires an iOS native build'
   )
 }
+function DefaultToolbarItem(_props: DefaultToolbarItemProps): never {
+  throw new Error(
+    'Swift.DefaultToolbarItem requires an iOS native build'
+  )
+}
 import { ArrangementView } from './ArrangementView'
 import type { KeyframeAnimatorProps, KeyframeValue, PhaseAnimatorProps } from './animatorTypes'
 import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes'
 import type { MapWithControlsProps } from './mapControls'
+import type { PickerWithChildrenProps } from './pickerChildren'
 // the map's controls slot is part of its props on every platform; off ios the
 // map itself throws, so children never mount there either.
 function MapWithControlsStub(_props: MapWithControlsProps): never {
   throw new Error('Swift.Map requires an iOS native build')
+}
+// the picker's options slot is part of its props on every platform; off ios
+// the picker itself throws, so children never mount there either.
+function PickerWithChildrenStub(_props: PickerWithChildrenProps): never {
+  throw new Error('Swift.Picker requires an iOS native build')
 }
 function PhaseAnimator<Phase>(_props: PhaseAnimatorProps<Phase>): never {
   throw new Error('Swift.PhaseAnimator requires an iOS native build')
@@ -283,7 +332,7 @@ function KeyframeAnimator<Value extends KeyframeValue>(_props: KeyframeAnimatorP
 }
 export const Swift = {
   ArrangementView,
-  Tabs,
+  TabView,
   Tab,
   TabSection,
   TabViewBottomAccessory,
@@ -293,7 +342,6 @@ export const Swift = {
   Sheet,
   FullScreenCover,
   Popover,
-  Host,
   HStack,
   VStack,
   ZStack,
@@ -302,6 +350,14 @@ export const Swift = {
   Glass,
   GlassEffectContainer,
   GeometryReader,
+  TimelineView,
+  OutlineGroup,
+  Table,
+  Canvas,
+  Angle,
+  Path,
+  Shading,
+  Gradient,
   LabeledContent,
   Button,
   Spacer,
@@ -318,6 +374,10 @@ export const Swift = {
   ControlGroup,
   DisclosureGroup,
   Divider,
+  UIKitView,
+  UIKitContent,
+  collectionCellSource,
+  tableCellSource,
   Link,
   Group,
   GroupBox,
@@ -333,6 +393,7 @@ export const Swift = {
   ToolbarItem,
   ToolbarItemGroup,
   ToolbarSpacer,
+  DefaultToolbarItem,
   PhaseAnimator,
   KeyframeAnimator,
   KeyframeTrack,
@@ -341,7 +402,7 @@ export const Swift = {
   CubicKeyframe,
   MoveKeyframe,
   withAnimation(
-    _animation: SDKAnimation | null,
+    _animation: SDKAnimationValue | null,
     _body: () => void,
     _completion?: () => void,
     _completionCriteria?: WithAnimationCompletionCriteria
@@ -350,5 +411,6 @@ export const Swift = {
   },
   ...unsupportedControls,
   Map: MapWithControlsStub,
+  Picker: PickerWithChildrenStub,
 }
 export type * from './types'

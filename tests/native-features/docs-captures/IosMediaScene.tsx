@@ -34,12 +34,12 @@ export function IosMediaScene() {
         />
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-        {symbols.map(({ color, ...symbol }) => (
+        {symbols.map(({ color, symbolRenderingMode, ...symbol }) => (
           <One.iOS.Image
             key={symbol.systemName}
             {...symbol}
             style={{ width: 48, height: 48 }}
-            swiftStyle={{ fontSize: 40, foregroundStyle: color }}
+            swiftStyle={{ fontSize: 40, foregroundStyle: color, symbolRenderingMode }}
           />
         ))}
       </View>

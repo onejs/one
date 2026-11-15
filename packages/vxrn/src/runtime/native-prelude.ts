@@ -33,7 +33,13 @@ global.performance = global.performance || { now: function() { return Date.now()
 // hermes can expose addEventListener without the matching removal API. browser
 // libraries use addEventListener as their capability check, then crash during
 // cleanup. keep the incomplete host API from advertising browser event support.
-if (typeof global.addEventListener === 'function' && typeof global.removeEventListener !== 'function') {
+// the bundle runs at script scope, so a module's own top-level
+// function addEventListener declaration is also this global; only a native host function is cleared.
+if (
+  typeof global.addEventListener === 'function' &&
+  typeof global.removeEventListener !== 'function' &&
+  Function.prototype.toString.call(global.addEventListener).indexOf('[native code]') !== -1
+) {
   global.addEventListener = undefined;
 }
 
@@ -92,6 +98,29 @@ console.warn = console.warn || function() {};
 console.error = console.error || function() {};
 console.debug = console.debug || function() {};
 console.trace = console.trace || function() {};
+
+// forward console to the host's logging hook (logcat, os_log) like react native's console polyfill; levels: trace 0, info 1, warn 2, error 3
+if (globalThis.nativeLoggingHook) {
+  var forwardConsole = function(name, level) {
+    var original = console[name];
+    console[name] = function() {
+      var parts = [];
+      for (var i = 0; i < arguments.length; i++) {
+        var arg = arguments[i];
+        try { parts.push(typeof arg === 'string' ? arg : arg instanceof Error ? arg.stack || String(arg) : typeof arg === 'object' && arg !== null ? JSON.stringify(arg) : String(arg)); }
+        catch (e) { parts.push(String(arg)); }
+      }
+      globalThis.nativeLoggingHook(parts.join(' '), level);
+      return original.apply(console, arguments);
+    };
+  };
+  forwardConsole('trace', 0);
+  forwardConsole('log', 1);
+  forwardConsole('info', 1);
+  forwardConsole('debug', 1);
+  forwardConsole('warn', 2);
+  forwardConsole('error', 3);
+}
 
 // reanimated compat - these console methods must exist to avoid EXC_BAD_ACCESS crash
 console.assert = console.assert || function() {};

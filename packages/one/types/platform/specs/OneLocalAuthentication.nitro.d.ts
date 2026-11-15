@@ -6,7 +6,6 @@ export interface LocalAuthenticationStatus {
     errorCode?: number;
 }
 export interface OneLocalAuthentication extends HybridObject<{
-    ios: 'swift';
     android: 'kotlin';
 }> {
     canEvaluatePolicy(): LocalAuthenticationStatus;

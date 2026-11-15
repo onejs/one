@@ -1,22 +1,34 @@
 export { createApp } from './createApp'
 
+export type {
+  OneDevtoolsAction,
+  OneDevtoolsActionContext,
+  OneDevtoolsPanel,
+  OneDevtoolsPanelContext,
+  OneDevtoolsPlugin,
+} from './devtools'
 export { One } from './one'
-export { AESEncryptionKey, AESSealedData } from './platform'
+export { AESEncryptionKey, AESSealedData } from './platform/crypto/index'
+// One.UI.EdgeFade by name, so a web import does not hold the whole One namespace.
+export { EdgeFade } from './platform/effects/EdgeFade'
+export type { EdgeFadeProps } from './platform/effects/types'
+export { HapticTap } from './platform/haptics/HapticTap'
+export type { HapticTapFeedback, HapticTapProps } from './platform/haptics/types'
 // native hooks and adaptive reads are named exports for react-hooks lint.
+export { useFonts } from './platform/fonts'
+export { useKeepAwake } from './platform/keep-awake/index'
+export { useNativeState } from './platform/nativeState'
+export { useNetworkState } from './platform/network'
+export { useLocales, useCalendars } from './platform/localization'
+export { usePreventScreenCapture } from './platform/screen-capture/index'
+export { useAudioPlayer, useAudioPlayerStatus } from './platform/audio/hooks'
 export {
-  useFonts,
-  useKeepAwake,
-  useNativeState,
-  useNetworkState,
-  useLocales,
-  useCalendars,
-  usePreventScreenCapture,
-  useAudioPlayer,
-  useAudioPlayerStatus,
   useBatteryLevel,
   useBatteryState,
   useLowPowerMode,
   usePowerState,
+} from './platform/battery'
+export {
   useSizeClass,
   getSizeClass,
   useHinge,
@@ -26,10 +38,11 @@ export {
   useReservedRegionsReady,
   useWindowSegments,
   useSpanning,
-} from './platform'
+} from './platform/adaptive/index'
 export type {
   PortalProps,
   PortalHostProps,
+  AudioPlayOptions,
   AudioPlayer,
   AudioPlayerOptions,
   AudioPlayerSubscription,
@@ -61,6 +74,26 @@ export type {
   ScrollViewProxy,
   ScrollViewReaderProps,
   UnitPoint,
+  TimelineSchedule,
+  TimelineCadence,
+  TimelineViewContext,
+  TimelineViewProps,
+  OutlineGroupProps,
+  CanvasColorMode,
+  CanvasPoint,
+  CanvasProps,
+  CanvasRect,
+  CanvasSize,
+  CanvasSymbol,
+  CanvasText,
+  FillStyle,
+  GraphicsContext,
+  RoundedCornerStyle,
+  StrokeStyle,
+  TableColumn,
+  TableProps,
+  TableSort,
+  TableSortDirection,
   ComposeSnackbarHostRef,
   ComposeSnackbarShowOptions,
   ComposeSnackbarResult,
@@ -132,6 +165,8 @@ export {
   type WorkerExecutionContext,
 } from './createAPIRoute'
 export { getURL } from './getURL'
+export { setNativeApplicationContext } from './nativeApplicationContext'
+export type { NativeApplicationContext } from './nativeApplicationContext'
 export { Head } from './head'
 // for easier expo-router migration
 export {
@@ -218,6 +253,26 @@ export { router } from './router/imperative-api'
 export * as routerStore from './router/router'
 export { useNavigation } from './router/useNavigation'
 export { registerPreloadedRoute } from './router/useViteRoutes'
+export {
+  clearWarmState,
+  configureWarmState,
+  flushWarmState,
+  getHydratedWarmState,
+  hydrateWarmInitialLoad,
+  isWarmRoutePreloadPending,
+  matchRoutePattern,
+  normalizeHref,
+  normalizeRoutePattern,
+  registerWarmStateSource,
+  scheduleWarmStatePersist,
+  waitForWarmRoutePreload,
+  type WarmNavigationSnapshot,
+  type WarmRouteSnapshot,
+  type WarmStartOptions,
+  type WarmStateEnvelope,
+  type WarmStateSource,
+  type WarmStateStorage,
+} from './router/warmState'
 export type { Endpoint, LoaderProps } from './types'
 // navigation blocking
 export {
@@ -239,6 +294,16 @@ export {
   type ValidateRouteProps,
   type ValidationResult,
 } from './validateParams'
+// search param schema
+export { SearchValidationError } from './validateSearchParams'
+export type {
+  SearchParamsOptions,
+  SearchParamsUpdate,
+  SearchParamsUpdateOptions,
+  SearchValue,
+  UseSearchParamsSchemaResult,
+} from './searchParams'
+export type { StandardSchemaV1 } from './standardSchema'
 // validation state hook
 export { useValidationState, type ValidationState } from './router/router'
 // React Navigation
@@ -250,6 +315,20 @@ export {
   useLoaderState,
   type LoaderTimingEntry,
 } from './useLoader'
+export {
+  ServerJSX,
+  isLoaderJSXEnvelope,
+  registerLoaderClient,
+  registerLoaderClientModule,
+  reviveLoaderJSX,
+  type LoaderJSXSlots,
+} from './loaderJSX'
+export {
+  ClientFallback,
+  JSXSlot,
+  renderJSX,
+  type JSXEnvelope,
+} from './server/renderJSX'
 export {
   setClientMatches,
   useMatch,

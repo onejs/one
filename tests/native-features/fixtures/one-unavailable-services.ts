@@ -248,6 +248,8 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
         () => One.Widgets.write({ title: 'One', value: 'proof', subtitle: 'absent' }),
       ],
       ['Widgets.writeView', () => One.Widgets.writeView(null)],
+      ['Widgets.claimActions', () => One.Widgets.claimActions()],
+      ['Widgets.onAction', () => One.Widgets.onAction(() => {})],
       [
         'LiveActivities.startView',
         () => One.LiveActivities.startView('One', { lockScreen: null }),
@@ -271,6 +273,7 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
     await One.BackgroundTasks.submit('one-proof')
     One.BackgroundTasks.cancel('one-proof')
     await One.Widgets.write({ title: 'One', value: 'proof', subtitle: 'absent' })
+    equal(await One.Widgets.claimActions(), [], 'Widgets.claimActions')
     await One.LiveActivities.update('one-proof', { status: 'proof', value: 'absent' })
     await One.LiveActivities.end('one-proof')
   }
@@ -296,6 +299,7 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
       ? []
       : [
           One.BackgroundTasks.defineTask('one-proof', () => {}),
+          One.Widgets.onAction(() => {}),
           One.LiveActivities.onPushToken(() => {}),
         ]),
   ]
@@ -340,6 +344,12 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
   await rejected('Audio.stopRecording', () => One.Audio.stopRecording())
   await rejected('Share.share', () =>
     One.Share.share([{ type: 'text', value: 'One proof' }])
+  )
+  await rejected('ShareTarget.getDrafts', () =>
+    One.ShareTarget.getDrafts('group.dev.one.proof')
+  )
+  await rejected('ShareTarget.discardDraft', () =>
+    One.ShareTarget.discardDraft('group.dev.one.proof', 'submission-1')
   )
   await rejected('PhotoLibrary.getAsset', () => One.PhotoLibrary.getAsset('one-proof'))
   await rejected('PhotoLibrary.saveImage', () =>

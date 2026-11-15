@@ -2,6 +2,7 @@ import { Slot } from '@radix-ui/react-slot'
 import * as React from 'react'
 
 import type { OneRouter } from '../interfaces/router'
+import { applySearchParams } from '../searchParams'
 import { resolveHref } from './href'
 import { useLinkTo } from './useLinkTo'
 
@@ -12,6 +13,7 @@ export const Link = React.forwardRef(function Link(
     push: _push,
     id,
     mask,
+    searchParams,
     asChild,
     rel,
     target,
@@ -24,15 +26,18 @@ export const Link = React.forwardRef(function Link(
     // rn-flavored prop shared code passes; rnw translated it, the dom link must too
     testID,
     ...rest
-  }: OneRouter.LinkProps<any> & { testID?: string },
+  }: OneRouter.LinkProps<any> & {
+    testID?: string
+    searchParams?: OneRouter.UntypedSearchParams
+  },
   ref: React.ForwardedRef<HTMLAnchorElement>
 ) {
   const resolvedHref = React.useMemo(() => {
     if (href == null) {
       throw new Error('Link: href is required')
     }
-    return resolveHref(href)
-  }, [href])
+    return applySearchParams(resolveHref(href), searchParams)
+  }, [href, searchParams])
 
   const resolvedMask = React.useMemo(() => (mask ? resolveHref(mask) : undefined), [mask])
   const link = useLinkTo({ href: resolvedHref, replace, mask: resolvedMask })

@@ -1,5 +1,5 @@
 import path from 'node:path'
-import FSExtra from 'fs-extra'
+import { copyFile, mkdir, readFile } from 'node:fs/promises'
 import { getMimeType } from 'hono/utils/mime'
 
 import type { Plugin, ResolvedConfig } from 'vite'
@@ -90,8 +90,8 @@ export function reactNativeDevAssetPlugin(
           ASSET_DEST_DIR,
           assetData.relativeFileSystemLocation
         )
-        await FSExtra.ensureDir(assetsDestDir)
-        await FSExtra.copyFile(
+        await mkdir(assetsDestDir, { recursive: true })
+        await copyFile(
           id,
           path.join(assetsDestDir, `${assetData.name}.${assetData.type}`)
         )
@@ -137,7 +137,7 @@ export default asset;
           './' + pathname.slice(`/${DEV_ASSET_DEST_PATH}/`.length).replace(/\.*$/, '') // './src/assets/one-ball.png'
 
         try {
-          const asset = await FSExtra.readFile(assetPath)
+          const asset = await readFile(assetPath)
 
           res.setHeader(
             'content-type',

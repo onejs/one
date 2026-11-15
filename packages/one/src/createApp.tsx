@@ -2,12 +2,22 @@ import './setup'
 
 import { cloneElement } from 'react'
 import { resolveClientLoader } from './clientLoaderResolver'
+import { loaderResponseToModule } from './loaderResponseToModule'
+import { prepareSsrLoaderProps } from './loaderSearchParams'
 import { Root } from './Root'
 import { render } from './render'
 import { initClientMatches } from './router/router'
 import { registerPreloadedRoute } from './router/useViteRoutes'
+import {
+  hydrateWarmInitialLoad,
+  isWarmRoutePreloadPending,
+  isWarmStateEnabled,
+  isWarmWebRestoreEligible,
+  waitForWarmRoutePreload,
+} from './router/warmState'
 import { setupSkewProtection } from './skewProtection'
 import { handleSkewError, isChunkLoadError } from './utils/dynamicImport'
+import { readLoaderSearch } from './utils/cleanUrl'
 import { findRootLayout } from './utils/findRootLayout'
 import type { RenderAppProps } from './types'
 import type { OneLinkingConfig } from './link/getLinking'
@@ -40,6 +50,8 @@ export function createApp(options: CreateAppProps) {
 
     return {
       options,
+      // shared with the generated vercel function, which builds loader props itself
+      loaderRequest: { loaderResponseToModule, prepareSsrLoaderProps, readLoaderSearch },
       render: async (props: RenderAppProps) => {
         // set render mode env before setup so users can conditionally skip setup in ssg/spa
         const renderMode = props.mode === 'spa-shell' ? 'spa' : props.mode
@@ -209,6 +221,14 @@ export function createApp(options: CreateAppProps) {
   // skew protection: proactive version polling
   setupSkewProtection()
 
+  if (
+    options.flags?.warmStart ||
+    isWarmStateEnabled() ||
+    (typeof window !== 'undefined' && (window as any).__oneWarmStartOptions)
+  ) {
+    hydrateWarmInitialLoad({ routes: options.routes, flags: options.flags })
+  }
+
   const serverContext = getServerContext() || {}
   const routePreloads = serverContext.routePreloads
 
@@ -245,8 +265,10 @@ export function createApp(options: CreateAppProps) {
   // preload routes using build-time mapping (production SSG)
   // for SPA/dev mode, fall back to importing root layout directly
   const preloadPromises = routePreloads
-    ? Object.entries(routePreloads).map(async ([routeKey, bundlePath]) => {
-        const mod = await import(/* @vite-ignore */ bundlePath as string)
+    ? routePreloads.map(async (routeKey) => {
+        // the route import, not its chunk file: a route sharing a chunk with
+        // another route is not that chunk's namespace
+        const mod = await options.routes[routeKey]()
         registerPreloadedRoute(routeKey, mod)
         return mod
       })
@@ -273,7 +295,17 @@ export function createApp(options: CreateAppProps) {
     .then(() => {
       return resolveClientLoader(serverContext)
     })
-    .then(() => {
+    .then(async () => {
+      if (typeof window !== 'undefined' && window.location) {
+        try {
+          const currentUrl = new URL(window.location.href)
+          if (isWarmWebRestoreEligible(currentUrl) && isWarmRoutePreloadPending()) {
+            await waitForWarmRoutePreload(200)
+          }
+        } catch {
+          // ignore url parse failure
+        }
+      }
       render(
         <Root
           isClient

@@ -16,7 +16,7 @@ Loaders work similarly on native platforms as they do on web:
 
 This means native apps can use the same loader patterns as web apps, with data fetching behavior determined by the route's render mode rather than the platform.
 
-Loaders and their imports are removed from client bundles, so you can access private information from within the loader. The data returned from the loader will be passed to the client, and so should be clear of private information.
+Loaders and their imports are removed from client bundles, so server-only loader code can access private information. The data returned from a loader is sent to the client. Never return secrets or other information that should stay on the server.
 
 ## Accessing Loader Data
 
@@ -192,6 +192,10 @@ export async function loader({ path }) {
 ### request
 
 Only for [`ssr` type routes](/docs/render-modes#ssr). This will pass the same [Web standard Request object](https://developer.mozilla.org/en-US/docs/Web/API/Request) as API routes.
+
+### searchParams
+
+Only for [`ssr` type routes](/docs/render-modes#ssr). When components under the route pass a schema to [`useSearchParams(schema)`](/docs/hooks-useSearchParams#validated-search-params-in-loaders), the server validates the query before the loader runs and passes the result as `searchParams`. An invalid query answers `400` and the loader does not run; a client navigation to it loads the URL as a document so the `400` shows. Client navigation and `refetchLoader` send the page's query too, so the loader receives the same `searchParams` and its data is stored per query.
 
 ## Accepted Return Types
 

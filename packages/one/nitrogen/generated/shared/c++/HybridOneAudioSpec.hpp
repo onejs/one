@@ -17,6 +17,8 @@
 namespace margelo::nitro::one { enum class AudioRecordingPermission; }
 // Forward declaration of `AudioPlaybackStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioPlaybackStatus; }
+// Forward declaration of `AudioPlayOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioPlayOptions; }
 // Forward declaration of `AudioRecordingStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioRecordingStatus; }
 // Forward declaration of `AudioRecordingResult` to properly resolve imports.
@@ -36,6 +38,7 @@ namespace margelo::nitro::one { enum class PitchCorrectionQuality; }
 #include <NitroModules/Promise.hpp>
 #include "AudioPlaybackStatus.hpp"
 #include <string>
+#include "AudioPlayOptions.hpp"
 #include "AudioRecordingStatus.hpp"
 #include "AudioRecordingResult.hpp"
 #include <functional>
@@ -80,7 +83,7 @@ namespace margelo::nitro::one {
       // Methods
       virtual std::shared_ptr<Promise<AudioRecordingPermission>> getRecordingPermissionStatus() = 0;
       virtual std::shared_ptr<Promise<AudioRecordingPermission>> requestRecordingPermission() = 0;
-      virtual std::shared_ptr<Promise<AudioPlaybackStatus>> play(const std::string& uri) = 0;
+      virtual std::shared_ptr<Promise<AudioPlaybackStatus>> play(const std::string& uri, const AudioPlayOptions& options) = 0;
       virtual std::shared_ptr<Promise<AudioPlaybackStatus>> getPlaybackStatus() = 0;
       virtual std::shared_ptr<Promise<AudioPlaybackStatus>> pause() = 0;
       virtual std::shared_ptr<Promise<AudioPlaybackStatus>> resume() = 0;
@@ -101,6 +104,8 @@ namespace margelo::nitro::one {
       virtual std::shared_ptr<Promise<void>> playerSeek(const std::string& playerId, double seconds, std::optional<double> toleranceBeforeMs, std::optional<double> toleranceAfterMs) = 0;
       virtual void playerReplace(const std::string& playerId, const std::optional<std::string>& sourceUri, const std::optional<std::unordered_map<std::string, std::string>>& headers) = 0;
       virtual void removePlayer(const std::string& playerId) = 0;
+      virtual std::shared_ptr<Promise<void>> setPlayerNowPlayingInfo(const std::string& playerId, const AudioNowPlayingInfo& info) = 0;
+      virtual std::shared_ptr<Promise<void>> clearPlayerNowPlayingInfo(const std::string& playerId) = 0;
       virtual AudioPlayerStatus getPlayerStatus(const std::string& playerId) = 0;
       virtual void setPlayerRate(const std::string& playerId, double rate, std::optional<PitchCorrectionQuality> pitchQuality) = 0;
       virtual void setPlayerVolume(const std::string& playerId, double volume) = 0;

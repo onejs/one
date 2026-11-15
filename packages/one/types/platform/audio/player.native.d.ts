@@ -1,6 +1,6 @@
-import type { PitchCorrectionQuality } from '../specs/OneAudio.nitro';
-import type { AudioPlayer as AudioPlayerShape, AudioPlayerOptions, AudioSource, AudioStatus } from './types';
-export type * from './types';
+import type { AudioNowPlayingInfo, PitchCorrectionQuality } from '../specs/OneAudio.nitro.js';
+import type { AudioPlayer as AudioPlayerShape, AudioPlayerOptions, AudioSource, AudioStatus } from './types.js';
+export type * from './types.js';
 export declare class AudioPlayer implements AudioPlayerShape {
     private playerId;
     private removed;
@@ -27,6 +27,8 @@ export declare class AudioPlayer implements AudioPlayerShape {
     pause(): void;
     seekTo(seconds: number, toleranceMillisBefore?: number, toleranceMillisAfter?: number): Promise<void>;
     replace(source: AudioSource): void;
+    setNowPlayingInfo(info: AudioNowPlayingInfo): Promise<void>;
+    clearNowPlayingInfo(): Promise<void>;
     remove(): void;
     getStatus(): AudioStatus;
     setPlaybackRate(rate: number, pitchCorrectionQuality?: PitchCorrectionQuality): void;

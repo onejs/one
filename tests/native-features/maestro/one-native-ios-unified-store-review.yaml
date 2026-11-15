@@ -1,0 +1,28 @@
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-store-review
+- tapOn:
+    text: 'Open'
+    optional: true
+- extendedWaitUntil:
+    visible: 'Request review for proof'
+    timeout: 30000
+- tapOn:
+    id: one-native-store-review-request
+- tapOn:
+    text: 'Not Now'
+    optional: true
+- extendedWaitUntil:
+    visible: 'Status: requested'
+    timeout: 30000
+- assertVisible: 'Requests: 1'
+- tapOn:
+    id: one-native-store-review-alive
+- assertVisible: 'Status: alive'

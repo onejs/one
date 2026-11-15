@@ -1,16 +1,9 @@
-import { NitroModules } from 'react-native-nitro-modules'
+import { printNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
-import type { OnePrint, PrintResult } from '../specs/OnePrint.nitro'
+import type { PrintResult } from '../specs/OnePrint.nitro'
 import { assertPrintFileUri, assertPrintJobName } from './validate'
 
 export type { PrintResult }
-
-let hybrid: OnePrint | undefined
-
-function native(): OnePrint {
-  hybrid ??= NitroModules.createHybridObject<OnePrint>('OnePrint')
-  return hybrid
-}
 
 function isAvailable(): Promise<boolean> {
   return native().isAvailable().catch(rethrowNativeError)

@@ -7,14 +7,7 @@ private final class TextFieldModel: ObservableObject {
   @Published var controlled = OneNativeControlled<String>("")
   @Published var controlledFocus = OneNativeControlled<Bool>(false)
   @Published var label: String = ""
-  @Published var disabled: Bool = false
   @Published var prompt: String = ""
-  @Published var textFieldStyle: String = "automatic"
-  @Published var submitLabel: String = ""
-  @Published var textInputAutocapitalization: String = ""
-  @Published var autocorrectionDisabled: Bool = false
-  @Published var keyboardType: String = ""
-  @Published var textContentType: String = ""
   @Published var axis: String = "horizontal"
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
@@ -41,7 +34,7 @@ private final class TextFieldModel: ObservableObject {
   }
   var onChange: ((String, Int, Int) -> Void)?
   func change(_ value: String) {
-    guard active, !disabled, controlled.value != value else { return }
+    guard active, controlled.value != value else { return }
     controlled.change(value)
     if syncStateId != 0 { OneNativeSyncRegistry.set(Int32(syncStateId), value: value as NSObject) }
     onChange?(value, controlled.eventCount, controlled.revision)
@@ -50,14 +43,14 @@ private final class TextFieldModel: ObservableObject {
   var onFocusChange: ((Bool, Int, Int) -> Void)?
   func changeFocus(_ value: Bool) {
     hasNativeFocus = value
-    guard active, !disabled, controlledFocus.value != value else { return }
+    guard active, controlledFocus.value != value else { return }
     controlledFocus.change(value)
     onFocusChange?(value, controlledFocus.eventCount, controlledFocus.revision)
   }
   var onSubmit: ((Int) -> Void)?
   private var submitCount = 0
   func submit() {
-    guard active, !disabled else { return }
+    guard active else { return }
     submitCount += 1
     onSubmit?(submitCount)
   }
@@ -87,19 +80,12 @@ private final class TextFieldModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, syncStateId: Int, focused: Bool, acknowledgedFocusEvent: Int, focusRevision: Int, label: String, disabled: Bool, prompt: String, textFieldStyle: String, submitLabel: String, textInputAutocapitalization: String, autocorrectionDisabled: Bool, keyboardType: String, textContentType: String, axis: String) {
+  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, syncStateId: Int, focused: Bool, acknowledgedFocusEvent: Int, focusRevision: Int, label: String, prompt: String, axis: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     model.bindSyncState(syncStateId)
     if let next = model.controlledFocus.applying(focused, acknowledged: acknowledgedFocusEvent, revision: focusRevision) { model.controlledFocus = next }
     if model.label != label { model.label = label }
-    if model.disabled != disabled { model.disabled = disabled }
     if model.prompt != prompt { model.prompt = prompt }
-    if model.textFieldStyle != textFieldStyle { model.textFieldStyle = textFieldStyle }
-    if model.submitLabel != submitLabel { model.submitLabel = submitLabel }
-    if model.textInputAutocapitalization != textInputAutocapitalization { model.textInputAutocapitalization = textInputAutocapitalization }
-    if model.autocorrectionDisabled != autocorrectionDisabled { model.autocorrectionDisabled = autocorrectionDisabled }
-    if model.keyboardType != keyboardType { model.keyboardType = keyboardType }
-    if model.textContentType != textContentType { model.textContentType = textContentType }
     if model.axis != axis { model.axis = axis }
   }
 
@@ -152,12 +138,6 @@ private struct TextFieldContent: View {
       ), prompt: model.prompt.isEmpty ? nil : Text(model.prompt), axis: OneNativeGenerated.axis(model.axis)) {
         Text(model.label)
       }
-      .oneNativeTextFieldStyle(model.textFieldStyle)
-      .oneNativeSubmitLabel(model.submitLabel)
-      .oneNativeTextInputAutocapitalization(model.textInputAutocapitalization)
-      .autocorrectionDisabled(model.autocorrectionDisabled)
-      .oneNativeKeyboardType(model.keyboardType)
-      .oneNativeTextContentType(model.textContentType)
       .onSubmit(of: .text) { model.submit() }
       .focused($focused)
       .onChange(of: focused) { _, isFocused in
@@ -169,7 +149,6 @@ private struct TextFieldContent: View {
       .onAppear {
         if model.controlledFocus.value { focused = true }
       }
-      .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }

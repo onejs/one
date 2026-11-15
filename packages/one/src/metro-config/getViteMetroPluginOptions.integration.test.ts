@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
+import { createRequire } from 'node:module'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { getViteMetroPluginOptions } from './getViteMetroPluginOptions'
 
@@ -37,9 +38,7 @@ describe('getViteMetroPluginOptions babel-config coexistence', () => {
           projectRoot: isolatedApp,
           relativeRouterRoot: 'app',
         })
-      ).toThrow(
-        /Metro requires @vxrn\/vite-plugin-metro and babel-preset-expo in the app.*Install with/
-      )
+      ).toThrow(/Metro requires @vxrn\/vite-plugin-metro in the app.*Install with/)
     } finally {
       fs.rmSync(isolatedApp, { recursive: true, force: true })
     }
@@ -56,6 +55,33 @@ describe('getViteMetroPluginOptions babel-config coexistence', () => {
     // 5 One plugins (Vite path skips import-meta-env-plugin since it's
     // injected separately via getMetroBabelConfigFromViteConfig)
     expect(opts?.babelConfig?.plugins?.length).toBe(5)
+  })
+
+  it('starts Metro in an isolated app without the Expo preset, a tsconfig or One dependencies of its own', () => {
+    const isolatedApp = fs.mkdtempSync(path.join(os.tmpdir(), 'one-metro-no-expo-'))
+    const workspaceRoot = path.resolve(__dirname, '../../../../')
+    try {
+      fs.writeFileSync(
+        path.join(isolatedApp, 'package.json'),
+        JSON.stringify({ name: 'tmp' })
+      )
+      for (const name of ['one', '@vxrn/vite-plugin-metro']) {
+        const destination = path.join(isolatedApp, 'node_modules', name)
+        fs.mkdirSync(path.dirname(destination), { recursive: true })
+        fs.symlinkSync(path.join(workspaceRoot, 'node_modules', name), destination, 'dir')
+      }
+      for (const name of ['babel-preset-expo', '@vxrn/utils/empty']) {
+        expect(() => createRequire(isolatedApp + '/').resolve(name)).toThrow()
+      }
+      const opts = getViteMetroPluginOptions({
+        projectRoot: isolatedApp,
+        relativeRouterRoot: 'app',
+      })
+      expect(opts.oneViteMetroBabelConfig).toBe(true)
+      expect(opts.babelConfig?.plugins).toHaveLength(5)
+    } finally {
+      fs.rmSync(isolatedApp, { recursive: true, force: true })
+    }
   })
 
   it('still injects One plugins when the user has a babel.config.cjs', () => {

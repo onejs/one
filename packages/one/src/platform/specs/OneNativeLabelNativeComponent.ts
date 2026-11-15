@@ -42,7 +42,6 @@ type OneNativeStyleNative = Readonly<{
 }>
 interface NativeProps extends ViewProps {
   label: string
-  disabled: boolean
   systemImage: string
   swiftStyle?: OneNativeStyleNative
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>

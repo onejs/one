@@ -1,5 +1,5 @@
-import type { SpeechEvent, SpeechPermissionResponse, SpeechSession, SpeechStartOptions } from './types';
-export type * from './types';
+import type { SpeechEvent, SpeechPermissionResponse, SpeechSession, SpeechStartOptions } from './types.js';
+export type * from './types.js';
 declare function start(options: SpeechStartOptions, onEvent: (event: SpeechEvent) => void): SpeechSession;
 export declare const Speech: Readonly<{
     isAvailable: () => boolean;

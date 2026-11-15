@@ -33,8 +33,12 @@ def entered(frame, location, _):
             emit({'kind': 'change', 'value': bool(reg('x1')), 'count': reg('x2'),
                   'revision': reg('x3')})
         elif 'block_invoke.4' in name:
-            emit({'kind': 'action', 'id': objc(frame, '(id)' + str(reg('x1'))),
-                  'presenting': objc(frame, '(id)' + str(reg('x2'))), 'count': reg('x3')})
+            # past the prologue the argument registers are reused, so read the block's
+            # arguments by name.
+            arg = lambda key: frame.FindVariable(key)
+            emit({'kind': 'action', 'id': arg('id').GetObjectDescription(),
+                  'presenting': arg('presenting').GetObjectDescription(),
+                  'count': arg('eventCount').GetValueAsUnsigned()})
         elif 'viewDid' in name:
             address = reg('x0')
             controller = '(id)' + str(address)
@@ -54,6 +58,9 @@ def entered(frame, location, _):
 
 def __lldb_init_module(debugger, _):
     emit({'probe': 'starting'})
+    # the expressions never read locals. the action block's parameter is named `id`,
+    # and an injected local of that name breaks every `(id)` cast in its frame.
+    debugger.HandleCommand('settings set target.experimental.inject-local-vars false')
     target = debugger.GetSelectedTarget()
     if 'arm64' not in target.GetTriple():
         raise RuntimeError('dialog native probe requires arm64')

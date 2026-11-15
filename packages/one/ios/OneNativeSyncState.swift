@@ -1,4 +1,5 @@
 import Foundation
+import Observation
 
 // native-owned storage for observable sync state: one entry per useNativeState
 // handle, keyed by the id the JS handle carries. SwiftUI models bind by id and
@@ -9,9 +10,29 @@ final class OneNativeSyncState: NSObject {
   fileprivate let id: Int32
   fileprivate var value: NSObject
   fileprivate var listeners: [Int: (NSObject) -> Void] = [:]
+  fileprivate let observed: OneNativeSyncObserved
   fileprivate init(id: Int32, value: NSObject) {
     self.id = id
     self.value = value
+    observed = OneNativeSyncObserved(value)
+  }
+}
+
+// the entry's value as SwiftUI observes it: a body that reads it re-renders on
+// each notification, inside the notifying transaction, and stops tracking when
+// the view goes away. main thread only.
+final class OneNativeSyncObserved: Observable {
+  private let registrar = ObservationRegistrar()
+  private var stored: NSObject
+  fileprivate init(_ value: NSObject) { stored = value }
+  var value: NSObject {
+    get {
+      registrar.access(self, keyPath: \.value)
+      return stored
+    }
+    set {
+      registrar.withMutation(of: self, keyPath: \.value) { stored = newValue }
+    }
   }
 }
 
@@ -81,10 +102,22 @@ public final class OneNativeSyncRegistry: NSObject {
       let value = state.value
       let listeners = Array(state.listeners.values)
       lock.unlock()
+      state.observed.value = value
       for listener in listeners {
         listener(value)
       }
     }
+  }
+
+  // main thread only: the entry's number for a view body, observed so the body
+  // follows every write. nil when the entry is gone or holds no number.
+  static func observedNumber(_ id: Int32) -> Double? {
+    lock.lock()
+    let state = states[id]
+    lock.unlock()
+    guard let number = state?.observed.value as? NSNumber,
+      CFGetTypeID(number) != CFBooleanGetTypeID() else { return nil }
+    return number.doubleValue
   }
 
   @objc(set:value:)
@@ -135,4 +168,43 @@ public final class OneNativeSyncRegistry: NSObject {
     lock.unlock()
     notify([id])
   }
+}
+
+// a continuous style number from JavaScript: a literal, or "$sync:<id>" naming a
+// native state entry. the view body applying the style reads the entry, so
+// native writes move the view without waiting for JavaScript.
+enum OneNativeStyleNumber: Equatable {
+  case literal(Double)
+  case state(Int32)
+
+  init?(_ raw: String) {
+    if raw.hasPrefix("$sync:") {
+      guard let id = Int32(raw.dropFirst(6)), id != 0 else { return nil }
+      self = .state(id)
+    } else {
+      guard let number = Double(raw) else { return nil }
+      self = .literal(number)
+    }
+  }
+
+  var resolved: Double? {
+    switch self {
+    case .literal(let number): return number
+    case .state(let id): return OneNativeSyncRegistry.observedNumber(id)
+    }
+  }
+}
+
+// a modifier argument's number; callers reject nil and non-finite values as
+// they reject an invalid literal.
+func oneNativeStyleNumber(_ raw: String) -> Double? {
+  OneNativeStyleNumber(raw)?.resolved
+}
+
+// a fixed style field's number. literals keep their unchecked path; an entry
+// must hold a finite number.
+func oneNativeStyleFieldNumber(_ number: OneNativeStyleNumber, _ field: String) -> Double {
+  if case .literal(let value) = number { return value }
+  guard let value = number.resolved, value.isFinite else { preconditionFailure("invalid \(field): \(number)") }
+  return value
 }

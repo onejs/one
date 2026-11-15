@@ -2,6 +2,7 @@ import { validateCallback } from '../validateCallback'
 import { rethrowNativeError } from '../nativeError'
 import type {
   AudioPlaybackStatus,
+  AudioPlayOptions,
   AudioRecordingPermission,
   AudioRecordingResult,
   AudioRecordingStatus,
@@ -15,6 +16,7 @@ import { AudioPlayer, createPlayer } from './player.native'
 export type {
   AudioPlaybackState,
   AudioPlaybackStatus,
+  AudioPlayOptions,
   AudioRecordingPermission,
   AudioRecordingResult,
   AudioRecordingState,
@@ -33,8 +35,8 @@ export const Audio = Object.freeze({
     native().getRecordingPermissionStatus().catch(rethrowNativeError),
   requestRecordingPermission: (): Promise<AudioRecordingPermission> =>
     native().requestRecordingPermission().catch(rethrowNativeError),
-  play: (uri: string): Promise<AudioPlaybackStatus> =>
-    native().play(uri).catch(rethrowNativeError),
+  play: (uri: string, options?: AudioPlayOptions): Promise<AudioPlaybackStatus> =>
+    native().play(uri, options ?? {}).catch(rethrowNativeError),
   getPlaybackStatus: (): Promise<AudioPlaybackStatus> =>
     native().getPlaybackStatus().catch(rethrowNativeError),
   pause: (): Promise<AudioPlaybackStatus> => native().pause().catch(rethrowNativeError),

@@ -16,7 +16,35 @@ import {
 import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
 
 import { substituteExpoVirtualEnvSource } from './expoVirtualEnv'
+import { rejectDOMDirective } from './rejectDOMDirective'
 import { getPlatformEnv, metroPlatformToViteEnvironment } from '@vxrn/utils/platformEnv'
+
+type TransformDiagnostic = {
+  loc?: { line: number; column: number }
+  labels?: Array<{ start: number }>
+  errors?: Array<{ location?: { line: number; column: number } | null }>
+  codeFrame?: string
+  codeframe?: string | null
+}
+
+// metro reads loc to produce the file/line/column Android's red box expects.
+// oxc labels use utf-16 offsets, while babel and esbuild already carry a location.
+function createTransformError(
+  message: string,
+  code: string,
+  diagnostic: TransformDiagnostic
+) {
+  let loc = diagnostic.loc ?? diagnostic.errors?.[0]?.location
+  const label = diagnostic.labels?.[0]
+  if (!loc && label) {
+    const lines = code.slice(0, label.start).split(/\r\n|[\n\r\u2028\u2029]/)
+    loc = { line: lines.length, column: lines.at(-1)!.length }
+  }
+  return Object.assign(new Error(message), {
+    loc,
+    codeFrame: diagnostic.codeFrame ?? diagnostic.codeframe,
+  })
+}
 
 /**
  * Module-scope bindings initialized to a literal and never reassigned, so a
@@ -153,7 +181,7 @@ export type WrapModuleOptions = {
 
 // bump whenever this worker's output changes, or metro serves cached modules
 // transformed by the previous version.
-const WORKER_CACHE_KEY_VERSION = '6'
+const WORKER_CACHE_KEY_VERSION = '7'
 
 /**
  * react-native ships jsx inside plain .js files, and oxc disables jsx for .js
@@ -454,8 +482,10 @@ export function applyModuleResolverAliases(
 ): string {
   const parsed = parseSync(filename, code, { lang: langForFilename(filename) })
   if (parsed?.errors?.length) {
-    throw new Error(
-      `[vxrn/metro] Failed to parse ${filename} for alias resolution: ${parsed.errors[0].message}`
+    throw createTransformError(
+      `[vxrn/metro] Failed to parse ${filename} for alias resolution: ${parsed.errors[0].message}`,
+      code,
+      parsed.errors[0]
     )
   }
   if (!parsed?.program) return code
@@ -539,8 +569,10 @@ export function applyInlineEnvVars(
 ): string {
   const parsed = parseSync(filename, code, { lang: langForFilename(filename) })
   if (parsed?.errors?.length) {
-    throw new Error(
-      `[vxrn/metro] Failed to parse ${filename} for env inlining: ${parsed.errors[0].message}`
+    throw createTransformError(
+      `[vxrn/metro] Failed to parse ${filename} for env inlining: ${parsed.errors[0].message}`,
+      code,
+      parsed.errors[0]
     )
   }
   if (!parsed?.program) return code
@@ -757,8 +789,10 @@ const GUARD_SPECIFIERS = new Set(['server-only', 'client-only', 'web-only'])
 export function applyEnvironmentGuard(code: string, filename: string): string {
   const parsed = parseSync(filename, code, { lang: langForFilename(filename) })
   if (parsed?.errors?.length) {
-    throw new Error(
-      `[vxrn/metro] Failed to parse ${filename} for environment guards: ${parsed.errors[0].message}`
+    throw createTransformError(
+      `[vxrn/metro] Failed to parse ${filename} for environment guards: ${parsed.errors[0].message}`,
+      code,
+      parsed.errors[0]
     )
   }
   const body = parsed?.program?.body
@@ -804,8 +838,10 @@ export function applyOneRouterMetro(
 
   const parsed = parseSync(filename, code, { lang: langForFilename(filename) })
   if (parsed?.errors?.length) {
-    throw new Error(
-      `[vxrn/metro] Failed to parse ${filename} for one-router-metro: ${parsed.errors[0].message}`
+    throw createTransformError(
+      `[vxrn/metro] Failed to parse ${filename} for one-router-metro: ${parsed.errors[0].message}`,
+      code,
+      parsed.errors[0]
     )
   }
   if (!parsed?.program) return code
@@ -1284,16 +1320,20 @@ export function rewriteDependencyCalls(
   try {
     parsed = parseSync(filename, code, { lang: langForFilename(filename) })
   } catch (err: any) {
-    throw new Error(
-      `[vxrn/metro] Failed to parse ${filename} for dependency rewriting: ${err.message || err}`
+    throw createTransformError(
+      `[vxrn/metro] Failed to parse ${filename} for dependency rewriting: ${err.message || err}`,
+      code,
+      err
     )
   }
 
   // a silent bail here leaves raw require("./dep") calls that metro never
   // registered, so the module is absent from the bundle and throws at runtime.
   if (parsed?.errors?.length) {
-    throw new Error(
-      `[vxrn/metro] Failed to parse ${filename} for dependency rewriting: ${parsed.errors[0].message}`
+    throw createTransformError(
+      `[vxrn/metro] Failed to parse ${filename} for dependency rewriting: ${parsed.errors[0].message}`,
+      code,
+      parsed.errors[0]
     )
   }
 
@@ -1520,8 +1560,10 @@ export function extractDependencies(
   try {
     parseResult = parseSync(filename, code, { lang: langForFilename(filename) })
   } catch (err: any) {
-    throw new Error(
-      `[vxrn/metro] Failed to parse ${filename} for dependency extraction: ${err.message || err}`
+    throw createTransformError(
+      `[vxrn/metro] Failed to parse ${filename} for dependency extraction: ${err.message || err}`,
+      code,
+      err
     )
   }
 
@@ -1529,8 +1571,10 @@ export function extractDependencies(
   // yields zero dependencies, which metro turns into a bundle that is missing
   // modules and only fails at runtime, so surface it here instead.
   if (parseResult?.errors?.length) {
-    throw new Error(
-      `[vxrn/metro] Failed to parse ${filename} for dependency extraction: ${parseResult.errors[0].message}`
+    throw createTransformError(
+      `[vxrn/metro] Failed to parse ${filename} for dependency extraction: ${parseResult.errors[0].message}`,
+      code,
+      parseResult.errors[0]
     )
   }
 
@@ -1900,9 +1944,9 @@ export async function transform(
   data: Buffer | string,
   options: MetroWorkerOptions
 ): Promise<MetroWorkerResult> {
-  assertNoUnportedBabelPlugins(options)
-
   let sourceCode = typeof data === 'string' ? data : data.toString('utf8')
+  rejectDOMDirective(sourceCode, filename, options.platform)
+  assertNoUnportedBabelPlugins(options)
   if (/\.(swift|kt)$/.test(filename)) {
     const oneTransforms = loadOneNativeTransforms(projectRoot)
     if (!oneTransforms)
@@ -1961,8 +2005,10 @@ export async function transform(
         })
         code = minified.code
       } catch (err: any) {
-        throw new Error(
-          `[vxrn/metro] Minifier failed for ${filename}: ${err.message || err}`
+        throw createTransformError(
+          `[vxrn/metro] Minifier failed for ${filename}: ${err.message || err}`,
+          code,
+          err
         )
       }
     }
@@ -2134,7 +2180,7 @@ export async function transform(
   // types there is nothing left to generate from, and react-native's own parser
   // rejects the file with "Could not find component config".
   try {
-    const codegenRes = transformReactNativeCodegen(code, filename, projectRoot)
+    const codegenRes = transformReactNativeCodegen(code, filename)
     if (codegenRes?.code) {
       code = codegenRes.code
       if (codegenRes.map) {
@@ -2142,8 +2188,10 @@ export async function transform(
       }
     }
   } catch (err: any) {
-    throw new Error(
-      `[vxrn/metro] React Native codegen failed for ${filename}: ${err.message || err}`
+    throw createTransformError(
+      `[vxrn/metro] React Native codegen failed for ${filename}: ${err.message || err}`,
+      code,
+      err
     )
   }
 
@@ -2162,8 +2210,10 @@ export async function transform(
         }
       }
     } catch (err: any) {
-      throw new Error(
-        `[vxrn/metro] Flow transform failed for ${filename}: ${err.message || err}`
+      throw createTransformError(
+        `[vxrn/metro] Flow transform failed for ${filename}: ${err.message || err}`,
+        code,
+        err
       )
     }
   }
@@ -2279,8 +2329,10 @@ export async function transform(
         }
       }
     } catch (err: any) {
-      throw new Error(
-        `[vxrn/metro] React Compiler failed for ${filename}: ${err.message || err}`
+      throw createTransformError(
+        `[vxrn/metro] React Compiler failed for ${filename}: ${err.message || err}`,
+        code,
+        err
       )
     }
   }
@@ -2306,8 +2358,10 @@ export async function transform(
         }
       }
     } catch (err: any) {
-      throw new Error(
-        `[vxrn/metro] Worklets transform failed for ${filename}: ${err.message || err}`
+      throw createTransformError(
+        `[vxrn/metro] Worklets transform failed for ${filename}: ${err.message || err}`,
+        code,
+        err
       )
     }
   }
@@ -2331,8 +2385,10 @@ export async function transform(
       sourcemap: true,
     })
   } catch (err: any) {
-    throw new Error(
-      `[vxrn/metro] Oxc transform failed for ${filename}: ${err.message || err}`
+    throw createTransformError(
+      `[vxrn/metro] Oxc transform failed for ${filename}: ${err.message || err}`,
+      code,
+      err
     )
   }
 
@@ -2340,8 +2396,10 @@ export async function transform(
   // untransformed source here leaves jsx and typescript in place, which only
   // fails later in esbuild with a misleading message about the wrong step.
   if (oxcRes.errors?.length) {
-    throw new Error(
-      `[vxrn/metro] Oxc transform failed for ${filename}: ${oxcRes.errors[0].message || oxcRes.errors[0]}`
+    throw createTransformError(
+      `[vxrn/metro] Oxc transform failed for ${filename}: ${oxcRes.errors[0].message || oxcRes.errors[0]}`,
+      code,
+      oxcRes.errors[0]
     )
   }
 
@@ -2358,7 +2416,8 @@ export async function transform(
       code,
       filename,
       true,
-      options.type === 'script' ? undefined : 'cjs'
+      options.type === 'script' ? undefined : 'cjs',
+      !options.minify
     )
     if (esbuildRes) {
       code = esbuildRes.code
@@ -2367,8 +2426,10 @@ export async function transform(
       }
     }
   } catch (err: any) {
-    throw new Error(
-      `[vxrn/metro] native async/CJS lowering failed for ${filename}: ${err.message || err}`
+    throw createTransformError(
+      `[vxrn/metro] native async/CJS lowering failed for ${filename}: ${err.message || err}`,
+      code,
+      err
     )
   }
 
@@ -2387,8 +2448,10 @@ export async function transform(
       }
     }
   } catch (err: any) {
-    throw new Error(
-      `[vxrn/metro] Hermes loop-binding transform failed for ${filename}: ${err.message || err}`
+    throw createTransformError(
+      `[vxrn/metro] Hermes loop-binding transform failed for ${filename}: ${err.message || err}`,
+      code,
+      err
     )
   }
 
@@ -2500,8 +2563,10 @@ export async function transform(
         intermediateMaps.length = 0
       }
     } catch (err: any) {
-      throw new Error(
-        `[vxrn/metro] Minifier failed for ${filename}: ${err.message || err}`
+      throw createTransformError(
+        `[vxrn/metro] Minifier failed for ${filename}: ${err.message || err}`,
+        code,
+        err
       )
     }
   }

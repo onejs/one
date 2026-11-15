@@ -42,7 +42,7 @@ using namespace facebook::react;
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_nativeView configure:RCTNSStringFromString(next.label)
-    disabled:next.disabled value:next.value total:next.total indeterminate:next.indeterminate progressViewStyle:RCTNSStringFromString(next.progressViewStyle)];
+    value:next.value total:next.total indeterminate:next.indeterminate];
 
   [super updateProps:props oldProps:oldProps];
   // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test

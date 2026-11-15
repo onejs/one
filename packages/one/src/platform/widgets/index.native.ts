@@ -8,6 +8,12 @@ export { WidgetUI, type WidgetStyle, type ActivityView } from './view'
 export type WidgetData = { title: string; value: string; subtitle: string }
 export type LiveActivityState = { status: string; value: string }
 export type PushTokenEvent = { id: string; token: string }
+export type WidgetActionEvent = {
+  id: string
+  action: string
+  value: string | null
+  timestampMs: number
+}
 
 interface WidgetsBridge {
   writeWidget(title: string, value: string, subtitle: string): Promise<void>
@@ -18,6 +24,7 @@ interface WidgetsBridge {
   updateView(id: string, layout: string): Promise<void>
   end(id: string): Promise<void>
   pushToken(id: string): Promise<string | null>
+  claimActions(): Promise<WidgetActionEvent[]>
   addListener(event: string): void
   removeListeners(count: number): void
 }
@@ -35,6 +42,16 @@ const nativeWidgets = Object.freeze({
   },
   writeView(view: ReactNode): Promise<void> {
     return bridge().writeView(encodeWidgetView(view))
+  },
+  claimActions(): Promise<WidgetActionEvent[]> {
+    return bridge().claimActions()
+  },
+  onAction(listener: (event: WidgetActionEvent) => void): () => void {
+    const subscription = new NativeEventEmitter(bridge()).addListener(
+      'oneWidgetAction',
+      listener
+    )
+    return () => subscription.remove()
   },
 })
 
@@ -76,6 +93,12 @@ const androidWidgets = Object.freeze({
   },
   writeView(_view: ReactNode): Promise<void> {
     return Promise.reject(androidLimit('Widgets.writeView'))
+  },
+  claimActions(): Promise<WidgetActionEvent[]> {
+    return Promise.reject(androidLimit('Widgets.claimActions'))
+  },
+  onAction(_listener: (event: WidgetActionEvent) => void): () => void {
+    throw androidLimit('Widgets.onAction')
   },
 })
 

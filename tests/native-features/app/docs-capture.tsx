@@ -17,7 +17,7 @@ import { IosNavigationScene } from '../docs-captures/IosNavigationScene'
 import { IosPickersScene } from '../docs-captures/IosPickersScene'
 import { IosProgressScene } from '../docs-captures/IosProgressScene'
 import { IosStacksScene } from '../docs-captures/IosStacksScene'
-import { IosTabsScene } from '../docs-captures/IosTabsScene'
+import { IosTabViewScene } from '../docs-captures/IosTabViewScene'
 import { IosTextScene } from '../docs-captures/IosTextScene'
 import { MapScene } from '../docs-captures/MapScene'
 import { PagerScene } from '../docs-captures/PagerScene'
@@ -40,7 +40,7 @@ const scenes: Record<DocsSceneName, () => React.ReactNode> = {
   'ios-stacks': IosStacksScene,
   'ios-groups': IosGroupsScene,
   'ios-presentations': IosPresentationsScene,
-  'ios-tabs': IosTabsScene,
+  'ios-tabs': IosTabViewScene,
   'ios-navigation': IosNavigationScene,
   'ios-media': IosMediaScene,
   'ios-color': IosColorScene,

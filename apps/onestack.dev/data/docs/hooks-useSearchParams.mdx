@@ -2,7 +2,7 @@
 title: useSearchParams
 ---
 
-Returns URL search parameters as a read-only `URLSearchParams` object. This provides the standard web API for working with query strings.
+Without a schema, returns the route's path and query parameters as a read-only `URLSearchParams` object. This provides the standard web API for reading the combined parameters, rather than parsing only the URL's query string.
 
 ## Basic Usage
 
@@ -59,6 +59,103 @@ const tags = searchParams.getAll('tag')
 // tags = ['react', 'typescript', 'native']
 ```
 
+## Typed Search Params
+
+Pass a [Standard Schema](https://standardschema.dev) to read the query as typed values and get a function that updates it. Use a compatible schema from Zod, Valibot, ArkType, [Effect’s Standard Schema adapter](https://effect.website/docs/v4/schema/standard-schema), or another library that implements the standard.
+
+```tsx
+import { useSearchParams } from 'one'
+import { z } from 'zod'
+
+export const tableParams = z.object({
+  page: z.coerce.number().default(1),
+  tags: z.preprocess(
+    (value) => (Array.isArray(value) ? value : value === undefined ? [] : [value]),
+    z.array(z.string())
+  ),
+})
+
+export function Table() {
+  const [{ page, tags }, update] = useSearchParams(tableParams)
+
+  // page is a number, tags is a string[]
+  return (
+    <>
+      <Button onPress={() => update({ page: page + 1 })}>Next</Button>
+      <Button onPress={() => update({ tags: null }, { replace: true })}>Clear tags</Button>
+    </>
+  )
+}
+```
+
+The schema receives every query key as a string, or as an array of strings when the key repeats, so a schema that wants an array should accept both forms. Only keys that are in the route's query are included. Path params (including a catch-all) and the hash are left out, whether the hook is in a page or in a layout. The `{ global }` option works the same as above.
+
+### Updating
+
+`update(partial, { replace? })` merges into the current URL and navigates with `router.push`, or `router.replace` with `{ replace: true }`. Path params, other query keys and the hash are kept. A value of `null` or `undefined` removes that key. A screen that is mounted but not focused, such as a hidden tab, writes to its own route and does not carry the focused screen's hash.
+
+A schema cannot turn a value back into text, so values are written by one rule: a string, number or boolean is written as is, and an array of those becomes a repeated key. For a field whose output is not one of these (a `Date` for instance) the update takes the schema's input type, which is the text the schema reads. Anything else throws a `TypeError`.
+
+### Invalid URLs
+
+If the schema rejects the URL, `useSearchParams` throws a `SearchValidationError` while rendering, so the nearest error boundary handles it and the rest of the page is unaffected. Schemas that use `.default` or `.catch` read a bad URL as a good one.
+
+Validation is synchronous. A schema that returns a promise throws a `TypeError`. Earlier drafts let an async schema pass silently.
+
+### Typed Link
+
+One finds the schemas that your components pass to `useSearchParams` while it generates `routes.d.ts`. `Link` then checks `searchParams` against the destination route:
+
+```tsx
+<Link href="/products" searchParams={{ page: 2, tags: ['a', 'b'] }}>Page 2</Link>
+
+// type errors: misspelled key, wrong value type
+<Link href="/products" searchParams={{ pge: 2 }}>...</Link>
+<Link href="/products" searchParams={{ page: 'two' }}>...</Link>
+```
+
+A route's keys come from the schemas used by that route file, its layouts, and everything they import through relative or tsconfig path imports. Two components on one route that use the same key get the intersection of their types.
+
+Discovery reads source text and does not run your code, so a schema has to be an exported `const` (or imported from one) for One to see it. A call it cannot follow, such as an inline schema, is reported once in the terminal and leaves that route's links untyped. Dynamic `href` strings are untyped as well.
+
+Keys are plain and flat (`?page=2`), and arrays are repeated keys (`?tags=a&tags=b`).
+
+### Validated search params in loaders
+
+The same schemas also validate the query on the server before a loader runs. One finds the schemas the way it does for typed links, in the route file, its layouts and what they import, and hands them to that route's loader. A loader then receives the schemas' output as `searchParams`:
+
+```tsx fileName=app/products.tsx
+import { useLoader, type RouteType } from 'one'
+import { ProductTable } from '~/features/ProductTable' // calls useSearchParams(tableParams)
+
+export async function loader({ searchParams }: RouteType<'/products'>['LoaderProps']) {
+  // searchParams.page is a number, as the schema produces it
+  return getProducts(searchParams?.page)
+}
+```
+
+There is nothing to merge or register. Each schema validates its own copy of the original query, and the outputs are merged into one object. If a schema rejects the query, the server answers `400` with the issue messages and the loader does not run. If two schemas produce different values for the same key, or a schema returns something other than an object, the server answers `500` instead of picking one.
+
+Where it applies:
+
+- `searchParams` is passed for document requests and client navigations of [`ssr` routes](/docs/render-modes#ssr), to the page loader and to the layout loaders above it. Each loader gets the schemas found from its own file and the layouts above it. It is optional in the type, because it is absent in the cases below.
+- An `ssr` route's client navigation and `refetchLoader` send the page's query to the loader request under the reserved key `__one_search`, so the server validates it and the loader receives `searchParams` the same as on a document request. Loader data is stored per query, so push, replace, back and forward each load the data for their own query. Other routes request the loader by pathname only and keep one entry per path.
+- A query the schema rejects answers `400` and the loader does not run. A client navigation to it loads the URL as a document, so the server's `400` shows. A `refetchLoader` for it rejects with an error and the loader data stays as it was.
+- `request` in a loader that is asked for by client navigation carries the loader request URL, not the page URL. Read the query from `searchParams`.
+- `ssg` and `spa` routes do not have a query at build time and get no `searchParams`, on document requests and on client navigation.
+- The query is validated before a [`loaderCache`](/docs/routing-loader#loader-cache) coalesced result is reused. Include the query in your cache key when the data depends on it.
+- The generated Vercel function validates and passes `searchParams` the same way, using the same code as the other servers. It is covered by a local run of the generated handler, not by a deployment. The page loader also runs again during that function's render, as it did before.
+- Discovery follows static imports, so a schema in a component that is imported conditionally or with `import()` is not found, and a schema used by a component that does not render for a given URL is still checked. Schemas should accept the URLs of every state of the page.
+- Validation is for parsing input. It is not authentication or authorization.
+
+### URL encoding of arrays
+
+An array search param is now written as repeated keys everywhere the router builds a URL, because that is the only form that reads back as the same array. Before, `router.push({ pathname, params: { tags: ['a', 'b'] } })` could not round-trip through the address bar. This is a visible URL change for apps that pass arrays as search params, so it ships in a minor release.
+
+Arrays in a `Link`'s `href.params` still join with commas. For example, `href={{ pathname: '/products', params: { tags: ['a', 'b'] } }}` produces `?tags=a%2Cb`, which reads back as the single string `'a,b'`. This also loses the distinction between commas inside a value and commas between values. Use `searchParams={{ tags: ['a', 'b'] }}` on `Link` to produce repeated keys, `?tags=a&tags=b`, which `useSearchParams().getAll('tags')` reads as `['a', 'b']`.
+
+Typed `Link` discovery reads `paths` from your tsconfig and from a tsconfig it extends by relative path, but not from one it extends from a package.
+
 ## Global Option
 
 By default, `useSearchParams` only updates when the current route is focused. Pass `{ global: true }` to update on any route change:
@@ -109,19 +206,23 @@ function Filters() {
 | Hook | Returns | Use for |
 |------|---------|---------|
 | `useParams` | Plain object | Quick access to params as object |
-| `useSearchParams` | URLSearchParams | Standard web API, repeated params |
+| `useSearchParams()` without a schema | URLSearchParams | Standard web API, repeated params |
 
-Both hooks include path params and query params. Choose based on which API you prefer:
+Both `useParams()` and `useSearchParams()` without a schema include path params and query params. The return type changes how you read them, not which params are included:
 
 ```tsx
-// Object style
-const { sort, page } = useParams()
+// Route: /users/[id], URL: /users/alice?tab=profile
+const { id, tab } = useParams()
+// id === 'alice', tab === 'profile'
 
-// URLSearchParams style
 const searchParams = useSearchParams()
-const sort = searchParams.get('sort')
-const page = searchParams.get('page')
+searchParams.get('id')  // 'alice'
+searchParams.get('tab') // 'profile'
 ```
+
+If a query key has the same name as a dynamic path parameter, the path value takes precedence. For `/users/alice?id=bob&tab=profile`, both hooks above still return `id` as `'alice'`; the query value `'bob'` is not separately available through them. Use distinct names when you need both values.
+
+The [schema overload](#typed-search-params), `useSearchParams(schema)`, keeps only keys present in the query before validating them. A path-only `id` is excluded, but a query key named `id` still receives the merged path value when the names collide.
 
 ## Expo Router Compatibility
 
@@ -134,6 +235,7 @@ Prefer the non-aliased names in new code.
 
 ## Related
 
+- [Link](/docs/components-Link) - Typed `searchParams` for a destination
 - [useParams](/docs/hooks-useParams) - Get params as a plain object
 - [useActiveParams](/docs/hooks-useActiveParams) - Global params that update even when unfocused
 - [usePathname](/docs/hooks-usePathname) - Get just the pathname

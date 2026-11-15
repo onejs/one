@@ -121,12 +121,13 @@ export class BuildWorkerPool {
     preloads: string[]
     allCSS: string[]
     layoutCSS: string[]
-    routePreloads: Record<string, string>
+    routePreloads: string[]
     allCSSContents?: string[]
     criticalPreloads?: string[]
     deferredPreloads?: string[]
     useAfterLCP?: boolean
     useAfterLCPAggressive?: boolean
+    skipNativeLoaders?: boolean
   }): Promise<any> {
     if (this._terminated) {
       throw new Error('Worker pool has been terminated')

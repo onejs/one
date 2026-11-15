@@ -8,23 +8,18 @@ const schema = JSON.parse(readFileSync(new URL('../schema.json', import.meta.url
 const component = (publicName: string) =>
   schema.components.find((entry: { publicName: string }) => entry.publicName === publicName)
 
-describe('button subtitle', () => {
-  it('carries the subtitle as a string prop', () => {
-    expect(component('Button').props).toMatchObject({
-      subtitle: { type: 'string' },
+// the host is generated from the SDK Button: the label, image, subtitle and disclosure
+// indicator are React children, so the schema declares only the role and the press event.
+describe('button host', () => {
+  it('declares the role as its only prop', () => {
+    expect(component('Button').props).toEqual({
+      buttonRole: { type: 'string', enum: 'ButtonRole' },
     })
   })
 
-  it('leaves the label, image, and press contract alone', () => {
+  it('keeps the press contract', () => {
     expect(component('Button')).toMatchObject({
       name: 'OneNativeButton',
-      props: {
-        label: { type: 'string' },
-        systemImage: { type: 'string' },
-        buttonRole: { type: 'string' },
-        buttonStyle: { type: 'string' },
-        disclosureIndicator: { type: 'boolean' },
-      },
       events: {
         onNativeButtonPress: {
           eventCount: { type: 'Int32' },

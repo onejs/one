@@ -31,6 +31,9 @@ export const Pager = forwardRef<PagerRef, PagerProps>(function Pager(
         if (nativeRef.current)
           Commands.setScrollEnabledImperatively(nativeRef.current, enabled)
       },
+      getNativeScrollRef() {
+        return nativeRef.current
+      },
     }),
     []
   )

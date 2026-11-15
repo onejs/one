@@ -19,6 +19,13 @@ export declare function appIconPreviewResources(name: string | undefined): {
     android: string;
 };
 export declare function nativeAppDefines(app: NativeAppManifest | undefined): Record<string, string>;
+export interface NativeAppPatch {
+    platform: 'ios' | 'android';
+    file: string;
+    patch: (content: string) => string;
+}
+export declare const IOS_WIDGET_FAMILIES: readonly ['systemSmall', 'systemMedium', 'systemLarge', 'accessoryCircular', 'accessoryRectangular', 'accessoryInline'];
+export type IosWidgetFamily = (typeof IOS_WIDGET_FAMILIES)[number];
 export interface NativeAppManifest {
     name: string;
     displayName?: string;
@@ -78,6 +85,7 @@ export interface NativeAppManifest {
         apsEnvironment?: 'development' | 'production';
     };
     pictureInPicture?: boolean;
+    patches?: NativeAppPatch[];
     updates?: {
         url?: string;
         runtimeVersion: string;
@@ -90,16 +98,20 @@ export interface NativeAppManifest {
         screensGamma?: boolean;
         useFrameworks?: 'static' | 'dynamic';
         ccache?: boolean;
+        engine?: 'hermes' | 'bun';
         usesNonExemptEncryption?: boolean;
+        appTransportSecurity?: Record<string, PlistValue>;
         accentColor?: {
             light: string;
             dark?: string;
         };
+        assetCatalog?: string;
         faceIdUsageDescription?: string;
         fileSharing?: boolean;
         associatedDomains?: string[];
         usesAppleSignIn?: boolean;
         googleServicesFile?: string;
+        resources?: string[];
         infoPlist?: Record<string, PlistValue>;
         entitlements?: Record<string, PlistValue>;
         widgets?: {
@@ -108,6 +120,7 @@ export interface NativeAppManifest {
             displayName: string;
             description: string;
             pushNotifications?: boolean;
+            families?: IosWidgetFamily[];
         };
         backgroundTasks?: {
             refresh?: string[];
@@ -117,8 +130,12 @@ export interface NativeAppManifest {
             actions: Array<{
                 id: string;
                 title: string;
+                description?: string;
                 textParameterTitle?: string;
                 shortcutPhrase: string;
+                shortcutPhrases?: string[];
+                systemImageName?: string;
+                openAppWhenRun?: boolean;
             }>;
         };
     };
@@ -148,6 +165,9 @@ export interface NativeAppManifest {
     };
 }
 export declare function validateNativeApp(manifest: NativeAppManifest, platform?: 'ios' | 'android' | string): NativeAppManifest;
+export declare function iosUsageDescriptions(app: NativeAppManifest): Map<string, string>;
+export declare const androidNotificationPermissions: string[];
+export declare function androidAppPermissions(app: NativeAppManifest): Map<string, number | undefined>;
 export declare function expoClientFromNativeApp(app: NativeAppManifest): {
     name: string;
     slug: string;
@@ -178,13 +198,15 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
         associatedDomains: string[] | undefined;
         usesAppleSignIn: boolean | undefined;
         googleServicesFile: string | undefined;
-        infoPlist: Record<string, PlistValue> | undefined;
+        infoPlist: {
+            [x: string]: PlistValue;
+        };
         entitlements: Record<string, PlistValue> | undefined;
     } | undefined;
     android: {
         package: string;
         versionCode: number | undefined;
-        permissions: string[] | undefined;
+        permissions: string[];
         blockedPermissions: string[] | undefined;
         googleServicesFile: string | undefined;
         adaptiveIcon: {

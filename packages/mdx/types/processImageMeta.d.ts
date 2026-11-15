@@ -1,4 +1,4 @@
-import type { ImageMeta } from './types';
+import type { ImageMeta } from './types.js';
 /**
  * Process an image file and return its metadata.
  * Returns null if sharp is not installed or processing fails.

@@ -1,4 +1,4 @@
-import type { CubicKeyframe as CubicKeyframeValue, Keyframe, KeyframeTrack as KeyframeTrackValue, KeyframeValue, LinearKeyframe as LinearKeyframeValue, MoveKeyframe as MoveKeyframeValue, Spring, SpringKeyframe as SpringKeyframeValue, UnitCurve } from './animatorTypes';
+import type { CubicKeyframe as CubicKeyframeValue, Keyframe, KeyframeTrack as KeyframeTrackValue, KeyframeValue, LinearKeyframe as LinearKeyframeValue, MoveKeyframe as MoveKeyframeValue, Spring, SpringKeyframe as SpringKeyframeValue, UnitCurve } from './animatorTypes.js';
 export declare function LinearKeyframe<Value extends KeyframeValue>(to: Value, options: {
     duration: number;
     timingCurve?: UnitCurve;

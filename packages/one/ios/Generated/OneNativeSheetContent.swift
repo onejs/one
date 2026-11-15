@@ -13,21 +13,24 @@ struct OneNativeSheetRoot: View {
         if model.active && model.controlled.value { model.onLayout?(frame) }
       }, onWindowChange: { identity, attached in
         model.presentedWindowChanged(identity, attached: attached)
-      })
+      }, measuredHeight: model.presentationSizing == "fitted" ? model.measuredHeight : 0)
       .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
   }
   var body: some View {
     if model.presentation == "fullScreenCover" {
       Color.clear
-        .fullScreenCover(isPresented: presented, onDismiss: { model.dismissed() }) {
+        .fullScreenCover(isPresented: presented) {
           content
         }
     } else {
       Color.clear
-        .sheet(isPresented: presented, onDismiss: { model.dismissed() }) {
+        .sheet(isPresented: presented) {
+          // the presented content runs under the home indicator; SwiftUI scroll views keep
+          // their own content inset, so rows still clear it.
           content
-            .oneNativeSheetPresentation(model, fitToContents: model.fitToContents)
+            .ignoresSafeArea(.container, edges: .bottom)
+            .oneNativeSheetPresentation(model)
         }
     }
   }
@@ -35,20 +38,14 @@ struct OneNativeSheetRoot: View {
 
 extension View {
   @ViewBuilder func oneNativeSheetPresentation(
-    _ model: OneNativeSheetModel, fitToContents: Bool
+    _ model: OneNativeSheetModel
   ) -> some View {
-    if fitToContents {
-      self
-        .presentationDetents(model.fittedHeight > 0 ? [.height(model.fittedHeight)] : [.medium])
-        .oneNativeSheetPresentationModifiers(model)
-    } else {
-      self
-        .presentationDetents(model.detents, selection: Binding(
-          get: { model.selectedPresentationDetent },
-          set: { model.changeDetent($0) }
-        ))
-        .oneNativeSheetPresentationModifiers(model)
-    }
+    self
+      .presentationDetents(model.detents, selection: Binding(
+        get: { model.selectedPresentationDetent },
+        set: { model.changeDetent($0) }
+      ))
+      .oneNativeSheetPresentationModifiers(model)
   }
 
   @ViewBuilder func oneNativeSheetPresentationModifiers(

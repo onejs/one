@@ -36,15 +36,61 @@ export interface ScrollViewProps extends ViewProps {
 }
 
 export interface LazyVStackProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   alignment?: LazyVStackAlignment
   spacing?: number
   children: ReactNode
 }
 
 export interface LazyHStackProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   alignment?: LazyHStackAlignment
   spacing?: number
   children: ReactNode
+}
+
+// SwiftUI's OutlineGroup over a tree: `idKey` names the property holding each item's
+// stable id (Identifiable), and `childrenKey` the property holding its child items,
+// which SwiftUI's `children:` key path names. an item whose property is missing or
+// null is a leaf; an empty array is a branch with nothing in it. ids must be
+// strings or numbers and unique across the whole tree, because each row's content is
+// matched to its node by id. ViewProps.children is ReactNode, which cannot hold the
+// row closure, so the view omits it and declares the closure instead.
+export interface OutlineGroupProps<Item extends object> extends Omit<ViewProps, 'children'> {
+  swiftStyle?: OneNativeStyle
+  data: readonly Item[]
+  idKey?: keyof Item
+  childrenKey: keyof Item
+  children: (item: Item) => ReactNode
+}
+
+// SwiftUI's Table over rows and columns. `idKey` names the property holding each row's
+// stable id (Identifiable); ids must be strings or numbers and unique, and so must the
+// column ids, because each cell's content is matched to its row and column by id. the
+// render function runs once per row and column. on iPhone SwiftUI shows only the first
+// column; iPad shows every column. a table is sortable when onSortChange is given: every
+// header then sorts, `sort` names the sorted column (null for none), and a header tap
+// calls onSortChange so the app re-sorts `data`; the table never reorders rows itself.
+export interface TableColumn {
+  id: string
+  title: string
+}
+export const tableSortDirections = ['ascending', 'descending'] as const
+export type TableSortDirection = (typeof tableSortDirections)[number]
+export interface TableSort {
+  column: string
+  direction: TableSortDirection
+}
+export interface TableProps<Item extends object> extends Omit<ViewProps, 'children'> {
+  swiftStyle?: OneNativeStyle
+  data: readonly Item[]
+  idKey?: keyof Item
+  columns: readonly TableColumn[]
+  sort?: TableSort | null
+  onSortChange?: (sort: TableSort) => void
+  // bump to take the sort prop over a header tap the app did not accept
+  revision?: number
+  children: (item: Item, column: TableColumn) => ReactNode
 }
 
 // SwiftUI's UnitPoint: a named SDK constant or UnitPoint(x:y:) in unit coordinates.
@@ -73,5 +119,6 @@ export interface ScrollViewProxy {
 // ViewProps.children is ReactNode, which cannot hold the content closure, so the
 // reader omits it and declares the closure instead.
 export interface ScrollViewReaderProps extends Omit<ViewProps, 'children'> {
+  swiftStyle?: OneNativeStyle
   children: (proxy: ScrollViewProxy) => ReactNode
 }

@@ -5,7 +5,7 @@ const malformedImages = [
   {
     name: 'icns',
     bytes: [0x69, 0x63, 0x6e, 0x73, 0, 0, 0, 16, 0x69, 0x73, 0x33, 0x32, 0, 0, 0, 0],
-    error: 'Invalid ICNS, invalid entry length',
+    error: 'Invalid ICNS',
   },
   {
     name: 'jxl',
@@ -13,7 +13,7 @@ const malformedImages = [
       0, 0, 0, 12, 0x4a, 0x58, 0x4c, 0x20, 0x0d, 0x0a, 0x87, 0x0a, 0, 0, 0, 12, 0x66,
       0x74, 0x79, 0x70, 0x6a, 0x78, 0x6c, 0x20, 0, 0, 0, 0, 0x6a, 0x78, 0x6c, 0x70,
     ],
-    error: 'No codestream found in JXL container',
+    error: 'Invalid JXL',
   },
   {
     name: 'heif',
@@ -23,7 +23,7 @@ const malformedImages = [
       20, 0x69, 0x70, 0x63, 0x6f, 0, 0, 0, 0, 0x69, 0x73, 0x70, 0x65, 0, 0, 0, 0, 0, 0, 0,
       0, 0, 0, 0, 0, 0, 0, 0, 0,
     ],
-    error: 'Invalid HEIF, no size found',
+    error: 'Invalid HEIF, no sizes found',
   },
 ]
 

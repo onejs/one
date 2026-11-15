@@ -1,5 +1,5 @@
-import type { AppleAuth } from './types';
-export type * from './types';
+import type { AppleAuth } from './types.js';
+export type * from './types.js';
 export declare const Auth: Readonly<{
     Apple: AppleAuth;
 }>;

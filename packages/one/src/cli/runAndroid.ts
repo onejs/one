@@ -22,5 +22,6 @@ export async function run(args: {}) {
   await runAndroid({
     root,
     port: options?.config?.config?.server?.port,
+    patches: options?.oneOptions.patches,
   })
 }

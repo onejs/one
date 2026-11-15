@@ -95,6 +95,40 @@ function Inbox({ save }: { save: () => void }) {
   ]}
 />
 
+## Bar modifiers
+
+The stack reads these `swiftStyle` modifiers inside the `NavigationStack`, so
+each one changes the navigation bar of the stack it is set on.
+
+```tsx
+<One.iOS.NavigationStack
+  style={{ flex: 1 }}
+  swiftStyle={{
+    navigationTitleWithText: 'Accounts',
+    navigationBarTitleDisplayMode: 'inline',
+    toolbarBackground: { visibility: 'visible', bars: 'navigationBar' },
+    toolbarColorScheme: { colorScheme: 'dark', bars: 'navigationBar' },
+    navigationBarBackButtonHidden: true,
+  }}
+>
+  <Text>Your accounts.</Text>
+</One.iOS.NavigationStack>
+```
+
+| Modifier | What it changes |
+| --- | --- |
+| `navigationTitleWithText`, `navigationBarTitleDisplayMode` | The bar title, shown large or inline. |
+| `toolbarBackground`, `toolbarBackgroundVisibility` | Whether the bar draws its own background or lets content show through. |
+| `toolbarColorScheme` | The light or dark scheme the bar is drawn in. |
+| `toolbarVisibility` | Shows or hides the bar. |
+| `navigationBarBackButtonHidden` | Hides the back button on a pushed screen. |
+| `searchable` | Adds the search field and reports its text back. |
+
+The Peach simulator draws each of these for the navigation bar. A `bars`
+value other than `automatic` or `navigationBar` belongs to a tab bar or bottom
+toolbar, so Peach throws instead of guessing, as it does for any other
+navigation or toolbar modifier it does not yet draw.
+
 ## NavigationSplitView
 
 `NavigationSplitView` is SwiftUI's two or three column split view. Its direct
@@ -163,11 +197,11 @@ iOS 17 or later.
 
 ## Toolbar
 
-`Toolbar` becomes one native toolbar. In a `NavigationStack` or `Tabs`, its
+`Toolbar` becomes one native toolbar. In a `NavigationStack` or `TabView`, its
 children are `ToolbarItem`, `ToolbarItemGroup`, or `ToolbarSpacer` elements in
 order. A split view column uses `Toolbar` as a content wrapper and puts those
 entries inside `Toolbar.Content`. `NavigationStack` merges every toolbar it is
-given, and `One.iOS.Tabs` also takes a `Toolbar` child.
+given, and `One.iOS.TabView` also takes a `Toolbar` child.
 
 ```tsx
 import { One } from 'one'
@@ -256,6 +290,36 @@ function PageControls({ back, forward }: { back: () => void; forward: () => void
     { name: 'label', type: 'string', default: '""', description: 'Names the group when SwiftUI collapses it.' },
     { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol with the label. Needs a label.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The items.' },
+  ]}
+/>
+
+## DefaultToolbarItem
+
+`DefaultToolbarItem` places one of the system's own toolbar items, such as the search
+field, where you say. It needs iOS 26 and takes no children. With
+`kind="search"` and `placement="bottomBar"` on a list that is `searchable`, plus
+`searchToolbarBehavior: 'minimize'` in the list's `swiftStyle`, the field becomes the
+detached search circle iPhone shows at the bottom of the screen.
+
+```tsx
+import { One } from 'one'
+
+function BottomSearchToolbar() {
+  return (
+    <One.iOS.Toolbar>
+      <One.iOS.DefaultToolbarItem kind="search" placement="bottomBar" />
+      <One.iOS.ToolbarSpacer sizing="flexible" placement="bottomBar" />
+    </One.iOS.Toolbar>
+  )
+}
+```
+
+<PropsTable
+  title="Props"
+  source="generated/containerTypes.ts#DefaultToolbarItemProps"
+  data={[
+    { name: 'kind', required: true, type: 'ToolbarDefaultItemKind', description: 'Which system item to place, such as search.' },
+    { name: 'placement', type: 'ToolbarItemPlacement', description: 'Where in the bars the item goes.' },
   ]}
 />
 

@@ -1,6 +1,7 @@
-import FSExtra from 'fs-extra'
-import { rm } from 'node:fs/promises'
+import { bundleAnalysisPlugins } from '../utils/bundleAnalysis'
+import { readFile, rm, writeFile } from 'node:fs/promises'
 import { sep } from 'node:path'
+import { readJSON } from '../utils/fs'
 import type { OutputAsset, OutputChunk, RolldownOutput } from 'rolldown'
 import {
   loadConfigFromFile,
@@ -18,8 +19,6 @@ import type { BuildArgs, VXRNOptions } from '../types'
 import { getServerCJSSetting, getServerEntry } from '../utils/getServerEntry'
 import { applyBuiltInPatches } from '../utils/patches'
 import { loadEnv } from './loadEnv'
-
-const { existsSync } = FSExtra
 
 const disableOptimizationConfig = {
   optimizeDeps: {},
@@ -79,17 +78,19 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
   const outDir = userViteConfig?.build?.outDir ?? 'dist'
 
-  // clean
-  await Promise.all([
-    (async () => {
-      // lets always clean output folder for now to be sure were correct
-      if (existsSync(outDir)) {
-        await rm(outDir, { recursive: true, force: true })
-      }
-    })(),
-  ])
+  const platform = buildArgs.platform
+  const isNativeBuild =
+    platform === 'ios' ||
+    platform === 'android' ||
+    platform === 'macos' ||
+    platform === 'linux'
 
-  if (buildArgs.platform === 'ios' || buildArgs.platform === 'android') {
+  // generation reuses client assets and their manifest, but rebuilds the server
+  const cleanDir =
+    buildArgs.step === 'generate' && !isNativeBuild ? `${outDir}/server` : outDir
+  await rm(cleanDir, { recursive: true, force: true })
+
+  if (isNativeBuild) {
     const { buildBundle } = await import('../rn-commands/bundle/buildBundle')
 
     return buildBundle(
@@ -99,8 +100,10 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       // default (./src/entry-native.tsx) exists only in plain vxrn apps.
       { root: options.root, vxrnEntries: optionsIn.entries },
       {
-        platform: buildArgs.platform,
-        bundleOutput: `${outDir}${sep}${buildArgs.platform}.js`,
+        platform,
+        bundleOutput: `${outDir}${sep}${platform}.js`,
+        // every native build emits imported assets beside its bundle
+        assetsDest: outDir,
         dev: false,
         entryFile: '',
         resetCache: true,
@@ -203,7 +206,10 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
   if (buildArgs.step !== 'generate') {
     let clientBuildConfig = mergeConfig(webBuildConfig, {
-      plugins: [excludeAPIAndMiddlewareRoutesPlugin],
+      plugins: [
+        excludeAPIAndMiddlewareRoutesPlugin,
+        ...(await bundleAnalysisPlugins(options.root, 'client')),
+      ],
 
       define: {
         'process.env.VITE_ENVIRONMENT': '"client"',
@@ -219,13 +225,6 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
         manifest: true,
         rolldownOptions: {
           input: ['virtual:one-entry'],
-
-          output: {
-            codeSplitting: {
-              // merge tiny chunks to reduce HTTP requests and total chunk count
-              minSize: 42_000,
-            },
-          },
         },
       },
     } satisfies UserConfig)
@@ -262,7 +261,11 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     serverOptions.unified === true
 
   let serverBuildConfig = mergeConfig(webBuildConfig, {
-    plugins: [excludeAPIAndMiddlewareRoutesPlugin, ...globalThis.__vxrnAddWebPluginsProd],
+    plugins: [
+      excludeAPIAndMiddlewareRoutesPlugin,
+      ...globalThis.__vxrnAddWebPluginsProd,
+      ...(await bundleAnalysisPlugins(options.root, 'server')),
+    ],
 
     define: {
       'process.env.TAMAGUI_IS_SERVER': '"1"',
@@ -360,11 +363,11 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   }
 
   if (serverOptions !== false) {
-    clientManifest = await FSExtra.readJSON(`${outDir}/client/.vite/manifest.json`)
+    clientManifest = await readJSON(`${outDir}/client/.vite/manifest.json`)
 
     // temp fix - react native web is importing non-existent react 19 apis
-    const old = await FSExtra.readFile(serverEntry, 'utf-8')
-    await FSExtra.writeFile(
+    const old = await readFile(serverEntry, 'utf-8')
+    await writeFile(
       serverEntry,
       old
         .replace(

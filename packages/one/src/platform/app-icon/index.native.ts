@@ -1,17 +1,9 @@
+import { appIconNative as native } from './backend'
 import { Platform } from 'react-native'
-import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
-import type { OneAppIcon } from '../specs/OneAppIcon.nitro'
 import type { AppIconEntry } from './types'
 
 export type { AppIconEntry }
-
-let hybrid: OneAppIcon | undefined
-
-function native(): OneAppIcon {
-  hybrid ??= NitroModules.createHybridObject<OneAppIcon>('OneAppIcon')
-  return hybrid
-}
 
 function isSupported(): Promise<boolean> {
   return native().isSupported().catch(rethrowNativeError)

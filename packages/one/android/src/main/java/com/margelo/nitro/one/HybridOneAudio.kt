@@ -64,6 +64,12 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
     private var mediaSession: MediaSession? = null
     private var nowPlayingInfo: AudioNowPlayingInfo? = null
     private var nowPlayingArtworkPath: String? = null
+    // one media session at a time, owned by the singleton or by one managed
+    // player. owners clear only their own claim, so an old owner's cleanup
+    // never clears a newer one.
+    private var nowPlayingOwner: NowPlayingOwner? = null
+    private var pendingLoad: PendingLoad? = null
+    private var serviceRunning = false
     private val interruptionListeners = mutableMapOf<String, (AudioInterruptionEvent) -> Unit>()
     private val remoteCommandListeners = mutableMapOf<String, (AudioRemoteCommandEvent) -> Unit>()
 
@@ -85,6 +91,7 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
         permission?.reject(OneNativeError(E_PERMISSION, "Audio.requestRecordingPermission: torn down mid-request"))
         main.post {
             clearPlayer()
+            clearNowPlaying()
             val managed = managedPlayers.values.toList()
             managedPlayers.clear()
             managed.forEach { releaseManagedPlayer(it) }
@@ -155,9 +162,11 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
         return true
     }
 
-    override fun play(uri: String): Promise<AudioPlaybackStatus> {
+    override fun play(uri: String, options: AudioPlayOptions): Promise<AudioPlaybackStatus> {
         val promise = Promise<AudioPlaybackStatus>()
         main.post {
+            val prepare = options.positionMs != null || options.paused != null
+            val positionMs = options.positionMs ?: 0.0
             if (recorder != null) {
                 promise.reject(OneNativeError(E_BUSY, "Audio.play: stop the current audio operation first"))
                 return@post
@@ -178,6 +187,10 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
                 promise.reject(OneNativeError(E_FILE, "Audio.play: the audio file does not exist"))
                 return@post
             }
+            if (!positionMs.isFinite() || positionMs < 0) {
+                promise.reject(OneNativeError(E_POSITION, "Audio.play: the seek position must be finite and nonnegative"))
+                return@post
+            }
             try {
                 requestFocus()
                 clearPlayer()
@@ -196,28 +209,43 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
                 player = fresh
                 playerUri = parsed.toString()
                 playerPrepared = false
-                playbackPaused = false
+                playbackPaused = options.paused ?: false
                 playbackEnded = false
                 playbackError = null
                 fresh.setOnPreparedListener { mp ->
+                    if (player !== mp) return@setOnPreparedListener
                     playerPrepared = true
-                    mp.start()
-                    startServiceIfBackground()
+                    val load = pendingLoad
+                    if (load != null) {
+                        seekLoad(mp, load)
+                        return@setOnPreparedListener
+                    }
+                    // a pause while loading holds; resume starts it later.
+                    if (!playbackPaused) mp.start()
+                    syncService()
                     syncNowPlaying()
                 }
                 fresh.setOnCompletionListener {
                     playbackEnded = true
-                    stopService()
+                    syncService()
                     syncNowPlaying()
                 }
                 fresh.setOnErrorListener { _, what, extra ->
                     playbackError = "playback failed ($what/$extra)"
-                    stopService()
+                    pendingLoad?.let { load ->
+                        pendingLoad = null
+                        load.promise.reject(OneNativeError(E_FAILED, "Audio.play: $playbackError"))
+                    }
+                    syncService()
                     syncNowPlaying()
                     true
                 }
                 fresh.prepareAsync()
-                promise.resolve(playbackStatus())
+                if (prepare) {
+                    pendingLoad = PendingLoad(promise, positionMs)
+                } else {
+                    promise.resolve(playbackStatus())
+                }
             } catch (e: Exception) {
                 clearPlayer()
                 abandonFocus()
@@ -246,7 +274,7 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
             } catch (e: Exception) {
             }
             playbackPaused = true
-            stopService()
+            syncService()
             syncNowPlaying()
             promise.resolve(playbackStatus())
         }
@@ -267,8 +295,9 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
                     playbackEnded = false
                 }
                 playbackPaused = false
-                if (playerPrepared) current.start()
-                startServiceIfBackground()
+                // a prepared load starts itself once its seek lands.
+                if (playerPrepared && pendingLoad == null) current.start()
+                syncService()
                 syncNowPlaying()
                 promise.resolve(playbackStatus())
             } catch (e: Exception) {
@@ -286,7 +315,7 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
                 return@post
             }
             val current = player
-            if (current == null || !playerPrepared) {
+            if (current == null || !playerPrepared || pendingLoad != null) {
                 promise.reject(OneNativeError(E_STATE, "Audio.seek: the audio operation is not ready"))
                 return@post
             }
@@ -496,57 +525,17 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
     override fun setNowPlayingInfo(info: AudioNowPlayingInfo): Promise<Unit> {
         val promise = Promise<Unit>()
         main.post {
-            val current = player
-            if (current == null) {
+            if (player == null) {
                 promise.reject(OneNativeError(E_STATE, "Audio.setNowPlayingInfo: the audio operation is not ready"))
                 return@post
             }
-            if (info.title.trim().isEmpty()) {
-                promise.reject(OneNativeError(E_METADATA, "Audio.setNowPlayingInfo: now playing title must not be empty"))
-                return@post
+            try {
+                val artworkPath = nowPlayingArtwork("setNowPlayingInfo", info)
+                claimNowPlaying(NowPlayingOwner.Global, info, artworkPath)
+                promise.resolve(Unit)
+            } catch (e: OneNativeError) {
+                promise.reject(e)
             }
-            var artworkPath: String? = null
-            info.artworkUri?.let { artworkUri ->
-                val parsed = try {
-                    Uri.parse(artworkUri)
-                } catch (e: Exception) {
-                    null
-                }
-                val file = if (parsed?.scheme == "file") parsed.path?.let { File(it) } else null
-                if (file == null || !file.exists() || file.isDirectory ||
-                    BitmapFactory.decodeFile(file.absolutePath) == null
-                ) {
-                    promise.reject(
-                        OneNativeError(E_ARTWORK, "Audio.setNowPlayingInfo: now playing artwork must be an existing image file")
-                    )
-                    return@post
-                }
-                artworkPath = file.absolutePath
-            }
-            if (mediaSession == null) {
-                val session = MediaSession(context, "OneAudio")
-                session.setCallback(
-                    object : MediaSession.Callback() {
-                        override fun onPlay() {
-                            handleRemoteCommand(AudioRemoteCommandType.PLAY, null)
-                        }
-
-                        override fun onPause() {
-                            handleRemoteCommand(AudioRemoteCommandType.PAUSE, null)
-                        }
-
-                        override fun onSeekTo(pos: Long) {
-                            handleRemoteCommand(AudioRemoteCommandType.SEEK, pos.toDouble())
-                        }
-                    }
-                )
-                mediaSession = session
-            }
-            nowPlayingInfo = info
-            nowPlayingArtworkPath = artworkPath
-            mediaSession?.isActive = true
-            syncNowPlaying()
-            promise.resolve(Unit)
         }
         return promise
     }
@@ -554,7 +543,31 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
     override fun clearNowPlayingInfo(): Promise<Unit> {
         val promise = Promise<Unit>()
         main.post {
-            clearNowPlaying()
+            if (nowPlayingOwner == NowPlayingOwner.Global) clearNowPlaying()
+            promise.resolve(Unit)
+        }
+        return promise
+    }
+
+    override fun setPlayerNowPlayingInfo(playerId: String, info: AudioNowPlayingInfo): Promise<Unit> {
+        val promise = Promise<Unit>()
+        main.post {
+            try {
+                managedPlayer(playerId)
+                val artworkPath = nowPlayingArtwork("setPlayerNowPlayingInfo", info)
+                claimNowPlaying(NowPlayingOwner.Managed(playerId), info, artworkPath)
+                promise.resolve(Unit)
+            } catch (e: OneNativeError) {
+                promise.reject(e)
+            }
+        }
+        return promise
+    }
+
+    override fun clearPlayerNowPlayingInfo(playerId: String): Promise<Unit> {
+        val promise = Promise<Unit>()
+        main.post {
+            if (nowPlayingOwner == NowPlayingOwner.Managed(playerId)) clearNowPlaying()
             promise.resolve(Unit)
         }
         return promise
@@ -582,32 +595,12 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
         }
 
     override fun playerPlay(playerId: String) {
-        mainSync("playerPlay") {
-            val managed = managedPlayer(playerId)
-            requestFocus()
-            val current = managed.player
-            if (managed.ended && current != null && managed.prepared) {
-                try { current.seekTo(0) } catch (e: Exception) { }
-                managed.ended = false
-            }
-            managed.paused = false
-            if (current != null && managed.prepared) {
-                applyPlayerRate(managed, current)
-                try { current.start() } catch (e: Exception) {
-                    throw OneNativeError(E_STATE, "Audio.playerPlay: the audio operation is not ready")
-                }
-            }
-        }
+        mainSync("playerPlay") { startManaged(managedPlayer(playerId)) }
     }
 
     override fun playerPause(playerId: String) {
         mainSync("playerPause") {
-            val managed = managedPlayer(playerId)
-            try {
-                if (managed.player?.isPlaying == true) managed.player?.pause()
-            } catch (e: Exception) {
-            }
-            managed.paused = true
+            pauseManaged(managedPlayer(playerId))
         }
     }
 
@@ -639,6 +632,7 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
                 current.setOnSeekCompleteListener { mp ->
                     if (generation != managed.seekGeneration || managed.player !== mp) return@setOnSeekCompleteListener
                     managed.ended = false
+                    syncManaged(managed)
                     promise.resolve(Unit)
                 }
                 val ms = (seconds * 1000).toLong().coerceAtLeast(0L)
@@ -661,20 +655,28 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
             if (sourceUri != null) attachPlayerSource(managed, sourceUri, headers)
             managed.paused = true
             managed.ended = false
+            syncManaged(managed)
         }
     }
 
     override fun removePlayer(playerId: String) {
         if (Looper.myLooper() == Looper.getMainLooper()) {
-            managedPlayers.remove(playerId)?.let { releaseManagedPlayer(it) }
+            discardPlayer(playerId)
             return
         }
         val latch = CountDownLatch(1)
         main.post {
-            managedPlayers.remove(playerId)?.let { releaseManagedPlayer(it) }
+            discardPlayer(playerId)
             latch.countDown()
         }
         latch.await()
+    }
+
+    private fun discardPlayer(playerId: String) {
+        val managed = managedPlayers.remove(playerId) ?: return
+        if (nowPlayingOwner == NowPlayingOwner.Managed(playerId)) clearNowPlaying()
+        releaseManagedPlayer(managed)
+        syncService()
     }
 
     override fun getPlayerStatus(playerId: String): AudioPlayerStatus =
@@ -742,6 +744,142 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
     }
 
     private val managedPlayers = mutableMapOf<String, ManagedAudioPlayer>()
+
+    private sealed class NowPlayingOwner {
+        object Global : NowPlayingOwner()
+        data class Managed(val id: String) : NowPlayingOwner()
+    }
+
+    // a singleton play with a position or paused flag: it resolves after the
+    // player is prepared and the seek lands, before any sound.
+    private class PendingLoad(val promise: Promise<AudioPlaybackStatus>, val positionMs: Double)
+
+    private class OwnerState(val playing: Boolean, val positionMs: Double, val durationMs: Double?)
+
+    private fun seekLoad(current: MediaPlayer, load: PendingLoad) {
+        val duration = try { current.duration } catch (e: Exception) { -1 }
+        val target = if (duration >= 0) minOf(load.positionMs.toLong(), duration.toLong()) else load.positionMs.toLong()
+        val generation = ++seekGeneration
+        try {
+            current.setOnSeekCompleteListener { mp ->
+                // replacement or stop rejects the load in clearPlayer, so a
+                // late completion finds a different load and does nothing.
+                if (generation != seekGeneration || player !== mp || pendingLoad !== load) {
+                    return@setOnSeekCompleteListener
+                }
+                pendingLoad = null
+                playbackEnded = false
+                if (!playbackPaused) {
+                    try { mp.start() } catch (e: Exception) { }
+                }
+                syncService()
+                syncNowPlaying()
+                load.promise.resolve(playbackStatus())
+            }
+            if (Build.VERSION.SDK_INT >= 26) {
+                current.seekTo(target, MediaPlayer.SEEK_CLOSEST)
+            } else {
+                current.seekTo(target.coerceAtMost(Int.MAX_VALUE.toLong()).toInt())
+            }
+        } catch (e: Exception) {
+            pendingLoad = null
+            load.promise.reject(OneNativeError(E_FAILED, "Audio.play: ${e.message ?: "the seek failed"}"))
+        }
+    }
+
+    private fun startManaged(managed: ManagedAudioPlayer) {
+        requestFocus()
+        val current = managed.player
+        if (managed.ended && current != null && managed.prepared) {
+            try { current.seekTo(0) } catch (e: Exception) { }
+            managed.ended = false
+        }
+        managed.paused = false
+        if (current != null && managed.prepared) {
+            applyPlayerRate(managed, current)
+            try { current.start() } catch (e: Exception) {
+                throw OneNativeError(E_STATE, "Audio.playerPlay: the audio operation is not ready")
+            }
+        }
+        syncManaged(managed)
+    }
+
+    private fun pauseManaged(managed: ManagedAudioPlayer) {
+        try {
+            if (managed.player?.isPlaying == true) managed.player?.pause()
+        } catch (e: Exception) {
+        }
+        managed.paused = true
+        syncManaged(managed)
+    }
+
+    private fun ownerManaged(): ManagedAudioPlayer? =
+        (nowPlayingOwner as? NowPlayingOwner.Managed)?.let { managedPlayers[it.id] }
+
+    private fun syncManaged(managed: ManagedAudioPlayer) {
+        if (ownerManaged() !== managed) return
+        syncService()
+        syncNowPlaying()
+    }
+
+    private fun nowPlayingArtwork(verb: String, info: AudioNowPlayingInfo): String? {
+        if (info.title.trim().isEmpty()) {
+            throw OneNativeError(E_METADATA, "Audio.$verb: now playing title must not be empty")
+        }
+        val artworkUri = info.artworkUri ?: return null
+        val parsed = try {
+            Uri.parse(artworkUri)
+        } catch (e: Exception) {
+            null
+        }
+        val file = if (parsed?.scheme == "file") parsed.path?.let { File(it) } else null
+        if (file == null || !file.exists() || file.isDirectory ||
+            BitmapFactory.decodeFile(file.absolutePath) == null
+        ) {
+            throw OneNativeError(E_ARTWORK, "Audio.$verb: now playing artwork must be an existing image file")
+        }
+        return file.absolutePath
+    }
+
+    // a transfer keeps the media session and swaps the owner, so the system
+    // controls stay up while ownership moves.
+    private fun claimNowPlaying(owner: NowPlayingOwner, info: AudioNowPlayingInfo, artworkPath: String?) {
+        if (mediaSession == null) {
+            val session = MediaSession(context, "OneAudio")
+            session.setCallback(
+                object : MediaSession.Callback() {
+                    override fun onPlay() {
+                        handleRemoteCommand(AudioRemoteCommandType.PLAY, null)
+                    }
+
+                    override fun onPause() {
+                        handleRemoteCommand(AudioRemoteCommandType.PAUSE, null)
+                    }
+
+                    override fun onSeekTo(pos: Long) {
+                        handleRemoteCommand(AudioRemoteCommandType.SEEK, pos.toDouble())
+                    }
+                }
+            )
+            mediaSession = session
+        }
+        nowPlayingOwner = owner
+        nowPlayingInfo = info
+        nowPlayingArtworkPath = artworkPath
+        mediaSession?.isActive = true
+        syncService()
+        syncNowPlaying()
+    }
+
+    private fun ownerState(): OwnerState? = when (val owner = nowPlayingOwner) {
+        is NowPlayingOwner.Global -> if (player == null) null else playbackStatus().let {
+            OwnerState(it.state == AudioPlaybackState.PLAYING, it.positionMs, it.durationMs)
+        }
+        is NowPlayingOwner.Managed -> managedPlayers[owner.id]?.let { playerStatus(it) }?.let {
+            OwnerState(it.playing, it.currentTime * 1000, if (it.duration > 0) it.duration * 1000 else null)
+        }
+        null -> null
+    }
 
     private fun <T> mainSync(verb: String, work: () -> T): T {
         if (Looper.myLooper() == Looper.getMainLooper()) {
@@ -820,6 +958,7 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
                 applyPlayerRate(managed, mp)
                 if (!managed.paused && !managed.ended) {
                     try { mp.start() } catch (e: Exception) { }
+                    syncManaged(managed)
                 } else {
                     // a freshly prepared MediaPlayer can report isPlaying on
                     // some emulators without ever being started; stop any
@@ -834,10 +973,12 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
             fresh.setOnCompletionListener { mp ->
                 if (managed.player !== mp) return@setOnCompletionListener
                 managed.ended = true
+                syncManaged(managed)
             }
             fresh.setOnErrorListener { mp, what, extra ->
                 if (managed.player !== mp) return@setOnErrorListener true
                 managed.error = "playback failed ($what/$extra)"
+                syncManaged(managed)
                 true
             }
             managed.player = fresh
@@ -944,7 +1085,7 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
                         } catch (e: Exception) {
                         }
                     }
-                    stopService()
+                    syncService()
                     syncNowPlaying()
                     emitInterruption(AudioInterruptionEvent(AudioInterruptionType.BEGAN, false))
                 }
@@ -970,42 +1111,75 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
 
     private fun handleRemoteCommand(type: AudioRemoteCommandType, positionMs: Double?) {
         main.post {
-            val current = player
-            if (current == null || mediaSession == null) return@post
-            when (type) {
-                AudioRemoteCommandType.PLAY -> {
-                    try {
-                        if (playbackEnded) {
-                            current.seekTo(0)
+            if (mediaSession == null) return@post
+            val owner = nowPlayingOwner ?: return@post
+            if (type == AudioRemoteCommandType.SEEK &&
+                (positionMs == null || !positionMs.isFinite() || positionMs < 0)
+            ) return@post
+            val seekMs = (positionMs ?: 0.0).toLong().coerceAtMost(Int.MAX_VALUE.toLong()).toInt()
+            var playerId: String? = null
+            when (owner) {
+                is NowPlayingOwner.Global -> {
+                    val current = player ?: return@post
+                    when (type) {
+                        AudioRemoteCommandType.PLAY -> {
+                            try {
+                                if (playbackEnded) {
+                                    current.seekTo(0)
+                                    playbackEnded = false
+                                }
+                                playbackPaused = false
+                                if (playerPrepared && pendingLoad == null) current.start()
+                            } catch (e: Exception) {
+                                return@post
+                            }
+                        }
+                        AudioRemoteCommandType.PAUSE -> {
+                            try {
+                                if (current.isPlaying) current.pause()
+                            } catch (e: Exception) {
+                            }
+                            playbackPaused = true
+                        }
+                        AudioRemoteCommandType.SEEK -> {
+                            if (pendingLoad != null) return@post
+                            try {
+                                current.seekTo(seekMs)
+                            } catch (e: Exception) {
+                                return@post
+                            }
                             playbackEnded = false
                         }
-                        playbackPaused = false
-                        if (playerPrepared) current.start()
-                        startServiceIfBackground()
-                    } catch (e: Exception) {
-                        return@post
                     }
                 }
-                AudioRemoteCommandType.PAUSE -> {
-                    try {
-                        if (current.isPlaying) current.pause()
-                    } catch (e: Exception) {
+                is NowPlayingOwner.Managed -> {
+                    val managed = managedPlayers[owner.id] ?: return@post
+                    playerId = owner.id
+                    when (type) {
+                        AudioRemoteCommandType.PLAY -> try {
+                            startManaged(managed)
+                        } catch (e: Exception) {
+                            return@post
+                        }
+                        AudioRemoteCommandType.PAUSE -> pauseManaged(managed)
+                        AudioRemoteCommandType.SEEK -> {
+                            val current = managed.player
+                            if (current == null || !managed.prepared) return@post
+                            // retire any pending playerSeek listener first.
+                            managed.seekGeneration += 1
+                            try {
+                                current.seekTo(seekMs)
+                            } catch (e: Exception) {
+                                return@post
+                            }
+                            managed.ended = false
+                        }
                     }
-                    playbackPaused = true
-                    stopService()
-                }
-                AudioRemoteCommandType.SEEK -> {
-                    if (positionMs == null || !positionMs.isFinite() || positionMs < 0) return@post
-                    try {
-                        current.seekTo(positionMs.toLong().coerceAtMost(Int.MAX_VALUE.toLong()).toInt())
-                    } catch (e: Exception) {
-                        return@post
-                    }
-                    playbackEnded = false
                 }
             }
+            syncService()
             syncNowPlaying()
-            val event = AudioRemoteCommandEvent(type, positionMs)
+            val event = AudioRemoteCommandEvent(type, positionMs, playerId)
             val listeners = synchronized(lock) { remoteCommandListeners.values.toList() }
             for (listener in listeners) {
                 try {
@@ -1022,7 +1196,7 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
             return AudioPlaybackStatus(AudioPlaybackState.IDLE, null, 0.0, null, null)
         }
         // duration and position are unavailable until preparation completes.
-        if (!playerPrepared || playbackError != null) {
+        if (!playerPrepared || pendingLoad != null || playbackError != null) {
             return AudioPlaybackStatus(
                 if (playbackError != null) AudioPlaybackState.FAILED else AudioPlaybackState.LOADING,
                 playerUri,
@@ -1083,8 +1257,8 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
     private fun syncNowPlaying() {
         val session = mediaSession
         val info = nowPlayingInfo
-        val current = player
-        if (session == null || info == null || current == null) return
+        val status = ownerState()
+        if (session == null || info == null || status == null) return
         val metadata = MediaMetadata.Builder()
             .putString(MediaMetadata.METADATA_KEY_TITLE, info.title)
         info.artist?.let { metadata.putString(MediaMetadata.METADATA_KEY_ARTIST, it) }
@@ -1097,11 +1271,10 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
             } catch (e: Exception) {
             }
         }
-        val status = playbackStatus()
         status.durationMs?.let { metadata.putLong(MediaMetadata.METADATA_KEY_DURATION, it.toLong()) }
         session.setMetadata(metadata.build())
         val position = status.positionMs.toLong()
-        val playing = status.state == AudioPlaybackState.PLAYING
+        val playing = status.playing
         session.setPlaybackState(
             PlaybackState.Builder()
                 .setActions(
@@ -1126,10 +1299,15 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
         mediaSession = null
         nowPlayingInfo = null
         nowPlayingArtworkPath = null
+        nowPlayingOwner = null
     }
 
     private fun clearPlayer() {
-        clearNowPlaying()
+        if (nowPlayingOwner == NowPlayingOwner.Global) clearNowPlaying()
+        pendingLoad?.let { load ->
+            pendingLoad = null
+            load.promise.reject(OneNativeError(E_STATE, "Audio.play: playback was replaced before it was ready"))
+        }
         seekGeneration++
         try {
             player?.setOnSeekCompleteListener(null)
@@ -1149,7 +1327,7 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
         playbackPaused = false
         playbackEnded = false
         playbackError = null
-        stopService()
+        syncService()
     }
 
     private fun teardownRecorder(deleteFile: Boolean) {
@@ -1249,14 +1427,21 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
         }
     }
 
-    private fun startServiceIfBackground() {
+    // the foreground service runs while the singleton or the managed now
+    // playing owner is playing.
+    private fun syncService() {
         if (!backgroundEnabled()) return
-        OneAudioService.start(context, nowPlayingInfo?.title ?: "Audio playing")
-    }
-
-    private fun stopService() {
-        if (!backgroundEnabled()) return
-        OneAudioService.stop(context)
+        val owner = ownerManaged()
+        val playing = (player != null && playerPrepared && pendingLoad == null && !playbackPaused &&
+            !playbackEnded && playbackError == null) ||
+            (owner != null && owner.player != null && !owner.paused && !owner.ended && owner.error == null)
+        if (playing) {
+            OneAudioService.start(context, nowPlayingInfo?.title ?: "Audio playing")
+            serviceRunning = true
+        } else if (serviceRunning) {
+            OneAudioService.stop(context)
+            serviceRunning = false
+        }
     }
 
     private fun permissionStatus(): AudioRecordingPermission {

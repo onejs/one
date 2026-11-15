@@ -305,9 +305,32 @@ class OneNativeUiMapView(context: Context) : FrameLayout(context) {
         }
     }
 
+    // fabric measures a view in the batch that creates it, before its screen
+    // joins the window, and a ComposeView throws when measured off-window.
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        setMeasuredDimension(
+            MeasureSpec.getSize(widthMeasureSpec),
+            MeasureSpec.getSize(heightMeasureSpec),
+        )
+    }
+
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        layoutComposeContent()
+    }
+
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         ensureLifecycleOwner()
+        post { layoutComposeContent() }
+    }
+
+    private fun layoutComposeContent() {
+        if (!composeView.isAttachedToWindow || width <= 0 || height <= 0) return
+        composeView.measure(
+            MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+            MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY),
+        )
+        composeView.layout(0, 0, width, height)
     }
 
     // maps-compose reads the lifecycle owner off the view tree, which react

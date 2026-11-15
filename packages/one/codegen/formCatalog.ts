@@ -8,7 +8,6 @@ export const formControls: Control[] = [
     fields: {
       ...commonFields,
       systemImage: { type: 'string', default: '', publicType: SF_SYMBOL_PUBLIC_TYPE },
-      toggleStyle: { type: 'string', default: 'automatic', enum: 'ToggleStyle' },
     },
     constructors: [
       {
@@ -44,8 +43,7 @@ export const formControls: Control[] = [
             set: { value in model.change(value) }
           ))
         }
-      }
-      .oneNativeToggleStyle(model.toggleStyle)`,
+      }`,
     validate: `  if (typeof isOn !== 'boolean' && !isSyncState(isOn)) throw new Error('Toggle isOn must be a boolean or NativeState handle')
   if (typeof systemImage !== 'string') throw new Error('Toggle systemImage must be a string')`,
   },
@@ -54,8 +52,18 @@ export const formControls: Control[] = [
     value: { type: 'Double', prop: 'value', event: 'onValueChange', initial: 0, sync: true },
     fields: {
       ...commonFields,
-      minimumValue: { type: 'Double', default: 0 },
-      maximumValue: { type: 'Double', default: 100 },
+      // SwiftUI's closed range arrives as one tuple; the scalars stay native-only.
+      // type/default only satisfy the field shape; publicType/jsDefault carry the surface.
+      in: {
+        type: 'Double',
+        default: 0,
+        noNative: true,
+        as: 'range',
+        publicType: 'readonly [number, number]',
+        jsDefault: '[0, 100]',
+      },
+      minimumValue: { type: 'Double', default: 0, derived: true, nativeValue: 'range[0]' },
+      maximumValue: { type: 'Double', default: 100, derived: true, nativeValue: 'range[1]' },
       step: { type: 'Double', default: 1 },
       minimumValueLabel: { type: 'string', default: '' },
       maximumValueLabel: { type: 'string', default: '' },
@@ -114,18 +122,28 @@ export const formControls: Control[] = [
   else if !label.isEmpty { Text(label) }
   else { EmptyView() }
 }`,
-    validate: `  if (![value, minimumValue, maximumValue, step].every(Number.isFinite)) throw new Error('Slider value, minimumValue, maximumValue, and step must be finite numbers')
-  if (minimumValue >= maximumValue) throw new Error('Slider minimumValue must be less than maximumValue')
+    validate: `  if (![value, range[0], range[1], step].every(Number.isFinite)) throw new Error('Slider value, in bounds, and step must be finite numbers')
+  if (range[0] >= range[1]) throw new Error('Slider in lower bound must be less than the upper bound')
   if (step <= 0) throw new Error('Slider step must be greater than 0')
-  if (value < minimumValue || value > maximumValue) throw new Error('Slider value must be within minimumValue and maximumValue')`,
+  if (value < range[0] || value > range[1]) throw new Error('Slider value must be within its in bounds')`,
   },
   {
     name: 'Stepper',
     value: { type: 'Double', prop: 'value', event: 'onValueChange', initial: 0, sync: true },
     fields: {
       ...commonFields,
-      minimumValue: { type: 'Double', default: 0 },
-      maximumValue: { type: 'Double', default: 100 },
+      // SwiftUI's closed range arrives as one tuple; the scalars stay native-only.
+      // type/default only satisfy the field shape; publicType/jsDefault carry the surface.
+      in: {
+        type: 'Double',
+        default: 0,
+        noNative: true,
+        as: 'range',
+        publicType: 'readonly [number, number]',
+        jsDefault: '[0, 100]',
+      },
+      minimumValue: { type: 'Double', default: 0, derived: true, nativeValue: 'range[0]' },
+      maximumValue: { type: 'Double', default: 100, derived: true, nativeValue: 'range[1]' },
       step: { type: 'Double', default: 1 },
     },
     constructors: [
@@ -165,9 +183,9 @@ export const formControls: Control[] = [
       ), in: model.minimumValue...model.maximumValue, step: model.step) {
         Text(model.label)
       } onEditingChanged: { _ in }`,
-    validate: `  if (![value, minimumValue, maximumValue, step].every(Number.isFinite)) throw new Error('Stepper value, minimumValue, maximumValue, and step must be finite numbers')
-  if (minimumValue >= maximumValue) throw new Error('Stepper minimumValue must be less than maximumValue')
+    validate: `  if (![value, range[0], range[1], step].every(Number.isFinite)) throw new Error('Stepper value, in bounds, and step must be finite numbers')
+  if (range[0] >= range[1]) throw new Error('Stepper in lower bound must be less than the upper bound')
   if (step <= 0) throw new Error('Stepper step must be greater than 0')
-  if (value < minimumValue || value > maximumValue) throw new Error('Stepper value must be within minimumValue and maximumValue')`,
+  if (value < range[0] || value > range[1]) throw new Error('Stepper value must be within its in bounds')`,
   },
 ]

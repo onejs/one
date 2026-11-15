@@ -1,18 +1,10 @@
-import { NitroModules } from 'react-native-nitro-modules'
+import { localAuthenticationNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
 import type {
   LocalAuthenticationStatus,
-  OneLocalAuthentication,
 } from '../specs/OneLocalAuthentication.nitro'
 
 export type { LocalAuthenticationStatus }
-
-let hybrid: OneLocalAuthentication | undefined
-
-function native(): OneLocalAuthentication {
-  hybrid ??= NitroModules.createHybridObject<OneLocalAuthentication>('OneLocalAuthentication')
-  return hybrid
-}
 
 function canEvaluatePolicy(): LocalAuthenticationStatus {
   try {

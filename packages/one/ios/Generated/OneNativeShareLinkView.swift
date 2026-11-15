@@ -5,7 +5,6 @@ import UIKit
 
 private final class ShareLinkModel: ObservableObject {
   @Published var label: String = ""
-  @Published var disabled: Bool = false
   @Published var systemImage: String = ""
   @Published var item: String = ""
   @Published var itemType: String = "text"
@@ -39,9 +38,8 @@ private final class ShareLinkModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ label: String, disabled: Bool, systemImage: String, item: String, itemType: String, subject: String, message: String) {
+  public func configure(_ label: String, systemImage: String, item: String, itemType: String, subject: String, message: String) {
     if model.label != label { model.label = label }
-    if model.disabled != disabled { model.disabled = disabled }
     if model.systemImage != systemImage { model.systemImage = systemImage }
     if model.item != item { model.item = item }
     if model.itemType != itemType { model.itemType = itemType }
@@ -89,7 +87,6 @@ private struct ShareLinkContent: View {
   @ObservedObject var model: ShareLinkModel
   var body: some View {
     ShareLinkSurface(model: model)
-      .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }

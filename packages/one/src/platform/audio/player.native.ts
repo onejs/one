@@ -1,5 +1,10 @@
 import { rethrowNativeError } from '../nativeError'
-import type { AudioPlayerStatus, OneAudio, PitchCorrectionQuality } from '../specs/OneAudio.nitro'
+import type {
+  AudioNowPlayingInfo,
+  AudioPlayerStatus,
+  OneAudio,
+  PitchCorrectionQuality,
+} from '../specs/OneAudio.nitro'
 import { createPlayerEvents } from './events'
 import { audioNative } from './hybrid.native'
 import type {
@@ -153,6 +158,17 @@ export class AudioPlayer implements AudioPlayerShape {
     this.assertUsable('replace')
     const normalized = normalizeSource(source, 'AudioPlayer.replace')
     sync(() => native().playerReplace(this.playerId, normalized.uri, normalized.headers))
+  }
+
+  setNowPlayingInfo(info: AudioNowPlayingInfo): Promise<void> {
+    this.assertUsable('setNowPlayingInfo')
+    return native().setPlayerNowPlayingInfo(this.playerId, info).catch(rethrowNativeError)
+  }
+
+  // removal already released any claim, so clearing after it is a no-op.
+  clearNowPlayingInfo(): Promise<void> {
+    if (this.removed) return Promise.resolve()
+    return native().clearPlayerNowPlayingInfo(this.playerId).catch(rethrowNativeError)
   }
 
   remove(): void {

@@ -119,6 +119,7 @@ export const Pager = forwardRef<PagerRef, PagerProps>(function Pager(
     setPage: (index) => goTo(index, true),
     setPageWithoutAnimation: (index) => goTo(index, false),
     setScrollEnabled: setEnabled,
+    getNativeScrollRef: () => container.current,
   }))
   useEffect(() => setEnabled(scrollEnabled), [scrollEnabled])
   useLayoutEffect(() => {

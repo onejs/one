@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { BrowserColorScheme, BrowserPresentationStyle, BrowserResult } from '../browser/types';
+import type { BrowserColorScheme, BrowserPresentationStyle, BrowserResult } from '../browser/types.js';
 export type BrowserAuthResultType = 'cancel' | 'dismiss' | 'opened' | 'locked' | 'success';
 export interface BrowserAuthResult {
     type: BrowserAuthResultType;

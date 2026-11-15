@@ -1,0 +1,52 @@
+appId: dev.vxrn.native.tests
+name: view-that-fits
+---
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-view-that-fits
+      ANCHOR: "Proposal width: 180"
+- assertVisible: "Axes: horizontal"
+- assertVisible:
+    id: one-native-view-that-fits-container
+# horizontal axes at 180pt picks the compact child
+- assertVisible: "Compact option"
+- assertNotVisible: "Wide option"
+# omitted axes uses SwiftUI's both-axes default
+- assertVisible: "Default compact"
+- assertNotVisible: "Default wide"
+# ViewThatFits composed inside a Host
+- assertVisible: "Nested compact"
+- assertNotVisible: "Nested wide"
+- takeScreenshot: view-that-fits-narrow
+- tapOn: "Compact option"
+- assertVisible: "Pressed: compact"
+- tapOn:
+    id: one-native-view-that-fits-width
+- assertVisible: "Proposal width: 340"
+- assertVisible: "Wide option"
+- assertNotVisible: "Compact option"
+- takeScreenshot: view-that-fits-wide
+- tapOn: "Wide option"
+- assertVisible: "Pressed: wide"
+- tapOn:
+    id: one-native-view-that-fits-width
+- assertVisible: "Proposal width: 80"
+# nothing fits: last child
+- assertVisible: "Compact option"
+- assertNotVisible: "Wide option"
+- takeScreenshot: view-that-fits-fallback
+- tapOn:
+    id: one-native-view-that-fits-width
+- assertVisible: "Proposal width: 180"
+- tapOn:
+    id: one-native-view-that-fits-axes
+- assertVisible: "Axes: vertical"
+- assertVisible: "Wide option"
+- assertNotVisible: "Compact option"
+- tapOn:
+    id: one-native-view-that-fits-axes
+- assertVisible: "Axes: both"
+- assertVisible: "Compact option"
+- assertNotVisible: "Wide option"
+- takeScreenshot: view-that-fits-both

@@ -15,7 +15,7 @@ export const leafControls: Control[] = [
     // String that SwiftUI supplies for the user's paste action.
     name: 'PasteButton',
     actions: [{ prop: 'onPaste', event: 'Paste', payload: { values: 'jsonStrings' } }],
-    fields: { disabled: commonFields.disabled },
+    fields: {},
     constructors: [
       {
         type: 'PasteButton',
@@ -98,11 +98,6 @@ export const leafControls: Control[] = [
         derived: true,
         nativeValue: 'value === undefined',
       },
-      progressViewStyle: {
-        type: 'string',
-        default: 'automatic',
-        enum: 'ProgressViewStyle',
-      },
     },
     constructors: [
       {
@@ -124,8 +119,7 @@ export const leafControls: Control[] = [
         } else {
           ProgressView(value: model.value, total: model.total) { Text(model.label) }
         }
-      }
-      .oneNativeProgressViewStyle(model.progressViewStyle)`,
+      }`,
     validate: `  if (value !== undefined && !Number.isFinite(value)) throw new Error('ProgressView value must be a finite number or undefined')
   if (!Number.isFinite(total) || total <= 0) throw new Error('ProgressView total must be a finite number greater than 0')
   if (value !== undefined && (value < 0 || value > total)) throw new Error('ProgressView value must be between 0 and total')`,
@@ -135,12 +129,21 @@ export const leafControls: Control[] = [
     fields: {
       ...commonFields,
       value: { type: 'Double', default: 0 },
-      minimumValue: { type: 'Double', default: 0 },
-      maximumValue: { type: 'Double', default: 1 },
+      // SwiftUI's closed range arrives as one tuple; the scalars stay native-only.
+      // type/default only satisfy the field shape; publicType/jsDefault carry the surface.
+      in: {
+        type: 'Double',
+        default: 0,
+        noNative: true,
+        as: 'range',
+        publicType: 'readonly [number, number]',
+        jsDefault: '[0, 1]',
+      },
+      minimumValue: { type: 'Double', default: 0, derived: true, nativeValue: 'range[0]' },
+      maximumValue: { type: 'Double', default: 1, derived: true, nativeValue: 'range[1]' },
       currentValueLabel: { type: 'string', default: '' },
       minimumValueLabel: { type: 'string', default: '' },
       maximumValueLabel: { type: 'string', default: '' },
-      gaugeStyle: { type: 'string', default: 'automatic', enum: 'GaugeStyle' },
     },
     constructors: [
       {
@@ -184,11 +187,10 @@ export const leafControls: Control[] = [
         Text(model.minimumValueLabel)
       } maximumValueLabel: {
         Text(model.maximumValueLabel)
-      }
-      .oneNativeGaugeStyle(model.gaugeStyle)`,
-    validate: `  if (![value, minimumValue, maximumValue].every(Number.isFinite)) throw new Error('Gauge value, minimumValue, and maximumValue must be finite numbers')
-  if (minimumValue >= maximumValue) throw new Error('Gauge minimumValue must be less than maximumValue')
-  if (value < minimumValue || value > maximumValue) throw new Error('Gauge value must be within minimumValue and maximumValue')`,
+      }`,
+    validate: `  if (![value, range[0], range[1]].every(Number.isFinite)) throw new Error('Gauge value and in bounds must be finite numbers')
+  if (range[0] >= range[1]) throw new Error('Gauge in lower bound must be less than the upper bound')
+  if (value < range[0] || value > range[1]) throw new Error('Gauge value must be within its in bounds')`,
   },
   {
     name: 'Image',
@@ -204,21 +206,6 @@ export const leafControls: Control[] = [
         default: 'original',
         publicType: "'original' | 'template'",
       },
-      symbolRenderingMode: {
-        type: 'string',
-        default: '',
-        enum: 'SymbolRenderingMode',
-      },
-      symbolVariant: {
-        type: 'string',
-        default: '',
-        enum: 'SymbolVariants',
-      },
-      imageScale: {
-        type: 'string',
-        default: '',
-        enum: 'ImageScale',
-      },
       variableValue: {
         type: 'Double',
         default: 0,
@@ -231,7 +218,6 @@ export const leafControls: Control[] = [
         derived: true,
         nativeValue: 'variableValue !== undefined',
       },
-      colorRole: { type: 'string', default: '', publicType: 'IconColorRole' },
       // Image.resizable(): the symbol scales to the frame instead of drawing at its point
       // size. a uri image is always resizable.
       resizable: { type: 'boolean', default: false },
@@ -263,17 +249,12 @@ export const leafControls: Control[] = [
         } else {
           Image(systemName: model.systemName)
         }
-      }
-      .oneNativeSymbolRenderingMode(model.symbolRenderingMode)
-      .oneNativeSymbolVariant(model.symbolVariant)
-      .oneNativeImageScale(model.imageScale)
-      .oneNativeColorRole(model.colorRole)`,
+      }`,
     validate: `  if (!systemName === !uri) throw new Error('Image takes exactly one of systemName (an SF Symbol name) or uri (a remote image)')
   if (renderingMode !== 'original' && renderingMode !== 'template') throw new Error("Image renderingMode must be 'original' or 'template'")
   if (renderingMode === 'template' && !uri) throw new Error('Image renderingMode applies to a uri image; an SF Symbol is already a template')
   if (variableValue !== undefined && !Number.isFinite(variableValue)) throw new Error('Image variableValue must be a finite number or undefined')
   if (variableValue !== undefined && (variableValue < 0 || variableValue > 1)) throw new Error('Image variableValue must be between 0 and 1')
-  if (colorRole && !iconColorRoles.includes(colorRole)) throw new Error('Image colorRole must be a One.UI icon color role')
   if (resizable && uri) throw new Error('Image resizable applies to an SF Symbol; a uri image is always resizable')`,
   },
   {

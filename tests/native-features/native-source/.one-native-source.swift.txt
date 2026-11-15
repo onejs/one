@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 @MainActor public enum OneNativeSourceBody_native_source {
-  public static let hash = "3625b03653228126da650c149f15b53ff7089662bd7a1dae91da3e52050a32a8"
+  public static let hash = "11b47785c68d40ccb8612cef6dde5d4494e98c0b4c09b7eb94c5de8240acac3c"
 #if os(WASI)
   private struct Request: Decodable { let module: String; let method: String; let argsJson: String; let contractHash: String }
   private struct Reply: Encodable { let ok: Bool; let value: String?; let error: String?; let pending: Int32? }
@@ -63,12 +63,14 @@ import SwiftUI
     if let date = (try? isoDateFractional.parse(text)) ?? (try? isoDate.parse(text)) { return date }
     throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected ISO date")
   }
-  private static func decode<T: Decodable>(_ value: Any, as type: T.Type) throws -> T {
-    let data = try JSONSerialization.data(withJSONObject: value, options: [.fragmentsAllowed])
+  private static func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = .custom { try decodeDate($0) }
     decoder.dataDecodingStrategy = .base64
     return try decoder.decode(T.self, from: data)
+  }
+  private static func decode<T: Decodable>(_ value: Any, as type: T.Type) throws -> T {
+    try decode(T.self, from: try JSONSerialization.data(withJSONObject: value, options: [.fragmentsAllowed]))
   }
   private static func encode(_ value: any Encodable) throws -> String {
     let encoder = JSONEncoder()
@@ -145,6 +147,267 @@ import SwiftUI
       throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native module \(module) is not linked; rebuild the app"])
     }
   }
+  private struct OneListPatch<E: Decodable>: Decodable {
+    let length: Int
+    let set: [(Int, E)]
+    private struct Entry: Decodable {
+      let index: Int
+      let value: E
+      init(from decoder: Decoder) throws {
+        var c = try decoder.unkeyedContainer()
+        index = try c.decode(Int.self)
+        value = try c.decode(E.self)
+      }
+    }
+    private enum CodingKeys: String, CodingKey { case length, set }
+    init(from decoder: Decoder) throws {
+      let c = try decoder.container(keyedBy: CodingKeys.self)
+      length = try c.decode(Int.self, forKey: .length)
+      set = try c.decode([Entry].self, forKey: .set).map { ($0.index, $0.value) }
+    }
+  }
+  private nonisolated static func patch<E>(_ list: inout [E], _ patch: OneListPatch<E>) -> Bool {
+    if patch.length < 0 { return false }
+    if list.count > patch.length { list.removeLast(list.count - patch.length) }
+    for (index, value) in patch.set {
+      if index < list.count { list[index] = value } else if index == list.count && index < patch.length { list.append(value) } else { return false }
+    }
+    return list.count == patch.length
+  }
+  private nonisolated static func missing(_ prop: String) -> Error {
+    NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "missing prop \(prop)"])
+  }
+  private struct Lists_BenchList: Decodable {
+    let p0: OneListPatch<BenchRow>?
+    private enum CodingKeys: String, CodingKey { case p0 = "rows" }
+  }
+  private struct Doc_BenchList: Decodable {
+    let seq: Int
+    let base: Int?
+    let lists: Lists_BenchList?
+    let p0: Optional<[BenchRow]>
+    let p1: Optional<Int>
+    private enum CodingKeys: String, CodingKey { case seq = "$seq"; case base = "$base"; case lists = "$lists"; case p0 = "rows"; case p1 = "tick" }
+    init(from decoder: Decoder) throws {
+      let c = try decoder.container(keyedBy: CodingKeys.self)
+      seq = try c.decodeIfPresent(Int.self, forKey: .seq) ?? 0
+      base = try c.decodeIfPresent(Int.self, forKey: .base)
+      lists = try c.decodeIfPresent(Lists_BenchList.self, forKey: .lists)
+      p0 = try c.contains(.p0) ? Optional<[BenchRow]>.some(c.decode([BenchRow].self, forKey: .p0)) : Optional<[BenchRow]>.none
+      p1 = try c.contains(.p1) ? Optional<Int>.some(c.decode(Int.self, forKey: .p1)) : Optional<Int>.none
+    }
+  }
+  private final class Held_BenchList {
+    var oneSeq: Int
+    var `rows`: [BenchRow]
+    var `tick`: Int
+    init(_ d: Doc_BenchList) throws {
+      oneSeq = d.seq
+      guard let p0 = d.p0 else { throw OneNativeSourceBody_native_source.missing("rows") }
+      `rows` = p0
+      guard let p1 = d.p1 else { throw OneNativeSourceBody_native_source.missing("tick") }
+      `tick` = p1
+    }
+    func apply(_ d: Doc_BenchList) -> Bool {
+      if d.base != oneSeq { return false }
+      var p0 = `rows`
+      if let v = d.p0 { p0 = v }
+      if let p = d.lists?.p0 {
+        if !OneNativeSourceBody_native_source.patch(&p0, p) { return false }
+      }
+      `rows` = p0
+      if let v = d.p1 { `tick` = v }
+      oneSeq = d.seq
+      return true
+    }
+  }
+  private struct Lists_EntryList: Decodable {
+    let p0: OneListPatch<Entry>?
+    private enum CodingKeys: String, CodingKey { case p0 = "entries" }
+  }
+  private struct Doc_EntryList: Decodable {
+    let seq: Int
+    let base: Int?
+    let lists: Lists_EntryList?
+    let p0: Optional<[Entry]>
+    private enum CodingKeys: String, CodingKey { case seq = "$seq"; case base = "$base"; case lists = "$lists"; case p0 = "entries" }
+    init(from decoder: Decoder) throws {
+      let c = try decoder.container(keyedBy: CodingKeys.self)
+      seq = try c.decodeIfPresent(Int.self, forKey: .seq) ?? 0
+      base = try c.decodeIfPresent(Int.self, forKey: .base)
+      lists = try c.decodeIfPresent(Lists_EntryList.self, forKey: .lists)
+      p0 = try c.contains(.p0) ? Optional<[Entry]>.some(c.decode([Entry].self, forKey: .p0)) : Optional<[Entry]>.none
+    }
+  }
+  private final class Held_EntryList {
+    var oneSeq: Int
+    var `entries`: [Entry]
+    init(_ d: Doc_EntryList) throws {
+      oneSeq = d.seq
+      guard let p0 = d.p0 else { throw OneNativeSourceBody_native_source.missing("entries") }
+      `entries` = p0
+    }
+    func apply(_ d: Doc_EntryList) -> Bool {
+      if d.base != oneSeq { return false }
+      var p0 = `entries`
+      if let v = d.p0 { p0 = v }
+      if let p = d.lists?.p0 {
+        if !OneNativeSourceBody_native_source.patch(&p0, p) { return false }
+      }
+      `entries` = p0
+      oneSeq = d.seq
+      return true
+    }
+  }
+  private struct Doc_EntryDetail: Decodable {
+    let seq: Int
+    let base: Int?
+    let p0: Optional<Entry>
+    private enum CodingKeys: String, CodingKey { case seq = "$seq"; case base = "$base"; case lists = "$lists"; case p0 = "entry" }
+    init(from decoder: Decoder) throws {
+      let c = try decoder.container(keyedBy: CodingKeys.self)
+      seq = try c.decodeIfPresent(Int.self, forKey: .seq) ?? 0
+      base = try c.decodeIfPresent(Int.self, forKey: .base)
+      p0 = try c.contains(.p0) ? Optional<Entry>.some(c.decode(Entry.self, forKey: .p0)) : Optional<Entry>.none
+    }
+  }
+  private final class Held_EntryDetail {
+    var oneSeq: Int
+    var `entry`: Entry
+    init(_ d: Doc_EntryDetail) throws {
+      oneSeq = d.seq
+      guard let p0 = d.p0 else { throw OneNativeSourceBody_native_source.missing("entry") }
+      `entry` = p0
+    }
+    func apply(_ d: Doc_EntryDetail) -> Bool {
+      if d.base != oneSeq { return false }
+      if let v = d.p0 { `entry` = v }
+      oneSeq = d.seq
+      return true
+    }
+  }
+  private struct Doc_SortSheet: Decodable {
+    let seq: Int
+    let base: Int?
+    let p0: Optional<String>
+    private enum CodingKeys: String, CodingKey { case seq = "$seq"; case base = "$base"; case lists = "$lists"; case p0 = "order" }
+    init(from decoder: Decoder) throws {
+      let c = try decoder.container(keyedBy: CodingKeys.self)
+      seq = try c.decodeIfPresent(Int.self, forKey: .seq) ?? 0
+      base = try c.decodeIfPresent(Int.self, forKey: .base)
+      p0 = try c.contains(.p0) ? Optional<String>.some(c.decode(String.self, forKey: .p0)) : Optional<String>.none
+    }
+  }
+  private final class Held_SortSheet {
+    var oneSeq: Int
+    var `order`: String
+    init(_ d: Doc_SortSheet) throws {
+      oneSeq = d.seq
+      guard let p0 = d.p0 else { throw OneNativeSourceBody_native_source.missing("order") }
+      `order` = p0
+    }
+    func apply(_ d: Doc_SortSheet) -> Bool {
+      if d.base != oneSeq { return false }
+      if let v = d.p0 { `order` = v }
+      oneSeq = d.seq
+      return true
+    }
+  }
+  private struct Doc_EntryForm: Decodable {
+    let seq: Int
+    let base: Int?
+    private enum CodingKeys: String, CodingKey { case seq = "$seq"; case base = "$base"; case lists = "$lists" }
+    init(from decoder: Decoder) throws {
+      let c = try decoder.container(keyedBy: CodingKeys.self)
+      seq = try c.decodeIfPresent(Int.self, forKey: .seq) ?? 0
+      base = try c.decodeIfPresent(Int.self, forKey: .base)
+    }
+  }
+  private final class Held_EntryForm {
+    var oneSeq: Int
+    init(_ d: Doc_EntryForm) throws {
+      oneSeq = d.seq
+    }
+    func apply(_ d: Doc_EntryForm) -> Bool {
+      if d.base != oneSeq { return false }
+      oneSeq = d.seq
+      return true
+    }
+  }
+  static func update(_ held: AnyObject?, _ name: String, _ text: String) throws -> AnyObject? {
+    let data = Data(text.utf8)
+    switch name {
+    case "BenchList":
+      let doc = try decode(Doc_BenchList.self, from: data)
+      if doc.base == nil { return try Held_BenchList(doc) }
+      guard let h = held as? Held_BenchList, h.apply(doc) else { return nil }
+      return h
+    case "EntryList":
+      let doc = try decode(Doc_EntryList.self, from: data)
+      if doc.base == nil { return try Held_EntryList(doc) }
+      guard let h = held as? Held_EntryList, h.apply(doc) else { return nil }
+      return h
+    case "EntryDetail":
+      let doc = try decode(Doc_EntryDetail.self, from: data)
+      if doc.base == nil { return try Held_EntryDetail(doc) }
+      guard let h = held as? Held_EntryDetail, h.apply(doc) else { return nil }
+      return h
+    case "SortSheet":
+      let doc = try decode(Doc_SortSheet.self, from: data)
+      if doc.base == nil { return try Held_SortSheet(doc) }
+      guard let h = held as? Held_SortSheet, h.apply(doc) else { return nil }
+      return h
+    case "EntryForm":
+      let doc = try decode(Doc_EntryForm.self, from: data)
+      if doc.base == nil { return try Held_EntryForm(doc) }
+      guard let h = held as? Held_EntryForm, h.apply(doc) else { return nil }
+      return h
+    default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "swift view \(name) is not linked; rebuild the app"])
+    }
+  }
+  static func build(_ held: AnyObject, _ name: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView {
+    switch name {
+    case "BenchList":
+      guard let props = held as? Held_BenchList else { throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "props of another view for \(name)"]) }
+      return AnyView(BenchList(
+        rows: props.`rows`,
+        tick: props.`tick`,
+        onApplied: { (a0: Int) -> Void in emit("onApplied", args([a0])) }
+      ))
+    case "EntryList":
+      guard let props = held as? Held_EntryList else { throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "props of another view for \(name)"]) }
+      return AnyView(EntryList(
+        entries: props.`entries`,
+        onSelect: { (a0: String) -> Void in emit("onSelect", args([a0])) },
+        onAdd: { () -> Void in emit("onAdd", args([])) },
+        onSort: { () -> Void in emit("onSort", args([])) }
+      ))
+    case "EntryDetail":
+      guard let props = held as? Held_EntryDetail else { throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "props of another view for \(name)"]) }
+      return AnyView(EntryDetail(
+        entry: props.`entry`,
+        onChange: { (a0: Entry) -> Void in emit("onChange", args([a0])) }
+      ))
+    case "SortSheet":
+      guard let props = held as? Held_SortSheet else { throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "props of another view for \(name)"]) }
+      return AnyView(SortSheet(
+        order: props.`order`,
+        onSelect: { (a0: String) -> Void in emit("onSelect", args([a0])) },
+        onClose: { () -> Void in emit("onClose", args([])) }
+      ))
+    case "EntryForm":
+      guard held is Held_EntryForm else { throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "props of another view for \(name)"]) }
+      return AnyView(EntryForm(
+        onSubmit: { (a0: String, a1: String) -> Void in emit("onSubmit", args([a0, a1])) },
+        onCancel: { () -> Void in emit("onCancel", args([])) }
+      ))
+    default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "swift view \(name) is not linked; rebuild the app"])
+    }
+  }
+  static func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView {
+    guard let held = try update(nil, name, propsJson) else { throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "\(name) needs a full props document"]) }
+    return try build(held, name, emit)
+  }
 }
 
 #if os(WASI)
@@ -159,6 +422,14 @@ import SwiftUI
 @_expose(wasm, "peach_poll_events")
 @_cdecl("peach_poll_events")
 @MainActor public func peach_poll_events() -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_native_source.pollEvents() }
+@_expose(wasm, "peach_register_views")
+@_cdecl("peach_register_views")
+@MainActor public func peach_register_views() {
+  PeachTypedViews.register { name, contractHash, propsJson, emit in
+    guard contractHash == OneNativeSourceBody_native_source.hash else { return AnyView(Text("swift view native_source.\(name) changed; rebuild the app").foregroundStyle(.red)) }
+    do { return try OneNativeSourceBody_native_source.view(name, propsJson, emit) } catch { return AnyView(Text("\(name): \(error.localizedDescription)").foregroundStyle(.red)) }
+  }
+}
 @main struct OneNativeSourceMain_native_source: App {
   var body: some Scene { WindowGroup { EmptyView() } }
 }
@@ -169,5 +440,12 @@ import SwiftUI
   public required override init() {}
   public var contractHash: String { OneNativeSourceBody_native_source.hash }
   public func call(_ module: String, _ method: String, _ argsJson: String) async throws -> String { try await OneNativeSourceBody_native_source.call(module, method, argsJson) }
+}
+@objc(OneNativeSourceViews_native_source) @MainActor public final class OneNativeSourceViews_native_source: NSObject, OneNativeSourceViewDispatch {
+  public required override init() {}
+  public var contractHash: String { OneNativeSourceBody_native_source.hash }
+  public func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView { try OneNativeSourceBody_native_source.view(name, propsJson, emit) }
+  public func updateView(_ held: AnyObject?, _ name: String, _ document: String) throws -> AnyObject? { try OneNativeSourceBody_native_source.update(held, name, document) }
+  public func buildView(_ held: AnyObject, _ name: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView { try OneNativeSourceBody_native_source.build(held, name, emit) }
 }
 #endif

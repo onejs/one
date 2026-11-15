@@ -37,8 +37,7 @@ export default function OneNativeEditors() {
           setObserved(next)
           if (!reject) setText(next)
         }}
-        textInputAutocapitalization="never"
-        autocorrectionDisabled
+        swiftStyle={{ textInputAutocapitalization: 'never', autocorrectionDisabled: true }}
         accessibilityLabel="Notes editor"
         style={styles.editor}
         testID="one-native-editor"

@@ -35,7 +35,7 @@ type DirectoryNode = {
   renderMode?: One.RouteRenderMode | 'api'
 }
 
-const validPlatforms = new Set(['android', 'ios', 'native', 'web'])
+const validPlatforms = new Set(['android', 'ios', 'linux', 'macos', 'native', 'web'])
 
 /**
  * Given a Metro context module, return an array of nested routes.
@@ -62,7 +62,10 @@ export function getRoutes(
 
   const rootNode = flattenDirectoryTreeToRoutes(directoryTree, options)
 
-  if (!options.ignoreEntryPoints) {
+  // a native client skips entry points but still needs
+  // unstable_settings.initialRouteName to build a deep link's stack. its layouts
+  // are already in the bundle; on web the crawl would load split layouts early.
+  if (!options.ignoreEntryPoints || (options.platform && options.platform !== 'web')) {
     crawlAndAppendInitialRoutesAndEntryFiles(rootNode, options)
   }
 
@@ -831,7 +834,9 @@ function crawlAndAppendInitialRoutesAndEntryFiles(
   entryPoints: string[] = []
 ) {
   if (node.type === 'spa' || node.type === 'ssg' || node.type === 'ssr') {
-    node.entryPoints = [...new Set([...entryPoints, node.contextKey])]
+    if (!options.ignoreEntryPoints) {
+      node.entryPoints = [...new Set([...entryPoints, node.contextKey])]
+    }
   } else if (node.type === 'layout') {
     if (!node.children) {
       throw new Error(`Layout "${node.contextKey}" does not contain any child routes`)

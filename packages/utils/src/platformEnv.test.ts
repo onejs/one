@@ -9,12 +9,14 @@ describe('one platform env contract', () => {
   it('exposes ONE_PLATFORM for every vite environment', () => {
     expect(getPlatformEnv('ios').ONE_PLATFORM).toBe('ios')
     expect(getPlatformEnv('android').ONE_PLATFORM).toBe('android')
+    expect(getPlatformEnv('macos').ONE_PLATFORM).toBe('macos')
+    expect(getPlatformEnv('linux').ONE_PLATFORM).toBe('linux')
     expect(getPlatformEnv('client').ONE_PLATFORM).toBe('web')
     expect(getPlatformEnv('ssr').ONE_PLATFORM).toBe('web')
   })
 
   it('defines the Expo platform alias only on native', () => {
-    for (const environment of ['ios', 'android'] as const) {
+    for (const environment of ['ios', 'android', 'macos', 'linux'] as const) {
       expect(getPlatformEnv(environment).EXPO_OS).toBe(
         getPlatformEnv(environment).ONE_PLATFORM
       )
@@ -38,6 +40,7 @@ describe('one platform env contract', () => {
   it('maps metro platforms to vite environments without probing', () => {
     expect(metroPlatformToViteEnvironment('ios')).toBe('ios')
     expect(metroPlatformToViteEnvironment('android')).toBe('android')
+    expect(metroPlatformToViteEnvironment('macos')).toBe('macos')
     expect(metroPlatformToViteEnvironment(null)).toBe('client')
     expect(metroPlatformToViteEnvironment(undefined)).toBe('client')
   })

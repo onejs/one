@@ -211,6 +211,11 @@ Every event has the shape `{ nativeEvent }`:
       type: '(enabled: boolean) => void',
       description: 'Allows or blocks user swipes without a render. The next change to the scrollEnabled prop replaces it.',
     },
+    {
+      name: 'getNativeScrollRef',
+      type: '() => HostInstance | HTMLElement | null',
+      description: "Returns the view that owns the pager's pan, as React Native's ScrollView does, so react-native-gesture-handler can wrap the pager in Gesture.Native() and relate other gestures to its swipe.",
+    },
   ]}
 />
 

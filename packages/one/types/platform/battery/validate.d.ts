@@ -1,4 +1,4 @@
-import type { BatteryLevelEvent, BatteryPowerModeEvent, BatteryStateEvent } from './types';
+import type { BatteryLevelEvent, BatteryPowerModeEvent, BatteryStateEvent } from './types.js';
 export declare function assertLevelListener(listener: unknown): asserts listener is (event: BatteryLevelEvent) => void;
 export declare function assertStateListener(listener: unknown): asserts listener is (event: BatteryStateEvent) => void;
 export declare function assertLowPowerModeListener(listener: unknown): asserts listener is (event: BatteryPowerModeEvent) => void;

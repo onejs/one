@@ -1,6 +1,7 @@
 import { execFileSync } from 'node:child_process'
 import { createRequire } from 'node:module'
 import {
+  chmodSync,
   mkdtempSync,
   mkdirSync,
   readdirSync,
@@ -23,6 +24,8 @@ import {
   generateForPlatform,
   generateKotlinSources,
   getNativeDependencyInventory,
+  installNativeDependencies,
+  renderIosAppIntentsSwift,
   renderPrebuildFile,
   renderSceneDelegateSwift,
   type PrebuildAppConfig,
@@ -235,7 +238,7 @@ ${APP_DELEGATE_PBXPROJ}`,
     })
     expect(podfile.content).toContain("platform :ios, '17.0'")
     expect(podfile.content).toContain(
-      `config = use_native_modules!(['node', '-e', "process.argv=['', '', 'config'];require(require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli')).run()"])`
+      `config = use_native_modules!(vxrn_skia_dawn_config(['node', '-e', "process.argv=['', '', 'config'];require(require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli')).run()"]))`
     )
     expect(podfile.content).toContain(
       "  # [vxrn/one] nitro web image modular header\n  pod 'SDWebImage', :modular_headers => true\n  # [vxrn/one] swift packages\n  Dir[File.join(__dir__, 'OneSwiftPackages'"
@@ -748,6 +751,25 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
     expect(bare.content).not.toContain('one.photoLibrary.addOnly')
     expect(bare.content).not.toContain('one.audio.background')
     expect(bare.content).not.toContain('OneAudioService')
+    expect(bare.content).not.toContain('OneLocationService')
+    expect(bare.content).not.toContain('FOREGROUND_SERVICE_LOCATION')
+
+    const background = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
+      platform: 'android',
+      app: {
+        ...app,
+        audio: undefined,
+        photoLibrary: undefined,
+        contacts: undefined,
+        calendar: undefined,
+        location: { whenInUse: 'Track a hike.', background: true },
+      },
+    })
+    expect(background.content).toContain('android.permission.FOREGROUND_SERVICE_LOCATION')
+    expect(background.content).toContain('dev.onejs.onenative.OneLocationService')
 
     // reminders-only calendar needs no Android event permissions.
     const remindersOnly = renderPrebuildFile({
@@ -818,6 +840,24 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
     ).toThrow(
       '[vxrn] cannot stamp the maps api key: expected </application> in app/src/main/AndroidManifest.xml'
     )
+  })
+
+  it('writes edgeToEdgeEnabled to gradle.properties', () => {
+    const props = renderPrebuildFile({
+      relativePath: 'gradle.properties',
+      content: 'hermesEnabled=true',
+      platform: 'android',
+      app,
+    })
+    expect(props.content).toContain('edgeToEdgeEnabled=true')
+
+    const twice = renderPrebuildFile({
+      relativePath: 'gradle.properties',
+      content: props.content,
+      platform: 'android',
+      app,
+    })
+    expect(twice.content).toBe(props.content)
   })
 
   it('omits notification entries when notifications is unset', () => {
@@ -1086,7 +1126,7 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
       app,
     })
     const podScript = podfile.content?.match(
-      /use_native_modules!\(\['node', '-e', "([^"\n]+)"\]\)/
+      /use_native_modules!\(vxrn_skia_dawn_config\(\['node', '-e', "([^"\n]+)"\]\)\)/
     )?.[1]
     if (!podScript) throw new Error('expected iOS pod discovery command')
     expect(
@@ -1266,6 +1306,65 @@ describe('ios scene lifecycle', () => {
     expect(sceneDelegate).toContain('connectionOptions: connectionOptions')
     expect(sceneDelegate).toContain('RCTLinkingManager.scene(scene, openURLContexts: URLContexts)')
     expect(sceneDelegate).toContain('RCTLinkingManager.scene(scene, continue: userActivity)')
+  })
+
+  it('runs native.app.patches on the generated files and fails on a missing anchor', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-patches-'))
+    const replaceOnce = (from: string, to: string) => (content: string) => {
+      if (content.includes(to)) return content
+      if (!content.includes(from)) throw new Error(`missing anchor: ${from}`)
+      return content.replace(from, to)
+    }
+    const patches = [
+      {
+        platform: 'ios' as const,
+        file: 'AppDelegate.swift',
+        patch: replaceOnce(
+          'Bundle.main.url(forResource: "main", withExtension: "jsbundle")',
+          'HotUpdater.bundleURL()'
+        ),
+      },
+      {
+        platform: 'ios' as const,
+        file: 'MyApp/Info.plist',
+        patch: replaceOnce('<dict>', '<dict>\n\t<key>HotUpdaterChannel</key>\n\t<string>production</string>'),
+      },
+      {
+        platform: 'android' as const,
+        file: 'MainApplication.kt',
+        patch: replaceOnce(
+          'getDefaultReactHost(\n      context = applicationContext,',
+          'getDefaultReactHost(\n      context = applicationContext,\n      jsBundleFilePath = HotUpdater.getJSBundleFile(applicationContext),'
+        ),
+      },
+    ]
+    await generateForPlatform(workspaceRoot, 'ios', { ...app, patches }, join(output, 'ios'))
+    await generateForPlatform(workspaceRoot, 'android', { ...app, patches }, join(output, 'android'))
+    expect(readFileSync(join(output, 'ios', 'MyApp', 'AppDelegate.swift'), 'utf8')).toContain(
+      'HotUpdater.bundleURL()'
+    )
+    expect(readFileSync(join(output, 'ios', 'MyApp', 'Info.plist'), 'utf8')).toContain(
+      'HotUpdaterChannel'
+    )
+    expect(
+      readFileSync(
+        join(output, 'android', 'app/src/main/java/dev/one/myapp/MainApplication.kt'),
+        'utf8'
+      )
+    ).toContain('jsBundleFilePath = HotUpdater.getJSBundleFile(applicationContext)')
+
+    await expect(
+      generateForPlatform(
+        workspaceRoot,
+        'ios',
+        {
+          ...app,
+          patches: [{ platform: 'ios', file: 'AppDelegate.swift', patch: replaceOnce('nope-anchor', 'replacement-text') }],
+        },
+        join(output, 'ios2')
+      )
+    ).rejects.toThrow('missing anchor')
   })
 
   it('bundles native.app fonts into both platforms from the real template', async () => {
@@ -1539,6 +1638,95 @@ describe('native dependency patches', () => {
       ],
     })
     expect(readFileSync(activityPath, 'utf8')).toContain('RNScreensFragmentFactory')
+  })
+})
+
+describe('installNativeDependencies without cocoapods', () => {
+  const withPath = (value: string, run: () => void) => {
+    const previous = process.env.PATH
+    process.env.PATH = value
+    try {
+      run()
+    } finally {
+      process.env.PATH = previous
+    }
+  }
+  const withWarned = (run: (warnings: string[]) => void) => {
+    const warnings: string[] = []
+    const previous = console.warn
+    console.warn = (...args: unknown[]) => {
+      warnings.push(args.map(String).join(' '))
+    }
+    try {
+      run(warnings)
+    } finally {
+      console.warn = previous
+    }
+  }
+  const writeFakePod = (directory: string, body: string) => {
+    const pod = join(directory, 'pod')
+    writeFileSync(pod, `#!/bin/sh\n${body}\n`)
+    chmodSync(pod, 0o755)
+  }
+
+  it('skips pod install without --platform when pod is missing', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-no-pod-'))
+    const empty = mkdtempSync(join(tmpdir(), 'vxrn-empty-path-'))
+    withWarned((warnings) => {
+      withPath(empty, () => {
+        expect(installNativeDependencies({ root })).toBe(false)
+      })
+      expect(warnings).toEqual(['[vxrn] `pod` is not available, so `pod install` was skipped'])
+    })
+  })
+
+  it('still fails an explicit ios prebuild when pod is missing', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-no-pod-'))
+    const empty = mkdtempSync(join(tmpdir(), 'vxrn-empty-path-'))
+    withWarned((warnings) => {
+      withPath(empty, () => {
+        expect(() => installNativeDependencies({ root, platform: 'ios' })).toThrow(
+          expect.objectContaining({ code: 'ENOENT' })
+        )
+      })
+      expect(warnings).toEqual([])
+    })
+  })
+
+  it('never shells pod for an android prebuild', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-no-pod-'))
+    const empty = mkdtempSync(join(tmpdir(), 'vxrn-empty-path-'))
+    withWarned((warnings) => {
+      withPath(empty, () => {
+        expect(() => installNativeDependencies({ root, platform: 'android' })).not.toThrow()
+      })
+      expect(warnings).toEqual([])
+    })
+  })
+
+  it('reraises a failing pod install instead of reporting a skip', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-no-pod-'))
+    const bin = mkdtempSync(join(tmpdir(), 'vxrn-fake-pod-'))
+    writeFakePod(bin, 'exit 1')
+    withWarned((warnings) => {
+      withPath(bin, () => {
+        expect(() => installNativeDependencies({ root })).toThrow()
+      })
+      expect(warnings).toEqual([])
+    })
+  })
+
+  it('runs pod install when pod exists', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-no-pod-'))
+    const bin = mkdtempSync(join(tmpdir(), 'vxrn-fake-pod-'))
+    writeFakePod(bin, 'echo "$@" > "$0.args"')
+    withWarned((warnings) => {
+      withPath(bin, () => {
+        expect(() => installNativeDependencies({ root })).not.toThrow()
+      })
+      expect(warnings).toEqual([])
+      expect(readFileSync(join(bin, 'pod.args'), 'utf8')).toContain('--project-directory=')
+    })
   })
 })
 
@@ -1949,6 +2137,29 @@ describe('generateForPlatform determinism', () => {
     expect(plist).toContain('<key>NSAccentColorName</key>\n\t<string>AccentColor</string>')
   }, 180000)
 
+  it('merges the declared asset catalog and refuses a generated name', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-catalog-'))
+    const catalog = join(output, 'app.xcassets')
+    mkdirSync(join(catalog, 'tab-chat.imageset'), { recursive: true })
+    writeFileSync(join(catalog, 'Contents.json'), '{"info":{"author":"xcode","version":1}}')
+    writeFileSync(join(catalog, 'tab-chat.imageset', 'Contents.json'), '{"images":[]}')
+    writeFileSync(join(catalog, 'tab-chat.imageset', 'tab-chat.png'), 'png')
+    const declared = {
+      ...app,
+      ios: { ...app.ios, accentColor: { light: '#867286' }, assetCatalog: catalog },
+    }
+    await generateForPlatform(workspaceRoot, 'ios', declared, join(output, 'ios'))
+    const merged = join(output, 'ios', 'MyApp', 'Images.xcassets')
+    expect(readFileSync(join(merged, 'tab-chat.imageset', 'tab-chat.png'), 'utf8')).toBe('png')
+    expect(existsSync(join(merged, 'AccentColor.colorset', 'Contents.json'))).toBe(true)
+
+    mkdirSync(join(catalog, 'AccentColor.colorset'))
+    await expect(
+      generateForPlatform(workspaceRoot, 'ios', declared, join(output, 'ios'))
+    ).rejects.toThrow('AccentColor.colorset collides')
+  }, 180000)
+
   it('regenerates byte-identical projects from the same manifest', async () => {
     // root stays the workspace so the installed community template resolves;
     // output goes to isolated temp dirs, never the repo.
@@ -2121,9 +2332,12 @@ describe('ios widgets', () => {
       'rectangle',
       'rounded-rectangle',
       'link',
+      'button',
     ]) {
       expect(rendered).toContain(`case "${type}":`)
     }
+    expect(rendered).toContain('struct OneWidgetButtonIntent: AppIntent')
+    expect(rendered).toContain('.supportedFamilies([.systemSmall, .systemMedium])')
     // every ActivityView slot needs a decode path in both presentations
     for (const slot of [
       'lockScreen',
@@ -2137,13 +2351,81 @@ describe('ios widgets', () => {
       expect(rendered).toContain(slot)
     }
     // the JSX bridge methods exist on both sides of the React Native bridge
-    for (const method of ['writeView', 'startView', 'updateView']) {
+    for (const method of ['writeView', 'startView', 'updateView', 'claimActions']) {
       expect(readGenerated('MyApp/OneWidgetsBridge.swift')).toContain(method)
       expect(readGenerated('MyApp/OneWidgetsBridge.m')).toContain(method)
     }
-    // the shared contract carries the serialized layouts
+    expect(readGenerated('MyApp/OneWidgetsBridge.swift')).toContain('"oneWidgetAction"')
+    // the shared contract carries the serialized layouts and interactive actions
     const contract = readGenerated('MyApp/OneWidgetContract.swift')
     expect(contract.match(/let layout: String\?/g)).toHaveLength(2)
+    expect(contract).toContain('static let actionKeyPrefix = "one.widget.action."')
+    expect(contract).toContain('struct Action: Codable')
+    expect(rendered).toContain('OneWidgetContract.actionKeyPrefix + item.id')
+    expect(rendered).toContain('OneWidgetButtonIntent(action: action, value: node.value?.string)')
+    expect(readGenerated('MyApp/OneWidgetsBridge.swift')).toContain(
+      'key.hasPrefix(OneWidgetContract.actionKeyPrefix)'
+    )
+  }, 180000)
+
+  it('emits configured widget families and App Intents spoken dialog metadata', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-widgets-families-'))
+    await generateForPlatform(
+      workspaceRoot,
+      'ios',
+      {
+        ...widgetsApp,
+        ios: {
+          ...widgetsApp.ios,
+          widgets: {
+            ...widgetsApp.ios.widgets,
+            families: ['systemSmall', 'systemLarge', 'accessoryCircular', 'accessoryRectangular'],
+          },
+        },
+      },
+      join(output, 'ios')
+    )
+    const renderedWidget = readFileSync(
+      join(output, 'ios', 'OneWidgets', 'OneWidget.swift'),
+      'utf8'
+    )
+    expect(renderedWidget).toContain(
+      '.supportedFamilies([.systemSmall, .systemLarge, .accessoryCircular, .accessoryRectangular])'
+    )
+
+    const swift = renderIosAppIntentsSwift([
+      {
+        id: 'dev.one.myapp.ask',
+        title: 'Ask assistant',
+        description: 'Run a voice query and speak the answer.',
+        textParameterTitle: 'Prompt',
+        shortcutPhrase: 'Ask {app} a question',
+        shortcutPhrases: ['Query {app}', 'Ask {app} a question'],
+        systemImageName: 'waveform.circle.fill',
+        openAppWhenRun: true,
+      },
+      {
+        id: 'dev.one.myapp.ping',
+        title: 'Ping',
+        shortcutPhrase: 'Ping {app}',
+      },
+    ])
+    expect(swift).toContain(
+      'func perform() async throws -> some IntentResult & ReturnsValue<String> & ProvidesDialog'
+    )
+    expect(swift).toContain(
+      'return .result(value: result, dialog: IntentDialog(stringLiteral: result))'
+    )
+    expect(swift).toContain(
+      'static let description = IntentDescription("Run a voice query and speak the answer.")'
+    )
+    expect(swift).toContain('static let openAppWhenRun: Bool = true')
+    expect(swift).toContain(
+      'phrases: ["Ask \\(.applicationName) a question", "Query \\(.applicationName)"]'
+    )
+    expect(swift).toContain('systemImageName: "waveform.circle.fill"')
+    expect(swift).toContain('systemImageName: "bolt.fill"')
   }, 180000)
 
   it('regenerates byte-identical widget projects and adds nothing without the config', async () => {

@@ -79,11 +79,16 @@ public protocol PeachPackage {
 
 // a package's typed views (`public struct X: View`), built from the element's
 // props as json text; a callback prop reports its arguments through emit as
-// (prop name, json array)
+// (prop name, json array). a host keeps the decoded props of each view
+// instance: `updateView` applies a props document to them (a full document
+// replaces them, a keyed change document edits them) and returns nil when the
+// change does not follow what is held, so the host asks for a full document.
 @MainActor public protocol OneNativeSourceViewDispatch: AnyObject {
   init()
   var contractHash: String { get }
   func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView
+  func updateView(_ held: AnyObject?, _ name: String, _ document: String) throws -> AnyObject?
+  func buildView(_ held: AnyObject, _ name: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView
 }
 
 extension PeachPackage {

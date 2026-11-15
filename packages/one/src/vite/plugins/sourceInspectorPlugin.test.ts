@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { parseSync } from 'oxc-parser'
 
 import {
   getSourceInspectorPath,
@@ -43,6 +44,28 @@ describe('sourceInspectorPlugin helpers', () => {
   })
 
   describe('injectSourceToJsx', () => {
+    it('keeps JSX type arguments before injected attributes', async () => {
+      for (const tag of ['WebView<unknown>', 'Preview.WebView<Array<unknown>>']) {
+        const id = `${process.cwd()}/src/Preview.tsx`
+        const input = `const preview = <${tag} ref={webRef} />`
+        const out = await injectSourceToJsx(input, id)
+        expect(out).toBeDefined()
+
+        const parsed = parseSync(id, out!.code)
+        expect(parsed.errors).toEqual([])
+        const declaration = parsed.program.body[0] as any
+        const element = declaration.declarations[0].init.openingElement
+        const args = element.typeArguments
+        expect(out!.code.slice(args.start, args.end)).toBe(tag.slice(tag.indexOf('<')))
+        expect(element.attributes.map((attr: any) => attr.name.name)).toEqual([
+          'data-one-source',
+          'ref',
+        ])
+        expect(element.attributes[1].value.expression.name).toBe('webRef')
+        expect(await injectSourceToJsx(out!.code, id)).toBeUndefined()
+      }
+    })
+
     it('tags dom elements and components but leaves custom reconciler tags alone', async () => {
       const out = await injectSourceToJsx(
         [

@@ -1,3 +1,4 @@
+#if ONE_GROUP_MEDIA
 import AVFoundation
 import NitroModules
 
@@ -43,6 +44,9 @@ final class HybridOneSpeechSynthesis: HybridOneSpeechSynthesisSpec {
     onEvent: @escaping (SpeechSynthesisEvent) -> Void
   ) throws {
     DispatchQueue.main.async {
+      if let useApplicationAudioSession = utterance.useApplicationAudioSession {
+        self.synthesizer.usesApplicationAudioSession = useApplicationAudioSession
+      }
       let avUtterance = AVSpeechUtterance(string: utterance.text)
       if let language = utterance.language {
         avUtterance.voice =
@@ -183,3 +187,5 @@ final class HybridOneSpeechSynthesisDelegate: NSObject, AVSpeechSynthesizerDeleg
     owner?.finish(utterance, type: .stopped, message: nil)
   }
 }
+
+#endif

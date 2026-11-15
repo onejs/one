@@ -1,6 +1,6 @@
 ---
 title: iOS Stacks
-description: SwiftUI stack layout under One.iOS, with Host, HStack, VStack, ZStack, Spacer, and Slot
+description: SwiftUI stack layout under One.iOS, with HStack, VStack, ZStack, Spacer, and Slot
 ---
 
 <NativeHero
@@ -8,8 +8,9 @@ description: SwiftUI stack layout under One.iOS, with Host, HStack, VStack, ZSta
   alt="One.iOS HStack, VStack, ZStack, and Spacer laying out SwiftUI views in a card"
 />
 
-`One.iOS` stacks lay out SwiftUI views the way SwiftUI does. `Host`, `HStack`,
-`VStack`, and `ZStack` map to SwiftUI's `HStack`, `VStack`, and `ZStack` inside
+`One.iOS` stacks lay out SwiftUI views the way SwiftUI does. `HStack`, `VStack`,
+and `ZStack` are SwiftUI's `HStack`, `VStack`, and `ZStack`, with the same
+arguments, inside
 a React Native Fabric view, so the controls they hold are measured and drawn by
 SwiftUI itself. `Spacer` pushes siblings apart along the stack axis, and `Slot`
 reserves a fixed box for React Native content a measured parent cannot size.
@@ -40,8 +41,8 @@ edges. The stack reports SwiftUI's measured height, so no height is needed.
 
 ## How it works
 
-Each stack renders through a Fabric view, such as
-`OneNativeHostComponentView`, that hosts its SwiftUI content in a
+Each stack renders through a Fabric view generated from the SwiftUI SDK, such as
+`OneNativeVStackComponentView`, that hosts its SwiftUI content in a
 `OneNativeHostingController`, a `UIHostingController` subclass. Children
 compose into the parent's hosting controller instead of owning one, so a stack
 of controls is a single SwiftUI tree. The container measures that tree and
@@ -54,10 +55,12 @@ that take the box they are given instead of reporting an ideal height, `Form`,
 inside a stack; each needs its own box. Children must be SwiftUI views: raw
 text or React Native views throw, and React Native content belongs in a `Slot`.
 
-## Host, HStack, VStack
+## HStack, VStack
 
-`Host` lays children along `axis`. `HStack` is always horizontal and `VStack`
-always vertical; both take the same props without `axis`.
+`HStack` lays children out in a row and `VStack` in a column. Each takes
+SwiftUI's `alignment` and `spacing`: the alignment is a `VerticalAlignment` for
+`HStack` and a `HorizontalAlignment` for `VStack`, and an unset spacing is the
+system spacing between each pair of children, as in SwiftUI.
 
 ```tsx
 import { One } from 'one'
@@ -79,42 +82,62 @@ function SyncCard() {
 The outer stack spaces its rows by 8 points; the inner row spreads its label
 and value with a spacer, and the progress view fills the card width.
 
+Like every view in `One.iOS`, a stack takes `swiftStyle`, the SwiftUI modifiers
+you would chain after it. This card gets padding, a rounded background, and a
+shadow:
+
+```tsx
+<One.iOS.VStack
+  spacing={8}
+  swiftStyle={{
+    padding: 16,
+    background: '#F2F2F7',
+    cornerRadius: 12,
+    shadow: { color: 'black', radius: 6, x: 0, y: 2 },
+  }}
+>
+  <One.iOS.Text text="Wi-Fi" />
+  <One.iOS.Text text="Home" />
+</One.iOS.VStack>
+```
+
+A measured stack reports its styled height to Yoga, so the padding counts toward
+the card's size.
+
 <PropsTable
-  title="Props"
-  source="generated/containerTypes.ts#HostProps"
+  title="HStack props"
+  source="generated/containerTypes.ts#HStackProps"
   data={[
-    { name: 'axis', type: 'HostAxis', default: '"vertical"', description: 'vertical or horizontal. Host only.' },
-    { name: 'spacing', type: 'number', default: '0', description: 'The gap between children. Must be zero or more.' },
-    { name: 'alignment', type: 'HostAlignment', default: '"leading"', description: 'leading, center, or trailing.' },
+    { name: 'alignment', type: 'HStackAlignment', default: '"center"', description: 'top, center, bottom, firstTextBaseline, or lastTextBaseline.' },
+    { name: 'spacing', type: 'number', description: 'The gap between children. Must be zero or more. Unset is the system spacing.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'SwiftUI views or Slot boxes.' },
+  ]}
+/>
+
+<PropsTable
+  title="VStack props"
+  source="generated/containerTypes.ts#VStackProps"
+  data={[
+    { name: 'alignment', type: 'VStackAlignment', default: '"center"', description: 'leading, center, trailing, listRowSeparatorLeading, or listRowSeparatorTrailing.' },
+    { name: 'spacing', type: 'number', description: 'The gap between children. Must be zero or more. Unset is the system spacing.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'SwiftUI views or Slot boxes.' },
   ]}
 />
 
 ### Environment
 
-`Host`, `HStack`, `VStack`, and `Form` apply these SwiftUI environment values
-to their whole subtree. Unknown value names throw, as do values that need a
-newer iOS than the device runs.
-
-<PropsTable
-  title="Environment"
-  source="generated/containerTypes.ts#EnvironmentProps"
-  data={[
-    { name: 'colorScheme', type: 'ColorScheme', description: 'light or dark.' },
-    { name: 'dynamicTypeSize', type: 'DynamicTypeSize', description: 'xSmall through xxxLarge, or accessibility1 through accessibility5.' },
-    { name: 'controlSize', type: 'ControlSize', description: 'mini, small, regular, large, or extraLarge.' },
-    { name: 'locale', type: 'string', description: 'A non-empty locale identifier, such as fr_FR.' },
-    { name: 'tint', type: 'ColorValue', description: 'The accent color for controls.' },
-    { name: 'isEnabled', type: 'boolean', description: 'false disables every control inside.' },
-  ]}
-/>
+SwiftUI environment modifiers in `swiftStyle` apply to the stack's whole
+subtree, as they do in SwiftUI. Unknown value names throw, as do values that
+need a newer iOS than the device runs.
 
 ```tsx
 import { One } from 'one'
 
 function LargeDarkCard() {
   return (
-    <One.iOS.VStack colorScheme="dark" dynamicTypeSize="accessibility1">
+    <One.iOS.VStack swiftStyle={{ colorScheme: 'dark', dynamicTypeSize: 'accessibility1' }}>
       <One.iOS.Label label="Favorites" systemImage="star" />
       <One.iOS.Text text="Every control inside inherits the scheme and type size." />
     </One.iOS.VStack>
@@ -148,6 +171,7 @@ alignment.
   source="generated/containerTypes.ts#ZStackProps"
   data={[
     { name: 'alignment', type: 'ZStackAlignment', default: '"center"', description: 'topLeading, top, topTrailing, leading, center, trailing, bottomLeading, bottom, or bottomTrailing.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The layers, back to front.' },
   ]}
 />
@@ -179,6 +203,7 @@ squeezed.
   source="generated/containerTypes.ts#SpacerProps"
   data={[
     { name: 'minLength', type: 'number', default: '0', description: 'The least space it leaves. Must be zero or more.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
   ]}
 />
 
@@ -213,6 +238,7 @@ none, so a slot in one takes an explicit width.
   data={[
     { name: 'height', required: true, type: 'number', description: 'The box height. Must be above zero.' },
     { name: 'width', type: 'number', default: '0', description: 'The box width. 0 fills the width offered; inside an HStack, set one.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view. Inside a `Form` or `List`, row modifiers such as `listRowInsets` and `listRowBackground` reach the hosted row.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The React Native content.' },
   ]}
 />

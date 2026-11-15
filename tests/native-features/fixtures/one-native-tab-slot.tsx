@@ -10,13 +10,13 @@ export default function OneNativeTabSlot() {
     <View style={styles.screen} testID="one-native-tab-slot-screen">
       <Text>{`Selected tab: ${selection}`}</Text>
       <Text>{`Slot taps: ${slotTaps}`}</Text>
-      <One.iOS.Tabs
+      <One.iOS.TabView
         selection={selection}
         onSelectionChange={setSelection}
         style={{ flex: 1 }}
         testID="one-native-tab-slot-tabs"
       >
-        <One.iOS.Tab id="home" title="Home" systemImage="house">
+        <One.iOS.Tab value="home" titleKey="Home" systemImage="house">
           <View style={styles.page} testID="one-native-tab-slot-home">
             <Text>Home page</Text>
             <Text>Before empty</Text>
@@ -33,7 +33,7 @@ export default function OneNativeTabSlot() {
             </One.iOS.HStack>
           </View>
         </One.iOS.Tab>
-        <One.iOS.Tab id="other" title="Other" systemImage="star">
+        <One.iOS.Tab value="other" titleKey="Other" systemImage="star">
           <View style={styles.page} testID="one-native-tab-slot-other">
             <Text>Other page</Text>
           </View>
@@ -47,7 +47,7 @@ export default function OneNativeTabSlot() {
             <Text>Slot action</Text>
           </Pressable>
         </One.iOS.TabViewSlot>
-      </One.iOS.Tabs>
+      </One.iOS.TabView>
     </View>
   )
 }

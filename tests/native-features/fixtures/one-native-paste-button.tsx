@@ -27,7 +27,7 @@ export default function OneNativePasteButton() {
       </Pressable>
       <One.iOS.PasteButton
         testID="one-native-paste-action"
-        disabled={disabled}
+        swiftStyle={{ disabled }}
         onPaste={(next) => { setValues(next); setCount((n) => n + 1) }}
       />
     </View>

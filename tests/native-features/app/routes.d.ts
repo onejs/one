@@ -21,6 +21,11 @@ declare module 'one' {
         | `/color-test`
         | `/docs-capture`
         | `/menu-test`
+        | `/native-screens`
+        | `/native-screens-bench`
+        | `/native-screens/`
+        | `/native-screens/new`
+        | `/native-screens/sort`
         | `/one-native`
         | `/one-native-accessibility`
         | `/one-native-adaptive`
@@ -78,6 +83,7 @@ declare module 'one' {
         | `/one-native-button`
         | `/one-native-calendar`
         | `/one-native-camera`
+        | `/one-native-canvas`
         | `/one-native-clipboard`
         | `/one-native-contact-ui`
         | `/one-native-contacts`
@@ -97,6 +103,7 @@ declare module 'one' {
         | `/one-native-disclosure-group`
         | `/one-native-document-camera`
         | `/one-native-document-picker`
+        | `/one-native-drag-binding`
         | `/one-native-edit-button`
         | `/one-native-editors`
         | `/one-native-effects`
@@ -104,6 +111,8 @@ declare module 'one' {
         | `/one-native-fetch`
         | `/one-native-file-system`
         | `/one-native-fonts`
+        | `/one-native-form-slot-style`
+        | `/one-native-generated-options`
         | `/one-native-geofencing`
         | `/one-native-geometry-reader`
         | `/one-native-gestures`
@@ -119,6 +128,9 @@ declare module 'one' {
         | `/one-native-image`
         | `/one-native-image-manipulator`
         | `/one-native-image-picker`
+        | `/one-native-ios-sdk`
+        | `/one-native-ios-sdk-bench`
+        | `/one-native-ios-sdk-state`
         | `/one-native-keep-awake`
         | `/one-native-launch-screen`
         | `/one-native-leaves`
@@ -142,9 +154,11 @@ declare module 'one' {
         | `/one-native-motion`
         | `/one-native-navigation`
         | `/one-native-navigation-split-view`
+        | `/one-native-navigation-zoom`
         | `/one-native-network`
         | `/one-native-notifications`
         | `/one-native-open`
+        | `/one-native-outline-group`
         | `/one-native-paste-button`
         | `/one-native-pedometer`
         | `/one-native-photo-library`
@@ -167,6 +181,7 @@ declare module 'one' {
         | `/one-native-secure-store`
         | `/one-native-share`
         | `/one-native-share-empty`
+        | `/one-native-share-target`
         | `/one-native-sheet`
         | `/one-native-source`
         | `/one-native-speech`
@@ -174,14 +189,19 @@ declare module 'one' {
         | `/one-native-state`
         | `/one-native-storage`
         | `/one-native-store-review`
+        | `/one-native-swift-gestures`
         | `/one-native-swipe-actions`
         | `/one-native-system`
         | `/one-native-tab-lifecycle`
         | `/one-native-tab-oracle`
         | `/one-native-tab-sidebar`
         | `/one-native-tab-slot`
+        | `/one-native-table`
         | `/one-native-tabview`
+        | `/one-native-timeline-view`
         | `/one-native-ui-map`
+        | `/one-native-uikit-content`
+        | `/one-native-uikit-view`
         | `/one-native-updates`
         | `/one-native-view-slot`
         | `/one-native-view-snapshot`
@@ -198,14 +218,17 @@ declare module 'one' {
         | `/zoom-test`
       DynamicRoutes:
         | `/deep-link/${OneRouter.SingleRoutePart<T>}`
+        | `/native-screens/${OneRouter.SingleRoutePart<T>}`
         | `/shared-element/${OneRouter.SingleRoutePart<T>}`
       DynamicRouteTemplate:
         | `/deep-link/[id]`
+        | `/native-screens/[id]`
         | `/shared-element/[id]`
       IsTyped: true
       RouteTypes: {
-        '/deep-link/[id]': RouteInfo<{ id: string }>
-        '/shared-element/[id]': RouteInfo<{ id: string }>
+        '/deep-link/[id]': RouteInfo<{ id: string }, '/deep-link/[id]'>
+        '/native-screens/[id]': RouteInfo<{ id: string }, '/native-screens/[id]'>
+        '/shared-element/[id]': RouteInfo<{ id: string }, '/shared-element/[id]'>
       }
     }
   }
@@ -214,7 +237,7 @@ declare module 'one' {
 /**
  * Helper type for route information
  */
-type RouteInfo<Params = Record<string, never>> = {
+type RouteInfo<Params = Record<string, never>, Path extends string = string> = {
   Params: Params
-  LoaderProps: { path: string; search?: string; subdomain?: string; params: Params; request?: Request }
+  LoaderProps: import('one').LoaderProps<Params, OneRouter.LoaderSearchParams<Path>>
 }

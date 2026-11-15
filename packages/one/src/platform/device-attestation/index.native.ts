@@ -1,18 +1,10 @@
 import { Platform } from 'react-native'
-import { NitroModules } from 'react-native-nitro-modules'
+import { deviceAttestationNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
-import type { DeviceAttestationAvailability, OneDeviceAttestation } from '../specs/OneDeviceAttestation.nitro'
+import type { DeviceAttestationAvailability } from '../specs/OneDeviceAttestation.nitro'
 import { DeviceAttestation as unavailableDeviceAttestation } from './unavailable'
 
 export type { DeviceAttestationAvailability } from '../specs/OneDeviceAttestation.nitro'
-
-let hybrid: OneDeviceAttestation | undefined
-
-function native(): OneDeviceAttestation {
-  if (Platform.OS !== 'ios') throw new Error('DeviceAttestation requires an iOS native build')
-  hybrid ??= NitroModules.createHybridObject<OneDeviceAttestation>('OneDeviceAttestation')
-  return hybrid
-}
 
 function getAvailability(): DeviceAttestationAvailability {
   try {

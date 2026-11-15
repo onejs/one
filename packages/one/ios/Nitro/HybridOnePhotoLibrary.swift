@@ -1,7 +1,9 @@
+#if ONE_GROUP_PHOTOS
 import NitroModules
 import AVFoundation
 import ImageIO
 import Photos
+import PhotosUI
 import UIKit
 import UniformTypeIdentifiers
 
@@ -765,3 +767,4 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
     oneNativeError(code, message)
   }
 }
+#endif

@@ -1,0 +1,40 @@
+appId: dev.vxrn.native.tests
+name: control-group
+---
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-control-group
+      ANCHOR: "Taps: 0"
+- assertVisible: "After control"
+- assertVisible:
+    id: one-native-control-standalone
+- assertVisible:
+    id: one-native-control-host
+- assertVisible:
+    id: one-native-control-bounded
+- assertVisible:
+    id: one-native-control-add
+- assertVisible:
+    id: one-native-control-star
+# measured groups push the following RN text below them
+- assertVisible: { id: one-native-control-after, below: { id: one-native-control-standalone } }
+- assertVisible: { id: one-native-control-after-nested, below: { id: one-native-control-host } }
+- assertVisible: { id: one-native-control-after-bounded, below: { id: one-native-control-bounded } }
+- takeScreenshot: control-group-mounted
+- tapOn:
+    id: one-native-control-add
+- assertVisible: "Taps: 1"
+- tapOn:
+    id: one-native-control-star
+- assertVisible: "Taps: 2"
+- assertVisible: { id: one-native-control-after, below: { id: one-native-control-standalone } }
+- takeScreenshot: control-group-tapped
+- tapOn:
+    id: one-native-control-nested-add
+- assertVisible: "Nested taps: 1"
+- tapOn:
+    id: one-native-control-bounded-add
+- assertVisible: "Bounded taps: 1"
+- assertVisible: { id: one-native-control-after-bounded, below: { id: one-native-control-bounded } }
+- takeScreenshot: control-group-bounded

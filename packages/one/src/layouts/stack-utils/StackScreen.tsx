@@ -1,6 +1,10 @@
 'use client'
 
-import type { NativeStackNavigationOptions } from '@react-navigation/native-stack'
+import type { ParamListBase, StackNavigationState } from '@react-navigation/native'
+import type {
+  NativeStackNavigationEventMap,
+  NativeStackNavigationOptions,
+} from '@react-navigation/native-stack'
 import { Children, isValidElement, useMemo, type PropsWithChildren } from 'react'
 
 import { NAVIGATOR_CONFIG } from '../../headless/children'
@@ -14,6 +18,7 @@ import {
   appendStackToolbarPropsToOptions,
   type StackToolbarProps,
 } from './StackToolbar'
+import type { ScreenProps } from '../../router/useScreens'
 import { Screen } from '../../views/Screen'
 
 export type StackScreenOptions = Omit<NativeStackNavigationOptions, 'presentation'> & {
@@ -33,10 +38,19 @@ export type StackScreenOptions = Omit<NativeStackNavigationOptions, 'presentatio
   keepMounted?: boolean
 }
 
-export interface StackScreenProps extends PropsWithChildren {
-  name?: string
-  options?: StackScreenOptions
-}
+// every route prop the navigator reads off a screen element (listeners,
+// initialParams, getId, redirect) passes through Stack.Screen unchanged.
+// options merge with Stack.Header children, so only the object form applies
+export type StackScreenProps = PropsWithChildren<
+  Omit<
+    ScreenProps<
+      StackScreenOptions,
+      StackNavigationState<ParamListBase>,
+      NativeStackNavigationEventMap
+    >,
+    'options'
+  > & { options?: StackScreenOptions }
+>
 
 /**
  * Stack screen component with support for compositional header configuration.

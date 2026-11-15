@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import type { WebPresentations } from './types';
+import type { WebPresentations } from './types.js';
 export type PresentationsProps = {
     /**
      * components that render `presentation` screens on web. omit one and that

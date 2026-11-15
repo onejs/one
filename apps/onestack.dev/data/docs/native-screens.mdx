@@ -1,0 +1,85 @@
+---
+title: Native screens
+description: Route to SwiftUI and Compose views and keep One's router, layouts and state
+---
+
+A route can render a [Swift or Kotlin view](/docs/native-source) as its whole
+screen. The router, layouts and state stay in JavaScript. The screen's contents,
+including the list, the title and the toolbar, are SwiftUI on iOS and Compose on
+Android.
+
+```tsx
+// app/entries/index.tsx
+import { useRouter } from 'one'
+import { EntryList } from '../../native/views'
+import { useEntries } from '../../store'
+
+export default function EntriesScreen() {
+  const router = useRouter()
+  const { entries } = useEntries()
+  return (
+    <EntryList
+      style={{ flex: 1 }}
+      entries={entries}
+      onSelect={(id) => router.push(`/entries/${id}`)}
+    />
+  )
+}
+```
+
+Import each platform's view from a platform file, so the route stays the same on both:
+
+```ts
+// native/views.ios.ts
+export { EntryList } from './Entries.swift'
+// native/views.android.ts
+export { EntryList } from './Entries.kt'
+```
+
+Give the view `flex: 1` so it fills the screen. Without it a SwiftUI `List`
+measures its content and collapses. The view reports taps through callbacks, and
+the route calls the router, so deep links, back handling and sheets work as for
+any other screen. State lives in your own store and flows in as props.
+
+The `tests/native-features` app has a complete example under
+`app/native-screens`: a list with search, a detail screen, a sheet and a form.
+
+## iOS
+
+The SwiftUI view owns the bar contents. Its `.navigationTitle`, toolbar items and
+`.searchable` are carried to the screen's navigation bar, and its scroll view
+drives the large title. The stack only has to stay out of the way.
+Set these three options:
+
+```tsx
+<Stack
+  screenOptions={Platform.select({
+    ios: { headerTransparent: true, headerBackButtonDisplayMode: 'minimal' },
+    default: { headerShown: false },
+  })}
+>
+  <Stack.Screen name="index" options={{ title: 'Entries', headerLargeTitleEnabled: true }} />
+</Stack>
+```
+
+- `headerTransparent` lets the view's scroll content run under the bar.
+- `headerBackButtonDisplayMode: 'minimal'` shows the chevron alone, as UIKit does.
+- `headerLargeTitleEnabled` turns on the large title for a list screen.
+
+## Android
+
+Compose draws the app bar, so hide the stack's header with
+`headerShown: false` and put a `TopAppBar` in the composable. Leave
+`statusBarStyle` unset: the status bar icons then follow the system appearance,
+as in a native app.
+
+## Props and cost
+
+Props cross as JSON. The first update of a view sends every prop. Later updates
+send only the props that changed, and for an array of 32 or more items only the
+items whose objects changed (items are compared by identity, so replace an item
+with a new object to change it and keep unchanged items as the same objects).
+The native view keeps its decoded props between updates, so one changed row in a
+2,000-row list costs about one changed row, not 2,000. If the native side and
+JavaScript ever disagree about what was sent, the view asks for every prop again
+on the next render.

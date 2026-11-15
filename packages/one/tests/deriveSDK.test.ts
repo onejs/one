@@ -28,7 +28,7 @@ describe('SDK modifier derivation', () => {
     ).toEqual([
       { name: 'hidden', kind: 'boolean', type: '', ios: 0, zeroArgument: true },
       {
-        name: 'productIconBorder',
+        name: 'productIconBorder', frameworks: ['_StoreKit_SwiftUI'],
         kind: 'boolean',
         type: '',
         ios: 0,
@@ -153,6 +153,28 @@ describe('SDK modifier derivation', () => {
     ])
   })
 
+  it('keeps numeric range overloads beside scalar lineLimit variants', () => {
+    expect(deriveModifiers([
+      method('lineLimit', 'SwiftUICore', [{ label: '_', name: 'limit', type: 'Swift.Int?' }]),
+      method('lineLimit', 'SwiftUICore', [{ label: '_', name: 'limit', type: 'Swift.ClosedRange<Swift.Int>' }]),
+      method('lineLimit', 'SwiftUICore', [{ label: '_', name: 'limit', type: 'Swift.PartialRangeFrom<Swift.Int>' }]),
+    ], 27, [])).toEqual([
+      { name: 'lineLimitWithClosedRange', sdkName: 'lineLimit', module: 'SwiftUICore',
+        kind: 'record', type: '', ios: 0, aliasSuffix: 'ClosedRange',
+        arguments: [{ field: 'limit', label: '_', kind: 'numericRange',
+          type: 'Swift.ClosedRange<Swift.Int>', optional: false,
+          fields: [{ name: 'lower', label: 'lower', type: 'Swift.Int' },
+            { name: 'upper', label: 'upper', type: 'Swift.Int' }] }] },
+      { name: 'lineLimitWithOptionalInt', sdkName: 'lineLimit', module: 'SwiftUICore',
+        kind: 'optionalNumber', type: 'Swift.Int?', ios: 0 },
+      { name: 'lineLimitWithPartialRangeFrom', sdkName: 'lineLimit', module: 'SwiftUICore',
+        kind: 'record', type: '', ios: 0, aliasSuffix: 'PartialRangeFrom',
+        arguments: [{ field: 'limit', label: '_', kind: 'numericRange',
+          type: 'Swift.PartialRangeFrom<Swift.Int>', optional: false,
+          fields: [{ name: 'lower', label: 'lower', type: 'Swift.Int' }] }] },
+    ])
+  })
+
   it('derives a string backed SDK value from its public raw value initializer', () => {
     expect(deriveModifiers([
       method('previewDevice', 'SwiftUI', [{ label: '_', name: 'device', type: 'SwiftUI.PreviewDevice?' }]),
@@ -207,7 +229,7 @@ describe('SDK modifier derivation', () => {
     expect(deriveModifiers([task, session, request], 27, [])).toEqual([])
     expect(deriveModifiers([task, session, request, response, sourceText, targetText], 27, []))
       .toEqual([{
-        name: 'translationTask', kind: 'sessionRequest', type: task.parameters[2].type,
+        name: 'translationTask', frameworks: ['_Translation_SwiftUI'], kind: 'sessionRequest', type: task.parameters[2].type,
         ios: 0, framework: 'Translation',
         sessionRequest: { method: 'translate', inputField: 'sourceText',
           outputFields: ['sourceText', 'targetText'], actionLabel: 'action',
@@ -255,7 +277,7 @@ describe('SDK modifier derivation', () => {
       kind: 'var', owner: 'PhotosPickerItem', type: 'Swift.String?' }
     expect(deriveModifiers([picker, item, types], 27, [])).toEqual([])
     expect(deriveModifiers([picker, item, load, types, identifier], 27, [])).toEqual([{
-      name: 'photosPicker', kind: 'transferSelection',
+      name: 'photosPicker', frameworks: ['_PhotosUI_SwiftUI'], kind: 'transferSelection',
       type: '_PhotosUI_SwiftUI.PhotosPickerItem', framework: 'PhotosUI', ios: 0,
       transferSelection: { itemType: '_PhotosUI_SwiftUI.PhotosPickerItem',
         presentedLabel: 'isPresented', selectionLabel: 'selection',
@@ -303,7 +325,7 @@ describe('SDK modifier derivation', () => {
       method('payLaterViewAction', '_PassKit_SwiftUI', [{ label: '_', name: 'action', type: '_PassKit_SwiftUI.PayLaterViewAction' }]),
       { ...method('learnMore', '_PassKit_SwiftUI'), kind: 'static', owner: 'PayLaterViewAction', type: 'PayLaterViewAction' },
     ], 27, [])).toEqual([
-      { name: 'payLaterViewAction', kind: 'string', type: '_PassKit_SwiftUI.PayLaterViewAction', ios: 0, framework: 'PassKit', cases: [{ name: 'learnMore', ios: 0 }] },
+      { name: 'payLaterViewAction', frameworks: ['_PassKit_SwiftUI'], kind: 'string', type: '_PassKit_SwiftUI.PayLaterViewAction', ios: 0, framework: 'PassKit', cases: [{ name: 'learnMore', ios: 0 }] },
       { name: 'textCase', kind: 'optionalEnum', type: 'SwiftUICore.Text.Case?', ios: 0, cases: [{ name: 'uppercase', ios: 0 }] },
       { name: 'truncationMode', kind: 'string', type: 'SwiftUICore.Text.TruncationMode', ios: 0, cases: [{ name: 'tail', ios: 0 }] },
     ])
@@ -487,11 +509,11 @@ describe('SDK modifier derivation', () => {
     ], 27, [])).toEqual([
       { name: 'fileDialogDefaultDirectory', kind: 'optionalURL', type: 'Foundation.URL?', ios: 0 },
       { name: 'navigationDocument', kind: 'url', type: 'Foundation.URL', ios: 0 },
-      { name: 'subscriptionStorePolicyDestination', kind: 'record', type: '', ios: 0, framework: 'StoreKit', arguments: [
+      { name: 'subscriptionStorePolicyDestination', frameworks: ['_StoreKit_SwiftUI'], kind: 'record', type: '', ios: 0, framework: 'StoreKit', arguments: [
         { field: 'url', label: 'url', kind: 'url', type: 'Foundation.URL', optional: false },
         { field: 'button', label: 'for', kind: 'enum', type: '_StoreKit_SwiftUI.SubscriptionStorePolicyKind', optional: false, cases: [{ name: 'privacyPolicy', ios: 0 }] },
       ] },
-      { name: 'subscriptionStoreSignInAction', kind: 'event', type: '(() -> ())?', label: '_', ios: 0, framework: 'StoreKit' },
+      { name: 'subscriptionStoreSignInAction', frameworks: ['_StoreKit_SwiftUI'], kind: 'event', type: '(() -> ())?', label: '_', ios: 0, framework: 'StoreKit' },
     ])
   })
 
@@ -611,7 +633,7 @@ describe('SDK modifier derivation', () => {
       ]), owner: 'AppStoreMerchandisingKind', type: 'StoreKit.AppStoreMerchandisingKind', isStatic: true },
     ]
     expect(deriveModifiers(declarations, 27, [])).toEqual([{
-      name: 'appStoreMerchandising', kind: 'record', type: '', ios: 0, framework: 'StoreKit',
+      name: 'appStoreMerchandising', frameworks: ['_StoreKit_SwiftUI'], kind: 'record', type: '', ios: 0, framework: 'StoreKit',
       arguments: [
         { field: 'isPresented', label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>', kind: 'bindingBoolean', optional: false },
         { field: 'kind', label: 'kind', type: 'StoreKit.AppStoreMerchandisingKind', kind: 'string', optional: false,
@@ -630,7 +652,7 @@ describe('SDK modifier derivation', () => {
       ]),
       { ...method('ID', 'StoreKit'), kind: 'typealias', owner: 'Transaction', type: 'Swift.UInt64' },
     ], 27, [])).toEqual([{
-      name: 'refundRequestSheet', kind: 'record', type: '', ios: 0, framework: 'StoreKit',
+      name: 'refundRequestSheet', frameworks: ['_StoreKit_SwiftUI'], kind: 'record', type: '', ios: 0, framework: 'StoreKit',
       arguments: [
         { field: 'transactionID', label: 'for', type: 'StoreKit.Transaction.ID', kind: 'string', optional: false,
           swiftExpression: 'UInt64($value) ?? { () -> UInt64 in preconditionFailure("invalid UInt64") }()' },
@@ -651,7 +673,7 @@ describe('SDK modifier derivation', () => {
         { label: 'from', name: 'data', type: 'Foundation.Data' },
       ]), kind: 'init', owner: 'WorkoutPlan' },
     ], 27, [])).toEqual([{
-      name: 'workoutPreview', kind: 'record', type: '', ios: 0, framework: 'WorkoutKit',
+      name: 'workoutPreview', frameworks: ['_WorkoutKit_SwiftUI'], kind: 'record', type: '', ios: 0, framework: 'WorkoutKit',
       arguments: [
         { field: 'plan', label: '_', type: 'WorkoutKit.WorkoutPlan', kind: 'string', optional: false,
           swiftExpression: '({ () -> WorkoutKit.WorkoutPlan in guard let data = Foundation.Data(base64Encoded: $value), let result = try? WorkoutKit.WorkoutPlan(from: data) else { preconditionFailure("invalid WorkoutKit.WorkoutPlan data") }; return result })()' },
@@ -669,7 +691,7 @@ describe('SDK modifier derivation', () => {
       { ...method('SubscriptionInfo', 'StoreKit'), kind: 'typealias', owner: '', type: 'StoreKit.Product.SubscriptionInfo' },
       { ...method('pricingTerms', 'StoreKit'), kind: 'var', owner: 'StoreKit.Product.SubscriptionInfo', type: '[StoreKit.Product.SubscriptionInfo.PricingTerms]' },
     ], 27, [])).toEqual([{
-      name: 'preferredSubscriptionPricingTerms', kind: 'selectionIndex', type: '@escaping (_ product: StoreKit.Product, _ subscriptionInfo: StoreKit.SubscriptionInfo) -> StoreKit.SubscriptionInfo.PricingTerms?',
+      name: 'preferredSubscriptionPricingTerms', frameworks: ['_StoreKit_SwiftUI'], kind: 'selectionIndex', type: '@escaping (_ product: StoreKit.Product, _ subscriptionInfo: StoreKit.SubscriptionInfo) -> StoreKit.SubscriptionInfo.PricingTerms?',
       label: '_', selectionMember: 'pricingTerms', ios: 0, framework: 'StoreKit',
     }])
   })
@@ -710,7 +732,7 @@ describe('SDK modifier derivation', () => {
       { ...method('SubscriptionInfo', 'StoreKit'), kind: 'struct', owner: product },
       { ...method('subscriptionGroupID', 'StoreKit'), kind: 'var', owner: info, type: 'Swift.String', stored: true },
     ], 27, [])).toEqual([{
-      name: 'subscriptionIntroductoryOffer', kind: 'eventAsyncString', type: asyncType,
+      name: 'subscriptionIntroductoryOffer', frameworks: ['_StoreKit_SwiftUI'], kind: 'eventAsyncString', type: asyncType,
       ios: 0, framework: 'StoreKit', predicateLabel: 'applyOffer', callbackLabel: 'compactJWS',
       eventInputs: ['product', 'subscriptionInfo'],
       eventValue: { kind: 'object', fields: [
@@ -739,7 +761,7 @@ describe('SDK modifier derivation', () => {
       { ...method('SubscriptionOffer', 'StoreKit'), kind: 'struct', owner: product },
       { ...method('id', 'StoreKit'), kind: 'var', owner: offer, type: 'Swift.String?', stored: true },
     ], 27, [])).toEqual([{
-      name: 'subscriptionPromotionalOffer', kind: 'eventAsyncString', type: asyncType,
+      name: 'subscriptionPromotionalOffer', frameworks: ['_StoreKit_SwiftUI'], kind: 'eventAsyncString', type: asyncType,
       ios: 0, framework: 'StoreKit', predicateLabel: 'offer', callbackLabel: 'compactJWS',
       selectionMember: 'promotionalOffers', selectionInputIndex: 1,
       eventInputs: ['product', 'subscriptionInfo', 'promotionalOffer'],
@@ -814,7 +836,7 @@ describe('SDK modifier derivation', () => {
       { ...method('scene', 'MapKit'), kind: 'var', owner: 'MKLookAroundSceneRequest',
         type: 'MapKit.MKLookAroundScene?', attributes: ['@async'] },
     ], 27, [])).toEqual([{
-      name: 'lookAroundViewer', kind: 'asyncObjectRequest',
+      name: 'lookAroundViewer', frameworks: ['_MapKit_SwiftUI'], kind: 'asyncObjectRequest',
       type: 'MapKit.MKLookAroundScene?', ios: 0, framework: 'MapKit',
       requestType: 'MapKit.MKLookAroundSceneRequest', requestProperty: 'scene',
       predicateLabel: 'isPresented', label: 'initialScene',
@@ -898,11 +920,16 @@ describe('SDK view slots', () => {
         { label: 'for', name: 'placement', type: 'SwiftUI.ContentToolbarPlacement' }, content,
       ]), requirements: requirement },
       { ...method('placement', 'SwiftUI'), kind: 'static', owner: 'ContentToolbarPlacement', type: 'SwiftUI.ContentToolbarPlacement' },
+      { ...method('leading', 'SwiftUICore'), kind: 'static', owner: 'HorizontalEdge', type: 'HorizontalEdge' },
+      { ...method('trailing', 'SwiftUICore'), kind: 'static', owner: 'HorizontalEdge', type: 'HorizontalEdge' },
     ], 27)).toEqual([
       { name: 'accessibilityChildren', module: 'SwiftUI', label: 'children', ios: 0, arguments: [] },
       { name: 'contentToolbar', module: 'SwiftUI', label: 'content', ios: 0, arguments: [{ field: 'placement', label: 'for', type: 'SwiftUI.ContentToolbarPlacement', kind: 'enum', optional: false, cases: [{ name: 'placement', ios: 0 }] }] },
       { name: 'searchSuggestions', module: 'SwiftUI', label: '_', ios: 0, arguments: [] },
-      { name: 'swipeActions', module: 'SwiftUI', label: 'content', ios: 0, arguments: [] },
+      { name: 'swipeActions', module: 'SwiftUI', label: 'content', ios: 0, arguments: [
+        { field: 'edge', label: 'edge', type: 'SwiftUICore.HorizontalEdge', kind: 'enum', optional: false, cases: [{ name: 'leading', ios: 0 }, { name: 'trailing', ios: 0 }], defaulted: true },
+        { field: 'allowsFullSwipe', label: 'allowsFullSwipe', type: 'Swift.Bool', kind: 'boolean', optional: false, defaulted: true },
+      ] },
       { name: 'tabViewBottomAccessory', module: 'SwiftUI', label: 'content', ios: 0, arguments: [] },
       { name: 'tabViewBottomAccessoryWithBool', sdkName: 'tabViewBottomAccessory', module: 'SwiftUI', label: 'content', ios: 0, arguments: [
         { field: 'isEnabled', label: 'isEnabled', type: 'Swift.Bool', kind: 'boolean', optional: false },
@@ -916,16 +943,78 @@ describe('SDK view slots', () => {
     const requirements = ['V : SwiftUICore.View']
     expect(deriveViewSlots([
       { ...method('safeAreaInset', 'SwiftUICore', [
-        { label: 'edge', name: 'edge', type: 'SwiftUICore.VerticalEdge' }, content,
+        { label: 'edge', name: 'edge', type: 'SwiftUICore.VerticalEdge' },
+        { label: 'alignment', name: 'alignment', type: 'SwiftUICore.HorizontalAlignment', defaultValue: '.center' },
+        { label: 'spacing', name: 'spacing', type: 'CoreFoundation.CGFloat?', defaultValue: 'nil' },
+        content,
       ]), requirements },
       { ...method('safeAreaInset', 'SwiftUICore', [
-        { label: 'edge', name: 'edge', type: 'SwiftUICore.HorizontalEdge' }, content,
+        { label: 'edge', name: 'edge', type: 'SwiftUICore.HorizontalEdge' },
+        { label: 'alignment', name: 'alignment', type: 'SwiftUICore.VerticalAlignment', defaultValue: '.center' },
+        { label: 'spacing', name: 'spacing', type: 'CoreFoundation.CGFloat?', defaultValue: 'nil' },
+        content,
       ]), requirements },
       { ...method('top', 'SwiftUICore'), kind: 'static', owner: 'VerticalEdge', type: 'VerticalEdge' },
       { ...method('leading', 'SwiftUICore'), kind: 'static', owner: 'HorizontalEdge', type: 'HorizontalEdge' },
+      { ...method('center', 'SwiftUICore'), kind: 'static', owner: 'HorizontalAlignment', type: 'HorizontalAlignment' },
+      { ...method('center', 'SwiftUICore'), kind: 'static', owner: 'VerticalAlignment', type: 'VerticalAlignment' },
     ], 27)).toEqual([
-      { name: 'safeAreaInsetWithHorizontalEdge', sdkName: 'safeAreaInset', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [{ field: 'edge', label: 'edge', type: 'SwiftUICore.HorizontalEdge', kind: 'enum', optional: false, cases: [{ name: 'leading', ios: 0 }] }] },
-      { name: 'safeAreaInsetWithVerticalEdge', sdkName: 'safeAreaInset', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [{ field: 'edge', label: 'edge', type: 'SwiftUICore.VerticalEdge', kind: 'enum', optional: false, cases: [{ name: 'top', ios: 0 }] }] },
+      { name: 'safeAreaInsetWithHorizontalEdge', sdkName: 'safeAreaInset', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [
+        { field: 'edge', label: 'edge', type: 'SwiftUICore.HorizontalEdge', kind: 'enum', optional: false, cases: [{ name: 'leading', ios: 0 }] },
+        { field: 'alignment', label: 'alignment', type: 'SwiftUICore.VerticalAlignment', kind: 'enum', optional: false, cases: [{ name: 'center', ios: 0 }], defaulted: true },
+        { field: 'spacing', label: 'spacing', type: 'CoreFoundation.CGFloat?', kind: 'number', optional: true, defaulted: true },
+      ] },
+      { name: 'safeAreaInsetWithVerticalEdge', sdkName: 'safeAreaInset', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [
+        { field: 'edge', label: 'edge', type: 'SwiftUICore.VerticalEdge', kind: 'enum', optional: false, cases: [{ name: 'top', ios: 0 }] },
+        { field: 'alignment', label: 'alignment', type: 'SwiftUICore.HorizontalAlignment', kind: 'enum', optional: false, cases: [{ name: 'center', ios: 0 }], defaulted: true },
+        { field: 'spacing', label: 'spacing', type: 'CoreFoundation.CGFloat?', kind: 'number', optional: true, defaulted: true },
+      ] },
+    ])
+  })
+
+  it('keeps defaulted bridgeable arguments and rejects the rest', () => {
+    expect(deriveViewSlots([
+      { ...method('popover', 'SwiftUI', [
+        { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+        { label: 'attachmentAnchor', name: 'attachmentAnchor', type: 'SwiftUI.PopoverAttachmentAnchor', defaultValue: '.rect(.bounds)' },
+        { label: 'arrowEdge', name: 'arrowEdge', type: 'SwiftUICore.Edge?', defaultValue: 'nil' },
+        { label: 'content', name: 'content', type: '@escaping () -> Content' },
+      ]), requirements: ['Content : SwiftUICore.View'] },
+      { ...method('top', 'SwiftUICore'), kind: 'static', owner: 'Edge', type: 'Edge' },
+      { ...method('bottom', 'SwiftUICore'), kind: 'static', owner: 'Edge', type: 'Edge' },
+    ], 27)).toEqual([{
+      name: 'popover', module: 'SwiftUI', label: 'content', ios: 0,
+      arguments: [
+        { field: 'isPresented', label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>', kind: 'bindingBoolean', optional: false },
+        { field: 'arrowEdge', label: 'arrowEdge', type: 'SwiftUICore.Edge?', kind: 'enum', optional: true, cases: [{ name: 'top', ios: 0 }, { name: 'bottom', ios: 0 }], defaulted: true },
+      ],
+    }])
+  })
+
+  it('rejects defaulted arguments newer than the slot', () => {
+    expect(deriveViewSlots([
+      { ...method('overlay', 'SwiftUICore', [
+        { label: 'alignment', name: 'alignment', type: 'SwiftUICore.Alignment', defaultValue: '.center' },
+        { label: 'content', name: 'content', type: '() -> V' },
+      ]), requirements: ['V : SwiftUICore.View'] },
+      { ...method('Alignment', 'SwiftUICore'), kind: 'struct', owner: '', attributes: ['@available(iOS 18, *)'] },
+      { ...method('center', 'SwiftUICore'), kind: 'static', owner: 'Alignment', type: 'Alignment' },
+    ], 27)).toEqual([
+      { name: 'overlay', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [] },
+    ])
+  })
+
+  it('keeps required arguments only past three presence branches', () => {
+    expect(deriveViewSlots([
+      { ...method('overlay', 'SwiftUICore', [
+        { label: 'a', name: 'a', type: 'Swift.Bool', defaultValue: 'true' },
+        { label: 'b', name: 'b', type: 'Swift.Bool', defaultValue: 'true' },
+        { label: 'c', name: 'c', type: 'Swift.Bool', defaultValue: 'true' },
+        { label: 'd', name: 'd', type: 'Swift.Bool', defaultValue: 'true' },
+        { label: 'content', name: 'content', type: '() -> V' },
+      ]), requirements: ['V : SwiftUICore.View'] },
+    ], 27)).toEqual([
+      { name: 'overlay', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [] },
     ])
   })
 

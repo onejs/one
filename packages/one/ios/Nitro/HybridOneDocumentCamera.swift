@@ -1,3 +1,4 @@
+#if ONE_GROUP_VISION
 import NitroModules
 import UIKit
 import VisionKit
@@ -166,3 +167,5 @@ final class HybridDocumentCameraImage: HybridDocumentCameraImageSpec {
     return try image.jpegData(compressionQuality: compressionQuality).map { try ArrayBuffer.copy(data: $0) }
   }
 }
+
+#endif

@@ -1,4 +1,6 @@
 import { one } from 'one/vite'
+import { nativeBundleTrace } from './scripts/nativeBundleTrace'
+import { nativeHmrTrace } from './scripts/nativeHmrTrace'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import type { UserConfig } from 'vite'
@@ -14,6 +16,8 @@ export default {
   },
 
   plugins: [
+    nativeBundleTrace(process.env.ONE_NATIVE_BUNDLE_TRACE),
+    nativeHmrTrace(process.env.ONE_NATIVE_HMR_TRACE),
     one({
       router: {
         ignoredRouteFiles: ['**/*.should-be-ignored.*'],

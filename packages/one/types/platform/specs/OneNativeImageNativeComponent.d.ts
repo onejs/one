@@ -36,12 +36,8 @@ interface NativeProps extends ViewProps {
     systemName: string;
     uri: string;
     renderingMode: string;
-    symbolRenderingMode: string;
-    symbolVariant: string;
-    imageScale: string;
     variableValue: Double;
     hasVariableValue: boolean;
-    colorRole: string;
     resizable: boolean;
     swiftStyle?: OneNativeStyleNative;
     onNativeSDKEvent?: DirectEventHandler<Readonly<{

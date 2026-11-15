@@ -37,6 +37,8 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("playerSeek", &HybridOneAudioSpec::playerSeek);
       prototype.registerHybridMethod("playerReplace", &HybridOneAudioSpec::playerReplace);
       prototype.registerHybridMethod("removePlayer", &HybridOneAudioSpec::removePlayer);
+      prototype.registerHybridMethod("setPlayerNowPlayingInfo", &HybridOneAudioSpec::setPlayerNowPlayingInfo);
+      prototype.registerHybridMethod("clearPlayerNowPlayingInfo", &HybridOneAudioSpec::clearPlayerNowPlayingInfo);
       prototype.registerHybridMethod("getPlayerStatus", &HybridOneAudioSpec::getPlayerStatus);
       prototype.registerHybridMethod("setPlayerRate", &HybridOneAudioSpec::setPlayerRate);
       prototype.registerHybridMethod("setPlayerVolume", &HybridOneAudioSpec::setPlayerVolume);

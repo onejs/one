@@ -1,6 +1,6 @@
 import type { EventMapBase, NavigationState, ParamListBase, RouteProp, ScreenListeners } from '@react-navigation/native';
 import React from 'react';
-import { type RouteNode } from './Route';
+import { type RouteNode } from './Route.js';
 export declare const Screen: <RouteName extends string>(_: import("@react-navigation/core").RouteConfig<ParamListBase, RouteName, Readonly<{
     key: string;
     index: number;
@@ -35,7 +35,10 @@ export type ScreenProps<TOptions extends Record<string, any> = Record<string, an
      */
     redirect?: boolean;
     initialParams?: Record<string, any>;
-    options?: TOptions;
+    options?: TOptions | ((prop: {
+        route: RouteProp<ParamListBase, string>;
+        navigation: any;
+    }) => TOptions);
     listeners?: ScreenListeners<State, EventMap> | ((prop: {
         route: RouteProp<ParamListBase, string>;
         navigation: any;

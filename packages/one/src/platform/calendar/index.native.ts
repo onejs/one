@@ -1,4 +1,4 @@
-import { NitroModules } from 'react-native-nitro-modules'
+import { calendarNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
 import type {
   CalendarEvent,
@@ -7,7 +7,6 @@ import type {
   CalendarPermissionStatus,
   CalendarRecurrence,
   CalendarRecurrenceFrequency,
-  OneCalendar,
   ReminderInfo,
   ReminderInput,
 } from '../specs/OneCalendar.nitro'
@@ -23,13 +22,6 @@ export type {
 }
 export type CalendarEventInput = Omit<NativeCalendarEventInput, 'allDay'> & {
   allDay?: boolean
-}
-
-let hybrid: OneCalendar | undefined
-
-function native(): OneCalendar {
-  hybrid ??= NitroModules.createHybridObject<OneCalendar>('OneCalendar')
-  return hybrid
 }
 
 function getPermissionStatus(): CalendarPermissionStatus {

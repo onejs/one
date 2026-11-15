@@ -1,0 +1,41 @@
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-network
+- tapOn:
+    text: 'Open'
+    optional: true
+- extendedWaitUntil:
+    visible: 'State: (wifi|ethernet|cellular|unknown) true true'
+    timeout: 30000
+- extendedWaitUntil:
+    visible: 'Events: [1-9][0-9]*'
+    timeout: 30000
+- copyTextFrom: 'State: .*'
+- evalScript: ${output.networkState = maestro.copiedText}
+- assertVisible: '${output.networkState.replace("State:", "Hook:")}'
+- tapOn:
+    id: one-native-network-refresh
+- assertVisible: '${output.networkState}'
+- repeat:
+    times: 2
+    commands:
+      - tapOn: 'index'
+      - extendedWaitUntil:
+          visible: 'One Native Test Suite'
+          timeout: 30000
+      - openLink: nativefeatures://app/one-native-network
+      - tapOn:
+          text: 'Open'
+          optional: true
+      - extendedWaitUntil:
+          visible: 'Events: [1-9][0-9]*'
+          timeout: 30000
+      - assertVisible: '${output.networkState}'
+      - assertVisible: '${output.networkState.replace("State:", "Hook:")}'

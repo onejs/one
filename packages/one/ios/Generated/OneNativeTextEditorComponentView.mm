@@ -50,7 +50,7 @@ using namespace facebook::react;
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   _syncStateId = next.syncStateId;
   [_nativeView configure:RCTNSStringFromString(next.value)
-    acknowledgedEvent:next.acknowledgedEvent revision:next.revision syncStateId:next.syncStateId focused:next.focused acknowledgedFocusEvent:next.acknowledgedFocusEvent focusRevision:next.focusRevision disabled:next.disabled textInputAutocapitalization:RCTNSStringFromString(next.textInputAutocapitalization) autocorrectionDisabled:next.autocorrectionDisabled keyboardType:RCTNSStringFromString(next.keyboardType) textContentType:RCTNSStringFromString(next.textContentType)];
+    acknowledgedEvent:next.acknowledgedEvent revision:next.revision syncStateId:next.syncStateId focused:next.focused acknowledgedFocusEvent:next.acknowledgedFocusEvent focusRevision:next.focusRevision];
 
   [super updateProps:props oldProps:oldProps];
   // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test

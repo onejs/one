@@ -1,6 +1,6 @@
 import { type HastPluginInput, type MdastPluginInput } from 'satteri';
 import { type SatteriExpressiveCodeOptions } from 'satteri-expressive-code';
-import type { Frontmatter } from './types';
+import type { Frontmatter } from './types.js';
 export type GetMDXOptions = {
     /** public directory for resolving image paths that start with `/` (default: ./public) */
     publicDir?: string;

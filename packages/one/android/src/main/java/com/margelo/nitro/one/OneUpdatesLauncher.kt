@@ -627,6 +627,34 @@ object OneUpdatesLauncher {
 
     // MARK: - reads
 
+    internal data class DOMAssetLocation(
+        val selection: String,
+        val root: File?,
+        val assetPrefix: String,
+    )
+
+    // reads the running selection only; a download must not change a live page.
+    internal fun currentDOMAssetLocation(applicationContext: Context): DOMAssetLocation? {
+        synchronized(lock) {
+            if (!runningEmbedded) {
+                val id = runningId ?: return null
+                val encoded = Base64.encodeToString(
+                    id.toByteArray(Charsets.UTF_8),
+                    Base64.URL_SAFE or Base64.NO_PADDING or Base64.NO_WRAP)
+                return DOMAssetLocation("update-$encoded", updateDirectory(id), "")
+            }
+            val buildId = try {
+                applicationContext.assets.open("one-dom/manifest.json").use { stream ->
+                    JSONObject(stream.readBytes().toString(Charsets.UTF_8)).getString("buildId")
+                }
+            } catch (_: Exception) {
+                return null
+            }
+            if (!Regex("[A-Za-z0-9._-]+").matches(buildId)) return null
+            return DOMAssetLocation("embedded-$buildId", null, "")
+        }
+    }
+
     fun currentUpdateId(): String? {
         synchronized(lock) {
             if (!runningEmbedded) return runningId

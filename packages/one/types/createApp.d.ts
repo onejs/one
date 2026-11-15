@@ -1,7 +1,10 @@
-import './setup';
-import type { RenderAppProps } from './types';
-import type { OneLinkingConfig } from './link/getLinking';
-import type { One } from './vite/types';
+import './setup.js';
+import { loaderResponseToModule } from './loaderResponseToModule.js';
+import { prepareSsrLoaderProps } from './loaderSearchParams.js';
+import { readLoaderSearch } from './utils/cleanUrl.js';
+import type { RenderAppProps } from './types.js';
+import type { OneLinkingConfig } from './link/getLinking.js';
+import type { One } from './vite/types.js';
 export type CreateAppProps = {
     routes: Record<string, () => Promise<unknown>>;
     routerRoot: string;
@@ -15,6 +18,11 @@ export type CreateAppProps = {
 };
 export declare function createApp(options: CreateAppProps): Promise<void> | {
     options: CreateAppProps;
+    loaderRequest: {
+        loaderResponseToModule: typeof loaderResponseToModule;
+        prepareSsrLoaderProps: typeof prepareSsrLoaderProps;
+        readLoaderSearch: typeof readLoaderSearch;
+    };
     render: (props: RenderAppProps) => Promise<any>;
     renderStream: (props: RenderAppProps) => Promise<ReadableStream>;
 };

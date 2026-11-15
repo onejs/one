@@ -13,14 +13,14 @@ function createId(): ALSId {
   return { _id: _nextId++ }
 }
 
-export async function resolveResponse(getResponse: () => Promise<Response>) {
+export async function resolveResponse(getResponse: () => Promise<Response | null>) {
   // always read ALS from globalThis to match the bundled server code
   const store =
     requestAsyncLocalStore ??
     (globalThis['__vxrnrequestAsyncLocalStore'] as typeof requestAsyncLocalStore)
   if (store) {
     const id = createId()
-    let response: Response
+    let response: Response | null
     await store.run(id, async () => {
       try {
         response = await getResponse()

@@ -10,6 +10,7 @@ import {
   readFileSync,
   realpathSync,
   renameSync,
+  rmSync,
   writeFileSync,
 } from 'node:fs'
 import { tmpdir } from 'node:os'
@@ -26,6 +27,34 @@ const vitePluginMetroDir = resolve(here, '../../../vite-plugin-metro')
 const utilsDir = resolve(here, '../../../utils')
 const workspaceRoot = resolve(here, '../../..')
 const basicStarterDir = resolve(workspaceRoot, '../examples/one-basic')
+
+// scratch dirs carry the owner pid so a later run removes what a killed run
+// left behind; only dirs matching our prefixes whose owner pid is dead go
+const SCRATCH = /^one-packed-(?:closure|native|consumer|metro|files)-(\d+)-/
+for (const name of readdirSync(tmpdir())) {
+  const owner = SCRATCH.exec(name)?.[1]
+  if (owner === undefined) continue
+  try {
+    process.kill(Number(owner), 0)
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ESRCH')
+      rmSync(join(tmpdir(), name), { recursive: true, force: true })
+  }
+}
+const scratchDirs: string[] = []
+function makeScratch(name: string): string {
+  const dir = realpathSync(
+    mkdtempSync(join(tmpdir(), `one-packed-${name}-${process.pid}-`))
+  )
+  scratchDirs.push(dir)
+  return dir
+}
+const removeScratch = () => {
+  for (const dir of scratchDirs) rmSync(dir, { recursive: true, force: true })
+}
+process.on('exit', removeScratch)
+for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP'] as const)
+  process.on(signal, () => process.exit(128))
 
 const KNOWN_ONE_BLOCKERS: string[] = []
 const KNOWN_VXRN_BLOCKERS: string[] = []
@@ -115,7 +144,7 @@ function getInstalledPackageNames(nodeModulesDir: string): string[] {
 
 describe('packed-artifact closure oracle', () => {
   it('keeps the packed framework manifests free of Expo dependencies', () => {
-    const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-closure-')))
+    const tmp = makeScratch('closure')
     const onePkg = JSON.parse(
       readFileSync(
         join(unpack(packToDir(oneDir, tmp), join(tmp, 'one')), 'package.json'),
@@ -148,7 +177,7 @@ describe('packed-artifact closure oracle', () => {
   })
 
   it('ships the one/native entrypoint with dist and types in the tarball', () => {
-    const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-native-')))
+    const tmp = makeScratch('native')
     const extracted = unpack(packToDir(oneDir, tmp), join(tmp, 'one'))
     for (const target of [
       // one's own native code, autolinked as the `one` dependency
@@ -193,7 +222,7 @@ describe('packed-artifact closure oracle', () => {
   })
 
   it('imports one/native in a tarball-only consumer with no workspace path', () => {
-    const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-consumer-')))
+    const tmp = makeScratch('consumer')
     const consumerModules = join(tmp, 'consumer', 'node_modules')
     mkdirSync(consumerModules, { recursive: true })
     const extracted = join(consumerModules, 'one')
@@ -224,8 +253,8 @@ console.log('one/native ok ' + url);
     expect(out).not.toContain(workspaceRoot)
   })
 
-  it('keeps the default packed closure Expo-free and bundles Metro after its preset is installed', () => {
-    const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-metro-')))
+  it('keeps the packed closure Expo-free and bundles Metro without an Expo preset', () => {
+    const tmp = makeScratch('metro')
     const tarballs = join(tmp, 'tarballs')
     mkdirSync(tarballs)
     const packedClosure = packWorkspaceClosure(
@@ -383,45 +412,122 @@ if (!config.dependencies['react-native-nitro-modules']) {
       encoding: 'utf8',
     })
 
-    expect(() =>
-      execFileSync(
-        process.execPath,
-        ['-e', "require('./metro.config.cjs').catch((error) => { console.error(error.message); process.exitCode = 1 })"],
-        { cwd: appDir, encoding: 'utf8' }
-      )
-    ).toThrow(/Metro requires babel-preset-expo in the app.*Install with/)
+    expect(
+      existsSync(join(appDir, 'node_modules', 'babel-preset-expo', 'package.json'))
+    ).toBe(false)
+    execFileSync(
+      process.execPath,
+      [
+        '-e',
+        "require('./metro.config.cjs').catch((error) => { console.error(error.message); process.exitCode = 1 })",
+      ],
+      { cwd: appDir, encoding: 'utf8' }
+    )
 
-    const expoPresetVersion = JSON.parse(
-      readFileSync(join(workspaceRoot, '../node_modules/babel-preset-expo/package.json'), 'utf8')
-    ).version
-    execFileSync('bun', ['add', '-d', `babel-preset-expo@${expoPresetVersion}`], {
+    // the installed package supplies real runtime facades. an app with no local
+    // ios prebuild must bundle those same files, without fabricated SDK modules.
+    expect(existsSync(join(appDir, 'node_modules/.one/ios'))).toBe(false)
+    expect(existsSync(join(appDir, 'node_modules/one/ios-bindings/UIKit.ts'))).toBe(true)
+
+    // bundle dev and minified prod through one shared Metro server instead of
+    // two CLI builds: one file map, one warm worker farm, one teardown. two
+    // workers is the measured optimum; a host-sized farm collapses on worker
+    // contention. the script runs from a file: the same script via node
+    // --eval stalls Metro's worker farm (nested transform chunk echoes, no
+    // bundle written, ETIMEDOUT). the reporter drops worker-chunk echoes and
+    // keeps only phase lines.
+    writeFileSync(
+      join(appDir, 'metro-build.cjs'),
+      `process.env.ONE_METRO_NATIVE_TRANSFORMS = '1'
+const { loadConfig } = require('metro-config')
+const { runMetro } = require('metro')
+const output = require('metro/private/shared/output/bundle')
+const path = require('node:path')
+const fs = require('node:fs')
+const assert = require('node:assert/strict')
+const formatBundlingError = require('metro/private/lib/formatBundlingError').default
+const { patchMetroServerWithViteConfigAndMetroPluginOptions } = require('@vxrn/vite-plugin-metro')
+const { buildOneBabelPlugins } = require('one/babel-preset')
+const started = Date.now()
+const stamp = () => '+' + ((Date.now() - started) / 1000).toFixed(1) + 's'
+async function build() {
+  const config = await loadConfig({ config: 'metro.config.cjs', maxWorkers: 2 })
+  assert.equal(config.transformerPath, require.resolve('@vxrn/vite-plugin-metro/transformer/metroNativeWorker'))
+  config.reporter = {
+    update(event) {
+      if (event.type === 'initialize_done') console.log(stamp() + ' haste ready')
+      else if (event.type === 'bundle_build_started') console.log(stamp() + ' build started dev=' + event.bundleDetails?.dev)
+      else if (event.type === 'bundle_build_done') console.log(stamp() + ' build done')
+      else if (event.type === 'bundle_build_failed' || event.type === 'initialize_failed') console.log(stamp() + ' failed ' + event.type)
+    },
+  }
+  const syntaxCases = [
+    ['broken.tsx', '// ascii', '\\n'],
+    ['broken-unicode.tsx', '// café🙂', '\\n'],
+    ['broken-crlf.tsx', '// café🙂', '\\r\\n'],
+  ]
+  for (const [filename, heading, newline] of syntaxCases) {
+    fs.writeFileSync(filename, [heading, '// second', '// third', 'const greeting = ;', ''].join(newline))
+  }
+  const server = await runMetro(config, { watch: false })
+  // use the same server patch as one's native bundle command.
+  patchMetroServerWithViteConfigAndMetroPluginOptions(
+    server,
+    { root: process.cwd(), mode: 'development', base: '/', env: {} },
+    {
+      oneViteMetroBabelConfig: true,
+      babelConfig: { plugins: buildOneBabelPlugins({
+        projectRoot: process.cwd(), relativeRouterRoot: 'app', includeImportMetaEnv: false,
+      }) },
+    }
+  )
+  try {
+    for (const [filename] of syntaxCases) {
+      let response
+      try {
+        await output.build(server, {
+          entryFile: filename, platform: 'android', dev: true, minify: false,
+        })
+      } catch (error) {
+        response = JSON.parse(JSON.stringify(formatBundlingError(error)))
+      }
+      assert.equal(response?.type, 'TransformError', JSON.stringify(response))
+      assert.equal(response.filename, filename)
+      assert.equal(response.lineNumber, 4)
+      assert.equal(response.column, 17)
+      assert.match(response.message, /Unexpected token/)
+      console.log(stamp() + ' Android syntax error location: ' + filename + ':4:17')
+    }
+    for (const dev of [true, false]) {
+      const bundle = await output.build(server, {
+        entryFile: 'node_modules/one/metro-entry.js',
+        platform: 'ios',
+        dev,
+        minify: !dev,
+      })
+      await output.save(bundle, {
+        bundleOutput: path.join(process.cwd(), 'bundle.' + dev + '.js'),
+        dev,
+        platform: 'ios',
+      }, () => {})
+      console.log(stamp() + ' saved dev=' + dev + ' bytes=' + bundle.code.length)
+    }
+  } finally {
+    await server.end()
+  }
+}
+build().catch(error => { console.error(error); process.exitCode = 1 })
+`
+    )
+    execFileSync(process.execPath, ['metro-build.cjs'], {
       cwd: appDir,
       encoding: 'utf8',
       timeout: 180_000,
     })
-    expect(getInstalledPackageNames(join(appDir, 'node_modules'))).toContain('babel-preset-expo')
-
     for (const dev of ['true', 'false']) {
-      const bundlePath = join(appDir, `bundle.${dev}.js`)
-      execFileSync(
-        join(appDir, 'node_modules/.bin/metro'),
-        [
-          'build',
-          'node_modules/one/metro-entry.js',
-          '--config',
-          'metro.config.cjs',
-          '--platform',
-          'ios',
-          '--dev',
-          dev,
-          '--minify',
-          dev === 'false' ? 'true' : 'false',
-          '--out',
-          bundlePath,
-        ],
-        { cwd: appDir, encoding: 'utf8', timeout: 180_000 }
+      expect(readFileSync(join(appDir, `bundle.${dev}.js`)).byteLength).toBeGreaterThan(
+        1_000_000
       )
-      expect(readFileSync(bundlePath).byteLength).toBeGreaterThan(1_000_000)
     }
   })
 
@@ -452,7 +558,7 @@ if (!config.dependencies['react-native-nitro-modules']) {
   })
 
   it('packs every files entry and non-dist export target of each published package', () => {
-    const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-files-')))
+    const tmp = makeScratch('files')
     // workspaceRoot here is the packages directory (see packWorkspaceClosure).
     for (const entry of readdirSync(workspaceRoot, { withFileTypes: true })) {
       if (!entry.isDirectory()) continue

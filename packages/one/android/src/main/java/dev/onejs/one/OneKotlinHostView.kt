@@ -14,6 +14,14 @@ import com.facebook.react.uimanager.UIManagerHelper
 import com.facebook.react.views.view.ReactViewGroup
 
 class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
+    companion object {
+        // matches RESYNC_EVENT in wireProps.native: emitted when a change
+        // document cannot apply, answered by a full document
+        const val RESYNC_EVENT = "\$resync"
+    }
+
+    private val keyedState = OneNativeSourceKeyedState()
+
     private val composeView =
         ComposeView(context).apply {
             layoutParams =
@@ -32,7 +40,8 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
     private var committedSource by mutableStateOf("")
     private var committedView by mutableStateOf("")
     private var committedContractHash by mutableStateOf("")
-    private var committedProps by mutableStateOf("{}")
+    private var committedPropsText = "{}"
+    private var resyncPending = false
 
     private val contentLayout = Runnable { layoutComposeContent() }
 
@@ -46,23 +55,19 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         clipChildren = false
         addView(composeView)
         composeView.setContent {
+            // the props were merged into the keyed state at commit;
+            // composition only renders. Content reads the state's revision
+            // itself, so every apply resubscribes the rendering scope.
             val source = committedSource
             val view = committedView
-            val hash = committedContractHash
-            val props = committedProps
 
             if (source.isNotEmpty() && view.isNotEmpty()) {
                 val dispatch = OneNativeSourceViewRegistry.get(source)
-                if (dispatch.contractHash != hash) {
-                    error(
-                        "native view $source.$view changed (contract hash mismatch: expected $hash, got ${dispatch.contractHash}); rebuild the app"
-                    )
-                }
                 Layout(
                     content = {
                         dispatch.Content(
                             view = view,
-                            propsJson = props,
+                            state = keyedState,
                             emit = { eventName, eventArgs ->
                                 onHostEvent(source, view, eventName, eventArgs)
                             },
@@ -123,12 +128,30 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
             observedWidth = -1
             observedHeight = -1
         }
+        if (sourceOrViewChanged || nextHash != committedContractHash) {
+            keyedState.reset()
+        }
 
-        if (sourceOrViewChanged || nextHash != committedContractHash || nextProps != committedProps) {
+        if (sourceOrViewChanged || nextHash != committedContractHash || nextProps != committedPropsText) {
+            if (nextSource.isNotEmpty() && nextView.isNotEmpty()) {
+                val dispatch = OneNativeSourceViewRegistry.get(nextSource)
+                if (dispatch.contractHash != nextHash) {
+                    error(
+                        "native view $nextSource.$nextView changed (contract hash mismatch: expected $nextHash, got ${dispatch.contractHash}); rebuild the app"
+                    )
+                }
+                // decode and merge at commit, whether or not the composition
+                // is attached: a refused change asks for a resync instead of
+                // committing anything.
+                if (!dispatch.apply(nextView, nextProps, keyedState)) {
+                    emitKeyedResync()
+                    return
+                }
+            }
             committedSource = nextSource
             committedView = nextView
             committedContractHash = nextHash
-            committedProps = nextProps
+            committedPropsText = nextProps
             requestLayout()
         }
     }
@@ -144,8 +167,20 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
     private fun onHostEvent(eventSource: String, eventView: String, name: String, args: String) {
         // discard events from a detached or replaced source/view
         if (!isAttachedToWindow || eventSource != committedSource || eventView != committedView) return
-        val reactContext = UIManagerHelper.getReactContext(this) ?: return
-        val dispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, id) ?: return
+        dispatchHostEvent(name, args)
+    }
+
+    // asks javascript for a full document after refusing a change document.
+    // runs during the prop commit (never composition), so it cannot compare
+    // against committed props the way view events do. commits also run while
+    // detached, so a resync the dispatcher cannot take yet waits for attach.
+    private fun emitKeyedResync() {
+        if (!dispatchHostEvent(RESYNC_EVENT, "[]")) resyncPending = true
+    }
+
+    private fun dispatchHostEvent(name: String, args: String): Boolean {
+        val reactContext = UIManagerHelper.getReactContext(this) ?: return false
+        val dispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, id) ?: return false
         dispatcher.dispatchEvent(
             OneKotlinHostEvent(
                 surfaceId = UIManagerHelper.getSurfaceId(this),
@@ -154,6 +189,7 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
                 args = args,
             )
         )
+        return true
     }
 
     private fun onContentSizeChanged(
@@ -189,6 +225,7 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
+        if (resyncPending && dispatchHostEvent(RESYNC_EVENT, "[]")) resyncPending = false
         post(contentLayout)
     }
 
@@ -248,6 +285,8 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
 
     internal fun resetForReuse() {
         removeCallbacks(contentLayout)
+        keyedState.reset()
+        resyncPending = false
         reportedWidth = -1.0
         reportedHeight = -1.0
         observedWidth = -1
@@ -255,7 +294,7 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         committedSource = ""
         committedView = ""
         committedContractHash = ""
-        committedProps = "{}"
+        committedPropsText = "{}"
         stagedSource = null
         stagedView = null
         stagedContractHash = null

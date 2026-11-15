@@ -1,3 +1,4 @@
+import { appendFileSync } from 'node:fs'
 import { readFile, rm, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { getWebDriverConfig } from '@vxrn/test/ios'
@@ -113,6 +114,17 @@ testRolldownDev(
         childPath,
         originalChild.replace('component-v1', 'hmr-session-ready')
       )
+      if (process.env.ONE_NATIVE_HMR_TRACE) {
+        appendFileSync(
+          process.env.ONE_NATIVE_HMR_TRACE,
+          JSON.stringify({
+            event: 'edit',
+            at: new Date().toISOString(),
+            pid: process.pid,
+            id: childPath,
+          }) + '\n'
+        )
+      }
       await waitForTexts({
         'component-hmr-version': 'hmr-session-ready',
         'route-hmr-generation': generation,

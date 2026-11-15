@@ -1,4 +1,4 @@
-import type { VXRNOptions } from '../types';
+import type { VXRNOptions } from '../types.js';
 export declare function prepareCacheForVersion({ root, cacheDir, versionHash, forceClean, }: {
     root: string;
     cacheDir: string;

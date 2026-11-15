@@ -10,7 +10,7 @@ import { applyBuiltInPatchesPlugin } from '../plugins/applyBuiltInPatchesPlugin'
 
 export function getReactNativePlugins(
   config?: Partial<
-    Pick<VXRNOptionsFilled, 'cacheDir' | 'debugBundle' | 'debugBundlePaths' | 'entries'>
+    Pick<VXRNOptionsFilled, 'cacheDir' | 'debugBundle' | 'debugBundlePaths' | 'entries' | 'patches'>
   >,
   {
     metro,
@@ -30,7 +30,7 @@ export function getReactNativePlugins(
   if (metroOptions) {
     // metro mode. metro is an optional peer, so only this mode loads it
     return [
-      applyBuiltInPatchesPlugin(),
+      applyBuiltInPatchesPlugin(config?.patches),
       import('@vxrn/vite-plugin-metro').then(({ metroPlugin }) => metroPlugin(metroOptions)),
     ]
   }
@@ -40,7 +40,7 @@ export function getReactNativePlugins(
 
     getServerConfigPlugin(),
 
-    applyBuiltInPatchesPlugin(),
+    applyBuiltInPatchesPlugin(config?.patches),
 
     reactNativeDevAssetPlugin({
       assetExts: DEFAULT_ASSET_EXTS,

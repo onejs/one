@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { BabelTransformerCacheKeyOptions } from 'metro-babel-transformer';
-import type { TransformOptions } from './babel-core';
+import type { TransformOptions } from './babel-core.js';
 export type MetroBabelCaller = TransformOptions['caller'] & {
     supportsReactCompiler?: boolean;
     isReactServer?: boolean;

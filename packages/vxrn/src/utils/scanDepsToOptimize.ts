@@ -1,6 +1,7 @@
 import { createDebugger } from '@vxrn/debug'
-import FSExtra from 'fs-extra'
+import { realpath } from 'node:fs/promises'
 import path, { dirname, extname, join, sep } from 'node:path'
+import { pathExists, readJSON } from './fs'
 
 const { debug, debugDetails } = createDebugger(`vxrn:scanDepsToOptimize`)
 
@@ -110,6 +111,9 @@ export const EXCLUDE_LIST = [
   // expo's debugger is a standalone app, not an SSR runtime dependency.
   '@expo/cli',
   '@expo/log-box',
+  // build-time config loader; it requires typescript subpaths that differ by
+  // typescript version, and the unused branch fails the bundler's resolver.
+  '@expo/require-utils',
   '@hot-updater/react-native',
   '@hot-updater/plugin-core',
   'validator',
@@ -163,6 +167,38 @@ export async function scanDepsToOptimize(
     pkgJsonContent?: any
   } = {}
 ): Promise<ScanDepsResult> {
+  // share leaf reads only: sharing recursive promises can deadlock sibling cycles.
+  return scanDeps(packageJsonPath, options, {
+    pathExists: memoizeRead((file) => pathExists(file)),
+    realpath: memoizeRead((file) => realpath(file)),
+    readJson: memoizeRead((file) => readJSON(file)),
+  })
+}
+
+type ScanFileSystem = {
+  pathExists: (file: string) => Promise<boolean>
+  realpath: (file: string) => Promise<string>
+  readJson: (file: string) => Promise<any>
+}
+
+function memoizeRead<T>(read: (file: string) => Promise<T>) {
+  const pending = new Map<string, Promise<T>>()
+  return (file: string) => {
+    const key = path.resolve(file)
+    let result = pending.get(key)
+    if (!result) {
+      result = read(key)
+      pending.set(key, result)
+    }
+    return result
+  }
+}
+
+async function scanDeps(
+  packageJsonPath: string,
+  options: NonNullable<Parameters<typeof scanDepsToOptimize>[1]>,
+  fs: ScanFileSystem
+): Promise<ScanDepsResult> {
   const { parentDepNames = [], proceededDeps = new Map(), pkgJsonContent } = options
   // recursive calls always pass their parents
   const isRoot = !options.parentDepNames
@@ -174,7 +210,8 @@ export async function scanDepsToOptimize(
   const noExternalDeps = new Set<string>()
   const currentRoot = path.dirname(packageJsonPath)
 
-  const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath))
+  const pkgJson =
+    pkgJsonContent || (await readPackageJsonSafe(packageJsonPath, fs.readJson))
   const deps = Object.keys(pkgJson.dependencies || {})
 
   // worklets without reanimated still needs the worklets transform, as the metro path assumes.
@@ -189,7 +226,7 @@ export async function scanDepsToOptimize(
     ? (
         await Promise.all(
           ['react-native-reanimated', 'react-native-worklets'].map((dep) =>
-            resolveDepPkgJsonPath(dep, currentRoot)
+            resolveDepPkgJsonPath(dep, currentRoot, fs.pathExists)
           )
         )
       ).some(Boolean)
@@ -209,17 +246,17 @@ export async function scanDepsToOptimize(
         if (EXCLUDE_LIST_SET.has(dep)) {
           return []
         }
-        const localPath = await findDepPkgJsonPath(dep, currentRoot)
+        const localPath = await findDepPkgJsonPathWithFs(dep, currentRoot, fs.pathExists)
 
         if (!localPath) return []
 
-        const depPkgJsonPath = await FSExtra.realpath(localPath)
+        const depPkgJsonPath = await fs.realpath(localPath)
 
         if (options.filter && !options.filter(depPkgJsonPath)) {
           return []
         }
 
-        const depPkgJson = await readPackageJsonSafe(depPkgJsonPath)
+        const depPkgJson = await readPackageJsonSafe(depPkgJsonPath, fs.readJson)
 
         if (needsWorklets(depPkgJson)) {
           hasReanimated = true
@@ -233,11 +270,15 @@ export async function scanDepsToOptimize(
           return []
         }
 
-        const subDeps = await scanDepsToOptimize(depPkgJsonPath, {
-          parentDepNames: [...parentDepNames, dep],
-          pkgJsonContent: depPkgJson,
-          proceededDeps,
-        })
+        const subDeps = await scanDeps(
+          depPkgJsonPath,
+          {
+            parentDepNames: [...parentDepNames, dep],
+            pkgJsonContent: depPkgJson,
+            proceededDeps,
+          },
+          fs
+        )
 
         for (const dep of subDeps.noExternalDeps) noExternalDeps.add(dep)
 
@@ -339,7 +380,12 @@ export async function scanDepsToOptimize(
             (d) => !EXCLUDE_LIST_SET.has(d)
           )
           if (mainExport) {
-            if (await checkIfExportExists(join(dirname(depPkgJsonPath), mainExport))) {
+            if (
+              await checkIfExportExists(
+                join(dirname(depPkgJsonPath), mainExport),
+                fs.pathExists
+              )
+            ) {
               exports.unshift(dep)
             }
           }
@@ -380,22 +426,28 @@ export async function scanDepsToOptimize(
 // vite will fail if there's a main export but it actually doesn't exist
 // this ensures we actually check using an algorithm similar to node/vite
 // probably can find a better one that matches their more accurately
-async function checkIfExportExists(pathIn: string) {
+async function checkIfExportExists(
+  pathIn: string,
+  pathExists: ScanFileSystem['pathExists']
+) {
   const paths = [
     pathIn,
     ...(extname(pathIn) ? [] : [pathIn + '.js', pathIn + sep + 'index.js']),
   ]
   for (const path of paths) {
-    if (await FSExtra.pathExists(path)) {
+    if (await pathExists(path)) {
       return true
     }
   }
   return false
 }
 
-async function readPackageJsonSafe(packageJsonPath: string) {
+async function readPackageJsonSafe(
+  packageJsonPath: string,
+  readJson: ScanFileSystem['readJson']
+) {
   try {
-    return await FSExtra.readJson(packageJsonPath)
+    return await readJson(packageJsonPath)
   } catch (e) {
     console.error(
       `[scanDepsToPreBundleForSsr] Error reading package.json from ${packageJsonPath}: ${e}`
@@ -404,12 +456,16 @@ async function readPackageJsonSafe(packageJsonPath: string) {
   }
 }
 
-async function resolveDepPkgJsonPath(dep: string, dependent: string) {
+async function resolveDepPkgJsonPath(
+  dep: string,
+  dependent: string,
+  pathExists: ScanFileSystem['pathExists']
+) {
   let root = dependent
   while (root) {
     const possiblePkgJson = path.join(root, 'node_modules', dep, 'package.json')
 
-    if (await FSExtra.pathExists(possiblePkgJson)) {
+    if (await pathExists(possiblePkgJson)) {
       return possiblePkgJson
     }
 
@@ -420,7 +476,15 @@ async function resolveDepPkgJsonPath(dep: string, dependent: string) {
 }
 
 export async function findDepPkgJsonPath(dep, dependent) {
-  const found = await resolveDepPkgJsonPath(dep, dependent)
+  return findDepPkgJsonPathWithFs(dep, dependent, (file) => pathExists(file))
+}
+
+async function findDepPkgJsonPathWithFs(
+  dep,
+  dependent,
+  pathExists: ScanFileSystem['pathExists']
+) {
+  const found = await resolveDepPkgJsonPath(dep, dependent, pathExists)
   if (found) return found
 
   console.error(

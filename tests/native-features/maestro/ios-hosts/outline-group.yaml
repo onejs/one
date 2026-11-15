@@ -1,0 +1,29 @@
+appId: dev.vxrn.native.tests
+name: outline-group
+---
+# OutlineGroup mounts its tree collapsed; a branch discloses its children from its
+# chevron, and a child added to a leaf gives it one
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-outline-group
+      ANCHOR: "Documents"
+- assertVisible:
+    id: one-native-outline-group-list
+- assertNotVisible: "Reports"
+- takeScreenshot: outline-group-collapsed
+- tapOn:
+    id: one-native-outline-group-add
+# the Photos row's chevron
+- tapOn:
+    point: "88%,32%"
+- extendedWaitUntil:
+    visible: "Trip"
+    timeout: 10000
+# the Documents row's chevron
+- tapOn:
+    point: "88%,26%"
+- extendedWaitUntil:
+    visible: "Reports"
+    timeout: 10000
+- takeScreenshot: outline-group-expanded

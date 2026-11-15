@@ -1,0 +1,68 @@
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-ios-sdk-state
+- tapOn:
+    text: 'Open'
+    optional: true
+# initial values arrive from native subscriptions
+- extendedWaitUntil:
+    visible: 'KVO progress: 0'
+    timeout: 30000
+- extendedWaitUntil:
+    visible: 'Observable manager: 0'
+    timeout: 10000
+- assertVisible: 'AsyncSequence: pending'
+- assertVisible: 'Publisher: pending'
+# native mutations rerender both property hooks
+- tapOn:
+    id: sdk-state-advance
+- extendedWaitUntil:
+    visible: 'KVO progress: 0.25'
+    timeout: 10000
+- extendedWaitUntil:
+    visible: 'Observable manager: 0.25'
+    timeout: 10000
+# a posted notification reaches the async sequence and the publisher
+- tapOn:
+    id: sdk-state-post
+- extendedWaitUntil:
+    visible: 'AsyncSequence: ping 1'
+    timeout: 10000
+- extendedWaitUntil:
+    visible: 'Publisher: ping 1'
+    timeout: 10000
+# unmount, change native state, remount
+- tapOn:
+    id: sdk-state-toggle
+- assertVisible: 'Hooks unmounted'
+- tapOn:
+    id: sdk-state-post
+- tapOn:
+    id: sdk-state-advance
+- tapOn:
+    id: sdk-state-toggle
+- extendedWaitUntil:
+    visible: 'KVO progress: 0.5'
+    timeout: 10000
+- extendedWaitUntil:
+    visible: 'Observable manager: 0.5'
+    timeout: 10000
+# the sequence handle kept iterating and replays its latest element;
+# the publisher subscribed afresh and waits for the next one
+- assertVisible: 'AsyncSequence: ping 2'
+- assertVisible: 'Publisher: pending'
+- tapOn:
+    id: sdk-state-post
+- extendedWaitUntil:
+    visible: 'AsyncSequence: ping 3'
+    timeout: 10000
+- extendedWaitUntil:
+    visible: 'Publisher: ping 3'
+    timeout: 10000

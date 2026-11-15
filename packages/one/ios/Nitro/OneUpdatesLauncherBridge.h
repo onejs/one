@@ -8,4 +8,7 @@ NS_ASSUME_NONNULL_BEGIN
 // embedded bundle.
 FOUNDATION_EXPORT NSURL *_Nullable OneUpdatesBundleURL(void);
 
+// the url OneUpdatesBundleURL last answered, without selecting again
+FOUNDATION_EXPORT NSURL *_Nullable OneUpdatesLaunchingBundleURL(void);
+
 NS_ASSUME_NONNULL_END

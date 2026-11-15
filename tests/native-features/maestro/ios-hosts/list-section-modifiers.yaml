@@ -1,0 +1,30 @@
+appId: dev.vxrn.native.tests
+name: list-section-modifiers
+---
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-list-section-modifiers
+      ANCHOR: "Section modifiers: compact"
+- assertVisible: "First section"
+- assertVisible: "Second section"
+- assertVisible: "Apple row"
+- assertVisible: "Banana row"
+- assertVisible: { text: "Second section", below: { text: "Apple row" } }
+- takeScreenshot: list-section-modifiers-compact
+- tapOn:
+    id: one-native-list-section-modifiers-toggle
+- assertVisible: "Section modifiers: expanded"
+- assertVisible: "First section"
+- assertVisible: "Second section"
+- assertVisible: "Apple row"
+- assertVisible: "Banana row"
+- waitForAnimationToEnd
+- takeScreenshot: list-section-modifiers-expanded
+- tapOn:
+    id: one-native-list-section-modifiers-toggle
+- assertVisible: "Section modifiers: compact"
+- assertVisible: "Apple row"
+- assertVisible: "Banana row"
+- waitForAnimationToEnd
+- takeScreenshot: list-section-modifiers-restored

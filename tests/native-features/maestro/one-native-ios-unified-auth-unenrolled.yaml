@@ -1,0 +1,22 @@
+# set simulator biometric enrollment to NO before running.
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-local-authentication
+- tapOn:
+    text: 'Open'
+    optional: true
+- extendedWaitUntil:
+    visible: 'Status: false:faceID:-7'
+    timeout: 30000
+- tapOn:
+    id: one-native-local-auth-evaluate
+- extendedWaitUntil:
+    visible: 'Result: error: E_LOCAL_AUTH_NOT_ENROLLED'
+    timeout: 30000

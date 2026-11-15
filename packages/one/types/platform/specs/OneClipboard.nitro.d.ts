@@ -18,7 +18,6 @@ export interface ClipboardImageResult {
     height: number;
 }
 export interface OneClipboard extends HybridObject<{
-    ios: 'swift';
     android: 'kotlin';
 }> {
     getString(options: ClipboardGetStringOptions): Promise<string>;

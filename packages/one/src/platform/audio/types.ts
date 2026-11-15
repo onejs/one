@@ -1,4 +1,4 @@
-import type { PitchCorrectionQuality } from '../specs/OneAudio.nitro'
+import type { AudioNowPlayingInfo, PitchCorrectionQuality } from '../specs/OneAudio.nitro'
 
 // player instance shapes behind One.Audio, mirroring expo-audio. AudioPlayer
 // is the shared interface both platform classes implement; AudioStatus is
@@ -58,6 +58,11 @@ export interface AudioPlayer {
     toleranceMillisAfter?: number
   ) => Promise<void>
   replace: (source: AudioSource) => void
+  // take the one now playing session with this metadata, moving it from the
+  // singleton or another player without clearing the system controls.
+  setNowPlayingInfo: (info: AudioNowPlayingInfo) => Promise<void>
+  // release the session when this player owns it; otherwise a no-op.
+  clearNowPlayingInfo: () => Promise<void>
   remove: () => void
   getStatus: () => AudioStatus
   setPlaybackRate: (rate: number, pitchCorrectionQuality?: PitchCorrectionQuality) => void

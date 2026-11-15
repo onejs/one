@@ -7,7 +7,7 @@ import { normalizePath } from 'vite'
 import type { WebSocket } from 'ws'
 
 interface JsxLocation {
-  /** Position right after the tag name where we insert the attribute */
+  /** position after the tag name and any type arguments */
   insertOffset: number
   /** Line number for editor navigation */
   line: number
@@ -81,11 +81,11 @@ async function findJsxElements(code: string, filename: string): Promise<JsxLocat
         )
 
         if (!hasSourceAttr) {
-          const nameEnd = node.name.end
+          const insertOffset = node.typeArguments?.end ?? node.name.end
           const loc = getLocation(node.start)
 
           locations.push({
-            insertOffset: nameEnd,
+            insertOffset,
             line: loc.line,
             column: loc.column,
           })

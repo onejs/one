@@ -246,7 +246,7 @@ export default {
 
 The native object allows you to configure your native apps.
 
-Pass `false` to completely disable native (iOS/Android) support. When disabled, One will not register the `ios`/`android` Vite environments, skip the Metro / React Native dev server plugins, and skip the rolldown native bundle pipeline — useful when you want to use One purely as a web framework.
+Pass `false` to completely disable native (iOS/Android) support. When disabled, One will not register the `ios`/`android` Vite environments, skip the Metro / React Native dev server plugins, and skip the rolldown native bundle pipeline — useful when you want to use One purely as a web framework. The static build also omits the per-loader `.native.js` twins, which only native clients read; web loaders, routes, and preloaded assets are unchanged.
 
 ```tsx fileName=vite.config.ts
 export default {
@@ -358,6 +358,52 @@ export default {
 
 See the [iOS Native Guide](/docs/guides-ios-native) for the full setup.
 
+### native.app.patches
+
+A list of file patches that `one prebuild` runs on the generated `ios/` and `android/` files, so a library can change them without the edit being lost on the next prebuild. Each patch names a `platform`, a `file` (a path suffix that must match exactly one generated file, like `AppDelegate.swift` or `MyApp/Info.plist`) and a `patch` function that takes the file contents and returns the new contents.
+
+A patch must return its input unchanged when its edit is already present, and throw when its anchor text is missing, so a template change fails the prebuild instead of silently dropping the edit. One calls each patch twice and fails if the second result differs.
+
+```tsx fileName=vite.config.ts
+const replaceOnce = (from: string, to: string) => (content: string) => {
+  if (content.includes(to)) return content
+  if (!content.includes(from)) throw new Error(`missing anchor: ${from}`)
+  return content.replace(from, to)
+}
+
+export default {
+  plugins: [
+    one({
+      native: {
+        app: {
+          name: 'OneApp',
+          ios: { bundleId: 'com.example.oneapp' },
+          android: { applicationId: 'com.example.oneapp' },
+          patches: [
+            {
+              platform: 'ios',
+              file: 'AppDelegate.swift',
+              patch: replaceOnce(
+                'Bundle.main.url(forResource: "main", withExtension: "jsbundle")',
+                'HotUpdater.bundleURL()'
+              ),
+            },
+            {
+              platform: 'android',
+              file: 'MainApplication.kt',
+              patch: replaceOnce(
+                'context = applicationContext,',
+                'context = applicationContext,\n      jsBundleFilePath = HotUpdater.getJSBundleFile(applicationContext),'
+              ),
+            },
+          ],
+        },
+      },
+    }),
+  ],
+}
+```
+
 ### native.suspendRoutes
 
 Wrap each route screen in a React Suspense boundary on native. On native the JS bundle already contains all route modules, so the boundary only catches the async `import()` wrapper which resolves on the next microtick. Set this to `false` to remove the `<Suspense fallback={null}>` wrapper, which prevents a blank flash when JS-driven navigation animations slide a screen in before the fallback is replaced.
@@ -366,7 +412,7 @@ Wrap each route screen in a React Suspense boundary on native. On native the JS 
 
 ### native.css
 
-Turns on [react-native-css-interop](https://github.com/marklawlor/nativewind) support when importing CSS on native. This allows you to use CSS imports in your React Native code.
+Turns on [react-native-css-interop](https://github.com/marklawlor/nativewind) support when importing CSS on native. This allows you to use CSS imports in your React Native code. Add `react-native-css-interop` to your app's dependencies to use it.
 
 ```tsx fileName=vite.config.ts
 export default {
@@ -489,9 +535,9 @@ This inlines ALL CSS. For per-file control, use the [`.inline.css` extension](/d
 
 ### Code Splitting
 
-One uses Rolldown for production builds and configures sensible code splitting defaults out of the box. By default, chunks smaller than 42KB are merged together to reduce the number of HTTP requests on page load.
+One uses Rolldown for production builds and leaves code splitting on Rolldown's automatic default. `minSize` applies only inside a `groups` entry. Setting it on its own does nothing, and Rolldown prints `INVALID_OPTION` on every build.
 
-You can customize the code splitting behavior through `build.rolldownOptions.output.codeSplitting`:
+You can set groups through `build.rolldownOptions.output.codeSplitting`:
 
 ```tsx fileName=vite.config.ts
 export default {
@@ -505,20 +551,14 @@ export default {
     rolldownOptions: {
       output: {
         codeSplitting: {
-          // minimum chunk size in bytes before merging (default: 42000)
-          minSize: 42_000,
-
-          // maximum chunk size - splits chunks larger than this
-          maxSize: 500_000,
-
-          // group specific modules into named chunks
           groups: [
             {
               name: 'vendor',
               test: /node_modules/,
               priority: 1,
+              // drop this group when its modules are under 50KB
               minSize: 50_000,
-              // only create chunk if shared by 2+ entry points
+              // only create the chunk if shared by 2+ entry points
               minShareCount: 2,
             },
           ],
@@ -528,8 +568,6 @@ export default {
   },
 }
 ```
-
-**Why this matters:** Without chunk merging, a large app can produce hundreds of tiny JS files (many under 1KB). Even with HTTP/2 multiplexing, this many requests saturates browser connections and increases total transfer overhead. The 42KB default strikes a balance between granular caching and fewer round-trips.
 
 **SPA page optimization:** For SPA pages, One skips emitting `<link rel="modulepreload">` hints in the HTML since the JS module graph handles its own lazy loading and route preloading happens on hover intent. This avoids saturating the connection with hundreds of preload hints that provide no benefit for client-rendered pages.
 
@@ -815,6 +853,46 @@ The SEO Preview panel helps you visualize how your pages will appear in search r
 
 The panel automatically updates as you navigate or modify meta tags, making it easy to verify your SEO configuration during development.
 
+### devtools.plugins
+
+Browser plugin modules to load into the One devtools overlay. Each entry is a module specifier or a path relative to the project root. The module default exports a `OneDevtoolsPlugin`, created with `defineDevtoolsPlugin` from `one/devtools`.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      devtools: {
+        plugins: ['./devtools/runtime-inspector.ts'],
+      },
+    }),
+  ],
+}
+```
+
+See [Dev Tools](/docs/dev-tools#extending-the-web-panel) for the plugin shape.
+
+### devtools.rozenite
+
+React Native DevTools plugins hosted through [Rozenite](https://github.com/callstackincubator/rozenite). One discovers installed Rozenite packages from your dependencies and serves their panels on the native dev server, so `j` and `dt` show them without a Metro wrapper.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      devtools: {
+        rozenite: {
+          include: ['@rozenite/storage-plugin'],
+          exclude: ['@rozenite/network-activity-plugin'],
+          pluginDisplay: 'sidebar', // or 'tabs'
+        },
+      },
+    }),
+  ],
+}
+```
+
+Set `rozenite: false` to keep the stock React Native DevTools frontend. When no plugin is installed, One does not mount the Rozenite host.
+
 ### devtools.routeDebug
 
 The Route Debug panel helps you understand your current route state during development:
@@ -918,6 +996,16 @@ export default {
 ```
 
 Any transforms that are applied to specific files in node_modules will only be applied once. The original files will be stored alongside the transformed ones.
+
+One also applies a few built-in patches to React Native packages. Set `patches: false` to skip all of them, or set a package to `false` to skip only its built-in patch:
+
+```tsx fileName=vite.config.ts
+one({
+  patches: {
+    'react-native': false,
+  },
+})
+```
 
 ## router
 

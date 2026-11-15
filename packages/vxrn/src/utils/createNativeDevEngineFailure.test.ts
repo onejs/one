@@ -1,3 +1,6 @@
+import { mkdtempSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 const rolldownState = vi.hoisted(() => ({
@@ -13,6 +16,9 @@ vi.mock('rolldown/experimental', () => ({
   ) => ({
     async run() {
       await callbacks.onOutput(rolldownState.firstBuildError)
+    },
+    async getBundleState() {
+      return { lastBuildErrored: false }
     },
     async ensureLatestBuildOutput() {},
     async close() {},
@@ -31,8 +37,10 @@ describe('createNativeDevEngine initial build failure', () => {
     vi.useFakeTimers()
     vi.spyOn(console, 'error').mockImplementation(() => {})
 
+    // the engine keys its route registry by the real app root, so it must exist.
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-native-build-error-'))
     const engine = await createNativeDevEngine({
-      root: '/tmp/vxrn-native-build-error-test',
+      root,
       port: 4400,
       platform: 'ios',
     })
@@ -53,5 +61,6 @@ describe('createNativeDevEngine initial build failure', () => {
     expect(settledBeforeTimeout).toBe(true)
     expect(await bundleResult).toBe(rolldownState.firstBuildError)
     await engine.close()
+    rmSync(root, { recursive: true, force: true })
   })
 })

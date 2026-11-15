@@ -1,0 +1,110 @@
+name: Linux Native Build
+
+on:
+  push:
+    branches:
+      - main
+      - v2-beta
+    paths:
+      - '.github/actions/install/**'
+      - '.github/workflows/test-native-linux.yml'
+      - 'bun.lock'
+      - 'package.json'
+      - 'patches/**'
+      - 'packages/one/**'
+      - 'packages/vxrn/**'
+      - 'packages/vite-plugin-metro/**'
+      - 'tests/linux-basic/**'
+  pull_request:
+    paths:
+      - '.github/actions/install/**'
+      - '.github/workflows/test-native-linux.yml'
+      - 'bun.lock'
+      - 'package.json'
+      - 'patches/**'
+      - 'packages/one/**'
+      - 'packages/vxrn/**'
+      - 'packages/vite-plugin-metro/**'
+      - 'tests/linux-basic/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  build-linux-native:
+    name: Compile and launch One Native Linux (${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x86_64
+            runner: ubuntu-24.04
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
+    env:
+      CC: clang-18
+      CXX: clang++-18
+      ONE_LINUX_CORE_FROM_SOURCE: '1'
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install Linux build and headless display dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-18 cmake ninja-build pkg-config libgtk-4-dev \
+            libsoup-3.0-dev libsqlite3-dev sway grim dbus-x11 fonts-dejavu-core
+      - uses: ./.github/actions/install
+        with:
+          install-playwright: 'false'
+          workspace-focus: one
+      - name: Locate the installed React Native
+        run: echo "RN_ROOT=$(realpath node_modules/react-native)" >> "$GITHUB_ENV"
+      - name: Cache Linux native dependencies
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.cache/ReactNative/linux/src
+            ~/.cache/ReactNative/linux/downloads
+            ~/.cache/ReactNative/linux/third-party
+            ~/.cache/ReactNative/linux/hermes-*
+            ~/.cache/ReactNative/linux/icu-*
+            ~/.cache/ReactNative/linux/deps-*
+          key: linux-native-${{ matrix.arch }}-${{ hashFiles('bun.lock', 'packages/one/linux/scripts/prepare-hermes.sh', 'packages/one/linux/scripts/prepare-icu.sh', 'packages/one/linux/scripts/prepare-deps.sh', 'packages/one/linux/cpp/deps/**') }}
+      - name: Build the Linux core and GTK host
+        run: packages/one/linux/scripts/prepare-core.sh "$RUNNER_TEMP/linux-app" release
+      - name: Verify Hermes has no dynamic ICU dependency
+        run: |
+          for binary in "$RUNNER_TEMP/linux-app/libhermesvm.so" "$RUNNER_TEMP/linux-app/hermesc"; do
+            readelf -d "$binary" | tee "$binary.dynamic.txt"
+            if grep -q 'Shared library: \[libicu' "$binary.dynamic.txt"; then
+              echo "::error::$binary depends on the build host's ICU"
+              exit 1
+            fi
+          done
+      - name: Bundle the Linux Basic consumer as Hermes bytecode
+        run: |
+          packages/one/linux/scripts/bundle-js.sh js tests/linux-basic "$RUNNER_TEMP/linux-app/main.js"
+          packages/one/linux/scripts/bundle-js.sh bytecode "$RUNNER_TEMP/linux-app/hermesc" \
+            "$RUNNER_TEMP/linux-app/main.js" "$RUNNER_TEMP/linux-app/main.jsbundle"
+          cp -R tests/linux-basic/dist/assets "$RUNNER_TEMP/linux-app/assets"
+      - name: Prove first content paint under headless Wayland
+        env:
+          G_DEBUG: fatal-criticals
+        run: |
+          dbus-run-session -- packages/one/linux/scripts/screenshot.sh \
+            "$RUNNER_TEMP/linux-app/one-linux" "$RUNNER_TEMP/linux-first-paint.png"
+      - name: Upload Linux launch evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: one-native-linux-${{ matrix.arch }}
+          path: |
+            ${{ runner.temp }}/linux-first-paint.png*
+            ${{ runner.temp }}/linux-app/*.dynamic.txt
+          if-no-files-found: warn

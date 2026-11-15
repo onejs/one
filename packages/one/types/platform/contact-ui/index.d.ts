@@ -1,5 +1,5 @@
-import type { CNMutableContactValue, CNContactStoreValue, CNContactViewControllerOptions, CNContactViewControllerDelegate, CNKeyDescriptor, CNContactValue } from './types';
-export type * from './types';
+import type { CNMutableContactValue, CNContactStoreValue, CNContactViewControllerOptions, CNContactViewControllerDelegate, CNKeyDescriptor, CNContactValue } from './types.js';
+export type * from './types.js';
 export type CNContact = CNContactValue;
 export declare class CNMutableContact implements CNMutableContactValue {
     constructor();

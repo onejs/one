@@ -23,7 +23,7 @@ export function IosProgressScene() {
           <One.iOS.Gauge
             label="Storage"
             value={0.72}
-            gaugeStyle="linearCapacity"
+            swiftStyle={{ gaugeStyle: 'linearCapacity' }}
             minimumValueLabel="0"
             maximumValueLabel="256 GB"
           />
@@ -31,23 +31,21 @@ export function IosProgressScene() {
             <One.iOS.Gauge
               label="Speed"
               value={64}
-              maximumValue={120}
+              in={[0, 120]}
               currentValueLabel="64"
-              gaugeStyle="accessoryCircular"
+              swiftStyle={{ gaugeStyle: 'accessoryCircular' }}
             />
             <One.iOS.Gauge
               label="Battery"
               value={0.8}
               currentValueLabel="80"
-              gaugeStyle="accessoryCircularCapacity"
-              swiftStyle={{ tint: '#34C759' }}
+              swiftStyle={{ gaugeStyle: 'accessoryCircularCapacity', tint: '#34C759' }}
             />
             <One.iOS.Gauge
               label="Rings"
               value={0.45}
               currentValueLabel="45"
-              gaugeStyle="accessoryCircularCapacity"
-              swiftStyle={{ tint: '#FF2D55' }}
+              swiftStyle={{ gaugeStyle: 'accessoryCircularCapacity', tint: '#FF2D55' }}
             />
           </One.iOS.HStack>
         </One.iOS.Section>

@@ -30,7 +30,6 @@ describe('slider value labels', () => {
         acknowledgedEvent: { type: 'Int32' },
         revision: { type: 'Int32' },
         label: { type: 'string' },
-        disabled: { type: 'boolean' },
         minimumValue: { type: 'Double' },
         maximumValue: { type: 'Double' },
         step: { type: 'Double' },

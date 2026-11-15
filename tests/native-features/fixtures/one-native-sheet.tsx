@@ -1,5 +1,5 @@
 import type { ComponentProps } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   type LayoutChangeEvent,
   Pressable,
@@ -30,20 +30,26 @@ const detentKeys: readonly DetentProfileKey[] = [
 
 interface SheetContentProps {
   onClose: () => void
+  onInterruptClose?: () => void
+  interruption: { run: number; phase: 'idle' | 'closing' | 'reopened' }
   onReportLayout: (width: number, height: number) => void
   detentProfile: DetentProfileKey
   onCycleDetents: () => void
   isParentPresented: boolean
-  fitToContents: boolean
+  fitted: boolean
+  tall: boolean
 }
 
 function SheetContent({
   onClose,
+  onInterruptClose,
+  interruption,
   onReportLayout,
   detentProfile,
   onCycleDetents,
   isParentPresented,
-  fitToContents,
+  fitted,
+  tall,
 }: SheetContentProps) {
   const [count, setCount] = useState(0)
   const [text, setText] = useState('')
@@ -57,7 +63,10 @@ function SheetContent({
   return (
     <View
       onLayout={handleLayout}
-      style={[styles.sheetContent, fitToContents && styles.fittedSheetContent]}
+      style={[
+        styles.sheetContent,
+        fitted && (tall ? styles.tallSheetContent : styles.fittedSheetContent),
+      ]}
     >
       <Text style={styles.sheetHeading}>Sheet Content</Text>
 
@@ -127,6 +136,13 @@ function SheetContent({
         </Pressable>
       </View>
 
+      {/* tall block: a second authored content height for fitted sizing proof */}
+      {tall && (
+        <View style={styles.tallBlock} testID="one-native-sheet-tall-block">
+          <Text style={styles.sheetLabel}>Tall content</Text>
+        </View>
+      )}
+
       {/* nested sheet */}
       <One.iOS.Sheet isPresented={nestedPresented} onIsPresentedChange={setNestedPresented}>
         <View style={styles.nestedContent}>
@@ -143,6 +159,18 @@ function SheetContent({
           </Pressable>
         </View>
       </One.iOS.Sheet>
+      {onInterruptClose && (
+        <Pressable
+          accessibilityRole="button"
+          onPress={onInterruptClose}
+          style={styles.interruptButton}
+          testID="one-native-sheet-interrupt-close"
+        >
+          <Text style={styles.smallActionText} testID="one-native-sheet-interruption">
+            {`Interrupt close ${interruption.run}: ${interruption.phase}`}
+          </Text>
+        </Pressable>
+      )}
     </View>
   )
 }
@@ -155,6 +183,22 @@ export default function OneNativeSheet() {
   const [contentLayout, setContentLayout] = useState({ width: 0, height: 0 })
   const [featureMode, setFeatureMode] = useState<FeatureMode>('base')
   const [selectedDetent, setSelectedDetent] = useState<PresentationDetent>('medium')
+  const [tallContent, setTallContent] = useState(false)
+  const [revision, setRevision] = useState(0)
+  const [interruption, setInterruption] = useState<SheetContentProps['interruption']>({
+    run: 0,
+    phase: 'idle',
+  })
+
+  useEffect(() => {
+    if (isPresented || interruption.phase !== 'closing') return
+    // commit false first; the native trace determines whether closing was interrupted.
+    const frame = requestAnimationFrame(() => {
+      setIsPresented(true)
+      setInterruption((current) => ({ ...current, phase: 'reopened' }))
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [isPresented, interruption.phase])
 
   const cycleFeatureMode = () => {
     const modes: readonly FeatureMode[] = ['base', 'controlled', 'fit', 'styled']
@@ -183,18 +227,36 @@ export default function OneNativeSheet() {
   return (
     <View style={styles.screen} testID="one-native-sheet-screen">
       <Text style={styles.title}>One Native Sheet</Text>
-      <Pressable
-        accessibilityRole="button"
-        onPress={cycleFeatureMode}
-        style={styles.featureMode}
-        testID="one-native-sheet-feature-mode"
-      >
-        <Text style={styles.featureModeText}>
-          {featureMode === 'controlled'
-            ? `controlled:${typeof selectedDetent === 'string' ? selectedDetent : 'custom'}`
-            : featureMode}
-        </Text>
-      </Pressable>
+      <View style={styles.featureControls}>
+        <Pressable
+          accessibilityRole="button"
+          onPress={cycleFeatureMode}
+          style={styles.featureMode}
+          testID="one-native-sheet-feature-mode"
+        >
+          <Text style={styles.featureModeText}>
+            {featureMode === 'controlled'
+              ? `controlled:${typeof selectedDetent === 'string' ? selectedDetent : 'custom'}`
+              : featureMode}
+          </Text>
+        </Pressable>
+        <Pressable
+          accessibilityRole="button"
+          onPress={() => setTallContent((value) => !value)}
+          style={styles.featureMode}
+          testID="one-native-sheet-tall-toggle"
+        >
+          <Text style={styles.featureModeText}>{tallContent ? 'tall' : 'compact'}</Text>
+        </Pressable>
+        <Pressable
+          accessibilityRole="button"
+          onPress={() => setRevision((value) => value + 1)}
+          style={styles.featureMode}
+          testID="one-native-sheet-bump-revision"
+        >
+          <Text style={styles.featureModeText}>{`rev ${revision}`}</Text>
+        </Pressable>
+      </View>
 
       {/* visible presentation status card */}
       <View style={styles.statusCard}>
@@ -295,11 +357,11 @@ export default function OneNativeSheet() {
         {...(featureMode === 'controlled'
           ? { selectedDetent, onSelectedDetentChange: setSelectedDetent }
           : {})}
-        fitToContents={featureMode === 'fit'}
         interactiveDismissDisabled={interactiveDismissDisabled}
         isPresented={isPresented}
         onDismiss={() => setDismissCount((c) => c + 1)}
         onIsPresentedChange={setIsPresented}
+        revision={revision}
         presentationDetents={detentProfiles[detentProfile]}
         presentationBackground={featureMode === 'styled' ? '#FFF3C4' : undefined}
         presentationBackgroundInteraction={
@@ -308,11 +370,17 @@ export default function OneNativeSheet() {
         presentationContentInteraction={
           featureMode === 'styled' ? 'resizes' : 'automatic'
         }
-        presentationSizing={featureMode === 'styled' ? 'fitted' : 'automatic'}
+        presentationSizing={featureMode === 'styled' || featureMode === 'fit' ? 'fitted' : 'automatic'}
       >
         <SheetContent
+          interruption={interruption}
+          onInterruptClose={featureMode === 'styled' ? () => {
+            setInterruption((current) => ({ run: current.run + 1, phase: 'closing' }))
+            setIsPresented(false)
+          } : undefined}
           detentProfile={detentProfile}
-          fitToContents={featureMode === 'fit'}
+          fitted={featureMode === 'fit'}
+          tall={tallContent}
           isParentPresented={isPresented}
           onClose={() => setIsPresented(false)}
           onCycleDetents={cycleDetents}
@@ -336,17 +404,20 @@ const styles = StyleSheet.create({
     color: '#1C1C1E',
     marginBottom: 12,
   },
+  featureControls: {
+    flexDirection: 'row',
+    gap: 8,
+    marginBottom: 12,
+  },
   featureMode: {
-    position: 'absolute',
-    right: 16,
-    top: 16,
-    zIndex: 1,
+    flex: 1,
     borderRadius: 7,
     backgroundColor: '#E5E5EA',
     paddingHorizontal: 8,
     paddingVertical: 5,
   },
   featureModeText: {
+    textAlign: 'center',
     color: '#007AFF',
     fontSize: 12,
     fontWeight: '600',
@@ -448,6 +519,22 @@ const styles = StyleSheet.create({
   fittedSheetContent: {
     flex: 0,
     height: 230,
+  },
+  tallSheetContent: {
+    flex: 0,
+    height: 430,
+  },
+  tallBlock: {
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F2F2F7',
+  },
+  interruptButton: {
+    alignSelf: 'flex-start',
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: '#5856D6',
   },
   sheetHeading: {
     fontSize: 16,

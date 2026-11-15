@@ -34,11 +34,9 @@ type OneNativeStyleNative = Readonly<{
 }>;
 interface NativeProps extends ViewProps {
     label: string;
-    disabled: boolean;
     value: Double;
     total: Double;
     indeterminate: boolean;
-    progressViewStyle: string;
     swiftStyle?: OneNativeStyleNative;
     onNativeSDKEvent?: DirectEventHandler<Readonly<{
         name: string;

@@ -46,7 +46,6 @@ interface NativeProps extends ViewProps {
   acknowledgedEvent: Int32
   revision: Int32
   label: string
-  disabled: boolean
   supportsOpacity: boolean
   swiftStyle?: OneNativeStyleNative
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>

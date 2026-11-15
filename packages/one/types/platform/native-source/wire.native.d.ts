@@ -36,5 +36,8 @@ export declare function base64Decode(text: string): Uint8Array;
 export declare function encodeNativeSourceArgs(args: unknown[], wires: (NativeSourceWire | null | undefined)[], structs: NativeSourceStructs): unknown[];
 export declare function decodeNativeSourceResult(value: unknown, wire: NativeSourceWire | null | undefined, structs: NativeSourceStructs): unknown;
 export declare function encodeNativeSourceProps(props: Record<string, unknown>, wires: Record<string, NativeSourceWire>, structs: NativeSourceStructs): Record<string, unknown>;
+export declare function encodeNativeSourceProp(name: string, value: unknown, wires: NativeSourceViewWires | undefined): unknown;
+export declare function encodeNativeSourceListItem(name: string, index: number, item: unknown, element: NativeSourceWire, structs: NativeSourceStructs): unknown;
+export declare function stringifyNativeSourceProps(props: Record<string, unknown>, wires: NativeSourceViewWires | undefined): string;
 export declare function decodeNativeSourceCallback(args: unknown[], wires: (NativeSourceWire | null | undefined)[], structs: NativeSourceStructs, event: string): unknown[];
 //# sourceMappingURL=wire.native.d.ts.map

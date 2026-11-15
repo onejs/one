@@ -1,5 +1,5 @@
 import type { ColorValue } from 'react-native';
-import type { EdgeFadeCurve, EdgeFadeMode, EdgeFadeProps } from './types';
+import type { EdgeFadeCurve, EdgeFadeMode, EdgeFadeProps } from './types.js';
 export declare const DEFAULT_CURVE: EdgeFadeCurve;
 export interface ResolvedEdge {
     size: number;

@@ -64,11 +64,40 @@ export const viewSlotArguments = {
     { field: 'title', kind: 'string' },
     { field: 'isPresented', kind: 'bindingBoolean' },
   ],
-  background: [],
+  background: [
+    {
+      field: 'alignment',
+      kind: 'enum',
+      optional: true,
+      cases: {
+        center: 13,
+        leading: 13,
+        trailing: 13,
+        top: 13,
+        bottom: 13,
+        topLeading: 13,
+        topTrailing: 13,
+        bottomLeading: 13,
+        bottomTrailing: 13,
+        centerFirstTextBaseline: 13,
+        centerLastTextBaseline: 13,
+        leadingFirstTextBaseline: 13,
+        leadingLastTextBaseline: 13,
+        trailingFirstTextBaseline: 13,
+        trailingLastTextBaseline: 13,
+      },
+    },
+  ],
   backgroundPreferenceValuePreferredColorScheme: [],
   confirmationDialog: [
     { field: 'title', kind: 'string' },
     { field: 'isPresented', kind: 'bindingBoolean' },
+    {
+      field: 'titleVisibility',
+      kind: 'enum',
+      optional: true,
+      cases: { automatic: 15, visible: 15, hidden: 15 },
+    },
   ],
   containerBackground: [
     {
@@ -83,6 +112,28 @@ export const viewSlotArguments = {
         widget: 17,
       },
     },
+    {
+      field: 'alignment',
+      kind: 'enum',
+      optional: true,
+      cases: {
+        center: 13,
+        leading: 13,
+        trailing: 13,
+        top: 13,
+        bottom: 13,
+        topLeading: 13,
+        topTrailing: 13,
+        bottomLeading: 13,
+        bottomTrailing: 13,
+        centerFirstTextBaseline: 13,
+        centerLastTextBaseline: 13,
+        leadingFirstTextBaseline: 13,
+        leadingLastTextBaseline: 13,
+        trailingFirstTextBaseline: 13,
+        trailingLastTextBaseline: 13,
+      },
+    },
   ],
   contentToolbar: [{ field: 'placement', kind: 'enum', cases: { tabViewSidebar: 18.4 } }],
   contextMenu: [],
@@ -95,25 +146,154 @@ export const viewSlotArguments = {
   inspector: [{ field: 'isPresented', kind: 'bindingBoolean' }],
   listRowBackground: [],
   mapControls: [],
-  mask: [],
+  mask: [
+    {
+      field: 'alignment',
+      kind: 'enum',
+      optional: true,
+      cases: {
+        center: 13,
+        leading: 13,
+        trailing: 13,
+        top: 13,
+        bottom: 13,
+        topLeading: 13,
+        topTrailing: 13,
+        bottomLeading: 13,
+        bottomTrailing: 13,
+        centerFirstTextBaseline: 13,
+        centerLastTextBaseline: 13,
+        leadingFirstTextBaseline: 13,
+        leadingLastTextBaseline: 13,
+        trailingFirstTextBaseline: 13,
+        trailingLastTextBaseline: 13,
+      },
+    },
+  ],
   navigationBarItemsWithLeading: [],
   navigationBarItemsWithTrailing: [],
   navigationDestination: [{ field: 'isPresented', kind: 'bindingBoolean' }],
-  overlay: [],
+  overlay: [
+    {
+      field: 'alignment',
+      kind: 'enum',
+      optional: true,
+      cases: {
+        center: 13,
+        leading: 13,
+        trailing: 13,
+        top: 13,
+        bottom: 13,
+        topLeading: 13,
+        topTrailing: 13,
+        bottomLeading: 13,
+        bottomTrailing: 13,
+        centerFirstTextBaseline: 13,
+        centerLastTextBaseline: 13,
+        leadingFirstTextBaseline: 13,
+        leadingLastTextBaseline: 13,
+        trailingFirstTextBaseline: 13,
+        trailingLastTextBaseline: 13,
+      },
+    },
+  ],
   overlayPreferenceValuePreferredColorScheme: [],
-  popover: [{ field: 'isPresented', kind: 'bindingBoolean' }],
-  presentationBackground: [],
+  popover: [
+    { field: 'isPresented', kind: 'bindingBoolean' },
+    {
+      field: 'arrowEdge',
+      kind: 'enum',
+      optional: true,
+      cases: { top: 13, leading: 13, bottom: 13, trailing: 13 },
+    },
+  ],
+  presentationBackground: [
+    {
+      field: 'alignment',
+      kind: 'enum',
+      optional: true,
+      cases: {
+        center: 13,
+        leading: 13,
+        trailing: 13,
+        top: 13,
+        bottom: 13,
+        topLeading: 13,
+        topTrailing: 13,
+        bottomLeading: 13,
+        bottomTrailing: 13,
+        centerFirstTextBaseline: 13,
+        centerLastTextBaseline: 13,
+        leadingFirstTextBaseline: 13,
+        leadingLastTextBaseline: 13,
+        trailingFirstTextBaseline: 13,
+        trailingLastTextBaseline: 13,
+      },
+    },
+  ],
   safeAreaBarWithHorizontalEdge: [
     { field: 'edge', kind: 'enum', cases: { leading: 15, trailing: 15 } },
+    {
+      field: 'alignment',
+      kind: 'enum',
+      optional: true,
+      cases: {
+        top: 13,
+        center: 13,
+        bottom: 13,
+        firstTextBaseline: 13,
+        lastTextBaseline: 13,
+      },
+    },
+    { field: 'spacing', kind: 'number', optional: true, type: 'CoreFoundation.CGFloat?' },
   ],
   safeAreaBarWithVerticalEdge: [
     { field: 'edge', kind: 'enum', cases: { top: 15, bottom: 15 } },
+    {
+      field: 'alignment',
+      kind: 'enum',
+      optional: true,
+      cases: {
+        leading: 13,
+        center: 13,
+        trailing: 13,
+        listRowSeparatorLeading: 16,
+        listRowSeparatorTrailing: 16,
+      },
+    },
+    { field: 'spacing', kind: 'number', optional: true, type: 'CoreFoundation.CGFloat?' },
   ],
   safeAreaInsetWithHorizontalEdge: [
     { field: 'edge', kind: 'enum', cases: { leading: 15, trailing: 15 } },
+    {
+      field: 'alignment',
+      kind: 'enum',
+      optional: true,
+      cases: {
+        top: 13,
+        center: 13,
+        bottom: 13,
+        firstTextBaseline: 13,
+        lastTextBaseline: 13,
+      },
+    },
+    { field: 'spacing', kind: 'number', optional: true, type: 'CoreFoundation.CGFloat?' },
   ],
   safeAreaInsetWithVerticalEdge: [
     { field: 'edge', kind: 'enum', cases: { top: 15, bottom: 15 } },
+    {
+      field: 'alignment',
+      kind: 'enum',
+      optional: true,
+      cases: {
+        leading: 13,
+        center: 13,
+        trailing: 13,
+        listRowSeparatorLeading: 16,
+        listRowSeparatorTrailing: 16,
+      },
+    },
+    { field: 'spacing', kind: 'number', optional: true, type: 'CoreFoundation.CGFloat?' },
   ],
   sceneAccessory: [],
   searchScopesWithBindingString: [{ field: 'scope', kind: 'bindingString' }],
@@ -132,7 +312,10 @@ export const viewSlotArguments = {
   subscriptionStorePolicyDestination: [
     { field: 'button', kind: 'enum', cases: { termsOfService: 17, privacyPolicy: 17 } },
   ],
-  swipeActions: [],
+  swipeActions: [
+    { field: 'edge', kind: 'enum', optional: true, cases: { leading: 15, trailing: 15 } },
+    { field: 'allowsFullSwipe', kind: 'boolean', optional: true },
+  ],
   tabItem: [],
   tabViewBottomAccessory: [],
   tabViewBottomAccessoryWithBool: [{ field: 'isEnabled', kind: 'boolean' }],
@@ -169,7 +352,27 @@ export type ViewSlotConfiguration =
         isPresented: { value: boolean; onChange: (value: boolean) => void }
       }
     }
-  | { name: 'background'; options?: never }
+  | {
+      name: 'background'
+      options?: {
+        alignment?:
+          | 'center'
+          | 'leading'
+          | 'trailing'
+          | 'top'
+          | 'bottom'
+          | 'topLeading'
+          | 'topTrailing'
+          | 'bottomLeading'
+          | 'bottomTrailing'
+          | 'centerFirstTextBaseline'
+          | 'centerLastTextBaseline'
+          | 'leadingFirstTextBaseline'
+          | 'leadingLastTextBaseline'
+          | 'trailingFirstTextBaseline'
+          | 'trailingLastTextBaseline'
+      }
+    }
   | {
       name: 'backgroundPreferenceValuePreferredColorScheme'
       options: { onValue: (value: 'light' | 'dark' | 'unknown' | null) => void }
@@ -179,6 +382,7 @@ export type ViewSlotConfiguration =
       options: {
         title: string
         isPresented: { value: boolean; onChange: (value: boolean) => void }
+        titleVisibility?: 'automatic' | 'visible' | 'hidden'
       }
     }
   | {
@@ -191,6 +395,22 @@ export type ViewSlotConfiguration =
           | 'subscriptionStoreHeader'
           | 'subscriptionStoreFullHeight'
           | 'widget'
+        alignment?:
+          | 'center'
+          | 'leading'
+          | 'trailing'
+          | 'top'
+          | 'bottom'
+          | 'topLeading'
+          | 'topTrailing'
+          | 'bottomLeading'
+          | 'bottomTrailing'
+          | 'centerFirstTextBaseline'
+          | 'centerLastTextBaseline'
+          | 'leadingFirstTextBaseline'
+          | 'leadingLastTextBaseline'
+          | 'trailingFirstTextBaseline'
+          | 'trailingLastTextBaseline'
       }
     }
   | { name: 'contentToolbar'; options: { placement: 'tabViewSidebar' } }
@@ -210,27 +430,128 @@ export type ViewSlotConfiguration =
     }
   | { name: 'listRowBackground'; options?: never }
   | { name: 'mapControls'; options?: never }
-  | { name: 'mask'; options?: never }
+  | {
+      name: 'mask'
+      options?: {
+        alignment?:
+          | 'center'
+          | 'leading'
+          | 'trailing'
+          | 'top'
+          | 'bottom'
+          | 'topLeading'
+          | 'topTrailing'
+          | 'bottomLeading'
+          | 'bottomTrailing'
+          | 'centerFirstTextBaseline'
+          | 'centerLastTextBaseline'
+          | 'leadingFirstTextBaseline'
+          | 'leadingLastTextBaseline'
+          | 'trailingFirstTextBaseline'
+          | 'trailingLastTextBaseline'
+      }
+    }
   | { name: 'navigationBarItemsWithLeading'; options?: never }
   | { name: 'navigationBarItemsWithTrailing'; options?: never }
   | {
       name: 'navigationDestination'
       options: { isPresented: { value: boolean; onChange: (value: boolean) => void } }
     }
-  | { name: 'overlay'; options?: never }
+  | {
+      name: 'overlay'
+      options?: {
+        alignment?:
+          | 'center'
+          | 'leading'
+          | 'trailing'
+          | 'top'
+          | 'bottom'
+          | 'topLeading'
+          | 'topTrailing'
+          | 'bottomLeading'
+          | 'bottomTrailing'
+          | 'centerFirstTextBaseline'
+          | 'centerLastTextBaseline'
+          | 'leadingFirstTextBaseline'
+          | 'leadingLastTextBaseline'
+          | 'trailingFirstTextBaseline'
+          | 'trailingLastTextBaseline'
+      }
+    }
   | {
       name: 'overlayPreferenceValuePreferredColorScheme'
       options: { onValue: (value: 'light' | 'dark' | 'unknown' | null) => void }
     }
   | {
       name: 'popover'
-      options: { isPresented: { value: boolean; onChange: (value: boolean) => void } }
+      options: {
+        isPresented: { value: boolean; onChange: (value: boolean) => void }
+        arrowEdge?: 'top' | 'leading' | 'bottom' | 'trailing'
+      }
     }
-  | { name: 'presentationBackground'; options?: never }
-  | { name: 'safeAreaBarWithHorizontalEdge'; options: { edge: 'leading' | 'trailing' } }
-  | { name: 'safeAreaBarWithVerticalEdge'; options: { edge: 'top' | 'bottom' } }
-  | { name: 'safeAreaInsetWithHorizontalEdge'; options: { edge: 'leading' | 'trailing' } }
-  | { name: 'safeAreaInsetWithVerticalEdge'; options: { edge: 'top' | 'bottom' } }
+  | {
+      name: 'presentationBackground'
+      options?: {
+        alignment?:
+          | 'center'
+          | 'leading'
+          | 'trailing'
+          | 'top'
+          | 'bottom'
+          | 'topLeading'
+          | 'topTrailing'
+          | 'bottomLeading'
+          | 'bottomTrailing'
+          | 'centerFirstTextBaseline'
+          | 'centerLastTextBaseline'
+          | 'leadingFirstTextBaseline'
+          | 'leadingLastTextBaseline'
+          | 'trailingFirstTextBaseline'
+          | 'trailingLastTextBaseline'
+      }
+    }
+  | {
+      name: 'safeAreaBarWithHorizontalEdge'
+      options: {
+        edge: 'leading' | 'trailing'
+        alignment?: 'top' | 'center' | 'bottom' | 'firstTextBaseline' | 'lastTextBaseline'
+        spacing?: number
+      }
+    }
+  | {
+      name: 'safeAreaBarWithVerticalEdge'
+      options: {
+        edge: 'top' | 'bottom'
+        alignment?:
+          | 'leading'
+          | 'center'
+          | 'trailing'
+          | 'listRowSeparatorLeading'
+          | 'listRowSeparatorTrailing'
+        spacing?: number
+      }
+    }
+  | {
+      name: 'safeAreaInsetWithHorizontalEdge'
+      options: {
+        edge: 'leading' | 'trailing'
+        alignment?: 'top' | 'center' | 'bottom' | 'firstTextBaseline' | 'lastTextBaseline'
+        spacing?: number
+      }
+    }
+  | {
+      name: 'safeAreaInsetWithVerticalEdge'
+      options: {
+        edge: 'top' | 'bottom'
+        alignment?:
+          | 'leading'
+          | 'center'
+          | 'trailing'
+          | 'listRowSeparatorLeading'
+          | 'listRowSeparatorTrailing'
+        spacing?: number
+      }
+    }
   | { name: 'sceneAccessory'; options?: never }
   | {
       name: 'searchScopesWithBindingString'
@@ -254,7 +575,10 @@ export type ViewSlotConfiguration =
       name: 'subscriptionStorePolicyDestination'
       options: { button: 'termsOfService' | 'privacyPolicy' }
     }
-  | { name: 'swipeActions'; options?: never }
+  | {
+      name: 'swipeActions'
+      options?: { edge?: 'leading' | 'trailing'; allowsFullSwipe?: boolean }
+    }
   | { name: 'tabItem'; options?: never }
   | { name: 'tabViewBottomAccessory'; options?: never }
   | { name: 'tabViewBottomAccessoryWithBool'; options: { isEnabled: boolean } }

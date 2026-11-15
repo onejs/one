@@ -1,0 +1,22 @@
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-app-info
+- tapOn:
+    text: 'Open'
+    optional: true
+- extendedWaitUntil:
+    visible: 'Version: 9.9.9'
+    timeout: 30000
+- assertVisible: 'Build: 4242'
+- assertVisible: 'ApplicationId: dev.vxrn.native.tests'
+- tapOn:
+    id: one-native-app-info-refresh
+- assertVisible: 'Taps: 1'
+- assertVisible: 'Version: 9.9.9'

@@ -4,7 +4,7 @@ export declare function clearMappingsForSimulator(simulatorUdid: string): void;
 export declare function clearAllMappings(): void;
 export declare function getSimulatorMappings(): Map<string, string>;
 export declare function setSimulatorMapping(simulatorUdid: string, serverId: string): void;
-import type { DaemonState } from './types';
+import type { DaemonState } from './types.js';
 interface DaemonOptions {
     port?: number;
     host?: string;

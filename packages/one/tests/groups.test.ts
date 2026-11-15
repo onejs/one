@@ -7,8 +7,8 @@ import { Swift as UnsupportedSwift } from '../src/platform/unsupported'
 
 // same render-element setup as components.test.ts. wrappers that read hooks
 // (DisclosureGroup, Pager, Divider) cannot be called outside a render, so the
-// groups conformance suite covers their behavior the way the tabs suite covers
-// Tabs; what is asserted here is their contract surface below.
+// groups conformance suite covers their behavior the way the TabView suite covers
+// TabView; what is asserted here is their contract surface below.
 vi.mock('react-native', () => ({
   Platform: { OS: 'ios', Version: '26.4' },
   View: () => null,
@@ -34,13 +34,13 @@ vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
 
 let Containers: typeof import('../src/platform/Containers.native')
 let PagerModule: typeof import('../src/platform/Pager.native')
-let TabsModule: typeof import('../src/platform/Tabs.native')
+let TabViewModule: typeof import('../src/platform/TabView.native')
 let Button: typeof import('../src/platform/Containers.native').Button
 
 beforeAll(async () => {
   Containers = await import('../src/platform/Containers.native')
   PagerModule = await import('../src/platform/Pager.native')
-  TabsModule = await import('../src/platform/Tabs.native')
+  TabViewModule = await import('../src/platform/TabView.native')
   Button = Containers.Button
 })
 
@@ -255,9 +255,8 @@ describe('swipeactions', () => {
 
 describe('button icon', () => {
   it('accepts a systemImage without a label', () => {
-    expect(render(Button, { systemImage: 'star.fill' }).props).toMatchObject({
-      label: '',
-      systemImage: 'star.fill',
+    expect(render(Button, { systemImage: 'star.fill' }).props.children.props.children).toMatchObject({
+      props: { systemName: 'star.fill' },
     })
   })
 
@@ -273,7 +272,6 @@ describe('button icon', () => {
     }
     const child = createElement(LabelView, { key: 'label' })
     const element = render(Button, { onPress: () => {}, children: child })
-    expect(element.props.label).toBe('')
     expect(element.props.children.props.value).toBe(true)
     expect(element.props.children.props.children).toBe(child)
   })
@@ -300,27 +298,23 @@ describe('greedy containers', () => {
       isExpanded: false,
       onIsExpandedChange: () => {},
     })
-    const host = render(Containers.HStack, { children: child })
-    expect(() => host.type(host.props)).not.toThrow()
+    expect(() => render(Containers.HStack, { children: child })).not.toThrow()
     expect(() => render(Containers.ZStack, { children: child })).not.toThrow()
     expect(() => render(Containers.ViewThatFits, { children: child })).not.toThrow()
   })
 
   it('rejects tab bars and pagers inside a measured stack', () => {
-    const host = (child: React.ReactNode) => {
-      const element = render(Containers.HStack, { children: child })
-      return () => element.type(element.props)
-    }
+    const host = (child: React.ReactNode) => () => render(Containers.HStack, { children: child })
     // createElement never invokes the component, so hook-reading wrappers are safe
     // to nest here; only the outer stack executes.
     const nested: [ReactNode, string][] = [
       [
-        createElement(TabsModule.Tabs, {
+        createElement(TabViewModule.TabView, {
           children: null,
           selection: 'a',
           onSelectionChange: () => {},
         }),
-        'Swift.Tabs',
+        'Swift.TabView',
       ],
       [
         createElement(PagerModule.Pager, {
@@ -392,13 +386,14 @@ describe('group schema', () => {
       'Divider',
       'Link',
       'Group',
-      'Overlay',
       'SwipeActions',
       'Pager',
     ]) {
       expect(component(name).layout, name).toMatchObject({ kind: 'container' })
       expect(component(name).interfaceOnly, name).toBe(false)
     }
+    expect(component('Overlay').layout).toMatchObject({ kind: 'measured' })
+    expect(component('Overlay').interfaceOnly).toBe(true)
     expect(component('DisclosureGroup').layout).toMatchObject({ kind: 'measured' })
     expect(component('DisclosureGroup').interfaceOnly).toBe(true)
     expect(component('ControlGroup').layout).toMatchObject({ kind: 'measured' })

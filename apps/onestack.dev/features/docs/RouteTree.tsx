@@ -37,7 +37,7 @@ export const RouteTree = ({
         horizontal
         contentContainerStyle={{
           flexGrow: 1,
-          miw: '100%',
+          minWidth: '100%',
         }}
       >
         <YStack flex={1}>

@@ -11,12 +11,16 @@ declare module 'one' {
         | `/(content)`
         | `/(content)/blog`
         | `/(content)/docs`
+        | `/(content)/ios-reference`
+        | `/(content)/ios-reference/`
         | `/(content)/native`
         | `/(content)/native/`
         | `/(content)/plans`
         | `/_sitemap`
         | `/blog`
         | `/docs`
+        | `/ios-reference`
+        | `/ios-reference/`
         | `/native`
         | `/native/`
         | `/plans`
@@ -24,29 +28,41 @@ declare module 'one' {
       DynamicRoutes:
         | `/(content)/blog/${OneRouter.SingleRoutePart<T>}`
         | `/(content)/docs/${OneRouter.SingleRoutePart<T>}`
+        | `/(content)/ios-reference/${OneRouter.SingleRoutePart<T>}`
+        | `/(content)/ios-reference/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/(content)/native/${OneRouter.SingleRoutePart<T>}`
         | `/(content)/plans/${OneRouter.SingleRoutePart<T>}`
         | `/blog/${OneRouter.SingleRoutePart<T>}`
         | `/docs/${OneRouter.SingleRoutePart<T>}`
+        | `/ios-reference/${OneRouter.SingleRoutePart<T>}`
+        | `/ios-reference/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/native/${OneRouter.SingleRoutePart<T>}`
         | `/plans/${OneRouter.SingleRoutePart<T>}`
       DynamicRouteTemplate:
         | `/(content)/blog/[slug]`
         | `/(content)/docs/[slug]`
+        | `/(content)/ios-reference/[framework]`
+        | `/(content)/ios-reference/[framework]/[type]`
         | `/(content)/native/[slug]`
         | `/(content)/plans/[slug]`
         | `/blog/[slug]`
         | `/docs/[slug]`
+        | `/ios-reference/[framework]`
+        | `/ios-reference/[framework]/[type]`
         | `/native/[slug]`
         | `/plans/[slug]`
       IsTyped: true
       RouteTypes: {
         '/(content)/blog/[slug]': RouteInfo<{ slug: string }>
         '/(content)/docs/[slug]': RouteInfo<{ slug: string }>
+        '/(content)/ios-reference/[framework]': RouteInfo<{ framework: string }>
+        '/(content)/ios-reference/[framework]/[type]': RouteInfo<{ framework: string; type: string }>
         '/(content)/native/[slug]': RouteInfo<{ slug: string }>
         '/(content)/plans/[slug]': RouteInfo<{ slug: string }>
         '/blog/[slug]': RouteInfo<{ slug: string }>
         '/docs/[slug]': RouteInfo<{ slug: string }>
+        '/ios-reference/[framework]': RouteInfo<{ framework: string }>
+        '/ios-reference/[framework]/[type]': RouteInfo<{ framework: string; type: string }>
         '/native/[slug]': RouteInfo<{ slug: string }>
         '/plans/[slug]': RouteInfo<{ slug: string }>
       }

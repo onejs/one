@@ -1,6 +1,7 @@
 const fs = require('node:fs')
 const { createRequire } = require('node:module')
 const path = require('node:path')
+const { pathToFileURL } = require('node:url')
 const nativeProjectPatches = require('./native-project-patches.cjs')
 
 // options: { notifications: { push?: boolean, mode?: 'development' | 'production' } }
@@ -31,6 +32,9 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // android/app/src/main/java/one/source. Swift and Kotlin imports then bundle
 // the same host modules; without this the bundler keeps failing fast with
 // the one-prebuild error.
+// options: { engine: 'bun' } runs ios release builds on bun's ahead-of-time
+// compiled javascript instead of hermes. pod install needs ONE_BUN_ENGINE_DIR
+// naming the bun runtime directory (see vxrn/ios/OneBunEngine).
 module.exports = function withVxrn(config, options = {}) {
   const projectRoot = config?._internal?.projectRoot
   if (!projectRoot) {
@@ -50,6 +54,7 @@ module.exports = function withVxrn(config, options = {}) {
     withMainActivity,
     withMainApplication,
     withPlugins,
+    withPodfileProperties,
     withXcodeProject,
   } = projectRequire('@expo/config-plugins')
 
@@ -220,6 +225,7 @@ module.exports = function withVxrn(config, options = {}) {
   // meta-data markers and audio service from the same option fields.
   const mediaPlugins =
     audio === undefined &&
+    !location?.background &&
     photoLibrary === undefined &&
     contacts === undefined &&
     calendar === undefined
@@ -265,6 +271,10 @@ module.exports = function withVxrn(config, options = {}) {
                 ensurePermission('android.permission.FOREGROUND_SERVICE')
                 ensurePermission('android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK')
               }
+              if (location?.background) {
+                ensurePermission('android.permission.FOREGROUND_SERVICE')
+                ensurePermission('android.permission.FOREGROUND_SERVICE_LOCATION')
+              }
               const application =
                 AndroidConfig.Manifest.getMainApplicationOrThrow(nextConfig.modResults)
               const ensureMetaData = (name) => {
@@ -288,6 +298,19 @@ module.exports = function withVxrn(config, options = {}) {
                     'android:name': serviceName,
                     'android:exported': 'false',
                     'android:foregroundServiceType': 'mediaPlayback',
+                  },
+                })
+              }
+              if (location?.background) {
+                const serviceName = 'dev.onejs.onenative.OneLocationService'
+                application['service'] = (application['service'] ?? []).filter(
+                  (entry) => entry.$['android:name'] !== serviceName
+                )
+                application['service'].push({
+                  $: {
+                    'android:name': serviceName,
+                    'android:exported': 'false',
+                    'android:foregroundServiceType': 'location',
                   },
                 })
               }
@@ -673,6 +696,89 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
     return { sources: sources.length, hasViews }
   }
 
+  const injectSwiftPackagesPodfile = (platformProjectRoot) => {
+    const podfilePath = path.join(platformProjectRoot, 'Podfile')
+    if (!fs.existsSync(podfilePath)) return
+    const podfile = fs.readFileSync(podfilePath, 'utf8')
+    fs.writeFileSync(
+      podfilePath,
+      nativeProjectPatches.injectOneSwiftPackagesIntoPodfile(podfile),
+      'utf8'
+    )
+  }
+
+  // the sdk pod and typescript facades one prebuild writes, from the same
+  // generator: writeAppSdkPod in the one package's built sdk.
+  const writeExpoSdkBindings = async () => {
+    let appModule
+    try {
+      appModule = path.join(
+        path.dirname(projectRequire.resolve('one/package.json')),
+        'dist',
+        'sdk',
+        'app.mjs'
+      )
+    } catch (error) {
+      throw new Error(`[vxrn/expo-plugin] cannot resolve the one package: ${error.message}`)
+    }
+    // a linux or windows host still generates the project; it has no iOS SDK to
+    // build the bindings pod, which only a mac compiles.
+    if (process.platform !== 'darwin') {
+      console.warn(
+        `[vxrn/expo-plugin] iOS SDK generation was skipped on ${process.platform}; the bindings pod is generated on macOS`
+      )
+      return []
+    }
+    const { writeAppSdkPod } = await import(pathToFileURL(appModule).href)
+    // the release bundle reaches frameworks through one's own modules, which the
+    // app's imports do not name. bundle it once, as one prebuild does, so the
+    // release bindings and link set cover them.
+    const { writeIosLinkSet } = await import(
+      pathToFileURL(path.join(path.dirname(appModule), '..', 'esm', 'cli', 'iosLinkSet.mjs')).href
+    )
+    const expoRequire = createRequire(projectRequire.resolve('expo/package.json'))
+    const { resolveEntryPoint } = expoRequire('@expo/config/paths')
+    const entry = resolveEntryPoint(projectRoot, { platform: 'ios' })
+    return writeAppSdkPod(projectRoot, console.info, writeIosLinkSet(projectRoot, entry).frameworks)
+  }
+
+  // expo's default ios deployment target sits below the one the One pod
+  // requires, so pod install would refuse One until it is raised.
+  const deploymentTargetPlugins = [
+    [
+      withPodfileProperties,
+      (nextConfig) => {
+        const { minimumVersion } = JSON.parse(
+          fs.readFileSync(
+            path.join(path.dirname(projectRequire.resolve('one/package.json')), 'schema.json'),
+            'utf8'
+          )
+        )
+        const current = parseFloat(nextConfig.modResults['ios.deploymentTarget'] ?? '0')
+        if (!(current >= minimumVersion)) {
+          nextConfig.modResults['ios.deploymentTarget'] = `${minimumVersion}.0`
+        }
+        return nextConfig
+      },
+    ],
+  ]
+
+  const sdkBindingsPlugins = [
+    [
+      withDangerousMod,
+      [
+        'ios',
+        async (nextConfig) => {
+          const frameworks = await writeExpoSdkBindings()
+          if (frameworks.length > 0) {
+            injectSwiftPackagesPodfile(nextConfig.modRequest.platformProjectRoot)
+          }
+          return nextConfig
+        },
+      ],
+    ],
+  ]
+
   const nativeSourcePlugins = !nativeSource
     ? []
     : [
@@ -684,14 +790,7 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
               const { platformProjectRoot } = nextConfig.modRequest
               const contract = await loadNativeSourceContract()
               const count = writeExpoSwiftPackages({ platformProjectRoot, contract })
-              if (count > 0) {
-                const podfilePath = path.join(platformProjectRoot, 'Podfile')
-                if (fs.existsSync(podfilePath)) {
-                  let podfile = fs.readFileSync(podfilePath, 'utf8')
-                  podfile = nativeProjectPatches.injectOneSwiftPackagesIntoPodfile(podfile)
-                  fs.writeFileSync(podfilePath, podfile, 'utf8')
-                }
-              }
+              if (count > 0) injectSwiftPackagesPodfile(platformProjectRoot)
               return nextConfig
             },
           ],
@@ -771,6 +870,32 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
         ),
       ]
 
+  if (options.engine !== undefined && options.engine !== 'bun' && options.engine !== 'hermes') {
+    throw new Error(`[vxrn/expo-plugin] engine must be 'bun' or 'hermes', got ${options.engine}`)
+  }
+  const bunEngine = options.engine === 'bun'
+  const bunEnginePlugins = !bunEngine
+    ? []
+    : [
+        [
+          withAppDelegate,
+          (nextConfig) => {
+            nextConfig.modResults.contents = nativeProjectPatches.runBunEngineInAppDelegate(
+              nextConfig.modResults.contents
+            )
+            return nextConfig
+          },
+        ],
+        importIntoBridgingHeader('engine', nativeProjectPatches.ONE_BUN_ENGINE.bridgingHeaderImport),
+        [
+          withEntitlementsPlist,
+          (nextConfig) => {
+            nextConfig.modResults[nativeProjectPatches.ONE_BUN_ENGINE.entitlement] = true
+            return nextConfig
+          },
+        ],
+      ]
+
   return withPlugins(config, [
     ...locationPlugins,
     ...audioPlugins,
@@ -781,6 +906,9 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
     ...notificationPlugins,
     ...updatesPlugins,
     ...launchScreenPlugins,
+    ...bunEnginePlugins,
+    ...deploymentTargetPlugins,
+    ...sdkBindingsPlugins,
     ...nativeSourcePlugins,
     [
       withXcodeProject,
@@ -802,6 +930,9 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
             script,
             updates.runtimeVersion
           )
+        }
+        if (bunEngine) {
+          script = nativeProjectPatches.addBunEngineToBundleReactNativeShellScript(script)
         }
         phase.shellScript = JSON.stringify(script)
         return nextConfig
@@ -836,10 +967,23 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
       },
     ],
     [
+      withGradleProperties,
+      (nextConfig) => {
+        // MainActivity opts into androidx edge-to-edge; this tells react
+        // native the window is edge-to-edge on every api level.
+        const properties = nextConfig.modResults.filter(
+          (item) => !(item.type === 'property' && item.key === 'edgeToEdgeEnabled')
+        )
+        properties.push({ type: 'property', key: 'edgeToEdgeEnabled', value: 'true' })
+        nextConfig.modResults = properties
+        return nextConfig
+      },
+    ],
+    [
       withMainActivity,
       (nextConfig) => {
-        const contents = nativeProjectPatches.addReactNativeScreensFix(
-          nextConfig.modResults.contents
+        const contents = nativeProjectPatches.enableEdgeToEdgeInMainActivity(
+          nativeProjectPatches.addReactNativeScreensFix(nextConfig.modResults.contents)
         )
         nextConfig.modResults.contents = options.holdLaunchScreen
           ? nativeProjectPatches.holdLaunchScreenInMainActivity(contents)
@@ -861,10 +1005,12 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
           let podfile = fs.readFileSync(podfilePath, 'utf8')
           podfile = nativeProjectPatches.injectFmtCxx17FixIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectWebGPUHeaderPathsIntoPodfile(podfile)
+          podfile = nativeProjectPatches.injectSkiaDawnVendoringIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectReactNativeScreensGammaIntoPodfile(podfile)
+          if (bunEngine) podfile = nativeProjectPatches.injectBunEngineIntoPodfile(podfile)
           if (nativeProjectPatches.hasNitroWebImage(projectRoot)) {
-            podfile = nativeProjectPatches.injectNitroWebImageModularHeaderIntoPodfile(podfile)
+            podfile = nativeProjectPatches.injectModularHeadersIntoPodfile(podfile)
           }
           fs.writeFileSync(podfilePath, podfile, 'utf8')
           return nextConfig

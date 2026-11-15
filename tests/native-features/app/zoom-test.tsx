@@ -66,6 +66,18 @@ export default function ZoomTestScreen() {
         ))}
       </View>
 
+      <One.iOS.Button
+        testID="zoom-source-swift-1"
+        label="SwiftUI source"
+        swiftStyle={{ buttonStyle: 'borderedProminent', matchedTransitionSource: { id: 'swift-1' } }}
+        onPress={() =>
+          router.push({
+            pathname: '/zoom-detail',
+            params: { id: 'swift-1', title: 'SwiftUI Source', color: '#0A84FF', mode, mount },
+          } as any)
+        }
+      />
+
       <View testID="zoom-source-status" style={styles.statusBar}>
         <Text testID="zoom-source-complete" style={styles.statusText}>
           {items.length} zoom sources rendered

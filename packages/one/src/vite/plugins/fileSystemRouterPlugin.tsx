@@ -1,6 +1,7 @@
 import path from 'node:path'
 import { Readable } from 'node:stream'
 import { TLSSocket } from 'node:tls'
+import fastGlob from 'fast-glob'
 import { debounce } from 'perfect-debounce'
 import colors from 'picocolors'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
@@ -16,6 +17,11 @@ import { isResponse } from '../../utils/isResponse'
 import { isStatusRedirect } from '../../utils/isStatus'
 import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
 import type { RouteIndex } from '../../utils/routeIndex'
+import {
+  getLoaderSearchSchemas,
+  withLoaderSearchParams,
+  type LoaderSearchSchemas,
+} from '../../loaderSearchParams'
 import { isRouteFileWatchEvent } from '../../utils/routeFileWatch'
 import { trackLoaderDependencies } from '../../utils/trackLoaderDependencies'
 import type { One, RouteInfo } from '../../vite/types'
@@ -216,7 +222,9 @@ export function createFileSystemRouterPlugin(
             // helper to run a loader and track dependencies
             async function runLoaderWithTracking(
               routeNode: RouteNode | { contextKey: string; file?: string },
-              loaderFn: ((props: any) => any) | undefined
+              loaderFn: ((props: any) => any) | undefined,
+              // only ssr document requests carry the query a loader can validate
+              searchSchemas?: LoaderSearchSchemas | null
             ): Promise<{ loaderData: any; routeId: string; isEnoent?: boolean }> {
               const routeId = routeNode.contextKey
               if (!loaderFn) {
@@ -224,10 +232,14 @@ export function createFileSystemRouterPlugin(
               }
 
               try {
-                const tracked = await trackLoaderDependencies(() => loaderFn(loaderProps))
+                const props = searchSchemas
+                  ? withLoaderSearchParams(searchSchemas, loaderProps)
+                  : loaderProps
+                const tracked = await trackLoaderDependencies(() => loaderFn(props))
 
                 // register dependencies for HMR
-                const routePath = loaderProps?.path || '/'
+                // an ssr route's data depends on its query, which hot reload refetches by
+                const routePath = (loaderProps?.path || '/') + (route.type === 'ssr' ? (loaderProps?.search ?? '') : '')
                 for (const dep of tracked.dependencies) {
                   const absoluteDep = path.resolve(dep)
                   setBoundedLoaderDep(absoluteDep, routePath)
@@ -284,11 +296,19 @@ export function createFileSystemRouterPlugin(
               const layoutLoaderPromises = layoutRoutes.map(async (layout) => {
                 const layoutFile = path.join(routerRoot, layout.contextKey)
                 const layoutExported = await runner.import(layoutFile)
-                return runLoaderWithTracking(layout, layoutExported.loader)
+                return runLoaderWithTracking(
+                  layout,
+                  layoutExported.loader,
+                  route.type === 'ssr' ? getLoaderSearchSchemas(layoutExported) : null
+                )
               })
 
               // run page loader
-              const pageLoaderPromise = runLoaderWithTracking(pageRoute, exported.loader)
+              const pageLoaderPromise = runLoaderWithTracking(
+                pageRoute,
+                exported.loader,
+                route.type === 'ssr' ? getLoaderSearchSchemas(exported) : null
+              )
 
               // wait for all loaders in parallel
               let layoutResults: Awaited<ReturnType<typeof runLoaderWithTracking>>[]
@@ -538,8 +558,14 @@ export function createFileSystemRouterPlugin(
           let loaderData: any
           if (exported.loader) {
             try {
+              // a client navigation to an ssr route validates its query like the document request
+              const searchSchemas =
+                route.type === 'ssr' ? getLoaderSearchSchemas(exported) : null
+              const runProps = searchSchemas
+                ? withLoaderSearchParams(searchSchemas, loaderProps)
+                : loaderProps
               const tracked = await trackLoaderDependencies(() =>
-                exported.loader(loaderProps)
+                exported.loader(runProps)
               )
               loaderData = tracked.result
 
@@ -551,7 +577,8 @@ export function createFileSystemRouterPlugin(
               }
 
               // Register dependencies: map file path -> route paths that depend on it
-              const routePath = loaderProps?.path || '/'
+              // an ssr route's data depends on its query, which hot reload refetches by
+                const routePath = (loaderProps?.path || '/') + (route.type === 'ssr' ? (loaderProps?.search ?? '') : '')
               for (const dep of tracked.dependencies) {
                 // Resolve to absolute path for consistent lookup when file changes
                 const absoluteDep = path.resolve(dep)
@@ -668,12 +695,18 @@ export function createFileSystemRouterPlugin(
                 return []
               }
 
-              // optimizeDeps.entries uses tinyglobby — needs forward-slash patterns
+              // optimizeDeps.entries uses tinyglobby — needs forward-slash patterns.
+              // entries are literal route files, so escape glob magic: (group)
+              // and [param] segments would otherwise drop or overmatch.
               return [
-                path.posix.join(`./${routerRoot}`, route.file),
+                fastGlob.escapePath(path.posix.join(`./${routerRoot}`, route.file)),
                 ...(route.layouts?.flatMap((layout) => {
                   if (!layout.contextKey) return []
-                  return [path.posix.join(`./${routerRoot}`, layout.contextKey)]
+                  return [
+                    fastGlob.escapePath(
+                      path.posix.join(`./${routerRoot}`, layout.contextKey)
+                    ),
+                  ]
                 }) || []),
               ]
             })

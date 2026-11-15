@@ -1,10 +1,11 @@
-import type { One } from '../vite/types';
+import type { One } from '../vite/types.js';
 export interface DynamicNameMatch {
     name: string;
     deep: boolean;
 }
 /** Match `[page]` -> `{ name: 'page', deep: false }` or `[...page]` -> `{ name: 'page', deep: true }` */
 export declare function matchDynamicName(name: string): DynamicNameMatch | undefined;
+export declare function changesDynamicRoute(name: string, current: object | undefined, target: object | undefined): boolean;
 /**
  * Match a route pattern against a URL path, segment-by-segment, as a prefix.
  *

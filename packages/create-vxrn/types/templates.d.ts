@@ -1,6 +1,6 @@
 export declare const templates: readonly [{
-    readonly extraSteps: import("./steps/types").ExtraSteps;
-    readonly preInstall: import("./steps/types").ExtraSteps;
+    readonly extraSteps: import("./steps/types.js").ExtraSteps;
+    readonly preInstall: import("./steps/types.js").ExtraSteps;
     readonly title: `Basic`;
     readonly value: 'Basic';
     readonly description: 'The simplest starting point, vanilla React Native';
@@ -13,8 +13,8 @@ export declare const templates: readonly [{
         readonly branch: 'main';
     };
 }, {
-    readonly extraSteps: import("./steps/types").ExtraSteps;
-    readonly preInstall: import("./steps/types").ExtraSteps;
+    readonly extraSteps: import("./steps/types.js").ExtraSteps;
+    readonly preInstall: import("./steps/types.js").ExtraSteps;
     readonly title: `Takeout`;
     readonly value: 'Takeout';
     readonly description: 'One, Tamagui, Zero, Better Auth';

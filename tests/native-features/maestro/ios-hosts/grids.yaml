@@ -1,0 +1,43 @@
+appId: dev.vxrn.native.tests
+name: grids
+---
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-grids
+      ANCHOR: "Grid footer"
+- assertVisible: "V0"
+- assertVisible: "V1"
+- assertVisible: "V2"
+- assertVisible: "V3"
+- assertVisible: "H0"
+- assertVisible: "H1"
+- assertVisible: "H2"
+- assertVisible: "H3"
+- assertVisible: "G1"
+- assertVisible: "G2"
+- assertVisible: "G3"
+- assertVisible: "Tap grid"
+# relative layout proxies for the frame checks
+- assertVisible: { text: "V1", rightOf: { text: "V0" } }
+- assertVisible: { text: "V2", below: { text: "V0" } }
+- assertVisible: { text: "H1", below: { text: "H0" } }
+- assertVisible: { text: "H2", rightOf: { text: "H0" } }
+- assertVisible: { text: "G3", rightOf: { text: "G2" } }
+- assertVisible: { text: "G2", below: { text: "G1" } }
+- assertVisible: { text: "Grid footer", below: { text: "G2" } }
+- takeScreenshot: grids-initial
+- tapOn: "Tap grid"
+- assertVisible: "Taps: 1"
+- tapOn:
+    id: one-native-grid-reverse
+- assertVisible: "Order: reverse"
+- assertVisible: { text: "V2", rightOf: { text: "V3" } }
+- assertVisible: { text: "V1", below: { text: "V3" } }
+- takeScreenshot: grids-reordered
+- tapOn:
+    id: one-native-grid-spacing
+- assertVisible: "Spacing: overlap"
+- assertVisible: "V3"
+- assertVisible: "V1"
+- takeScreenshot: grids-negative-spacing

@@ -2,7 +2,7 @@ import type { NavigationState, PartialRoute } from '@react-navigation/core'
 import { nanoid } from 'nanoid/non-secure'
 import type { OneRouter } from '../../interfaces/router'
 import { setLastAction } from '../lastAction'
-import { matchDynamicName } from '../matchers'
+import { changesDynamicRoute } from '../matchers'
 
 /**
  * Generates a navigation action to transition from the current state to the desired state.
@@ -40,16 +40,12 @@ export function getNavigateAction(
     const childState = actionStateRoute.state
     const nextNavigationState = stateRoute.state
 
-    const dynamicMatch = matchDynamicName(actionStateRoute.name)
-
     const didActionAndCurrentStateDiverge =
       actionStateRoute.name !== stateRoute.name ||
       // !deepEqual(actionStateRoute.params, stateRoute.params) ||
       !childState ||
       !nextNavigationState ||
-      (dynamicMatch &&
-        actionStateRoute.params?.[dynamicMatch.name] !==
-          stateRoute.params?.[dynamicMatch.name])
+      changesDynamicRoute(actionStateRoute.name, stateRoute.params, actionStateRoute.params)
 
     if (didActionAndCurrentStateDiverge) {
       break

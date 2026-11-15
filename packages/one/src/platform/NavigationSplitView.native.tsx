@@ -18,6 +18,7 @@ import {
   ToolbarItemGroup,
   ToolbarNode,
   ToolbarSpacer,
+  DefaultToolbarItem,
 } from './NavigationStack.native'
 import { viewportStyle } from './viewportStyle'
 import type {
@@ -84,7 +85,8 @@ function toolbarItem(child: ReactNode) {
   return (
     child.type === ToolbarItem ||
     child.type === ToolbarItemGroup ||
-    child.type === ToolbarSpacer
+    child.type === ToolbarSpacer ||
+    child.type === DefaultToolbarItem
   )
 }
 

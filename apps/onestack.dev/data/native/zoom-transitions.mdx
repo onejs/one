@@ -43,6 +43,18 @@ function PhotoScreen() {
 The screen zooms out of the thumbnail on push and back into it on dismissal,
 landing on the detector's measured rect.
 
+A SwiftUI view is a source too: one that takes `matchedTransitionSource: { id }`
+registers under that id, so a list row can open a pushed route the same way.
+
+```tsx
+<One.iOS.Button swiftStyle={{ matchedTransitionSource: { id: 'photo-1' } }} onPress={open}>
+  <One.iOS.Text text="Photo" />
+</One.iOS.Button>
+```
+
+The SwiftUI view hides while the zoomed screen is mounted, as UIKit hides a
+view source.
+
 ## How it works
 
 The enabler finds its view controller and sets UIKit's zoom preferred

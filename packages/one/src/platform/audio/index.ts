@@ -2,17 +2,24 @@ import { Audio as unavailable } from './unavailable'
 import { validateCallback } from '../validateCallback'
 import type {
   AudioPlaybackStatus,
+  AudioPlayOptions,
   AudioRecordingPermission,
   AudioRecordingResult,
   AudioRecordingStatus,
   AudioNowPlayingInfo,
   AudioRemoteCommandEvent,
 } from '../specs/OneAudio.nitro'
+import { addRemoteListener, claimNowPlaying, releaseNowPlaying } from './nowPlaying'
 import { AudioPlayer, createPlayer } from './player'
 export type { PitchCorrectionQuality } from '../specs/OneAudio.nitro'
 export type * from './types'
 export type * from './unavailable'
 let player: HTMLAudioElement | undefined
+// a play with a position or paused flag, between creation and the landed
+// seek. paused is the intent pause and resume update while it loads.
+let pendingLoad:
+  | { audio: HTMLAudioElement; paused: boolean; cancel?: () => void }
+  | undefined
 let playbackError: string | undefined
 let permission: AudioRecordingPermission = 'undetermined'
 let openingRecording = false
@@ -27,8 +34,6 @@ let recording:
       error?: Error
     }
   | undefined
-const remoteListeners = new Set<(event: AudioRemoteCommandEvent) => void>()
-let remoteInstalled = false
 
 async function getRecordingPermissionStatus(): Promise<AudioRecordingPermission> {
   if (typeof window === 'undefined' || !navigator.mediaDevices?.getUserMedia)
@@ -74,7 +79,7 @@ function playbackStatus(): AudioPlaybackStatus {
         ? 'failed'
         : player.ended
           ? 'ended'
-          : player.readyState < 2
+          : pendingLoad || player.readyState < 2
             ? 'loading'
             : player.paused
               ? 'paused'
@@ -90,7 +95,9 @@ function requirePlayer(): HTMLAudioElement {
   return player
 }
 function clearPlayer(): void {
-  clearNowPlaying()
+  releaseNowPlaying('global')
+  pendingLoad?.cancel?.()
+  pendingLoad = undefined
   if (player) {
     player.pause()
     player.removeAttribute('src')
@@ -152,69 +159,88 @@ function recorderChange(event: 'pause' | 'resume'): Promise<AudioRecordingStatus
     }
   })
 }
-function mediaSession(): MediaSession {
-  if (!navigator.mediaSession) throw new Error('Audio: Media Session is unavailable')
-  return navigator.mediaSession
-}
-function clearNowPlaying(): void {
-  if (typeof window === 'undefined' || !navigator.mediaSession) return
-  const session = navigator.mediaSession
-  if (remoteInstalled)
-    for (const action of ['play', 'pause', 'seekto'] as const)
-      session.setActionHandler(action, null)
-  remoteInstalled = false
-  session.metadata = null
-  session.playbackState = 'none'
-}
-function syncNowPlaying(): void {
-  if (!navigator.mediaSession?.metadata || !player) return
-  navigator.mediaSession.playbackState =
-    player.paused || player.ended ? 'paused' : 'playing'
-}
-async function remote(event: AudioRemoteCommandEvent): Promise<void> {
-  if (!player || !navigator.mediaSession?.metadata) return
-  const audio = player
-  try {
-    if (event.type === 'play') await Audio.resume()
-    else if (event.type === 'pause') await Audio.pause()
-    else await Audio.seek(event.positionMs!)
-  } catch {
-    // the browser callback has no error channel; failed work emits no success.
-    return
-  }
-  if (player !== audio) return
-  syncNowPlaying()
-  for (const listener of [...remoteListeners]) listener(event)
-}
-function installRemote(): void {
-  if (remoteInstalled) return
-  const session = mediaSession()
-  session.setActionHandler('play', () => remote({ type: 'play' }))
-  session.setActionHandler('pause', () => remote({ type: 'pause' }))
-  session.setActionHandler('seekto', (event) =>
-    remote({ type: 'seek', positionMs: (event.seekTime ?? 0) * 1000 })
-  )
-  remoteInstalled = true
+// resolves once the element has metadata and sits at the position, without
+// playing. replacement cancels it through the load's cancel hook.
+function prepareAt(load: NonNullable<typeof pendingLoad>, positionMs: number): Promise<void> {
+  const { audio } = load
+  return new Promise((resolve, reject) => {
+    const cleanup = () => {
+      audio.removeEventListener('loadedmetadata', ready)
+      audio.removeEventListener('seeked', done)
+      audio.removeEventListener('error', failed)
+      load.cancel = undefined
+    }
+    let seconds = 0
+    // a source without range support lands somewhere else, often 0; fail
+    // rather than let a later resume play the opening.
+    const done = () => {
+      cleanup()
+      if (Math.abs(audio.currentTime - seconds) > 0.25)
+        reject(new Error('Audio.play: the source cannot seek to the position'))
+      else resolve()
+    }
+    const failed = () => {
+      cleanup()
+      reject(new Error(`Audio.play: ${audio.error?.message || 'decoding failed'}`))
+    }
+    function ready() {
+      audio.removeEventListener('loadedmetadata', ready)
+      seconds = Math.min(
+        positionMs / 1000,
+        Number.isFinite(audio.duration) ? audio.duration : Infinity
+      )
+      if (audio.currentTime === seconds) return done()
+      audio.addEventListener('seeked', done, { once: true })
+      audio.currentTime = seconds
+    }
+    load.cancel = () => {
+      cleanup()
+      reject(new Error('Audio.play: playback was replaced'))
+    }
+    audio.addEventListener('error', failed, { once: true })
+    if (audio.readyState >= 1) ready()
+    else audio.addEventListener('loadedmetadata', ready, { once: true })
+  })
 }
 export const Audio = Object.freeze({
   getRecordingPermissionStatus,
   requestRecordingPermission,
-  play: async (uri: string): Promise<AudioPlaybackStatus> => {
-    if (typeof window === 'undefined') return unavailable.play(uri)
+  play: async (uri: string, options?: AudioPlayOptions): Promise<AudioPlaybackStatus> => {
+    if (typeof window === 'undefined') return unavailable.play(uri, options)
     if (openingRecording || recording)
       throw new Error('Audio.play: stop the current recording first')
     const url = new URL(uri, document.baseURI)
     if (!['https:', 'http:', 'blob:', 'data:'].includes(url.protocol))
       throw new Error('Audio.play: invalid browser audio URI')
+    const prepare = options?.positionMs !== undefined || options?.paused !== undefined
+    const positionMs = options?.positionMs ?? 0
+    if (typeof positionMs !== 'number' || !Number.isFinite(positionMs) || positionMs < 0)
+      throw new Error('Audio.play: position must be finite and nonnegative')
     clearPlayer()
     const audio = new window.Audio(url.href)
     player = audio
-    for (const event of ['play', 'pause', 'ended'])
-      audio.addEventListener(event, syncNowPlaying)
     audio.addEventListener('error', () => {
       if (player === audio)
         playbackError = audio.error?.message ?? 'Audio.play: decoding failed'
     })
+    if (prepare) {
+      const load: NonNullable<typeof pendingLoad> = { audio, paused: options?.paused ?? false }
+      pendingLoad = load
+      audio.preload = 'auto'
+      try {
+        await prepareAt(load, positionMs)
+      } catch (error) {
+        if (pendingLoad === load) {
+          pendingLoad = undefined
+          playbackError = (error as Error).message
+        }
+        throw error
+      }
+      if (player !== audio || pendingLoad !== load)
+        throw new Error('Audio.play: playback was replaced')
+      pendingLoad = undefined
+      if (load.paused) return playbackStatus()
+    }
     try {
       await audio.play()
     } catch (error) {
@@ -228,6 +254,10 @@ export const Audio = Object.freeze({
   pause: async (): Promise<AudioPlaybackStatus> => {
     if (typeof window === 'undefined') return unavailable.pause()
     const audio = requirePlayer()
+    if (pendingLoad) {
+      pendingLoad.paused = true
+      return playbackStatus()
+    }
     if (!audio.paused)
       await new Promise<void>((resolve) => {
         audio.addEventListener('pause', () => resolve(), { once: true })
@@ -238,6 +268,11 @@ export const Audio = Object.freeze({
   resume: async (): Promise<AudioPlaybackStatus> => {
     if (typeof window === 'undefined') return unavailable.resume()
     const audio = requirePlayer()
+    // a prepared load plays itself once its seek lands.
+    if (pendingLoad) {
+      pendingLoad.paused = false
+      return playbackStatus()
+    }
     if (audio.ended) audio.currentTime = 0
     await audio.play()
     if (player !== audio) throw new Error('Audio.resume: playback was replaced')
@@ -248,7 +283,8 @@ export const Audio = Object.freeze({
     if (!Number.isFinite(positionMs) || positionMs < 0)
       throw new Error('Audio.seek: position must be finite and nonnegative')
     const audio = requirePlayer()
-    if (audio.readyState < 1) throw new Error('Audio.seek: playback is not ready')
+    if (audio.readyState < 1 || pendingLoad)
+      throw new Error('Audio.seek: playback is not ready')
     const seconds = Math.min(
       positionMs / 1000,
       Number.isFinite(audio.duration) ? audio.duration : Infinity
@@ -402,27 +438,23 @@ export const Audio = Object.freeze({
   watchInterruptions: unavailable.watchInterruptions,
   setNowPlayingInfo: async (info: AudioNowPlayingInfo): Promise<void> => {
     if (typeof window === 'undefined') return unavailable.setNowPlayingInfo(info)
-    if (!info.title.trim())
-      throw new Error('Audio.setNowPlayingInfo: title must not be empty')
     const audio = requirePlayer()
-    if (info.artworkUri) {
-      const artwork = new window.Image()
-      artwork.src = info.artworkUri
-      await artwork.decode()
-      if (player !== audio) throw new Error('Audio.setNowPlayingInfo: playback was replaced')
-    }
-    mediaSession().metadata = new MediaMetadata({
-      title: info.title,
-      artist: info.artist,
-      album: info.albumTitle,
-      artwork: info.artworkUri ? [{ src: info.artworkUri }] : [],
-    })
-    installRemote()
-    syncNowPlaying()
+    await claimNowPlaying(
+      {
+        key: 'global',
+        element: audio,
+        play: Audio.resume,
+        pause: Audio.pause,
+        seek: Audio.seek,
+      },
+      info,
+      'Audio.setNowPlayingInfo',
+      () => player === audio
+    )
   },
   clearNowPlayingInfo: async (): Promise<void> => {
     if (typeof window === 'undefined') return unavailable.clearNowPlayingInfo()
-    clearNowPlaying()
+    releaseNowPlaying('global')
   },
   watchRemoteCommands: (
     onEvent: (event: AudioRemoteCommandEvent) => void
@@ -430,11 +462,7 @@ export const Audio = Object.freeze({
     validateCallback(onEvent, 'Audio.watchRemoteCommands: onEvent must be a function')
     if (typeof window === 'undefined' || !navigator.mediaSession)
       return unavailable.watchRemoteCommands(onEvent)
-    remoteListeners.add(onEvent)
-    return () => {
-      remoteListeners.delete(onEvent)
-
-    }
+    return addRemoteListener(onEvent)
   },
   AudioPlayer,
   createPlayer,

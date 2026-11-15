@@ -13,46 +13,28 @@ function hasNitroWebImage(root) {
   }
 }
 
-const NITRO_WEB_IMAGE_MARKER = '# [vxrn/one] nitro web image modular header'
-const WEBP_CODER_MARKER = '# [vxrn/one] webp coder modular header'
-
-function injectNitroWebImageModularHeaderIntoPodfile(podfile) {
-  if (
-    !podfile.includes(NITRO_WEB_IMAGE_MARKER) &&
-    !/pod ['"]SDWebImage['"][^\n]*:modular_headers\s*=>\s*true/.test(podfile)
-  ) {
-    const anchor = /^(\s*)config = use_native_modules!.*$/m
-    const match = podfile.match(anchor)
+function injectModularHeadersIntoPodfile(podfile) {
+  const pods = [
+    ['nitro web image', 'SDWebImage'],
+    ['webp coder', 'SDWebImageWebPCoder'],
+    [
+      'native Zero sqlite',
+      'op-sqlite',
+      ', :path => Pathname.new(File.dirname(`node --print "require.resolve(\'@op-engineering/op-sqlite/package.json\')"`.strip)).relative_path_from(Pathname.new(__dir__)).to_s',
+    ],
+  ]
+  for (const [label, name, source = ''] of pods) {
+    const marker = `# [vxrn/one] ${label} modular header`
+    const declaration = new RegExp(
+      `pod ['"]${name}['"][^\\n]*:modular_headers\\s*=>\\s*true`
+    )
+    if (podfile.includes(marker) || declaration.test(podfile)) continue
+    const match = podfile.match(/^(\s*)config = use_native_modules!.*$/m)
     if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
     const insertAt = match.index + match[0].length
     podfile =
       podfile.slice(0, insertAt) +
-      '\n' +
-      match[1] +
-      NITRO_WEB_IMAGE_MARKER +
-      '\n' +
-      match[1] +
-      "pod 'SDWebImage', :modular_headers => true" +
-      podfile.slice(insertAt)
-  }
-  // One.ImageManipulator encodes webp through SDWebImageWebPCoder, which
-  // defines no modules, so static frameworks need its modular headers too.
-  if (
-    !podfile.includes(WEBP_CODER_MARKER) &&
-    !/pod ['"]SDWebImageWebPCoder['"][^\n]*:modular_headers\s*=>\s*true/.test(podfile)
-  ) {
-    const anchor = /^(\s*)config = use_native_modules!.*$/m
-    const match = podfile.match(anchor)
-    if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
-    const insertAt = match.index + match[0].length
-    podfile =
-      podfile.slice(0, insertAt) +
-      '\n' +
-      match[1] +
-      WEBP_CODER_MARKER +
-      '\n' +
-      match[1] +
-      "pod 'SDWebImageWebPCoder', :modular_headers => true" +
+      `\n${match[1]}${marker}\n${match[1]}pod '${name}'${source}, :modular_headers => true` +
       podfile.slice(insertAt)
   }
   return podfile
@@ -67,6 +49,46 @@ function injectNitroWebImageModularHeaderIntoPodfile(podfile) {
  * to that pod.
  */
 const FMT_CXX17_MARKER = '# [vxrn/one] fmt c++17 fix'
+
+const SKIA_DAWN_MARKER = '# [vxrn/one] react-native-skia dawn'
+
+/**
+ * react-native-skia 3 takes dawn from react-native-webgpu whenever node
+ * resolution finds that package instead of vendoring its own. a hoisted
+ * workspace install finds it even for an app that never links webgpu, which
+ * then fails on a dawn version mismatch or links no dawn at all. autolinking
+ * evaluates the skia podspec inside use_native_modules!, so the Podfile reads
+ * the modules its config command links first, and has skia vendor dawn
+ * through the RNSKIA_VENDOR_DAWN switch its podspec reads when webgpu is not
+ * among them.
+ */
+function injectSkiaDawnVendoringIntoPodfile(podfile) {
+  if (podfile.includes(SKIA_DAWN_MARKER)) return podfile
+  // a bare call runs autolinking's own default command
+  const anchor = /^(\s*config = use_native_modules!)(?:\((.*)\))?$/m
+  if (!anchor.test(podfile))
+    throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
+  const helper = [
+    SKIA_DAWN_MARKER,
+    "require 'json'",
+    'def vxrn_skia_dawn_config(config_command)',
+    '  json, _, status = Pod::Executable.capture_command(config_command[0], config_command[1..], capture: :both)',
+    '  if status.success?',
+    "    linked = JSON.parse(json)['dependencies'] || {}",
+    "    ENV['RNSKIA_VENDOR_DAWN'] ||= '1' unless linked.key?('react-native-webgpu')",
+    '  end',
+    '  config_command',
+    'end',
+    '',
+  ].join('\n')
+  return (
+    helper +
+    podfile.replace(
+      anchor,
+      (_, call, command = '$default_command') => `${call}(vxrn_skia_dawn_config(${command}))`
+    )
+  )
+}
 
 const WEBGPU_HEADERS_MARKER = '# [vxrn/one] webgpu isolated package headers'
 
@@ -481,6 +503,11 @@ cd -
  * Ensure patches are applied.
  */
 function addDepsPatchToAppBuildGradle(input) {
+  // enableEdgeToEdge() in MainActivity needs androidx.activity 1.8+, newer than the template resolves
+  const activityDependency = 'implementation "androidx.activity:activity:1.9.3"'
+  if (!input.includes(activityDependency)) {
+    input += `\ndependencies {\n    ${activityDependency}\n}\n`
+  }
   if (input.includes('[vxrn/one] ensure patches are applied')) {
     return input
   }
@@ -664,6 +691,47 @@ function addReactNativeScreensFix(input) {
   return input
 }
 
+// edge-to-edge status bars follow the system appearance: AppCompat's DayNight
+// theme leaves the status bar icon style at its white default, so every One
+// android activity opts into androidx edge-to-edge like a native app. runs
+// after addReactNativeScreensFix, which guarantees onCreate exists.
+const EDGE_TO_EDGE_KT_IMPORT = 'import androidx.activity.enableEdgeToEdge'
+const EDGE_TO_EDGE_JAVA_IMPORT = 'import androidx.activity.EdgeToEdge;'
+
+function enableEdgeToEdgeInMainActivity(mainActivity) {
+  if (
+    mainActivity.includes(EDGE_TO_EDGE_KT_IMPORT) ||
+    mainActivity.includes(EDGE_TO_EDGE_JAVA_IMPORT)
+  ) {
+    return mainActivity
+  }
+  const isKotlin = mainActivity.includes('class MainActivity : ReactActivity()')
+  if (isKotlin) {
+    if (!SUPER_ON_CREATE.test(mainActivity)) {
+      throw new Error(
+        '[vxrn] MainActivity.kt changed shape: cannot enable edge-to-edge before super.onCreate'
+      )
+    }
+    return mainActivity
+      .replace(/package\s+[\w.]+/, '$&\n' + EDGE_TO_EDGE_KT_IMPORT)
+      .replace(
+        SUPER_ON_CREATE,
+        '$1// [vxrn/one] status bar icons follow the system appearance\n$1enableEdgeToEdge()\n$1super.onCreate(null)'
+      )
+  }
+  if (!/^([ \t]*)super\.onCreate\(savedInstanceState\);$/m.test(mainActivity)) {
+    throw new Error(
+      '[vxrn] MainActivity.java changed shape: cannot enable edge-to-edge before super.onCreate'
+    )
+  }
+  return mainActivity
+    .replace(/package\s+[\w.]+;/, '$&\n' + EDGE_TO_EDGE_JAVA_IMPORT)
+    .replace(
+      /^([ \t]*)super\.onCreate\(savedInstanceState\);$/m,
+      '$1// [vxrn/one] status bar icons follow the system appearance\n$1EdgeToEdge.enable(this);\n$1super.onCreate(savedInstanceState);'
+    )
+}
+
 /**
  * swift packages in the app (a directory with Package.swift whose view a
  * react native screen imports) are generated by prebuild as one local pod each
@@ -694,10 +762,9 @@ const ONE_NOTIFICATIONS = {
   enabledInfoPlistKey: 'OneNativeNotificationsEnabled',
   pushInfoPlistKey: 'OneNativeNotificationsPush',
   apsEnvironment: 'development',
-  androidPermissions: [
-    'android.permission.POST_NOTIFICATIONS',
-    'android.permission.RECEIVE_BOOT_COMPLETED',
-  ],
+  get androidPermissions() {
+    return require('@vxrn/utils/nativeAppManifest').androidNotificationPermissions
+  },
   receiver: 'dev.onejs.onenative.OneNativeNotificationsReceiver',
   receiverAction: 'android.intent.action.BOOT_COMPLETED',
   pushService: 'dev.onejs.onenative.OneNativePushService',
@@ -718,7 +785,14 @@ const ONE_UPDATES = {
 const RELEASE_BUNDLE_URL =
   /(#else\n\s*)(return )?Bundle\.main\.url\(forResource: "main", withExtension: "jsbundle"\)(\n#endif)/
 
+// the bun engine picks its engine from the bundle react native boots, which is
+// the launcher's choice once One.Updates owns the bundle url, in either patch order
+const BUN_ENGINE_EMBEDDED_CHECK =
+  'one_bun_engine_runs_bundle(Bundle.main.url(forResource: "main", withExtension: "jsbundle"))'
+const BUN_ENGINE_UPDATES_CHECK = 'one_bun_engine_runs_bundle(OneUpdatesLaunchingBundleURL())'
+
 function pointReleaseBundleURLAtOneUpdates(appDelegate) {
+  appDelegate = appDelegate.replace(BUN_ENGINE_EMBEDDED_CHECK, BUN_ENGINE_UPDATES_CHECK)
   if (appDelegate.includes('OneUpdatesBundleURL()')) {
     return appDelegate
   }
@@ -787,7 +861,76 @@ function holdLaunchScreenInMainActivity(mainActivity) {
     )
 }
 
+// the bun engine (engine: 'bun'): a release build compiles its bundle ahead of
+// time into Bun.framework and runs it instead of hermes. debug builds stay on
+// hermes and ship no bun. the pod lives in vxrn/ios/OneBunEngine.
+const ONE_BUN_ENGINE = {
+  marker: '# [vxrn/one] bun engine',
+  bridgingHeaderImport: '#import <OneBunEngine/OneBunEngine.h>',
+  // bun's allocator reserves about 32 GB of address space, half of what iOS gives an
+  // app by default, so a long session ran out and malloc failed
+  entitlement: 'com.apple.developer.kernel.extended-virtual-addressing',
+}
+
+function injectBunEngineIntoPodfile(podfile) {
+  if (podfile.includes(ONE_BUN_ENGINE.marker)) return podfile
+  const anchor = /^(\s*)config = use_native_modules!.*$/m
+  const match = podfile.match(anchor)
+  if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
+  const indent = match[1]
+  const lines = [
+    ONE_BUN_ENGINE.marker,
+    `pod 'OneBunEngine', :path => File.join(File.dirname(\`node --print "require.resolve('vxrn/package.json')"\`.strip), 'ios', 'OneBunEngine')`,
+  ].map((line) => indent + line)
+  const insertAt = match.index + match[0].length
+  return podfile.slice(0, insertAt) + '\n' + lines.join('\n') + podfile.slice(insertAt)
+}
+
+function addBunEngineToBundleReactNativeShellScript(input) {
+  if (input.includes(ONE_BUN_ENGINE.marker)) return input
+  const release = 'case "$CONFIGURATION" in *Debug*) ;; *)'
+  const withPlainBundle = insertBeforeBundlePhaseRunner(
+    input,
+    `${ONE_BUN_ENGINE.marker}: release bundles stay plain javascript for bun compile
+${release} export USE_HERMES=false ONE_BUN_ENGINE=1 ;; esac`
+  )
+  return insertAfterBundlePhaseRunner(
+    withPlainBundle,
+    `${ONE_BUN_ENGINE.marker}: compile the release bundle into the app's Bun.framework
+${release} /bin/bash "$ONE_BUN_ENGINE_SCRIPT" || exit 1 ;; esac`
+  )
+}
+
+function runBunEngineInAppDelegate(appDelegate) {
+  if (appDelegate.includes('jsrt_create_bun_factory()')) return appDelegate
+  const match = appDelegate.match(REACT_NATIVE_DELEGATE_CLASS)
+  if (!match) {
+    throw new Error(
+      '[vxrn] AppDelegate.swift changed shape: cannot run the bun engine from the react native delegate'
+    )
+  }
+  // react native reads the bundle url before it creates the engine; an update
+  // launched by One.Updates is hermes bytecode and runs on hermes
+  const check = appDelegate.includes('OneUpdatesBundleURL()')
+    ? BUN_ENGINE_UPDATES_CHECK
+    : BUN_ENGINE_EMBEDDED_CHECK
+  return appDelegate.replace(
+    match[0],
+    `${match[0]}  // [vxrn/one] a release build compiled for the bun engine runs on it
+  override func createJSRuntimeFactory() -> JSRuntimeFactoryRef {
+    ${check} ? jsrt_create_bun_factory() : super.createJSRuntimeFactory()
+  }
+
+`
+  )
+}
+
 module.exports = {
+  ONE_BUN_ENGINE,
+  injectBunEngineIntoPodfile,
+  addBunEngineToBundleReactNativeShellScript,
+  runBunEngineInAppDelegate,
+  injectSkiaDawnVendoringIntoPodfile,
   injectWebGPUHeaderPathsIntoPodfile,
   holdLaunchScreenInMainActivity,
   ONE_NOTIFICATIONS,
@@ -796,7 +939,7 @@ module.exports = {
   ONE_LAUNCH_SCREEN,
   holdLaunchScreenOverRootView,
   hasNitroWebImage,
-  injectNitroWebImageModularHeaderIntoPodfile,
+  injectModularHeadersIntoPodfile,
   injectOneSwiftPackagesIntoPodfile,
   addSetCliPathToBundleReactNativeShellScript,
   addPodHermescToBundleReactNativeShellScript,
@@ -809,4 +952,5 @@ module.exports = {
   replaceAppBuildGradleReactBlock,
   addDepsPatchToAppBuildGradle,
   addReactNativeScreensFix,
+  enableEdgeToEdgeInMainActivity,
 }

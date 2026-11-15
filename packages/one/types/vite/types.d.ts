@@ -1,11 +1,12 @@
 import type { GetTransform } from '@vxrn/compiler';
 import type { metroPlugin } from '@vxrn/vite-plugin-metro';
 import type { Plugin as RolldownPlugin } from 'rolldown';
-import type { AutoDepOptimizationOptions, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
-import type { One as OneShared } from '../interfaces/router';
-import type { RouteNode } from '../router/Route';
-import type { NativeAppManifest } from '../native/appManifest';
-import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin';
+import type { AutoDepOptimizationOptions, UserDepPatches, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
+import type { One as OneShared } from '../interfaces/router.js';
+import type { RouteNode } from '../router/Route.js';
+import type { NativeAppManifest } from '../native/appManifest.js';
+import type { WarmStartOptions } from '../router/warmStateShared.js';
+import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin.js';
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0];
 export type DeployTarget = 'node' | 'vercel' | 'cloudflare';
 export type DeployConfig = {
@@ -36,9 +37,7 @@ export declare namespace One {
     export type RouteOptions = {
         routeModes?: Record<string, RouteRenderMode>;
     };
-    export type FixDependencies = {
-        [key: string]: DepPatch['patchFiles'];
-    };
+    export type FixDependencies = UserDepPatches;
     type PluginPlatformTarget = 'native' | 'web';
     type CompilerEnvironment = 'ios' | 'android' | 'client' | 'ssr';
     type ReactCompilerFilter = boolean | RegExp | ((id: string, environment: CompilerEnvironment) => boolean);
@@ -257,7 +256,9 @@ export declare namespace One {
          *   client: './setup.client.ts',
          *   server: './setup.server.ts',
          *   ios: './setup.ios.ts',
-         *   android: './setup.android.ts'
+         *   android: './setup.android.ts',
+         *   macos: './setup.macos.ts',
+         *   linux: './setup.linux.ts'
          * }
          */
         setupFile?: string | {
@@ -269,6 +270,8 @@ export declare namespace One {
             server?: string;
             ios?: string;
             android?: string;
+            macos?: string;
+            linux?: string;
         };
         config?: {
             ensureTSConfig?: false;
@@ -475,7 +478,8 @@ export declare namespace One {
              *
              * - `'after-lcp-aggressive'`: Only modulepreloads critical scripts (entry, layouts).
              *   Non-critical scripts have no modulepreload hints, reducing network saturation.
-             *   Best for pages with many chunks or slow networks.
+             *   Best for pages with many chunks or slow networks. A spa-shell page still preloads its
+             *   non-critical scripts at normal priority, since it paints nothing until they run.
              *
              * @default undefined (all scripts load with async)
              */
@@ -582,6 +586,41 @@ export declare namespace One {
              * @default true (when devtools is enabled)
              */
             seoPreview?: boolean;
+            /**
+             * Browser plugin modules to load into the One devtools panel.
+             *
+             * Each entry is a module specifier or a path relative to the project
+             * root. The module must default export a `OneDevtoolsPlugin` (see
+             * `one/devtools`'s `defineDevtoolsPlugin` helper). Plugins can add
+             * panels, iframe existing devtools pages, and add spotlight actions.
+             *
+             * @example
+             * ```ts
+             * devtools: {
+             *   plugins: ['./devtools/runtime-inspector.ts'],
+             * }
+             * ```
+             */
+            plugins?: string[];
+            /**
+             * React Native DevTools plugins hosted through Rozenite.
+             *
+             * One mounts Rozenite's plugin host automatically when a Rozenite
+             * plugin package is installed, so existing Rozenite plugins work in
+             * `dt` / `j` without a Metro wrapper. Use these options to point at
+             * an explicit plugin list, exclude one, or change how the panels are
+             * displayed.
+             */
+            rozenite?: boolean | {
+                /** Disable the Rozenite host while keeping the rest of One's devtools. */
+                enabled?: boolean;
+                /** Explicit plugin packages. Auto-discovery is used when omitted. */
+                include?: string[];
+                /** Plugin packages to skip. */
+                exclude?: string[];
+                /** Show one tab per plugin or Rozenite's sidebar. @default 'sidebar' */
+                pluginDisplay?: 'sidebar' | 'tabs';
+            };
         };
         server?: VXRNOptions['server'] & {
             /**
@@ -788,14 +827,16 @@ export declare namespace One {
         loaderData?: any;
         loaderProps?: any;
         mode?: 'spa' | 'ssg' | 'ssr' | 'spa-shell';
-        routePreloads?: Record<string, string>;
+        routePreloads?: string[];
         /**
          * All matched routes with their loader data.
          * Ordered from root layout to leaf page (parent → child).
          */
         matches?: RouteMatch[];
     };
-    export type Flags = {};
+    export type Flags = {
+        warmStart?: boolean | WarmStartOptions;
+    };
     export type SitemapChangefreq = OneShared.SitemapChangefreq;
     export type RouteSitemap = OneShared.RouteSitemap;
     export type SitemapOptions = {

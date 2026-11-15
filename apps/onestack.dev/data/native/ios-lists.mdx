@@ -9,7 +9,7 @@ description: SwiftUI Form, Section, List, ScrollView, lazy stacks, and grids und
 />
 
 `One.iOS` lists, forms, and scrolling containers are SwiftUI's own: `Form`,
-`List`, `ScrollView`, `ScrollViewReader`, `LazyVStack`, `LazyHStack`,
+`List`, `OutlineGroup`, `ScrollView`, `ScrollViewReader`, `LazyVStack`, `LazyHStack`,
 `LazyVGrid`, `LazyHGrid`, `Grid`, and `GridRow`, each hosted in a Fabric view
 with children composed into one SwiftUI tree. These are greedy containers: they
 take the box they are given instead of reporting an ideal height, so give each
@@ -88,11 +88,24 @@ function Profile() {
 A content-sized form wraps its rows, so it fits naturally above other content
 instead of filling the screen.
 
+Its `swiftStyle` takes SwiftUI's scroll and form modifiers. Inside a sheet,
+`scrollContentBackground: 'hidden'` drops the grouped panel so the sheet's own
+glass shows through, as Apple's apps do:
+
+```tsx
+<One.iOS.Form swiftStyle={{ scrollContentBackground: 'hidden' }}>
+  <One.iOS.Section title="Room">
+    <One.iOS.Text text="Kitchen" />
+  </One.iOS.Section>
+</One.iOS.Form>
+```
+
 <PropsTable
   title="Props"
   source="generated/containerTypes.ts#FormProps"
   data={[
     { name: 'sizing', type: 'FormSizing', default: '"fill"', description: 'fill flexes to its box; content wraps its rows.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'Form modifiers such as scrollContentBackground.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'Sections and rows.' },
   ]}
 />
@@ -169,7 +182,7 @@ the native proposal, moving the list to match.
     { name: 'listStyle', type: 'ListStyle', default: '"automatic"', description: 'automatic, sidebar, inset, grouped, insetGrouped, or plain.' },
     { name: 'selection', type: 'string[]', description: 'Selected row tags. Supplying it makes selection controlled.' },
     { name: 'onSelectionChange', type: '(selection: string[]) => void', description: 'Receives the native selection proposal.' },
-    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'List modifiers, refreshable, and section spacing.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'List modifiers, scrollContentBackground, refreshable, and section spacing.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'Sections and rows.' },
   ]}
 />
@@ -335,6 +348,7 @@ no view carries scrolls nothing, as in SwiftUI.
   title="Props"
   source="listTypes.ts#ScrollViewReaderProps"
   data={[
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: '(proxy: ScrollViewProxy) => ReactNode', description: 'The content closure, run with the native reader proxy.' },
   ]}
 />
@@ -344,6 +358,118 @@ no view carries scrolls nothing, as in SwiftUI.
   source="listTypes.ts#ScrollViewProxy"
   data={[
     { name: 'scrollTo', type: '(id: string, anchor?: UnitPoint | null) => void', description: 'Scrolls to the view whose swiftStyle.id is id.' },
+  ]}
+/>
+
+## OutlineGroup
+
+`OutlineGroup` draws a tree as rows that expand and collapse, SwiftUI's
+disclosure rows. Place it inside a `List`, `Form`, or `Section`. Give it the
+tree as `data`, `idKey` for the property holding each item's id (default
+`'id'`), and `childrenKey` for the property holding its child items, the way
+SwiftUI's `children:` key path does. The function child returns the row for one
+item and runs once per item in the tree. Native owns which rows are open; the
+group has no expansion state to control.
+
+```tsx
+import { One } from 'one'
+
+type Folder = { id: string; name: string; folders?: Folder[] }
+
+function Folders({ roots }: { roots: Folder[] }) {
+  return (
+    <One.iOS.List listStyle="sidebar">
+      <One.iOS.OutlineGroup data={roots} childrenKey="folders">
+        {(folder) => <One.iOS.Label label={folder.name} systemImage="folder" />}
+      </One.iOS.OutlineGroup>
+    </One.iOS.List>
+  )
+}
+```
+
+An item whose children property is missing or `null` is a leaf with no
+disclosure indicator; an empty array is a branch with nothing in it. Ids must
+be strings or numbers and unique across the whole tree, and a repeat throws.
+SwiftUI's `List(data, children:)` is not a separate view here; use
+`OutlineGroup` inside a `List`.
+
+<PropsTable
+  title="Props"
+  source="listTypes.ts#OutlineGroupProps"
+  data={[
+    { name: 'data', required: true, type: 'readonly Item[]', description: 'The root items of the tree.' },
+    { name: 'idKey', type: 'keyof Item', default: "'id'", description: 'The property holding each item id: a string or number.' },
+    { name: 'childrenKey', required: true, type: 'keyof Item', description: 'The property holding each item child items, or null for a leaf.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
+    { name: 'children', required: true, type: '(item: Item) => ReactNode', description: 'The row content for one item.' },
+  ]}
+/>
+
+## Table
+
+`Table` draws rows with several columns, SwiftUI's `Table`. On iPhone SwiftUI
+shows only the first column; on iPad it shows every column with a header row.
+Give it the rows as `data`, `idKey` for the property holding each row's id
+(default `'id'`), and `columns`, each with an `id` and a `title`. The function
+child receives a row and a column and returns the cell content, and it runs once
+per row and column.
+
+```tsx
+import { useState } from 'react'
+import { One, type TableSort } from 'one'
+
+type Person = { id: string; name: string; age: number }
+
+const columns = [
+  { id: 'name', title: 'Name' },
+  { id: 'age', title: 'Age' },
+]
+
+function People({ people }: { people: Person[] }) {
+  const [sort, setSort] = useState<TableSort | null>(null)
+  const sorted = sort
+    ? [...people].sort((a, b) => {
+        const order = sort.column === 'age' ? a.age - b.age : a.name.localeCompare(b.name)
+        return sort.direction === 'ascending' ? order : -order
+      })
+    : people
+  return (
+    <One.iOS.Table
+      style={{ flex: 1 }}
+      data={sorted}
+      columns={columns}
+      sort={sort}
+      onSortChange={setSort}
+    >
+      {(person, column) => (
+        <One.iOS.Text text={column.id === 'age' ? String(person.age) : person.name} />
+      )}
+    </One.iOS.Table>
+  )
+}
+```
+
+A table is sortable when you pass `onSortChange`: every header then sorts, `sort`
+names the sorted column (or `null` for none), and a header tap calls
+`onSortChange` with the column and direction. The table never reorders rows
+itself; sort `data` and pass it back, and bump `revision` to take the `sort` prop
+over a tap you did not accept. `sort` without `onSortChange`, or the reverse,
+throws. Ids must be strings or numbers and unique among rows and among columns,
+and a repeat throws. Every cell is mounted, so keep tables to the rows a screen
+needs. Give the table a height, as you would a `List`. `Table` needs iOS 17.4 or newer and draws nothing on earlier systems.
+
+<PropsTable
+  title="Props"
+  source="listTypes.ts#TableProps"
+  data={[
+    { name: 'data', required: true, type: 'readonly Item[]', description: 'The rows.' },
+    { name: 'idKey', type: 'keyof Item', default: "'id'", description: 'The property holding each row id: a string or number.' },
+    { name: 'columns', required: true, type: 'readonly TableColumn[]', description: 'The columns, each with an id and a header title.' },
+    { name: 'sort', type: 'TableSort | null', description: 'The sorted column and its direction, or null for none. Needs onSortChange.' },
+    { name: 'onSortChange', type: '(sort: TableSort) => void', description: 'Called when a header is tapped. Makes every header sort.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Bump to take the sort prop over a header tap you did not accept.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
+    { name: 'children', required: true, type: '(item: Item, column: TableColumn) => ReactNode', description: 'The cell content for one row and column.' },
   ]}
 />
 
@@ -377,6 +503,7 @@ function Feed({ rows }: { rows: string[] }) {
   data={[
     { name: 'alignment', type: 'LazyVStackAlignment', default: '"center"', description: 'leading, center, or trailing.' },
     { name: 'spacing', type: 'number', description: 'The gap between children.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The rows.' },
   ]}
 />
@@ -387,6 +514,7 @@ function Feed({ rows }: { rows: string[] }) {
   data={[
     { name: 'alignment', type: 'LazyHStackAlignment', default: '"center"', description: 'top, center, bottom, firstTextBaseline, or lastTextBaseline.' },
     { name: 'spacing', type: 'number', description: 'The gap between children.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The columns.' },
   ]}
 />
@@ -426,6 +554,7 @@ function PhotoGrid({ items }: { items: { id: string; title: string }[] }) {
     { name: 'columns', required: true, type: 'readonly GridItem[]', description: 'One item per column.' },
     { name: 'alignment', type: 'GridHorizontalAlignment', description: 'leading, center, or trailing.' },
     { name: 'spacing', type: 'number', description: 'The gap between rows.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The cells.' },
   ]}
 />
@@ -437,12 +566,14 @@ function PhotoGrid({ items }: { items: { id: string; title: string }[] }) {
     { name: 'rows', required: true, type: 'readonly GridItem[]', description: 'One item per row.' },
     { name: 'alignment', type: 'GridVerticalAlignment', description: 'top, center, bottom, firstTextBaseline, or lastTextBaseline.' },
     { name: 'spacing', type: 'number', description: 'The gap between columns.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The cells.' },
   ]}
 />
 
 `Grid` builds a non-lazy two-dimensional layout. Put cells in `GridRow`; a
 child directly under `Grid` spans every column, following SwiftUI.
+Like `ZStack`, a standalone `Grid` reports the height SwiftUI measured to React Native.
 
 ```tsx
 import { One } from 'one'
@@ -470,6 +601,7 @@ function Specs() {
     { name: 'alignment', type: 'GridAlignment', default: '"center"', description: 'Cell alignment, such as topLeading or center.' },
     { name: 'horizontalSpacing', type: 'number', description: 'The gap between columns.' },
     { name: 'verticalSpacing', type: 'number', description: 'The gap between rows.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'GridRow children and full-width views.' },
   ]}
 />
@@ -479,9 +611,13 @@ function Specs() {
   source="gridTypes.ts#GridRowProps"
   data={[
     { name: 'alignment', type: 'GridVerticalAlignment', description: "Vertical alignment of the row's cells." },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'One cell per column.' },
   ]}
 />
+
+As in SwiftUI, a modifier on a `GridRow` turns the row into a single cell that
+spans every column, so style the cells instead unless that is what you want.
 
 ## Platform differences
 

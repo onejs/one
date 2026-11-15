@@ -7,6 +7,7 @@ import type { ExtraSteps } from './types'
 export const extraSteps: ExtraSteps = async ({
   isFullClone,
   projectName,
+  projectDir = projectName,
   packageManager,
 }) => {
   const useBun = packageManager === 'bun'
@@ -16,13 +17,13 @@ export const extraSteps: ExtraSteps = async ({
 
   if (isFullClone) {
     console.info(
-      `\n${ansis.green.bold('Done!')} Created a new project under ./${ansis.greenBright(projectName)}`
+      `\n${ansis.green.bold('Done!')} Created a new project under ${ansis.greenBright(projectDir)}`
     )
   }
 
   console.info(`\nTo run: 
 
-  ${ansis.green('cd')} ${projectName}
+  ${ansis.green('cd')} ${projectDir}
   ${ansis.green(runCommand('dev'))}\n`)
 }
 

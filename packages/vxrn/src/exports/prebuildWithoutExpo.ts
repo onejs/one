@@ -1,19 +1,35 @@
 import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
+import {
+  copyFileSync,
+  cpSync,
+  existsSync,
+  lstatSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  realpathSync,
+  rmSync,
+  statSync,
+  symlinkSync,
+  writeFileSync,
+} from 'node:fs'
 import module from 'node:module'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import {
+  androidAppPermissions,
   androidIconSuffix,
   appIconPreviewResources,
+  iosUsageDescriptions,
   validateNativeApp,
   type NativeAppIcon,
   type NativeAppManifest,
   type PlistValue,
 } from '@vxrn/utils/nativeAppManifest'
-import FSExtra from 'fs-extra'
 import sharp from 'sharp'
-import { swiftPackageDirectories } from '../utils/swiftPackageId'
+import { readJSONSync } from '../utils/fs'
+import { NON_SOURCE_DIRS, swiftPackageDirectories } from '../utils/swiftPackageId'
 
 type NativeProjectPatches = {
   ONE_NOTIFICATIONS: {
@@ -34,6 +50,10 @@ type NativeProjectPatches = {
   }
   pointReleaseBundleURLAtOneUpdates(appDelegate: string): string
   ONE_LAUNCH_SCREEN: { bridgingHeaderImport: string }
+  ONE_BUN_ENGINE: { marker: string; bridgingHeaderImport: string; entitlement: string }
+  injectBunEngineIntoPodfile(podfile: string): string
+  addBunEngineToBundleReactNativeShellScript(input: string): string
+  runBunEngineInAppDelegate(appDelegate: string): string
   holdLaunchScreenOverRootView(appDelegate: string): string
   holdLaunchScreenInMainActivity(mainActivity: string): string
   addSetCliPathToBundleReactNativeShellScript(input: string): string
@@ -45,14 +65,16 @@ type NativeProjectPatches = {
   ): string
   injectFmtCxx17FixIntoPodfile(input: string): string
   injectWebGPUHeaderPathsIntoPodfile(input: string): string
+  injectSkiaDawnVendoringIntoPodfile(input: string): string
   injectOneSwiftPackagesIntoPodfile(input: string): string
   injectHermesMinificationPatchIntoPodfile(input: string): string
   injectReactNativeScreensGammaIntoPodfile(input: string): string
   hasNitroWebImage(root: string): boolean
-  injectNitroWebImageModularHeaderIntoPodfile(input: string): string
+  injectModularHeadersIntoPodfile(input: string): string
   replaceAppBuildGradleReactBlock(input: string): string
   addDepsPatchToAppBuildGradle(input: string): string
   addReactNativeScreensFix(input: string): string
+  enableEdgeToEdgeInMainActivity(mainActivity: string): string
 }
 
 const requireVxrn = module.createRequire(import.meta.url)
@@ -61,6 +83,7 @@ const nativeProjectPatches = requireVxrn(
 ) as NativeProjectPatches
 const notificationsHost = nativeProjectPatches.ONE_NOTIFICATIONS
 const updatesHost = nativeProjectPatches.ONE_UPDATES
+const { ONE_BUN_ENGINE } = nativeProjectPatches
 
 /*
 This code block is partially copied from meta owned repos.
@@ -97,7 +120,11 @@ const IOS_BUNDLE_PLACEHOLDER =
 const ANDROID_PACKAGE_PLACEHOLDER = 'com.helloworld'
 const ANDROID_PACKAGE_PATH = 'com/helloworld'
 
-function patchIosBundlePhase(project: string, updatesRuntimeVersion?: string): string {
+function patchIosBundlePhase(
+  project: string,
+  updatesRuntimeVersion: string | undefined,
+  bunEngine: boolean
+): string {
   let patchedBundlePhases = 0
   const patchedProject = project.replace(
     /shellScript = ("(?:\\.|[^"\\])*");/g,
@@ -135,6 +162,12 @@ function patchIosBundlePhase(project: string, updatesRuntimeVersion?: string): s
           )
         ) {
           throw new Error('[vxrn] failed to apply the iOS embedded updates manifest patch')
+        }
+      }
+      if (bunEngine) {
+        patched = nativeProjectPatches.addBunEngineToBundleReactNativeShellScript(patched)
+        if (patched.split(nativeProjectPatches.ONE_BUN_ENGINE.marker).length !== 3) {
+          throw new Error('[vxrn] failed to apply the iOS bun engine bundle phase patch')
         }
       }
       patchedBundlePhases++
@@ -245,12 +278,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     let delegate = ReactNativeDelegate()
     let factory = RCTReactNativeFactory(delegate: delegate)
-    delegate.dependencyProvider = RCTAppDependencyProvider()
+    delegate.dependencyProvider = OneDependencyProvider()
     reactNativeDelegate = delegate
     reactNativeFactory = factory
 ${backgroundTasks ? `    OneBackgroundTasksRegisterHost(factory, launchOptions)
 ` : ''}${appIntents ? `    OneAppIntentsRegisterHost(factory, launchOptions)
 ` : ''}    return true
+  }
+}
+
+// react native creates these modules on the main queue while the instance
+// initializes. left lazy, the first js access blocks the js thread on a
+// synchronous main queue hop that waits behind the app's own launch work.
+class OneDependencyProvider: RCTAppDependencyProvider {
+  override func unstableModulesRequiringMainQueueSetup() -> [String] {
+    super.unstableModulesRequiringMainQueueSetup() + [
+      "PlatformConstants",
+      "DeviceInfo",
+      "AccessibilityManager",
+      "Appearance",
+      "OneNativeSafeAreaContext",
+    ]
   }
 }
 
@@ -271,6 +319,9 @@ const ONE_BRIDGING_HEADER_NAME = 'One-Bridging-Header.h'
 function renderOneBridgingHeader(app: NativeAppManifest): string {
   const imports = [nativeProjectPatches.ONE_LAUNCH_SCREEN.bridgingHeaderImport]
   if (app.updates !== undefined) imports.push(updatesHost.bridgingHeaderImport)
+  if (app.ios?.engine === 'bun') {
+    imports.push(nativeProjectPatches.ONE_BUN_ENGINE.bridgingHeaderImport)
+  }
   if (app.ios?.backgroundTasks !== undefined) imports.push('#import "OneBackgroundTasksBridge.h"')
   if (app.ios?.appIntents !== undefined) imports.push('#import "OneAppIntentsBridge.h"')
   return `// generated by one prebuild: exposes One's c entry points to AppDelegate
@@ -280,7 +331,7 @@ ${imports.join('\n')}
 }
 
 function generateOneBridgingHeader(dest: string, app: NativeAppManifest): void {
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(dest, app.name, ONE_BRIDGING_HEADER_NAME),
     renderOneBridgingHeader(app)
   )
@@ -340,6 +391,12 @@ function swiftShortcutPhrase(value: string): string {
 export function renderIosAppIntentsSwift(actions: NonNullable<NonNullable<NativeAppManifest['ios']>['appIntents']>['actions']): string {
   const types = actions.map((action, index) => {
     const summaryTitle = swiftLiteral(action.title).slice(1, -1)
+    const description =
+      action.description === undefined
+        ? ''
+        : `\n  static let description = IntentDescription(${swiftLiteral(action.description)})`
+    const openAppWhenRun =
+      action.openAppWhenRun === true ? '\n  static let openAppWhenRun: Bool = true' : ''
     const text = action.textParameterTitle === undefined ? '' : `
   @Parameter(title: ${swiftLiteral(action.textParameterTitle)}) var text: String
 
@@ -348,20 +405,25 @@ export function renderIosAppIntentsSwift(actions: NonNullable<NonNullable<Native
   }
 `
     return `struct OneAppIntent${index}: AppIntent {
-  static let title: LocalizedStringResource = ${swiftLiteral(action.title)}
+  static let title: LocalizedStringResource = ${swiftLiteral(action.title)}${description}${openAppWhenRun}
 ${text}
-  func perform() async throws -> some IntentResult & ReturnsValue<String> {
+  func perform() async throws -> some IntentResult & ReturnsValue<String> & ProvidesDialog {
     let result = try await oneAppIntentsRun(${swiftLiteral(action.id)}, ${text ? 'text' : 'nil'})
-    return .result(value: result)
+    return .result(value: result, dialog: IntentDialog(stringLiteral: result))
   }
 }`
   })
-  const shortcuts = actions.map((action, index) => `    AppShortcut(
+  const shortcuts = actions.map((action, index) => {
+    const phrases = Array.from(
+      new Set([action.shortcutPhrase, ...(action.shortcutPhrases ?? [])])
+    ).map(swiftShortcutPhrase)
+    return `    AppShortcut(
       intent: OneAppIntent${index}(),
-      phrases: [${swiftShortcutPhrase(action.shortcutPhrase)}],
+      phrases: [${phrases.join(', ')}],
       shortTitle: ${swiftLiteral(action.title)},
-      systemImageName: "bolt.fill"
-    )`).join('\n')
+      systemImageName: ${swiftLiteral(action.systemImageName ?? 'bolt.fill')}
+    )`
+  }).join('\n')
   return `import AppIntents
 import Foundation
 
@@ -401,6 +463,7 @@ const GOOGLE_SERVICES_VERSION = '4.4.4'
 function iosResourceFiles(app: NativeAppManifest): string[] {
   return [
     ...(app.fonts ?? []).map(fontFileName),
+    ...(app.ios?.resources ?? []).map((file) => path.basename(file)),
     ...(app.ios?.googleServicesFile ? [GOOGLE_SERVICES_PLIST] : []),
   ]
 }
@@ -458,6 +521,15 @@ function copyAppResources({
       ? path.join(dest, app.name, fontFileName(font))
       : path.join(dest, 'app', 'src', 'main', 'assets', 'fonts', fontFileName(font)),
   ])
+  if (platform === 'ios') {
+    for (const file of app.ios?.resources ?? []) {
+      const target = path.join(dest, app.name, path.basename(file))
+      if (existsSync(target)) {
+        throw new Error(`[vxrn] ios.resources file ${file} collides with generated native output`)
+      }
+      copies.push([file, target])
+    }
+  }
   const googleServices =
     platform === 'ios' ? app.ios?.googleServicesFile : app.android?.googleServicesFile
   if (googleServices) {
@@ -470,11 +542,11 @@ function copyAppResources({
   }
   for (const [file, target] of copies) {
     const source = path.resolve(root, file)
-    if (!FSExtra.existsSync(source)) {
+    if (!existsSync(source)) {
       throw new Error(`[vxrn] native.app names ${file}, which does not exist`)
     }
-    FSExtra.mkdirSync(path.dirname(target), { recursive: true })
-    FSExtra.copyFileSync(source, target)
+    mkdirSync(path.dirname(target), { recursive: true })
+    copyFileSync(source, target)
   }
 }
 
@@ -552,6 +624,9 @@ function appEntitlements(app: NativeAppManifest): Record<string, PlistValue> {
   }
   if (app.ios?.usesAppleSignIn) {
     modeled['com.apple.developer.applesignin'] = ['Default']
+  }
+  if (app.ios?.engine === 'bun') {
+    modeled[ONE_BUN_ENGINE.entitlement] = true
   }
   for (const key of Object.keys(app.ios?.entitlements ?? {})) {
     if (key in modeled) {
@@ -783,7 +858,7 @@ function generateSceneDelegate(args: {
 }): void {
   const { dest, platform, app } = args
   if (platform !== 'ios') return
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(dest, app.name, 'SceneDelegate.swift'),
     renderSceneDelegateSwift(app.name)
   )
@@ -791,7 +866,7 @@ function generateSceneDelegate(args: {
   // widgets the app gets its own file when it has any entitlement.
   const entitlements = appEntitlements(app)
   if (Object.keys(entitlements).length && !app.ios?.widgets) {
-    FSExtra.writeFileSync(
+    writeFileSync(
       path.join(dest, app.name, `${app.name}.entitlements`),
       renderEntitlements(entitlements)
     )
@@ -800,7 +875,7 @@ function generateSceneDelegate(args: {
 
 function generateIosAppIntents(dest: string, platform: 'ios' | 'android', app: NativeAppManifest): void {
   if (platform !== 'ios' || !app.ios?.appIntents) return
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(dest, app.name, 'OneAppIntents.swift'),
     renderIosAppIntentsSwift(app.ios.appIntents.actions)
   )
@@ -811,17 +886,17 @@ function generateIosWidgets(dest: string, app: NativeAppManifest): void {
   if (!widgets) return
   const appDir = path.join(dest, app.name)
   const extensionDir = path.join(dest, 'OneWidgets')
-  FSExtra.mkdirSync(extensionDir, { recursive: true })
+  mkdirSync(extensionDir, { recursive: true })
   const entitlements = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict><key>com.apple.security.application-groups</key><array><string>${escapeXml(widgets.appGroup)}</string></array></dict></plist>
 `
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(appDir, 'OneAppWidgets.entitlements'),
     renderEntitlements(appEntitlements(app))
   )
-  FSExtra.writeFileSync(path.join(extensionDir, 'OneWidgets.entitlements'), entitlements)
-  FSExtra.writeFileSync(
+  writeFileSync(path.join(extensionDir, 'OneWidgets.entitlements'), entitlements)
+  writeFileSync(
     path.join(extensionDir, 'WidgetInfo.plist'),
     `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -839,7 +914,10 @@ function generateIosWidgets(dest: string, app: NativeAppManifest): void {
 </dict></plist>
 `
   )
-  FSExtra.writeFileSync(
+  const supportedFamilies = (widgets.families ?? ['systemSmall', 'systemMedium'])
+    .map((family) => `.${family}`)
+    .join(', ')
+  writeFileSync(
     path.join(appDir, 'OneWidgetContract.swift'),
     `import Foundation
 import ActivityKit
@@ -848,12 +926,20 @@ enum OneWidgetContract {
   static let appGroup = ${JSON.stringify(widgets.appGroup)}
   static let kind = ${JSON.stringify(widgets.kind)}
   static let dataKey = "one.widget.data"
+  static let actionKeyPrefix = "one.widget.action."
 
   struct Data: Codable {
     let title: String
     let value: String
     let subtitle: String
     let layout: String?
+  }
+
+  struct Action: Codable {
+    let id: String
+    let action: String
+    let value: String?
+    let timestampMs: Double
   }
 
   struct Attributes: ActivityAttributes {
@@ -867,11 +953,12 @@ enum OneWidgetContract {
 }
 `
   )
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(extensionDir, 'OneWidget.swift'),
     `import SwiftUI
 import WidgetKit
 import ActivityKit
+import AppIntents
 
 struct OneWidgetNode: Decodable {
   let type: String
@@ -879,11 +966,36 @@ struct OneWidgetNode: Decodable {
   let style: Style?
   let children: [OneWidgetNode]?
   let systemName: String?
-  let value: Double?
+  let value: Value?
   let total: Double?
   let fill: String?
   let cornerRadius: Double?
   let url: String?
+  let action: String?
+
+  enum Value: Decodable {
+    case number(Double)
+    case string(String)
+
+    var number: Double? {
+      if case .number(let value) = self { return value }
+      return nil
+    }
+
+    var string: String? {
+      if case .string(let value) = self { return value }
+      return nil
+    }
+
+    init(from decoder: Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let number = try? container.decode(Double.self) {
+        self = .number(number)
+      } else {
+        self = .string(try container.decode(String.self))
+      }
+    }
+  }
 
   struct Style: Decodable {
     let color: String?
@@ -899,6 +1011,43 @@ struct OneWidgetNode: Decodable {
     let opacity: Double?
     let lineLimit: Int?
     let alignment: String?
+  }
+}
+
+struct OneWidgetButtonIntent: AppIntent {
+  static var title: LocalizedStringResource = "Widget Action"
+
+  @Parameter(title: "Action") var action: String
+  @Parameter(title: "Value") var value: String?
+
+  init() {}
+
+  init(action: String, value: String?) {
+    self.action = action
+    self.value = value
+  }
+
+  func perform() async throws -> some IntentResult {
+    if let defaults = UserDefaults(suiteName: OneWidgetContract.appGroup) {
+      let item = OneWidgetContract.Action(
+        id: UUID().uuidString,
+        action: action,
+        value: value,
+        timestampMs: Date().timeIntervalSince1970 * 1000
+      )
+      if let encoded = try? JSONEncoder().encode(item) {
+        defaults.set(encoded, forKey: OneWidgetContract.actionKeyPrefix + item.id)
+      }
+      CFNotificationCenterPostNotification(
+        CFNotificationCenterGetDarwinNotifyCenter(),
+        CFNotificationName("dev.onejs.widget.action" as CFString),
+        nil,
+        nil,
+        true
+      )
+    }
+    WidgetCenter.shared.reloadTimelines(ofKind: OneWidgetContract.kind)
+    return .result()
   }
 }
 
@@ -994,10 +1143,10 @@ struct OneWidgetRendered: View {
             .font(.system(size: CGFloat(node.style?.fontSize ?? 20), weight: weight))
         }
       case "progress":
-        ProgressView(value: node.value ?? 0, total: node.total ?? 1)
+        ProgressView(value: node.value?.number ?? 0, total: node.total ?? 1)
           .tint(oneColor(node.style?.color))
       case "gauge":
-        Gauge(value: node.value ?? 0, in: 0...(node.total ?? 1)) { EmptyView() }
+        Gauge(value: node.value?.number ?? 0, in: 0...(node.total ?? 1)) { EmptyView() }
           .gaugeStyle(.accessoryCircular)
           .tint(oneColor(node.style?.color))
       case "circle":
@@ -1014,6 +1163,15 @@ struct OneWidgetRendered: View {
               OneWidgetRendered(node: child)
             }
           }
+        }
+      case "button":
+        if let action = node.action {
+          Button(intent: OneWidgetButtonIntent(action: action, value: node.value?.string)) {
+            ForEach(Array((node.children ?? []).enumerated()), id: \\.offset) { _, child in
+              OneWidgetRendered(node: child)
+            }
+          }
+          .buttonStyle(.plain)
         }
       default: EmptyView()
       }
@@ -1075,7 +1233,7 @@ struct OneWidget: Widget {
     }
     .configurationDisplayName(${JSON.stringify(widgets.displayName)})
     .description(${JSON.stringify(widgets.description)})
-    .supportedFamilies([.systemSmall, .systemMedium])
+    .supportedFamilies([${supportedFamilies}])
   }
 }
 
@@ -1158,7 +1316,7 @@ struct OneWidgetsBundle: WidgetBundle {
 }
 `
   )
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(appDir, 'OneWidgetsBridge.m'),
     `#import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
@@ -1172,31 +1330,120 @@ RCT_EXTERN_METHOD(update:(NSString *)identifier status:(NSString *)status value:
 RCT_EXTERN_METHOD(updateView:(NSString *)identifier layout:(NSString *)layout resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(end:(NSString *)identifier resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(pushToken:(NSString *)identifier resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(claimActions:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 @end
 `
   )
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(appDir, 'OneWidgetsBridge.swift'),
     `import Foundation
+import UIKit
 import React
 import WidgetKit
 import ActivityKit
 
+private func oneWidgetsDarwinCallback(
+  _ center: CFNotificationCenter?,
+  _ observer: UnsafeMutableRawPointer?,
+  _ name: CFNotificationName?,
+  _ object: UnsafeRawPointer?,
+  _ userInfo: CFDictionary?
+) {
+  guard let observer else { return }
+  let bridge = Unmanaged<OneWidgetsBridge>.fromOpaque(observer).takeUnretainedValue()
+  bridge.flushObservedActions()
+}
+
 @objc(OneWidgetsBridge)
 class OneWidgetsBridge: RCTEventEmitter {
   private var tokenTasks: [String: Task<Void, Never>] = [:]
+  private var isObservingEvents = false
+  private var foregroundObserver: NSObjectProtocol?
+  private let actionLock = NSLock()
 
-  override func supportedEvents() -> [String]! { ["oneLiveActivityPushToken"] }
+  override func supportedEvents() -> [String]! { ["oneLiveActivityPushToken", "oneWidgetAction"] }
 
   override func startObserving() {
+    isObservingEvents = true
     for activity in Activity<OneWidgetContract.Attributes>.activities {
       observeToken(activity)
     }
+    CFNotificationCenterAddObserver(
+      CFNotificationCenterGetDarwinNotifyCenter(),
+      Unmanaged.passUnretained(self).toOpaque(),
+      oneWidgetsDarwinCallback,
+      "dev.onejs.widget.action" as CFString,
+      nil,
+      .deliverImmediately
+    )
+    foregroundObserver = NotificationCenter.default.addObserver(
+      forName: UIApplication.didBecomeActiveNotification,
+      object: nil,
+      queue: .main
+    ) { [weak self] _ in
+      self?.flushObservedActions()
+    }
+    flushObservedActions()
   }
 
   override func stopObserving() {
+    isObservingEvents = false
     for task in tokenTasks.values { task.cancel() }
     tokenTasks.removeAll()
+    CFNotificationCenterRemoveObserver(
+      CFNotificationCenterGetDarwinNotifyCenter(),
+      Unmanaged.passUnretained(self).toOpaque(),
+      CFNotificationName("dev.onejs.widget.action" as CFString),
+      nil
+    )
+    if let foregroundObserver {
+      NotificationCenter.default.removeObserver(foregroundObserver)
+      self.foregroundObserver = nil
+    }
+  }
+
+  deinit {
+    CFNotificationCenterRemoveObserver(
+      CFNotificationCenterGetDarwinNotifyCenter(),
+      Unmanaged.passUnretained(self).toOpaque(),
+      CFNotificationName("dev.onejs.widget.action" as CFString),
+      nil
+    )
+    if let foregroundObserver {
+      NotificationCenter.default.removeObserver(foregroundObserver)
+    }
+  }
+
+  fileprivate func flushObservedActions() {
+    guard isObservingEvents else { return }
+    for item in drainStoredActions() {
+      sendEvent(withName: "oneWidgetAction", body: item)
+    }
+  }
+
+  private func drainStoredActions() -> [[String: Any]] {
+    actionLock.lock()
+    defer { actionLock.unlock() }
+    guard let defaults = UserDefaults(suiteName: OneWidgetContract.appGroup) else {
+      return []
+    }
+    var actions: [OneWidgetContract.Action] = []
+    for key in defaults.dictionaryRepresentation().keys where key.hasPrefix(OneWidgetContract.actionKeyPrefix) {
+      guard let data = defaults.data(forKey: key) else { continue }
+      defaults.removeObject(forKey: key)
+      if let action = try? JSONDecoder().decode(OneWidgetContract.Action.self, from: data) {
+        actions.append(action)
+      }
+    }
+    actions.sort { $0.timestampMs < $1.timestampMs }
+    return actions.map { action in
+      [
+        "id": action.id,
+        "action": action.action,
+        "value": action.value ?? NSNull(),
+        "timestampMs": action.timestampMs,
+      ]
+    }
   }
 
   private func observeToken(_ activity: Activity<OneWidgetContract.Attributes>) {
@@ -1338,6 +1585,15 @@ class OneWidgetsBridge: RCTEventEmitter {
       resolve(NSNull())
     }
   }
+
+  @objc(claimActions:rejecter:)
+  func claimActions(_ resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
+    guard UserDefaults(suiteName: OneWidgetContract.appGroup) != nil else {
+      reject("app_group", "Cannot open the configured App Group", nil)
+      return
+    }
+    resolve(drainStoredActions())
+  }
 }
 `
   )
@@ -1369,7 +1625,7 @@ async function writeAppearanceIcon(args: {
   const variantSource = (variant: { source?: string } | undefined) => {
     if (!variant?.source) return source
     const resolved = path.resolve(root, variant.source)
-    if (!FSExtra.existsSync(resolved)) {
+    if (!existsSync(resolved)) {
       throw new Error(`[vxrn] native.app icon appearance source does not exist: ${resolved}`)
     }
     return resolved
@@ -1403,7 +1659,7 @@ async function writeAppearanceIcon(args: {
     )
     images.push(entry('icon-1024-tinted.png', 'tinted'))
   }
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(iconDir, 'Contents.json'),
     `${JSON.stringify({ images, info: { author: 'xcode', version: 1 } }, null, 2)}\n`
   )
@@ -1423,14 +1679,14 @@ async function generateAppIcons(args: {
     const template: {
       images: Array<{ idiom: string; scale: string; size: string; filename?: string }>
       info: { author: string; version: number }
-    } = JSON.parse(FSExtra.readFileSync(path.join(assetsDir, 'AppIcon.appiconset', 'Contents.json'), 'utf8'))
+    } = JSON.parse(readFileSync(path.join(assetsDir, 'AppIcon.appiconset', 'Contents.json'), 'utf8'))
     const icons: Array<[string, NativeAppIcon]> = [
       ['AppIcon', app.icon],
       ...Object.entries(app.alternateIcons ?? {}),
     ]
     for (const [name, icon] of icons) {
       const source = path.resolve(root, icon.source)
-      if (!FSExtra.existsSync(source)) {
+      if (!existsSync(source)) {
         throw new Error(`[vxrn] native.app icon source does not exist: ${source}`)
       }
       const metadata = await sharp(source).metadata()
@@ -1438,7 +1694,7 @@ async function generateAppIcons(args: {
         throw new Error(`[vxrn] native.app icon source must be a square image at least 1024px wide: ${source}`)
       }
       const iconDir = path.join(assetsDir, `${name}.appiconset`)
-      FSExtra.mkdirSync(iconDir, { recursive: true })
+      mkdirSync(iconDir, { recursive: true })
       if (icon.dark || icon.tinted) {
         await writeAppearanceIcon({ root, iconDir, icon, source })
         continue
@@ -1465,13 +1721,13 @@ async function generateAppIcons(args: {
           .png()
           .toFile(path.join(iconDir, filename))
       }
-      FSExtra.writeFileSync(path.join(iconDir, 'Contents.json'), `${JSON.stringify(contents, null, 2)}\n`)
+      writeFileSync(path.join(iconDir, 'Contents.json'), `${JSON.stringify(contents, null, 2)}\n`)
     }
     return
   }
 
   const source = path.resolve(root, app.icon.source)
-  if (!FSExtra.existsSync(source)) {
+  if (!existsSync(source)) {
     throw new Error(`[vxrn] native.app.icon source does not exist: ${source}`)
   }
   const metadata = await sharp(source).metadata()
@@ -1486,7 +1742,7 @@ async function generateAppIcons(args: {
       Object.entries(app.alternateIcons ?? {}).map(
         async ([name, icon]): Promise<[string, NativeAppIcon, string]> => {
           const alternateSource = path.resolve(root, icon.source)
-          if (!FSExtra.existsSync(alternateSource)) {
+          if (!existsSync(alternateSource)) {
             throw new Error(`[vxrn] native.app icon source does not exist: ${alternateSource}`)
           }
           const alternate = await sharp(alternateSource).metadata()
@@ -1579,8 +1835,8 @@ function generateAndroidIconForwarder(dest: string, app: NativeAppManifest): voi
     ...packageName.split('.'),
     'AppIconLauncherActivity.kt'
   )
-  FSExtra.mkdirSync(path.dirname(file), { recursive: true })
-  FSExtra.writeFileSync(
+  mkdirSync(path.dirname(file), { recursive: true })
+  writeFileSync(
     file,
     `package ${packageName}
 
@@ -1628,19 +1884,19 @@ async function generateAppIconPreviews(args: {
     const resources = appIconPreviewResources(name)
     if (platform === 'android') {
       const dir = path.join(dest, 'app', 'src', 'main', 'res', 'drawable-nodpi')
-      FSExtra.mkdirSync(dir, { recursive: true })
+      mkdirSync(dir, { recursive: true })
       await preview(3).toFile(path.join(dir, `${resources.android}.png`))
       continue
     }
     const dir = path.join(dest, app.name, 'Images.xcassets', `${resources.ios}.imageset`)
-    FSExtra.mkdirSync(dir, { recursive: true })
+    mkdirSync(dir, { recursive: true })
     const images: Array<Record<string, string>> = []
     for (const scale of [1, 2, 3]) {
       const filename = `preview@${scale}x.png`
       await preview(scale).toFile(path.join(dir, filename))
       images.push({ filename, idiom: 'universal', scale: `${scale}x` })
     }
-    FSExtra.writeFileSync(
+    writeFileSync(
       path.join(dir, 'Contents.json'),
       `${JSON.stringify({ images, info: { author: 'xcode', version: 1 } }, null, 2)}\n`
     )
@@ -1669,7 +1925,7 @@ async function generateAdaptiveIcon(args: {
   for (const [layer, file] of Object.entries(layers)) {
     if (!file) continue
     const source = path.resolve(root, file)
-    if (!FSExtra.existsSync(source)) {
+    if (!existsSync(source)) {
       throw new Error(`[vxrn] native.app.android.adaptiveIcon.${layer} does not exist: ${source}`)
     }
     for (const [density, multiplier] of Object.entries(ANDROID_DENSITIES)) {
@@ -1682,7 +1938,7 @@ async function generateAdaptiveIcon(args: {
     }
   }
   if (!adaptiveIcon.background) {
-    FSExtra.writeFileSync(
+    writeFileSync(
       path.join(res, 'values', 'ic_launcher_background.xml'),
       `<?xml version="1.0" encoding="utf-8"?>
 <resources>
@@ -1698,9 +1954,9 @@ async function generateAdaptiveIcon(args: {
 ${adaptiveIcon.monochrome ? '    <monochrome android:drawable="@mipmap/ic_launcher_monochrome"/>\n' : ''}</adaptive-icon>
 `
   const anydpi = path.join(res, 'mipmap-anydpi-v26')
-  FSExtra.mkdirSync(anydpi, { recursive: true })
+  mkdirSync(anydpi, { recursive: true })
   for (const filename of ['ic_launcher.xml', 'ic_launcher_round.xml']) {
-    FSExtra.writeFileSync(path.join(anydpi, filename), adaptiveXml)
+    writeFileSync(path.join(anydpi, filename), adaptiveXml)
   }
 }
 
@@ -1749,11 +2005,33 @@ function generateAccentColor(args: { dest: string; app: NativeAppManifest }): vo
   const accent = args.app.ios?.accentColor
   if (!accent) return
   const colorDir = path.join(args.dest, args.app.name, 'Images.xcassets', 'AccentColor.colorset')
-  FSExtra.mkdirSync(colorDir, { recursive: true })
-  FSExtra.writeFileSync(
+  mkdirSync(colorDir, { recursive: true })
+  writeFileSync(
     path.join(colorDir, 'Contents.json'),
     xcodeColorSet(accent.light, accent.dark)
   )
+}
+
+// the app's own asset catalog entries, merged beside the ones prebuild
+// generates. a name prebuild already wrote is an error, never an overwrite.
+function mergeAssetCatalog(args: { root: string; dest: string; app: NativeAppManifest }): void {
+  const declared = args.app.ios?.assetCatalog
+  if (!declared) return
+  const source = path.resolve(args.root, declared)
+  if (!existsSync(path.join(source, 'Contents.json'))) {
+    throw new Error(`[vxrn] native.app.ios.assetCatalog ${declared} is not an asset catalog`)
+  }
+  const catalog = path.join(args.dest, args.app.name, 'Images.xcassets')
+  for (const entry of readdirSync(source, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue
+    const target = path.join(catalog, entry.name)
+    if (existsSync(target)) {
+      throw new Error(
+        `[vxrn] native.app.ios.assetCatalog ${entry.name} collides with the generated catalog entry of that name`
+      )
+    }
+    cpSync(path.join(source, entry.name), target, { recursive: true })
+  }
 }
 
 async function generateSplashScreen(args: {
@@ -1769,7 +2047,7 @@ async function generateSplashScreen(args: {
   const cover = app.splash.resizeMode === 'cover'
   const prepareArtwork = async (sourcePath: string, backgroundColor: string) => {
     const source = path.resolve(root, sourcePath)
-    if (!FSExtra.existsSync(source)) {
+    if (!existsSync(source)) {
       throw new Error(`[vxrn] native.app.splash source does not exist: ${source}`)
     }
     // a vector source rasterizes at the density its largest use needs: the
@@ -1804,7 +2082,7 @@ async function generateSplashScreen(args: {
   // launch surface scales it (aspect-fill on ios, fill on android).
   const readBackground = (sourcePath: string) => {
     const source = path.resolve(root, sourcePath)
-    if (!FSExtra.existsSync(source)) {
+    if (!existsSync(source)) {
       throw new Error(`[vxrn] native.app.splash backgroundImage does not exist: ${source}`)
     }
     return sharp(source).rotate().png().toBuffer({ resolveWithObject: true })
@@ -1823,7 +2101,7 @@ async function generateSplashScreen(args: {
       pointWidth: number | undefined
     ) => {
       const dir = path.join(assets, `${name}.imageset`)
-      FSExtra.mkdirSync(dir, { recursive: true })
+      mkdirSync(dir, { recursive: true })
       const scales = pointWidth === undefined ? [1] : [1, 2, 3]
       const images: Array<Record<string, unknown>> = []
       for (const [variant, suffix, appearances] of [
@@ -1848,7 +2126,7 @@ async function generateSplashScreen(args: {
           })
         }
       }
-      FSExtra.writeFileSync(
+      writeFileSync(
         path.join(dir, 'Contents.json'),
         `${JSON.stringify({ images, info: { author: 'xcode', version: 1 } }, null, 2)}\n`
       )
@@ -1865,13 +2143,13 @@ async function generateSplashScreen(args: {
     }
     // the launch background is a named color so a dark launch gets its own.
     const colorDir = path.join(assets, 'SplashBackground.colorset')
-    FSExtra.mkdirSync(colorDir, { recursive: true })
-    FSExtra.writeFileSync(
+    mkdirSync(colorDir, { recursive: true })
+    writeFileSync(
       path.join(colorDir, 'Contents.json'),
       xcodeColorSet(app.splash.backgroundColor, dark?.backgroundColor)
     )
     const { red, green, blue } = srgb(app.splash.backgroundColor)
-    FSExtra.writeFileSync(
+    writeFileSync(
       path.join(appDir, 'LaunchScreen.storyboard'),
       `<?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="launch-controller">
@@ -1956,7 +2234,7 @@ ${
         .png()
         .toBuffer()
       const drawableDensity = path.join(mainRes, `${drawablePrefix}-${density}`)
-      FSExtra.mkdirSync(drawableDensity, { recursive: true })
+      mkdirSync(drawableDensity, { recursive: true })
       await sharp({
         create: {
           width: canvasSize,
@@ -1989,18 +2267,18 @@ ${
     : undefined
   if (background) {
     const nodpi = path.join(mainRes, 'drawable-nodpi')
-    FSExtra.mkdirSync(nodpi, { recursive: true })
-    FSExtra.writeFileSync(path.join(nodpi, 'splash_background.png'), background.data)
+    mkdirSync(nodpi, { recursive: true })
+    writeFileSync(path.join(nodpi, 'splash_background.png'), background.data)
     if (darkBackground) {
       const nightNodpi = path.join(mainRes, 'drawable-night-nodpi')
-      FSExtra.mkdirSync(nightNodpi, { recursive: true })
-      FSExtra.writeFileSync(
+      mkdirSync(nightNodpi, { recursive: true })
+      writeFileSync(
         path.join(nightNodpi, 'splash_background.png'),
         darkBackground
       )
     }
   }
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(drawable, 'launch_screen.xml'),
     `<?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
@@ -2018,7 +2296,7 @@ ${
 </layer-list>
 `
   )
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(mainRes, 'values', 'colors.xml'),
     `<?xml version="1.0" encoding="utf-8"?>
 <resources>
@@ -2027,8 +2305,8 @@ ${
 `
   )
   if (dark) {
-    FSExtra.mkdirSync(path.join(mainRes, 'values-night'), { recursive: true })
-    FSExtra.writeFileSync(
+    mkdirSync(path.join(mainRes, 'values-night'), { recursive: true })
+    writeFileSync(
       path.join(mainRes, 'values-night', 'colors.xml'),
       `<?xml version="1.0" encoding="utf-8"?>
 <resources>
@@ -2038,19 +2316,19 @@ ${
     )
   }
   const stylesPath = path.join(mainRes, 'values', 'styles.xml')
-  const styles = FSExtra.readFileSync(stylesPath, 'utf8').replace(
+  const styles = readFileSync(stylesPath, 'utf8').replace(
     '        <!-- Customize your theme here. -->',
     '        <item name="android:windowBackground">@drawable/launch_screen</item>'
   )
-  FSExtra.writeFileSync(stylesPath, styles)
+  writeFileSync(stylesPath, styles)
   const stylesV31 = path.join(mainRes, 'values-v31')
-  FSExtra.mkdirSync(stylesV31, { recursive: true })
+  mkdirSync(stylesV31, { recursive: true })
   // a values-v31 AppTheme replaces the base one on API 31+, so it is the base
   // theme (parent included) plus the system splash items, never a bare style.
   if (!styles.includes('</style>')) {
     throw new Error('[vxrn] prebuild template styles.xml lost its AppTheme </style> anchor')
   }
-  FSExtra.writeFileSync(
+  writeFileSync(
     path.join(stylesV31, 'styles.xml'),
     styles.replace(
       '</style>',
@@ -2222,6 +2500,22 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
           `\t<key>UISupportedInterfaceOrientations</key>\n\t<array>\n${phoneOrientations.map((orientation) => `\t\t<string>${orientation}</string>`).join('\n')}\n\t</array>`
         )
       }
+      if (app.ios?.appTransportSecurity !== undefined) {
+        const start = rendered.indexOf('\t<key>NSAppTransportSecurity</key>')
+        const opening = rendered.indexOf('<dict>', start)
+        if (start < 0 || opening < 0) throw new Error('[vxrn] template lost its transport security dictionary')
+        let depth = 1
+        let end = -1
+        for (const tag of rendered.slice(opening + 6).matchAll(/<\/?dict>/g)) {
+          depth += tag[0] === '<dict>' ? 1 : -1
+          if (depth === 0) {
+            end = opening + 6 + tag.index! + tag[0].length
+            break
+          }
+        }
+        if (end < 0) throw new Error('[vxrn] template has an unterminated transport security dictionary')
+        rendered = rendered.slice(0, start) + renderPlistEntries({ NSAppTransportSecurity: app.ios.appTransportSecurity }, '\t') + rendered.slice(end)
+      }
       for (const [key, value] of Object.entries(app.ios?.infoPlist ?? {})) {
         if (rendered.includes(`<key>${key}</key>`) || stamps.some((stamp) => stamp.includes(`<key>${key}</key>`))) {
           throw new Error(
@@ -2239,86 +2533,42 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         rendered = rendered.replace(anchor, `${stamps.join('\n')}\n${anchor}`)
       }
     }
-    if (
-      platform === 'android' &&
-      relativePath === 'app/src/main/AndroidManifest.xml' &&
-      (app.imagePicker?.camera !== undefined || app.speech !== undefined)
-    ) {
-      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
-      if (!rendered.includes(anchor)) {
-        throw new Error(
-          '[vxrn] cannot stamp the camera or microphone permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
-        )
-      }
-      const stamps: string[] = []
-      if (app.imagePicker?.camera !== undefined) {
-        stamps.push('    <uses-permission android:name="android.permission.CAMERA" />')
+    if (platform === 'android' && relativePath === 'app/src/main/AndroidManifest.xml') {
+      const permissions = androidAppPermissions(app)
+      if (permissions.size || app.android?.blockedPermissions?.length) {
+        const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
+        if (!rendered.includes(anchor)) {
+          const feature = app.imagePicker?.camera !== undefined || app.speech !== undefined
+            ? 'the camera or microphone permission'
+            : app.notifications !== undefined ? 'notification permissions' : 'permissions'
+          throw new Error(
+            `[vxrn] cannot stamp ${feature}: expected the INTERNET permission in app/src/main/AndroidManifest.xml`
+          )
+        }
+        const blocked = new Set((app.android?.blockedPermissions ?? []).map((name) =>
+          name.includes('.') ? name : `android.permission.${name}`
+        ))
+        const lines = [
+          ...[...permissions].filter(([name]) => !blocked.has(name)).map(([name, maxSdk]) =>
+            `    <uses-permission android:name="${name}"${maxSdk === undefined ? '' : ` android:maxSdkVersion="${maxSdk}"`} />`
+          ),
+          ...(app.android?.blockedPermissions ?? []).map((name) =>
+            `    <uses-permission android:name="${name.includes('.') ? name : `android.permission.${name}`}" tools:node="remove" />`
+          ),
+        ]
+        rendered = rendered.replace(anchor, `${anchor}\n${lines.join('\n')}`)
+        if (app.android?.blockedPermissions?.length && !rendered.includes('xmlns:tools=')) {
+          rendered = rendered.replace(
+            'xmlns:android="http://schemas.android.com/apk/res/android"',
+            'xmlns:android="http://schemas.android.com/apk/res/android"\n    xmlns:tools="http://schemas.android.com/tools"'
+          )
+        }
       }
       if (app.speech !== undefined) {
-        // package visibility (android 11+) hides the recognition service
-        // from SpeechRecognizer.isRecognitionAvailable without the query
-        stamps.push(
-          '    <uses-permission android:name="android.permission.RECORD_AUDIO" />',
-          '    <queries>\n      <intent>\n        <action android:name="android.speech.RecognitionService" />\n      </intent>\n    </queries>'
-        )
+        // android 11+ hides recognition services without this query.
+        const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
+        rendered = rendered.replace(anchor, `${anchor}\n    <queries>\n      <intent>\n        <action android:name="android.speech.RecognitionService" />\n      </intent>\n    </queries>`)
       }
-      rendered = rendered.replace(anchor, `${anchor}\n${stamps.join('\n')}`)
-    }
-    if (
-      platform === 'android' &&
-      relativePath === 'app/src/main/AndroidManifest.xml' &&
-      app.location !== undefined
-    ) {
-      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
-      if (!rendered.includes(anchor)) {
-        throw new Error(
-          '[vxrn] cannot stamp location permissions: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
-        )
-      }
-      const stamps = [
-        '    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />',
-        '    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />',
-      ]
-      if (app.location.background) {
-        stamps.push(
-          '    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />'
-        )
-      }
-      rendered = rendered.replace(anchor, `${anchor}\n${stamps.join('\n')}`)
-    }
-    if (
-      platform === 'android' &&
-      relativePath === 'app/src/main/AndroidManifest.xml' &&
-      app.pedometer !== undefined
-    ) {
-      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
-      if (!rendered.includes(anchor)) {
-        throw new Error(
-          '[vxrn] cannot stamp the pedometer permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
-        )
-      }
-      rendered = rendered.replace(
-        anchor,
-        `${anchor}\n    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />`
-      )
-    }
-    if (
-      platform === 'android' &&
-      relativePath === 'app/src/main/AndroidManifest.xml' &&
-      app.brightness === true
-    ) {
-      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
-      if (!rendered.includes(anchor)) {
-        throw new Error(
-          '[vxrn] cannot stamp the brightness permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
-        )
-      }
-      // a special app access grant: the user turns it on in settings, and
-      // Settings.System.canWrite stays false for an app that never declared it.
-      rendered = rendered.replace(
-        anchor,
-        `${anchor}\n    <uses-permission android:name="android.permission.WRITE_SETTINGS" />`
-      )
     }
     if (
       platform === 'android' &&
@@ -2329,20 +2579,6 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       if (!rendered.includes(anchor)) {
         throw new Error(
           '[vxrn] cannot stamp notification permissions: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
-        )
-      }
-      rendered = rendered.replace(
-        anchor,
-        [
-          anchor,
-          ...notificationsHost.androidPermissions.map(
-            (permission) => `    <uses-permission android:name="${permission}" />`
-          ),
-        ].join('\n')
-      )
-      if (!rendered.includes(notificationsHost.androidPermissions[0])) {
-        throw new Error(
-          '[vxrn] failed to stamp notification permissions into app manifest'
         )
       }
       // the alarm and boot receiver lives in the app manifest, never the
@@ -2386,6 +2622,7 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       platform === 'android' &&
       relativePath === 'app/src/main/AndroidManifest.xml' &&
       (app.audio !== undefined ||
+        app.location?.background === true ||
         app.photoLibrary !== undefined ||
         app.contacts !== undefined ||
         app.calendar !== undefined ||
@@ -2396,56 +2633,6 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         throw new Error(
           '[vxrn] cannot stamp media permissions: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
         )
-      }
-      const stamps: string[] = []
-      if (
-        app.audio?.microphone !== undefined &&
-        !rendered.includes('android.permission.RECORD_AUDIO')
-      ) {
-        stamps.push('    <uses-permission android:name="android.permission.RECORD_AUDIO" />')
-      }
-      if (app.photoLibrary?.readWrite !== undefined) {
-        stamps.push(
-          '    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />',
-          '    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />',
-          '    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />'
-        )
-      }
-      if (app.photoLibrary?.addOnly !== undefined) {
-        // no install-time permission past 28; the meta-data below is the
-        // declaration the Kotlin add check reads.
-        stamps.push(
-          '    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />'
-        )
-      }
-      if (app.contacts !== undefined) {
-        stamps.push(
-          '    <uses-permission android:name="android.permission.READ_CONTACTS" />',
-          '    <uses-permission android:name="android.permission.WRITE_CONTACTS" />'
-        )
-      }
-      if (app.calendar?.usage !== undefined) {
-        stamps.push(
-          '    <uses-permission android:name="android.permission.READ_CALENDAR" />',
-          '    <uses-permission android:name="android.permission.WRITE_CALENDAR" />'
-        )
-      }
-      if (app.calendar?.remindersUsage !== undefined) {
-        if (!rendered.includes('android.permission.POST_NOTIFICATIONS')) {
-          stamps.push('    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />')
-        }
-        if (!rendered.includes('android.permission.RECEIVE_BOOT_COMPLETED')) {
-          stamps.push('    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />')
-        }
-      }
-      if (app.audio?.background === true) {
-        stamps.push(
-          '    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />',
-          '    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />'
-        )
-      }
-      if (stamps.length) {
-        rendered = rendered.replace(anchor, `${anchor}\n${stamps.join('\n')}`)
       }
       // config markers the Kotlin manifest checks read: add-only has no
       // permission past 28, and background playback gates the service.
@@ -2464,6 +2651,11 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         appStamps.push(
           '      <meta-data android:name="one.audio.background" android:value="true" />',
           '      <service android:name="com.margelo.nitro.one.OneAudioService" android:exported="false" android:foregroundServiceType="mediaPlayback" />'
+        )
+      }
+      if (app.location?.background === true) {
+        appStamps.push(
+          '      <service android:name="dev.onejs.onenative.OneLocationService" android:exported="false" android:foregroundServiceType="location" />'
         )
       }
       // background task identifiers use the shared ios declaration on both
@@ -2588,6 +2780,17 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         rendered = `${trailed}\n# One.UI.Map: set by native.app.android.googleMapsApiKey.\n${line}\n`
       }
     }
+    if (platform === 'android' && relativePath === 'gradle.properties') {
+      // MainActivity opts into androidx edge-to-edge; this tells react
+      // native the window is edge-to-edge on every api level, so its
+      // status bar paths skip the legacy decorFitsSystemWindows route that
+      // would undo it on android 14 and older.
+      const line = 'edgeToEdgeEnabled=true'
+      if (!rendered.includes(line)) {
+        const trailed = rendered.endsWith('\n') ? rendered : `${rendered}\n`
+        rendered = `${trailed}\n# Edge-to-edge: set by one prebuild to match enableEdgeToEdge in MainActivity.\n${line}\n`
+      }
+    }
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/res/values/styles.xml' &&
@@ -2607,37 +2810,6 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
           ? 'parent="Theme.AppCompat.Light.NoActionBar"'
           : 'parent="Theme.AppCompat.NoActionBar"'
       )
-    }
-    if (
-      platform === 'android' &&
-      relativePath === 'app/src/main/AndroidManifest.xml' &&
-      (app.android?.permissions?.length || app.android?.blockedPermissions?.length)
-    ) {
-      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
-      if (!rendered.includes(anchor)) {
-        throw new Error(
-          '[vxrn] cannot stamp permissions: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
-        )
-      }
-      // a bare name is an android.permission, as expo reads it.
-      const permissionName = (name: string) =>
-        name.includes('.') ? name : `android.permission.${name}`
-      const lines = [
-        ...(app.android?.permissions ?? []).map(
-          (name) => `    <uses-permission android:name="${permissionName(name)}" />`
-        ),
-        ...(app.android?.blockedPermissions ?? []).map(
-          (name) =>
-            `    <uses-permission android:name="${permissionName(name)}" tools:node="remove" />`
-        ),
-      ]
-      rendered = rendered.replace(anchor, `${anchor}\n${lines.join('\n')}`)
-      if (app.android?.blockedPermissions?.length && !rendered.includes('xmlns:tools=')) {
-        rendered = rendered.replace(
-          'xmlns:android="http://schemas.android.com/apk/res/android"',
-          'xmlns:android="http://schemas.android.com/apk/res/android"\n    xmlns:tools="http://schemas.android.com/tools"'
-        )
-      }
     }
     if (
       platform === 'android' &&
@@ -2753,54 +2925,7 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
     if (platform === 'ios' && relativePath.endsWith('/Info.plist')) {
       // schemes, usesNonExemptEncryption, and fileSharing stamp above in one
       // anchored block; only the usage descriptions stamp here.
-      const usage = new Map<string, string>()
-      if (app.imagePicker?.camera !== undefined) {
-        usage.set('NSCameraUsageDescription', app.imagePicker.camera)
-      }
-      if (app.imagePicker?.microphone !== undefined) {
-        usage.set('NSMicrophoneUsageDescription', app.imagePicker.microphone)
-      }
-      if (app.photoLibrary !== undefined) {
-        if (app.photoLibrary.addOnly !== undefined) {
-          usage.set('NSPhotoLibraryAddUsageDescription', app.photoLibrary.addOnly)
-        }
-        if (app.photoLibrary.readWrite !== undefined) {
-          usage.set('NSPhotoLibraryUsageDescription', app.photoLibrary.readWrite)
-        }
-      }
-      if (app.contacts !== undefined) {
-        usage.set('NSContactsUsageDescription', app.contacts.usage)
-      }
-      if (app.calendar !== undefined) {
-        if (app.calendar.usage !== undefined) {
-          usage.set('NSCalendarsFullAccessUsageDescription', app.calendar.usage)
-        }
-        if (app.calendar.remindersUsage !== undefined) {
-          usage.set('NSRemindersFullAccessUsageDescription', app.calendar.remindersUsage)
-        }
-      }
-      if (app.location !== undefined) {
-        usage.set('NSLocationWhenInUseUsageDescription', app.location.whenInUse)
-        if (app.location.alwaysAndWhenInUse !== undefined) {
-          usage.set(
-            'NSLocationAlwaysAndWhenInUseUsageDescription',
-            app.location.alwaysAndWhenInUse
-          )
-        }
-      }
-      if (app.pedometer !== undefined) {
-        usage.set('NSMotionUsageDescription', app.pedometer.usage)
-      }
-      if (app.ios?.faceIdUsageDescription !== undefined) {
-        usage.set('NSFaceIDUsageDescription', app.ios.faceIdUsageDescription)
-      }
-      if (app.speech !== undefined) {
-        usage.set('NSSpeechRecognitionUsageDescription', app.speech.recognition)
-        usage.set('NSMicrophoneUsageDescription', app.speech.microphone)
-      }
-      if (app.audio?.microphone !== undefined) {
-        usage.set('NSMicrophoneUsageDescription', app.audio.microphone)
-      }
+      const usage = iosUsageDescriptions(app)
       const additions: [string, string][] = []
       for (const [key, text] of usage) {
         const existing = new RegExp(`(<key>${key}</key>\\s*<string>)[^<]*(</string>)`)
@@ -2859,6 +2984,9 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       if (app.updates !== undefined) {
         rendered = nativeProjectPatches.pointReleaseBundleURLAtOneUpdates(rendered)
       }
+      if (app.ios?.engine === 'bun') {
+        rendered = nativeProjectPatches.runBunEngineInAppDelegate(rendered)
+      }
     }
     if (platform === 'ios') {
       // one requires ios 17 (see the schema minimumVersion and
@@ -2890,7 +3018,11 @@ end`
       }
     }
     if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {
-      rendered = patchIosBundlePhase(rendered, app.updates?.runtimeVersion)
+      rendered = patchIosBundlePhase(
+        rendered,
+        app.updates?.runtimeVersion,
+        app.ios?.engine === 'bun'
+      )
       if (app.ios?.appIntents) rendered = patchIosPbxprojAppIntents(rendered, appName)
       rendered = patchIosPbxprojOneBridgingHeader(rendered, appName)
       if (Object.keys(appEntitlements(app)).length && !app.ios?.widgets) {
@@ -2917,8 +3049,11 @@ end`
       rendered = nativeProjectPatches.injectOneSwiftPackagesIntoPodfile(rendered)
       if (nitroWebImage)
         rendered =
-          nativeProjectPatches.injectNitroWebImageModularHeaderIntoPodfile(rendered)
+          nativeProjectPatches.injectModularHeadersIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(rendered)
+      if (app.ios?.engine === 'bun') {
+        rendered = nativeProjectPatches.injectBunEngineIntoPodfile(rendered)
+      }
       const nativeModulesCall = 'config = use_native_modules!'
       if (rendered.split(nativeModulesCall).length !== 2) {
         throw new Error('[vxrn] expected one iOS native module discovery call')
@@ -2927,6 +3062,7 @@ end`
         nativeModulesCall,
         `config = use_native_modules!(['node', '-e', "process.argv=['', '', 'config'];require(require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli')).run()"])`
       )
+      rendered = nativeProjectPatches.injectSkiaDawnVendoringIntoPodfile(rendered)
       if (
         !rendered.includes('[vxrn/one] fmt c++17 fix') ||
         !rendered.includes('[vxrn/one] minify iOS Hermes Release bundle input')
@@ -3068,17 +3204,17 @@ export const generateForPlatform = async (
   const nitroWebImage = platform === 'ios' && nativeProjectPatches.hasNitroWebImage(root)
 
   // owned output: regenerate from the manifest so reruns reproduce bytes.
-  FSExtra.removeSync(dest)
+  rmSync(dest, { recursive: true, force: true })
 
   for (const absoluteSrc of files) {
     const relativeFilePath = path.relative(src, absoluteSrc)
-    const stat = FSExtra.lstatSync(absoluteSrc)
+    const stat = lstatSync(absoluteSrc)
     if (stat.isDirectory()) continue
 
     const extension = path.extname(absoluteSrc)
     const raw = ['.png', '.jar', '.keystore'].includes(extension)
       ? null
-      : FSExtra.readFileSync(absoluteSrc, 'utf8')
+      : readFileSync(absoluteSrc, 'utf8')
     const { destRelativePath, content } = renderPrebuildFile({
       relativePath: relativeFilePath,
       content: raw,
@@ -3087,15 +3223,15 @@ export const generateForPlatform = async (
       nitroWebImage,
     })
     const destPath = path.resolve(dest, destRelativePath)
-    FSExtra.mkdirSync(path.dirname(destPath), { recursive: true })
+    mkdirSync(path.dirname(destPath), { recursive: true })
 
     console.info('copying', '"' + absoluteSrc + '"', 'to', '"' + destPath + '"')
 
     if (content === null) {
-      FSExtra.copyFileSync(absoluteSrc, destPath)
+      copyFileSync(absoluteSrc, destPath)
       continue
     }
-    FSExtra.writeFileSync(destPath, content, {
+    writeFileSync(destPath, content, {
       encoding: 'utf8',
       mode: stat.mode,
     })
@@ -3106,7 +3242,7 @@ export const generateForPlatform = async (
   if (platform === 'android') await generateAdaptiveIcon({ root, dest, app })
   await generateSplashScreen({ root, dest, platform, app })
   if (platform === 'ios') generateAccentColor({ dest, app })
-  copyAppResources({ root, dest, platform, app })
+  if (platform === 'ios') mergeAssetCatalog({ root, dest, app })
   generateSceneDelegate({ dest, platform, app })
   generateIosAppIntents(dest, platform, app)
   if (platform === 'ios') generateOneBridgingHeader(dest, app)
@@ -3114,6 +3250,37 @@ export const generateForPlatform = async (
   if (platform === 'ios') await generateSwiftPackages({ root, dest })
   if (platform === 'android') generateAndroidIconForwarder(dest, app)
   if (platform === 'android') await generateKotlinSources({ root, dest })
+  copyAppResources({ root, dest, platform, app })
+  applyAppPatches(dest, platform, app)
+}
+
+function listFiles(dir: string): string[] {
+  return readdirSync(dir, { withFileTypes: true }).flatMap((entry) =>
+    entry.isDirectory() ? listFiles(path.join(dir, entry.name)) : [path.join(dir, entry.name)]
+  )
+}
+
+function applyAppPatches(dest: string, platform: 'ios' | 'android', app: NativeAppManifest) {
+  const patches = (app.patches ?? []).filter((entry) => entry.platform === platform)
+  if (patches.length === 0) return
+  const files = listFiles(dest)
+  for (const { file, patch } of patches) {
+    const matches = files.filter((candidate) => {
+      const relative = path.relative(dest, candidate).split(path.sep).join('/')
+      return relative === file || relative.endsWith('/' + file)
+    })
+    if (matches.length !== 1) {
+      throw new Error(
+        `[vxrn] native.app.patches: "${file}" matched ${matches.length} ${platform} files, expected exactly one`
+      )
+    }
+    const before = readFileSync(matches[0], 'utf8')
+    const after = patch(before)
+    if (patch(after) !== after) {
+      throw new Error(`[vxrn] native.app.patches: patch for "${file}" is not idempotent`)
+    }
+    writeFileSync(matches[0], after)
+  }
 }
 
 // an imported kotlin source can reach past the base ui/foundation/material3
@@ -3130,14 +3297,14 @@ const KOTLIN_IMPORT_ARTIFACTS = [
 
 function kotlinSourceImports(dir: string): Set<string> {
   const imports = new Set<string>()
-  if (!FSExtra.existsSync(dir)) return imports
+  if (!existsSync(dir)) return imports
   const visit = (entry: string) => {
-    if (FSExtra.statSync(entry).isDirectory()) {
-      for (const child of FSExtra.readdirSync(entry)) visit(path.join(entry, child))
+    if (statSync(entry).isDirectory()) {
+      for (const child of readdirSync(entry)) visit(path.join(entry, child))
       return
     }
     if (!entry.endsWith('.kt')) return
-    for (const line of FSExtra.readFileSync(entry, 'utf8').split('\n')) {
+    for (const line of readFileSync(entry, 'utf8').split('\n')) {
       const match = /^\s*import\s+([A-Za-z0-9_.]+)/.exec(line)
       if (match) imports.add(match[1])
     }
@@ -3148,8 +3315,8 @@ function kotlinSourceImports(dir: string): Set<string> {
 
 export function enableAppComposeIntegration(dest: string) {
   const rootBuildGradlePath = path.join(dest, 'build.gradle')
-  if (FSExtra.existsSync(rootBuildGradlePath)) {
-    let content = FSExtra.readFileSync(rootBuildGradlePath, 'utf8')
+  if (existsSync(rootBuildGradlePath)) {
+    let content = readFileSync(rootBuildGradlePath, 'utf8')
     const composePluginClasspath =
       '        classpath("org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin:$kotlinVersion")'
     if (!content.includes('org.jetbrains.kotlin.plugin.compose')) {
@@ -3157,13 +3324,13 @@ export function enableAppComposeIntegration(dest: string) {
         ? 'classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")'
         : 'classpath "org.jetbrains.kotlin:kotlin-gradle-plugin"'
       content = insertAfterLine(content, anchor, composePluginClasspath)
-      FSExtra.writeFileSync(rootBuildGradlePath, content, 'utf8')
+      writeFileSync(rootBuildGradlePath, content, 'utf8')
     }
   }
 
   const appBuildGradlePath = path.join(dest, 'app/build.gradle')
-  if (FSExtra.existsSync(appBuildGradlePath)) {
-    let content = FSExtra.readFileSync(appBuildGradlePath, 'utf8')
+  if (existsSync(appBuildGradlePath)) {
+    let content = readFileSync(appBuildGradlePath, 'utf8')
     if (!content.includes('org.jetbrains.kotlin.plugin.compose')) {
       const pluginAnchor = content.includes('apply plugin: "org.jetbrains.kotlin.android"')
         ? 'apply plugin: "org.jetbrains.kotlin.android"'
@@ -3221,7 +3388,7 @@ export function enableAppComposeIntegration(dest: string) {
         ].join('\n')
       )
     }
-    FSExtra.writeFileSync(appBuildGradlePath, content, 'utf8')
+    writeFileSync(appBuildGradlePath, content, 'utf8')
   }
 }
 
@@ -3230,10 +3397,10 @@ export function enableAppComposeIntegration(dest: string) {
 export async function generateKotlinSources({ root, dest }: { root: string; dest: string }) {
   // evidence holds preserved proof sources, never app sources; sweeping it
   // breaks :app:compileDebugKotlin when two preserved copies declare one class.
-  const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build', 'tests', '__tests__', 'scripts', 'evidence'])
+  const skip = new Set([...NON_SOURCE_DIRS, 'tests', '__tests__', 'scripts', 'evidence'])
   const sources: string[] = []
-  const manifest = FSExtra.existsSync(path.join(root, 'package.json'))
-    ? FSExtra.readJsonSync(path.join(root, 'package.json'))
+  const manifest = existsSync(path.join(root, 'package.json'))
+    ? readJSONSync(path.join(root, 'package.json'))
     : {}
   const workspacePatterns: string[] = Array.isArray(manifest.workspaces)
     ? manifest.workspaces
@@ -3246,8 +3413,8 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
   const collect = (dir: string) => {
     // declared workspace packages belong to this build; other nested packages
     // own their sources and fixtures.
-    if (dir !== root && FSExtra.existsSync(path.join(dir, 'package.json')) && !workspaceRoots.has(dir)) return
-    for (const entry of FSExtra.readdirSync(dir, { withFileTypes: true })) {
+    if (dir !== root && existsSync(path.join(dir, 'package.json')) && !workspaceRoots.has(dir)) return
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
       if (entry.name.startsWith('.') || skip.has(entry.name)) continue
       const source = path.join(dir, entry.name)
       if (entry.isDirectory()) collect(source)
@@ -3258,7 +3425,7 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
   // the generator owns this directory: rebuild it so a moved or deleted source
   // cannot leave a stale copy that redeclares a live class.
   const output = path.join(dest, 'app/src/main/java/one/source')
-  FSExtra.removeSync(output)
+  rmSync(output, { recursive: true, force: true })
   if (sources.length === 0) return
   const { kotlinSourceId, renderKotlinSourceGlue, writeNativeSourceDeclaration } = await import(
     '../utils/nativeSourceContract'
@@ -3267,12 +3434,12 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
   for (const source of sources) {
     const id = kotlinSourceId(root, source)
     const target = path.join(output, id)
-    FSExtra.mkdirSync(target, { recursive: true })
-    FSExtra.copyFileSync(source, path.join(target, path.basename(source)))
+    mkdirSync(target, { recursive: true })
+    copyFileSync(source, path.join(target, path.basename(source)))
     const contract = writeNativeSourceDeclaration(source)
     if (contract.views.length > 0) hasViews = true
     if (contract.modules.length > 0 || contract.views.length > 0) {
-      FSExtra.writeFileSync(
+      writeFileSync(
         path.join(target, `OneNativeSource_${id}.kt`),
         renderKotlinSourceGlue(id, contract).source
       )
@@ -3290,7 +3457,6 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
 // registry the OneSwiftHost view reads. the bundler resolves an import of any
 // .swift file in the package to a host view naming the same package id.
 async function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
-  const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build'])
   const packages = swiftPackageDirectories(root)
   if (packages.size === 0) return
   const { swiftPodManifest, writeSwiftPackageArtifacts } = await import('../utils/nativeSourceContract')
@@ -3298,13 +3464,13 @@ async function generateSwiftPackages({ root, dest }: { root: string; dest: strin
     const podDir = path.join(dest, 'OneSwiftPackages', id)
     const manifest = swiftPodManifest(
       path.join(packageDir, 'Package.swift'),
-      FSExtra.readFileSync(path.join(packageDir, 'Package.swift'), 'utf8')
+      readFileSync(path.join(packageDir, 'Package.swift'), 'utf8')
     )
     const sources: string[] = []
     const collect = (dir: string) => {
-      for (const entry of FSExtra.readdirSync(dir, { withFileTypes: true })) {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
         // a package at the app root holds the generated native projects too
-        if (entry.name.startsWith('.') || skip.has(entry.name)) continue
+        if (entry.name.startsWith('.') || NON_SOURCE_DIRS.has(entry.name)) continue
         const full = path.join(dir, entry.name)
         if (entry.isDirectory()) collect(full)
         else if (entry.name.endsWith('.swift') && entry.name !== 'Package.swift')
@@ -3322,16 +3488,16 @@ async function generateSwiftPackages({ root, dest }: { root: string; dest: strin
     // tree with real directories and link each file.
     for (const source of sources) {
       const link = path.join(podDir, 'Sources', path.relative(packageDir, source))
-      FSExtra.mkdirSync(path.dirname(link), { recursive: true })
-      FSExtra.symlinkSync(FSExtra.realpathSync(source), link)
+      mkdirSync(path.dirname(link), { recursive: true })
+      symlinkSync(realpathSync(source), link)
     }
     if (artifacts.glue) {
-      FSExtra.writeFileSync(
+      writeFileSync(
         path.join(podDir, 'Sources', 'OneNativeSource.generated.swift'),
         artifacts.glue
       )
     }
-    FSExtra.writeFileSync(
+    writeFileSync(
       path.join(podDir, `${id}.podspec`),
       `Pod::Spec.new do |s|
   s.name = '${id}'
@@ -3350,7 +3516,7 @@ async function generateSwiftPackages({ root, dest }: { root: string; dest: strin
 end
 `
     )
-    FSExtra.writeFileSync(
+    writeFileSync(
       path.join(podDir, 'Register.m'),
       hasView ? `#import <Foundation/Foundation.h>
 
@@ -3404,12 +3570,17 @@ export function applyAndroidDependencyPatches(args: {
     'MainActivity.kt'
   )
   const rendered = nativeProjectPatches.holdLaunchScreenInMainActivity(
-    nativeProjectPatches.addReactNativeScreensFix(FSExtra.readFileSync(activityPath, 'utf8'))
+    nativeProjectPatches.enableEdgeToEdgeInMainActivity(
+      nativeProjectPatches.addReactNativeScreensFix(readFileSync(activityPath, 'utf8'))
+    )
   )
   if (!rendered.includes('RNScreensFragmentFactory')) {
     throw new Error('[vxrn] failed to apply the react-native-screens activity patch')
   }
-  FSExtra.writeFileSync(activityPath, rendered)
+  if (!rendered.includes('enableEdgeToEdge')) {
+    throw new Error('[vxrn] failed to apply the edge-to-edge activity patch')
+  }
+  writeFileSync(activityPath, rendered)
 }
 
 // use the community cli's final configuration so project-owned dependency
@@ -3437,7 +3608,7 @@ export async function getNativeDependencyInventory(
     let version = 'unknown'
     try {
       version =
-        JSON.parse(FSExtra.readFileSync(path.join(depRoot, 'package.json'), 'utf8'))
+        JSON.parse(readFileSync(path.join(depRoot, 'package.json'), 'utf8'))
           .version ?? 'unknown'
     } catch {}
     const platforms = Object.entries(dependency.platforms)
@@ -3452,10 +3623,11 @@ export async function getNativeDependencyInventory(
 // installs through the selected tooling: cocoapods for ios (which also runs
 // native codegen), nothing extra for android (codegen runs at gradle build).
 // `--no-install` skips installation but never fakes discovery output.
+// returns false when a missing pod binary skipped pod install.
 export function installNativeDependencies(args: {
   root: string
   platform?: 'ios' | 'android' | string
-}): void {
+}): boolean {
   const { root, platform } = args
   if (!platform || platform === 'ios') {
     // cocoapods reads podfiles and native module config as the locale's
@@ -3463,11 +3635,28 @@ export function installNativeDependencies(args: {
     // RCT_IGNORE_PODS_DEPRECATION stays unset: react native treats it as
     // RCT_SKIP_CODEGEN, and pod install must run codegen after autolinking
     // writes its config so every library spec lands in ReactCodegen.
-    execFileSync('pod', ['install', `--project-directory=${path.join(root, 'ios')}`], {
-      stdio: 'inherit',
-      env: { ...process.env, LC_ALL: 'en_US.UTF-8' },
-    })
+    try {
+      execFileSync('pod', ['install', `--project-directory=${path.join(root, 'ios')}`], {
+        stdio: 'inherit',
+        env: { ...process.env, LC_ALL: 'en_US.UTF-8' },
+      })
+    } catch (error) {
+      // a prebuild without --platform on a host without cocoapods writes
+      // android/ and skips ios work; a missing pod binary skips pod install
+      // the same way instead of failing the whole command. an explicit ios
+      // prebuild still fails loudly so the missing tool is never silent.
+      if (platform === 'ios' || !isMissingExecutable(error)) throw error
+      console.warn('[vxrn] `pod` is not available, so `pod install` was skipped')
+      return false
+    }
   }
+  return true
+}
+
+function isMissingExecutable(error: unknown) {
+  return (
+    error instanceof Error && 'code' in error && (error as { code?: unknown }).code === 'ENOENT'
+  )
 }
 
 const transformPath = (filePath: string) => {

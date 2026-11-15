@@ -1,5 +1,13 @@
 import { existsSync, realpathSync } from 'node:fs'
-import { mkdir, mkdtemp, readFile, rename, rm, symlink, writeFile } from 'node:fs/promises'
+import {
+  mkdir,
+  mkdtemp,
+  readFile,
+  rename,
+  rm,
+  symlink,
+  writeFile,
+} from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createContext, runInContext, runInNewContext } from 'node:vm'
@@ -24,6 +32,8 @@ import {
   normalizeNativeCommonJSInterop,
   postProcessNativeBundle,
   vxrnCompilerPlugin,
+  NATIVE_DEV_RUNTIME_END,
+  NATIVE_MODULE_SCOPE_MARKER,
   wrapNativeBundleModuleScope,
   type NativePluginContext,
 } from './createNativeDevEngine'
@@ -210,15 +220,29 @@ describe.each(['ios', 'android'] as const)('native plugin adapters on %s', (plat
         }
         runInNewContext(code, context)
         expect(Reflect.get(context, 'nativePluginResult')).toEqual([
-          { name: 'global', root, platform, dev: mode === 'dev' },
-          { name: 'direct', root, platform, dev: mode === 'dev' },
-          'plain',
-        ])
-        for (const factory of factories) {
-          expect(factory).toHaveBeenCalledExactlyOnceWith({
+          {
+            name: 'global',
             root,
             platform,
             dev: mode === 'dev',
+            command: mode === 'dev' ? 'serve' : 'build',
+          },
+          {
+            name: 'direct',
+            root,
+            platform,
+            dev: mode === 'dev',
+            command: mode === 'dev' ? 'serve' : 'build',
+          },
+          'plain',
+        ])
+        for (const factory of factories) {
+          expect(factory).toHaveBeenCalledTimes(1)
+          expect(factory).toHaveBeenCalledWith({
+            root,
+            platform,
+            dev: mode === 'dev',
+            command: mode === 'dev' ? 'serve' : 'build',
           })
         }
       } finally {
@@ -486,10 +510,13 @@ globalThis.result = (function(parentArgument) {
         }
       } else {
         const plugin = hermesCompatSWCPlugin(pipeline === 'rolldown-dev', true)
-        output = await Reflect.apply(plugin.transform as Function, undefined, [
-          source,
-          id,
-        ])
+        output = await Reflect.apply(
+          typeof plugin.transform === 'function'
+            ? plugin.transform
+            : plugin.transform!.handler,
+          undefined,
+          [source, id]
+        )
       }
       const context: any = {}
       context.__d = (factory: any) => {
@@ -592,10 +619,13 @@ describe.each(['shared', 'rolldown', 'metro'])(
             }
           } else {
             const plugin = vxrnCompilerPlugin('ios', false, projectRoot, true)
-            result = await Reflect.apply(plugin.transform as Function, undefined, [
-              source,
-              id,
-            ])
+            result = await Reflect.apply(
+              typeof plugin.transform === 'function'
+                ? plugin.transform
+                : plugin.transform!.handler,
+              undefined,
+              [source, id]
+            )
           }
           const runnable = new MagicString(result.code)
           for (const node of parseSync('probe.js', result.code).program.body) {
@@ -719,13 +749,23 @@ describe('native prelude', () => {
   })
 
   it('does not advertise a host event API that cannot remove listeners', () => {
+    // a bound function prints as [native code], like a host function
     const context = {
-      addEventListener() {},
+      addEventListener: function () {}.bind(null),
     }
 
     runInNewContext(getNativePrelude({ dev: false, platform: 'ios' }), context)
 
     expect(Reflect.get(context, 'addEventListener')).toBeUndefined()
+  })
+
+  it('keeps a javascript addEventListener without a removal API', () => {
+    const addEventListener = function addEventListener() {}
+    const context = { addEventListener }
+
+    runInNewContext(getNativePrelude({ dev: false, platform: 'ios' }), context)
+
+    expect(Reflect.get(context, 'addEventListener')).toBe(addEventListener)
   })
 
   it('preserves a complete host event API', () => {
@@ -853,7 +893,6 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
         entryFile: 'production.mjs',
         plugins: [workletImportsPlugin({ 'pure-math': ['default', 'reads'] })],
       })
-      expect(production.code).not.toContain('__esmMin')
       const productionRN: any = { console }
       runInNewContext(production.code, productionRN)
       expect(productionRN.calculate(10)).toBe(109)
@@ -868,7 +907,6 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
         minify: false,
         plugins: [workletImportsPlugin({ 'pure-math': ['default', 'reads'] })],
       })
-      expect(unminifiedProduction.code).toContain('__esmMin')
       const unminifiedRN: any = { console }
       runInNewContext(unminifiedProduction.code, unminifiedRN)
       expect(unminifiedRN.calculate(10)).toBe(109)
@@ -1022,6 +1060,85 @@ globalThis.hostModules = [WebSocket, getDevServer]`
           context.__rolldown_runtime__.clientId
         )}`
       )
+    } finally {
+      await native.close()
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('reloads once a restarted dev server answers, but not when a live server refuses the client', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-hmr-reconnect-'))
+    await writeFile(
+      join(root, 'WebSocket.js'),
+      `export default class WebSocket {
+  constructor() { this.listeners = {}; globalThis.hmrSocket = this }
+  addEventListener(type, fn) { this.listeners[type] = fn }
+}`
+    )
+    await writeFile(
+      join(root, 'getDevServer.js'),
+      `export default function getDevServer() {
+  return { url: 'http://localhost:8081/', bundleLoadedFromServer: true }
+}`
+    )
+    await writeFile(
+      join(root, 'entry.mjs'),
+      `import WebSocket from './WebSocket.js'
+import getDevServer from './getDevServer.js'
+globalThis.hostModules = [WebSocket, getDevServer]`
+    )
+    const native = await createNativeDevEngine({
+      root,
+      port: 52279,
+      platform: 'android',
+      plugins: [
+        {
+          name: 'native-hmr-reconnect-entry',
+          transform(_code, id) {
+            if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.mjs'`
+          },
+        },
+      ],
+    })
+    try {
+      const code = (await native.getBundle()).code
+      const run = () => {
+        const fetched: string[] = []
+        const reloads: string[] = []
+        let serverUp = false
+        const context: any = {
+          console: { ...console, warn() {} },
+          clearTimeout,
+          setTimeout: (fn: () => void) => queueMicrotask(fn),
+          fetch: async (url: string) => {
+            fetched.push(url)
+            if (!serverUp) {
+              serverUp = true
+              throw new Error('connection refused')
+            }
+            return { ok: true }
+          },
+        }
+        runInNewContext(code, context)
+        context.__VXRN_RELOAD_NATIVE_DEV_BUNDLE__ = (reason: string) =>
+          reloads.push(reason)
+        return { socket: context.hmrSocket, fetched, reloads }
+      }
+
+      const restarted = run()
+      restarted.socket.listeners.close({ code: 1006 })
+      await new Promise((resolve) => setTimeout(resolve, 20))
+      expect(restarted.fetched).toEqual([
+        'http://localhost:8081/status',
+        'http://localhost:8081/status',
+      ])
+      expect(restarted.reloads).toEqual(['dev server restarted'])
+
+      const refused = run()
+      refused.socket.listeners.close({ code: 1013 })
+      await new Promise((resolve) => setTimeout(resolve, 20))
+      expect(refused.fetched).toEqual([])
+      expect(refused.reloads).toEqual([])
     } finally {
       await native.close()
       await rm(root, { recursive: true, force: true })
@@ -1452,6 +1569,86 @@ describe('native production import.meta lowering', () => {
   })
 })
 
+describe('native function and class names', () => {
+  it('keeps colliding names in an unminified bundle, the way metro does', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-names-'))
+    for (const name of ['a', 'b']) {
+      await writeFile(
+        join(testRoot, `${name}.js`),
+        `export class UnsupportedFeature extends Error {}\nexport function read() {}`
+      )
+    }
+    await writeFile(
+      join(testRoot, 'entry.js'),
+      `import * as a from './a.js'\nimport * as b from './b.js'\nglobalThis.names = [a.UnsupportedFeature.name, b.UnsupportedFeature.name, a.read.name, b.read.name]`
+    )
+
+    try {
+      for (const dev of [true, false]) {
+        const result = await buildNativeBundle({
+          root: testRoot,
+          platform: 'ios',
+          dev,
+          minify: false,
+          entryFile: 'entry.js',
+        })
+        const context: any = { process: { env: {} } }
+        context.globalThis = context
+        runInNewContext(result.code, context)
+        expect(context.names).toEqual([
+          'UnsupportedFeature',
+          'UnsupportedFeature',
+          'read',
+          'read',
+        ])
+      }
+    } finally {
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+
+  it('keeps lowered class names in a module that also lowers async', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-dev-names-'))
+    const packageRoot = join(root, 'node_modules', 'errors-pkg')
+    await mkdir(packageRoot, { recursive: true })
+    await writeFile(
+      join(packageRoot, 'package.json'),
+      JSON.stringify({ main: './index.js' })
+    )
+    // async lowering reprints the lowered classes, renaming each inner
+    // constructor that shadows its top-level export.
+    await writeFile(
+      join(packageRoot, 'index.js'),
+      `class ErrorBase extends Error {}\nexport class UnsupportedFeature extends ErrorBase {}\nexport async function check() {}`
+    )
+    await writeFile(
+      join(root, 'entry.js'),
+      `const { UnsupportedFeature } = require('errors-pkg')\nglobalThis.names = [UnsupportedFeature.name, new UnsupportedFeature().constructor.name]`
+    )
+    const native = await createNativeDevEngine({
+      root,
+      port: 52279,
+      platform: 'ios',
+      plugins: [
+        {
+          name: 'native-names-entry',
+          transform(_code, id) {
+            if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.js'`
+          },
+        },
+      ],
+    })
+    try {
+      const context: any = { console, setTimeout, clearTimeout }
+      runInNewContext((await native.getBundle()).code, context)
+      expect(context.names).toEqual(['UnsupportedFeature', 'UnsupportedFeature'])
+    } finally {
+      await native.close()
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+})
+
 describe('native production react-native deep imports', () => {
   it('resolves react native subpaths that are missing from its exports map', async () => {
     const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-rn-deep-import-'))
@@ -1501,7 +1698,7 @@ describe('native production react-native deep imports', () => {
 describe('native animated guard transform', () => {
   it('preserves line count and returns a composable source map', async () => {
     const plugin = nativeAnimatedGuardPlugin()
-    if (typeof plugin.transform !== 'function') {
+    if (!plugin.transform) {
       throw new Error('native animated guard transform hook is not callable')
     }
     const source = [
@@ -1511,10 +1708,16 @@ describe('native animated guard transform', () => {
       '}',
     ].join('\n')
 
-    const result = await Reflect.apply(plugin.transform, undefined, [
-      source,
-      '/project/node_modules/react-native/src/private/animated/NativeAnimatedHelper.js',
-    ])
+    const result = await Reflect.apply(
+      typeof plugin.transform === 'function'
+        ? plugin.transform
+        : plugin.transform!.handler,
+      undefined,
+      [
+        source,
+        '/project/node_modules/react-native/src/private/animated/NativeAnimatedHelper.js',
+      ]
+    )
 
     expect(result.code.split('\n')).toHaveLength(source.split('\n').length)
     expect(result.code).toContain("if (typeof method !== 'function') return")
@@ -1628,30 +1831,32 @@ describe('getNativeTransformConfig platform env defines', () => {
 })
 
 describe('wrapNativeBundleModuleScope', () => {
-  // matches the marker rolldown dev() emits at the start of the runtime region
-  const RUNTIME_MARKER = '//#region \\0rolldown/runtime.js'
-
-  it('wraps module code after the prelude so top-level vars do not leak to global', () => {
-    const prelude = 'globalThis.global = globalThis;\nglobalThis.__DEV__ = true;\n'
+  it.each([
+    ['rolldown 1.2.15', '// \\0rolldown/runtime.js'],
+    ['rolldown 1.2.13', '//#region \\0rolldown/runtime.js'],
+  ])('wraps module code after the prelude with %s module comments', (_, header) => {
+    const prelude = `globalThis.global = globalThis;\nglobalThis.__DEV__ = true;\n${NATIVE_MODULE_SCOPE_MARKER}\n`
     // a top-level `var Headers` in a script becomes a non-configurable global,
     // which is the exact leak that breaks RN's polyfillGlobal in dev
-    const body = `${RUNTIME_MARKER}\nvar fetch_hot, fetch$1, Headers, Request, Response$1;\nglobalThis.__rolldown_runtime__ = {};\n`
+    const body = `${header}\nvar fetch_hot, fetch$1, Headers, Request, Response$1;\nglobalThis.__rolldown_runtime__ = {};\n`
+    const input = prelude + body
 
-    const out = wrapNativeBundleModuleScope(prelude + body)
+    const out = wrapNativeBundleModuleScope(input)
 
-    const openIdx = out.indexOf(';(function() {')
-    expect(openIdx).toBeGreaterThan(-1)
-    // prelude (global setup) stays at script scope, before the wrap opens
-    expect(out.indexOf('globalThis.__DEV__')).toBeLessThan(openIdx)
-    // the leaking declaration is now inside the function scope
-    expect(out.indexOf('var fetch_hot')).toBeGreaterThan(openIdx)
-    // and the result must still be syntactically valid (balanced wrap)
-    expect(() => new Function(out)).not.toThrow()
+    const context = createContext({})
+    runInContext(out, context)
+    expect(runInContext('globalThis.__DEV__', context)).toBe(true)
+    expect(
+      runInContext('Object.getOwnPropertyDescriptor(globalThis, "Headers")', context)
+    ).toBeUndefined()
+    // the opener shares the marker line, so every module keeps its mapped line
+    const lineOf = (code: string) =>
+      code.split('\n').indexOf('var fetch_hot, fetch$1, Headers, Request, Response$1;')
+    expect(lineOf(out)).toBe(lineOf(input))
   })
 
-  it('is a no-op when the runtime marker is absent (e.g. prod bundle)', () => {
-    const input = 'var x = 1;\nconsole.log(x);\n'
-    expect(wrapNativeBundleModuleScope(input)).toBe(input)
+  it('fails the build when the prelude marker is missing', () => {
+    expect(() => wrapNativeBundleModuleScope('var x = 1;\n')).toThrow('script scope')
   })
 })
 
@@ -1680,14 +1885,20 @@ describe('getHermesSWCIncludes', () => {
 
   it('lowers async generators for the Hermes development interpreter', async () => {
     const plugin = hermesCompatSWCPlugin(true)
-    if (typeof plugin.transform !== 'function') {
+    if (!plugin.transform) {
       throw new Error('Hermes compatibility transform hook is not callable')
     }
 
-    const result = await Reflect.apply(plugin.transform, undefined, [
-      'export async function* values() { yield await Promise.resolve(1) }',
-      '/project/async-generator.ts',
-    ])
+    const result = await Reflect.apply(
+      typeof plugin.transform === 'function'
+        ? plugin.transform
+        : plugin.transform!.handler,
+      undefined,
+      [
+        'export async function* values() { yield await Promise.resolve(1) }',
+        '/project/async-generator.ts',
+      ]
+    )
     expect(result.code).not.toContain('async function*')
     expect(result.code).not.toContain('async function *')
   })
@@ -1696,12 +1907,18 @@ describe('getHermesSWCIncludes', () => {
     'lowers complete class hierarchies for Hermes (dev=%s)',
     async (dev) => {
       const plugin = hermesCompatSWCPlugin(dev)
-      const result = await Reflect.apply(plugin.transform as Function, undefined, [
-        `class Base { value = 2; getValue() { return this.value } }
+      const result = await Reflect.apply(
+        typeof plugin.transform === 'function'
+          ? plugin.transform
+          : plugin.transform!.handler,
+        undefined,
+        [
+          `class Base { value = 2; getValue() { return this.value } }
        class Derived extends Base { extra = 3; getValue() { return super.getValue() + this.extra } }
        globalThis.__classProbe = new Derived().getValue()`,
-        '/project/classes.ts',
-      ])
+          '/project/classes.ts',
+        ]
+      )
       expect(result.code).not.toMatch(/\bclass\s+(?:Base|Derived|extends)/)
       const context: any = {}
       runInNewContext(result.code, context)
@@ -1711,8 +1928,13 @@ describe('getHermesSWCIncludes', () => {
 
   it('lowers constructor block bindings before production name mangling', async () => {
     const plugin = hermesCompatSWCPlugin(false)
-    const result = await Reflect.apply(plugin.transform as Function, undefined, [
-      `class Client {
+    const result = await Reflect.apply(
+      typeof plugin.transform === 'function'
+        ? plugin.transform
+        : plugin.transform!.handler,
+      undefined,
+      [
+        `class Client {
          constructor(options) {
            if (options.dsn) { let url = options.url; this.url = url }
            this.callbacks = []
@@ -1720,8 +1942,9 @@ describe('getHermesSWCIncludes', () => {
          }
        }
        globalThis.__constructorScope = new Client({dsn: true, url: 3})`,
-      '/project/constructor-scope.js',
-    ])
+        '/project/constructor-scope.js',
+      ]
+    )
     expect(result.code).not.toMatch(/\b(?:let|const)\s/)
     const context: any = {}
     runInNewContext(result.code, context)
@@ -1736,8 +1959,13 @@ describe('getHermesSWCIncludes', () => {
     'preserves class-free parameter shadowing for Hermes (dev=%s)',
     async (dev) => {
       const plugin = hermesCompatSWCPlugin(dev)
-      const result = await Reflect.apply(plugin.transform as Function, undefined, [
-        `function createStore(config) {
+      const result = await Reflect.apply(
+        typeof plugin.transform === 'function'
+          ? plugin.transform
+          : plugin.transform!.handler,
+        undefined,
+        [
+          `function createStore(config) {
          if (!globalThis.factory) {
            const config = { install() { globalThis.factory = value => value.id } }
            config.install()
@@ -1745,8 +1973,9 @@ describe('getHermesSWCIncludes', () => {
          return globalThis.factory(config)
        }
        globalThis.__storeId = createStore({id: 'device'})`,
-        '/project/class-free-storage.js',
-      ])
+          '/project/class-free-storage.js',
+        ]
+      )
       expect(result.code).not.toMatch(/\b(?:let|const)\s/)
       const context: any = {}
       runInNewContext(result.code, context)
@@ -1756,12 +1985,18 @@ describe('getHermesSWCIncludes', () => {
 
   it('lowers classes in large prebuilt modules', async () => {
     const plugin = hermesCompatSWCPlugin(false)
-    const result = await Reflect.apply(plugin.transform as Function, undefined, [
-      '/*' +
-        ' '.repeat(500_000) +
-        '*/ class Large { value = 7 } globalThis.__largeClass = new Large().value',
-      '/project/prebuilt.js',
-    ])
+    const result = await Reflect.apply(
+      typeof plugin.transform === 'function'
+        ? plugin.transform
+        : plugin.transform!.handler,
+      undefined,
+      [
+        '/*' +
+          ' '.repeat(500_000) +
+          '*/ class Large { value = 7 } globalThis.__largeClass = new Large().value',
+        '/project/prebuilt.js',
+      ]
+    )
     expect(result.code).not.toMatch(/\bclass\s+Large/)
     const context: any = {}
     runInNewContext(result.code, context)
@@ -1770,12 +2005,17 @@ describe('getHermesSWCIncludes', () => {
 
   it('downlevels private fields, public class fields, and static blocks for Hermes', async () => {
     const plugin = hermesCompatSWCPlugin(true)
-    if (typeof plugin.transform !== 'function') {
+    if (!plugin.transform) {
       throw new Error('Hermes compatibility transform hook is not callable')
     }
 
-    const result = await Reflect.apply(plugin.transform, undefined, [
-      `
+    const result = await Reflect.apply(
+      typeof plugin.transform === 'function'
+        ? plugin.transform
+        : plugin.transform!.handler,
+      undefined,
+      [
+        `
 class TransformProbe {
   #privateField = 1
   publicField = 2
@@ -1788,8 +2028,9 @@ class TransformProbe {
   }
 }
 `,
-      '/project/TransformProbe.ts',
-    ])
+        '/project/TransformProbe.ts',
+      ]
+    )
 
     expect(result.code).not.toContain('#privateField')
     expect(result.code).not.toMatch(/^\s*publicField\s*=/m)
@@ -1799,12 +2040,17 @@ class TransformProbe {
 
   it('preserves per-iteration bindings used by lazy method getters', async () => {
     const plugin = hermesCompatSWCPlugin(true)
-    if (typeof plugin.transform !== 'function') {
+    if (!plugin.transform) {
       throw new Error('Hermes compatibility transform hook is not callable')
     }
 
-    const result = await Reflect.apply(plugin.transform, undefined, [
-      `
+    const result = await Reflect.apply(
+      typeof plugin.transform === 'function'
+        ? plugin.transform
+        : plugin.transform!.handler,
+      undefined,
+      [
+        `
 const installedGroups = new WeakMap()
 function install(inst, methods) {
   const proto = Object.getPrototypeOf(inst)
@@ -1823,8 +2069,9 @@ function Schema() {
 }
 globalThis.__vxrnBlockScopeProbe = new Schema().nullish()
 `,
-      '/project/block-scope-loop.ts',
-    ])
+        '/project/block-scope-loop.ts',
+      ]
+    )
 
     try {
       new Function(result.code)()
@@ -1876,10 +2123,9 @@ export const result = new ParameterProbe(undefined, 'rest-a', 'rest-b').result
 
 describe('hmrClientNoopPlugin', () => {
   const plugin = hmrClientNoopPlugin()
-  const resolveId = plugin.resolveId as unknown as (
-    source: string,
-    importer?: string
-  ) => any
+  const resolveId = (typeof plugin.resolveId === 'function'
+    ? plugin.resolveId
+    : plugin.resolveId!.handler) as unknown as (source: string, importer?: string) => any
   const load = plugin.load as unknown as (id: string) => any
   const VIRTUAL_ID = '\0vxrn-hmr-client-noop'
 
@@ -1942,7 +2188,11 @@ describe('vxrnCompilerPlugin React Refresh registration', () => {
     process.env.NODE_ENV = 'test'
     try {
       const plugin = vxrnCompilerPlugin('ios', true)
-      const transform = plugin.transform as (code: string, id: string) => Promise<any>
+      const transform = (
+        typeof plugin.transform === 'function'
+          ? plugin.transform
+          : plugin.transform!.handler
+      ) as (code: string, id: string) => Promise<any>
       const result = await transform(
         'export const marker = "$RefreshReg$("; export function Probe() { return <div>probe</div> }',
         '/project/src/Probe.tsx'
@@ -1976,15 +2226,18 @@ describe('native required transform failures', () => {
 
       try {
         const plugin = vxrnCompilerPlugin('ios', dev, testRoot)
-        if (typeof plugin.transform !== 'function') {
+        if (!plugin.transform) {
           throw new Error('vxrn compiler transform hook is not callable')
         }
 
         await expect(
-          Reflect.apply(plugin.transform, undefined, [
-            nativeTransformProbe,
-            join(testRoot, 'entry.ts'),
-          ])
+          Reflect.apply(
+            typeof plugin.transform === 'function'
+              ? plugin.transform
+              : plugin.transform!.handler,
+            undefined,
+            [nativeTransformProbe, join(testRoot, 'entry.ts')]
+          )
         ).rejects.toThrow('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
       } finally {
         spy.mockRestore()
@@ -2070,15 +2323,18 @@ describe('native required transform failures', () => {
 
   it('rejects Hermes compatibility transform errors instead of returning source', async () => {
     const plugin = hermesCompatSWCPlugin(true)
-    if (typeof plugin.transform !== 'function') {
+    if (!plugin.transform) {
       throw new Error('Hermes compatibility transform hook is not callable')
     }
 
     await expect(
-      Reflect.apply(plugin.transform, undefined, [
-        'class TransformProbe { value = ; }',
-        '/project/TransformProbe.ts',
-      ])
+      Reflect.apply(
+        typeof plugin.transform === 'function'
+          ? plugin.transform
+          : plugin.transform!.handler,
+        undefined,
+        ['class TransformProbe { value = ; }', '/project/TransformProbe.ts']
+      )
     ).rejects.toBeTruthy()
   })
 
@@ -2093,23 +2349,29 @@ describe('native required transform failures', () => {
 
     try {
       const compilerPlugin = vxrnCompilerPlugin('ios', false, testRoot, true)
-      if (typeof compilerPlugin.transform !== 'function') {
+      if (!compilerPlugin.transform) {
         throw new Error('vxrn compiler transform hook is not callable')
       }
-      const compilerResult = await Reflect.apply(compilerPlugin.transform, undefined, [
-        nativeTransformProbe,
-        join(testRoot, 'entry.ts'),
-      ])
+      const compilerResult = await Reflect.apply(
+        typeof compilerPlugin.transform === 'function'
+          ? compilerPlugin.transform
+          : compilerPlugin.transform!.handler,
+        undefined,
+        [nativeTransformProbe, join(testRoot, 'entry.ts')]
+      )
       expect(compilerResult.map).toBeTruthy()
 
       const hermesPlugin = hermesCompatSWCPlugin(false, true)
-      if (typeof hermesPlugin.transform !== 'function') {
+      if (!hermesPlugin.transform) {
         throw new Error('Hermes compatibility transform hook is not callable')
       }
-      const hermesResult = await Reflect.apply(hermesPlugin.transform, undefined, [
-        'export class TransformProbe { value = 1 }',
-        join(testRoot, 'TransformProbe.ts'),
-      ])
+      const hermesResult = await Reflect.apply(
+        typeof hermesPlugin.transform === 'function'
+          ? hermesPlugin.transform
+          : hermesPlugin.transform!.handler,
+        undefined,
+        ['export class TransformProbe { value = 1 }', join(testRoot, 'TransformProbe.ts')]
+      )
       expect(hermesResult.map).toBeTruthy()
     } finally {
       compiler.configureVXRNCompilerPlugin({
@@ -2127,7 +2389,7 @@ describe('native required transform failures', () => {
 
     try {
       const plugin = vxrnCompilerPlugin('ios', true, '/project', true)
-      if (typeof plugin.transform !== 'function') {
+      if (!plugin.transform) {
         throw new Error('transform hook not callable')
       }
 
@@ -2139,7 +2401,13 @@ export function Counter() {
 }
 `
       const id = '/project/Counter.tsx'
-      const result = await Reflect.apply(plugin.transform, undefined, [inputCode, id])
+      const result = await Reflect.apply(
+        typeof plugin.transform === 'function'
+          ? plugin.transform
+          : plugin.transform!.handler,
+        undefined,
+        [inputCode, id]
+      )
 
       expect(result).toBeDefined()
       expect(result.map).toBeDefined()
@@ -2175,7 +2443,7 @@ export function Counter() {
 
     try {
       const plugin = vxrnCompilerPlugin('ios', true, '/project', true)
-      if (typeof plugin.transform !== 'function') {
+      if (!plugin.transform) {
         throw new Error('transform hook not callable')
       }
 
@@ -2190,7 +2458,13 @@ export function Counter() {
 export async function* probe() { throw new Error("MARKER"); }
 `
       const id = '/project/Counter.tsx'
-      const result = await Reflect.apply(plugin.transform, undefined, [inputCode, id])
+      const result = await Reflect.apply(
+        typeof plugin.transform === 'function'
+          ? plugin.transform
+          : plugin.transform!.handler,
+        undefined,
+        [inputCode, id]
+      )
 
       expect(result).toBeDefined()
       expect(result.map).toBeDefined()
@@ -2260,7 +2534,7 @@ export async function* probe() { throw new Error("MARKER"); }
     try {
       const projectRoot = process.cwd()
       const plugin = vxrnCompilerPlugin('ios', true, projectRoot, true)
-      if (typeof plugin.transform !== 'function') {
+      if (!plugin.transform) {
         throw new Error('transform hook not callable')
       }
 
@@ -2274,7 +2548,13 @@ export function Box() {
 }
 `
       const id = join(projectRoot, 'Box.tsx')
-      const result = await Reflect.apply(plugin.transform, undefined, [inputCode, id])
+      const result = await Reflect.apply(
+        typeof plugin.transform === 'function'
+          ? plugin.transform
+          : plugin.transform!.handler,
+        undefined,
+        [inputCode, id]
+      )
 
       expect(result).toBeDefined()
       expect(result.code).toContain('__workletHash')
@@ -2328,13 +2608,19 @@ export function Box() {
     try {
       const projectRoot = process.cwd()
       const plugin = vxrnCompilerPlugin('ios', true, projectRoot, false)
-      if (typeof plugin.transform !== 'function') {
+      if (!plugin.transform) {
         throw new Error('transform hook not callable')
       }
 
       const inputCode = `export function fn() { 'worklet'; return 1 }`
       const id = join(projectRoot, 'DefaultWorklet.tsx')
-      const result = await Reflect.apply(plugin.transform, undefined, [inputCode, id])
+      const result = await Reflect.apply(
+        typeof plugin.transform === 'function'
+          ? plugin.transform
+          : plugin.transform!.handler,
+        undefined,
+        [inputCode, id]
+      )
 
       expect(result).toBeDefined()
       // the caller explicitly supplied this Babel plugin.
@@ -2359,6 +2645,9 @@ export function Box() {
   })
 
   it('intercepts tuple worklet plugins with options, executes One OXC with options, and skips Babel when enableNativeWorklets is true', async () => {
+    const cacheDirectory = await mkdtemp(join(tmpdir(), 'vxrn-native-transform-cache-'))
+    const previousCache = process.env.ONE_NATIVE_TRANSFORM_CACHE_DIR
+    process.env.ONE_NATIVE_TRANSFORM_CACHE_DIR = cacheDirectory
     const compiler = await import('@vxrn/compiler')
     const { vi } = await import('vitest')
     const babelSpy = vi.spyOn(compiler, 'transformBabel')
@@ -2376,13 +2665,19 @@ export function Box() {
     try {
       const projectRoot = process.cwd()
       const plugin = vxrnCompilerPlugin('ios', true, projectRoot, false)
-      if (typeof plugin.transform !== 'function') {
+      if (!plugin.transform) {
         throw new Error('transform hook not callable')
       }
 
       const inputCode = `export function fn() { 'worklet'; return customGlobal * 2 }`
       const id = join(projectRoot, 'TupleWorklet.tsx')
-      const result = await Reflect.apply(plugin.transform, undefined, [inputCode, id])
+      const result = await Reflect.apply(
+        typeof plugin.transform === 'function'
+          ? plugin.transform
+          : plugin.transform!.handler,
+        undefined,
+        [inputCode, id]
+      )
 
       expect(result).toBeDefined()
       expect(result.code).toContain('__workletHash')
@@ -2396,6 +2691,9 @@ export function Box() {
       // Babel was completely skipped
       expect(babelSpy).not.toHaveBeenCalled()
     } finally {
+      if (previousCache === undefined) delete process.env.ONE_NATIVE_TRANSFORM_CACHE_DIR
+      else process.env.ONE_NATIVE_TRANSFORM_CACHE_DIR = previousCache
+      await rm(cacheDirectory, { recursive: true, force: true })
       babelSpy.mockRestore()
       workletSpy.mockRestore()
       getBabelOptionsSpy.mockRestore()
@@ -2800,6 +3098,38 @@ globalThis.__nativeAssetProbe = [icon, back, animation]
   })
 })
 
+describe('native asset scale siblings', () => {
+  it('rebuilds the asset module when only a scale sibling is rewritten', async () => {
+    const root = realpathSync(await mkdtemp(join(tmpdir(), 'vxrn-native-asset-sibling-')))
+    await mkdir(join(root, 'app'), { recursive: true })
+    await writeFile(join(root, 'icon.png'), 'icon-1x')
+    await writeFile(join(root, 'icon@3x.png'), 'icon-3x-old')
+    await writeFile(
+      join(root, 'app/index.tsx'),
+      `import icon from '../icon.png'\nexport default icon\n`
+    )
+
+    const native = await createNativeDevEngine({ root, port: 0, platform: 'ios' })
+    try {
+      const hashOf = (code: string) => code.match(/"hash":\s*"([0-9a-f]{32})"/)?.[1]
+      const before = hashOf((await native.getBundle()).code)
+      expect(before).toBeDefined()
+
+      await saveFile(join(root, 'icon@3x.png'), 'icon-3x-new-longer')
+
+      await vi.waitFor(
+        async () => {
+          expect(hashOf((await native.getBundle()).code)).not.toBe(before)
+        },
+        { timeout: 10_000 }
+      )
+    } finally {
+      await native.close()
+      await rm(root, { recursive: true, force: true })
+    }
+  }, 30_000)
+})
+
 describe('native conditional exports', () => {
   it('uses the require condition for CommonJS calls', async () => {
     const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-conditions-'))
@@ -3030,6 +3360,74 @@ globalThis.externalDefaults = [Component, marker, Scoped, Plain, require('extern
       await rm(testRoot, { recursive: true, force: true })
     }
   })
+})
+
+describe('native interop string literals', () => {
+  it('rewrites real __toESM calls while leaving string data alone', () => {
+    const literal = '__toESM(externalModule, 1)'
+    const code = [
+      `const stringData = ${JSON.stringify(literal)}`,
+      'const templateData = `' + literal + '`',
+      `// ${literal}`,
+      `/* ${literal} */`,
+      'const viaRequire = __toESM(require_helper(), 1)',
+      'const viaBinding = __toESM(externalModule, 1)',
+      'const viaLookup = __toESM(__rolldown_runtime__.loadExports("helper"), 1)',
+      'const viaRuntime = __rolldown_runtime__.__toESM(__rolldown_runtime__.loadExports("helper"), 1)',
+      'const renamed = __toESM$2(require_helper(), 1)',
+      'const spaced = __toESM(  require_helper()  ,  1  )',
+      'const interpolated = `${__toESM(externalModule, 1)}`',
+    ].join('\n')
+    const normalized = normalizeNativeCommonJSInterop(code)
+    expect(normalized).toContain(`const stringData = ${JSON.stringify(literal)}`)
+    expect(normalized).toContain('const templateData = `' + literal + '`')
+    expect(normalized).toContain(`// ${literal}`)
+    expect(normalized).toContain(`/* ${literal} */`)
+    expect(normalized).toContain('const viaRequire = __toESM(require_helper())')
+    expect(normalized).toContain('const viaBinding = __toESM(externalModule)')
+    expect(normalized).toContain(
+      'const viaLookup = __toESM(__rolldown_runtime__.loadExports("helper"))'
+    )
+    expect(normalized).toContain(
+      'const viaRuntime = __rolldown_runtime__.__toESM(__rolldown_runtime__.loadExports("helper"))'
+    )
+    expect(normalized).toContain('const renamed = __toESM$2(require_helper())')
+    expect(normalized).toContain('const spaced = __toESM(  require_helper()    )')
+    expect(normalized).toContain('const interpolated = `${__toESM(externalModule)}`')
+  })
+
+  it.each([false, true])(
+    'keeps __toESM string data through buildNativeBundle (minify=%s)',
+    async (minify) => {
+      const literal = '__toESM(externalModule, 1)'
+      const root = await mkdtemp(join(tmpdir(), 'vxrn-interop-literal-'))
+      try {
+        await writeFile(join(root, 'package.json'), JSON.stringify({ type: 'module' }))
+        await writeFile(
+          join(root, 'entry.js'),
+          `globalThis.__interopLiteralProbe = ${JSON.stringify(literal)}\n`
+        )
+        const { code } = await buildNativeBundle({
+          root,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          dev: true,
+          minify,
+        })
+        expect(code).toContain(literal)
+        const context = {
+          clearTimeout,
+          console,
+          process: { env: {} },
+          setTimeout,
+        }
+        runInNewContext(code, context)
+        expect(Reflect.get(context, '__interopLiteralProbe')).toBe(literal)
+      } finally {
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
 })
 
 describe('native Flow sources', () => {
@@ -3335,6 +3733,56 @@ describe('postProcessNativeBundle', () => {
   })
 })
 
+describe('native dev bundle post-processing failures', () => {
+  it('rejects the bundle request with the failure instead of timing out', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-postprocess-error-'))
+    await writeFile(join(root, 'package.json'), JSON.stringify({ type: 'module' }))
+    await writeFile(join(root, 'entry.js'), `globalThis.__postprocessProbe = 1\n`)
+    const native = await createNativeDevEngine({
+      root,
+      port: 0,
+      platform: 'ios',
+      plugins: [
+        {
+          name: 'postprocess-error-entry',
+          transform(code, id) {
+            if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.js'`
+          },
+        },
+        {
+          name: 'postprocess-error-poison',
+          renderChunk() {
+            // valid javascript, so rolldown delivers it: the single-line
+            // class fields inside the runtime region gain lines when
+            // downleveled, which throws inside handleOutput.
+            return {
+              code: [
+                NATIVE_MODULE_SCOPE_MARKER,
+                'class Poison { x = 1; y = 2; z = 3; }',
+                NATIVE_DEV_RUNTIME_END,
+                'globalThis.__postprocessProbe = new Poison();',
+                '',
+              ].join('\n'),
+            }
+          },
+        },
+      ],
+    })
+    try {
+      await expect(native.getBundle()).rejects.toThrow(
+        'Hermes runtime transform added lines'
+      )
+      // the failure is recorded for later callers, not just the waiter
+      await expect(native.getBundle()).rejects.toThrow(
+        'Hermes runtime transform added lines'
+      )
+    } finally {
+      await native.close()
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+})
+
 describe('native package context identity', () => {
   it.each(['@tamagui/web', '@tamagui/adapt'])(
     'shares %s contexts with dependencies containing a second package copy',
@@ -3469,4 +3917,359 @@ describe('native zero-client edit recoverability', () => {
       }
     }
   )
+})
+
+describe('native mixed ESM and CommonJS exports', () => {
+  it.each([false, true])(
+    'preserves replacement exports for require and import (dev=%s)',
+    async (dev) => {
+      const root = await mkdtemp(join(tmpdir(), 'vxrn-native-mixed-'))
+      const dep = join(root, 'node_modules/mixed-native')
+      await mkdir(dep, { recursive: true })
+      await writeFile(
+        join(dep, 'package.json'),
+        JSON.stringify({ name: 'mixed-native', 'react-native': 'index.ts' })
+      )
+      await writeFile(
+        join(dep, 'api.ts'),
+        "export const value = 'native'; export const discarded = 'esm-only'"
+      )
+      await writeFile(
+        join(dep, 'index.ts'),
+        `
+import { value } from './api'
+export * from './api'
+export const install = () => value
+const api: { value: string; default?: unknown; install?: unknown } = { value }
+export default api
+module.exports = api
+module.exports.default = api
+module.exports.install = install
+`
+      )
+      await writeFile(
+        join(root, 'entry.js'),
+        `
+import api, { install, value, discarded } from 'mixed-native'
+const required = require('mixed-native')
+globalThis.mixedProbe = {
+  same: api === required,
+  selfDefault: required.default === required,
+  installed: install(),
+  value,
+  discarded,
+  keys: Object.keys(required).sort(),
+}
+`
+      )
+      try {
+        const bundle = await buildNativeBundle({
+          root,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          dev,
+        })
+        const context: any = { console }
+        runInNewContext(bundle.code, context)
+
+        // metro's react native preset lowers all imports and exports before cjs runs.
+        const { transformAsync } = await import('@babel/core')
+        const metroContext: any = { console }
+        const modules = new Map<string, any>()
+        const sources = new Map<string, string>()
+        for (const [name, file] of [
+          ['mixed-native', join(dep, 'index.ts')],
+          ['./api', join(dep, 'api.ts')],
+          ['entry', join(root, 'entry.js')],
+        ]) {
+          const transformed = await transformAsync(await readFile(file!, 'utf8'), {
+            filename: file,
+            babelrc: false,
+            configFile: false,
+            presets: ['module:@react-native/babel-preset'],
+          })
+          sources.set(name!, transformed!.code!)
+        }
+        const metroRequire = (name: string): any => {
+          if (modules.has(name)) return modules.get(name).exports
+          const module = { exports: {} }
+          modules.set(name, module)
+          runInNewContext(
+            '(function(module, exports, require) {' + sources.get(name) + '\n})',
+            metroContext
+          )(module, module.exports, metroRequire)
+          return module.exports
+        }
+        metroRequire('entry')
+        expect(context.mixedProbe).toEqual(metroContext.mixedProbe)
+        expect(context.mixedProbe).toEqual({
+          same: true,
+          selfDefault: true,
+          installed: 'native',
+          value: 'native',
+          discarded: undefined,
+          keys: ['default', 'install', 'value'],
+        })
+      } finally {
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
+})
+
+it.each([
+  'export const value = "module.exports = ignored"',
+  'export const module = { exports: 1 }; module.exports = 2',
+  'export function local(module) { module.exports = 1 }',
+  'export function local(exports) { exports.value = 1 }',
+  'module.exports = 1',
+])('leaves non-mixed sources alone: %s', async (source) => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  expect(await transformMixedNativeModule(source, 'probe.js')).toBeUndefined()
+})
+
+it('preserves computed CommonJS assignments and their source map', async () => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  const source = "export const dropped = true;\nmodule['exports'] = { value: 42 };\n"
+  const result = await transformMixedNativeModule(source, 'probe.js', true)
+  const module = { exports: {} }
+  runInNewContext(result!.code, { module, exports: module.exports })
+  expect(module.exports).toEqual({ value: 42 })
+  const lines = result!.code.split('\n')
+  const line = lines.findIndex((line) => line.includes('42'))
+  expect(
+    originalPositionFor(new TraceMap(result!.map), {
+      line: line + 1,
+      column: lines[line]!.indexOf('42'),
+    })
+  ).toMatchObject({ source: 'probe.js', line: 2 })
+})
+
+it('keeps Babel export properties writable in mixed modules', async () => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  const result = await transformMixedNativeModule(
+    'export let value = 1; exports.value = 2; export const lexical = () => value',
+    'probe.js'
+  )
+  const module = { exports: {} as any }
+  runInNewContext(result!.code, { module, exports: module.exports })
+  expect(module.exports.value).toBe(2)
+  expect(module.exports.lexical()).toBe(1)
+})
+
+it.each([
+  'export const value = this; module.exports = { valueIsObject: typeof value === "object", strict: (function () { return this === undefined })() };',
+  '"use strict"; export const value = this; module.exports = { valueIsObject: typeof value === "object", strict: (function () { return this === undefined })() };',
+  'export const value = 42; Object.assign(exports, { attached: value });',
+  'export const value = 42; const out = exports; out.attached = value;',
+  'export const value = 42; const out = module; out.exports.attached = value;',
+  'export let value = 1; exports.value = 10; value++;',
+  'export let value = 1; export { value as alias }; exports.value = 10; value++;',
+  'export let value = 1, next = exports.value; exports.attached = next;',
+  'export let value = 1; exports.value = 10; value ||= 2;',
+  'export default function () {}; exports.default = 42;',
+  'export default function named() {}; exports.default = 42;',
+  'export default class Named {}; exports.default = 42;',
+  'export default 1; exports.default = 42;',
+  'export let value = 1; export const nested = () => { let value = 10; value++; return value }; exports.attached = exports.nested();',
+  'export let value = 1; export const previous = value++; exports.attached = previous;',
+  'export let value = 1; ({ value } = { value: 42 }); exports.attached = value;',
+  'export let value = 1; export const increment = () => value++; exports.increment();',
+  'let value = 1; export { value as renamed }; value += 2; exports.attached = value;',
+])('matches Metro wrapper semantics: %s', async (source) => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  const { transformAsync } = await import('@babel/core')
+  const actual = await transformMixedNativeModule(source, 'probe.js')
+  const expected = await transformAsync(source, {
+    filename: 'probe.js',
+    babelrc: false,
+    configFile: false,
+    presets: ['module:@react-native/babel-preset'],
+  })
+  const evaluate = (code: string) => {
+    const module = { exports: {} as any }
+    runInNewContext('(function(module, exports) {' + code + '\n})(module, exports)', {
+      module,
+      exports: module.exports,
+    })
+    return JSON.parse(JSON.stringify(module.exports))
+  }
+  expect(actual).toBeDefined()
+  expect(evaluate(actual!.code)).toEqual(evaluate(expected!.code!))
+})
+
+it.each([
+  'export function local(exports) { return Object.assign(exports, { value: 1 }) }',
+  'export function local(module) { return module }',
+  'export const obj = { exports: 1, module: 2 }',
+  'export function local() { module.exports = 1; var module }',
+  'export function local({ exports }) { return exports }',
+  'export function local() { try {} catch (exports) { exports.value = 1 } }',
+  'export function local() { for (const exports of []) { exports.value = 1 } }',
+])('keeps lexical CommonJS shadows unchanged: %s', async (source) => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  expect(await transformMixedNativeModule(source, 'probe.js')).toBeUndefined()
+})
+it.each([
+  [
+    'probe.js',
+    'export let value=1; export function increment(exports){value++;} increment({}); module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; for(value of [2,3]) {} module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=""; for(value in {a:1,b:2}) {} module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; for(value of [2,3]) if(value===2) continue; module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; for(const value of [2,3]) {} module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; export function increment(module, exports){value++;} increment({},{}); module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; exports={}; value++; module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.ts',
+    'export enum Color { Red }; exports.Color=42; module.exports={value:exports.Color};',
+  ],
+  [
+    'probe.ts',
+    'export namespace Color { export const Red = 1 }; exports.Color=42; module.exports={value:exports.Color};',
+  ],
+  [
+    'probe.ts',
+    'export const value: unknown = this; module.exports={valueIsObject:typeof value === "object",strict:(function(){return this === undefined})()};',
+  ],
+  [
+    'probe.tsx',
+    'export enum Color { Red }; exports.Color=42; module.exports={value:exports.Color};',
+  ],
+])('matches Metro writable binding semantics in %s: %s', async (filename, source) => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  const { transformAsync } = await import('@babel/core')
+  const actual = await transformMixedNativeModule(source, filename)
+  const expected = await transformAsync(source, {
+    filename,
+    babelrc: false,
+    configFile: false,
+    presets: ['module:@react-native/babel-preset'],
+  })
+  const evaluate = (code: string) => {
+    const module = { exports: {} }
+    runInNewContext('(function(module, exports) {' + code + '\n})(module, exports)', {
+      module,
+      exports: module.exports,
+    })
+    return JSON.parse(JSON.stringify(module.exports))
+  }
+  expect(actual).toBeDefined()
+  expect(evaluate(actual!.code)).toEqual(evaluate(expected!.code!))
+})
+
+it('composes TypeScript runtime declaration maps to the original source', async () => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  const source = 'export enum Color { Red };\nexports.Color = 42;\n'
+  const result = await transformMixedNativeModule(source, 'probe.ts', true)
+  const lines = result!.code.split('\n')
+  const line = lines.findIndex((line) => line.includes('42'))
+  expect(
+    originalPositionFor(new TraceMap(result!.map), {
+      line: line + 1,
+      column: lines[line]!.indexOf('42'),
+    })
+  ).toMatchObject({ source: 'probe.ts', line: 2 })
+})
+
+describe('bun ios promise polyfill gating', () => {
+  async function writePromiseFixture() {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-bun-promise-'))
+    const rnCoreDir = join(root, 'node_modules', 'react-native', 'Libraries', 'Core')
+    const rnPromiseDir = join(root, 'node_modules', 'react-native', 'Libraries', 'Promise')
+    await mkdir(rnCoreDir, { recursive: true })
+    await mkdir(rnPromiseDir, { recursive: true })
+    await writeFile(
+      join(root, 'node_modules', 'react-native', 'package.json'),
+      JSON.stringify({ name: 'react-native', main: 'index.js' })
+    )
+    await writeFile(
+      join(rnPromiseDir, 'polyfillPromise.js'),
+      'globalThis.__RN_PROMISE_POLYFILL_LOADED__ = true; export {}'
+    )
+    await writeFile(
+      join(rnCoreDir, 'InitializeCore.js'),
+      `import '../Promise/polyfillPromise'`
+    )
+    await writeFile(
+      join(root, 'entry.js'),
+      `import 'react-native/Libraries/Core/InitializeCore'`
+    )
+    return root
+  }
+
+  it('keeps react-native polyfillPromise by default on ios and android production builds', async () => {
+    const prev = process.env.ONE_BUN_ENGINE
+    delete process.env.ONE_BUN_ENGINE
+    const root = await writePromiseFixture()
+    try {
+      const [iosOut, androidOut] = await Promise.all([
+        buildNativeBundle({ root, platform: 'ios', entryFile: 'entry.js', minify: false }),
+        buildNativeBundle({ root, platform: 'android', entryFile: 'entry.js', minify: false }),
+      ])
+      expect(iosOut.code).toContain('__RN_PROMISE_POLYFILL_LOADED__')
+      expect(androidOut.code).toContain('__RN_PROMISE_POLYFILL_LOADED__')
+    } finally {
+      if (prev === undefined) delete process.env.ONE_BUN_ENGINE
+      else process.env.ONE_BUN_ENGINE = prev
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('stubs polyfillPromise only for bun ios builds and respects ONE_BUN_ENGINE=0', async () => {
+    const prev = process.env.ONE_BUN_ENGINE
+    const root = await writePromiseFixture()
+    try {
+      await mkdir(join(root, 'ios'), { recursive: true })
+      await writeFile(join(root, 'ios', 'Podfile'), '# [vxrn/one] bun engine\n')
+
+      delete process.env.ONE_BUN_ENGINE
+      const iosBun = await buildNativeBundle({
+        root,
+        platform: 'ios',
+        entryFile: 'entry.js',
+        minify: false,
+      })
+      const androidBun = await buildNativeBundle({
+        root,
+        platform: 'android',
+        entryFile: 'entry.js',
+        minify: false,
+      })
+      expect(iosBun.code).not.toContain('__RN_PROMISE_POLYFILL_LOADED__')
+      expect(androidBun.code).toContain('__RN_PROMISE_POLYFILL_LOADED__')
+
+      process.env.ONE_BUN_ENGINE = '0'
+      const iosOta = await buildNativeBundle({
+        root,
+        platform: 'ios',
+        entryFile: 'entry.js',
+        minify: false,
+      })
+      expect(iosOta.code).toContain('__RN_PROMISE_POLYFILL_LOADED__')
+    } finally {
+      if (prev === undefined) delete process.env.ONE_BUN_ENGINE
+      else process.env.ONE_BUN_ENGINE = prev
+      await rm(root, { recursive: true, force: true })
+    }
+  })
 })

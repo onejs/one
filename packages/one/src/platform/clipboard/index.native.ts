@@ -1,10 +1,9 @@
-import { NitroModules } from 'react-native-nitro-modules'
+import { clipboardNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
 import type {
   ClipboardGetImageOptions as NativeImageOptions,
   ClipboardGetStringOptions as NativeGetStringOptions,
   ClipboardSetStringOptions as NativeSetStringOptions,
-  OneClipboard as NativeClipboard,
 } from '../specs/OneClipboard.nitro'
 import type {
   ClipboardContentType,
@@ -26,17 +25,6 @@ import {
 } from './validate'
 
 export type * from './types'
-
-// clipboard matching expo-clipboard, backed by the OneClipboard nitro
-// hybrid object (created on first use and cached). native owns all
-// behavior. url methods are ios-only in expo: on android they resolve the
-// empty value, so shared code needs no Platform.OS check.
-let hybrid: NativeClipboard | undefined
-
-function native(): NativeClipboard {
-  hybrid ??= NitroModules.createHybridObject<NativeClipboard>('OneClipboard')
-  return hybrid
-}
 
 function getString(options?: ClipboardGetStringOptions): Promise<string> {
   assertGetStringOptions(options, 'getString')
@@ -143,7 +131,7 @@ function addListener(
       removed = true
       listeners.delete(subscription)
       if (listeners.size === 0) {
-        hybrid?.clearClipboardListener()
+        native().clearClipboardListener()
       }
     },
   }

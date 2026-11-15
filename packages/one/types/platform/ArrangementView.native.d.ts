@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { type StyleProp, type ViewStyle } from 'react-native';
-import type { OneNativeStyle } from './generated/controlTypes';
-import { type HingeState } from './adaptive/index.native';
+import type { OneNativeStyle } from './generated/controlTypes.js';
+import { type HingeState } from './adaptive/index.native.js';
 export type ArrangementViewStyle = 'automatic' | 'split' | 'overlay' | {
     kind: 'automatic';
 } | {

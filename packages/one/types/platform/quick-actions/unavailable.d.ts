@@ -1,4 +1,4 @@
-import type { QuickActionItem } from '../specs/OneQuickActions.nitro';
+import type { QuickActionItem } from '../specs/OneQuickActions.nitro.js';
 export type { QuickActionItem };
 declare function setItems(items: QuickActionItem[]): Promise<void>;
 declare function getItems(): Promise<QuickActionItem[]>;

@@ -1,3 +1,4 @@
+#if ONE_GROUP_ACCOUNT
 import AuthenticationServices
 import NitroModules
 import React
@@ -157,3 +158,4 @@ private final class AppleAuthSessionDelegate: NSObject, ASAuthorizationControlle
     }
   }
 }
+#endif

@@ -1,3 +1,4 @@
+import type { RevivedLoaderData } from './loaderJSX.js';
 export type LoaderTimingEntry = {
     path: string;
     startTime: number;
@@ -11,7 +12,7 @@ export declare function getLoaderTimingHistory(): LoaderTimingEntry[];
 /**
  * Imperatively refetch loader data for a given path.
  *
- * @param pathname - The route path to refetch (e.g., '/users/123')
+ * @param href - The route to refetch (e.g., '/users/123'). An ssr route's query is part of what is refetched.
  * @returns Promise that resolves when refetch completes
  * @link https://onestack.dev/docs/api/hooks/useLoaderState#refetchloader
  *
@@ -20,7 +21,7 @@ export declare function getLoaderTimingHistory(): LoaderTimingEntry[];
  * await refetchLoader('/users/123')
  * ```
  */
-export declare function refetchLoader(pathname: string): Promise<void>;
+export declare function refetchLoader(href: string): Promise<void>;
 /**
  * Refetch the loader data for a specific match (identified by routeId) by fetching
  * the current page's loader JS and updating only that match entry in clientMatches.
@@ -31,35 +32,6 @@ export declare function refetchLoader(pathname: string): Promise<void>;
  * loader in isolation; that can be added in a follow-up.
  */
 export declare function refetchMatchLoader(routeId: string, currentPath: string): Promise<void>;
-/**
- * Access loader data with full state control including refetch capability.
- * Use this when you need loading state or refetch; use `useLoader` for just data.
- *
- * @param loader - The loader function (optional - omit for just refetch/state)
- * @returns Object with data, state ('idle' | 'loading'), and refetch function
- * @link https://onestack.dev/docs/api/hooks/useLoaderState
- *
- * @example
- * ```tsx
- * const { data, state, refetch } = useLoaderState(loader)
- *
- * return (
- *   <div>
- *     {state === 'loading' && <Spinner />}
- *     <button onClick={refetch}>Refresh</button>
- *     <pre>{JSON.stringify(data)}</pre>
- *   </div>
- * )
- * ```
- */
-export declare function useLoaderState<Loader extends Function = any, Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown>(loader?: Loader): Loader extends undefined ? {
-    refetch: () => Promise<void>;
-    state: 'idle' | 'loading';
-} : {
-    data: Returned extends Promise<any> ? Awaited<Returned> : Returned;
-    refetch: () => Promise<void>;
-    state: 'idle' | 'loading';
-};
 /**
  * Load route data with SSR/SSG support. Returns the loader's data directly.
  * For loading state and refetch capability, use `useLoaderState` instead.
@@ -80,7 +52,15 @@ export declare function useLoaderState<Loader extends Function = any, Returned =
  * }
  * ```
  */
-export declare function useLoader<Loader extends Function, Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown>(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned;
-export { setSSRLoaderData } from './server/ssrLoaderData';
+export declare function useLoader<Loader extends Function, Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown>(loader: Loader): RevivedLoaderData<Awaited<Returned>>;
+export declare function useLoaderState<Loader extends Function = any, Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown>(loader?: Loader): Loader extends undefined ? {
+    refetch: () => Promise<void>;
+    state: 'idle' | 'loading';
+} : {
+    data: RevivedLoaderData<Awaited<Returned>>;
+    refetch: () => Promise<void>;
+    state: 'idle' | 'loading';
+};
+export { setSSRLoaderData } from './server/ssrLoaderData.js';
 export declare function resetLoaderState(): void;
 //# sourceMappingURL=useLoader.d.ts.map

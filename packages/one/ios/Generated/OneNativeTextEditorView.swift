@@ -6,11 +6,7 @@ import UIKit
 private final class TextEditorModel: ObservableObject {
   @Published var controlled = OneNativeControlled<String>("")
   @Published var controlledFocus = OneNativeControlled<Bool>(false)
-  @Published var disabled: Bool = false
-  @Published var textInputAutocapitalization: String = ""
-  @Published var autocorrectionDisabled: Bool = false
-  @Published var keyboardType: String = ""
-  @Published var textContentType: String = ""
+
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -36,7 +32,7 @@ private final class TextEditorModel: ObservableObject {
   }
   var onChange: ((String, Int, Int) -> Void)?
   func change(_ value: String) {
-    guard active, !disabled, controlled.value != value else { return }
+    guard active, controlled.value != value else { return }
     controlled.change(value)
     if syncStateId != 0 { OneNativeSyncRegistry.set(Int32(syncStateId), value: value as NSObject) }
     onChange?(value, controlled.eventCount, controlled.revision)
@@ -45,7 +41,7 @@ private final class TextEditorModel: ObservableObject {
   var onFocusChange: ((Bool, Int, Int) -> Void)?
   func changeFocus(_ value: Bool) {
     hasNativeFocus = value
-    guard active, !disabled, controlledFocus.value != value else { return }
+    guard active, controlledFocus.value != value else { return }
     controlledFocus.change(value)
     onFocusChange?(value, controlledFocus.eventCount, controlledFocus.revision)
   }
@@ -73,15 +69,11 @@ private final class TextEditorModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, syncStateId: Int, focused: Bool, acknowledgedFocusEvent: Int, focusRevision: Int, disabled: Bool, textInputAutocapitalization: String, autocorrectionDisabled: Bool, keyboardType: String, textContentType: String) {
+  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, syncStateId: Int, focused: Bool, acknowledgedFocusEvent: Int, focusRevision: Int) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     model.bindSyncState(syncStateId)
     if let next = model.controlledFocus.applying(focused, acknowledged: acknowledgedFocusEvent, revision: focusRevision) { model.controlledFocus = next }
-    if model.disabled != disabled { model.disabled = disabled }
-    if model.textInputAutocapitalization != textInputAutocapitalization { model.textInputAutocapitalization = textInputAutocapitalization }
-    if model.autocorrectionDisabled != autocorrectionDisabled { model.autocorrectionDisabled = autocorrectionDisabled }
-    if model.keyboardType != keyboardType { model.keyboardType = keyboardType }
-    if model.textContentType != textContentType { model.textContentType = textContentType }
+
   }
 
 
@@ -130,10 +122,6 @@ private struct TextEditorContent: View {
         get: { model.controlled.value },
         set: { value in model.change(value) }
       ))
-      .oneNativeTextInputAutocapitalization(model.textInputAutocapitalization)
-      .autocorrectionDisabled(model.autocorrectionDisabled)
-      .oneNativeKeyboardType(model.keyboardType)
-      .oneNativeTextContentType(model.textContentType)
       .focused($focused)
       .onChange(of: focused) { _, isFocused in
         model.changeFocus(isFocused)
@@ -144,7 +132,6 @@ private struct TextEditorContent: View {
       .onAppear {
         if model.controlledFocus.value { focused = true }
       }
-      .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }

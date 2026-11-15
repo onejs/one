@@ -2,5 +2,5 @@ export declare function getManifest({ routerRoot, ignoredRouteFiles, routePaths:
     routerRoot: string;
     ignoredRouteFiles?: string[];
     routePaths?: string[];
-}): import("../server/createRoutesManifest").RoutesManifest<string> | null;
+}): import("../server/createRoutesManifest.js").RoutesManifest<string> | null;
 //# sourceMappingURL=getManifest.d.ts.map

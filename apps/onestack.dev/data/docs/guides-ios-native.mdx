@@ -113,6 +113,34 @@ After the archive process completes, Xcode will automatically open the Organizer
   You can also open the Organizer window by clicking "Window" → "Organizer" on the menu bar.
 </Notice>
 
+### Bun engine (experimental)
+
+Release builds can run on Bun's ahead-of-time compiler instead of Hermes. The release bundle is compiled into machine code at build time, inside Bun's fork of JavaScriptCore, and shipped in the signed app. Development builds keep Hermes and fast refresh.
+
+```ts
+one({
+  native: {
+    app: {
+      ios: { bundleId: 'com.example.app', engine: 'bun' },
+    },
+  },
+})
+```
+
+Apps on `expo prebuild` pass the same option to the plugin: `['vxrn/expo-plugin', { engine: 'bun' }]`.
+
+`pod install` downloads the engine from a pinned [onejs/bun-engine](https://github.com/onejs/bun-engine) release into `~/Library/Caches/one/bun-engine`, checks its checksum, and reuses it after that. Set `ONE_BUN_ENGINE_DIR` to use a local engine build instead. The bundle phase compiles `main.jsbundle` on every Release build and links the program into `BunCompat.framework`, since an App Store binary may have only one executable segment.
+
+Limits:
+
+* iOS only for now. Android stays on Hermes.
+* Code that is only known at run time, such as `new Function` and `eval`, runs in the interpreter without the speedup.
+* Apple only runs native code signed into the build, so an over-the-air update cannot carry compiled code. Updates are Hermes bytecode, and an app that launches one runs it on Hermes, which the build still links, until the next build brings the compiled program back.
+* Reanimated and worklets runtimes stay on Hermes.
+* The engine adds about 170 MB to the app today.
+
+Remove `engine: 'bun'` and prebuild again to go back to Hermes.
+
 
 ## Project Setup
 
@@ -206,6 +234,10 @@ The rest of `native.app` covers appearance, links, and store settings:
 - `ios.accentColor`: `{ light, dark }` hex colors for the app's tint (tab
   selection, text cursor, system controls), read in JS as
   `PlatformColor('AccentColor')`.
+- `ios.assetCatalog`: a project-relative `.xcassets` folder, in the format Xcode
+  writes, whose imagesets, colorsets and symbolsets prebuild merges into the
+  app's asset catalog, for `UIImage(named:)` and a tab's `image`. A name
+  prebuild generates itself, such as `AppIcon` or `AccentColor`, is an error.
 - `fonts`: project-relative `.ttf` or `.otf` files bundled into the app. iOS
   lists them in `UIAppFonts`; Android loads them from `assets/fonts`. Use the
   font's own family name in styles.
@@ -248,6 +280,13 @@ ios: {
     kind: 'MyAppStatus',
     displayName: 'My status',
     description: 'Shows the latest status.',
+    families: [
+      'systemSmall',
+      'systemMedium',
+      'accessoryCircular',
+      'accessoryRectangular',
+      'accessoryInline',
+    ],
   },
 }
 ```
@@ -320,13 +359,80 @@ The activity view also accepts `expandedLeading`, `expandedTrailing`, and
 
 `WidgetUI` supports `Text`, `Image` (SF Symbols), `VStack`, `HStack`,
 `ZStack`, `Spacer`, `Divider`, `Progress`, `Gauge`, `Circle`, `Rectangle`,
-`RoundedRectangle`, and `Link`. Styles include color, background color, font size,
+`RoundedRectangle`, `Link`, and `Button`. Styles include color, background color, font size,
 weight and design, padding, corner radius, spacing, size, opacity, line limit,
 and alignment. Colors use six-digit hex values. JSX layouts can contain pure
 function components; compute hook state in the app and pass it as props. The
-`write` and `writeView` methods update the same widget. Android widgets require
-a separate Glance target, storage contract, and lifecycle; this setting
-generates only iOS targets.
+`write` and `writeView` methods update the same widget.
+
+`W.Button` dispatches an interactive `AppIntent` (`OneWidgetButtonIntent`) from a Home Screen widget or Live Activity without foregrounding the app, queuing an action in the App Group that the app claims with `One.Widgets.claimActions()` or observes live with `One.Widgets.onAction(listener)`:
+
+```tsx
+<W.Button action="toggle-playback" value="track-42">
+  <W.HStack style={{ padding: 8, backgroundColor: '#1685B1', borderRadius: 8 }}>
+    <W.Image systemName="play.fill" style={{ color: '#FFFFFF' }} />
+    <W.Text style={{ color: '#FFFFFF', fontWeight: 'semibold' }}>Play</W.Text>
+  </W.HStack>
+</W.Button>
+```
+
+```ts
+const pending = await One.Widgets.claimActions()
+const unsubscribe = One.Widgets.onAction(({ id, action, value, timestampMs }) => {
+  // handle interactive widget or Live Activity button tap
+})
+```
+
+Android widgets require a separate Glance target, storage contract, and lifecycle; this setting generates only iOS targets.
+
+### Siri and App Intents
+
+Set `ios.appIntents.actions` to generate an `AppIntent` per action and register `AppShortcutsProvider` phrases for Siri, the Shortcuts app, Spotlight, and Action Button:
+
+```ts
+ios: {
+  bundleId: 'com.example.myapp',
+  appIntents: {
+    actions: [
+      {
+        id: 'log-water',
+        title: 'Log Water',
+        description: 'Record water intake and speak a summary.',
+        textParameterTitle: 'Amount',
+        shortcutPhrase: 'Log water in {app}',
+        shortcutPhrases: ['Add water in {app}'],
+        systemImageName: 'drop.fill',
+        openAppWhenRun: false,
+      },
+    ],
+  },
+}
+```
+
+Register each handler at module scope in `setupFile.native`:
+
+```ts
+import { One } from 'one'
+
+One.AppIntents.defineAction('log-water', async (text) => {
+  return `Logged ${text || '250ml'}.`
+})
+```
+
+Each generated `AppIntent` conforms to `ProvidesDialog` and returns the handler's string as spoken and visual Siri dialog output.
+
+### Share Extension Drafts
+
+When an iOS Share Extension persists submissions into your App Group with `OneShareTargetDraftStore`, read and discard queued drafts in the main app with `One.ShareTarget`:
+
+```ts
+import { One } from 'one'
+
+const drafts = await One.ShareTarget.getDrafts('group.com.example.myapp')
+for (const draft of drafts) {
+  await One.ShareTarget.discardDraft('group.com.example.myapp', draft.id)
+}
+```
 
 ### iOS Project Setup
 
@@ -368,3 +474,12 @@ Try to delete `ios/.xcode.env.local`.
     ```
 2. Confirm `native.app.ios.bundleId` is set in `vite.config.ts`.
 3. Delete the generated `ios` directory and run `one prebuild` again.
+
+### App Transport Security
+
+Set `native.app.ios.appTransportSecurity` to replace the community template's
+`NSAppTransportSecurity` dictionary. For an app that must connect to arbitrary
+HTTP endpoints, use `{ NSAllowsArbitraryLoads: true }`. The replacement removes
+the template's local-networking exception, which otherwise changes how iOS
+interprets arbitrary loads. Use this field rather than setting the same key in
+`ios.infoPlist`.

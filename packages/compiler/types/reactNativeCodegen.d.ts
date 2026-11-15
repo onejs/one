@@ -1,4 +1,5 @@
-export declare function transformReactNativeCodegen(code: string, id: string, projectRoot?: string): {
+export declare function isReactNativeCodegenSpec(id: string, code: string): boolean;
+export declare function transformReactNativeCodegen(code: string, id: string): {
     code: string;
     map: any;
 } | null | undefined;

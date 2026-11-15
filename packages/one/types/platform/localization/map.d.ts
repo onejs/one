@@ -1,5 +1,5 @@
-import type { CalendarInfo, LocaleInfo } from '../specs/OneDevice.nitro';
-import type { Calendar, Locale } from './types';
+import type { CalendarInfo, LocaleInfo } from '../specs/OneDevice.nitro.js';
+import type { Calendar, Locale } from './types.js';
 export declare function toLocale(info: LocaleInfo): Locale;
 export declare function toCalendar(info: CalendarInfo): Calendar;
 export declare const FALLBACK_LOCALE: Locale;

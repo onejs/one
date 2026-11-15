@@ -1,6 +1,9 @@
+import { execFileSync } from 'node:child_process'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
-import { join, resolve } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { validateNativeApp } from '../native/appManifest'
+import { writeIosLinkSet } from './iosLinkSet'
 import { loadUserOneOptions } from '../vite/loadConfig'
 
 // default react-native config: xcodebuild's bundle phase and gradle's react
@@ -39,13 +42,14 @@ export async function run(args: { platform?: string; 'no-install'?: boolean }) {
   validateNativeApp(app, args.platform)
   if ((app.ios?.backgroundTasks || app.ios?.appIntents) && args.platform !== 'android') {
     const configured = oneOptions?.setupFile
-    const setupFile = typeof configured === 'string'
-      ? configured
-      : configured && 'native' in configured
-        ? configured.native
-        : configured && 'ios' in configured
-          ? configured.ios
-          : undefined
+    const setupFile =
+      typeof configured === 'string'
+        ? configured
+        : configured && 'native' in configured
+          ? configured.native
+          : configured && 'ios' in configured
+            ? configured.ios
+            : undefined
     if (!setupFile || !existsSync(resolve(root, setupFile))) {
       throw new Error(
         app.ios?.backgroundTasks
@@ -75,5 +79,53 @@ export async function run(args: { platform?: string; 'no-install'?: boolean }) {
     root: process.cwd(),
     ...args,
     app,
+    patches: oneOptions?.patches,
+    beforeInstall:
+      args.platform === 'android'
+        ? undefined
+        : async () => {
+            // vxrn patches android after this returns. skip ios when xcrun is
+            // absent and the command was not limited to ios, so android still finishes.
+            if (args.platform !== 'ios' && !xcrunAvailable()) {
+              console.warn(
+                '[one] the iOS SDK is not available (xcrun found no iphonesimulator SDK), so iOS SDK generation was skipped'
+              )
+              return
+            }
+            const selection = writeIosLinkSet(root)
+            await writeIosSdk(root, selection.frameworks)
+          },
   })
+}
+
+function xcrunAvailable() {
+  try {
+    execFileSync('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-path'], {
+      stdio: 'ignore',
+    })
+    return true
+  } catch {
+    return false
+  }
+}
+
+// the sdk binding generator ships bundled beside the commonjs and esm builds
+const sdkDirectory =
+  typeof __dirname === 'string'
+    ? join(__dirname, '..', '..', 'sdk')
+    : join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'sdk')
+
+// writes the bindings pod and typescript facades of each `one/ios/<Framework>`
+// the app imports, including dependencies of One's unified ios modules
+async function writeIosSdk(root: string, frameworks?: string[]) {
+  const { writeAppSdkPod } = (await import(
+    pathToFileURL(join(sdkDirectory, 'app.mjs')).href
+  )) as {
+    writeAppSdkPod(
+      root: string,
+      log?: typeof console.info,
+      releaseFrameworks?: string[]
+    ): Promise<string[]>
+  }
+  await writeAppSdkPod(root, console.info, frameworks)
 }

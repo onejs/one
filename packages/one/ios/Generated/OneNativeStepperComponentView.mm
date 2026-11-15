@@ -51,7 +51,7 @@ using namespace facebook::react;
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   _syncStateId = next.syncStateId;
   [_nativeView configure:next.value
-    acknowledgedEvent:next.acknowledgedEvent revision:next.revision syncStateId:next.syncStateId label:RCTNSStringFromString(next.label) disabled:next.disabled minimumValue:next.minimumValue maximumValue:next.maximumValue step:next.step];
+    acknowledgedEvent:next.acknowledgedEvent revision:next.revision syncStateId:next.syncStateId label:RCTNSStringFromString(next.label) minimumValue:next.minimumValue maximumValue:next.maximumValue step:next.step];
 
   [super updateProps:props oldProps:oldProps];
   // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test

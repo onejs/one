@@ -10,6 +10,7 @@ export function backgroundComputationPlugin(platform: 'web' | 'native'): Plugin 
     name: `one:background-computation:${platform}`,
     transform: {
       order: 'pre',
+      filter: { code: /defineBackgroundComputation/ },
       handler(code, id) {
         return transformBackgroundComputations(code, id, {
           platform,
@@ -19,8 +20,11 @@ export function backgroundComputationPlugin(platform: 'web' | 'native'): Plugin 
         })
       },
     },
-    resolveId(source) {
-      if (platform === 'web' && loadBackgroundComputationModule(source)) return source
+    resolveId: {
+      filter: { id: /\.__one_background_worker_[a-f0-9]+\.js(?:\?.*)?$/ },
+      handler(source) {
+        if (platform === 'web' && loadBackgroundComputationModule(source)) return source
+      },
     },
     load(id) {
       if (platform === 'web') return loadBackgroundComputationModule(id)?.source

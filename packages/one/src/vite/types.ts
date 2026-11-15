@@ -3,7 +3,7 @@ import type { metroPlugin } from '@vxrn/vite-plugin-metro'
 import type { Plugin as RolldownPlugin } from 'rolldown'
 import type {
   AutoDepOptimizationOptions,
-  DepPatch,
+  UserDepPatches,
   AfterBuildProps as VXRNAfterBuildProps,
   VXRNBuildOptions,
   VXRNOptions,
@@ -11,6 +11,7 @@ import type {
 import type { One as OneShared } from '../interfaces/router'
 import type { RouteNode } from '../router/Route'
 import type { NativeAppManifest } from '../native/appManifest'
+import type { WarmStartOptions } from '../router/warmStateShared'
 import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin'
 
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0]
@@ -55,10 +56,8 @@ export namespace One {
     routeModes?: Record<string, RouteRenderMode>
   }
 
-  // todo move into vxrn
-  export type FixDependencies = {
-    [key: string]: DepPatch['patchFiles']
-  }
+  // false skips every built-in patch; a module set to false skips its built-in patch
+  export type FixDependencies = UserDepPatches
 
   type PluginPlatformTarget = 'native' | 'web'
 
@@ -297,7 +296,9 @@ export namespace One {
      *   client: './setup.client.ts',
      *   server: './setup.server.ts',
      *   ios: './setup.ios.ts',
-     *   android: './setup.android.ts'
+     *   android: './setup.android.ts',
+     *   macos: './setup.macos.ts',
+     *   linux: './setup.linux.ts'
      * }
      */
     setupFile?:
@@ -312,6 +313,8 @@ export namespace One {
           server?: string
           ios?: string
           android?: string
+          macos?: string
+          linux?: string
         }
 
     config?: {
@@ -534,7 +537,8 @@ export namespace One {
        *
        * - `'after-lcp-aggressive'`: Only modulepreloads critical scripts (entry, layouts).
        *   Non-critical scripts have no modulepreload hints, reducing network saturation.
-       *   Best for pages with many chunks or slow networks.
+       *   Best for pages with many chunks or slow networks. A spa-shell page still preloads its
+       *   non-critical scripts at normal priority, since it paints nothing until they run.
        *
        * @default undefined (all scripts load with async)
        */
@@ -654,6 +658,45 @@ export namespace One {
            * @default true (when devtools is enabled)
            */
           seoPreview?: boolean
+
+          /**
+           * Browser plugin modules to load into the One devtools panel.
+           *
+           * Each entry is a module specifier or a path relative to the project
+           * root. The module must default export a `OneDevtoolsPlugin` (see
+           * `one/devtools`'s `defineDevtoolsPlugin` helper). Plugins can add
+           * panels, iframe existing devtools pages, and add spotlight actions.
+           *
+           * @example
+           * ```ts
+           * devtools: {
+           *   plugins: ['./devtools/runtime-inspector.ts'],
+           * }
+           * ```
+           */
+          plugins?: string[]
+
+          /**
+           * React Native DevTools plugins hosted through Rozenite.
+           *
+           * One mounts Rozenite's plugin host automatically when a Rozenite
+           * plugin package is installed, so existing Rozenite plugins work in
+           * `dt` / `j` without a Metro wrapper. Use these options to point at
+           * an explicit plugin list, exclude one, or change how the panels are
+           * displayed.
+           */
+          rozenite?:
+            | boolean
+            | {
+                /** Disable the Rozenite host while keeping the rest of One's devtools. */
+                enabled?: boolean
+                /** Explicit plugin packages. Auto-discovery is used when omitted. */
+                include?: string[]
+                /** Plugin packages to skip. */
+                exclude?: string[]
+                /** Show one tab per plugin or Rozenite's sidebar. @default 'sidebar' */
+                pluginDisplay?: 'sidebar' | 'tabs'
+              }
         }
 
     server?: VXRNOptions['server'] & {
@@ -886,8 +929,8 @@ export namespace One {
     loaderData?: any
     loaderProps?: any
     mode?: 'spa' | 'ssg' | 'ssr' | 'spa-shell'
-    // mapping of route keys to bundle paths for hydration preloading
-    routePreloads?: Record<string, string>
+    // route keys the client loads and registers before hydrating
+    routePreloads?: string[]
     /**
      * All matched routes with their loader data.
      * Ordered from root layout to leaf page (parent → child).
@@ -895,7 +938,9 @@ export namespace One {
     matches?: RouteMatch[]
   }
 
-  export type Flags = {}
+  export type Flags = {
+    warmStart?: boolean | WarmStartOptions
+  }
 
   // Re-export from shared types so they're available from both 'one' and 'one/vite'
   export type SitemapChangefreq = OneShared.SitemapChangefreq

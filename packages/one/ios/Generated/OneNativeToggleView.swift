@@ -6,9 +6,7 @@ import UIKit
 private final class ToggleModel: ObservableObject {
   @Published var controlled = OneNativeControlled<Bool>(false)
   @Published var label: String = ""
-  @Published var disabled: Bool = false
   @Published var systemImage: String = ""
-  @Published var toggleStyle: String = "automatic"
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -34,7 +32,7 @@ private final class ToggleModel: ObservableObject {
   }
   var onChange: ((Bool, Int, Int) -> Void)?
   func change(_ value: Bool) {
-    guard active, !disabled, controlled.value != value else { return }
+    guard active, controlled.value != value else { return }
     controlled.change(value)
     if syncStateId != 0 { OneNativeSyncRegistry.set(Int32(syncStateId), value: value as NSObject) }
     onChange?(value, controlled.eventCount, controlled.revision)
@@ -62,13 +60,11 @@ private final class ToggleModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, syncStateId: Int, label: String, disabled: Bool, systemImage: String, toggleStyle: String) {
+  public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, syncStateId: Int, label: String, systemImage: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     model.bindSyncState(syncStateId)
     if model.label != label { model.label = label }
-    if model.disabled != disabled { model.disabled = disabled }
     if model.systemImage != systemImage { model.systemImage = systemImage }
-    if model.toggleStyle != toggleStyle { model.toggleStyle = toggleStyle }
   }
 
 
@@ -126,8 +122,6 @@ private struct ToggleContent: View {
           ))
         }
       }
-      .oneNativeToggleStyle(model.toggleStyle)
-      .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }

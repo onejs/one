@@ -43,7 +43,6 @@ type OneNativeStyleNative = Readonly<{
 }>
 interface NativeProps extends ViewProps {
   label: string
-  disabled: boolean
   systemImage: string
   maxSelectionCount: Double
   selectionBehavior: string

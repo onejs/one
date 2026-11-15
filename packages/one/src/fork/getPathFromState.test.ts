@@ -144,3 +144,17 @@ it(`handles uninitialized state on nested navigation with route params`, () => {
 
   expect(getPathFromState(state, config)).toBe('/foo/bar/baz/page')
 })
+
+it('writes an array param as a repeated query key', () => {
+  const state = {
+    index: 0,
+    key: 'key',
+    routes: [{ name: 'index', path: '/', params: { tags: ['a', 'b c'], page: '2' } }],
+    stale: true,
+    type: 'stack',
+  }
+
+  expect(getPathFromState(state, { screens: { index: '' } })).toBe(
+    '/?tags=a&tags=b+c&page=2'
+  )
+})

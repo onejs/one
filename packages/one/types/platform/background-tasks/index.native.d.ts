@@ -1,5 +1,5 @@
-import type { BackgroundTaskInvocation, PendingBackgroundTask } from '../specs/OneBackgroundTasks.nitro';
-export type { BackgroundTaskInvocation, BackgroundTaskKind, PendingBackgroundTask, } from '../specs/OneBackgroundTasks.nitro';
+import type { BackgroundTaskInvocation, PendingBackgroundTask } from '../specs/OneBackgroundTasks.nitro.js';
+export type { BackgroundTaskInvocation, BackgroundTaskKind, PendingBackgroundTask, } from '../specs/OneBackgroundTasks.nitro.js';
 export interface BackgroundTaskContext extends BackgroundTaskInvocation {
     signal: AbortSignal;
 }

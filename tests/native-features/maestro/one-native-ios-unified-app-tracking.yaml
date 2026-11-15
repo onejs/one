@@ -1,0 +1,24 @@
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-app-tracking
+- tapOn:
+    text: 'Open'
+    optional: true
+- extendedWaitUntil:
+    visible: 'Request tracking permission'
+    timeout: 30000
+- tapOn:
+    id: one-native-app-tracking-request
+- tapOn:
+    text: 'Ask App Not to Track'
+    optional: true
+- extendedWaitUntil:
+    visible: 'Result: (denied:denied|authorized:authorized|restricted:restricted)'
+    timeout: 15000

@@ -1,4 +1,4 @@
-import type { ScreenEntry } from './types';
+import type { ScreenEntry } from './types.js';
 /**
  * Tabs and Drawer hold every route in navigation state from the start, so a
  * `keepMounted` screen must only stay mounted once it has actually been

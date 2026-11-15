@@ -1,3 +1,4 @@
+import type * as babel from '@babel/core';
 import type { TransformOptions as OxcTransformOptions } from 'oxc-transform';
 export type Environment = 'ios' | 'android' | 'ssr' | 'client';
 export type Options = {

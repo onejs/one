@@ -1,0 +1,174 @@
+---
+title: DOM components (experimental)
+description: Use a browser React component inside a native screen, with data props and asynchronous actions.
+---
+
+DOM components let a native screen host browser React markup, CSS and browser libraries. On the web, the same import renders the original React component inline.
+
+<Notice>
+  This feature is experimental and unreleased on the feature branch. Build and JavaScript integration probes have passed. An integrated iOS 27 simulator app has exercised native actions and refs, refresh, packaged offline loading, update staging, activation and rollback with matching native and DOM versions. Android 17 emulator proof covers the native host; integrated Android app and Updates behavior remain unvalidated. The current app targets are iOS 17+ and Android API 24+ through React Native 0.88. These are not claims of testing on those minimum versions or complete native support. Android also needs a modern, updated System WebView: Vite's current browser baseline includes Chrome 111 and iOS 16.4, so the Android OS API alone does not establish browser compatibility.
+</Notice>
+
+Use One's default Vite/Rolldown pipeline. Metro, native desktop, Expo Go and Expo Updates support are deferred. Your native binary must include `OneDOMHost`, so adding this feature requires a native rebuild; JavaScript refresh alone cannot add it. See [Build or Run iOS](/docs/guides-ios-native) and [Native Setup](/docs/native-setup). No separate WebView package or Expo compiler is required.
+
+## Create a component
+
+Put `'use dom'` in the directive prologue, before imports, in a component file **outside `app/`**. Export one default component. Type exports are allowed, but named runtime exports and export-star declarations are rejected. Direct DOM route files, layouts, API routes, loaders and server modules are unsupported. A normal route can import the component.
+
+Create `components/NoteEditor.tsx`:
+
+```tsx
+'use dom'
+
+import { useState, type Ref } from 'react'
+import { useDOMImperativeHandle, type DOMProps } from 'one/dom'
+
+export type EditorHandle = {
+  read: () => Promise<string>
+  clear: () => Promise<void>
+}
+
+type Props = {
+  initialText: string
+  onSave: (text: string) => Promise<string>
+  onNavigate: () => Promise<void>
+  ref?: Ref<EditorHandle>
+  dom?: DOMProps
+}
+
+export default function NoteEditor({ initialText, onSave, onNavigate, ref }: Props) {
+  const [text, setText] = useState(initialText)
+  const [message, setMessage] = useState('')
+  const report = (error: unknown) =>
+    setMessage(error instanceof Error ? error.message : String(error))
+
+  useDOMImperativeHandle(ref, () => ({
+    async read() {
+      if (!text.trim()) throw new Error('Enter some text')
+      return text
+    },
+    async clear() {
+      setText('')
+    },
+  }), [text])
+
+  return (
+    <section style={{ padding: 16 }}>
+      <textarea value={text} onChange={(event) => setText(event.currentTarget.value)} />
+      <button onClick={() => void onSave(text).then(setMessage, report)}>Save</button>
+      <button onClick={() => void onNavigate().catch(report)}>Library</button>
+      <p role="status">{message}</p>
+    </section>
+  )
+}
+```
+
+`dom` configures the native container and is removed before data reaches the hosted component. Accept it in the component's type, but do not spread it onto browser elements. The component above uses React 19's `ref` prop.
+
+## Pass data and actions from the screen
+
+For example, `app/index.tsx` can supply data and asynchronous callbacks:
+
+```tsx
+import { useRef, useState } from 'react'
+import { Button, Text, View } from 'react-native'
+import { useRouter } from 'one'
+import NoteEditor, { type EditorHandle } from '../components/NoteEditor'
+
+export default function Screen() {
+  const router = useRouter()
+  const editor = useRef<EditorHandle>(null)
+  const [status, setStatus] = useState('')
+
+  async function readAndClear() {
+    const handle = editor.current
+    if (!handle) {
+      setStatus('Editor is not ready')
+      return
+    }
+    try {
+      const text = await handle.read()
+      await handle.clear()
+      setStatus(`Read: ${text}`)
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : String(error))
+    }
+  }
+
+  return (
+    <View>
+      <NoteEditor
+        ref={editor}
+        initialText="Hello"
+        onSave={async (text) => {
+          setStatus(`Saved: ${text}`)
+          return 'Saved'
+        }}
+        onNavigate={async () => { router.push('/library') }}
+        dom={{
+          style: { height: 240 },
+          scrollEnabled: true,
+          onError: (error) => setStatus(error.message),
+        }}
+      />
+      <Button title="Read and clear" onPress={() => void readAndClear()} />
+      <Text>{status}</Text>
+    </View>
+  )
+}
+```
+
+Replace `/library` with a route in your app. Navigation is an explicit action owned by the parent. In the native host, links that leave the owned page are blocked, and `window.open` opens no window. Use an action such as `onNavigate` to request navigation. Native router state, providers, native modules and React context do not cross into the browser root. Pass data and actions rather than `children`, React elements or native objects. Browser events stay in the component; pass their data, such as the text string, to an action.
+
+The example demonstrates all three handle outcomes: `read()` resolves to a string, `clear()` resolves with no value, and reading an empty editor rejects with an error. Actions and imperative methods always return promises, including on ordinary web renders. Errors preserve `name`, `message` and an optional `code`; stacks are included only in development. Do not depend on a custom error class surviving the boundary.
+
+`useDOMImperativeHandle(ref, factory, dependencies)` exposes one handle per hosted component. Keep dependencies current. A dependency change replaces the committed methods without rejecting calls already running. New calls through retained handles use the latest committed methods; calling a removed method rejects. The name `then` is reserved. A ref becomes available when the browser hook commits; `dom.onLoad` does not promise that the ref is ready.
+
+## Container options
+
+Pass these options through the optional `dom` prop. They apply to the native host, not the inline web component.
+
+| Option | Behavior |
+| --- | --- |
+| `style` | React Native container style. Give the host space, for example a fixed height. |
+| `scrollEnabled` | Enables browser scrolling; defaults to `true`. |
+| `matchContents` | Uses the measured browser content height at the native container's width. Use this instead of a fixed height when content should size the host. |
+| `onLoad` | Receives `{ entryId, epoch }` when the host document completes loading. |
+| `onError` | Receives `{ name, message, code?, stack?, entryId, epoch? }` for host and page errors, including startup failures. |
+
+Page errors include a module evaluation failure, an unhandled rejection and a failed entry script load. When `onError` is omitted, errors are logged.
+
+There is no synchronous bridge, raw script evaluation, arbitrary page source or underlying WebView ref API.
+
+## Data rules
+
+Data props, action arguments and returned values support strings, booleans, finite numbers, `null`, arrays and plain objects. Only top-level function props become actions. Functions inside objects are rejected.
+
+Undefined object fields are omitted recursively, including optional top-level props. Undefined array entries and array holes are rejected. For example, an undefined first item reports a path such as `props["items"][0]`; a nested callback reports `props["options"]["onSave"]`. Class instances, `Date`, `Error` as data, symbols, BigInt, nonfinite numbers and cycles are also rejected with paths. Convert them to supported data first. Throwing an error from an action is supported and rejects the caller's promise.
+
+Prop changes update the mounted component without replacing its document. Local browser state follows normal React rules: updating `initialText` does not reinitialize the example's `useState`. Native ordinary props never supply HTML or JavaScript source.
+
+## Styles, assets and web rendering
+
+Use browser markup and styles inside the component. Import the CSS and assets it owns, for example after creating `editor.css` and `illustration.svg` beside it:
+
+```tsx
+import './editor.css'
+import illustration from './illustration.svg'
+
+function Illustration() {
+  return <img src={illustration} alt="Notebook" />
+}
+```
+
+Imported CSS, fonts and images use standard Vite transformations and relative packaged URLs. Unrelated web `public/` files are not copied. Root-relative public URLs such as `/logo.png` are unsupported in packaged DOM components; import the asset instead. Ordinary network requests follow browser CORS rules. Production page origins are `one-dom://app` on iOS and `https://appassets.androidplatform.net` on Android; development uses the Vite server origin. Verify the request headers on your target WebView when configuring server CORS. The iOS custom scheme probe establishes the page origin but has not measured the HTTP `Origin` header.
+
+On web, One retains the original component and the route's existing [SSG, SSR or SPA rules](/docs/render-modes). The directive does not disable server rendering. Keep browser-only globals out of module evaluation and server renders; access them in effects or event handlers where appropriate. Prefer static asset imports as above over `new URL(..., import.meta.url)` patterns whose meaning differs during SSR.
+
+## Refresh and document lifetime
+
+Development uses the existing reachable Vite server, with browser React Refresh, CSS updates, imported assets and the error overlay. Compatible React Refresh edits can preserve local state, including edits to transitive browser dependencies. A full reload or document replacement starts fresh browser state.
+
+Each hosted document has a separate request lifetime. Unmount, disposal or document failure rejects pending bridge calls; replies from an old document cannot resolve calls in its replacement. Already started native actions may still finish their side effects, so rejection is not cancellation. A replacement document receives a fresh committed prop snapshot and later prop updates reconcile normally.
+
+Integrated app layout and keyboard behavior, minimum platform coverage and Updates activation still need validation. Focused host, build and JavaScript probes do not establish those app guarantees.

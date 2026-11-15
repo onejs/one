@@ -1,0 +1,34 @@
+appId: dev.vxrn.native.tests
+name: table
+---
+# Table draws the cell React rendered for each row, in the order React sends
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-table
+      ANCHOR: "sort: name ascending, tapped: none"
+- assertVisible: "Ada"
+- assertVisible: "Bo"
+- assertVisible:
+    text: "Cy"
+    below:
+      text: "Ada"
+- takeScreenshot: table-ascending
+# the controlled sort re-sorts the rows from React
+- tapOn:
+    id: one-native-table-descending
+- extendedWaitUntil:
+    visible: "sort: name descending, tapped: none"
+    timeout: 10000
+- assertVisible:
+    text: "Ada"
+    below:
+      text: "Cy"
+- takeScreenshot: table-descending
+# a repeated column id is rejected before it reaches native
+- tapOn:
+    id: one-native-table-invalid
+- extendedWaitUntil:
+    visible:
+      id: one-native-table-column-error
+    timeout: 10000

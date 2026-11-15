@@ -22,6 +22,12 @@ export default function OneNativeContainers() {
         isEnabled: false,
       } as const)
     : {}
+  const stackEnvironment = {
+    colorScheme: 'dark',
+    dynamicTypeSize: 'accessibility1',
+    tint: '#FF9500',
+    disabled: true,
+  } as const
 
   return (
     <View style={styles.screen} testID="one-native-containers-screen">
@@ -64,10 +70,10 @@ export default function OneNativeContainers() {
       </View>
 
       {environment ? (
-        <One.iOS.Host {...environmentProps} axis="horizontal" spacing={8}>
+        <One.iOS.HStack spacing={8} swiftStyle={stackEnvironment}>
           <One.iOS.Text text="Host environment" />
           <One.iOS.Button label="Host disabled" />
-        </One.iOS.Host>
+        </One.iOS.HStack>
       ) : null}
 
       <One.iOS.Form
@@ -100,7 +106,7 @@ export default function OneNativeContainers() {
               label="Section button"
               onPress={() => setSectionTaps((count) => count + 1)}
             />
-            <One.iOS.Host axis="horizontal" spacing={12}>
+            <One.iOS.HStack spacing={12}>
               <One.iOS.Text text="In host" />
               <One.iOS.Button
                 label="Host button"
@@ -115,7 +121,7 @@ export default function OneNativeContainers() {
                   <Text>Nested row</Text>
                 </Pressable>
               </One.iOS.Slot>
-            </One.iOS.Host>
+            </One.iOS.HStack>
           </One.iOS.Section>
         ) : null}
       </One.iOS.Form>

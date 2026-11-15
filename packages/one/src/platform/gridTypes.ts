@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import type { ViewProps } from 'react-native'
+import type { OneNativeStyle } from './generated/controlTypes'
 
 export const gridAlignments = [
   'topLeading', 'top', 'topTrailing',
@@ -23,6 +24,7 @@ export type GridItem = GridItemBase & (
 )
 
 export interface LazyVGridProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   columns: readonly GridItem[]
   alignment?: GridHorizontalAlignment
   spacing?: number
@@ -30,6 +32,7 @@ export interface LazyVGridProps extends ViewProps {
 }
 
 export interface LazyHGridProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   rows: readonly GridItem[]
   alignment?: GridVerticalAlignment
   spacing?: number
@@ -37,6 +40,7 @@ export interface LazyHGridProps extends ViewProps {
 }
 
 export interface GridProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   alignment?: GridAlignment
   horizontalSpacing?: number
   verticalSpacing?: number
@@ -44,6 +48,7 @@ export interface GridProps extends ViewProps {
 }
 
 export interface GridRowProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   alignment?: GridVerticalAlignment
   children: ReactNode
 }

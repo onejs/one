@@ -50,14 +50,7 @@ interface NativeProps extends ViewProps {
   acknowledgedFocusEvent: Int32
   focusRevision: Int32
   label: string
-  disabled: boolean
   prompt: string
-  textFieldStyle: string
-  submitLabel: string
-  textInputAutocapitalization: string
-  autocorrectionDisabled: boolean
-  keyboardType: string
-  textContentType: string
   swiftStyle?: OneNativeStyleNative
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativeSecureFieldValueChange?: DirectEventHandler<

@@ -23,6 +23,7 @@ import path from 'node:path'
 import type { TransformOptions } from './babel-core'
 import { substituteExpoVirtualEnvSource } from './expoVirtualEnv'
 import { loadBabelConfig } from './loadBabelConfig'
+import { rejectDOMDirective } from './rejectDOMDirective'
 import { transformSync } from './transformSync'
 import type { ViteCustomTransformOptions } from './types'
 
@@ -159,6 +160,7 @@ const transform: BabelTransformer['transform'] = ({
   // `plugins` is used for `functionMapBabelPlugin` from `metro-source-map`.
   plugins,
 }: BabelTransformerArgs): ReturnType<BabelTransformer['transform']> => {
+  rejectDOMDirective(originalSrc, filename, options.platform)
   if (/\.(swift|kt)$/.test(filename)) {
     const requireFromProject = createRequire(
       path.resolve(options.projectRoot, 'package.json')
@@ -278,7 +280,7 @@ const transform: BabelTransformer['transform'] = ({
 
 export function getCacheKey(options?: BabelTransformerCacheKeyOptions): string {
   const hash = createHash('sha256')
-  hash.update('vxrn-metro-babel-transformer-v2')
+  hash.update('vxrn-metro-babel-transformer-v3')
 
   const projectRoot = options?.projectRoot
   if (!projectRoot) {
@@ -314,8 +316,7 @@ export function getCacheKey(options?: BabelTransformerCacheKeyOptions): string {
     JSON.stringify(
       Object.entries(process.env)
         .filter(
-          ([key]) =>
-            key.startsWith('ONE_PUBLIC_') || key.startsWith('EXPO_PUBLIC_')
+          ([key]) => key.startsWith('ONE_PUBLIC_') || key.startsWith('EXPO_PUBLIC_')
         )
         .sort(([left], [right]) => left.localeCompare(right))
     )

@@ -5,13 +5,13 @@
  */
 import type { NavigationContainerRefWithCurrent, NavigationState, ParamListBase } from '@react-navigation/core';
 import { type ComponentType } from 'react';
-import type { OneRouter } from '../interfaces/router';
-import type { OneLinkingConfig } from '../link/getLinking';
-import type { One } from '../vite/types';
-import type { UrlObject } from './getNormalizedStatePath';
-import type { RouteNode } from './Route';
-import type { RouteMatch } from '../useMatches';
-export { getSafeWindowPathname } from './path';
+import type { OneRouter } from '../interfaces/router.js';
+import type { OneLinkingConfig } from '../link/getLinking.js';
+import type { One } from '../vite/types.js';
+import type { UrlObject } from './getNormalizedStatePath.js';
+import type { RouteNode } from './Route.js';
+import type { RouteMatch } from '../useMatches.js';
+export { getSafeWindowPathname } from './path.js';
 export declare let routeNode: RouteNode | null;
 export declare let rootComponent: ComponentType;
 /**
@@ -71,7 +71,7 @@ export declare function snapshot(): {
     linkTo: typeof linkTo;
     routeNode: RouteNode | null;
     rootComponent: ComponentType;
-    linking: import("./getLinkingConfig").OneLinkingOptions | undefined;
+    linking: import("./getLinkingConfig.js").OneLinkingOptions | undefined;
     hasAttemptedToHideSplash: boolean;
     initialState: OneRouter.ResultState | undefined;
     rootState: OneRouter.ResultState | undefined;
@@ -88,7 +88,7 @@ export declare function useOneRouter(): {
     linkTo: typeof linkTo;
     routeNode: RouteNode | null;
     rootComponent: ComponentType;
-    linking: import("./getLinkingConfig").OneLinkingOptions | undefined;
+    linking: import("./getLinkingConfig.js").OneLinkingOptions | undefined;
     hasAttemptedToHideSplash: boolean;
     initialState: OneRouter.ResultState | undefined;
     rootState: OneRouter.ResultState | undefined;
@@ -116,6 +116,12 @@ export type PreloadEntry = {
 };
 export declare function getPreloadHistory(): PreloadEntry[];
 export declare function preloadRoute(href: string, injectCSS?: boolean): Promise<any> | undefined;
+/**
+ * The key loader data is stored under, as useLoader keys it: the pathname with
+ * trailing slash and /index removed. An ssr route's loader reads the query, so its
+ * key keeps the query (hash removed). Other routes drop it.
+ */
+export declare function normalizeLoaderPath(href: string): string;
 /**
  * Initialize client matches from server context during hydration.
  * Called from createApp when hydrating.

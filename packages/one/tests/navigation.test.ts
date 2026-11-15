@@ -108,11 +108,11 @@ describe('Swift.NavigationStack', () => {
   it('cannot be a child of a measured host', () => {
     expect(() =>
       render(
-        createElement(Containers.Host, {
+        createElement(Containers.VStack, {
           children: stack(createElement('View', {})),
         })
       )
-    ).toThrow('Swift.NavigationStack cannot be a child of Swift.Host')
+    ).toThrow('Swift.NavigationStack cannot be a child of Swift.VStack')
   })
 })
 
@@ -259,7 +259,7 @@ describe('Swift.Toolbar markers', () => {
 
   it('rejects nested content types a toolbar cannot hold', () => {
     expect(() => render(stack(toolbar(createElement('View', {}))))).toThrow(
-      'Swift.Toolbar accepts Swift.ToolbarItem, Swift.ToolbarItemGroup, and Swift.ToolbarSpacer elements as children'
+      'Swift.Toolbar accepts Swift.ToolbarItem, Swift.ToolbarItemGroup, Swift.ToolbarSpacer, and Swift.DefaultToolbarItem elements as children'
     )
   })
 

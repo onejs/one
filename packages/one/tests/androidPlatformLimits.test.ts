@@ -15,6 +15,7 @@ const host = vi.hoisted(() => ({
     start: vi.fn(async () => 'activity-id'),
     update: vi.fn(async () => {}),
     end: vi.fn(async () => {}),
+    claimActions: vi.fn(async () => []),
   },
   addListener: vi.fn(() => ({ remove: vi.fn() })),
 }))
@@ -50,6 +51,8 @@ test('Android actions report their iOS limit without calling native hosts', asyn
       () => widgets.write({ title: 'proof', value: '1', subtitle: 'limit' }),
     ],
     ['Widgets.writeView', () => widgets.writeView(null)],
+    ['Widgets.claimActions', () => widgets.claimActions()],
+    ['Widgets.onAction', () => widgets.onAction(() => {})],
     [
       'LiveActivities.start',
       () => activities.start('proof', { status: 'active', value: '1' }),
@@ -128,6 +131,11 @@ test('iOS continues delegating actions to the existing native hosts', async () =
   expect(host.background.addTaskListener).toHaveBeenCalledOnce()
   await widgets.write({ title: 'proof', value: '1', subtitle: 'native' })
   expect(host.widgets.writeWidget).toHaveBeenCalledWith('proof', '1', 'native')
+  expect(await widgets.claimActions()).toEqual([])
+  expect(host.widgets.claimActions).toHaveBeenCalledOnce()
+  const removeWidgetAction = widgets.onAction(() => {})
+  expect(host.addListener).toHaveBeenCalledWith('oneWidgetAction', expect.any(Function))
+  removeWidgetAction()
   expect(await activities.start('proof', { status: 'active', value: '1' }, true)).toBe(
     'activity-id'
   )

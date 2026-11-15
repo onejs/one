@@ -24,3 +24,10 @@ export interface WorkletCandidate {
   parent?: any
   isAutoWorklet: boolean
 }
+
+export interface WorkletClassCandidate {
+  node: any
+  name: string
+  parent?: any
+  marker: any
+}

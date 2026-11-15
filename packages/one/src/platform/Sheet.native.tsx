@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext } from 'react'
 import { Platform } from 'react-native'
 import { useControlled } from './controlled'
 import NativeSheet from './specs/OneNativeSheetNativeComponent'
@@ -46,22 +46,12 @@ function sameDetent(a: NativeDetent, b: NativeDetent) {
   return a.type === b.type && a.value === b.value
 }
 
-function usePresentationId(isPresented: boolean) {
-  const [cycle, setCycle] = useState({ isPresented, id: isPresented ? 1 : 0 })
-  if (cycle.isPresented === isPresented) return cycle.id
-  const next = { isPresented, id: cycle.id + (isPresented ? 1 : 0) }
-  setCycle(next)
-  return next.id
-}
-
 export function Sheet({
   isPresented,
   onIsPresentedChange,
   onDismiss,
-  onDidDismiss,
   revision = 0,
   presentationDetents,
-  fitToContents = false,
   selectedDetent,
   onSelectedDetentChange,
   detentRevision = 0,
@@ -78,7 +68,6 @@ export function Sheet({
   const colorScheme = useContext(SheetAppearanceContext)
   if (typeof isPresented !== 'boolean')
     throw new Error('Swift.Sheet isPresented must be a boolean')
-  const presentationId = usePresentationId(isPresented)
   const requestedDetents = presentationDetents ?? DEFAULT_DETENTS
   if (!Array.isArray(requestedDetents) || !requestedDetents.length)
     throw new Error('Swift.Sheet requires at least one presentation detent')
@@ -91,8 +80,6 @@ export function Sheet({
     throw new Error(
       'Swift.Sheet selectedDetent and onSelectedDetentChange must be provided together'
     )
-  if (fitToContents && selectedDetent !== undefined)
-    throw new Error('Swift.Sheet fitToContents cannot be combined with selectedDetent')
   const nativeSelection = selectedDetent ? nativeDetent(selectedDetent) : null
   if (nativeSelection && !detents.some((detent) => sameDetent(detent, nativeSelection)))
     throw new Error('Swift.Sheet selectedDetent must be in presentationDetents')
@@ -114,10 +101,6 @@ export function Sheet({
     )
       throw new Error('Invalid Swift.Sheet presentationBackgroundInteraction')
     const detent = nativeDetent(presentationBackgroundInteraction.enabledUpThrough)
-    if (fitToContents)
-      throw new Error(
-        'Swift.Sheet fitToContents cannot use an enabledUpThrough background interaction'
-      )
     if (!detents.some((candidate) => sameDetent(candidate, detent)))
       throw new Error(
         'Swift.Sheet presentationBackgroundInteraction detent must be in presentationDetents'
@@ -153,10 +136,8 @@ export function Sheet({
       style={[{ position: 'absolute', width: 0, height: 0 }, style]}
       isPresented={isPresented}
       revision={revision}
-      presentationId={presentationId}
       acknowledgedEvent={controlled.acknowledgedEvent}
       detents={detents}
-      fitToContents={fitToContents}
       selectedDetentType={nativeSelection?.type ?? ''}
       selectedDetentValue={nativeSelection?.value ?? 0}
       acknowledgedDetentEvent={controlledDetent.acknowledgedEvent}
@@ -176,14 +157,6 @@ export function Sheet({
       }
       onNativeSheetDismiss={({ nativeEvent }) => {
         if (nativeEvent.revision === revision) onDismiss?.()
-      }}
-      onNativeSheetDidDismiss={({ nativeEvent }) => {
-        if (
-          !isPresented &&
-          nativeEvent.revision === revision &&
-          nativeEvent.presentationId === presentationId
-        )
-          onDidDismiss?.()
       }}
       onNativeSheetDetentChange={({ nativeEvent }) =>
         controlledDetent.onNativeChange(nativeEvent)
@@ -206,7 +179,6 @@ export function FullScreenCover({
   isPresented,
   onIsPresentedChange,
   onDismiss,
-  onDidDismiss,
   revision = 0,
   children,
   style,
@@ -214,7 +186,6 @@ export function FullScreenCover({
 }: FullScreenCoverProps) {
   if (typeof isPresented !== 'boolean')
     throw new Error('Swift.FullScreenCover isPresented must be a boolean')
-  const presentationId = usePresentationId(isPresented)
   const controlled = useControlled<{
     isPresented: boolean
     eventCount: number
@@ -226,10 +197,8 @@ export function FullScreenCover({
       style={[{ position: 'absolute', width: 0, height: 0 }, style]}
       isPresented={isPresented}
       revision={revision}
-      presentationId={presentationId}
       acknowledgedEvent={controlled.acknowledgedEvent}
       detents={COVER_DETENTS}
-      fitToContents={false}
       selectedDetentType=""
       selectedDetentValue={0}
       acknowledgedDetentEvent={0}
@@ -248,14 +217,6 @@ export function FullScreenCover({
       }
       onNativeSheetDismiss={({ nativeEvent }) => {
         if (nativeEvent.revision === revision) onDismiss?.()
-      }}
-      onNativeSheetDidDismiss={({ nativeEvent }) => {
-        if (
-          !isPresented &&
-          nativeEvent.revision === revision &&
-          nativeEvent.presentationId === presentationId
-        )
-          onDidDismiss?.()
       }}
     >
       <NativeContent

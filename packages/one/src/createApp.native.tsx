@@ -5,11 +5,15 @@ import './polyfills-mobile'
 import { Root } from './Root'
 import './setup'
 import type { CreateAppProps } from './createApp'
+import { hydrateWarmInitialLoad } from './router/warmState'
 
 // TODO temporary
 LogBox.ignoreLogs([/Sending .* with no listeners registered/])
 
 export function createApp(options: CreateAppProps): void {
+  if (options.flags?.warmStart) {
+    hydrateWarmInitialLoad({ routes: options.routes, flags: options.flags })
+  }
   let routes = options.routes
   let routeVersion = 0
   const routeListeners = new Set<() => void>()
