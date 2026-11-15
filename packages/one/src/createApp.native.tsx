@@ -32,12 +32,16 @@ export function createApp(options: CreateAppProps): void {
     // the router reads every layout's unstable_settings while it initializes,
     // outside any Suspense boundary, and a dev route registry imports lazily.
     // load the layouts first and hand the router modules it can read in place;
-    // a layout that fails keeps its loader so the route load error surfaces.
+    // a layout that fails keeps its loader so the route load error surfaces. a
+    // patched registry's import throws synchronously for a module that never ran,
+    // such as another platform's variant, so each load starts inside a promise.
     const update = ++routeUpdate
     const layouts = Object.keys(nextRoutes).filter((key) =>
       key.slice(key.lastIndexOf('/') + 1).startsWith('_layout')
     )
-    Promise.allSettled(layouts.map((key) => nextRoutes[key]())).then((loaded) => {
+    Promise.allSettled(
+      layouts.map((key) => Promise.resolve().then(() => nextRoutes[key]()))
+    ).then((loaded) => {
       if (update !== routeUpdate) return
       const ready: GlobbedRouteImports = { ...nextRoutes }
       loaded.forEach((result, index) => {
