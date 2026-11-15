@@ -52,7 +52,7 @@ export declare const Swift: {
     Ellipse({ fill, strokeBorder, lineWidth, swiftStyle, style, ...props }: import("./types.js").EllipseProps): import("react").JSX.Element;
     UnevenRoundedRectangle({ fill, strokeBorder, lineWidth, topLeadingRadius, bottomLeadingRadius, bottomTrailingRadius, topTrailingRadius, swiftStyle, style, ...props }: import("./types.js").UnevenRoundedRectangleProps): import("react").JSX.Element;
     ConcentricRectangle({ fill, swiftStyle, style, ...props }: import("./types.js").ConcentricRectangleProps): import("react").JSX.Element;
-    LinearGradient({ colors, startPoint, endPoint, swiftStyle, style, ...props }: import("./types.js").LinearGradientProps): import("react").JSX.Element;
+    LinearGradient({ colors, locations, startPoint, endPoint, swiftStyle, style, ...props }: import("./types.js").LinearGradientProps): import("react").JSX.Element;
     RadialGradient({ colors, center, startRadius, endRadius, swiftStyle, style, ...props }: import("./types.js").RadialGradientProps): import("react").JSX.Element;
     EllipticalGradient({ colors, center, startRadiusFraction, endRadiusFraction, swiftStyle, style, ...props }: import("./types.js").EllipticalGradientProps): import("react").JSX.Element;
     AngularGradient({ colors, center, angle, swiftStyle, style, ...props }: import("./types.js").AngularGradientProps): import("react").JSX.Element;

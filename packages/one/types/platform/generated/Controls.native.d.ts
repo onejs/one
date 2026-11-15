@@ -21,7 +21,7 @@ export declare function RoundedRectangle({ fill, strokeBorder, lineWidth, corner
 export declare function Ellipse({ fill, strokeBorder, lineWidth, swiftStyle, style, ...props }: Types.EllipseProps): import("react").JSX.Element;
 export declare function UnevenRoundedRectangle({ fill, strokeBorder, lineWidth, topLeadingRadius, bottomLeadingRadius, bottomTrailingRadius, topTrailingRadius, swiftStyle, style, ...props }: Types.UnevenRoundedRectangleProps): import("react").JSX.Element;
 export declare function ConcentricRectangle({ fill, swiftStyle, style, ...props }: Types.ConcentricRectangleProps): import("react").JSX.Element;
-export declare function LinearGradient({ colors, startPoint, endPoint, swiftStyle, style, ...props }: Types.LinearGradientProps): import("react").JSX.Element;
+export declare function LinearGradient({ colors, locations, startPoint, endPoint, swiftStyle, style, ...props }: Types.LinearGradientProps): import("react").JSX.Element;
 export declare function RadialGradient({ colors, center, startRadius, endRadius, swiftStyle, style, ...props }: Types.RadialGradientProps): import("react").JSX.Element;
 export declare function EllipticalGradient({ colors, center, startRadiusFraction, endRadiusFraction, swiftStyle, style, ...props }: Types.EllipticalGradientProps): import("react").JSX.Element;
 export declare function AngularGradient({ colors, center, angle, swiftStyle, style, ...props }: Types.AngularGradientProps): import("react").JSX.Element;

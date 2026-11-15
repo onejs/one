@@ -3456,6 +3456,7 @@ export interface ConcentricRectangleProps extends OneNativeViewProps {
 }
 export interface LinearGradientProps extends OneNativeViewProps {
     colors: readonly string[];
+    locations?: readonly number[];
     startPoint?: Readonly<{
         x: number;
         y: number;

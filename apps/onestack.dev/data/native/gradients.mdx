@@ -52,8 +52,10 @@ gives it. Inside another `One.iOS` view, such as a `ZStack`, the gradient joins
 the parent's SwiftUI tree instead of hosting itself.
 
 The wrappers check their props in JavaScript before anything reaches native
-code. Colors must be sRGB hex strings, `#RRGGBB` or `#RRGGBBAA`; points and
-radii must be finite numbers. A bad value throws at render with a message
+code. Linear gradients accept React Native color strings, including `rgba()`,
+short hex and `transparent`, and normalize them to sRGB hex before the native
+boundary. The other SwiftUI gradients require `#RRGGBB` or `#RRGGBBAA`. Points
+and radii must be finite numbers. A bad value throws at render with a message
 naming the prop. On Android and web, `One.iOS` gradients throw that they need
 an iOS native build.
 
@@ -67,7 +69,8 @@ and the accessibility label, hint, and value. Points are unit coordinates:
   title="One.iOS.LinearGradient"
   source="generated/controlTypes.ts#LinearGradientProps"
   data={[
-    { name: 'colors', required: true, type: 'readonly string[]', description: 'Hex colors, spaced evenly from start to end.' },
+    { name: 'colors', required: true, type: 'readonly string[]', description: 'React Native color strings, spaced evenly unless locations are supplied.' },
+    { name: 'locations', type: 'readonly number[]', description: 'Optional ordered stop positions between 0 and 1, one per color.' },
     { name: 'startPoint', type: 'Readonly<{ x: number; y: number }>', default: '{ x: 0.5, y: 0 }', description: 'Where the first color sits.' },
     { name: 'endPoint', type: 'Readonly<{ x: number; y: number }>', default: '{ x: 0.5, y: 1 }', description: 'Where the last color sits.' },
   ]}
