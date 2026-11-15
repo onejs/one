@@ -1,0 +1,7526 @@
+{
+  "metadata": {
+    "device": "iPhone 17 Pro simulator (air-24)",
+    "host": "air-24",
+    "os": "27.0",
+    "commit": "ededeef9aac660b9aafd6bdf088522a70b7d396b",
+    "engine": "0.1.3",
+    "oneVersion": "2.0.0-0.canary.1794703544061",
+    "pairs": 10,
+    "batches": 2,
+    "launchBatches": [
+      {
+        "offset": 0,
+        "metadata": {
+          "device": "iPhone 17 Pro simulator (air-24)",
+          "udid": "D4D9BA36-6C22-48E4-A3FE-BAF13B0A87F0",
+          "target": "simulator",
+          "host": "air-24",
+          "order": "alternating",
+          "cooldownSeconds": 0,
+          "launchEnvironment": {
+            "bun": {
+              "BUN_JSC_useJIT": "false",
+              "BUN_JSC_useWasm": "false"
+            }
+          },
+          "simulatorLogProcess": null,
+          "resetData": false,
+          "os": "27.0",
+          "commit": "ededeef9aac660b9aafd6bdf088522a70b7d396b",
+          "runs": 5,
+          "method": "Release · alternating engines · process-cold launches · warm OS caches · Bun JIT/Wasm off",
+          "apps": [
+            {
+              "engine": "hermes",
+              "app": "/Users/n8/builders/.scratch/bun-bench-m123659/micro-native-promise/cohort/hermes/OneBench.app",
+              "bundle": "dev.onestack.bench.bun"
+            },
+            {
+              "engine": "bun",
+              "app": "/Users/n8/builders/.scratch/bun-bench-m123659/micro-native-promise/cohort/bun/OneBench.app",
+              "bundle": "dev.onestack.bench.bun"
+            }
+          ],
+          "runnerSha256": "fbc10da7e9875f067583b4d71d92ea07f212c1691c0791be938ebd1c0670f5cb",
+          "reportSha256": "591b4058787288cee40278991feadf3ac320b85298f0b7f50d2cfe08950c972e",
+          "footprintHelperSha256": "368902b2e17358257b96d74cfa29d8ec54aa54262f3a3478ee20e05af6997a0a",
+          "environments": [
+            {
+              "thermalState": "0",
+              "os": "27.0",
+              "device": "arm64",
+              "lowPowerMode": "false",
+              "engine": "hermes",
+              "run": 0
+            },
+            {
+              "thermalState": "0",
+              "os": "27.0",
+              "device": "arm64",
+              "lowPowerMode": "false",
+              "engine": "bun",
+              "run": 0
+            },
+            {
+              "lowPowerMode": "false",
+              "thermalState": "0",
+              "device": "arm64",
+              "os": "27.0",
+              "engine": "hermes",
+              "run": 1
+            },
+            {
+              "os": "27.0",
+              "thermalState": "0",
+              "device": "arm64",
+              "lowPowerMode": "false",
+              "engine": "bun",
+              "run": 1
+            },
+            {
+              "lowPowerMode": "false",
+              "os": "27.0",
+              "thermalState": "0",
+              "device": "arm64",
+              "engine": "hermes",
+              "run": 2
+            },
+            {
+              "os": "27.0",
+              "thermalState": "0",
+              "lowPowerMode": "false",
+              "device": "arm64",
+              "engine": "bun",
+              "run": 2
+            },
+            {
+              "os": "27.0",
+              "lowPowerMode": "false",
+              "thermalState": "0",
+              "device": "arm64",
+              "engine": "hermes",
+              "run": 3
+            },
+            {
+              "lowPowerMode": "false",
+              "thermalState": "0",
+              "os": "27.0",
+              "device": "arm64",
+              "engine": "bun",
+              "run": 3
+            },
+            {
+              "device": "arm64",
+              "thermalState": "0",
+              "os": "27.0",
+              "lowPowerMode": "false",
+              "engine": "hermes",
+              "run": 4
+            },
+            {
+              "lowPowerMode": "false",
+              "os": "27.0",
+              "device": "arm64",
+              "thermalState": "0",
+              "engine": "bun",
+              "run": 4
+            }
+          ]
+        },
+        "files": [
+          "04-bun.log",
+          "00-bun-install.log",
+          "02-hermes.log",
+          "03-hermes-install.log",
+          "host-footprint-368902b2e1735825",
+          "charts",
+          "00-hermes.log",
+          "00-hermes-install.log",
+          "01-bun-install.log",
+          "04-bun-install.log",
+          "03-bun.log",
+          "01-hermes-install.log",
+          "03-hermes.log",
+          "02-bun.log",
+          "02-hermes-install.log",
+          "manifest.json",
+          "03-bun-install.log",
+          "00-bun.log",
+          "02-bun-install.log",
+          "04-hermes-install.log",
+          "01-hermes.log",
+          "04-hermes.log",
+          "01-bun.log"
+        ]
+      },
+      {
+        "offset": 5,
+        "metadata": {
+          "device": "iPhone 17 Pro simulator (air-24)",
+          "udid": "D4D9BA36-6C22-48E4-A3FE-BAF13B0A87F0",
+          "target": "simulator",
+          "host": "air-24",
+          "order": "alternating",
+          "cooldownSeconds": 0,
+          "launchEnvironment": {
+            "bun": {
+              "BUN_JSC_useJIT": "false",
+              "BUN_JSC_useWasm": "false"
+            }
+          },
+          "simulatorLogProcess": null,
+          "resetData": false,
+          "os": "27.0",
+          "commit": "ededeef9aac660b9aafd6bdf088522a70b7d396b",
+          "runs": 5,
+          "method": "Release · alternating engines · process-cold launches · warm OS caches · Bun JIT/Wasm off",
+          "apps": [
+            {
+              "engine": "hermes",
+              "app": "/Users/n8/builders/.scratch/bun-bench-m123659/micro-native-promise/cohort/hermes/OneBench.app",
+              "bundle": "dev.onestack.bench.bun"
+            },
+            {
+              "engine": "bun",
+              "app": "/Users/n8/builders/.scratch/bun-bench-m123659/micro-native-promise/cohort/bun/OneBench.app",
+              "bundle": "dev.onestack.bench.bun"
+            }
+          ],
+          "runnerSha256": "fbc10da7e9875f067583b4d71d92ea07f212c1691c0791be938ebd1c0670f5cb",
+          "reportSha256": "591b4058787288cee40278991feadf3ac320b85298f0b7f50d2cfe08950c972e",
+          "footprintHelperSha256": "368902b2e17358257b96d74cfa29d8ec54aa54262f3a3478ee20e05af6997a0a",
+          "environments": [
+            {
+              "lowPowerMode": "false",
+              "thermalState": "0",
+              "device": "arm64",
+              "os": "27.0",
+              "engine": "hermes",
+              "run": 0
+            },
+            {
+              "device": "arm64",
+              "thermalState": "0",
+              "lowPowerMode": "false",
+              "os": "27.0",
+              "engine": "bun",
+              "run": 0
+            },
+            {
+              "os": "27.0",
+              "lowPowerMode": "false",
+              "device": "arm64",
+              "thermalState": "0",
+              "engine": "hermes",
+              "run": 1
+            },
+            {
+              "device": "arm64",
+              "os": "27.0",
+              "lowPowerMode": "false",
+              "thermalState": "0",
+              "engine": "bun",
+              "run": 1
+            },
+            {
+              "thermalState": "0",
+              "lowPowerMode": "false",
+              "device": "arm64",
+              "os": "27.0",
+              "engine": "hermes",
+              "run": 2
+            },
+            {
+              "lowPowerMode": "false",
+              "os": "27.0",
+              "thermalState": "0",
+              "device": "arm64",
+              "engine": "bun",
+              "run": 2
+            },
+            {
+              "os": "27.0",
+              "lowPowerMode": "false",
+              "thermalState": "0",
+              "device": "arm64",
+              "engine": "hermes",
+              "run": 3
+            },
+            {
+              "thermalState": "0",
+              "device": "arm64",
+              "os": "27.0",
+              "lowPowerMode": "false",
+              "engine": "bun",
+              "run": 3
+            },
+            {
+              "os": "27.0",
+              "lowPowerMode": "false",
+              "device": "arm64",
+              "thermalState": "0",
+              "engine": "hermes",
+              "run": 4
+            },
+            {
+              "thermalState": "0",
+              "lowPowerMode": "false",
+              "device": "arm64",
+              "os": "27.0",
+              "engine": "bun",
+              "run": 4
+            }
+          ]
+        },
+        "files": [
+          "04-bun.log",
+          "00-bun-install.log",
+          "02-hermes.log",
+          "03-hermes-install.log",
+          "host-footprint-368902b2e1735825",
+          "charts",
+          "00-hermes.log",
+          "00-hermes-install.log",
+          "01-bun-install.log",
+          "04-bun-install.log",
+          "03-bun.log",
+          "01-hermes-install.log",
+          "03-hermes.log",
+          "02-bun.log",
+          "02-hermes-install.log",
+          "manifest.json",
+          "03-bun-install.log",
+          "00-bun.log",
+          "02-bun-install.log",
+          "04-hermes-install.log",
+          "01-hermes.log",
+          "04-hermes.log",
+          "01-bun.log"
+        ]
+      }
+    ],
+    "source": {
+      "commit": "ededeef9aac660b9aafd6bdf088522a70b7d396b",
+      "platform": "iphonesimulator",
+      "baseApp": "/Users/n8/builders/.scratch/bun-bench-m123659/micro-native-promise/OneBench.app",
+      "executableSha256": "8ce67a3e0ecf234be4a0e927769b5fec6045424a6d343d3e3bae7123530dbece",
+      "bundleSha256": "62f064020f15ec697f5421e772a22ef2feb0ebc60347b525282cb0b410de63fb",
+      "engineDirectory": "/Users/n8/builders/.scratch/bun-bench-m123659/bluesky/engine-013/bun-engine",
+      "compilerSha256": "fd1560a3e83f4040e1cac7b4252682f329b9f3074014a9cf2ff105723c15bec9",
+      "runtimeSha256": "d74947359196a931ca76f640c05ab859ebf7473cf3a6db5173a356e881301f85",
+      "hermescSha256": "1ce56f036bdadab6027cfd22a43e40640212562746b1d3ec29b62ca4b13f9a23",
+      "embedSha256": "321629e7bcdec72babf33a196619ec778d1603b0c2e691f930133393cbf3a1a0",
+      "capturedInputSha256": "8b7d7c426b73c00d4b45231cd6140bad9631eb9ccef045c4f3890bcec9995909",
+      "preparedSha256": "62f064020f15ec697f5421e772a22ef2feb0ebc60347b525282cb0b410de63fb",
+      "nativeAdapter": "captured OneBench executable; no native source rebuild",
+      "nativePromise": "captured setup module no-op; identity asserted on every BENCH log",
+      "oneVersion": "2.0.0-0.canary.1794703544061"
+    },
+    "method": "Release; two batches of five alternating Hermes/Bun pairs; process-cold, warm OS caches; JIT/Wasm off; Background CPU activity observed.",
+    "qualification": "Exploratory simulator results. All samples retained, including host media analysis in the first batch and a concurrent transfer in the second. Native Promise identity guarded on every BENCH log.",
+    "sourceSha256": "70f322000ed458a49f5e479857120fa3a2a0f9fbd61b9628afabd571ee4fc83b"
+  },
+  "samples": [
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 1076.7311319580078,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 3513189.6140833343,
+      "unit": "timestamp-ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 3513188.7047916674,
+      "unit": "timestamp-ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 3513217.6470416677,
+      "unit": "timestamp-ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 28.03295833338052,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 28.942250000312924,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 1110.0758775939942,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 31.50231170654297,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 41.348041999619454,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.605582999996841,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 38.61168670654297,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8301.588125000242,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4418.556286001578,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 45.04925537109375,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 14.876292000059038,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.3854589997790754,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 45.62738037109375,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 371.2242499999702,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 117.37295900005847,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 191.2837677001953,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 227.00108300009742,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 126.3306884765625,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 33.27474999986589,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 123.1588134765625,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 242.04879200039431,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 115.7525634765625,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 355.2222919999622,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 52.7369384765625,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 223.62158400006592,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 52.7369384765625,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 22.821082999929786,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 52.8150634765625,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 127.91358399996534,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 52.8150634765625,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 672.1499662170411,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 3525781.486250001,
+      "unit": "timestamp-ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 3525781.483625001,
+      "unit": "timestamp-ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 3525838.349708334,
+      "unit": "timestamp-ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 56.86345833307132,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 56.86608333326876,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 705.4460744628907,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.90888214111328,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 43.694625000003725,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.196375000290573,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 45.45575714111328,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5068.212125000078,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3244.0857790014707,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 66.20582580566406,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 14.641083000227809,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.2679590000770986,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 66.65895080566406,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 315.28220900008455,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 95.67050000000745,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 213.4247589111328,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 215.02091600000858,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 167.9716567993164,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.645625000353903,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 147.0341567993164,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 9.008457999676466,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 152.2216567993164,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 33.25362500036135,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 161.0029296875,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 29.014583999756724,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 164.6435546875,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 21.419750000350177,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 167.2217025756836,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 37.106457999907434,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 167.0810775756836,
+      "unit": "MiB",
+      "run": 0
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 502.38089614868164,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 3533586.6010416676,
+      "unit": "timestamp-ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 3533586.598583334,
+      "unit": "timestamp-ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 3533611.268333334,
+      "unit": "timestamp-ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 24.66729166638106,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 24.669749999884516,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 535.7299333190919,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 31.689857482910156,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 41.970416999887675,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.553624999709427,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 38.767982482910156,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8301.597624999937,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4436.232297999784,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 45.205528259277344,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 13.248249999713153,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.335917000193149,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 45.768028259277344,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 314.9510830002837,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 92.49900000030175,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 191.7994155883789,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 214.30174999963492,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 127.2994613647461,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 35.016249999869615,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 122.4244613647461,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 243.7524170000106,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 122.4244613647461,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 352.3142499998212,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 57.236961364746094,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 230.0201670001261,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 53.236961364746094,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 16.46625000005588,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 53.268211364746094,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 128.69791699992493,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 53.283836364746094,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 648.8769828643799,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 3545360.509458334,
+      "unit": "timestamp-ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 3545360.5071666674,
+      "unit": "timestamp-ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 3545435.3492916673,
+      "unit": "timestamp-ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 74.839833333157,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 74.84212499996647,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 682.322102722168,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.72135925292969,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 43.70287499995902,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.268916000146419,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 44.95573425292969,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5115.8300000000745,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3250.5794660001993,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 65.40895080566406,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 14.222916999831796,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 1.8896249998360872,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 65.87770080566406,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 316.1174170002341,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 95.6455830000341,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 212.29973602294922,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 210.7390409996733,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 169.8779067993164,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.998166999779642,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 151.5497817993164,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 9.187165999785066,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 156.8310546875,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 32.113874999806285,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 164.5966796875,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 28.95133400009945,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 165.2529296875,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 20.89454200025648,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 166.2529525756836,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 37.70883300015703,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 168.3467025756836,
+      "unit": "MiB",
+      "run": 1
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 511.34283883666996,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 3552947.053916667,
+      "unit": "timestamp-ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 3552947.0510416673,
+      "unit": "timestamp-ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 3552972.378000001,
+      "unit": "timestamp-ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 25.324083333835006,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 25.326958333607763,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 543.3080945739747,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 31.189857482910156,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 41.394082999788225,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.472375000361353,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 38.236732482910156,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8068.300917000044,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4400.415712002199,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 44.721153259277344,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 13.186792000196874,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.205583999864757,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 45.268028259277344,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 319.69320799969137,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 93.68045799992979,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 191.3931655883789,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 221.81904100021347,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 126.0182113647461,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 33.35691699991003,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 122.7213363647461,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 241.86450000014156,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 115.3619613647461,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 352.70958400005475,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 52.346336364746094,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 220.89937500003725,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 52.346336364746094,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 15.854874999728054,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 52.408836364746094,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 125.90333299990743,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 52.408836364746094,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 668.3749503173829,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 3564866.919208334,
+      "unit": "timestamp-ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 3564866.917000001,
+      "unit": "timestamp-ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 3564920.0232500006,
+      "unit": "timestamp-ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 53.10404166672379,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 53.1062499997206,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 701.7859763183594,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.72138214111328,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 41.67337500024587,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 14.727625000290573,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 45.00263214111328,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5134.917750000022,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3255.5570409996435,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 64.90892791748047,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 13.794082999695092,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.2296249996870756,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 65.34642791748047,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 314.6888339999132,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 94.77037499984726,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 211.36223602294922,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 215.74320799997076,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 177.1591567993164,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 9.147499999962747,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 145.2372817993164,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 8.843290999997407,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 150.1591567993164,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 31.64995800005272,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 159.6435317993164,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 27.151790999807417,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 156.6747817993164,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 21.309124999679625,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 157.9872817993164,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 36.60241700010374,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 160.6123046875,
+      "unit": "MiB",
+      "run": 2
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 507.1820534210205,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 3572415.7100416673,
+      "unit": "timestamp-ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 3572415.7073750007,
+      "unit": "timestamp-ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 3572439.9891666677,
+      "unit": "timestamp-ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 24.279125000350177,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 24.281791666988283,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 540.4278553466797,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 31.439857482910156,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 41.80970899993554,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.475792000070214,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 38.642982482910156,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8101.5229169996455,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4405.438702998217,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 45.064903259277344,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 10.910290999803692,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.3587909997440875,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 45.611778259277344,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 316.6633330001496,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 93.3726659999229,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 192.3462905883789,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 223.10808299994096,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 124.8932113647461,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 34.18633300019428,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 121.9244613647461,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 241.7775829997845,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 119.7057113647461,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 353.8542500003241,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 56.690086364746094,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 224.59541599964723,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 52.690086364746094,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 15.702374999877065,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 52.736961364746094,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 125.10483400011435,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 52.736961364746094,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 702.7510585021972,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 3584232.837333334,
+      "unit": "timestamp-ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 3584232.835208334,
+      "unit": "timestamp-ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 3584307.8265833342,
+      "unit": "timestamp-ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 74.98925000010058,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 74.99137500021607,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 722.0879973602295,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.768280029296875,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 42.30604099994525,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.534666999708861,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 45.268280029296875,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5102.509957999922,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3269.806003001984,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 64.86209869384766,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 13.393833999987692,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 1.9353750003501773,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 65.31522369384766,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 315.3223749999888,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 96.11783300014213,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 211.6591339111328,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 215.56937499996275,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 167.8622817993164,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.120707999914885,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 150.1435317993164,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 9.440750000067055,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 155.3154067993164,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 31.806832999922335,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 164.1747817993164,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 29.305124999955297,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 170.9560317993164,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 21.546124999877065,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 172.5810546875,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 37.6387920002453,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 178.0810546875,
+      "unit": "MiB",
+      "run": 3
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 511.2919930114745,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 3591781.473083334,
+      "unit": "timestamp-ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 3591781.4705416677,
+      "unit": "timestamp-ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 3591805.1067500007,
+      "unit": "timestamp-ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 23.63366666669026,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 23.636208333075047,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 544.6050289764404,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 31.53356170654297,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 42.039083999581635,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.74716700008139,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 38.54920959472656,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8201.610124999657,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4419.610263993498,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 45.033653259277344,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 12.787124999798834,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.3186670001596212,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 45.580528259277344,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 313.6806669998914,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 92.93033300014213,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 191.7994155883789,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 216.03120800014585,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 125.5650634765625,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 33.88729100022465,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 122.3463134765625,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 242.2022500000894,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 114.5494384765625,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 358.4025420001708,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 51.5338134765625,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 222.97675000037998,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 51.5338134765625,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 15.615375000052154,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 51.5650634765625,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 125.7472500000149,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 51.5650634765625,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 731.4090963745117,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 3603631.987625001,
+      "unit": "timestamp-ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 3603631.9852916677,
+      "unit": "timestamp-ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 3603709.5568333343,
+      "unit": "timestamp-ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 77.56920833326876,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 77.5715416665189,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 764.8129698181152,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.98698425292969,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 43.328125,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.65008300030604,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 45.42448425292969,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5102.627959000412,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3242.938337996602,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 65.20580291748047,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 11.736500000115484,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 1.939249999821186,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 65.64330291748047,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 315.01533399987966,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 95.46229199972004,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 213.1747589111328,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 237.81483399961144,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 181.2997817993164,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.574666999746114,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 146.6435317993164,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 9.407875000033528,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 152.0185317993164,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 33.76116599980742,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 161.1747817993164,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 31.076708000153303,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 166.2841567993164,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 20.346750000026077,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 167.5966567993164,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 39.442207999993116,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 170.8310546875,
+      "unit": "MiB",
+      "run": 4
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 596.5749886016846,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 4018909.8672916675,
+      "unit": "timestamp-ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 4018909.8639583346,
+      "unit": "timestamp-ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 4018937.1850000005,
+      "unit": "timestamp-ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 27.317708333022892,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 27.32104166597128,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 629.2280819396973,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 31.48668670654297,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 43.8157919999212,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 16.158166999928653,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 38.62733459472656,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8433.0107499999,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4468.611872000154,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 45.080528259277344,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 13.168040999677032,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.234791999682784,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 45.643028259277344,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 354.66562499990687,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 110.15229200012982,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 191.6900405883789,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 226.4806670001708,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 126.5025863647461,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 33.9490419998765,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 123.3307113647461,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 249.49804199999198,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 115.9713363647461,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 355.57133299997076,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 52.955711364746094,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 222.87975000031292,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 52.971336364746094,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 17.312207999639213,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 53.033836364746094,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 125.81770800007507,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 53.018211364746094,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 774.2119615631103,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 4031899.558458334,
+      "unit": "timestamp-ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 4031899.5555416676,
+      "unit": "timestamp-ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 4031955.4847083343,
+      "unit": "timestamp-ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 55.92625000048429,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 55.92916666669771,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 807.5090234832763,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.815086364746094,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 46.15966699970886,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.334334000013769,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 45.221336364746094,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 6765.28216700023,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3752.642459996976,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 65.14330291748047,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 10.51299999980256,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.4012910001911223,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 65.59642791748047,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 391.45145799964666,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 116.23175000026822,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 211.84661102294922,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 245.3649579999037,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 165.7372817993164,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 10.707958000246435,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 146.6435317993164,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 9.9948750003241,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 151.7997817993164,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 37.956833000294864,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 160.5498046875,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 36.7684159995988,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 168.4717025756836,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 22.179290999658406,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 165.1904754638672,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 41.13345800014213,
+      "unit": "ms",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 168.1748504638672,
+      "unit": "MiB",
+      "run": 5
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 585.7941536560058,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 4041681.908708334,
+      "unit": "timestamp-ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 4041681.906250001,
+      "unit": "timestamp-ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 4041710.530333334,
+      "unit": "timestamp-ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 28.621625000145286,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 28.62408333318308,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 619.075003112793,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 31.15856170654297,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 47.54295800020918,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 17.323792000301182,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 38.22108459472656,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 9668.488834000193,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 5132.85007299576,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 44.674278259277344,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 8.029000000096858,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.6457079998217523,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 45.221153259277344,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 358.4295000000857,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 115.853708000388,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 191.6119155883789,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 265.07487499993294,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 125.5650634765625,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 37.5335840000771,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 122.3619384765625,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 263.013582999818,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 114.4088134765625,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 390.60766700003296,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 51.4088134765625,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 242.8395000002347,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 51.4088134765625,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 18.002208000048995,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 51.4556884765625,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 141.34579200018197,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 51.4556884765625,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 762.0439814300537,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 4055767.6885833344,
+      "unit": "timestamp-ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 4055767.685916668,
+      "unit": "timestamp-ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 4055825.283333334,
+      "unit": "timestamp-ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 57.59474999969825,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 57.59741666633636,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 795.5348776550293,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.674461364746094,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 48.35920900013298,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 17.673291000071913,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 45.12760925292969,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 6318.452415999956,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3758.5642450023443,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 75.98709869384766,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 10.610917000100017,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.2479170002043247,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 76.78397369384766,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 357.90800000028685,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 102.6213329997845,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 221.3778839111328,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 250.01912500010803,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 170.5498046875,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.949624999891967,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 145.9716796875,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 9.159457999747247,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 150.9404296875,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 32.625750000122935,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 157.7998046875,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 31.521707999985665,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 160.7998275756836,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 21.72020799992606,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 163.2685775756836,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 38.31275000004098,
+      "unit": "ms",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 163.7842025756836,
+      "unit": "MiB",
+      "run": 6
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 507.8390921325684,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 4065375.3275000006,
+      "unit": "timestamp-ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 4065375.324708334,
+      "unit": "timestamp-ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 4065400.123416668,
+      "unit": "timestamp-ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 24.795916667208076,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 24.79870833363384,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 541.1261404724121,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 31.47106170654297,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 43.36225000023842,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.999125000089407,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 38.68981170654297,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8218.980582999997,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4426.54791200161,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 45.002357482910156,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 11.333083000034094,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.1967909997329116,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 45.564857482910156,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 317.2639999999665,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 92.39366600010544,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 191.68999481201172,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 211.26658300030977,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 124.9712905883789,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 34.02791599975899,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 121.9087905883789,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 241.9476250000298,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 119.5337905883789,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 358.2235000003129,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 56.518165588378906,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 221.31229100003839,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 52.518165588378906,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 15.894708999898285,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 52.596290588378906,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 127.6933750002645,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 52.580665588378906,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 644.0819356689453,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 4077267.652166668,
+      "unit": "timestamp-ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 4077267.649583334,
+      "unit": "timestamp-ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 4077320.975583334,
+      "unit": "timestamp-ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 53.32341666612774,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 53.325999999884516,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 676.8189523468018,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.86200714111328,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 44.394583999644965,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.24087500013411,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 45.23700714111328,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5084.900458000135,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3252.391993999481,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 68.42457580566406,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 14.786584000103176,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 1.9660829999484122,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 68.87770080566406,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 318.43933399999514,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 95.6747919996269,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 215.1278839111328,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 212.80766599997878,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 164.6904067993164,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.88404200039804,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 149.8466796875,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 8.76491600042209,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 154.9560546875,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 32.54550000000745,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 164.2217025756836,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 29.75216699996963,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 175.5186004638672,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 20.97208399977535,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 177.8467254638672,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 37.52566600032151,
+      "unit": "ms",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 174.7061004638672,
+      "unit": "MiB",
+      "run": 7
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 515.9539970092774,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 4084975.2920416677,
+      "unit": "timestamp-ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 4084975.2885000007,
+      "unit": "timestamp-ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 4084998.8805833342,
+      "unit": "timestamp-ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 23.588541666511446,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 23.592083333525807,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 535.2659019165039,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 31.408607482910156,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 42.01699999999255,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.28645799960941,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 38.564857482910156,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8137.72675000038,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4414.124995999504,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 44.971153259277344,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 10.589957999996841,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.4318749997764826,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 45.564903259277344,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 313.60383300017565,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 92.80120899993926,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 191.6744155883789,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 215.22362500010058,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 124.8932113647461,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 34.30612500011921,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 121.8775863647461,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 240.7244589999318,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 119.5025863647461,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 357.9188749999739,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 56.486961364746094,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 220.78849999979138,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 52.486961364746094,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 16.184292000252753,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 52.533836364746094,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 125.34166599996388,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 52.533836364746094,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 640.9281773986817,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 4096869.668583334,
+      "unit": "timestamp-ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 4096869.6659583338,
+      "unit": "timestamp-ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 4096921.397250001,
+      "unit": "timestamp-ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 51.72866666689515,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 51.73129166709259,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 673.5791249694825,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.705711364746094,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 44.647875000257045,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 14.973166999872774,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 45.19010925292969,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5084.947875000071,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3274.042080999352,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 64.69020080566406,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 14.171875,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.0077500003390014,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 65.14332580566406,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 315.3680409998633,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 95.79291700012982,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 211.97161102294922,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 216.01512499991804,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 162.9560317993164,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 8.82937499973923,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 147.2685317993164,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 9.039374999701977,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 152.6435317993164,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 32.6810420001857,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 161.8154296875,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 30.191749999765307,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 170.9092025756836,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 21.45195799972862,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 173.3623504638672,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 37.75474999984726,
+      "unit": "ms",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 171.8311004638672,
+      "unit": "MiB",
+      "run": 8
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 499.3790657653808,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 4104563.883250001,
+      "unit": "timestamp-ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 4104563.880208334,
+      "unit": "timestamp-ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 4104587.0647916673,
+      "unit": "timestamp-ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 23.18154166638851,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 23.184583333320916,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 532.8458817138671,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 31.31481170654297,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 42.188332999590784,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.260125000029802,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 38.53356170654297,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 8171.494125000201,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 4418.322787998244,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 44.98675537109375,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 9.036042000167072,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 2.2385829999111593,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 45.53363037109375,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 312.90783399995416,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 91.91770799970254,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 192.1275177001953,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 216.84300000034273,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 123.9869384765625,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "duration",
+      "value": 33.73883299995214,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 120.9556884765625,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "duration",
+      "value": 242.4034170000814,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 118.2525634765625,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "duration",
+      "value": 352.38062499975786,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 55.2369384765625,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 221.1089159999974,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 51.2369384765625,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "duration",
+      "value": 15.745499999728054,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 51.2838134765625,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "duration",
+      "value": 125.04841700010002,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "hermes",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 51.2838134765625,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-first-frame-proxy",
+      "value": 679.1150537872314,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "initializeRuntimeStart",
+      "value": 4116491.4827916673,
+      "unit": "timestamp-ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "executeJavaScriptBundleEntryPointStart",
+      "value": 4116491.480333334,
+      "unit": "timestamp-ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "endTime",
+      "value": 4116545.1012500008,
+      "unit": "timestamp-ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "runtime-to-startup-end",
+      "value": 53.618458333425224,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "bundle-to-startup-end",
+      "value": 53.62091666692868,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "process-to-content-ready",
+      "value": 712.4140230560303,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "startup",
+      "metric": "physical-footprint",
+      "value": 35.73700714111328,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "duration",
+      "value": 41.695667000021785,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "react-commit-duration",
+      "value": 15.048666999675333,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "mount-1000",
+      "metric": "physical-footprint",
+      "value": 45.205780029296875,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "duration",
+      "value": 5134.879292000085,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "react-commit-duration",
+      "value": 3243.365445998963,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "updates-300",
+      "metric": "physical-footprint",
+      "value": 65.51834869384766,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "duration",
+      "value": 13.433582999743521,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "react-commit-duration",
+      "value": 1.706207999959588,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "deep-tree",
+      "metric": "physical-footprint",
+      "value": 65.94022369384766,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "duration",
+      "value": 104.25720799993724,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "react-commit-duration",
+      "value": 96.0582909998484,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "long-text-list",
+      "metric": "physical-footprint",
+      "value": 71.34651947021484,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "duration",
+      "value": 216.9944170000963,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "navigation-heavy",
+      "metric": "physical-footprint",
+      "value": 141.73719024658203,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "duration",
+      "value": 9.311708000022918,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "checksum",
+      "value": 4344700,
+      "unit": "count",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "json",
+      "metric": "physical-footprint",
+      "value": 145.25281524658203,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "duration",
+      "value": 9.345166999846697,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "checksum",
+      "value": 200000,
+      "unit": "count",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "regex",
+      "metric": "physical-footprint",
+      "value": 150.61219024658203,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "duration",
+      "value": 32.20995799964294,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "checksum",
+      "value": 250200,
+      "unit": "count",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "sort",
+      "metric": "physical-footprint",
+      "value": 159.79969024658203,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "duration",
+      "value": 28.592416000086814,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "checksum",
+      "value": 1299250000,
+      "unit": "count",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "object-churn",
+      "metric": "physical-footprint",
+      "value": 165.26846313476562,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "duration",
+      "value": 21.950875000096858,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "checksum",
+      "value": 255230,
+      "unit": "count",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "intl",
+      "metric": "physical-footprint",
+      "value": 167.58096313476562,
+      "unit": "MiB",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "duration",
+      "value": 37.52745799999684,
+      "unit": "ms",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "checksum",
+      "value": 6088900,
+      "unit": "count",
+      "run": 9
+    },
+    {
+      "app": "one-bench",
+      "engine": "bun",
+      "case": "strings",
+      "metric": "physical-footprint",
+      "value": 164.73721313476562,
+      "unit": "MiB",
+      "run": 9
+    }
+  ]
+}

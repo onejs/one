@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="318" viewBox="0 0 960 318">
+<rect width="100%" height="100%" fill="#fff"/>
+<g font-family="system-ui, sans-serif" fill="#172033">
+<text x="28" y="35" font-size="23">one-bench · strings · duration</text>
+<text x="28" y="65" font-size="15">iPhone 17 Pro simulator (air-24) · iOS 27.0 · ededeef9aac660b9aafd6bdf088522a70b7d396b</text>
+<text x="28" y="121" font-size="18">bun</text>
+<rect x="170" y="100" width="141.26434429035504" height="30" fill="#2764d9"/>
+<path d="M307.2469653007428,115 H324.23687137461627 M307.2469653007428,108 V122 M324.23687137461627,108 V122" stroke="#111" fill="none"/>
+<path d="M310.7105237353071,115 H313.13706983204713" stroke="#111" stroke-width="5"/>
+<text x="725" y="121" font-size="17">37.67 ms · n=10</text>
+<text x="28" y="185" font-size="18">hermes</text>
+<rect x="170" y="164" width="471.9353503280061" height="30" fill="#868e9c"/>
+<path d="M638.8902306335917,179 H700 M638.8902306335917,172 V186 M700,172 V186" stroke="#111" fill="none"/>
+<path d="M640.370018938392,179 H649.4272320992338" stroke="#111" stroke-width="5"/>
+<text x="725" y="185" font-size="17">125.86 ms · n=10</text>
+<text x="28" y="278" font-size="14">Bar: median · thick line: middle 50% · whiskers: minimum–maximum</text>
+<text x="28" y="300" font-size="13">Release; two batches of five alternating Hermes/Bun pairs; process-cold, warm OS caches; JIT/Wasm off; Background CPU activity observed.</text>
+</g></svg>
