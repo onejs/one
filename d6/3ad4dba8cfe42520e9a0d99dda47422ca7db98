@@ -11,3 +11,5 @@
 {"id":"00000001794782894858:687031b06336ec34fad2b807649b4231","text":"#1259 merged 25604e799 (engine 0.1.6); release/v2.19.0 now at 2b04b2228 with it; stable publish waits on Nate"}
 
 {"id":"00000001794783256572:7a81190fd35fe0b71d56aa6f91c88f1a","text":"Nate approved the 2.19 publish ('Yeah, you can push it'). Plan: #1257 green at 2b04b2228 -> merge -> release.yml minor on main (2.18.0 -> 2.19.0). Wait w-4ec688 on #1257 CI."}
+
+{"id":"00000001794785247727:9dba051a719f8c26dbefafa2ef6c2c49","text":"Holding 2.19 publish for last fixes Nate asked for: PR #1262 (branch fix/xcode-26-and-android-minify) fixes #1249 Xcode 26.6 compile, #1261 Android minify crash, #1250 link set groups for pedometer/barometer/stores. Proving on macos-26 via scratch branches tmp/xcode26-repro (run 43774584622) and tmp/link-set-repro (run 43774857485)."}
