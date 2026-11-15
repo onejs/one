@@ -27,3 +27,5 @@
 {"id":"00000001794763753008:baf1808db5ec64b473081d38872f8323","text":"RAN: inherited simulator investigation observed root layout remount with /hmr-probe still active; assessing registry factory availability before deciding fix."}
 
 {"id":"00000001794764404716:6f23c75ca71d5cfc45d5aef3f4f6689c","text":"TESTED on iPhone 17 Pro iOS 27: route creation test passed with root recovery and new route; Shortcuts queryAppState=3 and SpringBoard=4 after warmup. TESTED engine regression: unvisited untouched, edited unvisited, edited visited routes survive registry patch. Final combined build and simulator run underway."}
+
+{"id":"00000001794764503863:08d28934c7ff9bb00598a954d8f139e4","text":"TESTED follow-up caught stale exports when an edited route precedes a registry patch; engine fix now covers visited edited, unvisited edited, and unvisited untouched modules. RAN final simulator variant with a post-commit effect for navigation reset: FAILED to return home; moved reset back to the update path and rebuilding for a fresh focused run."}
