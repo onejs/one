@@ -4,6 +4,7 @@ import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fillOptions } from '../config/getOptionsFilled'
 import { applyBuiltInPatches, type UserDepPatches } from '../utils/patches'
+import { PREVIOUS_IOS_DIR } from '../utils/swiftPackageId'
 import {
   applyAndroidDependencyPatches,
   generateForPlatform,
@@ -68,7 +69,7 @@ export const prebuild = async ({
   }
 
   const ios = path.join(root, 'ios')
-  const previousIos = `${ios}.previous`
+  const previousIos = path.join(root, PREVIOUS_IOS_DIR)
   rmSync(previousIos, { recursive: true, force: true })
   const reusesIos = (platform == 'ios' || !platform) && existsSync(ios)
   if (reusesIos) renameSync(ios, previousIos)
