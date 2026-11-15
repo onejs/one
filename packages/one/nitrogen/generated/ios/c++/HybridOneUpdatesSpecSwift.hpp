@@ -141,6 +141,12 @@ namespace margelo::nitro::one {
       auto __value = std::move(__result.value());
       return __value;
     }
+    inline void markLaunchSuccessful() override {
+      auto __result = _swiftPart.markLaunchSuccessful();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
 
   private:
     One::HybridOneUpdatesSpec_cxx _swiftPart;

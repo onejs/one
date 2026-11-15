@@ -161,5 +161,9 @@ namespace margelo::nitro::one {
       return __promise;
     }();
   }
+  void JHybridOneUpdatesSpec::markLaunchSuccessful() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void()>("markLaunchSuccessful");
+    method(_javaPart);
+  }
 
 } // namespace margelo::nitro::one

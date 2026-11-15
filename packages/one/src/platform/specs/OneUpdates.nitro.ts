@@ -32,4 +32,6 @@ export interface OneUpdates extends HybridObject<{ ios: 'swift'; android: 'kotli
   getStagedJson(): string | undefined
   addStagedListener(listener: (stagedJson: string | undefined) => void): () => void
   reload(): Promise<void>
+  // the router's root layout committed: the running update is proven good.
+  markLaunchSuccessful(): void
 }

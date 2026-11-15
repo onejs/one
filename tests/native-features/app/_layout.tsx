@@ -1,6 +1,7 @@
 import { One, Stack, usePathname } from 'one'
 import { LogBox, Platform, View } from 'react-native'
 import { QuickNavigatePixel } from '../components/QuickNavigatePixel'
+import { updatesBoot } from '../fixtures/updates-boot'
 import { SplitViewFixture } from './split-view-test'
 
 // react native emits this debugger migration notice before the fixture mounts. expo filters the
@@ -8,6 +9,8 @@ import { SplitViewFixture } from './split-view-test'
 if (__DEV__) LogBox.ignoreLogs([/Open debugger to view warnings/])
 
 export default function Layout() {
+  // the updates suite's root render failure: the module loads, its render throws.
+  if (updatesBoot.rootThrows) throw new Error('updates-suite-root-boom')
   const pathname = usePathname()
   const isSplitView = Platform.OS === 'ios' && pathname === '/split-view-test'
   return (

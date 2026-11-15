@@ -142,13 +142,15 @@ Selection:
 - Before starting a downloaded update, whether at cold launch or through `reload()`,
   the launcher records `launching: <id>`. The embedded update is never recorded and
   never marked failed.
-- The launch succeeds when the root first shows content:
-  - iOS: `RCTContentDidAppearNotification`, posted by the Fabric root
-    (`RCTRootComponentView.mm:44-45`);
-  - Android: `ReactMarker CONTENT_APPEARED`, which bridgeless `ReactSurfaceView`
-    inherits.
+- The launch succeeds when the router's root layout commits: `RootErrorBoundary`
+  mounts without having caught and calls `OneUpdates.markLaunchSuccessful()`.
+  React Native's first content (`RCTContentDidAppearNotification`, `CONTENT_APPEARED`)
+  is the router's provider shell, which appears before the root layout renders, so it
+  cannot prove an update.
   - Success increments that update's success count and clears `launching`.
-- A fatal error before content appears marks the update failed:
+  - A root layout that throws while it renders on an unproven downloaded update
+    escapes the boundary as a fatal error instead of showing the error screen.
+- A fatal error before the root layout commits marks the update failed:
   - iOS: `RCTSetFatalHandler` (`RCTAssert.h:141-144`);
   - Android: the host's `exceptionHandler`, which bridgeless sends through
     `ReactHostDelegate.handleInstanceException` (`ReactHostImpl.kt:408`). This is the
@@ -157,13 +159,13 @@ Selection:
     error recovery relaunches from cache (`ErrorRecovery.swift:155-239`). Any pending
     `reload()` promise rejects with `E_UPDATES_RELOAD`.
 - A cold launch that finds `launching` still set covers a native crash, a hang, or a
-  kill before content appeared:
+  kill before the root layout committed:
   - an update with zero successes is marked failed and never selected again;
   - an update with at least one success is selected again.
   - Expo never abandons a proven update (`ErrorRecovery.swift:159-164`); this guard
     keeps a force-quit during the splash from deleting a good update.
-- After content appears, errors never roll back. Expo stops its recovery at first
-  render (`ErrorRecovery.swift:306-316`).
+- After the root layout commits, errors never roll back. Expo stops its recovery at
+  first render (`ErrorRecovery.swift:306-316`).
 
 ## Reaper
 

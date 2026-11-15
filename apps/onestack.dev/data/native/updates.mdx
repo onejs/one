@@ -7,7 +7,7 @@ description: Ship JavaScript and asset changes over the air, with automatic roll
 assets from your own server and run it, without a store review. One's
 launcher picks the bundle before React Native starts, verifies every file it
 downloads, and falls back to the previous bundle when an update crashes
-before its first screen appears.
+before its root layout renders.
 
 An update can change JavaScript and assets only. Anything native, such as a
 new module, permission, or icon, needs a new binary. The runtime version
@@ -101,11 +101,12 @@ or right away when you call `reload`, which restarts JavaScript on the
 newest ready update. Values like `updateId` and `manifest` describe the
 running bundle and are fixed for the life of the JavaScript context.
 
-**Rollback.** An update is proven once its first screen appears. If an
-unproven update hits a fatal JavaScript error before that, the launcher
-marks it failed and restarts on the next candidate in the same session. If
-the app instead crashes natively, hangs, or is killed before the first
-screen, the next launch marks the update failed. A failed update that never
+**Rollback.** An update is proven once its root layout renders. If an
+unproven update hits a fatal JavaScript error before that, including an
+error thrown while rendering the root layout, the launcher marks it failed
+and restarts on the next candidate in the same session. If the app instead
+crashes natively, hangs, or is killed before the root layout renders, the
+next launch marks the update failed. A failed update that never
 started is never chosen again.
 
 **Cleanup.** After each successful start the launcher keeps three updates at
@@ -199,8 +200,10 @@ update.
 - **Publish after you build.** The embedded bundle's date is its build time,
   so an update published before the binary was built is older than it and
   is never used.
-- **Only crashes before the first screen roll back.** An update that starts
-  and then breaks later stays in place. Publish a fixed update to replace it.
+- **Only failures before your root layout renders roll back.** An update
+  whose root layout fails to load or render rolls back to the previous one.
+  An update that renders its root layout and breaks later stays in place.
+  Publish a fixed update to replace it.
 - **Debug builds skip the launcher.** To test updates, run a release build,
   which loads the embedded bundle and then your downloads.
 - **Keep source maps private.** `--intermediates-out` writes the plain bundle

@@ -25,6 +25,7 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("getStagedJson", &HybridOneUpdatesSpec::getStagedJson);
       prototype.registerHybridMethod("addStagedListener", &HybridOneUpdatesSpec::addStagedListener);
       prototype.registerHybridMethod("reload", &HybridOneUpdatesSpec::reload);
+      prototype.registerHybridMethod("markLaunchSuccessful", &HybridOneUpdatesSpec::markLaunchSuccessful);
     });
   }
 

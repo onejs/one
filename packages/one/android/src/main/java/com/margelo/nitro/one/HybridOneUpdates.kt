@@ -35,4 +35,6 @@ class HybridOneUpdates : HybridOneUpdatesSpec() {
         OneUpdatesLauncher.addStagedListener(listener)
 
     override fun reload(): Promise<Unit> = OneUpdatesLauncher.reload()
+
+    override fun markLaunchSuccessful() = OneUpdatesLauncher.markLaunchSuccessful()
 }

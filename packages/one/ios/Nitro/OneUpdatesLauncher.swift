@@ -84,10 +84,9 @@ struct OneUpdatesStateFile: Codable {
   static let directoryName = "one-updates"
 
   private static let lock = NSRecursiveLock()
-  private static var installed = false
   private static var runningId: String?
   private static var runningEmbedded = true
-  private static var contentAppeared = false
+  private static var launchProven = false
   private static var launchingBundleURL: URL?
   // the just-failed update the next selection skips once, so an in-session
   // rollback lands on the next candidate instead of reselecting a proven
@@ -281,7 +280,7 @@ struct OneUpdatesStateFile: Codable {
     }
 
     // a cold launch that finds launching set covers a native crash, a hang,
-    // or a kill before content appeared. a proven update is selected again;
+    // or a kill before the root layout rendered. a proven update is selected again;
     // an unproven one never is.
     if !consumedLaunching {
       consumedLaunching = true
@@ -352,12 +351,9 @@ struct OneUpdatesStateFile: Codable {
 
   // the prebuild patch points the release bundleURL at this, through the
   // OneUpdatesBundleURL c entry point (app targets cannot import the One
-  // module: its c++ umbrella does not rebuild under their flags). installing
-  // here covers every launch: nothing js can fail before the bundle url is
-  // read, and content appears strictly later. without an updates url the
-  // embedded bundle launches and the launcher never touches state.
+  // module: its c++ umbrella does not rebuild under their flags). without an
+  // updates url the embedded bundle launches and the launcher never touches state.
   @objc public static func bundleURL() -> URL? {
-    ensureInstalled()
     let url = isEnabled ? select() : embeddedBundleURL()
     lock.lock()
     launchingBundleURL = url
@@ -374,30 +370,15 @@ struct OneUpdatesStateFile: Codable {
     return launchingBundleURL
   }
 
-  static func ensureInstalled() {
-    lock.lock()
-    defer { lock.unlock() }
-    #if DEBUG
-    return
-    #else
-    if installed { return }
-    installed = true
+  // the router calls this once its root layout commits. react native's first
+  // content is the router's provider shell, which appears before the root
+  // layout renders, so it cannot prove an update.
+  static func markLaunchSuccessful() {
     guard isEnabled else { return }
-    NotificationCenter.default.addObserver(
-      forName: NSNotification.Name.RCTContentDidAppear,
-      object: nil,
-      queue: .main
-    ) { _ in
-      OneUpdatesLauncher.handleContentAppeared()
-    }
-    #endif
-  }
-
-  static func handleContentAppeared() {
     lock.lock()
     let pending = pendingReload
     pendingReload = nil
-    contentAppeared = true
+    launchProven = true
     var state = loadState()
     if let launching = state.launching {
       state.updates[launching]?.successes += 1
@@ -414,7 +395,7 @@ struct OneUpdatesStateFile: Codable {
   @objc(rollBackIfArmedWithReason:)
   public static func rollBackIfArmed(reason: String) -> Bool {
     lock.lock()
-    let armed = !contentAppeared
+    let armed = !launchProven
     let launching = loadState().launching
     guard armed, let launching else {
       lock.unlock()
@@ -433,7 +414,7 @@ struct OneUpdatesStateFile: Codable {
     state.launching = nil
     saveState(state)
     skipOnce = launching
-    contentAppeared = false
+    launchProven = false
     let pending = pendingReload
     pendingReload = nil
     // the rollback starts a new js context; its listeners register fresh.
@@ -966,7 +947,7 @@ struct OneUpdatesStateFile: Codable {
           "E_UPDATES_RELOAD", "Updates.reload: a reload is already in progress."))
     }
     _ = select()
-    contentAppeared = false
+    launchProven = false
     let promise = Promise<Void>()
     pendingReload = promise
     // the reload starts a new js context; its listeners register fresh.
