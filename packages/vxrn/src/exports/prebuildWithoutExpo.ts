@@ -445,6 +445,7 @@ const GOOGLE_SERVICES_VERSION = '4.4.4'
 function iosResourceFiles(app: NativeAppManifest): string[] {
   return [
     ...(app.fonts ?? []).map(fontFileName),
+    ...(app.ios?.resources ?? []).map((file) => path.basename(file)),
     ...(app.ios?.googleServicesFile ? [GOOGLE_SERVICES_PLIST] : []),
   ]
 }
@@ -502,6 +503,11 @@ function copyAppResources({
       ? path.join(dest, app.name, fontFileName(font))
       : path.join(dest, 'app', 'src', 'main', 'assets', 'fonts', fontFileName(font)),
   ])
+  if (platform === 'ios') {
+    for (const file of app.ios?.resources ?? []) {
+      copies.push([file, path.join(dest, app.name, path.basename(file))])
+    }
+  }
   const googleServices =
     platform === 'ios' ? app.ios?.googleServicesFile : app.android?.googleServicesFile
   if (googleServices) {

@@ -26,6 +26,12 @@ export default {
 }
 ```
 
+For a named iOS notification sound, list the source file in
+`native.app.ios.resources`, for example `['./assets/alert.wav']`. Prebuild
+copies each file into the app bundle under its filename and adds it to the
+Xcode Resources phase. Use that filename in the notification's `iosSound`.
+Resource paths are relative to the app root, and filenames must be unique.
+
 Then ask for permission and schedule:
 
 ```tsx
