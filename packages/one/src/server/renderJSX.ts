@@ -62,7 +62,9 @@ function createServerDispatcher(componentName: string) {
           `[one] renderJSX: use(promise) is not supported in <${componentName}>. Make the component async and await it.`
         )
       }
-      throw new Error(`[one] renderJSX: use(context) is not supported in <${componentName}>.`)
+      throw new Error(
+        `[one] renderJSX: use(context) is not supported in <${componentName}>.`
+      )
     },
     readContext: () => {
       throw new Error(`[one] renderJSX: context is not available in <${componentName}>.`)
@@ -87,7 +89,9 @@ type DispatcherStore = {
 let dispatcherStore: DispatcherStore | null | undefined
 function getDispatcherStore(): DispatcherStore | null {
   if (dispatcherStore !== undefined) return dispatcherStore
-  const ALS = (globalThis as any).process?.getBuiltinModule?.('node:async_hooks')?.AsyncLocalStorage
+  const ALS = (globalThis as any).process?.getBuiltinModule?.(
+    'node:async_hooks'
+  )?.AsyncLocalStorage
   const store: DispatcherStore | null = ALS ? new ALS() : null
   dispatcherStore = store
   return store
@@ -139,6 +143,18 @@ function fail(path: string, what: string): never {
   )
 }
 
+function unsupported(path: string, what: string, hint: string): never {
+  throw new Error(
+    `[one] renderJSX: ${what} at ${path} is not supported in a loader JSX tree. ${hint}`
+  )
+}
+
+// keys ride inside the props object: createElement extracts `key` from the config on revive,
+// so older clients reading a newer envelope keep list identity too
+function withKey(node: JSXEnvelopeNode, key: string | null): JSXEnvelopeNode {
+  return key == null || keyOf(node) != null ? node : setKey(node, key)
+}
+
 // props cross the wire as json. elements in props are rendered to their own envelope,
 // wrapped as { __oneJSX } so the client can tell them from plain arrays.
 async function serializeValue(value: any, path: string): Promise<any> {
@@ -183,7 +199,9 @@ async function serializeProps(props: Record<string, any>, path: string, skip?: s
   const out: Record<string, any> = {}
   const keys = Object.keys(props).filter((key) => key !== skip)
   // key order stays stable so the envelope is deterministic
-  const values = await Promise.all(keys.map((key) => serializeValue(props[key], `${path}.${key}`)))
+  const values = await Promise.all(
+    keys.map((key) => serializeValue(props[key], `${path}.${key}`))
+  )
   keys.forEach((key, i) => {
     if (values[i] !== undefined) out[key] = values[i]
   })
@@ -193,20 +211,46 @@ async function serializeProps(props: Record<string, any>, path: string, skip?: s
 async function walkChildren(children: any, path: string): Promise<JSXEnvelopeNode[]> {
   const list = Array.isArray(children) ? children : [children]
   const results = await Promise.all(list.map((child, i) => walk(child, `${path}[${i}]`)))
+  // flattening merges sibling groups into one list. scope keys by group the way
+  // react does, so two maps sharing ids don't collide and later siblings keep
+  // their identity when an earlier list changes length.
+  const scoped =
+    results.length > 1 && results.some((node) => Array.isArray(node) && node[0] === 'f')
   const flat: JSXEnvelopeNode[] = []
-  for (const node of results) {
-    if (node === null) continue
-    if (Array.isArray(node) && node[0] === 'f') flat.push(...(node.slice(1) as JSXEnvelopeNode[]))
-    else flat.push(node)
-  }
+  results.forEach((node, i) => {
+    if (node === null) return
+    if (Array.isArray(node) && node[0] === 'f') {
+      const group = node.slice(1) as JSXEnvelopeNode[]
+      if (!scoped) return flat.push(...group)
+      group.forEach((child, j) => {
+        const key = keyOf(child)
+        flat.push(setKey(child, key == null ? `${i}.${j}` : `${i}:${key}`))
+      })
+    } else {
+      flat.push(scoped && keyOf(node) == null ? setKey(node, `.${i}`) : node)
+    }
+  })
   return flat
+}
+
+function keyOf(node: JSXEnvelopeNode): string | null {
+  if (!Array.isArray(node) || node[0] === 'f') return null
+  return (node[2] as { key?: string }).key ?? null
+}
+
+function setKey(node: JSXEnvelopeNode, key: string): JSXEnvelopeNode {
+  if (!Array.isArray(node) || node[0] === 'f') return node
+  return [node[0], node[1], { ...node[2], key }, ...node.slice(3)] as JSXEnvelopeNode
 }
 
 function withFallback(node: JSXEnvelopeNode, fallback: JSXEnvelopeNode): JSXEnvelopeNode {
   if (Array.isArray(node)) {
     if (node[0] === 'c' && node[3] === undefined) return ['c', node[1], node[2], fallback]
     if (node[0] === 'f') {
-      return ['f', ...(node.slice(1) as JSXEnvelopeNode[]).map((n) => withFallback(n, fallback))]
+      return [
+        'f',
+        ...(node.slice(1) as JSXEnvelopeNode[]).map((n) => withFallback(n, fallback)),
+      ]
     }
   }
   return node
@@ -221,14 +265,26 @@ async function walk(node: any, path: string): Promise<JSXEnvelopeNode> {
   }
   if (!isElement(node)) return fail(path, `a ${typeof node} child`)
 
-  const { type, props } = node as { type: any; props: Record<string, any> }
+  const { type, props, key } = node as {
+    type: any
+    props: Record<string, any>
+    key: string | null
+  }
   const here = `${path}<${typeof type === 'string' ? type : typeName(type)}>`
 
   if (type === React.Fragment) return ['f', ...(await walkChildren(props.children, here))]
 
+  // server trees resolve inline, so boundaries around them have nothing to wait for
+  if (type === React.Suspense || type === React.StrictMode) {
+    return ['f', ...(await walkChildren(props.children, here))]
+  }
+
   if (typeof type === 'string') {
     const hostProps = await serializeProps(props, here, 'children')
-    return ['h', type, hostProps, ...(await walkChildren(props.children, here))]
+    return withKey(
+      ['h', type, hostProps, ...(await walkChildren(props.children, here))],
+      key
+    )
   }
 
   if (type === JSXSlot) {
@@ -236,39 +292,81 @@ async function walk(node: any, path: string): Promise<JSXEnvelopeNode> {
     if (typeof name !== 'string' || !name) fail(here, 'a JSXSlot without a string name')
     const slotProps = await serializeProps(rest, here)
     const fallback = children == null ? undefined : await walk(children, here)
-    return fallback === undefined || fallback === null
-      ? ['s', name, slotProps]
-      : ['s', name, slotProps, fallback]
+    return withKey(
+      fallback === undefined || fallback === null
+        ? ['s', name, slotProps]
+        : ['s', name, slotProps, fallback],
+      key
+    )
   }
 
   if (type === ClientFallback) {
     const fallback = await walk(props.fallback, here)
-    return withFallback(await walk(props.children, here), fallback)
+    return withKey(withFallback(await walk(props.children, here), fallback), key)
   }
 
   const clientId: string | undefined = type?.[CLIENT_ID]
   if (clientId) {
-    return ['c', clientId, await serializeProps(props, here)]
+    return withKey(['c', clientId, await serializeProps(props, here)], key)
   }
 
   // memo, forwardRef: unwrap to the inner component
   if (type && typeof type === 'object') {
     const marker = String(type.$$typeof)
     if (marker === 'Symbol(react.memo)') {
-      return walk(React.createElement(type.type, props), path)
+      return withKey(await walk(React.createElement(type.type, props), path), key)
     }
     if (marker === 'Symbol(react.forward_ref)') {
-      return walk(await callServerComponent(type.render, props, typeName(type)), path)
+      return withKey(
+        await walk(await callServerComponent(type.render, props, typeName(type)), path),
+        key
+      )
     }
-    return fail(here, 'an unsupported component type')
+    if (
+      marker === 'Symbol(react.context)' ||
+      marker === 'Symbol(react.provider)' ||
+      marker === 'Symbol(react.consumer)'
+    ) {
+      return unsupported(
+        here,
+        'a context provider or consumer',
+        `Read the value in the loader and pass it down as props, or provide the context inside a 'use client' component.`
+      )
+    }
+    if (marker === 'Symbol(react.lazy)') {
+      return unsupported(
+        here,
+        'a lazy component',
+        `Import the component directly in the loader, or move it behind a 'use client' boundary.`
+      )
+    }
+    return unsupported(
+      here,
+      'this component type',
+      `Use a function component or a 'use client' component.`
+    )
   }
 
   if (typeof type === 'function') {
+    if ((type as any).prototype?.isReactComponent) {
+      return unsupported(
+        here,
+        `<${typeName(type)}> is a class component`,
+        `Server components must be functions. Rewrite it as a function or move it behind a 'use client' boundary.`
+      )
+    }
     // async components resolve here; sibling subtrees walk in parallel through Promise.all above
-    return walk(await callServerComponent(type, props, typeName(type)), path)
+    return withKey(
+      await walk(await callServerComponent(type, props, typeName(type)), path),
+      key
+    )
   }
 
-  return fail(here, 'an unsupported element type')
+  return unsupported(
+    here,
+    'this element type',
+    `Use a host element, a function component or a 'use client' component.`
+  )
 }
 
 /**
