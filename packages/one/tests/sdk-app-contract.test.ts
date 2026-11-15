@@ -11,7 +11,7 @@ it('rejects a mismatched shipped ABI without touching the coherent native pod or
     const packageRoot = join(import.meta.dirname, '..')
     execFileSync('bun', [join(packageRoot, 'codegen/sdk/build.ts'), out])
     mkdirSync(join(root, 'ios-bindings'))
-    writeFileSync(join(root, 'ios-bindings/manifest.json'), JSON.stringify({ generation: 'wrong-abi' }))
+    writeFileSync(join(root, 'ios-bindings/manifest.json'), JSON.stringify({ generation: 'wrong-abi', frameworks: ['Foundation'] }))
     const app = join(root, 'app')
     const pod = join(app, 'ios/OneSwiftPackages/OneSDKBindings')
     mkdirSync(pod, { recursive: true })

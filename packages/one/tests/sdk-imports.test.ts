@@ -46,9 +46,9 @@ it('parses neither lookalike paths nor flow, and falls back to full tables on a 
     'package.json': '{"name":"app","dependencies":{"lib":"1"}}',
     'node_modules/lib/package.json': '{"name":"lib","peerDependencies":{"one":"*"}}',
     'node_modules/lib/flow.js': "// @flow\nconst path = 'x/iphone/ios'\nexport const n: number = 1\n",
-    'node_modules/lib/real.js': "// @flow\nimport { CTFont } from 'one/ios/CoreText'\nexport const f: ?CTFont = null\n",
+    'node_modules/lib/real.js': "// @flow\nimport { CTFont } from 'one/ios/CoreText/CTFont'\nexport const f: ?CTFont = null\n",
     'node_modules/lib/broken.js': "import 'one/ios/MapKit'\nconst a = <<<\n",
-    'angle.ts': "import { UIView } from 'one/ios/UIKit'\nexport const view = <any>UIView\n",
+    'angle.ts': "import { UIView } from 'one/ios/UIKit/UIView'\nexport const view = <any>UIView\n",
   })
   const found = importedBindings(app, platformRoot)
   expect(found.get('UIKit')).toEqual(new Set(['UIView']))
@@ -56,16 +56,21 @@ it('parses neither lookalike paths nor flow, and falls back to full tables on a 
   expect(found.get('MapKit')).toBeNull()
 })
 
-it('ignores type-only imports and keeps ungrouped interfaces from throwing', () => {
+it('selects per-class imports, keeps full tables for framework roots and ignores type-only imports', () => {
   const app = project('types', {
     'a.ts': "import type { UITableViewDelegate } from 'one/ios/UIKit'\nexport type D = UITableViewDelegate\n",
-    'b.ts': "import { UIView, type NSLayoutManagerDelegate } from 'one/ios/UIKit'\nexport const v: NSLayoutManagerDelegate | UIView | undefined = undefined\n",
-    'c.ts': "import { type UIViewControllerTransitioningDelegate } from 'one/ios/UIKit'\nexport type T = UIViewControllerTransitioningDelegate\n",
+    'b.ts': "import { type NSLayoutManagerDelegate } from 'one/ios/UIKit'\nexport type T = NSLayoutManagerDelegate\n",
+    'c.ts': "import { UIView } from 'one/ios/UIKit/UIView'\nexport const v = UIView\n",
     // an interface imported without `type` is erased by the compiler and has no entries
-    'd.ts': "import { UIButton, UITableViewDelegate } from 'one/ios/UIKit'\nexport const b = UIButton\nexport type D = UITableViewDelegate\n",
+    'd.ts': "import { UITableViewDelegate } from 'one/ios/UIKit/UITableViewDelegate'\nexport type D = UITableViewDelegate\n",
+    // the root registers every class, so a returned handle may reach any entry
+    'e.ts': "import { NSUUID } from 'one/ios/Foundation'\nexport const u = NSUUID\n",
   })
-  expect(importedBindings(app, platformRoot).get('UIKit')).toEqual(new Set(['UIView', 'UIButton', 'UITableViewDelegate']))
+  const found = importedBindings(app, platformRoot)
+  expect(found.get('UIKit')).toEqual(new Set(['UIView', 'UITableViewDelegate']))
+  expect(found.get('Foundation')).toBeNull()
   const { entries } = appSdkOptions(app)
+  expect(Object.keys(entries ?? {})).toEqual(['UIKit'])
   expect(entries?.UIKit.length).toBeGreaterThan(0)
   const typeOnly = project('type-only', {
     'a.ts': "import type { UITableViewDelegate } from 'one/ios/UIKit'\nexport type D = UITableViewDelegate\n",

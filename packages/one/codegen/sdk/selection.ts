@@ -77,18 +77,15 @@ const isTsx = (file: string) => file.endsWith('.tsx')
 export function importedBindings(root: string, platformRoot = defaultPlatformRoot()) {
   const found = new Map<string, Set<string> | null>()
   let dynamicEntries = false
-  const add = (source: string, symbols?: string[]) => {
+  const add = (source: string) => {
     const match = SDK_IMPORT.exec(source)
     if (!match) return
     const [, framework, symbol] = match
     if (found.get(framework) === null) return
-    if (!symbol && !symbols?.length) {
-      found.set(framework, null)
-      return
-    }
-    const selected = found.get(framework) ?? new Set<string>()
-    for (const name of symbol ? [symbol] : symbols ?? []) selected.add(name)
-    found.set(framework, selected)
+    // a framework root imports its barrel, registering every wrapper a returned
+    // handle may take, so any import of it keeps the full table
+    if (!symbol) return void found.set(framework, null)
+    found.set(framework, (found.get(framework) ?? new Set<string>()).add(symbol))
   }
   const name = (node: { type: string; name?: string; value?: string }) => (node.type === 'Identifier' ? node.name! : node.value!)
   scanProject(root, platformRoot, (file, source) => {
@@ -109,11 +106,10 @@ export function importedBindings(root: string, platformRoot = defaultPlatformRoo
         // type-only imports are erased, so they reach no entries
         const values = node.specifiers.filter((specifier) => specifier.type !== 'ImportSpecifier' || specifier.importKind !== 'type')
         if (node.importKind === 'type' || (node.specifiers.length && !values.length)) return
-        const named = values.every((specifier) => specifier.type === 'ImportSpecifier')
-        add(node.source.value, named ? values.flatMap((specifier) => specifier.type === 'ImportSpecifier' ? [name(specifier.imported)] : []) : undefined)
+        add(node.source.value)
       } else if (node.type === 'ExportNamedDeclaration' && node.source) {
-        if (node.exportKind === 'type') return
-        add(node.source.value, node.specifiers.flatMap((specifier) => specifier.type === 'ExportSpecifier' && specifier.exportKind !== 'type' ? [specifier.local.name] : []))
+        if (node.exportKind === 'type' || (node.specifiers.length && node.specifiers.every((specifier) => specifier.type === 'ExportSpecifier' && specifier.exportKind === 'type'))) return
+        add(node.source.value)
       } else if (node.type === 'ExportAllDeclaration') {
         if (node.exportKind !== 'type') add(node.source.value)
       } else if (node.type === 'CallExpression' && ((node.callee.type === 'Identifier' && node.callee.name === 'require') || node.callee.type === 'Import')) {

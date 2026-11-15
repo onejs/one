@@ -16,7 +16,7 @@ export class STScreenTimeConfiguration extends SDKHandle {
    * var enforcesChildRestrictions: Bool { get }
    * @availability iOS 14.0+
    */
-  get enforcesChildRestrictions(): boolean { return callSDK<boolean>("ScreenTime_095cc02a2666a9f8", 312773437343206, this, []); }
+  get enforcesChildRestrictions(): boolean { return callSDK<boolean>("ScreenTime_b2b2d01292270470", 312773437343206, this, []); }
   declare readonly $type: { "c:objc(cs)STScreenTimeConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "enforcesChildRestrictions": true };
 }
@@ -30,22 +30,22 @@ export class STScreenTimeConfigurationObserver extends SDKHandle {
    * init(updateQueue: dispatch_queue_t)
    * @availability iOS 14.0+
    */
-  static init(updateQueue: _Dispatch_DispatchQueue): STScreenTimeConfigurationObserver { return callSDK<STScreenTimeConfigurationObserver>("ScreenTime_095cc02a2666a9f8", 495900492374711, undefined, [updateQueue]); }
+  static init(updateQueue: _Dispatch_DispatchQueue): STScreenTimeConfigurationObserver { return callSDK<STScreenTimeConfigurationObserver>("ScreenTime_b2b2d01292270470", 495900492374711, undefined, [updateQueue]); }
   /**
    * func startObserving()
    * @availability iOS 14.0+
    */
-  startObserving(): void { return callSDK<void>("ScreenTime_095cc02a2666a9f8", 541972387780747, this, []); }
+  startObserving(): void { return callSDK<void>("ScreenTime_b2b2d01292270470", 541972387780747, this, []); }
   /**
    * func stopObserving()
    * @availability iOS 14.0+
    */
-  stopObserving(): void { return callSDK<void>("ScreenTime_095cc02a2666a9f8", 3716793798630065, this, []); }
+  stopObserving(): void { return callSDK<void>("ScreenTime_b2b2d01292270470", 3716793798630065, this, []); }
   /**
    * var configuration: STScreenTimeConfiguration? { get }
    * @availability iOS 14.0+
    */
-  get configuration(): (STScreenTimeConfiguration) | null { return callSDK<(STScreenTimeConfiguration) | null>("ScreenTime_095cc02a2666a9f8", 1961753061622241, this, []); }
+  get configuration(): (STScreenTimeConfiguration) | null { return callSDK<(STScreenTimeConfiguration) | null>("ScreenTime_b2b2d01292270470", 1961753061622241, this, []); }
   declare readonly $type: { "c:objc(cs)STScreenTimeConfigurationObserver": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "configuration": true };
 }
@@ -59,42 +59,42 @@ export class STWebHistory extends SDKHandle {
    * func deleteAllHistory()
    * @availability iOS 14.0+
    */
-  deleteAllHistory(): void { return callSDK<void>("ScreenTime_095cc02a2666a9f8", 738237398319595, this, []); }
+  deleteAllHistory(): void { return callSDK<void>("ScreenTime_b2b2d01292270470", 738237398319595, this, []); }
   /**
    * func deleteHistory(during interval: DateInterval)
    * @availability iOS 14.0+
    */
-  deleteHistoryDuring(interval: _Foundation_DateInterval): void { return callSDK<void>("ScreenTime_095cc02a2666a9f8", 4465392179209951, this, [interval]); }
+  deleteHistoryDuring(interval: _Foundation_DateInterval): void { return callSDK<void>("ScreenTime_b2b2d01292270470", 4465392179209951, this, [interval]); }
   /**
    * func deleteHistory(for url: URL)
    * @availability iOS 14.0+
    */
-  deleteHistoryFor(url: string): void { return callSDK<void>("ScreenTime_095cc02a2666a9f8", 2716744605837588, this, [url]); }
+  deleteHistoryFor(url: string): void { return callSDK<void>("ScreenTime_b2b2d01292270470", 2716744605837588, this, [url]); }
   /**
    * func fetchAllHistory() async throws -> Set<URL>
    * @availability iOS 18.4+
    */
-  fetchAllHistory(completionHandler: $SDK1): void { return callSDK<void>("ScreenTime_095cc02a2666a9f8", 4359667902067359, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  fetchAllHistory(completionHandler: $SDK1): void { return callSDK<void>("ScreenTime_b2b2d01292270470", 4359667902067359, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func fetchHistory(during interval: DateInterval) async throws -> Set<URL>
    * @availability iOS 18.4+
    */
-  fetchHistory(interval: _Foundation_DateInterval, completionHandler: $SDK1): void { return callSDK<void>("ScreenTime_095cc02a2666a9f8", 3048521853973120, this, [interval, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchHistory(interval: _Foundation_DateInterval, completionHandler: $SDK1): void { return callSDK<void>("ScreenTime_b2b2d01292270470", 3048521853973120, this, [interval, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(bundleIdentifier: String) throws
    * @availability iOS 14.0+
    */
-  static initBundleIdentifier(bundleIdentifier: string): STWebHistory { return callSDK<STWebHistory>("ScreenTime_095cc02a2666a9f8", 1055866506872485, undefined, [bundleIdentifier]); }
+  static initBundleIdentifier(bundleIdentifier: string): STWebHistory { return callSDK<STWebHistory>("ScreenTime_b2b2d01292270470", 1055866506872485, undefined, [bundleIdentifier]); }
   /**
    * init(bundleIdentifier: String, profileIdentifier: STWebHistory.ProfileIdentifier?) throws
    * @availability iOS 18.4+
    */
-  static initBundleIdentifierProfileIdentifier(bundleIdentifier: string, profileIdentifier?: $SDK2): STWebHistory { return callSDK<STWebHistory>("ScreenTime_095cc02a2666a9f8", 1501741068871539, undefined, [bundleIdentifier, profileIdentifier]); }
+  static initBundleIdentifierProfileIdentifier(bundleIdentifier: string, profileIdentifier?: $SDK2): STWebHistory { return callSDK<STWebHistory>("ScreenTime_b2b2d01292270470", 1501741068871539, undefined, [bundleIdentifier, profileIdentifier]); }
   /**
    * init(profileIdentifier: STWebHistory.ProfileIdentifier?)
    * @availability iOS 18.4+
    */
-  static initProfileIdentifier(profileIdentifier?: $SDK2): STWebHistory { return callSDK<STWebHistory>("ScreenTime_095cc02a2666a9f8", 4221339323796373, undefined, [profileIdentifier]); }
+  static initProfileIdentifier(profileIdentifier?: $SDK2): STWebHistory { return callSDK<STWebHistory>("ScreenTime_b2b2d01292270470", 4221339323796373, undefined, [profileIdentifier]); }
   declare readonly $type: { "c:objc(cs)STWebHistory": true; "c:objc(cs)NSObject": true };
 }
 
@@ -109,12 +109,12 @@ export const STWebHistory_ProfileIdentifier = {
    * init(rawValue: String)
    * @availability iOS 18.4+
    */
-  initRawValue(rawValue: string): STWebHistory_ProfileIdentifier { return callSDK<STWebHistory_ProfileIdentifier>("ScreenTime_095cc02a2666a9f8", 1355114422940754, undefined, [rawValue]); },
+  initRawValue(rawValue: string): STWebHistory_ProfileIdentifier { return callSDK<STWebHistory_ProfileIdentifier>("ScreenTime_b2b2d01292270470", 1355114422940754, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 18.4+
    */
-  init(rawValue: string): STWebHistory_ProfileIdentifier { return callSDK<STWebHistory_ProfileIdentifier>("ScreenTime_095cc02a2666a9f8", 161727704952038, undefined, [rawValue]); }
+  init(rawValue: string): STWebHistory_ProfileIdentifier { return callSDK<STWebHistory_ProfileIdentifier>("ScreenTime_b2b2d01292270470", 161727704952038, undefined, [rawValue]); }
 };
 
 /**
@@ -123,52 +123,52 @@ export const STWebHistory_ProfileIdentifier = {
  */
 export class STWebpageController extends SDKHandle {
   /** init() */
-  static init(): Promise<STWebpageController> { return callSDKAsync<STWebpageController>("ScreenTime_095cc02a2666a9f8", 2395192807655170, undefined, []); }
+  static init(): Promise<STWebpageController> { return callSDKAsync<STWebpageController>("ScreenTime_b2b2d01292270470", 2395192807655170, undefined, []); }
   /**
    * func setBundleIdentifier(_ bundleIdentifier: String) throws
    * @availability iOS 14.0+
    */
-  setBundleIdentifier(bundleIdentifier: string): Promise<void> { return callSDKAsync<void>("ScreenTime_095cc02a2666a9f8", 4040759548971564, this, [bundleIdentifier]); }
+  setBundleIdentifier(bundleIdentifier: string): Promise<void> { return callSDKAsync<void>("ScreenTime_b2b2d01292270470", 4040759548971564, this, [bundleIdentifier]); }
   /**
    * var url: URL? { get set }
    * @availability iOS 14.0+
    */
-  get url(): Promise<(string) | null> { return callSDKAsync<(string) | null>("ScreenTime_095cc02a2666a9f8", 1496286732961697, this, []); }
-  setUrl(value?: (string) | null): Promise<void> { return callSDKAsync<void>("ScreenTime_095cc02a2666a9f8", 1226751146543988, this, [value]); }
+  get url(): Promise<(string) | null> { return callSDKAsync<(string) | null>("ScreenTime_b2b2d01292270470", 1496286732961697, this, []); }
+  setUrl(value?: (string) | null): Promise<void> { return callSDKAsync<void>("ScreenTime_b2b2d01292270470", 1226751146543988, this, [value]); }
   /**
    * var urlIsBlocked: Bool { get }
    * @availability iOS 14.0+
    */
-  get urlIsBlocked(): Promise<boolean> { return callSDKAsync<boolean>("ScreenTime_095cc02a2666a9f8", 1714338986356056, this, []); }
+  get urlIsBlocked(): Promise<boolean> { return callSDKAsync<boolean>("ScreenTime_b2b2d01292270470", 1714338986356056, this, []); }
   /**
    * var urlIsPictureInPicture: Bool { get set }
    * @availability iOS 14.0+
    */
-  get urlIsPictureInPicture(): Promise<boolean> { return callSDKAsync<boolean>("ScreenTime_095cc02a2666a9f8", 2166471777931867, this, []); }
-  setUrlIsPictureInPicture(value: boolean): Promise<void> { return callSDKAsync<void>("ScreenTime_095cc02a2666a9f8", 1627052924996762, this, [value]); }
+  get urlIsPictureInPicture(): Promise<boolean> { return callSDKAsync<boolean>("ScreenTime_b2b2d01292270470", 2166471777931867, this, []); }
+  setUrlIsPictureInPicture(value: boolean): Promise<void> { return callSDKAsync<void>("ScreenTime_b2b2d01292270470", 1627052924996762, this, [value]); }
   /**
    * var urlIsPlayingVideo: Bool { get set }
    * @availability iOS 14.0+
    */
-  get urlIsPlayingVideo(): Promise<boolean> { return callSDKAsync<boolean>("ScreenTime_095cc02a2666a9f8", 3114800124403212, this, []); }
-  setUrlIsPlayingVideo(value: boolean): Promise<void> { return callSDKAsync<void>("ScreenTime_095cc02a2666a9f8", 4300058555101581, this, [value]); }
+  get urlIsPlayingVideo(): Promise<boolean> { return callSDKAsync<boolean>("ScreenTime_b2b2d01292270470", 3114800124403212, this, []); }
+  setUrlIsPlayingVideo(value: boolean): Promise<void> { return callSDKAsync<void>("ScreenTime_b2b2d01292270470", 4300058555101581, this, [value]); }
   /**
    * var profileIdentifier: STWebHistory.ProfileIdentifier? { get set }
    * @availability iOS 18.4+
    */
-  get profileIdentifier(): Promise<$SDK2> { return callSDKAsync<$SDK2>("ScreenTime_095cc02a2666a9f8", 3579654880055622, this, []); }
-  setProfileIdentifier(value?: $SDK2): Promise<void> { return callSDKAsync<void>("ScreenTime_095cc02a2666a9f8", 68882627766155, this, [value]); }
+  get profileIdentifier(): Promise<$SDK2> { return callSDKAsync<$SDK2>("ScreenTime_b2b2d01292270470", 3579654880055622, this, []); }
+  setProfileIdentifier(value?: $SDK2): Promise<void> { return callSDKAsync<void>("ScreenTime_b2b2d01292270470", 68882627766155, this, [value]); }
   /**
    * var suppressUsageRecording: Bool { get set }
    * @availability iOS 14.0+
    */
-  get suppressUsageRecording(): Promise<boolean> { return callSDKAsync<boolean>("ScreenTime_095cc02a2666a9f8", 1054554936096482, this, []); }
-  setSuppressUsageRecording(value: boolean): Promise<void> { return callSDKAsync<void>("ScreenTime_095cc02a2666a9f8", 4489825458038346, this, [value]); }
+  get suppressUsageRecording(): Promise<boolean> { return callSDKAsync<boolean>("ScreenTime_b2b2d01292270470", 1054554936096482, this, []); }
+  setSuppressUsageRecording(value: boolean): Promise<void> { return callSDKAsync<void>("ScreenTime_b2b2d01292270470", 4489825458038346, this, [value]); }
   declare readonly $type: { "c:objc(cs)STWebpageController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true; "urlIsBlocked": true; "urlIsPictureInPicture": true; "urlIsPlayingVideo": true; "profileIdentifier": true; "suppressUsageRecording": true };
 }
 
-registerSDKClass("STScreenTimeConfiguration", STScreenTimeConfiguration, { module: "ScreenTime_095cc02a2666a9f8", properties: {"enforcesChildRestrictions":312773437343206} });
-registerSDKClass("STScreenTimeConfigurationObserver", STScreenTimeConfigurationObserver, { module: "ScreenTime_095cc02a2666a9f8", properties: {"configuration":1961753061622241}, methods: {"startObserving":{"id":541972387780747},"stopObserving":{"id":3716793798630065}} });
-registerSDKClass("STWebHistory", STWebHistory, { module: "ScreenTime_095cc02a2666a9f8", properties: {}, methods: {"deleteAllHistory":{"id":738237398319595},"deleteHistoryDuring":{"id":4465392179209951},"deleteHistoryFor":{"id":2716744605837588},"fetchAllHistory":{"id":4359667902067359,"hints":[{"callback":{"out":[]}}]},"fetchHistory":{"id":3048521853973120,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("STWebpageController", STWebpageController, { module: "ScreenTime_095cc02a2666a9f8", properties: {"url":1496286732961697,"urlIsBlocked":1714338986356056,"urlIsPictureInPicture":2166471777931867,"urlIsPlayingVideo":3114800124403212,"profileIdentifier":3579654880055622,"suppressUsageRecording":1054554936096482}, methods: {"setBundleIdentifier":{"id":4040759548971564}} });
+registerSDKClass("STScreenTimeConfiguration", STScreenTimeConfiguration, { module: "ScreenTime_b2b2d01292270470", properties: {"enforcesChildRestrictions":312773437343206} });
+registerSDKClass("STScreenTimeConfigurationObserver", STScreenTimeConfigurationObserver, { module: "ScreenTime_b2b2d01292270470", properties: {"configuration":1961753061622241}, methods: {"startObserving":{"id":541972387780747},"stopObserving":{"id":3716793798630065}} });
+registerSDKClass("STWebHistory", STWebHistory, { module: "ScreenTime_b2b2d01292270470", properties: {}, methods: {"deleteAllHistory":{"id":738237398319595},"deleteHistoryDuring":{"id":4465392179209951},"deleteHistoryFor":{"id":2716744605837588},"fetchAllHistory":{"id":4359667902067359,"hints":[{"callback":{"out":[]}}]},"fetchHistory":{"id":3048521853973120,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("STWebpageController", STWebpageController, { module: "ScreenTime_b2b2d01292270470", properties: {"url":1496286732961697,"urlIsBlocked":1714338986356056,"urlIsPictureInPicture":2166471777931867,"urlIsPlayingVideo":3114800124403212,"profileIdentifier":3579654880055622,"suppressUsageRecording":1054554936096482}, methods: {"setBundleIdentifier":{"id":4040759548971564}} });

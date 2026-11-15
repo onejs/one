@@ -149,16 +149,20 @@ Per-class consumers must also import wrapper modules for returned handles whose 
 
 `generateAppSdk(frameworks, log, options)` accepts per-framework `entries`
 containing retained numeric callable IDs. Omitting a framework from that map
-keeps its full table. `appSdkOptions(root)` derives those IDs from static facade
-imports and the generated split-facade dependency groups, including superclass
-wrappers, side-effect imports, property descriptors and method descriptors.
+keeps its full table. `appSdkOptions(root)` derives those IDs from static
+per-class imports (`one/ios/UIKit/UIView`) and the generated split-facade
+dependency groups, including superclass wrappers, side-effect imports, property
+descriptors and method descriptors. Any import from a framework root
+(`one/ios/UIKit`), named ones included, keeps the complete table: the root
+module loads the barrel, which registers every class, so a returned handle is
+wrapped as its dynamic class and may call entries no static reference reaches.
 Type-only imports reach no entries, and interfaces or type aliases have no
 group because their declarations are erased. A file that does not parse keeps
 the complete table of each framework it names. `importedFrameworks(root)`, which
 every iOS prebuild runs, reads text only and visits just the dependencies that
-declare `one`, so it never parses.
-Namespace or side-effect barrel imports keep the complete framework. Direct
-low-level SDK calls with computed IDs also keep full tables.
+declare `one`, so it never parses. Prebuild ignores scanned names without a shipped
+facade, such as a path quoted in a dependency's tests. Direct low-level
+SDK calls with computed IDs also keep full tables.
 
 Selected emission preserves callable identities, callback implementations and
 shared type conformances. It filters generic opening witnesses with the same

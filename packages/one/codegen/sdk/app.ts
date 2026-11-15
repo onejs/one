@@ -199,12 +199,15 @@ export async function generateAppSdk(frameworks: string[], log = console.info, o
 // the app's other local swift pods. an app importing no framework gets no pod.
 export async function writeAppSdkPod(root: string, log = console.info, releaseFrameworks?: string[]) {
   const podDir = join(root, 'ios', 'OneSwiftPackages', SDK_POD)
-  const frameworks = [...new Set([...importedFrameworks(root), ...releaseFrameworks ?? []])].sort()
+  const manifest = JSON.parse(readFileSync(new URL('../../ios-bindings/manifest.json', import.meta.url), 'utf8'))
+  // the text scan also sees quoted paths in comments and dependency tests, so
+  // only frameworks One ships a facade for count
+  const shipped = new Set<string>(manifest.frameworks)
+  const frameworks = [...new Set([...importedFrameworks(root).filter((module) => shipped.has(module)), ...releaseFrameworks ?? []])].sort()
   if (!frameworks.length) {
     rmSync(podDir, { recursive: true, force: true })
     return []
   }
-  const manifest = JSON.parse(readFileSync(new URL('../../ios-bindings/manifest.json', import.meta.url), 'utf8'))
   if (manifest.generation !== generatorFingerprint().slice(0, 16)) {
     throw new Error('[one] installed iOS facades do not match the SDK generator; regenerate One SDK bindings before building')
   }
