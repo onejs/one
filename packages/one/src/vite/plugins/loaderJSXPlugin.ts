@@ -313,7 +313,9 @@ export function loaderJSXPlugin(opts?: { routerRoot?: string; root?: string }): 
                   .split(',')
                   .filter(
                     (item) =>
-                      item === 'Link' || item === 'all' || TAMAGUI_PRIMITIVES.includes(item)
+                      item === 'Link' ||
+                      item === 'all' ||
+                      TAMAGUI_PRIMITIVES.includes(item)
                   )
           const needsTamagui = selection.some((item) => item !== 'Link')
           const tamagui = needsTamagui
@@ -356,6 +358,10 @@ export function loaderJSXPlugin(opts?: { routerRoot?: string; root?: string }): 
           id,
           (source, importer) => this.resolve(source, importer)
         )
+        // a ServerJSX consumer may revive an envelope produced elsewhere, so
+        // keep the full universal preset: its primitives are not necessarily
+        // imported in the graph the selective pass just crawled.
+        if (/ServerJSX/.test(code)) imports.unshift(`import '${UNIVERSAL_ID}'`)
         if (!imports.length) return
 
         const s = new MagicString(code)

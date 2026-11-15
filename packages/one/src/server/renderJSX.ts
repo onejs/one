@@ -284,7 +284,7 @@ async function walk(node: any, path: string): Promise<JSXEnvelopeNode> {
 
   if (type === ClientFallback) {
     const fallback = await walk(props.fallback, here)
-    return withFallback(await walk(props.children, here), fallback)
+    return withKey(withFallback(await walk(props.children, here), fallback), key)
   }
 
   const clientId: string | undefined = type?.[CLIENT_ID]

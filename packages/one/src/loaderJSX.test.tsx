@@ -223,6 +223,62 @@ describe('renderJSX edge cases', () => {
     expect(serverKeys).toEqual(['post-1', 'post-2'])
   })
 
+  it('preserves keys through ClientFallback wrappers, unknown islands and slot fallbacks', async () => {
+    function Newer() {
+      return <p>newer</p>
+    }
+    ;(Newer as any).__oneClientId = 'app/Newer.tsx#Newer'
+
+    const childKeys = (envelope: any) =>
+      (
+        ((reviveLoaderJSX(envelope) as React.ReactElement).props as any)
+          .children as React.ReactElement[]
+      ).map((child) => child.key)
+
+    // a known island wrapped for skew revives inside a span on web: the
+    // key has to land on that wrapper, keyed at the ClientFallback
+    const known = wire(
+      await renderJSX(
+        <div>
+          {[1, 2].map((n) => (
+            <ClientFallback key={`cf-${n}`} fallback={<p>update</p>}>
+              <Counter start={n} />
+            </ClientFallback>
+          ))}
+        </div>
+      )
+    )
+    expect(childKeys(known)).toEqual(['cf-1', 'cf-2'])
+
+    // an unknown island revives as its fallback, which keeps the key
+    const unknown = wire(
+      await renderJSX(
+        <div>
+          {['x', 'y'].map((k) => (
+            <ClientFallback key={`cf-${k}`} fallback={<p>update</p>}>
+              <Newer />
+            </ClientFallback>
+          ))}
+        </div>
+      )
+    )
+    expect(childKeys(unknown)).toEqual(['cf-x', 'cf-y'])
+
+    // an unfilled slot revives as its fallback children, which keep the key
+    const slotted = wire(
+      await renderJSX(
+        <div>
+          {[1, 2].map((n) => (
+            <JSXSlot key={`slot-${n}`} name="x">
+              <p>fallback</p>
+            </JSXSlot>
+          ))}
+        </div>
+      )
+    )
+    expect(childKeys(slotted)).toEqual(['slot-1', 'slot-2'])
+  })
+
   it('keeps tree order when async siblings resolve out of order', async () => {
     async function Slow({ label, ms }: { label: string; ms: number }) {
       await new Promise((r) => setTimeout(r, ms))
