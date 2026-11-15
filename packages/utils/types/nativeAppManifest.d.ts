@@ -100,6 +100,7 @@ export interface NativeAppManifest {
         ccache?: boolean;
         engine?: 'hermes' | 'bun';
         usesNonExemptEncryption?: boolean;
+        appTransportSecurity?: Record<string, PlistValue>;
         accentColor?: {
             light: string;
             dark?: string;
