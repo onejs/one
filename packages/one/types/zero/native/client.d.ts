@@ -19,7 +19,7 @@ export declare class NativeZero<M extends Mutators = Mutators> {
     private abort;
     private subscriptions;
     private mutators;
-    private requestMutators;
+    private registeredCreators;
     private views;
     private identity?;
     private desiredViews;

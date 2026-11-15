@@ -1214,6 +1214,85 @@ console.log(
   'store deletion preserved pending commands and reset an acknowledged store identity'
 )
 
+const recoveryDeletionPath = join(folder, 'recovery-delete.sqlite')
+const openRecoveryDeletionClient = async () => {
+  const engine = new DriverEngine(driver, recoveryDeletionPath, schemaFile, '')
+  await engine.ready
+  return new NativeZero({ engine, schema, mutators, transport }).ready()
+}
+let recoveryClient = await openRecoveryDeletionClient()
+const recoveryIdentity = recoveryClient.clientID
+await recoveryClient.mutate('send', { id: 'stuck-pending', text: 'unacknowledged' })
+assert.equal((await recoveryClient.pending()).length, 1)
+response = { cookie: 1, lastMutationIDChanges: { [recoveryIdentity]: 99 } }
+await assert.rejects(recoveryClient.pull(), /CLIENT_STATE_NOT_FOUND/)
+assert.equal((await recoveryClient.state()).recoveryRequired, 99)
+await assert.rejects(
+  recoveryClient.mutate('send', { id: 'blocked', text: 'no writes allowed' }),
+  /reconciliation/
+)
+await recoveryClient.delete()
+recoveryClient = await openRecoveryDeletionClient()
+assert.notEqual(recoveryClient.clientID, recoveryIdentity)
+assert.equal((await recoveryClient.state()).recoveryRequired, null)
+assert.equal((await recoveryClient.state()).cookie, null)
+assert.equal((await recoveryClient.state()).nextMutationID, 1)
+assert.deepEqual(await recoveryClient.pending(), [])
+assert.deepEqual(await recoveryClient.run(messages), [])
+await recoveryClient.close()
+console.log('recovery store deletion dropped stuck journal and reset cleanly')
+
+const rebaseUnknownPath = join(folder, 'rebase-unknown.sqlite')
+let rebaseUnknownEngine = new ProcessEngine(rebaseUnknownPath)
+await rebaseUnknownEngine.ready
+const rebaseUnknownMutators = {
+  send: mutators.send,
+  temporary: async (tx: any, args: any) => {
+    await tx.mutate.message.upsert(message('temp-row', 50, String(args)))
+  },
+}
+let rebaseClient = new NativeZero({
+  engine: rebaseUnknownEngine,
+  schema,
+  mutators: rebaseUnknownMutators,
+  transport,
+})
+await rebaseClient.ready()
+await rebaseClient.mutate('temporary', 'local-temp-write')
+assert.equal((await rebaseClient.pending()).length, 1)
+assert.equal((await rebaseClient.pending())[0].name, 'temporary')
+await rebaseClient.close()
+
+rebaseUnknownEngine = new ProcessEngine(rebaseUnknownPath)
+await rebaseUnknownEngine.ready
+const rebaseErrors: unknown[] = []
+const updatedMutators = { send: mutators.send }
+rebaseClient = new NativeZero({
+  engine: rebaseUnknownEngine,
+  schema,
+  mutators: updatedMutators,
+  transport,
+  onError: (error) => rebaseErrors.push(error),
+})
+await rebaseClient.ready()
+await assert.rejects(
+  rebaseClient.mutate('temporary', 'new-call'),
+  /Unknown native Zero mutator/
+)
+response = {
+  cookie: 10,
+  rowsPatch: [put('message', message('server-rebase', 1, 'landed-successfully'))],
+}
+await rebaseClient.pull()
+assert.equal((await rebaseClient.state()).cookie, 10)
+const rebasedRows = await rebaseClient.run<Row[]>(messages)
+assert.equal(rebasedRows.some((r) => r.id === 'server-rebase'), true)
+await new Promise((r) => setTimeout(r, 20))
+assert.equal(rebaseErrors.length, 1)
+assert.match(String(rebaseErrors[0]), /Unknown native Zero mutator: temporary/)
+await rebaseClient.close()
+console.log('unknown mutator during rebase reported via onError and allowed pull to succeed')
+
 const referencePath = process.env.ONE_ZERO_REFERENCE
 if (!referencePath)
   throw new Error(
@@ -1365,12 +1444,17 @@ const reference = await import(referencePath)
       suppliedRan = true
     }),
   })
-  await native.mutate(alternate.message.send({ id: 'canonical', text: ' canonical ' }))
+  await assert.rejects(
+    async () => native.mutate(alternate.message.send({ id: 'canonical', text: ' canonical ' })),
+    /not registered/
+  )
   assert.equal(suppliedRan, false)
   await assert.rejects(
-    native.mutate(alternate.unregistered()),
-    /Unknown native Zero mutator/
+    async () => native.mutate(alternate.unregistered()),
+    /not registered/
   )
+  assert.equal(suppliedRan, false)
+  await native.mutate(registered.message.send({ id: 'canonical', text: ' canonical ' }))
   assert.equal(suppliedRan, false)
   await native.close()
   native = create()
@@ -1677,3 +1761,8 @@ await client.close()
 console.log(
   `native query differential passed ${cases.length} actual Zero query cases and duplicate junction unlink subscriptions`
 )
+
+const unitResult = spawnSync('bun', ['test', join(here, 'nitro-unit.test.ts')], {
+  stdio: 'inherit',
+})
+assert.equal(unitResult.status, 0, 'nitro unit tests must pass')
