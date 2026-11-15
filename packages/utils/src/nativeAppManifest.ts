@@ -222,6 +222,7 @@ export interface NativeAppManifest {
     useFrameworks?: 'static' | 'dynamic'
     ccache?: boolean
     usesNonExemptEncryption?: boolean
+    appTransportSecurity?: Record<string, PlistValue>
     // the tint the system gives the app's controls, tab selection and text
     // cursor, as xcode's AccentColor asset; js reads PlatformColor('AccentColor').
     accentColor?: {
@@ -387,6 +388,9 @@ export function validateNativeApp(
     if (!Array.isArray(manifest.ios.resources)) fail('ios.resources must be an array')
     const names = new Set([
       'info.plist', 'launchscreen.storyboard', 'one-bridging-header.h',
+      'appdelegate.swift', 'scenedelegate.swift', 'oneappintents.swift',
+      'privacyinfo.xcprivacy', `${manifest.name.toLowerCase()}.entitlements`,
+      'oneappwidgets.entitlements',
       ...(manifest.fonts ?? []).map((file) => file.split('/').pop()!.toLowerCase()),
       ...(manifest.ios.googleServicesFile ? ['googleservice-info.plist'] : []),
     ])
