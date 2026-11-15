@@ -213,13 +213,17 @@ function isBareSpecifier(name: string) {
   return name !== '' && !name.startsWith('.') && !name.startsWith('/')
 }
 
-// metro reports a missing module as UnableToResolveError; duck-type it
-// because metro itself loads from the app and stays unimported here.
+// metro reports a missing module as UnableToResolveError, or as
+// metro-resolver's FailedToResolveNameError whose dirPaths/extraPaths
+// pair identifies it. duck-type both because metro itself loads from
+// the app and stays unimported here.
 function isUnresolvableModule(error: unknown) {
   if (!error || typeof error !== 'object') return false
   if ((error as { type?: unknown }).type === 'UnableToResolveError') return true
   const message = (error as { message?: unknown }).message
-  return typeof message === 'string' && message.startsWith('Unable to resolve module')
+  if (typeof message === 'string' && message.startsWith('Unable to resolve module')) return true
+  const { dirPaths, extraPaths } = error as { dirPaths?: unknown; extraPaths?: unknown }
+  return Array.isArray(dirPaths) && Array.isArray(extraPaths)
 }
 
 // whether node-style lookup from the app root finds the package at all,
