@@ -226,6 +226,7 @@ export interface NativeAppManifest {
     // the engine from an onejs/bun-engine release.
     engine?: 'hermes' | 'bun'
     usesNonExemptEncryption?: boolean
+    appTransportSecurity?: Record<string, PlistValue>
     // the tint the system gives the app's controls, tab selection and text
     // cursor, as xcode's AccentColor asset; js reads PlatformColor('AccentColor').
     accentColor?: {

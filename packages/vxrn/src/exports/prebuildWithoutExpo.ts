@@ -2496,6 +2496,22 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
           `\t<key>UISupportedInterfaceOrientations</key>\n\t<array>\n${phoneOrientations.map((orientation) => `\t\t<string>${orientation}</string>`).join('\n')}\n\t</array>`
         )
       }
+      if (app.ios?.appTransportSecurity !== undefined) {
+        const start = rendered.indexOf('\t<key>NSAppTransportSecurity</key>')
+        const opening = rendered.indexOf('<dict>', start)
+        if (start < 0 || opening < 0) throw new Error('[vxrn] template lost its transport security dictionary')
+        let depth = 1
+        let end = -1
+        for (const tag of rendered.slice(opening + 6).matchAll(/<\/?dict>/g)) {
+          depth += tag[0] === '<dict>' ? 1 : -1
+          if (depth === 0) {
+            end = opening + 6 + tag.index! + tag[0].length
+            break
+          }
+        }
+        if (end < 0) throw new Error('[vxrn] template has an unterminated transport security dictionary')
+        rendered = rendered.slice(0, start) + renderPlistEntries({ NSAppTransportSecurity: app.ios.appTransportSecurity }, '\t') + rendered.slice(end)
+      }
       for (const [key, value] of Object.entries(app.ios?.infoPlist ?? {})) {
         if (rendered.includes(`<key>${key}</key>`) || stamps.some((stamp) => stamp.includes(`<key>${key}</key>`))) {
           throw new Error(
