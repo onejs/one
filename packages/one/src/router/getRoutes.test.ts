@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getRoutes } from './getRoutes'
+import { getNativeLayoutKeys, getRoutes } from './getRoutes'
 import type { One } from '../vite/types'
 
 function createMockContext(files: Record<string, any>): One.RouteContext {
@@ -74,6 +74,20 @@ describe('getRoutes', () => {
 })
 
 describe('getRoutes initial routes', () => {
+  it('preloads only the selected native layouts', () => {
+    expect(
+      getNativeLayoutKeys(
+        [
+          '/app/_layout.tsx',
+          '/app/tabs/_layout.tsx',
+          '/app/tabs/_layout.native.tsx',
+          '/app/tabs/_layout.android.tsx',
+          '/app/tabs/index.tsx',
+        ],
+        'ios'
+      )
+    ).toEqual(['/app/_layout.tsx', '/app/tabs/_layout.native.tsx'])
+  })
   it('reads unstable_settings.initialRouteName when entry points are ignored', () => {
     const ctx = createMockContext({
       './_layout.tsx': { default: () => null, unstable_settings: { initialRouteName: '(tabs)' } },
