@@ -355,19 +355,30 @@ export async function install(
       )
     }
   }
+  // link each entry, not the whole cache: CocoaPods enumerates pod files
+  // with a `**` glob that never descends into a symlinked directory, so a
+  // single top-level link leaves vendored_frameworks empty and dependents
+  // cannot resolve the One module. final-component links enumerate normally.
   const relative = join('ios/Prebuilt', key)
   const link = join(one, relative)
   mkdirSync(dirname(link), { recursive: true })
-  try {
-    symlinkSync(cache, link, 'dir')
-  } catch (error) {
-    if (!(error instanceof Error && 'code' in error && error.code === 'EEXIST'))
-      throw error
+  if (lstatSync(link, { throwIfNoEntry: false })?.isSymbolicLink()) rmSync(link)
+  mkdirSync(link, { recursive: true })
+  for (const configuration of configurations) {
+    const entry = join(link, configuration, 'One.xcframework')
+    mkdirSync(dirname(entry), { recursive: true })
+    try {
+      symlinkSync(join(cache, configuration, 'One.xcframework'), entry)
+    } catch (error) {
+      if (!(error instanceof Error && 'code' in error && error.code === 'EEXIST'))
+        throw error
+    }
+    assert(
+      realpathSync(entry) === join(cache, configuration, 'One.xcframework'),
+      `${entry} must link to its matching One binary cache`
+    )
   }
-  assert(
-    lstatSync(link).isSymbolicLink() && realpathSync(link) === cache,
-    `${link} must link to its matching One binary cache`
-  )
+  writeFileSync(join(link, 'manifest.json'), readFileSync(join(cache, 'manifest.json')))
   return { path: relative }
 }
 
