@@ -1,11 +1,7 @@
 {"id":"00000001794692404127:7f077ccfccdd0cbe6bba715f4f5b9764","text":"feat/loader-jsx pushed, commit 3e3c611a322aa2282fbc656c1e9a6e3fde75d3a8. Handoff ~/.scratch/loader-jsx-handoff.md"}
-
 {"id":"00000001794692420904:f1e5d0581f7a0f45a8597f0456b54409","text":"feat/loader-jsx commit 3e3c611a322aa2282fbc656c1e9a6e3fde75d3a8"}
-
 {"id":"00000001794692958517:6eaa36e4cceaf4e7dfa108c62de58871","text":"Phase 1 pushed to origin/feat/loader-jsx at 3e3c611a32 by p260132 (build, check, typecheck + 9 vitest cases green; web/SSG integration verification queued after v2.18.0 release)."}
-
 {"id":"00000001794706950278:9caac4bff68bd6bed5da094b091240a6","text":"Executing Phase 1 end-to-end verification on beast2 from the pushed feature branch."}
-
 {"id":"00000001794707515438:af8c64c302691a57b026a92cdb4080c4","text":"Production SSR hydration initially failed because web islands were lazy while SSR was eager. The local fix uses matching eager registration and discovers islands through server imports. Rebuilt web SSR now matches hydrated HTML without console errors, and a transitive island updates on click. Static HTML contains the serialized loader payload. The rebuilt iOS bundle contains both direct and transitive registrations. Async hooks after await still produce React invalid-hook errors; true native runtime revival is not yet proven."}
-
+{"id":"00000001794707866175:9f15119cadc81781eb73585597a3d365","text":"Pushed 63c42c74e9344db7221a33cde1db9ce2d64c5667. Production web build and normal hydration pass including a transitive interactive island, static HTML and payload, zero server-walker markers. iOS production bundle includes direct and transitive registrations. Build, check, typecheck and 60 targeted vitest tests pass. Remaining: native runtime revival proof; a simulated newer server island renders fallback but React emits hydration error 418; hooks after await lack the custom guard and emit a generic invalid-hook error."}
 {"id":"00000001794707920509:a38c4cf8fc466db3c315739e53d3aa9d","text":"A production iOS-target bundle executed with react-test-renderer and revived an eagerly registered client island into the expected RCTView/RCTText tree. This does not exercise an iOS simulator. Version skew still triggers React 418 while showing the fallback, and async server hooks after await still emit a generic invalid-hook error."}
