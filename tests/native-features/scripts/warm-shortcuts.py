@@ -9,8 +9,15 @@ udid = os.environ["SIMULATOR_UDID"]
 bundle = "com.apple.shortcuts"
 started = time.monotonic()
 deadline = started + 90
+
+
+def remaining():
+    return max(1, deadline - time.monotonic())
+
+
 launched = subprocess.check_output(
-    ["xcrun", "simctl", "launch", udid, bundle], text=True, timeout=30
+    ["xcrun", "simctl", "launch", udid, bundle], text=True,
+    timeout=remaining(),
 )
 pid = int(launched.strip().rsplit(":", 1)[1])
 
@@ -31,7 +38,7 @@ def has_control(node):
 while time.monotonic() < deadline:
     described = subprocess.run(
         ["axe", "describe-ui", "--udid", udid], text=True, capture_output=True,
-        timeout=max(1, deadline - time.monotonic()),
+        timeout=remaining(),
     )
     if described.returncode != 0:
         # a freshly booted simulator can launch apps before its automation
@@ -49,6 +56,47 @@ while time.monotonic() < deadline:
     time.sleep(0.1)
 else:
     raise TimeoutError("Shortcuts did not expose its accessible controls")
-subprocess.run(["xcrun", "simctl", "terminate", udid, bundle], check=True)
+
+
+def shortcuts_pid_alive():
+    listed = subprocess.run(
+        ["xcrun", "simctl", "spawn", udid, "launchctl", "list"],
+        text=True, capture_output=True, timeout=remaining(),
+    )
+    if listed.returncode != 0:
+        return False
+    for line in listed.stdout.splitlines():
+        fields = line.split()
+        if (len(fields) >= 3 and fields[0] == str(pid)
+                and fields[2].startswith("UIKitApplication:com.apple.shortcuts[")):
+            return True
+    return False
+
+
+def shortcuts_foregrounded():
+    described = subprocess.run(
+        ["axe", "describe-ui", "--udid", udid], text=True, capture_output=True,
+        timeout=remaining(),
+    )
+    if described.returncode != 0:
+        return True
+    return has_control(json.loads(described.stdout))
+
+
+# leave shortcuts warm but backgrounded (queryAppState 3): terminating it here
+# forces the ShortcutsLink test to cold-launch within its 10s assertion.
+subprocess.run(
+    ["xcrun", "simctl", "launch", udid, "com.apple.springboard"], check=True,
+    capture_output=True, text=True, timeout=remaining(),
+)
+while time.monotonic() < deadline:
+    if not shortcuts_foregrounded():
+        break
+    time.sleep(0.25)
+else:
+    raise TimeoutError("Shortcuts stayed foregrounded after SpringBoard launch")
+if not shortcuts_pid_alive():
+    raise TimeoutError(f"Shortcuts pid {pid} died while backgrounding")
 print(json.dumps({"bundle": bundle, "pid": pid,
-                  "startupSeconds": round(time.monotonic() - started, 3)}))
+                  "startupSeconds": round(time.monotonic() - started, 3),
+                  "state": "background"}))
