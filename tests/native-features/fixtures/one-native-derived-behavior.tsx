@@ -151,6 +151,13 @@ export default function OneNativeDerivedBehavior() {
 					>
 						<Text>Disable location</Text>
 					</Pressable>
+					<Pressable
+						testID="derived-location-enable"
+						style={styles.chip}
+						onPress={() => setLocationDisabled(false)}
+					>
+						<Text>Enable location</Text>
+					</Pressable>
 				</>
 			) : example === "shortcuts" ? (
 				<One.iOS.ShortcutsLink
