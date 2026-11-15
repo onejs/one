@@ -55,6 +55,7 @@ it.each(['edit', 'create', 'delete'] as const)(
     await mkdir(join(root, 'app'), { recursive: true })
     await symlink('../../node_modules', join(root, 'node_modules'))
     await writeFile(join(root, 'app/_layout.tsx'), "export default 'layout'")
+    await writeFile(join(root, 'app/untouched.tsx'), "export default 'untouched'")
     await writeFile(
       join(root, 'app/index.tsx'),
       "export default 'index'; globalThis.routeEdit = 'index'; if (import.meta.hot) import.meta.hot.accept()"
@@ -80,7 +81,7 @@ it.each(['edit', 'create', 'delete'] as const)(
               if (id.endsWith('/__virtual-native-entry.tsx')) {
                 // retain the generated registry import and its actual HMR acceptance.
                 const registryImport = code.match(/import \{ routes \} from [^;]+;/)![0]
-                const accept = code.slice(code.lastIndexOf('if (import.meta.hot)'))
+                const accept = code.slice(code.lastIndexOf('var currentRoutes = routes;'))
                 return `${registryImport}
 globalThis.routeMap = routes
 ${accept}`
@@ -103,8 +104,8 @@ ${accept}`
       runInNewContext((await native.getBundle()).code, context)
       expect(Object.keys(context.routeMap).sort()).toEqual(
         (change === 'delete'
-          ? ['/app/_layout.tsx', '/app/index.tsx', '/app/[id].tsx']
-          : ['/app/_layout.tsx', '/app/index.tsx']
+          ? ['/app/_layout.tsx', '/app/index.tsx', '/app/[id].tsx', '/app/untouched.tsx']
+          : ['/app/_layout.tsx', '/app/index.tsx', '/app/untouched.tsx']
         ).sort()
       )
       expect((await context.routeMap['/app/index.tsx']()).default).toBe('index')
@@ -129,9 +130,23 @@ ${accept}`
         expect(context.routeEdit).toBe('edited')
       } else if (change === 'create') {
         expect(context.routeMap['/app/[id].tsx']).toBeUndefined()
-        await saveFile(join(root, 'app/[id].tsx'), "export default 'dynamic'")
+        await saveFile(
+          join(root, 'app/index.tsx'),
+          "export default 'edited'; globalThis.routeEdit = 'edited'; if (import.meta.hot) import.meta.hot.accept()"
+        )
         await apply(pending)
+        const layoutUpdate = nextUpdate()
+        await saveFile(join(root, 'app/_layout.tsx'), "export default 'edited-layout'")
+        await apply(layoutUpdate)
+        const createUpdate = nextUpdate()
+        await saveFile(join(root, 'app/[id].tsx'), "export default 'dynamic'")
+        await apply(createUpdate)
         expect((await context.routeMap['/app/[id].tsx']()).default).toBe('dynamic')
+        expect((await context.routeMap['/app/_layout.tsx']()).default).toBe(
+          'edited-layout'
+        )
+        expect((await context.routeMap['/app/index.tsx']()).default).toBe('edited')
+        expect((await context.routeMap['/app/untouched.tsx']()).default).toBe('untouched')
       } else {
         expect((await context.routeMap['/app/[id].tsx']()).default).toBe('dynamic')
         await rm(join(root, 'app/[id].tsx'))
@@ -139,6 +154,7 @@ ${accept}`
         expect(Object.keys(context.routeMap).sort()).toEqual([
           '/app/_layout.tsx',
           '/app/index.tsx',
+          '/app/untouched.tsx',
         ])
       }
     } finally {
