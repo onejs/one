@@ -38,7 +38,8 @@ jobs:
     name: One iOS (${{ matrix.configuration }})
     # standard public arm64 runners, not a paid larger-runner pool.
     runs-on: xcode-27
-    timeout-minutes: 60
+    # device+simulator slices at -jobs 2 outlast an hour on shared runners.
+    timeout-minutes: 180
     strategy:
       fail-fast: false
       matrix:
@@ -102,7 +103,7 @@ jobs:
     name: Build a consumer with precompiled One
     needs: compile
     runs-on: xcode-27
-    timeout-minutes: 60
+    timeout-minutes: 120
     env:
       ONE_PREBUILT_IOS: '1'
     steps:
