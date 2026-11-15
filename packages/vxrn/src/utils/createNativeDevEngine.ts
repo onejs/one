@@ -2650,6 +2650,8 @@ function assetPlugin(opts: {
 
         const assetData = await getNativeAssetData(id, opts.root, opts.platform)
         opts.onAsset?.(assetData)
+        // the module imports one file but its hash, size and scales come from every scale sibling
+        for (const file of assetData.files) this.addWatchFile(file)
 
         if (opts.assetsDest) {
           copyNativeAssetFiles(assetData, opts.assetsDest, opts.platform)
