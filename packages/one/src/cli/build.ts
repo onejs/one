@@ -1465,6 +1465,7 @@ export default {
           // index.js — which would crash the deployed worker on the first
           // /api request that loads any server-only-importing module.
           environmentGuardPlugin(oneOptions.environmentGuards),
+          cloudflareSafeCreateRequirePlugin(),
           cloudflare({
             configPath: wranglerInputPath,
             viteEnvironment: { name: 'worker' },
@@ -1610,5 +1611,23 @@ async function moveAllFiles(src: string, dest: string) {
     await FSExtra.copy(src, dest, { overwrite: true, errorOnExist: false })
   } catch (err) {
     console.error('Error moving files:', err)
+  }
+}
+
+// rolldown's Node ESM runtime emits createRequire(import.meta.url), which throws
+// ERR_INVALID_ARG_VALUE in workerd where import.meta.url is undefined
+function cloudflareSafeCreateRequirePlugin() {
+  const rewrite = (code: string) => {
+    if (!code.includes('createRequire')) return null
+    const rewritten = code.replace(
+      /\bcreateRequire\(\s*import\.meta\.url\s*\)/g,
+      "createRequire(import.meta.url || 'file:///')"
+    )
+    return rewritten === code ? null : { code: rewritten, map: null }
+  }
+  return {
+    name: 'one:cloudflare-safe-create-require',
+    transform: rewrite,
+    renderChunk: rewrite,
   }
 }

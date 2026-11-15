@@ -1762,7 +1762,12 @@ console.log(
   `native query differential passed ${cases.length} actual Zero query cases and duplicate junction unlink subscriptions`
 )
 
-const unitResult = spawnSync('bun', ['test', join(here, 'nitro-unit.test.ts')], {
-  stdio: 'inherit',
-})
+const unitResult = spawnSync(
+  'bun',
+  ['x', 'vitest', 'run', 'tests/zero-native/nitro-unit.test.ts'],
+  {
+    cwd: join(here, '../..'),
+    stdio: 'inherit',
+  }
+)
 assert.equal(unitResult.status, 0, 'nitro unit tests must pass')
