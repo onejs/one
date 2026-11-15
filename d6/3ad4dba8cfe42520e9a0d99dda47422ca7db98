@@ -7,3 +7,5 @@
 {"id":"00000001794781482386:1ef758dee489f4b29453b1e9943687e7","text":"2026-11-15: b67657 (one-bun-aot) took over as release owner per Nate (a141509 out of usage). #1257 release/v2.19.0 merged with main at 4f78617ab (podspec conflict: main's precompiled layout plus OneViewCulling.h), body lists 2.19 contents. #1251, #1256, #1258 merged; #1259 (bun engine 0.1.6) merges on green, then main merges into the release branch again. Square 2.19 film rendering on contrast tm/bun-aot-video (task t-mwhl7ppa-1r2v0). Issue fixes #1249, #1215/#1250, #646, #1151 stay with oss-fixer b66874. Stable publish waits on Nate."}
 
 {"id":"00000001794781663975:d83b179f3683a4c2c7ffefe5564bc83d","text":"took over release: #1257 release/v2.19.0 conflict-free at 4f78617ab; merging main again after #1259; stable publish waits on Nate"}
+
+{"id":"00000001794782894858:687031b06336ec34fad2b807649b4231","text":"#1259 merged 25604e799 (engine 0.1.6); release/v2.19.0 now at 2b04b2228 with it; stable publish waits on Nate"}
