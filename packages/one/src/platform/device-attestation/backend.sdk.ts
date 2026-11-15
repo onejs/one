@@ -1,7 +1,12 @@
-import { DCAppAttestService, DCDevice } from 'one/ios/DeviceCheck'
-import {
-  CharacterSet, Data, NSData, NSError, NSMaxRange, NSString, NSUTF8StringEncoding,
-} from 'one/ios/Foundation'
+import { DCAppAttestService } from 'one/ios/DeviceCheck/DCAppAttestService'
+import { DCDevice } from 'one/ios/DeviceCheck/DCDevice'
+import { CharacterSet } from 'one/ios/Foundation/CharacterSet'
+import { Data } from 'one/ios/Foundation/Data'
+import { NSData } from 'one/ios/Foundation/NSData'
+import { NSError } from 'one/ios/Foundation/NSError'
+import { NSMaxRange } from 'one/ios/Foundation/NSMaxRange'
+import { NSString } from 'one/ios/Foundation/NSString'
+import { NSUTF8StringEncoding } from 'one/ios/Foundation/NSUTF8StringEncoding'
 import type { NativeError } from 'one/ios-runtime'
 
 function failure(code: string, message: string): Error {
@@ -9,7 +14,10 @@ function failure(code: string, message: string): Error {
 }
 
 function unavailable(): Error {
-  return failure('E_DEVICE_ATTESTATION_UNAVAILABLE', 'App Attest is unavailable on this device')
+  return failure(
+    'E_DEVICE_ATTESTATION_UNAVAILABLE',
+    'App Attest is unavailable on this device'
+  )
 }
 
 function validKey(keyId: string): boolean {
@@ -30,7 +38,11 @@ function validatedHash(keyId: string, hashBase64: string): ArrayBuffer | null {
   if (!validKey(keyId)) return null
   const encoded = NSString.initString(hashBase64).dataUsing(NSUTF8StringEncoding)
   const hash = encoded ? Data.initBase64EncodedOptions(encoded) : null
-  if (!hash || hash.byteLength !== 32 || NSData.initData(hash).base64EncodedString() !== hashBase64) {
+  if (
+    !hash ||
+    hash.byteLength !== 32 ||
+    NSData.initData(hash).base64EncodedString() !== hashBase64
+  ) {
     return null
   }
   return hash
@@ -38,7 +50,9 @@ function validatedHash(keyId: string, hashBase64: string): ArrayBuffer | null {
 
 function dataResult(
   code: string,
-  invoke: (callback: (data: ArrayBuffer | null, error: NativeError | null) => void) => void,
+  invoke: (
+    callback: (data: ArrayBuffer | null, error: NativeError | null) => void
+  ) => void
 ): Promise<string> {
   return new Promise((resolve, reject) => {
     invoke((data, error) => {
@@ -61,32 +75,61 @@ const backend = {
     if (!service.isSupported) throw unavailable()
     return new Promise((resolve, reject) => {
       service.generateKey((keyId, error) => {
-        if (error) reject(failure('E_DEVICE_ATTESTATION_GENERATE', new NSError(error.$handle).localizedDescription))
+        if (error)
+          reject(
+            failure(
+              'E_DEVICE_ATTESTATION_GENERATE',
+              new NSError(error.$handle).localizedDescription
+            )
+          )
         else if (keyId !== null) resolve(keyId)
-        else reject(failure('E_DEVICE_ATTESTATION_GENERATE', 'App Attest returned no key identifier'))
+        else
+          reject(
+            failure(
+              'E_DEVICE_ATTESTATION_GENERATE',
+              'App Attest returned no key identifier'
+            )
+          )
       })
     })
   },
   async attestKey(keyId: string, clientDataHashBase64: string): Promise<string> {
     const hash = validatedHash(keyId, clientDataHashBase64)
-    if (!hash) throw failure('E_DEVICE_ATTESTATION_INPUT', 'attestKey requires a key identifier and a base64 SHA-256 client data hash')
+    if (!hash)
+      throw failure(
+        'E_DEVICE_ATTESTATION_INPUT',
+        'attestKey requires a key identifier and a base64 SHA-256 client data hash'
+      )
     const service = DCAppAttestService.shared
     if (!service.isSupported) throw unavailable()
-    return dataResult('E_DEVICE_ATTESTATION_ATTEST', (callback) => service.attestKey(keyId, hash, callback))
+    return dataResult('E_DEVICE_ATTESTATION_ATTEST', (callback) =>
+      service.attestKey(keyId, hash, callback)
+    )
   },
   async generateAssertion(keyId: string, clientDataHashBase64: string): Promise<string> {
     const hash = validatedHash(keyId, clientDataHashBase64)
-    if (!hash) throw failure('E_DEVICE_ATTESTATION_INPUT', 'generateAssertion requires a key identifier and a base64 SHA-256 client data hash')
+    if (!hash)
+      throw failure(
+        'E_DEVICE_ATTESTATION_INPUT',
+        'generateAssertion requires a key identifier and a base64 SHA-256 client data hash'
+      )
     const service = DCAppAttestService.shared
     if (!service.isSupported) throw unavailable()
-    return dataResult('E_DEVICE_ATTESTATION_ASSERTION', (callback) => service.generateAssertion(keyId, hash, callback))
+    return dataResult('E_DEVICE_ATTESTATION_ASSERTION', (callback) =>
+      service.generateAssertion(keyId, hash, callback)
+    )
   },
   async generateDeviceToken(): Promise<string> {
     const device = DCDevice.current
     if (!device.isSupported) {
-      throw failure('E_DEVICE_ATTESTATION_UNAVAILABLE', 'DeviceCheck is unavailable on this device')
+      throw failure(
+        'E_DEVICE_ATTESTATION_UNAVAILABLE',
+        'DeviceCheck is unavailable on this device'
+      )
     }
-    return dataResult('E_DEVICE_ATTESTATION_TOKEN', (callback) => device.generateToken(callback))
+    return dataResult('E_DEVICE_ATTESTATION_TOKEN', (callback) =>
+      device.generateToken(callback)
+    )
   },
 }
 

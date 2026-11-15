@@ -681,13 +681,15 @@ struct Client::Impl {
   Json pending() {
     Statement statement(db, "SELECT id,name,args,timestamp FROM one_zero_mutations ORDER BY id");
     Json::Array result;
-    while (statement.step())
-      result.emplace_back(
-          Json::Object{{"id", static_cast<double>(sqlite3_column_int64(statement.get(), 0))},
-                       {"name", statement.text(1)},
-                       {"args", parse(db, statement.text(2))},
-                       {"timestamp", sqlite3_column_double(statement.get(), 3)},
-                       {"clientID", clientID}});
+    while (statement.step()) {
+      Json::Object mutation{{"id", static_cast<double>(sqlite3_column_int64(statement.get(), 0))},
+                            {"name", statement.text(1)},
+                            {"timestamp", sqlite3_column_double(statement.get(), 3)},
+                            {"clientID", clientID}};
+      const auto args = statement.text(2);
+      if (!args.empty()) mutation.emplace("args", parse(db, args));
+      result.emplace_back(std::move(mutation));
+    }
     return result;
   }
   Json state() {
@@ -737,13 +739,15 @@ struct Client::Impl {
       try {
         int64_t id = integer(meta("nextMutationID"), "mutation id");
         if (id >= 9007199254740991LL) throw std::runtime_error("mutation id exhausted");
-        Json mutation = Json::Object{{"id", static_cast<double>(id)},
-                                     {"name", name},
-                                     {"args", request.at("args")},
-                                     {"timestamp", timestamp},
-                                     {"clientID", clientID}};
+        Json::Object mutation{{"id", static_cast<double>(id)},
+                              {"name", name},
+                              {"timestamp", timestamp},
+                              {"clientID", clientID}};
+        // empty text cannot be JSON; it preserves omitted arguments in existing journals.
+        if (request.has("args")) mutation.emplace("args", request.at("args"));
         sql(db, "INSERT INTO one_zero_mutations VALUES(?,?,?,?)",
-            {static_cast<double>(id), name, request.at("args").dump(), timestamp});
+            {static_cast<double>(id), name,
+             request.has("args") ? request.at("args").dump() : "", timestamp});
         setMeta("nextMutationID", static_cast<double>(id + 1));
         return Json::Object{{"transaction", transaction}, {"mutation", mutation}};
       } catch (...) {

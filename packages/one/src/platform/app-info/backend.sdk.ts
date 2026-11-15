@@ -1,4 +1,4 @@
-import { Bundle } from 'one/ios/Foundation'
+import { Bundle } from 'one/ios/Foundation/Bundle'
 import type { AppInfo } from './types'
 
 export function readAppInfo(): AppInfo {

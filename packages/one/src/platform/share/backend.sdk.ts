@@ -1,5 +1,14 @@
-import { CharacterSet, FileManager, NSError, NSString, NSURL } from 'one/ios/Foundation'
-import { UIApplication, UIActivityViewController } from 'one/ios/UIKit'
+import 'one/ios/UIKit/UIWindow'
+import 'one/ios/UIKit/UIViewController'
+import 'one/ios/UIKit/UIView'
+import 'one/ios/UIKit/UIPopoverPresentationController'
+import { CharacterSet } from 'one/ios/Foundation/CharacterSet'
+import { FileManager } from 'one/ios/Foundation/FileManager'
+import { NSError } from 'one/ios/Foundation/NSError'
+import { NSString } from 'one/ios/Foundation/NSString'
+import { NSURL } from 'one/ios/Foundation/NSURL'
+import { UIApplication } from 'one/ios/UIKit/UIApplication'
+import { UIActivityViewController } from 'one/ios/UIKit/UIActivityViewController'
 import type { ShareItem, ShareResult } from '../specs/OneShare.nitro'
 
 let busy = false
@@ -12,15 +21,25 @@ function values(items: ShareItem[]): unknown[] {
   if (!items.length) throw failure('ITEMS', 'at least one item is required')
   return items.map((item) => {
     if (item.type === 'text') {
-      if (!NSString.initString(item.value).trimmingCharacters(CharacterSet.whitespacesAndNewlines)) {
+      if (
+        !NSString.initString(item.value).trimmingCharacters(
+          CharacterSet.whitespacesAndNewlines
+        )
+      ) {
         throw failure('ITEMS', 'text cannot be empty')
       }
       return item.value
     }
     const url = NSURL.initString(item.value)
-    if (!url || (item.type === 'url' ? !url.scheme || url.isFileURL :
-      !url.isFileURL || (url.host !== null && url.host !== '' && url.host !== 'localhost') ||
-      url.query !== null || url.fragment !== null)) {
+    if (
+      !url ||
+      (item.type === 'url'
+        ? !url.scheme || url.isFileURL
+        : !url.isFileURL ||
+          (url.host !== null && url.host !== '' && url.host !== 'localhost') ||
+          url.query !== null ||
+          url.fragment !== null)
+    ) {
       throw failure('URL', 'the item needs an absolute URL of its declared type')
     }
     if (item.type === 'url') return url
@@ -46,36 +65,60 @@ async function share(items: ShareItem[]): Promise<ShareResult> {
       presenter = next
     }
     const view = presenter ? await presenter.view : null
-    if (!presenter || !view || !await view.window ||
-      await application.applicationState !== 'active' || await presenter.isBeingDismissed ||
-      await presenter.isBeingPresented || await presenter.transitionCoordinator !== null) {
+    if (
+      !presenter ||
+      !view ||
+      !(await view.window) ||
+      (await application.applicationState) !== 'active' ||
+      (await presenter.isBeingDismissed) ||
+      (await presenter.isBeingPresented) ||
+      (await presenter.transitionCoordinator) !== null
+    ) {
       throw failure('PRESENTATION', 'there is no active view controller to present from')
     }
-    const controller = await UIActivityViewController.initActivityItemsApplicationActivities(activityItems)
+    const controller =
+      await UIActivityViewController.initActivityItemsApplicationActivities(activityItems)
     const popover = await controller.popoverPresentationController
     if (popover) {
       await popover.setSourceView(view)
       const bounds = await view.bounds
-      await popover.setSourceRect({x: bounds.x + bounds.width / 2, y: bounds.y + bounds.height / 2, width: 1, height: 1})
+      await popover.setSourceRect({
+        x: bounds.x + bounds.width / 2,
+        y: bounds.y + bounds.height / 2,
+        width: 1,
+        height: 1,
+      })
     }
     return await new Promise<ShareResult>((resolve, reject) => {
       let finishing = false
       // dismiss only after uikit completes the presentation.
       let presented: () => void
-      const presentation = new Promise<void>((done) => { presented = done })
-      void controller.setCompletionWithItemsHandler((activityType, completed, _items, error) => {
-        void (async () => {
-          if (finishing || (!completed && activityType !== null && await controller.presentingViewController !== null)) return
-          finishing = true
-          await presentation
-          // settle only after dismissal, so the next share can present immediately.
-          await new Promise<void>((done, failed) => {
-            controller.dismiss(true, done).catch(failed)
-          })
-          if (error) reject(failure('FAILED', new NSError(error.$handle).localizedDescription))
-          else resolve({ completed, activityType: activityType ?? undefined })
-        })().catch(reject)
-      }).then(() => presenter.present(controller, true, () => presented())).catch(reject)
+      const presentation = new Promise<void>((done) => {
+        presented = done
+      })
+      void controller
+        .setCompletionWithItemsHandler((activityType, completed, _items, error) => {
+          void (async () => {
+            if (
+              finishing ||
+              (!completed &&
+                activityType !== null &&
+                (await controller.presentingViewController) !== null)
+            )
+              return
+            finishing = true
+            await presentation
+            // settle only after dismissal, so the next share can present immediately.
+            await new Promise<void>((done, failed) => {
+              controller.dismiss(true, done).catch(failed)
+            })
+            if (error)
+              reject(failure('FAILED', new NSError(error.$handle).localizedDescription))
+            else resolve({ completed, activityType: activityType ?? undefined })
+          })().catch(reject)
+        })
+        .then(() => presenter.present(controller, true, () => presented()))
+        .catch(reject)
     })
   } finally {
     busy = false

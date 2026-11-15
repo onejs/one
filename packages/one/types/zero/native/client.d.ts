@@ -1,5 +1,5 @@
-import type { ClientState, DesiredQuery, Engine, MaterializedView, Mutation, NativeMutate, Mutators, Query, Schema, Transport, TTL } from './types';
-import { NativeSync, type SyncOptions } from './sync';
+import type { ClientState, DesiredQuery, Engine, MaterializedView, Mutation, NativeMutate, Mutators, Query, Schema, Transport, TTL } from './types.js';
+import { NativeSync, type SyncOptions } from './sync.js';
 export type NativeZeroOptions<M extends Mutators = Mutators> = {
     engine: Engine;
     schema: Schema;
@@ -19,6 +19,7 @@ export declare class NativeZero<M extends Mutators = Mutators> {
     private abort;
     private subscriptions;
     private mutators;
+    private requestMutators;
     private views;
     private identity?;
     private desiredViews;

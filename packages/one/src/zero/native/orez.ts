@@ -116,7 +116,7 @@ export function createOrezTransport(options: OrezTransportOptions): OrezTranspor
           ...mutation,
           name: mutation.name.replaceAll('.', '|'),
           type: 'custom',
-          args: [mutation.args],
+          args: mutation.args === undefined ? [] : [mutation.args],
         })),
       }
       const received = await post(

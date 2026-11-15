@@ -10,6 +10,8 @@ import type {
   MutationResultDetails,
   NativeMutate,
   Mutator,
+  MutateRequest,
+  MutatorRequestCreator,
   Mutators,
   PullResponse,
   Query,
@@ -53,6 +55,16 @@ function serialize(request: object): string {
   })
 }
 
+function isRequestCreator(value: unknown): value is MutatorRequestCreator {
+  return (
+    typeof value === 'function' &&
+    'mutatorName' in value &&
+    typeof value.mutatorName === 'string' &&
+    'fn' in value &&
+    typeof value.fn === 'function'
+  )
+}
+
 function queryResult(value: JSONValue, format?: Format): unknown {
   if (format?.singular && value === null) return undefined
   if (Array.isArray(value))
@@ -78,7 +90,11 @@ export class NativeZero<M extends Mutators = Mutators> {
   private deleting?: Promise<void>
   private abort = new AbortController()
   private subscriptions = new Set<Subscription>()
-  private mutators = new Map<string, Mutator>()
+  private mutators = new Map<
+    string,
+    (tx: Transaction, args: JSONValue | undefined) => unknown
+  >()
+  private requestMutators = new Set<string>()
   private views = new Set<NativeView<unknown>>()
   private identity?: string
   private desiredViews = new Map<
@@ -104,19 +120,36 @@ export class NativeZero<M extends Mutators = Mutators> {
       throw new Error('Native Zero request timeout must be positive and finite')
     const register = (mutators: Mutators, prefix: string): object => {
       const functions = Object.create(null)
+      const registry = mutators['~'] === 'MutatorRegistry'
       for (const [name, value] of Object.entries(mutators)) {
-        const key = prefix + name
+        if (registry && name === '~') continue
+        const key = isRequestCreator(value) ? value.mutatorName : prefix + name
         if (typeof value === 'function') {
           if (this.mutators.has(key))
             throw new Error(`Duplicate native Zero mutator: ${key}`)
-          this.mutators.set(key, value)
+          if (isRequestCreator(value)) {
+            const fn = value.fn as (options: {
+              tx: Transaction
+              ctx: unknown
+              args: JSONValue | undefined
+            }) => unknown
+            this.mutators.set(key, (tx, args) =>
+              fn({ tx, ctx: this.options.context, args })
+            )
+            this.requestMutators.add(key)
+          } else this.mutators.set(key, value as Mutator)
           functions[name] = (args?: JSONValue) => this.issueMutation(key, args)
-        } else functions[name] = register(value, key + '.')
+        } else if (value && typeof value === 'object')
+          functions[name] = register(value, prefix + name + '.')
+        else throw new Error('Invalid native Zero mutator: ' + key)
       }
       return functions
     }
     const functions = register(options.mutators, '')
-    const mutate = (name: string, args?: JSONValue) => this.issueMutation(name, args)
+    const mutate = (request: string | MutateRequest, args?: JSONValue) => {
+      if (typeof request === 'string') return this.issueMutation(request, args)
+      return this.issueMutation(request.mutator.mutatorName, request.args, true)
+    }
     for (const [name, value] of Object.entries(functions))
       Object.defineProperty(mutate, name, { value, enumerable: true })
     this.mutate = mutate as NativeMutate<M>
@@ -295,12 +328,16 @@ export class NativeZero<M extends Mutators = Mutators> {
     }
   }
 
-  private issueMutation(name: string, args?: JSONValue): MutationPromise {
+  private issueMutation(
+    name: string,
+    args?: JSONValue,
+    request = false
+  ): MutationPromise {
     let settle!: (result: MutationResultDetails) => void
     const server = new Promise<MutationResultDetails>((resolve) => {
       settle = resolve
     })
-    const operation = this.executeMutation(name, args, (mutation) => {
+    const operation = this.executeMutation(name, args, request, (mutation) => {
       if (this.closed)
         settle({
           type: 'error',
@@ -327,12 +364,13 @@ export class NativeZero<M extends Mutators = Mutators> {
 
   private async executeMutation(
     name: string,
-    args: JSONValue = null,
+    args: JSONValue | undefined,
+    requestCreator: boolean,
     committed: (mutation: Mutation) => void
   ): Promise<unknown> {
     const request = serialize({ op: 'beginMutation', name, args, timestamp: Date.now() })
     return this.enqueue(async () => {
-      if (!this.mutators.has(name))
+      if (!this.mutators.has(name) || (requestCreator && !this.requestMutators.has(name)))
         throw new Error(`Unknown native Zero mutator: ${name}`)
       const { transaction, mutation } = await this.dispatch<{
         transaction: string

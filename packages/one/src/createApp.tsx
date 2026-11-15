@@ -8,6 +8,7 @@ import { Root } from './Root'
 import { render } from './render'
 import { initClientMatches } from './router/router'
 import { registerPreloadedRoute } from './router/useViteRoutes'
+import { hydrateWarmInitialLoad } from './router/warmState'
 import { setupSkewProtection } from './skewProtection'
 import { handleSkewError, isChunkLoadError } from './utils/dynamicImport'
 import { readLoaderSearch } from './utils/cleanUrl'
@@ -213,6 +214,10 @@ export function createApp(options: CreateAppProps) {
   // vite's global preload event also fires for speculative hover requests.
   // skew protection: proactive version polling
   setupSkewProtection()
+
+  if (options.flags?.warmStart) {
+    hydrateWarmInitialLoad({ routes: options.routes, flags: options.flags })
+  }
 
   const serverContext = getServerContext() || {}
   const routePreloads = serverContext.routePreloads

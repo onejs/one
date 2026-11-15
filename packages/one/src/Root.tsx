@@ -7,11 +7,12 @@ import {
   type ReactNode,
   StrictMode,
   useContext,
+  useEffect,
   useId,
   useLayoutEffect,
   useState,
 } from 'react'
-import { SERVER_CONTEXT_KEY, isNative } from './constants'
+import { SERVER_CONTEXT_KEY, isNative, isWebServer } from './constants'
 import { initScreensFeatureFlags } from './screensFeatureFlags'
 import { SpaShellContext } from './router/SpaShellContext'
 import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
@@ -19,7 +20,18 @@ import { getURL } from './getURL'
 import type { OneLinkingConfig } from './link/getLinking'
 import { FlagsContext } from './router/FlagsContext'
 import { getResolvedLinking } from './router/linkingConfig'
-import { handleNavigationContainerStateChange } from './router/router'
+import { handleNavigationContainerStateChange, linkTo } from './router/router'
+import {
+  configureWarmStateFromFlags,
+  consumeWarmRouteApplied,
+  flushWarmState,
+  isWarmStateEnabled,
+  reconcileNativeColdDeepLink,
+} from './router/warmState'
+import {
+  attachWarmStateLifecycle,
+  getNativeInitialURL,
+} from './router/warmStatePlatform'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { LaunchScreenRelease } from './router/LaunchScreenRelease'
 import { useInitializeOneRouter } from './router/useInitializeOneRouter'
@@ -116,6 +128,10 @@ export function Root(props: RootProps) {
       ? new URL(path || window.location.href || '/', window.location.href)
       : getCachedSSRLocation(path || '/')
 
+  if (!isWebServer) {
+    configureWarmStateFromFlags(props.flags)
+  }
+
   const store = useInitializeOneRouter(context, location, linking)
   const userScheme = useUserScheme()
 
@@ -130,6 +146,22 @@ export function Root(props: RootProps) {
   const id = useId()
 
   onRenderId?.(id)
+
+  useEffect(() => {
+    if (!isWarmStateEnabled()) return
+    const detach = attachWarmStateLifecycle(() => {
+      flushWarmState()
+    })
+    if (isNative && consumeWarmRouteApplied()) {
+      void reconcileNativeColdDeepLink({
+        getInitialURL: getNativeInitialURL,
+        prefixes: getResolvedLinking()?.prefixes as string[] | undefined,
+        currentPathname: store.routeInfo?.pathname,
+        navigateTo: (href) => linkTo(href, 'REPLACE'),
+      })
+    }
+    return detach
+  }, [])
 
   // One.Updates counts a launch as good once react native shows its first
   // native view, which is the shell below. load the root layout before it, so

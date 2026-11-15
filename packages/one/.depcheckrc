@@ -1,6 +1,10 @@
 ignore-patterns:
+  - "/dist"
+  - "/types"
   # bundled against the consumer's dependencies and schema by run-contrast.ts
   - "tests/zero-native/contrast-probe.ts"
+  # compiled against the installed pinned Zero through the harness typecheck
+  - "tests/zero-native/registry-types.ts"
 
 ignores:
   # build artifact from node:url -> url.native.js transformation
