@@ -21,3 +21,5 @@
 {"id":"00000001794723313106:c579e62c85b612f746fb1225b21acff0","text":"Archived dirty air-24 v2-beta checkout to refs/recovery/a141509 (commit f3f8ef2bf93d123cbf2f267783c2b9ab5af38ed4, 30 files) before switching /Users/n8/one to main."}
 
 {"id":"00000001794724652340:5b3daedf16ecedb49f84bc101482b9ac","text":"Pushed ecdd6b448e184c14243b4337303da9b476cf22bd to release/v2.18.0 (PR #1228) with all TM parity merges, Bun iOS engine flag gating (ONE_BUN_ENGINE=1 in Xcode phase, ONE_BUN_ENGINE=0 in updatesPublish), nitro-unit Vitest migration, and Cloudflare createRequire fix. Cleaned beast2 release worktree. Waiting on PR #1228 CI (Checks and Tests 43686229160, Linux 43686229117, Android 43686229088)."}
+
+{"id":"00000001794725217819:f733e21c91d45bf7a5f5b7ef2a960f92","text":"Pushed 378f8eff5386c5c2cfea005197b159945555d890 to release/v2.18.0 (docs(site): sync native reference tables in ios-media.mdx, notifications.mdx, speech.mdx). Verified packages/one Android contract + nativeDocs suite (489/489) and rerun of 3 contended tests (7/7) on beast2; cleaned worktree. Waiting on PR #1228 CI."}
