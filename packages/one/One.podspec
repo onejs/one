@@ -66,6 +66,10 @@ Pod::Spec.new do |s|
   # nitrogen appends its own public headers after these.
   # nitro hybrid objects: nitrogen generates the specs and bridges from
   # src/specs/*.nitro.ts into nitrogen/generated (see README).
+  # declared for both paths: the app's bridging header imports these C
+  # entries without importing the One module, and the sources are present
+  # in the pod either way.
+  s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h'
   if prebuilt['path']
     Pod::UI.puts "[One] Using precompiled iOS libraries (#{File.basename(prebuilt['path'])[0, 12]})"
     s.vendored_frameworks = "#{prebuilt['path']}/Debug/One.xcframework"
@@ -86,7 +90,6 @@ Pod::Spec.new do |s|
     Pod::UI.puts "[One] Compiling native sources: #{prebuilt['reason']}"
     s.exclude_files = ['ios/Tests/**/*', 'ios/Generated/*ComponentView.mm', 'ios/Prebuilt/**/*']
     s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}', 'cpp/**/*.{h,cpp}'
-    s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h'
     load 'nitrogen/generated/ios/One+autolinking.rb'
     add_nitrogen_files(s)
   end
