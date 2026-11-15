@@ -70,7 +70,7 @@ Pod::Spec.new do |s|
   s.resource_bundles = { 'One' => ['ios/PrivacyInfo.xcprivacy'] }
   # c entries the app's bridging header imports without importing the one module.
   # nitrogen appends its own public headers after these.
-  s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h'
+  s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneViewCulling.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h'
 
   # nitro hybrid objects: nitrogen generates the specs and bridges from
   # src/specs/*.nitro.ts into nitrogen/generated (see README).

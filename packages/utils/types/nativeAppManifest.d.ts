@@ -99,6 +99,7 @@ export interface NativeAppManifest {
         useFrameworks?: 'static' | 'dynamic';
         ccache?: boolean;
         engine?: 'hermes' | 'bun';
+        viewCulling?: boolean;
         usesNonExemptEncryption?: boolean;
         appTransportSecurity?: Record<string, PlistValue>;
         accentColor?: {
