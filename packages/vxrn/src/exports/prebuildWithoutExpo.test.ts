@@ -751,6 +751,25 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
     expect(bare.content).not.toContain('one.photoLibrary.addOnly')
     expect(bare.content).not.toContain('one.audio.background')
     expect(bare.content).not.toContain('OneAudioService')
+    expect(bare.content).not.toContain('OneLocationService')
+    expect(bare.content).not.toContain('FOREGROUND_SERVICE_LOCATION')
+
+    const background = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
+      platform: 'android',
+      app: {
+        ...app,
+        audio: undefined,
+        photoLibrary: undefined,
+        contacts: undefined,
+        calendar: undefined,
+        location: { whenInUse: 'Track a hike.', background: true },
+      },
+    })
+    expect(background.content).toContain('android.permission.FOREGROUND_SERVICE_LOCATION')
+    expect(background.content).toContain('dev.onejs.onenative.OneLocationService')
 
     // reminders-only calendar needs no Android event permissions.
     const remindersOnly = renderPrebuildFile({

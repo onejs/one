@@ -225,6 +225,7 @@ module.exports = function withVxrn(config, options = {}) {
   // meta-data markers and audio service from the same option fields.
   const mediaPlugins =
     audio === undefined &&
+    !location?.background &&
     photoLibrary === undefined &&
     contacts === undefined &&
     calendar === undefined
@@ -270,6 +271,10 @@ module.exports = function withVxrn(config, options = {}) {
                 ensurePermission('android.permission.FOREGROUND_SERVICE')
                 ensurePermission('android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK')
               }
+              if (location?.background) {
+                ensurePermission('android.permission.FOREGROUND_SERVICE')
+                ensurePermission('android.permission.FOREGROUND_SERVICE_LOCATION')
+              }
               const application =
                 AndroidConfig.Manifest.getMainApplicationOrThrow(nextConfig.modResults)
               const ensureMetaData = (name) => {
@@ -293,6 +298,19 @@ module.exports = function withVxrn(config, options = {}) {
                     'android:name': serviceName,
                     'android:exported': 'false',
                     'android:foregroundServiceType': 'mediaPlayback',
+                  },
+                })
+              }
+              if (location?.background) {
+                const serviceName = 'dev.onejs.onenative.OneLocationService'
+                application['service'] = (application['service'] ?? []).filter(
+                  (entry) => entry.$['android:name'] !== serviceName
+                )
+                application['service'].push({
+                  $: {
+                    'android:name': serviceName,
+                    'android:exported': 'false',
+                    'android:foregroundServiceType': 'location',
                   },
                 })
               }

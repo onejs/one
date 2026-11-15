@@ -937,7 +937,11 @@ export function androidAppPermissions(app: NativeAppManifest): Map<string, numbe
   if (app.location !== undefined) {
     add('ACCESS_COARSE_LOCATION')
     add('ACCESS_FINE_LOCATION')
-    if (app.location.background) add('ACCESS_BACKGROUND_LOCATION')
+    if (app.location.background) {
+      add('ACCESS_BACKGROUND_LOCATION')
+      add('FOREGROUND_SERVICE')
+      add('FOREGROUND_SERVICE_LOCATION')
+    }
   }
   if (app.pedometer !== undefined) add('ACTIVITY_RECOGNITION')
   if (app.brightness === true) add('WRITE_SETTINGS')
