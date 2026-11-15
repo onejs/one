@@ -22,6 +22,7 @@ export type Options = {
  *      - If multiple routes have the same name, the most specific route is used
  */
 export declare function getRoutes(contextModule: One.RouteContext, options?: Options): RouteNode | null;
+export declare function getNativeLayoutKeys(keys: string[], platform: string): string[];
 export declare function getIgnoreList(options?: Options): RegExp[];
 /**
  * Generates a set of strings which have the router array syntax extrapolated.

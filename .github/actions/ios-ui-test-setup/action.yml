@@ -97,7 +97,28 @@ runs:
           sleep 1
         done
 
+    - name: Get WebDriverAgent cache key
+      id: wda-cache-key
+      env:
+        SIMULATOR_IOS_VERSION: ${{ inputs.simulator_ios_version }}
+        APPIUM_XCUITEST_VERSION: ${{ inputs.appium_xcuitest_version }}
+      shell: bash
+      run: |
+        BUILD_VERSION=$(xcodebuild -version | awk '/Build version/ {print $3}')
+        echo "Xcode build version: $BUILD_VERSION"
+        echo "key=ios-wda-products-$RUNNER_OS-$RUNNER_ARCH-$BUILD_VERSION-$SIMULATOR_IOS_VERSION-$APPIUM_XCUITEST_VERSION" >> "$GITHUB_OUTPUT"
+
+    - name: Restore WebDriverAgent build
+      id: restore-wda
+      uses: actions/cache/restore@v5
+      with:
+        # only the compiled products: the driver install above stays uncached
+        path: /tmp/wda-build/Build/Products
+        key: ${{ steps.wda-cache-key.outputs.key }}
+
     - name: Pre-build WebDriverAgent
+      id: prebuild-wda
+      if: ${{ steps.restore-wda.outputs.cache-hit != 'true' }}
       env:
         SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
       shell: bash
@@ -114,12 +135,25 @@ runs:
         fi
         if [ -n "$APPIUM_XCUITEST_PATH" ] && [ -d "$APPIUM_XCUITEST_PATH" ]; then
           echo "Building WDA from: $APPIUM_XCUITEST_PATH"
-          xcodebuild build-for-testing \
+          if xcodebuild build-for-testing \
             -project "$APPIUM_XCUITEST_PATH/WebDriverAgent.xcodeproj" \
             -scheme WebDriverAgentRunner \
             -destination "platform=iOS Simulator,id=$SIMULATOR_UDID" \
             -derivedDataPath /tmp/wda-build \
-            -quiet || echo "WDA pre-build failed, will build on first session"
+            -quiet; then
+            if [ -d /tmp/wda-build/Build/Products/Debug-iphonesimulator/WebDriverAgentRunner-Runner.app ]; then
+              echo "wda_built=true" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "WDA pre-build failed, will build on first session"
+          fi
         else
           echo "Could not find WDA path, will build on first session"
         fi
+
+    - name: Save WebDriverAgent build
+      if: ${{ steps.restore-wda.outputs.cache-hit != 'true' && steps.prebuild-wda.outputs.wda_built == 'true' }}
+      uses: actions/cache/save@v5
+      with:
+        path: /tmp/wda-build/Build/Products
+        key: ${{ steps.wda-cache-key.outputs.key }}

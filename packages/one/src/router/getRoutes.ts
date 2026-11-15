@@ -657,6 +657,20 @@ function getFileMeta(
   }
 }
 
+export function getNativeLayoutKeys(keys: string[], platform: string): string[] {
+  const layouts = new Map<string, { key: string; specificity: number }>()
+  for (const key of keys) {
+    if (!key.slice(key.lastIndexOf('/') + 1).startsWith('_layout')) continue
+    const meta = getFileMeta(key, { platform })
+    if (meta.specificity < 0) continue
+    const previous = layouts.get(meta.route)
+    if (!previous || previous.specificity < meta.specificity) {
+      layouts.set(meta.route, { key, specificity: meta.specificity })
+    }
+  }
+  return [...layouts.values()].map(({ key }) => key)
+}
+
 function getMostSpecific(routes: RouteNode[]) {
   // holey array: .length includes holes, so last element is most specific
   const route = routes[routes.length - 1]

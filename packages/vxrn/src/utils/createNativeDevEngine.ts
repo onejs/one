@@ -1748,10 +1748,29 @@ Object.keys(_routes).forEach(function(key) {
   routes['/' + normalizedKey] = _routes[key];
 });`
   const routeHmr = useDynamicRouteRegistry
-    ? `if (import.meta.hot) {
+    ? // a registry patch omits factories for routes unchanged since the full
+      // bundle. initialize those from their original loaders when needed.
+      `var currentRoutes = routes;
+if (import.meta.hot) {
   import.meta.hot.accept(${JSON.stringify(registrySpecifier)}, function(next) {
+    var merged = {};
+    var originals = {};
+    Object.keys(next.routes).forEach(function(key) {
+      var original = currentRoutes[key];
+      var updated = next.routes[key];
+      originals[key] = original || updated;
+      merged[key] = original
+        ? function() {
+            return Promise.resolve().then(updated).catch(function(error) {
+              if (!__rolldown_runtime__.isMissingFactory(error)) throw error;
+              return Promise.resolve().then(original).then(updated);
+            });
+          }
+        : updated;
+    });
+    currentRoutes = originals;
     if (globalThis.__VXRN_UPDATE_NATIVE_ROUTES__) {
-      globalThis.__VXRN_UPDATE_NATIVE_ROUTES__(next.routes);
+      globalThis.__VXRN_UPDATE_NATIVE_ROUTES__(merged);
     }
   });
 }`
@@ -2960,15 +2979,11 @@ export function hermesCompatSWCPlugin(
             const hasBlockScopedBinding = /\b(?:const|let)\s/.test(code)
             if (!hasClass && !hasAsync && !hasBlockScopedBinding) return
             let output: { code: string; map?: any } | undefined
-            // Keep the Oxc limit for other large prebuilt files. Class, lexical binding,
-            // and async lowering below have no size exemption for legacy Hermes.
-            if (code.length <= 500_000 || hasClass) {
+            const lang = /\.[cm]?ts$/.test(id) ? 'ts' : id.endsWith('.tsx') ? 'tsx' : 'jsx'
+            // Keep the Oxc limit for other large prebuilt javascript. TypeScript always
+            // goes through it, since the lowering below parses plain javascript.
+            if (code.length <= 500_000 || hasClass || lang !== 'jsx') {
               if (!oxc) oxc = await import('oxc-transform')
-              const lang = /\.[cm]?ts$/.test(id)
-                ? 'ts'
-                : id.endsWith('.tsx')
-                  ? 'tsx'
-                  : 'jsx'
               const result = oxc.transformSync(id, code, {
                 lang,
                 target: 'es2020',
@@ -3076,6 +3091,10 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
     this._socket = null;
     this.moduleHotContexts = {};
     this.lastSeq = 0;
+  }
+
+  isMissingFactory(error) {
+    return error instanceof MissingFactoryError;
   }
 
   createModuleHotContext(moduleId) {
