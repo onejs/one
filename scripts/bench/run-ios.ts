@@ -86,9 +86,7 @@ export function captureConsole(
                 throw new Error('invalid BENCH_PHASE')
               currentPhase = phase
             }
-            if (currentPhase) {
-              if (!options.onPhase)
-                throw new Error('host phase footprint requires --simulator')
+            if (currentPhase && options.onPhase) {
               const phase = phaseMarker
                 ? currentPhase
                 : { ...currentPhase, case: 'complete' }
@@ -243,8 +241,8 @@ if (import.meta.main) {
     throw new Error(
       'require exactly one --device or --simulator, plus --device-name, --os, --commit, --out and --app engine=/path/App.app'
     )
-  if (!args.simulator && (args['simulator-log-process'] || args['reset-data']))
-    throw new Error('--simulator-log-process and --reset-data require --simulator')
+  if (!args.simulator && args['simulator-log-process'])
+    throw new Error('--simulator-log-process requires --simulator')
   const runs = Number(args.runs),
     timeout = Number(args.timeout),
     cooldown = Number(args.cooldown)
@@ -348,15 +346,17 @@ if (import.meta.main) {
       if (args['reset-data']) {
         const removal = spawnSync(
           'xcrun',
-          ['simctl', 'uninstall', args.simulator!, bundle],
-          { encoding: 'utf8' }
+          args.simulator
+            ? ['simctl', 'uninstall', args.simulator, bundle]
+            : ['devicectl', 'device', 'uninstall', 'app', '--device', args.device!, bundle],
+          { encoding: 'utf8', timeout: 120_000 }
         )
         if (removal.error) throw removal.error
         if (
           removal.status &&
           !/not installed|No such file or directory/i.test(removal.stderr)
         )
-          throw new Error(`simulator uninstall failed: ${removal.stderr}`)
+          throw new Error(`app uninstall failed: ${removal.stderr}`)
         installed.delete(bundle)
       }
       if (installed.get(bundle) !== engine) {
