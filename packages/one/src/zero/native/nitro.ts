@@ -5,11 +5,22 @@ import type { NativeZeroOptions } from './client'
 import type { Mutators } from './types'
 
 export async function createNativeZero<M extends Mutators>(
-  options: Omit<NativeZeroOptions<M>, 'engine'> & { name: string; clientID?: string }
+  options: Omit<NativeZeroOptions<M>, "engine"> & { name: string; clientID?: string }
 ): Promise<NativeZero<M>> {
-  const engine = NitroModules.createHybridObject<OneZero>('OneZero')
+  const engine = NitroModules.createHybridObject<OneZero>("OneZero")
   const client = new NativeZero({ ...options, engine })
-  await engine.open(options.name, JSON.stringify(options.schema), options.clientID ?? '')
-  await client.ready()
-  return client
+  try {
+    await engine.open(options.name, JSON.stringify(options.schema), options.clientID ?? "")
+    await client.ready()
+    return client
+  } catch (error) {
+    try {
+      await client.close()
+    } catch {
+      try {
+        await engine.close()
+      } catch {}
+    }
+    throw error
+  }
 }

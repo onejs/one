@@ -898,7 +898,11 @@ struct Client::Impl {
     if (op == "delete") {
       begin("delete");
       try {
-        {
+        bool recovery = !meta("recoveryRequired").null() ||
+                        (request.has("dropPending") && request.at("dropPending").boolean());
+        if (recovery) {
+          sql(db, "DELETE FROM one_zero_mutations");
+        } else {
           Statement pending(db, "SELECT 1 FROM one_zero_mutations LIMIT 1");
           if (pending.step())
             throw std::runtime_error("native Zero cannot delete a store with pending mutations");
@@ -980,9 +984,10 @@ void Client::close() {
   std::lock_guard<std::mutex> lock(impl_->mutex);
   if (!impl_->db) return;
   impl_->rollback();
-  int result = sqlite3_close(impl_->db);
-  if (result != SQLITE_OK) throw std::runtime_error(sqlite3_errmsg(impl_->db));
+  sqlite3* db = impl_->db;
   impl_->db = nullptr;
+  int result = sqlite3_close_v2(db);
+  if (result != SQLITE_OK) throw std::runtime_error(sqlite3_errmsg(db));
 }
 
 }  // namespace one::zero

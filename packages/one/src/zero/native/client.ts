@@ -94,7 +94,7 @@ export class NativeZero<M extends Mutators = Mutators> {
     string,
     (tx: Transaction, args: JSONValue | undefined) => unknown
   >()
-  private requestMutators = new Set<string>()
+  private registeredCreators = new Set<Function>()
   private views = new Set<NativeView<unknown>>()
   private identity?: string
   private desiredViews = new Map<
@@ -136,7 +136,7 @@ export class NativeZero<M extends Mutators = Mutators> {
             this.mutators.set(key, (tx, args) =>
               fn({ tx, ctx: this.options.context, args })
             )
-            this.requestMutators.add(key)
+            this.registeredCreators.add(value)
           } else this.mutators.set(key, value as Mutator)
           functions[name] = (args?: JSONValue) => this.issueMutation(key, args)
         } else if (value && typeof value === 'object')
@@ -148,7 +148,12 @@ export class NativeZero<M extends Mutators = Mutators> {
     const functions = register(options.mutators, '')
     const mutate = (request: string | MutateRequest, args?: JSONValue) => {
       if (typeof request === 'string') return this.issueMutation(request, args)
-      return this.issueMutation(request.mutator.mutatorName, request.args, true)
+      if (!this.registeredCreators.has(request.mutator as unknown as Function)) {
+        throw new Error(
+          `Mutator "${request.mutator?.mutatorName}" is not registered. Mutators must be registered with the Zero constructor before use.`
+        )
+      }
+      return this.issueMutation(request.mutator.mutatorName, request.args)
     }
     for (const [name, value] of Object.entries(functions))
       Object.defineProperty(mutate, name, { value, enumerable: true })
@@ -265,7 +270,13 @@ export class NativeZero<M extends Mutators = Mutators> {
     reason: Transaction['reason']
   ) {
     const mutator = this.mutators.get(mutation.name)
-    if (!mutator) throw new Error(`Unknown native Zero mutator: ${mutation.name}`)
+    if (!mutator) {
+      if (reason === 'rebase') {
+        this.report(new Error(`Unknown native Zero mutator: ${mutation.name}`))
+        return undefined
+      }
+      throw new Error(`Unknown native Zero mutator: ${mutation.name}`)
+    }
     let active = true
     let operations: Promise<unknown> = Promise.resolve()
     const failures: { observed: boolean; failed: boolean; error?: unknown }[] = []
@@ -330,14 +341,13 @@ export class NativeZero<M extends Mutators = Mutators> {
 
   private issueMutation(
     name: string,
-    args?: JSONValue,
-    request = false
+    args?: JSONValue
   ): MutationPromise {
     let settle!: (result: MutationResultDetails) => void
     const server = new Promise<MutationResultDetails>((resolve) => {
       settle = resolve
     })
-    const operation = this.executeMutation(name, args, request, (mutation) => {
+    const operation = this.executeMutation(name, args, (mutation) => {
       if (this.closed)
         settle({
           type: 'error',
@@ -365,12 +375,11 @@ export class NativeZero<M extends Mutators = Mutators> {
   private async executeMutation(
     name: string,
     args: JSONValue | undefined,
-    requestCreator: boolean,
     committed: (mutation: Mutation) => void
   ): Promise<unknown> {
     const request = serialize({ op: 'beginMutation', name, args, timestamp: Date.now() })
     return this.enqueue(async () => {
-      if (!this.mutators.has(name) || (requestCreator && !this.requestMutators.has(name)))
+      if (!this.mutators.has(name))
         throw new Error(`Unknown native Zero mutator: ${name}`)
       const { transaction, mutation } = await this.dispatch<{
         transaction: string

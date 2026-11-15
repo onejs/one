@@ -9,24 +9,21 @@
 #endif
 #include <memory>
 #include <mutex>
+#include <string>
 
 namespace margelo::nitro::one {
 
 class HybridOneZero : public HybridOneZeroSpec {
  public:
-  HybridOneZero() : HybridObject(TAG), state_(std::make_shared<State>()) {}
+  HybridOneZero();
+  ~HybridOneZero() override;
   std::shared_ptr<Promise<void>> open(const std::string& name, const std::string& schemaJson,
                                       const std::string& clientID) override;
   std::shared_ptr<Promise<std::string>> execute(const std::string& requestJson) override;
   std::shared_ptr<Promise<void>> close() override;
 
  private:
-  struct State {
-    std::mutex mutex;
-#if ONE_ZERO_SQLITE
-    std::unique_ptr<::one::zero::Client> client;
-#endif
-  };
+  struct State;
   std::shared_ptr<State> state_;
 };
 
