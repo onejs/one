@@ -1,1 +1,3 @@
 {"id":"00000001794541046422:a7ce7f92ecc70cda7d3079f0e9c33ae9","text":"one 2.17.2 tarball verified: version ok, ONE_IOS_27_SDK guard present in OneNativeStyle.swift; tag v2.17.2 exists; release run 43358273776 success"}
+
+{"id":"00000001794727007426:f473f52cab56e5e601fd27a5f0983e9a","text":"VERIFIED by s254968: one@2.17.2 tarball version ok, releaseSourceCommit 0f6102eec6 matches tag v2.17.2, ONE_IOS_27_SDK guard present in ios/OneNativeStyle.swift; vxrn@2.17.2 tarball version ok, same releaseSourceCommit, loadEnv reads env files from root; tag and GitHub release exist."}
