@@ -21,3 +21,5 @@
 {"id":"00000001794742898667:c04792461de0d3ff3f48050ca65104c7","text":"s255078 PR OPEN: https://github.com/onejs/one/pull/1240 (draft, supersedes #1099). Public Precompiled One iOS run 43710107855 in progress on xcode-27 runners (compile Debug+Release matrix, then binary consumer). Waiting on it; merge+publication needs owner review."}
 
 {"id":"00000001794760999087:17f3e12a73557cf7aed2dd576cd2e475","text":"s255078 public CI 2026-11-15: run 43710107855 CANCELLED at exactly 60m (job timeout-minutes cap; was still compiling, not hung). Fix 4a8d4e5712 (pushed): compile 60->180, consumer 60->120. New public run 43737004305 queued; waiting (6h watch). PR #1240 draft."}
+
+{"id":"00000001794761271866:9cffb3712a5b890dc7468866229aaa22","text":"s255078 install-mode matrix validated locally 2026-11-15: (1) ONE_PREBUILT_IOS=1 + cache -> Using precompiled (consumer green). (2) auto + cache -> Using precompiled, no env needed. (3) auto + cold cache -> graceful source fallback ('no published binary for <key>') after 404, exit 0. (4) ONE_PREBUILT_IOS=0 -> source build (producer runs). All four podspec paths behave."}
