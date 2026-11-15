@@ -29,7 +29,7 @@ export default {
 For a named iOS notification sound, list the source file in
 `native.app.ios.resources`, for example `['./assets/alert.wav']`. Prebuild
 copies each file into the app bundle under its filename and adds it to the
-Xcode Resources phase. Use that filename in the notification's `iosSound`.
+Xcode Resources phase. Use that filename in the notification's `soundName`.
 Resource paths are relative to the app root, and filenames must be unique.
 
 Then ask for permission and schedule:
@@ -146,6 +146,7 @@ app and `getDevicePushToken` rejects on both platforms.
     { name: 'body', type: 'string', description: 'The message.' },
     { name: 'data', type: 'Record<string, unknown>', description: 'Your own values, returned with the notification.' },
     { name: 'sound', type: 'boolean', description: 'Play the default sound.' },
+    { name: 'soundName', type: 'string', description: 'A bundled sound filename on iOS. Android uses the channel sound.' },
     { name: 'badge', type: 'number', description: 'The app icon badge to set on iOS.' },
     { name: 'categoryIdentifier', type: 'string', description: 'A category registered with setCategory, for its buttons.' },
   ]}
