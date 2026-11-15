@@ -941,6 +941,34 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
   return code.slice(0, startIdx) + linePreservingRuntime + code.slice(runtimeEnd)
 }
 
+// rolldown's __toCommonJS builds a new object of live getters per call, and react
+// native's lazy `require` getters call it on every read. one copy per module is
+// enough; __reExport adds keys during init, so it drops the cached copy
+function memoizeToCommonJS(code: string): string {
+  const caches = new Set<string>()
+  let reExports = 0
+  const memoized = code
+    .replace(
+      /^([^\S\n]*)var (__toCommonJS[\w$]*) = \(mod\) => (__hasOwnProp[\w$]*)\.call\(mod, "module\.exports"\) \? mod\["module\.exports"\] : (__copyProps[\w$]*)\((__defProp[\w$]*)\(\{\}, "__esModule", \{ value: true \}\), mod\);$/gm,
+      (_, indent, name, has, copy, def) => {
+        caches.add(copy)
+        return `${indent}var ${copy}$cjs = new WeakMap(), ${name} = (mod) => { if (${has}.call(mod, "module.exports")) return mod["module.exports"]; var cjs = ${copy}$cjs.get(mod); if (!cjs) ${copy}$cjs.set(mod, (cjs = ${copy}(${def}({}, "__esModule", { value: true }), mod))); return cjs; };`
+      }
+    )
+    .replace(
+      /^([^\S\n]*)var (__reExport[\w$]*) = \(target, mod, secondTarget\) => \((__copyProps[\w$]*)\(target, mod, "default"\), secondTarget && \3\(secondTarget, mod, "default"\)\);$/gm,
+      (line, indent, name, copy) => {
+        if (!caches.has(copy)) return line
+        reExports++
+        return `${indent}var ${name} = (target, mod, secondTarget) => (${copy}$cjs.delete(target), ${copy}(target, mod, "default"), secondTarget && ${copy}(secondTarget, mod, "default"));`
+      }
+    )
+  // a cached view must drop keys that __reExport adds later, so an unrecognized
+  // __reExport leaves the bundle as rolldown wrote it
+  const declared = code.match(/^[^\S\n]*var __reExport[\w$]* = /gm)?.length ?? 0
+  return caches.size && reExports === declared ? memoized : code
+}
+
 /**
  * Run the native post-processing passes inside the bundle, where rolldown still
  * hands them unminified output.
@@ -956,11 +984,12 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
  * `map: null` records what the passes guarantee: they replace syntax in place
  * without moving a line, so rolldown's own map still describes the result.
  */
-function nativeBundlePostProcessPlugin(): Plugin {
+function nativeBundlePostProcessPlugin(memoizeInterop: boolean): Plugin {
   return {
     name: 'vxrn:native-post-process',
     renderChunk(code) {
-      const processed = postProcessNativeBundle(code)
+      let processed = postProcessNativeBundle(code)
+      if (memoizeInterop) processed = memoizeToCommonJS(processed)
       assertBundleLinesPreserved(code, processed, 'production')
       return { code: processed, map: null }
     },
@@ -1483,7 +1512,7 @@ export async function buildNativeBundle(
         'build'
       ),
       // last, so it sees what every other plugin produced
-      nativeBundlePostProcessPlugin(),
+      nativeBundlePostProcessPlugin(!dev && isBunIosEngine(root, platform)),
       ...(await bundleAnalysisPlugins(root, platform)),
     ],
     output: {
