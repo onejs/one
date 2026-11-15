@@ -29,7 +29,7 @@ import {
 } from '@vxrn/utils/nativeAppManifest'
 import sharp from 'sharp'
 import { readJSONSync } from '../utils/fs'
-import { swiftPackageDirectories } from '../utils/swiftPackageId'
+import { NON_SOURCE_DIRS, swiftPackageDirectories } from '../utils/swiftPackageId'
 
 type NativeProjectPatches = {
   ONE_NOTIFICATIONS: {
@@ -3391,7 +3391,7 @@ export function enableAppComposeIntegration(dest: string) {
 export async function generateKotlinSources({ root, dest }: { root: string; dest: string }) {
   // evidence holds preserved proof sources, never app sources; sweeping it
   // breaks :app:compileDebugKotlin when two preserved copies declare one class.
-  const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build', 'tests', '__tests__', 'scripts', 'evidence'])
+  const skip = new Set([...NON_SOURCE_DIRS, 'tests', '__tests__', 'scripts', 'evidence'])
   const sources: string[] = []
   const manifest = existsSync(path.join(root, 'package.json'))
     ? readJSONSync(path.join(root, 'package.json'))
@@ -3451,7 +3451,6 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
 // registry the OneSwiftHost view reads. the bundler resolves an import of any
 // .swift file in the package to a host view naming the same package id.
 async function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
-  const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build'])
   const packages = swiftPackageDirectories(root)
   if (packages.size === 0) return
   const { swiftPodManifest, writeSwiftPackageArtifacts } = await import('../utils/nativeSourceContract')
@@ -3465,7 +3464,7 @@ async function generateSwiftPackages({ root, dest }: { root: string; dest: strin
     const collect = (dir: string) => {
       for (const entry of readdirSync(dir, { withFileTypes: true })) {
         // a package at the app root holds the generated native projects too
-        if (entry.name.startsWith('.') || skip.has(entry.name)) continue
+        if (entry.name.startsWith('.') || NON_SOURCE_DIRS.has(entry.name)) continue
         const full = path.join(dir, entry.name)
         if (entry.isDirectory()) collect(full)
         else if (entry.name.endsWith('.swift') && entry.name !== 'Package.swift')
