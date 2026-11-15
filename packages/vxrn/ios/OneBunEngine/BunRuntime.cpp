@@ -33,7 +33,10 @@ void bun_embed_grab_locks(void* dropper);
 #include <array>
 #include <atomic>
 #include <condition_variable>
+#include <cmath>
+#include <cstdint>
 #include <cstdlib>
+#include <limits>
 #include <deque>
 #include <exception>
 #include <mutex>
@@ -41,6 +44,61 @@ void bun_embed_grab_locks(void* dropper);
 #include <thread>
 
 namespace facebook::bun {
+
+// jsc's 64-bit value encoding, read directly: host functions run with the JSC
+// lock dropped, so every api call there takes and releases it in full. numbers
+// carry a tag in the top bits (int32 under all of it, doubles offset by 2^49),
+// cells are bare pointers with their JSType byte at offset 5, and the rest are
+// small constants. makeBunRuntime checks the engine still encodes this way
+namespace jscvalue {
+constexpr uint64_t kNumberTag = 0xfffe000000000000ull;
+constexpr uint64_t kNotCellMask = kNumberTag | 0x2;
+constexpr uint64_t kDoubleOffset = 1ull << 49;
+constexpr uint64_t kNull = 0x02, kFalse = 0x06, kTrue = 0x07, kUndefined = 0x0a;
+constexpr uint8_t kStringType = 2, kBigIntType = 3, kSymbolType = 4;
+
+inline uint64_t bits(JSValueRef v) {
+  return reinterpret_cast<uintptr_t>(v);
+}
+inline JSValueRef ref(uint64_t b) {
+  return reinterpret_cast<JSValueRef>(static_cast<uintptr_t>(b));
+}
+inline bool isNumber(uint64_t b) {
+  return (b & kNumberTag) != 0;
+}
+inline bool isCell(uint64_t b) {
+  return b != 0 && (b & kNotCellMask) == 0;
+}
+inline uint8_t cellType(uint64_t b) {
+  return reinterpret_cast<const uint8_t*>(static_cast<uintptr_t>(b))[5];
+}
+inline double toDouble(uint64_t b) {
+  if ((b & kNumberTag) == kNumberTag) {
+    return static_cast<int32_t>(static_cast<uint32_t>(b));
+  }
+  uint64_t raw = b - kDoubleOffset;
+  double d;
+  std::memcpy(&d, &raw, sizeof d);
+  return d;
+}
+inline JSValueRef number(double d) {
+  if (d >= std::numeric_limits<int32_t>::min() && d <= std::numeric_limits<int32_t>::max()) {
+    int32_t i = static_cast<int32_t>(d);
+    if (i == d && (i != 0 || !std::signbit(d))) {
+      return ref(kNumberTag | static_cast<uint32_t>(i));
+    }
+  }
+  if (d != d) {
+    d = std::numeric_limits<double>::quiet_NaN();
+  }
+  uint64_t raw;
+  std::memcpy(&raw, &d, sizeof raw);
+  return ref(raw + kDoubleOffset);
+}
+inline JSObjectRef object(JSValueRef v) {
+  return reinterpret_cast<JSObjectRef>(const_cast<OpaqueJSValue*>(v));
+}
+} // namespace jscvalue
 
 namespace detail {
 class ArgsConverter;
@@ -1120,11 +1178,8 @@ std::shared_ptr<jsi::NativeState> JSCRuntime::getNativeState(
       ctx_, objectRef(obj), getNativeStateSymbol(), &exc);
   checkException(exc);
 
-  JSObjectRef stateObj = JSValueToObject(ctx_, state, &exc);
-  checkException(exc);
-
-  auto container =
-      static_cast<NativeStateContainer*>(JSObjectGetPrivate(stateObj));
+  auto container = static_cast<NativeStateContainer*>(
+      JSObjectGetPrivate(jscvalue::object(state)));
   assert(container);
   return container->nativeState;
 }
@@ -1138,7 +1193,7 @@ void JSCRuntime::setNativeState(
   JSValueRef state =
       JSObjectGetPropertyForKey(ctx_, objectRef(obj), nativeStateSymbol, &exc);
   checkException(exc);
-  if (JSValueIsUndefined(ctx_, state)) {
+  if (jscvalue::bits(state) == jscvalue::kUndefined) {
     JSObjectRef stateObj = JSObjectMake(
         ctx_,
         getNativeStateClass(),
@@ -1153,11 +1208,8 @@ void JSCRuntime::setNativeState(
         &exc);
     checkException(exc);
   } else {
-    JSObjectRef stateObj = JSValueToObject(ctx_, state, &exc);
-    checkException(exc);
-
-    auto container =
-        static_cast<NativeStateContainer*>(JSObjectGetPrivate(stateObj));
+    auto container = static_cast<NativeStateContainer*>(
+        JSObjectGetPrivate(jscvalue::object(state)));
     assert(container);
     container->nativeState = std::move(nativeState);
   }
@@ -1351,7 +1403,7 @@ size_t JSCRuntime::size(const jsi::Array& arr) {
   JSValueRef length =
       JSObjectGetProperty(ctx_, objectRef(arr), getLengthString(), &exc);
   checkException(exc);
-  return static_cast<size_t>(JSValueToNumber(ctx_, length, nullptr));
+  return static_cast<size_t>(jscvalue::toDouble(jscvalue::bits(length)));
 }
 
 jsi::Value JSCRuntime::getValueAtIndex(const jsi::Array& arr, size_t i) {
@@ -1714,33 +1766,38 @@ jsi::Object JSCRuntime::createObject(JSObjectRef obj) const {
 }
 
 jsi::Value JSCRuntime::createValue(JSValueRef value) const {
-  JSType type = JSValueGetType(ctx_, value);
-
-  switch (type) {
-    case kJSTypeNumber:
-      return jsi::Value(JSValueToNumber(ctx_, value, nullptr));
-    case kJSTypeBoolean:
-      return jsi::Value(JSValueToBoolean(ctx_, value));
-    case kJSTypeNull:
-      return jsi::Value(nullptr);
-    case kJSTypeUndefined:
+  using namespace jscvalue;
+  uint64_t b = bits(value);
+  if (isNumber(b)) {
+    return jsi::Value(toDouble(b));
+  }
+  if (isCell(b)) {
+    switch (cellType(b)) {
+      case kStringType: {
+        JSStringRef str = JSValueToStringCopy(ctx_, value, nullptr);
+        auto result = jsi::Value(createString(str));
+        JSStringRelease(str);
+        return result;
+      }
+      case kSymbolType:
+        return jsi::Value(createSymbol(value));
+      case kBigIntType:
+        return jsi::Value(make<jsi::BigInt>(makeSymbolValue(value)));
+      default:
+        return jsi::Value(createObject(object(value)));
+    }
+  }
+  switch (b) {
+    case kUndefined:
       return jsi::Value();
-    case kJSTypeString: {
-      JSStringRef str = JSValueToStringCopy(ctx_, value, nullptr);
-      auto result = jsi::Value(createString(str));
-      JSStringRelease(str);
-      return result;
-    }
-    case kJSTypeObject: {
-      JSObjectRef objRef = JSValueToObject(ctx_, value, nullptr);
-      return jsi::Value(createObject(objRef));
-    }
-    case kJSTypeSymbol:
-      return jsi::Value(createSymbol(value));
-    case kJSTypeBigInt:
-      return jsi::Value(make<jsi::BigInt>(makeSymbolValue(value)));
+    case 0:
+    case kNull:
+      return jsi::Value(nullptr);
+    case kTrue:
+      return jsi::Value(true);
+    case kFalse:
+      return jsi::Value(false);
     default:
-      // WHAT ARE YOU
       abort();
   }
 }
@@ -1748,13 +1805,13 @@ jsi::Value JSCRuntime::createValue(JSValueRef value) const {
 JSValueRef JSCRuntime::valueRef(const jsi::Value& value) {
   // I would rather switch on value.kind_
   if (value.isUndefined()) {
-    return JSValueMakeUndefined(ctx_);
+    return jscvalue::ref(jscvalue::kUndefined);
   } else if (value.isNull()) {
-    return JSValueMakeNull(ctx_);
+    return jscvalue::ref(jscvalue::kNull);
   } else if (value.isBool()) {
-    return JSValueMakeBoolean(ctx_, value.getBool());
+    return jscvalue::ref(value.getBool() ? jscvalue::kTrue : jscvalue::kFalse);
   } else if (value.isNumber()) {
-    return JSValueMakeNumber(ctx_, value.getNumber());
+    return jscvalue::number(value.getNumber());
   } else if (value.isSymbol()) {
     return symbolRef(value.getSymbol(*this));
   } else if (value.isString()) {
@@ -1828,6 +1885,27 @@ std::unique_ptr<jsi::Runtime> makeBunRuntime() {
   auto ctx = static_cast<JSGlobalContextRef>(bun_embed_create(1, argv));
   if (ctx == nullptr) {
     return nullptr;
+  }
+  {
+    using namespace jscvalue;
+    JSStringRef probe = JSStringCreateWithUTF8CString("encoding");
+    JSValueRef str = JSValueMakeString(ctx, probe);
+    JSStringRelease(probe);
+    JSValueRef obj = JSObjectMake(ctx, nullptr, nullptr);
+    bool same = bits(JSValueMakeUndefined(ctx)) == kUndefined &&
+        bits(JSValueMakeNull(ctx)) == kNull &&
+        bits(JSValueMakeBoolean(ctx, true)) == kTrue &&
+        bits(JSValueMakeBoolean(ctx, false)) == kFalse &&
+        JSValueMakeNumber(ctx, -3) == number(-3) &&
+        JSValueMakeNumber(ctx, 1.5) == number(1.5) &&
+        JSValueMakeNumber(ctx, -0.0) == number(-0.0) &&
+        toDouble(bits(JSValueMakeNumber(ctx, 1e300))) == 1e300 &&
+        isCell(bits(str)) && cellType(bits(str)) == kStringType &&
+        isCell(bits(obj)) && cellType(bits(obj)) > kSymbolType;
+    if (!same) {
+      os_log_fault(OS_LOG_DEFAULT, "[OneBunEngine] this bun engine encodes values differently than BunRuntime reads them");
+      abort();
+    }
   }
   // bun's terminate handler panics without naming the exception, so name it and
   // print the stack it was thrown from (terminate runs there) before bun reports
