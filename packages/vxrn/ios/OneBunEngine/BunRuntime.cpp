@@ -354,7 +354,7 @@ namespace {
 std::string JSStringToSTLString(JSStringRef str) {
   // Small string optimization: Avoid one heap allocation for strings that fit
   // in stackBuffer.size() bytes of UTF-8 (including the null terminator).
-  std::array<char, 20> stackBuffer;
+  std::array<char, 256> stackBuffer;
   std::unique_ptr<char[]> heapBuffer;
   char* buffer;
   // NOTE: By definition, maxBytes >= 1 since the null terminator is included.
@@ -1277,19 +1277,25 @@ bool JSCRuntime::isHostObject(const jsi::Object& obj) const {
   return cls != nullptr && JSValueIsObjectOfClass(ctx_, objectRef(obj), cls);
 }
 
-// Very expensive
 jsi::Array JSCRuntime::getPropertyNames(const jsi::Object& obj) {
   JSPropertyNameArrayRef names =
       JSObjectCopyPropertyNames(ctx_, objectRef(obj));
   size_t len = JSPropertyNameArrayGetCount(names);
-  // Would be better if we could create an array with explicit elements
-  auto result = createArray(len);
-  for (size_t i = 0; i < len; i++) {
-    JSStringRef str = JSPropertyNameArrayGetNameAtIndex(names, i);
-    result.setValueAtIndex(*this, i, createString(str));
+  JSValueRef stackItems[32];
+  std::unique_ptr<JSValueRef[]> heapItems;
+  JSValueRef* items = stackItems;
+  if (len > 32) {
+    heapItems = std::make_unique<JSValueRef[]>(len);
+    items = heapItems.get();
   }
+  for (size_t i = 0; i < len; i++) {
+    items[i] = JSValueMakeString(ctx_, JSPropertyNameArrayGetNameAtIndex(names, i));
+  }
+  JSValueRef exc = nullptr;
+  JSObjectRef result = JSObjectMakeArray(ctx_, len, items, &exc);
   JSPropertyNameArrayRelease(names);
-  return result;
+  checkException(exc);
+  return createObject(result).getArray(*this);
 }
 
 jsi::WeakObject JSCRuntime::createWeakObject(const jsi::Object& obj) {
