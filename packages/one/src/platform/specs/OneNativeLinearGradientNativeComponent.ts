@@ -42,6 +42,7 @@ type OneNativeStyleNative = Readonly<{
 }>
 interface NativeProps extends ViewProps {
   colors: ReadonlyArray<string>
+  locations: string
   startPoint: string
   endPoint: string
   swiftStyle?: OneNativeStyleNative
