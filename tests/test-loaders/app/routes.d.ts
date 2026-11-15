@@ -12,6 +12,8 @@ declare module 'one' {
         | `/error-test`
         | `/error-test/`
         | `/loader`
+        | `/loader-jsx`
+        | `/loader-jsx/static`
         | `/loader-redirect`
         | `/loader-refetch`
         | `/loader-refetch/spa`
@@ -48,9 +50,9 @@ declare module 'one' {
         | `/posts/[slug]`
       IsTyped: true
       RouteTypes: {
-        '/not-found/deep/[slug]': RouteInfo<{ slug: string }>
-        '/not-found/fallback/[slug]': RouteInfo<{ slug: string }>
-        '/posts/[slug]': RouteInfo<{ slug: string }>
+        '/not-found/deep/[slug]': RouteInfo<{ slug: string }, '/not-found/deep/[slug]'>
+        '/not-found/fallback/[slug]': RouteInfo<{ slug: string }, '/not-found/fallback/[slug]'>
+        '/posts/[slug]': RouteInfo<{ slug: string }, '/posts/[slug]'>
       }
     }
   }
@@ -59,7 +61,7 @@ declare module 'one' {
 /**
  * Helper type for route information
  */
-type RouteInfo<Params = Record<string, never>> = {
+type RouteInfo<Params = Record<string, never>, Path extends string = string> = {
   Params: Params
-  LoaderProps: { path: string; search?: string; subdomain?: string; params: Params; request?: Request }
+  LoaderProps: import('one').LoaderProps<Params, OneRouter.LoaderSearchParams<Path>>
 }

@@ -1,7 +1,12 @@
 import * as React from 'react'
 import { renderToString } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
-import { reviveLoaderData, reviveLoaderJSX, registerLoaderClient, ServerJSX } from './loaderJSX'
+import {
+  reviveLoaderData,
+  reviveLoaderJSX,
+  registerLoaderClient,
+  ServerJSX,
+} from './loaderJSX'
 import { transformTreeShakeClient } from './vite/plugins/clientTreeShakePlugin'
 import { transformUseClient } from './vite/plugins/loaderJSXPlugin'
 import { ClientFallback, JSXSlot, renderJSX } from './server/renderJSX'
@@ -9,7 +14,12 @@ import { ClientFallback, JSXSlot, renderJSX } from './server/renderJSX'
 const wire = <T,>(value: T): T => JSON.parse(JSON.stringify(value))
 
 function Counter(props: { start: number; children?: React.ReactNode }) {
-  return <button>{props.start}{props.children}</button>
+  return (
+    <button>
+      {props.start}
+      {props.children}
+    </button>
+  )
 }
 registerLoaderClient('app/Counter.tsx#Counter', Counter)
 
@@ -37,7 +47,11 @@ describe('renderJSX', () => {
       {},
       ['h', 'article', {}, 'post ', 1],
       ['h', 'article', {}, 'post ', 2],
-      ['c', 'app/Counter.tsx#Counter', { start: 3, children: { __oneJSX: ['h', 'b', {}, 'child'] } }],
+      [
+        'c',
+        'app/Counter.tsx#Counter',
+        { start: 3, children: { __oneJSX: ['h', 'b', {}, 'child'] } },
+      ],
     ])
   })
 
@@ -81,7 +95,9 @@ describe('renderJSX', () => {
   })
 
   it('rejects non-serializable props crossing to a client component', async () => {
-    await expect(renderJSX(<Counter start={(() => 1) as any} />)).rejects.toThrow(/a function/)
+    await expect(renderJSX(<Counter start={(() => 1) as any} />)).rejects.toThrow(
+      /a function/
+    )
   })
 
   it('(a, b) ssr html equals frame-1 html and the ssg payload is static json', async () => {
@@ -146,7 +162,9 @@ describe('renderJSX', () => {
       {},
       ['h', 'p', {}, 'update the app'],
     ])
-    expect(renderToString(<ServerJSX value={envelope} />)).toBe('<span style="display:contents"><p>update the app</p></span>')
+    expect(renderToString(<ServerJSX value={envelope} />)).toBe(
+      '<span style="display:contents"><p>update the app</p></span>'
+    )
     try {
       ;(globalThis as any).document = {}
       ;(globalThis as any).__vxrnRoot = {}
@@ -157,6 +175,136 @@ describe('renderJSX', () => {
       delete (globalThis as any).document
       delete (globalThis as any).__vxrnRoot
     }
+  })
+})
+
+describe('renderJSX edge cases', () => {
+  it('preserves element keys so list state follows identity after a refetch', async () => {
+    const envelope = wire(
+      await renderJSX(
+        <ul>
+          {['a', 'b'].map((k) => (
+            <li key={`row-${k}`}>item-{k}</li>
+          ))}
+          {['x', 'y'].map((k) => (
+            <Counter key={`counter-${k}`} start={k === 'x' ? 1 : 2} />
+          ))}
+        </ul>
+      )
+    )
+    const revived = reviveLoaderJSX(envelope) as React.ReactElement
+    const keys = ((revived.props as any).children as React.ReactElement[]).map(
+      (child) => child.key
+    )
+    expect(keys).toEqual(['row-a', 'row-b', 'counter-x', 'counter-y'])
+
+    // a key on a server component transfers to the element it renders
+    const serverEnvelope = wire(
+      await renderJSX(
+        <div>
+          {[1, 2].map((id) => (
+            <Post key={`post-${id}`} id={id} />
+          ))}
+        </div>
+      )
+    )
+    const serverRevived = reviveLoaderJSX(serverEnvelope) as React.ReactElement
+    const serverKeys = (
+      (serverRevived.props as any).children as React.ReactElement[]
+    ).map((child) => child.key)
+    expect(serverKeys).toEqual(['post-1', 'post-2'])
+  })
+
+  it('keeps tree order when async siblings resolve out of order', async () => {
+    async function Slow({ label, ms }: { label: string; ms: number }) {
+      await new Promise((r) => setTimeout(r, ms))
+      return <p>{label}</p>
+    }
+    const envelope = wire(
+      await renderJSX(
+        <div>
+          <Slow label="first" ms={25} />
+          <Slow label="second" ms={1} />
+        </div>
+      )
+    )
+    const html = renderToString(<ServerJSX value={envelope} />)
+    expect(html.indexOf('first')).toBeLessThan(html.indexOf('second'))
+  })
+
+  it('rejects Date, bigint and non-finite numbers in client props', async () => {
+    await expect(
+      renderJSX(<Counter start={1} {...({ when: new Date() } as any)} />)
+    ).rejects.toThrow(/instance of Date/)
+    await expect(
+      renderJSX(<Counter start={1} {...({ n: 10n } as any)} />)
+    ).rejects.toThrow(/bigint/)
+    await expect(
+      renderJSX(<Counter start={1} {...({ n: NaN } as any)} />)
+    ).rejects.toThrow(/non-finite/)
+  })
+
+  it('renders elements nested inside prop objects and arrays', async () => {
+    const envelope = wire(
+      await renderJSX(
+        <Counter start={1} {...({ meta: { list: [{ badge: <i>bd</i> }] } } as any)} />
+      )
+    )
+    const node: any = envelope.__oneJSX
+    expect(node[2].meta.list[0].badge.__oneJSX).toEqual(['h', 'i', {}, 'bd'])
+  })
+
+  it('gives a clear error for class components and context providers', async () => {
+    class Klass extends React.Component {
+      render() {
+        return <p>hi</p>
+      }
+    }
+    await expect(renderJSX(<Klass />)).rejects.toThrow(/class component/)
+    const Ctx = React.createContext('v')
+    await expect(
+      renderJSX(
+        <Ctx.Provider value="x">
+          <p>hi</p>
+        </Ctx.Provider>
+      )
+    ).rejects.toThrow(/context/)
+  })
+
+  it('passes Suspense and StrictMode through to their children', async () => {
+    const envelope = wire(
+      await renderJSX(
+        <React.StrictMode>
+          <React.Suspense fallback={<p>loading</p>}>
+            <Post id={3} />
+          </React.Suspense>
+        </React.StrictMode>
+      )
+    )
+    const html = renderToString(<ServerJSX value={envelope} />)
+    expect(html).toContain('post <!-- -->3')
+    expect(html).not.toContain('loading')
+  })
+
+  it('isolates concurrent walks so the hook guard names the right component', async () => {
+    async function Good() {
+      await new Promise((r) => setTimeout(r, 10))
+      const v = React.useMemo(() => 'good', [])
+      return <p>{v}</p>
+    }
+    async function Bad() {
+      await new Promise((r) => setTimeout(r, 5))
+      React.useState(0)
+      return <p>bad</p>
+    }
+    const [good, bad] = await Promise.allSettled([
+      renderJSX(<Good />),
+      renderJSX(<Bad />),
+    ])
+    expect(good.status).toBe('fulfilled')
+    expect(bad.status).toBe('rejected')
+    if (bad.status === 'rejected')
+      expect(String(bad.reason)).toMatch(/<Bad> called useState/)
   })
 })
 

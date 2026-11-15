@@ -14,6 +14,9 @@ export default () => {
       <Link href="/loader/other" style={{ color: 'red' }}>
         go to other loader
       </Link>
+      <Link id="go-loader-jsx" href="/loader-jsx">
+        go to loader jsx
+      </Link>
     </>
   )
 }
