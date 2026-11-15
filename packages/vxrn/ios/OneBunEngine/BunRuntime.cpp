@@ -315,6 +315,7 @@ class JSCRuntime : public jsi::Runtime {
   std::atomic<bool> ctxInvalid_;
   std::string desc_;
   JSValueRef nativeStateSymbol_ = nullptr;
+  JSObjectRef arrayIsArray_ = nullptr;
   std::deque<jsi::Function> microtaskQueue_;
 #ifndef NDEBUG
   mutable std::atomic<intptr_t> objectCounter_;
@@ -697,12 +698,41 @@ jsi::Runtime::PointerValue* JSCRuntime::clonePropNameID(
   return makeStringValue(string->str_);
 }
 
+namespace {
+// JSStringCreateWithUTF8CString wants a terminated string; short ones are
+// terminated on the stack instead of in a heap copy
+JSStringRef createJSStringFromUtf8(const char* str, size_t length) {
+  char stack[256];
+  if (length < sizeof(stack)) {
+    std::memcpy(stack, str, length);
+    stack[length] = 0;
+    return JSStringCreateWithUTF8CString(stack);
+  }
+  std::string tmp(str, length);
+  return JSStringCreateWithUTF8CString(tmp.c_str());
+}
+
+JSStringRef createJSStringFromAscii(const char* str, size_t length) {
+  JSChar stack[256];
+  if (length > sizeof(stack) / sizeof(JSChar)) {
+    return createJSStringFromUtf8(str, length);
+  }
+  for (size_t i = 0; i < length; i++) {
+    unsigned char c = static_cast<unsigned char>(str[i]);
+    // callers have passed utf-8 as ascii before, and a nul ends a c string
+    if (c == 0 || c > 0x7f) {
+      return createJSStringFromUtf8(str, length);
+    }
+    stack[i] = c;
+  }
+  return JSStringCreateWithCharacters(stack, length);
+}
+} // namespace
+
 jsi::PropNameID JSCRuntime::createPropNameIDFromAscii(
     const char* str,
     size_t length) {
-  // For system JSC this must is identical to a string
-  std::string tmp(str, length);
-  JSStringRef strRef = JSStringCreateWithUTF8CString(tmp.c_str());
+  JSStringRef strRef = createJSStringFromAscii(str, length);
   auto res = createPropNameID(strRef);
   JSStringRelease(strRef);
   return res;
@@ -711,8 +741,8 @@ jsi::PropNameID JSCRuntime::createPropNameIDFromAscii(
 jsi::PropNameID JSCRuntime::createPropNameIDFromUtf8(
     const uint8_t* utf8,
     size_t length) {
-  std::string tmp(reinterpret_cast<const char*>(utf8), length);
-  JSStringRef strRef = JSStringCreateWithUTF8CString(tmp.c_str());
+  JSStringRef strRef =
+      createJSStringFromUtf8(reinterpret_cast<const char*>(utf8), length);
   auto res = createPropNameID(strRef);
   JSStringRelease(strRef);
   return res;
@@ -832,17 +862,17 @@ jsi::String JSCRuntime::bigintToString(const jsi::BigInt& b, int radix) {
 }
 
 jsi::String JSCRuntime::createStringFromAscii(const char* str, size_t length) {
-  // Yes we end up double casting for semantic reasons (UTF8 contains ASCII,
-  // not the other way around)
-  return this->createStringFromUtf8(
-      reinterpret_cast<const uint8_t*>(str), length);
+  JSStringRef stringRef = createJSStringFromAscii(str, length);
+  auto result = createString(stringRef);
+  JSStringRelease(stringRef);
+  return result;
 }
 
 jsi::String JSCRuntime::createStringFromUtf8(
     const uint8_t* str,
     size_t length) {
-  std::string tmp(reinterpret_cast<const char*>(str), length);
-  JSStringRef stringRef = JSStringCreateWithUTF8CString(tmp.c_str());
+  JSStringRef stringRef =
+      createJSStringFromUtf8(reinterpret_cast<const char*>(str), length);
   auto result = createString(stringRef);
   JSStringRelease(stringRef);
   return result;
@@ -1196,14 +1226,32 @@ void JSCRuntime::setPropertyValue(
 }
 
 bool JSCRuntime::isArray(const jsi::Object& obj) const {
-  // JSValueIsArray only returns true if the object is a JS array. There's no
-  // public JSC API equivalent to Array.isArray, so we call the JS function
-  // through JSI directly.
-  auto constRt = const_cast<JSCRuntime*>(this);
-  auto isArrayFn = constRt->global()
-                       .getPropertyAsObject(*constRt, "Array")
-                       .getPropertyAsFunction(*constRt, "isArray");
-  return isArrayFn.call(*constRt, obj).asBool();
+  JSObjectRef object = objectRef(obj);
+  if (JSValueIsArray(ctx_, object)) {
+    return true;
+  }
+  // a proxy of an array is an array to Array.isArray, which has no C API
+  auto self = const_cast<JSCRuntime*>(this);
+  JSValueRef exc = nullptr;
+  if (arrayIsArray_ == nullptr) {
+    JSStringRef name = JSStringCreateWithUTF8CString("Array");
+    JSValueRef array = JSObjectGetProperty(
+        ctx_, JSContextGetGlobalObject(ctx_), name, &exc);
+    JSStringRelease(name);
+    self->checkException(exc);
+    name = JSStringCreateWithUTF8CString("isArray");
+    JSValueRef fn =
+        JSObjectGetProperty(ctx_, JSValueToObject(ctx_, array, &exc), name, &exc);
+    JSStringRelease(name);
+    self->checkException(exc);
+    JSValueProtect(ctx_, fn);
+    self->arrayIsArray_ = JSValueToObject(ctx_, fn, &exc);
+  }
+  JSValueRef arg = object;
+  JSValueRef res =
+      JSObjectCallAsFunction(ctx_, arrayIsArray_, nullptr, 1, &arg, &exc);
+  self->checkException(exc);
+  return JSValueToBoolean(ctx_, res);
 }
 
 bool JSCRuntime::isArrayBuffer(const jsi::Object& obj) const {
@@ -1293,8 +1341,11 @@ jsi::ArrayBuffer JSCRuntime::createArrayBuffer(
 }
 
 size_t JSCRuntime::size(const jsi::Array& arr) {
-  return static_cast<size_t>(
-      getProperty(arr, createPropNameID(getLengthString())).getNumber());
+  JSValueRef exc = nullptr;
+  JSValueRef length =
+      JSObjectGetProperty(ctx_, objectRef(arr), getLengthString(), &exc);
+  checkException(exc);
+  return static_cast<size_t>(JSValueToNumber(ctx_, length, nullptr));
 }
 
 jsi::Value JSCRuntime::getValueAtIndex(const jsi::Array& arr, size_t i) {
@@ -1424,7 +1475,11 @@ jsi::Function JSCRuntime::createFunctionFromHostFunction(
         args = stackArgs;
       }
       JSValueRef res;
-      jsi::Value thisVal(rt.createObject(thisObject));
+      // a plain call has no receiver; making an empty object for it costs an
+      // allocation and a protect on every host call
+      jsi::Value thisVal = thisObject == nullptr
+          ? jsi::Value::undefined()
+          : jsi::Value(rt.createObject(thisObject));
       try {
         res = rt.valueRef(
             metadata->hostFunction_(rt, thisVal, args, argumentCount));
