@@ -33,6 +33,84 @@ final class HybridOneSecureStore: HybridOneSecureStoreSpec {
     return query
   }
 
+  private static func expoQuery(key: String, options: SecureStoreOptions, suffix: String)
+    -> [String: Any]
+  {
+    let encodedKey = Data(key.utf8)
+    var result: [String: Any] = [
+      kSecClass as String: kSecClassGenericPassword,
+      kSecAttrService as String: (options.keychainService ?? "app") + suffix,
+      kSecAttrAccount as String: encodedKey,
+      kSecAttrGeneric as String: encodedKey,
+    ]
+    if let accessGroup = options.accessGroup {
+      result[kSecAttrAccessGroup as String] = accessGroup
+    }
+    return result
+  }
+
+  private static func removeExpo(key: String, options: SecureStoreOptions) throws {
+    for suffix in [":no-auth", ":auth", ""] {
+      let status = SecItemDelete(expoQuery(key: key, options: options, suffix: suffix) as CFDictionary)
+      if status != errSecSuccess && status != errSecItemNotFound {
+        throw oneNativeError("E_SECURE_STORE_DELETE", "SecureStore: the old keychain item could not be removed (status \(status))")
+      }
+    }
+  }
+
+  private static func migrateExpo(key: String, options: SecureStoreOptions) throws -> String? {
+    for suffix in [":no-auth", ":auth", ""] {
+      var lookup = withPrompt(expoQuery(key: key, options: options, suffix: suffix), options: options)
+      lookup[kSecReturnData as String] = true
+      lookup[kSecReturnAttributes as String] = true
+      lookup[kSecMatchLimit as String] = kSecMatchLimitOne
+      var item: CFTypeRef?
+      let status = SecItemCopyMatching(lookup as CFDictionary, &item)
+      if status == errSecItemNotFound { continue }
+      if status != errSecSuccess {
+        throw oneNativeError("E_SECURE_STORE_GET", "SecureStore: the old keychain read failed (status \(status))")
+      }
+      guard let attributes = item as? [String: Any],
+        let data = attributes[kSecValueData as String] as? Data,
+        let value = String(data: data, encoding: .utf8)
+      else {
+        throw oneNativeError("E_SECURE_STORE_GET", "SecureStore: the old keychain value is not utf-8 text")
+      }
+      let control = attributes[kSecAttrAccessControl as String]
+      let authenticated = suffix == ":auth"
+      var addition = query(key: key, options: options, authenticated: authenticated)
+      addition[kSecValueData as String] = data
+      if let control {
+        addition[kSecAttrAccessControl as String] = control
+      } else if let accessibility = attributes[kSecAttrAccessible as String] {
+        addition[kSecAttrAccessible as String] = accessibility
+      } else {
+        throw oneNativeError("E_SECURE_STORE_GET", "SecureStore: the old keychain item's accessibility is unavailable")
+      }
+      let oldService = (options.keychainService ?? "app") + suffix
+      if oldService == service(options: options, authenticated: authenticated) {
+        let updated = SecItemUpdate(
+          withPrompt(expoQuery(key: key, options: options, suffix: suffix), options: options) as CFDictionary,
+          [kSecAttrGeneric as String: Data()] as CFDictionary)
+        if updated != errSecSuccess {
+          throw oneNativeError("E_SECURE_STORE_SET", "SecureStore: the old keychain item could not be migrated (status \(updated))")
+        }
+        try removeExpo(key: key, options: options)
+        return value
+      }
+      let added = SecItemAdd(addition as CFDictionary, nil)
+      if added != errSecSuccess && added != errSecDuplicateItem {
+        throw oneNativeError("E_SECURE_STORE_SET", "SecureStore: the old keychain item could not be migrated (status \(added))")
+      }
+      try removeExpo(key: key, options: options)
+      if added == errSecDuplicateItem {
+        return try fetch(key: key, options: options, authenticated: authenticated)
+      }
+      return value
+    }
+    return nil
+  }
+
   private static func accessible(options: SecureStoreOptions) -> CFString {
     switch options.keychainAccessible {
     case .afterfirstunlock: return kSecAttrAccessibleAfterFirstUnlock
@@ -63,6 +141,7 @@ final class HybridOneSecureStore: HybridOneSecureStoreSpec {
   {
     var lookup = withPrompt(query(key: key, options: options, authenticated: authenticated), options: options)
     lookup[kSecReturnData as String] = true
+    lookup[kSecReturnAttributes as String] = true
     lookup[kSecMatchLimit as String] = kSecMatchLimitOne
     var item: CFTypeRef?
     let status = SecItemCopyMatching(lookup as CFDictionary, &item)
@@ -73,9 +152,17 @@ final class HybridOneSecureStore: HybridOneSecureStoreSpec {
       throw oneNativeError(
         "E_SECURE_STORE_GET", "SecureStore.getItem: the keychain read failed (status \(status))")
     }
-    guard let data = item as? Data, let value = String(data: data, encoding: .utf8) else {
+    guard let attributes = item as? [String: Any],
+      let data = attributes[kSecValueData as String] as? Data,
+      let value = String(data: data, encoding: .utf8)
+    else {
       throw oneNativeError(
         "E_SECURE_STORE_GET", "SecureStore.getItem: the stored value is not utf-8 text")
+    }
+    if options.keychainService != nil,
+      attributes[kSecAttrGeneric as String] as? Data == Data(key.utf8)
+    {
+      return nil
     }
     return value
   }
@@ -84,7 +171,10 @@ final class HybridOneSecureStore: HybridOneSecureStoreSpec {
     if let value = try fetch(key: key, options: options, authenticated: false) {
       return value
     }
-    return try fetch(key: key, options: options, authenticated: true)
+    if let value = try fetch(key: key, options: options, authenticated: true) {
+      return value
+    }
+    return try migrateExpo(key: key, options: options)
   }
 
   private static func write(key: String, value: String, options: SecureStoreOptions) throws {
@@ -96,9 +186,10 @@ final class HybridOneSecureStore: HybridOneSecureStoreSpec {
     let target = query(key: key, options: options, authenticated: authenticated)
     let status = SecItemUpdate(
       withPrompt(target, options: options) as CFDictionary,
-      [kSecValueData as String: data] as CFDictionary)
+      [kSecValueData as String: data, kSecAttrGeneric as String: Data()] as CFDictionary)
     if status == errSecSuccess {
       removeOther(key: key, options: options, authenticated: authenticated)
+      try removeExpo(key: key, options: options)
       return
     }
     if status != errSecItemNotFound {
@@ -127,6 +218,7 @@ final class HybridOneSecureStore: HybridOneSecureStoreSpec {
         "E_SECURE_STORE_SET", "SecureStore.setItem: the keychain write failed (status \(added))")
     }
     removeOther(key: key, options: options, authenticated: authenticated)
+    try removeExpo(key: key, options: options)
   }
 
   // one value per key across the two modes: writing one mode clears the
@@ -145,6 +237,7 @@ final class HybridOneSecureStore: HybridOneSecureStoreSpec {
           "SecureStore.deleteItem: the keychain delete failed (status \(status))")
       }
     }
+    try removeExpo(key: key, options: options)
   }
 
   // the async verbs leave the js thread: an authenticated item's keychain
