@@ -26,7 +26,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-ownership, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | share, location, file-system, image-manipulator, audio, print, screen-capture, android-compose-image, native-modules | OneNativeBehavioralLibraryCase |  |
 | `One.Audio` | audio, audio-interruption, audio-remote, audio-ownership, audio-background | audio, native-modules:unavailable | OneNativeBehavioralLibraryCase |  |
 | `One.Share` | share | share, native-modules:unavailable | OneNativeShareLibraryCase |  |
-| `One.ShareTarget` | missing | native-modules:unavailable | OneNativeShareTargetLibraryCase | App Group share extension draft store bridge; conformance suite pending |
+| `One.ShareTarget` | e2e:one-native-share-target | native-modules:unavailable | OneNativeShareTargetLibraryCase |  |
 | `One.PhotoLibrary` | photo-library, photo-library-limited, live-photo | native-modules:unavailable | OneNativeBehavioralLibraryCase |  |
 | `One.MapServices` | map-services | map-services, native-modules:unavailable | OneNativeMapServicesLibraryCase |  |
 | `One.AppTracking` | app-tracking | native-modules:unavailable | OneNativeBehavioralLibraryCase |  |
