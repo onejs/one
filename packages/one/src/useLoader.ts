@@ -16,7 +16,7 @@ import {
 } from './router/router'
 import { ssrLoaderData } from './server/ssrLoaderData'
 import {
-  subscribeToClientMatches,
+  useRawMatches,
   getClientMatchesSnapshot,
   updateMatchLoaderData,
 } from './useMatches'
@@ -453,12 +453,9 @@ function useLoaderStateInner<
       })()
     : null
 
-  // subscribe to clientMatches changes so refetch triggers re-render
-  const clientMatches = useSyncExternalStore(
-    subscribeToClientMatches,
-    getClientMatchesSnapshot,
-    getClientMatchesSnapshot
-  )
+  // subscribe to clientMatches changes so refetch triggers re-render, through
+  // the same transition-aware hook useMatches uses (raw, before jsx revival)
+  const clientMatches = useRawMatches()
 
   // preloaded data from SSR/SSG - only use if server context path matches current path
   const serverContextPath = loaderPropsFromServerContext?.path
