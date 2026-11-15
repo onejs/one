@@ -96,15 +96,16 @@ export const prebuild = async ({
     applyAndroidDependencyPatches({ root, app, inventory })
   }
 
+  let podInstallSkipped = false
   if (!noInstall) {
-    installNativeDependencies({ root, platform })
+    podInstallSkipped = !installNativeDependencies({ root, platform })
   } else if (!platform || platform === 'ios') {
     console.info(`Run cd ios && pod install`)
     console.info(
       'Then run `open *.xcworkspace` in your terminal to open the prebuilt iOS project, then you can either run it via Xcode or archive it for distribution.'
     )
   }
-  if (!platform || platform === 'ios') {
+  if ((!platform || platform === 'ios') && !podInstallSkipped) {
     console.info(
       `
 iOS:

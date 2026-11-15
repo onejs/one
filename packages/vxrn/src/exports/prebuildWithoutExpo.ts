@@ -3617,10 +3617,11 @@ export async function getNativeDependencyInventory(
 // installs through the selected tooling: cocoapods for ios (which also runs
 // native codegen), nothing extra for android (codegen runs at gradle build).
 // `--no-install` skips installation but never fakes discovery output.
+// returns false when a missing pod binary skipped pod install.
 export function installNativeDependencies(args: {
   root: string
   platform?: 'ios' | 'android' | string
-}): void {
+}): boolean {
   const { root, platform } = args
   if (!platform || platform === 'ios') {
     // cocoapods reads podfiles and native module config as the locale's
@@ -3640,8 +3641,10 @@ export function installNativeDependencies(args: {
       // prebuild still fails loudly so the missing tool is never silent.
       if (platform === 'ios' || !isMissingExecutable(error)) throw error
       console.warn('[vxrn] `pod` is not available, so `pod install` was skipped')
+      return false
     }
   }
+  return true
 }
 
 function isMissingExecutable(error: unknown) {

@@ -231,11 +231,7 @@ function isUnresolvableModule(error: unknown) {
 function rootHasPackage(projectRoot: string, packageName: string) {
   let directory = projectRoot
   while (true) {
-    try {
-      if (existsSync(join(directory, 'node_modules', packageName, 'package.json'))) return true
-    } catch {
-      return true
-    }
+    if (existsSync(join(directory, 'node_modules', packageName, 'package.json'))) return true
     const parent = dirname(directory)
     if (parent === directory) return false
     directory = parent

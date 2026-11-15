@@ -34,5 +34,5 @@ export declare function getNativeDependencyInventory(root: string): Promise<Nati
 export declare function installNativeDependencies(args: {
     root: string;
     platform?: 'ios' | 'android' | string;
-}): void;
+}): boolean;
 //# sourceMappingURL=prebuildWithoutExpo.d.ts.map
