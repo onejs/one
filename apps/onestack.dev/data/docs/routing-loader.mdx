@@ -215,6 +215,117 @@ export async function loader({ params: { id } }) {
 }
 ```
 
+## Returning JSX from a Loader
+
+A loader can return rendered JSX along with its data. Call `renderJSX` with a React tree on the server. It walks the tree, runs your server components, and returns a compact JSON envelope. `useLoader` and `useMatches` turn the envelope back into elements for you, typed as `React.ReactNode`, so the page renders it like any other child:
+
+```tsx fileName=app/feed+ssr.tsx
+import { renderJSX, useLoader } from 'one'
+import { Text, YStack } from 'tamagui'
+import { Counter } from '../components/Counter'
+import { getPost, getPosts } from '../server/posts'
+
+async function PostCard({ id }: { id: string }) {
+  const post = await getPost(id)
+  return <Text>{post.title}</Text>
+}
+
+export async function loader() {
+  const posts = await getPosts()
+
+  return {
+    ui: await renderJSX(
+      <YStack>
+        {posts.map((post) => (
+          <PostCard key={post.id} id={post.id} />
+        ))}
+        <Counter label="likes" start={0} />
+      </YStack>
+    ),
+  }
+}
+
+export default function FeedPage() {
+  const { ui } = useLoader(loader)
+  return <>{ui}</>
+}
+```
+
+Server functions like `PostCard` run on the server when the loader runs. Siblings resolve in parallel and stay in tree order even when they finish out of order. Because they only run inside the loader, they can use server-only imports, and none of that code ships in the client or native bundle. Keys are preserved, so when a refetch reorders a list, island state follows the item it belongs to.
+
+### Client islands
+
+A component from a file that starts with `'use client'` stays a reference in the envelope and renders on the client, interactive after hydration:
+
+```tsx fileName=components/Counter.tsx
+'use client'
+
+import { useState } from 'react'
+import { Button, Text } from 'tamagui'
+
+export function Counter({ label, start }: { label: string; start: number }) {
+  const [count, setCount] = useState(start)
+  return (
+    <Button onPress={() => setCount((c) => c + 1)}>
+      <Text>
+        {label}: {count}
+      </Text>
+    </Button>
+  )
+}
+```
+
+Props you pass to a client island cross to the client as JSON. Plain data (strings, numbers, booleans, arrays and objects of those) and React elements are allowed, including elements nested inside prop objects and arrays. Functions, `Date` objects, class instances, bigints, symbols and non-finite numbers are rejected with an error that names the offending prop. Event handlers belong inside the island, not in props passed from the server tree.
+
+You can also reference some universal components directly in a server tree, with no `'use client'` file: `Link` from `one`, and the Tamagui primitives `View`, `Text`, `Stack`, `XStack`, `YStack`, `ZStack`, `Paragraph`, `SizableText`, `H1` to `H6`, `Image`, `Spacer` and `Separator`. Prefer these over host elements like `div` in trees that also render on native, where host element names do not exist.
+
+### Version skew
+
+A native app (or a stale web client) may not know an island a newer server sends. Wrap the island in `ClientFallback` to choose what shows instead:
+
+```tsx
+import { ClientFallback } from 'one'
+
+<ClientFallback fallback={<Text>Update the app to see this</Text>}>
+  <NewChart data={data} />
+</ClientFallback>
+```
+
+An unknown island renders the fallback, in place, once the client hydrates. Without a `ClientFallback`, an unknown island renders nothing.
+
+### Slots
+
+`JSXSlot` leaves a named hole in a server tree that the client fills in, rendering its children until then:
+
+```tsx
+import { JSXSlot } from 'one'
+
+<JSXSlot name="footer" tone="dim">
+  <Text>Loading footer...</Text>
+</JSXSlot>
+```
+
+Slot filling happens when you revive an envelope yourself with `ServerJSX` (or `reviveLoaderJSX`), for example an envelope your own API returned:
+
+```tsx
+import { ServerJSX } from 'one'
+
+<ServerJSX value={envelope} slots={{ footer: (props) => <Footer tone={props.tone} /> }} />
+```
+
+Route loaders revive automatically without slots, so a slot in loader JSX renders its fallback children there.
+
+### Rules for server trees
+
+- Server components are plain or async function components. Class components and lazy components are not supported and fail with an error that says so.
+- Hooks that need a client runtime (`useState`, `useEffect`, `useContext` and friends) fail with an error naming the component and hook. Move that component behind `'use client'`. `useMemo` and `useCallback` run once on the server. `useId` returns an empty string, so pass any ids you need as props.
+- Context providers and consumers are not supported in a server tree. Read the value in the loader and pass it down as props, or provide the context inside a client island.
+- `Suspense` and `StrictMode` pass through to their children. The server walk resolves async components inline, so there is nothing to suspend.
+- `memo` and `forwardRef` server components are unwrapped and run on the server.
+- Keys on fragments are not preserved. Put keys on the elements inside the fragment.
+
+Loader JSX is one-way. The tree is computed when the loader runs, and a refetch replaces it with a new one. There is no streaming protocol and no server actions: anything interactive lives in a client island, and anything the island needs from the server arrives as props or through your own API routes.
+
 ## Throwing a Response
 
 A handy pattern for loaders is throwing a response to end it early:
