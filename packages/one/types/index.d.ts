@@ -86,7 +86,7 @@ export { router } from './router/imperative-api.js';
 export * as routerStore from './router/router.js';
 export { useNavigation } from './router/useNavigation.js';
 export { registerPreloadedRoute } from './router/useViteRoutes.js';
-export { clearWarmState, configureWarmState, flushWarmState, getHydratedWarmState, hydrateWarmInitialLoad, registerWarmStateSource, scheduleWarmStatePersist, type WarmNavigationSnapshot, type WarmRouteSnapshot, type WarmStartOptions, type WarmStateEnvelope, type WarmStateSource, type WarmStateStorage, } from './router/warmState.js';
+export { clearWarmState, configureWarmState, flushWarmState, getHydratedWarmState, hydrateWarmInitialLoad, isWarmRoutePreloadPending, matchRoutePattern, normalizeHref, normalizeRoutePattern, registerWarmStateSource, scheduleWarmStatePersist, waitForWarmRoutePreload, type WarmNavigationSnapshot, type WarmRouteSnapshot, type WarmStartOptions, type WarmStateEnvelope, type WarmStateSource, type WarmStateStorage, } from './router/warmState.js';
 export type { Endpoint, LoaderProps } from './types.js';
 export { useBlocker, type Blocker, type BlockerFunction, type BlockerState, } from './useBlocker.js';
 export { ParamValidationError, RouteValidationError, validateParams, zodParamValidator, type InferParamInput, type InferParamOutput, type ParamValidator, type RouteValidationFn, type ValidateRouteProps, type ValidationResult, } from './validateParams.js';
