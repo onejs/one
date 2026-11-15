@@ -447,6 +447,7 @@ function getNativePlugins(
     // red-boxes "unknown-message [object Object]" on every edit (new arch)
     hmrClientNoopPlugin(),
     ...(dev ? [] : [nativePromisePlugin()]),
+    ...(hermes ? [] : [typedPackagesPlugin(root)]),
     nativeIdentityAliasPlugin(platform),
     nativeAssetRegistryPlugin(root),
     // route every `react-native/*` import through the app's react native copy.
@@ -1879,6 +1880,45 @@ export function hmrClientNoopPlugin(): Plugin {
           moduleType: 'js',
         }
       }
+    },
+  }
+}
+
+/**
+ * a module installed with a typed copy beside it (`X.aot.ts` next to `X.js`) stays
+ * out of a bundle that bun compiles: the bundle requires a copy of the typed file
+ * by path and bun compiles it with its types. that copy reads its requires from
+ * the bundle, so it shares the bundle's modules instead of loading a second set.
+ */
+function typedPackagesPlugin(root: string): Plugin {
+  const REQUIRE = /\brequire\(\s*(["'])([^"'\n]+)\1\s*\)/g
+  const dir = join(root, 'node_modules', '.vxrn', 'typed')
+  const copies = new Set<string>()
+  return {
+    name: 'vxrn:typed-packages',
+    resolveId(source) {
+      if (copies.has(source)) return { id: source, external: true }
+    },
+    load(id) {
+      if (!/\.[cm]?js$/.test(id)) return
+      const typedPath = id.replace(/\.[cm]?js$/, '.aot.ts')
+      if (!existsSync(typedPath)) return
+      const typed = readFileSync(typedPath, 'utf8')
+      const key = createHash('sha256').update(typedPath).update(typed).digest('hex').slice(0, 16)
+      const name = JSON.stringify(`__vxrnTyped_${key}`)
+      const deps = [...new Set(Array.from(typed.matchAll(REQUIRE), (m) => m[2]!))]
+      const copy = join(dir, `${basename(typedPath, '.aot.ts')}-${key}.ts`)
+      mkdirSync(dir, { recursive: true })
+      writeFileSync(
+        copy,
+        typed.replace(REQUIRE, (_, _q, dep) => `(globalThis as any)[${name}](${JSON.stringify(dep)})`)
+      )
+      copies.add(copy)
+      return [
+        `var deps = {${deps.map((dep) => `${JSON.stringify(dep)}: () => require(${JSON.stringify(dep)})`).join(', ')}}`,
+        `globalThis[${name}] = (id) => deps[id]()`,
+        `module.exports = require(${JSON.stringify(copy)})`,
+      ].join('\n')
     },
   }
 }
