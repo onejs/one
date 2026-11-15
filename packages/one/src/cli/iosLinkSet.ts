@@ -88,7 +88,7 @@ export function assertLinkSet(
 
 // builds the production native bundle the way the xcode bundle phase does and
 // records which groups its module graph uses.
-export function writeIosLinkSet(root: string) {
+export function writeIosLinkSet(root: string, entryFile = join(root, 'index.js')) {
   const cli = createRequire(join(root, 'package.json')).resolve(
     createRequire(
       createRequire(join(root, 'package.json')).resolve('vxrn/package.json')
@@ -108,7 +108,7 @@ export function writeIosLinkSet(root: string) {
         '--dev',
         'false',
         '--entry-file',
-        'index.js',
+        entryFile,
         '--bundle-output',
         bundlePath,
         '--assets-dest',

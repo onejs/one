@@ -718,7 +718,10 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
     const { writeIosLinkSet } = await import(
       pathToFileURL(path.join(path.dirname(appModule), '..', 'esm', 'cli', 'iosLinkSet.mjs')).href
     )
-    return writeAppSdkPod(projectRoot, console.info, writeIosLinkSet(projectRoot).frameworks)
+    const expoRequire = createRequire(projectRequire.resolve('expo/package.json'))
+    const { resolveEntryPoint } = expoRequire('@expo/config/paths')
+    const entry = resolveEntryPoint(projectRoot, { platform: 'ios' })
+    return writeAppSdkPod(projectRoot, console.info, writeIosLinkSet(projectRoot, entry).frameworks)
   }
 
   // expo's default ios deployment target sits below the one the One pod
