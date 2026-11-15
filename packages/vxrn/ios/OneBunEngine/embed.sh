@@ -25,8 +25,9 @@ ENTRY="$DERIVED_FILE_DIR/one-bun-entry.js"
 cp "$BUNDLE" "$ENTRY"
 python3 "$HERE/program.py" template "$TEMPLATE/Bun.framework/Bun" "$DERIVED_FILE_DIR/one-bun-runtime"
 # react native polyfills replace built-in members (intl's Number.prototype.toLocaleString),
-# so built-ins the program writes stay replaceable
-BUN_AOT_REPLACE_WRITTEN=1 "$ONE_BUN_ENGINE_DIR/bun" compile "$ENTRY" ${FLAGS[@]+"${FLAGS[@]}"} \
+# so built-ins the program writes stay replaceable. typed packages compile as production
+# (jsx-runtime, process.env.NODE_ENV)
+NODE_ENV=production BUN_AOT_REPLACE_WRITTEN=1 "$ONE_BUN_ENGINE_DIR/bun" compile "$ENTRY" ${FLAGS[@]+"${FLAGS[@]}"} \
   --compile-executable-path="$DERIVED_FILE_DIR/one-bun-runtime" --outfile="$DERIVED_FILE_DIR/one-bun-compiled"
 python3 "$HERE/program.py" extract "$DERIVED_FILE_DIR/one-bun-compiled" "$DERIVED_FILE_DIR/one-bun-program"
 # an App Store binary may have one executable segment, so the program goes into
