@@ -2984,6 +2984,38 @@ globalThis.__nativeAssetProbe = [icon, back, animation]
   })
 })
 
+describe('native asset scale siblings', () => {
+  it('rebuilds the asset module when only a scale sibling is rewritten', async () => {
+    const root = realpathSync(await mkdtemp(join(tmpdir(), 'vxrn-native-asset-sibling-')))
+    await mkdir(join(root, 'app'), { recursive: true })
+    await writeFile(join(root, 'icon.png'), 'icon-1x')
+    await writeFile(join(root, 'icon@3x.png'), 'icon-3x-old')
+    await writeFile(
+      join(root, 'app/index.tsx'),
+      `import icon from '../icon.png'\nexport default icon\n`
+    )
+
+    const native = await createNativeDevEngine({ root, port: 0, platform: 'ios' })
+    try {
+      const hashOf = (code: string) => code.match(/"hash":\s*"([0-9a-f]{32})"/)?.[1]
+      const before = hashOf((await native.getBundle()).code)
+      expect(before).toBeDefined()
+
+      await saveFile(join(root, 'icon@3x.png'), 'icon-3x-new-longer')
+
+      await vi.waitFor(
+        async () => {
+          expect(hashOf((await native.getBundle()).code)).not.toBe(before)
+        },
+        { timeout: 10_000 }
+      )
+    } finally {
+      await native.close()
+      await rm(root, { recursive: true, force: true })
+    }
+  }, 30_000)
+})
+
 describe('native conditional exports', () => {
   it('uses the require condition for CommonJS calls', async () => {
     const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-conditions-'))
