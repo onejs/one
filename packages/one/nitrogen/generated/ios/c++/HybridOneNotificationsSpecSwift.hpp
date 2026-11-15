@@ -311,6 +311,20 @@ namespace margelo::nitro::one {
         std::rethrow_exception(__result.error());
       }
     }
+    inline std::vector<NativeNotificationResponse> getPendingNotificationResponses() override {
+      auto __result = _swiftPart.getPendingNotificationResponses();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void acknowledgeNotificationResponse(const std::string& identifier) override {
+      auto __result = _swiftPart.acknowledgeNotificationResponse(identifier);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
 
   private:
     One::HybridOneNotificationsSpec_cxx _swiftPart;

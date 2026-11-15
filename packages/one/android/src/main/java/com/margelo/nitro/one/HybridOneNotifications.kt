@@ -604,7 +604,7 @@ class HybridOneNotifications :
         // consumed at once: onNewIntent and onHostResume both report a tap.
         intent.removeExtra(EXTRA_TAP)
         val response = tapResponse(intent, intent.getStringExtra(EXTRA_USER_TEXT)) ?: return
-        lastResponse = response
+        recordResponse(response)
         currentListeners()?.onResponse?.invoke(responsePayload(response))
     }
 
@@ -619,7 +619,7 @@ class HybridOneNotifications :
                 results?.getCharSequence(EXTRA_USER_TEXT)?.toString()
                     ?: intent.getStringExtra(EXTRA_USER_TEXT)
             ) ?: return
-        lastResponse = response
+        recordResponse(response)
         currentListeners()?.onResponse?.invoke(responsePayload(response))
         if (intent.getBooleanExtra(EXTRA_FOREGROUND, true)) {
             foregroundWithResponse(context, response, null)
@@ -656,6 +656,15 @@ class HybridOneNotifications :
         lastResponse = null
     }
 
+    override fun getPendingNotificationResponses(): Array<NativeNotificationResponse> {
+        harvestTap(context.currentActivity?.intent)
+        return synchronized(responseLock) { pendingResponses.map { responsePayload(it) }.toTypedArray() }
+    }
+
+    override fun acknowledgeNotificationResponse(identifier: String) {
+        synchronized(responseLock) { pendingResponses.removeAll { it.identifier == identifier } }
+    }
+
     companion object {
         const val ACTION_ALARM = "dev.onejs.onenative.NOTIFICATION_ALARM"
         const val ACTION_RESPONSE = "dev.onejs.onenative.NOTIFICATION_RESPONSE"
@@ -674,6 +683,17 @@ class HybridOneNotifications :
         // js creates the hybrid.
         @Volatile
         private var lastResponse: TapResponse? = null
+        private val responseLock = Any()
+        private val pendingResponses = mutableListOf<TapResponse>()
+
+        private fun recordResponse(response: TapResponse) {
+            synchronized(responseLock) {
+                lastResponse = response
+                if (pendingResponses.none { it.identifier == response.identifier }) {
+                    pendingResponses.add(response)
+                }
+            }
+        }
         private const val PREFS = "one_native_notifications"
         private const val PREFS_SCHEDULES = "one_native_notifications_schedules"
         private const val PREFS_CATEGORIES = "one_native_notification_categories"
@@ -1196,7 +1216,7 @@ class HybridOneNotifications :
         // recorded on the process here and the app opens without it.
         fun handleTap(context: Context, intent: Intent) {
             val response = tapResponse(intent, null) ?: return
-            lastResponse = response
+            recordResponse(response)
             instance?.let { live ->
                 live.currentListeners()?.onResponse?.invoke(live.responsePayload(response))
             }
@@ -1224,7 +1244,7 @@ class HybridOneNotifications :
             val response =
                 tapResponse(intent, results?.getCharSequence(EXTRA_USER_TEXT)?.toString())
                     ?: return
-            lastResponse = response
+            recordResponse(response)
             if (intent.getBooleanExtra(EXTRA_FOREGROUND, true)) {
                 foregroundWithResponse(context, response, results)
             }
