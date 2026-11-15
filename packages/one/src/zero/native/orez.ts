@@ -44,9 +44,10 @@ export function createOrezTransport(options: OrezTransportOptions): OrezTranspor
       url.searchParams.set('appID', options.appID)
       url.searchParams.set('schema', `${options.appID}_${options.shardNum ?? 0}`)
     }
+    const extraHeaders = await options.headers?.()
     const response = await request(url.toString(), {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', ...(await options.headers?.()) },
+      headers: { 'Content-Type': 'application/json', ...extraHeaders },
       body: JSON.stringify(body),
       signal,
     })
