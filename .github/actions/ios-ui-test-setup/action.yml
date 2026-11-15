@@ -97,13 +97,16 @@ runs:
           sleep 1
         done
 
-    - name: Get Xcode build version
-      id: xcode-version
+    - name: Get WebDriverAgent cache key
+      id: wda-cache-key
+      env:
+        SIMULATOR_IOS_VERSION: ${{ inputs.simulator_ios_version }}
+        APPIUM_XCUITEST_VERSION: ${{ inputs.appium_xcuitest_version }}
       shell: bash
       run: |
         BUILD_VERSION=$(xcodebuild -version | awk '/Build version/ {print $3}')
         echo "Xcode build version: $BUILD_VERSION"
-        echo "build=$BUILD_VERSION" >> "$GITHUB_OUTPUT"
+        echo "key=ios-wda-products-$RUNNER_OS-$RUNNER_ARCH-$BUILD_VERSION-$SIMULATOR_IOS_VERSION-$APPIUM_XCUITEST_VERSION" >> "$GITHUB_OUTPUT"
 
     - name: Restore WebDriverAgent build
       id: restore-wda
@@ -111,7 +114,7 @@ runs:
       with:
         # only the compiled products: the driver install above stays uncached
         path: /tmp/wda-build/Build/Products
-        key: ios-wda-products-${{ runner.os }}-${{ runner.arch }}-${{ steps.xcode-version.outputs.build }}-${{ inputs.simulator_ios_version }}-${{ inputs.appium_xcuitest_version }}
+        key: ${{ steps.wda-cache-key.outputs.key }}
 
     - name: Pre-build WebDriverAgent
       id: prebuild-wda
@@ -153,4 +156,4 @@ runs:
       uses: actions/cache/save@v5
       with:
         path: /tmp/wda-build/Build/Products
-        key: ios-wda-products-${{ runner.os }}-${{ runner.arch }}-${{ steps.xcode-version.outputs.build }}-${{ inputs.simulator_ios_version }}-${{ inputs.appium_xcuitest_version }}
+        key: ${{ steps.wda-cache-key.outputs.key }}
