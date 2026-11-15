@@ -14,7 +14,7 @@ export function assertSpeakOptions(
   if (typeof options !== 'object' || options === null || Array.isArray(options)) {
     throw new Error('SpeechSynthesis.speak: options must be an object')
   }
-  const { language, pitch, rate, voice, volume, onStart, onDone, onStopped, onError } =
+  const { language, pitch, rate, voice, volume, useApplicationAudioSession, onStart, onDone, onStopped, onError } =
     options as SpeechSynthesisOptions
   if (language !== undefined && typeof language !== 'string') {
     throw new Error('SpeechSynthesis.speak: language must be a BCP-47 string')
@@ -33,6 +33,9 @@ export function assertSpeakOptions(
     (typeof volume !== 'number' || !Number.isFinite(volume) || volume < 0 || volume > 1)
   ) {
     throw new Error('SpeechSynthesis.speak: volume must be a number between 0 and 1')
+  }
+  if (useApplicationAudioSession !== undefined && typeof useApplicationAudioSession !== 'boolean') {
+    throw new Error('SpeechSynthesis.speak: useApplicationAudioSession must be a boolean')
   }
   for (const [name, callback] of [
     ['onStart', onStart],

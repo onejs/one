@@ -18,7 +18,7 @@ public extension SpeechSynthesisUtterance {
   /**
    * Create a new instance of `SpeechSynthesisUtterance`.
    */
-  init(text: String, language: String?, pitch: Double?, rate: Double?, voice: String?, volume: Double?) {
+  init(text: String, language: String?, pitch: Double?, rate: Double?, voice: String?, volume: Double?, useApplicationAudioSession: Bool?) {
     self.init(std.string(text), { () -> bridge.std__optional_std__string_ in
       if let __unwrappedValue = language {
         return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
@@ -46,6 +46,12 @@ public extension SpeechSynthesisUtterance {
     }(), { () -> bridge.std__optional_double_ in
       if let __unwrappedValue = volume {
         return bridge.create_std__optional_double_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_bool_ in
+      if let __unwrappedValue = useApplicationAudioSession {
+        return bridge.create_std__optional_bool_(__unwrappedValue)
       } else {
         return .init()
       }
@@ -110,6 +116,18 @@ public extension SpeechSynthesisUtterance {
     return { () -> Double? in
       if bridge.has_value_std__optional_double_(self.__volume) {
         let __unwrapped = bridge.get_std__optional_double_(self.__volume)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var useApplicationAudioSession: Bool? {
+    return { () -> Bool? in
+      if bridge.has_value_std__optional_bool_(self.__useApplicationAudioSession) {
+        let __unwrapped = bridge.get_std__optional_bool_(self.__useApplicationAudioSession)
         return __unwrapped
       } else {
         return nil
