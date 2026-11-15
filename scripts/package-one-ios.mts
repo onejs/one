@@ -188,18 +188,17 @@ for (const sdk of ['iphoneos', 'iphonesimulator']) {
   }
   for (const directory of ['ios', 'cpp', 'nitrogen/generated'])
     copyHeaders(join(one, directory))
-  const swiftHeader = join(
-    target.buildSettings.OBJECT_FILE_DIR_normal!,
-    'arm64/One-Swift.h'
-  )
-  copyFileSync(swiftHeader, join(headers, 'One-Swift.h'))
+  // One-Swift.h stays out of the shipped framework: its C++ section needs
+  // the One target's exact Swift interop context, so source builds keep it
+  // in OBJECT_FILE_DIR and foreign units must never compile it. Swift
+  // importers use the serialized swiftmodule instead.
   copyFileSync(
     join(ios, 'Pods/Target Support Files/One/One-umbrella.h'),
     join(headers, 'One-umbrella.h')
   )
   writeFileSync(
     join(framework, 'Modules/module.modulemap'),
-    'framework module One {\n  umbrella header "One-umbrella.h"\n  export *\n  module * { export * }\n}\nmodule One.Swift {\n  header "One-Swift.h"\n  requires objc\n}\n'
+    'framework module One {\n  umbrella header "One-umbrella.h"\n  export *\n  module * { export * }\n}\n'
   )
   writeFileSync(
     join(framework, 'Info.plist'),
