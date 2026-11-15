@@ -829,8 +829,9 @@ export function validateNativeApp(
     }
     for (const key of ['targetSdk', 'compileSdk'] as const) {
       const value = manifest.android[key]
-      if (value !== undefined && (!Number.isInteger(value) || value < 21)) {
-        fail(`android.${key} "${value}" must be an api level integer`)
+      const floor = key === 'compileSdk' ? 36 : 21
+      if (value !== undefined && (!Number.isInteger(value) || value < floor)) {
+        fail(`android.${key} "${value}" must be an api level integer of at least ${floor}`)
       }
     }
     if (manifest.android.shrinkResources && !manifest.android.minify) {
@@ -937,7 +938,11 @@ export function androidAppPermissions(app: NativeAppManifest): Map<string, numbe
   if (app.location !== undefined) {
     add('ACCESS_COARSE_LOCATION')
     add('ACCESS_FINE_LOCATION')
-    if (app.location.background) add('ACCESS_BACKGROUND_LOCATION')
+    if (app.location.background) {
+      add('ACCESS_BACKGROUND_LOCATION')
+      add('FOREGROUND_SERVICE')
+      add('FOREGROUND_SERVICE_LOCATION')
+    }
   }
   if (app.pedometer !== undefined) add('ACTIVITY_RECOGNITION')
   if (app.brightness === true) add('WRITE_SETTINGS')

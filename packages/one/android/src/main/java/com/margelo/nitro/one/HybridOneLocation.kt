@@ -2,6 +2,7 @@ package com.margelo.nitro.one
 
 import android.Manifest
 import android.app.Activity
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -672,6 +673,14 @@ class HybridOneLocation :
     }
 
     private fun declaresBackground(context: Context): Boolean {
+        // the foreground service only exists in apps that set location.background.
+        val serviceDeclared = try {
+            context.packageManager.getServiceInfo(ComponentName(context, OneLocationService::class.java), 0)
+            true
+        } catch (_: PackageManager.NameNotFoundException) {
+            false
+        }
+        if (!serviceDeclared) return false
         // below 29 background location has no platform gate.
         if (Build.VERSION.SDK_INT < 29) return true
         return requested(context).contains(Manifest.permission.ACCESS_BACKGROUND_LOCATION)

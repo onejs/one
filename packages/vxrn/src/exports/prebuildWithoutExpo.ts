@@ -2622,6 +2622,7 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       platform === 'android' &&
       relativePath === 'app/src/main/AndroidManifest.xml' &&
       (app.audio !== undefined ||
+        app.location?.background === true ||
         app.photoLibrary !== undefined ||
         app.contacts !== undefined ||
         app.calendar !== undefined ||
@@ -2650,6 +2651,11 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         appStamps.push(
           '      <meta-data android:name="one.audio.background" android:value="true" />',
           '      <service android:name="com.margelo.nitro.one.OneAudioService" android:exported="false" android:foregroundServiceType="mediaPlayback" />'
+        )
+      }
+      if (app.location?.background === true) {
+        appStamps.push(
+          '      <service android:name="dev.onejs.onenative.OneLocationService" android:exported="false" android:foregroundServiceType="location" />'
         )
       }
       // background task identifiers use the shared ios declaration on both
