@@ -3,7 +3,13 @@ import { NativeSafeAreaProvider } from './NativeSafeAreaProvider'
 import { getWindowFrame } from './getWindowFrame'
 import { initialWindowMetrics } from './InitialWindow'
 import { feedTamaguiSafeArea } from './tamaguiSafeArea'
-import type { EdgeInsets, InsetChangedEvent, Metrics, Rect } from './SafeArea-types'
+import type {
+  EdgeInsets,
+  InsetChangedEvent,
+  Metrics,
+  NativeSafeAreaProviderProps,
+  Rect,
+} from './SafeArea-types'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
@@ -17,7 +23,8 @@ if (isDev) {
   SafeAreaFrameContext.displayName = 'SafeAreaFrameContext'
 }
 
-export interface SafeAreaProviderProps {
+export interface SafeAreaProviderProps
+  extends Omit<NativeSafeAreaProviderProps, 'onInsetsChange'> {
   children?: React.ReactNode
   initialMetrics?: Metrics | null
   /**

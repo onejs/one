@@ -5,10 +5,11 @@ import type { Control } from './controlTypes'
 export const gradientControls: Control[] = [
   {
     name: 'LinearGradient',
+    adapterImports: ["import { processColor } from 'react-native'"],
     layout: 'fill',
     decorativeWhenUnlabeled: true,
     fields: {
-      colors: { type: 'strings', default: [], publicType: 'readonly string[]', required: true },
+      colors: { type: 'strings', default: [], publicType: 'readonly string[]', required: true, nativeValue: 'nativeColors' },
       locations: { type: 'string', default: '[]', publicType: 'readonly number[]', jsDefault: '[]', nativeValue: 'JSON.stringify(locations)' },
       startPoint: {
         type: 'string',
@@ -85,9 +86,16 @@ private func oneNativeLinearGradientColor(_ value: String) -> Color? {
     }
     if model.colors != items { model.colors = items }`,
     },
-    validate: `  if (!Array.isArray(colors) ||
-      !colors.every((color) => typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)))
-    throw new Error('LinearGradient colors must be an array of #RRGGBB or #RRGGBBAA colors')
+    validate: `  if (!Array.isArray(colors))
+    throw new Error('LinearGradient colors must be an array of React Native color strings')
+  const nativeColors = colors.map((color) => {
+    const value = typeof color === 'string' ? processColor(color) : null
+    if (typeof value !== 'number')
+      throw new Error('LinearGradient colors must be valid React Native color strings')
+    const argb = value >>> 0
+    const rgba = ((argb << 8) | (argb >>> 24)) >>> 0
+    return '#' + rgba.toString(16).padStart(8, '0')
+  })
   if (!Array.isArray(locations) || (locations.length > 0 && (locations.length !== colors.length ||
       locations.some((location, index) => !Number.isFinite(location) || location < 0 || location > 1 || (index > 0 && location < locations[index - 1]!)))))
     throw new Error('LinearGradient locations must match colors and be ordered between 0 and 1')

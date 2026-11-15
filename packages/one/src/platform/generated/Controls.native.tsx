@@ -5,6 +5,7 @@ import { useControlled } from '../controlled'
 import { assertSwiftUIValue } from './swiftui'
 import { swiftStyleNative, dispatchSDKEvent } from './swiftStyleNative'
 import type * as Types from './controlTypes'
+import { processColor } from 'react-native'
 import { chartPointsNative, chartStyleNative } from '../chartNative'
 import { getSyncStateId, isSyncState, publishNativeSyncState } from '../syncStore'
 import { syncHandleOf, useSyncValue } from '../syncNativeState'
@@ -832,16 +833,18 @@ export function LinearGradient({
   style,
   ...props
 }: Types.LinearGradientProps) {
-  if (
-    !Array.isArray(colors) ||
-    !colors.every(
-      (color) =>
-        typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)
-    )
-  )
+  if (!Array.isArray(colors))
     throw new Error(
-      'LinearGradient colors must be an array of #RRGGBB or #RRGGBBAA colors'
+      'LinearGradient colors must be an array of React Native color strings'
     )
+  const nativeColors = colors.map((color) => {
+    const value = typeof color === 'string' ? processColor(color) : null
+    if (typeof value !== 'number')
+      throw new Error('LinearGradient colors must be valid React Native color strings')
+    const argb = value >>> 0
+    const rgba = ((argb << 8) | (argb >>> 24)) >>> 0
+    return '#' + rgba.toString(16).padStart(8, '0')
+  })
   if (
     !Array.isArray(locations) ||
     (locations.length > 0 &&
@@ -872,8 +875,7 @@ export function LinearGradient({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
-
-      colors={colors}
+      colors={nativeColors}
       locations={JSON.stringify(locations)}
       startPoint={JSON.stringify(startPoint)}
       endPoint={JSON.stringify(endPoint)}
