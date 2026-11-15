@@ -21,3 +21,5 @@
 {"id":"00000001794771001627:ac8354f20fe3d4553950772e9829b0c9","text":"video reworked per Nate 0:24 feedback + reference motion: tm/bun-aot-video 8f623736dea (58s, opener with brackets/blur/odometer, clip grows, dark Machine code slide). card e81a70acbd8 (no rules, two line costs). app size: One PR #1258 perf/bun-strip-engine bb8de5215 strips Bun.framework local symbols, 181.3->156.0 MB, TESTED on sim with one-basic. engine-level wins reported (ICU 31 MB, unused bun subsystems 10-20 MB, JIT tiers ~11 MB guessed). all waiting on Nate."}
 
 {"id":"00000001794781663811:9b8d8ee82e61428724f3dc0ce27ee01c","text":"square 1080 film for One 2.19 (Bun AOT plus 2.12 to 2.19 features and 18 tail cards) on contrast tm/bun-aot-video f4054b7710b; shared for approval"}
+
+{"id":"00000001794782894949:63ade5b844f9eb946bdc8ae5c02ddae1","text":"second cut a3d3db8cf47 on tm/bun-aot-video with Nate's notes; shared for approval"}
