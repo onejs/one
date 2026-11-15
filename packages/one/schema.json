@@ -2066,6 +2066,9 @@
         "colors": {
           "type": "ReadonlyArray<string>"
         },
+        "locations": {
+          "type": "string"
+        },
         "startPoint": {
           "type": "string"
         },

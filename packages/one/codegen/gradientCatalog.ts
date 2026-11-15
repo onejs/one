@@ -9,6 +9,7 @@ export const gradientControls: Control[] = [
     decorativeWhenUnlabeled: true,
     fields: {
       colors: { type: 'strings', default: [], publicType: 'readonly string[]', required: true },
+      locations: { type: 'string', default: '[]', publicType: 'readonly number[]', jsDefault: '[]', nativeValue: 'JSON.stringify(locations)' },
       startPoint: {
         type: 'string',
         default: '{"x":0.5,"y":0}',
@@ -35,7 +36,7 @@ export const gradientControls: Control[] = [
       },
     ],
     swift: `LinearGradient(
-      colors: model.colors.compactMap(oneNativeLinearGradientColor),
+      gradient: oneNativeLinearGradient(model.colors, locations: model.locations),
       startPoint: oneNativeLinearGradientPoint(model.startPoint, fallback: .top),
       endPoint: oneNativeLinearGradientPoint(model.endPoint, fallback: .bottom)
     )`,
@@ -49,6 +50,14 @@ private func oneNativeLinearGradientPoint(_ raw: String, fallback: UnitPoint) ->
     let point = try? JSONDecoder().decode(OneNativeLinearGradientPoint.self, from: data),
     point.x.isFinite, point.y.isFinite else { return fallback }
   return UnitPoint(x: CGFloat(point.x), y: CGFloat(point.y))
+}
+
+private func oneNativeLinearGradient(_ values: [String], locations raw: String) -> Gradient {
+  let colors = values.compactMap(oneNativeLinearGradientColor)
+  guard let data = raw.data(using: .utf8),
+    let positions = try? JSONDecoder().decode([Double].self, from: data),
+    positions.count == colors.count, !positions.isEmpty else { return Gradient(colors: colors) }
+  return Gradient(stops: zip(colors, positions).map { Gradient.Stop(color: $0.0, location: CGFloat($0.1)) })
 }
 
 private func oneNativeLinearGradientColor(_ value: String) -> Color? {
@@ -79,6 +88,9 @@ private func oneNativeLinearGradientColor(_ value: String) -> Color? {
     validate: `  if (!Array.isArray(colors) ||
       !colors.every((color) => typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)))
     throw new Error('LinearGradient colors must be an array of #RRGGBB or #RRGGBBAA colors')
+  if (!Array.isArray(locations) || (locations.length > 0 && (locations.length !== colors.length ||
+      locations.some((location, index) => !Number.isFinite(location) || location < 0 || location > 1 || (index > 0 && location < locations[index - 1]!)))))
+    throw new Error('LinearGradient locations must match colors and be ordered between 0 and 1')
   for (const point of [startPoint, endPoint])
     if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y))
       throw new Error('LinearGradient points must have finite x and y coordinates')`,
