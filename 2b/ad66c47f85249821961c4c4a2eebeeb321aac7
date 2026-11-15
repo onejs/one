@@ -9,3 +9,5 @@
 {"id":"00000001794771697789:734d40575c9f10db28f6bba9d7edfc5a","text":"one#1240 (d1f887470b) approved by s257963 with squash auto-merge armed. On one#1256 (ec3642b5c2), s257963 requested 3 x P2 fixes (importedFrameworks latency, specifier prefilter/extension Babel plugins, import type handling). Launched p267116 (one-pr1256-fix on pro-128) on perf/sdk-reachability to land the 3 fixes + tests before fresh non-author lg review and canary."}
 
 {"id":"00000001794772243385:f0c1528ae15d137df4d883ce963268b2","text":"p267116 pushed ee0079cd940b0b73db624fb5f02b409613c5e405 to perf/sdk-reachability fixing P2-1/2/3; generation now 095cc02a2666a9f8. Awaiting independent reviewer (f389)."}
+
+{"id":"00000001794772976800:4e63af51d998ad65e01bf0e402697e92","text":"p267116 pushed ee0079cd940b0b73db624fb5f02b409613c5e405 to onejs/one#1256 (gen 095cc02a2666a9f8, 69 SDK tests pass); needs independent lg review + Swift selected-table compile check + canary."}
