@@ -1954,10 +1954,11 @@ function typedPackagesPlugin(root: string): Plugin {
       }
       return resolved
     },
-    load(id) {
+    async load(id) {
       if (!id.startsWith(PREFIX)) return
       const specifier = id.slice(PREFIX.length)
       const pkg = entries.get(specifier)!
+      const from = join(pkg.dir, 'package.json')
       const key = createHash('sha256').update(specifier).digest('hex').slice(0, 16)
       const shim = join(root, 'node_modules', '.vxrn', 'typed', `${key}.cjs`)
       mkdirSync(dirname(shim), { recursive: true })
@@ -1965,9 +1966,18 @@ function typedPackagesPlugin(root: string): Plugin {
       shims.add(shim)
       return [
         'var bridges = globalThis.__vxrnBridges || (globalThis.__vxrnBridges = {})',
-        ...pkg.bridge.map(
-          (dep) => `bridges[${JSON.stringify(dep)}] ||= () => require(${JSON.stringify(dep)})`
-        ),
+        // an id the package only tries inside a try/catch may be missing: it throws
+        // when read, as its require would have
+        ...(await Promise.all(
+          pkg.bridge.map(async (dep) => {
+            const name = JSON.stringify(dep)
+            // resolvers refuse some missing ids by throwing instead of returning null
+            const found = await this.resolve(dep, from).catch(() => null)
+            return found
+              ? `bridges[${name}] ||= () => require(${name})`
+              : `bridges[${name}] ||= () => { throw new Error(${JSON.stringify(`Cannot find module '${dep}'`)}) }`
+          })
+        )),
         'globalThis.__vxrnBridge = (id) => bridges[id]()',
         `module.exports = require(${JSON.stringify(shim)})`,
       ].join('\n')
