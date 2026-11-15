@@ -168,14 +168,15 @@ if (into) {
   const bridged = new Set<string>()
   for (const [installed, files] of laidOver) {
     const ids = new Set<string>()
-    const bridge = (spec: string) => !spec.startsWith('.') && !spec.startsWith('/') && !spec.startsWith('node:') && !isTyped(spec) && (ids.add(spec), true)
+    const bridge = (spec: string) => !/^(\.|\/|node:|bun:|bun$)/.test(spec) && !isTyped(spec) && (ids.add(spec), true)
     for (const rel of files) {
       let text = readFileSync(join(installed, rel), 'utf8')
       text = text.replace(/\brequire\(\s*(["'])([^"'\n]+)\1\s*\)/g, (m, _q, spec) => (bridge(spec) ? `${/\.tsx?$/.test(rel) ? '(globalThis as any)' : 'globalThis'}.__vxrnBridge(${JSON.stringify(spec)})` : m))
       // value imports and re-exports, side-effect imports and dynamic imports; type-only ones stay as they are
       text = text.replace(/(^|[;}\n])(\s*)(import|export)(\s+type\b)?([^;'"]*?\bfrom\s*|\s*)(["'])([^"'\n]+)\6/g, (m, pre, ws, kw, type, mid, q, spec) =>
         type || !(kw === 'import' || /\bfrom\s*$/.test(mid)) || !bridge(spec) ? m : `${pre}${ws}${kw}${mid}${q}${BRIDGE}/${spec}${q}`)
-      text = text.replace(/\bimport\(\s*(["'])([^"'\n]+)\1\s*\)/g, (m, q, spec) => (bridge(spec) ? `import(${q}${BRIDGE}/${spec}${q})` : m))
+      // a type position `import("x").Name` is left alone
+      text = text.replace(/\bimport\(\s*(["'])([^"'\n]+)\1\s*\)(?!\.(?!then\b)[A-Za-z_$])/g, (m, q, spec) => (bridge(spec) ? `import(${q}${BRIDGE}/${spec}${q})` : m))
       if (rel.endsWith('.tsx')) {
         ids.add('react/jsx-runtime')
         if (!text.includes('@jsxImportSource')) text = `/** @jsxImportSource ${BRIDGE}/react */\n` + text
