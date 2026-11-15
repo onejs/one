@@ -1,3 +1,4 @@
+import type { RevivedLoaderData } from './loaderJSX.js';
 export type LoaderTimingEntry = {
     path: string;
     startTime: number;
@@ -51,12 +52,12 @@ export declare function refetchMatchLoader(routeId: string, currentPath: string)
  * }
  * ```
  */
-export declare function useLoader<Loader extends Function, Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown>(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned;
+export declare function useLoader<Loader extends Function, Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown>(loader: Loader): RevivedLoaderData<Awaited<Returned>>;
 export declare function useLoaderState<Loader extends Function = any, Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown>(loader?: Loader): Loader extends undefined ? {
     refetch: () => Promise<void>;
     state: 'idle' | 'loading';
 } : {
-    data: Returned extends Promise<any> ? Awaited<Returned> : Returned;
+    data: RevivedLoaderData<Awaited<Returned>>;
     refetch: () => Promise<void>;
     state: 'idle' | 'loading';
 };

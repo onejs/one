@@ -1,5 +1,6 @@
 import { useCallback, useSyncExternalStore } from 'react'
 import { reviveLoaderData } from './loaderJSX'
+import type { RevivedLoaderData } from './loaderJSX'
 import { Platform } from 'react-native'
 import { registerDevtoolsFunction } from './devtools/registry'
 import { useParams, usePathname, useRouteInfo } from './hooks'
@@ -824,7 +825,7 @@ function useLoaderStateInner<
 export function useLoader<
   Loader extends Function,
   Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
->(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
+>(loader: Loader): RevivedLoaderData<Awaited<Returned>> {
   const { data } = useLoaderState(loader)
   return data
 }
@@ -843,7 +844,7 @@ export function useLoaderState<
 ): Loader extends undefined
   ? { refetch: () => Promise<void>; state: 'idle' | 'loading' }
   : {
-      data: Returned extends Promise<any> ? Awaited<Returned> : Returned
+      data: RevivedLoaderData<Awaited<Returned>>
       refetch: () => Promise<void>
       state: 'idle' | 'loading'
     } {

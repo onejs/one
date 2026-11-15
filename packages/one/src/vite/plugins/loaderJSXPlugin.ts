@@ -60,7 +60,8 @@ function collectClientExports(program: any): ClientExport[] {
       if (decl) {
         if (decl.type === 'VariableDeclaration') {
           for (const d of decl.declarations) {
-            if (d.id.type === 'Identifier') out.push({ local: d.id.name, exported: d.id.name })
+            if (d.id.type === 'Identifier')
+              out.push({ local: d.id.name, exported: d.id.name })
           }
         } else if (decl.id?.name) {
           out.push({ local: decl.id.name, exported: decl.id.name })
@@ -94,28 +95,19 @@ export function transformUseClient(code: string, id: string, root: string) {
         `if ((typeof ${local} === 'function' || (typeof ${local} === 'object' && ${local} !== null)) && !${local}.__oneClientId) ${local}.__oneClientId = ${JSON.stringify(`${path}#${exported}`)}`
     )
     .join('\n')
-  const entries = exports.map(({ local, exported }) => `${JSON.stringify(exported)}: ${local}`)
+  const entries = exports.map(
+    ({ local, exported }) => `${JSON.stringify(exported)}: ${local}`
+  )
   s.append(
     `\nimport { registerLoaderClientModule as __oneRegisterClient } from 'one'\n${tags}\n__oneRegisterClient(${JSON.stringify(path)}, { ${entries.join(', ')} })\n`
   )
   return { code: s.toString(), map: s.generateMap({ hires: true }) }
 }
 
-export function loaderJSXPlugin(opts?: {
-  routerRoot?: string
-  root?: string
-}): Plugin {
+export function loaderJSXPlugin(opts?: { routerRoot?: string; root?: string }): Plugin {
   const routerRoot = opts?.routerRoot ?? 'app'
   let root = opts?.root ?? process.cwd()
   const routeDir = () => `${toPosix(root)}/${routerRoot}/`
-
-  const isClientFile = (file: string) => {
-    try {
-      return USE_CLIENT_RE.test(readFileSync(file, 'utf8').slice(0, 200))
-    } catch {
-      return false
-    }
-  }
 
   return {
     name: 'one-loader-jsx',
@@ -158,11 +150,7 @@ export function loaderJSXPlugin(opts?: {
         if (name.startsWith(CLIENT_PREFIX)) {
           const file = name.slice(CLIENT_PREFIX.length)
           const path = toPosix(relative(root, file))
-          // web code-splits islands, native and ssr evaluate them eagerly
-          const lazy = (this as any).environment?.name === 'client'
-          return lazy
-            ? `import { registerLoaderClientModule } from 'one'\nregisterLoaderClientModule(${JSON.stringify(path)}, () => import(${JSON.stringify(file)}))`
-            : `import { registerLoaderClientModule } from 'one'\nimport * as mod from ${JSON.stringify(file)}\nregisterLoaderClientModule(${JSON.stringify(path)}, mod)`
+          return `import { registerLoaderClientModule } from 'one'\nimport * as mod from ${JSON.stringify(file)}\nregisterLoaderClientModule(${JSON.stringify(path)}, mod)`
         }
       },
     },
@@ -180,27 +168,52 @@ export function loaderJSXPlugin(opts?: {
 
         // a route that renders loader jsx must register the universal preset and every client
         // island it imports, since the loader (and its imports) are stripped from the client bundle
-        if (!toPosix(id).startsWith(routeDir()) || !/renderJSX|ServerJSX/.test(code)) return
+        if (!toPosix(id).startsWith(routeDir()) || !/renderJSX|ServerJSX/.test(code))
+          return
         const parsed = parseSync(id, code)
         if (parsed.errors.length) return
 
         const imports = [`import '${UNIVERSAL_ID}'`]
         const seen = new Set<string>()
-        for (const node of parsed.program.body as any[]) {
-          if (node.type !== 'ImportDeclaration' || node.importKind === 'type') continue
-          const resolved = await this.resolve(node.source.value, id)
-          if (!resolved || resolved.external || /node_modules/.test(resolved.id)) continue
-          const file = resolved.id.split('?')[0]
-          if (seen.has(file) || !isClientFile(file)) continue
-          seen.add(file)
-          imports.push(`import '${CLIENT_PREFIX}${file}'`)
+        const visit = async (program: any, importer: string): Promise<void> => {
+          for (const node of program.body as any[]) {
+            if (
+              (node.type !== 'ImportDeclaration' &&
+                node.type !== 'ExportNamedDeclaration' &&
+                node.type !== 'ExportAllDeclaration') ||
+              !node.source ||
+              node.importKind === 'type' ||
+              node.exportKind === 'type'
+            )
+              continue
+            const resolved = await this.resolve(node.source.value, importer)
+            if (!resolved || resolved.external || /node_modules/.test(resolved.id))
+              continue
+            const file = resolved.id.split('?')[0]
+            if (seen.has(file)) continue
+            seen.add(file)
+            if (!/\.(js|jsx|ts|tsx)$/.test(file)) continue
+            let source: string
+            try {
+              source = readFileSync(file, 'utf8')
+            } catch {
+              continue
+            }
+            const child = parseSync(file, source)
+            if (child.errors.length) continue
+            if (hasUseClientDirective(child.program)) {
+              imports.push(`import '${CLIENT_PREFIX}${file}'`)
+            } else {
+              await visit(child.program, file)
+            }
+          }
         }
+        await visit(parsed.program, id)
 
         const s = new MagicString(code)
         s.append(`\n${imports.join('\n')}\n`)
         return { code: s.toString(), map: s.generateMap({ hires: true }) }
       },
     },
-
   } satisfies Plugin
 }

@@ -4,6 +4,16 @@ import type { JSXEnvelope, JSXEnvelopeNode } from './server/renderJSX'
 // client and ssr side of loader jsx. the server walker (server/renderJSX) returns json envelopes,
 // this turns them back into elements. render is synchronous so ssr html matches frame-1 hydration.
 
+export type RevivedLoaderData<T> = T extends JSXEnvelope
+  ? React.ReactNode
+  : T extends (...args: any[]) => any
+    ? T
+    : T extends readonly unknown[]
+      ? { [K in keyof T]: RevivedLoaderData<T[K]> }
+      : T extends object
+        ? { [K in keyof T]: RevivedLoaderData<T[K]> }
+        : T
+
 type ClientModule = Record<string, any>
 type ClientEntry = ClientModule | (() => Promise<ClientModule>)
 
@@ -71,7 +81,10 @@ function reviveChildren(nodes: JSXEnvelopeNode[], slots: LoaderJSXSlots | undefi
   return nodes.map((node) => reviveNode(node, slots))
 }
 
-function reviveNode(node: JSXEnvelopeNode, slots: LoaderJSXSlots | undefined): React.ReactNode {
+function reviveNode(
+  node: JSXEnvelopeNode,
+  slots: LoaderJSXSlots | undefined
+): React.ReactNode {
   if (node === null || typeof node !== 'object') return node
   switch (node[0]) {
     case 'h':
@@ -124,7 +137,10 @@ const NO_SLOTS = {}
 const envelopeMemo = new WeakMap<object, WeakMap<object, React.ReactNode>>()
 
 /** revive an envelope to elements. memoized by envelope (and slots) reference so renders stay stable. */
-export function reviveLoaderJSX(envelope: JSXEnvelope, slots?: LoaderJSXSlots): React.ReactNode {
+export function reviveLoaderJSX(
+  envelope: JSXEnvelope,
+  slots?: LoaderJSXSlots
+): React.ReactNode {
   let bySlots = envelopeMemo.get(envelope)
   if (!bySlots) {
     bySlots = new WeakMap()
@@ -151,8 +167,8 @@ function containsEnvelope(value: any): boolean {
  * Replace every envelope inside loader data with its revived elements.
  * Data without envelopes is returned as-is, and the result is memoized per data reference.
  */
-export function reviveLoaderData<T>(data: T): T {
-  if (data === null || typeof data !== 'object') return data
+export function reviveLoaderData<T>(data: T): RevivedLoaderData<T> {
+  if (data === null || typeof data !== 'object') return data as RevivedLoaderData<T>
   if (dataMemo.has(data)) return dataMemo.get(data)
   const result = containsEnvelope(data) ? reviveValue(data, undefined) : data
   dataMemo.set(data, result)
