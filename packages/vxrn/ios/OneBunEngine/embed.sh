@@ -20,14 +20,10 @@ FLAGS=()
 mkdir -p "$FRAMEWORKS" "$DERIVED_FILE_DIR"
 rm -rf "$FRAMEWORKS/Bun.framework" "$FRAMEWORKS/BunCompat.framework"
 cp -R "$TEMPLATE/Bun.framework" "$TEMPLATE/BunCompat.framework" "$FRAMEWORKS/"
-# the engine ships its local symbols, about 25 MB the app never needs. strip them
-# before compiling, since a program loads only in the runtime it was compiled against
-codesign --remove-signature "$FRAMEWORKS/Bun.framework/Bun"
-strip -x "$FRAMEWORKS/Bun.framework/Bun"
 # bun picks its parser from the extension and reads .jsbundle as typescript
 ENTRY="$DERIVED_FILE_DIR/one-bun-entry.js"
 cp "$BUNDLE" "$ENTRY"
-python3 "$HERE/program.py" template "$FRAMEWORKS/Bun.framework/Bun" "$DERIVED_FILE_DIR/one-bun-runtime"
+python3 "$HERE/program.py" template "$TEMPLATE/Bun.framework/Bun" "$DERIVED_FILE_DIR/one-bun-runtime"
 # react native polyfills replace built-in members (intl's Number.prototype.toLocaleString),
 # so built-ins the program writes stay replaceable
 BUN_AOT_REPLACE_WRITTEN=1 "$ONE_BUN_ENGINE_DIR/bun" compile "$ENTRY" ${FLAGS[@]+"${FLAGS[@]}"} \
