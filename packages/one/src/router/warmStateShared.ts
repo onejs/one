@@ -34,6 +34,15 @@ export type WarmStartOptions = {
   restoreWebRoute?: boolean
   /** preload saved route modules during boot (default true when enabled) */
   preloadRoutes?: boolean
+  /** glob/prefix/pathname patterns allowed to restore saved route (e.g. ['/inbox', '/feed/*']) */
+  includeRoutes?: string[]
+  /** glob/prefix/pathname patterns that never restore saved route (e.g. ['/auth/*', '/modal/*']) */
+  excludeRoutes?: string[]
+  /** custom route alignment / fallback hook returning boolean, fallback path string, or custom snapshot */
+  alignRoute?: (saved: {
+    pathname: string
+    state: WarmNavigationSnapshot
+  }) => boolean | string | WarmNavigationSnapshot | null | undefined
 }
 
 export type WarmStateStorage = {
@@ -229,4 +238,51 @@ export function parseWarmEnvelope(
     state,
     sources: parsed.sources,
   }
+}
+
+
+/** normalize a path or pattern by stripping query/hash and standardizing leading/trailing slashes. */
+export function normalizeRoutePattern(pattern: string): string {
+  'worklet'
+  const stripped = pattern.split('?')[0].split('#')[0] || '/'
+  const withLeading = stripped.startsWith('/') ? stripped : `/${stripped}`
+  if (withLeading.length > 1 && withLeading.endsWith('/')) {
+    return withLeading.slice(0, -1)
+  }
+  return withLeading
+}
+
+/**
+ * test whether a candidate pathname matches a glob/prefix/pathname pattern.
+ * e.g. '/inbox' matches '/inbox', '/feed/*' matches '/feed/123' and '/feed',
+ * '/modal/**' matches '/modal/sheet'. Query and hash are ignored.
+ */
+export function matchRoutePattern(pattern: string, pathname: string): boolean {
+  'worklet'
+  const rawPath = pathname.split('?')[0].split('#')[0] || '/'
+  const normPath = normalizeRoutePattern(rawPath)
+  const normPattern = normalizeRoutePattern(pattern)
+
+  if (normPattern === '*' || normPattern === '/*') return true
+  if (normPattern === normPath) return true
+
+  // prefix wildcard e.g. /feed/* or /feed/**
+  if (pattern.endsWith('/*') || pattern.endsWith('/**')) {
+    const base = normalizeRoutePattern(pattern.replace(/\/\*+$/, ''))
+    return normPath === base || normPath.startsWith(base + '/')
+  }
+
+  // glob wildcard matching e.g. /users/*/profile
+  if (pattern.includes('*')) {
+    const regexStr =
+      '^' +
+      normPattern
+        .replace(/[.+?^${}()|[\]\\]/g, '\\$&')
+        .replace(/\*\*/g, '.*')
+        .replace(/\*/g, '.*') +
+      '$'
+    return new RegExp(regexStr).test(normPath)
+  }
+
+  return false
 }

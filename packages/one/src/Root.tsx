@@ -25,6 +25,7 @@ import {
   configureWarmStateFromFlags,
   consumeWarmRouteApplied,
   flushWarmState,
+  isWarmRouteApplied,
   isWarmStateEnabled,
   reconcileNativeColdDeepLink,
 } from './router/warmState'
@@ -133,6 +134,10 @@ export function Root(props: RootProps) {
   }
 
   const store = useInitializeOneRouter(context, location, linking)
+  const [warmRouteWasApplied] = useState(() => isNative && isWarmRouteApplied())
+  const [isHoldingWarmReconcile, setIsHoldingWarmReconcile] = useState(
+    () => warmRouteWasApplied
+  )
   const userScheme = useUserScheme()
 
   // const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
@@ -152,13 +157,19 @@ export function Root(props: RootProps) {
     const detach = attachWarmStateLifecycle(() => {
       flushWarmState()
     })
+    const currentHref = store.routeInfo?.unstable_globalHref || store.routeInfo?.pathname
     if (isNative && consumeWarmRouteApplied()) {
       void reconcileNativeColdDeepLink({
         getInitialURL: getNativeInitialURL,
         prefixes: getResolvedLinking()?.prefixes as string[] | undefined,
-        currentPathname: store.routeInfo?.pathname,
+        currentHref,
+        currentPathname: currentHref,
         navigateTo: (href) => linkTo(href, 'REPLACE'),
       })
+        .catch(() => null)
+        .finally(() => {
+          setIsHoldingWarmReconcile(false)
+        })
     }
     return detach
   }, [])
@@ -217,7 +228,7 @@ export function Root(props: RootProps) {
                 <RootErrorBoundary>
                   <Component />
                 </RootErrorBoundary>
-                <LaunchScreenRelease />
+                <LaunchScreenRelease hold={isHoldingWarmReconcile} />
               </>
             </ServerLocationContext.Provider>
           </UpstreamNavigationContainer>

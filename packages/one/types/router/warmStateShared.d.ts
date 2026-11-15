@@ -30,6 +30,15 @@ export type WarmStartOptions = {
     restoreWebRoute?: boolean;
     /** preload saved route modules during boot (default true when enabled) */
     preloadRoutes?: boolean;
+    /** glob/prefix/pathname patterns allowed to restore saved route (e.g. ['/inbox', '/feed/*']) */
+    includeRoutes?: string[];
+    /** glob/prefix/pathname patterns that never restore saved route (e.g. ['/auth/*', '/modal/*']) */
+    excludeRoutes?: string[];
+    /** custom route alignment / fallback hook returning boolean, fallback path string, or custom snapshot */
+    alignRoute?: (saved: {
+        pathname: string;
+        state: WarmNavigationSnapshot;
+    }) => boolean | string | WarmNavigationSnapshot | null | undefined;
 };
 export type WarmStateStorage = {
     getItem: (key: string) => string | null;
@@ -59,4 +68,12 @@ export declare function parseWarmEnvelope(raw: string | null | undefined, option
     maxAgeMs: number;
     now: number;
 }): WarmStateEnvelope | null;
+/** normalize a path or pattern by stripping query/hash and standardizing leading/trailing slashes. */
+export declare function normalizeRoutePattern(pattern: string): string;
+/**
+ * test whether a candidate pathname matches a glob/prefix/pathname pattern.
+ * e.g. '/inbox' matches '/inbox', '/feed/*' matches '/feed/123' and '/feed',
+ * '/modal/**' matches '/modal/sheet'. Query and hash are ignored.
+ */
+export declare function matchRoutePattern(pattern: string, pathname: string): boolean;
 //# sourceMappingURL=warmStateShared.d.ts.map

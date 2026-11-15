@@ -86,7 +86,7 @@ export { router } from './router/imperative-api';
 export * as routerStore from './router/router';
 export { useNavigation } from './router/useNavigation';
 export { registerPreloadedRoute } from './router/useViteRoutes';
-export { clearWarmState, configureWarmState, flushWarmState, getHydratedWarmState, hydrateWarmInitialLoad, registerWarmStateSource, scheduleWarmStatePersist, type WarmNavigationSnapshot, type WarmRouteSnapshot, type WarmStartOptions, type WarmStateEnvelope, type WarmStateSource, type WarmStateStorage, } from './router/warmState';
+export { clearWarmState, configureWarmState, flushWarmState, getHydratedWarmState, hydrateWarmInitialLoad, isWarmRoutePreloadPending, matchRoutePattern, normalizeHref, normalizeRoutePattern, registerWarmStateSource, scheduleWarmStatePersist, waitForWarmRoutePreload, type WarmNavigationSnapshot, type WarmRouteSnapshot, type WarmStartOptions, type WarmStateEnvelope, type WarmStateSource, type WarmStateStorage, } from './router/warmState';
 export type { Endpoint, LoaderProps } from './types';
 export { useBlocker, type Blocker, type BlockerFunction, type BlockerState, } from './useBlocker';
 export { ParamValidationError, RouteValidationError, validateParams, zodParamValidator, type InferParamInput, type InferParamOutput, type ParamValidator, type RouteValidationFn, type ValidateRouteProps, type ValidationResult, } from './validateParams';

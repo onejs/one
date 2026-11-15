@@ -3,6 +3,7 @@ import type { One } from '../vite/types';
 import type { OneLinkingOptions } from './getLinkingConfig';
 import type { RouteNode } from './Route';
 import { type WarmStartOptions, type WarmStateEnvelope, type WarmStateStorage } from './warmStateShared';
+export { matchRoutePattern, normalizeRoutePattern, } from './warmStateShared';
 export type { WarmNavigationSnapshot, WarmRouteSnapshot, WarmStartOptions, WarmStateEnvelope, WarmStateStorage, } from './warmStateShared';
 export type WarmStateSource<T = unknown> = {
     getSnapshot: () => T;
@@ -24,10 +25,8 @@ export declare function shouldRestoreWarmRoute(): boolean;
  */
 export declare function registerWarmStateSource<T>(key: string, source: WarmStateSource<T>): () => void;
 export declare function getHydratedWarmState(): WarmStateEnvelope | null;
-/**
- * synchronously read and validate cached warm state, hydrate registered state
- * slices before first render, and warm up saved route modules in parallel.
- */
+export declare function isWarmRoutePreloadPending(): boolean;
+export declare function waitForWarmRoutePreload(timeoutMs?: number): Promise<void>;
 export declare function hydrateWarmInitialLoad(options?: {
     routes?: Record<string, () => Promise<unknown>>;
     flags?: One.Flags;
@@ -38,6 +37,7 @@ export declare function consumeWarmInitialNavigationState(routeNode: RouteNode |
 /** check dynamically whether runtime and initial url allow warm route restoration. */
 export declare function shouldAttemptWarmRouteRestore(initialLocation?: URL): boolean;
 export declare function isWarmWebRestoreEligible(initialLocation?: URL): boolean;
+export declare function isWarmRouteApplied(): boolean;
 export declare function consumeWarmRouteApplied(): boolean;
 /** schedule off-thread serialization and storage persistence of latest route + sources. */
 export declare function scheduleWarmStatePersist(navState?: unknown, pathname?: string): void;
@@ -47,6 +47,7 @@ export declare function flushWarmState(): boolean;
 export declare function clearWarmState(options?: {
     keepConfig?: boolean;
 }): void;
+export declare function normalizeHref(href: string): string;
 /**
  * reconcile a cold native launch url after mounting synchronously from warm state.
  * normal springboard launches resolve null and leave the warm screen untouched.
@@ -54,7 +55,9 @@ export declare function clearWarmState(options?: {
 export declare function reconcileNativeColdDeepLink(options: {
     getInitialURL: () => Promise<string | null>;
     prefixes?: string[];
+    currentHref?: string;
     currentPathname?: string;
     navigateTo: (href: string) => void;
+    onComplete?: (target: string | null) => void;
 }): Promise<string | null>;
 //# sourceMappingURL=warmState.d.ts.map
