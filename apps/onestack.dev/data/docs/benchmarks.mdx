@@ -102,8 +102,12 @@ not measure when the pixels finish drawing.
 | Scroll feed top | 228.84 [220.81, 230.06] | 197.81 [196.96, 197.83] |
 | Open recorded thread | 855.08 [849.43, 872.77] | 497.12 [481.68, 497.79] |
 | Recorded search | 102.18 [98.42, 104.81] | 89.93 [89.22, 91.75] |
-| Open profile | 314.55 [304.87, 314.87] | 211.22 [208.08, 214.38] |
-| Return home from profile | 25.96 [23.19, 26.75] | 25.17 [24.04, 28.91] |
+| Open profile | Not comparable | Not comparable |
+| Return home from profile | Not comparable | Not comparable |
+
+The profile and subsequent return-home steps counted 5,039 React host nodes
+on Hermes and 5,117 on Bun. Their timings are retained in the download but
+excluded from this comparison until the rendered-work difference is explained.
 
 ![Bluesky recorded thread: median, quartiles and range](/benchmarks/bluesky-ios-013/47-bluesky-recorded-open-recorded-thread-action-to-settled.svg)
 

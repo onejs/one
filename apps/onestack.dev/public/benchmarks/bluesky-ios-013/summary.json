@@ -53,7 +53,8 @@
     "embedSha256": "321629e7bcdec72babf33a196619ec778d1603b0c2e691f930133393cbf3a1a0",
     "runnerSha256": "fbc10da7e9875f067583b4d71d92ea07f212c1691c0791be938ebd1c0670f5cb",
     "reportSha256": "591b4058787288cee40278991feadf3ac320b85298f0b7f50d2cfe08950c972e",
-    "footprintHelperSha256": "368902b2e17358257b96d74cfa29d8ec54aa54262f3a3478ee20e05af6997a0a"
+    "footprintHelperSha256": "368902b2e17358257b96d74cfa29d8ec54aa54262f3a3478ee20e05af6997a0a",
+    "profileCaveat": "Profile and subsequent return home have different React host-node counts: Hermes5039, Bun5117; those timings are not comparable pending explanation."
   },
   "summary": [
     {
