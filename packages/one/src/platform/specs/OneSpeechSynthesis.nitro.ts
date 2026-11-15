@@ -11,6 +11,7 @@ export interface SpeechSynthesisUtterance {
   rate?: number
   voice?: string
   volume?: number
+  useApplicationAudioSession?: boolean
 }
 
 // text-to-speech behind One.SpeechSynthesis, matching expo-speech: utterances

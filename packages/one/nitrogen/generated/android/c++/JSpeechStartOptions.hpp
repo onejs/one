@@ -12,6 +12,7 @@
 
 #include <optional>
 #include <string>
+#include <vector>
 
 namespace margelo::nitro::one {
 
@@ -34,8 +35,20 @@ namespace margelo::nitro::one {
       static const auto clazz = javaClassStatic();
       static const auto fieldLang = clazz->getField<jni::JString>("lang");
       jni::local_ref<jni::JString> lang = this->getFieldValue(fieldLang);
+      static const auto fieldContextualStrings = clazz->getField<jni::JArrayClass<jni::JString>>("contextualStrings");
+      jni::local_ref<jni::JArrayClass<jni::JString>> contextualStrings = this->getFieldValue(fieldContextualStrings);
       return SpeechStartOptions(
-        lang != nullptr ? std::make_optional(lang->toStdString()) : std::nullopt
+        lang != nullptr ? std::make_optional(lang->toStdString()) : std::nullopt,
+        contextualStrings != nullptr ? std::make_optional([&](auto&& __input) {
+          size_t __size = __input->size();
+          std::vector<std::string> __vector;
+          __vector.reserve(__size);
+          for (size_t __i = 0; __i < __size; __i++) {
+            auto __element = __input->getElement(__i);
+            __vector.push_back(__element->toStdString());
+          }
+          return __vector;
+        }(contextualStrings)) : std::nullopt
       );
     }
 
@@ -45,12 +58,22 @@ namespace margelo::nitro::one {
      */
     [[maybe_unused]]
     static jni::local_ref<JSpeechStartOptions::javaobject> fromCpp(const SpeechStartOptions& value) {
-      using JSignature = JSpeechStartOptions(jni::alias_ref<jni::JString>);
+      using JSignature = JSpeechStartOptions(jni::alias_ref<jni::JString>, jni::alias_ref<jni::JArrayClass<jni::JString>>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
         clazz,
-        value.lang.has_value() ? jni::make_jstring(value.lang.value()) : nullptr
+        value.lang.has_value() ? jni::make_jstring(value.lang.value()) : nullptr,
+        value.contextualStrings.has_value() ? [&](auto&& __input) {
+          size_t __size = __input.size();
+          jni::local_ref<jni::JArrayClass<jni::JString>> __array = jni::JArrayClass<jni::JString>::newArray(__size);
+          for (size_t __i = 0; __i < __size; __i++) {
+            const auto& __element = __input[__i];
+            auto __elementJni = jni::make_jstring(__element);
+            __array->setElement(__i, *__elementJni);
+          }
+          return __array;
+        }(value.contextualStrings.value()) : nullptr
       );
     }
   };

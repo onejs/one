@@ -59,7 +59,7 @@ export declare class AnalysisContext extends SDKHandle {
  * struct ContextualStringsTag
  * @availability iOS 26.0+
  */
-export type AnalysisContext_ContextualStringsTag = "general" | (number & {});
+export type AnalysisContext_ContextualStringsTag = "general" | (string & {});
 export declare const AnalysisContext_ContextualStringsTag: {
     /**
      * static let general: AnalysisContext.ContextualStringsTag
@@ -91,7 +91,7 @@ export type AnalysisContext_ContextualStringsTag_RawValue = string;
  * struct UserDataTag
  * @availability iOS 26.0+
  */
-export type AnalysisContext_UserDataTag = (number & {});
+export type AnalysisContext_UserDataTag = (string & {});
 export declare const AnalysisContext_UserDataTag: {
     /**
      * init(rawValue: AnalysisContext.UserDataTag.RawValue)

@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite';
-import type { RouteIndex } from '../../utils/routeIndex';
-import type { One } from '../types';
+import type { RouteIndex } from '../../utils/routeIndex.js';
+import type { One } from '../types.js';
 export declare function createVirtualEntry(options: {
     root: string;
     router?: One.PluginOptions['router'];

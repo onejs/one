@@ -47,3 +47,20 @@ Gain: about 9 to 11 ms of the ~87 ms from app delegate to routed content, and ab
 - Main thread after `startReactNative` returns: about 8.5 ms of work I did not attribute. INFERRED: scene window and launch screen setup.
 - Appearance's main-queue hop costs about 0.1 ms on the simulator, so the color-scheme `Appearance.getColorScheme()` cost seen on Mac does not reproduce here. No `color-scheme` change.
 - The largest cost is outside JS. RAN in earlier measurement (air-32): 85 to 90 percent of One's simulator cold start is dyld loading 122 images (82 system frameworks, 34 Swift libraries) from the One pod's link set, pre-main 1.4 to 2.1 s against 0.21 s for the rival. It is unmeasured on a device, where it is probably much smaller. Owner: One's iOS pod link set.
+
+## current optimization, 2026-11-09
+
+The historical simulator measurements above do not describe the current React Native prebuilt dependency stack. The matched rebuild and current acceptance results live in `plans/one-ios-linkset.md`.
+
+The shared-state installer now loads Worklets when installing the first shared state. A Release fixture checked a generated Foundation call, a native map and both directions of shared-state updates. Production lazy barrels were tried against the same native binary and rejected: ten alternating launches measured 523.7 ms to route commit with them enabled against 514.5 ms with them disabled. Production retains its existing setting.
+
+Static `One` member reads now import their existing implementations directly. An ordinary `One.UI.Map` read no longer keeps every backend referenced by the frozen `One` object. Components and service objects retain their identities, and the platform getter remains live. Computed reads and namespace escapes preserve the original object. A real Release fixture using Map and Foundation now retains only the Foundation SDK table instead of thirteen SDK backends.
+
+Two JavaScript experiments were rejected. Production lazy barrels increased route commit from 514.5 to 523.7 ms in ten alternating launches with the same native binary. Initial URL prefetch changed delegate-to-route time by less than 1 ms (74.17 versus 73.45 ms); it also added startup coordination, so the existing React Native initial-URL path remains unchanged.
+
+`RCTContentDidAppearNotification` marks the router provider shell, not necessarily the page. Current comparisons separately record that notification and the target page's React layout-effect timestamp. The page and the plain RN control write the same Settings key; the launch harness subtracts kernel process creation time and waits on filesystem events. These are process cold starts with warm filesystem caches, not device reboots or pixel presentation times.
+
+
+The Stack navigator now imports Reanimated's existing plain Fabric boundary directly, retaining its focus-dependent activation. A ten-pair Release comparison with the same native binary measured 79.82 ms median from delegate to route through the package entry versus 76.42 ms through the leaf. A minimal Stack fixture rendered and completed push/pop. Components using Reanimated animation APIs still initialize the package normally.
+
+Final matched simulator medians are 386.68 ms to the delegate and 458.43 ms to route commit, versus plain RN's 303.91 and 363.74 ms. The reconstructed baseline was 668.45 and 742.63 ms. On an iPhone Air the final app measured 25.48 and 75.78 ms, versus RN's 18.14 and 50.55 ms. Full method, ranges and limitations are recorded in the link-set plan.

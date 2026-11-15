@@ -1,8 +1,8 @@
 import type { ColorValue, ViewProps } from 'react-native';
-import type * as Styles from './swiftui';
-import type { SFSymbolName } from './sfSymbolNames';
-import type { AreaChartStyle, BarChartStyle, ChartDataPoint, ChartType, LineChartStyle, PieChartStyle, PointChartStyle, RectangleChartStyle, RuleChartStyle } from '../chartTypes';
-import type { NativeState } from '../syncNativeState';
+import type * as Styles from './swiftui.js';
+import type { SFSymbolName } from './sfSymbolNames.js';
+import type { AreaChartStyle, BarChartStyle, ChartDataPoint, ChartType, LineChartStyle, PieChartStyle, PointChartStyle, RectangleChartStyle, RuleChartStyle } from '../chartTypes.js';
+import type { NativeState } from '../syncNativeState.js';
 export declare const glassEffects: readonly ['regular', 'clear', 'identity'];
 export type GlassEffect = (typeof glassEffects)[number];
 export declare const glassEffectShapes: readonly ['capsule', 'circle', 'containerRelativeShape', 'ellipse', 'rectangle', 'roundedRectangle'];
@@ -3456,6 +3456,7 @@ export interface ConcentricRectangleProps extends OneNativeViewProps {
 }
 export interface LinearGradientProps extends OneNativeViewProps {
     colors: readonly string[];
+    locations?: readonly number[];
     startPoint?: Readonly<{
         x: number;
         y: number;
@@ -3506,9 +3507,13 @@ export interface MeshGradientProps extends OneNativeViewProps {
     colorSpace?: 'device' | 'perceptual';
 }
 export interface VideoPlayerProps extends OneNativeViewProps {
+    onVideoReady?: (width: number, height: number) => void;
+    onVideoError?: (message: string) => void;
+    onFirstFrame?: () => void;
     onPlaybackStatus?: (state: string, positionMs: number, durationMs: number) => void;
     url?: string;
     autoplay?: boolean;
+    contentFit?: 'native' | 'contain' | 'cover';
     command?: 'play' | 'pause' | 'seek' | '';
     commandRevision?: number;
     seekToMs?: number;

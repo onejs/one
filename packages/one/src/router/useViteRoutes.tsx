@@ -10,6 +10,13 @@ import { hmrImport } from './hmrImport'
 let lastVersion = 0
 let context
 
+// the stand-in module a route gets when its import failed, mapped to that error.
+const routeLoadErrors = new WeakMap<object, Error>()
+
+export function getRouteLoadError(route: unknown): Error | undefined {
+  return typeof route === 'object' && route ? routeLoadErrors.get(route) : undefined
+}
+
 // for some reason putting it in state doesnt even re-render
 export function useViteRoutes(
   routes: GlobbedRouteImports,
@@ -264,10 +271,16 @@ export function globbedRoutesToRouteContext(
         // native module exports register when the original loader initializes
         // them. an unvisited route can reach this path after another route's edit.
         importPromise = isNative
-          ? routesSync[id]().then(() => hmrImport(routePaths[id]))
+          ? Promise.resolve(routesSync[id]()).then(() => hmrImport(routePaths[id]))
           : hmrImport(routePaths[id])
       } else {
-        importPromise = routesSync[id]()
+        // a bundler that already holds the module (metro's require.context)
+        // returns it directly, so the first render does not suspend
+        const loaded = routesSync[id]()
+        if (!(loaded instanceof Promise)) {
+          return loaded
+        }
+        importPromise = loaded
       }
 
       promises[id] = importPromise
@@ -324,9 +337,10 @@ export function globbedRoutesToRouteContext(
                 .catch(() => {})
             }
           }
-          loadedRoutes[id] = {
-            default: () => null,
-          }
+          const failed = { default: () => null }
+          // a falsy rejection would read back as no error
+          routeLoadErrors.set(failed, err instanceof Error ? err : new Error(String(err)))
+          loadedRoutes[id] = failed
           delete promises[id]
         })
 

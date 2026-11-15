@@ -5,7 +5,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { transform } from 'esbuild'
 import { resolveIosSdkImport } from '../../utils/iosSdkFacade'
-import type { calendarNative as backendCalendarNative } from './backend.ios'
+import type { calendarNative as backendCalendarNative } from './backend.sdk'
 
 // boundary integration over the real ios calendar backend. production keeps
 // the public one/ios/* specifiers (native package export, also resolved by
@@ -23,32 +23,33 @@ const packageRoot = join(here, '..', '..', '..')
 async function loadHarness(): Promise<Harness> {
   // single temp module: doubles inlined above the real backend source so both
   // share one instance no matter which loader imports the file.
-  const testSource = readFileSync(join(here, 'backend.ios.test.ts'), 'utf8')
+  const testSource = readFileSync(join(here, 'backend.sdk.test.ts'), 'utf8')
   const startMarker = '\n// harness-doubles-start\n'
   const endMarker = '\n// harness-doubles-end'
   const start = testSource.indexOf(startMarker)
   const end = testSource.indexOf(endMarker)
-  if (start < 0 || end < 0 || end <= start)
-    throw new Error('doubles section missing')
+  if (start < 0 || end < 0 || end <= start) throw new Error('doubles section missing')
   const doublesTs = testSource.slice(start + startMarker.length, end)
-  const backendSource = readFileSync(join(here, 'backend.ios.ts'), 'utf8')
+  const backendSource = readFileSync(join(here, 'backend.sdk.ts'), 'utf8')
+  const doubles: Record<string, string> = {
+    Bundle: 'FakeBundle',
+    Calendar: 'FakeCalendar',
+    CharacterSet: 'FakeCharacterSet',
+    NSError: 'FakeNSError',
+    NSString: 'FakeNSString',
+    EKEvent: 'FakeEvent',
+    EKEventStore: 'FakeEventStore',
+    EKRecurrenceEnd: 'FakeRecurrenceEnd',
+    EKRecurrenceRule: 'FakeRecurrenceRule',
+    EKReminder: 'FakeReminder',
+  }
   const rewritten = backendSource
-    .replace(
-      /import\s*\{[^}]*\}\s*from\s*'one\/ios\/Foundation'/,
-      `const Bundle = FakeBundle
-const NativeCalendar = FakeCalendar
-const CharacterSet = FakeCharacterSet
-const NSError = FakeNSError
-const NSString = FakeNSString`
-    )
-    .replace(
-      /import\s*\{[^}]*\}\s*from\s*'one\/ios\/EventKit'/,
-      `const EKEvent = FakeEvent
-const EKEventStore = FakeEventStore
-const EKRecurrenceEnd = FakeRecurrenceEnd
-const EKRecurrenceRule = FakeRecurrenceRule
-const EKReminder = FakeReminder`
-    )
+    .replace(/import type\s*\{[^}]*\}\s*from\s*'one\/ios\/[^']+'/g, '')
+    .replace(/import\s*\{([^}]+)\}\s*from\s*'one\/ios\/[^']+'/g, (_, names: string) => {
+      const [name, local = name] = names.trim().split(/\s+as\s+/)
+      if (!doubles[name]) throw new Error('missing SDK double: ' + name)
+      return 'const ' + local + ' = ' + doubles[name]
+    })
     .replace(
       /import\s*\{[^}]*\}\s*from\s*'one\/ios-runtime'/,
       `const callSDKMethodAsync = fakeCallSDKMethodAsync`
@@ -79,9 +80,9 @@ function backend() {
 
 describe('calendar ios production import closure', () => {
   it('keeps public one/ios specifiers in production source', () => {
-    const source = readFileSync(join(here, 'backend.ios.ts'), 'utf8')
-    expect(source).toContain(`from 'one/ios/Foundation'`)
-    expect(source).toContain(`from 'one/ios/EventKit'`)
+    const source = readFileSync(join(here, 'backend.sdk.ts'), 'utf8')
+    expect(source).toContain(`from 'one/ios/Foundation/Bundle'`)
+    expect(source).toContain(`from 'one/ios/EventKit/EKEventStore'`)
     expect(source).toContain(`from 'one/ios-runtime'`)
     expect(source).not.toContain('ios-bindings')
   })
@@ -92,9 +93,9 @@ describe('calendar ios production import closure', () => {
         packageRoot,
         `one/ios/${framework}`,
         'ios',
-        join(here, 'backend.ios.ts')
+        join(here, 'backend.sdk.ts')
       )
-      expect(file).toBe(join(packageRoot, 'dist/esm/ios', `${framework}.native.js`))
+      expect(file).toBe(join(packageRoot, 'dist/esm/ios', `${framework}.mjs`))
       expect(existsSync(file!)).toBe(true)
     }
     expect(() =>
@@ -103,9 +104,7 @@ describe('calendar ios production import closure', () => {
   })
 
   it('proves relative dist imports would miss the shipped facade', () => {
-    expect(existsSync(join(packageRoot, 'ios-bindings', 'EventKit.ts'))).toBe(
-      true
-    )
+    expect(existsSync(join(packageRoot, 'ios-bindings', 'EventKit.ts'))).toBe(true)
     expect(existsSync(join(packageRoot, 'dist', 'ios-bindings'))).toBe(false)
   })
 })
@@ -150,12 +149,8 @@ describe('calendar ios background boundary', () => {
     ctx.host.FakeEventStore.requestDelayMs = 5
     const status = await cal.requestPermission()
     expect(status).toBe('fullAccess')
-    expect(ctx.host.FakeEventStore.syncInitiations).toContain(
-      'requestFullAccessToEvents'
-    )
-    expect(ctx.host.FakeEventStore.asyncCalls).not.toContain(
-      'requestFullAccessToEvents'
-    )
+    expect(ctx.host.FakeEventStore.syncInitiations).toContain('requestFullAccessToEvents')
+    expect(ctx.host.FakeEventStore.asyncCalls).not.toContain('requestFullAccessToEvents')
     ctx.host.FakeEventStore.authReminder = 'notDetermined'
     const reminderStatus = await cal.requestRemindersPermission()
     expect(reminderStatus).toBe('fullAccess')
@@ -172,12 +167,10 @@ describe('calendar ios background boundary', () => {
     ctx.host.FakeEventStore.authEvent = 'notDetermined'
     ctx.host.FakeEventStore.requestDelayMs = 60
     const request = cal.requestPermission()
-    const list = cal
-      .list(0, 1000, 10)
-      .then(
-        () => 'resolved',
-        (error: Error & { code?: string }) => error.code
-      )
+    const list = cal.list(0, 1000, 10).then(
+      () => 'resolved',
+      (error: Error & { code?: string }) => error.code
+    )
     expect(await list).toBe('E_CALENDAR_PERMISSION')
     expect(await request).toBe('fullAccess')
   })
@@ -295,12 +288,10 @@ describe('calendar ios background boundary', () => {
     await expect(
       cal.create({ title: '  ', startMs: 1000, endMs: 2000, allDay: false })
     ).rejects.toMatchObject({ code: 'E_CALENDAR_INPUT' })
-    await expect(cal.update('missing', 1000, { title: 'X' })).rejects.toMatchObject(
-      {
-        code: 'E_CALENDAR_NOT_FOUND',
-        message: 'Calendar.update: event occurrence was not found',
-      }
-    )
+    await expect(cal.update('missing', 1000, { title: 'X' })).rejects.toMatchObject({
+      code: 'E_CALENDAR_NOT_FOUND',
+      message: 'Calendar.update: event occurrence was not found',
+    })
     await expect(cal.remove('missing', 1000)).rejects.toMatchObject({
       code: 'E_CALENDAR_NOT_FOUND',
       message: 'Calendar.delete: event occurrence was not found',
@@ -333,9 +324,7 @@ describe('calendar ios background boundary', () => {
     await expect(cal.createReminder({ title: '' })).rejects.toMatchObject({
       code: 'E_REMINDERS_INPUT',
     })
-    await expect(
-      cal.setReminderCompleted('missing', true)
-    ).rejects.toMatchObject({
+    await expect(cal.setReminderCompleted('missing', true)).rejects.toMatchObject({
       code: 'E_REMINDERS_NOT_FOUND',
       message: 'Calendar.setReminderCompleted: reminder was not found',
     })
@@ -382,9 +371,7 @@ describe('calendar ios real entry and wire boundary', () => {
       subscribe: (() => () => {}) as never,
     }
     runtime.setSDKNative(fake as never)
-    const { EKEventStore: RealStore } = await import(
-      '../../../ios-bindings/EventKit'
-    )
+    const { EKEventStore: RealStore } = await import('../../../ios-bindings/EventKit')
     const store = RealStore.init()
     const predicate = store.predicateForEvents(new Date(0), new Date(1000))
     const events = await runtime.callSDKMethodAsync(store, 'events', predicate)
@@ -448,9 +435,7 @@ const FakeBundle = {
 const FakeCalendar = {
   current: {
     dateFrom: (components: { ms?: number } | null): Date | null =>
-      components && typeof components.ms === 'number'
-        ? new Date(components.ms)
-        : null,
+      components && typeof components.ms === 'number' ? new Date(components.ms) : null,
     dateComponentsFrom: (_units: string[], date: Date) => ({
       ms: date.getTime(),
     }),
@@ -592,9 +577,7 @@ class FakeEventStore {
     FakeEventStore.syncInitiations.push('fetchReminders')
     const all = [...FakeEventStore.reminders]
     const filtered =
-      predicate?.kind === 'incomplete'
-        ? all.filter((item) => !item.isCompleted)
-        : all
+      predicate?.kind === 'incomplete' ? all.filter((item) => !item.isCompleted) : all
     setTimeout(() => completion(filtered), FakeEventStore.fetchDelayMs)
     return 1
   }
@@ -661,9 +644,7 @@ class FakeEventStore {
       }
     }, FakeEventStore.requestDelayMs)
   }
-  requestFullAccessToReminders(
-    completion: (granted: boolean, error: unknown) => void
-  ) {
+  requestFullAccessToReminders(completion: (granted: boolean, error: unknown) => void) {
     FakeEventStore.syncInitiations.push('requestFullAccessToReminders')
     setTimeout(() => {
       if (FakeEventStore.requestNextError) {
@@ -671,8 +652,7 @@ class FakeEventStore {
         FakeEventStore.requestNextError = null
         completion(false, error)
       } else {
-        FakeEventStore.authReminder =
-          FakeEventStore.requestNextAuth ?? 'fullAccess'
+        FakeEventStore.authReminder = FakeEventStore.requestNextAuth ?? 'fullAccess'
         FakeEventStore.requestNextAuth = null
         completion(true, null)
       }
@@ -689,9 +669,7 @@ async function fakeCallSDKMethodAsync(
   overlap.start()
   asyncDepth += 1
   try {
-    await new Promise((resolve) =>
-      setTimeout(resolve, FakeEventStore.delayMs)
-    )
+    await new Promise((resolve) => setTimeout(resolve, FakeEventStore.delayMs))
     const fn = object[method]
     if (typeof fn !== 'function')
       throw new TypeError(`unregistered asynchronous SDK method ${method}`)

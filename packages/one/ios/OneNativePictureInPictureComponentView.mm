@@ -1,3 +1,4 @@
+#if ONE_GROUP_VIDEO
 #import "OneNativePictureInPictureComponentView.h"
 #import "One-Swift.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
@@ -46,3 +47,12 @@ using namespace facebook::react;
   [_pip reset];
 }
 @end
+
+#else
+#import "OneNativePictureInPictureComponentView.h"
+#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+using namespace facebook::react;
+@implementation OneNativePictureInPictureComponentView
++ (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativePictureInPictureComponentDescriptor>(); }
+@end
+#endif

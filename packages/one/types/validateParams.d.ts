@@ -5,7 +5,7 @@
  * Zod, Valibot, and custom validation functions. Runs before navigation
  * to catch invalid routes early.
  */
-import type { StandardSchema, ZodLikeSchema, SearchValidatorFn } from './validateSearchParams';
+import type { StandardSchema, ZodLikeSchema, SearchValidatorFn } from './validateSearchParams.js';
 /**
  * All supported validator types for route params
  */

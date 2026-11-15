@@ -1,8 +1,8 @@
-import type { Scheme } from './systemScheme';
-export type { Scheme } from './systemScheme';
-export type { SchemeSetting, UserScheme } from './userScheme';
-export { getSystemScheme, useSystemScheme } from './systemScheme';
-export { getUserScheme, onUserSchemeChange, setUserScheme, useUserScheme, } from './userScheme';
+import type { Scheme } from './systemScheme.js';
+export type { Scheme } from './systemScheme.js';
+export type { SchemeSetting, UserScheme } from './userScheme.js';
+export { getSystemScheme, useSystemScheme } from './systemScheme.js';
+export { getUserScheme, onUserSchemeChange, setUserScheme, useUserScheme, } from './userScheme.js';
 export declare function SchemeProvider({ children, getClassName, defaultScheme, forceScheme, }: {
     children: any;
     getClassName?: (name: Scheme) => string;

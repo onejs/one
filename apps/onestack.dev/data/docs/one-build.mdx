@@ -123,3 +123,17 @@ Build the native JS bundle with `--platform ios` or `--platform android`. This a
 To ship to devices, integrate the bundle into the existing native build process. See [Build or Run iOS](/docs/guides-ios-native) for archiving and uploading.
 
 Or check out the [iOS Native Guide](/docs/guides-ios-native) for instructions on building your iOS app with Xcode.
+
+## Bundle analysis
+
+Set ONE_BUNDLE_ANALYZE=1 when building to collect Rolldown's module-level bundle
+analysis. Web builds write client.json and server.json under .one/bundle-analysis;
+native builds write a report named for the platform in the same directory.
+Reports stay outside dist/client and are omitted from deployment output.
+
+Native Hermes and worklet transforms cache results by source content, filename,
+transform options, and compiler engine versions under
+node_modules/.cache/one/native-transforms. Set ONE_NATIVE_TRANSFORM_CACHE_DIR to
+a persistent directory to reuse these transforms across builds. Source maps
+and worklet locations retain the original filename, so cache reuse requires
+the same source paths.

@@ -227,7 +227,11 @@ final class HybridOneNotifications: HybridOneNotificationsSpec {
     if let data = content.data {
       nativeContent.userInfo = data.toDictionary().mapValues { $0 ?? NSNull() }
     }
-    if content.sound == true { nativeContent.sound = .default }
+    if let soundName = content.soundName {
+      nativeContent.sound = UNNotificationSound(named: UNNotificationSoundName(soundName))
+    } else if content.sound == true {
+      nativeContent.sound = .default
+    }
     if let badge = content.badge { nativeContent.badge = NSNumber(value: badge) }
     if let categoryIdentifier = content.categoryIdentifier {
       nativeContent.categoryIdentifier = categoryIdentifier
@@ -368,6 +372,14 @@ final class HybridOneNotifications: HybridOneNotificationsSpec {
   func clearLastNotificationResponse() throws {
     center.lastResponse = nil
   }
+
+  func getPendingNotificationResponses() throws -> [NativeNotificationResponse] {
+    center.pendingResponses
+  }
+
+  func acknowledgeNotificationResponse(identifier: String) throws {
+    center.acknowledgeResponse(identifier)
+  }
 }
 
 // the long-lived UNUserNotificationCenter delegate, installed at launch so a
@@ -396,6 +408,7 @@ public final class OneNotificationsCenter: NSObject, UNUserNotificationCenterDel
   private let lock = NSLock()
   private var listeners: Listeners?
   private var storedResponse: NativeNotificationResponse?
+  private var storedPendingResponses: [NativeNotificationResponse] = []
   private var pendingCompletions: [String: (Int) -> Void] = [:]
   var pushToken: String?
   var pendingPushTokens: [Promise<NativePushToken>] = []
@@ -433,6 +446,27 @@ public final class OneNotificationsCenter: NSObject, UNUserNotificationCenterDel
   var lastResponse: NativeNotificationResponse? {
     get { lock.withLock { storedResponse } }
     set { lock.withLock { storedResponse = newValue } }
+  }
+
+  var pendingResponses: [NativeNotificationResponse] {
+    lock.withLock { storedPendingResponses }
+  }
+
+  func acknowledgeResponse(_ identifier: String) {
+    lock.withLock {
+      storedPendingResponses.removeAll { $0.notification.request.identifier == identifier }
+    }
+  }
+
+  private func recordResponse(_ response: NativeNotificationResponse) {
+    lock.withLock {
+      storedResponse = response
+      if !storedPendingResponses.contains(where: {
+        $0.notification.request.identifier == response.notification.request.identifier
+      }) {
+        storedPendingResponses.append(response)
+      }
+    }
   }
 
   func setListeners(_ next: Listeners) {
@@ -512,7 +546,7 @@ public final class OneNotificationsCenter: NSObject, UNUserNotificationCenterDel
         userText: userText)
       // a cold-start tap lands before js listens; getLastNotificationResponse
       // reads it then.
-      self.lastResponse = payload
+      self.recordResponse(payload)
       self.currentListeners()?.onResponse(payload)
       completionHandler()
     }

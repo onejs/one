@@ -193,6 +193,15 @@ export function collectFacts(graph: Graph): IndexFacts {
   const facts: IndexFacts = { declarations: [], members: [], optionSets: [], requirements: [], conformances: [], properties: [], specializations: [], zeroInitializers: [] }
   const byUsr = new Map(graph.symbols.map((s) => [s.identifier.precise, s]))
   const parents = new Map(graph.relationships.filter((r) => r.kind === 'inheritsFrom').map((r) => [r.source, r.target]))
+  // a swift_newtype struct bridges only over a string or a scalar; a raw type that resolves (through typealiases) to a c struct has no bridge
+  const rawKind = (id: string | undefined) => {
+    for (let depth = 0; id && depth < 8; depth++) {
+      const alias = byUsr.get(id)
+      if (alias?.kind.identifier !== 'swift.typealias') break
+      id = alias.declarationFragments?.findLast((f) => f.kind === 'typeIdentifier')?.preciseIdentifier
+    }
+    return id === 's:SS' ? 'string' : id?.startsWith('c:@S@') ? undefined : 'number'
+  }
   for (const symbol of graph.symbols) {
     if (!TYPE_KINDS.has(symbol.kind.identifier)) continue
     if (APP_STORE_REJECTED.test(symbol.identifier.precise)) continue
@@ -265,12 +274,14 @@ export function collectFacts(graph: Graph): IndexFacts {
         const payload = (member.declarationFragments ?? []).some((f) => f.spelling.includes('('))
         facts.members.push({ owner: rel.target, kind: payload ? 'payloadCase' : 'case', name })
       } else if (kind === 'swift.property' && name === 'rawValue') {
-        const type = member.declarationFragments?.find((f) => f.kind === 'typeIdentifier')
-        facts.members.push({ owner: rel.target, kind: 'rawValue', name, raw: type?.preciseIdentifier === 's:SS' ? 'string' : 'number' })
+        const type = member.declarationFragments?.findLast((f) => f.kind === 'typeIdentifier')
+        const raw = rawKind(type?.preciseIdentifier)
+        if (raw) facts.members.push({ owner: rel.target, kind: 'rawValue', name, raw })
       } else if (kind === 'swift.init' && name === 'init(rawValue:)') {
         // the importer synthesizes rawValue on a swift_newtype struct without a symbol, so its raw type comes from the init
-        const type = member.functionSignature?.parameters?.[0]?.declarationFragments?.find((f) => f.kind === 'typeIdentifier')
-        facts.members.push({ owner: rel.target, kind: 'rawInit', name, raw: type?.preciseIdentifier === 's:SS' ? 'string' : 'number' })
+        const type = member.functionSignature?.parameters?.[0]?.declarationFragments?.findLast((f) => f.kind === 'typeIdentifier')
+        const raw = rawKind(type?.preciseIdentifier)
+        if (raw) facts.members.push({ owner: rel.target, kind: 'rawInit', name, raw })
       } else if (kind === 'swift.type.property' &&
         member.declarationFragments?.some((f) => f.kind === 'typeIdentifier' && f.preciseIdentifier === rel.target)) {
         facts.members.push({ owner: rel.target, kind: 'constant', name })

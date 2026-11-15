@@ -111,6 +111,9 @@ export const EXCLUDE_LIST = [
   // expo's debugger is a standalone app, not an SSR runtime dependency.
   '@expo/cli',
   '@expo/log-box',
+  // build-time config loader; it requires typescript subpaths that differ by
+  // typescript version, and the unused branch fails the bundler's resolver.
+  '@expo/require-utils',
   '@hot-updater/react-native',
   '@hot-updater/plugin-core',
   'validator',

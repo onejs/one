@@ -221,13 +221,22 @@ export interface NativeAppManifest {
     screensGamma?: boolean
     useFrameworks?: 'static' | 'dynamic'
     ccache?: boolean
+    // 'bun' runs release builds on bun's ahead-of-time compiled javascript
+    // instead of hermes; debug builds stay on hermes. pod install downloads
+    // the engine from an onejs/bun-engine release.
+    engine?: 'hermes' | 'bun'
     usesNonExemptEncryption?: boolean
+    appTransportSecurity?: Record<string, PlistValue>
     // the tint the system gives the app's controls, tab selection and text
     // cursor, as xcode's AccentColor asset; js reads PlatformColor('AccentColor').
     accentColor?: {
       light: string
       dark?: string
     }
+    // a checked-in folder in xcode's asset catalog format (imagesets,
+    // colorsets, symbolsets with their Contents.json) whose entries prebuild
+    // merges into the generated Images.xcassets, as UIImage(named:) finds them.
+    assetCatalog?: string
     // system prompt text for Face ID through One.LocalAuthentication.
     faceIdUsageDescription?: string
     // exposes the app's Documents in the Files app and document pickers.
@@ -240,6 +249,8 @@ export interface NativeAppManifest {
     // a firebase GoogleService-Info.plist, bundled into the app as expo's
     // ios.googleServicesFile does.
     googleServicesFile?: string
+    // project-relative files copied into the main bundle, such as named notification sounds.
+    resources?: string[]
     // Info.plist and entitlement keys native.app does not model (a tracking
     // prompt, an sdk's key). a key native.app or the template already writes
     // is rejected: set it through its field instead.
@@ -375,6 +386,27 @@ export function validateNativeApp(
       const name = font.split('/').pop() ?? font
       if (names.has(name)) fail(`fonts lists ${name} twice`)
       names.add(name)
+    }
+  }
+  if (manifest.ios?.resources !== undefined) {
+    if (!Array.isArray(manifest.ios.resources)) fail('ios.resources must be an array')
+    const names = new Set([
+      'info.plist', 'launchscreen.storyboard', 'one-bridging-header.h',
+      'appdelegate.swift', 'scenedelegate.swift', 'oneappintents.swift',
+      'privacyinfo.xcprivacy', `${manifest.name.toLowerCase()}.entitlements`,
+      'oneappwidgets.entitlements',
+      ...(manifest.fonts ?? []).map((file) => file.split('/').pop()!.toLowerCase()),
+      ...(manifest.ios.googleServicesFile ? ['googleservice-info.plist'] : []),
+    ])
+    for (const file of manifest.ios.resources) {
+      if (typeof file !== 'string' || !file || file.startsWith('/') || file.split('/').includes('..')) {
+        fail('ios.resources entries must be project-relative file paths')
+      }
+      const name = file.split('/').pop()!
+      if (!/^[a-z0-9][a-z0-9._-]*$/i.test(name) || names.has(name.toLowerCase())) {
+        fail(`ios.resources has an invalid or duplicate bundle filename: ${name}`)
+      }
+      names.add(name.toLowerCase())
     }
   }
   if (manifest.version !== undefined && !VERSION.test(manifest.version)) {
@@ -679,11 +711,25 @@ export function validateNativeApp(
   ) {
     fail('ios.accentColor light and dark must be six-digit hex colors')
   }
+  const assetCatalog = manifest.ios?.assetCatalog
+  if (
+    assetCatalog !== undefined &&
+    (typeof assetCatalog !== 'string' || !assetCatalog.endsWith('.xcassets'))
+  ) {
+    fail('ios.assetCatalog must name a folder ending in .xcassets')
+  }
   if (
     manifest.pictureInPicture !== undefined &&
     typeof manifest.pictureInPicture !== 'boolean'
   ) {
     fail('pictureInPicture must be a boolean')
+  }
+  if (
+    manifest.ios?.engine !== undefined &&
+    manifest.ios.engine !== 'hermes' &&
+    manifest.ios.engine !== 'bun'
+  ) {
+    fail(`ios.engine must be 'hermes' or 'bun'`)
   }
   if (manifest.updates !== undefined) {
     if (

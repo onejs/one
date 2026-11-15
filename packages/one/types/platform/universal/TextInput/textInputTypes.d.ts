@@ -1,5 +1,5 @@
 import type { ColorValue, KeyboardTypeOptions, ReturnKeyTypeOptions, StyleProp, TextStyle, ViewProps, ViewStyle } from 'react-native';
-import type { NativeState } from '../../syncNativeState';
+import type { NativeState } from '../../syncNativeState.js';
 export type TextInputSelection = {
     start: number;
     end?: number;

@@ -1,0 +1,12 @@
+import 'one/ios/UIKit/UIWindow';
+import 'one/ios/UIKit/UIViewController';
+import 'one/ios/UIKit/UIView';
+import 'one/ios/UIKit/UIPresentationController';
+import type { ResolvedDocumentPickerOptions } from './options.js';
+import type { DocumentPickerNativeResult } from '../specs/OneDocumentPicker.nitro.js';
+declare function getDocument(options: ResolvedDocumentPickerOptions): Promise<DocumentPickerNativeResult>;
+export declare function documentPickerNative(_verb: string): {
+    getDocument: typeof getDocument;
+};
+export {};
+//# sourceMappingURL=backend.sdk.d.ts.map

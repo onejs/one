@@ -1,7 +1,7 @@
 import type { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import type { DefaultNavigatorOptions, NavigationAction, NavigationProp, ParamListBase, TabActionHelpers, TabNavigationState, TabRouterOptions, useNavigationBuilder } from '@react-navigation/native';
 import { type ComponentType, type PropsWithChildren } from 'react';
-import type { TriggerMap } from './common';
+import type { TriggerMap } from './common.js';
 export type ExpoTabsProps = ExpoTabsNavigatorOptions;
 export type ExpoTabsNavigatorScreenOptions = {
     detachInactiveScreens?: boolean;

@@ -19,7 +19,7 @@ const linking = process.env.ONE_ROUTER_LINKING_CONFIG
 
 const routes = ctx.keys().reduce((acc, key) => {
   const path = key.replace(/^\.\//, `/${ONE_ROUTER_ROOT_FOLDER_NAME}/`)
-  acc[path] = async () => ctx(key)
+  acc[path] = () => ctx(key)
   return acc
 }, {})
 

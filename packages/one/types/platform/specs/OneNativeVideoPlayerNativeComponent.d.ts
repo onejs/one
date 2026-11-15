@@ -35,6 +35,7 @@ type OneNativeStyleNative = Readonly<{
 interface NativeProps extends ViewProps {
     url: string;
     autoplay: boolean;
+    contentFit: string;
     command: string;
     commandRevision: Double;
     seekToMs: Double;
@@ -42,6 +43,18 @@ interface NativeProps extends ViewProps {
     onNativeSDKEvent?: DirectEventHandler<Readonly<{
         name: string;
         value: string;
+    }>>;
+    onNativeVideoPlayerVideoReady?: DirectEventHandler<Readonly<{
+        width: Double;
+        height: Double;
+        eventCount: Int32;
+    }>>;
+    onNativeVideoPlayerVideoError?: DirectEventHandler<Readonly<{
+        message: string;
+        eventCount: Int32;
+    }>>;
+    onNativeVideoPlayerFirstFrame?: DirectEventHandler<Readonly<{
+        eventCount: Int32;
     }>>;
     onNativeVideoPlayerPlaybackStatus?: DirectEventHandler<Readonly<{
         state: string;

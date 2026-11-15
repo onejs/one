@@ -1,3 +1,4 @@
+#if ONE_GROUP_MAPS
 import CoreLocation
 import NitroModules
 import UIKit
@@ -636,3 +637,5 @@ private final class OneLocationDelegate: NSObject, CLLocationManagerDelegate {
     owner?.monitoringDidFail(for: region)
   }
 }
+
+#endif

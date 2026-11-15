@@ -113,6 +113,34 @@ After the archive process completes, Xcode will automatically open the Organizer
   You can also open the Organizer window by clicking "Window" → "Organizer" on the menu bar.
 </Notice>
 
+### Bun engine (experimental)
+
+Release builds can run on Bun's ahead-of-time compiler instead of Hermes. The release bundle is compiled into machine code at build time, inside Bun's fork of JavaScriptCore, and shipped in the signed app. Development builds keep Hermes and fast refresh.
+
+```ts
+one({
+  native: {
+    app: {
+      ios: { bundleId: 'com.example.app', engine: 'bun' },
+    },
+  },
+})
+```
+
+Apps on `expo prebuild` pass the same option to the plugin: `['vxrn/expo-plugin', { engine: 'bun' }]`.
+
+`pod install` downloads the engine from a pinned [onejs/bun-engine](https://github.com/onejs/bun-engine) release into `~/Library/Caches/one/bun-engine`, checks its checksum, and reuses it after that. Set `ONE_BUN_ENGINE_DIR` to use a local engine build instead. The bundle phase compiles `main.jsbundle` on every Release build and links the program into `BunCompat.framework`, since an App Store binary may have only one executable segment.
+
+Limits:
+
+* iOS only for now. Android stays on Hermes.
+* Code that is only known at run time, such as `new Function` and `eval`, runs in the interpreter without the speedup.
+* Apple only runs native code signed into the build, so an over-the-air update cannot carry compiled code. Updates are Hermes bytecode, and an app that launches one runs it on Hermes, which the build still links, until the next build brings the compiled program back.
+* Reanimated and worklets runtimes stay on Hermes.
+* The engine adds about 170 MB to the app today.
+
+Remove `engine: 'bun'` and prebuild again to go back to Hermes.
+
 
 ## Project Setup
 
@@ -206,6 +234,10 @@ The rest of `native.app` covers appearance, links, and store settings:
 - `ios.accentColor`: `{ light, dark }` hex colors for the app's tint (tab
   selection, text cursor, system controls), read in JS as
   `PlatformColor('AccentColor')`.
+- `ios.assetCatalog`: a project-relative `.xcassets` folder, in the format Xcode
+  writes, whose imagesets, colorsets and symbolsets prebuild merges into the
+  app's asset catalog, for `UIImage(named:)` and a tab's `image`. A name
+  prebuild generates itself, such as `AppIcon` or `AccentColor`, is an error.
 - `fonts`: project-relative `.ttf` or `.otf` files bundled into the app. iOS
   lists them in `UIAppFonts`; Android loads them from `assets/fonts`. Use the
   font's own family name in styles.
@@ -442,3 +474,12 @@ Try to delete `ios/.xcode.env.local`.
     ```
 2. Confirm `native.app.ios.bundleId` is set in `vite.config.ts`.
 3. Delete the generated `ios` directory and run `one prebuild` again.
+
+### App Transport Security
+
+Set `native.app.ios.appTransportSecurity` to replace the community template's
+`NSAppTransportSecurity` dictionary. For an app that must connect to arbitrary
+HTTP endpoints, use `{ NSAllowsArbitraryLoads: true }`. The replacement removes
+the template's local-networking exception, which otherwise changes how iOS
+interprets arbitrary loads. Use this field rather than setting the same key in
+`ios.infoPlist`.

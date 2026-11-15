@@ -23,10 +23,15 @@ import {
 import { pathToFileURL } from 'node:url'
 import micromatch from 'micromatch'
 import { parseSync } from 'oxc-parser'
+import { bundleAnalysisPlugins } from './bundleAnalysis'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
 import type { DevEngine } from 'rolldown/experimental'
 import { loadEnv as loadViteEnv, normalizePath } from 'vite'
-import { shouldStripFlow, transformHermesAsync } from '@vxrn/compiler'
+import {
+  cachedNativeTransform,
+  shouldStripFlow,
+  transformHermesAsync,
+} from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import {
   desktopReactNativeFile,
@@ -35,6 +40,7 @@ import {
 } from '@vxrn/utils/desktopReactNativeResolve'
 import { nativeAppDefines } from '@vxrn/utils/nativeAppManifest'
 import type { NativePlatform } from '@vxrn/utils/platformEnv'
+import { isBunIosEngine } from '@vxrn/utils'
 import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
@@ -445,6 +451,7 @@ function getNativePlugins(
     // rolldown-runtime WebSocket); RN's client otherwise opens a /hot socket and
     // red-boxes "unknown-message [object Object]" on every edit (new arch)
     hmrClientNoopPlugin(),
+    ...(!dev && isBunIosEngine(root, platform) ? [nativePromisePlugin()] : []),
     nativeIdentityAliasPlugin(platform),
     nativeAssetRegistryPlugin(root),
     // route every `react-native/*` import through the app's react native copy.
@@ -617,7 +624,7 @@ export function normalizeNativeCommonJSInterop(code: string): string {
   // same interop to external bindings, bundled helpers and HMR export lookups.
   // parsed, not pattern-matched: bundle string data can hold the same
   // `__toESM(x, 1)` text, and only the parser knows a call from data.
-  if (!code.includes('__toESM')) return code
+  if (!code.includes('__toESM') || !/,\s*1\s*\)/.test(code)) return code
   const { program, errors } = parseSync('native-bundle.js', code, { lang: 'js' })
   if (errors.length) {
     // stopping beats both alternatives: skipping leaves node-mode interop
@@ -783,7 +790,10 @@ function blankPreservingLines(match: string): string {
 }
 
 function countLines(code: string): number {
-  return (code.match(/\n/g)?.length ?? 0) + 1
+  let lines = 1
+  for (let index = 0; index < code.length; index++)
+    if (code.charCodeAt(index) === 10) lines++
+  return lines
 }
 
 /**
@@ -793,6 +803,7 @@ function countLines(code: string): number {
  * than a build that stops and says so.
  */
 function assertBundleLinesPreserved(before: string, after: string, stage: string): void {
+  if (before === after) return
   const beforeLines = countLines(before)
   const afterLines = countLines(after)
   if (beforeLines !== afterLines) {
@@ -1041,6 +1052,12 @@ export async function createNativeDevEngine(
 
     plugins: [
       virtualEntry.plugin,
+      {
+        name: 'vxrn:native-output-tracker',
+        generateBundle() {
+          generatedOutputs++
+        },
+      },
       ...getNativePlugins(
         root,
         platform,
@@ -1076,7 +1093,7 @@ try {
   var __WS = (init_WebSocket(), __toCommonJS(WebSocket_exports)).default;
   var __devServer = (init_getDevServer(), __toCommonJS(getDevServer_exports)).default();
   var __hmrUrl = __devServer.url.replace(/^http/, 'ws') + 'hot?platform=${platform}&clientId=' + encodeURIComponent(__rolldown_runtime__.clientId);
-  __rolldown_runtime__.setup(new __WS(__hmrUrl));
+  __rolldown_runtime__.setup(new __WS(__hmrUrl), __devServer.url + 'status');
 } catch(e) {
   // a swallowed failure here leaves the app permanently without Fast Refresh and
   // nothing on screen or in the terminal says so.
@@ -1085,11 +1102,20 @@ try {
 `,
   }
 
-  // rolldown does not await this callback, so `ensureLatestBuildOutput()`
-  // resolves while the emitted chunk is still being post-processed and
-  // `currentBundle` still holds the previous build. anything that has to see
-  // the finished bundle waits on this too.
-  let outputProcessed: Promise<void> = Promise.resolve()
+  // rolldown does not await onOutput, and delivers it on its own tick, so
+  // `ensureLatestBuildOutput()` can resolve before onOutput has even started
+  // and `currentBundle` still holds the previous build. generateBundle runs
+  // inside the build, before that promise resolves, so counting it there lets
+  // anything that needs the finished bundle wait for every generated output.
+  let generatedOutputs = 0
+  let processedOutputs = 0
+  let outputWaiters: Array<() => void> = []
+  const outputsProcessed = (): Promise<void> =>
+    processedOutputs >= generatedOutputs
+      ? Promise.resolve()
+      : new Promise<void>((resolve) => {
+          outputWaiters.push(resolve)
+        })
 
   let engine: Awaited<ReturnType<typeof dev>>
   let routeWatcher: FSWatcher | undefined
@@ -1115,14 +1141,15 @@ try {
 
   engine = await dev(inputOptions, outputOptions, {
     onOutput: async (result) => {
-      let finishOutput = () => {}
-      outputProcessed = new Promise<void>((resolve) => {
-        finishOutput = resolve
-      })
       try {
         await handleOutput(result)
       } finally {
-        finishOutput()
+        if (!(result instanceof Error)) processedOutputs++
+        if (processedOutputs >= generatedOutputs) {
+          const waiters = outputWaiters
+          outputWaiters = []
+          for (const resolve of waiters) resolve()
+        }
       }
     },
 
@@ -1308,8 +1335,14 @@ try {
     // a runtime invalidation marks the full output stale before reloading. pull
     // that output before serving the cached bundle to the restarted app.
     await queueEngineWork(async () => {
+      // a task that failed in the Hmr stage leaves ensureLatestBuildOutput()
+      // answering nothing, so build from the files as they are first.
+      const state = await engine.getBundleState()
+      if (state.lastBuildErrored && state.lastErrorStage === 'Hmr') {
+        await engine.triggerFullBuild()
+      }
       await engine.ensureLatestBuildOutput()
-      await outputProcessed
+      await outputsProcessed()
     })
     if (currentBundle) return currentBundle
     if (firstBuildError) throw firstBuildError
@@ -1346,7 +1379,7 @@ try {
       // calling ensureLatestBuildOutput() here would kick off a full bundle
       // rebuild that blocks WatchEvent HMR tasks and replaces the map before
       // the device has reloaded.
-      await outputProcessed
+      await outputsProcessed()
       if (currentBundle) return currentBundle.map
       return (await getBundle()).map
     },
@@ -1451,6 +1484,7 @@ export async function buildNativeBundle(
       ),
       // last, so it sees what every other plugin produced
       nativeBundlePostProcessPlugin(),
+      ...(await bundleAnalysisPlugins(root, platform)),
     ],
     output: {
       ...getNativeOutputOptions(prelude, sourcemap, minify),
@@ -1698,10 +1732,13 @@ Object.keys(_routes).forEach(function(key) {
     routes,
     plugin: {
       name: 'vxrn:native-virtual-entry',
-      resolveId(id) {
-        if (id === VIRTUAL_NATIVE_ENTRY) {
-          return resolvedId
-        }
+      resolveId: {
+        filter: { id: /^virtual:native-entry$/ },
+        handler(id) {
+          if (id === VIRTUAL_NATIVE_ENTRY) {
+            return resolvedId
+          }
+        },
       },
       load(id) {
         if (id !== resolvedId) return
@@ -1723,30 +1760,33 @@ Object.keys(_routes).forEach(function(key) {
 export function nativeAnimatedGuardPlugin(): Plugin {
   return {
     name: 'vxrn:native-animated-guard',
-    transform(code, id) {
-      if (!id.includes('animated/NativeAnimatedHelper')) return
-      const target = 'const method = nullthrows(NativeAnimatedModule)[methodName];'
-      if (!code.includes(target)) return
-      const transformed = code.replace(
-        target,
-        `${target} if (typeof method !== 'function') return;`
-      )
-      return {
-        code: transformed,
-        // this transform deliberately preserves line count. Give Rolldown a
-        // line-identity map so it can compose the earlier compiler map instead
-        // of dropping source-map coverage for this module.
-        map: {
-          version: 3,
-          sources: [id],
-          sourcesContent: [code],
-          names: [],
-          mappings: code
-            .split('\n')
-            .map((_, index) => (index === 0 ? 'AAAA' : 'AACA'))
-            .join(';'),
-        },
-      }
+    transform: {
+      filter: { id: /animated\/NativeAnimatedHelper/ },
+      handler(code, id) {
+        if (!id.includes('animated/NativeAnimatedHelper')) return
+        const target = 'const method = nullthrows(NativeAnimatedModule)[methodName];'
+        if (!code.includes(target)) return
+        const transformed = code.replace(
+          target,
+          `${target} if (typeof method !== 'function') return;`
+        )
+        return {
+          code: transformed,
+          // this transform deliberately preserves line count. Give Rolldown a
+          // line-identity map so it can compose the earlier compiler map instead
+          // of dropping source-map coverage for this module.
+          map: {
+            version: 3,
+            sources: [id],
+            sourcesContent: [code],
+            names: [],
+            mappings: code
+              .split('\n')
+              .map((_, index) => (index === 0 ? 'AAAA' : 'AACA'))
+              .join(';'),
+          },
+        }
+      },
     },
   }
 }
@@ -1780,16 +1820,20 @@ function missingDynamicImportPlugin(): Plugin {
   const PREFIX = '\0vxrn-missing-module:'
   return {
     name: 'vxrn:missing-dynamic-import',
-    async resolveId(source, importer, options) {
-      if (options.kind !== 'dynamic-import') return
-      if (source.startsWith('.') || source.startsWith('/') || source.includes(':')) return
-      if (source.startsWith('\0')) return
-      const resolved = await this.resolve(source, importer, {
-        skipSelf: true,
-        kind: options.kind,
-      })
-      if (resolved) return resolved
-      return { id: `${PREFIX}${source}`, external: false }
+    resolveId: {
+      filter: { id: { exclude: /^[./\0]|:/ } },
+      async handler(source, importer, options) {
+        if (options.kind !== 'dynamic-import') return
+        if (source.startsWith('.') || source.startsWith('/') || source.includes(':'))
+          return
+        if (source.startsWith('\0')) return
+        const resolved = await this.resolve(source, importer, {
+          skipSelf: true,
+          kind: options.kind,
+        })
+        if (resolved) return resolved
+        return { id: `${PREFIX}${source}`, external: false }
+      },
     },
     load(id) {
       if (!id.startsWith(PREFIX)) return
@@ -1809,11 +1853,14 @@ function environmentGuardPlugin(): Plugin {
   const NOOP = ['native-only']
   return {
     name: 'vxrn:environment-guard',
-    resolveId(source) {
-      if (THROWING.includes(source))
-        return { id: `\0env-guard-throw:${source}`, external: false }
-      if (NOOP.includes(source))
-        return { id: `\0env-guard-noop:${source}`, external: false }
+    resolveId: {
+      filter: { id: /^(?:server-only|client-only|web-only|native-only)$/ },
+      handler(source) {
+        if (THROWING.includes(source))
+          return { id: `\0env-guard-throw:${source}`, external: false }
+        if (NOOP.includes(source))
+          return { id: `\0env-guard-noop:${source}`, external: false }
+      },
     },
     load(id) {
       if (id.startsWith('\0env-guard-throw:')) {
@@ -1852,13 +1899,16 @@ export function hmrClientNoopPlugin(): Plugin {
   const RN_HMR_CLIENT_RE = /(^|[\\/])Utilities[\\/]HMRClient(\.[cm]?[jt]sx?)?$/
   return {
     name: 'vxrn:hmr-client-noop',
-    resolveId(source, importer) {
-      const fromReactNative =
-        source.startsWith('react-native/') ||
-        (importer != null && /(^|[\\/])react-native[\\/]/.test(importer))
-      if (fromReactNative && RN_HMR_CLIENT_RE.test(source)) {
-        return { id: '\0vxrn-hmr-client-noop', external: false }
-      }
+    resolveId: {
+      filter: { id: RN_HMR_CLIENT_RE },
+      handler(source, importer) {
+        const fromReactNative =
+          source.startsWith('react-native/') ||
+          (importer != null && /(^|[\\/])react-native[\\/]/.test(importer))
+        if (fromReactNative && RN_HMR_CLIENT_RE.test(source)) {
+          return { id: '\0vxrn-hmr-client-noop', external: false }
+        }
+      },
     },
     load(id) {
       if (id === '\0vxrn-hmr-client-noop') {
@@ -1866,6 +1916,35 @@ export function hmrClientNoopPlugin(): Plugin {
           code: `const HMRClient = { setup() {}, enable() {}, disable() {}, registerBundle() {}, log() {}, isEnabled() { return false } }\nexport default HMRClient`,
           moduleType: 'js',
         }
+      }
+    },
+  }
+}
+
+/**
+ * keep the engine's own Promise in production bundles. react native keeps it only
+ * when hermes reports one and otherwise installs the `promise` library, whose
+ * every reaction hops through setImmediate and a native microtask call. bun's
+ * Promise is compiled ahead of time and queues reactions in JSC, and dev builds
+ * run hermes, where react native's module is left alone for its rejection
+ * tracking.
+ */
+function nativePromisePlugin(): Plugin {
+  const RN_POLYFILL_PROMISE_RE = /(^|[\\/])polyfillPromise(\.js)?$/
+  return {
+    name: 'vxrn:native-promise',
+    resolveId(source, importer) {
+      if (
+        importer != null &&
+        /(^|[\\/])react-native[\\/]/.test(importer) &&
+        RN_POLYFILL_PROMISE_RE.test(source)
+      ) {
+        return { id: '\0vxrn-native-promise', external: false }
+      }
+    },
+    load(id) {
+      if (id === '\0vxrn-native-promise') {
+        return { code: 'export {}', moduleType: 'js' }
       }
     },
   }
@@ -1900,23 +1979,26 @@ function nativeIdentityAliasPlugin(platform: NativePlatform): Plugin {
   }
   return {
     name: 'vxrn:native-identity-alias',
-    async resolveId(source, importer) {
-      if (!importer || !source.startsWith('.')) return
-      const pkg = findPackage(dirname(importer))
-      if (!pkg) return
-      const key = `./${normalizePath(relative(pkg.root, resolve(dirname(importer), source)))}`
-      if (pkg.aliases[key] !== key) return
-      // A native identity mapping deliberately keeps the original implementation
-      // even when the browser field maps it elsewhere. Avoid alias recursion.
-      if (!resolver) {
-        const { ResolverFactory } = await import('rolldown/experimental')
-        resolver = new ResolverFactory({
-          ...getNativeResolveConfig(platform),
-          aliasFields: [],
-        })
-      }
-      const result = resolver.sync(dirname(importer), source)
-      if (result.path) return result.path
+    resolveId: {
+      filter: { id: /^\./ },
+      async handler(source, importer) {
+        if (!importer || !source.startsWith('.')) return
+        const pkg = findPackage(dirname(importer))
+        if (!pkg) return
+        const key = `./${normalizePath(relative(pkg.root, resolve(dirname(importer), source)))}`
+        if (pkg.aliases[key] !== key) return
+        // A native identity mapping deliberately keeps the original implementation
+        // even when the browser field maps it elsewhere. Avoid alias recursion.
+        if (!resolver) {
+          const { ResolverFactory } = await import('rolldown/experimental')
+          resolver = new ResolverFactory({
+            ...getNativeResolveConfig(platform),
+            aliasFields: [],
+          })
+        }
+        const result = resolver.sync(dirname(importer), source)
+        if (result.path) return result.path
+      },
     },
   }
 }
@@ -1940,39 +2022,44 @@ function nativeExportsPrecedencePlugin(root: string, platform: NativePlatform): 
   const resolvers = new Map<string, import('rolldown/experimental').ResolverFactory>()
   return {
     name: 'vxrn:native-exports-precedence',
-    async resolveId(source, importer, options) {
-      if (source.startsWith('.') || source.startsWith('/') || source.includes(':')) return
-      const resolved = await this.resolve(source, importer, {
-        skipSelf: true,
-        kind: options.kind,
-      })
-      if (!resolved || resolved.external || resolved.id.startsWith('\0')) return resolved
-      const name = source
-        .split('/')
-        .slice(0, source.startsWith('@') ? 2 : 1)
-        .join('/')
-      let directory = dirname(resolved.id)
-      while (readManifest(directory)?.name !== name) {
-        if (dirname(directory) === directory) return resolved
-        directory = dirname(directory)
-      }
-      const exportsMap = JSON.stringify(readManifest(directory)?.exports ?? null)
-      if (!exportsMap.includes('"react-native"') || !exportsMap.includes('"browser"')) {
-        return resolved
-      }
-      const kind = options.kind === 'require-call' ? 'require' : 'import'
-      let resolver = resolvers.get(kind)
-      if (!resolver) {
-        const { ResolverFactory } = await import('rolldown/experimental')
-        resolver = new ResolverFactory({
-          ...getNativeResolveConfig(platform),
-          conditionNames: ['react-native', kind, 'default'],
+    resolveId: {
+      filter: { id: { exclude: /^[./\0]|:/ } },
+      async handler(source, importer, options) {
+        if (source.startsWith('.') || source.startsWith('/') || source.includes(':'))
+          return
+        const resolved = await this.resolve(source, importer, {
+          skipSelf: true,
+          kind: options.kind,
         })
-        resolvers.set(kind, resolver)
-      }
-      const native = resolver.sync(importer ? dirname(importer) : root, source)
-      if (!native.path || native.path === resolved.id) return resolved
-      return this.resolve(native.path, importer, { skipSelf: true, kind: options.kind })
+        if (!resolved || resolved.external || resolved.id.startsWith('\0'))
+          return resolved
+        const name = source
+          .split('/')
+          .slice(0, source.startsWith('@') ? 2 : 1)
+          .join('/')
+        let directory = dirname(resolved.id)
+        while (readManifest(directory)?.name !== name) {
+          if (dirname(directory) === directory) return resolved
+          directory = dirname(directory)
+        }
+        const exportsMap = JSON.stringify(readManifest(directory)?.exports ?? null)
+        if (!exportsMap.includes('"react-native"') || !exportsMap.includes('"browser"')) {
+          return resolved
+        }
+        const kind = options.kind === 'require-call' ? 'require' : 'import'
+        let resolver = resolvers.get(kind)
+        if (!resolver) {
+          const { ResolverFactory } = await import('rolldown/experimental')
+          resolver = new ResolverFactory({
+            ...getNativeResolveConfig(platform),
+            conditionNames: ['react-native', kind, 'default'],
+          })
+          resolvers.set(kind, resolver)
+        }
+        const native = resolver.sync(importer ? dirname(importer) : root, source)
+        if (!native.path || native.path === resolved.id) return resolved
+        return this.resolve(native.path, importer, { skipSelf: true, kind: options.kind })
+      },
     },
   }
 }
@@ -1981,35 +2068,42 @@ function nativeDeclarationAliasPlugin(root: string, platform: NativePlatform): P
   const resolvers = new Map<string, import('rolldown/experimental').ResolverFactory>()
   return {
     name: 'vxrn:declaration-alias',
-    async resolveId(source, importer, options) {
-      if (source.startsWith('.') || source.startsWith('/') || source.includes(':')) return
-      const resolved = await this.resolve(source, importer, {
-        skipSelf: true,
-        kind: options.kind,
-      })
-      if (!resolved || resolved.external || !/\.d\.[cm]?ts$/.test(resolved.id)) {
-        return resolved
-      }
-      // tsconfig paths can supply types for a package without replacing its
-      // runtime export. Resolve that package with the same native conditions,
-      // but without the declaration alias, and preserve import/require selection.
-      const kind = options.kind === 'require-call' ? 'require' : 'import'
-      let resolver = resolvers.get(kind)
-      if (!resolver) {
-        const { ResolverFactory } = await import('rolldown/experimental')
-        resolver = new ResolverFactory({
-          ...getNativeResolveConfig(platform),
-          conditionNames: ['react-native', 'browser', kind, 'default'],
+    resolveId: {
+      filter: { id: { exclude: /^[./\0]|:/ } },
+      async handler(source, importer, options) {
+        if (source.startsWith('.') || source.startsWith('/') || source.includes(':'))
+          return
+        const resolved = await this.resolve(source, importer, {
+          skipSelf: true,
+          kind: options.kind,
         })
-        resolvers.set(kind, resolver)
-      }
-      const runtime = resolver.sync(importer ? dirname(importer) : root, source)
-      if (!runtime.path || /\.d\.[cm]?ts$/.test(runtime.path)) {
-        this.error(
-          `Native import ${source} resolves to a declaration without a runtime export`
-        )
-      }
-      return this.resolve(runtime.path, importer, { skipSelf: true, kind: options.kind })
+        if (!resolved || resolved.external || !/\.d\.[cm]?ts$/.test(resolved.id)) {
+          return resolved
+        }
+        // tsconfig paths can supply types for a package without replacing its
+        // runtime export. Resolve that package with the same native conditions,
+        // but without the declaration alias, and preserve import/require selection.
+        const kind = options.kind === 'require-call' ? 'require' : 'import'
+        let resolver = resolvers.get(kind)
+        if (!resolver) {
+          const { ResolverFactory } = await import('rolldown/experimental')
+          resolver = new ResolverFactory({
+            ...getNativeResolveConfig(platform),
+            conditionNames: ['react-native', 'browser', kind, 'default'],
+          })
+          resolvers.set(kind, resolver)
+        }
+        const runtime = resolver.sync(importer ? dirname(importer) : root, source)
+        if (!runtime.path || /\.d\.[cm]?ts$/.test(runtime.path)) {
+          this.error(
+            `Native import ${source} resolves to a declaration without a runtime export`
+          )
+        }
+        return this.resolve(runtime.path, importer, {
+          skipSelf: true,
+          kind: options.kind,
+        })
+      },
     },
   }
 }
@@ -2018,29 +2112,36 @@ function nativeAssetRegistryPlugin(root: string): Plugin {
   let registryPath: string | null | undefined
   return {
     name: 'vxrn:asset-registry',
-    async resolveId(source, importer) {
-      if (
-        source !== 'react-native/asset-registry' &&
-        source !== '@react-native/assets-registry/registry'
-      ) {
-        return
-      }
-      if (registryPath === undefined) {
-        try {
-          const reactNativeRoot = dirname(resolvePath('react-native/package.json', root))
-          // RN 0.87 moved the singleton into RN and exports this file as
-          // react-native/asset-registry. Older RN versions own it in a package.
-          const exportedRegistry = join(reactNativeRoot, 'src/asset-registry.js')
-          registryPath = existsSync(exportedRegistry)
-            ? exportedRegistry
-            : resolvePath('@react-native/assets-registry/registry', reactNativeRoot)
-        } catch {
-          registryPath = null
+    resolveId: {
+      filter: {
+        id: /^(?:react-native\/asset-registry|@react-native\/assets-registry\/registry)$/,
+      },
+      async handler(source, importer) {
+        if (
+          source !== 'react-native/asset-registry' &&
+          source !== '@react-native/assets-registry/registry'
+        ) {
+          return
         }
-      }
-      if (registryPath) {
-        return this.resolve(normalizePath(registryPath), importer, { skipSelf: true })
-      }
+        if (registryPath === undefined) {
+          try {
+            const reactNativeRoot = dirname(
+              resolvePath('react-native/package.json', root)
+            )
+            // RN 0.87 moved the singleton into RN and exports this file as
+            // react-native/asset-registry. Older RN versions own it in a package.
+            const exportedRegistry = join(reactNativeRoot, 'src/asset-registry.js')
+            registryPath = existsSync(exportedRegistry)
+              ? exportedRegistry
+              : resolvePath('@react-native/assets-registry/registry', reactNativeRoot)
+          } catch {
+            registryPath = null
+          }
+        }
+        if (registryPath) {
+          return this.resolve(normalizePath(registryPath), importer, { skipSelf: true })
+        }
+      },
     },
   }
 }
@@ -2054,13 +2155,26 @@ function nativePackageDedupePlugin(root: string): Plugin {
   ])
   return {
     name: 'vxrn:native-package-dedupe',
-    async resolveId(source) {
-      const parts = source.split('/')
-      const packageName = source.startsWith('@') ? parts.slice(0, 2).join('/') : parts[0]
-      if (!packages.has(packageName)) return
-      // use the app's package copy for contexts and subpaths, preserving the
-      // native export conditions selected by rolldown.
-      return this.resolve(source, join(root, 'package.json'), { skipSelf: true })
+    resolveId: {
+      filter: {
+        id: new RegExp(
+          '^(?:' +
+            [...packages]
+              .map((name) => name.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&'))
+              .join('|') +
+            ')(?:/|$)'
+        ),
+      },
+      async handler(source) {
+        const parts = source.split('/')
+        const packageName = source.startsWith('@')
+          ? parts.slice(0, 2).join('/')
+          : parts[0]
+        if (!packages.has(packageName)) return
+        // use the app's package copy for contexts and subpaths, preserving the
+        // native export conditions selected by rolldown.
+        return this.resolve(source, join(root, 'package.json'), { skipSelf: true })
+      },
     },
   }
 }
@@ -2078,47 +2192,50 @@ function reactNativeDedupePlugin(root: string): Plugin {
 
   return {
     name: 'vxrn:react-native-dedupe',
-    async resolveId(source, importer, options) {
-      if (source !== 'react-native' && !source.startsWith('react-native/')) return
+    resolveId: {
+      filter: { id: /^react-native(?:\/|$)/ },
+      async handler(source, importer, options) {
+        if (source !== 'react-native' && !source.startsWith('react-native/')) return
 
-      if (reactNativeRoot === undefined) {
-        try {
-          reactNativeRoot = realpathSync(
-            dirname(resolvePath('react-native/package.json', root))
-          )
-        } catch {
-          // no react native to resolve (for example a project that only stubs
-          // `react-native/asset-registry`). fall through to rolldown's own
-          // resolution instead of failing the build.
-          reactNativeRoot = null
+        if (reactNativeRoot === undefined) {
+          try {
+            reactNativeRoot = realpathSync(
+              dirname(resolvePath('react-native/package.json', root))
+            )
+          } catch {
+            // no react native to resolve (for example a project that only stubs
+            // `react-native/asset-registry`). fall through to rolldown's own
+            // resolution instead of failing the build.
+            reactNativeRoot = null
+          }
         }
-      }
-      if (!reactNativeRoot) return
+        if (!reactNativeRoot) return
 
-      // public subpaths can map to different filenames through package exports.
-      // resolve them from the app before handling private filesystem imports.
-      const exported = await this.resolve(source, join(root, 'package.json'), {
-        skipSelf: true,
-        kind: options.kind,
-      })
-      if (exported) return exported
+        // public subpaths can map to different filenames through package exports.
+        // resolve them from the app before handling private filesystem imports.
+        const exported = await this.resolve(source, join(root, 'package.json'), {
+          skipSelf: true,
+          kind: options.kind,
+        })
+        if (exported) return exported
 
-      const subpath =
-        source === 'react-native' ? 'index.js' : source.slice('react-native/'.length)
-      const unified = await this.resolve(
-        normalizePath(resolve(reactNativeRoot, subpath)),
-        importer,
-        { skipSelf: true, kind: options.kind }
-      )
-      if (unified) return unified
-      // never fall through to importer-relative resolution: a nested copy
-      // would load beside the app copy and initialize the runtime twice. a
-      // file missing from the app copy is version skew, and skew must fail
-      // loudly instead of forking the singleton.
-      this.error(
-        `[vxrn] '${source}' is missing from the app's react-native (${reactNativeRoot}), ` +
-          `imported by '${importer}'. refusing the nested copy so the native runtime stays a singleton.`
-      )
+        const subpath =
+          source === 'react-native' ? 'index.js' : source.slice('react-native/'.length)
+        const unified = await this.resolve(
+          normalizePath(resolve(reactNativeRoot, subpath)),
+          importer,
+          { skipSelf: true, kind: options.kind }
+        )
+        if (unified) return unified
+        // never fall through to importer-relative resolution: a nested copy
+        // would load beside the app copy and initialize the runtime twice. a
+        // file missing from the app copy is version skew, and skew must fail
+        // loudly instead of forking the singleton.
+        this.error(
+          `[vxrn] '${source}' is missing from the app's react-native (${reactNativeRoot}), ` +
+            `imported by '${importer}'. refusing the nested copy so the native runtime stays a singleton.`
+        )
+      },
     },
   }
 }
@@ -2170,192 +2287,163 @@ export function vxrnCompilerPlugin(
 
   return {
     name: 'vxrn:compiler',
-    async transform(code, id) {
-      if (!/\.[cm]?[jt]sx?$/.test(id)) return
-      if (id.includes('\0') || id.includes('virtual:')) return
+    transform: {
+      filter: { id: /\.[cm]?[jt]sx?$/ },
+      async handler(code, id) {
+        if (!/\.[cm]?[jt]sx?$/.test(id)) return
+        if (id.includes('\0') || id.includes('virtual:')) return
 
-      let active = 'transform'
-      let failed = false
-      let mark: ((stage: string, status: 'start' | 'end' | 'error') => void) | undefined
-      if (trace) {
+        let active = 'transform'
+        let failed = false
+        let mark: ((stage: string, status: 'start' | 'end' | 'error') => void) | undefined
+        if (trace) {
+          try {
+            const record = trace(id)
+            if (record) {
+              mark = (stage, status) => {
+                active = status === 'start' ? stage : 'transform'
+                try {
+                  record(stage, status)
+                } catch {
+                  // capture must not affect compilation.
+                }
+              }
+            }
+          } catch {
+            // capture must not affect compilation.
+          }
+        }
+        mark?.('transform', 'start')
         try {
-          const record = trace(id)
-          if (record) {
-            mark = (stage, status) => {
-              active = status === 'start' ? stage : 'transform'
-              try {
-                record(stage, status)
-              } catch {
-                // capture must not affect compilation.
-              }
-            }
+          const needsRefresh = isRefreshCandidate(id)
+
+          if (!compiler) {
+            mark?.('compiler-import', 'start')
+            compiler = await import('@vxrn/compiler')
+            mark?.('compiler-import', 'end')
           }
-        } catch {
-          // capture must not affect compilation.
-        }
-      }
-      mark?.('transform', 'start')
-      try {
-        const needsRefresh = isRefreshCandidate(id)
 
-        if (!compiler) {
-          mark?.('compiler-import', 'start')
-          compiler = await import('@vxrn/compiler')
-          mark?.('compiler-import', 'end')
-        }
-
-        const props = {
-          id,
-          code,
-          projectRoot,
-          development: dev,
-          // the compiler's native gate is ios or android. macos and linux use the
-          // ios transforms. module resolution stays .<platform> and does not follow .ios.
-          environment: (platform === 'android' ? 'android' : 'ios') as 'ios' | 'android',
-          reactForRNVersion: '19' as const,
-        }
-
-        mark?.('options', 'start')
-        let babelOptions = compiler.getBabelOptions(props)
-        mark?.('options', 'end')
-
-        let curCode = code
-        const intermediateMaps: any[] = []
-
-        const isWorkletPlugin = (entry: any) => {
-          if (!entry) return false
-          const name =
-            typeof entry === 'string' ? entry : Array.isArray(entry) ? entry[0] : null
-          return (
-            typeof name === 'string' &&
-            (name.includes('react-native-worklets') ||
-              name.includes('react-native-reanimated'))
-          )
-        }
-        const workletEntry = babelOptions?.plugins?.find(isWorkletPlugin)
-        const workletPluginOptions = Array.isArray(workletEntry)
-          ? workletEntry[1]
-          : undefined
-        const useWorklets =
-          compiler.isNativeWorkletsEnabled() &&
-          (Boolean(workletEntry) || compiler.shouldTransformWorklets({ id, code }))
-        const compilerPluginIndex =
-          babelOptions?.plugins?.findIndex(
-            (x) => Array.isArray(x) && x[0] === 'babel-plugin-react-compiler'
-          ) ?? -1
-
-        if (compilerPluginIndex !== -1) {
-          // preserve automatic worklet candidates before react compiler hoists them.
-          if (useWorklets) {
-            mark?.('worklets-prepare', 'start')
-            const prepared = compiler.prepareWorkletsForReactCompiler(
-              id,
-              curCode,
-              sourceMaps
-            )
-            mark?.('worklets-prepare', 'end')
-            if (prepared) {
-              curCode = prepared.code
-              if (prepared.map) intermediateMaps.push(prepared.map)
-            }
-          }
-          const compilerPluginConfig = babelOptions!.plugins![
-            compilerPluginIndex
-          ] as any[]
-          const compilerPluginOptions = compilerPluginConfig[1] || {}
-          const useBabelCompiler =
-            compilerPluginOptions.compiler === 'babel' ||
-            process.env.ONE_REACT_COMPILER === 'babel' ||
-            process.env.VXRN_REACT_COMPILER === 'babel'
-
-          if (!useBabelCompiler) {
-            mark?.('oxc-react-compiler', 'start')
-            const compilerOut = await compiler.transformOxcReactCompiler(
-              id,
-              curCode,
-              compilerPluginOptions,
-              sourceMaps
-            )
-            mark?.('oxc-react-compiler', 'end')
-            if (compilerOut?.code) {
-              curCode = compilerOut.code
-              if (sourceMaps && compilerOut.map) intermediateMaps.push(compilerOut.map)
-            }
-            babelOptions!.plugins!.splice(compilerPluginIndex, 1)
-            if (
-              babelOptions!.plugins!.length === 0 &&
-              !babelOptions!.configFile &&
-              !babelOptions!.babelrc
-            ) {
-              babelOptions = null
-            }
-          }
-        }
-
-        if (useWorklets) {
-          mark?.('worklets', 'start')
-          const workletOut = await compiler.transformWorklets(id, curCode, sourceMaps, {
+          const props = {
+            id,
+            code,
             projectRoot,
-            ...workletPluginOptions,
-          })
-          mark?.('worklets', 'end')
-          if (workletOut?.code) {
-            curCode = workletOut.code
-            if (sourceMaps && workletOut.map) intermediateMaps.push(workletOut.map)
+            development: dev,
+            // the compiler's native gate is ios or android. macos and linux use the
+            // ios transforms. module resolution stays .<platform> and does not follow .ios.
+            environment: (platform === 'android' ? 'android' : 'ios') as
+              | 'ios'
+              | 'android',
+            reactForRNVersion: '19' as const,
           }
-          if (babelOptions?.plugins) {
-            babelOptions.plugins = babelOptions.plugins.filter(
-              (entry) => !isWorkletPlugin(entry)
-            )
-            if (
-              babelOptions.plugins.length === 0 &&
-              !babelOptions.configFile &&
-              !babelOptions.babelrc
-            ) {
-              babelOptions = null
-            }
-          }
-        }
 
-        if (!babelOptions && !needsRefresh) {
-          if (curCode !== code) {
-            let finalMap: any = undefined
-            if (sourceMaps && intermediateMaps.length > 0) {
-              if (intermediateMaps.length === 1) {
-                finalMap = intermediateMaps[0]
-              } else {
-                const remapping = (await import('@jridgewell/remapping')).default
-                finalMap = remapping(intermediateMaps.slice().reverse(), () => null)
+          mark?.('options', 'start')
+          let babelOptions = compiler.getBabelOptions(props)
+          mark?.('options', 'end')
+
+          let curCode = code
+          const intermediateMaps: any[] = []
+
+          const isWorkletPlugin = (entry: any) => {
+            if (!entry) return false
+            const name =
+              typeof entry === 'string' ? entry : Array.isArray(entry) ? entry[0] : null
+            return (
+              typeof name === 'string' &&
+              (name.includes('react-native-worklets') ||
+                name.includes('react-native-reanimated'))
+            )
+          }
+          const workletEntry = babelOptions?.plugins?.find(isWorkletPlugin)
+          const workletPluginOptions = Array.isArray(workletEntry)
+            ? workletEntry[1]
+            : undefined
+          const useWorklets =
+            compiler.isNativeWorkletsEnabled() &&
+            (Boolean(workletEntry) || compiler.shouldTransformWorklets({ id, code }))
+          const compilerPluginIndex =
+            babelOptions?.plugins?.findIndex(
+              (x) => Array.isArray(x) && x[0] === 'babel-plugin-react-compiler'
+            ) ?? -1
+
+          if (compilerPluginIndex !== -1) {
+            // preserve automatic worklet candidates before react compiler hoists them.
+            if (useWorklets) {
+              mark?.('worklets-prepare', 'start')
+              const prepared = compiler.prepareWorkletsForReactCompiler(
+                id,
+                curCode,
+                sourceMaps
+              )
+              mark?.('worklets-prepare', 'end')
+              if (prepared) {
+                curCode = prepared.code
+                if (prepared.map) intermediateMaps.push(prepared.map)
               }
             }
-            return { code: curCode, map: finalMap }
-          }
-          return
-        }
+            const compilerPluginConfig = babelOptions!.plugins![
+              compilerPluginIndex
+            ] as any[]
+            const compilerPluginOptions = compilerPluginConfig[1] || {}
+            const useBabelCompiler =
+              compilerPluginOptions.compiler === 'babel' ||
+              process.env.ONE_REACT_COMPILER === 'babel' ||
+              process.env.VXRN_REACT_COMPILER === 'babel'
 
-        if (sourceMaps && babelOptions) {
-          // Individual stage maps are collected in intermediateMaps and composed
-          // once via remapping([wrapMap, refreshMap, ...intermediateMaps.reverse()]).
-          // Do not pass intermediateMaps as inputSourceMap to Babel, which would
-          // cause Babel to pre-compose and remapping to double-compose the compiler map.
-          babelOptions = {
-            ...babelOptions,
-            sourceMaps: true,
-            sourceFileName: id,
-          }
-          delete (babelOptions as any).inputSourceMap
-        }
-
-        if (babelOptions) {
-          mark?.('babel', 'start')
-          const result = await compiler.transformBabel(id, curCode, babelOptions)
-          mark?.('babel', 'end')
-          if (result?.code) {
-            curCode = result.code
-            if (sourceMaps && result.map) {
-              intermediateMaps.push(result.map)
+            if (!useBabelCompiler) {
+              mark?.('oxc-react-compiler', 'start')
+              const compilerOut = await compiler.transformOxcReactCompiler(
+                id,
+                curCode,
+                compilerPluginOptions,
+                sourceMaps
+              )
+              mark?.('oxc-react-compiler', 'end')
+              if (compilerOut?.code) {
+                curCode = compilerOut.code
+                if (sourceMaps && compilerOut.map) intermediateMaps.push(compilerOut.map)
+              }
+              babelOptions!.plugins!.splice(compilerPluginIndex, 1)
+              if (
+                babelOptions!.plugins!.length === 0 &&
+                !babelOptions!.configFile &&
+                !babelOptions!.babelrc
+              ) {
+                babelOptions = null
+              }
             }
-            if (!needsRefresh) {
+          }
+
+          if (useWorklets) {
+            mark?.('worklets', 'start')
+            const workletOptions = { projectRoot, ...workletPluginOptions }
+            const workletOut = await cachedNativeTransform(
+              'worklets',
+              id,
+              curCode,
+              [sourceMaps, workletOptions, compiler.getWorkletsVersion(projectRoot, id)],
+              () => compiler!.transformWorklets(id, curCode, sourceMaps, workletOptions)
+            )
+            mark?.('worklets', 'end')
+            if (workletOut?.code) {
+              curCode = workletOut.code
+              if (sourceMaps && workletOut.map) intermediateMaps.push(workletOut.map)
+            }
+            if (babelOptions?.plugins) {
+              babelOptions.plugins = babelOptions.plugins.filter(
+                (entry) => !isWorkletPlugin(entry)
+              )
+              if (
+                babelOptions.plugins.length === 0 &&
+                !babelOptions.configFile &&
+                !babelOptions.babelrc
+              ) {
+                babelOptions = null
+              }
+            }
+          }
+
+          if (!babelOptions && !needsRefresh) {
+            if (curCode !== code) {
               let finalMap: any = undefined
               if (sourceMaps && intermediateMaps.length > 0) {
                 if (intermediateMaps.length === 1) {
@@ -2367,45 +2455,82 @@ export function vxrnCompilerPlugin(
               }
               return { code: curCode, map: finalMap }
             }
+            return
           }
-        }
 
-        if (needsRefresh) {
-          mark?.('refresh-import', 'start')
-          const { transformSync } = await import('oxc-transform-react')
-          mark?.('refresh-import', 'end')
-          const jsxImportSource =
-            compiler.configuration?.enableNativewind && !id.includes('node_modules')
-              ? 'nativewind'
-              : 'react'
+          if (sourceMaps && babelOptions) {
+            // Individual stage maps are collected in intermediateMaps and composed
+            // once via remapping([wrapMap, refreshMap, ...intermediateMaps.reverse()]).
+            // Do not pass intermediateMaps as inputSourceMap to Babel, which would
+            // cause Babel to pre-compose and remapping to double-compose the compiler map.
+            babelOptions = {
+              ...babelOptions,
+              sourceMaps: true,
+              sourceFileName: id,
+            }
+            delete (babelOptions as any).inputSourceMap
+          }
 
-          mark?.('refresh', 'start')
-          const res = transformSync(id, curCode, {
-            jsx: {
-              development: dev,
-              runtime: 'automatic',
-              importSource: jsxImportSource,
-              refresh: {
-                refreshReg: '__vxrnRefreshReg',
-                refreshSig: '__vxrnRefreshSig',
+          if (babelOptions) {
+            mark?.('babel', 'start')
+            const result = await compiler.transformBabel(id, curCode, babelOptions)
+            mark?.('babel', 'end')
+            if (result?.code) {
+              curCode = result.code
+              if (sourceMaps && result.map) {
+                intermediateMaps.push(result.map)
+              }
+              if (!needsRefresh) {
+                let finalMap: any = undefined
+                if (sourceMaps && intermediateMaps.length > 0) {
+                  if (intermediateMaps.length === 1) {
+                    finalMap = intermediateMaps[0]
+                  } else {
+                    const remapping = (await import('@jridgewell/remapping')).default
+                    finalMap = remapping(intermediateMaps.slice().reverse(), () => null)
+                  }
+                }
+                return { code: curCode, map: finalMap }
+              }
+            }
+          }
+
+          if (needsRefresh) {
+            mark?.('refresh-import', 'start')
+            const { transformSync } = await import('oxc-transform-react')
+            mark?.('refresh-import', 'end')
+            const jsxImportSource =
+              compiler.configuration?.enableNativewind && !id.includes('node_modules')
+                ? 'nativewind'
+                : 'react'
+
+            mark?.('refresh', 'start')
+            const res = transformSync(id, curCode, {
+              jsx: {
+                development: dev,
+                runtime: 'automatic',
+                importSource: jsxImportSource,
+                refresh: {
+                  refreshReg: '__vxrnRefreshReg',
+                  refreshSig: '__vxrnRefreshSig',
+                },
               },
-            },
-            reactCompiler: false,
-            sourcemap: sourceMaps,
-          })
+              reactCompiler: false,
+              sourcemap: sourceMaps,
+            })
 
-          if (res.fatal) {
-            throw new Error(
-              `[vxrn:compiler] oxc react transform failed on ${id}: ${(res.errors ?? [])
-                .map((e: any) => e.message ?? String(e))
-                .join(', ')}`
-            )
-          }
+            if (res.fatal) {
+              throw new Error(
+                `[vxrn:compiler] oxc react transform failed on ${id}: ${(res.errors ?? [])
+                  .map((e: any) => e.message ?? String(e))
+                  .join(', ')}`
+              )
+            }
 
-          mark?.('refresh', 'end')
+            mark?.('refresh', 'end')
 
-          const escapedId = id.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
-          const header = `var __prevRefreshReg = globalThis.$RefreshReg$;
+            const escapedId = id.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+            const header = `var __prevRefreshReg = globalThis.$RefreshReg$;
 var __prevRefreshSig = globalThis.$RefreshSig$;
 if (globalThis.__ReactRefresh) {
   globalThis.$RefreshReg$ = function(type, id) {
@@ -2418,7 +2543,7 @@ var __vxrnRefreshReg = globalThis.$RefreshReg$;
 var __vxrnRefreshSig = globalThis.$RefreshSig$;
 
 `
-          const footer = `
+            const footer = `
 
 globalThis.$RefreshReg$ = __prevRefreshReg;
 globalThis.$RefreshSig$ = __prevRefreshSig;
@@ -2430,37 +2555,38 @@ if (import.meta.hot) {
   });
 }
 `
-          let out: string
-          let finalMap: any = undefined
+            let out: string
+            let finalMap: any = undefined
 
-          if (sourceMaps) {
-            const MagicString = (await import('magic-string')).default
-            const ms = new MagicString(res.code)
-            ms.prepend(header)
-            ms.append(footer)
-            out = ms.toString()
-            const wrapMap = ms.generateMap({ source: id, hires: true })
+            if (sourceMaps) {
+              const MagicString = (await import('magic-string')).default
+              const ms = new MagicString(res.code)
+              ms.prepend(header)
+              ms.append(footer)
+              out = ms.toString()
+              const wrapMap = ms.generateMap({ source: id, hires: true })
 
-            const allMaps = [
-              wrapMap,
-              res.map,
-              ...intermediateMaps.slice().reverse(),
-            ].filter(Boolean)
-            const remapping = (await import('@jridgewell/remapping')).default
-            finalMap = remapping(allMaps, () => null)
-          } else {
-            out = header + res.code + footer
+              const allMaps = [
+                wrapMap,
+                res.map,
+                ...intermediateMaps.slice().reverse(),
+              ].filter(Boolean)
+              const remapping = (await import('@jridgewell/remapping')).default
+              finalMap = remapping(allMaps, () => null)
+            } else {
+              out = header + res.code + footer
+            }
+
+            return { code: out, map: finalMap }
           }
-
-          return { code: out, map: finalMap }
+        } catch (error) {
+          failed = true
+          if (active !== 'transform') mark?.(active, 'error')
+          throw error
+        } finally {
+          mark?.('transform', failed ? 'error' : 'end')
         }
-      } catch (error) {
-        failed = true
-        if (active !== 'transform') mark?.(active, 'error')
-        throw error
-      } finally {
-        mark?.('transform', failed ? 'error' : 'end')
-      }
+      },
     },
   }
 }
@@ -2469,10 +2595,13 @@ if (import.meta.hot) {
 function mixedNativeModulePlugin(sourceMaps: boolean): Plugin {
   return {
     name: 'vxrn:mixed-native-module',
-    async transform(code, id) {
-      if (!/\.[cm]?[jt]sx?$/.test(id) || id.includes('\0')) return
-      const { transformMixedNativeModule } = await import('@vxrn/compiler')
-      return transformMixedNativeModule(code, id, sourceMaps)
+    transform: {
+      filter: { id: /\.[cm]?[jt]sx?$/, code: /\b(?:module|exports)\b/ },
+      async handler(code, id) {
+        if (!/\.[cm]?[jt]sx?$/.test(id) || id.includes('\0')) return
+        const { transformMixedNativeModule } = await import('@vxrn/compiler')
+        return transformMixedNativeModule(code, id, sourceMaps)
+      },
     },
   }
 }
@@ -2489,6 +2618,7 @@ function flowStripPlugin(): Plugin {
   return {
     name: 'vxrn:flow-strip',
     transform: {
+      filter: { id: /\.[cm]?[jt]sx?(?:\?.*)?$/ },
       async handler(code, id) {
         if (!shouldStripFlow(id, code)) return
 
@@ -2521,6 +2651,8 @@ function assetPlugin(opts: {
 
         const assetData = await getNativeAssetData(id, opts.root, opts.platform)
         opts.onAsset?.(assetData)
+        // the module imports one file but its hash, size and scales come from every scale sibling
+        for (const file of assetData.files) this.addWatchFile(file)
 
         if (opts.assetsDest) {
           copyNativeAssetFiles(assetData, opts.assetsDest, opts.platform)
@@ -2779,61 +2911,83 @@ export function hermesCompatSWCPlugin(
 
   return {
     name: 'vxrn:hermes-compat',
-    async transform(code, id) {
-      if (!/\.[cm]?[jt]sx?$/.test(id)) return
-      if (id.includes('\0') || id.includes('virtual:')) return
-      // skip files that don't need transformation
-      const hasClass = /\bclass(?:\s|\{)/.test(code)
-      const hasAsync = code.includes('async')
-      const hasBlockScopedBinding = /\b(?:const|let)\s/.test(code)
-      if (!hasClass && !hasAsync && !hasBlockScopedBinding) return
-      let output: { code: string; map?: any } | undefined
-      // Keep the Oxc limit for other large prebuilt files. Class, lexical binding,
-      // and async lowering below have no size exemption for legacy Hermes.
-      if (code.length <= 500_000 || hasClass) {
-        if (!oxc) oxc = await import('oxc-transform')
-        const lang = /\.[cm]?ts$/.test(id) ? 'ts' : id.endsWith('.tsx') ? 'tsx' : 'jsx'
-        const result = oxc.transformSync(id, code, {
-          lang,
-          target: 'es2020',
-          assumptions: { setPublicClassFields: true },
-          jsx: 'preserve',
-          sourcemap: sourceMaps,
-          sourceType: id.endsWith('.cjs') ? 'script' : 'module',
-        })
-        if (result.errors?.length) {
-          const err = result.errors[0]
-          throw new Error(err.message + (err.codeframe ? `\n${err.codeframe}` : ''))
-        }
-        output = {
-          code: result.code,
-          map: sourceMaps ? result.map : undefined,
-        }
-      }
-      if (hasClass || hasBlockScopedBinding) {
-        const { transformHermesClasses } = await import('@vxrn/compiler')
-        const classes = await transformHermesClasses(output?.code ?? code, id, sourceMaps)
-        if (classes) {
-          if (classes.map && output?.map) {
-            const remapping = (await import('@jridgewell/remapping')).default
-            classes.map = remapping([classes.map, output.map], () => null)
+    transform: {
+      filter: {
+        id: /\.[cm]?[jt]sx?$/,
+        code: /\b(?:class(?:\s|\{)|(?:const|let)\s|async)/,
+      },
+      async handler(code, id) {
+        if (!/\.[cm]?[jt]sx?$/.test(id)) return
+        if (id.includes('\0') || id.includes('virtual:')) return
+        return cachedNativeTransform(
+          'hermes-compat',
+          id,
+          code,
+          [dev, sourceMaps, keepNames],
+          async () => {
+            // skip files that don't need transformation
+            const hasClass = /\bclass(?:\s|\{)/.test(code)
+            const hasAsync = code.includes('async')
+            const hasBlockScopedBinding = /\b(?:const|let)\s/.test(code)
+            if (!hasClass && !hasAsync && !hasBlockScopedBinding) return
+            let output: { code: string; map?: any } | undefined
+            // Keep the Oxc limit for other large prebuilt files. Class, lexical binding,
+            // and async lowering below have no size exemption for legacy Hermes.
+            if (code.length <= 500_000 || hasClass) {
+              if (!oxc) oxc = await import('oxc-transform')
+              const lang = /\.[cm]?ts$/.test(id)
+                ? 'ts'
+                : id.endsWith('.tsx')
+                  ? 'tsx'
+                  : 'jsx'
+              const result = oxc.transformSync(id, code, {
+                lang,
+                target: 'es2020',
+                assumptions: { setPublicClassFields: true },
+                jsx: 'preserve',
+                sourcemap: sourceMaps,
+                sourceType: id.endsWith('.cjs') ? 'script' : 'module',
+              })
+              if (result.errors?.length) {
+                const err = result.errors[0]
+                throw new Error(err.message + (err.codeframe ? `\n${err.codeframe}` : ''))
+              }
+              output = {
+                code: result.code,
+                map: sourceMaps ? result.map : undefined,
+              }
+            }
+            if (hasClass || hasBlockScopedBinding) {
+              const { transformHermesClasses } = await import('@vxrn/compiler')
+              const classes = await transformHermesClasses(
+                output?.code ?? code,
+                id,
+                sourceMaps
+              )
+              if (classes) {
+                if (classes.map && output?.map) {
+                  const remapping = (await import('@jridgewell/remapping')).default
+                  classes.map = remapping([classes.map, output.map], () => null)
+                }
+                output = classes
+              }
+            }
+            const lowered = await transformHermesAsync(
+              output?.code ?? code,
+              id,
+              sourceMaps,
+              undefined,
+              keepNames
+            )
+            if (!lowered) return output
+            if (lowered.map && output?.map) {
+              const remapping = (await import('@jridgewell/remapping')).default
+              lowered.map = remapping([lowered.map, output.map], () => null)
+            }
+            return lowered
           }
-          output = classes
-        }
-      }
-      const lowered = await transformHermesAsync(
-        output?.code ?? code,
-        id,
-        sourceMaps,
-        undefined,
-        keepNames
-      )
-      if (!lowered) return output
-      if (lowered.map && output?.map) {
-        const remapping = (await import('@jridgewell/remapping')).default
-        lowered.map = remapping([lowered.map, output.map], () => null)
-      }
-      return lowered
+        )
+      },
     },
   }
 }
@@ -2856,22 +3010,25 @@ export function hermesLoopsPlugin(sourceMaps = false): Plugin {
 
   return {
     name: 'vxrn:hermes-loops',
-    async transform(code, id) {
-      if (!/\.[cm]?[jt]sx?$/.test(id)) return
-      if (id.includes('\0') || id.includes('virtual:')) return
+    transform: {
+      filter: { id: /\.[cm]?[jt]sx?$/, code: /\b(?:for|while)\s*(?:await\s+)?\(/ },
+      async handler(code, id) {
+        if (!/\.[cm]?[jt]sx?$/.test(id)) return
+        if (id.includes('\0') || id.includes('virtual:')) return
 
-      if (!compiler) compiler = await import('@vxrn/compiler')
-      const result = compiler.transformHermesLoops(code, id)
-      if (!result) return
+        if (!compiler) compiler = await import('@vxrn/compiler')
+        const result = compiler.transformHermesLoops(code, id)
+        if (!result) return
 
-      if (!sourceMaps) return { code: result.code, map: null }
-      if (result.maps.length === 1)
-        return { code: result.code, map: result.maps[0] as any }
-      const remapping = (await import('@jridgewell/remapping')).default
-      return {
-        code: result.code,
-        map: remapping(result.maps.slice().reverse(), () => null) as any,
-      }
+        if (!sourceMaps) return { code: result.code, map: null }
+        if (result.maps.length === 1)
+          return { code: result.code, map: result.maps[0] as any }
+        const remapping = (await import('@jridgewell/remapping')).default
+        return {
+          code: result.code,
+          map: remapping(result.maps.slice().reverse(), () => null) as any,
+        }
+      },
     },
   }
 }
@@ -3080,7 +3237,7 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
     console.error('[vxrn HMR]: DevSettings.reload is unavailable');
   }
 
-  setup(socket) {
+  setup(socket, statusUrl) {
     if (this._socket) return;
     this._socket = socket;
     var runtime = this;
@@ -3110,6 +3267,24 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
     });
     socket.addEventListener('error', function(event) {
       console.warn('[vxrn HMR]: connection error', (event && event.message) || event);
+    });
+    // a restarted dev server has none of this client's module state, so once it
+    // answers again the app reloads, as vite's client does. 1011 and 1013 come
+    // from a live server refusing this client, where a reload would only loop.
+    socket.addEventListener('close', function(event) {
+      if (!statusUrl || (event && (event.code === 1011 || event.code === 1013))) return;
+      console.warn('[vxrn HMR]: disconnected, reloading once the dev server answers');
+      var waitForServer = function() {
+        fetch(statusUrl).then(
+          function() {
+            runtime.reload('dev server restarted');
+          },
+          function() {
+            setTimeout(waitForServer, 1000);
+          }
+        );
+      };
+      setTimeout(waitForServer, 1000);
     });
   }
 }

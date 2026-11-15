@@ -1,4 +1,4 @@
-import type { ReservedRegion, ReservedRegionOptions, WindowSegment } from './types';
+import type { ReservedRegion, ReservedRegionOptions, WindowSegment } from './types.js';
 export interface ReservedRegionsSnapshot {
     regions: readonly ReservedRegion[];
     ready: boolean;

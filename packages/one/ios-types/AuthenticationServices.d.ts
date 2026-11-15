@@ -97,11 +97,6 @@ export declare class ASAccountAuthenticationModificationController extends SDKHa
  */
 export interface ASAccountAuthenticationModificationControllerDelegate {
     /**
-     * optional func accountAuthenticationModificationController(_ controller: ASAccountAuthenticationModificationController, didSuccessfullyComplete request: ASAccountAuthenticationModificationRequest, userInfo: [AnyHashable : Any]? = nil)
-     * @availability iOS 14.0+
-     */
-    "accountAuthenticationModificationControllerDidSuccessfullyCompleteUserInfo"?: (arg0: ASAccountAuthenticationModificationController, arg1: ASAccountAuthenticationModificationRequest, arg2: $SDK1) => void;
-    /**
      * optional func accountAuthenticationModificationController(_ controller: ASAccountAuthenticationModificationController, didFail request: ASAccountAuthenticationModificationRequest, error: any Error)
      * @availability iOS 14.0+
      */

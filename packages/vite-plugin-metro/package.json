@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-plugin-metro",
-  "version": "2.14.0",
+  "version": "2.18.0",
   "sideEffects": false,
   "type": "module",
   "main": "dist/cjs",
@@ -86,7 +86,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
     "@react-native/dev-middleware": "^0.88.0",
-    "@tamagui/build": "3.3.1",
+    "@tamagui/build": "3.3.3",
     "@types/babel__helper-plugin-utils": "^7",
     "@types/node": "^24.10.0",
     "depcheck": "^1.4.7",

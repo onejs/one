@@ -11,6 +11,7 @@ export interface SpeechSynthesisOptions {
     rate?: number;
     voice?: string;
     volume?: number;
+    useApplicationAudioSession?: boolean;
     onStart?: () => void;
     onDone?: () => void;
     onStopped?: () => void;

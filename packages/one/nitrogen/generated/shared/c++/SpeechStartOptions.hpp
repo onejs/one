@@ -32,6 +32,7 @@
 
 #include <string>
 #include <optional>
+#include <vector>
 
 namespace margelo::nitro::one {
 
@@ -41,10 +42,11 @@ namespace margelo::nitro::one {
   struct SpeechStartOptions final {
   public:
     std::optional<std::string> lang     SWIFT_PRIVATE;
+    std::optional<std::vector<std::string>> contextualStrings     SWIFT_PRIVATE;
 
   public:
     SpeechStartOptions() = default;
-    explicit SpeechStartOptions(std::optional<std::string> lang): lang(lang) {}
+    explicit SpeechStartOptions(std::optional<std::string> lang, std::optional<std::vector<std::string>> contextualStrings): lang(lang), contextualStrings(contextualStrings) {}
 
   public:
     friend bool operator==(const SpeechStartOptions& lhs, const SpeechStartOptions& rhs) = default;
@@ -60,12 +62,14 @@ namespace margelo::nitro {
     static inline margelo::nitro::one::SpeechStartOptions fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return margelo::nitro::one::SpeechStartOptions(
-        JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "lang")))
+        JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "lang"))),
+        JSIConverter<std::optional<std::vector<std::string>>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "contextualStrings")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::SpeechStartOptions& arg) {
       jsi::Object obj(runtime);
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "lang"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.lang));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "contextualStrings"), JSIConverter<std::optional<std::vector<std::string>>>::toJSI(runtime, arg.contextualStrings));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -77,6 +81,7 @@ namespace margelo::nitro {
         return false;
       }
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "lang")))) return false;
+      if (!JSIConverter<std::optional<std::vector<std::string>>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "contextualStrings")))) return false;
       return true;
     }
   };

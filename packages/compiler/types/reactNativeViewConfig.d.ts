@@ -16,7 +16,7 @@
  * TypeScript specs are parsed with oxc. React Native's own specs are Flow, which
  * oxc cannot parse, so those go through hermes-parser (which is not babel).
  */
-export declare function parseSpec(code: string, filename: string, projectRoot?: string): any;
+export declare function parseSpec(code: string, filename: string): any;
 /**
  * Generate the replacement for a spec's default export, plus the `Commands`
  * export when the spec declares one. Returns null when the file is not a spec

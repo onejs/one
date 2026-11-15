@@ -115,10 +115,9 @@ function resolveHermesc(root: string, platform: string): string {
   return npm
 }
 
-// one prebuild reads the runtime version from native.app.updates. an app
-// whose native project comes from expo prebuild configures One.Updates
-// through vxrn/expo-plugin instead and has no native.app, so it names the
-// runtime version it built with on the command line.
+// one prebuild reads the runtime version from native.app.updates. an app whose
+// native project comes from expo prebuild configures it through vxrn/expo-plugin
+// instead and has no native.app, so it names it on the command line.
 async function resolveRuntimeVersion(
   platform: 'ios' | 'android',
   flag: string | undefined
@@ -174,9 +173,11 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
     }
   }
   const root = process.cwd()
+  // citty parses a numeric flag such as 81 as a number; the manifest needs a string
+  const runtimeVersionFlag = lastValue(args.runtimeVersion)
   const runtimeVersion = await resolveRuntimeVersion(
     platform,
-    lastValue(args.runtimeVersion)
+    runtimeVersionFlag === undefined ? undefined : String(runtimeVersionFlag)
   )
   if (existsSync(out) && readdirSync(out).length > 0) {
     throw new Error(
@@ -204,8 +205,12 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
   const bundleJs = join(work, 'bundle.js')
   const packagerMap = join(work, 'bundle.js.map')
   const assetsDir = join(work, 'assets')
-  const bytecode = join(work, 'main.jsbundle')
+  const hermesBytecode = join(work, 'main.jsbundle')
   const composedMap = join(work, 'main.jsbundle.map')
+  // every update is hermes bytecode. a bun engine build runs only the program
+  // compiled into its binary and boots a downloaded update on hermes, which
+  // runs bytecode faster than bun's interpreter would run the plain bundle
+  const launchFile = hermesBytecode
   try {
     // the same bundle command the embedded builders run, through the same
     // react-native config override, so the bundler and entry match the
@@ -233,7 +238,8 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
         '--minify',
         platform === 'ios' ? 'true' : 'false',
       ],
-      { cwd: root, stdio: 'inherit' }
+      // OTA updates run on Hermes even for Bun-engine apps, so keep RN Promise polyfill
+      { cwd: root, stdio: 'inherit', env: { ...process.env, ONE_BUN_ENGINE: '0' } }
     )
     // the same compiler and flags as the embedded builders: -O bytecode,
     // warnings off on android like the gradle task. generating a hermes map
@@ -243,7 +249,7 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
     if (platform === 'android') hermescArgs.push('-w')
     hermescArgs.push('-O')
     if (intermediatesOut) hermescArgs.push('-output-source-map')
-    hermescArgs.push('-out', bytecode, bundleJs)
+    hermescArgs.push('-out', hermesBytecode, bundleJs)
     try {
       execFileSync(hermesc, hermescArgs, { cwd: root, stdio: 'inherit' })
     } catch (error) {
@@ -261,9 +267,11 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
       )
       execFileSync(
         process.execPath,
-        [composeSourceMaps, packagerMap, `${bytecode}.map`, '-o', composedMap],
+        [composeSourceMaps, packagerMap, `${hermesBytecode}.map`, '-o', composedMap],
         { cwd: root, stdio: 'inherit' }
       )
+    }
+    if (intermediatesOut) {
       writeFileSync(join(intermediatesOut, 'bundle.js'), readFileSync(bundleJs))
       writeFileSync(
         join(intermediatesOut, 'main.jsbundle.map'),
@@ -273,8 +281,8 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
 
     // asset paths install next to the selected bundle loaded from a file url.
     // every served file is content-named.
-    const bundleHash = sha256Base64Url(bytecode)
-    writeFileSync(join(assetsOut, bundleHash), readFileSync(bytecode))
+    const bundleHash = sha256Base64Url(launchFile)
+    writeFileSync(join(assetsOut, bundleHash), readFileSync(launchFile))
     const assets: Array<{ hash: string; url: string; path: string }> = []
     const assetFiles = collectFiles(assetsDir).map((file) => ({
       file,

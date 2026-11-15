@@ -1,8 +1,8 @@
 import type { ColorValue, StyleProp, ViewProps, ViewStyle } from 'react-native';
 import type { ReactNode } from 'react';
-import type { ComposeIconName } from './generated/composeIcons';
-export type { ComposeIconName } from './generated/composeIcons';
-import type { NativeState } from './syncNativeState';
+import type { ComposeIconName } from './generated/composeIcons.js';
+export type { ComposeIconName } from './generated/composeIcons.js';
+import type { NativeState } from './syncNativeState.js';
 export type ComposeStyle = Readonly<{
     backgroundColor?: ColorValue;
     foregroundColor?: ColorValue;

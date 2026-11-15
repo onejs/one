@@ -1,4 +1,9 @@
-import type { ContactChanges, ContactInfo, ContactInput, ContactsPermissionStatus } from '../specs/OneContacts.nitro';
+import 'one/ios/UIKit/UIWindow';
+import 'one/ios/UIKit/UIView';
+import 'one/ios/UIKit/UIPresentationController';
+import 'one/ios/Contacts/CNPostalAddress';
+import 'one/ios/Foundation/NSString';
+import type { ContactChanges, ContactInfo, ContactInput, ContactsPermissionStatus } from '../specs/OneContacts.nitro.js';
 declare function getPermissionStatus(): ContactsPermissionStatus;
 declare function requestPermission(): Promise<ContactsPermissionStatus>;
 declare function pickContact(): Promise<ContactInfo | undefined>;

@@ -40,12 +40,16 @@ export type StackScreenOptions = Omit<NativeStackNavigationOptions, 'presentatio
 
 // every route prop the navigator reads off a screen element (listeners,
 // initialParams, getId, redirect) passes through Stack.Screen unchanged.
+// options merge with Stack.Header children, so only the object form applies
 export type StackScreenProps = PropsWithChildren<
-  ScreenProps<
-    StackScreenOptions,
-    StackNavigationState<ParamListBase>,
-    NativeStackNavigationEventMap
-  >
+  Omit<
+    ScreenProps<
+      StackScreenOptions,
+      StackNavigationState<ParamListBase>,
+      NativeStackNavigationEventMap
+    >,
+    'options'
+  > & { options?: StackScreenOptions }
 >
 
 /**

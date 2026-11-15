@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { DocumentCameraImage } from './OneDocumentCamera.nitro';
+import type { DocumentCameraImage } from './OneDocumentCamera.nitro.js';
 export type DataScannerItemType = 'text' | 'barcode';
 export type DataScannerQualityLevel = 'balanced' | 'fast' | 'accurate';
 export type DataScannerTextContentType = 'dateTimeDuration' | 'emailAddress' | 'flightNumber' | 'fullStreetAddress' | 'shipmentTrackingNumber' | 'telephoneNumber' | 'URL' | 'currency';

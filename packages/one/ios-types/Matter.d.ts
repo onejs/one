@@ -255,7 +255,6 @@ type $SDK272 = (MTRServiceAreaClusterLandmarkInfoStruct) | null;
 type $SDK273 = (MTRDataTypeLocationDescriptorStruct) | null;
 type $SDK277 = ((arg0: (NativeError) | null) => Promise<void>);
 type $SDK278 = (MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct) | null;
-type $SDK279 = NativeMap<unknown, unknown>;
 type $SDK280 = (() => Promise<_Foundation_NSXPCConnection>);
 /**
  * class AttestationInfo
@@ -98540,28 +98539,6 @@ export declare class MTRDevice extends SDKHandle {
 }
 /** protocol MTRDeviceAttestationDelegate : NSObjectProtocol */
 export interface MTRDeviceAttestationDelegate {
-    /**
-     * optional func deviceAttestationCompleted(for controller: MTRDeviceController, opaqueDeviceHandle: UnsafeMutableRawPointer, attestationDeviceInfo: MTRDeviceAttestationDeviceInfo, error: (any Error)?)
-     * @availability iOS 16.4+
-     */
-    "deviceAttestationCompletedForOpaqueDeviceHandleAttestationDeviceInfoError"?: (arg0: MTRDeviceController, arg1: SDKHandle, arg2: MTRDeviceAttestationDeviceInfo, arg3: (NativeError) | null) => void;
-    /**
-     * optional func deviceAttestationFailed(for controller: MTRDeviceController, opaqueDeviceHandle: UnsafeMutableRawPointer, error: any Error)
-     * @availability iOS 16.4+
-     */
-    "deviceAttestationFailedForOpaqueDeviceHandleError"?: (arg0: MTRDeviceController, arg1: SDKHandle, arg2: NativeError) => void;
-    /**
-     * optional func deviceAttestation(_ controller: MTRDeviceController, completedForDevice device: UnsafeMutableRawPointer, attestationDeviceInfo: MTRDeviceAttestationDeviceInfo, error: (any Error)?)
-     * @availability iOS 16.1+
-     * @deprecated iOS 16.4
-     */
-    "deviceAttestationCompletedForDeviceAttestationDeviceInfoError"?: (arg0: MTRDeviceController, arg1: SDKHandle, arg2: MTRDeviceAttestationDeviceInfo, arg3: (NativeError) | null) => void;
-    /**
-     * optional func deviceAttestation(_ controller: MTRDeviceController, failedForDevice device: UnsafeMutableRawPointer, error: any Error)
-     * @availability iOS 16.1+
-     * @deprecated iOS 16.4
-     */
-    "deviceAttestationFailedForDeviceError"?: (arg0: MTRDeviceController, arg1: SDKHandle, arg2: NativeError) => void;
 }
 /**
  * class MTRDeviceAttestationDeviceInfo
@@ -130654,11 +130631,6 @@ export declare class MTRWriteParams extends SDKHandle {
  */
 export interface MTRXPCClientProtocol {
     /**
-     * optional func controller(_ controller: UUID, controllerConfigurationUpdated configuration: [AnyHashable : Any])
-     * @availability iOS 18.3+
-     */
-    "controllerControllerConfigurationUpdated"?: (arg0: string, arg1: $SDK279) => void;
-    /**
      * func device(_ nodeID: NSNumber, stateChanged state: MTRDeviceState)
      * @availability iOS 18.2+
      */
@@ -130692,7 +130664,7 @@ export interface MTRXPCClientProtocol {
      * func device(_ nodeID: NSNumber, internalStateUpdated dictionary: [AnyHashable : Any])
      * @availability iOS 18.2+
      */
-    "deviceInternalStateUpdated"?: (arg0: _Foundation_NSNumber, arg1: $SDK279) => void;
+    "deviceInternalStateUpdated"?: (arg0: _Foundation_NSNumber, arg1: NativeMap<unknown, unknown>) => void;
 }
 /**
  * protocol MTRXPCClientProtocol_MTRDevice : NSObjectProtocol
@@ -130733,18 +130705,13 @@ export interface MTRXPCClientProtocol_MTRDevice {
      * func device(_ nodeID: NSNumber, internalStateUpdated dictionary: [AnyHashable : Any])
      * @availability iOS 18.2+
      */
-    "deviceInternalStateUpdated"?: (arg0: _Foundation_NSNumber, arg1: $SDK279) => void;
+    "deviceInternalStateUpdated"?: (arg0: _Foundation_NSNumber, arg1: NativeMap<unknown, unknown>) => void;
 }
 /**
  * protocol MTRXPCClientProtocol_MTRDeviceController : NSObjectProtocol
  * @availability iOS 18.2+
  */
 export interface MTRXPCClientProtocol_MTRDeviceController {
-    /**
-     * optional func controller(_ controller: UUID, controllerConfigurationUpdated configuration: [AnyHashable : Any])
-     * @availability iOS 18.3+
-     */
-    "controllerControllerConfigurationUpdated"?: (arg0: string, arg1: $SDK279) => void;
 }
 /** typealias MTRXPCConnectBlock = () -> NSXPCConnection */
 export type MTRXPCConnectBlock = $SDK280;
@@ -130793,11 +130760,6 @@ export interface MTRXPCServerProtocol {
      * @availability iOS 18.3+
      */
     "deviceControllerUnregisterNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => void;
-    /**
-     * optional func deviceController(_ controller: UUID, updateControllerConfiguration controllerState: [AnyHashable : Any])
-     * @availability iOS 18.3+
-     */
-    "deviceControllerUpdateControllerConfiguration"?: (arg0: string, arg1: $SDK279) => void;
     /**
      * func deviceControllerGetState(_ controller: UUID, nodeID: NSNumber) async -> MTRDeviceState
      * @availability iOS 18.2+
@@ -130858,11 +130820,6 @@ export interface MTRXPCServerProtocol {
      * @availability iOS 18.4+
      */
     "deviceControllerNodeIDInvokeCommands"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: $SDK245) => Promise<$SDK246>;
-    /**
-     * optional func deviceController(_ controller: UUID, checkInWithContext context: [AnyHashable : Any])
-     * @availability iOS 18.3+
-     */
-    "deviceControllerCheckInWithContext"?: (arg0: string, arg1: $SDK279) => void;
 }
 /**
  * protocol MTRXPCServerProtocol_MTRDevice : NSObjectProtocol
@@ -130950,11 +130907,6 @@ export interface MTRXPCServerProtocol_MTRDeviceController {
      * @availability iOS 18.3+
      */
     "deviceControllerUnregisterNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => void;
-    /**
-     * optional func deviceController(_ controller: UUID, updateControllerConfiguration controllerState: [AnyHashable : Any])
-     * @availability iOS 18.3+
-     */
-    "deviceControllerUpdateControllerConfiguration"?: (arg0: string, arg1: $SDK279) => void;
 }
 /**
  * typealias ResponseHandler = (Any?, (any Error)?) -> Void

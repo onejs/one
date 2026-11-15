@@ -1,4 +1,4 @@
-import { type SDKHandle, type SDKSequence } from './wire';
+import { type SDKHandle, type SDKSequence } from './wire.js';
 export type SDKState<T> = {
     status: 'pending';
     value: undefined;

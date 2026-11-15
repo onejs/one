@@ -1,4 +1,4 @@
-import type { Notification, NotificationBehavior, NotificationHandlerInput } from './types';
+import type { Notification, NotificationBehavior, NotificationHandlerInput } from './types.js';
 export declare const showAllBehavior: NotificationBehavior;
 export declare const suppressBehavior: NotificationBehavior;
 export declare function normalizeBehavior(input: unknown): NotificationBehavior;

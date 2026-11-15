@@ -18,7 +18,7 @@
  */
 
 import { createRequire } from 'node:module'
-import { basename, join } from 'node:path'
+import { basename } from 'node:path'
 import { parseSync } from 'oxc-parser'
 
 const SELF_URL: string = typeof __filename !== 'undefined' ? __filename : import.meta.url
@@ -55,19 +55,12 @@ type TypeRef = { name: string; args: TypeRef[] }
 
 let hermesParser: any = undefined
 
-function getHermesParser(projectRoot?: string) {
+function getHermesParser() {
   if (hermesParser === undefined) {
     try {
-      const req = projectRoot
-        ? createRequire(join(projectRoot, 'package.json'))
-        : createRequire(SELF_URL)
-      hermesParser = req('hermes-parser')
+      hermesParser = createRequire(SELF_URL)('hermes-parser')
     } catch {
-      try {
-        hermesParser = createRequire(SELF_URL)('hermes-parser')
-      } catch {
-        hermesParser = null
-      }
+      hermesParser = null
     }
   }
   return hermesParser
@@ -496,7 +489,7 @@ const FILE_HEADER = `/**
 // entry
 // ---------------------------------------------------------------------------
 
-export function parseSpec(code: string, filename: string, projectRoot?: string): any {
+export function parseSpec(code: string, filename: string): any {
   const isTS = /\.[cm]?tsx?$/.test(filename)
   if (isTS) {
     const result = parseSync(filename, code, {
@@ -506,7 +499,7 @@ export function parseSpec(code: string, filename: string, projectRoot?: string):
     return result.program
   }
 
-  const hermes = getHermesParser(projectRoot)
+  const hermes = getHermesParser()
   if (!hermes) return null
   try {
     // `babel: false` keeps this on hermes' own ESTree output, which is what

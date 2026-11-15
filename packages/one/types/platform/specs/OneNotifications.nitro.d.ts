@@ -1,5 +1,5 @@
 import type { AnyMap, HybridObject } from 'react-native-nitro-modules';
-import type { NotificationBehavior, NotificationPermissionStatus } from '../notifications/types';
+import type { NotificationBehavior, NotificationPermissionStatus } from '../notifications/types.js';
 export type NativeTriggerType = 'timeInterval' | 'date' | 'push' | 'unknown';
 export interface NativeTrigger {
     type: NativeTriggerType;
@@ -29,6 +29,7 @@ export interface NativeContentInput {
     body?: string;
     data?: AnyMap;
     sound?: boolean;
+    soundName?: string;
     badge?: number;
     categoryIdentifier?: string;
 }
@@ -140,5 +141,7 @@ export interface OneNotifications extends HybridObject<{
     presentNotification(requestId: string, behavior: NotificationBehavior): void;
     getLastNotificationResponse(): NativeNotificationResponse | undefined;
     clearLastNotificationResponse(): void;
+    getPendingNotificationResponses(): NativeNotificationResponse[];
+    acknowledgeNotificationResponse(identifier: string): void;
 }
 //# sourceMappingURL=OneNotifications.nitro.d.ts.map

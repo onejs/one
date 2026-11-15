@@ -74,6 +74,8 @@ the binary. It writes `manifest.json` and an `assets` folder where every
 file is named by its SHA-256 hash. The manifest gets a fresh ID, the publish
 time as `createdAt`, the runtime version, and any `--metadata` you pass.
 The output folder must be empty, so each publish is a new folder.
+An app on the Bun engine runs a downloaded update on Hermes, since an
+update cannot carry the compiled program.
 
 **The embedded update.** The release build writes its own small manifest
 beside the bundle in the binary, with the build time as its `createdAt`.

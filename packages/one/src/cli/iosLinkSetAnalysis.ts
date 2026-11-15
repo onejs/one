@@ -1,5 +1,5 @@
 // which names of the One api a module reads, for the ios link set. the production
-// bundle's modules are parsed and every read of the `One` namespace, of `One.iOS`
+// bundle's modules are parsed and every read of the `One` namespace, of the platform namespaces
 // and of a `one` entry point's exports is recorded. the apps this serves use no eval
 // and build no names at runtime, so a name that is read statically is the whole story
 // and a computed read keeps every group.
@@ -30,8 +30,8 @@ export type LinkSetUsage = {
 
 export const emptyUsage = (): LinkSetUsage => ({ names: new Set(), keys: new Set(), all: false })
 
-// what a binding holds: the exports of a `one` entry point, the One object or One.iOS
-type Held = 'module' | 'one' | 'ios'
+// what a binding holds: the exports of a `one` entry point, the One object or a platform namespace
+type Held = 'module' | 'one' | 'platform'
 
 type Node = { type: string; [key: string]: any }
 
@@ -135,10 +135,10 @@ export function analyzeModule(
     return node.property.name
   }
 
-  // the move one read makes: One.iOS enters the iOS object, a read of the module's
+  // the move one read makes: One.iOS/UI/Android enters a platform object, a read of the module's
   // `One` enters One, and any other name is a feature that is recorded elsewhere
   const step = (held: Held, name: string): Held | undefined =>
-    held === 'module' && name === 'One' ? 'one' : held === 'one' && name === 'iOS' ? 'ios' : undefined
+    held === 'module' && name === 'One' ? 'one' : held === 'one' && ['iOS', 'UI', 'Android'].includes(name) ? 'platform' : undefined
 
   const heldBy = (raw: Node): Held | undefined => {
     const node = unwrap(raw)

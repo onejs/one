@@ -1,5 +1,5 @@
-import type { BrowserAuthSessionOptions, BrowserAuthSessionResult, BrowserOpenOptions, BrowserResult } from './types';
-export type { BrowserAuthSessionOptions, BrowserAuthSessionResult, BrowserOpenOptions, BrowserPresentationStyle, BrowserRedirectResult, BrowserResult, BrowserResultType, } from './types';
+import type { BrowserAuthSessionOptions, BrowserAuthSessionResult, BrowserOpenOptions, BrowserResult } from './types.js';
+export type { BrowserAuthSessionOptions, BrowserAuthSessionResult, BrowserOpenOptions, BrowserPresentationStyle, BrowserRedirectResult, BrowserResult, BrowserResultType, } from './types.js';
 declare function open(url: string, options?: BrowserOpenOptions): Promise<BrowserResult>;
 declare function dismiss(): Promise<BrowserResult>;
 declare function openAuthSession(url: string, redirectUrl?: string | null, options?: BrowserAuthSessionOptions): Promise<BrowserAuthSessionResult>;

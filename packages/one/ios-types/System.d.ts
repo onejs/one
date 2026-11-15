@@ -2137,168 +2137,170 @@ export interface MachPortRight {
  * @frozen struct Stat
  * @availability iOS 27.0+
  */
-export type Stat = (number & {});
-export declare const Stat: {
+export declare class Stat extends SDKHandle {
     /**
      * var permissions: FilePermissions { get set }
      * @availability iOS 27.0+
      */
-    getPermissions($self: Stat): FilePermissions;
-    setPermissions($self: Stat, value: FilePermissions): void;
+    get permissions(): FilePermissions;
+    set permissions(value: FilePermissions);
     /**
      * var st_birthtim: timespec { get set }
      * @availability iOS 27.0+
      */
-    getSt_birthtim($self: Stat): SDKHandle;
-    setSt_birthtim($self: Stat, value: SDKHandle): void;
+    get st_birthtim(): SDKHandle;
+    set st_birthtim(value: SDKHandle);
     /**
      * var sizeAllocated: Int64 { get }
      * @availability iOS 27.0+
      */
-    getSizeAllocated($self: Stat): number;
+    get sizeAllocated(): number;
     /**
      * var blocksAllocated: Int64 { get set }
      * @availability iOS 27.0+
      */
-    getBlocksAllocated($self: Stat): number;
-    setBlocksAllocated($self: Stat, value: number): void;
+    get blocksAllocated(): number;
+    set blocksAllocated(value: number);
     /**
      * var specialDeviceID: DeviceID { get set }
      * @availability iOS 27.0+
      */
-    getSpecialDeviceID($self: Stat): DeviceID;
-    setSpecialDeviceID($self: Stat, value: DeviceID): void;
+    get specialDeviceID(): DeviceID;
+    set specialDeviceID(value: DeviceID);
     /**
      * var generationNumber: UInt64 { get set }
      * @availability iOS 27.0+
      */
-    getGenerationNumber($self: Stat): number;
-    setGenerationNumber($self: Stat, value: number): void;
+    get generationNumber(): number;
+    set generationNumber(value: number);
     /**
      * var preferredIOBlockSize: Int { get set }
      * @availability iOS 27.0+
      */
-    getPreferredIOBlockSize($self: Stat): number;
-    setPreferredIOBlockSize($self: Stat, value: number): void;
+    get preferredIOBlockSize(): number;
+    set preferredIOBlockSize(value: number);
     /**
      * var mode: FileMode { get set }
      * @availability iOS 27.0+
      */
-    getMode($self: Stat): FileMode;
-    setMode($self: Stat, value: FileMode): void;
+    get mode(): FileMode;
+    set mode(value: FileMode);
     /**
      * var size: Int64 { get set }
      * @availability iOS 27.0+
      */
-    getSize($self: Stat): number;
-    setSize($self: Stat, value: number): void;
+    get size(): number;
+    set size(value: number);
     /**
      * var type: FileType { get set }
      * @availability iOS 27.0+
      */
-    getType($self: Stat): FileType;
-    setType($self: Stat, value: FileType): void;
+    get type(): FileType;
+    set type(value: FileType);
     /**
      * var flags: FileFlags { get set }
      * @availability iOS 27.0+
      */
-    getFlags($self: Stat): FileFlags;
-    setFlags($self: Stat, value: FileFlags): void;
+    get flags(): FileFlags;
+    set flags(value: FileFlags);
     /**
      * var inode: Inode { get set }
      * @availability iOS 27.0+
      */
-    getInode($self: Stat): Inode;
-    setInode($self: Stat, value: Inode): void;
+    get inode(): Inode;
+    set inode(value: Inode);
     /**
      * var userID: UserID { get set }
      * @availability iOS 27.0+
      */
-    getUserID($self: Stat): UserID;
-    setUserID($self: Stat, value: UserID): void;
+    get userID(): UserID;
+    set userID(value: UserID);
     /**
      * var groupID: GroupID { get set }
      * @availability iOS 27.0+
      */
-    getGroupID($self: Stat): GroupID;
-    setGroupID($self: Stat, value: GroupID): void;
+    get groupID(): GroupID;
+    set groupID(value: GroupID);
     /**
      * var st_atim: timespec { get set }
      * @availability iOS 27.0+
      */
-    getSt_atim($self: Stat): SDKHandle;
-    setSt_atim($self: Stat, value: SDKHandle): void;
+    get st_atim(): SDKHandle;
+    set st_atim(value: SDKHandle);
     /**
      * var st_ctim: timespec { get set }
      * @availability iOS 27.0+
      */
-    getSt_ctim($self: Stat): SDKHandle;
-    setSt_ctim($self: Stat, value: SDKHandle): void;
+    get st_ctim(): SDKHandle;
+    set st_ctim(value: SDKHandle);
     /**
      * var st_mtim: timespec { get set }
      * @availability iOS 27.0+
      */
-    getSt_mtim($self: Stat): SDKHandle;
-    setSt_mtim($self: Stat, value: SDKHandle): void;
+    get st_mtim(): SDKHandle;
+    set st_mtim(value: SDKHandle);
     /**
      * var deviceID: DeviceID { get set }
      * @availability iOS 27.0+
      */
-    getDeviceID($self: Stat): DeviceID;
-    setDeviceID($self: Stat, value: DeviceID): void;
+    get deviceID(): DeviceID;
+    set deviceID(value: DeviceID);
     /**
      * init(rawValue: CInterop.Stat)
      * @availability iOS 27.0+
      */
-    initRawValue(rawValue: SDKHandle): Stat;
+    static initRawValue(rawValue: SDKHandle): Stat;
     /**
      * var rawValue: CInterop.Stat
      * @availability iOS 27.0+
      */
-    getRawValue($self: Stat): SDKHandle;
-    setRawValue($self: Stat, value: SDKHandle): void;
+    get rawValue(): SDKHandle;
+    set rawValue(value: SDKHandle);
     /**
      * var linkCount: Int { get set }
      * @availability iOS 27.0+
      */
-    getLinkCount($self: Stat): number;
-    setLinkCount($self: Stat, value: number): void;
+    get linkCount(): number;
+    set linkCount(value: number);
     /**
      * init(_ path: UnsafePointer<CChar>, relativeTo fd: FileDescriptor, flags: Stat.Flags, retryOnInterrupt: Bool = true) throws(Errno)
      * @availability iOS 27.0+
      */
-    initRelativeToFlagsRetryOnInterrupt(path: SDKHandle, fd: FileDescriptor, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat;
+    static initRelativeToFlagsRetryOnInterrupt(path: SDKHandle, fd: FileDescriptor, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat;
     /**
      * init(_ path: FilePath, relativeTo fd: FileDescriptor, flags: Stat.Flags, retryOnInterrupt: Bool = true) throws(Errno)
      * @availability iOS 27.0+
      */
-    initRelativeToFlagsRetryOnInterrupt18061(path: FilePath, fd: FileDescriptor, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat;
+    static initRelativeToFlagsRetryOnInterrupt18061(path: FilePath, fd: FileDescriptor, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat;
     /**
      * init(_ fd: FileDescriptor, retryOnInterrupt: Bool = true) throws(Errno)
      * @availability iOS 27.0+
      */
-    initRetryOnInterrupt(fd: FileDescriptor, retryOnInterrupt?: boolean): Stat;
+    static initRetryOnInterrupt(fd: FileDescriptor, retryOnInterrupt?: boolean): Stat;
     /**
      * init(_ path: UnsafePointer<CChar>, followTargetSymlink: Bool = true, retryOnInterrupt: Bool = true) throws(Errno)
      * @availability iOS 27.0+
      */
-    initFollowTargetSymlinkRetryOnInterrupt(path: SDKHandle, followTargetSymlink?: boolean, retryOnInterrupt?: boolean): Stat;
+    static initFollowTargetSymlinkRetryOnInterrupt(path: SDKHandle, followTargetSymlink?: boolean, retryOnInterrupt?: boolean): Stat;
     /**
      * init(_ path: FilePath, followTargetSymlink: Bool = true, retryOnInterrupt: Bool = true) throws(Errno)
      * @availability iOS 27.0+
      */
-    initFollowTargetSymlinkRetryOnInterrupt95195(path: FilePath, followTargetSymlink?: boolean, retryOnInterrupt?: boolean): Stat;
+    static initFollowTargetSymlinkRetryOnInterrupt95195(path: FilePath, followTargetSymlink?: boolean, retryOnInterrupt?: boolean): Stat;
     /**
      * init(_ path: UnsafePointer<CChar>, flags: Stat.Flags, retryOnInterrupt: Bool = true) throws(Errno)
      * @availability iOS 27.0+
      */
-    initFlagsRetryOnInterrupt(path: SDKHandle, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat;
+    static initFlagsRetryOnInterrupt(path: SDKHandle, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat;
     /**
      * init(_ path: FilePath, flags: Stat.Flags, retryOnInterrupt: Bool = true) throws(Errno)
      * @availability iOS 27.0+
      */
-    initFlagsRetryOnInterrupt43608(path: FilePath, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat;
-};
+    static initFlagsRetryOnInterrupt43608(path: FilePath, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat;
+    readonly $type: {
+        "s:6System4StatV": true;
+    };
+}
 /**
  * @frozen struct Flags
  * @availability iOS 27.0+

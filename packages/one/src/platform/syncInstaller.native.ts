@@ -8,19 +8,18 @@ import type { SyncStateInstaller } from './syncInstaller'
 //
 // the installer stages the worklets UI holder global first (the reanimated
 // pattern): Android reads it to reach the UI runtime for the JSI install, and
-// iOS ignores it. loading worklets here guarantees its own install ran first.
+// iOS ignores it. initialize worklets when installing the first sync state.
 // worklets is an optional peer; without it Android's install reports that it
 // needs the UI runtime.
-let worklets: typeof import('react-native-worklets') | undefined
-try {
-  worklets = require('react-native-worklets')
-} catch {}
-
 export function getSyncStateInstaller(): SyncStateInstaller | null {
   const module = TurboModuleRegistry.get<SyncStateSpec>('OneNativeSyncState')
   if (!module) return null
   return {
     install: () => {
+      let worklets: typeof import('react-native-worklets') | undefined
+      try {
+        worklets = require('react-native-worklets')
+      } catch {}
       const globals = globalThis as Record<string, unknown>
       if (worklets) globals.__UI_WORKLET_RUNTIME_HOLDER = worklets.getUIRuntimeHolder()
       try {

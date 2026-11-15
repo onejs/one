@@ -1,3 +1,4 @@
+#if ONE_GROUP_MAPS
 #import "OneNativeUiMapComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
@@ -96,3 +97,12 @@ using namespace facebook::react;
   _overlaysDirty = YES;
 }
 @end
+
+#else
+#import "OneNativeUiMapComponentView.h"
+#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+using namespace facebook::react;
+@implementation OneNativeUiMapComponentView
++ (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeUiMapComponentDescriptor>(); }
+@end
+#endif

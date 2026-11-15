@@ -1,3 +1,4 @@
+#if ONE_GROUP_VIDEO
 import AVFoundation
 import AVKit
 import UIKit
@@ -317,3 +318,5 @@ final class OneNativePictureInPictureLayerView: UIView {
     }
   }
 }
+
+#endif

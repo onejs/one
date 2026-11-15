@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/compiler",
-  "version": "2.14.0",
+  "version": "2.18.0",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -42,6 +42,7 @@
     "@babel/plugin-transform-regenerator": "^7.28.4",
     "@jridgewell/remapping": "^2.3.0",
     "@swc/core": "1.16.18",
+    "@types/babel__core": "^7.20.5",
     "@vxrn/utils": "workspace:*",
     "@vxrn/vite-native-client": "workspace:*",
     "astring": "1.9.0",
@@ -57,10 +58,10 @@
   },
   "devDependencies": {
     "@jridgewell/trace-mapping": "^0.3.25",
-    "@tamagui/build": "3.3.1",
+    "@tamagui/build": "3.3.3",
     "depcheck": "^1.4.7",
     "react-native-worklets": "~0.13.0",
-    "rolldown": "^1.2.8",
+    "rolldown": "^1.2.19",
     "vite": "^8.2.2",
     "vitest": "^4.1.0",
     "react-native-css-interop": "^0.2.6"

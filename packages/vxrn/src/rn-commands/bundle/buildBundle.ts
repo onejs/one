@@ -48,7 +48,7 @@ export async function buildBundle(
     throw new Error(`Expected ctx.root to be a string, but got ${typeof root}`)
   }
 
-  const viteConfig = await resolveConfig({}, 'build', 'production')
+  const viteConfig = await resolveConfig({}, 'build', dev ? 'development' : 'production')
 
   // resolving the config runs the metro plugin only in metro mode, and metro is
   // an optional peer, so only that mode loads it
@@ -64,7 +64,7 @@ export async function buildBundle(
   }
 
   process.env.IS_VXRN_CLI = 'true'
-  loadEnv(dev ? 'development' : 'production', root)
+  await loadEnv(dev ? 'development' : 'production', root)
 
   if (!dev) {
     process.env.NODE_ENV = 'production'

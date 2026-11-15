@@ -126,11 +126,11 @@ export async function getBaseViteConfig(
         // bundle size optimizations
         {
           find: 'query-string',
-          replacement: resolvePath('@vxrn/query-string', root),
+          replacement: resolvePath('@vxrn/query-string', import.meta.dirname),
         },
         {
           find: 'url-parse',
-          replacement: resolvePath('@vxrn/url-parse', root),
+          replacement: resolvePath('@vxrn/url-parse', import.meta.dirname),
         },
       ],
 

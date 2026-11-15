@@ -53,6 +53,7 @@ private struct ListContent: View {
       ForEach(children.items) { child in child.content }
     })
     .oneNativeListStyle(model.listStyle)
+    .oneNativeSlotScrollTracking()
     .oneNativeContainerStyle(style)
     .oneNativeScheme(standalone, bridge.scheme)
   }

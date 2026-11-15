@@ -6,8 +6,8 @@
  * `devMode.implement` option. rolldown injects it at the top of the bundle
  * and references `__rolldown_runtime__` for module registration and HMR.
  */
-import type { DevRuntime as DefaultDevRuntime, HMRContext, HMRCustomMessage } from './hmr-types';
-import { enqueueUpdate, isReactRefreshBoundary } from './react-refresh-utils';
+import type { DevRuntime as DefaultDevRuntime, HMRContext, HMRCustomMessage } from './hmr-types.js';
+import { enqueueUpdate, isReactRefreshBoundary } from './react-refresh-utils.js';
 declare global {
     var __rolldown_runtime__: ReactNativeDevRuntime;
     var __turboModuleProxy: (moduleName: string) => any;

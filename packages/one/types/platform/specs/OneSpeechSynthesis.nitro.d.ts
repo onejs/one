@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-import type { SpeechSynthesisEvent, SpeechSynthesisVoice } from '../speech-synthesis/types';
+import type { SpeechSynthesisEvent, SpeechSynthesisVoice } from '../speech-synthesis/types.js';
 export interface SpeechSynthesisUtterance {
     text: string;
     language?: string;
@@ -7,6 +7,7 @@ export interface SpeechSynthesisUtterance {
     rate?: number;
     voice?: string;
     volume?: number;
+    useApplicationAudioSession?: boolean;
 }
 export interface OneSpeechSynthesis extends HybridObject<{
     ios: 'swift';

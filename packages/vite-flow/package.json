@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-flow",
-  "version": "2.14.0",
+  "version": "2.18.0",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
-    "@tamagui/build": "3.3.1"
+    "@tamagui/build": "3.3.3"
   },
   "publishConfig": {
     "access": "public"

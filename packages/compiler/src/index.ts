@@ -35,6 +35,7 @@ export * from './transformWorklets'
 export * from './reactNativeCodegen'
 export * from './transformHermesLoops'
 export * from './transformHermesAsync'
+export * from './nativeTransformCache'
 export * from './transformHermesClasses'
 export { clearTransformCache } from './cache'
 export { JS_GLOBALS } from './worklets/globals'
@@ -167,8 +168,8 @@ async function performBabelTransform({
       ...transformProps,
       userSetting: userTransform,
     })
-    // worklets run without requesting a babel pass.
-    if (!babelOptions && shouldTransformWorklets({ id, code })) {
+    const workletCandidate = shouldTransformWorklets({ id, code })
+    if (!babelOptions && workletCandidate) {
       babelOptions = { plugins: [] }
     }
 
@@ -212,8 +213,7 @@ async function performBabelTransform({
         ? workletEntry[1]
         : undefined
       const useWorklets =
-        isNativeWorkletsEnabled() &&
-        (Boolean(workletEntry) || shouldTransformWorklets({ id, code }))
+        isNativeWorkletsEnabled() && (Boolean(workletEntry) || workletCandidate)
       let curCode = code
       let workletPreparation: { code: string; map?: any } | null = null
       let compilerOut: { code: string; map?: any } | null = null
@@ -385,8 +385,11 @@ export async function createVXRNCompilerPlugin(
       name: 'one:compiler-resolve-refresh-runtime',
       apply: 'serve',
       enforce: 'pre', // Run before Vite default resolve to avoid syscalls
-      resolveId: (id) =>
-        id === runtimePublicPath || id === `${runtimePublicPath}.map` ? id : undefined,
+      resolveId: {
+        filter: { id: /^\/@react-refresh(?:\.map)?$/ },
+        handler: (id) =>
+          id === runtimePublicPath || id === `${runtimePublicPath}.map` ? id : undefined,
+      },
       load: (id) => {
         const basePath = dirname(fileURLToPath(import.meta.url))
         if (id === runtimePublicPath) {
@@ -418,9 +421,8 @@ export async function createVXRNCompilerPlugin(
           ) {
             {
               // an optional peer, installed only by apps that enable native css
-              const { cssToReactNativeRuntime } = await import(
-                'react-native-css-interop/css-to-rn/index.js'
-              )
+              const { cssToReactNativeRuntime } =
+                await import('react-native-css-interop/css-to-rn/index.js')
               const data = JSON.stringify(
                 cssToReactNativeRuntime(codeIn, { inlineRem: 16 })
               )
@@ -505,39 +507,43 @@ ${rootJS.code}
                   {
                     name: `transform-before-optimize-deps-${environment}`,
 
-                    async transform(code: string, id: string) {
-                      if (!nodeModulesFilter.test(id)) {
-                        return null
-                      }
+                    transform: {
+                      filter: { id: nodeModulesFilter },
+                      async handler(code: string, id: string) {
+                        if (!nodeModulesFilter.test(id)) {
+                          return null
+                        }
 
-                      perfStats.optimizeDeps.byEnvironment[environment].filesChecked++
+                        perfStats.optimizeDeps.byEnvironment[environment].filesChecked++
 
-                      const production =
-                        process.env.NODE_ENV === 'production' ||
-                        process.env.NODE_ENV === 'test'
+                        const production =
+                          process.env.NODE_ENV === 'production' ||
+                          process.env.NODE_ENV === 'test'
 
-                      debug?.(`[rolldown optimizeDeps] ${id}`)
+                        debug?.(`[rolldown optimizeDeps] ${id}`)
 
-                      const result = await performBabelTransform({
-                        id,
-                        code,
-                        projectRoot: config.root,
-                        environment,
-                        production,
-                        reactForRNVersion,
-                        optionsIn,
-                      })
+                        const result = await performBabelTransform({
+                          id,
+                          code,
+                          projectRoot: config.root,
+                          environment,
+                          production,
+                          reactForRNVersion,
+                          optionsIn,
+                        })
 
-                      if (!result) {
-                        return null
-                      }
+                        if (!result) {
+                          return null
+                        }
 
-                      perfStats.optimizeDeps.byEnvironment[environment].filesTransformed++
+                        perfStats.optimizeDeps.byEnvironment[environment]
+                          .filesTransformed++
 
-                      return {
-                        code: result.code,
-                        map: result.map,
-                      }
+                        return {
+                          code: result.code,
+                          map: result.map,
+                        }
+                      },
                     },
 
                     buildEnd() {
@@ -585,61 +591,64 @@ ${rootJS.code}
         config = resolvedConfig
       },
 
-      async transform(codeIn, _id) {
-        let code = codeIn
-        const environment = getEnvName(this.environment.name)
-        const isNative = environment === 'ios' || environment === 'android'
-        const production =
-          config.command === 'build' ||
-          process.env.NODE_ENV === 'production' ||
-          JSON.parse(
-            this.environment.config?.define?.['process.env.NODE_ENV'] || '""'
-          ) === 'production'
+      transform: {
+        filter: { id: /(?:\.(?:[cm]?js|[jt]sx?|mdx)(?:\?.*)?$|one-entry-native)/ },
+        async handler(codeIn, _id) {
+          let code = codeIn
+          const environment = getEnvName(this.environment.name)
+          const isNative = environment === 'ios' || environment === 'android'
+          const production =
+            config.command === 'build' ||
+            process.env.NODE_ENV === 'production' ||
+            JSON.parse(
+              this.environment.config?.define?.['process.env.NODE_ENV'] || '""'
+            ) === 'production'
 
-        // it has a hidden special character
-        // TODO: use === special char this is in sensitive perf path
-        const isEntry = _id.includes('one-entry-native')
+          // it has a hidden special character
+          // TODO: use === special char this is in sensitive perf path
+          const isEntry = _id.includes('one-entry-native')
 
-        if (isEntry) {
-          if (isNative && !production) {
-            code = `import '@vxrn/vite-native-client'\n${code}`
+          if (isEntry) {
+            if (isNative && !production) {
+              code = `import '@vxrn/vite-native-client'\n${code}`
+            }
+            if (isNative && configuration.enableNativewind) {
+              // ensure we have nativewind import in bundle root
+              code = `import * as x from 'nativewind'\n${code}`
+            }
+
+            // TODO sourcemap add two ';;'?
+            return code
           }
-          if (isNative && configuration.enableNativewind) {
-            // ensure we have nativewind import in bundle root
-            code = `import * as x from 'nativewind'\n${code}`
+
+          // filter out non-transformable files
+          const id = _id.split('?')[0]
+          const extension = extname(id)
+
+          if (extension === '.css' || !validParsers.has(extension)) {
+            return
           }
 
-          // TODO sourcemap add two ';;'?
-          return code
-        }
+          if (id.includes(`virtual:`)) {
+            return
+          }
 
-        // filter out non-transformable files
-        const id = _id.split('?')[0]
-        const extension = extname(id)
+          // avoid double-processing files already handled by optimizeDeps
+          if (codeIn.endsWith(`// vxrn-did-babel`)) {
+            debug?.(`[skip babel] ${id}`)
+            return
+          }
 
-        if (extension === '.css' || !validParsers.has(extension)) {
-          return
-        }
-
-        if (id.includes(`virtual:`)) {
-          return
-        }
-
-        // avoid double-processing files already handled by optimizeDeps
-        if (codeIn.endsWith(`// vxrn-did-babel`)) {
-          debug?.(`[skip babel] ${id}`)
-          return
-        }
-
-        return performBabelTransform({
-          id,
-          code: codeIn,
-          projectRoot: config.root,
-          environment,
-          production,
-          reactForRNVersion,
-          optionsIn,
-        })
+          return performBabelTransform({
+            id,
+            code: codeIn,
+            projectRoot: config.root,
+            environment,
+            production,
+            reactForRNVersion,
+            optionsIn,
+          })
+        },
       },
     },
 
@@ -649,44 +658,51 @@ ${rootJS.code}
       name: 'one:react-refresh-web',
       apply: 'serve',
 
-      transform(code, _id) {
-        if (this.environment.name !== 'client') return
-        if (code.includes(runtimePublicPath)) return // already wrapped
-        // vite's special queries (the same pattern as its SPECIAL_QUERY_RE) make
-        // a string, url, or worker wrapper module, never the component source.
-        // wrapping one imports the refresh runtime, which writes to `window` and
-        // so throws when a worker imports `Foo.tsx?raw`.
-        if (/[?&](?:worker|sharedworker|raw|url)\b/.test(_id)) return
+      transform: {
+        filter: {
+          id: {
+            include: /\.[jt]sx(?:\?.*)?$/,
+            exclude: /node_modules|virtual:|[?&](?:worker|sharedworker|raw|url)\b/,
+          },
+        },
+        handler(code, _id) {
+          if (this.environment.name !== 'client') return
+          if (code.includes(runtimePublicPath)) return // already wrapped
+          // vite's special queries (the same pattern as its SPECIAL_QUERY_RE) make
+          // a string, url, or worker wrapper module, never the component source.
+          // wrapping one imports the refresh runtime, which writes to `window` and
+          // so throws when a worker imports `Foo.tsx?raw`.
+          if (/[?&](?:worker|sharedworker|raw|url)\b/.test(_id)) return
 
-        const id = _id.split('?')[0]
-        if (id.includes('node_modules')) return
-        if (id.includes('virtual:')) return
-        if (id === runtimePublicPath) return
+          const id = _id.split('?')[0]
+          if (id.includes('node_modules')) return
+          if (id.includes('virtual:')) return
+          if (id === runtimePublicPath) return
 
-        const ext = extname(id)
-        if (ext !== '.tsx' && ext !== '.jsx') return
+          const ext = extname(id)
+          if (ext !== '.tsx' && ext !== '.jsx') return
 
-        const hasRefreshCalls = /\$RefreshReg\$\(/.test(code)
+          const hasRefreshCalls = /\$RefreshReg\$\(/.test(code)
 
-        let out = `import * as RefreshRuntime from "${runtimePublicPath}";\n\n`
+          let out = `import * as RefreshRuntime from "${runtimePublicPath}";\n\n`
 
-        if (hasRefreshCalls) {
-          out += `if (!window.$RefreshReg$) throw new Error("React refresh preamble was not loaded. Something is wrong.");
+          if (hasRefreshCalls) {
+            out += `if (!window.$RefreshReg$) throw new Error("React refresh preamble was not loaded. Something is wrong.");
 const prevRefreshReg = window.$RefreshReg$;
 const prevRefreshSig = window.$RefreshSig$;
 window.$RefreshReg$ = RefreshRuntime.getRefreshReg("${id}");
 window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
 
 `
-        }
+          }
 
-        out += code
+          out += code
 
-        if (hasRefreshCalls) {
-          out += `\n\nwindow.$RefreshReg$ = prevRefreshReg;\nwindow.$RefreshSig$ = prevRefreshSig;\n`
-        }
+          if (hasRefreshCalls) {
+            out += `\n\nwindow.$RefreshReg$ = prevRefreshReg;\nwindow.$RefreshSig$ = prevRefreshSig;\n`
+          }
 
-        out += `
+          out += `
 RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
   RefreshRuntime.registerExportsForReactRefresh("${id}", currentExports);
   import.meta.hot.accept((nextExports) => {
@@ -697,7 +713,8 @@ RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
 });
 `
 
-        return { code: out, map: null }
+          return { code: out, map: null }
+        },
       },
     },
   ]
