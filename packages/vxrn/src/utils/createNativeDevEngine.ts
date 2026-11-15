@@ -2960,15 +2960,11 @@ export function hermesCompatSWCPlugin(
             const hasBlockScopedBinding = /\b(?:const|let)\s/.test(code)
             if (!hasClass && !hasAsync && !hasBlockScopedBinding) return
             let output: { code: string; map?: any } | undefined
-            // Keep the Oxc limit for other large prebuilt files. Class, lexical binding,
-            // and async lowering below have no size exemption for legacy Hermes.
-            if (code.length <= 500_000 || hasClass) {
+            const lang = /\.[cm]?ts$/.test(id) ? 'ts' : id.endsWith('.tsx') ? 'tsx' : 'jsx'
+            // Keep the Oxc limit for other large prebuilt javascript. TypeScript always
+            // goes through it, since the lowering below parses plain javascript.
+            if (code.length <= 500_000 || hasClass || lang !== 'jsx') {
               if (!oxc) oxc = await import('oxc-transform')
-              const lang = /\.[cm]?ts$/.test(id)
-                ? 'ts'
-                : id.endsWith('.tsx')
-                  ? 'tsx'
-                  : 'jsx'
               const result = oxc.transformSync(id, code, {
                 lang,
                 target: 'es2020',
