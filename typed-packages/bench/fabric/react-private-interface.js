@@ -32,8 +32,9 @@ function diffProps(payload, prev, next, valid) {
   return payload
 }
 
+// fabricUIManager is a native host object in an app, which no compiler sees into, so it is built at run time here
 const roots = new Map()
-const fabricUIManager = {
+const fabricUIManager = new Function('roots', `return {
   createNode: (tag, viewName, rootTag, props, handle) => ({ tag, viewName, props, children: [] }),
   cloneNodeWithNewChildren: (node) => ({ ...node, children: [] }),
   cloneNodeWithNewProps: (node, props) => ({ ...node, props: { ...node.props, ...props } }),
@@ -50,7 +51,7 @@ const fabricUIManager = {
   unstable_ContinuousEventPriority: 8,
   unstable_IdleEventPriority: 268435456,
   unstable_getCurrentEventPriority: () => 32,
-}
+}`)(roots)
 
 module.exports = {
   roots,

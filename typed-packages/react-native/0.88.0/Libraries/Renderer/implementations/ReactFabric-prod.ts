@@ -11,10 +11,10 @@
 "use strict";
 require("react-native/setup-env");
 var reactPrivateInterface = require("react-native/react-private-interface"),
-  React = require("react"),
-  Scheduler = require("scheduler"),
+  React: RR.ReactModule = require("react"),
+  Scheduler: RR.SchedulerModule = require("scheduler"),
   isArrayImpl = Array.isArray,
-  ReactSharedInternals =
+  ReactSharedInternals: RR.SharedInternals =
     React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE,
   assign = Object.assign,
   prefix,
