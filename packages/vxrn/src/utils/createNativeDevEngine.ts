@@ -1885,46 +1885,91 @@ export function hmrClientNoopPlugin(): Plugin {
 }
 
 /**
- * a module installed with a typed copy beside it (`X.aot.ts` next to `X.js`) stays
- * out of a bundle that bun compiles: the bundle requires a copy of the typed file
- * by path and bun compiles it with its types. that copy reads its requires from
- * the bundle, so it shares the bundle's modules instead of loading a second set.
+ * a package entry with an "aot" condition in its exports carries its typed source.
+ * a bundle that bun compiles leaves such an entry out and requires it through a
+ * shim inside node_modules, by package name: bun builds a dependency reached that
+ * way from the typed source, without the strict rules of app code. the typed
+ * source reads the modules it shares with the bundle (react, react native) through
+ * globalThis.__vxrnBridge, from the ids its package.json lists under "aotBridge".
  */
 function typedPackagesPlugin(root: string): Plugin {
-  const REQUIRE = /\brequire\(\s*(["'])([^"'\n]+)\1\s*\)/g
-  const dir = join(root, 'node_modules', '.vxrn', 'typed')
-  const copies = new Set<string>()
+  type TypedPackage = { dir: string; name: string; exports: Record<string, unknown>; bridge: string[] }
+  const PREFIX = '\0vxrn-typed:'
+  const packages = new Map<string, TypedPackage | null>()
+  const entries = new Map<string, TypedPackage>()
+  const shims = new Set<string>()
+
+  const packageOf = (file: string): TypedPackage | null => {
+    let dir = dirname(file)
+    const seen: string[] = []
+    let found: TypedPackage | null = null
+    while (basename(dir) !== 'node_modules' && dir !== dirname(dir)) {
+      if (packages.has(dir)) {
+        found = packages.get(dir)!
+        break
+      }
+      seen.push(dir)
+      const manifest = join(dir, 'package.json')
+      if (existsSync(manifest)) {
+        const json = JSON.parse(readFileSync(manifest, 'utf8'))
+        if (json.name) {
+          found =
+            json.exports && typeof json.exports === 'object'
+              ? { dir, name: json.name, exports: json.exports, bridge: json.aotBridge ?? [] }
+              : null
+          break
+        }
+      }
+      dir = dirname(dir)
+    }
+    for (const each of seen) packages.set(each, found)
+    return found
+  }
+  const targets = (value: unknown): string[] =>
+    typeof value === 'string'
+      ? [value]
+      : value && typeof value === 'object'
+        ? Object.entries(value).flatMap(([condition, v]) => (condition === 'aot' ? [] : targets(v)))
+        : []
+
   return {
     name: 'vxrn:typed-packages',
-    resolveId(source) {
-      if (copies.has(source)) return { id: source, external: true }
+    async resolveId(source, importer, options) {
+      if (shims.has(source)) return { id: source, external: true }
+      if (source.startsWith('\0')) return null
+      const from = importer?.startsWith(PREFIX)
+        ? join(entries.get(importer.slice(PREFIX.length))!.dir, 'package.json')
+        : importer
+      const resolved = await this.resolve(source, from, { ...options, skipSelf: true })
+      if (!resolved || resolved.external) return resolved
+      const pkg = packageOf(resolved.id)
+      if (!pkg) return resolved
+      for (const [key, value] of Object.entries(pkg.exports)) {
+        if (!key.startsWith('.') || !value || typeof value !== 'object' || !('aot' in value)) continue
+        const specifier = pkg.name + key.slice(1)
+        if (source === specifier || targets(value).some((t) => resolve(pkg.dir, t) === resolved.id)) {
+          entries.set(specifier, pkg)
+          return PREFIX + specifier
+        }
+      }
+      return resolved
     },
     load(id) {
-      if (!/\.[cm]?js$/.test(id)) return
-      const typedPath = id.replace(/\.[cm]?js$/, '.aot.ts')
-      if (!existsSync(typedPath)) return
-      const typed = readFileSync(typedPath, 'utf8')
-      const key = createHash('sha256').update(typedPath).update(typed).digest('hex').slice(0, 16)
-      const name = JSON.stringify(`__vxrnTyped_${key}`)
-      const deps = [...new Set(Array.from(typed.matchAll(REQUIRE), (m) => m[2]!))]
-      // a package that names the "aot" condition: bun compiles it with its types
-      // and, as for any package, does not stop the build on its type errors
-      const pkg = join(dir, `${basename(typedPath, '.aot.ts')}-${key}`)
-      const copy = join(pkg, 'index.aot.ts')
-      mkdirSync(pkg, { recursive: true })
-      writeFileSync(
-        join(pkg, 'package.json'),
-        JSON.stringify({ name: basename(pkg), exports: { '.': { aot: './index.aot.ts' } } })
-      )
-      writeFileSync(
-        copy,
-        typed.replace(REQUIRE, (_, _q, dep) => `(globalThis as any)[${name}](${JSON.stringify(dep)})`)
-      )
-      copies.add(copy)
+      if (!id.startsWith(PREFIX)) return
+      const specifier = id.slice(PREFIX.length)
+      const pkg = entries.get(specifier)!
+      const key = createHash('sha256').update(specifier).digest('hex').slice(0, 16)
+      const shim = join(root, 'node_modules', '.vxrn', 'typed', `${key}.cjs`)
+      mkdirSync(dirname(shim), { recursive: true })
+      writeFileSync(shim, `module.exports = require(${JSON.stringify(specifier)})\n`)
+      shims.add(shim)
       return [
-        `var deps = {${deps.map((dep) => `${JSON.stringify(dep)}: () => require(${JSON.stringify(dep)})`).join(', ')}}`,
-        `globalThis[${name}] = (id) => deps[id]()`,
-        `module.exports = require(${JSON.stringify(copy)})`,
+        'var bridges = globalThis.__vxrnBridges || (globalThis.__vxrnBridges = {})',
+        ...pkg.bridge.map(
+          (dep) => `bridges[${JSON.stringify(dep)}] ||= () => require(${JSON.stringify(dep)})`
+        ),
+        'globalThis.__vxrnBridge = (id) => bridges[id]()',
+        `module.exports = require(${JSON.stringify(shim)})`,
       ].join('\n')
     },
   }
