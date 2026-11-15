@@ -189,6 +189,10 @@ class OneNativeComposeNodeManager :
         view.stageSwitchColors(value)
     }
 
+    override fun setMaterialColorScheme(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageMaterialColorScheme(value)
+    }
+
     override fun setCardColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageCardColors(value)
     }

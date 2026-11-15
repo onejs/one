@@ -897,3 +897,64 @@ export interface ComposeSyncSwitchProps extends Omit<ComposeNodeProps, 'children
   enabled?: boolean
   onCheckedChangeSync?: (checked: boolean) => void
 }
+
+// the roles of androidx.compose.material3.ColorScheme
+export type ComposeMaterialColorRole =
+  | 'primary'
+  | 'onPrimary'
+  | 'primaryContainer'
+  | 'onPrimaryContainer'
+  | 'inversePrimary'
+  | 'secondary'
+  | 'onSecondary'
+  | 'secondaryContainer'
+  | 'onSecondaryContainer'
+  | 'tertiary'
+  | 'onTertiary'
+  | 'tertiaryContainer'
+  | 'onTertiaryContainer'
+  | 'background'
+  | 'onBackground'
+  | 'surface'
+  | 'onSurface'
+  | 'surfaceVariant'
+  | 'onSurfaceVariant'
+  | 'surfaceTint'
+  | 'inverseSurface'
+  | 'inverseOnSurface'
+  | 'error'
+  | 'onError'
+  | 'errorContainer'
+  | 'onErrorContainer'
+  | 'outline'
+  | 'outlineVariant'
+  | 'scrim'
+  | 'surfaceBright'
+  | 'surfaceContainer'
+  | 'surfaceContainerHigh'
+  | 'surfaceContainerHighest'
+  | 'surfaceContainerLow'
+  | 'surfaceContainerLowest'
+  | 'surfaceDim'
+  | 'primaryFixed'
+  | 'primaryFixedDim'
+  | 'onPrimaryFixed'
+  | 'onPrimaryFixedVariant'
+  | 'secondaryFixed'
+  | 'secondaryFixedDim'
+  | 'onSecondaryFixed'
+  | 'onSecondaryFixedVariant'
+  | 'tertiaryFixed'
+  | 'tertiaryFixedDim'
+  | 'onTertiaryFixed'
+  | 'onTertiaryFixedVariant'
+
+export type ComposeMaterialColors = Partial<Record<ComposeMaterialColorRole, ColorValue>>
+
+export interface ComposeMaterialThemeProps {
+  children?: ReactNode
+  colorScheme: {
+    light?: ComposeMaterialColors
+    dark?: ComposeMaterialColors
+  }
+}
