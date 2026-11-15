@@ -191,12 +191,13 @@ describe('renderJSX edge cases', () => {
     const envelope = wire(
       await renderJSX(
         <ul>
-          {['a', 'b'].map((k) => (
-            <li key={`row-${k}`}>item-{k}</li>
+          {[1, 2].map((id) => (
+            <li key={id}>item-{id}</li>
           ))}
-          {['x', 'y'].map((k) => (
-            <Counter key={`counter-${k}`} start={k === 'x' ? 1 : 2} />
+          {[1, 2].map((id) => (
+            <Counter key={id} start={id} />
           ))}
+          <li>footer</li>
         </ul>
       )
     )
@@ -204,7 +205,9 @@ describe('renderJSX edge cases', () => {
     const keys = ((revived.props as any).children as React.ReactElement[]).map(
       (child) => child.key
     )
-    expect(keys).toEqual(['row-a', 'row-b', 'counter-x', 'counter-y'])
+    // sibling lists sharing ids stay distinct, and the footer keeps its slot
+    // when an earlier list changes length
+    expect(keys).toEqual(['0:1', '0:2', '1:1', '1:2', '.2'])
 
     // a key on a server component transfers to the element it renders
     const serverEnvelope = wire(
@@ -410,6 +413,13 @@ describe('loaderJSX plugin transforms', () => {
       postFile,
       `import { YStack } from '@tamagui/core'\nimport { Nested } from './Nested'\nexport function Post() { return null }`
     )
+    const uiDir = join(root, 'node_modules/@acme/ui')
+    mkdirSync(uiDir, { recursive: true })
+    writeFileSync(
+      join(uiDir, 'package.json'),
+      JSON.stringify({ name: '@acme/ui', dependencies: { tamagui: '*' } })
+    )
+    writeFileSync(join(uiDir, 'index.js'), `export * from 'tamagui'`)
     writeFileSync(
       frameworkFile,
       `'use client'\nexport function Internal() { return null }`
@@ -442,6 +452,14 @@ export default function Page() { return null }`
       `import 'virtual:one-loader-jsx-client:${counterFile}'`,
       `import 'virtual:one-loader-jsx-client:${nestedFile}'`,
     ])
+
+    // a published package that depends on tamagui may re-export any primitive
+    const viaPackage = await collectLoaderJSXRegistrationImports(
+      parseSync(routeFile, `import { YStack } from '@acme/ui'`).program,
+      routeFile,
+      async () => ({ id: join(uiDir, 'index.js') })
+    )
+    expect(viaPackage).toEqual([`import 'virtual:one-loader-jsx-universal:all'`])
   })
 
   it('ships no server walker in the client route bundle', async () => {

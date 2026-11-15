@@ -108,12 +108,12 @@ export function collectLoaderJSXUniversalImports(
       for (const specifier of node.specifiers ?? []) {
         if (specifier.importKind === 'type') continue
         if (isTamagui) {
-          if (specifier.type === 'ImportNamespaceSpecifier') used.allPrimitives = true
+          if (specifier.type !== 'ImportSpecifier') used.allPrimitives = true
           const name = importedName(specifier)
           if (name && TAMAGUI_PRIMITIVES.includes(name)) used.primitives.add(name)
         }
         if (source === 'one') {
-          if (specifier.type === 'ImportNamespaceSpecifier') used.link = true
+          if (specifier.type !== 'ImportSpecifier') used.link = true
           if (importedName(specifier) === 'Link') used.link = true
         }
       }
@@ -206,6 +206,23 @@ export function transformUseClient(code: string, id: string, root: string) {
   return { code: s.toString(), map: s.generateMap({ hires: true }) }
 }
 
+const packageDependencyCache = new Map<string, string[]>()
+
+function packageDependencies(file: string): string[] {
+  const match = /^(.*\/node_modules\/(?:@[^/]+\/)?[^/]+)\//.exec(file)
+  if (!match) return []
+  const dir = match[1]!
+  let deps = packageDependencyCache.get(dir)
+  if (!deps) {
+    const pkg: Record<string, Record<string, string> | undefined> = JSON.parse(
+      readFileSync(`${dir}/package.json`, 'utf8')
+    )
+    deps = [...Object.keys(pkg.dependencies ?? {}), ...Object.keys(pkg.peerDependencies ?? {})]
+    packageDependencyCache.set(dir, deps)
+  }
+  return deps
+}
+
 type LoaderJSXResolver = (
   source: string,
   importer: string
@@ -246,7 +263,17 @@ export async function collectLoaderJSXRegistrationImports(
         continue
 
       const resolved = await resolve(source, importer)
-      if (!resolved || resolved.external || /node_modules/.test(resolved.id)) continue
+      if (!resolved || resolved.external) continue
+      if (/node_modules/.test(resolved.id)) {
+        // a published package can re-export primitives the crawl never sees,
+        // and the server registers them process-wide, so keep them all
+        const deps = packageDependencies(toPosix(resolved.id))
+        if (deps.some((dep) => dep === 'tamagui' || dep.startsWith('@tamagui/'))) {
+          used.allPrimitives = true
+        }
+        if (deps.includes('one')) used.link = true
+        continue
+      }
       const file = resolved.id.split('?')[0]!
       const posixFile = toPosix(file)
       if (posixFile.includes('/packages/one/')) continue

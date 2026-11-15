@@ -152,11 +152,7 @@ function unsupported(path: string, what: string, hint: string): never {
 // keys ride inside the props object: createElement extracts `key` from the config on revive,
 // so older clients reading a newer envelope keep list identity too
 function withKey(node: JSXEnvelopeNode, key: string | null): JSXEnvelopeNode {
-  if (key == null || !Array.isArray(node)) return node
-  if ((node[0] === 'h' || node[0] === 'c' || node[0] === 's') && node[2].key == null) {
-    return [node[0], node[1], { ...node[2], key }, ...node.slice(3)] as JSXEnvelopeNode
-  }
-  return node
+  return key == null || keyOf(node) != null ? node : setKey(node, key)
 }
 
 // props cross the wire as json. elements in props are rendered to their own envelope,
@@ -215,14 +211,36 @@ async function serializeProps(props: Record<string, any>, path: string, skip?: s
 async function walkChildren(children: any, path: string): Promise<JSXEnvelopeNode[]> {
   const list = Array.isArray(children) ? children : [children]
   const results = await Promise.all(list.map((child, i) => walk(child, `${path}[${i}]`)))
+  // flattening merges sibling groups into one list. scope keys by group the way
+  // react does, so two maps sharing ids don't collide and later siblings keep
+  // their identity when an earlier list changes length.
+  const scoped =
+    results.length > 1 && results.some((node) => Array.isArray(node) && node[0] === 'f')
   const flat: JSXEnvelopeNode[] = []
-  for (const node of results) {
-    if (node === null) continue
-    if (Array.isArray(node) && node[0] === 'f')
-      flat.push(...(node.slice(1) as JSXEnvelopeNode[]))
-    else flat.push(node)
-  }
+  results.forEach((node, i) => {
+    if (node === null) return
+    if (Array.isArray(node) && node[0] === 'f') {
+      const group = node.slice(1) as JSXEnvelopeNode[]
+      if (!scoped) return flat.push(...group)
+      group.forEach((child, j) => {
+        const key = keyOf(child)
+        flat.push(setKey(child, key == null ? `${i}.${j}` : `${i}:${key}`))
+      })
+    } else {
+      flat.push(scoped && keyOf(node) == null ? setKey(node, `.${i}`) : node)
+    }
+  })
   return flat
+}
+
+function keyOf(node: JSXEnvelopeNode): string | null {
+  if (!Array.isArray(node) || node[0] === 'f') return null
+  return (node[2] as { key?: string }).key ?? null
+}
+
+function setKey(node: JSXEnvelopeNode, key: string): JSXEnvelopeNode {
+  if (!Array.isArray(node) || node[0] === 'f') return node
+  return [node[0], node[1], { ...node[2], key }, ...node.slice(3)] as JSXEnvelopeNode
 }
 
 function withFallback(node: JSXEnvelopeNode, fallback: JSXEnvelopeNode): JSXEnvelopeNode {
