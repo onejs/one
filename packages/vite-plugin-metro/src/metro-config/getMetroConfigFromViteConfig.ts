@@ -1,7 +1,7 @@
 import { searchForWorkspaceRoot, type ResolvedConfig } from 'vite'
 import { spawn } from 'node:child_process'
-import { readFileSync } from 'node:fs'
-import { dirname, posix, resolve } from 'node:path'
+import { existsSync, readFileSync } from 'node:fs'
+import { dirname, join, posix, resolve } from 'node:path'
 import workspace from 'resolve-workspace-root'
 import { globSync as globPackagesSync } from 'tinyglobby'
 import micromatch from 'micromatch'
@@ -213,6 +213,31 @@ function isBareSpecifier(name: string) {
   return name !== '' && !name.startsWith('.') && !name.startsWith('/')
 }
 
+// metro reports a missing module as UnableToResolveError; duck-type it
+// because metro itself loads from the app and stays unimported here.
+function isUnresolvableModule(error: unknown) {
+  if (!error || typeof error !== 'object') return false
+  if ((error as { type?: unknown }).type === 'UnableToResolveError') return true
+  const message = (error as { message?: unknown }).message
+  return typeof message === 'string' && message.startsWith('Unable to resolve module')
+}
+
+// whether node-style lookup from the app root finds the package at all,
+// following the same upward node_modules walk a missing copy needs.
+function rootHasPackage(projectRoot: string, packageName: string) {
+  let directory = projectRoot
+  while (true) {
+    try {
+      if (existsSync(join(directory, 'node_modules', packageName, 'package.json'))) return true
+    } catch {
+      return true
+    }
+    const parent = dirname(directory)
+    if (parent === directory) return false
+    directory = parent
+  }
+}
+
 // metro parses `/one/metro-entry.bundle` to the entry `./one/metro-entry`
 // relative to the server root, which misses node_modules package lookup.
 function bareMainModuleForRequest(
@@ -251,12 +276,22 @@ function enforcePackageResolution(
           request.startsWith('@') ? request.indexOf('/') + 1 : 0
         )
         const packageName = packageEnd === -1 ? request : request.slice(0, packageEnd)
-        const resolutionContext =
-          isBareSpecifier(request) && dedupedPackages.has(packageName)
-            ? { ...context, originModulePath: rootOrigin }
-            : context
         const resolveRequest = innerResolveRequest || context.resolveRequest
-        return resolveRequest(resolutionContext, request, platform)
+        if (!isBareSpecifier(request) || !dedupedPackages.has(packageName)) {
+          return resolveRequest(context, request, platform)
+        }
+        try {
+          return resolveRequest({ ...context, originModulePath: rootOrigin }, request, platform)
+        } catch (error) {
+          // under an isolated install the app may not list a package one
+          // depends on; the copy beside the importing package then wins over
+          // failing the bundle. an app that lists the package keeps that
+          // single copy even when one subpath fails, so no second copy
+          // splits the deduped registration.
+          if (!isUnresolvableModule(error)) throw error
+          if (rootHasPackage(projectRoot, packageName)) throw error
+          return resolveRequest(context, request, platform)
+        }
       },
     },
   }

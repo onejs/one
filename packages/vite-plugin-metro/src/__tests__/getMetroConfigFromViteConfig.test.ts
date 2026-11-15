@@ -184,6 +184,113 @@ require('@fixture/registry-extra'), require('plain'), require('./local'), requir
   )
 })
 
+describe('deduped packages under an isolated install', () => {
+  const bundleConsumer = async (layout: {
+    rootShared?: string
+    nestedShared: string
+    nestedSubpath?: string
+    consumerSource: string
+  }) => {
+    const workspaceRoot = path.resolve(__dirname, '../../../../')
+    const scratch = path.join(workspaceRoot, 'scripts/tmp')
+    fs.mkdirSync(scratch, { recursive: true })
+    const fixtureRoot = fs.mkdtempSync(path.join(scratch, 'metro-isolated-'))
+    tmpDirs.push(fixtureRoot)
+    fs.writeFileSync(path.join(fixtureRoot, 'package.json'), '{"private":true}')
+    const writePackage = (directory: string, name: string, source: string) => {
+      fs.mkdirSync(directory, { recursive: true })
+      fs.writeFileSync(
+        path.join(directory, 'package.json'),
+        JSON.stringify({ name, version: '1.0.0', main: 'index.js' })
+      )
+      fs.writeFileSync(path.join(directory, 'index.js'), source)
+    }
+    if (layout.rootShared !== undefined) {
+      writePackage(
+        path.join(fixtureRoot, 'node_modules/@fixture/shared'),
+        '@fixture/shared',
+        `module.exports=${JSON.stringify(layout.rootShared)};`
+      )
+    }
+    const consumer = path.join(fixtureRoot, 'node_modules/@fixture/consumer')
+    writePackage(consumer, '@fixture/consumer', layout.consumerSource)
+    const nested = path.join(consumer, 'node_modules/@fixture/shared')
+    writePackage(nested, '@fixture/shared', `module.exports=${JSON.stringify(layout.nestedShared)};`)
+    if (layout.nestedSubpath !== undefined) {
+      fs.writeFileSync(
+        path.join(nested, 'sub.js'),
+        `module.exports=${JSON.stringify(layout.nestedSubpath)};`
+      )
+    }
+    const viteConfig = await resolveConfig(
+      {
+        root: workspaceRoot,
+        configFile: false,
+        resolve: { dedupe: ['@fixture/shared'] },
+      },
+      'build'
+    )
+    const options = {
+      watchman: false,
+      argv: { projectRoot: fixtureRoot },
+    } satisfies MetroPluginOptions
+    const require = createRequire(path.join(workspaceRoot, 'package.json'))
+    const { loadConfig } = require('metro-config')
+    const config = await loadConfig(
+      { cwd: fixtureRoot, projectRoot: fixtureRoot },
+      (await buildMetroConfigInputFromViteConfig(viteConfig, options)).defaultConfig
+    )
+    const entry = path.join(fixtureRoot, 'entry.js')
+    fs.writeFileSync(entry, "globalThis.value=require('@fixture/consumer');")
+    const Server = require('metro/private/Server').default
+    const output = require('metro/private/shared/output/bundle')
+    const server = new Server({ ...config, maxWorkers: 1 })
+    try {
+      const bundle = await output.build(server, {
+        entryFile: entry,
+        platform: 'android',
+        dev: false,
+        minify: false,
+      })
+      const observed = { value: undefined as unknown }
+      runInNewContext(bundle.code, observed)
+      return observed.value
+    } finally {
+      await server.end()
+    }
+  }
+
+  it('resolves a deduped package from the importing package when the app lacks it', async () => {
+    await expect(
+      bundleConsumer({
+        nestedShared: 'nested',
+        consumerSource: "module.exports=require('@fixture/shared');",
+      })
+    ).resolves.toBe('nested')
+  }, 180_000)
+
+  it('keeps the single app copy when the app lists the deduped package', async () => {
+    await expect(
+      bundleConsumer({
+        rootShared: 'root',
+        nestedShared: 'nested',
+        consumerSource: "module.exports=require('@fixture/shared');",
+      })
+    ).resolves.toBe('root')
+  }, 180_000)
+
+  it('fails instead of splitting copies when the app copy lacks the subpath', async () => {
+    await expect(
+      bundleConsumer({
+        rootShared: 'root',
+        nestedShared: 'nested',
+        nestedSubpath: 'nested-sub',
+        consumerSource: "module.exports=require('@fixture/shared/sub');",
+      })
+    ).rejects.toThrow(/Unable to resolve module/)
+  }, 180_000)
+})
+
 afterAll(() => {
   for (const tmpDir of tmpDirs) {
     fs.rmSync(tmpDir, { recursive: true, force: true })
