@@ -785,7 +785,14 @@ const ONE_UPDATES = {
 const RELEASE_BUNDLE_URL =
   /(#else\n\s*)(return )?Bundle\.main\.url\(forResource: "main", withExtension: "jsbundle"\)(\n#endif)/
 
+// the bun engine picks its engine from the bundle react native boots, which is
+// the launcher's choice once One.Updates owns the bundle url, in either patch order
+const BUN_ENGINE_EMBEDDED_CHECK =
+  'one_bun_engine_runs_bundle(Bundle.main.url(forResource: "main", withExtension: "jsbundle"))'
+const BUN_ENGINE_UPDATES_CHECK = 'one_bun_engine_runs_bundle(OneUpdatesLaunchingBundleURL())'
+
 function pointReleaseBundleURLAtOneUpdates(appDelegate) {
+  appDelegate = appDelegate.replace(BUN_ENGINE_EMBEDDED_CHECK, BUN_ENGINE_UPDATES_CHECK)
   if (appDelegate.includes('OneUpdatesBundleURL()')) {
     return appDelegate
   }
@@ -902,11 +909,16 @@ function runBunEngineInAppDelegate(appDelegate) {
       '[vxrn] AppDelegate.swift changed shape: cannot run the bun engine from the react native delegate'
     )
   }
+  // react native reads the bundle url before it creates the engine; an update
+  // launched by One.Updates is hermes bytecode and runs on hermes
+  const check = appDelegate.includes('OneUpdatesBundleURL()')
+    ? BUN_ENGINE_UPDATES_CHECK
+    : BUN_ENGINE_EMBEDDED_CHECK
   return appDelegate.replace(
     match[0],
     `${match[0]}  // [vxrn/one] a release build compiled for the bun engine runs on it
   override func createJSRuntimeFactory() -> JSRuntimeFactoryRef {
-    one_bun_engine_has_compiled_program() ? jsrt_create_bun_factory() : super.createJSRuntimeFactory()
+    ${check} ? jsrt_create_bun_factory() : super.createJSRuntimeFactory()
   }
 
 `

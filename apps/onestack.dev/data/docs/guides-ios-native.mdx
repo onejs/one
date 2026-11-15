@@ -134,7 +134,8 @@ Apps on `expo prebuild` pass the same option to the plugin: `['vxrn/expo-plugin'
 Limits:
 
 * iOS only for now. Android stays on Hermes.
-* Code that is only known at run time, such as `new Function`, `eval` and over-the-air update bundles, runs in the interpreter without the speedup. An update ships plain JavaScript, since Apple only runs native code signed into the build, so an updated app runs interpreted until the next build. `one updates publish` reads the engine from `native.app`; apps on `expo prebuild` pass `--engine bun`.
+* Code that is only known at run time, such as `new Function` and `eval`, runs in the interpreter without the speedup.
+* Apple only runs native code signed into the build, so an over-the-air update cannot carry compiled code. Updates are Hermes bytecode, and an app that launches one runs it on Hermes, which the build still links, until the next build brings the compiled program back.
 * Reanimated and worklets runtimes stay on Hermes.
 * The engine adds about 170 MB to the app today.
 
