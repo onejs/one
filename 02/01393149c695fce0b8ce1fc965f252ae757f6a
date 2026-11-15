@@ -13,3 +13,5 @@
 {"id":"00000001794760845261:f4b639b8444132cf269ba68a043cf3e9","text":"Public bench rerun gated on load<10 (quiet-host.sh) after p255699 reported load 354 at 16:38Z; contended results in tm-bench/contended/."}
 
 {"id":"00000001794764968861:3b92e8aca36de468f04d4d1aee8e222e","text":"Bench public series running on sim 8CCC71C9 behind quiet-host gate. Plain RN (one-basic, 100% cpu, 12 runs): re-render settled-total hermes 379.0 vs bun 141.8 ms, mount 116.8 vs 116.7, footprint 66 vs 95 MB. Plain RN 25% heavy (8 runs): scroll-total 7300 vs 5992 ms, frames over 33ms 41.5 vs 20. js-work rows were filtered out by feed-run line 29; fixed for pub-tm. Waiting on w-f17b8a for pub-tm-heavy, pub-tm and record-scroll."}
+
+{"id":"00000001794768001530:35e282aa117e80b23b38a2031f1c1ee3","text":"Public bench complete (feed-series-pub-*.jsonl, 0 errors). Video and card rendered from contrast tm/bun-aot-video 73843e10ebe; scroll clip take 4 (2.0x vs 1.8x median) via compose-side.sh. Recorder fixes: coresimulator writes only under /tmp; install over app keeps declined notification prompt."}
