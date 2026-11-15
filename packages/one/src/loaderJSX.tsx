@@ -1,5 +1,6 @@
 import * as React from 'react'
 import type { JSXEnvelope, JSXEnvelopeNode } from './server/renderJSX'
+import { isNative } from './constants'
 
 // client and ssr side of loader jsx. the server walker (server/renderJSX) returns json envelopes,
 // this turns them back into elements. render is synchronous so ssr html matches frame-1 hydration.
@@ -81,6 +82,28 @@ function reviveChildren(nodes: JSXEnvelopeNode[], slots: LoaderJSXSlots | undefi
   return nodes.map((node) => reviveNode(node, slots))
 }
 
+const DISPLAY_CONTENTS: React.CSSProperties = { display: 'contents' }
+const EMPTY_HTML = { __html: '' }
+let clientHydrated = false
+
+function SkewFallback(props: { children: React.ReactNode }) {
+  const [hydrated, setHydrated] = React.useState(() =>
+    Boolean(clientHydrated || (globalThis as any).__vxrnIsSPA)
+  )
+  React.useEffect(() => {
+    clientHydrated = true
+    if (!hydrated) setHydrated(true)
+  }, [hydrated])
+  if (!hydrated) {
+    return React.createElement('span', {
+      style: DISPLAY_CONTENTS,
+      dangerouslySetInnerHTML: EMPTY_HTML,
+      suppressHydrationWarning: true,
+    })
+  }
+  return React.createElement('span', { style: DISPLAY_CONTENTS }, props.children)
+}
+
 function reviveNode(
   node: JSXEnvelopeNode,
   slots: LoaderJSXSlots | undefined
@@ -101,17 +124,27 @@ function reviveNode(
       )
     case 'c': {
       const [, id, props, fallback] = node
+      const hasFallback = node.length > 3 && fallback !== undefined
+      const fallbackNode = hasFallback && fallback !== null ? reviveNode(fallback, slots) : null
       const Component = resolveClient(id)
-      // an id this client build does not know, usually version skew between server and client
-      if (!Component) return fallback ? reviveNode(fallback, slots) : null
+
+      if (!Component) {
+        if (!hasFallback) return null
+        if (isNative) return fallbackNode
+        if (typeof document === 'undefined') {
+          return React.createElement('span', { style: DISPLAY_CONTENTS }, fallbackNode)
+        }
+        return React.createElement(SkewFallback, null, fallbackNode)
+      }
+
       const element = React.createElement(Component, reviveProps(props, slots))
-      return isLazy(Component)
-        ? React.createElement(
-            React.Suspense,
-            { fallback: fallback ? reviveNode(fallback, slots) : null },
-            element
-          )
+      const inner = isLazy(Component)
+        ? React.createElement(React.Suspense, { fallback: fallbackNode }, element)
         : element
+      if (hasFallback && !isNative) {
+        return React.createElement('span', { style: DISPLAY_CONTENTS }, inner)
+      }
+      return inner
     }
     case 's': {
       const [, name, props, fallback] = node
@@ -177,5 +210,8 @@ export function reviveLoaderData<T>(data: T): RevivedLoaderData<T> {
 
 /** render a loader envelope, optionally filling named slots with client components */
 export function ServerJSX(props: { value: JSXEnvelope; slots?: LoaderJSXSlots }) {
+  React.useEffect(() => {
+    clientHydrated = true
+  }, [])
   return <>{reviveLoaderJSX(props.value, props.slots)}</>
 }

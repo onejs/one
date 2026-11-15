@@ -79,11 +79,44 @@ function createServerDispatcher(componentName: string) {
   return dispatcher
 }
 
+type DispatcherStore = {
+  getStore(): Record<string, any> | undefined
+  run<T>(store: Record<string, any>, fn: () => T): T
+}
+
+let dispatcherStore: DispatcherStore | null | undefined
+function getDispatcherStore(): DispatcherStore | null {
+  if (dispatcherStore !== undefined) return dispatcherStore
+  const ALS = (globalThis as any).process?.getBuiltinModule?.('node:async_hooks')?.AsyncLocalStorage
+  const store: DispatcherStore | null = ALS ? new ALS() : null
+  dispatcherStore = store
+  return store
+}
+
+let activeRenderWalks = 0
+let savedBaseDispatcher: any = null
+
+const delegatingServerDispatcher = new Proxy(
+  {},
+  {
+    get(_target, prop) {
+      const local = getDispatcherStore()?.getStore()
+      if (local) return local[prop as string]
+      return savedBaseDispatcher ? savedBaseDispatcher[prop as string] : undefined
+    },
+  }
+)
+
 function callServerComponent(fn: Function, props: any, name: string) {
+  const dispatcher = createServerDispatcher(name)
+  const store = getDispatcherStore()
+  if (store) {
+    return store.run(dispatcher, () => fn(props))
+  }
   const reactInternals = (React as any)
     .__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE
   const previous = reactInternals.H
-  reactInternals.H = createServerDispatcher(name)
+  reactInternals.H = dispatcher
   try {
     return fn(props)
   } finally {
@@ -243,5 +276,22 @@ async function walk(node: any, path: string): Promise<JSXEnvelopeNode> {
  * Server components run here; `use client` components and universal primitives stay as references.
  */
 export async function renderJSX(element: React.ReactNode): Promise<JSXEnvelope> {
-  return { __oneJSX: await walk(element, '') }
+  const reactInternals = (React as any)
+    .__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE
+  if (activeRenderWalks === 0 && reactInternals) {
+    savedBaseDispatcher = reactInternals.H
+    reactInternals.H = delegatingServerDispatcher
+  }
+  activeRenderWalks++
+  try {
+    return { __oneJSX: await walk(element, '') }
+  } finally {
+    activeRenderWalks--
+    if (activeRenderWalks === 0 && reactInternals) {
+      if (reactInternals.H === delegatingServerDispatcher) {
+        reactInternals.H = savedBaseDispatcher
+      }
+      savedBaseDispatcher = null
+    }
+  }
 }

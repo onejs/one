@@ -49,6 +49,37 @@ describe('renderJSX', () => {
     await expect(renderJSX(<Bad />)).rejects.toThrow(/<Bad> called useState.*use client/)
   })
 
+  it('rejects stateful hooks called after await in parallel async server components while allowing useMemo', async () => {
+    async function AsyncBad() {
+      await new Promise((r) => setTimeout(r, 5))
+      React.useState(0)
+      return <i />
+    }
+    async function AsyncEffect() {
+      await new Promise((r) => setTimeout(r, 5))
+      React.useEffect(() => {}, [])
+      return <i />
+    }
+    async function AsyncMemo() {
+      await new Promise((r) => setTimeout(r, 5))
+      const val = React.useMemo(() => 42, [])
+      return <p>{val}</p>
+    }
+    await expect(
+      renderJSX(
+        <main>
+          <AsyncMemo />
+          <AsyncBad />
+        </main>
+      )
+    ).rejects.toThrow(/<AsyncBad> called useState.*use client/)
+    await expect(renderJSX(<AsyncEffect />)).rejects.toThrow(
+      /<AsyncEffect> called useEffect.*use client/
+    )
+    const ok = await renderJSX(<AsyncMemo />)
+    expect(ok.__oneJSX).toEqual(['h', 'p', {}, 42])
+  })
+
   it('rejects non-serializable props crossing to a client component', async () => {
     await expect(renderJSX(<Counter start={(() => 1) as any} />)).rejects.toThrow(/a function/)
   })
@@ -115,7 +146,17 @@ describe('renderJSX', () => {
       {},
       ['h', 'p', {}, 'update the app'],
     ])
-    expect(renderToString(<ServerJSX value={envelope} />)).toBe('<p>update the app</p>')
+    expect(renderToString(<ServerJSX value={envelope} />)).toBe('<span style="display:contents"><p>update the app</p></span>')
+    try {
+      ;(globalThis as any).document = {}
+      ;(globalThis as any).__vxrnRoot = {}
+      expect(renderToString(<ServerJSX value={wire(envelope)} />)).toBe(
+        '<span style="display:contents"></span>'
+      )
+    } finally {
+      delete (globalThis as any).document
+      delete (globalThis as any).__vxrnRoot
+    }
   })
 })
 
