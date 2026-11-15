@@ -1,1 +1,3 @@
 {"id":"00000001794732524933:28d70f65a69145f437af50eca5ce4072","text":"Launched f575 (one-2-18-video) on air-16 in worktree one-2-18-video with staged long-feed-cpu25.mp4 + benchmarks-current-micro.mdx. Waiting on draft MP4/stills from f575 and 2.18.1 perf PR + benchmarks from b67657."}
+
+{"id":"00000001794733532944:471c34ef032aad729ebe3681474fee2f","text":"Landed on branch tm/one-2-18-video, commit 8bd83ce1554 (pushed). Draft: /Users/n8/.scratch/one-2-18-video/one-2.18-draft.mp4 (h264 1920x1080 60fps 43.07s 13.66MB faststart). Worktree kept at /Users/n8/.worktrees/contrast-one-2-18-video for 2.18.1 numbers."}
