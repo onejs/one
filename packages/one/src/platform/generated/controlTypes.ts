@@ -4655,7 +4655,7 @@ export interface VideoPlayerProps extends OneNativeViewProps {
   onPlaybackStatus?: (state: string, positionMs: number, durationMs: number) => void
   url?: string
   autoplay?: boolean
-  contentFit?: 'contain' | 'cover'
+  contentFit?: 'native' | 'contain' | 'cover'
   command?: 'play' | 'pause' | 'seek' | ''
   commandRevision?: number
   seekToMs?: number

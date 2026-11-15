@@ -13,7 +13,7 @@ export const mediaControls: Control[] = [
     fields: {
       url: { type: 'string', default: '' },
       autoplay: { type: 'boolean', default: false },
-      contentFit: { type: 'string', default: 'native', publicType: "'contain' | 'cover'" },
+      contentFit: { type: 'string', default: 'native', publicType: "'native' | 'contain' | 'cover'" },
       command: { type: 'string', default: '', publicType: "'play' | 'pause' | 'seek'" },
       commandRevision: { type: 'Double', default: 0 },
       seekToMs: { type: 'Double', default: 0 },
