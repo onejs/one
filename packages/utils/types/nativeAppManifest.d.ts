@@ -99,6 +99,7 @@ export interface NativeAppManifest {
         useFrameworks?: 'static' | 'dynamic';
         ccache?: boolean;
         usesNonExemptEncryption?: boolean;
+        appTransportSecurity?: Record<string, PlistValue>;
         accentColor?: {
             light: string;
             dark?: string;
@@ -109,6 +110,7 @@ export interface NativeAppManifest {
         associatedDomains?: string[];
         usesAppleSignIn?: boolean;
         googleServicesFile?: string;
+        resources?: string[];
         infoPlist?: Record<string, PlistValue>;
         entitlements?: Record<string, PlistValue>;
         widgets?: {

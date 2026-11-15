@@ -446,3 +446,12 @@ Try to delete `ios/.xcode.env.local`.
     ```
 2. Confirm `native.app.ios.bundleId` is set in `vite.config.ts`.
 3. Delete the generated `ios` directory and run `one prebuild` again.
+
+### App Transport Security
+
+Set `native.app.ios.appTransportSecurity` to replace the community template's
+`NSAppTransportSecurity` dictionary. For an app that must connect to arbitrary
+HTTP endpoints, use `{ NSAllowsArbitraryLoads: true }`. The replacement removes
+the template's local-networking exception, which otherwise changes how iOS
+interprets arbitrary loads. Use this field rather than setting the same key in
+`ios.infoPlist`.
