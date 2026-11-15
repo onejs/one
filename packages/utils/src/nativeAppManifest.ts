@@ -829,8 +829,9 @@ export function validateNativeApp(
     }
     for (const key of ['targetSdk', 'compileSdk'] as const) {
       const value = manifest.android[key]
-      if (value !== undefined && (!Number.isInteger(value) || value < 21)) {
-        fail(`android.${key} "${value}" must be an api level integer`)
+      const floor = key === 'compileSdk' ? 36 : 21
+      if (value !== undefined && (!Number.isInteger(value) || value < floor)) {
+        fail(`android.${key} "${value}" must be an api level integer of at least ${floor}`)
       }
     }
     if (manifest.android.shrinkResources && !manifest.android.minify) {
