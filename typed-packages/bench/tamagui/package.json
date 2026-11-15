@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "dependencies": {
+    "@tamagui/core": "3.0.0-0.canary.1792046056862",
+    "react": "19.3.0",
+    "scheduler": "0.28.0"
+  }
+}

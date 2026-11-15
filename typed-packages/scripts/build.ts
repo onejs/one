@@ -3,8 +3,8 @@
 //
 // writes dist/<name>. with --into, also lays the typed files and the "aot" exports over
 // <node_modules>/<name> when its installed version matches, leaving the rest of the install alone.
-import { cpSync, existsSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
 import { erase, npmPackage, root } from './lib'
 
 const into = process.argv.includes('--into') ? process.argv[process.argv.indexOf('--into') + 1] : null
@@ -90,4 +90,46 @@ for (const [name, version] of packages) {
     writeFileSync(pkgPath, JSON.stringify(withAot(pkg), null, 2) + '\n')
     console.log(`  laid over ${installed}`)
   }
+}
+
+// packages that ship their own TypeScript, listed in sources.json, get an aot/ copy of src with each
+// .native file in place of its base file and the listed defines inlined, the way their native build does
+const sources: Record<string, { define?: Record<string, string> }> = JSON.parse(readFileSync(join(root, 'sources.json'), 'utf8'))
+for (const [pattern, { define = {} }] of Object.entries(into ? sources : {})) {
+  const names = pattern.endsWith('/*')
+    ? existsSync(join(into!, pattern.slice(0, -2))) ? readdirSync(join(into!, pattern.slice(0, -2))).map((n) => `${pattern.slice(0, -2)}/${n}`) : []
+    : [pattern]
+  let laid = 0
+  for (const name of names) {
+    const installed = join(into!, name)
+    if (!existsSync(join(installed, 'src')) || !existsSync(join(installed, 'package.json'))) continue
+    const aot = join(installed, 'aot')
+    rmSync(aot, { recursive: true, force: true })
+    const files = [...new Bun.Glob('**/*').scanSync(join(installed, 'src'))]
+    const nativeBases = new Set(files.filter((f) => /\.native\.[^.]+$/.test(f)).map((f) => f.replace(/\.native(\.[^.]+)$/, '$1')))
+    for (const rel of files) {
+      const base = rel.replace(/\.native(\.[^.]+)$/, '$1')
+      if (base === rel && nativeBases.has(rel)) continue
+      let text = readFileSync(join(installed, 'src', rel), 'utf8')
+      if (/\.[cm]?[jt]sx?$/.test(rel)) for (const [k, v] of Object.entries(define))
+        text = text.replace(new RegExp(k.replace(/[.$]/g, '\\$&') + '(?!\\s*=[^=])', 'g'), v)
+      mkdirSync(dirname(join(aot, base)), { recursive: true })
+      // src also imports some native files by their full name
+      for (const out of new Set([base, rel])) writeFileSync(join(aot, out), text)
+    }
+    const pkg = JSON.parse(readFileSync(join(installed, 'package.json'), 'utf8'))
+    const sourceOf = (target: unknown): string | undefined => {
+      const rn = typeof target === 'object' && target ? (target as Record<string, unknown>)['react-native'] : undefined
+      const file = typeof rn === 'object' && rn ? (rn as Record<string, unknown>).default : rn
+      const m = typeof file === 'string' && file.match(/^\.\/dist\/esm\/(.+?)(?:\.native)?\.m?js$/)
+      return m ? ['.ts', '.tsx'].map((ext) => `./aot/${m[1]}${ext}`).find((p) => existsSync(join(installed, p))) : undefined
+    }
+    for (const [key, target] of Object.entries(pkg.exports ?? {})) {
+      const source = sourceOf(target)
+      if (source && !(target as Record<string, unknown>).aot) pkg.exports[key] = { aot: source, ...(target as object) }
+    }
+    writeFileSync(join(installed, 'package.json'), JSON.stringify(pkg, null, 2) + '\n')
+    laid++
+  }
+  console.log(`${pattern}: aot/ from src laid over ${laid} packages`)
 }

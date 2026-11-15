@@ -1,0 +1,5 @@
+{
+  "@tamagui/*": {
+    "define": { "process.env.TAMAGUI_TARGET": "\"native\"" }
+  }
+}
