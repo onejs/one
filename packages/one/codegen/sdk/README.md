@@ -152,6 +152,11 @@ containing retained numeric callable IDs. Omitting a framework from that map
 keeps its full table. `appSdkOptions(root)` derives those IDs from static facade
 imports and the generated split-facade dependency groups, including superclass
 wrappers, side-effect imports, property descriptors and method descriptors.
+Type-only imports reach no entries, and interfaces or type aliases have no
+group because their declarations are erased. A file that does not parse keeps
+the complete table of each framework it names. `importedFrameworks(root)`, which
+every iOS prebuild runs, reads text only and visits just the dependencies that
+declare `one`, so it never parses.
 Namespace or side-effect barrel imports keep the complete framework. Direct
 low-level SDK calls with computed IDs also keep full tables.
 

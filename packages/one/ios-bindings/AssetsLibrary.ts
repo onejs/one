@@ -11,7 +11,7 @@ type $SDK5 = ((arg0: (string) | null, arg1: (NativeError) | null) => Promise<voi
  */
 export class ALAsset extends SDKHandle {
   /** init() */
-  static init(): ALAsset { return callSDK<ALAsset>("AssetsLibrary_edef71e2c29bf62d", 1264384385486836, undefined, []); }
+  static init(): ALAsset { return callSDK<ALAsset>("AssetsLibrary_095cc02a2666a9f8", 1264384385486836, undefined, []); }
   declare readonly $type: { "c:objc(cs)ALAsset": true; "c:objc(cs)NSObject": true };
 }
 
@@ -29,7 +29,7 @@ export type ALAssetOrientation = "up" | "down" | "left" | "right" | "upMirrored"
  */
 export class ALAssetRepresentation extends SDKHandle {
   /** init() */
-  static init(): ALAssetRepresentation { return callSDK<ALAssetRepresentation>("AssetsLibrary_edef71e2c29bf62d", 670289082451220, undefined, []); }
+  static init(): ALAssetRepresentation { return callSDK<ALAssetRepresentation>("AssetsLibrary_095cc02a2666a9f8", 670289082451220, undefined, []); }
   declare readonly $type: { "c:objc(cs)ALAssetRepresentation": true; "c:objc(cs)NSObject": true };
 }
 
@@ -40,7 +40,7 @@ export class ALAssetRepresentation extends SDKHandle {
  */
 export class ALAssetsFilter extends SDKHandle {
   /** init() */
-  static init(): ALAssetsFilter { return callSDK<ALAssetsFilter>("AssetsLibrary_edef71e2c29bf62d", 465133593494778, undefined, []); }
+  static init(): ALAssetsFilter { return callSDK<ALAssetsFilter>("AssetsLibrary_095cc02a2666a9f8", 465133593494778, undefined, []); }
   declare readonly $type: { "c:objc(cs)ALAssetsFilter": true; "c:objc(cs)NSObject": true };
 }
 
@@ -51,7 +51,7 @@ export class ALAssetsFilter extends SDKHandle {
  */
 export class ALAssetsGroup extends SDKHandle {
   /** init() */
-  static init(): ALAssetsGroup { return callSDK<ALAssetsGroup>("AssetsLibrary_edef71e2c29bf62d", 1451584634012010, undefined, []); }
+  static init(): ALAssetsGroup { return callSDK<ALAssetsGroup>("AssetsLibrary_095cc02a2666a9f8", 1451584634012010, undefined, []); }
   declare readonly $type: { "c:objc(cs)ALAssetsGroup": true; "c:objc(cs)NSObject": true };
 }
 
@@ -76,7 +76,7 @@ export type ALAssetsGroupType = number;
  */
 export class ALAssetsLibrary extends SDKHandle {
   /** init() */
-  static init(): ALAssetsLibrary { return callSDK<ALAssetsLibrary>("AssetsLibrary_edef71e2c29bf62d", 2892052706861408, undefined, []); }
+  static init(): ALAssetsLibrary { return callSDK<ALAssetsLibrary>("AssetsLibrary_095cc02a2666a9f8", 2892052706861408, undefined, []); }
   declare readonly $type: { "c:objc(cs)ALAssetsLibrary": true; "c:objc(cs)NSObject": true };
 }
 
@@ -130,37 +130,37 @@ export type ALAssetsLibraryWriteVideoCompletionBlock = $SDK5;
 export type ALAuthorizationStatus = "notDetermined" | "restricted" | "denied" | "authorized";
 
 /** var ALAssetsLibraryAccessGloballyDeniedError: Int { get } */
-export const ALAssetsLibraryAccessGloballyDeniedError: number = callSDK<number>("AssetsLibrary_edef71e2c29bf62d", 2520249032277634, undefined, []);
+export const ALAssetsLibraryAccessGloballyDeniedError: number = callSDK<number>("AssetsLibrary_095cc02a2666a9f8", 2520249032277634, undefined, []);
 
 /** var ALAssetsLibraryAccessUserDeniedError: Int { get } */
-export const ALAssetsLibraryAccessUserDeniedError: number = callSDK<number>("AssetsLibrary_edef71e2c29bf62d", 31746029242479, undefined, []);
+export const ALAssetsLibraryAccessUserDeniedError: number = callSDK<number>("AssetsLibrary_095cc02a2666a9f8", 31746029242479, undefined, []);
 
 /** var ALAssetsLibraryDataUnavailableError: Int { get } */
-export const ALAssetsLibraryDataUnavailableError: number = callSDK<number>("AssetsLibrary_edef71e2c29bf62d", 4365415091474732, undefined, []);
+export const ALAssetsLibraryDataUnavailableError: number = callSDK<number>("AssetsLibrary_095cc02a2666a9f8", 4365415091474732, undefined, []);
 
 /** var ALAssetsLibraryUnknownError: Int { get } */
-export const ALAssetsLibraryUnknownError: number = callSDK<number>("AssetsLibrary_edef71e2c29bf62d", 4112724190703630, undefined, []);
+export const ALAssetsLibraryUnknownError: number = callSDK<number>("AssetsLibrary_095cc02a2666a9f8", 4112724190703630, undefined, []);
 
 /** var ALAssetsLibraryWriteBusyError: Int { get } */
-export const ALAssetsLibraryWriteBusyError: number = callSDK<number>("AssetsLibrary_edef71e2c29bf62d", 2342407712146369, undefined, []);
+export const ALAssetsLibraryWriteBusyError: number = callSDK<number>("AssetsLibrary_095cc02a2666a9f8", 2342407712146369, undefined, []);
 
 /** var ALAssetsLibraryWriteDataEncodingError: Int { get } */
-export const ALAssetsLibraryWriteDataEncodingError: number = callSDK<number>("AssetsLibrary_edef71e2c29bf62d", 2700328950517826, undefined, []);
+export const ALAssetsLibraryWriteDataEncodingError: number = callSDK<number>("AssetsLibrary_095cc02a2666a9f8", 2700328950517826, undefined, []);
 
 /** var ALAssetsLibraryWriteDiskSpaceError: Int { get } */
-export const ALAssetsLibraryWriteDiskSpaceError: number = callSDK<number>("AssetsLibrary_edef71e2c29bf62d", 3851892788276660, undefined, []);
+export const ALAssetsLibraryWriteDiskSpaceError: number = callSDK<number>("AssetsLibrary_095cc02a2666a9f8", 3851892788276660, undefined, []);
 
 /** var ALAssetsLibraryWriteFailedError: Int { get } */
-export const ALAssetsLibraryWriteFailedError: number = callSDK<number>("AssetsLibrary_edef71e2c29bf62d", 3855542548067622, undefined, []);
+export const ALAssetsLibraryWriteFailedError: number = callSDK<number>("AssetsLibrary_095cc02a2666a9f8", 3855542548067622, undefined, []);
 
 /** var ALAssetsLibraryWriteIncompatibleDataError: Int { get } */
-export const ALAssetsLibraryWriteIncompatibleDataError: number = callSDK<number>("AssetsLibrary_edef71e2c29bf62d", 3794486521524396, undefined, []);
+export const ALAssetsLibraryWriteIncompatibleDataError: number = callSDK<number>("AssetsLibrary_095cc02a2666a9f8", 3794486521524396, undefined, []);
 
 /** var ALAssetsLibraryWriteInvalidDataError: Int { get } */
-export const ALAssetsLibraryWriteInvalidDataError: number = callSDK<number>("AssetsLibrary_edef71e2c29bf62d", 1209199551887906, undefined, []);
+export const ALAssetsLibraryWriteInvalidDataError: number = callSDK<number>("AssetsLibrary_095cc02a2666a9f8", 1209199551887906, undefined, []);
 
-registerSDKClass("ALAsset", ALAsset, { module: "AssetsLibrary_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ALAssetRepresentation", ALAssetRepresentation, { module: "AssetsLibrary_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ALAssetsFilter", ALAssetsFilter, { module: "AssetsLibrary_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ALAssetsGroup", ALAssetsGroup, { module: "AssetsLibrary_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ALAssetsLibrary", ALAssetsLibrary, { module: "AssetsLibrary_edef71e2c29bf62d", properties: {} });
+registerSDKClass("ALAsset", ALAsset, { module: "AssetsLibrary_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ALAssetRepresentation", ALAssetRepresentation, { module: "AssetsLibrary_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ALAssetsFilter", ALAssetsFilter, { module: "AssetsLibrary_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ALAssetsGroup", ALAssetsGroup, { module: "AssetsLibrary_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ALAssetsLibrary", ALAssetsLibrary, { module: "AssetsLibrary_095cc02a2666a9f8", properties: {} });

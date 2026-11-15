@@ -29,12 +29,8 @@ export function writeSdkNativeSupport(dir: string, sdkRoot = sdkPath()) {
   }
 }
 
-export { appSdkOptions } from './selection'
-import { importedBindings } from './selection'
-
-export function importedFrameworks(root: string, platformRoot?: string): string[] {
-  return [...importedBindings(root, platformRoot).keys()].sort()
-}
+export { appSdkOptions, importedFrameworks } from './selection'
+import { importedFrameworks } from './selection'
 
 // SDK-specific compiler outputs stay separate. the wire generation identifies
 // the generator/runtime; signature-based symbol ids remain stable across SDKs.

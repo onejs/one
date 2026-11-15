@@ -31,7 +31,7 @@ export class AIVUValidator extends SDKHandle {
    * static func validate(url: URL) async throws -> Bool
    * @availability iOS 26.4+
    */
-  static validate(url: string): Promise<boolean> { return callSDKAsync<boolean>("ImmersiveMediaSupport_edef71e2c29bf62d", 2344067481131089, undefined, [url]); }
+  static validate(url: string): Promise<boolean> { return callSDKAsync<boolean>("ImmersiveMediaSupport_095cc02a2666a9f8", 2344067481131089, undefined, [url]); }
   declare readonly $type: { "s:21ImmersiveMediaSupport13AIVUValidatorV": true };
 }
 
@@ -44,42 +44,42 @@ export class FadeCommand extends SDKHandle {
    * init(id: Int, time: CMTime, duration: CMTime, direction: FadeCommand.FadeDirection, color: simd_float3, offset: CMTime? = nil)
    * @availability iOS 26.4+
    */
-  static init(id: number, time: _CoreMedia_CMTime, duration: _CoreMedia_CMTime, direction: FadeCommand_FadeDirection, color: SDKHandle, offset?: $SDK0): FadeCommand { return callSDK<FadeCommand>("ImmersiveMediaSupport_edef71e2c29bf62d", 2553047340089922, undefined, [id, time, duration, direction, color, offset]); }
+  static init(id: number, time: _CoreMedia_CMTime, duration: _CoreMedia_CMTime, direction: FadeCommand_FadeDirection, color: SDKHandle, offset?: $SDK0): FadeCommand { return callSDK<FadeCommand>("ImmersiveMediaSupport_095cc02a2666a9f8", 2553047340089922, undefined, [id, time, duration, direction, color, offset]); }
   /**
    * var id: Int { get }
    * @availability iOS 26.4+
    */
-  get id(): number { return callSDK<number>("ImmersiveMediaSupport_edef71e2c29bf62d", 2672103834637310, this, []); }
+  get id(): number { return callSDK<number>("ImmersiveMediaSupport_095cc02a2666a9f8", 2672103834637310, this, []); }
   /**
    * var time: CMTime
    * @availability iOS 26.4+
    */
-  get time(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_edef71e2c29bf62d", 154907077139176, this, []); }
-  set time(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 3293477772157045, this, [value]); }
+  get time(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_095cc02a2666a9f8", 154907077139176, this, []); }
+  set time(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 3293477772157045, this, [value]); }
   /**
    * var color: simd_float3
    * @availability iOS 26.4+
    */
-  get color(): SDKHandle { return callSDK<SDKHandle>("ImmersiveMediaSupport_edef71e2c29bf62d", 312965176803982, this, []); }
-  set color(value: SDKHandle) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 3357191839378600, this, [value]); }
+  get color(): SDKHandle { return callSDK<SDKHandle>("ImmersiveMediaSupport_095cc02a2666a9f8", 312965176803982, this, []); }
+  set color(value: SDKHandle) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 3357191839378600, this, [value]); }
   /**
    * var offset: CMTime?
    * @availability iOS 26.4+
    */
-  get offset(): $SDK0 { return callSDK<$SDK0>("ImmersiveMediaSupport_edef71e2c29bf62d", 3895901125460113, this, []); }
-  set offset(value: $SDK0) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 4492080480157381, this, [value]); }
+  get offset(): $SDK0 { return callSDK<$SDK0>("ImmersiveMediaSupport_095cc02a2666a9f8", 3895901125460113, this, []); }
+  set offset(value: $SDK0) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 4492080480157381, this, [value]); }
   /**
    * var duration: CMTime
    * @availability iOS 26.4+
    */
-  get duration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_edef71e2c29bf62d", 2975477985083870, this, []); }
-  set duration(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 1688285841663316, this, [value]); }
+  get duration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_095cc02a2666a9f8", 2975477985083870, this, []); }
+  set duration(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 1688285841663316, this, [value]); }
   /**
    * var direction: FadeCommand.FadeDirection
    * @availability iOS 26.4+
    */
-  get direction(): FadeCommand_FadeDirection { return callSDK<FadeCommand_FadeDirection>("ImmersiveMediaSupport_edef71e2c29bf62d", 1022948157802181, this, []); }
-  set direction(value: FadeCommand_FadeDirection) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 1762346540359273, this, [value]); }
+  get direction(): FadeCommand_FadeDirection { return callSDK<FadeCommand_FadeDirection>("ImmersiveMediaSupport_095cc02a2666a9f8", 1022948157802181, this, []); }
+  set direction(value: FadeCommand_FadeDirection) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 1762346540359273, this, [value]); }
   declare readonly $type: { "s:21ImmersiveMediaSupport11FadeCommandV": true };
 }
 
@@ -94,22 +94,22 @@ export const FadeCommand_FadeDirection = {
    * init?(stringValue: String)
    * @availability iOS 26.4+
    */
-  initStringValue(stringValue: string): (FadeCommand_FadeDirection) | null { return callSDK<(FadeCommand_FadeDirection) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 257718763600121, undefined, [stringValue]); },
+  initStringValue(stringValue: string): (FadeCommand_FadeDirection) | null { return callSDK<(FadeCommand_FadeDirection) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 257718763600121, undefined, [stringValue]); },
   /**
    * var stringValue: String { get }
    * @availability iOS 26.4+
    */
-  getStringValue($self: FadeCommand_FadeDirection): string { return callSDK<string>("ImmersiveMediaSupport_edef71e2c29bf62d", 2984271115741676, $self, []); },
+  getStringValue($self: FadeCommand_FadeDirection): string { return callSDK<string>("ImmersiveMediaSupport_095cc02a2666a9f8", 2984271115741676, $self, []); },
   /**
    * init?(intValue: Int)
    * @availability iOS 26.4+
    */
-  initIntValue(intValue: number): (FadeCommand_FadeDirection) | null { return callSDK<(FadeCommand_FadeDirection) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 1748193821579310, undefined, [intValue]); },
+  initIntValue(intValue: number): (FadeCommand_FadeDirection) | null { return callSDK<(FadeCommand_FadeDirection) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 1748193821579310, undefined, [intValue]); },
   /**
    * var intValue: Int? { get }
    * @availability iOS 26.4+
    */
-  getIntValue($self: FadeCommand_FadeDirection): (number) | null { return callSDK<(number) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 2491352826899492, $self, []); }
+  getIntValue($self: FadeCommand_FadeDirection): (number) | null { return callSDK<(number) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 2491352826899492, $self, []); }
 };
 
 /**
@@ -121,42 +121,42 @@ export class FadeEnvironmentCommand extends SDKHandle {
    * init(id: Int, time: CMTime, duration: CMTime, direction: FadeEnvironmentCommand.FadeDirection, opacity: Float, offset: CMTime? = nil)
    * @availability iOS 26.4+
    */
-  static init(id: number, time: _CoreMedia_CMTime, duration: _CoreMedia_CMTime, direction: FadeEnvironmentCommand_FadeDirection, opacity: number, offset?: $SDK0): FadeEnvironmentCommand { return callSDK<FadeEnvironmentCommand>("ImmersiveMediaSupport_edef71e2c29bf62d", 4400452310225528, undefined, [id, time, duration, direction, opacity, offset]); }
+  static init(id: number, time: _CoreMedia_CMTime, duration: _CoreMedia_CMTime, direction: FadeEnvironmentCommand_FadeDirection, opacity: number, offset?: $SDK0): FadeEnvironmentCommand { return callSDK<FadeEnvironmentCommand>("ImmersiveMediaSupport_095cc02a2666a9f8", 4400452310225528, undefined, [id, time, duration, direction, opacity, offset]); }
   /**
    * var id: Int { get }
    * @availability iOS 26.4+
    */
-  get id(): number { return callSDK<number>("ImmersiveMediaSupport_edef71e2c29bf62d", 2064806248470458, this, []); }
+  get id(): number { return callSDK<number>("ImmersiveMediaSupport_095cc02a2666a9f8", 2064806248470458, this, []); }
   /**
    * var time: CMTime
    * @availability iOS 26.4+
    */
-  get time(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_edef71e2c29bf62d", 4070008742348131, this, []); }
-  set time(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 3641946581225813, this, [value]); }
+  get time(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_095cc02a2666a9f8", 4070008742348131, this, []); }
+  set time(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 3641946581225813, this, [value]); }
   /**
    * var offset: CMTime?
    * @availability iOS 26.4+
    */
-  get offset(): $SDK0 { return callSDK<$SDK0>("ImmersiveMediaSupport_edef71e2c29bf62d", 708195447526515, this, []); }
-  set offset(value: $SDK0) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 1688797819519003, this, [value]); }
+  get offset(): $SDK0 { return callSDK<$SDK0>("ImmersiveMediaSupport_095cc02a2666a9f8", 708195447526515, this, []); }
+  set offset(value: $SDK0) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 1688797819519003, this, [value]); }
   /**
    * var opacity: Float
    * @availability iOS 26.4+
    */
-  get opacity(): number { return callSDK<number>("ImmersiveMediaSupport_edef71e2c29bf62d", 1737420167665217, this, []); }
-  set opacity(value: number) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 1713364696114541, this, [value]); }
+  get opacity(): number { return callSDK<number>("ImmersiveMediaSupport_095cc02a2666a9f8", 1737420167665217, this, []); }
+  set opacity(value: number) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 1713364696114541, this, [value]); }
   /**
    * var duration: CMTime
    * @availability iOS 26.4+
    */
-  get duration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_edef71e2c29bf62d", 2269910222655626, this, []); }
-  set duration(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 1004244903023807, this, [value]); }
+  get duration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_095cc02a2666a9f8", 2269910222655626, this, []); }
+  set duration(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 1004244903023807, this, [value]); }
   /**
    * var direction: FadeEnvironmentCommand.FadeDirection
    * @availability iOS 26.4+
    */
-  get direction(): FadeEnvironmentCommand_FadeDirection { return callSDK<FadeEnvironmentCommand_FadeDirection>("ImmersiveMediaSupport_edef71e2c29bf62d", 2672428536194153, this, []); }
-  set direction(value: FadeEnvironmentCommand_FadeDirection) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 1885225346126883, this, [value]); }
+  get direction(): FadeEnvironmentCommand_FadeDirection { return callSDK<FadeEnvironmentCommand_FadeDirection>("ImmersiveMediaSupport_095cc02a2666a9f8", 2672428536194153, this, []); }
+  set direction(value: FadeEnvironmentCommand_FadeDirection) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 1885225346126883, this, [value]); }
   declare readonly $type: { "s:21ImmersiveMediaSupport22FadeEnvironmentCommandV": true };
 }
 
@@ -171,22 +171,22 @@ export const FadeEnvironmentCommand_FadeDirection = {
    * init?(stringValue: String)
    * @availability iOS 26.4+
    */
-  initStringValue(stringValue: string): (FadeEnvironmentCommand_FadeDirection) | null { return callSDK<(FadeEnvironmentCommand_FadeDirection) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 3259524956219022, undefined, [stringValue]); },
+  initStringValue(stringValue: string): (FadeEnvironmentCommand_FadeDirection) | null { return callSDK<(FadeEnvironmentCommand_FadeDirection) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 3259524956219022, undefined, [stringValue]); },
   /**
    * var stringValue: String { get }
    * @availability iOS 26.4+
    */
-  getStringValue($self: FadeEnvironmentCommand_FadeDirection): string { return callSDK<string>("ImmersiveMediaSupport_edef71e2c29bf62d", 1281494490362800, $self, []); },
+  getStringValue($self: FadeEnvironmentCommand_FadeDirection): string { return callSDK<string>("ImmersiveMediaSupport_095cc02a2666a9f8", 1281494490362800, $self, []); },
   /**
    * init?(intValue: Int)
    * @availability iOS 26.4+
    */
-  initIntValue(intValue: number): (FadeEnvironmentCommand_FadeDirection) | null { return callSDK<(FadeEnvironmentCommand_FadeDirection) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 3538391865303205, undefined, [intValue]); },
+  initIntValue(intValue: number): (FadeEnvironmentCommand_FadeDirection) | null { return callSDK<(FadeEnvironmentCommand_FadeDirection) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 3538391865303205, undefined, [intValue]); },
   /**
    * var intValue: Int? { get }
    * @availability iOS 26.4+
    */
-  getIntValue($self: FadeEnvironmentCommand_FadeDirection): (number) | null { return callSDK<(number) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 630934997356975, $self, []); }
+  getIntValue($self: FadeEnvironmentCommand_FadeDirection): (number) | null { return callSDK<(number) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 630934997356975, $self, []); }
 };
 
 /**
@@ -198,37 +198,37 @@ export class ImmersiveCamera extends SDKHandle {
    * var calibration: ImmersiveCameraCalibration
    * @availability iOS 26.4+
    */
-  get calibration(): ImmersiveCameraCalibration { return callSDK<ImmersiveCameraCalibration>("ImmersiveMediaSupport_edef71e2c29bf62d", 2525958690248070, this, []); }
-  set calibration(value: ImmersiveCameraCalibration) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 1875588191946263, this, [value]); }
+  get calibration(): ImmersiveCameraCalibration { return callSDK<ImmersiveCameraCalibration>("ImmersiveMediaSupport_095cc02a2666a9f8", 2525958690248070, this, []); }
+  set calibration(value: ImmersiveCameraCalibration) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 1875588191946263, this, [value]); }
   /**
    * var presentationFrameRate: Int
    * @availability iOS 26.4+
    */
-  get presentationFrameRate(): number { return callSDK<number>("ImmersiveMediaSupport_edef71e2c29bf62d", 1474972455391759, this, []); }
-  set presentationFrameRate(value: number) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 4487315892653745, this, [value]); }
+  get presentationFrameRate(): number { return callSDK<number>("ImmersiveMediaSupport_095cc02a2666a9f8", 1474972455391759, this, []); }
+  set presentationFrameRate(value: number) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 4487315892653745, this, [value]); }
   /**
    * static let defaultPresentationFrameRate: Int
    * @availability iOS 26.4+
    */
-  static get defaultPresentationFrameRate(): number { return callSDK<number>("ImmersiveMediaSupport_edef71e2c29bf62d", 1443605085850049, undefined, []); }
+  static get defaultPresentationFrameRate(): number { return callSDK<number>("ImmersiveMediaSupport_095cc02a2666a9f8", 1443605085850049, undefined, []); }
   /**
    * var id: String
    * @availability iOS 26.4+
    */
-  get id(): string { return callSDK<string>("ImmersiveMediaSupport_edef71e2c29bf62d", 860982126898018, this, []); }
-  set id(value: string) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 911266037986463, this, [value]); }
+  get id(): string { return callSDK<string>("ImmersiveMediaSupport_095cc02a2666a9f8", 860982126898018, this, []); }
+  set id(value: string) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 911266037986463, this, [value]); }
   /**
    * var pose: Pose3DFloat
    * @availability iOS 26.4+
    */
-  get pose(): _Spatial_Pose3DFloat { return callSDK<_Spatial_Pose3DFloat>("ImmersiveMediaSupport_edef71e2c29bf62d", 1646006496914575, this, []); }
-  set pose(value: _Spatial_Pose3DFloat) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 109335542486153, this, [value]); }
+  get pose(): _Spatial_Pose3DFloat { return callSDK<_Spatial_Pose3DFloat>("ImmersiveMediaSupport_095cc02a2666a9f8", 1646006496914575, this, []); }
+  set pose(value: _Spatial_Pose3DFloat) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 109335542486153, this, [value]); }
   /**
    * var type: ImmersiveCamera.CameraType
    * @availability iOS 26.4+
    */
-  get type(): ImmersiveCamera_CameraType { return callSDK<ImmersiveCamera_CameraType>("ImmersiveMediaSupport_edef71e2c29bf62d", 3117953611330151, this, []); }
-  set type(value: ImmersiveCamera_CameraType) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 1700162513531173, this, [value]); }
+  get type(): ImmersiveCamera_CameraType { return callSDK<ImmersiveCamera_CameraType>("ImmersiveMediaSupport_095cc02a2666a9f8", 3117953611330151, this, []); }
+  set type(value: ImmersiveCamera_CameraType) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 1700162513531173, this, [value]); }
   declare readonly $type: { "s:21ImmersiveMediaSupport0A6CameraV": true };
 }
 
@@ -253,48 +253,48 @@ export class ImmersiveCameraCalibration extends SDKHandle {
    * var positionable: Bool
    * @availability iOS 26.4+
    */
-  get positionable(): boolean { return callSDK<boolean>("ImmersiveMediaSupport_edef71e2c29bf62d", 1972969976619100, this, []); }
-  set positionable(value: boolean) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 1248332353931172, this, [value]); }
+  get positionable(): boolean { return callSDK<boolean>("ImmersiveMediaSupport_095cc02a2666a9f8", 1972969976619100, this, []); }
+  set positionable(value: boolean) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 1248332353931172, this, [value]); }
   /**
    * var textureMapping: ImmersiveCameraCalibration.CameraTextureMapping
    * @availability iOS 26.4+
    */
-  get textureMapping(): ImmersiveCameraCalibration_CameraTextureMapping { return callSDK<ImmersiveCameraCalibration_CameraTextureMapping>("ImmersiveMediaSupport_edef71e2c29bf62d", 4156849422987876, this, []); }
-  set textureMapping(value: ImmersiveCameraCalibration_CameraTextureMapping) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 1056391135251410, this, [value]); }
+  get textureMapping(): ImmersiveCameraCalibration_CameraTextureMapping { return callSDK<ImmersiveCameraCalibration_CameraTextureMapping>("ImmersiveMediaSupport_095cc02a2666a9f8", 4156849422987876, this, []); }
+  set textureMapping(value: ImmersiveCameraCalibration_CameraTextureMapping) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 1056391135251410, this, [value]); }
   /**
    * var environmentFilename: String?
    * @availability iOS 26.4+
    */
-  get environmentFilename(): (string) | null { return callSDK<(string) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 4230457860399422, this, []); }
-  set environmentFilename(value: (string) | null) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 3910715586537647, this, [value]); }
+  get environmentFilename(): (string) | null { return callSDK<(string) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 4230457860399422, this, []); }
+  set environmentFilename(value: (string) | null) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 3910715586537647, this, [value]); }
   /**
    * var mask: ImmersiveCameraMask?
    * @availability iOS 26.4+
    */
-  get mask(): $SDK1 { return callSDK<$SDK1>("ImmersiveMediaSupport_edef71e2c29bf62d", 1524437768639401, this, []); }
-  set mask(value: $SDK1) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 2130356253734522, this, [value]); }
+  get mask(): $SDK1 { return callSDK<$SDK1>("ImmersiveMediaSupport_095cc02a2666a9f8", 1524437768639401, this, []); }
+  set mask(value: $SDK1) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 2130356253734522, this, [value]); }
   /**
    * init(name: String, type: ImmersiveCameraCalibration.CalibrationType, mask: ImmersiveCameraMask? = nil, positionable: Bool = false, origin: ImmersiveCameraCalibration.CameraOrigin = .zero, textureMapping: ImmersiveCameraCalibration.CameraTextureMapping = .identity, environmentFilename: String? = nil)
    * @availability iOS 26.4+
    */
-  static init(name: string, type: ImmersiveCameraCalibration_CalibrationType, mask?: $SDK1, positionable?: boolean, origin?: ImmersiveCameraCalibration_CameraOrigin, textureMapping?: ImmersiveCameraCalibration_CameraTextureMapping, environmentFilename?: (string) | null): ImmersiveCameraCalibration { return callSDK<ImmersiveCameraCalibration>("ImmersiveMediaSupport_edef71e2c29bf62d", 1355223789192295, undefined, [name, type, mask, positionable, origin, textureMapping, environmentFilename]); }
+  static init(name: string, type: ImmersiveCameraCalibration_CalibrationType, mask?: $SDK1, positionable?: boolean, origin?: ImmersiveCameraCalibration_CameraOrigin, textureMapping?: ImmersiveCameraCalibration_CameraTextureMapping, environmentFilename?: (string) | null): ImmersiveCameraCalibration { return callSDK<ImmersiveCameraCalibration>("ImmersiveMediaSupport_095cc02a2666a9f8", 1355223789192295, undefined, [name, type, mask, positionable, origin, textureMapping, environmentFilename]); }
   /**
    * var name: String
    * @availability iOS 26.4+
    */
-  get name(): string { return callSDK<string>("ImmersiveMediaSupport_edef71e2c29bf62d", 723430129375483, this, []); }
-  set name(value: string) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 833328255892525, this, [value]); }
+  get name(): string { return callSDK<string>("ImmersiveMediaSupport_095cc02a2666a9f8", 723430129375483, this, []); }
+  set name(value: string) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 833328255892525, this, [value]); }
   /**
    * var type: ImmersiveCameraCalibration.CalibrationType { get }
    * @availability iOS 26.4+
    */
-  get type(): ImmersiveCameraCalibration_CalibrationType { return callSDK<ImmersiveCameraCalibration_CalibrationType>("ImmersiveMediaSupport_edef71e2c29bf62d", 27307584488327, this, []); }
+  get type(): ImmersiveCameraCalibration_CalibrationType { return callSDK<ImmersiveCameraCalibration_CalibrationType>("ImmersiveMediaSupport_095cc02a2666a9f8", 27307584488327, this, []); }
   /**
    * var origin: ImmersiveCameraCalibration.CameraOrigin
    * @availability iOS 26.4+
    */
-  get origin(): ImmersiveCameraCalibration_CameraOrigin { return callSDK<ImmersiveCameraCalibration_CameraOrigin>("ImmersiveMediaSupport_edef71e2c29bf62d", 1811628642621847, this, []); }
-  set origin(value: ImmersiveCameraCalibration_CameraOrigin) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 2452805403907645, this, [value]); }
+  get origin(): ImmersiveCameraCalibration_CameraOrigin { return callSDK<ImmersiveCameraCalibration_CameraOrigin>("ImmersiveMediaSupport_095cc02a2666a9f8", 1811628642621847, this, []); }
+  set origin(value: ImmersiveCameraCalibration_CameraOrigin) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 2452805403907645, this, [value]); }
   declare readonly $type: { "s:21ImmersiveMediaSupport0A17CameraCalibrationV": true };
 }
 
@@ -315,12 +315,12 @@ export class ImmersiveCameraCalibration_CameraOrigin extends SDKHandle {
    * init(left: Point3DFloat = .zero, right: Point3DFloat = .zero)
    * @availability iOS 26.4+
    */
-  static init(left?: _Spatial_Point3DFloat, right?: _Spatial_Point3DFloat): ImmersiveCameraCalibration_CameraOrigin { return callSDK<ImmersiveCameraCalibration_CameraOrigin>("ImmersiveMediaSupport_edef71e2c29bf62d", 2307832316143433, undefined, [left, right]); }
+  static init(left?: _Spatial_Point3DFloat, right?: _Spatial_Point3DFloat): ImmersiveCameraCalibration_CameraOrigin { return callSDK<ImmersiveCameraCalibration_CameraOrigin>("ImmersiveMediaSupport_095cc02a2666a9f8", 2307832316143433, undefined, [left, right]); }
   /**
    * static let zero: ImmersiveCameraCalibration.CameraOrigin
    * @availability iOS 26.4+
    */
-  static get zero(): ImmersiveCameraCalibration_CameraOrigin { return callSDK<ImmersiveCameraCalibration_CameraOrigin>("ImmersiveMediaSupport_edef71e2c29bf62d", 4357329059835281, undefined, []); }
+  static get zero(): ImmersiveCameraCalibration_CameraOrigin { return callSDK<ImmersiveCameraCalibration_CameraOrigin>("ImmersiveMediaSupport_095cc02a2666a9f8", 4357329059835281, undefined, []); }
   declare readonly $type: { "s:21ImmersiveMediaSupport0A17CameraCalibrationV0D6OriginV": true };
 }
 
@@ -333,12 +333,12 @@ export class ImmersiveCameraCalibration_CameraTextureMapping extends SDKHandle {
    * init(left: matrix_float3x3 = matrix_identity_float3x3, right: matrix_float3x3 = matrix_identity_float3x3)
    * @availability iOS 26.4+
    */
-  static init(left?: SDKHandle, right?: SDKHandle): ImmersiveCameraCalibration_CameraTextureMapping { return callSDK<ImmersiveCameraCalibration_CameraTextureMapping>("ImmersiveMediaSupport_edef71e2c29bf62d", 3853300322116255, undefined, [left, right]); }
+  static init(left?: SDKHandle, right?: SDKHandle): ImmersiveCameraCalibration_CameraTextureMapping { return callSDK<ImmersiveCameraCalibration_CameraTextureMapping>("ImmersiveMediaSupport_095cc02a2666a9f8", 3853300322116255, undefined, [left, right]); }
   /**
    * static let identity: ImmersiveCameraCalibration.CameraTextureMapping
    * @availability iOS 26.4+
    */
-  static get identity(): ImmersiveCameraCalibration_CameraTextureMapping { return callSDK<ImmersiveCameraCalibration_CameraTextureMapping>("ImmersiveMediaSupport_edef71e2c29bf62d", 23852768457105, undefined, []); }
+  static get identity(): ImmersiveCameraCalibration_CameraTextureMapping { return callSDK<ImmersiveCameraCalibration_CameraTextureMapping>("ImmersiveMediaSupport_095cc02a2666a9f8", 23852768457105, undefined, []); }
   declare readonly $type: { "s:21ImmersiveMediaSupport0A17CameraCalibrationV0D14TextureMappingV": true };
 }
 
@@ -351,13 +351,13 @@ export class ImmersiveCameraLensDefinition extends SDKHandle {
    * func generateSTMap(device: any MTLDevice, cameraEye: ImmersiveCameraLensDefinition.Eye, stmapType: ImmersiveCameraLensDefinition.STMapType, into texture: any MTLTexture) async throws
    * @availability iOS 26.4+
    */
-  generateSTMap(device: SDKHandle, cameraEye: ImmersiveCameraLensDefinition_Eye, stmapType: ImmersiveCameraLensDefinition_STMapType, texture: SDKHandle): Promise<void> { return callSDKAsync<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 3075610911386923, this, [device, cameraEye, stmapType, texture]); }
+  generateSTMap(device: SDKHandle, cameraEye: ImmersiveCameraLensDefinition_Eye, stmapType: ImmersiveCameraLensDefinition_STMapType, texture: SDKHandle): Promise<void> { return callSDKAsync<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 3075610911386923, this, [device, cameraEye, stmapType, texture]); }
   /**
    * var cameraID: String
    * @availability iOS 26.4+
    */
-  get cameraID(): string { return callSDK<string>("ImmersiveMediaSupport_edef71e2c29bf62d", 3001219331292390, this, []); }
-  set cameraID(value: string) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 3521998676982903, this, [value]); }
+  get cameraID(): string { return callSDK<string>("ImmersiveMediaSupport_095cc02a2666a9f8", 3001219331292390, this, []); }
+  set cameraID(value: string) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 3521998676982903, this, [value]); }
   declare readonly $type: { "s:21ImmersiveMediaSupport0A20CameraLensDefinitionV": true };
 }
 
@@ -390,17 +390,17 @@ export class ImmersiveCameraMeshCalibration extends SDKHandle {
    * init(name: String, usdzData: Data)
    * @availability iOS 26.4+
    */
-  static init(name: string, usdzData: ArrayBuffer): ImmersiveCameraMeshCalibration { return callSDK<ImmersiveCameraMeshCalibration>("ImmersiveMediaSupport_edef71e2c29bf62d", 1953894584362451, undefined, [name, usdzData]); }
+  static init(name: string, usdzData: ArrayBuffer): ImmersiveCameraMeshCalibration { return callSDK<ImmersiveCameraMeshCalibration>("ImmersiveMediaSupport_095cc02a2666a9f8", 1953894584362451, undefined, [name, usdzData]); }
   /**
    * final let name: String
    * @availability iOS 26.4+
    */
-  get name(): string { return callSDK<string>("ImmersiveMediaSupport_edef71e2c29bf62d", 2779213777149211, this, []); }
+  get name(): string { return callSDK<string>("ImmersiveMediaSupport_095cc02a2666a9f8", 2779213777149211, this, []); }
   /**
    * final let usdzData: Data
    * @availability iOS 26.4+
    */
-  get usdzData(): ArrayBuffer { return callSDK<ArrayBuffer>("ImmersiveMediaSupport_edef71e2c29bf62d", 3787378040914551, this, []); }
+  get usdzData(): ArrayBuffer { return callSDK<ArrayBuffer>("ImmersiveMediaSupport_095cc02a2666a9f8", 3787378040914551, this, []); }
   declare readonly $type: { "s:21ImmersiveMediaSupport0A21CameraMeshCalibrationC": true };
 }
 
@@ -413,27 +413,27 @@ export class ImmersiveCameraViewModel extends SDKHandle {
    * var environmentBackdrop: MDLAsset? { get }
    * @availability iOS 26.4+
    */
-  get environmentBackdrop(): (_ModelIO_MDLAsset) | null { return callSDK<(_ModelIO_MDLAsset) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 1833139793285513, this, []); }
+  get environmentBackdrop(): (_ModelIO_MDLAsset) | null { return callSDK<(_ModelIO_MDLAsset) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 1833139793285513, this, []); }
   /**
    * var mask: ImmersiveVideoMask? { get }
    * @availability iOS 26.4+
    */
-  get mask(): (ImmersiveVideoMask) | null { return callSDK<(ImmersiveVideoMask) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 2964037457149899, this, []); }
+  get mask(): (ImmersiveVideoMask) | null { return callSDK<(ImmersiveVideoMask) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 2964037457149899, this, []); }
   /**
    * var leftEye: MDLMesh { get }
    * @availability iOS 26.4+
    */
-  get leftEye(): _ModelIO_MDLMesh { return callSDK<_ModelIO_MDLMesh>("ImmersiveMediaSupport_edef71e2c29bf62d", 2470711304683387, this, []); }
+  get leftEye(): _ModelIO_MDLMesh { return callSDK<_ModelIO_MDLMesh>("ImmersiveMediaSupport_095cc02a2666a9f8", 2470711304683387, this, []); }
   /**
    * var cameraID: String { get }
    * @availability iOS 26.4+
    */
-  get cameraID(): string { return callSDK<string>("ImmersiveMediaSupport_edef71e2c29bf62d", 1667862789867690, this, []); }
+  get cameraID(): string { return callSDK<string>("ImmersiveMediaSupport_095cc02a2666a9f8", 1667862789867690, this, []); }
   /**
    * var rightEye: MDLMesh { get }
    * @availability iOS 26.4+
    */
-  get rightEye(): _ModelIO_MDLMesh { return callSDK<_ModelIO_MDLMesh>("ImmersiveMediaSupport_edef71e2c29bf62d", 790659380539643, this, []); }
+  get rightEye(): _ModelIO_MDLMesh { return callSDK<_ModelIO_MDLMesh>("ImmersiveMediaSupport_095cc02a2666a9f8", 790659380539643, this, []); }
   declare readonly $type: { "s:21ImmersiveMediaSupport0A15CameraViewModelV": true };
 }
 
@@ -446,49 +446,49 @@ export class ImmersiveDynamicMask extends SDKHandle {
    * var edgeTreatment: ImmersiveDynamicMask.EdgeTreatment
    * @availability iOS 26.4+
    */
-  get edgeTreatment(): ImmersiveDynamicMask_EdgeTreatment { return callSDK<ImmersiveDynamicMask_EdgeTreatment>("ImmersiveMediaSupport_edef71e2c29bf62d", 871489624778871, this, []); }
-  set edgeTreatment(value: ImmersiveDynamicMask_EdgeTreatment) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 179780840200537, this, [value]); }
+  get edgeTreatment(): ImmersiveDynamicMask_EdgeTreatment { return callSDK<ImmersiveDynamicMask_EdgeTreatment>("ImmersiveMediaSupport_095cc02a2666a9f8", 871489624778871, this, []); }
+  set edgeTreatment(value: ImmersiveDynamicMask_EdgeTreatment) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 179780840200537, this, [value]); }
   /**
    * var stereoRelation: ImmersiveDynamicMask.StereoRelation
    * @availability iOS 26.4+
    */
-  get stereoRelation(): ImmersiveDynamicMask_StereoRelation { return callSDK<ImmersiveDynamicMask_StereoRelation>("ImmersiveMediaSupport_edef71e2c29bf62d", 4376628854528264, this, []); }
-  set stereoRelation(value: ImmersiveDynamicMask_StereoRelation) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 1255809999816639, this, [value]); }
+  get stereoRelation(): ImmersiveDynamicMask_StereoRelation { return callSDK<ImmersiveDynamicMask_StereoRelation>("ImmersiveMediaSupport_095cc02a2666a9f8", 4376628854528264, this, []); }
+  set stereoRelation(value: ImmersiveDynamicMask_StereoRelation) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 1255809999816639, this, [value]); }
   /**
    * var leftControlPoints: [Point3DFloat]
    * @availability iOS 26.4+
    */
-  get leftControlPoints(): $SDK4 { return callSDK<$SDK4>("ImmersiveMediaSupport_edef71e2c29bf62d", 1381109085096877, this, []); }
-  set leftControlPoints(value: $SDK4) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 3678557946594963, this, [value]); }
+  get leftControlPoints(): $SDK4 { return callSDK<$SDK4>("ImmersiveMediaSupport_095cc02a2666a9f8", 1381109085096877, this, []); }
+  set leftControlPoints(value: $SDK4) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 3678557946594963, this, [value]); }
   /**
    * var edgeWidthInDegrees: Float
    * @availability iOS 26.4+
    */
-  get edgeWidthInDegrees(): number { return callSDK<number>("ImmersiveMediaSupport_edef71e2c29bf62d", 1837854375627520, this, []); }
-  set edgeWidthInDegrees(value: number) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 2563208246733224, this, [value]); }
+  get edgeWidthInDegrees(): number { return callSDK<number>("ImmersiveMediaSupport_095cc02a2666a9f8", 1837854375627520, this, []); }
+  set edgeWidthInDegrees(value: number) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 2563208246733224, this, [value]); }
   /**
    * var rightControlPoints: [Point3DFloat]
    * @availability iOS 26.4+
    */
-  get rightControlPoints(): $SDK4 { return callSDK<$SDK4>("ImmersiveMediaSupport_edef71e2c29bf62d", 3128970385824577, this, []); }
-  set rightControlPoints(value: $SDK4) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 2769937421958132, this, [value]); }
+  get rightControlPoints(): $SDK4 { return callSDK<$SDK4>("ImmersiveMediaSupport_095cc02a2666a9f8", 3128970385824577, this, []); }
+  set rightControlPoints(value: $SDK4) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 2769937421958132, this, [value]); }
   /**
    * var controlPointInterpolation: ImmersiveDynamicMask.ControlPointInterpolation
    * @availability iOS 26.4+
    */
-  get controlPointInterpolation(): ImmersiveDynamicMask_ControlPointInterpolation { return callSDK<ImmersiveDynamicMask_ControlPointInterpolation>("ImmersiveMediaSupport_edef71e2c29bf62d", 2472573623720571, this, []); }
-  set controlPointInterpolation(value: ImmersiveDynamicMask_ControlPointInterpolation) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 2998700789034916, this, [value]); }
+  get controlPointInterpolation(): ImmersiveDynamicMask_ControlPointInterpolation { return callSDK<ImmersiveDynamicMask_ControlPointInterpolation>("ImmersiveMediaSupport_095cc02a2666a9f8", 2472573623720571, this, []); }
+  set controlPointInterpolation(value: ImmersiveDynamicMask_ControlPointInterpolation) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 2998700789034916, this, [value]); }
   /**
    * init(name: String, stereoRelation: ImmersiveDynamicMask.StereoRelation, edgeTreatment: ImmersiveDynamicMask.EdgeTreatment, controlPointInterpolation: ImmersiveDynamicMask.ControlPointInterpolation, leftControlPoints: [Point3DFloat], rightControlPoints: [Point3DFloat], edgeWidthInDegrees: Float)
    * @availability iOS 26.4+
    */
-  static init(name: string, stereoRelation: ImmersiveDynamicMask_StereoRelation, edgeTreatment: ImmersiveDynamicMask_EdgeTreatment, controlPointInterpolation: ImmersiveDynamicMask_ControlPointInterpolation, leftControlPoints: $SDK4, rightControlPoints: $SDK4, edgeWidthInDegrees: number): ImmersiveDynamicMask { return callSDK<ImmersiveDynamicMask>("ImmersiveMediaSupport_edef71e2c29bf62d", 2271359589695580, undefined, [name, stereoRelation, edgeTreatment, controlPointInterpolation, leftControlPoints, rightControlPoints, edgeWidthInDegrees]); }
+  static init(name: string, stereoRelation: ImmersiveDynamicMask_StereoRelation, edgeTreatment: ImmersiveDynamicMask_EdgeTreatment, controlPointInterpolation: ImmersiveDynamicMask_ControlPointInterpolation, leftControlPoints: $SDK4, rightControlPoints: $SDK4, edgeWidthInDegrees: number): ImmersiveDynamicMask { return callSDK<ImmersiveDynamicMask>("ImmersiveMediaSupport_095cc02a2666a9f8", 2271359589695580, undefined, [name, stereoRelation, edgeTreatment, controlPointInterpolation, leftControlPoints, rightControlPoints, edgeWidthInDegrees]); }
   /**
    * var name: String
    * @availability iOS 26.4+
    */
-  get name(): string { return callSDK<string>("ImmersiveMediaSupport_edef71e2c29bf62d", 336950837460184, this, []); }
-  set name(value: string) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 4252390369664423, this, [value]); }
+  get name(): string { return callSDK<string>("ImmersiveMediaSupport_095cc02a2666a9f8", 336950837460184, this, []); }
+  set name(value: string) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 4252390369664423, this, [value]); }
   declare readonly $type: { "s:21ImmersiveMediaSupport0A11DynamicMaskV": true };
 }
 
@@ -519,22 +519,22 @@ export class ImmersiveImageMask extends SDKHandle {
    * init(name: String, maskURL: URL)
    * @availability iOS 26.4+
    */
-  static initNameMaskURL(name: string, maskURL: string): ImmersiveImageMask { return callSDK<ImmersiveImageMask>("ImmersiveMediaSupport_edef71e2c29bf62d", 669973227807017, undefined, [name, maskURL]); }
+  static initNameMaskURL(name: string, maskURL: string): ImmersiveImageMask { return callSDK<ImmersiveImageMask>("ImmersiveMediaSupport_095cc02a2666a9f8", 669973227807017, undefined, [name, maskURL]); }
   /**
    * init(name: String, maskData: Data? = nil)
    * @availability iOS 26.4+
    */
-  static initNameMaskData(name: string, maskData?: (ArrayBuffer) | null): ImmersiveImageMask { return callSDK<ImmersiveImageMask>("ImmersiveMediaSupport_edef71e2c29bf62d", 1427576559486896, undefined, [name, maskData]); }
+  static initNameMaskData(name: string, maskData?: (ArrayBuffer) | null): ImmersiveImageMask { return callSDK<ImmersiveImageMask>("ImmersiveMediaSupport_095cc02a2666a9f8", 1427576559486896, undefined, [name, maskData]); }
   /**
    * final let name: String
    * @availability iOS 26.4+
    */
-  get name(): string { return callSDK<string>("ImmersiveMediaSupport_edef71e2c29bf62d", 3130196286395490, this, []); }
+  get name(): string { return callSDK<string>("ImmersiveMediaSupport_095cc02a2666a9f8", 3130196286395490, this, []); }
   /**
    * final let maskData: Data?
    * @availability iOS 26.4+
    */
-  get maskData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 2426827622695224, this, []); }
+  get maskData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 2426827622695224, this, []); }
   declare readonly $type: { "s:21ImmersiveMediaSupport0A9ImageMaskC": true };
 }
 
@@ -547,22 +547,22 @@ export class ImmersiveVideoMask extends SDKHandle {
    * var isInEquirectangularProjection: Bool { get }
    * @availability iOS 26.4+
    */
-  get isInEquirectangularProjection(): boolean { return callSDK<boolean>("ImmersiveMediaSupport_edef71e2c29bf62d", 287976862087847, this, []); }
+  get isInEquirectangularProjection(): boolean { return callSDK<boolean>("ImmersiveMediaSupport_095cc02a2666a9f8", 287976862087847, this, []); }
   /**
    * init(layout: ImmersiveVideoMask.Layout, isInEquirectangularProjection: Bool, texture: any MTLTexture)
    * @availability iOS 26.4+
    */
-  static init(layout: ImmersiveVideoMask_Layout, isInEquirectangularProjection: boolean, texture: SDKHandle): ImmersiveVideoMask { return callSDK<ImmersiveVideoMask>("ImmersiveMediaSupport_edef71e2c29bf62d", 4262029855209440, undefined, [layout, isInEquirectangularProjection, texture]); }
+  static init(layout: ImmersiveVideoMask_Layout, isInEquirectangularProjection: boolean, texture: SDKHandle): ImmersiveVideoMask { return callSDK<ImmersiveVideoMask>("ImmersiveMediaSupport_095cc02a2666a9f8", 4262029855209440, undefined, [layout, isInEquirectangularProjection, texture]); }
   /**
    * var layout: ImmersiveVideoMask.Layout { get }
    * @availability iOS 26.4+
    */
-  get layout(): ImmersiveVideoMask_Layout { return callSDK<ImmersiveVideoMask_Layout>("ImmersiveMediaSupport_edef71e2c29bf62d", 3276377513844219, this, []); }
+  get layout(): ImmersiveVideoMask_Layout { return callSDK<ImmersiveVideoMask_Layout>("ImmersiveMediaSupport_095cc02a2666a9f8", 3276377513844219, this, []); }
   /**
    * var texture: any MTLTexture { get }
    * @availability iOS 26.4+
    */
-  get texture(): SDKHandle { return callSDK<SDKHandle>("ImmersiveMediaSupport_edef71e2c29bf62d", 1767873757526926, this, []); }
+  get texture(): SDKHandle { return callSDK<SDKHandle>("ImmersiveMediaSupport_095cc02a2666a9f8", 1767873757526926, this, []); }
   declare readonly $type: { "s:21ImmersiveMediaSupport0A9VideoMaskV": true };
 }
 
@@ -581,27 +581,27 @@ export class ParametricImmersiveAssetInfo extends SDKHandle {
    * var isAssetConvertible: Bool { get }
    * @availability iOS 26.4+
    */
-  get isAssetConvertible(): boolean { return callSDK<boolean>("ImmersiveMediaSupport_edef71e2c29bf62d", 669655304682221, this, []); }
+  get isAssetConvertible(): boolean { return callSDK<boolean>("ImmersiveMediaSupport_095cc02a2666a9f8", 669655304682221, this, []); }
   /**
    * class func isParametricImmersive(asset: AVURLAsset) async -> Bool
    * @availability iOS 26.4+
    */
-  static isParametricImmersive(asset: _AVFoundation_AVURLAsset): Promise<boolean> { return callSDKAsync<boolean>("ImmersiveMediaSupport_edef71e2c29bf62d", 4352892205317125, undefined, [asset]); }
+  static isParametricImmersive(asset: _AVFoundation_AVURLAsset): Promise<boolean> { return callSDKAsync<boolean>("ImmersiveMediaSupport_095cc02a2666a9f8", 4352892205317125, undefined, [asset]); }
   /**
    * var conversionResult: Result<CMFormatDescription, ParametricImmersiveAssetInfo.Error>? { get }
    * @availability iOS 26.4+
    */
-  get conversionResult(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 639862673876281, this, []); }
+  get conversionResult(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 639862673876281, this, []); }
   /**
    * var requiredFormatDescription: CMFormatDescription? { get }
    * @availability iOS 26.4+
    */
-  get requiredFormatDescription(): (_CoreMedia_CMFormatDescription) | null { return callSDK<(_CoreMedia_CMFormatDescription) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 1832917318165743, this, []); }
+  get requiredFormatDescription(): (_CoreMedia_CMFormatDescription) | null { return callSDK<(_CoreMedia_CMFormatDescription) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 1832917318165743, this, []); }
   /**
    * init(asset: AVURLAsset, computeFormatDescription: Bool = true) async throws
    * @availability iOS 26.4+
    */
-  static init(asset: _AVFoundation_AVURLAsset, computeFormatDescription?: boolean): Promise<ParametricImmersiveAssetInfo> { return callSDKAsync<ParametricImmersiveAssetInfo>("ImmersiveMediaSupport_edef71e2c29bf62d", 1181312668078049, undefined, [asset, computeFormatDescription]); }
+  static init(asset: _AVFoundation_AVURLAsset, computeFormatDescription?: boolean): Promise<ParametricImmersiveAssetInfo> { return callSDKAsync<ParametricImmersiveAssetInfo>("ImmersiveMediaSupport_095cc02a2666a9f8", 1181312668078049, undefined, [asset, computeFormatDescription]); }
   declare readonly $type: { "s:21ImmersiveMediaSupport010ParametricA9AssetInfoC": true };
 }
 
@@ -614,12 +614,12 @@ export class ParametricImmersiveAssetInfo_Error extends SDKHandle {
    * var errorDescription: String? { get }
    * @availability iOS 26.4+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 3481773106980546, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 3481773106980546, this, []); }
   /**
    * let errorType: ParametricImmersiveAssetInfo.Error.ErrorType
    * @availability iOS 26.4+
    */
-  get errorType(): ParametricImmersiveAssetInfo_Error_ErrorType { return callSDK<ParametricImmersiveAssetInfo_Error_ErrorType>("ImmersiveMediaSupport_edef71e2c29bf62d", 2594547014215928, this, []); }
+  get errorType(): ParametricImmersiveAssetInfo_Error_ErrorType { return callSDK<ParametricImmersiveAssetInfo_Error_ErrorType>("ImmersiveMediaSupport_095cc02a2666a9f8", 2594547014215928, this, []); }
   declare readonly $type: { "s:21ImmersiveMediaSupport010ParametricA9AssetInfoC5ErrorV": true };
 }
 
@@ -638,23 +638,23 @@ export class PresentationCommand extends SDKHandle {
    * var id: Int { get }
    * @availability iOS 26.4+
    */
-  get id(): number { return callSDK<number>("ImmersiveMediaSupport_edef71e2c29bf62d", 1101059564522155, this, []); }
+  get id(): number { return callSDK<number>("ImmersiveMediaSupport_095cc02a2666a9f8", 1101059564522155, this, []); }
   /**
    * var time: CMTime { get set }
    * @availability iOS 26.4+
    */
-  get time(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_edef71e2c29bf62d", 4064413616747050, this, []); }
-  set time(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 1898402464777027, this, [value]); }
+  get time(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_095cc02a2666a9f8", 4064413616747050, this, []); }
+  set time(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 1898402464777027, this, [value]); }
   /**
    * var offset: CMTime? { get }
    * @availability iOS 26.4+
    */
-  get offset(): $SDK0 { return callSDK<$SDK0>("ImmersiveMediaSupport_edef71e2c29bf62d", 3278961671367257, this, []); }
+  get offset(): $SDK0 { return callSDK<$SDK0>("ImmersiveMediaSupport_095cc02a2666a9f8", 3278961671367257, this, []); }
   /**
    * var duration: CMTime { get }
    * @availability iOS 26.4+
    */
-  get duration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_edef71e2c29bf62d", 2393466826554900, this, []); }
+  get duration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_095cc02a2666a9f8", 2393466826554900, this, []); }
   declare readonly $type: { "s:21ImmersiveMediaSupport19PresentationCommandO": true };
 }
 
@@ -667,24 +667,24 @@ export class PresentationDescriptor extends SDKHandle {
    * init(commands: [PresentationCommand] = [])
    * @availability iOS 26.4+
    */
-  static initCommands(commands?: $SDK6): PresentationDescriptor { return callSDK<PresentationDescriptor>("ImmersiveMediaSupport_edef71e2c29bf62d", 699638929276154, undefined, [commands]); }
+  static initCommands(commands?: $SDK6): PresentationDescriptor { return callSDK<PresentationDescriptor>("ImmersiveMediaSupport_095cc02a2666a9f8", 699638929276154, undefined, [commands]); }
   /**
    * var commands: [PresentationCommand]
    * @availability iOS 26.4+
    */
-  get commands(): $SDK6 { return callSDK<$SDK6>("ImmersiveMediaSupport_edef71e2c29bf62d", 1185691815336466, this, []); }
-  set commands(value: $SDK6) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 1379220550762173, this, [value]); }
+  get commands(): $SDK6 { return callSDK<$SDK6>("ImmersiveMediaSupport_095cc02a2666a9f8", 1185691815336466, this, []); }
+  set commands(value: $SDK6) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 1379220550762173, this, [value]); }
   /**
    * init(duration: CMTime? = nil, commands: [PresentationCommand] = [])
    * @availability iOS 26.4+
    */
-  static initDurationCommands(duration?: $SDK0, commands?: $SDK6): PresentationDescriptor { return callSDK<PresentationDescriptor>("ImmersiveMediaSupport_edef71e2c29bf62d", 4355597347409444, undefined, [duration, commands]); }
+  static initDurationCommands(duration?: $SDK0, commands?: $SDK6): PresentationDescriptor { return callSDK<PresentationDescriptor>("ImmersiveMediaSupport_095cc02a2666a9f8", 4355597347409444, undefined, [duration, commands]); }
   /**
    * var duration: CMTime?
    * @availability iOS 26.4+
    */
-  get duration(): $SDK0 { return callSDK<$SDK0>("ImmersiveMediaSupport_edef71e2c29bf62d", 2122693258318757, this, []); }
-  set duration(value: $SDK0) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 1017554175599362, this, [value]); }
+  get duration(): $SDK0 { return callSDK<$SDK0>("ImmersiveMediaSupport_095cc02a2666a9f8", 2122693258318757, this, []); }
+  set duration(value: $SDK0) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 1017554175599362, this, [value]); }
   declare readonly $type: { "s:21ImmersiveMediaSupport22PresentationDescriptorV": true };
 }
 
@@ -697,77 +697,77 @@ export class PresentationDescriptorReader extends SDKHandle {
    * init(presentationDescriptor: PresentationDescriptor, isSideloaded: Bool = false)
    * @availability iOS 26.4+
    */
-  static init(presentationDescriptor: PresentationDescriptor, isSideloaded?: boolean): PresentationDescriptorReader { return callSDK<PresentationDescriptorReader>("ImmersiveMediaSupport_edef71e2c29bf62d", 4426278458782628, undefined, [presentationDescriptor, isSideloaded]); }
+  static init(presentationDescriptor: PresentationDescriptor, isSideloaded?: boolean): PresentationDescriptorReader { return callSDK<PresentationDescriptorReader>("ImmersiveMediaSupport_095cc02a2666a9f8", 4426278458782628, undefined, [presentationDescriptor, isSideloaded]); }
   /**
    * var presentationDescriptor: PresentationDescriptor { get }
    * @availability iOS 26.4+
    */
-  get presentationDescriptor(): PresentationDescriptor { return callSDK<PresentationDescriptor>("ImmersiveMediaSupport_edef71e2c29bf62d", 1724376691721787, this, []); }
+  get presentationDescriptor(): PresentationDescriptor { return callSDK<PresentationDescriptor>("ImmersiveMediaSupport_095cc02a2666a9f8", 1724376691721787, this, []); }
   /**
    * func outputPresentationCommands(for time: CMTime) -> [PresentationCommand]?
    * @availability iOS 26.4+
    */
-  outputPresentationCommands(time: _CoreMedia_CMTime): (Array<PresentationCommand>) | null { return callSDK<(Array<PresentationCommand>) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 417411103292022, this, [time]); }
+  outputPresentationCommands(time: _CoreMedia_CMTime): (Array<PresentationCommand>) | null { return callSDK<(Array<PresentationCommand>) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 417411103292022, this, [time]); }
   /**
    * func processPresentationCommands(for presentationTimeStamp: CMTime)
    * @availability iOS 26.4+
    */
-  processPresentationCommands(presentationTimeStamp: _CoreMedia_CMTime): void { return callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 388059733506579, this, [presentationTimeStamp]); }
+  processPresentationCommands(presentationTimeStamp: _CoreMedia_CMTime): void { return callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 388059733506579, this, [presentationTimeStamp]); }
   /**
    * var isSideloaded: Bool { get }
    * @availability iOS 26.4+
    */
-  get isSideloaded(): boolean { return callSDK<boolean>("ImmersiveMediaSupport_edef71e2c29bf62d", 2959788405299169, this, []); }
+  get isSideloaded(): boolean { return callSDK<boolean>("ImmersiveMediaSupport_095cc02a2666a9f8", 2959788405299169, this, []); }
   /**
    * func metadataItem(frameTimeRange: CMTimeRange) throws -> AVMetadataItem?
    * @availability iOS 27.0+
    */
-  metadataItem(frameTimeRange: _CoreMedia_CMTimeRange): (_AVFoundation_AVMetadataItem) | null { return callSDK<(_AVFoundation_AVMetadataItem) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 2754620813029733, this, [frameTimeRange]); }
+  metadataItem(frameTimeRange: _CoreMedia_CMTimeRange): (_AVFoundation_AVMetadataItem) | null { return callSDK<(_AVFoundation_AVMetadataItem) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 2754620813029733, this, [frameTimeRange]); }
   /**
    * var isShotFlipped: Bool { get }
    * @availability iOS 27.0+
    */
-  get isShotFlipped(): boolean { return callSDK<boolean>("ImmersiveMediaSupport_edef71e2c29bf62d", 87982106330984, this, []); }
+  get isShotFlipped(): boolean { return callSDK<boolean>("ImmersiveMediaSupport_095cc02a2666a9f8", 87982106330984, this, []); }
   /**
    * var isShotFlopped: Bool { get }
    * @availability iOS 26.4+
    */
-  get isShotFlopped(): boolean { return callSDK<boolean>("ImmersiveMediaSupport_edef71e2c29bf62d", 913906540426982, this, []); }
+  get isShotFlopped(): boolean { return callSDK<boolean>("ImmersiveMediaSupport_095cc02a2666a9f8", 913906540426982, this, []); }
   /**
    * func metadataTrack(timeRange: CMTimeRange? = nil) throws -> [AVMetadataItem]
    * @availability iOS 27.0+
    */
-  metadataTrack(timeRange?: (_CoreMedia_CMTimeRange) | null): Array<_AVFoundation_AVMetadataItem> { return callSDK<Array<_AVFoundation_AVMetadataItem>>("ImmersiveMediaSupport_edef71e2c29bf62d", 4434948342868064, this, [timeRange]); }
+  metadataTrack(timeRange?: (_CoreMedia_CMTimeRange) | null): Array<_AVFoundation_AVMetadataItem> { return callSDK<Array<_AVFoundation_AVMetadataItem>>("ImmersiveMediaSupport_095cc02a2666a9f8", 4434948342868064, this, [timeRange]); }
   /**
    * var cameraOverrides: SetCameraCommand.Overrides? { get }
    * @availability iOS 27.0+
    */
-  get cameraOverrides(): $SDK11 { return callSDK<$SDK11>("ImmersiveMediaSupport_edef71e2c29bf62d", 2119205203565118, this, []); }
+  get cameraOverrides(): $SDK11 { return callSDK<$SDK11>("ImmersiveMediaSupport_095cc02a2666a9f8", 2119205203565118, this, []); }
   /**
    * var colorFadeOpacity: Float { get }
    * @availability iOS 26.4+
    */
-  get colorFadeOpacity(): number { return callSDK<number>("ImmersiveMediaSupport_edef71e2c29bf62d", 1999543363298610, this, []); }
+  get colorFadeOpacity(): number { return callSDK<number>("ImmersiveMediaSupport_095cc02a2666a9f8", 1999543363298610, this, []); }
   /**
    * var presentationCommands: [PresentationCommand] { get }
    * @availability iOS 26.4+
    */
-  get presentationCommands(): $SDK6 { return callSDK<$SDK6>("ImmersiveMediaSupport_edef71e2c29bf62d", 1335857418662204, this, []); }
+  get presentationCommands(): $SDK6 { return callSDK<$SDK6>("ImmersiveMediaSupport_095cc02a2666a9f8", 1335857418662204, this, []); }
   /**
    * var environmentFadeOpacity: Float { get }
    * @availability iOS 26.4+
    */
-  get environmentFadeOpacity(): number { return callSDK<number>("ImmersiveMediaSupport_edef71e2c29bf62d", 3402700464611646, this, []); }
+  get environmentFadeOpacity(): number { return callSDK<number>("ImmersiveMediaSupport_095cc02a2666a9f8", 3402700464611646, this, []); }
   /**
    * var cameraID: String? { get }
    * @availability iOS 26.4+
    */
-  get cameraID(): (string) | null { return callSDK<(string) | null>("ImmersiveMediaSupport_edef71e2c29bf62d", 770967430202601, this, []); }
+  get cameraID(): (string) | null { return callSDK<(string) | null>("ImmersiveMediaSupport_095cc02a2666a9f8", 770967430202601, this, []); }
   /**
    * var colorFade: simd_float3 { get }
    * @availability iOS 26.4+
    */
-  get colorFade(): SDKHandle { return callSDK<SDKHandle>("ImmersiveMediaSupport_edef71e2c29bf62d", 1771030079473876, this, []); }
+  get colorFade(): SDKHandle { return callSDK<SDKHandle>("ImmersiveMediaSupport_095cc02a2666a9f8", 1771030079473876, this, []); }
   declare readonly $type: { "s:21ImmersiveMediaSupport28PresentationDescriptorReaderC": true };
   declare readonly $observable: { "presentationDescriptor": true; "isSideloaded": true; "isShotFlipped": true; "isShotFlopped": true; "cameraOverrides": true; "colorFadeOpacity": true; "presentationCommands": true; "environmentFadeOpacity": true; "cameraID": true; "colorFade": true };
 }
@@ -781,47 +781,47 @@ export class SetCameraCommand extends SDKHandle {
    * init(id: Int, time: CMTime, cameraID: String, overrides: SetCameraCommand.Overrides?)
    * @availability iOS 27.0+
    */
-  static initIdTimeCameraIDOverrides(id: number, time: _CoreMedia_CMTime, cameraID: string, overrides?: $SDK11): SetCameraCommand { return callSDK<SetCameraCommand>("ImmersiveMediaSupport_edef71e2c29bf62d", 1070764441594419, undefined, [id, time, cameraID, overrides]); }
+  static initIdTimeCameraIDOverrides(id: number, time: _CoreMedia_CMTime, cameraID: string, overrides?: $SDK11): SetCameraCommand { return callSDK<SetCameraCommand>("ImmersiveMediaSupport_095cc02a2666a9f8", 1070764441594419, undefined, [id, time, cameraID, overrides]); }
   /**
    * init(id: Int, time: CMTime, cameraID: String)
    * @availability iOS 26.4+
    */
-  static initIdTimeCameraID(id: number, time: _CoreMedia_CMTime, cameraID: string): SetCameraCommand { return callSDK<SetCameraCommand>("ImmersiveMediaSupport_edef71e2c29bf62d", 1473126596498222, undefined, [id, time, cameraID]); }
+  static initIdTimeCameraID(id: number, time: _CoreMedia_CMTime, cameraID: string): SetCameraCommand { return callSDK<SetCameraCommand>("ImmersiveMediaSupport_095cc02a2666a9f8", 1473126596498222, undefined, [id, time, cameraID]); }
   /**
    * var id: Int { get }
    * @availability iOS 26.4+
    */
-  get id(): number { return callSDK<number>("ImmersiveMediaSupport_edef71e2c29bf62d", 175460328259014, this, []); }
+  get id(): number { return callSDK<number>("ImmersiveMediaSupport_095cc02a2666a9f8", 175460328259014, this, []); }
   /**
    * var time: CMTime
    * @availability iOS 26.4+
    */
-  get time(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_edef71e2c29bf62d", 1415859133694640, this, []); }
-  set time(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 3981165270615667, this, [value]); }
+  get time(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_095cc02a2666a9f8", 1415859133694640, this, []); }
+  set time(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 3981165270615667, this, [value]); }
   /**
    * var offset: CMTime?
    * @availability iOS 26.4+
    */
-  get offset(): $SDK0 { return callSDK<$SDK0>("ImmersiveMediaSupport_edef71e2c29bf62d", 669978407363879, this, []); }
-  set offset(value: $SDK0) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 2432025736327305, this, [value]); }
+  get offset(): $SDK0 { return callSDK<$SDK0>("ImmersiveMediaSupport_095cc02a2666a9f8", 669978407363879, this, []); }
+  set offset(value: $SDK0) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 2432025736327305, this, [value]); }
   /**
    * var cameraID: String
    * @availability iOS 26.4+
    */
-  get cameraID(): string { return callSDK<string>("ImmersiveMediaSupport_edef71e2c29bf62d", 2363334775086379, this, []); }
-  set cameraID(value: string) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 441326562361887, this, [value]); }
+  get cameraID(): string { return callSDK<string>("ImmersiveMediaSupport_095cc02a2666a9f8", 2363334775086379, this, []); }
+  set cameraID(value: string) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 441326562361887, this, [value]); }
   /**
    * var duration: CMTime
    * @availability iOS 26.4+
    */
-  get duration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_edef71e2c29bf62d", 2777104991199242, this, []); }
-  set duration(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 4322146045838806, this, [value]); }
+  get duration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_095cc02a2666a9f8", 2777104991199242, this, []); }
+  set duration(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 4322146045838806, this, [value]); }
   /**
    * var overrides: SetCameraCommand.Overrides?
    * @availability iOS 27.0+
    */
-  get overrides(): $SDK11 { return callSDK<$SDK11>("ImmersiveMediaSupport_edef71e2c29bf62d", 592540274032845, this, []); }
-  set overrides(value: $SDK11) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 3927118958080433, this, [value]); }
+  get overrides(): $SDK11 { return callSDK<$SDK11>("ImmersiveMediaSupport_095cc02a2666a9f8", 592540274032845, this, []); }
+  set overrides(value: $SDK11) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 3927118958080433, this, [value]); }
   declare readonly $type: { "s:21ImmersiveMediaSupport16SetCameraCommandV": true };
 }
 
@@ -834,25 +834,25 @@ export class SetCameraCommand_Overrides extends SDKHandle {
    * var lensDefinitionData: ImmersiveCameraLensDefinition?
    * @availability iOS 27.0+
    */
-  get lensDefinitionData(): $SDK12 { return callSDK<$SDK12>("ImmersiveMediaSupport_edef71e2c29bf62d", 2981858072981686, this, []); }
-  set lensDefinitionData(value: $SDK12) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 2212737630297330, this, [value]); }
+  get lensDefinitionData(): $SDK12 { return callSDK<$SDK12>("ImmersiveMediaSupport_095cc02a2666a9f8", 2981858072981686, this, []); }
+  set lensDefinitionData(value: $SDK12) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 2212737630297330, this, [value]); }
   /**
    * var maskData: ImmersiveDynamicMask?
    * @availability iOS 27.0+
    */
-  get maskData(): $SDK13 { return callSDK<$SDK13>("ImmersiveMediaSupport_edef71e2c29bf62d", 753795369847880, this, []); }
-  set maskData(value: $SDK13) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 2038484828237872, this, [value]); }
+  get maskData(): $SDK13 { return callSDK<$SDK13>("ImmersiveMediaSupport_095cc02a2666a9f8", 753795369847880, this, []); }
+  set maskData(value: $SDK13) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 2038484828237872, this, [value]); }
   /**
    * init(rotation: Rotation3DFloat? = nil, lensDefinitionData: ImmersiveCameraLensDefinition? = nil, maskData: ImmersiveDynamicMask? = nil)
    * @availability iOS 27.0+
    */
-  static init(rotation?: $SDK14, lensDefinitionData?: $SDK12, maskData?: $SDK13): SetCameraCommand_Overrides { return callSDK<SetCameraCommand_Overrides>("ImmersiveMediaSupport_edef71e2c29bf62d", 1170389721160395, undefined, [rotation, lensDefinitionData, maskData]); }
+  static init(rotation?: $SDK14, lensDefinitionData?: $SDK12, maskData?: $SDK13): SetCameraCommand_Overrides { return callSDK<SetCameraCommand_Overrides>("ImmersiveMediaSupport_095cc02a2666a9f8", 1170389721160395, undefined, [rotation, lensDefinitionData, maskData]); }
   /**
    * var rotation: Rotation3DFloat? { get set }
    * @availability iOS 27.0+
    */
-  get rotation(): $SDK14 { return callSDK<$SDK14>("ImmersiveMediaSupport_edef71e2c29bf62d", 1828355314560013, this, []); }
-  set rotation(value: $SDK14) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 4240149787330304, this, [value]); }
+  get rotation(): $SDK14 { return callSDK<$SDK14>("ImmersiveMediaSupport_095cc02a2666a9f8", 1828355314560013, this, []); }
+  set rotation(value: $SDK14) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 4240149787330304, this, [value]); }
   declare readonly $type: { "s:21ImmersiveMediaSupport16SetCameraCommandV9OverridesV": true };
 }
 
@@ -865,30 +865,30 @@ export class ShotFlipCommand extends SDKHandle {
    * init(id: Int, time: CMTime, duration: CMTime, offset: CMTime? = nil)
    * @availability iOS 27.0+
    */
-  static init(id: number, time: _CoreMedia_CMTime, duration: _CoreMedia_CMTime, offset?: $SDK0): ShotFlipCommand { return callSDK<ShotFlipCommand>("ImmersiveMediaSupport_edef71e2c29bf62d", 3012613257021066, undefined, [id, time, duration, offset]); }
+  static init(id: number, time: _CoreMedia_CMTime, duration: _CoreMedia_CMTime, offset?: $SDK0): ShotFlipCommand { return callSDK<ShotFlipCommand>("ImmersiveMediaSupport_095cc02a2666a9f8", 3012613257021066, undefined, [id, time, duration, offset]); }
   /**
    * var id: Int { get }
    * @availability iOS 27.0+
    */
-  get id(): number { return callSDK<number>("ImmersiveMediaSupport_edef71e2c29bf62d", 3906518689427845, this, []); }
+  get id(): number { return callSDK<number>("ImmersiveMediaSupport_095cc02a2666a9f8", 3906518689427845, this, []); }
   /**
    * var time: CMTime
    * @availability iOS 27.0+
    */
-  get time(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_edef71e2c29bf62d", 2015819309911457, this, []); }
-  set time(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 3550979346700828, this, [value]); }
+  get time(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_095cc02a2666a9f8", 2015819309911457, this, []); }
+  set time(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 3550979346700828, this, [value]); }
   /**
    * var offset: CMTime?
    * @availability iOS 27.0+
    */
-  get offset(): $SDK0 { return callSDK<$SDK0>("ImmersiveMediaSupport_edef71e2c29bf62d", 1756601396182000, this, []); }
-  set offset(value: $SDK0) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 2912959164468016, this, [value]); }
+  get offset(): $SDK0 { return callSDK<$SDK0>("ImmersiveMediaSupport_095cc02a2666a9f8", 1756601396182000, this, []); }
+  set offset(value: $SDK0) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 2912959164468016, this, [value]); }
   /**
    * var duration: CMTime
    * @availability iOS 27.0+
    */
-  get duration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_edef71e2c29bf62d", 725351995552373, this, []); }
-  set duration(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 2442754468048941, this, [value]); }
+  get duration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_095cc02a2666a9f8", 725351995552373, this, []); }
+  set duration(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 2442754468048941, this, [value]); }
   declare readonly $type: { "s:21ImmersiveMediaSupport15ShotFlipCommandV": true };
 }
 
@@ -901,30 +901,30 @@ export class ShotFlopCommand extends SDKHandle {
    * init(id: Int, time: CMTime, duration: CMTime, offset: CMTime? = nil)
    * @availability iOS 26.4+
    */
-  static init(id: number, time: _CoreMedia_CMTime, duration: _CoreMedia_CMTime, offset?: $SDK0): ShotFlopCommand { return callSDK<ShotFlopCommand>("ImmersiveMediaSupport_edef71e2c29bf62d", 3543263629769673, undefined, [id, time, duration, offset]); }
+  static init(id: number, time: _CoreMedia_CMTime, duration: _CoreMedia_CMTime, offset?: $SDK0): ShotFlopCommand { return callSDK<ShotFlopCommand>("ImmersiveMediaSupport_095cc02a2666a9f8", 3543263629769673, undefined, [id, time, duration, offset]); }
   /**
    * var id: Int { get }
    * @availability iOS 26.4+
    */
-  get id(): number { return callSDK<number>("ImmersiveMediaSupport_edef71e2c29bf62d", 1599025448089763, this, []); }
+  get id(): number { return callSDK<number>("ImmersiveMediaSupport_095cc02a2666a9f8", 1599025448089763, this, []); }
   /**
    * var time: CMTime
    * @availability iOS 26.4+
    */
-  get time(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_edef71e2c29bf62d", 3360760906292037, this, []); }
-  set time(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 3079995074162247, this, [value]); }
+  get time(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_095cc02a2666a9f8", 3360760906292037, this, []); }
+  set time(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 3079995074162247, this, [value]); }
   /**
    * var offset: CMTime?
    * @availability iOS 26.4+
    */
-  get offset(): $SDK0 { return callSDK<$SDK0>("ImmersiveMediaSupport_edef71e2c29bf62d", 1640762930298086, this, []); }
-  set offset(value: $SDK0) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 2603127481020983, this, [value]); }
+  get offset(): $SDK0 { return callSDK<$SDK0>("ImmersiveMediaSupport_095cc02a2666a9f8", 1640762930298086, this, []); }
+  set offset(value: $SDK0) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 2603127481020983, this, [value]); }
   /**
    * var duration: CMTime
    * @availability iOS 26.4+
    */
-  get duration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_edef71e2c29bf62d", 567792914055466, this, []); }
-  set duration(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_edef71e2c29bf62d", 2951586621434215, this, [value]); }
+  get duration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("ImmersiveMediaSupport_095cc02a2666a9f8", 567792914055466, this, []); }
+  set duration(value: _CoreMedia_CMTime) { callSDK<void>("ImmersiveMediaSupport_095cc02a2666a9f8", 2951586621434215, this, [value]); }
   declare readonly $type: { "s:21ImmersiveMediaSupport15ShotFlopCommandV": true };
 }
 
@@ -937,47 +937,47 @@ export class VenueDescriptor extends SDKHandle {
    * nonisolated final var unownedExecutor: UnownedSerialExecutor { get }
    * @availability iOS 26.4+
    */
-  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("ImmersiveMediaSupport_edef71e2c29bf62d", 3282926565081306, this, []); }
+  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("ImmersiveMediaSupport_095cc02a2666a9f8", 3282926565081306, this, []); }
   /**
    * init(device: (any MTLDevice)? = nil)
    * @availability iOS 26.4+
    */
-  static initDevice(device?: (SDKHandle) | null): VenueDescriptor { return callSDK<VenueDescriptor>("ImmersiveMediaSupport_edef71e2c29bf62d", 3604428656266072, undefined, [device]); }
+  static initDevice(device?: (SDKHandle) | null): VenueDescriptor { return callSDK<VenueDescriptor>("ImmersiveMediaSupport_095cc02a2666a9f8", 3604428656266072, undefined, [device]); }
   /**
    * convenience init(aimeURL: URL, device: (any MTLDevice)? = nil) async throws
    * @availability iOS 26.4+
    */
-  static initAimeURLDevice(aimeURL: string, device?: (SDKHandle) | null): Promise<VenueDescriptor> { return callSDKAsync<VenueDescriptor>("ImmersiveMediaSupport_edef71e2c29bf62d", 1911369834645758, undefined, [aimeURL, device]); }
+  static initAimeURLDevice(aimeURL: string, device?: (SDKHandle) | null): Promise<VenueDescriptor> { return callSDKAsync<VenueDescriptor>("ImmersiveMediaSupport_095cc02a2666a9f8", 1911369834645758, undefined, [aimeURL, device]); }
   /**
    * init(aimeData: Data, device: (any MTLDevice)? = nil) async throws
    * @availability iOS 26.4+
    */
-  static initAimeDataDevice(aimeData: ArrayBuffer, device?: (SDKHandle) | null): Promise<VenueDescriptor> { return callSDKAsync<VenueDescriptor>("ImmersiveMediaSupport_edef71e2c29bf62d", 2732201164194380, undefined, [aimeData, device]); }
+  static initAimeDataDevice(aimeData: ArrayBuffer, device?: (SDKHandle) | null): Promise<VenueDescriptor> { return callSDKAsync<VenueDescriptor>("ImmersiveMediaSupport_095cc02a2666a9f8", 2732201164194380, undefined, [aimeData, device]); }
   declare readonly $type: { "s:21ImmersiveMediaSupport15VenueDescriptorC": true };
 }
 
-registerSDKClass("ImmersiveMediaSupport.AIVUValidator", AIVUValidator, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.FadeCommand", FadeCommand, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.FadeEnvironmentCommand", FadeEnvironmentCommand, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ImmersiveCamera", ImmersiveCamera, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraCalibration", ImmersiveCameraCalibration, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraCalibration.CalibrationType", ImmersiveCameraCalibration_CalibrationType, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraCalibration.CameraOrigin", ImmersiveCameraCalibration_CameraOrigin, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraCalibration.CameraTextureMapping", ImmersiveCameraCalibration_CameraTextureMapping, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraLensDefinition", ImmersiveCameraLensDefinition, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {}, methods: {"generateSTMap":{"id":3075610911386923}} });
-registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraMask", ImmersiveCameraMask, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraMeshCalibration", ImmersiveCameraMeshCalibration, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraViewModel", ImmersiveCameraViewModel, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ImmersiveDynamicMask", ImmersiveDynamicMask, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ImmersiveImageMask", ImmersiveImageMask, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ImmersiveVideoMask", ImmersiveVideoMask, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ParametricImmersiveAssetInfo", ParametricImmersiveAssetInfo, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ParametricImmersiveAssetInfo.Error", ParametricImmersiveAssetInfo_Error, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.PresentationCommand", PresentationCommand, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.PresentationDescriptor", PresentationDescriptor, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.PresentationDescriptorReader", PresentationDescriptorReader, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {"presentationDescriptor":1724376691721787,"isSideloaded":2959788405299169,"isShotFlipped":87982106330984,"isShotFlopped":913906540426982,"cameraOverrides":2119205203565118,"colorFadeOpacity":1999543363298610,"presentationCommands":1335857418662204,"environmentFadeOpacity":3402700464611646,"cameraID":770967430202601,"colorFade":1771030079473876}, methods: {"outputPresentationCommands":{"id":417411103292022},"processPresentationCommands":{"id":388059733506579},"metadataItem":{"id":2754620813029733},"metadataTrack":{"id":4434948342868064}} });
-registerSDKClass("ImmersiveMediaSupport.SetCameraCommand", SetCameraCommand, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.SetCameraCommand.Overrides", SetCameraCommand_Overrides, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ShotFlipCommand", ShotFlipCommand, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.ShotFlopCommand", ShotFlopCommand, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
-registerSDKClass("ImmersiveMediaSupport.VenueDescriptor", VenueDescriptor, { module: "ImmersiveMediaSupport_edef71e2c29bf62d", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.AIVUValidator", AIVUValidator, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.FadeCommand", FadeCommand, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.FadeEnvironmentCommand", FadeEnvironmentCommand, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ImmersiveCamera", ImmersiveCamera, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraCalibration", ImmersiveCameraCalibration, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraCalibration.CalibrationType", ImmersiveCameraCalibration_CalibrationType, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraCalibration.CameraOrigin", ImmersiveCameraCalibration_CameraOrigin, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraCalibration.CameraTextureMapping", ImmersiveCameraCalibration_CameraTextureMapping, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraLensDefinition", ImmersiveCameraLensDefinition, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {}, methods: {"generateSTMap":{"id":3075610911386923}} });
+registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraMask", ImmersiveCameraMask, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraMeshCalibration", ImmersiveCameraMeshCalibration, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ImmersiveCameraViewModel", ImmersiveCameraViewModel, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ImmersiveDynamicMask", ImmersiveDynamicMask, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ImmersiveImageMask", ImmersiveImageMask, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ImmersiveVideoMask", ImmersiveVideoMask, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ParametricImmersiveAssetInfo", ParametricImmersiveAssetInfo, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ParametricImmersiveAssetInfo.Error", ParametricImmersiveAssetInfo_Error, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.PresentationCommand", PresentationCommand, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.PresentationDescriptor", PresentationDescriptor, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.PresentationDescriptorReader", PresentationDescriptorReader, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {"presentationDescriptor":1724376691721787,"isSideloaded":2959788405299169,"isShotFlipped":87982106330984,"isShotFlopped":913906540426982,"cameraOverrides":2119205203565118,"colorFadeOpacity":1999543363298610,"presentationCommands":1335857418662204,"environmentFadeOpacity":3402700464611646,"cameraID":770967430202601,"colorFade":1771030079473876}, methods: {"outputPresentationCommands":{"id":417411103292022},"processPresentationCommands":{"id":388059733506579},"metadataItem":{"id":2754620813029733},"metadataTrack":{"id":4434948342868064}} });
+registerSDKClass("ImmersiveMediaSupport.SetCameraCommand", SetCameraCommand, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.SetCameraCommand.Overrides", SetCameraCommand_Overrides, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ShotFlipCommand", ShotFlipCommand, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.ShotFlopCommand", ShotFlopCommand, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });
+registerSDKClass("ImmersiveMediaSupport.VenueDescriptor", VenueDescriptor, { module: "ImmersiveMediaSupport_095cc02a2666a9f8", properties: {} });

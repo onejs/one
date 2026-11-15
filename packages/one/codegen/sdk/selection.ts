@@ -1,5 +1,4 @@
 import { existsSync, readFileSync, readdirSync, realpathSync } from 'node:fs'
-import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parse } from '@babel/parser'
@@ -10,12 +9,73 @@ import { generatorFingerprint } from './fingerprint'
 
 const SKIP = new Set(['node_modules', 'ios', 'android', 'dist', 'build', 'types'])
 const SDK_IMPORT = /^one\/ios\/([A-Za-z_][A-Za-z0-9_]*)(?:\/([A-Za-z_$][A-Za-z0-9_$]*))?$/
+const SDK_SOURCE = /['"]one\/ios(?:\/|['"])|['"]one\/ios-runtime['"]/
+const SDK_SPECIFIER = /['"]one\/ios\/([A-Za-z_][A-Za-z0-9_]*)(?:\/[A-Za-z_$][A-Za-z0-9_$]*)?['"]/g
 const ONE_IMPORT = /(?:\bfrom\s*|\bimport\s*\(?\s*|\brequire\s*\(\s*)['"]one['"]/
 const SDK_BACKEND = /\brequire\(\s*['"](\.\/[\w.-]+\.sdk)['"]\s*\)/g
+const DECLARES_ONE = ['dependencies', 'peerDependencies', 'optionalDependencies', 'devDependencies']
 
-export function importedBindings(root: string, platformRoot = join(dirname(fileURLToPath(import.meta.url)), '../../src/platform')) {
-  const found = new Map<string, Set<string> | null>()
+const defaultPlatformRoot = () => join(dirname(fileURLToPath(import.meta.url)), '../../src/platform')
+
+// hands each source file of the app, of the dependencies declaring `one`, and,
+// when the app uses the root barrel, of One's unified native modules to `scan`.
+// a dependency that does not declare `one` cannot import one/ios, so only its
+// manifest is read to reach its own dependencies.
+function scanProject(root: string, platformRoot: string, scan: (file: string, source: string) => void) {
   let usesOne = false
+  const read = (file: string, unified: boolean) => {
+    const source = readFileSync(file, 'utf8')
+    if (!unified && ONE_IMPORT.test(source)) usesOne = true
+    scan(file, source)
+    if (unified) for (const match of source.matchAll(SDK_BACKEND)) read(join(dirname(file), `${match[1]}.ts`), true)
+  }
+  const walk = (dir: string, unified = false, dependency = false) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || (SKIP.has(entry.name) && !(dependency && ['dist', 'build'].includes(entry.name)))) continue
+      const full = join(dir, entry.name)
+      if (entry.isDirectory()) walk(full, unified, dependency)
+      else if (/\.(?:[cm]?[jt]sx?)$/.test(entry.name) && (!unified || /\.ios\.[jt]sx?$/.test(entry.name))) read(full, unified)
+    }
+  }
+  walk(root)
+  const visited = new Set<string>([realpathSync(root)])
+  // the package directory node resolves `name` to from `directory`
+  const locate = (directory: string, name: string) => {
+    for (let at = directory; ; at = dirname(at)) {
+      const packageFile = join(at, 'node_modules', name, 'package.json')
+      if (existsSync(packageFile)) return realpathSync(dirname(packageFile))
+      if (dirname(at) === at) return undefined
+    }
+  }
+  const dependencies = (directory: string, manifest: Record<string, Record<string, string> | undefined>) => {
+    for (const name of new Set([...Object.keys(manifest.dependencies ?? {}), ...Object.keys(manifest.optionalDependencies ?? {})])) {
+      if (name === 'one') continue
+      const parent = locate(directory, name)
+      if (!parent || visited.has(parent)) continue
+      visited.add(parent)
+      const declared = JSON.parse(readFileSync(join(parent, 'package.json'), 'utf8'))
+      if (DECLARES_ONE.some((field) => declared[field]?.one !== undefined)) walk(parent, false, true)
+      dependencies(parent, declared)
+    }
+  }
+  if (existsSync(join(root, 'package.json'))) dependencies(root, JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')))
+  if (usesOne) walk(platformRoot, true)
+}
+
+// every prebuild asks for the frameworks, so this reads text rather than parsing
+export function importedFrameworks(root: string, platformRoot = defaultPlatformRoot()): string[] {
+  const found = new Set<string>()
+  scanProject(root, platformRoot, (_file, source) => {
+    for (const match of source.matchAll(SDK_SPECIFIER)) found.add(match[1])
+  })
+  return [...found].sort()
+}
+
+const isTypeScript = (file: string) => /\.[cm]?ts$/.test(file)
+const isTsx = (file: string) => file.endsWith('.tsx')
+
+export function importedBindings(root: string, platformRoot = defaultPlatformRoot()) {
+  const found = new Map<string, Set<string> | null>()
   let dynamicEntries = false
   const add = (source: string, symbols?: string[]) => {
     const match = SDK_IMPORT.exec(source)
@@ -30,80 +90,47 @@ export function importedBindings(root: string, platformRoot = join(dirname(fileU
     for (const name of symbol ? [symbol] : symbols ?? []) selected.add(name)
     found.set(framework, selected)
   }
-  const scan = (file: string, unified: boolean) => {
-    const source = readFileSync(file, 'utf8')
-    if (!unified && ONE_IMPORT.test(source)) usesOne = true
-    if (source.includes('one/ios')) {
-      const ast = parse(source, { sourceType: 'unambiguous', plugins: ['typescript', 'jsx'] })
-      const visit = (node: Node) => {
-        if (node.type === 'ImportDeclaration') {
-          if (node.source.value === 'one/ios-runtime' && node.specifiers.some((specifier) => specifier.type !== 'ImportSpecifier' || ['callSDK', 'callSDKAsync'].includes(specifier.imported.type === 'Identifier' ? specifier.imported.name : specifier.imported.value))) dynamicEntries = true
-          const named = node.specifiers.every((specifier) => specifier.type === 'ImportSpecifier')
-          add(node.source.value, named ? node.specifiers.flatMap((specifier) => specifier.type === 'ImportSpecifier' ? [specifier.imported.type === 'Identifier' ? specifier.imported.name : specifier.imported.value] : []) : undefined)
-        } else if (node.type === 'ExportNamedDeclaration' && node.source) {
-          add(node.source.value, node.specifiers.flatMap((specifier) => specifier.type === 'ExportSpecifier' ? [specifier.local.name] : []))
-        } else if (node.type === 'ExportAllDeclaration') add(node.source.value)
-        else if (node.type === 'CallExpression' && ((node.callee.type === 'Identifier' && node.callee.name === 'require') || node.callee.type === 'Import')) {
-          const source = node.arguments[0]
-          if (source?.type === 'StringLiteral') {
-            if (source.value === 'one/ios-runtime') dynamicEntries = true
-            add(source.value)
-          }
-        }
-        for (const key of VISITOR_KEYS[node.type] ?? []) {
-          const child = Reflect.get(node, key)
-          if (Array.isArray(child)) { for (const item of child) if (item) visit(item) }
-          else if (child) visit(child)
-        }
-      }
-      visit(ast)
+  const name = (node: { type: string; name?: string; value?: string }) => (node.type === 'Identifier' ? node.name! : node.value!)
+  scanProject(root, platformRoot, (file, source) => {
+    if (!SDK_SOURCE.test(source)) return
+    let ast: ReturnType<typeof parse>
+    try {
+      // an angle-bracket assertion is not jsx in .ts, and flow annotations are not typescript in .js
+      ast = parse(source, { sourceType: 'unambiguous', plugins: isTypeScript(file) ? ['typescript'] : isTsx(file) ? ['typescript', 'jsx'] : ['jsx', 'flow'] })
+    } catch {
+      // a file that does not parse may use anything, so every framework it names keeps its full table
+      for (const match of source.matchAll(SDK_SPECIFIER)) found.set(match[1], null)
+      if (/['"]one\/ios-runtime['"]/.test(source)) dynamicEntries = true
+      return
     }
-    if (unified) for (const match of source.matchAll(SDK_BACKEND)) scan(join(dirname(file), `${match[1]}.ts`), true)
-  }
-  const walk = (dir: string, unified = false, dependency = false) => {
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || (SKIP.has(entry.name) && !(dependency && ['dist', 'build'].includes(entry.name)))) continue
-      const full = join(dir, entry.name)
-      if (entry.isDirectory()) walk(full, unified, dependency)
-      else if (/\.(?:[cm]?[jt]sx?)$/.test(entry.name) && (!unified || /\.ios\.[jt]sx?$/.test(entry.name))) scan(full, unified)
-    }
-  }
-  walk(root)
-  const visited = new Set<string>([realpathSync(root)])
-  const dependencies = (directory: string) => {
-    const packageFile = join(directory, 'package.json')
-    if (!existsSync(packageFile)) return
-    const manifest: { dependencies?: Record<string, string>; optionalDependencies?: Record<string, string> } = JSON.parse(readFileSync(packageFile, 'utf8'))
-    const require = createRequire(packageFile)
-    for (const name of new Set([...Object.keys(manifest.dependencies ?? {}), ...Object.keys(manifest.optionalDependencies ?? {})])) {
-      if (name === 'one') continue
-      let resolved: string
-      try {
-        resolved = require.resolve(name + '/package.json')
-      } catch (error) {
-        if (!(error instanceof Error) || !('code' in error)) throw error
-        if (error.code === 'MODULE_NOT_FOUND') continue
-        if (error.code !== 'ERR_PACKAGE_PATH_NOT_EXPORTED') throw error
-        try { resolved = require.resolve(name) }
-        catch (error) {
-          if (error instanceof Error && 'code' in error && (error.code === 'MODULE_NOT_FOUND' || error.code === 'ERR_PACKAGE_PATH_NOT_EXPORTED')) continue
-          throw error
+    const visit = (node: Node) => {
+      if (node.type === 'ImportDeclaration') {
+        if (node.source.value === 'one/ios-runtime' && node.importKind !== 'type' && node.specifiers.some((specifier) => specifier.type !== 'ImportSpecifier' || ['callSDK', 'callSDKAsync'].includes(name(specifier.imported)))) dynamicEntries = true
+        // type-only imports are erased, so they reach no entries
+        const values = node.specifiers.filter((specifier) => specifier.type !== 'ImportSpecifier' || specifier.importKind !== 'type')
+        if (node.importKind === 'type' || (node.specifiers.length && !values.length)) return
+        const named = values.every((specifier) => specifier.type === 'ImportSpecifier')
+        add(node.source.value, named ? values.flatMap((specifier) => specifier.type === 'ImportSpecifier' ? [name(specifier.imported)] : []) : undefined)
+      } else if (node.type === 'ExportNamedDeclaration' && node.source) {
+        if (node.exportKind === 'type') return
+        add(node.source.value, node.specifiers.flatMap((specifier) => specifier.type === 'ExportSpecifier' && specifier.exportKind !== 'type' ? [specifier.local.name] : []))
+      } else if (node.type === 'ExportAllDeclaration') {
+        if (node.exportKind !== 'type') add(node.source.value)
+      } else if (node.type === 'CallExpression' && ((node.callee.type === 'Identifier' && node.callee.name === 'require') || node.callee.type === 'Import')) {
+        const source = node.arguments[0]
+        if (source?.type === 'StringLiteral') {
+          if (source.value === 'one/ios-runtime') dynamicEntries = true
+          add(source.value)
         }
       }
-      let parent = dirname(realpathSync(resolved))
-      while (!existsSync(join(parent, 'package.json')) || typeof JSON.parse(readFileSync(join(parent, 'package.json'), 'utf8')).name !== 'string') {
-        const next = dirname(parent)
-        if (next === parent) throw new Error('[one] dependency has no package manifest: ' + name)
-        parent = next
+      for (const key of VISITOR_KEYS[node.type] ?? []) {
+        const child = Reflect.get(node, key)
+        if (Array.isArray(child)) { for (const item of child) if (item) visit(item) }
+        else if (child) visit(child)
       }
-      if (visited.has(parent)) continue
-      visited.add(parent)
-      walk(parent, false, true)
-      dependencies(parent)
     }
-  }
-  dependencies(root)
-  if (usesOne) walk(platformRoot, true)
+    visit(ast)
+  })
   if (dynamicEntries) for (const framework of found.keys()) found.set(framework, null)
   return found
 }
@@ -123,8 +150,9 @@ export function appSdkOptions(root: string): AppSdkOptions {
       const name = pending[at]
       if (visited.has(name)) continue
       visited.add(name)
+      // interfaces and type aliases are erased, so they have no group
       const group = groups[name]
-      if (!group) throw new Error(`[one] unknown ${framework} SDK binding: ${name}`)
+      if (!group) continue
       for (const id of group.entries) ids.add(id)
       pending.push(...group.dependencies)
     }
