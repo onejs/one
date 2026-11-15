@@ -3629,11 +3629,26 @@ export function installNativeDependencies(args: {
     // RCT_IGNORE_PODS_DEPRECATION stays unset: react native treats it as
     // RCT_SKIP_CODEGEN, and pod install must run codegen after autolinking
     // writes its config so every library spec lands in ReactCodegen.
-    execFileSync('pod', ['install', `--project-directory=${path.join(root, 'ios')}`], {
-      stdio: 'inherit',
-      env: { ...process.env, LC_ALL: 'en_US.UTF-8' },
-    })
+    try {
+      execFileSync('pod', ['install', `--project-directory=${path.join(root, 'ios')}`], {
+        stdio: 'inherit',
+        env: { ...process.env, LC_ALL: 'en_US.UTF-8' },
+      })
+    } catch (error) {
+      // a prebuild without --platform on a host without cocoapods writes
+      // android/ and skips ios work; a missing pod binary skips pod install
+      // the same way instead of failing the whole command. an explicit ios
+      // prebuild still fails loudly so the missing tool is never silent.
+      if (platform === 'ios' || !isMissingExecutable(error)) throw error
+      console.warn('[vxrn] `pod` is not available, so `pod install` was skipped')
+    }
   }
+}
+
+function isMissingExecutable(error: unknown) {
+  return (
+    error instanceof Error && 'code' in error && (error as { code?: unknown }).code === 'ENOENT'
+  )
 }
 
 const transformPath = (filePath: string) => {
