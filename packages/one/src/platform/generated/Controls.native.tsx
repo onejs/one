@@ -5,6 +5,7 @@ import { useControlled } from '../controlled'
 import { assertSwiftUIValue } from './swiftui'
 import { swiftStyleNative, dispatchSDKEvent } from './swiftStyleNative'
 import type * as Types from './controlTypes'
+import { processColor } from 'react-native'
 import { chartPointsNative, chartStyleNative } from '../chartNative'
 import { getSyncStateId, isSyncState, publishNativeSyncState } from '../syncStore'
 import { syncHandleOf, useSyncValue } from '../syncNativeState'
@@ -825,21 +826,39 @@ export function ConcentricRectangle({
 import NativeLinearGradient from '../specs/OneNativeLinearGradientNativeComponent'
 export function LinearGradient({
   colors,
+  locations = [],
   startPoint = { x: 0.5, y: 0 },
   endPoint = { x: 0.5, y: 1 },
   swiftStyle,
   style,
   ...props
 }: Types.LinearGradientProps) {
-  if (
-    !Array.isArray(colors) ||
-    !colors.every(
-      (color) =>
-        typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)
+  if (!Array.isArray(colors))
+    throw new Error(
+      'LinearGradient colors must be an array of React Native color strings'
     )
+  const nativeColors = colors.map((color) => {
+    const value = typeof color === 'string' ? processColor(color) : null
+    if (typeof value !== 'number')
+      throw new Error('LinearGradient colors must be valid React Native color strings')
+    const argb = value >>> 0
+    const rgba = ((argb << 8) | (argb >>> 24)) >>> 0
+    return '#' + rgba.toString(16).padStart(8, '0')
+  })
+  if (
+    !Array.isArray(locations) ||
+    (locations.length > 0 &&
+      (locations.length !== colors.length ||
+        locations.some(
+          (location, index) =>
+            !Number.isFinite(location) ||
+            location < 0 ||
+            location > 1 ||
+            (index > 0 && location < locations[index - 1]!)
+        )))
   )
     throw new Error(
-      'LinearGradient colors must be an array of #RRGGBB or #RRGGBBAA colors'
+      'LinearGradient locations must match colors and be ordered between 0 and 1'
     )
   for (const point of [startPoint, endPoint])
     if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y))
@@ -856,7 +875,8 @@ export function LinearGradient({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
-      colors={colors}
+      colors={nativeColors}
+      locations={JSON.stringify(locations)}
       startPoint={JSON.stringify(startPoint)}
       endPoint={JSON.stringify(endPoint)}
     />
