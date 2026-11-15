@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "dependencies": {
+    "react": "19.3.0",
+    "scheduler": "0.28.0"
+  }
+}

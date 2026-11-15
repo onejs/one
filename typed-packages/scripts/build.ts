@@ -1,7 +1,8 @@
 // builds each typed package: npm's package plus its typed files behind the "aot" export condition
 // usage: bun typed-packages/scripts/build.ts [--into <node_modules>]
 //
-// writes dist/<name>. with --into, also replaces <node_modules>/<name> when its installed version matches.
+// writes dist/<name>. with --into, also lays the typed files and the "aot" exports over
+// <node_modules>/<name> when its installed version matches, leaving the rest of the install alone.
 import { cpSync, existsSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { erase, npmPackage, root } from './lib'
@@ -18,9 +19,7 @@ for (const entry of readdirSync(root, { withFileTypes: true })) {
 
 for (const [name, version] of packages) {
   const npm = npmPackage(name, version)
-  const out = join(root, 'dist', name)
-  rmSync(out, { recursive: true, force: true })
-  cpSync(npm, out, { recursive: true })
+  const added: Record<string, string> = {}
 
   const typed = [...new Bun.Glob('**/*.ts').scanSync(join(root, name, version))]
   for (const rel of typed) {
@@ -28,55 +27,67 @@ for (const [name, version] of packages) {
     const code = readFileSync(join(root, name, version, rel), 'utf8')
     if (erase(code, 'ts') !== erase(readFileSync(join(npm, js), 'utf8'), 'js'))
       throw new Error(`${name}@${version} ${rel}: erasing its types does not give npm's ${js}`)
-    writeFileSync(join(out, js.replace(/\.js$/, '.aot.ts')), code)
+    added[js.replace(/\.js$/, '.aot.ts')] = code
   }
 
-  // an entry that loads a typed file gets an .aot.ts twin that loads the typed file instead
+  // a root entry that loads a typed file gets an .aot.ts twin that loads the typed file instead
   const aotEntries = new Set<string>()
   for (const file of readdirSync(npm).filter((f) => f.endsWith('.js'))) {
     let text = readFileSync(join(npm, file), 'utf8')
-    let changed = false
     for (const rel of typed) {
       const js = './' + rel.replace(/\.ts$/, '.js')
-      if (text.includes(`'${js}'`) || text.includes(`"${js}"`)) {
-        text = text.replaceAll(js, js.replace(/\.js$/, '.aot.ts'))
-        changed = true
-      }
+      if (text.includes(`'${js}'`) || text.includes(`"${js}"`)) text = text.replaceAll(js, js.replace(/\.js$/, '.aot.ts'))
     }
-    if (!changed) continue
-    writeFileSync(join(out, file.replace(/\.js$/, '.aot.ts')), text)
+    if (text === readFileSync(join(npm, file), 'utf8')) continue
+    added[file.replace(/\.js$/, '.aot.ts')] = text
     aotEntries.add('./' + file)
   }
+  // a typed file deeper in the package that is itself importable, like react-native's renderer
+  const deep = typed.map((rel) => './' + rel.replace(/\.ts$/, '')).filter((p) => !p.includes('/cjs/'))
 
-  const pkg = JSON.parse(readFileSync(join(npm, 'package.json'), 'utf8'))
-  const withAot = (target: unknown): unknown => {
-    if (typeof target === 'string') return aotEntries.has(target) ? { aot: target.replace(/\.js$/, '.aot.ts'), default: target } : target
-    if (!target || typeof target !== 'object') return target
-    const conditions = target as Record<string, unknown>
-    const result: Record<string, unknown> = {}
-    for (const [k, v] of Object.entries(conditions)) {
-      if (k === 'default' && typeof v === 'string' && aotEntries.has(v)) {
-        result.aot = v.replace(/\.js$/, '.aot.ts')
-        result[k] = v
-      } else result[k] = withAot(v)
+  const withAot = (pkg: Record<string, any>) => {
+    const aotOf = (target: string) => target.replace(/\.js$/, '.aot.ts')
+    const wrap = (target: unknown): unknown => {
+      if (typeof target === 'string') return aotEntries.has(target) ? { aot: aotOf(target), default: target } : target
+      if (!target || typeof target !== 'object' || Array.isArray(target)) return target
+      const result: Record<string, unknown> = {}
+      for (const [k, v] of Object.entries(target)) {
+        if (k === 'aot') return target
+        if (k === 'default' && typeof v === 'string' && aotEntries.has(v)) result.aot = aotOf(v)
+        result[k] = k === 'default' ? v : wrap(v)
+      }
+      return result
     }
-    return result
+    // a package without exports stays open to every path once it gets exports
+    const exports: Record<string, unknown> = pkg.exports
+      ? Object.fromEntries(Object.entries(pkg.exports).map(([k, v]) => [k, wrap(v)]))
+      : {
+          '.': wrap('./' + (pkg.main ?? 'index.js').replace(/^\.\//, '')),
+          ...Object.fromEntries(readdirSync(npm).filter((f) => f.endsWith('.js')).flatMap((f) => [[`./${f.slice(0, -3)}`, wrap(`./${f}`)], [`./${f}`, wrap(`./${f}`)]])),
+          './*': './*',
+        }
+    const deepKeys = Object.fromEntries(deep.flatMap((p) => [[p, { aot: `${p}.aot.ts`, default: `${p}.js` }], [`${p}.js`, { aot: `${p}.aot.ts`, default: `${p}.js` }]]))
+    const files = [...(pkg.files ?? []), ...Object.keys(added)].filter((f, k, all) => all.indexOf(f) === k)
+    return { ...pkg, exports: { ...deepKeys, ...exports }, ...(pkg.files ? { files } : {}) }
   }
-  if (pkg.exports) pkg.exports = Object.fromEntries(Object.entries(pkg.exports).map(([k, v]) => [k, withAot(v)]))
-  else pkg.exports = { '.': withAot('./' + (pkg.main ?? 'index.js').replace(/^\.\//, '')), './package.json': './package.json' }
-  pkg.files = [...(pkg.files ?? []), ...[...aotEntries].map((e) => e.slice(2).replace(/\.js$/, '.aot.ts'))]
-  writeFileSync(join(out, 'package.json'), JSON.stringify(pkg, null, 2) + '\n')
-  console.log(`${name}@${version}: ${typed.length} typed files, aot entries ${[...aotEntries].join(', ')}`)
+
+  const out = join(root, 'dist', name)
+  rmSync(out, { recursive: true, force: true })
+  cpSync(npm, out, { recursive: true })
+  for (const [rel, code] of Object.entries(added)) writeFileSync(join(out, rel), code)
+  writeFileSync(join(out, 'package.json'), JSON.stringify(withAot(JSON.parse(readFileSync(join(npm, 'package.json'), 'utf8'))), null, 2) + '\n')
+  console.log(`${name}@${version}: ${typed.length} typed files, aot entries ${[...aotEntries, ...deep].join(', ')}`)
 
   if (into) {
     const installed = join(into, name)
-    const installedVersion = existsSync(join(installed, 'package.json')) && JSON.parse(readFileSync(join(installed, 'package.json'), 'utf8')).version
-    if (installedVersion !== version) {
-      console.log(`  ${installed}: ${installedVersion || 'not installed'}, left alone`)
+    const pkgPath = join(installed, 'package.json')
+    const pkg = existsSync(pkgPath) && JSON.parse(readFileSync(pkgPath, 'utf8'))
+    if (pkg?.version !== version) {
+      console.log(`  ${installed}: ${pkg?.version || 'not installed'}, left alone`)
       continue
     }
-    rmSync(installed, { recursive: true, force: true })
-    cpSync(out, installed, { recursive: true })
-    console.log(`  replaced ${installed}`)
+    for (const [rel, code] of Object.entries(added)) writeFileSync(join(installed, rel), code)
+    writeFileSync(pkgPath, JSON.stringify(withAot(pkg), null, 2) + '\n')
+    console.log(`  laid over ${installed}`)
   }
 }
