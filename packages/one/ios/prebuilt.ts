@@ -28,13 +28,14 @@ import { fileURLToPath } from 'node:url'
 
 export type Identity = {
   // bump when the framework packaging contract changes, including script-only fixes.
-  format: 2
+  format: 3
   source: string
   dependencies: Record<string, string>
   xcode: string
   swift: string
   workletsFlags: Array<[string, string]>
   releaseGroups: string[]
+  sqlite: 'zero' | 'external'
 }
 export type Archive = { file: string; sha256: string }
 export type Manifest = {
@@ -120,8 +121,21 @@ export function identity(ios: string): Identity {
       return [name, String(value)]
     })
     .sort(([a], [b]) => a.localeCompare(b))
+  // the app's own release selection, defaulting to the full catalog exactly
+  // like the podspec: a subset app matches only a binary built for its
+  // selection, otherwise it keeps its smaller set through a source build.
+  const linkSetFile = join(ios, 'one-link-set.json')
+  const releaseGroups = existsSync(linkSetFile)
+    ? (JSON.parse(readFileSync(linkSetFile, 'utf8')).groups as string[]).sort()
+    : catalog
+  const unknown = releaseGroups.filter((group) => !catalog.includes(group))
+  assert(unknown.length === 0, `one-link-set.json names unknown groups: ${unknown.join(', ')}`)
+  // the podspec excludes cpp/zero and defines ONE_ZERO_SQLITE=0 for these.
+  const opSqlite = app['op-sqlite'] ?? {}
+  const sqlite =
+    opSqlite['libsql'] === true || opSqlite['turso'] === true ? 'external' : 'zero'
   return {
-    format: 2,
+    format: 3,
     source: digestTree(one, [
       'ios',
       'cpp',
@@ -139,7 +153,8 @@ export function identity(ios: string): Identity {
       .trim()
       .split('\n')[0]!,
     workletsFlags,
-    releaseGroups: catalog,
+    releaseGroups,
+    sqlite,
   }
 }
 

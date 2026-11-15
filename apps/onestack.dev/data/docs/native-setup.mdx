@@ -104,10 +104,10 @@ React Native's own precompiled core remains enabled by its upstream default.
 Apps that modify React Native must keep their source-build setting; One does
 not override it. One uses binaries only when React Native actually resolved
 its standard precompiled core and dependencies. App-specific Swift packages,
-SDK bindings and native modules still compile in the app. Precompiled One
-includes every optional feature group in Release, so an ordinary app's smaller
-link set also uses the published binary. To retain a smaller native feature
-set, compile One from source.
+SDK bindings and native modules still compile in the app. A binary matches
+only the exact Release feature-group selection it was built for, so an app
+with a smaller link set keeps compiling its smaller set from source unless
+its selection is published.
 
 The installer requires Node 22.18 or newer. To require a matching binary,
 use `ONE_PREBUILT_IOS=1 pod install`. To compile One from source, use

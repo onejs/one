@@ -46,7 +46,6 @@ Pod::Spec.new do |s|
   release_groups = File.exist?(link_set_file) ? JSON.parse(File.read(link_set_file))['groups'] : catalog
   unknown = release_groups - catalog
   raise "#{link_set_file} names unknown groups: #{unknown.join(', ')}" unless unknown.empty?
-  release_groups = catalog if prebuilt['path']
   group_flags = ->(groups) { groups.map { |group| "ONE_GROUP_#{group.upcase}" } }
   s.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
