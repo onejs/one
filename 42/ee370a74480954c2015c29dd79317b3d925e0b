@@ -7,3 +7,5 @@
 {"id":"00000001794706950278:9caac4bff68bd6bed5da094b091240a6","text":"Executing Phase 1 end-to-end verification on beast2 from the pushed feature branch."}
 
 {"id":"00000001794707515438:af8c64c302691a57b026a92cdb4080c4","text":"Production SSR hydration initially failed because web islands were lazy while SSR was eager. The local fix uses matching eager registration and discovers islands through server imports. Rebuilt web SSR now matches hydrated HTML without console errors, and a transitive island updates on click. Static HTML contains the serialized loader payload. The rebuilt iOS bundle contains both direct and transitive registrations. Async hooks after await still produce React invalid-hook errors; true native runtime revival is not yet proven."}
+
+{"id":"00000001794707920509:a38c4cf8fc466db3c315739e53d3aa9d","text":"A production iOS-target bundle executed with react-test-renderer and revived an eagerly registered client island into the expected RCTView/RCTText tree. This does not exercise an iOS simulator. Version skew still triggers React 418 while showing the fallback, and async server hooks after await still emit a generic invalid-hook error."}
