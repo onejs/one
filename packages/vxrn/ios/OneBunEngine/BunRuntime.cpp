@@ -723,10 +723,23 @@ jsi::PropNameID JSCRuntime::createPropNameIDFromString(const jsi::String& str) {
 }
 
 jsi::PropNameID JSCRuntime::createPropNameIDFromSymbol(const jsi::Symbol& sym) {
-  // TODO(T204185517): Support for symbols through the native API in JSC is very
-  // limited. While we could construct a PropNameID here, we would not be able
-  // to get a symbol property through the C++ API.
-  throw std::logic_error("Not implemented");
+  // JSC's class callbacks hand a host object a symbol key as the symbol's
+  // description, so that string is the symbol's name here too and compares
+  // equal to it (react native skia matches Symbol.toStringTag this way)
+  JSValueRef exc = nullptr;
+  JSObjectRef wrapper = JSValueToObject(ctx_, symbolRef(sym), &exc);
+  checkException(exc);
+  JSStringRef key = JSStringCreateWithUTF8CString("description");
+  JSValueRef description = JSObjectGetProperty(ctx_, wrapper, key, &exc);
+  JSStringRelease(key);
+  checkException(exc);
+  JSStringRef name = JSValueIsUndefined(ctx_, description)
+      ? JSStringCreateWithUTF8CString("")
+      : JSValueToStringCopy(ctx_, description, &exc);
+  checkException(exc);
+  auto res = createPropNameID(name);
+  JSStringRelease(name);
+  return res;
 }
 
 std::string JSCRuntime::utf8(const jsi::PropNameID& sym) {
