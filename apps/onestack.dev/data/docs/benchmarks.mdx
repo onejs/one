@@ -154,14 +154,14 @@ elapsed time; the tables above use uncapped alternating launches.
 
 A separate synthetic test uses LegendList 3.3.10 and 58 saved posts with recorded
 images, repeated with distinct keys to make 10,000 rows. Both processes are
-capped at 50% of one CPU core. Speeds rise from 400 to 800, 1,600, 3,200 and
+capped at 25% of one CPU core. Speeds rise from 400 to 800, 1,600, 3,200 and
 6,400 points per second, with five seconds at each speed.
 
 The list receives programmatic scroll commands on JavaScript animation frames,
 using a shared wall-clock position. These are not touch gestures. The video
 runs at normal speed, without aligning individual stages after capture.
 
-<video controls playsInline preload="metadata" src="/benchmarks/bluesky-native-promise-013/long-feed-cpu50.mp4" style={{ width: '100%', height: 'auto' }} />
+<video controls playsInline preload="metadata" src="/benchmarks/bluesky-native-promise-013/long-feed-cpu25.mp4" style={{ width: '100%', height: 'auto' }} />
 
 ## Microbenchmark method
 

@@ -50,3 +50,15 @@ Apps that need host memory samples can emit `BENCH_PHASE {"app":"team-machine","
 The tools use TypeScript and Node APIs, with Bun as the script runner. A small SDK-only C helper reads the cross-process kernel footprint counter. Simulator ownership comes from sim-claim. Physical-device runs use the system `flock` executable around the whole collector; no JavaScript FFI or library dependency is needed.
 
 For apps whose native logger emits only unified-log events, add `--simulator-log-process TeamMachine`. The collector starts `simctl spawn <id> log stream`, waits for its `Filtering the log data` banner, and launches the app separately with the engine environment. It samples phases and completion, then stops only the log stream; the app remains available for captures. Launch output is kept in a separate receipt. `--reset-data` uninstalls and reinstalls the selected app before every launch, clearing its app-container route and preference state. Both options require `--simulator` and are recorded in metadata. Neither is needed for the micro app.
+
+## Reusing a captured production bundle
+
+Use the saved native app and its matching captured One entry when refreshing engine measurements. Run:
+
+```sh
+bun scripts/bench/prepare-captured.ts <captured-one-entry.js> <prepared.js>
+```
+
+This replaces the captured React Native Promise setup factory with a no-op and asserts native Promise identity on every BENCH log. It rejects an unrecognized factory shape and writes input and output SHA-256 records. Give that same prepared text to optimized Hermes bytecode compilation and the pinned Bun compiler/embed script. The Bun compiler and runtime must match. No source rebundle or native app rebuild is needed.
+
+Keep the captured native executable and adapter identified separately from the replacement runtime. A reused adapter does not become the current canary's adapter. When both variants reuse the captured bundle ID, the runner reinstalls the selected variant before every engine switch. Record the source manifest with the measurements and retain each console log.
