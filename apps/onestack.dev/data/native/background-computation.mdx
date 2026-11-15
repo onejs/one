@@ -6,13 +6,48 @@ description: Run one pure calculation off the JavaScript thread
 `one/background` runs CPU work away from the app's JavaScript thread:
 filtering large lists, parsing files, scoring moves. Write the
 calculation once as a pure function; One bundles its dependency graph
-for a shared native Worklets runtime and generates a module Web Worker
+for a shared native Worklets pool and generates module Web Workers
 on web. This runs while the app is alive; OS background launch and
 scheduling belong to [background tasks](/native/background-tasks).
 
-On native every owner shares one `one-background` Worklets runtime and
-serial queue. On web each owner gets its own worker. Server rendering
+On native owners share four lazily created Worklets runtimes, each with
+a serial queue. On web explicit computation owners get their own worker,
+and directive functions reuse a pool of up to four workers. Server rendering
 starts no worker and returns a null result.
+
+## Directive
+
+Mark a named function at module scope with `'use background'` to call it
+asynchronously from the app thread:
+
+```ts
+export async function sortedValues(values: number[]): Promise<number[]> {
+  'use background'
+  return [...values].sort((a, b) => a - b)
+}
+
+const sorted = await sortedValues([3, 1, 2])
+```
+
+The compiler moves the synchronous calculation and its pure module graph
+to the same executor used by `defineBackgroundComputation`. Calls return
+promises; errors reject the individual call. Web arguments are cloned when
+the call is submitted, including when every worker is busy. Independent
+calls can finish in a different order.
+
+A module-level `'use background'` marks its named top-level functions,
+including function expressions. Helpers and recursive calls inside the
+isolated graph stay synchronous. Keep this module and its imports pure:
+no component state, mutable app state, React or native module imports.
+Nested functions with the directive and anonymous default functions are
+rejected. Use `async` on public TypeScript declarations so their source
+types expose the promise, but keep the calculation synchronous: `await`
+inside a background function is rejected. The compiler consumes the
+directive and the `async` modifier in the isolated calculation.
+
+The directive runs calculations while the app is alive. Use the explicit
+definition and latest-input owner below when updates should replace queued
+work or only the newest result may publish.
 
 ## Usage
 
@@ -107,7 +142,7 @@ the result, or `failed` with a revision and the error.
 | | iOS | Android | Web |
 | --- | --- | --- | --- |
 | Engine | Worklets runtime | Worklets runtime | Own worker |
-| Shared | One per app | One per app | One per owner |
+| Shared | Four per app | Four per app | One per owner; pool per directive |
 | Errors | To boundary | To boundary | To boundary |
 | Server | No worker | No worker | Null result |
 

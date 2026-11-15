@@ -6,31 +6,32 @@ import type {
 
 export function createWorkerExecutor<Input, Output>(
   createWorker: () => Worker
-): BackgroundExecutor<Input, Output> {
+): BackgroundExecutor<Input, Output> & { readonly failed: boolean } {
   const worker = createWorker()
   let disposed = false
   let failure: Error | null = null
-  let pending: {
-    revision: number
-    resolve: (result: BackgroundResult<Output>) => void
-    reject: (error: Error) => void
-  } | null = null
+  const pending = new Map<
+    number,
+    {
+      resolve: (result: BackgroundResult<Output>) => void
+      reject: (error: Error) => void
+    }
+  >()
 
   function fail(error: Error) {
     if (disposed || failure) return
     failure = error
     worker.terminate()
-    const rejected = pending
-    pending = null
-    rejected?.reject(error)
+    for (const rejected of pending.values()) rejected.reject(error)
+    pending.clear()
   }
 
   worker.onmessage = (event: MessageEvent<BackgroundResponse<Output>>) => {
     const response = event.data
     const revision = response.ok ? response.result.revision : response.revision
-    if (!pending || revision !== pending.revision) return
-    const accepted = pending
-    pending = null
+    const accepted = pending.get(revision)
+    if (!accepted) return
+    pending.delete(revision)
     if (response.ok) accepted.resolve(response.result)
     else accepted.reject(new Error(response.error))
   }
@@ -42,16 +43,20 @@ export function createWorkerExecutor<Input, Output>(
     fail(new Error('background worker response could not be decoded'))
 
   return {
+    get failed() {
+      return failure !== null
+    },
     execute(request, isCurrent) {
       if (disposed || !isCurrent(request.revision)) return Promise.resolve(null)
       if (failure) return Promise.reject(failure)
-      if (pending) throw new Error('background calculations must run serially')
+      if (pending.has(request.revision))
+        throw new Error('background revision is already pending')
       return new Promise<BackgroundResult<Output>>((resolve, reject) => {
-        pending = { revision: request.revision, resolve, reject }
+        pending.set(request.revision, { resolve, reject })
         try {
           worker.postMessage(request)
         } catch (error) {
-          pending = null
+          pending.delete(request.revision)
           reject(error instanceof Error ? error : new Error(String(error)))
         }
       })
@@ -60,9 +65,9 @@ export function createWorkerExecutor<Input, Output>(
       if (disposed) return
       disposed = true
       if (!failure) worker.terminate()
-      const rejected = pending
-      pending = null
-      rejected?.reject(new Error('background computation disposed'))
+      for (const rejected of pending.values())
+        rejected.reject(new Error('background computation disposed'))
+      pending.clear()
     },
   }
 }

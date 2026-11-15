@@ -16,6 +16,7 @@ export type BackgroundTransformOptions = {
   resolve: (source: string, importer: string) => string
   nativeModule?: (module: BackgroundModule) => string
   workerFactory?: (module: BackgroundModule) => string
+  pureModule?: (id: string, source: string) => string
 }
 
 const marker = '.__one_background_worker_'
@@ -34,12 +35,15 @@ export function loadBackgroundComputationModule(
   const name = new TextDecoder().decode(
     Uint8Array.from(encoded.match(/../g)!, (byte) => Number.parseInt(byte, 16))
   )
+  const entry = name.startsWith('__oneBackground_')
+    ? `${calculate}?one-background-pure`
+    : calculate
   return {
     id,
     calculate,
     name,
     platform: 'web',
-    source: `import { ${name} as calculate } from ${JSON.stringify(calculate)};
+    source: `import { ${name} as calculate } from ${JSON.stringify(entry)};
 self.onmessage = ({ data: { revision, input } }) => {
   try {
     const value = calculate(input);
@@ -58,7 +62,11 @@ export function transformBackgroundComputations(
   id: string,
   options: BackgroundTransformOptions
 ) {
-  if (!source.includes('defineBackgroundComputation') || id.includes(marker)) return
+  if (id.includes(marker) || id.includes('.__one_background_native_')) return
+  if (id.endsWith('?one-background-pure')) return
+  const directive = transformBackgroundDirectives(source, id, options)
+  if (directive) return directive
+  if (!source.includes('defineBackgroundComputation')) return
   const file = parse(
     source,
     !/\.[cm]?ts(?:\?|$)/.test(id),
@@ -146,6 +154,213 @@ export function transformBackgroundComputations(
     }
   }
   if (!modules.length) return
+  return { code: code.toString(), map: code.generateMap({ hires: true }), modules }
+}
+
+type BackgroundFunction = {
+  name: string
+  start: number
+  end: number
+  declaration: boolean
+  asyncStart?: number
+}
+
+function backgroundFunctions(source: string, id: string) {
+  const functions: BackgroundFunction[] = []
+  if (!source.includes('use background')) return { functions, directives: [] }
+  const { tokens, scopes } = parse(
+    source,
+    !/\.[cm]?ts(?:\?|$)/.test(id),
+    /\.[cm]?tsx?(?:\?|$)/.test(id),
+    false
+  )
+  const text = (index: number) => source.slice(tokens[index]?.start, tokens[index]?.end)
+  const directives = new Set<number>()
+  const prologue = (start: number) => {
+    let background = false
+    for (let index = start; tokens[index]?.type === TokenType.string; ) {
+      if (text(index).slice(1, -1) === 'use background') {
+        directives.add(index)
+        background = true
+      }
+      index++
+      if (text(index) === ';') index++
+      else if (!/[\r\n]/.test(source.slice(tokens[index - 1].end, tokens[index].start)))
+        break
+    }
+    return background
+  }
+  const moduleDirective = prologue(0)
+  for (let index = 0; index < tokens.length; index++) {
+    const token = tokens[index]
+    if (token.scopeDepth !== 0 || token.isType) continue
+    const declaration = text(index) === 'function'
+    const nameIndex = declaration ? index + 1 : index
+    if (tokens[nameIndex]?.identifierRole !== IdentifierRole.TopLevelDeclaration) continue
+    const name = text(nameIndex)
+    let start = index
+    let end: number | undefined
+    if (declaration) {
+      const scope = scopes.find(
+        (scope) =>
+          scope.startTokenIndex > nameIndex &&
+          text(scope.startTokenIndex) === '(' &&
+          tokens[scope.startTokenIndex].scopeDepth === 1
+      )
+      end = scope?.endTokenIndex
+    } else {
+      let equals = index + 1
+      while (tokens[equals]?.isType) equals++
+      if (text(equals) !== '=') continue
+      end = tokens[equals].rhsEndIndex ?? undefined
+      start = equals + 1
+      const expression = text(start) === 'async' ? start + 1 : start
+      if (
+        text(expression) !== 'function' &&
+        !(text(expression) === '(' && tokens[expression].scopeDepth === 1) &&
+        !(
+          tokens[expression]?.identifierRole ===
+            IdentifierRole.FunctionScopedDeclaration && text(expression + 1) === '=>'
+        )
+      )
+        continue
+    }
+    if (end === undefined) continue
+    let body = start
+    while (
+      body < end &&
+      !(text(body) === '{' && tokens[body].scopeDepth === 2 && !tokens[body].isType)
+    )
+      body++
+    const arrow = tokens
+      .slice(start, end)
+      .some(
+        (token) => token.scopeDepth === 1 && source.slice(token.start, token.end) === '=>'
+      )
+    if (body === end && !arrow) continue
+    const selected = body < end && prologue(body + 1)
+    if (!moduleDirective && !selected) continue
+    if (
+      tokens
+        .slice(start, end)
+        .some(
+          (token) => !token.isType && source.slice(token.start, token.end) === 'await'
+        )
+    )
+      throw new Error(
+        `[one background] ${id}: background computations cannot await; return a synchronous calculation`
+      )
+    const asyncIndex = declaration ? index - 1 : start
+    functions.push({
+      name,
+      start: tokens[start].start,
+      end: tokens[end - 1].end,
+      declaration,
+      asyncStart: text(asyncIndex) === 'async' ? tokens[asyncIndex].start : undefined,
+    })
+    index = end - 1
+  }
+  for (let index = 0; index < tokens.length; index++) {
+    if (
+      tokens[index].type !== TokenType.string ||
+      text(index).slice(1, -1) !== 'use background'
+    )
+      continue
+    if (!directives.has(index) && text(index - 1) === '{')
+      throw new Error(
+        `[one background] ${id}: background functions must have a module-scope name`
+      )
+  }
+  if (moduleDirective && !functions.length)
+    throw new Error(`[one background] ${id}: a background module must define functions`)
+  return {
+    functions,
+    directives: [...directives].map((index) => ({
+      start: tokens[index].start,
+      end: tokens[index].end,
+    })),
+  }
+}
+
+const backgroundAdapter = (name: string) => `__oneBackground_${hex(name)}`
+
+export function backgroundDirectiveSource(source: string, id: string) {
+  const { functions, directives } = backgroundFunctions(source, id)
+  if (!functions.length) return
+  const code = new MagicString(source)
+  for (const directive of directives) code.remove(directive.start, directive.end)
+  for (const fn of functions) {
+    if (fn.asyncStart !== undefined)
+      code.remove(fn.asyncStart, fn.asyncStart + 'async'.length)
+    code.append(
+      `\nexport function ${backgroundAdapter(fn.name)}(input) { return ${fn.name}(...input); }\n`
+    )
+  }
+  return { code: code.toString(), map: code.generateMap({ hires: true }), modules: [] }
+}
+
+function transformBackgroundDirectives(
+  source: string,
+  id: string,
+  options: BackgroundTransformOptions
+) {
+  const { functions, directives } = backgroundFunctions(source, id)
+  if (!functions.length) return
+  const pure = backgroundDirectiveSource(source, id)!
+  const calculate = options.pureModule ? options.pureModule(id, pure.code) : id
+  const code = new MagicString(source)
+  for (const directive of directives)
+    if (!functions.some((fn) => fn.start <= directive.start && fn.end >= directive.end))
+      code.remove(directive.start, directive.end)
+  const modules: BackgroundModule[] = []
+  let helper = '__oneCreateBackgroundFunction'
+  while (source.includes(helper)) helper += '_'
+  code.prepend(
+    `import { __createBackgroundFunction as ${helper} } from 'one/background';\n`
+  )
+  for (const fn of functions) {
+    const name = backgroundAdapter(fn.name)
+    let proxy = `${name}_call`
+    while (source.includes(proxy)) proxy += '_'
+    const module: BackgroundModule =
+      options.platform === 'web'
+        ? loadBackgroundComputationModule(`${calculate}${marker}${hex(name)}.js`)!
+        : {
+            id: `${calculate}.__one_background_native_${hex(name)}.js`,
+            calculate,
+            name,
+            platform: 'native',
+            source: `export { ${name} } from ${JSON.stringify(calculate)};`,
+          }
+    let factory: string
+    if (options.platform === 'web') {
+      if (options.pureModule)
+        module.source = module.source.replace(
+          JSON.stringify(`${calculate}?one-background-pure`),
+          JSON.stringify(calculate)
+        )
+      factory = options.workerFactory
+        ? options.workerFactory(module)
+        : `() => new Worker(new URL(${JSON.stringify(module.id)}, import.meta.url), { type: 'module' })`
+    } else {
+      const selected = options.nativeModule
+        ? options.nativeModule(module)
+        : `${id}?one-background=${name}`
+      const local = `${proxy}_calculate`
+      code.prepend(`import { ${name} as ${local} } from ${JSON.stringify(selected)};\n`)
+      factory = local
+    }
+    code.prepend(`var ${proxy};\n`)
+    const call = `(${proxy} || (${proxy} = ${helper}(${factory})))(...args)`
+    code.overwrite(
+      fn.start,
+      fn.end,
+      fn.declaration
+        ? `function ${fn.name}(...args) { return ${call}; }`
+        : `(...args) => ${call}`
+    )
+    modules.push(module)
+  }
   return { code: code.toString(), map: code.generateMap({ hires: true }), modules }
 }
 

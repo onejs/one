@@ -10,12 +10,18 @@ export type BackgroundTransformOptions = {
     resolve: (source: string, importer: string) => string;
     nativeModule?: (module: BackgroundModule) => string;
     workerFactory?: (module: BackgroundModule) => string;
+    pureModule?: (id: string, source: string) => string;
 };
 export declare function loadBackgroundComputationModule(id: string): BackgroundModule | undefined;
 export declare function transformBackgroundComputations(source: string, id: string, options: BackgroundTransformOptions): {
     code: string;
     map: import("magic-string").SourceMap;
     modules: BackgroundModule[];
+} | undefined;
+export declare function backgroundDirectiveSource(source: string, id: string): {
+    code: string;
+    map: import("magic-string").SourceMap;
+    modules: never[];
 } | undefined;
 export declare function createBackgroundWorkletModule(bundle: string, names: readonly string[], key: string): string;
 export declare function assertBackgroundDependency(source: string): void;

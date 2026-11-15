@@ -2,9 +2,11 @@ import { createWorkletRuntime, runOnRuntimeAsync } from 'react-native-worklets'
 import type { BackgroundExecutor } from './backgroundContract'
 import type { WorkletRuntime } from 'react-native-worklets'
 
-// the runtime survives mounts; queued owners check freshness before dispatch.
-let runtime: WorkletRuntime | null = null
-let queue: Promise<void> = Promise.resolve()
+const runtimes: { runtime: WorkletRuntime | null; queue: Promise<void> }[] = Array.from(
+  { length: 4 },
+  () => ({ runtime: null, queue: Promise.resolve() })
+)
+let nextRuntime = 0
 
 export function createWorkletExecutor<Input, Output>(
   calculate: (input: Input) => Output
@@ -12,11 +14,14 @@ export function createWorkletExecutor<Input, Output>(
   let disposed = false
   return {
     execute(request, isCurrent) {
-      const job = queue.then(async () => {
+      if (disposed || !isCurrent(request.revision)) return Promise.resolve(null)
+      const index = nextRuntime++ % runtimes.length
+      const slot = runtimes[index]
+      const job = slot.queue.then(async () => {
         if (disposed || !isCurrent(request.revision)) return null
-        runtime ??= createWorkletRuntime({ name: 'one-background' })
+        slot.runtime ??= createWorkletRuntime({ name: `one-background-${index}` })
         const value = await runOnRuntimeAsync(
-          runtime,
+          slot.runtime,
           (input: Input) => {
             'worklet'
             const result = calculate(input)
@@ -28,7 +33,7 @@ export function createWorkletExecutor<Input, Output>(
         )
         return { revision: request.revision, value }
       })
-      queue = job.then(
+      slot.queue = job.then(
         () => undefined,
         () => undefined
       )

@@ -29,7 +29,7 @@ async function bundle(source: string) {
           },
           load(id) {
             if (id === '\0definition-contract')
-              return 'export function defineBackgroundComputation(calculate) { return calculate }'
+              return 'export function defineBackgroundComputation(calculate) { return calculate } export function __createBackgroundFunction(calculate) { return (...args) => { globalThis.backgroundProbe.calls++; return Promise.resolve(calculate(args)) } }'
           },
         },
       ],
@@ -38,7 +38,11 @@ async function bundle(source: string) {
     const chunk = result.output[0]
     if (chunk.type !== 'chunk') throw new Error('expected executable output')
     const exports: Record<string, unknown> = {}
-    runInNewContext(chunk.code, { exports })
+    const backgroundProbe = { calls: 0 }
+    runInNewContext(chunk.code, { exports, backgroundProbe })
+    Object.defineProperty(exports, 'backgroundCalls', {
+      get: () => backgroundProbe.calls,
+    })
     return exports
   } finally {
     await build?.close()
@@ -51,6 +55,23 @@ test('bundles an imported pure graph into the selected native calculation', asyn
     `import { defineBackgroundComputation as define } from 'one/background'; import { calculate } from './calculate'; const task = define(calculate); export const answer = task(7);`
   )
   expect(result.answer).toBe(21)
+})
+
+test('function directives split async callers from synchronous native calculations', async () => {
+  const result = await bundle(
+    `import { calculate } from './calculate'; export async function task(value: number, offset = 1) { 'use background'; return calculate(value) + offset } export const answer = task(7, 2);`
+  )
+  expect(await result.answer).toBe(23)
+  expect(result.backgroundCalls).toBe(1)
+})
+
+test('module directives keep recursive and expression helpers inside the native graph', async () => {
+  const result = await bundle(
+    `'use background'; export const twice = (value: number) => value * 2; export function factorial(value: number): number { return value ? value * factorial(value - 1) : 1 } export function task(value: number) { return factorial(twice(value)) }`
+  )
+  if (typeof result.task !== 'function') throw new Error('expected background callable')
+  expect(await result.task(3)).toBe(720)
+  expect(result.backgroundCalls).toBe(1)
 })
 
 test('unused definition imports do not reject a module', async () => {

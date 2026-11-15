@@ -1,10 +1,13 @@
 import { createHash } from 'node:crypto'
 import { isBuiltin } from 'node:module'
 import { dirname, isAbsolute, join } from 'node:path'
-import { statSync } from 'node:fs'
+import { readFileSync, statSync } from 'node:fs'
 import { rolldown, type Plugin } from 'rolldown'
 import { parseSync } from 'oxc-parser'
-import { createBackgroundWorkletModule } from '../backgroundComputation'
+import {
+  backgroundDirectiveSource,
+  createBackgroundWorkletModule,
+} from '../backgroundComputation'
 import { prepareBackgroundWorkletModule } from '../backgroundComputationNative'
 import { hermesCompatSWCPlugin, hermesLoopsPlugin } from '../utils/createNativeDevEngine'
 
@@ -162,6 +165,10 @@ export function workletImportsPlugin(imports: Record<string, readonly string[]>)
                 load(source) {
                   if (source === innerEntry) {
                     return `export { ${selected.names.map((name, index) => `${JSON.stringify(name)} as __export${index}`).join(', ')} } from ${JSON.stringify(selected.entry)};`
+                  }
+                  if (source === selected.entry) {
+                    const code = readFileSync(source, 'utf8')
+                    return backgroundDirectiveSource(code, source)?.code
                   }
                 },
                 moduleParsed(info) {
