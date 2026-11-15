@@ -57,7 +57,8 @@ test('a tree-shaken native SDK import keeps its lazy native registration', async
 // generated frameworks must preserve eager wrapper registration and first-call
 // errors when framework call prefixes are shared.
 test('compact SDK calls preserve wrappers, descriptors and first-call errors', async () => {
-  const { build } = await import('esbuild')
+  const { build, transform } = await import('esbuild')
+  const { facadeEntryGroups } = await import('../codegen/sdk/split-facade')
   const { compactFacade } = await import('../codegen/sdk/compact')
   const source = `
     import { SDKHandle, callSDK, callSDKAsync, registerSDKClass } from 'one/ios-runtime';
@@ -107,9 +108,21 @@ test('compact SDK calls preserve wrappers, descriptors and first-call errors', a
   }
   const results: unknown[] = []
   for (const compact of [false, true]) {
+    const facadeSource = compact ? compactFacade(source) : source
+    const groups = facadeEntryGroups((await transform(facadeSource, { loader: 'ts', format: 'esm' })).code)
+    const pending = ['Child', 'Value']
+    const seen = new Set<string>()
+    const retained = new Set<number>()
+    for (let at = 0; at < pending.length; at++) {
+      const group = pending[at]
+      if (seen.has(group)) continue
+      seen.add(group)
+      groups[group].entries.forEach((id) => retained.add(id))
+      pending.push(...groups[group].dependencies)
+    }
     const compiled = await build({
       stdin: {
-        contents: compact ? compactFacade(source) : source,
+        contents: facadeSource,
         loader: 'ts',
         resolveDir: import.meta.dirname,
       },
@@ -183,6 +196,7 @@ test('compact SDK calls preserve wrappers, descriptors and first-call errors', a
     facade.observeSDKProperty(shared, 'count', () => {})
     expect(facade.Value.zero).toBe(0)
     expect(facade.Value.read('value')).toBe('value')
+    for (const call of calls) if (typeof call[1] === 'number') expect(retained.has(call[1])).toBe(true)
     const descriptors = Object.fromEntries(
       Object.entries(Object.getOwnPropertyDescriptors(facade.Parent.prototype))
         .filter(([name]) => name !== 'constructor')

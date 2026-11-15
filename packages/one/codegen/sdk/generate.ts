@@ -182,7 +182,7 @@ export async function generateModule(module: string, prepared: ReturnType<typeof
     const errors = await typecheck([file])
     if (learnImplementationDetails(errors, prepared.imports)) continue
     const found = rejected(output.swift, output, errors)
-    if (!errors.length || pass === passes || !found.size) return { output, errors, file }
+    if (!errors.length || pass === passes || !found.size) return { output, errors, file, exclude }
     for (const [key, reason] of found) exclude.set(key, reason)
   }
 }
