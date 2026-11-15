@@ -1907,8 +1907,15 @@ function typedPackagesPlugin(root: string): Plugin {
       const key = createHash('sha256').update(typedPath).update(typed).digest('hex').slice(0, 16)
       const name = JSON.stringify(`__vxrnTyped_${key}`)
       const deps = [...new Set(Array.from(typed.matchAll(REQUIRE), (m) => m[2]!))]
-      const copy = join(dir, `${basename(typedPath, '.aot.ts')}-${key}.ts`)
-      mkdirSync(dir, { recursive: true })
+      // a package that names the "aot" condition: bun compiles it with its types
+      // and, as for any package, does not stop the build on its type errors
+      const pkg = join(dir, `${basename(typedPath, '.aot.ts')}-${key}`)
+      const copy = join(pkg, 'index.aot.ts')
+      mkdirSync(pkg, { recursive: true })
+      writeFileSync(
+        join(pkg, 'package.json'),
+        JSON.stringify({ name: basename(pkg), exports: { '.': { aot: './index.aot.ts' } } })
+      )
       writeFileSync(
         copy,
         typed.replace(REQUIRE, (_, _q, dep) => `(globalThis as any)[${name}](${JSON.stringify(dep)})`)
