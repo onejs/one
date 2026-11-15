@@ -11,6 +11,8 @@ BUN=${BUN:-bun}
 rm -rf typed .out && mkdir -p typed .out
 cp bench.js package.json typed/ && cp -r node_modules typed/
 "$BUN" "$here/../scripts/build.ts" --into typed/node_modules
+# typed files read untyped modules through the bridge a host bundle would define; here it reads the installed ones
+: > bridge.js && echo "require('typed-packages-bridge/define')" > typed/bridge.js
 "$BUN" compile --production --conditions=react-native bench.js --outfile .out/installed
 (cd typed && "$BUN" compile --production --conditions=react-native bench.js --outfile ../.out/typed)
 "$BUN" "$here/measure.ts" "${ROUNDS:-20}" installed=.out/installed typed=.out/typed

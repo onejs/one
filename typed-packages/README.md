@@ -23,6 +23,10 @@ BUN=path/to/bun-canary ROUNDS=20 typed-packages/bench/run.sh
 BUN=path/to/bun-canary ROUNDS=20 typed-packages/bench/run.sh fabric
 ```
 
+Packages that ship their own TypeScript, listed in `sources.json` (`@tamagui/*`, `@react-navigation/*`), need no typed copy: `build.ts --into` writes `aot/` from each one's `src`, resolved for iOS (`.ios` over `.native` over the base file) with the listed defines inlined, and points an `aot` condition on each entry at it.
+
+Typed files import typed packages by name, so Bun compiles those with their types as well. Every other import (react, react-native, untyped packages) reads the host bundle's own module through `globalThis.__vxrnBridge(id)`, so the app keeps one copy of each module. Each package lists those ids in `package.json` `"aotBridge"`. ESM imports and JSX reach the global through the generated `typed-packages-bridge` package, whose `define.js` sets the global from installed modules for programs with no host bundle, like the benches.
+
 react-native's typed renderer is reached through `require('react-native/Libraries/Renderer/implementations/ReactFabric-prod')`, which gets its own `aot` export. The relative require in `Libraries/Renderer/shims/ReactFabric.js` does not go through exports, so a bundler has to leave the deep path external for Bun to see the types.
 
 Check the types with `bun check --aot --no-script`, and confirm Bun uses them with `bun compile --explain=json`: entries for `*.aot.ts` files show they were read.

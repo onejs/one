@@ -3,3 +3,4 @@ bench/**/node_modules/
 bench/**/typed/
 bench/**/.out/
 bench/**/bun.lock
+bench/**/bridge.js

@@ -1,3 +1,4 @@
+import './bridge.js'
 import React from 'react'
 import ReactFabric from 'react-native/Libraries/Renderer/implementations/ReactFabric-prod'
 import { roots } from 'react-native/react-private-interface'

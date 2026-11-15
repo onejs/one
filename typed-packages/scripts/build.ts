@@ -8,6 +8,8 @@ import { dirname, join } from 'node:path'
 import { erase, npmPackage, root } from './lib'
 
 const into = process.argv.includes('--into') ? process.argv[process.argv.indexOf('--into') + 1] : null
+// installed package dirs given typed files, with those files, for the bridge pass at the end
+const laidOver = new Map<string, string[]>()
 
 const packages: [string, string][] = []
 for (const entry of readdirSync(root, { withFileTypes: true })) {
@@ -87,14 +89,18 @@ for (const [name, version] of packages) {
       continue
     }
     for (const [rel, code] of Object.entries(added)) writeFileSync(join(installed, rel), code)
+    laidOver.set(installed, Object.keys(added))
     writeFileSync(pkgPath, JSON.stringify(withAot(pkg), null, 2) + '\n')
     console.log(`  laid over ${installed}`)
   }
 }
 
-// packages that ship their own TypeScript, listed in sources.json, get an aot/ copy of src with each
-// .native file in place of its base file and the listed defines inlined, the way their native build does
+// packages that ship their own TypeScript, listed in sources.json, get an aot/ copy of src resolved for iOS
+// (an .ios file over a .native file over the base file) with the listed defines inlined, the way their
+// native build does
 const sources: Record<string, { define?: Record<string, string> }> = JSON.parse(readFileSync(join(root, 'sources.json'), 'utf8'))
+const platforms = ['ios', 'native']
+const platformOf = (f: string) => f.match(/\.(ios|native)(\.[^.]+)$/)
 for (const [pattern, { define = {} }] of Object.entries(into ? sources : {})) {
   const names = pattern.endsWith('/*')
     ? existsSync(join(into!, pattern.slice(0, -2))) ? readdirSync(join(into!, pattern.slice(0, -2))).map((n) => `${pattern.slice(0, -2)}/${n}`) : []
@@ -106,30 +112,91 @@ for (const [pattern, { define = {} }] of Object.entries(into ? sources : {})) {
     const aot = join(installed, 'aot')
     rmSync(aot, { recursive: true, force: true })
     const files = [...new Bun.Glob('**/*').scanSync(join(installed, 'src'))]
-    const nativeBases = new Set(files.filter((f) => /\.native\.[^.]+$/.test(f)).map((f) => f.replace(/\.native(\.[^.]+)$/, '$1')))
+    const rank = (f: string) => (platformOf(f) ? platforms.indexOf(platformOf(f)![1]) : platforms.length)
+    const winner = new Map<string, string>()
+    for (const f of files) {
+      const base = f.replace(/\.(ios|native)(\.[^.]+)$/, '$2')
+      if (!winner.has(base) || rank(f) < rank(winner.get(base)!)) winner.set(base, f)
+    }
     for (const rel of files) {
-      const base = rel.replace(/\.native(\.[^.]+)$/, '$1')
-      if (base === rel && nativeBases.has(rel)) continue
       let text = readFileSync(join(installed, 'src', rel), 'utf8')
       if (/\.[cm]?[jt]sx?$/.test(rel)) for (const [k, v] of Object.entries(define))
         text = text.replace(new RegExp(k.replace(/[.$]/g, '\\$&') + '(?!\\s*=[^=])', 'g'), v)
-      mkdirSync(dirname(join(aot, base)), { recursive: true })
-      // src also imports some native files by their full name
-      for (const out of new Set([base, rel])) writeFileSync(join(aot, out), text)
+      mkdirSync(dirname(join(aot, rel)), { recursive: true })
+      // every file keeps its own name, since src imports some platform files by it, and the winner also takes the base name
+      const base = rel.replace(/\.(ios|native)(\.[^.]+)$/, '$2')
+      if (base !== rel || winner.get(base) === rel) writeFileSync(join(aot, rel), text)
+      if (base !== rel && winner.get(base) === rel) writeFileSync(join(aot, base), text)
     }
     const pkg = JSON.parse(readFileSync(join(installed, 'package.json'), 'utf8'))
+    // the entry's source file: one a condition already points at in src, or the one its native build came from
     const sourceOf = (target: unknown): string | undefined => {
-      const rn = typeof target === 'object' && target ? (target as Record<string, unknown>)['react-native'] : undefined
-      const file = typeof rn === 'object' && rn ? (rn as Record<string, unknown>).default : rn
+      if (!target || typeof target !== 'object') return
+      const values = Object.values(target as Record<string, unknown>).flatMap((v) => (v && typeof v === 'object' ? Object.values(v) : [v]))
+      const src = values.find((v): v is string => typeof v === 'string' && /^\.\/src\/.+\.tsx?$/.test(v))
+      if (src) return src.replace(/^\.\/src\//, './aot/')
+      const rn = (target as Record<string, unknown>)['react-native']
+      const file = rn && typeof rn === 'object' ? (rn as Record<string, unknown>).default : rn
       const m = typeof file === 'string' && file.match(/^\.\/dist\/esm\/(.+?)(?:\.native)?\.m?js$/)
       return m ? ['.ts', '.tsx'].map((ext) => `./aot/${m[1]}${ext}`).find((p) => existsSync(join(installed, p))) : undefined
     }
     for (const [key, target] of Object.entries(pkg.exports ?? {})) {
       const source = sourceOf(target)
-      if (source && !(target as Record<string, unknown>).aot) pkg.exports[key] = { aot: source, ...(target as object) }
+      if (source && existsSync(join(installed, source)) && !(target as Record<string, unknown>).aot) pkg.exports[key] = { aot: source, ...(target as object) }
     }
     writeFileSync(join(installed, 'package.json'), JSON.stringify(pkg, null, 2) + '\n')
+    laidOver.set(installed, [...new Bun.Glob('**/*.{ts,tsx,js,mjs,cjs}').scanSync(aot)].map((f) => `aot/${f}`))
     laid++
   }
   console.log(`${pattern}: aot/ from src laid over ${laid} packages`)
+}
+
+// a typed file imports typed packages by name, so bun compiles them with their types too. everything else
+// it imports (react, react-native, untyped packages) is read from the host bundle through
+// globalThis.__vxrnBridge(id), so the app keeps one copy of each module; each package lists those ids in
+// package.json "aotBridge", and ESM imports and JSX reach the global through the typed-packages-bridge package
+if (into) {
+  const BRIDGE = 'typed-packages-bridge'
+  const packageOf = (spec: string) => spec.split('/').slice(0, spec.startsWith('@') ? 2 : 1).join('/')
+  const isTyped = (spec: string) => {
+    const name = packageOf(spec)
+    const pkgPath = join(into, name, 'package.json')
+    if (!existsSync(pkgPath)) return false
+    const target = JSON.parse(readFileSync(pkgPath, 'utf8')).exports?.['.' + spec.slice(name.length)]
+    return !!target && typeof target === 'object' && 'aot' in target
+  }
+  const bridged = new Set<string>()
+  for (const [installed, files] of laidOver) {
+    const ids = new Set<string>()
+    const bridge = (spec: string) => !spec.startsWith('.') && !spec.startsWith('/') && !spec.startsWith('node:') && !isTyped(spec) && (ids.add(spec), true)
+    for (const rel of files) {
+      let text = readFileSync(join(installed, rel), 'utf8')
+      text = text.replace(/\brequire\(\s*(["'])([^"'\n]+)\1\s*\)/g, (m, _q, spec) => (bridge(spec) ? `${/\.tsx?$/.test(rel) ? '(globalThis as any)' : 'globalThis'}.__vxrnBridge(${JSON.stringify(spec)})` : m))
+      // value imports and re-exports, side-effect imports and dynamic imports; type-only ones stay as they are
+      text = text.replace(/(^|[;}\n])(\s*)(import|export)(\s+type\b)?([^;'"]*?\bfrom\s*|\s*)(["'])([^"'\n]+)\6/g, (m, pre, ws, kw, type, mid, q, spec) =>
+        type || !(kw === 'import' || /\bfrom\s*$/.test(mid)) || !bridge(spec) ? m : `${pre}${ws}${kw}${mid}${q}${BRIDGE}/${spec}${q}`)
+      text = text.replace(/\bimport\(\s*(["'])([^"'\n]+)\1\s*\)/g, (m, q, spec) => (bridge(spec) ? `import(${q}${BRIDGE}/${spec}${q})` : m))
+      if (rel.endsWith('.tsx')) {
+        ids.add('react/jsx-runtime')
+        if (!text.includes('@jsxImportSource')) text = `/** @jsxImportSource ${BRIDGE}/react */\n` + text
+      }
+      writeFileSync(join(installed, rel), text)
+    }
+    const pkgPath = join(installed, 'package.json')
+    const pkg = JSON.parse(readFileSync(pkgPath, 'utf8'))
+    pkg.aotBridge = [...ids].sort()
+    writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
+    for (const id of ids) bridged.add(id)
+  }
+  const out = join(into, BRIDGE)
+  rmSync(out, { recursive: true, force: true })
+  mkdirSync(out, { recursive: true })
+  writeFileSync(join(out, 'package.json'), JSON.stringify({ name: BRIDGE, private: true, exports: { './define': './define.js', './*': './*.js' } }, null, 2) + '\n')
+  for (const id of bridged) {
+    mkdirSync(dirname(join(out, id)), { recursive: true })
+    writeFileSync(join(out, `${id}.js`), `module.exports = globalThis.__vxrnBridge(${JSON.stringify(id)})\n`)
+  }
+  // for a program that has no host bundle, like the benches: the bridge reads the installed modules
+  writeFileSync(join(out, 'define.js'), `var ids = {\n${[...bridged].sort().map((id) => `  ${JSON.stringify(id)}: () => require(${JSON.stringify(id)}),`).join('\n')}\n}\nglobalThis.__vxrnBridge = (id) => ids[id]()\n`)
+  console.log(`bridge: ${bridged.size} modules read from the host (${[...bridged].sort().join(', ')})`)
 }
