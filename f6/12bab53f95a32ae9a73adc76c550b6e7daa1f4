@@ -1,1 +1,3 @@
 {"id":"00000001794760893735:d4b32de542e2516520fcb9bdf4cd5e0e","text":"Team Machine returned this task to open: its assignee (a141509) ended 6+ hours ago."}
+
+{"id":"00000001794761845089:abeebfbad2f6d7b3494cc2db4692bde5","text":"Verification complete on tm/loader-jsx-verify-docs, PR #1251 open. Found and fixed dropped keys, misleading class/context errors, Suspense rejection. Web dev+prod e2e 5/5, unit 17/17. Native proven at bundle and prod loader artifact level; simulator render still open. Docs section added in PR (needs owner review as public site copy)."}
