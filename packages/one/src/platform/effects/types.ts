@@ -41,7 +41,7 @@ export interface EdgeFadeProps extends ViewProps {
   end?: boolean | number | EdgeConfig
   /** default fade depth in dp for all enabled edges. */
   size?: number
-  /** default gradient curve for all enabled edges. */
+  /** default gradient curve for all enabled edges: linear in blur mode, smooth otherwise. */
   curve?: EdgeFadeCurve
   /**
    * 'mask' paints no color: children alpha-fade to transparent (native
