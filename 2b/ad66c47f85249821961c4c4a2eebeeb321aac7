@@ -1,3 +1,5 @@
 {"id":"00000001794727053545:f26b56c32502c523ad099d864a2722ed","text":"s254968 pass done: slot blank rows fixed in PR 1233 (review s254992 running, merge needs large approval); 1229 merged e7bcf4e80e (contrast canary bump outstanding, task released); 1170 done (merged e16b55a05a); 2.17.2 tarballs done. Group released."}
 
 {"id":"00000001794731483243:354ec80262ec9ed913cef298abf46955","text":"s254968 + s254992 finished; PR #1233 merged to main as 80c78b8030; t-mwe98z06-94u0 Mac xcodebuild validated and closed; b67657 debugging typed Bun AoT Rolldown treeshake; s255078 building precompiled iOS binaries (t-mw3ogfqh-vkr0)."}
+
+{"id":"00000001794770213985:499d4c721cf9b0d56b4acd3c8405659d","text":"Launched independent large reviewer s257963 (one-pr1256-1240-rev on studio-64) on onejs/one#1256 (ec3642b5c293c04b4e54e0ea907586b7f550b49f, One SDK reachability pruning approved by Nate on i-1794760968598-91819-0; -4.09 MB / -13.3% WASM) plus onejs/one#1240 (precompiled iOS pipeline)."}
