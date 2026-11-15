@@ -366,8 +366,11 @@ function setupLinkingAndRouteInfo(initialLocation?: URL, linking?: OneLinkingCon
   // capture the original pathname before React Navigation's linking can modify it
   initialPathname = initialLocation?.pathname ?? getSafeWindowPathname()
 
-  if (!initialState && shouldAttemptWarmRouteRestore(initialLocation)) {
-    initialState = consumeWarmInitialNavigationState(routeNode, getResolvedLinking())
+  if (shouldAttemptWarmRouteRestore(initialLocation)) {
+    const warmState = consumeWarmInitialNavigationState(routeNode, getResolvedLinking())
+    if (warmState) {
+      initialState = warmState
+    }
   }
 
   if (initialState) {

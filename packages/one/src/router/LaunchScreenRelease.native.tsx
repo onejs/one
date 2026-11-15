@@ -12,9 +12,10 @@ import {
 // it from before its first commit until its first route renders.
 const holds = Platform.OS === 'ios' && holdLaunchScreenForRouter()
 
-export function LaunchScreenRelease() {
+export function LaunchScreenRelease(props?: { hold?: boolean }) {
   useLayoutEffect(() => {
+    if (props?.hold) return
     if (holds) releaseLaunchScreenForRouter()
-  }, [])
+  }, [props?.hold])
   return null
 }
