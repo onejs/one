@@ -13,6 +13,7 @@ export * from './transformWorklets.js';
 export * from './reactNativeCodegen.js';
 export * from './transformHermesLoops.js';
 export * from './transformHermesAsync.js';
+export * from './nativeTransformCache.js';
 export * from './transformHermesClasses.js';
 export { clearTransformCache } from './cache.js';
 export { JS_GLOBALS } from './worklets/globals.js';

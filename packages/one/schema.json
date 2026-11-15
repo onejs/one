@@ -869,6 +869,29 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeHapticTap",
+      "publicName": "HapticTap",
+      "props": {
+        "feedback": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeEdgeFade",
       "publicName": "EdgeFade",
       "props": {
@@ -2043,6 +2066,9 @@
         "colors": {
           "type": "ReadonlyArray<string>"
         },
+        "locations": {
+          "type": "string"
+        },
         "startPoint": {
           "type": "string"
         },
@@ -2219,6 +2245,9 @@
         "autoplay": {
           "type": "boolean"
         },
+        "contentFit": {
+          "type": "string"
+        },
         "command": {
           "type": "string"
         },
@@ -2238,6 +2267,30 @@
             "type": "string"
           }
         },
+        "onNativeVideoPlayerVideoReady": {
+          "width": {
+            "type": "Double"
+          },
+          "height": {
+            "type": "Double"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeVideoPlayerVideoError": {
+          "message": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeVideoPlayerFirstFrame": {
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
         "onNativeVideoPlayerPlaybackStatus": {
           "state": {
             "type": "string"
@@ -2254,6 +2307,18 @@
         }
       },
       "actions": [
+        {
+          "publicProp": "onVideoReady",
+          "event": "onNativeVideoPlayerVideoReady"
+        },
+        {
+          "publicProp": "onVideoError",
+          "event": "onNativeVideoPlayerVideoError"
+        },
+        {
+          "publicProp": "onFirstFrame",
+          "event": "onNativeVideoPlayerFirstFrame"
+        },
         {
           "publicProp": "onPlaybackStatus",
           "event": "onNativeVideoPlayerPlaybackStatus"

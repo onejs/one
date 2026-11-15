@@ -107,6 +107,8 @@ namespace margelo::nitro::one {
       virtual void presentNotification(const std::string& requestId, const NotificationBehavior& behavior) = 0;
       virtual std::optional<NativeNotificationResponse> getLastNotificationResponse() = 0;
       virtual void clearLastNotificationResponse() = 0;
+      virtual std::vector<NativeNotificationResponse> getPendingNotificationResponses() = 0;
+      virtual void acknowledgeNotificationResponse(const std::string& identifier) = 0;
 
     protected:
       // Hybrid Setup

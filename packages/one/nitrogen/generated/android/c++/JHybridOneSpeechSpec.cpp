@@ -30,6 +30,7 @@ namespace margelo::nitro::one { enum class SpeechErrorCode; }
 #include "SpeechStartOptions.hpp"
 #include "JSpeechStartOptions.hpp"
 #include <string>
+#include <vector>
 #include "SpeechEvent.hpp"
 #include <functional>
 #include "JFunc_void_SpeechEvent.hpp"

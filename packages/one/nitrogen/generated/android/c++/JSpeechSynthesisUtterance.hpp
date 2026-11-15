@@ -44,13 +44,16 @@ namespace margelo::nitro::one {
       jni::local_ref<jni::JString> voice = this->getFieldValue(fieldVoice);
       static const auto fieldVolume = clazz->getField<jni::JDouble>("volume");
       jni::local_ref<jni::JDouble> volume = this->getFieldValue(fieldVolume);
+      static const auto fieldUseApplicationAudioSession = clazz->getField<jni::JBoolean>("useApplicationAudioSession");
+      jni::local_ref<jni::JBoolean> useApplicationAudioSession = this->getFieldValue(fieldUseApplicationAudioSession);
       return SpeechSynthesisUtterance(
         text->toStdString(),
         language != nullptr ? std::make_optional(language->toStdString()) : std::nullopt,
         pitch != nullptr ? std::make_optional(pitch->value()) : std::nullopt,
         rate != nullptr ? std::make_optional(rate->value()) : std::nullopt,
         voice != nullptr ? std::make_optional(voice->toStdString()) : std::nullopt,
-        volume != nullptr ? std::make_optional(volume->value()) : std::nullopt
+        volume != nullptr ? std::make_optional(volume->value()) : std::nullopt,
+        useApplicationAudioSession != nullptr ? std::make_optional(static_cast<bool>(useApplicationAudioSession->value())) : std::nullopt
       );
     }
 
@@ -60,7 +63,7 @@ namespace margelo::nitro::one {
      */
     [[maybe_unused]]
     static jni::local_ref<JSpeechSynthesisUtterance::javaobject> fromCpp(const SpeechSynthesisUtterance& value) {
-      using JSignature = JSpeechSynthesisUtterance(jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>);
+      using JSignature = JSpeechSynthesisUtterance(jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JBoolean>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
@@ -70,7 +73,8 @@ namespace margelo::nitro::one {
         value.pitch.has_value() ? jni::JDouble::valueOf(value.pitch.value()) : nullptr,
         value.rate.has_value() ? jni::JDouble::valueOf(value.rate.value()) : nullptr,
         value.voice.has_value() ? jni::make_jstring(value.voice.value()) : nullptr,
-        value.volume.has_value() ? jni::JDouble::valueOf(value.volume.value()) : nullptr
+        value.volume.has_value() ? jni::JDouble::valueOf(value.volume.value()) : nullptr,
+        value.useApplicationAudioSession.has_value() ? jni::JBoolean::valueOf(value.useApplicationAudioSession.value()) : nullptr
       );
     }
   };

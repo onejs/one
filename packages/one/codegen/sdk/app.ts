@@ -32,7 +32,7 @@ export function writeSdkNativeSupport(dir: string, sdkRoot = sdkPath()) {
 
 const SKIP = new Set(['node_modules', 'ios', 'android', 'dist', 'build', 'types'])
 const SOURCE = /\.(?:[cm]?[jt]sx?)$/
-const IMPORT = /['"]one\/ios\/([A-Za-z_][A-Za-z0-9_]*)['"]/g
+const IMPORT = /['"]one\/ios\/([A-Za-z_][A-Za-z0-9_]*)(?:\/[A-Za-z_$][A-Za-z0-9_$]*)?['"]/g
 const ONE_IMPORT = /(?:\bfrom\s*|\bimport\s*\(?\s*|\brequire\s*\(\s*)['"]one['"]/
 const SDK_BACKEND = /\brequire\(\s*['"](\.\/[\w.-]+\.sdk)['"]\s*\)/g
 

@@ -31,6 +31,7 @@ import { createDevtoolsPlugin } from './plugins/devtoolsPlugin'
 import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
+import { loaderJSXPlugin } from './plugins/loaderJSXPlugin'
 import { loaderSearchSchemasPlugin } from './plugins/loaderSearchSchemasPlugin'
 import { criticalCSSPlugin } from './plugins/criticalCSSPlugin'
 import { imageDataPlugin } from './plugins/imageDataPlugin'
@@ -944,7 +945,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   ] satisfies Plugin[]
 
   // TODO move to single config and through environments
-  const nativeWebDevAndProdPlugsin: Plugin[] = [clientTreeShakePlugin({ routerRoot })]
+  const nativeWebDevAndProdPlugsin: Plugin[] = [
+    loaderJSXPlugin({ routerRoot }),
+    clientTreeShakePlugin({ routerRoot }),
+  ]
 
   // vite config plugins that ship a native form (`api.vxrnNative`). vite
   // resolves the config, in dev and in every native build, before the native
@@ -958,6 +962,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   }
 
   // TODO move this handoff off globalThis, like the other one -> vxrn options
+  ;(globalThis as any).__vxrnNativeIosEngine = !nativeDisabled
+    ? { root: path.resolve(root), engine: nativeApp?.ios?.engine }
+    : undefined
+
   if (!nativeDisabled) {
     // the native bundler is its own rolldown instance rather than a vite
     // environment, so of `config.plugins` only the ones with a native form
@@ -996,6 +1004,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             ]
           : []),
         createAliasPlugin(withAbsorbedAliases(options.alias), platform),
+        loaderJSXPlugin({ routerRoot }),
         clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),
         ...(viteBundlerOptions?.plugins ?? []),
       ]

@@ -16,6 +16,7 @@ export function NativeSafeAreaProvider({
   children,
   style,
   onInsetsChange,
+  ...viewProps
 }: NativeSafeAreaProviderProps) {
   const handleInsetsChange = React.useCallback(
     ({ nativeEvent }: { nativeEvent: Parameters<typeof providerEventToMetrics>[0] }) => {
@@ -28,6 +29,7 @@ export function NativeSafeAreaProvider({
 
   return (
     <NativeSafeAreaProviderHost
+      {...viewProps}
       style={[styles.fill, style]}
       onNativeInsetsChange={handleInsetsChange}
     >

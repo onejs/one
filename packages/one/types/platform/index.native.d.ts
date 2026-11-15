@@ -52,12 +52,12 @@ export declare const Swift: {
     Ellipse({ fill, strokeBorder, lineWidth, swiftStyle, style, ...props }: import("./types.js").EllipseProps): import("react").JSX.Element;
     UnevenRoundedRectangle({ fill, strokeBorder, lineWidth, topLeadingRadius, bottomLeadingRadius, bottomTrailingRadius, topTrailingRadius, swiftStyle, style, ...props }: import("./types.js").UnevenRoundedRectangleProps): import("react").JSX.Element;
     ConcentricRectangle({ fill, swiftStyle, style, ...props }: import("./types.js").ConcentricRectangleProps): import("react").JSX.Element;
-    LinearGradient({ colors, startPoint, endPoint, swiftStyle, style, ...props }: import("./types.js").LinearGradientProps): import("react").JSX.Element;
+    LinearGradient({ colors, locations, startPoint, endPoint, swiftStyle, style, ...props }: import("./types.js").LinearGradientProps): import("react").JSX.Element;
     RadialGradient({ colors, center, startRadius, endRadius, swiftStyle, style, ...props }: import("./types.js").RadialGradientProps): import("react").JSX.Element;
     EllipticalGradient({ colors, center, startRadiusFraction, endRadiusFraction, swiftStyle, style, ...props }: import("./types.js").EllipticalGradientProps): import("react").JSX.Element;
     AngularGradient({ colors, center, angle, swiftStyle, style, ...props }: import("./types.js").AngularGradientProps): import("react").JSX.Element;
     MeshGradient({ meshWidth, meshHeight, points, colors, background, smoothsColors, colorSpace, swiftStyle, style, ...props }: import("./types.js").MeshGradientProps): import("react").JSX.Element;
-    VideoPlayer({ onPlaybackStatus, url, autoplay, command, commandRevision, seekToMs, swiftStyle, style, ...props }: import("./types.js").VideoPlayerProps): import("react").JSX.Element;
+    VideoPlayer({ onVideoReady, onVideoError, onFirstFrame, onPlaybackStatus, url, autoplay, contentFit, command, commandRevision, seekToMs, swiftStyle, style, ...props }: import("./types.js").VideoPlayerProps): import("react").JSX.Element;
     LivePhotoView({ onPlaybackState, assetIdentifier, autoplay, command, commandRevision, swiftStyle, style, ...props }: import("./types.js").LivePhotoViewProps): import("react").JSX.Element;
     PhotosPicker({ onPick, onPickItemIdentifier, onPickError, label, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: import("./types.js").PhotosPickerProps): import("react").JSX.Element;
     WebView({ onNavigate, onTitleChange, onLoadingChange, onLoadStart, onLoadEnd, onError, onHttpError, onMessage, onHistoryChange, onProcessTerminate, url, html, script, command, commandRevision, commandValue, limitsNavigationsToAppBoundDomains, inlineMedia, inspectable, bounces, backForwardNavigationGestures, magnificationGestures, linkPreviews, elementFullscreen, contentBackground, swiftStyle, style, ...props }: import("./types.js").WebViewProps): import("react").JSX.Element;

@@ -15,6 +15,7 @@ export interface SpeechEvent {
 }
 export interface SpeechStartOptions {
     lang?: string;
+    contextualStrings?: string[];
 }
 export interface SpeechSession {
     stop(): void;

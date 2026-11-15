@@ -6,4 +6,5 @@ export * from './exec.js';
 export * from './mustReplace.js';
 export * from './publicEnv.js';
 export * from './platformEnv.js';
+export * from './bunEngine.js';
 //# sourceMappingURL=index.d.ts.map

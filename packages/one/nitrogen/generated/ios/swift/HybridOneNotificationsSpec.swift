@@ -36,6 +36,8 @@ public protocol HybridOneNotificationsSpec_protocol: HybridObject {
   func presentNotification(requestId: String, behavior: NotificationBehavior) throws -> Void
   func getLastNotificationResponse() throws -> NativeNotificationResponse?
   func clearLastNotificationResponse() throws -> Void
+  func getPendingNotificationResponses() throws -> [NativeNotificationResponse]
+  func acknowledgeNotificationResponse(identifier: String) throws -> Void
 }
 
 public extension HybridOneNotificationsSpec_protocol {

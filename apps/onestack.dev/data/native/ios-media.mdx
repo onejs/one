@@ -230,9 +230,13 @@ function Trailer() {
   data={[
     { name: 'url', type: 'string', default: '""', description: 'A file:// or remote video. A new url makes a new player.' },
     { name: 'autoplay', type: 'boolean', default: 'false', description: 'Plays once the video loads.' },
+    { name: 'contentFit', type: '"native" | "contain" | "cover"', default: '"native"', description: 'How the video scales inside its frame.' },
     { name: 'command', type: '"play" | "pause" | "seek" | ""', default: '""', description: 'A command to run. See below.' },
     { name: 'commandRevision', type: 'number', default: '0', description: 'Increase to run command again.' },
     { name: 'seekToMs', type: 'number', default: '0', description: 'Where a seek goes, in milliseconds.' },
+    { name: 'onVideoReady', type: '(width: number, height: number) => void', description: 'Natural pixel dimensions once the video track loads.' },
+    { name: 'onFirstFrame', type: '() => void', description: 'Fires once per player when its first frame displays.' },
+    { name: 'onVideoError', type: '(message: string) => void', description: 'Fires when the video fails to load or play.' },
     { name: 'onPlaybackStatus', type: '(state: string, positionMs: number, durationMs: number) => void', description: 'loading, playing, paused, ended, or failed, with the time.' },
   ]}
 />

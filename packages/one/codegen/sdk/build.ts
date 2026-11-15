@@ -4,15 +4,50 @@
 // identically without reading generator sources at runtime. the package build
 // (no output argument) also compiles committed ios-bindings facades to
 // dist/esm/ios, the javascript native consumers resolve for one/ios/<Framework>.
-import { mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from 'node:fs'
-import { dirname, join } from 'node:path'
+import {
+  mkdirSync,
+  rmSync,
+  readFileSync,
+  readdirSync,
+  renameSync,
+  writeFileSync,
+} from 'node:fs'
+import { dirname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { transform } from 'esbuild'
 import { compactFacade } from './compact'
+import { splitFacade } from './split-facade'
 
 const dir = dirname(fileURLToPath(import.meta.url))
 const fingerprintPath = join(dir, 'fingerprint.ts')
 const escaped = fingerprintPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+const PER_CLASS_IMPORT =
+  /['"]one\/ios\/([A-Za-z_][A-Za-z0-9_]*)\/([A-Za-z_$][A-Za-z0-9_$]*)['"]/g
+
+function perClassSdkImports(srcRoot = join(dir, '../../src')): Map<string, Set<string>> {
+  const found = new Map<string, Set<string>>()
+  const walk = (directory: string) => {
+    for (const entry of readdirSync(directory, { withFileTypes: true })) {
+      if (entry.name === '__mocks__') continue
+      const full = join(directory, entry.name)
+      if (entry.isDirectory()) {
+        walk(full)
+      } else if (
+        /\.(?:[cm]?[jt]sx?)$/.test(entry.name) &&
+        !/\.(?:test|spec)\./.test(entry.name)
+      ) {
+        const source = readFileSync(full, 'utf8')
+        for (const match of source.matchAll(PER_CLASS_IMPORT)) {
+          const symbols = found.get(match[1]) ?? new Set<string>()
+          symbols.add(match[2])
+          found.set(match[1], symbols)
+        }
+      }
+    }
+  }
+  walk(srcRoot)
+  return found
+}
 
 export async function buildSdkApp(
   outdir = join(dir, '../../dist/sdk')
@@ -45,14 +80,18 @@ export async function buildSdkApp(
   return { path, fingerprint }
 }
 
-// per file, imports untouched: facades import one/ios-runtime and each other
-// through package exports, so every framework stays one module per specifier.
+// preserve the full framework registry while splitting only per-class imports used by One.
 export async function buildIosFacades(
   outdir = join(dir, '../../dist/esm/ios')
 ): Promise<number> {
   const bindings = join(dir, '../../ios-bindings')
   const facades = readdirSync(bindings).filter((name) => name.endsWith('.ts'))
+  const selectedByFramework = perClassSdkImports()
+  rmSync(outdir, { recursive: true, force: true })
   mkdirSync(outdir, { recursive: true })
+  const types = join(dir, '../../dist/ios-types')
+  rmSync(types, { recursive: true, force: true })
+  mkdirSync(types, { recursive: true })
   await Promise.all(
     facades.map(async (name) => {
       const { code } = await transform(
@@ -62,12 +101,51 @@ export async function buildIosFacades(
           format: 'esm',
           target: 'es2020',
           minifyWhitespace: true,
-          minifySyntax: true,
+          minifySyntax: false,
           minifyIdentifiers: false,
           legalComments: 'none',
         }
       )
-      writeFileSync(join(outdir, `${name.slice(0, -3)}.native.js`), code)
+      const framework = name.slice(0, -3)
+      const selected = selectedByFramework.get(framework)
+      const declaration = join(dir, '../../ios-types', framework)
+      writeFileSync(
+        join(types, framework + '.d.ts'),
+        'export * from ' + JSON.stringify(relative(types, declaration)) + ';\n'
+      )
+      if (!selected || selected.size === 0) {
+        writeFileSync(join(outdir, framework + '.mjs'), code)
+        return
+      }
+      const modules = splitFacade(code, selected)
+      const directory = join(outdir, framework)
+      mkdirSync(directory, { recursive: true })
+      const typeDirectory = join(types, framework)
+      mkdirSync(typeDirectory, { recursive: true })
+      for (const [modName, source] of modules) {
+        writeFileSync(join(directory, modName + '.mjs'), source)
+        if (
+          modName === '_calls' ||
+          modName === '_protocols' ||
+          modName === '_barrel' ||
+          modName === 'index'
+        )
+          continue
+        const names = source.match(/export \{ ([^}]+) \}(?: from "[^"]+")?;\n$/)?.[1]
+        if (names)
+          writeFileSync(
+            join(typeDirectory, modName + '.d.ts'),
+            'export { ' +
+              names +
+              ' } from ' +
+              JSON.stringify(relative(typeDirectory, declaration)) +
+              ';\n'
+          )
+      }
+      writeFileSync(
+        join(outdir, framework + '.mjs'),
+        'export * from "./' + framework + '/index.mjs";\n'
+      )
     })
   )
   return facades.length
@@ -78,9 +156,13 @@ if (import.meta.main) {
   const { path, fingerprint } = await buildSdkApp(outdir)
   console.log(`sdk app: ${path} ${fingerprint.slice(0, 16)}`)
   if (outdir === undefined) {
-    const manifest = JSON.parse(readFileSync(join(dir, '../../ios-bindings/manifest.json'), 'utf8'))
+    const manifest = JSON.parse(
+      readFileSync(join(dir, '../../ios-bindings/manifest.json'), 'utf8')
+    )
     if (manifest.generation !== fingerprint.slice(0, 16))
-      throw new Error(`ios-bindings generation ${manifest.generation} does not match the sdk generator ${fingerprint.slice(0, 16)}; regenerate the facades before building`)
+      throw new Error(
+        `ios-bindings generation ${manifest.generation} does not match the sdk generator ${fingerprint.slice(0, 16)}; regenerate the facades before building`
+      )
     console.log(`ios facades: ${await buildIosFacades()} compiled`)
   }
 }

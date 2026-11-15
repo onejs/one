@@ -1,3 +1,5 @@
+import type { ViewProps } from 'react-native'
+
 // haptic vocabulary. the method names are Apple's (UISelectionFeedbackGenerator,
 // UIImpactFeedbackGenerator.FeedbackStyle, UINotificationFeedbackGenerator.FeedbackType),
 // which is why they match expo-haptics without being copied from it.
@@ -37,4 +39,11 @@ export interface Haptics {
   notification(type: HapticNotification): void
   /** android HapticFeedbackConstants feedback; no-op on ios and web */
   performAndroidHaptics(type: AndroidHaptic): void
+}
+
+export type HapticTapFeedback = 'selection' | HapticImpact
+
+export interface HapticTapProps extends ViewProps {
+  /** what a tap inside plays, on the UI thread when the tap ends. default 'selection' */
+  feedback?: HapticTapFeedback
 }

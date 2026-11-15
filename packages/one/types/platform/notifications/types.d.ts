@@ -77,6 +77,7 @@ export interface NotificationContentInput {
     body?: string;
     data?: Record<string, unknown>;
     sound?: boolean;
+    soundName?: string;
     badge?: number;
     categoryIdentifier?: string;
 }

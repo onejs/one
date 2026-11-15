@@ -95,6 +95,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneStorageSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneStoreReviewSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneUpdatesSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneZeroSpec.cpp
   # Android-specific Nitrogen C++ sources
   ../nitrogen/generated/android/c++/JHybridOneAdaptiveSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneAppIconSpec.cpp

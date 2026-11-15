@@ -5,6 +5,7 @@ import type { AutoDepOptimizationOptions, UserDepPatches, AfterBuildProps as VXR
 import type { One as OneShared } from '../interfaces/router.js';
 import type { RouteNode } from '../router/Route.js';
 import type { NativeAppManifest } from '../native/appManifest.js';
+import type { WarmStartOptions } from '../router/warmStateShared.js';
 import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin.js';
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0];
 export type DeployTarget = 'node' | 'vercel' | 'cloudflare';
@@ -833,7 +834,9 @@ export declare namespace One {
          */
         matches?: RouteMatch[];
     };
-    export type Flags = {};
+    export type Flags = {
+        warmStart?: boolean | WarmStartOptions;
+    };
     export type SitemapChangefreq = OneShared.SitemapChangefreq;
     export type RouteSitemap = OneShared.RouteSitemap;
     export type SitemapOptions = {

@@ -107,11 +107,11 @@ describe('vxrn Expo project patches', () => {
     let once = patches.injectFmtCxx17FixIntoPodfile(podfile)
     once = patches.injectHermesMinificationPatchIntoPodfile(once)
     once = patches.injectReactNativeScreensGammaIntoPodfile(once)
-    once = patches.injectNitroWebImageModularHeaderIntoPodfile(once)
+    once = patches.injectModularHeadersIntoPodfile(once)
     let twice = patches.injectFmtCxx17FixIntoPodfile(once)
     twice = patches.injectHermesMinificationPatchIntoPodfile(twice)
     twice = patches.injectReactNativeScreensGammaIntoPodfile(twice)
-    twice = patches.injectNitroWebImageModularHeaderIntoPodfile(twice)
+    twice = patches.injectModularHeadersIntoPodfile(twice)
 
     expect(twice).toBe(once)
     expect(once).toContain('[vxrn/one] fmt c++17 fix')

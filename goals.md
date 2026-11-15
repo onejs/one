@@ -1,3 +1,34 @@
+# Native Zero experiment
+
+Build a shared C++20 client through Nitro, reusing One's OP-SQLite library.
+The generic engine and `one/zero/native` facade remain an opt-in draft in PR #1217.
+Team Machine is the first consumer; Contrast mobile follows after the client is
+useful there. Stable publication and full upstream protocol compatibility remain
+unapproved and unproven, respectively.
+
+The actual Team Machine iOS simulator loaded daemon rows, sent a real command,
+and delivered a queued send after an offline app restart. The journal and client
+identity survived. Application mutators, hooks and transport remain JavaScript.
+Orez's provider supports an externally owned client and isolates materialized
+views when a durable identity reopens. The app integration remains on its branch
+until published package pins and the matching native SDK build are validated.
+
+The desktop integration command is documented in
+`packages/one/tests/zero-native/README.md`. It covers durable mutations, rebase,
+acknowledgement, query lifetimes, network cancellation and reference queries.
+Android consumer compilation passed; Android runtime, encrypted cloud transport,
+upstream WebSocket protocol, Contrast adoption and production mobile performance
+remain open.
+
+An isolated desktop comparison used 200 sessions and 20,000 messages, with the same
+20-session/50-message relationship query and visible mutation. Alternating runs
+reduced native query medians from about 8.1 to 3.0 ms and observed mutations from
+8.9 to 4.0 ms by reusing validated leaf JSON. The reference in-memory client took
+about 0.5 ms for each. Native includes durable SQLite and child-process JSON IPC;
+these results establish an engine bottleneck, not production mobile performance.
+
+---
+
 # One audio next minor: Now Playing ownership and paused loading
 
 Issues: [#1065](https://github.com/onejs/one/issues/1065) managed players cannot own

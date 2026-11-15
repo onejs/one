@@ -44,6 +44,8 @@ namespace margelo::nitro::one {
       jni::local_ref<JAnyMap::javaobject> data = this->getFieldValue(fieldData);
       static const auto fieldSound = clazz->getField<jni::JBoolean>("sound");
       jni::local_ref<jni::JBoolean> sound = this->getFieldValue(fieldSound);
+      static const auto fieldSoundName = clazz->getField<jni::JString>("soundName");
+      jni::local_ref<jni::JString> soundName = this->getFieldValue(fieldSoundName);
       static const auto fieldBadge = clazz->getField<jni::JDouble>("badge");
       jni::local_ref<jni::JDouble> badge = this->getFieldValue(fieldBadge);
       static const auto fieldCategoryIdentifier = clazz->getField<jni::JString>("categoryIdentifier");
@@ -54,6 +56,7 @@ namespace margelo::nitro::one {
         body != nullptr ? std::make_optional(body->toStdString()) : std::nullopt,
         data != nullptr ? std::make_optional(data->cthis()->getMap()) : std::nullopt,
         sound != nullptr ? std::make_optional(static_cast<bool>(sound->value())) : std::nullopt,
+        soundName != nullptr ? std::make_optional(soundName->toStdString()) : std::nullopt,
         badge != nullptr ? std::make_optional(badge->value()) : std::nullopt,
         categoryIdentifier != nullptr ? std::make_optional(categoryIdentifier->toStdString()) : std::nullopt
       );
@@ -65,7 +68,7 @@ namespace margelo::nitro::one {
      */
     [[maybe_unused]]
     static jni::local_ref<JNativeContentInput::javaobject> fromCpp(const NativeContentInput& value) {
-      using JSignature = JNativeContentInput(jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JAnyMap::javaobject>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>);
+      using JSignature = JNativeContentInput(jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JAnyMap::javaobject>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
@@ -75,6 +78,7 @@ namespace margelo::nitro::one {
         value.body.has_value() ? jni::make_jstring(value.body.value()) : nullptr,
         value.data.has_value() ? JAnyMap::create(value.data.value()) : nullptr,
         value.sound.has_value() ? jni::JBoolean::valueOf(value.sound.value()) : nullptr,
+        value.soundName.has_value() ? jni::make_jstring(value.soundName.value()) : nullptr,
         value.badge.has_value() ? jni::JDouble::valueOf(value.badge.value()) : nullptr,
         value.categoryIdentifier.has_value() ? jni::make_jstring(value.categoryIdentifier.value()) : nullptr
       );

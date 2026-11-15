@@ -56,3 +56,5 @@ node_modules
 evidence/
 proofs/
 .claude/settings.local.json
+
+**/.one/bundle-analysis/
