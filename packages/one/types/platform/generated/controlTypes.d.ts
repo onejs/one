@@ -3507,9 +3507,13 @@ export interface MeshGradientProps extends OneNativeViewProps {
     colorSpace?: 'device' | 'perceptual';
 }
 export interface VideoPlayerProps extends OneNativeViewProps {
+    onVideoReady?: (width: number, height: number) => void;
+    onVideoError?: (message: string) => void;
+    onFirstFrame?: () => void;
     onPlaybackStatus?: (state: string, positionMs: number, durationMs: number) => void;
     url?: string;
     autoplay?: boolean;
+    contentFit?: 'native' | 'contain' | 'cover';
     command?: 'play' | 'pause' | 'seek' | '';
     commandRevision?: number;
     seekToMs?: number;
