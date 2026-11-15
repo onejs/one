@@ -1,8 +1,8 @@
 import * as React from 'react';
-import type { EdgeInsets, Metrics, Rect } from './SafeArea-types.js';
+import type { EdgeInsets, Metrics, NativeSafeAreaProviderProps, Rect } from './SafeArea-types.js';
 export declare const SafeAreaInsetsContext: React.Context<EdgeInsets | null>;
 export declare const SafeAreaFrameContext: React.Context<Rect | null>;
-export interface SafeAreaProviderProps {
+export interface SafeAreaProviderProps extends Omit<NativeSafeAreaProviderProps, 'onInsetsChange'> {
     children?: React.ReactNode;
     initialMetrics?: Metrics | null;
     /**
