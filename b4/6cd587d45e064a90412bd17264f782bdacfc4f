@@ -23,3 +23,5 @@
 {"id":"00000001794759177441:6d9a83944467d61c0b706075d9a831d8","text":"W46 (p265808) exited after merging #1235/#1242/#1166. Launched W78 (s256962, one-route-and-ios-ci) on remaining Red A (#1241 route HMR + MissingFactoryError), Red B (warm-shortcuts.py SpringBoard backgrounding), and WDA cache in .github/actions/ios-ui-test-setup/action.yml (no self-merge)."}
 
 {"id":"00000001794763658077:ac0f5390599d2bb33280cda5e8545f4b","text":"Respawned W78 from s256962 (muse:personal 429 quota exhausted, resets 2026-11-15T18:50:45Z) to s257395 (one-route-and-ios-ci, gpt-6.1-terra xhigh on codex:tamagui) to finish Red A/B and WDA cache cleanly."}
+
+{"id":"00000001794763753008:baf1808db5ec64b473081d38872f8323","text":"RAN: inherited simulator investigation observed root layout remount with /hmr-probe still active; assessing registry factory availability before deciding fix."}
