@@ -292,6 +292,9 @@ if (import.meta.main) {
   mkdirSync(dirname(lockPath), { recursive: true })
   const sourceHash = (url: URL) =>
     createHash('sha256').update(readFileSync(url)).digest('hex')
+  const consoleEnvironment: Record<string, string> = args.device
+    ? { OS_ACTIVITY_DT_MODE: 'YES', OS_ACTIVITY_MODE: 'debug' }
+    : {}
   const metadata = {
     device: args.simulator
       ? `${args['device-name']} simulator (${args.host})`
@@ -302,6 +305,7 @@ if (import.meta.main) {
     order: args.order,
     cooldownSeconds: cooldown,
     launchEnvironment,
+    consoleEnvironment,
     simulatorLogProcess: args['simulator-log-process'] ?? null,
     resetData: args['reset-data'],
     os: args.os,
@@ -410,7 +414,10 @@ if (import.meta.main) {
           ]
       const log = join(args.out, `${String(run).padStart(2, '0')}-${engine}.log`)
       const env = { ...process.env }
-      for (const [key, value] of Object.entries(launchEnvironment[engine] ?? {}))
+      for (const [key, value] of Object.entries({
+        ...consoleEnvironment,
+        ...(launchEnvironment[engine] ?? {}),
+      }))
         env[`${args.simulator ? 'SIMCTL_CHILD_' : 'DEVICECTL_CHILD_'}${key}`] = value
       const logProcess = args['simulator-log-process']
       const logger = logProcess
