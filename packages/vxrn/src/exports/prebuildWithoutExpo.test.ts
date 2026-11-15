@@ -1655,7 +1655,7 @@ describe('installNativeDependencies without cocoapods', () => {
     const empty = mkdtempSync(join(tmpdir(), 'vxrn-empty-path-'))
     withWarned((warnings) => {
       withPath(empty, () => {
-        expect(() => installNativeDependencies({ root })).not.toThrow()
+        expect(installNativeDependencies({ root })).toBe(false)
       })
       expect(warnings).toEqual(['[vxrn] `pod` is not available, so `pod install` was skipped'])
     })
