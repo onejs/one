@@ -109,6 +109,7 @@ export interface NativeAppManifest {
         associatedDomains?: string[];
         usesAppleSignIn?: boolean;
         googleServicesFile?: string;
+        resources?: string[];
         infoPlist?: Record<string, PlistValue>;
         entitlements?: Record<string, PlistValue>;
         widgets?: {
