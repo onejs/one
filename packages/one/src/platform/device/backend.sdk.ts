@@ -1,19 +1,17 @@
-import {
-  Calendar,
-  DateFormatter,
-  Locale,
-  Locale_Components,
-  Measurement,
-  MeasurementFormatter,
-  NotificationCenter,
-  NSLocale,
-  NSNotification_Name,
-  OperationQueue,
-  ProcessInfo,
-  TimeZone,
-  UnitTemperature,
-} from 'one/ios/Foundation'
-import { UIDevice } from 'one/ios/UIKit'
+import { Calendar } from 'one/ios/Foundation/Calendar'
+import { DateFormatter } from 'one/ios/Foundation/DateFormatter'
+import { Locale } from 'one/ios/Foundation/Locale'
+import { Locale_Components } from 'one/ios/Foundation/Locale'
+import { Measurement } from 'one/ios/Foundation/Measurement'
+import { MeasurementFormatter } from 'one/ios/Foundation/MeasurementFormatter'
+import { NotificationCenter } from 'one/ios/Foundation/NotificationCenter'
+import { NSLocale } from 'one/ios/Foundation/NSLocale'
+import { NSNotification_Name } from 'one/ios/Foundation/NSNotification'
+import { OperationQueue } from 'one/ios/Foundation/OperationQueue'
+import { ProcessInfo } from 'one/ios/Foundation/ProcessInfo'
+import { TimeZone } from 'one/ios/Foundation/TimeZone'
+import { UnitTemperature } from 'one/ios/Foundation/UnitTemperature'
+import { UIDevice } from 'one/ios/UIKit/UIDevice'
 import type { HybridObject } from 'react-native-nitro-modules'
 import type {
   CalendarInfo,
@@ -104,9 +102,7 @@ function addLocalizationListener(listener: () => void): () => void {
 function temperatureUnitName(locale: Locale): string {
   const formatter = MeasurementFormatter.init()
   formatter.locale = locale
-  const shown = formatter.stringFrom53753(
-    Measurement.init(0, UnitTemperature.celsius)
-  )
+  const shown = formatter.stringFrom53753(Measurement.init(0, UnitTemperature.celsius))
   return shown.endsWith('F') ? 'fahrenheit' : 'celsius'
 }
 

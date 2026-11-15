@@ -3,6 +3,9 @@
   "compilerOptions": {
     "composite": true
   },
-  "references": [
+  "references": [],
+  "include": [
+    "**/*",
+    "package.json"
   ]
 }

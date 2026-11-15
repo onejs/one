@@ -11,7 +11,7 @@ import React
 //
 // layout under application support:
 //   one-updates/state.json          every downloaded update plus launching
-//   one-updates/<id>/main.jsbundle  the hermes bundle react native loads
+//   one-updates/<id>/main.jsbundle  the bundle react native loads
 //   one-updates/<id>/<path>         each asset where the resolver looks
 //   one-updates/.tmp-<id>/          a fetch in progress, renamed on success
 
@@ -99,8 +99,6 @@ struct OneUpdatesStateFile: Codable {
   private static var pendingReload: Promise<Void>?
   private static var stagedListeners: [Int: (String?) -> Void] = [:]
   private static var nextListenerId = 0
-  private static var previousFatalHandler: RCTFatalHandler?
-  private static var previousFatalExceptionHandler: RCTFatalExceptionHandler?
   private static var session: URLSession?
 
   // MARK: - config and paths
@@ -113,7 +111,7 @@ struct OneUpdatesStateFile: Codable {
     Bundle.main.object(forInfoDictionaryKey: "OneUpdatesRuntimeVersion") as? String
   }
 
-  static var isEnabled: Bool {
+  @objc public static var isEnabled: Bool {
     #if DEBUG
     return false
     #else
@@ -372,18 +370,6 @@ struct OneUpdatesStateFile: Codable {
     if installed { return }
     installed = true
     guard isEnabled else { return }
-    previousFatalHandler = RCTGetFatalHandler()
-    previousFatalExceptionHandler = RCTGetFatalExceptionHandler()
-    RCTSetFatalHandler { error in
-      if let error {
-        OneUpdatesLauncher.handleFatal(error: error as NSError)
-      }
-    }
-    RCTSetFatalExceptionHandler { exception in
-      if let exception {
-        OneUpdatesLauncher.handleFatalException(exception: exception)
-      }
-    }
     NotificationCenter.default.addObserver(
       forName: NSNotification.Name.RCTContentDidAppear,
       object: nil,
@@ -412,42 +398,17 @@ struct OneUpdatesStateFile: Codable {
     pending?.resolve()
   }
 
-  static func handleFatal(error: NSError) {
+  @objc(rollBackIfArmedWithReason:)
+  public static func rollBackIfArmed(reason: String) -> Bool {
     lock.lock()
     let armed = !contentAppeared
     let launching = loadState().launching
     guard armed, let launching else {
-      let previous = previousFatalHandler
       lock.unlock()
-      if let previous {
-        previous(error)
-      } else {
-        NSException(
-          name: NSExceptionName("RCTFatalException: \(error.localizedDescription)"),
-          reason: error.localizedDescription,
-          userInfo: error.userInfo
-        ).raise()
-      }
-      return
+      return false
     }
-    rollBack(launching: launching, reason: error.localizedDescription)
-  }
-
-  static func handleFatalException(exception: NSException) {
-    lock.lock()
-    let armed = !contentAppeared
-    let launching = loadState().launching
-    guard armed, let launching else {
-      let previous = previousFatalExceptionHandler
-      lock.unlock()
-      if let previous {
-        previous(exception)
-      } else {
-        exception.raise()
-      }
-      return
-    }
-    rollBack(launching: launching, reason: exception.reason ?? exception.name.rawValue)
+    rollBack(launching: launching, reason: reason)
+    return true
   }
 
   // takes the held lock and releases it: marks the booted update failed and

@@ -5,6 +5,7 @@ import UIKit
 
 private final class LinearGradientModel: ObservableObject {
   @Published var colors: [String] = []
+  @Published var locations: String = "[]"
   @Published var startPoint: String = "{\"x\":0.5,\"y\":0}"
   @Published var endPoint: String = "{\"x\":0.5,\"y\":1}"
   @Published var accessibility = OneNativeAccessibility()
@@ -34,7 +35,8 @@ private final class LinearGradientModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ startPoint: String, endPoint: String) {
+  public func configure(_ locations: String, startPoint: String, endPoint: String) {
+    if model.locations != locations { model.locations = locations }
     if model.startPoint != startPoint { model.startPoint = startPoint }
     if model.endPoint != endPoint { model.endPoint = endPoint }
   }
@@ -85,7 +87,7 @@ private struct LinearGradientContent: View {
   @ObservedObject var model: LinearGradientModel
   var body: some View {
     LinearGradient(
-      colors: model.colors.compactMap(oneNativeLinearGradientColor),
+      gradient: oneNativeLinearGradient(model.colors, locations: model.locations),
       startPoint: oneNativeLinearGradientPoint(model.startPoint, fallback: .top),
       endPoint: oneNativeLinearGradientPoint(model.endPoint, fallback: .bottom)
     )
@@ -103,6 +105,14 @@ private func oneNativeLinearGradientPoint(_ raw: String, fallback: UnitPoint) ->
     let point = try? JSONDecoder().decode(OneNativeLinearGradientPoint.self, from: data),
     point.x.isFinite, point.y.isFinite else { return fallback }
   return UnitPoint(x: CGFloat(point.x), y: CGFloat(point.y))
+}
+
+private func oneNativeLinearGradient(_ values: [String], locations raw: String) -> Gradient {
+  let colors = values.compactMap(oneNativeLinearGradientColor)
+  guard let data = raw.data(using: .utf8),
+    let positions = try? JSONDecoder().decode([Double].self, from: data),
+    positions.count == colors.count, !positions.isEmpty else { return Gradient(colors: colors) }
+  return Gradient(stops: zip(colors, positions).map { Gradient.Stop(color: $0.0, location: CGFloat($0.1)) })
 }
 
 private func oneNativeLinearGradientColor(_ value: String) -> Color? {

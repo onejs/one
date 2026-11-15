@@ -766,6 +766,12 @@ AVKit publishes the player's own accessibility element over the control, so
 `accessibilityLabel` never reaches a screen reader here even though every other
 control honors it.
 
+## Notification responses
+
+`One.Notifications.getPendingResponses()` returns notification responses retained since this process started, including taps received before JavaScript subscribed. After the app handles a response, call `acknowledgeResponse(response.notification.request.identifier)` to remove it from that list. `getLastResponse()` and `clearLastResponse()` remain independent of the pending list. Pending responses live in memory and do not survive process termination.
+
+For a custom iOS notification sound, set `soundName` on the scheduled content to the name of an audio file bundled in the app. Android uses its notification channel sound.
+
 ## Maps
 
 `One.iOS.Map` is SwiftUI's `Map` from the `_MapKit_SwiftUI` overlay module. Like
@@ -1939,7 +1945,7 @@ Android.
 
 ```ts
 const { granted } = await One.Speech.requestPermissions()
-const session = One.Speech.start({ lang: 'en-US' }, (event) => {
+const session = One.Speech.start({ lang: 'en-US', contextualStrings: ['Tamagui'] }, (event) => {
   // event.transcript is always everything heard so far
   if (event.type === 'end') send(event.transcript)
   if (event.type === 'error') show(event.error, event.message)

@@ -11,6 +11,7 @@ import type {
 import type { One as OneShared } from '../interfaces/router'
 import type { RouteNode } from '../router/Route'
 import type { NativeAppManifest } from '../native/appManifest'
+import type { WarmStartOptions } from '../router/warmStateShared'
 import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin'
 
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0]
@@ -937,7 +938,9 @@ export namespace One {
     matches?: RouteMatch[]
   }
 
-  export type Flags = {}
+  export type Flags = {
+    warmStart?: boolean | WarmStartOptions
+  }
 
   // Re-export from shared types so they're available from both 'one' and 'one/vite'
   export type SitemapChangefreq = OneShared.SitemapChangefreq

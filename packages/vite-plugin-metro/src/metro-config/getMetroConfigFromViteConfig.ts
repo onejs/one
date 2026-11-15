@@ -190,6 +190,21 @@ function isMainModuleBundleRequest(url: string) {
   )
 }
 
+// production bundles keep the engine's own Promise. react native keeps it only
+// when hermes reports one and otherwise installs the `promise` library, whose
+// every reaction hops through setImmediate and a native microtask call; on the
+// bun engine that is most of the js thread's microtask work. dev runs hermes.
+function isReactNativePromisePolyfill(
+  context: { dev: boolean; originModulePath: string },
+  moduleName: string
+) {
+  return (
+    !context.dev &&
+    /(^|[\\/])polyfillPromise(\.js)?$/.test(moduleName) &&
+    /(^|[\\/])react-native[\\/]/.test(context.originModulePath)
+  )
+}
+
 function isBareSpecifier(name: string) {
   return name !== '' && !name.startsWith('.') && !name.startsWith('/')
 }
@@ -409,6 +424,7 @@ export async function buildMetroConfigInputFromViteConfig(
         ...new Set([...(_defaultConfig?.resolver?.platforms ?? []), 'macos', 'linux']),
       ],
       resolveRequest: (context, moduleName, platform) => {
+        if (isReactNativePromisePolyfill(context, moduleName)) return { type: 'empty' }
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
 
@@ -563,6 +579,7 @@ export async function getMetroConfigFromViteConfig(
         ...new Set([...(_defaultConfig?.resolver?.platforms ?? []), 'macos', 'linux']),
       ],
       resolveRequest: (context, moduleName, platform) => {
+        if (isReactNativePromisePolyfill(context, moduleName)) return { type: 'empty' }
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
 

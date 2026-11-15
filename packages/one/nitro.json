@@ -96,6 +96,9 @@
       "ios": { "language": "swift", "implementationClassName": "HybridOneProtectedStore" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneProtectedStore" }
     },
+    "OneZero": {
+      "all": { "language": "c++", "implementationClassName": "HybridOneZero" }
+    },
     "OneStorage": {
       "all": { "language": "c++", "implementationClassName": "HybridOneStorage" }
     },

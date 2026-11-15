@@ -34,8 +34,14 @@ export function compactFacade(source: string): string {
     }
   }
   visit(ast)
-  for (const edit of edits.sort((a, b) => b.start - a.start))
-    source = source.slice(0, edit.start) + edit.text + source.slice(edit.end)
+  const parts: string[] = []
+  let copied = 0
+  for (const edit of edits.sort((a, b) => a.start - b.start)) {
+    parts.push(source.slice(copied, edit.start), edit.text)
+    copied = edit.end
+  }
+  parts.push(source.slice(copied))
+  source = parts.join('')
   let prefix = ''
   for (const [framework, { index, calls }] of modules)
     for (const call of calls)

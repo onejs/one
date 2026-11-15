@@ -1,6 +1,6 @@
 {
   "name": "vxrn",
-  "version": "2.14.0",
+  "version": "2.18.0",
   "sideEffects": false,
   "type": "module",
   "exports": {
@@ -61,6 +61,7 @@
     "run.mjs",
     "expo-plugin.cjs",
     "native-project-patches.cjs",
+    "ios",
     "react-native-commands.cjs"
   ],
   "scripts": {
@@ -102,7 +103,7 @@
     "hono": "^4.13.11",
     "perfect-debounce": "^1.0.0",
     "picocolors": "^1.0.0",
-    "rolldown": "^1.2.8",
+    "rolldown": "^1.2.19",
     "semver": "^7.6.3",
     "sharp": "^0.35.5",
     "vite": "^8.2.2",

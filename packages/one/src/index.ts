@@ -12,6 +12,8 @@ export { AESEncryptionKey, AESSealedData } from './platform/crypto/index'
 // One.UI.EdgeFade by name, so a web import does not hold the whole One namespace.
 export { EdgeFade } from './platform/effects/EdgeFade'
 export type { EdgeFadeProps } from './platform/effects/types'
+export { HapticTap } from './platform/haptics/HapticTap'
+export type { HapticTapFeedback, HapticTapProps } from './platform/haptics/types'
 // native hooks and adaptive reads are named exports for react-hooks lint.
 export { useFonts } from './platform/fonts'
 export { useKeepAwake } from './platform/keep-awake/index'
@@ -251,6 +253,21 @@ export { router } from './router/imperative-api'
 export * as routerStore from './router/router'
 export { useNavigation } from './router/useNavigation'
 export { registerPreloadedRoute } from './router/useViteRoutes'
+export {
+  clearWarmState,
+  configureWarmState,
+  flushWarmState,
+  getHydratedWarmState,
+  hydrateWarmInitialLoad,
+  registerWarmStateSource,
+  scheduleWarmStatePersist,
+  type WarmNavigationSnapshot,
+  type WarmRouteSnapshot,
+  type WarmStartOptions,
+  type WarmStateEnvelope,
+  type WarmStateSource,
+  type WarmStateStorage,
+} from './router/warmState'
 export type { Endpoint, LoaderProps } from './types'
 // navigation blocking
 export {

@@ -207,3 +207,89 @@ test('compact SDK calls preserve wrappers, descriptors and first-call errors', a
   }
   expect(results[1]).toEqual(results[0])
 })
+
+test('selective splitFacade isolates selected per-class imports and shares identity with index', async () => {
+  const { compactFacade } = await import('../codegen/sdk/compact')
+  const { splitFacade } = await import('../codegen/sdk/split-facade')
+  const source = `
+    import { SDKHandle, callSDK, registerSDKClass } from "one/ios-runtime";
+    class Parent extends SDKHandle {
+      static get shared() { return callSDK("Probe", 1, undefined, []); }
+    }
+    class Child extends Parent {}
+    class Unrelated extends SDKHandle {}
+    registerSDKClass("Probe.Parent", Parent, { module: "Probe", properties: {} });
+    registerSDKClass("Probe.Child", Child, { module: "Probe", properties: {} });
+    registerSDKClass("Probe.Unrelated", Unrelated, { module: "Probe", properties: {} });
+    export { Parent, Child, Unrelated };
+  `
+  const modules = splitFacade(compactFacade(source), new Set(['Parent']))
+  expect(modules.has('Parent')).toBe(true)
+  expect(modules.has('_barrel')).toBe(true)
+  expect(modules.has('Child')).toBe(false)
+  expect(modules.has('Unrelated')).toBe(false)
+
+  const plugin = (entry: string) => ({
+    name: 'selective-split-probe',
+    resolveId(id: string) {
+      if (id === 'probe-entry') return '\0probe-entry'
+      if (id.startsWith('./') && id.endsWith('.mjs')) {
+        const key = id.slice(2, -4)
+        if (modules.has(key)) return 'sdk:' + key
+      }
+    },
+    load(id: string) {
+      if (id === '\0probe-entry') return entry
+      if (id.startsWith('sdk:')) return modules.get(id.slice(4))
+    },
+  })
+
+  const classOnly = await rolldown({
+    input: 'probe-entry',
+    external: ['one/ios-runtime'],
+    plugins: [plugin('import { Parent } from "./Parent.mjs"; export { Parent };')],
+  })
+  try {
+    const { output } = await classOnly.generate({ format: 'cjs' })
+    const code = output[0].code
+    expect(code).toContain('Probe.Parent')
+    expect(code).not.toContain('Probe.Child')
+    expect(code).not.toContain('Probe.Unrelated')
+  } finally {
+    await classOnly.close()
+  }
+
+  const combined = await rolldown({
+    input: 'probe-entry',
+    external: ['one/ios-runtime'],
+    plugins: [
+      plugin(
+        'import { Parent } from "./Parent.mjs"; import { Parent as IndexParent, Child } from "./index.mjs"; export const same = Parent === IndexParent; export const isSub = new Child({ typeName: "Probe.Child" }) instanceof Parent;'
+      ),
+    ],
+  })
+  try {
+    const { output } = await combined.generate({ format: 'cjs' })
+    const registered: string[] = []
+    const exports: { same?: boolean; isSub?: boolean } = {}
+    runInNewContext(output[0].code, {
+      exports,
+      require(id: string) {
+        if (id !== 'one/ios-runtime') throw new Error('unexpected ' + id)
+        return {
+          SDKHandle: class SDKHandle {},
+          callSDK: () => null,
+          registerSDKClass: (name: string) => registered.push(name),
+          registerSDKProtocol: () => {},
+        }
+      },
+    })
+    expect(exports.same).toBe(true)
+    expect(exports.isSub).toBe(true)
+    expect(registered).toContain('Probe.Parent')
+    expect(registered).toContain('Probe.Child')
+    expect(registered).toContain('Probe.Unrelated')
+  } finally {
+    await combined.close()
+  }
+})

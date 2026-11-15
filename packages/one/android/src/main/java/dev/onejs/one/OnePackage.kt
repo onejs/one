@@ -21,6 +21,7 @@ import dev.onejs.onenative.OneNativeMenuTriggerManager
 import dev.onejs.onenative.OneNativePictureInPictureManager
 import dev.onejs.onenative.OneNativeSafeAreaModule
 import dev.onejs.onenative.OneNativeReservedRegionsProviderManager
+import dev.onejs.onenative.OneNativeHapticTapManager
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
 import dev.onejs.onenative.OneNativeSyncModule
 import dev.onejs.onenative.OneNativeUiMapManager
@@ -92,6 +93,7 @@ class OnePackage : BaseReactPackage() {
             OneNativeMenuTriggerManager(),
             OneNativeSafeAreaProviderManager(),
             OneNativeReservedRegionsProviderManager(),
+            OneNativeHapticTapManager(),
             OneNativeEdgeFadeManager(),
             OneNativeBlurManager(),
             OneNativePortalViewManager(),

@@ -825,6 +825,7 @@ export function ConcentricRectangle({
 import NativeLinearGradient from '../specs/OneNativeLinearGradientNativeComponent'
 export function LinearGradient({
   colors,
+  locations = [],
   startPoint = { x: 0.5, y: 0 },
   endPoint = { x: 0.5, y: 1 },
   swiftStyle,
@@ -841,6 +842,21 @@ export function LinearGradient({
     throw new Error(
       'LinearGradient colors must be an array of #RRGGBB or #RRGGBBAA colors'
     )
+  if (
+    !Array.isArray(locations) ||
+    (locations.length > 0 &&
+      (locations.length !== colors.length ||
+        locations.some(
+          (location, index) =>
+            !Number.isFinite(location) ||
+            location < 0 ||
+            location > 1 ||
+            (index > 0 && location < locations[index - 1]!)
+        )))
+  )
+    throw new Error(
+      'LinearGradient locations must match colors and be ordered between 0 and 1'
+    )
   for (const point of [startPoint, endPoint])
     if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y))
       throw new Error('LinearGradient points must have finite x and y coordinates')
@@ -856,7 +872,9 @@ export function LinearGradient({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       colors={colors}
+      locations={JSON.stringify(locations)}
       startPoint={JSON.stringify(startPoint)}
       endPoint={JSON.stringify(endPoint)}
     />
@@ -1070,9 +1088,13 @@ export function MeshGradient({
 }
 import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
 export function VideoPlayer({
+  onVideoReady,
+  onVideoError,
+  onFirstFrame,
   onPlaybackStatus,
   url = '',
   autoplay = false,
+  contentFit = 'native',
   command = '',
   commandRevision = 0,
   seekToMs = 0,
@@ -1082,6 +1104,8 @@ export function VideoPlayer({
 }: Types.VideoPlayerProps) {
   if (typeof url !== 'string' || !url)
     throw new Error('VideoPlayer url must be a non-empty string')
+  if (!['native', 'contain', 'cover'].includes(contentFit))
+    throw new Error('Unknown VideoPlayer contentFit: ' + contentFit)
   if (!['', 'play', 'pause', 'seek'].includes(command))
     throw new Error('Unknown VideoPlayer command: ' + command)
   if (!Number.isSafeInteger(commandRevision) || commandRevision < 0)
@@ -1103,9 +1127,17 @@ export function VideoPlayer({
       }
       url={url}
       autoplay={autoplay}
+      contentFit={contentFit}
       command={command}
       commandRevision={commandRevision}
       seekToMs={seekToMs}
+      onNativeVideoPlayerVideoReady={({ nativeEvent }) =>
+        onVideoReady?.(nativeEvent.width, nativeEvent.height)
+      }
+      onNativeVideoPlayerVideoError={({ nativeEvent }) =>
+        onVideoError?.(nativeEvent.message)
+      }
+      onNativeVideoPlayerFirstFrame={({ nativeEvent }) => onFirstFrame?.()}
       onNativeVideoPlayerPlaybackStatus={({ nativeEvent }) =>
         onPlaybackStatus?.(
           nativeEvent.state,
