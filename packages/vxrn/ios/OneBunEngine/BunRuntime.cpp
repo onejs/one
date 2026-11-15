@@ -25,12 +25,17 @@ void bun_embed_grab_locks(void* dropper);
 }
 
 #include <JavaScriptCore/JavaScript.h>
+#include <cxxabi.h>
+#include <execinfo.h>
 #include <jsi/jsilib.h>
+#include <os/log.h>
+#include <unistd.h>
 #include <array>
 #include <atomic>
 #include <condition_variable>
 #include <cstdlib>
 #include <deque>
+#include <exception>
 #include <mutex>
 #include <sstream>
 #include <thread>
@@ -718,10 +723,23 @@ jsi::PropNameID JSCRuntime::createPropNameIDFromString(const jsi::String& str) {
 }
 
 jsi::PropNameID JSCRuntime::createPropNameIDFromSymbol(const jsi::Symbol& sym) {
-  // TODO(T204185517): Support for symbols through the native API in JSC is very
-  // limited. While we could construct a PropNameID here, we would not be able
-  // to get a symbol property through the C++ API.
-  throw std::logic_error("Not implemented");
+  // JSC's class callbacks hand a host object a symbol key as the symbol's
+  // description, so that string is the symbol's name here too and compares
+  // equal to it (react native skia matches Symbol.toStringTag this way)
+  JSValueRef exc = nullptr;
+  JSObjectRef wrapper = JSValueToObject(ctx_, symbolRef(sym), &exc);
+  checkException(exc);
+  JSStringRef key = JSStringCreateWithUTF8CString("description");
+  JSValueRef description = JSObjectGetProperty(ctx_, wrapper, key, &exc);
+  JSStringRelease(key);
+  checkException(exc);
+  JSStringRef name = JSValueIsUndefined(ctx_, description)
+      ? JSStringCreateWithUTF8CString("")
+      : JSValueToStringCopy(ctx_, description, &exc);
+  checkException(exc);
+  auto res = createPropNameID(name);
+  JSStringRelease(name);
+  return res;
 }
 
 std::string JSCRuntime::utf8(const jsi::PropNameID& sym) {
@@ -1750,6 +1768,27 @@ std::unique_ptr<jsi::Runtime> makeBunRuntime() {
   if (ctx == nullptr) {
     return nullptr;
   }
+  // bun's terminate handler panics without naming the exception, so name it and
+  // print the stack it was thrown from (terminate runs there) before bun reports
+  static std::terminate_handler bunTerminate = std::set_terminate([] {
+    std::string what = "no exception";
+    if (auto* type = abi::__cxa_current_exception_type()) {
+      char* name = abi::__cxa_demangle(type->name(), nullptr, nullptr, nullptr);
+      what = name ? name : type->name();
+      std::free(name);
+      try {
+        throw;
+      } catch (const std::exception& e) {
+        what += std::string(": ") + e.what();
+      } catch (...) {
+      }
+    }
+    os_log_fault(OS_LOG_DEFAULT, "[OneBunEngine] uncaught C++ exception %{public}s", what.c_str());
+    std::fprintf(stderr, "[OneBunEngine] uncaught C++ exception %s\n", what.c_str());
+    void* frames[64];
+    backtrace_symbols_fd(frames, backtrace(frames, 64), STDERR_FILENO);
+    bunTerminate();
+  });
   // leave the globals hermes has, so libraries that detect web apis (such as
   // BroadcastChannel) take their react native paths and react native installs
   // its own console, timers and polyfills. Bun and process stay, since compiled
