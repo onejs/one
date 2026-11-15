@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="318" viewBox="0 0 960 318">
+<rect width="100%" height="100%" fill="#fff"/>
+<g font-family="system-ui, sans-serif" fill="#172033">
+<text x="28" y="35" font-size="23">team-machine · frozen-fleet-tab-tasks · action-to-settled</text>
+<text x="28" y="65" font-size="15">iPhone 17 Pro Simulator on the same MacBook Air · iOS 27.0 · 5789647ccd80d69d65ed5770d2d99e0c872148af</text>
+<text x="28" y="121" font-size="18">bun</text>
+<rect x="170" y="100" width="401.074691964869" height="30" fill="#2764d9"/>
+<path d="M552.7429355259294,115 H577.0567531906386 M552.7429355259294,108 V122 M577.0567531906386,108 V122" stroke="#111" fill="none"/>
+<path d="M553.7326597936514,115 H572.6717072426331" stroke="#111" stroke-width="5"/>
+<text x="725" y="121" font-size="17">601.32 ms · n=5</text>
+<text x="28" y="185" font-size="18">hermes</text>
+<rect x="170" y="164" width="411.4900162425509" height="30" fill="#868e9c"/>
+<path d="M544.4743339390968,179 H700 M544.4743339390968,172 V186 M700,172 V186" stroke="#111" fill="none"/>
+<path d="M555.5915779071925,179 H614.8170142883876" stroke="#111" stroke-width="5"/>
+<text x="725" y="185" font-size="17">616.94 ms · n=5</text>
+<text x="28" y="278" font-size="14">Bar: median · thick line: middle 50% · whiskers: minimum–maximum</text>
+<text x="28" y="300" font-size="13">Release; saved One bundle and 58-session snapshot; clean app data each launch; warm OS caches; JIT/Wasm disabled; no CPU cap.</text>
+</g></svg>

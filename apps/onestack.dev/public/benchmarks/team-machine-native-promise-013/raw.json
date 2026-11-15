@@ -1,0 +1,6350 @@
+{
+  "metadata": {
+    "device": "iPhone 17 Pro Simulator on the same MacBook Air",
+    "host": "air-24",
+    "os": "27.0",
+    "commit": "5789647ccd80d69d65ed5770d2d99e0c872148af",
+    "engine": "0.1.3",
+    "oneVersion": "2.0.0-0.canary.1794703544061",
+    "pairs": 5,
+    "batches": 2,
+    "order": "Hermes then Bun within every pair",
+    "sourceSha256": "8e23d09367233fae36d59f1708d8cf86abb33ce341c2dbde0f287dcd55e6daad",
+    "quietGuardAccepted": true,
+    "quietRuntime": "befeacf67c93",
+    "method": "Release; saved One bundle and 58-session snapshot; clean app data each launch; warm OS caches; JIT/Wasm disabled; no CPU cap.",
+    "qualification": "Exploratory. Legacy captured native adapter; no thermal or low-power telemetry. Host analysis processes were journaled and paused before and after both batches. Discovery runs on the daemon tick; this does not prove continuous CPU isolation. Other background CPU activity is preserved in batch logs. All launches and outliers retained. All eleven phase host-node counts match within every pair and native Promise identity remains intact."
+  },
+  "samples": [
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "commits",
+      "value": 37,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "host-nodes",
+      "value": 10870,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-first-commit",
+      "value": 483.7770830001682,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-settled",
+      "value": 3679.080415999517,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-bundle-start",
+      "value": 5.10912499576807,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-settled",
+      "value": 3684.189540995285,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-snapshot-parsed",
+      "value": 83.33304099924862,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-bundle-evaluated",
+      "value": 192.38204099982977,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-startup",
+      "run": 0,
+      "unixMs": 1794727166500,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 276.5655212402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-first-commit",
+      "value": 13.748499998822808,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-settled",
+      "value": 1497.015332998708,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-open-chat",
+      "run": 0,
+      "unixMs": 1794727172609,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 281.5186462402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "action-to-second-frame-callback",
+      "value": 3.118165999650955,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-top",
+      "run": 0,
+      "unixMs": 1794727177207,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 282.1748962402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "action-to-second-frame-callback",
+      "value": 14.456791998818517,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "run": 0,
+      "unixMs": 1794727181811,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 282.7842712402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "commits",
+      "value": 6,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-first-commit",
+      "value": 6.389791999012232,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-settled",
+      "value": 336.33412499912083,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-feed",
+      "run": 0,
+      "unixMs": 1794727186772,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 297.8311462402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "commits",
+      "value": 5,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-first-commit",
+      "value": 6.9221670012921095,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-settled",
+      "value": 263.6526250001043,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-dashboard",
+      "run": 0,
+      "unixMs": 1794727191639,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 313.73741912841797,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "host-nodes",
+      "value": 11038,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-first-commit",
+      "value": 5.007124999538064,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-settled",
+      "value": 666.9057919997722,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-tasks",
+      "run": 0,
+      "unixMs": 1794727196915,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 356.81556701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "commits",
+      "value": 9,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-first-commit",
+      "value": 7.366166999563575,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-settled",
+      "value": 1434.690291998908,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-chats",
+      "run": 0,
+      "unixMs": 1794727202961,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 361.94056701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "commits",
+      "value": 11,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-first-commit",
+      "value": 7.769332999363542,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-settled",
+      "value": 1566.5036670006812,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-insert",
+      "run": 0,
+      "unixMs": 1794727209133,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 364.59681701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-first-commit",
+      "value": 4.228958001360297,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-settled",
+      "value": 4.730082999914885,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-edit",
+      "run": 0,
+      "unixMs": 1794727213772,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 365.44056701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "commits",
+      "value": 11,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-first-commit",
+      "value": 8.028458999469876,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-settled",
+      "value": 1528.3821670003235,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-clear",
+      "run": 0,
+      "unixMs": 1794727219957,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 367.45619201660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "case": "complete",
+      "run": 0,
+      "unixMs": 1794727219957,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 367.45619201660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "commits",
+      "value": 35,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "host-nodes",
+      "value": 10870,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-first-commit",
+      "value": 332.74129099957645,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-settled",
+      "value": 3316.821208000183,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-bundle-start",
+      "value": 8.027583330869675,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-settled",
+      "value": 3324.848791331053,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-snapshot-parsed",
+      "value": 85.55550000071526,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-bundle-evaluated",
+      "value": 175.6167500000447,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-startup",
+      "run": 0,
+      "unixMs": 1794727236138,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 289.0033645629883,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "commits",
+      "value": 13,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-first-commit",
+      "value": 7.060209000483155,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-settled",
+      "value": 1601.598792001605,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-open-chat",
+      "run": 0,
+      "unixMs": 1794727242336,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 289.5033645629883,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "action-to-second-frame-callback",
+      "value": 26.43941699899733,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-top",
+      "run": 0,
+      "unixMs": 1794727246951,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 289.3314895629883,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "action-to-second-frame-callback",
+      "value": 26.300083000212908,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "run": 0,
+      "unixMs": 1794727251551,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 289.3471145629883,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "commits",
+      "value": 6,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-first-commit",
+      "value": 4.319542000070214,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-settled",
+      "value": 178.9718749988824,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-feed",
+      "run": 0,
+      "unixMs": 1794727256303,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 305.3471145629883,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "commits",
+      "value": 5,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-first-commit",
+      "value": 1.6381659992039204,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-settled",
+      "value": 196.5249159988016,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-dashboard",
+      "run": 0,
+      "unixMs": 1794727261037,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 321.7377624511719,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "host-nodes",
+      "value": 11038,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-first-commit",
+      "value": 3.8722080010920763,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-settled",
+      "value": 603.718125000596,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-tasks",
+      "run": 0,
+      "unixMs": 1794727266270,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 366.73778533935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "commits",
+      "value": 10,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-first-commit",
+      "value": 3.779874999076128,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-settled",
+      "value": 1196.8869170006365,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-chats",
+      "run": 0,
+      "unixMs": 1794727272068,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 371.34716033935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-first-commit",
+      "value": 9.215375000610948,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-settled",
+      "value": 1560.2714590001851,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-insert",
+      "run": 0,
+      "unixMs": 1794727278238,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 377.45653533935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-first-commit",
+      "value": 4.457750000059605,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-settled",
+      "value": 4.614333000034094,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-edit",
+      "run": 0,
+      "unixMs": 1794727282827,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 380.65966033935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "commits",
+      "value": 13,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-first-commit",
+      "value": 8.271958000957966,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-settled",
+      "value": 1559.18787500076,
+      "unit": "ms",
+      "run": 0
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-clear",
+      "run": 0,
+      "unixMs": 1794727288953,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 386.86278533935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "case": "complete",
+      "run": 0,
+      "unixMs": 1794727288953,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 386.86278533935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "commits",
+      "value": 37,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "host-nodes",
+      "value": 10870,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-first-commit",
+      "value": 380.68258300051093,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-settled",
+      "value": 3474.41483299993,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-bundle-start",
+      "value": 4.8489166628569365,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-settled",
+      "value": 3479.2637496627867,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-snapshot-parsed",
+      "value": 74.69866600073874,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-bundle-evaluated",
+      "value": 146.50120799988508,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-startup",
+      "run": 1,
+      "unixMs": 1794727305023,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 275.9092712402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-first-commit",
+      "value": 10.122584000229836,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-settled",
+      "value": 1312.9618340004236,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-open-chat",
+      "run": 1,
+      "unixMs": 1794727310955,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 280.8311462402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "action-to-second-frame-callback",
+      "value": 22.774415999650955,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-top",
+      "run": 1,
+      "unixMs": 1794727315538,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 281.5342712402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "action-to-second-frame-callback",
+      "value": 2.967041000723839,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "run": 1,
+      "unixMs": 1794727320146,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 282.1436462402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "commits",
+      "value": 6,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-first-commit",
+      "value": 6.045791000127792,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-settled",
+      "value": 226.77820800058544,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-feed",
+      "run": 1,
+      "unixMs": 1794727324996,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 297.2373962402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "commits",
+      "value": 5,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-first-commit",
+      "value": 2.4257500004023314,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-settled",
+      "value": 205.33758400008082,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-dashboard",
+      "run": 1,
+      "unixMs": 1794727329772,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 313.40929412841797,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "host-nodes",
+      "value": 11038,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-first-commit",
+      "value": 5.389125000685453,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-settled",
+      "value": 616.9392499998212,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-tasks",
+      "run": 1,
+      "unixMs": 1794727334982,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 355.94056701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "commits",
+      "value": 10,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-first-commit",
+      "value": 4.772416999563575,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-settled",
+      "value": 1126.609916999936,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-chats",
+      "run": 1,
+      "unixMs": 1794727340720,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 360.87806701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "commits",
+      "value": 11,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-first-commit",
+      "value": 7.264999998733401,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-settled",
+      "value": 1559.244583999738,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-insert",
+      "run": 1,
+      "unixMs": 1794727346938,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 363.62806701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-first-commit",
+      "value": 6.222374999895692,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-settled",
+      "value": 6.893666001036763,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-edit",
+      "run": 1,
+      "unixMs": 1794727351597,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 364.48744201660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "commits",
+      "value": 11,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-first-commit",
+      "value": 8.481041999533772,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-settled",
+      "value": 1560.7514169998467,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-clear",
+      "run": 1,
+      "unixMs": 1794727357804,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 366.48744201660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "case": "complete",
+      "run": 1,
+      "unixMs": 1794727357804,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 366.48744201660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "commits",
+      "value": 37,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "host-nodes",
+      "value": 10870,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-first-commit",
+      "value": 327.69458399899304,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-settled",
+      "value": 3330.482166999951,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-bundle-start",
+      "value": 12.211957665160298,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-settled",
+      "value": 3342.6941246651113,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-snapshot-parsed",
+      "value": 86.59558399952948,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-bundle-evaluated",
+      "value": 176.918124999851,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-startup",
+      "run": 1,
+      "unixMs": 1794727373906,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 282.8471145629883,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-first-commit",
+      "value": 12.818042000755668,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-settled",
+      "value": 1559.7620839998126,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-open-chat",
+      "run": 1,
+      "unixMs": 1794727380052,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 283.8627395629883,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "action-to-second-frame-callback",
+      "value": 25.967457998543978,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-top",
+      "run": 1,
+      "unixMs": 1794727384654,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 284.3471145629883,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "action-to-second-frame-callback",
+      "value": 28.086625000461936,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "run": 1,
+      "unixMs": 1794727389287,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 285.5346145629883,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "commits",
+      "value": 6,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-first-commit",
+      "value": 2.313542000949383,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-settled",
+      "value": 186.62633400037885,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-feed",
+      "run": 1,
+      "unixMs": 1794727394056,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 303.0033645629883,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "commits",
+      "value": 5,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-first-commit",
+      "value": 6.367875000461936,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-settled",
+      "value": 205.46429199911654,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-dashboard",
+      "run": 1,
+      "unixMs": 1794727398837,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 320.1283874511719,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "host-nodes",
+      "value": 11038,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-first-commit",
+      "value": 4.7989170011132956,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-settled",
+      "value": 610.2925420012325,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-tasks",
+      "run": 1,
+      "unixMs": 1794727404056,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 365.00341033935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "commits",
+      "value": 9,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-first-commit",
+      "value": 7.036249998956919,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-settled",
+      "value": 1279.5112499985844,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-chats",
+      "run": 1,
+      "unixMs": 1794727409921,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 370.84716033935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-first-commit",
+      "value": 9.582124998793006,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-settled",
+      "value": 1579.144583998248,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-insert",
+      "run": 1,
+      "unixMs": 1794727416094,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 377.56591033935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-first-commit",
+      "value": 5.6556670013815165,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-settled",
+      "value": 5.893667001277208,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-edit",
+      "run": 1,
+      "unixMs": 1794727420661,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 381.50341033935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "commits",
+      "value": 13,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-first-commit",
+      "value": 3.772416001185775,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-settled",
+      "value": 1684.8909160010517,
+      "unit": "ms",
+      "run": 1
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-clear",
+      "run": 1,
+      "unixMs": 1794727426946,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 388.56591033935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "case": "complete",
+      "run": 1,
+      "unixMs": 1794727426946,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 388.56591033935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "commits",
+      "value": 37,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "host-nodes",
+      "value": 10870,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-first-commit",
+      "value": 436.84029199928045,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-settled",
+      "value": 3771.5828749984503,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-bundle-start",
+      "value": 4.807165998965502,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-settled",
+      "value": 3776.390040997416,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-snapshot-parsed",
+      "value": 73.96141699701548,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-bundle-evaluated",
+      "value": 145.45129199698567,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-startup",
+      "run": 2,
+      "unixMs": 1794728092699,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 277.0030212402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-first-commit",
+      "value": 12.725000001490116,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-settled",
+      "value": 1573.8655000030994,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-open-chat",
+      "run": 2,
+      "unixMs": 1794728098901,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 281.9092712402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "action-to-second-frame-callback",
+      "value": 14.567209001630545,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-top",
+      "run": 2,
+      "unixMs": 1794728103480,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 282.6436462402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "action-to-second-frame-callback",
+      "value": 29.763708997517824,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "run": 2,
+      "unixMs": 1794728108054,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 283.2686462402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "commits",
+      "value": 6,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-first-commit",
+      "value": 6.363832999020815,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-settled",
+      "value": 340.58708300068974,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-feed",
+      "run": 2,
+      "unixMs": 1794728113028,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 298.40929412841797,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "commits",
+      "value": 5,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-first-commit",
+      "value": 4.2730420008301735,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-settled",
+      "value": 241.56129200011492,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-dashboard",
+      "run": 2,
+      "unixMs": 1794728117871,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 314.51866912841797,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "host-nodes",
+      "value": 11038,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-first-commit",
+      "value": 2.859708998352289,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-settled",
+      "value": 794.6190420016646,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-tasks",
+      "run": 2,
+      "unixMs": 1794728123263,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 356.00306701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "commits",
+      "value": 10,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-first-commit",
+      "value": 5.765916001051664,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-settled",
+      "value": 1376.7892500013113,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-chats",
+      "run": 2,
+      "unixMs": 1794728129238,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 362.22183990478516,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-first-commit",
+      "value": 5.592374999076128,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-settled",
+      "value": 1597.356375001371,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-insert",
+      "run": 2,
+      "unixMs": 1794728135418,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 364.97183990478516,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-first-commit",
+      "value": 5.016000002622604,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-settled",
+      "value": 5.6436250023543835,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-edit",
+      "run": 2,
+      "unixMs": 1794728140046,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 365.98746490478516,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "commits",
+      "value": 11,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-first-commit",
+      "value": 5.3533330000936985,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-settled",
+      "value": 1531.2664999999106,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-clear",
+      "run": 2,
+      "unixMs": 1794728146240,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 367.83121490478516,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "case": "complete",
+      "run": 2,
+      "unixMs": 1794728146240,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 367.83121490478516,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "commits",
+      "value": 35,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "host-nodes",
+      "value": 10870,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-first-commit",
+      "value": 435.1981660015881,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-settled",
+      "value": 3451.2559579983354,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-bundle-start",
+      "value": 7.98799966275692,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-settled",
+      "value": 3459.2439576610923,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-snapshot-parsed",
+      "value": 86.81349999830127,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-bundle-evaluated",
+      "value": 184.2020410001278,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-startup",
+      "run": 2,
+      "unixMs": 1794728162514,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 287.4095916748047,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-first-commit",
+      "value": 14.395541999489069,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-settled",
+      "value": 1554.1933339983225,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-open-chat",
+      "run": 2,
+      "unixMs": 1794728168632,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 288.3002166748047,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "action-to-second-frame-callback",
+      "value": 27.558375000953674,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-top",
+      "run": 2,
+      "unixMs": 1794728173214,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 288.3627166748047,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "action-to-second-frame-callback",
+      "value": 26.531125001609325,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "run": 2,
+      "unixMs": 1794728177783,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 288.2845916748047,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "commits",
+      "value": 6,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-first-commit",
+      "value": 4.074499998241663,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-settled",
+      "value": 206.44391699880362,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-feed",
+      "run": 2,
+      "unixMs": 1794728182565,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 304.7220916748047,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "commits",
+      "value": 5,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-first-commit",
+      "value": 3.588374998420477,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-settled",
+      "value": 222.44412499666214,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-dashboard",
+      "run": 2,
+      "unixMs": 1794728187380,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 321.7377395629883,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "host-nodes",
+      "value": 11038,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-first-commit",
+      "value": 2.1168750002980232,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-settled",
+      "value": 601.323750000447,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-tasks",
+      "run": 2,
+      "unixMs": 1794728192528,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 366.3471374511719,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "commits",
+      "value": 9,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-first-commit",
+      "value": 6.969082999974489,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-settled",
+      "value": 1331.0090830028057,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-chats",
+      "run": 2,
+      "unixMs": 1794728198415,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 371.1440124511719,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-first-commit",
+      "value": 8.551249999552965,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-settled",
+      "value": 1609.5147080011666,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-insert",
+      "run": 2,
+      "unixMs": 1794728204603,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 377.6752624511719,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-first-commit",
+      "value": 4.574707999825478,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-settled",
+      "value": 4.728166997432709,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-edit",
+      "run": 2,
+      "unixMs": 1794728209147,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 380.8627624511719,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "commits",
+      "value": 13,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-first-commit",
+      "value": 10.719291999936104,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-settled",
+      "value": 1624.1059999987483,
+      "unit": "ms",
+      "run": 2
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-clear",
+      "run": 2,
+      "unixMs": 1794728215408,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 388.06591033935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "case": "complete",
+      "run": 2,
+      "unixMs": 1794728215408,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 388.06591033935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "commits",
+      "value": 38,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "host-nodes",
+      "value": 10870,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-first-commit",
+      "value": 381.7840830013156,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-settled",
+      "value": 3490.216333001852,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-bundle-start",
+      "value": 5.010624326765537,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-settled",
+      "value": 3495.2269573286176,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-snapshot-parsed",
+      "value": 75.0795419998467,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-bundle-evaluated",
+      "value": 144.13304200023413,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-startup",
+      "run": 3,
+      "unixMs": 1794728231627,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 279.3780212402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-first-commit",
+      "value": 9.223040997982025,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-settled",
+      "value": 1271.7301249988377,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-open-chat",
+      "run": 3,
+      "unixMs": 1794728237478,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 281.0655212402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "action-to-second-frame-callback",
+      "value": 14.393999997526407,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-top",
+      "run": 3,
+      "unixMs": 1794728242090,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 281.3311462402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "action-to-second-frame-callback",
+      "value": 15.600499998778105,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "run": 3,
+      "unixMs": 1794728246731,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 281.9405212402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "commits",
+      "value": 6,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-first-commit",
+      "value": 6.961416997015476,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-settled",
+      "value": 213.06645900011063,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-feed",
+      "run": 3,
+      "unixMs": 1794728251564,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 297.4873962402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "commits",
+      "value": 5,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-first-commit",
+      "value": 4.170207999646664,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-settled",
+      "value": 209.86779100075364,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-dashboard",
+      "run": 3,
+      "unixMs": 1794728256385,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 312.78429412841797,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "host-nodes",
+      "value": 11038,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-first-commit",
+      "value": 4.699165999889374,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-settled",
+      "value": 561.4423329979181,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-tasks",
+      "run": 3,
+      "unixMs": 1794728261549,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 354.89369201660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "commits",
+      "value": 9,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-first-commit",
+      "value": 4.950291000306606,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-settled",
+      "value": 1183.516749996692,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-chats",
+      "run": 3,
+      "unixMs": 1794728267363,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 360.44056701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "commits",
+      "value": 11,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-first-commit",
+      "value": 7.524582996964455,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-settled",
+      "value": 1578.6577499993145,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-insert",
+      "run": 3,
+      "unixMs": 1794728273592,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 362.75306701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-first-commit",
+      "value": 7.02683399990201,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-settled",
+      "value": 7.8447919972240925,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-edit",
+      "run": 3,
+      "unixMs": 1794728278225,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 363.84681701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-first-commit",
+      "value": 9.311124999076128,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-settled",
+      "value": 1588.871249999851,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-clear",
+      "run": 3,
+      "unixMs": 1794728284415,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 365.92494201660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "case": "complete",
+      "run": 3,
+      "unixMs": 1794728284415,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 365.92494201660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "commits",
+      "value": 35,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "host-nodes",
+      "value": 10870,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-first-commit",
+      "value": 336.93545900285244,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-settled",
+      "value": 3330.481334000826,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-bundle-start",
+      "value": 8.964873995631933,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-settled",
+      "value": 3339.446207996458,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-snapshot-parsed",
+      "value": 88.83300000056624,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-bundle-evaluated",
+      "value": 177.80462500080466,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-startup",
+      "run": 3,
+      "unixMs": 1794728300515,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 293.8783416748047,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-first-commit",
+      "value": 10.661625001579523,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-settled",
+      "value": 1356.1947499997914,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-open-chat",
+      "run": 3,
+      "unixMs": 1794728306481,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 305.3470916748047,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "action-to-second-frame-callback",
+      "value": 28.015750002115965,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-top",
+      "run": 3,
+      "unixMs": 1794728311048,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 306.5970916748047,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "action-to-second-frame-callback",
+      "value": 28.35887499898672,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "run": 3,
+      "unixMs": 1794728315646,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 308.0658416748047,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "commits",
+      "value": 6,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-first-commit",
+      "value": 4.29908300191164,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-settled",
+      "value": 196.60362500324845,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-feed",
+      "run": 3,
+      "unixMs": 1794728320449,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 327.5971145629883,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "commits",
+      "value": 5,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-first-commit",
+      "value": 4.885207999497652,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-settled",
+      "value": 200.48124999925494,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-dashboard",
+      "run": 3,
+      "unixMs": 1794728325215,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 346.1596374511719,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "host-nodes",
+      "value": 11038,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-first-commit",
+      "value": 3.7828329987823963,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-settled",
+      "value": 573.8392920009792,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-tasks",
+      "run": 3,
+      "unixMs": 1794728330348,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 389.81591033935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "commits",
+      "value": 8,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-first-commit",
+      "value": 3.788290999829769,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-settled",
+      "value": 1280.1697500012815,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-chats",
+      "run": 3,
+      "unixMs": 1794728336229,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 397.44091033935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-first-commit",
+      "value": 9.254457999020815,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-settled",
+      "value": 1594.3010829985142,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-insert",
+      "run": 3,
+      "unixMs": 1794728342411,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 403.11278533935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-first-commit",
+      "value": 7.507167000323534,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-settled",
+      "value": 7.806083999574184,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-edit",
+      "run": 3,
+      "unixMs": 1794728347021,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 403.11278533935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-first-commit",
+      "value": 10.062915999442339,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-settled",
+      "value": 1574.896290998906,
+      "unit": "ms",
+      "run": 3
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-clear",
+      "run": 3,
+      "unixMs": 1794728353242,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 398.89403533935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "case": "complete",
+      "run": 3,
+      "unixMs": 1794728353242,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 398.89403533935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "commits",
+      "value": 36,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "host-nodes",
+      "value": 10870,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-first-commit",
+      "value": 376.5507499985397,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-settled",
+      "value": 3458.809875000268,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-bundle-start",
+      "value": 5.011707663536072,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-settled",
+      "value": 3463.8215826638043,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-snapshot-parsed",
+      "value": 74.0509580001235,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-bundle-evaluated",
+      "value": 145.36358299851418,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-startup",
+      "run": 4,
+      "unixMs": 1794728369325,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 278.7686462402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "commits",
+      "value": 11,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-first-commit",
+      "value": 11.559750001877546,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-settled",
+      "value": 1310.5667080022395,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-open-chat",
+      "run": 4,
+      "unixMs": 1794728375246,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 280.2373962402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "action-to-second-frame-callback",
+      "value": 22.818415999412537,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-top",
+      "run": 4,
+      "unixMs": 1794728379851,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 280.8623962402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "action-to-second-frame-callback",
+      "value": 10.312208000570536,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "run": 4,
+      "unixMs": 1794728384463,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 281.4717712402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "commits",
+      "value": 6,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-first-commit",
+      "value": 7.43987500295043,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-settled",
+      "value": 218.24879100173712,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-feed",
+      "run": 4,
+      "unixMs": 1794728389336,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 296.5342712402344,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "commits",
+      "value": 5,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-first-commit",
+      "value": 4.401959002017975,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-settled",
+      "value": 204.21833400055766,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-dashboard",
+      "run": 4,
+      "unixMs": 1794728394118,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 312.47179412841797,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "host-nodes",
+      "value": 11038,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-first-commit",
+      "value": 5.639874998480082,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-settled",
+      "value": 578.1102080009878,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-tasks",
+      "run": 4,
+      "unixMs": 1794728399265,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 355.65931701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "commits",
+      "value": 9,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-first-commit",
+      "value": 7.158958997577429,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-settled",
+      "value": 1223.0589589998126,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-chats",
+      "run": 4,
+      "unixMs": 1794728405126,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 360.73744201660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "commits",
+      "value": 11,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-first-commit",
+      "value": 7.076667003333569,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-settled",
+      "value": 1582.1628339998424,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-insert",
+      "run": 4,
+      "unixMs": 1794728411324,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 363.45619201660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-first-commit",
+      "value": 4.61379199847579,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-settled",
+      "value": 5.168834000825882,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-edit",
+      "run": 4,
+      "unixMs": 1794728415961,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 364.28431701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "commits",
+      "value": 11,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-first-commit",
+      "value": 8.693707998842001,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "hermes",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-settled",
+      "value": 1522.0341669991612,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-clear",
+      "run": 4,
+      "unixMs": 1794728422112,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 366.34681701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "case": "complete",
+      "run": 4,
+      "unixMs": 1794728422112,
+      "engine": "hermes",
+      "metric": "host-physical-footprint",
+      "value": 366.34681701660156,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "commits",
+      "value": 37,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "host-nodes",
+      "value": 10870,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-first-commit",
+      "value": 326.15170899778605,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-settled",
+      "value": 3326.0152090005577,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-bundle-start",
+      "value": 7.822582330554724,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "runtime-init-to-settled",
+      "value": 3333.8377913311124,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-snapshot-parsed",
+      "value": 86.10449999943376,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-startup",
+      "metric": "bundle-start-to-bundle-evaluated",
+      "value": 176.04183400049806,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-startup",
+      "run": 4,
+      "unixMs": 1794728438183,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 283.1752166748047,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "commits",
+      "value": 13,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-first-commit",
+      "value": 10.771457999944687,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-open-chat",
+      "metric": "action-to-settled",
+      "value": 1592.0544999986887,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-open-chat",
+      "run": 4,
+      "unixMs": 1794728444402,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 285.0502166748047,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-top",
+      "metric": "action-to-second-frame-callback",
+      "value": 25.440416999161243,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-top",
+      "run": 4,
+      "unixMs": 1794728448950,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 285.8939666748047,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "commits",
+      "value": 0,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "metric": "action-to-second-frame-callback",
+      "value": 26.59154200181365,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-scroll-chat-bottom",
+      "run": 4,
+      "unixMs": 1794728453551,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 287.4564666748047,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "commits",
+      "value": 6,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-first-commit",
+      "value": 4.825249999761581,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-feed",
+      "metric": "action-to-settled",
+      "value": 212.78366599977016,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-feed",
+      "run": 4,
+      "unixMs": 1794728458335,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 304.8470916748047,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "commits",
+      "value": 5,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "host-nodes",
+      "value": 11033,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-first-commit",
+      "value": 6.18979199975729,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-dashboard",
+      "metric": "action-to-settled",
+      "value": 204.45979199931026,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-dashboard",
+      "run": 4,
+      "unixMs": 1794728463119,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 321.8158645629883,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "host-nodes",
+      "value": 11038,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-first-commit",
+      "value": 5.1288750022649765,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-tasks",
+      "metric": "action-to-settled",
+      "value": 575.3231669999659,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-tasks",
+      "run": 4,
+      "unixMs": 1794728468233,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 367.0658874511719,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "commits",
+      "value": 9,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-first-commit",
+      "value": 1.829874999821186,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-tab-chats",
+      "metric": "action-to-settled",
+      "value": 1351.817374996841,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-tab-chats",
+      "run": 4,
+      "unixMs": 1794728474135,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 373.0502624511719,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-first-commit",
+      "value": 9.202624998986721,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-insert",
+      "metric": "action-to-settled",
+      "value": 1589.7415419965982,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-insert",
+      "run": 4,
+      "unixMs": 1794728480334,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 380.0971374511719,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "commits",
+      "value": 2,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "host-nodes",
+      "value": 11076,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-first-commit",
+      "value": 4.499334000051022,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-edit",
+      "metric": "action-to-settled",
+      "value": 4.716250002384186,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-edit",
+      "run": 4,
+      "unixMs": 1794728484966,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 383.2690124511719,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "commits",
+      "value": 12,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "host-nodes",
+      "value": 11075,
+      "unit": "count",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "native-promise-retained",
+      "value": 1,
+      "unit": "boolean",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-first-commit",
+      "value": 9.711500000208616,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "engine": "bun",
+      "case": "frozen-fleet-draft-clear",
+      "metric": "action-to-settled",
+      "value": 1540.8365419991314,
+      "unit": "ms",
+      "run": 4
+    },
+    {
+      "app": "team-machine",
+      "case": "frozen-fleet-draft-clear",
+      "run": 4,
+      "unixMs": 1794728491069,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 389.80028533935547,
+      "unit": "MiB"
+    },
+    {
+      "app": "team-machine",
+      "case": "complete",
+      "run": 4,
+      "unixMs": 1794728491069,
+      "engine": "bun",
+      "metric": "host-physical-footprint",
+      "value": 389.80028533935547,
+      "unit": "MiB"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ title: Bun and Hermes on iOS
 description: Runtime, rendering and memory measurements from alternating Release builds.
 ---
 
-The runtime and Bluesky comparisons use each engine's native Promise.
+The runtime, Team Machine and Bluesky comparisons use each engine's native Promise.
 Background CPU activity occurred during measurement; all samples are retained.
 All measurements use simulators and do not establish iPhone performance.
 
@@ -66,13 +66,112 @@ idle period or a collection.
 The first-frame proxy uses a native display callback. It does not measure pixels
 appearing on screen. The charts include each observed minimum and maximum.
 
+## Team Machine: a captured fleet
+
+A saved production app renders an offline snapshot of 58 sessions, opens a
+recorded conversation, switches tabs, and edits a local draft. Both engines use
+the same captured native executable, prepared JavaScript and snapshot.
+
+Five alternating Hermes/Bun pairs ran on the same MacBook Air in two batches.
+These are exploratory simulator measurements. Host media analysis processes
+were journaled and paused before and after both batches; other background CPU
+activity remained. All samples and outliers are retained.
+
+### Startup
+
+Five samples per engine. Times are medians in milliseconds; brackets show the
+25th and 75th percentiles. Lower is better.
+
+| Measurement, ms | Hermes | Bun |
+| --- | ---: | ---: |
+| Bundle start to snapshot parsed | 74.70 [74.05, 75.08] | 86.60 [86.10, 86.81] |
+| Bundle start to bundle evaluated | 145.45 [145.36, 146.50] | 176.92 [176.04, 177.80] |
+| Bundle start to first React commit | 381.78 [380.68, 436.84] | 332.74 [327.69, 336.94] |
+| Bundle start to last observed startup commit | 3490.22 [3474.41, 3679.08] | 3330.48 [3326.02, 3330.48] |
+| Runtime init to bundle start | 5.01 [4.85, 5.01] | 8.03 [7.99, 8.96] |
+| Runtime init to last observed startup commit | 3495.23 [3479.26, 3684.19] | 3339.45 [3333.84, 3342.69] |
+
+Runtime initialization is observed through React Native startup timing. The
+React commit metrics describe JavaScript work; they do not measure the first
+pixels on screen or native process launch.
+
+![Team Machine bundle start to first React commit](/benchmarks/team-machine-native-promise-013/36-team-machine-frozen-fleet-startup-bundle-start-to-first-commit.svg)
+
+### Eight actions with React commits
+
+Each action invokes the rendered callback. Times end at the last observed React
+commit after the action, including delayed app updates. They do not measure the
+screen's drawing or animation completion.
+
+| Action, ms | Hermes | Bun |
+| --- | ---: | ---: |
+| Open recorded chat | 1312.96 [1310.57, 1497.02] | 1559.76 [1554.19, 1592.05] |
+| Feed | 226.78 [218.25, 336.33] | 196.60 [186.63, 206.44] |
+| Dashboard | 209.87 [205.34, 241.56] | 204.46 [200.48, 205.46] |
+| Tasks | 616.94 [578.11, 666.91] | 601.32 [575.32, 603.72] |
+| Chats | 1223.06 [1183.52, 1376.79] | 1280.17 [1279.51, 1331.01] |
+| Insert draft | 1578.66 [1566.50, 1582.16] | 1589.74 [1579.14, 1594.30] |
+| Edit draft | 5.64 [5.17, 6.89] | 4.73 [4.72, 5.89] |
+| Clear draft | 1531.27 [1528.38, 1560.75] | 1574.90 [1559.19, 1624.11] |
+
+### Two scroll actions
+
+The recorded chat's native scroll commands caused no React commits. These
+values measure the second native frame callback after dispatch. They describe
+callback scheduling, rather than scroll completion or display frame rate.
+
+| Action to second frame callback, ms | Hermes | Bun |
+| --- | ---: | ---: |
+| Scroll to top | 14.57 [14.39, 22.77] | 26.44 [25.97, 27.56] |
+| Scroll to bottom | 14.46 [10.31, 15.60] | 26.59 [26.53, 28.09] |
+
+### Process memory
+
+Physical footprint includes native allocations. No garbage collection was forced.
+
+| Point in the flow, MiB | Hermes | Bun |
+| --- | ---: | ---: |
+| Startup | 277.00 [276.57, 278.77] | 287.41 [283.18, 289.00] |
+| After opening chat | 281.07 [280.83, 281.52] | 288.30 [285.05, 289.50] |
+| After clearing the draft | 366.49 [366.35, 367.46] | 388.57 [388.07, 389.80] |
+
+### Team Machine method
+
+Both engines reuse the saved One bundle from Team Machine commit
+`5789647ccd80d69d65ed5770d2d99e0c872148af` and its captured native adapter.
+The adapter is identified separately from the current engine runtime. Preparation
+removes the captured Promise setup factory and embeds the frozen snapshot.
+Every launch retained native Promise identity at all eleven phases, with matching
+React host-node counts within every engine pair.
+
+The app's stored state was cleared before every process launch. OS caches remained
+warm. Each engine switch installed its own variant, with a five-second cooldown.
+Hermes uses optimized bytecode; Bun engine 0.1.3 uses ahead-of-time compilation
+with JIT and WebAssembly disabled. The compiler and runtime pins match the
+Bluesky comparison. This captured native adapter does not report thermal state
+or low-power mode, so those values are unknown for these runs.
+
+The host runtime discovers newly started media analysis processes on its daemon
+tick. The before/after pause records do not establish continuous CPU isolation.
+
+[All Team Machine charts](/benchmarks/team-machine-native-promise-013/index.html) ·
+[Individual Team Machine measurements](/benchmarks/team-machine-native-promise-013/raw.json)
+
+### The same flow with a CPU limit
+
+Both Release simulator processes receive 50% of one CPU core and a shared action
+schedule. Maximum observed callback dispatch skew was 85 ms. The video runs at
+normal speed; the timing tables use separate, uncapped alternating launches.
+
+<video controls playsInline preload="metadata" src="/benchmarks/team-machine-native-promise-013/team-machine-cpu50.mp4" style={{ width: '100%', height: 'auto' }} />
+
 ## Bluesky: captured app measurements
 
 These five alternating pairs use the updated native Promise setup. Bun reached
 the recorded thread's final React commit sooner; Hermes returned from settings
 to the home feed sooner and used less process memory.
 
-The runs used an iPhone 17 Pro simulator on the same M2 MacBook Air. Background
+The runs used an iPhone 17 Pro simulator on the same MacBook Air. Background
 CPU activity persisted despite quiet admission. All samples are retained;
 these exploratory simulator results do not establish iPhone performance.
 
@@ -170,11 +269,21 @@ runs at normal speed, without aligning individual stages after capture.
 
 <video controls playsInline preload="metadata" src="/benchmarks/bluesky-native-promise-013/long-feed-cpu25.mp4" style={{ width: '100%', height: 'auto' }} />
 
+## Uniswap validation
+
+Both engines completed the captured watch-only wallet flow, token detail, weekly
+KNC chart, swap amount screen and settings. The active chart surface matched,
+with varying positive recorded prices and 501 host nodes on each engine.
+
+Timing and whole-app memory comparisons are omitted because the variants retain
+different inactive screen trees and Hermes displays an additional wallet banner.
+The app's monitoring also replaces Promise on both engines; it remains enabled.
+
 ## Microbenchmark method
 
 Measured on 14 November 2026.
 
-- iPhone 17 Pro simulator, iOS 27.0, on an Apple M2 MacBook Air with 24 GB RAM.
+- iPhone 17 Pro simulator, iOS 27.0, on the same MacBook Air.
 - The saved production OneBench entry and native executable are reused. The
   captured React Native Promise setup is replaced with a no-op before preparing
   both variants. Native Promise identity is asserted on every BENCH log.
