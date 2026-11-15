@@ -1427,7 +1427,9 @@ export async function buildNativeBundle(
     platform: 'neutral',
     resolve: getNativeResolveConfig(platform),
     transform: getNativeTransformConfig(platform, dev, root),
-    treeshake: !dev,
+    // typed packages read commonjs modules through a global bridge, which rolldown's
+    // per-export commonjs shaking cannot see, so it would empty modules they need
+    treeshake: !dev && (hermes || { commonjs: false }),
     experimental: {
       // rolldown 1.1.0 flipped lazyBarrel to default-on. pin it off so the prod
       // bundle keeps the pre-1.1 semantics it shipped with (prod historically ran
@@ -1893,7 +1895,13 @@ export function hmrClientNoopPlugin(): Plugin {
  * globalThis.__vxrnBridge, from the ids its package.json lists under "aotBridge".
  */
 function typedPackagesPlugin(root: string): Plugin {
-  type TypedPackage = { dir: string; name: string; exports: Record<string, unknown>; bridge: string[] }
+  type TypedPackage = {
+    dir: string
+    name: string
+    exports: Record<string, unknown>
+    bridge: string[]
+    deps: string[]
+  }
   const PREFIX = '\0vxrn-typed:'
   const packages = new Map<string, TypedPackage | null>()
   const entries = new Map<string, TypedPackage>()
@@ -1915,7 +1923,17 @@ function typedPackagesPlugin(root: string): Plugin {
         if (json.name) {
           found =
             json.exports && typeof json.exports === 'object'
-              ? { dir, name: json.name, exports: json.exports, bridge: json.aotBridge ?? [] }
+              ? {
+                  dir,
+                  name: json.name,
+                  exports: json.exports,
+                  bridge: json.aotBridge ?? [],
+                  deps: Object.keys({
+                    ...json.dependencies,
+                    ...json.peerDependencies,
+                    ...json.optionalDependencies,
+                  }),
+                }
               : null
           break
         }
@@ -1931,6 +1949,27 @@ function typedPackagesPlugin(root: string): Plugin {
       : value && typeof value === 'object'
         ? Object.entries(value).flatMap(([condition, v]) => (condition === 'aot' ? [] : targets(v)))
         : []
+
+  const isTyped = (pkg: TypedPackage) =>
+    Object.values(pkg.exports).some((value) => !!value && typeof value === 'object' && 'aot' in value)
+  // bun links a typed package to the typed packages it imports, so those never
+  // pass through here and their bridge ids ride on the entry that reaches them
+  const bridgeIds = (pkg: TypedPackage, seen = new Set<string>()): string[] => {
+    if (seen.has(pkg.dir)) return []
+    seen.add(pkg.dir)
+    return [
+      ...pkg.bridge,
+      ...pkg.deps.flatMap((name) => {
+        for (let dir = pkg.dir; dir !== dirname(dir); dir = dirname(dir)) {
+          const manifest = join(dir, 'node_modules', name, 'package.json')
+          if (!existsSync(manifest)) continue
+          const dep = packageOf(manifest)
+          return dep && isTyped(dep) ? bridgeIds(dep, seen) : []
+        }
+        return []
+      }),
+    ]
+  }
 
   return {
     name: 'vxrn:typed-packages',
@@ -1969,7 +2008,7 @@ function typedPackagesPlugin(root: string): Plugin {
         // an id the package only tries inside a try/catch may be missing: it throws
         // when read, as its require would have
         ...(await Promise.all(
-          pkg.bridge.map(async (dep) => {
+          [...new Set(bridgeIds(pkg))].map(async (dep) => {
             const name = JSON.stringify(dep)
             // resolvers refuse some missing ids by throwing instead of returning null
             const found = await this.resolve(dep, from).catch(() => null)
