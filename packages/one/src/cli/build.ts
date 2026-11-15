@@ -325,7 +325,7 @@ export async function build(args: {
     ])
   }
 
-  const { optimizeDeps } = getOptimizeDeps('build')
+  const { optimizeDeps } = getOptimizeDeps('build', options.root)
   const { rolldownOptions: _rolldownOptions, ...optimizeDepsNoRolldown } = optimizeDeps
 
   // unified mode: api + middleware routes share config with the SSR server build —
