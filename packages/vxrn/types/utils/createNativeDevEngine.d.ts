@@ -79,8 +79,10 @@ export declare const NATIVE_DEV_RUNTIME_END = "globalThis.__rolldown_runtime__ =
  * production uses rolldown's iife format; the dev engine needs this wrapper.
  *
  * keep the prelude at script scope because it installs intentional globals.
- * the dev runtime assigns itself to globalThis, and hmr's direct eval stays
- * inside this closure so it can reach module bindings and runtime helpers.
+ * external ESM imports rolldown left in the output stay at script scope too:
+ * an import nested in the wrapper is not valid JS. the dev runtime assigns
+ * itself to globalThis, and hmr's direct eval stays inside this closure so it
+ * can reach module bindings and runtime helpers.
  */
 export declare function wrapNativeBundleModuleScope(code: string): string;
 export declare function createNativeDevEngine(options: NativeDevEngineOptions): Promise<NativeDevEngineResult>;

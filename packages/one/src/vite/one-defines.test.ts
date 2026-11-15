@@ -118,6 +118,51 @@ test('native.app leaves a hoisted optional Expo package outside the native bundl
   }
 })
 
+test('native.app bundles a statically imported Expo package for ios', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'one-native-expo-static-'))
+  const fixture = fileURLToPath(
+    new URL('../../../../tests/native-features', import.meta.url)
+  )
+  const originalCwd = process.cwd()
+  const originalPlugins = globalThis.__vxrnAddNativePlugins
+  try {
+    const expoRoot = join(root, 'node_modules/expo-clipboard')
+    await mkdir(expoRoot, { recursive: true })
+    await writeFile(
+      join(expoRoot, 'package.json'),
+      '{"name":"expo-clipboard","main":"index.js"}'
+    )
+    await writeFile(
+      join(expoRoot, 'index.js'),
+      'globalThis.expoClipboardWasBundled = true'
+    )
+    // a static import cannot stay external: no native host loads bare
+    // specifiers, and an external ESM import nested in the dev scope wrapper
+    // is not valid JS. only optional require calls use the runtime guard.
+    await writeFile(
+      join(root, 'entry.js'),
+      `import 'expo-clipboard'\nglobalThis.entryRan = true`
+    )
+
+    process.chdir(fixture)
+    await one({ native: { app: { name: 'ProbeApp' } } })
+    process.chdir(originalCwd)
+
+    const bundle = await rolldown({
+      input: join(root, 'entry.js'),
+      cwd: root,
+      platform: 'neutral',
+      plugins: globalThis.__vxrnAddNativePlugins?.('ios'),
+    })
+    const result = await bundle.generate({ format: 'cjs' })
+    expect(result.output[0].code).toContain('expoClipboardWasBundled')
+  } finally {
+    process.chdir(originalCwd)
+    globalThis.__vxrnAddNativePlugins = originalPlugins
+    await rm(root, { recursive: true, force: true })
+  }
+})
+
 test.each(['serve', 'build'] as const)(
   'vite config plugins with a native form reach the native bundler (%s)',
   async (command) => {
