@@ -309,6 +309,20 @@ export {
   type LoaderTimingEntry,
 } from './useLoader'
 export {
+  ServerJSX,
+  isLoaderJSXEnvelope,
+  registerLoaderClient,
+  registerLoaderClientModule,
+  reviveLoaderJSX,
+  type LoaderJSXSlots,
+} from './loaderJSX'
+export {
+  ClientFallback,
+  JSXSlot,
+  renderJSX,
+  type JSXEnvelope,
+} from './server/renderJSX'
+export {
   setClientMatches,
   useMatch,
   useMatches,

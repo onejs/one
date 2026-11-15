@@ -96,6 +96,8 @@ export type { StandardSchemaV1 } from './standardSchema.js';
 export { useValidationState, type ValidationState } from './router/router.js';
 export { useFocusEffect } from './useFocusEffect.js';
 export { getLoaderTimingHistory, refetchLoader, useLoader, useLoaderState, type LoaderTimingEntry, } from './useLoader.js';
+export { ServerJSX, isLoaderJSXEnvelope, registerLoaderClient, registerLoaderClientModule, reviveLoaderJSX, type LoaderJSXSlots, } from './loaderJSX.js';
+export { ClientFallback, JSXSlot, renderJSX, type JSXEnvelope, } from './server/renderJSX.js';
 export { setClientMatches, useMatch, useMatches, usePageMatch, type RouteMatch, } from './useMatches.js';
 export { useServerHeadInsertion, type ServerHeadInsertionCallback, } from './useServerHeadInsertion.js';
 export { isResponse } from './utils/isResponse.js';
