@@ -1,305 +1,277 @@
 {
   "metadata": {
     "device": "iPhone 17 Pro simulator (air-24)",
+    "udid": "D4D9BA36-6C22-48E4-A3FE-BAF13B0A87F0",
+    "target": "simulator",
     "host": "air-24",
+    "order": "alternating",
+    "cooldownSeconds": 0,
+    "launchEnvironment": {
+      "bun": {
+        "BUN_JSC_useJIT": "false",
+        "BUN_JSC_useWasm": "false"
+      }
+    },
+    "simulatorLogProcess": null,
+    "resetData": false,
     "os": "27.0",
     "commit": "ededeef9aac660b9aafd6bdf088522a70b7d396b",
+    "runs": 10,
+    "method": "Release; ten alternating Hermes/Bun pairs in one quiet window; process-cold, warm OS caches; JIT/Wasm off; host media analysis paused.",
+    "apps": [
+      {
+        "engine": "hermes",
+        "app": "/Users/n8/builders/.scratch/bun-bench-m123659/micro-native-promise/cohort/hermes/OneBench.app",
+        "bundle": "dev.onestack.bench.bun"
+      },
+      {
+        "engine": "bun",
+        "app": "/Users/n8/builders/.scratch/bun-bench-m123659/micro-native-promise/cohort/bun/OneBench.app",
+        "bundle": "dev.onestack.bench.bun"
+      }
+    ],
+    "runnerSha256": "fbc10da7e9875f067583b4d71d92ea07f212c1691c0791be938ebd1c0670f5cb",
+    "reportSha256": "591b4058787288cee40278991feadf3ac320b85298f0b7f50d2cfe08950c972e",
+    "footprintHelperSha256": "368902b2e17358257b96d74cfa29d8ec54aa54262f3a3478ee20e05af6997a0a",
+    "environments": [
+      {
+        "os": "27.0",
+        "thermalState": "0",
+        "device": "arm64",
+        "lowPowerMode": "false",
+        "engine": "hermes",
+        "run": 0
+      },
+      {
+        "thermalState": "0",
+        "device": "arm64",
+        "os": "27.0",
+        "lowPowerMode": "false",
+        "engine": "bun",
+        "run": 0
+      },
+      {
+        "lowPowerMode": "false",
+        "thermalState": "0",
+        "os": "27.0",
+        "device": "arm64",
+        "engine": "hermes",
+        "run": 1
+      },
+      {
+        "lowPowerMode": "false",
+        "thermalState": "0",
+        "device": "arm64",
+        "os": "27.0",
+        "engine": "bun",
+        "run": 1
+      },
+      {
+        "lowPowerMode": "false",
+        "device": "arm64",
+        "thermalState": "0",
+        "os": "27.0",
+        "engine": "hermes",
+        "run": 2
+      },
+      {
+        "lowPowerMode": "false",
+        "thermalState": "0",
+        "os": "27.0",
+        "device": "arm64",
+        "engine": "bun",
+        "run": 2
+      },
+      {
+        "lowPowerMode": "false",
+        "os": "27.0",
+        "device": "arm64",
+        "thermalState": "0",
+        "engine": "hermes",
+        "run": 3
+      },
+      {
+        "os": "27.0",
+        "thermalState": "0",
+        "device": "arm64",
+        "lowPowerMode": "false",
+        "engine": "bun",
+        "run": 3
+      },
+      {
+        "lowPowerMode": "false",
+        "device": "arm64",
+        "os": "27.0",
+        "thermalState": "0",
+        "engine": "hermes",
+        "run": 4
+      },
+      {
+        "device": "arm64",
+        "lowPowerMode": "false",
+        "os": "27.0",
+        "thermalState": "0",
+        "engine": "bun",
+        "run": 4
+      },
+      {
+        "thermalState": "0",
+        "lowPowerMode": "false",
+        "device": "arm64",
+        "os": "27.0",
+        "engine": "hermes",
+        "run": 5
+      },
+      {
+        "os": "27.0",
+        "lowPowerMode": "false",
+        "thermalState": "0",
+        "device": "arm64",
+        "engine": "bun",
+        "run": 5
+      },
+      {
+        "device": "arm64",
+        "thermalState": "0",
+        "os": "27.0",
+        "lowPowerMode": "false",
+        "engine": "hermes",
+        "run": 6
+      },
+      {
+        "lowPowerMode": "false",
+        "os": "27.0",
+        "device": "arm64",
+        "thermalState": "0",
+        "engine": "bun",
+        "run": 6
+      },
+      {
+        "lowPowerMode": "false",
+        "thermalState": "0",
+        "device": "arm64",
+        "os": "27.0",
+        "engine": "hermes",
+        "run": 7
+      },
+      {
+        "os": "27.0",
+        "thermalState": "0",
+        "device": "arm64",
+        "lowPowerMode": "false",
+        "engine": "bun",
+        "run": 7
+      },
+      {
+        "device": "arm64",
+        "thermalState": "0",
+        "os": "27.0",
+        "lowPowerMode": "false",
+        "engine": "hermes",
+        "run": 8
+      },
+      {
+        "lowPowerMode": "false",
+        "device": "arm64",
+        "os": "27.0",
+        "thermalState": "0",
+        "engine": "bun",
+        "run": 8
+      },
+      {
+        "thermalState": "0",
+        "lowPowerMode": "false",
+        "device": "arm64",
+        "os": "27.0",
+        "engine": "hermes",
+        "run": 9
+      },
+      {
+        "thermalState": "0",
+        "lowPowerMode": "false",
+        "os": "27.0",
+        "device": "arm64",
+        "engine": "bun",
+        "run": 9
+      }
+    ],
+    "quietGuard": {
+      "runtime": "config: /Users/n8/.team-machine/config.json/coordinator: unknown configuration key retained; ignored by this binary\nconfig: /Users/n8/.team-machine/config.json/session/agy_mail_turn_end_minutes: unknown configuration key retained; ignored by this binary\nconfig: /Users/n8/.team-machine/config.json/simulators: unknown configuration key retained; ignored by this binary\nconfig: /Users/n8/.team-machine/config.json/summarizer/always_on: unknown configuration key retained; ignored by this binary\nconfig: /Users/n8/.team-machine/config.json/worktree/archive_expire_days: unknown configuration key retained; ignored by this binary\nconfig: /Users/n8/.team-machine/policy.d/10-fleet.toml/models/skill_aliases: unknown configuration key retained; ignored by this binary\njob:    label com.team-machine.serve\nplist:  /Users/n8/Library/LaunchAgents/com.team-machine.serve.plist (present)\nbinary: /Users/n8/team-machine/.deploy/tm (present)\nupdate: scripts/deploy-daemon.sh — a cargo release build writes cargo's output path, which nothing execs, and never changes the binary above\nstate:  running (pid 81192)\nserve:  127.0.0.1:7777 (healthy)\nbuild:  65c2d8773404 dirty=false origin_main=true built=2026-11-15T05:00:49Z cwd=/Users/n8/team-machine/.deploy/source-v1\nwrappers: current=5 legacy-compatible=0 unversioned=0 incompatible=0 (daemon supports v1..=v7)\n",
+      "before": {
+        "at": "2026-11-15T05:30:03.522Z",
+        "journal": [
+          {
+            "pid": 17470,
+            "started_ms": 1794718778518
+          },
+          {
+            "pid": 17472,
+            "started_ms": 1794718778643
+          },
+          {
+            "pid": 18062,
+            "started_ms": 1794715925922
+          },
+          {
+            "pid": 82439,
+            "started_ms": 1794715067545
+          }
+        ],
+        "hosts": [
+          {
+            "pid": 17470,
+            "uid": 501,
+            "state": "T",
+            "command": "/System/Library/PrivateFrameworks/MediaAnalysis.framework/Versions/A/mediaanalysisd"
+          },
+          {
+            "pid": 17472,
+            "uid": 501,
+            "state": "T",
+            "command": "/System/Library/PrivateFrameworks/PhotoLibraryServices.framework/Versions/A/Support/photolibraryd"
+          }
+        ]
+      },
+      "after": {
+        "at": "2026-11-15T05:33:56.211Z",
+        "journal": [
+          {
+            "pid": 17470,
+            "started_ms": 1794718778518
+          },
+          {
+            "pid": 17472,
+            "started_ms": 1794718778643
+          },
+          {
+            "pid": 18062,
+            "started_ms": 1794715925922
+          },
+          {
+            "pid": 82439,
+            "started_ms": 1794715067545
+          }
+        ],
+        "hosts": [
+          {
+            "pid": 17470,
+            "uid": 501,
+            "state": "T",
+            "command": "/System/Library/PrivateFrameworks/MediaAnalysis.framework/Versions/A/mediaanalysisd"
+          },
+          {
+            "pid": 17472,
+            "uid": 501,
+            "state": "T",
+            "command": "/System/Library/PrivateFrameworks/PhotoLibraryServices.framework/Versions/A/Support/photolibraryd"
+          }
+        ]
+      }
+    },
     "engine": "0.1.3",
     "oneVersion": "2.0.0-0.canary.1794703544061",
     "pairs": 10,
-    "batches": 2,
-    "launchBatches": [
-      {
-        "offset": 0,
-        "metadata": {
-          "device": "iPhone 17 Pro simulator (air-24)",
-          "udid": "D4D9BA36-6C22-48E4-A3FE-BAF13B0A87F0",
-          "target": "simulator",
-          "host": "air-24",
-          "order": "alternating",
-          "cooldownSeconds": 0,
-          "launchEnvironment": {
-            "bun": {
-              "BUN_JSC_useJIT": "false",
-              "BUN_JSC_useWasm": "false"
-            }
-          },
-          "simulatorLogProcess": null,
-          "resetData": false,
-          "os": "27.0",
-          "commit": "ededeef9aac660b9aafd6bdf088522a70b7d396b",
-          "runs": 5,
-          "method": "Release · alternating engines · process-cold launches · warm OS caches · Bun JIT/Wasm off",
-          "apps": [
-            {
-              "engine": "hermes",
-              "app": "/Users/n8/builders/.scratch/bun-bench-m123659/micro-native-promise/cohort/hermes/OneBench.app",
-              "bundle": "dev.onestack.bench.bun"
-            },
-            {
-              "engine": "bun",
-              "app": "/Users/n8/builders/.scratch/bun-bench-m123659/micro-native-promise/cohort/bun/OneBench.app",
-              "bundle": "dev.onestack.bench.bun"
-            }
-          ],
-          "runnerSha256": "fbc10da7e9875f067583b4d71d92ea07f212c1691c0791be938ebd1c0670f5cb",
-          "reportSha256": "591b4058787288cee40278991feadf3ac320b85298f0b7f50d2cfe08950c972e",
-          "footprintHelperSha256": "368902b2e17358257b96d74cfa29d8ec54aa54262f3a3478ee20e05af6997a0a",
-          "environments": [
-            {
-              "thermalState": "0",
-              "os": "27.0",
-              "device": "arm64",
-              "lowPowerMode": "false",
-              "engine": "hermes",
-              "run": 0
-            },
-            {
-              "thermalState": "0",
-              "os": "27.0",
-              "device": "arm64",
-              "lowPowerMode": "false",
-              "engine": "bun",
-              "run": 0
-            },
-            {
-              "lowPowerMode": "false",
-              "thermalState": "0",
-              "device": "arm64",
-              "os": "27.0",
-              "engine": "hermes",
-              "run": 1
-            },
-            {
-              "os": "27.0",
-              "thermalState": "0",
-              "device": "arm64",
-              "lowPowerMode": "false",
-              "engine": "bun",
-              "run": 1
-            },
-            {
-              "lowPowerMode": "false",
-              "os": "27.0",
-              "thermalState": "0",
-              "device": "arm64",
-              "engine": "hermes",
-              "run": 2
-            },
-            {
-              "os": "27.0",
-              "thermalState": "0",
-              "lowPowerMode": "false",
-              "device": "arm64",
-              "engine": "bun",
-              "run": 2
-            },
-            {
-              "os": "27.0",
-              "lowPowerMode": "false",
-              "thermalState": "0",
-              "device": "arm64",
-              "engine": "hermes",
-              "run": 3
-            },
-            {
-              "lowPowerMode": "false",
-              "thermalState": "0",
-              "os": "27.0",
-              "device": "arm64",
-              "engine": "bun",
-              "run": 3
-            },
-            {
-              "device": "arm64",
-              "thermalState": "0",
-              "os": "27.0",
-              "lowPowerMode": "false",
-              "engine": "hermes",
-              "run": 4
-            },
-            {
-              "lowPowerMode": "false",
-              "os": "27.0",
-              "device": "arm64",
-              "thermalState": "0",
-              "engine": "bun",
-              "run": 4
-            }
-          ]
-        },
-        "files": [
-          "04-bun.log",
-          "00-bun-install.log",
-          "02-hermes.log",
-          "03-hermes-install.log",
-          "host-footprint-368902b2e1735825",
-          "charts",
-          "00-hermes.log",
-          "00-hermes-install.log",
-          "01-bun-install.log",
-          "04-bun-install.log",
-          "03-bun.log",
-          "01-hermes-install.log",
-          "03-hermes.log",
-          "02-bun.log",
-          "02-hermes-install.log",
-          "manifest.json",
-          "03-bun-install.log",
-          "00-bun.log",
-          "02-bun-install.log",
-          "04-hermes-install.log",
-          "01-hermes.log",
-          "04-hermes.log",
-          "01-bun.log"
-        ]
-      },
-      {
-        "offset": 5,
-        "metadata": {
-          "device": "iPhone 17 Pro simulator (air-24)",
-          "udid": "D4D9BA36-6C22-48E4-A3FE-BAF13B0A87F0",
-          "target": "simulator",
-          "host": "air-24",
-          "order": "alternating",
-          "cooldownSeconds": 0,
-          "launchEnvironment": {
-            "bun": {
-              "BUN_JSC_useJIT": "false",
-              "BUN_JSC_useWasm": "false"
-            }
-          },
-          "simulatorLogProcess": null,
-          "resetData": false,
-          "os": "27.0",
-          "commit": "ededeef9aac660b9aafd6bdf088522a70b7d396b",
-          "runs": 5,
-          "method": "Release · alternating engines · process-cold launches · warm OS caches · Bun JIT/Wasm off",
-          "apps": [
-            {
-              "engine": "hermes",
-              "app": "/Users/n8/builders/.scratch/bun-bench-m123659/micro-native-promise/cohort/hermes/OneBench.app",
-              "bundle": "dev.onestack.bench.bun"
-            },
-            {
-              "engine": "bun",
-              "app": "/Users/n8/builders/.scratch/bun-bench-m123659/micro-native-promise/cohort/bun/OneBench.app",
-              "bundle": "dev.onestack.bench.bun"
-            }
-          ],
-          "runnerSha256": "fbc10da7e9875f067583b4d71d92ea07f212c1691c0791be938ebd1c0670f5cb",
-          "reportSha256": "591b4058787288cee40278991feadf3ac320b85298f0b7f50d2cfe08950c972e",
-          "footprintHelperSha256": "368902b2e17358257b96d74cfa29d8ec54aa54262f3a3478ee20e05af6997a0a",
-          "environments": [
-            {
-              "lowPowerMode": "false",
-              "thermalState": "0",
-              "device": "arm64",
-              "os": "27.0",
-              "engine": "hermes",
-              "run": 0
-            },
-            {
-              "device": "arm64",
-              "thermalState": "0",
-              "lowPowerMode": "false",
-              "os": "27.0",
-              "engine": "bun",
-              "run": 0
-            },
-            {
-              "os": "27.0",
-              "lowPowerMode": "false",
-              "device": "arm64",
-              "thermalState": "0",
-              "engine": "hermes",
-              "run": 1
-            },
-            {
-              "device": "arm64",
-              "os": "27.0",
-              "lowPowerMode": "false",
-              "thermalState": "0",
-              "engine": "bun",
-              "run": 1
-            },
-            {
-              "thermalState": "0",
-              "lowPowerMode": "false",
-              "device": "arm64",
-              "os": "27.0",
-              "engine": "hermes",
-              "run": 2
-            },
-            {
-              "lowPowerMode": "false",
-              "os": "27.0",
-              "thermalState": "0",
-              "device": "arm64",
-              "engine": "bun",
-              "run": 2
-            },
-            {
-              "os": "27.0",
-              "lowPowerMode": "false",
-              "thermalState": "0",
-              "device": "arm64",
-              "engine": "hermes",
-              "run": 3
-            },
-            {
-              "thermalState": "0",
-              "device": "arm64",
-              "os": "27.0",
-              "lowPowerMode": "false",
-              "engine": "bun",
-              "run": 3
-            },
-            {
-              "os": "27.0",
-              "lowPowerMode": "false",
-              "device": "arm64",
-              "thermalState": "0",
-              "engine": "hermes",
-              "run": 4
-            },
-            {
-              "thermalState": "0",
-              "lowPowerMode": "false",
-              "device": "arm64",
-              "os": "27.0",
-              "engine": "bun",
-              "run": 4
-            }
-          ]
-        },
-        "files": [
-          "04-bun.log",
-          "00-bun-install.log",
-          "02-hermes.log",
-          "03-hermes-install.log",
-          "host-footprint-368902b2e1735825",
-          "charts",
-          "00-hermes.log",
-          "00-hermes-install.log",
-          "01-bun-install.log",
-          "04-bun-install.log",
-          "03-bun.log",
-          "01-hermes-install.log",
-          "03-hermes.log",
-          "02-bun.log",
-          "02-hermes-install.log",
-          "manifest.json",
-          "03-bun-install.log",
-          "00-bun.log",
-          "02-bun-install.log",
-          "04-hermes-install.log",
-          "01-hermes.log",
-          "04-hermes.log",
-          "01-bun.log"
-        ]
-      }
-    ],
+    "batches": 1,
     "source": {
       "commit": "ededeef9aac660b9aafd6bdf088522a70b7d396b",
       "platform": "iphonesimulator",
@@ -317,9 +289,8 @@
       "nativePromise": "captured setup module no-op; identity asserted on every BENCH log",
       "oneVersion": "2.0.0-0.canary.1794703544061"
     },
-    "method": "Release; two batches of five alternating Hermes/Bun pairs; process-cold, warm OS caches; JIT/Wasm off; Background CPU activity observed.",
-    "qualification": "Exploratory simulator results. All samples retained, including host media analysis in the first batch and a concurrent transfer in the second. Native Promise identity guarded on every BENCH log.",
-    "sourceSha256": "70f322000ed458a49f5e479857120fa3a2a0f9fbd61b9628afabd571ee4fc83b"
+    "sourceSha256": "70f322000ed458a49f5e479857120fa3a2a0f9fbd61b9628afabd571ee4fc83b",
+    "qualification": "Exploratory simulator results. Git, agent and simulator background activity was logged. All twenty launches retained. Native Promise identity guarded on every BENCH log."
   },
   "summary": [
     {
@@ -329,11 +300,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 13.613832999719307,
-      "p25": 12.150833500083536,
-      "p75": 14.210156499873847,
-      "minimum": 10.51299999980256,
-      "maximum": 14.786584000103176
+      "median": 13.306228999979794,
+      "p25": 11.723135749343783,
+      "p75": 14.363364499993622,
+      "minimum": 9.931332999840379,
+      "maximum": 14.971542000770569
     },
     {
       "app": "one-bench",
@@ -342,11 +313,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 65.76050186157227,
-      "p25": 65.40892791748047,
-      "p75": 66.47926902770996,
-      "minimum": 65.14332580566406,
-      "maximum": 76.78397369384766
+      "median": 66.55738830566406,
+      "p25": 65.92455863952637,
+      "p75": 67.76441955566406,
+      "minimum": 64.95584869384766,
+      "maximum": 68.62770080566406
     },
     {
       "app": "one-bench",
@@ -355,11 +326,11 @@
       "metric": "react-commit-duration",
       "unit": "ms",
       "n": 10,
-      "median": 1.9869165001437068,
-      "p25": 1.9363437502179295,
-      "p75": 2.2433440000750124,
-      "minimum": 1.706207999959588,
-      "maximum": 2.4012910001911223
+      "median": 1.9701245008036494,
+      "p25": 1.9435522509738803,
+      "p75": 2.140802000183612,
+      "minimum": 1.7747919987887144,
+      "maximum": 2.2015000004321337
     },
     {
       "app": "one-bench",
@@ -381,11 +352,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 21.4358540000394,
-      "p25": 21.05634424975142,
-      "p75": 21.67668724991381,
-      "minimum": 20.346750000026077,
-      "maximum": 22.179290999658406
+      "median": 21.255812499672174,
+      "p25": 20.715968498960137,
+      "p75": 21.67898975033313,
+      "minimum": 20.478875000029802,
+      "maximum": 21.898792000487447
     },
     {
       "app": "one-bench",
@@ -394,11 +365,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 167.4013328552246,
-      "p25": 165.4560947418213,
-      "p75": 171.3349552154541,
-      "minimum": 157.9872817993164,
-      "maximum": 177.8467254638672
+      "median": 168.3857307434082,
+      "p25": 166.66688346862793,
+      "p75": 172.22954940795898,
+      "minimum": 155.2373046875,
+      "maximum": 175.3467025756836
     },
     {
       "app": "one-bench",
@@ -420,11 +391,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 8.916833500145003,
-      "p25": 8.691562500200234,
-      "p75": 9.11016674991697,
-      "minimum": 8.120707999914885,
-      "maximum": 10.707958000246435
+      "median": 8.870124999433756,
+      "p25": 8.337885250337422,
+      "p75": 9.093697249423712,
+      "minimum": 8.007208000868559,
+      "maximum": 9.396666001528502
     },
     {
       "app": "one-bench",
@@ -433,11 +404,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 146.8388442993164,
-      "p25": 146.1396427154541,
-      "p75": 149.2021427154541,
-      "minimum": 145.2372817993164,
-      "maximum": 151.5497817993164
+      "median": 150.2450942993164,
+      "p25": 148.4521255493164,
+      "p75": 150.7529296875,
+      "minimum": 145.2529067993164,
+      "maximum": 153.5810317993164
     },
     {
       "app": "one-bench",
@@ -446,11 +417,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 315.34520799992606,
-      "p25": 315.0820527499309,
-      "p75": 317.8588547500549,
-      "minimum": 104.25720799993724,
-      "maximum": 391.45145799964666
+      "median": 316.9324369998649,
+      "p25": 316.41381249949336,
+      "p75": 319.10647875024006,
+      "minimum": 103.68383299931884,
+      "maximum": 327.19337500073016
     },
     {
       "app": "one-bench",
@@ -459,11 +430,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 212.13567352294922,
-      "p25": 211.7060031890869,
-      "p75": 213.3622589111328,
-      "minimum": 71.34651947021484,
-      "maximum": 221.3778839111328
+      "median": 212.12005996704102,
+      "p25": 211.8231964111328,
+      "p75": 214.1317844390869,
+      "minimum": 71.22147369384766,
+      "maximum": 215.2372589111328
     },
     {
       "app": "one-bench",
@@ -472,11 +443,11 @@
       "metric": "react-commit-duration",
       "unit": "ms",
       "n": 10,
-      "median": 95.73385449987836,
-      "p25": 95.65181225002743,
-      "p75": 96.1029475000687,
-      "minimum": 94.77037499984726,
-      "maximum": 116.23175000026822
+      "median": 96.67629200033844,
+      "p25": 95.5632082503289,
+      "p75": 97.43705200124532,
+      "minimum": 94.57025000080466,
+      "maximum": 98.08570799976587
     },
     {
       "app": "one-bench",
@@ -485,11 +456,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 43.69874999998137,
-      "p25": 42.56156199995894,
-      "p75": 44.584552250104025,
-      "minimum": 41.67337500024587,
-      "maximum": 48.35920900013298
+      "median": 43.10360400099307,
+      "p25": 40.95432275068015,
+      "p75": 44.12346899975091,
+      "minimum": 40.52979199960828,
+      "maximum": 44.369916999712586
     },
     {
       "app": "one-bench",
@@ -498,11 +469,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 45.213558197021484,
-      "p25": 45.14323425292969,
-      "p75": 45.26046180725098,
-      "minimum": 44.95573425292969,
-      "maximum": 45.45575714111328
+      "median": 45.21356964111328,
+      "p25": 45.205739974975586,
+      "p75": 45.32292175292969,
+      "minimum": 45.14323425292969,
+      "maximum": 45.424530029296875
     },
     {
       "app": "one-bench",
@@ -511,11 +482,11 @@
       "metric": "react-commit-duration",
       "unit": "ms",
       "n": 10,
-      "median": 15.254895500140265,
-      "p25": 15.085593999829143,
-      "p75": 15.484583749785088,
-      "minimum": 14.727625000290573,
-      "maximum": 17.673291000071913
+      "median": 14.861457998864353,
+      "p25": 14.385166249703616,
+      "p75": 15.784489749930799,
+      "minimum": 14.204499999061227,
+      "maximum": 16.239667000249028
     },
     {
       "app": "one-bench",
@@ -524,11 +495,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 215.8791664999444,
-      "p25": 215.15803074999712,
-      "p75": 232.60972974973265,
-      "minimum": 210.7390409996733,
-      "maximum": 250.01912500010803
+      "median": 223.46668750047684,
+      "p25": 221.75215599965304,
+      "p75": 228.27515674941242,
+      "minimum": 213.48062500171363,
+      "maximum": 242.29670800082386
     },
     {
       "app": "one-bench",
@@ -537,11 +508,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 167.9169692993164,
-      "p25": 164.9521255493164,
-      "p75": 170.3818302154541,
-      "minimum": 141.73719024658203,
-      "maximum": 181.2997817993164
+      "median": 168.7294807434082,
+      "p25": 162.5966625213623,
+      "p75": 172.4404125213623,
+      "minimum": 145.90901947021484,
+      "maximum": 173.1747817993164
     },
     {
       "app": "one-bench",
@@ -563,11 +534,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 29.528645999962464,
-      "p25": 28.96714650001377,
-      "p75": 30.855468500056304,
-      "minimum": 27.151790999807417,
-      "maximum": 36.7684159995988
+      "median": 29.61316700093448,
+      "p25": 28.86138524953276,
+      "p75": 30.029156249482185,
+      "minimum": 28.300666000694036,
+      "maximum": 30.152666000649333
     },
     {
       "app": "one-bench",
@@ -576,11 +547,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 165.77630996704102,
-      "p25": 164.7958984375,
-      "p75": 170.2998275756836,
-      "minimum": 156.6747817993164,
-      "maximum": 175.5186004638672
+      "median": 167.8857192993164,
+      "p25": 165.30751419067383,
+      "p75": 170.0342140197754,
+      "minimum": 153.6435317993164,
+      "maximum": 173.5810775756836
     },
     {
       "app": "one-bench",
@@ -602,11 +573,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 9.173311999766156,
-      "p25": 9.016187249682844,
-      "p75": 9.39219799998682,
-      "minimum": 8.76491600042209,
-      "maximum": 9.9948750003241
+      "median": 9.237292000092566,
+      "p25": 8.81493700062856,
+      "p75": 9.423635500017554,
+      "minimum": 8.720458000898361,
+      "maximum": 9.722209000959992
     },
     {
       "app": "one-bench",
@@ -615,11 +586,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 152.1200942993164,
-      "p25": 151.1552677154541,
-      "p75": 154.3779239654541,
-      "minimum": 150.1591567993164,
-      "maximum": 156.8310546875
+      "median": 155.4326057434082,
+      "p25": 153.6786880493164,
+      "p75": 155.8935489654541,
+      "minimum": 149.1904067993164,
+      "maximum": 158.8622817993164
     },
     {
       "app": "one-bench",
@@ -641,11 +612,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 32.58562500006519,
-      "p25": 32.13789574976545,
-      "p75": 33.11047925031744,
-      "minimum": 31.64995800005272,
-      "maximum": 37.956833000294864
+      "median": 32.08960400056094,
+      "p25": 31.85021874960512,
+      "p75": 32.43956300104037,
+      "minimum": 31.365999998524785,
+      "maximum": 33.09058400057256
     },
     {
       "app": "one-bench",
@@ -654,11 +625,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 161.0888557434082,
-      "p25": 159.98721885681152,
-      "p75": 163.5849437713623,
-      "minimum": 157.7998046875,
-      "maximum": 164.5966796875
+      "median": 162.8388442993164,
+      "p25": 162.6084270477295,
+      "p75": 163.6239891052246,
+      "minimum": 153.9091567993164,
+      "maximum": 166.7373046875
     },
     {
       "app": "one-bench",
@@ -667,11 +638,11 @@
       "metric": "bundle-to-startup-end",
       "unit": "ms",
       "n": 10,
-      "median": 56.397624999983236,
-      "p25": 53.39972916664556,
-      "p75": 70.53094791655894,
-      "minimum": 51.73129166709259,
-      "maximum": 77.5715416665189
+      "median": 54.71010416653007,
+      "p25": 54.09222916606814,
+      "p75": 72.75136458268389,
+      "minimum": 53.512916665524244,
+      "maximum": 81.33233333192766
     },
     {
       "app": "one-bench",
@@ -680,11 +651,11 @@
       "metric": "endTime",
       "unit": "timestamp-ms",
       "n": 10,
-      "median": 3817832.5207708343,
-      "p25": 3569766.974083334,
-      "p75": 4071947.052520834,
-      "minimum": 3525838.349708334,
-      "maximum": 4116545.1012500008
+      "median": 9787454.283083335,
+      "p25": 9743420.600864585,
+      "p75": 9832583.254156252,
+      "minimum": 9697242.010125002,
+      "maximum": 9877759.849500002
     },
     {
       "app": "one-bench",
@@ -693,11 +664,11 @@
       "metric": "executeJavaScriptBundleEntryPointStart",
       "unit": "timestamp-ms",
       "n": 10,
-      "median": 3817765.7704166677,
-      "p25": 3569708.396552084,
-      "p75": 4071892.6586666675,
-      "minimum": 3525781.483625001,
-      "maximum": 4116491.480333334
+      "median": 9787386.408895835,
+      "p25": 9743360.411052085,
+      "p75": 9832529.368427087,
+      "minimum": 9697162.595083335,
+      "maximum": 9877705.612458335
     },
     {
       "app": "one-bench",
@@ -706,11 +677,11 @@
       "metric": "initializeRuntimeStart",
       "unit": "timestamp-ms",
       "n": 10,
-      "median": 3817765.7730416674,
-      "p25": 3569708.398739584,
-      "p75": 4071892.6612708345,
-      "minimum": 3525781.486250001,
-      "maximum": 4116491.4827916673
+      "median": 9787386.411000002,
+      "p25": 9743360.413281253,
+      "p75": 9832529.370604169,
+      "minimum": 9697162.597166669,
+      "maximum": 9877705.614541668
     },
     {
       "app": "one-bench",
@@ -719,11 +690,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 35.75264358520508,
-      "p25": 35.721364974975586,
-      "p75": 35.850276947021484,
-      "minimum": 35.674461364746094,
-      "maximum": 35.98698425292969
+      "median": 35.79948425292969,
+      "p25": 35.783864974975586,
+      "p75": 35.85028266906738,
+      "minimum": 35.705780029296875,
+      "maximum": 35.97138214111328
     },
     {
       "app": "one-bench",
@@ -732,11 +703,11 @@
       "metric": "process-to-content-ready",
       "unit": "ms",
       "n": 10,
-      "median": 708.9300487594605,
-      "p25": 687.1880711212159,
-      "p75": 754.1317267036438,
-      "minimum": 673.5791249694825,
-      "maximum": 807.5090234832763
+      "median": 682.4239582214354,
+      "p25": 665.0952877426148,
+      "p75": 734.2819643707276,
+      "minimum": 646.4608991394043,
+      "maximum": 763.7709222717285
     },
     {
       "app": "one-bench",
@@ -745,11 +716,11 @@
       "metric": "process-to-first-frame-proxy",
       "unit": "ms",
       "n": 10,
-      "median": 675.6325100021363,
-      "p25": 653.7514747276307,
-      "p75": 724.2445869064331,
-      "minimum": 640.9281773986817,
-      "maximum": 774.2119615631103
+      "median": 654.3990003356934,
+      "p25": 632.7618175125122,
+      "p75": 701.0127974243164,
+      "minimum": 613.0908811340332,
+      "maximum": 744.3760476989746
     },
     {
       "app": "one-bench",
@@ -758,11 +729,11 @@
       "metric": "runtime-to-startup-end",
       "unit": "ms",
       "n": 10,
-      "median": 56.394854166777804,
-      "p25": 53.39717708295211,
-      "p75": 70.52856249979232,
-      "minimum": 51.72866666689515,
-      "maximum": 77.56920833326876
+      "median": 54.70781249925494,
+      "p25": 54.09002083214,
+      "p75": 72.74879166623577,
+      "minimum": 53.51083333417773,
+      "maximum": 81.3302499987185
     },
     {
       "app": "one-bench",
@@ -784,11 +755,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 37.673812500201166,
-      "p25": 37.52611400024034,
-      "p75": 38.17324999999255,
-      "minimum": 36.60241700010374,
-      "maximum": 41.13345800014213
+      "median": 37.38364550098777,
+      "p25": 37.159750250633806,
+      "p75": 38.08959325030446,
+      "minimum": 36.7886250000447,
+      "maximum": 39.35841599851847
     },
     {
       "app": "one-bench",
@@ -797,11 +768,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 168.2607765197754,
-      "p25": 165.32317924499512,
-      "p75": 171.5810890197754,
-      "minimum": 160.6123046875,
-      "maximum": 178.0810546875
+      "median": 172.1982765197754,
+      "p25": 169.8506031036377,
+      "p75": 174.0654468536377,
+      "minimum": 158.6904296875,
+      "maximum": 182.9717025756836
     },
     {
       "app": "one-bench",
@@ -810,11 +781,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 5109.228979500243,
-      "p25": 5089.338395750034,
-      "p75": 5134.908135500038,
-      "minimum": 5068.212125000078,
-      "maximum": 6765.28216700023
+      "median": 5134.665312500671,
+      "p25": 5093.910978998989,
+      "p75": 5148.747843499761,
+      "minimum": 5084.900333000347,
+      "maximum": 5183.309916999191
     },
     {
       "app": "one-bench",
@@ -823,11 +794,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 65.30737686157227,
-      "p25": 64.96752166748047,
-      "p75": 66.03395652770996,
-      "minimum": 64.69020080566406,
-      "maximum": 75.98709869384766
+      "median": 66.14332580566406,
+      "p25": 65.48705863952637,
+      "p75": 67.29957580566406,
+      "minimum": 64.51834869384766,
+      "maximum": 68.17457580566406
     },
     {
       "app": "one-bench",
@@ -836,11 +807,11 @@
       "metric": "react-commit-duration",
       "unit": "ms",
       "n": 10,
-      "median": 3253.9745174995624,
-      "p25": 3245.709200751153,
-      "p75": 3272.98306150001,
-      "minimum": 3242.938337996602,
-      "maximum": 3758.5642450023443
+      "median": 3265.759966498241,
+      "p25": 3254.59841851471,
+      "p75": 3283.1525895027444,
+      "minimum": 3237.376713993028,
+      "maximum": 3332.3210380058736
     },
     {
       "app": "one-bench",
@@ -849,11 +820,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 12.060103999916464,
-      "p25": 10.670041249948554,
-      "p75": 13.182104250066914,
-      "minimum": 8.029000000096858,
-      "maximum": 14.876292000059038
+      "median": 10.921520500443876,
+      "p25": 10.471916750539094,
+      "p75": 12.946156750433147,
+      "minimum": 8.092875000089407,
+      "maximum": 20.531791999936104
     },
     {
       "app": "one-bench",
@@ -862,11 +833,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 45.572715759277344,
-      "p25": 45.54143714904785,
-      "p75": 45.62347984313965,
-      "minimum": 45.221153259277344,
-      "maximum": 45.768028259277344
+      "median": 45.35394287109375,
+      "p25": 45.13128089904785,
+      "p75": 45.564903259277344,
+      "minimum": 45.03363037109375,
+      "maximum": 45.736778259277344
     },
     {
       "app": "one-bench",
@@ -875,11 +846,11 @@
       "metric": "react-commit-duration",
       "unit": "ms",
       "n": 10,
-      "median": 2.327292000176385,
-      "p25": 2.235739749739878,
-      "p75": 2.3787919997703284,
-      "minimum": 2.1967909997329116,
-      "maximum": 2.6457079998217523
+      "median": 2.2866454999893904,
+      "p25": 2.2140414998866618,
+      "p75": 2.489229249302298,
+      "minimum": 2.1538749989122152,
+      "maximum": 2.669125000014901
     },
     {
       "app": "one-bench",
@@ -901,11 +872,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 16.03950050007552,
-      "p25": 15.772843749728054,
-      "p75": 17.10071849974338,
-      "minimum": 15.615375000052154,
-      "maximum": 22.821082999929786
+      "median": 15.996291500516236,
+      "p25": 15.867072250228375,
+      "p75": 16.165333750192076,
+      "minimum": 15.576375000178814,
+      "maximum": 23.121291998773813
     },
     {
       "app": "one-bench",
@@ -914,11 +885,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 52.5650634765625,
-      "p25": 51.7760066986084,
-      "p75": 52.7955379486084,
-      "minimum": 51.2838134765625,
-      "maximum": 53.268211364746094
+      "median": 52.330665588378906,
+      "p25": 51.920515060424805,
+      "p75": 52.4595947265625,
+      "minimum": 51.424415588378906,
+      "maximum": 53.096336364746094
     },
     {
       "app": "one-bench",
@@ -940,11 +911,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 33.988478999817744,
-      "p25": 33.775947500020266,
-      "p75": 34.27617700013798,
-      "minimum": 33.27474999986589,
-      "maximum": 37.5335840000771
+      "median": 33.93360400106758,
+      "p25": 33.780687500257045,
+      "p75": 34.668531000148505,
+      "minimum": 33.5978330001235,
+      "maximum": 39.02829200029373
     },
     {
       "app": "one-bench",
@@ -953,11 +924,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 122.3541259765625,
-      "p25": 121.9127082824707,
-      "p75": 122.6471176147461,
-      "minimum": 120.9556884765625,
-      "maximum": 123.3307113647461
+      "median": 121.9478645324707,
+      "p25": 121.3892593383789,
+      "p75": 122.4166088104248,
+      "minimum": 120.5650634765625,
+      "maximum": 123.7838363647461
     },
     {
       "app": "one-bench",
@@ -966,11 +937,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 316.963666500058,
-      "p25": 313.9982709999895,
-      "p75": 345.922520749853,
-      "minimum": 312.90783399995416,
-      "maximum": 371.2242499999702
+      "median": 315.38852049969137,
+      "p25": 314.4417610010132,
+      "p75": 340.8539897510782,
+      "minimum": 312.3505410011858,
+      "maximum": 375.97749999910593
     },
     {
       "app": "one-bench",
@@ -979,11 +950,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 191.6900177001953,
-      "p25": 191.6275405883789,
-      "p75": 191.7994155883789,
-      "minimum": 191.2837677001953,
-      "maximum": 192.3462905883789
+      "median": 191.7290802001953,
+      "p25": 191.5376853942871,
+      "p75": 191.8658218383789,
+      "minimum": 191.2837905883789,
+      "maximum": 192.3306655883789
     },
     {
       "app": "one-bench",
@@ -992,11 +963,11 @@
       "metric": "react-commit-duration",
       "unit": "ms",
       "n": 10,
-      "median": 93.15149950003251,
-      "p25": 92.57455225021113,
-      "p75": 106.03433350007981,
-      "minimum": 91.91770799970254,
-      "maximum": 117.37295900005847
+      "median": 93.6875004991889,
+      "p25": 93.00405250070617,
+      "p75": 96.84796875016764,
+      "minimum": 91.99816699884832,
+      "maximum": 123.54237499833107
     },
     {
       "app": "one-bench",
@@ -1005,11 +976,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 42.02804199978709,
-      "p25": 41.84988599992357,
-      "p75": 43.06877075007651,
-      "minimum": 41.348041999619454,
-      "maximum": 47.54295800020918
+      "median": 42.19958299957216,
+      "p25": 42.05595774855465,
+      "p75": 42.473979249130934,
+      "minimum": 41.473042000085115,
+      "maximum": 44.14483300037682
     },
     {
       "app": "one-bench",
@@ -1018,11 +989,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 38.58827209472656,
-      "p25": 38.53747367858887,
-      "p75": 38.63907051086426,
-      "minimum": 38.22108459472656,
-      "maximum": 38.767982482910156
+      "median": 38.59606170654297,
+      "p25": 38.537485122680664,
+      "p75": 38.66637992858887,
+      "minimum": 38.43983459472656,
+      "maximum": 38.76795959472656
     },
     {
       "app": "one-bench",
@@ -1031,11 +1002,11 @@
       "metric": "react-commit-duration",
       "unit": "ms",
       "n": 10,
-      "median": 15.579603999853134,
-      "p25": 15.473229250288568,
-      "p75": 15.936135500087403,
-      "minimum": 15.260125000029802,
-      "maximum": 17.323792000301182
+      "median": 15.685854500159621,
+      "p25": 15.44881249917671,
+      "p75": 15.809448000509292,
+      "minimum": 15.179207999259233,
+      "maximum": 16.122749999165535
     },
     {
       "app": "one-bench",
@@ -1044,11 +1015,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 219.3310205002781,
-      "p25": 215.4255207501119,
-      "p75": 225.63752100011334,
-      "minimum": 211.26658300030977,
-      "maximum": 265.07487499993294
+      "median": 219.24583350028843,
+      "p25": 215.68894799984992,
+      "p75": 227.0693440004252,
+      "minimum": 209.18545800074935,
+      "maximum": 242.69295799918473
     },
     {
       "app": "one-bench",
@@ -1057,11 +1028,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 125.5650634765625,
-      "p25": 124.9127311706543,
-      "p75": 126.2525691986084,
-      "minimum": 123.9869384765625,
-      "maximum": 127.2994613647461
+      "median": 124.8306770324707,
+      "p25": 124.0103702545166,
+      "p75": 125.4908275604248,
+      "minimum": 123.7056884765625,
+      "maximum": 127.0494613647461
     },
     {
       "app": "one-bench",
@@ -1083,11 +1054,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 222.92825000034645,
-      "p25": 221.15975975000765,
-      "p75": 224.3519579997519,
-      "minimum": 220.78849999979138,
-      "maximum": 242.8395000002347
+      "median": 222.32624999899417,
+      "p25": 220.85486424993724,
+      "p75": 227.9560627504252,
+      "minimum": 220.32979200035334,
+      "maximum": 232.48000000044703
     },
     {
       "app": "one-bench",
@@ -1096,11 +1067,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 52.5025634765625,
-      "p25": 51.7369441986084,
-      "p75": 52.7252254486084,
-      "minimum": 51.2369384765625,
-      "maximum": 53.236961364746094
+      "median": 52.260353088378906,
+      "p25": 51.869733810424805,
+      "p75": 52.3697509765625,
+      "minimum": 51.377540588378906,
+      "maximum": 53.033836364746094
     },
     {
       "app": "one-bench",
@@ -1122,11 +1093,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 242.12552100024186,
-      "p25": 241.88528125011362,
-      "p75": 243.4151670000283,
-      "minimum": 240.7244589999318,
-      "maximum": 263.013582999818
+      "median": 244.15310400072485,
+      "p25": 242.86085424944758,
+      "p75": 250.79143750062212,
+      "minimum": 242.1464170012623,
+      "maximum": 266.57783300057054
     },
     {
       "app": "one-bench",
@@ -1135,11 +1106,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 117.1119499206543,
-      "p25": 115.4596118927002,
-      "p75": 119.5259895324707,
-      "minimum": 114.4088134765625,
-      "maximum": 122.4244613647461
+      "median": 117.3697624206543,
+      "p25": 115.0338134765625,
+      "p75": 119.2798843383789,
+      "minimum": 114.3931655883789,
+      "maximum": 119.6119384765625
     },
     {
       "app": "one-bench",
@@ -1161,11 +1132,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 355.3968124999665,
-      "p25": 352.9957505001221,
-      "p75": 358.1473437502282,
-      "minimum": 352.3142499998212,
-      "maximum": 390.60766700003296
+      "median": 354.74666649941355,
+      "p25": 353.00243800040334,
+      "p75": 359.98838575091213,
+      "minimum": 352.05991600081325,
+      "maximum": 378.49300000071526
     },
     {
       "app": "one-bench",
@@ -1174,11 +1145,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 54.0963249206543,
-      "p25": 52.443986892700195,
-      "p75": 56.5103645324707,
-      "minimum": 51.4088134765625,
-      "maximum": 57.236961364746094
+      "median": 55.9713020324707,
+      "p25": 52.4830379486084,
+      "p75": 56.3619327545166,
+      "minimum": 51.377540588378906,
+      "maximum": 114.9400634765625
     },
     {
       "app": "one-bench",
@@ -1187,11 +1158,11 @@
       "metric": "bundle-to-startup-end",
       "unit": "ms",
       "n": 10,
-      "median": 24.734229166759178,
-      "p25": 23.797604166553356,
-      "p75": 26.8225208328804,
-      "minimum": 23.184583333320916,
-      "maximum": 28.942250000312924
+      "median": 24.085958333685994,
+      "p25": 23.56253125052899,
+      "p75": 25.040104168001562,
+      "minimum": 23.166500002145767,
+      "maximum": 40.425166668370366
     },
     {
       "app": "one-bench",
@@ -1200,11 +1171,11 @@
       "metric": "endTime",
       "unit": "timestamp-ms",
       "n": 10,
-      "median": 3805371.1458750004,
-      "p25": 3557839.2807916678,
-      "p75": 4059477.7251458345,
-      "minimum": 3513217.6470416677,
-      "maximum": 4104587.0647916673
+      "median": 9775530.904645836,
+      "p25": 9729880.031625003,
+      "p75": 9820386.374093752,
+      "minimum": 9684515.88066667,
+      "maximum": 9865743.399375003
     },
     {
       "app": "one-bench",
@@ -1213,11 +1184,11 @@
       "metric": "executeJavaScriptBundleEntryPointStart",
       "unit": "timestamp-ms",
       "n": 10,
-      "median": 3805345.667250001,
-      "p25": 3557814.2151250006,
-      "p75": 4059451.970093751,
-      "minimum": 3513188.7047916674,
-      "maximum": 4104563.880208334
+      "median": 9775506.946062502,
+      "p25": 9729855.688197918,
+      "p75": 9820360.06809375,
+      "minimum": 9684475.455500001,
+      "maximum": 9865718.213875001
     },
     {
       "app": "one-bench",
@@ -1226,11 +1197,11 @@
       "metric": "initializeRuntimeStart",
       "unit": "timestamp-ms",
       "n": 10,
-      "median": 3805345.670187501,
-      "p25": 3557814.217947917,
-      "p75": 4059451.972802084,
-      "minimum": 3513189.6140833343,
-      "maximum": 4104563.883250001
+      "median": 9775506.948750002,
+      "p25": 9729855.691114586,
+      "p75": 9820360.070572918,
+      "minimum": 9684476.327666668,
+      "maximum": 9865718.216541668
     },
     {
       "app": "one-bench",
@@ -1239,11 +1210,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 31.455459594726562,
-      "p25": 31.338260650634766,
-      "p75": 31.49840545654297,
-      "minimum": 31.15856170654297,
-      "maximum": 31.689857482910156
+      "median": 31.43199920654297,
+      "p25": 31.35387420654297,
+      "p75": 31.54137420654297,
+      "minimum": 31.33043670654297,
+      "maximum": 31.658607482910156
     },
     {
       "app": "one-bench",
@@ -1252,11 +1223,11 @@
       "metric": "process-to-content-ready",
       "unit": "ms",
       "n": 10,
-      "median": 542.2171175231933,
-      "p25": 536.9044138259889,
-      "p75": 600.4575095787048,
-      "minimum": 532.8458817138671,
-      "maximum": 1110.0758775939942
+      "median": 538.156487197876,
+      "p25": 534.421304813385,
+      "p75": 544.9607477951049,
+      "minimum": 532.0421040649414,
+      "maximum": 1044.2061391906739
     },
     {
       "app": "one-bench",
@@ -1265,11 +1236,11 @@
       "metric": "process-to-first-frame-proxy",
       "unit": "ms",
       "n": 10,
-      "median": 511.31741592407224,
-      "p25": 507.34631309890744,
-      "p75": 568.3341144943238,
-      "minimum": 499.3790657653808,
-      "maximum": 1076.7311319580078
+      "median": 504.80697319030764,
+      "p25": 501.1080900344849,
+      "p75": 512.5743852424621,
+      "minimum": 498.6911595458985,
+      "maximum": 1010.8618703918457
     },
     {
       "app": "one-bench",
@@ -1278,11 +1249,11 @@
       "metric": "runtime-to-startup-end",
       "unit": "ms",
       "n": 10,
-      "median": 24.73160416679457,
-      "p25": 23.79503125010524,
-      "p75": 26.81930208322592,
-      "minimum": 23.18154166638851,
-      "maximum": 28.621625000145286
+      "median": 24.083229166455567,
+      "p25": 23.559552082791924,
+      "p75": 25.037385417614132,
+      "minimum": 23.163875002413988,
+      "maximum": 39.553000001236796
     },
     {
       "app": "one-bench",
@@ -1304,11 +1275,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 125.86052049999125,
-      "p25": 125.44306199997663,
-      "p75": 127.85853175004013,
-      "minimum": 125.04841700010002,
-      "maximum": 141.34579200018197
+      "median": 126.45656300056726,
+      "p25": 125.66474999999627,
+      "p75": 128.64658350031823,
+      "minimum": 125.12295800074935,
+      "maximum": 130.2345420010388
     },
     {
       "app": "one-bench",
@@ -1317,11 +1288,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 52.5572509765625,
-      "p25": 51.7760066986084,
-      "p75": 52.7955379486084,
-      "minimum": 51.2838134765625,
-      "maximum": 53.283836364746094
+      "median": 52.338478088378906,
+      "p25": 51.932233810424805,
+      "p75": 52.4595947265625,
+      "minimum": 51.424415588378906,
+      "maximum": 53.096336364746094
     },
     {
       "app": "one-bench",
@@ -1330,11 +1301,11 @@
       "metric": "duration",
       "unit": "ms",
       "n": 10,
-      "median": 8210.295353999827,
-      "p25": 8146.168593750335,
-      "p75": 8301.595250000013,
-      "minimum": 8068.300917000044,
-      "maximum": 9668.488834000193
+      "median": 8254.407374999486,
+      "p25": 8218.209416499827,
+      "p75": 8552.345229249913,
+      "minimum": 8151.593166999519,
+      "maximum": 9468.260750001296
     },
     {
       "app": "one-bench",
@@ -1343,11 +1314,11 @@
       "metric": "physical-footprint",
       "unit": "MiB",
       "n": 10,
-      "median": 45.01800537109375,
-      "p25": 44.975053787231445,
-      "p75": 45.060991287231445,
-      "minimum": 44.674278259277344,
-      "maximum": 45.205528259277344
+      "median": 44.79925537109375,
+      "p25": 44.56096839904785,
+      "p75": 45.002403259277344,
+      "minimum": 44.47113037109375,
+      "maximum": 45.127403259277344
     },
     {
       "app": "one-bench",
@@ -1356,11 +1327,11 @@
       "metric": "react-commit-duration",
       "unit": "ms",
       "n": 10,
-      "median": 4419.083274997538,
-      "p25": 4415.174443999189,
-      "p75": 4433.811201500241,
-      "minimum": 4400.415712002199,
-      "maximum": 5132.85007299576
+      "median": 4431.367356497794,
+      "p25": 4420.985802981537,
+      "p75": 4491.890755500644,
+      "minimum": 4406.352791996673,
+      "maximum": 4759.7638369929045
     }
   ]
 }

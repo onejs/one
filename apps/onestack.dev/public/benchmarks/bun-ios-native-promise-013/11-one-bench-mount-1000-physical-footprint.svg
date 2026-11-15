@@ -4,15 +4,15 @@
 <text x="28" y="35" font-size="23">one-bench · mount-1000 · physical-footprint</text>
 <text x="28" y="65" font-size="15">iPhone 17 Pro simulator (air-24) · iOS 27.0 · ededeef9aac660b9aafd6bdf088522a70b7d396b</text>
 <text x="28" y="121" font-size="18">bun</text>
-<rect x="170" y="100" width="527.176035590604" height="30" fill="#2764d9"/>
-<path d="M694.1698885376697,115 H700 M694.1698885376697,108 V122 M700,108 V122" stroke="#111" fill="none"/>
-<path d="M696.3560802601286,115 H697.7229171076021" stroke="#111" stroke-width="5"/>
+<rect x="170" y="100" width="527.5385764989711" height="30" fill="#2764d9"/>
+<path d="M696.7179239635841,115 H700 M696.7179239635841,108 V122 M700,108 V122" stroke="#111" fill="none"/>
+<path d="M697.4472222670109,115 H698.8144646419044" stroke="#111" stroke-width="5"/>
 <text x="725" y="121" font-size="17">45.21 MiB · n=10</text>
 <text x="28" y="185" font-size="18">hermes</text>
-<rect x="170" y="164" width="449.92725886655825" height="30" fill="#868e9c"/>
-<path d="M615.6459667434098,179 H622.0226261363547 M615.6459667434098,172 V186 M622.0226261363547,172 V186" stroke="#111" fill="none"/>
-<path d="M619.3349651232289,179 H620.5195526098876" stroke="#111" stroke-width="5"/>
-<text x="725" y="185" font-size="17">38.59 MiB · n=10</text>
+<rect x="170" y="164" width="450.32744843534067" height="30" fill="#868e9c"/>
+<path d="M618.5046366371935,179 H622.3331022236913 M618.5046366371935,172 V186 M622.3331022236913,172 V186" stroke="#111" fill="none"/>
+<path d="M619.6439941557478,179 H621.1479006813031" stroke="#111" stroke-width="5"/>
+<text x="725" y="185" font-size="17">38.60 MiB · n=10</text>
 <text x="28" y="278" font-size="14">Bar: median · thick line: middle 50% · whiskers: minimum–maximum</text>
-<text x="28" y="300" font-size="13">Release; two batches of five alternating Hermes/Bun pairs; process-cold, warm OS caches; JIT/Wasm off; Background CPU activity observed.</text>
+<text x="28" y="300" font-size="13">Release; ten alternating Hermes/Bun pairs in one quiet window; process-cold, warm OS caches; JIT/Wasm off; host media analysis paused.</text>
 </g></svg>

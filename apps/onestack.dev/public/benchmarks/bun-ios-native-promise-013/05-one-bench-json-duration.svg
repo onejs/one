@@ -4,15 +4,15 @@
 <text x="28" y="35" font-size="23">one-bench · json · duration</text>
 <text x="28" y="65" font-size="15">iPhone 17 Pro simulator (air-24) · iOS 27.0 · ededeef9aac660b9aafd6bdf088522a70b7d396b</text>
 <text x="28" y="121" font-size="18">bun</text>
-<rect x="170" y="100" width="125.91181686958389" height="30" fill="#2764d9"/>
-<path d="M284.6699776910739,115 H321.20372571185726 M284.6699776910739,108 V122 M321.20372571185726,108 V122" stroke="#111" fill="none"/>
-<path d="M292.7308355390911,115 H298.64181521930004" stroke="#111" stroke-width="5"/>
-<text x="725" y="121" font-size="17">8.92 ms · n=10</text>
+<rect x="170" y="100" width="120.45534172144937" height="30" fill="#2764d9"/>
+<path d="M278.73702186168936,115 H297.605711794219 M278.73702186168936,108 V122 M297.605711794219,108 V122" stroke="#111" fill="none"/>
+<path d="M283.2275832784477,115 H293.49142878602765" stroke="#111" stroke-width="5"/>
+<text x="725" y="121" font-size="17">8.87 ms · n=10</text>
 <text x="28" y="185" font-size="18">hermes</text>
-<rect x="170" y="164" width="479.9406811208437" height="30" fill="#868e9c"/>
-<path d="M639.8623371509818,179 H700 M639.8623371509818,172 V186 M700,172 V186" stroke="#111" fill="none"/>
-<path d="M646.9395902873002,179 H654.0031745978697" stroke="#111" stroke-width="5"/>
-<text x="725" y="185" font-size="17">33.99 ms · n=10</text>
+<rect x="170" y="164" width="460.8146859316944" height="30" fill="#868e9c"/>
+<path d="M626.2549519187629,179 H700 M626.2549519187629,172 V186 M700,172 V186" stroke="#111" fill="none"/>
+<path d="M628.738096327697,179 H640.7949153895953" stroke="#111" stroke-width="5"/>
+<text x="725" y="185" font-size="17">33.93 ms · n=10</text>
 <text x="28" y="278" font-size="14">Bar: median · thick line: middle 50% · whiskers: minimum–maximum</text>
-<text x="28" y="300" font-size="13">Release; two batches of five alternating Hermes/Bun pairs; process-cold, warm OS caches; JIT/Wasm off; Background CPU activity observed.</text>
+<text x="28" y="300" font-size="13">Release; ten alternating Hermes/Bun pairs in one quiet window; process-cold, warm OS caches; JIT/Wasm off; host media analysis paused.</text>
 </g></svg>

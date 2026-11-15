@@ -9,28 +9,29 @@ All measurements use simulators and do not establish iPhone performance.
 
 ## Runtime
 
-Ten samples per engine, in two batches of five alternating pairs. Background CPU
-activity occurred despite quiet admission. These are exploratory measurements of
+Ten samples per engine, from ten alternating pairs in one batch. Host media
+analysis was paused; other background CPU activity was logged. These are exploratory measurements of
 simulator behavior on this Mac. All samples are retained. Times are medians in
 milliseconds; brackets contain the 25th and 75th percentiles. Lower is better.
 
 | Workload | Hermes | Bun |
 | --- | ---: | ---: |
-| Mount 1,000 views | 42.03 [41.85, 43.07] | 43.70 [42.56, 44.58] |
-| 300 updates of 1,000 views | 8210.30 [8146.17, 8301.60] | 5109.23 [5089.34, 5134.91] |
-| Tree, 100 levels | 12.06 [10.67, 13.18] | 13.61 [12.15, 14.21] |
-| Long text list, 300 rows | 316.96 [314.00, 345.92] | 315.35 [315.08, 317.86] |
-| Navigate to a heavy route | 219.33 [215.43, 225.64] | 215.88 [215.16, 232.61] |
-| JSON | 33.99 [33.78, 34.28] | 8.92 [8.69, 9.11] |
-| Regular expressions | 242.13 [241.89, 243.42] | 9.17 [9.02, 9.39] |
-| Sort | 355.40 [353.00, 358.15] | 32.59 [32.14, 33.11] |
-| Object creation | 222.93 [221.16, 224.35] | 29.53 [28.97, 30.86] |
-| Intl | 16.04 [15.77, 17.10] | 21.44 [21.06, 21.68] |
-| String building | 125.86 [125.44, 127.86] | 37.67 [37.53, 38.17] |
+| Mount 1,000 views | 42.20 [42.06, 42.47] | 43.10 [40.95, 44.12] |
+| 300 updates of 1,000 views | 8254.41 [8218.21, 8552.35] | 5134.67 [5093.91, 5148.75] |
+| Tree, 100 levels | 10.92 [10.47, 12.95] | 13.31 [11.72, 14.36] |
+| Long text list, 300 rows | 315.39 [314.44, 340.85] | 316.93 [316.41, 319.11] |
+| Navigate to a heavy route | 219.25 [215.69, 227.07] | 223.47 [221.75, 228.28] |
+| JSON | 33.93 [33.78, 34.67] | 8.87 [8.34, 9.09] |
+| Regular expressions | 244.15 [242.86, 250.79] | 9.24 [8.81, 9.42] |
+| Sort | 354.75 [353.00, 359.99] | 32.09 [31.85, 32.44] |
+| Object creation | 222.33 [220.85, 227.96] | 29.61 [28.86, 30.03] |
+| Intl | 16.00 [15.87, 16.17] | 21.26 [20.72, 21.68] |
+| String building | 126.46 [125.66, 128.65] | 37.38 [37.16, 38.09] |
 
-The update workload waits for a native display frame after each revision.
+The view workloads finish at React’s layout effect followed by a native display
+callback. The update workload waits for that callback after each revision.
 Its elapsed time includes frame pacing. The separately measured React commit
-time totals 4419.08 ms for Hermes and 3253.97 ms for Bun across the 300 updates.
+time totals 4431.37 ms for Hermes and 3265.76 ms for Bun across the 300 updates.
 
 ![Repeated native view updates: median, quartiles and range](/benchmarks/bun-ios-native-promise-013/28-one-bench-updates-300-duration.svg)
 
@@ -44,10 +45,10 @@ No garbage collection was forced between cases.
 
 | Point in the suite | Hermes, MiB | Bun, MiB |
 | --- | ---: | ---: |
-| Startup | 31.46 | 35.75 |
-| After 300 view updates | 45.02 | 65.31 |
-| After long text list | 191.69 | 212.14 |
-| After string building | 52.56 | 168.26 |
+| Startup | 31.43 | 35.80 |
+| After 300 view updates | 44.80 | 66.14 |
+| After long text list | 191.73 | 212.12 |
+| After string building | 52.34 | 172.20 |
 
 ![Process memory after string building: median, quartiles and range](/benchmarks/bun-ios-native-promise-013/27-one-bench-strings-physical-footprint.svg)
 
@@ -59,8 +60,8 @@ idle period or a collection.
 
 | Measurement, ms | Hermes | Bun |
 | --- | ---: | ---: |
-| Process to content ready | 542.22 [536.90, 600.46] | 708.93 [687.19, 754.13] |
-| Process to first-frame proxy | 511.32 [507.35, 568.33] | 675.63 [653.75, 724.24] |
+| Process to content ready | 538.16 [534.42, 544.96] | 682.42 [665.10, 734.28] |
+| Process to first-frame proxy | 504.81 [501.11, 512.57] | 654.40 [632.76, 701.01] |
 
 The first-frame proxy uses a native display callback. It does not measure pixels
 appearing on screen. The charts include each observed minimum and maximum.
@@ -181,16 +182,16 @@ Measured on 14 November 2026.
   with JIT and WebAssembly disabled at simulator launch. Its compiler and runtime
   match; the embed script comes from One/vxrn 2.0.0-0.canary.1794703544061.
   The native adapter is retained from the captured OneBench executable.
-- One successful smoke per engine preceded two batches of five alternating pairs:
+- A prior successful smoke per engine preceded ten alternating pairs in one batch:
   Hermes, Bun, Hermes, Bun. Each launch starts a new process; OS caches remain warm.
   Both variants reuse one bundle ID, so the selected variant is installed at each
   engine switch. There is no added cooldown between launches.
 - The same prepared JavaScript, native UI, inputs and workload order are used on
   both engines. Source and tool hashes accompany the downloadable results.
-- Quiet admission covered each batch. Host and simulator background CPU activity
-  was observed, including host media analysis in the first batch and a concurrent
-  network transfer in the second. All twenty launches reported nominal thermal
-  state and low power mode off.
+- Quiet admission covered all ten pairs. Host media analysis processes were
+  journaled and paused before and after the batch. Git, agent and simulator
+  background activity was still logged. All twenty launches reported nominal
+  thermal state and low power mode off.
 - Compute checksums matched across engines and every launch reached completion.
 - Bars show medians, thick lines show the middle 50% of samples, and whiskers
   show the observed minimum and maximum. They are not confidence intervals.
