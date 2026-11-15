@@ -25,3 +25,5 @@
 {"id":"00000001794763658077:ac0f5390599d2bb33280cda5e8545f4b","text":"Respawned W78 from s256962 (muse:personal 429 quota exhausted, resets 2026-11-15T18:50:45Z) to s257395 (one-route-and-ios-ci, gpt-6.1-terra xhigh on codex:tamagui) to finish Red A/B and WDA cache cleanly."}
 
 {"id":"00000001794763753008:baf1808db5ec64b473081d38872f8323","text":"RAN: inherited simulator investigation observed root layout remount with /hmr-probe still active; assessing registry factory availability before deciding fix."}
+
+{"id":"00000001794764404716:6f23c75ca71d5cfc45d5aef3f4f6689c","text":"TESTED on iPhone 17 Pro iOS 27: route creation test passed with root recovery and new route; Shortcuts queryAppState=3 and SpringBoard=4 after warmup. TESTED engine regression: unvisited untouched, edited unvisited, edited visited routes survive registry patch. Final combined build and simulator run underway."}
