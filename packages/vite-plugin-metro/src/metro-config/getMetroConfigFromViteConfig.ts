@@ -199,7 +199,7 @@ function isReactNativePromisePolyfill(
 ) {
   return (
     !context.dev &&
-    /(^|[\\/])Core[\\/]polyfillPromise(\.js)?$/.test(moduleName) &&
+    /(^|[\\/])polyfillPromise(\.js)?$/.test(moduleName) &&
     /(^|[\\/])react-native[\\/]/.test(context.originModulePath)
   )
 }

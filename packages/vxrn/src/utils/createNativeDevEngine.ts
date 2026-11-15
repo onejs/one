@@ -1887,7 +1887,7 @@ export function hmrClientNoopPlugin(): Plugin {
  * tracking.
  */
 function nativePromisePlugin(): Plugin {
-  const RN_POLYFILL_PROMISE_RE = /(^|[\\/])Core[\\/]polyfillPromise(\.js)?$/
+  const RN_POLYFILL_PROMISE_RE = /(^|[\\/])polyfillPromise(\.js)?$/
   return {
     name: 'vxrn:native-promise',
     resolveId(source, importer) {
