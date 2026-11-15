@@ -3,16 +3,11 @@ title: Bun and Hermes on iOS
 description: Runtime, rendering and memory measurements from alternating Release builds.
 ---
 
-Bun completed 300 updates of 1,000 native views in 5.00 seconds, compared with
-8.18 seconds for Hermes. JavaScript compute workloads were faster on Bun.
-Navigation and the long text list were close, and Bun used more memory.
-Bluesky also showed tradeoffs: Bun reached the recorded thread commit sooner,
-while Hermes returned to the home feed sooner and used less memory.
+These simulator measurements predate the production native Promise change.
+They are retained as historical results while both engine cohorts are rebuilt
+and measured again. They do not establish iPhone performance.
 
-These measurements are from an iOS simulator on an Apple M2 MacBook Air with
-24 GB of memory. They do not establish iPhone performance.
-
-## Runtime
+## Runtime: historical samples
 
 Ten samples per engine. Times are medians in milliseconds; brackets contain
 the 25th and 75th percentiles. Lower is better.
@@ -64,7 +59,7 @@ Process to content ready was 528.62 ms on Hermes and 537.46 ms on Bun.
 The first-frame proxy was 500.80 ms and 507.74 ms respectively. The proxy
 uses a native display callback; it does not measure pixels appearing on screen.
 
-## Bluesky: exploratory simulator samples
+## Bluesky: historical exploratory samples
 
 Bun reached the recorded thread's final React commit sooner, while Hermes
 returned from settings to the home feed sooner and used less memory.
@@ -119,9 +114,11 @@ excluded from this comparison until the rendered-work difference is explained.
 | --- | ---: | ---: |
 | Bundle start to first React commit, ms | 1206.50 [1180.63, 1228.22] | 1242.14 [1183.80, 1285.75] |
 | Startup physical footprint, MiB | 109.86 [109.64, 110.39] | 147.24 [146.44, 147.52] |
-| After all actions, MiB | 222.22 [221.80, 222.69] | 297.86 [294.91, 298.86] |
+| After the recorded thread, MiB | 208.46 [207.07, 208.61] | 290.77 [290.69, 292.39] |
 
-The footprint includes native allocations. No garbage collection was forced.
+The thread footprint follows matching host-node counts. The final footprint
+after the mismatched profile is excluded. These values include native allocations;
+no garbage collection was forced.
 The startup metric begins inside the JavaScript bundle, so it excludes native
 process launch and runtime initialization and does not measure first pixels.
 
@@ -130,8 +127,6 @@ it waited four seconds without a new startup commit, then two seconds before
 an action. Later cases waited 2.5 seconds without a commit, then two seconds
 between actions. Those waits are excluded from the reported commit durations.
 Both apps were Release builds.
-
-![Bluesky memory after all actions: median, quartiles and range](/benchmarks/bluesky-ios-013/00-bluesky-complete-host-physical-footprint.svg)
 
 ### Bluesky method
 
