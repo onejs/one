@@ -46,9 +46,11 @@ export function updateMatchLoaderData(routeId: string, loaderData: unknown) {
   clientMatches = clientMatches.map((m) =>
     m.routeId === routeId ? { ...m, loaderData } : m
   )
-  for (const listener of clientMatchesListeners) {
-    listener()
-  }
+  startTransition(() => {
+    for (const listener of clientMatchesListeners) {
+      listener()
+    }
+  })
 }
 
 const revivedMatches = new WeakMap<object, RouteMatch>()

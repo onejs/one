@@ -101,6 +101,11 @@ it.each(['matches', 'loader'] as const)(
       })
       expect(renderer!.toJSON()).toBe('/first')
       expect(commits).toEqual([{ path: '/first', match: '/first', data: 'first' }])
+      await act(async () => {
+        updateMatchLoaderData('./[slug]', 'second')
+      })
+      expect(renderer!.toJSON()).toBe('/first')
+      expect(commits).toEqual([{ path: '/first', match: '/first', data: 'first' }])
     } finally {
       await act(async () => {
         loaded = true
